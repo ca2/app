@@ -2087,7 +2087,7 @@ namespace gpu
 
                            }
                            
-#if !defined(__APPLE__)
+//#if !defined(__APPLE__)
 
                            pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
                            // system()->acme_windowing()
@@ -2098,7 +2098,7 @@ namespace gpu
 
                            });
                            
-#endif
+//#endif
 
                         }
 

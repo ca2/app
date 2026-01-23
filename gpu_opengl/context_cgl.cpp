@@ -450,6 +450,14 @@ void context_cgl::_create_window_context(::acme::windowing::window* pacmewindowi
    
 }
 
+void context_cgl::on_cube_map_face_image(::image::image * pimage)
+{
+
+   pimage->vertical_swap();
+   
+   pimage->image32()->swap_red_blue(pimage->width(),pimage->height());
+
+}
 
 } // namespace gpu_opengl
 

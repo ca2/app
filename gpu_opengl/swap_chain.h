@@ -53,7 +53,8 @@ namespace gpu_opengl
       virtual ::pointer < ::gpu::shader > create_copy_texture_shader();
       virtual ::gpu::shader * present_shader();
       virtual ::gpu::shader * render_shader(int w, int h);
-      
+      virtual void defer_update_swap_chain_textures(const ::int_size & size);
+
       
    };
 

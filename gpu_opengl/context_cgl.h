@@ -52,7 +52,7 @@ namespace gpu_opengl
       virtual void _defer_update_render_frame_buffer();
       
       virtual void _defer_update_render_frame_buffer_unlocked();
-
+      void on_cube_map_face_image(::image::image * pimage) override;
    };
 
 

@@ -54,11 +54,11 @@ out vec4 FragColor;
 uniform sampler2D uTexture;
 
 void main() {
-if(TexCoord.x > 0.5)
-{
-FragColor=vec4(0.0, TexCoord.x *0.5, TexCoord.y *0.5 , 0.5);
-}
-else
+//if(TexCoord.x > 0.5)
+//{
+//FragColor=vec4(0.0, TexCoord.x *0.5, TexCoord.y *0.5 , 0.5);
+//}
+//else
 {
 FragColor = texture(uTexture, TexCoord);
 }
@@ -99,7 +99,9 @@ FragColor = texture(uTexture, TexCoord);
 
       }
 
-      if (m_pgpucontext->m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
+      if (m_pgpucontext->m_pacmewindowingwindowWindowSurface->__x11_Display()
+          &&
+          m_pgpucontext->m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
       {
 
          information("swap_chain::present m_lX11MapNotify != 1");
@@ -129,12 +131,25 @@ FragColor = texture(uTexture, TexCoord);
          GLCheckError("");
          glUseProgram(0);
          GLCheckError("");
+         
+         ::cast < ::gpu_opengl::texture > ptexturePresent = m_ptexturePresent;
 
-
+#if defined(__APPLE__)
+         if(!ptexturePresent->m_gluFbo)
+         {
+            
+            ptexturePresent->create_render_target();
+            
+         }
+         glBindFramebuffer(GL_FRAMEBUFFER, ptexturePresent->m_gluFbo);
+         //glBindFramebuffer(GL_FRAMEBUFFER, ptexturePresent->m_gluFbo);
+         GLCheckError("");
+#else
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          GLCheckError("");
          glDrawBuffer(GL_BACK);
          GLCheckError("");
+#endif
          glDisable(GL_SCISSOR_TEST);
          GLCheckError("");
          glDisable(GL_BLEND);
@@ -205,12 +220,15 @@ FragColor = texture(uTexture, TexCoord);
          m_pgpucontext->defer_unbind_shader();
 
 //#endif
-
+#if defined(__APPLE__)
+#else
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
          GLCheckError("");
 #endif
+         
+#endif
 
-#if 1
+#if 0
 
          glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
          GLCheckError("");
@@ -458,20 +476,23 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
       
    }
    
+   auto size = m_pgpucontext->m_pacmewindowingwindowWindowSurface->get_window_rectangle().size();
+   
    if(::is_null(m_ptexturePresent) ||
-      m_ptexturePresent->size() !=
-      m_pgpucontext->m_pacmewindowingwindowWindowSurface->get_window_rectangle().size())
+      m_ptexturePresent->size() != size
+      )
    {
       
       øconstruct_new(m_ptexturePresent);
 #if defined(__APPLE__)
-      
-      ::gpu::texture_attributes textureattributes;
-      
-      textureattributes.m_rectangleTarget.top_left() = ::int_point();
-      textureattributes.m_rectangleTarget.set_size(m_pgpucontext->m_pacmewindowingwindowWindowSurface->get_window_rectangle().size());
-      
-      m_ptexturePresent->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
+      defer_update_swap_chain_textures(size);
+//      m_ptexturePresent = m_p
+//      ::gpu::texture_attributes textureattributes;
+//      
+//      textureattributes.m_rectangleTarget.top_left() = ::int_point();
+//      textureattributes.m_rectangleTarget.set_size(m_pgpucontext->m_pacmewindowingwindowWindowSurface->get_window_rectangle().size());
+//      
+//      m_ptexturePresent->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
                                           
 #else
    
@@ -484,9 +505,87 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
       
    }
    
+#if defined(__APPLE__)
+   m_ptexturePresent = m_ptextureaSwapChain->element_at(m_iCurrentSwapChainFrame);
+
+#endif
+   
    return m_pshaderPresent;
    
 }
+
+
+void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
+{
+   
+   if(::is_null(m_ptextureaSwapChain)
+      || m_ptextureaSwapChain->size() != 3
+      || m_ptextureaSwapChain->first()->size() != size)
+   {
+      øconstruct_new(m_ptextureaSwapChain);
+
+      for(int i = 0; i < 3; i++)
+      {
+         auto & ptextureSwapChain = m_ptextureaSwapChain->ø(i);
+         øconstruct(ptextureSwapChain);
+         ::gpu::texture_attributes textureattributes(size);
+         ptextureSwapChain->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
+
+      }
+      
+//         textureattributes.m_rectangleTarget.top_left() = ::int_point();
+//         textureattributes.m_rectangleTarget.set_size(size);
+      
+      
+   }
+   //         if(m_iFbo != 0)
+   //         {
+   //            GLuint uFbo = m_iFbo;
+   //            glDeleteFramebuffers(1, &uFbo);
+   //            m_iFbo = 0;
+   //         }
+   //         if(m_iFboTex != 0)
+   //         {
+   //            GLuint uFboTex = m_iFboTex;
+   //            glDeleteTextures(1, &uFboTex);
+   //
+   //            m_iFboTex= 0;
+   //         }
+   //
+   //         if(m_iFbo == 0 && w > 0 && h > 0)
+   //         {
+   //
+   //            GLuint uFbo = 0;
+   //
+   //            glGenFramebuffers(1, &uFbo);
+   //            GLCheckError("");
+   //
+   //            m_iFbo = uFbo;
+   //
+   //            GLuint uTex = 0;
+   //
+   //            glGenTextures(1, &uTex);
+   //            GLCheckError("");
+   //
+   //
+   //            m_iFboTex = uTex;
+   //
+   //
+   //            glBindTexture(GL_TEXTURE_2D, uTex);
+   //            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
+   //                         GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+   //
+   //            glFramebufferTexture2D(GL_FRAMEBUFFER,
+   //                                   GL_COLOR_ATTACHMENT0,
+   //                                   GL_TEXTURE_2D,
+   //                                   uTex, 0);
+   //
+   //         }
+   //
+   //}
+   
+}
+
 
 ::gpu::shader * swap_chain::render_shader(int w, int h)
 {
@@ -515,75 +614,12 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
          
       }
       
-      if(::is_null(m_ptextureaSwapChain)
-         || m_ptextureaSwapChain->size() != 3
-         || m_ptextureaSwapChain->first()->size() != size)
-      {
-         øconstruct_new(m_ptextureaSwapChain);
-
-         for(int i = 0; i < 3; i++)
-         {
-            auto & ptextureSwapChain = m_ptextureaSwapChain->ø(i);
-            øconstruct(ptextureSwapChain);
-            ::gpu::texture_attributes textureattributes(size);
-            ptextureSwapChain->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
-
-         }
-         
-//         textureattributes.m_rectangleTarget.top_left() = ::int_point();
-//         textureattributes.m_rectangleTarget.set_size(size);
-         
-         
-      }
-      //         if(m_iFbo != 0)
-      //         {
-      //            GLuint uFbo = m_iFbo;
-      //            glDeleteFramebuffers(1, &uFbo);
-      //            m_iFbo = 0;
-      //         }
-      //         if(m_iFboTex != 0)
-      //         {
-      //            GLuint uFboTex = m_iFboTex;
-      //            glDeleteTextures(1, &uFboTex);
-      //
-      //            m_iFboTex= 0;
-      //         }
-      //
-      //         if(m_iFbo == 0 && w > 0 && h > 0)
-      //         {
-      //
-      //            GLuint uFbo = 0;
-      //
-      //            glGenFramebuffers(1, &uFbo);
-      //            GLCheckError("");
-      //
-      //            m_iFbo = uFbo;
-      //
-      //            GLuint uTex = 0;
-      //
-      //            glGenTextures(1, &uTex);
-      //            GLCheckError("");
-      //
-      //
-      //            m_iFboTex = uTex;
-      //
-      //
-      //            glBindTexture(GL_TEXTURE_2D, uTex);
-      //            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
-      //                         GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-      //
-      //            glFramebufferTexture2D(GL_FRAMEBUFFER,
-      //                                   GL_COLOR_ATTACHMENT0,
-      //                                   GL_TEXTURE_2D,
-      //                                   uTex, 0);
-      //
-      //         }
-      //
-      //}
+      defer_update_swap_chain_textures(size);
       
-   }
       
       //m_pgpucontext->m_pacmewindowingwindowWindowSurface->_
+      
+   }
       
       return m_pshaderRender;
    

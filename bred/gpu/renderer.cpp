@@ -397,7 +397,7 @@ namespace gpu
 
       assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
 
-      if (pgpuframe->m_pgpulayer)
+      if (pgpuframe && pgpuframe->m_pgpulayer)
       {
 
          return pgpuframe->m_pgpulayer->getCurrentCommandBuffer4();

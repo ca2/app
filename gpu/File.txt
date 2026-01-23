@@ -1,0 +1,1 @@
+. $HOME/code/operating_system/tool/bin/_on_after_build_dylib

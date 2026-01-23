@@ -37,7 +37,7 @@ namespace gpu_opengl
 
       ::gpu::block::create_gpu_block(pgpucontext);
 
-      int iUboSize = this->size(false);
+      auto iUboSize = this->size(false);
 
       // Create the UBO
       glGenBuffers(1, &m_iUBO);

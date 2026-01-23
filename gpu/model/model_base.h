@@ -25,10 +25,6 @@ namespace gpu
          ::string m_strDirectory;
          ::string_map<::pointer<::gpu::texture>> m_mapTexture;
 
-         /**
-          * Load a glTF 2.0 model.
-          * @param path
-          */
          model_base();
 
 
@@ -43,24 +39,9 @@ namespace gpu
          //virtual void initialize_gpu_gltf_model(::gpu::context *pgpucontext, const ::file::path &path,
            //                                     bool flipTexturesVertically, bool bExternalPbr);
 
-
-         /**
-          * Load a glTF 2.0 model using a provided material. This will ignore any material
-          * present in the model file.
-          * @param path
-          */
-         /*virtual void initialize_gpu_gltf_model(::gpu::context *pgpucontext, const ::file::path &path,
-                                                ::gpu::model::material *pmaterial, bool flipTexturesVertically,
-                                                bool bExternalPbr);
-*/
-
-
          //virtual void loadModel(const ::file::path &path, bool flipTexturesVertically, bool bExternalPbr);
 
-
-
          ::gpu::texture * loadMaterialTexture(const ::scoped_string &scopedstr, bool bSrgb);
-
 
 
       };

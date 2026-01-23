@@ -30,10 +30,6 @@ namespace gpu_opengl
          // ::pointer<material> m_pmaterialOverride;
          //
 
-         /**
-          * Load a glTF 2.0 model.
-          * @param path
-          */
          model();
          ~model() override;
 
@@ -43,13 +39,6 @@ namespace gpu_opengl
 
          //void load_gltf_model(const ::scoped_string &scopedstr, bool flipTexturesVertically);
 
-
-         /**
-          * Load a glTF 2.0 model using a provided material. This will ignore any material
-          * present in the model file.
-          * @param path
-          */
-         //void load_gltf_model(const ::scoped_string &scopedstr, ::gpu::model::material *pmaterial, bool flipTexturesVertically);
 
 
          //Model(::string path, std::shared_ptr<Material> material, bool flipTexturesVertically);

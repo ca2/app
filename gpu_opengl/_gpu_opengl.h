@@ -102,8 +102,11 @@
 
 #define GLAD_GLAPI_EXPORT
 #include <glad/glad.h>
-//#include <OpenGL/CGLTypes.h>
+#include <OpenGL/CGLTypes.h>
 
+#include <OpenGL/OpenGL.h>
+//#include <OpenGL/gl3.h>
+//#include <OpenGL/glext.h>
 
 #elif defined(WINDOWS_DESKTOP)
 

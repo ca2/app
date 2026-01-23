@@ -14,7 +14,7 @@
 //#include <OpenGL/OpenGL.h>
 //#include <CGL/CGL.h>
 
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -37,7 +37,9 @@ namespace opengl
       //virtual void resize_offscreen_buffer(const ::int_size& size) override;
       virtual void destroy_cpu_buffer() override;
 
-      virtual void defer_make_current() override;
+      virtual void _context_lock() override;
+      
+      virtual void _context_unlock() override;
 
       virtual string get_shader_version_text() override;
 
@@ -47,7 +49,7 @@ namespace opengl
    };
 
 
-} // namespace opengl
+} // namespace gpu_opengl
 
 
 

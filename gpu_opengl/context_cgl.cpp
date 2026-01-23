@@ -5,27 +5,19 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 24/07/20.
 //  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-
 #include "framework.h"
-#if defined(MACOS)
-#include <OpenGL/OpenGL.h>
-//#include <glad/glad.h>
-//#include <OpenGL/CGLTypes.h>
-//////#include <OpenGL/glu.h>
-#include <OpenGL/gl3.h>
-#include <OpenGL/glext.h>
-#endif
+#include "_gpu_opengl.h"
 #include "cpu_buffer.h"
 #include "context_cgl.h"
-//#include "opengl.h"
+#include "device_cgl.h"
 #include "acme/platform/application.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
 #include "aura/platform/system.h"
+#include "bred/gpu/context_lock.h"
 
 
-
-namespace opengl
+namespace gpu_opengl
 {
 
 
@@ -103,20 +95,6 @@ namespace opengl
 //      };
       //check(InMajorVersion > 3 || (InMajorVersion == 3 && InMinorVersion >= 2));
 
-      CGLPixelFormatAttribute AttribList[] =
-      {
-         
-         kCGLPFANoRecovery,
-         //kCGLPFAAccelerated,
-         //kCGLPFAOffScreen,
-         kCGLPFAOpenGLProfile,
-         (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
-         kCGLPFAColorSize, (CGLPixelFormatAttribute)32,
-         kCGLPFADepthSize, (CGLPixelFormatAttribute)16,
-         (CGLPixelFormatAttribute)0
-         
-      };
-
       
 //      CGLPixelFormatAttribute attribs[] =
 //      {
@@ -128,44 +106,20 @@ namespace opengl
 //      long numPixelFormats ;
 //      CGLChoosePixelFormat( attribs, &pixelFormatObj, &numPixelFormats ) ;
       
-      CGLPixelFormatObj PixelFormat;
+      ::cast < device_cgl > pdevice = m_pgpudevice;
       
-      GLint NumFormats = 0;
-      
-      auto error = CGLChoosePixelFormat(AttribList, &PixelFormat, &NumFormats);
+      auto error = CGLCreateContext(pdevice->m_cglpixelformat, NULL, &m_context);
       
       if(error != kCGLNoError)
       {
-         
-         //return ::error_failed;
          
          return;
          
       }
 
-      error = CGLCreateContext(PixelFormat, NULL, &m_context);
-      
-      if(error != kCGLNoError)
-      {
-         
-         //return ::error_failed;
-         
-         return;
-         
-      }
+      ::gpu::context_lock contextlock(this);
 
-      error = CGLDestroyPixelFormat(PixelFormat);
-      
-      if(error != kCGLNoError)
-      {
-         
-         //return ::error_failed;
-         
-         return;
-         
-      }
-
-      defer_make_current();
+//      defer_make_current();
       //::e_status estatus = make_current();
 
 //      if(!estatus)
@@ -199,8 +153,8 @@ namespace opengl
    }
 
 
-   void context_cgl::defer_make_current()
-   {
+   void context_cgl::_context_lock()
+{
 
       CGLError error = CGLSetCurrentContext(m_context);
       
@@ -209,7 +163,7 @@ namespace opengl
       if (!bMakeCurrentOk)
       {
 
-         printf("eglMakeCurrent failed!\n");
+         printf("cglMakeCurrent failed!\n");
 
          //return ::error_failed;
          
@@ -220,6 +174,28 @@ namespace opengl
       //return ::success;
 
    }
+
+void context_cgl::_context_unlock()
+{
+
+   CGLError error = CGLSetCurrentContext(nullptr);
+   
+   bool bMakeCurrentOk = error == kCGLNoError;
+
+   if (!bMakeCurrentOk)
+   {
+
+      printf("cglMakeCurrent(null) failed!\n");
+
+      //return ::error_failed;
+      
+      return;
+
+   }
+
+   //return ::success;
+
+}
 
 
    void context_cgl::destroy_cpu_buffer()

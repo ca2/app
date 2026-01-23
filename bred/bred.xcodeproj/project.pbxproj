@@ -401,6 +401,10 @@
 		9A8582FE2F22A052001D08D1 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8582FA2F22A052001D08D1 /* transform.cpp */; };
 		9A8582FF2F22A052001D08D1 /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F92F22A052001D08D1 /* transform.h */; };
 		9A8583002F22A052001D08D1 /* _functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F82F22A052001D08D1 /* _functions.h */; };
+		9A8585D42F22C645001D08D1 /* graphics3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8585D22F22C645001D08D1 /* graphics3d.h */; };
+		9A8585D52F22C645001D08D1 /* graphics3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8585D32F22C645001D08D1 /* graphics3d.cpp */; };
+		9A8585D62F22C645001D08D1 /* graphics3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8585D32F22C645001D08D1 /* graphics3d.cpp */; };
+		9A8585D72F22C645001D08D1 /* graphics3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8585D22F22C645001D08D1 /* graphics3d.h */; };
 		9ADF04192C274B55004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
 		9ADF041A2C274B55004CF1C9 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF04172C274B55004CF1C9 /* user.h */; };
 		9ADF041B2C275401004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
@@ -699,6 +703,8 @@
 		9A8582F82F22A052001D08D1 /* _functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _functions.h; sourceTree = "<group>"; };
 		9A8582F92F22A052001D08D1 /* transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
 		9A8582FA2F22A052001D08D1 /* transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
+		9A8585D22F22C645001D08D1 /* graphics3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = graphics3d.h; sourceTree = "<group>"; };
+		9A8585D32F22C645001D08D1 /* graphics3d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics3d.cpp; sourceTree = "<group>"; };
 		9A8C03522A281A370049B167 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A8C03532A281A380049B167 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9ADF04162C274B55004CF1C9 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
@@ -1102,6 +1108,8 @@
 		9ADF04182C274B55004CF1C9 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9A8585D22F22C645001D08D1 /* graphics3d.h */,
+				9A8585D32F22C645001D08D1 /* graphics3d.cpp */,
 				9ADF04162C274B55004CF1C9 /* user.cpp */,
 				9ADF04172C274B55004CF1C9 /* user.h */,
 			);
@@ -1147,6 +1155,7 @@
 				9A281AC525243402009FA9CB /* __debug_box_set_impl.h in Headers */,
 				9A281AB725243402009FA9CB /* id.h in Headers */,
 				9A281ACE25243402009FA9CB /* _app_impl1.h in Headers */,
+				9A8585D42F22C645001D08D1 /* graphics3d.h in Headers */,
 				9A281ABD25243402009FA9CB /* macos.h in Headers */,
 				9A281AD425243402009FA9CB /* _.h in Headers */,
 				9A281ACF25243402009FA9CB /* _acid_app_impl.h in Headers */,
@@ -1310,6 +1319,7 @@
 				9A7FED622E7F47430082C6FD /* immersion_layer.h in Headers */,
 				9A7FED642E7F47430082C6FD /* game_object.h in Headers */,
 				9A7FED652E7F47430082C6FD /* shape_factory.h in Headers */,
+				9A8585D72F22C645001D08D1 /* graphics3d.h in Headers */,
 				9A7FEBFC2E7F47310082C6FD /* swap_chain.h in Headers */,
 				9A7FEBFD2E7F47310082C6FD /* graphics.h in Headers */,
 				9A7FEBFE2E7F47310082C6FD /* context_object.h in Headers */,
@@ -1593,6 +1603,7 @@
 				9A7FEBCB2E7F47310082C6FD /* queue.cpp in Sources */,
 				9A7FEBCC2E7F47310082C6FD /* properties.cpp in Sources */,
 				9A7FEBCD2E7F47310082C6FD /* frame_storage.cpp in Sources */,
+				9A8585D52F22C645001D08D1 /* graphics3d.cpp in Sources */,
 				9A7FEBCE2E7F47310082C6FD /* device.cpp in Sources */,
 				9A7FEBCF2E7F47310082C6FD /* render_target.cpp in Sources */,
 				9A7FEBD02E7F47310082C6FD /* graphics.cpp in Sources */,
@@ -1679,6 +1690,7 @@
 				9A7FEBEE2E7F47310082C6FD /* queue.cpp in Sources */,
 				9A7FEBEF2E7F47310082C6FD /* properties.cpp in Sources */,
 				9A7FEBF02E7F47310082C6FD /* frame_storage.cpp in Sources */,
+				9A8585D62F22C645001D08D1 /* graphics3d.cpp in Sources */,
 				9A7FEBF12E7F47310082C6FD /* device.cpp in Sources */,
 				9A7FEBF22E7F47310082C6FD /* render_target.cpp in Sources */,
 				9A7FEBF32E7F47310082C6FD /* graphics.cpp in Sources */,

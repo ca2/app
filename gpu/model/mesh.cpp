@@ -33,7 +33,7 @@ namespace gpu
       }
 
 
-      int mesh::indexes_count() const
+      ::collection::index mesh::indexes_count() const
       {
 
          return m_pmodelbuffer->m_pmodeldatabase2->index_count();

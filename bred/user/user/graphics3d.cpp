@@ -78,7 +78,7 @@ namespace user
    void graphics3d::on_message_key_down(::message::message* pmessage)
    {
 
-      auto pkey = pmessage->m_union.m_pkey;
+      //auto pkey = pmessage->m_union.m_pkey;
 
       pmessage->m_bRet = true;
 
@@ -88,7 +88,7 @@ namespace user
    void graphics3d::on_message_key_up(::message::message* pmessage)
    {
 
-      auto pkey = pmessage->m_union.m_pkey;
+      //auto pkey = pmessage->m_union.m_pkey;
 
       pmessage->m_bRet = true;
 
@@ -424,9 +424,9 @@ namespace user
 
          string_array &stra = m_straLineStats;
 
-         bool bWhite = true;
+         //bool bWhite = true;
 
-         double x = 0.;
+         //double x = 0.;
 
          double y = 0.;
 
@@ -456,11 +456,11 @@ namespace user
 
          stra.ø(2) = strFrameTime;
 
-         bool bFixedPosition = true;
+         //bool bFixedPosition = true;
 
          point = {10, 10};
 
-         ::color::color color;
+         //::color::color color;
 
          opacity = ::opacity(200);
 

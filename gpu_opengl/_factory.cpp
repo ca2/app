@@ -42,18 +42,15 @@
 
 #include "device_win32.h"
 
-#else
+#elif defined(LINUX) || defined(__BSD__)
 
 #include "device_egl.h"
 
-#endif
+#else
 
-//BEGIN_FACTORY(gpu_opengl)
-//FACTORY_ITEM(::opengl::opengl)
-//FACTORY_ITEM(::opengl::program)
-//FACTORY_ITEM(::opengl::shader)
-//FACTORY_ITEM(::opengl::buffer)
-//END_FACTORY()
+#include "device_cgl.h"
+
+#endif
 
 
 __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
@@ -82,9 +79,13 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
    pfactory->add_factory_item < ::gpu_opengl::device_win32, ::gpu::device >();
 
-#else
+#elif defined(LINUX) || defined(__BSD__)
 
    pfactory->add_factory_item < ::gpu_opengl::device_egl, ::gpu::device >();
+
+#else
+
+   pfactory->add_factory_item < ::gpu_opengl::device_cgl, ::gpu::device >();
 
 #endif
 

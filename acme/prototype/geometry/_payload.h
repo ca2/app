@@ -35,7 +35,7 @@ inline void copy_color(sequence_type < NUMBER, 4 > & sequence4, const ::payload 
 
 
 template<prototype_number NUMBER, int t_iSize>
-inline int defer_copy(sequence_type<NUMBER, t_iSize> &sequence, const ::payload &payload)
+inline auto defer_copy(sequence_type<NUMBER, t_iSize> &sequence, const ::payload &payload)
 {
 
    auto iCopyCount = minimum(payload.array_get_count(), t_iSize);

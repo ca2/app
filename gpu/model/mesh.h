@@ -47,7 +47,7 @@ namespace gpu
          mesh();
          ~mesh() override;
 
-         virtual int indexes_count() const;
+         virtual ::collection::index indexes_count() const;
 
 
          virtual void initialize_gpu_mesh(::gpu::context * pgpucontext, ::gpu::model::material * pmaterial, ::gpu::model_data_base * pmodeldata);

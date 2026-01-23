@@ -49,7 +49,7 @@ namespace gpu_gpu
       ~context() override;
 
 
-      ::pointer<::gpu::texture> cubemap_from_hdr(const ::file::path &pathHdr);
+      ::pointer<::gpu::texture> cubemap_from_hdr(const ::file::path &pathHdr) override;
       ::pointer<::gpu::texture> cubemap_from_hdr_on_memory(const ::block & block);
 
 //

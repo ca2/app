@@ -74,31 +74,9 @@ namespace gpu_opengl
 
       void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer) override;
 
-               /**
-       * Set the mip level to render with.
-       * @param mipLevel
-       */
-      virtual void set_current_mip(int level);
+      void set_current_mip(int level) override;
 
 
-      ///**
-      // * Get the current width based on the mip level.
-      // * @return
-      // */
-      //virtual int mip_width();
-
-
-      ///**
-      // * Get the current height based on the mip level.
-      // * @return
-      // */
-      //virtual int mip_height();
-
-
-      /**
-       * Set which cube face texture to render to.
-       * @param index
-       */
       virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
 
 

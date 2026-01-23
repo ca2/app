@@ -13,13 +13,13 @@
 
 int rotating_cube();
 
-////#include "_opengl.h"
-////
-extern "C"
-{
-GLAPI int gladLoadCGL(void);
-
-} // extern "C"
+//////#include "_opengl.h"
+//////
+//extern "C"
+//{
+//GLAPI int gladLoadCGL(void);
+//
+//} // extern "C"
 
 //const char* eglErrorString(EGLint error) {
 //   switch (error) {
@@ -46,214 +46,214 @@ GLAPI int gladLoadCGL(void);
 namespace gpu_opengl
 {
 
-   //bool g_bEglOpened = false;
-   //EGLDisplay g_egldisplay = nullptr;
-   //EGLConfig  g_eglconfig;
-   thread_local bool t_bEglApiBound = false;
-   bool g_bGladGL = false;
-   //critical_section g_criticalsectionEgl;
-
-   bool is_glad_gl_loaded()
-   {
-
-      return g_bGladGL;
-
-   }
-
-// --- Step A: Define a loader function for GLAD ---
-// CGL doesn't have a simple "GetProcAddress" function, so we use
-// dlsym to look up symbols from the OpenGL framework.
-void* GetCGLProcAddress(const char* name) {
-    static void* handle = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_NOW);
-    return dlsym(handle, name);
-}
+//   //bool g_bEglOpened = false;
+//   //EGLDisplay g_egldisplay = nullptr;
+//   //EGLConfig  g_eglconfig;
+//   thread_local bool t_bEglApiBound = false;
+//   bool g_bGladGL = false;
+//   //critical_section g_criticalsectionEgl;
 //
-//   // should be called within a currently selected egl context
-   void load_glad_cgl()
-   {
-
-      if (g_bGladGL)
-      {
-
-          return;
-
-      }
-
-      g_bGladGL = true;
-
-      auto gl_version = gladLoadGLLoader((GLADloadproc)GetCGLProcAddress);
-
-      if (!gl_version)
-      {
-
-         printf("Unable to reload GL.\n");
-
-         throw ::exception(::error_failed);
-
-      }
-
-      auto pszGlVersion = glGetString(GL_VERSION);
-
-      auto pszGlRenderer = glGetString(GL_RENDERER);
-
-      printf("GL_VERSION = %s\n", pszGlVersion);
-
-      printf("GL_RENDERER = %s\n", pszGlRenderer);
-
-
-      //printf("has GLES3: %d\n", GLAD_GL_ES_VERSION_3_0);
-
-      //printf("Loaded GL %d.%d after reload.\n",
-      //     GLAD_VERSION_MAJOR(gl_version), GLAD_VERSION_MINOR(gl_version));
-
-   }
-
-
-   // critical_section * egl_critical_section()
-   // {
-   //    return &g_criticalsectionEgl;
-   // }
-
-//    EGLDisplay egl_open_display()
-//    {
+//   bool is_glad_gl_loaded()
+//   {
 //
-//       if (g_bEglOpened)
-//       {
+//      return g_bGladGL;
 //
-//          return g_egldisplay;
+//   }
 //
-//       }
+//// --- Step A: Define a loader function for GLAD ---
+//// CGL doesn't have a simple "GetProcAddress" function, so we use
+//// dlsym to look up symbols from the OpenGL framework.
+//void* GetCGLProcAddress(const char* name) {
+//    static void* handle = dlopen("/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL", RTLD_NOW);
+//    return dlsym(handle, name);
+//}
+////
+////   // should be called within a currently selected egl context
+//   void load_glad_cgl()
+//   {
 //
-//       g_bEglOpened = true;
+//      if (g_bGladGL)
+//      {
 //
-//       EGLint attribList[]=
-//       {
+//          return;
 //
-//          EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,
-// /// ;;;        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
-//          //EGL_CONFORMANT, EGL_OPENGL_BIT,
-//          //EGL_COLOR_BUFFER_TYPE, EGL_RGB_BUFFER,
-//          EGL_RED_SIZE, 8,
-//          EGL_GREEN_SIZE, 8,
-//          EGL_BLUE_SIZE, 8,
-//          EGL_ALPHA_SIZE, 8,
-//          //EGL_LEVEL, 0,
-//          //EGL_BUFFER_SIZE, 24,
-//          EGL_NONE
+//      }
 //
-//       };
+//      g_bGladGL = true;
 //
-//       //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//      auto gl_version = gladLoadGLLoader((GLADloadproc)GetCGLProcAddress);
 //
-//       //xdisplay display(x11_get_display());
+//      if (!gl_version)
+//      {
 //
-//       //m_display = eglGetDisplay((EGLNativeDisplayType)display);
+//         printf("Unable to reload GL.\n");
 //
-//       //m_display = eglGetDisplay((EGLNativeDisplayType)0);
-//       auto egldisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+//         throw ::exception(::error_failed);
 //
-//       if (egldisplay == EGL_NO_DISPLAY)
-//       {
+//      }
 //
-//          fprintf(stderr, "Got no EGL display.\n");
+//      auto pszGlVersion = glGetString(GL_VERSION);
 //
-//          throw ::exception(::error_failed);
+//      auto pszGlRenderer = glGetString(GL_RENDERER);
 //
-//       }
+//      printf("GL_VERSION = %s\n", pszGlVersion);
 //
-//       if (!eglInitialize(egldisplay, NULL, NULL))
-//       {
-//
-//          fprintf(stderr, "Unable to initialize EGL\n");
-//
-//          throw ::exception(::error_failed);
-//
-//       }
+//      printf("GL_RENDERER = %s\n", pszGlRenderer);
 //
 //
+//      //printf("has GLES3: %d\n", GLAD_GL_ES_VERSION_3_0);
 //
-//       // Choose an EGLConfig
-//       //EGLConfig config;
-//       EGLint numConfigs;
-//       EGLint configAttribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT, EGL_NONE};
-//       if (!eglChooseConfig(egldisplay, configAttribs, &g_eglconfig, 1, &numConfigs))
-//       {
+//      //printf("Loaded GL %d.%d after reload.\n",
+//      //     GLAD_VERSION_MAJOR(gl_version), GLAD_VERSION_MINOR(gl_version));
 //
-//          int iError = eglGetError();
-//
-//          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
-//
-//          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
-//
-//          throw ::exception(::error_failed);
-//
-//       }
-//
-//       if (numConfigs != 1)
-//       {
-//
-//          fprintf(stderr, "Didn't get just one config, but %d\n", numConfigs);
-//
-//          throw ::exception(::error_failed);
-//
-//       }
-//
-//       g_egldisplay = egldisplay;
-//
-//       //#if OSMESA_MAJOR_VERSION * 100 + OSMESA_MINOR_VERSION >= 305
-//       //   /* specify Z, stencil, accum sizes */
-//       //   m_mesacontext = OSMesaCreateContextExt( GL_RGBA, 16, 0, 0, NULL );
-//       //#else
-//       //   m_mesacontext = OSMesaCreateContext( GL_RGBA, NULL );
-//       //#endif
-//       //   if (!m_mesacontext)
-//       //   {
-//       //
-//       //      printf("OSMesaCreateContext failed!\n");
-//       //
-//       //      return 0;
-//       //
-//       //   }
-//       //g_bEglOpened = true;
-//
-//       return g_egldisplay;
-//
-//    }
-
-   void defer_bind_egl_api()
-   {
-
-      if (t_bEglApiBound)
-      {
-
-         return;
-
-      }
-
-      t_bEglApiBound=true;
-
-//#ifdef LINUX
-//
-//      eglBindAPI(EGL_OPENGL_API);
-//
-//#else
-//
-//      eglBindAPI(EGL_OPENGL_ES_API);
-//
-//      //  auto egl_version = gladLoadEGL();
-//      //  if (!egl_version) {
-//      //        printf("Unable to reload EGL.\n");
-//      //        throw ::exception(::error_failed);
-//      //     }
-//      // printf("Loaded EGL %d.%d after reload.\n",
-//      //        GLAD_VERSION_MAJOR(egl_version), GLAD_VERSION_MINOR(egl_version));
+//   }
 //
 //
-//#endif
-
-
-
-   }
+//   // critical_section * egl_critical_section()
+//   // {
+//   //    return &g_criticalsectionEgl;
+//   // }
+//
+////    EGLDisplay egl_open_display()
+////    {
+////
+////       if (g_bEglOpened)
+////       {
+////
+////          return g_egldisplay;
+////
+////       }
+////
+////       g_bEglOpened = true;
+////
+////       EGLint attribList[]=
+////       {
+////
+////          EGL_SURFACE_TYPE, EGL_PBUFFER_BIT,
+//// /// ;;;        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+////          //EGL_CONFORMANT, EGL_OPENGL_BIT,
+////          //EGL_COLOR_BUFFER_TYPE, EGL_RGB_BUFFER,
+////          EGL_RED_SIZE, 8,
+////          EGL_GREEN_SIZE, 8,
+////          EGL_BLUE_SIZE, 8,
+////          EGL_ALPHA_SIZE, 8,
+////          //EGL_LEVEL, 0,
+////          //EGL_BUFFER_SIZE, 24,
+////          EGL_NONE
+////
+////       };
+////
+////       //synchronous_lock synchronouslock(x11_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+////
+////       //xdisplay display(x11_get_display());
+////
+////       //m_display = eglGetDisplay((EGLNativeDisplayType)display);
+////
+////       //m_display = eglGetDisplay((EGLNativeDisplayType)0);
+////       auto egldisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+////
+////       if (egldisplay == EGL_NO_DISPLAY)
+////       {
+////
+////          fprintf(stderr, "Got no EGL display.\n");
+////
+////          throw ::exception(::error_failed);
+////
+////       }
+////
+////       if (!eglInitialize(egldisplay, NULL, NULL))
+////       {
+////
+////          fprintf(stderr, "Unable to initialize EGL\n");
+////
+////          throw ::exception(::error_failed);
+////
+////       }
+////
+////
+////
+////       // Choose an EGLConfig
+////       //EGLConfig config;
+////       EGLint numConfigs;
+////       EGLint configAttribs[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_BIT, EGL_NONE};
+////       if (!eglChooseConfig(egldisplay, configAttribs, &g_eglconfig, 1, &numConfigs))
+////       {
+////
+////          int iError = eglGetError();
+////
+////          const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
+////
+////          fprintf(stderr, "Failed to choose config (eglError: %s : 0x%x)\n", ::string(scopedstrError).c_str(), iError);
+////
+////          throw ::exception(::error_failed);
+////
+////       }
+////
+////       if (numConfigs != 1)
+////       {
+////
+////          fprintf(stderr, "Didn't get just one config, but %d\n", numConfigs);
+////
+////          throw ::exception(::error_failed);
+////
+////       }
+////
+////       g_egldisplay = egldisplay;
+////
+////       //#if OSMESA_MAJOR_VERSION * 100 + OSMESA_MINOR_VERSION >= 305
+////       //   /* specify Z, stencil, accum sizes */
+////       //   m_mesacontext = OSMesaCreateContextExt( GL_RGBA, 16, 0, 0, NULL );
+////       //#else
+////       //   m_mesacontext = OSMesaCreateContext( GL_RGBA, NULL );
+////       //#endif
+////       //   if (!m_mesacontext)
+////       //   {
+////       //
+////       //      printf("OSMesaCreateContext failed!\n");
+////       //
+////       //      return 0;
+////       //
+////       //   }
+////       //g_bEglOpened = true;
+////
+////       return g_egldisplay;
+////
+////    }
+//
+//   void defer_bind_egl_api()
+//   {
+//
+//      if (t_bEglApiBound)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      t_bEglApiBound=true;
+//
+////#ifdef LINUX
+////
+////      eglBindAPI(EGL_OPENGL_API);
+////
+////#else
+////
+////      eglBindAPI(EGL_OPENGL_ES_API);
+////
+////      //  auto egl_version = gladLoadEGL();
+////      //  if (!egl_version) {
+////      //        printf("Unable to reload EGL.\n");
+////      //        throw ::exception(::error_failed);
+////      //     }
+////      // printf("Loaded EGL %d.%d after reload.\n",
+////      //        GLAD_VERSION_MAJOR(egl_version), GLAD_VERSION_MINOR(egl_version));
+////
+////
+////#endif
+//
+//
+//
+//   }
 
    //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle)
    //{
@@ -424,7 +424,7 @@ void* GetCGLProcAddress(const char* name) {
 
       }
 
-      defer_bind_egl_api();
+      //defer_bind_egl_api();
 
 //    critical_section_lock lockEgl(egl_critical_section());
 
@@ -701,7 +701,7 @@ void* GetCGLProcAddress(const char* name) {
       
       
       
-      load_glad_cgl();
+      //load_glad_cgl();
 
       // auto gl_version = gladLoadGL();
       // if (!gl_version) {

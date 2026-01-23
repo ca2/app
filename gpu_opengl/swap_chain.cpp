@@ -24,6 +24,9 @@ namespace gpu_opengl
 
    swap_chain::swap_chain()
    {
+      
+      m_iFbo = 0;
+      m_iFboTex = 0;
 
       //m_VAOFullScreenQuad = 0;
       //m_VBOFullScreenQuad = 0;
@@ -283,61 +286,75 @@ FragColor = texture(uTexture, TexCoord);
 void swap_chain::on_gpu_context_render_frame(int w, int h)
 {
    
-   ::int_rectangle rectangle(0, 0, w, h);
+   ::int_rectangle rectangleWindow(0, 0, w, h);
    
-   if(m_pgpucontext->m_rectangle != rectangle)
+   if(m_pgpucontext->m_rectangle != rectangleWindow.size()
+      || m_iFbo <= 0
+      || m_iFboTex <= 0)
    {
       
-      m_pgpucontext->on_resize(rectangle.size());
+      m_pgpucontext->on_resize(rectangleWindow.size());
       
-      if(m_iFbo != 0)
-      {
-         GLuint uFbo = m_iFbo;
-         glDeleteFramebuffers(1, &uFbo);
-         m_iFbo = 0;
-      }
-      if(m_iFboTex != 0)
-      {
-         GLuint uFboTex = m_iFboTex;
-         glDeleteTextures(1, &uFboTex);
-
-         m_iFboTex= 0;
-      }
-
-      if(m_iFbo == 0 && w > 0 && h > 0)
+      m_pgpucontext->m_rectangle.set_size(rectangleWindow.size());
+      
       {
          
-         GLuint uFbo = 0;
+         ::gpu::context_lock contextlock(m_pgpucontext);
          
-         glGenFramebuffers(1, &uFbo);
-         GLCheckError("");
+         if(m_iFbo != 0)
+         {
+            GLuint uFbo = m_iFbo;
+            glDeleteFramebuffers(1, &uFbo);
+            m_iFbo = 0;
+         }
+         if(m_iFboTex != 0)
+         {
+            GLuint uFboTex = m_iFboTex;
+            glDeleteTextures(1, &uFboTex);
+            
+            m_iFboTex= 0;
+         }
          
-         m_iFbo = uFbo;
-         
-         GLuint uTex = 0;
-         
-         glGenTextures(1, &uTex);
-         GLCheckError("");
-         
-         
-         m_iFboTex = uTex;
-         
-         
-         glBindTexture(GL_TEXTURE_2D, uTex);
-         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
-                      GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-         
-         glFramebufferTexture2D(GL_FRAMEBUFFER,
-                                GL_COLOR_ATTACHMENT0,
-                                GL_TEXTURE_2D,
-                                uTex, 0);
+         if(m_iFbo == 0 && w > 0 && h > 0)
+         {
+            
+            GLuint uFbo = 0;
+            
+            glGenFramebuffers(1, &uFbo);
+            GLCheckError("");
+            
+            m_iFbo = uFbo;
+            
+            GLuint uTex = 0;
+            
+            glGenTextures(1, &uTex);
+            GLCheckError("");
+            
+            
+            m_iFboTex = uTex;
+            
+            
+            glBindTexture(GL_TEXTURE_2D, uTex);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
+                         GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+            
+            glFramebufferTexture2D(GL_FRAMEBUFFER,
+                                   GL_COLOR_ATTACHMENT0,
+                                   GL_TEXTURE_2D,
+                                   uTex, 0);
+            
+         }
          
       }
+      
+      //m_pgpucontext->m_pacmewindowingwindowWindowSurface->_
       
    }
-   
+   glEnable(GL_BLEND);
+   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glViewport(0, 0, w, h);
-   glClearColor(0.2f, 0.4f, 0.9f, 1.0f);
+   float alpha = 0.69;
+   glClearColor(0.2f * alpha, 0.4f * alpha, 0.9f * alpha, 1.0f * alpha);
    glClear(GL_COLOR_BUFFER_BIT);
    
    

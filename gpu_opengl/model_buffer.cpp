@@ -196,14 +196,14 @@ namespace gpu_opengl
 
             }
             
-            glDrawElements(mode, m_pmodeldatabase2->index_count(), etype, 0);
+            glDrawElements(mode, (int) m_pmodeldatabase2->index_count(), etype, 0);
             GLCheckError("");
 
          }
          else
          {
 
-            glDrawArrays(mode, 0, m_pmodeldatabase2->vertex_count());
+            glDrawArrays(mode, 0, (int)m_pmodeldatabase2->vertex_count());
             GLCheckError("");
 
          }

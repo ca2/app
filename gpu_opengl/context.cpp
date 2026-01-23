@@ -35,6 +35,8 @@
 
 #include "bred/gpu/block.h"
 
+void gl_insert_debug_message(const_char_pointer msg);
+
 
 namespace gpu_opengl
 {
@@ -330,11 +332,11 @@ namespace gpu_opengl
       else
       {
 
-#ifdef __APPLE__
-         glBindVertexArrayAPPLE(m_VAO);
-#else
+//#ifdef __APPLE__
+  //       glBindVertexArrayAPPLE(m_VAO);
+//#else
          glBindVertexArray(m_VAO);
-#endif
+//#endif
 
          glDrawArrays(GL_TRIANGLES, 0, 6);
 
@@ -1146,13 +1148,15 @@ namespace gpu_opengl
       {
 
          ::string strMessage(scopedstrMessage);
+         
+         gl_insert_debug_message(strMessage);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1168,12 +1172,13 @@ namespace gpu_opengl
 
          strMessage.formatf("ø gpu_opengl::context::on_end_layer");
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         gl_insert_debug_message(strMessage);
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1940,12 +1945,13 @@ namespace gpu_opengl
 
          strMessage.formatf("ø texDst=%d texSrc=%d", texDst, texSrc);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         gl_insert_debug_message(strMessage);
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1961,12 +1967,14 @@ namespace gpu_opengl
 
          strMessage.formatf("ø copy drawFbo=%d readFbo=%d", drawFbo, readFbo);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         gl_insert_debug_message(strMessage);
+         
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1993,12 +2001,14 @@ namespace gpu_opengl
 
          strMessage.formatf("ø copy drawFboTex=%d readFboText=%d", textureDrawFbo, textureReadFbo);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         gl_insert_debug_message(strMessage);
+         
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 

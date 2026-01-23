@@ -219,3 +219,13 @@ void GLEnsureNonNullHandle(long lHandle, const_char_pointer pszMessage)
 }
 
 
+
+#if defined(__APPLE__)
+
+void gl_insert_debug_message(const_char_pointer pszMessage)
+{
+   
+   
+}
+   
+#endif

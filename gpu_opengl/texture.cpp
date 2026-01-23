@@ -58,7 +58,7 @@ namespace gpu_opengl
 
       stbi_set_flip_vertically_on_load(1);
 
-      auto imagedata = stbi_loadf_from_memory(data, size, &width, &height, &channels, 0);
+      auto imagedata = stbi_loadf_from_memory(data, (int) size, &width, &height, &channels, 0);
 
       stbi_set_flip_vertically_on_load(0);
 
@@ -646,11 +646,18 @@ namespace gpu_opengl
             //{
             }
             //}
-
+#if defined(__APPLE__)
                // Load the texture data into the cubemap
-               glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA,
+               glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8,
                   sizeCurrent.cx, sizeCurrent.cy, 0, GL_BGRA,
                             GL_UNSIGNED_BYTE, pimage32);
+            
+#else
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA,
+               sizeCurrent.cx, sizeCurrent.cy, 0, GL_BGRA,
+                         GL_UNSIGNED_BYTE, pimage32);
+         
+#endif
 
                GLCheckError("");
 
@@ -862,8 +869,16 @@ namespace gpu_opengl
 
    void texture::set_pixels(const ::int_rectangle &rectangle, const void *data)
    {
+      
+      if(::is_null(data))
+      {
+         
+         throw ::exception(error_bad_argument);
+         
+      }
 
       glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+      GLCheckError("");
 
       // int w = rectangle.width();
       // int h = rectangle.height();
@@ -888,6 +903,7 @@ namespace gpu_opengl
       // }
 
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+      GLCheckError("");
       glTexSubImage2D(GL_TEXTURE_2D,
                       0, // mip level
                       rectangle.left, rectangle.top, // offset inside the texture
@@ -895,9 +911,13 @@ namespace gpu_opengl
                       GL_RGBA, // format of the new data
                       GL_UNSIGNED_BYTE, // type of the new data
                       data // pointer to new pixels
+                      
       );
+      
+      GLCheckError("");
 
       glBindTexture(GL_TEXTURE_2D, 0);
+      GLCheckError("");
    }
 
 

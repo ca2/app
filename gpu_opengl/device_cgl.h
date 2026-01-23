@@ -4,8 +4,7 @@
 
 #include "gpu_opengl/device.h"
 
-
-
+#include "gpu_opengl/_gpu_opengl.h"
 
 namespace gpu_opengl
 {

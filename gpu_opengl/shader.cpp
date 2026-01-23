@@ -17,7 +17,7 @@
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
 
-void gl_debug_marker(const char* msg);
+void gl_insert_debug_message(const char* msg);
 
 
 namespace gpu_opengl
@@ -302,7 +302,7 @@ namespace gpu_opengl
          
          strMessage.formatf("ø shader_bind drawFbo=%d readFbo=%d", drawFbo, readFbo);
          
-         gl_debug_marker(strMessage);
+         gl_insert_debug_message(strMessage);
          
       }
 

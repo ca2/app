@@ -13,7 +13,7 @@
 
 
 
-void gl_insert_debug_message(const_char_pointer message)
+void gl_insert_debug_message(const_char_pointer pszMessage)
 {
    
    if(glDebugMessageInsert)
@@ -24,7 +24,7 @@ void gl_insert_debug_message(const_char_pointer message)
                            0,
                            GL_DEBUG_SEVERITY_LOW,
                            -1,
-                           msg
+                           pszMessage
                            );
    }
    else if(glDebugMessageInsertARB)
@@ -35,7 +35,7 @@ void gl_insert_debug_message(const_char_pointer message)
                               0,
                               GL_DEBUG_SEVERITY_LOW_ARB,
                               -1,
-                              msg
+                              pszMessage
                               );
    }
 }

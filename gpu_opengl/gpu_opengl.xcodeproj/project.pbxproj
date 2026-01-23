@@ -55,10 +55,8 @@
 		9A4334F32F232E0500705FD8 /* specular_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333D82F232C4E00705FD8 /* specular_map.cpp */; };
 		9A4334F42F232E0500705FD8 /* equirectangular_cubemap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333D62F232C4E00705FD8 /* equirectangular_cubemap.cpp */; };
 		9A4CC8702F236EB300D9A73A /* approach_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC86F2F236EB300D9A73A /* approach_cgl.cpp */; };
-		9A4CC8822F236F7300D9A73A /* glad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4CC8732F236EB300D9A73A /* glad.dylib */; };
 		9A4CC8832F23701A00D9A73A /* _gpu_opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333512F232C4E00705FD8 /* _gpu_opengl.cpp */; };
 		9A4CC8852F23704B00D9A73A /* swap_chain_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */; };
-		9A8A57702F237EA200FBC673 /* _cgcl_glad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8A576F2F237E9B00FBC673 /* _cgcl_glad.cpp */; };
 		9AE0348C2F2343A7003579EA /* glad.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE0348B2F2343A7003579EA /* glad.dylib */; };
 		9AE0348D2F2344AF003579EA /* context_ktx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333792F232C4E00705FD8 /* context_ktx.cpp */; };
 /* End PBXBuildFile section */
@@ -77,20 +75,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9A9124E02F2325C8002F52F3;
 			remoteInfo = gpu;
-		};
-		9A4CC8722F236EB300D9A73A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AE034912F234518003579EA /* glad.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9ADDBC0B2A41590A00C53EEB;
-			remoteInfo = glad;
-		};
-		9A4CC8802F236F5900D9A73A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9AE034912F234518003579EA /* glad.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9ADDBC0A2A41590A00C53EEB;
-			remoteInfo = glad;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -221,11 +205,10 @@
 		9A4334012F232C4E00705FD8 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		9A4CC86F2F236EB300D9A73A /* approach_cgl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = approach_cgl.cpp; sourceTree = "<group>"; };
 		9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = swap_chain_cgl.cpp; sourceTree = "<group>"; };
-		9A8A576F2F237E9B00FBC673 /* _cgcl_glad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _cgcl_glad.cpp; sourceTree = "<group>"; };
+		9A8A576F2F237E9B00FBC673 /* _glad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _glad.cpp; sourceTree = "<group>"; };
 		9A8A57712F23823800FBC673 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9AC7C73D2F232F8000A059F9 /* gpu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu.xcodeproj; path = ../gpu/gpu.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE0348B2F2343A7003579EA /* glad.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = glad.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE034912F234518003579EA /* glad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = glad.xcodeproj; path = ../../../port/graphics3d/glad/glad.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +217,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2060A22F233B5200D162D8 /* OpenGL.framework in Frameworks */,
-				9A4CC8822F236F7300D9A73A /* glad.dylib in Frameworks */,
 				9A1391702F23459D00C00FBD /* libktx.dylib in Frameworks */,
 				9AE0348C2F2343A7003579EA /* glad.dylib in Frameworks */,
 				9A2060A42F233B7100D162D8 /* libacme.dylib in Frameworks */,
@@ -251,14 +233,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A1391542F23455A00C00FBD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A4CC8732F236EB300D9A73A /* glad.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A20608C2F23304100D162D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,7 +262,6 @@
 		9A4333242F232BA800705FD8 = {
 			isa = PBXGroup;
 			children = (
-				9AE034912F234518003579EA /* glad.xcodeproj */,
 				9AC7C73D2F232F8000A059F9 /* gpu.xcodeproj */,
 				9A4333492F232BF600705FD8 /* gpu_opengl */,
 				9A2060A02F233B5200D162D8 /* Frameworks */,
@@ -310,11 +283,11 @@
 				9A4333952F232C4E00705FD8 /* gltf */,
 				9A4333D92F232C4E00705FD8 /* ibl */,
 				9A43334D2F232C4E00705FD8 /* _____debug.xcconfig */,
+				9A43334E2F232C4E00705FD8 /* _____release.xcconfig */,
 				9A43334B2F232C4E00705FD8 /* _.h */,
 				9A43334C2F232C4E00705FD8 /* _.cpp */,
-				9A43334E2F232C4E00705FD8 /* _____release.xcconfig */,
 				9A43334F2F232C4E00705FD8 /* _factory.cpp */,
-				9A8A576F2F237E9B00FBC673 /* _cgcl_glad.cpp */,
+				9A8A576F2F237E9B00FBC673 /* _glad.cpp */,
 				9A4333502F232C4E00705FD8 /* _gpu_opengl.h */,
 				9A4333512F232C4E00705FD8 /* _gpu_opengl.cpp */,
 				9A4333582F232C4E00705FD8 /* approach.h */,
@@ -479,7 +452,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9A4CC8812F236F5900D9A73A /* PBXTargetDependency */,
 				9A2060922F23306200D162D8 /* PBXTargetDependency */,
 			);
 			name = gpu_opengl;
@@ -517,10 +489,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A1391542F23455A00C00FBD /* Products */;
-					ProjectRef = 9AE034912F234518003579EA /* glad.xcodeproj */;
-				},
-				{
 					ProductGroup = 9A20608C2F23304100D162D8 /* Products */;
 					ProjectRef = 9AC7C73D2F232F8000A059F9 /* gpu.xcodeproj */;
 				},
@@ -538,13 +506,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libgpu.dylib;
 			remoteRef = 9A20608F2F23304100D162D8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9A4CC8732F236EB300D9A73A /* glad.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = glad.dylib;
-			remoteRef = 9A4CC8722F236EB300D9A73A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -578,7 +539,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A4334D92F232DCB00705FD8 /* program.cpp in Sources */,
-				9A8A57702F237EA200FBC673 /* _cgcl_glad.cpp in Sources */,
 				9A20609F2F23396000D162D8 /* full_screen_quad.cpp in Sources */,
 				9A4334E32F232DDB00705FD8 /* framework.cpp in Sources */,
 				9A4334E42F232DDB00705FD8 /* memory_buffer.cpp in Sources */,
@@ -627,11 +587,6 @@
 			isa = PBXTargetDependency;
 			name = gpu;
 			targetProxy = 9A2060912F23306200D162D8 /* PBXContainerItemProxy */;
-		};
-		9A4CC8812F236F5900D9A73A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = glad;
-			targetProxy = 9A4CC8802F236F5900D9A73A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -1536,7 +1536,7 @@ namespace gpu
                {
 
                   double l = (double) (xpos);
-                  double t = (double) (ypos + ch.h2);
+                  double t = (double) (ypos + ch.aHeight2);
                   double r = (double) (xpos + sizex);
                   double b = (double) (t + sizey);
 

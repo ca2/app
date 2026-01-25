@@ -134,9 +134,9 @@ namespace handler
 
          prequest->m_bNew = true;
 
-         prequest->push_request();
+         auto prequeststack = prequest->push_request();
          
-         m_requeststackaPosted.add(prequest);
+         m_requeststackaPosted.add(prequeststack);
 
          new_main_loop_happening()->set_happening();
 

@@ -297,3 +297,4 @@ CLASS_DECL_GPU_OPENGL void defer_throw_gl_error();
 void gl_insert_debug_message(const_char_pointer pszMessage);
 
 
+

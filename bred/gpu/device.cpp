@@ -951,6 +951,15 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
+   void * device::current_operating_system_gpu_context()
+   {
+      
+      throw ::interface_only();
+      
+      return nullptr;
+      
+   }
+   
 
    void device::lock_context()
    {

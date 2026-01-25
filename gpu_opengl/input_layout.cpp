@@ -98,11 +98,11 @@ namespace gpu_opengl
          
 		}
 
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		GLCheckError("");
-
 		glBindVertexArray(0);
 		GLCheckError("");
+
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
+      GLCheckError("");
 
       if (gluEBO)
       {

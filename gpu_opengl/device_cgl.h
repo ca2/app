@@ -40,6 +40,9 @@ namespace gpu_opengl
       void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement) override;
       virtual void _destroy_cgl_device();
 
+      void * current_operating_system_gpu_context() override;
+
+      
       //void _create_offscreen_buffer(const ::int_size& size) override;
       virtual void _defer_create_offscreen_window(const ::int_size& size);
       //void resize_offscreen_buffer(const ::int_size& size) override;

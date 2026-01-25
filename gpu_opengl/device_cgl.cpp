@@ -729,7 +729,14 @@ namespace gpu_opengl
 
    }
 
-
+void * device_cgl::current_operating_system_gpu_context()
+{
+   
+   CGLContextObj cglcontextobj = CGLGetCurrentContext();
+   
+   return cglcontextobj;
+   
+}
 
 //   bool device_cgl::_simplified_find_config_for_x11_window2(EGLConfig & eglconfig, long lX11VisualId, bool bOpaque)
 //   {
@@ -2604,6 +2611,12 @@ namespace gpu_opengl
    
    
     }
+
+//void * device_cgl::current_operating_system_gpu_context()
+//{
+//   
+//   
+//}
 
    void device_cgl::_destroy_cgl_device()
    {

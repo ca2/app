@@ -3366,22 +3366,18 @@ void main() {
 
    }
 
-::pointer <::gpu::model_buffer> context::create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
-{
+
+   ::pointer <::gpu::model_buffer> context::create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
+   {
 
       auto pmodelbufferFullscreenQuad = øcreate <::gpu::model_buffer>();
       
-      pmodelbufferFullscreenQuad->initialize_gpu_context_object(this);
-
-      pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(pgpuframe);
+      pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this);
    
-   return ::transfer(pmodelbufferFullscreenQuad);
+      return ::transfer(pmodelbufferFullscreenQuad);
 
-   //}
+   }
 
-   //return m_pmodelbufferFullscreenQuad;
-
-}
 
    ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
    {

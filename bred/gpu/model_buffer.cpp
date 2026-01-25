@@ -110,15 +110,10 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::frame* pgpuframe)
+   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::context * pgpucontext)
    {
 
-      if(::is_set(pgpuframe))
-      {
-         initialize_gpu_context_object(pgpuframe->m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
-      }
-//
-//      initialize_gpu_context_object(pgpuframe->m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+      initialize_gpu_context_object(pgpucontext);
 
       // Vertex data: (x, y, u, v)
 #if 1
@@ -161,77 +156,45 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence2_color_create_rectangle(::gpu::frame* pgpuframe)
+   void model_buffer::sequence2_color_create_rectangle(::gpu::context * pgpucontext)
    {
 
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      //bind2(pcommandbuffer);
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence2_color >(6);
-
-      //unbind(pcommandbuffer);
-
-      //defer_set_input_layout(pcontext->input_layout(::gpu_properties<::graphics3d::sequence2_color>()));
 
    }
 
 
-   void model_buffer::sequence2_color_create_line(::gpu::frame * pgpuframe)
+   void model_buffer::sequence2_color_create_line(::gpu::context * pgpucontext)
    {
 
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      bind2(pcommandbuffer);
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence2_color >(
          2);
 
-      unbind(pcommandbuffer);
-
-      //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
-
    }
 
 
-   void model_buffer::sequence3_color_create_rectangle(::gpu::frame* pgpuframe)
+   void model_buffer::sequence3_color_create_rectangle(::gpu::context * pgpucontext)
    {
 
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      bind2(pcommandbuffer);
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence3_color >(
          6);
 
-      unbind(pcommandbuffer);
-
-      //defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
-
    }
 
 
-   void model_buffer::sequence3_color_create_line(::gpu::frame* pgpuframe)
+   void model_buffer::sequence3_color_create_line(::gpu::context * pgpucontext)
    {
-
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      bind2(pcommandbuffer);
+      
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence3_color >(
          2);
-
-      unbind(pcommandbuffer);
-
-      ///defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
 
    }
 

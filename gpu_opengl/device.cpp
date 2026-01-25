@@ -73,7 +73,14 @@ namespace gpu_opengl
 
    //}
 
-
+//void * device::gl_get_operating_system_context()
+//{
+//   
+//   throw ::interface_only();
+//   
+//   return nullptr;
+//   
+//}
    void device::on_initialize_particle()
    {
 

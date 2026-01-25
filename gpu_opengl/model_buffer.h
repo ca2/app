@@ -22,8 +22,17 @@ namespace gpu_opengl
    {
    public:
       
+      struct vertex_array_object
+      {
+        
+         GLuint   m_gluVertexArrayObject = 0;
+         bool     m_bPendingInputLayout = true;
+         
+      };
       
-      GLuint m_gluVao;
+      //GLuint m_gluVao;
+      
+      ::map < void *, vertex_array_object > m_mapContextVertexArrayObject;
 
 
       model_buffer();
@@ -34,6 +43,9 @@ namespace gpu_opengl
 
 
       void on_initialize_gpu_context_object() override;
+      
+      
+      virtual GLuint vertex_array_object();
 
       //void sequence2_uv_create_rectangle(::gpu::context* pcontext, bool bIndexed, bool bYSwap) override;
 
@@ -98,7 +110,7 @@ namespace gpu_opengl
       void unbind(::gpu::command_buffer* pcommandbuffer) override;
 
 
-      void apply_input_layout() override;
+      virtual void _defer_apply_input_layout(struct vertex_array_object & vertexarrayobject);
 
 
    };

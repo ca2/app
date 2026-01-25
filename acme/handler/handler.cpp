@@ -67,7 +67,7 @@ namespace handler
    void handler::destroy()
    {
 
-      m_requestaPosted.clear();
+      m_requeststackaPosted.clear();
 
       for (auto & r : m_requestaHistory)
       {
@@ -98,7 +98,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return m_requestaPosted.has_element();
+      return m_requeststackaPosted.has_element();
 
    }
 
@@ -136,7 +136,7 @@ namespace handler
 
          prequest->push_request();
          
-         m_requestaPosted.add(prequest);
+         m_requeststackaPosted.add(prequest);
 
          new_main_loop_happening()->set_happening();
 
@@ -171,18 +171,18 @@ namespace handler
       while (true)
       {
 
-         if (m_requestaPosted.is_empty())
+         if (m_requeststackaPosted.is_empty())
          {
 
             return false;
 
          }
 
-         auto prequest = m_requestaPosted.pick_first();
+         auto prequeststack = m_requeststackaPosted.pick_first();
 
          defer_reset_main_loop_happening();
 
-         if (::is_null(prequest))
+         if (::is_null(prequeststack->request()))
          {
 
             continue;
@@ -198,7 +198,7 @@ namespace handler
 
          //m_requestaHistory.add(prequest);
 
-         m_prequeststackHandler = prequest->push_request();
+         m_prequeststackHandler = prequeststack;
 
          return true;
 
@@ -247,7 +247,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return m_requestaPosted.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
+      return m_requeststackaPosted.predicate_contains([&prequest](auto& p) { return p.get()->request() == prequest; })
              || m_requestaHistory.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
              || (m_prequeststackHandler &&m_prequeststackHandler->request() == prequest);
 

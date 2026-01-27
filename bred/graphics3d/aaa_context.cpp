@@ -464,7 +464,7 @@ namespace gpu_gpu
 //    //   {
 //
 //    //      glActiveTexture(GL_TEXTURE0);
-//    //      GLCheckError("");
+//    //      ::opengl::check_error("");
 //
 //
 //    //   }
@@ -487,14 +487,14 @@ namespace gpu_gpu
 //       {
 //
 //          glDisable(GL_CULL_FACE);
-//          GLCheckError("");
+//          ::opengl::check_error("");
 //
 //       }
 //       else
 //       {
 //
 //          glEnable(GL_CULL_FACE);
-//          GLCheckError("");
+//          ::opengl::check_error("");
 //
 //          //glEnable(GL_CULL_FACE);   // turn on culling
 //          //glDisable(GL_CULL_FACE);  // turn off culling
@@ -867,11 +867,11 @@ namespace gpu_gpu
 //
 //       ::gpu::context_lock contextlock(this);
 //       // Clear the screen
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
 //       glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()); //
 //       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //    }
 //
@@ -898,14 +898,14 @@ namespace gpu_gpu
 //       ::gpu::context_lock contextlock(this);
 //
 //       glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       // Map the entire buffer for writing
 //       void *p = glMapBufferRange(
 //          GL_UNIFORM_BUFFER,
 //          0, block.size(),
 //          GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       if (p)
 //       {
@@ -913,7 +913,7 @@ namespace gpu_gpu
 //          memcpy(p, block.data(), block.size());
 //
 //          glUnmapBuffer(GL_UNIFORM_BUFFER);
-//          GLCheckError("");
+//          ::opengl::check_error("");
 //
 //       }
 //       else
@@ -924,7 +924,7 @@ namespace gpu_gpu
 //       }
 //
 //       glBindBufferBase(GL_UNIFORM_BUFFER, 0, m_globalUBO);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //    }
 //
@@ -1427,9 +1427,9 @@ namespace gpu_gpu
 //
 //       //////GLuint framebuffer;
 //       //////glGenFramebuffers(1, &framebuffer);
-//       //////GLCheckError("glGenFramebuffers");
+//       //////::opengl::check_error("glGenFramebuffers");
 //       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-//       //////GLCheckError("glBindFramebuffer");
+//       //////::opengl::check_error("glBindFramebuffer");
 //
 //       //////auto gluTextureID = ptextureDst->m_gluTextureID;
 //
@@ -1438,7 +1438,7 @@ namespace gpu_gpu
 //       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
 //       //////   gluTextureID,
 //       //////   0);
-//       //////GLCheckError("glFramebufferTexture2D");
+//       //////::opengl::check_error("glFramebufferTexture2D");
 //
 //       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 //       //////   printf("Framebuffer not complete!\n");
@@ -1469,10 +1469,10 @@ namespace gpu_gpu
 //       ////}
 //
 //       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-//       ////GLCheckError("glBindFramebuffer");
+//       ////::opengl::check_error("glBindFramebuffer");
 //
 //       ////glDeleteFramebuffers(1, &framebuffer);
-//       ////GLCheckError("glDeleteFramebuffers");
+//       ////::opengl::check_error("glDeleteFramebuffers");
 //
 //
 //    }
@@ -1509,7 +1509,7 @@ namespace gpu_gpu
 //
 //    //   GLint fbo = 0;
 //    //   glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
-//    //   GLCheckError("");
+//    //   ::opengl::check_error("");
 //
 //    //   if (m_gluLayerFrameBuffer &&
 //    //      m_gluLayerFrameBuffer == fbo)
@@ -1524,12 +1524,12 @@ namespace gpu_gpu
 //
 //    //      GLuint fboSrc, fboDst;
 //    //      glGenFramebuffers(1, &m_gluLayerFrameBuffer);
-//    //      GLCheckError("");
+//    //      ::opengl::check_error("");
 //
 //    //   }
 //
 //    //   glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFrameBuffer);
-//    //   GLCheckError("");
+//    //   ::opengl::check_error("");
 //
 //    //   ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
 //
@@ -1537,7 +1537,7 @@ namespace gpu_gpu
 //
 //    //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //    //      GL_TEXTURE_2D, textureID, 0);
-//    //   GLCheckError("");
+//    //   ::opengl::check_error("");
 //
 //    //   ::cast < context > pgpucontext = this;
 //
@@ -1552,18 +1552,18 @@ namespace gpu_gpu
 //    //         int height = pgpucontext->m_rectangle.height();
 //
 //    //         glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
-//    //         GLCheckError("");
+//    //         ::opengl::check_error("");
 //
 //    //         glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-//    //         GLCheckError("");
+//    //         ::opengl::check_error("");
 //
 //    //         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
-//    //         GLCheckError("");
+//    //         ::opengl::check_error("");
 //
 //    //      }
 //
 //    //      glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-//    //      GLCheckError("");
+//    //      ::opengl::check_error("");
 //
 //    //   }
 //
@@ -1773,29 +1773,29 @@ namespace gpu_gpu
 //
 //       //GLuint fboSrc, fboDst;
 //       //glGenFramebuffers(1, &fboSrc);
-//       //GLCheckError("");
+//       //::opengl::check_error("");
 //       //glGenFramebuffers(1, &fboDst);
-//       //GLCheckError("");
+//       //::opengl::check_error("");
 //
 //       // Attach source texture to fboSrc
 //       auto gluSrcFbo = ptextureSrc->m_gluFbo;
 //       glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       //glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //       //   GL_TEXTURE_2D, textureSrc, 0);
-//       //GLCheckError("");
+//       //::opengl::check_error("");
 //
 //       // Attach dest texture to fboDst
 //       auto gluDstFbo = ptextureDst->m_gluFbo;
 //       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluDstFbo);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       glDrawBuffer(GL_COLOR_ATTACHMENT0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       //glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //       //   GL_TEXTURE_2D, textureDst, 0);
-//       //GLCheckError("");
+//       //::opengl::check_error("");
 //
 //       {
 //
@@ -1878,7 +1878,7 @@ namespace gpu_gpu
 //          0, 0, sizeDst.cx, sizeDst.cy,
 //          GL_COLOR_BUFFER_BIT, GL_NEAREST
 //          );
-//       GLCheckError("");
+//       ::opengl::check_error("");
 // #ifdef SHOW_DEBUG_DRAWING
 //       {
 //
@@ -1919,11 +1919,11 @@ namespace gpu_gpu
 //
 //       // Cleanup
 //       glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//       //GLCheckError("");
+//       //::opengl::check_error("");
 //       //glDeleteFramebuffers(1, &fboSrc);
-//       //GLCheckError("");
+//       //::opengl::check_error("");
 //       //glDeleteFramebuffers(1, &fboDst);
-//       //GLCheckError("");
+//       //::opengl::check_error("");
 //
 //    }
 //

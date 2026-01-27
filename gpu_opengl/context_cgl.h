@@ -24,7 +24,7 @@ namespace gpu_opengl
    public:
 
       
-      //CGLPBufferObj                    m_pbuffer;
+      CGLPBufferObj                    m_pbuffer;
       CGLContextObj                    m_context;
       CGLContextObj                    m_contextOld;
 
@@ -32,8 +32,9 @@ namespace gpu_opengl
       int m_iTex;
       ::int_size m_sizeFbo;
 
+      
       context_cgl();
-      virtual ~context_cgl();
+      ~context_cgl() override;
       
 
       virtual void _create_cpu_buffer(const ::int_size& size) override;

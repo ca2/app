@@ -113,32 +113,32 @@ namespace gpu_opengl
       //   {
 
       //      glGenTextures(1, &m_gluDepthStencilTex);
-      //      GLCheckError("");
+      //      ::opengl::check_error("");
       //   }
 
       //   glBindTexture(GL_TEXTURE_2D, m_gluDepthStencilTex);
-      //   GLCheckError("");
+      //   ::opengl::check_error("");
 
       //   // Set texture parameters
       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-      //   GLCheckError("");
+      //   ::opengl::check_error("");
       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-      //   GLCheckError("");
+      //   ::opengl::check_error("");
       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-      //   GLCheckError("");
+      //   ::opengl::check_error("");
       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-      //   GLCheckError("");
+      //   ::opengl::check_error("");
 
       //   int w = m_size.cx;
 
       //   int h = m_size.cy;
       //   // Allocate storage for a 24-bit depth + 8-bit stencil buffer
       //   glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, w, h, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
-      //   GLCheckError("");
+      //   ::opengl::check_error("");
 
 
       //   glBindTexture(GL_TEXTURE_2D, 0);
-      //   GLCheckError("");
+      //   ::opengl::check_error("");
       //}
 
 

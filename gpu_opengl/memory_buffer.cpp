@@ -75,11 +75,11 @@ namespace gpu_opengl
       
       glGenBuffers(1, &m_gluVbo);                            // Create a buffer ID
       
-      GLCheckError("");
+      ::opengl::check_error("");
 
       glBindBuffer(m_iType, m_gluVbo);              // Bind as a vertex buffer
       
-      GLCheckError("");
+      ::opengl::check_error("");
       
       auto iGlStaticDraw = GL_STATIC_DRAW;
       
@@ -89,11 +89,11 @@ namespace gpu_opengl
       auto usageFlags = block.data() ? iGlStaticDraw : iGlDynamicDraw;
       
       glBufferData(m_iType, (GLsizeiptr)size, block.data(), usageFlags); // just allocate space
-      GLCheckError("");
+      ::opengl::check_error("");
       
       glBindBuffer(m_iType, 0);
       
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -127,7 +127,7 @@ namespace gpu_opengl
       auto size = block.size();
 
       glBufferData(m_iType, (GLsizeiptr)size, data, GL_DYNAMIC_DRAW); // just allocate space
-      GLCheckError("");
+      ::opengl::check_error("");
       
       unbind();
 
@@ -146,7 +146,7 @@ namespace gpu_opengl
    {
 
       glBufferSubData(m_iType, 0, block.size(), block.data());
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -156,7 +156,7 @@ namespace gpu_opengl
 
       void* data = glMapBuffer(m_iType, GL_READ_ONLY);
 
-      GLCheckError("");
+      ::opengl::check_error("");
 
       m_pMap = data;
 
@@ -170,11 +170,11 @@ namespace gpu_opengl
 
       glUnmapBuffer(m_iType); // Important!
 
-      GLCheckError("");
+      ::opengl::check_error("");
 
       //glBindBuffer(m_iType, 0);
       
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       m_pMap = nullptr;
 
@@ -199,7 +199,7 @@ namespace gpu_opengl
 
       glBindBuffer(m_iType, m_gluVbo);
 
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -209,7 +209,7 @@ namespace gpu_opengl
 
       glBindBuffer(m_iType, 0);
       
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 

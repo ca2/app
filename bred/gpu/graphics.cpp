@@ -434,7 +434,7 @@ namespace gpu
    }
 
 
-   void graphics::do_on_context(const ::procedure& procedure)
+   void graphics::do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure& procedure)
    {
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->acme_windowing_window());
@@ -598,8 +598,12 @@ namespace gpu
       auto pcontext = gpu_context();
       
       ::gpu::shader* pshader = nullptr;
+#define RECTANGLE_SHADER_DEBUG 0
 
+#if RECTANGLE_SHADER_DEBUG != 2
+#if RECTANGLE_SHADER_DEBUG != 1
       if (m_ealphamode == ::draw2d::e_alpha_mode_set)
+#endif
       {
 
          if (!m_pshaderSourceRectangle)
@@ -621,21 +625,25 @@ namespace gpu
 
             m_pshaderSourceRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-            m_pshaderSourceRectangle->m_bDisableDepthTest = true;
+            pshaderRectangle->m_bDisableDepthTest = true;
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-            m_pshaderSourceRectangle->m_bEnableBlend = false;
-            m_pshaderSourceRectangle->m_etopology = ::gpu::e_topology_triangle_list;
-            m_pshaderSourceRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
+            pshaderRectangle->m_bEnableBlend = false;
+            pshaderRectangle->m_etopology = ::gpu::e_topology_triangle_list;
+            pshaderRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
 
-            pcontext->initialize_rectangle_shader(m_pshaderSourceRectangle);
+            pcontext->initialize_rectangle_shader(pshaderRectangle);
 
          }
 
          pshader = m_pshaderSourceRectangle;
 
       }
+#endif
+#if RECTANGLE_SHADER_DEBUG != 1
+#if RECTANGLE_SHADER_DEBUG != 2
       else
+#endif
       {
 
          if (!m_pshaderBlendRectangle)
@@ -657,15 +665,15 @@ namespace gpu
 
             m_pshaderBlendRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-            m_pshaderBlendRectangle->m_bDisableDepthTest = true;
+            pshaderRectangle->m_bDisableDepthTest = true;
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-            m_pshaderBlendRectangle->m_bEnableBlend = true;
+            pshaderRectangle->m_bEnableBlend = true;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
-            m_pshaderBlendRectangle->m_etopology = ::gpu::e_topology_triangle_list;
-            m_pshaderBlendRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
+            pshaderRectangle->m_etopology = ::gpu::e_topology_triangle_list;
+            pshaderRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             ///auto pcontext = gpu_context();
 
-            pcontext->initialize_rectangle_shader(m_pshaderBlendRectangle);
+            pcontext->initialize_rectangle_shader(pshaderRectangle);
 
             //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
             //pshaderRectangle->initialize_shader_with_block(
@@ -683,6 +691,7 @@ namespace gpu
          pshader = m_pshaderBlendRectangle;
 
       }
+#endif
    
       return pshader;
 
@@ -1141,7 +1150,7 @@ namespace gpu
       //glDepthMask(GL_FALSE);
 
       //glBindVertexArray(pface->m_FaceVAO);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
       if (!m_pmodelbufferTextOutDummy)
@@ -1309,15 +1318,15 @@ namespace gpu
                pshader->push_properties(pcommandbuffer);
 
                //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-               //GLCheckError("");
+               //::opengl::check_error("");
                //// update content of VBO memory
                //int iVbo = pface->m_FaceVBO;
                //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
-               //GLCheckError("");
+               //::opengl::check_error("");
                //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
-               //GLCheckError("");
+               //::opengl::check_error("");
                //glBindBuffer(GL_ARRAY_BUFFER, 0);
-               //GLCheckError("");
+               //::opengl::check_error("");
                // render quad
                //
                //
@@ -1358,7 +1367,7 @@ namespace gpu
                //pmodelbuffer->unbind(pcommandbuffer);
 
                //glDrawArrays(GL_TRIANGLES, 0, 6);
-               //GLCheckError("");
+               //::opengl::check_error("");
                // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
 
             }
@@ -1384,13 +1393,13 @@ namespace gpu
       }
 
       //glBindVertexArray(0);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
 
       //glBindTexture(GL_TEXTURE_2D, 0);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glDisable(GL_CULL_FACE);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       pcontext->set_cull_face(::gpu::e_cull_mode_none);
       pcontext->defer_unbind(m_pgpushaderTextOut);

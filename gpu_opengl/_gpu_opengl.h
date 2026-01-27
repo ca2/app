@@ -250,11 +250,6 @@
 CLASS_DECL_GPU_OPENGL const_char_pointer opengl_error_string(int iError);
 
 
-CLASS_DECL_GPU_OPENGL void GLCheckError(const_char_pointer pszErrorMessage);
-
-
-CLASS_DECL_GPU_OPENGL void GLEnsureNonNullHandle(long lHandle, const_char_pointer pszMessage = nullptr);
-
 
 namespace opengl
 {
@@ -276,7 +271,7 @@ namespace opengl
    };
 
 
-   [[noreturn]] CLASS_DECL_GPU_OPENGL void throw_opengl_exception(const ::scoped_string& scopestrMessage, int iGLError, const ::scoped_string& nameFile, int iLine);
+   [[noreturn]] CLASS_DECL_GPU_OPENGL void throw_exception(const ::scoped_string& scopestrMessage, int iGLError, const ::scoped_string& nameFile, int iLine);
 
 
 
@@ -287,14 +282,25 @@ namespace opengl
 
    CLASS_DECL_GPU_OPENGL const char * check_framebuffer_status_text(GLenum status);
 
+   CLASS_DECL_GPU_OPENGL void * operating_system_current_context();
+
+   void insert_debug_message(const_char_pointer pszMessage);
+
+   CLASS_DECL_GPU_OPENGL void defer_throw_error();
+
+CLASS_DECL_GPU_OPENGL void check_error(const_char_pointer pszErrorMessage);
+
+
+CLASS_DECL_GPU_OPENGL void ensure_non_null_handle(long lHandle, const_char_pointer pszMessage = nullptr);
+
 
 } // namespace opengl
 
 
-CLASS_DECL_GPU_OPENGL void defer_throw_gl_error();
 
 
-void gl_insert_debug_message(const_char_pointer pszMessage);
+
+
 
 
 

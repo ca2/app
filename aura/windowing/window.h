@@ -217,7 +217,7 @@ namespace windowing
 
       virtual void do_graphics();
       virtual void _001OnNcClip(::draw2d::graphics_pointer & pgraphics);
-      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual class placement_log* placement_log();

@@ -174,7 +174,7 @@ namespace gpu
       textureflags.m_bTransferTarget = true;
       textureflags.m_bShaderResource = true;
 
-      ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
       return ptexture;
 
@@ -206,7 +206,7 @@ namespace gpu
 
       textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
 
-      ptextureSource->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      ptextureSource->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
       return ptextureSource;
 

@@ -215,6 +215,7 @@ public:
    //virtual void set_os_data(void * pvoidOsData);
    //virtual void set_os_int(itask iData);
 
+   //bool has_dependant_tasks() const override;
 
    //static ::pointer<thread>start(
    //   ::matter* pmatter,

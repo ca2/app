@@ -43,7 +43,7 @@ namespace gpu_opengl
 
       ::cast < texture > ptexture = m_pgpucontext->current_target_texture(::gpu::current_frame());
 
-      auto gluSrcFbo = ptexture->m_gluFbo;
+      auto gluSrcFbo = ptexture->frame_buffer_object();
 
       if (!gluSrcFbo)
       {
@@ -52,7 +52,7 @@ namespace gpu_opengl
 
       }
 
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, ptexture->m_gluFbo);
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
 
       ////m_pixmap.map();
 
@@ -68,7 +68,9 @@ namespace gpu_opengl
       
 #if defined(__APPLE__) || defined(__ANDROID__)
 
-      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_y_swap);
+      auto targeting = m_pimagetarget->no_padded_targeting(::image::e_copy_disposition_none);
+      
+      //(::image::e_copy_disposition_y_swap);
 
       auto w = targeting.width();
       auto h = targeting.height();
@@ -108,7 +110,7 @@ namespace gpu_opengl
          //GL_RGBA,
          GL_UNSIGNED_BYTE,
          p);
-      GLCheckError("");
+      ::opengl::check_error("");
 
 //       glReadBuffer(GL_FRONT);
 //
@@ -144,7 +146,7 @@ namespace gpu_opengl
             GL_UNSIGNED_BYTE,
             s,
             p);
-         GLCheckError("");
+         ::opengl::check_error("");
       }
       else
       {
@@ -161,7 +163,7 @@ namespace gpu_opengl
             //GL_RGBA,
             GL_UNSIGNED_BYTE,
             p);
-         GLCheckError("");
+         ::opengl::check_error("");
 
       }
       int iError = glGetError();
@@ -230,7 +232,7 @@ namespace gpu_opengl
          lock.height(), 
          GL_RGBA, GL_UNSIGNED_BYTE, 
          lock.data());
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 

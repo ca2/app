@@ -2,6 +2,7 @@
 #include "scene_base.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
@@ -732,8 +733,14 @@ namespace graphics3d
 
       if (!m_bLoadedScene)
       {
-
-         on_load_scene(pgpucontext);
+         
+         {
+            
+            ::gpu::context_lock contextlock(pgpucontext);
+            
+            on_load_scene(pgpucontext);
+            
+         }
 
          m_bLoadedScene = true;
 

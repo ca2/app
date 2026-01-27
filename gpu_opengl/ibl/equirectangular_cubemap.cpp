@@ -106,19 +106,19 @@ namespace gpu_opengl
          //    glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
          //
          //    glEnable(GL_DEPTH_TEST);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //    glDepthMask(GL_TRUE);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //
          //
          //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //
          //
          //    glDisable(GL_DEPTH_TEST);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //    glDepthMask(GL_FALSE);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //
          //    m_prenderableCube->bind(pgpucommandbuffer);
          //
@@ -142,7 +142,7 @@ namespace gpu_opengl
          // }
          //
          // glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         // GLCheckError("");
+         // ::opengl::check_error("");
 
       }
 

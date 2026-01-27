@@ -57,6 +57,7 @@
 		9A4CC8702F236EB300D9A73A /* approach_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC86F2F236EB300D9A73A /* approach_cgl.cpp */; };
 		9A4CC8832F23701A00D9A73A /* _gpu_opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333512F232C4E00705FD8 /* _gpu_opengl.cpp */; };
 		9A4CC8852F23704B00D9A73A /* swap_chain_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */; };
+		9A7EE74A2F26C686006AA868 /* context_handle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EE7492F26C67C006AA868 /* context_handle.h */; };
 		9AE0348D2F2344AF003579EA /* context_ktx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333792F232C4E00705FD8 /* context_ktx.cpp */; };
 /* End PBXBuildFile section */
 
@@ -203,6 +204,7 @@
 		9A4334012F232C4E00705FD8 /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		9A4CC86F2F236EB300D9A73A /* approach_cgl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = approach_cgl.cpp; sourceTree = "<group>"; };
 		9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = swap_chain_cgl.cpp; sourceTree = "<group>"; };
+		9A7EE7492F26C67C006AA868 /* context_handle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context_handle.h; sourceTree = "<group>"; };
 		9A8A576F2F237E9B00FBC673 /* _glad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _glad.cpp; sourceTree = "<group>"; };
 		9A8A57712F23823800FBC673 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9AC7C73D2F232F8000A059F9 /* gpu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu.xcodeproj; path = ../gpu/gpu.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -308,6 +310,7 @@
 				9A4333762F232C4E00705FD8 /* context_fbo.cpp */,
 				9A4333772F232C4E00705FD8 /* context_glx.h */,
 				9A4333782F232C4E00705FD8 /* context_glx.cpp */,
+				9A7EE7492F26C67C006AA868 /* context_handle.h */,
 				9A4333792F232C4E00705FD8 /* context_ktx.cpp */,
 				9A43337A2F232C4E00705FD8 /* context_win32.h */,
 				9A43337B2F232C4E00705FD8 /* context_win32.cpp */,
@@ -430,6 +433,7 @@
 			files = (
 				9A2060972F23330300D162D8 /* context_egl.h in Headers */,
 				9A20609B2F23333F00D162D8 /* device_cgl.h in Headers */,
+				9A7EE74A2F26C686006AA868 /* context_handle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

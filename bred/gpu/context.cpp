@@ -388,7 +388,7 @@ namespace gpu
 
       textureflags.m_bShaderResource = true;
 
-      ptextureEmpty->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      ptextureEmpty->initialize_texture(this, textureattributes, textureflags);
 
       return ptextureEmpty;
 
@@ -401,7 +401,7 @@ namespace gpu
       if (ødefer_construct(ptexture))
       {
 
-         ptexture->initialize_texture_from_file_path(m_pgpurenderer, path, bIsSrgb);
+         ptexture->initialize_texture_from_file_path(this, path, bIsSrgb);
 
       }
 
@@ -1907,7 +1907,7 @@ namespace gpu
 
          textureflags.m_bTransferTarget = true;
 
-         ptextureNewAtlas->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+         ptextureNewAtlas->initialize_texture(this, textureattributes, textureflags);
 
          m_textureaAtlas.add(ptextureNewAtlas);
 
@@ -2012,6 +2012,8 @@ namespace gpu
                                     procedure();
 
                                  };
+                              
+                              ::gpu::context_lock contextlock(pcontextInnerStart);
 
                               prenderer->do_on_frame(bForDrawing, λ);
 
@@ -2904,11 +2906,11 @@ void main() {
          // }
 
          // glClearColor(0.f, 0.f, 0.f, 0.f);
-         // GLCheckError("glClearColor");
+         // ::opengl::check_error("glClearColor");
          // glClearDepth(1.0f);
-         // GLCheckError("glClearDepth");
+         // ::opengl::check_error("glClearDepth");
          // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         // GLCheckError("glClear");
+         // ::opengl::check_error("glClear");
 
 
 
@@ -3103,9 +3105,9 @@ void main() {
 
       //////GLuint framebuffer;
       //////glGenFramebuffers(1, &framebuffer);
-      //////GLCheckError("glGenFramebuffers");
+      //////::opengl::check_error("glGenFramebuffers");
       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-      //////GLCheckError("glBindFramebuffer");
+      //////::opengl::check_error("glBindFramebuffer");
 
       //////auto gluTextureID = ptextureDst->m_gluTextureID;
 
@@ -3114,7 +3116,7 @@ void main() {
       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
       //////   gluTextureID,
       //////   0);
-      //////GLCheckError("glFramebufferTexture2D");
+      //////::opengl::check_error("glFramebufferTexture2D");
 
       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
       //////   printf("Framebuffer not complete!\n");
@@ -3145,10 +3147,10 @@ void main() {
       ////}
 
       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-      ////GLCheckError("glBindFramebuffer");
+      ////::opengl::check_error("glBindFramebuffer");
 
       ////glDeleteFramebuffers(1, &framebuffer);
-      ////GLCheckError("glDeleteFramebuffers");
+      ////::opengl::check_error("glDeleteFramebuffers");
 
 
    }
@@ -3612,7 +3614,7 @@ return {};
       ::gpu::texture_flags textureflags;
       textureflags.m_bRenderTarget = true;
       textureflags.m_bShaderResource = true;
-      pgputextureMetallicRoughness->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      pgputextureMetallicRoughness->initialize_texture(this, textureattributes, textureflags);
 
                      ::bred::Timer timer;
 

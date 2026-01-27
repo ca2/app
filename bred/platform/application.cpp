@@ -21,9 +21,16 @@ namespace bred
       m_optionaGpuApi.main_add("directx11", "DirectX 11");
       m_optionaGpuApi.main_add("directx12", "DirectX 12");
 #endif
+#if defined(__APPLE__)
+      m_optionaGpuApi.main_add("metal", "Metal");
+#endif
 
+      
 #ifdef WINDOWS_DESKTOP
       m_optionaDraw2dApi.main_add("gdiplus", "GDI+");
+#endif
+#if defined(__APPLE__)
+      m_optionaDraw2dApi.main_add("quartz2d", "Quartz 2D");
 #endif
       m_optionaDraw2dApi.main_add("cairo", "cairo");
       m_optionaDraw2dApi.main_add("opengl", "OpenGL");
@@ -342,6 +349,8 @@ namespace bred
             
 #ifdef WINDOWS_DESKTOP
             straOk.add("gdiplus");
+#elif defined(__APPLE__)
+            straOk.add("quartz2d");
 #else
             straOk.add("cairo");
 #endif
@@ -364,6 +373,8 @@ namespace bred
 
 #ifdef WINDOWS_DESKTOP
             straOk.add("gdiplus");
+#elif defined(__APPLE__)
+            straOk.add("quartz2d");
 #else
             straOk.add("cairo");
 #endif
@@ -894,6 +905,12 @@ namespace bred
 
          }
          else if (strDraw2dImplementation == "cairo")
+         {
+
+            strGpuImplementation = graphics3d_get_implementation_name();
+
+         }
+         else if (strDraw2dImplementation == "quartz2d")
          {
 
             strGpuImplementation = graphics3d_get_implementation_name();

@@ -1608,11 +1608,15 @@ namespace user
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
+      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics();
       virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnLayout(::draw2d::graphics_pointer& pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);

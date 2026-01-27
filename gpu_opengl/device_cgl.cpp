@@ -465,9 +465,11 @@ namespace gpu_opengl
          //kCGLPFAOffScreen,
          kCGLPFAOpenGLProfile,
          (CGLPixelFormatAttribute)kCGLOGLPVersion_GL4_Core,
+         //(CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
          kCGLPFAColorSize, (CGLPixelFormatAttribute)32,
          kCGLPFADepthSize, (CGLPixelFormatAttribute)24,
          kCGLPFAStencilSize, (CGLPixelFormatAttribute)8,
+         //kCGLPFAPBuffer,
          (CGLPixelFormatAttribute)0
          
       };
@@ -2510,27 +2512,27 @@ void * device_cgl::current_operating_system_gpu_context()
 //       auto textureDst = ptextureDst->m_gluTextureID;
 //
 //       glFlush();
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       GLuint fboSrc, fboDst;
 //       glGenFramebuffers(1, &fboSrc);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glGenFramebuffers(1, &fboDst);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       // Attach source texture to fboSrc
 //       glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //          GL_TEXTURE_2D, textureSrc, 0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       // Attach dest texture to fboDst
 //       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //          GL_TEXTURE_2D, textureDst, 0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       auto sizeSrc = ptextureSrc->size();
 //       auto sizeDst = ptextureDst->size();
@@ -2541,7 +2543,7 @@ void * device_cgl::current_operating_system_gpu_context()
 //          0, 0, sizeDst.cx, sizeDst.cy,
 //          GL_COLOR_BUFFER_BIT, GL_NEAREST
 //       );
-//       GLCheckError("");
+//       ::opengl::check_error("");
 // #ifdef SHOW_DEBUG_DRAWING
 //       {
 //
@@ -2582,11 +2584,11 @@ void * device_cgl::current_operating_system_gpu_context()
 //
 //       // Cleanup
 //       glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glDeleteFramebuffers(1, &fboSrc);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glDeleteFramebuffers(1, &fboDst);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //
 //    }

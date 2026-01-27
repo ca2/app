@@ -40,6 +40,8 @@ namespace gpu
       m_iGpuRenderer = ++g_iGpuRenderer;
 
       m_iDefaultFrameCount = 3;
+      
+      isFrameStarted = false;
 
    }
 
@@ -252,7 +254,7 @@ namespace gpu
 
       textureflags.m_bWithDepth = bWithDepth;
 
-      ptexture->initialize_texture(this, textureattributes, textureflags);
+      ptexture->initialize_texture(m_pgpucontext, textureattributes, textureflags);
 
       m_pgpucontext->on_create_texture(ptexture);
 

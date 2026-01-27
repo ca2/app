@@ -10,8 +10,11 @@
 //#define GLAD_GLAPI_EXPORT
 //#include <glad/glad.h>
 
+namespace opengl
+{
 
-void gl_insert_debug_message(const_char_pointer pszMessage)
+
+void insert_debug_message(const_char_pointer pszMessage)
 {
    
    if(glDebugMessageInsert)
@@ -37,4 +40,8 @@ void gl_insert_debug_message(const_char_pointer pszMessage)
                               );
    }
 }
+
+} // namespace opengl
+
+
 

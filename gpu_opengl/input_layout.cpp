@@ -32,10 +32,10 @@ namespace gpu_opengl
       //::gpu::context_lock contextlock(m_pgpucontext);
 
 		glBindVertexArray(gluVAO);
-		GLCheckError("");
+		::opengl::check_error("");
 
 		glBindBuffer(GL_ARRAY_BUFFER, gluVBO);
-		GLCheckError("");
+		::opengl::check_error("");
 
 		//for(int i = 0; i < m)
 		//// vertex positions
@@ -72,7 +72,7 @@ namespace gpu_opengl
 				auto opengltypeTypeUnit = ::opengl::get_gpu_type_unit_opengl_type(etype);
             
 				glEnableVertexAttribArray((GLuint)iInputLayout);
-				GLCheckError("");
+				::opengl::check_error("");
 
             glVertexAttribPointer(
 					(GLuint)iInputLayout, 
@@ -81,7 +81,7 @@ namespace gpu_opengl
 					GL_FALSE,
                sizeVertex, 
 					(void*)(::uptr)(::iptr)iOffset);
-				GLCheckError("");
+				::opengl::check_error("");
 
 
 				iOffset += size;
@@ -94,21 +94,21 @@ namespace gpu_opengl
 		{
          
          glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, gluEBO);
-			GLCheckError("");
+			::opengl::check_error("");
          
 		}
 
 		glBindVertexArray(0);
-		GLCheckError("");
+		::opengl::check_error("");
 
       glBindBuffer(GL_ARRAY_BUFFER, 0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       if (gluEBO)
       {
          
          glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-         GLCheckError("");
+         ::opengl::check_error("");
          
       }
 

@@ -49,7 +49,7 @@ namespace gpu_opengl
    }
 
 
-   void model_buffer::_defer_apply_input_layout(struct vertex_array_object & vertexarrayobject)
+   void model_buffer::_defer_apply_input_layout(base_context_handle::object & object)
    {
 
       ::cast < input_layout > pinputlayout = m_pinputlayout;
@@ -69,12 +69,12 @@ namespace gpu_opengl
             ::cast < input_layout > pinputlayout = m_pinputlayout;
             
             pinputlayout->__do_opengl_vao_vbo_and_ebo_input_layout(
-                                                                   vertexarrayobject.m_gluVertexArrayObject,
+                                                                   object.m_handle,
                                                                    pbufferVertex->m_gluVbo,
                                                                    pbufferIndex ? pbufferIndex->m_gluVbo : 0
                                                                    );
             
-            vertexarrayobject.m_bPendingInputLayout = false;
+            object.m_bBound = true;
             
          }
          
@@ -102,7 +102,7 @@ namespace gpu_opengl
       }
 
       glBindVertexArray(gluVertexArrayObject);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -110,23 +110,14 @@ namespace gpu_opengl
    GLuint model_buffer::vertex_array_object()
    {
  
-      auto poperatingsystemgpucontext = m_pgpucontext->m_pgpudevice->current_operating_system_gpu_context();
+      auto & object = context_handle_object();
       
-      if(::is_null(poperatingsystemgpucontext))
-      {
-         
-         throw ::exception(error_wrong_state);
-         
-      }
-      
-      auto & vertexarrayobject = m_mapContextVertexArrayObject[poperatingsystemgpucontext];
-      
-      auto & gluVertexArrayObject = vertexarrayobject.m_gluVertexArrayObject;
+      auto & gluVertexArrayObject = object.m_handle;
       
       if(gluVertexArrayObject == 0)
       {
          glGenVertexArrays(1, &gluVertexArrayObject);
-         GLCheckError("");
+         ::opengl::check_error("");
          
          if(gluVertexArrayObject == 74)
          {
@@ -136,7 +127,7 @@ namespace gpu_opengl
          }
          
          //glBindVertexArray(vertexarrayobject.m_gluVertexArrayObject);
-         //GLCheckError("");
+         //::opengl::check_error("");
          
    //      ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
    //
@@ -156,13 +147,13 @@ namespace gpu_opengl
    //      }
          
          //glBindVertexArray(0);
-         //GLCheckError("");
+         //::opengl::check_error("");
       }
       
-      if(m_pinputlayout && vertexarrayobject.m_bPendingInputLayout)
+      if(m_pinputlayout && !object.m_bBound)
       {
          
-         _defer_apply_input_layout(vertexarrayobject);
+         _defer_apply_input_layout(object);
         
       }
       
@@ -217,7 +208,7 @@ namespace gpu_opengl
             auto iIndexCount = m_pmodeldatabase2->index_count();
             
             glDrawElements(mode, (int) iIndexCount, etype, 0);
-            GLCheckError("");
+            ::opengl::check_error("");
 
          }
          else
@@ -226,7 +217,7 @@ namespace gpu_opengl
             auto iVertexCount = m_pmodeldatabase2->vertex_count();
 
             glDrawArrays(mode, 0, (int) iVertexCount);
-            GLCheckError("");
+            ::opengl::check_error("");
 
          }
 
@@ -237,7 +228,7 @@ namespace gpu_opengl
          auto iVertexCount = m_pmodeldatabase2->vertex_count();
 
          glDrawArrays(mode, 0, iVertexCount);
-         GLCheckError("");
+         ::opengl::check_error("");
 
       }
 
@@ -275,14 +266,14 @@ namespace gpu_opengl
          //   }
 
          //   glDrawElements(GL_TRIANGLES, m_iIndexCount, etype, 0);
-         //   GLCheckError("");
+         //   ::opengl::check_error("");
 
          //}
          //else
          {
 
             glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
-            GLCheckError("");
+            ::opengl::check_error("");
 
          }
 
@@ -291,7 +282,7 @@ namespace gpu_opengl
       {
 
          glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
-         GLCheckError("");
+         ::opengl::check_error("");
 
       }
 
@@ -316,7 +307,7 @@ namespace gpu_opengl
 //      }
 
       glBindVertexArray(0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 

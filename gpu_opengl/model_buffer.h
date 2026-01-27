@@ -10,7 +10,7 @@
 #include "gpu_opengl/context.h"
 //#include "gpu_opengl/context_object.h"
 #include "gpu_opengl/memory_buffer.h"
-
+#include "gpu_opengl/context_handle.h"
 
 
 namespace gpu_opengl
@@ -18,21 +18,24 @@ namespace gpu_opengl
 
  
    class CLASS_DECL_GPU_OPENGL model_buffer :
-      virtual public ::gpu::model_buffer
+      virtual public ::gpu::model_buffer,
+      virtual public ::gpu_opengl::context_handle<GLuint, ::gpu_opengl::e_handle_buffer>
    {
    public:
       
-      struct vertex_array_object
-      {
-        
-         GLuint   m_gluVertexArrayObject = 0;
-         bool     m_bPendingInputLayout = true;
-         
-      };
+      using base_context_handle = ::gpu_opengl::context_handle<GLuint, ::gpu_opengl::e_handle_buffer>;
+      
+//      struct vertex_array_object
+//      {
+//        
+//         GLuint   m_gluVertexArrayObject = 0;
+//         bool     m_bPendingInputLayout = true;
+//         
+//      };
       
       //GLuint m_gluVao;
       
-      ::map < void *, vertex_array_object > m_mapContextVertexArrayObject;
+      //::map < void *, vertex_array_object > m_mapContextVertexArrayObject;
 
 
       model_buffer();
@@ -110,7 +113,7 @@ namespace gpu_opengl
       void unbind(::gpu::command_buffer* pcommandbuffer) override;
 
 
-      virtual void _defer_apply_input_layout(struct vertex_array_object & vertexarrayobject);
+      virtual void _defer_apply_input_layout(base_context_handle::object & object);
 
 
    };

@@ -128,36 +128,37 @@ FragColor = texture(uTexture, TexCoord);
          }
 
          glBindVertexArray(0);
-         GLCheckError("");
+         ::opengl::check_error("");
          glUseProgram(0);
-         GLCheckError("");
+         ::opengl::check_error("");
          
          ::cast < ::gpu_opengl::texture > ptexturePresent = m_ptexturePresent;
 
 #if defined(__APPLE__)
-         if(!ptexturePresent->m_gluFbo)
-         {
-            
-            ptexturePresent->create_render_target();
-            
-         }
-         glBindFramebuffer(GL_FRAMEBUFFER, ptexturePresent->m_gluFbo);
+//         if(!ptexturePresent->m_gluFbo)
+//         {
+//            
+//            ptexturePresent->create_render_target();
+//            
+//         }
+         auto gluFbo = ptexturePresent->frame_buffer_object();
+         glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
          //glBindFramebuffer(GL_FRAMEBUFFER, ptexturePresent->m_gluFbo);
-         GLCheckError("");
+         ::opengl::check_error("");
 #else
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         GLCheckError("");
+         ::opengl::check_error("");
          glDrawBuffer(GL_BACK);
-         GLCheckError("");
+         ::opengl::check_error("");
 #endif
          glDisable(GL_SCISSOR_TEST);
-         GLCheckError("");
+         ::opengl::check_error("");
          glDisable(GL_BLEND);
-         GLCheckError("");
+         ::opengl::check_error("");
          glDisable(GL_DEPTH_TEST);
-         GLCheckError("");
+         ::opengl::check_error("");
          glDepthMask(GL_FALSE);
-         GLCheckError("");
+         ::opengl::check_error("");
 //#if 0
 #if 1
 
@@ -172,30 +173,30 @@ FragColor = texture(uTexture, TexCoord);
          //pcommandbuffer->set_scissor(sizeContext);
          
          glDisable(GL_SCISSOR_TEST);
-         GLCheckError("");
+         ::opengl::check_error("");
          //pcommandbuffer->set_scissor(sizeContext);
 
          //glDisable(GL_BLEND);
-         //GLCheckError("");
+         //::opengl::check_error("");
          //glEnable(GL_DEPTH_TEST);
-         //GLCheckError("");
+         //::opengl::check_error("");
          //glDepthMask(GL_TRUE);
-         //GLCheckError("");
+         //::opengl::check_error("");
 
 
          glClearColor(0.8f, 0.5f, 0.f, 0.8f);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glClearDepth(1.0f);
-         //GLCheckError("");
+         //::opengl::check_error("");
          //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
          glClear(GL_COLOR_BUFFER_BIT);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glDisable(GL_BLEND);
-         //GLCheckError("");
+         //::opengl::check_error("");
          //glDisable(GL_DEPTH_TEST);
-         //GLCheckError("");
+         //::opengl::check_error("");
          //glDepthMask(GL_FALSE);
-         //GLCheckError("");
+         //::opengl::check_error("");
 
          if (1)
          {
@@ -223,7 +224,7 @@ FragColor = texture(uTexture, TexCoord);
 #if defined(__APPLE__)
 #else
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         GLCheckError("");
+         ::opengl::check_error("");
 #endif
          
 #endif
@@ -231,14 +232,14 @@ FragColor = texture(uTexture, TexCoord);
 #if 0
 
          glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
-         GLCheckError("");
+         ::opengl::check_error("");
          glClear(GL_COLOR_BUFFER_BIT);
            //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         GLCheckError("");
+         ::opengl::check_error("");
           // glDisable(GL_BLEND);
-          //GLCheckError("");
+          //::opengl::check_error("");
           // glDisable(GL_DEPTH_TEST);
-          //GLCheckError("");
+          //::opengl::check_error("");
 
 #endif
 
@@ -312,23 +313,23 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    //auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(nullptr);
 
    //glBindVertexArray(0);
-   //GLCheckError("");
+   //::opengl::check_error("");
    //glUseProgram(0);
-   //GLCheckError("");
+   //::opengl::check_error("");
 
 
    //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-   //GLCheckError("");
+   //::opengl::check_error("");
    //glDrawBuffer(GL_BACK);
-   GLCheckError("");
+   ::opengl::check_error("");
    glDisable(GL_SCISSOR_TEST);
-   GLCheckError("");
+   ::opengl::check_error("");
    glDisable(GL_BLEND);
-   GLCheckError("");
+   ::opengl::check_error("");
    glDisable(GL_DEPTH_TEST);
-   GLCheckError("");
+   ::opengl::check_error("");
    glDepthMask(GL_FALSE);
-   GLCheckError("");
+   ::opengl::check_error("");
 //#if 0
 #if 1
 
@@ -343,24 +344,24 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    
    GLint currentProgram = 0;
    glGetIntegerv(GL_CURRENT_PROGRAM, &currentProgram);
-   GLCheckError("");
+   ::opengl::check_error("");
    
    if(currentProgram != iProgram)
    {
       glUseProgram(iProgram);
-      GLCheckError("");
+      ::opengl::check_error("");
    }
    
    glDisable(GL_DEPTH_TEST);
-   GLCheckError("");
+   ::opengl::check_error("");
    glDisable(GL_BLEND);
-   GLCheckError("");
+   ::opengl::check_error("");
 
    glViewport(0, 0, w, h);
-   GLCheckError("");
+   ::opengl::check_error("");
 
    glDisable(GL_SCISSOR_TEST);
-   GLCheckError("");
+   ::opengl::check_error("");
    
    if(!m_pmodelbufferRender)
    {
@@ -384,7 +385,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    //pcommandbuffer->end_render();
 
    glUseProgram(0);
-   GLCheckError("");
+   ::opengl::check_error("");
    
    //glFlush();
    //m_pgpucontext->defer_unbind_shader();
@@ -392,7 +393,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 //#endif
 
    //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-   //GLCheckError("");
+   //::opengl::check_error("");
 #endif
 
 #if 0
@@ -528,7 +529,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
          auto & ptextureSwapChain = m_ptextureaSwapChain->ø(i);
          øconstruct(ptextureSwapChain);
          ::gpu::texture_attributes textureattributes(size);
-         ptextureSwapChain->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
+         ptextureSwapChain->initialize_texture(m_pgpucontext, textureattributes);
 
       }
       
@@ -557,14 +558,14 @@ void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
    //            GLuint uFbo = 0;
    //
    //            glGenFramebuffers(1, &uFbo);
-   //            GLCheckError("");
+   //            ::opengl::check_error("");
    //
    //            m_iFbo = uFbo;
    //
    //            GLuint uTex = 0;
    //
    //            glGenTextures(1, &uTex);
-   //            GLCheckError("");
+   //            ::opengl::check_error("");
    //
    //
    //            m_iFboTex = uTex;

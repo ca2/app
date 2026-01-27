@@ -135,7 +135,7 @@ namespace gpu
 
       void _set(const ::geometry2d::matrix& matrix) override;
 
-      void do_on_context(const ::procedure& procedure) override;
+      void do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure& procedure) override;
 
       //template < typename TYPE >
       //void push_on_end_top_frame(::pointer_array < TYPE >& a, const ::pointer < TYPE > & p)

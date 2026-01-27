@@ -353,11 +353,11 @@ namespace gpu_opengl
 
          //   // draw mesh
          //glBindVertexArray(m_uVAO);
-         //GLCheckError("not bound");
+         //::opengl::check_error("not bound");
          //glDrawElements(GL_TRIANGLES, indexes_count(), GL_UNSIGNED_INT, 0);
-         //GLCheckError("not drawn");
+         //::opengl::check_error("not drawn");
          //glBindVertexArray(0);
-         //GLCheckError("not unbound");
+         //::opengl::check_error("not unbound");
 
       }
 

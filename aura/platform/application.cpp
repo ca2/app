@@ -2018,9 +2018,11 @@ namespace aura
  
       if(pmanager)
       {
+         
          auto psignal = pmanager->signal(id_app_activated);
       
          psignal->add_handler(this);
+         
       }
 
    }
@@ -3880,10 +3882,15 @@ retry_license:
 
             if (m_puserinteractionaFrame->has_no_interaction())
             {
-
+               
                synchronouslock.unlock();
-
-               get_app()->post_message(::user::e_message_close);
+               
+               if(!get_app()->has_finishing_flag())
+               {
+                  
+                  get_app()->post_message(::user::e_message_close);
+                  
+               }
 
             }
 

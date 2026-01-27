@@ -278,7 +278,7 @@ namespace gpu
 
             textureflags.m_bWithDepth =m_bWithDepth;
 
-            ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+            ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
          }
 

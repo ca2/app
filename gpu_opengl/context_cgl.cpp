@@ -18,7 +18,18 @@
 #include "aura/platform/system.h"
 #include "bred/gpu/context_lock.h"
 
+namespace opengl
+{
 
+void * operating_system_current_context()
+{
+   
+   auto cglcontextobj = CGLGetCurrentContext();
+   
+   return cglcontextobj;
+}
+
+}
 
 namespace gpu_opengl
 {
@@ -36,6 +47,8 @@ namespace gpu_opengl
    {
 
       //m_emode = e_mode_egl;
+      
+      m_pbuffer = 0;
       
       m_context = 0;
 
@@ -65,22 +78,6 @@ namespace gpu_opengl
       
 //      //m_itaskGpu = ::current_itask();
 //      
-//      unsigned long target = GL_TEXTURE_2D;
-////
-//      unsigned long internalFormat = GL_RGBA;
-////
-//      long max_level = 0;
-//
-//      CGLError error = CGLCreatePBuffer(size.cx, size.cy, target, internalFormat, max_level, &m_pbuffer);
-//
-//      if(error != kCGLNoError)
-//      {
-//         
-//         throw ::exception(error_wrong_state);
-//         
-//         return;
-//         
-//      }
 
 //      EGLint attribList[]=
 //      {
@@ -132,6 +129,24 @@ namespace gpu_opengl
       }
 
       ::gpu::context_lock contextlock(this);
+      
+//      unsigned long target = GL_TEXTURE_2D;
+//////
+//      unsigned long internalFormat = GL_RGBA;
+//////
+//      long max_level = 0;
+//
+//      error = CGLCreatePBuffer(size.cx, size.cy, target, internalFormat, max_level, &m_pbuffer);
+//
+//      if(error != kCGLNoError)
+//      {
+//         
+//         throw ::exception(error_wrong_state);
+//         
+//         return;
+//         
+//      }
+
       
       m_rectangle.left = 0;
       m_rectangle.top = 0;
@@ -232,7 +247,7 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
          GLuint uFbo = m_iFbo;
          
          glDeleteFramebuffers(1, &uFbo);
-         GLCheckError("");
+         ::opengl::check_error("");
          
          m_iFbo = 0;
          
@@ -244,7 +259,7 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
          GLuint uTex = m_iTex;
          
          glDeleteTextures(1, &uTex);
-         GLCheckError("");
+         ::opengl::check_error("");
          
          m_iTex = 0;
          
@@ -253,30 +268,30 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
       GLuint fbo = 0;
       
       glGenFramebuffers(1, &fbo);
-      GLCheckError("");
+      ::opengl::check_error("");
       m_iFbo = fbo;
       glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-      GLCheckError("");
+      ::opengl::check_error("");
       
       GLuint tex = 0;
       
       glGenTextures(1, &tex);
-      GLCheckError("");
+      ::opengl::check_error("");
       m_iTex = tex;
       glBindTexture(GL_TEXTURE_2D, tex);
-      GLCheckError("");
+      ::opengl::check_error("");
       glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
                    GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-      GLCheckError("");
+      ::opengl::check_error("");
       
       glFramebufferTexture2D(GL_FRAMEBUFFER,
                              GL_COLOR_ATTACHMENT0,
                              GL_TEXTURE_2D,
                              tex, 0);
-      GLCheckError("");
+      ::opengl::check_error("");
       
       auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-      GLCheckError("");
+      ::opengl::check_error("");
       
       if (status != GL_FRAMEBUFFER_COMPLETE)
       {
@@ -292,18 +307,19 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
       }
       
       glBindTexture(GL_TEXTURE_2D, 0);
-      GLCheckError("");
+      ::opengl::check_error("");
       
    }
    
 }
 
-   void context_cgl::_context_lock()
-{
 
-      CGLError error = CGLSetCurrentContext(m_context);
+   void context_cgl::_context_lock()
+   {
+
+      CGLError errorSetCurrentContext = CGLSetCurrentContext(m_context);
       
-      bool bMakeCurrentOk = error == kCGLNoError;
+      bool bMakeCurrentOk = errorSetCurrentContext == kCGLNoError;
 
       if (!bMakeCurrentOk)
       {
@@ -320,31 +336,84 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
 
       }
       
+//      if(m_pbuffer)
+//      {
+//         
+//         CGLError errorSetPBuffer = CGLSetPBuffer(m_context, m_pbuffer, 0, 0, 0);
+//         
+//         bool bSetBufferOk = errorSetPBuffer == kCGLNoError;
+//         
+//         if (!bSetBufferOk)
+//         {
+//            
+//            ::string strMessage;
+//            
+//            strMessage = "CGLSetPbuffer Failed to set pbuffer";
+//            
+//            warning(strMessage);
+//            
+//            throw ::exception(error_failed, strMessage);
+//            
+//            return;
+//            
+//         }
+//         
+//      }
+      
       _defer_update_render_frame_buffer_unlocked();
       
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFbo);
-      GLCheckError("");
+//      GLint drawFbo = 0;
+//      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+//      ::opengl::check_error("");
+//
+//      if(drawFbo != gluFbo)
+//      {
+         
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFbo);
+         ::opengl::check_error("");
+         
+//      }
+
       
-      auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-
-      if (status != GL_FRAMEBUFFER_COMPLETE)
-      {
-         
-         ::string strMessage;
-         
-         strMessage = "context_cgl::_context_lock,Framebuffer not complete!";
-
-         warning(strMessage);
-         
-         throw ::exception(error_failed, strMessage);
-
-      }
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFbo);
+      //::opengl::check_error("");
+      
+//      auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+//
+//      if (status != GL_FRAMEBUFFER_COMPLETE)
+//      {
+//         
+//         ::string strMessage;
+//         
+//         strMessage = "context_cgl::_context_lock,Framebuffer not complete!";
+//
+//         warning(strMessage);
+//         
+//         throw ::exception(error_failed, strMessage);
+//
+//      }
 
    }
 
 
    void context_cgl::_context_unlock()
    {
+      
+      GLint drawFbo = 0;
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+      if(!glGetError())
+      {
+         //::opengl::check_error("");
+         
+         if(drawFbo)
+         {
+            
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+            ::opengl::check_error("");
+            
+         }
+         
+      }
 
       CGLError error = CGLSetCurrentContext(nullptr);
       
@@ -360,6 +429,15 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
          warning(strMessage);
 
          throw ::exception(error_failed, strMessage);
+         
+      }
+      
+      auto cglcontextobj = ::opengl::operating_system_current_context();
+      
+      if(cglcontextobj)
+      {
+       
+         warning("Shouldn't it return nullptr now?");
          
       }
 
@@ -460,6 +538,7 @@ void context_cgl::on_cube_map_face_image(::image::image * pimage)
 }
 
 } // namespace gpu_opengl
+
 
 
 

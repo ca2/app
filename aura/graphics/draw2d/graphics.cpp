@@ -2888,7 +2888,7 @@ namespace draw2d
    }
 
 
-   void graphics::do_on_context(const ::procedure & procedure)
+   void graphics::do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure & procedure)
    {
 
       procedure();

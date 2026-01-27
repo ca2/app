@@ -145,7 +145,7 @@ namespace gpu_opengl
 //             auto mipHeight = m_pframebufferPrefilteredEnvMap->mip_height();
 //
 //             glViewport(0, 0, mipWidth, mipHeight);
-//             GLCheckError("");
+//             ::opengl::check_error("");
 //             // each mip level has increasing roughness
 //             float roughness = (float)iCurrentMip / (float)(mipCount - 1);
 //             m_pshaderPrefilteredEnvMap->set_float("roughness", roughness);
@@ -164,12 +164,12 @@ namespace gpu_opengl
 //                m_pframebufferPrefilteredEnvMap->set_cube_face(iFace);
 //
 // //               glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//   //             GLCheckError("");
+//   //             ::opengl::check_error("");
 //
 //                int iTextureId = ptextureSkybox->m_gluTextureID;
 //
 //                glBindTexture(GL_TEXTURE_CUBE_MAP, iTextureId);
-//                GLCheckError("");
+//                ::opengl::check_error("");
 //                pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
 //                //pcube->draw(pgpucommandbuffer);
 //                ::graphics3d::render_system rendersystemScope;
@@ -197,7 +197,7 @@ namespace gpu_opengl
 //          }
 //
 //          glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//          GLCheckError("");
+//          ::opengl::check_error("");
 
       }
 
@@ -239,9 +239,9 @@ namespace gpu_opengl
          // //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
          //
          // glViewport(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
-         // GLCheckError("");
+         // ::opengl::check_error("");
          // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         // GLCheckError("");
+         // ::opengl::check_error("");
          //
          // pfullscreenquad->bind(pcommandbuffer);
          // pfullscreenquad->draw(pcommandbuffer);
@@ -259,7 +259,7 @@ namespace gpu_opengl
          // //timer.logDifference("Rendered specular brdf convolution map");
          //
          // glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         // GLCheckError("");
+         // ::opengl::check_error("");
 
       }
 

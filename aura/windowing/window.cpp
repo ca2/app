@@ -9409,12 +9409,32 @@ namespace windowing
 
       }
 
-      //::draw2d::graphics_pointer pgraphics;
+      ::draw2d::graphics_pointer pgraphics;
 
-      //user_interaction()->defer_do_graphics(pgraphics);
-      
-      //user_interaction()->do_graphics();
-      
+      user_interaction()->defer_do_graphics(pgraphics);
+
+   }
+
+
+   void window::top_down_prefix()
+   {
+
+      user_interaction()->top_down_prefix();
+
+   }
+
+
+   //void window::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   //::windowing::window_base::_001OnNcClip(pgraphics);
+
+   //}
+
+
+   void window::defer_do_graphics(::draw2d::graphics_pointer& pgraphics)
+   {
+
       debug() << "windowing::window::defer_do_graphics";
 
       //{
@@ -9861,7 +9881,7 @@ namespace windowing
 
          //draw2dlock.unlock();
 
-         graphicscontext.m_pgraphics->do_on_context(graphicscontext, [this, &graphicscontext, &pbufferitem]()
+         pgraphics->do_on_context([this, pgraphics, pbufferitem]()
             {
 
                //_synchronous_lock synchronous_lock(m_pmutexGraphics);

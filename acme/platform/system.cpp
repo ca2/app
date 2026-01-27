@@ -5051,8 +5051,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
             return "win32";
 
          }
+         else if (strOperatingAmbient == "macos")
+         {
 
-//         return strOperatingAmbient;
+            return "appkit";
+
+         }
+
+         return strOperatingAmbient;
 
       }
 

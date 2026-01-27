@@ -735,6 +735,7 @@ namespace gpu_opengl
    }
 
 
+
    // void context_egl::defer_make_current()
    // {
    //

@@ -164,7 +164,7 @@ namespace graphics
          if (pgraphics)
          {
 
-            pitem->m_pgraphics = pgraphics;
+            //pitem->m_pgraphics = pgraphics;
             
             pgraphics->resize(pitem->m_sizeBufferItemDraw);
 

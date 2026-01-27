@@ -45,11 +45,11 @@ namespace gpu
 
       ::gpu::approach::initialize_gpu_approach();
 
-      system()->m_pfactory->add_factory_item<::gpu::binding>();
-      system()->m_pfactory->add_factory_item<::gpu::binding_set>();
-      system()->m_pfactory->add_factory_item<::gpu::binding_set_array>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding_set>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding_set_array>();
 
-      system()->m_pfactory->add_factory_item<::gpu::binding_slot_set>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding_slot_set>();
       system()->m_pfactory->add_factory_item<::gpu::binding_slot_set_array>();
 
 

@@ -325,7 +325,7 @@ class graphics_context;
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
-      virtual void create_memory_graphics(const ::int_size& size = {});
+      virtual void create_memory_graphics(const ::int_size& sizeParameter = {});
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});

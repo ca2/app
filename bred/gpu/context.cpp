@@ -2037,10 +2037,36 @@ namespace gpu
 
                         //}
 
-                        auto playera = m_pgpudevice->m_playera;
+                        ::pointer_array < layer > layera;
 
-                        if (playera)
+                        auto playera2 = m_pgpudevice->m_playera;
+
+                        if (playera2)
                         {
+
+                           for (auto player : *playera2)
+                           {
+
+                              if (player->m_bFinished)
+                              {
+
+                                 layera.add(player);
+
+                              }
+                              else
+                              {
+
+                                 information("didn't schedule for merge an unfinished layer");
+
+                              }
+
+                           }
+
+                        }
+
+                        if (layera.has_element())
+                        {
+
                            auto prendererBackBuffer = get_gpu_renderer();
 
                            auto prendertargetBackBuffer = prendererBackBuffer->render_target();
@@ -2049,7 +2075,51 @@ namespace gpu
 
                            auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
 
-                           merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
+                           for (auto player : layera)
+                           {
+
+                              if (player->getCurrentCommandBuffer4())
+                              {
+
+                                 player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+
+                              }
+
+                           }
+
+                           {
+
+                              int iLayer = 0;
+
+                              for (auto player: layera)
+                              {
+
+                                 if (iLayer == 2)
+                                 {
+                                    // information("What happened to the 3D Layer?");
+                                 }
+
+
+                                 //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+
+                                 auto pgpufence = player->m_pgpufence;
+
+                                 if (::is_set(pgpufence))
+                                 {
+
+                                    pgpufence->wait_gpu_fence();
+
+                                 }
+
+                                 // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+                                 iLayer++;
+                              }
+
+                              ::gpu::context_lock contextlock(this);
+
+                              merge_layers(ptextureBackBuffer, &layera);
+
+                           }
 
                            ::cast < swap_chain > pswapchain = get_swap_chain();
 
@@ -2077,17 +2147,17 @@ namespace gpu
 
                            }
 
-                           for (auto player : *playera)
-                           {
-
-                              if (player->getCurrentCommandBuffer4())
-                              {
-
-                                 player->getCurrentCommandBuffer4()->wait_commands_to_execute();
-
-                              }
-
-                           }
+                           // for (auto player : *playera)
+                           // {
+                           //
+                           //    if (player->getCurrentCommandBuffer4())
+                           //    {
+                           //
+                           //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+                           //
+                           //    }
+                           //
+                           // }
                            
 //#if !defined(__APPLE__)
 
@@ -2716,7 +2786,7 @@ namespace gpu
    //}
 
 
-   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence)
    {
 
       throw ::interface_only();
@@ -2726,32 +2796,6 @@ namespace gpu
 
    void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
    {
-
-      {
-
-          int iLayer = 0;
-
-         for (auto player: *playera)
-         {
-
-            if (iLayer == 2)
-            {
-               // information("What happened to the 3D Layer?");
-            }
-
-
-            //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
-
-            auto ptextureSrc = player->texture();
-
-            ptextureSrc->wait_fence();
-
-            // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
-            iLayer++;
-         }
-
-
-      }
 
       ::gpu::context_lock contextlock(this);
 

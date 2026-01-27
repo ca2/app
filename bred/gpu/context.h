@@ -383,7 +383,7 @@ namespace gpu
       virtual void update_current_scene();
 
       //virtual void copy(::gpu::texture* ptexture);
-      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
+      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence);
       virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
       virtual void on_start_layer(::gpu::layer* player);

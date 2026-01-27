@@ -374,6 +374,18 @@ namespace gpu_opengl
    // }
 
 
+
+   void * device_egl::current_operating_system_gpu_context()
+   {
+
+      auto eglcontext = eglGetCurrentContext();
+
+      return eglcontext;
+
+   }
+
+
+
    ::pointer < ::gpu::context > device_egl::allocate_context()
    {
 

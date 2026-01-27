@@ -2,6 +2,7 @@
 // camilo on 2025-06-26 03:46 <3ThomasBorregaardSørensen!!
 // Created by camilo on 2025-06-23 00:14 <3ThomasBorregaardSørensen!!
 #pragma once
+#include "fence.h"
 
 
 namespace gpu
@@ -33,6 +34,7 @@ namespace gpu
       ::string                            m_strName;
       ::pointer_array < ::particle >      m_particleaHold;
       ::graphics3d::render_system *       m_prendersystem = nullptr;
+      ::pointer < ::gpu::fence >          m_pgpufence;
       //::gpu::binding_set_pointer          m_pbindingsetCurrent;
 
       command_buffer();
@@ -52,6 +54,8 @@ namespace gpu
       virtual void set_scissor(const ::int_rectangle& rectangle);
 
       virtual void reset();
+
+      virtual ::gpu::fence * insert_gpu_fence();
 
       virtual void begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget);
       virtual void set_shader(::gpu::shader *pgpushader);

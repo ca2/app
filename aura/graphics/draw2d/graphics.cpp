@@ -452,7 +452,24 @@ namespace draw2d
    void graphics::create_memory_graphics(const ::int_size & size)
    {
 
+      //_create_memory_graphics(size);
+
+      //::int_size size(sizeParameter);
+
+      if (size.is_empty())
+      {
+
+         //size = { 1920, 1080 };
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      //opengl_create_offscreen_buffer(size);
+
       _create_memory_graphics(size);
+
+      set_ok_flag();
 
    }
 
@@ -473,6 +490,7 @@ namespace draw2d
    {
 
    }
+
 
    void graphics::_create_memory_graphics(const ::int_size& size)
    {

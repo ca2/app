@@ -1857,7 +1857,7 @@ namespace gpu_opengl
    }
 
 
-   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource)
+   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource, ::pointer < ::gpu::fence > * pgpufence)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -1918,7 +1918,15 @@ namespace gpu_opengl
          throw ::exception(error_wrong_state);
 
       }
-      
+
+      auto gluSrcFbo = ptextureSrc->m_gluFbo;
+
+      auto gluDstFbo = ptextureDst->m_gluFbo;
+
+      auto pqueueGraphics = m_pgpudevice->graphics_queue();
+
+      auto pcommandbuffer = beginSingleTimeCommands(pqueueGraphics);
+
       //GLuint fboSrc, fboDst;
       //glGenFramebuffers(1, &fboSrc);
       //::opengl::check_error("");
@@ -2075,6 +2083,15 @@ namespace gpu_opengl
 
       }
 #endif
+
+
+      if (::is_set(pgpufence))
+      {
+
+         *pgpufence = pcommandbuffer->insert_gpu_fence();
+
+      }
+
 
 
 

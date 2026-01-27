@@ -360,9 +360,10 @@ namespace gpu
 
          auto ptextureSource = m_pgpucontext->current_target_texture(player->m_pgpuframe);
 
-         m_pgpucontext->copy(ptextureTarget, ptextureSource);
+         m_pgpucontext->copy(ptextureTarget, ptextureSource, &player->m_pgpufence);
 
-         ptextureTarget->defer_fence();
+         player->m_bFinished = false;
+         //ptextureTarget->defer_fence();
 
       }
 

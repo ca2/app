@@ -16,6 +16,7 @@ namespace gpu
    layer::layer()
    {
 
+      m_bFinished = false;
 
    }
 
@@ -100,6 +101,8 @@ namespace gpu
    {
 
       m_bRenderTargetFramebufferInitialized = false;
+
+      m_bFinished = false;
 
       m_pgpurenderer->on_start_layer(this);
 

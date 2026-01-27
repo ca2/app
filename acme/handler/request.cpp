@@ -456,8 +456,6 @@ void request::common_construct()
 void request::pop_request(::request_stack * prequeststack)
 {
    
-   auto prequeststackHold = ::as_pointer(prequeststack);
-   
    m_requeststacka.erase(prequeststack);
    
    if(m_requeststacka.is_empty())

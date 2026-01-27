@@ -222,12 +222,14 @@ namespace factory
 
       //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::platform::type & type, const ::platform::type & typeSource);
 
-      ::factory::factory_item_interface * _get_factory_item_by_type_index(const ::std::type_index & typeindex) const;
-      ::factory::factory_item_interface * _get_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const;
-      ::factory::factory_item_interface * _get_factory_item_by_type_id(const ::type_id & type_id) const;
-      ::factory::factory_item_interface * _get_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const;
-      ::factory::factory_item_interface * _get_factory_item_by_ipair(const ::type_iptr_pair& ipair) const;
-      ::factory::factory_item_interface * _get_factory_item(const ::platform::type & type) const;
+      //inline ::factory::factory_item_interface * _find_factory_item_by_type_index(const ::std::type_index & typeindex) const;
+
+      ::factory::factory_item_interface * _find_factory_item_by_type_index(const ::std::type_index & typeindex) const;
+      ::factory::factory_item_interface * _find_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const;
+      ::factory::factory_item_interface * _find_factory_item_by_type_id(const ::type_id & type_id) const;
+      ::factory::factory_item_interface * _find_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const;
+      ::factory::factory_item_interface * _find_factory_item_by_ipair(const ::type_iptr_pair& ipair) const;
+      ::factory::factory_item_interface * _find_factory_item(const ::platform::type & type) const;
 
       //::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex) const;
       //::factory::factory_item_interface * get_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const;
@@ -240,6 +242,7 @@ namespace factory
       bool has_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const;
       bool has_factory_item(const ::platform::type & type) const;
 
+
       template<typename ORIGIN_TYPE>
       bool has_factory_item() const
       {
@@ -249,6 +252,24 @@ namespace factory
          return this->has_factory_item_by_type_index(typeindex);
 
       }
+
+
+      template<typename ORIGIN_TYPE>
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > find_factory_item() const
+      {
+
+         auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
+
+         auto pfactoryiteminterface = this->_find_factory_item_by_type_index(typeindex);
+
+         pointer< ::factory::factory_item_base < ORIGIN_TYPE > > pfactoryitembase;
+
+         pfactoryitembase = pfactoryiteminterface;
+
+         return pfactoryitembase;
+
+      }
+
 
       //inline ::factory::factory_item_interface * get_factory_item_from(const ::platform::type & type, const ::platform::type & typeSource) const;
 
@@ -277,6 +298,24 @@ namespace factory
 
       template < typename TYPE, typename ORIGIN_TYPE = TYPE >
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item();
+
+      template < typename TYPE, typename ORIGIN_TYPE = TYPE >
+      inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > defer_add_factory_item()
+      {
+
+         auto pfactoryitem = this->find_factory_item<ORIGIN_TYPE>();
+
+         if (!pfactoryitem)
+         {
+
+            pfactoryitem = add_factory_item<TYPE, ORIGIN_TYPE>();
+
+         }
+
+         return pfactoryitem;
+
+      }
+
 
       template < typename ORIGIN_TYPE  >
       inline pointer< ::factory::factory_item_base < ORIGIN_TYPE > > add_factory_item_with_custom_id(const ::type_custom_id & typecustomid);

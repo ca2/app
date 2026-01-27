@@ -228,7 +228,7 @@ namespace typeface_freetype
       //ch.h2 = m_iPixelSize- ch.Bearing.y;
       //ch.h2 = iAscender2- ch.Bearing.y;
       //ch.h2 = iAscender2-iBearingY2;
-      ch.h2 = m_iCapHeight - bitmap_top;
+      ch.aHeight2 = m_iCapHeight - bitmap_top;
 
 //      //};
 //      //Characters.insert(std::pair<char, Character>(c, character));

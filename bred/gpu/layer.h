@@ -20,7 +20,9 @@ namespace gpu
       ::pointer_array <::gpu::texture >    m_texturea;
       ::pointer_array <::gpu::texture >    m_textureaSource;
       ::pointer < ::gpu::frame > m_pgpuframe;
+      ::pointer < ::gpu::fence > m_pgpufence;
       //::comptr < ID3D12Resource > m_presource;
+      bool m_bFinished;
 
       ::pointer_array<command_buffer>	 m_commandbufferaLayer;
 

@@ -1132,7 +1132,7 @@ namespace factory
 
       //return pparticle;
 
-      auto pfactoryinterface = _get_factory_item_by_custom_id(typecustomid);
+      auto pfactoryinterface = _find_factory_item_by_custom_id(typecustomid);
 
       //if (!pfactoryinterface)
       //{
@@ -1166,7 +1166,7 @@ namespace factory
    // }
 
 
-   ::factory::factory_item_interface* factory::_get_factory_item_by_type_index(const ::std::type_index & typeindex) const
+   ::factory::factory_item_interface* factory::_find_factory_item_by_type_index(const ::std::type_index & typeindex) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
@@ -1198,7 +1198,7 @@ namespace factory
    }
 
 
-   ::factory::factory_item_interface* factory::_get_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const
+   ::factory::factory_item_interface* factory::_find_factory_item_by_type_name(const ::scoped_string & scopedstrTypeName) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
@@ -1230,7 +1230,7 @@ namespace factory
    }
 
 
-   factory_item_interface * factory::_get_factory_item_by_type_id(const ::type_id & type_id) const
+   factory_item_interface * factory::_find_factory_item_by_type_id(const ::type_id & type_id) const
    {
 
       auto typeindex = type_id.m_typeindex;
@@ -1238,7 +1238,7 @@ namespace factory
       if (::is_type_index_set(typeindex))
       {
 
-         auto pfactoryitem = _get_factory_item_by_type_index(typeindex);
+         auto pfactoryitem = _find_factory_item_by_type_index(typeindex);
 
          if (pfactoryitem)
          {
@@ -1254,7 +1254,7 @@ namespace factory
       if (strTypeName.has_character())
       {
 
-         auto pfactoryitem = _get_factory_item_by_type_name(strTypeName);
+         auto pfactoryitem = _find_factory_item_by_type_name(strTypeName);
 
          if (pfactoryitem)
          {
@@ -1304,7 +1304,7 @@ namespace factory
    //
    // }
 
-   factory_item_interface * factory::_get_factory_item(const ::platform::type & type) const
+   factory_item_interface * factory::_find_factory_item(const ::platform::type & type) const
    {
 
       if (type.is_empty())
@@ -1317,7 +1317,7 @@ namespace factory
       if (type.m_typeid.is_set())
       {
 
-         auto pfactoryitem = _get_factory_item_by_type_id(type.m_typeid);
+         auto pfactoryitem = _find_factory_item_by_type_id(type.m_typeid);
 
          if (::is_set(pfactoryitem))
          {
@@ -1331,7 +1331,7 @@ namespace factory
       if (type.m_customid.is_set())
       {
 
-         auto pfactoryitem = _get_factory_item_by_custom_id(type.m_customid);
+         auto pfactoryitem = _find_factory_item_by_custom_id(type.m_customid);
 
          if (::is_set(pfactoryitem))
          {
@@ -1350,7 +1350,7 @@ namespace factory
    bool factory::has_factory_item(const ::platform::type & type) const
    {
 
-      auto pfactoryitem = _get_factory_item(type);
+      auto pfactoryitem = _find_factory_item(type);
 
       if (::is_null(pfactoryitem))
       {
@@ -1365,7 +1365,7 @@ namespace factory
 
 
 
-   ::factory::factory_item_interface * factory::_get_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const
+   ::factory::factory_item_interface * factory::_find_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
@@ -1426,7 +1426,7 @@ namespace factory
    }
 
 
-   ::factory::factory_item_interface* factory::_get_factory_item_by_ipair(const ::type_iptr_pair & ipairId) const
+   ::factory::factory_item_interface* factory::_find_factory_item_by_ipair(const ::type_iptr_pair & ipairId) const
    {
 
       critical_section_lock cs(&((factory*)this)->m_criticalsection);
@@ -1496,7 +1496,7 @@ namespace factory
    bool factory::has_factory_item_by_custom_id(const ::type_custom_id & typecustomid) const
    {
 
-      auto pfactoryitem = this->_get_factory_item_by_custom_id(typecustomid);
+      auto pfactoryitem = this->_find_factory_item_by_custom_id(typecustomid);
 
       if (::is_null(pfactoryitem))
       {

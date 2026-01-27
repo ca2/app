@@ -92,7 +92,7 @@ namespace gpu_opengl
 
       //virtual void _create_offscreen_window(const ::int_size & size);
 
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence) override;
 
       void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
                              ::acme::windowing::window *pwindow, const ::int_size &size) override;

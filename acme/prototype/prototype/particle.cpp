@@ -2154,7 +2154,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->_get_factory_item(type);
+   auto pfactoryitem = pfactory->_find_factory_item(type);
 
    auto p = pfactoryitem->__call__create_particle();
 
@@ -2206,7 +2206,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->_get_factory_item_by_custom_id(typecustomid);
+   auto pfactoryitem = pfactory->_find_factory_item_by_custom_id(typecustomid);
 
    auto p = pfactoryitem->__call__create_particle();
 
@@ -2229,7 +2229,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->_get_factory_item_by_ipair(ipair);
+   auto pfactoryitem = pfactory->_find_factory_item_by_ipair(ipair);
 
    auto p = pfactoryitem->__call__create_particle();
 

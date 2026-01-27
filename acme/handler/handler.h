@@ -26,7 +26,7 @@ namespace handler
    protected:
 
 
-      ::pointer_array_base < ::request >        m_requestaPosted;
+      ::pointer_array_base < ::request_stack >  m_requeststackaPosted;
       ::pointer_array_base < ::request >        m_requestaHistory;
       ::pointer < ::manual_reset_happening >    m_pmanualresethappeningMainLoop;
 

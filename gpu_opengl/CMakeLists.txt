@@ -76,6 +76,7 @@ list(APPEND library_source
         _.cpp
         _.h
         _factory.cpp
+   _glad.cpp
         _gpu_opengl.cpp
         _gpu_opengl.h
         approach.cpp

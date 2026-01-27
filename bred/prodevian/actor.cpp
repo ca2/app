@@ -81,11 +81,13 @@ namespace prodevian
    //    return nullptr;
    // }
 
-   //
-   // ::graphics3d::camera * actor::getCamera()
-   // {
-   //    return m_pcamera;
-   // }
+
+   ::graphics3d::camera * actor::camera()
+   {
+
+      return m_pcamera;
+
+   }
 
 
 } // namespace prodevian

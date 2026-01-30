@@ -10,7 +10,6 @@ struct CLASS_DECL_ACME cpu_features
 #if defined(__APPLE__) && defined(__aarch64__)
 
 // ---- SIMD / FP ----
-    bool   m_bNEON      = false;
     bool  m_bFP      = false;
 
    // ---- Crypto ----
@@ -24,6 +23,8 @@ struct CLASS_DECL_ACME cpu_features
 #endif
     
     
+
+   bool m_bNEON = false;
    bool m_bSSE = false;
    bool m_bAVX = false;
    bool m_bAVX2 = false;

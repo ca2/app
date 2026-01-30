@@ -355,6 +355,7 @@
     <ClInclude Include="gpu\debug_scope.h" />
     <ClInclude Include="gpu\device.h" />
     <ClInclude Include="gpu\draw2d.h" />
+    <ClInclude Include="gpu\fence.h" />
     <ClInclude Include="gpu\frame.h" />
     <ClInclude Include="gpu\frame_ephemeral.h" />
     <ClInclude Include="gpu\frame_storage.h" />
@@ -377,6 +378,7 @@
     <ClInclude Include="gpu\renderer.h" />
     <ClInclude Include="gpu\render_state.h" />
     <ClInclude Include="gpu\render_target.h" />
+    <ClInclude Include="gpu\semaphore.h" />
     <ClInclude Include="gpu\shader.h" />
     <ClInclude Include="gpu\layer.h" />
     <ClInclude Include="gpu\swap_chain.h" />
@@ -499,6 +501,7 @@
     <ClCompile Include="gpu\device.cpp" />
     <ClCompile Include="gpu\draw2d.cpp" />
     <ClCompile Include="gpu\empty_texture_source.cpp" />
+    <ClCompile Include="gpu\fence.cpp" />
     <ClCompile Include="gpu\frame.cpp" />
     <ClCompile Include="gpu\frame_ephemeral.cpp" />
     <ClCompile Include="gpu\frame_storage.cpp" />
@@ -520,6 +523,7 @@
     <ClCompile Include="gpu\renderer.cpp" />
     <ClCompile Include="gpu\render_state.cpp" />
     <ClCompile Include="gpu\render_target.cpp" />
+    <ClCompile Include="gpu\semaphore.cpp" />
     <ClCompile Include="gpu\shader.cpp" />
     <ClCompile Include="gpu\layer.cpp" />
     <ClCompile Include="gpu\swap_chain.cpp" />

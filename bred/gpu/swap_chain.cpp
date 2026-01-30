@@ -95,7 +95,7 @@ namespace gpu
    }
 
 
-   void swap_chain::present()
+   void swap_chain::present(::gpu::texture * pgputexture)
    {
 
 

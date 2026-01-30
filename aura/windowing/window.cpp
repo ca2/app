@@ -10486,7 +10486,7 @@ namespace windowing
 //    }
 
 
-      void window::do_graphics()
+   void window::do_graphics()
    {
 
       m_bDoingGraphics = true;
@@ -11005,9 +11005,30 @@ slGraphics.unlock();
 
                 //_synchronous_lock synchronous_lock(m_pmutexGraphics);
 
+
+
               draw_frame_draw(m_pgraphicscontextDrawingFrame->m_pgraphics);
 
+              m_sizeLastBuffer = m_pgraphicscontextDrawingFrame->m_pbufferitem->m_sizeBufferItemDraw;
+
+              //}
+
+              m_pgraphicscontextDrawingFrame->m_pgraphics->on_end_draw();
+
+              if (m_pgraphicsgraphics)
+              {
+
+#ifndef LINUX
+                 m_pgraphicsgraphics->on_end_draw();
+#endif
+
+              }
+
               m_pgraphicscontextDrawingFrame.release();
+
+
+
+
 //
 //
 //

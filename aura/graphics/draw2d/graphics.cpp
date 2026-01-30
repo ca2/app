@@ -2911,7 +2911,18 @@ namespace draw2d
 
       //procedure();
 
-      throw ::interface_only();
+      //throw ::interface_only();
+
+      ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
+
+      puserinteraction->_send([procedure]()
+         {
+
+            procedure();
+
+         });
+
+      //m_puserinteraction->m_pgr(pgraphicscontext, procedure);
 
    }
 

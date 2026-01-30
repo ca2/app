@@ -33,6 +33,8 @@ namespace graphics
       ::draw2d::graphics_pointer g();
 
 
+      virtual void switch_to_draw();
+
       void destroy() override;
 
 

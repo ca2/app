@@ -1014,6 +1014,8 @@ namespace graphics3d
       if (pcommandbufferLoadAssets)
       {
 
+         information("There seems to be a \"Load Assets\" command buffer to be processed...");
+
          pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
          // if (prenderer->m_pcommandbufferLoadAssets)
          //{

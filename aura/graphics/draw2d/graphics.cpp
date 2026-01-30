@@ -2906,10 +2906,12 @@ namespace draw2d
    }
 
 
-   void graphics::do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure & procedure)
+   void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure)
    {
 
-      procedure();
+      //procedure();
+
+      throw ::interface_only();
 
    }
 

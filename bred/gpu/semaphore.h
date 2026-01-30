@@ -1,19 +1,34 @@
 //
-// Created by camilo on 28/01/2026.
+// Created by camilo on 2026-01-28 22:50 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef SCENEFOUNDRY_SEMAPHORE_H
-#define SCENEFOUNDRY_SEMAPHORE_H
+
+
+#include "bred/gpu/context_object.h"
 
 
 namespace gpu
 {
 
-   class semaphore
+
+   class CLASS_DECL_BRED semaphore :
+      virtual public ::gpu::context_object
    {
+   public:
+
+
+      semaphore();
+      ~semaphore() override;
+
+
+      virtual void initialize_gpu_semaphore(::gpu::context * pgpucontext);
+
 
    };
 
-} // gpu
 
-#endif //SCENEFOUNDRY_SEMAPHORE_H
+} // namespace gpu
+
+
+

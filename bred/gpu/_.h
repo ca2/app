@@ -31,7 +31,7 @@ namespace gpu
 
    class empty_texture_source;
 
-
+   class semaphore;
 
 
    template<typename VERTEX, typename INDEX = unsigned int>

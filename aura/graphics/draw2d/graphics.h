@@ -166,7 +166,11 @@ class graphics_context;
       virtual bool is_y_flip();
 
 
-      virtual void do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure& procedure);
+      //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
+
+
+      virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
+
 
       inline operator ::user::style& ()
       {
@@ -1427,13 +1431,15 @@ class graphics_context;
    };
 
 
-   class CLASS_DECL_AURA graphics_context
+   class CLASS_DECL_AURA graphics_context :
+      virtual public ::particle
    {
    public:
       
       
       ::pointer < ::draw2d::graphics > m_pgraphics;
       ::pointer < ::draw2d::graphics_context_interface > m_pgraphicscontextinterface;
+      ::pointer < ::graphics::buffer_item > m_pbufferitem;
       
       
       graphics_context()

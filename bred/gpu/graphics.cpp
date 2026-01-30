@@ -434,7 +434,7 @@ namespace gpu
    }
 
 
-   void graphics::do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure& procedure)
+   void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure)
    {
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->acme_windowing_window());
@@ -464,6 +464,11 @@ namespace gpu
          pcontext,
          m_egraphics & e_graphics_draw,
          procedure);
+
+      //pcontextMain->top_post_to_context(
+        // pcontext,
+         ///m_egraphics & e_graphics_draw,
+        // procedure);
 
       //pgpudevice->start_stacking_layers();
 

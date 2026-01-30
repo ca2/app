@@ -10,8 +10,9 @@
 namespace gpu
 {
 
-   class fence :
-   virtual public ::gpu::context_object
+
+   class CLASS_DECL_BRED fence :
+      virtual public ::gpu::context_object
    {
 
    public:

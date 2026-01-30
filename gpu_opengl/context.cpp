@@ -1197,12 +1197,14 @@ namespace gpu_opengl
    }
 
 
-   void context::merge_layers(::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
+   void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
    {
 
-      ::gpu::context::merge_layers(ptextureTarget, playera);
+      ::gpu::context::merge_layers(pgpucommandbuffer, ptextureTarget, playera);
 
    }
+
+
 //    {
 //
 //       {
@@ -1918,10 +1920,6 @@ namespace gpu_opengl
          throw ::exception(error_wrong_state);
 
       }
-
-      auto gluSrcFbo = ptextureSrc->m_gluFbo;
-
-      auto gluDstFbo = ptextureDst->m_gluFbo;
 
       auto pqueueGraphics = m_pgpudevice->graphics_queue();
 

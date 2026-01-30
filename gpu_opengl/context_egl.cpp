@@ -36,6 +36,24 @@ const char* eglErrorString(EGLint error);
 
 //#define ENABLE_GL_DEBUG_OUTPUT
 
+
+namespace opengl
+{
+
+
+   void * operating_system_current_context()
+   {
+
+      auto eglcontext = eglGetCurrentContext();
+
+      return eglcontext;
+
+   }
+
+
+}
+
+
 namespace gpu_opengl
 {
 

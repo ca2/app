@@ -22,20 +22,22 @@ namespace gpu
          e_state_submitted,
       };
 
-      bool                                m_bClosed;
-      enum_state                          m_estate = e_state_none;
-      enum_command_buffer                 m_ecommandbuffer;
-      ::pointer < ::gpu::render_target >  m_pgpurendertarget;
-      ::pointer < ::gpu::queue >          m_pgpuqueue;
-      bool                                m_bLoadingCommandBuffer;
-      ::collection::index                 m_iCommandBufferFrameIndex;
-      ::collection::index                 m_iSerial;
-      ::string                            m_strAnnotation;
-      ::string                            m_strName;
-      ::pointer_array < ::particle >      m_particleaHold;
-      ::graphics3d::render_system *       m_prendersystem = nullptr;
-      ::pointer < ::gpu::fence >          m_pgpufence;
-      //::gpu::binding_set_pointer          m_pbindingsetCurrent;
+      bool                                   m_bClosed;
+      enum_state                             m_estate = e_state_none;
+      enum_command_buffer                    m_ecommandbuffer;
+      ::pointer < ::gpu::render_target >     m_pgpurendertarget;
+      ::pointer < ::gpu::queue >             m_pgpuqueue;
+      bool                                   m_bLoadingCommandBuffer;
+      ::collection::index                    m_iCommandBufferFrameIndex;
+      ::collection::index                    m_iSerial;
+      ::string                               m_strAnnotation;
+      ::string                               m_strName;
+      ::pointer_array < ::particle >         m_particleaHold;
+      ::graphics3d::render_system *          m_prendersystem = nullptr;
+      ::pointer < ::gpu::fence >             m_pgpufence;
+      //::gpu::binding_set_pointer           m_pbindingsetCurrent;
+      ::pointer_array < ::gpu::semaphore >   m_semaphoreaWait;
+      ::pointer_array < ::gpu::semaphore >   m_semaphoreaSignal;
 
       command_buffer();
       ~command_buffer() override;

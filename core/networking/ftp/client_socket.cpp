@@ -1872,7 +1872,7 @@ auto tickStart = ::time::now();
    /// This command causes the directory specified in the pathname to be created
    /// as a directory (if the pathname is absolute) or as a subdirectory of the
    /// current working directory (if the pathname is relative).
-   /// @pararm[in] strDirectory Pathname specifying a directory to be created.
+   /// @pararm[in] scopedstrDirectory Pathname specifying a directory to be created.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::make_directory(const ::scoped_string & scopedstrDirectory)
    {

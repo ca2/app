@@ -1375,7 +1375,7 @@ void main() {
       //::opengl::vertex2f(polygon, m_z);
 
       //glEnd();
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       //return false;
 
@@ -5877,10 +5877,10 @@ color = vec4(c.r,c.g, c.b, c.a);
       ::cast < draw2d_gpu::face>pface = pgpuface;
 
       //glActiveTexture(GL_TEXTURE0);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       //glBindVertexArray(pface->m_FaceVAO);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       // iterate through all characters
       ::string strChar;
@@ -5920,7 +5920,7 @@ color = vec4(c.r,c.g, c.b, c.a);
       point.y = pcontext->m_rectangle.height() - point.y - pface->m_iPixelSize;
       //auto pcommandbuffer = ::gpu::current_command_buffer();
       //glEnable(GL_CULL_FACE);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glEnable(GL_BLEND);
       //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
       while(next_unicode_character(strChar, psz))
@@ -5958,44 +5958,44 @@ color = vec4(c.r,c.g, c.b, c.a);
             pmodelbuffer->set_vertexes(vertexes);
 
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-            //GLCheckError("");
+            //::opengl::check_error("");
             //// update content of VBO memory
             //int iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
-            //GLCheckError("");
+            //::opengl::check_error("");
             //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
-            //GLCheckError("");
+            //::opengl::check_error("");
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
-            //GLCheckError("");
+            //::opengl::check_error("");
             // render quad
             // 
             // 
 
             pcommandbuffer->draw(ch.m_ppixmap);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-            //GLCheckError("");
+            //::opengl::check_error("");
             //// update content of VBO memory
             //int iVbo = pface->m_FaceVBO;
             //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
-            //GLCheckError("");
+            //::opengl::check_error("");
             //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
-            //GLCheckError("");
+            //::opengl::check_error("");
             //glBindBuffer(GL_ARRAY_BUFFER, 0);
-            //GLCheckError("");
+            //::opengl::check_error("");
             // render quad
             //glDrawArrays(GL_TRIANGLES, 0, 6);
-            //GLCheckError("");
+            //::opengl::check_error("");
             // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
             Δx += ch.Advance; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
 
          }
       }
       //glBindVertexArray(0);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glBindTexture(GL_TEXTURE_2D, 0);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glDisable(GL_CULL_FACE);
-      //GLCheckError("");
+      //::opengl::check_error("");
       m_pgpushaderTextOut->unbind(pcommandbuffer);
    }
 
@@ -6684,13 +6684,13 @@ color = vec4(c.r,c.g, c.b, c.a);
       ::draw2d_gpu::graphics::start_gpu_layer(pgpuframe);
 
       //glglgl  glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Clear the background to transparent
-      //glglgl  GLCheckError("");
+      //glglgl  ::opengl::check_error("");
       //glglgl  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the color and depth buffers
-      //glglgl  GLCheckError("");
+      //glglgl  ::opengl::check_error("");
       //glglgl  glDepthMask(GL_FALSE); // Disable writing to depth buffer
-      //glglgl  GLCheckError("");
+      //glglgl  ::opengl::check_error("");
       //glglgl  glDisable(GL_DEPTH_TEST); // Disable depth testing
-      //glglgl  GLCheckError("");
+      //glglgl  ::opengl::check_error("");
 
       auto ealphamode = m_ealphamode;
       m_ealphamode = ::draw2d::e_alpha_mode_none; // Set alpha mode to blend for GPU layer

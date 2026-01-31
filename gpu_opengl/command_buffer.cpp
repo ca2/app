@@ -35,7 +35,7 @@ namespace gpu_opengl
          rectangle.top,
          rectangle.width(),
          rectangle.height());
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -44,14 +44,14 @@ namespace gpu_opengl
    {
 
       glEnable(GL_SCISSOR_TEST);
-      GLCheckError("");
+      ::opengl::check_error("");
       glScissor(
          rectangle.left,
          rectangle.top,
          rectangle.width(),
          rectangle.height()
       );
-      GLCheckError("");
+      ::opengl::check_error("");
       //glDisable(GL_SCISSOR_TEST);
 
    }
@@ -62,7 +62,7 @@ namespace gpu_opengl
    {
 
       glDrawArrays(GL_TRIANGLES, 0, a);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -74,18 +74,24 @@ namespace gpu_opengl
       ::cast < render_target > prendertarget = m_pgpurendertarget;
 
       ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
+      
+      //auto gluFbo = ptexture->frame_buffer_object();
 
-      if (!ptexture->m_gluFbo)
+      //if (!ptexture->m_gluFbo)
       {
 
          if (prendertarget->m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d)
          {
 
-            ptexture->create_depth_resources();
+            if(!ptexture->m_gluDepthStencilRBO)
+            {
+               ptexture->create_depth_resources();
+               
+            }
 
          }
             
-         ptexture->create_render_target();
+         //ptexture->create_render_target();
 
       }
 
@@ -111,7 +117,7 @@ namespace gpu_opengl
       }
 
       glDrawArrays(mode, 0, iVertexCount);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -137,7 +143,7 @@ namespace gpu_opengl
       etype = GL_UNSIGNED_INT;
 
       glDrawElements(mode, iIndexCount, etype, 0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 

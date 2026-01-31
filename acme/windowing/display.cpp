@@ -84,8 +84,6 @@ namespace acme
       void * display::_get_x11_display()
       {
 
-         throw ::interface_only();
-
          return nullptr;
 
       }

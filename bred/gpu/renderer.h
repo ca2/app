@@ -58,7 +58,7 @@ namespace gpu
       //bool                                m_bPrepared;
       //::string                            m_strRender;
 
-      bool isFrameStarted = false;
+      bool m_bFrameStarted = false;
       bool m_bNeedToRecreateSwapChain = false;
 
 
@@ -93,7 +93,7 @@ namespace gpu
 
       virtual void free_command_buffers();
 
-      bool isFrameInProgress() const { return isFrameStarted; }
+      bool isFrameInProgress() const { return m_bFrameStarted; }
 
 
       virtual ::particle_array * current_frame_particle_array();
@@ -189,6 +189,7 @@ namespace gpu
       virtual void on_end_draw();
 
       virtual void defer_end_frame_layer_copy();
+      virtual void defer_end_frame_layer_after_submit();
 
       virtual void draw();
       virtual void read_to_cpu_buffer();

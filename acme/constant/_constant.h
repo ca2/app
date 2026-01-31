@@ -155,6 +155,7 @@ enum enum_dialog_result : ::iptr
    e_dialog_result_close = 8,
    e_dialog_result_help = 9,
    e_dialog_result_continue = 11,
+   e_dialog_result_try_again = 12,
    e_dialog_result_timeout = 32000,
 
 

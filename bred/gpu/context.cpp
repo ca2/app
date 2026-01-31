@@ -242,7 +242,7 @@ namespace gpu
       if (m_eoutput == e_output_swap_chain)
       {
 
-         m_pacmewindowingwindowWindowSurface->_send(procedure);
+         m_pacmewindowingwindowWindowSurface->_user_send(procedure);
 
       }
       else
@@ -388,7 +388,7 @@ namespace gpu
 
       textureflags.m_bShaderResource = true;
 
-      ptextureEmpty->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      ptextureEmpty->initialize_texture(this, textureattributes, textureflags);
 
       return ptextureEmpty;
 
@@ -401,7 +401,7 @@ namespace gpu
       if (ødefer_construct(ptexture))
       {
 
-         ptexture->initialize_texture_from_file_path(m_pgpurenderer, path, bIsSrgb);
+         ptexture->initialize_texture_from_file_path(this, path, bIsSrgb);
 
       }
 
@@ -588,9 +588,10 @@ namespace gpu
          pproperty++;
       }
 
-      properties.m_memory.set_size(iSizeWithSamplers);
-      properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
-      properties.m_blockWithSamplers = properties.m_memory;
+
+      properties.memory().set_size(iSizeWithSamplers);
+      properties.m_blockWithoutSamplers = properties.memory()(0, iSizeWithoutSamplers);
+      properties.m_blockWithSamplers = properties.memory();
    }
 
 
@@ -708,9 +709,9 @@ namespace gpu
          pproperty++;
       }
 
-      properties.m_memory.set_size(iSizeWithSamplers);
-      properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
-      properties.m_blockWithSamplers = properties.m_memory;
+      properties.memory().set_size(iSizeWithSamplers);
+      properties.m_blockWithoutSamplers = properties.memory()(0, iSizeWithoutSamplers);
+      properties.m_blockWithSamplers = properties.memory();
    }
 
 
@@ -951,9 +952,9 @@ namespace gpu
    iSizeWithSamplers = (iSizeWithSamplers + 15) & ~15;
    iSizeWithoutSamplers = (iSizeWithoutSamplers + 15) & ~15;
 
-   properties.m_memory.set_size(iSizeWithSamplers);
-   properties.m_blockWithoutSamplers = properties.m_memory(0, iSizeWithoutSamplers);
-   properties.m_blockWithSamplers = properties.m_memory;
+   properties.memory().set_size(iSizeWithSamplers);
+   properties.m_blockWithoutSamplers = properties.memory()(0, iSizeWithoutSamplers);
+   properties.m_blockWithSamplers = properties.memory();
 
 
 }
@@ -1262,10 +1263,9 @@ namespace gpu
       }
 
       start_debug_happening(pgpucommandbuffer, "shader changing");
-
       auto ptexture = pgpucommandbuffer->m_pgpurendertarget->current_texture(::gpu::current_frame());
 
-      pgpushader->bind(pgpucommandbuffer, ptexture);
+    pgpushader->bind(pgpucommandbuffer, ptexture);
 
       m_pshaderBound = pgpushader;
 
@@ -1334,7 +1334,7 @@ namespace gpu
    //}
 
 
-   void context::create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window* pwindow)
+   void context::create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window* pacmewindowingwindow)
    {
 
       if (m_etype != e_type_window)
@@ -1346,6 +1346,8 @@ namespace gpu
 
       m_escene = e_scene_2d;
 
+      m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
+
       if (m_htask.is_null())
       {
 
@@ -1356,18 +1358,18 @@ namespace gpu
          // rear_guard guard(this);
 
          _send(
-            [this, pwindow]()
+            [this, pacmewindowingwindow]()
             {
 
                auto eoutput = ::gpu::e_output_swap_chain;
 
-               auto pwindowWindow = (::acme::windowing::window *)pwindow;
+               ::cast <::acme::windowing::window > pwindowWindow = pacmewindowingwindow;
 
                auto rectangleWindow = pwindowWindow->get_window_rectangle();
 
                auto size = rectangleWindow.size();
 
-               initialize_gpu_context(m_pgpudevice, eoutput, pwindow, size);
+               initialize_gpu_context(m_pgpudevice, eoutput, pacmewindowingwindow, size);
 
                if (m_papplication->m_gpu.m_bUseSwapChainWindow)
                {
@@ -1386,7 +1388,7 @@ namespace gpu
                   if (!pswapchain->m_bSwapChainInitialized)
                   {
 
-                     pswapchain->initialize_swap_chain_window(pcontextMain, pwindow);
+                     pswapchain->initialize_swap_chain_window(pcontextMain, pacmewindowingwindow);
                   }
                }
             });
@@ -1542,17 +1544,16 @@ namespace gpu
 
       }
 
-
-      ASSERT(is_current_task());
-
       if (m_etype == e_type_window)
       {
 
-         task_set_name("gctx::window");
+//         task_set_name("gctx::window");
 
       }
       else if (m_etype == e_type_graphics3d)
       {
+
+         ASSERT(is_current_task());
 
          task_set_name("gctx::3d");
 
@@ -1560,17 +1561,23 @@ namespace gpu
       else if (m_etype == e_type_draw2d)
       {
 
+         ASSERT(is_current_task());
+
          task_set_name("gctx::draw2d");
 
       }
       else if (m_etype == e_type_generic)
       {
 
+         ASSERT(is_current_task());
+
          task_set_name("gctx::generic");
 
       }
       else
       {
+
+         ASSERT(is_current_task());
 
          task_set_name("gctx::unknown");
 
@@ -1900,7 +1907,7 @@ namespace gpu
 
          textureflags.m_bTransferTarget = true;
 
-         ptextureNewAtlas->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+         ptextureNewAtlas->initialize_texture(this, textureattributes, textureflags);
 
          m_textureaAtlas.add(ptextureNewAtlas);
 
@@ -1946,9 +1953,6 @@ namespace gpu
       return m_pgpuswapchain;
 
    }
-
-
-
 
 
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
@@ -2005,6 +2009,8 @@ namespace gpu
                                     procedure();
 
                                  };
+                              
+                              ::gpu::context_lock contextlock(pcontextInnerStart);
 
                               prenderer->do_on_frame(bForDrawing, λ);
 
@@ -2028,19 +2034,150 @@ namespace gpu
 
                         //}
 
-                        auto playera = m_pgpudevice->m_playera;
+                        ::pointer_array < layer > layera;
 
-                        if (playera)
+                        auto playera2 = m_pgpudevice->m_playera;
+
+                        if (playera2)
                         {
+
+                           layera = *playera2;
+
+                           auto timeStart = ::time::now();
+
+                           while (timeStart.elapsed() < 5_s)
+                           {
+
+                              bool bAnyFailed = false;
+
+                              for (auto player : layera)
+                              {
+
+                                 if (!player->finished_manual_reset_happening()->_wait(0_s))
+                                 {
+
+                                    bAnyFailed = true;
+
+                                    break;
+
+                                 }
+
+                              }
+
+                              if (!bAnyFailed)
+                              {
+
+                                 break;
+
+                              }
+
+                              preempt(1_ms);
+
+                           }
+
+                           auto fMilliseconds = timeStart.elapsed().floating_millisecond();
+
+                           information("it took {} ms waiting for layers to finish drawing", fMilliseconds);
+
+                        }
+
+                        if (layera.has_element())
+                        {
+
                            auto prendererBackBuffer = get_gpu_renderer();
 
                            auto prendertargetBackBuffer = prendererBackBuffer->render_target();
 
-                           auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
+                           //auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
 
                            auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
+                           //
+                           // for (auto player : layera)
+                           // {
+                           //
+                           //    if (player->getCurrentCommandBuffer4())
+                           //    {
+                           //
+                           //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+                           //
+                           //    }
+                           //
+                           // }
 
-                           merge_layers(ptextureBackBuffer, m_pgpudevice->m_playera);
+
+                           ::pointer_array < ::gpu::semaphore > semaphoreaMergeLayersReady;
+
+                           {
+
+                              // int iLayer = 0;
+                              //
+                              // for (auto player: layera)
+                              // {
+                              //
+                              //    if (iLayer == 2)
+                              //    {
+                              //       // information("What happened to the 3D Layer?");
+                              //    }
+                              //
+                              //
+                              //    //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+                              //
+                              //    auto pgpufence = player->m_pgpufence;
+                              //
+                              //    if (::is_set(pgpufence))
+                              //    {
+                              //
+                              //       pgpufence->wait_gpu_fence();
+                              //
+                              //    }
+                              //
+                              //    // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+                              //    iLayer++;
+                              // }
+
+                              ::gpu::context_lock contextlock(this);
+
+                              auto pqueueGraphics = m_pgpudevice->graphics_queue();
+
+                              auto pgpucommandbuffer = beginSingleTimeCommands(pqueueGraphics);
+
+                              merge_layers(pgpucommandbuffer, ptextureBackBuffer, &layera);
+
+                              ::pointer_array < ::gpu::semaphore > semaphoreaWait;
+
+                              for (auto & player : layera)
+                              {
+
+                                 if (player)
+                                 {
+
+                                    if (player->m_pgpusemaphoreSignal)
+                                    {
+
+                                       semaphoreaWait.add(player->m_pgpusemaphoreSignal);
+
+                                    }
+
+                                 }
+
+                              }
+
+                              if (ødefer_construct(m_pgpusemaphoreMergeLayersReady))
+                              {
+
+                                 m_pgpusemaphoreMergeLayersReady->initialize_gpu_semaphore(this);
+
+                              }
+
+                              semaphoreaMergeLayersReady.add(m_pgpusemaphoreMergeLayersReady);
+
+                              pgpucommandbuffer->m_semaphoreaWait.append_unique(semaphoreaWait);
+
+                              pgpucommandbuffer->m_semaphoreaSignal.append_unique(semaphoreaMergeLayersReady);
+
+                              endSingleTimeCommands(pgpucommandbuffer);
+
+                           }
 
                            ::cast < swap_chain > pswapchain = get_swap_chain();
 
@@ -2068,17 +2205,28 @@ namespace gpu
 
                            }
 
-                           for (auto player : *playera)
-                           {
+                           // for (auto player : *playera)
+                           // {
+                           //
+                           //    if (player->getCurrentCommandBuffer4())
+                           //    {
+                           //
+                           //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+                           //
+                           //    }
+                           //
+                           // }
+                           
+//#if !defined(__APPLE__)
 
-                              if (player->getCurrentCommandBuffer4())
-                              {
 
-                                 player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+                           auto pgpucontext = pswapchain->m_pgpucontext;
 
-                              }
+                           ::cast < renderer > pgpurenderer = pgpucontext->m_pgpurenderer;
 
-                           }
+                           ::cast < command_buffer > pcommandbuffer = pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+                           pcommandbuffer->m_semaphoreaWait.append_unique(semaphoreaMergeLayersReady);
 
                            pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
                            // system()->acme_windowing()
@@ -2088,6 +2236,8 @@ namespace gpu
                               pswapchain->present(ptextureBackBuffer);
 
                            });
+                           
+//#endif
 
                         }
 
@@ -2153,6 +2303,289 @@ namespace gpu
 
 
    }
+
+
+//    void context::top_post_to_context(::gpu::context* pcontextInnerStart, const ::procedure& procedure)
+//    {
+//
+//       auto etype = this->m_etype;
+//
+//       auto eoutput = this->m_eoutput;
+//
+//       auto rectangleContext = this->rectangle();
+//
+//       if (m_etype != e_type_window)
+//       {
+//
+//          throw ::exception(error_wrong_state);
+//
+//       }
+//
+//       ::procedure procedureOnContext = [this, pcontextInnerStart, procedure]()
+//          {
+//
+//          //if (!bForDrawing)
+//          //{
+//
+//             m_pgpudevice->on_new_frame();
+//
+//             //auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+//
+//             m_pgpudevice->start_stacking_layers();
+//
+//          //}
+//
+//
+//
+//             // auto pgpurenderer = get_gpu_renderer();
+//             //
+//             // pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure](::gpu::frame* pgpuframe)
+//             //    {
+//             //
+//             //       if (bForDrawing)
+//             //       {
+//             //
+//             //          pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+//             //             {
+//             //
+//             //                //if (bForDrawing)
+//             //                {
+//
+//                               auto prenderer = pcontextInnerStart->get_gpu_renderer();
+//
+//                               prenderer->defer_update_renderer();
+//
+//                               //auto λ = [procedure](::gpu::frame* pgpuframe)
+//                                 // {
+//
+//                                     procedure();
+//
+//                                  //};
+//
+// //                              ::gpu::context_lock contextlock(pcontextInnerStart);
+//
+//   //                            prenderer->do_on_frame(bForDrawing, λ);
+//
+//     //                       }
+//                            //else
+//                            //{
+//
+//                            //   procedure();
+//
+//                            //}
+//
+//                         //});
+//
+//                      //if (bForDrawing)
+//                      //{
+//                         //while (!m_pgpudevice->m_playera ||
+//                         //   m_pgpudevice->m_playera->count() < 3)
+//                         //{
+//
+//                         //   preempt(10_ms);
+//
+//                         //}
+//
+//                         ::pointer_array < layer > layera;
+//
+//                         auto playera2 = m_pgpudevice->m_playera;
+//
+//                         if (playera2)
+//                         {
+//
+//                            for (auto player : *playera2)
+//                            {
+//
+//                               if (player->m_bFinished)
+//                               {
+//
+//                                  layera.add(player);
+//
+//                               }
+//                               else
+//                               {
+//
+//                                  information("didn't schedule for merge an unfinished layer");
+//
+//                               }
+//
+//                            }
+//
+//                         }
+//
+//                         if (layera.has_element())
+//                         {
+//
+//                            auto prendererBackBuffer = get_gpu_renderer();
+//
+//                            auto prendertargetBackBuffer = prendererBackBuffer->render_target();
+//
+//                            //auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
+//
+//                            auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
+//
+//                            for (auto player : layera)
+//                            {
+//
+//                               if (player->getCurrentCommandBuffer4())
+//                               {
+//
+//                                  player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+//
+//                               }
+//
+//                            }
+//
+//                            {
+//
+//                               int iLayer = 0;
+//
+//                               for (auto player: layera)
+//                               {
+//
+//                                  if (iLayer == 2)
+//                                  {
+//                                     // information("What happened to the 3D Layer?");
+//                                  }
+//
+//
+//                                  //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+//
+//                                  auto pgpufence = player->m_pgpufence;
+//
+//                                  if (::is_set(pgpufence))
+//                                  {
+//
+//                                     pgpufence->wait_gpu_fence();
+//
+//                                  }
+//
+//                                  // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+//                                  iLayer++;
+//                               }
+//
+//                               ::gpu::context_lock contextlock(this);
+//
+//                               merge_layers(ptextureBackBuffer, &layera);
+//
+//                            }
+//
+//                            ::cast < swap_chain > pswapchain = get_swap_chain();
+//
+//                            if (!pswapchain->m_bSwapChainInitialized)
+//                            {
+//
+//                               pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+//
+//                            }
+//
+//                            ::cast < gpu::render_target > pgpurendertarget = pswapchain;
+//
+//                            if (pgpurendertarget)
+//                            {
+//
+//                               if (!pgpurendertarget->m_pgpurenderer)
+//                               {
+//
+//                                  pgpurendertarget->initialize_render_target(
+//                                  m_pgpurenderer,
+//                                     m_rectangle.size(),
+//                                     nullptr);
+//
+//                               }
+//
+//                            }
+//
+//                            // for (auto player : *playera)
+//                            // {
+//                            //
+//                            //    if (player->getCurrentCommandBuffer4())
+//                            //    {
+//                            //
+//                            //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+//                            //
+//                            //    }
+//                            //
+//                            // }
+//
+// //#if !defined(__APPLE__)
+//
+//                            pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
+//                            // system()->acme_windowing()
+//                            // ->_main_send([pswapchain, ptextureBackBuffer]()
+//                            {
+//
+//                               pswapchain->present(ptextureBackBuffer);
+//
+//                            });
+//
+// //#endif
+//
+//                         }
+//
+//                      }
+//
+//                   }
+//                   else
+//                   {
+//
+//                      pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+//                         {
+//
+//                            //if (bForDrawing)
+//                            {
+//
+//                               auto prenderer = pcontextInnerStart->get_gpu_renderer();
+//
+//                               prenderer->defer_update_renderer();
+//
+//                               auto λ = [procedure](::gpu::frame* pgpuframe)
+//                                  {
+//
+//                                     procedure();
+//
+//                                  };
+//
+//                               prenderer->do_on_frame(bForDrawing, λ);
+//
+//                            }
+//                            //else
+//                            //{
+//
+//                            //   procedure();
+//
+//                            //}
+//
+//                         });
+//
+//                   }
+//
+//                });
+//
+//          };
+//
+//
+//          if (procedure.timeout().is_set())
+//          {
+//
+//             procedureOnContext.set_timeout(procedure.timeout());
+//
+//          }
+//
+//          send_on_context(procedureOnContext);
+//
+//          if (bForDrawing)
+//          {
+//
+//             m_pgpudevice->on_end_frame();
+//
+//          }
+//
+//
+//
+//
+//    }
+
 
 
    bool context::create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics* pgraphics, const ::int_size& size)
@@ -2703,7 +3136,7 @@ namespace gpu
    //}
 
 
-   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
+   void context::copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence)
    {
 
       throw ::interface_only();
@@ -2711,34 +3144,8 @@ namespace gpu
    }
 
 
-   void context::merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
+   void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera)
    {
-
-      {
-
-          int iLayer = 0;
-
-         for (auto player: *playera)
-         {
-
-            if (iLayer == 2)
-            {
-               // information("What happened to the 3D Layer?");
-            }
-
-
-            //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
-
-            auto ptextureSrc = player->texture();
-
-            ptextureSrc->wait_fence();
-
-            // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
-            iLayer++;
-         }
-
-
-      }
 
       ::gpu::context_lock contextlock(this);
 
@@ -2893,11 +3300,11 @@ void main() {
          // }
 
          // glClearColor(0.f, 0.f, 0.f, 0.f);
-         // GLCheckError("glClearColor");
+         // ::opengl::check_error("glClearColor");
          // glClearDepth(1.0f);
-         // GLCheckError("glClearDepth");
+         // ::opengl::check_error("glClearDepth");
          // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         // GLCheckError("glClear");
+         // ::opengl::check_error("glClear");
 
 
 
@@ -3004,7 +3411,7 @@ void main() {
 
                   pcommandbuffer->draw(m_pmodelbufferDummy);
 
-                  m_pmodelbufferDummy->unbind(pcommandbuffer);
+                  //m_pmodelbufferDummy->unbind(pcommandbuffer);
 
                   //ID3D11SamplerState* samplerstatea[] =
                   //{ ptexture->m_psamplerstate };
@@ -3092,9 +3499,9 @@ void main() {
 
       //////GLuint framebuffer;
       //////glGenFramebuffers(1, &framebuffer);
-      //////GLCheckError("glGenFramebuffers");
+      //////::opengl::check_error("glGenFramebuffers");
       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-      //////GLCheckError("glBindFramebuffer");
+      //////::opengl::check_error("glBindFramebuffer");
 
       //////auto gluTextureID = ptextureDst->m_gluTextureID;
 
@@ -3103,7 +3510,7 @@ void main() {
       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
       //////   gluTextureID,
       //////   0);
-      //////GLCheckError("glFramebufferTexture2D");
+      //////::opengl::check_error("glFramebufferTexture2D");
 
       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
       //////   printf("Framebuffer not complete!\n");
@@ -3134,10 +3541,10 @@ void main() {
       ////}
 
       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-      ////GLCheckError("glBindFramebuffer");
+      ////::opengl::check_error("glBindFramebuffer");
 
       ////glDeleteFramebuffers(1, &framebuffer);
-      ////GLCheckError("glDeleteFramebuffers");
+      ////::opengl::check_error("glDeleteFramebuffers");
 
 
    }
@@ -3163,6 +3570,10 @@ void main() {
          m_pgpucompositor->on_end_layer(player);
 
       }
+
+      ::cast<command_buffer> pcommandbuffer = ::gpu::current_command_buffer();
+
+      player->m_pgpufence = pcommandbuffer->insert_gpu_fence();
 
       //auto ptextureTarget = player->texture();
 
@@ -3356,16 +3767,27 @@ void main() {
    }
 
 
+   ::pointer <::gpu::model_buffer> context::create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
+   {
+
+      auto pmodelbufferFullscreenQuad = øcreate <::gpu::model_buffer>();
+      
+      pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this);
+   
+      return ::transfer(pmodelbufferFullscreenQuad);
+
+   }
+
+
    ::gpu::model_buffer* context::sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
    {
 
       if (!m_pmodelbufferFullscreenQuad)
       {
-
-         ødefer_construct(m_pmodelbufferFullscreenQuad);
-
-         m_pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(pgpuframe);
-
+         
+         auto pmodelbuffer = ::transfer(this->create_sequence2_uv_fullscreen_quad_model_buffer(pgpuframe));
+         
+         m_pmodelbufferFullscreenQuad = ::transfer(pmodelbuffer);
       }
 
       return m_pmodelbufferFullscreenQuad;
@@ -3590,7 +4012,7 @@ return {};
       ::gpu::texture_flags textureflags;
       textureflags.m_bRenderTarget = true;
       textureflags.m_bShaderResource = true;
-      pgputextureMetallicRoughness->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      pgputextureMetallicRoughness->initialize_texture(this, textureattributes, textureflags);
 
                      ::bred::Timer timer;
 

@@ -78,7 +78,7 @@ namespace gpu
 
          //virtual ::gpu::texture> textureFromFile(const char *fileName, ::string directory, aiTextureType type);
 
-         virtual ::gpu::texture *empty_texture();
+         ::gpu::texture *empty_texture() override;
 
 
       };

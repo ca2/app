@@ -13,7 +13,7 @@
 #include "bred/graphics3d/render_system.h"
 #include "bred/graphics3d/render_system/pbr_with_ibl_render_system_base.h"
 
-#include <glad/glad.h>
+//#include <glad/glad.h>
 
 
 namespace gpu_opengl
@@ -353,11 +353,11 @@ namespace gpu_opengl
 
          //   // draw mesh
          //glBindVertexArray(m_uVAO);
-         //GLCheckError("not bound");
+         //::opengl::check_error("not bound");
          //glDrawElements(GL_TRIANGLES, indexes_count(), GL_UNSIGNED_INT, 0);
-         //GLCheckError("not drawn");
+         //::opengl::check_error("not drawn");
          //glBindVertexArray(0);
-         //GLCheckError("not unbound");
+         //::opengl::check_error("not unbound");
 
       }
 

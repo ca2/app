@@ -107,13 +107,23 @@ void component::_update_installed_implementations()
 
    auto module_folder_files = directory_system()->files(directory_system()->module());
 
+   ::string strPrefix = node()->dynamic_library_prefix() + m_strComponent + "_";
+   
+   ::string strSuffix = node()->dynamic_library_suffix();
+   
+   auto pszPrefix = strPrefix.c_str();
+   
+   auto pszSuffix = strSuffix.c_str();
+
    for (auto file : module_folder_files)
    {
 
       ::string strImplementation = file.name();
-
-      if (strImplementation.case_insensitive_begins_eat(node()->dynamic_library_prefix() + m_strComponent + "_")
-         && strImplementation.case_insensitive_ends_eat(node()->dynamic_library_suffix()))
+      
+      auto pszImplementation = strImplementation.c_str();
+      
+      if (strImplementation.case_insensitive_begins_eat(strPrefix)
+         && strImplementation.case_insensitive_ends_eat(strSuffix))
       {
 
          m_straImplementationInstalled.add(strImplementation);

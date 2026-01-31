@@ -142,6 +142,13 @@ namespace gpu
    }
 
 
+
+void swap_chain::on_gpu_context_render_frame(int w, int h)
+{
+   
+   
+}
+
 } // namespace direct2d
 
 

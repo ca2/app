@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "bred/gpu/context_object.h"
 #include "bred/gpu/texture_attributes.h"
 #include "bred/gpu/texture_flags.h"
 #include "bred/gpu/texture_data.h"
@@ -12,7 +13,7 @@ namespace gpu
 
 
    class CLASS_DECL_BRED texture :
-      virtual public ::particle 
+      virtual public ::gpu::context_object
    {
    public:
 
@@ -27,7 +28,7 @@ namespace gpu
       int                                 m_iAtlasCurrentRowHeight;
       bool                                m_bClearColor;
       ::color::color                      m_colorClear;
-      ::pointer < ::gpu::renderer >       m_pgpurenderer;
+      //::pointer < ::gpu::renderer >       m_pgpurenderer;
       ::collection::index                 m_iIndex;
       int                                 m_iCurrentMip;
       int                                 m_iCurrentLayer;
@@ -78,23 +79,23 @@ namespace gpu
 
       void defer_throw_if_cube_map_images_are_not_ok(const ::pointer_array < ::image::image >& imagea);
       
-      virtual void initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block);
+      virtual void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block);
       virtual void initialize_with_image_data(
-         ::gpu::renderer *pgpurenderer, 
+         ::gpu::context *pgpucontext, 
          const ::int_rectangle &rectangleTarget,
          int numChannels,
          bool bSrgb,
          const void * pdata,
          enum_texture etexture = e_texture_image);
-      virtual void initialize_texture(::gpu::renderer* pgpurenderer,
+      virtual void initialize_texture(::gpu::context* pgpucontext,
          const texture_attributes & textureattributes,
          const texture_flags & textureflags = {},
          const texture_data & texturedata = {});
-//      virtual void initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
-      virtual void initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget);
+//      virtual void initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::int_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
+      virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::int_rectangle& rectangleTarget);
 
-      virtual void initialize_texture_from_file_path(::gpu::renderer* pgpurenderer, const ::file::path & path, bool bIsSrgb);
-      virtual void initialize_texture_from_image(::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image > & imagea, enum_texture etexture = e_texture_image);
+      virtual void initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path & path, bool bIsSrgb);
+      virtual void initialize_texture_from_image(::gpu::context* pgpucontext, const ::pointer_array < ::image::image > & imagea, enum_texture etexture = e_texture_image);
 
       virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);
 
@@ -121,32 +122,12 @@ namespace gpu
 
       virtual void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer);
 
-               /**
-       * Set the mip level to render with.
-       * @param mipLevel
-       */
       virtual void set_current_mip(int level);
 
-
-      /**
-       * Get the current width based on the mip level.
-       * @return
-       */
       virtual int mip_width();
 
-
-      /**
-       * Get the current height based on the mip level.
-       * @return
-       */
       virtual int mip_height();
 
-
-      /**
-       * Set which cube face texture to render to.
-       * @param index
-       */
-      //virtual void set_cube_face(int iFace, ::gpu::shader * pgpushader);
       virtual void set_current_layer(int iLayer);
 
 

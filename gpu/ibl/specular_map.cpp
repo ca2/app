@@ -117,7 +117,7 @@ namespace gpu
          textureflagsPrefilteredEnvMap.m_bRenderTarget = true;
 
          m_ptexturePrefilteredEnvMapCubemap->initialize_texture(
-            m_pgpucontext->m_pgpurenderer, 
+            m_pgpucontext, 
             textureattributesPrefilteredEnvMap, 
             textureflagsPrefilteredEnvMap);
 
@@ -145,7 +145,7 @@ namespace gpu
          textureflagsBrdfConvMap.m_bShaderResource = true;
 
          m_ptextureBrdfConvolutionMap->initialize_texture(
-            m_pgpucontext->m_pgpurenderer, 
+            m_pgpucontext, 
             textureattributesBrdfConvMap,
             textureflagsBrdfConvMap);
 

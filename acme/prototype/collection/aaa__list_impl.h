@@ -5,7 +5,7 @@ template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_head(ARG_TYPE newElement)
 {
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    typename list < TYPE, ARG_TYPE >::node * pnodeNew = aaa_primitive_new typename list < TYPE, ARG_TYPE >::node(newElement, nullptr, this->m_phead);
 
@@ -25,7 +25,7 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_head(ARG_TYPE ne
 template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE newElement)
 {
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    auto pnodeNew = aaa_primitive_new typename list < TYPE, ARG_TYPE >::node(newElement, this->m_ptail, nullptr);
 
@@ -48,7 +48,7 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE ne
 template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::insert_before(typename list<TYPE, ARG_TYPE>::node * position, ARG_TYPE newElement)
 {
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    if (position == nullptr)
       return add_head(newElement); // insert before nothing -> head of the list
@@ -75,7 +75,7 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::insert_before(typena
 template<class TYPE, class ARG_TYPE>
 typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::insert_after(typename list<TYPE, ARG_TYPE>::node * position, ARG_TYPE newElement)
 {
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
 
    if (position == nullptr)
       return add_tail(newElement); // insert after nothing -> tail of the list

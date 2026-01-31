@@ -8,6 +8,67 @@
 #include "acme/prototype/data/data.h"
 
 
+request_stack::request_stack(::request * prequest):
+m_prequestHold(prequest)
+{
+   
+   
+}
+
+request_stack::~request_stack()
+{
+   
+   
+}
+
+
+class ::request * request_stack::request()
+{
+   
+   return m_prequestHold;
+   
+}
+
+request_scope::request_scope(::pointer < request_stack > && prequeststack):
+m_prequeststack(::transfer(prequeststack))
+{
+   
+
+}
+
+request_scope::request_scope(const ::pointer < request_stack > & prequeststack):
+m_prequeststack(prequeststack)
+{
+   
+
+}
+
+
+request_scope::~request_scope()
+{
+   
+   try
+   {
+      
+      m_prequeststack->m_prequestHold->pop_request(m_prequeststack);
+
+   }
+   catch (...)
+   {
+      
+   }
+   
+}
+
+
+class ::request * request_scope::request()
+{
+   
+   return m_prequeststack->request();
+   
+}
+
+
 request::request()
 {
 
@@ -371,6 +432,59 @@ void request::common_construct()
    m_iEdge = 0;
 
 }
+
+
+::pointer < ::request_stack > request::push_request()
+{
+   
+   if(m_bFinishedStacking)
+   {
+      
+      throw ::exception(error_failed, "Already popped all stacks");
+      
+   }
+   
+   auto prequeststack = øallocate request_stack(this);
+   
+   m_requeststacka.add(prequeststack);
+   
+   return ::transfer(prequeststack);
+   
+}
+
+
+void request::pop_request(::request_stack * prequeststack)
+{
+   
+   m_requeststacka.erase(prequeststack);
+   
+   if(m_requeststacka.is_empty())
+   {
+      
+      m_bFinishedStacking = true;
+      
+      for(auto & procedure : m_procedureaOnFinishRequest)
+      {
+       
+         try
+         {
+            
+            procedure();
+               
+         }
+         catch(...)
+         {
+            
+         }
+         
+      }
+   
+      m_procedureaOnFinishRequest.clear();
+   
+   }
+   
+}
+
 
 
 void request::destroy()

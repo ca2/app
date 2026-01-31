@@ -6,7 +6,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/model_buffer.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
 
@@ -33,7 +33,7 @@ namespace gpu
       }
 
 
-      int mesh::indexes_count() const
+      ::collection::index mesh::indexes_count() const
       {
 
          return m_pmodelbuffer->m_pmodeldatabase2->index_count();

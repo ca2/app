@@ -189,7 +189,7 @@ namespace app_app
 
             double dFrequency = 1.0 / m_dBreathPeriod;
 
-            auto pmathematics = mathematics();
+            //auto pmathematics = mathematics();
 
             double omega = 2.0 * π * dFrequency;
 
@@ -219,7 +219,7 @@ namespace app_app
 
                dFrequency = 1.0 / m_dBreathPeriod;
 
-               auto pmathematics = mathematics();
+               ///auto pmathematics = mathematics();
 
                omega = 2.0 * π * dFrequency;
 

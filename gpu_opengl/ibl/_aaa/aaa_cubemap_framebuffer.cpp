@@ -40,29 +40,29 @@ namespace gpu_opengl
 
          // framebuffer
          glGenFramebuffers(1, &ptexture->m_gluFbo);
-         GLEnsureNonNullHandle(ptexture->m_gluFbo, "glGenFramebuffers(1, ...)")
-         GLCheckError("");
+         ::opengl::ensure_non_null_handle(ptexture->m_gluFbo, "glGenFramebuffers(1, ...)")
+         ::opengl::check_error("");
          glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          // depth buffer
          glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
-         GLCheckError("");
+         ::opengl::check_error("");
          ptexture->m_gluType = GL_TEXTURE_CUBE_MAP;
          glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-         GLCheckError("");
+         ::opengl::check_error("");
          glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, ptexture->rectangle().width(), ptexture->rectangle().height());
-         GLCheckError("");
+         ::opengl::check_error("");
 
          // attach the depth buffer
          glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          // cubemap
          glGenTextures(1, &ptexture->m_gluTextureID);
-         GLCheckError("");
+         ::opengl::check_error("");
          glBindTexture(ptexture->m_gluType, ptexture->m_gluTextureID);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          int width = ptexture->rectangle().width();
          int height = ptexture->rectangle().height();
@@ -81,20 +81,20 @@ namespace gpu_opengl
                GL_RGB,
                GL_FLOAT,
                nullptr);
-            GLCheckError("");
+            ::opengl::check_error("");
 
          }
 
          glTexParameteri(ptexture->m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-         GLCheckError("");
+         ::opengl::check_error("");
          glTexParameteri(ptexture->m_gluType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-         GLCheckError("");
+         ::opengl::check_error("");
          glTexParameteri(ptexture->m_gluType, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-         GLCheckError("");
+         ::opengl::check_error("");
          glTexParameteri(ptexture->m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-         GLCheckError("");
+         ::opengl::check_error("");
          glTexParameteri(ptexture->m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 
@@ -105,7 +105,7 @@ namespace gpu_opengl
          }
 
          glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         GLCheckError("");
+         ::opengl::check_error("");
 
       }
 
@@ -113,7 +113,7 @@ namespace gpu_opengl
       void cubemap_framebuffer::bind(::gpu::command_buffer *pgpucommandbuffer)
       {::cast < gpu_opengl::texture>ptexture = m_ptexture;
          glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
-         GLCheckError("");
+         ::opengl::check_error("");
       }
 
 
@@ -121,11 +121,11 @@ namespace gpu_opengl
       {
          ::cast < gpu_opengl::texture>ptexture = m_ptexture;
          glBindTexture(GL_TEXTURE_CUBE_MAP, ptexture->m_gluTextureID);
-         GLCheckError("");
+         ::opengl::check_error("");
          glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-         GLCheckError("");
+         ::opengl::check_error("");
          glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
-         GLCheckError("");
+         ::opengl::check_error("");
       }
 
 
@@ -138,7 +138,7 @@ namespace gpu_opengl
             GL_TEXTURE_CUBE_MAP_POSITIVE_X + index,
             ptexture->m_gluTextureID,
             0);
-         GLCheckError("");
+         ::opengl::check_error("");
          
          //if (m_strSamplerUniform.has_character())
          //{

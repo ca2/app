@@ -99,6 +99,7 @@ namespace gpu
       virtual ::gpu::context * main_draw2d_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
+      virtual void * current_operating_system_gpu_context();
       //virtual void initialize_gpu_context(const start_context_t& startcontext);
 
       //virtual void on_create_context(const start_context_t& startcontext);

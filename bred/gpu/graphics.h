@@ -9,16 +9,16 @@
 #include "bred/gpu/device.h"
 
 
-
-
 namespace gpu
 {
+
 
    class CLASS_DECL_BRED graphics :
       virtual public ::draw2d::graphics,
       virtual public ::gpu::compositor
    {
    public:
+
 
       enum enum_transform_context
       {
@@ -135,7 +135,9 @@ namespace gpu
 
       void _set(const ::geometry2d::matrix& matrix) override;
 
-      void do_on_context(const ::procedure& procedure) override;
+      void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
+
+      //void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
 
       //template < typename TYPE >
       //void push_on_end_top_frame(::pointer_array < TYPE >& a, const ::pointer < TYPE > & p)

@@ -71,11 +71,11 @@ namespace gpu
       return !this->is_empty();
 
    }
-   void model_data_base::set_vertex_count(int iVertexCount)
-   { throw interface_only(); 
+   void model_data_base::set_vertex_count(::collection::index iVertexCount)
+   { throw interface_only();
 
          }
-   void model_data_base::set_index_count(int iIndexCount)
+   void model_data_base::set_index_count(::collection::index iIndexCount)
    {
 
       throw interface_only(); 

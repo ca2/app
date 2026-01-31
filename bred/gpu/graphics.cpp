@@ -434,7 +434,7 @@ namespace gpu
    }
 
 
-   void graphics::do_on_context(const ::procedure& procedure)
+   void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure)
    {
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->acme_windowing_window());
@@ -464,6 +464,11 @@ namespace gpu
          pcontext,
          m_egraphics & e_graphics_draw,
          procedure);
+
+      //pcontextMain->top_post_to_context(
+        // pcontext,
+         ///m_egraphics & e_graphics_draw,
+        // procedure);
 
       //pgpudevice->start_stacking_layers();
 
@@ -598,8 +603,12 @@ namespace gpu
       auto pcontext = gpu_context();
       
       ::gpu::shader* pshader = nullptr;
+#define RECTANGLE_SHADER_DEBUG 0
 
+#if RECTANGLE_SHADER_DEBUG != 2
+#if RECTANGLE_SHADER_DEBUG != 1
       if (m_ealphamode == ::draw2d::e_alpha_mode_set)
+#endif
       {
 
          if (!m_pshaderSourceRectangle)
@@ -621,21 +630,25 @@ namespace gpu
 
             m_pshaderSourceRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-            m_pshaderSourceRectangle->m_bDisableDepthTest = true;
+            pshaderRectangle->m_bDisableDepthTest = true;
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-            m_pshaderSourceRectangle->m_bEnableBlend = false;
-            m_pshaderSourceRectangle->m_etopology = ::gpu::e_topology_triangle_list;
-            m_pshaderSourceRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
+            pshaderRectangle->m_bEnableBlend = false;
+            pshaderRectangle->m_etopology = ::gpu::e_topology_triangle_list;
+            pshaderRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
 
-            pcontext->initialize_rectangle_shader(m_pshaderSourceRectangle);
+            pcontext->initialize_rectangle_shader(pshaderRectangle);
 
          }
 
          pshader = m_pshaderSourceRectangle;
 
       }
+#endif
+#if RECTANGLE_SHADER_DEBUG != 1
+#if RECTANGLE_SHADER_DEBUG != 2
       else
+#endif
       {
 
          if (!m_pshaderBlendRectangle)
@@ -657,15 +670,15 @@ namespace gpu
 
             m_pshaderBlendRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-            m_pshaderBlendRectangle->m_bDisableDepthTest = true;
+            pshaderRectangle->m_bDisableDepthTest = true;
             //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-            m_pshaderBlendRectangle->m_bEnableBlend = true;
+            pshaderRectangle->m_bEnableBlend = true;
             //m_pshaderRectangle->m_bAccumulationEnable = true;
-            m_pshaderBlendRectangle->m_etopology = ::gpu::e_topology_triangle_list;
-            m_pshaderBlendRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
+            pshaderRectangle->m_etopology = ::gpu::e_topology_triangle_list;
+            pshaderRectangle->m_ecullmode = ::gpu::e_cull_mode_none;
             ///auto pcontext = gpu_context();
 
-            pcontext->initialize_rectangle_shader(m_pshaderBlendRectangle);
+            pcontext->initialize_rectangle_shader(pshaderRectangle);
 
             //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
             //pshaderRectangle->initialize_shader_with_block(
@@ -683,6 +696,7 @@ namespace gpu
          pshader = m_pshaderBlendRectangle;
 
       }
+#endif
    
       return pshader;
 
@@ -699,37 +713,21 @@ namespace gpu
 
       if (::get_task()->payload("debug").as_int() == 123)
       {
-         //::string strMessage;
 
-         //strMessage.formatf("ødebug123 _fill_quad");
-
-         //m_pgpucontextCompositor2->gpu_debug_message(strMessage);
          debugscopeFillQuad.start();
 
       }
 
-      auto pcontext = gpu_context();
+      auto pgpucontext = gpu_context();
 
-      //__USES_TRANSFORM(pcontext);
-
-      auto prenderer = pcontext->m_pgpurenderer;
-
-      auto pgpucontext = prenderer->m_pgpucontext;
-
-      auto pgpudevice = pgpucontext->m_pgpudevice;
-
-      ::gpu::context_lock contextlock(pcontext);
-
-      ::gpu::shader* pshader = rectangle_shader();
+      ::gpu::context_lock contextlock(pgpucontext);
 
       auto pmodelbufferRectangle = model_buffer(::draw2d::e_model_fill_rectangle);
 
       if (pmodelbufferRectangle->is_new())
       {
 
-         pmodelbufferRectangle->initialize_gpu_context_object(pcontext);
-
-         pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
+         pmodelbufferRectangle->sequence2_color_create_rectangle(pgpucontext);
 
       }
 
@@ -748,41 +746,15 @@ namespace gpu
          quad.data(),
          color);
 
-      //pcontext->defer_bind(pshader);
-
-      //vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-      //auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+      ::gpu::shader * pshader = rectangle_shader();
 
       auto pcommandbuffer = ::gpu::current_command_buffer();
 
-      //auto ptextureTarget = prenderer->m_pgpurendertarget->current_texture(::gpu::current_frame());
-
       pcommandbuffer->set_shader(pshader);
-
-      //VkDeviceSize offset = 0;
-      ///vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
-      //vkCmdBindVertexBuffers(pcommandbuffer->m_vkcommandbuffer, 0, 1, &pmodelbuffer->m_vertexBuffer, &offset);
-
-      //pcommandbuffer->set_model(pmodelbufferRectangle);
 
       pcommandbuffer->draw(pmodelbufferRectangle);
 
-      //pmodelbufferRectangle->unbind(pcommandbuffer);
-
-      //vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertexes for two triangles
-      //vkCmdEndRenderPass(cmd);
-
-
-
-      pcontext->defer_unbind(pshader);
-      //vkvg_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
-        // rectangle.bottom - rectangle.top);
-
-      //m_particleaResetOnTopFrameEnd.add(pmodelbufferRectangle);
-
-      //push_on_end_top_frame(m_modelbufferaRectangle, pmodelbufferRectangle);
-
-      //g_z -= 0.0001;
+      pgpucontext->defer_unbind(pshader);
 
    }
 
@@ -790,248 +762,19 @@ namespace gpu
    void graphics::fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color)
    {
 
-      /* auto pcontext = gpu_context();
+      auto r = rectangle;
 
-       ::cast < ::gpu::renderer >prenderer = pcontext->m_pgpurenderer;
-
-       ::cast < ::gpu::context > pgpucontext = prenderer->m_pgpucontext;
-
-       ::cast < ::gpu::device > pgpudevice = pgpucontext->m_pgpudevice;*/
-
-
-
-       //// Rectangle descriptors
-       //if (!m_psetdescriptorlayoutRectangle)
-       //{
-
-       //   int iFrameCount = prenderer->get_frame_count();
-
-       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
-       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
-       //      .build();
-
-       //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
-
-       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
-       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
-       //   pdescriptorpoolbuilder->addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, iFrameCount * 10);
-
-       //   m_psetdescriptorlayoutRectangle = pdescriptorpoolbuilder->build();
-
-       //}
-
-       //// Rectangle descriptors
-       //if (!m_psetdescriptorlayoutRectangle)
-       //{
-
-       //   int iFrameCount = prenderer->get_frame_count();
-
-       //   m_psetdescriptorlayoutRectangle = ::gpu_vulkan::descriptor_set_layout::Builder(m_pgpucontextCompositor)
-       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
-       //      .build();
-
-       //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
-
-       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
-       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
-       //   pdescriptorpoolbuilder->addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, iFrameCount * 10);
-
-       //   m_psetdescriptorlayoutRectangle = pdescriptorpoolbuilder->build();
-
-       //}
-
-       //::gpu::shader* pshader = nullptr;
-
-       //if (m_ealphamode == ::draw2d::e_alpha_mode_set)
-       //{
-       //   if (!m_pshaderSourceRectangle)
-       //   {
-
-       //      //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
-
-       //      //pshadervertexinput->m_bindings.add(
-       //      //   {
-       //      //      .binding = 0,
-       //      //      .stride = sizeof(RectangleVertex),
-       //      //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
-       //      //   });
-
-       //      //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
-       //      //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
-
-
-       //      auto pshaderRectangle = øcreate<::gpu::shader>();
-
-       //      m_pshaderSourceRectangle = pshaderRectangle;
-       //      //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-       //      m_pshaderSourceRectangle->m_bDisableDepthTest = true;
-       //      //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-       //      m_pshaderSourceRectangle->m_bEnableBlend = false;
-       //      //m_pshaderRectangle->m_bAccumulationEnable = true;
-
-       //      auto pcontext = gpu_context();
-
-       //      //::cast < ::gpu_vulkan::device > pgpudevice = pgpucontext->m_pgpudevice;
-       //      pshaderRectangle->initialize_shader_with_block(
-       //         pcontext->m_pgpurenderer,
-       //         pcontext->rectangle_shader_vert(),
-       //         //as_memory_block(g_uaAccumulationFragmentShader),
-       //         pcontext->rectangle_shader_frag(),
-       //         {},
-       //         {},
-       //         {},
-       //         pcontext->input_layout<::graphics3d::sequence2_color>());
-
-       //   }
-       //   pshader = m_pshaderSourceRectangle;
-
-       //}
-       //else
-       //{
-
-       //   if (!m_pshaderBlendRectangle)
-       //   {
-
-       //      //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
-
-       //      //pshadervertexinput->m_bindings.add(
-       //      //   {
-       //      //      .binding = 0,
-       //      //      .stride = sizeof(RectangleVertex),
-       //      //      .inputRate = VK_VERTEX_INPUT_RATE_VERTEX,
-       //      //   });
-
-       //      //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
-       //      //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
-
-       //      auto pshaderRectangle = øcreate<::gpu::shader>();
-
-       //      m_pshaderBlendRectangle = pshaderRectangle;
-       //      //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-       //      m_pshaderBlendRectangle->m_bDisableDepthTest = true;
-       //      //m_pshaderRectangle->m_iColorAttachmentCount = 2;
-       //      m_pshaderBlendRectangle->m_bEnableBlend = true;
-       //      //m_pshaderRectangle->m_bAccumulationEnable = true;
-
-       //      auto pcontext = gpu_context();
-
-       //      ::cast < ::gpu::device > pgpudevice = pgpucontext->m_pgpudevice;
-       //      pshaderRectangle->initialize_shader_with_block(
-       //         pcontext->m_pgpurenderer,
-       //         pcontext->rectangle_shader_vert(),
-       //         //as_memory_block(g_uaAccumulationFragmentShader),
-       //         pcontext->rectangle_shader_frag(),
-       //         { },
-       //         {},
-       //         {},
-       //         pcontext->input_layout<::graphics3d::sequence2_color>());
-
-       //   }
-
-       //   pshader = m_pshaderBlendRectangle;
-
-       //}
-
-       ////auto pcontext = gpu_context();
-
-       ////::cast < ::gpu_vulkan::context > pcontext = m_pgpucontextCompositor;
-
-       //auto pmodelbufferRectangle = m_poolmodelbufferRectangle.get();
-
-       //if (pmodelbufferRectangle->is_new())
-       //{
-
-       //   pmodelbufferRectangle->sequence2_color_create_rectangle(pcontext);
-
-       //}
-
-       ////   auto & pmodelbuffer = m_pmodelbufferRectangle;
-
-       ////if (!pmodelbuffer)
-       ////{
-
-       ////   
-
-       ////   //   pmodel->m_vertexBuffer = createQuadVertexBuffer(
-       ////   //      pgpucontext->logicalDevice(),
-       ////   //      pgpucontext->m_pgpudevice->m_pphysicaldevice->m_physicaldevice,
-       ////   //      &pmodel->m_vertexMemory);
-
-       ////   //   pmodel->m_indexBuffer = nullptr;
-       ////   //   pmodel->m_indexMemory = nullptr;
-
-       ////   //}
-
-
-       ////}
-       ///
-       auto r = rectangle;
-      //r.bottom--;
-      //r.right--;
-
-      double_point points[4] = {
-   {r.top_left()},
-   {r.top_right()},
-   {r.bottom_right()},
-   {r.bottom_left()}
+      double_point points[4] =
+      {
+         {r.top_left()},
+         {r.top_right()},
+         {r.bottom_right()},
+         {r.bottom_left()}
       };
 
       _fill_quad(points, color);
 
-      //double_point quad[4];
-
-      //quad[0] = points[0];
-      //m_m1.transform(quad[0]);
-      //quad[1] = points[1];
-      //m_m1.transform(quad[1]);
-      //quad[2] = points[2];
-      //m_m1.transform(quad[2]);
-      //quad[3] = points[3];
-      //m_m1.transform(quad[3]);
-
-      //
-
-      ////pmodelbuffer->sequence3_color_set_rectangle();
-      ////pgpucontext = pgpudevice->get_main_context();
-      ////editQuadVertexBuffer(
-      ////   pgpucontext->logicalDevice(),
-      ////   pmodel->m_vertexMemory,
-      ////   quad, color, pgpucontext->rectangle().size());
-
-      //pmodelbufferRectangle->sequence2_color_set_rectangle(
-      //   quad,
-      //   color,
-      //   pgpucontext->m_rectangle.size());
-
-
-      //pshader->bind();
-
-      ////vkCmdBeginRenderPass(cmd, &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-      //auto pcommandbuffer = prenderer->getCurrentCommandBuffer2(::gpu::current_frame());
-      ////VkDeviceSize offset = 0;
-      /////vkCmdBindPipeline(pcommandbuffer->m_vkcommandbuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
-      ////vkCmdBindVertexBuffers(pcommandbuffer->m_vkcommandbuffer, 0, 1, &pmodelbuffer->m_vertexBuffer, &offset);
-
-      //pmodelbufferRectangle->bind(pcommandbuffer);
-
-      //pmodelbufferRectangle->draw(pcommandbuffer);
-
-      ////vkCmdDraw(pcommandbuffer->m_vkcommandbuffer, 6, 1, 0, 0); // 6 vertexes for two triangles
-      ////vkCmdEndRenderPass(cmd);
-
-
-      //pshader->unbind();
-      ////vkvg_rectangle(m_pdc, rectangle.left, rectangle.top, rectangle.right - rectangle.left,
-      //  // rectangle.bottom - rectangle.top);
-
-      ////m_particleaResetOnTopFrameEnd.add(pmodelbufferRectangle);
-
-      ////push_on_end_top_frame(m_modelbufferaRectangle, pmodelbufferRectangle);
-
-      ////g_z -= 0.0001;
-
    }
-
 
 
    void graphics::line(double x1, double y1, double x2, double y2, ::draw2d::pen* ppen)
@@ -1181,8 +924,20 @@ namespace gpu
          y = maximum(h, y);
          //// update VBO for each character
          // render glyph texture over quad
-         if (ch.m_ppixmap)
+         if (ch.m_memory.size() > 0)
          {
+
+            // ch.m_ppixmap = m_pgpurenderer->m_pgpucontext->create_gpu_pixmap({ ch.Size.x, ch.Size.y });
+            //
+            // //ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
+            //
+            // if (::is_set(p))
+            // {
+            //
+            //    ch.m_ppixmap->set_pixels(p);
+            //
+            // }
+
             /* ::graphics3d::sequence2_uv vertexes[6] = {
                  {{xpos,     ypos + h},  { 0.0f, 0.0f } },
              { {xpos,     ypos    },     {  0.0f, 1.0f }},
@@ -1282,15 +1037,15 @@ namespace gpu
 
       auto pface = pdraw2d->_get_face(pfont);
 
-      if (!pface->m_pgpurenderer)
-      {
-
-         auto prenderer = gpu_context()->m_pgpurenderer;
-
-         pface->initialize_gpu_buffer(prenderer);
-
-      }
-
+      // if (!pface->m_pgpurenderer)
+      // {
+      //
+      //    auto prenderer = gpu_context()->m_pgpurenderer;
+      //
+      //    pface->initialize_gpu_buffer(prenderer);
+      //
+      // }
+      //
       return pface;
 
    }
@@ -1400,7 +1155,7 @@ namespace gpu
       //glDepthMask(GL_FALSE);
 
       //glBindVertexArray(pface->m_FaceVAO);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //auto pcommandbuffer = pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
       if (!m_pmodelbufferTextOutDummy)
@@ -1478,144 +1233,154 @@ namespace gpu
          float sizey = (float) ch.Size.y;
          // update VBO for each character
          // render glyph texture over quad
-         if (ch.m_ppixmap 
-            && ch.m_ppixmap->m_pgputexture
-            && ch.m_ppixmap->m_pgputexture->is_in_shader_sampling_state())
+
+         if (sizex > 0 && sizey > 0)
          {
 
+            auto ppixmapFetch = ch.get_gpu_pixmap(gpu_context()->m_pgpurenderer);
 
-            //if (pmodelbuffer->is_new())
-            //{
-
-            //   pmodelbuffer->initialize_gpu_context_object(pcontext);
-
-            //   pmodelbuffer->bind(pcommandbuffer);
-
-            //   pmodelbuffer->create_vertexes < ::graphics3d::sequence2_uv>(6, true);
-
-            //   pmodelbuffer->unbind(pcommandbuffer);
-
-            //   //pmodelbuffer->defer_set_input_layout(m_pgpushaderTextOut->m_pinputlayout);
-
-            //}
-
-            //pmodelbuffer->set_vertex_array(vertexes, 6);
-            ppixmap = ch.m_ppixmap;
-
-            //if (pshader->m_pgputextureBound != ppixmap->m_pgputexture)
-            //{
-
-              // pgputexture = ppixmap->m_pgputexture;
-
-              pcommandbuffer->set_source(ppixmap);
-            //      pshader->bind_source(pcommandbuffer, ppixmap);
-            ///   pshader->on_before_draw(pcommandbuffer);
-
-            //}
-
-            //pshader->set_matrix4("projection", projection);
-
+            if (ppixmapFetch
+            && ppixmapFetch->m_pgputexture
+            && ppixmapFetch->m_pgputexture->is_in_shader_sampling_state())
             {
+               //if (pmodelbuffer->is_new())
+               //{
 
-               double l = (double) (xpos);
-               double t = (double) (ypos + ch.h2);
-               double r = (double) (xpos + sizex);
-               double b = (double) (t + sizey);
+               //   pmodelbuffer->initialize_gpu_context_object(pcontext);
 
-               double_point p1(l, t);
-               double_point p2(r, b);
+               //   pmodelbuffer->bind(pcommandbuffer);
 
-               __transform(p1);
-               __transform(p2);
+               //   pmodelbuffer->create_vertexes < ::graphics3d::sequence2_uv>(6, true);
 
-               context_matrix(e_transform_context_text).transform(p1);
-               context_matrix(e_transform_context_text).transform(p2);
+               //   pmodelbuffer->unbind(pcommandbuffer);
 
-               ::floating_sequence4 quad(p1.x, p1.y, p2.x, p2.y
-                  );
+               //   //pmodelbuffer->defer_set_input_layout(m_pgpushaderTextOut->m_pinputlayout);
+
+               //}
+
+               //pmodelbuffer->set_vertex_array(vertexes, 6);
+               //ppixmap = ppixmap;
+
+               //if (pshader->m_pgputextureBound != ppixmap->m_pgputexture)
+               //{
+
+               // pgputexture = ppixmap->m_pgputexture;
+
+               ppixmap = ppixmapFetch;
+
+               pcommandbuffer->set_source(ppixmap);
+               //      pshader->bind_source(pcommandbuffer, ppixmap);
+               ///   pshader->on_before_draw(pcommandbuffer);
+
+               //}
+
+               //pshader->set_matrix4("projection", projection);
+
+               {
+
+                  double l = (double) (xpos);
+                  double t = (double) (ypos + ch.aHeight2);
+                  double r = (double) (xpos + sizex);
+                  double b = (double) (t + sizey);
+
+                  double_point p1(l, t);
+                  double_point p2(r, b);
+
+                  __transform(p1);
+                  __transform(p2);
+
+                  context_matrix(e_transform_context_text).transform(p1);
+                  context_matrix(e_transform_context_text).transform(p2);
+
+                  ::floating_sequence4 quad(p1.x, p1.y, p2.x, p2.y
+                     );
 
 
-               pshader->set_sequence4("quad", quad);
+                  pshader->set_sequence4("quad", quad);
+
+               }
+
+               {
+
+                  auto size = ppixmap->m_pgputexture->size();
+
+                  auto w = (float)(size.width());
+                  auto h = (float)(size.height());
+
+                  float_rectangle rectangle = ppixmap->m_rectangle;
+
+                  float l = rectangle.left / w;
+                  float t = rectangle.top / h;
+                  float r = rectangle.right / w;
+                  float b = rectangle.bottom / h;
+
+                  ::floating_sequence4 texcoords(l, t, r, b);
+
+                  pshader->set_sequence4("texcoords", texcoords);
+
+               }
+
+               pshader->push_properties(pcommandbuffer);
+
+               //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+               //::opengl::check_error("");
+               //// update content of VBO memory
+               //int iVbo = pface->m_FaceVBO;
+               //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
+               //::opengl::check_error("");
+               //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
+               //::opengl::check_error("");
+               //glBindBuffer(GL_ARRAY_BUFFER, 0);
+               //::opengl::check_error("");
+               // render quad
+               //
+               //
+
+               //pcommandbuffer->draw(ch.m_ppixmap);
+
+               //pmodelbuffer->bind(pcommandbuffer);
+
+               auto w = ppixmap->m_rectangle.width();
+
+               auto h = ppixmap->m_rectangle.height();
+
+               strMessage.formatf("char bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
+
+               ::gpu::debug_scope debugscope(::gpu::current_command_buffer(), strMessage);
+
+               //pcontext->gpu_debug_message(strMessage);
+
+               //pmodelbuffer->m_pbufferVertex->bind();
+
+
+
+               /* ::array < ::graphics3d::sequence2_uv > vertexes = {
+                 {{xpos,     ypos + h},{   l, t }},
+                 {{xpos,     ypos   }, {   l, b }},
+                 {{xpos + w, ypos   }, {   r, b }},
+                 {{xpos,     ypos + h},{   l, t }},
+                 {{xpos + w, ypos   }, {   r, b }},
+                 {{xpos + w, ypos + h},{   r, t} }
+                };*/
+
+
+               //pmodelbuffer->_set_vertexes(vertexes);
+
+               m_pmodelbufferTextOutDummy->m_bNew = false;
+               pcommandbuffer->draw(m_pmodelbufferTextOutDummy);
+
+               //pmodelbuffer->unbind(pcommandbuffer);
+
+               //glDrawArrays(GL_TRIANGLES, 0, 6);
+               //::opengl::check_error("");
+               // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
 
             }
-
-            {
-
-               auto size = ppixmap->m_pgputexture->size();
-
-               auto w = (float)(size.width());
-               auto h = (float)(size.height());
-
-               float_rectangle rectangle = ppixmap->m_rectangle;
-             
-               float l = rectangle.left / w;
-               float t = rectangle.top / h;
-               float r = rectangle.right / w;
-               float b = rectangle.bottom / h;
-
-               ::floating_sequence4 texcoords(l, t, r, b);
-
-               pshader->set_sequence4("texcoords", texcoords);
-
-            }
-
-            pshader->push_properties(pcommandbuffer);
-
-            //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-            //GLCheckError("");
-            //// update content of VBO memory
-            //int iVbo = pface->m_FaceVBO;
-            //glBindBuffer(GL_ARRAY_BUFFER, iVbo);
-            //GLCheckError("");
-            //glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertexes), vertexes); // be sure to use glBufferSubData and not glBufferData
-            //GLCheckError("");
-            //glBindBuffer(GL_ARRAY_BUFFER, 0);
-            //GLCheckError("");
-            // render quad
-            // 
-            // 
-
-            //pcommandbuffer->draw(ch.m_ppixmap);
-
-            //pmodelbuffer->bind(pcommandbuffer);
-
-            auto w = ppixmap->m_rectangle.width();
-
-            auto h = ppixmap->m_rectangle.height();
-
-            strMessage.formatf("char bound '%s' (%d, %d)%s", strChar.c_str(), w, h, pshader->m_strPushConstantsDebugging.c_str());
-
-            ::gpu::debug_scope debugscope(::gpu::current_command_buffer(), strMessage);
-
-            //pcontext->gpu_debug_message(strMessage);
-
-            //pmodelbuffer->m_pbufferVertex->bind();
-
-
-
-           /* ::array < ::graphics3d::sequence2_uv > vertexes = {
-             {{xpos,     ypos + h},{   l, t }},
-             {{xpos,     ypos   }, {   l, b }},
-             {{xpos + w, ypos   }, {   r, b }},
-             {{xpos,     ypos + h},{   l, t }},
-             {{xpos + w, ypos   }, {   r, b }},
-             {{xpos + w, ypos + h},{   r, t} }
-            };*/
-
-
-            //pmodelbuffer->_set_vertexes(vertexes);
-
-            m_pmodelbufferTextOutDummy->m_bNew = false;
-            pcommandbuffer->draw(m_pmodelbufferTextOutDummy);
-
-            //pmodelbuffer->unbind(pcommandbuffer);
-
-            //glDrawArrays(GL_TRIANGLES, 0, 6);
-            //GLCheckError("");
-            // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-            Δx += ch.Advance; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
 
          }
+
+         Δx += ch.Advance; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+
       }
 
       if (m_pmodelbufferTextOutDummy)
@@ -1633,13 +1398,13 @@ namespace gpu
       }
 
       //glBindVertexArray(0);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
 
       //glBindTexture(GL_TEXTURE_2D, 0);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glDisable(GL_CULL_FACE);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       pcontext->set_cull_face(::gpu::e_cull_mode_none);
       pcontext->defer_unbind(m_pgpushaderTextOut);

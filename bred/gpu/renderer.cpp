@@ -40,6 +40,8 @@ namespace gpu
       m_iGpuRenderer = ++g_iGpuRenderer;
 
       m_iDefaultFrameCount = 3;
+      
+      m_bFrameStarted = false;
 
    }
 
@@ -252,7 +254,7 @@ namespace gpu
 
       textureflags.m_bWithDepth = bWithDepth;
 
-      ptexture->initialize_texture(this, textureattributes, textureflags);
+      ptexture->initialize_texture(m_pgpucontext, textureattributes, textureflags);
 
       m_pgpucontext->on_create_texture(ptexture);
 
@@ -358,11 +360,28 @@ namespace gpu
 
          auto ptextureSource = m_pgpucontext->current_target_texture(player->m_pgpuframe);
 
-         m_pgpucontext->copy(ptextureTarget, ptextureSource);
+         m_pgpucontext->copy(ptextureTarget, ptextureSource, &player->m_pgpufence);
 
-         ptextureTarget->defer_fence();
+         //player->m_bFinished = false;
+         //ptextureTarget->defer_fence();
 
       }
+
+   }
+
+   void renderer::defer_end_frame_layer_after_submit()
+   {
+
+      auto player = ::gpu::current_frame()->m_pgpulayer;
+
+      if (player)
+      {
+
+         player->layer_on_after_submit();
+
+      }
+
+
 
    }
 
@@ -370,7 +389,7 @@ namespace gpu
    ::gpu::render_target * renderer::render_target()
    {
 
-      if (!m_pgpurendertarget2)
+      if (::is_null(m_pgpurendertarget2))
       {
 
          m_pgpurendertarget2 = on_create_render_target();
@@ -395,9 +414,9 @@ namespace gpu
    ::gpu::command_buffer* renderer::getCurrentCommandBuffer2(::gpu::frame* pgpuframe)
    {
 
-      assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
+      assert(m_bFrameStarted && "Cannot get command buffer when frame not in progress");
 
-      if (pgpuframe->m_pgpulayer)
+      if (pgpuframe && pgpuframe->m_pgpulayer)
       {
 
          return pgpuframe->m_pgpulayer->getCurrentCommandBuffer4();
@@ -569,7 +588,7 @@ namespace gpu
 
                   ////   float x = (float) psession->get_cursor_position().x;
 
-                  ////   float y = (float) psession->get_cursor_position().y;
+                  ////   float y = (float) psession->get_cursor_position().y();
 
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
                   ////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -712,7 +731,7 @@ namespace gpu
 
             //////   float x = (float) psession->get_cursor_position().x;
 
-            //////   float y = (float) psession->get_cursor_position().y;
+            //////   float y = (float) psession->get_cursor_position().y();
 
             //////   m_papplication->m_pprogram->m_pshader->setVec2("mouse", x, y);
             //////   m_papplication->m_pprogram->m_pshader->setVec2("iMouse", x, y);
@@ -1506,9 +1525,9 @@ namespace gpu
 
       m_prenderstate->on_happening(e_happening_begin_frame);
 
-      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
+      assert(!m_bFrameStarted && "Can't call beginFrame while already in progress");
 
-      isFrameStarted = true;
+      m_bFrameStarted = true;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow
          && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
@@ -1575,7 +1594,7 @@ namespace gpu
 
       m_prenderstate->on_happening(e_happening_end_frame);
 
-      isFrameStarted = false;
+      m_bFrameStarted = false;
 
       if (m_procedureaOnAfterEndFrame.has_element())
       {

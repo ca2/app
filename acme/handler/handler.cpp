@@ -67,7 +67,7 @@ namespace handler
    void handler::destroy()
    {
 
-      m_requestaPosted.clear();
+      m_requeststackaPosted.clear();
 
       for (auto & r : m_requestaHistory)
       {
@@ -98,7 +98,7 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return m_requestaPosted.has_element();
+      return m_requeststackaPosted.has_element();
 
    }
 
@@ -134,7 +134,9 @@ namespace handler
 
          prequest->m_bNew = true;
 
-         m_requestaPosted.add(prequest);
+         auto prequeststack = prequest->push_request();
+         
+         m_requeststackaPosted.add(prequeststack);
 
          new_main_loop_happening()->set_happening();
 
@@ -157,7 +159,7 @@ namespace handler
 
       }
       
-      if(m_prequestBeingAttended)
+      if(m_prequeststackBeingAttended)
       {
          
          return false;
@@ -169,18 +171,18 @@ namespace handler
       while (true)
       {
 
-         if (m_requestaPosted.is_empty())
+         if (m_requeststackaPosted.is_empty())
          {
 
             return false;
 
          }
 
-         auto prequest = m_requestaPosted.pick_first();
+         auto prequeststack = m_requeststackaPosted.pick_first();
 
          defer_reset_main_loop_happening();
 
-         if (::is_null(prequest))
+         if (::is_null(prequeststack->request()))
          {
 
             continue;
@@ -196,7 +198,7 @@ namespace handler
 
          //m_requestaHistory.add(prequest);
 
-         m_prequestHandler = prequest;
+         m_prequeststackHandler = prequeststack;
 
          return true;
 
@@ -217,12 +219,14 @@ namespace handler
 
       while (pick_next_posted_request())
       {
+         
+         request_scope requestscope(m_prequeststackHandler);
 
-         handle(m_prequestHandler);
+         handle(m_prequeststackHandler->request());
+         
+         m_requestaHistory.add(m_prequeststackHandler->request());
 
-         m_requestaHistory.add(m_prequestHandler);
-
-         m_prequestHandler.release();
+         //m_prequestHandler.release();
 
       }
 
@@ -243,9 +247,9 @@ namespace handler
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      return m_requestaPosted.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
+      return m_requeststackaPosted.predicate_contains([&prequest](auto& p) { return p.get()->request() == prequest; })
              || m_requestaHistory.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
-             || m_prequestHandler.get() == prequest;
+             || (m_prequeststackHandler &&m_prequeststackHandler->request() == prequest);
 
    }
 
@@ -253,7 +257,7 @@ namespace handler
    string handler::command_line_text() const
    {
 
-      if (!m_prequestHandler)
+      if (!m_prequeststackHandler)
       {
 
          return "";
@@ -267,7 +271,7 @@ namespace handler
 
       //}
 
-      return m_prequestHandler->m_strCommandLine;
+      return m_prequeststackHandler->request()->m_strCommandLine;
 
    }
 
@@ -373,7 +377,9 @@ namespace handler
    void handler::handle(::request * prequest)
    {
 
-      m_prequestHandler = prequest;
+      m_prequeststackHandling = prequest->push_request();
+      
+      request_scope requestscope(m_prequeststackHandling);
       
       request(prequest);
 
@@ -403,10 +409,12 @@ namespace handler
    void handler::request(::request * prequest)
    {
       
-      ASSERT(m_prequestBeingAttended.is_null());
+      ASSERT(m_prequeststackBeingAttended.is_null());
       
-      m_prequestBeingAttended = prequest;
+      m_prequeststackBeingAttended = prequest->push_request();
 
+      request_scope requestscope(::transfer(m_prequeststackBeingAttended));
+      
       try
       {
          
@@ -421,9 +429,9 @@ namespace handler
       // Maybe it means that other request should'nt
       // be made to this handler while one request
       // is being attended.
-      ASSERT(m_prequestBeingAttended == prequest);
+      ASSERT(requestscope.request() == prequest);
       
-      m_prequestBeingAttended.release();
+      //m_prequestBeingAttended.release();
       
    }
 

@@ -179,6 +179,8 @@ namespace gpu
 
       if (get_frame_count() > 1)
       {
+         
+#ifdef _DEBUG
 
          auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
 
@@ -192,6 +194,7 @@ namespace gpu
             && estate != e_state_initial
             && "Cannot get frame index when frame not in progress");
 
+#endif
          return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
 
       }
@@ -275,7 +278,7 @@ namespace gpu
 
             textureflags.m_bWithDepth =m_bWithDepth;
 
-            ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+            ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
          }
 
@@ -336,11 +339,11 @@ namespace gpu
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
-      auto etype = pgpucontext->m_etype;
+      //auto etype = pgpucontext->m_etype;
 
       int iFrameIndex = get_frame_index();
       
-      auto size = m_ptexturea->size();
+      //auto size = m_ptexturea->size();
 
       auto ptexture = m_ptexturea->element_at(iFrameIndex);
 
@@ -379,11 +382,11 @@ namespace gpu
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
-      auto etype = pgpucontext->m_etype;
+      //auto etype = pgpucontext->m_etype;
 
       int iFrameIndex = get_frame_index();
 
-      auto size = m_ptexturea->size();
+      //auto size = m_ptexturea->size();
 
       ::cast < texture > ptexture = m_ptexturea->element_at(iFrameIndex);
 

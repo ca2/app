@@ -78,7 +78,7 @@ namespace user
    void graphics3d::on_message_key_down(::message::message* pmessage)
    {
 
-      auto pkey = pmessage->m_union.m_pkey;
+      //auto pkey = pmessage->m_union.m_pkey;
 
       pmessage->m_bRet = true;
 
@@ -88,7 +88,7 @@ namespace user
    void graphics3d::on_message_key_up(::message::message* pmessage)
    {
 
-      auto pkey = pmessage->m_union.m_pkey;
+      //auto pkey = pmessage->m_union.m_pkey;
 
       pmessage->m_bRet = true;
 
@@ -362,37 +362,17 @@ namespace user
 
    void graphics3d::draw_gpu_statistics(::draw2d::graphics_pointer& pgraphics)
    {
+
       auto rectangleX = this->rectangle();
 
       if (rectangleX.is_empty())
       {
 
          return;
+         
       }
 
-      ::double_rectangle rectangleClipBox;
-
-      // pgraphics->reset_clip();
-
-      // pgraphics->get_clip_box(rectangleClipBox);
-
-      auto matrix = pgraphics->m_matrix;
-
-      // auto origin = pgraphics->origin();
-
-      auto opacity = ::opacity(48);
-
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-      ::get_task()->payload("debug") = 123;
-      pgraphics->fill_rectangle(rectangleX, argb(108, 128, 128, 128));
-      ::get_task()->payload("debug") = 0;
-
-
-      ::user::graphics3d::_001OnDraw(pgraphics);
-
-
       {
-
 
          //::color::color color_dk(dk_red());
 
@@ -413,8 +393,13 @@ namespace user
          auto pwritetext = pnode->write_text();
 
          auto fontsize = ::write_text::font_size(48.0 * rectangleX.height() / 1'080, e_unit_pixel);
-
-         m_pfontThomasBS_ = pwritetext->font("Fira Code", fontsize);
+         
+         if(!m_pfontThomasBS_)
+         {
+            
+            m_pfontThomasBS_ = pwritetext->font("Fira Code", fontsize);
+            
+         }
 
          pgraphics->set(m_pfontThomasBS_);
 
@@ -424,9 +409,9 @@ namespace user
 
          string_array &stra = m_straLineStats;
 
-         bool bWhite = true;
+         //bool bWhite = true;
 
-         double x = 0.;
+         //double x = 0.;
 
          double y = 0.;
 
@@ -456,13 +441,13 @@ namespace user
 
          stra.ø(2) = strFrameTime;
 
-         bool bFixedPosition = true;
+         //bool bFixedPosition = true;
 
          point = {10, 10};
 
-         ::color::color color;
+         //::color::color color;
 
-         opacity = ::opacity(200);
+         //auto opacity = ::opacity(200);
 
          for (auto &strItem: stra)
          {
@@ -470,6 +455,7 @@ namespace user
             y += size.cy;
 
             pgraphics->text_out(point.x, point.y + y, strItem);
+            
          }
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
@@ -504,6 +490,7 @@ namespace user
 
 
    void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   //void graphics3d::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
       if (!m_pengine)

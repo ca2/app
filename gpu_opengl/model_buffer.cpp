@@ -3,6 +3,7 @@
 #include "_gpu_opengl.h"
 #include "command_buffer.h"
 #include "context.h"
+#include "device.h"
 #include "input_layout.h"
 #include "memory_buffer.h"
 #include "model_buffer.h"
@@ -20,7 +21,7 @@ namespace gpu_opengl
    model_buffer::model_buffer()
    {
 
-      m_gluVao = 0;
+      //m_gluVao = 0;
 
    }
 
@@ -45,39 +46,38 @@ namespace gpu_opengl
 
       ::gpu::model_buffer::on_initialize_gpu_context_object();
 
-      if (!m_gluVao)
-      {
-
-         ::gpu::context_lock contextlock(m_pgpucontext);
-
-         glGenVertexArrays(1, &m_gluVao);
-         GLCheckError("");
-
-      }
-
    }
 
 
-   void model_buffer::apply_input_layout()
+   void model_buffer::_defer_apply_input_layout(base_context_handle::object & object)
    {
 
-      //m_pinputlayout = pgpuinputlayout;
+      ::cast < input_layout > pinputlayout = m_pinputlayout;
 
-      ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
-
-      ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
-
-      if (pbufferVertex)
+      if(::is_set(pinputlayout))
       {
-
-         ::cast < input_layout > pinputlayout = m_pinputlayout;
-
-         pinputlayout->__do_opengl_vao_vbo_and_ebo_input_layout(
-            m_gluVao,
-            pbufferVertex->m_gluVbo,
-            pbufferIndex ? pbufferIndex->m_gluVbo : 0
-         );
-
+         
+         //m_pinputlayout = pgpuinputlayout;
+         
+         ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
+         
+         ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
+         
+         if (pbufferVertex)
+         {
+            
+            ::cast < input_layout > pinputlayout = m_pinputlayout;
+            
+            pinputlayout->__do_opengl_vao_vbo_and_ebo_input_layout(
+                                                                   object.m_handle,
+                                                                   pbufferVertex->m_gluVbo,
+                                                                   pbufferIndex ? pbufferIndex->m_gluVbo : 0
+                                                                   );
+            
+            object.m_bBound = true;
+            
+         }
+         
       }
 
    }
@@ -85,70 +85,79 @@ namespace gpu_opengl
 
    void model_buffer::bind2(::gpu::command_buffer* pgpucommandbuffer)
    {
-
-      //::gpu::context_lock contextlock(m_pgpucontext);
-
-      ::gpu::context_lock contextlock(m_pgpucontext);
-
-      if (m_pbufferVertex)
+      
+      auto gluVertexArrayObject = vertex_array_object();
+      
+      if(gluVertexArrayObject <= 0)
       {
-
-         glBindVertexArray(m_gluVao);
-         GLCheckError("");
          
-         //m_pbufferVertex->bind();
-
-         //if (m_pbufferIndex)
-         //{
-
-         //   m_pbufferIndex->bind();
-
-         //}
-
-         //glEnableVertexAttribArray(0); // Index must match the layout(location)
-         //glVertexAttribPointer(
-         //   0,              // index (matches shader layout location)
-         //   2,              // size (number of components per vertex: x, y)
-         //   GL_FLOAT,       // type
-         //   GL_FALSE,       // normalized?
-         //   2 * sizeof(float), // stride (bytes per vertex)
-         //   (void*)0        // offset
-         //);
-
-         // 4. Unbind (optional for safety)
-         //glBindBuffer(GL_ARRAY_BUFFER, 0);
-         //glBindVertexArray(0);
-
-         //::cast < command_buffer > pcommandbuffer = pgpucommandbuffer;
-
-         //VkDeviceSize offsets[] = { 0 };
-
-         //::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
-
-         //vkCmdBindVertexBuffers(
-         //   pcommandbuffer->m_vkcommandbuffer,
-         //   0, 1,
-         //   &pbufferVertex->m_vkbuffer, offsets);
-
-         //if (m_pbufferIndex)
-         //{
-
-         //   ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
-
-         //   vkCmdBindIndexBuffer(
-         //      pcommandbuffer->m_vkcommandbuffer,
-         //      pbufferIndex->m_vkbuffer, 0, VK_INDEX_TYPE_UINT16);
-
-         //}
-
+         ::string strMessage;
+         
+         strMessage = "model_buffer::bind2 VAO is null";
+         
+         warning(strMessage);
+         
+         throw ::exception(error_wrong_state, strMessage);
+         
       }
-      else
+
+      glBindVertexArray(gluVertexArrayObject);
+      ::opengl::check_error("");
+
+   }
+
+
+   GLuint model_buffer::vertex_array_object()
+   {
+ 
+      auto & object = context_handle_object();
+      
+      auto & gluVertexArrayObject = object.m_handle;
+      
+      if(gluVertexArrayObject == 0)
       {
-
-         glBindVertexArray(m_gluVao);
-         GLCheckError("");
-
+         glGenVertexArrays(1, &gluVertexArrayObject);
+         ::opengl::check_error("");
+         
+         if(gluVertexArrayObject == 74)
+         {
+            
+            information("gluVertexArrayObject == 74");
+         
+         }
+         
+         //glBindVertexArray(vertexarrayobject.m_gluVertexArrayObject);
+         //::opengl::check_error("");
+         
+   //      ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
+   //
+   //      ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
+   //
+   //      if(::is_set(pbufferVertex))
+   //      {
+   //
+   //         ::cast < input_layout > pinputlayout = m_pinputlayout;
+   //
+   //         pinputlayout->__do_opengl_vao_vbo_and_ebo_input_layout(
+   //                                                gluVertexArrayObject,
+   //                                                                pbufferVertex->m_gluVbo,
+   //                                                                pbufferIndex ? pbufferIndex->m_gluVbo : 0
+   //                                                                );
+   //
+   //      }
+         
+         //glBindVertexArray(0);
+         //::opengl::check_error("");
       }
+      
+      if(m_pinputlayout && !object.m_bBound)
+      {
+         
+         _defer_apply_input_layout(object);
+        
+      }
+      
+      return gluVertexArrayObject;
 
    }
 
@@ -196,24 +205,30 @@ namespace gpu_opengl
 
             }
             
-            glDrawElements(mode, m_pmodeldatabase2->index_count(), etype, 0);
-            GLCheckError("");
+            auto iIndexCount = m_pmodeldatabase2->index_count();
+            
+            glDrawElements(mode, (int) iIndexCount, etype, 0);
+            ::opengl::check_error("");
 
          }
          else
          {
+            
+            auto iVertexCount = m_pmodeldatabase2->vertex_count();
 
-            glDrawArrays(mode, 0, m_pmodeldatabase2->vertex_count());
-            GLCheckError("");
+            glDrawArrays(mode, 0, (int) iVertexCount);
+            ::opengl::check_error("");
 
          }
 
       }
       else
       {
+         
+         auto iVertexCount = m_pmodeldatabase2->vertex_count();
 
-         glDrawArrays(mode, 0, m_pmodeldatabase2->vertex_count());
-         GLCheckError("");
+         glDrawArrays(mode, 0, iVertexCount);
+         ::opengl::check_error("");
 
       }
 
@@ -251,14 +266,14 @@ namespace gpu_opengl
          //   }
 
          //   glDrawElements(GL_TRIANGLES, m_iIndexCount, etype, 0);
-         //   GLCheckError("");
+         //   ::opengl::check_error("");
 
          //}
          //else
          {
 
             glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
-            GLCheckError("");
+            ::opengl::check_error("");
 
          }
 
@@ -267,7 +282,7 @@ namespace gpu_opengl
       {
 
          glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
-         GLCheckError("");
+         ::opengl::check_error("");
 
       }
 
@@ -277,21 +292,22 @@ namespace gpu_opengl
    void model_buffer::unbind(::gpu::command_buffer* pgpucommandbuffer)
    {
 
-      if (m_pbufferVertex)
-      {
-
-         if (m_pbufferIndex)
-         {
-
-            m_pbufferIndex->unbind();
-
-         }
-
-         m_pbufferVertex->unbind();
-
-      }
+//      if (m_pbufferVertex)
+//      {
+//
+//         if (m_pbufferIndex)
+//         {
+//
+//            m_pbufferIndex->unbind();
+//
+//         }
+//
+//         m_pbufferVertex->unbind();
+//
+//      }
 
       glBindVertexArray(0);
+      ::opengl::check_error("");
 
    }
 

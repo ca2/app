@@ -28,7 +28,7 @@ int _ui_MessageBoxA(const char * pszMessageParam, const char * pszHeaderParam, u
    enum_dialog_result eresult2 = e_dialog_result_cancel;
    enum_dialog_result eresult3 = e_dialog_result_cancel;
    
-   enum_message_box emessageboxType = (enum_message_box) (uType & ::user::e_message_box_type_mask);
+   ::user::enum_message_box emessageboxType = (::user::enum_message_box) (uType & ::user::e_message_box_type_mask);
    
    switch(emessageboxType)
    {

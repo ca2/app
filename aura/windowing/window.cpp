@@ -773,7 +773,7 @@ namespace windowing
 
             //auto puserinteraction = user_interaction();
 
-      auto pusersystem = user_interaction()->m_pusersystem;
+//      auto pusersystem = m_pacmeuserinteraction->m_pusersystem;
 
       //pusersystem->m_createstruct.hMenu = nullptr;
       //      pusersystem->m_createstruct.hInstance = ::aura::get_system()->m_hInstance;
@@ -833,26 +833,53 @@ namespace windowing
       //user_interaction()->m_pwindow = this;
 
       //pwindow->m_pwindow = this;
+      
+      int x = 0;
+      int y = 0;
+      int w = 0;
+      int h = 0;
 
       auto puserinteraction = user_interaction();
 
-      int x = puserinteraction->const_layout().sketch().origin().x;
-
-      int y = puserinteraction->const_layout().sketch().origin().y;
-
-      int cx = puserinteraction->const_layout().sketch().width();
-
-      int cy = puserinteraction->const_layout().sketch().height();
-
+      if(puserinteraction)
+      {
+         
+         x = puserinteraction->const_layout().sketch().origin().x;
+         
+         y = puserinteraction->const_layout().sketch().origin().y;
+         
+         w = puserinteraction->const_layout().sketch().width();
+         
+         h = puserinteraction->const_layout().sketch().height();
+         
+      }
+      else
+      {
+       
+         x = m_pacmeuserinteraction->get_rectangle().left;
+         
+         y = m_pacmeuserinteraction->get_rectangle().top;
+         
+         w = m_pacmeuserinteraction->get_rectangle().width();
+         
+         h = m_pacmeuserinteraction->get_rectangle().height();
+         
+      }
+         
       m_pointWindow.x = x;
 
       m_pointWindow.y = y;
 
-      m_sizeWindow.cx = cx;
+      m_sizeWindow.cx = w;
 
-      m_sizeWindow.cy = cy;
-
-      install_message_routing(user_interaction());
+      m_sizeWindow.cy = h;
+      
+      if(user_interaction())
+      {
+         
+         install_message_routing(user_interaction());
+         
+      }
 
       auto pwindowing = (::windowing::windowing*)system()->windowing();
       //      
@@ -892,14 +919,26 @@ namespace windowing
       //   pexception = øallocate::exception(error_catch_all_exception);
 
       //}
-
-      user_interaction()->m_ewindowflag |= e_window_flag_window_created;
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+         
+      }
 
       m_bUserImplCreated = true;
-
-      user_interaction()->set_flag(e_flag_task_started);
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->set_flag(e_flag_task_started);
+         
+      }
 
       on_finished_window_creation();
+      
+      set_ok_flag();
 
    }
 
@@ -937,8 +976,13 @@ namespace windowing
    {
 
       auto puserinteraction = user_interaction();
-
-      puserinteraction->send_message(::user::e_message_after_create, 0, 0);
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->send_message(::user::e_message_after_create, 0, 0);
+         
+      }
 
    }
 
@@ -977,8 +1021,13 @@ namespace windowing
 
    class placement_log* window::placement_log()
    {
-
-      ødefer_construct_new(m_pplacementlog);
+      
+      if(!m_pplacementlog)
+      {
+         
+         øconstruct_new(m_pplacementlog);
+         
+      }
 
       return m_pplacementlog;
 
@@ -1393,8 +1442,15 @@ namespace windowing
       m_pointWindow = rectangle.top_left();
 
       m_sizeWindow = rectangle.size();
-
-      user_interaction()->_on_configure_notify_unlocked(rectangle);
+      
+      auto puserinteraction = user_interaction();
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->_on_configure_notify_unlocked(rectangle);
+         
+      }
 
    }
 
@@ -1403,8 +1459,15 @@ namespace windowing
    {
 
       m_pointWindow = point;
-
-      user_interaction()->_on_reposition_notify_unlocked(point);
+      
+      auto puserinteraction = user_interaction();
+      
+      if(puserinteraction)
+      {
+         
+         puserinteraction->_on_reposition_notify_unlocked(point);
+         
+      }
 
    }
 
@@ -2430,6 +2493,8 @@ namespace windowing
 
    bool window::is_window()
    {
+      
+      throw ::interface_only();
 
       return false;
 
@@ -4887,7 +4952,7 @@ namespace windowing
 
       //::windowing::window_base::last_install_message_routing(pchannel);
 
-      if (!user_interaction()->m_bMessageOnlyWindow)
+      if (!m_pacmeuserinteraction->m_bMessageOnlyWindow)
       {
 
          //USER_MESSAGE_LINK(::user::e_message_redraw, pchannel, this, &window::_001OnRedraw);
@@ -9303,6 +9368,1123 @@ namespace windowing
 
    }
 
+   //
+   // void window::top_down_prefix()
+   // {
+   //
+   //    user_interaction()->top_down_prefix();
+   //
+   // }
+   //
+
+   //void window::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   //::windowing::window_base::_001OnNcClip(pgraphics);
+
+   //}
+
+
+   //void window::defer_do_graphics(::draw2d::graphics_pointer& pgraphics)
+   //{
+
+//    void window::do_graphics()
+//    {
+//
+//       m_bDoingGraphics = true;
+//
+//       at_end_of_scope
+//       {
+//
+//          m_bDoingGraphics = false;
+//
+//       };
+//
+//       windowing_output_debug_string("windowing::window::do_graphics");
+//
+//       string strType = ::platform::type(user_interaction()).name();
+//
+//       if (!strType.case_insensitive_contains("main_frame"))
+//       {
+//
+//          debug() << "not main_frame";
+//
+//       }
+//
+// #ifdef MORE_LOG
+//
+//       debug() << "do_graphics(A)";
+//
+// #endif
+//
+//       update_graphics_resources();
+//
+//       if (m_pgraphicsgraphics.is_null())
+//       {
+//
+//          information() << "do_graphics exit(A1)";
+//
+//          return;
+//
+//       }
+//
+//       debug() << "windowing::window::do_graphics";
+//
+//       //::draw2d::graphics_pointer pgraphics;
+//
+//       //user_interaction()->defer_do_graphics(pgraphics);
+//
+//       //{
+//
+//       auto pgraphicscontext = øcreate_new < ::draw2d::graphics_context >();
+//
+//       //::string strType = ::platform::type(*user_interaction()).name();
+//
+//       if (!strType.case_insensitive_contains("main_frame"))
+//       {
+//
+//          //information() << "not main_frame";
+//
+//       }
+//
+//       //user_interaction()->top_down_prefix();
+//
+//       //user_interaction()->layout_to_design();
+//
+//
+//       {
+//          //::draw2d::lock draw2dlock(this);
+//
+//          auto pbuffer = m_pgraphicsgraphics;
+//
+//          _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//          //windowing::graphics_lock graphicslock(m_pwindow);
+//
+//          //m_pgraphics->update_buffer(rectangleWindow.size());
+//
+// #ifdef MORE_LOG
+//
+//          debug() << "intrimpl::defer_do_graphics on_begin_draw";
+//
+// #endif
+//
+//          auto pbufferitem = pbuffer->on_begin_draw(e_graphics_layout);
+//          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+//
+//          if (!pbufferitem)
+//          {
+//
+// #ifdef MORE_LOG
+//
+//             information() << "intrimpl::defer_do_graphics !pbufferitem";
+//
+// #endif
+//
+//             return;
+//
+//          }
+//
+// #ifdef MORE_LOG
+//
+//          debug() << "intrimpl::defer_do_graphics on_begin_draw END";
+//
+// #endif
+//
+//
+//          {
+//
+//             _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//
+//             //information() << "graphics::on_begin_draw";
+//
+//             slGraphics.unlock();
+//
+//             windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+//
+//             if (has_destroying_flag())
+//             {
+//
+// #ifdef MORE_LOG
+//
+//                information() << "intrimpl::defer_do_graphics has_destroying_flag";
+//
+// #endif
+//
+//                return;
+//
+//             }
+//
+//             //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//
+//             pgraphicscontext->m_pgraphics = pbufferitem->g();
+//
+// #ifdef MORE_LOG
+//
+//             debug() << "intrimpl::defer_do_graphics got graphics g";
+//
+// #endif
+//
+//             //#ifdef UNIVERSAL_WINDOWS
+//             if (::is_null(pgraphicscontext->m_pgraphics) || pgraphicscontext->m_pgraphics->nok())
+//             {
+//
+//                //#define SEVERITY_HIGH 5
+//
+//                //int iSeverity = SEVERITY_HIGH;
+//
+//                //for(::collection::index i = 0; i < iSeverity * 20; i++)
+//                //{
+//
+//                informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
+//
+//                //}
+//
+//                return;
+//
+//             }
+//
+//             pgraphicscontext->m_pgraphics->m_puserinteraction = m_pacmeuserinteraction;
+//
+//             pgraphicscontext->m_pbufferitem = pbufferitem;
+//
+//             pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = pbuffer;
+//
+//
+//
+//             m_pgraphicscontextDrawingFrame = pgraphicscontext;
+//          }
+//       }
+//
+//          //draw2dlock.unlock();
+//
+//          m_pgraphicscontextDrawingFrame->m_pgraphics->send_on_context(m_pgraphicscontextDrawingFrame, [this]()
+//             {
+//
+//             draw_on_context();
+//
+// //             auto pgraphicscontext = m_pgraphicscontextDrawingFrame;
+// //
+// //             auto pbufferitem = pgraphicscontext->m_pbufferitem;
+// //
+// //             _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+// //
+// //                {
+// //
+// //                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+// //                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+// //                   //#endif
+// //
+// //                   pgraphicscontext->m_pgraphics->payload("set_transparent") = "";
+// //
+// //                   pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = pbuffer;
+// //
+// //                   pgraphicscontext->m_pgraphics->m_pgraphicsbufferitem = pbufferitem;
+// //
+// // #ifdef MORE_LOG
+// //
+// //                   debug() << "intrimpl::defer_do_graphics Going to call pgraphics->on_begin_draw";
+// //
+// // #endif
+// //
+// //
+// //
+// //                   pgraphicscontext->m_pgraphics->on_begin_draw();
+// //
+// //                   pgraphicscontext->m_pgraphics->reset_clip();
+// //
+// //                   pgraphicscontext->m_pgraphics->reset_impact_area();
+// //
+// //                   //{
+// //
+// //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //
+// //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+// //
+// //                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+// //
+// //                   //   if (m_redrawitema.has_element())
+// //                   //   {
+// //
+// //                   //      throw "what?!?!";
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //
+// //
+// //                   //pgraphics->m_egraphics = e_graphics_layout;
+// //
+// //                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+// //                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+// //                   //#endif
+// //
+// //                   //pgraphics->payload("set_transparent") = "";
+// //
+// //                   //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+// //
+// //                   //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+// //
+// //                   //pgraphics->on_begin_draw();
+// //
+// //                   //pgraphics->reset_clip();
+// //
+// //                   //pgraphics->set_origin(0., 0.);
+// //
+// //
+// //                   {
+// //
+// //                      _synchronous_lock synchronouslock(m_pmutexRedrawItem);
+// //
+// //                      if(!pgraphicscontext->m_pgraphics->m_puserredraw)
+// //                      {
+// //
+// //                         øconstruct_new(pgraphicscontext->m_pgraphics->m_puserredraw);
+// //
+// //                         if (system()->draw2d()->graphics_context_does_full_redraw())
+// //                         {
+// //
+// //                            pgraphicscontext->m_pgraphics->m_puserredraw->m_bEnabled = false;
+// //
+// //                         }
+// //
+// //                      }
+// //
+// //                      if (pgraphicscontext->m_pgraphics->m_puserredraw->m_bEnabled)
+// //                      {
+// //
+// //                         pgraphicscontext->m_pgraphics->user_redraw()->m_pgraphics = pgraphicscontext->m_pgraphics;
+// //
+// //                         pgraphicscontext->m_pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+// //
+// //                         if (m_redrawitema.has_element())
+// //                         {
+// //
+// // #ifdef MORE_LOG
+// //
+// //                            information() << "intrimpl::defer_do_graphics what?!?!";
+// //
+// // #endif
+// //
+// //                            throw "what?!?!";
+// //
+// //                         }
+// //
+// //                      }
+// //
+// //                   }
+// //
+// //
+// //
+// //                   //if (!bDraw)
+// //                   //{
+// //
+// //                   //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+// //                   //   {
+// //
+// //                   //      bDraw = true;
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //                   pgraphicscontext->m_pgraphics->m_pdraw2dhost = user_interaction();
+// //
+// //                   pgraphicscontext->m_pgraphics->m_puserstyleGraphics.release();
+// //
+// //                   if (pgraphicscontext->m_pgraphics->m_pimage)
+// //                   {
+// //
+// //                      pgraphicscontext->m_pgraphics->m_pimage->m_rectangleTag.Null();
+// //
+// //                      //sizeDrawn = pgraphics->m_pimage->m_size;
+// //
+// //                      ///sizeDrawn = user_interaction()->const_layout().design().size();
+// //
+// //                   }
+// //
+// //                   string strBitmapSource = payload("bitmap-source");
+// //
+// //                   if (strBitmapSource.has_character())
+// //                   {
+// //
+// //                      //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+// //                      //
+// //                      //            if(pbitmapsourcebuffer)
+// //                      //            {
+// //                      //
+// //                      //
+// //                      //
+// //                      //
+// //                      //            }
+// //
+// //                   }
+// //
+// //                   if (user_interaction())
+// //                   {
+// //
+// //                      //auto r = user_interaction()->screen_rect();
+// //
+// //                      if (user_interaction()->has_finishing_flag())
+// //                      {
+// //
+// //                         informationf("::windowing::window set_finish");
+// //
+// //                      }
+// //                      else
+// //                      {
+// //
+// //                         //pgraphics->m_bDraw = bDraw;
+// //
+// //                         pgraphicscontext->m_pgraphics->m_bDraw = false;
+// //
+// //                         pgraphicscontext->m_pgraphics->m_bInheritDraw = false;
+// //
+// //                         //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+// // #ifdef MORE_LOG
+// //                         debug() << "defer_do_graphics _000TopCallOnLayout";
+// // #endif
+// //                         user_interaction()->_000TopCallOnLayout(pgraphicscontext->m_pgraphics);
+// //
+// //                         //user_interaction()->_000CallOnDraw(pgraphics);
+// //
+// //                         //                  if (!bDraw && m_redrawa.has_element())
+// //                         //                  {
+// //                         //
+// //                         //                     synchronouslock.unlock();
+// //                         //
+// //                         //                     bDraw = true;
+// //                         //
+// //                         //                     pgraphics->m_bDraw = bDraw;
+// //                         //
+// //                         //                     user_interaction()->_000CallOnDraw(pgraphics);
+// //                         //
+// //                         //                  }
+// //
+// //                      }
+// //
+// //                      //m_rectangleUpdateBuffer = r;
+// //
+// //                      //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+// //
+// //                      //if (!m_pgraphics)
+// //                      //{
+// //
+// //                      //   return;
+// //
+// //                      //}
+// //
+// //                      //m_pgraphics->m_bNewBuffer = true;
+// //
+// //                   }
+// //
+// //                   ////if (pgraphics->m_pimage.ok())
+// //                   ////{
+// //
+// //                   ////   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+// //
+// //                   ////   //m_sizeDrawn = sizeDrawn;
+// //
+// //                   ////   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+// //
+// //                   ////}
+// //
+// //                   //m_sizeLastBuffer = pbufferitem->m_size;
+// //
+// //                   ////}
+// //
+// //                   //if (m_pgraphics)
+// //                   //{
+// //
+// //                   //   m_pgraphics->on_end_draw();
+// //
+// //                   //}
+// //
+// //                }
+// //
+// //       //             auto pbuffer = m_pgraphicsgraphics;
+// //       //
+// //       // if (pbuffer)
+// //       // {
+// //       //
+// //       //    //::draw2d::lock draw2dlock(this);
+// //       //
+// //       //    _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //       //
+// //       //    //windowing::graphics_lock graphicslock(m_pwindow);
+// //
+// //          //m_pgraphics->update_buffer(rectangleWindow.size());
+// //
+// //          pbufferitem->switch_to_draw();
+// //          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+// //
+// //          // if (!pbufferitem)
+// //          // {
+// //          //
+// //          //    information() << "defer_do_graphics !pbufferitem (2)";
+// //          //
+// //          //    if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+// //          //    {
+// //          //
+// //          //       static class ::time s_timeThisThingLastTime;
+// //          //
+// //          //       if (s_timeThisThingLastTime.elapsed() > 15_s)
+// //          //       {
+// //          //
+// //          //          s_timeThisThingLastTime.Now();
+// //          //
+// //          //          m_pacmeuserinteraction->display(::e_display_normal);
+// //          //
+// //          //       }
+// //          //
+// //          //    }
+// //          //
+// //          //    return;
+// //          //
+// //          // }
+// //
+// //          //_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //          //information() << "graphics::on_begin_draw";
+// //
+// //          //slGraphics.unlock();
+// //
+// //          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+// //
+// //          if (has_destroying_flag())
+// //          {
+// //
+// //             information() << "defer_do_graphics has_destroying_flag()";
+// //
+// //             return;
+// //
+// //          }
+// //
+// //          //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+// //
+// //          //pgraphicscontext->m_pgraphics = pbufferitem->g();
+// //
+// //
+// //
+// //          //#ifdef UNIVERSAL_WINDOWS
+// //          if (::is_null(pgraphicscontext->m_pgraphics) || pgraphicscontext->m_pgraphics->nok())
+// //          {
+// //
+// //             //#define SEVERITY_HIGH 5
+// //
+// //             //int iSeverity = SEVERITY_HIGH;
+// //
+// //             //for(::collection::index i = 0; i < iSeverity * 20; i++)
+// //             //{
+// //
+// //             information() << "m_pgraphics->on_begin_draw FAILED (1)";
+// //
+// //             //}
+// //
+// //             return;
+// //
+// //          }
+// //
+// //          //draw2dlock.unlock();
+// //
+// //          // pgraphics->do_on_context([this, pgraphics, pbufferitem]()
+// //          //    {
+// //
+// //                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+// //
+// //
+// //
+// //                {
+// //
+// //                   //pgraphics->m_egraphics = e_graphics_draw;
+// //
+// //                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+// //                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+// //                   //#endif
+// //
+// //                   pgraphicscontext->m_pgraphics->payload("set_transparent") = "";
+// //
+// //                   pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+// //
+// //                   pgraphicscontext->m_pgraphics->m_pgraphicsbufferitem = pbufferitem;
+// //
+// //                   if(::is_null(m_pacmeuserinteraction))
+// //                   {
+// //
+// //                      return;
+// //
+// //                   }
+// //
+// //                   ::string strType = type(m_pacmeuserinteraction).name();
+// //
+// //                   if (strType.case_insensitive_contains("menu"))
+// //                   {
+// //
+// //                      printf_line("menu");
+// //
+// //                   }
+// //
+// //                   pgraphicscontext->m_pgraphics->on_begin_draw();
+// //
+// //                   //pgraphics->reset_clip();
+// //
+// //                   //pgraphics->reset_impact_area();
+// //
+// //                   //{
+// //
+// //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //
+// //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+// //
+// //                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+// //
+// //                   //   if (m_redrawitema.has_element())
+// //                   //   {
+// //
+// //                   //      throw "what?!?!";
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //
+// //
+// //                   //pgraphics->m_egraphics = e_graphics_layout;
+// //
+// //                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+// //                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+// //                   ////#endif
+// //
+// //                   //pgraphics->payload("set_transparent") = "";
+// //
+// //                   //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+// //
+// //                   //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+// //
+// //                   //pgraphics->on_begin_draw();
+// //
+// //                   //pgraphics->reset_clip();
+// //
+// //                   //pgraphics->set_origin(0., 0.);
+// //
+// //                   //{
+// //
+// //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //
+// //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+// //
+// //                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+// //
+// //                   //   if (m_redrawitema.has_element())
+// //                   //   {
+// //
+// //                   //      throw "what?!?!";
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //
+// //
+// //                   //if (!bDraw)
+// //                   //{
+// //
+// //                   //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+// //                   //   {
+// //
+// //                   //      bDraw = true;
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //                   //pgraphics->m_pdraw2dhost = user_interaction();
+// //
+// //                   //pgraphics->m_puserstyle.release();
+// //
+// //                   //if (pgraphics->m_pimage)
+// //                   //{
+// //
+// //                   //   pgraphics->m_pimage->m_rectangleTag.Null();
+// //
+// //                   //   //sizeDrawn = pgraphics->m_pimage->m_size;
+// //
+// //                   //   ///sizeDrawn = user_interaction()->const_layout().design().size();
+// //
+// //                   //}
+// //
+// //                   //string strBitmapSource = payload("bitmap-source");
+// //
+// //                   //if (strBitmapSource.has_character())
+// //                   //{
+// //
+// //                   //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+// //                   //   //
+// //                   //   //            if(pbitmapsourcebuffer)
+// //                   //   //            {
+// //                   //   //
+// //                   //   //
+// //                   //   //
+// //                   //   //
+// //                   //   //            }
+// //
+// //                   //}
+// //
+// //                   if (user_interaction())
+// //                   {
+// //
+// //                      //auto r = user_interaction()->screen_rect();
+// //
+// //                      if (user_interaction()->has_finishing_flag())
+// //                      {
+// //
+// //                         informationf("::windowing::window set_finish");
+// //
+// //                      }
+// //                      else
+// //                      {
+// //
+// //                         //pgraphics->m_bDraw = bDraw;
+// //
+// //                         pgraphicscontext->m_pgraphics->m_bDraw = true;
+// //
+// //                         pgraphicscontext->m_pgraphics->m_bInheritDraw = true;
+// //
+// //                         //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+// //
+// //
+// // #ifdef MORE_LOG
+// //                         debug() << "defer_do_graphics _000TopCallOnDraw";
+// // #endif
+// //                         ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+// //
+// //                         //xxxdirectx user_interaction()->_000TopCallOnDraw(pgraphics);
+// //                         user_interaction()->_000TopCallOnDraw(pgraphicscontext->m_pgraphics);
+// //
+// //                         //pgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
+// //
+// //                         ////user_interaction()->_000CallOnDraw(pgraphics);
+// //
+// //                         //                  if (!bDraw && m_redrawa.has_element())
+// //                         //                  {
+// //                         //
+// //                         //                     synchronouslock.unlock();
+// //                         //
+// //                         //                     bDraw = true;
+// //                         //
+// //                         //                     pgraphics->m_bDraw = bDraw;
+// //                         //
+// //                         //                     user_interaction()->_000CallOnDraw(pgraphics);
+// //                         //
+// //                         //                  }
+// //
+// //                      }
+// //
+// //                      //m_rectangleUpdateBuffer = r;
+// //
+// //                      //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+// //
+// //                      if (!m_pgraphicsgraphics)
+// //                      {
+// //
+// //                         return;
+// //
+// //                      }
+// //
+// //                      m_pgraphicsgraphics->m_bNewBuffer = true;
+// //
+// //                   }
+// //                   else
+// //                   {
+// //
+// //
+// //                      information() << "defer_do_graphics !user_interaction()";
+// //
+// //                   }
+// //
+// //                   //if (pgraphics->m_pimage.ok())
+// //                   //{
+// //
+// //                   //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+// //
+// //                   //   //m_sizeDrawn = sizeDrawn;
+// //
+// //                   //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+// //
+// //                   //}
+// //
+// //                   m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
+// //
+// //                   //}
+// //
+// //                   pgraphicscontext->m_pgraphics->on_end_draw();
+// //
+// //                   if (m_pgraphicsgraphics)
+// //                   {
+// //
+// // #ifndef LINUX
+// //                      m_pgraphicsgraphics->on_end_draw();
+// // #endif
+// //
+// //                   }
+// //
+// //                }
+// //
+//
+//
+//             });
+//
+//       //}
+//
+// //       auto pbuffer = m_pgraphicsgraphics;
+// //
+// //       if (pbuffer)
+// //       {
+// //
+// //          //::draw2d::lock draw2dlock(this);
+// //
+// //          _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //          //windowing::graphics_lock graphicslock(m_pwindow);
+// //
+// //          //m_pgraphics->update_buffer(rectangleWindow.size());
+// //
+// //          auto pbufferitem = pbuffer->on_begin_draw(e_graphics_draw);
+// //          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+// //
+// //          if (!pbufferitem)
+// //          {
+// //
+// //             information() << "defer_do_graphics !pbufferitem (2)";
+// //
+// //             if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+// //             {
+// //
+// //                static class ::time s_timeThisThingLastTime;
+// //
+// //                if (s_timeThisThingLastTime.elapsed() > 15_s)
+// //                {
+// //
+// //                   s_timeThisThingLastTime.Now();
+// //
+// //                   m_pacmeuserinteraction->display(::e_display_normal);
+// //
+// //                }
+// //
+// //             }
+// //
+// //             return;
+// //
+// //          }
+// //
+// //          _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //          //information() << "graphics::on_begin_draw";
+// //
+// //          slGraphics.unlock();
+// //
+// //          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+// //
+// //          if (has_destroying_flag())
+// //          {
+// //
+// //             information() << "defer_do_graphics has_destroying_flag()";
+// //
+// //             return;
+// //
+// //          }
+// //
+// //          //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+// //
+// //          pgraphicscontext->m_pgraphics = pbufferitem->g();
+// //
+// //
+// //
+// //          //#ifdef UNIVERSAL_WINDOWS
+// //          if (::is_null(pgraphicscontext->m_pgraphics) || pgraphicscontext->m_pgraphics->nok())
+// //          {
+// //
+// //             //#define SEVERITY_HIGH 5
+// //
+// //             //int iSeverity = SEVERITY_HIGH;
+// //
+// //             //for(::collection::index i = 0; i < iSeverity * 20; i++)
+// //             //{
+// //
+// //             information() << "m_pgraphics->on_begin_draw FAILED (1)";
+// //
+// //             //}
+// //
+// //             return;
+// //
+// //          }
+// //
+// //          //draw2dlock.unlock();
+// //
+// //          pgraphics->do_on_context([this, pgraphics, pbufferitem]()
+// //             {
+// //
+// //                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+// //
+// //
+// //
+// //                {
+// //
+// //                   //pgraphics->m_egraphics = e_graphics_draw;
+// //
+// //                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+// //                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+// //                   //#endif
+// //
+// //                   pgraphicscontext->m_pgraphics->payload("set_transparent") = "";
+// //
+// //                   pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+// //
+// //                   pgraphicscontext->m_pgraphics->m_pgraphicsbufferitem = pbufferitem;
+// //
+// //                   if(::is_null(m_pacmeuserinteraction))
+// //                   {
+// //
+// //                      return;
+// //
+// //                   }
+// //
+// //                   ::string strType = type(m_pacmeuserinteraction).name();
+// //
+// //                   if (strType.case_insensitive_contains("menu"))
+// //                   {
+// //
+// //                      printf_line("menu");
+// //
+// //                   }
+// //
+// //                   pgraphicscontext->m_pgraphics->on_begin_draw();
+// //
+// //                   //pgraphics->reset_clip();
+// //
+// //                   //pgraphics->reset_impact_area();
+// //
+// //                   //{
+// //
+// //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //
+// //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+// //
+// //                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+// //
+// //                   //   if (m_redrawitema.has_element())
+// //                   //   {
+// //
+// //                   //      throw "what?!?!";
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //
+// //
+// //                   //pgraphics->m_egraphics = e_graphics_layout;
+// //
+// //                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+// //                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+// //                   ////#endif
+// //
+// //                   //pgraphics->payload("set_transparent") = "";
+// //
+// //                   //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+// //
+// //                   //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+// //
+// //                   //pgraphics->on_begin_draw();
+// //
+// //                   //pgraphics->reset_clip();
+// //
+// //                   //pgraphics->set_origin(0., 0.);
+// //
+// //                   //{
+// //
+// //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+// //
+// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //
+// //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+// //
+// //                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+// //
+// //                   //   if (m_redrawitema.has_element())
+// //                   //   {
+// //
+// //                   //      throw "what?!?!";
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //
+// //
+// //                   //if (!bDraw)
+// //                   //{
+// //
+// //                   //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+// //                   //   {
+// //
+// //                   //      bDraw = true;
+// //
+// //                   //   }
+// //
+// //                   //}
+// //
+// //                   //pgraphics->m_pdraw2dhost = user_interaction();
+// //
+// //                   //pgraphics->m_puserstyle.release();
+// //
+// //                   //if (pgraphics->m_pimage)
+// //                   //{
+// //
+// //                   //   pgraphics->m_pimage->m_rectangleTag.Null();
+// //
+// //                   //   //sizeDrawn = pgraphics->m_pimage->m_size;
+// //
+// //                   //   ///sizeDrawn = user_interaction()->const_layout().design().size();
+// //
+// //                   //}
+// //
+// //                   //string strBitmapSource = payload("bitmap-source");
+// //
+// //                   //if (strBitmapSource.has_character())
+// //                   //{
+// //
+// //                   //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+// //                   //   //
+// //                   //   //            if(pbitmapsourcebuffer)
+// //                   //   //            {
+// //                   //   //
+// //                   //   //
+// //                   //   //
+// //                   //   //
+// //                   //   //            }
+// //
+// //                   //}
+// //
+// //                   if (user_interaction())
+// //                   {
+// //
+// //                      //auto r = user_interaction()->screen_rect();
+// //
+// //                      if (user_interaction()->has_finishing_flag())
+// //                      {
+// //
+// //                         informationf("::windowing::window set_finish");
+// //
+// //                      }
+// //                      else
+// //                      {
+// //
+// //                         //pgraphics->m_bDraw = bDraw;
+// //
+// //                         pgraphicscontext->m_pgraphics->m_bDraw = true;
+// //
+// //                         pgraphicscontext->m_pgraphics->m_bInheritDraw = true;
+// //
+// //                         //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+// //
+// //
+// // #ifdef MORE_LOG
+// //                         debug() << "defer_do_graphics _000TopCallOnDraw";
+// // #endif
+// //                         ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+// //
+// //                         //xxxdirectx user_interaction()->_000TopCallOnDraw(pgraphics);
+// //                         user_interaction()->_000TopCallOnDraw(pgraphicscontext->m_pgraphics);
+// //
+// //                         //pgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
+// //
+// //                         ////user_interaction()->_000CallOnDraw(pgraphics);
+// //
+// //                         //                  if (!bDraw && m_redrawa.has_element())
+// //                         //                  {
+// //                         //
+// //                         //                     synchronouslock.unlock();
+// //                         //
+// //                         //                     bDraw = true;
+// //                         //
+// //                         //                     pgraphics->m_bDraw = bDraw;
+// //                         //
+// //                         //                     user_interaction()->_000CallOnDraw(pgraphics);
+// //                         //
+// //                         //                  }
+// //
+// //                      }
+// //
+// //                      //m_rectangleUpdateBuffer = r;
+// //
+// //                      //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+// //
+// //                      if (!m_pgraphicsgraphics)
+// //                      {
+// //
+// //                         return;
+// //
+// //                      }
+// //
+// //                      m_pgraphicsgraphics->m_bNewBuffer = true;
+// //
+// //                   }
+// //                   else
+// //                   {
+// //
+// //
+// //                      information() << "defer_do_graphics !user_interaction()";
+// //
+// //                   }
+// //
+// //                   //if (pgraphics->m_pimage.ok())
+// //                   //{
+// //
+// //                   //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+// //
+// //                   //   //m_sizeDrawn = sizeDrawn;
+// //
+// //                   //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+// //
+// //                   //}
+// //
+// //                   m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
+// //
+// //                   //}
+// //
+// //                   pgraphicscontext->m_pgraphics->on_end_draw();
+// //
+// //                   if (m_pgraphicsgraphics)
+// //                   {
+// //
+// // #ifndef LINUX
+// //                      m_pgraphicsgraphics->on_end_draw();
+// // #endif
+// //
+// //                   }
+// //
+// //                }
+// //
+// //             });
+// //
+// //       }
+//
+//
+//    }
+
 
    void window::do_graphics()
    {
@@ -9315,6 +10497,13 @@ namespace windowing
          m_bDoingGraphics = false;
 
       };
+
+      if (m_pgraphicscontextDrawingFrame)
+      {
+
+         return;
+
+      }
 
       windowing_output_debug_string("windowing::window::do_graphics");
 
@@ -9344,37 +10533,17 @@ namespace windowing
 
       }
 
-      ::draw2d::graphics_pointer pgraphics;
+      debug() << "windowing::window::do_graphics";
 
-      user_interaction()->defer_do_graphics(pgraphics);
+      //::draw2d::graphics_pointer pgraphics;
 
-   }
-
-
-   void window::top_down_prefix()
-   {
-
-      user_interaction()->top_down_prefix();
-
-   }
-
-
-   //void window::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
-   //{
-
-   //   //::windowing::window_base::_001OnNcClip(pgraphics);
-
-   //}
-
-
-   void window::defer_do_graphics(::draw2d::graphics_pointer& pgraphics)
-   {
-
-      debug() << "windowing::window::defer_do_graphics";
+      //user_interaction()->defer_do_graphics(pgraphics);
 
       //{
 
-      ::string strType = ::platform::type(*user_interaction()).name();
+      auto pgraphicscontext = øcreate_new < ::draw2d::graphics_context >();
+
+      //::string strType = ::platform::type(*user_interaction()).name();
 
       if (!strType.case_insensitive_contains("main_frame"))
       {
@@ -9389,7 +10558,6 @@ namespace windowing
 
 
       {
-         
          //::draw2d::lock draw2dlock(this);
 
          auto pbuffer = m_pgraphicsgraphics;
@@ -9429,67 +10597,1126 @@ namespace windowing
 #endif
 
 
-         _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-
-         //information() << "graphics::on_begin_draw";
-
-         slGraphics.unlock();
-
-         windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
-
-         if (has_destroying_flag())
          {
+
+            _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+
+            //information() << "graphics::on_begin_draw";
+
+            slGraphics.unlock();
+
+            windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+
+            if (has_destroying_flag())
+            {
 
 #ifdef MORE_LOG
 
-            information() << "intrimpl::defer_do_graphics has_destroying_flag";
+               information() << "intrimpl::defer_do_graphics has_destroying_flag";
 
 #endif
 
-            return;
+               return;
 
-         }
+            }
 
-         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+            //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
 
-         pgraphics = pbufferitem->g();
+            pgraphicscontext->m_pgraphics = pbufferitem->g();
 
 #ifdef MORE_LOG
 
-         debug() << "intrimpl::defer_do_graphics got graphics g";
+            debug() << "intrimpl::defer_do_graphics got graphics g";
 
 #endif
 
-         //#ifdef UNIVERSAL_WINDOWS
-         if (::is_null(pgraphics) || pgraphics->nok())
-         {
+            //#ifdef UNIVERSAL_WINDOWS
+            if (::is_null(pgraphicscontext->m_pgraphics) || pgraphicscontext->m_pgraphics->nok())
+            {
 
-            //#define SEVERITY_HIGH 5
+               //#define SEVERITY_HIGH 5
 
-            //int iSeverity = SEVERITY_HIGH;
+               //int iSeverity = SEVERITY_HIGH;
 
-            //for(::collection::index i = 0; i < iSeverity * 20; i++)
-            //{
+               //for(::collection::index i = 0; i < iSeverity * 20; i++)
+               //{
 
-            informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
+               informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
 
-            //}
+               //}
 
-            return;
+               return;
 
+            }
+
+            pgraphicscontext->m_pgraphics->m_puserinteraction = m_pacmeuserinteraction;
+
+            pgraphicscontext->m_pbufferitem = pbufferitem;
+
+            pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = pbuffer;
+
+
+
+            m_pgraphicscontextDrawingFrame = pgraphicscontext;
          }
-
-         pgraphics->m_puserinteraction = m_pacmeuserinteraction;
+      }
 
          //draw2dlock.unlock();
 
-         pgraphics->do_on_context([this, pbuffer, &pgraphics, &pbufferitem]()
-            {
+         m_pgraphicscontextDrawingFrame->m_pgraphics->send_on_context(m_pgraphicscontextDrawingFrame, [this]()
+         {
+            draw_frame_layout(m_pgraphicscontextDrawingFrame->m_pgraphics);
+         });
 
-               //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+            //draw_on_context();
 
-               {
+//             auto pgraphicscontext = m_pgraphicscontextDrawingFrame;
+//
+//             auto pbufferitem = pgraphicscontext->m_pbufferitem;
+//
+//             _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+//
+//                {
+//
+//                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                   //#endif
+//
+//                   pgraphicscontext->m_pgraphics->payload("set_transparent") = "";
+//
+//                   pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = pbuffer;
+//
+//                   pgraphicscontext->m_pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+// #ifdef MORE_LOG
+//
+//                   debug() << "intrimpl::defer_do_graphics Going to call pgraphics->on_begin_draw";
+//
+// #endif
+//
+//
+//
+//                   pgraphicscontext->m_pgraphics->on_begin_draw();
+//
+//                   pgraphicscontext->m_pgraphics->reset_clip();
+//
+//                   pgraphicscontext->m_pgraphics->reset_impact_area();
+//
+//                   //{
+//
+//                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                   //   if (m_redrawitema.has_element())
+//                   //   {
+//
+//                   //      throw "what?!?!";
+//
+//                   //   }
+//
+//                   //}
+//
+//
+//
+//                   //pgraphics->m_egraphics = e_graphics_layout;
+//
+//                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                   //#endif
+//
+//                   //pgraphics->payload("set_transparent") = "";
+//
+//                   //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+//
+//                   //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                   //pgraphics->on_begin_draw();
+//
+//                   //pgraphics->reset_clip();
+//
+//                   //pgraphics->set_origin(0., 0.);
+//
+//
+//                   {
+//
+//                      _synchronous_lock synchronouslock(m_pmutexRedrawItem);
+//
+//                      if(!pgraphicscontext->m_pgraphics->m_puserredraw)
+//                      {
+//
+//                         øconstruct_new(pgraphicscontext->m_pgraphics->m_puserredraw);
+//
+//                         if (system()->draw2d()->graphics_context_does_full_redraw())
+//                         {
+//
+//                            pgraphicscontext->m_pgraphics->m_puserredraw->m_bEnabled = false;
+//
+//                         }
+//
+//                      }
+//
+//                      if (pgraphicscontext->m_pgraphics->m_puserredraw->m_bEnabled)
+//                      {
+//
+//                         pgraphicscontext->m_pgraphics->user_redraw()->m_pgraphics = pgraphicscontext->m_pgraphics;
+//
+//                         pgraphicscontext->m_pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                         if (m_redrawitema.has_element())
+//                         {
+//
+// #ifdef MORE_LOG
+//
+//                            information() << "intrimpl::defer_do_graphics what?!?!";
+//
+// #endif
+//
+//                            throw "what?!?!";
+//
+//                         }
+//
+//                      }
+//
+//                   }
+//
+//
+//
+//                   //if (!bDraw)
+//                   //{
+//
+//                   //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+//                   //   {
+//
+//                   //      bDraw = true;
+//
+//                   //   }
+//
+//                   //}
+//
+//                   pgraphicscontext->m_pgraphics->m_pdraw2dhost = user_interaction();
+//
+//                   pgraphicscontext->m_pgraphics->m_puserstyleGraphics.release();
+//
+//                   if (pgraphicscontext->m_pgraphics->m_pimage)
+//                   {
+//
+//                      pgraphicscontext->m_pgraphics->m_pimage->m_rectangleTag.Null();
+//
+//                      //sizeDrawn = pgraphics->m_pimage->m_size;
+//
+//                      ///sizeDrawn = user_interaction()->const_layout().design().size();
+//
+//                   }
+//
+//                   string strBitmapSource = payload("bitmap-source");
+//
+//                   if (strBitmapSource.has_character())
+//                   {
+//
+//                      //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+//                      //
+//                      //            if(pbitmapsourcebuffer)
+//                      //            {
+//                      //
+//                      //
+//                      //
+//                      //
+//                      //            }
+//
+//                   }
+//
+//                   if (user_interaction())
+//                   {
+//
+//                      //auto r = user_interaction()->screen_rect();
+//
+//                      if (user_interaction()->has_finishing_flag())
+//                      {
+//
+//                         informationf("::windowing::window set_finish");
+//
+//                      }
+//                      else
+//                      {
+//
+//                         //pgraphics->m_bDraw = bDraw;
+//
+//                         pgraphicscontext->m_pgraphics->m_bDraw = false;
+//
+//                         pgraphicscontext->m_pgraphics->m_bInheritDraw = false;
+//
+//                         //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+// #ifdef MORE_LOG
+//                         debug() << "defer_do_graphics _000TopCallOnLayout";
+// #endif
+//                         user_interaction()->_000TopCallOnLayout(pgraphicscontext->m_pgraphics);
+//
+//                         //user_interaction()->_000CallOnDraw(pgraphics);
+//
+//                         //                  if (!bDraw && m_redrawa.has_element())
+//                         //                  {
+//                         //
+//                         //                     synchronouslock.unlock();
+//                         //
+//                         //                     bDraw = true;
+//                         //
+//                         //                     pgraphics->m_bDraw = bDraw;
+//                         //
+//                         //                     user_interaction()->_000CallOnDraw(pgraphics);
+//                         //
+//                         //                  }
+//
+//                      }
+//
+//                      //m_rectangleUpdateBuffer = r;
+//
+//                      //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+//
+//                      //if (!m_pgraphics)
+//                      //{
+//
+//                      //   return;
+//
+//                      //}
+//
+//                      //m_pgraphics->m_bNewBuffer = true;
+//
+//                   }
+//
+//                   ////if (pgraphics->m_pimage.ok())
+//                   ////{
+//
+//                   ////   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+//
+//                   ////   //m_sizeDrawn = sizeDrawn;
+//
+//                   ////   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+//
+//                   ////}
+//
+//                   //m_sizeLastBuffer = pbufferitem->m_size;
+//
+//                   ////}
+//
+//                   //if (m_pgraphics)
+//                   //{
+//
+//                   //   m_pgraphics->on_end_draw();
+//
+//                   //}
+//
+//                }
+//
+             auto pbuffer = m_pgraphicsgraphics;
+//       //
+ if (pbuffer)
+ {
+//       //
+//       //    //::draw2d::lock draw2dlock(this);
+//       //
+    _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//       //
+//       //    //windowing::graphics_lock graphicslock(m_pwindow);
+//
+//          //m_pgraphics->update_buffer(rectangleWindow.size());
+//
+          auto pbufferitem = pbuffer->on_begin_draw(::e_graphics_draw);
+//          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+//
+          if (!pbufferitem)
+          {
+
+             information() << "defer_do_graphics !pbufferitem (2)";
+
+             if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+             {
+
+                static class ::time s_timeThisThingLastTime;
+
+                if (s_timeThisThingLastTime.elapsed() > 15_s)
+                {
+
+                   s_timeThisThingLastTime.Now();
+
+                   m_pacmeuserinteraction->display(::e_display_normal);
+
+                }
+
+             }
+
+             return;
+
+          }
+//
+_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//          //information() << "graphics::on_begin_draw";
+//
+slGraphics.unlock();
+//
+//          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+//
+//          if (has_destroying_flag())
+//          {
+//
+//             information() << "defer_do_graphics has_destroying_flag()";
+//
+//             return;
+//
+//          }
+//
+::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//
+//          //pgraphicscontext->m_pgraphics = pbufferitem->g();
+//
+//
+//
+//          //#ifdef UNIVERSAL_WINDOWS
+          if (::is_null(pgraphicscontext->m_pgraphics) || pgraphicscontext->m_pgraphics->nok())
+          {
+
+             //#define SEVERITY_HIGH 5
+
+             //int iSeverity = SEVERITY_HIGH;
+
+             //for(::collection::index i = 0; i < iSeverity * 20; i++)
+             //{
+
+             information() << "m_pgraphics->on_begin_draw FAILED (1)";
+
+             //}
+
+             return;
+
+          }
+
+          //draw2dlock.unlock();
+
+           pgraphics->send_on_context(m_pgraphicscontextDrawingFrame, [this]()
+              {
+
+                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+
+
+
+              draw_frame_draw(m_pgraphicscontextDrawingFrame->m_pgraphics);
+
+              m_sizeLastBuffer = m_pgraphicscontextDrawingFrame->m_pbufferitem->m_sizeBufferItemDraw;
+
+              //}
+
+              m_pgraphicscontextDrawingFrame->m_pgraphics->on_end_draw();
+
+              if (m_pgraphicsgraphics)
+              {
+
+#ifndef LINUX
+                 m_pgraphicsgraphics->on_end_draw();
+#endif
+
+              }
+
+              m_pgraphicscontextDrawingFrame.release();
+
+
+
+
+//
+//
+//
+//                {
+//
+//                   //pgraphics->m_egraphics = e_graphics_draw;
+//
+//                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                   //#endif
+//
+//                   pgraphicscontext->m_pgraphics->payload("set_transparent") = "";
+//
+//                   pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+//
+//                   pgraphicscontext->m_pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                   if(::is_null(m_pacmeuserinteraction))
+//                   {
+//
+//                      return;
+//
+//                   }
+//
+//                   ::string strType = type(m_pacmeuserinteraction).name();
+//
+//                   if (strType.case_insensitive_contains("menu"))
+//                   {
+//
+//                      printf_line("menu");
+//
+//                   }
+//
+//                   pgraphicscontext->m_pgraphics->on_begin_draw();
+//
+//                   //pgraphics->reset_clip();
+//
+//                   //pgraphics->reset_impact_area();
+//
+//                   //{
+//
+//                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                   //   if (m_redrawitema.has_element())
+//                   //   {
+//
+//                   //      throw "what?!?!";
+//
+//                   //   }
+//
+//                   //}
+//
+//
+//
+//                   //pgraphics->m_egraphics = e_graphics_layout;
+//
+//                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                   ////#endif
+//
+//                   //pgraphics->payload("set_transparent") = "";
+//
+//                   //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+//
+//                   //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                   //pgraphics->on_begin_draw();
+//
+//                   //pgraphics->reset_clip();
+//
+//                   //pgraphics->set_origin(0., 0.);
+//
+//                   //{
+//
+//                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                   //   if (m_redrawitema.has_element())
+//                   //   {
+//
+//                   //      throw "what?!?!";
+//
+//                   //   }
+//
+//                   //}
+//
+//
+//
+//                   //if (!bDraw)
+//                   //{
+//
+//                   //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+//                   //   {
+//
+//                   //      bDraw = true;
+//
+//                   //   }
+//
+//                   //}
+//
+//                   //pgraphics->m_pdraw2dhost = user_interaction();
+//
+//                   //pgraphics->m_puserstyle.release();
+//
+//                   //if (pgraphics->m_pimage)
+//                   //{
+//
+//                   //   pgraphics->m_pimage->m_rectangleTag.Null();
+//
+//                   //   //sizeDrawn = pgraphics->m_pimage->m_size;
+//
+//                   //   ///sizeDrawn = user_interaction()->const_layout().design().size();
+//
+//                   //}
+//
+//                   //string strBitmapSource = payload("bitmap-source");
+//
+//                   //if (strBitmapSource.has_character())
+//                   //{
+//
+//                   //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+//                   //   //
+//                   //   //            if(pbitmapsourcebuffer)
+//                   //   //            {
+//                   //   //
+//                   //   //
+//                   //   //
+//                   //   //
+//                   //   //            }
+//
+//                   //}
+//
+//                   if (user_interaction())
+//                   {
+//
+//                      //auto r = user_interaction()->screen_rect();
+//
+//                      if (user_interaction()->has_finishing_flag())
+//                      {
+//
+//                         informationf("::windowing::window set_finish");
+//
+//                      }
+//                      else
+//                      {
+//
+//                         //pgraphics->m_bDraw = bDraw;
+//
+//                         pgraphicscontext->m_pgraphics->m_bDraw = true;
+//
+//                         pgraphicscontext->m_pgraphics->m_bInheritDraw = true;
+//
+//                         //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+//
+//
+// #ifdef MORE_LOG
+//                         debug() << "defer_do_graphics _000TopCallOnDraw";
+// #endif
+//                         ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+//
+//                         //xxxdirectx user_interaction()->_000TopCallOnDraw(pgraphics);
+//                         user_interaction()->_000TopCallOnDraw(pgraphicscontext->m_pgraphics);
+//
+//                         //pgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
+//
+//                         ////user_interaction()->_000CallOnDraw(pgraphics);
+//
+//                         //                  if (!bDraw && m_redrawa.has_element())
+//                         //                  {
+//                         //
+//                         //                     synchronouslock.unlock();
+//                         //
+//                         //                     bDraw = true;
+//                         //
+//                         //                     pgraphics->m_bDraw = bDraw;
+//                         //
+//                         //                     user_interaction()->_000CallOnDraw(pgraphics);
+//                         //
+//                         //                  }
+//
+//                      }
+//
+//                      //m_rectangleUpdateBuffer = r;
+//
+//                      //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+//
+//                      if (!m_pgraphicsgraphics)
+//                      {
+//
+//                         return;
+//
+//                      }
+//
+//                      m_pgraphicsgraphics->m_bNewBuffer = true;
+//
+//                   }
+//                   else
+//                   {
+//
+//
+//                      information() << "defer_do_graphics !user_interaction()";
+//
+//                   }
+//
+//                   //if (pgraphics->m_pimage.ok())
+//                   //{
+//
+//                   //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+//
+//                   //   //m_sizeDrawn = sizeDrawn;
+//
+//                   //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+//
+//                   //}
+//
+//                   m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
+//
+//                   //}
+//
+//                   pgraphicscontext->m_pgraphics->on_end_draw();
+//
+//                   if (m_pgraphicsgraphics)
+//                   {
+//
+// #ifndef LINUX
+//                      m_pgraphicsgraphics->on_end_draw();
+// #endif
+//
+//                   }
+//
+//                }
+//
+
+
+            });
+
+      //}
+
+//       auto pbuffer = m_pgraphicsgraphics;
+//
+//       if (pbuffer)
+//       {
+//
+//          //::draw2d::lock draw2dlock(this);
+//
+//          _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//          //windowing::graphics_lock graphicslock(m_pwindow);
+//
+//          //m_pgraphics->update_buffer(rectangleWindow.size());
+//
+//          auto pbufferitem = pbuffer->on_begin_draw(e_graphics_draw);
+//          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+//
+//          if (!pbufferitem)
+//          {
+//
+//             information() << "defer_do_graphics !pbufferitem (2)";
+//
+//             if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+//             {
+//
+//                static class ::time s_timeThisThingLastTime;
+//
+//                if (s_timeThisThingLastTime.elapsed() > 15_s)
+//                {
+//
+//                   s_timeThisThingLastTime.Now();
+//
+//                   m_pacmeuserinteraction->display(::e_display_normal);
+//
+//                }
+//
+//             }
+//
+//             return;
+//
+//          }
+//
+//          _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//          //information() << "graphics::on_begin_draw";
+//
+//          slGraphics.unlock();
+//
+//          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+//
+//          if (has_destroying_flag())
+//          {
+//
+//             information() << "defer_do_graphics has_destroying_flag()";
+//
+//             return;
+//
+//          }
+//
+//          //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//
+//          pgraphicscontext->m_pgraphics = pbufferitem->g();
+//
+//
+//
+//          //#ifdef UNIVERSAL_WINDOWS
+//          if (::is_null(pgraphicscontext->m_pgraphics) || pgraphicscontext->m_pgraphics->nok())
+//          {
+//
+//             //#define SEVERITY_HIGH 5
+//
+//             //int iSeverity = SEVERITY_HIGH;
+//
+//             //for(::collection::index i = 0; i < iSeverity * 20; i++)
+//             //{
+//
+//             information() << "m_pgraphics->on_begin_draw FAILED (1)";
+//
+//             //}
+//
+//             return;
+//
+//          }
+//
+//          //draw2dlock.unlock();
+//
+//          pgraphics->do_on_context([this, pgraphics, pbufferitem]()
+//             {
+//
+//                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+//
+//
+//
+//                {
+//
+//                   //pgraphics->m_egraphics = e_graphics_draw;
+//
+//                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                   //#endif
+//
+//                   pgraphicscontext->m_pgraphics->payload("set_transparent") = "";
+//
+//                   pgraphicscontext->m_pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+//
+//                   pgraphicscontext->m_pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                   if(::is_null(m_pacmeuserinteraction))
+//                   {
+//
+//                      return;
+//
+//                   }
+//
+//                   ::string strType = type(m_pacmeuserinteraction).name();
+//
+//                   if (strType.case_insensitive_contains("menu"))
+//                   {
+//
+//                      printf_line("menu");
+//
+//                   }
+//
+//                   pgraphicscontext->m_pgraphics->on_begin_draw();
+//
+//                   //pgraphics->reset_clip();
+//
+//                   //pgraphics->reset_impact_area();
+//
+//                   //{
+//
+//                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                   //   if (m_redrawitema.has_element())
+//                   //   {
+//
+//                   //      throw "what?!?!";
+//
+//                   //   }
+//
+//                   //}
+//
+//
+//
+//                   //pgraphics->m_egraphics = e_graphics_layout;
+//
+//                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                   ////#endif
+//
+//                   //pgraphics->payload("set_transparent") = "";
+//
+//                   //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+//
+//                   //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                   //pgraphics->on_begin_draw();
+//
+//                   //pgraphics->reset_clip();
+//
+//                   //pgraphics->set_origin(0., 0.);
+//
+//                   //{
+//
+//                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                   //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                   //   if (m_redrawitema.has_element())
+//                   //   {
+//
+//                   //      throw "what?!?!";
+//
+//                   //   }
+//
+//                   //}
+//
+//
+//
+//                   //if (!bDraw)
+//                   //{
+//
+//                   //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+//                   //   {
+//
+//                   //      bDraw = true;
+//
+//                   //   }
+//
+//                   //}
+//
+//                   //pgraphics->m_pdraw2dhost = user_interaction();
+//
+//                   //pgraphics->m_puserstyle.release();
+//
+//                   //if (pgraphics->m_pimage)
+//                   //{
+//
+//                   //   pgraphics->m_pimage->m_rectangleTag.Null();
+//
+//                   //   //sizeDrawn = pgraphics->m_pimage->m_size;
+//
+//                   //   ///sizeDrawn = user_interaction()->const_layout().design().size();
+//
+//                   //}
+//
+//                   //string strBitmapSource = payload("bitmap-source");
+//
+//                   //if (strBitmapSource.has_character())
+//                   //{
+//
+//                   //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+//                   //   //
+//                   //   //            if(pbitmapsourcebuffer)
+//                   //   //            {
+//                   //   //
+//                   //   //
+//                   //   //
+//                   //   //
+//                   //   //            }
+//
+//                   //}
+//
+//                   if (user_interaction())
+//                   {
+//
+//                      //auto r = user_interaction()->screen_rect();
+//
+//                      if (user_interaction()->has_finishing_flag())
+//                      {
+//
+//                         informationf("::windowing::window set_finish");
+//
+//                      }
+//                      else
+//                      {
+//
+//                         //pgraphics->m_bDraw = bDraw;
+//
+//                         pgraphicscontext->m_pgraphics->m_bDraw = true;
+//
+//                         pgraphicscontext->m_pgraphics->m_bInheritDraw = true;
+//
+//                         //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+//
+//
+// #ifdef MORE_LOG
+//                         debug() << "defer_do_graphics _000TopCallOnDraw";
+// #endif
+//                         ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+//
+//                         //xxxdirectx user_interaction()->_000TopCallOnDraw(pgraphics);
+//                         user_interaction()->_000TopCallOnDraw(pgraphicscontext->m_pgraphics);
+//
+//                         //pgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
+//
+//                         ////user_interaction()->_000CallOnDraw(pgraphics);
+//
+//                         //                  if (!bDraw && m_redrawa.has_element())
+//                         //                  {
+//                         //
+//                         //                     synchronouslock.unlock();
+//                         //
+//                         //                     bDraw = true;
+//                         //
+//                         //                     pgraphics->m_bDraw = bDraw;
+//                         //
+//                         //                     user_interaction()->_000CallOnDraw(pgraphics);
+//                         //
+//                         //                  }
+//
+//                      }
+//
+//                      //m_rectangleUpdateBuffer = r;
+//
+//                      //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+//
+//                      if (!m_pgraphicsgraphics)
+//                      {
+//
+//                         return;
+//
+//                      }
+//
+//                      m_pgraphicsgraphics->m_bNewBuffer = true;
+//
+//                   }
+//                   else
+//                   {
+//
+//
+//                      information() << "defer_do_graphics !user_interaction()";
+//
+//                   }
+//
+//                   //if (pgraphics->m_pimage.ok())
+//                   //{
+//
+//                   //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+//
+//                   //   //m_sizeDrawn = sizeDrawn;
+//
+//                   //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+//
+//                   //}
+//
+//                   m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
+//
+//                   //}
+//
+//                   pgraphicscontext->m_pgraphics->on_end_draw();
+//
+//                   if (m_pgraphicsgraphics)
+//                   {
+//
+// #ifndef LINUX
+//                      m_pgraphicsgraphics->on_end_draw();
+// #endif
+//
+//                   }
+//
+//                }
+//
+//             });
+//
+       }
+
+
+   }
+
+
+
+   void window::draw_on_context()
+   {
+
+      auto pgraphicscontext = m_pgraphicscontextDrawingFrame;
+
+      draw_frame(pgraphicscontext);
+
+   }
+
+
+   void window::draw_frame(::draw2d::graphics_context * pgraphicscontext)
+   {
+
+      //auto pgraphicscontext = m_pgraphicscontextDrawingFrame;
+
+      auto pbufferitem = pgraphicscontext->m_pbufferitem;
+
+      _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+      //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+
+      auto pgraphics = pgraphicscontext->m_pgraphics;
+
+      draw_frame_layout(pgraphics);
+
+      //             auto pbuffer = m_pgraphicsgraphics;
+      //
+      // if (pbuffer)
+      // {
+      //
+      //    //::draw2d::lock draw2dlock(this);
+      //
+      //    _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      //
+      //    //windowing::graphics_lock graphicslock(m_pwindow);
+
+         //m_pgraphics->update_buffer(rectangleWindow.size());
+
+         pbufferitem->switch_to_draw();
+
+
+      draw_frame_draw(pgraphics);
+         //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+
+         // if (!pbufferitem)
+         // {
+         //
+         //    information() << "defer_do_graphics !pbufferitem (2)";
+         //
+         //    if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+         //    {
+         //
+         //       static class ::time s_timeThisThingLastTime;
+         //
+         //       if (s_timeThisThingLastTime.elapsed() > 15_s)
+         //       {
+         //
+         //          s_timeThisThingLastTime.Now();
+         //
+         //          m_pacmeuserinteraction->display(::e_display_normal);
+         //
+         //       }
+         //
+         //    }
+         //
+         //    return;
+         //
+         // }
+
+         //_synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+         //information() << "graphics::on_begin_draw";
+
+         //slGraphics.unlock();
+
+
+      m_sizeLastBuffer = pgraphicscontext->m_pbufferitem->m_sizeBufferItemDraw;
+
+      //}
+
+      pgraphicscontext->m_pgraphics->on_end_draw();
+
+      if (m_pgraphicsgraphics)
+      {
+
+#ifndef LINUX
+         m_pgraphicsgraphics->on_end_draw();
+#endif
+
+      }
+
+
+   }
+
+
+   void window::draw_frame_layout(draw2d::graphics* pgraphics)
+   {
+                     //{
 
                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
                   //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
@@ -9497,17 +11724,13 @@ namespace windowing
 
                   pgraphics->payload("set_transparent") = "";
 
-                  pgraphics->m_pgraphicsgraphics = pbuffer;
-
-                  pgraphics->m_pgraphicsbufferitem = pbufferitem;
+                  //pgraphics->m_pgraphicsbufferitem = pbufferitem;
 
 #ifdef MORE_LOG
 
                   debug() << "intrimpl::defer_do_graphics Going to call pgraphics->on_begin_draw";
 
 #endif
-
-
 
                   pgraphics->on_begin_draw();
 
@@ -9559,8 +11782,10 @@ namespace windowing
 
                      _synchronous_lock synchronouslock(m_pmutexRedrawItem);
 
-                     if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
+                     if(!pgraphics->m_puserredraw)
                      {
+
+                        øconstruct_new(pgraphics->m_puserredraw);
 
                         if (system()->draw2d()->graphics_context_does_full_redraw())
                         {
@@ -9665,7 +11890,12 @@ namespace windowing
 #ifdef MORE_LOG
                         debug() << "defer_do_graphics _000TopCallOnLayout";
 #endif
-                        user_interaction()->_000TopCallOnLayout(pgraphics);
+
+                        ::draw2d::graphics_pointer pgraphicspointer;
+
+                        pgraphicspointer = pgraphics;
+
+                        user_interaction()->_000TopCallOnLayout(pgraphicspointer);
 
                         //user_interaction()->_000CallOnDraw(pgraphics);
 
@@ -9721,61 +11951,16 @@ namespace windowing
 
                   //}
 
-               }
+               // }
 
-            });
+   }
 
-      }
 
-      auto pbuffer = m_pgraphicsgraphics;
-
-      if (pbuffer)
-      {
-
-         //::draw2d::lock draw2dlock(this);
-
-         _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-         //windowing::graphics_lock graphicslock(m_pwindow);
-
-         //m_pgraphics->update_buffer(rectangleWindow.size());
+   void window::draw_frame_draw(draw2d::graphics* pgraphics)
+   {
 
 
 
-         auto pbufferitem = pbuffer->on_begin_draw(e_graphics_draw);
-         //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
-
-         if (!pbufferitem)
-         {
-
-            information() << "defer_do_graphics !pbufferitem (2)";
-
-            if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
-            {
-
-               static class ::time s_timeThisThingLastTime;
-
-               if (s_timeThisThingLastTime.elapsed() > 15_s)
-               {
-
-                  s_timeThisThingLastTime.Now();
-
-                  m_pacmeuserinteraction->display(::e_display_normal);
-
-               }
-
-            }
-
-            return;
-
-         }
-
-         _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-
-         //information() << "graphics::on_begin_draw";
-
-         slGraphics.unlock();
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
 
@@ -9790,9 +11975,7 @@ namespace windowing
 
          //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
 
-         pgraphics = pbufferitem->g();
-
-
+         //pgraphicscontext->m_pgraphics = pbufferitem->g();
 
          //#ifdef UNIVERSAL_WINDOWS
          if (::is_null(pgraphics) || pgraphics->nok())
@@ -9815,14 +11998,14 @@ namespace windowing
 
          //draw2dlock.unlock();
 
-         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
-            {
+         // pgraphics->do_on_context([this, pgraphics, pbufferitem]()
+         //    {
 
                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
 
 
 
-               {
+               //{
 
                   //pgraphics->m_egraphics = e_graphics_draw;
 
@@ -9832,9 +12015,16 @@ namespace windowing
 
                   pgraphics->payload("set_transparent") = "";
 
-                  pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+                  //pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
-                  pgraphics->m_pgraphicsbufferitem = pbufferitem;
+                  ///pgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+                  if(::is_null(m_pacmeuserinteraction))
+                  {
+
+                     return;
+
+                  }
 
                   ::string strType = type(m_pacmeuserinteraction).name();
 
@@ -9982,9 +12172,12 @@ namespace windowing
                         debug() << "defer_do_graphics _000TopCallOnDraw";
 #endif
                         ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+                        ///
+                        ///
+                        ::draw2d::graphics_pointer pgraphicspointer(pgraphics);
 
                         //xxxdirectx user_interaction()->_000TopCallOnDraw(pgraphics);
-                        user_interaction()->_000TopCallOnDraw(pgraphics);
+                        user_interaction()->_000TopCallOnDraw(pgraphicspointer);
 
                         //pgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
 
@@ -10038,28 +12231,731 @@ namespace windowing
 
                   //}
 
-                  m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
 
-                  //}
+               //}
 
-                  pgraphics->on_end_draw();
-
-                  if (m_pgraphicsgraphics)
-                  {
-
-#ifndef LINUX
-                     m_pgraphicsgraphics->on_end_draw();
-#endif
-
-                  }
-
-               }
-
-            });
-
-      }
 
    }
+
+
+   void window::top_down_prefix()
+   {
+
+      user_interaction()->top_down_prefix();
+
+   }
+
+
+   //void window::_001OnNcClip(::draw2d::graphics_pointer & pgraphics)
+   //{
+
+   //   //::windowing::window_base::_001OnNcClip(pgraphics);
+
+   //}
+
+
+//   void window::do_graphics(::draw2d::graphics_pointer& pgraphics)
+//   {
+//
+//      debug() << "windowing::window::defer_do_graphics";
+//
+//      //{
+//
+//      ::string strType = ::platform::type(*user_interaction()).name();
+//
+//      if (!strType.case_insensitive_contains("main_frame"))
+//      {
+//
+//         //information() << "not main_frame";
+//
+//      }
+//
+//      //user_interaction()->top_down_prefix();
+//
+//      //user_interaction()->layout_to_design();
+//
+//
+//      {
+//         
+//         //::draw2d::lock draw2dlock(this);
+//
+//         auto pbuffer = m_pgraphicsgraphics;
+//
+//         _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//         //windowing::graphics_lock graphicslock(m_pwindow);
+//
+//         //m_pgraphics->update_buffer(rectangleWindow.size());
+//
+//#ifdef MORE_LOG
+//
+//         debug() << "intrimpl::defer_do_graphics on_begin_draw";
+//
+//#endif
+//
+//         auto pbufferitem = pbuffer->on_begin_draw(e_graphics_layout);
+//         //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+//
+//         if (!pbufferitem)
+//         {
+//
+//#ifdef MORE_LOG
+//
+//            information() << "intrimpl::defer_do_graphics !pbufferitem";
+//
+//#endif
+//
+//            return;
+//
+//         }
+//
+//#ifdef MORE_LOG
+//
+//         debug() << "intrimpl::defer_do_graphics on_begin_draw END";
+//
+//#endif
+//
+//
+//         _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//
+//         //information() << "graphics::on_begin_draw";
+//
+//         slGraphics.unlock();
+//
+//         windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+//
+//         if (has_destroying_flag())
+//         {
+//
+//#ifdef MORE_LOG
+//
+//            information() << "intrimpl::defer_do_graphics has_destroying_flag";
+//
+//#endif
+//
+//            return;
+//
+//         }
+//
+//         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//
+//         pgraphics = pbufferitem->g();
+//
+//#ifdef MORE_LOG
+//
+//         debug() << "intrimpl::defer_do_graphics got graphics g";
+//
+//#endif
+//
+//         //#ifdef UNIVERSAL_WINDOWS
+//         if (::is_null(pgraphics) || pgraphics->nok())
+//         {
+//
+//            //#define SEVERITY_HIGH 5
+//
+//            //int iSeverity = SEVERITY_HIGH;
+//
+//            //for(::collection::index i = 0; i < iSeverity * 20; i++)
+//            //{
+//
+//            informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
+//
+//            //}
+//
+//            return;
+//
+//         }
+//
+//         pgraphics->m_puserinteraction = m_pacmeuserinteraction;
+//
+//         //draw2dlock.unlock();
+//
+//         pgraphics->do_on_context([this, pbuffer, &pgraphics, &pbufferitem]()
+//            {
+//
+//               //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+//
+//               {
+//
+//                  //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                  //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                  //#endif
+//
+//                  pgraphics->payload("set_transparent") = "";
+//
+//                  pgraphics->m_pgraphicsgraphics = pbuffer;
+//
+//                  pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//#ifdef MORE_LOG
+//
+//                  debug() << "intrimpl::defer_do_graphics Going to call pgraphics->on_begin_draw";
+//
+//#endif
+//
+//
+//
+//                  pgraphics->on_begin_draw();
+//
+//                  pgraphics->reset_clip();
+//
+//                  pgraphics->reset_impact_area();
+//
+//                  //{
+//
+//                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                  //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                  //   if (m_redrawitema.has_element())
+//                  //   {
+//
+//                  //      throw "what?!?!";
+//
+//                  //   }
+//
+//                  //}
+//
+//
+//
+//                  //pgraphics->m_egraphics = e_graphics_layout;
+//
+//                  //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                  //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                  //#endif
+//
+//                  //pgraphics->payload("set_transparent") = "";
+//
+//                  //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+//
+//                  //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                  //pgraphics->on_begin_draw();
+//
+//                  //pgraphics->reset_clip();
+//
+//                  //pgraphics->set_origin(0., 0.);
+//
+//
+//                  {
+//
+//                     _synchronous_lock synchronouslock(m_pmutexRedrawItem);
+//                     
+//                     if(!pgraphics->m_puserredraw)
+//                     {
+//                        
+//                        øconstruct_new(pgraphics->m_puserredraw);
+//                        
+//                        if (system()->draw2d()->graphics_context_does_full_redraw())
+//                        {
+//                           
+//                           pgraphics->m_puserredraw->m_bEnabled = false;
+//                           
+//                        }
+//                        
+//                     }
+//
+//                     if (pgraphics->m_puserredraw->m_bEnabled)
+//                     {
+//
+//                        pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                        pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                        if (m_redrawitema.has_element())
+//                        {
+//
+//#ifdef MORE_LOG
+//
+//                           information() << "intrimpl::defer_do_graphics what?!?!";
+//
+//#endif
+//
+//                           throw "what?!?!";
+//
+//                        }
+//
+//                     }
+//
+//                  }
+//
+//
+//
+//                  //if (!bDraw)
+//                  //{
+//
+//                  //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+//                  //   {
+//
+//                  //      bDraw = true;
+//
+//                  //   }
+//
+//                  //}
+//
+//                  pgraphics->m_pdraw2dhost = user_interaction();
+//
+//                  pgraphics->m_puserstyleGraphics.release();
+//
+//                  if (pgraphics->m_pimage)
+//                  {
+//
+//                     pgraphics->m_pimage->m_rectangleTag.Null();
+//
+//                     //sizeDrawn = pgraphics->m_pimage->m_size;
+//
+//                     ///sizeDrawn = user_interaction()->const_layout().design().size();
+//
+//                  }
+//
+//                  string strBitmapSource = payload("bitmap-source");
+//
+//                  if (strBitmapSource.has_character())
+//                  {
+//
+//                     //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+//                     //
+//                     //            if(pbitmapsourcebuffer)
+//                     //            {
+//                     //
+//                     //
+//                     //
+//                     //
+//                     //            }
+//
+//                  }
+//
+//                  if (user_interaction())
+//                  {
+//
+//                     //auto r = user_interaction()->screen_rect();
+//
+//                     if (user_interaction()->has_finishing_flag())
+//                     {
+//
+//                        informationf("::windowing::window set_finish");
+//
+//                     }
+//                     else
+//                     {
+//
+//                        //pgraphics->m_bDraw = bDraw;
+//
+//                        pgraphics->m_bDraw = false;
+//
+//                        pgraphics->m_bInheritDraw = false;
+//
+//                        //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+//#ifdef MORE_LOG
+//                        debug() << "defer_do_graphics _000TopCallOnLayout";
+//#endif
+//                        user_interaction()->_000TopCallOnLayout(pgraphics);
+//
+//                        //user_interaction()->_000CallOnDraw(pgraphics);
+//
+//                        //                  if (!bDraw && m_redrawa.has_element())
+//                        //                  {
+//                        //
+//                        //                     synchronouslock.unlock();
+//                        //
+//                        //                     bDraw = true;
+//                        //
+//                        //                     pgraphics->m_bDraw = bDraw;
+//                        //
+//                        //                     user_interaction()->_000CallOnDraw(pgraphics);
+//                        //
+//                        //                  }
+//
+//                     }
+//
+//                     //m_rectangleUpdateBuffer = r;
+//
+//                     //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+//
+//                     //if (!m_pgraphics)
+//                     //{
+//
+//                     //   return;
+//
+//                     //}
+//
+//                     //m_pgraphics->m_bNewBuffer = true;
+//
+//                  }
+//
+//                  ////if (pgraphics->m_pimage.ok())
+//                  ////{
+//
+//                  ////   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+//
+//                  ////   //m_sizeDrawn = sizeDrawn;
+//
+//                  ////   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+//
+//                  ////}
+//
+//                  //m_sizeLastBuffer = pbufferitem->m_size;
+//
+//                  ////}
+//
+//                  //if (m_pgraphics)
+//                  //{
+//
+//                  //   m_pgraphics->on_end_draw();
+//
+//                  //}
+//
+//               }
+//
+//            });
+//
+//      }
+//
+//      auto pbuffer = m_pgraphicsgraphics;
+//
+//      if (pbuffer)
+//      {
+//
+//         //::draw2d::lock draw2dlock(this);
+//
+//         _synchronous_lock slGraphics(pbuffer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//         //windowing::graphics_lock graphicslock(m_pwindow);
+//
+//         //m_pgraphics->update_buffer(rectangleWindow.size());
+//
+//
+//
+//         auto pbufferitem = pbuffer->on_begin_draw(e_graphics_draw);
+//         //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
+//
+//         if (!pbufferitem)
+//         {
+//
+//            information() << "defer_do_graphics !pbufferitem (2)";
+//
+//            if (this->get_window_rectangle().size() < m_pacmeuserinteraction->get_window_minimum_size())
+//            {
+//
+//               static class ::time s_timeThisThingLastTime;
+//
+//               if (s_timeThisThingLastTime.elapsed() > 15_s)
+//               {
+//
+//                  s_timeThisThingLastTime.Now();
+//
+//                  m_pacmeuserinteraction->display(::e_display_normal);
+//
+//               }
+//
+//            }
+//
+//            return;
+//
+//         }
+//
+//         _synchronous_lock synchronouslock(pbufferitem->m_pmutex, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//
+//         //information() << "graphics::on_begin_draw";
+//
+//         slGraphics.unlock();
+//
+//         windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");
+//
+//         if (has_destroying_flag())
+//         {
+//
+//            information() << "defer_do_graphics has_destroying_flag()";
+//
+//            return;
+//
+//         }
+//
+//         //::pointer < ::draw2d::graphics > pgraphics = pbufferitem->g();
+//
+//         pgraphics = pbufferitem->g();
+//
+//
+//
+//         //#ifdef UNIVERSAL_WINDOWS
+//         if (::is_null(pgraphics) || pgraphics->nok())
+//         {
+//
+//            //#define SEVERITY_HIGH 5
+//
+//            //int iSeverity = SEVERITY_HIGH;
+//
+//            //for(::collection::index i = 0; i < iSeverity * 20; i++)
+//            //{
+//
+//            information() << "m_pgraphics->on_begin_draw FAILED (1)";
+//
+//            //}
+//
+//            return;
+//
+//         }
+//
+//         //draw2dlock.unlock();
+//
+//         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
+//            {
+//
+//               //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+//
+//
+//
+//               {
+//
+//                  //pgraphics->m_egraphics = e_graphics_draw;
+//
+//                  //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                  //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                  //#endif
+//
+//                  pgraphics->payload("set_transparent") = "";
+//
+//                  pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+//
+//                  pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                  if(::is_null(m_pacmeuserinteraction))
+//                  {
+//                     
+//                     return;
+//                     
+//                  }
+//
+//                  ::string strType = type(m_pacmeuserinteraction).name();
+//
+//                  if (strType.case_insensitive_contains("menu"))
+//                  {
+//
+//                     printf_line("menu");
+//
+//                  }
+//
+//                  pgraphics->on_begin_draw();
+//
+//                  //pgraphics->reset_clip();
+//
+//                  //pgraphics->reset_impact_area();
+//
+//                  //{
+//
+//                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                  //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                  //   if (m_redrawitema.has_element())
+//                  //   {
+//
+//                  //      throw "what?!?!";
+//
+//                  //   }
+//
+//                  //}
+//
+//
+//
+//                  //pgraphics->m_egraphics = e_graphics_layout;
+//
+//                  //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+//                  //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+//                  ////#endif
+//
+//                  //pgraphics->payload("set_transparent") = "";
+//
+//                  //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+//
+//                  //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+//
+//                  //pgraphics->on_begin_draw();
+//
+//                  //pgraphics->reset_clip();
+//
+//                  //pgraphics->set_origin(0., 0.);
+//
+//                  //{
+//
+//                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//
+//                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+//
+//                  //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+//
+//                  //   if (m_redrawitema.has_element())
+//                  //   {
+//
+//                  //      throw "what?!?!";
+//
+//                  //   }
+//
+//                  //}
+//
+//
+//
+//                  //if (!bDraw)
+//                  //{
+//
+//                  //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+//                  //   {
+//
+//                  //      bDraw = true;
+//
+//                  //   }
+//
+//                  //}
+//
+//                  //pgraphics->m_pdraw2dhost = user_interaction();
+//
+//                  //pgraphics->m_puserstyle.release();
+//
+//                  //if (pgraphics->m_pimage)
+//                  //{
+//
+//                  //   pgraphics->m_pimage->m_rectangleTag.Null();
+//
+//                  //   //sizeDrawn = pgraphics->m_pimage->m_size;
+//
+//                  //   ///sizeDrawn = user_interaction()->const_layout().design().size();
+//
+//                  //}
+//
+//                  //string strBitmapSource = payload("bitmap-source");
+//
+//                  //if (strBitmapSource.has_character())
+//                  //{
+//
+//                  //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+//                  //   //
+//                  //   //            if(pbitmapsourcebuffer)
+//                  //   //            {
+//                  //   //
+//                  //   //
+//                  //   //
+//                  //   //
+//                  //   //            }
+//
+//                  //}
+//
+//                  if (user_interaction())
+//                  {
+//
+//                     //auto r = user_interaction()->screen_rect();
+//
+//                     if (user_interaction()->has_finishing_flag())
+//                     {
+//
+//                        informationf("::windowing::window set_finish");
+//
+//                     }
+//                     else
+//                     {
+//
+//                        //pgraphics->m_bDraw = bDraw;
+//
+//                        pgraphics->m_bDraw = true;
+//
+//                        pgraphics->m_bInheritDraw = true;
+//
+//                        //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+//
+//
+//#ifdef MORE_LOG
+//                        debug() << "defer_do_graphics _000TopCallOnDraw";
+//#endif
+//                        ///xxxopengl  user_interaction()->_000TopCallOnDraw(pgraphics);
+//
+//                        //xxxdirectx user_interaction()->_000TopCallOnDraw(pgraphics);
+//                        user_interaction()->_000TopCallOnDraw(pgraphics);
+//
+//                        //pgraphics->fill_solid_rectangle({ 0., 0., 100., 100. }, ::argb(0.5, 0.5, 0.8, 0.75));
+//
+//                        ////user_interaction()->_000CallOnDraw(pgraphics);
+//
+//                        //                  if (!bDraw && m_redrawa.has_element())
+//                        //                  {
+//                        //
+//                        //                     synchronouslock.unlock();
+//                        //
+//                        //                     bDraw = true;
+//                        //
+//                        //                     pgraphics->m_bDraw = bDraw;
+//                        //
+//                        //                     user_interaction()->_000CallOnDraw(pgraphics);
+//                        //
+//                        //                  }
+//
+//                     }
+//
+//                     //m_rectangleUpdateBuffer = r;
+//
+//                     //informationf("PrintBuffer (%d, %d)",  r.right, r.bottom);
+//
+//                     if (!m_pgraphicsgraphics)
+//                     {
+//
+//                        return;
+//
+//                     }
+//
+//                     m_pgraphicsgraphics->m_bNewBuffer = true;
+//
+//                  }
+//                  else
+//                  {
+//
+//
+//                     information() << "defer_do_graphics !user_interaction()";
+//
+//                  }
+//
+//                  //if (pgraphics->m_pimage.ok())
+//                  //{
+//
+//                  //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+//
+//                  //   //m_sizeDrawn = sizeDrawn;
+//
+//                  //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+//
+//                  //}
+//
+//                  m_sizeLastBuffer = pbufferitem->m_sizeBufferItemDraw;
+//
+//                  //}
+//
+//                  pgraphics->on_end_draw();
+//
+//                  if (m_pgraphicsgraphics)
+//                  {
+//
+//#ifndef LINUX
+//                     m_pgraphicsgraphics->on_end_draw();
+//#endif
+//
+//                  }
+//
+//               }
+//
+//            });
+//
+//      }
+//
+//   }
 
 
    //void window::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)

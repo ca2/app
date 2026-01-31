@@ -1,5 +1,6 @@
 // Created by camilo on 2025-06-12 20:58 <3ThomasBorregaardSørensen!!
 #pragma once
+#include "acme/parallelization/manual_reset_happening.h"
 
 
 namespace gpu
@@ -20,13 +21,23 @@ namespace gpu
       ::pointer_array <::gpu::texture >    m_texturea;
       ::pointer_array <::gpu::texture >    m_textureaSource;
       ::pointer < ::gpu::frame > m_pgpuframe;
+      ::pointer < ::gpu::fence > m_pgpufence;
+      ::pointer < ::gpu::semaphore > m_pgpusemaphoreSignal;
       //::comptr < ID3D12Resource > m_presource;
+      ///bool m_bFinished;
+      ::pointer < ::manual_reset_happening > m_pmanualresethappeningFinished;
 
       ::pointer_array<command_buffer>	 m_commandbufferaLayer;
+      class ::time m_timeStart;
+      class ::time m_timeEnd;
+      class ::time m_timeDuration;
 
 
       layer();
       ~layer() override;
+
+
+      virtual ::manual_reset_happening * finished_manual_reset_happening();
 
       
       virtual ::gpu::command_buffer* getCurrentCommandBuffer4();
@@ -41,6 +52,7 @@ namespace gpu
 
       virtual void layer_start();
       virtual void layer_end();
+      virtual void layer_on_after_submit();
 
 
       ::pointer < ::gpu::texture > & texture();

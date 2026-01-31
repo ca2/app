@@ -8,6 +8,29 @@
 #pragma once
 
 
+/// By Camilo, 2026-01-18 18:30 <3ThomasBorregaardSørensen!!
+/// When I was implementing Referencing Debugging Folding (Allocation Tracking),
+/// I had a resolution about having particle members (member with classes that
+/// inherit from particle stored in the class as member and not as pointer or smart pointer
+/// member). But I forgot what the resolution was.
+/// Maybe I find the resolution later. Either written explicitly or implicitly deductable
+/// by some code.
+/// The problem is that is not currently possible using C++ i have current knowledge of,
+/// to know whether the object is being allocated in the heap or as a member of a parent
+/// object. As part of this Referencing Debugging implementation it is only possible to
+/// detect a heap allocation. As allocatring tracking was implemented to enable
+/// referencing debugging folding, every particle constructed during parent object construction would be
+/// folded as allocation within this parent object, even if the constructor
+/// of this descendant object is not allocated in the heap.
+/// I can detect heap allocation, calculate a range where it will affect, but it is useful
+/// solely for final parent allocation. All particle members constructors would be called
+/// before the final parent constructor. So there is a member that is of thread_local
+/// t_bStartConstructHeapAllocation.... that makes wrong assumption that member constructor
+/// is called after parent constructor.
+/// Current conclusion: Particle members cannot be allocated by members, but by pointer or
+/// smart pointer members.
+
+
 #define __FILE_LINE__  __FILE__ "(" MAKE_STRING(__LINE__) ")"
 #define __FUNCTION_LINE__  __FUNCTION__, " (" MAKE_STRING(__LINE__) ")"
 #define __FUNCTION_FILE_LINE__  __FUNCTION__, __FILE__ "(" MAKE_STRING(__LINE__) ")"

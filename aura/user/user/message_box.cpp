@@ -361,7 +361,9 @@ namespace user
 
       øconstruct(pgraphics);
 
-      pgraphics->create_memory_graphics();
+      auto sizeModernOnePixel = ::int_size{ 1920, 1080 };
+
+      pgraphics->create_memory_graphics(sizeModernOnePixel);
 
       pgraphics->m_pdraw2dhost = this;
 

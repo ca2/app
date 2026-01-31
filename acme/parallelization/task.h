@@ -167,7 +167,53 @@ public:
 
 
    class ::time                                    m_timeSample;
-
+   
+   class finishing :
+   virtual public ::particle
+   {
+   public:
+      
+      
+      
+      
+      
+      class ::time m_timeFinishing;
+      
+      finishing()
+      {
+         ping();
+      }
+      ~finishing()
+      {
+         
+      }
+      
+      bool has_finishing_timed_out(const class ::time & timeTimeout)
+      {
+         
+         if(m_timeFinishing.elapsed() > timeTimeout)
+         {
+          
+            return true;
+            
+         }
+         
+         return false;
+         
+      }
+   
+      void ping()
+      {
+         
+         m_timeFinishing.Now();
+         
+      }
+      
+   };
+   
+   ::pointer < finishing > m_pfinishing;
+   //bool m_bDetectedHasFinishingFlag = false;
+   
    //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
@@ -328,6 +374,8 @@ public:
    
    
    virtual ::locale * locale();
+   
+   virtual bool has_dependant_tasks() const;
 
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);

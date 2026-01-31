@@ -10,7 +10,7 @@ namespace write_text
 
 
    class glyph_set :
-      public array<glyph, glyph &>
+      public pointer_array<glyph>
    {
    public:
 
@@ -20,7 +20,7 @@ namespace write_text
       virtual ~glyph_set();
 
 
-      virtual ::collection::index add(glyph & glyph);
+      virtual ::collection::index add(glyph * pglyph);
 
       void quick_sort();
 

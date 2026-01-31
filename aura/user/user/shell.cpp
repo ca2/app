@@ -660,9 +660,13 @@ namespace user
    shell::enum_folder shell::get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath)
    {
 
-      wstring wstr(scopedstrPath);
-
-      return get_folder_type(pparticle, wstr);
+      //wstring wstr(scopedstrPath);
+      
+      //return get_folder_type(pparticle, wstr);
+      
+      throw ::interface_only();
+      
+      return shell::e_folder_none;
 
    }
 

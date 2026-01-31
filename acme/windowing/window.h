@@ -32,6 +32,15 @@ namespace acme
    namespace windowing
    {
 
+   
+   class gpu_context_render_frame :
+   virtual public particle
+   {
+   public:
+      
+      virtual void on_gpu_context_render_frame(int w, int h) = 0;
+      
+   };
 
       class CLASS_DECL_ACME window :
          virtual public ::user::element
@@ -40,7 +49,8 @@ namespace acme
       public:
 
          ::pointer_array < ::exception >     m_exceptiona;
-
+::pointer < ::acme::windowing::gpu_context_render_frame >
+         m_pgpucontextrenderframe;
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
@@ -88,6 +98,7 @@ namespace acme
          ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
 
          long                                               m_lX11NativeVisualId;
+         int                                                m_lX11MapNotify = -1;
 
 
 
@@ -422,6 +433,10 @@ namespace acme
 
          virtual void get_os_window_handle(void *p, int iSize);
 
+         virtual void on_gpu_context_render_frame(int w, int h);
+         
+         virtual void _lock_window_gpu_context();
+         virtual void _unlock_window_gpu_context();
 
       };
 

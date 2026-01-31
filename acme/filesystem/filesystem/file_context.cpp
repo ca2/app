@@ -1490,7 +1490,7 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = øallocate read_only_memory(block);
+      auto pmemory = øallocate ::make_particle1 < read_only_memory >(block);
 
       auto pfile = øallocate::memory_file(pmemory);
 

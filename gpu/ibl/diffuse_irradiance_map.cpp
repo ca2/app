@@ -97,7 +97,7 @@ namespace gpu
 
          textureflags.m_bRenderTarget = true;
 
-         m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes, textureflags);
+         m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext, textureattributes, textureflags);
 
          //m_ptextureDiffuseIrradianceCubemap->initialize_mipmap_cubemap_texture(
            // m_pgpucontext->m_pgpurenderer, ::int_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});

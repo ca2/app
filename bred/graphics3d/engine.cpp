@@ -18,6 +18,7 @@
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
@@ -97,6 +98,8 @@ namespace graphics3d
       auto prenderer = pgpucontext->m_pgpurenderer.m_p;
 
       //prenderer->on_new_frame();
+      
+      ::gpu::context_lock contextlock(pgpucontext);
 
       if (auto pframe = prenderer->beginFrame())
       {
@@ -907,15 +910,15 @@ namespace graphics3d
 
       if (!m_rectanglePlacementNew.is_empty())
       {
+         
+         auto wNew = m_rectanglePlacementNew.width();
+         
+         auto hNew = m_rectanglePlacementNew.height();
 
          if (m_rectanglePlacementNew != m_rectanglePlacement)
          {
 
             m_rectanglePlacement = m_rectanglePlacementNew;
-
-            auto pcontext = gpu_context();
-
-            pcontext->set_placement(m_rectanglePlacement);
 
             defer_update_engine(m_rectanglePlacement);
 
@@ -968,7 +971,6 @@ namespace graphics3d
 
       }
 
-
    }
 
 
@@ -1011,6 +1013,8 @@ namespace graphics3d
 
       if (pcommandbufferLoadAssets)
       {
+
+         information("There seems to be a \"Load Assets\" command buffer to be processed...");
 
          pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
          // if (prenderer->m_pcommandbufferLoadAssets)
@@ -1064,7 +1068,11 @@ namespace graphics3d
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
           //  };
+      
+      auto pgpucontext = gpu_context();
 
+      pgpucontext->set_placement(rectanglePlacement);
+      
       defer_process_load_assets_commands();
 
       auto pscene = m_pimmersionlayer->m_pscene;
@@ -1079,19 +1087,25 @@ namespace graphics3d
       {
 
          m_bCreatedGlobalUbo = true;
-
-         auto * pblockGlobalUbo1 = pscene->global_ubo1(pcontext);
-
-         ASSERT(::is_set(pblockGlobalUbo1));
-
-         //auto iGlobalUboSize = pscene->global_ubo1(pcontext).size(true);
-
-         //if (iGlobalUboSize > 0)
-         //{
-
-         //   create_global_ubo(pcontext);
-
-         //}
+         
+         {
+            
+            ::gpu::context_lock contextlock(pgpucontext);
+            
+            auto * pblockGlobalUbo1 = pscene->global_ubo1(pcontext);
+            
+            ASSERT(::is_set(pblockGlobalUbo1));
+            
+            //auto iGlobalUboSize = pscene->global_ubo1(pcontext).size(true);
+            
+            //if (iGlobalUboSize > 0)
+            //{
+            
+            //   create_global_ubo(pcontext);
+            
+            //}
+            
+         }
 
       }
 

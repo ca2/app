@@ -126,8 +126,11 @@ namespace gpu_opengl
       }
 
 //#if !defined(LINUX) && !defined(__APPLE__) && !defined(__BSD__)
-
+#if !defined(__APPLE__)
+      
       gladLoadGL();
+      
+#endif
 
       informationf("GL Version: %s\n", glGetString(GL_VERSION));
 

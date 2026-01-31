@@ -38,7 +38,7 @@ public:
    
    
    ::pointer<::acme::sandbox_windowing::window>         m_pwindowKeyboardFocus;
-   //::pointer<::acme::sandbox_windowing::window>         m_pwindowMouseCapture;
+   //::pointer<::acme::sandbox_windowing::window>         m_pacmewindowingwindowMouseCapture;
    ::pointer<::acme::sandbox_windowing::window>         m_pwindowActive;
    
    

@@ -62,7 +62,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 ::collection::index base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::collection::index nIndex,::collection::count nCount)
 {
 
-   //ASSERT_VALID(this);
+   //ASSERT_OK(this);
 
    ::collection::index nUpperBound = nIndex + nCount;
 
@@ -473,7 +473,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::collection::index nIndex, ::collection::count nCount)
 {
 
-   //ASSERT_VALID(this);
+   //ASSERT_OK(this);
 
    ::collection::index nUpperBound = nIndex + nCount;
 

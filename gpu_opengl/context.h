@@ -92,7 +92,7 @@ namespace gpu_opengl
 
       //virtual void _create_offscreen_window(const ::int_size & size);
 
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence) override;
 
       void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
                              ::acme::windowing::window *pwindow, const ::int_size &size) override;
@@ -121,7 +121,7 @@ namespace gpu_opengl
       //void copy(::gpu::texture* ptexture) override;
       //virtual void _copy_using_shader(::gpu::texture* ptexture);
       virtual void _copy_using_blit(::gpu::texture* ptexture);
-      void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
+      void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 
       void on_start_layer(::gpu::layer* player) override;
 

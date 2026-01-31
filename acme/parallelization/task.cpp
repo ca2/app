@@ -280,7 +280,7 @@ bool task::has_main_loop_happening()
 bool task::_has_main_loop_happening_unlocked()
 {
 
-   return m_requestaPosted.has_element()
+   return m_requeststackaPosted.has_element()
       || m_procedurea2.has_element()
       || m_ehappeninga.has_element();
 
@@ -427,7 +427,7 @@ bool task::task_get_run() const
 
    }
 
-   if (m_requestaPosted.has_element())
+   if (m_requeststackaPosted.has_element())
    {
 
       return true;
@@ -531,6 +531,8 @@ void task::on_single_lock_lock(subparticle *psubparticleSynchronization, const s
 {
 
 #ifdef _DEBUG
+   
+   auto size = m_synchronouslockdescriptiona.size();
 
    auto &description = m_synchronouslockdescriptiona.add_new();
 
@@ -1031,6 +1033,34 @@ void task::run_loop()
    {
 
       task_run(m_timeSample);
+      
+      if(m_pfinishing)
+      {
+         
+         if(has_dependant_tasks())
+         {
+            
+            if(m_pfinishing->has_finishing_timed_out(30_minute))
+            {
+               
+               break;
+               
+            }
+            
+         }
+         else
+         {
+            
+            if(m_pfinishing->has_finishing_timed_out(1_s))
+            {
+               
+               break;
+               
+            }
+
+         }
+         
+      }
 
    }
 
@@ -1081,7 +1111,6 @@ void task::run()
       send(__initialize_new::message_box(exception,  strMoreDetails));
 
    }
-
 
 }
 
@@ -1145,7 +1174,25 @@ bool task::task_iteration()
    handle_next_posted_request();
 
    handle_posted_procedures();
-
+   
+   if(this->has_finishing_flag())
+   {
+      
+      if(!m_pfinishing)
+      {
+         
+         øconstruct_new(m_pfinishing);
+         
+      }
+      
+   }
+   else
+   {
+    
+      m_pfinishing.release();
+      
+   }
+   
    return true;
 
 }
@@ -1461,8 +1508,10 @@ void * task::s_os_task(void * p)
       {
 
          auto itask = ptaskhandler->m_itaskHandler;
+         
+         auto psystem = ::system();
 
-         ::system()->post([htask, itask]()
+         psystem->post([htask, itask]()
             {
 
                try
@@ -1894,6 +1943,28 @@ void task::__task_term()
 {
 
    return m_plocale;
+
+}
+
+
+bool task::has_dependant_tasks() const
+{
+   
+   if(!m_pparticleaChildrenTask)
+   {
+      
+      return false;
+      
+   }
+   
+   if(m_pparticleaChildrenTask->is_empty())
+   {
+      
+      return false;
+      
+   }
+ 
+   return true;
 
 }
 

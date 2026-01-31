@@ -139,7 +139,6 @@ namespace gpu
    void command_buffer::draw(::graphics3d::renderable *prenderable)
    {
 
-      //prenderable->bind2(this);
       prenderable->draw_model(this);
 
    }
@@ -249,6 +248,18 @@ namespace gpu
    void command_buffer::reset()
    {
 
+
+   }
+
+
+   ::gpu::fence * command_buffer::insert_gpu_fence()
+   {
+
+      øconstruct(m_pgpufence);
+
+      m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+
+      return m_pgpufence;
 
    }
 

@@ -52,13 +52,6 @@ namespace image
 
 
       /// @brief  it always returns 4 channels!!
-      /// @param buffer 
-      /// @param len 
-      /// @param x 
-      /// @param y 
-      /// @param channels_in_file 
-      /// @param desired_channels 
-      /// @return 
       virtual unsigned char * like_stbi_load_from_memory(
          const unsigned char *buffer,
          int len, 

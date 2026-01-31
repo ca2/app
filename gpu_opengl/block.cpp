@@ -37,20 +37,21 @@ namespace gpu_opengl
 
       ::gpu::block::create_gpu_block(pgpucontext);
 
-      int iUboSize = this->size(false);
+      auto iUboSize = this->size(false);
 
       // Create the UBO
       glGenBuffers(1, &m_iUBO);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBindBuffer(GL_UNIFORM_BUFFER, m_iUBO);
-      GLCheckError("");
-      glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
-      GLCheckError("");
+      ::opengl::check_error("");
+      //glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+      glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_DYNAMIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
+      ::opengl::check_error("");
       unsigned int uUboBindingPoint = 0;
       glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_iUBO);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBindBuffer(GL_UNIFORM_BUFFER, 0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -108,7 +109,7 @@ namespace gpu_opengl
       ASSERT(m_iUBO != 0);
 
       glBindBuffer(GL_UNIFORM_BUFFER, m_iUBO);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       int iSize = this->size(false);
 
@@ -117,7 +118,7 @@ namespace gpu_opengl
          GL_UNIFORM_BUFFER,
          0, iSize,
          GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       if (p)
       {
@@ -125,7 +126,7 @@ namespace gpu_opengl
          memcpy(p, this->data(false), this->size(false));
 
          glUnmapBuffer(GL_UNIFORM_BUFFER);
-         GLCheckError("");
+         ::opengl::check_error("");
 
       }
       else
@@ -136,7 +137,7 @@ namespace gpu_opengl
       }
 
       glBindBufferBase(GL_UNIFORM_BUFFER, 0, m_iUBO);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 

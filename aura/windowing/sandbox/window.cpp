@@ -3546,16 +3546,16 @@ namespace sandbox_windowing
 
       }
 
-      if (pwindowing->m_pwindowMouseCapture)
+      if (pwindowing->m_pacmewindowingwindowMouseCapture)
       {
 
-         if (pwindowing->m_pwindowMouseCapture != this)
+         if (pwindowing->m_pacmewindowingwindowMouseCapture != this)
          {
 
-            if (pwindowing->m_pwindowMouseCapture)
+            if (pwindowing->m_pacmewindowingwindowMouseCapture)
             {
 
-               pwindowing->m_pwindowMouseCapture->m_pacmeuserinteractionMouseCapture.release();
+               pwindowing->m_pacmewindowingwindowMouseCapture->m_pacmeuserinteractionMouseCapture.release();
 
             }
 
@@ -3563,7 +3563,7 @@ namespace sandbox_windowing
 
       }
 
-      pwindowing->m_pwindowMouseCapture = this;
+      pwindowing->m_pacmewindowingwindowMouseCapture = this;
 
       //if (Display() == nullptr)
       //{

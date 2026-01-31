@@ -769,6 +769,13 @@ namespace user
 
       auto sizeNew = size;
 
+      if (size.cx < 10 || size.cy < 10)
+      {
+
+         information("interaction::set_size cx < 10 || cy < 10");
+
+      }
+
       if (!on_set_size(sizeNew, elayout))
       {
 
@@ -5931,7 +5938,14 @@ namespace user
                   if (puserinteraction->has_destroying_flag() || !puserinteraction->is_window())
                   {
 
-                     informationf("trying to draw window being destroyed");
+                     if(!puserinteraction->is_window())
+                     {
+                        informationf("trying to draw window being destroyed !window");
+                     }else{
+                        informationf("trying to draw window being destroyed");
+
+                        
+                     }
 
                      continue;
 
@@ -5995,9 +6009,30 @@ namespace user
 
                      //synchronouslock.unlock();
 
-                     ::draw2d::save_context savecontext(pgraphics);
+                     {
 
-                     puserinteraction->defer_do_graphics(pgraphics);
+                        ::draw2d::save_context savecontext(pgraphics);
+
+                        //puserinteraction->do_graphics(pgraphics);
+
+                        puserinteraction->_000CallOnDraw(pgraphics);
+
+                     }
+                     
+//                     if (m_pacmewindowingwindow && !get_parent())
+//                     {
+//
+//                      //  window()->do_graphics(pgraphics);
+//                        
+//                        window()->do_graphics();
+//
+//                     }
+//                     else
+//                     {
+//
+//                        _000CallOnDraw(pgraphics);
+//
+//                     }
 
                      //synchronouslock.lock();
 
@@ -6070,64 +6105,66 @@ namespace user
    }
 
 
-   //   void interaction::do_graphics(::draw2d::graphics_pointer &pgraphics)
-   //   {
+      void interaction::do_graphics(::draw2d::graphics_pointer &pgraphics)
+      {
+
+      throw "error";
+   
+         ::draw2d::save_context savecontext(pgraphics);
+   
+         payload("draw_control_background_counter") = 0;
+   
+         payload("nc_draw_0_fill_counter") = 0;
+   
+         try
+         {
+   
+            //_000CallOnDraw(pgraphics);
+   
+         }
+         catch (...)
+         {
+   
+         }
+   
+   //      auto pwindowing = windowing();
    //
-   //      ::draw2d::save_context savecontext(pgraphics);
-   //
-   //      payload("draw_control_background_counter") = 0;
-   //
-   //      payload("nc_draw_0_fill_counter") = 0;
-   //
-   //      try
+   //      if (::is_set(pwindowing) && pwindowing->m_bDrawCursor)
    //      {
    //
-   //         _000CallOnDraw(pgraphics);
+   //         ::draw2d::save_context savecontext(pgraphics);
+   //
+   //         try
+   //         {
+   //
+   //            auto pwindowing = windowing();
+   //
+   //            auto pwindowThis = window();
+   //
+   //            auto pointCursor = pwindow->get_cursor_position();
+   //
+   //            screen_to_client(e_layout_design)(pointCursor);
+   //
+   //            auto *pcursor = pwindowing->get_cursor();
+   //
+   //            if (pcursor != nullptr && pgraphics != nullptr)
+   //            {
+   //
+   //               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //
+   //               //pgraphics->draw(pointCursor, pcursor);
+   //
+   //            }
+   //
+   //         }
+   //         catch (...)
+   //         {
+   //
+   //         }
    //
    //      }
-   //      catch (...)
-   //      {
-   //
-   //      }
-   //
-   ////      auto pwindowing = windowing();
-   ////
-   ////      if (::is_set(pwindowing) && pwindowing->m_bDrawCursor)
-   ////      {
-   ////
-   ////         ::draw2d::save_context savecontext(pgraphics);
-   ////
-   ////         try
-   ////         {
-   ////
-   ////            auto pwindowing = windowing();
-   ////
-   ////            auto pwindowThis = window();
-   ////
-   ////            auto pointCursor = pwindow->get_cursor_position();
-   ////
-   ////            screen_to_client(e_layout_design)(pointCursor);
-   ////
-   ////            auto *pcursor = pwindowing->get_cursor();
-   ////
-   ////            if (pcursor != nullptr && pgraphics != nullptr)
-   ////            {
-   ////
-   ////               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   ////
-   ////               //pgraphics->draw(pointCursor, pcursor);
-   ////
-   ////            }
-   ////
-   ////         }
-   ////         catch (...)
-   ////         {
-   ////
-   ////         }
-   ////
-   ////      }
-   //
-   //   }
+   
+   }
 
 
    string interaction::calc_window_class()
@@ -6557,23 +6594,23 @@ namespace user
    }
 
 
-   void interaction::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_pacmewindowingwindow && !get_parent())
-      {
-
-         window()->defer_do_graphics(pgraphics);
-
-      }
-      else
-      {
-
-         _000CallOnDraw(pgraphics);
-
-      }
-
-   }
+//   void interaction::do_graphics(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_pacmewindowingwindow && !get_parent())
+//      {
+//
+//         window()->do_graphics(pgraphics);
+//
+//      }
+//      else
+//      {
+//
+//         _000CallOnDraw(pgraphics);
+//
+//      }
+//
+//   }
 
 
    void interaction::_000TopCallOnLayout(::draw2d::graphics_pointer & pgraphics)
@@ -11415,6 +11452,29 @@ if(get_parent())
          return false;
 
       }
+      
+      if(!(m_ewindowflag & e_window_flag_is_window))
+      {
+         
+         return false;
+         
+      }
+         if(!(m_ewindowflag & e_window_flag_window_created))
+         {
+            
+            return false;
+            
+         }
+//         if(::is_set(m_pacmewindowingwindow ))
+//         {
+//            
+//            if(!m_pacmewindowingwindow->is_window())
+//            {
+//               return false;
+//               
+//            }
+//            
+//         }
 
       //if (::is_null(window()))
       //{
@@ -11435,7 +11495,7 @@ if(get_parent())
 
       }
 
-      return is_window();
+      return true;
 
    }
 
@@ -15772,6 +15832,13 @@ if(get_parent())
       auto w = rectangle.width();
       auto h = rectangle.height();
 
+      if (w < 10 || h < 10)
+      {
+
+         information("_on_configure_notify_unlocked w < 10 || h < 10");
+
+      }
+
       //::int_point p(r.left, r.top);
 
       ::int_point p(xPos, yPos);
@@ -19507,8 +19574,17 @@ if(get_parent())
 
    ::user::interaction * interaction::first_child()
    {
+      
+      auto pwindow = window();
+      
+      if(::is_null(pwindow))
+      {
+         
+         return nullptr;
+         
+      }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(pwindow->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {

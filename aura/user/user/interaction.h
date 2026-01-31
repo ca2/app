@@ -1120,7 +1120,7 @@ namespace user
 
 
       virtual bool _is_window() const override;
-      inline bool is_window() const { return m_ewindowflag & e_window_flag_is_window; }
+      inline bool is_window() const { return this->_is_window();}
 
       virtual void ExitHelpMode();
 
@@ -1608,11 +1608,15 @@ namespace user
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
+      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics();
       virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnLayout(::draw2d::graphics_pointer& pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);

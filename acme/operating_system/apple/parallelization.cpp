@@ -6,6 +6,12 @@
 // RocketBeans.TV (classical and epic Dark Souls with Colin and Etienne)
 // scamwhite
 // currently and for ever lasting TBS... (thomas borregaard at 2017 earth milk way) Incancilabile (Uncancelable/Undeletable)!!
+
+
+//
+// Created by camilo on 2026-01-02 <3ThomasBorregaardSørensen!!
+//
+
 #include "framework.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -148,6 +154,18 @@ int process_get_os_priority(int nCa2Priority)
       return maximum(-20, minimum(0, -20 * ((int) ::e_priority_normal - nCa2Priority) / ((int) ::e_priority_normal - (int) ::e_priority_idle)));
 
    return maximum(0, minimum(20, 20 * (nCa2Priority - (int) ::e_priority_normal) / ((int) ::e_priority_time_critical - (int) ::e_priority_normal)));
+
+}
+
+
+
+
+
+
+CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask)
+{
+
+
 
 }
 

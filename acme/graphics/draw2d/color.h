@@ -710,6 +710,7 @@ namespace color
          break;
       case e_plain_color_gray:
          ui = ::rgb(127, 127, 127).m_ui;
+         break;
       default:
          ui = 0;
          break;

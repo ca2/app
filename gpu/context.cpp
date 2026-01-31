@@ -123,7 +123,7 @@ namespace gpu_gpu
    
          auto ptexture = øcreate<::gpu::texture>();
    
-         ptexture->m_pgpurenderer = m_pgpurenderer;
+         ptexture->m_pgpucontext = this;
 
          ptexture->m_textureflags.m_bShaderResource = true;
 
@@ -202,7 +202,7 @@ namespace gpu_gpu
    {
 
       ødefer_construct(ptexture);
-      ptexture->m_pgpurenderer = m_pgpurenderer;
+      ptexture->m_pgpucontext = this;
       ptexture->m_textureflags.m_bShaderResource = true;
 
       auto memory = file()->as_memory(path);
@@ -283,7 +283,7 @@ namespace gpu_gpu
          //}
 
          ::int_rectangle rectangleTarget(0, 0, width, height);
-         ptexture->initialize_with_image_data(m_pgpurenderer, rectangleTarget, numChannels, bSrgb, data);
+         ptexture->initialize_with_image_data(this, rectangleTarget, numChannels, bSrgb, data);
          //glGenTextures(1, &textureId);
          //glBindTexture(GL_TEXTURE_2D, textureId);
          //glTarget = GL_TEXTURE_2D;

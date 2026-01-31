@@ -999,7 +999,7 @@ g_bWindowingOutputDebugString = true;
    // }
 
 
-   ::factory::factory_item_interface * platform::get_factory_item(const ::platform::type & type, const ::atom & atomFactory)
+   ::factory::factory_item_interface * platform::find_factory_item(const ::platform::type & type, const ::atom & atomFactory)
    {
 
       critical_section_lock cs(&m_criticalsection);
@@ -1007,13 +1007,13 @@ g_bWindowingOutputDebugString = true;
       if (atomFactory.is_empty())
       {
 
-         return m_pfactory->_get_factory_item(type);
+         return m_pfactory->_find_factory_item(type);
 
       }
 
       auto pfactory = get_factory(atomFactory);
 
-      return pfactory->_get_factory_item(type);
+      return pfactory->_find_factory_item(type);
 
    }
 

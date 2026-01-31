@@ -432,6 +432,12 @@
     <ClInclude Include="platform\fps_counter.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\semaphore.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\fence.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -673,6 +679,15 @@
     </ClCompile>
     <ClCompile Include="typeface\allocator.cpp">
       <Filter>Source Files\typeface</Filter>
+    </ClCompile>
+    <ClCompile Include="typeface\character.cpp">
+      <Filter>Source Files\typeface</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\semaphore.cpp">
+      <Filter>Source Files\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="gpu\fence.cpp">
+      <Filter>Source Files\gpu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

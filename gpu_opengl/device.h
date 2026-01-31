@@ -45,7 +45,6 @@ namespace gpu_opengl
       //void set_bitmap_1(::image::image* pimage) override;
 
       //void swap_buffers() override;
-
       //virtual void create_offscreen_buffer(const ::int_size& size);
       //virtual void _create_offscreen_buffer(const ::int_size& size);
 

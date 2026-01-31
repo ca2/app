@@ -35,7 +35,8 @@ namespace sandbox_windowing
 
       void install_message_routing(::channel* pchannel) override;
 
-
+      void show() override;
+      
       void _001DrawThis(::draw2d::graphics_pointer & pgraphics) override;
       void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;

@@ -61,7 +61,7 @@ namespace draw2d
 
    //};
 
-
+class graphics_context;
 
 /// <summary>
 /// graphics * -> ::image::image_source_pointer concept
@@ -166,7 +166,11 @@ namespace draw2d
       virtual bool is_y_flip();
 
 
-      virtual void do_on_context(const ::procedure& procedure);
+      //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
+
+
+      virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
+
 
       inline operator ::user::style& ()
       {
@@ -325,7 +329,7 @@ namespace draw2d
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
-      virtual void create_memory_graphics(const ::int_size& size = {});
+      virtual void create_memory_graphics(const ::int_size& sizeParameter);
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
@@ -1414,6 +1418,65 @@ namespace draw2d
 
 
    };
+
+   
+   class CLASS_DECL_AURA graphics_context_interface :
+      virtual public ::particle
+   {
+   public:
+   
+      virtual void _context_lock() = 0;
+      virtual void _context_unlock() = 0;
+
+   };
+
+
+   class CLASS_DECL_AURA graphics_context :
+      virtual public ::particle
+   {
+   public:
+      
+      
+      ::pointer < ::draw2d::graphics > m_pgraphics;
+      ::pointer < ::draw2d::graphics_context_interface > m_pgraphicscontextinterface;
+      ::pointer < ::graphics::buffer_item > m_pbufferitem;
+      
+      
+      graphics_context()
+      {
+         
+         
+      }
+      
+      
+      ~graphics_context()
+      {
+         
+         m_pgraphics.release();
+         
+         if(m_pgraphicscontextinterface)
+         {
+            
+            m_pgraphicscontextinterface->_context_unlock();
+            
+         }
+         
+      }
+   
+
+      void insert_graphics_and_context(::draw2d::graphics_context_interface * pinterface)
+      {
+         
+         m_pgraphicscontextinterface = pinterface;
+       
+         m_pgraphicscontextinterface->_context_lock();
+         
+      }
+
+
+   };
+
+
 
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();

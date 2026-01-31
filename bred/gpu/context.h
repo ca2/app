@@ -2,6 +2,7 @@
 
 
 ////#include "acme/exception/exception.h"
+#include "semaphore.h"
 #include "acme/constant/gpu.h"
 #include "acme/prototype/collection/int_map.h"
 #include "acme/prototype/geometry2d/size.h"
@@ -155,7 +156,7 @@ namespace gpu
       //::memory                                   m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >              m_pgpuswapchain;
       ::pointer_array < ::gpu::shader >            m_shaderaRetire;
-
+      ::pointer < ::gpu::semaphore >               m_pgpusemaphoreMergeLayersReady;
       ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemap;
       ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemapGeneric;
 
@@ -303,6 +304,10 @@ namespace gpu
       virtual void do_on_context(const ::procedure & procedure);
       virtual void send_on_context(const ::procedure & procedure);
       virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
+
+
+      //virtual void top_post_to_context(::gpu::context * pcontextInnerStart, const ::procedure& procedure);
+
       
       virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::int_size& size = {});
 
@@ -383,8 +388,8 @@ namespace gpu
       virtual void update_current_scene();
 
       //virtual void copy(::gpu::texture* ptexture);
-      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
-      virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
+      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence);
+      virtual void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
       virtual void on_start_layer(::gpu::layer* player);
       virtual void on_end_layer(::gpu::layer* player);
@@ -430,6 +435,7 @@ namespace gpu
 
 
       virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
+      virtual ::pointer < ::gpu::model_buffer> create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
 
 
       //::pointer<::graphics3d::renderable> load_model();

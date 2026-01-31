@@ -37,6 +37,9 @@ namespace draw2d
    class bitmap;
 
 
+   class graphics_context;
+
+
    class item;
 
 

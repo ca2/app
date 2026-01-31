@@ -58,10 +58,17 @@ namespace gpu
    }
 
 
-   void pixmap::set_pixels(const void* data)
+   void pixmap::set_pixels(const void* pdata)
    {
+      
+      if(::is_null(pdata))
+      {
+         
+         throw ::exception(error_bad_argument);
+         
+      }
 
-      m_pgputexture->set_pixels(m_rectangle, data);
+      m_pgputexture->set_pixels(m_rectangle, pdata);
 
    }
 

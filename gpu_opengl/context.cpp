@@ -35,6 +35,8 @@
 
 #include "bred/gpu/block.h"
 
+void ::opengl::insert_debug_message(const_char_pointer msg);
+
 
 namespace gpu_opengl
 {
@@ -330,11 +332,11 @@ namespace gpu_opengl
       else
       {
 
-#ifdef __APPLE__
-         glBindVertexArrayAPPLE(m_VAO);
-#else
+//#ifdef __APPLE__
+  //       glBindVertexArrayAPPLE(m_VAO);
+//#else
          glBindVertexArray(m_VAO);
-#endif
+//#endif
 
          glDrawArrays(GL_TRIANGLES, 0, 6);
 
@@ -386,6 +388,8 @@ namespace gpu_opengl
          glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
          // set linear filtering (so you can scale your image)
 
+         glBindTexture(GL_TEXTURE_2D, 0);
+
       }
 
       if (pimage->is_ok())
@@ -424,6 +428,8 @@ namespace gpu_opengl
                       m_memorySwap.data()); // upload image data to the textur
 
 
+         glBindTexture(GL_TEXTURE_2D, 0);
+
       }
 
    }
@@ -438,7 +444,7 @@ namespace gpu_opengl
    //   {
 
    //      glActiveTexture(GL_TEXTURE0);
-   //      GLCheckError("");
+   //      ::opengl::check_error("");
 
 
    //   }
@@ -461,14 +467,14 @@ namespace gpu_opengl
       {
 
          glDisable(GL_CULL_FACE);
-         GLCheckError("");
+         ::opengl::check_error("");
 
       }
       else
       {
 
          glEnable(GL_CULL_FACE);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          //glEnable(GL_CULL_FACE);   // turn on culling
          //glDisable(GL_CULL_FACE);  // turn off culling
@@ -479,12 +485,12 @@ namespace gpu_opengl
          if (m_ecullmode == ::gpu::e_cull_mode_back)
          {
             glCullFace(GL_BACK); // cull back faces (default)
-            GLCheckError("");
+            ::opengl::check_error("");
          }
          else
          {
             glCullFace(GL_FRONT); // cull front faces
-            GLCheckError("");
+            ::opengl::check_error("");
             //glCullFace(GL_FRONT_AND_BACK); // cull both
          }
 
@@ -790,7 +796,7 @@ namespace gpu_opengl
 //
 //         ::cast<::gpu_opengl::texture> ptexture = tex;
 //
-//         ptexture->m_pgpurenderer = m_pgpurenderer;
+//         ptexture->m_pgpucontext = m_pgpurenderer;
 //
 //         try
 //         {
@@ -961,14 +967,14 @@ namespace gpu_opengl
 
       ::gpu::context_lock contextlock(this);
       // Clear the screen
-//      GLCheckError("");
+//      ::opengl::check_error("");
       //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
       glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity()); //
-      GLCheckError("");
+      ::opengl::check_error("");
       glClearDepth(1.0f);
-      GLCheckError("");
+      ::opengl::check_error("");
       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -980,16 +986,16 @@ namespace gpu_opengl
    //
    //    // Create the UBO
    //    glGenBuffers(1, &m_globalUBO);
-   //    GLCheckError("");
+   //    ::opengl::check_error("");
    //    glBindBuffer(GL_UNIFORM_BUFFER, m_globalUBO);
-   //    GLCheckError("");
+   //    ::opengl::check_error("");
    //    glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
-   //    GLCheckError("");
+   //    ::opengl::check_error("");
    //    unsigned int uUboBindingPoint = 0;
    //    glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
-   //    GLCheckError("");
+   //    ::opengl::check_error("");
    //    glBindBuffer(GL_UNIFORM_BUFFER, 0);
-   //    GLCheckError("");
+   //    ::opengl::check_error("");
    //
    // }
 
@@ -1142,13 +1148,15 @@ namespace gpu_opengl
       {
 
          ::string strMessage(scopedstrMessage);
+         
+         ::opengl::insert_debug_message(strMessage);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1164,12 +1172,13 @@ namespace gpu_opengl
 
          strMessage.formatf("ø gpu_opengl::context::on_end_layer");
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         ::opengl::insert_debug_message(strMessage);
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1188,12 +1197,14 @@ namespace gpu_opengl
    }
 
 
-   void context::merge_layers(::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
+   void context::merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture *ptextureTarget, ::pointer_array<::gpu::layer> *playera)
    {
 
-      ::gpu::context::merge_layers(ptextureTarget, playera);
+      ::gpu::context::merge_layers(pgpucommandbuffer, ptextureTarget, playera);
 
    }
+
+
 //    {
 //
 //       {
@@ -1373,11 +1384,11 @@ namespace gpu_opengl
 //          // }
 //
 //          // glClearColor(0.f, 0.f, 0.f, 0.f);
-//          // GLCheckError("glClearColor");
+//          // ::opengl::check_error("glClearColor");
 //          // glClearDepth(1.0f);
-//          // GLCheckError("glClearDepth");
+//          // ::opengl::check_error("glClearDepth");
 //          // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//          // GLCheckError("glClear");
+//          // ::opengl::check_error("glClear");
 //
 //
 //
@@ -1570,9 +1581,9 @@ namespace gpu_opengl
 //
 //       //////GLuint framebuffer;
 //       //////glGenFramebuffers(1, &framebuffer);
-//       //////GLCheckError("glGenFramebuffers");
+//       //////::opengl::check_error("glGenFramebuffers");
 //       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-//       //////GLCheckError("glBindFramebuffer");
+//       //////::opengl::check_error("glBindFramebuffer");
 //
 //       //////auto gluTextureID = ptextureDst->m_gluTextureID;
 //
@@ -1581,7 +1592,7 @@ namespace gpu_opengl
 //       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
 //       //////   gluTextureID,
 //       //////   0);
-//       //////GLCheckError("glFramebufferTexture2D");
+//       //////::opengl::check_error("glFramebufferTexture2D");
 //
 //       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 //       //////   printf("Framebuffer not complete!\n");
@@ -1612,10 +1623,10 @@ namespace gpu_opengl
 //       ////}
 //
 //       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-//       ////GLCheckError("glBindFramebuffer");
+//       ////::opengl::check_error("glBindFramebuffer");
 //
 //       ////glDeleteFramebuffers(1, &framebuffer);
-//       ////GLCheckError("glDeleteFramebuffers");
+//       ////::opengl::check_error("glDeleteFramebuffers");
 //
 //
 //    }
@@ -1652,7 +1663,7 @@ namespace gpu_opengl
 
    //   GLint fbo = 0;
    //   glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
 
    //   if (m_gluLayerFrameBuffer &&
    //      m_gluLayerFrameBuffer == fbo)
@@ -1667,12 +1678,12 @@ namespace gpu_opengl
 
    //      GLuint fboSrc, fboDst;
    //      glGenFramebuffers(1, &m_gluLayerFrameBuffer);
-   //      GLCheckError("");
+   //      ::opengl::check_error("");
 
    //   }
 
    //   glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFrameBuffer);
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
 
    //   ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
 
@@ -1680,7 +1691,7 @@ namespace gpu_opengl
 
    //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
    //      GL_TEXTURE_2D, textureID, 0);
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
 
    //   ::cast < context > pgpucontext = this;
 
@@ -1695,18 +1706,18 @@ namespace gpu_opengl
    //         int height = pgpucontext->m_rectangle.height();
 
    //         glGenRenderbuffers(1, &ptexture->m_gluDepthStencilRBO);
-   //         GLCheckError("");
+   //         ::opengl::check_error("");
 
    //         glBindRenderbuffer(GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-   //         GLCheckError("");
+   //         ::opengl::check_error("");
 
    //         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
-   //         GLCheckError("");
+   //         ::opengl::check_error("");
 
    //      }
 
    //      glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, ptexture->m_gluDepthStencilRBO);
-   //      GLCheckError("");
+   //      ::opengl::check_error("");
 
    //   }
 
@@ -1848,7 +1859,7 @@ namespace gpu_opengl
    }
 
 
-   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource)
+   void context::copy(::gpu::texture *ptextureTarget, ::gpu::texture *ptextureSource, ::pointer < ::gpu::fence > * pgpufence)
    {
 
       ::gpu::context_lock contextlock(this);
@@ -1862,27 +1873,63 @@ namespace gpu_opengl
       auto textureDst = ptextureDst->m_gluTextureID;
 
       glFlush();
-      GLCheckError("");
+      ::opengl::check_error("");
 
-      if (!ptextureSrc->m_gluFbo)
+//      if (!ptextureSrc->m_gluFbo)
+//      {
+//
+//         ptextureSrc->create_render_target();
+//
+//      }
+//
+//      if (!ptextureDst->m_gluFbo)
+//      {
+//
+//         ptextureDst->create_render_target();
+//
+//      }
+//
+//      if (!ptextureSrc->m_gluFbo)
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//
+//      }
+//
+//      if (!ptextureDst->m_gluFbo)
+//      {
+//
+//         throw ::exception(error_wrong_state);
+//
+//      }
+
+      auto gluSrcFbo = ptextureSrc->frame_buffer_object();
+
+      auto gluDstFbo = ptextureDst->frame_buffer_object();
+
+      if (!gluSrcFbo)
       {
 
-         ptextureSrc->create_render_target();
+         throw ::exception(error_wrong_state);
 
       }
 
-      if (!ptextureDst->m_gluFbo)
+      if (!gluDstFbo)
       {
 
-         ptextureDst->create_render_target();
+         throw ::exception(error_wrong_state);
 
       }
+
+      auto pqueueGraphics = m_pgpudevice->graphics_queue();
+
+      auto pcommandbuffer = beginSingleTimeCommands(pqueueGraphics);
 
       //GLuint fboSrc, fboDst;
       //glGenFramebuffers(1, &fboSrc);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glGenFramebuffers(1, &fboDst);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       GLint drawFboOld = 0;
       glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
@@ -1890,26 +1937,23 @@ namespace gpu_opengl
       GLint readFboOld = 0;
       glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
 
-
       // Attach source texture to fboSrc
-      auto gluSrcFbo = ptextureSrc->m_gluFbo;
       glBindFramebuffer(GL_READ_FRAMEBUFFER, gluSrcFbo);
-      GLCheckError("");
+      ::opengl::check_error("");
       //glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
       //   GL_TEXTURE_2D, textureSrc, 0);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       // Attach dest texture to fboDst
-      auto gluDstFbo = ptextureDst->m_gluFbo;
       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluDstFbo);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       glDrawBuffer(GL_COLOR_ATTACHMENT0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       //glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
       //   GL_TEXTURE_2D, textureDst, 0);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       {
 
@@ -1921,12 +1965,13 @@ namespace gpu_opengl
 
          strMessage.formatf("ø texDst=%d texSrc=%d", texDst, texSrc);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         ::opengl::insert_debug_message(strMessage);
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1942,12 +1987,14 @@ namespace gpu_opengl
 
          strMessage.formatf("ø copy drawFbo=%d readFbo=%d", drawFbo, readFbo);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         ::opengl::insert_debug_message(strMessage);
+         
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1974,12 +2021,14 @@ namespace gpu_opengl
 
          strMessage.formatf("ø copy drawFboTex=%d readFboText=%d", textureDrawFbo, textureReadFbo);
 
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-                              GL_DEBUG_TYPE_MARKER,
-                              0,
-                              GL_DEBUG_SEVERITY_NOTIFICATION,
-                              -1,
-                              strMessage);
+         ::opengl::insert_debug_message(strMessage);
+         
+//         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
+//                              GL_DEBUG_TYPE_MARKER,
+//                              0,
+//                              GL_DEBUG_SEVERITY_NOTIFICATION,
+//                              -1,
+//                              strMessage);
 
       }
 
@@ -1993,7 +2042,7 @@ namespace gpu_opengl
          0, 0, sizeDst.cx, sizeDst.cy,
          GL_COLOR_BUFFER_BIT, GL_NEAREST
          );
-      GLCheckError("");
+      ::opengl::check_error("");
 
 #ifdef SHOW_DEBUG_DRAWING
       {
@@ -2034,22 +2083,31 @@ namespace gpu_opengl
 #endif
 
 
+      if (::is_set(pgpufence))
+      {
+
+         *pgpufence = pcommandbuffer->insert_gpu_fence();
+
+      }
 
 
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
-      GLCheckError("");
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
-      GLCheckError("");
+
+
+
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+      //::opengl::check_error("");
+      //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
+      //::opengl::check_error("");
 
       //// Cleanup
       //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-      //GLCheckError("");
+      //::opengl::check_error("");
       ////glDeleteFramebuffers(1, &fboSrc);
-      //GLCheckError("");
+      //::opengl::check_error("");
       //glDeleteFramebuffers(1, &fboDst);
-      //GLCheckError("");
+      //::opengl::check_error("");
 
    }
 

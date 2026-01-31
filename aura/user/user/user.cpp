@@ -168,8 +168,10 @@ namespace user
 
          //auto estatus = 
 
-         if (ødefer_construct_new(m_puserstyle))
+         if (!m_puserstyle)
          {
+            
+            øconstruct_new(m_puserstyle);
 
             //if (!estatus)
             //{

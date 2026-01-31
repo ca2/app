@@ -323,12 +323,12 @@ namespace platform
 
       //::factory::factory_item_interface* get_factory_item_by_type_index(const ::std::type_index & typeindex);
       //::factory::factory_item_interface* get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
-      ::factory::factory_item_interface* get_factory_item(const ::platform::type & type);
+      ::factory::factory_item_interface* find_factory_item(const ::platform::type & type);
 
 
       //::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
       //::factory::factory_item_interface * get_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::atom & atomFactory);
-      ::factory::factory_item_interface * get_factory_item(const ::platform::type & type, const ::atom & atomFactory);
+      ::factory::factory_item_interface * find_factory_item(const ::platform::type & type, const ::atom & atomFactory);
 
 
       //bool has_factory_item_by_type_index(const ::std::type_index & typeindex);

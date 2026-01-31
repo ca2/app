@@ -12,17 +12,31 @@ namespace gpu
 
    thread_local context_lock* t_plock = nullptr;
 
-
-   context_lock::context_lock(::gpu::context* pcontext) :
-      m_pcontext(pcontext)
+   context_lock::context_lock() :
+      m_pgpucontext(nullptr)
    {
+   
+   }
 
+
+   context_lock::context_lock(::gpu::context* pgpucontext) :
+      m_pgpucontext(pgpucontext)
+   {
+      
+      lock_context(m_pgpucontext);
+
+   }
+
+
+   void context_lock::lock_context(::gpu::context * pgpucontext)
+   {
+   
       //pcontext->m_pgpudevice->m_pparticleSynchronization->_lock();
 
       if (t_plock)
       {
 
-         if (t_plock->m_pcontext->m_pgpudevice != pcontext->m_pgpudevice)
+         if (t_plock->m_pgpucontext->m_pgpudevice != pgpucontext->m_pgpudevice)
          {
 
             throw ::exception(error_wrong_state);
@@ -37,12 +51,12 @@ namespace gpu
 
          m_plockUpper = nullptr;
 
-         m_pcontext->_context_lock();
+         pgpucontext->_context_lock();
 
       }
 
       t_plock = this;
-
+      
    }
 
 
@@ -57,7 +71,7 @@ namespace gpu
          if (!t_plock)
          {
 
-            m_pcontext->_context_unlock();
+            m_pgpucontext->_context_unlock();
 
          }
 

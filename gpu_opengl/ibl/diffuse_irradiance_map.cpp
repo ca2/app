@@ -14,7 +14,7 @@
 #include "bred/graphics3d/skybox.h"
 #include "gpu/model/_constant.h"
 //#include "gpu/cube.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 //
 //
 #include "gpu_opengl/_gpu_opengl.h"
@@ -120,7 +120,7 @@ namespace gpu_opengl
          ////pcube->initialize_gpu_cube(m_pgpucontext);
 
          //glViewport(0, 0, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight);
-         //GLCheckError("");
+         //::opengl::check_error("");
          ////m_pdiffuseIrradianceFramebuffer->bind();
          //m_pshaderDiffuseIrradiance->bind(nullptr, m_ptextureDiffuseIrradiance->m_ptexture);
 
@@ -143,7 +143,7 @@ namespace gpu_opengl
          //   m_pframebufferDiffuseIrradiance->set_cube_face(i, m_pshaderDiffuseIrradiance);
 
          //   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         //   GLCheckError("");
+         //   ::opengl::check_error("");
 
          //   m_pshaderDiffuseIrradiance->push_properties(pgpucommandbuffer);
 
@@ -170,7 +170,7 @@ namespace gpu_opengl
          //}
 
          //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         //GLCheckError("");
+         //::opengl::check_error("");
 
 
       }

@@ -88,7 +88,7 @@ namespace gpu
 
          m_ptextureHdr->m_textureflags.m_bShaderResource = true;
 
-         m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext->m_pgpurenderer, block);
+         m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext, block);
 
          øconstruct(m_ptextureCubemap);
 
@@ -105,7 +105,7 @@ namespace gpu
          textureflags.m_bTransferSource = true;
 
          m_ptextureCubemap->initialize_texture(
-            m_pgpucontext->m_pgpurenderer, 
+            m_pgpucontext, 
             textureattributes,
             textureflags);
 

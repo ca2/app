@@ -124,7 +124,7 @@ namespace file
 
       //void do_callback();
 
-      void on_dialog_response();
+      void on_dialog_response() override;
 
    };
 

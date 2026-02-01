@@ -1941,8 +1941,10 @@ bool particle::_handle_call(::payload& payload, const ::scoped_string& scopedstr
 
    auto papplication = application();
 
-   if (!papplication)
+   if (::is_null(papplication))
    {
+
+      throw ::exception(error_wrong_state);
 
       return nullptr;
 

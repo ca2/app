@@ -165,7 +165,18 @@ namespace windowing
 
       ::acme::windowing::window::initialize_window(pacmeuserinteraction);
 
-      auto puser = user();
+      auto puser = this->user();
+
+      if (::is_null(puser))
+      {
+
+         auto puserAgain = this->user();
+
+
+         throw ::exception(error_failed);
+
+
+      }
 
       puser->on_initialize_window_object(this);
 

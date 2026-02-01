@@ -2147,7 +2147,7 @@ void task::_send(const ::procedure & procedure)
             });
    }
 
-   if (!waitforendofsequence.lock(procedure.timeout()))
+   if (!waitforendofsequence._wait(procedure.timeout()))
    {
 
 #ifdef _DEBUG

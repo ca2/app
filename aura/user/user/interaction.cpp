@@ -2037,7 +2037,7 @@ namespace user
       }
 
       if (
-         window() &&
+         m_pacmewindowingwindow &&
          window()->m_pgraphicsthread &&
          window()->m_pgraphicsthread->m_bFps)
       {

@@ -143,6 +143,7 @@ namespace operating_system
          break;
       }
 
+      return strArchitecture;
 
    }
 

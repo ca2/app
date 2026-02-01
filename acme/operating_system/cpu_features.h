@@ -41,3 +41,14 @@ static inline cpu_features g_cpufeatures;
 
 
 
+namespace operating_system
+{
+
+   
+   CLASS_DECL_ACME ::string machine_architecture();
+
+
+} // namespace operating_system
+
+
+

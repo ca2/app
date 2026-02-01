@@ -2,6 +2,7 @@
 // Created with ChatGPT by camilo on 2026-01-29 05:54 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "../cpu_features.h"
+#include "acme/_operating_system.h"
 
 
 // ======================= ARCH SELECTION =======================
@@ -99,3 +100,54 @@ cpu_features::cpu_features()
 
 #endif
 }
+
+
+namespace operating_system
+{
+
+
+   ::string machine_architecture()
+   {
+
+      USHORT processMachine = 0;
+      USHORT nativeMachine = 0;
+
+      ::string strArchitecture;
+
+      if (!IsWow64Process2(GetCurrentProcess(),
+         &processMachine,
+         &nativeMachine))
+      {
+         
+         throw ::exception(error_failed);
+
+      }
+
+
+      switch (nativeMachine)
+      {
+      case IMAGE_FILE_MACHINE_ARM64:
+         strArchitecture = "arm64";
+         break;
+
+      case IMAGE_FILE_MACHINE_AMD64:
+         strArchitecture = "x64";
+         break;
+
+      case IMAGE_FILE_MACHINE_I386:
+         strArchitecture = "x86";
+         break;
+
+      default:
+         strArchitecture = "unknown";
+         break;
+      }
+
+
+   }
+
+
+} // namespace operating_system
+
+
+

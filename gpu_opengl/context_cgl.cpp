@@ -18,18 +18,23 @@
 #include "aura/platform/system.h"
 #include "bred/gpu/context_lock.h"
 
+
 namespace opengl
 {
 
-void * operating_system_current_context()
-{
-   
-   auto cglcontextobj = CGLGetCurrentContext();
-   
-   return cglcontextobj;
-}
+
+   void * operating_system_current_context()
+   {
+
+      auto cglcontextobj = CGLGetCurrentContext();
+
+      return cglcontextobj;
+
+   }
+
 
 }
+
 
 namespace gpu_opengl
 {

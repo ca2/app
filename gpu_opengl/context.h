@@ -121,7 +121,7 @@ namespace gpu_opengl
       //void copy(::gpu::texture* ptexture) override;
       //virtual void _copy_using_shader(::gpu::texture* ptexture);
       virtual void _copy_using_blit(::gpu::texture* ptexture);
-      void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
+      void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 
       void on_start_layer(::gpu::layer* player) override;
 

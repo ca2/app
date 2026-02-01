@@ -2906,10 +2906,23 @@ namespace draw2d
    }
 
 
-   void graphics::do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure & procedure)
+   void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure)
    {
 
-      procedure();
+      //procedure();
+
+      //throw ::interface_only();
+
+      ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
+
+      puserinteraction->_send([procedure]()
+         {
+
+            procedure();
+
+         });
+
+      //m_puserinteraction->m_pgr(pgraphicscontext, procedure);
 
    }
 

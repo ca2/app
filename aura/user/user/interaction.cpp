@@ -2037,7 +2037,7 @@ namespace user
       }
 
       if (
-         window() &&
+         m_pacmewindowingwindow &&
          window()->m_pgraphicsthread &&
          window()->m_pgraphicsthread->m_bFps)
       {
@@ -6009,9 +6009,15 @@ namespace user
 
                      //synchronouslock.unlock();
 
-                     //::draw2d::save_context savecontext(pgraphics);
+                     {
 
-                     puserinteraction->do_graphics(pgraphics);
+                        ::draw2d::save_context savecontext(pgraphics);
+
+                        //puserinteraction->do_graphics(pgraphics);
+
+                        puserinteraction->_000CallOnDraw(pgraphics);
+
+                     }
                      
 //                     if (m_pacmewindowingwindow && !get_parent())
 //                     {
@@ -6101,6 +6107,8 @@ namespace user
 
       void interaction::do_graphics(::draw2d::graphics_pointer &pgraphics)
       {
+
+      throw "error";
    
          ::draw2d::save_context savecontext(pgraphics);
    
@@ -6111,7 +6119,7 @@ namespace user
          try
          {
    
-            _000CallOnDraw(pgraphics);
+            //_000CallOnDraw(pgraphics);
    
          }
          catch (...)

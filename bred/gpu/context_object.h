@@ -14,6 +14,7 @@ namespace gpu
 
       ::pointer < ::gpu::context > m_pgpucontext;
 
+
       context_object();
       ~context_object() override;
 

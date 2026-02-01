@@ -16,7 +16,7 @@ namespace gpu
    layer::layer()
    {
 
-      m_bFinished = false;
+      //m_bFinished = false;
 
    }
 
@@ -24,6 +24,21 @@ namespace gpu
    layer::~layer()
    {
 
+
+   }
+
+
+   ::manual_reset_happening * layer::finished_manual_reset_happening()
+   {
+
+      if (!m_pmanualresethappeningFinished)
+      {
+
+         øconstruct_new(m_pmanualresethappeningFinished);
+
+      }
+
+      return m_pmanualresethappeningFinished;
 
    }
 
@@ -84,6 +99,13 @@ namespace gpu
 
       m_iLayerIndex = iLayerIndex;
 
+      if (iLayerIndex >= 3)
+      {
+
+         information("iLayerIndex >= 3");
+
+      }
+
       m_pgpurenderer->defer_update_renderer();
 
    }
@@ -100,9 +122,12 @@ namespace gpu
    void layer::layer_start()
    {
 
+      m_timeStart.Now();
+
       m_bRenderTargetFramebufferInitialized = false;
 
-      m_bFinished = false;
+      //m_bFinished = false;
+      finished_manual_reset_happening()->reset_happening();
 
       m_pgpurenderer->on_start_layer(this);
 
@@ -148,12 +173,52 @@ namespace gpu
    }
 
 
-
-
    void layer::layer_end()
    {
 
       m_pgpurenderer->on_end_layer(this);
+
+      // auto pgpufence = m_pgpufence;
+      //
+      // if (::is_set(pgpufence))
+      // {
+      //
+      //    pgpufence->wait_gpu_fence();
+      //
+      // }
+      //
+      // m_timeEnd.Now();
+      //
+      // m_timeDuration = m_timeEnd - m_timeStart;
+      //
+      // information("Layer {} duration : {} ms", m_iLayerIndex, m_timeDuration.floating_millisecond());
+      //
+      // finished_manual_reset_happening()->set_happening();
+
+   }
+
+
+   void layer::layer_on_after_submit()
+   {
+
+//      m_pgpurenderer->on_end_layer(this);
+
+      auto pgpufence = m_pgpufence;
+
+      if (::is_set(pgpufence))
+      {
+
+         pgpufence->wait_gpu_fence();
+
+      }
+
+      m_timeEnd.Now();
+
+      m_timeDuration = m_timeEnd - m_timeStart;
+
+      information("Layer {} duration : {} ms", m_iLayerIndex, m_timeDuration.floating_millisecond());
+
+      finished_manual_reset_happening()->set_happening();
 
    }
 

@@ -166,7 +166,11 @@ class graphics_context;
       virtual bool is_y_flip();
 
 
-      virtual void do_on_context(::draw2d::graphics_context & graphicscontext, const ::procedure& procedure);
+      //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
+
+
+      virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
+
 
       inline operator ::user::style& ()
       {
@@ -325,7 +329,7 @@ class graphics_context;
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
-      virtual void create_memory_graphics(const ::int_size& sizeParameter = {});
+      virtual void create_memory_graphics(const ::int_size& sizeParameter);
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
@@ -1427,13 +1431,15 @@ class graphics_context;
    };
 
 
-   class CLASS_DECL_AURA graphics_context
+   class CLASS_DECL_AURA graphics_context :
+      virtual public ::particle
    {
    public:
       
       
       ::pointer < ::draw2d::graphics > m_pgraphics;
       ::pointer < ::draw2d::graphics_context_interface > m_pgraphicscontextinterface;
+      ::pointer < ::graphics::buffer_item > m_pbufferitem;
       
       
       graphics_context()

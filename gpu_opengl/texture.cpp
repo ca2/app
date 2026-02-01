@@ -158,7 +158,7 @@ namespace gpu_opengl
 
       //::gpu::texture::initialize_texture(pgpucontext, rectangleTarget, false, {} , etype);
 
-      //::gpu::context_lock contextlock(m_pgpucontext->m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpucontext);
 
 
       // glGenTextures(1, &m_gluTextureID);
@@ -219,7 +219,7 @@ namespace gpu_opengl
    //
    //    ::gpu::texture::initialize_image_texture(pcontext, rectangleTarget, bWithDepth, pimagea, etype);
    //
-   //    ::gpu::context_lock contextlock(m_pgpucontext->m_pgpucontext);
+   //    ::gpu::context_lock contextlock(m_pgpucontext);
    //
    //    if (sizeCurrent != rectangleTarget.size())
    //    {
@@ -746,7 +746,7 @@ namespace gpu_opengl
       //GLint readFboOld = 0;
       //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
 
-      //::gpu::context_lock contextlock(m_pgpucontext->m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpucontext);
       
       if(object.m_bCreated)
       {
@@ -1113,7 +1113,7 @@ int g_iGpuOpenGlBindRenderTarget = 0;
          return;
       }
 
-      // ::cast<::gpu_opengl::context> pcontext = m_pgpucontext->m_pgpucontext;
+      // ::cast<::gpu_opengl::context> pcontext = m_pgpucontext;
       //
       // ::cast<::gpu_opengl::device> pgpudevice = pcontext->m_pgpudevice;
       //

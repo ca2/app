@@ -158,7 +158,8 @@ void defer_throw_gl_error()
    
 #endif
 
-   void ::opengl::check_error(const_char_pointer pszErrorMessage)
+
+   void check_error(const_char_pointer pszErrorMessage)
    {
 
       int iGlError = glGetError();
@@ -171,6 +172,7 @@ void defer_throw_gl_error()
       }
 
    }
+
 
    void ensure_non_null_handle(long lHandle, const_char_pointer pszMessage)
    {

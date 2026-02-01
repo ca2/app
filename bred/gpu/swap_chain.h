@@ -26,7 +26,7 @@ namespace gpu
 
       ::pointer < ::pointer_array < ::gpu::texture > >   m_ptextureaSwapChain;
       int                                                m_iCurrentSwapChainFrame;
-
+      ::pointer_array<::gpu::semaphore>                  m_gpusemaphoreaWait;
 
 
 
@@ -44,6 +44,7 @@ namespace gpu
       virtual void initialize_gpu_swap_chain(::gpu::renderer * pgpurenderer);
 
       //virtual void endDraw(::gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* prendererSrc);
+      //virtual void present(::gpu::texture * pgputexture);
       virtual void present(::gpu::texture * pgputexture);
       virtual void set_present_state();
       virtual void swap_buffers();

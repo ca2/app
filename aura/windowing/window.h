@@ -77,6 +77,8 @@ namespace windowing
          ::pointer < ::particle >               m_pmutexGraphics;
          class ::time m_time017LastConfigureUnlocked;
 
+      ::pointer < ::draw2d::graphics_context >m_pgraphicscontextDrawingFrame;
+
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
 #endif
@@ -218,6 +220,10 @@ namespace windowing
       virtual void do_graphics();
       virtual void _001OnNcClip(::draw2d::graphics_pointer & pgraphics);
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      virtual void draw_on_context();
+      virtual void draw_frame(::draw2d::graphics_context * pgraphicscontext);
+      virtual void draw_frame_layout(::draw2d::graphics * pgraphics);
+      virtual void draw_frame_draw(::draw2d::graphics * pgraphics);
 
 
       virtual class placement_log* placement_log();

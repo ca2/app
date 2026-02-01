@@ -490,6 +490,7 @@ namespace user
 
 
    void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   //void graphics3d::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
       if (!m_pengine)

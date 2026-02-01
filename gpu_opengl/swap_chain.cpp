@@ -78,7 +78,7 @@ FragColor = texture(uTexture, TexCoord);
    }
 
 
-   void swap_chain::present(::gpu::texture* pgputexture)
+   void swap_chain::present()
    {
 
       if (!m_pgpucontext)
@@ -497,7 +497,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
                                           
 #else
    
-      m_ptexturePresent->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
+      m_ptexturePresent->m_pgpucontext = m_pgpucontext;
       m_ptexturePresent->m_gluTextureID = -1023;
       m_ptexturePresent->m_gluType = 0;
                                                    

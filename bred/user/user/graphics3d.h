@@ -69,7 +69,7 @@ namespace user
       void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
-
+      //void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

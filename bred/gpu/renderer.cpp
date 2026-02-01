@@ -41,7 +41,7 @@ namespace gpu
 
       m_iDefaultFrameCount = 3;
       
-      isFrameStarted = false;
+      m_bFrameStarted = false;
 
    }
 
@@ -362,10 +362,26 @@ namespace gpu
 
          m_pgpucontext->copy(ptextureTarget, ptextureSource, &player->m_pgpufence);
 
-         player->m_bFinished = false;
+         //player->m_bFinished = false;
          //ptextureTarget->defer_fence();
 
       }
+
+   }
+
+   void renderer::defer_end_frame_layer_after_submit()
+   {
+
+      auto player = ::gpu::current_frame()->m_pgpulayer;
+
+      if (player)
+      {
+
+         player->layer_on_after_submit();
+
+      }
+
+
 
    }
 
@@ -398,7 +414,7 @@ namespace gpu
    ::gpu::command_buffer* renderer::getCurrentCommandBuffer2(::gpu::frame* pgpuframe)
    {
 
-      assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
+      assert(m_bFrameStarted && "Cannot get command buffer when frame not in progress");
 
       if (pgpuframe && pgpuframe->m_pgpulayer)
       {
@@ -1509,9 +1525,9 @@ namespace gpu
 
       m_prenderstate->on_happening(e_happening_begin_frame);
 
-      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
+      assert(!m_bFrameStarted && "Can't call beginFrame while already in progress");
 
-      isFrameStarted = true;
+      m_bFrameStarted = true;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow
          && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
@@ -1578,7 +1594,7 @@ namespace gpu
 
       m_prenderstate->on_happening(e_happening_end_frame);
 
-      isFrameStarted = false;
+      m_bFrameStarted = false;
 
       if (m_procedureaOnAfterEndFrame.has_element())
       {

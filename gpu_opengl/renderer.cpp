@@ -633,7 +633,7 @@ namespace gpu_opengl
 
       m_prenderstate->on_happening(::gpu::e_happening_end_frame);
 
-      isFrameStarted = false;
+      m_bFrameStarted = false;
 
    }
 

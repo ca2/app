@@ -56,6 +56,17 @@ namespace graphics
    }
 
 
+   void buffer_item::switch_to_draw()
+   {
+
+      m_egraphics = e_graphics_draw;
+
+      g();
+
+
+   }
+
+
    void buffer_item::destroy()
    {
 

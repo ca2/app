@@ -201,6 +201,8 @@ list(APPEND library_source
         filesystem/filesystem/_2.h
         filesystem/filesystem/_impl.h
         filesystem/filesystem/_impl2.h
+        filesystem/filesystem/dialog_base.cpp
+        filesystem/filesystem/dialog_base.h        
         filesystem/filesystem/directory_context.cpp
         filesystem/filesystem/directory_context.h
         filesystem/filesystem/directory_system.cpp
@@ -3113,10 +3115,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   filesystem/filesystem/dialog_base.cpp
-   filesystem/filesystem/dialog_base.h
-   operating_system/linux/cpu_features_aarch64.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

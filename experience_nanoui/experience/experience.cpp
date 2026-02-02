@@ -84,7 +84,7 @@ namespace experience_nanoui
    ::pointer < ::experience::frame > experience::frame_experience(const ::scoped_string & scopedstrFrameSchema)
    {
 
-      string strSchema(strFrameSchema);
+      string strSchema(scopedstrFrameSchema);
 
       if (strSchema == "001")
       {

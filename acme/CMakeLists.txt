@@ -2494,6 +2494,10 @@ if(${TARGET_ARCH} STREQUAL "x64")
 list(APPEND library_source
    operating_system/linux/cpu_features_x86_64.cpp
 )
+elseif(${TARGET_ARCH} STREQUAL "aarch64")
+   list(APPEND library_source
+      operating_system/linux/cpu_features_aarch64.cpp
+   )
    endif()
 
 
@@ -3111,7 +3115,8 @@ endif ()
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
    filesystem/filesystem/dialog_base.cpp
-   filesystem/filesystem/dialog_base.h)
+   filesystem/filesystem/dialog_base.h
+   operating_system/linux/cpu_features_aarch64.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

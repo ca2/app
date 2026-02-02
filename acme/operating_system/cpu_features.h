@@ -7,7 +7,7 @@ struct CLASS_DECL_ACME cpu_features
 {
 
 
-#if defined(__APPLE__) && defined(__aarch64__)
+#if (defined(__APPLE__) || defined(LINUX)) && defined(__aarch64__)
 
 // ---- SIMD / FP ----
     bool  m_bFP      = false;

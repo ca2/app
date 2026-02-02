@@ -2449,7 +2449,7 @@ if (${LINUX})
             #operating_system/linux/_user.h
             operating_system/linux/application.h
             operating_system/linux/callstack.cpp
-
+            operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
             #operating_system/linux/cross_win_file.h
             #operating_system/linux/cross_win_gdi.cpp

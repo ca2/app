@@ -13,6 +13,7 @@
 #include <x86intrin.h>  // For xgetbv
 #include <cstdint>
 
+
 static inline uint64_t xgetbv(uint32_t index)
 {
    uint32_t eax, edx;
@@ -60,6 +61,7 @@ cpu_features::cpu_features()
 namespace operating_system
 {
 
+
    ::string machine_architecture()
    {
       struct utsname u;
@@ -83,7 +85,7 @@ namespace operating_system
 
       return u.machine; // fallback: return raw uname value
    }
-   
+
 
 } // namespace operating_system
 

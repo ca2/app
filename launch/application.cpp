@@ -345,7 +345,7 @@ namespace launch
          }
 
          m_strLaunchAppId = ::system()->m_args[1];
-         ;
+
       }
 
       auto iSlash = m_strLaunchAppId.find_index('/');

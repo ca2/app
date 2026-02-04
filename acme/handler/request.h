@@ -17,42 +17,42 @@
 
 
 #include "acme/graphics/graphics/output_purpose.h"
-
-class CLASS_DECL_ACME request_stack :
-virtual public ::particle
-{
-public:
-   
-   
-   ::pointer < class ::request > m_prequestHold;
-   
-   request_stack(::request * prequest);
-   
-   ~request_stack() override;
-   
-   
-   class ::request * request();
-
-};
-
-
-class CLASS_DECL_ACME request_scope
-{
-public:
-   
-   
-   ::pointer < ::request_stack > m_prequeststack;
-   
-   request_scope(::pointer < request_stack > && prequeststack);
-   request_scope(const ::pointer < request_stack > & prequeststack);
-
-   ~request_scope();
-   
-   
-   class ::request * request();
-   
-   
-};
+//
+//class CLASS_DECL_ACME request_stack :
+//virtual public ::particle
+//{
+//public:
+//   
+//   
+//   ::pointer < class ::request > m_prequestHold;
+//   
+//   request_stack(::request * prequest);
+//   
+//   ~request_stack() override;
+//   
+//   
+//   class ::request * request();
+//
+//};
+//
+//
+//class CLASS_DECL_ACME request_scope
+//{
+//public:
+//   
+//   
+//   ::pointer < ::request_stack > m_prequeststack;
+//   
+//   request_scope(::pointer < request_stack > && prequeststack);
+//   request_scope(const ::pointer < request_stack > & prequeststack);
+//
+//   ~request_scope();
+//   
+//   
+//   class ::request * request();
+//   
+//   
+//};
 
 
 class CLASS_DECL_ACME request :
@@ -99,7 +99,7 @@ public:
    int                              m_nCmdShow;
    ///::interlocked_count              m_countStack;
    bool                             m_bFinishedStacking = false;
-   ::pointer_array < ::request_stack > m_requeststacka;
+   ::pointer_array < ::request >    m_requesta;
    // not ok for file_new
    //::payload                        m_payloadFile;
 
@@ -110,12 +110,12 @@ public:
 
    ::file::item_array *             m_pitema;
 
-   ::pointer<::platform::context>       m_pcontextFork;
+   ::pointer<::platform::context>   m_pcontextFork;
    string                           m_strExe;
    string                           m_strApp;
    string                           m_strAppType;
-   ::collection::index                            m_iEdge;
-   manual_reset_happening               m_happeningReady;
+   ::collection::index              m_iEdge;
+   manual_reset_happening           m_happeningReady;
    ::request *                      m_prequest;
    string                           m_strCommandLine;
    ::pointer < ::data::data >       m_pdata;
@@ -137,8 +137,8 @@ public:
    void common_construct();
    
    
-   [[nodiscard]]::pointer < ::request_stack> push_request();
-   void pop_request(::request_stack * pstack);
+   //[[nodiscard]]::pointer < ::request> push_request();
+   //void pop_request(::request * pstack);
    
 
 

@@ -403,7 +403,7 @@ namespace handler
    void handler::request(::request * prequest)
    {
       
-      ASSERT(m_prequestBeingAttended.is_null());
+//      ASSERT(m_prequestBeingAttended.is_null());
       
       m_prequestBeingAttended = prequest;
 

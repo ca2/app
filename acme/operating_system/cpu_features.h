@@ -13,9 +13,7 @@ struct CLASS_DECL_ACME cpu_features
     bool  m_bFP      = false;
 
    // ---- Crypto ----
-    bool  m_bAES    = false;
     bool  m_bSHA1   = false;
-    bool m_bSHA2    = false;
     bool m_bCRC32  = false;
 
    // ---- Atomics ----
@@ -23,7 +21,8 @@ struct CLASS_DECL_ACME cpu_features
 #endif
     
     
-
+   bool m_bSHA2    = false;
+   bool  m_bAES    = false;
    bool m_bNEON = false;
    bool m_bSSE = false;
    bool m_bAVX = false;

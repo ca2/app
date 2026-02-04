@@ -81,6 +81,17 @@
 
 #endif
 
+#ifdef FREEBSD
+
+#include <signal.h>
+#include <ucontext.h>
+#include <machine/ucontext.h>
+#include <sys/ucontext.h>
+#include <machine/ucontext.h>
+
+
+#endif
+
 
 class CLASS_DECL_ACME standard_exception :
 public ::exception
@@ -206,12 +217,25 @@ class standard_sigfpe : public standard_exception
 
 #elif defined(FREEBSD)
 
+
+#if defined(__FreeBSD__) && defined(__aarch64__)
+
+
+
+#endif
 class standard_sigfpe : public standard_exception
    {
    public:
       standard_sigfpe (int iSignal, siginfo_t * psiginfo, void * pc) :
          //standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
-         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.mc_rip)
+         #if defined(__x86_64__)
+            standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.mc_rip)
+
+         #elif defined(__aarch64__)
+            standard_exception(iSignal, psiginfo, pc, 3, nullptr)
+            #else
+            #error unknonw architecture
+            #endif
          //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
       {
 

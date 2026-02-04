@@ -2882,6 +2882,18 @@ if (${FREEBSD})
             operating_system/freebsd/win_base.cpp
     )
 
+    if(${__SYSTEM_ARCHITECTURE} STREQUAL "amd64")
+       list(APPEND library_source
+          operating_system/freebsd/cpu_features_amd64.cpp
+       )
+    elseif(${__SYSTEM_ARCHITECTURE} STREQUAL "arm64")
+       list(APPEND library_source
+          operating_system/freebsd/cpu_features_arm64.cpp
+       )
+    else()
+       message(FATAL "uknown architecture")
+    endif()
+
 endif ()
 
 

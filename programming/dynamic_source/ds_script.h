@@ -53,7 +53,7 @@ namespace dynamic_source
 
       void destroy() override;
 
-      virtual void defer_build();
+      void defer_build() override;
       virtual void on_start_build();
 
       bool DoesMatchVersion();

@@ -29,13 +29,13 @@ namespace operating_system
       if (!strcmp(u.machine, "aarch64") ||
           !strcmp(u.machine, "arm64"))
       {
-         return "aarch64";
+         return "arm64";
       }
       // x86_64 / amd64
       else if (!strcmp(u.machine, "x86_64") ||
                !strcmp(u.machine, "amd64"))
       {
-         return "x86_64";
+         return "amd64";
       }
 
       return u.machine; // fallback: return raw uname value

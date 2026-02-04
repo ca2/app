@@ -106,6 +106,13 @@ namespace launch
          print_line("This is FreeBSD System...");
 
          m_strBranch = strBranch;
+
+         //if(strBranch == "kde")
+         //{
+
+         //m_strBranch = "gnome";
+
+         //}
          
 
       }

@@ -280,7 +280,7 @@ bool task::has_main_loop_happening()
 bool task::_has_main_loop_happening_unlocked()
 {
 
-   return m_requeststackaPosted.has_element()
+   return m_requestaPosted.has_element()
       || m_procedurea2.has_element()
       || m_ehappeninga.has_element();
 
@@ -427,7 +427,7 @@ bool task::task_get_run() const
 
    }
 
-   if (m_requeststackaPosted.has_element())
+   if (m_requestaPosted.has_element())
    {
 
       return true;

@@ -932,7 +932,7 @@ namespace apex
    void application::request(::request * prequest)
    {
 
-      m_prequeststackHandler = prequest->push_request();
+      m_prequestHandler = prequest;
 
       if (m_bApplicationFirstRequest)
       {

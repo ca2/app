@@ -310,16 +310,16 @@ namespace user
       //
       //      }
 
-      auto prequeststackApplicationPost = prequest->push_request();
+      auto prequeststackApplicationPost = ::as_pointer(prequest);
       
       application()->post([this, pdocument, pframe, prequeststackApplicationPost]()
          {
          
-         request_scope requestscope(prequeststackApplicationPost);
+         //request_scope requestscope(prequeststackApplicationPost);
          
-         auto prequest = prequeststackApplicationPost->m_prequestHold;
+         //auto prequest = prequeststackApplicationPost->m_prequestHold;
 
-            ::payload payloadFile = prequest->get_file();
+            ::payload payloadFile = prequeststackApplicationPost->get_file();
 
             if (payloadFile.is_empty() || payloadFile.is_numeric())
             {
@@ -328,7 +328,7 @@ namespace user
                set_default_title(pdocument);
 
                // avoid creating temporary compound file when starting up invisible
-               if (!(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
+               if (!(prequeststackApplicationPost->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen))
                {
 
                   pdocument->m_bEmbedded = true;
@@ -340,7 +340,7 @@ namespace user
                   // user has been alerted to what failed in on_new_document
                   warning()(e_trace_category_appmsg) << "::user::document::on_new_document returned false.\n";
 
-                  if (prequest->m_bDocumentAndFrameCreated)
+                  if (prequeststackApplicationPost->m_bDocumentAndFrameCreated)
                   {
 
                      pframe->destroy_window();    // will destroy ::user::document
@@ -359,18 +359,18 @@ namespace user
             else
             {
 
-               wait_cursor wait(prequest);
+               wait_cursor wait(prequeststackApplicationPost);
 
                // open an existing ::user::document
-               prequest->m_bDocumentWasModified = pdocument->is_modified();
+               prequeststackApplicationPost->m_bDocumentWasModified = pdocument->is_modified();
                pdocument->set_modified_flag(false);  // not dirty for open
 
-               if (!on_open_document(pdocument, prequest))
+               if (!on_open_document(pdocument, prequeststackApplicationPost))
                {
                   // user has been alerted to what failed in on_open_document
                   warning()(e_trace_category_appmsg) << "::user::document::on_open_document returned false.\n";
 
-                  if (prequest->m_bDocumentAndFrameCreated)
+                  if (prequeststackApplicationPost->m_bDocumentAndFrameCreated)
                   {
 
                      pframe->destroy_window();    // will destroy ::user::document
@@ -379,7 +379,7 @@ namespace user
                   else if (!pdocument->is_modified())
                   {
                      // original ::user::document is untouched
-                     pdocument->set_modified_flag(prequest->m_bDocumentWasModified);
+                     pdocument->set_modified_flag(prequeststackApplicationPost->m_bDocumentWasModified);
                   }
                   else
                   {
@@ -405,14 +405,15 @@ namespace user
 
             //      thread* pThread = ::get_task();
 
-            if (!prequest->m_bHold)
+            if (!prequeststackApplicationPost->m_bHold)
             {
 
                pframe->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
 
             }
 
-            prepare_frame(pframe, pdocument, prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
+            prepare_frame(pframe, pdocument,
+                          prequeststackApplicationPost->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen);
             //      if(bCreated)
             //      {
             //

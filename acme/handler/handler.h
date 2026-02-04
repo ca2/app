@@ -12,9 +12,6 @@
 #include "acme/prototype/collection/pointer_array.h"
 
 
-class request_stack;
-
-
 namespace handler
 {
 
@@ -26,7 +23,7 @@ namespace handler
    protected:
 
 
-      ::pointer_array_base < ::request_stack >  m_requeststackaPosted;
+      ::pointer_array_base < ::request >        m_requestaPosted;
       ::pointer_array_base < ::request >        m_requestaHistory;
       ::pointer < ::manual_reset_happening >    m_pmanualresethappeningMainLoop;
 
@@ -58,13 +55,13 @@ namespace handler
       };
 
 
-      ::pointer < ::request_stack >       m_prequeststackHandler;
+      ::pointer < ::request >       m_prequestHandler;
        
-      ::pointer < ::request_stack >       m_prequeststackHandling;
+      ::pointer < ::request >       m_prequestHandling;
       
-      ::pointer < ::request_stack >       m_prequeststackBeingAttended;
+      ::pointer < ::request >       m_prequestBeingAttended;
 
-      ::payload                           m_payloadFile;
+      ::payload                     m_payloadFile;
 
 
       handler();

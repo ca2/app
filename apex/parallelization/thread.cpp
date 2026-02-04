@@ -4905,8 +4905,8 @@ void thread::request(::request* prequest)
 {
 
    m_prequest2 = prequest;
-   auto prequeststack = prequest->push_request();
-   ::request_scope requestscope(prequeststack);
+   //auto prequeststack = prequest->push_request();
+   //::request_scope requestscope(prequeststack);
    on_request(prequest);
 
 }

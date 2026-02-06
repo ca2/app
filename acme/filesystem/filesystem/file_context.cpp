@@ -1831,7 +1831,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    try
    {
 
-      information() << "preader : " << (iptr)preader.m_p;
+      //information() << "preader : " << (iptr)preader.m_p;
 
       if (::is_nok(preader))
       {

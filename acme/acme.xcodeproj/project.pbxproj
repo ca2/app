@@ -1956,6 +1956,8 @@
 		9A68B3EA25114438008DABD2 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68AC6C25114432008DABD2 /* exception.h */; };
 		9A68B3F725114438008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68AC7925114432008DABD2 /* _.h */; };
 		9A68B40425114438008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68AC8B25114433008DABD2 /* _.h */; };
+		9A7107BC2F33FA3D00B0F974 /* cpu_features.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7107BB2F33FA2F00B0F974 /* cpu_features.cpp */; };
+		9A7107BD2F33FA3D00B0F974 /* cpu_features.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7107BB2F33FA2F00B0F974 /* cpu_features.cpp */; };
 		9A72EEF22A3D5903009743AD /* trace_statement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72EEED2A3D5902009743AD /* trace_statement.cpp */; };
 		9A72EEF32A3D5903009743AD /* trace_statement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A72EEF02A3D5903009743AD /* trace_statement.h */; };
 		9A72EEF42A3D5903009743AD /* trace_statement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A72EEF02A3D5903009743AD /* trace_statement.h */; };
@@ -6178,6 +6180,7 @@
 		9A68AC7525114432008DABD2 /* dump_floating_point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dump_floating_point.cpp; sourceTree = "<group>"; };
 		9A68AC7925114432008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A68AC8B25114433008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A7107BB2F33FA2F00B0F974 /* cpu_features.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpu_features.cpp; sourceTree = "<group>"; };
 		9A72EEED2A3D5902009743AD /* trace_statement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = trace_statement.cpp; sourceTree = "<group>"; };
 		9A72EEF02A3D5903009743AD /* trace_statement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trace_statement.h; sourceTree = "<group>"; };
 		9A72EEF52A3D596F009743AD /* print_formatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = print_formatting.h; sourceTree = "<group>"; };
@@ -9268,8 +9271,8 @@
 		9AA8F92D27BA7295008FF9AA /* operating_system */ = {
 			isa = PBXGroup;
 			children = (
-				9AA8F9E527BA7296008FF9AA /* ansi */,
 				9AA8F92E27BA7295008FF9AA /* apple */,
+				9AA8F9E527BA7296008FF9AA /* ansi */,
 				9A00AEC92BF9894E00616364 /* darwin */,
 				9AA8FA8227BA7296008FF9AA /* ios */,
 				9AA8F99D27BA7295008FF9AA /* macos */,
@@ -9434,6 +9437,7 @@
 				9AA8F9C027BA7296008FF9AA /* _c.h */,
 				9AA8F9CF27BA7296008FF9AA /* _macos.h */,
 				9AA8F9A627BA7295008FF9AA /* _mm.h */,
+				9A7107BB2F33FA2F00B0F974 /* cpu_features.cpp */,
 				9A1824012F20E7D6007693F6 /* cpu_features_arm64.cpp */,
 				9A1823FE2F20E6D5007693F6 /* cpu_features_x86_64.cpp */,
 				9AA8F9BA27BA7296008FF9AA /* cross_win_file.cpp */,
@@ -13699,6 +13703,7 @@
 				9A5242802CD47440006ED868 /* international.cpp in Sources */,
 				9A5242812CD47440006ED868 /* text.cpp in Sources */,
 				9A7DE1302D26A51900118A10 /* key.cpp in Sources */,
+				9A7107BC2F33FA3D00B0F974 /* cpu_features.cpp in Sources */,
 				9A97A75A2CFBCD66000A2F7C /* windowing.cpp in Sources */,
 				9A97A7632CFBCDEB000A2F7C /* wait_for_end_of_sequence.cpp in Sources */,
 				9A97A75C2CFBCD66000A2F7C /* host_interaction.cpp in Sources */,
@@ -14636,6 +14641,7 @@
 				9AC018D7274888C8006BEBCC /* uncompress.cpp in Sources */,
 				9A5240102CD443A7006ED868 /* client.cpp in Sources */,
 				9A809D582A6004B200FCA9FD /* wd32_impl.cpp in Sources */,
+				9A7107BD2F33FA3D00B0F974 /* cpu_features.cpp in Sources */,
 				9A8F43932A23022C00097EE1 /* _.cpp in Sources */,
 				9A95EDA92AFAFE17000F322B /* _c.cpp in Sources */,
 				9A5DCE22271A3BCC00C2ED86 /* nanosecond_timer.cpp in Sources */,

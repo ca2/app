@@ -123,6 +123,14 @@
 		9A4B40692524363C00F476B3 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B40682524363C00F476B3 /* libaura.dylib */; };
 		9A4B406A2524363C00F476B3 /* libberg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281ADA252435C3009FA9CB /* libberg.dylib */; };
 		9A4B406C2524376800F476B3 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B406B2524376800F476B3 /* libaxis.dylib */; };
+		9A7107B12F33F99300B0F974 /* fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7107B02F33F99300B0F974 /* fence.cpp */; };
+		9A7107B22F33F99300B0F974 /* fence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7107AF2F33F99300B0F974 /* fence.h */; };
+		9A7107B32F33F99300B0F974 /* fence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7107AF2F33F99300B0F974 /* fence.h */; };
+		9A7107B42F33F99300B0F974 /* fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7107B02F33F99300B0F974 /* fence.cpp */; };
+		9A7107B72F33F9B700B0F974 /* semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7107B62F33F9B700B0F974 /* semaphore.cpp */; };
+		9A7107B82F33F9B700B0F974 /* semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7107B52F33F9B700B0F974 /* semaphore.h */; };
+		9A7107B92F33F9B700B0F974 /* semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7107B62F33F9B700B0F974 /* semaphore.cpp */; };
+		9A7107BA2F33F9B700B0F974 /* semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7107B52F33F9B700B0F974 /* semaphore.h */; };
 		9A7FEB8A2E7F47310082C6FD /* command_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEB482E7F47310082C6FD /* command_buffer.h */; };
 		9A7FEB8B2E7F47310082C6FD /* _types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEB422E7F47310082C6FD /* _types.h */; };
 		9A7FEB8C2E7F47310082C6FD /* _model.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEB412E7F47310082C6FD /* _model.h */; };
@@ -564,6 +572,10 @@
 		9A4B40662524363200F476B3 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B40682524363C00F476B3 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4B406B2524376800F476B3 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A7107AF2F33F99300B0F974 /* fence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fence.h; sourceTree = "<group>"; };
+		9A7107B02F33F99300B0F974 /* fence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fence.cpp; sourceTree = "<group>"; };
+		9A7107B52F33F9B700B0F974 /* semaphore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
+		9A7107B62F33F9B700B0F974 /* semaphore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = semaphore.cpp; sourceTree = "<group>"; };
 		9A7FEB3E2E7F47310082C6FD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A7FEB3F2E7F47310082C6FD /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A7FEB402E7F47310082C6FD /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
@@ -934,6 +946,8 @@
 				9A7FEB582E7F47310082C6FD /* draw2d.cpp */,
 				9A1823D62F20E590007693F6 /* empty_texture_source.h */,
 				9A1823D72F20E590007693F6 /* empty_texture_source.cpp */,
+				9A7107AF2F33F99300B0F974 /* fence.h */,
+				9A7107B02F33F99300B0F974 /* fence.cpp */,
 				9A7FEB592E7F47310082C6FD /* frame.h */,
 				9A7FEB5A2E7F47310082C6FD /* frame.cpp */,
 				9A7FEB5B2E7F47310082C6FD /* frame_ephemeral.h */,
@@ -977,6 +991,8 @@
 				9A7FEB7E2E7F47310082C6FD /* renderable.cpp */,
 				9A7FEB7F2E7F47310082C6FD /* renderer.h */,
 				9A7FEB802E7F47310082C6FD /* renderer.cpp */,
+				9A7107B52F33F9B700B0F974 /* semaphore.h */,
+				9A7107B62F33F9B700B0F974 /* semaphore.cpp */,
 				9A7FEB812E7F47310082C6FD /* shader.h */,
 				9A7FEB822E7F47310082C6FD /* shader.cpp */,
 				9A7FEB832E7F47310082C6FD /* swap_chain.h */,
@@ -1181,6 +1197,7 @@
 				9A1823EF2F20E590007693F6 /* texture_attributes.h in Headers */,
 				9A1823F02F20E590007693F6 /* texture_data.h in Headers */,
 				9A1823F12F20E590007693F6 /* binding.h in Headers */,
+				9A7107B22F33F99300B0F974 /* fence.h in Headers */,
 				9A7FECAA2E7F47420082C6FD /* mesh.h in Headers */,
 				9A7FECAB2E7F47420082C6FD /* provider.h in Headers */,
 				9A7FECAE2E7F47420082C6FD /* renderable.h in Headers */,
@@ -1199,6 +1216,7 @@
 				9A7FECB22E7F47420082C6FD /* class_set1.h in Headers */,
 				9A7FECB42E7F47420082C6FD /* types.h in Headers */,
 				9A7FECB92E7F47420082C6FD /* camera.h in Headers */,
+				9A7107B82F33F9B700B0F974 /* semaphore.h in Headers */,
 				9A7FECBB2E7F47420082C6FD /* _.h in Headers */,
 				9A7FECBE2E7F47420082C6FD /* _constant.h in Headers */,
 				9A8582932F2299F5001D08D1 /* rotation.h in Headers */,
@@ -1276,6 +1294,7 @@
 				9AE64220284AA6570079EBA0 /* session.h in Headers */,
 				9A7FEBF82E7F47310082C6FD /* command_buffer.h in Headers */,
 				9A7FEBF92E7F47310082C6FD /* _types.h in Headers */,
+				9A7107BA2F33F9B700B0F974 /* semaphore.h in Headers */,
 				9A7FEBFA2E7F47310082C6FD /* _model.h in Headers */,
 				9A7FEBFB2E7F47310082C6FD /* object.h in Headers */,
 				9A7FED252E7F47430082C6FD /* class_set.h in Headers */,
@@ -1364,6 +1383,7 @@
 				9A7FEC1F2E7F47310082C6FD /* aaaa_gpu.h in Headers */,
 				9AE64221284AA6570079EBA0 /* android.h in Headers */,
 				9AE64222284AA6570079EBA0 /* console.h in Headers */,
+				9A7107B32F33F99300B0F974 /* fence.h in Headers */,
 				9AE64223284AA6570079EBA0 /* universal_windows.h in Headers */,
 				9AE64224284AA6570079EBA0 /* idpool.h in Headers */,
 				9AE64225284AA6570079EBA0 /* _console_old.h in Headers */,
@@ -1540,6 +1560,7 @@
 				9A1823C72F20E03C007693F6 /* skybox_render_system.cpp in Sources */,
 				9A281AD125243402009FA9CB /* idpool.cpp in Sources */,
 				9A281AB225243402009FA9CB /* session.cpp in Sources */,
+				9A7107B72F33F9B700B0F974 /* semaphore.cpp in Sources */,
 				9A281AAE25243402009FA9CB /* framework.cpp in Sources */,
 				9A3CFE682EBB0E740074E067 /* scene_renderable.cpp in Sources */,
 				9A3CFE692EBB0E740074E067 /* scene_base.cpp in Sources */,
@@ -1553,6 +1574,7 @@
 				9A7FECDF2E7F47420082C6FD /* asset_manager.cpp in Sources */,
 				9A1824092F20E955007693F6 /* timer.cpp in Sources */,
 				9A7FECE32E7F47420082C6FD /* key_map.cpp in Sources */,
+				9A7107B12F33F99300B0F974 /* fence.cpp in Sources */,
 				9A7FECE42E7F47420082C6FD /* frame.cpp in Sources */,
 				9A7FECE52E7F47420082C6FD /* engine.cpp in Sources */,
 				9A7FECE82E7F47420082C6FD /* render_system.cpp in Sources */,
@@ -1627,6 +1649,7 @@
 				9A1823CC2F20E03C007693F6 /* skybox_render_system.cpp in Sources */,
 				9AE64243284AA6570079EBA0 /* idpool.cpp in Sources */,
 				9AE64244284AA6570079EBA0 /* session.cpp in Sources */,
+				9A7107B92F33F9B700B0F974 /* semaphore.cpp in Sources */,
 				9AE64245284AA6570079EBA0 /* framework.cpp in Sources */,
 				9A3CFE662EBB0E740074E067 /* scene_renderable.cpp in Sources */,
 				9A3CFE672EBB0E740074E067 /* scene_base.cpp in Sources */,
@@ -1640,6 +1663,7 @@
 				9A7FED082E7F47430082C6FD /* asset_manager.cpp in Sources */,
 				9A18240A2F20E955007693F6 /* timer.cpp in Sources */,
 				9A7FED0C2E7F47430082C6FD /* key_map.cpp in Sources */,
+				9A7107B42F33F99300B0F974 /* fence.cpp in Sources */,
 				9A7FED0D2E7F47430082C6FD /* frame.cpp in Sources */,
 				9A7FED0E2E7F47430082C6FD /* engine.cpp in Sources */,
 				9A7FED112E7F47430082C6FD /* render_system.cpp in Sources */,

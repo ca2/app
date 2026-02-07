@@ -402,7 +402,7 @@ public:
 
    /// Pass-through function for \::pointer nanoui::TextBox::set_callback.
    void set_callback(const ::function<void(const ::scoped_string &)> & cb) {
-      TextBox::set_callback([cb](const ::scoped_string & str) { cb(str); return true; });
+      TextBox::set_callback([cb](const ::scoped_string & str)->bool { cb(str); return true; });
    }
 };
 

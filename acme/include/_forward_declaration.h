@@ -312,7 +312,7 @@ template<class TYPE>
 using add_const = typename insert_const<TYPE>::CONST_TYPE;
 
 
-//constexpr unsigned long long operator "" _uintmax(unsigned long long u) { return u << 32LL; }
+//constexpr unsigned long long operator""_uintmax(unsigned long long u) { return u << 32LL; }
 
 template<typename DERIVED, typename BASE>
 concept is_derived_from =

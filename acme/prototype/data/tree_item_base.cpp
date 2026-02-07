@@ -118,7 +118,7 @@ namespace data
 
       erase_child_at(iIndex);
 
-      _predicate_each([](auto pitem)
+      _predicate_each([](::data::tree_item_base * pitem)->bool
       {
 
          pitem->clear_cache();
@@ -258,7 +258,7 @@ namespace data
    void tree_item_base::erase_tree_item_descendants()
    {
 
-      _predicate_each([](tree_item_base * p)
+      _predicate_each([](tree_item_base * p)->bool
       {
 
          p->erase_tree_item_descendants();
@@ -355,7 +355,7 @@ namespace data
 
       pitem->_get_parent()->_erase_child(pitem);
 
-      pitem->_get_parent()->_predicate_each([](tree_item_base * p)
+      pitem->_get_parent()->_predicate_each([](tree_item_base * p)->bool
       {
 
          p->clear_cache();
@@ -414,7 +414,7 @@ namespace data
 
          _insert_child_at(0, pitemNew);
 
-         _predicate_each([](tree_item_base * pitem)
+         _predicate_each([](tree_item_base * pitem)->bool
          {
 
             pitem->clear_cache();
@@ -437,7 +437,7 @@ namespace data
 
          _add_child(pitemNew);
 
-         _predicate_each([](auto pitem)
+         _predicate_each([](auto pitem)->bool
          {
 
             pitem->clear_cache();
@@ -479,7 +479,7 @@ namespace data
 
          _get_parent()->_insert_child_at(iFind, pitemNew);
 
-         _get_parent()->_predicate_each([](auto pitem)
+         _get_parent()->_predicate_each([](auto pitem)->bool
          {
 
             pitem->clear_cache();
@@ -520,7 +520,7 @@ namespace data
 
          _get_parent()->_insert_child_at(iFind + 1, pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->_predicate_each([](auto & pitem)->bool
          {
 
             pitem->clear_cache();
@@ -541,7 +541,7 @@ namespace data
 
          _get_parent()->_add_child(pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->_predicate_each([](auto & pitem)->bool
          {
 
             pitem->clear_cache();
@@ -573,7 +573,7 @@ namespace data
 
          _get_parent()->_set_child_at(iFind, pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->_predicate_each([](auto & pitem)->bool
          {
 
             pitem->clear_cache();
@@ -636,7 +636,7 @@ namespace data
    
    void tree_item_base::_get_children(::data::tree_item_base_ptr_array & ptra)
    {
-      _predicate_each([&ptra](auto p)
+      _predicate_each([&ptra](auto p)->bool
       {
          ptra.add_item(p);
 
@@ -671,7 +671,7 @@ namespace data
 
       ::collection::count c = 0;
       
-      _predicate_each([&c](auto p)
+      _predicate_each([&c](auto p)->bool
       {
 
          if (p->get_children_count() > 0)
@@ -695,7 +695,7 @@ namespace data
       
       ::collection::count c = 0;
 
-      auto iFind = _predicate_find_first([&c, iIndex](auto& p)
+      auto iFind = _predicate_find_first([&c, iIndex](auto& p)->bool
          {
 
             if (p->get_children_count() > 0)

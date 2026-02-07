@@ -110,7 +110,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #if defined(WINDOWS)
 int WINAPI wWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
 #else
-extern "C" int main(int argc, char* argv[], char* envp[])
+int main(int argc, char* argv[], char* envp[])
 #endif
 {
 

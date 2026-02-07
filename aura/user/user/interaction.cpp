@@ -10449,6 +10449,17 @@ if(get_parent())
                                                  bool bOnlyPerm)
    {
 
+      auto a = eusermessage;
+
+      //auto pLresult = øallocate particle_primitive < ::lresult >();
+
+      //pLresult->m_t = 0;
+
+      ::pointer < ::user::interaction > pthis = this;
+
+      window()->main_send([this, pthis, a, wparam, lparam, bDeep, bOnlyPerm]()
+      {
+
       //if (window() == nullptr)
       //{
 
@@ -10478,7 +10489,7 @@ if(get_parent())
             try
             {
 
-               puserinteraction->send_message(eusermessage, wparam, lparam);
+               puserinteraction->send_message(a, wparam, lparam);
 
             }
             catch (...)
@@ -10504,7 +10515,7 @@ if(get_parent())
             try
             {
 
-               puserinteraction->send_message_to_descendants(eusermessage, wparam, lparam, true, bOnlyPerm);
+               puserinteraction->send_message_to_descendants(a, wparam, lparam, true, bOnlyPerm);
 
 
             }
@@ -10516,6 +10527,11 @@ if(get_parent())
          }
 
       }
+
+               });
+
+      //return pLresult->m_t;
+
 
    }
 

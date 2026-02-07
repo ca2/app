@@ -2,6 +2,17 @@ cmake_minimum_required(VERSION 3.16)
 project(acme CXX)
 
 
+if(${ANDROID})
+
+   # 1. Define the path to the cpufeatures source in the NDK
+   set(CPU_FEATURES_PATH ${ANDROID_NDK}/sources/android/cpufeatures)
+
+   add_library(cpufeatures STATIC
+      ${ANDROID_NDK}/sources/android/cpufeatures/cpu-features.c)
+
+endif()
+
+
 list(APPEND library_source
         #compress/zip/api.cpp
         #compress/zip/file.cpp
@@ -2097,6 +2108,7 @@ if (${ANDROID})
             #operating_system/android/_os_remote.h
             operating_system/android/acme.cpp
             operating_system/android/callstack.cpp
+       operating_system/android/cpu_features.cpp
             operating_system/android/cross_win_file.h
             operating_system/android/cross_win_gdi.h
             operating_system/android/cross_win_gdi_internal.h
@@ -3200,7 +3212,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
         #list(APPEND this_system_libraries z idn)
         list(APPEND library_references zlib iconv idn)
-        list(APPEND this_system_libraries log)
+        list(APPEND this_system_libraries log cpufeatures)
+        #list(APPEND this_system_libraries log)
         #list(APPEND static_this_system_libraries pthread)
         #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
         message(STATUS "For acme at ANDROID library_references ${library_references}")
@@ -3257,8 +3270,14 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
+
+if(${ANDROID})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CPU_FEATURES_PATH})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${CPU_FEATURES_PATH})
+endif()
 
 
 # defining C Macro _acme_project

@@ -24,9 +24,9 @@
 //using floating_hour = floating_time < floating_hour_t >;
 //
 ////
-//constexpr floating_hour operator "" _h(long double d) { return (floating_hour)d; }
-//constexpr floating_hour operator "" _hour(long double d) { return (floating_hour)d; }
-//constexpr floating_hour operator "" _hours(long double d) { return (floating_hour)d; }
+//constexpr floating_hour operator""_h(long double d) { return (floating_hour)d; }
+//constexpr floating_hour operator""_hour(long double d) { return (floating_hour)d; }
+//constexpr floating_hour operator""_hours(long double d) { return (floating_hour)d; }
 
 
 inline floating_hour get_floating_hour() { return floating_hour(get_floating_nanosecond().m_d / 3'600'000'000'000.0); }

@@ -215,6 +215,13 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       phostinteraction->create_window();
       
       phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+
+      if(::is_set(lpcrect) && !lpcrect->is_empty())
+      {
+
+         phostinteraction->place(*lpcrect);
+
+      }
       
       phostinteraction->display();
       

@@ -10962,6 +10962,7 @@ namespace windowing
                 }
 
              }
+             m_pgraphicscontextDrawingFrame.release();
 
              return;
 
@@ -11004,7 +11005,7 @@ slGraphics.unlock();
              information() << "m_pgraphics->on_begin_draw FAILED (1)";
 
              //}
-
+             m_pgraphicscontextDrawingFrame.release();
              return;
 
           }
@@ -11012,9 +11013,11 @@ slGraphics.unlock();
           //draw2dlock.unlock();
 
            pgraphics->send_on_context(m_pgraphicscontextDrawingFrame, [this]()
+           {
+              try
               {
 
-                //_synchronous_lock synchronous_lock(m_pmutexGraphics);
+              //_synchronous_lock synchronous_lock(m_pmutexGraphics);
 
 
 
@@ -11026,14 +11029,18 @@ slGraphics.unlock();
 
               m_pgraphicscontextDrawingFrame->m_pgraphics->on_end_draw();
 
-              if (m_pgraphicsgraphics)
-              {
+              if (m_pgraphicsgraphics) {
 
 #ifndef LINUX
                  m_pgraphicsgraphics->on_end_draw();
 #endif
 
               }
+           }
+              catch(...)
+                 {
+
+                 }
 
               m_pgraphicscontextDrawingFrame.release();
 
@@ -11623,7 +11630,12 @@ slGraphics.unlock();
 //
 //             });
 //
-       }
+       } else
+ {
+
+    m_pgraphicscontextDrawingFrame.release();
+
+ }
 
 
    }

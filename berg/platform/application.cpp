@@ -352,7 +352,7 @@ namespace berg
 
       auto pbutton = create_button<::user::button>(pparent, "About");
 
-      pbutton->m_callbackOnClick = [this](::user::interaction * puserinteraction, ::item * pitem, ::user::activation_token * puseractivationtoken)
+      pbutton->m_callbackOnClick = [this](::user::interaction * puserinteraction, ::item * pitem, ::user::activation_token * puseractivationtoken)->bool
          {
 
             show_about_box(puseractivationtoken);

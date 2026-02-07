@@ -25,7 +25,7 @@
 //using floating_second = floating_time < floating_second_t >; 
 
 //
-//constexpr floating_second operator "" _s(long double d) { return (floating_second)d; }
+//constexpr floating_second operator""_s(long double d) { return (floating_second)d; }
 
 
 inline floating_second get_floating_second() { return floating_second(get_floating_nanosecond().m_d / 1'000'000'000.0); }

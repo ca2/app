@@ -2977,7 +2977,7 @@ namespace platform
 
       //   auto pnode = node();
       //
-      //   pnode->_will_finish_launching();
+      //   pnode->_will_aaafinish_launching();
 
       //   auto pnode = session();
       //
@@ -2985,11 +2985,11 @@ namespace platform
       //
       //   auto pwindowing = system()->windowing();
       //
-      //   pwindowing->_will_finish_launching();
+      //   pwindowing->_will_aaa_finish_launching();
 
       auto pnode = node();
 
-      pnode->_will_finish_launching();
+      pnode->_will_aaa_finish_launching();
 
       //return ::success;
 

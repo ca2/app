@@ -109,7 +109,7 @@ namespace windowing
 
       virtual ::acme::windowing::window * window(oswindow oswindow) override;
 
-      void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
+      ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
 
       virtual bool is_sandboxed();
       

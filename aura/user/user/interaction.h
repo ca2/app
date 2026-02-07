@@ -1132,7 +1132,7 @@ namespace user
 
       virtual bool on_before_set_parent(::user::interaction_base * pinterface);
       virtual bool on_set_parent(::user::interaction_base * pinterface);
-      virtual bool on_add_child(::user::interaction * puserinteractionChild);
+      bool on_add_child(::acme::user::interaction * puserinteractionChild) override;
       virtual void on_after_set_parent();
 
 

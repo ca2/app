@@ -5268,7 +5268,7 @@ namespace user
    void interaction::_001OnTopNcClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (!pgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
+      if (::is_set(pgraphics->m_pgraphicsgraphics) && !pgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          return;
@@ -7303,7 +7303,7 @@ namespace user
          //}
 
 
-         pgraphics->m_dFontFactor = 1.0;
+         //pgraphics->m_dFontFactor = 1.0;
 
          ::draw2d::save_context savecontext(pgraphics);
 
@@ -13986,17 +13986,17 @@ if(get_parent())
 
       auto predZ = [elayout](auto & pui1, auto & pui2)
          {
+            ::cast < ::user::interaction > p1 = pui1;
 
-            if (!pui1 || !pui2)
+            ::cast < ::user::interaction > p2 = pui2;
+
+            if (!p1 || !p2)
             {
 
                return false;
 
             }
 
-         ::cast < ::user::interaction > p1 = pui1;
-
-         ::cast < ::user::interaction > p2 = pui2;
 
             return (bool)(p1->const_layout().state(elayout).zorder() < p2->const_layout().state(elayout).zorder());
 
@@ -14046,6 +14046,13 @@ if(get_parent())
       {
 
          ::cast < ::user::interaction> pchild = pacmeuserinteractionChild;
+         
+         if(::is_null(pchild))
+         {
+            
+            continue;
+            
+         }
          pchild->layout().sketch()._patch_order(iZOrder);
 
          pchild->layout().sketch().zorder().clear_request();
@@ -14362,9 +14369,10 @@ if(get_parent())
 
                   ::pointer<::aura::application> papp = get_app();
 
-                  if (pinteraction->m_bExtendOnParent ||
+                  if (::is_set(pinteraction)  &&
+                      (pinteraction->m_bExtendOnParent ||
                       (pinteraction->m_bExtendOnParentIfOnlyClient
-                         && papp && papp->m_bExperienceMainFrame))
+                         && papp && papp->m_bExperienceMainFrame)))
                   {
 
                      synchronouslock.unlock();
@@ -18419,34 +18427,53 @@ if(get_parent())
    }
 
 
-   bool interaction::on_add_child(::user::interaction * puserinteractionChild)
+   bool interaction::on_add_child(::acme::user::interaction * pacmeuserinteractionChild)
    {
 
       //information() << "interaction::on_add_child start\n";
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      
 
-      puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
-      // ::pointer<::user::interaction_array> puserinteractionpointeraChildNew;
-
-      // if (::is_set(m_puserinteractionpointeraChild))
-      // {
-
-      //    puserinteractionpointeraChildNew = øallocate ::user::interaction_array(*m_puserinteractionpointeraChild);
-
-      // }
-      // else
-      // {
-
-      ødefer_construct_new(m_pacmeuserinteractionaChildren);
-
-      // }
-
-      m_pacmeuserinteractionaChildren->add_unique(puserinteractionChild);
-
-      //m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
-
+      if(!::user::interaction_base::on_add_child(pacmeuserinteractionChild))
+      {
+         
+         return false;
+         
+      }
+      
+      ::cast < ::user::interaction > puserinteractionChild = pacmeuserinteractionChild;
+      
+      if(puserinteractionChild)
+      {
+         
+         puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
+         
+      }
+      
       return true;
+//      // ::pointer<::user::interaction_array> puserinteractionpointeraChildNew;
+//
+//      // if (::is_set(m_puserinteractionpointeraChild))
+//      // {
+//
+//      //    puserinteractionpointeraChildNew = øallocate ::user::interaction_array(*m_puserinteractionpointeraChild);
+//
+//      // }
+//      // else
+//      // {
+//      
+//      auto &pacmeuserinteractionaChildren=m_pacmeuserinteractionaChildren;
+//
+//      ødefer_construct_new(pacmeuserinteractionaChildren);
+//
+//      // }
+//
+//      pacmeuserinteractionaChildren->add_unique(puserinteractionChild);
+//
+//      //m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
+
+      //return true;
 
    }
 
@@ -19599,10 +19626,22 @@ if(get_parent())
          }
          else
          {
+            
+            for(::collection::index i = 0; i < pacmeuserinteractionaChildren->size(); i++)
+            {
+               
+               ::cast < ::user::interaction > puserinteractionFirst = pacmeuserinteractionaChildren->element_at(i);
+               
+               if(::is_set(puserinteractionFirst))
+               {
+                  
+                  return puserinteractionFirst;
+                  
+               }
+               
+            }
 
-            ::cast < ::user::interaction > puserinteractionFirst = pacmeuserinteractionaChildren->first();
-
-            return puserinteractionFirst;
+            return nullptr;
 
          }
 
@@ -24377,8 +24416,17 @@ if(get_parent())
    {
 
       //#ifdef WINDOWS
+      
+      auto puserinteractionTopLevel = top_level();
+      
+      if(::is_null(puserinteractionTopLevel))
+      {
+         
+         return;
+         
+      }
 
-      _synchronous_lock synchronouslock(top_level()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(puserinteractionTopLevel->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pwindowThis = window();
 

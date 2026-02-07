@@ -53,7 +53,9 @@ namespace app_app
 
          m_pmainwindow->create_main_window(prequest);
 
-         m_pmainwindow->display(e_display_normal);
+         //m_pmainwindow->display(e_display_normal);
+         
+         m_pmainwindow->initial_frame_placement();
 
       }
 

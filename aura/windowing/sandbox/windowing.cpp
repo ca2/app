@@ -168,7 +168,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    }
 
 
-   void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
    {
 
 //      if (::is_set(m_phostinteraction))
@@ -205,7 +205,11 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       }
       
       øconstruct(m_phostinteraction);
-      
+//      
+//      auto pacmewindowingwindow =       m_phostinteraction->acme_windowing_window();
+   
+   
+   
       ::cast < ::sandbox_windowing::host_interaction > phostinteraction = m_phostinteraction;
       
       phostinteraction->create_window();
@@ -223,6 +227,10 @@ auto      pwindow = ::windowing::windowing::get_new_window();
       phostinteraction->post_redraw();
       
       m_pwindowApplicationHost = phostinteraction->window();
+   
+      auto pacmewindowbridge = m_pwindowApplicationHost->get_acme_window_bridge();
+   
+      return pacmewindowbridge;
       
    }
 

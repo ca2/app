@@ -11727,6 +11727,9 @@ slGraphics.unlock();
 
    void window::draw_frame_layout(draw2d::graphics* pgraphics)
    {
+      
+      pgraphics->m_egraphics = e_graphics_layout;
+      
                      //{
 
                   //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
@@ -11970,7 +11973,7 @@ slGraphics.unlock();
    void window::draw_frame_draw(draw2d::graphics* pgraphics)
    {
 
-
+      pgraphics->m_egraphics = e_graphics_draw;
 
 
          windowing_output_debug_string("\n_001UpdateBuffer : after on_begin_draw");

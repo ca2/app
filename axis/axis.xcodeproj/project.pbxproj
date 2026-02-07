@@ -619,6 +619,20 @@
 			remoteGlobalIDString = 9A9E560829F8556C001559E9;
 			remoteInfo = nano2d;
 		};
+		9A8EC3072F361E1B001EAC80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6CF68C2D8444EC00E57B1E /* nano2d.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A8EC2CF2F361DA9001EAC80;
+			remoteInfo = ios_nano2d;
+		};
+		9A8EC30A2F361E1B001EAC80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6CF68C2D8444EC00E57B1E /* nano2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A8EC2F12F361DA9001EAC80;
+			remoteInfo = ios_nano2d;
+		};
 		9AA652742A33458D0082D8B3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AA6526F2A33458D0082D8B3 /* unac.xcodeproj */;
@@ -1127,6 +1141,7 @@
 			isa = PBXGroup;
 			children = (
 				9A8A7F2D2D8445FC00C6509E /* libnano2d.dylib */,
+				9A8EC30B2F361E1B001EAC80 /* libios_nano2d.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2083,6 +2098,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A8EC3082F361E1B001EAC80 /* PBXTargetDependency */,
 				9AE0E1272B705D2000D4F550 /* PBXTargetDependency */,
 			);
 			name = ios_axis;
@@ -2160,6 +2176,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libnano2d.dylib;
 			remoteRef = 9A8A7F2C2D8445FC00C6509E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8EC30B2F361E1B001EAC80 /* libios_nano2d.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_nano2d.a;
+			remoteRef = 9A8EC30A2F361E1B001EAC80 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AA652752A33458D0082D8B3 /* libunac.dylib */ = {
@@ -2427,6 +2450,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A8EC3082F361E1B001EAC80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_nano2d;
+			targetProxy = 9A8EC3072F361E1B001EAC80 /* PBXContainerItemProxy */;
+		};
 		9AA652A82A3345F10082D8B3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = unac;

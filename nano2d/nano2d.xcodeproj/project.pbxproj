@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A8EC2D32F361DA9001EAC80 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E566F29F85AF8001559E9 /* types.h */; };
+		9A8EC2D42F361DA9001EAC80 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E572929F85AFA001559E9 /* framework.h */; };
+		9A8EC2D52F361DA9001EAC80 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578029F85B9C001559E9 /* context.h */; };
+		9A8EC2D62F361DA9001EAC80 /* aaaa_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E571729F85AFA001559E9 /* aaaa_context.h */; };
+		9A8EC2D72F361DA9001EAC80 /* ImageImpact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E571529F85AF9001559E9 /* ImageImpact.h */; };
+		9A8EC2D82F361DA9001EAC80 /* aaa_color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E565929F85AF8001559E9 /* aaa_color.h */; };
+		9A8EC2D92F361DA9001EAC80 /* _function.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578C29F85EB9001559E9 /* _function.h */; };
+		9A8EC2DA2F361DA9001EAC80 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E572529F85AFA001559E9 /* resource.h */; };
+		9A8EC2DB2F361DA9001EAC80 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9979892D84630B00A1FC11 /* _.h */; };
+		9A8EC2DC2F361DA9001EAC80 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E578329F85B9D001559E9 /* common.h */; };
+		9A8EC2DD2F361DA9001EAC80 /* font_sink.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E577E29F85B9B001559E9 /* font_sink.h */; };
+		9A8EC2DE2F361DA9001EAC80 /* _n2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E573629F85AFA001559E9 /* _n2d.h */; };
+		9A8EC2DF2F361DA9001EAC80 /* draw2d_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E577D29F85B9B001559E9 /* draw2d_context.h */; };
+		9A8EC2E02F361DA9001EAC80 /* aaa__library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9E564629F85AF7001559E9 /* aaa__library.h */; };
+		9A8EC2E22F361DA9001EAC80 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E571829F85AFA001559E9 /* _.cpp */; };
+		9A8EC2E32F361DA9001EAC80 /* font_sink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578229F85B9D001559E9 /* font_sink.cpp */; };
+		9A8EC2E42F361DA9001EAC80 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E577F29F85B9C001559E9 /* context.cpp */; };
+		9A8EC2E52F361DA9001EAC80 /* draw2d_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578129F85B9C001559E9 /* draw2d_context.cpp */; };
+		9A8EC2E62F361DA9001EAC80 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E578B29F85EB9001559E9 /* _factory.cpp */; };
+		9A8EC2E72F361DA9001EAC80 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E567029F85AF8001559E9 /* framework.cpp */; };
+		9A8EC2E92F361DA9001EAC80 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E563E29F8576C001559E9 /* libacme.dylib */; };
+		9A8EC2EA2F361DA9001EAC80 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E564029F8576C001559E9 /* libapex.dylib */; };
+		9A8EC2EB2F361DA9001EAC80 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E564229F8576C001559E9 /* libaqua.dylib */; };
+		9A8EC2EC2F361DA9001EAC80 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E563329F85655001559E9 /* libaura.dylib */; };
 		9A99798A2D84630B00A1FC11 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9979892D84630B00A1FC11 /* _.h */; };
 		9A9E563F29F8576C001559E9 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E563E29F8576C001559E9 /* libacme.dylib */; };
 		9A9E564129F8576C001559E9 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9E564029F8576C001559E9 /* libapex.dylib */; };
@@ -34,6 +58,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A8EC2D12F361DA9001EAC80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A9E562C29F85655001559E9 /* aura.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
+			remoteInfo = aura;
+		};
 		9A9E563229F85655001559E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A9E562C29F85655001559E9 /* aura.xcodeproj */;
@@ -67,6 +98,7 @@
 /* Begin PBXFileReference section */
 		9A54985F2A2BCEB80052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A5498622A2BCEB90052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A8EC2F12F361DA9001EAC80 /* libios_nano2d.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_nano2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9979892D84630B00A1FC11 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A9E560829F8556C001559E9 /* libnano2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9E562C29F85655001559E9 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -97,6 +129,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9A8EC2E82F361DA9001EAC80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A8EC2E92F361DA9001EAC80 /* libacme.dylib in Frameworks */,
+				9A8EC2EA2F361DA9001EAC80 /* libapex.dylib in Frameworks */,
+				9A8EC2EB2F361DA9001EAC80 /* libaqua.dylib in Frameworks */,
+				9A8EC2EC2F361DA9001EAC80 /* libaura.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A9E560629F8556C001559E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				9A9E560829F8556C001559E9 /* libnano2d.dylib */,
+				9A8EC2F12F361DA9001EAC80 /* libios_nano2d.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +227,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		9A8EC2D22F361DA9001EAC80 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A8EC2D32F361DA9001EAC80 /* types.h in Headers */,
+				9A8EC2D42F361DA9001EAC80 /* framework.h in Headers */,
+				9A8EC2D52F361DA9001EAC80 /* context.h in Headers */,
+				9A8EC2D62F361DA9001EAC80 /* aaaa_context.h in Headers */,
+				9A8EC2D72F361DA9001EAC80 /* ImageImpact.h in Headers */,
+				9A8EC2D82F361DA9001EAC80 /* aaa_color.h in Headers */,
+				9A8EC2D92F361DA9001EAC80 /* _function.h in Headers */,
+				9A8EC2DA2F361DA9001EAC80 /* resource.h in Headers */,
+				9A8EC2DB2F361DA9001EAC80 /* _.h in Headers */,
+				9A8EC2DC2F361DA9001EAC80 /* common.h in Headers */,
+				9A8EC2DD2F361DA9001EAC80 /* font_sink.h in Headers */,
+				9A8EC2DE2F361DA9001EAC80 /* _n2d.h in Headers */,
+				9A8EC2DF2F361DA9001EAC80 /* draw2d_context.h in Headers */,
+				9A8EC2E02F361DA9001EAC80 /* aaa__library.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A9E560429F8556C001559E9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,6 +272,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		9A8EC2CF2F361DA9001EAC80 /* ios_nano2d */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A8EC2EE2F361DA9001EAC80 /* Build configuration list for PBXNativeTarget "ios_nano2d" */;
+			buildPhases = (
+				9A8EC2D22F361DA9001EAC80 /* Headers */,
+				9A8EC2E12F361DA9001EAC80 /* Sources */,
+				9A8EC2E82F361DA9001EAC80 /* Frameworks */,
+				9A8EC2ED2F361DA9001EAC80 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A8EC2D02F361DA9001EAC80 /* PBXTargetDependency */,
+			);
+			name = ios_nano2d;
+			productName = nano2d;
+			productReference = 9A8EC2F12F361DA9001EAC80 /* libios_nano2d.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9A9E560729F8556C001559E9 /* nano2d */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A9E561129F8556C001559E9 /* Build configuration list for PBXNativeTarget "nano2d" */;
@@ -260,6 +344,7 @@
 			projectRoot = "";
 			targets = (
 				9A9E560729F8556C001559E9 /* nano2d */,
+				9A8EC2CF2F361DA9001EAC80 /* ios_nano2d */,
 			);
 		};
 /* End PBXProject section */
@@ -309,9 +394,42 @@
 			shellPath = /bin/sh;
 			shellScript = ". $HOME/code/operating_system/tool/bin/_on_after_build_dylib\n";
 		};
+		9A8EC2ED2F361DA9001EAC80 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_NAME)",
+				"$(WorkspaceDir)/output_copy.txt",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(WorkspaceDir)/time-$(PLATFORM_MODIFIER)/output/$(EXECUTABLE_NAME)",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_after_build_dylib\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9A8EC2E12F361DA9001EAC80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A8EC2E22F361DA9001EAC80 /* _.cpp in Sources */,
+				9A8EC2E32F361DA9001EAC80 /* font_sink.cpp in Sources */,
+				9A8EC2E42F361DA9001EAC80 /* context.cpp in Sources */,
+				9A8EC2E52F361DA9001EAC80 /* draw2d_context.cpp in Sources */,
+				9A8EC2E62F361DA9001EAC80 /* _factory.cpp in Sources */,
+				9A8EC2E72F361DA9001EAC80 /* framework.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9A9E560529F8556C001559E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,6 +446,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A8EC2D02F361DA9001EAC80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = aura;
+			targetProxy = 9A8EC2D12F361DA9001EAC80 /* PBXContainerItemProxy */;
+		};
 		9A9E563929F85665001559E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = aura;
@@ -336,6 +459,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9A8EC2EF2F361DA9001EAC80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A8EC2F02F361DA9001EAC80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
 		9A9E560F29F8556C001559E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9A54985F2A2BCEB80052BAB6 /* _____debug.xcconfig */;
@@ -566,6 +713,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9A8EC2EE2F361DA9001EAC80 /* Build configuration list for PBXNativeTarget "ios_nano2d" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A8EC2EF2F361DA9001EAC80 /* Debug */,
+				9A8EC2F02F361DA9001EAC80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9A9E560329F8556C001559E9 /* Build configuration list for PBXProject "nano2d" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

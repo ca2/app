@@ -209,6 +209,12 @@ void host_interaction::hide()
    ::user::interaction::hide();
    
 }
+void host_interaction::show()
+{
+
+   ::user::interaction::show();
+   
+}
 
 
 ::string host_interaction::get_title()

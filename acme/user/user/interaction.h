@@ -115,6 +115,8 @@ namespace acme
          virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
          virtual void kill_timer(uptr uEvent);
 
+         
+         virtual bool on_add_child(::acme::user::interaction * pacmeuserinteractionChild);
 
          //void show_window() override;
 

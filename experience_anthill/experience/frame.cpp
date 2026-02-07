@@ -685,8 +685,12 @@ namespace experience_anthill
             pbrushText->create_solid(m_colorCaptionText);
 
             pgraphics->set(pbrushText);
-
-            pgraphics->set(pframewindow->get_font(pstyle));
+            
+//            auto pfont = pframewindow->get_font(pstyle);
+//
+//            pgraphics->set(pfont);
+            
+            pgraphics->set_font(pframewindow, ::e_element_window_title);
 
             pgraphics->draw_text(strWindowText, m_rectangleWindowText, e_align_left_center, e_draw_text_no_prefix);
 

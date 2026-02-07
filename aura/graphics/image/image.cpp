@@ -7705,15 +7705,15 @@ void image::_create_helper_map()
 }
 
 
-void image::set_font_factor(double dFactor)
+void image::set_size_scaler(double dSizeScaler)
 {
 
-   m_dFontFactor = dFactor;
+   m_dSizeScaler = dSizeScaler;
 
    if (!m_bMapped)
    {
 
-      get_graphics()->m_dFontFactor = dFactor;
+      get_graphics()->m_dSizeScaler = dSizeScaler;
 
    }
 

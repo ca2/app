@@ -1027,13 +1027,15 @@ namespace experience
       //calculate_caption_height(pgraphics);
 
       //int iCaptionHeight = m_iCap;
+      
+      auto & rectangleCaption = m_rectangleCaption;
 
-      m_rectangleCaption.left = rectangleRaw.left + rectangleMargin.left;
-      m_rectangleCaption.top = rectangleRaw.top + rectangleMargin.top;
-      m_rectangleCaption.right = rectangleRaw.right - rectangleMargin.right;
-      m_rectangleCaption.bottom = m_rectangleCaption.top + m_iCaptionHeight;
+      rectangleCaption.left = rectangleRaw.left + rectangleMargin.left;
+      rectangleCaption.top = rectangleRaw.top + rectangleMargin.top;
+      rectangleCaption.right = rectangleRaw.right - rectangleMargin.right;
+      rectangleCaption.bottom = rectangleCaption.top + m_iCaptionHeight;
 
-      m_iTitleBottom = m_rectangleCaption.bottom;
+      m_iTitleBottom = rectangleCaption.bottom;
 
       rectangleRaw.deflate(rectangleMargin);
 

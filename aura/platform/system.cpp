@@ -5818,7 +5818,7 @@ if(!m_pimaging)
    // }
 
 
-//   void system::node_will_finish_launching()
+//   void system::node_will_aaa_finish_launching()
 //   {
 //
 //      auto pnode = session();
@@ -5827,7 +5827,7 @@ if(!m_pimaging)
 //
 //      auto pwindowing = system()->windowing();
 //
-//      pwindowing->_will_finish_launching();
+//      pwindowing->_will_aaa_finish_launching();
 //
 //   }
 

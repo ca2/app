@@ -6,7 +6,12 @@
 #include "acme/platform/system_setup.h"
 
 
+
+
 #define APPLICATION_NAMESPACE_MAIN(function) IDENTIFIER_CONCATENATE(IDENTIFIER_CONCATENATE(IDENTIFIER_CONCATENATE(APPLICATION_NAMESPACE, _main), _), function)
+
+
+#include "acme/inline/_include_user_and_system.h"
 
 
 #if defined(WINDOWS)
@@ -31,12 +36,6 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_sys
 
 APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)();
 
-
-#ifdef CUBE
-#include "acme/platform/factory_function.h"
-#include "operating_system/appconfig.h"
-#include "__implement/_static_factory_.inl"
-#endif
 
 
 

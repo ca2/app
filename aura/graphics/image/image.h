@@ -80,10 +80,11 @@ namespace image
 
 
       virtual void set_origin(const ::int_point & point);
-      virtual void set_font_factor(double dFactor);
       //virtual void set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode);
 
-
+      virtual void set_size_scaler(double dSizeScaler);
+      
+      
       virtual void create_helper_map();
       virtual void _create_helper_map();
 

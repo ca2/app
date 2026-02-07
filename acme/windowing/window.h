@@ -281,6 +281,7 @@ namespace acme
 
          virtual ::acme::windowing::display * get_display();
 
+         virtual ::particle * get_acme_window_bridge();
 
          //void draw(::nano::graphics::device * pnanodevice) override;
 

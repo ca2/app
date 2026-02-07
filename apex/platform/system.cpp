@@ -4829,7 +4829,7 @@ namespace apex
    }
 
 
-//   void system::system_id_update(long long iUpdate, long long iPayload)
+//   void system::system_id_topic(int iId, long long llWparam, long long llLparam)
 //   {
 //
 //      call((::enum_id)iUpdate, iPayload);
@@ -4909,13 +4909,13 @@ namespace apex
    void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::thread::handle(ptopic, phandlercontext);
+      //::thread::handle(ptopic, phandlercontext);
       //      auto psignal = get_signal((::enum_id) iUpdate);
       //
       //      psignal->m_payload = iPayload;
       //
       //      psignal->notify();
-
+      ::platform::system::handle(ptopic, phandlercontext);
 
 
    }

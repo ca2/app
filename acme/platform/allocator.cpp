@@ -485,7 +485,7 @@ namespace allocator
          if (::get_task() && ::get_task()->m_taskindex == 1)
          {
 
-            printf(".");
+            //printf(".");
 
          }
 

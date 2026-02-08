@@ -412,7 +412,9 @@ namespace image
       virtual void xor_image_frame2(void * pdata, int iFrame, int iFrameCount);
 
 
-      virtual void create_circle(::image::image *piml, int diameter);
+      virtual void create_circle2(::image::image *piml, int diameter);
+      //virtual void create_circle_with_border(::image::image* piml, int diameter);
+      virtual void clip_circle(double dWidth);
       virtual void create_framed_square(::image::image *piml, int inner, int outer, ::color::color color);
 
 

@@ -1368,8 +1368,10 @@ g_bWindowingOutputDebugString = true;
 
          informationf("Library not found : \"%s\".\n", strLibrary.c_str());
 
+         return pfactory;
+
          //pfactory = (const ::extended::status&)plibrary;
-         throw ::exception(error_resource, scopedstrComponent + "_" + scopedstrImplementation + "_factory not found!!");
+//         throw ::exception(error_resource, scopedstrComponent + "_" + scopedstrImplementation + "_factory not found!!");
 
       }
 

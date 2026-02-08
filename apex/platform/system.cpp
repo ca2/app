@@ -5162,6 +5162,15 @@ namespace apex
 
          auto & pfactoryNetworking = factory("networking", "bsd");
 
+         if (!pfactoryNetworking)
+         {
+
+            application()->m_bNetworking = false;
+
+            return;
+
+         }
+
          //if (!pfactoryCrypto)
          //{
 

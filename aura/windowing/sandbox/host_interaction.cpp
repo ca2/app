@@ -218,13 +218,6 @@ void host_interaction::show()
 
 
 
-   void host_interaction::show()
-   {
-
-      ::user::interaction::show();
-
-   }
-
 
 ::string host_interaction::get_title()
 {

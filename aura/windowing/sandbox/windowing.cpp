@@ -199,8 +199,10 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 
       if(::is_set(m_pwindowApplicationHost))
       {
-         
-         return;
+
+         auto pacmewindowbridge = m_pwindowApplicationHost->get_acme_window_bridge();
+
+         return pacmewindowbridge;
          
       }
       

@@ -405,6 +405,14 @@
 		9A8585D52F22C645001D08D1 /* graphics3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8585D32F22C645001D08D1 /* graphics3d.cpp */; };
 		9A8585D62F22C645001D08D1 /* graphics3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8585D32F22C645001D08D1 /* graphics3d.cpp */; };
 		9A8585D72F22C645001D08D1 /* graphics3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8585D22F22C645001D08D1 /* graphics3d.h */; };
+		9AB1B2292F3965C60051FF92 /* semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2282F3965C60051FF92 /* semaphore.cpp */; };
+		9AB1B22A2F3965C60051FF92 /* fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2262F3965C60051FF92 /* fence.cpp */; };
+		9AB1B22B2F3965C60051FF92 /* fence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2252F3965C60051FF92 /* fence.h */; };
+		9AB1B22C2F3965C60051FF92 /* semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2272F3965C60051FF92 /* semaphore.h */; };
+		9AB1B22D2F3965C60051FF92 /* semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2282F3965C60051FF92 /* semaphore.cpp */; };
+		9AB1B22E2F3965C60051FF92 /* fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2262F3965C60051FF92 /* fence.cpp */; };
+		9AB1B22F2F3965C60051FF92 /* fence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2252F3965C60051FF92 /* fence.h */; };
+		9AB1B2302F3965C60051FF92 /* semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2272F3965C60051FF92 /* semaphore.h */; };
 		9ADF04192C274B55004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
 		9ADF041A2C274B55004CF1C9 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF04172C274B55004CF1C9 /* user.h */; };
 		9ADF041B2C275401004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
@@ -707,6 +715,10 @@
 		9A8585D32F22C645001D08D1 /* graphics3d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics3d.cpp; sourceTree = "<group>"; };
 		9A8C03522A281A370049B167 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A8C03532A281A380049B167 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9AB1B2252F3965C60051FF92 /* fence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fence.h; sourceTree = "<group>"; };
+		9AB1B2262F3965C60051FF92 /* fence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fence.cpp; sourceTree = "<group>"; };
+		9AB1B2272F3965C60051FF92 /* semaphore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
+		9AB1B2282F3965C60051FF92 /* semaphore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = semaphore.cpp; sourceTree = "<group>"; };
 		9ADF04162C274B55004CF1C9 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
 		9ADF04172C274B55004CF1C9 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9AE64252284AA6570079EBA0 /* libios_bred.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_bred.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -934,6 +946,8 @@
 				9A7FEB582E7F47310082C6FD /* draw2d.cpp */,
 				9A1823D62F20E590007693F6 /* empty_texture_source.h */,
 				9A1823D72F20E590007693F6 /* empty_texture_source.cpp */,
+				9AB1B2252F3965C60051FF92 /* fence.h */,
+				9AB1B2262F3965C60051FF92 /* fence.cpp */,
 				9A7FEB592E7F47310082C6FD /* frame.h */,
 				9A7FEB5A2E7F47310082C6FD /* frame.cpp */,
 				9A7FEB5B2E7F47310082C6FD /* frame_ephemeral.h */,
@@ -977,6 +991,8 @@
 				9A7FEB7E2E7F47310082C6FD /* renderable.cpp */,
 				9A7FEB7F2E7F47310082C6FD /* renderer.h */,
 				9A7FEB802E7F47310082C6FD /* renderer.cpp */,
+				9AB1B2272F3965C60051FF92 /* semaphore.h */,
+				9AB1B2282F3965C60051FF92 /* semaphore.cpp */,
 				9A7FEB812E7F47310082C6FD /* shader.h */,
 				9A7FEB822E7F47310082C6FD /* shader.cpp */,
 				9A7FEB832E7F47310082C6FD /* swap_chain.h */,
@@ -1260,6 +1276,8 @@
 				9A7FEBAE2E7F47310082C6FD /* _.h in Headers */,
 				9A7FEBAF2E7F47310082C6FD /* properties.h in Headers */,
 				9A7FEBB02E7F47310082C6FD /* memory_buffer.h in Headers */,
+				9AB1B22B2F3965C60051FF92 /* fence.h in Headers */,
+				9AB1B22C2F3965C60051FF92 /* semaphore.h in Headers */,
 				9A7FEBB12E7F47310082C6FD /* aaaa_gpu.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1369,6 +1387,8 @@
 				9AE64225284AA6570079EBA0 /* _console_old.h in Headers */,
 				9AE64226284AA6570079EBA0 /* _defer.h in Headers */,
 				9AE64227284AA6570079EBA0 /* macos.h in Headers */,
+				9AB1B22F2F3965C60051FF92 /* fence.h in Headers */,
+				9AB1B2302F3965C60051FF92 /* semaphore.h in Headers */,
 				9AE64228284AA6570079EBA0 /* application_common.h in Headers */,
 				9AE64229284AA6570079EBA0 /* application.h in Headers */,
 				9A1823E22F20E590007693F6 /* texture_flags.h in Headers */,
@@ -1604,6 +1624,8 @@
 				9A7FEBCC2E7F47310082C6FD /* properties.cpp in Sources */,
 				9A7FEBCD2E7F47310082C6FD /* frame_storage.cpp in Sources */,
 				9A8585D52F22C645001D08D1 /* graphics3d.cpp in Sources */,
+				9AB1B2292F3965C60051FF92 /* semaphore.cpp in Sources */,
+				9AB1B22A2F3965C60051FF92 /* fence.cpp in Sources */,
 				9A7FEBCE2E7F47310082C6FD /* device.cpp in Sources */,
 				9A7FEBCF2E7F47310082C6FD /* render_target.cpp in Sources */,
 				9A7FEBD02E7F47310082C6FD /* graphics.cpp in Sources */,
@@ -1691,6 +1713,8 @@
 				9A7FEBEF2E7F47310082C6FD /* properties.cpp in Sources */,
 				9A7FEBF02E7F47310082C6FD /* frame_storage.cpp in Sources */,
 				9A8585D62F22C645001D08D1 /* graphics3d.cpp in Sources */,
+				9AB1B22D2F3965C60051FF92 /* semaphore.cpp in Sources */,
+				9AB1B22E2F3965C60051FF92 /* fence.cpp in Sources */,
 				9A7FEBF12E7F47310082C6FD /* device.cpp in Sources */,
 				9A7FEBF22E7F47310082C6FD /* render_target.cpp in Sources */,
 				9A7FEBF32E7F47310082C6FD /* graphics.cpp in Sources */,

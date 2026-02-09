@@ -35,6 +35,12 @@ namespace gpu
    }
 
 
+   void fence::reset()
+   {
+      
+      
+   }
+
    void fence::wait_gpu_fence()
    {
 

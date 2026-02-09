@@ -242,7 +242,8 @@ namespace gpu
       if (m_eoutput == e_output_swap_chain)
       {
 
-         m_pacmewindowingwindowWindowSurface->_user_send(procedure);
+       //  m_pacmewindowingwindowWindowSurface->_user_send(procedure);
+         m_pacmewindowingwindowWindowSurface->_main_send(procedure);
 
       }
       else

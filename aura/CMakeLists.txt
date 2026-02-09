@@ -550,6 +550,10 @@ list(APPEND library_source
         windowing/windowing.h
         windowing/sandbox/host_interaction.cpp
         windowing/sandbox/host_interaction.h
+        windowing/sandbox/window.cpp
+        windowing/sandbox/window.h
+        windowing/sandbox/windowing.cpp
+        windowing/sandbox/windowing.h
         version/version.config.h
         version/version.h
         _.cpp

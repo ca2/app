@@ -5303,6 +5303,13 @@ namespace user
 
    character_count plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, ::collection::index iLine)
    {
+      
+      if(iLine < 0)
+      {
+         
+         return -1;
+         
+      }
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

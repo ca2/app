@@ -1351,6 +1351,14 @@ namespace acme
       }
 
 
+   
+   ::particle * window::get_acme_window_bridge()
+   {
+      
+      return nullptr;
+      
+   }
+
       // void window::draw(device * pnanodevice)
       // {
       //

@@ -9,7 +9,7 @@
 
 struct FREQUENCY { double m_dHertz; };
 
-constexpr FREQUENCY operator "" _Hz(long double d) { return { (double) d }; }
+constexpr FREQUENCY operator""_Hz(long double d) { return { (double) d }; }
 
 
 class time;

@@ -36,7 +36,7 @@ namespace image
       double                                    m_dIsotropicRate;
       //::int_size                                m_sizeAlloc;
       //int_point                                 m_point;
-      double                                    m_dFontFactor;
+      double                                    m_dSizeScaler;
       //::draw2d::enum_alpha_mode               m_ealphamode;
       bool                                      m_bOwn;
       ::image::enum_mipmap                      m_emipmap;
@@ -53,7 +53,7 @@ namespace image
          //m_uImageFlags = DEFAULT_CREATE_IMAGE_FLAGS;
          m_dSpeed = 1.0;
          m_dIsotropicRate = 1.0;
-         m_dFontFactor = 1.0;
+         m_dSizeScaler = 1.0;
          //m_ealphamode = ::draw2d::e_alpha_mode_blend;
          m_bOwn = true;
          m_emipmap = ::image::e_mipmap_none;

@@ -1819,10 +1819,10 @@ return m_psavings;
    }
 
 
-   void session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
+::particle * session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
    {
 
-      system()->windowing()->defer_initialize_host_window(lpcrect);
+   ::particle * pparticleAcmeWindowBridge = system()->windowing()->defer_initialize_host_window(lpcrect);
 
       //return ::success;
 
@@ -1906,6 +1906,8 @@ return m_psavings;
 //
 //#endif
 
+   return pparticleAcmeWindowBridge;
+   
    }
 
 

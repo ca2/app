@@ -276,12 +276,7 @@ public:
    virtual void set_finish();
 
 
-   // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual void call_member(long long hi);
-   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
-   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
-   //void handle(::message::message * pmessage) override;
+
 
 
    virtual bool is_branch_current() const;
@@ -520,6 +515,15 @@ public:
    //void route(::topic * ptopic, ::handler_context * phandlercontext) override;
    //void post_process(::topic * ptopic, ::handler_context * phandlercontext) override;
 
+   // <3TBS_!! handle -> call_member <3TBS_!!
+   virtual void call_member(long long hi);
+   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
+   //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
+   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
+   //void handle(::message::message * pmessage) override;
+   virtual ::lresult call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
+
+   virtual ::lresult call_id_topic(const ::enum_id & eid, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
 
 
 //   void run() override;

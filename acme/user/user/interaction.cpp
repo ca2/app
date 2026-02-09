@@ -325,14 +325,19 @@ namespace acme
             {
 
                ::cast<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
-
-               auto rectangle = pelemental->m_rectangle;
-
-               if (rectangle.contains(point))
+               
+               if(::is_set(pelemental))
                {
-
-                  return pelemental;
-
+                  
+                  auto rectangle = pelemental->m_rectangle;
+                  
+                  if (rectangle.contains(point))
+                  {
+                     
+                     return pelemental;
+                     
+                  }
+                  
                }
 
             }
@@ -1736,6 +1741,32 @@ namespace acme
 
          }
 
+   
+   bool interaction::on_add_child(::acme::user::interaction *pacmeuserinteractionChild)
+   {
+      
+      ødefer_construct_new(m_pacmeuserinteractionaChildren);
+      
+      auto &pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
+
+      if(pacmeuserinteractionaChildren->contains(pacmeuserinteractionChild))
+      {
+         
+         return false;
+         
+      }
+      
+      pacmeuserinteractionChild->m_pacmeuserinteractionParent = this;
+
+
+      
+         __refdbg_add_referer
+         
+         pacmeuserinteractionaChildren->add(pacmeuserinteractionChild);
+
+      return true;
+      
+   }
 
          //void interaction::get_client_rectangle(::int_rectangle & rectangle)
          //{

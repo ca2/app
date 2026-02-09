@@ -74,7 +74,7 @@ namespace acme
 
          //::pointer < ::subparticle > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-         virtual void defer_initialize_host_window(const ::int_rectangle* lpcrect);
+         virtual ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect);
          
          virtual void _will_finish_launching();
          

@@ -285,7 +285,7 @@ inline unsigned char as_byte(const ::millis & millis) { return (unsigned char) m
 inline millis __tick(double d) { return (long long) d; }
 
 
-inline millis operator "" _tick(unsigned long long u) { return u; }
+inline millis operator""_tick(unsigned long long u) { return u; }
 
 
 #ifdef CPP20
@@ -300,7 +300,7 @@ typedef CLASS_DECL_ACME numeric_array < millis > millis_array;
 inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
 
-inline millis operator "" _ms(unsigned long long u) { return (long long) u; }
+inline millis operator""_ms(unsigned long long u) { return (long long) u; }
 
 
 inline millis operator -(const ::millis& millis1, const ::millis& millis2)

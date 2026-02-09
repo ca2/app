@@ -586,7 +586,7 @@ namespace data
    void text_property::hook_callbacks()
    {
 
-      m_propertywillchange = [this](auto & change)
+      m_propertywillchange = [this](auto & change)->bool
          {
 
             if (operator &&(change))

@@ -76,7 +76,7 @@ namespace draw2d
 
    graphics::graphics()
    {
-
+      m_iYFlipHeight = 0;
       //m_bHasCurrentPoint = false;
       //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
@@ -93,6 +93,9 @@ namespace draw2d
       m_pointOrigin.y = 0.;
       m_sizeScaling.cx = 1.0;
       m_sizeScaling.cy = 1.0;
+      
+      m_dSizeScaler = 1.0;
+      
       //m_estatus = success;
       //m_estatusLast = success;
 
@@ -107,7 +110,7 @@ namespace draw2d
       m_bPat = false;
       m_bStoreThumbnails = true;
       m_pdrawcontext = nullptr;
-      m_dFontFactor = 1.0;
+      //m_dFontFactor = 1.0;
       m_efillmode = e_fill_mode_winding;
       m_ealphamode = e_alpha_mode_none;
       m_ewritetextrendering = ::write_text::e_rendering_undefined;
@@ -2903,6 +2906,22 @@ namespace draw2d
 
       return false;
 
+   }
+
+
+   double graphics::size_scaler()
+   {
+   
+      return m_dSizeScaler;
+      
+   }
+
+
+   void graphics::set_size_scaler(double dSizeScaler)
+   {
+      
+      m_dSizeScaler = dSizeScaler;
+      
    }
 
 

@@ -723,7 +723,7 @@
 			isa = PBXGroup;
 			children = (
 				076A24841B6E772400BF6C7D /* libberg.dylib */,
-				076A24861B6E772400BF6C7D /* libios_base.a */,
+				076A24861B6E772400BF6C7D /* libios_berg.a */,
 				076A24881B6E772400BF6C7D /* base_iosTests.xctest */,
 			);
 			name = Products;
@@ -1110,10 +1110,10 @@
 			remoteRef = 076A24831B6E772400BF6C7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		076A24861B6E772400BF6C7D /* libios_base.a */ = {
+		076A24861B6E772400BF6C7D /* libios_berg.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_base.a;
+			path = libios_berg.a;
 			remoteRef = 076A24851B6E772400BF6C7D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

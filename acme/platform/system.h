@@ -537,11 +537,11 @@ namespace platform
       virtual void get_public_internet_domain_extension_list(string_array_base & stra) override;
       virtual ::string fetch_public_internet_domain_extension_list_text() override;
 
-      void system_id_update(int iUpdate, long long iPayload) override;
+      ::lresult system_id_topic(int iId, long long llWparam, long long llLparam) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
-      void call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
+      ::lresult call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle) override;
     
 
       //virtual void add_handler(::particle * pmatter, bool bPriority = false);
@@ -794,7 +794,7 @@ namespace platform
 //       //virtual void defer_xml();
 //
 //
-//       //void node_will_finish_launching() override;
+//       //void node_will_aaa_finish_launching() override;
 //
 //
 //

@@ -457,7 +457,7 @@ namespace apex
 
       virtual void on_request(::request * prequest) override;
 
-      virtual void defer_initialize_host_window(const ::int_rectangle * lpcrect = nullptr) override;
+      ::particle * defer_initialize_host_window(const ::int_rectangle * lpcrect = nullptr) override;
 
       ::pointer<::apex::application>get_current_application();
 

@@ -132,7 +132,12 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_pimagea->erase_image(pimage);
+      if (m_pimagea)
+      {
+
+         m_pimagea->erase_image(pimage);
+
+      }
 
    }
 
@@ -409,6 +414,29 @@ namespace draw2d
       m_papi.release();
 
       //lock::__s_finalize();
+
+      if (m_pimagea)
+      {
+
+         m_pimagea->m_imagea.erase_all();
+
+         m_pimagea.release();
+
+      }
+
+         m_objecta.erase_all();
+
+         m_pwritetext.release();
+
+         m_papi.release();
+
+         m_alpha_spread__24CC_filterMap.clear();
+
+         m_alpha_spread__32CC_filterMap.clear();
+
+      //}
+
+      m_graphicsa.erase_all();
 
       //auto estatus = 
       ::platform::department::destroy();

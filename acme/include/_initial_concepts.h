@@ -563,8 +563,8 @@ template < typename POINT >
 concept function_point = requires(POINT point)
 {
    { point.semantic_t() } ->::std::convertible_to<point2_t>;
-   { point.x() }->prototype_number;
-   { point.y() }->prototype_number;
+   { point.x }->prototype_number;
+   { point.y }->prototype_number;
 };
 
 template < typename POINT >
@@ -621,8 +621,8 @@ template < typename SIZE >
 concept function_size = requires(SIZE s)
 {
    { s.semantic_t() } ->::std::convertible_to<size2_t>;
-   { s.x() }->prototype_number;
-   { s.y() }->prototype_number;
+   { s.x }->prototype_number;
+   { s.y }->prototype_number;
 };
 
 

@@ -781,7 +781,7 @@ namespace folder_zip
 
       }
 
-      bool bLocated = locate([strPrefix](const_char_pointer pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer pszItem)->bool
          {
 
             string strItem(pszItem);
@@ -832,7 +832,7 @@ namespace folder_zip
 
       strPrefix.replace_with("/", "\\");
 
-      bool bLocated = locate([strPrefix](const_char_pointer pszItem)
+      bool bLocated = locate([strPrefix](const_char_pointer pszItem)->bool
          {
 
             string strItem(pszItem);

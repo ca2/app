@@ -616,7 +616,7 @@ namespace platform
       virtual void get_public_internet_domain_extension_list(string_array_base & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual void system_id_update(int iUpdate, long long iPayload);
+      virtual ::lresult system_id_topic(int iId, long long llWparam, long long llLparam);
 
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

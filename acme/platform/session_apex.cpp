@@ -430,8 +430,11 @@ namespace platform
    // void apex_session_layer::on_request(::request* prequest) override{}
 
 
-   void apex_session_layer::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * apex_session_layer::defer_initialize_host_window(const ::int_rectangle* lpcrect)
    {
+   
+   return nullptr;
+   
    }
 
 

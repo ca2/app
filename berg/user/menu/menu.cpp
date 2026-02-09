@@ -601,21 +601,21 @@ namespace user
 
       set_owner(puiParent);
 
-      information() << "::user::menu::create_menu parent window: " << (::iptr)owner_window();
-
-      ::string strType;
-
-      strType = ::platform::type(owner_interaction()).name();
-
-      information() << "::user::menu::create_menu parent window type: " << strType;
-
 #if defined(UNIVERSAL_WINDOWS)
+
+      ::string strOwnerInteractionType;
+
+      strOwnerInteractionType = ::platform::type(owner_interaction()).name();
+
+      information() << "::user::menu::create_menu parent window type: " << strOwnerInteractionType;
 
       auto puserinteractionOwner = owner_interaction();
 
       puserinteractionOwner->m_menua.add(this);
 
-#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS) || defined(__ANDROID__)
+#elif defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(FREEBSD) || defined(MACOS) || defined(__ANDROID__) || defined(APPLE_IOS)
+
+      information() << "::user::menu::create_menu parent window: " << (::iptr)owner_window();
 
       auto puserinteractionTopOwner = get_owner();
 

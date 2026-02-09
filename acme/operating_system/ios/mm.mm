@@ -233,3 +233,17 @@ void ui_open_url(const char  *pszUrl)
 
 
 
+
+
+
+char * _ios_app_document_folder()
+{
+   
+   //https://www.infragistics.com/community/blogs/b/stevez/posts/ios-objective-c-working-with-files
+   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+   //From this array, we're going to grab the first //value. As thats the root path to the directory //we're looking for.
+
+   NSString* rootPath = paths[0];
+   
+   return strdup([rootPath UTF8String]);
+}

@@ -88,11 +88,11 @@ elif [ "$platform" = 'linux' ]; then
 
 elif [ "$platform" = 'netbsd' ]; then
 
-   url='https://netbsd.ca2.store/store'
+   url="https://netbsd.ca2.store/store_$(uname -m)"
 
 elif [ "$platform" = 'openbsd' ]; then
 
-   url='https://openbsd.ca2.store/store'
+   url="https://openbsd.ca2.store/store_$(uname -m)"
 
 else
 

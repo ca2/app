@@ -201,8 +201,12 @@ namespace launch
       }
 
       m_strRelease = strRelease;
+      
+      printf_line("Release is \"%s\"", m_strRelease.c_str());
 
       m_strArchitecture = psummary->m_strSystemArchitecture;
+      
+      printf_line("Architecture is \"%s\"", m_strArchitecture.c_str());
 
    }
 

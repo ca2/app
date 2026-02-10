@@ -75,12 +75,22 @@ elseif("${__TARGET_SYSTEM_ARCHITECTURE}" STREQUAL "aarch64")
 
 endif()
 
-execute_process(COMMAND lsb_release -is OUTPUT_VARIABLE __OPERATING_SYSTEM)
-if("${__OPERATING_SYSTEM}" STREQUAL "")
-execute_process(COMMAND uname -s OUTPUT_VARIABLE __OPERATING_SYSTEM)
+
+execute_process(COMMAND uname -s OUTPUT_VARIABLE __UNAME_S)
+
+if("${__UNAME_S}" STREQUAL "OpenBSD")
+
+   set(__OPERATING_SYSTEM "openbsd")
+   
+elseif("${__UNAME_S}" STREQUAL "Linux")
+
+   execute_process(COMMAND lsb_release -is OUTPUT_VARIABLE __OPERATING_SYSTEM)
+   string(STRIP ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
+   string(TOLOWER ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
+
 endif()
-string(STRIP ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
-string(TOLOWER ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
+
+
 message(STATUS "__OPERATING_SYSTEM is ${__OPERATING_SYSTEM}")
 
 

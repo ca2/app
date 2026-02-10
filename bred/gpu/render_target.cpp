@@ -13,7 +13,7 @@
 
 
 #include <assert.h>
-
+#include "swap_chain.h"
 
 namespace gpu
 {
@@ -155,7 +155,7 @@ namespace gpu
    void render_target::restart_frame_counter()
    {
 
-      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      if (get_frame_count() > 1)
       {
 
          m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
@@ -177,8 +177,10 @@ namespace gpu
 
       }
 
-      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      if (get_frame_count() > 1)
       {
+         
+#ifdef _DEBUG
 
          auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
 
@@ -192,6 +194,7 @@ namespace gpu
             && estate != e_state_initial
             && "Cannot get frame index when frame not in progress");
 
+#endif
          return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
 
       }
@@ -207,6 +210,11 @@ namespace gpu
 
    int render_target::get_frame_count()
    {
+
+      if (m_pgpurenderer->m_pgpucontext->m_eoutput ==::gpu:: e_output_swap_chain)
+      {
+         return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
+      }
 
       return (int)m_ptexturea->size();
 
@@ -270,7 +278,7 @@ namespace gpu
 
             textureflags.m_bWithDepth =m_bWithDepth;
 
-            ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+            ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
          }
 
@@ -331,11 +339,11 @@ namespace gpu
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
-      auto etype = pgpucontext->m_etype;
+      //auto etype = pgpucontext->m_etype;
 
       int iFrameIndex = get_frame_index();
       
-      auto size = m_ptexturea->size();
+      //auto size = m_ptexturea->size();
 
       auto ptexture = m_ptexturea->element_at(iFrameIndex);
 
@@ -374,11 +382,11 @@ namespace gpu
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
-      auto etype = pgpucontext->m_etype;
+      //auto etype = pgpucontext->m_etype;
 
       int iFrameIndex = get_frame_index();
 
-      auto size = m_ptexturea->size();
+      //auto size = m_ptexturea->size();
 
       ::cast < texture > ptexture = m_ptexturea->element_at(iFrameIndex);
 

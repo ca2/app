@@ -297,7 +297,7 @@ namespace gpu
 
       auto pbindingslot = get_first_image_sampler_binding_slot();
 
-      return ::is_set(pbindingslot->m_pbinding);
+      return ::is_set(pbindingslot) && ::is_set(pbindingslot->m_pbinding);
 
    }
 

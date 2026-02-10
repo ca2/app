@@ -13,6 +13,10 @@ namespace gpu_opengl
    {
    public:
 
+      #ifdef WINDOWS_DESKTOP
+
+      HGLRC m_hglrcShare = nullptr;
+      #endif
       
       //__creatable_from_base(opengl, ::gpu::approach);
 
@@ -45,8 +49,8 @@ namespace gpu_opengl
 
       void initialize(::particle * pparticle) override;
 
-      virtual void _on_before_create_window(::windowing::window* pwindow);
-      virtual void _on_create_window(::windowing::window* pwindow);
+      virtual void _on_before_create_window(::acme::windowing::window* pwindow);
+      virtual void _on_create_window(::acme::windowing::window* pwindow);
 
 
       
@@ -68,8 +72,8 @@ namespace gpu_opengl
 
       //virtual void make_current();
 
-      void on_before_create_window(::windowing::window* pwindow) override;
-      void on_create_window(::windowing::window* pwindow) override;
+      void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
+      void gpu_on_create_window(::acme::windowing::window* pwindow) override;
 
 
    };

@@ -131,3 +131,15 @@ int lockf(int fd, int cmd, off_t ignored_len)
 //}
 
 
+
+
+
+CLASS_DECL_ACME ::file::path get_home_config_folder_path()
+{
+
+   auto pathHomeConfigFolder = ::system()->m_pathCacheDirectory / ".config";
+
+   return pathHomeConfigFolder;
+
+}
+

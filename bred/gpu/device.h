@@ -94,11 +94,12 @@ namespace gpu
 
       ///virtual ::gpu::context* current_context();
       
-
-      virtual ::gpu::context * main_context(::acme::windowing::window * pacmewindowingwindow = nullptr);
+      virtual void create_main_context(::acme::windowing::window *pacmewindowingwindow);
+      virtual ::gpu::context * main_context();
       virtual ::gpu::context * main_draw2d_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
+      virtual void * current_operating_system_gpu_context();
       //virtual void initialize_gpu_context(const start_context_t& startcontext);
 
       //virtual void on_create_context(const start_context_t& startcontext);
@@ -179,7 +180,7 @@ namespace gpu
       //virtual string _001GetIntroProjection();
       //virtual string _001GetIntroFragment();
 
-      virtual bool is_mesa();
+      //virtual bool is_mesa();
 
       //inline const ::draw3d::matrix& view_matrix() const { return m_matrixImpact; }
       //inline ::draw3d::matrix& view_matrix() { return m_matrixImpact; }

@@ -81,10 +81,20 @@ namespace acme
       }
 
 
-      void display::get_os_display_handle(void *p, int iSize)
+      void * display::_get_x11_display()
+      {
+
+         return nullptr;
+
+      }
+
+
+      long long display::_get_x11_root_window()
       {
 
          throw ::interface_only();
+
+         return 0;
 
       }
 

@@ -74,7 +74,7 @@ namespace gpu_opengl
       //virtual void setMat4(const ::scoped_string & scopedstrName, const float p[4*4]) override;
 
             void bind_slot_set(::gpu::command_buffer *pgpucommandbuffer, int iSet,
-                         ::gpu::binding_slot_set *pgpubindingslotset);
+                         ::gpu::binding_slot_set *pgpubindingslotset) override;
 
 
       unsigned int create_shader(const ::block & blockVertex, GLenum type);

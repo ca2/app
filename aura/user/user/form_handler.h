@@ -173,6 +173,9 @@ namespace user
       virtual void design_form(::user::interaction * puserinteraction);
 
 
+      virtual void on_after_create_form(const ::atom &atom, ::user::interaction *puserinteractionParent);
+
+
    };
 
 

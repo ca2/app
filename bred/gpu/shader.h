@@ -121,7 +121,7 @@ namespace gpu
       ::string                   m_strPushConstantsDebugging;
 
       ::gpu::texture *           m_pgputextureBound = nullptr;
-
+      int m_iFrameBound = -1;
 
       shader();
       ~shader() override;

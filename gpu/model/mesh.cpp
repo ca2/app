@@ -6,7 +6,7 @@
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/model_buffer.h"
-#include <glad/glad.h>
+//#include <glad/glad.h>
 #include "bred/gpu/render_target.h"
 #include "bred/gpu/renderer.h"
 
@@ -33,7 +33,7 @@ namespace gpu
       }
 
 
-      int mesh::indexes_count() const
+      ::collection::index mesh::indexes_count() const
       {
 
          return m_pmodelbuffer->m_pmodeldatabase2->index_count();
@@ -42,28 +42,54 @@ namespace gpu
       }
 
 
-      void mesh::initialize_gpu_mesh( //const ::gpu::model_data<gltf::vertex> &modeldata,
-                                          ::gpu::model::material *pmaterial)
+      void mesh::initialize_gpu_mesh(::gpu::context * pgpucontext, ::gpu::model::material * pmaterial, ::gpu::model_data_base * pmodeldata)
       {
          /// model data must had been set
-         if (!m_pmodeldata || m_pmodeldata->is_empty())
+         if (::is_null(pgpucontext)
+            //|| ::is_null(pmaterial)
+            || ::is_null(pmodeldata)
+            || pmodeldata->is_empty())
          {
 
-            throw ::exception(error_wrong_state);
+            throw ::exception(error_bad_argument);
 
          }
+
+         initialize_gpu_context_object(pgpucontext);
 
          //m_modeldata = modeldata;
          //m_modeldata.m_indexes = indexa;
          m_pmaterial = pmaterial;
 
-         on_initialize_gpu_mesh();
+         øconstruct(m_pmodelbuffer);
+
+         m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
+
+         m_pmodeldata = pmodeldata;
+
+         m_pmodelbuffer->set_data(pmodeldata);
+
+         //on_initialize_gpu_mesh();
 
       }
 
 
       void mesh::draw2(::gpu::command_buffer *pcommandbuffer)
       {
+
+
+                     //auto pshader = pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+         // pshader->binding_slot_set(2, m_pmaterial->m_pbindingset);
+         // pshader->on_before_draw(pgpucommandbuffer);
+//         ::cast<::gpu_vulkan::command_buffer> pcommandbuffer = pgpucommandbuffer;
+         //::cast<::gpu::vulkan> pcommandbuffer = pgpucommandbuffer;
+         // vkCmdDrawIndexed(pcommandbuffer->m_vkcommandbuffer, m_indexa.size(), 1, primitive->firstIndex, 0, 0);
+
+         m_pmodelbuffer->bind2(pcommandbuffer);
+
+         m_pmodelbuffer->draw2(pcommandbuffer);
+         //vkCmdDrawIndexed(pcommandbuffer->m_vkcommandbuffer, m_pmodeldata->index_count(), 1, 0, 0, 0);
+      //}
 
          // auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
          //
@@ -123,66 +149,73 @@ namespace gpu
       }
 
 
-      void mesh::on_initialize_gpu_mesh()
-      {
-         // // create our data structures
-         // glGenVertexArrays(1, &m_uVAO);
-         // glGenBuffers(1, &m_uVBO);
-         // glGenBuffers(1, &m_uEBO);
-         //
-         // glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
-         //
-         // glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
-         // glBufferData(GL_ARRAY_BUFFER, m_vertexa.size() * sizeof(gltf::vertex), m_vertexa.data(),
-         //              GL_STATIC_DRAW); // copy over the vertex data
-         //
-         // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
-         // glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), m_indexa.data(),
-         //              GL_STATIC_DRAW); // copy over the index data
-         //
-         // // setup the locations of vertex data
-         // // positions
-         // glEnableVertexAttribArray(0);
-         // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)0);
-         //
-         // // normals
-         // glEnableVertexAttribArray(1);
-         // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mNormal));
-         //
-         // // texture coordinates
-         // glEnableVertexAttribArray(2);
-         // glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mTextureCoordinates));
-         //
-         // // tangents
-         // glEnableVertexAttribArray(3);
-         // glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mTangent));
-         //
-         // // bitangents
-         // glEnableVertexAttribArray(4);
-         // glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mBitangent));
-         //
-         // glBindVertexArray(0);
-
-         øconstruct(m_pmodelbuffer);
-
-         m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
-
-         //if (m_modeldataGltf.has_data())
-         //;
-         //;
-         //{
-
-            m_pmodelbuffer->set_data(m_pmodeldata);
-
-         //}
-         //else
-         //{
-
-         //   m_pmodelbuffer->set_data(m_modeldataWavefront);
-
-         //}
-
-      }
+      // void mesh::on_initialize_gpu_mesh()
+      // {
+      //    // // create our data structures
+      //    // glGenVertexArrays(1, &m_uVAO);
+      //    // glGenBuffers(1, &m_uVBO);
+      //    // glGenBuffers(1, &m_uEBO);
+      //    //
+      //    // glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
+      //    //
+      //    // glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
+      //    // glBufferData(GL_ARRAY_BUFFER, m_vertexa.size() * sizeof(gltf::vertex), m_vertexa.data(),
+      //    //              GL_STATIC_DRAW); // copy over the vertex data
+      //    //
+      //    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
+      //    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), m_indexa.data(),
+      //    //              GL_STATIC_DRAW); // copy over the index data
+      //    //
+      //    // // setup the locations of vertex data
+      //    // // positions
+      //    // glEnableVertexAttribArray(0);
+      //    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)0);
+      //    //
+      //    // // normals
+      //    // glEnableVertexAttribArray(1);
+      //    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mNormal));
+      //    //
+      //    // // texture coordinates
+      //    // glEnableVertexAttribArray(2);
+      //    // glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mTextureCoordinates));
+      //    //
+      //    // // tangents
+      //    // glEnableVertexAttribArray(3);
+      //    // glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mTangent));
+      //    //
+      //    // // bitangents
+      //    // glEnableVertexAttribArray(4);
+      //    // glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(gltf::vertex), (void *)offsetof(gltf::vertex, mBitangent));
+      //    //
+      //    // glBindVertexArray(0);
+      //
+      //    if (::is_set(m_pmodelbuffer))
+      //    {
+      //
+      //       throw ::exception(error_wrong_state, "modelbuffer is already initialized");
+      //
+      //    }
+      //
+      //    øconstruct(m_pmodelbuffer);
+      //
+      //    m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
+      //
+      //    //if (m_modeldataGltf.has_data())
+      //    //;
+      //    //;
+      //    //{
+      //
+      //       m_pmodelbuffer->set_data(m_pmodeldata);
+      //
+      //    //}
+      //    //else
+      //    //{
+      //
+      //    //   m_pmodelbuffer->set_data(m_modeldataWavefront);
+      //
+      //    //}
+      //
+      // }
 
 
    } // namespace model

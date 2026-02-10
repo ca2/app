@@ -245,6 +245,13 @@ namespace gpu
    ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size)
    {
 
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
       auto pgpucontext = allocate_context();
 
       if (!pgpucontext)
@@ -783,66 +790,97 @@ namespace gpu
    //}
 
 
-   ::gpu::context* device::main_context(::acme::windowing::window * pacmewindowingwindow)
-   {
+void device::create_main_context(::acme::windowing::window * pacmewindowingwindow)
+{
 
-      if (!m_pgpucontextMain)
+         if (m_pgpucontextMain)
+   {
+            throw ::exception(error_wrong_state, "main context already created");
+   }
+
+      m_pgpucontextMain = allocate_context();
+
+      ::gpu::enum_output eoutput;
+
+      if (m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         m_pgpucontextMain = allocate_context();
+         m_pgpucontextMain->m_etype = ::gpu::context::e_type_window;
 
-         ::gpu::enum_output eoutput;
+         eoutput = ::gpu::e_output_swap_chain;
+      }
+      else
+      {
 
-         if (m_papplication->m_gpu.m_bUseSwapChainWindow)
+         m_pgpucontextMain->m_etype = ::gpu::context::e_type_generic;
+
+         eoutput = ::gpu::e_output_gpu_buffer;
+      }
+
+      m_eoutput = eoutput;
+
+      m_pgpucontextMain->m_eoutput = eoutput;
+
+      auto pwindow = pacmewindowingwindow;
+
+      if (::is_null(pwindow))
+      {
+
+         pwindow = m_papplication->m_pacmeuserinteractionMain->acme_windowing_window();
+      }
+
+      auto sizeWindow = pwindow->get_window_rectangle().size();
+
+      if (!m_pgpucontextMain->m_itask && pwindow)
+      {
+
+         if (m_pgpucontextMain->m_etype == ::gpu::context::e_type_window)
          {
 
-            m_pgpucontextMain->m_etype = ::gpu::context::e_type_window;
-
-            eoutput = ::gpu::e_output_swap_chain;
+            m_pgpucontextMain->create_window_context(this, pwindow);
 
          }
          else
          {
 
-            m_pgpucontextMain->m_etype = ::gpu::context::e_type_generic;
-
-            eoutput = ::gpu::e_output_gpu_buffer;
+            m_pgpucontextMain->create_cpu_buffer(sizeWindow);
 
          }
 
-         auto pwindow = pacmewindowingwindow;
+         /*m_pgpucontextMain->branch_synchronously();
 
-         if (::is_null(pwindow))
-         {
+         m_pgpucontextMain->m_pgpudevice = this;
 
-            pwindow = m_papplication->m_pacmeuserinteractionMain->acme_windowing_window();
-
-         }
-
-         if (!m_pgpucontextMain->m_itask
-            && pwindow)
-         {
-
-            m_pgpucontextMain->branch_synchronously();
-
-            m_pgpucontextMain->m_pgpudevice = this;
-
-            m_pgpucontextMain->_send([this, eoutput, pwindow]()
-               {
-
-                  m_pgpucontextMain->initialize_gpu_context(
-                     this,
-                     eoutput,
-                     pwindow,
-                     pwindow->get_window_rectangle().size()
-                  );
-
-               });
-
-         }
-
-
+         m_pgpucontextMain->_send(
+            [this, eoutput, pwindow]()
+            {
+               m_pgpucontextMain->initialize_gpu_context(this, eoutput, pwindow,
+                                                         pwindow->get_window_rectangle().size());
+            });*/
       }
+   
+
+
+
+         //auto pcontext = main_context(pacmewindowingwindow);
+
+   //pcontext->m_pgpudevice = this;
+
+   //pcontext->_send(
+   //   [this, pcontext]()
+   //   {
+   //      pcontext->initialize_gpu_context(this, ::gpu::e_output_gpu_buffer, m_pwindow,
+   //                                       m_pwindow->get_window_rectangle().size());
+
+   //      auto pswapchain = pcontext->get_swap_chain();
+
+   //      pswapchain->initialize_swap_chain_window(pcontext, m_pwindow);
+   //   });
+}
+
+
+   ::gpu::context* device::main_context()
+   {
 
       return m_pgpucontextMain;
 
@@ -913,6 +951,15 @@ namespace gpu
    }
 
 
+   void * device::current_operating_system_gpu_context()
+   {
+      
+      throw ::interface_only();
+      
+      return nullptr;
+      
+   }
+   
 
    void device::lock_context()
    {
@@ -1201,12 +1248,12 @@ namespace gpu
    //}
 
 
-   bool device::is_mesa()
-   {
+   //bool device::is_mesa()
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    string device::load_fragment(const ::scoped_string & scopedstrPath, enum_shader_source& eshadersource)
@@ -1374,7 +1421,7 @@ namespace gpu
 
       ødefer_construct(player);
 
-      auto iFrameIndex = pgpurenderer->m_pgpurendertarget->get_frame_index();
+      auto iFrameIndex = pgpurenderer->render_target()->get_frame_index();
 
       player->initialize_gpu_layer(pgpurenderer, iFrameIndex, m_iLayer);
 

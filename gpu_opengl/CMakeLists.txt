@@ -76,6 +76,7 @@ list(APPEND library_source
         _.cpp
         _.h
         _factory.cpp
+   _glad.cpp
         _gpu_opengl.cpp
         _gpu_opengl.h
         approach.cpp
@@ -159,9 +160,13 @@ if(${LINUX} OR ${__BSD__})
  #           context_egl.h
             #context_glx.cpp
             #context_glx.h
+       approach_egl.cpp
+       context_egl.cpp
+       context_egl.h
        device_egl.cpp
        #device_egl.h
-       approach_egl.cpp
+       swap_chain_egl.cpp
+
             )
 
 endif ()
@@ -212,7 +217,8 @@ add_compile_definitions(GLAD_GLAPI_EXPORT)
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
    rotating_cube.cpp
-   device_egl_x11.cpp)
+   device_egl_x11.cpp
+   context_win32.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

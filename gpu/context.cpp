@@ -2,7 +2,7 @@
 #include "framework.h"
 #define STB_USE_HUNTER
 #include "context.h"
-//#include "device.h"
+#include "bred/gpu/device.h"
 //#include "frame_buffer.h"
 #include "model/model.h"
 #include "bred/gltf/vertex.h"
@@ -65,16 +65,41 @@ namespace gpu_gpu
         
       {
 
+         m_pcommandbufferMain = beginSingleTimeCommands(m_pgpudevice->graphics_queue());
+
          // Pre-compute IBL stuff
          auto piblequirectangularcubemap = øcreate<::gpu::ibl::equirectangular_cubemap>();
 
          piblequirectangularcubemap->initialize_equirectangular_cubemap_with_hdr_on_memory(this, block);
 
-         piblequirectangularcubemap->compute();
-
-         pgputexture = piblequirectangularcubemap->m_ptextureCubemap;
-
+                  pgputexture = piblequirectangularcubemap->m_ptextureCubemap;
          pgputexture->m_bHdr = true;
+                  {
+
+
+
+                     //{
+
+                     //   //auto piblspecularmap = ibl_specular_map();
+
+                     //   // if (!piblspecularmap->m_pframebufferPrefilteredEnvMap)
+                     //   {
+                     // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
+
+                     {
+                        start_debug_happening(m_pcommandbufferMain, "compute equirectangular cubemap");
+                        piblequirectangularcubemap->compute_equirectangular_cubemap(m_pcommandbufferMain);
+                        end_debug_happening(m_pcommandbufferMain);
+                     }
+                     endSingleTimeCommands(m_pcommandbufferMain);
+
+                     m_pcommandbufferMain.release();
+                     //}
+
+                     // return piblspecularmap->m_ptexturePrefilteredEnvMapCubemap;
+                     //->compute();
+                     //}
+                  }
 
       }
 
@@ -98,7 +123,7 @@ namespace gpu_gpu
    
          auto ptexture = øcreate<::gpu::texture>();
    
-         ptexture->m_pgpurenderer = m_pgpurenderer;
+         ptexture->m_pgpucontext = this;
 
          ptexture->m_textureflags.m_bShaderResource = true;
 
@@ -177,7 +202,7 @@ namespace gpu_gpu
    {
 
       ødefer_construct(ptexture);
-
+      ptexture->m_pgpucontext = this;
       ptexture->m_textureflags.m_bShaderResource = true;
 
       auto memory = file()->as_memory(path);
@@ -258,7 +283,7 @@ namespace gpu_gpu
          //}
 
          ::int_rectangle rectangleTarget(0, 0, width, height);
-         ptexture->initialize_with_image_data(m_pgpurenderer, rectangleTarget, numChannels, bSrgb, data);
+         ptexture->initialize_with_image_data(this, rectangleTarget, numChannels, bSrgb, data);
          //glGenTextures(1, &textureId);
          //glBindTexture(GL_TEXTURE_2D, textureId);
          //glTarget = GL_TEXTURE_2D;

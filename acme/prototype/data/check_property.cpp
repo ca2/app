@@ -339,7 +339,7 @@ namespace data
       if (!m_propertywillchange)
       {
 
-         m_propertywillchange = [this](::data::property_change & change)
+         m_propertywillchange = [this](::data::property_change & change)->bool
          {
 
             if (operator &&(change))

@@ -1688,6 +1688,29 @@ void particle::call_member(long long iId)
 
 
 
+::lresult particle::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle * pparticle)
+{
+   
+   return 0;
+   
+}
+
+
+::lresult particle::call_id_topic(const ::enum_id & eid, ::wparam wparam, ::lparam lparam, ::particle * pparticle)
+{
+   
+   auto ptopic = create_topic(eid);
+   
+   ptopic->m_wparam = wparam;
+   
+   ptopic->m_lparam = lparam;
+   
+   this->handle(ptopic, nullptr);
+   
+   return ptopic->m_lresult;
+   
+}
+
 
 bool particle::is_branch_current() const
 {
@@ -1941,8 +1964,10 @@ bool particle::_handle_call(::payload& payload, const ::scoped_string& scopedstr
 
    auto papplication = application();
 
-   if (!papplication)
+   if (::is_null(papplication))
    {
+
+      throw ::exception(error_wrong_state);
 
       return nullptr;
 
@@ -2154,7 +2179,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->_get_factory_item(type);
+   auto pfactoryitem = pfactory->_find_factory_item(type);
 
    auto p = pfactoryitem->__call__create_particle();
 
@@ -2206,7 +2231,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->_get_factory_item_by_custom_id(typecustomid);
+   auto pfactoryitem = pfactory->_find_factory_item_by_custom_id(typecustomid);
 
    auto p = pfactoryitem->__call__create_particle();
 
@@ -2229,7 +2254,7 @@ bool particle::should_run_async() const
 
    }
 
-   auto pfactoryitem = pfactory->_get_factory_item_by_ipair(ipair);
+   auto pfactoryitem = pfactory->_find_factory_item_by_ipair(ipair);
 
    auto p = pfactoryitem->__call__create_particle();
 

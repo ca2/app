@@ -293,6 +293,10 @@ namespace user
       bool                                      m_bLoadingWindowRectangle;
 
 
+      ::int_rectangle                           m_rectangleMargin1;
+
+::pointer < ::message::mouse > m_pmousePendingBackUpdateHover;
+      ::draw2d::graphics * m_pgraphicsInternalPriority = nullptr;
       //bool                                      m_bVisualChanged;
 
       // <3ThomasBorreggardSoerensen_!!
@@ -1116,7 +1120,7 @@ namespace user
 
 
       virtual bool _is_window() const override;
-      inline bool is_window() const { return m_ewindowflag & e_window_flag_is_window; }
+      inline bool is_window() const { return this->_is_window();}
 
       virtual void ExitHelpMode();
 
@@ -1128,7 +1132,7 @@ namespace user
 
       virtual bool on_before_set_parent(::user::interaction_base * pinterface);
       virtual bool on_set_parent(::user::interaction_base * pinterface);
-      virtual bool on_add_child(::user::interaction * puserinteractionChild);
+      bool on_add_child(::acme::user::interaction * puserinteractionChild) override;
       virtual void on_after_set_parent();
 
 
@@ -1604,11 +1608,15 @@ namespace user
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
+      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics();
       virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnLayout(::draw2d::graphics_pointer& pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -2294,6 +2302,7 @@ namespace user
       virtual void user_interaction_on_hide();
 
 
+      virtual void show() override;
       virtual void hide() override;
 
       //virtual ::pointer_array < ::user::interaction > synchronized_get_children();
@@ -2510,6 +2519,7 @@ namespace user
       virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
+      virtual void defer_update_hover(::draw2d::graphics_pointer & pgraphics);
       virtual void on_update_hover(::item * pitem);
 
       virtual bool is_mouse_hover() const;

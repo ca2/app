@@ -93,7 +93,7 @@ namespace user
       print_line("::user::user::initialize (aura)");
 
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
 
       m_pmutexUser = node()->create_mutex();
@@ -168,8 +168,10 @@ namespace user
 
          //auto estatus = 
 
-         if (ødefer_construct_new(m_puserstyle))
+         if (!m_puserstyle)
          {
+            
+            øconstruct_new(m_puserstyle);
 
             //if (!estatus)
             //{
@@ -482,7 +484,7 @@ namespace user
    void user::init1()
    {
 
-      ::acme::department::init1();
+      ::platform::department::init1();
 
 
       factory()->add_factory_item <::user::thread >();
@@ -510,7 +512,7 @@ namespace user
    {
 
       //if (!
-      ::acme::department::init();
+      ::platform::department::init();
 
       //{
 
@@ -591,7 +593,7 @@ namespace user
 
       //auto estatus =
       
-      ::acme::department::init2();
+      ::platform::department::init2();
 
       //if(!estatus)
       //{
@@ -639,7 +641,7 @@ namespace user
 
 
       //auto estatus =
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
       // if (m_pdesktopenvironment)
       // {
@@ -739,7 +741,7 @@ namespace user
       try
       {
 
-         ::acme::department::term();
+         ::platform::department::term();
 
       }
       catch(...)

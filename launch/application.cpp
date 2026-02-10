@@ -106,6 +106,13 @@ namespace launch
          print_line("This is FreeBSD System...");
 
          m_strBranch = strBranch;
+
+         //if(strBranch == "kde")
+         //{
+
+         //m_strBranch = "gnome";
+
+         //}
          
 
       }
@@ -345,7 +352,7 @@ namespace launch
          }
 
          m_strLaunchAppId = ::system()->m_args[1];
-         ;
+
       }
 
       auto iSlash = m_strLaunchAppId.find_index('/');

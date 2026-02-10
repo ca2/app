@@ -149,7 +149,7 @@ void interchange::create()
 }
 
 
-void interchange::on_create_window()
+void interchange::_aaa_on_create_window()
 {
 
    update_drawing_objects();

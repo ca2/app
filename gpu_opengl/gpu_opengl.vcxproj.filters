@@ -211,9 +211,6 @@
     <ClCompile Include="context_glx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="context_win32.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="image_opengl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -326,6 +323,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="context_ktx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="swap_chain_win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="context_win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

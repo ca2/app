@@ -125,6 +125,13 @@ namespace acme
       long window::__x11_Window()
       {
 
+         return 0;
+
+      }
+
+
+      void * window::__x11_Display()
+      {
 
          return 0;
 
@@ -1344,6 +1351,14 @@ namespace acme
       }
 
 
+   
+   ::particle * window::get_acme_window_bridge()
+   {
+      
+      return nullptr;
+      
+   }
+
       // void window::draw(device * pnanodevice)
       // {
       //
@@ -1987,6 +2002,37 @@ void window::on_control_box_zoom()
       
       }
 
+
+   void window::on_gpu_context_render_frame(int w, int h)
+   
+   {
+      
+      if(::is_null(m_pgpucontextrenderframe))
+      {
+         
+         return;
+         
+         //throw ::exception(error_wrong_state);
+         
+      }
+      
+      m_pgpucontextrenderframe->on_gpu_context_render_frame(w, h);
+
+   }
+
+   
+   void window::_lock_window_gpu_context()
+   {
+      
+      
+   }
+   
+   
+    void  window::_unlock_window_gpu_context()
+   {
+       
+    
+    }
 
    
 

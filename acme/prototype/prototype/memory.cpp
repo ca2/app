@@ -6,6 +6,15 @@
 ////#include "acme/exception/exception.h"
 
 
+memory::memory()
+{
+
+   this->m_pprimitivememory = this;
+   this->m_bAligned = false;
+
+}
+
+
 memory::memory(memory && memory) :
    memory_base(::transfer(memory))
 {

@@ -51,7 +51,7 @@ namespace gpu_opengl
          //                          const ::unsigned_int_array &indexa, ::gpu::model::material *pmaterial) override;
 
 
-         virtual void on_initialize_gpu_mesh() override;
+         //virtual void on_initialize_gpu_mesh() override;
 
          void draw2(::gpu::command_buffer *pcommandbuffer) override;
          // private:

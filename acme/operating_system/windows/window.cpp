@@ -429,7 +429,12 @@ namespace windows
 
       ::windows::window * pwindow = nullptr;
 
-      if (msg == (WM_USER + 123))
+      if (msg == (WM_WINDOWPOSCHANGING))
+      {
+
+         ::information() << "WM_WINDOWPOSCHANGING";
+      }
+      else if (msg == (WM_USER + 123))
       {
 
          ::information() << "::windows::window_procedure WM_USER + 123";

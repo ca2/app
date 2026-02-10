@@ -82,7 +82,7 @@ enum
 // 0000 -> 6FFF : ::account::user resources
 // 7000 -> 7FFF : _ (and standard windows) resources
 // IDR ranges (NOTE: IDR_ values must be <32768)
-#define ASSERT_VALID_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
+#define ASSERT_OK_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
 
 /////////////////////////////////////////////////////////////////////////////
 // Context sensitive help support (see Technical note TN028 for more details)

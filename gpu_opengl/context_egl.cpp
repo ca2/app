@@ -6,6 +6,8 @@
 //  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
 
+#include <X11/X.h>
+
 #include "framework.h"
 #include "_gpu_opengl.h"
 #include "device_egl.h"
@@ -28,6 +30,28 @@
 #include "aura/platform/system.h"
 #include "aura/windowing/window.h"
 const char* eglErrorString(EGLint error);
+#ifdef WITH_X11
+#include <X11/Xlib.h>
+#endif
+
+//#define ENABLE_GL_DEBUG_OUTPUT
+
+
+namespace opengl
+{
+
+
+   void * operating_system_current_context()
+   {
+
+      auto eglcontext = eglGetCurrentContext();
+
+      return eglcontext;
+
+   }
+
+
+}
 
 
 namespace gpu_opengl
@@ -57,6 +81,7 @@ namespace gpu_opengl
       m_bEGLWindowSurface = false;
       m_eglcontext = EGL_NO_CONTEXT;
       m_eglsurface = EGL_NO_SURFACE;
+      m_taskindexLock = -1;
 
    }
 
@@ -68,7 +93,30 @@ namespace gpu_opengl
    }
 
 
-   void context_egl::__create_egl_context()
+#ifdef ENABLE_GL_DEBUG_OUTPUT
+
+   void APIENTRY gl_debug_callback(
+    GLenum source,
+    GLenum type,
+    GLuint id,
+    GLenum severity,
+    GLsizei length,
+    const GLchar* message,
+    const void* userParam)
+   {
+
+      auto pcontextegl = (context_egl *)userParam;
+
+      pcontextegl->informationf("GL DEBUG : src=0x%x typ=0x%x id=%u severity=0x%x", source, type, id, severity);
+
+      pcontextegl->informationf("GL DEBUG : %s", message);
+
+   }
+
+#endif
+
+
+   void context_egl::__create_egl_context(bool bForWindow)
    {
 
       auto pgpuapproach = m_papplication->get_gpu_approach();
@@ -77,30 +125,101 @@ namespace gpu_opengl
 
       auto egldisplay = pegldevice->m_egldisplay;
 
+      if (egldisplay == EGL_NO_DISPLAY)
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
       EGLConfig eglconfig;
 
-      if (m_eoutput == ::gpu::e_output_swap_chain)
+      if (bForWindow)
       {
-         eglconfig = pegldevice->m_eglconfigSwapChainWindow;
+
+         if (!pegldevice->_simplified_find_config_for_x11_window4(
+            pegldevice->m_eglconfigWindow,
+            pegldevice->m_lX11NativeVisualId, false))
+         {
+
+            warning("Couldn't find window config with transparent visual");
+
+            if (pegldevice->_simplified_find_config_for_x11_window4(
+               pegldevice->m_eglconfigWindow,
+               pegldevice->m_lX11NativeVisualId, true))
+            {
+
+               warning("An couldn't find window config with opaque visual");
+
+               throw ::exception(::error_failed);
+
+            }
+
+         }
+
+         if (pegldevice->m_eglconfigWindow == EGL_NO_CONFIG_KHR)
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+
+         if (pegldevice->m_lX11NativeVisualId < 0)
+         {
+
+            throw ::exception(::error_failed);
+
+         }
+
+         eglconfig = pegldevice->m_eglconfigWindow;
+
       }
       else
       {
-         eglconfig = pegldevice->m_eglconfig2;
+
+         eglconfig = pegldevice->m_eglconfigPBuffer;
+
+      }
+
+      if (eglconfig == EGL_NO_CONFIG_KHR)
+      {
+
+         throw ::exception(error_wrong_state);
+
       }
 
       defer_bind_egl_api();
 
-      EGLint contextAttribs[] = {
-         EGL_CONTEXT_MAJOR_VERSION, 3,
-         EGL_CONTEXT_MINOR_VERSION, 3,
-         EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
-         // optional debug flag:
-         EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
+      // EGLint contextAttribs[] = {
+      //    EGL_CONTEXT_MAJOR_VERSION, 3,
+      //    EGL_CONTEXT_MINOR_VERSION, 3,
+      //    //EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
+      //    // optional debug flag:
+      //    //EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
+      //    EGL_NONE
+      // };      // Step 7 - Create a context.
+
+      auto eglcontextPrimary = pegldevice->m_eglcontextPrimary;
+
+      EGLint *ctx_attrib_list = nullptr;
+
+#ifdef _DEBUG
+
+      EGLint ctx_attribs[] = {
+         EGL_CONTEXT_OPENGL_DEBUG, EGL_TRUE,
          EGL_NONE
-      };      // Step 7 - Create a context.
+     };
+
+      ctx_attrib_list = ctx_attribs;
+
+#endif
 
       //EGLContext eglContext;
-      m_eglcontext = eglCreateContext(egldisplay, eglconfig, pegldevice->m_eglcontextPrimary, contextAttribs);
+      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, contextAttribs);
+      m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary,
+         ctx_attrib_list);
+      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, eglcontextPrimary, nullptr);
+      //m_eglcontext = eglCreateContext(egldisplay, eglconfig, nullptr, nullptr);
       //qDebug() << "egl error" << eglGetError();
 
       if (m_eglcontext == EGL_NO_CONTEXT)
@@ -130,7 +249,7 @@ namespace gpu_opengl
    }
 
 
-   void context_egl::_on_after_context_and_surface_creation()
+   void context_egl::__on_after_egl_context_and_surface_creation()
    {
 
       if (!is_glad_gl_loaded())
@@ -150,6 +269,7 @@ namespace gpu_opengl
 
          printf("GL_RENDERER = %s\n", pszGlRenderer);
 
+
       }
 
       //m_itaskGpu = ::current_itask();
@@ -161,28 +281,75 @@ namespace gpu_opengl
    }
 
 
+   // void context_egl::swap_buffers()
+   // {
+   //
+   //    ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
+   //
+   //    pegldevice->_swap_buffers();
+   //
+   // }
 
-   void context_egl::_create_window_context(windowing::window* pwindow)
+
+   void context_egl::__create_egl_window_surface(::acme::windowing::window * pacmewindowingwindow)
    {
-
-      __create_egl_context();
-
-      // EGLint pbufferAttribs[5];
-      // pbufferAttribs[0] = EGL_WIDTH;
-      // pbufferAttribs[1] = size.cx;
-      // pbufferAttribs[2] = EGL_HEIGHT;
-      // pbufferAttribs[3] = size.cy;
-      // pbufferAttribs[4] = EGL_NONE;
 
       ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
 
       auto egldisplay = pegldevice->m_egldisplay;
 
-      auto eglconfigSwapChain = pegldevice->m_eglconfigSwapChainWindow;
+      if (egldisplay == EGL_NO_DISPLAY)
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      EGLConfig eglconfig = pegldevice->m_eglconfigWindow;
+
+      if (eglconfig == EGL_NO_CONFIG_KHR)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      auto window = (EGLNativeWindowType) pacmewindowingwindow->__x11_Window();
+
+      if (window == None)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+#if WITH_X11
+
+      // Get the visual ID from the EGL config
+      EGLint visualId;
+      eglGetConfigAttrib(egldisplay, eglconfig, EGL_NATIVE_VISUAL_ID, &visualId);
+      information("EGL config visual ID: {}", visualId);
+
+      // Get the X11 window's visual
+      auto display = (Display*)pacmewindowingwindow->__x11_Display();
+      XWindowAttributes attrs;
+      XGetWindowAttributes(display, window, &attrs);
+      information("X11 window visual ID: {}", attrs.visual->visualid);
+
+      // They should match!
+      if (visualId != (EGLint)attrs.visual->visualid) {
+         warning("Visual ID mismatch! EGL={} X11={}", visualId, attrs.visual->visualid);
+      }
+
+#endif
+
+      EGLint surface_attribs[] = {
+         EGL_RENDER_BUFFER, EGL_BACK_BUFFER,
+         EGL_NONE
+      };
 
       // Step 6 - Create a surface to draw to.
-      m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfigSwapChain, (EGLNativeWindowType) pwindow->__x11_Window(),
-         nullptr);
+      m_eglsurface = eglCreateWindowSurface(egldisplay, eglconfig, window, surface_attribs);
 
       if (m_eglsurface == EGL_NO_SURFACE)
       {
@@ -193,7 +360,7 @@ namespace gpu_opengl
 
          ::string strError;
 
-         strError.formatf("Failed to create pbuffer surface (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
+         strError.formatf("Failed to create windwo surface (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
 
          warning() << strError;
 
@@ -203,72 +370,100 @@ namespace gpu_opengl
 
       m_bEGLWindowSurface = true;
 
-      _on_after_context_and_surface_creation();
-
-
-      //
-      // EGLSurface surface = eglCreateWindowSurface(
-      //     eglDisplay,
-      //     eglConfig,
-      //     (EGLNativeWindowType)win,
-      //     NULL
-      // );
+//      m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
 
    }
 
 
-   void context_egl::_create_egl_context(const ::int_size & size)
+   void context_egl::_create_window_context(::acme::windowing::window* pacmewindowingwindow)
    {
 
+      ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
 
-      __create_egl_context();
+      pegldevice->m_lX11NativeVisualId = pacmewindowingwindow->m_lX11NativeVisualId;
 
-     //  auto pgpuapproach = m_papplication->get_gpu_approach();
-     //
-     ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
+      __create_egl_context(true);
 
-     auto egldisplay = pegldevice->m_egldisplay;
+      __create_egl_window_surface(pacmewindowingwindow);
 
-     auto eglconfig2 = pegldevice->m_eglconfig2;
-     //
-     //  defer_bind_egl_api();
-     //
-     //
-     //  EGLint contextAttribs[] = {
-     //     EGL_CONTEXT_MAJOR_VERSION, 3,
-     //     EGL_CONTEXT_MINOR_VERSION, 3,
-     //     //EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
-     //     // optional debug flag:
-     //     //EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
-     //     EGL_NONE
-     // };      // Step 7 - Create a context.
-     //  //EGLContext eglContext;
-     //  m_eglcontext = eglCreateContext(egldisplay, eglconfig, pegldevice->m_eglcontextPrimary, contextAttribs);
-     //  //qDebug() << "egl error" << eglGetError();
-     //
-     //  if (m_eglcontext == EGL_NO_CONTEXT)
-     //  {
-     //
-     //     int iError = eglGetError();
-     //
-     //     const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
-     //
-     //     ::string strError;
-     //
-     //     strError.formatf("Failed to create context (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
-     //
-     //     warning() << strError;
-     //
-     //     throw ::exception(::error_failed, strError);
-     //
-     //  }
-     //
-     //  if (!pegldevice->m_eglcontextPrimary)
-     //  {
-     //
-     //     pegldevice->m_eglcontextPrimary = m_eglcontext;
-     //
-     //  }
+      __on_after_egl_context_and_surface_creation();
+
+   }
+
+
+   void context_egl::__create_egl_pbuffer_surface(const ::int_size & size)
+   {
+
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      //__create_egl_context();
+
+      //  auto pgpuapproach = m_papplication->get_gpu_approach();
+      //
+      ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
+
+      auto egldisplay = pegldevice->m_egldisplay;
+
+      if (egldisplay == EGL_NO_DISPLAY)
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      EGLConfig eglconfig = pegldevice->m_eglconfigPBuffer;
+
+      if (eglconfig == EGL_NO_CONFIG_KHR)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      //
+      //  defer_bind_egl_api();
+      //
+      //
+      //  EGLint contextAttribs[] = {
+      //     EGL_CONTEXT_MAJOR_VERSION, 3,
+      //     EGL_CONTEXT_MINOR_VERSION, 3,
+      //     //EGL_CONTEXT_OPENGL_PROFILE_MASK, EGL_CONTEXT_OPENGL_CORE_PROFILE_BIT,
+      //     // optional debug flag:
+      //     //EGL_CONTEXT_FLAGS_KHR, EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
+      //     EGL_NONE
+      // };      // Step 7 - Create a context.
+      //  //EGLContext eglContext;
+      //  m_eglcontext = eglCreateContext(egldisplay, eglconfig, pegldevice->m_eglcontextPrimary, contextAttribs);
+      //  //qDebug() << "egl error" << eglGetError();
+      //
+      //  if (m_eglcontext == EGL_NO_CONTEXT)
+      //  {
+      //
+      //     int iError = eglGetError();
+      //
+      //     const ::scoped_string & scopedstrError = eglQueryString(egldisplay, iError);
+      //
+      //     ::string strError;
+      //
+      //     strError.formatf("Failed to create context (eglError: %s : 0x%x)", ::string(scopedstrError).c_str(), iError);
+      //
+      //     warning() << strError;
+      //
+      //     throw ::exception(::error_failed, strError);
+      //
+      //  }
+      //
+      //  if (!pegldevice->m_eglcontextPrimary)
+      //  {
+      //
+      //     pegldevice->m_eglcontextPrimary = m_eglcontext;
+      //
+      //  }
 
       EGLint pbufferAttribs[5];
       pbufferAttribs[0] = EGL_WIDTH;
@@ -278,7 +473,7 @@ namespace gpu_opengl
       pbufferAttribs[4] = EGL_NONE;
 
       // Step 6 - Create a surface to draw to.
-      m_eglsurface = eglCreatePbufferSurface(egldisplay, eglconfig2, pbufferAttribs);
+      m_eglsurface = eglCreatePbufferSurface(egldisplay, eglconfig, pbufferAttribs);
 
       if (m_eglsurface == EGL_NO_SURFACE)
       {
@@ -297,8 +492,7 @@ namespace gpu_opengl
 
       }
 
-
-      _on_after_context_and_surface_creation();
+      // _on_after_context_and_surface_creation();
 
       // if (!is_glad_gl_loaded())
       // {
@@ -327,18 +521,29 @@ namespace gpu_opengl
 
 
 
-   void context_egl::_create_window_buffer()
-   {
-
-      _create_egl_context(m_rectangle.size());
-
-   }
+   // void context_egl::_create_window_buffer()
+   // {
+   //
+   //    _create_egl_context(m_rectangle.size());
+   //
+   // }
 
 
    void context_egl::_create_cpu_buffer(const ::int_size & size)
    {
 
-      _create_egl_context(size);
+      if (size.is_empty())
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      __create_egl_context(false);
+
+      __create_egl_pbuffer_surface(size);
+
+      __on_after_egl_context_and_surface_creation();
 
 //       auto pgpuapproach = m_papplication->get_gpu_approach();
 //
@@ -548,6 +753,7 @@ namespace gpu_opengl
    }
 
 
+
    // void context_egl::defer_make_current()
    // {
    //
@@ -611,12 +817,12 @@ namespace gpu_opengl
    // }
 
 
-   void context_egl::_create_offscreen_window(const int_size& size)
-   {
+//   void context_egl::_create_offscreen_window(const int_size& size)
+//   {
 
-      _create_egl_context(size);
+//      _create_egl_context(size);
 
-   }
+//   }
 
 
    void context_egl::destroy_cpu_buffer()
@@ -711,30 +917,36 @@ namespace gpu_opengl
 
       auto egldisplay = pegldevice->m_egldisplay;
 
-      //auto eglcontextCurrent = eglGetCurrentContext();
+      auto eglcontextCurrent = eglGetCurrentContext();
 
-      //if (eglcontextCurrent != m_eglcontext)
-      //{
+      if (eglcontextCurrent != EGL_NO_CONTEXT || m_taskindexLock != -1)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
         // defer_bind_egl_api();
 
          // Make the context current
-         if (!eglMakeCurrent(egldisplay, m_eglsurface, m_eglsurface, m_eglcontext))
-         {
+      if (!eglMakeCurrent(egldisplay, m_eglsurface, m_eglsurface, m_eglcontext))
+      {
 
-            int iError = eglGetError();
+         int iError = eglGetError();
 
-            auto pszError = eglQueryString(egldisplay, iError);
+         auto pszError = eglQueryString(egldisplay, iError);
 
-            ::string strError;
+         ::string strError;
 
-            strError.formatf("Failed to set current egl context/surface (eglError: %s : 0x%x)", pszError, iError);
+         strError.formatf("Failed to set current egl context/surface (eglError: %s : 0x%x)", pszError, iError);
 
-            warning() << strError;
+         warning() << strError;
 
-            throw ::exception(error_wrong_state, strError);
+         throw ::exception(error_wrong_state, strError);
 
-         }
+      }
+
+      m_taskindexLock = ::current_task_index();
 
 //      load_glad_gl();
 
@@ -750,8 +962,23 @@ namespace gpu_opengl
       //
       // }
 
-   }
+#ifdef ENABLE_GL_DEBUG_OUTPUT
+      if (glEnable)
+      {
 
+         glEnable(GL_DEBUG_OUTPUT);
+         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+         glDebugMessageCallback(gl_debug_callback, this);
+
+         /* optional: be very verbose */
+         glDebugMessageControl(
+             GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE,
+             0, NULL, GL_TRUE);
+
+      }
+#endif
+
+   }
 
    void context_egl::_context_unlock()
    {
@@ -761,6 +988,17 @@ namespace gpu_opengl
       _synchronous_lock synchronouslock(pegldevice->synchronization());
 
       auto egldisplay = pegldevice->m_egldisplay;
+
+      auto taskindex = ::current_task_index();
+
+      auto eglcontextCurrent = eglGetCurrentContext();
+
+      if (taskindex != m_taskindexLock || eglcontextCurrent != m_eglcontext)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
 
       if (!eglMakeCurrent(egldisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT))
       {
@@ -778,6 +1016,8 @@ namespace gpu_opengl
          throw ::exception(error_wrong_state, strError);
 
       }
+
+      m_taskindexLock = -1;
 
    }
 
@@ -800,11 +1040,64 @@ namespace gpu_opengl
    void context_egl::swap_buffers()
    {
 
+      if (m_eoutput != ::gpu::e_output_swap_chain)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!m_bEGLWindowSurface)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      if (!m_pacmewindowingwindowWindowSurface)
+      {
+
+         information("context_egl::swap_buffers No gpu::context");
+
+         return;
+
+      }
+
+      if (m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
+      {
+
+         information("context_egl::swap_buffers m_lX11MapNotify != 1");
+
+         return;
+
+      }
 
       ::cast < ::gpu_opengl::device_egl > pegldevice = m_pgpudevice;
 
       auto egldisplay = pegldevice->m_egldisplay;
 
+      EGLint width, height;
+      eglQuerySurface(egldisplay, m_eglsurface, EGL_WIDTH, &width);
+      eglQuerySurface(egldisplay, m_eglsurface, EGL_HEIGHT, &height);
+      debug("EGL surface created: {}x{}", width, height);
+
+      // Check what framebuffer is currently bound
+      GLint currentFB = 0;
+      glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFB);
+      debug("Current framebuffer bound: {}", currentFB);
+
+      // Read a pixel from the center to see what's actually there
+      GLubyte pixel[4];
+      glReadPixels(width/2, height/2, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, pixel);
+      debug("Center pixel color: R={} G={} B={} A={}", pixel[0], pixel[1], pixel[2], pixel[3]);
+
+      // Check for GL errors
+      GLenum glError = glGetError();
+      if (glError != GL_NO_ERROR) {
+         warning("OpenGL error before swap: 0x{:x}", glError);
+      }
+
+      eglWaitGL();
 
       if (!eglSwapBuffers(egldisplay, m_eglsurface))
       {
@@ -821,9 +1114,26 @@ namespace gpu_opengl
 
          throw ::exception(error_wrong_state, strError);
 
-
       }
 
+      eglWaitNative(EGL_CORE_NATIVE_ENGINE);
+
+#if 0
+#if WITH_X11
+
+      auto pacmewindowingwindow = m_pgpudevice->m_pwindow;
+      // Force X11 to update
+      auto display = (Display*)pacmewindowingwindow->__x11_Display();
+      auto window = (Window)pacmewindowingwindow->__x11_Window();
+      XFlush(display);
+      XSync(display, False);
+
+      XWindowAttributes attrs;
+      XGetWindowAttributes(display, window, &attrs);
+      debug("Window map state: {}", attrs.map_state); // Should be 2 (IsViewable)
+
+#endif
+#endif
 
       // if (m_bEGLWindowSurface)
       // {

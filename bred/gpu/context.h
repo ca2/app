@@ -2,6 +2,7 @@
 
 
 ////#include "acme/exception/exception.h"
+#include "semaphore.h"
 #include "acme/constant/gpu.h"
 #include "acme/prototype/collection/int_map.h"
 #include "acme/prototype/geometry2d/size.h"
@@ -81,9 +82,8 @@ namespace gpu
       virtual public ::thread
    {
 
-   protected:
-
    public:
+
 
       using thread::send;
       using thread::post;
@@ -93,74 +93,79 @@ namespace gpu
 
       enum enum_type
       {
+
          e_type_undefined,
          e_type_none,
          e_type_generic,
          e_type_draw2d,
          e_type_graphics3d,
          e_type_window,
+
       };
 
-      ::collection::index m_iGpuContext=-1;
+      ::collection::index                          m_iGpuContext=-1;
 
-      ::gpu::enum_api m_eapi = e_api_none;
-      //int                                    m_iTopicTexture = -1;
-      //bool                                   m_bCullFace = false;
-      ::gpu::enum_cull_mode                  m_ecullmode;
-      //bool m_bOffscreen = true;
-      int                                    m_iOverrideFrame = -1;
-      enum_type                              m_etype;
-      enum_output                            m_eoutput;
-      ::gpu::enum_scene                      m_escene;
-      //enum_output m_eoutputContextDraw2d = e_output_gpu_buffer;
-      //enum_output m_eoutputContextEngine = e_output_gpu_buffer;
-      ::gpu::compositor *                    m_pgpucompositor;
-      ::pointer<::gpu::device>               m_pgpudevice;
-      //::int_rectangle                        m_rectangleNew;
-      ::int_rectangle                        m_rectangle;
-      float                                  m_z;
-      int_point                              m_pointTranslate;
-      ::pointer<::gpu::cpu_buffer>           m_pcpubuffer;
-      ::pointer<::gpu::shader>               m_pshader;
-      ::pointer<::gpu::shader>               m_pshaderBound;
-      ::pointer<::gpu::render_target>        m_prendertargetBound;
+      ::gpu::enum_api                              m_eapi = e_api_none;
+      //int                                        m_iTopicTexture = -1;
+      //bool                                       m_bCullFace = false;
+      ::gpu::enum_cull_mode                        m_ecullmode;
+      //bool                                       m_bOffscreen = true;
+      int                                          m_iOverrideFrame = -1;
+      enum_type                                    m_etype;
+      enum_output                                  m_eoutput;
+      ::gpu::enum_scene                            m_escene;
+      //enum_output                                m_eoutputContextDraw2d = e_output_gpu_buffer;
+      //enum_output                                m_eoutputContextEngine = e_output_gpu_buffer;
+      ::gpu::compositor *                          m_pgpucompositor;
+      ::pointer<::gpu::device>                     m_pgpudevice;
+      //::int_rectangle                            m_rectangleNew;
+      ::int_rectangle                              m_rectangle;
+      float                                        m_z;
+      int_point                                    m_pointTranslate;
+      ::pointer<::gpu::cpu_buffer>                 m_pcpubuffer;
+      ::pointer<::gpu::shader>                     m_pshader;
+      ::pointer<::gpu::shader>                     m_pshaderBound;
+      ::pointer<::gpu::render_target>              m_prendertargetBound;
+      ::pointer < ::gpu::model_buffer >            m_pmodelbufferDummy;
+      ::pointer < ::gpu::shader >                  m_pshaderBlend3;
+      ::pointer < ::acme::windowing::window >      m_pacmewindowingwindowWindowSurface;
 
-
-      ::pointer<::gpu::shader> m_pgpushaderRgbaFromB_G;
-      bool                                   m_bCreated;
-      ::draw3d::matrix                       m_matrixProjection;
-      ::draw3d::matrix                       m_matrixImpact;
-      bool  m_bD3D11On12Shared = false;
-      //::pointer < ::gpu::renderer >          m_pgpurenderer;
-      //::pointer < ::gpu::renderer >          m_pgpurendererDraw2d;
-      //::pointer < ::gpu::renderer >          m_pgpurendererEngine;
-      ::pointer < ::gpu::renderer >          m_pgpurenderer;
-      //::pointer < ::gpu::renderer >          m_pgpurendererBackBuffer;
-      //::pointer < ::gpu::renderer >          m_pgpurendererSwap;
-      ::pointer_array < ::gpu::renderer >    m_gpurendereraDraw2d;
-      ::pointer < ::graphics3d::engine >     m_pengine;
-      ::pointer_array < ::gpu::render >      m_rendera;
-      ::pointer < ::gpu::command_buffer >    m_pcommandbufferUpload;
-      ::pointer < ::gpu::model_buffer >      m_pmodelbufferFullscreenQuad;
+      ::pointer<::gpu::shader>                     m_pgpushaderRgbaFromB_G;
+      bool                                         m_bCreated;
+      ::draw3d::matrix                             m_matrixProjection;
+      ::draw3d::matrix                             m_matrixImpact;
+      bool                                         m_bD3D11On12Shared = false;
+      //::pointer < ::gpu::renderer >              m_pgpurenderer;
+      //::pointer < ::gpu::renderer >              m_pgpurendererDraw2d;
+      //::pointer < ::gpu::renderer >              m_pgpurendererEngine;
+      ::pointer < ::gpu::renderer >                m_pgpurenderer;
+      //::pointer < ::gpu::renderer >              m_pgpurendererBackBuffer;
+      //::pointer < ::gpu::renderer >              m_pgpurendererSwap;
+      ::pointer_array < ::gpu::renderer >          m_gpurendereraDraw2d;
+      ::pointer < ::graphics3d::engine >           m_pengine;
+      ::pointer_array < ::gpu::render >            m_rendera;
+      ::pointer < ::gpu::command_buffer >          m_pcommandbufferUpload;
+      ::pointer < ::gpu::model_buffer >            m_pmodelbufferFullscreenQuad;
       // size memory buffer
       ::int_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
-      //::image32_callback                     m_callbackImage32CpuBuffer;
-      ::pointer_array < ::gpu::texture >        m_textureaAtlas;
-      //::pointer < ::mutex >                  m_pmutexOffscreen;
-      //::int_size                             m_sizeOffscreen;
-      //int                                    m_iScanOffscreen;
-      //::memory                               m_memoryOffscreen;
-      ::pointer < ::gpu::swap_chain >          m_pgpuswapchain;
-      ::pointer_array < ::gpu::shader >         m_shaderaRetire;
+      //::image32_callback                         m_callbackImage32CpuBuffer;
+      ::pointer_array < ::gpu::texture >           m_textureaAtlas;
+      //::pointer < ::mutex >                      m_pmutexOffscreen;
+      //::int_size                                 m_sizeOffscreen;
+      //int                                        m_iScanOffscreen;
+      //::memory                                   m_memoryOffscreen;
+      ::pointer < ::gpu::swap_chain >              m_pgpuswapchain;
+      ::pointer_array < ::gpu::shader >            m_shaderaRetire;
+      ::pointer < ::gpu::semaphore >               m_pgpusemaphoreMergeLayersReady;
+      ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemap;
+      ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemapGeneric;
 
-      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemap;
-      ::string_map_base < ::pointer < ::gpu::texture > > m_texturemapGeneric;
-
-      ::pointer<::gpu::binding_set> m_pbindingsetGlobalUbo1;
-      ::pointer<::gpu::binding_set> m_pbindingsetIbl1;
-      ::pointer<::gpu::binding_set> m_pbindingsetGltfPbr;
-      ::pointer<::gpu::binding_set> m_pbindingsetSceneGltfPbr;
-      //::pointer<::gpu::block> m_pblockGlobalUbo;
+      ::pointer<::gpu::binding_set>                m_pbindingsetGlobalUbo1;
+      ::pointer<::gpu::binding_set>                m_pbindingsetIbl1;
+      ::pointer<::gpu::binding_set>                m_pbindingsetGltfPbr;
+      ::pointer<::gpu::binding_set>                m_pbindingsetSceneGltfPbr;
+      ::pointer<::gpu::command_buffer>             m_pcommandbufferMain;
+      //::pointer<::gpu::block>                    m_pblockGlobalUbo;
 
 
       context();
@@ -246,7 +251,7 @@ namespace gpu
       //virtual bool defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, const ::block& block, memory_buffer::enum_type etype);
 
 
-      virtual void create_window_context(::gpu::device* pgpudevice, ::windowing::window * pwindow);
+      virtual void create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window * pwindow);
 
       virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size);
 
@@ -299,6 +304,10 @@ namespace gpu
       virtual void do_on_context(const ::procedure & procedure);
       virtual void send_on_context(const ::procedure & procedure);
       virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
+
+
+      //virtual void top_post_to_context(::gpu::context * pcontextInnerStart, const ::procedure& procedure);
+
       
       virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::int_size& size = {});
 
@@ -379,8 +388,8 @@ namespace gpu
       virtual void update_current_scene();
 
       //virtual void copy(::gpu::texture* ptexture);
-      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
-      virtual void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
+      virtual void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence);
+      virtual void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera);
 
       virtual void on_start_layer(::gpu::layer* player);
       virtual void on_end_layer(::gpu::layer* player);
@@ -426,6 +435,7 @@ namespace gpu
 
 
       virtual ::gpu::model_buffer* sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
+      virtual ::pointer < ::gpu::model_buffer> create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe);
 
 
       //::pointer<::graphics3d::renderable> load_model();
@@ -473,6 +483,7 @@ namespace gpu
 
 
       virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
+      virtual void set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap
 //      /// @param environmentCubeExisting 

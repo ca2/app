@@ -33,29 +33,29 @@ namespace gpu_opengl
       EGLContext                       m_eglcontext;
       EGLSurface                       m_eglsurface;
       bool                             m_bEGLWindowSurface;
-
+      task_index                       m_taskindexLock;
 
       context_egl();
       ~context_egl() override;
 
 
-      virtual void __create_egl_context();
-      virtual void _on_after_context_and_surface_creation();
-      virtual void _create_egl_context(const ::int_size & size);
-      void _create_window_buffer() override;
-      void _create_offscreen_window(const ::int_size &size) override;
-      void _create_window_context(windowing::window* pwindow) override;
-      virtual void _create_cpu_buffer(const ::int_size& size) override;
-      //virtual void resize_offscreen_buffer(const ::int_size& size) override;
-      virtual void destroy_cpu_buffer() override;
+      virtual void __create_egl_context(bool bForWindow);
+      virtual void __create_egl_window_surface(::acme::windowing::window* pacmewindowingwindow);
+      virtual void __create_egl_pbuffer_surface(const ::int_size & size);
+      virtual void __on_after_egl_context_and_surface_creation();
+      //void _create_window_buffer() override;
+      //void _create_offscreen_window(const ::int_size &size) override;
+      void _create_window_context(::acme::windowing::window* pacmewindwoingwindow) override;
+      void _create_cpu_buffer(const ::int_size& size) override;
+      //void resize_offscreen_buffer(const ::int_size& size) override;
+      void destroy_cpu_buffer() override;
 
-      //virtual void defer_make_current() override;
-      //virtual void defer_release_current() override;
+      //void defer_make_current() override;
+      //void defer_release_current() override;
 
-      virtual string get_shader_version_text() override;
+      string get_shader_version_text() override;
 
-      virtual void _translate_shader(string_array_base& stra) override;
-
+      void _translate_shader(string_array_base& stra) override;
 
       void assert_there_is_current_context() override;
 

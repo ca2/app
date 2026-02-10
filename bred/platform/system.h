@@ -14,11 +14,23 @@ namespace bred
    public:
 
 
+      ::pointer<::typeface::typeface> m_ptypeface;
+      ::pointer<::typeface::allocator> m_ptypefaceallocator;
+
+
       system();
       ~system() override;
 
 
       void common_construct();
+
+
+
+      virtual ::typeface::typeface * typeface();
+      virtual ::typeface::allocator *typeface_allocator();
+
+
+      virtual ::string typeface_get_default_typeface_name();
 
 
       //void on_set_platform() override;

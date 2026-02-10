@@ -169,7 +169,7 @@ namespace factory
 
        auto typeindex = ::std::type_index(typeid(ORIGIN_TYPE));
 
-       return _get_factory_item_by_type_index(typeindex);
+       return _find_factory_item_by_type_index(typeindex);
 
     }
 
@@ -471,7 +471,7 @@ inline void particle::__call__construct_by_type(::pointer<TYPE> &p, const ::plat
 
    }
 
-   auto pfactoryitem = pfactory->_get_factory_item(type);
+   auto pfactoryitem = pfactory->_find_factory_item(type);
 
    if (::is_null(pfactoryitem))
    {

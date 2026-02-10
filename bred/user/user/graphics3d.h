@@ -8,6 +8,7 @@
 #include "bred/graphics3d/types.h"
 #include "apex/platform/app_consumer.h"
 #include "apex/platform/application.h"
+#include "bred/platform/fps_counter.h"
 
 
 namespace user
@@ -23,10 +24,14 @@ namespace user
       //memory m_memory;
       //int m_i;
 
+      int m_iFrameCounter = 0;
+      ::write_text::font_pointer m_pfontThomasBS_;
+      ::string_array m_straLineStats;
+
       //::graphics3d::enum_mouse                  m_emouse;
       //::graphics3d::enum_keyboard               m_ekeyboard;
       //bool                                      m_bAbsoluteMousePosition;
-
+      fps_counter                               m_fpscounter;
       ::pointer < ::graphics3d::engine >			m_pengine;
 
       ::pointer < ::graphics3d::key_map >			m_pkeymap;
@@ -64,13 +69,13 @@ namespace user
       void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics) override;
-
+      //void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       //::user::document * get_document();
 
-
+      virtual void draw_gpu_statistics(::draw2d::graphics_pointer &pgraphics);
 
       //virtual ::pointer < ::graphics3d::application > start_graphics3d_application();
 

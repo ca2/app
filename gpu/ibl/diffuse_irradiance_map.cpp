@@ -97,7 +97,7 @@ namespace gpu
 
          textureflags.m_bRenderTarget = true;
 
-         m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes, textureflags);
+         m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext, textureattributes, textureflags);
 
          //m_ptextureDiffuseIrradianceCubemap->initialize_mipmap_cubemap_texture(
            // m_pgpucontext->m_pgpurenderer, ::int_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
@@ -126,7 +126,7 @@ namespace gpu
           };
 
           floating_matrix4 projection =
-             m_pgpucontext->m_pengine->perspective(90f_degrees, // 90 degrees to cover one face
+             m_pgpucontext->m_pengine->perspective(90_f_degrees, // 90 degrees to cover one face
                                                    1.0f, // its a square
                                                    0.1f, 2.0f);
          
@@ -159,6 +159,8 @@ namespace gpu
              ::int_rectangle r(0, 0, iIrradianceMapWidth, iIrradianceMapHeight);
 
              pgpucommandbuffer->set_viewport(r);
+
+             pgpucommandbuffer->set_scissor(r);
 
              pgpucommandbuffer->set_source(ptextureSkybox);
 

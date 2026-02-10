@@ -9,7 +9,7 @@ namespace networking
 
 
    class CLASS_DECL_AXIS email_department :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

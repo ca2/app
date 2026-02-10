@@ -19,7 +19,7 @@ namespace graphics
       ::e_graphics                  m_egraphics;
       ::image::image_pointer        m_pimage2;
       ::mutex_pointer               m_pmutex;
-      ::draw2d::graphics_pointer    m_pgraphics;
+      ::draw2d::graphics_pointer    m_pgraphicsBufferItem;
       ::int_point                   m_pointBufferItemDraw;
       ::int_size                    m_sizeBufferItemDraw;
       ::int_point                   m_pointBufferItemWindow;
@@ -32,6 +32,8 @@ namespace graphics
 
       ::draw2d::graphics_pointer g();
 
+
+      virtual void switch_to_draw();
 
       void destroy() override;
 

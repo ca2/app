@@ -6,7 +6,7 @@ namespace console
 
 
    department::department(::particle * pparticle) :
-      ::acme::department(pparticle)
+      ::platform::department(pparticle)
    {
 
    }
@@ -26,7 +26,7 @@ namespace console
       add_factory_item <console::prompt_frame >();
       add_factory_item <console::prompt_impact >();
 
-      if(!::acme::department::init_instance())
+      if(!::platform::department::init_instance())
          return false;
 
 

@@ -387,7 +387,7 @@ void user::init2()
 //
       ::berg::user::user::init2();
 //
-//      //if (!::acme::department::init2())
+//      //if (!::platform::department::init2())
 //      //{
 //
 //      //   return false;
@@ -416,7 +416,7 @@ void user::destroy()
 //      try
 //      {
 //
-//         ::acme::department::term();
+//         ::platform::department::term();
 //
 //      }
 //      catch (...)

@@ -538,8 +538,13 @@ namespace user
 
    ::task_pool * frame_interaction::taskpool()
    {
-
-      ødefer_construct_new(m_ptaskpool);
+      
+      if(!m_ptaskpool)
+      {
+         
+         øconstruct_new(m_ptaskpool);
+         
+      }
 
       return m_ptaskpool;
 

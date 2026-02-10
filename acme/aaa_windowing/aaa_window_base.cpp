@@ -257,7 +257,7 @@ void window_base::nano_window_on_destroy()
 }
 
 
-void window_base::on_create_window()
+void window_base::_aaa_on_create_window()
 {
 
    m_puserinteractionbase->on_create_window();

@@ -1,6 +1,7 @@
 # Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
 # default configuration
 message(STATUS "source/app/_.cmake")
+set(WITH_AUDIO FALSE)
 set(INCLUDE_AUDIO FALSE)
 set(INCLUDE_ICONV FALSE)
 set(INCLUDE_IDN FALSE)
@@ -15,6 +16,7 @@ set(INCLUDE_DIRECTX11 FALSE)
 set(INCLUDE_DIRECTX12 FALSE)
 set(INCLUDE_DIRECT2D FALSE)
 set(INCLUDE_GPU FALSE)
+set(INCLUDE_OPENGL FALSE)
 set(HAS_SYSTEM_UNAC FALSE)
 set(HAS_APP_VERIWELL FALSE)
 set(USE_SYSTEM_JPEG TRUE)

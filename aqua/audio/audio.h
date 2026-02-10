@@ -9,7 +9,7 @@ namespace aqua
 
 
    class CLASS_DECL_AQUA audio :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    protected:
       

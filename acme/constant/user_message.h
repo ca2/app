@@ -315,7 +315,10 @@ namespace user
       e_message_open_response,
 
       e_message_wave_in_data,
-
+//      e_message_initialize_host_window,
+//      e_message_did_pick_document_at_url,
+//      e_message_get_operating_system_dark_mode_reply,
+//      e_message_system_app_activated,
 
       e_message_hyper_space = 0x8000000,
       e_message_click,

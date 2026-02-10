@@ -77,7 +77,7 @@
 //
 //		::cast < ::gpu_directx11::device > pgpudevice = pgpucontext->m_pgpudevice;
 //
-//		pgpudevice->m_pdevice->CreateTexture2D(&texDesc, nullptr, &m_ptextureShared);
+//		pgpudevice->m_pd3d12device->CreateTexture2D(&texDesc, nullptr, &m_ptextureShared);
 //		//m_bNeedRebuild = false;
 //	   //init();
 //	   // Cleans up old swap chain since it's no longer needed after resizing
@@ -97,7 +97,7 @@
 //
 //				//::cast < ::gpu_directx11::swap_chain_render_target > pswapchainrendertargetview = pgpurenderer->m_prendertargetview;
 //
-//		HRESULT hr = pgpudevice->m_pdevice->CreateShaderResourceView(
+//		HRESULT hr = pgpudevice->m_pd3d12device->CreateShaderResourceView(
 //			m_ptextureShared, nullptr, &m_pshaderresourceviewShader);
 //		if (FAILED(hr)) {
 //			OutputDebugStringA("Failed to create SRV from shared D2D texture\n");
@@ -138,14 +138,14 @@
 //			return;
 //		}
 //
-//		pgpudevice->m_pdevice->CreateVertexShader(
+//		pgpudevice->m_pd3d12device->CreateVertexShader(
 //			vsBlob->GetBufferPointer(),
 //			vsBlob->GetBufferSize(),
 //			nullptr,
 //			&m_pvertexshaderFullscreen
 //		);
 //
-//		pgpudevice->m_pdevice->CreatePixelShader(
+//		pgpudevice->m_pd3d12device->CreatePixelShader(
 //			psBlob->GetBufferPointer(),
 //			psBlob->GetBufferSize(),
 //			nullptr,
@@ -156,7 +156,7 @@
 //		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 //		sampDesc.AddressU = sampDesc.AddressV = sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
 //
-//		pgpudevice->m_pdevice->CreateSamplerState(&sampDesc, &m_psamplerstateLinear);
+//		pgpudevice->m_pd3d12device->CreateSamplerState(&sampDesc, &m_psamplerstateLinear);
 //
 //		createRenderPassImpl();
 //		createImageViews();
@@ -744,7 +744,7 @@
 //		auto rectangle = m_pgpucontext->m_rectangle;
 //
 //		// 1. Set render target
-//		pgpudevice->m_pdevicecontext->OMSetRenderTargets(1, pgpudevice->m_prendertargetviewBackBuffer.pp(), nullptr);
+//		pgpudevice->m_pd3d12devicecontext->OMSetRenderTargets(1, pgpudevice->m_prendertargetviewBackBuffer.pp(), nullptr);
 //
 //		// 2. Set viewport
 //		D3D11_VIEWPORT vp = {};
@@ -754,19 +754,19 @@
 //		vp.Height = static_cast<float>(rectangle.height());
 //		vp.MinDepth = 0.0f;
 //		vp.MaxDepth = 1.0f;
-//		pgpudevice->m_pdevicecontext->RSSetViewports(1, &vp);
+//		pgpudevice->m_pd3d12devicecontext->RSSetViewports(1, &vp);
 //
 //		// 3. Bind shaders
-//		pgpudevice->m_pdevicecontext->VSSetShader(m_pvertexshaderFullscreen, nullptr, 0);
-//		pgpudevice->m_pdevicecontext->PSSetShader(m_ppixelshaderFullscreen, nullptr, 0);
+//		pgpudevice->m_pd3d12devicecontext->VSSetShader(m_pvertexshaderFullscreen, nullptr, 0);
+//		pgpudevice->m_pd3d12devicecontext->PSSetShader(m_ppixelshaderFullscreen, nullptr, 0);
 //
 //		// 4. Bind SRV and sampler
-//		pgpudevice->m_pdevicecontext->PSSetShaderResources(0, 1, m_pshaderresourceviewShader.pp());
-//		pgpudevice->m_pdevicecontext->PSSetSamplers(0, 1, m_psamplerstateLinear.pp());
+//		pgpudevice->m_pd3d12devicecontext->PSSetShaderResources(0, 1, m_pshaderresourceviewShader.pp());
+//		pgpudevice->m_pd3d12devicecontext->PSSetSamplers(0, 1, m_psamplerstateLinear.pp());
 //
 //		// 5. Draw fullscreen triangle (no vertex buffer needed)
-//		pgpudevice->m_pdevicecontext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-//		pgpudevice->m_pdevicecontext->Draw(3, 0);
+//		pgpudevice->m_pd3d12devicecontext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+//		pgpudevice->m_pd3d12devicecontext->Draw(3, 0);
 //
 //		pgpudevice->m_pdxgiswapchain1->Present(1, 0);
 //

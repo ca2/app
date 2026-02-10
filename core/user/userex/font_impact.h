@@ -38,7 +38,7 @@ namespace userex
 
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      void defer_do_graphics(::draw2d::graphics_pointer & pgraphics) override;
+      //void do_graphics() override;
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

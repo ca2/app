@@ -4320,6 +4320,12 @@
     <ClInclude Include="prototype\prototype\address_object.h">
       <Filter>Header Files\prototype\prototype</Filter>
     </ClInclude>
+    <ClInclude Include="prototype\collection\array_map.h">
+      <Filter>Header Files\prototype\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\dialog_base.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6190,6 +6196,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\task.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\dialog_base.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

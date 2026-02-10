@@ -29,7 +29,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      bool on_add_child(::user::interaction * puserinteractionChild) override;
+      bool on_add_child(::acme::user::interaction * pacmeuserinteractionChild) override;
 
       bool is_this_visible(enum_layout elayout = e_layout_design) override;
 

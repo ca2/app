@@ -953,38 +953,38 @@ namespace apex
 
       }
 
-      prequest->m_countStack++;
-
-      at_end_of_scope
-      {
-
-         prequest->m_countStack--;
-
-         if (prequest->m_countStack <= 0)
-         {
-
-            for (auto & procedure : prequest->m_procedureaOnFinishRequest)
-            {
-
-               try
-               {
-
-                  procedure();
-
-               }
-               catch (...)
-               {
-
-
-               }
-
-            }
-
-            prequest->m_procedureaOnFinishRequest.clear();
-
-         };
-
-      };
+//      prequest->m_countStack++;
+//
+//      at_end_of_scope
+//      {
+//
+//         prequest->m_countStack--;
+//
+//         if (prequest->m_countStack <= 0)
+//         {
+//
+//            for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+//            {
+//
+//               try
+//               {
+//
+//                  procedure();
+//
+//               }
+//               catch (...)
+//               {
+//
+//
+//               }
+//
+//            }
+//
+//            prequest->m_procedureaOnFinishRequest.clear();
+//
+//         };
+//
+//      };
 
       if(prequest->payload("auto_start").is_true())
       {

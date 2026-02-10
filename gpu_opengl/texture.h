@@ -6,20 +6,26 @@
 //#include <d3d11.h>
 //#include <d2d1_1.h>
 #include "_gpu_opengl.h"
+#include "gpu_opengl/context_handle.h"
+
 
 namespace gpu_opengl
 {
 
 
    class CLASS_DECL_GPU_OPENGL texture :
-      virtual public ::gpu::texture
+      virtual public ::gpu::texture,
+      virtual public ::gpu_opengl::context_handle < GLuint, ::gpu_opengl::e_handle_fbo >
    {
    public:
+
+      
+      using base_context_handle = ::gpu_opengl::context_handle<GLuint, ::gpu_opengl::e_handle_fbo>;
       
 
       GLuint            m_gluTextureID;
       GLuint            m_gluDepthStencilRBO;
-      GLuint            m_gluFbo;
+      //GLuint            m_gluFbo;
       GLenum            m_gluType;
       GLsync            m_glsyncGpuCommandsCompleteFence;
 
@@ -28,8 +34,8 @@ namespace gpu_opengl
       ~texture() override;
 
 
-      void initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block) override;
-      void initialize_with_image_data(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+      void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block) override;
+      void initialize_with_image_data(::gpu::context *pcontext, const ::int_rectangle &rectangleTarget,
                                       int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture) override;
       // void initialize_image_texture(::gpu::renderer* prenderer,
       //    const ::int_rectangle & rectangleTarget, bool bWithDepth,
@@ -41,7 +47,9 @@ namespace gpu_opengl
       void _create_texture(const ::gpu::texture_data & texturedata = {}) override;
 
 
-      void create_render_target() override;
+      //void create_render_target() override;
+      
+      virtual void _create_frame_buffer_object(base_context_handle::object & object);
 
 
       void create_depth_resources() override;
@@ -52,6 +60,8 @@ namespace gpu_opengl
 
       void set_pixels(const ::int_rectangle& rectangle, const void* data) override;
 
+      
+      virtual GLuint frame_buffer_object();
 
       // // Loads a cubemap from a single KTX file
       // void texture::KtxLoadCubemapFromFile(
@@ -74,38 +84,16 @@ namespace gpu_opengl
 
       void generate_mipmap(::gpu::command_buffer * pgpucommandbuffer) override;
 
-               /**
-       * Set the mip level to render with.
-       * @param mipLevel
-       */
-      virtual void set_current_mip(int level);
+      void set_current_mip(int level) override;
 
 
-      ///**
-      // * Get the current width based on the mip level.
-      // * @return
-      // */
-      //virtual int mip_width();
-
-
-      ///**
-      // * Get the current height based on the mip level.
-      // * @return
-      // */
-      //virtual int mip_height();
-
-
-      /**
-       * Set which cube face texture to render to.
-       * @param index
-       */
       virtual void set_cube_face(int iFace, ::gpu::shader *pgpushader);
 
 
       void defer_fence() override;
       void wait_fence() override;
 
-
+      virtual void _defer_bind_to_render_target(base_context_handle::object & object);
    };
 
 

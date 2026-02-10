@@ -9,7 +9,8 @@ namespace write_text
 {
 
 
-   class CLASS_DECL_AURA glyph
+   class CLASS_DECL_AURA glyph :
+      virtual public ::subparticle
    {
    public:
 
@@ -26,7 +27,7 @@ namespace write_text
 
 
       glyph();
-      virtual ~glyph();
+      ~glyph() override;
 
 
       void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, ::int_point * ppointoffset);

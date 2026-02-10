@@ -31,7 +31,7 @@ namespace html
 
 
    class CLASS_DECL_AXIS html:
-      public ::acme::department
+      public ::platform::department
    {
    public:
 

@@ -35,11 +35,11 @@
 //       }
 //       // draw mesh
 //       glBindVertexArray(m_uVAO);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glDrawArrays(GL_TRIANGLES, 0, m_modeldata.m_vertexes.size());
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glBindVertexArray(0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //    }
 //
@@ -49,31 +49,31 @@
 //       ::gpu::cube::initialize_gpu_cube(pgpucontext);
 //       // create our data structures
 //       glGenVertexArrays(1, &m_uVAO);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glGenBuffers(1, &m_uVBO);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       glBindVertexArray(m_uVAO); // use this VAO for subsequent calls
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       int iSizeItem = sizeof(m_modeldata.m_vertexes[0]);
 //       int iSize = m_modeldata.m_vertexes.size();
 //
 //       glBindBuffer(GL_ARRAY_BUFFER, m_uVBO); // use this VBO for subsequent calls
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glBufferData(GL_ARRAY_BUFFER, iSize * sizeof(float) * 3, m_modeldata.m_vertexes.data(),
 //                    GL_STATIC_DRAW); // copy over the vertex data
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       // setup the locations of vertex data
 //       // positions
 //       glEnableVertexAttribArray(0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //       glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //       glBindVertexArray(0);
-//       GLCheckError("");
+//       ::opengl::check_error("");
 //
 //    }
 //

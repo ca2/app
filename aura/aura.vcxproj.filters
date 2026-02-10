@@ -133,6 +133,9 @@
     <Filter Include="Header Files\message">
       <UniqueIdentifier>{d91dfb11-60f9-44b0-bd0a-1d2c446ec320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics\typeface">
+      <UniqueIdentifier>{be6a09f3-e96e-418a-9f71-84f4497c4b60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">

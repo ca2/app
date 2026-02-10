@@ -7,6 +7,7 @@
 #include "cpu_buffer.h"
 //#include "cube.h"
 #include "device.h"
+#include "fence.h"
 #include "frame_buffer.h"
 #include "full_screen_quad.h"
 #include "hdr_texture.h"
@@ -18,6 +19,7 @@
 #include "pixmap.h"
 #include "program.h"
 #include "renderer.h"
+#include "semaphore.h"
 #include "shader.h"
 #include "swap_chain.h"
 #include "texture.h"
@@ -42,18 +44,15 @@
 
 #include "device_win32.h"
 
-#else
+#elif defined(LINUX) || defined(__BSD__)
 
 #include "device_egl.h"
 
-#endif
+#else
 
-//BEGIN_FACTORY(gpu_opengl)
-//FACTORY_ITEM(::opengl::opengl)
-//FACTORY_ITEM(::opengl::program)
-//FACTORY_ITEM(::opengl::shader)
-//FACTORY_ITEM(::opengl::buffer)
-//END_FACTORY()
+#include "device_cgl.h"
+
+#endif
 
 
 __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
@@ -66,7 +65,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::cpu_buffer, ::gpu::cpu_buffer >();
    pfactory->add_factory_item < ::gpu_opengl::renderer, ::gpu::renderer >();
 
-   pfactory->add_factory_item < ::gpu_opengl::object, ::gpu::object >();
+   //pfactory->add_factory_item < ::gpu_opengl::object, ::gpu::object >();
 
    pfactory->add_factory_item < ::gpu_opengl::texture, ::gpu::texture >();
 
@@ -82,9 +81,13 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 
    pfactory->add_factory_item < ::gpu_opengl::device_win32, ::gpu::device >();
 
-#else
+#elif defined(LINUX) || defined(__BSD__)
 
    pfactory->add_factory_item < ::gpu_opengl::device_egl, ::gpu::device >();
+
+#else
+
+   pfactory->add_factory_item < ::gpu_opengl::device_cgl, ::gpu::device >();
 
 #endif
 
@@ -100,7 +103,9 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::gpu_opengl::memory_buffer, ::gpu::memory_buffer >();
    pfactory->add_factory_item < ::gpu::frame_ephemeral >();
    pfactory->add_factory_item < ::gpu::frame_storage >();
+   pfactory->add_factory_item<::gpu_opengl::fence, ::gpu::fence>();
 
+   pfactory->add_factory_item<::gpu_opengl::semaphore, ::gpu::semaphore>();
    //pfactory->add_factory_item < ::gpu_opengl::cube, ::gpu::cube >();
    //pfactory->add_factory_item < ::gpu::cube >();
    //pfactory->add_factory_item < ::gpu_opengl::full_screen_quad, ::gpu::full_screen_quad >();

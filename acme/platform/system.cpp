@@ -16,6 +16,7 @@
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
+#include "acme/constant/user_message.h"
 //#include "acme/constant/idpool.h"
 #include "acme/exception/library_not_loaded.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -3589,24 +3590,20 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #endif
 
 
-   void system::system_id_update(int iId, long long iPayload)
+   ::lresult system::system_id_topic(int iId, long long llWparam, long long llLparam)
    {
 
-      call_message((::user::enum_message)iId, iPayload, {}, nullptr);
+      auto lresult = call_id_topic((::enum_id)iId, llWparam, llLparam, nullptr);
 
+      return lresult;
+      
    }
 
 
    void system::handle(::topic* ptopic, ::handler_context* phandlercontext)
    {
 
-      if (ptopic->id() == id_initialize_host_window)
-      {
-
-         acme_windowing()->defer_initialize_host_window(nullptr);
-
-      }
-      else if (ptopic->id() == id_defer_create_context_button)
+      if (ptopic->id() == id_defer_create_context_button)
       {
 
          auto pwindow = acme_windowing()->get_application_host_window();
@@ -3622,30 +3619,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //   defer_post_initial_request();
 
       //}
-      else if (ptopic->id() == id_get_operating_system_dark_mode_reply)
-      {
 
-         if (ptopic->payload("wparam").is_true())
-         {
-
-            set_background_color(::color::black);
-
-         }
-         else
-         {
-
-            set_background_color(::color::white);
-
-         }
-
-         if (m_pnano)
-         {
-
-            m_pnano->handle(ptopic, phandlercontext);
-
-         }
-
-      }
       else if (ptopic->id() == id_operating_system_user_theme_change)
       {
 
@@ -3685,13 +3659,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          }
 
       }
-      else if (ptopic->id() == id_initialize_host_window)
-      {
-
-         acme_windowing()->defer_initialize_host_window(nullptr);
-
-
-      }
+//      else if (ptopic->id() == id_initialize_host_window)
+//      {
+//
+//         acme_windowing()->defer_initialize_host_window(nullptr);
+//
+//
+//      }
       else if (ptopic->id() == id_app_activated)
       {
 
@@ -3705,15 +3679,51 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          }
 
       }
-      else if (ptopic->id() == id_did_pick_document_at_url)
+      else if (ptopic->id() ==  ::id_initialize_host_window)
+      {
+         
+         this->user();
+         
+         ::particle * pparticle = acme_windowing()->defer_initialize_host_window(nullptr);
+         
+         auto ll =  (long long) pparticle;
+         
+         ptopic->m_lresult = ll;
+         
+      }
+      else if (ptopic->id() == ::id_did_pick_document_at_url)
       {
 
          if (::is_set(application()))
          {
 
-            auto pszUrl = (const_char_pointer )ptopic->payload("wparam").as_iptr();
+            auto pszUrl = (const_char_pointer )ptopic->m_lparam.m_lparam;
 
             application()->did_pick_document_at_url(pszUrl);
+
+         }
+
+      }
+      else if (ptopic->id() ==  ::id_get_operating_system_dark_mode_reply)
+      {
+
+         if (ptopic->m_wparam)
+         {
+
+            set_background_color(::color::black);
+
+         }
+         else
+         {
+
+            set_background_color(::color::white);
+
+         }
+
+         if (m_pnano)
+         {
+
+            m_pnano->handle(ptopic, phandlercontext);
 
          }
 
@@ -3722,8 +3732,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::call_message(const ::user::enum_message& emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   ::lresult system::call_message(const ::user::enum_message& emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
+
+      return 0;
 
    }
 
@@ -3760,7 +3772,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       //   auto pnode = node();
       //
-      //   pnode->_will_finish_launching();
+      //   pnode->_will_aaa_finish_launching();
 
       //   auto pnode = session();
       //
@@ -3768,7 +3780,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //
       //   auto pwindowing = system()->windowing();
       //
-      //   pwindowing->_will_finish_launching();
+      //   pwindowing->_will_aaa_finish_launching();
 
       auto pnode = node();
 
@@ -3784,7 +3796,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       //   auto pnode = node();
       //
-      //   pnode->_will_finish_launching();
+      //   pnode->_will_aaa_finish_launching();
 
       //   auto pnode = session();
       //
@@ -3792,7 +3804,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //
       //   auto pwindowing = system()->windowing();
       //
-      //   pwindowing->_will_finish_launching();
+      //   pwindowing->_will_aaa_finish_launching();
 
       auto pnode = node();
 
@@ -5051,6 +5063,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
             return "win32";
 
          }
+         else if (strOperatingAmbient == "macos")
+         {
+
+            return "appkit";
+
+         }
+         else if (strOperatingAmbient == "ios")
+         {
+
+            return "uikit";
+
+         }
 
          return strOperatingAmbient;
 
@@ -5289,10 +5313,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 //}
 
 
-void system_id_update(::platform::system* psystem, int iUpdate, long long iParam)
+long long system_id_topic(::platform::system* psystem, int iId, long long llWparam, long long llLparam)
 {
 
-   psystem->system_id_update(iUpdate, iParam);
+   auto ll = psystem->call_id_topic((::enum_id) iId, llWparam, llLparam);
+   
+   return ll;
 
 }
 

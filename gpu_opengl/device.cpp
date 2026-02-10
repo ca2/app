@@ -59,6 +59,12 @@ namespace gpu_opengl
    }
 
 
+   bool device::_is_ok() const
+   {
+
+      return true;
+
+   }
 
 //   bool device::make_current(::gpu::context* pgpucontext)
    //{
@@ -67,7 +73,14 @@ namespace gpu_opengl
 
    //}
 
-
+//void * device::gl_get_operating_system_context()
+//{
+//   
+//   throw ::interface_only();
+//   
+//   return nullptr;
+//   
+//}
    void device::on_initialize_particle()
    {
 
@@ -640,28 +653,28 @@ namespace gpu_opengl
    //{
 
    //   // Clear the screen 
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
    //   //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);//
    //   glClearColor(color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity());//
    //   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
 
    //}
 
    
-   void device::_opengl_lock()
-   {
+   //void device::_opengl_lock()
+   //{
 
 
-   }
+   //}
 
-   
-   void device::_opengl_unlock()
-   {
+   //
+   //void device::_opengl_unlock()
+   //{
 
 
 
-   }
+   //}
 
 
    int device::get_frame_index2()

@@ -16,7 +16,9 @@
 #include <assimp/matrix4x4.h>
 #include "acme/prototype/geometry/matrix.h"
 
+#if defined(__i386__) || defined(__x86_64__)
 #include <immintrin.h> // For SIMD intrinsics
+#endif
 
 inline floating_matrix4 aiMatrix4x4ToColumnMajorScalar(const aiMatrix4x4 &m)
 {
@@ -56,7 +58,7 @@ inline floating_matrix4 aiMatrix4x4ToColumnMajorScalar(const aiMatrix4x4 &m)
    return out;
 }
 
-
+#if defined(__SSE__)
 inline float_matrix4 aiMatrix4x4ToColumnMajorSSE(const aiMatrix4x4 &from)
 {
 
@@ -88,7 +90,10 @@ inline float_matrix4 aiMatrix4x4ToColumnMajorSSE(const aiMatrix4x4 &from)
    return to;
 
 }
+#endif
 
+
+#if defined(__AVX2__)
 
 inline float_matrix4 aiMatrix4x4ToColumnMajorAVX2(const aiMatrix4x4 &from)
 {
@@ -117,7 +122,10 @@ inline float_matrix4 aiMatrix4x4ToColumnMajorAVX2(const aiMatrix4x4 &from)
    return to;
 }
 
+#endif
 
+
+#if defined(__AVX__)
 
 inline float_matrix4 aiMatrix4x4ToColumnMajorAVX(const aiMatrix4x4 &from)
 {
@@ -145,7 +153,7 @@ inline float_matrix4 aiMatrix4x4ToColumnMajorAVX(const aiMatrix4x4 &from)
    return to;
 }
 
-
+#endif
 
 inline floating_matrix4 aiMatrix4x4ToColumnMajor(const aiMatrix4x4 &from)
 {

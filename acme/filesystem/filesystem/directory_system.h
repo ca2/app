@@ -19,7 +19,7 @@
 
 
 class CLASS_DECL_ACME directory_system :
-   virtual public ::acme::department,
+   virtual public ::platform::department,
    virtual public ::file::enumerator
 {
 public:

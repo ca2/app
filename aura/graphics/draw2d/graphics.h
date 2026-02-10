@@ -61,7 +61,7 @@ namespace draw2d
 
    //};
 
-
+class graphics_context;
 
 /// <summary>
 /// graphics * -> ::image::image_source_pointer concept
@@ -81,6 +81,7 @@ namespace draw2d
       bool                                         m_bForWindowDraw2d;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
+      int                                          m_iYFlipHeight;
       // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
       //bool                                         m_bHasCurrentPoint;
@@ -88,7 +89,7 @@ namespace draw2d
       void* m_pthis;
       ::pointer < ::user::interaction >            m_puserinteraction;
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
-
+      double                                       m_dSizeScaler;
       bool                                         m_bPat;
       ///::image32_callback                           m_callbackImage32CpuBuffer;
 
@@ -122,7 +123,7 @@ namespace draw2d
       enum_interpolation_mode                m_einterpolationmode;
       enum_compositing_quality                  m_ecompositingquality;
       ::write_text::enum_rendering           m_ewritetextrendering;
-      double                                 m_dFontFactor;
+      //double                                 m_dFontFactor;
 
       ::double_size                             m_sizeScaling;
       ::double_point                            m_pointOrigin;
@@ -165,8 +166,14 @@ namespace draw2d
 
       virtual bool is_y_flip();
 
+      virtual double size_scaler();
+      virtual void set_size_scaler(double dSizeScaler);
 
-      virtual void do_on_context(const ::procedure& procedure);
+      //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
+
+
+      virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
+
 
       inline operator ::user::style& ()
       {
@@ -325,7 +332,7 @@ namespace draw2d
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
-      virtual void create_memory_graphics(const ::int_size& size = {});
+      virtual void create_memory_graphics(const ::int_size& sizeParameter);
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
@@ -1414,6 +1421,65 @@ namespace draw2d
 
 
    };
+
+   
+   class CLASS_DECL_AURA graphics_context_interface :
+      virtual public ::particle
+   {
+   public:
+   
+      virtual void _context_lock() = 0;
+      virtual void _context_unlock() = 0;
+
+   };
+
+
+   class CLASS_DECL_AURA graphics_context :
+      virtual public ::particle
+   {
+   public:
+      
+      
+      ::pointer < ::draw2d::graphics > m_pgraphics;
+      ::pointer < ::draw2d::graphics_context_interface > m_pgraphicscontextinterface;
+      ::pointer < ::graphics::buffer_item > m_pbufferitem;
+      
+      
+      graphics_context()
+      {
+         
+         
+      }
+      
+      
+      ~graphics_context()
+      {
+         
+         m_pgraphics.release();
+         
+         if(m_pgraphicscontextinterface)
+         {
+            
+            m_pgraphicscontextinterface->_context_unlock();
+            
+         }
+         
+      }
+   
+
+      void insert_graphics_and_context(::draw2d::graphics_context_interface * pinterface)
+      {
+         
+         m_pgraphicscontextinterface = pinterface;
+       
+         m_pgraphicscontextinterface->_context_lock();
+         
+      }
+
+
+   };
+
+
 
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();

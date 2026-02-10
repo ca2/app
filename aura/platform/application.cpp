@@ -1791,7 +1791,7 @@ namespace aura
 
       {
 
-         ::string strImplementation = application_file_setting("draw2d.txt");
+         ::string strImplementation = application_file_setting_by_operating_system("draw2d.txt");
 
          strImplementation.make_lower();
 
@@ -1943,20 +1943,23 @@ namespace aura
 
       {
 
-         ::string strImplementation = application_file_setting("graphics3d.txt");
+         ::string strImplementation = application_file_setting_by_operating_system("graphics3d.txt");
 
          strImplementation.make_lower();
 
          if (strImplementation == "directx11")
          {
 
-#if !defined(WIN32)
-
-            throw ::exception(error_wrong_state);
-
-#endif
+#if defined(WIN32)
 
             strImplementation = "directx11";
+            
+#else
+            
+            throw ::exception(error_wrong_state);
+            
+#endif
+
 
          }
          else if (strImplementation == "directx12")
@@ -2015,9 +2018,11 @@ namespace aura
  
       if(pmanager)
       {
+         
          auto psignal = pmanager->signal(id_app_activated);
       
          psignal->add_handler(this);
+         
       }
 
    }
@@ -3793,6 +3798,12 @@ retry_license:
 
             m_puserinteractionaFrame->add_unique_interaction(puserinteraction);
 
+            if (m_pacmeuserinteractionMain == nullptr)
+            {
+
+               m_pacmeuserinteractionMain = puserinteraction;
+            }
+
          }
 
          information() << "::berg::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << ::platform::type(this).name();
@@ -3801,13 +3812,6 @@ retry_license:
          {
 
             psession->on_create_frame_window();
-
-         }
-
-         if (m_pacmeuserinteractionMain == nullptr)
-         {
-
-            m_pacmeuserinteractionMain = puserinteraction;
 
          }
 
@@ -3878,10 +3882,15 @@ retry_license:
 
             if (m_puserinteractionaFrame->has_no_interaction())
             {
-
+               
                synchronouslock.unlock();
-
-               get_app()->post_message(::user::e_message_close);
+               
+               if(!get_app()->has_finishing_flag())
+               {
+                  
+                  get_app()->post_message(::user::e_message_close);
+                  
+               }
 
             }
 

@@ -208,10 +208,12 @@ namespace gpu_opengl
 
       //}
 
-      if (!m_pgpurendertarget->m_bRenderTargetInit)
+      auto pgpurendertarget = this->render_target();
+
+      if (!pgpurendertarget->m_bRenderTargetInit)
       {
 
-         m_pgpurendertarget->init();
+         pgpurendertarget->init();
 
       }
 
@@ -243,7 +245,9 @@ namespace gpu_opengl
 
       int height = r.height();
 
-      ::cast < texture > ptexture = m_pgpurendertarget->current_texture(pframe);
+      auto pgpurendertarget = this->render_target();
+
+      ::cast < texture > ptexture = pgpurendertarget->current_texture(pframe);
 
       if (m_pgpucontext->m_escene == ::gpu::e_scene_3d)
       {
@@ -252,7 +256,7 @@ namespace gpu_opengl
 
       }
 
-      ptexture->create_render_target();
+//      ptexture->create_render_target();
 
       ptexture->bind_render_target();
 
@@ -264,17 +268,17 @@ namespace gpu_opengl
          glDisable(GL_SCISSOR_TEST);
          //glFrontFace(GL_CW);      // Default
          glDisable(GL_CULL_FACE);   // Optional
-         GLCheckError("");
+         ::opengl::check_error("");
          //glCullFace(GL_BACK);      // Cull back-facing
 
          glEnable(GL_BLEND);
-         GLCheckError("");
+         ::opengl::check_error("");
          glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-         GLCheckError("");
+         ::opengl::check_error("");
          glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
-         GLCheckError("");
+         ::opengl::check_error("");
          glDisable(GL_DEPTH_TEST);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glDepthFunc(GL_LEQUAL);
 
          ///::opengl::resize(size, bYSwap);
@@ -298,7 +302,7 @@ namespace gpu_opengl
 
 
          glDepthMask(GL_TRUE); // Enable writing to depth
-         GLCheckError("");
+         ::opengl::check_error("");
          //if (etype == ::gpu::context::e_type_window)
          //{
 
@@ -311,21 +315,21 @@ namespace gpu_opengl
 
          //}
          glClearColor(0.f, 0.f, 0.f, 0.f);
-         GLCheckError("");
+         ::opengl::check_error("");
          glClearDepth(1.0f);
-         GLCheckError("");
+         ::opengl::check_error("");
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         GLCheckError("");
+         ::opengl::check_error("");
          glDepthMask(GL_FALSE); // Disable writing to depth
-         GLCheckError("");
+         ::opengl::check_error("");
 
 
 
-         GLCheckError("");
+         ::opengl::check_error("");
          //glMatrixMode(GL_PROJECTION);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glLoadIdentity();
-         GLCheckError("");
+         ::opengl::check_error("");
          ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
          ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
          //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
@@ -334,17 +338,17 @@ namespace gpu_opengl
          if (bYSwap)
          {
             //glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
-            GLCheckError("");
+            ::opengl::check_error("");
          }
          else
          {
             //glOrtho(0.0f, width, 0, height, -1.0f, 1.0f);  // Flip Y
-            GLCheckError("");
+            ::opengl::check_error("");
          }
          //glMatrixMode(GL_MODELVIEW);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glLoadIdentity();
-         GLCheckError("");
+         ::opengl::check_error("");
 
          //glMatrixMode(GL_MODELVIEW);
          //glLoadIdentity();
@@ -361,7 +365,7 @@ namespace gpu_opengl
          // Translate to inside of pixel (otherwise inaccuracies can occur on certain gl implementations)
          //if (OpenGL::accuracyTweak())
          ///glTranslatef(0.5f, 0.5f, 0);
-         GLCheckError("");
+         ::opengl::check_error("");
 
 
 
@@ -382,25 +386,25 @@ namespace gpu_opengl
 
          glDepthMask(GL_TRUE); // Enable writing to depth
          glDisable(GL_BLEND);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
          //glBlendEquation(GL_FUNC_ADD); // default, can be omitted if unchanged
          glEnable(GL_DEPTH_TEST);
-         GLCheckError("");
+         ::opengl::check_error("");
          glDepthFunc(GL_LESS);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          glDepthRange(0.0, 1.0);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          glFrontFace(GL_CCW);      // Default CCW
-         GLCheckError("");
+         ::opengl::check_error("");
          //glEnable(GL_CULL_FACE);   // Optional
          glDisable(GL_CULL_FACE); // or make sure front face winding is correct
-         GLCheckError("");
+         ::opengl::check_error("");
          glCullFace(GL_FRONT);
          //glCullFace(GL_BACK);
-         GLCheckError("");
+         ::opengl::check_error("");
 
          bool bYSwap = true;
          //double d = 200.0 / 72.0;
@@ -418,7 +422,7 @@ namespace gpu_opengl
 
          //   pcommandbuffer->set_viewport(m_pgpucontext->m_rectangle);
          //}
-         GLCheckError("");
+         ::opengl::check_error("");
          //if (etype == ::gpu::context::e_type_window)
          //{
 
@@ -432,19 +436,19 @@ namespace gpu_opengl
          //}
          glClearColor(0.f, 0.f, 0.f, 0.f);
          //glClearColor(0.95f * 0.5f, 0.95f * 0.5f, .8f * 0.5f, 0.5f); // light yellow
-         GLCheckError("");
+         ::opengl::check_error("");
          glClearDepth(1.0f);
-         GLCheckError("");
+         ::opengl::check_error("");
          glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         GLCheckError("");
+         ::opengl::check_error("");
 
-         GLCheckError("");
+         ::opengl::check_error("");
          ///glDepthMask(GL_FALSE); // Disable writing to depth
-         GLCheckError("");
+         ::opengl::check_error("");
          //glMatrixMode(GL_PROJECTION);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glLoadIdentity();
-         GLCheckError("");
+         ::opengl::check_error("");
          ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
          ////glOrtho(0, size.cx * d, size.cy * d, 0.0f, 000.0f, 1000.0f);
          //////glOrtho(0, size.cx * d, 0.0f, size.cy * d, 000.0f, 1000.0f);
@@ -453,17 +457,17 @@ namespace gpu_opengl
          if (bYSwap)
          {
             //glOrtho(0.0f, width, height, 0, -1.0f, 1.0f);  // Flip Y
-            GLCheckError("");
+            ::opengl::check_error("");
          }
          else
          {
             //glOrtho(0.0f, width, 0, height, -1.0f, 1.0f);  // Flip Y
-            GLCheckError("");
+            ::opengl::check_error("");
          }
          ///glMatrixMode(GL_MODELVIEW);
-         GLCheckError("");
+         ::opengl::check_error("");
          //glLoadIdentity();
-         GLCheckError("");
+         ::opengl::check_error("");
 
 
       }
@@ -499,16 +503,16 @@ namespace gpu_opengl
    //{
 
    //   // Clear the screen 
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
    //   glClearColor(0.678f, 0.847f, 0.902f, 1.0f);
    //   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
    //}
 
    //// sky_box
    //void renderer::DrawSkybox(const mesh* pskyboxMesh, ::gpu::shader* pshader) const
    //{
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
    //   // Disable depth writing for the skybox
    //   glDepthFunc(GL_LEQUAL);
    //   glEnable(GL_BLEND);
@@ -521,14 +525,14 @@ namespace gpu_opengl
 
    //   glDepthFunc(GL_LESS);
    //   pshader->unbind();
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
    //}
 
 
    //void renderer::DrawInstanced(const ::array<mesh*>& meshes, ::gpu::shader* pshader, unsigned int instanceCount) const
    //{
 
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
 
    //   for (const mesh* mesh : meshes) {
    //      mesh->Bind();
@@ -536,7 +540,7 @@ namespace gpu_opengl
    //      mesh->Unbind();
    //   }
 
-   //   GLCheckError("");
+   //   ::opengl::check_error("");
    //}
 
 
@@ -580,7 +584,7 @@ namespace gpu_opengl
       //glEnable(GL_BLEND);
       //glDisable(GL_SCISSOR_TEST);
       glFlush();
-      GLCheckError("");
+      ::opengl::check_error("");
 
       defer_end_frame_layer_copy();
 
@@ -626,10 +630,13 @@ namespace gpu_opengl
       //   m_pgpucontextUpper->make_current();
 
       //}
+      
+      defer_end_frame_layer_after_submit();
+
 
       m_prenderstate->on_happening(::gpu::e_happening_end_frame);
 
-      isFrameStarted = false;
+      m_bFrameStarted = false;
 
    }
 
@@ -1245,12 +1252,12 @@ namespace gpu_opengl
 
    //   //      GLuint fboSrc, fboDst;
    //   //      glGenFramebuffers(1, &m_iFrameBufferRenderer);
-   //   //      GLCheckError("");
+   //   //      ::opengl::check_error("");
 
    //   //   }
 
    //   //   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFrameBufferRenderer);
-   //   //   GLCheckError("");
+   //   //   ::opengl::check_error("");
 
    //      ::cast < texture > ptexture = player->m_pgpurenderer->m_pgpurendertarget->current_texture();
    //      ::cast < context > pcontext = player->m_pgpurenderer->m_pgpucontext;
@@ -1258,7 +1265,7 @@ namespace gpu_opengl
 
    //   //   glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
    //   //      GL_TEXTURE_2D, textureID, 0);
-   //   //   GLCheckError("");
+   //   //   ::opengl::check_error("");
 
    //      auto escene = pcontext->m_escene;
 
@@ -1428,44 +1435,44 @@ namespace gpu_opengl
    //}
 
 
-   void renderer::clear(::gpu::texture* ptextureParam)
-   {
-
-      ::gpu::context_lock contextlock(m_pgpucontext);
-
-      ::cast < texture > ptexture = ptextureParam;
-
-
-      GLuint framebuffer;
-      glGenFramebuffers(1, &framebuffer);
-      glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
-
-      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
-      glFramebufferTexture2D(
-         GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
-         ptexture->m_gluTextureID,
-         0);
-
-      if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-         printf("Framebuffer not complete!\n");
-         glDeleteFramebuffers(1, &framebuffer);
-         return;
-      }
-
-
-
-      // Set viewport size (match texture dimensions)
-      glViewport(0, 0, ptexture->size().cx, ptexture->size().cy);
-
-      // Clear destination texture before blending
-      glClearColor(0, 0, 0, 0); // Transparent
-      glClear(GL_COLOR_BUFFER_BIT);
-
-      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
-
-      glDeleteFramebuffers(1, &framebuffer);
-
-   }
+   // void renderer::clear(::gpu::texture* ptextureParam)
+   // {
+   //
+   //    ::gpu::context_lock contextlock(m_pgpucontext);
+   //
+   //    ::cast < texture > ptexture = ptextureParam;
+   //
+   //
+   //    GLuint framebuffer;
+   //    glGenFramebuffers(1, &framebuffer);
+   //    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+   //
+   //    // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+   //    glFramebufferTexture2D(
+   //       GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+   //       ptexture->m_gluTextureID,
+   //       0);
+   //
+   //    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+   //       printf("Framebuffer not complete!\n");
+   //       glDeleteFramebuffers(1, &framebuffer);
+   //       return;
+   //    }
+   //
+   //
+   //
+   //    // Set viewport size (match texture dimensions)
+   //    glViewport(0, 0, ptexture->size().cx, ptexture->size().cy);
+   //
+   //    // Clear destination texture before blending
+   //    glClearColor(0, 0, 0, 0); // Transparent
+   //    glClear(GL_COLOR_BUFFER_BIT);
+   //
+   //    glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+   //
+   //    glDeleteFramebuffers(1, &framebuffer);
+   //
+   // }
 
 
 //   void renderer::__blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource)
@@ -1973,27 +1980,27 @@ namespace gpu_opengl
 //      auto textureDst = ptextureDst->m_gluTextureID;
 //
 //      glFlush();
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //
 //      GLuint fboSrc, fboDst;
 //      glGenFramebuffers(1, &fboSrc);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //      glGenFramebuffers(1, &fboDst);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //
 //      // Attach source texture to fboSrc
 //      glBindFramebuffer(GL_READ_FRAMEBUFFER, fboSrc);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //      glFramebufferTexture2D(GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //         GL_TEXTURE_2D, textureSrc, 0);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //
 //      // Attach dest texture to fboDst
 //      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fboDst);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //      glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
 //         GL_TEXTURE_2D, textureDst, 0);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //
 //      auto sizeSrc = ptextureSrc->size();
 //      auto sizeDst = ptextureDst->size();
@@ -2004,7 +2011,7 @@ namespace gpu_opengl
 //         0, 0, sizeDst.cx, sizeDst.cy,
 //         GL_COLOR_BUFFER_BIT, GL_NEAREST
 //      );
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //#ifdef SHOW_DEBUG_DRAWING
 //      {
 //
@@ -2045,11 +2052,11 @@ namespace gpu_opengl
 //
 //      // Cleanup
 //      glBindFramebuffer(GL_FRAMEBUFFER, 0);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //      glDeleteFramebuffers(1, &fboSrc);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //      glDeleteFramebuffers(1, &fboDst);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //
 //
 //   }

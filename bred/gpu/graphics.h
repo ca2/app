@@ -9,16 +9,16 @@
 #include "bred/gpu/device.h"
 
 
-
-
 namespace gpu
 {
+
 
    class CLASS_DECL_BRED graphics :
       virtual public ::draw2d::graphics,
       virtual public ::gpu::compositor
    {
    public:
+
 
       enum enum_transform_context
       {
@@ -56,7 +56,8 @@ namespace gpu
       void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement) override;
+      void on_gpu_context_placement_change(const ::int_rectangle &rectanglePlacement,
+                                           ::acme::windowing::window *pacmewindowingwindow) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
@@ -134,7 +135,9 @@ namespace gpu
 
       void _set(const ::geometry2d::matrix& matrix) override;
 
-      void do_on_context(const ::procedure& procedure) override;
+      void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
+
+      //void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
 
       //template < typename TYPE >
       //void push_on_end_top_frame(::pointer_array < TYPE >& a, const ::pointer < TYPE > & p)
@@ -163,6 +166,8 @@ namespace gpu
       virtual void bind_draw2d_compositor(::gpu::layer * player);
       virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
 
+
+      void draw_rectangle(const ::double_rectangle &rectangle, ::draw2d::pen *ppen) override;
 
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 

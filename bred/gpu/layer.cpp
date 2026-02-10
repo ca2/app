@@ -16,6 +16,7 @@ namespace gpu
    layer::layer()
    {
 
+      //m_bFinished = false;
 
    }
 
@@ -23,6 +24,21 @@ namespace gpu
    layer::~layer()
    {
 
+
+   }
+
+
+   ::manual_reset_happening * layer::finished_manual_reset_happening()
+   {
+
+      if (!m_pmanualresethappeningFinished)
+      {
+
+         øconstruct_new(m_pmanualresethappeningFinished);
+
+      }
+
+      return m_pmanualresethappeningFinished;
 
    }
 
@@ -39,7 +55,7 @@ namespace gpu
 
       auto pgpurenderer = m_pgpurenderer;
 
-      auto pgpurendertarget = pgpurenderer->m_pgpurendertarget;
+      auto pgpurendertarget = pgpurenderer->render_target();
 
       auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 
@@ -83,6 +99,13 @@ namespace gpu
 
       m_iLayerIndex = iLayerIndex;
 
+      if (iLayerIndex >= 3)
+      {
+
+         information("iLayerIndex >= 3");
+
+      }
+
       m_pgpurenderer->defer_update_renderer();
 
    }
@@ -99,7 +122,12 @@ namespace gpu
    void layer::layer_start()
    {
 
+      m_timeStart.Now();
+
       m_bRenderTargetFramebufferInitialized = false;
+
+      //m_bFinished = false;
+      finished_manual_reset_happening()->reset_happening();
 
       m_pgpurenderer->on_start_layer(this);
 
@@ -120,8 +148,7 @@ namespace gpu
 
          ødefer_construct(pcommandbufferLayer);
 
-         pcommandbufferLayer->initialize_command_buffer(
-            m_pgpurenderer->m_pgpurendertarget,
+         pcommandbufferLayer->initialize_command_buffer(m_pgpurenderer->render_target(),
             m_pgpurenderer->m_pgpucontext->m_pgpudevice->graphics_queue(),
             ::gpu::e_command_buffer_graphics);
 
@@ -146,12 +173,52 @@ namespace gpu
    }
 
 
-
-
    void layer::layer_end()
    {
 
       m_pgpurenderer->on_end_layer(this);
+
+      // auto pgpufence = m_pgpufence;
+      //
+      // if (::is_set(pgpufence))
+      // {
+      //
+      //    pgpufence->wait_gpu_fence();
+      //
+      // }
+      //
+      // m_timeEnd.Now();
+      //
+      // m_timeDuration = m_timeEnd - m_timeStart;
+      //
+      // information("Layer {} duration : {} ms", m_iLayerIndex, m_timeDuration.floating_millisecond());
+      //
+      // finished_manual_reset_happening()->set_happening();
+
+   }
+
+
+   void layer::layer_on_after_submit()
+   {
+
+//      m_pgpurenderer->on_end_layer(this);
+
+      auto pgpufence = m_pgpufence;
+
+      if (::is_set(pgpufence))
+      {
+
+         pgpufence->wait_gpu_fence();
+
+      }
+
+      m_timeEnd.Now();
+
+      m_timeDuration = m_timeEnd - m_timeStart;
+
+      information("Layer {} duration : {} ms", m_iLayerIndex, m_timeDuration.floating_millisecond());
+
+      finished_manual_reset_happening()->set_happening();
 
    }
 
@@ -175,7 +242,7 @@ namespace gpu
       textureflags.m_bTransferTarget = true;
       textureflags.m_bShaderResource = true;
 
-      ptexture->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
       return ptexture;
 
@@ -207,7 +274,7 @@ namespace gpu
 
       textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
 
-      ptextureSource->initialize_texture(m_pgpurenderer, textureattributes, textureflags);
+      ptextureSource->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
       return ptextureSource;
 

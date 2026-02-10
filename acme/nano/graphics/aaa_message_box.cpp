@@ -322,10 +322,10 @@ void message_box::initialize_conversation(const ::scoped_string & scopedstrMessa
 }
 
 
-void message_box::on_create_window()
+void message_box::_aaa_on_create_window()
 {
 
-   ::micro::elemental::on_create_window();
+   ::micro::elemental::_aaa_on_create_window();
 
    int x = 25;
 

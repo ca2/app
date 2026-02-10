@@ -76,7 +76,7 @@ namespace draw2d
 
    graphics::graphics()
    {
-
+      m_iYFlipHeight = 0;
       //m_bHasCurrentPoint = false;
       //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
@@ -93,6 +93,9 @@ namespace draw2d
       m_pointOrigin.y = 0.;
       m_sizeScaling.cx = 1.0;
       m_sizeScaling.cy = 1.0;
+      
+      m_dSizeScaler = 1.0;
+      
       //m_estatus = success;
       //m_estatusLast = success;
 
@@ -107,7 +110,7 @@ namespace draw2d
       m_bPat = false;
       m_bStoreThumbnails = true;
       m_pdrawcontext = nullptr;
-      m_dFontFactor = 1.0;
+      //m_dFontFactor = 1.0;
       m_efillmode = e_fill_mode_winding;
       m_ealphamode = e_alpha_mode_none;
       m_ewritetextrendering = ::write_text::e_rendering_undefined;
@@ -452,7 +455,24 @@ namespace draw2d
    void graphics::create_memory_graphics(const ::int_size & size)
    {
 
+      //_create_memory_graphics(size);
+
+      //::int_size size(sizeParameter);
+
+      if (size.is_empty())
+      {
+
+         //size = { 1920, 1080 };
+
+         throw ::exception(error_bad_argument);
+
+      }
+
+      //opengl_create_offscreen_buffer(size);
+
       _create_memory_graphics(size);
+
+      set_ok_flag();
 
    }
 
@@ -473,6 +493,7 @@ namespace draw2d
    {
 
    }
+
 
    void graphics::_create_memory_graphics(const ::int_size& size)
    {
@@ -2888,10 +2909,39 @@ namespace draw2d
    }
 
 
-   void graphics::do_on_context(const ::procedure & procedure)
+   double graphics::size_scaler()
+   {
+   
+      return m_dSizeScaler;
+      
+   }
+
+
+   void graphics::set_size_scaler(double dSizeScaler)
+   {
+      
+      m_dSizeScaler = dSizeScaler;
+      
+   }
+
+
+   void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure)
    {
 
-      procedure();
+      //procedure();
+
+      //throw ::interface_only();
+
+      ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
+
+      puserinteraction->_send([procedure]()
+         {
+
+            procedure();
+
+         });
+
+      //m_puserinteraction->m_pgr(pgraphicscontext, procedure);
 
    }
 

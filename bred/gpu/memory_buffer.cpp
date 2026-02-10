@@ -10,10 +10,23 @@
 
 namespace gpu
 {
+   
+   
+   interlocked_count g_iMemoryBufferSerial;
 
 
    memory_buffer::memory_buffer()
    {
+      m_iMemoryBufferSerial = ++g_iMemoryBufferSerial;
+      m_strMemoryBufferName.format("Memory Buffer {}", m_iMemoryBufferSerial);
+
+
+      if (m_iMemoryBufferSerial == 12)
+      {
+
+         ::debug("m_iMemoryBufferSerial == 12");
+
+      }
 
       m_iBufferOffset = -1;
       m_iSizeMapped = -1;
@@ -29,6 +42,14 @@ namespace gpu
 
    memory_buffer::~memory_buffer()
    {
+
+      
+      if (m_iMemoryBufferSerial == 12)
+      {
+
+         ::debug("destructing m_iMemoryBufferSerial == 12");
+      }
+
       //if (m_vkbuffer != VK_NULL_HANDLE)
       //{
       //   vkDestroyBuffer(m_pcontext->logicalDevice(), m_vkbuffer, nullptr);
@@ -380,7 +401,11 @@ namespace gpu
 
    }
 
+   void memory_buffer::set_state(::gpu::command_buffer * pgpucommandbuffer, ::gpu::enum_buffer_state etexturestate)
+   {
 
+
+   }
 } // namespace gpu_vulkan
 
 

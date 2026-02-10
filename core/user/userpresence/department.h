@@ -10,7 +10,7 @@ namespace userpresence
 
 
    class CLASS_DECL_CORE department :
-      virtual public ::acme::department,
+      virtual public ::platform::department,
       virtual public ::acme::timer_array
    {
    public:

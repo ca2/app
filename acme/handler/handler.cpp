@@ -217,12 +217,12 @@ namespace handler
 
       while (pick_next_posted_request())
       {
-
+         
          handle(m_prequestHandler);
-
+         
          m_requestaHistory.add(m_prequestHandler);
 
-         m_prequestHandler.release();
+         //m_prequestHandler.release();
 
       }
 
@@ -245,7 +245,7 @@ namespace handler
 
       return m_requestaPosted.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
              || m_requestaHistory.predicate_contains([&prequest](auto& p) { return p.get() == prequest; })
-             || m_prequestHandler.get() == prequest;
+             || (m_prequestHandler &&m_prequestHandler == prequest);
 
    }
 
@@ -332,9 +332,10 @@ namespace handler
 
    //
 
-   void handler::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   ::lresult handler::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
 
+      return 0;
 
    }
 
@@ -373,7 +374,7 @@ namespace handler
    void handler::handle(::request * prequest)
    {
 
-      m_prequestHandler = prequest;
+      m_prequestHandling = prequest;
       
       request(prequest);
 
@@ -403,10 +404,12 @@ namespace handler
    void handler::request(::request * prequest)
    {
       
-      ASSERT(m_prequestBeingAttended.is_null());
+//      ASSERT(m_prequestBeingAttended.is_null());
       
       m_prequestBeingAttended = prequest;
 
+//      request_scope requestscope(::transfer(m_prequestBeingAttended));
+      
       try
       {
          
@@ -421,9 +424,9 @@ namespace handler
       // Maybe it means that other request should'nt
       // be made to this handler while one request
       // is being attended.
-      ASSERT(m_prequestBeingAttended == prequest);
+      //ASSERT(requestscope.request() == prequest);
       
-      m_prequestBeingAttended.release();
+      //m_prequestBeingAttended.release();
       
    }
 

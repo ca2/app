@@ -304,7 +304,7 @@ namespace berg
    {
 
       ::user::user::init2();
-      //if (!::acme::department::init2())
+      //if (!::platform::department::init2())
       //{
 
       //   return false;
@@ -345,7 +345,7 @@ namespace berg
       try
       {
 
-         ::acme::department::term();
+         ::platform::department::term();
 
       }
       catch (...)

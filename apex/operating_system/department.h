@@ -12,7 +12,7 @@ namespace operating_system
 
 
    class CLASS_DECL_APEX department:
-      public ::acme::department
+      public ::platform::department
    {
    public:
 

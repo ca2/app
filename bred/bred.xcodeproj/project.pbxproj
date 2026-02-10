@@ -7,6 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A1823BF2F20E03C007693F6 /* point_light_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823B72F20E03C007693F6 /* point_light_render_system.h */; };
+		9A1823C02F20E03C007693F6 /* wavefront_obj_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823BB2F20E03C007693F6 /* wavefront_obj_render_system.h */; };
+		9A1823C12F20E03C007693F6 /* pbr_with_ibl_render_system_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823B52F20E03C007693F6 /* pbr_with_ibl_render_system_base.h */; };
+		9A1823C22F20E03C007693F6 /* skybox_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823B92F20E03C007693F6 /* skybox_render_system.h */; };
+		9A1823C32F20E03C007693F6 /* wavefront_obj_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823BC2F20E03C007693F6 /* wavefront_obj_render_system.cpp */; };
+		9A1823C42F20E03C007693F6 /* point_light_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823B82F20E03C007693F6 /* point_light_render_system.cpp */; };
+		9A1823C62F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823B62F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp */; };
+		9A1823C72F20E03C007693F6 /* skybox_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823BA2F20E03C007693F6 /* skybox_render_system.cpp */; };
+		9A1823C82F20E03C007693F6 /* wavefront_obj_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823BC2F20E03C007693F6 /* wavefront_obj_render_system.cpp */; };
+		9A1823C92F20E03C007693F6 /* point_light_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823B82F20E03C007693F6 /* point_light_render_system.cpp */; };
+		9A1823CB2F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823B62F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp */; };
+		9A1823CC2F20E03C007693F6 /* skybox_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823BA2F20E03C007693F6 /* skybox_render_system.cpp */; };
+		9A1823CE2F20E03C007693F6 /* point_light_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823B72F20E03C007693F6 /* point_light_render_system.h */; };
+		9A1823CF2F20E03C007693F6 /* wavefront_obj_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823BB2F20E03C007693F6 /* wavefront_obj_render_system.h */; };
+		9A1823D02F20E03C007693F6 /* pbr_with_ibl_render_system_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823B52F20E03C007693F6 /* pbr_with_ibl_render_system_base.h */; };
+		9A1823D12F20E03C007693F6 /* skybox_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823B92F20E03C007693F6 /* skybox_render_system.h */; };
+		9A1823DE2F20E590007693F6 /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823D52F20E590007693F6 /* block.cpp */; };
+		9A1823DF2F20E590007693F6 /* empty_texture_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823D72F20E590007693F6 /* empty_texture_source.cpp */; };
+		9A1823E02F20E590007693F6 /* model_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823DA2F20E590007693F6 /* model_data.cpp */; };
+		9A1823E12F20E590007693F6 /* binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823D32F20E590007693F6 /* binding.cpp */; };
+		9A1823E22F20E590007693F6 /* texture_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823DD2F20E590007693F6 /* texture_flags.h */; };
+		9A1823E32F20E590007693F6 /* model_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D92F20E590007693F6 /* model_data.h */; };
+		9A1823E42F20E590007693F6 /* empty_texture_source.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D62F20E590007693F6 /* empty_texture_source.h */; };
+		9A1823E52F20E590007693F6 /* block.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D42F20E590007693F6 /* block.h */; };
+		9A1823E62F20E590007693F6 /* mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D82F20E590007693F6 /* mesh.h */; };
+		9A1823E72F20E590007693F6 /* texture_attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823DB2F20E590007693F6 /* texture_attributes.h */; };
+		9A1823E82F20E590007693F6 /* texture_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823DC2F20E590007693F6 /* texture_data.h */; };
+		9A1823E92F20E590007693F6 /* binding.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D22F20E590007693F6 /* binding.h */; };
+		9A1823EA2F20E590007693F6 /* texture_flags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823DD2F20E590007693F6 /* texture_flags.h */; };
+		9A1823EB2F20E590007693F6 /* model_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D92F20E590007693F6 /* model_data.h */; };
+		9A1823EC2F20E590007693F6 /* empty_texture_source.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D62F20E590007693F6 /* empty_texture_source.h */; };
+		9A1823ED2F20E590007693F6 /* block.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D42F20E590007693F6 /* block.h */; };
+		9A1823EE2F20E590007693F6 /* mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D82F20E590007693F6 /* mesh.h */; };
+		9A1823EF2F20E590007693F6 /* texture_attributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823DB2F20E590007693F6 /* texture_attributes.h */; };
+		9A1823F02F20E590007693F6 /* texture_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823DC2F20E590007693F6 /* texture_data.h */; };
+		9A1823F12F20E590007693F6 /* binding.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1823D22F20E590007693F6 /* binding.h */; };
+		9A1823F22F20E590007693F6 /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823D52F20E590007693F6 /* block.cpp */; };
+		9A1823F32F20E590007693F6 /* empty_texture_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823D72F20E590007693F6 /* empty_texture_source.cpp */; };
+		9A1823F42F20E590007693F6 /* model_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823DA2F20E590007693F6 /* model_data.cpp */; };
+		9A1823F52F20E590007693F6 /* binding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1823D32F20E590007693F6 /* binding.cpp */; };
+		9A1824072F20E955007693F6 /* fps_counter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824042F20E955007693F6 /* fps_counter.h */; };
+		9A1824082F20E955007693F6 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824052F20E955007693F6 /* timer.h */; };
+		9A1824092F20E955007693F6 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824062F20E955007693F6 /* timer.cpp */; };
+		9A18240A2F20E955007693F6 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824062F20E955007693F6 /* timer.cpp */; };
+		9A18240B2F20E955007693F6 /* fps_counter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824042F20E955007693F6 /* fps_counter.h */; };
+		9A18240C2F20E955007693F6 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824052F20E955007693F6 /* timer.h */; };
+		9A18240E2F20E986007693F6 /* global_ubo1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A18240D2F20E986007693F6 /* global_ubo1.cpp */; };
+		9A18240F2F20E986007693F6 /* global_ubo1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A18240D2F20E986007693F6 /* global_ubo1.cpp */; };
+		9A1824152F20E9AB007693F6 /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824112F20E9AB007693F6 /* allocator.cpp */; };
+		9A1824162F20E9AB007693F6 /* character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824122F20E9AB007693F6 /* character.cpp */; };
+		9A1824172F20E9AB007693F6 /* typeface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824142F20E9AB007693F6 /* typeface.cpp */; };
+		9A1824182F20E9AB007693F6 /* allocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824102F20E9AB007693F6 /* allocator.h */; };
+		9A1824192F20E9AB007693F6 /* typeface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824132F20E9AB007693F6 /* typeface.h */; };
+		9A18241A2F20E9AB007693F6 /* allocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824102F20E9AB007693F6 /* allocator.h */; };
+		9A18241B2F20E9AB007693F6 /* typeface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1824132F20E9AB007693F6 /* typeface.h */; };
+		9A18241C2F20E9AB007693F6 /* allocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824112F20E9AB007693F6 /* allocator.cpp */; };
+		9A18241D2F20E9AB007693F6 /* character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824122F20E9AB007693F6 /* character.cpp */; };
+		9A18241E2F20E9AB007693F6 /* typeface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1824142F20E9AB007693F6 /* typeface.cpp */; };
 		9A281AAB25243402009FA9CB /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7125243402009FA9CB /* console.h */; };
 		9A281AAC25243402009FA9CB /* _defer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7425243402009FA9CB /* _defer.h */; };
 		9A281AAD25243402009FA9CB /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7525243402009FA9CB /* library.h */; };
@@ -219,33 +277,23 @@
 		9A7FEC952E7F47420082C6FD /* render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC782E7F47420082C6FD /* render_system.h */; };
 		9A7FEC962E7F47420082C6FD /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC632E7F47420082C6FD /* engine.h */; };
 		9A7FEC972E7F47420082C6FD /* skybox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC872E7F47420082C6FD /* skybox.h */; };
-		9A7FEC982E7F47420082C6FD /* shapes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC862E7F47420082C6FD /* shapes.h */; };
 		9A7FEC992E7F47420082C6FD /* static_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC892E7F47420082C6FD /* static_array.h */; };
-		9A7FEC9B2E7F47420082C6FD /* point_light_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2C2E7F47420082C6FD /* point_light_render_system.h */; };
 		9A7FEC9C2E7F47420082C6FD /* entity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC652E7F47420082C6FD /* entity.h */; };
 		9A7FEC9D2E7F47420082C6FD /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6B2E7F47420082C6FD /* input.h */; };
-		9A7FEC9E2E7F47420082C6FD /* _types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC472E7F47420082C6FD /* _types.h */; };
-		9A7FEC9F2E7F47420082C6FD /* skybox_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC322E7F47420082C6FD /* skybox_render_system.h */; };
-		9A7FECA12E7F47420082C6FD /* model.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC732E7F47420082C6FD /* model.h */; };
 		9A7FECA22E7F47420082C6FD /* renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC7C2E7F47420082C6FD /* renderer.h */; };
-		9A7FECA72E7F47420082C6FD /* skybox_ibl_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC302E7F47420082C6FD /* skybox_ibl_render_system.h */; };
-		9A7FECA82E7F47420082C6FD /* type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8A2E7F47420082C6FD /* type.h */; };
 		9A7FECA92E7F47420082C6FD /* input1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6D2E7F47420082C6FD /* input1.h */; };
 		9A7FECAA2E7F47420082C6FD /* mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC712E7F47420082C6FD /* mesh.h */; };
 		9A7FECAB2E7F47420082C6FD /* provider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC772E7F47420082C6FD /* provider.h */; };
-		9A7FECAC2E7F47420082C6FD /* wavefront_obj_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC342E7F47420082C6FD /* wavefront_obj_render_system.h */; };
 		9A7FECAE2E7F47420082C6FD /* renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC7A2E7F47420082C6FD /* renderable.h */; };
 		9A7FECAF2E7F47420082C6FD /* key_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6F2E7F47420082C6FD /* key_map.h */; };
 		9A7FECB02E7F47420082C6FD /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC662E7F47420082C6FD /* frame.h */; };
 		9A7FECB22E7F47420082C6FD /* class_set1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC622E7F47420082C6FD /* class_set1.h */; };
 		9A7FECB42E7F47420082C6FD /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8B2E7F47420082C6FD /* types.h */; };
-		9A7FECB72E7F47420082C6FD /* scene_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2E2E7F47420082C6FD /* scene_render_system.h */; };
 		9A7FECB92E7F47420082C6FD /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC5D2E7F47420082C6FD /* camera.h */; };
 		9A7FECBB2E7F47420082C6FD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC442E7F47420082C6FD /* _.h */; };
 		9A7FECBE2E7F47420082C6FD /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC452E7F47420082C6FD /* _constant.h */; };
 		9A7FECBF2E7F47420082C6FD /* camera1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC5F2E7F47420082C6FD /* camera1.h */; };
 		9A7FECC32E7F47420082C6FD /* asset_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC5B2E7F47420082C6FD /* asset_manager.h */; };
-		9A7FECC52E7F47420082C6FD /* gltf_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2A2E7F47420082C6FD /* gltf_render_system.h */; };
 		9A7FECC62E7F47420082C6FD /* point_light.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC752E7F47420082C6FD /* point_light.h */; };
 		9A7FECC82E7F47420082C6FD /* utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8D2E7F47420082C6FD /* utilities.h */; };
 		9A7FECC92E7F47420082C6FD /* window_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8E2E7F47420082C6FD /* window_input.h */; };
@@ -256,50 +304,36 @@
 		9A7FECD22E7F47420082C6FD /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC8C2E7F47420082C6FD /* types.cpp */; };
 		9A7FECD32E7F47420082C6FD /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC722E7F47420082C6FD /* mesh.cpp */; };
 		9A7FECD42E7F47420082C6FD /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC882E7F47420082C6FD /* skybox.cpp */; };
-		9A7FECD52E7F47420082C6FD /* gltf_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC2B2E7F47420082C6FD /* gltf_render_system.cpp */; };
 		9A7FECD72E7F47420082C6FD /* scene_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC822E7F47420082C6FD /* scene_object.cpp */; };
 		9A7FECDB2E7F47420082C6FD /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC7D2E7F47420082C6FD /* renderer.cpp */; };
 		9A7FECDC2E7F47420082C6FD /* point_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC762E7F47420082C6FD /* point_light.cpp */; };
 		9A7FECDD2E7F47420082C6FD /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC5E2E7F47420082C6FD /* camera.cpp */; };
-		9A7FECDE2E7F47420082C6FD /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC742E7F47420082C6FD /* model.cpp */; };
 		9A7FECDF2E7F47420082C6FD /* asset_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC5C2E7F47420082C6FD /* asset_manager.cpp */; };
-		9A7FECE12E7F47420082C6FD /* skybox_ibl_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC312E7F47420082C6FD /* skybox_ibl_render_system.cpp */; };
 		9A7FECE32E7F47420082C6FD /* key_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC702E7F47420082C6FD /* key_map.cpp */; };
 		9A7FECE42E7F47420082C6FD /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC672E7F47420082C6FD /* frame.cpp */; };
 		9A7FECE52E7F47420082C6FD /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC642E7F47420082C6FD /* engine.cpp */; };
 		9A7FECE82E7F47420082C6FD /* render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC792E7F47420082C6FD /* render_system.cpp */; };
 		9A7FECEA2E7F47420082C6FD /* immersion_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC6A2E7F47420082C6FD /* immersion_layer.cpp */; };
 		9A7FECEB2E7F47420082C6FD /* renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC7B2E7F47420082C6FD /* renderable.cpp */; };
-		9A7FECEC2E7F47420082C6FD /* skybox_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC332E7F47420082C6FD /* skybox_render_system.cpp */; };
 		9A7FECED2E7F47420082C6FD /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC6C2E7F47420082C6FD /* input.cpp */; };
-		9A7FECEE2E7F47420082C6FD /* wavefront_obj_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC352E7F47420082C6FD /* wavefront_obj_render_system.cpp */; };
-		9A7FECEF2E7F47420082C6FD /* scene_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC2F2E7F47420082C6FD /* scene_render_system.cpp */; };
 		9A7FECF02E7F47420082C6FD /* shape_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC852E7F47420082C6FD /* shape_factory.cpp */; };
-		9A7FECF52E7F47420082C6FD /* point_light_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC2D2E7F47420082C6FD /* point_light_render_system.cpp */; };
 		9A7FECF72E7F47420082C6FD /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC832E7F47420082C6FD /* shader.cpp */; };
 		9A7FECFB2E7F47430082C6FD /* types.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC8C2E7F47420082C6FD /* types.cpp */; };
 		9A7FECFC2E7F47430082C6FD /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC722E7F47420082C6FD /* mesh.cpp */; };
 		9A7FECFD2E7F47430082C6FD /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC882E7F47420082C6FD /* skybox.cpp */; };
-		9A7FECFE2E7F47430082C6FD /* gltf_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC2B2E7F47420082C6FD /* gltf_render_system.cpp */; };
 		9A7FED002E7F47430082C6FD /* scene_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC822E7F47420082C6FD /* scene_object.cpp */; };
 		9A7FED042E7F47430082C6FD /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC7D2E7F47420082C6FD /* renderer.cpp */; };
 		9A7FED052E7F47430082C6FD /* point_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC762E7F47420082C6FD /* point_light.cpp */; };
 		9A7FED062E7F47430082C6FD /* camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC5E2E7F47420082C6FD /* camera.cpp */; };
-		9A7FED072E7F47430082C6FD /* model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC742E7F47420082C6FD /* model.cpp */; };
 		9A7FED082E7F47430082C6FD /* asset_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC5C2E7F47420082C6FD /* asset_manager.cpp */; };
-		9A7FED0A2E7F47430082C6FD /* skybox_ibl_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC312E7F47420082C6FD /* skybox_ibl_render_system.cpp */; };
 		9A7FED0C2E7F47430082C6FD /* key_map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC702E7F47420082C6FD /* key_map.cpp */; };
 		9A7FED0D2E7F47430082C6FD /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC672E7F47420082C6FD /* frame.cpp */; };
 		9A7FED0E2E7F47430082C6FD /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC642E7F47420082C6FD /* engine.cpp */; };
 		9A7FED112E7F47430082C6FD /* render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC792E7F47420082C6FD /* render_system.cpp */; };
 		9A7FED132E7F47430082C6FD /* immersion_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC6A2E7F47420082C6FD /* immersion_layer.cpp */; };
 		9A7FED142E7F47430082C6FD /* renderable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC7B2E7F47420082C6FD /* renderable.cpp */; };
-		9A7FED152E7F47430082C6FD /* skybox_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC332E7F47420082C6FD /* skybox_render_system.cpp */; };
 		9A7FED162E7F47430082C6FD /* input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC6C2E7F47420082C6FD /* input.cpp */; };
-		9A7FED172E7F47430082C6FD /* wavefront_obj_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC352E7F47420082C6FD /* wavefront_obj_render_system.cpp */; };
-		9A7FED182E7F47430082C6FD /* scene_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC2F2E7F47420082C6FD /* scene_render_system.cpp */; };
 		9A7FED192E7F47430082C6FD /* shape_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC852E7F47420082C6FD /* shape_factory.cpp */; };
-		9A7FED1E2E7F47430082C6FD /* point_light_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC2D2E7F47420082C6FD /* point_light_render_system.cpp */; };
 		9A7FED202E7F47430082C6FD /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7FEC832E7F47420082C6FD /* shader.cpp */; };
 		9A7FED252E7F47430082C6FD /* class_set.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC612E7F47420082C6FD /* class_set.h */; };
 		9A7FED262E7F47430082C6FD /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC7E2E7F47420082C6FD /* resource.h */; };
@@ -307,33 +341,23 @@
 		9A7FED292E7F47430082C6FD /* render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC782E7F47420082C6FD /* render_system.h */; };
 		9A7FED2A2E7F47430082C6FD /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC632E7F47420082C6FD /* engine.h */; };
 		9A7FED2B2E7F47430082C6FD /* skybox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC872E7F47420082C6FD /* skybox.h */; };
-		9A7FED2C2E7F47430082C6FD /* shapes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC862E7F47420082C6FD /* shapes.h */; };
 		9A7FED2D2E7F47430082C6FD /* static_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC892E7F47420082C6FD /* static_array.h */; };
-		9A7FED2F2E7F47430082C6FD /* point_light_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2C2E7F47420082C6FD /* point_light_render_system.h */; };
 		9A7FED302E7F47430082C6FD /* entity.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC652E7F47420082C6FD /* entity.h */; };
 		9A7FED312E7F47430082C6FD /* input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6B2E7F47420082C6FD /* input.h */; };
-		9A7FED322E7F47430082C6FD /* _types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC472E7F47420082C6FD /* _types.h */; };
-		9A7FED332E7F47430082C6FD /* skybox_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC322E7F47420082C6FD /* skybox_render_system.h */; };
-		9A7FED352E7F47430082C6FD /* model.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC732E7F47420082C6FD /* model.h */; };
 		9A7FED362E7F47430082C6FD /* renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC7C2E7F47420082C6FD /* renderer.h */; };
-		9A7FED3B2E7F47430082C6FD /* skybox_ibl_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC302E7F47420082C6FD /* skybox_ibl_render_system.h */; };
-		9A7FED3C2E7F47430082C6FD /* type.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8A2E7F47420082C6FD /* type.h */; };
 		9A7FED3D2E7F47430082C6FD /* input1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6D2E7F47420082C6FD /* input1.h */; };
 		9A7FED3E2E7F47430082C6FD /* mesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC712E7F47420082C6FD /* mesh.h */; };
 		9A7FED3F2E7F47430082C6FD /* provider.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC772E7F47420082C6FD /* provider.h */; };
-		9A7FED402E7F47430082C6FD /* wavefront_obj_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC342E7F47420082C6FD /* wavefront_obj_render_system.h */; };
 		9A7FED422E7F47430082C6FD /* renderable.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC7A2E7F47420082C6FD /* renderable.h */; };
 		9A7FED432E7F47430082C6FD /* key_map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC6F2E7F47420082C6FD /* key_map.h */; };
 		9A7FED442E7F47430082C6FD /* frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC662E7F47420082C6FD /* frame.h */; };
 		9A7FED462E7F47430082C6FD /* class_set1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC622E7F47420082C6FD /* class_set1.h */; };
 		9A7FED482E7F47430082C6FD /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8B2E7F47420082C6FD /* types.h */; };
-		9A7FED4B2E7F47430082C6FD /* scene_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2E2E7F47420082C6FD /* scene_render_system.h */; };
 		9A7FED4D2E7F47430082C6FD /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC5D2E7F47420082C6FD /* camera.h */; };
 		9A7FED4F2E7F47430082C6FD /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC442E7F47420082C6FD /* _.h */; };
 		9A7FED522E7F47430082C6FD /* _constant.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC452E7F47420082C6FD /* _constant.h */; };
 		9A7FED532E7F47430082C6FD /* camera1.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC5F2E7F47420082C6FD /* camera1.h */; };
 		9A7FED572E7F47430082C6FD /* asset_manager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC5B2E7F47420082C6FD /* asset_manager.h */; };
-		9A7FED592E7F47430082C6FD /* gltf_render_system.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC2A2E7F47420082C6FD /* gltf_render_system.h */; };
 		9A7FED5A2E7F47430082C6FD /* point_light.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC752E7F47420082C6FD /* point_light.h */; };
 		9A7FED5C2E7F47430082C6FD /* utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8D2E7F47420082C6FD /* utilities.h */; };
 		9A7FED5D2E7F47430082C6FD /* window_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FEC8E2E7F47420082C6FD /* window_input.h */; };
@@ -369,6 +393,26 @@
 		9A7FEDBA2E7F4DDE0082C6FD /* game_object.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED962E7F4DDE0082C6FD /* game_object.h */; };
 		9A7FEDBB2E7F4DDE0082C6FD /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED9B2E7F4DDE0082C6FD /* resource.h */; };
 		9A7FEDBC2E7F4DDE0082C6FD /* player_input.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7FED9A2E7F4DDE0082C6FD /* player_input.h */; };
+		9A8582932F2299F5001D08D1 /* rotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582922F2299F5001D08D1 /* rotation.h */; };
+		9A8582942F2299F5001D08D1 /* rotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582922F2299F5001D08D1 /* rotation.h */; };
+		9A8582FB2F22A052001D08D1 /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F92F22A052001D08D1 /* transform.h */; };
+		9A8582FC2F22A052001D08D1 /* _functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F82F22A052001D08D1 /* _functions.h */; };
+		9A8582FD2F22A052001D08D1 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8582FA2F22A052001D08D1 /* transform.cpp */; };
+		9A8582FE2F22A052001D08D1 /* transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8582FA2F22A052001D08D1 /* transform.cpp */; };
+		9A8582FF2F22A052001D08D1 /* transform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F92F22A052001D08D1 /* transform.h */; };
+		9A8583002F22A052001D08D1 /* _functions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8582F82F22A052001D08D1 /* _functions.h */; };
+		9A8585D42F22C645001D08D1 /* graphics3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8585D22F22C645001D08D1 /* graphics3d.h */; };
+		9A8585D52F22C645001D08D1 /* graphics3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8585D32F22C645001D08D1 /* graphics3d.cpp */; };
+		9A8585D62F22C645001D08D1 /* graphics3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8585D32F22C645001D08D1 /* graphics3d.cpp */; };
+		9A8585D72F22C645001D08D1 /* graphics3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8585D22F22C645001D08D1 /* graphics3d.h */; };
+		9AB1B2292F3965C60051FF92 /* semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2282F3965C60051FF92 /* semaphore.cpp */; };
+		9AB1B22A2F3965C60051FF92 /* fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2262F3965C60051FF92 /* fence.cpp */; };
+		9AB1B22B2F3965C60051FF92 /* fence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2252F3965C60051FF92 /* fence.h */; };
+		9AB1B22C2F3965C60051FF92 /* semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2272F3965C60051FF92 /* semaphore.h */; };
+		9AB1B22D2F3965C60051FF92 /* semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2282F3965C60051FF92 /* semaphore.cpp */; };
+		9AB1B22E2F3965C60051FF92 /* fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2262F3965C60051FF92 /* fence.cpp */; };
+		9AB1B22F2F3965C60051FF92 /* fence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2252F3965C60051FF92 /* fence.h */; };
+		9AB1B2302F3965C60051FF92 /* semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2272F3965C60051FF92 /* semaphore.h */; };
 		9ADF04192C274B55004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
 		9ADF041A2C274B55004CF1C9 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF04172C274B55004CF1C9 /* user.h */; };
 		9ADF041B2C275401004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
@@ -446,6 +490,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A1823B52F20E03C007693F6 /* pbr_with_ibl_render_system_base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pbr_with_ibl_render_system_base.h; sourceTree = "<group>"; };
+		9A1823B62F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pbr_with_ibl_render_system_base.cpp; sourceTree = "<group>"; };
+		9A1823B72F20E03C007693F6 /* point_light_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = point_light_render_system.h; sourceTree = "<group>"; };
+		9A1823B82F20E03C007693F6 /* point_light_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point_light_render_system.cpp; sourceTree = "<group>"; };
+		9A1823B92F20E03C007693F6 /* skybox_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skybox_render_system.h; sourceTree = "<group>"; };
+		9A1823BA2F20E03C007693F6 /* skybox_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = skybox_render_system.cpp; sourceTree = "<group>"; };
+		9A1823BB2F20E03C007693F6 /* wavefront_obj_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wavefront_obj_render_system.h; sourceTree = "<group>"; };
+		9A1823BC2F20E03C007693F6 /* wavefront_obj_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wavefront_obj_render_system.cpp; sourceTree = "<group>"; };
+		9A1823D22F20E590007693F6 /* binding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = binding.h; sourceTree = "<group>"; };
+		9A1823D32F20E590007693F6 /* binding.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = binding.cpp; sourceTree = "<group>"; };
+		9A1823D42F20E590007693F6 /* block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = block.h; sourceTree = "<group>"; };
+		9A1823D52F20E590007693F6 /* block.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block.cpp; sourceTree = "<group>"; };
+		9A1823D62F20E590007693F6 /* empty_texture_source.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = empty_texture_source.h; sourceTree = "<group>"; };
+		9A1823D72F20E590007693F6 /* empty_texture_source.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = empty_texture_source.cpp; sourceTree = "<group>"; };
+		9A1823D82F20E590007693F6 /* mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mesh.h; sourceTree = "<group>"; };
+		9A1823D92F20E590007693F6 /* model_data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = model_data.h; sourceTree = "<group>"; };
+		9A1823DA2F20E590007693F6 /* model_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model_data.cpp; sourceTree = "<group>"; };
+		9A1823DB2F20E590007693F6 /* texture_attributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture_attributes.h; sourceTree = "<group>"; };
+		9A1823DC2F20E590007693F6 /* texture_data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture_data.h; sourceTree = "<group>"; };
+		9A1823DD2F20E590007693F6 /* texture_flags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = texture_flags.h; sourceTree = "<group>"; };
+		9A1824042F20E955007693F6 /* fps_counter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fps_counter.h; sourceTree = "<group>"; };
+		9A1824052F20E955007693F6 /* timer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
+		9A1824062F20E955007693F6 /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
+		9A18240D2F20E986007693F6 /* global_ubo1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = global_ubo1.cpp; sourceTree = "<group>"; };
+		9A1824102F20E9AB007693F6 /* allocator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = allocator.h; sourceTree = "<group>"; };
+		9A1824112F20E9AB007693F6 /* allocator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = allocator.cpp; sourceTree = "<group>"; };
+		9A1824122F20E9AB007693F6 /* character.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = character.cpp; sourceTree = "<group>"; };
+		9A1824132F20E9AB007693F6 /* typeface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = typeface.h; sourceTree = "<group>"; };
+		9A1824142F20E9AB007693F6 /* typeface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = typeface.cpp; sourceTree = "<group>"; };
 		9A281A5D252432B5009FA9CB /* libbred.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbred.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A281A7125243402009FA9CB /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A281A7425243402009FA9CB /* _defer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer.h; sourceTree = "<group>"; };
@@ -573,22 +646,9 @@
 		9A7FEB862E7F47310082C6FD /* texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		9A7FEB872E7F47310082C6FD /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		9A7FEB882E7F47310082C6FD /* types.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = types.cpp; sourceTree = "<group>"; };
-		9A7FEC2A2E7F47420082C6FD /* gltf_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gltf_render_system.h; sourceTree = "<group>"; };
-		9A7FEC2B2E7F47420082C6FD /* gltf_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gltf_render_system.cpp; sourceTree = "<group>"; };
-		9A7FEC2C2E7F47420082C6FD /* point_light_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = point_light_render_system.h; sourceTree = "<group>"; };
-		9A7FEC2D2E7F47420082C6FD /* point_light_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point_light_render_system.cpp; sourceTree = "<group>"; };
-		9A7FEC2E2E7F47420082C6FD /* scene_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scene_render_system.h; sourceTree = "<group>"; };
-		9A7FEC2F2E7F47420082C6FD /* scene_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_render_system.cpp; sourceTree = "<group>"; };
-		9A7FEC302E7F47420082C6FD /* skybox_ibl_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skybox_ibl_render_system.h; sourceTree = "<group>"; };
-		9A7FEC312E7F47420082C6FD /* skybox_ibl_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = skybox_ibl_render_system.cpp; sourceTree = "<group>"; };
-		9A7FEC322E7F47420082C6FD /* skybox_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skybox_render_system.h; sourceTree = "<group>"; };
-		9A7FEC332E7F47420082C6FD /* skybox_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = skybox_render_system.cpp; sourceTree = "<group>"; };
-		9A7FEC342E7F47420082C6FD /* wavefront_obj_render_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = wavefront_obj_render_system.h; sourceTree = "<group>"; };
-		9A7FEC352E7F47420082C6FD /* wavefront_obj_render_system.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wavefront_obj_render_system.cpp; sourceTree = "<group>"; };
 		9A7FEC442E7F47420082C6FD /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A7FEC452E7F47420082C6FD /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A7FEC462E7F47420082C6FD /* _sandbox_interfaces.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _sandbox_interfaces.h; sourceTree = "<group>"; };
-		9A7FEC472E7F47420082C6FD /* _types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _types.h; sourceTree = "<group>"; };
 		9A7FEC5B2E7F47420082C6FD /* asset_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asset_manager.h; sourceTree = "<group>"; };
 		9A7FEC5C2E7F47420082C6FD /* asset_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = asset_manager.cpp; sourceTree = "<group>"; };
 		9A7FEC5D2E7F47420082C6FD /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
@@ -611,8 +671,6 @@
 		9A7FEC702E7F47420082C6FD /* key_map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = key_map.cpp; sourceTree = "<group>"; };
 		9A7FEC712E7F47420082C6FD /* mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mesh.h; sourceTree = "<group>"; };
 		9A7FEC722E7F47420082C6FD /* mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mesh.cpp; sourceTree = "<group>"; };
-		9A7FEC732E7F47420082C6FD /* model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
-		9A7FEC742E7F47420082C6FD /* model.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = model.cpp; sourceTree = "<group>"; };
 		9A7FEC752E7F47420082C6FD /* point_light.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = point_light.h; sourceTree = "<group>"; };
 		9A7FEC762E7F47420082C6FD /* point_light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = point_light.cpp; sourceTree = "<group>"; };
 		9A7FEC772E7F47420082C6FD /* provider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = provider.h; sourceTree = "<group>"; };
@@ -628,11 +686,9 @@
 		9A7FEC832E7F47420082C6FD /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
 		9A7FEC842E7F47420082C6FD /* shape_factory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shape_factory.h; sourceTree = "<group>"; };
 		9A7FEC852E7F47420082C6FD /* shape_factory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shape_factory.cpp; sourceTree = "<group>"; };
-		9A7FEC862E7F47420082C6FD /* shapes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shapes.h; sourceTree = "<group>"; };
 		9A7FEC872E7F47420082C6FD /* skybox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = skybox.h; sourceTree = "<group>"; };
 		9A7FEC882E7F47420082C6FD /* skybox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = skybox.cpp; sourceTree = "<group>"; };
 		9A7FEC892E7F47420082C6FD /* static_array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = static_array.h; sourceTree = "<group>"; };
-		9A7FEC8A2E7F47420082C6FD /* type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
 		9A7FEC8B2E7F47420082C6FD /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		9A7FEC8C2E7F47420082C6FD /* types.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = types.cpp; sourceTree = "<group>"; };
 		9A7FEC8D2E7F47420082C6FD /* utilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utilities.h; sourceTree = "<group>"; };
@@ -651,8 +707,18 @@
 		9A7FED992E7F4DDE0082C6FD /* immersion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = immersion.cpp; sourceTree = "<group>"; };
 		9A7FED9A2E7F4DDE0082C6FD /* player_input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = player_input.h; sourceTree = "<group>"; };
 		9A7FED9B2E7F4DDE0082C6FD /* resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
+		9A8582922F2299F5001D08D1 /* rotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rotation.h; sourceTree = "<group>"; };
+		9A8582F82F22A052001D08D1 /* _functions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _functions.h; sourceTree = "<group>"; };
+		9A8582F92F22A052001D08D1 /* transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transform.h; sourceTree = "<group>"; };
+		9A8582FA2F22A052001D08D1 /* transform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
+		9A8585D22F22C645001D08D1 /* graphics3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = graphics3d.h; sourceTree = "<group>"; };
+		9A8585D32F22C645001D08D1 /* graphics3d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics3d.cpp; sourceTree = "<group>"; };
 		9A8C03522A281A370049B167 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A8C03532A281A380049B167 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9AB1B2252F3965C60051FF92 /* fence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fence.h; sourceTree = "<group>"; };
+		9AB1B2262F3965C60051FF92 /* fence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fence.cpp; sourceTree = "<group>"; };
+		9AB1B2272F3965C60051FF92 /* semaphore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
+		9AB1B2282F3965C60051FF92 /* semaphore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = semaphore.cpp; sourceTree = "<group>"; };
 		9ADF04162C274B55004CF1C9 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
 		9ADF04172C274B55004CF1C9 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9AE64252284AA6570079EBA0 /* libios_bred.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_bred.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -675,6 +741,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A1823BD2F20E03C007693F6 /* render_system */ = {
+			isa = PBXGroup;
+			children = (
+				9A1823B52F20E03C007693F6 /* pbr_with_ibl_render_system_base.h */,
+				9A1823B62F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp */,
+				9A1823B72F20E03C007693F6 /* point_light_render_system.h */,
+				9A1823B82F20E03C007693F6 /* point_light_render_system.cpp */,
+				9A1823B92F20E03C007693F6 /* skybox_render_system.h */,
+				9A1823BA2F20E03C007693F6 /* skybox_render_system.cpp */,
+				9A1823BB2F20E03C007693F6 /* wavefront_obj_render_system.h */,
+				9A1823BC2F20E03C007693F6 /* wavefront_obj_render_system.cpp */,
+			);
+			path = render_system;
+			sourceTree = "<group>";
+		};
 		9A281A54252432B5009FA9CB = {
 			isa = PBXGroup;
 			children = (
@@ -732,13 +813,16 @@
 		9A281A7925243402009FA9CB /* platform */ = {
 			isa = PBXGroup;
 			children = (
+				9A281A8025243402009FA9CB /* _platform.h */,
 				9A281A7A25243402009FA9CB /* application.h */,
+				9A281A7F25243402009FA9CB /* application.cpp */,
+				9A1824042F20E955007693F6 /* fps_counter.h */,
 				9A281A7B25243402009FA9CB /* session.h */,
 				9A281A7C25243402009FA9CB /* session.cpp */,
-				9A281A7D25243402009FA9CB /* system.cpp */,
 				9A281A7E25243402009FA9CB /* system.h */,
-				9A281A7F25243402009FA9CB /* application.cpp */,
-				9A281A8025243402009FA9CB /* _platform.h */,
+				9A281A7D25243402009FA9CB /* system.cpp */,
+				9A1824052F20E955007693F6 /* timer.h */,
+				9A1824062F20E955007693F6 /* timer.cpp */,
 			);
 			path = platform;
 			sourceTree = "<group>";
@@ -837,6 +921,10 @@
 				9A7FEB422E7F47310082C6FD /* _types.h */,
 				9A7FEB432E7F47310082C6FD /* aaa_end_draw.h */,
 				9A7FEB452E7F47310082C6FD /* aaaa_gpu.h */,
+				9A1823D22F20E590007693F6 /* binding.h */,
+				9A1823D32F20E590007693F6 /* binding.cpp */,
+				9A1823D42F20E590007693F6 /* block.h */,
+				9A1823D52F20E590007693F6 /* block.cpp */,
 				9A7FEB462E7F47310082C6FD /* bred_approach.h */,
 				9A7FEB472E7F47310082C6FD /* bred_approach.cpp */,
 				9A7FEB482E7F47310082C6FD /* command_buffer.h */,
@@ -856,6 +944,10 @@
 				9A7FEB562E7F47310082C6FD /* device.cpp */,
 				9A7FEB572E7F47310082C6FD /* draw2d.h */,
 				9A7FEB582E7F47310082C6FD /* draw2d.cpp */,
+				9A1823D62F20E590007693F6 /* empty_texture_source.h */,
+				9A1823D72F20E590007693F6 /* empty_texture_source.cpp */,
+				9AB1B2252F3965C60051FF92 /* fence.h */,
+				9AB1B2262F3965C60051FF92 /* fence.cpp */,
 				9A7FEB592E7F47310082C6FD /* frame.h */,
 				9A7FEB5A2E7F47310082C6FD /* frame.cpp */,
 				9A7FEB5B2E7F47310082C6FD /* frame_ephemeral.h */,
@@ -874,8 +966,11 @@
 				9A7FEB682E7F47310082C6FD /* layer.cpp */,
 				9A7FEB692E7F47310082C6FD /* memory_buffer.h */,
 				9A7FEB6A2E7F47310082C6FD /* memory_buffer.cpp */,
+				9A1823D82F20E590007693F6 /* mesh.h */,
 				9A7FEB6B2E7F47310082C6FD /* model_buffer.h */,
 				9A7FEB6C2E7F47310082C6FD /* model_buffer.cpp */,
+				9A1823D92F20E590007693F6 /* model_data.h */,
+				9A1823DA2F20E590007693F6 /* model_data.cpp */,
 				9A7FEB6D2E7F47310082C6FD /* object.h */,
 				9A7FEB6E2E7F47310082C6FD /* object.cpp */,
 				9A7FEB6F2E7F47310082C6FD /* pixmap.h */,
@@ -896,45 +991,31 @@
 				9A7FEB7E2E7F47310082C6FD /* renderable.cpp */,
 				9A7FEB7F2E7F47310082C6FD /* renderer.h */,
 				9A7FEB802E7F47310082C6FD /* renderer.cpp */,
+				9AB1B2272F3965C60051FF92 /* semaphore.h */,
+				9AB1B2282F3965C60051FF92 /* semaphore.cpp */,
 				9A7FEB812E7F47310082C6FD /* shader.h */,
 				9A7FEB822E7F47310082C6FD /* shader.cpp */,
 				9A7FEB832E7F47310082C6FD /* swap_chain.h */,
 				9A7FEB842E7F47310082C6FD /* swap_chain.cpp */,
 				9A7FEB852E7F47310082C6FD /* texture.h */,
 				9A7FEB862E7F47310082C6FD /* texture.cpp */,
+				9A1823DB2F20E590007693F6 /* texture_attributes.h */,
+				9A1823DC2F20E590007693F6 /* texture_data.h */,
+				9A1823DD2F20E590007693F6 /* texture_flags.h */,
 				9A7FEB872E7F47310082C6FD /* types.h */,
 				9A7FEB882E7F47310082C6FD /* types.cpp */,
 			);
 			path = gpu;
 			sourceTree = "<group>";
 		};
-		9A7FEC362E7F47420082C6FD /* render_systems */ = {
-			isa = PBXGroup;
-			children = (
-				9A7FEC2A2E7F47420082C6FD /* gltf_render_system.h */,
-				9A7FEC2B2E7F47420082C6FD /* gltf_render_system.cpp */,
-				9A7FEC2C2E7F47420082C6FD /* point_light_render_system.h */,
-				9A7FEC2D2E7F47420082C6FD /* point_light_render_system.cpp */,
-				9A7FEC2E2E7F47420082C6FD /* scene_render_system.h */,
-				9A7FEC2F2E7F47420082C6FD /* scene_render_system.cpp */,
-				9A7FEC302E7F47420082C6FD /* skybox_ibl_render_system.h */,
-				9A7FEC312E7F47420082C6FD /* skybox_ibl_render_system.cpp */,
-				9A7FEC322E7F47420082C6FD /* skybox_render_system.h */,
-				9A7FEC332E7F47420082C6FD /* skybox_render_system.cpp */,
-				9A7FEC342E7F47420082C6FD /* wavefront_obj_render_system.h */,
-				9A7FEC352E7F47420082C6FD /* wavefront_obj_render_system.cpp */,
-			);
-			path = render_systems;
-			sourceTree = "<group>";
-		};
 		9A7FEC8F2E7F47420082C6FD /* graphics3d */ = {
 			isa = PBXGroup;
 			children = (
-				9A7FEC362E7F47420082C6FD /* render_systems */,
+				9A1823BD2F20E03C007693F6 /* render_system */,
 				9A7FEC442E7F47420082C6FD /* _.h */,
 				9A7FEC452E7F47420082C6FD /* _constant.h */,
+				9A8582F82F22A052001D08D1 /* _functions.h */,
 				9A7FEC462E7F47420082C6FD /* _sandbox_interfaces.h */,
-				9A7FEC472E7F47420082C6FD /* _types.h */,
 				9A7FEC5B2E7F47420082C6FD /* asset_manager.h */,
 				9A7FEC5C2E7F47420082C6FD /* asset_manager.cpp */,
 				9A7FEC5D2E7F47420082C6FD /* camera.h */,
@@ -948,17 +1029,17 @@
 				9A7FEC662E7F47420082C6FD /* frame.h */,
 				9A7FEC672E7F47420082C6FD /* frame.cpp */,
 				9A7FEC682E7F47420082C6FD /* game_object.h */,
+				9A18240D2F20E986007693F6 /* global_ubo1.cpp */,
 				9A7FEC692E7F47420082C6FD /* immersion_layer.h */,
 				9A7FEC6A2E7F47420082C6FD /* immersion_layer.cpp */,
 				9A7FEC6B2E7F47420082C6FD /* input.h */,
 				9A7FEC6C2E7F47420082C6FD /* input.cpp */,
 				9A7FEC6D2E7F47420082C6FD /* input1.h */,
+				9A8582922F2299F5001D08D1 /* rotation.h */,
 				9A7FEC6F2E7F47420082C6FD /* key_map.h */,
 				9A7FEC702E7F47420082C6FD /* key_map.cpp */,
 				9A7FEC712E7F47420082C6FD /* mesh.h */,
 				9A7FEC722E7F47420082C6FD /* mesh.cpp */,
-				9A7FEC732E7F47420082C6FD /* model.h */,
-				9A7FEC742E7F47420082C6FD /* model.cpp */,
 				9A7FEC752E7F47420082C6FD /* point_light.h */,
 				9A7FEC762E7F47420082C6FD /* point_light.cpp */,
 				9A7FEC772E7F47420082C6FD /* provider.h */,
@@ -978,11 +1059,11 @@
 				9A7FEC832E7F47420082C6FD /* shader.cpp */,
 				9A7FEC842E7F47420082C6FD /* shape_factory.h */,
 				9A7FEC852E7F47420082C6FD /* shape_factory.cpp */,
-				9A7FEC862E7F47420082C6FD /* shapes.h */,
 				9A7FEC872E7F47420082C6FD /* skybox.h */,
 				9A7FEC882E7F47420082C6FD /* skybox.cpp */,
 				9A7FEC892E7F47420082C6FD /* static_array.h */,
-				9A7FEC8A2E7F47420082C6FD /* type.h */,
+				9A8582F92F22A052001D08D1 /* transform.h */,
+				9A8582FA2F22A052001D08D1 /* transform.cpp */,
 				9A7FEC8B2E7F47420082C6FD /* types.h */,
 				9A7FEC8C2E7F47420082C6FD /* types.cpp */,
 				9A7FEC8D2E7F47420082C6FD /* utilities.h */,
@@ -995,9 +1076,14 @@
 			isa = PBXGroup;
 			children = (
 				9A7FED7F2E7F4DCB0082C6FD /* _.h */,
+				9A1824102F20E9AB007693F6 /* allocator.h */,
+				9A1824112F20E9AB007693F6 /* allocator.cpp */,
 				9A7FED802E7F4DCB0082C6FD /* character.h */,
+				9A1824122F20E9AB007693F6 /* character.cpp */,
 				9A7FED812E7F4DCB0082C6FD /* face.h */,
 				9A7FED822E7F4DCB0082C6FD /* face.cpp */,
+				9A1824132F20E9AB007693F6 /* typeface.h */,
+				9A1824142F20E9AB007693F6 /* typeface.cpp */,
 			);
 			path = typeface;
 			sourceTree = "<group>";
@@ -1038,6 +1124,8 @@
 		9ADF04182C274B55004CF1C9 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9A8585D22F22C645001D08D1 /* graphics3d.h */,
+				9A8585D32F22C645001D08D1 /* graphics3d.cpp */,
 				9ADF04162C274B55004CF1C9 /* user.cpp */,
 				9ADF04172C274B55004CF1C9 /* user.h */,
 			);
@@ -1061,6 +1149,10 @@
 				9A281AAC25243402009FA9CB /* _defer.h in Headers */,
 				9A281AC825243402009FA9CB /* macos.h in Headers */,
 				9A281ACD25243402009FA9CB /* application_common.h in Headers */,
+				9A1823BF2F20E03C007693F6 /* point_light_render_system.h in Headers */,
+				9A1823C02F20E03C007693F6 /* wavefront_obj_render_system.h in Headers */,
+				9A1823C12F20E03C007693F6 /* pbr_with_ibl_render_system_base.h in Headers */,
+				9A1823C22F20E03C007693F6 /* skybox_render_system.h in Headers */,
 				9A281AC425243402009FA9CB /* application.h in Headers */,
 				9A281ABB25243402009FA9CB /* ios.h in Headers */,
 				9A281ACB25243402009FA9CB /* __debug_box_clear_impl.h in Headers */,
@@ -1079,6 +1171,7 @@
 				9A281AC525243402009FA9CB /* __debug_box_set_impl.h in Headers */,
 				9A281AB725243402009FA9CB /* id.h in Headers */,
 				9A281ACE25243402009FA9CB /* _app_impl1.h in Headers */,
+				9A8585D42F22C645001D08D1 /* graphics3d.h in Headers */,
 				9A281ABD25243402009FA9CB /* macos.h in Headers */,
 				9A281AD425243402009FA9CB /* _.h in Headers */,
 				9A281ACF25243402009FA9CB /* _acid_app_impl.h in Headers */,
@@ -1088,28 +1181,30 @@
 				9A7FEC952E7F47420082C6FD /* render_system.h in Headers */,
 				9A7FEC962E7F47420082C6FD /* engine.h in Headers */,
 				9A7FEC972E7F47420082C6FD /* skybox.h in Headers */,
-				9A7FEC982E7F47420082C6FD /* shapes.h in Headers */,
 				9A7FEC992E7F47420082C6FD /* static_array.h in Headers */,
-				9A7FEC9B2E7F47420082C6FD /* point_light_render_system.h in Headers */,
 				9A7FEC9C2E7F47420082C6FD /* entity.h in Headers */,
 				9A7FED842E7F4DCB0082C6FD /* _.h in Headers */,
 				9A7FED852E7F4DCB0082C6FD /* face.h in Headers */,
 				9A7FED862E7F4DCB0082C6FD /* character.h in Headers */,
 				9A7FEC9D2E7F47420082C6FD /* input.h in Headers */,
-				9A7FEC9E2E7F47420082C6FD /* _types.h in Headers */,
-				9A7FEC9F2E7F47420082C6FD /* skybox_render_system.h in Headers */,
-				9A7FECA12E7F47420082C6FD /* model.h in Headers */,
 				9A7FECA22E7F47420082C6FD /* renderer.h in Headers */,
-				9A7FECA72E7F47420082C6FD /* skybox_ibl_render_system.h in Headers */,
-				9A7FECA82E7F47420082C6FD /* type.h in Headers */,
 				9A7FECA92E7F47420082C6FD /* input1.h in Headers */,
+				9A1823EA2F20E590007693F6 /* texture_flags.h in Headers */,
+				9A1823EB2F20E590007693F6 /* model_data.h in Headers */,
+				9A1823EC2F20E590007693F6 /* empty_texture_source.h in Headers */,
+				9A1823ED2F20E590007693F6 /* block.h in Headers */,
+				9A1823EE2F20E590007693F6 /* mesh.h in Headers */,
+				9A1823EF2F20E590007693F6 /* texture_attributes.h in Headers */,
+				9A1823F02F20E590007693F6 /* texture_data.h in Headers */,
+				9A1823F12F20E590007693F6 /* binding.h in Headers */,
 				9A7FECAA2E7F47420082C6FD /* mesh.h in Headers */,
 				9A7FECAB2E7F47420082C6FD /* provider.h in Headers */,
-				9A7FECAC2E7F47420082C6FD /* wavefront_obj_render_system.h in Headers */,
 				9A7FECAE2E7F47420082C6FD /* renderable.h in Headers */,
 				9A7FEDA02E7F4DDE0082C6FD /* camera.h in Headers */,
 				9A7FEDA12E7F4DDE0082C6FD /* _.h in Headers */,
 				9A7FEDA22E7F4DDE0082C6FD /* actor.h in Headers */,
+				9A8582FB2F22A052001D08D1 /* transform.h in Headers */,
+				9A8582FC2F22A052001D08D1 /* _functions.h in Headers */,
 				9A7FEDA32E7F4DDE0082C6FD /* immersion.h in Headers */,
 				9A3CFE9F2EBB14120074E067 /* vertex.h in Headers */,
 				9A7FEDA42E7F4DDE0082C6FD /* game_object.h in Headers */,
@@ -1119,13 +1214,12 @@
 				9A7FECB02E7F47420082C6FD /* frame.h in Headers */,
 				9A7FECB22E7F47420082C6FD /* class_set1.h in Headers */,
 				9A7FECB42E7F47420082C6FD /* types.h in Headers */,
-				9A7FECB72E7F47420082C6FD /* scene_render_system.h in Headers */,
 				9A7FECB92E7F47420082C6FD /* camera.h in Headers */,
 				9A7FECBB2E7F47420082C6FD /* _.h in Headers */,
 				9A7FECBE2E7F47420082C6FD /* _constant.h in Headers */,
+				9A8582932F2299F5001D08D1 /* rotation.h in Headers */,
 				9A7FECBF2E7F47420082C6FD /* camera1.h in Headers */,
 				9A7FECC32E7F47420082C6FD /* asset_manager.h in Headers */,
-				9A7FECC52E7F47420082C6FD /* gltf_render_system.h in Headers */,
 				9A7FECC62E7F47420082C6FD /* point_light.h in Headers */,
 				9A7FECC82E7F47420082C6FD /* utilities.h in Headers */,
 				9A7FECC92E7F47420082C6FD /* window_input.h in Headers */,
@@ -1133,6 +1227,8 @@
 				9A7FECCE2E7F47420082C6FD /* immersion_layer.h in Headers */,
 				9A7FECD02E7F47420082C6FD /* game_object.h in Headers */,
 				9A7FECD12E7F47420082C6FD /* shape_factory.h in Headers */,
+				9A1824072F20E955007693F6 /* fps_counter.h in Headers */,
+				9A1824082F20E955007693F6 /* timer.h in Headers */,
 				9A281AB825243402009FA9CB /* console.h in Headers */,
 				9A281AC725243402009FA9CB /* linux.h in Headers */,
 				9A281AB425243402009FA9CB /* system.h in Headers */,
@@ -1150,6 +1246,8 @@
 				9A7FEB942E7F47310082C6FD /* render_state.h in Headers */,
 				9A7FEB952E7F47310082C6FD /* cpu_buffer.h in Headers */,
 				9A7FEB962E7F47310082C6FD /* pixmap.h in Headers */,
+				9A18241A2F20E9AB007693F6 /* allocator.h in Headers */,
+				9A18241B2F20E9AB007693F6 /* typeface.h in Headers */,
 				9A7FEB972E7F47310082C6FD /* texture.h in Headers */,
 				9A7FEB982E7F47310082C6FD /* context_lock.h in Headers */,
 				9A7FEB992E7F47310082C6FD /* frame_ephemeral.h in Headers */,
@@ -1178,6 +1276,8 @@
 				9A7FEBAE2E7F47310082C6FD /* _.h in Headers */,
 				9A7FEBAF2E7F47310082C6FD /* properties.h in Headers */,
 				9A7FEBB02E7F47310082C6FD /* memory_buffer.h in Headers */,
+				9AB1B22B2F3965C60051FF92 /* fence.h in Headers */,
+				9AB1B22C2F3965C60051FF92 /* semaphore.h in Headers */,
 				9A7FEBB12E7F47310082C6FD /* aaaa_gpu.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1186,6 +1286,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A1823CE2F20E03C007693F6 /* point_light_render_system.h in Headers */,
+				9A1823CF2F20E03C007693F6 /* wavefront_obj_render_system.h in Headers */,
+				9A1823D02F20E03C007693F6 /* pbr_with_ibl_render_system_base.h in Headers */,
+				9A1823D12F20E03C007693F6 /* skybox_render_system.h in Headers */,
 				9AE6421F284AA6570079EBA0 /* _.h in Headers */,
 				9AE64220284AA6570079EBA0 /* session.h in Headers */,
 				9A7FEBF82E7F47310082C6FD /* command_buffer.h in Headers */,
@@ -1198,24 +1302,17 @@
 				9A7FED292E7F47430082C6FD /* render_system.h in Headers */,
 				9A7FED2A2E7F47430082C6FD /* engine.h in Headers */,
 				9A7FED2B2E7F47430082C6FD /* skybox.h in Headers */,
-				9A7FED2C2E7F47430082C6FD /* shapes.h in Headers */,
 				9A7FED2D2E7F47430082C6FD /* static_array.h in Headers */,
-				9A7FED2F2E7F47430082C6FD /* point_light_render_system.h in Headers */,
 				9A7FED302E7F47430082C6FD /* entity.h in Headers */,
 				9A7FED892E7F4DCB0082C6FD /* _.h in Headers */,
 				9A7FED8A2E7F4DCB0082C6FD /* face.h in Headers */,
+				9A8582942F2299F5001D08D1 /* rotation.h in Headers */,
 				9A7FED8B2E7F4DCB0082C6FD /* character.h in Headers */,
 				9A7FED312E7F47430082C6FD /* input.h in Headers */,
-				9A7FED322E7F47430082C6FD /* _types.h in Headers */,
-				9A7FED332E7F47430082C6FD /* skybox_render_system.h in Headers */,
-				9A7FED352E7F47430082C6FD /* model.h in Headers */,
 				9A7FED362E7F47430082C6FD /* renderer.h in Headers */,
-				9A7FED3B2E7F47430082C6FD /* skybox_ibl_render_system.h in Headers */,
-				9A7FED3C2E7F47430082C6FD /* type.h in Headers */,
 				9A7FED3D2E7F47430082C6FD /* input1.h in Headers */,
 				9A7FED3E2E7F47430082C6FD /* mesh.h in Headers */,
 				9A7FED3F2E7F47430082C6FD /* provider.h in Headers */,
-				9A7FED402E7F47430082C6FD /* wavefront_obj_render_system.h in Headers */,
 				9A7FEDB62E7F4DDE0082C6FD /* camera.h in Headers */,
 				9A7FEDB72E7F4DDE0082C6FD /* _.h in Headers */,
 				9A7FEDB82E7F4DDE0082C6FD /* actor.h in Headers */,
@@ -1228,13 +1325,11 @@
 				9A7FED442E7F47430082C6FD /* frame.h in Headers */,
 				9A7FED462E7F47430082C6FD /* class_set1.h in Headers */,
 				9A7FED482E7F47430082C6FD /* types.h in Headers */,
-				9A7FED4B2E7F47430082C6FD /* scene_render_system.h in Headers */,
 				9A7FED4D2E7F47430082C6FD /* camera.h in Headers */,
 				9A7FED4F2E7F47430082C6FD /* _.h in Headers */,
 				9A7FED522E7F47430082C6FD /* _constant.h in Headers */,
 				9A7FED532E7F47430082C6FD /* camera1.h in Headers */,
 				9A7FED572E7F47430082C6FD /* asset_manager.h in Headers */,
-				9A7FED592E7F47430082C6FD /* gltf_render_system.h in Headers */,
 				9A7FED5A2E7F47430082C6FD /* point_light.h in Headers */,
 				9A7FED5C2E7F47430082C6FD /* utilities.h in Headers */,
 				9A7FED5D2E7F47430082C6FD /* window_input.h in Headers */,
@@ -1242,11 +1337,14 @@
 				9A7FED622E7F47430082C6FD /* immersion_layer.h in Headers */,
 				9A7FED642E7F47430082C6FD /* game_object.h in Headers */,
 				9A7FED652E7F47430082C6FD /* shape_factory.h in Headers */,
+				9A8585D72F22C645001D08D1 /* graphics3d.h in Headers */,
 				9A7FEBFC2E7F47310082C6FD /* swap_chain.h in Headers */,
 				9A7FEBFD2E7F47310082C6FD /* graphics.h in Headers */,
 				9A7FEBFE2E7F47310082C6FD /* context_object.h in Headers */,
 				9A7FEBFF2E7F47310082C6FD /* types.h in Headers */,
 				9A7FEC002E7F47310082C6FD /* guard.h in Headers */,
+				9A1824182F20E9AB007693F6 /* allocator.h in Headers */,
+				9A1824192F20E9AB007693F6 /* typeface.h in Headers */,
 				9A7FEC012E7F47310082C6FD /* draw2d.h in Headers */,
 				9A7FEC022E7F47310082C6FD /* render_state.h in Headers */,
 				9A7FEC032E7F47310082C6FD /* cpu_buffer.h in Headers */,
@@ -1274,6 +1372,8 @@
 				9A7FEC192E7F47310082C6FD /* aaa_end_draw.h in Headers */,
 				9A7FEC1A2E7F47310082C6FD /* bred_approach.h in Headers */,
 				9A7FEC1B2E7F47310082C6FD /* compositor.h in Headers */,
+				9A8582FF2F22A052001D08D1 /* transform.h in Headers */,
+				9A8583002F22A052001D08D1 /* _functions.h in Headers */,
 				9A7FEC1C2E7F47310082C6FD /* _.h in Headers */,
 				9A3CFE642EBB0E740074E067 /* scene_base.h in Headers */,
 				9A3CFE652EBB0E740074E067 /* scene_renderable.h in Headers */,
@@ -1287,8 +1387,18 @@
 				9AE64225284AA6570079EBA0 /* _console_old.h in Headers */,
 				9AE64226284AA6570079EBA0 /* _defer.h in Headers */,
 				9AE64227284AA6570079EBA0 /* macos.h in Headers */,
+				9AB1B22F2F3965C60051FF92 /* fence.h in Headers */,
+				9AB1B2302F3965C60051FF92 /* semaphore.h in Headers */,
 				9AE64228284AA6570079EBA0 /* application_common.h in Headers */,
 				9AE64229284AA6570079EBA0 /* application.h in Headers */,
+				9A1823E22F20E590007693F6 /* texture_flags.h in Headers */,
+				9A1823E32F20E590007693F6 /* model_data.h in Headers */,
+				9A1823E42F20E590007693F6 /* empty_texture_source.h in Headers */,
+				9A1823E52F20E590007693F6 /* block.h in Headers */,
+				9A1823E62F20E590007693F6 /* mesh.h in Headers */,
+				9A1823E72F20E590007693F6 /* texture_attributes.h in Headers */,
+				9A1823E82F20E590007693F6 /* texture_data.h in Headers */,
+				9A1823E92F20E590007693F6 /* binding.h in Headers */,
 				9AE6422A284AA6570079EBA0 /* ios.h in Headers */,
 				9AE6422B284AA6570079EBA0 /* __debug_box_clear_impl.h in Headers */,
 				9AE6422C284AA6570079EBA0 /* library.h in Headers */,
@@ -1311,6 +1421,8 @@
 				9AE6423C284AA6570079EBA0 /* _acid_app_impl.h in Headers */,
 				9AE6423D284AA6570079EBA0 /* console.h in Headers */,
 				9AE6423E284AA6570079EBA0 /* linux.h in Headers */,
+				9A18240B2F20E955007693F6 /* fps_counter.h in Headers */,
+				9A18240C2F20E955007693F6 /* timer.h in Headers */,
 				9AE6423F284AA6570079EBA0 /* system.h in Headers */,
 				9AE64240284AA6570079EBA0 /* console_common.h in Headers */,
 			);
@@ -1442,6 +1554,10 @@
 			files = (
 				9ADF04192C274B55004CF1C9 /* user.cpp in Sources */,
 				9A281AB525243402009FA9CB /* application.cpp in Sources */,
+				9A1823C32F20E03C007693F6 /* wavefront_obj_render_system.cpp in Sources */,
+				9A1823C42F20E03C007693F6 /* point_light_render_system.cpp in Sources */,
+				9A1823C62F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp in Sources */,
+				9A1823C72F20E03C007693F6 /* skybox_render_system.cpp in Sources */,
 				9A281AD125243402009FA9CB /* idpool.cpp in Sources */,
 				9A281AB225243402009FA9CB /* session.cpp in Sources */,
 				9A281AAE25243402009FA9CB /* framework.cpp in Sources */,
@@ -1450,30 +1566,29 @@
 				9A7FECD22E7F47420082C6FD /* types.cpp in Sources */,
 				9A7FECD32E7F47420082C6FD /* mesh.cpp in Sources */,
 				9A7FECD42E7F47420082C6FD /* skybox.cpp in Sources */,
-				9A7FECD52E7F47420082C6FD /* gltf_render_system.cpp in Sources */,
 				9A7FECD72E7F47420082C6FD /* scene_object.cpp in Sources */,
 				9A7FECDB2E7F47420082C6FD /* renderer.cpp in Sources */,
 				9A7FECDC2E7F47420082C6FD /* point_light.cpp in Sources */,
 				9A7FECDD2E7F47420082C6FD /* camera.cpp in Sources */,
-				9A7FECDE2E7F47420082C6FD /* model.cpp in Sources */,
 				9A7FECDF2E7F47420082C6FD /* asset_manager.cpp in Sources */,
-				9A7FECE12E7F47420082C6FD /* skybox_ibl_render_system.cpp in Sources */,
+				9A1824092F20E955007693F6 /* timer.cpp in Sources */,
 				9A7FECE32E7F47420082C6FD /* key_map.cpp in Sources */,
 				9A7FECE42E7F47420082C6FD /* frame.cpp in Sources */,
 				9A7FECE52E7F47420082C6FD /* engine.cpp in Sources */,
 				9A7FECE82E7F47420082C6FD /* render_system.cpp in Sources */,
 				9A7FECEA2E7F47420082C6FD /* immersion_layer.cpp in Sources */,
+				9A18240F2F20E986007693F6 /* global_ubo1.cpp in Sources */,
 				9A7FECEB2E7F47420082C6FD /* renderable.cpp in Sources */,
-				9A7FECEC2E7F47420082C6FD /* skybox_render_system.cpp in Sources */,
 				9A7FECED2E7F47420082C6FD /* input.cpp in Sources */,
-				9A7FECEE2E7F47420082C6FD /* wavefront_obj_render_system.cpp in Sources */,
-				9A7FECEF2E7F47420082C6FD /* scene_render_system.cpp in Sources */,
 				9A7FECF02E7F47420082C6FD /* shape_factory.cpp in Sources */,
-				9A7FECF52E7F47420082C6FD /* point_light_render_system.cpp in Sources */,
 				9A7FECF72E7F47420082C6FD /* shader.cpp in Sources */,
 				9A281AD225243402009FA9CB /* _.cpp in Sources */,
 				9A7FEBB22E7F47310082C6FD /* program.cpp in Sources */,
 				9A7FEBB32E7F47310082C6FD /* pixmap.cpp in Sources */,
+				9A1823F22F20E590007693F6 /* block.cpp in Sources */,
+				9A1823F32F20E590007693F6 /* empty_texture_source.cpp in Sources */,
+				9A1823F42F20E590007693F6 /* model_data.cpp in Sources */,
+				9A1823F52F20E590007693F6 /* binding.cpp in Sources */,
 				9A7FED872E7F4DCB0082C6FD /* face.cpp in Sources */,
 				9A7FEBB42E7F47310082C6FD /* renderer.cpp in Sources */,
 				9A7FEBB52E7F47310082C6FD /* _.cpp in Sources */,
@@ -1489,7 +1604,11 @@
 				9A7FEDAE2E7F4DDE0082C6FD /* actor.cpp in Sources */,
 				9A7FEBBD2E7F47310082C6FD /* context.cpp in Sources */,
 				9A7FEBBE2E7F47310082C6FD /* frame_ephemeral.cpp in Sources */,
+				9A18241C2F20E9AB007693F6 /* allocator.cpp in Sources */,
+				9A18241D2F20E9AB007693F6 /* character.cpp in Sources */,
+				9A18241E2F20E9AB007693F6 /* typeface.cpp in Sources */,
 				9A7FEBBF2E7F47310082C6FD /* layer.cpp in Sources */,
+				9A8582FD2F22A052001D08D1 /* transform.cpp in Sources */,
 				9A7FEBC02E7F47310082C6FD /* memory_buffer.cpp in Sources */,
 				9A7FEBC12E7F47310082C6FD /* compositor.cpp in Sources */,
 				9A7FEBC22E7F47310082C6FD /* model_buffer.cpp in Sources */,
@@ -1504,6 +1623,9 @@
 				9A7FEBCB2E7F47310082C6FD /* queue.cpp in Sources */,
 				9A7FEBCC2E7F47310082C6FD /* properties.cpp in Sources */,
 				9A7FEBCD2E7F47310082C6FD /* frame_storage.cpp in Sources */,
+				9A8585D52F22C645001D08D1 /* graphics3d.cpp in Sources */,
+				9AB1B2292F3965C60051FF92 /* semaphore.cpp in Sources */,
+				9AB1B22A2F3965C60051FF92 /* fence.cpp in Sources */,
 				9A7FEBCE2E7F47310082C6FD /* device.cpp in Sources */,
 				9A7FEBCF2E7F47310082C6FD /* render_target.cpp in Sources */,
 				9A7FEBD02E7F47310082C6FD /* graphics.cpp in Sources */,
@@ -1521,6 +1643,10 @@
 			files = (
 				9ADF041B2C275401004CF1C9 /* user.cpp in Sources */,
 				9AE64242284AA6570079EBA0 /* application.cpp in Sources */,
+				9A1823C82F20E03C007693F6 /* wavefront_obj_render_system.cpp in Sources */,
+				9A1823C92F20E03C007693F6 /* point_light_render_system.cpp in Sources */,
+				9A1823CB2F20E03C007693F6 /* pbr_with_ibl_render_system_base.cpp in Sources */,
+				9A1823CC2F20E03C007693F6 /* skybox_render_system.cpp in Sources */,
 				9AE64243284AA6570079EBA0 /* idpool.cpp in Sources */,
 				9AE64244284AA6570079EBA0 /* session.cpp in Sources */,
 				9AE64245284AA6570079EBA0 /* framework.cpp in Sources */,
@@ -1529,30 +1655,29 @@
 				9A7FECFB2E7F47430082C6FD /* types.cpp in Sources */,
 				9A7FECFC2E7F47430082C6FD /* mesh.cpp in Sources */,
 				9A7FECFD2E7F47430082C6FD /* skybox.cpp in Sources */,
-				9A7FECFE2E7F47430082C6FD /* gltf_render_system.cpp in Sources */,
 				9A7FED002E7F47430082C6FD /* scene_object.cpp in Sources */,
 				9A7FED042E7F47430082C6FD /* renderer.cpp in Sources */,
 				9A7FED052E7F47430082C6FD /* point_light.cpp in Sources */,
 				9A7FED062E7F47430082C6FD /* camera.cpp in Sources */,
-				9A7FED072E7F47430082C6FD /* model.cpp in Sources */,
 				9A7FED082E7F47430082C6FD /* asset_manager.cpp in Sources */,
-				9A7FED0A2E7F47430082C6FD /* skybox_ibl_render_system.cpp in Sources */,
+				9A18240A2F20E955007693F6 /* timer.cpp in Sources */,
 				9A7FED0C2E7F47430082C6FD /* key_map.cpp in Sources */,
 				9A7FED0D2E7F47430082C6FD /* frame.cpp in Sources */,
 				9A7FED0E2E7F47430082C6FD /* engine.cpp in Sources */,
 				9A7FED112E7F47430082C6FD /* render_system.cpp in Sources */,
 				9A7FED132E7F47430082C6FD /* immersion_layer.cpp in Sources */,
+				9A18240E2F20E986007693F6 /* global_ubo1.cpp in Sources */,
 				9A7FED142E7F47430082C6FD /* renderable.cpp in Sources */,
-				9A7FED152E7F47430082C6FD /* skybox_render_system.cpp in Sources */,
 				9A7FED162E7F47430082C6FD /* input.cpp in Sources */,
-				9A7FED172E7F47430082C6FD /* wavefront_obj_render_system.cpp in Sources */,
-				9A7FED182E7F47430082C6FD /* scene_render_system.cpp in Sources */,
 				9A7FED192E7F47430082C6FD /* shape_factory.cpp in Sources */,
-				9A7FED1E2E7F47430082C6FD /* point_light_render_system.cpp in Sources */,
 				9A7FED202E7F47430082C6FD /* shader.cpp in Sources */,
 				9AE64246284AA6570079EBA0 /* _.cpp in Sources */,
 				9A7FEBD52E7F47310082C6FD /* program.cpp in Sources */,
 				9A7FEBD62E7F47310082C6FD /* pixmap.cpp in Sources */,
+				9A1823DE2F20E590007693F6 /* block.cpp in Sources */,
+				9A1823DF2F20E590007693F6 /* empty_texture_source.cpp in Sources */,
+				9A1823E02F20E590007693F6 /* model_data.cpp in Sources */,
+				9A1823E12F20E590007693F6 /* binding.cpp in Sources */,
 				9A7FED882E7F4DCB0082C6FD /* face.cpp in Sources */,
 				9A7FEBD72E7F47310082C6FD /* renderer.cpp in Sources */,
 				9A7FEBD82E7F47310082C6FD /* _.cpp in Sources */,
@@ -1568,7 +1693,11 @@
 				9A7FEDB52E7F4DDE0082C6FD /* actor.cpp in Sources */,
 				9A7FEBE02E7F47310082C6FD /* context.cpp in Sources */,
 				9A7FEBE12E7F47310082C6FD /* frame_ephemeral.cpp in Sources */,
+				9A1824152F20E9AB007693F6 /* allocator.cpp in Sources */,
+				9A1824162F20E9AB007693F6 /* character.cpp in Sources */,
+				9A1824172F20E9AB007693F6 /* typeface.cpp in Sources */,
 				9A7FEBE22E7F47310082C6FD /* layer.cpp in Sources */,
+				9A8582FE2F22A052001D08D1 /* transform.cpp in Sources */,
 				9A7FEBE32E7F47310082C6FD /* memory_buffer.cpp in Sources */,
 				9A7FEBE42E7F47310082C6FD /* compositor.cpp in Sources */,
 				9A7FEBE52E7F47310082C6FD /* model_buffer.cpp in Sources */,
@@ -1583,6 +1712,9 @@
 				9A7FEBEE2E7F47310082C6FD /* queue.cpp in Sources */,
 				9A7FEBEF2E7F47310082C6FD /* properties.cpp in Sources */,
 				9A7FEBF02E7F47310082C6FD /* frame_storage.cpp in Sources */,
+				9A8585D62F22C645001D08D1 /* graphics3d.cpp in Sources */,
+				9AB1B22D2F3965C60051FF92 /* semaphore.cpp in Sources */,
+				9AB1B22E2F3965C60051FF92 /* fence.cpp in Sources */,
 				9A7FEBF12E7F47310082C6FD /* device.cpp in Sources */,
 				9A7FEBF22E7F47310082C6FD /* render_target.cpp in Sources */,
 				9A7FEBF32E7F47310082C6FD /* graphics.cpp in Sources */,
@@ -1647,6 +1779,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1684,6 +1817,7 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
 					"$(WorkspaceDir)/port/include",
 					"$(WorkspaceDir)/source/app/include",
 				);
@@ -1747,6 +1881,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1779,6 +1914,7 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
 					"$(WorkspaceDir)/port/include",
 					"$(WorkspaceDir)/source/app/include",
 				);
@@ -1833,7 +1969,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;
@@ -1846,7 +1981,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
 				PLATFORM_MODIFIER = ios;

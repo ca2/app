@@ -257,10 +257,10 @@ namespace core
    }
 
 
-   void application::create_options_footer(::user::interaction * puserinteraction)
+   void application::create_options_footer(const ::atom &atom, ::user::interaction *puserinteraction)
    {
 
-      ::berg::application::create_options_footer(puserinteraction);
+      ::berg::application::create_options_footer(atom, puserinteraction);
 
       //if (m_bEnableAutoStartOption)
       //{
@@ -307,7 +307,7 @@ namespace core
    }
 
 
-   void application::create_auto_start_option(::user::interaction * pparent)
+   void application::create_auto_start_option(const ::atom &atom, ::user::interaction *pparent)
    {
 
       auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);

@@ -41,7 +41,7 @@ namespace gpu
       int maximum_mip_count() const
       {
 
-         return floor(log2(m_rectangleTarget.size().maximum())) + 1;
+         return (int) floor(log2(m_rectangleTarget.size().maximum())) + 1;
 
       }
 

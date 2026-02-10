@@ -27,11 +27,11 @@ namespace gpu
 
    class block;
 
+   class fence;
 
+   class empty_texture_source;
 
-  class empty_texture_source;
-
-
+   class semaphore;
 
 
    template<typename VERTEX, typename INDEX = unsigned int>

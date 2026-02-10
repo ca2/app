@@ -29,12 +29,12 @@ namespace gpu
             ::gpu::property *m_ppropertyProperties;
 
 
-      int m_iVertexCount;
-      int m_iVertexByteSize;
-      int m_iVertexTypeSize;
-      int m_iIndexCount;
-      int m_iIndexByteSize;
-      int m_iIndexTypeSize;
+      ::collection::index m_iVertexCount;
+      memsize m_iVertexByteSize;
+      memsize m_iVertexTypeSize;
+      ::collection::index m_iIndexCount;
+      memsize m_iIndexByteSize;
+      memsize m_iIndexTypeSize;
       bool m_bDummy = false;
 
 
@@ -101,15 +101,15 @@ namespace gpu
          }
          set_index_count(iIndexCount);
       }
-      int index_count() const { return m_iIndexCount; }
-      int vertex_count() const { return m_iVertexCount; }
-      int index_type_size() const { return m_iIndexTypeSize; }
-      int vertex_type_size() const { return m_iVertexTypeSize; }
-      int index_bytes() const { return m_iIndexByteSize; }
-      int vertex_bytes() const { return m_iVertexByteSize; };
+      ::collection::index index_count() const { return m_iIndexCount; }
+      ::collection::index vertex_count() const { return m_iVertexCount; }
+      memsize index_type_size() const { return m_iIndexTypeSize; }
+      memsize vertex_type_size() const { return m_iVertexTypeSize; }
+      memsize index_bytes() const { return m_iIndexByteSize; }
+      memsize vertex_bytes() const { return m_iVertexByteSize; };
       ::gpu::property *properties() const { return (::gpu::property *) m_ppropertyProperties; };
-      virtual void set_vertex_count(int iVertexCount);
-      virtual void set_index_count(int iIndexCount);
+      virtual void set_vertex_count(::collection::index iVertexCount);
+      virtual void set_index_count(::collection::index iIndexCount);
       virtual bool is_empty() const;
       virtual bool has_data() const;
       bool is_dummy() const
@@ -186,14 +186,14 @@ namespace gpu
          update();
       }
 
-      bool is_empty() const
+      bool is_empty() const override
       {
 
          return m_vertexes.is_empty() && m_indexes.is_empty();
 
       }
 
-      bool has_data() const
+      bool has_data() const override
       {
 
          return !this->is_empty();
@@ -216,11 +216,11 @@ namespace gpu
 
 
 
-      void set_vertex_count(int iVertexCount) override
+      void set_vertex_count(::collection::index iVertexCount) override
       { m_vertexes.set_size(iVertexCount);
          update_vertexes();
       }
-      void set_index_count(int iIndexCount) override
+      void set_index_count(::collection::index iIndexCount) override
       { m_indexes.set_size(iIndexCount);
          update_indexes();
 
@@ -292,32 +292,18 @@ namespace gpu
       }
 
 
-      virtual ::block vertex_data()
-      {
+      ::block vertex_data() override{ return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
+      ::block index_data() override { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
 
-         return {m_vertexes.data(), m_vertexes.get_size_in_bytes()};
+      const ::block vertex_data()const override { return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
+      const ::block index_data() const override { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
 
-            }
-      virtual ::block index_data()
-      {
-
-         return {m_indexes.data(), m_indexes.get_size_in_bytes()};
-
-      }
-
-      virtual const ::block vertex_data()const { return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
-      virtual const ::block index_data() const { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
-
-      const ::array_base<VERTEX> & vertexes() const
-      {
-
-         return m_vertexes;
-
-      }
+      const ::array_base<VERTEX> & vertexes() const { return m_vertexes; }
       const ::array_base<INDEX> &indexes() const { return m_indexes; }
 
-            ::array_base<VERTEX> &vertexes() { return m_vertexes; }
+      ::array_base<VERTEX> &vertexes() { return m_vertexes; }
       ::array_base<INDEX> &indexes() { return m_indexes; }
+
 
    };
 

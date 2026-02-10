@@ -30,7 +30,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA draw2d :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

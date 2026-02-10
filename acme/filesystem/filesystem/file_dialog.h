@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/dialog_base.h"
+
+
 namespace file
 {
 
@@ -39,23 +42,31 @@ namespace file
 
 
    class CLASS_DECL_ACME file_dialog :
-           virtual public particle
+           virtual public ::file::dialog_base
    {
    public:
 
 
       //void *                                           m_poswindow;
-      void *                                             m_posdata;
-      ::pointer < ::user::element>                       m_puserelement;
+      // void *                                             m_posdata;
+      // ::pointer < ::user::element>                       m_puserelement;
+      // file_dialog_filter                                 m_filedialogfilter;
+      // ::function < void(::pointer<file_dialog>) >        m_function;
+      // ::file::path                                       m_pathStartFolder;
+      // ::particle_array                                   m_particleaHold;
+      // ::file::path_array_base                            m_patha;
+
+
       file_dialog_filter                                 m_filedialogfilter;
-      ::function < void(::pointer<file_dialog>) >        m_function;
-      ::file::path                                       m_pathStartFolder;
-      bool                                               m_bSave;
+      ::function < void(::pointer<file_dialog>) >        m_procedureResponse;
+
+
       bool                                               m_bMultiple;
-      ::file::path_array_base                                 m_patha;
+      bool                                               m_bSave;
       ::collection::index                                m_iFilter;
 
-      
+
+
       file_dialog();
       ~file_dialog() override;
       
@@ -111,7 +122,9 @@ namespace file
 
       ::string get_selected_filter_main_extension() const;
 
-      void do_callback();
+      //void do_callback();
+
+      void on_dialog_response() override;
 
    };
 

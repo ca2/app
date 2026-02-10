@@ -716,4 +716,13 @@ constexpr void expand_minimum_maximum(NUMBER1 & minimum, NUMBER1 & maximum, NUMB
 }
 
 
+template < typename TYPE >
+inline TYPE & null_reference()
+{
+
+   return *((TYPE *)nullptr);
+
+}
+
+
 

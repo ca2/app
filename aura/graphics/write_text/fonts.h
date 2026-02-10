@@ -10,7 +10,7 @@ namespace write_text
 
 
    class CLASS_DECL_AURA fonts :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

@@ -7,7 +7,7 @@
 #include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
-#include "glad/glad.h"
+//#include "glad/glad.h"
 #include "gpu/model/_constant.h"
 #include "bred/platform/timer.h"
 #include "gpu_opengl/_gpu_opengl.h"
@@ -55,10 +55,10 @@ namespace gpu_opengl
       }
 
 
-      void equirectangular_cubemap::compute()
+      void equirectangular_cubemap::compute_equirectangular_cubemap(::gpu::command_buffer * pgpucommandbuffer)
       {
 
-         gpu::ibl::equirectangular_cubemap::compute();
+         gpu::ibl::equirectangular_cubemap::compute_equirectangular_cubemap(pgpucommandbuffer);
 
          // ::bred::Timer timer;
          //
@@ -106,19 +106,19 @@ namespace gpu_opengl
          //    glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
          //
          //    glEnable(GL_DEPTH_TEST);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //    glDepthMask(GL_TRUE);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //
          //
          //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //
          //
          //    glDisable(GL_DEPTH_TEST);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //    glDepthMask(GL_FALSE);
-         //    GLCheckError("");
+         //    ::opengl::check_error("");
          //
          //    m_prenderableCube->bind(pgpucommandbuffer);
          //
@@ -142,7 +142,7 @@ namespace gpu_opengl
          // }
          //
          // glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         // GLCheckError("");
+         // ::opengl::check_error("");
 
       }
 

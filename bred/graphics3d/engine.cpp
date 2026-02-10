@@ -18,6 +18,7 @@
 #include "bred/gpu/bred_approach.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
+#include "bred/gpu/context_lock.h"
 #include "bred/gpu/cpu_buffer.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
@@ -97,6 +98,8 @@ namespace graphics3d
       auto prenderer = pgpucontext->m_pgpurenderer.m_p;
 
       //prenderer->on_new_frame();
+      
+      ::gpu::context_lock contextlock(pgpucontext);
 
       if (auto pframe = prenderer->beginFrame())
       {
@@ -131,7 +134,7 @@ namespace graphics3d
 
             //}
 
-            auto pgpurendertarget = prenderer->m_pgpurendertarget.m_p;
+            auto pgpurendertarget = prenderer->render_target();
 
             int iFrameIndex = pgpurendertarget->get_frame_index();
 
@@ -463,9 +466,9 @@ namespace graphics3d
 
       set_ok_flag();
 
-      auto pgpuapproach = m_papplication->get_gpu_approach();
+      //auto pgpuapproach = m_papplication->get_gpu_approach();
 
-      auto pgpudevice = pgpuapproach->get_gpu_device();
+      auto pgpudevice = gpu_context()->m_pgpudevice;
 
       m_papplication->fork([this]()
          {
@@ -608,7 +611,9 @@ namespace graphics3d
 
       pgpuapproach->m_rectangleOffscreen = rectanglePlacement;
 
-      ::cast < ::gpu::device > pgpudevice = pgpuapproach->get_gpu_device();
+      m_rectanglePlacementNew = rectanglePlacement;
+
+      ::cast<::gpu::device> pgpudevice = get_gpu_context()->m_pgpudevice;
 
       //auto pgpucontext = pgpudevice->get_main_context();
 
@@ -728,7 +733,14 @@ namespace graphics3d
       if (!pcontext)
       {
 
-         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device();
+         if (m_rectanglePlacementNew.is_empty())
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_pusergraphics3d->acme_windowing_window());
 
          auto pgpucontextNew = pgpudevice->create_gpu_context(
             get_engine_gpu_eoutput(),
@@ -898,15 +910,15 @@ namespace graphics3d
 
       if (!m_rectanglePlacementNew.is_empty())
       {
+         
+         auto wNew = m_rectanglePlacementNew.width();
+         
+         auto hNew = m_rectanglePlacementNew.height();
 
          if (m_rectanglePlacementNew != m_rectanglePlacement)
          {
 
             m_rectanglePlacement = m_rectanglePlacementNew;
-
-            auto pcontext = gpu_context();
-
-            pcontext->set_placement(m_rectanglePlacement);
 
             defer_update_engine(m_rectanglePlacement);
 
@@ -959,7 +971,6 @@ namespace graphics3d
 
       }
 
-
    }
 
 
@@ -993,6 +1004,41 @@ namespace graphics3d
    }
 
 
+   void engine::defer_process_load_assets_commands()
+   {
+
+      auto pcontext = gpu_context();
+
+      auto pcommandbufferLoadAssets = ::transfer(pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets);
+
+      if (pcommandbufferLoadAssets)
+      {
+
+         information("There seems to be a \"Load Assets\" command buffer to be processed...");
+
+         pcontext->m_pgpurenderer->m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
+         // if (prenderer->m_pcommandbufferLoadAssets)
+         //{
+
+         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
+
+         //   m_papplication->fork([pcommandbufferLoadAssets]()
+         //      {
+
+         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
+
+         pcommandbufferLoadAssets->wait_commands_to_execute();
+
+         //         });
+
+         //   }
+
+         //}
+      }
+
+   }
+
+
    void engine::defer_update_engine(const ::int_rectangle &rectanglePlacement)
    {
 
@@ -1022,10 +1068,16 @@ namespace graphics3d
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
           //  };
+      
+      auto pgpucontext = gpu_context();
 
-      auto pcontext = gpu_context();
+      pgpucontext->set_placement(rectanglePlacement);
+      
+      defer_process_load_assets_commands();
 
       auto pscene = m_pimmersionlayer->m_pscene;
+
+      auto pcontext = gpu_context();
 
       pscene->defer_load_scene(pcontext);
 
@@ -1035,22 +1087,29 @@ namespace graphics3d
       {
 
          m_bCreatedGlobalUbo = true;
-
-         auto * pblockGlobalUbo1 = pscene->global_ubo1(pcontext);
-
-         ASSERT(::is_set(pblockGlobalUbo1));
-
-         //auto iGlobalUboSize = pscene->global_ubo1(pcontext).size(true);
-
-         //if (iGlobalUboSize > 0)
-         //{
-
-         //   create_global_ubo(pcontext);
-
-         //}
+         
+         {
+            
+            ::gpu::context_lock contextlock(pgpucontext);
+            
+            auto * pblockGlobalUbo1 = pscene->global_ubo1(pcontext);
+            
+            ASSERT(::is_set(pblockGlobalUbo1));
+            
+            //auto iGlobalUboSize = pscene->global_ubo1(pcontext).size(true);
+            
+            //if (iGlobalUboSize > 0)
+            //{
+            
+            //   create_global_ubo(pcontext);
+            
+            //}
+            
+         }
 
       }
 
+      defer_process_load_assets_commands();
 
    }
 

@@ -136,3 +136,15 @@ namespace platform
 
 
 } // namespace platform
+
+
+
+CLASS_DECL_ACME void _os_task_destroy(htask htask, itask itask)
+{
+
+
+
+}
+
+
+

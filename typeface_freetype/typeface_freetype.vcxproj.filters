@@ -23,6 +23,12 @@
     <ClInclude Include="face1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="typeface_fontconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="allocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_factory.cpp">
@@ -35,6 +41,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="typeface_fontconfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="allocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

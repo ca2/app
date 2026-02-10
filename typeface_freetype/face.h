@@ -13,7 +13,7 @@ namespace typeface_freetype
 {
 
 
-   class face :
+   class CLASS_DECL_TYPEFACE_FREETYPE face :
       virtual public ::typeface::face
    {
    public:
@@ -22,12 +22,20 @@ namespace typeface_freetype
       bool m_bFace;
       FT_Face m_face;
       int m_iCapHeight = -1;
+      ::memory m_memoryFace;
+
 
       face();
       ~face() override;
 
+
+      void initialize(::particle * pparticle) override;
+
+
       void create_character(::typeface::character& ch, const ::scoped_string& scopedstr) override;
 
+
+      void get_text_metric(::write_text::text_metric* ptextmetrics);
 
    };
 

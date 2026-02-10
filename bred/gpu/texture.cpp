@@ -4,7 +4,7 @@
 #include "layer.h"
 #include "pixmap.h"
 #include "render_target.h"
-#include "renderer.h"
+#include "context.h"
 #include "texture.h"
 #include "acme/exception/interface_only.h"
 #include "aura/graphics/image/context.h"
@@ -16,9 +16,20 @@
 namespace gpu
 {
 
+   interlocked_count g_iTextureSerial;
 
    texture::texture()
    {
+
+      m_iTextureSerial = ++g_iTextureSerial;
+      m_strTextureName.format("Texture {}", m_iTextureSerial);
+
+      if (m_iTextureSerial == 27)
+      {
+
+         ::information("m_iTextureSerial == 27");
+
+      }
 
       m_iAtlasX = 0;
       m_iAtlasY = 0;
@@ -49,39 +60,60 @@ namespace gpu
 
 
 
-   void texture::initialize_hdr_texture_on_memory(::gpu::renderer *prenderer, const ::block & block)
+   void texture::initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block)
    {
 
 
    }
 
 
-   void texture::initialize_with_image_data(::gpu::renderer * pgpurenderer,
+   void texture::initialize_with_image_data(::gpu::context * pgpucontext,
                                               const ::int_rectangle & rectangleTarget,
                                      int numChannels, bool bSrgb, const void * pdata,
                                      enum_texture etexture)
    {
+
+      //  if (m_rectangleTarget == rectangleTarget)
+      //{
+
+      //   return;
+      //}
+
+      ::gpu::texture_attributes textureattributes(rectangleTarget);
+
+      textureattributes.m_iChannelCount = numChannels;
+      textureattributes.m_iFloat = bSrgb ? 1 : 0;
+      textureattributes.m_etexture = etexture;
+
+      ::gpu::texture_flags textureflags;
+
+      ::gpu::texture_data texturedata(pdata);
+
+      //      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
+
+      initialize_texture(pgpucontext, textureattributes, textureflags, texturedata);
+
 
 
          }
 
 
 
-   void texture::initialize_texture(::gpu::renderer * pgpurenderer,
+   void texture::initialize_texture(::gpu::context * pgpucontext,
       const texture_attributes & textureattributes,
       const texture_flags & textureflags,
       const texture_data & texturedata
       )
    {
 
-      ::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
+      //::gpu::context_lock contextlock(pgpucontext->m_pgpucontext);
 
       m_textureflags = textureflags;
 
-      if (m_pgpurenderer != pgpurenderer || m_textureattributes != textureattributes)
+      if (m_pgpucontext != pgpucontext || m_textureattributes != textureattributes)
       {
 
-         m_pgpurenderer = pgpurenderer;
+         m_pgpucontext = pgpucontext;
 
          m_textureattributes = textureattributes;
 
@@ -121,7 +153,7 @@ namespace gpu
    }
 
 
-   //void texture::initialize_mipmap_cubemap_texture(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
+   //void texture::initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::int_rectangle &rectangleTarget,
    //                                       int iMipCount, bool bRenderTarget, bool bShaderResource)
    //{
 
@@ -129,19 +161,19 @@ namespace gpu
 
    //   ::gpu::texture_flags textureflags(false, bRenderTarget, bShaderResource);
 
-   //   initialize_texture(pgpurenderer, textureattributes, textureflags);
+   //   initialize_texture(pgpucontext, textureattributes, textureflags);
 
    //}
 
 
-   void texture::initialize_depth_texture(::gpu::renderer* pgpurenderer, const ::int_rectangle& rectangleTarget)
+   void texture::initialize_depth_texture(::gpu::context* pgpucontext, const ::int_rectangle& rectangleTarget)
    {
 
       ::gpu::texture_attributes textureattributes(rectangleTarget, 16, 1, 0, 1, e_texture_depth);
 
-      initialize_texture(pgpurenderer, textureattributes);
+      initialize_texture(pgpucontext, textureattributes);
       // m_etype = e_type_depth;
-      // m_pgpurenderer = pgpurenderer;
+      // m_pgpucontext = pgpucontext;
       // m_textureattributes.m_rectangleTarget = rectangleTarget;
 
    }
@@ -338,14 +370,14 @@ namespace gpu
    }
 
 
-   void texture::initialize_texture_from_file_path(::gpu::renderer* pgpurenderer, const ::file::path& path, bool bIsSrgb)
+   void texture::initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path& path, bool bIsSrgb)
    {
 
       auto pimage = image()->path_image(path);
 
       ::pointer_array < ::image::image > imagea({ pimage });
 
-      initialize_texture_from_image(pgpurenderer, imagea);
+      initialize_texture_from_image(pgpucontext, imagea);
 
    }
 
@@ -397,7 +429,7 @@ namespace gpu
 
 
    void texture::initialize_texture_from_image(
-      ::gpu::renderer* pgpurenderer, const ::pointer_array < ::image::image >& imagea, enum_texture etexture)
+      ::gpu::context* pgpucontext, const ::pointer_array < ::image::image >& imagea, enum_texture etexture)
    {
 
       auto rectangle = imagea.first()->rectangle();
@@ -417,16 +449,16 @@ namespace gpu
 
       }
 
-      initialize_texture(pgpurenderer, textureattributes, {}, imagea);
+      initialize_texture(pgpucontext, textureattributes, {}, imagea);
 
       if (is_ok())
       {
 
-         auto pcommandbuffer = pgpurenderer->m_pgpucontext->beginSingleTimeCommands(pgpurenderer->m_pgpucontext->m_pgpudevice->transfer_queue());
+         auto pcommandbuffer = pgpucontext->beginSingleTimeCommands(pgpucontext->m_pgpudevice->transfer_queue());
 
          this->set_state(pcommandbuffer, ::gpu::e_texture_state_shader_read);
 
-         pgpurenderer->m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
+         pgpucontext->endSingleTimeCommands(pcommandbuffer);
 
       }
 
@@ -531,7 +563,7 @@ namespace gpu
    //void texture::blend(::gpu::texture* ptexture)
    //{
 
-   //   m_pgpurenderer->blend(this, ptexture);
+   //   m_pgpucontext->blend(this, ptexture);
 
    //}
 
@@ -590,7 +622,7 @@ namespace gpu
 
       ødefer_construct(m_ptextureDepth);
 
-      m_ptextureDepth->initialize_depth_texture(m_pgpurenderer, m_textureattributes.m_rectangleTarget);
+      m_ptextureDepth->initialize_depth_texture(m_pgpucontext, m_textureattributes.m_rectangleTarget);
 
       return m_ptextureDepth;
 

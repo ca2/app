@@ -4,7 +4,7 @@
 ////#include "acme/prototype/prototype/object.h"
 
 
-namespace acme
+namespace platform
 {
 
 
@@ -42,7 +42,7 @@ namespace acme
    };
 
 
-} // namespace acme
+} // namespace platform
 
 
 

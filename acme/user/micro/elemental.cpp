@@ -773,13 +773,7 @@ namespace micro
    void elemental::add_child(::micro::elemental * pelementalChild)
    {
 
-      pelementalChild->m_pacmeuserinteractionParent = this;
-
-      ødefer_construct_new(m_pacmeuserinteractionaChildren);
-
-      __refdbg_add_referer
-
-         m_pacmeuserinteractionaChildren->add(pelementalChild);
+      on_add_child(pelementalChild);
 
    }
 

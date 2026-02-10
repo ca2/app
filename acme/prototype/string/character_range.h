@@ -626,7 +626,7 @@ struct std::formatter<::character_range<ITERATOR_TYPE>>
 inline void test_u03485203845()
 {
 
-   ::std::string_view stringview;
+   //::std::string_view stringview;
 
    character_range < const ::ansi_character *> a;
 

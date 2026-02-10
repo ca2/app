@@ -1122,7 +1122,7 @@ namespace user
       __UNREFERENCED_PARAMETER(puiParent);
 
       // only do this once
-      //   ASSERT_VALID_IDR(nIDResource);
+      //   ASSERT_OK_IDR(nIDResource);
       //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
 
       m_strMatterHelp = scopedstrMatter;    // ID for help context (+HID_BASE_RESOURCE)
@@ -1433,7 +1433,7 @@ namespace user
 //      return false;
 
       // only do this once
-      //   ASSERT_VALID_IDR(nIDResource);
+      //   ASSERT_OK_IDR(nIDResource);
       //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
 
       /*m_nIDHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
@@ -3121,7 +3121,7 @@ namespace user
       if(pstyle)
       {
 
-         ::get_task()->payload("debug") = 123;
+         //::get_task()->payload("debug") = 123;
 
          if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
          {

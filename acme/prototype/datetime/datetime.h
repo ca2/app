@@ -39,7 +39,7 @@ namespace datetime
 
 
    class CLASS_DECL_ACME datetime:
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

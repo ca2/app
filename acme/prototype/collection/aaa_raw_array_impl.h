@@ -372,7 +372,7 @@
 ////::collection::count raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate(::collection::count nNewSize, ::collection::count nGrowBy)
 ////{
 ////   ::collection::count countOld = get_count();
-////   ASSERT_VALID(this);
+////   ASSERT_OK(this);
 ////   ASSERT(nNewSize >= 0);
 ////
 ////   if(nNewSize < 0 )
@@ -486,7 +486,7 @@
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 ////void raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra()
 ////{
-////   ASSERT_VALID(this);
+////   ASSERT_OK(this);
 ////
 ////   if (m_nSize != m_nMaxSize)
 ////   {
@@ -513,7 +513,7 @@
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 ////void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_at_grow(::collection::index nIndex, ARG_TYPE newElement)
 ////{
-////   //ASSERT_VALID(this);
+////   //ASSERT_OK(this);
 ////   //ASSERT(nIndex >= 0);
 ////
 ////   if(nIndex < 0)
@@ -554,9 +554,9 @@
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
 ////::collection::index raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::collection::index nStartIndex, raw_array * pNewArray)
 ////{
-////   ASSERT_VALID(this);
+////   ASSERT_OK(this);
 ////   ASSERT(pNewArray != nullptr);
-////   ASSERT_VALID(pNewArray);
+////   ASSERT_OK(pNewArray);
 ////   ASSERT(nStartIndex >= 0);
 ////
 ////   if(pNewArray == nullptr || nStartIndex < 0)

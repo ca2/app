@@ -35,13 +35,7 @@ namespace gpu_opengl
          // ::pointer<cubemap_framebuffer> diffuseIrradianceFramebuffer;
 
 
-         /**
-          * Initialize a diffuse irradiance map.
-          * @param hdriPath path to an .hdr image in equirectangular projection format
-          */
          diffuse_irradiance_map();
-
-
          ~diffuse_irradiance_map() override;
 
 
@@ -54,18 +48,8 @@ namespace gpu_opengl
          //    ::gpu::renderer * pgpurenderer,
          //    unsigned int uEnvironmentCubemapId) override;
 
-         /**
-          * Render the diffuse irradiance map.
-          */
         void computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer) override;
 
-
-         /**
-          * Get the GL texture ID of the computed cubemap.
-          * @return
-          */
-
-         //unsigned int getCubemapId();
 
 
       };

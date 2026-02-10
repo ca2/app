@@ -24,7 +24,7 @@ namespace user
    }
 
 
-   void options_impact_handler::create_options_impact(::user::interaction *puserinteractionParent)
+   void options_impact_handler::create_options_impact(const ::atom &atom, ::user::interaction *puserinteractionParent)
    {
 
       debug() << "(berg) user::options_impact_handler::create_options_impact";

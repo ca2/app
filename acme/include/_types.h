@@ -11,7 +11,7 @@ using process_identifier = long long;
 using nullptr_t = ::std::nullptr_t;
 
 
-constexpr unsigned long long operator "" _uintmax(unsigned long long u) { return u << 32LL; }
+constexpr unsigned long long operator""_uintmax(unsigned long long u) { return u << 32LL; }
 
 
 #include "acme/parallelization/_types.h"

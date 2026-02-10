@@ -76,7 +76,14 @@ void press_any_key_to_exit(const ::scoped_string & scopedstrPrompt)
 
    printf("%s\n", strPrompt.c_str());
 
-   getchar();
+   int iGetChar = getchar();
+
+   if(iGetChar == EOF)
+   {
+
+      printf("Error getting character.");
+
+   }
 
 }
 

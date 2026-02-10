@@ -2643,7 +2643,7 @@ namespace user
 
                auto pcontextmenu = øcreate_new < ::message::context_menu >();
 
-               pcontextmenu->m_emessage = ::user::e_message_context_menu;
+               pcontextmenu->m_eusermessage = ::user::e_message_context_menu;
 
                auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
 
@@ -5303,6 +5303,13 @@ namespace user
 
    character_count plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, ::collection::index iLine)
    {
+      
+      if(iLine < 0)
+      {
+         
+         return -1;
+         
+      }
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

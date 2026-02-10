@@ -173,7 +173,7 @@ void windowing::initialize(::particle * pparticle)
 }
 
 
-void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
 {
    
    //      if (::is_set(m_phostinteraction))
@@ -205,27 +205,33 @@ void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
    if(::is_set(m_pwindowApplicationHost))
    {
       
-      return;
+      return m_pwindowApplicationHost;
       
    }
    
    øconstruct(m_phostinteraction);
    
-   m_phostinteraction->create_window();
+   auto puserinteraction = m_phostinteraction;
    
-//   m_phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+   puserinteraction->create_window();
    
-   m_phostinteraction->display();
+   //puserinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
    
-//   m_phostinteraction->m_bNeedPerformLayout = true;
+   //puserinteraction->display();
    
-  // m_phostinteraction->set_need_layout();
+   //puserinteraction->m_bNeedPerformLayout = true;
    
-   m_phostinteraction->set_need_redraw();
+   //puserinteraction->set_need_layout();
    
-   m_phostinteraction->post_redraw();
+   puserinteraction->set_need_redraw();
    
-   m_pwindowApplicationHost = m_phostinteraction->acme_windowing_window();
+   puserinteraction->post_redraw();
+   
+   m_pwindowApplicationHost = puserinteraction->acme_windowing_window();
+   
+   auto pacmewindowbridge = m_pwindowApplicationHost->get_acme_window_bridge();
+   
+   return pacmewindowbridge;
    
 }
 
@@ -236,6 +242,8 @@ void windowing::_will_finish_launching()
    //defer_initialize_host_window(nullptr);
 //
 //   ::acme::windowing::windowing::_will_finish_launching();
+   
+   system()->post_application_start();
    
 }
 

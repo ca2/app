@@ -52,13 +52,9 @@ namespace gpu
          ::pointer < ::gpu::texture > m_ptextureDiffuseIrradianceCubemap;
          //::pointer<::gpu::cube> m_pgpucube;
          ::pointer<::graphics3d::renderable> m_prenderableCube;
-         /**
-          * Initialize a diffuse irradiance map.
-          * @param hdriPath path to an .hdr image in equirectangular projection format
-          */
+
+
          diffuse_irradiance_map();
-
-
          ~diffuse_irradiance_map() override;
 
 

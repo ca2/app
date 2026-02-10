@@ -112,6 +112,13 @@ namespace user
 
          auto strWindowText = get_window_text();
 
+         if (strWindowText == "OpenGL")
+         {
+
+            warning() << "OpenGL";
+
+         }
+
          //get_window_text(strText);
 
          ::double_rectangle rectangleX;

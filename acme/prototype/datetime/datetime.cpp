@@ -61,7 +61,7 @@ namespace datetime
    void datetime::initialize(::particle * pparticle)
    {
     
-      /*auto estatus = */ ::acme::department::initialize(pparticle);
+      /*auto estatus = */ ::platform::department::initialize(pparticle);
 
       defer_create_synchronization();
 
@@ -138,7 +138,7 @@ namespace datetime
 
       //m_pstr.release();
 
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
       //return ::success;
 

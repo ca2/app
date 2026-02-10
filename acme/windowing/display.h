@@ -46,8 +46,9 @@ namespace acme
 
          ::collection::count get_monitor_count();
 
-         virtual void get_os_display_handle(void *p, int iSize);
+         virtual void * _get_x11_display();
 
+         virtual long long _get_x11_root_window();
 
          void kick_idle() override;
 

@@ -24,7 +24,7 @@ namespace nano
    
    
       class CLASS_DECL_ACME speech :
-         virtual public ::acme::department
+         virtual public ::platform::department
       {
       public:
          

@@ -10,7 +10,7 @@ namespace xml
 
 
    class CLASS_DECL_AQUA xml :
-      public ::acme::department
+      public ::platform::department
    {
    public:
 

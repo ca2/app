@@ -198,9 +198,13 @@ list(APPEND library_source
    prodevian/immersion.cpp
    prodevian/immersion.h
    typeface/_.h
+   typeface/allocator.cpp
+   typeface/allocator.h
    typeface/character.h
    typeface/face.cpp
    typeface/face.h
+   typeface/typeface.cpp
+   typeface/typeface.h
    user/user/graphics3d.cpp
    user/user/graphics3d.h
    user/user/user.cpp
@@ -232,7 +236,12 @@ list(APPEND library_references
    berg)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   typeface/character.cpp
+   gpu/fence.cpp
+   gpu/fence.h
+   gpu/semaphore.cpp
+   gpu/semaphore.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

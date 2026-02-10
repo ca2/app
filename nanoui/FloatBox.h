@@ -51,7 +51,7 @@ namespace nanoui
       }
 
       void set_callback(const ::function<void(Scalar)>& cb) {
-         TextBox::set_callback([cb, this](const ::scoped_string& str) {
+         TextBox::set_callback([cb, this](const ::scoped_string& str)->bool {
             Scalar scalar;
             ::from_string(scalar, str);
             set_value(scalar, e_source_user);

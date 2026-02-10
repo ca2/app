@@ -769,6 +769,13 @@ namespace user
 
       auto sizeNew = size;
 
+      if (size.cx < 10 || size.cy < 10)
+      {
+
+         information("interaction::set_size cx < 10 || cy < 10");
+
+      }
+
       if (!on_set_size(sizeNew, elayout))
       {
 
@@ -2030,7 +2037,7 @@ namespace user
       }
 
       if (
-         window() &&
+         m_pacmewindowingwindow &&
          window()->m_pgraphicsthread &&
          window()->m_pgraphicsthread->m_bFps)
       {
@@ -4372,6 +4379,14 @@ namespace user
    }
 
 
+   void interaction::show()
+   {
+         
+      display(e_display_normal); 
+      
+   }
+
+
    void interaction::hide()
    {
 
@@ -5253,7 +5268,7 @@ namespace user
    void interaction::_001OnTopNcClip(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (!pgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
+      if (::is_set(pgraphics->m_pgraphicsgraphics) && !pgraphics->m_pgraphicsgraphics->is_single_buffer_mode())
       {
 
          return;
@@ -5923,7 +5938,14 @@ namespace user
                   if (puserinteraction->has_destroying_flag() || !puserinteraction->is_window())
                   {
 
-                     informationf("trying to draw window being destroyed");
+                     if(!puserinteraction->is_window())
+                     {
+                        informationf("trying to draw window being destroyed !window");
+                     }else{
+                        informationf("trying to draw window being destroyed");
+
+                        
+                     }
 
                      continue;
 
@@ -5987,9 +6009,30 @@ namespace user
 
                      //synchronouslock.unlock();
 
-                     ::draw2d::save_context savecontext(pgraphics);
+                     {
 
-                     puserinteraction->defer_do_graphics(pgraphics);
+                        ::draw2d::save_context savecontext(pgraphics);
+
+                        //puserinteraction->do_graphics(pgraphics);
+
+                        puserinteraction->_000CallOnDraw(pgraphics);
+
+                     }
+                     
+//                     if (m_pacmewindowingwindow && !get_parent())
+//                     {
+//
+//                      //  window()->do_graphics(pgraphics);
+//                        
+//                        window()->do_graphics();
+//
+//                     }
+//                     else
+//                     {
+//
+//                        _000CallOnDraw(pgraphics);
+//
+//                     }
 
                      //synchronouslock.lock();
 
@@ -6062,64 +6105,66 @@ namespace user
    }
 
 
-   //   void interaction::do_graphics(::draw2d::graphics_pointer &pgraphics)
-   //   {
+      void interaction::do_graphics(::draw2d::graphics_pointer &pgraphics)
+      {
+
+      throw "error";
+   
+         ::draw2d::save_context savecontext(pgraphics);
+   
+         payload("draw_control_background_counter") = 0;
+   
+         payload("nc_draw_0_fill_counter") = 0;
+   
+         try
+         {
+   
+            //_000CallOnDraw(pgraphics);
+   
+         }
+         catch (...)
+         {
+   
+         }
+   
+   //      auto pwindowing = windowing();
    //
-   //      ::draw2d::save_context savecontext(pgraphics);
-   //
-   //      payload("draw_control_background_counter") = 0;
-   //
-   //      payload("nc_draw_0_fill_counter") = 0;
-   //
-   //      try
+   //      if (::is_set(pwindowing) && pwindowing->m_bDrawCursor)
    //      {
    //
-   //         _000CallOnDraw(pgraphics);
+   //         ::draw2d::save_context savecontext(pgraphics);
+   //
+   //         try
+   //         {
+   //
+   //            auto pwindowing = windowing();
+   //
+   //            auto pwindowThis = window();
+   //
+   //            auto pointCursor = pwindow->get_cursor_position();
+   //
+   //            screen_to_client(e_layout_design)(pointCursor);
+   //
+   //            auto *pcursor = pwindowing->get_cursor();
+   //
+   //            if (pcursor != nullptr && pgraphics != nullptr)
+   //            {
+   //
+   //               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //
+   //               //pgraphics->draw(pointCursor, pcursor);
+   //
+   //            }
+   //
+   //         }
+   //         catch (...)
+   //         {
+   //
+   //         }
    //
    //      }
-   //      catch (...)
-   //      {
-   //
-   //      }
-   //
-   ////      auto pwindowing = windowing();
-   ////
-   ////      if (::is_set(pwindowing) && pwindowing->m_bDrawCursor)
-   ////      {
-   ////
-   ////         ::draw2d::save_context savecontext(pgraphics);
-   ////
-   ////         try
-   ////         {
-   ////
-   ////            auto pwindowing = windowing();
-   ////
-   ////            auto pwindowThis = window();
-   ////
-   ////            auto pointCursor = pwindow->get_cursor_position();
-   ////
-   ////            screen_to_client(e_layout_design)(pointCursor);
-   ////
-   ////            auto *pcursor = pwindowing->get_cursor();
-   ////
-   ////            if (pcursor != nullptr && pgraphics != nullptr)
-   ////            {
-   ////
-   ////               pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-   ////
-   ////               //pgraphics->draw(pointCursor, pcursor);
-   ////
-   ////            }
-   ////
-   ////         }
-   ////         catch (...)
-   ////         {
-   ////
-   ////         }
-   ////
-   ////      }
-   //
-   //   }
+   
+   }
 
 
    string interaction::calc_window_class()
@@ -6549,23 +6594,23 @@ namespace user
    }
 
 
-   void interaction::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      if (m_pacmewindowingwindow && !get_parent())
-      {
-
-         window()->defer_do_graphics(pgraphics);
-
-      }
-      else
-      {
-
-         _000CallOnDraw(pgraphics);
-
-      }
-
-   }
+//   void interaction::do_graphics(::draw2d::graphics_pointer & pgraphics)
+//   {
+//
+//      if (m_pacmewindowingwindow && !get_parent())
+//      {
+//
+//         window()->do_graphics(pgraphics);
+//
+//      }
+//      else
+//      {
+//
+//         _000CallOnDraw(pgraphics);
+//
+//      }
+//
+//   }
 
 
    void interaction::_000TopCallOnLayout(::draw2d::graphics_pointer & pgraphics)
@@ -7011,10 +7056,85 @@ namespace user
    }
 
 
+   void interaction::defer_update_hover(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      return;
+
+      {
+
+         auto pmouse = ::transfer(m_pmousePendingBackUpdateHover);
+
+         if (pmouse)
+         {
+
+            auto type = ::platform::type(this);
+
+            if (type.name().contains("experience") && type.name().contains("button"))
+            {
+
+               informationf("experience, button");
+
+            }
+
+            __check_refdbg;
+
+
+
+            scoped_restore (m_pgraphicsInternalPriority);
+
+            m_pgraphicsInternalPriority = pgraphics.m_p;
+            ::item_pointer pitemFront;
+
+            ::item_pointer pitemBack;
+
+            //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
+
+            if (!m_bDefaultParentMouseMessageHandling)
+            {
+
+               //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
+
+               pitemFront = update_hover(pmouse, e_zorder_front);
+
+            }
+
+            if (!::is_item_set(pitemFront))
+            {
+
+               __check_refdbg;
+
+               if (type.name().contains("experience") && type.name().contains("button"))
+               {
+
+                  informationf("experience, button going to update_hover with e_zorder_back");
+
+               }
+
+               //information() << "update_hover pmouse e_zorder_back";
+
+               pitemBack = update_hover(pmouse, e_zorder_back);
+
+               __check_refdbg;
+
+            }
+
+            //m_pgraphicsInternalPriority = nullptr;
+
+         }
+
+      }
+
+
+   }
+
+
    void interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       scoped_restore(pgraphics->m_bInheritDraw);
+
+      defer_update_hover(pgraphics);
 
       //      auto pszType = typeid(*this).name();
       //
@@ -7183,7 +7303,7 @@ namespace user
          //}
 
 
-         pgraphics->m_dFontFactor = 1.0;
+         //pgraphics->m_dFontFactor = 1.0;
 
          ::draw2d::save_context savecontext(pgraphics);
 
@@ -10329,6 +10449,17 @@ if(get_parent())
                                                  bool bOnlyPerm)
    {
 
+      auto a = eusermessage;
+
+      //auto pLresult = øallocate particle_primitive < ::lresult >();
+
+      //pLresult->m_t = 0;
+
+      ::pointer < ::user::interaction > pthis = this;
+
+      window()->main_send([this, pthis, a, wparam, lparam, bDeep, bOnlyPerm]()
+      {
+
       //if (window() == nullptr)
       //{
 
@@ -10358,7 +10489,7 @@ if(get_parent())
             try
             {
 
-               puserinteraction->send_message(eusermessage, wparam, lparam);
+               puserinteraction->send_message(a, wparam, lparam);
 
             }
             catch (...)
@@ -10384,7 +10515,7 @@ if(get_parent())
             try
             {
 
-               puserinteraction->send_message_to_descendants(eusermessage, wparam, lparam, true, bOnlyPerm);
+               puserinteraction->send_message_to_descendants(a, wparam, lparam, true, bOnlyPerm);
 
 
             }
@@ -10396,6 +10527,11 @@ if(get_parent())
          }
 
       }
+
+               });
+
+      //return pLresult->m_t;
+
 
    }
 
@@ -11332,6 +11468,29 @@ if(get_parent())
          return false;
 
       }
+      
+      if(!(m_ewindowflag & e_window_flag_is_window))
+      {
+         
+         return false;
+         
+      }
+         if(!(m_ewindowflag & e_window_flag_window_created))
+         {
+            
+            return false;
+            
+         }
+//         if(::is_set(m_pacmewindowingwindow ))
+//         {
+//            
+//            if(!m_pacmewindowingwindow->is_window())
+//            {
+//               return false;
+//               
+//            }
+//            
+//         }
 
       //if (::is_null(window()))
       //{
@@ -11352,7 +11511,7 @@ if(get_parent())
 
       }
 
-      return is_window();
+      return true;
 
    }
 
@@ -13843,17 +14002,17 @@ if(get_parent())
 
       auto predZ = [elayout](auto & pui1, auto & pui2)
          {
+            ::cast < ::user::interaction > p1 = pui1;
 
-            if (!pui1 || !pui2)
+            ::cast < ::user::interaction > p2 = pui2;
+
+            if (!p1 || !p2)
             {
 
                return false;
 
             }
 
-         ::cast < ::user::interaction > p1 = pui1;
-
-         ::cast < ::user::interaction > p2 = pui2;
 
             return (bool)(p1->const_layout().state(elayout).zorder() < p2->const_layout().state(elayout).zorder());
 
@@ -13903,6 +14062,13 @@ if(get_parent())
       {
 
          ::cast < ::user::interaction> pchild = pacmeuserinteractionChild;
+         
+         if(::is_null(pchild))
+         {
+            
+            continue;
+            
+         }
          pchild->layout().sketch()._patch_order(iZOrder);
 
          pchild->layout().sketch().zorder().clear_request();
@@ -14219,9 +14385,10 @@ if(get_parent())
 
                   ::pointer<::aura::application> papp = get_app();
 
-                  if (pinteraction->m_bExtendOnParent ||
+                  if (::is_set(pinteraction)  &&
+                      (pinteraction->m_bExtendOnParent ||
                       (pinteraction->m_bExtendOnParentIfOnlyClient
-                         && papp && papp->m_bExperienceMainFrame))
+                         && papp && papp->m_bExperienceMainFrame)))
                   {
 
                      synchronouslock.unlock();
@@ -15342,6 +15509,8 @@ if(get_parent())
 
       top_down_prefix();
 
+      bool bNeedPerformLayoutHere = false;
+
       if (m_bNeedPerformLayout)
       {
 
@@ -15358,9 +15527,11 @@ if(get_parent())
 
          }
 
+         bNeedPerformLayoutHere = true;
+
       }
 
-      bool bNeedPerformLayoutHere = need_on_perform_layout(pgraphics);
+      bNeedPerformLayoutHere |= need_on_perform_layout(pgraphics);
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -15684,6 +15855,13 @@ if(get_parent())
       auto yPos = rectangle.top;
       auto w = rectangle.width();
       auto h = rectangle.height();
+
+      if (w < 10 || h < 10)
+      {
+
+         information("_on_configure_notify_unlocked w < 10 || h < 10");
+
+      }
 
       //::int_point p(r.left, r.top);
 
@@ -18265,34 +18443,53 @@ if(get_parent())
    }
 
 
-   bool interaction::on_add_child(::user::interaction * puserinteractionChild)
+   bool interaction::on_add_child(::acme::user::interaction * pacmeuserinteractionChild)
    {
 
       //information() << "interaction::on_add_child start\n";
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      
 
-      puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
-      // ::pointer<::user::interaction_array> puserinteractionpointeraChildNew;
-
-      // if (::is_set(m_puserinteractionpointeraChild))
-      // {
-
-      //    puserinteractionpointeraChildNew = øallocate ::user::interaction_array(*m_puserinteractionpointeraChild);
-
-      // }
-      // else
-      // {
-
-      ødefer_construct_new(m_pacmeuserinteractionaChildren);
-
-      // }
-
-      m_pacmeuserinteractionaChildren->add_unique(puserinteractionChild);
-
-      //m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
-
+      if(!::user::interaction_base::on_add_child(pacmeuserinteractionChild))
+      {
+         
+         return false;
+         
+      }
+      
+      ::cast < ::user::interaction > puserinteractionChild = pacmeuserinteractionChild;
+      
+      if(puserinteractionChild)
+      {
+         
+         puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
+         
+      }
+      
       return true;
+//      // ::pointer<::user::interaction_array> puserinteractionpointeraChildNew;
+//
+//      // if (::is_set(m_puserinteractionpointeraChild))
+//      // {
+//
+//      //    puserinteractionpointeraChildNew = øallocate ::user::interaction_array(*m_puserinteractionpointeraChild);
+//
+//      // }
+//      // else
+//      // {
+//      
+//      auto &pacmeuserinteractionaChildren=m_pacmeuserinteractionaChildren;
+//
+//      ødefer_construct_new(pacmeuserinteractionaChildren);
+//
+//      // }
+//
+//      pacmeuserinteractionaChildren->add_unique(puserinteractionChild);
+//
+//      //m_puserinteractionpointeraChild = puserinteractionpointeraChildNew;
+
+      //return true;
 
    }
 
@@ -19420,8 +19617,17 @@ if(get_parent())
 
    ::user::interaction * interaction::first_child()
    {
+      
+      auto pwindow = window();
+      
+      if(::is_null(pwindow))
+      {
+         
+         return nullptr;
+         
+      }
 
-      _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(pwindow->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
@@ -19436,10 +19642,22 @@ if(get_parent())
          }
          else
          {
+            
+            for(::collection::index i = 0; i < pacmeuserinteractionaChildren->size(); i++)
+            {
+               
+               ::cast < ::user::interaction > puserinteractionFirst = pacmeuserinteractionaChildren->element_at(i);
+               
+               if(::is_set(puserinteractionFirst))
+               {
+                  
+                  return puserinteractionFirst;
+                  
+               }
+               
+            }
 
-            ::cast < ::user::interaction > puserinteractionFirst = pacmeuserinteractionaChildren->first();
-
-            return puserinteractionFirst;
+            return nullptr;
 
          }
 
@@ -23359,6 +23577,13 @@ if(get_parent())
    ::draw2d::graphics_pointer interaction::get_internal_draw2d_graphics()
    {
 
+      if (m_pgraphicsInternalPriority)
+      {
+
+         return m_pgraphicsInternalPriority;
+
+      }
+
       auto pinteractionHost = get_wnd();
 
       if (::is_null(pinteractionHost))
@@ -24207,8 +24432,17 @@ if(get_parent())
    {
 
       //#ifdef WINDOWS
+      
+      auto puserinteractionTopLevel = top_level();
+      
+      if(::is_null(puserinteractionTopLevel))
+      {
+         
+         return;
+         
+      }
 
-      _synchronous_lock synchronouslock(top_level()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(puserinteractionTopLevel->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       auto pwindowThis = window();
 
@@ -27213,51 +27447,42 @@ __check_refdbg;
          if (bUpdateHover)
          {
 
-            auto type = ::platform::type(this);
+            m_pmousePendingBackUpdateHover = pmouse;
 
-            if (type.name().contains("experience") && type.name().contains("button"))
-            {
-
-               informationf("experience, button");
-
-            }
-
-            __check_refdbg;
-
-            ::item_pointer pitemFront;
-
-            ::item_pointer pitemBack;
-
-            //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
-
-            if (!m_bDefaultParentMouseMessageHandling)
-            {
-
-               //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
-
-               pitemFront = update_hover(pmouse, e_zorder_front);
-
-            }
-
-            if (!::is_item_set(pitemFront))
-            {
-
-               __check_refdbg;
-
-               if (type.name().contains("experience") && type.name().contains("button"))
-               {
-
-                  informationf("experience, button going to update_hover with e_zorder_back");
-
-               }
-
-               //information() << "update_hover pmouse e_zorder_back";
-
-               pitemBack = update_hover(pmouse, e_zorder_back);
-
-               __check_refdbg;
-
-            }
+            // ::item_pointer pitemFront;
+            //
+            // ::item_pointer pitemBack;
+            //
+            // //bool bAvoidRedraw = !m_bDefaultMouseHoverHandling;
+            //
+            // if (!m_bDefaultParentMouseMessageHandling)
+            // {
+            //
+            //    //informationf("on_message_mouse_move %d,%d", pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y);
+            //
+            //    pitemFront = update_hover(pmouse, e_zorder_front);
+            //
+            // }
+            //
+            // if (!::is_item_set(pitemFront))
+            // {
+            //
+            //    __check_refdbg;
+            //
+            //    if (type.name().contains("experience") && type.name().contains("button"))
+            //    {
+            //
+            //       informationf("experience, button going to update_hover with e_zorder_back");
+            //
+            //    }
+            //
+            //    //information() << "update_hover pmouse e_zorder_back";
+            //
+            //    pitemBack = update_hover(pmouse, e_zorder_back);
+            //
+            //    __check_refdbg;
+            //
+            // }
 
             //update_hover(pointCursorClient, false);
 

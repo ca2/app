@@ -1111,6 +1111,13 @@ namespace user
 
       //information() << "graphics_thread_iteration (A0)";
 
+      if (!m_puserinteraction->is_window())
+      {
+
+         return false;
+
+      }
+
       if (!m_puserinteraction ||
          m_puserinteraction->has_finishing_flag()
          || m_puserinteraction->has_destroying_flag()

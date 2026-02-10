@@ -15,14 +15,14 @@ namespace gpu_opengl
    public:
 
 
+      bool m_bMesa = false;
+
       bool     m_bDepthBuffer = true;
       //GLuint m_vaoFullScreenQuad;
       //GLuint m_vboFullScreenQuad;
       ::pointer < ::gpu_opengl::frame_buffer >   m_pframebuffer;
       ::pointer < ::gpu_opengl::shader >   m_pshaderCopy;
-      ::pointer < ::gpu_opengl::shader >   m_pshaderBlend3;
       ::int_size                    m_sizeHost;
-      ::pointer < ::gpu::model_buffer >      m_pmodelbufferDummy;
       //bool m_bMesa;
 
       // GLuint m_globalUBO;
@@ -59,8 +59,6 @@ namespace gpu_opengl
       void set_cull_face(::gpu::enum_cull_mode ecullmode) override;
       //void swap_buffers() override;
 
-      void _context_lock() override;
-      void _context_unlock() override;
 
       virtual void update_framebuffer(const ::int_size& size);
       //void gpu_debug_message(const ::scoped_string& scopedstrMessage) override;
@@ -92,21 +90,19 @@ namespace gpu_opengl
       //virtual string get_shader_version_text();
 
 
+      //virtual void _create_offscreen_window(const ::int_size & size);
 
-      virtual void _create_offscreen_window(const ::int_size & size);
+      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence) override;
 
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
+                             ::acme::windowing::window *pwindow, const ::int_size &size) override;
 
-      void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size) override;
-
-      void defer_create_window_context(::windowing::window * pwindow) override;
-      void _defer_create_window_context(::windowing::window * pwindow) override;
-      virtual void _create_window_context(::windowing::window * pwindow);
-
+      void defer_create_window_context(::acme::windowing::window *pwindow) override;
+      void _defer_create_window_context(::acme::windowing::window *pwindow) override;
+      virtual void _create_window_context(::acme::windowing::window *pwindow);
 
 
-      virtual void _create_window_buffer();
-      void _create_cpu_buffer(const ::int_size& size) override;
+      //void _create_cpu_buffer(const ::int_size& size) override;
       void resize_cpu_buffer(const ::int_size& size) override;
       void destroy_cpu_buffer() override;
 
@@ -125,7 +121,7 @@ namespace gpu_opengl
       //void copy(::gpu::texture* ptexture) override;
       //virtual void _copy_using_shader(::gpu::texture* ptexture);
       virtual void _copy_using_blit(::gpu::texture* ptexture);
-      void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
+      void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 
       void on_start_layer(::gpu::layer* player) override;
 
@@ -212,7 +208,10 @@ namespace gpu_opengl
        void load_ktxTexture_cube_map(::gpu::texture * pgputexture, void *p_ktxTexture) override;
 
 
-      void swap_buffers() override;
+            //virtual void _opengl_lock();
+      //virtual void _opengl_unlock();
+
+      //void swap_buffers();
 
    };
 

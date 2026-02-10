@@ -4,8 +4,10 @@
 #include "framework.h"
 #include "face.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include <fontconfig/fontconfig.h>
+#include "bred/platform/system.h"
+#include "bred/typeface/typeface.h"
 
+#include "aura/graphics/write_text/text_metric.h"
 #ifdef WINDOWS_DESKTOP
 #pragma comment( lib, "freetype.lib" )
 #endif
@@ -57,59 +59,75 @@ namespace typeface_freetype
    }
 
 
+   void face::initialize(::particle * pparticle)
+   {
+
+      ::typeface::face::initialize(pparticle);
+
+   }
+
+
    void face::create_character(::typeface::character& ch, const ::scoped_string& scopedstr)
       //Character& face::get_character(const ::scoped_string& scopedstr)
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto pszFontName = m_strFontName.c_str();
+
       if (!m_bFace)
       {
-         m_bFace = true;
          //return ch;
 
          defer_initialize_freetype();
 
-         auto pszFontName = m_strFontName.c_str();
+         //::file::path path;
 
-         ::file::path path;
+         ::cast < ::bred::system > psystem = system();
 
-         {
+         auto ptypeface = psystem->typeface();
 
-            FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());
-            FcConfigSubstitute(NULL, pat, FcMatchPattern);
-            FcDefaultSubstitute(pat);
+         auto path = ptypeface->get_font_file_path_by_font_name(m_strFontName);
 
-            FcResult result;
-            FcPattern* font = FcFontMatch(NULL, pat, &result);
+         //{
 
-            FcChar8* file;
-            FcPatternGetString(font, FC_FILE, 0, &file);
+         //   FcPattern* pat = FcNameParse((FcChar8*)m_strFontName.c_str());
+         //   FcConfigSubstitute(NULL, pat, FcMatchPattern);
+         //   FcDefaultSubstitute(pat);
 
-            if (file)
-            {
+         //   FcResult result;
+         //   FcPattern* font = FcFontMatch(NULL, pat, &result);
 
-               path = (const char * ) file;
+         //   FcChar8* file;
+         //   FcPatternGetString(font, FC_FILE, 0, &file);
 
-            }
-            else
-            {
+         //   if (file)
+         //   {
 
-               path = "matter://font/truetype/Roboto-Regular.ttf";
+         //      path = (const char * ) file;
 
-            }
+         //   }
+         //   else
+         //   {
 
-         }
+         //      path = "matter://font/truetype/Roboto-Regular.ttf";
 
-         auto m = file()->as_memory(path);
+         //   }
+
+         //}
+
+         m_memoryFace = file()->as_memory(path);
          // Roboto - Regular.ttf
             // load font as face
 
-         if (FT_New_Memory_Face(g_freetype, m.data(),(FT_Long) m.size(), 0, &m_face))
+         if (FT_New_Memory_Face(g_freetype, m_memoryFace.data(),(FT_Long) m_memoryFace.size(), 0, &m_face))
          {
             error() << "ERROR::FREETYPE: Failed to load font";
             throw ::exception(error_failed, "Failed to load font");
          }
 
          //create_draw_buffers();
+         m_bFace = true;
 
       }
 
@@ -123,7 +141,18 @@ namespace typeface_freetype
          m_iCapHeight = (m_face->glyph->metrics.horiBearingY + 32 ) >> 6;
 
       }
-      if (FT_Load_Char(m_face, unicode_index(scopedstr), FT_LOAD_RENDER))
+      //auto iUnicodeIndex = unicode_index(scopedstr);
+
+      auto iUnicodeIndex = ch.m_iUnicode;
+
+      if (iUnicodeIndex == 32)
+      {
+
+         information("iUnicodeIndex == 32");
+
+      }
+
+      if (FT_Load_Char(m_face, iUnicodeIndex, FT_LOAD_RENDER))
       {
          warning() << "ERROR::FREETYTPE: Failed to load Glyph";
          return;
@@ -199,7 +228,7 @@ namespace typeface_freetype
       //ch.h2 = m_iPixelSize- ch.Bearing.y;
       //ch.h2 = iAscender2- ch.Bearing.y;
       //ch.h2 = iAscender2-iBearingY2;
-      ch.h2 = m_iCapHeight - bitmap_top;
+      ch.aHeight2 = m_iCapHeight - bitmap_top;
 
 //      //};
 //      //Characters.insert(std::pair<char, Character>(c, character));
@@ -277,6 +306,96 @@ namespace typeface_freetype
 //      //return ch;
 
    }
+
+
+
+   void face::get_text_metric(::write_text::text_metric* ptextmetrics)
+   {
+
+// #include <ft2build.h>
+// #include FT_FREETYPE_H
+//
+// void face::get_text_metric(::write_text::text_metric* pmetric)
+// {
+   if (!ptextmetrics)
+   {
+      throw ::exception(error_null_pointer);
+   }
+
+   if (!m_face)
+   {
+      throw ::exception(error_null_pointer);
+   }
+
+   // -----------------------------------------
+   // Configuration (match GDI+ behavior)
+   // -----------------------------------------
+
+    double fontSizePt = m_iPixelSize;     // same value you passed to GDI+ Font
+    double dpiY       = 96.0;             // or get from system if you prefer
+   //
+   // // Set character size in points (26.6 format)
+   // FT_Error err = FT_Set_Char_Size(
+   //    m_face,
+   //    0,
+   //    (FT_F26Dot6)(fontSizePt * 64.0),
+   //    (FT_UInt)dpiY,
+   //    (FT_UInt)dpiY
+   // );
+
+      FT_Set_Pixel_Sizes(m_face, 0, m_iPixelSize);
+   // if (err)
+   // {
+   //    throw ::exception(error_failed);
+   // }
+
+   FT_Size_Metrics& metrics = m_face->size->metrics;
+
+   // -----------------------------------------
+   // Raw font units
+   // -----------------------------------------
+
+   double emHeight     = (double)m_face->units_per_EM;
+   double cellAscent   = (double)m_face->ascender;
+   double cellDescent  = (double)(-m_face->descender);
+   double lineSpacing  = (double)m_face->height;
+
+   // -----------------------------------------
+   // Convert to pixels (match your math)
+   // -----------------------------------------
+
+   double ascentPx =
+      fontSizePt * cellAscent * dpiY / (emHeight * 72.0 + 0.5);
+
+   double descentPx =
+      fontSizePt * cellDescent * dpiY / (emHeight * 72.0 + 0.5);
+
+   // FreeType font height (already scaled)
+   double fontHeightPx =
+      metrics.height / 64.0;
+
+   double lineSpacingPx =
+      fontSizePt * lineSpacing * dpiY / (emHeight * 72.0 + 0.5);
+
+   double effectiveLineSpacing =
+      std::max(fontHeightPx, lineSpacingPx);
+
+   // -----------------------------------------
+   // Fill output
+   // -----------------------------------------
+
+   ptextmetrics->m_dAscent  = ascentPx;
+   ptextmetrics->m_dDescent = descentPx;
+   ptextmetrics->m_dHeight  = fontHeightPx;
+
+   ptextmetrics->m_dInternalLeading = 0.0;
+
+   ptextmetrics->m_dExternalLeading =
+      effectiveLineSpacing - (ascentPx + descentPx);
+//}
+
+   }
+
 
 
 } // namespace typeface_freetype

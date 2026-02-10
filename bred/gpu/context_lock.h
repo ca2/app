@@ -12,15 +12,17 @@ namespace gpu
    public:
 
 
-      context* m_pcontext;
+      context* m_pgpucontext;
       context_lock* m_plockUpper;
       ::particle_pointer m_pparticleSynchronization;
 
 
+      context_lock();
       context_lock(::gpu::context* pcontext);
       ~context_lock();
 
 
+      void lock_context(::gpu::context * pgpucontext);
 
 
    };

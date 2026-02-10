@@ -3,9 +3,11 @@
 #include "scene_base.h"
 #include "skybox.h"
 #include "engine.h"
+#include "bred/gpu/context.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/render_target.h"
+#include "bred/gpu/renderer.h"
 #include "bred/gpu/texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
@@ -213,7 +215,7 @@ namespace graphics3d
 
       auto prenderer = m_pscene->m_pimmersionlayer->m_pengine->gpu_context()->m_pgpurenderer;
 
-      m_ptexture->initialize_texture(prenderer, textureattributes, textureflags, texturedata);
+      m_ptexture->initialize_texture(prenderer->m_pgpucontext, textureattributes, textureflags, texturedata);
 
    }
 

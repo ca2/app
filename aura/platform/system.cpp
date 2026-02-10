@@ -641,56 +641,80 @@ namespace aura
    ::factory::factory * system::node_factory()
    {
 
-      auto & pfactory = factory("node", OPERATING_SYSTEM_NAME);
+      ::factory::factory* pfactory = nullptr;
 
-//#ifdef LINUX
-//
-//      auto edesktop = get_eoperating_ambient();
-//
-//      if (edesktop & ::user::e_operating_ambient_kde)
-//      {
-//
-//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
-//
-//      }
-//      else if (edesktop & ::user::e_operating_ambient_gnome)
-//      {
-//
-//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
-//
-//      }
-//      else
-//      {
-//
-//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
-//
-//         if (!estatus)
-//         {
-//
-//            estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
-//
-//         }
-//
-//      }
-//
-//#else
-//
-//      estatus = ([a-z0-9_]+)_factory("aura", "windows");
-//
-//#endif
+      try
+      {
+
+
+         pfactory = factory("node", OPERATING_SYSTEM_NAME);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
 
       if (!pfactory)
       {
 
-         informationf("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
-
-         return pfactory;
+         pfactory = factory("aura", OPERATING_SYSTEM_NAME);
 
       }
 
-      pfactory->merge_to_global_factory();
 
-      return pfactory;
+
+         //#ifdef LINUX
+         //
+         //      auto edesktop = get_eoperating_ambient();
+         //
+         //      if (edesktop & ::user::e_operating_ambient_kde)
+         //      {
+         //
+         //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
+         //
+         //      }
+         //      else if (edesktop & ::user::e_operating_ambient_gnome)
+         //      {
+         //
+         //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
+         //
+         //      }
+         //      else
+         //      {
+         //
+         //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
+         //
+         //         if (!estatus)
+         //         {
+         //
+         //            estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
+         //
+         //         }
+         //
+         //      }
+         //
+         //#else
+         //
+         //      estatus = ([a-z0-9_]+)_factory("aura", "windows");
+         //
+         //#endif
+
+         if (!pfactory)
+         {
+
+            informationf("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
+
+            return pfactory;
+
+         }
+
+         pfactory->merge_to_global_factory();
+
+         return pfactory;
+
 
    }
 
@@ -5818,7 +5842,7 @@ if(!m_pimaging)
    // }
 
 
-//   void system::node_will_finish_launching()
+//   void system::node_will_aaa_finish_launching()
 //   {
 //
 //      auto pnode = session();
@@ -5827,7 +5851,7 @@ if(!m_pimaging)
 //
 //      auto pwindowing = system()->windowing();
 //
-//      pwindowing->_will_finish_launching();
+//      pwindowing->_will_aaa_finish_launching();
 //
 //   }
 
@@ -7165,6 +7189,12 @@ if(!m_pimaging)
    {
 
       //auto estatus =
+
+      if(m_pdraw2d)
+      {
+         m_pdraw2d->destroy();
+         m_pdraw2d.release();
+      }
       
       ::aqua::system::destroy();
 

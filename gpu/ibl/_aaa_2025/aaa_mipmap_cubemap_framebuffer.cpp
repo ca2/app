@@ -43,7 +43,7 @@ namespace gpu
 
          ødefer_construct(m_ptexture);
 
-         //m_ptexture->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
+         //m_ptexture->m_pgpucontext = m_pgpucontext->m_pgpurenderer;
 
          //m_ptexture->rectangle().left=0;
          //m_ptexture->rectangle().top=0;

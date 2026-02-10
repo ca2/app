@@ -589,8 +589,6 @@ void subparticle::_wait()
    while (true)
    {
 
-      ::task_iteration();
-
       //try { throw "errorABC2"; } catch(...){}
 
       auto bOk = _wait(100_ms);
@@ -608,6 +606,10 @@ void subparticle::_wait()
          return error_failed;
 
       }
+
+            ::task_iteration();
+
+
 
    }
 
@@ -645,7 +647,9 @@ void subparticle::_wait()
    if (::is_null(ptask))
    {
 
-      auto bOk = this->_wait(timeWait);
+      auto waitNow = ::minimum(timeWait, 100_ms);
+
+      auto bOk = this->_wait(waitNow);
 
       if (!bOk)
       {

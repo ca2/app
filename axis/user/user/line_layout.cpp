@@ -191,7 +191,43 @@ namespace user
 
                auto sizeItem = puserinteraction->size(e_layout_sketch);
 
-               iMaximumNormal = ::maximum(iMaximumNormal, sizeItem.get_normal_dimension(m_eorientation));
+               int iNormalDimension = sizeItem.get_normal_dimension(m_eorientation);
+
+               int iNearNormalMargin;
+
+               if (m_eorientation == e_orientation_horizontal)
+               {
+
+                  iNearNormalMargin = puserinteraction->m_rectangleMargin1.top;
+
+               }
+               else
+               {
+
+                  iNearNormalMargin = puserinteraction->m_rectangleMargin1.left;
+
+               }
+
+               iNormalDimension += iNearNormalMargin;
+
+               int iFarNormalMargin;
+
+               if (m_eorientation == e_orientation_horizontal)
+               {
+
+                  iFarNormalMargin = puserinteraction->m_rectangleMargin1.bottom;
+
+               }
+               else
+               {
+
+                  iFarNormalMargin = puserinteraction->m_rectangleMargin1.right;
+
+               }
+
+               iNormalDimension += iFarNormalMargin;
+
+               iMaximumNormal = ::maximum(iMaximumNormal, iNormalDimension);
 
                auto dAscent = pstyle->get_font(puserinteraction, puserinteraction->m_eelementMain)->get_ascent(pgraphics);
 
@@ -214,11 +250,40 @@ namespace user
 
                auto sizeItem = puserinteraction->size(e_layout_sketch);
 
+               int iNearMargin;
+
+               if (m_eorientation == e_orientation_horizontal)
+               {
+
+                  iNearMargin = puserinteraction->m_rectangleMargin1.left;
+
+               }
+               else
+               {
+
+                  iNearMargin = puserinteraction->m_rectangleMargin1.top;
+
+               }
+
+               int iNearNormalMargin;
+
+               if (m_eorientation == e_orientation_horizontal)
+               {
+
+                  iNearNormalMargin = puserinteraction->m_rectangleMargin1.top;
+
+               }
+               else
+               {
+
+                  iNearNormalMargin = puserinteraction->m_rectangleMargin1.left;
+
+               }
+
                if (m_ealignrelativeOrthogonal == e_align_relative_base_bottom_line)
                {
 
                   auto dAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
-
 
                   point.set_orthogonal_dimension(m_eorientation,
                      (int) (dMaximumAscent - dAscent));
@@ -232,18 +297,64 @@ namespace user
 
                }
 
-               if (puserinteraction->set_position(point, e_layout_layout, pgraphics))
+               if (m_eorientation == e_orientation_horizontal)
+               {
+
+                  point.x += iNearMargin;
+
+               }
+               else
+               {
+
+                  point.y += iNearMargin;
+
+               }
+
+               auto pointItem = point;
+
+               if (m_eorientation == e_orientation_horizontal)
+               {
+
+                  pointItem.y += iNearNormalMargin;
+
+               }
+               else
+               {
+
+                  pointItem.x += iNearNormalMargin;
+
+               }
+
+               if (puserinteraction->set_position(pointItem, e_layout_layout, pgraphics))
                {
 
                   bChanged = true;
 
                }
-               
+
                point.set_dimension(m_eorientation,
                   point.get_dimension(m_eorientation) +
                   sizeItem.get_dimension(m_eorientation)
                   + m_iPadding);
 
+               int iFarMargin;
+
+               if (m_eorientation == e_orientation_horizontal)
+               {
+
+                  iFarMargin = puserinteraction->m_rectangleMargin1.right;
+
+                  point.x += iFarMargin;
+
+               }
+               else
+               {
+
+                  iFarMargin = puserinteraction->m_rectangleMargin1.bottom;
+
+                  point.y += iFarMargin;
+
+               }
                //synchronouslock.lock();
 
             }

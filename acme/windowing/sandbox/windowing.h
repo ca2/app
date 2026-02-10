@@ -38,7 +38,7 @@ public:
    
    
    ::pointer<::acme::sandbox_windowing::window>         m_pwindowKeyboardFocus;
-   //::pointer<::acme::sandbox_windowing::window>         m_pwindowMouseCapture;
+   //::pointer<::acme::sandbox_windowing::window>         m_pacmewindowingwindowMouseCapture;
    ::pointer<::acme::sandbox_windowing::window>         m_pwindowActive;
    
    
@@ -65,7 +65,7 @@ public:
    
    void finalize_windowing() override;
    
-   void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
+   ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
    
    ::acme::windowing::window* get_application_host_window() override;
    virtual bool targeted_keyboard_messages();

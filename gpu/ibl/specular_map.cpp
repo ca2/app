@@ -117,7 +117,7 @@ namespace gpu
          textureflagsPrefilteredEnvMap.m_bRenderTarget = true;
 
          m_ptexturePrefilteredEnvMapCubemap->initialize_texture(
-            m_pgpucontext->m_pgpurenderer, 
+            m_pgpucontext, 
             textureattributesPrefilteredEnvMap, 
             textureflagsPrefilteredEnvMap);
 
@@ -145,7 +145,7 @@ namespace gpu
          textureflagsBrdfConvMap.m_bShaderResource = true;
 
          m_ptextureBrdfConvolutionMap->initialize_texture(
-            m_pgpucontext->m_pgpurenderer, 
+            m_pgpucontext, 
             textureattributesBrdfConvMap,
             textureflagsBrdfConvMap);
 
@@ -168,7 +168,7 @@ namespace gpu
                                             lookAt(origin, unitZ, -unitY), lookAt(origin, -unitZ, -unitY)};
 
          floating_matrix4 projection =
-            m_pgpucontext->m_pengine->perspective(90.0f_degrees, // 90 degrees to cover one face
+            m_pgpucontext->m_pengine->perspective(90.0_f_degrees, // 90 degrees to cover one face
                                                   1.0f, // its a square
                                                   0.1f, 2.0f);
 
@@ -216,6 +216,8 @@ namespace gpu
                ::int_rectangle r(0, 0, mipWidth, mipHeight);
 
                pgpucommandbuffer->set_viewport(r);
+
+               pgpucommandbuffer->set_scissor(r);
 
                auto impact = cameraAngles[iLayer];
 
@@ -269,13 +271,15 @@ namespace gpu
 
          rectangleViewport.set(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
 
-         m_pgpucontext->set_viewport(pcommandbuffer, rectangleViewport);
+         pcommandbuffer->set_viewport(rectangleViewport);
+
+         pcommandbuffer->set_scissor(rectangleViewport);
 
          m_pgpucontext->clear(m_ptextureBrdfConvolutionMap, ::color::transparent);
 
          pcommandbuffer->draw(m_pfullscreenquadBrdf);
          
-         m_pfullscreenquadBrdf->unbind(pcommandbuffer);
+         //m_pfullscreenquadBrdf->unbind(pcommandbuffer);
 
          pcommandbuffer->end_render();
 

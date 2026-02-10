@@ -59,7 +59,7 @@ namespace draw2d
 
       //auto estatus = 
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
       defer_create_synchronization();
 
@@ -132,7 +132,12 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_pimagea->erase_image(pimage);
+      if (m_pimagea)
+      {
+
+         m_pimagea->erase_image(pimage);
+
+      }
 
    }
 
@@ -282,7 +287,7 @@ namespace draw2d
    {
 
       //if (!
-      ::acme::department::init1();
+      ::platform::department::init1();
 
       //{
 
@@ -299,7 +304,7 @@ namespace draw2d
    void draw2d::process_init()
    {
 
-      ::acme::department::process_init();
+      ::platform::department::process_init();
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -319,7 +324,7 @@ namespace draw2d
    {
 
       //if (!)
-      ::acme::department::init();
+      ::platform::department::init();
       //{
 
       //   return false;
@@ -410,8 +415,31 @@ namespace draw2d
 
       //lock::__s_finalize();
 
+      if (m_pimagea)
+      {
+
+         m_pimagea->m_imagea.erase_all();
+
+         m_pimagea.release();
+
+      }
+
+         m_objecta.erase_all();
+
+         m_pwritetext.release();
+
+         m_papi.release();
+
+         m_alpha_spread__24CC_filterMap.clear();
+
+         m_alpha_spread__32CC_filterMap.clear();
+
+      //}
+
+      m_graphicsa.erase_all();
+
       //auto estatus = 
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
       //return estatus;
 
@@ -435,7 +463,9 @@ namespace draw2d
 
       auto pgraphics = create_graphics(pdraw2dhost);
 
-      pgraphics->create_memory_graphics();
+      auto sizeModernOnePixel = ::int_size{ 1920, 1080 };
+
+      pgraphics->create_memory_graphics(sizeModernOnePixel);
 
       return pgraphics;
 
@@ -465,7 +495,7 @@ namespace draw2d
       try
       {
 
-         ::acme::department::term_instance();
+         ::platform::department::term_instance();
 
       }
       catch (...)

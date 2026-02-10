@@ -5,6 +5,52 @@
 //#include "bred/gpu/_.h"
 //
 
+
+class memory_composite :
+   virtual public ::particle
+{
+public:
+
+   ::pointer < ::memory > m_pmemory;
+
+
+   memory_composite()
+   {
+
+   }
+
+   ~memory_composite() override
+   {
+
+   }
+
+
+   ::memory & memory()
+   {
+
+      if (!m_pmemory)
+      {
+
+         øconstruct(m_pmemory);
+
+      }
+
+      return * m_pmemory;
+
+   }
+
+
+   ::memory & memory() const
+   {
+
+      return ((memory_composite *)this)->memory();
+
+   }
+
+
+
+};
+
 template < typename TYPE >
 inline ::gpu::property* gpu_properties()
 {
@@ -437,7 +483,6 @@ namespace gpu
 			}
 			_set_matrix4(matrix4);
 			
-
 			return *this;
 
 		}
@@ -495,10 +540,10 @@ namespace gpu
 	};
 
 	class properties :
-		public properties_interface
+		public properties_interface,
+      virtual public memory_composite
 	{
 	public:
-		::memory m_memory;
 
 
 		properties()
@@ -513,13 +558,18 @@ namespace gpu
 		void set_properties(const ::gpu::property* pproperties)
 		{
 			properties_interface::set(pproperties);
-			m_memory.set_size(m_pproperties->get_size(true));
-			m_blockWithSamplers.begin() = m_memory.data();
-         m_blockWithSamplers.end() = m_memory.end();
-         m_blockWithoutSamplers.begin() = m_memory.data();
+
+		   auto & memory = this->memory();
+			memory.set_size(m_pproperties->get_size(true));
+			m_blockWithSamplers.begin() = memory.data();
+         m_blockWithSamplers.end() = memory.end();
+         m_blockWithoutSamplers.begin() = memory.data();
          m_blockWithoutSamplers.end() = m_blockWithoutSamplers.begin() + m_pproperties->get_size(false);
 
 		}
+
+
+
       ::block block_with_samplers() { return m_blockWithSamplers; }
       ::block block_without_samplers() { return m_blockWithoutSamplers; }
 		

@@ -45,11 +45,11 @@ namespace gpu
 
       ::gpu::approach::initialize_gpu_approach();
 
-      system()->m_pfactory->add_factory_item<::gpu::binding>();
-      system()->m_pfactory->add_factory_item<::gpu::binding_set>();
-      system()->m_pfactory->add_factory_item<::gpu::binding_set_array>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding_set>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding_set_array>();
 
-      system()->m_pfactory->add_factory_item<::gpu::binding_slot_set>();
+      system()->m_pfactory->defer_add_factory_item<::gpu::binding_slot_set>();
       system()->m_pfactory->add_factory_item<::gpu::binding_slot_set_array>();
 
 
@@ -59,10 +59,34 @@ namespace gpu
    ::gpu::device* bred_approach::get_gpu_device(::acme::windowing::window * pacmewindowingwindow)
    {
 
-      if (!m_pgpudevice)
+      if (::is_null(pacmewindowingwindow))
       {
 
-         øconstruct(m_pgpudevice);
+         throw ::exception(error_bad_argument);
+
+      }
+
+//      if (!pacmewindowingwindow->is_window())
+//      {
+//
+//         throw ::exception(error_bad_argument);
+//
+//      }
+
+      auto &pdevice = m_devicemap[pacmewindowingwindow];
+
+      ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
+
+      auto pszType = strType.c_str();
+
+      if (!pdevice)
+      {
+
+         øconstruct(pdevice);
+
+         ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
+         
+         const char *pszType = strType.c_str();
 
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {
@@ -73,14 +97,14 @@ namespace gpu
 
             pwindow = pacmewindowingwindow;
 
-            if (!pwindow)
-            {
+            //if (!pwindow)
+            //{
 
-               pwindow = m_papplication->m_pacmeuserinteractionMain->window();
+            //   pwindow = m_papplication->m_pacmeuserinteractionMain->window();
 
-            }
+            //}
 
-            m_pgpudevice->initialize_gpu_device_for_swap_chain(this, pwindow);
+            pdevice->initialize_gpu_device_for_swap_chain(this, pwindow);
 
          }
          else
@@ -93,13 +117,13 @@ namespace gpu
 
             }
 
-            m_pgpudevice->initialize_gpu_device_for_off_screen(this, m_rectangleOffscreen);
+            pdevice->initialize_gpu_device_for_off_screen(this, m_rectangleOffscreen);
 
          }
 
       }
 
-      return m_pgpudevice;
+      return pdevice;
 
    }
    
@@ -125,16 +149,43 @@ namespace gpu
    }
 
 
-   void bred_approach::on_before_create_window(::windowing::window* pwindow)
+   void bred_approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
    {
 
 
    }
 
 
-   void bred_approach::on_create_window(::windowing::window* pwindow)
+   void bred_approach::gpu_on_create_window(::acme::windowing::window* pacmewindowingwindow)
    {
 
+      ::gpu::approach::gpu_on_create_window(pacmewindowingwindow);
+      
+      ::string strType;
+
+      strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
+
+      const char *pszType = strType.c_str();
+
+      information("gpu::approach::gpu_on_create_window for type {}", pszType);
+
+      auto pdevice = get_gpu_device(pacmewindowingwindow);
+
+      pdevice->create_main_context(pacmewindowingwindow);
+
+      //::cast<::gpu_opengl::approach> papproach = m_papplication->get_gpu_approach();
+      _gpu_on_create_window(pacmewindowingwindow);
+      //::draw2d_gpu::draw2d::on_create_window(pwindowParam);
+
+      //::cast < ::windowing_win32::window > pwindow = pwindowParam;
+
+      // auto hwnd = pwindow->m_hwnd;
+
+      // HRGN hRgn = CreateRectRgn(0, 0, -1, -1);
+      // bb.dwFlags = DWM_BB_ENABLE | DWM_BB_BLURREGION;
+      // bb.hRgnBlur = hRgn;
+      // bb.fEnable = TRUE;
+      // DwmEnableBlurBehindWindow(hwnd, &bb);
 
    }
 
@@ -156,6 +207,13 @@ namespace gpu
 
    }
    */
+
+   void bred_approach::_gpu_on_create_window(::acme::windowing::window * pwindow)
+   {
+
+
+
+   }
 
 } // namespace gpu
 

@@ -11,9 +11,9 @@
 
 
 
+#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 #include <immintrin.h>
 #include <xmmintrin.h>
-#if defined(__SSE__) || defined(_M_X64) || defined(_M_IX86)
 #include <emmintrin.h>
 #endif
 
@@ -245,6 +245,7 @@ struct matrix_type
       return r;
    }
 
+#if defined(__SSE__)
    // -------------------- SSE 128-bit version --------------------
    inline float_sequence4 mul_sse(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -264,7 +265,10 @@ struct matrix_type
       _mm_storeu_ps(&out.x, res);
       return out;
    }
-
+#endif
+    
+    
+#if defined(__AVX__)
    // -------------------- AVX 256-bit version --------------------
    inline float_sequence4 mul_avx(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -286,7 +290,10 @@ struct matrix_type
       _mm_storeu_ps(&out.x, sum);
       return out;
    }
-
+#endif
+    
+    
+#if defined(__AVX2__)
    // -------------------- AVX2 fully unrolled --------------------
    inline float_sequence4 mul_avx2(const float_sequence4 &s) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -312,7 +319,7 @@ struct matrix_type
       _mm_storeu_ps(&out.x, sum);
       return out;
    }
-       
+#endif
    //    // AVX2 version of matrix × vector
    //inline float_sequence4 mul_avx2( const float_sequence4 &s)
    //   requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -431,6 +438,7 @@ struct matrix_type
       return R;
    }
 
+#if defined(__SSE__)
    inline matrix_type mul_sse(const matrix_type &B) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
@@ -464,7 +472,10 @@ struct matrix_type
 
       return R;
    }
-
+#endif
+    
+    
+#if defined(__AVX__)
    inline matrix_type mul_avx(const matrix_type &B) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
@@ -500,7 +511,10 @@ struct matrix_type
 
       return R;
    }
-
+#endif
+    
+    
+#if defined(__AVX2__)
    
 inline matrix_type mul_avx2(const matrix_type &B) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -543,7 +557,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       return R;
    }
 
-
+#endif
 
    inline matrix_type operator*(const matrix_type &m) const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -1036,6 +1050,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
+#if defined(__SSE__)
    inline matrix_type inversed_sse() const
       requires(DIMENSION == 3 && std::is_same_v<FLOATING, float>)
    {
@@ -1048,7 +1063,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
       // Unpack to rows
       __m128 r0 = _mm_unpacklo_ps(c0, c1); // [a00 a01 a10 a11]
-      __m128 r1 = _mm_unpackhi_ps(c0, c1); // [a20 a21  0    0]
+      //__m128 r1 = _mm_unpackhi_ps(c0, c1); // [a20 a21  0    0]
       __m128 r2 = c2; // [a02 a12 a22  0]
 
       // Cofactor calculations:
@@ -1108,7 +1123,10 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
       return out;
    }
-
+#endif
+    
+    
+#if defined(__AVX__)
 
    inline matrix_type inversed_avx() const
       requires(DIMENSION == 3 && std::is_same_v<FLOATING, float>)
@@ -1170,6 +1188,11 @@ inline matrix_type mul_avx2(const matrix_type &B) const
          _mm_store_ss(&out[8], last);
          return result;
    }
+    
+    
+#endif
+    
+    
 
    // ---------------- Scalar inverse ----------------
    inline matrix_type & inverse_scalar()
@@ -1230,6 +1253,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
    }
 
 
+#if defined(__SSE__)
    inline matrix_type inversed_sse() const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
    {
@@ -1305,6 +1329,11 @@ inline matrix_type mul_avx2(const matrix_type &B) const
 
       return inv;
    }
+    
+#endif
+    
+    
+#if defined(__AVX__)
 
    inline matrix_type inversed_avx() const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -1373,6 +1402,10 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       return inv;
    }
 
+#endif
+    
+    
+#if defined(__AVX2__)
 
    inline matrix_type inversed_avx2() const
       requires(DIMENSION == 4 && std::is_same_v<FLOATING, float>)
@@ -1449,6 +1482,7 @@ inline matrix_type mul_avx2(const matrix_type &B) const
       return inv;
    }
 
+#endif
 
    inline matrix_type & inverse()
    {

@@ -16,8 +16,9 @@ namespace gpu
    {
    public:
 
-
-      ::pointer<::gpu::binding_slot_set> m_pbindingslotset;
+      ::collection::index                    m_iBlockSerial;
+      ::string                               m_strBlockName;
+      ::pointer<::gpu::binding_slot_set>     m_pbindingslotset;
 
 
       block();

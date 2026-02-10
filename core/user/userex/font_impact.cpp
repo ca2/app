@@ -170,14 +170,14 @@ namespace userex
    }
 
 
-   void font_impact::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      //m_pprimitiveimpl->defer_do_graphics(pgraphics);
-
-      ::user::split_impact::defer_do_graphics(pgraphics);
-
-   }
+//   void font_impact::do_graphics()
+//   {
+//
+//      //m_pprimitiveimpl->defer_do_graphics(pgraphics);
+//
+//      ::user::split_impact::do_graphics();
+//
+//   }
 
 
    void font_impact::on_layout(::draw2d::graphics_pointer & pgraphics)

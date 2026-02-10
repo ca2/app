@@ -1427,7 +1427,9 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
       if(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
       {
          
-         display();
+         //display();
+         
+         initial_frame_placement();
          
       }
 

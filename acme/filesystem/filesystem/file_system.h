@@ -7,7 +7,7 @@
 
 
 class CLASS_DECL_ACME file_system :
-   virtual public ::acme::department,
+   virtual public ::platform::department,
    virtual public ::file_system_interface
 {
 public:

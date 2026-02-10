@@ -143,7 +143,7 @@
 		9A927DD827F10EFB002BCA3C /* _user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
 		9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_experience_tranquillum.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E5C1904CFE2001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE24E691904CFE2001AEFFB /* experience_tranquillum_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_tranquillum_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E6A1904CFE2001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24E6D1904CFE2001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AEB75F416F78EDC0085103B /* libexperience_tranquillum.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_tranquillum.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				9A389A6E24F5414A00185630 /* libberg.dylib */,
-				9AA2F4912847E15E00A747A1 /* libios_base.a */,
+				9AA2F4912847E15E00A747A1 /* libios_berg.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 			children = (
 				9AEB75F416F78EDC0085103B /* libexperience_tranquillum.dylib */,
 				9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */,
-				9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */,
+				9AE24E691904CFE2001AEFFB /* experience_tranquillum_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -322,9 +322,9 @@
 			productReference = 9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */ = {
+		9AE24E681904CFE2001AEFFB /* experience_tranquillum_iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */;
+			buildConfigurationList = 9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_tranquillum_iosTests" */;
 			buildPhases = (
 				9AE24E651904CFE2001AEFFB /* Sources */,
 				9AE24E661904CFE2001AEFFB /* Frameworks */,
@@ -335,9 +335,9 @@
 			dependencies = (
 				9AE24E701904CFE2001AEFFB /* PBXTargetDependency */,
 			);
-			name = experience_lite_iosTests;
+			name = experience_tranquillum_iosTests;
 			productName = app_core_uinteraction_iosTests;
-			productReference = 9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */;
+			productReference = 9AE24E691904CFE2001AEFFB /* experience_tranquillum_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9AEB75F316F78EDC0085103B /* experience_tranquillum */ = {
@@ -395,7 +395,7 @@
 			targets = (
 				9AEB75F316F78EDC0085103B /* experience_tranquillum */,
 				9AE24E591904CFE2001AEFFB /* ios_experience_tranquillum */,
-				9AE24E681904CFE2001AEFFB /* experience_lite_iosTests */,
+				9AE24E681904CFE2001AEFFB /* experience_tranquillum_iosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -408,10 +408,10 @@
 			remoteRef = 9A389A6D24F5414A00185630 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AA2F4912847E15E00A747A1 /* libios_base.a */ = {
+		9AA2F4912847E15E00A747A1 /* libios_berg.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_base.a;
+			path = libios_berg.a;
 			remoteRef = 9AA2F4902847E15E00A747A1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -568,7 +568,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "app_core_uinteraction_iosTests/app_core_uinteraction_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -600,7 +599,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "app_core_uinteraction_iosTests/app_core_uinteraction_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -677,6 +675,7 @@
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
 					"$(WorkspaceDir)/port/include",
 					"$(WorkspaceDir)/source/app/include",
 				);
@@ -762,6 +761,7 @@
 				SKIP_INSTALL = YES;
 				SYSTEM_HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
 					"$(WorkspaceDir)/port/include",
 					"$(WorkspaceDir)/source/app/include",
 				);
@@ -789,7 +789,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
@@ -804,7 +803,6 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
@@ -826,7 +824,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_lite_iosTests" */ = {
+		9AE24E851904CFE2001AEFFB /* Build configuration list for PBXNativeTarget "experience_tranquillum_iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE24E7C1904CFE2001AEFFB /* Debug */,

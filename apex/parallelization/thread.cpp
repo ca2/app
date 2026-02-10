@@ -1094,6 +1094,14 @@ bool thread::task_iteration()
 
 }
 
+
+//bool thread::has_dependant_tasks() const
+//{
+//   
+//   
+//}
+
+
 //
 //bool thread::pump_message()
 //{
@@ -3644,19 +3652,19 @@ message_queue* thread::_get_message_queue()
 
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   if (has_finishing_flag())
-   {
-
-      if (m_pmessagequeue)
-      {
-
-         m_pmessagequeue.release();
-
-      }
-
-      return nullptr;
-
-   }
+//   if (has_finishing_flag())
+//   {
+//
+//      if (m_pmessagequeue)
+//      {
+//
+//         m_pmessagequeue.release();
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
 
    if (m_pmessagequeue)
    {
@@ -4897,7 +4905,8 @@ void thread::request(::request* prequest)
 {
 
    m_prequest2 = prequest;
-
+   //auto prequeststack = prequest->push_request();
+   //::request_scope requestscope(prequeststack);
    on_request(prequest);
 
 }

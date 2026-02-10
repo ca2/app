@@ -15,7 +15,7 @@ class pointer_array_base :
 public:
 
    using BASE_ARRAY = pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >;
-
+   using MAIN_TYPE = T;
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
 
@@ -107,6 +107,20 @@ public:
       return p;
 
    }
+
+
+   template < typename... Args >
+   pointer<T> & main_add(Args... args)
+   {
+
+      auto pNew = øallocate T (args...);
+      
+      auto iIndex = this->add(pNew); 
+
+      return this->element_at(iIndex);
+   
+   }
+
 
 
    ::collection::count set_size(::collection::count nNewSize, ::collection::count nGrowBy = -1)

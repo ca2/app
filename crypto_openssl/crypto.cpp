@@ -65,7 +65,7 @@ namespace crypto_openssl
    void crypto::encrypt(memory& storageEncrypt, const block & blockDecrypt, const block & blockKey)
    {
 
-      memory memSha1(this);
+      memory memSha1;
 
       nessie(memSha1, blockKey);
 

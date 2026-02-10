@@ -516,7 +516,7 @@ namespace sphere
 
    //   //      string strId;
    //   //
-   //   //      ::pointer<::acme::department>pcaapp;
+   //   //      ::pointer<::platform::department>pcaapp;
    //   //
    //   //      POSITION pos = m_mapApplication.get_start_position();
    //   //
@@ -529,7 +529,7 @@ namespace sphere
    //   //
    //   //         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
    //   //
-   //   //         ::pointer<::acme::department>papp = (pcaapp);
+   //   //         ::pointer<::platform::department>papp = (pcaapp);
    //   //
    //   //         papp->set_finish();
    //   //

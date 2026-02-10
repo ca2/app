@@ -147,9 +147,10 @@ namespace acme
       //}
 
 
-      void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+   ::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
       {
 
+         return nullptr;
 
       }
 
@@ -335,7 +336,7 @@ namespace acme
       void windowing::on_initialize_particle()
       {
 
-         ::acme::department::on_initialize_particle();
+         ::platform::department::on_initialize_particle();
 
          ::task::on_initialize_particle();
 
@@ -351,7 +352,7 @@ namespace acme
 
          m_windowa.clear();
 
-         ::acme::department::destroy();
+         ::platform::department::destroy();
 
       }
 
@@ -385,9 +386,9 @@ namespace acme
       // void windowing::on_start_windowing_application()
       // {
       //
-      //    system()->post_application_start();
-      //    system()->defer_post_application_start_file_open_request();
-      //    system()->post_application_started();
+      //    system()->post_aaa_application_start();
+      //    system()->defer_post_aaa_application_start_file_open_request();
+      //    system()->post_aaa_application_started();
       //
       // }
 

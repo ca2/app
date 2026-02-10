@@ -14,7 +14,7 @@ namespace platform
 
 
    class CLASS_DECL_ACME http :
-      virtual public ::acme::department,
+      virtual public ::platform::department,
       virtual public ::platform::acme_http_layer_t,
       virtual public ::platform::apex_http_layer_t,
       virtual public ::platform::acme_http_layer,

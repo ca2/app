@@ -86,7 +86,9 @@ namespace gpu
 
          øconstruct(m_ptextureHdr);
 
-         m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext->m_pgpurenderer, block);
+         m_ptextureHdr->m_textureflags.m_bShaderResource = true;
+
+         m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext, block);
 
          øconstruct(m_ptextureCubemap);
 
@@ -103,7 +105,7 @@ namespace gpu
          textureflags.m_bTransferSource = true;
 
          m_ptextureCubemap->initialize_texture(
-            m_pgpucontext->m_pgpurenderer, 
+            m_pgpucontext, 
             textureattributes,
             textureflags);
 
@@ -112,20 +114,20 @@ namespace gpu
       }
 
 
-      void equirectangular_cubemap::compute()
+      void equirectangular_cubemap::compute_equirectangular_cubemap(::gpu::command_buffer * pgpucommandbuffer)
       {
 
          ::gpu::context_lock lockcontext(m_pgpucontext);
 
          ::bred::Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+         //auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         ::string strDebugScopeCompute;
+         //::string strDebugScopeCompute;
 
-         strDebugScopeCompute.format("gpu::ibl::equirectangular_cubemap::compute");
+         //strDebugScopeCompute.format("gpu::ibl::equirectangular_cubemap::compute");
 
-         ::gpu::debug_scope debugscopeCompute(pgpucommandbuffer, strDebugScopeCompute);
+         //::gpu::debug_scope debugscopeCompute(pgpucommandbuffer, strDebugScopeCompute);
 
          using namespace graphics3d;
 
@@ -133,7 +135,7 @@ namespace gpu
 
          floating_matrix4 cameraAngles[6];
 
-         if (m_pgpucontext->m_eapi == ::gpu::e_api_vulkan)
+         if (m_pgpucontext->m_eapi == ::gpu::e_api_vulkan || m_pgpucontext->m_eapi == ::gpu::e_api_directx12)
          {
 
             cameraAngles[0] = lookAt(origin, unitX, -unitY); // X+ (right)
@@ -157,7 +159,7 @@ namespace gpu
          }
 
          floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
-            90f_degrees, // 90 degrees to cover one face
+            90_f_degrees, // 90 degrees to cover one face
             1.0f, // its a square
             0.1f,
             2.0f);
@@ -203,6 +205,8 @@ namespace gpu
 
             pgpucommandbuffer->set_viewport(rectangleViewport);
 
+            pgpucommandbuffer->set_scissor(rectangleViewport);
+
             pgpucommandbuffer->set_source(m_ptextureHdr);
 
             pgpucommandbuffer->draw(m_prenderableCube);
@@ -221,7 +225,7 @@ namespace gpu
 
          m_ptextureCubemap->set_ok_flag();
 
-         m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
+         //m_pgpucontext->endSingleTimeCommands(pgpucommandbuffer);
 
          timer.logDifference("Rendered equirectangular cubemap");
 

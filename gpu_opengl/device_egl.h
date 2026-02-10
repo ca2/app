@@ -1,6 +1,4 @@
 #pragma once
-
-
 //#include "gpu_opengl/context.h"
 #include "gpu_opengl/device.h"
 //#include "aura/os/_os.h"
@@ -21,8 +19,11 @@ namespace gpu_opengl
 
 
       EGLDisplay                       m_egldisplay;
-      EGLConfig                        m_eglconfig2;
-      EGLConfig                        m_eglconfigSwapChainWindow;
+      //EGLConfig                        m_eglconfigPrimary;
+      //EGLConfig                        m_eglconfigSwapChainWindow;
+      EGLConfig                        m_eglconfigPBuffer;
+      EGLConfig                        m_eglconfigWindow;
+      //EGLConfig                        m_eglconfigPrimary;
       EGLContext                       m_eglcontextPrimary;
       long                             m_lX11NativeVisualId;
       // EGLSurface                       m_eglsurface;
@@ -50,12 +51,20 @@ namespace gpu_opengl
 
       //void _translate_shader(string_array_base& stra) override;
       virtual void _create_device(const ::int_size & size);
-      void _opengl_lock() override;
-      void _opengl_unlock() override;
+      //virtual void _opengl_lock();
+      //virtual void _opengl_unlock();
 
-      void _swap_buffers() override;
+      //void _swap_buffers() override;
 
 
+      void * current_operating_system_gpu_context() override;
+
+
+      virtual bool _simplified_find_config_for_x11_window4(EGLConfig & eglconfig, long lX11VisualId, bool bOpaque);
+      virtual bool _simplified_find_config_for_x11_window2(EGLConfig & eglconfig, long lX11VisualId, bool bOpaque);
+      virtual bool _simplified_find_config_for_x11_window1(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque);
+      virtual bool _find_config_for_x11_window1(EGLConfig & eglconfig, long & lX11VisualId, bool bOpaque);
+      virtual bool _find_config_for_pbuffer(EGLConfig & eglconfig, bool bOpaque);
       virtual void __egl_x11_swap_buffers(void * pDisplay, long lWindow);
 
    };

@@ -6,7 +6,7 @@ namespace prompt
 
 
    department::department(::particle * pparticle) :
-      ::acme::department(pparticle)
+      ::platform::department(pparticle)
    {
 
    }
@@ -37,7 +37,7 @@ namespace prompt
       add_factory_item <prompt::pane_impact >();
       add_factory_item <prompt::primary_impact >();
 
-      if (!::acme::department::init_instance())
+      if (!::platform::department::init_instance())
       {
 
          return false;
@@ -79,7 +79,7 @@ namespace prompt
    //void department::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    //{
 
-   //   ::acme::department::route_command(pcommand);
+   //   ::platform::department::route_command(pcommand);
 
    //}
 

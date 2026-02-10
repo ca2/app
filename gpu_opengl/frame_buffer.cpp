@@ -95,8 +95,10 @@ namespace gpu_opengl
          printf("Framebuffer not complete! %d\n", status);
 
       }
+      
+      glBindTexture(GL_TEXTURE_2D, 0);
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      //glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
       m_size = sizeNew;
 

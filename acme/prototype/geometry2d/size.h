@@ -159,6 +159,8 @@ public:
 
    inline static size_type unit_size() { return size_type(1, 1); }
 
+   inline size_type transposed() const { return size_type(this->cy, this->cx); }
+
    inline size_type aspect_width(UNIT_TYPE w) { return size_type(w, w * this->cy / this->cx); }
    inline size_type aspect_height(UNIT_TYPE h) { return size_type(h * this->cx / this->cy, h); }
    inline ::design::enum_fit get_fit(size_type s) { return (::design::enum_fit) ::numeric::sign(s.cx *this->cy - s.cy * this->cx); }

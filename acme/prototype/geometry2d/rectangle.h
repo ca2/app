@@ -295,7 +295,15 @@ public:
    void set_height(UNIT_TYPE cy)  { this->bottom = this->top + cy; }
    void set_size(UNIT_TYPE cx, UNIT_TYPE cy)  { set_width(cx); set_height(cy); }
    void set_size(const SIZE_TYPE & size)  { set_size(size.cx, size.cy); }
-
+   void set_top_left(UNIT_TYPE leftNew, UNIT_TYPE topNew)
+   {
+      auto offsetX = leftNew - this->left;
+      auto offsetY = topNew - this->top;
+      this->left = leftNew;
+      this->right += offsetX;
+      this->top = topNew;
+      this->bottom += offsetY;
+   }
    rectangle_type & set_center_and_half_size(const POINT_TYPE & center, const SIZE_TYPE & halfsize)
    {
 
@@ -367,7 +375,10 @@ public:
    template < prototype_point POINT, prototype_size SIZE >
    rectangle_type & set(const POINT & p, const SIZE & s)  { return ::assign(*this, p, s); }
    template < prototype_rectangle RECTANGLE >
-   rectangle_type & set(const RECTANGLE & rectangle)  { return copy(rectangle); }
+   rectangle_type & set(const RECTANGLE & rectangle)  
+   {
+      return set(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom); 
+   }
 
    rectangle_type & set_dimension(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h)
    {
@@ -1608,6 +1619,33 @@ public:
          a[iOffset + 2] = this->bottom_right();
          a[iOffset + 3] = this->bottom_left();
          return a;
+      }
+
+        void rotateOn90InsideDimension(int dimHeight)
+      {
+         auto localCopy = *this;
+         set_width(localCopy.height());
+         set_height(localCopy.width());
+         int newLeft = dimHeight - localCopy.top - localCopy.height();
+         int newTop = localCopy.left;
+         set_top_left(newLeft, newTop);
+      }
+
+      void rotateOn180InsideDimension(int dimWidth, int dimHeight)
+      {
+         int newLeft = dimWidth - this->left - this->width();
+         int newTop = dimHeight - this->top - this->height();
+         set_top_left(newLeft, newTop);
+      }
+
+      void rotateOn270InsideDimension(int dimWidth)
+      {
+         auto localCopy = *this;
+         set_width(localCopy.height());
+         set_height(localCopy.width());
+         auto newLeft = localCopy.top;
+         auto newTop = dimWidth - localCopy.left - localCopy.width();
+         set_top_left(newLeft, newTop);
       }
 
 };

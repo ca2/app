@@ -329,23 +329,23 @@ namespace windows
 } // namespace windows
 
 
-
-
-CLASS_DECL_ACME bool is_wayland()
-{
-
-   return false;
-
-}
-
-
-
-CLASS_DECL_ACME bool is_x11()
-{
-
-   return false; 
-
-}
-
+//
+//
+// CLASS_DECL_ACME bool is_wayland()
+// {
+//
+//    return false;
+//
+// }
+//
+//
+//
+// CLASS_DECL_ACME bool is_x11()
+// {
+//
+//    return false;
+//
+// }
+//
 
 

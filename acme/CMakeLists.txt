@@ -2430,6 +2430,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/networking.cpp
             operating_system/windows_common/parallelization.cpp
             operating_system/windows_common/process.cpp
+       operating_system/windows_common/task.cpp
             operating_system/windows_common/time.cpp
             operating_system/windows_common/unicode.cpp
             #operating_system/windows_common/user.cpp
@@ -3139,7 +3140,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/windows/geometry2d.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

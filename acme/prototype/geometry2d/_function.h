@@ -465,10 +465,10 @@ template < prototype_rectangle RECTANGLE_TYPE >
 bool is_null(const RECTANGLE_TYPE & rectangle)
 {
 
-   return rectangle.left == (typename RECTANGLE_TYPE::UNIT_TYPE)0
-      && rectangle.top == (typename RECTANGLE_TYPE::UNIT_TYPE)0
-      && rectangle.right == (typename RECTANGLE_TYPE::UNIT_TYPE)0
-      && rectangle.bottom == (typename RECTANGLE_TYPE::UNIT_TYPE)0;
+   return rectangle.left == (decltype(rectangle.left))0
+      && rectangle.top == (decltype(rectangle.top))0
+      && rectangle.right == (decltype(rectangle.right))0
+      && rectangle.bottom == (decltype(rectangle.bottom))0;
 
 }
 

@@ -1,6 +1,7 @@
 # Created by camilo on 2023-02 <3ThomasBorregaardSorensen!!
 # default configuration
 message(STATUS "source/app/_.cmake")
+set(WITH_AUDIO FALSE)
 set(INCLUDE_AUDIO FALSE)
 set(INCLUDE_ICONV FALSE)
 set(INCLUDE_IDN FALSE)

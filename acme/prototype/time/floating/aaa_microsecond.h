@@ -26,8 +26,8 @@
 //using floating_microsecond = floating_time < floating_microsecond_t >;
 
 //
-//constexpr floating_microsecond operator "" _us(long double d) { return (floating_microsecond)d; }
-//constexpr floating_microsecond operator "" _μs(long double d) { return (floating_microsecond)d; }
+//constexpr floating_microsecond operator""_us(long double d) { return (floating_microsecond)d; }
+//constexpr floating_microsecond operator""_μs(long double d) { return (floating_microsecond)d; }
 
 
 inline floating_microsecond get_floating_microsecond() { return floating_microsecond(get_floating_nanosecond().m_d / 1'000.0); }

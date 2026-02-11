@@ -48,8 +48,8 @@ public:
 };
 
 
-inline class ::opacity operator "" _opacity(long double d) { return d; }
-inline class ::opacity operator "" _opacity(unsigned long long ul) { return (unsigned char) ul; }
+inline class ::opacity operator""_opacity(long double d) { return d; }
+inline class ::opacity operator""_opacity(unsigned long long ul) { return (unsigned char) ul; }
 
 
 

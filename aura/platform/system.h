@@ -141,7 +141,7 @@ namespace aura
       //virtual void defer_xml();
        
       
-      //void node_will_finish_launching() override;
+      //void node_will_aaa_finish_launching() override;
       
       
       //void windowing_post_quit() override;

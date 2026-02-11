@@ -45,6 +45,10 @@
 		9AC3F2042CF7B21C0061DCC0 /* libwindowing_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2032CF7B21C0061DCC0 /* libwindowing_ios.a */; };
 		9AC3F2072CF7B3340061DCC0 /* libinnate_ui_uikit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F2062CF7B3340061DCC0 /* libinnate_ui_uikit.a */; };
 		9AC3F20F2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3F20E2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a */; };
+		9AE715CC2F36BE3A003C7283 /* libapex_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE715CB2F36BE3A003C7283 /* libapex_ios.a */; };
+		9AE715CD2F36BE4D003C7283 /* libios_draw2d_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A45ED342D1E7E90008CC280 /* libios_draw2d_quartz2d.a */; };
+		9AE715CF2F36BE5B003C7283 /* libios_folder_zip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE715CE2F36BE5B003C7283 /* libios_folder_zip.a */; };
+		9AE715D02F36BE61003C7283 /* liboperating_ambient_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A45ED372D1E7E90008CC280 /* liboperating_ambient_ios.a */; };
 		9AF8A2452D1E8F8400F03530 /* _static_factory_.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9AF8A2442D1E8F8400F03530 /* _static_factory_.inl */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +180,8 @@
 		9AC3F2062CF7B3340061DCC0 /* libinnate_ui_uikit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libinnate_ui_uikit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F20C2CF7B69A0061DCC0 /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwrite_text_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC3F20E2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_write_text_quartz2d.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE715CB2F36BE3A003C7283 /* libapex_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE715CE2F36BE5B003C7283 /* libios_folder_zip.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_folder_zip.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF8A2442D1E8F8400F03530 /* _static_factory_.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = _static_factory_.inl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,6 +190,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AE715D02F36BE61003C7283 /* liboperating_ambient_ios.a in Frameworks */,
+				9AE715CF2F36BE5B003C7283 /* libios_folder_zip.a in Frameworks */,
+				9AE715CD2F36BE4D003C7283 /* libios_draw2d_quartz2d.a in Frameworks */,
+				9AE715CC2F36BE3A003C7283 /* libapex_ios.a in Frameworks */,
 				9AC3F20F2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a in Frameworks */,
 				9AC3F2072CF7B3340061DCC0 /* libinnate_ui_uikit.a in Frameworks */,
 				9AC3F18E2CF78A4F0061DCC0 /* libios_aqua.a in Frameworks */,
@@ -279,6 +289,8 @@
 		9A4753962CF53D3900ED30AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AE715CE2F36BE5B003C7283 /* libios_folder_zip.a */,
+				9AE715CB2F36BE3A003C7283 /* libapex_ios.a */,
 				9A97A7922CFBDDFB000A2F7C /* libios_acme_windowing_kit.a */,
 				9AC3F20E2CF7B6B00061DCC0 /* libios_write_text_quartz2d.a */,
 				9AC3F20C2CF7B69A0061DCC0 /* libwrite_text_quartz2d.dylib */,
@@ -546,14 +558,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CURRENT_PROJECT_VERSION = 10;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "App Just Aura Message Box!!";
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Timer!!";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.network.app.just-aura-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = ca2.network.app.just_aura_message_box;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -562,14 +577,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CURRENT_PROJECT_VERSION = 10;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/ios/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "App Just Aura Message Box!!";
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Timer!!";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				MACH_O_TYPE = mh_execute;
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = "ca2.network.app.just-aura-message-box";
+				PRODUCT_BUNDLE_IDENTIFIER = ca2.network.app.just_aura_message_box;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -580,20 +598,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -601,12 +612,10 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -614,11 +623,11 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = c17;
-				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -633,10 +642,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(ARCHS)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(ARCH_MODIFIER)/library",
 				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -673,20 +680,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULE_DEBUGGING = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -694,12 +694,10 @@
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -707,6 +705,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = c17;
@@ -722,10 +721,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(ARCHS)/library",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(ARCH_MODIFIER)/library",
 				);
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";

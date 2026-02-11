@@ -24,8 +24,8 @@
 //using floating_day = floating_time < floating_day_t >; 
 
 //
-//constexpr floating_day operator "" _day(long double d) { return (floating_day)d; }
-//constexpr floating_day operator "" _days(long double d) { return (floating_day)d; }
+//constexpr floating_day operator""_day(long double d) { return (floating_day)d; }
+//constexpr floating_day operator""_days(long double d) { return (floating_day)d; }
 
 
 inline floating_day get_floating_day() { return floating_day(get_floating_nanosecond().m_d / 86'400'000'000'000.0); }

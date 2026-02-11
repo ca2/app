@@ -425,7 +425,7 @@ inline ::size_type < largest_number < NUMBER1, NUMBER2 > > operator -(const ::po
 
 
 template < prototype_number NUMBER >
-constexpr point_type<NUMBER>::point_type(const lparam &lparam) : sequence_type<UNIT_TYPE, 2>(lparam.x(), lparam.y())
+constexpr point_type<NUMBER>::point_type(const lparam &lparam) : sequence_type<UNIT_TYPE, 2>(lparam.x, lparam.y)
 {
 
 

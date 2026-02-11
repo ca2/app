@@ -4,9 +4,9 @@
 #include "acme/inline/application/main.h"
 
 
-#ifdef CUBE
-DO_FACTORY(REFERENCE_FACTORY)
-#endif
+//#ifdef CUBE
+//DO_FACTORY(REFERENCE_FACTORY)
+//#endif
 
 
 CLASS_DECL_ACME void string_short_test();
@@ -23,7 +23,6 @@ namespace APPLICATION_NAMESPACE
 #include "acme/platform/system_setup.h"
 
 
-#include "acme/inline/_include_user_and_system.h"
 
 
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)

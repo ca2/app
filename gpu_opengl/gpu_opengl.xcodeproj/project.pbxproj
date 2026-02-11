@@ -58,6 +58,10 @@
 		9A4CC8832F23701A00D9A73A /* _gpu_opengl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333512F232C4E00705FD8 /* _gpu_opengl.cpp */; };
 		9A4CC8852F23704B00D9A73A /* swap_chain_cgl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4CC8842F23704B00D9A73A /* swap_chain_cgl.cpp */; };
 		9A7EE74A2F26C686006AA868 /* context_handle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EE7492F26C67C006AA868 /* context_handle.h */; };
+		9AB1B2322F396AA00051FF92 /* fence.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2312F396A9C0051FF92 /* fence.h */; };
+		9AB1B2342F396D010051FF92 /* fence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2332F396CFF0051FF92 /* fence.cpp */; };
+		9AB1B2372F39703C0051FF92 /* semaphore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AB1B2362F39703C0051FF92 /* semaphore.cpp */; };
+		9AB1B2382F39703C0051FF92 /* semaphore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB1B2352F39703C0051FF92 /* semaphore.h */; };
 		9AE0348D2F2344AF003579EA /* context_ktx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4333792F232C4E00705FD8 /* context_ktx.cpp */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +211,10 @@
 		9A7EE7492F26C67C006AA868 /* context_handle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context_handle.h; sourceTree = "<group>"; };
 		9A8A576F2F237E9B00FBC673 /* _glad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _glad.cpp; sourceTree = "<group>"; };
 		9A8A57712F23823800FBC673 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		9AB1B2312F396A9C0051FF92 /* fence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fence.h; sourceTree = "<group>"; };
+		9AB1B2332F396CFF0051FF92 /* fence.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fence.cpp; sourceTree = "<group>"; };
+		9AB1B2352F39703C0051FF92 /* semaphore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
+		9AB1B2362F39703C0051FF92 /* semaphore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = semaphore.cpp; sourceTree = "<group>"; };
 		9AC7C73D2F232F8000A059F9 /* gpu.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gpu.xcodeproj; path = ../gpu/gpu.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AE0348B2F2343A7003579EA /* glad.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = glad.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -326,6 +334,8 @@
 				9A4333842F232C4E00705FD8 /* device_win32.h */,
 				9A4333852F232C4E00705FD8 /* device_win32.cpp */,
 				9A4333862F232C4E00705FD8 /* factory_exchange.h */,
+				9AB1B2332F396CFF0051FF92 /* fence.cpp */,
+				9AB1B2312F396A9C0051FF92 /* fence.h */,
 				9A4333872F232C4E00705FD8 /* frame.h */,
 				9A4333882F232C4E00705FD8 /* frame_buffer.h */,
 				9A4333892F232C4E00705FD8 /* frame_buffer.cpp */,
@@ -358,6 +368,8 @@
 				9A4333F42F232C4E00705FD8 /* renderer.cpp */,
 				9A4333F52F232C4E00705FD8 /* resource.h */,
 				9A4333F72F232C4E00705FD8 /* rotating_cube.cpp */,
+				9AB1B2352F39703C0051FF92 /* semaphore.h */,
+				9AB1B2362F39703C0051FF92 /* semaphore.cpp */,
 				9A4333F82F232C4E00705FD8 /* shader.h */,
 				9A4333F92F232C4E00705FD8 /* shader.cpp */,
 				9A4333FA2F232C4E00705FD8 /* swap_chain.h */,
@@ -433,6 +445,8 @@
 			files = (
 				9A2060972F23330300D162D8 /* context_egl.h in Headers */,
 				9A20609B2F23333F00D162D8 /* device_cgl.h in Headers */,
+				9AB1B2382F39703C0051FF92 /* semaphore.h in Headers */,
+				9AB1B2322F396AA00051FF92 /* fence.h in Headers */,
 				9A7EE74A2F26C686006AA868 /* context_handle.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,6 +560,7 @@
 				9A4CC8832F23701A00D9A73A /* _gpu_opengl.cpp in Sources */,
 				9A4334E62F232DDB00705FD8 /* object.cpp in Sources */,
 				9A20609E2F23395000D162D8 /* frame_buffer.cpp in Sources */,
+				9AB1B2372F39703C0051FF92 /* semaphore.cpp in Sources */,
 				9A4334EB2F232DF100705FD8 /* command_buffer.cpp in Sources */,
 				9A4334EC2F232DF100705FD8 /* context.cpp in Sources */,
 				9A4334ED2F232DF100705FD8 /* block.cpp in Sources */,
@@ -565,6 +580,7 @@
 				9A20609A2F23333F00D162D8 /* device_cgl.cpp in Sources */,
 				9A4334DC2F232DCB00705FD8 /* shader.cpp in Sources */,
 				9A4334DD2F232DCB00705FD8 /* render_target.cpp in Sources */,
+				9AB1B2342F396D010051FF92 /* fence.cpp in Sources */,
 				9A4334DE2F232DCB00705FD8 /* renderer.cpp in Sources */,
 				9AE0348D2F2344AF003579EA /* context_ktx.cpp in Sources */,
 				9A4334DF2F232DCB00705FD8 /* pixmap.cpp in Sources */,

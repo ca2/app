@@ -225,7 +225,7 @@ inline unsigned char as_byte(const ::duration & duration) { return (unsigned cha
 inline ::duration __tick(double d) { return (long long) d; }
 
 
-inline ::duration operator "" _tick(unsigned long long u) { return u; }
+inline ::duration operator""_tick(unsigned long long u) { return u; }
 
 
 

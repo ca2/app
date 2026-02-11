@@ -1228,10 +1228,10 @@ ret:
    }
 
 
-   void session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
+::particle * session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
    {
 
-      //return ::success;
+   return nullptr;
 
    }
 

@@ -23,6 +23,9 @@ namespace gpu
 
 
       virtual void initialize_gpu_fence(::gpu::context * pgpucontext);
+      
+      
+      virtual void reset();
 
       virtual void wait_gpu_fence();
 

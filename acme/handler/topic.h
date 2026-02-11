@@ -27,7 +27,9 @@ public:
    ::pointer<::user::element>             m_puserelement; // user::interaction
    ::pointer<::particle>                  m_pparticle;
    unsigned long long                     m_uUpdateSerial;
-
+   ::wparam                               m_wparam;
+   ::lparam                               m_lparam;
+   ::lresult                              m_lresult;
    //::pointer<::user::activation_token>    m_puseractivationtoken;
 
 

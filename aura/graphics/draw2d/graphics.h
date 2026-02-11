@@ -81,6 +81,7 @@ class graphics_context;
       bool                                         m_bForWindowDraw2d;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
+      int                                          m_iYFlipHeight;
       // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
       //bool                                         m_bHasCurrentPoint;
@@ -88,7 +89,7 @@ class graphics_context;
       void* m_pthis;
       ::pointer < ::user::interaction >            m_puserinteraction;
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
-
+      double                                       m_dSizeScaler;
       bool                                         m_bPat;
       ///::image32_callback                           m_callbackImage32CpuBuffer;
 
@@ -122,7 +123,7 @@ class graphics_context;
       enum_interpolation_mode                m_einterpolationmode;
       enum_compositing_quality                  m_ecompositingquality;
       ::write_text::enum_rendering           m_ewritetextrendering;
-      double                                 m_dFontFactor;
+      //double                                 m_dFontFactor;
 
       ::double_size                             m_sizeScaling;
       ::double_point                            m_pointOrigin;
@@ -165,6 +166,8 @@ class graphics_context;
 
       virtual bool is_y_flip();
 
+      virtual double size_scaler();
+      virtual void set_size_scaler(double dSizeScaler);
 
       //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
 

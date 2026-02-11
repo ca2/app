@@ -1583,7 +1583,7 @@ namespace nanoui
 
                on_before_in_place_edit(pinplaceedit);
 
-               pedit->m_callback = [pinplaceedit](auto str)
+               pedit->m_callback = [pinplaceedit](auto str)->bool
                   {
 
                      pinplaceedit->set_edit_payload(str);

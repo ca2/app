@@ -16,7 +16,7 @@ namespace user
 
       m_textproperty.set_text_property(m_textproperty);
 
-      m_propertywillchangea += [this](auto & change)
+      m_propertywillchangea += [this](auto & change)->bool
          {
 
             if (m_textproperty && change)

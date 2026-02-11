@@ -17,7 +17,7 @@ namespace user
 
       m_checkproperty.set_check_property(m_checkproperty);
 
-      m_propertywillchangea += [this](auto & change)
+      m_propertywillchangea += [this](auto & change)->bool
          {
 
             if (m_checkproperty && change)

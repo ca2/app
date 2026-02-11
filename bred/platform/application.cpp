@@ -817,7 +817,7 @@ namespace bred
       auto pbuttonRestartApp = create_button<::user::button>(pparent, "Restart App");
 
       pbuttonRestartApp->m_callbackOnClick =
-         [this](::user::interaction *puserinteraction, ::item *pitem, ::user::activation_token *puseractivationtoken)
+         [this](::user::interaction *puserinteraction, ::item *pitem, ::user::activation_token *puseractivationtoken)->bool
       {
 
 

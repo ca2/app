@@ -5,266 +5,8 @@
 #include "listener.h"
 #include "tree.h"
 #include "acme/exception/interface_only.h"
-
-
 #include "acme/template/list.h"
 
-
-//void data_tree_item_list_swap(
-//   const ::pointer < ::data::tree_item_base > & pitemA, 
-//   const ::pointer < ::data::tree_item_base > & pitemB)
-//{
-//
-//   auto pitemAPrevious = pitemA->____previous();
-//
-//   auto pitemANext = pitemA->____next();
-//
-//   auto pitemBPrevious = pitemB->____previous();
-//
-//   auto pitemBNext = pitemB->____next();
-//
-//   if (pitemAPrevious == pitemB)
-//   {
-//
-//      if (pitemB->____next() != pitemA)
-//      {
-//
-//         throw "error";
-//
-//      }
-//
-//      if (pitemANext)
-//      {
-//
-//         pitemANext->____previous() = pitemB;
-//
-//      }
-//
-//      if (pitemBPrevious)
-//      {
-//
-//         pitemBPrevious->____next() = pitemA;
-//
-//      }
-//
-//      pitemA->____previous() = pitemB->____previous();
-//
-//      pitemB->____next() = pitemA->____next();
-//
-//      pitemA->____next() = pitemB;
-//
-//      pitemB->____previous() = pitemA;
-//
-//   }
-//   else if (pitemANext == pitemB)
-//   {
-//
-//      if (pitemB->____previous() != pitemA)
-//      {
-//
-//         throw "error";
-//
-//      }
-//
-//      if (pitemAPrevious)
-//      {
-//
-//         pitemAPrevious->____next() = pitemB;
-//
-//      }
-//
-//      if (pitemBNext)
-//      {
-//
-//         pitemBNext->____previous() = pitemA;
-//
-//      }
-//
-//      pitemA->____next() = pitemB->____next();
-//
-//      pitemB->____previous() = pitemA->____previous();
-//
-//      pitemA->____previous() = pitemB;
-//
-//      pitemB->____next() = pitemA;
-//
-//   }
-//   else
-//   {
-//
-//      pitemA->____previous() = pitemBPrevious;
-//
-//      pitemA->____next() = pitemBNext;
-//
-//      pitemB->____previous() = pitemAPrevious;
-//
-//      pitemB->____next() = pitemANext;
-//
-//      if (::is_set(pitemAPrevious))
-//      {
-//
-//         pitemAPrevious->____next() = pitemB;
-//
-//      }
-//
-//      if (::is_set(pitemANext))
-//      {
-//
-//         pitemANext->____previous() = pitemB;
-//
-//      }
-//
-//      if (::is_set(pitemBPrevious))
-//      {
-//
-//         pitemBPrevious->____next() = pitemA;
-//
-//      }
-//
-//      if (::is_set(pitemBNext))
-//      {
-//
-//         pitemBNext->____previous() = pitemA;
-//
-//      }
-//
-//   }
-//
-//}
-//
-//void data_tree_item_list_sort(::data::tree_item_base * pitem, const ::function < bool(const ::data::tree_item_base *, const ::data::tree_item_base *) > & functionLess)
-//{
-//
-//   if (::is_null(pitem->____head()) || ::is_null(pitem->____tail()))
-//   {
-//
-//      return;
-//
-//   }
-//
-//   ::pointer_array < ::data::tree_item_base > stackLowerBound;
-//   ::pointer_array < ::data::tree_item_base > stackUpperBound;
-//
-//   ::pointer < ::data::tree_item_base > iLowerBound;
-//   ::pointer < ::data::tree_item_base > iUpperBound;
-//   ::pointer < ::data::tree_item_base > iLPos, iUPos, iMPos;
-//   ::pointer < ::data::tree_item_base > p1;
-//   ::pointer < ::data::tree_item_base > p2;
-//
-//   stackLowerBound.push(pitem->____head());
-//   stackUpperBound.push(pitem->____tail());
-//   while (true)
-//   {
-//      iLowerBound = stackLowerBound.pop();
-//      iUpperBound = stackUpperBound.pop();
-//      iLPos = iLowerBound;
-//      iUPos = iUpperBound;
-//      p1 = iLPos;
-//      p2 = iUPos;
-//      iMPos = p1;
-//      while (p1 != p2)
-//      {
-//         p2 = p2->____previous();
-//         if (p1 == p2)
-//         {
-//            iMPos = p1;
-//            break;
-//         }
-//         p1 = p1->____next();
-//         if (p1 == p2)
-//         {
-//            iMPos = p1;
-//            break;
-//         }
-//      }
-//      while (true)
-//      {
-//         while (true)
-//         {
-//            if (iMPos == iUPos)
-//               break;
-//            if (functionLess(iMPos, iUPos))
-//            {
-//               iUPos = iUPos->____previous();
-//            }
-//            else
-//            {
-//               data_tree_item_list_swap(iMPos, iUPos);
-//               swap(iMPos, iUPos);
-//               if (iLowerBound == iMPos)
-//               {
-//                  iLowerBound = iUPos;
-//               }
-//               else if (iLowerBound == iUPos)
-//               {
-//                  iLowerBound = iMPos;
-//               }
-//               if (iUpperBound == iMPos)
-//               {
-//                  iUpperBound = iUPos;
-//               }
-//               else if (iUpperBound == iUPos)
-//               {
-//                  iUpperBound = iMPos;
-//               }
-//               break;
-//            }
-//         }
-//         if (iMPos == iUPos)
-//            break;
-//         iMPos = iUPos;
-//         while (true)
-//         {
-//            if (iMPos == iLPos)
-//               break;
-//            if (functionLess(iLPos, iMPos))
-//            {
-//               iLPos = iLPos->____next();
-//            }
-//            else
-//            {
-//               data_tree_item_list_swap(iLPos, iMPos);
-//               swap(iLPos, iMPos);
-//               if (iLowerBound == iMPos)
-//               {
-//                  iLowerBound = iLPos;
-//               }
-//               else if (iLowerBound == iLPos)
-//               {
-//                  iLowerBound = iMPos;
-//               }
-//               if (iUpperBound == iMPos)
-//               {
-//                  iUpperBound = iLPos;
-//               }
-//               else if (iUpperBound == iLPos)
-//               {
-//                  iUpperBound = iMPos;
-//               }
-//               break;
-//            }
-//         }
-//         if (iMPos == iLPos)
-//            break;
-//         iMPos = iLPos;
-//      }
-//      if (list_item_is_before((const ::data::tree_item_base *)iLowerBound, (const ::data::tree_item_base *)iMPos->____previous()))
-//      {
-//         stackLowerBound.push(iLowerBound);
-//         stackUpperBound.push(iMPos->____previous());
-//      }
-//      if (list_item_is_before((const ::data::tree_item_base *)iMPos->____next(), (const ::data::tree_item_base *)iUpperBound))
-//      {
-//         stackLowerBound.push(iMPos->____next());
-//         stackUpperBound.push(iUpperBound);
-//      }
-//      if (stackLowerBound.get_size() == 0)
-//         break;
-//   }
-//   pitem->____head() = list_item_calculate_head((const ::data::tree_item_base *)pitem->____head());
-//   pitem->____tail() = list_item_calculate_tail((const ::data::tree_item_base *)pitem->____tail());
-//
-//}
 
 namespace data
 {
@@ -275,11 +17,7 @@ namespace data
 
       m_iIndexHint      = -1;
       m_dwUser          = 0;
-      //m_etreeitemstate         = 0;
-      //m_ptree           = nullptr;
-      //_get_parent()         = nullptr;
       m_iLevel          = -1;
-      //_get_parent()         = nullptr;
 
    }
 
@@ -380,7 +118,7 @@ namespace data
 
       erase_child_at(iIndex);
 
-      _predicate_each([](auto pitem)
+      _predicate_each([](::data::tree_item_base * pitem)->bool
       {
 
          pitem->clear_cache();
@@ -437,13 +175,6 @@ namespace data
 
    }
 
-
-//   void tree_item_base::_set_item(::item * pdataitem)
-//   {
-//
-//      throw ::interface_only();
-//
-//   }
 
    void tree_item_base::erase_child_at(::collection::index i)
    {
@@ -524,20 +255,10 @@ namespace data
    }
 
 
-   //::collection::index tree_item_base::_find_child(tree_item_base * ptreeitem) const
-   //{
-
-   //   throw ::interface_only();
-
-   //   return -1;
-
-   //}
-
-
    void tree_item_base::erase_tree_item_descendants()
    {
 
-      _predicate_each([](auto p)
+      _predicate_each([](tree_item_base * p)->bool
       {
 
          p->erase_tree_item_descendants();
@@ -634,11 +355,10 @@ namespace data
 
       pitem->_get_parent()->_erase_child(pitem);
 
-      pitem->_get_parent()->_predicate_each([](auto p)
+      pitem->_get_parent()->_predicate_each([](tree_item_base * p)->bool
       {
 
          p->clear_cache();
-
 
          return true;
 
@@ -694,7 +414,7 @@ namespace data
 
          _insert_child_at(0, pitemNew);
 
-         _predicate_each([](auto pitem)
+         _predicate_each([](tree_item_base * pitem)->bool
          {
 
             pitem->clear_cache();
@@ -717,7 +437,7 @@ namespace data
 
          _add_child(pitemNew);
 
-         _predicate_each([](auto pitem)
+         _predicate_each([](auto pitem)->bool
          {
 
             pitem->clear_cache();
@@ -759,7 +479,7 @@ namespace data
 
          _get_parent()->_insert_child_at(iFind, pitemNew);
 
-         _get_parent()->_predicate_each([](auto pitem)
+         _get_parent()->_predicate_each([](auto pitem)->bool
          {
 
             pitem->clear_cache();
@@ -800,7 +520,7 @@ namespace data
 
          _get_parent()->_insert_child_at(iFind + 1, pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->_predicate_each([](auto & pitem)->bool
          {
 
             pitem->clear_cache();
@@ -821,7 +541,7 @@ namespace data
 
          _get_parent()->_add_child(pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->_predicate_each([](auto & pitem)->bool
          {
 
             pitem->clear_cache();
@@ -853,7 +573,7 @@ namespace data
 
          _get_parent()->_set_child_at(iFind, pitemNew);
 
-         _get_parent()->_predicate_each([](auto & pitem)
+         _get_parent()->_predicate_each([](auto & pitem)->bool
          {
 
             pitem->clear_cache();
@@ -916,7 +636,7 @@ namespace data
    
    void tree_item_base::_get_children(::data::tree_item_base_ptr_array & ptra)
    {
-      _predicate_each([&ptra](auto p)
+      _predicate_each([&ptra](auto p)->bool
       {
          ptra.add_item(p);
 
@@ -951,7 +671,7 @@ namespace data
 
       ::collection::count c = 0;
       
-      _predicate_each([&c](auto p)
+      _predicate_each([&c](auto p)->bool
       {
 
          if (p->get_children_count() > 0)
@@ -975,7 +695,7 @@ namespace data
       
       ::collection::count c = 0;
 
-      auto iFind = _predicate_find_first([&c, iIndex](auto& p)
+      auto iFind = _predicate_find_first([&c, iIndex](auto& p)->bool
          {
 
             if (p->get_children_count() > 0)

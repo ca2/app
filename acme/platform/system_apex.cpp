@@ -521,8 +521,11 @@ namespace platform
    }
 
 
-   void apex_system_layer::system_id_update(int iUpdate, long long iPayload)
+   ::lresult apex_system_layer::system_id_topic(int iId, long long llWparam, long long llLparam)
    {
+      
+      return 0;
+      
    }
 
 

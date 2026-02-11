@@ -630,6 +630,9 @@ namespace gpu_opengl
       //   m_pgpucontextUpper->make_current();
 
       //}
+      
+      defer_end_frame_layer_after_submit();
+
 
       m_prenderstate->on_happening(::gpu::e_happening_end_frame);
 

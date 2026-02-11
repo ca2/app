@@ -1,6 +1,8 @@
 //
 // Created by camilo on 2026-01-02 17:47 <3ThomasBorregaardSørensen!!
 //
+//
+//
 #include "framework.h"
 #include "acme/operating_system/cpu_features.h"
 #include <sys/types.h>
@@ -50,3 +52,49 @@ cpu_features::cpu_features()
    );
    m_bAVX2 = (ebx & (1u << 5)) != 0; // AVX2
 }
+
+
+
+#include "framework.h"
+#include <sys/utsname.h>
+#include <string.h>
+
+
+namespace operating_system
+{
+
+// From linux/cpu_features.cpp by camilo on 2026-02-09 12:49 <3ThomasBorregaardSørensen!!
+
+   ::string machine_architecture()
+   {
+
+      struct utsname u;
+
+      uname(&u);
+
+      //if (!strcmp(u.machine, "aarch64"))
+      {
+
+        // return "aarch64";
+
+      }
+      //else if (!strcmp(u.machine, "x86_64"))
+      {
+
+        // return "x86_64";
+
+      }
+      //else
+      {
+
+        // return "(Unknown architecture)";
+        return u.machine;
+
+      }
+
+   }
+
+
+} // namespace operating_system
+
+

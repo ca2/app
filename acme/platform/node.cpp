@@ -661,7 +661,7 @@ namespace platform
    }
 
 
-//   void node::_will_finish_launching()
+//   void node::_will_aaa_finish_launching()
 //   {
 //
 //      //return ::success;

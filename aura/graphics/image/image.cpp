@@ -7705,15 +7705,15 @@ void image::_create_helper_map()
 }
 
 
-void image::set_font_factor(double dFactor)
+void image::set_size_scaler(double dSizeScaler)
 {
 
-   m_dFontFactor = dFactor;
+   m_dSizeScaler = dSizeScaler;
 
    if (!m_bMapped)
    {
 
-      get_graphics()->m_dFontFactor = dFactor;
+      get_graphics()->m_dSizeScaler = dSizeScaler;
 
    }
 
@@ -9526,17 +9526,10 @@ void image::invert_rgb(const ::int_rectangle& rectangle)
 }
 
 
-void image::create_circle(::image::image* pimage, int diameter)
+void image::create_circle2(::image::image* pimage, int diameter)
 {
 
-
    create({ diameter, diameter });
-   //if (!)
-   //{
-
-   //   return false;
-
-   //}
 
    if (::is_null(pimage) || pimage->area() <= 0)
    {
@@ -9561,7 +9554,17 @@ void image::create_circle(::image::image* pimage, int diameter)
 
    }
 
+   clip_circle(1.0);
+
+}
+
+
+void image::clip_circle(double dWidth)
+{
+
    ::int_size s = size();
+
+   auto diameter = minimum(s.cx, s.cy);
 
    image32_t* pimage32 = image32();
 
@@ -9571,7 +9574,7 @@ void image::create_circle(::image::image* pimage, int diameter)
 
    double radius = diameter / 2.0;
 
-   double dBorder = 1.0;
+   double dBorder = dWidth;
 
    double rmin = radius - dBorder;
 
@@ -9599,7 +9602,10 @@ void image::create_circle(::image::image* pimage, int diameter)
 
          crA = maximum(minimum(crA, 255), 0);
 
-         pimage322->m_ui = (pimage322->m_ui & 0x00ffffff) | (crA << 24);
+         pimage322->m_ua[0] = ((int)pimage322->m_ua[0] * crA) / 255;
+         pimage322->m_ua[1] = ((int)pimage322->m_ua[1] * crA) / 255;
+         pimage322->m_ua[2] = ((int)pimage322->m_ua[2] * crA) / 255;
+         pimage322->m_ua[3] = ((int)pimage322->m_ua[3] * crA) / 255;
 
          pimage322++;
 

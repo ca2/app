@@ -148,7 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				9A18FD63251B10010064BCDE /* libberg.dylib */,
-				9A93B95228471B54005ACD11 /* libios_base.a */,
+				9A93B95228471B54005ACD11 /* libios_berg.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,10 +314,10 @@
 			remoteRef = 9A18FD62251B10010064BCDE /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A93B95228471B54005ACD11 /* libios_base.a */ = {
+		9A93B95228471B54005ACD11 /* libios_berg.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_base.a;
+			path = libios_berg.a;
 			remoteRef = 9A93B95128471B54005ACD11 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

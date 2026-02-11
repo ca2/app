@@ -2,7 +2,7 @@
 #include "acme/exception/exception.h"
 namespace APPLICATION_NAMESPACE
 {
-void application_factory(::factory::factory * pfactory);
+CLASS_DECL_IMPORT void application_factory(::factory::factory * pfactory);
 
 }
 
@@ -192,6 +192,8 @@ int main(int argc, char ** argv, char ** envp)
    //system.on_system_before_destroy();
    
    //return ::acme::acme::g_pacme->m_papplication->m_iExitCode;
+
+   psystem->destroy();
 
    return psystem->m_iExitCode;
 

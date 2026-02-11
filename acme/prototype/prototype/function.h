@@ -401,30 +401,6 @@ public:
 };
 
 
-// class function_composite_1 :
-//    public function_composite_base < ::subparticle >
-// {
-// public:
-//
-//
-//    function_composite_1(base * pbase, const class ::time & timeTimeout) :
-//       function_composite_base < ::subparticle >(pbase, timeTimeout)
-//    {
-//
-//
-//    }
-//
-//
-//    void operator()() override
-//    {
-//
-//       this->m_pbase->call();
-//
-//    }
-//
-//
-// };
-
 
 template < >
 class function < void() > :
@@ -438,42 +414,6 @@ public:
 
    using base_pointer = ::pointer < ::subparticle >;
 
-   
-   // template < typename ELEMENT >
-   // class implementation :
-   //    public base_implementation
-   // {
-   // public:
-   //
-   //
-   //    ELEMENT m_element;
-   //
-   //
-   //    implementation(ELEMENT element, const class ::time & timeTimeout) :
-   //       m_element(element),
-   //       base_implementation(timeTimeout)
-   //    {
-   //
-   //       set_flag(e_flag_automatic_result_just_after_running);
-   //
-   //    }
-   //
-   //
-   //    void run() override
-   //    {
-   //
-   //       m_element();
-   //
-   //    }
-   //
-   //
-   // };
-
-   
-
-
-
-   //::pointer < base > m_pbase;
 
    function() { }
    // template < typename T2 >
@@ -590,59 +530,6 @@ public:
    }
 
 };
-//
-//template < >
-//class function_receptor < void() > :
-//   public function < void() >
-//{
-//public:
-//
-//   template < typename PAYLOAD >
-//   function_receptor(PAYLOAD function) :
-//      function < void() >(transfer_t{}, function)
-//   {
-//   }
-//
-//
-//};
-
-
-// template < typename RETURN_TYPE >
-// class function_base_2 :
-//    virtual public ::subparticle
-// {
-// public:
-//
-//
-//    virtual RETURN_TYPE get() = 0;
-//
-//
-// };
-//
-//
-// template < typename RETURN_TYPE >
-// class function_composite_2 :
-//    public function_composite_base < ::function_base_2 < RETURN_TYPE > >
-// {
-// public:
-//
-//    using base = ::function_base_2 < RETURN_TYPE >;
-//
-//    function_composite_2(base * pbase, const class ::time & timeTimeout) :
-//       function_composite_base < ::function_base_2 < RETURN_TYPE > >(pbase, timeTimeout)
-//    {
-//
-//    }
-//
-//
-//    RETURN_TYPE get() override
-//    {
-//
-//       return ::transfer(this->m_pbase->operator()());
-//
-//    }
-//
-// };
 
 
 template <typename FUNCTION, typename RETURN_TYPE>

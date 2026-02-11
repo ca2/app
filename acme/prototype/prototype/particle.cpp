@@ -1688,6 +1688,29 @@ void particle::call_member(long long iId)
 
 
 
+::lresult particle::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle * pparticle)
+{
+   
+   return 0;
+   
+}
+
+
+::lresult particle::call_id_topic(const ::enum_id & eid, ::wparam wparam, ::lparam lparam, ::particle * pparticle)
+{
+   
+   auto ptopic = create_topic(eid);
+   
+   ptopic->m_wparam = wparam;
+   
+   ptopic->m_lparam = lparam;
+   
+   this->handle(ptopic, nullptr);
+   
+   return ptopic->m_lresult;
+   
+}
+
 
 bool particle::is_branch_current() const
 {

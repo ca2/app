@@ -255,9 +255,20 @@ namespace gpu
    ::gpu::fence * command_buffer::insert_gpu_fence()
    {
 
-      øconstruct(m_pgpufence);
+      if(!m_pgpufence)
+      {
+       
+         øconstruct(m_pgpufence);
 
-      m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+         m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+
+      }
+      else
+      {
+         
+         m_pgpufence->reset();
+         
+      }
 
       return m_pgpufence;
 

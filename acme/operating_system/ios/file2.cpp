@@ -48,3 +48,23 @@ CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base &
 //   return ::string_from_strdup(ns_get_executable_path());
 //   
 //}
+
+char * _ios_app_document_folder();
+
+::file::path ios_app_document_folder_path()
+{
+   
+   auto psz = _ios_app_document_folder();
+   
+   return ::string_from_strdup(psz);
+   
+}
+
+CLASS_DECL_ACME ::file::path get_home_config_folder_path()
+{
+
+   auto pathHomeConfigFolder = ios_app_document_folder_path() / ".config";
+
+   return pathHomeConfigFolder;
+
+}

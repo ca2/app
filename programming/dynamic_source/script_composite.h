@@ -25,7 +25,7 @@ namespace dynamic_source
 
       virtual void initialize_script_composite(script_interface* pscriptinterface);
 
-      void initialize_with_socket_thread(::httpd::socket_thread* psocketthread);
+      void initialize_with_socket_thread(::httpd::socket_thread* psocketthread) override;
 
       //void finalize() override;
 

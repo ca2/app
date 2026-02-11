@@ -331,7 +331,7 @@ namespace nanoui
          hsv.m_dV = (double)iIntensity / 100.0;
          sync_color(hsv, true, true, false);
          });
-      m_peditHex->set_callback([&](const ::scoped_string& str) {
+      m_peditHex->set_callback([&](const ::scoped_string& str)->bool {
          ::color::color color;
          try
          {

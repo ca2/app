@@ -20,7 +20,7 @@
 		9AF75DFC1F83EC1500FDE7CC /* libios_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E25E361B4FF98000752DE1 /* libios_core.a */; };
 		9AF761491F8436E800FDE7CC /* libios_aura.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E2F1B504F20004688C5 /* libios_aura.a */; };
 		9AF7614B1F84378F00FDE7CC /* libios_axis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07108A521B4C856B00A28F80 /* libios_axis.a */; };
-		9AF7614C1F84379800FDE7CC /* libios_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E25E2D1B4FF98000752DE1 /* libios_base.a */; };
+		9AF7614C1F84379800FDE7CC /* libios_berg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E25E2D1B4FF98000752DE1 /* libios_berg.a */; };
 		9AF7614D1F8437A100FDE7CC /* libdraw2d_quartz2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07473E3F1B504F20004688C5 /* libdraw2d_quartz2d.a */; };
 		9AF7614E1F8437C000FDE7CC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B5903518866047002C6FEC /* CoreFoundation.framework */; };
 		9AF761521F8437EA00FDE7CC /* libios_aurapcre.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2111F71D8271A8000C4336 /* libios_aurapcre.a */; };
@@ -626,7 +626,7 @@
 				9AF761531F84380B00FDE7CC /* libios_ace.a in Frameworks */,
 				9AF761521F8437EA00FDE7CC /* libios_aurapcre.a in Frameworks */,
 				9AF7614D1F8437A100FDE7CC /* libdraw2d_quartz2d.a in Frameworks */,
-				9AF7614C1F84379800FDE7CC /* libios_base.a in Frameworks */,
+				9AF7614C1F84379800FDE7CC /* libios_berg.a in Frameworks */,
 				9AF7614B1F84378F00FDE7CC /* libios_axis.a in Frameworks */,
 				9AF761491F8436E800FDE7CC /* libios_aura.a in Frameworks */,
 				9AF75DFC1F83EC1500FDE7CC /* libios_core.a in Frameworks */,
@@ -695,7 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				07E25E2B1B4FF98000752DE1 /* libberg.dylib */,
-				07E25E2D1B4FF98000752DE1 /* libios_base.a */,
+				07E25E2D1B4FF98000752DE1 /* libios_berg.a */,
 				07E25E2F1B4FF98000752DE1 /* base_iosTests.xctest */,
 			);
 			name = Products;
@@ -1260,10 +1260,10 @@
 			remoteRef = 07E25E2A1B4FF98000752DE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07E25E2D1B4FF98000752DE1 /* libios_base.a */ = {
+		07E25E2D1B4FF98000752DE1 /* libios_berg.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_base.a;
+			path = libios_berg.a;
 			remoteRef = 07E25E2C1B4FF98000752DE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

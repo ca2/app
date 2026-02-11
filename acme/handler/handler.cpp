@@ -332,9 +332,10 @@ namespace handler
 
    //
 
-   void handler::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   ::lresult handler::call_message(const ::user::enum_message & emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
 
+      return 0;
 
    }
 
@@ -403,7 +404,7 @@ namespace handler
    void handler::request(::request * prequest)
    {
       
-      ASSERT(m_prequestBeingAttended.is_null());
+//      ASSERT(m_prequestBeingAttended.is_null());
       
       m_prequestBeingAttended = prequest;
 

@@ -1,6 +1,7 @@
-#include "framework.h"
 #include "port_forward.h"
 #include "acme/platform/system.h"
+#include "acme/prototype/prototype/memory.h"
+#include "framework.h"
 
 
 #ifdef WINDOWS
@@ -153,7 +154,7 @@ namespace net
 
    bool port_forward::GetMappingsUsingThread( ::acme::windowing::window * pacmewindowingwindow )
    {
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
 	   // returns true if thread was started successfully
 
       return false;
@@ -179,7 +180,7 @@ namespace net
    {
       __UNREFERENCED_PARAMETER(oldMapping);
       __UNREFERENCED_PARAMETER(newMapping);
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
       return false;
 
    }
@@ -203,7 +204,7 @@ namespace net
    bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, ::acme::windowing::window * pacmewindowingwindow )
    {
       __UNREFERENCED_PARAMETER(newMapping);
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
 	   return false;
    }
 
@@ -226,7 +227,7 @@ namespace net
    bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, ::acme::windowing::window * pacmewindowingwindow )
    {
       __UNREFERENCED_PARAMETER(oldMapping);
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
 	   return false;
    }
 
@@ -249,7 +250,7 @@ namespace net
 
    bool port_forward::GetDeviceInformationUsingThread( ::acme::windowing::window * pacmewindowingwindow )
    {
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
       return false;
 
    }

@@ -173,6 +173,16 @@ namespace user
 
    //}
 
+   ::acme::windowing::window * drawable::acme_windowing_window()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
+
 
 } // namespace user
 

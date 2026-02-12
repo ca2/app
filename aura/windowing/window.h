@@ -271,7 +271,7 @@ namespace windowing
 
       virtual ::user::copydesk * copydesk();
 
-      virtual ::acme::windowing::window * acmewindowingwindow() const;
+      //virtual ::acme::windowing::window * acmewindowingwindow() const;
       //virtual void set_oswindow(::::acme::windowing::window * pacmewindowingwindow);
       //virtual void _set_oswindow(::::acme::windowing::window * pacmewindowingwindow);
 

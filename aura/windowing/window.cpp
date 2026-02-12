@@ -19745,7 +19745,14 @@ slGraphics.unlock();
 
    }
 
+   void *window::__win32_HWND()
+   {
 
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
 
 } // namespace windowing
 

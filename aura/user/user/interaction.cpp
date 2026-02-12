@@ -31571,6 +31571,17 @@ __check_refdbg;
    }
 
 
+
+   ::acme::windowing::window *interaction::acme_windowing_window()
+   {
+
+      auto pacmewindowindowing = ::acme::user::interaction::acme_windowing_window();
+
+      return pacmewindowindowing;
+
+   }
+
+
 } // namespace user
 
 

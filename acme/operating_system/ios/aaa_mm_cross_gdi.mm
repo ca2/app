@@ -16,7 +16,7 @@ int GetMainWkspaceRect(LPRECT lprect);
 
 
 
-//CGContextRef get_nswindow_cgcontext(oswindow oswindow)
+//CGContextRef get_nswindow_cgcontext(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 ////    return (CGContextRef) [[oswindow->window() graphicsContext] graphicsPort];

@@ -848,7 +848,7 @@ namespace user
       __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
       throw ::interface_only();
-      /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
+      /*   ::acme::windowing::window * pacmewindowingwindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
       ::windowing::window * pwindow = interaction_impl::FromHandlePermanent(oswindow);
@@ -1515,7 +1515,7 @@ namespace user
 
       }
 
-      //   oswindow oswindow = get_handle();
+      //   ::acme::windowing::window * pacmewindowingwindow = get_handle();
       //   unsigned int uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       //   bool bChild =  uStyle & WS_CHILD;
 

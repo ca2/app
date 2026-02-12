@@ -10,7 +10,7 @@
 #include "_mm.h"
 
 
-int get_uiwindow_rect(oswindow oswindow, LPRECT lprect);
+int get_uiwindow_rect(::acme::windowing::window * pacmewindowingwindow, LPRECT lprect);
 
 
 bool uiwindow_is_visible(UIWindow * window)
@@ -115,7 +115,7 @@ void mm_init_workspace_rect()
 
 
 
-int_bool get_uiwindow_rect(oswindow oswindow, LPRECT lprect)
+int_bool get_uiwindow_rect(::acme::windowing::window * pacmewindowingwindow, LPRECT lprect)
 {
    
    CGRect rect = [__uiwindow(oswindow) frame];

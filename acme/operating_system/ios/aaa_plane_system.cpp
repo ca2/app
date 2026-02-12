@@ -56,9 +56,9 @@
 //
 //   UIWindow * window = new_round_window(pimpl, rectangle);
 //
-//   pimpl->m_oswindow = oswindow_get(window);
+//   pimpl->m_pacmewindowingwindow = oswindow_get(window);
 //
-//   pimpl->m_oswindow->set_user_interaction_impl(pimpl);
+//   pimpl->m_pacmewindowingwindow->set_user_interaction_impl(pimpl);
 //
 //   ::user::system createstruct;
 //   pusersystem->m_createstruct.dwExStyle = 0;

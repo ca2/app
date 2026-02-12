@@ -19,7 +19,7 @@ file_size_table::get_fs_size & file_size_table::get_fs_size::operator = (const g
       m_bPending        = getfssize.m_bPending;
       m_iSize           = getfssize.m_iSize;
       m_bRet            = getfssize.m_bRet;
-      m_oswindow            = getfssize.m_oswindow;
+      m_pacmewindowingwindow            = getfssize.m_pacmewindowingwindow;
 
    }
    return *this;
@@ -386,7 +386,7 @@ bool FileSystemSizeWnd::get_fs_size(long long & i64Size, const ::scoped_string &
 #ifdef WINDOWS_DESKTOP
 
    db_server * pcentral = dynamic_cast < db_server * > (psystem->m_simpledb.db());
-   oswindow oswindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
+   ::acme::windowing::window * pacmewindowingwindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
    if(oswindow == nullptr || ! ::IsWindow(oswindow))
    {
       if(pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer == nullptr)
@@ -447,7 +447,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
       size.read(file);
 
       single_lock synchronouslock(m_criticalsection, true);
-      size.m_oswindow = (oswindow) pusermessage->m_wparam;
+      size.m_pacmewindowingwindow = (oswindow) pusermessage->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
                      size.m_iSize,
                      size.m_strPath,
@@ -499,7 +499,7 @@ void FileSystemSizeWnd::on_timer(::timer * ptimer)
             size.write(file);
             data.cbData = (unsigned int) file.get_length();
             data.lpData = file.get_data();
-            ::SendMessage(size.m_oswindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
+            ::SendMessage(size.m_pacmewindowingwindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
             m_sizea.erase_at(0);
          }
       }
@@ -565,7 +565,7 @@ void file_size_table::get_fs_size::write(::file::output_stream & ostream) const
 
 #ifdef WINDOWS_DESKTOP
 
-   ostream << (int) m_oswindow;
+   ostream << (int) m_pacmewindowingwindow;
 
 #else
 
@@ -585,7 +585,7 @@ void file_size_table::get_fs_size::read(::file::input_stream & istream)
 
 #ifdef WINDOWS
 
-   istream >> (int &) m_oswindow;
+   istream >> (int &) m_pacmewindowingwindow;
 
 #else
 

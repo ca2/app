@@ -271,9 +271,9 @@ namespace windowing
 
       virtual ::user::copydesk * copydesk();
 
-      virtual ::oswindow oswindow() const;
-      virtual void set_oswindow(::oswindow oswindow);
-      virtual void _set_oswindow(::oswindow oswindow);
+      virtual ::acme::windowing::window * acmewindowingwindow() const;
+      //virtual void set_oswindow(::::acme::windowing::window * pacmewindowingwindow);
+      //virtual void _set_oswindow(::::acme::windowing::window * pacmewindowingwindow);
 
 
       
@@ -306,7 +306,7 @@ namespace windowing
 
       
       virtual ::windowing::window * window_get_owner();
-      virtual ::oswindow get_owner_oswindow();
+      //virtual ::oswindow get_owner_oswindow();
       virtual void set_owner(::windowing::window * pwindowNewOwner);
 
 
@@ -523,20 +523,20 @@ namespace windowing
       virtual void on_text(const ::wd32_character * pwd32sz, character_count length);
 
 
-      inline bool operator == (const ::windowing::window & window) const
-      {
-
-         return oswindow() == window.get_os_data();
-
-      }
-
-
-      inline bool operator != (const ::windowing::window & window) const
-      {
-
-         return !operator == (window);
-
-      }
+      // inline bool operator == (const ::windowing::window & window) const
+      // {
+      //
+      //    return oswindow() == window.get_os_data();
+      //
+      // }
+      //
+      //
+      // inline bool operator != (const ::windowing::window & window) const
+      // {
+      //
+      //    return !operator == (window);
+      //
+      // }
 
       //virtual void window_do_graphics_thread_step();
 
@@ -661,7 +661,7 @@ namespace windowing
 
 
       virtual bool on_keyboard_focus(::user::interaction_base * pfocus);
-      virtual bool keyboard_focus_OnKillFocus(::oswindow oswindowNew) override;
+      virtual bool keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew) override;
       virtual bool keyboard_focus_OnChildKillFocus() override;
 
       //      virtual void on_final_set_keyboard_focus(::message::set_keyboard_focus * psetkeyboardfocus);
@@ -1200,7 +1200,7 @@ namespace windowing
       //virtual void set_handle(::windowing::window * pwindow);
 
 
-      //::oswindow oswindow() const;
+      //::::acme::windowing::window * pacmewindowingwindow() const;
 
 
       //::graphics::graphics * get_window_graphics() override;
@@ -1351,7 +1351,7 @@ namespace windowing
       virtual void on_show_window();
 
 
-      ::oswindow detach_window() override;
+      void * __win32_HWND() override;
 
       //void destroy() override;
 

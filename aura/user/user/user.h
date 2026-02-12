@@ -105,7 +105,7 @@ namespace user
 
 
 
-      virtual ::user::interaction * interaction(oswindow oswindow) override;
+      //virtual ::user::interaction * interaction(::acme::windowing::window * pacmewindowingwindow) override;
 
       virtual ::user::interaction * get_mouse_capture(::thread * pthread) override;
 

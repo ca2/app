@@ -113,13 +113,13 @@ namespace acme
       }
 
 
-      ::oswindow window::oswindow()
-      {
-
-
-         return nullptr;
-
-      }
+      // ::oswindow window::oswindow()
+      // {
+      //
+      //
+      //    return nullptr;
+      //
+      // }
 
 
       long window::__x11_Window()
@@ -133,9 +133,19 @@ namespace acme
       void * window::__x11_Display()
       {
 
-         return 0;
+         return nullptr;
 
       }
+
+
+      void * window::__win32_HWND()
+      {
+
+         return nullptr;
+
+      }
+
+
 
 
       ::windowing::enum_bias window::windowing_bias() const
@@ -2043,3 +2053,19 @@ void window::on_control_box_zoom()
 
 
 
+
+CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pacmewindowingwindow)
+{
+
+   if (::is_null(pacmewindowingwindow))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pHWND = pacmewindowingwindow->__win32_HWND();
+
+   return pHWND;
+
+}

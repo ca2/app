@@ -13,7 +13,7 @@ struct UIWindow;
 
 #endif
 
-UIWindow * __uiwindow(oswindow oswindow);
+UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow);
 
 
 int get_main_screen_rectangle(::int_rectangle * lprect);

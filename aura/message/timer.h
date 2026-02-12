@@ -22,7 +22,7 @@ namespace message
       timer() {}
 
       //using ::user::message::set;
-      //virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
+      //virtual void set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam) override;
 
 
 

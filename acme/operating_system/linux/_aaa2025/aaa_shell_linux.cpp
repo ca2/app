@@ -85,7 +85,7 @@ namespace linux
 //
 //      }
 
-//      int linux::get_image_by_extension(per_fork * pfork, oswindow oswindow, image_key & key, color32_t crBk)
+//      int linux::get_image_by_extension(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key & key, color32_t crBk)
 //      {
 //
 //         return I32_MINIMUM;
@@ -95,7 +95,7 @@ namespace linux
 
 
 
-//      int linux::get_file_extension_image(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//      int linux::get_file_extension_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
 //         int iImage;
@@ -197,7 +197,7 @@ namespace linux
 
       //bool linux::get_icon(
       //   per_fork * pfork,
-      //   oswindow oswindow,
+      //   ::acme::windowing::window * pacmewindowingwindow,
       //   IShellFolder * lpsf,
       //   LPITEMIDLIST lpiidlAbsolute,
       //   LPITEMIDLIST lpiidlChild,
@@ -452,7 +452,7 @@ namespace linux
 
 
 
-      //int linux::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
+      //int linux::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
       //{
 
       //   int iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
@@ -467,7 +467,7 @@ namespace linux
 
 
 
-//      bool linux::get_icon( oswindow oswindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool linux::get_icon( ::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -481,7 +481,7 @@ namespace linux
 //
 //      }
 //
-//      bool linux::get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool linux::get_icon(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -886,7 +886,7 @@ pdirectorysystem->is(strPath))
 //
 //               synchronouslock.unlock();
 //
-//               int iImage = get_image(&fork, pkey->m_oswindow, *pkey, nullptr, pkey->m_cr);
+//               int iImage = get_image(&fork, pkey->m_pacmewindowingwindow, *pkey, nullptr, pkey->m_cr);
 //
 //               {
 //
@@ -910,7 +910,7 @@ pdirectorysystem->is(strPath))
 //
 
 
-//      int linux::get_image(oswindow oswindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//      int linux::get_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //      {
 //
 //         int iImage = I32_MINIMUM;
@@ -937,7 +937,7 @@ pdirectorysystem->is(strPath))
 //
 //            imagekey.m_iIcon = 0;
 //
-//            imagekey.m_oswindow = oswindow;
+//            imagekey.m_pacmewindowingwindow = oswindow;
 //
 //            imagekey.m_cr = crBk;
 //
@@ -983,7 +983,7 @@ pdirectorysystem->is(strPath))
 
 
       int shell::get_image_by_file_extension(image_key & imagekey)
-      //int linux::get_image_foo(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+      //int linux::get_image_foo(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
       {
 
          int iImage = I32_MINIMUM;

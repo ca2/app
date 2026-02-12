@@ -13,7 +13,7 @@ namespace graphics
 
 
       ::windowing::window * m_pimpl;
-      oswindow                      m_oswindow;
+      oswindow                      m_pacmewindowingwindow;
 
 
 

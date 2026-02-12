@@ -162,7 +162,7 @@ namespace platform
       //virtual string crypto_md5_text(const ::scoped_string & scopedstr);
 
 
-      //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+      //virtual pointer< ::extended::future < ::conversation > > _message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override;
 
 

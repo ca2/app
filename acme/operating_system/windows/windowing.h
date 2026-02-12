@@ -29,7 +29,7 @@ namespace windows
    public:
 
       
-      map_base < ::oswindow, ::pointer < ::windows::window > >     m_windowmap;
+      map_base < HWND, ::pointer < ::windows::window > >     m_windowmap;
 
 
       windowing();

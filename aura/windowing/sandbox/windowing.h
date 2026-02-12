@@ -75,7 +75,7 @@ namespace sandbox_windowing
 //
       void erase_window(::windowing::window* pwindow) override;
 
-      ::acme::windowing::window* window(oswindow oswindow) override;
+      //::acme::windowing::window* window(::acme::windowing::window * pacmewindowingwindow) override;
 
       virtual void _message_handler(void* p) override;
 

@@ -118,8 +118,7 @@ bool zorder::defer_set_request(int iZOrder)
 }
 
 
-
-zorder::operator oswindow() const
+void *zorder::__win32_HWND() const
 {
 
    //return get_os_data();

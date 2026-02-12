@@ -28,7 +28,7 @@ void message_box::show(::object* pparticle)
 
 }
 
-CLASS_DECL_AURA void message_box(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
+CLASS_DECL_AURA void message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, ::callback callback)
 {
 
    ::user::interaction_base* prototype = ::auraacmesystem()->ui_from_handle(oswindow);

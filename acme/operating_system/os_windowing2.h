@@ -41,7 +41,7 @@
 
 //    ::pointer<::user::interaction>                     m_puserinteraction;
 
-//    oswindow                                     m_oswindow;
+//    oswindow                                     m_pacmewindowingwindow;
 
 //    os_system_window();
 //    ~os_system_window();

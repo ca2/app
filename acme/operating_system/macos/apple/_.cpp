@@ -267,7 +267,7 @@ long long oswindow_id(oswindow w)
 //
 //
 //
-//int show_window(oswindow oswindow, int iShow)
+//int show_window(::acme::windowing::window * pacmewindowingwindow, int iShow)
 //{
 //   
 //   if(::is_null(oswindow))

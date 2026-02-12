@@ -47,7 +47,7 @@ namespace user
 
       ::pointer < ::windowing::window >            m_pwindow;
       //::pointer<prodevian>                       m_pgraphicsthread;
-      //oswindow                                     m_oswindow;
+      //oswindow                                     m_pacmewindowingwindow;
 
       //manual_reset_happening                           m_happeningApplyVisual;
       //::pointer<::windowing::windowing>            m_pwindowing;

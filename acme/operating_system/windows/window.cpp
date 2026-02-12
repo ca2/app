@@ -481,7 +481,7 @@ namespace windows
 
          ///SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
 
-         ::windows::g_pwindowing->m_windowmap[(::oswindow)hwnd] = pwindow;
+         ::windows::g_pwindowing->m_windowmap[hwnd] = pwindow;
 
          pwindow->m_hwnd = hwnd;
 
@@ -489,7 +489,7 @@ namespace windows
       else
       {
 
-         pwindow = ::windows::g_pwindowing->m_windowmap[(::oswindow)hwnd];
+         pwindow = ::windows::g_pwindowing->m_windowmap[hwnd];
 
          //pwindow = (::windows::window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 

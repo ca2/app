@@ -245,7 +245,7 @@ namespace windowing
 
       //::channel::destroy();
 
-      detach_window();
+      //detach_window();
 
       //user_interaction().release();
 
@@ -1495,7 +1495,7 @@ namespace windowing
 
       auto preposition = øcreate_new<::message::reposition>();
 
-      preposition->m_oswindow = this->oswindow();
+      preposition->m_pacmewindowingwindow = this;
 
       preposition->m_pwindow = this;
 
@@ -1548,7 +1548,7 @@ namespace windowing
 
       auto psize = øcreate_new<::message::size>();
 
-      psize->m_oswindow = this->oswindow();
+      psize->m_pacmewindowingwindow = this;
 
       psize->m_pwindow = this;
 
@@ -1749,46 +1749,46 @@ namespace windowing
    //   }
 
 
-   ::oswindow window::oswindow() const
-   {
-
-      throw interface_only();
-
-      return nullptr;
-
-   }
-
-
-   void window::set_oswindow(::oswindow oswindow)
-   {
-
-      _set_oswindow(oswindow);
-
-      //auto pwindow = m_pwindow;
-
-      //if (pwindow)
-      //{
-
-      //   auto puserinteraction = user_interaction();
-
-      //   if (puserinteraction)
-      //   {
-
-      //      puserinteraction->m_oswindow = oswindow;
-
-      //   }
-
-      //}
-
-   }
-
-
-   void window::_set_oswindow(::oswindow oswindow)
-   {
-
-      throw interface_only();
-
-   }
+   // ::oswindow window::oswindow() const
+   // {
+   //
+   //    throw interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // void window::set_oswindow(::::acme::windowing::window * acmewindowingwindow)
+   // {
+   //
+   //    _set_oswindow(oswindow);
+   //
+   //    //auto pwindow = m_pwindow;
+   //
+   //    //if (pwindow)
+   //    //{
+   //
+   //    //   auto puserinteraction = user_interaction();
+   //
+   //    //   if (puserinteraction)
+   //    //   {
+   //
+   //    //      puserinteraction->m_pacmewindowingwindow = oswindow;
+   //
+   //    //   }
+   //
+   //    //}
+   //
+   // }
+   //
+   //
+   // void window::_set_oswindow(::::acme::windowing::window * acmewindowingwindow)
+   // {
+   //
+   //    throw interface_only();
+   //
+   // }
 
 
    void window::UpdateWindow()
@@ -2074,14 +2074,14 @@ namespace windowing
    }
 
 
-   oswindow window::get_owner_oswindow()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+   // oswindow window::get_owner_oswindow()
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    void window::set_owner(::windowing::window* pwindowNewOwner)
@@ -4273,7 +4273,7 @@ namespace windowing
             //
             //         auto pwindowing = m_pwindowwindowing();
             //
-            //         m_oswindow = pwindowing->new_message_window(this);
+            //         m_pacmewindowingwindow = pwindowing->new_message_window(this);
             //
             //         user_interaction()->m_bMessageWindow = true;
             //
@@ -4477,7 +4477,7 @@ namespace windowing
       //
       //         auto pwindowing = m_pwindowwindowing();
       //
-      //         m_oswindow = pwindowing->new_message_window(this);
+      //         m_pacmewindowingwindow = pwindowing->new_message_window(this);
       //
       //         user_interaction()->m_bMessageWindow = true;
       //
@@ -6459,7 +6459,7 @@ namespace windowing
 
       auto pwindowing = windowing();
 
-      pwindowing->set(pmouse, oswindow(), this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
+      pwindowing->set(pmouse, this, this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
 
       //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
@@ -7753,7 +7753,7 @@ namespace windowing
 //
 //      //}
 //
-//      auto oswindow = this->oswindow();
+//      auto oswindow = this;
 //
 //      if (!oswindow)
 //      {
@@ -13771,7 +13771,9 @@ slGraphics.unlock();
    //}
 
 
-   bool window::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
+
+
+   bool window::keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew)
    {
 
       informationf("::android::window::keyboard_focus_OnKillFocus() (1) \n");
@@ -13842,7 +13844,7 @@ slGraphics.unlock();
 
    //   //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-   //   if (psetkeyboardfocus->m_oswindow != oswindow())
+   //   if (psetkeyboardfocus->m_pacmewindowingwindow != oswindow())
    //   {
 
    //      psetkeyboardfocus->m_bRet = true;
@@ -13881,8 +13883,8 @@ slGraphics.unlock();
 
       //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-      if (pkillkeyboardfocus->m_oswindowNew
-         == pkillkeyboardfocus->m_oswindow)
+      if (pkillkeyboardfocus->m_pacmewindowingwindowNew
+         == pkillkeyboardfocus->m_pacmewindowingwindow)
       {
 
          pkillkeyboardfocus->m_bRet = true;
@@ -14954,7 +14956,7 @@ slGraphics.unlock();
    //
    //         auto pwindowing = windowing();
    //
-   //         ::oswindow oswindow = pimplFocus->oswindow();
+   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->oswindow();
    //
    //         if (pimplFocus == this)
    //         {
@@ -16592,13 +16594,13 @@ slGraphics.unlock();
 
    }
 
-
-   oswindow window::detach_window()
-   {
-
-      return nullptr;
-
-   }
+   //
+   // oswindow window::detach_window()
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    //void window::destroy()
@@ -17208,7 +17210,7 @@ slGraphics.unlock();
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
-   pmessage->m_oswindow = oswindow; \
+   pmessage->m_pacmewindowingwindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_eusermessage = atom; \
    pmessage->m_wparam = wparam; \
@@ -17283,7 +17285,7 @@ slGraphics.unlock();
    //      case ::user::e_message_prototype_key:
    //      {
    //         _NEW_MESSAGE(::message::key);
-   //         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //         //void key::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         {
    //
    //            // ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -17353,7 +17355,7 @@ slGraphics.unlock();
    //         _NEW_MESSAGE(::message::scroll);
    //
    //#ifdef WINDOWS_DESKTOP
-   //         pmessage->m_oswindowScrollBar = (::oswindow)(::iptr)(lparam);
+   //         pmessage->m_pacmewindowingwindowScrollBar = (::oswindow)(::iptr)(lparam);
    //
    //#endif
    //
@@ -17373,7 +17375,7 @@ slGraphics.unlock();
    //      case ::user::e_message_prototype_kill_focus:
    //      {
    //         _NEW_MESSAGE(::message::kill_keyboard_focus);
-   //         pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
+   //         pmessage->m_pacmewindowingwindowNew = (::oswindow)wparam.m_number;
    //      }
    //      break;
    //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
@@ -17414,7 +17416,7 @@ slGraphics.unlock();
    //      case ::user::e_message_prototype_object:
    //      {
    //         _NEW_MESSAGE(::message::particle);
-   //         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //         //void particle::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         {
    //
    //            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -17458,7 +17460,7 @@ slGraphics.unlock();
    //         _NEW_MESSAGE(::message::activate);
    //         //pmessage = p;
    //         //default_set(pmessage, eusermessage, wparam, lparam)
-   //         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //         //void activate::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //         //{
    //
    //            //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -19776,9 +19778,4 @@ slGraphics.unlock();
 //
 //   }
 //
-//   return puserinteraction;
-//
-//}
-
-
-
+//   return puser

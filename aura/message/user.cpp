@@ -8,7 +8,8 @@
 #include "aura/user/user/system.h"
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction.h"
-//#include "aura/user/user/interaction_impl.h"
+// #include "aura/user/user/interaction_impl.h"
+#include "acme/prototype/prototype/memory.h"
 #include "aura/platform/session.h"
 
 
@@ -26,7 +27,7 @@
 //struct myfx_CTLCOLOR
 //{
 //
-//   ::oswindow     m_oswindow;
+//   ::oswindow     m_pacmewindowingwindow;
 //   hdc            m_hdc;
 //   unsigned int          m_nCtlType;
 //
@@ -52,7 +53,7 @@ namespace message
    //}
 
 
-   //void create::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void create::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -169,7 +170,7 @@ namespace message
    }
 
 
-   //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void activate::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -238,7 +239,7 @@ namespace message
    }
 
 
-   //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void key::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -264,7 +265,7 @@ namespace message
    }
 
 
-   //void nc_activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void nc_activate::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -274,7 +275,7 @@ namespace message
    //}
 
 
-   //void reposition::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void reposition::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -284,7 +285,7 @@ namespace message
    //}
 
 
-   //void size::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void size::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -325,7 +326,7 @@ namespace message
 //      //
 //      //      m_bTranslated = true; // not in root coordinates
 //      //
-//      //      ::client_to_screen(m_oswindow, &m_point);
+//      //      ::client_to_screen(m_pacmewindowingwindow, &m_point);
 //
 //#else
 //
@@ -381,7 +382,7 @@ namespace message
    }
 
 
-   //void mouse::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void mouse::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -401,7 +402,7 @@ namespace message
    //}
 
 
-   //void mouse_wheel::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void mouse_wheel::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -413,7 +414,7 @@ namespace message
    //}
 
 
-   //void set_cursor::set(oswindow oswindow, ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void set_cursor::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -529,7 +530,7 @@ namespace message
    }
 
 
-   //void scroll::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void scroll::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::pointer<::user::interaction_base>pprimitive(lparam);
@@ -560,7 +561,7 @@ namespace message
    }
 
 
-   //void show_window::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void show_window::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -572,7 +573,7 @@ namespace message
    //}
 
 
-   //void kill_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void kill_keyboard_focus::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -582,7 +583,7 @@ namespace message
    //}
 
 
-   //void nc_hit_test::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void nc_hit_test::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -594,7 +595,7 @@ namespace message
    //}
 
 
-   //void set_keyboard_focus::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void set_keyboard_focus::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -609,7 +610,7 @@ namespace message
 #ifdef WINDOWS_DESKTOP
 
 
-   //void window_pos::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void window_pos::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -619,7 +620,7 @@ namespace message
    //}
 
 
-   //void nc_calc_size::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void nc_calc_size::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -703,7 +704,7 @@ namespace message
    }
 
 
-   //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void particle::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -716,12 +717,12 @@ namespace message
 
    //}
 
-   drag_and_drop::drag_and_drop(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage)
+   drag_and_drop::drag_and_drop(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage)
    {
 
       m_lresult = 0;
 
-      m_oswindow = oswindow;
+      m_pacmewindowingwindow = pacmewindowingwindow;
       
       m_pwindow = pwindow;
       

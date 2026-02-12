@@ -295,7 +295,7 @@ namespace graphics
                if (pbufferitem->m_pimage2->m_pgraphics)
                {
 
-                  pbufferitem->m_pimage2->m_pgraphics->on_end_draw(m_pwindow->oswindow());
+                  pbufferitem->m_pimage2->m_pgraphics->on_end_draw(m_pwindow);
 
                }
 

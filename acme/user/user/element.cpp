@@ -1173,22 +1173,22 @@ namespace user
    }
 
 
-   void element::subclass_window(oswindow posdata)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   oswindow element::unsubclass_window()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+   // void element::subclass_window(oswindow posdata)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   // }
+   //
+   //
+   // oswindow element::unsubclass_window()
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    void element::create_child(::user::interaction * puserinteractionParent)
@@ -2318,7 +2318,7 @@ namespace user
    //}
 
 
-   //bool element::attach(oswindow oswindow)
+   //bool element::attach(::acme::windowing::window * pacmewindowingwindow)
    //{
 
    //   throw ::interface_only();
@@ -2328,8 +2328,10 @@ namespace user
    //}
 
 
-   oswindow element::detach_window()
+   void * element::detach_win32_HWND()
    {
+
+      throw ::interface_only();
 
       return nullptr;
 
@@ -4321,7 +4323,7 @@ namespace user
    }
 
 
-   bool element::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool element::keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindow)
    {
 
       return true;

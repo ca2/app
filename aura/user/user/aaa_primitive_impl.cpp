@@ -789,7 +789,7 @@ namespace user
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
-   pmessage->m_oswindow = oswindow; \
+   pmessage->m_pacmewindowingwindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_emessage = atom; \
    pmessage->m_wparam = wparam; \
@@ -858,7 +858,7 @@ namespace user
       case ::message::e_prototype_key:
       {
          _NEW_MESSAGE(::message::key);
-         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void key::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
          {
 
             // ::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -989,7 +989,7 @@ namespace user
       case ::message::e_prototype_object:
       {
          _NEW_MESSAGE(::message::particle);
-         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void particle::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
          {
 
             //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);
@@ -1033,7 +1033,7 @@ namespace user
          _NEW_MESSAGE(::message::activate);
          //pmessage = p;
          //default_set(pmessage, emessage, wparam, lparam)
-         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
+         //void activate::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::enum_message emessage, ::wparam wparam, ::lparam lparam)
          //{
 
             //::user::message::set(oswindow, pwindow, emessage, wparam, lparam);

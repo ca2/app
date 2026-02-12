@@ -350,7 +350,7 @@ namespace userstack
    }
 
 
-   void impact::mt_show_window(oswindow oswindow, int iShow)
+   void impact::mt_show_window(::acme::windowing::window * pacmewindowingwindow, int iShow)
    {
       __UNREFERENCED_PARAMETER(oswindow);
       __UNREFERENCED_PARAMETER(iShow);

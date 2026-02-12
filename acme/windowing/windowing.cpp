@@ -200,16 +200,27 @@ namespace acme
       {
 
 
+
       }
 
 
-      ::acme::windowing::window* windowing::window(oswindow oswindow)
+      ::acme::windowing::window *windowing::window_from_HWND(void *pHWND)
       {
 
+         throw ::interface_only();
 
          return nullptr;
 
       }
+
+
+      // ::acme::windowing::window* windowing::window(::acme::windowing::window * pacmewindowingwindow)
+      // {
+      //
+      //
+      //    return nullptr;
+      //
+      // }
 
 
       void windowing::_message_handler(void* p)

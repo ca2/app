@@ -638,7 +638,7 @@ namespace user
       //
       //         auto pwindowing = m_pwindowwindowing();
       //
-      //         m_oswindow = pwindowing->new_message_window(this);
+      //         m_pacmewindowingwindow = pwindowing->new_message_window(this);
       //
       //         m_puserinteraction->m_bMessageWindow = true;
       //
@@ -822,7 +822,7 @@ namespace user
       //
       //         auto pwindowing = m_pwindowwindowing();
       //
-      //         m_oswindow = pwindowing->new_message_window(this);
+      //         m_pacmewindowingwindow = pwindowing->new_message_window(this);
       //
       //         m_puserinteraction->m_bMessageWindow = true;
       //
@@ -5329,7 +5329,7 @@ namespace user
       if (puserthread)
       {
 
-         puserthread->m_oswindow = window()->oswindow();
+         puserthread->m_pacmewindowingwindow = window()->oswindow();
 
       }
 
@@ -8489,7 +8489,7 @@ namespace user
 //
 //         auto pwindowing = windowing();
 //
-//         ::oswindow oswindow = pimplFocus->oswindow();
+//         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->oswindow();
 //
 //         if (pimplFocus == this)
 //         {

@@ -358,8 +358,8 @@ namespace user
 
 
 
-      virtual void subclass_window(oswindow posdata);
-      virtual oswindow unsubclass_window();
+      //virtual void subclass_window(oswindow posdata);
+      //virtual oswindow unsubclass_window();
 
       virtual string get_class_name();
 
@@ -597,7 +597,7 @@ namespace user
 
 
       //virtual bool attach(::windowing::window * pwindow_New);
-      virtual oswindow detach_window();
+      virtual void * detach_win32_HWND();
 
 
       virtual ::windowing::window * window();
@@ -803,7 +803,7 @@ namespace user
 
 
       virtual bool keyboard_focus_is_focusable();
-      virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
+      virtual bool keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
       virtual element * keyboard_get_next_focusable(element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual element * get_keyboard_focus() const;

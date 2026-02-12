@@ -511,27 +511,27 @@ bool windowing::targeted_keyboard_messages()
 //   
 //}
 
-#if defined(WINDOWS_DESKTOP)
-
-::acme::windowing::window* windowing::window(oswindow oswindow)
-{
-
-   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-   return m_oswindowmap[oswindow];
-
-}
-
-#else
-
-::acme::windowing::window* windowing::window(oswindow oswindow)
-{
-   
-   return oswindow;
-   
-}
-
-#endif
+// #if defined(WINDOWS_DESKTOP)
+//
+// ::acme::windowing::window* windowing::window(::acme::windowing::window * pacmewindowingwindow)
+// {
+//
+//    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//    return m_oswindowmap[oswindow];
+//
+// }
+//
+// #else
+//
+// ::acme::windowing::window* windowing::window(::acme::windowing::window * pacmewindowingwindow)
+// {
+//
+//    return oswindow;
+//
+// }
+//
+// #endif
 
 
 void windowing::_message_handler(void* p)

@@ -130,12 +130,12 @@ namespace user
    }
 
 
-   oswindow drawable::_oswindow() const
-   {
-
-      return nullptr;
-
-   }
+   // oswindow drawable::_oswindow() const
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    bool drawable::is_composite()

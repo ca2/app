@@ -775,8 +775,8 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////      }
 ////
 ////#ifdef WINDOWS_DESKTOP
-////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
-////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      //if (!IsWindowVisible(pimpl->m_pacmewindowingwindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_pacmewindowingwindow))
 ////      {
 ////
 ////         pimpl->set_pending_focus();
@@ -786,7 +786,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////#endif
 ////      {
 ////
-////         ::set_keyboard_focus(pimpl->m_oswindow);
+////         ::set_keyboard_focus(pimpl->m_pacmewindowingwindow);
 ////
 ////      }
 ////
@@ -940,8 +940,8 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      }
 ////
 ////#ifdef WINDOWS_DESKTOP
-////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
-////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      //if (!IsWindowVisible(pimpl->m_pacmewindowingwindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_pacmewindowingwindow))
 ////      {
 ////
 ////         pimpl->set_pending_focus();
@@ -951,7 +951,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////#endif
 //      {
 //
-//         ::erase_focus(pimpl->m_oswindow);
+//         ::erase_focus(pimpl->m_pacmewindowingwindow);
 //
 //      }
 //
@@ -1098,8 +1098,8 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      }
 //
 ////#ifdef WINDOWS_DESKTOP
-////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
-////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      //if (!IsWindowVisible(pimpl->m_pacmewindowingwindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_pacmewindowingwindow))
 ////      {
 ////
 ////         pimpl->set_pending_focus();

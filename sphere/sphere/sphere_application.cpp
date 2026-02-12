@@ -641,7 +641,7 @@ namespace sphere
             data.dwData = 2000;
             data.cbData = (unsigned int)file.get_length();
             data.lpData = file.get_data();
-            ::oswindow oswindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
+            ::::acme::windowing::window * pacmewindowingwindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
 
             ::SendMessage(oswindow, WM_COPYDATA, (WPARAM)0, (LPARAM)&data);
 

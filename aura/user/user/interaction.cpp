@@ -262,7 +262,7 @@ namespace user
 
 #ifdef REPORT_OFFSETS
 
-      if ((offsetof(::user::interaction, m_oswindow) & 4) != 0)
+      if ((offsetof(::user::interaction, m_pacmewindowingwindow) & 4) != 0)
       {
 
          throw "invalid alignment";
@@ -345,7 +345,7 @@ namespace user
 
       m_bCompositedFrameWindow = true;
 
-      //m_oswindow = nullptr;
+      //m_pacmewindowingwindow = nullptr;
 
       //m_playout = nullptr;
 
@@ -2694,21 +2694,21 @@ namespace user
    }
 
 
-   oswindow interaction::GetParentHandle()
-   {
-
-      interaction * puserinteractionParent = get_parent();
-
-      if (puserinteractionParent == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      return puserinteractionParent->get_safe_oswindow();
-
-   }
+   // oswindow interaction::GetParentHandle()
+   // {
+   //
+   //    interaction * puserinteractionParent = get_parent();
+   //
+   //    if (puserinteractionParent == nullptr)
+   //    {
+   //
+   //       return nullptr;
+   //
+   //    }
+   //
+   //    return puserinteractionParent->get_safe_oswindow();
+   //
+   // }
 
 
    bool interaction::on_before_set_parent(::user::interaction_base * puserinteractionParent)
@@ -3006,7 +3006,7 @@ namespace user
          if (pkey)
          {
 
-            windowing()->set(pkey, pkey->m_oswindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
+            windowing()->set(pkey, pkey->m_pacmewindowingwindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
 
          }
 
@@ -4231,7 +4231,7 @@ namespace user
 
             pmessage->m_eusermessage = ::user::e_message_mouse_leave;
             //pmessage->m_pwindow = window();
-            //pmessage->m_oswindow = window()->oswindow();
+            //pmessage->m_pacmewindowingwindow = window()->oswindow();
             //pmessage->m_wparam = 0;
             //pmessage->m_lparam = 0;
             //          pmessage->m_time = phappening->time;
@@ -16350,30 +16350,30 @@ if(get_parent())
    //}
 
 
-   oswindow interaction::detach_window()
-   {
-
-      //auto pwindowThis = window();
-
-      //if (!pwindow)
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      auto oswindow = window()->detach_window();
-
-      if (!oswindow)
-      {
-
-         return nullptr;
-
-      }
-
-      return oswindow;
-
-   }
+   // void * interaction::detach_win32_HWND()
+   // {
+   //
+   //    //auto pwindowThis = window();
+   //
+   //    //if (!pwindow)
+   //    //{
+   //
+   //    //   return nullptr;
+   //
+   //    //}
+   //
+   //    auto oswindow = window()->detach_window();
+   //
+   //    if (!oswindow)
+   //    {
+   //
+   //       return nullptr;
+   //
+   //    }
+   //
+   //    return oswindow;
+   //
+   // }
 
 
    /* ::windowing::window * interaction::_window() const
@@ -18274,31 +18274,31 @@ if(get_parent())
    }
 
 
-   ::oswindow interaction::oswindow()
-   {
-
-      auto pwindowThis = window();
-
-      if (!pwindowThis)
-      {
-
-         return nullptr;
-
-      }
-
-      auto oswindow = pwindowThis->oswindow();
-
-      if (!oswindow)
-      {
-
-         return nullptr;
-
-      }
-
-      return oswindow;
-
-   }
-
+   // ::oswindow interaction::oswindow()
+   // {
+   //
+   //    auto pwindowThis = window();
+   //
+   //    if (!pwindowThis)
+   //    {
+   //
+   //       return nullptr;
+   //
+   //    }
+   //
+   //    auto oswindow = pwindowThis->oswindow();
+   //
+   //    if (!oswindow)
+   //    {
+   //
+   //       return nullptr;
+   //
+   //    }
+   //
+   //    return oswindow;
+   //
+   // }
+   //
 
    //::oswindow interaction::_oswindow() const
    //{
@@ -18521,7 +18521,7 @@ if(get_parent())
 
 #endif
 
-      //m_oswindow = m_pwindow->oswindow();
+      //m_pacmewindowingwindow = m_pwindow->oswindow();
 
    }
 
@@ -18739,9 +18739,9 @@ if(get_parent())
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
-   pmessage->m_oswindow = oswindow; \
+   pmessage->m_pacmewindowingwindow = pacmewindowingwindow; \
    pmessage->m_puserinteraction = this; \
-   pmessage->m_pwindow = pwindow.m_p; \
+   pmessage->m_pwindow = pwindow; \
    pmessage->m_eusermessage = eusermessage; \
    pmessage->m_wparam = wparam; \
    pmessage->m_lparam = lparam; \
@@ -18761,16 +18761,18 @@ if(get_parent())
 
       }
 
-      ::cast < ::windowing::window > pwindow;
+      ::acme::windowing::window * pacmewindowingwindow = nullptr;
 
       if (m_pacmewindowingwindow)
       {
 
-         pwindow = m_pacmewindowingwindow;
+         pacmewindowingwindow = m_pacmewindowingwindow;
 
       }
 
-      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
+      ::cast < ::windowing::window > pwindow = pacmewindowingwindow;
+
+      //auto oswindow = pwindow ? pwindow() : nullptr;
 
       switch (eprototype)
       {
@@ -18808,7 +18810,7 @@ if(get_parent())
       case ::user::e_message_prototype_key:
       {
          _NEW_MESSAGE(::message::key);
-         //void key::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+         //void key::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          {
 
             // ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -18878,7 +18880,7 @@ if(get_parent())
          _NEW_MESSAGE(::message::scroll);
 
 #ifdef WINDOWS_DESKTOP
-         pmessage->m_oswindowScrollBar = (::oswindow)(::iptr)(lparam);
+         pmessage->m_pacmewindowingwindowScrollBar = acme_windowing_window_from_HWND((void*)(::iptr)(lparam));
 
 #endif
 
@@ -18898,7 +18900,7 @@ if(get_parent())
       case ::user::e_message_prototype_kill_focus:
       {
          _NEW_MESSAGE(::message::kill_keyboard_focus);
-         pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
+         pmessage->m_pacmewindowingwindowNew = acme_windowing_window_from_HWND((void*)(::iptr)wparam.m_number);
       }
       break;
 #if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
@@ -18939,7 +18941,7 @@ if(get_parent())
       case ::user::e_message_prototype_object:
       {
          _NEW_MESSAGE(::message::particle);
-         //void particle::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+         //void particle::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          {
 
             //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -18983,7 +18985,7 @@ if(get_parent())
          _NEW_MESSAGE(::message::activate);
          //pmessage = p;
          //default_set(pmessage, eusermessage, wparam, lparam)
-         //void activate::set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+         //void activate::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
          //{
 
             //::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
@@ -19005,7 +19007,7 @@ if(get_parent())
 
             auto pwindowing = system()->windowing();
 
-            auto pwindow = pwindowing->window(lparam.raw_cast <::oswindow>());
+            auto pwindow = acme_windowing_window_from_HWND((void *) (::iptr) lparam);
 
             if (pwindow)
             {
@@ -27887,7 +27889,7 @@ __check_refdbg;
 
       auto pcontextmenu = øallocate::message::context_menu();
 
-      pcontextmenu->m_oswindow = oswindow();
+      pcontextmenu->m_pacmewindowingwindow = m_pacmewindowingwindow;
       pcontextmenu->m_pwindow = window();
       pcontextmenu->m_eusermessage = ::user::e_message_context_menu;
       pcontextmenu->m_pointMessage = pmouse->m_pointHost;

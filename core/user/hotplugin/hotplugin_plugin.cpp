@@ -274,7 +274,7 @@ namespace hotplugin
 
 #ifdef WINDOWS_DESKTOP
 
-         ::PostMessage(m_phost->::aura::ipc::ipc::m_oswindow, WM_USER + 100, 3, 1);
+         ::PostMessage(m_phost->::aura::ipc::ipc::m_pacmewindowingwindow, WM_USER + 100, 3, 1);
 
 #else
 
@@ -1139,7 +1139,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 #ifndef UNIVERSAL_WINDOWS
 
 #if !defined(LINUX) && !defined(APPLEOS) && !defined(__ANDROID__)
-      if(bEnsureTx || ::IsWindow(::aura::ipc::tx::m_oswindow))
+      if(bEnsureTx || ::IsWindow(::aura::ipc::tx::m_pacmewindowingwindow))
 #endif
       {
 

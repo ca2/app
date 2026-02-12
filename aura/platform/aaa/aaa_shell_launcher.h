@@ -18,7 +18,7 @@ namespace aura
    public:
 
 
-      oswindow          m_oswindow;
+      oswindow          m_pacmewindowingwindow;
       string            m_strOperation;
       string            m_strFile;
       string            m_strParameters;
@@ -61,7 +61,7 @@ namespace aura
 
 
       shell_launcher(duration durationTimeout = ::one_minute());
-      shell_launcher(oswindow oswindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+      shell_launcher(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
 
 
       void execute();

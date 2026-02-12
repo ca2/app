@@ -790,7 +790,7 @@ namespace user
       //virtual void set_handle(::windowing::window * pwindow);
       
       
-      ::oswindow oswindow() const;
+      ::::acme::windowing::window * pacmewindowingwindow() const;
 
 
       ::graphics::graphics * get_window_graphics() override;

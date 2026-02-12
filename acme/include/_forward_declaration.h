@@ -2206,22 +2206,22 @@ namespace file
 class task;
 
 
-#ifdef WINDOWS_DESKTOP
-
-struct hwnd
-{
-}; // as pointer is a HWND
-
-using oswindow_t = hwnd;
-
-#else
-
-using oswindow_t = ::acme::windowing::window;
-
-#endif
-
-
-using oswindow = oswindow_t *;
+// #ifdef WINDOWS_DESKTOP
+//
+// struct hwnd
+// {
+// }; // as pointer is a HWND
+//
+// using oswindow_t = hwnd;
+//
+// #else
+//
+// using oswindow_t = ::acme::windowing::window;
+//
+// #endif
+//
+//
+// using oswindow = oswindow_t *;
 
 
 namespace core

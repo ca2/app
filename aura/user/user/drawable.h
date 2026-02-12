@@ -41,7 +41,9 @@ namespace user
       virtual ::graphics::graphics * get_window_graphics();
 
       
-      virtual oswindow _oswindow() const;
+      //virtual oswindow _oswindow() const;
+
+      virtual ::acme::windowing::window * acme_windowing_window();
 
 
       virtual bool is_composite();

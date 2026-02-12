@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   ::user::interaction* aura_user_layer::interaction(oswindow oswindow)
+   ::user::interaction* aura_user_layer::interaction(::acme::windowing::window * pacmewindowingwindow)
    {
       return nullptr;
    }

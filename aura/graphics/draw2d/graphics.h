@@ -337,7 +337,7 @@ class graphics_context;
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics* pgraphics);
-      virtual void CreateWindowDC(oswindow wnd);
+      virtual void CreateWindowDC(::acme::windowing::window * pacmewindowingwindow);
 
 
       virtual ::pointer < ::draw2d::path > create_path();
@@ -348,8 +348,8 @@ class graphics_context;
 
       virtual void defer_resize_memory_graphics(const ::int_size& size);
 
-      virtual void on_begin_draw(oswindow wnd, const ::double_size& sz);
-      virtual void on_end_draw(oswindow wnd);
+      virtual void on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::double_size& sz);
+      virtual void on_end_draw(::acme::windowing::window * pacmewindowingwindow);
       virtual void on_present();
 
       virtual void DeleteDC();

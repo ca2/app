@@ -286,7 +286,7 @@ namespace user
 
       bool                                      m_bUpdateBufferPending;
 
-      //::oswindow                              m_oswindow;
+      //::oswindow                              m_pacmewindowingwindow;
       e_window_flag                             m_ewindowflag;
       bool                                      m_bAutomaticallyStoreWindowRectangle;
       bool                                      m_bPendingSaveWindowRectangle;
@@ -566,9 +566,9 @@ namespace user
          //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
-      //inline oswindow get_oswindow() const { return m_oswindow; }
+      //inline oswindow get_oswindow() const { return m_pacmewindowingwindow; }
       //virtual bool attach(::windowing::window * pwindow_New) override;
-      ::oswindow detach_window() override;
+      //::acme::windowing::window * detach_win32_HWND() override;
 
 
       ::windowing::window * window() override;
@@ -1775,8 +1775,8 @@ namespace user
       //virtual ::oswindow _oswindow();
 
 
-      inline ::oswindow get_safe_oswindow();
-      virtual ::oswindow oswindow();
+      //inline void get_safe_oswindow();
+      ::acme::windowing::window * acme_windowing_window() override;
 
 
       //virtual ::windowing::window * window();
@@ -1984,7 +1984,9 @@ namespace user
 
       //virtual bool is_descendant(const ::user::interaction_base * pinteraction, bool bIncludeSelf = false) override;
 
-      ::oswindow GetParentHandle();
+      //::oswindow GetParentHandle();
+
+      //void * __win32_get_parent_W
 
       ::user::interaction* get_focusable_descendant() override;
 
@@ -2869,19 +2871,19 @@ namespace user
    };
 
 
-   inline ::oswindow interaction::get_safe_oswindow()
-   {
-
-      if (::is_null(this))
-      {
-
-         return nullptr;
-
-      }
-
-      return this->oswindow();
-
-   }
+   // inline ::oswindow interaction::get_safe_oswindow()
+   // {
+   //
+   //    if (::is_null(this))
+   //    {
+   //
+   //       return nullptr;
+   //
+   //    }
+   //
+   //    return this->oswindow();
+   //
+   // }
 
 
    class lock_sketch_to_design
@@ -2906,7 +2908,7 @@ namespace user
    };
 
 
-   //compile_time_assert((offsetof(::user::interaction, m_oswindow) & 4) == 0);
+   //compile_time_assert((offsetof(::user::interaction, m_pacmewindowingwindow) & 4) == 0);
 
 
 

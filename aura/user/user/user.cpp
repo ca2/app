@@ -218,41 +218,41 @@ namespace user
    }
 
 
-   ::user::interaction * user::interaction(oswindow oswindow)
-   {
-
-      auto pwindowing =system()->windowing();
-
-      if (::is_null(pwindowing))
-      {
-
-         return nullptr;
-
-      }
-
-      auto pwindow = pwindowing->window(oswindow);
-
-      if (::is_null(pwindowing))
-      {
-
-         return nullptr;
-
-      }
-
-      //auto pwindow = pwindow->m_pwindow;
-
-      //if (::is_null(pwindow))
-      //{
-
-      //   return nullptr;
-
-      //}
-      
-      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteraction;
-
-      return puserinteraction;
-
-   }
+   // ::user::interaction * user::interaction(::acme::windowing::window * pacmewindowingwindow)
+   // {
+   //
+   //    // auto pwindowing =system()->windowing();
+   //    //
+   //    // if (::is_null(pwindowing))
+   //    // {
+   //    //
+   //    //    return nullptr;
+   //    //
+   //    // }
+   //    //
+   //    // auto pwindow = pwindowing->window(oswindow);
+   //    //
+   //    // if (::is_null(pwindowing))
+   //    // {
+   //    //
+   //    //    return nullptr;
+   //    //
+   //    // }
+   //    //
+   //    // //auto pwindow = pwindow->m_pwindow;
+   //    //
+   //    // //if (::is_null(pwindow))
+   //    // //{
+   //    //
+   //    // //   return nullptr;
+   //    //
+   //    // //}
+   //
+   //    ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteraction;
+   //
+   //    return puserinteraction;
+   //
+   // }
 
 
    ::user::interaction * user::get_mouse_capture(::thread * pthread)

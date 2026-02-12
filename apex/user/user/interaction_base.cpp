@@ -1274,25 +1274,25 @@ namespace user
 
    }
 
-
-   void interaction_base::subclass_window(oswindow posdata)
-   {
-
-      throw ::interface_only();
-
-      //return false;
-
-   }
-
-
-   oswindow interaction_base::unsubclass_window()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+   //
+   // void interaction_base::subclass_window(oswindow posdata)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    //return false;
+   //
+   // }
+   //
+   //
+   // oswindow interaction_base::unsubclass_window()
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    //void interaction_base::create_child(::user::interaction * puserinteractionParent)
@@ -2426,7 +2426,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::attach(oswindow oswindow)
+   //bool interaction_base::attach(::acme::windowing::window * pacmewindowingwindow)
    //{
 
    //   throw ::interface_only();
@@ -2436,7 +2436,7 @@ namespace user
    //}
 
 
-   oswindow interaction_base::detach_window()
+   void * interaction_base::detach_win32_HWND()
    {
 
       return nullptr;
@@ -4168,7 +4168,7 @@ namespace user
    }
 
 
-   bool interaction_base::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool interaction_base::keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew)
    {
 
       return true;

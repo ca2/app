@@ -305,7 +305,7 @@ namespace ios
    }
 
 
-//   int ios::get_image_by_extension(per_fork * pfork, oswindow oswindow, image_key & key, color32_t crBk)
+//   int ios::get_image_by_extension(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key & key, color32_t crBk)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -321,7 +321,7 @@ namespace ios
 //   }
 
 
-//   int ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk)
+//   int ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const unichar * lpcszExtra, color32_t crBk)
 ////      {
 ////
 ////         int iImage = I32_MINIMUM;
@@ -881,7 +881,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 ////      }
 
 
-//   int ios::get_foo_image(per_fork * pfork, oswindow oswindow, image_key imagekey, color32_t crBk)
+//   int ios::get_foo_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, color32_t crBk)
 //   {
 //
 //      int iImage = -1;
@@ -987,7 +987,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 
    //bool ios::get_icon(
    //   per_fork * pfork,
-   //   oswindow oswindow,
+   //   ::acme::windowing::window * pacmewindowingwindow,
    //   IShellFolder * lpsf,
    //   LPITEMIDLIST lpiidlAbsolute,
    //   LPITEMIDLIST lpiidlChild,
@@ -1242,7 +1242,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 
 
 
-   //int ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
+   //int ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, color32_t crBk)
    //{
 
    //   int iImage = get_image(pfork, oswindow, imagekey, lpiidlAbsolute, lpiidlChild, lpcszExtra, crBk);
@@ -1257,7 +1257,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 
 
 
-//      bool ios::get_icon( oswindow oswindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool ios::get_icon( ::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstr, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -1271,7 +1271,7 @@ pdirectorysystem->config() / "ios/app_theme" / m_strShellThemePrefix + strExtens
 //
 //      }
 //
-//      bool ios::get_icon(per_fork * pfork, oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
+//      bool ios::get_icon(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, LPITEMIDLIST lpiidlAbsolute, const unichar * lpcszExtra, e_icon eicon, HICON * phicon16, HICON * phicon48)
 //      {
 //
 //         single_lock synchronouslock(mutex(), true);
@@ -1420,7 +1420,7 @@ pdirectorysystem->is(strPath))
    //   {
 
    //      m_callCurrent.m_iImage = get_image(
-   //         m_callCurrent.m_oswindow,
+   //         m_callCurrent.m_pacmewindowingwindow,
    //         m_callCurrent.m_pimagekey,
    //         m_callCurrent.m_lpcszExtra,
    //         m_callCurrent.m_colorBk);
@@ -1435,7 +1435,7 @@ pdirectorysystem->is(strPath))
 
    //}
 
-//   int ios::get_image(per_fork * pfork, oswindow oswindow, image_key imagekey, const unichar * lpcszExtra, color32_t crBk)
+//   int ios::get_image(per_fork * pfork, ::acme::windowing::window * pacmewindowingwindow, image_key imagekey, const unichar * lpcszExtra, color32_t crBk)
 //   {
 //
 //      int iImage = I32_MINIMUM;
@@ -1716,7 +1716,7 @@ pdirectorysystem->is(strPath))
 //
 //            synchronouslock.unlock();
 //
-//            int iImage = get_image(&fork, pkey->m_oswindow, *pkey, nullptr, pkey->m_cr);
+//            int iImage = get_image(&fork, pkey->m_pacmewindowingwindow, *pkey, nullptr, pkey->m_cr);
 //
 //            {
 //
@@ -1737,7 +1737,7 @@ pdirectorysystem->is(strPath))
 //   }
 
 
-//   int ios::get_image(oswindow oswindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//   int ios::get_image(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrPath, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
 //      int iImage = I32_MINIMUM;
@@ -1763,7 +1763,7 @@ pdirectorysystem->is(strPath))
 //
 //         imagekey.m_iIcon = 0;
 //
-//         imagekey.m_oswindow = oswindow;
+//         imagekey.m_pacmewindowingwindow = oswindow;
 //
 //         imagekey.m_cr = crBk;
 //
@@ -1805,7 +1805,7 @@ pdirectorysystem->is(strPath))
 //   }
 //
 //
-//   int ios::get_image_foo(oswindow oswindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
+//   int ios::get_image_foo(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrExtension, e_file_attribute eattribute, e_icon eicon, color32_t crBk)
 //   {
 //
 //      int iImage = I32_MINIMUM;

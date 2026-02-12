@@ -16,17 +16,17 @@
 
 
 
-int is_window(oswindow oswindow);
+int is_window(::acme::windowing::window * pacmewindowingwindow);
 int IsChild(oswindow oswindowParent, ::oswindow oswindowCandidateChildOrDescendant);
-// oswindow get_parent(::oswindow oswindow);
-// oswindow SetParent(::oswindow oswindow, ::oswindow oswindowNewParent);
-int show_window(::oswindow oswindow, int nCmdShow);
-//int GetWindowLongA(::oswindow oswindow, int nIndex);
-//int SetWindowLongA(::oswindow oswindow, int nIndex, int l);
-int client_to_screen(::oswindow oswindow, ::int_point * lppoint);
-int screen_to_client(::oswindow oswindow, ::int_point * lppoint);
-int IsIconic(::oswindow oswindow);
-int IsWindowVisible(::oswindow oswindow);
+// oswindow get_parent(::::acme::windowing::window * pacmewindowingwindow);
+// oswindow SetParent(::::acme::windowing::window * pacmewindowingwindow, ::oswindow oswindowNewParent);
+int show_window(::::acme::windowing::window * pacmewindowingwindow, int nCmdShow);
+//int GetWindowLongA(::::acme::windowing::window * pacmewindowingwindow, int nIndex);
+//int SetWindowLongA(::::acme::windowing::window * pacmewindowingwindow, int nIndex, int l);
+int client_to_screen(::::acme::windowing::window * pacmewindowingwindow, ::int_point * lppoint);
+int screen_to_client(::::acme::windowing::window * pacmewindowingwindow, ::int_point * lppoint);
+int IsIconic(::::acme::windowing::window * pacmewindowingwindow);
+int IsWindowVisible(::::acme::windowing::window * pacmewindowingwindow);
 
 
 //#define GetWindowLong GetWindowLongA

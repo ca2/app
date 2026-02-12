@@ -9,9 +9,9 @@
 #define TEST 0
 
 
-void x11_store_name(oswindow oswindow, const ::scoped_string & scopedstrName);
-void x11_defer_check_configuration(oswindow oswindow);
-void upper_window_rects(oswindow oswindow, int_rectangle_array & ra);
+void x11_store_name(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrName);
+void x11_defer_check_configuration(::acme::windowing::window * pacmewindowingwindow);
+void upper_window_rects(::acme::windowing::window * pacmewindowingwindow, int_rectangle_array & ra);
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
 
@@ -141,7 +141,7 @@ namespace linux
    void * interaction_impl::get_os_data() const
    {
 
-      return m_oswindow;
+      return m_pacmewindowingwindow;
 
    }
 
@@ -162,7 +162,7 @@ namespace linux
 //   }
 
 
-   ::windowing::window * interaction_impl::from_handle(oswindow oswindow)
+   ::windowing::window * interaction_impl::from_handle(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if(is_null(oswindow))
@@ -184,7 +184,7 @@ namespace linux
    }
 
 
-   ::windowing::window * interaction_impl::FromHandlePermanent(oswindow oswindow)
+   ::windowing::window * interaction_impl::FromHandlePermanent(::acme::windowing::window * pacmewindowingwindow)
    {
 
       if(oswindow->m_pimpl == nullptr)
@@ -202,7 +202,7 @@ namespace linux
       if (hWndNew == nullptr)
          return false;
 
-      m_oswindow = hWndNew;
+      m_pacmewindowingwindow = hWndNew;
 
       return true;
 
@@ -217,7 +217,7 @@ namespace linux
       if (hwnd != nullptr)
       {
 
-         m_oswindow = nullptr;
+         m_pacmewindowingwindow = nullptr;
 
       }
 
@@ -256,7 +256,7 @@ namespace linux
       if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
       {
 
-         m_oswindow = oswindow_get_message_only_window(this);
+         m_pacmewindowingwindow = oswindow_get_message_only_window(this);
 
          m_puserinteraction->m_bMessageWindow = true;
 
@@ -446,9 +446,9 @@ namespace linux
 
             }
 
-            m_oswindow = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
+            m_pacmewindowingwindow = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
-            m_oswindow->set_user_interaction(this);
+            m_pacmewindowingwindow->set_user_interaction(this);
 
             m_puserinteraction->m_pimpl = this;
 
@@ -495,26 +495,26 @@ namespace linux
             if(m_puserinteraction->m_ewindowflag & window_flag_dock_window)
             {
 
-               wm_dockwindow(m_oswindow, true);
+               wm_dockwindow(m_pacmewindowingwindow, true);
 
             }
             else if(m_puserinteraction->m_ewindowflag & window_flag_desktop_window)
             {
 
-               wm_desktopwindow(m_oswindow, true);
+               wm_desktopwindow(m_pacmewindowingwindow, true);
 
             }
             else if(m_puserinteraction->layout().sketch().activation() & ::user::e_activation_on_center_of_screen)
             {
 
-               wm_centerwindow(m_oswindow, true);
+               wm_centerwindow(m_pacmewindowingwindow, true);
 
             }
 
             if(m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
             {
 
-               wm_toolwindow(m_oswindow, true);
+               wm_toolwindow(m_pacmewindowingwindow, true);
 
             }
 
@@ -526,7 +526,7 @@ namespace linux
 
             unsigned int ncount = 0;
 
-            XQueryTree(display, window, &root, &m_oswindow->m_parent, &pchildren, &ncount);
+            XQueryTree(display, window, &root, &m_pacmewindowingwindow->m_parent, &pchildren, &ncount);
 
             if(pchildren != nullptr)
             {
@@ -537,10 +537,10 @@ namespace linux
 
             htask htask = ::current_htask();
 
-            m_oswindow->m_htask = htask;
+            m_pacmewindowingwindow->m_htask = htask;
 
 
-            if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))
+            if(!XGetWindowAttributes(m_pacmewindowingwindow->display(), m_pacmewindowingwindow->window(), &m_px11data->m_attr))
             {
 
                information() << "linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.";
@@ -549,28 +549,28 @@ namespace linux
 
             int event_base, error_base, major_version, minor_version;
 
-            m_bComposite = XGetSelectionOwner(m_oswindow->display(), XInternAtom(m_oswindow->display(), "_NET_WM_CM_S0", True));
+            m_bComposite = XGetSelectionOwner(m_pacmewindowingwindow->display(), XInternAtom(m_pacmewindowingwindow->display(), "_NET_WM_CM_S0", True));
 
             if(pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
             {
 
-               XStoreName(m_oswindow->display(), m_oswindow->window(), pusersystem->m_createstruct.lpszName);
+               XStoreName(m_pacmewindowingwindow->display(), m_pacmewindowingwindow->window(), pusersystem->m_createstruct.lpszName);
 
             }
 
             if(pusersystem->m_createstruct.dwExStyle & WS_EX_TOOLWINDOW)
             {
 
-               m_oswindow->set_window_long_ptr(GWL_EXSTYLE, m_oswindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
+               m_pacmewindowingwindow->set_window_long_ptr(GWL_EXSTYLE, m_pacmewindowingwindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
 
             }
 
-            _wm_nodecorations(m_oswindow, 0);
+            _wm_nodecorations(m_pacmewindowingwindow, 0);
 
             if(pusersystem->m_createstruct.style & WS_VISIBLE)
             {
 
-               m_oswindow->map_window();
+               m_pacmewindowingwindow->map_window();
 
             }
             else
@@ -593,7 +593,7 @@ namespace linux
                      // initial (XCreateWindow) size and position maybe not be honored.
                      // so requesting the same change again in a effort to set the "docked/snapped" size and position.
 
-                     m_oswindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_pacmewindowingwindow->set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
 
                   }
 
@@ -892,7 +892,7 @@ namespace linux
 
          m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         if(m_puserinteraction->layout().design().display() == ::e_display_iconic && !m_oswindow->is_iconic())
+         if(m_puserinteraction->layout().design().display() == ::e_display_iconic && !m_pacmewindowingwindow->is_iconic())
          {
 
             m_puserinteraction->hide();
@@ -916,7 +916,7 @@ namespace linux
 
          m_puserinteraction->post_redraw();
 
-         //x11_defer_check_configuration(m_oswindow);
+         //x11_defer_check_configuration(m_pacmewindowingwindow);
 
       }
       else
@@ -1004,10 +1004,10 @@ namespace linux
 
       Detach();
 
-      if (!::is_null(m_oswindow))
+      if (!::is_null(m_pacmewindowingwindow))
       {
 
-         m_oswindow->post_nc_destroy();
+         m_pacmewindowingwindow->post_nc_destroy();
 
       }
 
@@ -1111,7 +1111,7 @@ namespace linux
 
       }
 
-      if(m_oswindow->m_bMessageOnlyWindow)
+      if(m_pacmewindowingwindow->m_bMessageOnlyWindow)
       {
 
          ::user::interaction * pinteraction = m_puserinteraction;
@@ -2495,7 +2495,7 @@ pmessagebox->sync();
    bool interaction_impl::_is_window() const
    {
 
-      return ::is_window(m_oswindow) != false;
+      return ::is_window(m_pacmewindowingwindow) != false;
 
    }
 
@@ -2503,7 +2503,7 @@ pmessagebox->sync();
    oswindow interaction_impl::get_handle() const
    {
 
-      return m_oswindow;
+      return m_pacmewindowingwindow;
 
    }
 
@@ -2511,14 +2511,14 @@ pmessagebox->sync();
    void interaction_impl::_001OnExitIconic()
    {
 
-      if(::is_null(m_oswindow))
+      if(::is_null(m_pacmewindowingwindow))
       {
 
          return;
 
       }
 
-      m_oswindow->exit_iconify();
+      m_pacmewindowingwindow->exit_iconify();
 
    }
 
@@ -2526,14 +2526,14 @@ pmessagebox->sync();
    void interaction_impl::_001OnExitFullScreen()
    {
 
-      if(::is_null(m_oswindow))
+      if(::is_null(m_pacmewindowingwindow))
       {
 
          return;
 
       }
 
-      m_oswindow->exit_full_screen();
+      m_pacmewindowingwindow->exit_full_screen();
 
    }
 
@@ -2541,7 +2541,7 @@ pmessagebox->sync();
    void interaction_impl::_001OnExitZoomed()
    {
 
-//      if(::is_null(m_oswindow))
+//      if(::is_null(m_pacmewindowingwindow))
 //      {
 //
 //         return;
@@ -2551,7 +2551,7 @@ pmessagebox->sync();
 //      x11_sync([this]()
 //      {
 //
-//         m_oswindow->exit_zoomed();
+//         m_pacmewindowingwindow->exit_zoomed();
 //
 //      });
 
@@ -2968,7 +2968,7 @@ pmessagebox->sync();
 //
 //      }
 //
-//      ::show_window(m_oswindow, e_display_normal);
+//      ::show_window(m_pacmewindowingwindow, e_display_normal);
 //
 //   }
 
@@ -3016,7 +3016,7 @@ pmessagebox->sync();
    bool interaction_impl::node_is_iconic()
    {
 
-      if(!::is_window(m_oswindow))
+      if(!::is_window(m_pacmewindowingwindow))
       {
 
          return false;
@@ -3186,7 +3186,7 @@ pmessagebox->sync();
 
       //fflush(stdout);
 
-      x11_store_name(m_oswindow, m_strWindowText);
+      x11_store_name(m_pacmewindowingwindow, m_strWindowText);
 
       //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
 
@@ -3361,9 +3361,9 @@ pmessagebox->sync();
 //
 //      fflush(stdout);
 //
-//      xdisplay d(m_oswindow->display());
+//      xdisplay d(m_pacmewindowingwindow->display());
 //
-//      oswindow oswindow;
+//      ::acme::windowing::window * pacmewindowingwindow;
 //
 //      if(get_handle() == nullptr)
 //      {
@@ -3734,7 +3734,7 @@ pmessagebox->sync();
    ::user::interaction * interaction_impl::GetActiveWindow()
    {
 
-      oswindow oswindow = nullptr;
+      ::acme::windowing::window * pacmewindowingwindow = nullptr;
 
       x11_sync([&]()
       {
@@ -4722,7 +4722,7 @@ pmessagebox->sync();
       //if(useractivation &)
 //      {
 //
-//         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
+//         wm_add_erase_state(m_pacmewindowingwindow, net_wm_state_hidden, false);
 //
 //      }
 //
@@ -4732,13 +4732,13 @@ pmessagebox->sync();
          if(m_puserinteraction->m_bWorkspaceFullScreen)
          {
 
-            ::show_window(m_oswindow, SW_MAXIMIZE);
+            ::show_window(m_pacmewindowingwindow, SW_MAXIMIZE);
 
          }
          else
          {
 
-            m_oswindow->full_screen();
+            m_pacmewindowingwindow->full_screen();
 
          }
 
@@ -4791,7 +4791,7 @@ pmessagebox->sync();
    bool interaction_impl::has_focus()
    {
 
-      if(!::is_window(m_oswindow))
+      if(!::is_window(m_pacmewindowingwindow))
       {
 
          return false;
@@ -4806,7 +4806,7 @@ pmessagebox->sync();
    bool interaction_impl::is_active()
    {
 
-      if(!::is_window(m_oswindow))
+      if(!::is_window(m_pacmewindowingwindow))
       {
 
          return false;
@@ -4816,7 +4816,7 @@ pmessagebox->sync();
 //      x11_sync([this]()
 //      {
 //
-//         m_puserinteraction->m_ewindowflag.set(::window_flag_active, m_oswindow == ::get_active_window());
+//         m_puserinteraction->m_ewindowflag.set(::window_flag_active, m_pacmewindowingwindow == ::get_active_window());
 //
 //      });
 //

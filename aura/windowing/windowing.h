@@ -107,7 +107,7 @@ namespace windowing
       //virtual void set_cursor_position(const ::int_point & pointCursor);
       virtual ::windowing::display * display();
 
-      virtual ::acme::windowing::window * window(oswindow oswindow) override;
+      //virtual ::acme::windowing::window * window(::acme::windowing::window * pacmewindowingwindow) override;
 
       ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
 
@@ -189,16 +189,16 @@ namespace windowing
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
-      virtual int_bool point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin);
+      virtual int_bool point_is_window_origin(::int_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin);
 
       //virtual void top_windows_by_z_order(::user::oswindow_array & a);
 
-      virtual bool is_window(oswindow oswindow);
+      virtual bool is_window(::acme::windowing::window * pacmewindowingwindow);
 
       virtual void load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache = true);
 
-      virtual void set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
-      virtual void set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
+      virtual void set(::message::key * pkey, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
+      virtual void set(::message::mouse * pmouse, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
       virtual void initialize_keyboard(::windowing::keyboard * pkeyboard);
 
@@ -252,7 +252,7 @@ namespace windowing
       virtual bool _visible_top_level_contains_name(const ::scoped_string & scopedstr) = 0;
       virtual bool _visible_top_level_contains_all_names(const ::string_array_base & stra) = 0;
       virtual bool _top_level_contains_name(const ::scoped_string & scopedstr) = 0;
-      virtual string _get_window_text_timeout(oswindow oswindow, const class ::time& time = 1_s) = 0;
+      virtual string _get_window_text_timeout(::acme::windowing::window * pacmewindowingwindow, const class ::time& time = 1_s) = 0;
 
 
 #endif

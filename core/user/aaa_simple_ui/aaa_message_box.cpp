@@ -490,7 +490,7 @@ namespace simple_ui
 
 
 //extern "C"
-//CLASS_DECL_CORE void system_message_box(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int uFlags)
+//CLASS_DECL_CORE void system_message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int uFlags)
 //{
 //
 //   return auto pmessagebox = __initialize_new ::message_box(oswindow, pszText, pszCaption, uFlags, function);
@@ -530,7 +530,7 @@ pmessagebox->sync();
 //}
 
 
-//int ui_message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, const ::function_arg & function)
+//int ui_message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, const ::function_arg & function)
 //{
 //
 //   int iResult = 0;

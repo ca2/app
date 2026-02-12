@@ -26,7 +26,7 @@ namespace user
       
       using address_array_base < ::user::interaction * >::find_first;
       ::user::interaction * find_first_typed(const ::platform::type & type);
-      ::user::interaction * find_first(oswindow oswindow);
+      ::user::interaction * find_first(::acme::windowing::window * pacmewindowingwindow);
 
       
       virtual bool get_child(::pointer<::user::interaction>& pinteraction);
@@ -63,7 +63,7 @@ namespace user
 
 
    //   ::user::interaction * find_first_typed(const ::platform::type & type);
-   //   ::user::interaction * find_first(oswindow oswindow);
+   //   ::user::interaction * find_first(::acme::windowing::window * pacmewindowingwindow);
 
 
    //   virtual bool get_child(::pointer<::user::interaction>& pinteraction);
@@ -117,7 +117,7 @@ namespace user
 
       //using pointer_array < ::user::interaction >::find_first;
       ::pointer<::user::interaction>find_first_typed(const ::std::type_info & info);
-      ::pointer<::user::interaction>find_first(oswindow oswindow);
+      ::pointer<::user::interaction>find_first(::acme::windowing::window * pacmewindowingwindow);
 
       //::user::oswindow_array get_hwnda();
       void send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});

@@ -1,23 +1,24 @@
-#include "framework.h"
+#include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
+#include "acme/handler/request.h"
+#include "acme/handler/task_handler.h"
 #include "acme/memory/counter.h"
 #include "acme/parallelization/counter.h"
 #include "acme/parallelization/message_queue.h"
+#include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/log.h"
-#include "acme/constant/id.h"
-#include "apex/platform/node.h"
-#include "apex/user/user/message.h"
-#include "apex/user/user/interaction_base.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "acme/parallelization/tools.h"
-#include "acme/parallelization/pool.h"
+#include "acme/platform/log.h"
+#include "acme/prototype/prototype/memory.h"
 #include "apex/message/message.h"
 #include "apex/platform/application.h"
-#include "acme/handler/request.h"
-#include "acme/handler/task_handler.h"
+#include "apex/platform/node.h"
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
+#include "apex/user/user/interaction_base.h"
+#include "apex/user/user/message.h"
+#include "framework.h"
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -3704,7 +3705,7 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
+bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
                           bool bRemoveMessage)
 {
 
@@ -3720,7 +3721,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 
       }
 
-      if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
+      if (m_pmessagequeue->peek_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
       {
 
          return true;
@@ -3736,7 +3737,9 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 
       MSG msg;
 
-      if (::PeekMessageW(&msg, as_hwnd(oswindow), wMsgFilterMin, wMsgFilterMax,
+      HWND hwnd = (HWND)HWND_from_acme_windowing_window(pacmewindowingwindow);
+
+      if (::PeekMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax,
                          bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
       {
 
@@ -4048,7 +4051,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFil
 //}
 
 
-void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -4056,7 +4059,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
    if (m_bAuraMessageQueue)
    {
 
-      get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
+      get_message_queue()->get_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
       if (pMsg->m_eusermessage == ::user::e_message_quit)
       {
@@ -4072,7 +4075,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
    if (m_pmessagequeue)
    {
 
-      if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, true))
+      if (m_pmessagequeue->peek_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, true))
       {
 
          set_finishing_flag();
@@ -4116,7 +4119,9 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 
       }
 
-      iRet = ::GetMessageW(&msg, as_hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
+      auto hwnd = (HWND) HWND_from_acme_windowing_window(pacmewindowingwindow);
+
+      iRet = ::GetMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax);
 
       if (iRet == -1)
       {
@@ -4168,7 +4173,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, unsigned int wMsgFilt
 }
 
 
-void thread::post_message(oswindow oswindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+void thread::post_message(::acme::windowing::window * pacmewindowingwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    //if (m_bThreadClosed)
@@ -4183,7 +4188,9 @@ void thread::post_message(oswindow oswindow, ::user::enum_message eusermessage, 
    if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(as_hwnd(oswindow), (UINT) eusermessage, wparam, lparam))
+      auto hwnd = (HWND) HWND_from_acme_windowing_window(pacmewindowingwindow);
+
+      if (::PostMessage(hwnd, (UINT) eusermessage, wparam, lparam))
       {
 
          return;
@@ -4196,7 +4203,7 @@ void thread::post_message(oswindow oswindow, ::user::enum_message eusermessage, 
 
    //return get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
 
-   get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
+   get_message_queue()->post_message(pacmewindowingwindow, eusermessage, wparam, lparam);
 
 }
 
@@ -4503,7 +4510,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.m_oswindow != nullptr || message.m_eusermessage == ::user::e_message_timer)
+      if (message.m_pacmewindowingwindow != nullptr || message.m_eusermessage == ::user::e_message_timer)
       {
 
          MSG msg;

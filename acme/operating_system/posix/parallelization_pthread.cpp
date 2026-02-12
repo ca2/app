@@ -378,10 +378,10 @@ void __node_term_multitasking()
 
 #if defined(LINUX) // || defined(__ANDROID__)
 
-bool (*g_pfn_defer_process_x_message)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
+bool (*g_pfn_defer_process_x_message)(htask htask, MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, bool bPeek) = nullptr;
 
 
-bool aura_defer_process_x_message(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
+bool aura_defer_process_x_message(htask htask, MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, bool bPeek)
 
 {
 
@@ -393,7 +393,7 @@ bool aura_defer_process_x_message(htask htask, MESSAGE * pMsg, oswindow oswindow
 
 }
 
-void set_defer_process_x_message(bool (*pfn)(htask htask, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
+void set_defer_process_x_message(bool (*pfn)(htask htask, MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, bool bPeek))
 
 {
 
@@ -444,7 +444,7 @@ int g_iDebug_post_thread_msg_time;
 
 
 
-//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, oswindow oswindow, unsigned int Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::acme::windowing::window * pacmewindowingwindow, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 //CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, unsigned int Msg, WPARAM wParam, LPARAM lParam)
 //{
 //

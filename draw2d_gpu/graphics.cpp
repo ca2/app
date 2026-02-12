@@ -6567,7 +6567,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
 
 
-   void graphics::CreateWindowDC(oswindow wnd)
+   void graphics::CreateWindowDC(::acme::windowing::window * pacmewindowingwindow)
    {
 
       // http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
@@ -6732,7 +6732,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   ////void graphics::on_begin_draw(oswindow wnd, const ::int_size & sz)
+   ////void graphics::on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::int_size & sz)
    //void graphics::on_begin_draw()
    //{
 

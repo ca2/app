@@ -74,7 +74,7 @@ oswindow_data * oswindow_get(UIWindow * window)
 }
 
 
-CLASS_DECL_ACME ::windowing::window * oswindow_get(oswindow oswindow)
+CLASS_DECL_ACME ::windowing::window * oswindow_get(::acme::windowing::window * pacmewindowingwindow)
 {
 
    if(oswindow == nullptr)
@@ -230,7 +230,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 //
 //
-//oswindow oswindow_data::set_parent(oswindow oswindow)
+//oswindow oswindow_data::set_parent(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if(::is_null(this))
@@ -289,7 +289,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 
 
-::windowing::window * window_from_handle(oswindow oswindow)
+::windowing::window * window_from_handle(::acme::windowing::window * pacmewindowingwindow)
 {
 
    if(oswindow == nullptr)
@@ -613,7 +613,7 @@ void defer_term_ui()
 }
 
 
-int_bool is_window_occluded(oswindow oswindow)
+int_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
 {
 
    return false;

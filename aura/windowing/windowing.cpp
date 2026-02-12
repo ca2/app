@@ -275,12 +275,12 @@ namespace windowing
    }
 
 
-   ::acme::windowing::window * windowing::window(oswindow oswindow)
-   {
-
-      return nullptr;
-
-   }
+   // ::acme::windowing::window * windowing::window(::acme::windowing::window * pacmewindowingwindow)
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
 
 
 ::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
@@ -712,7 +712,7 @@ namespace windowing
    }
 
 
-   int_bool windowing::point_is_window_origin(::int_point ptHitTest, oswindow oswindowExclude, int iMargin)
+   int_bool windowing::point_is_window_origin(::int_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin)
    {
 
       return false;
@@ -720,7 +720,7 @@ namespace windowing
    }
 
 
-   bool windowing::is_window(oswindow oswindow)
+   bool windowing::is_window(::acme::windowing::window * pacmewindowingwindow)
    {
 
       return false;
@@ -750,7 +750,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::key * pkey, oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::key * pkey, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       auto pkeyboard = keyboard();
@@ -760,7 +760,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::mouse * pmouse, oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::mouse * pmouse, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
 

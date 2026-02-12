@@ -63,7 +63,7 @@ namespace user
 
 
 
-      virtual ::user::interaction * interaction(oswindow oswindow);
+      virtual ::user::interaction * interaction(::acme::windowing::window * pacmewindowingwindow);
 
       virtual ::user::interaction * get_mouse_capture(::thread * pthread);
 

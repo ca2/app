@@ -21,7 +21,7 @@ public:
       bool     m_bPending;
       long long  m_iSize;
       bool     m_bRet;
-      oswindow     m_oswindow;
+      oswindow     m_pacmewindowingwindow;
 
 
       get_fs_size();

@@ -9,9 +9,9 @@
 
 
 
-//CLASS_DECL_ACME int_bool WINAPI GetMessage(MESSAGE * lpMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+//CLASS_DECL_ACME int_bool WINAPI GetMessage(MESSAGE * lpMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
 
-//CLASS_DECL_ACME int_bool WINAPI PeekMessage(MESSAGE * lpMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,unsigned int wRemoveMsg);
+//CLASS_DECL_ACME int_bool WINAPI PeekMessage(MESSAGE * lpMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,unsigned int wRemoveMsg);
 
 //CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(itask idthread, unsigned int Msg, WPARAM wParam, LPARAM lParam);
 

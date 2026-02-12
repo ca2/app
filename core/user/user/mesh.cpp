@@ -3319,7 +3319,7 @@ namespace user
 
                       auto pmessage = øcreate_new < ::message::mouse >();
 
-                      pmessage->m_oswindow = oswindow();
+                      pmessage->m_pacmewindowingwindow = oswindow();
 
                       pmessage->m_pwindow = window();
 

@@ -355,7 +355,7 @@ namespace draw2d
 
    //   }
 
-   //   oswindow oswindow = m_puserinteraction->get_safe_oswindow();
+   //   ::acme::windowing::window * pacmewindowingwindow = m_puserinteraction->get_safe_oswindow();
 
    //   if (!oswindow)
    //   {
@@ -525,10 +525,10 @@ namespace draw2d
    }
 
 
-   void graphics::CreateWindowDC(oswindow wnd)
+   void graphics::CreateWindowDC(::acme::windowing::window * pacmewindowingwindow)
    {
 
-      __UNREFERENCED_PARAMETER(wnd);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
 
 
 
@@ -6525,13 +6525,13 @@ namespace draw2d
    }
 
 
-   void graphics::on_begin_draw(oswindow wnd, const double_size & sz)
+   void graphics::on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const double_size & sz)
    {
 
    }
 
 
-   void graphics::on_end_draw(oswindow wnd)
+   void graphics::on_end_draw(::acme::windowing::window * pacmewindowingwindow)
    {
 
 

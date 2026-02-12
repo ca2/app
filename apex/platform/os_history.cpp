@@ -26,7 +26,7 @@ bool os_history::hist(const ::scoped_string & scopedstr)
 
    }
    
-    plauncher->setup((oswindow) nullptr, "open", scopedstr, "", "", e_display_normal);
+    plauncher->setup(nullptr, "open", scopedstr, "", "", e_display_normal);
 
    //if (!estatus)
    //{

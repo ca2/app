@@ -247,7 +247,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//oswindow oswindow_data::set_parent(oswindow oswindow)
+//oswindow oswindow_data::set_parent(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if(is_null())
@@ -275,7 +275,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //
-//bool oswindow_data::is_child(::oswindow oswindow)
+//bool oswindow_data::is_child(::::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
@@ -395,7 +395,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//::windowing::window * window_from_handle(oswindow oswindow)
+//::windowing::window * window_from_handle(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if(oswindow == nullptr)
@@ -466,7 +466,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//NSWindow * __nswindow(oswindow oswindow)
+//NSWindow * __nswindow(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   return (NSWindow *) oswindow->window();
@@ -611,7 +611,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//CLASS_DECL_ACME ::windowing::window * oswindow_get(oswindow oswindow)
+//CLASS_DECL_ACME ::windowing::window * oswindow_get(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if(oswindow == nullptr)
@@ -1271,9 +1271,9 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //
-//CGWindowID get_os_window_window_number(oswindow oswindow);
+//CGWindowID get_os_window_window_number(::acme::windowing::window * pacmewindowingwindow);
 //
-//int_bool is_window_occluded(oswindow oswindow)
+//int_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //

@@ -42,7 +42,7 @@ namespace graphics
 
          //bool bOk = 
          
-         m_spgraphics->CreateWindowDC(m_pwindow->oswindow());
+         m_spgraphics->CreateWindowDC(m_pwindow);
 
          //if (!bOk)
          //{
@@ -55,7 +55,7 @@ namespace graphics
 
       auto puserinteraction = m_pwindow->user_interaction();
 
-      m_spgraphics->on_begin_draw(m_pwindow->oswindow(), puserinteraction->const_layout().design().size());
+      m_spgraphics->on_begin_draw(m_pwindow, puserinteraction->const_layout().design().size());
 
       //return m_spgraphics;
 
@@ -70,7 +70,7 @@ namespace graphics
       try
       {
 
-         m_spgraphics->on_end_draw(m_pwindow->oswindow());
+         m_spgraphics->on_end_draw(m_pwindow);
 
       }
       catch (...)

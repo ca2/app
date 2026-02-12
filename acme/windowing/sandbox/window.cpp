@@ -1109,7 +1109,7 @@ void window::set_user_interaction(::windowing::window* pimpl)
 }
 
 
-bool window::is_child(::oswindow oswindow)
+bool window::window_is_child(::acme::windowing::window * pacmewindowingwindow)
 {
 
 #if !defined(WINDOWS_DESKTOP)
@@ -1989,7 +1989,7 @@ bool window::is_destroying()
 //::e_status window::post_ui_message(const MESSAGE & message)
 //{
 
-//   oswindow oswindow = message.oswindow;
+//   ::acme::windowing::window * pacmewindowingwindow = message.oswindow;
 
 //   ASSERT(oswindow != nullptr);
 
@@ -2389,7 +2389,7 @@ void window::set_window_text(const ::scoped_string & scopedstrString)
    
    //fflush(stdout);
    
-   //x11_store_name(m_oswindow, m_strWindowText);
+   //x11_store_name(m_pacmewindowingwindow, m_strWindowText);
    
    //x11_store_name(scopedstrString);
    

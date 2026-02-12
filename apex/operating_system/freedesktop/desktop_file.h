@@ -63,7 +63,7 @@ namespace freedesktop
 
       string get_wm_class();
 
-      //bool bamf_set_icon(oswindow oswindow);
+      //bool bamf_set_icon(::acme::windowing::window * pacmewindowingwindow);
 
    };
 

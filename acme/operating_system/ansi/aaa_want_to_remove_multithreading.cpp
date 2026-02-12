@@ -243,7 +243,7 @@
 //
 //#if defined(LINUX) // || defined(__ANDROID__)
 //
-//bool axis_defer_process_x_message(htask htask,LPMESSAGE lpMsg,oswindow oswindow,bool bPeek);
+//bool axis_defer_process_x_message(htask htask,LPMESSAGE lpMsg,::acme::windowing::window * pacmewindowingwindow,bool bPeek);
 //
 //#endif
 //
@@ -1157,7 +1157,7 @@
 ////}
 ////*/
 ////
-////CLASS_DECL_ACME int_bool WINAPI PostMessageW(oswindow oswindow,unsigned int Msg,WPARAM wParam,LPARAM lParam)
+////CLASS_DECL_ACME int_bool WINAPI PostMessageW(::acme::windowing::window * pacmewindowingwindow,unsigned int Msg,WPARAM wParam,LPARAM lParam)
 ////{
 ////
 ////   htask  h = oswindow->get_user_interaction()->m_papp->get_os_handle();

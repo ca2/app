@@ -90,7 +90,7 @@ namespace acme
          //
          virtual void erase_window(::acme::windowing::window* pwindow);
          
-         virtual ::acme::windowing::window* window(oswindow oswindow);
+         virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
 
          
          virtual void _message_handler(void* p);

@@ -23,22 +23,22 @@
 
 
 //CLASS_DECL_ACME oswindow WINAPI WinGetFocus();
-//CLASS_DECL_ACME oswindow WINAPI WinSetFocus(oswindow oswindow);
+//CLASS_DECL_ACME oswindow WINAPI WinSetFocus(::acme::windowing::window * pacmewindowingwindow);
 
 
 CLASS_DECL_ACME string normalize_path(const_char_pointer lpcszPath);
 
 
 //CLASS_DECL_ACME oswindow get_mouse_capture();
-//CLASS_DECL_ACME oswindow set_mouse_capture(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_mouse_capture(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME int_bool release_mouse_capture();
 //
 //CLASS_DECL_ACME oswindow get_active_window();
-//CLASS_DECL_ACME oswindow set_active_window(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_active_window(::acme::windowing::window * pacmewindowingwindow);
 //
 //
 //
-//CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
+//CLASS_DECL_ACME int_bool is_window(::acme::windowing::window * pacmewindowingwindow);
 
 
 void CLASS_DECL_ACME __cdecl _ca2_purecall();
@@ -118,9 +118,9 @@ CLASS_DECL_ACME htask main_htask();
 CLASS_DECL_ACME itask main_itask();
 
 //CLASS_DECL_ACME oswindow get_focus();
-//CLASS_DECL_ACME oswindow set_keyboard_focus(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_keyboard_focus(::acme::windowing::window * pacmewindowingwindow);
 
-//CLASS_DECL_ACME oswindow get_window(oswindow oswindow, int iWindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
 
 //CLASS_DECL_ACME void attach_thread_input_to_main_thread(int_bool bAttach);
 

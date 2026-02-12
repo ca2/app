@@ -27,7 +27,7 @@ namespace user
       shell::image_key::image_key(const image_key & key)
       {
 
-         //m_oswindow = key.m_oswindow;
+         //m_pacmewindowingwindow = key.m_pacmewindowingwindow;
          m_cr = key.m_cr;
          m_strPath = key.m_strPath;
          m_iIcon = key.m_iIcon;
@@ -59,7 +59,7 @@ namespace user
 
          m_iIcon = 0;
 
-         //m_oswindow = m_pimage->get_safe_handle();
+         //m_pacmewindowingwindow = m_pimage->get_safe_handle();
 
          m_cr = crBk;
 

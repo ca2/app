@@ -35,7 +35,7 @@ namespace account
       ::int_point                m_pointLButtonDown;
       ::int_point                m_pointLButtonDownPos;
 
-      oswindow             m_oswindow;
+      oswindow             m_pacmewindowingwindow;
 
       bool                 m_bShiftKey;
 
@@ -360,7 +360,7 @@ namespace account
       m_h = 284;
 
       m_eresult = ::spa_login::result_fail;
-      m_oswindow = nullptr;
+      m_pacmewindowingwindow = nullptr;
 
       m_bVisible = false;
 
@@ -468,20 +468,20 @@ namespace account
 
       m_login.defer_translate(this);
 
-      m_oswindow = oswindow_get(new_boot_window(this, rectangleFontopus));
+      m_pacmewindowingwindow = oswindow_get(new_boot_window(this, rectangleFontopus));
 
 
 
-      if (!m_oswindow)
+      if (!m_pacmewindowingwindow)
       {
          return false;
       }
 
       m_login.on_layout(pgraphics);
 
-//      set_timer(m_oswindow, 123, 23, nullptr);
+//      set_timer(m_pacmewindowingwindow, 123, 23, nullptr);
 
-      XXXShowWindow(m_oswindow, e_display_normal);
+      XXXShowWindow(m_pacmewindowingwindow, e_display_normal);
 
 
 
@@ -519,7 +519,7 @@ namespace account
 
    void account::boot_window_mouse_dragged(double x, double y)
    {
-      set_window_position(m_oswindow, nullptr, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
+      set_window_position(m_pacmewindowingwindow, nullptr, x, y, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
    }
 
    bool account::boot_window_key_down(::user::enum_key ekey)
@@ -537,18 +537,18 @@ namespace account
 
    void account::client_to_screen(::int_point * ppt)
    {
-      ::client_to_screen(m_oswindow, ppt);
+      ::client_to_screen(m_pacmewindowingwindow, ppt);
    }
 
    void account::screen_to_client(::int_point * ppt)
    {
-      ::screen_to_client(m_oswindow, ppt);
+      ::screen_to_client(m_pacmewindowingwindow, ppt);
    }
 
    bool account::on_lbutton_down(int x, int y)
    {
 
-      ::client_to_screen(m_oswindow, &m_pointLButtonDown);
+      ::client_to_screen(m_pacmewindowingwindow, &m_pointLButtonDown);
 
       if (m_login.on_lbutton_down(x, y))
          return true;
@@ -580,7 +580,7 @@ namespace account
       if (rectangleLogin.is_empty().contains(point))
       {
       release_capture();
-      DestroyWindow(m_oswindow);
+      DestroyWindow(m_pacmewindowingwindow);
       }
 
 
@@ -610,7 +610,7 @@ namespace account
             ::GetCursorPos(&ptNow);
             m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
             m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
-            set_window_position(m_oswindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            set_window_position(m_pacmewindowingwindow, nullptr, m_point.x, m_point.y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
             m_bDrag = false;
          }
          return true;
@@ -626,12 +626,12 @@ namespace account
 
    void account::window_rectangle(::int_rectangle * prectangle)
    {
-      ::window_rectangle(m_oswindow, prectangle);
+      ::window_rectangle(m_pacmewindowingwindow, prectangle);
    }
    void account::this->rectangle(::int_rectangle * prectangle)
    {
 
-      ::this->rectangle(m_oswindow, prectangle);
+      ::this->rectangle(m_pacmewindowingwindow, prectangle);
 
    }
 
@@ -749,13 +749,13 @@ namespace account
       {
 
 
-         ::XXXShowWindow(m_oswindow, SW_HIDE);
+         ::XXXShowWindow(m_pacmewindowingwindow, SW_HIDE);
 
          m_login.login_result(m_login.login());
 
          if (m_eresult == ::spa_login::result_fail)
          {
-            ::XXXShowWindow(m_oswindow, e_display_normal);
+            ::XXXShowWindow(m_pacmewindowingwindow, e_display_normal);
          }
          else
          {

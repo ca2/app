@@ -198,7 +198,7 @@ oswindow set_active_window(oswindow window);
 
 
 //
-//CGContextRef get_nswindow_cgcontext(oswindow oswindow)
+//CGContextRef get_nswindow_cgcontext(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   return (CGContextRef) [[__nswindow(oswindow) graphicsContext] graphicsPort];

@@ -1105,24 +1105,30 @@ namespace sandbox_windowing
    }
 
 
-   bool window::is_child(::oswindow oswindow)
+   bool window::window_is_child(::acme::windowing::window * pacmewindowingwindow)
    {
 
-      if (oswindow == nullptr || oswindow->m_pacmeuserinteraction == nullptr)
-      {
+      throw ::interface_only();
 
-         return false;
+      return false;
 
-      }
-
-      if (m_pacmeuserinteraction == nullptr)
-      {
-
-         return false;
-
-      }
-
-      return m_pacmeuserinteraction->is_child(oswindow->m_pacmeuserinteraction);
+      // //if (oswindow == nullptr || oswindow->m_pacmeuserinteraction == nullptr)
+      // //auto
+      // if (::is_null(pacmewindowingwindow) || pacmewindowingwindow->m_pacmeuserinteraction == nullptr)
+      // {
+      //
+      //    return false;
+      //
+      // }
+      //
+      // if (m_pacmeuserinteraction == nullptr)
+      // {
+      //
+      //    return false;
+      //
+      // }
+      //
+      // return m_pacmeuserinteraction->window_is_child(pacmewindowingwindow->m_pacmeuserinteraction);
 
    }
 
@@ -1979,7 +1985,7 @@ namespace sandbox_windowing
    //::e_status window::post_ui_message(const MESSAGE & message)
    //{
 
-   //   oswindow oswindow = message.oswindow;
+   //   ::acme::windowing::window * pacmewindowingwindow = message.oswindow;
 
    //   ASSERT(oswindow != nullptr);
 
@@ -2379,7 +2385,7 @@ namespace sandbox_windowing
 
             //fflush(stdout);
 
-            //x11_store_name(m_oswindow, m_strWindowText);
+            //x11_store_name(m_pacmewindowingwindow, m_strWindowText);
 
       //x11_store_name(scopedstrString);
 

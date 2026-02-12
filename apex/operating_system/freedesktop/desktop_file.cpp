@@ -529,7 +529,7 @@ namespace freedesktop
    }
 
 
-//   bool desktop_file::bamf_set_icon(oswindow oswindow)
+//   bool desktop_file::bamf_set_icon(::acme::windowing::window * pacmewindowingwindow)
 //   {
 //
 //      ::file::path path = get_file_path();

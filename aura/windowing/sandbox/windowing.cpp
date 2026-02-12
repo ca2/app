@@ -498,12 +498,14 @@ auto      pwindow = ::windowing::windowing::get_new_window();
    }
 
 
-   ::acme::windowing::window* windowing::window(oswindow oswindow)
-   {
-
-      return oswindow;
-
-   }
+   // ::acme::windowing::window* windowing::window(::acme::windowing::window * pacmewindowingwindow)
+   // {
+   //
+   //    //return oswin
+   //    throw ::interface_only();
+   //    return nullptr;
+   //
+   // }
 
 
    void windowing::_message_handler(void* p)

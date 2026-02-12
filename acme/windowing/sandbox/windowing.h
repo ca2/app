@@ -31,7 +31,8 @@ virtual public ::acme::windowing::windowing
 protected:
 
 
-   map_base < oswindow, ::pointer < ::acme::windowing::window> > m_oswindowmap;
+   //map_base < oswindow, ::pointer < ::acme::windowing::window> > m_oswindowmap;
+   ::pointer_array < ::acme::windowing::window > m_acmewindowingwindowa;
 
 
 public:
@@ -82,7 +83,7 @@ public:
    //
    void erase_window(::acme::windowing::window* pwindow) override;
    
-   ::acme::windowing::window* window(oswindow oswindow) override;
+   //::acme::windowing::window* acme_windowing_from_HWND(void *) override;
    
    virtual void _message_handler(void* p) override;
    

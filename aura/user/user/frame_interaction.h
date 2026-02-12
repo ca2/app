@@ -17,7 +17,7 @@ namespace user
    public:
 
 
-      //::oswindow                                   m_oswindow;
+      //::oswindow                                   m_pacmewindowingwindow;
 
       bool                                         m_bSnapToBars : 1;
       bool                                         m_bAddToTitle : 1;

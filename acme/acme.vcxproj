@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="ASanDbgWithInlOpt|ARM64">
@@ -3431,6 +3431,8 @@
     <ClInclude Include="λ.h" />
     <None Include="constant\character_set.enum" />
     <None Include="inline\application\main.inl" />
+    <None Include="inline\application\main_application_library.inl" />
+    <None Include="inline\application\main_executable.inl" />
     <None Include="inline\__apps.inl" />
     <None Include="memory\heap_namespace.inl">
       <FileType>Document</FileType>

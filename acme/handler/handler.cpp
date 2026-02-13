@@ -426,7 +426,7 @@ namespace handler
       // is being attended.
       //ASSERT(requestscope.request() == prequest);
       
-      //m_prequestBeingAttended.release();
+      m_prequestBeingAttended.release();
       
    }
 

@@ -2173,7 +2173,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          information() << "system::defer_post_initial_request ***strCommandLineSystemNative*** : ***" << strCommandLineSystemNative << "***";
 
-         setRequest._008ParseCommandFork(strCommandLineSystemNative, m_payloadFile, strApp);
+         setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
       }
       else if (this->m_argc > 0 && this->m_args)
       {

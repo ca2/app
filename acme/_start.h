@@ -10,11 +10,11 @@
 
 #include "acme/include/_acme.h"
 #include "acme/release/_.h"
-#include "configuration/configuration_include.h"
 #include "configuration_selection.h"
 #include "acme/platform/_features.h"
 #include "debugbreak.h"
 #include "operating_system/platform_setup.h"
+#include "configuration/debug.h"
 #include "operating_system/configuration.h"
 #include "include/_setup.h"
 

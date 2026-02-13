@@ -67,15 +67,6 @@ namespace platform
    {
    }
 
-
-   ::windowing::window* aura_system_layer::get_main_host_window()
-   {
-
-      return nullptr;
-
-   }
-
-
    //
    // ::aura::session* get_session()
    // {
@@ -103,11 +94,11 @@ namespace platform
 
 
    //::string aura_system_layer::install_get_platform() override{}
-   //void aura_system_layer::install_set_platform(const ::scoped_string & scopedstrPlatform) override{}
+   //void aura_system_layer::install_set_platform(const ::string & pszPlatform) override{}
    //::string aura_system_layer::install_get_version() override{}
-   //void aura_system_layer::install_set_version(const ::scoped_string & scopedstrVersion) override{}
-   //::string aura_system_layer::install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override{}
-   //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override{}
+   //void aura_system_layer::install_set_version(const ::string & pszVersion) override{}
+   //::string aura_system_layer::install_get_latest_build_number(const ::string & pszVersion) override{}
+   //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override{}
    //virtual int install_progress_app_add_up(int iAddUp = 1) override{}
 
    //virtual ::install::canvas * install_create_canvas(){}
@@ -115,11 +106,11 @@ namespace platform
    //virtual int install_canvas_increment_mode(){}
 
    //::string aura_system_layer::install_get_platform() override{}
-   //void aura_system_layer::install_set_platform(const ::scoped_string & scopedstrPlatform) override{}
+   //void aura_system_layer::install_set_platform(const ::string & pszPlatform) override{}
    //::string aura_system_layer::install_get_version() override{}
-   //void aura_system_layer::install_set_version(const ::scoped_string & scopedstrVersion) override{}
-   //::string aura_system_layer::install_get_latest_build_number(const ::scoped_string & scopedstrVersion) override{}
-   //virtual int install_start(const ::scoped_string & scopedstrCommandLine, const ::scoped_string & scopedstrBuild) override{}
+   //void aura_system_layer::install_set_version(const ::string & pszVersion) override{}
+   //::string aura_system_layer::install_get_latest_build_number(const ::string & pszVersion) override{}
+   //virtual int install_start(const ::string & pszCommandLine, const ::string & pszBuild) override{}
    //virtual int install_progress_app_add_up(int iAddUp = 1) override{}
 
    //virtual ::pointer<::factory::factory> & node_factory() override{}
@@ -141,7 +132,7 @@ namespace platform
    //void windowing_post_quit() override{}
 
 
-   ::pointer<::data::node>  aura_system_layer::load_xml(const ::scoped_string & scopedstrXml)
+   ::pointer<::data::node>  aura_system_layer::load_xml(const ::string& pszXml)
    {
 
       return {};
@@ -156,14 +147,14 @@ namespace platform
    //virtual bool is_system() const override{}
 
 
-   // ::string aura_system_layer::crypto_md5_text(const ::scoped_string & scopedstr)
+   // ::string aura_system_layer::crypto_md5_text(const ::string& str)
    // {
    //    return {};
    // }
    //
 
-   //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
-   //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
+   //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
+   //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override{}
 
 
    //void aura_system_layer::create_html(){}
@@ -172,7 +163,7 @@ namespace platform
 
    //void aura_system_layer::on_request(::request * prequest) override{}
 
-   //void aura_system_layer::construct(const ::scoped_string & scopedstrAppId){}
+   //void aura_system_layer::construct(const ::string & pszAppId){}
 
    //virtual bool initialize_application() override{}
 
@@ -204,19 +195,19 @@ namespace platform
    //::string aura_system_layer::dir_appmatter_locator(::particle * pparticle){}
 
 
-   //void aura_system_layer::hist_hist(const ::scoped_string & scopedstr){}
+   //void aura_system_layer::hist_hist(const ::string & psz){}
 
 
    //void aura_system_layer::on_request(::request * prequest) override{}
 
 
-   //virtual unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr){}
+   //virtual unsigned int crc32(unsigned int dwPrevious, const ::string & psz){}
 
 
-   //::string aura_system_layer::url::encode(const ::scoped_string & scopedstr) override{}
+   //::string aura_system_layer::url::encode(const ::string & str) override{}
 
 
-   //void aura_system_layer::locale_schema_matter(string_array_base & stra, const string_array_base & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
+   //void aura_system_layer::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override{}
    //::string aura_system_layer::get_locale_schema_dir() override{}
 
 
@@ -230,11 +221,11 @@ namespace platform
    //class ::user::window_map                     &  window_map(){}
 
 
-   //::pointer<::acme::library>open_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation){}
+   //::pointer<::acme::library>open_component_library(const ::string & pszComponent, const ::string & pszImplementation){}
 
-   //void ([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation){}
+   //void ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation){}
 
-   //void ([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation, PFN_factory pfnFactoryExchange){}
+   //void ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation, PFN_factory pfnFactoryExchange){}
 
 
    //class ::aura::os                             &  os(){}
@@ -304,9 +295,9 @@ namespace platform
    //::datetime::datetime                 & datetime(){}
 
 
-   //::string aura_system_layer::url::encode(const ::scoped_string & scopedstr){}
+   //::string aura_system_layer::url::encode(const ::string & str){}
 
-   void aura_system_layer::on_allocation_error(const ::scoped_string & scopedstrName, ::object* pobjectSometimes)
+   void aura_system_layer::on_allocation_error(const ::string& strName, ::object* pobjectSometimes)
    {
    }
 
@@ -325,18 +316,18 @@ namespace platform
    // }
 
 
-   //void aura_system_layer::browser(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override{}
-   //void aura_system_layer::open_profile_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override{}
-   //void aura_system_layer::open_link(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override{}
-   //void aura_system_layer::open_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrTarget) override{}
+   //void aura_system_layer::browser(string strUrl, string strBrowser, string strProfile, string strTarget) override{}
+   //void aura_system_layer::open_profile_link(string strUrl, string strProfile, string strTarget) override{}
+   //void aura_system_layer::open_link(string strUrl, string strProfile, string strTarget) override{}
+   //void aura_system_layer::open_url(string strUrl, string strProfile, string strTarget) override{}
 
 
    //void aura_system_layer::__set_thread_on() override{}
 
-   //::string aura_system_layer::get_local_mutex_name(const ::scoped_string & scopedstrAppName) override{}
-   //::string aura_system_layer::get_local_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId) override{}
-   //::string aura_system_layer::get_global_mutex_name(const ::scoped_string & scopedstrAppName) override{}
-   //::string aura_system_layer::get_global_id_mutex_name(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId) override{}
+   //::string aura_system_layer::get_local_mutex_name(const ::string & pszAppName) override{}
+   //::string aura_system_layer::get_local_id_mutex_name(const ::string & pszAppName, const ::string & pszId) override{}
+   //::string aura_system_layer::get_global_mutex_name(const ::string & pszAppName) override{}
+   //::string aura_system_layer::get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId) override{}
 
 
    //template < class T >
@@ -356,7 +347,7 @@ namespace platform
    //   if(idType.is_empty())
    //      return nullptr{}
 
-   //   synchronous_lock synchronouslock(m_pmutexFactory, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX){}
+   //   synchronous_lock synchronouslock(m_pmutexFactory){}
 
    //   return m_typemap[idType].m_p{}
 
@@ -366,7 +357,7 @@ namespace platform
    //void aura_system_layer::discard_to_factory(::object * pca){}
 
    
-   // bool aura_system_layer::on_command_final(const ::scoped_string & scopedstrCommand, ::user::activation_token * puseractivationtoken)
+   // bool aura_system_layer::on_command_final(const ::string& pszCommand, ::user::activation_token * puseractivationtoken)
    // {
    //
    //    return false;
@@ -379,9 +370,9 @@ namespace platform
 
    //virtual bool on_get_thread_name(string& strThreadName) override{}
 
-   //virtual ::acme::library * on_get_library(const ::scoped_string & scopedstrLibrary) override{}
+   //virtual ::acme::library * on_get_library(const ::string & pszLibrary) override{}
 
-   //virtual ::acme::library * get_library(const ::scoped_string & scopedstrLibrary, bool bOpenCa2 = false) override{}
+   //virtual ::acme::library * get_library(const ::string & pszLibrary, bool bOpenCa2 = false) override{}
 
 
    //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override{}
@@ -429,24 +420,6 @@ namespace platform
    }
 
 
-   void aura_system_layer::initialize_typeface()
-   {
-   }
-
-
-   ::factory::factory* aura_system_layer::typeface_factory()
-   {
-
-      return nullptr;
-
-   }
-
-
-   ::string aura_system_layer::typeface_get_default_implementation_name()
-   {
-      return {};
-   }
-
    //void aura_system_layer::init_task() override{}
    //void aura_system_layer::term_task() override{}
 
@@ -490,37 +463,37 @@ namespace platform
 
 
    /*    static inline ::atom atom(const ::std::type_info & info){}
-       static inline ::atom atom(const ::scoped_string & scopedstr){}
-       static inline ::atom atom(const ::scoped_string & scopedstr){}
+       static inline ::atom atom(const ::string & psz){}
+       static inline ::atom atom(const ::string & str){}
        static inline ::atom atom(long long i){}
        static inline ::atom_space & atom(){}
        inline ::atom atom(const ::payload & payload){}
        inline ::atom atom(const property & prop){}*/
 
 
-   //virtual int _001OnDebugReport(int i1, const ::scoped_string & scopedstr1,int i2, const ::scoped_string & scopedstr2, const ::scoped_string & scopedstr3,va_list args) override{}
-   //virtual int _debug_logging_report(int iReportType, const ::scoped_string & scopedstrFilename, int iLinenumber, const ::scoped_string & scopedstrModuleName, const ::scoped_string & scopedstrFormat, va_list list_base) override{}
-   //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override{}
+   //virtual int _001OnDebugReport(int i1, const ::string & psz1,int i2, const ::string & psz2, const ::string & psz3,va_list args) override{}
+   //virtual int _debug_logging_report(int iReportType, const ::string & pszFilename, int iLinenumber, const ::string & iModuleName, const ::string & pszFormat, va_list list) override{}
+   //virtual bool assert_failed_line(const ::string & pszFileName,int iLine) override{}
 
-   //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override{}
+   //virtual bool on_assert_failed_line(const ::string & pszFileName,int iLine) override{}
 
 
-   //void aura_system_layer::initialize_log(const ::scoped_string & scopedstrId) override{}
+   //void aura_system_layer::initialize_log(const ::string & pszId) override{}
 
 
    //void aura_system_layer::appa_load_string_table() override{}
-   //void aura_system_layer::appa_set_locale(const ::scoped_string & scopedstrLocale, const ::action_context & action_context) override{}
-   //void aura_system_layer::appa_set_schema(const ::scoped_string & scopedstrStyle, const ::action_context & action_context) override{}
+   //void aura_system_layer::appa_set_locale(const ::string & pszLocale, const ::action_context & action_context) override{}
+   //void aura_system_layer::appa_set_schema(const ::string & pszStyle, const ::action_context & action_context) override{}
 
-   //virtual bool assert_running_global(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId = nullptr) override{}
-   //virtual bool assert_running_local(const ::scoped_string & scopedstrAppName, const ::scoped_string & scopedstrId = nullptr) override{}
+   //virtual bool assert_running_global(const ::string & pszAppName, const ::string & pszId = nullptr) override{}
+   //virtual bool assert_running_local(const ::string & pszAppName, const ::string & pszId = nullptr) override{}
 
-   //::pointer<application>assert_running(const ::scoped_string & scopedstrAppId){}
+   //::pointer<application>assert_running(const ::string & pszAppId){}
 
    /*    virtual ::collection::count get_application_count() override{}
  */
 
-   //::string aura_system_layer::crypto_md5_text(const ::scoped_string & scopedstr){}
+   //::string aura_system_layer::crypto_md5_text(const ::string & str){}
 
    //inline class ::http::system                  & http()
    //{
@@ -533,13 +506,13 @@ namespace platform
    //void aura_system_layer::start() override{}
 
    //virtual ::file::path local_get_matter_cache_path() override{}
-   //virtual ::file::path local_get_matter_cache_path(const ::scoped_string & scopedstrMatter) override{}
+   //virtual ::file::path local_get_matter_cache_path(string strMatter) override{}
    //virtual ::file::path local_get_matter_path() override{}
-   //virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override{}
+   //virtual ::file::path local_get_matter_path(string strMatter) override{}
 
    //virtual bool find_applications_from_cache() override{}
    //virtual bool find_applications_to_cache(bool bSave = true) override{}
-   //virtual bool map_application_library(const ::scoped_string & scopedstrLibrary) override{}
+   //virtual bool map_application_library(const ::string & pszLibrary) override{}
 
 
    //void aura_system_layer::install_progress_add_up(int iAddUp = 1) override{}
@@ -552,14 +525,14 @@ namespace platform
 
    //void aura_system_layer::on_request(::request * prequest) override{}
 
-   //::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr){}
-   //::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount){}
-   //virtual int pcre_add_tokens(string_array_base& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount){}
+   //::pointer<regex>create_regular_expression(const ::string & pszStyle, const string& str){}
+   //::pointer<regex_context>create_regular_expression_context(const ::string & pszStyle, int iCount){}
+   //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount){}
 
 
    //::string aura_system_layer::get_system_platform() override{}
    //::string aura_system_layer::get_system_configuration() override{}
-   //::string aura_system_layer::get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId){}
+   //::string aura_system_layer::get_latest_build_number(const ::string & pszConfiguration, const ::string & pszAppId){}
 
 
    //#ifndef UNIVERSAL_WINDOWS
@@ -583,22 +556,22 @@ namespace platform
 
    //void aura_system_layer::defer_check_openweather_city_list(){}
 
-   //virtual openweather_city * openweather_find_city(const ::scoped_string & scopedstrQuery){}
-   //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, long long & iId, double & dLat, double & dLon){}
-   //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix){}
+   //virtual openweather_city * openweather_find_city(string strQuery){}
+   //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, long long & iId, double & dLat, double & dLon){}
+   //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix){}
 
    //#ifdef __ANDROID__
    ////#pragma message("at macos??")
-   //      virtual bool android_set_user_wallpaper(const ::scoped_string & scopedstrUrl) override{}
+   //      virtual bool android_set_user_wallpaper(string strUrl) override{}
    //      virtual bool android_get_user_wallpaper(string & strUrl) override{}
    //
    //#endif
    //
-   //      virtual bool defer_accumulate_on_open_file(string_array_base stra, const ::scoped_string & scopedstrExtra) override{}
+   //      virtual bool defer_accumulate_on_open_file(string_array stra, string strExtra) override{}
    //
    //      virtual bool merge_accumulated_on_open_file(::request * prequest) override{}
    //
-   //      virtual bool on_open_file(::payload payloadFile, const ::scoped_string & scopedstrExtra) override{}
+   //      virtual bool on_open_file(::payload payloadFile, string strExtra) override{}
    //
    //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback){}
 
@@ -607,16 +580,16 @@ namespace platform
    //void aura_system_layer::* initialize_native_window2(const ::int_rectangle & rectangle){}
 
 
-   //void aura_system_layer::on_os_text(e_os_text etext, const ::scoped_string & scopedstrText) override{}
+   //void aura_system_layer::on_os_text(e_os_text etext, string strText) override{}
 
    //virtual ::windowing::window * impl_from_handle(void * posdata){}
    //virtual ::user::interaction * ui_from_handle(void * posdata){}
 
 
-   //void aura_system_layer::on_extra(const ::scoped_string & scopedstr) override{}
+   //void aura_system_layer::on_extra(string str) override{}
 
-   //::string aura_system_layer::standalone_setting(const ::scoped_string & scopedstr) override{}
-   //virtual bool set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting) override{}
+   //::string aura_system_layer::standalone_setting(string str) override{}
+   //virtual bool set_standalone_setting(string str, string strSetting) override{}
 
 
    //void aura_system_layer::on_event(unsigned long long u, ::particle * pparticle) override{}
@@ -635,14 +608,14 @@ namespace platform
    //void aura_system_layer::process_machine_event_data(machine_event_data * pdata) override{}
 
 
-   //void aura_system_layer::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const override{}
+   //void aura_system_layer::__tracea(enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, int iLine, const ::string & psz) const override{}
 
 
-   //void chromium(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrId, ::file::path path, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam){}
+   //void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam){}
 
-   //void defer_create_firefox_profile(::file::path pathFirefox, const ::scoped_string & scopedstrProfileName, ::file::path pathProfile){}
+   //void defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile){}
 
-   //void     firefox(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrBrowser, const ::scoped_string & scopedstrProfile, const ::scoped_string & scopedstrParam){}
+   //void     firefox(string strUrl, string strBrowser, string strProfile, string strParam){}
    //void     get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory){}
 
 
@@ -690,7 +663,7 @@ namespace platform
    //void set_history(::apex::history* phistory){}
 
 
-   //::pointer<::acme::library>on_get_library(const ::scoped_string & scopedstrLibrary) override{}
+   //::pointer<::acme::library>on_get_library(const ::string & pszLibrary) override{}
 
 
    //virtual ::aura::session *  get_platform(::collection::index iEdge,application_bias * pbiasCreation = nullptr){}
@@ -703,7 +676,7 @@ namespace platform
 
    //virtual int main(){}
 
-   //void aura_system_layer::on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override{}
+   //void aura_system_layer::on_allocation_error(const ::string& str, ::object* pobjectSometimes) override{}
 
    //virtual ::pointer<::aura::session>on_create_session() override{}
 
@@ -726,11 +699,11 @@ namespace platform
    //
    //#endif
 
-   ////bool sync_load_url(string& str, const ::scoped_string & scopedstrUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr){}
-   //bool sync_load_url(string& str, const ::scoped_string & scopedstrUrl,  ::http::cookies* pcookies = nullptr){}
+   ////bool sync_load_url(string& str, const ::string & pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr){}
+   //bool sync_load_url(string& str, const ::string & pszUrl,  ::http::cookies* pcookies = nullptr){}
 
 
-   //      unsigned int guess_code_page(const ::scoped_string & scopedstr){}
+   //      unsigned int guess_code_page(const ::string & str){}
 
    //#ifdef UNIVERSAL_WINDOWS
    //
@@ -739,7 +712,7 @@ namespace platform
    //
    //#endif
 
-   //void aura_system_layer::post_fork_uri(const ::scoped_string & scopedstrUri,application_bias * pappbias){}
+   //void aura_system_layer::post_fork_uri(const ::string & pszUri,application_bias * pappbias){}
 
 
    //      virtual bool wait_twf(class ::time tickTimeout = U32_INFINITE_TIMEOUT){}
@@ -775,7 +748,7 @@ namespace platform
 
 
    //void aura_system_layer::    main() override{}
-   //void aura_system_layer::hist_hist(const ::scoped_string & scopedstr) override{}
+   //void aura_system_layer::hist_hist(const ::string & psz) override{}
 
 
    ::type_atom  aura_system_layer::get_pane_tab_impact_type_info()
@@ -844,12 +817,12 @@ namespace platform
    }
 
 
-   void aura_system_layer::_001AddPacks(string_to_string_base& base64map, string& str)
+   void aura_system_layer::_001AddPacks(string_to_string& base64map, string& str)
    {
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
 
    //void windowing_send(const ::procedure & procedure) override{}
    //void windowing_post(const ::procedure & procedure) override{}

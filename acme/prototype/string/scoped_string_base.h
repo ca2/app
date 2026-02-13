@@ -705,6 +705,9 @@ public:
 
    STRING as_string() const;
 
+   BASE_RANGE rear_word(CHARACTER separator = ' ') const;
+   BASE_RANGE rear_prefix(CHARACTER separator = ' ') const;
+
    //inline bool operator ==(const ::ansi_string & str) const { return this->equals((const scoped_string_base&)str); }
    //inline bool operator ==(const ::wd16_string & str) const { return this->equals((const scoped_string_base&)str); }
    //inline bool operator ==(const ::wd32_string & str) const { return this->equals((const scoped_string_base&)str); }

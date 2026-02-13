@@ -5213,6 +5213,43 @@ inline typename scoped_string_base < ITERATOR_TYPE >::STRING scoped_string_base 
 
 }
 
+
+template < typename ITERATOR_TYPE >
+inline typename scoped_string_base < ITERATOR_TYPE >::BASE_RANGE scoped_string_base < ITERATOR_TYPE > ::rear_word(CHARACTER ch) const
+{
+
+   auto p = this->rear_find(ch);
+
+   if (!p)
+   {
+
+      return {};
+
+   }
+
+   return {::unicode_next(p), this->m_end};
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline typename scoped_string_base < ITERATOR_TYPE >::BASE_RANGE scoped_string_base < ITERATOR_TYPE > ::rear_prefix(CHARACTER ch) const
+{
+
+   auto p = this->rear_find(ch);
+
+   if (!p)
+   {
+
+      return {};
+
+   }
+
+   return {this->m_begin, p};
+
+}
+
+
 #include "acme/prototype/string/c_string.h"
 
 

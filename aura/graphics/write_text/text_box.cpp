@@ -113,7 +113,7 @@ namespace write_text
 
       m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      m_pimage->g()->text_out(plist->m_rectangleMargin.left(), plist->m_rectangleMargin.top(), scopedstrText);
+      m_pimage->g()->text_out(plist->m_rectangleMargin.left, plist->m_rectangleMargin.top, scopedstrText);
 
 #if 0
 
@@ -124,8 +124,8 @@ namespace write_text
             uForegroundColor.m_uchRed,
             uForegroundColor.m_uchGreen,
             uForegroundColor.m_uchBlue,
-            plist->m_rectangleMargin.left(), 
-            plist->m_rectangleMargin.top(), strText.c_str());
+            plist->m_rectangleMargin.left, 
+            plist->m_rectangleMargin.top, strText.c_str());
          
          plist->information() << str;
 

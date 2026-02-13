@@ -21,19 +21,19 @@ namespace gpu
    model_buffer::model_buffer()
    {
 
-      m_iVertexTypeSize = -1;
+      //m_iVertexTypeSize = -1;
 
-      m_iIndexTypeSize = -1;
+      //m_iIndexTypeSize = -1;
 
       m_ppool = nullptr;
 
-      m_bDummy = false;
+      //m_bDummy = false;
 
       m_pMap = nullptr;
 
-      m_iVertexCount = 0;
+      //m_iVertexCount = 0;
 
-      m_iIndexCount = 0;
+      //m_iIndexCount = 0;
 
    }
 
@@ -43,6 +43,7 @@ namespace gpu
 
 
    }
+
 
 
    void model_buffer::sequence2_uv_create_rectangle(::gpu::context* pcontext, bool bIndexed, bool bYSwap)
@@ -104,15 +105,15 @@ namespace gpu
    bool model_buffer::is_dummy() const
    {
 
-      return m_iIndexCount <= 0 && m_iVertexCount <= 0;
+      return m_pmodeldatabase2->is_dummy();
 
    }
 
 
-   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::frame* pgpuframe)
+   void model_buffer::sequence2_uv_create_fullscreen_quad(::gpu::context * pgpucontext)
    {
 
-      initialize_gpu_context_object(pgpuframe->m_pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+      initialize_gpu_context_object(pgpucontext);
 
       // Vertex data: (x, y, u, v)
 #if 1
@@ -139,13 +140,13 @@ namespace gpu
       };
 #endif
 
-      this->bind(pgpuframe->m_pgpucommandbuffer);
+      //this->bind2(pgpuframe->m_pgpucommandbuffer);
 
 
       this->static_initialize_vertexes<::graphics3d::sequence2_uv >(
          quadvertexes);
 
-      this->unbind(pgpuframe->m_pgpucommandbuffer);
+      //this->unbind(pgpuframe->m_pgpucommandbuffer);
 
 
 
@@ -155,77 +156,45 @@ namespace gpu
    }
 
 
-   void model_buffer::sequence2_color_create_rectangle(::gpu::frame* pgpuframe)
+   void model_buffer::sequence2_color_create_rectangle(::gpu::context * pgpucontext)
    {
 
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      bind(pcommandbuffer);
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence2_color >(6);
-
-      unbind(pcommandbuffer);
-
-      //defer_set_input_layout(pcontext->input_layout(::gpu_properties<::graphics3d::sequence2_color>()));
 
    }
 
 
-   void model_buffer::sequence2_color_create_line(::gpu::frame * pgpuframe)
+   void model_buffer::sequence2_color_create_line(::gpu::context * pgpucontext)
    {
 
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      bind(pcommandbuffer);
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence2_color >(
          2);
 
-      unbind(pcommandbuffer);
-
-      //defer_set_input_layout(pcontext->input_layout(::gpu_properties < ::graphics::sequence2_color>()));
-
    }
 
 
-   void model_buffer::sequence3_color_create_rectangle(::gpu::frame* pgpuframe)
+   void model_buffer::sequence3_color_create_rectangle(::gpu::context * pgpucontext)
    {
 
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      bind(pcommandbuffer);
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence3_color >(
          6);
 
-      unbind(pcommandbuffer);
-
-      //defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
-
    }
 
 
-   void model_buffer::sequence3_color_create_line(::gpu::frame* pgpuframe)
+   void model_buffer::sequence3_color_create_line(::gpu::context * pgpucontext)
    {
-
-      initialize_gpu_context_object(pgpuframe->gpu_context());
-
-      auto pcommandbuffer = pgpuframe->m_pgpucommandbuffer;
-
-      bind(pcommandbuffer);
+      
+      initialize_gpu_context_object(pgpucontext);
 
       this->create_vertexes<::graphics3d::sequence3_color >(
          2);
-
-      unbind(pcommandbuffer);
-
-      ///defer_set_input_layout(pcontext->input_layout(::graphics3d::sequence3_color_properties()));
 
    }
 
@@ -253,7 +222,7 @@ namespace gpu
    //      //  3 l,b
 
    //   ::geometry2d::matrix m;
-   //   m.scale(2.0 / size.cx(), 2.0 / size.cy());
+   //   m.scale(2.0 / size.cx, 2.0 / size.cy);
    //   m.translate(-1.0, -1.0);
 
    //   ::double_point points[4];
@@ -281,23 +250,23 @@ namespace gpu
    //   auto data = this->map_base < graphics3d::sequence3_color > ();
 
    //   //   // Triangle 1
-   //   data[0] = { {points[0].x(), points[0].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[1] = { {points[1].x(), points[1].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[2] = { {points[2].x(), points[2].y(), g_z}, {fR, fG, fB, fA} };
+   //   data[0] = { {points[0].x, points[0].y, g_z}, {fR, fG, fB, fA} };
+   //   data[1] = { {points[1].x, points[1].y, g_z}, {fR, fG, fB, fA} };
+   //   data[2] = { {points[2].x, points[2].y, g_z}, {fR, fG, fB, fA} };
    //   //   // Triangle 2
-   //   data[3] = { {points[1].x(), points[1].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[4] = { {points[2].x(), points[2].y(), g_z}, {fR, fG, fB, fA} };
-   //   data[5] = { {points[3].x(), points[3].y(), g_z}, {fR, fG, fB, fA} };
+   //   data[3] = { {points[1].x, points[1].y, g_z}, {fR, fG, fB, fA} };
+   //   data[4] = { {points[2].x, points[2].y, g_z}, {fR, fG, fB, fA} };
+   //   data[5] = { {points[3].x, points[3].y, g_z}, {fR, fG, fB, fA} };
 
    //   //graphics3d::sequence3_color quadvertexes[] = {
    //   //   // Triangle 1
-   //   //   {{(float)points[0].x(), (float)points[0].y(), g_z}, {fR, fG, fB, fA}}, // Red
-   //   //   {{(float)points[1].x(), (float)points[1].y(), g_z}, {fR, fG, fB, fA}}, // Green
-   //   //   {{(float)points[2].x(), (float)points[2].y(), g_z}, {fR, fG, fB, fA}}, // Blue
+   //   //   {{(float)points[0].x, (float)points[0].y, g_z}, {fR, fG, fB, fA}}, // Red
+   //   //   {{(float)points[1].x, (float)points[1].y, g_z}, {fR, fG, fB, fA}}, // Green
+   //   //   {{(float)points[2].x, (float)points[2].y, g_z}, {fR, fG, fB, fA}}, // Blue
    //   //   // Triangle 2
-   //   //   {{(float)points[0].x(), (float)points[0].y(), g_z}, {fR, fG, fB, fA}}, // Green
-   //   //   {{(float)points[2].x(), (float)points[2].y(), g_z}, {fR, fG, fB, fA}}, // Yellow
-   //   //   {{(float)points[3].x(), (float)points[3].y(), g_z}, {fR, fG, fB, fA}}, // Blue
+   //   //   {{(float)points[0].x, (float)points[0].y, g_z}, {fR, fG, fB, fA}}, // Green
+   //   //   {{(float)points[2].x, (float)points[2].y, g_z}, {fR, fG, fB, fA}}, // Yellow
+   //   //   {{(float)points[3].x, (float)points[3].y, g_z}, {fR, fG, fB, fA}}, // Blue
    //   //};
 
    //   //m_pbufferVertex->assign(::as_memory_block(quadvertexes));
@@ -328,7 +297,7 @@ namespace gpu
          //  3 l,b
 
       ::geometry2d::matrix m;
-      m.scale(2.0 / size.cx(), 2.0 / size.cy());
+      m.scale(2.0 / size.cx, 2.0 / size.cy);
       m.translate(-1.0, -1.0);
 
       ::double_point points[4];
@@ -355,13 +324,13 @@ namespace gpu
 
       ::array<::graphics3d::sequence2_color> quadvertexes = {
          // Triangle 1
-         {{(float)points[0].x(), (float)points[0].y()}, {fR, fG, fB, fA}}, // Red
-         {{(float)points[1].x(), (float)points[1].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)points[2].x(), (float)points[2].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)points[0].x, (float)points[0].y}, {fR, fG, fB, fA}}, // Red
+         {{(float)points[1].x, (float)points[1].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)points[2].x, (float)points[2].y}, {fR, fG, fB, fA}}, // Blue
          // Triangle 2
-         {{(float)points[0].x(), (float)points[0].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)points[2].x(), (float)points[2].y()}, {fR, fG, fB, fA}}, // Yellow
-         {{(float)points[3].x(), (float)points[3].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)points[0].x, (float)points[0].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)points[2].x, (float)points[2].y}, {fR, fG, fB, fA}}, // Yellow
+         {{(float)points[3].x, (float)points[3].y}, {fR, fG, fB, fA}}, // Blue
       };
 
       this->set_vertexes(quadvertexes);
@@ -395,13 +364,13 @@ namespace gpu
 
       ::array<::graphics3d::sequence2_color> quadvertexes = {
          // Triangle 1
-         {{(float)pointa[0].x(), (float)pointa[0].y()}, {fR, fG, fB, fA}}, // Red
-         {{(float)pointa[1].x(), (float)pointa[1].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)pointa[2].x(), (float)pointa[2].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)pointa[0].x, (float)pointa[0].y}, {fR, fG, fB, fA}}, // Red
+         {{(float)pointa[1].x, (float)pointa[1].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)pointa[2].x, (float)pointa[2].y}, {fR, fG, fB, fA}}, // Blue
          // Triangle 2
-         {{(float)pointa[0].x(), (float)pointa[0].y()}, {fR, fG, fB, fA}}, // Green
-         {{(float)pointa[2].x(), (float)pointa[2].y()}, {fR, fG, fB, fA}}, // Yellow
-         {{(float)pointa[3].x(), (float)pointa[3].y()}, {fR, fG, fB, fA}}, // Blue
+         {{(float)pointa[0].x, (float)pointa[0].y}, {fR, fG, fB, fA}}, // Green
+         {{(float)pointa[2].x, (float)pointa[2].y}, {fR, fG, fB, fA}}, // Yellow
+         {{(float)pointa[3].x, (float)pointa[3].y}, {fR, fG, fB, fA}}, // Blue
       };
 
       this->set_vertexes(quadvertexes);
@@ -447,10 +416,10 @@ namespace gpu
       // size(100, 100) l = (0 - 100 / 2) / 100 = -0.5
       // size(100, 100) r = (100 - 100 / 2) / 100 = 0.5
 
-      //float l = (float)(2. * (rectangle.left() - size.cx()/2.)/ (size.cx()));
-      //float r = (float)(2. * (rectangle.right() - size.cx()/2.) / (size.cx()));
-      //float t = (float)(2. * (rectangle.bottom() - size.cy()/2.) / (size.cy()));
-      //float b = (float)(2. * (rectangle.top() - size.cy()/2.) / (size.cy()));
+      //float l = (float)(2. * (rectangle.left - size.cx/2.)/ (size.cx));
+      //float r = (float)(2. * (rectangle.right - size.cx/2.) / (size.cx));
+      //float t = (float)(2. * (rectangle.bottom - size.cy/2.) / (size.cy));
+      //float b = (float)(2. * (rectangle.top - size.cy/2.) / (size.cy));
 
       //  0 l,t
       //  1 r,t
@@ -458,7 +427,7 @@ namespace gpu
       //  3 l,b
 
       ::geometry2d::matrix m;
-      m.scale(2.0 / size.cx(), 2.0 / size.cy());
+      m.scale(2.0 / size.cx, 2.0 / size.cy);
       m.translate(-1.0, -1.0);
 
       ::double_point points[2];
@@ -473,8 +442,8 @@ namespace gpu
       float g_z = 0.f;
 
       graphics3d::sequence3_color linevertexes[] = {
-         {{(float)points[0].x(), (float)points[0].y(), g_z}, {fR, fG, fB, fA}},
-         {{(float)points[1].x(), (float)points[1].y(), g_z}, {fR, fG, fB, fA}},
+         {{(float)points[0].x, (float)points[0].y, g_z}, {fR, fG, fB, fA}},
+         {{(float)points[1].x, (float)points[1].y, g_z}, {fR, fG, fB, fA}},
       };
 
 
@@ -580,10 +549,10 @@ namespace gpu
       // size(100, 100) l = (0 - 100 / 2) / 100 = -0.5
       // size(100, 100) r = (100 - 100 / 2) / 100 = 0.5
 
-      //float l = (float)(2. * (rectangle.left() - size.cx()/2.)/ (size.cx()));
-      //float r = (float)(2. * (rectangle.right() - size.cx()/2.) / (size.cx()));
-      //float t = (float)(2. * (rectangle.bottom() - size.cy()/2.) / (size.cy()));
-      //float b = (float)(2. * (rectangle.top() - size.cy()/2.) / (size.cy()));
+      //float l = (float)(2. * (rectangle.left - size.cx/2.)/ (size.cx));
+      //float r = (float)(2. * (rectangle.right - size.cx/2.) / (size.cx));
+      //float t = (float)(2. * (rectangle.bottom - size.cy/2.) / (size.cy));
+      //float b = (float)(2. * (rectangle.top - size.cy/2.) / (size.cy));
 
       //  0 l,t
       //  1 r,t
@@ -591,7 +560,7 @@ namespace gpu
       //  3 l,b
 
       ::geometry2d::matrix m;
-      m.scale(2.0 / size.cx(), 2.0 / size.cy());
+      m.scale(2.0 / size.cx, 2.0 / size.cy);
       m.translate(-1.0, -1.0);
 
       ::double_point points[2];
@@ -606,8 +575,8 @@ namespace gpu
       float g_z = 0.f;
 
       graphics3d::sequence2_color linevertexes[] = {
-         {{(float)points[0].x(), (float)points[0].y()}, {fR, fG, fB, fA}},
-         {{(float)points[1].x(), (float)points[1].y()}, {fR, fG, fB, fA}},
+         {{(float)points[0].x, (float)points[0].y}, {fR, fG, fB, fA}},
+         {{(float)points[1].x, (float)points[1].y}, {fR, fG, fB, fA}},
       };
 
 
@@ -715,7 +684,7 @@ namespace gpu
    //}
 
 
-   void model_buffer::bind(::gpu::command_buffer* pgpucommandbuffer)
+   void model_buffer::bind2(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       //if (m_pbufferVertex)
@@ -748,7 +717,7 @@ namespace gpu
    }
 
 
-   void model_buffer::draw(::gpu::command_buffer* pgpucommandbuffer)
+   void model_buffer::draw2(::gpu::command_buffer* pgpucommandbuffer)
    {
 
       //if (m_pbufferVertex)
@@ -870,93 +839,94 @@ namespace gpu
 
       initialize_gpu_context_object(pgpucontext);
 
-      m_iVertexCount = iVertexCount;
 
-      m_bDummy = true;
+      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, iVertexCount);
+
+      //m_iVertexCount = iVertexCount;
+
+      //m_bDummy = true;
 
    }
 
 
-   void model_buffer::static_initialize_vertex_buffer(const void* data, memsize iTypeSize, ::collection::count iVertexCount)
+   void model_buffer::_static_initialize_vertex_buffer(const ::block & blockVertexData)
    {
 
-      m_iVertexCount = (int) iVertexCount;
+      //m_iVertexCount = (int) iVertexCount;
 
-      m_iVertexTypeSize = (int) iTypeSize;
+      //m_iVertexTypeSize = (int) iTypeSize;
 
-      auto size = iTypeSize * iVertexCount;
+      //auto size = iTypeSize * iVertexCount;
 
       ødefer_construct(m_pbufferVertex);
 
       m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
          this,
-         data,
-         size,
+         blockVertexData,
          memory_buffer::e_type_vertex_buffer);
 
    }
 
 
-   void model_buffer::static_initialize_index_buffer(const void* data, memsize iTypeSize, ::collection::count iIndexCount)
+   void model_buffer::_static_initialize_index_buffer(const ::block & blockIndexData)
    {
 
-      m_iIndexCount = (int) iIndexCount;
+      //m_iIndexCount = (int) iIndexCount;
 
-      m_iIndexTypeSize = (int) iTypeSize;
+      //m_iIndexTypeSize = (int) iTypeSize;
 
-      auto size = iIndexCount * m_iIndexTypeSize;
+      //auto size = iIndexCount * m_iIndexTypeSize;
 
       ødefer_construct(m_pbufferIndex);
 
       m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
          this,
-         data,
-         size,
+         blockIndexData,
          memory_buffer::e_type_index_buffer);
 
    }
 
 
-   void model_buffer::static_initialize_vertexes_block(const ::block& blockvertexes)
-   {
+   //void model_buffer::static_initialize_vertexes_block(const ::block& blockvertexes)
+   //{
 
-      m_iVertexCount = -1;
+   //   m_iVertexCount = -1;
 
-      m_iVertexTypeSize = -1;
+   //   m_iVertexTypeSize = -1;
 
-      m_iVertexByteSize = (int) blockvertexes.size();
+   //   m_iVertexByteSize = (int) blockvertexes.size();
 
-      ødefer_construct(m_pbufferVertex);
+   //   ødefer_construct(m_pbufferVertex);
 
-      m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
-         this,
-         blockvertexes.data(),
-         blockvertexes.size(),
-         memory_buffer::e_type_vertex_buffer);
+   //   m_pbufferVertex->static_initialize_memory_buffer_with_model_buffer(
+   //      this,
+   //      blockvertexes.data(),
+   //      blockvertexes.size(),
+   //      memory_buffer::e_type_vertex_buffer);
 
-      //defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
+   //   //defer_set_input_layout(m_pgpucontext->input_layout(::gpu_properties< VERTEX >()));
 
-   }
+   //}
 
 
-   void model_buffer::static_initialize_indexes_block(const ::block& blockindexes)
-   {
+   //void model_buffer::static_initialize_indexes_block(const ::block& blockindexes)
+   //{
 
-      m_iIndexCount = -1;
+   //   m_iIndexCount = -1;
 
-      m_iIndexTypeSize = -1;
+   //   m_iIndexTypeSize = -1;
 
-      m_iIndexByteSize = (int)blockindexes.size();
+   //   m_iIndexByteSize = (int)blockindexes.size();
 
-      ødefer_construct(m_pbufferIndex);
+   //   ødefer_construct(m_pbufferIndex);
 
-      m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
-         this,
-         blockindexes.data(),
-         blockindexes.size(),
-         memory_buffer::e_type_index_buffer);
+   //   m_pbufferIndex->static_initialize_memory_buffer_with_model_buffer(
+   //      this,
+   //      blockindexes.data(),
+   //      blockindexes.size(),
+   //      memory_buffer::e_type_index_buffer);
 
-   }
+   //}
 
 
    void model_buffer::bind_load_assets_command_buffer(::gpu::context *pcontext)
@@ -964,7 +934,7 @@ namespace gpu
 
       auto pgpurenderer = pcontext->m_pgpurenderer;
 
-      bind(pgpurenderer->getLoadAssetsCommandBuffer());
+      bind2(pgpurenderer->getLoadAssetsCommandBuffer());
 
    }
 
@@ -988,13 +958,14 @@ namespace gpu
 
       // m_pgpurenderer = pgpurenderer;
 
-      m_bDummy = true;
+      //m_bDummy = true;
+      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, ivertexes);
 
       ødefer_construct(m_pbufferVertex);
 
       m_pbufferVertex->initialize_memory_buffer_with_model_buffer(this, 0, ::gpu::memory_buffer::e_type_none);
 
-      m_iVertexCount = ivertexes;
+      //m_iVertexCount = ivertexes;
    }
 
 

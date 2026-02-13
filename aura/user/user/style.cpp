@@ -364,7 +364,7 @@ namespace user
 
       //   auto offset = rectangleX.center();
 
-      //   mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
+      //   mTrans.append(::geometry2d::matrix::translation(offset.x, offset.y));
 
       //   pgraphics->append(mTrans);
 
@@ -376,9 +376,9 @@ namespace user
 
       int iStyle = 1;
 
-      rectangleX.bottom()--;
+      rectangleX.bottom--;
 
-      rectangleX.right()--;
+      rectangleX.right--;
 
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->should_show_keyboard_focus()))
       {
@@ -468,10 +468,10 @@ namespace user
 
                }
 
-               rectangleFocusGlow.left()--;
-               rectangleFocusGlow.right()++;
-               rectangleFocusGlow.top()--;
-               rectangleFocusGlow.bottom()++;
+               rectangleFocusGlow.left--;
+               rectangleFocusGlow.right++;
+               rectangleFocusGlow.top--;
+               rectangleFocusGlow.bottom++;
 
                {
 
@@ -492,10 +492,10 @@ namespace user
 
                }
 
-               rectangleFocusGlow.left()--;
-               rectangleFocusGlow.right()++;
-               rectangleFocusGlow.top()--;
-               rectangleFocusGlow.bottom()++;
+               rectangleFocusGlow.left--;
+               rectangleFocusGlow.right++;
+               rectangleFocusGlow.top--;
+               rectangleFocusGlow.bottom++;
 
                {
 
@@ -531,10 +531,10 @@ namespace user
 
                }
 
-               rectangleFocusGlow.left()--;
-               rectangleFocusGlow.right()++;
-               rectangleFocusGlow.top()--;
-               rectangleFocusGlow.bottom()++;
+               rectangleFocusGlow.left--;
+               rectangleFocusGlow.right++;
+               rectangleFocusGlow.top--;
+               rectangleFocusGlow.bottom++;
 
                {
 
@@ -558,10 +558,10 @@ namespace user
                }
 
 
-               rectangleFocusGlow.left()--;
-               rectangleFocusGlow.right()++;
-               rectangleFocusGlow.top()--;
-               rectangleFocusGlow.bottom()++;
+               rectangleFocusGlow.left--;
+               rectangleFocusGlow.right++;
+               rectangleFocusGlow.top--;
+               rectangleFocusGlow.bottom++;
 
                {
 
@@ -586,10 +586,10 @@ namespace user
 
 
 
-               rectangleFocusGlow.left()--;
-               rectangleFocusGlow.right()++;
-               rectangleFocusGlow.top()--;
-               rectangleFocusGlow.bottom()++;
+               rectangleFocusGlow.left--;
+               rectangleFocusGlow.right++;
+               rectangleFocusGlow.top--;
+               rectangleFocusGlow.bottom++;
 
                {
 
@@ -670,7 +670,7 @@ namespace user
 
          auto offset = rectangleX.center();
 
-         mTrans.append(::geometry2d::matrix::translation(offset.x(), offset.y()));
+         mTrans.append(::geometry2d::matrix::translation(offset.x, offset.y));
 
          pgraphics->append(mTrans);
 
@@ -682,9 +682,9 @@ namespace user
 
       int iStyle = 1;
 
-      //rectangleX.left()--;
+      //rectangleX.left--;
 
-      //rectangleX.top()--;
+      //rectangleX.top--;
 
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
@@ -772,10 +772,10 @@ namespace user
 
                }
 
-               rectangleX.left()--;
-               rectangleX.right()++;
-               rectangleX.top()--;
-               rectangleX.bottom()++;
+               rectangleX.left--;
+               rectangleX.right++;
+               rectangleX.top--;
+               rectangleX.bottom++;
 
                {
 
@@ -796,10 +796,10 @@ namespace user
 
                }
 
-               rectangleX.left()--;
-               rectangleX.right()++;
-               rectangleX.top()--;
-               rectangleX.bottom()++;
+               rectangleX.left--;
+               rectangleX.right++;
+               rectangleX.top--;
+               rectangleX.bottom++;
 
                {
 
@@ -835,10 +835,10 @@ namespace user
 
                }
 
-               rectangleX.left()--;
-               rectangleX.right()++;
-               rectangleX.top()--;
-               rectangleX.bottom()++;
+               rectangleX.left--;
+               rectangleX.right++;
+               rectangleX.top--;
+               rectangleX.bottom++;
 
                {
 
@@ -862,10 +862,10 @@ namespace user
                }
 
 
-               rectangleX.left()--;
-               rectangleX.right()++;
-               rectangleX.top()--;
-               rectangleX.bottom()++;
+               rectangleX.left--;
+               rectangleX.right++;
+               rectangleX.top--;
+               rectangleX.bottom++;
 
                {
 
@@ -890,10 +890,10 @@ namespace user
 
 
 
-               rectangleX.left()--;
-               rectangleX.right()++;
-               rectangleX.top()--;
-               rectangleX.bottom()++;
+               rectangleX.left--;
+               rectangleX.right++;
+               rectangleX.top--;
+               rectangleX.bottom++;
 
                {
 
@@ -1274,7 +1274,7 @@ namespace user
    //bool style::create_rect(e_rect erect, ::double_rectangle rectangle, ::draw2d::enum_unit eunit)
    //{
 
-   //   return create_rect_coord(erect, rectangle.left(), rectangle.top(), rectangle.right(), rectangle.bottom(), eunit);
+   //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
 
    //}
 
@@ -1326,7 +1326,7 @@ namespace user
       if (::is_set(pinteraction))
       {
          
-         string strType = ::type(pinteraction).name();
+         string strType = ::platform::type(pinteraction).name();
 
          if (strType.contains("form"))
          {

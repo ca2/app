@@ -336,7 +336,10 @@ namespace data
    void check_property::hook_callbacks()
    {
 
-      m_propertywillchange = [this](::data::property_change & change)
+      if (!m_propertywillchange)
+      {
+
+         m_propertywillchange = [this](::data::property_change & change)->bool
          {
 
             if (operator &&(change))
@@ -362,9 +365,15 @@ namespace data
 
          };
 
+      }
+
       m_ppropertycontainer->property_will_change() += m_propertywillchange;
 
-      m_propertychanged = [this](::data::property_change & change)
+
+      if (!m_propertychanged)
+      {
+
+         m_propertychanged = [this](::data::property_change & change)
          {
 
             if (operator &&(change))
@@ -382,6 +391,8 @@ namespace data
             }
 
          };
+
+      }
 
       m_ppropertycontainer->property_changed() += m_propertychanged;
 

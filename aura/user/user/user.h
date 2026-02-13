@@ -32,7 +32,7 @@ namespace user
 
 
    class CLASS_DECL_AURA user :
-      virtual public ::acme::department,
+      virtual public ::platform::department,
       virtual public ::user::aura_user_layer_t,
       virtual public ::user::axis_user_layer_t,
       virtual public ::user::base_user_layer_t,
@@ -63,8 +63,8 @@ namespace user
       //
       // ::pointer<::html::html>                m_phtml; // defined in upper level
       //
-      // ::type_atom                               m_typeatomHtmlDocument;
-      // ::type_atom                               m_typeatomHtmlImpact;
+      // ::platform::type                          m_typeHtmlDocument;
+      // ::platform::type                          m_typeHtmlImpact;
       //
       // pointer_array < ::user::interaction >      m_uiptraToolWindow;
       //
@@ -105,7 +105,7 @@ namespace user
 
 
 
-      virtual ::user::interaction * interaction(oswindow oswindow) override;
+      //virtual ::user::interaction * interaction(::acme::windowing::window * pacmewindowingwindow) override;
 
       virtual ::user::interaction * get_mouse_capture(::thread * pthread) override;
 
@@ -143,8 +143,8 @@ namespace user
 
        ::html::html* html() override ;//  defined in upper level
 
-       ::type_atom get_html_document_type() override;
-       ::type_atom get_html_impact_type()  override;
+       ::platform::type get_html_document_type() override;
+       ::platform::type get_html_impact_type()  override;
 
       virtual void create_user_shell() override;
 
@@ -160,7 +160,7 @@ namespace user
 
       virtual void term() override;
 
-      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      virtual ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
       //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::menu::item * pitem);
 

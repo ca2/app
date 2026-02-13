@@ -24,10 +24,6 @@
 //
 //
 //    }
-//
-//
-//
-//
 //    void hdr_texture::initialize_hdr_texture(const ::file::path & path)
 //    {
 //       //int width, height, numChannels;

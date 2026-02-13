@@ -2,52 +2,38 @@
 #include "scene_base.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "asset_manager.h"
+#include "bred/gpu/context_lock.h"
+#include "bred/gpu/device.h"
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/engine.h"
+#include "bred/graphics3d/global_ubo1.h"
 #include "bred/graphics3d/immersion_layer.h"
 #include "bred/prodevian/actor.h"
 #include "openssl/ct.h"
 #include "point_light.h"
 #include "skybox.h"
 
-/// #include "SceneFoundry/scene_foundry/player.h"
-// #include "SceneFoundry/sandbox_game/game_object.h"
-
-// #include <json.hpp>
-
-
-// #include <glm/gtc/constants.hpp>
-// #include <spdlog/spdlog.h>
 
 
 namespace graphics3d
 {
 
 
-   // using json = nlohmann::json;
-
    scene_base::scene_base()
    {
 
       m_bInitialized = false;
       m_bLoadedScene = false;
-      // m_strSkyboxCubemapName = "skybox_hdr";
-      //m_strSkybox = "skybox_hdr";
       m_interlockedcountSceneObject = 1;
+
    }
 
 
-   scene_base::~scene_base() {}
-
-
-   // void scene_base::initialize_scene(::graphics3d::IWindowInput * pwindowinput, ::graphics3d::IAssetProvider *
-   // passetmanager)
-   // {
-   //
-   //    m_pwindowinput = pwindowinput;
-   //    m_passetmanager = passetmanager;
-   //
-   // }
+   scene_base::~scene_base()
+   {
+   
+   
+   }
 
 
    void scene_base::initialize_scene(::graphics3d::immersion_layer *pimmersionlayer)
@@ -56,66 +42,15 @@ namespace graphics3d
       initialize_gpu_context_object(pimmersionlayer->m_pengine->get_gpu_context());
 
       m_pimmersionlayer = pimmersionlayer;
-      //::graphics3d::scene_base::initialize_scene(pengine);
+
+      m_pgpucontext->on_before_initialize_scene();
 
       on_initialize_scene();
+      
    }
 
 
    void scene_base::on_initialize_scene() {}
-
-
-   //::pointer<::graphics3d::renderable> scene_base::get_skybox_cube_model()
-   //{
-
-   //   auto pmodelbuffer = øcreate_new<::gpu::model_buffer>();
-
-   //   pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
-
-   //   ::array_base<glm::vec3> vertexa = {// positions
-   //                                      {-1.0f, 1.0f, -1.0f},  {-1.0f, -1.0f, -1.0f}, {1.0f, -1.0f, -1.0f},
-   //                                      {1.0f, -1.0f, -1.0f},  {1.0f, 1.0f, -1.0f},   {-1.0f, 1.0f, -1.0f},
-
-   //                                      {-1.0f, -1.0f, 1.0f},  {-1.0f, -1.0f, -1.0f}, {-1.0f, 1.0f, -1.0f},
-   //                                      {-1.0f, 1.0f, -1.0f},  {-1.0f, 1.0f, 1.0f},   {-1.0f, -1.0f, 1.0f},
-
-   //                                      {1.0f, -1.0f, -1.0f},  {1.0f, -1.0f, 1.0f},   {1.0f, 1.0f, 1.0f},
-   //                                      {1.0f, 1.0f, 1.0f},    {1.0f, 1.0f, -1.0f},   {1.0f, -1.0f, -1.0f},
-
-   //                                      {-1.0f, -1.0f, 1.0f},  {-1.0f, 1.0f, 1.0f},   {1.0f, 1.0f, 1.0f},
-   //                                      {1.0f, 1.0f, 1.0f},    {1.0f, -1.0f, 1.0f},   {-1.0f, -1.0f, 1.0f},
-
-   //                                      {-1.0f, 1.0f, -1.0f},  {1.0f, 1.0f, -1.0f},   {1.0f, 1.0f, 1.0f},
-   //                                      {1.0f, 1.0f, 1.0f},    {-1.0f, 1.0f, 1.0f},   {-1.0f, 1.0f, -1.0f},
-
-   //                                      {-1.0f, -1.0f, -1.0f}, {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, -1.0f},
-   //                                      {1.0f, -1.0f, -1.0f},  {-1.0f, -1.0f, 1.0f},  {1.0f, -1.0f, 1.0f}};
-
-   //   pmodelbuffer->static_initialize_vertexes<::glm::vec3>(vertexa);
-
-   //   return pmodelbuffer;
-   //}
-
-
-   //   ::pointer<::graphics3d::renderable> scene_base::get_cube_model()
-   //{
-
-   //   auto pcube = øcreate<::gpu::cube>();
-
-   //
-   //   return pcube;
-   //}
-
-
-   //::pointer<::graphics3d::renderable> scene_base::get_skybox_cube_model() { return m_prenderableSkyboxModel; }
-
-
-   //::pointer<::gpu::texture> scene_base::get_skybox_cube_texture()
-   //{
-
-   //   return m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[this->m_strSkybox];
-
-   //}
 
 
    void scene_base::set_skybox(::graphics3d::skybox *pskybox)
@@ -138,18 +73,8 @@ namespace graphics3d
    ::graphics3d::skybox *scene_base::current_skybox()
    {
 
-      //if (!m_pskyboxCurrent2 || m_pskyboxCurrent2->m_prenderable != get_skybox_cube_model() ||
-      //    m_pskyboxCurrent2->m_ptexture != get_skybox_cube_texture())
-      //{
-
-      //   ødefer_construct_new(m_pskyboxCurrent2);
-
-      //   m_pskyboxCurrent2->m_prenderable = get_skybox_cube_model();
-
-      //   m_pskyboxCurrent2->m_ptexture = get_skybox_cube_texture();
-      //}
-
       return m_pskyboxCurrent2;
+
    }
 
 
@@ -181,7 +106,6 @@ namespace graphics3d
    void scene_base::load_lights(const ::property_set &setObject)
    {
 
-
       auto count = setObject.get("count", 1);
       auto radius = setObject.get("radius", 4.8f);
       auto height = setObject.get("height", -2.5f);
@@ -191,16 +115,16 @@ namespace graphics3d
       for (int i = 0; i < count; ++i)
       {
 
-         float angle = i * glm::two_pi<float>() / count;
+         float angle = i * _2πf / count;
 
-         glm::vec3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
+         floating_sequence3 pos = {radius * std::cos(angle), height, radius * std::sin(angle)};
 
          auto colorArray = colorsJson[i % colorsJson.array_get_count()];
          auto color = ::argb(1.0f, colorArray[0].as_float(), colorArray[1].as_float(), colorArray[2].as_float());
 
          auto ppointlight = this->create_point_light(intensity, 0.1f, color);
 
-         ppointlight->transform().m_vec3Position = pos;
+         ppointlight->m_sequence3Translation = pos;
 
          informationf("Placed point light at (%0.2f, %0.2f,%0.2f)", pos.x, pos.y, pos.z);
 
@@ -268,21 +192,6 @@ namespace graphics3d
          }
       }
 
-      // auto strCubemap = setObject["cubemap"].as_string();
-
-      // if (strCubemap.has_character() && strCubemap.has_character())
-      //{
-
-      //   ptextureCubemap = m_pimmersionlayer->m_passetmanager->m_mapSkyboxTexture[strCubemap];
-
-      //   if (ptextureCubemap)
-      //   {
-
-      //      m_pimmersionlayer->m_passetmanager->m_mapObjectTexture[strName +".cubemap"] = ptexture;
-
-      //   }
-
-      //}
 
       ::pointer<::graphics3d::scene_renderable> pscenerenderable;
 
@@ -374,12 +283,16 @@ namespace graphics3d
       pscenerenderable->set_renderable(prenderable);
 
       auto pos = setObject.get("position", ::float_array_base{0.f, 0.f, 0.f});
-      auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f, 0.f});
+      auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f});
       auto scl = setObject.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-      pscenerenderable->transform().m_vec3Position = {pos[0], pos[1], pos[2]};
-      pscenerenderable->transform().m_vec3Rotation = {rot[0], rot[1], rot[2]};
-      pscenerenderable->transform().m_vec3Scale = {scl[0], scl[1], scl[2]};
+      pscenerenderable->m_sequence3Translation = {pos.ø(0), pos.ø(1), pos.ø(2)};
+      pscenerenderable->m_matrixRotation = ::graphics3d::floating_rotation(::degrees(rot.ø(0)), ::degrees(rot.ø(1))).as_rotation_matrix();
+      pscenerenderable->m_sequence3Scaling = {scl.ø(0), scl.ø(1), scl.ø(2)};
+
+      //transform.m_sequence3Position = {pos.ø(0), pos.ø(1), pos.ø(2)};
+      //transform.m_rotation = {::degrees(rot.ø(0)), ::degrees(rot.ø(1)};
+      //transform.m_sequence3Scale = {scl.ø(0), scl.ø(1), scl.ø(2)};
 
       informationf("Loaded GameObject '%s' - Pos: (%0.2f, %0.2f, %0.2f), Rot: (%0.2f, %0.2f, %0.2f), Scale: (%0.2f, "
                    "%0.2f, %0.2f)",
@@ -395,6 +308,18 @@ namespace graphics3d
 
 
       // Store in map
+   }
+
+
+   void scene_base::load_scene_light(const ::payload & payload)
+   {
+
+      auto ppointlight = øcreate_new<point_light>();
+
+      ppointlight->from(payload);
+
+      m_pointlighta.add(ppointlight);
+
    }
 
 
@@ -435,6 +360,7 @@ namespace graphics3d
          m_pimmersionlayer->load_camera(camJson);
 
          m_bInitialCameraLoaded = true;
+
       }
 
       auto objects = sceneJson["objects"].payload_array_reference();
@@ -445,6 +371,16 @@ namespace graphics3d
          auto &setObject = item.property_set_reference();
 
          load_scene_renderable(setObject);
+      }
+
+
+      auto lights = sceneJson["lights"].payload_array_reference();
+
+      for (auto &light: lights)
+      {
+
+         load_scene_light(light);
+
       }
 
       if (m_bInitialCameraLoaded)
@@ -552,9 +488,12 @@ namespace graphics3d
       if (m_pcameraDefault)
       {
 
-         m_pimmersionlayer->m_pengine->m_transform.m_vec3Position = m_pcameraDefault->position();
-         m_pimmersionlayer->m_pengine->m_transform.m_vec3Rotation = m_pcameraDefault->rotation();
+         m_pimmersionlayer->m_pengine->m_transform.m_sequence3Position = m_pcameraDefault->position();
+         m_pimmersionlayer->m_pengine->m_transform.m_rotation = m_pcameraDefault->m_rotation;
+         //m_pimmersionlayer->m_pengine->m_transform.m_anglePitch = m_pcameraDefault->pitch();
+
       }
+
    }
 
 
@@ -622,11 +561,46 @@ namespace graphics3d
    }
 
 
-   ::gpu::properties &scene_base::global_ubo() { return m_gpupropertiesGlobalUbo; }
+   bool scene_base::is_global_ubo_ok()
+   {
+
+      if (::is_null(m_pblockGlobalUbo))
+      {
+
+         return false;
+
+      }
+
+      //return global_ubo(m_pgpucontext).size(true) > 0 && m_pgpucontext->is_global_ubo_ok();
+
+      return true;
+
+   }
+
+
+   ::gpu::block * scene_base::global_ubo1(::gpu::context * pgpucontext)
+   {
+
+      if (!m_pblockGlobalUbo)
+      {
+
+         auto ppropertyProperties = ::gpu_properties<::graphics3d::global_ubo1>();
+
+         m_pblockGlobalUbo = pgpucontext->create_global_ubo1(ppropertyProperties);
+
+         //m_pblockGlobalUbo->m_pbindingslotset = m_p
+
+      }
+
+      return m_pblockGlobalUbo;
+
+   }
 
 
    ::graphics3d::scene_renderable &scene_base::scene_renderable(const ::scoped_string &scopedstr,
+                  bool bCounterClockwise,
                                                                 const ::file::path &pathParameter)
+
    {
 
       auto &pscenerenderable = this->scene_renderables()[scopedstr];
@@ -647,7 +621,8 @@ namespace graphics3d
             path = scopedstr;
          }
 
-         pscenerenderable = _scene_renderable(scopedstr, path);
+         pscenerenderable = _scene_renderable(scopedstr, bCounterClockwise, path);
+
       }
 
       return *pscenerenderable;
@@ -655,6 +630,7 @@ namespace graphics3d
 
 
    ::pointer<::graphics3d::scene_renderable> scene_base::_scene_renderable(const ::scoped_string &scopedstr,
+      bool bCounterClockwise,
                                                                            const ::file::path &path)
    {
 
@@ -666,22 +642,32 @@ namespace graphics3d
 
       model.m_pathRenderable = path;
 
+      model.m_bCounterClockwise = bCounterClockwise;
+
       if (path.case_insensitive_ends(".obj"))
       {
 
          model.set_type("obj");
+
       }
 
       auto prenderable = pgpucontext->load_model(model);
 
-      auto pscenerenderable = øcreate<::graphics3d::scene_renderable>();
+      auto pscenerenderable = øcreate_new<::graphics3d::scene_renderable>();
 
       pscenerenderable->initialize_scene_renderable(this);
 
-      if (model.m_erenderabletype == ::gpu::e_renderable_type_wavefront_obj)
+      if (model.m_egpumodel == ::gpu::e_model_wavefront)
       {
 
          pscenerenderable->m_erendersystem = ::graphics3d::e_render_system_wavefront_obj;
+
+      }
+      else if (model.m_egpumodel == ::gpu::e_model_gltf)
+      {
+
+         pscenerenderable->m_erendersystem = ::graphics3d::e_render_system_gltf_ibl;
+
       }
 
       pscenerenderable->m_strRenderablePath = path;
@@ -725,7 +711,7 @@ namespace graphics3d
       auto ppointlight = øallocate ::graphics3d::point_light;
       m_pointlighta.add(ppointlight);
       ppointlight->m_color = color;
-      ppointlight->m_transform.m_vec3Scale.x = radius;
+      ppointlight->m_sequence3Scaling.x = radius;
       // gameObj->m_pointLight =
       ppointlight->m_fLightIntensity = intensity;
       return ppointlight;
@@ -747,8 +733,14 @@ namespace graphics3d
 
       if (!m_bLoadedScene)
       {
-
-         on_load_scene(pgpucontext);
+         
+         {
+            
+            ::gpu::context_lock contextlock(pgpucontext);
+            
+            on_load_scene(pgpucontext);
+            
+         }
 
          m_bLoadedScene = true;
 
@@ -872,6 +864,9 @@ namespace graphics3d
       //      }
       //   }
       //}
+      auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+      // this->flushCommandBuffer(layoutCmd, m_vkqueueTransfer3, true);
+      m_pgpucontext->m_pcommandbufferMain = pcommandbuffer;
 
       try
       {
@@ -894,8 +889,11 @@ namespace graphics3d
       {
          try
          {
+
+
             generateIblIrradianceMap();
             generateIblPrefilteredEnvMap();
+
             information("[scene] IBL assets generated successfully.");
          }
          catch (const ::exception &e)
@@ -903,6 +901,9 @@ namespace graphics3d
             errorf("[scene] IBL generation failed: %s", e.get_message().c_str());
          }
       }
+
+                  m_pgpucontext->endSingleTimeCommands(pcommandbuffer);
+      m_pgpucontext->m_pcommandbufferMain.release();
 
 
       //}

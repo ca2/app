@@ -104,28 +104,28 @@ namespace html
 
          float Δy;
 
-         if (point.x() < m_box.left())
+         if (point.x < m_box.left)
          {
 
-            Δx = m_box.left() - point.x();
+            Δx = m_box.left - point.x;
 
          }
-         else if (point.x() > m_box.right())
+         else if (point.x > m_box.right)
          {
-            Δx = point.x() - m_box.right();
+            Δx = point.x - m_box.right;
          }
          else
          {
             Δx = 0;
          }
 
-         if (point.y() < m_box.top())
+         if (point.y < m_box.top)
          {
-            Δy = m_box.top() - point.y();
+            Δy = m_box.top - point.y;
          }
-         else if (point.y() > m_box.bottom())
+         else if (point.y > m_box.bottom)
          {
-            Δy = point.y() - m_box.bottom();
+            Δy = point.y - m_box.bottom;
          }
          else
          {
@@ -268,14 +268,14 @@ namespace html
       void element::layout_phase0(html_data* pdata)
       {
 
-         m_box.left() = 0;
-         m_box.top() = 0;
-         m_box.right() = 0;
-         m_box.bottom() = 0;
-         m_bound.left() = 0;
-         m_bound.top() = 0;
-         m_bound.right() = 0;
-         m_bound.bottom() = 0;
+         m_box.left = 0;
+         m_box.top = 0;
+         m_box.right = 0;
+         m_box.bottom = 0;
+         m_bound.left = 0;
+         m_bound.top = 0;
+         m_bound.right = 0;
+         m_bound.bottom = 0;
          __UNREFERENCED_PARAMETER(pdata);
 
       }
@@ -764,9 +764,9 @@ namespace html
 
          m_box.set_height(cy);
 
-         pdata->m_pcoredata->m_layoutstate3.m_x = left() + width() + m_margin.right();
+         pdata->m_pcoredata->m_layoutstate3.m_x = this->left() + width() + m_margin.right;
 
-         pdata->m_pcoredata->m_layoutstate3.m_y = top();
+         pdata->m_pcoredata->m_layoutstate3.m_y = this->top();
 
          pdata->m_pcoredata->m_layoutstate3.m_cx = width();
 
@@ -823,114 +823,114 @@ namespace html
 
          ::float_rectangle bOut;
 
-         if (m_border.left() > 0.f || m_border.top() > 0.f || m_border.right() > 0.f || m_border.bottom() > 0.f)
+         if (m_border.left > 0.f || m_border.top > 0.f || m_border.right > 0.f || m_border.bottom > 0.f)
          {
             ::float_point pIn = get_content_top_left();
             ::float_size szIn = get_content_size();
             bIn.move_to(pIn);
             bIn.set_size(szIn);
-            bIn.left() -= m_padding.left();
-            bIn.top() -= m_padding.top();
-            bIn.right() += m_padding.right();
-            bIn.bottom() += m_padding.bottom();
+            bIn.left -= m_padding.left;
+            bIn.top -= m_padding.top;
+            bIn.right += m_padding.right;
+            bIn.bottom += m_padding.bottom;
             bOut = bIn;
-            bOut.left() -= m_border.left();
-            bOut.top() -= m_border.top();
-            bOut.right() += m_border.right();
-            bOut.bottom() += m_border.bottom();
+            bOut.left -= m_border.left;
+            bOut.top -= m_border.top;
+            bOut.right += m_border.right;
+            bOut.bottom += m_border.bottom;
          }
 
 
-         if (m_border.left() > 0.f)
+         if (m_border.left > 0.f)
          {
-            if (m_border.left() < 2.f)
+            if (m_border.left < 2.f)
             {
-               ::float_point point1(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
-               ::float_point point2(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
+               ::float_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::float_point point2(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                auto ppen = pdata->øcreate < ::draw2d::pen >();
-               ppen->create_solid(m_border.left(), m_border.colorLeft);
+               ppen->create_solid(m_border.left, m_border.colorLeft);
                pgraphics->set(ppen);
-               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x, point1.y, point2.x, point2.y);
             }
             else
             {
                ::double_point pa[4];
-               pa[0] = ::double_point(bOut.left(), bOut.top());
-               pa[1] = ::double_point(bIn.left(), bIn.top());
-               pa[2] = ::double_point(bIn.left(), bIn.bottom());
-               pa[3] = ::double_point(bOut.left(), bOut.bottom());
+               pa[0] = ::double_point(bOut.left, bOut.top);
+               pa[1] = ::double_point(bIn.left, bIn.top);
+               pa[2] = ::double_point(bIn.left, bIn.bottom);
+               pa[3] = ::double_point(bOut.left, bOut.bottom);
                auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorLeft);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
             }
          }
-         if (m_border.top() > 0.f)
+         if (m_border.top > 0.f)
          {
-            if (m_border.top() < 2.f)
+            if (m_border.top < 2.f)
             {
-               ::float_point point1(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
-               ::float_point point2(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
+               ::float_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::float_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
                auto ppen = pdata->øcreate < ::draw2d::pen >();
-               ppen->create_solid(m_border.top(), m_border.colorTop);
+               ppen->create_solid(m_border.top, m_border.colorTop);
                pgraphics->set(ppen);
-               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x, point1.y, point2.x, point2.y);
             }
             else
             {
                ::double_point pa[4];
-               pa[0] = ::double_point(bOut.left(), bOut.top());
-               pa[1] = ::double_point(bOut.right(), bOut.top());
-               pa[2] = ::double_point(bIn.right(), bIn.top());
-               pa[3] = ::double_point(bIn.left(), bIn.top());
+               pa[0] = ::double_point(bOut.left, bOut.top);
+               pa[1] = ::double_point(bOut.right, bOut.top);
+               pa[2] = ::double_point(bIn.right, bIn.top);
+               pa[3] = ::double_point(bIn.left, bIn.top);
                auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorTop);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
             }
          }
-         if (m_border.right() > 0.f)
+         if (m_border.right > 0.f)
          {
-            if (m_border.right() < 2.f)
+            if (m_border.right < 2.f)
             {
-               ::float_point point1(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.top() + m_margin.top() + m_border.top() / 2.f);
-               ::float_point point2(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
+               ::float_point point1(m_box.right - m_margin.right - m_border.right / 2.f, m_box.top + m_margin.top + m_border.top / 2.f);
+               ::float_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                auto ppen = pdata->øcreate < ::draw2d::pen >();
-               ppen->create_solid(m_border.right(), m_border.colorRight);
+               ppen->create_solid(m_border.right, m_border.colorRight);
                pgraphics->set(ppen);
-               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x, point1.y, point2.x, point2.y);
             }
             else
             {
                ::double_point pa[4];
-               pa[0] = ::double_point(bOut.right(), bOut.top());
-               pa[1] = ::double_point(bOut.right(), bOut.bottom());
-               pa[2] = ::double_point(bIn.right(), bIn.bottom());
-               pa[3] = ::double_point(bIn.right(), bIn.top());
+               pa[0] = ::double_point(bOut.right, bOut.top);
+               pa[1] = ::double_point(bOut.right, bOut.bottom);
+               pa[2] = ::double_point(bIn.right, bIn.bottom);
+               pa[3] = ::double_point(bIn.right, bIn.top);
                auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorRight);
                pgraphics->set(pbrush);
                pgraphics->fill_polygon(pa, 4);
             }
          }
-         if (m_border.bottom() > 0.f)
+         if (m_border.bottom > 0.f)
          {
-            if (m_border.bottom() < 2.f)
+            if (m_border.bottom < 2.f)
             {
-               ::float_point point1(m_box.left() + m_margin.left() + m_border.left() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
-               ::float_point point2(m_box.right() - m_margin.right() - m_border.right() / 2.f, m_box.bottom() - m_margin.bottom() - m_border.bottom() / 2.f);
+               ::float_point point1(m_box.left + m_margin.left + m_border.left / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
+               ::float_point point2(m_box.right - m_margin.right - m_border.right / 2.f, m_box.bottom - m_margin.bottom - m_border.bottom / 2.f);
                auto ppen = pdata->øcreate < ::draw2d::pen >();
-               ppen->create_solid(m_border.bottom(), m_border.colorBottom);
+               ppen->create_solid(m_border.bottom, m_border.colorBottom);
                pgraphics->set(ppen);
-               pgraphics->line(point1.x(), point1.y(), point2.x(), point2.y());
+               pgraphics->line(point1.x, point1.y, point2.x, point2.y);
             }
             else
             {
                ::double_point pa[4];
-               pa[0] = ::double_point(bIn.left(), bIn.bottom());
-               pa[1] = ::double_point(bIn.right(), bIn.bottom());
-               pa[2] = ::double_point(bOut.right(), bOut.bottom());
-               pa[3] = ::double_point(bOut.left(), bOut.bottom());
+               pa[0] = ::double_point(bIn.left, bIn.bottom);
+               pa[1] = ::double_point(bIn.right, bIn.bottom);
+               pa[2] = ::double_point(bOut.right, bOut.bottom);
+               pa[3] = ::double_point(bOut.left, bOut.bottom);
                auto pbrush = pdata->øcreate < ::draw2d::brush >();
                pbrush->create_solid(m_border.colorBottom);
                pgraphics->set(pbrush);
@@ -1000,7 +1000,7 @@ namespace html
       float element::left()
       {
 
-         return m_box.left();
+         return m_box.left;
 
       }
 
@@ -1008,7 +1008,7 @@ namespace html
       float element::top()
       {
 
-         return m_box.top();
+         return m_box.top;
 
       }
 
@@ -1016,7 +1016,7 @@ namespace html
       float element::right()
       {
 
-         return m_box.right();
+         return m_box.right;
 
       }
 
@@ -1024,7 +1024,7 @@ namespace html
       float element::bottom()
       {
 
-         return m_box.bottom();
+         return m_box.bottom;
 
       }
 
@@ -1112,14 +1112,14 @@ namespace html
 
          //m_box.constrain_to(m_bound);
 
-         /*         if(m_point.x() < m_pointBound.x())
-         m_point.x() = m_pointBound.x();
-         else if(m_point.x() > (m_pointBound.x() + m_sizeBound.cx()))
-         m_point.x() = m_pointBound.x() + m_sizeBound.cx();
-         if(m_point.y() < m_pointBound.y())
-         m_point.y() = m_pointBound.y();
-         else if(m_point.y() > (m_pointBound.y() + m_sizeBound.cy()))
-         m_point.y() = m_pointBound.y() + m_sizeBound.cy();*/
+         /*         if(m_point.x < m_pointBound.x)
+         m_point.x = m_pointBound.x;
+         else if(m_point.x > (m_pointBound.x + m_sizeBound.cx))
+         m_point.x = m_pointBound.x + m_sizeBound.cx;
+         if(m_point.y < m_pointBound.y)
+         m_point.y = m_pointBound.y;
+         else if(m_point.y > (m_pointBound.y + m_sizeBound.cy))
+         m_point.y = m_pointBound.y + m_sizeBound.cy;*/
          on_change_layout(pdata);
       }
 
@@ -1285,7 +1285,7 @@ namespace html
          else
          {
 
-            return get_bound_size().cx();
+            return get_bound_size().cx;
 
          }
 
@@ -1316,8 +1316,8 @@ namespace html
 
          auto size = m_box.size();
 
-         size.cx() = maximum(0.f, size.cx() - m_padding.left() - m_padding.right() - m_border.left() - m_border.right() - m_margin.left() - m_margin.right());
-         size.cy() = maximum(0.f, size.cy() - m_padding.top() - m_padding.bottom() - m_border.top() - m_border.bottom() - m_margin.top() - m_margin.bottom());
+         size.cx = maximum(0.f, size.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
+         size.cy = maximum(0.f, size.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
 
          return size;
 
@@ -1329,8 +1329,8 @@ namespace html
 
          auto point = m_box.top_left();
 
-         point.x() = point.x() + m_padding.left() + m_border.left() + m_margin.left();
-         point.y() = point.y() + m_padding.top() + m_border.top() + m_margin.top();
+         point.x = point.x + m_padding.left + m_border.left + m_margin.left;
+         point.y = point.y + m_padding.top + m_border.top + m_margin.top;
 
          return point;
 
@@ -1364,12 +1364,12 @@ namespace html
       float element::get_extra_content_width()
       {
 
-         return m_margin.left()
-            + m_border.left()
-            + m_padding.left()
-            + m_padding.right()
-            + m_border.right()
-            + m_margin.right();
+         return m_margin.left
+            + m_border.left
+            + m_padding.left
+            + m_padding.right
+            + m_border.right
+            + m_margin.right;
 
       }
 
@@ -1377,12 +1377,12 @@ namespace html
       float element::get_extra_content_height()
       {
 
-         return m_margin.top()
-            + m_border.top()
-            + m_padding.top()
-            + m_padding.bottom()
-            + m_border.bottom()
-            + m_margin.bottom();
+         return m_margin.top
+            + m_border.top
+            + m_padding.top
+            + m_padding.bottom
+            + m_border.bottom
+            + m_margin.bottom;
 
       }
    

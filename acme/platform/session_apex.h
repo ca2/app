@@ -454,7 +454,8 @@ namespace platform
 
       //virtual void on_request(::request * prequest) override;
 
-      virtual void defer_initialize_host_window(const ::int_rectangle * lpcrect = nullptr);
+      /// return is ::acme::windowing::window ?
+      virtual ::particle * defer_initialize_host_window(const ::int_rectangle * lpcrect = nullptr);
 
       ::pointer<::apex::application>get_current_application();
 

@@ -38,10 +38,6 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //        return false;
 //
 //    }
-//
-//
-//
-//
 //   char * pszRealPath = ::realpath(scopedstr, NULL);
 //
 //   if(scopedstrRealPath == NULL)

@@ -6,7 +6,7 @@
 #include "shader.h"
 //#include "GLFW/glfw3.h"
 #include <memory>
-#include <glm/glm.hpp>
+//
 
 
 namespace gpu_opengl
@@ -50,7 +50,7 @@ namespace gpu_opengl
 
       void on_begin_render(::gpu::frame* pframe) override;
 
-      void Clear() const;
+      //void Clear() const;
 
 
       //int get_frame_count() override;
@@ -79,15 +79,15 @@ namespace gpu_opengl
 
 
 
-      void blend(::gpu::renderer* prendererSource) override;
-      void clear(::gpu::texture* ptextureSource) override;
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
-      void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      //void blend(::gpu::renderer* prendererSource) override;
+      //void clear(::gpu::texture* ptextureSource) override;
+      //void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      //void blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
       void _blend_with_shader(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
       void _blend_with_blit(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
 
-      virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
+      //virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
       //void defer_update_renderer() override;
       //void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous) override;

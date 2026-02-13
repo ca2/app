@@ -122,34 +122,34 @@
 ////   
 ////   // no copy ctor or assignment operator - the defaults are ok
 ////   
-////   bool operator==(const wxSize& sz) const { return x == sz.x() && y == sz.y(); }
-////   bool operator!=(const wxSize& sz) const { return x != sz.x() || y != sz.y(); }
+////   bool operator==(const wxSize& sz) const { return x == sz.x && y == sz.y; }
+////   bool operator!=(const wxSize& sz) const { return x != sz.x || y != sz.y; }
 ////   
-////   wxSize operator +(const wxSize& sz) const { return wxSize(x + sz.x(),y + sz.y()); }
-////   wxSize operator-(const wxSize& sz) const { return wxSize(x - sz.x(),y - sz.y()); }
+////   wxSize operator +(const wxSize& sz) const { return wxSize(x + sz.x,y + sz.y); }
+////   wxSize operator-(const wxSize& sz) const { return wxSize(x - sz.x,y - sz.y); }
 ////   wxSize operator/(int i) const { return wxSize(x / i,y / i); }
 ////   wxSize operator*(int i) const { return wxSize(x * i,y * i); }
 ////   
-////   wxSize& operator +=(const wxSize& sz) { x += sz.x(); y += sz.y(); return *this; }
-////   wxSize& operator-=(const wxSize& sz) { x -= sz.x(); y -= sz.y(); return *this; }
+////   wxSize& operator +=(const wxSize& sz) { x += sz.x; y += sz.y; return *this; }
+////   wxSize& operator-=(const wxSize& sz) { x -= sz.x; y -= sz.y; return *this; }
 ////   wxSize& operator/=(const int i) { x /= i; y /= i; return *this; }
 ////   wxSize& operator*=(const int i) { x *= i; y *= i; return *this; }
 ////   
 ////   void IncTo(const wxSize& sz)
 ////   {
-////      if(sz.x() > x) x = sz.x(); if(sz.y() > y) y = sz.y();
+////      if(sz.x > x) x = sz.x; if(sz.y > y) y = sz.y;
 ////   }
 ////   void DecTo(const wxSize& sz)
 ////   {
-////      if(sz.x() < x) x = sz.x(); if(sz.y() < y) y = sz.y();
+////      if(sz.x < x) x = sz.x; if(sz.y < y) y = sz.y;
 ////   }
 ////   
 ////   void IncBy(int Δx,int Δy) { x += Δx; y += Δy; }
-////   void IncBy(const wxSize& sz) { IncBy(sz.x(),sz.y()); }
+////   void IncBy(const wxSize& sz) { IncBy(sz.x,sz.y); }
 ////   void IncBy(int d) { IncBy(d,d); }
 ////   
 ////   void DecBy(int Δx,int Δy) { IncBy(-Δx,-Δy); }
-////   void DecBy(const wxSize& sz) { DecBy(sz.x(),sz.y()); }
+////   void DecBy(const wxSize& sz) { DecBy(sz.x,sz.y); }
 ////   void DecBy(int d) { DecBy(d,d); }
 ////   
 ////   
@@ -173,9 +173,9 @@
 ////   void SetDefaults(const wxSize& size)
 ////   {
 ////      if(x == wxDefaultCoord)
-////         x = size.cx();
+////         x = size.cx;
 ////      if(y == wxDefaultCoord)
-////         y = size.cy();
+////         y = size.cy;
 ////   }
 ////   
 ////   // compatibility
@@ -195,15 +195,15 @@
 ////   // no copy ctor or assignment operator - the defaults are ok
 ////   
 ////   // comparison
-////   bool operator==(const wxPoint& point) const { return x == point.x() && y == point.y(); }
+////   bool operator==(const wxPoint& point) const { return x == point.x && y == point.y; }
 ////   bool operator!=(const wxPoint& point) const { return !(*this == point); }
 ////   
 ////   // arithmetic operations (component wise)
-////   wxPoint operator +(const wxPoint& point) const { return wxPoint(x + point.x(),y + point.y()); }
-////   wxPoint operator-(const wxPoint& point) const { return wxPoint(x - point.x(),y - point.y()); }
+////   wxPoint operator +(const wxPoint& point) const { return wxPoint(x + point.x,y + point.y); }
+////   wxPoint operator-(const wxPoint& point) const { return wxPoint(x - point.x,y - point.y); }
 ////   
-////   wxPoint& operator +=(const wxPoint& point) { x += point.x(); y += point.y(); return *this; }
-////   wxPoint& operator-=(const wxPoint& point) { x -= point.x(); y -= point.y(); return *this; }
+////   wxPoint& operator +=(const wxPoint& point) { x += point.x; y += point.y; return *this; }
+////   wxPoint& operator-=(const wxPoint& point) { x -= point.x; y -= point.y; return *this; }
 ////   
 ////   wxPoint& operator +=(const wxSize& s) { x += s.GetWidth(); y += s.GetHeight(); return *this; }
 ////   wxPoint& operator-=(const wxSize& s) { x -= s.GetWidth(); y -= s.GetHeight(); return *this; }
@@ -306,12 +306,12 @@
 ////   
 ////   wxCoord XLOG2DEVMAC(wxCoord x) const
 ////   {
-////      return wxRound((double)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX + m_macLocalOrigin.x();
+////      return wxRound((double)(x - m_logicalOriginX) * m_scaleX) * m_signX + m_deviceOriginX + m_macLocalOrigin.x;
 ////   }
 ////   
 ////   wxCoord YLOG2DEVMAC(wxCoord y) const
 ////   {
-////      return wxRound((double)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY + m_macLocalOrigin.y();
+////      return wxRound((double)(y - m_logicalOriginY) * m_scaleY) * m_signY + m_deviceOriginY + m_macLocalOrigin.y;
 ////   }
 ////   
 ////   
@@ -324,21 +324,13 @@
 ////CGColorRef cg_create_color(color32_t crText);
 ////int_bool cg_release_color(CGColorRef colorref);
 //
-//
-//
-//
-//
 ////
 ////  c_os_win_user.h
 ////  c
 ////
 ////  Created by Camilo Sasuke Thomas Borregaard Soerensen on 12/30/11.
 ////  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
-////
-//
-//
-//
-////
+//////
 ////int_bool set_nswindow_frame(oswindow hwnd, const ::int_rectangle * prectangle, int iDisplay);
 ////int_bool move_nswindow(oswindow hwnd,int x,int y);
 ////int_bool make_key_and_order_front_nswindow(oswindow hwnd);
@@ -349,7 +341,4 @@
 ////int_bool nswindow_is_level_normal(oswindow hwnd);
 ////int_bool nswindow_is_level_floating(oswindow hwnd);
 ////int_bool nswindow_is_level_main_menu(oswindow hwnd);
-////
-//
-//
 //

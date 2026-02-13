@@ -24,7 +24,7 @@ namespace userfs
 
       // auto estatus =
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
       // if (!estatus)
       //{
@@ -39,9 +39,9 @@ namespace userfs
       factory()->add_factory_item<::userfs::list>();
       factory()->add_factory_item<::userfs::list_item>();
 
-      ::acme::department::init();
+      ::platform::department::init();
 
-      // if (!::acme::department::init())
+      // if (!::platform::department::init())
       //{
 
       //   return false;

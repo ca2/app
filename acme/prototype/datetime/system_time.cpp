@@ -28,10 +28,6 @@
 //
 //
 //} // namespace acme
-//
-//
-//
-//
 
 //
 //void copy(payload * ppayload, const system_time & systemtime)

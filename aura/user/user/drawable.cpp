@@ -130,12 +130,12 @@ namespace user
    }
 
 
-   oswindow drawable::_oswindow() const
-   {
-
-      return nullptr;
-
-   }
+   // oswindow drawable::_oswindow() const
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    bool drawable::is_composite()
@@ -172,6 +172,16 @@ namespace user
    //   //return hit_test(pmouse->m_point);
 
    //}
+
+   ::acme::windowing::window * drawable::acme_windowing_window()
+   {
+
+      throw ::interface_only();
+
+      return nullptr;
+
+   }
+
 
 
 } // namespace user

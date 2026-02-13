@@ -487,10 +487,6 @@
 //#endif
 //
 //}
-//
-//
-//
-//
 //void * memory_calloc(memsize size, memsize bytes)
 //{
 //
@@ -1009,10 +1005,6 @@
 //
 //
 //#endif
-//
-//
-//
-//
 
 
 

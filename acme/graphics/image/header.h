@@ -58,8 +58,8 @@ struct image_header
       return !operator ==(d);
    }
 
-   int width() const { return m_size.cx(); }
-   int height() const { return m_size.cy(); }
+   int width() const { return m_size.cx; }
+   int height() const { return m_size.cy; }
    int area() const { return m_size.area(); }
    ::int_size size() const { return m_size; }
 
@@ -84,8 +84,8 @@ struct image_header
       {
          u |= m_color.m_ui;
       }
-      u |= m_size.cx() << 16;
-      u |= m_size.cy() << 24;
+      u |= m_size.cx << 16;
+      u |= m_size.cy << 24;
       return { u };
    }
 

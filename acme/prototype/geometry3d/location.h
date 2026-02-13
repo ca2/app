@@ -4,7 +4,7 @@
 #include "pole.h"
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 using location_type = pole_type < NUMBER >;
 
 

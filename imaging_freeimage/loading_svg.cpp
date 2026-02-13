@@ -43,7 +43,7 @@ namespace imaging_freeimage
 ////      RsvgDimensionData unscaled_dimensions, dimensions;
 ////      cairo_surface_t *image;
 ////      cairo_t *crender = NULL;
-////      GError * pgerror = NULL;
+////AAAGError * pgaaaerror = NULL;
 ////
 ////      auto pszData = (const_char_pointer )memory.get_data();
 ////

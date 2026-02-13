@@ -425,7 +425,7 @@ namespace html
 
             }
 
-            if (m_pimpl->m_margin.left() > 1.0f)
+            if (m_pimpl->m_margin.left > 1.0f)
             {
 
                informationf("margin-left greater than 1.0f");
@@ -669,14 +669,14 @@ namespace html
 
       }
 
-      /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx())
+      /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx)
             {
 
-            m_pimpl->set_bound_size(phtmldata, ::float_size(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx()));
+            m_pimpl->set_bound_size(phtmldata, ::float_size(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
 
             }
 
-            m_pimpl->set_x(phtmldata, maximum(m_pimpl->get_bound_size().cx(), m_pimpl->get_x()));*/
+            m_pimpl->set_x(phtmldata, maximum(m_pimpl->get_bound_size().cx, m_pimpl->get_x()));*/
 
 
    }
@@ -757,13 +757,13 @@ namespace html
 
          auto pointContent = m_pimpl->get_content_top_left();
 
-         phtmldata->m_pcoredata->m_layoutstate3.m_y = pointContent.y();
+         phtmldata->m_pcoredata->m_layoutstate3.m_y = pointContent.y;
 
          phtmldata->m_pcoredata->m_layoutstate3.m_cya.add(0.f);
 
-         phtmldata->m_pcoredata->m_layoutstate3.m_xParent.add(pointContent.x());
+         phtmldata->m_pcoredata->m_layoutstate3.m_xParent.add(pointContent.x);
 
-         phtmldata->m_pcoredata->m_layoutstate3.m_x = pointContent.x();
+         phtmldata->m_pcoredata->m_layoutstate3.m_x = pointContent.x;
 
          m_pimpl->m_iLayoutChildLineStartIndex = 0;
 
@@ -789,12 +789,12 @@ namespace html
 
          phtmldata->m_pcoredata->m_layoutstate3.m_cya.pop_max_last_add_up(0.0f);
 
-         //m_pimpl->m_margin.top()
-         //+ m_pimpl->m_border.top()
-         //+ m_pimpl->m_padding.top()
-         //+ m_pimpl->m_padding.bottom()
-         //+ m_pimpl->m_border.bottom()
-         //+ m_pimpl->m_margin.bottom());
+         //m_pimpl->m_margin.top
+         //+ m_pimpl->m_border.top
+         //+ m_pimpl->m_padding.top
+         //+ m_pimpl->m_padding.bottom
+         //+ m_pimpl->m_border.bottom
+         //+ m_pimpl->m_margin.bottom);
 
          phtmldata->m_pcoredata->m_layoutstate3.m_xParent.pop();
 
@@ -809,7 +809,7 @@ namespace html
                if (prow->m_iRow == prow->get_table()->m_rowptra.get_upper_bound())
                {
 
-                  phtmldata->m_pcoredata->m_layoutstate3.m_y = prow->get_table()->m_box.top();
+                  phtmldata->m_pcoredata->m_layoutstate3.m_y = prow->get_table()->m_box.top;
 
                   phtmldata->m_pcoredata->m_layoutstate3.m_cya.last() = prow->get_table()->m_box.height();
 
@@ -819,7 +819,7 @@ namespace html
                else
                {
 
-                  phtmldata->m_pcoredata->m_layoutstate3.m_y = m_pimpl->m_box.top();
+                  phtmldata->m_pcoredata->m_layoutstate3.m_y = m_pimpl->m_box.top;
 
                   phtmldata->m_pcoredata->m_layoutstate3.m_cya.last() = m_pimpl->m_box.height();
 

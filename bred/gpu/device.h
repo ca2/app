@@ -94,11 +94,12 @@ namespace gpu
 
       ///virtual ::gpu::context* current_context();
       
-
+      virtual void create_main_context(::acme::windowing::window *pacmewindowingwindow);
       virtual ::gpu::context * main_context();
       virtual ::gpu::context * main_draw2d_context();
       //virtual void start_gpu_context(const start_context_t& startcontext);
 
+      virtual void * current_operating_system_gpu_context();
       //virtual void initialize_gpu_context(const start_context_t& startcontext);
 
       //virtual void on_create_context(const start_context_t& startcontext);
@@ -108,6 +109,10 @@ namespace gpu
       //void _post(const ::procedure& procedure) override;
       virtual pool_group* frame_pool_group(int iFrameIndex);
       virtual ::pointer_array<::particle >* frame_particle_array(int iFrameIndex);
+
+
+      virtual void defer_shader_memory(::memory &memory, const ::file::path &pathShader);
+
 
       virtual void on_initialize_gpu_device();
 
@@ -175,7 +180,7 @@ namespace gpu
       //virtual string _001GetIntroProjection();
       //virtual string _001GetIntroFragment();
 
-      virtual bool is_mesa();
+      //virtual bool is_mesa();
 
       //inline const ::draw3d::matrix& view_matrix() const { return m_matrixImpact; }
       //inline ::draw3d::matrix& view_matrix() { return m_matrixImpact; }
@@ -231,7 +236,7 @@ namespace gpu
 
       virtual int get_type_size(::gpu::enum_type etype);
 
-      virtual void set_mat4(void* p, const ::glm::mat4& mat4);
+      virtual void set_matrix4(void* p, const ::floating_matrix4& floating_matrix4);
 
 
       virtual void start_stacking_layers();

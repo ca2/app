@@ -42,9 +42,9 @@ namespace micro
 
       //operating_system_get_main_screen_size(wScreen, hScreen);
 
-      auto wScreen = sizeScreen.cx();
+      auto wScreen = sizeScreen.cx;
 
-      auto hScreen = sizeScreen.cy();
+      auto hScreen = sizeScreen.cy;
 
       //printf("popup_button::calculate_size_and_position (wScreen,hScreen)=%d,%d\n", wScreen, hScreen);
 
@@ -115,18 +115,18 @@ namespace micro
 
          auto pmicrobutton = micro_button_at(iButton);
 
-         pmicrobutton->m_rectangle.bottom() = iBottom;
+         pmicrobutton->m_rectangle.bottom = iBottom;
 
-         pmicrobutton->m_rectangle.top() = pmicrobutton->m_rectangle.bottom() - hButton;
-         pmicrobutton->m_rectangle.right() = iRight;
-         pmicrobutton->m_rectangle.left() = pmicrobutton->m_rectangle.right() - wButton;
+         pmicrobutton->m_rectangle.top = pmicrobutton->m_rectangle.bottom - hButton;
+         pmicrobutton->m_rectangle.right = iRight;
+         pmicrobutton->m_rectangle.left = pmicrobutton->m_rectangle.right - wButton;
 
-         iBottom = pmicrobutton->m_rectangle.top();
+         iBottom = pmicrobutton->m_rectangle.top;
 
          if (iButton >= 1)
          {
 
-            pmicrobutton->m_rectangle.top()--;
+            pmicrobutton->m_rectangle.top--;
 
          }
 
@@ -153,7 +153,7 @@ namespace micro
 
       get_client_rectangle(rectangleText);
 
-      rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
+      rectangleText.bottom = rectangleText.top + rectangleText.height() * 3 / 4;
 
       rectangleText.deflate(25);
 

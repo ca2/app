@@ -12,9 +12,11 @@ namespace gpu_opengl
    render_target::render_target()
    {
 
+      //m_gluDepthStencilTex = 0;
+
       m_bNeedRebuild = false;
 
-      m_gluDepthStencilTex = 0;
+      //m_gluDepthStencilTex = 0;
 
    }
 
@@ -104,22 +106,40 @@ namespace gpu_opengl
    void render_target::createDepthResources()
    {
 
-      glGenTextures(1, &m_gluDepthStencilTex);
-      glBindTexture(GL_TEXTURE_2D, m_gluDepthStencilTex);
+      //if (m_flags.m_bWithDepth)
+      //{
 
-      // Allocate storage for a 24-bit depth + 8-bit stencil buffer
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, 
-         m_size.cx(), m_size.cy(),
-         0,
-         GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
+      //   if (!m_gluDepthStencilTex)
+      //   {
 
-      // Set texture parameters
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      //      glGenTextures(1, &m_gluDepthStencilTex);
+      //      ::opengl::check_error("");
+      //   }
 
-      glBindTexture(GL_TEXTURE_2D, 0);
+      //   glBindTexture(GL_TEXTURE_2D, m_gluDepthStencilTex);
+      //   ::opengl::check_error("");
+
+      //   // Set texture parameters
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+      //   ::opengl::check_error("");
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+      //   ::opengl::check_error("");
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      //   ::opengl::check_error("");
+      //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      //   ::opengl::check_error("");
+
+      //   int w = m_size.cx;
+
+      //   int h = m_size.cy;
+      //   // Allocate storage for a 24-bit depth + 8-bit stencil buffer
+      //   glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, w, h, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
+      //   ::opengl::check_error("");
+
+
+      //   glBindTexture(GL_TEXTURE_2D, 0);
+      //   ::opengl::check_error("");
+      //}
 
 
    }

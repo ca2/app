@@ -107,13 +107,13 @@ namespace turboc
 
       ::int_rectangle rectangleX;
 
-      rectangleX.left() = 0;
+      rectangleX.left = 0;
 
-      rectangleX.top() = 0;
+      rectangleX.top = 0;
 
-      rectangleX.right() = m_cx;
+      rectangleX.right = m_cx;
 
-      rectangleX.bottom() = m_cy;
+      rectangleX.bottom = m_cy;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -193,7 +193,7 @@ namespace turboc
 
 /*            m_pimage->g()->SelectObject(pbrushText);
 
-/*            m_pimage->g()->text_out((m_cxCache1 - int_size->cx()) / 2,(m_cyCache1 - int_size->cy()) / 2,strHelloMultiverse);
+/*            m_pimage->g()->text_out((m_cxCache1 - int_size->cx) / 2,(m_cyCache1 - int_size->cy) / 2,strHelloMultiverse);
 
 /*            m_pimage->blur(m_cxCache1,m_cyCache1);
 
@@ -298,7 +298,7 @@ namespace turboc
       //if(!m_bAlternate)
       {
 
-         pgraphics->text_out((m_cx - size.cx()) / 2,(m_cy - size.cy()) / 2,strHelloMultiverse);
+         pgraphics->text_out((m_cx - size.cx) / 2,(m_cy - size.cy) / 2,strHelloMultiverse);
 
       }
 

@@ -2072,7 +2072,7 @@ namespace platform
    //
    //       }
    //
-   //       information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) << ")";
+   //       information() << "::apex::system::on_request session = " << ::platform::type(psession).name() << "(" << ((iptr)psession) << ")";
    //
    //       psession->post_request(prequest);
    //
@@ -2530,7 +2530,7 @@ namespace platform
    // #endif
    //
    //
-   //    void acme_system_layer::system::system_id_update(long long iId, long long iPayload)
+   //    void acme_system_layer::system::system_id_topic(int iId, long long llWparam, long long llLparam)
    //    {
    //
    //       call((::enum_id)iId, iPayload);
@@ -2664,7 +2664,7 @@ namespace platform
    //
    //       //   auto pnode = node();
    //       //
-   //       //   pnode->_will_finish_launching();
+   //       //   pnode->_will_aaa_finish_launching();
    //
    //       //   auto pnode = session();
    //       //
@@ -2672,11 +2672,11 @@ namespace platform
    //       //
    //       //   auto pwindowing = system()->windowing();
    //       //
-   //       //   pwindowing->_will_finish_launching();
+   //       //   pwindowing->_will_aaa_finish_launching();
    //
    //       auto pnode = node();
    //
-   //       pnode->_will_finish_launching();
+   //       pnode->_will_aaa_finish_launching();
    //
    //       //return ::success;
    //
@@ -4523,9 +4523,9 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      m_mapEnumToText[typeid(e).name()][(long long)e] = psz{}
+   //      m_mapEnumToText[::type<e>().name()][(long long)e] = psz{}
    //
-   //      m_mapTextToEnum[typeid(e).name()][psz] = (long long)e{}
+   //      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e{}
    //
    //   }
 
@@ -4536,7 +4536,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      return m_mapEnumToText[typeid(e).name()][(long long)e]{}
+   //      return m_mapEnumToText[::type<e>().name()][(long long)e]{}
    //
    //   }
 
@@ -4549,7 +4549,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      long long iValue{}
    //
-   //      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
+   //      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
    //      {
    //
    //         e = (ENUM)iValue{}
@@ -4673,8 +4673,11 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   void acme_system_layer::system_id_update(int iUpdate, long long iPayload)
+   ::lresult acme_system_layer::system_id_topic(int iId, long long llWparam, long long llLparam)
    {
+      
+      return 0;
+      
    }
 
 
@@ -5054,12 +5057,12 @@ void acme_system_layer::on_open_untitled_file()
 // //}
 //
 //
-// void acme_system_layer::system_id_update(void* pSystem, long long iUpdate, long long iParam)
+// void acme_system_layer::system_id_topic(void* pSystem, long long iSystemUserMessage, long long iParam)
 // {
 //
 //    auto psystem = (::platform::system *)pSystem;
 //
-//    psystem->system_id_update(iUpdate, iParam);
+//    psystem->system_id_topic(iSystemUserMessage, iParam);
 //
 // }
 //
@@ -5078,7 +5081,7 @@ void acme_system_layer::on_open_untitled_file()
 //
 //    auto psystem = (::platform::system *)pSystem;
 //
-//    psystem->node_will_finish_launching();
+//    psystem->node_will_aaa_finish_launching();
 //
 // }
 //

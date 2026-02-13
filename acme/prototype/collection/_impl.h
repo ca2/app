@@ -31,7 +31,7 @@ inline sequence_continuation particle::user_send()
 }
 inline sequence_continuation particle::user_sync()
 {
-   return { this, e_dispatch_user_send, this };
+   return { this, e_dispatch_user_send, (::subparticle*) this };
 }
 
 
@@ -47,7 +47,7 @@ inline sequence_continuation particle::user_post()
 }
 inline sequence_continuation particle::user_async()
 {
-   return { this, e_dispatch_user_post, this };
+   return { this, e_dispatch_user_post, (::subparticle*) this };
 }
 
 
@@ -93,12 +93,12 @@ inline sequence_continuation particle::sync(const class ::time & timeTimeout)
    
    ::procedure procedure;
 
-   procedure.m_pbase = this;
+   procedure.m_p = this;
    
    if (!timeTimeout.is_null())
    {
 
-      procedure.set_timeout(timeTimeout);
+      procedure.m_timeTimeout = timeTimeout;
 
    }
 
@@ -666,12 +666,14 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::base_array(const
    m_countAllocationOffset = 0;
    set_size(array.get_size());
 
-   for (::collection::index i = 0; i < array.get_size(); i++)
-   {
 
-      this->element_at(i) = array[i];
-
-   }
+   TYPED::copy_count(this->m_begin, array.m_begin, this->size());
+   // for (::collection::index i = 0; i < array.get_size(); i++)
+   // {
+   //
+   //    this->element_at(i) = array[i];
+   //
+   // }
 
 }
 

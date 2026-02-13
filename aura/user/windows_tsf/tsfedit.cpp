@@ -682,7 +682,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 //                0, 
 //                0, 
 //                LOWORD(lParam), 
-//                HIWORD(lParam) - (rc.bottom() - rc.top()), 
+//                HIWORD(lParam) - (rc.bottom - rc.top), 
 //                true);
 //*/
 //    m_AdviseSink.pTextStoreACPSink->OnLayoutChange(TS_LC_CHANGE, EDIT_VIEW_COOKIE);
@@ -872,7 +872,7 @@ void edit_window::_UpdateStatusBar(void)
     //}
 
     //GetTextExtentPoint32(hdc, szComposition, lstrlen(szComposition), &size);
-    //nParts[0] = size.cx() + (GetSystemMetrics(SM_CXEDGE) * 4);
+    //nParts[0] = size.cx + (GetSystemMetrics(SM_CXEDGE) * 4);
 
     //nParts[1] = -1;
     

@@ -361,7 +361,9 @@ namespace user
 
       øconstruct(pgraphics);
 
-      pgraphics->create_memory_graphics();
+      auto sizeModernOnePixel = ::int_size{ 1920, 1080 };
+
+      pgraphics->create_memory_graphics(sizeModernOnePixel);
 
       pgraphics->m_pdraw2dhost = this;
 
@@ -511,7 +513,7 @@ namespace aura
 {
 
 
-   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
    //   auto pnode = m_pnode;

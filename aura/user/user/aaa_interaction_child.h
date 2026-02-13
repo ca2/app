@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "primitive_impl.h"
+#include "prototype_impl.h"
 
 
 namespace user
@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_child :
-      virtual public ::user::primitive_impl
+      virtual public ::user::prototype_impl
    {
    public:
 

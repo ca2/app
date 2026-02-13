@@ -247,7 +247,9 @@ const char* getFreeImageFormatName(FREE_IMAGE_FORMAT format) {
         case FIF_XPM:     return "XPM";
         case FIF_DDS:     return "DDS";
         case FIF_GIF:     return "GIF";
+#if defined(USE_PORT_FREEIMAGE)
         case FIF_FAXG3:   return "FAXG3";
+#endif
         case FIF_SGI:     return "SGI";
         case FIF_EXR:     return "EXR";
         case FIF_TARGA:     return "TARGA";

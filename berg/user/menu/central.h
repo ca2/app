@@ -10,7 +10,7 @@ namespace user
 
 
    class CLASS_DECL_BERG menu_central :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

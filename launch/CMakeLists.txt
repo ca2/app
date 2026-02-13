@@ -18,7 +18,7 @@ add_executable(${PROJECT_NAME} ${executable_source})
 add_library(static_${PROJECT_NAME}_library STATIC ${library_source})
 
 
-if (MSVC)
+if(${WIN32})
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
     target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:CONSOLE")
@@ -46,8 +46,8 @@ target_include_directories(static_${PROJECT_NAME}_library PRIVATE ${library_incl
 if(${LINUX})
    target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
 elseif(${FREEBSD})
-   target_link_options(${PROJECT_NAME} PRIVATE -static)
-
+	target_link_options(${PROJECT_NAME} PRIVATE -static)
+	target_link_libraries(${PROJECT_NAME} PRIVATE procstat kvm util)
 elseif(${OPENBSD})
    target_link_options(${PROJECT_NAME} PRIVATE -static)
 elseif(${NETBSD})
@@ -69,7 +69,8 @@ elseif(${WIN32})
    target_link_libraries(${PROJECT_NAME} PRIVATE static_acme_windows)
 endif()
 
-add_dependencies(static_${PROJECT_NAME}_library static_acme)
+target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
+target_link_libraries(${PROJECT_NAME} PRIVATE static_${PROJECT_NAME}_library)
 
 
 
@@ -80,15 +81,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
         
 endif()
 
-if(NOT ${WINDOWS})
-add_dependencies(static_${PROJECT_NAME}_library static_nano_compress_command_line)
-add_dependencies(static_${PROJECT_NAME}_library static_nano_http_command_line)
+if(${LINUX} OR ${__BSD__} OR ${__APPLE__})
+target_link_libraries(${PROJECT_NAME} PRIVATE static_nano_compress_command_line)
+target_link_libraries(${PROJECT_NAME} PRIVATE static_nano_http_command_line)
 endif()
-
-#set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
-#set_target_properties(static_${PROJECT_NAME}_library PROPERTIES LINKER_LANGUAGE CXX)
-target_compile_definitions(${PROJECT_NAME} PRIVATE CUBE)
-target_compile_definitions(static_${PROJECT_NAME}_library PRIVATE CUBE)
 
 
 if(${__CMAKE_BUILD_TYPE} STREQUAL "Release")

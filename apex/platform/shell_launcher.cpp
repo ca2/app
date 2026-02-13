@@ -52,7 +52,7 @@ namespace apex
 
 
    void shell_launcher::setup(
-      oswindow oswindow, 
+      ::acme::windowing::window * pacmewindowingwindow,
       const ::scoped_string & scopedstrOperation,
       const ::scoped_string & scopedstrFile, 
       const ::scoped_string & scopedstrParameters, 
@@ -61,7 +61,7 @@ namespace apex
    {
 
       m_iMode = 0;
-      m_oswindow = oswindow;
+      m_pacmewindowingwindow = pacmewindowingwindow;
       m_strOperation = scopedstrOperation;
       m_strFile = scopedstrFile;
       m_strParameters = scopedstrParameters;

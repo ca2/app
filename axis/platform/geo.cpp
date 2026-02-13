@@ -66,7 +66,7 @@ namespace geo
    void geo::initialize(::particle * pparticle)
    {
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
       m_pathCityTimeZoneFile = directory_system()->userconfig() / "datetime_departament_cityTimeZone.bin";
 
@@ -387,7 +387,7 @@ namespace geo
          catch (const ::exception & exception)
          {
 
-            DEBUGF_LINE("pqrxxe1 exception type : " + ::type(exception).name());
+            DEBUGF_LINE("pqrxxe1 exception type : " + ::platform::type(exception).name());
 
             auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
 

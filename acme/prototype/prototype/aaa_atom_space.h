@@ -83,8 +83,4 @@
 //
 //
 //};
-//
-//
-//
-//
 //CLASS_DECL_ACME ::atom_space & get_id_space();

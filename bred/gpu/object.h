@@ -2,45 +2,45 @@
 #pragma once
 
 
-
-
-
-namespace gpu
-{
-
-
-   class CLASS_DECL_BRED object :
-      virtual public ::particle
-   {
-   public:
-
-
-      bool                       m_bPrepared;
-
-
-      object();
-      ~object() override;
-
-
-      virtual void load(const ::file::path & path);
-
-
-      virtual void prepare(::gpu::approach * papproach);
-
-
-      virtual void _prepare(::gpu::approach * papproach);
-
-
-      virtual void draw();
-
-      
-      virtual void set_texture_uniform(const ::gpu::payload & payload);
-
-
-   };
-
-
-} // namespace gpu
-
-
-
+//
+//
+//
+//namespace gpu
+//{
+//
+//
+//   class CLASS_DECL_BRED object :
+//      virtual public ::particle
+//   {
+//   public:
+//
+//
+//      bool                       m_bPrepared;
+//
+//
+//      object();
+//      ~object() override;
+//
+//
+//      virtual void load(const ::file::path & path);
+//
+//
+//      virtual void prepare(::gpu::approach * papproach);
+//
+//
+//      virtual void _prepare(::gpu::approach * papproach);
+//
+//
+//      virtual void draw();
+//
+//      
+//      virtual void set_texture_uniform(const ::gpu::payload & payload);
+//
+//
+//   };
+//
+//
+//} // namespace gpu
+//
+//
+//

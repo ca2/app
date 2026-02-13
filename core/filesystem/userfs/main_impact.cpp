@@ -45,16 +45,16 @@ namespace userfs
       ::pointer<::request>prequest(e_create, this);
 
 //      prequest->m_usercreatecontext.m_pCurrentDoc = get_document();
-  //    prequest->m_usercreatecontext.m_typeatomNewImpact = ::type < tree >();
-      ::pointer<::user::interaction>puserinteraction = create_impact(::type < ::user::tree >(),get_document(),get_pane_holder(0),100);
+  //    prequest->m_usercreatecontext.m_typeNewImpact = ::type<tree>();
+      ::pointer<::user::interaction>puserinteraction = create_impact(::type<::user::tree>(),get_document(),get_pane_holder(0),100);
 
       SetPane(0, puserinteraction, false);
 //      ::pointer<tree>ptree =  (puserinteraction);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
-  //    cc->m_usercreatecontext.m_typeatomNewImpact = ::type < list_base >();
-      puserinteraction = create_impact(::type < ::userfs::list >(),get_document(), get_pane_holder(1),101);
+  //    cc->m_usercreatecontext.m_typeNewImpact = ::type<list_base>();
+      puserinteraction = create_impact(::type<::userfs::list>(),get_document(), get_pane_holder(1),101);
 //      list_base * plist = dynamic_cast < list_base * > (puserinteraction);
       SetPane(1, puserinteraction, false);
       set_need_layout();

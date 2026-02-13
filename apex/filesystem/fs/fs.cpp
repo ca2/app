@@ -23,7 +23,7 @@ namespace fs
 
       //auto estatus = 
       
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
       //if (!estatus)
       //{

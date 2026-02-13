@@ -10,10 +10,6 @@
 //
 //namespace acme
 //{
-//
-//
-//
-//
 //   ::application* system::get_main_application()
 //   {
 //
@@ -81,10 +77,6 @@
 ////
 ////
 ////   }
-//
-//
-//
-//
 ////   void system::on_start_system()
 ////   {
 ////

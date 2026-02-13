@@ -20,7 +20,7 @@ namespace sockets
       //http_client_socket(h)
    {
 
-      m_content_length = -1;
+      m_iContentLength = -1;
 
    }
 
@@ -64,7 +64,7 @@ namespace sockets
 
          m_filename = scopedstrFile;
 
-         m_content_length = ::particle::file()->length(scopedstrFile).as_long_long();
+         m_iContentLength = ::particle::file()->length(scopedstrFile).as_long_long();
 
       }
       else
@@ -95,7 +95,7 @@ namespace sockets
       if(m_file.is_set())
       {
 
-         m_content_length = (long) m_file->size();
+         m_iContentLength = (long)m_file->size();
 
       }
 
@@ -110,7 +110,7 @@ namespace sockets
       {
          outheader("content-type")     = m_content_type;
       }
-      inheader("content-length")      = (long long) m_content_length;
+      inheader("content-length") = (long long)m_iContentLength;
       
       auto strUserAgent=MyUseragent();
       inheader("user-agent")          = strUserAgent;
@@ -118,11 +118,11 @@ namespace sockets
       SendRequest();
       if(m_file.is_set())
       {
-         information("Sending " + ::as_string(m_content_length)+ " bytes");
+         information("Sending " + ::as_string(m_iContentLength) + " bytes");
          memsize n;
          if(m_transferprogressfunction)
          {
-            m_transferprogressfunction(0.0, 0, m_content_length);
+            m_transferprogressfunction(0.0, 0, m_iContentLength);
          }
          ::memory memory;
          memory.set_size(32_KiB);
@@ -132,13 +132,13 @@ namespace sockets
          {
             write(memory.data(), n);
             total+=n;
-            double dRate=(double)total/(double)m_content_length;
-            ::output_debug_string_formatf("%0.2f%% %d of %d bytes\n",100.0*dRate, total, m_content_length);
+            double dRate = (double)total / (double)m_iContentLength;
+            ::output_debug_string_formatf("%0.2f%% %d of %d bytes\n", 100.0 * dRate, total, m_iContentLength);
             
             if(m_transferprogressfunction)
             {
 
-               m_transferprogressfunction(dRate, total, m_content_length);
+               m_transferprogressfunction(dRate, total, m_iContentLength);
                
             }
             

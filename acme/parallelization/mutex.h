@@ -1,8 +1,4 @@
 #pragma once
-
-
-//
-
 #undef ACME_MUTEX_DEBUG
 
 class CLASS_DECL_ACME mutex :

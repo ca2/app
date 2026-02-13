@@ -282,10 +282,6 @@
 //   return false;
 //
 //}
-//
-//
-//
-//
 //strid_array::strid_array(bool bSynch)
 //{
 //

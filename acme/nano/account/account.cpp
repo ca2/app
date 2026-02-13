@@ -34,7 +34,7 @@ namespace nano
       void account::on_initialize_particle()
       {
 
-         ::acme::department::on_initialize_particle();
+         ::platform::department::on_initialize_particle();
 
          defer_create_synchronization();
 

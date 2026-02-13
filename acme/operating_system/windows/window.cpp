@@ -134,8 +134,8 @@ namespace windows
                POINT pointCursor{};
                RECT r{};
                GetWindowRect(m_hwnd, &r);
-               pointCursor.x = r.left + m_pointSizeMoveStart.x();
-               pointCursor.y = r.top + m_pointSizeMoveStart.y();
+               pointCursor.x = r.left + m_pointSizeMoveStart.x;
+               pointCursor.y = r.top + m_pointSizeMoveStart.y;
                ::SetCursorPos(pointCursor.x, pointCursor.y);
             }
 
@@ -150,8 +150,8 @@ namespace windows
 
                POINT pointCursor{};
                ::GetCursorPos(&pointCursor);
-               auto x = pointCursor.x - m_pointSizeMoveStart.x();
-               auto y = pointCursor.y - m_pointSizeMoveStart.y();
+               auto x = pointCursor.x - m_pointSizeMoveStart.x;
+               auto y = pointCursor.y - m_pointSizeMoveStart.y;
 
 
                //RECT r;
@@ -382,8 +382,8 @@ namespace windows
          ::GetCursorPos(&pointCursor);
          RECT r{};
          ::GetWindowRect(m_hwnd, &r);
-         m_pointSizeMoveStart.x() = pointCursor.x - r.left;
-         m_pointSizeMoveStart.y() = pointCursor.y - r.top;
+         m_pointSizeMoveStart.x = pointCursor.x - r.left;
+         m_pointSizeMoveStart.y = pointCursor.y - r.top;
          ::SetCursor(::LoadCursor(nullptr, IDC_SIZEALL));
          m_bSizeMoveMode = true;
 
@@ -414,8 +414,8 @@ namespace windows
       //SetForegroundWindow(hwnd);
       TrackPopupMenu(m_hmenuSystem,
          TPM_LEFTALIGN | TPM_TOPALIGN,
-         pmouse->m_pointAbsolute.x(),
-         pmouse->m_pointAbsolute.y(),
+         pmouse->m_pointAbsolute.x,
+         pmouse->m_pointAbsolute.y,
          0,
          m_hwnd, NULL);
       //PostMessage(hwnd, WM_NULL, 0, 0);
@@ -429,7 +429,12 @@ namespace windows
 
       ::windows::window * pwindow = nullptr;
 
-      if (msg == (WM_USER + 123))
+      if (msg == (WM_WINDOWPOSCHANGING))
+      {
+
+         ::information() << "WM_WINDOWPOSCHANGING";
+      }
+      else if (msg == (WM_USER + 123))
       {
 
          ::information() << "::windows::window_procedure WM_USER + 123";
@@ -445,9 +450,9 @@ namespace windows
 
             warning() << "WM_APP + 876 wParam is Zero At thread " << ::GetCurrentThreadId();
 
-            ::procedure procedure;
+            ::lparam lparam(lParam);
 
-            procedure.m_pbase = { transfer_t{}, (decltype(procedure.m_pbase.m_p))lParam };
+            ::procedure procedure(lparam);
 
             try
             {
@@ -476,7 +481,7 @@ namespace windows
 
          ///SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
 
-         ::windows::g_pwindowing->m_windowmap[(::oswindow)hwnd] = pwindow;
+         ::windows::g_pwindowing->m_windowmap[hwnd] = pwindow;
 
          pwindow->m_hwnd = hwnd;
 
@@ -484,7 +489,7 @@ namespace windows
       else
       {
 
-         pwindow = ::windows::g_pwindowing->m_windowmap[(::oswindow)hwnd];
+         pwindow = ::windows::g_pwindowing->m_windowmap[hwnd];
 
          //pwindow = (::windows::window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 

@@ -43,7 +43,7 @@ bool __matter_get_posted_payload_synchronously(matter * phandler, POSTING_OBJECT
 
 
 template < typename POSTING_OBJECT >
-void __matter_send_procedure(matter * phandler, POSTING_OBJECT pposting, void(erase_pointer <POSTING_OBJECT>:: *posting_method)(const ::procedure &), const ::procedure & procedure)
+void __matter_send_procedure(matter * phandler, POSTING_OBJECT pposting, void(non_pointer <POSTING_OBJECT>:: *posting_method)(const ::procedure &), const ::procedure & procedure)
 {
 
    if(pposting->is_branch_current())

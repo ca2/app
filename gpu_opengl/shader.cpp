@@ -1,18 +1,23 @@
 #include "framework.h"
-//#include "_gpu_opengl.h"
+#include "_gpu_opengl.h"
+#include "block.h"
 #include "input_layout.h"
 #include "render_target.h"
 #include "renderer.h"
 #include "shader.h"
 #include "texture.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "bred/gpu/binding.h"
 #include "bred/gpu/bred_approach.h"
+#include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/context_lock.h"
 #include "bred/gpu/device.h"
 #include "bred/gpu/frame.h"
 #include "bred/gpu/renderer.h"
 #include "bred/gpu/types.h"
+
+void ::opengl::insert_debug_message(const char* msg);
 
 
 namespace gpu_opengl
@@ -24,37 +29,32 @@ namespace gpu_opengl
 
       switch (etype)
       {
-      case GL_VERTEX_SHADER:
-         return "VERTEX";
-      case GL_FRAGMENT_SHADER:
-         return "FRAGMENT";
+         case GL_VERTEX_SHADER:
+            return "VERTEX";
+         case GL_FRAGMENT_SHADER:
+            return "FRAGMENT";
 #if !defined(__APPLE__) && !defined(__ANDROID__)
-      case GL_GEOMETRY_SHADER:
-         return "GEOMETRY";
+         case GL_GEOMETRY_SHADER:
+            return "GEOMETRY";
 #endif
-      default:
-         return "(Unknown Shader Type)";
+         default:
+            return "(Unknown Shader Type)";
       }
-
    }
 
 
-   shader::shader()
-   {
-
-      m_ecullmode = ::gpu::e_cull_mode_none;
-
-   }
+   shader::shader() { m_ecullmode = ::gpu::e_cull_mode_none; }
 
 
    shader::~shader()
    {
-
-
+      
+      
+      
    }
 
 
-   unsigned int shader::create_shader(const ::block& blockSource, GLenum type)
+   unsigned int shader::create_shader(const ::block &blockSource, GLenum type)
    {
 
       //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
@@ -73,12 +73,11 @@ namespace gpu_opengl
          informationf("error %d \"%s\"", eerror, errString);
 
          throw ::exception(::error_failed);
-
       }
 
       const_char_pointer sza[1];
 
-      sza[0] = (const_char_pointer )blockSource.begin();
+      sza[0] = (const_char_pointer)blockSource.begin();
 
       GLint ia[1];
 
@@ -90,13 +89,13 @@ namespace gpu_opengl
 
       information() << "compiling shader : " << sza[0];
 
-      //string strSummary;
+      // string strSummary;
 
       //::e_status estatus =
 
       shader_compile_errors(uShader, type, m_strError);
 
-      //if (!estatus)
+      // if (!estatus)
       //{
 
       //   return 0;
@@ -105,21 +104,19 @@ namespace gpu_opengl
       m_strError.empty();
 
       return uShader;
-
    }
 
 
    void shader::on_initialize_shader()
    {
 
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       if (m_memoryVertex.is_empty())
       {
 
          auto pathVertex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathVertex);
          m_memoryVertex = file()->as_memory(pathVertex);
-
       }
 
       if (m_memoryFragment.is_empty())
@@ -127,52 +124,51 @@ namespace gpu_opengl
 
          auto pathFragment = m_pgpurenderer->m_pgpucontext->m_pgpudevice->shader_path(m_pathFragment);
          m_memoryFragment = file()->as_memory(pathFragment);
-
       }
 
       unsigned int uVertex = create_shader(m_memoryVertex, GL_VERTEX_SHADER);
 
       unsigned int uFragment = create_shader(m_memoryFragment, GL_FRAGMENT_SHADER);
 
-      //#if !defined(__APPLE__) && !defined(__ANDROID__)
+      // #if !defined(__APPLE__) && !defined(__ANDROID__)
       //
-      //      unsigned int uGeometry = 0;
+      //       unsigned int uGeometry = 0;
       //
-      //      bool bGeometry = pszGeometry.trimmed().has_character();
+      //       bool bGeometry = pszGeometry.trimmed().has_character();
       //
-      //      if (bGeometry)
-      //      {
+      //       if (bGeometry)
+      //       {
       //
-      //         uGeometry = create_shader(scopedstrGeometry, GL_GEOMETRY_SHADER);
+      //          uGeometry = create_shader(scopedstrGeometry, GL_GEOMETRY_SHADER);
       //
-      //      }
-      //      
-      //#endif
+      //       }
+      //
+      // #endif
 
       m_ProgramID = glCreateProgram();
-      GLCheckError("Couldn't create opengl program");
+      ::opengl::check_error("Couldn't create opengl program");
 
       glAttachShader(m_ProgramID, uVertex);
-      GLCheckError("Couldn't attach vertex shader to program");
+      ::opengl::check_error("Couldn't attach vertex shader to program");
 
       glAttachShader(m_ProgramID, uFragment);
-      GLCheckError("Couldn't attach fragment shader to program");
+      ::opengl::check_error("Couldn't attach fragment shader to program");
 
-      //#if !defined(__APPLE__) && !defined(__ANDROID__)
+      // #if !defined(__APPLE__) && !defined(__ANDROID__)
       //
-      //      if (bGeometry)
-      //      {
+      //       if (bGeometry)
+      //       {
       //
-      //         glAttachShader(m_ProgramID, uGeometry);
+      //          glAttachShader(m_ProgramID, uGeometry);
       //
-      //      }
-      //      
-      //#endif
+      //       }
+      //
+      // #endif
 
       glLinkProgram(m_ProgramID);
 
       // Validate program
-//      glValidateProgram(m_ProgramID);
+      //      glValidateProgram(m_ProgramID);
 
       string strSummary;
 
@@ -180,7 +176,7 @@ namespace gpu_opengl
 
       program_compile_errors(m_ProgramID, strSummary);
 
-      //if(estatus.succeeded())
+      // if(estatus.succeeded())
       //{
 
       //   return estatus;
@@ -195,120 +191,156 @@ namespace gpu_opengl
 
       glDeleteShader(uFragment);
 
-      //#if !defined(__APPLE__) && !defined(__ANDROID__)
+      // #if !defined(__APPLE__) && !defined(__ANDROID__)
       //
-      //      if (bGeometry)
-      //      {
+      //       if (bGeometry)
+      //       {
       //
-      //         glDeleteShader(uGeometry);
+      //          glDeleteShader(uGeometry);
       //
-      //      }
-      //      
-      //#endif
+      //       }
+      //
+      // #endif
 
-            //return ::success;
-
+      // return ::success;
    }
 
 
-   // activate the shader
-   // ------------------------------------------------------------------------
-   void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
-                     ::gpu::texture *pgputextureSource)
-   {
+   //// activate the shader
+   //// ------------------------------------------------------------------------
+   // void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget,
+   //                   ::gpu::texture *pgputextureSource)
+   //{
 
-      bind(pgpucommandbuffer, pgputextureTarget);
+   //   bind(pgpucommandbuffer, pgputextureTarget);
 
-      bind_source(pgpucommandbuffer, pgputextureSource, 0);
+   //   bind_source(pgpucommandbuffer, pgputextureSource, 0);
 
-   }
+   //}
 
-   void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
-   {
+   // void shader::bind(::gpu::command_buffer *pgpucommandbuffer)
+   //{
 
-      ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
+   //   ::cast < render_target> prendertarget = m_pgpurenderer->m_pgpurendertarget;
 
-      ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
+   //   ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
 
-      bind(pgpucommandbuffer, ptexture);
+   //   bind(pgpucommandbuffer, ptexture);
 
-   }
+   //}
 
 
    void shader::bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget)
    {
 
-      _bind(pgpucommandbuffer, ::gpu::e_scene_none);
+      //_bind(pgpucommandbuffer, ::gpu::e_scene_none);
 
-      ::cast < texture > ptexture = pgputextureTarget;
-
-      if (!ptexture->m_gluFbo)
+      ::cast<texture> ptextureTarget = pgputextureTarget;
+      
+      if(::is_set(ptextureTarget))
       {
-
-         ptexture->create_render_target();
-
+         
+         auto gluFbo = ptextureTarget->frame_buffer_object();
+         
+//         if ((!objectFbo.m_handle
+//              || && ptextureTarget->m_gluTextureID != -1023)
+//         {
+//            
+//            ptextureTarget->create_render_target();
+//            
+//         }
+         
+         // glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
+         // ::opengl::check_error("");
+         
+         if (!gluFbo && ptextureTarget->m_gluTextureID != -1023)
+         {
+            
+            throw ::exception(error_wrong_state);
+            
+         }
+         
+         if (ptextureTarget->m_gluTextureID == -1023)
+         {
+            
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+            ::opengl::check_error("");
+            
+         }
+         else
+         {
+            
+            //auto gluFbo = gluFbo;
+            
+            GLint drawFbo = 0;
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+            
+            GLint readFbo = 0;
+            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+            
+            //if (drawFbo != gluFbo || readFbo != gluFbo)
+            if (drawFbo != gluFbo)
+            {
+               
+               // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+               // if (status != GL_FRAMEBUFFER_COMPLETE) {
+               //    std::cerr << "Framebuffer is not complete: " << status << std::endl;
+               // }
+               
+               //glBindFramebuffer(GL_FRAMEBUFFER, gluFbo);
+               glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluFbo);
+               ::opengl::check_error("");
+               glDrawBuffer(GL_COLOR_ATTACHMENT0);
+               ::opengl::check_error("");
+               
+            }
+            
+         }
+         
       }
 
-      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, ptexture->m_gluFbo);
-      //GLCheckError("");
+      defer_bind_frame_buffer_layer(pgpucommandbuffer, pgputextureTarget);
 
-      glBindFramebuffer(GL_FRAMEBUFFER, ptexture->m_gluFbo);
-      GLCheckError("");
-
-      glDrawBuffer(GL_COLOR_ATTACHMENT0);
-      GLCheckError("");
-
-      //glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-      //GLCheckError("");
+      // glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      // ::opengl::check_error("");
 
       {
-
+         
          GLint drawFbo = 0;
          glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
-
+         
          GLint readFbo = 0;
          glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
-
+         
          ::string strMessage;
-
+         
          strMessage.formatf("ø shader_bind drawFbo=%d readFbo=%d", drawFbo, readFbo);
-
-         glDebugMessageInsert(GL_DEBUG_SOURCE_APPLICATION,
-            GL_DEBUG_TYPE_MARKER,
-            0,
-            GL_DEBUG_SEVERITY_NOTIFICATION,
-            -1,
-            strMessage);
-
+         
+         ::opengl::insert_debug_message(strMessage);
+         
       }
-
-
-
-
-   }
-
-
-   void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
-   {
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
       pgpucontext->set_cull_face(m_ecullmode);
 
-      //glFrontFace(GL_CCW); // counter-clockwise is front face (default)
-      ///glFrontFace(GL_CW); // counter-clockwise is front face (default)
+      // glFrontFace(GL_CCW); // counter-clockwise is front face (default)
+      /// glFrontFace(GL_CW); // counter-clockwise is front face (default)
 
       if (m_bEnableBlend)
       {
 
          glEnable(GL_BLEND);
+         ::opengl::check_error("");
          glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+         ::opengl::check_error("");
 
       }
       else
       {
 
          glDisable(GL_BLEND);
+         ::opengl::check_error("");
 
       }
 
@@ -317,24 +349,30 @@ namespace gpu_opengl
       {
 
          glDisable(GL_DEPTH_TEST);
+         ::opengl::check_error("");
          glDepthMask(GL_FALSE);
+         ::opengl::check_error("");
 
       }
       else
       {
 
          glEnable(GL_DEPTH_TEST);
-         
+         ::opengl::check_error("");
+
          if (m_bDepthTestButNoDepthWrite)
          {
 
             glDepthMask(GL_FALSE);
+            ::opengl::check_error("");
+
 
          }
          else
          {
 
             glDepthMask(GL_TRUE);
+            ::opengl::check_error("");
 
          }
 
@@ -342,41 +380,202 @@ namespace gpu_opengl
          {
 
             glDepthFunc(GL_LEQUAL);
+            ::opengl::check_error("");
 
          }
          else
          {
 
             glDepthFunc(GL_LESS);
+            ::opengl::check_error("");
 
          }
 
       }
 
       glUseProgram(m_ProgramID);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
+
+
+   void shader::defer_bind_frame_buffer_layer(::gpu::command_buffer *pgpucommandbuffer,
+                                              ::gpu::texture *pgputextureTarget)
+   {
+
+      ::cast<texture> ptextureTarget = pgputextureTarget;
+      
+      if(::is_set(ptextureTarget))
+      {
+         
+         if (ptextureTarget->m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
+         {
+            
+            if (ptextureTarget->m_iCurrentLayer >= 0)
+            {
+               
+               int iLayer = ptextureTarget->m_iCurrentLayer;
+               
+               int iMip = ptextureTarget->m_iCurrentMip;
+               
+               glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_CUBE_MAP_POSITIVE_X + iLayer,
+                                      ptextureTarget->m_gluTextureID, iMip);
+               
+               ::opengl::check_error("");
+               
+               
+               glBindTexture(ptextureTarget->m_gluType, ptextureTarget->m_gluTextureID);
+               ::opengl::check_error("");
+            }
+         }
+         
+      }
+      
+   }
+
+
+
+
+      void shader::on_bind_already_bound(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputextureTarget) 
+      {
+      
+      defer_bind_frame_buffer_layer(pgpucommandbuffer, pgputextureTarget);
+      }
+
+
+
+   //void shader::_bind(::gpu::command_buffer *pgpucommandbuffer, ::gpu::enum_scene escene)
+   //{
+
+   //   auto pgpucontext = m_pgpurenderer->m_pgpucontext;
+
+   //   pgpucontext->set_cull_face(m_ecullmode);
+
+   //   //glFrontFace(GL_CCW); // counter-clockwise is front face (default)
+   //   ///glFrontFace(GL_CW); // counter-clockwise is front face (default)
+
+   //   if (m_bEnableBlend)
+   //   {
+
+   //      glEnable(GL_BLEND);
+   //      glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+   //   }
+   //   else
+   //   {
+
+   //      glDisable(GL_BLEND);
+
+   //   }
+
+
+   //   if (m_bDisableDepthTest)
+   //   {
+
+   //      glDisable(GL_DEPTH_TEST);
+   //      glDepthMask(GL_FALSE);
+
+   //   }
+   //   else
+   //   {
+
+   //      glEnable(GL_DEPTH_TEST);
+   //      
+   //      if (m_bDepthTestButNoDepthWrite)
+   //      {
+
+   //         glDepthMask(GL_FALSE);
+
+   //      }
+   //      else
+   //      {
+
+   //         glDepthMask(GL_TRUE);
+
+   //      }
+
+   //      if (m_bLequalDepth)
+   //      {
+
+   //         glDepthFunc(GL_LEQUAL);
+
+   //      }
+   //      else
+   //      {
+
+   //         glDepthFunc(GL_LESS);
+
+   //      }
+
+   //   }
+
+   //   glUseProgram(m_ProgramID);
+   //   ::opengl::check_error("");
+
+   //}
 
 
 
    void shader::unbind(::gpu::command_buffer *pgpucommandbuffer)
    {
 
-      if (m_ptextureBound)
+      ::pointer < ::gpu::texture > pgputextureBound;
+
+      if (m_pbindingslotseta)
       {
 
-         ::cast < texture > ptextureBound = m_ptextureBound;
+         for (auto &pbindingslotset: *m_pbindingslotseta)
+         {
 
-         glBindTexture(ptextureBound->m_gluType, 0);
-         GLCheckError("");
+            if (!pbindingslotset->m_pbindingset)
+            {
 
-         m_ptextureBound = nullptr;
+               continue;
+            }
+
+            for (auto &bindingslot: *pbindingslotset)
+            {
+
+               if (!bindingslot.m_pbinding)
+               {
+
+                  continue;
+               }
+
+               //::string strUniform = pbinding->m_strUniform;
+
+               // if (strUniform.is_empty())
+               //{
+
+               //   strUniform = "uTexture";
+               //}
+
+               //_set_int(strUniform, iSlot);
+
+               pgputextureBound = ::transfer(bindingslot.m_ptexture);
+
+               goto finished;
+            }
+         }
+      }
+
+   finished:
+
+      if (pgputextureBound)
+      {
+
+         ::cast<texture> ptextureBound = pgputextureBound;
+
+
+         //glBindTexture(ptextureBound->m_gluType, 0);
+         //::opengl::check_error("");
+
+         //m_ptextureBound = nullptr;
 
       }
 
       glUseProgram(0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -384,35 +583,123 @@ namespace gpu_opengl
    void shader::bind_source(::gpu::command_buffer *pgpucommandbuffer, ::gpu::texture *pgputexture, int iSlot)
    {
 
-      glActiveTexture(GL_TEXTURE0);
-      GLCheckError("");
-
-      ::cast < texture > ptexture = pgputexture;
-
-      GLuint tex = ptexture->m_gluTextureID;
-
-      glBindTexture(ptexture->m_gluType, tex);
-      GLCheckError("");
-
-      ::string strUniform;
-
-      if (m_bindingSampler.is_set())
-         strUniform = m_bindingSampler.m_strUniform;
-      else if(m_bindingCubeSampler.is_set())
-         strUniform = m_bindingCubeSampler.m_strUniform;
-
-      if (strUniform.is_empty())
+      if (!m_pbindingslotseta)
       {
 
-         strUniform = "uTexture";
+         goto not_found_and_not_bound;
 
       }
 
-      _set_int(strUniform, iSlot);
+      for (auto &pbindingslotset: *m_pbindingslotseta)
+      {
 
-      m_ptextureBound = ptexture;
+         if (!pbindingslotset->m_pbindingset)
+         {
+
+            continue;
+
+         }
+
+         for (auto &bindingslot: *pbindingslotset)
+         {
+
+            if (!bindingslot.m_pbinding)
+            {
+
+               continue;
+
+            }
+
+            ::string strUniform = bindingslot.m_pbinding->m_strUniform;
+
+            if (strUniform.is_empty())
+            {
+
+               strUniform = "uTexture";
+
+            }
+
+            auto iTextureUnit = bindingslot.m_pbinding->m_iTextureUnit;
+
+            GLint drawFboOld = 0;
+            glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
+
+            GLint readFboOld = 0;
+            glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
+
+
+            glActiveTexture(GL_TEXTURE0 + iTextureUnit);
+
+            //auto ierror = glGetError();
+
+            //if (ierror == GL_INVALID_VALUE)
+            {
+
+              m_pgpurenderer->m_pgpucontext->assert_there_is_current_context();
+            }
+
+            ::opengl::check_error("");
+
+            ::cast<texture> ptexture = pgputexture;
+
+            auto gluType = ptexture->m_gluType;
+
+            auto gluTextureID = ptexture->m_gluTextureID;
+
+            auto bIsTexture = glIsTexture(gluTextureID);
+
+            glBindTexture(gluType, gluTextureID);
+            ::opengl::check_error("");
+
+            _set_int(strUniform, iTextureUnit);
+
+            bindingslot.m_ptexture = ptexture;
+
+            goto found_and_bound;
+         }
+      }
+
+      not_found_and_not_bound:;
+
+      throw ::exception(error_wrong_state);
+
+      found_and_bound:;
+
+      //if (m_bindingSampler.is_set())
+      //   strUniform = m_bindingSampler.m_strUniform;
+      //else if(m_bindingCubeSampler.is_set())
+      //   strUniform = m_bindingCubeSampler.m_strUniform;
+
+      //if (strUniform.is_empty())
+      //{
+
+      //   strUniform = "uTexture";
+
+      //}
+
+      //_set_int(strUniform, iSlot);
+
+      //m_ptextureBound = ptexture;
 
    }
+
+
+   void shader::bind_source2(gpu::command_buffer* pgpucommandbuffer, int iIndex, const char* pszPayloadName, gpu::texture* pgputextureSource)
+   {
+    //  pshader->bind_source2(TEXTURE_UNIT_DIFFUSE_IRRADIANCE_MAP, "diffuseIrradianceMap",
+      //                      pscene->m_pibldiffuseirradiancemap->m_pframebufferDiffuseIrradiance->m_ptexture);
+
+      glActiveTexture(GL_TEXTURE0 + iIndex);
+      ::opengl::check_error("");
+      this->set_int(pszPayloadName, iIndex);
+      ::cast<::gpu_opengl::texture > ptexture = pgputextureSource;
+      int gluTextureID = ptexture->m_gluTextureID;
+      glBindTexture(ptexture->m_gluType, gluTextureID);
+      ::opengl::check_error("");
+
+
+   }
+
 
 
    //   void shader::setBool(const ::scoped_string & scopedstrName, bool value)
@@ -466,7 +753,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   ////   void shader::setVec2(const ::scoped_string & scopedstrName, const glm::vec2& value)
+   ////   void shader::setVec2(const ::scoped_string & scopedstrName, const floating_sequence2& value)
    ////   {
    ////
    ////      GLint i = glGetUniformLocation(m_ProgramID, pszName);
@@ -493,7 +780,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   ////   void shader::setVec3(const ::scoped_string & scopedstrName, const glm::vec3& value)
+   ////   void shader::setVec3(const ::scoped_string & scopedstrName, const floating_sequence3& value)
    ////   {
    ////
    ////      GLint i = glGetUniformLocation(m_ProgramID, pszName);
@@ -520,7 +807,7 @@ namespace gpu_opengl
    //   }
    //
    //
-   ////   void shader::setVec4(const ::scoped_string & scopedstrName, const glm::vec4& value)
+   ////   void shader::setVec4(const ::scoped_string & scopedstrName, const floating_sequence4& value)
    ////   {
    ////
    ////      GLint i = glGetUniformLocation(m_ProgramID, pszName);
@@ -638,6 +925,111 @@ namespace gpu_opengl
 
    }
 
+   void shader::bind_slot_set(::gpu::command_buffer * pgpucommandbuffer, int iSet,
+                              ::gpu::binding_slot_set * pgpubindingslotset)
+   {
+
+      for (auto & bindingslot : *pgpubindingslotset)
+      {
+
+         if (bindingslot.m_pblock)
+         {
+
+            ::cast<::gpu_opengl::block> pblock = bindingslot.m_pblock;
+
+            auto iUbo = pblock->m_iUBO;
+
+            auto pszUniform = bindingslot.m_pbinding->m_strUniform.c_str();
+
+            ::cast < ::gpu_opengl::shader > pshader = pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+
+                // Get uniform block index by name
+            GLuint blockIndex = glGetUniformBlockIndex(pshader->m_ProgramID, pszUniform);
+            if (glGetError() == GL_INVALID_OPERATION)
+            {
+
+               if (!glIsProgram(pshader->m_ProgramID))
+               {
+
+                  ::information("error_found?");
+
+               }
+
+            }
+            ::opengl::check_error("");
+
+            if (blockIndex == GL_INVALID_INDEX)
+            {
+               throw ::exception(error_wrong_state);
+               return; // block not found in shader
+            }
+
+            // Choose a binding point (arbitrary but must match both sides)
+            GLint bindingPoint = bindingslot.m_pbinding->m_iBindingPoint2;
+
+            // Associate shader block with binding point
+            glUniformBlockBinding(pshader->m_ProgramID, blockIndex, bindingPoint);
+
+            // Bind buffer to that binding point
+            glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, iUbo);
+            // ASSERT(iUbo != 0);
+
+            //glBindBuffer(GL_UNIFORM_BUFFER, iUbo);
+            //::opengl::check_error("");
+
+            ////int iSize = this->size(false);
+
+            ////// Map the entire buffer for writing
+            ////void *p = glMapBufferRange(GL_UNIFORM_BUFFER, 0, iSize, GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
+            ////::opengl::check_error("");
+
+            ////if (p)
+            ////{
+
+            ////   memcpy(p, this->data(false), this->size(false));
+
+            ////   glUnmapBuffer(GL_UNIFORM_BUFFER);
+            ////   ::opengl::check_error("");
+            ////}
+            ////else
+            ////{
+
+            ////   warning() << "Failed to map_base UBO";
+            ////}
+
+            //glBindBufferBase(GL_UNIFORM_BUFFER, 0, iUbo);
+            //::opengl::check_error("");
+
+         }
+         else if (bindingslot.m_ptexture)
+         {
+
+            ::cast<::gpu_opengl::texture> ptexture = bindingslot.m_ptexture;
+
+            auto glTextureId = ptexture->m_gluTextureID;
+
+            auto pszUniform = bindingslot.m_pbinding->m_strUniform.c_str();
+
+            ::cast<::gpu_opengl::shader> pshader =
+               pgpucommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->m_pshaderBound;
+
+            auto iTextureUnit = bindingslot.m_pbinding->m_iTextureUnit;
+
+            glActiveTexture(GL_TEXTURE0 + iTextureUnit);
+            ::opengl::check_error("");
+
+            auto gluType = ptexture->m_gluType;
+
+            glBindTexture(gluType, glTextureId);
+            ::opengl::check_error("");
+            pshader->_set_int(pszUniform, iTextureUnit);
+
+
+         }
+      }
+
+   }
+
 
    void shader::program_compile_errors(GLuint program, string& strSummary)
    {
@@ -663,6 +1055,8 @@ namespace gpu_opengl
 
          strSummary.formatf("error::PROGRAM_LINKING_ERROR : \n %s \n -- --------------------------------------------------- -- \n", infoLog);
 
+         warning(strSummary);
+
          throw ::exception(error_failed);
 
       }
@@ -681,7 +1075,7 @@ namespace gpu_opengl
    //   {
 
    //      glActiveTexture(GL_TEXTURE0);
-   //      GLCheckError("");
+   //      ::opengl::check_error("");
 
    //   }
 
@@ -703,7 +1097,7 @@ namespace gpu_opengl
       }
       
       GLint location = glGetUniformLocation(m_ProgramID, name);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       if (location == -1)
       {
@@ -739,7 +1133,7 @@ namespace gpu_opengl
       auto location = _get_uniform_location(name, "int");
 
       glUniform1i(location, i);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -750,72 +1144,72 @@ namespace gpu_opengl
       auto location = _get_uniform_location(name, "float");
       
       glUniform1f(location, value);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
 
-   void shader::_set_seq2(const_char_pointer name, const glm::vec2& value) const 
+   void shader::_set_sequence2(const_char_pointer name, const floating_sequence2& value) const 
    {
 
       auto location = _get_uniform_location(name, "seq2");
       
       glUniform2f(location, value.x, value.y);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
 
-   void shader::_set_seq3(const_char_pointer name, const glm::vec3& value) const
+   void shader::_set_sequence3(const_char_pointer name, const floating_sequence3& value) const
    {
 
       auto location = _get_uniform_location(name, "seq3");
 
       glUniform3f(location, value.x, value.y, value.z);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
 
-   void shader::_set_seq4(const_char_pointer name, const glm::vec4& value) const 
+   void shader::_set_sequence4(const_char_pointer name, const floating_sequence4& value) const 
    {
       
       auto location = _get_uniform_location(name, "seq4");
       glUniform4f(location, value.x, value.y, value.z, value.w);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
 
-   void shader::_set_mat2(const_char_pointer name, const glm::mat2& matrix) const
+   void shader::_set_matrix2(const_char_pointer name, const floating_matrix2& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat2"); 
 
-      glUniformMatrix2fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
-      GLCheckError("");
+      glUniformMatrix2fv(location, 1, GL_FALSE, matrix.fa);
+      ::opengl::check_error("");
 
    }
 
 
-   void shader::_set_mat3(const_char_pointer name, const glm::mat3& matrix) const
+   void shader::_set_matrix3(const_char_pointer name, const floating_matrix3& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat3");
 
-      glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
-      GLCheckError("");
+      glUniformMatrix3fv(location, 1, GL_FALSE, matrix.fa);
+      ::opengl::check_error("");
 
    }
 
 
-   void shader::_set_mat4(const_char_pointer name, const glm::mat4& matrix) const
+   void shader::_set_matrix4(const_char_pointer name, const floating_matrix4& matrix) const
    {
 
       auto location = _get_uniform_location(name, "mat4");
 
-      glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
-      GLCheckError("");
+      glUniformMatrix4fv(location, 1, GL_FALSE, matrix.fa);
+      ::opengl::check_error("");
 
    }
 
@@ -853,22 +1247,22 @@ namespace gpu_opengl
                   _set_float(strName, *(float *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq2:
-                  _set_seq2(strName, *(glm::vec2 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_sequence2(strName, *(floating_sequence2 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq3:
-                  _set_seq3(strName, *(glm::vec3 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_sequence3(strName, *(floating_sequence3 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_seq4:
-                  _set_seq4(strName, *(glm::vec4 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_sequence4(strName, *(floating_sequence4 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_mat2:
-                  _set_mat2(strName, *(glm::mat2 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_matrix2(strName, *(floating_matrix2 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_mat3:
-                  _set_mat3(strName, *(glm::mat3 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_matrix3(strName, *(floating_matrix3 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_mat4:
-                  _set_mat4(strName, *(glm::mat4 *)(m_propertiesPushShared.data(true) + iLen));
+                  _set_matrix4(strName, *(floating_matrix4 *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                default:
                   throw ::exception(error_not_expected);
@@ -980,171 +1374,171 @@ namespace gpu_opengl
    }
    
    
-   void shader::set_seq2(const ::scoped_string& scopedstrName, float x, float y)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, float x, float y)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq2(scopedstrName, x, y);
+         ::gpu::shader::set_sequence2(scopedstrName, x, y);
 
       }
       else
       {
 
-         _set_seq2(::string(scopedstrName), { x, y });
+         _set_sequence2(::string(scopedstrName), { x, y });
 
       }
 
    }
    
    
-   void shader::set_seq2(const ::scoped_string& scopedstrName, const ::glm::vec2& a)
+   void shader::set_sequence2(const ::scoped_string& scopedstrName, const ::floating_sequence2& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq2(scopedstrName, a);
+         ::gpu::shader::set_sequence2(scopedstrName, a);
 
       }
       else
       {
 
-         _set_seq2(::string(scopedstrName), a);
+         _set_sequence2(::string(scopedstrName), a);
 
       }
 
    }
    
    
-   void shader::set_seq3(const ::scoped_string& scopedstrName, float x, float y, float z)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, float x, float y, float z)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq3(scopedstrName, x, y, z);
+         ::gpu::shader::set_sequence3(scopedstrName, x, y, z);
 
       }
       else
       {
 
-         _set_seq3(::string(scopedstrName), { x, y, z });
+         _set_sequence3(::string(scopedstrName), { x, y, z });
 
       }
 
    }
    
    
-   void shader::set_seq3(const ::scoped_string& scopedstrName, const ::glm::vec3& a)
+   void shader::set_sequence3(const ::scoped_string& scopedstrName, const ::floating_sequence3& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq3(scopedstrName, a);
+         ::gpu::shader::set_sequence3(scopedstrName, a);
 
       }
       else
       {
 
-         _set_seq3(::string(scopedstrName), a);
+         _set_sequence3(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_seq4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, float x, float y, float z, float w)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq4(scopedstrName, x, y, z, w);
+         ::gpu::shader::set_sequence4(scopedstrName, x, y, z, w);
 
       }
       else
       {
 
-         _set_seq4(::string(scopedstrName), { x, y, z, w });
+         _set_sequence4(::string(scopedstrName), { x, y, z, w });
 
       }
 
    }
 
 
-   void shader::set_seq4(const ::scoped_string& scopedstrName, const ::glm::vec4& a)
+   void shader::set_sequence4(const ::scoped_string& scopedstrName, const ::floating_sequence4& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_seq4(scopedstrName, a);
+         ::gpu::shader::set_sequence4(scopedstrName, a);
 
       }
       else
       {
 
-         _set_seq4(::string(scopedstrName), a);
+         _set_sequence4(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_mat2(const ::scoped_string& scopedstrName, const ::glm::mat2& a)
+   void shader::set_matrix2(const ::scoped_string& scopedstrName, const ::floating_matrix2& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_mat2(scopedstrName, a);
+         ::gpu::shader::set_matrix2(scopedstrName, a);
 
       }
       else
       {
 
-         _set_mat2(::string(scopedstrName), a);
+         _set_matrix2(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_mat3(const ::scoped_string& scopedstrName, const ::glm::mat3& a)
+   void shader::set_matrix3(const ::scoped_string& scopedstrName, const ::floating_matrix3& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_mat3(scopedstrName, a);
+         ::gpu::shader::set_matrix3(scopedstrName, a);
 
       }
       else
       {
 
-         _set_mat3(::string(scopedstrName), a);
+         _set_matrix3(::string(scopedstrName), a);
 
       }
 
    }
 
 
-   void shader::set_mat4(const ::scoped_string& scopedstrName, const ::glm::mat4& a)
+   void shader::set_matrix4(const ::scoped_string& scopedstrName, const floating_matrix4& a)
    {
 
       if (m_propertiesPushShared.m_pproperties)
       {
 
-         ::gpu::shader::set_mat4(scopedstrName, a);
+         ::gpu::shader::set_matrix4(scopedstrName, a);
 
       }
       else
       {
 
-         _set_mat4(::string(scopedstrName), a);
+         _set_matrix4(::string(scopedstrName), a);
 
       }
 

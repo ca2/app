@@ -32,6 +32,14 @@ folder_dialog::~folder_dialog()
 }
 
 
+bool folder_dialog::is_folder_dialog() const
+{
+
+   return true;
+
+}
+
+
 //
 //   void folder_dialog::pick_single_folder(
 //      ::user::element * puserelement,
@@ -81,7 +89,12 @@ folder_dialog::~folder_dialog()
 ////            false);
 //
 //   }
+void folder_dialog::on_dialog_response()
+{
 
+   m_procedureResponse(this);
+
+}
 
 } // namespace file
 

@@ -9,16 +9,16 @@
 #include "bred/gpu/device.h"
 
 
-
-
 namespace gpu
 {
+
 
    class CLASS_DECL_BRED graphics :
       virtual public ::draw2d::graphics,
       virtual public ::gpu::compositor
    {
    public:
+
 
       enum enum_transform_context
       {
@@ -56,7 +56,8 @@ namespace gpu
       void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement) override;
+      void on_gpu_context_placement_change(const ::int_rectangle &rectanglePlacement,
+                                           ::acme::windowing::window *pacmewindowingwindow) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
       virtual ::gpu::model_buffer * model_buffer(::draw2d::enum_model epool);
@@ -66,20 +67,20 @@ namespace gpu
       virtual ::geometry2d::matrix context_scale_matrix();
 
 
-      template < primitive_point POINT >
+      template < prototype_point POINT >
       POINT& __transform(POINT& p)
       {
          
          m_m1.transform(p);
          
-         //p.y() = m_pgpucontextCompositor2->m_rectangle.height() - p.y();
+         //p.y = m_pgpucontextCompositor2->m_rectangle.height() - p.y;
          
          return p;
 
       }
 
 
-      template < primitive_array POINT_ARRAY >
+      template < prototype_array POINT_ARRAY >
       POINT_ARRAY& __transform(POINT_ARRAY& a)
       {
          
@@ -90,7 +91,7 @@ namespace gpu
       }
 
 
-      template < primitive_point POINT >
+      template < prototype_point POINT >
       POINT& context_scale(POINT& p)
       {
 
@@ -101,7 +102,7 @@ namespace gpu
       }
 
       //
-      // template < primitive_point POINT >
+      // template < prototype_point POINT >
       // POINT& context_transform(POINT& p)
       // {
       //
@@ -112,7 +113,7 @@ namespace gpu
       // }
       //
       //
-      // template < primitive_array POINT_ARRAY >
+      // template < prototype_array POINT_ARRAY >
       // POINT_ARRAY& context_transform(POINT_ARRAY& a)
       // {
       //
@@ -134,7 +135,9 @@ namespace gpu
 
       void _set(const ::geometry2d::matrix& matrix) override;
 
-      void do_on_context(const ::procedure& procedure) override;
+      void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
+
+      //void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure) override;
 
       //template < typename TYPE >
       //void push_on_end_top_frame(::pointer_array < TYPE >& a, const ::pointer < TYPE > & p)
@@ -164,6 +167,8 @@ namespace gpu
       virtual void defer_soft_unbind_draw2d_compositor(::gpu::layer* player);
 
 
+      void draw_rectangle(const ::double_rectangle &rectangle, ::draw2d::pen *ppen) override;
+
       virtual void _fill_quad(const ::double_point points[4], const ::color::color& color);
 
       void fill_rectangle(const ::double_rectangle& rectangle, const ::color::color& color) override;
@@ -183,7 +188,7 @@ namespace gpu
 
 
       virtual ::typeface::face* get_face(::write_text::font* pfont);
-
+      void defer_set_size(const ::int_size &size) override;
 
    };
 

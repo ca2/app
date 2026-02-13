@@ -172,7 +172,7 @@ void item_container::indexed_add_item(::item * pitem)
 //}
 
 
-::item_pointer item_container::item(const ::atom & atom)
+::item * item_container::item(const ::atom & atom)
 {
 
    auto iIndex = item_index(atom);
@@ -205,7 +205,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item_pointer item_container::find_item(enum_element eelement, ::collection::index iItem)
+::item * item_container::find_item(enum_element eelement, ::collection::index iItem)
 {
 
    if (!m_pitema)
@@ -239,7 +239,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item_pointer item_container::defer_item(enum_element eelement, ::collection::index iItem)
+::item * item_container::defer_item(enum_element eelement, ::collection::index iItem)
 {
 
    auto pitem = this->find_item(eelement, iItem);
@@ -326,7 +326,7 @@ bool item_container::contains_item(const ::atom & atom) const
       for (::collection::index iItem = 0; iItem < m_pitema->size(); iItem++)
       {
 
-         auto pitem = (*m_pitema)[iItem];
+         ::cast < ::item > pitem = (*m_pitema)[iItem];
 
          if (pitem->m_item.m_eelement == atom.m_eelement)
          {
@@ -420,12 +420,12 @@ bool item_container::is_item_selected(::item * pitem)
 
    }
 
-   return pitemSelected.m_p == pitem;
+   return pitemSelected == pitem;
 
 }
 
 
-::item_pointer item_container::selected_item()
+::item * item_container::selected_item()
 {
 
    auto iCount = get_child_as_item_count();
@@ -475,12 +475,12 @@ bool item_container::is_item_hover(::item * pitem)
 
    }
 
-   return pitemHover.m_p == pitem;
+   return pitemHover == pitem;
 
 }
 
 
-::item_pointer item_container::hover_item()
+::item * item_container::hover_item()
 {
 
    auto iCount = get_child_as_item_count();
@@ -504,7 +504,7 @@ bool item_container::is_item_hover(::item * pitem)
 }
 
 
-::item_pointer item_container::get_child_as_item(::collection::index iIndex)
+::item * item_container::get_child_as_item(::collection::index iIndex)
 {
 
    return nullptr;

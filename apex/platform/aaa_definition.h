@@ -189,10 +189,6 @@
 //#endif
 //
 //
-//
-//
-//
-//
 /////////////////////////////////////////////////////////////////////////////////
 //// __declspec(novtable) is used on a class declaration to prevent the vtable
 //// pointer from being initialized in the constructor and destructor for the
@@ -429,10 +425,6 @@
 //#ifndef __out_bcount_part_z
 //#define __out_bcount_part_z(size,length)                        __out_bcount_part(size,length) __post __nullterminated
 //#endif
-//
-//
-//
-//
 //
 //
 //enum enum_exclusive_instance

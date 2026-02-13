@@ -17,7 +17,8 @@ namespace graphics3d
       ::pointer<::graphics3d::engine> m_pengine;
 
 
-      ::pointer<::gpu::shader> m_pshader;
+
+      bool m_bPrepared = false;
 
 
       render_system();
@@ -28,8 +29,7 @@ namespace graphics3d
       virtual void initialize_render_system(::graphics3d::engine* pengine);
 
 
-
-      
+      virtual ::graphics3d::scene_renderable *current_scene_renderable();
 
       // virtual void on_prepare();
       //
@@ -47,7 +47,7 @@ namespace graphics3d
       virtual void update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene);
       virtual void on_update(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene);
 
-      //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+      //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
 
       virtual void render(::gpu::context* pgpucontext, ::graphics3d::scene_base* pscene);

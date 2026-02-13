@@ -66,8 +66,6 @@ namespace acme
 message_box::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
-   preempt(30_s);
-
    m_strMessage = scopedstrMessage;
 
    m_strTitle = scopedstrTitle;
@@ -83,8 +81,6 @@ message_box::message_box(const ::scoped_string & scopedstrMessage, const ::scope
 
 message_box::message_box(const ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
 {
-
-   preempt(30_s);
 
    m_strMessage = exception.m_strMessage;
 
@@ -131,8 +127,6 @@ message_box::message_box(const ::exception & exception, const ::scoped_string & 
 
 message_box::message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
-
-   preempt(30_s);
 
    m_strMessage = exception.m_strMessage;
 

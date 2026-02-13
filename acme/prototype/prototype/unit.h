@@ -32,7 +32,7 @@ public:
       m_bFloating = false; 
    }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr unit_base(INTEGRAL i, ENUM eunit)
    {
       m_hi = (long long)i;
@@ -40,7 +40,7 @@ public:
       clear_floating();
    }
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr unit_base(FLOATING f, ENUM eunit)
    {
       m_d = (double)f; 
@@ -48,7 +48,7 @@ public:
       set_floating(); 
    }
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr unit_base(FLOATING f) 
    {
       m_d = (double)f;
@@ -83,7 +83,7 @@ public:
 //   constexpr operator double() const { return double(); }
 //   constexpr operator ENUM() const { return eunit(); }
 
-   //template < primitive_integral INTEGRAL >
+   //template < prototype_integral INTEGRAL >
    //constexpr unit_base & operator = (INTEGRAL i) { m_hi = (long long)i; clear_floating(); return *this; }
 
    
@@ -94,7 +94,7 @@ public:
       
    }
    
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr unit_base & operator = (FLOATING f)
    { 
       
@@ -133,7 +133,7 @@ public:
    constexpr void set_unit(ENUM eunit) { m_eunit = eunit; }
    
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    unit_base & operator *= (FLOATING f)
    {
 
@@ -146,7 +146,7 @@ public:
    }
    
    
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    unit_base & operator /= (FLOATING f)
    {
 
@@ -159,7 +159,7 @@ public:
    }
    
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    unit_base operator * (FLOATING f) const
    {
 
@@ -170,7 +170,7 @@ public:
    }
    
    
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    unit_base operator / (FLOATING f) const
    {
 
@@ -184,7 +184,7 @@ public:
 };
 
 
-template < primitive_floating FLOATING, typename ENUM >
+template < prototype_floating FLOATING, typename ENUM >
 inline unit_base < ENUM > operator * (FLOATING f, const unit_base < ENUM > & unit)
 {
 
@@ -194,17 +194,21 @@ inline unit_base < ENUM > operator * (FLOATING f, const unit_base < ENUM > & uni
 
 }
 
-struct pixel_t {};
-
-template < primitive_number NUMBER >
-constexpr auto operator *(NUMBER n, pixel_t) { return unit(n, e_unit_pixel); }
-
 using unit = unit_base < enum_unit >;
+
+template < prototype_number NUMBER >
+constexpr auto pixel_unit(NUMBER n)
+{
+
+   return unit(n, e_unit_pixel);
+
+}
+
 
 constexpr auto operator ""_px(unsigned long long i)
 {
 
-   return unit(i, e_unit_pixel);
+   return pixel_unit(i);
 
 }
 
@@ -212,21 +216,30 @@ constexpr auto operator ""_px(unsigned long long i)
 constexpr auto operator ""_px(long double d)
 {
 
-   return unit(d, e_unit_pixel);
+   return pixel_unit(d);
 
 }
 
 
-struct point_t {};
+//struct point_unit_t {};
 
-template < primitive_number NUMBER >
-constexpr auto operator *(NUMBER n, point_t) { return unit(n, e_unit_point); }
+//template < prototype_number NUMBER >
+//constexpr auto operator *(NUMBER n, point_unit_t) { return unit(n, e_unit_point); }
+
+
+template < prototype_number NUMBER >
+constexpr auto point_unit(NUMBER n)
+{
+ 
+   return unit(n, e_unit_point);
+
+}
 
 
 constexpr auto operator ""_pt(unsigned long long i)
 {
 
-   return unit(i, e_unit_point);
+   return point_unit(i);
 
 }
 
@@ -234,7 +247,7 @@ constexpr auto operator ""_pt(unsigned long long i)
 constexpr auto operator ""_pt(long double d)
 {
 
-   return unit(d, e_unit_point);
+   return point_unit(d);
 
 }
 

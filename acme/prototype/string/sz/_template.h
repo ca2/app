@@ -2,7 +2,7 @@
 #pragma once
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 inline character_count _string_get_length2(const CHARACTER * psz, character_count lengthMax) noexcept 
 { 
    

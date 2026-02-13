@@ -144,7 +144,7 @@ namespace user
 
       else
       {
-         m_dTensionPosition = ((double) point.x() / (double) rectangleX.width());
+         m_dTensionPosition = ((double) point.x / (double) rectangleX.width());
       }
    }
 
@@ -193,7 +193,7 @@ namespace user
    }
 
 
-   void elastic_slider::SetStreamingVelocityMode(scalar * pscalarVelocity,scalar * pscalarPosition)
+   void elastic_slider::SetStreamingVelocityMode(::number::scalar * pscalarVelocity,::number::scalar * pscalarPosition)
    {
 
       m_escalar = e_scalar_streaming_velocity;
@@ -269,13 +269,13 @@ namespace user
 
       int iWidth = 16;
       
-      rectangle.top() = rectangleX.top();
+      rectangle.top = rectangleX.top;
       
-      rectangle.bottom() = rectangleX.bottom();
+      rectangle.bottom = rectangleX.bottom;
       
-      rectangle.left() = (int) minimum(rectangleX.right(), m_dPosition * (rectangleX.width() - iWidth));
+      rectangle.left = (int) minimum(rectangleX.right, m_dPosition * (rectangleX.width() - iWidth));
       
-      rectangle.right() = (int) minimum(rectangleX.right(), m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
+      rectangle.right = (int) minimum(rectangleX.right, m_dPosition * ((rectangleX.width() - iWidth)) + iWidth);
       
    }
 

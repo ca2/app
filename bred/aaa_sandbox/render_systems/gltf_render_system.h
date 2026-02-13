@@ -31,8 +31,8 @@ namespace graphics3d
 
 		//s::pointer <::graphics3d::device > m_pgpudevice;
 
-		// VkDescriptorSetLayout m_globalSetLayout;
-		// VkDescriptorSetLayout m_iblSetLayout;
+		// aaaVkDescriptorSetLayout m_globalSetLayout;
+		// aaaVkDescriptorSetLayout m_iblSetLayout;
 		// VkDescriptorSet m_iblDescriptorSet;
 
 		//::pointer<::graphics3d::pipeline> m_opaquePipeline;
@@ -50,7 +50,7 @@ namespace graphics3d
 		//::array_base<VkDescriptorSet>				  m_iblDescriptorSets;
 
 
-		//gltf_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout, IAssetProvider& assets);
+		//gltf_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout, IAssetProvider& assets);
 		gltf_render_system();
 		~gltf_render_system();
 
@@ -60,13 +60,13 @@ namespace graphics3d
 		// void init(
 		// 	graphics3d::device * pdevice,
 		// 	VkRenderPass            renderPass,
-		// 	VkDescriptorSetLayout   globalSetLayout,
+		// 	aaaVkDescriptorSetLayout   globalSetLayout,
 		// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 		// 	size_t frameCount)override;
 
 		void render(::gpu::frame * pframe) override;
 	//private:
-		//void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+		//void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
 		//void createPipeline(VkRenderPass renderPass);
 
 

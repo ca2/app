@@ -116,8 +116,8 @@ namespace user
       virtual void set_drag_point(const ::double_point & double_point);
       virtual ::double_point get_drag_point();
 
-      virtual void _transform_sequence(sequence2_double & sequence) const;
-      virtual void _transform_sequence_drawing(sequence2_double & sequence) const;
+      virtual void _transform_sequence(double_sequence2 & sequence) const;
+      virtual void _transform_sequence_drawing(double_sequence2 & sequence) const;
       template < typename T >
       inline T _transform(const T & t) const
       {
@@ -132,8 +132,8 @@ namespace user
          _transform_sequence(tTransform);
          return tTransform;
       }
-      virtual void _rtransform_sequence(sequence2_double & sequence) const;
-      virtual void _rtransform_sequence_drawing(sequence2_double & sequence) const;
+      virtual void _rtransform_sequence(double_sequence2 & sequence) const;
+      virtual void _rtransform_sequence_drawing(double_sequence2 & sequence) const;
       template < typename T >
       inline T _rtransform(const T & t) const
       {
@@ -149,8 +149,8 @@ namespace user
          return tTransform;
       }
 
-      virtual void drag_transform_sequence(sequence2_double & sequence) const;
-      virtual void drag_transform_sequence_drawing(sequence2_double & sequence) const;
+      virtual void drag_transform_sequence(double_sequence2 & sequence) const;
+      virtual void drag_transform_sequence_drawing(double_sequence2 & sequence) const;
       template < typename T >
       inline T drag_transform(const T & t) const
       {
@@ -166,8 +166,8 @@ namespace user
          return tTransform;
       }
       //inline void drag_rtransform_size(double_size& size) const { drag_rtransform_point((::double_point &) size); }
-      virtual void drag_rtransform_sequence(sequence2_double & sequence) const;
-      virtual void drag_rtransform_sequence_drawing(sequence2_double & sequence) const;
+      virtual void drag_rtransform_sequence(double_sequence2 & sequence) const;
+      virtual void drag_rtransform_sequence_drawing(double_sequence2 & sequence) const;
       template < typename T >
       inline T drag_rtransform(const T & t) const
       {

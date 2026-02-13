@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "apex/primitive/collection/string_to_string_map.h"
+#include "apex/prototype/collection/string_to_string_map.h"
 
 
 namespace apex

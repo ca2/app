@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include "gpu/gltf/mesh.h"
+#include "gpu/model/mesh.h"
 
 // #include "bred/gpu/context_object.h"
 // #include "bred/graphics3d/renderable.h"
@@ -12,7 +12,7 @@
 // #include <assimp/Importer.hpp>
 // #include <assimp/postprocess.h>
 // #include <assimp/scene.h>
-// #include <glm/glm.hpp>
+// 
 // //#include <string>
 // //#include <vector>
 //
@@ -31,12 +31,12 @@ namespace gpu_opengl
        * A gltf_mesh is a collection of geometry paired with a material.
        */
       class mesh :
-         virtual public ::gpu::gltf::mesh
+         virtual public ::gpu::model::mesh
       {
       public:
 
          // OpenGL data structures
-         unsigned int m_uVAO, m_uVBO, m_uEBO;
+         //unsigned int m_uVAO, m_uVBO, m_uEBO;
 
          //array_base<gltf::vertex> m_vertexa;
          // unsigned_int_array m_indexa;
@@ -48,12 +48,12 @@ namespace gpu_opengl
 
 
          //void initialize_gpu_gltf_mesh(const ::array_base<::gpu::gltf::vertex> &vertexa,
-         //                          const ::unsigned_int_array &indexa, ::gpu::gltf::material *pmaterial) override;
+         //                          const ::unsigned_int_array &indexa, ::gpu::model::material *pmaterial) override;
 
 
-         void init() override;
+         //virtual void on_initialize_gpu_mesh() override;
 
-         void draw(::gpu::command_buffer *pcommandbuffer) override;
+         void draw2(::gpu::command_buffer *pcommandbuffer) override;
          // private:
          //    // OpenGL data structures
          //    unsigned int mVAO, mVBO, mEBO;

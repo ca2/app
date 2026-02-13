@@ -22,7 +22,7 @@ namespace apex
    public:
 
 
-      oswindow             m_oswindow;
+      ::acme::windowing::window * m_pacmewindowingwindow;
       string               m_strOperation;
       string               m_strFile;
       string               m_strParameters;
@@ -46,7 +46,7 @@ namespace apex
       virtual ~shell_launcher();
 
       virtual void setup(const class time & timeTimeout = 1_minute);
-      virtual void setup(oswindow oswindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, const class time & timeTimeout = 1_minute);
+      virtual void setup(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, const class time & timeTimeout = 1_minute);
 
       virtual void launch();
 

@@ -83,6 +83,30 @@ namespace platform
    }
 
 
+   ::string apex_application_layer::fetch_public_internet_domain_extension_list_text()
+   {
+
+      ::string str;
+
+      str = "com\n"
+         "net\n"
+         "org\n"
+         "dk\n"
+         "us\n"
+         "de\n"
+         "uk\n"
+         "jp\n"
+         "ar\n"
+         "br\n"
+         "ve\n"
+         "in\n"
+         "fr\n";
+
+      return str;
+
+   }
+
+
    // bool apex_application_layer::is_application() const override{}
    //
    //
@@ -838,16 +862,16 @@ namespace platform
    }
 
 
-   // bool on_set_scalar(enum_scalar escalar, ::number number, int iFlags) override{}
+   // bool on_set_scalar(enum_scalar escalar, ::number::number number, int iFlags) override{}
    //
    //
-   // ::number get_scalar_minimum(enum_scalar escalar) override{}
+   // ::number::number get_scalar_minimum(enum_scalar escalar) override{}
    //
    //
-   // ::number get_scalar(enum_scalar escalar) override{}
+   // ::number::number get_scalar(enum_scalar escalar) override{}
    //
    //
-   // ::number get_scalar_maximum(enum_scalar escalar) override{}
+   // ::number::number get_scalar_maximum(enum_scalar escalar) override{}
 
 
    //bool safe_is_running(){}
@@ -1103,9 +1127,9 @@ namespace platform
 
    //void apex_application_layer::on_graphics_ready(){}
 
-   //virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
+   //virtual ::platform::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype){}
    // apex commented
-   //virtual ::type_atom control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype){}
+   //virtual ::platform::type control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype){}
 
 
    //virtual ::atom translate_property_id(const ::atom & atom) override{}
@@ -1169,7 +1193,7 @@ namespace platform
    //user void apex_application_layer::on_create_split_impact(::user::split_impact* pimpact){}
 
 
-   //virtual ::type_atom control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override{}
+   //virtual ::platform::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override{}
 
 
    // bool apex_application_layer::base_support(){}

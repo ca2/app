@@ -31,7 +31,7 @@ namespace acme
 
 
       class CLASS_DECL_ACME windowing :
-         virtual public ::acme::department,
+         virtual public ::platform::department,
          virtual public ::task,
          virtual public ::task_handler
       {
@@ -41,7 +41,7 @@ namespace acme
          ::pointer_array < ::acme::windowing::window >      m_windowa;
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
-         ::pointer<::acme::windowing::window>               m_pwindowMouseCapture;
+         ::pointer<::acme::windowing::window>               m_pacmewindowingwindowMouseCapture;
          class ::time                                       m_timeDarkMode;
 
          ::windowing::enum_bias                             m_ewindowingbias;
@@ -74,7 +74,7 @@ namespace acme
 
          //::pointer < ::subparticle > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-         virtual void defer_initialize_host_window(const ::int_rectangle* lpcrect);
+         virtual ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect);
          
          virtual void _will_finish_launching();
          
@@ -90,7 +90,7 @@ namespace acme
          //
          virtual void erase_window(::acme::windowing::window* pwindow);
          
-         virtual ::acme::windowing::window* window(oswindow oswindow);
+         virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
 
          
          virtual void _message_handler(void* p);
@@ -145,10 +145,6 @@ namespace acme
 
          virtual ::windowing::windowing * windowing_windowing();
 
-         virtual void on_start_system();
-
-         virtual void on_start_windowing_application();
-
          virtual void _do_tasks();
          
          virtual void application_handle(long long l, void * p);
@@ -178,6 +174,12 @@ namespace acme
          //virtual void * fetch_windowing_display();
 
          //virtual void process_messages();
+
+         //virtual void on_start_windowing_application();
+
+         virtual void windowing_application_on_system_start();
+
+         virtual void windowing_application_on_start();
 
          virtual void windowing_application_main_loop();
 

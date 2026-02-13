@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "primitive_impl.h"
+#include "prototype_impl.h"
 #include "interaction_array.h"
 #include "interaction.h"
 #include "redraw.h"
@@ -74,7 +74,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction_impl:
-      virtual public ::user::primitive_impl
+      virtual public ::user::prototype_impl
    {
    public:
 
@@ -790,7 +790,7 @@ namespace user
       //virtual void set_handle(::windowing::window * pwindow);
       
       
-      ::oswindow oswindow() const;
+      ::::acme::windowing::window * pacmewindowingwindow() const;
 
 
       ::graphics::graphics * get_window_graphics() override;
@@ -813,7 +813,7 @@ namespace user
       ::user::element * get_keyboard_focus() override;
       //virtual void set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void erase_keyboard_focus(::user::interaction_base * pprimitive) override;
-      void aaa_clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr) override;
+      void aaa_clear_keyboard_focus(::user::prototype_impl* pprimitiveimplGainingFocusIfAny = nullptr) override;
       //virtual void impl_set_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void impl_erase_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void aaa_impl_clear_keyboard_focus() override;

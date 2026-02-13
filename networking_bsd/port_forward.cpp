@@ -1,6 +1,7 @@
-#include "framework.h"
 #include "port_forward.h"
 #include "acme/platform/system.h"
+#include "acme/prototype/prototype/memory.h"
+#include "framework.h"
 
 
 #ifdef WINDOWS
@@ -151,9 +152,9 @@ namespace net
    //        GetPortMappingVector() function to get a copy of the current contents of
    //        std::vector< port_forward::PortMappingContainer > m_MappingContainer
 
-   bool port_forward::GetMappingsUsingThread( oswindow oswindow )
+   bool port_forward::GetMappingsUsingThread( ::acme::windowing::window * pacmewindowingwindow )
    {
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
 	   // returns true if thread was started successfully
 
       return false;
@@ -175,11 +176,11 @@ namespace net
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
 
-   bool port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, oswindow oswindow )
+   bool port_forward::EditMappingUsingThread( port_forward::port_map & oldMapping, port_forward::port_map & newMapping, ::acme::windowing::window * pacmewindowingwindow )
    {
       __UNREFERENCED_PARAMETER(oldMapping);
       __UNREFERENCED_PARAMETER(newMapping);
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
       return false;
 
    }
@@ -200,10 +201,10 @@ namespace net
    //  WPARAM == port_forward::EnumAddMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
-   bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, oswindow oswindow )
+   bool port_forward::AddMappingUsingThread(port_forward::port_map & newMapping, ::acme::windowing::window * pacmewindowingwindow )
    {
       __UNREFERENCED_PARAMETER(newMapping);
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
 	   return false;
    }
 
@@ -223,10 +224,10 @@ namespace net
    //  WPARAM == port_forward::EnumDeleteMappingDone when the thread is finished, where
    //      LPARAM signifies if the thread was or was not successful (S_OK or E_FAIL).
 
-   bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, oswindow oswindow )
+   bool port_forward::DeleteMappingUsingThread(port_forward::port_map & oldMapping, ::acme::windowing::window * pacmewindowingwindow )
    {
       __UNREFERENCED_PARAMETER(oldMapping);
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
 	   return false;
    }
 
@@ -247,9 +248,9 @@ namespace net
    //      GetDeviceInformationContainer() function to retrieve a copy of the current contents of
    //      port_forward::DeviceInformationContainer m_DeviceInfo
 
-   bool port_forward::GetDeviceInformationUsingThread( oswindow oswindow )
+   bool port_forward::GetDeviceInformationUsingThread( ::acme::windowing::window * pacmewindowingwindow )
    {
-      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
       return false;
 
    }

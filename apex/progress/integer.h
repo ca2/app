@@ -10,14 +10,14 @@ namespace progress
 
 
    class CLASS_DECL_APEX integer :
-      virtual public scalar_source::listener
+      virtual public ::number::scalar_source::listener
    {
    public:
 
 
       double                     m_dProgressStart;
       double                     m_dProgressEnd;
-      scalar                     m_scalar;
+      ::number::scalar           m_scalar;
       ::progress::listener *     m_plistener;
 
 
@@ -30,7 +30,7 @@ namespace progress
 
       virtual void progress_step();
 
-      virtual bool on_set_scalar(scalar_source * psource, enum_scalar escalar, number number, int iFlags) override;
+      virtual bool on_set_scalar(::number::scalar_source * psource, enum_scalar escalar, ::number::number number, int iFlags) override;
 
       //scalar & get_scalar() { return m_scalar; }
 

@@ -51,13 +51,13 @@ namespace core
       ::filemanager::filemanager * filemanager() override;
 
 
-      void create_options_footer(::user::interaction * pparent) override;
+      void create_options_footer(const ::atom & atom, ::user::interaction * pparent) override;
 
 
       bool handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
 
 
-      void create_auto_start_option(::user::interaction * pparent) override;
+      void create_auto_start_option(const ::atom &atom, ::user::interaction *pparent) override;
 
 
       void term_instance() override;

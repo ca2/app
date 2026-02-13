@@ -18,7 +18,7 @@ namespace message
    }
 
 
-   //void simple_command::set(oswindow oswindow, ::layered * playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //void simple_command::set(::acme::windowing::window * pacmewindowingwindow, ::layered * playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   ::user::message::set(oswindow, playeredUserPrimitive, eusermessage, wparam, lparam);

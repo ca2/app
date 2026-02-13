@@ -70,8 +70,8 @@ namespace hi5
 
          m_ptemplatePane = ___new ::user::single_document_template(
             "system/auth",
-            ::type < ::user::document >(),
-            ::type < simple_frame_window >(),
+            ::type<::user::document>(),
+            ::type<simple_frame_window>(),
             psystem->get_pane_tab_impact_type_info());
 
          //return estatus;
@@ -229,7 +229,7 @@ namespace hi5
 
          rectangleOpen.deflate(iWidth / 5, iHeight / 50);
 
-         rectangleOpen.top() = iHeight * 2 / 3;
+         rectangleOpen.top = iHeight * 2 / 3;
 
          //::pointer<::user::frame_window>pframe = m_pviewAuth->get_parent_frame();
 

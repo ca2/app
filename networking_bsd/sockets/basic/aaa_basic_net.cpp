@@ -697,7 +697,7 @@
 ////         {
 ////            string s = host.substr(x, i - x);
 ////            //
-////            if (strstr(s,".")) // x.x().x().x()
+////            if (strstr(s,".")) // x.x.x.x
 ////            {
 ////               Parse pa(s,".");
 ////               char slask[100]; // u2ip temporary hgenstring conversion
@@ -1313,10 +1313,6 @@
 //
 //} // namespace networking_bsd
 //
-//
-//
-//
-//
 ////namespace net
 ////{
 ////
@@ -1344,8 +1340,4 @@
 ////
 ////
 ////
-//
-//
-//
-//
 //

@@ -3,8 +3,10 @@
 //
 #include "framework.h"
 #include "node_acme.h"
-#include "acme/constant/id.h"
 
+#include "application.h"
+#include "acme/constant/id.h"
+#include "acme/user/user/interaction.h"
 
 namespace platform
 {
@@ -560,14 +562,6 @@ namespace platform
    }
 
 
-   //virtual ::user::enum_operating_ambient get_eoperating_ambient(){}
-   //virtual ::user::enum_toolkit get_etoolkit(){}
-
-   //virtual ::user::enum_operating_ambient calculate_edesktop(){}
-   //virtual ::user::enum_toolkit calculate_etoolkit(){}
-
-   //::string acme_node_layer::get_user_toolkit_id(){}
-
    void acme_node_layer::launch_app(const ::scoped_string & scopedstr, const_char_pointer *argv, int iFlags)
    {
    }
@@ -788,14 +782,6 @@ namespace platform
    }
 
 
-   //::file::path command_find_path(const ::scoped_string & scopedstrCommand){}
-
-
-   //virtual ::user::enum_operating_ambient calculate_edesktop(){}
-   //
-   //
-   //virtual ::user::enum_operating_ambient get_eoperating_ambient(){}
-
    void acme_node_layer::on_start_system()
    {
    }
@@ -811,20 +797,7 @@ namespace platform
    {
    }
 
-
-   //virtual ::pointer<::conversation> create_new_message_box_conversation(){}
-
-   //virtual ::pointer<::conversation> create_new_message_conversation(){}
-
-
-   //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
-
-
-   //void acme_node_layer::micro::message_box(::sequence < ::conversation > * psequence, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox){}
-
-   //virtual ::pointer < ::subparticle > create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon){}
-
-
+   
    void acme_node_layer::shell_launch(const ::scoped_string & scopedstrAppId)
    {
    }
@@ -2008,6 +1981,108 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    {
 
       throw interface_only();
+
+   }
+
+
+   void acme_node_layer::restart_application()
+   {
+
+//
+// #include <unistd.h>
+// #include <limits.h>
+// #include <sys/types.h>
+// #include <sys/stat.h>
+// #include <fcntl.h>
+// #include <signal.h>
+// #include <stdlib.h>
+// #include <string.h>
+// #include <errno.h>
+
+// void node::restart_application()
+// {
+   ::system()->fork(
+      [this]()
+      {
+
+         auto papplication = ::system()->m_papplicationMain;
+
+         launch_app_by_app_id(papplication->m_strAppId, false);
+         // // ----------------------------------------
+         // // Resolve current executable path
+         // // ----------------------------------------
+         //
+         // char exePath[PATH_MAX + 1] = {};
+         //
+         // ssize_t len = readlink("/proc/self/exe", exePath, PATH_MAX);
+         // if (len <= 0)
+         // {
+         //    warning() << "Failed to resolve /proc/self/exe: " << strerror(errno);
+         //    return;
+         // }
+         // exePath[len] = '\0';
+         //
+         // // ----------------------------------------
+         // // Fork new process
+         // // ----------------------------------------
+         //
+         // pid_t pid = ::fork();
+         // if (pid < 0)
+         // {
+         //    warning() << "fork() failed: " << strerror(errno);
+         //    return;
+         // }
+         //
+         // if (pid == 0)
+         // {
+         //    // -------------------------------------
+         //    // Child: detach like DETACHED_PROCESS
+         //    // -------------------------------------
+         //
+         //    if (::setsid() < 0)
+         //    {
+         //       // not fatal, but log it
+         //       warning() << "setsid() failed: " << strerror(errno);
+         //    }
+         //
+         //    // Optional: close stdio if you want full detachment
+         //    /*
+         //    close(STDIN_FILENO);
+         //    close(STDOUT_FILENO);
+         //    close(STDERR_FILENO);
+         //    */
+         //
+         //    // -------------------------------------
+         //    // Exec new instance
+         //    // -------------------------------------
+         //
+         //    char* argv[] =
+         //    {
+         //       exePath,
+         //       nullptr
+         //    };
+         //
+         //    ::execv(exePath, argv);
+         //
+         //    // If execv returns, it's an error
+         //    warning() << "execv failed: " << strerror(errno);
+         //    _exit(127);
+         // }
+
+         // ----------------------------------------
+         // Parent: graceful shutdown
+         // ----------------------------------------
+
+         if (papplication->m_pacmeuserinteractionMain)
+         {
+            papplication->m_pacmeuserinteractionMain->hide();
+            papplication->m_pacmeuserinteractionMain->set_finish();
+         }
+
+         papplication->set_finish();
+         ::system()->set_finish();
+      });
+
 
    }
 

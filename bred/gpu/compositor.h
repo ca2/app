@@ -33,7 +33,7 @@ namespace gpu
       virtual void on_set_gpu_context();
 
 
-      virtual void on_gpu_context_placement_change(const ::int_rectangle& rectanglePlacement);
+      virtual void on_gpu_context_placement_change(const ::int_rectangle& rectanglePlacement, ::acme::windowing::window *pacmewindowingwindow);
 
 
       //virtual void on_gpu_context_placement_change(const ::int_rectangle & rectanglePlacement);

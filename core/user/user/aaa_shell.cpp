@@ -27,7 +27,7 @@ namespace user
       shell::image_key::image_key(const image_key & key)
       {
 
-         //m_oswindow = key.m_oswindow;
+         //m_pacmewindowingwindow = key.m_pacmewindowingwindow;
          m_cr = key.m_cr;
          m_strPath = key.m_strPath;
          m_iIcon = key.m_iIcon;
@@ -59,7 +59,7 @@ namespace user
 
          m_iIcon = 0;
 
-         //m_oswindow = m_pimage->get_safe_handle();
+         //m_pacmewindowingwindow = m_pimage->get_safe_handle();
 
          m_cr = crBk;
 
@@ -822,7 +822,7 @@ namespace user
    //         pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //         pimage->get_graphics()->draw(nullptr, d->size(), d->get_graphics());
-   //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx(), d->size().cy(), argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
+   //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, argb(123, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk)));
    //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //         m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
    //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

@@ -34,7 +34,7 @@ namespace message
 
       ::message::dispatcher_array *m_pdispatchera;
       channel *m_pchannel;
-      oswindow m_oswindow;
+      ::acme::windowing::window * m_pacmewindowingwindow;
       enumeration<enum_flag> m_eflagMessage;
       ::collection::index m_iRouteIndex;
       ::collection::index m_iParam;
@@ -55,7 +55,7 @@ namespace message
 
 
       inline bool is_message() const { return m_eusermessage != ::user::e_message_undefined; }
-      inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
+      inline bool is_thread_message() const { return is_message() && ::is_null(m_pacmewindowingwindow); }
 
 
       virtual bool route_message();
@@ -66,8 +66,8 @@ namespace message
       bool previous(); // returns bRet
 
       virtual void set_lresult(lresult lresult);
-      // virtual void set(oswindow oswindow, ::windowing::window * pwindow, ::user::enum_message eusermessage,
-      // ::wparam wparam, ::lparam lparam, const ::int_point & point); virtual void set(oswindow oswindow,
+      // virtual void set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage,
+      // ::wparam wparam, ::lparam lparam, const ::int_point & point); virtual void set(::acme::windowing::window * pacmewindowingwindow,
       // ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
@@ -75,7 +75,7 @@ namespace message
 
       unsigned int GetId() const { return __loword(m_wparam.m_number); }
 
-      oswindow get_oswindow() const { return m_oswindow; }
+      //oswindow get_oswindow() const { return m_pacmewindowingwindow; }
 
 
       message &operator=(const message &message);

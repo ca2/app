@@ -21,10 +21,6 @@
 //
 //      context_thread();
 //      virtual ~context_thread();
-//
-//
-//
-//
 //      virtual void on_command_create(::create* pcreate);
 //
 //      void add_create(::create* pcreate);

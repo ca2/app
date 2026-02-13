@@ -15,17 +15,17 @@ namespace gpu_opengl
    public:
 
 
+      bool m_bMesa = false;
+
       bool     m_bDepthBuffer = true;
       //GLuint m_vaoFullScreenQuad;
       //GLuint m_vboFullScreenQuad;
       ::pointer < ::gpu_opengl::frame_buffer >   m_pframebuffer;
       ::pointer < ::gpu_opengl::shader >   m_pshaderCopy;
-      ::pointer < ::gpu_opengl::shader >   m_pshaderBlend3;
       ::int_size                    m_sizeHost;
-      ::pointer < ::gpu::model_buffer >      m_pmodelbufferDummy;
       //bool m_bMesa;
 
-      GLuint m_globalUBO;
+      // GLuint m_globalUBO;
 
 
       unsigned int                     m_VAO;
@@ -50,7 +50,7 @@ namespace gpu_opengl
       string _001GetIntroFragment() override;
 
       void draw() override;
-      void start_drawing() override;
+      //void start_drawing() override;
       void global_transform() override;
       void render() override;
 
@@ -59,8 +59,6 @@ namespace gpu_opengl
       void set_cull_face(::gpu::enum_cull_mode ecullmode) override;
       //void swap_buffers() override;
 
-      void _context_lock() override;
-      void _context_unlock() override;
 
       virtual void update_framebuffer(const ::int_size& size);
       //void gpu_debug_message(const ::scoped_string& scopedstrMessage) override;
@@ -72,7 +70,7 @@ namespace gpu_opengl
       ::memory white_to_color_sampler_frag() override;
 
 
-      void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
+      //void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
 
 
       //virtual void create_offscreen_buffer(const ::int_size& size);
@@ -92,19 +90,19 @@ namespace gpu_opengl
       //virtual string get_shader_version_text();
 
 
+      //virtual void _create_offscreen_window(const ::int_size & size);
 
-      virtual void _create_offscreen_window(const ::int_size & size);
+      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource, ::pointer < ::gpu::fence > * pgpufence) override;
 
-      void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
+      void on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
+                             ::acme::windowing::window *pwindow, const ::int_size &size) override;
 
-      void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size) override;
+      void defer_create_window_context(::acme::windowing::window *pwindow) override;
+      void _defer_create_window_context(::acme::windowing::window *pwindow) override;
+      virtual void _create_window_context(::acme::windowing::window *pwindow);
 
-      void defer_create_window_context(::windowing::window * pwindow) override;
-      void _defer_create_window_context(::windowing::window * pwindow) override;
-      virtual void _create_window_context(::windowing::window * pwindow);
 
-      virtual void _create_window_buffer();
-      void _create_cpu_buffer(const ::int_size& size) override;
+      //void _create_cpu_buffer(const ::int_size& size) override;
       void resize_cpu_buffer(const ::int_size& size) override;
       void destroy_cpu_buffer() override;
 
@@ -113,14 +111,17 @@ namespace gpu_opengl
 
 
       void clear(::gpu::texture * pgputexture, const ::color::color& color) override;
-      void create_global_ubo(int iSize, int iFrameCount) override;
-      void update_global_ubo(const ::block& block) override;
+      //void create_global_ubo(int iSize, int iFrameCount) override;
+      void update_global_ubo1(::gpu::block * pblock) override;
 
 
-      void copy(::gpu::texture* ptexture) override;
-      virtual void _copy_using_shader(::gpu::texture* ptexture);
+      void layout_global_ubo(::gpu::properties *pproperties) override;
+      //bool is_global_ubo_ok();
+
+      //void copy(::gpu::texture* ptexture) override;
+      //virtual void _copy_using_shader(::gpu::texture* ptexture);
       virtual void _copy_using_blit(::gpu::texture* ptexture);
-      void merge_layers(::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
+      void merge_layers(::gpu::command_buffer * pgpucommandbuffer, ::gpu::texture* ptextureTarget, ::pointer_array < ::gpu::layer >* playera) override;
 
       void on_start_layer(::gpu::layer* player) override;
 
@@ -131,7 +132,7 @@ namespace gpu_opengl
       //void make_current() override;
 
 
-      void defer_make_current() override;
+      //void defer_make_current() override;
 
 
       //void release_current() override;
@@ -148,10 +149,10 @@ namespace gpu_opengl
 
       //void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource) override;
 
-      ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t &model) override;
+      //::pointer<::graphics3d::renderable> _load_model(const ::gpu::renderable_t &model) override;
 
-      ::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
-                                              bool b32) override;
+      //::pointer<::gpu::texture> load_cube_map(const ::scoped_string &scopedstrName, const ::file::path &path,
+      //                                        bool b32) override;
 
       // ::pointer<::gpu::texture> loadCubemap(
       //    const ::scoped_string& name,
@@ -160,10 +161,10 @@ namespace gpu_opengl
       //    VkQueue vkqueueCopy,
       //    VkImageUsageFlags usageFlags,
       //    VkImageLayout initialLayout);
-      ::pointer<::gpu::texture> loadCubemap(
-         const ::scoped_string& name,
-         const ::file::path & pathFile,
-         bool b32);
+//      ::pointer<::gpu::texture> loadCubemap(
+         //const ::scoped_string& name,
+         //const ::file::path & pathFile,
+         //bool b32);
 
 //       /// @brief generatePrefilteredEnvMap
 //       /// @param environmentCubeExisting
@@ -190,6 +191,27 @@ namespace gpu_opengl
 //       /// generate lutBrdf
 //       /// @return lutBrdf
 //       virtual ::pointer < ::gpu::texture > generateBRDFlut();
+
+       floating_matrix4 ortho(float left, float right, float bottom, float top, float zNear = -1.0f,
+                                    float zFar = 1.0f) override;
+     
+
+      //floating_matrix4 perspective(float fovyRadians, float aspect, float zNear, float zFar);
+
+      //floating_matrix4 rotateFromAxes(const ::floating_sequence3 &right, const ::floating_sequence3 &up,
+      //                                const ::floating_sequence3 &forward) override; // OpenGL forward = -f
+
+      //floating_matrix4 lookAt(const float_sequence3 &eye, const float_sequence3 &center, const float_sequence3 &up) override;
+
+       floating_sequence3 front(const ::graphics3d::floating_rotation &rotation) override;
+       void load_ktxTexture(::gpu::texture * pgputexture, void *p_ktxTexture) override;
+       void load_ktxTexture_cube_map(::gpu::texture * pgputexture, void *p_ktxTexture) override;
+
+
+            //virtual void _opengl_lock();
+      //virtual void _opengl_unlock();
+
+      //void swap_buffers();
 
    };
 

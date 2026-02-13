@@ -80,10 +80,11 @@ namespace image
 
 
       virtual void set_origin(const ::int_point & point);
-      virtual void set_font_factor(double dFactor);
       //virtual void set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode);
 
-
+      virtual void set_size_scaler(double dSizeScaler);
+      
+      
       virtual void create_helper_map();
       virtual void _create_helper_map();
 
@@ -248,7 +249,7 @@ namespace image
 
 
       virtual ::color::color GetPixel(int x, int y);
-      virtual ::color::color GetPixel(const ::int_point & point) { return GetPixel(point.x(), point.y()); }
+      virtual ::color::color GetPixel(const ::int_point & point) { return GetPixel(point.x, point.y); }
       virtual void Mask(::color::color colorMask, ::color::color colorInMask, ::color::color crOutMask);
       virtual void channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, ::color::enum_channel echannel);
       virtual void transparent_color(::color::color color);
@@ -411,7 +412,9 @@ namespace image
       virtual void xor_image_frame2(void * pdata, int iFrame, int iFrameCount);
 
 
-      virtual void create_circle(::image::image *piml, int diameter);
+      virtual void create_circle2(::image::image *piml, int diameter);
+      //virtual void create_circle_with_border(::image::image* piml, int diameter);
+      virtual void clip_circle(double dWidth);
       virtual void create_framed_square(::image::image *piml, int inner, int outer, ::color::color color);
 
 
@@ -432,7 +435,7 @@ namespace image
       //static void static_initialize();
 
       inline int scan_area() { return scan_area_in_bytes() / sizeof(::image32_t); }
-      inline int scan_area_in_bytes() { return m_iScan * m_size.cy(); }
+      inline int scan_area_in_bytes() { return m_iScan * m_size.cy; }
 
 
 
@@ -548,7 +551,7 @@ namespace image
 
          }
 
-         return m_size.cx();
+         return m_size.cx;
 
       }
 
@@ -563,7 +566,7 @@ namespace image
 
          }
 
-         return m_size.cy();
+         return m_size.cy;
 
       }
 
@@ -859,7 +862,7 @@ namespace image
 
          auto pimage32 = image32();
 
-         if (::is_null(this) || ::is_null(pimage32) || x < 0 || y < 0 || x >= m_size.cx() || y >= m_size.cy())
+         if (::is_null(this) || ::is_null(pimage32) || x < 0 || y < 0 || x >= m_size.cx || y >= m_size.cy)
          {
 
             return {};

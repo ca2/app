@@ -69,14 +69,14 @@ namespace datetime
             pointExt.offset(pointCenter);
             if (i % 5 == 0)
             {
-               pointInt.x() = (int)(cos(angle) * dRIntH);
-               pointInt.y() = (int)(-sin(angle) * dRIntH);
+               pointInt.x = (int)(cos(angle) * dRIntH);
+               pointInt.y = (int)(-sin(angle) * dRIntH);
                pgraphics->set(ppenHour);
             }
             else
             {
-               pointInt.x() = (int)(cos(angle) * dRIntM);
-               pointInt.y() = (int)(-sin(angle) * dRIntM);
+               pointInt.x = (int)(cos(angle) * dRIntM);
+               pointInt.y = (int)(-sin(angle) * dRIntM);
                pgraphics->set(ppenMinute);
             }
             pointInt.offset(pointCenter);
@@ -127,10 +127,10 @@ namespace datetime
       {
          if (eelement == e_element_clock)
          {
-            lprect->left() = m_point.x();
-            lprect->right() = lprect->left() + m_size.cx();
-            lprect->top() = m_point.y();
-            lprect->bottom() = lprect->top() + m_size.cy();
+            lprect->left = m_point.x;
+            lprect->right = lprect->left + m_size.cx;
+            lprect->top = m_point.y;
+            lprect->bottom = lprect->top + m_size.cy;
          }
       }
 

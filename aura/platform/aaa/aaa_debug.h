@@ -240,10 +240,6 @@
 //// #include "aura/inline/set_xxdebug_box.inl"
 //// and
 //// #include "aura/inline/clear_xxdebug_box.inl"
-//
-//
-//
-//
 //void CLASS_DECL_AURA TRACELASTERROR();
 //
 //
@@ -260,10 +256,6 @@
 //
 //
 //#endif
-//
-//
-//
-//
 ////class CLASS_DECL_AURA trace_interface //:
 //////   virtual public ::sockets::trace_interface
 ////{
@@ -283,10 +275,6 @@
 //
 //CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrMessage);
 //CLASS_DECL_AURA void trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstr, const ::scoped_string & scopedstrFile = nullptr, int iLine = -1);
-//
-//
-//
-//
 //
 //
 //

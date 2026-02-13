@@ -51,7 +51,7 @@ void message_queue::on_initialize_particle()
 }
 
 
-void message_queue::post_message(oswindow oswindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+void message_queue::post_message(::acme::windowing::window * pacmewindowingwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    if (m_bQuit)
@@ -64,12 +64,12 @@ void message_queue::post_message(oswindow oswindow, ::user::enum_message euserme
 
    MESSAGE message;
 
-   message.m_oswindow = oswindow;
+   message.m_pacmewindowingwindow = pacmewindowingwindow;
    message.m_eusermessage = eusermessage;
    message.m_wparam = wparam;
    message.m_lparam = lparam;
-   message.m_point.x() = I32_MINIMUM;
-   message.m_point.y() = I32_MINIMUM;
+   message.m_point.x = I32_MINIMUM;
+   message.m_point.y = I32_MINIMUM;
 
    /* return */ post_message(message);
 
@@ -133,7 +133,7 @@ void message_queue::kick_idle()
 }
 
 
-::e_status message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
+::e_status message_queue::get_message(MESSAGE * pmessage, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
 {
 
    long long iFilterMinimum = wMsgFilterMin;
@@ -205,7 +205,7 @@ void message_queue::kick_idle()
 
          auto emessage = message.m_eusermessage;
 
-         if ((oswindow == nullptr || message.m_oswindow == oswindow) && emessage >= iFilterMinimum && emessage <= iFilterMaximum)
+         if ((::is_null(pacmewindowingwindow) || message.m_pacmewindowingwindow == pacmewindowingwindow) && emessage >= iFilterMinimum && emessage <= iFilterMaximum)
          {
 
             *pmessage = message;
@@ -257,7 +257,7 @@ void message_queue::kick_idle()
 }
 
 
-bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax, bool bRemoveMessage)
+bool message_queue::peek_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax, bool bRemoveMessage)
 {
 
    if(wMsgFilterMax == 0)
@@ -299,7 +299,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,unsigned int 
 
       MESSAGE & msg = m_messagea[i];
 
-      if((oswindow == nullptr || msg.m_oswindow == oswindow) && msg.m_eusermessage >= wMsgFilterMin && msg.m_eusermessage <= wMsgFilterMax)
+      if((::is_null(pacmewindowingwindow) || msg.m_pacmewindowingwindow == pacmewindowingwindow) && msg.m_eusermessage >= wMsgFilterMin && msg.m_eusermessage <= wMsgFilterMax)
       {
 
          *pMsg = msg;

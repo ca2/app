@@ -68,7 +68,7 @@ namespace write_text
       }
 
       //bool bOk = 
-      TextOutRaw(ptextout->m_point.x(), ptextout->m_point.y(), ptextout->m_strText);
+      TextOutRaw(ptextout->m_point.x, ptextout->m_point.y, ptextout->m_strText);
 
       //if (!bOk)
       //{
@@ -240,7 +240,7 @@ namespace write_text
 
          string strNow = string(pszStart, pszEnd - pszStart);
 
-         auto extent = get_text_extent(strNow).cx();
+         auto extent = get_text_extent(strNow).cx;
 
          if (extent > w || is_empty(pszEnd))
          {
@@ -338,7 +338,7 @@ namespace write_text
 
          string strNow = string(pszStart, pszEnd - pszStart);
          
-         auto extentx = get_text_extent(strNow).cx();
+         auto extentx = get_text_extent(strNow).cx;
 
          if (extentx > w || *pszEnd == '\0')
          {
@@ -432,15 +432,15 @@ namespace write_text
 
             ptextout->m_size = get_text_extent(strLine);
 
-            ptextout->m_point.x() = 0;
+            ptextout->m_point.x = 0;
 
-            ptextout->m_point.y() = y;
+            ptextout->m_point.y = y;
 
             ptextout->m_pfont = pfont;
 
             textouta.add_text_out(ptextout);
 
-            cx = maximum(cx, ptextout->m_size.cx());
+            cx = maximum(cx, ptextout->m_size.cx);
 
          }
 
@@ -471,7 +471,7 @@ namespace write_text
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.x() = (w - ptextout->m_size.cx()) * dRate;
+            ptextout->m_point.x = (w - ptextout->m_size.cx) * dRate;
 
          }
 
@@ -492,7 +492,7 @@ namespace write_text
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.y() += Δy;
+            ptextout->m_point.y += Δy;
 
          }
 

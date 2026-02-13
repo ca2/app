@@ -16,7 +16,7 @@
 #if defined(LINUX) // || defined(__ANDROID__)
 
 
-bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
+bool apex_defer_process_x_message(htask htask,MESSAGE * pMsg,::acme::windowing::window * pacmewindowingwindow,bool bPeek);
 
 
 #endif
@@ -154,7 +154,7 @@ void mq_post_thread_message(::task_index & taskindex, ::user::enum_message euser
 }
 
 
-//CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg)
+//CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg)
 //{
 //
 //   auto pmessagequeue = ::aaa_get_message_queue(::current_itask(), false);
@@ -178,7 +178,7 @@ void mq_post_thread_message(::task_index & taskindex, ::user::enum_message euser
 //}
 
 
-CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
    auto pmessagequeue = ::system()->task_message_queue()->current_task_message_queue(true);
@@ -190,7 +190,7 @@ CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, oswindow oswindow, uns
 
    }
 
-   auto estatus = pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+   auto estatus = pmessagequeue->get_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax);
 
    return estatus;
 

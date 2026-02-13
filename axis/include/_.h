@@ -6,10 +6,6 @@
 //  C++ language with the aim to help developers create awesome apps for users.
 //
 //  ca2/../axis/aura/apex/acme/C++/C/Assembly/Huffman Machine/Hardware/Universe/Multiverse stack
-//
-//
-//
-//
 //  c(s)t(s)<tb(s)!!
 //
 #pragma once

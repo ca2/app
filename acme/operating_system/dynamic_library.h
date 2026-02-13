@@ -11,7 +11,7 @@ namespace operating_system
 
 
    class CLASS_DECL_ACME dynamic_library :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

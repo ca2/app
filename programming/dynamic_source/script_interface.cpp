@@ -150,8 +150,8 @@ namespace dynamic_source
    {
 
       m_pscriptmain1 = nullptr;
-      m_pinstanceParent1.release();
-      m_pscript1.release();
+      m_pinstanceParent1 = nullptr;
+      m_pscript1 = nullptr;
       m_varRet.unset();
 
       ::html_file::destroy();
@@ -864,6 +864,15 @@ namespace dynamic_source
       return set.property(atom);
 
    }
+
+
+   ::pointer < ::file::listing > script_interface::folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   {
+
+      return m_pscript1->folder_enumerate(iId, pathFolder, procedureListing);
+
+   }
+
 
 
    //httpd_socket* script_interface::netnodesocket()

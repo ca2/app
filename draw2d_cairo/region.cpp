@@ -181,9 +181,9 @@ namespace draw2d_cairo
 
       cairo_fill(m_pcairo);
 
-      int x = m_rectangleBoundingBoxInternal.left();
+      int x = m_rectangleBoundingBoxInternal.left;
 
-      int y = m_rectangleBoundingBoxInternal.top();
+      int y = m_rectangleBoundingBoxInternal.top;
 
       cairo_push_group(m_pcairo);
 
@@ -203,7 +203,7 @@ namespace draw2d_cairo
 
       cairo_paint(pgraphics);
 
-      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left(), m_rectangleBoundingBoxInternal.top());
+      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top);
 
       cairo_destroy(m_pcairo);
 
@@ -376,8 +376,8 @@ namespace draw2d_cairo
 
       cairo_rectangle(
          pgraphics, 
-         pitem->m_item.left(),
-         pitem->m_item.top(),
+         pitem->m_item.left,
+         pitem->m_item.top,
          pitem->m_item.width(),
          pitem->m_item.height());
 
@@ -397,13 +397,13 @@ namespace draw2d_cairo
 
       auto size = pitem->m_item.size();
 
-      double centerx    = center.x();
+      double centerx    = center.x;
 
-      double centery    = center.y();
+      double centery    = center.y;
 
-      double radiusx    = fabs(size.cx()) / 2.0;
+      double radiusx    = fabs(size.cx) / 2.0;
 
-      double radiusy    = fabs(size.cy()) / 2.0;
+      double radiusy    = fabs(size.cy) / 2.0;
 
       if(radiusx == 0.0 || radiusy == 0.0)
       {
@@ -439,12 +439,12 @@ namespace draw2d_cairo
 
       }
 
-      cairo_move_to(pgraphics, pitem->m_polygon[0].x(), pitem->m_polygon[0].y());
+      cairo_move_to(pgraphics, pitem->m_polygon[0].x, pitem->m_polygon[0].y);
 
       for(int i = 1; i < pitem->m_polygon.size(); i++)
       {
 
-         cairo_line_to(pgraphics, pitem->m_polygon[i].x(), pitem->m_polygon[i].y());
+         cairo_line_to(pgraphics, pitem->m_polygon[i].x, pitem->m_polygon[i].y);
 
       }
 
@@ -479,14 +479,14 @@ namespace draw2d_cairo
 
             auto & polygon = *ppolygon;
 
-            cairo_move_to(pgraphics, polygon[n].x(), polygon[n].y());
+            cairo_move_to(pgraphics, polygon[n].x, polygon[n].y);
 
             n++;
 
             for(int j = 1; j < polygon.size(); j++)
             {
 
-               cairo_line_to(pgraphics, polygon[n].x(), polygon[n].y());
+               cairo_line_to(pgraphics, polygon[n].x, polygon[n].y);
 
                n++;
 
@@ -604,8 +604,8 @@ namespace draw2d_cairo
 
             ::pointer<::geometry2d::rectangle_item> prectangleitem = m_pitem;
 
-            cairorectangleint.x =(int) prectangleitem->m_item.left();
-            cairorectangleint.y = (int)prectangleitem->m_item.top();
+            cairorectangleint.x =(int) prectangleitem->m_item.left;
+            cairorectangleint.y = (int)prectangleitem->m_item.top;
             cairorectangleint.width = (int) prectangleitem->m_item.width();
             cairorectangleint.height = (int) prectangleitem->m_item.height();
 
@@ -745,9 +745,9 @@ namespace draw2d_cairo
 
       cairo_set_antialias(m_pcairo, CAIRO_ANTIALIAS_BEST);
 
-      int x = m_rectangleBoundingBoxInternal.left();
+      int x = m_rectangleBoundingBoxInternal.left;
 
-      int y = m_rectangleBoundingBoxInternal.top();
+      int y = m_rectangleBoundingBoxInternal.top;
 
       cairo_push_group(m_pcairo);
 
@@ -763,9 +763,9 @@ namespace draw2d_cairo
 
       cairo_paint(pgraphics);
 
-      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left(), m_rectangleBoundingBoxInternal.top());
+      cairo_mask_surface(pgraphics, m_psurface, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top);
 
-      cairo_rectangle(pgraphics, m_rectangleBoundingBoxInternal.left(), m_rectangleBoundingBoxInternal.top(), m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
+      cairo_rectangle(pgraphics, m_rectangleBoundingBoxInternal.left, m_rectangleBoundingBoxInternal.top, m_rectangleBoundingBoxInternal.width(), m_rectangleBoundingBoxInternal.height());
 
       cairo_clip(pgraphics);
 
@@ -837,12 +837,12 @@ namespace draw2d_cairo
 
    //   }
 
-   //   cairo_move_to(pgraphics, m_lppoints[0].x(), m_lppoints[0].y());
+   //   cairo_move_to(pgraphics, m_lppoints[0].x, m_lppoints[0].y);
 
    //   for(int i = 1; i < m_nCount; i++)
    //   {
 
-   //      cairo_line_to(pgraphics, m_lppoints[i].x(), m_lppoints[i].y());
+   //      cairo_line_to(pgraphics, m_lppoints[i].x, m_lppoints[i].y);
 
    //   }
 

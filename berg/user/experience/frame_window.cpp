@@ -28,13 +28,13 @@
 #include "berg/platform/system.h"
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_left(R1 & r1, const R2 & r2)
 {
 
    {
 
-      auto diff = r2.left() - r1.right();
+      auto diff = r2.left - r1.right;
 
       if (diff > 0)
       {
@@ -48,13 +48,13 @@ void constrain_vertex_left(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_right(R1 & r1, const R2 & r2)
 {
 
    {
 
-      auto diff = r2.right() - r1.left();
+      auto diff = r2.right - r1.left;
 
       if (diff < 0)
       {
@@ -69,13 +69,13 @@ void constrain_vertex_right(R1 & r1, const R2 & r2)
 
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_top(R1 & r1, const R2 & r2)
 {
 
    {
 
-      auto diff = r2.top() - r1.bottom();
+      auto diff = r2.top - r1.bottom;
 
       if (diff > 0)
       {
@@ -89,13 +89,13 @@ void constrain_vertex_top(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_bottom(R1 & r1, const R2 & r2)
 {
 
    {
 
-      auto diff = r2.bottom() - r1.top();
+      auto diff = r2.bottom - r1.top;
 
       if (diff < 0)
       {
@@ -111,7 +111,7 @@ void constrain_vertex_bottom(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_x(R1 & r1, const R2 & r2)
 {
 
@@ -122,7 +122,7 @@ void constrain_vertex_x(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex_y(R1 & r1, const R2 & r2)
 {
 
@@ -133,7 +133,7 @@ void constrain_vertex_y(R1 & r1, const R2 & r2)
 }
 
 
-template < primitive_rectangle R1, primitive_rectangle R2 >
+template < prototype_rectangle R1, prototype_rectangle R2 >
 void constrain_vertex(R1 & r1, const R2 & r2)
 {
 
@@ -341,7 +341,7 @@ namespace experience
 
                      pkey->m_bRet = true;
 
-                     display_previous(pmessage->user_activation_token());
+                     display_visible_trying_to_restore_last_visible({::user::e_activation_set_active, pmessage->user_activation_token()});
 
                      set_reposition();
 
@@ -2363,19 +2363,19 @@ namespace experience
 
       auto sizeMinimum = get_window_minimum_size();
 
-      if (rectangle.height() < sizeMinimum.cy())
+      if (rectangle.height() < sizeMinimum.cy)
       {
 
-         rectangle.set_height(sizeMinimum.cy());
+         rectangle.set_height(sizeMinimum.cy);
 
          rectangle._001ConstrainY(rectangleWorkspace);
 
       }
 
-      if (rectangle.width() < sizeMinimum.cx())
+      if (rectangle.width() < sizeMinimum.cx)
       {
 
-         rectangle.set_width(sizeMinimum.cx());
+         rectangle.set_width(sizeMinimum.cx);
 
          rectangle._001ConstrainX(rectangleWorkspace);
 
@@ -2420,7 +2420,7 @@ namespace experience
 
       double dMargin = psystem->m_dDpi * 0.75 * (1.0 - sqrt((double)rectangle.area() / (double)rectangleWorkspace.area()));
 
-      if (ZONEING_COMPARE::is_equal(rectangle.top(), rectangleWorkspace.top(), dMargin, !(edisplayPrevious & e_display_top)))
+      if (ZONEING_COMPARE::is_equal(rectangle.top, rectangleWorkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {
 
          edisplay |= e_display_top;
@@ -2428,13 +2428,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_top_to(rectangleWorkspace.top());
+            rectangle.move_top_to(rectangleWorkspace.top);
 
          }
          else
          {
 
-            rectangle.top() = rectangleWorkspace.top();
+            rectangle.top = rectangleWorkspace.top;
 
          }
 
@@ -2446,7 +2446,7 @@ namespace experience
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.bottom(), rectangle.bottom(), dMargin, !(edisplayPrevious & e_display_bottom)))
+      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.bottom, rectangle.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
       {
 
          edisplay |= e_display_bottom;
@@ -2454,13 +2454,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_bottom_to(rectangleWorkspace.bottom());
+            rectangle.move_bottom_to(rectangleWorkspace.bottom);
 
          }
          else
          {
 
-            rectangle.bottom() = rectangleWorkspace.bottom();
+            rectangle.bottom = rectangleWorkspace.bottom;
 
          }
 
@@ -2472,7 +2472,7 @@ namespace experience
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectangle.left(), rectangleWorkspace.left(), dMargin, !(edisplayPrevious & e_display_left)))
+      if (ZONEING_COMPARE::is_equal(rectangle.left, rectangleWorkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
       {
 
          edisplay |= e_display_left;
@@ -2480,13 +2480,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_left_to(rectangleWorkspace.left());
+            rectangle.move_left_to(rectangleWorkspace.left);
 
          }
          else
          {
 
-            rectangle.left() = rectangleWorkspace.left();
+            rectangle.left = rectangleWorkspace.left;
 
          }
 
@@ -2498,7 +2498,7 @@ namespace experience
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.right(), rectangle.right(), dMargin, !(edisplayPrevious & e_display_right)))
+      if (ZONEING_COMPARE::is_equal(rectangleWorkspace.right, rectangle.right, dMargin, !(edisplayPrevious & e_display_right)))
       {
 
          edisplay |= e_display_right;
@@ -2506,13 +2506,13 @@ namespace experience
          if (bPreserveSize)
          {
 
-            rectangle.move_right_to(rectangleWorkspace.right());
+            rectangle.move_right_to(rectangleWorkspace.right);
 
          }
          else
          {
 
-            rectangle.right() = rectangleWorkspace.right();
+            rectangle.right = rectangleWorkspace.right;
 
          }
 
@@ -2528,7 +2528,7 @@ namespace experience
          && is_different(edisplay & e_display_left, edisplay & e_display_right))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top(), rectangle.top(), rectangle.bottom(), rectangleWorkspace.bottom()))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.top, rectangle.top, rectangle.bottom, rectangleWorkspace.bottom))
          {
 
             if (dock_manager()->window_is_docking())
@@ -2538,9 +2538,9 @@ namespace experience
 
                edisplay |= e_display_top;
 
-               rectangle.bottom() = rectangleWorkspace.bottom();
+               rectangle.bottom = rectangleWorkspace.bottom;
 
-               rectangle.top() = rectangleWorkspace.top();
+               rectangle.top = rectangleWorkspace.top;
 
             }
 
@@ -2559,7 +2559,7 @@ namespace experience
          && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left(), rectangle.left(), rectangle.right(), rectangleWorkspace.right()))
+         if (ZONEING_COMPARE::is_centered(rectangleWorkspace.left, rectangle.left, rectangle.right, rectangleWorkspace.right))
          {
 
             if (dock_manager()->window_is_docking())
@@ -2569,9 +2569,9 @@ namespace experience
 
                edisplay |= e_display_right;
 
-               rectangle.left() = rectangleWorkspace.left();
+               rectangle.left = rectangleWorkspace.left;
 
-               rectangle.right() = rectangleWorkspace.right();
+               rectangle.right = rectangleWorkspace.right;
 
             }
 

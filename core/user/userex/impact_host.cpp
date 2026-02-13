@@ -33,8 +33,8 @@ namespace userex
    impact_host::impact_host()
    {
 
-      m_sizeTabbedFrame.cx() = 800;
-      m_sizeTabbedFrame.cy() = 300;
+      m_sizeTabbedFrame.cx = 800;
+      m_sizeTabbedFrame.cy = 300;
       //m_ptemplateTab = nullptr;
 
    }
@@ -232,9 +232,9 @@ namespace userex
          user()->add_impact_system(
             "main", __initialize_new user::single_document_template(
             "main",
-            ::type < ::user::document >(),
-            ::type < simple_child_frame >(),
-            ::type < ::userex::pane_tab_impact >()));
+            ::type<::user::document>(),
+            ::type<simple_child_frame>(),
+            ::type<::userex::pane_tab_impact>()));
 
          //user()->initialize(this);
 

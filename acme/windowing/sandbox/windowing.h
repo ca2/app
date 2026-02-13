@@ -31,14 +31,15 @@ virtual public ::acme::windowing::windowing
 protected:
 
 
-   map_base < oswindow, ::pointer < ::acme::windowing::window> > m_oswindowmap;
+   //map_base < oswindow, ::pointer < ::acme::windowing::window> > m_oswindowmap;
+   ::pointer_array < ::acme::windowing::window > m_acmewindowingwindowa;
 
 
 public:
    
    
    ::pointer<::acme::sandbox_windowing::window>         m_pwindowKeyboardFocus;
-   //::pointer<::acme::sandbox_windowing::window>         m_pwindowMouseCapture;
+   //::pointer<::acme::sandbox_windowing::window>         m_pacmewindowingwindowMouseCapture;
    ::pointer<::acme::sandbox_windowing::window>         m_pwindowActive;
    
    
@@ -65,7 +66,7 @@ public:
    
    void finalize_windowing() override;
    
-   void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
+   ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
    
    ::acme::windowing::window* get_application_host_window() override;
    virtual bool targeted_keyboard_messages();
@@ -82,7 +83,7 @@ public:
    //
    void erase_window(::acme::windowing::window* pwindow) override;
    
-   ::acme::windowing::window* window(oswindow oswindow) override;
+   //::acme::windowing::window* acme_windowing_from_HWND(void *) override;
    
    virtual void _message_handler(void* p) override;
    

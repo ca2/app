@@ -18,9 +18,9 @@ public:
    constexpr opacity() { m_uchOpacity = 255; }
    constexpr opacity(const class ::opacity & opacity) : m_uchOpacity(opacity.m_uchOpacity) { }
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr opacity(FLOATING f) { m_uchOpacity = byte_clip(f * 255.); }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr opacity(INTEGRAL i) { m_uchOpacity = byte_clip(i); }
 
 
@@ -35,21 +35,21 @@ public:
    constexpr bool non_transparent() const { return m_uchOpacity > 0; }
    constexpr unsigned char complement() const { return 255 - m_uchOpacity; }
 
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr opacity & operator = (FLOATING f) { m_uchOpacity = byte_clip(f * 255.); return *this; }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr opacity & operator = (INTEGRAL i) { m_uchOpacity = byte_clip(i); return *this; }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr opacity operator + (INTEGRAL i) { return byte_clip(m_uchOpacity + i); }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr opacity operator - (INTEGRAL i) { return byte_clip(m_uchOpacity - i); }
 
 };
 
 
-inline class ::opacity operator "" _opacity(long double d) { return d; }
-inline class ::opacity operator "" _opacity(unsigned long long ul) { return (unsigned char) ul; }
+inline class ::opacity operator""_opacity(long double d) { return d; }
+inline class ::opacity operator""_opacity(unsigned long long ul) { return (unsigned char) ul; }
 
 
 

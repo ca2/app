@@ -229,8 +229,8 @@ namespace cube
       ////       globalSetLayout->getDescriptorSetLayout()
       ////   };
 
-      ////   //VkcCamera camera{ glm::vec3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
-      ////   VkcCamera camera{ glm::vec3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
+      ////   //VkcCamera camera{ floating_sequence3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
+      ////   VkcCamera camera{ floating_sequence3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
       ////   auto viewerObject = VkcGameObject::createGameObject();
       ////   m_pvkcontainer->m_bLastMouse = true;
       ////   viewerObject.transform.translation.z = -2.5f;
@@ -385,7 +385,7 @@ namespace cube
 
       //   //float fLo = 0.5f;
 
-      //   //std::vector<glm::vec3> lightColors{
+      //   //std::vector<floating_sequence3> lightColors{
       //   //      {1.f, fLo, fLo},
       //   //      {fLo, fLo, 1.f},
       //   //      {fLo, 1.f, fLo},
@@ -398,11 +398,11 @@ namespace cube
       //   //   auto pointLight = VkcGameObject::makePointLight(0.2f);
       //   //   pointLight.color = lightColors[i];
       //   //   auto rotateLight = glm::rotate(
-      //   //      glm::mat4(1.f),
+      //   //      floating_matrix4(1.f),
       //   //      (i * glm::two_pi<float>()) / lightColors.size(),
       //   //      { 0.f, -1.f, 0.f });
       //   //   pointLight.pointLight->lightIntensity = 1.0f;
-      //   //   pointLight.transform.translation = glm::vec3(rotateLight * glm::vec4(-1.f, -1.f, -1.f, 1.f));
+      //   //   pointLight.transform.translation = floating_sequence3(rotateLight * floating_sequence4(-1.f, -1.f, -1.f, 1.f));
       //   //   m_gameObjects.emplace(pointLight.getId(), std::move(pointLight));
       //   //}
 

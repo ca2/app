@@ -53,7 +53,7 @@ public:
    template<::std::size_t count>
    constexpr string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count) {}
 
-   template<primitive_integral INTEGRAL>
+   template<prototype_integral INTEGRAL>
    constexpr string_range(const_iterator begin, INTEGRAL count) : BASE_RANGE((this_iterator)begin,
                                                                              (this_iterator)(begin + count)) {}
 
@@ -88,7 +88,7 @@ public:
       BASE_RANGE(start, end, erange) { }
 
 
-   template < primitive_block BLOCK >
+   template < prototype_block BLOCK >
    string_range(const BLOCK & block);
 
 
@@ -134,7 +134,7 @@ public:
    //    }
    //
    //
-   //    template < primitive_integral START >
+   //    template < prototype_integral START >
    //    THIS_RANGE operator()(START start) const {
    //
    //       return THIS_RANGE(this->begin() + start, this->end());
@@ -207,7 +207,7 @@ public:
       this->m_end = e;
       return *this;
    }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    string_range& assign(const_iterator s, INTEGRAL n)
    {
 
@@ -246,7 +246,7 @@ public:
       return *this;
    }
 
-   template < primitive_range SOME_RANGE >
+   template < prototype_range SOME_RANGE >
    string_range &operator=(SOME_RANGE && range) requires
    (sizeof(typename SOME_RANGE::ITEM) == sizeof(ITEM))
    {
@@ -258,7 +258,7 @@ public:
       if (pbasedataOld)
       {
 
-         ::release_base_data(pbasedataOld);
+         ::base_data_defer_release(pbasedataOld);
 
       }
 
@@ -1260,10 +1260,10 @@ public:
    //    contains(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
    //    //inline bool contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
    //
-   //    template<primitive_array STRING_ARRAY>
+   //    template<prototype_array STRING_ARRAY>
    //    inline bool contains_any(const STRING_ARRAY &stra) const;
    //
-   //    template<primitive_array STRING_ARRAY>
+   //    template<prototype_array STRING_ARRAY>
    //    inline bool contains_all(const STRING_ARRAY &stra) const;
    //
    //    //inline bool case_insensitive_contains(CHARACTER ch = 0) const;
@@ -1275,10 +1275,10 @@ public:
    //    case_insensitive_contains(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
    //    //inline bool case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
    //
-   //    template<primitive_array STRING_ARRAY>
+   //    template<prototype_array STRING_ARRAY>
    //    inline bool case_insensitive_contains_at_least_one_of(const STRING_ARRAY &stra) const;
    //
-   //    template<primitive_array STRING_ARRAY>
+   //    template<prototype_array STRING_ARRAY>
    //    inline bool case_insensitive_contains_all(const STRING_ARRAY &stra) const;
    //
    //
@@ -1291,10 +1291,10 @@ public:
    //    unicode_case_insensitive_contains(const SCOPED_STRING &scopedstr, const CHARACTER **ppszBeg, const CHARACTER **ppszEnd = nullptr) const;
    //    //inline bool unicode_case_insensitive_contains(const string_base &str, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd = nullptr) const;
    //
-   //    template<primitive_array STRING_ARRAY>
+   //    template<prototype_array STRING_ARRAY>
    //    inline bool unicode_case_insensitive_contains_at_least_one_of(const STRING_ARRAY &stra) const;
    //
-   //    template<primitive_array STRING_ARRAY>
+   //    template<prototype_array STRING_ARRAY>
    //    inline bool unicode_case_insensitive_contains_all(const STRING_ARRAY &stra) const;
    //
    //
@@ -2066,7 +2066,7 @@ using wide_range = ::string_range< const ::wide_character *>;
 //using wide_string_range = ::string_range<::wide_string>;
 
 
-template < primitive_character CHARACTER, primitive_integral INTEGRAL >
+template < prototype_character CHARACTER, prototype_integral INTEGRAL >
 ::string_range < const CHARACTER* > as_string_range(const CHARACTER* p, INTEGRAL n)
 {
 

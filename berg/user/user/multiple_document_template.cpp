@@ -14,7 +14,7 @@ namespace user
 {
 
 
-   multiple_document_template::multiple_document_template(const ::scoped_string & scopedstrMatter, const ::type_atom & typeatomDocument, const ::type_atom & typeatomFrame, const ::type_atom & typeatomImpact, const ::type_atom & typeatomData) :
+   multiple_document_template::multiple_document_template(const ::scoped_string & scopedstrMatter, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData) :
       ::user::impact_system(scopedstrMatter, typeatomDocument, typeatomFrame, typeatomImpact, typeatomData)
    {
 
@@ -122,37 +122,37 @@ namespace user
    void multiple_document_template::on_request(::request * prequest)
    {
 
-      prequest->m_countStack++;
-
-      at_end_of_scope
-      {
-
-         prequest->m_countStack--;
-
-      if (prequest->m_countStack <= 0)
-      {
-
-         for (auto & procedure : prequest->m_procedureaOnFinishRequest)
-         {
-
-            try
-            {
-
-               procedure();
-
-            }
-            catch (...)
-            {
-
-
-            }
-
-         }
-
-         prequest->m_procedureaOnFinishRequest.clear();
-      };
-
-      };
+//      prequest->m_countStack++;
+//
+//      at_end_of_scope
+//      {
+//
+//         prequest->m_countStack--;
+//
+//      if (prequest->m_countStack <= 0)
+//      {
+//
+//         for (auto & procedure : prequest->m_procedureaOnFinishRequest)
+//         {
+//
+//            try
+//            {
+//
+//               procedure();
+//
+//            }
+//            catch (...)
+//            {
+//
+//
+//            }
+//
+//         }
+//
+//         prequest->m_procedureaOnFinishRequest.clear();
+//      };
+//
+//      };
 
       prequest->m_estatus = error_failed;
 
@@ -190,7 +190,7 @@ namespace user
          if (prequest->m_puserelementAlloc)
          {
 
-            strId = ::type(prequest->m_puserelementAlloc).name();
+            strId = ::platform::type(prequest->m_puserelementAlloc).name();
 
          }
 

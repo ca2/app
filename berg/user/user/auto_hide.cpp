@@ -187,13 +187,13 @@ namespace user
       //      if(get_data()->m_bVertical)
       //      {
 
-      //         bShowTabs = pointCursor.x() <= rectangleWindow.left();
+      //         bShowTabs = pointCursor.x <= rectangleWindow.left;
 
       //      }
       //      else
       //      {
 
-      //         bShowTabs = pointCursor.y() <= rectangleWindow.top();
+      //         bShowTabs = pointCursor.y <= rectangleWindow.top;
 
       //      }
 
@@ -311,7 +311,7 @@ namespace user
 
       if (m_bEffectiveVisibleControl
          && m_bControlVisibilityChanging
-         && pointClient.y() < iAutoHideThresholdHeight)
+         && pointClient.y < iAutoHideThresholdHeight)
       {
 
          kill_timer(e_timer_defer_handle_auto_hide_tabs);
@@ -321,7 +321,7 @@ namespace user
          m_bControlVisibilityChanging = false;
 
       }
-      else if (pointClient.y() <= 1)
+      else if (pointClient.y <= 1)
       {
 
          if (!m_bForceHiddenControl && m_bHideControlOnFullScreenOrTransparentFrame)
@@ -340,7 +340,7 @@ namespace user
          }
 
       }
-      else if (pointClient.y() > iAutoHideThresholdHeight)
+      else if (pointClient.y > iAutoHideThresholdHeight)
       {
 
          auto_hide_on_message_mouse_leave(pmessage);

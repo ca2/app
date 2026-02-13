@@ -41,7 +41,7 @@ void manager_room::erase_signal_handler(const ::signal_handler & signalhandler)
 
       auto & pmanager = passociation.element();
 
-      pmanager->erase_signal_handler(signalhandler.m_pbase);
+      pmanager->erase_signal_handler(signalhandler);
 
    }
 

@@ -261,10 +261,10 @@ namespace account
 
       }
 
-      rectangleFontopus.left() = rectangleDesktop.left() + (rectangleDesktop.width() - w) / 2;
-      rectangleFontopus.top() = rectangleDesktop.top() + (rectangleDesktop.height() - h) / 3;
-      rectangleFontopus.right() = rectangleFontopus.left() + w;
-      rectangleFontopus.bottom() = rectangleFontopus.top() + h;
+      rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
+      rectangleFontopus.top = rectangleDesktop.top + (rectangleDesktop.height() - h) / 3;
+      rectangleFontopus.right = rectangleFontopus.left + w;
+      rectangleFontopus.bottom = rectangleFontopus.top + h;
 
       if (puiParent != nullptr)
          puiParent->screen_to_client()(rectangleFontopus);
@@ -453,10 +453,10 @@ namespace account
 
             }
 
-            rectangleFontopus.left() = rectangleDesktop.left() + (width(rectangleDesktop) - w) / 2;
-            rectangleFontopus.top() = rectangleDesktop.top() + (height(rectangleDesktop) - h) / 3;
-            rectangleFontopus.right() = rectangleFontopus.left() + w;
-            rectangleFontopus.bottom() = rectangleFontopus.top() + h;
+            rectangleFontopus.left = rectangleDesktop.left + (width(rectangleDesktop) - w) / 2;
+            rectangleFontopus.top = rectangleDesktop.top + (height(rectangleDesktop) - h) / 3;
+            rectangleFontopus.right = rectangleFontopus.left + w;
+            rectangleFontopus.bottom = rectangleFontopus.top + h;
 
 
             if(get_parent() != nullptr)

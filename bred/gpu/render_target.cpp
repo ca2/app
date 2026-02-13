@@ -9,14 +9,23 @@
 #include "render_target.h"
 #include "texture.h"
 #include "acme/platform/application.h"
+#include "bred/gpu/context_lock.h"
 
+
+#include <assert.h>
+#include "swap_chain.h"
 
 namespace gpu
 {
 
 
+   interlocked_count g_iGpuRenderTarget;
+
+
    render_target::render_target()
    {
+
+      m_iGpuRenderTarget = ++g_iGpuRenderTarget;
 
       m_bRenderTargetInit = false;
       m_bBackBuffer = false;
@@ -76,6 +85,8 @@ namespace gpu
          return;
 
       }
+
+      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
       m_bRenderTargetInit = true;
 
@@ -144,7 +155,7 @@ namespace gpu
    void render_target::restart_frame_counter()
    {
 
-      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      if (get_frame_count() > 1)
       {
 
          m_pgpurenderer->m_pgpucontext->m_pgpudevice->restart_frame_counter();
@@ -166,8 +177,10 @@ namespace gpu
 
       }
 
-      if (m_pgpurenderer->m_pgpurendertarget->get_frame_count() > 1)
+      if (get_frame_count() > 1)
       {
+         
+#ifdef _DEBUG
 
          auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
 
@@ -181,6 +194,7 @@ namespace gpu
             && estate != e_state_initial
             && "Cannot get frame index when frame not in progress");
 
+#endif
          return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
 
       }
@@ -196,6 +210,11 @@ namespace gpu
 
    int render_target::get_frame_count()
    {
+
+      if (m_pgpurenderer->m_pgpucontext->m_eoutput ==::gpu:: e_output_swap_chain)
+      {
+         return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
+      }
 
       return (int)m_ptexturea->size();
 
@@ -249,11 +268,17 @@ namespace gpu
          if (ptexture->size() != m_size && !m_size.is_empty())
          {
 
-            on_create_render_target_texture(ptexture);
+            ::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+
+            ::gpu::texture_flags textureflags;
+
+            on_create_render_target_texture(textureattributes, textureflags);
 
             //ptexture->m_pgpurendertarget = this;
 
-            ptexture->initialize_image_texture(m_pgpurenderer, m_size, m_bWithDepth);
+            textureflags.m_bWithDepth =m_bWithDepth;
+
+            ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
          }
 
@@ -262,10 +287,11 @@ namespace gpu
    }
 
 
-   void render_target::on_create_render_target_texture(::gpu::texture* ptexture)
+   void render_target::on_create_render_target_texture(::gpu::texture_attributes &textureattributes,
+                                                       ::gpu::texture_flags &textureflags)
    {
 
-      ptexture->m_bRenderTarget = true;
+      textureflags.m_bRenderTarget = true;
 
    }
 
@@ -281,7 +307,7 @@ namespace gpu
    int render_target::width() 
    {
       
-      return m_size.cx(); 
+      return m_size.cx; 
    
    }
 
@@ -289,7 +315,7 @@ namespace gpu
    int render_target::height() 
    {
       
-      return m_size.cy(); 
+      return m_size.cy; 
    
    }
 
@@ -313,11 +339,11 @@ namespace gpu
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
-      auto etype = pgpucontext->m_etype;
+      //auto etype = pgpucontext->m_etype;
 
       int iFrameIndex = get_frame_index();
       
-      auto size = m_ptexturea->size();
+      //auto size = m_ptexturea->size();
 
       auto ptexture = m_ptexturea->element_at(iFrameIndex);
 
@@ -356,11 +382,11 @@ namespace gpu
 
       auto pgpucontext = m_pgpurenderer->m_pgpucontext;
 
-      auto etype = pgpucontext->m_etype;
+      //auto etype = pgpucontext->m_etype;
 
       int iFrameIndex = get_frame_index();
 
-      auto size = m_ptexturea->size();
+      //auto size = m_ptexturea->size();
 
       ::cast < texture > ptexture = m_ptexturea->element_at(iFrameIndex);
 

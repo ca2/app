@@ -20,10 +20,6 @@ CLASS_DECL_ACME int is_debugger_attached()
 //
 //}
 
-
-//
-
-
 //assert_exception::assert_exception(const ::scoped_string & scopedstrFile, long lLine)
 //{
 //

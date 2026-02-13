@@ -8,6 +8,9 @@ namespace user
 {
 
 
+   class list;
+
+
    class CLASS_DECL_CORE list_subitem :
       virtual public mesh_subitem
    {

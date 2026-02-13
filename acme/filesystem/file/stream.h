@@ -889,18 +889,10 @@ void stream_exchange(S & s, T & t)
 //   operator << (s, pfile.m_p);
 //
 //}
-//
-//
-//
-//
 //inline binary_stream & operator <<(binary_stream & s, const ::earth::time & time);
 ////
 ////
 //inline binary_stream & operator >>(binary_stream & s, ::earth::time & time);
-//
-//
-//
-//
 //inline binary_stream & operator >>(binary_stream & s, ::earth::zone_time & z);
 //
 //
@@ -918,10 +910,6 @@ void stream_exchange(S & s, T & t)
 //
 //
 //inline binary_stream & operator >>(binary_stream & s, ::datetime::time_zone & z);
-//
-//
-//
-//
 //inline binary_stream & operator <<(binary_stream & s, const ::datetime::time_zone & z);
 //
 //
@@ -929,8 +917,8 @@ void stream_exchange(S & s, T & t)
 //inline binary_stream & operator << (binary_stream & s, const point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
 //
-//   s << point.x();
-//   s << point.y();
+//   s << point.x;
+//   s << point.y;
 //
 //   return s;
 //
@@ -941,8 +929,8 @@ void stream_exchange(S & s, T & t)
 //template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //inline binary_stream & operator >> (binary_stream & s, point_type < BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE > & point)
 //{
-//   s >> point.x();
-//   s >> point.y();
+//   s >> point.x;
+//   s >> point.y;
 //   return s;
 //}
 //
@@ -952,8 +940,8 @@ void stream_exchange(S & s, T & t)
 //inline binary_stream & operator << (binary_stream & s, const size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
 //
-//   s << size.cx();
-//   s << size.cy();
+//   s << size.cx;
+//   s << size.cy;
 //
 //   return s;
 //
@@ -964,8 +952,8 @@ void stream_exchange(S & s, T & t)
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 //inline binary_stream & operator >> (binary_stream & s, size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE > & size)
 //{
-//   s >> size.cx();
-//   s >> size.cy();
+//   s >> size.cx;
+//   s >> size.cy;
 //   return s;
 //}
 //
@@ -980,10 +968,10 @@ void stream_exchange(S & s, T & t)
 //inline binary_stream & operator << (binary_stream & s, const rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
 //{
 //   
-//   s << rectangle.left();
-//   s << rectangle.top();
-//   s << rectangle.right();
-//   s << rectangle.bottom();
+//   s << rectangle.left;
+//   s << rectangle.top;
+//   s << rectangle.right;
+//   s << rectangle.bottom;
 //
 //   return s;
 //
@@ -994,10 +982,10 @@ void stream_exchange(S & s, T & t)
 //inline binary_stream & operator >> (binary_stream & s, rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > & rectangle)
 //{
 //
-//   s >> rectangle.left();
-//   s >> rectangle.top();
-//   s >> rectangle.right();
-//   s >> rectangle.bottom();
+//   s >> rectangle.left;
+//   s >> rectangle.top;
+//   s >> rectangle.right;
+//   s >> rectangle.bottom;
 //
 //   return s;
 //

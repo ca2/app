@@ -451,7 +451,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         point.y() = 0.;
+         point.y = 0.;
 
       }
 
@@ -490,13 +490,13 @@ namespace user
       if (::is_set(pparent))
       {
 
-         strTypeParent = ::type(pparent).as_string();
+         strTypeParent = ::platform::type(pparent).name();
 
 //         ::string str;
 //
 //         auto r = pparent->rectangle();
 
-//         str.formatf("%d,%d,%d,%d : %s", r.left(), r.top(), r.width(), r.height(), strTypeParent.c_str());
+//         str.formatf("%d,%d,%d,%d : %s", r.left, r.top, r.width(), r.height(), strTypeParent.c_str());
 //
 //         information() << str;
 
@@ -505,13 +505,13 @@ namespace user
          if (::is_set(pparentParent))
          {
 
-            strTypeParentParent = ::type(pparentParent).as_string();
+            strTypeParentParent = ::platform::type(pparentParent).name();
 
 //            ::string str2;
 //
 //            auto r2 = pparentParent->rectangle();
 //
-//            str2.formatf("%d,%d,%d,%d : %s", r2.left(), r2.top(), r2.width(), r2.height(), strTypeParentParent.c_str());
+//            str2.formatf("%d,%d,%d,%d : %s", r2.left, r2.top, r2.width(), r2.height(), strTypeParentParent.c_str());
 
 //            information() << str2;
 
@@ -520,13 +520,13 @@ namespace user
             if (::is_set(pparentParentParent))
             {
 
-               strTypeParentParentParent = ::type(pparentParentParent).as_string();
+               strTypeParentParentParent = ::platform::type(pparentParentParent).name();
 
 //               ::string str3;
 //
 //               auto r3 = pparentParentParent->rectangle();
 
-//               str3.formatf("%d,%d,%d,%d : %s", r3.left(), r3.top(), r3.width(), r3.height(), strTypeParentParentParent.c_str());
+//               str3.formatf("%d,%d,%d,%d : %s", r3.left, r3.top, r3.width(), r3.height(), strTypeParentParentParent.c_str());
 
 //               information() << str3;
 
@@ -605,7 +605,7 @@ namespace user
 
       rectangleX.deflate(rectanglePadding);
 
-      double left = rectangleX.left();
+      double left = rectangleX.left;
 
       character_count iSelBeg;
       character_count iSelEnd;
@@ -626,7 +626,7 @@ namespace user
       //if (m_dLineHeight > 0.)
       //{
 
-      //   int iVerticalOffsetModule = (int) fmod(pointOffset.y(), m_dLineHeight);
+      //   int iVerticalOffsetModule = (int) fmod(pointOffset.y, m_dLineHeight);
 
       //   if (iVerticalOffsetModule > 0)
       //   {
@@ -637,11 +637,11 @@ namespace user
 
       //}
 
-      //pgraphics->offset_origin(-pointOffset.x(), 0);
+      //pgraphics->offset_origin(-pointOffset.x, 0);
 
-      //double y = rectangleX.top() + m_iCurrentPageLineStart * m_dLineHeight;
+      //double y = rectangleX.top + m_iCurrentPageLineStart * m_dLineHeight;
 
-      double y = rectangleX.top();
+      double y = rectangleX.top;
 
       _001_get_impact_sel(iSelBegOriginal, iSelEndOriginal);
 
@@ -879,8 +879,8 @@ namespace user
                   pgraphics->fill_rectangle(
                      ::double_rectangle_dimension((double)((double)left + x1),
                         (double)y,
-                        (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
-                        (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
+                        (double)minimum(x2 - x1, (double)rectangleX.right - ((double)left + x1)),
+                        (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom - y)),
                      crBkSel);
 
                   pgraphics->set(pbrushTextSel);
@@ -910,14 +910,14 @@ namespace user
                //pgraphics->fill_rectangle(
                //   ::double_rectangle_dimension((double)((double)left + compose1),
                //      (double)y,
-               //      (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
-               //      (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
+               //      (double)minimum(compose2 - compose1, (double)rectangleX.right - ((double)left + compose1)),
+               //      (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom - y)),
                //   colorComposeBk);
 
                pgraphics->fill_rectangle(
                   ::double_rectangle_dimension((double)((double)left + compose1),
-                     ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom())) - 1.0,
-                     (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
+                     ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom)) - 1.0,
+                     (double)minimum(compose2 - compose1, (double)rectangleX.right - ((double)left + compose1)),
                      1.0));
 
                //pgraphics->set(pbrushTextSel);
@@ -991,7 +991,7 @@ namespace user
 
                get_wnd()->screen_to_client()(point);
 
-               ::SetCaretPos(point.x(), point.y());
+               ::SetCaretPos(point.x, point.y);
 
 #endif
 
@@ -1013,7 +1013,7 @@ namespace user
 
                get_wnd()->screen_to_client()(point);
 
-               ::SetCaretPos(point.x(), point.y());
+               ::SetCaretPos(point.x, point.y);
 
 #endif
 
@@ -1279,26 +1279,26 @@ namespace user
 
             rectangleRaw = raw_rectangle();
 
-            if (pointCursor.x() < rectangleRaw.left())
+            if (pointCursor.x < rectangleRaw.left)
             {
 
                scroll_left_line();
 
             }
-            else if (pointCursor.x() > rectangleRaw.right())
+            else if (pointCursor.x > rectangleRaw.right)
             {
 
                scroll_right_line();
 
             }
 
-            if (pointCursor.y() < rectangleRaw.top())
+            if (pointCursor.y < rectangleRaw.top)
             {
 
                scroll_up_line();
 
             }
-            else if (pointCursor.y() > rectangleRaw.bottom())
+            else if (pointCursor.y > rectangleRaw.bottom)
             {
 
                scroll_down_line();
@@ -1509,7 +1509,7 @@ namespace user
 
       window_rectangle(rectangleWindow);
 
-      if (pointHost.x() < rectangleWindow.left() - 30)
+      if (pointHost.x < rectangleWindow.left - 30)
       {
 
          informationf("test06");
@@ -1799,7 +1799,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      auto xContext = get_context_offset().x();
+      auto xContext = get_context_offset().x;
 
       int iBorder = 4;
 
@@ -1809,7 +1809,7 @@ namespace user
          xContext = 0;
 
       }
-      else if (xEnd - get_context_offset().x() < rectangleX.width() - iBorder * 2)
+      else if (xEnd - get_context_offset().x < rectangleX.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleX.width() + iBorder * 2);
@@ -1821,20 +1821,20 @@ namespace user
          xContext = x;
 
       }
-      else if (x > 0 && x < get_context_offset().x())
+      else if (x > 0 && x < get_context_offset().x)
       {
 
          xContext = maximum(0, x - rectangleX.width() / 2);
 
       }
-      else if (x > get_context_offset().x() + rectangleX.width() - iBorder * 2)
+      else if (x > get_context_offset().x + rectangleX.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleX.width() + iBorder * 2);
 
       }
 
-      if (iColumn == m_iColumn && xContext == get_context_offset().x())
+      if (iColumn == m_iColumn && xContext == get_context_offset().x)
       {
 
          return;
@@ -1843,7 +1843,7 @@ namespace user
 
       m_iColumn = iColumn;
 
-      if (xContext != get_context_offset().x())
+      if (xContext != get_context_offset().x)
       {
 
          set_context_offset_x(xContext);
@@ -2377,7 +2377,7 @@ namespace user
 
       //m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -2538,7 +2538,7 @@ namespace user
 
       //}
 
-      //m_dy = pointOffset.y();
+      //m_dy = pointOffset.y;
 
       ////::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -2556,7 +2556,7 @@ namespace user
       //if (iLineUpdate < 0)
       //{
 
-      //   //m_sizeTotal.cx() = 0;
+      //   //m_sizeTotal.cx = 0;
 
       //}
 
@@ -2623,7 +2623,7 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //           daExtent [(::collection::index)(scopedstr - pszStart + j)] = size.cx();
+      //           daExtent [(::collection::index)(scopedstr - pszStart + j)] = size.cx;
 
       //         }
 
@@ -2639,17 +2639,17 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //            daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
+      //            daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx;
 
       //         }
 
       //      }
 
 
-      //      if (size.cx() > m_sizeTotal.cx())
+      //      if (size.cx > m_sizeTotal.cx)
       //      {
 
-      //         m_sizeTotal.cx() = (int)size.cx();
+      //         m_sizeTotal.cx = (int)size.cx;
 
       //      }
 
@@ -2661,16 +2661,16 @@ namespace user
       ////if (iLineUpdate < 0)
       ////{
 
-      ////   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+      ////   m_sizeTotal.cy = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 
       ////   const ::int_size & sizePage;
 
       ////   sizePage = rectangleX.size();
 
-      ////   if (m_sizeTotal.cy() < sizePage.cy())
+      ////   if (m_sizeTotal.cy < sizePage.cy)
       ////   {
 
-      ////      sizePage.cy() = m_sizeTotal.cy();
+      ////      sizePage.cy = m_sizeTotal.cy;
 
       ////   }
 
@@ -2828,7 +2828,7 @@ namespace user
       //
       //      m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double) rectangleX.height() / m_dLineHeight);
       //
-      //      m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //      m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
       //
       //      bool bLoadFullFile = should_load_full_file();
       //
@@ -2994,7 +2994,7 @@ namespace user
       //
       //      }
       //
-      //      m_dy = pointOffset.y();
+      //      m_dy = pointOffset.y;
       //
       //      //::colorertake5::base_editor * pcolorer = colorertake5();
       //
@@ -3011,7 +3011,7 @@ namespace user
       //      if (iLineUpdate < 0)
       //      {
       //
-      //         //m_sizeTotal.cx() = 0;
+      //         //m_sizeTotal.cx = 0;
       //
       //      }
       //
@@ -3094,7 +3094,7 @@ namespace user
       //
       //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length(), pszNext - pszStart + iAddUp);
       //
-      //               if (size.cx() > rectangleX.width() + 200)
+      //               if (size.cx > rectangleX.width() + 200)
       //               {
       //
       //                  while (*psz != '\0')
@@ -3109,12 +3109,12 @@ namespace user
       //
       //               }
       //
-      //               sizeLast.cx() = (int) size.cx();
+      //               sizeLast.cx = (int) size.cx;
       //
       //               for (int j = 0; j < iLen; j++)
       //               {
       //
-      //                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx();
+      //                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx;
       //
       //               }
       //
@@ -3127,14 +3127,14 @@ namespace user
       //
       //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
       //
-      //               daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
+      //               daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx;
       //
       //            }
       //
-      //            if (size.cx() > m_sizeTotal.cx())
+      //            if (size.cx > m_sizeTotal.cx)
       //            {
       //
-      //               m_sizeTotal.cx() = (int)size.cx();
+      //               m_sizeTotal.cx = (int)size.cx;
       //
       //            }
       //
@@ -3146,16 +3146,16 @@ namespace user
       //      if (iLineUpdate < 0)
       //      {
       //
-      //         m_sizeTotal.cy() = (int) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
+      //         m_sizeTotal.cy = (int) ((m_iaLineLength.get_count() + 1) * m_dLineHeight);
       //
       //         ::double_size sizePage;
       //
       //         sizePage = rectangleX.size();
       //
-      //         if (m_sizeTotal.cy() < sizePage.cy())
+      //         if (m_sizeTotal.cy < sizePage.cy)
       //         {
       //
-      //            sizePage.cy() = m_sizeTotal.cy();
+      //            sizePage.cy = m_sizeTotal.cy;
       //
       //         }
       //
@@ -3227,7 +3227,7 @@ namespace user
 
       m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -3263,7 +3263,7 @@ namespace user
 
       //m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -3426,7 +3426,7 @@ namespace user
 
       }
 
-      m_dy = pointOffset.y();
+      m_dy = pointOffset.y;
 
       //::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -3443,7 +3443,7 @@ namespace user
       if (iOnlyLineToUpdate < 0)
       {
 
-         //m_sizeTotal.cx() = 0;
+         //m_sizeTotal.cx = 0;
 
       }
 
@@ -3525,7 +3525,7 @@ namespace user
 
                size = pgraphics->get_text_extent(strLineGraphics, pszNext - pszStart + iAddUp);
 
-               if (size.cx() > rectangleX.width() + 200)
+               if (size.cx > rectangleX.width() + 200)
                {
 
                   while (*psz != '\0')
@@ -3540,12 +3540,12 @@ namespace user
 
                }
 
-               sizeLast.cx() = (int)size.cx();
+               sizeLast.cx = (int)size.cx;
 
                for (int j = 0; j < iLen; j++)
                {
 
-                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx();
+                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx;
 
                }
 
@@ -3558,7 +3558,7 @@ namespace user
 
                size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
 
-               daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
+               daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx;
 
             }
 
@@ -3569,10 +3569,10 @@ namespace user
 
             auto sizeX = daExtent.last();
 
-            if (sizeX > sizeTotal.cx())
+            if (sizeX > sizeTotal.cx)
             {
 
-               sizeTotal.cx() = sizeX;
+               sizeTotal.cx = sizeX;
 
             }
 
@@ -3583,16 +3583,16 @@ namespace user
       if (iOnlyLineToUpdate < 0)
       {
 
-         sizeTotal.cy() = (int)((m_iaLineLength.get_count() + 1) * m_dLineHeight);
+         sizeTotal.cy = (int)((m_iaLineLength.get_count() + 1) * m_dLineHeight);
 
          ::double_size sizePage;
 
          sizePage = rectangleX.size();
 
-         if (sizeTotal.cy() < sizePage.cy())
+         if (sizeTotal.cy < sizePage.cy)
          {
 
-            sizePage.cy() = sizeTotal.cy();
+            sizePage.cy = sizeTotal.cy;
 
          }
 
@@ -3796,7 +3796,7 @@ namespace user
 //
 //      }
 //
-//      //m_dy = pointOffset.y();
+//      //m_dy = pointOffset.y;
 //
 //      ////::colorertake5::base_editor * pcolorer = colorertake5();
 //
@@ -3814,7 +3814,7 @@ namespace user
 //      //if (iLineUpdate < 0)
 //      //{
 //
-//      //   //m_sizeTotal.cx() = 0;
+//      //   //m_sizeTotal.cx = 0;
 //
 //      //}
 //
@@ -3881,7 +3881,7 @@ namespace user
 //      //         for (int j = 0; j < iLen; j++)
 //      //         {
 //
-//      //           daExtent [(::collection::index)(scopedstr - pszStart + j)] = size.cx();
+//      //           daExtent [(::collection::index)(scopedstr - pszStart + j)] = size.cx;
 //
 //      //         }
 //
@@ -3897,17 +3897,17 @@ namespace user
 //      //         for (int j = 0; j < iLen; j++)
 //      //         {
 //
-//      //            daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
+//      //            daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx;
 //
 //      //         }
 //
 //      //      }
 //
 //
-//      //      if (size.cx() > m_sizeTotal.cx())
+//      //      if (size.cx > m_sizeTotal.cx)
 //      //      {
 //
-//      //         m_sizeTotal.cx() = (int)size.cx();
+//      //         m_sizeTotal.cx = (int)size.cx;
 //
 //      //      }
 //
@@ -3919,16 +3919,16 @@ namespace user
 //      ////if (iLineUpdate < 0)
 //      ////{
 //
-//      ////   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+//      ////   m_sizeTotal.cy = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 //
 //      ////   const ::int_size & sizePage;
 //
 //      ////   sizePage = rectangleX.size();
 //
-//      ////   if (m_sizeTotal.cy() < sizePage.cy())
+//      ////   if (m_sizeTotal.cy < sizePage.cy)
 //      ////   {
 //
-//      ////      sizePage.cy() = m_sizeTotal.cy();
+//      ////      sizePage.cy = m_sizeTotal.cy;
 //
 //      ////   }
 //
@@ -4001,7 +4001,7 @@ namespace user
 //
 ////m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
 //
-////m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+////m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
 //
 ////bool bLoadFullFile = should_load_full_file();
 //
@@ -4162,7 +4162,7 @@ namespace user
 //
 ////}
 //
-////m_dy = pointOffset.y();
+////m_dy = pointOffset.y;
 //
 //////::colorertake5::base_editor * pcolorer = colorertake5();
 //
@@ -4180,7 +4180,7 @@ namespace user
 ////if (iLineUpdate < 0)
 ////{
 //
-////   //m_sizeTotal.cx() = 0;
+////   //m_sizeTotal.cx = 0;
 //
 ////}
 //
@@ -4203,7 +4203,7 @@ namespace user
 //
 //      m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 //
-//      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+//      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y / m_dLineHeight), m_iaLineStart.get_upper_bound());
 //
 //      bool bLoadFullFile = should_load_full_file();
 //
@@ -4293,7 +4293,7 @@ namespace user
 //               for (int j = 0; j < iLen; j++)
 //               {
 //
-//                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx();
+//                  daExtent[(::collection::index)(scopedstr - pszStart + j)] = size.cx;
 //
 //               }
 //
@@ -4309,17 +4309,17 @@ namespace user
 //               for (int j = 0; j < iLen; j++)
 //               {
 //
-//                  daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx();
+//                  daExtent[(::collection::index)(scopedstr - pszStart)] = size.cx;
 //
 //               }
 //
 //            }
 //
 //
-//            if (size.cx() > sizeTotal.cx())
+//            if (size.cx > sizeTotal.cx)
 //            {
 //
-//               sizeTotal.cx() = size.cx();
+//               sizeTotal.cx = size.cx;
 //
 //            }
 //
@@ -4332,16 +4332,16 @@ namespace user
 //      //if (iLineUpdate < 0)
 //      //{
 //
-//      //   m_sizeTotal.cy() = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
+//      //   m_sizeTotal.cy = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 //
 //      //   const ::int_size & sizePage;
 //
 //      //   sizePage = rectangleX.size();
 //
-//      //   if (m_sizeTotal.cy() < sizePage.cy())
+//      //   if (m_sizeTotal.cy < sizePage.cy)
 //      //   {
 //
-//      //      sizePage.cy() = m_sizeTotal.cy();
+//      //      sizePage.cy = m_sizeTotal.cy;
 //
 //      //   }
 //
@@ -4422,9 +4422,9 @@ namespace user
 
       }
 
-      lprect->left() = x;
+      lprect->left = x;
 
-      lprect->right() = x + 1;
+      lprect->right = x + 1;
 
       return true;
 
@@ -4451,9 +4451,9 @@ namespace user
 
       }
 
-      lprect->top() = (int)(iLine * m_dItemHeight);
+      lprect->top = (int)(iLine * m_dItemHeight);
 
-      lprect->bottom() = (int)(lprect->top() + m_dItemHeight);
+      lprect->bottom = (int)(lprect->top + m_dItemHeight);
 
       return true;
 
@@ -4512,7 +4512,7 @@ namespace user
 
       double_size size = pgraphics->get_text_extent(strLine, (int)iChar);
 
-      return size.cx();
+      return size.cx;
 
 
    }
@@ -4551,7 +4551,7 @@ namespace user
 
       }
 
-      x = rectangleX.left();
+      x = rectangleX.left;
 
       return m_iaLineLength.get_upper_bound();
 
@@ -4710,7 +4710,7 @@ namespace user
 
             xCharacter = (int)(plain_edit_get_line_extent(pgraphics, iLine, iRel));
 
-            xCharacter = rectangleX.left() + xCharacter;
+            xCharacter = rectangleX.left + xCharacter;
 
             x = xCharacter;
 
@@ -4766,19 +4766,19 @@ namespace user
 
       GetFocusRect(rectangleX);
 
-      point.y() -= rectangleX.top();
+      point.y -= rectangleX.top;
 
       auto pointOffset = get_context_offset();
 
       //if (m_dLineHeight > 0)
       //{
 
-      //   int iVerticalOffsetModule = (int)fmod(pointOffset.y(), m_dLineHeight);
+      //   int iVerticalOffsetModule = (int)fmod(pointOffset.y, m_dLineHeight);
 
       //   if (iVerticalOffsetModule > 0)
       //   {
 
-      //      point.y() += iVerticalOffsetModule;
+      //      point.y += iVerticalOffsetModule;
 
       //   }
 
@@ -4798,13 +4798,13 @@ namespace user
 
       ::collection::index iLine;
 
-      if (point.y() < 0)
+      if (point.y < 0)
       {
 
          iLine = maximum(0, m_iCurrentPageLineStart - 1);
 
       }
-      else if(point.y() > rectangleX.height())
+      else if(point.y > rectangleX.height())
       {
 
          iLine = minimum(line_count(), m_iCurrentPageLineEnd + 1);
@@ -4816,7 +4816,7 @@ namespace user
          for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
          {
 
-            if (point.y() < Δy + dLineHeight)
+            if (point.y < Δy + dLineHeight)
             {
 
                bFound = true;
@@ -4845,7 +4845,7 @@ namespace user
 
       }
 
-      return plain_edit_line_char_hit_test(pgraphics, point.x(), iLine);
+      return plain_edit_line_char_hit_test(pgraphics, point.x, iLine);
 
    }
 
@@ -4861,7 +4861,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      px -= (int)(rectangleX.left() - pointOffset.x());
+      px -= (int)(rectangleX.left - pointOffset.x);
 
       if (px <= 0)
       {
@@ -5116,10 +5116,10 @@ namespace user
 
       auto sizeTotal = get_total_size(elayout);
 
-      if (sizeTotal.cx() <= 0)
+      if (sizeTotal.cx <= 0)
       {
 
-         sizeTotal.cx() = 200;
+         sizeTotal.cx = 200;
 
          set_total_size(sizeTotal, elayout);
 
@@ -5290,10 +5290,10 @@ namespace user
 
       auto sizeTotal = get_total_size(elayout);
 
-      if (sizeTotal.cx() <= 0)
+      if (sizeTotal.cx <= 0)
       {
 
-         sizeTotal.cx() = 200;
+         sizeTotal.cx = 200;
 
          set_total_size(sizeTotal, elayout);
 
@@ -7256,7 +7256,7 @@ namespace user
 
       int x = m_iLastSelectionEndX;
 
-      double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y();
+      double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y;
 
       double y2 = y + m_dLineHeight;
 
@@ -7264,11 +7264,11 @@ namespace user
 
       rectangle = this->rectangle();
 
-      rectangle.left() = (int)x;
+      rectangle.left = (int)x;
 
-      rectangle.top() = (int)y;
+      rectangle.top = (int)y;
 
-      rectangle.bottom() = (int)y2;
+      rectangle.bottom = (int)y2;
 
       client_to_screen()(rectangle);
 
@@ -7970,7 +7970,7 @@ namespace user
 
       ::int_point pointOffset = get_context_offset();
 
-      set_context_offset_y(pointOffset.y() - m_dLineHeight, ::user::e_layout_design);
+      set_context_offset_y(pointOffset.y - m_dLineHeight, ::user::e_layout_design);
 
       double dHeight = 0.;
 
@@ -7982,7 +7982,7 @@ namespace user
 
       //copy(pointOffset, get_context_offset());
 
-      while (pointOffset.y() > dHeight && i < m_iaLineLength.get_size())
+      while (pointOffset.y > dHeight && i < m_iaLineLength.get_size())
       {
 
          iLineSize = m_iaLineLength[i];

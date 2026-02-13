@@ -100,15 +100,15 @@ namespace message
    void message::set_lresult(lresult lresult) { m_lresult = lresult; }
 
 
-   // void message::set(oswindow oswindow, ::windowing::window * playeredUserPrimitive, ::user::enum_message
-   // eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point) void message::set(oswindow oswindow,
+   // void message::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * playeredUserPrimitive, ::user::enum_message
+   // eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point) void message::set(::acme::windowing::window * pacmewindowingwindow,
    // ::windowing::window* playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam
    // lparam)
    //{
    //
    //    //initialize(playeredUserPrimitive);
 
-   //   m_oswindow = oswindow;
+   //   m_pacmewindowingwindow = oswindow;
 
    //   id() = atom;
 
@@ -130,7 +130,7 @@ namespace message
 
          m_pdispatchera = message.m_pdispatchera;
          m_pchannel = message.m_pchannel;
-         m_oswindow = message.m_oswindow;
+         m_pacmewindowingwindow = message.m_pacmewindowingwindow;
          m_eflagMessage = message.m_eflagMessage;
          // m_iRouteIndex = message.m_iRouteIndex;
          m_iParam = message.m_iRouteIndex;

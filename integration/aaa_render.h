@@ -18,10 +18,6 @@
 //xxx ## _properties & properties() {return *m_pobjectproperties;} \
 //inline void create_object_properties() { m_pobjectproperties = m_ppropertyset = øallocate(xxx ## _properties(this));} \
 //__pointer(xxx ## _properties) m_pobjectproperties
-//
-//
-//
-//
 
 
 #include "acme/prototype/collection/string_map.h"

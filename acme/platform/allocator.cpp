@@ -12,6 +12,17 @@ CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
 
 extern bool g_bDefaultEnableObjectReferenceCountDebug;
 
+
+int g_iDisableReferenceReferererReleaserBreakpoint = 0;
+
+
+void set_reference_referer_releaser_breakpoint(int i)
+{
+
+   g_iDisableReferenceReferererReleaserBreakpoint = i ? 0 : 1;
+
+}
+
 thread_local bool t_bThisDebug12321575 = false;
 CLASS_DECL_ACME void set_ThisDebug12321575()
 {
@@ -465,6 +476,18 @@ namespace allocator
       {
 
          throw ::exception(error_wrong_state);
+
+      }
+
+      if (!g_iDisableReferenceReferererReleaserBreakpoint)
+      {
+
+         if (::get_task() && ::get_task()->m_taskindex == 1)
+         {
+
+            //printf(".");
+
+         }
 
       }
 

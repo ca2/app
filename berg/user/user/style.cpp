@@ -329,10 +329,6 @@ namespace berg
 //   //virtual bool _001HasTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none);
 //
 //
-//
-//
-//
-//
 //   //virtual ::user::style * userstyle() = 0;
 //
 //

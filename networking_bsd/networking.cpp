@@ -198,7 +198,7 @@ namespace networking_bsd
 
       }*/
 
-      //if (!::acme::department::initialize())
+      //if (!::platform::department::initialize())
       //{
 
       //   return error_failed;
@@ -1000,7 +1000,7 @@ namespace networking_bsd
             {
                string s = host.substr(x, i - x);
                //
-               if (strstr(s, ".")) // x.x().x().x()
+               if (strstr(s, ".")) // x.x.x.x
                {
                   Parse pa(s, ".");
                   char slask[100]; // u2ip temporary hgenstring conversion
@@ -2515,7 +2515,7 @@ namespace networking_bsd
       //         {
       //            string s = host.substr(x, i - x);
       //            //
-      //            if (strstr(s,".")) // x.x().x().x()
+      //            if (strstr(s,".")) // x.x.x.x
       //            {
       //               Parse pa(s,".");
       //               char slask[100]; // u2ip temporary hgenstring conversion
@@ -3385,7 +3385,7 @@ namespace networking_bsd
 //
 //   }*/
 //
-//   //if (!::acme::department::initialize())
+//   //if (!::platform::department::initialize())
 //   //{
 //
 //   //   return error_failed;
@@ -3520,6 +3520,8 @@ namespace networking_bsd
       if (eaddresstypePreferred == ::networking::e_address_type_ipv4)
       {
 
+         information() << "networking() finding address (1)";
+
          if (lookup_ipv4(paddress, scopedstrAddress))
          {
 
@@ -3530,7 +3532,19 @@ namespace networking_bsd
          if (lookup_ipv6(paddress, scopedstrAddress))
          {
 
-            return true;
+            if(m_straDisabledIpv6Addresses.contains(paddress->get_display_number()))
+            {
+
+                fatal() << "... it seems here it is trying to connect to a failing address... (A1)";
+                fatal() << "... will the next action disable this path... (A1)";
+
+            }
+            else
+            {
+
+                return true;
+
+            }
 
          }
 
@@ -3538,10 +3552,26 @@ namespace networking_bsd
       else
       {
 
+         information() << "networking() finding address (3)";
+
          if (this->has_ip6_internet() && lookup_ipv6(paddress, scopedstrAddress))
          {
 
-            return true;
+            information() << "... going to check if address is disabled (3)...";
+
+            if(m_straDisabledIpv6Addresses.contains(paddress->get_display_number()))
+            {
+
+                fatal() << "... it seems here it is trying to connect to a failing address... (3)";
+                fatal() << "... will the next action disable this path... (3)";
+
+            }
+            else
+            {
+
+                return true;
+
+            }
 
          }
 

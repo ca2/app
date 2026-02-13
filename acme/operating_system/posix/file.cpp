@@ -16,7 +16,9 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 #include <fcntl.h>
 
 
@@ -402,10 +404,6 @@ char * malloc_get_current_dir_name()
 //   return bOk;
 //
 //}
-//
-//
-//
-//
 //string file_system()->as_string(const ::file::path & path, character_count iReadAtMostByteCount)
 //{
 //
@@ -555,10 +553,6 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//
-//
-//
-//
 //filesize file_length_dup(const ::file::path & path)
 //{
 //
@@ -638,10 +632,6 @@ char * malloc_get_current_dir_name()
 ////
 ////}
 //
-//
-//
-//
-//
 //int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
 //{
 //
@@ -699,10 +689,6 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//
-//
-//
-//
 //int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //   if (case_insensitive_ansi_compare(scopedstr1, psz2) == 0)
@@ -743,10 +729,6 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//
-//
-//
-//
 //int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
@@ -772,14 +754,6 @@ char * malloc_get_current_dir_name()
 //   return iCmp == 0;
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //int ansi_open(const ::scoped_string & scopedstr, int i)
@@ -874,14 +848,6 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//
-//
-//
-//
-//
-//
-//
-//
 //#ifdef __cplusplus
 //
 //string file_first_line_dup(const ::scoped_string & scopedstrPath)
@@ -930,10 +896,6 @@ char * malloc_get_current_dir_name()
 //
 //
 //#endif
-//
-//
-//
-//
 
 
 ::file::enum_type safe_get_file_system_item_type(const ::file::path & path)
@@ -1593,4 +1555,23 @@ void operating_system_determine_executable(::file::path & path)
 }
 
 
+CLASS_DECL_ACME ::file::path get_home_folder_path()
+{
 
+   // 1) HOME environment variable (preferred)
+   if (const char* home = std::getenv("HOME"))
+   {
+      if (*home)
+         return ::file::path(home);
+   }
+
+   // 2) Fallback: user database
+   struct passwd* pw = getpwuid(getuid());
+   if (pw && pw->pw_dir && *pw->pw_dir)
+   {
+      return ::file::path(pw->pw_dir);
+   }
+
+   // 3) Failure case
+   return {};
+}

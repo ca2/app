@@ -12,7 +12,7 @@
 
 //#include "SceneFoundry/graphics3d/include/window.h"
 
-//#include <glm/glm.hpp>
+//
 //#include <memory>
 namespace prodevian
 {
@@ -32,7 +32,7 @@ namespace prodevian
       //mnk_controller m_controller;
 
       // Configuration
-      float m_mouseSensitivity = 0.0025f;
+      float m_angleCursorPixel = 0.0025f;
       float m_moveSpeed = 30.0f;
 
 

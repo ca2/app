@@ -11,7 +11,7 @@ struct nanosecond
 
    constexpr nanosecond() : m_iNanosecond(0) {}
    constexpr nanosecond(no_initialize_t) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr nanosecond(nanosecond_t, INTEGRAL iNanosecond) : m_iNanosecond(iNanosecond) {}
    constexpr nanosecond(const nanosecond &) = default;
 
@@ -44,7 +44,7 @@ struct nanosecond
       return *this;
    }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr nanosecond operator * (INTEGRAL i)  const
    {
       return { nanosecond_t{}, m_iNanosecond * i };

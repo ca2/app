@@ -41,10 +41,10 @@ namespace write_text
    bool text_out::contains(const ::double_point & point)
    {
 
-      return point.x() >= m_point.x()
-         && point.x() <= (m_point.x() + m_size.cx())
-         && point.y() >= m_point.y()
-         && point.y() <= (m_point.y() + m_size.cy());
+      return point.x >= m_point.x
+         && point.x <= (m_point.x + m_size.cx)
+         && point.y >= m_point.y
+         && point.y <= (m_point.y + m_size.cy);
 
    }
 

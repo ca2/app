@@ -6,7 +6,7 @@
 
 
 
-//template < primitive_floating FLOATING >
+//template < prototype_floating FLOATING >
 //constexpr class time operator * (const ::floating_millisecond & millisecond, INTEGRAL integral)
 //{
 //
@@ -19,7 +19,7 @@
 
 //
 //
-//template < primitive_floating FLOATING >
+//template < prototype_floating FLOATING >
 //constexpr class time operator / (const ::floating_second & second, FLOATING floating)
 //{
 //
@@ -31,7 +31,7 @@
 //}
 ////
 ////
-////template < primitive_integral INTEGRAL >
+////template < prototype_integral INTEGRAL >
 ////constexpr class time operator / (const ::integral_millisecond & millisecond, INTEGRAL integral)
 ////{
 ////
@@ -43,7 +43,7 @@
 ////}
 ////
 ////
-////template < primitive_integral INTEGRAL >
+////template < prototype_integral INTEGRAL >
 ////constexpr class time operator / (const ::integral_nanosecond & nanosecond, INTEGRAL integral)
 ////{
 ////

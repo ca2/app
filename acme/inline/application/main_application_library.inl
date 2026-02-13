@@ -4,9 +4,9 @@
 #include "acme/inline/application/main.h"
 
 
-#ifdef CUBE
-DO_FACTORY(REFERENCE_FACTORY)
-#endif
+//#ifdef CUBE
+//DO_FACTORY(REFERENCE_FACTORY)
+//#endif
 
 
 CLASS_DECL_ACME void string_short_test();
@@ -23,7 +23,6 @@ namespace APPLICATION_NAMESPACE
 #include "acme/platform/system_setup.h"
 
 
-#include "acme/inline/_include_user_and_system.h"
 
 
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
@@ -48,7 +47,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(create_system)
 
    {
 
-      auto psystem = new ::PLATFORM_LAYER_NAME::system();
+      new ::PLATFORM_LAYER_NAME::system();
 
 #ifdef NETBSD
 
@@ -166,7 +165,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT int APPLICATION_NAMESPACE_MAIN(main)()
 
          ::os_on_init_thread();
 
-         set_main_thread();
+         set_main_user_thread();
 
          ::APPLICATION_NAMESPACE::application_factory(psystem->factory());
 

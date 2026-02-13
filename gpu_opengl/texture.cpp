@@ -10,7 +10,7 @@
 #include "device.h"
 #include "gpu/_ktx.h"
 #include "lock.h"
-#include "renderer.h"
+#include "context.h"
 
 #include <stb/stb_image.h>
 
@@ -23,19 +23,32 @@ namespace gpu_opengl
 
       m_gluTextureID = 0;
       m_gluDepthStencilRBO = 0;
-      m_gluFbo = 0;
+      //m_gluFbo = 0;
+      m_glsyncGpuCommandsCompleteFence = 0;
+
+
    }
 
 
-   texture::~texture() {}
-
-
-   void texture::initialize_hdr_texture_on_memory(::gpu::renderer *pgpurenderer, const ::block & block)
+   texture::~texture()
    {
 
-      ::gpu::context_lock contextlock(pgpurenderer->m_pgpucontext);
+      if (m_gluTextureID)
+      {
+         glDeleteTextures(1, &m_gluTextureID);
+         m_gluTextureID =0;
+      }
 
-      m_pgpurenderer = pgpurenderer;
+
+   }
+
+
+   void texture::initialize_hdr_texture_on_memory(::gpu::context *pgpucontext, const ::block & block)
+   {
+
+      ::gpu::context_lock contextlock(pgpucontext);
+
+      m_pgpucontext = pgpucontext;
 
       auto data = block.data();
 
@@ -43,7 +56,11 @@ namespace gpu_opengl
 
       int width, height, channels;
 
-      auto imagedata = stbi_loadf_from_memory(data, size, &width, &height, &channels, 0);
+      stbi_set_flip_vertically_on_load(1);
+
+      auto imagedata = stbi_loadf_from_memory(data, (int) size, &width, &height, &channels, 0);
+
+      stbi_set_flip_vertically_on_load(0);
 
       if (!imagedata)
       {
@@ -56,17 +73,17 @@ namespace gpu_opengl
 
       }
 
-      // m_etype = etype;
-      m_rectangleTarget = ::int_rectangle(::int_size(width, height));
+      // m_etexture = etype;
+      m_textureattributes.m_rectangleTarget = ::int_rectangle(::int_size(width, height));
 
-      m_bWithDepth = false;
+      m_textureflags.m_bWithDepth = false;
 
       m_gluType = GL_TEXTURE_2D;
 
       glGenTextures(1, &m_gluTextureID);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBindTexture(m_gluType, m_gluTextureID);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       float *rgbaData = nullptr;
       if (channels == 3)
@@ -87,16 +104,16 @@ namespace gpu_opengl
 
       //glTexImage2D(m_gluType, 0, GL_RGB16F, w, h, 0, GL_RGB, GL_FLOAT, imagedata);
       glTexImage2D(m_gluType, 0, GL_RGBA32F, width, height, 0, GL_RGBA, GL_FLOAT, rgbaData ? rgbaData : imagedata);
-      GLCheckError("");
+      ::opengl::check_error("");
 
       glTexParameteri(m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-      GLCheckError("");
+      ::opengl::check_error("");
       glTexParameteri(m_gluType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-      GLCheckError("");
+      ::opengl::check_error("");
       glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      GLCheckError("");
+      ::opengl::check_error("");
       glTexParameteri(m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-      GLCheckError("");
+      ::opengl::check_error("");
 
 
       stbi_image_free(imagedata);
@@ -108,11 +125,13 @@ namespace gpu_opengl
 
       }
 
+      glBindTexture(m_gluType, 0);
+
    }
 
    
-   void texture::initialize_with_image_data(::gpu::renderer *pgpurenderer, const ::int_rectangle &rectangleTarget,
-                                            int numChannels, bool bSrgb, const void *pdata, enum_type etype)
+   void texture::initialize_with_image_data(::gpu::context *pgpucontext, const ::int_rectangle &rectangleTarget,
+                                            int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture)
    {
 
       //  if (m_rectangleTarget == rectangleTarget)
@@ -121,369 +140,930 @@ namespace gpu_opengl
       //   return;
       //}
 
-                GLenum format;
-      
-          switch (numChannels)
-          {
-             case 1:
-                format = GL_RED;
-                break;
-             case 3:
-                format = GL_RGB;
-                break;
-             case 4:
-                format = GL_RGBA;
-                break;
-          }
-      
-          GLenum internalFormat = format;
-      
-          // account for sRGB textures here
-          //
-          // diffuse textures are in sRGB space (non-linear)
-          // metallic/roughness/normals are usually in linear
-          // AO depends
-          if (bSrgb)
-          {
-             if (internalFormat == GL_RGB)
-             {
-                internalFormat = GL_SRGB;
-             }
-             else if (internalFormat == GL_RGBA)
-             {
-                internalFormat = GL_SRGB_ALPHA;
-             }
-          }
-      
+      ::gpu::texture_attributes textureattributes(rectangleTarget);
 
-      if (etype == e_type_cube_map)
-      {
+      textureattributes.m_iChannelCount = numChannels;
+      textureattributes.m_iFloat = bSrgb ? 1 : 0;
+      textureattributes.m_etexture = etexture;
 
-         m_gluType = GL_TEXTURE_CUBE_MAP;
-      }
-      else
-      {
+      ::gpu::texture_flags textureflags;
 
-         m_gluType = GL_TEXTURE_2D;
-      }
+      ::gpu::texture_data texturedata(pdata);
 
-      auto sizeCurrent = m_rectangleTarget.size();
+//      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
-      ::gpu::texture::initialize_image_texture(pgpurenderer, rectangleTarget, false, {} , etype);
-
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
+      initialize_texture(pgpucontext, textureattributes, textureflags, texturedata);
 
 
-      glGenTextures(1, &m_gluTextureID);
-      glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
-      m_gluType = GL_TEXTURE_2D;
-      // generate the texture
-      glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_rectangleTarget.width(), m_rectangleTarget.height(), 0,
-                   format, GL_UNSIGNED_BYTE,
-                   pdata);
-       glGenerateMipmap(GL_TEXTURE_2D);
 
-      // texture wrapping/filtering options
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
-       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
+      //::gpu::texture::initialize_texture(pgpucontext, rectangleTarget, false, {} , etype);
 
+      //::gpu::context_lock contextlock(m_pgpucontext);
+
+
+      // glGenTextures(1, &m_gluTextureID);
+      // glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+      // m_gluType = GL_TEXTURE_2D;
+      // // generate the texture
+      // glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_textureattributes.m_rectangleTarget.width(), m_textureattributes.m_rectangleTarget.height(), 0,
+      //              format, GL_UNSIGNED_BYTE,
+      //              pdata);
+      //  glGenerateMipmap(GL_TEXTURE_2D);
+      //
+      // // texture wrapping/filtering options
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // image is resized using bilinear filtering
+      //  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // image is enlarged using bilinear filtering
+      //
 
    }
 
-   void texture::initialize_image_texture(::gpu::renderer *prenderer, const ::int_rectangle &rectangleTarget,
-                                          bool bWithDepth, const ::pointer_array<::image::image> &imagea,
-                                          enum_type etype)
-   {
-
-      if (m_rectangleTarget == rectangleTarget)
-      {
-
-         return;
-      }
-
-      if (etype == e_type_cube_map)
-      {
-
-         m_gluType = GL_TEXTURE_CUBE_MAP;
-      }
-      else
-      {
-
-         m_gluType = GL_TEXTURE_2D;
-      }
-
-      auto sizeCurrent = m_rectangleTarget.size();
-
-      ::gpu::texture::initialize_image_texture(prenderer, rectangleTarget, bWithDepth, imagea, etype);
-
-      ::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
-
-      if (sizeCurrent != rectangleTarget.size())
-      {
-
-         if (!m_gluTextureID)
-         {
-
-            glGenTextures(1, &m_gluTextureID); // 1. Generate a texture ID
-            GLCheckError("");
-         }
-
-         glBindTexture(m_gluType, m_gluTextureID); // 2. Bind the texture to the 2D texture target
-         GLCheckError("");
-
-         glTexParameteri(m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-         GLCheckError("");
-         glTexParameteri(m_gluType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-         GLCheckError("");
-         if (m_gluType == GL_TEXTURE_CUBE_MAP)
-         {
-            glTexParameteri(m_gluType, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-            GLCheckError("");
-         }
-         glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-         GLCheckError("");
-         glTexParameteri(m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-         GLCheckError("");
-
-         if (m_gluType == GL_TEXTURE_2D)
-         {
-
-            ::memory memory;
-
-            if (imagea.has_element())
-            {
-
-               auto scan_area = m_rectangleTarget.area() * 4;
-
-               memory.set_size(scan_area);
-
-               if (imagea.size() != rectangleTarget.size())
-               {
-
-                  throw ::exception(error_wrong_state);
-               }
-
-               auto pimage32 = (image32_t *)memory.data();
-
-               pimage32->copy(imagea.first());
-            }
-
-            auto data = memory.data();
-
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, m_rectangleTarget.width(), m_rectangleTarget.height(), 0, GL_RGBA,
-                         GL_UNSIGNED_BYTE, data);
-            GLCheckError("");
-         }
-         else if (m_gluType == GL_TEXTURE_CUBE_MAP)
-         {
-
-            if (imagea.first()->width() <= 0 || imagea.first()->height() <= 0)
-            {
-
-               throw ::exception(error_wrong_state);
-            }
-            else if (imagea.first()->height() != imagea.first()->width())
-            {
-
-               throw ::exception(error_wrong_state);
-            }
-
-            ::memory memory;
-
-            memory.set_size(imagea.first()->area() * 4);
-
-            ::int_point point(0, 0);
-
-            ::int_size size(imagea.first()->size());
-
-            int scan = size.width() * 4;
-
-            for (unsigned int i = 0; i < 6; i++)
-            {
-
-               auto pimage32 = (::image32_t *)memory.data();
-
-               pimage32->copy(size.cx(), size.cy(), scan, imagea[i]->image32(), imagea[i]->m_iScan);
-
-               if (pimage32)
-               {
-
-                  // Load the texture data into the cubemap
-                  glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA, size.cx(), size.cy(), 0, GL_BGRA,
-                               GL_UNSIGNED_BYTE, pimage32);
-
-                  GLCheckError("");
-
-                  // stbi_image_free(data);
-               }
-               // else if (data) {
-               //    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-               //       0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-               //    stbi_image_free(data);
-               // }
-               // else {
-               //    std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
-               //    stbi_image_free(data);
-               // }
-            }
-         }
-         else
-         {
-
-            throw ::exception(error_wrong_state);
-         }
-
-         // Optional: generate mipmaps
-         // glGenerateMipmap(GL_TEXTURE_2D);
-
-         // free(data);
-
-         glBindTexture(m_gluType, 0); // Unbind when done
-         GLCheckError("");
-      }
-   }
+   // void texture::initialize_image_texture(::gpu::context *pcontext, const ::int_rectangle &rectangleTarget,
+   //                                        bool bWithDepth, const ::pointer_array<::image::image> * pimagea,
+   //                                        enum_type etype)
+   // {
+   //
+   //    if (m_pgpucontext != pcontext
+   //       && rectangleTarget != m_rectangleTarget
+   //       && etype != m_etexture)
+   //    {
+   //
+   //       ::gpu::texture::initialize_image_texture(pcontext, rectangleTarget, bWithDepth, imagea, etype);
+   //
+   //       create_image(pimagea);
+   //
+   //    }
+   //
+   //    if (m_rectangleTarget == rectangleTarget)
+   //    {
+   //
+   //       return;
+   //
+   //    }
+   //
+   //    if (etype == ::gpu::e_texture_cube_map)
+   //    {
+   //
+   //       m_gluType = GL_TEXTURE_CUBE_MAP;
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       m_gluType = GL_TEXTURE_2D;
+   //
+   //    }
+   //
+   //    auto sizeCurrent = m_rectangleTarget.size();
+   //
+   //    ::gpu::texture::initialize_image_texture(pcontext, rectangleTarget, bWithDepth, pimagea, etype);
+   //
+   //    ::gpu::context_lock contextlock(m_pgpucontext);
+   //
+   //    if (sizeCurrent != rectangleTarget.size())
+   //    {
+   //
+   //       if (!m_gluTextureID)
+   //       {
+   //
+   //          glGenTextures(1, &m_gluTextureID); // 1. Generate a texture ID
+   //          ::opengl::check_error("");
+   //       }
+   //
+   //       glBindTexture(m_gluType, m_gluTextureID); // 2. Bind the texture to the 2D texture target
+   //       ::opengl::check_error("");
+   //
+   //       glTexParameteri(m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+   //       ::opengl::check_error("");
+   //       glTexParameteri(m_gluType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+   //       ::opengl::check_error("");
+   //       if (m_gluType == GL_TEXTURE_CUBE_MAP)
+   //       {
+   //          glTexParameteri(m_gluType, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+   //          ::opengl::check_error("");
+   //       }
+   //       glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+   //       ::opengl::check_error("");
+   //       glTexParameteri(m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+   //       ::opengl::check_error("");
+   //
+   //       if (m_gluType == GL_TEXTURE_2D)
+   //       {
+   //
+   //          ::memory memory;
+   //
+   //          if (imagea.has_element())
+   //          {
+   //
+   //             auto scan_area = m_rectangleTarget.area() * 4;
+   //
+   //             memory.set_size(scan_area);
+   //
+   //             if (imagea.size() != rectangleTarget.size())
+   //             {
+   //
+   //                throw ::exception(error_wrong_state);
+   //             }
+   //
+   //             auto pimage32 = (image32_t *)memory.data();
+   //
+   //             pimage32->copy(imagea.first());
+   //          }
+   //
+   //          auto data = memory.data();
+   //
+   //          int w = m_rectangleTarget.width();
+   //
+   //          int h = m_rectangleTarget.height();
+   //
+   //          glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA,
+   //                       GL_UNSIGNED_BYTE, data);
+   //          ::opengl::check_error("");
+   //
+   //
+   //
+   //          int samples = 0;
+   //          glGetIntegerv(GL_SAMPLES, &samples);
+   //          printf("MSAA samples: %d\n", samples);
+   //
+   //
+   //          //if (m_gluFbo)
+   //          //{
+   //          //   glDeleteFramebuffers(1, &m_gluFbo);
+   //          //   m_gluFbo = 0;
+   //          //   //glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+   //          //   //::opengl::check_error("");
+   //          //   //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_gluTextureID, 0);
+   //          //   //::opengl::check_error("");
+   //          //   //if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+   //          //   //{
+   //          //   //   ::opengl::check_error("");
+   //          //   //   throw ::exception(error_wrong_state);
+   //
+   //          //   //}
+   //          //   //::opengl::check_error("");
+   //
+   //          //   //int_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+   //
+   //          //   //glViewport(r.left, r.top, r.width(), r.height());
+   //          //   //::opengl::check_error("");
+   //
+   //          //   //glScissor(r.left, r.top, r.width(), r.height());
+   //          //   //::opengl::check_error("");
+   //
+   //          //   //pframe->m_pgpucommandbuffer->set_scissor(r);
+   //
+   //          //}
+   //       }
+   //       else if (m_gluType == GL_TEXTURE_CUBE_MAP)
+   //       {
+   //
+   //          if (imagea.first()->width() <= 0 || imagea.first()->height() <= 0)
+   //          {
+   //
+   //             throw ::exception(error_wrong_state);
+   //          }
+   //          else if (imagea.first()->height() != imagea.first()->width())
+   //          {
+   //
+   //             throw ::exception(error_wrong_state);
+   //          }
+   //
+   //          ::memory memory;
+   //
+   //          memory.set_size(imagea.first()->area() * 4);
+   //
+   //          ::int_point point(0, 0);
+   //
+   //          ::int_size size(imagea.first()->size());
+   //
+   //          int scan = size.width() * 4;
+   //
+   //          int iImage;
+   //
+   //          for (unsigned int i = 0; i < 6; i++)
+   //          {
+   //
+   //             auto pimage32 = (::image32_t *)memory.data();
+   //
+   //             iImage = i;
+   //
+   //             if (iImage == 2)
+   //             {
+   //
+   //                iImage = 3;
+   //
+   //             }
+   //             else if(iImage == 3)
+   //             {
+   //
+   //                iImage = 2;
+   //
+   //             }
+   //
+   //
+   //             pimage32->vertical_swap_copy(size.cx, size.cy, scan, imagea[iImage]->image32(), imagea[iImage]->m_iScan);
+   //
+   //             if (pimage32)
+   //             {
+   //
+   //                // Load the texture data into the cubemap
+   //                glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA, size.cx, size.cy, 0, GL_BGRA,
+   //                             GL_UNSIGNED_BYTE, pimage32);
+   //
+   //                ::opengl::check_error("");
+   //
+   //                // stbi_image_free(data);
+   //             }
+   //             // else if (data) {
+   //             //    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+   //             //       0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+   //             //    stbi_image_free(data);
+   //             // }
+   //             // else {
+   //             //    std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
+   //             //    stbi_image_free(data);
+   //             // }
+   //          }
+   //       }
+   //       else
+   //       {
+   //
+   //          throw ::exception(error_wrong_state);
+   //       }
+   //
+   //       // Optional: generate mipmaps
+   //       // glGenerateMipmap(GL_TEXTURE_2D);
+   //
+   //       // free(data);
+   //
+   //       glBindTexture(m_gluType, 0); // Unbind when done
+   //       ::opengl::check_error("");
+   //    }
+   // }
 
 
    // void texture::blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget)
    //{
 
-   //   m_pgpurenderer->blend(this, ptexture, rectangleTarget);
+   //   m_pgpucontext->blend(this, ptexture, rectangleTarget);
 
    //}
 
 
-   void texture::create_render_target()
+   void texture::_create_texture(const ::gpu::texture_data & data)
    {
 
-      if (m_gluFbo)
+      if (m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
       {
 
-         return;
+         m_gluType = GL_TEXTURE_CUBE_MAP;
+
       }
-
-      //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
-
-
-      // GLuint fboSrc, fboDst;
-      glGenFramebuffers(1, &m_gluFbo);
-      GLCheckError("");
-      glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
-      GLCheckError("");
-
-      if (m_gluTextureID)
+      else
       {
 
-         glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
-         GLCheckError("");
+         m_gluType = GL_TEXTURE_2D;
 
-         glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_gluTextureID, 0);
-         GLCheckError("");
-
-         // Set draw buffer
-         GLenum drawBufs[] = {GL_COLOR_ATTACHMENT0};
-         glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
-         GLCheckError("");
       }
 
-      if (m_gluDepthStencilRBO)
+      GLenum format;
+      
+      auto iChannelCount = m_textureattributes.m_iChannelCount;
+
+      switch (iChannelCount)
+      {
+         case 1:
+            format = GL_RED;
+            break;
+         case 2:
+            format = GL_RG;
+            break;
+         case 3:
+            format = GL_RGB;
+            break;
+         case 4:
+            format = GL_RGBA;
+            break;
+         default:
+            throw ::exception(error_wrong_state, "Not supported channel count");
+            break;
+      }
+
+      GLenum internalFormat = format;
+
+      // account for sRGB textures here
+      //
+      // diffuse textures are in sRGB space (non-linear)
+      // metallic/roughness/normals are usually in linear
+      // AO depends
+      if (m_textureattributes.m_iFloat >= 1)
+      {
+         if (internalFormat == GL_RGB)
+         {
+            internalFormat = GL_SRGB;
+         }
+         else if (internalFormat == GL_RGBA)
+         {
+            internalFormat = GL_SRGB_ALPHA;
+         }
+      }
+
+
+      if (m_textureattributes.m_etexture == ::gpu::e_texture_cube_map)
       {
 
-         glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
-         GLCheckError("");
-
-         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gluDepthStencilRBO);
-         GLCheckError("");
+         m_gluType = GL_TEXTURE_CUBE_MAP;
       }
-
-      GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-
-      if (status != GL_FRAMEBUFFER_COMPLETE)
+      else
       {
 
-         warning() << "Framebuffer attachment is not complete";
+         m_gluType = GL_TEXTURE_2D;
+
       }
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
-   }
+      auto sizeCurrent = m_textureattributes.m_rectangleTarget.size();
 
-
-   void texture::create_depth_resources()
-   {
-
-      if (m_gluDepthStencilRBO)
+      if (!m_gluTextureID)
       {
 
-         return;
+         glGenTextures(1, &m_gluTextureID); // 1. Generate a texture ID
+         ::opengl::check_error("");
       }
 
-      int width = m_rectangleTarget.width();
+      glBindTexture(m_gluType, m_gluTextureID); // 2. Bind the texture to the 2D texture target
+      ::opengl::check_error("");
 
-      int height = m_rectangleTarget.height();
+      glTexParameteri(m_gluType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+      ::opengl::check_error("");
+      glTexParameteri(m_gluType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+      ::opengl::check_error("");
+      if (m_gluType == GL_TEXTURE_CUBE_MAP)
+      {
+         glTexParameteri(m_gluType, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+         ::opengl::check_error("");
+      }
+      glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+      ::opengl::check_error("");
+      glTexParameteri(m_gluType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+      ::opengl::check_error("");
 
-      glGenRenderbuffers(1, &m_gluDepthStencilRBO);
-      GLCheckError("");
-
-      glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
-      GLCheckError("");
-
-      glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
-      GLCheckError("");
-
-      glBindRenderbuffer(GL_RENDERBUFFER, 0);
-      GLCheckError("");
-   }
-
-
-   void texture::bind_render_target()
-   {
-
-      if (!m_gluFbo)
+      if (m_gluType == GL_TEXTURE_2D)
       {
 
-         create_render_target();
-      }
+         ::memory memory;
 
-      if (!m_gluFbo)
+         const void * pdata = nullptr;
+
+         if (data.is_image_array())
+         {
+
+            auto scan_area = m_textureattributes.m_rectangleTarget.area() * 4;
+
+            memory.set_size(scan_area);
+
+            if (data.imagea().first()->size() != m_textureattributes.m_rectangleTarget.size())
+            {
+
+               throw ::exception(error_wrong_state);
+
+            }
+
+            auto pimage32 = (image32_t *)memory.data();
+
+            pimage32->copy(data.imagea().first());
+
+            pdata = pimage32;
+
+         }
+         else if (data.is_raw_scoped_data())
+         {
+
+            pdata = data.raw_scoped_data();
+
+         }
+
+         int w = m_textureattributes.m_rectangleTarget.width();
+
+         int h = m_textureattributes.m_rectangleTarget.height();
+
+         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, w, h, 0, format,
+                      GL_UNSIGNED_BYTE, pdata);
+         ::opengl::check_error("");
+
+
+
+         int samples = 0;
+         glGetIntegerv(GL_SAMPLES, &samples);
+         printf("MSAA samples: %d\n", samples);
+
+
+         //if (m_gluFbo)
+         //{
+         //   glDeleteFramebuffers(1, &m_gluFbo);
+         //   m_gluFbo = 0;
+         //   //glBindFramebuffer(GL_FRAMEBUFFER, m_gluFbo);
+         //   //::opengl::check_error("");
+         //   //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_gluTextureID, 0);
+         //   //::opengl::check_error("");
+         //   //if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+         //   //{
+         //   //   ::opengl::check_error("");
+         //   //   throw ::exception(error_wrong_state);
+
+         //   //}
+         //   //::opengl::check_error("");
+
+         //   //int_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+
+         //   //glViewport(r.left, r.top, r.width(), r.height());
+         //   //::opengl::check_error("");
+
+         //   //glScissor(r.left, r.top, r.width(), r.height());
+         //   //::opengl::check_error("");
+
+         //   //pframe->m_pgpucommandbuffer->set_scissor(r);
+
+         //}
+      }
+      else if (m_gluType == GL_TEXTURE_CUBE_MAP)
+      {
+
+         ::memory memory;
+
+         if (data.is_image_array())
+         {
+
+            if (data.imagea().first()->size() != sizeCurrent)
+            {
+
+               throw ::exception(error_wrong_state);
+
+            }
+
+            memory.set_size(sizeCurrent.area() * 4);
+
+            //::int_point point(0, 0);
+
+            //::int_size size(pimagea->first()->size());
+         }
+
+         int scan = sizeCurrent.width() * 4;
+
+         int iImage;
+
+         for (unsigned int i = 0; i < 6; i++)
+         {
+
+            image32_t * pimage32 = nullptr;
+
+            if (data.is_image_array())
+            {
+
+            pimage32 = (::image32_t *)memory.data();
+
+            iImage = i;
+
+            if (iImage == 2)
+            {
+
+               iImage = 3;
+
+            }
+            else if(iImage == 3)
+            {
+
+               iImage = 2;
+
+            }
+
+
+            pimage32->vertical_swap_copy(sizeCurrent.cx, sizeCurrent.cy, scan,
+               data.imagea()[iImage]->image32(), data.imagea()[iImage]->m_iScan);
+
+
+
+            //if (pimage32)
+            //{
+            }
+            //}
+#if defined(__APPLE__)
+               // Load the texture data into the cubemap
+               glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8,
+                  sizeCurrent.cx, sizeCurrent.cy, 0, GL_BGRA,
+                            GL_UNSIGNED_BYTE, pimage32);
+            
+#else
+            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_BGRA,
+               sizeCurrent.cx, sizeCurrent.cy, 0, GL_BGRA,
+                         GL_UNSIGNED_BYTE, pimage32);
+         
+#endif
+
+               ::opengl::check_error("");
+
+            if (m_textureattributes.m_iMipCount > 0)
+            {
+
+               int w = sizeCurrent.cx;
+               int h = sizeCurrent.cy;
+
+               for (int level = 1; level < m_textureattributes.m_iMipCount; ++level) {
+                  w = std::max(1, w / 2);
+                  h = std::max(1, h / 2);
+                  glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, level, GL_BGRA,
+                               w, h, 0, GL_BGRA, GL_UNSIGNED_BYTE, nullptr);
+
+                  ::opengl::check_error("");
+
+               }
+
+            }
+               // stbi_image_free(data);
+            }
+            // else if (data) {
+            //    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
+            //       0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+            //    stbi_image_free(data);
+            // }
+            // else {
+            //    std::cout << "Failed to load cubemap texture at path: " << facesCubemap[i] << std::endl;
+            //    stbi_image_free(data);
+            // }
+         //}
+      }
+      else
       {
 
          throw ::exception(error_wrong_state);
       }
 
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_gluFbo);
-      GLCheckError("");
+      // Optional: generate mipmaps
+      // glGenerateMipmap(GL_TEXTURE_2D);
+
+
+      // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+      //
+      // if (status != GL_FRAMEBUFFER_COMPLETE)
+      // {
+      //
+      //    auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
+      //
+      //    if (::is_set(pszFramebufferStatusText))
+      //    {
+      //
+      //       warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+      //
+      //    }
+      //
+      // }
+
+
+      // free(data);
+
+      glBindTexture(m_gluType, 0); // Unbind when done
+      ::opengl::check_error("");
+
+
+
+   }
+
+
+   void texture::_create_frame_buffer_object(base_context_handle::object & object)
+   {
+
+//      if (m_gluFbo)
+//      {
+//
+//         return;
+//
+//      }
+
+      //GLint drawFboOld = 0;
+      //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFboOld);
+
+      //GLint readFboOld = 0;
+      //glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFboOld);
+
+      //::gpu::context_lock contextlock(m_pgpucontext);
+      
+      if(object.m_bCreated)
+      {
+         
+         throw ::exception(error_wrong_state);
+         
+      }
+
+      object.m_handle = 0;
+      
+      // GLuint fboSrc, fboDst;
+      glGenFramebuffers(1, &object.m_handle);
+      ::opengl::check_error("");
+      ::opengl::ensure_non_null_handle(object.m_handle, "glGenFramebuffers(1, ...)");
+      
+      object.m_bCreated = true;
+ 
+   }
+
+void texture::_defer_bind_to_render_target(base_context_handle::object & object)
+{
+   
+   if(!object.m_bCreated)
+   {
+      
+      throw ::exception(error_wrong_state);
+      
+   }
+   
+   if(object.m_bBound)
+   {
+      
+      throw ::exception(error_wrong_state);
+      
+   }
+   
+   if(!object.m_handle)
+   {
+      
+      throw ::exception(error_failed);
+      
+   }
+   
+   glBindFramebuffer(GL_FRAMEBUFFER, object.m_handle);
+   ::opengl::check_error("");
+
+   if (m_gluTextureID)
+   {
+
+      if (m_textureattributes.m_etexture != ::gpu::e_texture_cube_map)
+      {
+
+         bool bIsTexture = glIsTexture(m_gluTextureID);
+
+         informationf("is %d a gl texture? %d", m_gluTextureID,  bIsTexture);
+         ::opengl::check_error("");
+
+         glBindTexture(m_gluType, m_gluTextureID);
+         ::opengl::check_error("");
+
+         glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_gluType, m_gluTextureID, 0);
+         ::opengl::check_error("");
+
+         // Set draw buffer
+         GLenum drawBufs[] = {GL_COLOR_ATTACHMENT0};
+         glDrawBuffers(1, drawBufs); // REQUIRED for user-defined FBOs
+         ::opengl::check_error("");
+
+         glBindTexture(m_gluType, 0);
+
+      }
+
+   }
+
+   if (m_gluDepthStencilRBO)
+   {
+
+      glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
+      ::opengl::check_error("");
+
+      glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_gluDepthStencilRBO);
+      ::opengl::check_error("");
+   }
+
+   GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+
+   if (status != GL_FRAMEBUFFER_COMPLETE)
+   {
+
+      warning() << "Framebuffer attachment is not complete";
+
+      auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(status);
+
+      if (::is_set(pszFramebufferStatusText))
+      {
+
+         warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+   }
+   
+   object.m_bBound = true;
+
+   //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFboOld);
+   //glBindFramebuffer(GL_READ_FRAMEBUFFER, readFboOld);
+}
+
+
+   void texture::create_depth_resources()
+   {
+
+      int width = m_textureattributes.m_rectangleTarget.width();
+
+      int height = m_textureattributes.m_rectangleTarget.height();
+
+      if (!m_gluDepthStencilRBO)
+      {
+
+         glGenRenderbuffers(1, &m_gluDepthStencilRBO);
+         ::opengl::check_error("");
+     
+         glBindRenderbuffer(GL_RENDERBUFFER, m_gluDepthStencilRBO);
+         ::opengl::check_error("");
+
+         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+         ::opengl::check_error("");
+
+         glBindRenderbuffer(GL_RENDERBUFFER, 0);
+         ::opengl::check_error("");
+
+      }
+
+   }
+
+int g_iGpuOpenGlFrameBufferObject = 0;
+   GLuint texture::frame_buffer_object()
+   {
+      g_iGpuOpenGlFrameBufferObject++;
+      auto & object = context_handle_object();
+   
+      auto & gluFrameBufferObject = object.m_handle;
+   
+      if(!object.m_bCreated)
+      {
+         
+         _create_frame_buffer_object(object);
+         
+         //      glGenVertexArrays(1, &gluVertexArrayObject);
+         //      ::opengl::check_error("");
+         //
+         //      if(gluVertexArrayObject == 74)
+         //      {
+         //
+         //         information("gluVertexArrayObject == 74");
+         //
+         //      }
+         
+         //glBindVertexArray(vertexarrayobject.m_gluVertexArrayObject);
+         //::opengl::check_error("");
+         
+         //      ::cast < memory_buffer > pbufferVertex = m_pbufferVertex;
+         //
+         //      ::cast < memory_buffer > pbufferIndex = m_pbufferIndex;
+         //
+         //      if(::is_set(pbufferVertex))
+         //      {
+         //
+         //         ::cast < input_layout > pinputlayout = m_pinputlayout;
+         //
+         //         pinputlayout->__do_opengl_vao_vbo_and_ebo_input_layout(
+         //                                                gluVertexArrayObject,
+         //                                                                pbufferVertex->m_gluVbo,
+         //                                                                pbufferIndex ? pbufferIndex->m_gluVbo : 0
+         //                                                                );
+         //
+         //      }
+         
+         //glBindVertexArray(0);
+         //::opengl::check_error("");
+         
+      }
+      
+      if(object.m_bCreated)
+      {
+         
+         //if(m_pinputlayout && !object.m_bBound)
+         if(!object.m_bBound)
+         {
+            
+            _defer_bind_to_render_target(object);
+            
+         }
+         
+      }
+   
+      return gluFrameBufferObject;
+
+   }
+
+int g_iGpuOpenGlBindRenderTarget = 0;
+   void texture::bind_render_target()
+   {
+      g_iGpuOpenGlBindRenderTarget++;
+//      if (!m_gluFbo)
+//      {
+//
+//         create_render_target();
+//
+//      }
+      
+      auto gluFbo = frame_buffer_object();
+
+      if (!gluFbo)
+      {
+
+         throw ::exception(error_wrong_state);
+         
+      }
+      
+      GLint drawFbo = 0;
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+      ::opengl::check_error("");
+
+      if(drawFbo != gluFbo)
+      {
+         
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, gluFbo);
+         ::opengl::check_error("");
+         
+      }
 
       glDrawBuffer(GL_COLOR_ATTACHMENT0);
-      GLCheckError("");
+      ::opengl::check_error("");
+      
+      GLenum statusFramebuffer = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+
+      if(statusFramebuffer != GL_FRAMEBUFFER_COMPLETE)
+      {
+         
+         auto pszFramebufferStatusText = ::opengl::check_framebuffer_status_text(statusFramebuffer);
+         
+         if (::is_set(pszFramebufferStatusText))
+         {
+            warning("glCheckFramebufferStatus(GL_FRAMEBUFFER) return \"{}\".", pszFramebufferStatusText);
+            
+         }
+         throw ::exception(error_failed);
+      }
+      
    }
 
 
    void texture::set_pixels(const ::int_rectangle &rectangle, const void *data)
    {
+      
+      if(::is_null(data))
+      {
+         
+         throw ::exception(error_bad_argument);
+         
+      }
+
+      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+      ::opengl::check_error("");
+
+      // int w = rectangle.width();
+      // int h = rectangle.height();
+      //
+      // ::memory memory;
+      //
+      // memory.set_size(w*h*4);
+      //
+      // auto src = (char*)data);
+      // auto rgba = (char *) memory.data();
+      //
+      // for (int y = 0; y < h; ++y)
+      // {
+      //    for (int x = 0; x < w; ++x)
+      //    {
+      //       unsigned char a = bm->buffer[y * bm->pitch + x];
+      //       rgba[(y*w + x)*4 + 0] = 255;
+      //       rgba[(y*w + x)*4 + 1] = 255;
+      //       rgba[(y*w + x)*4 + 2] = 255;
+      //       rgba[(y*w + x)*4 + 3] = a;
+      //    }
+      // }
 
       glBindTexture(GL_TEXTURE_2D, m_gluTextureID);
+      ::opengl::check_error("");
       glTexSubImage2D(GL_TEXTURE_2D,
                       0, // mip level
-                      rectangle.left(), rectangle.top(), // offset inside the texture
+                      rectangle.left, rectangle.top, // offset inside the texture
                       rectangle.width(), rectangle.height(),
                       GL_RGBA, // format of the new data
                       GL_UNSIGNED_BYTE, // type of the new data
                       data // pointer to new pixels
+                      
       );
+      
+      ::opengl::check_error("");
 
       glBindTexture(GL_TEXTURE_2D, 0);
+      ::opengl::check_error("");
    }
 
 
-   // Loads a cubemap from a single KTX file
-   void texture::KtxLoadCubemapFromFile(const ::scoped_string &name, ::string filename, bool b32)
+      // Loads a cubemap from a single KTX file
+   void texture::KtxLoadCubemapFromFile(const ::scoped_string &scopedstrName, ::string filename, bool b32)
    // VkFormat format,
    // VkQueue copyQueue,
    // VkImageUsageFlags imageUsageFlags,
    // VkImageLayout imageLayout)
    {
-      m_etype = e_type_cube_map;
+      m_textureattributes.m_etexture = ::gpu::e_texture_cube_map;
 
       ktxTexture *ktxTexture;
       ktxResult result = loadKTXFile(this, filename, &ktxTexture);
@@ -495,9 +1075,35 @@ namespace gpu_opengl
          return;
       }
 
+      KtxLoadCubemapFrom_ktxTexture(scopedstrName, ktxTexture, b32);
+
+   }
+
+
+
+
+   // Loads a cubemap from a single KTX file
+   void texture::KtxLoadCubemapFrom_ktxTexture(const ::scoped_string &name, void *p_ktxTexture, bool b32)
+   // VkFormat format,
+   // VkQueue copyQueue,
+   // VkImageUsageFlags imageUsageFlags,
+   // VkImageLayout imageLayout)
+   {
+      m_textureattributes.m_etexture = ::gpu::e_texture_cube_map;
+      ::gpu::context_lock lockcontext(m_pgpucontext);
+      auto pktxtexture = (ktxTexture *) p_ktxTexture;
+      //ktxResult result = loadKTXFile(this, filename, &ktxTexture);
+      //if (result != KTX_SUCCESS)
+      //{
+
+      //   throw ::exception(error_failed);
+
+      //   return;
+      //}
+
       GLenum glError = 0;
 
-      ktxResult resultUpload = ktxTexture_GLUpload(ktxTexture, &m_gluTextureID, &m_gluType, &glError);
+      ktxResult resultUpload = ktxTexture_GLUpload(pktxtexture, &m_gluTextureID, &m_gluType, &glError);
 
       if (resultUpload != KTX_SUCCESS)
       {
@@ -507,21 +1113,21 @@ namespace gpu_opengl
          return;
       }
 
-      // ::cast<::gpu_opengl::context> pcontext = m_pgpurenderer->m_pgpucontext;
+      // ::cast<::gpu_opengl::context> pcontext = m_pgpucontext;
       //
       // ::cast<::gpu_opengl::device> pgpudevice = pcontext->m_pgpudevice;
       //
       // //auto pphysicaldevice = pgpudevice->m_pphysicaldevice;
       //
-      // m_rectangleTarget.left() = 0;
-      // m_rectangleTarget.top() = 0;
+      // m_rectangleTarget.left = 0;
+      // m_rectangleTarget.top = 0;
       // //this->m_pDevice = pdevice;
-      // m_rectangleTarget.right() = ktxTexture->baseWidth;
-      // m_rectangleTarget.bottom() = ktxTexture->baseHeight;
-      // m_iMipCount = ktxTexture->numLevels;
+      // m_rectangleTarget.right = pktxtexture->baseWidth;
+      // m_rectangleTarget.bottom = pktxtexture->baseHeight;
+      // m_iMipCount = pktxtexture->numLevels;
       //
-      // ktx_uint8_t *ktxTextureData = ktxTexture_GetData(ktxTexture);
-      // ktx_size_t ktxTextureSize = ktxTexture_GetDataSize(ktxTexture);
+      // ktx_uint8_t *ktxTextureData = ktxTexture_GetData(pktxtexture);
+      // ktx_size_t ktxTextureSize = ktxTexture_GetDataSize(pktxtexture);
       //
       // // VkMemoryAllocateInfo memAllocInfo = vkinit::memoryAllocateInfo();
       // // VkMemoryRequirements memReqs;
@@ -563,7 +1169,7 @@ namespace gpu_opengl
       //    for (uint32_t level = 0; level < m_iMipCount; level++)
       //    {
       //       ktx_size_t offset;
-      //       KTX_error_code result = ktxTexture_GetImageOffset(ktxTexture, level, 0, face, &offset);
+      //       KTX_error_code result = ktxTexture_GetImageOffset(pktxtexture, level, 0, face, &offset);
       //       ASSERT(result == KTX_SUCCESS);
       //
       //       VkBufferImageCopy bufferCopyRegion = {};
@@ -571,8 +1177,8 @@ namespace gpu_opengl
       //       bufferCopyRegion.imageSubresource.mipLevel = level;
       //       bufferCopyRegion.imageSubresource.baseArrayLayer = face;
       //       bufferCopyRegion.imageSubresource.layerCount = 1;
-      //       bufferCopyRegion.imageExtent.width = ktxTexture->baseWidth >> level;
-      //       bufferCopyRegion.imageExtent.height = ktxTexture->baseHeight >> level;
+      //       bufferCopyRegion.imageExtent.width = pktxtexture->baseWidth >> level;
+      //       bufferCopyRegion.imageExtent.height = pktxtexture->baseHeight >> level;
       //       bufferCopyRegion.imageExtent.depth = 1;
       //       bufferCopyRegion.bufferOffset = offset & ~0xF;
       //
@@ -687,12 +1293,82 @@ namespace gpu_opengl
       // VK_CHECK_RESULT(vkCreateImageView(pcontext->logicalDevice(), &viewCreateInfo, nullptr, &m_vkimageview));
       //
       // // Clean up staging resources
-      // ktxTexture_Destroy(ktxTexture);
+      // ktxTexture_Destroy(pktxtexture);
       // vkDestroyBuffer(pcontext->logicalDevice(), stagingBuffer, nullptr);
       // vkFreeMemory(pcontext->logicalDevice(), stagingMemory, nullptr);
       //
       // // Update descriptor image info member that can be used for setting up descriptor sets
       // UpdateDescriptor();
+   }
+
+
+   void texture::set_cube_face(int iFace,::gpu::shader * pgpushader)
+   {
+      //   ::cast < ::gpu_opengl::texture>ptexture = m_ptexture;
+
+
+      //glFramebufferTexture2D(
+      //   GL_FRAMEBUFFER,
+      //   GL_COLOR_ATTACHMENT0,
+      //   GL_TEXTURE_CUBE_MAP_POSITIVE_X + iFace,
+      //   m_gluTextureID,
+      //   m_iCurrentMip);
+
+      //::opengl::check_error("");
+
+
+      //glBindTexture(m_gluType, m_gluTextureID);
+      //::opengl::check_error("");
+
+   }
+
+
+   void texture::set_current_mip(int iCurrentMip) { ::gpu::texture::set_current_mip(iCurrentMip); }
+
+
+   void texture::generate_mipmap(::gpu::command_buffer * pcommandbuffer)
+   {
+
+       glBindTexture(m_gluType, m_gluTextureID);
+       glTexParameteri(m_gluType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+       glGenerateMipmap(m_gluType);
+
+   }
+
+
+   void texture::defer_fence()
+   {
+
+      if (m_glsyncGpuCommandsCompleteFence)
+      {
+
+         return;
+
+      }
+
+      m_glsyncGpuCommandsCompleteFence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+
+      glFlush(); // push commands to GPU
+
+   }
+
+
+   void texture::wait_fence()
+   {
+
+      if (!m_glsyncGpuCommandsCompleteFence)
+      {
+
+         return;
+
+      }
+
+      glClientWaitSync(m_glsyncGpuCommandsCompleteFence, 0, GL_TIMEOUT_IGNORED);
+
+      glDeleteSync(m_glsyncGpuCommandsCompleteFence);
+
+      m_glsyncGpuCommandsCompleteFence = nullptr;
+
    }
 
 

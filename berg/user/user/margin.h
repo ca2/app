@@ -58,13 +58,13 @@ namespace user
       //     BASE::screen_to_client(prectangle);
 
 
-      /*prectangle->left()   -= m_rectangleMargin.left();
+      /*prectangle->left   -= m_rectangleMargin.left;
 
-      prectangle->right()  -= m_rectangleMargin.left();
+      prectangle->right  -= m_rectangleMargin.left;
 
-      prectangle->top()    -= m_rectangleMargin.top();
+      prectangle->top    -= m_rectangleMargin.top;
 
-      prectangle->bottom() -= m_rectangleMargin.top();*/
+      prectangle->bottom -= m_rectangleMargin.top;*/
 
 
       // }
@@ -84,7 +84,7 @@ namespace user
       //void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
       //{
 
-      //   BASE::set_context_offset(pgraphics, x - m_rectangleMargin.left(), y - m_rectangleMargin.top());
+      //   BASE::set_context_offset(pgraphics, x - m_rectangleMargin.left, y - m_rectangleMargin.top);
 
       //}
 
@@ -101,7 +101,7 @@ namespace user
 
          auto s = BASE::get_total_size();
 
-         return decltype(s)(s.cx() + m_rectangleMargin.left() + m_rectangleMargin.right(),s.cy() + m_rectangleMargin.top() + m_rectangleMargin.bottom());
+         return decltype(s)(s.cx + m_rectangleMargin.left + m_rectangleMargin.right,s.cy + m_rectangleMargin.top + m_rectangleMargin.bottom);
 
       }
 

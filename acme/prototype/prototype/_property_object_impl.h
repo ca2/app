@@ -10,10 +10,6 @@
 //{
 //
 //}
-//
-//
-//
-//
 //inline bool property_object::has_property(const atom & atom) const { return m_ppropertyset && m_ppropertyset->has_property(atom); }
 //inline property * property_object::lookup_property(const atom& atom) const { return m_ppropertyset ? m_ppropertyset->find(atom) : nullptr; }
 //inline bool property_object::erase_key(const atom & atom) { return m_ppropertyset && m_ppropertyset->erase_by_name(atom); }
@@ -244,10 +240,6 @@
 //   return *pproperty;
 //
 //}
-//
-//
-//
-//
 //inline ::payload & property_object::topic(const ::atom& atom)
 //{
 //

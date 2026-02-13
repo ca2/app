@@ -10,7 +10,7 @@
 
 namespace graphics3d
 {
-	//skybox_ibl_render_system::skybox_ibl_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+	//skybox_ibl_render_system::skybox_ibl_render_system(::graphics3d::device * pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)
 	//	: m_pgpudevice{ pdevice }, m_pipelineLayout{ VK_NULL_HANDLE }, m_skyboxDescriptorSet(VK_NULL_HANDLE), m_bHasCubemap(false)
 //	{
 //	}
@@ -31,7 +31,7 @@ namespace graphics3d
 	// void skybox_ibl_render_system::init(
 	// 	graphics3d::device * pdevice,
 	// 	VkRenderPass renderPass,
-	// 	VkDescriptorSetLayout globalSetLayout,
+	// 	aaaVkDescriptorSetLayout globalSetLayout,
 	// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 	// 	size_t frameCount)
 	// {
@@ -70,12 +70,12 @@ namespace graphics3d
 		// ASSERT(success && "Failed to build skybox descriptor set");
 	}
 
-	// void skybox_ibl_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
+	// void skybox_ibl_render_system::createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout) {
 	//
-	// 	VkDescriptorSetLayout skyboxLayoutHandle =
+	// 	aaaVkDescriptorSetLayout skyboxLayoutHandle =
 	// 		m_skyboxSetLayout->getDescriptorSetLayout();
 	//
-	// 	::preallocated_array_base< ::array_base <VkDescriptorSetLayout>, 2 > layouts;
+	// 	::preallocated_array_base< ::array_base <aaaVkDescriptorSetLayout>, 2 > layouts;
 	//
 	// 	layouts = {
 	// 		globalSetLayout,

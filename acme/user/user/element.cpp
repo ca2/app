@@ -1173,22 +1173,22 @@ namespace user
    }
 
 
-   void element::subclass_window(oswindow posdata)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   oswindow element::unsubclass_window()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+   // void element::subclass_window(oswindow posdata)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   // }
+   //
+   //
+   // oswindow element::unsubclass_window()
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    void element::create_child(::user::interaction * puserinteractionParent)
@@ -1989,7 +1989,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(::sequence2_int & sequence)
+   void element::viewport_client_to_screen(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -1997,7 +1997,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(::sequence2_int & sequence)
+   void element::viewport_screen_to_client(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -2318,7 +2318,7 @@ namespace user
    //}
 
 
-   //bool element::attach(oswindow oswindow)
+   //bool element::attach(::acme::windowing::window * pacmewindowingwindow)
    //{
 
    //   throw ::interface_only();
@@ -2328,8 +2328,10 @@ namespace user
    //}
 
 
-   oswindow element::detach_window()
+   void * element::detach_win32_HWND()
    {
+
+      throw ::interface_only();
 
       return nullptr;
 
@@ -2812,9 +2814,9 @@ namespace user
 
    //   ::double_size sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
+   //   sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
+   //   sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
 
    //   return sizePaddedFitting;
 
@@ -4321,7 +4323,7 @@ namespace user
    }
 
 
-   bool element::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool element::keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindow)
    {
 
       return true;
@@ -4652,7 +4654,7 @@ namespace user
    }
 
 
-   ::user::primitive_impl * element::get_primitive_impl()
+   ::user::prototype_impl * element::get_primitive_impl()
    {
 
       return nullptr;
@@ -4935,7 +4937,7 @@ namespace user
    }
 
 
-   void element::pick_single_file_to_save(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog * pdialog) > & function)
+   void element::pick_single_file_to_save(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog * pdialog) > & procedureResponse)
    {
 
       auto pfiledialog = node()->node_file_dialog();
@@ -4944,7 +4946,7 @@ namespace user
 
       pfiledialog->m_filedialogfilter.copy(filedialogfilter);
 
-      pfiledialog->m_function = function;
+      pfiledialog->m_procedureResponse = procedureResponse;
       //{
 
       //      function(pdialog);
@@ -4968,7 +4970,7 @@ namespace user
    }
 
 
-void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog* pdialog) > & function)
+void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedialogfilter, const ::function < void(::file::file_dialog* pdialog) > & procedureResponse)
 {
 
    auto pfiledialog = node()->node_file_dialog();
@@ -4977,7 +4979,7 @@ void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedi
 
    pfiledialog->m_filedialogfilter.copy(filedialogfilter);
 
-   pfiledialog->m_function = function;
+   pfiledialog->m_procedureResponse = procedureResponse;
 
    //pfiledialog->m_function = [function](auto pdialog)
    //{
@@ -5003,12 +5005,12 @@ void element::pick_single_file_to_open(const ::file::file_dialog_filter & filedi
 }
 
 
-void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfiltera, const ::function < void(::file::file_dialog * pdialog) > & function)
+void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfiltera, const ::function < void(::file::file_dialog * pdialog) > & procedureResponse)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
-      pfiledialog->m_function = function;
+      pfiledialog->m_procedureResponse = procedureResponse;
 
       //pfiledialog->m_function = [function](auto pdialog)
       //{
@@ -5035,12 +5037,12 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    }
 
 
-   void element::pick_single_folder(const ::function < void(::file::file_dialog * pdialog) > & function)
+   void element::pick_single_folder(const ::function < void(::file::file_dialog * pdialog) > & procedureResponse)
    {
 
       auto pfiledialog = node()->node_file_dialog();
 
-      pfiledialog->m_function = function;
+      pfiledialog->m_procedureResponse = procedureResponse;
 
       //pfiledialog->m_function = [function](auto pdialog)
       //{
@@ -5167,7 +5169,7 @@ void element::pick_multiple_file(const ::file::file_dialog_filter & filedialogfi
    ::trace_statement & element::raw_trace_statement_prefix(::trace_statement & statement) const
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       statement << strType;
 

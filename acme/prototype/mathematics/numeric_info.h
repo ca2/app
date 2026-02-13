@@ -672,7 +672,7 @@ class numeric_info
 {
 public:
 
-   using INTERNAL_TYPE = typename remove_reference < typename remove_const < T >::type >::type;
+   using INTERNAL_TYPE = typename remove_reference < typename remove_const < T >::type>::type;
 
    using INTERNAL_INFO = numeric_info_internal::numeric_info < INTERNAL_TYPE > ;
 
@@ -740,7 +740,7 @@ T & maximum(T & t)
 /// @param n and integral type payload to be checked
 /// @param bit must be in the range 0 to sizeof_in_bits(N) - 1
 /// @return true if bit at index @bit is set at @n, false otherwise
-template < primitive_integral N >
+template < prototype_integral N >
 constexpr bool is_bit_set(N n, int bit)
 {
 
@@ -753,7 +753,7 @@ constexpr bool is_bit_set(N n, int bit)
 /// @tparam N an integral type
 /// @param n an integral type payload
 /// @return the index of the most significant bit set at @n or -1 if none is found
-template < primitive_integral N >
+template < prototype_integral N >
 constexpr int most_significant_bit_index(N n)
 {
 

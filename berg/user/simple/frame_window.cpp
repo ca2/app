@@ -54,7 +54,7 @@ namespace berg
 {
 
 
-   ::type_atom user::get_simple_frame_window_type_info() { return ::type<::simple_frame_window>(); }
+   ::platform::type user::get_simple_frame_window_type_info() { return ::type<::simple_frame_window>(); }
 
 
 } // namespace berg
@@ -1268,7 +1268,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    if (pshow->m_bShow)
    {
 
-      //informationf("simple_frame_window::on_message_show_window true : " + ::type(this).name());
+      //informationf("simple_frame_window::on_message_show_window true : " + ::platform::type(this).name());
 
       //defer_set_icon();
 
@@ -1276,7 +1276,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
    else
    {
 
-      //informationf("simple_frame_window::on_message_show_window false :" + ::type(this).name());
+      //informationf("simple_frame_window::on_message_show_window false :" + ::platform::type(this).name());
 
    }
 
@@ -1427,7 +1427,9 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
       if(prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
       {
          
-         display();
+         //display();
+         
+         initial_frame_placement();
          
       }
 
@@ -1442,7 +1444,7 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if (::type(this).name().case_insensitive_contains("child_frame"))
+   if (::platform::type(this).name().case_insensitive_contains("child_frame"))
    {
 
       information() << "child_frame";
@@ -1518,13 +1520,13 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
    //if (layout().is_full_screen())
    //{
 
-   //   pMMI->ptMaxSize.y() = m_FullScreenWindowRect.height();
+   //   pMMI->ptMaxSize.y = m_FullScreenWindowRect.height();
 
-   //   pMMI->ptMaxTrackSize.y() = pMMI->ptMaxSize.y();
+   //   pMMI->ptMaxTrackSize.y = pMMI->ptMaxSize.y;
 
-   //   pMMI->ptMaxSize.x() = m_FullScreenWindowRect.width();
+   //   pMMI->ptMaxSize.x = m_FullScreenWindowRect.width();
 
-   //   pMMI->ptMaxTrackSize.x() = pMMI->ptMaxSize.x();
+   //   pMMI->ptMaxTrackSize.x = pMMI->ptMaxSize.x;
 
    //}
 
@@ -2337,7 +2339,7 @@ bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, uns
 //
 //      //pusersystem->set_rect(rectangleFrame);
 //
-//      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left(), rectangleFrame.top(), rectangleFrame.width(), rectangleFrame.height());
+//      informationf("(2) simple_frame_window::LoadFrame rectangleFrame (l=%d, t=%d) (w=%d, h=%d)", rectangleFrame.left, rectangleFrame.top, rectangleFrame.width(), rectangleFrame.height());
 //      informationf("(2) simple_frame_window::LoadFrame edisplay=%s", ::string(::as_string((int)const_layout().sketch().display().eflag())).c_str());
 //
 //
@@ -2669,7 +2671,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //   if (!pointScroll.is_null())
 //   {
 //
-//      pgraphicsParam->offset_origin(-pointScroll.x(), -pointScroll.y());
+//      pgraphicsParam->offset_origin(-pointScroll.x, -pointScroll.y);
 //
 //   }
 //
@@ -2678,7 +2680,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //   try
 //   {
 //
-//      auto type = ::type(this);
+//      auto type = ::platform::type(this);
 //
 //
 //      //if (pgraphics->m_bDraw)
@@ -2833,7 +2835,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 ////
 ////#endif
 //
-//         string strType = ::type(this).name();
+//         string strType = ::platform::type(this).name();
 //
 //#ifdef VERBOSE_LOG
 //
@@ -2952,7 +2954,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if (bBlurBackground)
    {
 
-      //printf("simplefrmwnd : " + ::type(this).name() + " : blur_background");
+      //printf("simplefrmwnd : " + ::platform::type(this).name() + " : blur_background");
 
       //auto psystem = system();
 
@@ -2982,7 +2984,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 #ifndef LINUX
 
-         //printf("simplefrmwnd : " + ::type(this).name() + " : ifndef LINUX");
+         //printf("simplefrmwnd : " + ::platform::type(this).name() + " : ifndef LINUX");
 
          if (rectangleX.size() != m_pimageBk->size())
          {
@@ -3052,7 +3054,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   //printf("simplefrmwnd : " + ::type(this).name() + " : draw_frame");
+   //printf("simplefrmwnd : " + ::platform::type(this).name() + " : draw_frame");
 
 //   pgraphics->fill_solid_rectangle(::double_rectangle_dimension(100, 100, 200, 200), ::argb(127, 0, 255, 0));
 
@@ -3845,7 +3847,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
                      if (timeEllapsed > 50_ms)
                      {
 
-                        string strType = ::type(puserinteraction).name();
+                        string strType = ::platform::type(puserinteraction).name();
 
                         //if(strType.contains("pane_impact"))
                         //{
@@ -4023,8 +4025,6 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
 void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 {
-
-   
 
    if (m_bWindowFrame && !session()->savings()->is_trying_to_save(::e_resource_display_bandwidth))
    {

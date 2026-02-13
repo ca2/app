@@ -16,6 +16,7 @@
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
+#include "acme/constant/user_message.h"
 //#include "acme/constant/idpool.h"
 #include "acme/exception/library_not_loaded.h"
 #include "acme/filesystem/filesystem/directory_system.h"
@@ -31,6 +32,7 @@
 #include "acme/handler/request.h"
 #include "acme/handler/topic.h"
 #include "acme/operating_system/dynamic_library.h"
+#include "acme/operating_system/file.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
@@ -47,6 +49,7 @@
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
 #include "acme/windowing/sandbox/host_interaction.h"
+#include "prototype/string/_str.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -77,6 +80,12 @@ CLASS_DECL_ACME void trace_category_static_init(::platform::system* psystem);
 
 
 CLASS_DECL_ACME void trace_category_static_term();
+
+
+CLASS_DECL_ACME bool is_x11();
+
+
+CLASS_DECL_ACME bool is_wayland();
 
 
 ::file::path _system_config_folder_path()
@@ -2135,6 +2144,125 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   ::request * system::application_start_file_open_request()
+   {
+
+      if (m_bApplicationStartFileOpenRequest)
+      {
+
+         return m_prequestApplicationStartFileOpen;
+
+      }
+
+      m_bApplicationStartFileOpenRequest = true;
+
+      auto strCommandLineSystemNative = this->m_strCommandLineSystemNative;
+
+      strCommandLineSystemNative.trim();
+
+      ::payload payloadFile;
+
+      ::string strAppId = application()->m_strAppId;
+
+      ::string strApp;
+
+      ::property_set setRequest;
+
+      if (strCommandLineSystemNative.has_character())
+      {
+
+         information() << "system::defer_post_initial_request ***strCommandLineSystemNative*** : ***" << strCommandLineSystemNative << "***";
+
+         setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
+      }
+      else if (this->m_argc > 0 && this->m_args)
+      {
+
+         strApp = this->m_args[0];
+
+         ::string_array_base straFiles;
+
+         for (int iArgument = 1; iArgument < this->m_argc;)
+         {
+
+            auto iArgumentBefore = iArgument;
+
+            if (node()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            if (application()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            ::string strArgument = this->m_args[iArgument];
+
+            if (strArgument.begins("-"))
+            {
+
+               setRequest._008AddArgument(strArgument);
+            }
+            else
+            {
+
+               straFiles.add(strArgument);
+            }
+
+            iArgument++;
+         }
+
+         if (straFiles.has_elements())
+         {
+
+            if (straFiles.size() == 1)
+            {
+
+               payloadFile = straFiles[0];
+            }
+            else
+            {
+
+               payloadFile.string_array_reference() = straFiles;
+            }
+         }
+      }
+
+      if (!payloadFile.is_empty())
+      {
+
+         auto prequest = øcreate_new<::request>();
+
+         prequest->m_ecommand = e_command_file_open;
+
+         prequest->m_strAppId = strAppId;
+
+         prequest->property_set().merge(setRequest);
+
+         prequest->m_payloadFile = payloadFile;
+
+         payload("command_line_arg0") = strApp;
+
+         application()->property_set().merge(prequest->property_set());
+
+         prequest->m_bPreferSync = true;
+
+         //call_request(prequest);
+
+         m_prequestApplicationStartFileOpen = prequest;
+
+      }
+
+      return m_prequestApplicationStartFileOpen;
+
+   }
+
+
    ::nano::nano* system::nano()
    {
 
@@ -2700,40 +2828,44 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       string str = fetch_public_internet_domain_extension_list_text();
 
-      auto psz = str.c_str();
+      stra.add_lines(str);
 
-      while (*psz != '\0')
-      {
+      stra.erase_empty();
 
-         string str(*psz);
+      //auto psz = str.c_str();
 
-         auto pStart = str.find('(');
+      //while (*psz != '\0')
+      //{
 
-         if (::is_null(pStart))
-         {
+      //   string str(*psz);
 
-            stra.add(str);
+      //   auto pStart = str.find('(');
 
-            continue;
+      //   if (::is_null(pStart))
+      //   {
 
-         }
+      //      stra.add(str);
 
-         auto pEnd = str(pStart + 1).find(')');
+      //      continue;
 
-         if (::is_null(pEnd))
-         {
+      //   }
 
-            string strItem = str(0, pStart);
+      //   auto pEnd = str(pStart + 1).find(')');
 
-            stra.add(strItem);
+      //   if (::is_null(pEnd))
+      //   {
 
-            continue;
+      //      string strItem = str(0, pStart);
 
-         }
+      //      stra.add(strItem);
 
-         stra.add({ pStart, pEnd - pStart - 1 });
+      //      continue;
 
-      }
+      //   }
+
+      //   stra.add({ pStart, pEnd - pStart - 1 });
+
+      //}
 
       stra.trim();
 
@@ -2939,7 +3071,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       }
 
-      information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) <<
+      information() << "::apex::system::on_request session = " << ::platform::type(psession).name() << "(" << ((iptr)psession) <<
          ")";
 
       psession->post_request(prequest);
@@ -3560,24 +3692,20 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #endif
 
 
-   void system::system_id_update(int iId, long long iPayload)
+   ::lresult system::system_id_topic(int iId, long long llWparam, long long llLparam)
    {
 
-      call_message((::enum_message)iId, iPayload, {}, nullptr);
+      auto lresult = call_id_topic((::enum_id)iId, llWparam, llLparam, nullptr);
 
+      return lresult;
+      
    }
 
 
    void system::handle(::topic* ptopic, ::handler_context* phandlercontext)
    {
 
-      if (ptopic->id() == id_initialize_host_window)
-      {
-
-         acme_windowing()->defer_initialize_host_window(nullptr);
-
-      }
-      else if (ptopic->id() == id_defer_create_context_button)
+      if (ptopic->id() == id_defer_create_context_button)
       {
 
          auto pwindow = acme_windowing()->get_application_host_window();
@@ -3593,30 +3721,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //   defer_post_initial_request();
 
       //}
-      else if (ptopic->id() == id_get_operating_system_dark_mode_reply)
-      {
 
-         if (ptopic->payload("wparam").is_true())
-         {
-
-            set_background_color(::color::black);
-
-         }
-         else
-         {
-
-            set_background_color(::color::white);
-
-         }
-
-         if (m_pnano)
-         {
-
-            m_pnano->handle(ptopic, phandlercontext);
-
-         }
-
-      }
       else if (ptopic->id() == id_operating_system_user_theme_change)
       {
 
@@ -3656,13 +3761,13 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          }
 
       }
-      else if (ptopic->id() == id_initialize_host_window)
-      {
-
-         acme_windowing()->defer_initialize_host_window(nullptr);
-
-
-      }
+//      else if (ptopic->id() == id_initialize_host_window)
+//      {
+//
+//         acme_windowing()->defer_initialize_host_window(nullptr);
+//
+//
+//      }
       else if (ptopic->id() == id_app_activated)
       {
 
@@ -3676,15 +3781,51 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          }
 
       }
-      else if (ptopic->id() == id_did_pick_document_at_url)
+      else if (ptopic->id() ==  ::id_initialize_host_window)
+      {
+         
+         this->user();
+         
+         ::particle * pparticle = acme_windowing()->defer_initialize_host_window(nullptr);
+         
+         auto ll =  (long long) pparticle;
+         
+         ptopic->m_lresult = ll;
+         
+      }
+      else if (ptopic->id() == ::id_did_pick_document_at_url)
       {
 
          if (::is_set(application()))
          {
 
-            auto pszUrl = (const char*)ptopic->payload("wparam").as_iptr();
+            auto pszUrl = (const_char_pointer )ptopic->m_lparam.m_lparam;
 
             application()->did_pick_document_at_url(pszUrl);
+
+         }
+
+      }
+      else if (ptopic->id() ==  ::id_get_operating_system_dark_mode_reply)
+      {
+
+         if (ptopic->m_wparam)
+         {
+
+            set_background_color(::color::black);
+
+         }
+         else
+         {
+
+            set_background_color(::color::white);
+
+         }
+
+         if (m_pnano)
+         {
+
+            m_pnano->handle(ptopic, phandlercontext);
 
          }
 
@@ -3693,8 +3834,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::call_message(const ::enum_message& emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
+   ::lresult system::call_message(const ::user::enum_message& emessage, ::wparam wparam, ::lparam lparam, ::particle* pparticle)
    {
+
+      return 0;
 
    }
 
@@ -3731,7 +3874,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       //   auto pnode = node();
       //
-      //   pnode->_will_finish_launching();
+      //   pnode->_will_aaa_finish_launching();
 
       //   auto pnode = session();
       //
@@ -3739,7 +3882,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //
       //   auto pwindowing = system()->windowing();
       //
-      //   pwindowing->_will_finish_launching();
+      //   pwindowing->_will_aaa_finish_launching();
 
       auto pnode = node();
 
@@ -3755,7 +3898,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       //   auto pnode = node();
       //
-      //   pnode->_will_finish_launching();
+      //   pnode->_will_aaa_finish_launching();
 
       //   auto pnode = session();
       //
@@ -3763,7 +3906,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       //
       //   auto pwindowing = system()->windowing();
       //
-      //   pwindowing->_will_finish_launching();
+      //   pwindowing->_will_aaa_finish_launching();
 
       auto pnode = node();
 
@@ -4911,6 +5054,188 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   ::string system::get_operating_ambient()
+   {
+
+      ::string strOperatingAmbientToolkit;
+
+      strOperatingAmbientToolkit = ::windowing::get_eoperating_ambient_name();
+
+      ::string strOperatingAmbient;
+
+      ::string strOperatingAmbientNew;
+
+      ::string strWindowing = ::get_appconfig("windowing");
+
+      strWindowing.trim();
+
+      ::string_array straLines;
+
+      straLines.add_lines(strWindowing);
+
+      straLines.trim();
+
+      straLines.erase_empty();
+
+      straLines.erase_prefixed("#");
+
+      straLines.truncate_on_find_character('#');
+
+      straLines.trim();
+
+      straLines.erase_empty();
+
+      if (straLines.has_element())
+      {
+
+         strWindowing = straLines.last();
+
+         ::information() << "appconfig : windowing : " << strWindowing;
+
+         if (strWindowing.ends_eat("_windowing"))
+         {
+
+            if (strWindowing == "toolkit")
+            {
+
+               strOperatingAmbientNew = strOperatingAmbientToolkit;
+
+            }
+            else if (strWindowing == "raw")
+            {
+
+               if (::is_wayland())
+               {
+
+                  strOperatingAmbientNew = "wayland";
+
+               }
+               else if (::is_x11())
+               {
+
+                  strOperatingAmbientNew = "x11";
+
+               }
+
+            }
+            else
+            {
+
+               strOperatingAmbientNew = strWindowing;
+
+            }
+
+         }
+
+      }
+
+      if (strOperatingAmbientNew.has_character())
+      {
+
+         strOperatingAmbient = strOperatingAmbientNew;
+
+      }
+
+      if (strOperatingAmbientNew.is_empty())
+      {
+
+         strOperatingAmbient = strOperatingAmbientToolkit;
+
+      }
+
+      return strOperatingAmbient;
+
+   }
+
+
+   ::string system::get_user_toolkit_id()
+   {
+
+      ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+
+      ::string strOperatingAmbient = get_operating_ambient();
+
+      if (strOperatingAmbient.has_character())
+      {
+
+         if (strOperatingAmbient == "windows")
+         {
+
+            return "win32";
+
+         }
+         else if (strOperatingAmbient == "macos")
+         {
+
+            return "appkit";
+
+         }
+         else if (strOperatingAmbient == "ios")
+         {
+
+            return "uikit";
+
+         }
+
+         return strOperatingAmbient;
+
+      }
+
+      return strUserToolkit;
+
+   }
+
+
+   string system::get_nano_user_toolkit_id()
+   {
+
+      ::string strToolkitId = get_user_toolkit_id();
+
+      ::string strNanoUserToolkitId = strToolkitId;;
+
+      return strNanoUserToolkitId;
+
+
+   }
+
+
+   string system::get_innate_ui_toolkit_id()
+   {
+
+      ::string strInnateUiToolkitId;
+
+      auto strToolkitId = get_user_toolkit_id();
+
+      if (strToolkitId == "x11")
+      {
+
+         strInnateUiToolkitId = "xaw";
+
+      }
+      else
+      {
+
+         strInnateUiToolkitId = strToolkitId;
+
+      }
+
+      return strInnateUiToolkitId;
+
+   }
+
+
+   string system::get_acme_windowing_toolkit_id()
+   {
+
+      ::string strToolkitId = get_user_toolkit_id();
+
+      ::string strAcmeWindowingToolkitId = strToolkitId;
+
+      return strAcmeWindowingToolkitId;
+
+   }
+
+
    void system::do_graphics_and_windowing_factory()
    {
 
@@ -4924,7 +5249,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
             nano()->graphics();
 
-            ::string strToolkit = ::windowing::get_user_toolkit_id();
+            ::string strToolkit = get_acme_windowing_toolkit_id();
 
             m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
 
@@ -5087,10 +5412,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 //}
 
 
-void system_id_update(::platform::system* psystem, int iUpdate, long long iParam)
+long long system_id_topic(::platform::system* psystem, int iId, long long llWparam, long long llLparam)
 {
 
-   psystem->system_id_update(iUpdate, iParam);
+   auto ll = psystem->call_id_topic((::enum_id) iId, llWparam, llLparam);
+   
+   return ll;
 
 }
 
@@ -5225,5 +5552,15 @@ CLASS_DECL_ACME task_pointer fork(::particle* pparticle, const ::procedure& proc
 {
 
    return pparticle->system()->fork(procedure);
+
+}
+
+CLASS_DECL_ACME ::acme::windowing::window *acme_windowing_window_from_HWND(void * pHWND)
+{
+
+
+   auto pacmewindowingwindow = ::system()->acme_windowing()->window_from_HWND(pHWND);
+
+   return pacmewindowingwindow;
 
 }

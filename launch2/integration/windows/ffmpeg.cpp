@@ -438,7 +438,7 @@ namespace console_integration
 
          //acmenode()->command_system(m_papplication->m_pathSource +"/vs_call.bat", tracefunction);
 
-         printf("Current Directory: %s\n", directory_system()->get_current().c_str());
+         printf("Current Directory: %s\n", directory_system()->current().c_str());
          printf("%s\n", s.c_str());
 
          //::file::path pathVsCall = m_papplication->m_pathSource + "/vs_call.bat";

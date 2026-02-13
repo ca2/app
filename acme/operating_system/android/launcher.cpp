@@ -1,8 +1,4 @@
 #include "framework.h"
-
-
-//
-
 //
 //bool launcher::start()
 //{

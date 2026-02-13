@@ -21,22 +21,12 @@
 #pragma once
 
 
-///#include "acme/platform/reference_referer.h"
-
-
-
 
 namespace micro
 {
 
    class user;
 
-
-   //class device;
-   //class child;
-
-
-      //class interaction;
 
    class theme;
 
@@ -46,37 +36,9 @@ namespace micro
    class main_window;
 
    class dialog;
-   //class window_implementation;
-
-
-   //class icon;
    class button;
    class still;
-
-
-
-   //class display;
-
-// class brush;
-// class pen;
-// class font;
-//
-//
-//
-//    CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
-//    CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold = false);
-//    CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
-
-
-      //CLASS_DECL_ACME ::enum_display_type get_display_type();
-
-      //CLASS_DECL_ACME ::user::enum_operating_ambient calculate_edesktop();
-      //CLASS_DECL_ACME ::user::enum_operating_ambient get_eoperating_ambient();
-
-
-      //CLASS_DECL_ACME ::user::enum_toolkit calculate_etoolkit();
-      //CLASS_DECL_ACME ::user::enum_toolkit get_etoolkot();
-
+   
 
 } // namespace micro
 

@@ -5,10 +5,10 @@
 #include "bred/user/user/graphics3d.h"
 #include "simple_render_system.h"
 // libs
-#define GLM_FORCE_RADIANS	
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/glm.hpp>
-#include <glm/gtc/constants.hpp>
+	
+
+
+
 
 
 #include <string>
@@ -20,13 +20,13 @@
 namespace graphics3d 
 {
 	//struct SimplePushConstantData {
-	//	glm::mat4 modelMatrix{ 1.f };
-	//	glm::mat4 normalMatrix{ 1.f };
+	//	floating_matrix4 modelMatrix{ 1.f };
+	//	floating_matrix4 normalMatrix{ 1.f };
 	//};
 
 	///::graphics3d::property * simple_
 
-	//simple_render_system::simple_render_system(context * pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+	//simple_render_system::simple_render_system(context * pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)
 	simple_render_system::simple_render_system()
 	{
 
@@ -60,14 +60,14 @@ namespace graphics3d
 
 
 
-	//void simple_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
+	//void simple_render_system::createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout) {
 
 	//	VkPushConstantRange pushConstantRange{};
 	//	pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
 	//	pushConstantRange.offset = 0;
 	//	pushConstantRange.size = sizeof(SimplePushConstantData);
 
-	//	std::vector<VkDescriptorSetLayout> descriptorSetLayouts{ globalSetLayout };
+	//	std::vector<aaaVkDescriptorSetLayout> descriptorSetLayouts{ globalSetLayout };
 
 	//	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	//	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
@@ -126,10 +126,10 @@ namespace graphics3d
 		for (auto& kv : pscene->m_mapObjects) {
 			auto& obj = kv.element2();
 			//SimplePushConstantData push{};
-			//push.modelMatrix = obj->m_transform.mat4();
+			//push.modelMatrix = obj->m_transform.floating_matrix4();
 			//push.normalMatrix = obj->m_transform.normalMatrix();
 
-			m_pshader->setMat4("modelMatrix",obj->m_transform.mat4());
+			m_pshader->setMat4("modelMatrix",obj->m_transform.floating_matrix4());
 			m_pshader->setMat4("normalMatrix", obj->m_transform.normalMatrix());
 
 			m_pshader->push_properties();

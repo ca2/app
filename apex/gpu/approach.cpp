@@ -7,6 +7,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace gpu
@@ -43,7 +44,7 @@ namespace gpu
    }
 
 
-   ::gpu::device* approach::get_gpu_device()
+   ::gpu::device* approach::get_gpu_device(::acme::windowing::window * pacmewindowingwindow)
    {
 
       return nullptr;
@@ -107,14 +108,14 @@ namespace gpu
    }
 
 
-   void approach::on_before_create_window(::windowing::window* pwindow)
+   void approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
    {
 
 
    }
 
 
-   void approach::on_create_window(::windowing::window* pwindow)
+   void approach::gpu_on_create_window(::acme::windowing::window* pwindow)
    {
 
 

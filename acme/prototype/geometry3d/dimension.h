@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 using dimension_type = pole_type < NUMBER >;
 
 using INT_DIMENSION = int_pole;

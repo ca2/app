@@ -4,10 +4,6 @@
 //#include "acme/filesystem/file/serializable.h"
 //#include "acme/memory/memory.h"
 
-//
-
-
-
 class bstring_manager;
 class read_only_memory;
 class memory;
@@ -232,7 +228,7 @@ public:
    inline operator void * () { return data(); }
 
 
-   template < primitive_character CHARACTER >
+   template < prototype_character CHARACTER >
    range < CHARACTER * > get_buffer(character_count len)
    {
 

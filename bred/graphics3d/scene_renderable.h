@@ -9,7 +9,7 @@
 // //#include "SceneFoundry/graphics3d/model_i.h"
 // //#include <memory>
 // #include <optional>
-// #include <glm/glm.hpp>
+// 
 #include "bred/graphics3d/renderable.h"
 #include "bred/graphics3d/scene_object.h"
 
@@ -25,7 +25,13 @@ namespace graphics3d
    public:
 
 
-      ::graphics3d::transform m_transform;
+      //::graphics3d::transform m_transform;
+
+      floating_sequence3 m_sequence3Translation;
+      floating_sequence3 m_sequence3Scaling;
+      floating_matrix4 m_matrixRotation;
+      
+
       long long m_llId;
       enum_render_system m_erendersystem;
       ::pointer<::graphics3d::renderable> m_prenderable;
@@ -48,22 +54,22 @@ namespace graphics3d
       virtual void initialize_scene_renderable(::graphics3d::scene_base *pscene);
 
 
-      virtual ::graphics3d::transform &transform();
+      //virtual ::graphics3d::transform &transform();
 
 
       virtual ::graphics3d::renderable *renderable();
 
       virtual void set_renderable(::graphics3d::renderable *prenderable);
 
-
+      virtual ::floating_matrix4 model_matrix();
       virtual void on_update(float deltaTime);
 
       virtual ::color::color color();
       virtual long long getId();
 
 
-      virtual void translate(const glm::vec3 &vec3);
-      virtual void scale(const glm::vec3 &vec3);
+      virtual void translate(const ::floating_sequence3 &floating_sequence3);
+      virtual void scale(const ::floating_sequence3 &floating_sequence3);
    };
 
 

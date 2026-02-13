@@ -3,7 +3,53 @@
 
 
 //#include "bred/gpu/_.h"
-//#include <glm/glm.hpp>
+//
+
+
+class memory_composite :
+   virtual public ::particle
+{
+public:
+
+   ::pointer < ::memory > m_pmemory;
+
+
+   memory_composite()
+   {
+
+   }
+
+   ~memory_composite() override
+   {
+
+   }
+
+
+   ::memory & memory()
+   {
+
+      if (!m_pmemory)
+      {
+
+         øconstruct(m_pmemory);
+
+      }
+
+      return * m_pmemory;
+
+   }
+
+
+   ::memory & memory() const
+   {
+
+      return ((memory_composite *)this)->memory();
+
+   }
+
+
+
+};
 
 template < typename TYPE >
 inline ::gpu::property* gpu_properties()
@@ -273,6 +319,7 @@ namespace gpu
 
 
       memsize m_iOffset;
+      memsize m_iItemSize;
 
 
    };
@@ -321,7 +368,7 @@ namespace gpu
 		memsize size(bool bWithSamplers) const { return bWithSamplers? m_blockWithSamplers.size():m_blockWithoutSamplers.size(); }
 		::collection::count count() const { return ::is_null(m_pproperties) ? 0:m_pproperties->count(); }
       unsigned char *data(bool bWithSamplers) const { return bWithSamplers ? m_blockWithSamplers.data():m_blockWithoutSamplers.data(); }
-		void* find(const_char_pointer pszName) {
+		void* find(const_char_pointer pszName, bool bWithSamplers = true) {
          auto iIndex = m_pproperties->find_index(pszName);
          if (iIndex < 0)
          {
@@ -334,8 +381,25 @@ namespace gpu
 
          }
          auto iOffset = m_propertydataa[iIndex].m_iOffset;
-         return m_blockWithSamplers.data() + iOffset;
+         if (bWithSamplers)
+            return m_blockWithSamplers.data() + iOffset;
+         else
+            return m_blockWithoutSamplers.data() + iOffset;
 		}
+      memsize find_size(const_char_pointer pszName)
+      {
+         auto iIndex = m_pproperties->find_index(pszName);
+         if (iIndex < 0)
+         {
+            throw ::exception(error_not_found);
+         }
+         if (iIndex >= m_propertydataa.count())
+         {
+            throw ::exception(error_wrong_state);
+         }
+         auto iSize = m_propertydataa[iIndex].m_iItemSize;
+         return iSize;
+      }
       bool contains(const_char_pointer pszName) const
       {
          if (::is_null(m_pproperties))
@@ -346,12 +410,12 @@ namespace gpu
 		T& as(const_char_pointer pszName) { return *(T*)find(pszName); }
 		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
 		int& as_int(const_char_pointer pszName) { return as<int>(pszName); }
-		glm::vec2& seq2(const_char_pointer pszName) { return as<glm::vec2>(pszName); }
-		glm::vec3& seq3(const_char_pointer pszName) { return as<glm::vec3>(pszName); }
-		glm::vec4& seq4(const_char_pointer pszName) { return as<glm::vec4>(pszName); }
-		glm::mat2& mat2(const_char_pointer pszName) { return as<glm::mat2>(pszName); }
-		glm::mat3& mat3(const_char_pointer pszName) { return as<glm::mat3>(pszName); }
-		glm::mat4& mat4(const_char_pointer pszName) { return as<glm::mat4>(pszName); }
+		floating_sequence2& seq2(const_char_pointer pszName) { return as<floating_sequence2>(pszName); }
+		floating_sequence3& seq3(const_char_pointer pszName) { return as<floating_sequence3>(pszName); }
+		floating_sequence4& seq4(const_char_pointer pszName) { return as<floating_sequence4>(pszName); }
+		floating_matrix2& mat2(const_char_pointer pszName) { return as<floating_matrix2>(pszName); }
+		floating_matrix3& mat3(const_char_pointer pszName) { return as<floating_matrix3>(pszName); }
+		floating_matrix4& mat4(const_char_pointer pszName) { return as<floating_matrix4>(pszName); }
 		operator const ::gpu::property* ()
 		{
 			return m_pproperties;
@@ -401,13 +465,14 @@ namespace gpu
 
 		}
 
-		void _set_mat4(const ::glm::mat4& mat4);
-		void _set_vec4(const ::glm::vec4& vec4);
+		void _set_matrix4(const ::floating_matrix4& matrix4);
+		void _set_sequence4(const ::floating_sequence4& sequence4);
+      void _set_sequence3(const ::floating_sequence3 & sequence3);
 		void _set_int(const int& i);
 		
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& mat4) requires
-			(::std::is_same_v<TYPE, ::glm::mat4 >)
+		properties_reference& operator=(const TYPE& matrix4) requires
+			(::std::is_same_v<TYPE, ::floating_matrix4 >)
 		{
 
 			if (m_pproperties->m_etype != ::gpu::e_type_mat4)
@@ -416,15 +481,14 @@ namespace gpu
 				throw ::exception(error_bad_data_format);
 
 			}
-			_set_mat4(mat4);
+			_set_matrix4(matrix4);
 			
-
 			return *this;
 
 		}
 		template < typename TYPE >
-		properties_reference& operator=(const TYPE& vec4)requires
-		(::std::is_same_v<TYPE, ::glm::vec4 >)
+		properties_reference& operator=(const TYPE& sequence4)requires
+		(::std::is_same_v<TYPE, ::floating_sequence4 >)
 		{
 			if (m_pproperties->m_etype != ::gpu::e_type_seq4)
 			{
@@ -433,11 +497,26 @@ namespace gpu
 
 			}
 
-			_set_vec4(vec4);
+			_set_sequence4(sequence4);
 
 			return *this;
 
 		}
+      template<typename TYPE>
+      properties_reference &operator=(const TYPE &sequence3)
+         requires(::std::is_same_v<TYPE, ::floating_sequence3>)
+      {
+         if (m_pproperties->m_etype != ::gpu::e_type_seq3)
+         {
+
+            throw ::exception(error_bad_data_format);
+         }
+
+         _set_sequence3(sequence3);
+
+         return *this;
+      }
+
 
 		template < typename TYPE >
 		properties_reference& operator=(const TYPE& i)requires
@@ -461,10 +540,10 @@ namespace gpu
 	};
 
 	class properties :
-		public properties_interface
+		public properties_interface,
+      virtual public memory_composite
 	{
 	public:
-		::memory m_memory;
 
 
 		properties()
@@ -479,13 +558,18 @@ namespace gpu
 		void set_properties(const ::gpu::property* pproperties)
 		{
 			properties_interface::set(pproperties);
-			m_memory.set_size(m_pproperties->get_size(true));
-			m_blockWithSamplers.begin() = m_memory.data();
-         m_blockWithSamplers.end() = m_memory.end();
-         m_blockWithoutSamplers.begin() = m_memory.data();
+
+		   auto & memory = this->memory();
+			memory.set_size(m_pproperties->get_size(true));
+			m_blockWithSamplers.begin() = memory.data();
+         m_blockWithSamplers.end() = memory.end();
+         m_blockWithoutSamplers.begin() = memory.data();
          m_blockWithoutSamplers.end() = m_blockWithoutSamplers.begin() + m_pproperties->get_size(false);
 
 		}
+
+
+
       ::block block_with_samplers() { return m_blockWithSamplers; }
       ::block block_without_samplers() { return m_blockWithoutSamplers; }
 		
@@ -510,16 +594,32 @@ namespace gpu
 
 
 	}
-	inline properties_reference properties_interface::operator[](const_char_pointer pszName)
+	
+   
+   inline properties_reference properties_interface::operator[](const_char_pointer pszName)
 	{
 
 
 		auto pproperty = m_pproperties->find(pszName);
 
-		return { pproperty,
-			m_blockWithSamplers(pproperty->m_iCachedOffset,
-				pproperty->m_iCachedSizeWithSamplers),
-              m_blockWithoutSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithoutSamplers)};
+      if (m_propertydataa.has_element())
+      {
+         return {pproperty,
+            {find(pszName, true), find_size(pszName)},
+            {find(pszName, false), find_size(pszName)}
+         };
+      }
+      else
+      {
+
+
+            return {pproperty,
+
+                 m_blockWithSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithSamplers),
+                 m_blockWithoutSamplers(pproperty->m_iCachedOffset, pproperty->m_iCachedSizeWithoutSamplers)};
+
+
+      }
 	}
 
 	inline properties_reference properties_interface::operator[](::collection::index i)
@@ -573,6 +673,12 @@ rooting ::gpu::property *gpu_properties<type>();
    return s_pproperty;  \
 } 
  
+
+
+
+
+DECLARE_GPU_PROPERTIES(CLASS_DECL_BRED, ::floating_sequence3)
+
 
 
 

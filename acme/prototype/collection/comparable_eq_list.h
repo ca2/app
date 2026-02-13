@@ -38,7 +38,7 @@ public:
    //::collection::count erase(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
    ::collection::count erase(const TYPE & t, iterator start = nullptr, iterator end = nullptr);
    //::collection::count rear_erase(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    ::collection::count erase(const CONTAINER & container);
 
 
@@ -117,23 +117,23 @@ public:
    }
 
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    void merge_tail(const CONTAINER & container);
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    void merge_head(const CONTAINER & container);
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    void intersect(const CONTAINER & container);
 
 
    comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator -= (const TYPE & t);
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator &= (const CONTAINER & container);
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator -= (const CONTAINER & container);
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > & operator |= (const CONTAINER & container);
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    comparable_eq_list_base< TYPE, ARG_TYPE, LIST_BASE > operator -(const CONTAINER & container) const;
 
 
@@ -322,7 +322,7 @@ bool comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::add_head_unique(ARG_TYP
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 void comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 intersect(const CONTAINER & container)
 {
@@ -351,7 +351,7 @@ intersect(const CONTAINER & container)
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 void comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 merge_tail(const CONTAINER & container)
 {
@@ -367,7 +367,7 @@ merge_tail(const CONTAINER & container)
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 void comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 merge_head(const CONTAINER & container)
 {
@@ -384,7 +384,7 @@ merge_head(const CONTAINER & container)
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> &  comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 operator &= (const CONTAINER & container)
 {
@@ -409,7 +409,7 @@ operator -= (const TYPE & t)
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> &  comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 operator -= (const CONTAINER & container)
 {
@@ -422,7 +422,7 @@ operator -= (const CONTAINER & container)
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 operator - (const CONTAINER & container) const
 {
@@ -437,7 +437,7 @@ operator - (const CONTAINER & container) const
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE> &  comparable_eq_list_base<TYPE, ARG_TYPE, LIST_BASE>::
 operator |= (const CONTAINER & container)
 {
@@ -632,7 +632,7 @@ erase_last(const TYPE & t, iterator & p, iterator end)
 
 
 template <class TYPE, class ARG_TYPE, class LIST_BASE>
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 ::collection::count comparable_eq_list_base < TYPE, ARG_TYPE , LIST_BASE >::erase(const CONTAINER & container)
 {
 

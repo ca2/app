@@ -354,7 +354,7 @@ namespace apex
    void node::defer_innate_ui()
    {
 
-      auto strToolkit = ::windowing::get_user_toolkit_id();
+      auto strToolkit = system()->get_innate_ui_toolkit_id();
 
       if(strToolkit.has_character())
       {
@@ -541,6 +541,8 @@ namespace apex
 
    void node::defer_create_app_shortcut(::platform::application* papplication)
    {
+
+information() << "defer_create_app_shortcut";
 
       auto pathShortcut = app_shortcut_path(papplication);
 

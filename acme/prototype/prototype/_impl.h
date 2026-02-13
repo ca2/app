@@ -13,6 +13,7 @@
 #include "acme/prototype/prototype/_impl_factory.h"
 
 
+
 //inline bool __enum_is_failed(const ::e_status & e)
 //{
 //
@@ -23,7 +24,7 @@
 
 #include "acme/prototype/prototype/_impl_atom.h"
 #include "acme/prototype/prototype/_impl_prototype.h"
-
+#include "acme/prototype/prototype/_impl_type.h"
 
 //inline bool succeeded(const ::property & property)
 //{
@@ -44,7 +45,7 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
    }
 
-   auto & pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
+   auto pfactoryitem = pfactory->get_factory_item<BASE_TYPE>();
 
    if (!pfactoryitem)
    {
@@ -70,7 +71,7 @@ inline ::pointer<BASE_TYPE>particle::__call__create(::factory::factory* pfactory
 
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>particle::øid_create(const ::atom & atom, ::factory::factory* pfactory)
+//inline ::pointer<BASE_TYPE>particle::øcreate_by_type(const ::atom & atom, ::factory::factory* pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -194,14 +195,14 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 
    }
 
-   auto & pfactoryitem = pfactory->get_factory_item < BASE_TYPE >();
+   auto pfactoryitem = pfactory->get_factory_item < BASE_TYPE >();
 
    if (!pfactoryitem)
    {
 
       ::string strError;
       
-      strError.formatf("No factory for type : '%s'", typeid(BASE_TYPE).name());
+      strError.format("No factory for type : '{}'", ::type<BASE_TYPE>().name());
 
       error() << strError;
 
@@ -345,7 +346,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::øid_construct(::pointer<BASE_TYPE>& p, const ::atom & atom)
+//inline void matter::øconstruct_by_id(::pointer<BASE_TYPE>& p, const ::atom & atom)
 //{
 //
 //   auto & pfactory = factory_item(atom);
@@ -508,10 +509,10 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename TYPE >
-//inline void matter::øid_construct(::pointer<TYPE>& p, const ::atom & atom)
+//inline void matter::øconstruct_by_id(::pointer<TYPE>& p, const ::atom & atom)
 //{
 //
-//   auto estatus = ::øid_construct(p, atom);
+//   auto estatus = ::øconstruct_by_id(p, atom);
 //
 //   if (estatus && p)
 //   {
@@ -640,7 +641,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & pmember, const ::scoped_string & scopedstrObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::prototype::member < SOURCE > & pmember, const ::scoped_string & scopedstrObjRefDbg)
 //{
 //
 //   return __refer(preference, pmember.get(), pszObjRefDbg);
@@ -1400,7 +1401,7 @@ void reference_count_debug_release(TYPE * & p)
 //
 //
 //template < typename BASE_TYPE >
-//inline void object::øid_construct(::pointer<BASE_TYPE> p, const ::atom& atom)
+//inline void object::øconstruct_by_id(::pointer<BASE_TYPE> p, const ::atom& atom)
 //{
 //
 //   auto& pfactory = factory_item(atom);

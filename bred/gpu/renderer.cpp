@@ -26,14 +26,22 @@
 #include "aura/user/user/interaction.h"
 
 
+#include <assert.h>
+
+
 namespace gpu
 {
 
+   interlocked_count g_iGpuRenderer;
 
    renderer::renderer()
    {
 
+      m_iGpuRenderer = ++g_iGpuRenderer;
+
       m_iDefaultFrameCount = 3;
+      
+      m_bFrameStarted = false;
 
    }
 
@@ -98,6 +106,35 @@ namespace gpu
    }
 
 
+   void renderer::defer_initialize_render_target()
+   {
+
+      auto previous = m_pgpurendertarget2;
+
+      auto prendertarget = render_target();
+
+      auto sizeRenderer = m_sizeRenderer;
+
+      if (!prendertarget->has_ok_flag() || prendertarget->m_size != sizeRenderer)
+      {
+
+///         m_sizeRenderer = size;
+
+         prendertarget->initialize_render_target(this, sizeRenderer, previous);
+
+         // if (!size.is_empty() && m_pgpucontext->is_current_task())
+         if (!prendertarget->m_size.is_empty())
+         // if (!size.is_empty())
+         {
+
+            render_target()->init();
+         }
+
+      }
+
+   }
+
+
    void renderer::on_resize(const ::int_size& size)
    {
 
@@ -110,19 +147,23 @@ namespace gpu
 
       auto eoutput = m_pgpucontext->m_eoutput;
 
-      auto previous = m_pgpurendertarget;
+      //auto previous = render_target();
 
-      m_pgpurendertarget = on_create_render_target();
-      //on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
+      ////on_defer_update_renderer_allocate_render_target(eoutput, size, previous);
 
-      if (!m_pgpurendertarget)
-      {
+      //if (!m_pgpurendertarget)
+      //{
 
-         throw ::exception(error_wrong_state);
+      //   m_pgpurendertarget = on_create_render_target();
 
-      }
+      //   if (!m_pgpurendertarget)
+      //   {
 
-      m_sizeRenderer = size;
+      //      throw ::exception(error_wrong_state);
+
+      //   }
+
+      //}
 
       //m_pgpurendertarget = pgpurendertarget;
       //      else if (eoutput == ::gpu::e_output_gpu_buffer)
@@ -179,21 +220,10 @@ namespace gpu
       //
       //      }
       //
-      if (!m_pgpurendertarget->has_ok_flag())
-      {
 
-         m_pgpurendertarget->initialize_render_target(this, size, previous);
+      m_sizeRenderer = size;
 
-         //if (!size.is_empty() && m_pgpucontext->is_current_task())
-         if (!size.is_empty())
-            //if (!size.is_empty())
-         {
-
-            m_pgpurendertarget->init();
-
-         }
-
-      }
+      defer_initialize_render_target();
 
       //if (m_pgpurendertarget)
       //{
@@ -218,7 +248,13 @@ namespace gpu
 
       auto ptexture = øcreate< texture>();
 
-      ptexture->initialize_image_texture(this, size, bWithDepth);
+      ::gpu::texture_attributes textureattributes(::int_rectangle{size});
+
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bWithDepth = bWithDepth;
+
+      ptexture->initialize_texture(m_pgpucontext, textureattributes, textureflags);
 
       m_pgpucontext->on_create_texture(ptexture);
 
@@ -324,9 +360,45 @@ namespace gpu
 
          auto ptextureSource = m_pgpucontext->current_target_texture(player->m_pgpuframe);
 
-         m_pgpucontext->copy(ptextureTarget, ptextureSource);
+         m_pgpucontext->copy(ptextureTarget, ptextureSource, &player->m_pgpufence);
+
+         //player->m_bFinished = false;
+         //ptextureTarget->defer_fence();
 
       }
+
+   }
+
+   void renderer::defer_end_frame_layer_after_submit()
+   {
+
+      auto player = ::gpu::current_frame()->m_pgpulayer;
+
+      if (player)
+      {
+
+         player->layer_on_after_submit();
+
+      }
+
+
+
+   }
+
+
+   ::gpu::render_target * renderer::render_target()
+   {
+
+      if (::is_null(m_pgpurendertarget2))
+      {
+
+         m_pgpurendertarget2 = on_create_render_target();
+
+         defer_initialize_render_target();
+
+      }
+
+      return m_pgpurendertarget2;
 
    }
 
@@ -334,7 +406,7 @@ namespace gpu
    ::gpu::texture* renderer::current_render_target_texture(::gpu::frame* pgpuframe)
    {
 
-      return m_pgpurendertarget->current_texture(pgpuframe);
+      return render_target()->current_texture(pgpuframe);
 
    }
 
@@ -342,14 +414,20 @@ namespace gpu
    ::gpu::command_buffer* renderer::getCurrentCommandBuffer2(::gpu::frame* pgpuframe)
    {
 
-      assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
+      assert(m_bFrameStarted && "Cannot get command buffer when frame not in progress");
 
-      if (pgpuframe->m_pgpulayer)
+      if (pgpuframe && pgpuframe->m_pgpulayer)
       {
 
          return pgpuframe->m_pgpulayer->getCurrentCommandBuffer4();
 
       }
+
+      if (m_pgpucontext->m_eoutput == e_output_swap_chain)
+      {
+         m_pgpucontext->get_swap_chain()->defer_check_swap_chain();
+      }
+
 
       if (m_commandbuffera.is_empty())
       {
@@ -365,17 +443,31 @@ namespace gpu
 
          iFrameIndex = m_pgpucontext->get_swap_chain()->swap_chain_frame_index();
 
+         if (iFrameIndex < 0)
+         {
+
+            ::warning("iFrameIndex < 0 (1)");
+
+         }
+
       }
       else
       {
 
-         iFrameIndex = m_pgpurendertarget->get_frame_index();
+         iFrameIndex = render_target()->get_frame_index();
+
+         if (iFrameIndex < 0)
+         {
+
+            ::warning("iFrameIndex < 0 (2)");
+
+         }
 
       }
 
       auto pcommandbuffer = m_commandbuffera[iFrameIndex];
 
-      pcommandbuffer->m_iFrameIndex = iFrameIndex;
+      pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
       pcommandbuffer->m_strAnnotation.empty();
 
@@ -425,10 +517,11 @@ namespace gpu
 
          ødefer_construct(pcommandbuffer);
 
-         pcommandbuffer->initialize_command_buffer(
-            m_pgpurendertarget,
+         pcommandbuffer->initialize_command_buffer(render_target(),
             m_pgpucontext->m_pgpudevice->graphics_queue(),
             e_command_buffer_graphics);
+
+         pcommandbuffer->m_iCommandBufferFrameIndex = i;
 
       }
 
@@ -493,7 +586,7 @@ namespace gpu
 
                   ////{
 
-                  ////   float x = (float) psession->get_cursor_position().x();
+                  ////   float x = (float) psession->get_cursor_position().x;
 
                   ////   float y = (float) psession->get_cursor_position().y();
 
@@ -636,7 +729,7 @@ namespace gpu
 
             //////{
 
-            //////   float x = (float) psession->get_cursor_position().x();
+            //////   float x = (float) psession->get_cursor_position().x;
 
             //////   float y = (float) psession->get_cursor_position().y();
 
@@ -979,31 +1072,31 @@ namespace gpu
    void renderer::on_after_load_scene(::graphics3d::scene_base* pscene)
    {
 
-      auto pcommandbufferLoadAssets = ::transfer(m_pcommandbufferLoadAssets);
-
-      if (pcommandbufferLoadAssets)
-      {
-
-         m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
-         //if (prenderer->m_pcommandbufferLoadAssets)
-         //{
-
-         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
-
-         //   m_papplication->fork([pcommandbufferLoadAssets]()
-         //      {
-
-         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
-
-         pcommandbufferLoadAssets->wait_commands_to_execute();
-
-//         });
-
-//   }
-
-//}
-
-      }
+//      auto pcommandbufferLoadAssets = ::transfer(m_pcommandbufferLoadAssets);
+//
+//      if (pcommandbufferLoadAssets)
+//      {
+//
+//         m_pcommandbufferLoadAssets2 = pcommandbufferLoadAssets;
+//         //if (prenderer->m_pcommandbufferLoadAssets)
+//         //{
+//
+//         //   auto pcommandbufferLoadAssets = ::transfer(prenderer->m_pcommandbufferLoadAssets);
+//
+//         //   m_papplication->fork([pcommandbufferLoadAssets]()
+//         //      {
+//
+//         pcommandbufferLoadAssets->submit_command_buffer(nullptr);
+//
+//         pcommandbufferLoadAssets->wait_commands_to_execute();
+//
+////         });
+//
+////   }
+//
+////}
+//
+//      }
 
    }
 
@@ -1071,7 +1164,9 @@ namespace gpu
 
       auto etypeContext = m_pgpucontext->m_etype;
 
-      if (m_pgpurendertarget && m_sizeRenderer == sizeContext)
+      auto prendertarget = render_target();
+
+      if (prendertarget && m_sizeRenderer == sizeContext)
       {
 
          //if (m_pgpucontext->is_current_task())
@@ -1080,10 +1175,10 @@ namespace gpu
             if (!sizeContext.is_empty())
             {
 
-               if (!m_pgpurendertarget->m_bRenderTargetInit)
+               if (!prendertarget->m_bRenderTargetInit)
                {
 
-                  m_pgpurendertarget->init();
+                  prendertarget->init();
 
                }
 
@@ -1103,7 +1198,7 @@ namespace gpu
    ::pointer < render_target > renderer::on_create_render_target()
    {
 
-      auto prendertarget = øcreate<render_target>();
+      auto prendertarget = øcreate<::gpu::render_target>();
 
       prendertarget->m_bAdvancedPipelineSynchronization = true;
 
@@ -1197,28 +1292,28 @@ namespace gpu
    }
 
 
-   void renderer::clear(::gpu::texture* ptexture)
-   {
-
-      throw ::interface_only();
-
-   }
-
-
-   void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
-
-      throw::interface_only();
-
-   }
+   // void renderer::clear(::gpu::texture* ptexture)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   // }
 
 
-   void renderer::blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
-   {
+   //void renderer::copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
 
-      throw::interface_only();
+   //   throw::interface_only();
 
-   }
+   //}
+
+
+   //void renderer::blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource)
+   //{
+
+   //   throw::interface_only();
+
+   //}
 
 
    void renderer::soft_restore_context()
@@ -1361,7 +1456,7 @@ namespace gpu
 
       beginFrame();
 
-      on_begin_render(m_pgpurendertarget->m_pgpuframe);
+      on_begin_render(render_target()->m_pgpuframe);
 
       m_pgpucontext->frame_prefix();
 
@@ -1386,13 +1481,13 @@ namespace gpu
    ::pointer < frame > renderer::beginFrame()
    {
 
-      if (m_procedureaPostOnJustBeforeFrameNextStart.has_element())
+      if (m_procedureaOnJustBeforeFrameNextStart.has_element())
       {
 
          try
          {
 
-            for (auto & procedure : m_procedureaPostOnJustBeforeFrameNextStart)
+            for (auto & procedure : m_procedureaOnJustBeforeFrameNextStart)
             {
 
                try
@@ -1416,7 +1511,7 @@ namespace gpu
 
          }
 
-         m_procedureaPostOnJustBeforeFrameNextStart.clear();
+         m_procedureaOnJustBeforeFrameNextStart.clear();
 
       }
 
@@ -1430,9 +1525,9 @@ namespace gpu
 
       m_prenderstate->on_happening(e_happening_begin_frame);
 
-      assert(!isFrameStarted && "Can't call beginFrame while already in progress");
+      assert(!m_bFrameStarted && "Can't call beginFrame while already in progress");
 
-      isFrameStarted = true;
+      m_bFrameStarted = true;
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow
          && m_pgpucontext->m_etype != ::gpu::context::e_type_window)
@@ -1450,7 +1545,7 @@ namespace gpu
 
       ::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpuframe);
 
-      auto iFrameIndex = pcommandbuffer->m_iFrameIndex;
+      auto iFrameIndex = pcommandbuffer->m_iCommandBufferFrameIndex;
 
       auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
 
@@ -1473,7 +1568,7 @@ namespace gpu
 
       pgpuframe->m_pgpucommandbuffer = pcommandbuffer.m_p;
 
-      m_pgpurendertarget->m_pgpuframe = pgpuframe;
+      render_target()->m_pgpuframe = pgpuframe;
 
       auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
 
@@ -1489,7 +1584,7 @@ namespace gpu
 
       }
 
-      return m_pgpurendertarget->m_pgpuframe;
+      return render_target()->m_pgpuframe;
 
    }
 
@@ -1499,7 +1594,7 @@ namespace gpu
 
       m_prenderstate->on_happening(e_happening_end_frame);
 
-      isFrameStarted = false;
+      m_bFrameStarted = false;
 
       if (m_procedureaOnAfterEndFrame.has_element())
       {
@@ -1570,7 +1665,7 @@ namespace gpu
 
       //end_layer();
 
-      on_end_render(m_pgpurendertarget->m_pgpuframe);
+      on_end_render(render_target()->m_pgpuframe);
 
       endFrame();
 
@@ -1719,7 +1814,7 @@ namespace gpu
    void renderer::post_on_just_before_frame_next_start(const ::procedure & procedure)
    {
 
-      m_procedureaPostOnJustBeforeFrameNextStart.add(procedure);
+      m_procedureaOnJustBeforeFrameNextStart.add(procedure);
 
    }
 

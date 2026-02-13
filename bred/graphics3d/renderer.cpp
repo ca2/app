@@ -85,7 +85,7 @@
 // {
 //       // // grab the things every system will need
 //       // VkRenderPass rp = m_swapchain->getRenderPass();
-//       // VkDescriptorSetLayout globalLayout = m_globalLayout->getDescriptorSetLayout();
+//       // aaaVkDescriptorSetLayout globalLayout = m_globalLayout->getDescriptorSetLayout();
 //       // ::renderer::sandbox_descriptor_pool& pool = *m_pool;
 //       //
 //       // // Create skybox system (note: only construct, do not init yet)

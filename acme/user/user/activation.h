@@ -25,10 +25,9 @@ namespace user
 
 
       activation();
-
+      activation(::user::enum_activation euseractivation);
       activation(const ::user::e_activation & euseractivation);
-
-      activation(const ::user::e_activation & useractivation, ::user::activation_token * pactivationtoken);
+      activation(const ::user::e_activation & euseractivation, ::user::activation_token * pactivationtoken);
 
 
       activation(const ::user::activation & useractivation);

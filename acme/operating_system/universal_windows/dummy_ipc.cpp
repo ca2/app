@@ -28,12 +28,12 @@
 //      base::~base()
 //      {
 //
-//         //if(m_oswindow != nullptr)
+//         //if(m_pacmewindowingwindow != nullptr)
 //         //{
 //
-//         //   ::DestroyWindow(m_oswindow);
+//         //   ::DestroyWindow(m_pacmewindowingwindow);
 //
-//         //   m_oswindow = nullptr;
+//         //   m_pacmewindowingwindow = nullptr;
 //
 //         //}
 //
@@ -76,10 +76,10 @@
 //      bool tx::close()
 //      {
 //
-//         //if(m_oswindow == nullptr)
+//         //if(m_pacmewindowingwindow == nullptr)
 //         //   return true;
 //
-//         //m_oswindow = nullptr;
+//         //m_pacmewindowingwindow = nullptr;
 //
 //         //m_strBaseChannel = "";
 //
@@ -123,7 +123,7 @@
 //      bool tx::is_tx_ok()
 //      {
 //
-////         return ::IsWindow(m_oswindow) != false;
+////         return ::IsWindow(m_pacmewindowingwindow) != false;
 //         return m_strBaseChannel.has_character();
 //
 //      }
@@ -140,10 +140,6 @@
 //
 //
 //      };
-//
-//
-//
-//
 //
 //
 //      rx::rx(::particle * pparticle) :
@@ -254,17 +250,17 @@
 //
 //         //ATOM atom = register_class(hinstance);
 //
-//         //m_oswindow = ::CreateWindowExA(0,"small_ipc_rx_::color::e_channel_message_queue_class",pszKey,0,0,0,0,0,HWND_MESSAGE,nullptr,hinstance,nullptr);
+//         //m_pacmewindowingwindow = ::CreateWindowExA(0,"small_ipc_rx_::color::e_channel_message_queue_class",pszKey,0,0,0,0,0,HWND_MESSAGE,nullptr,hinstance,nullptr);
 //
-//         //if(m_oswindow == nullptr)
+//         //if(m_pacmewindowingwindow == nullptr)
 //         //{
 //         //   unsigned int dwLastError = ::get_last_error();
 //         //   return false;
 //         //}
 //
-//         //set_timer(m_oswindow,888888,84,nullptr);
+//         //set_timer(m_pacmewindowingwindow,888888,84,nullptr);
 //
-//         //SetWindowLongPtr(m_oswindow,GWLP_USERDATA,(LONG_PTR) this);
+//         //SetWindowLongPtr(m_pacmewindowingwindow,GWLP_USERDATA,(LONG_PTR) this);
 //
 //         //m_strWindowProcModule = pszWindowProcModule;
 //
@@ -340,7 +336,7 @@
 //      }
 //
 //
-//      //LRESULT CALLBACK rx::s_message_queue_proc(oswindow oswindow,::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+//      //LRESULT CALLBACK rx::s_message_queue_proc(::acme::windowing::window * pacmewindowingwindow,::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 //      //{
 //
 //      //   //int iRet = 0;
@@ -435,7 +431,7 @@
 //      //   //else
 //      //   //{
 //
-//      //   //   return ::DefWindowProcW(m_oswindow,message,wparam,lparam);
+//      //   //   return ::DefWindowProcW(m_pacmewindowingwindow,message,wparam,lparam);
 //
 //      //   //}
 //
@@ -455,7 +451,7 @@
 //      bool rx::is_rx_ok()
 //      {
 //
-//         //return ::IsWindow(m_oswindow) != false;
+//         //return ::IsWindow(m_pacmewindowingwindow) != false;
 //         return true;
 //
 //      }
@@ -488,7 +484,7 @@
 //         string strChannelRx = m_strChannel + "-a";
 //         string strChannelTx = m_strChannel + "-b";
 //
-//         if(!::IsWindow(m_rx.m_oswindow))
+//         if(!::IsWindow(m_rx.m_pacmewindowingwindow))
 //         {
 //
 //            if(!m_rx.create(strChannelRx.c_str(),pszModule))
@@ -520,7 +516,7 @@
 //         //string strChannelTx = m_strChannel + "-a";
 //
 //
-//         //if(!::IsWindow(m_rx.m_oswindow))
+//         //if(!::IsWindow(m_rx.m_pacmewindowingwindow))
 //         //{
 //
 //         //   if(!m_rx.create(strChannelRx.c_str(),pszModule))
@@ -554,9 +550,5 @@
 //
 //
 //} // namespace acme
-//
-//
-//
-//
 //
 //

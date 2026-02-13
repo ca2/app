@@ -588,10 +588,10 @@ namespace user
 //      if (::is_element(m_pitemClick, e_element_tab_near_scroll))
 //      {
 //
-//         if (m_pointBarDragScroll.x() > 0)
+//         if (m_pointBarDragScroll.x > 0)
 //         {
 //
-//            m_pointBarDragScroll.x()--;
+//            m_pointBarDragScroll.x--;
 //
 //            set_need_redraw();
 //
@@ -609,10 +609,10 @@ namespace user
 //      else if (::is_element(m_pitemClick, e_element_tab_far_scroll))
 //      {
 //
-//         if (m_pointBarDragScroll.x() < m_pointBarDragScrollMax.x())
+//         if (m_pointBarDragScroll.x < m_pointBarDragScrollMax.x)
 //         {
 //
-//            m_pointBarDragScroll.x()++;
+//            m_pointBarDragScroll.x++;
 //
 //            set_need_redraw();
 //
@@ -830,7 +830,7 @@ namespace user
                if (get_data()->m_bVertical)
                {
 
-                  if(m_pointBarDragScroll.y() >= 0)
+                  if(m_pointBarDragScroll.y >= 0)
                   {
                    
                      return false;
@@ -841,7 +841,7 @@ namespace user
                else
                {
 
-                  if(m_pointBarDragScroll.x() >=  0)
+                  if(m_pointBarDragScroll.x >=  0)
                   {
                      
                      return false;
@@ -855,15 +855,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left() = rectangleTab.left();
+                  rectangle.left = rectangleTab.left;
 
-                  rectangle.top() = rectangleTab.top();
+                  rectangle.top = rectangleTab.top;
 
-                  rectangle.right() = rectangleTab.right();
+                  rectangle.right = rectangleTab.right;
 
                   fDensity = get_density_for_window();
 
-                  rectangle.bottom() = rectangle.top() + (int)(8.0f * fDensity);
+                  rectangle.bottom = rectangle.top + (int)(8.0f * fDensity);
 
                }
                else
@@ -871,15 +871,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left() = rectangleTab.left();
+                  rectangle.left = rectangleTab.left;
 
-                  rectangle.top() = rectangleTab.top() + ptabdata->m_rectangleBorder.top();
+                  rectangle.top = rectangleTab.top + ptabdata->m_rectangleBorder.top;
 
                   fDensity = get_density_for_window();
 
-                  rectangle.right() = rectangle.left() + (int)(16.0f * fDensity);
+                  rectangle.right = rectangle.left + (int)(16.0f * fDensity);
 
-                  rectangle.bottom() = rectangleTab.bottom() - ptabdata->m_rectangleBorder.bottom();
+                  rectangle.bottom = rectangleTab.bottom - ptabdata->m_rectangleBorder.bottom;
 
                }
 
@@ -892,7 +892,7 @@ namespace user
                if (get_data()->m_bVertical)
                {
 
-                  if(m_pointBarDragScroll.y() <= -m_pointBarDragScrollMax.y())
+                  if(m_pointBarDragScroll.y <= -m_pointBarDragScrollMax.y)
                   {
                    
                      return false;
@@ -903,7 +903,7 @@ namespace user
                else
                {
 
-                  if(m_pointBarDragScroll.x() <= -m_pointBarDragScrollMax.x())
+                  if(m_pointBarDragScroll.x <= -m_pointBarDragScrollMax.x)
                   {
                      
                      return false;
@@ -918,15 +918,15 @@ namespace user
 
                   auto & rectangleTab = ptabdata->m_rectangleTab;
 
-                  rectangle.left() = rectangleTab.left();
+                  rectangle.left = rectangleTab.left;
 
                   fDensity = get_density_for_window();
 
-                  rectangle.top() = rectangleTab.bottom() - (int)(8.0f * fDensity);
+                  rectangle.top = rectangleTab.bottom - (int)(8.0f * fDensity);
 
-                  rectangle.right() = rectangleTab.right();
+                  rectangle.right = rectangleTab.right;
 
-                  rectangle.bottom() = rectangleTab.bottom();
+                  rectangle.bottom = rectangleTab.bottom;
 
                }
                else
@@ -936,14 +936,14 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  rectangle.left() = rectangleTab.right() - (int)(16.0f * fDensity);
+                  rectangle.left = rectangleTab.right - (int)(16.0f * fDensity);
 
-                  rectangle.top() = rectangleTab.top()
-                  +ptabdata->m_rectangleBorder.top();
+                  rectangle.top = rectangleTab.top
+                  +ptabdata->m_rectangleBorder.top;
 
-                  rectangle.right() = rectangleTab.right();
+                  rectangle.right = rectangleTab.right;
 
-                  rectangle.bottom() = rectangleTab.bottom() - ptabdata->m_rectangleBorder.bottom();
+                  rectangle.bottom = rectangleTab.bottom - ptabdata->m_rectangleBorder.bottom;
 
                }
 
@@ -956,17 +956,17 @@ namespace user
          if (get_data()->m_bVertical)
          {
 
-            ptOffset.y() += 4;
+            ptOffset.y += 4;
 
-            ptOffset.y() += m_pointBarDragScroll.y();
+            ptOffset.y += m_pointBarDragScroll.y;
 
          }
          else
          {
 
-            ptOffset.x() += 4;
+            ptOffset.x += 4;
 
-            ptOffset.x() += m_pointBarDragScroll.x();
+            ptOffset.x += m_pointBarDragScroll.x;
 
          }
 
@@ -1028,9 +1028,9 @@ namespace user
 
          }
 
-         rectangle.right() = rectangle.left() + ptabdata->m_tabpanea[iIndex]->m_pimage->width();
+         rectangle.right = rectangle.left + ptabdata->m_tabpanea[iIndex]->m_pimage->width();
 
-         rectangle.bottom() = rectangle.top() + ptabdata->m_tabpanea[iIndex]->m_pimage->height();
+         rectangle.bottom = rectangle.top + ptabdata->m_tabpanea[iIndex]->m_pimage->height();
 
          return true;
 
@@ -1048,14 +1048,14 @@ namespace user
          if (ptabdata->m_tabpanea[iIndex]->m_pimage.ok())
          {
 
-            rectangle.left() += ptabdata->m_tabpanea[iIndex]->m_pimage->width() + 2;
+            rectangle.left += ptabdata->m_tabpanea[iIndex]->m_pimage->width() + 2;
 
          }
 
          if (!ptabdata->m_tabpanea[iIndex]->m_bPermanent)
          {
 
-            rectangle.right() -= 2 + 16 + 2;
+            rectangle.right -= 2 + 16 + 2;
 
          }
 
@@ -1095,11 +1095,11 @@ namespace user
 
          }
 
-         rectangle.right() = rectangle.right();
+         rectangle.right = rectangle.right;
 
-         rectangle.left() = rectangle.right() - 20;
+         rectangle.left = rectangle.right - 20;
 
-         rectangle.top() = rectangle.bottom() - 20;
+         rectangle.top = rectangle.bottom - 20;
 
          return true;
 
@@ -1117,13 +1117,13 @@ namespace user
 
          auto & rectangleTab = ptabdata->m_rectangleTab;
 
-         rectangle.left() = rectangleTab.left();
+         rectangle.left = rectangleTab.left;
 
-         rectangle.top() = (int)(rectangleTab.top() + iIndex * ptabdata->m_iTabHeight);
+         rectangle.top = (int)(rectangleTab.top + iIndex * ptabdata->m_iTabHeight);
 
-         rectangle.right() = rectangleTab.right();
+         rectangle.right = rectangleTab.right;
 
-         rectangle.bottom() = rectangle.top() + ptabdata->m_iTabHeight;
+         rectangle.bottom = rectangle.top + ptabdata->m_iTabHeight;
 
       }
       else
@@ -1131,17 +1131,17 @@ namespace user
 
          auto ppane = get_data()->m_tabpanea[iIndex].get();
 
-         rectangle.left() = ppane->m_point.x();
+         rectangle.left = ppane->m_point.x;
 
-         rectangle.top() = ppane->m_point.y();
+         rectangle.top = ppane->m_point.y;
 
-         rectangle.right() = rectangle.left() + ppane->m_size.cx();
+         rectangle.right = rectangle.left + ppane->m_size.cx;
 
-         rectangle.bottom() = rectangle.top() + ppane->m_size.cy();
+         rectangle.bottom = rectangle.top + ppane->m_size.cy;
 
       }
 
-      ::offset(rectangle, ptOffset.x(), ptOffset.y());
+      ::offset(rectangle, ptOffset.x, ptOffset.y);
 
       return true;
 
@@ -1330,9 +1330,9 @@ namespace user
                      for (int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                      {
 
-                        rectangleText.left() += (int)(ppane->m_sizeaText[iTitle].cx());
+                        rectangleText.left += (int)(ppane->m_sizeaText[iTitle].cx);
 
-                        rectangleText.right() = (int)(rectangleText.left() + get_data()->m_sizeSep.cx());
+                        rectangleText.right = (int)(rectangleText.left + get_data()->m_sizeSep.cx);
 
                         if (rectangleText.contains(point))
                         {
@@ -1341,7 +1341,7 @@ namespace user
 
                         }
 
-                        rectangleText.left() += (int)(get_data()->m_sizeSep.cx());
+                        rectangleText.left += (int)(get_data()->m_sizeSep.cx);
 
                      }
 
@@ -1433,7 +1433,7 @@ namespace user
       
       ::user::interaction::on_drag_scroll_layout(pgraphics);
       
-      if(m_pointBarDragScrollMax.x() > 0)
+      if(m_pointBarDragScrollMax.x > 0)
       {
          
          if(!m_pitemTabFarScroll)
@@ -1480,7 +1480,7 @@ namespace user
 
          auto point = drag_point(pitem, pmouse);
 
-         m_pointBarDragScroll.x() = minimum_maximum(point.x(), -m_pointBarDragScrollMax.x(), 0);
+         m_pointBarDragScroll.x = minimum_maximum(point.x, -m_pointBarDragScrollMax.x, 0);
          
          
          set_need_redraw();
@@ -2635,49 +2635,49 @@ namespace user
       case e_position_top:
       {
 
-         rectangle.top() = get_data()->m_rectangleHosting.top();
+         rectangle.top = get_data()->m_rectangleHosting.top;
 
-         rectangle.left() = get_data()->m_rectangleHosting.left() + get_data()->m_rectangleHosting.width() / 3;
+         rectangle.left = get_data()->m_rectangleHosting.left + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;
       case e_position_left:
       {
-         rectangle.top() = get_data()->m_rectangleHosting.top() + get_data()->m_rectangleHosting.height() / 3;
+         rectangle.top = get_data()->m_rectangleHosting.top + get_data()->m_rectangleHosting.height() / 3;
 
-         rectangle.left() = get_data()->m_rectangleHosting.left();
+         rectangle.left = get_data()->m_rectangleHosting.left;
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;
       case e_position_right:
       {
-         rectangle.top() = get_data()->m_rectangleHosting.top() + get_data()->m_rectangleHosting.height() / 3;
+         rectangle.top = get_data()->m_rectangleHosting.top + get_data()->m_rectangleHosting.height() / 3;
 
-         rectangle.left() = get_data()->m_rectangleHosting.left() + get_data()->m_rectangleHosting.width() * 2 / 3;
+         rectangle.left = get_data()->m_rectangleHosting.left + get_data()->m_rectangleHosting.width() * 2 / 3;
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;
       case e_position_bottom:
       {
-         rectangle.top() = get_data()->m_rectangleHosting.top() + get_data()->m_rectangleHosting.height() * 2 / 3;
+         rectangle.top = get_data()->m_rectangleHosting.top + get_data()->m_rectangleHosting.height() * 2 / 3;
 
-         rectangle.left() = get_data()->m_rectangleHosting.left() + get_data()->m_rectangleHosting.width() / 3;
+         rectangle.left = get_data()->m_rectangleHosting.left + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.right() = rectangle.left() + get_data()->m_rectangleHosting.width() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleHosting.width() / 3;
 
-         rectangle.bottom() = rectangle.top() + get_data()->m_rectangleHosting.height() / 3;
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleHosting.height() / 3;
 
       }
       break;

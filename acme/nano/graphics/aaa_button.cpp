@@ -80,9 +80,9 @@ bool button::is_focusable()
 //
 //   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
 //
-//   m_rectangle.right() = m_rectangle.left() + size.cx();
+//   m_rectangle.right = m_rectangle.left + size.cx;
 //
-//   m_rectangle.bottom() = m_rectangle.top() + size.cy();
+//   m_rectangle.bottom = m_rectangle.top + size.cy;
 //
 //}
 

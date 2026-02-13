@@ -19,7 +19,7 @@ namespace user
       ~options_impact_handler() override;
 
 
-      virtual void create_options_impact(::user::interaction * puserinteractionParent);
+      virtual void create_options_impact(const ::atom & atom, ::user::interaction * puserinteractionParent);
 
 
    };

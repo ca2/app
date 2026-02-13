@@ -116,7 +116,7 @@
 //
 //#if DEBUG_LEVEL > 0
 //
-//      informationf("::user::g_pmapImpl erased pimpl->m_oswindow");
+//      informationf("::user::g_pmapImpl erased pimpl->m_pacmewindowingwindow");
 //
 //#endif
 //

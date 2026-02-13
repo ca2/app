@@ -6,10 +6,6 @@
 //
 //namespace graphics3d
 //{
-//
-//
-//
-//
 //   renderer::renderer()
 //   {
 //

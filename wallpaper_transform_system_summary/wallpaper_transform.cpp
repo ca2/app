@@ -45,8 +45,8 @@ namespace wallpaper_transform_system_summary
 
       auto r = pimage->rectangle();
 
-      r.top() = r.bottom() - 150;
-      r.left() += 40;
+      r.top = r.bottom - 150;
+      r.left += 40;
 
       pimage->g()->set(m_pfont);
 
@@ -54,7 +54,7 @@ namespace wallpaper_transform_system_summary
 
       pimage->g()->draw_text(psummary->m_strSystem, r);
 
-      r.top() = r.bottom() - 200;
+      r.top = r.bottom - 200;
 
       pimage->g()->draw_text(node()->get_host_name(), r);
 

@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include <glm/glm.hpp>
+
 
 
 namespace graphics3d
@@ -21,12 +21,12 @@ namespace graphics3d
 	struct CLASS_DECL_BRED ::graphics3d::transform
 	{
 		//::graphics3d::transform() = default;
-		glm::vec3 translation{};
-		glm::vec3 scale{ 1.f };
-		glm::vec3 rotation{};
+		floating_sequence3 translation{};
+		floating_sequence3 scale{ 1.f };
+		floating_sequence3 rotation{};
 
-		glm::mat4 mat4() const;
-		glm::mat3 normalMatrix() const;
+		floating_matrix4 floating_matrix4() const;
+		floating_matrix3 normalMatrix() const;
 
 	};
 

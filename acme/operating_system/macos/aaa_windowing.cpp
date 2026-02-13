@@ -247,7 +247,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//oswindow oswindow_data::set_parent(oswindow oswindow)
+//oswindow oswindow_data::set_parent(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if(is_null())
@@ -275,7 +275,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //
-//bool oswindow_data::is_child(::oswindow oswindow)
+//bool oswindow_data::is_child(::::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
@@ -395,7 +395,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//::windowing::window * window_from_handle(oswindow oswindow)
+//::windowing::window * window_from_handle(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if(oswindow == nullptr)
@@ -466,7 +466,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//NSWindow * __nswindow(oswindow oswindow)
+//NSWindow * __nswindow(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   return (NSWindow *) oswindow->window();
@@ -611,7 +611,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//CLASS_DECL_ACME ::windowing::window * oswindow_get(oswindow oswindow)
+//CLASS_DECL_ACME ::windowing::window * oswindow_get(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //   if(oswindow == nullptr)
@@ -738,10 +738,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //         ::int_rectangle rectangleCopy;
 //
-//         rectangleCopy.left() = rectangle.origin.x();
-//         rectangleCopy.top() = rMainScreen.height() - (rectangle.origin.y() + rectangle.size.height);
-//         rectangleCopy.bottom() = rectangleCopy.top() + rectangle.size.height;
-//         rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
+//         rectangleCopy.left = rectangle.origin.x;
+//         rectangleCopy.top = rMainScreen.height() - (rectangle.origin.y + rectangle.size.height);
+//         rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
+//         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
 //
 //         recta.add(rectangleCopy);
 //
@@ -991,8 +991,8 @@ void ns_main_async(dispatch_block_t block);
 //#ifdef FUNCTION_TRACE
 //
 //         FUNCTION_TRACE("  %5.0f,%5.0f - %5.0f,%5.0f  ",
-//              rectangle.origin.x(),
-//              rectangle.origin.y(),
+//              rectangle.origin.x,
+//              rectangle.origin.y,
 //              rectangle.size.width,
 //              rectangle.size.height);
 //
@@ -1015,10 +1015,10 @@ void ns_main_async(dispatch_block_t block);
 //
 //                  ::int_rectangle rectangleCopy;
 //
-//                  rectangleCopy.left() = rectangle.origin.x();
-//                  rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
-//                  rectangleCopy.top() = rectangle.origin.y();
-//                  rectangleCopy.bottom() = rectangle.origin.y() + rectangle.size.height;
+//                  rectangleCopy.left = rectangle.origin.x;
+//                  rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+//                  rectangleCopy.top = rectangle.origin.y;
+//                  rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
 //
 //                  recta.add(rectangleCopy);
 //
@@ -1225,15 +1225,15 @@ void ns_main_async(dispatch_block_t block);
 //
 //         ::int_rectangle rectangleCopy;
 //
-//         //rectangleCopy.left() = rectangle.origin.x();
-//         //rectangleCopy.top() = rMainScreen.height() - (rectangle.origrin.y() + rectangle.size.height);
-//         //rectangleCopy.bottom() = rectangleCopy.top() + rectangle.size.height;
-//         //rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
+//         //rectangleCopy.left = rectangle.origin.x;
+//         //rectangleCopy.top = rMainScreen.height() - (rectangle.origrin.y + rectangle.size.height);
+//         //rectangleCopy.bottom = rectangleCopy.top + rectangle.size.height;
+//         //rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
 //
-//         rectangleCopy.left() = rectangle.origin.x();
-//         rectangleCopy.right() = rectangle.origin.x() + rectangle.size.width;
-//         rectangleCopy.top() = rectangle.origin.y();
-//         rectangleCopy.bottom() = rectangle.origin.y() + rectangle.size.height;
+//         rectangleCopy.left = rectangle.origin.x;
+//         rectangleCopy.right = rectangle.origin.x + rectangle.size.width;
+//         rectangleCopy.top = rectangle.origin.y;
+//         rectangleCopy.bottom = rectangle.origin.y + rectangle.size.height;
 //
 //         recta.add(rectangleCopy);
 //         windowida.add(iWindowId);
@@ -1271,9 +1271,9 @@ void ns_main_async(dispatch_block_t block);
 //
 //
 //
-//CGWindowID get_os_window_window_number(oswindow oswindow);
+//CGWindowID get_os_window_window_number(::acme::windowing::window * pacmewindowingwindow);
 //
-//int_bool is_window_occluded(oswindow oswindow)
+//int_bool is_window_occluded(::acme::windowing::window * pacmewindowingwindow)
 //{
 //
 //

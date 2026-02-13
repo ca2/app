@@ -22,7 +22,9 @@ public:
 
    //oswindow get_os_data() const;
 
-   operator oswindow() const;
+   //operator oswindow() const;
+
+   void * __win32_HWND() const;
 
    int get_sort_ezorder() const;
 

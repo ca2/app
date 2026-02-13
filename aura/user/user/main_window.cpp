@@ -186,7 +186,7 @@ namespace user
       if(is_top_level() && ::is_set(m_pacmewindowingwindow))
       {
          
-         rectangle.top() += (int)windowing_window()->get_top_margin();
+         rectangle.top += (int)windowing_window()->get_top_margin();
          
       }
       
@@ -230,7 +230,7 @@ namespace user
 
          auto sizeFrame = rectangleX.size();
 
-         if(sizeFrame.cx() < sizeMinimum.cx() || sizeFrame.cy() < sizeMinimum.cy())
+         if(sizeFrame.cx < sizeMinimum.cx || sizeFrame.cy < sizeMinimum.cy)
          {
 
             ::double_rectangle rectangleRateOrSize = { 0.05, 0.05, 0.4, 0.4 };

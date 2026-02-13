@@ -10,11 +10,13 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/mathematics/_random.h"
 #include "acme/prototype/prototype/prototype.h"
 #include "acme/platform/library.h"
 #include "acme/crypto/rsa.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
 
@@ -165,6 +167,56 @@ namespace dynamic_source
       }
 
       return pfilesystemcacheitem;
+
+   }
+
+
+   ::pointer < ::file::listing > script::folder_enumerate(int iId, const ::file::path& pathFolder, const ::function < void(::file::listing& listing) >& procedureListing)
+   {
+
+      if(!m_pmutexFolderEnumerate)
+      {
+
+         _synchronous_lock synchronouslock(m_pscriptmanager1->synchronization());
+
+         if (!m_pmutexFolderEnumerate)
+         {
+
+            m_pmutexFolderEnumerate = node()->create_mutex();
+
+         }
+
+      }
+
+      _synchronous_lock synchronouslock(this->m_pmutexFolderEnumerate);
+
+      auto& pfolderlisting = m_mapFolderEnumerate[iId][pathFolder];
+
+      if (!pfolderlisting || pfolderlisting->m_timeLastEnumeration.elapsed() > 1_hour)
+      {
+
+         øconstruct_new(pfolderlisting);
+
+         øconstruct_new(pfolderlisting->m_plisting);
+
+         procedureListing(*pfolderlisting->m_plisting);
+
+         directory()->enumerate(*pfolderlisting->m_plisting);
+
+         pfolderlisting->m_plisting->predicate_sort([](auto& path1, auto& path2)
+            {
+
+               return path1 < path2;
+
+            });
+
+         pfolderlisting->m_timeLastEnumeration.Now();
+
+      }
+
+      return pfolderlisting->m_plisting;
+
+      //listing = pfolderlisting->m_listing;
 
    }
 

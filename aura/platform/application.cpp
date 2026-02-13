@@ -1097,7 +1097,7 @@ namespace aura
 
 
 
-   //object * application::alloc(::type info)
+   //object * application::alloc(::platform::type info)
    //{
 
    //   return psystem->alloc(this, info);
@@ -1791,7 +1791,7 @@ namespace aura
 
       {
 
-         ::string strImplementation = application_file_setting("draw2d.txt");
+         ::string strImplementation = application_file_setting_by_operating_system("draw2d.txt");
 
          strImplementation.make_lower();
 
@@ -1943,14 +1943,23 @@ namespace aura
 
       {
 
-         ::string strImplementation = application_file_setting("graphics3d.txt");
+         ::string strImplementation = application_file_setting_by_operating_system("graphics3d.txt");
 
          strImplementation.make_lower();
 
          if (strImplementation == "directx11")
          {
 
+#if defined(WIN32)
+
             strImplementation = "directx11";
+            
+#else
+            
+            throw ::exception(error_wrong_state);
+            
+#endif
+
 
          }
          else if (strImplementation == "directx12")
@@ -2009,9 +2018,11 @@ namespace aura
  
       if(pmanager)
       {
+         
          auto psignal = pmanager->signal(id_app_activated);
       
          psignal->add_handler(this);
+         
       }
 
    }
@@ -2217,7 +2228,7 @@ retry_license:
 
       }
 
-      information() << "initial_check_directrix : ok ("<< ::type(this).name() << ")" << m_strAppId;
+      information() << "initial_check_directrix : ok ("<< ::platform::type(this).name() << ")" << m_strAppId;
 
       //return true;
 
@@ -2366,7 +2377,7 @@ retry_license:
 //      if (!init1())
 //      {
 //
-//         //dappy(::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
+//         //dappy(::platform::type(this).name() + " : init1 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2381,7 +2392,7 @@ retry_license:
 //      if (!init2())
 //      {
 //
-//         //dappy(::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
+//         //dappy(::platform::type(this).name() + " : init2 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2396,7 +2407,7 @@ retry_license:
 //      if (!init3())
 //      {
 //
-//         //dappy(::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
+//         //dappy(::platform::type(this).name() + " : init3 failure : " + as_string(m_iErrorCode));
 //
 //         return false;
 //
@@ -2408,7 +2419,7 @@ retry_license:
 //
 //      ping();
 //
-//      //dappy(::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
+//      //dappy(::platform::type(this).name() + " : init3 ok : " + as_string(m_iErrorCode));
 //
 //      try
 //      {
@@ -2416,7 +2427,7 @@ retry_license:
 //         if (!init())
 //         {
 //
-//            //dappy(::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
+//            //dappy(::platform::type(this).name() + " : initialize failure : " + as_string(m_iErrorCode));
 //
 //            return false;
 //
@@ -3347,10 +3358,6 @@ retry_license:
 ////
 ////
 ////#endif
-//
-//
-//
-//
 //   }
 //
 //
@@ -3791,21 +3798,20 @@ retry_license:
 
             m_puserinteractionaFrame->add_unique_interaction(puserinteraction);
 
+            if (m_pacmeuserinteractionMain == nullptr)
+            {
+
+               m_pacmeuserinteractionMain = puserinteraction;
+            }
+
          }
 
-         information() << "::berg::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << ::type(this).name();
+         information() << "::berg::application::add_user_interaction ::user::interaction = 0x" << (::iptr) (puserinteraction) << " (" << typeid(*puserinteraction).name() << ") app=" << ::platform::type(this).name();
 
          if (!(puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
          {
 
             psession->on_create_frame_window();
-
-         }
-
-         if (m_pacmeuserinteractionMain == nullptr)
-         {
-
-            m_pacmeuserinteractionMain = puserinteraction;
 
          }
 
@@ -3853,7 +3859,7 @@ retry_license:
          if (m_puserinteractiona->erase_interaction(puserinteraction) > 0)
          {
 
-            information() << "::berg::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << ::type(this).name();
+            information() << "::berg::application::erase_user_interaction ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" << ::platform::type(this).name();
 
          }
 
@@ -3867,7 +3873,7 @@ retry_license:
          if (m_puserinteractionaFrame->erase_interaction(puserinteraction) > 0)
          {
 
-            information() << "::berg::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<::type(this).name();
+            information() << "::berg::application::erase_frame ::user::interaction = 0x"<<(iptr)puserinteraction<<" ("<<typeid(*puserinteraction).name()<<") app=" <<::platform::type(this).name();
 
          }
 
@@ -3876,10 +3882,15 @@ retry_license:
 
             if (m_puserinteractionaFrame->has_no_interaction())
             {
-
+               
                synchronouslock.unlock();
-
-               get_app()->post_message(::user::e_message_close);
+               
+               if(!get_app()->has_finishing_flag())
+               {
+                  
+                  get_app()->post_message(::user::e_message_close);
+                  
+               }
 
             }
 
@@ -4392,10 +4403,10 @@ retry_license:
 //   }
 
 
-   //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   //::platform::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
-   //   return ::type < ::user::interaction >();
+   //   return ::type<::user::interaction>();
 
    //}
 
@@ -4851,7 +4862,7 @@ retry_license:
    //   try
    //   {
 
-   //      string strType = ::type(this).name();
+   //      string strType = ::platform::type(this).name();
 
    //      //if(::is_set(system()))
    //      //{
@@ -8410,7 +8421,7 @@ namespace aura
    //}
 
 
-   //::type application::user_default_controltype_to_typeinfo(enum user::enum_control_type econtroltype)
+   //::platform::type application::user_default_controltype_to_typeinfo(enum user::enum_control_type econtroltype)
    //{
 
    //   return Sess(this).userex()->controltype_to_typeinfo(econtroltype);
@@ -8542,7 +8553,7 @@ namespace aura
    }
 
 
-   ::type_atom application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
+   ::platform::type application::control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype)
    {
 
       string str(atom);
@@ -8552,7 +8563,7 @@ namespace aura
 
          econtroltype = ::user::e_control_type_edit_plain_text;
 
-         return ::type < ::user::plain_edit >();
+         return ::type<::user::plain_edit>();
 
       }
 
@@ -9331,7 +9342,7 @@ namespace aura
          if (::is_set(pwindowApplicationHost))
          {
 
-            pwindowApplicationHost->on_size(size.cx(), size.cy());
+            pwindowApplicationHost->on_size(size.cx, size.cy);
 
          }
 
@@ -9727,8 +9738,8 @@ namespace aura
    ////       globalSetLayout->getDescriptorSetLayout()
    ////   };
 
-   ////   //VkcCamera camera{ glm::vec3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
-   ////   VkcCamera camera{ glm::vec3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
+   ////   //VkcCamera camera{ floating_sequence3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
+   ////   VkcCamera camera{ floating_sequence3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
    ////   auto viewerObject = VkcGameObject::createGameObject();
    ////   m_pvkcontainer->m_bLastMouse = true;
    ////   viewerObject.transform.translation.z = -2.5f;
@@ -9771,7 +9782,7 @@ namespace aura
 
    ////         float aspect = m_prenderer->getAspectRatio();
 
-   ////         camera.setPerspectiveProjection(glm::radians(50.f), aspect, 0.1f, 100.f);
+   ////         camera.setPerspectiveProjection(::radians(50.f), aspect, 0.1f, 100.f);
 
    ////         if (auto commandBuffer = m_prenderer->beginFrame())
    ////         {
@@ -9883,7 +9894,7 @@ namespace aura
 
    //   //float fLo = 0.5f;
 
-   //   //std::vector<glm::vec3> lightColors{
+   //   //std::vector<floating_sequence3> lightColors{
    //   //      {1.f, fLo, fLo},
    //   //      {fLo, fLo, 1.f},
    //   //      {fLo, 1.f, fLo},
@@ -9896,11 +9907,11 @@ namespace aura
    //   //   auto pointLight = VkcGameObject::makePointLight(0.2f);
    //   //   pointLight.color = lightColors[i];
    //   //   auto rotateLight = glm::rotate(
-   //   //      glm::mat4(1.f),
+   //   //      floating_matrix4(1.f),
    //   //      (i * glm::two_pi<float>()) / lightColors.size(),
    //   //      { 0.f, -1.f, 0.f });
    //   //   pointLight.pointLight->lightIntensity = 1.0f;
-   //   //   pointLight.transform.translation = glm::vec3(rotateLight * glm::vec4(-1.f, -1.f, -1.f, 1.f));
+   //   //   pointLight.transform.translation = floating_sequence3(rotateLight * floating_sequence4(-1.f, -1.f, -1.f, 1.f));
    //   //   m_gameObjects.emplace(pointLight.getId(), std::move(pointLight));
    //   //}
 

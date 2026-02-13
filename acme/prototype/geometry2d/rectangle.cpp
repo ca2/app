@@ -11,10 +11,10 @@
 CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator)
 {
 
-   rectangle.left()    = ::MulDiv32(rectangle.left()     , numerator, denominator);
-   rectangle.top()     = ::MulDiv32(rectangle.top()      , numerator, denominator);
-   rectangle.right()   = ::MulDiv32(rectangle.right()    , numerator, denominator);
-   rectangle.bottom()  = ::MulDiv32(rectangle.bottom()   , numerator, denominator);
+   rectangle.left    = ::MulDiv32(rectangle.left     , numerator, denominator);
+   rectangle.top     = ::MulDiv32(rectangle.top      , numerator, denominator);
+   rectangle.right   = ::MulDiv32(rectangle.right    , numerator, denominator);
+   rectangle.bottom  = ::MulDiv32(rectangle.bottom   , numerator, denominator);
 
    return rectangle;
 
@@ -25,10 +25,10 @@ CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator,
 CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, long long numerator, long long denominator)
 {
 
-   rectangle.left()    = ::uint64_muldiv(rectangle.left()     , (int)numerator, denominator);
-   rectangle.top()     = ::uint64_muldiv(rectangle.top()      , (int)numerator, denominator);
-   rectangle.right()   = ::uint64_muldiv(rectangle.right()    , (int)numerator, denominator);
-   rectangle.bottom()  = ::uint64_muldiv(rectangle.bottom()   , (int)numerator, denominator);
+   rectangle.left    = ::uint64_muldiv(rectangle.left     , (int)numerator, denominator);
+   rectangle.top     = ::uint64_muldiv(rectangle.top      , (int)numerator, denominator);
+   rectangle.right   = ::uint64_muldiv(rectangle.right    , (int)numerator, denominator);
+   rectangle.bottom  = ::uint64_muldiv(rectangle.bottom   , (int)numerator, denominator);
 
    return rectangle;
 

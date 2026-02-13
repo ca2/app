@@ -5,6 +5,7 @@
 #include "core/user/userex/_.h"
 #include "berg/user/user/tab_impact.h"
 #include "apex/platform/app_consumer.h"
+//#include "berg/user/user/options_impact_handler.h"
 
 
 namespace userex
@@ -16,6 +17,7 @@ namespace userex
 
    class CLASS_DECL_CORE pane_tab_impact :
       virtual public ::user::tab_impact
+  //    virtual public ::user::options_impact_handler
    {
    public:
 
@@ -95,7 +97,7 @@ namespace userex
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
       void prepare_form(const ::atom & atom, ::form_document * pformdocument) override;
-
+//      void create_options_impact(const ::atom &atom, ::user::interaction *puserinteractionParent) override;
 
    };
 

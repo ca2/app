@@ -46,7 +46,7 @@ public:
    // comparable_array_base(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
    // comparable_array_base(const comparable_array_base & array) : BASE_ARRAY(array) {}
    // comparable_array_base(comparable_array_base && array) : BASE_ARRAY(::transfer(array)) {}
-   // template < primitive_integral INTEGRAL >
+   // template < prototype_integral INTEGRAL >
    // comparable_array_base(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
    // comparable_array_base(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
    // comparable_array_base(const_iterator begin) : BASE_ARRAY(begin, find_first_null_character(begin)) {}
@@ -109,7 +109,7 @@ public:
 
 
 
-      // template < primitive_container CONTAINER >
+      // template < prototype_container CONTAINER >
       // inline comparable_array_base & operator += (const CONTAINER & container)
       // {
       //

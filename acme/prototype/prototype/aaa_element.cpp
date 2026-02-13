@@ -211,14 +211,6 @@
 //   return nullptr;
 //
 //}
-//
-//
-//
-//
-//
-//
-//
-//
 //bool element::should_run_async() const
 //{
 //
@@ -308,10 +300,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //
 //
 ////void element::write(::binary_stream & stream) const

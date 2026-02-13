@@ -30,18 +30,18 @@ namespace nano
 
         long long speech::increment_reference_count()
         {
-            return ::acme::department::increment_reference_count();
+            return ::platform::department::increment_reference_count();
         }
 
 
         long long speech::decrement_reference_count()
         {
-            return ::acme::department::decrement_reference_count();
+            return ::platform::department::decrement_reference_count();
         }
 
         long long speech::release()
         {
-            return ::acme::department::release();
+            return ::platform::department::release();
         }
 
 #endif

@@ -19,15 +19,16 @@ namespace gpu
        */
       struct vertex
       {
-         glm::vec3 position;
-         glm::vec3 normal;
-         glm::vec2 uv;
-         glm::vec4 color;
-         glm::vec4 tangent; 
-         //glm::vec4 bitangent; 
+         floating_sequence3 position;//0-12
+         floating_sequence3 normal;//12-24
+         floating_sequence2 uv;//24-32
+         floating_sequence4 color;//32-48
+         floating_sequence4 tangent;//48-64
+         //floating_sequence4 bitangent; 
          // w = bitangent sign
-         // glm::vec3 mTangent;
-         // glm::vec3 mBitangent;
+         // floating_sequence3 mTangent;
+         // floating_sequence3 mBitangent;
+
       };
 
 

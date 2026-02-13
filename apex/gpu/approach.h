@@ -55,7 +55,7 @@ namespace gpu
       enum_mode                              m_emode;
 
 
-      ::pointer < device >       m_pgpudevice;
+      //::pointer < device >       m_pgpudevice;
 
       ::int_rectangle            m_rectangleOffscreen;
 
@@ -70,7 +70,7 @@ namespace gpu
       virtual void initialize_gpu_approach();
 
 
-      virtual ::gpu::device* get_gpu_device();
+      virtual ::gpu::device* get_gpu_device(::acme::windowing::window * pacmewindowingwindow);
 
 
       virtual void engine_on_frame_context_initialization(::gpu::context* pgpucontext);
@@ -81,8 +81,8 @@ namespace gpu
 
    
 
-      virtual void on_before_create_window(::windowing::window* pwindow);
-      virtual void on_create_window(::windowing::window* pwindow);
+      virtual void gpu_on_before_create_window(::acme::windowing::window* pwindow);
+      virtual void gpu_on_create_window(::acme::windowing::window* pwindow);
 
     
    };

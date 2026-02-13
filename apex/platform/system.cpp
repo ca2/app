@@ -2233,7 +2233,7 @@ pdirectorysystem->create("/ca2core");
 
       //   //   try
       //   //   {
-      //   //      strMessage += ::type(pparticle).name();
+      //   //      strMessage += ::platform::type(pparticle).name();
 
       //   //   }
       //   //   catch (...)
@@ -3194,13 +3194,13 @@ pdirectorysystem->create("/ca2core");
    //
    //      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
    //
-   //      prectangle->left() = rectangle.X;
+   //      prectangle->left = rectangle.X;
    //
-   //      prectangle->top() = rectangle.Y;
+   //      prectangle->top = rectangle.Y;
    //
-   //      prectangle->right() = prectangle->left() + rectangle.Width;
+   //      prectangle->right = prectangle->left + rectangle.Width;
    //
-   //      prectangle->bottom() = prectangle->top() + rectangle.Height;
+   //      prectangle->bottom = prectangle->top + rectangle.Height;
    //
    //
    //      return true;
@@ -4829,7 +4829,7 @@ namespace apex
    }
 
 
-//   void system::system_id_update(long long iUpdate, long long iPayload)
+//   void system::system_id_topic(int iId, long long llWparam, long long llLparam)
 //   {
 //
 //      call((::enum_id)iUpdate, iPayload);
@@ -4909,13 +4909,13 @@ namespace apex
    void system::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::thread::handle(ptopic, phandlercontext);
+      //::thread::handle(ptopic, phandlercontext);
       //      auto psignal = get_signal((::enum_id) iUpdate);
       //
       //      psignal->m_payload = iPayload;
       //
       //      psignal->notify();
-
+      ::platform::system::handle(ptopic, phandlercontext);
 
 
    }
@@ -5122,12 +5122,7 @@ namespace apex
    ::string system::fetch_public_internet_domain_extension_list_text()
    {
 
-      //auto estatus =
-      ///::platform::system::get_public_internet_domain_extension_list(stra);
-
-      //return estatus;
-
-      return {};
+      return m_papplication->fetch_public_internet_domain_extension_list_text();
 
    }
 
@@ -5166,6 +5161,15 @@ namespace apex
          ::e_status estatus = ::success_none;
 
          auto & pfactoryNetworking = factory("networking", "bsd");
+
+         if (!pfactoryNetworking)
+         {
+
+            application()->m_bNetworking = false;
+
+            return;
+
+         }
 
          //if (!pfactoryCrypto)
          //{

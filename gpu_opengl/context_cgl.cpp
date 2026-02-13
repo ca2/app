@@ -5,27 +5,38 @@
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 24/07/20.
 //  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
 //
-
 #include "framework.h"
-#if defined(MACOS)
-#include <OpenGL/OpenGL.h>
-//#include <glad/glad.h>
-//#include <OpenGL/CGLTypes.h>
-//////#include <OpenGL/glu.h>
-#include <OpenGL/gl3.h>
-#include <OpenGL/glext.h>
-#endif
+#include "_gpu_opengl.h"
 #include "cpu_buffer.h"
 #include "context_cgl.h"
-//#include "opengl.h"
+#include "device_cgl.h"
+#include "swap_chain.h"
 #include "acme/platform/application.h"
+#include "acme/windowing/window.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/target.h"
 #include "aura/platform/system.h"
-
+#include "bred/gpu/context_lock.h"
 
 
 namespace opengl
+{
+
+
+   void * operating_system_current_context()
+   {
+
+      auto cglcontextobj = CGLGetCurrentContext();
+
+      return cglcontextobj;
+
+   }
+
+
+}
+
+
+namespace gpu_opengl
 {
 
 
@@ -41,6 +52,8 @@ namespace opengl
    {
 
       //m_emode = e_mode_egl;
+      
+      m_pbuffer = 0;
       
       m_context = 0;
 
@@ -68,22 +81,8 @@ namespace opengl
 //
 //      }
       
-      //m_itaskGpu = ::current_itask();
-      
-//      unsigned long target = GL_TEXTURE_2D;
-//
-//      unsigned long internalFormat = GL_RGBA;
-//
-//      long max_level = 0;
-//
-//      CGLError error = CGLCreatePBuffer(size.cx(), size.cy(), target, internalFormat, max_level, &m_pbuffer);
-//
-//      if(error != kCGLNoError)
-//      {
-//
-//         return ::error_failed;
-//
-//      }
+//      //m_itaskGpu = ::current_itask();
+//      
 
 //      EGLint attribList[]=
 //      {
@@ -103,20 +102,6 @@ namespace opengl
 //      };
       //check(InMajorVersion > 3 || (InMajorVersion == 3 && InMinorVersion >= 2));
 
-      CGLPixelFormatAttribute AttribList[] =
-      {
-         
-         kCGLPFANoRecovery,
-         //kCGLPFAAccelerated,
-         //kCGLPFAOffScreen,
-         kCGLPFAOpenGLProfile,
-         (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
-         kCGLPFAColorSize, (CGLPixelFormatAttribute)32,
-         kCGLPFADepthSize, (CGLPixelFormatAttribute)16,
-         (CGLPixelFormatAttribute)0
-         
-      };
-
       
 //      CGLPixelFormatAttribute attribs[] =
 //      {
@@ -128,44 +113,53 @@ namespace opengl
 //      long numPixelFormats ;
 //      CGLChoosePixelFormat( attribs, &pixelFormatObj, &numPixelFormats ) ;
       
-      CGLPixelFormatObj PixelFormat;
+      ::cast < device_cgl > pdevice = m_pgpudevice;
       
-      GLint NumFormats = 0;
-      
-      auto error = CGLChoosePixelFormat(AttribList, &PixelFormat, &NumFormats);
+      auto error = CGLCreateContext(pdevice->m_cglpixelformat, pdevice->m_cglcontextShare, &m_context);
       
       if(error != kCGLNoError)
       {
          
-         //return ::error_failed;
+         throw ::exception(error_wrong_state);
          
          return;
          
       }
-
-      error = CGLCreateContext(PixelFormat, NULL, &m_context);
       
-      if(error != kCGLNoError)
+      if(!pdevice->m_cglcontextShare)
       {
          
-         //return ::error_failed;
-         
-         return;
+         pdevice->m_cglcontextShare = m_context;
          
       }
 
-      error = CGLDestroyPixelFormat(PixelFormat);
+      ::gpu::context_lock contextlock(this);
       
-      if(error != kCGLNoError)
-      {
-         
-         //return ::error_failed;
-         
-         return;
-         
-      }
+//      unsigned long target = GL_TEXTURE_2D;
+//////
+//      unsigned long internalFormat = GL_RGBA;
+//////
+//      long max_level = 0;
+//
+//      error = CGLCreatePBuffer(size.cx, size.cy, target, internalFormat, max_level, &m_pbuffer);
+//
+//      if(error != kCGLNoError)
+//      {
+//         
+//         throw ::exception(error_wrong_state);
+//         
+//         return;
+//         
+//      }
 
-      defer_make_current();
+      
+      m_rectangle.left = 0;
+      m_rectangle.top = 0;
+      m_rectangle.set_size(size);
+      
+      _defer_update_render_frame_buffer();
+
+//      defer_make_current();
       //::e_status estatus = make_current();
 
 //      if(!estatus)
@@ -177,20 +171,50 @@ namespace opengl
 //         
 //      }
       
-      auto cx = context::m_pcpubuffer->m_pimagetarget->m_pimage->width();
-      auto cy = context::m_pcpubuffer->m_pimagetarget->m_pimage->height();
-      auto scan = context::m_pcpubuffer->m_pimagetarget->m_pimage->m_iScan;
-      auto data=context::m_pcpubuffer->m_pimagetarget->m_pimage->data();
-
-      error = CGLSetOffScreen(m_context, cx,
-                              cy, scan, data) ;
-
-      if(error != kCGLNoError)
+      auto pcpubuffer = context::m_pcpubuffer;
+      
+      if(::is_set(pcpubuffer))
       {
          
-         //return ::error_failed;
+         auto pimagetarget = pcpubuffer->m_pimagetarget;
          
-         return;
+         if(::is_set(pimagetarget))
+         {
+            
+            auto pimage = pimagetarget->m_pimage;
+            
+            if(::is_set(pimage))
+            {
+               
+               auto cx = pimage->width();
+               auto cy = pimage->height();
+               auto scan = pimage->m_iScan;
+               auto data = pimage->data();
+               
+            }
+            
+         }
+         
+         //      error = CGLSetOffScreen(m_context, cx,
+         //                              cy, scan, data) ;
+         //
+         //      if(error != kCGLNoError)
+         //      {
+         //
+         //         //return ::error_failed;
+         //
+         //         return;
+         //
+         //      }
+         
+      }
+      
+      auto pgpurenderer = get_gpu_renderer();
+      
+      if(::is_null(pgpurenderer))
+      {
+         
+         throw ::exception(error_failed);
          
       }
 
@@ -199,25 +223,228 @@ namespace opengl
    }
 
 
-   void context_cgl::defer_make_current()
+void context_cgl::_defer_update_render_frame_buffer()
+{
+   
+   ::gpu::context_lock contextlock(this);
+   
+   _defer_update_render_frame_buffer_unlocked();
+   
+}
+
+
+void context_cgl::_defer_update_render_frame_buffer_unlocked()
+{
+   
+   auto size = m_rectangle.size();
+   
+   if(m_iFbo <= 0 || m_iTex <= 0 || size != m_sizeFbo)
+   {
+      
+      m_sizeFbo = size;
+      
+      auto w = size.width();
+      auto h = size.height();
+      
+      if(m_iFbo > 0)
+      {
+         
+         GLuint uFbo = m_iFbo;
+         
+         glDeleteFramebuffers(1, &uFbo);
+         ::opengl::check_error("");
+         
+         m_iFbo = 0;
+         
+      }
+      
+      if(m_iTex > 0)
+      {
+         
+         GLuint uTex = m_iTex;
+         
+         glDeleteTextures(1, &uTex);
+         ::opengl::check_error("");
+         
+         m_iTex = 0;
+         
+      }
+      
+      GLuint fbo = 0;
+      
+      glGenFramebuffers(1, &fbo);
+      ::opengl::check_error("");
+      m_iFbo = fbo;
+      glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+      ::opengl::check_error("");
+      
+      GLuint tex = 0;
+      
+      glGenTextures(1, &tex);
+      ::opengl::check_error("");
+      m_iTex = tex;
+      glBindTexture(GL_TEXTURE_2D, tex);
+      ::opengl::check_error("");
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0,
+                   GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+      ::opengl::check_error("");
+      
+      glFramebufferTexture2D(GL_FRAMEBUFFER,
+                             GL_COLOR_ATTACHMENT0,
+                             GL_TEXTURE_2D,
+                             tex, 0);
+      ::opengl::check_error("");
+      
+      auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+      ::opengl::check_error("");
+      
+      if (status != GL_FRAMEBUFFER_COMPLETE)
+      {
+         
+         ::string strMessage;
+         
+         strMessage = "context_cgl::_context_lock,Framebuffer not complete!";
+         
+         warning(strMessage);
+         
+         throw ::exception(error_failed, strMessage);
+         
+      }
+      
+      glBindTexture(GL_TEXTURE_2D, 0);
+      ::opengl::check_error("");
+      
+   }
+   
+}
+
+
+   void context_cgl::_context_lock()
    {
 
-      CGLError error = CGLSetCurrentContext(m_context);
+      CGLError errorSetCurrentContext = CGLSetCurrentContext(m_context);
+      
+      bool bMakeCurrentOk = errorSetCurrentContext == kCGLNoError;
+
+      if (!bMakeCurrentOk)
+      {
+         
+         ::string strMessage;
+         
+         strMessage = "CGLSetCurrentContext Failed to set current context";
+
+         warning(strMessage);
+
+         throw ::exception(error_failed, strMessage);
+         
+         return;
+
+      }
+      
+//      if(m_pbuffer)
+//      {
+//         
+//         CGLError errorSetPBuffer = CGLSetPBuffer(m_context, m_pbuffer, 0, 0, 0);
+//         
+//         bool bSetBufferOk = errorSetPBuffer == kCGLNoError;
+//         
+//         if (!bSetBufferOk)
+//         {
+//            
+//            ::string strMessage;
+//            
+//            strMessage = "CGLSetPbuffer Failed to set pbuffer";
+//            
+//            warning(strMessage);
+//            
+//            throw ::exception(error_failed, strMessage);
+//            
+//            return;
+//            
+//         }
+//         
+//      }
+      
+      _defer_update_render_frame_buffer_unlocked();
+      
+//      GLint drawFbo = 0;
+//      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+//      ::opengl::check_error("");
+//
+//      if(drawFbo != gluFbo)
+//      {
+         
+         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFbo);
+         ::opengl::check_error("");
+         
+//      }
+
+      
+      //glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFbo);
+      //::opengl::check_error("");
+      
+//      auto status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+//
+//      if (status != GL_FRAMEBUFFER_COMPLETE)
+//      {
+//         
+//         ::string strMessage;
+//         
+//         strMessage = "context_cgl::_context_lock,Framebuffer not complete!";
+//
+//         warning(strMessage);
+//         
+//         throw ::exception(error_failed, strMessage);
+//
+//      }
+
+   }
+
+
+   void context_cgl::_context_unlock()
+   {
+      
+      GLint drawFbo = 0;
+      glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+      if(!glGetError())
+      {
+         //::opengl::check_error("");
+         
+         if(drawFbo)
+         {
+            
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+            ::opengl::check_error("");
+            
+         }
+         
+      }
+
+      CGLError error = CGLSetCurrentContext(nullptr);
       
       bool bMakeCurrentOk = error == kCGLNoError;
 
       if (!bMakeCurrentOk)
       {
 
-         printf("eglMakeCurrent failed!\n");
-
-         //return ::error_failed;
+         ::string strMessage;
          
-         return;
+         strMessage = "CGLSetCurrentContext(nullptr) Failed to clear current context";
 
+         warning(strMessage);
+
+         throw ::exception(error_failed, strMessage);
+         
       }
-
-      //return ::success;
+      
+      auto cglcontextobj = ::opengl::operating_system_current_context();
+      
+      if(cglcontextobj)
+      {
+       
+         warning("Shouldn't it return nullptr now?");
+         
+      }
 
    }
 
@@ -291,7 +518,32 @@ namespace opengl
    }
 
 
+void context_cgl::_create_window_context(::acme::windowing::window* pacmewindowingwindow)
+{
+   
+   ::int_rectangle rectangle = pacmewindowingwindow->get_window_rectangle();
+   
+   m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
+   
+   m_pacmewindowingwindowWindowSurface->m_pgpucontextrenderframe = get_swap_chain();
+   
+   auto size = rectangle.size();
+   
+   _create_cpu_buffer(size);
+   
+}
+
+void context_cgl::on_cube_map_face_image(::image::image * pimage)
+{
+
+   pimage->vertical_swap();
+   
+   pimage->image32()->swap_red_blue(pimage->width(),pimage->height());
+
+}
+
 } // namespace gpu_opengl
+
 
 
 

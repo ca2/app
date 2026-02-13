@@ -729,7 +729,7 @@ void oswindow_data::set_user_interaction(::windowing::window * pimpl)
 
 
 
-bool oswindow_data::is_child(::oswindow oswindow)
+bool oswindow_data::is_child(::::acme::windowing::window * pacmewindowingwindow)
 {
 
    if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
@@ -779,7 +779,7 @@ oswindow oswindow_data::get_parent()
 }
 
 
-oswindow oswindow_data::set_parent(oswindow oswindow)
+oswindow oswindow_data::set_parent(::acme::windowing::window * pacmewindowingwindow)
 {
 
    if(::is_null(this))
@@ -951,17 +951,17 @@ void oswindow_data::full_screen(const ::int_rectangle & rectangle)
 
    ::int_rectangle rWindow;
 
-   rWindow.left()      = attr.x();
-   rWindow.top()       = attr.y();
-   rWindow.right()     = attr.x()    + attr.width;
-   rWindow.bottom()    = attr.y()    + attr.height;
+   rWindow.left      = attr.x;
+   rWindow.top       = attr.y;
+   rWindow.right     = attr.x    + attr.width;
+   rWindow.bottom    = attr.y    + attr.height;
 
    if(rBest != rWindow)
    {
 
       m_pimpl->m_puserinteraction->place(rBest);
 
-      XMoveResizeWindow(d, m_window, rBest.left(), rBest.top(), rBest.width(), rBest.height());
+      XMoveResizeWindow(d, m_window, rBest.left, rBest.top, rBest.width(), rBest.height());
 
    }
 
@@ -1543,7 +1543,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, int x, int y, int cx,
 
 
 
-int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::user::e_activation & useractivation)
+int_bool show_window(::acme::windowing::window * pacmewindowingwindow, const ::e_display & edisplay, const ::user::e_activation & useractivation)
 {
 
    x11_sync([oswindow, edisplay, useractivation]()

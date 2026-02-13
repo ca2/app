@@ -28,9 +28,14 @@ namespace graphics
    ::draw2d::graphics_pointer buffer_item::g()
    {
 
-      auto pgraphics = m_pgraphics ? m_pgraphics.m_p : m_pimage2->g();
+      auto pgraphics = m_pgraphicsBufferItem ? m_pgraphicsBufferItem.m_p : m_pimage2->g();
 
-      pgraphics->m_egraphics = m_egraphics;
+      if (pgraphics)
+      {
+
+         pgraphics->m_egraphics = m_egraphics;
+
+      }
 
       //if (!pgraphics->m_callbackImage32CpuBuffer)
       //{
@@ -51,6 +56,17 @@ namespace graphics
    }
 
 
+   void buffer_item::switch_to_draw()
+   {
+
+      m_egraphics = e_graphics_draw;
+
+      g();
+
+
+   }
+
+
    void buffer_item::destroy()
    {
 
@@ -60,7 +76,7 @@ namespace graphics
 
       m_pimage2.defer_destroy();
 
-      m_pgraphics.release();
+      m_pgraphicsBufferItem.release();
 
       m_pparticleData.release();
 
@@ -290,12 +306,16 @@ namespace graphics
 
       }
 
-      if (pbufferitem->m_pgraphics &&
-         pbufferitem->m_pgraphics.ok())
+      if (pbufferitem->m_pgraphicsBufferItem)
       {
-
-         pbufferitem->m_pgraphics->__on_begin_draw();
-
+         
+         if(pbufferitem->m_pgraphicsBufferItem.ok())
+         {
+            
+            pbufferitem->m_pgraphicsBufferItem->__on_begin_draw();
+            
+         }
+         
       }
 
       return pbufferitem;

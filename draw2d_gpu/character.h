@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include <glm/glm.hpp>
+
 
 
 namespace draw2d_gpu

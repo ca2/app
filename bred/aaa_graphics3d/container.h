@@ -1,7 +1,7 @@
 // From vk_window by camilo on 2025-05-09 02:32 <3ThomasBorregaardSorensen!!
 #pragma once
 
-#include <glm/glm.hpp>
+
 namespace user
 {
 
@@ -34,7 +34,7 @@ namespace graphics3d
 
 		} m_buttons;
 
-		::glm::vec2 m_position;
+		::floating_sequence2 m_position;
 	};
 
 	

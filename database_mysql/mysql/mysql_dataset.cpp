@@ -101,10 +101,6 @@
 //
 //   /* process rows and then free the dataset set */
 //   //process_result_set (conn, res_set);
-//
-//
-//
-//
 //} // namespace mysql
 //
 //

@@ -30,17 +30,23 @@ namespace gpu_opengl
    }
 
 
-   void memory_buffer::on_initialize_memory_buffer(const void* dataStatic, memsize sizeStatic)
+   void memory_buffer::on_initialize_memory_buffer(const ::block &block)
    {
 
-      if (m_pmodelbuffer->m_bDummy)
+      if (m_pmodelbuffer->m_pmodeldatabase2->is_dummy())
       {
 
          return;
 
       }
 
-      ::gpu::context_lock contextlock(m_pcontext);
+//      ::cast<::gpu_opengl::model_buffer> pmodelbuffer = m_pmodelbuffer;
+//
+//      auto vao = pmodelbuffer->m_gluVao;
+
+//      ::gpu::context_lock contextlock(m_pcontext);
+
+//      glBindVertexArray(vao);
 
       memsize size;
 
@@ -49,7 +55,7 @@ namespace gpu_opengl
 
          m_iType = GL_ARRAY_BUFFER;
 
-         size = m_pmodelbuffer->m_iVertexCount * m_pmodelbuffer->m_iVertexTypeSize;
+         size = m_pmodelbuffer->m_pmodeldatabase2->vertex_bytes();
 
       }
       else if (m_etype == ::gpu::memory_buffer::e_type_index_buffer)
@@ -57,7 +63,7 @@ namespace gpu_opengl
 
          m_iType = GL_ELEMENT_ARRAY_BUFFER;
 
-         size = m_pmodelbuffer->m_iIndexCount * m_pmodelbuffer->m_iIndexTypeSize;
+         size = m_pmodelbuffer->m_pmodeldatabase2->index_bytes();
 
       }
       else
@@ -66,50 +72,64 @@ namespace gpu_opengl
          throw not_implemented();
 
       }
-
+      
       glGenBuffers(1, &m_gluVbo);                            // Create a buffer ID
       
-      GLCheckError("");
+      ::opengl::check_error("");
 
       glBindBuffer(m_iType, m_gluVbo);              // Bind as a vertex buffer
       
-      GLCheckError("");
+      ::opengl::check_error("");
+      
+      auto iGlStaticDraw = GL_STATIC_DRAW;
+      
+      auto iGlDynamicDraw = GL_DYNAMIC_DRAW;
 
       //GLsizeiptr size = 1024; // e.g., 1 KB buffer
-      auto usageFlags = dataStatic ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
+      auto usageFlags = block.data() ? iGlStaticDraw : iGlDynamicDraw;
       
-      glBufferData(m_iType, (GLsizeiptr) size, dataStatic, usageFlags); // just allocate space
-      GLCheckError("");
+      glBufferData(m_iType, (GLsizeiptr)size, block.data(), usageFlags); // just allocate space
+      ::opengl::check_error("");
+      
+      glBindBuffer(m_iType, 0);
+      
+      ::opengl::check_error("");
 
    }
 
 
-   void memory_buffer::on_set_memory_buffer(const void* data, memsize size)
+   void memory_buffer::on_set_memory_buffer(const ::block &block)
    {
 
-      if (m_pmodelbuffer->m_bDummy)
+      if (m_pmodelbuffer->m_pmodeldatabase2->is_dummy())
       {
 
          return;
 
       }
 
-      m_pmodelbuffer->bind(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
+//      m_pmodelbuffer->bind2(m_pcontext->m_pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame()));
 
-      _on_set_memory_buffer(data, size);
+      _on_set_memory_buffer(block);
 
-      m_pmodelbuffer->unbind(m_pmodelbuffer->m_pcommandbufferLoading);
+//      m_pmodelbuffer->unbind(m_pmodelbuffer->m_pcommandbufferLoading);
 
    }
 
 
-   void memory_buffer::_on_set_memory_buffer(const void* data, memsize size)
+   void memory_buffer::_on_set_memory_buffer(const ::block &block)
    {
 
       bind();
+      
+      auto data = block.data();
+      
+      auto size = block.size();
 
       glBufferData(m_iType, (GLsizeiptr)size, data, GL_DYNAMIC_DRAW); // just allocate space
-      GLCheckError("");
+      ::opengl::check_error("");
+      
+      unbind();
 
    }
 
@@ -122,11 +142,11 @@ namespace gpu_opengl
    }
 
 
-   void memory_buffer::_assign(const void * data, memsize size)
+   void memory_buffer::_assign(const ::block &block)
    {
 
-      glBufferSubData(m_iType, 0, size, data);
-      GLCheckError("");
+      glBufferSubData(m_iType, 0, block.size(), block.data());
+      ::opengl::check_error("");
 
    }
 
@@ -136,7 +156,7 @@ namespace gpu_opengl
 
       void* data = glMapBuffer(m_iType, GL_READ_ONLY);
 
-      GLCheckError("");
+      ::opengl::check_error("");
 
       m_pMap = data;
 
@@ -150,11 +170,11 @@ namespace gpu_opengl
 
       glUnmapBuffer(m_iType); // Important!
 
-      GLCheckError("");
+      ::opengl::check_error("");
 
       //glBindBuffer(m_iType, 0);
       
-      //GLCheckError("");
+      //::opengl::check_error("");
 
       m_pMap = nullptr;
 
@@ -163,10 +183,23 @@ namespace gpu_opengl
 
    void memory_buffer::bind()
    {
+      
+      if(m_gluVbo <= 0)
+      {
+         
+         ::string strMessage;
+         
+         strMessage = "memory_buffer::bind vbo is null";
+         
+         warning(strMessage);
+         
+         throw ::exception(error_wrong_state, strMessage);
+         
+      }
 
       glBindBuffer(m_iType, m_gluVbo);
 
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -174,9 +207,9 @@ namespace gpu_opengl
    void memory_buffer::unbind()
    {
 
-      //glBindBuffer(m_iType, 0);
+      glBindBuffer(m_iType, 0);
       
-      //GLCheckError("");
+      ::opengl::check_error("");
 
    }
 

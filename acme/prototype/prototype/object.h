@@ -308,8 +308,8 @@ public:
    void multiple_fork(const ::procedure_array& routinea);
 
 
-   template < primitive_function FUNCTION >
-      void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
+   template < prototype_function FUNCTION >
+   void hold_signal_function(::data::signal<FUNCTION> * psignal, const FUNCTION & function);
 
 
 };

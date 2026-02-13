@@ -90,8 +90,8 @@ void Window::on_destroy_window()
       }
 
       return int_size(
-         ::maximum(sizeResult.cx(), (int)(m_boundsHeader.width() + 20)),
-         ::maximum(sizeResult.cy(), (int)(m_boundsHeader.height()))
+         ::maximum(sizeResult.cx, (int)(m_boundsHeader.width() + 20)),
+         ::maximum(sizeResult.cy, (int)(m_boundsHeader.height()))
       );
    }
 
@@ -104,7 +104,8 @@ void Window::on_destroy_window()
       
          m_button_panel = øallocate Widget(this);
 
-         m_button_panel->set_layout(øallocate BoxLayout(e_orientation_horizontal, e_alignment_middle, 0, 4));
+         m_button_panel->set_layout(
+            øallocate BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(0, 0, 0, 0), 4));
 
       }
 
@@ -143,7 +144,7 @@ void Window::on_destroy_window()
          m_button_panel->set_size({width(), 22});
 
          m_button_panel->set_position({
-            width() - (m_button_panel->preferred_size(pcontext, bRecalcTextSize).cx() + 5), 3 });
+            width() - (m_button_panel->preferred_size(pcontext, bRecalcTextSize).cx + 5), 3 });
 
          m_button_panel->perform_layout(pcontext, bRecalcTextSize);
 
@@ -157,14 +158,14 @@ void Window::on_destroy_window()
 
       //information() << "Draw Window!! " << typeid(*this).name();
 
-//      if (m_offsetToApplyOnDraw.cx() != 0 || m_offsetToApplyOnDraw.cy() != 0)
+//      if (m_offsetToApplyOnDraw.cx != 0 || m_offsetToApplyOnDraw.cy != 0)
 //      {
 //
 //         m_pos += m_offsetToApplyOnDraw;
 //
-//         m_offsetToApplyOnDraw.cx() = 0;
+//         m_offsetToApplyOnDraw.cx = 0;
 //
-//         m_offsetToApplyOnDraw.cy() = 0;
+//         m_offsetToApplyOnDraw.cy = 0;
 //
 //      }
 
@@ -184,7 +185,7 @@ void Window::on_destroy_window()
          ::nano2d::guard guard(pcontext);
          //pcontext->save();
          pcontext->begin_path();
-         pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)m_size.cy(), (float)cr);
+         pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)m_size.cy, (float)cr);
 
          pcontext->fill_color(m_bMouseHover ? m_ptheme->m_colorWindowFillFocused
             : m_ptheme->m_colorWindowFillUnfocused);
@@ -193,14 +194,14 @@ void Window::on_destroy_window()
 
          ///* Draw a drop shadow */
          //::nano2d::paint shadow_paint = pcontext->box_gradient(
-         //   ctx, m_pos.x(), m_pos.y(), m_size.cx(), m_size.cy(), cr * 2, ds * 2,
+         //   ctx, m_pos.x, m_pos.y, m_size.cx, m_size.cy, cr * 2, ds * 2,
          //   m_ptheme->m_colorDropShadow, m_ptheme->m_colorTransparent);
 
          //pcontext->Save();
          //pcontext->reset_scissor();
          //pcontext->begin_path();
-         //pcontext->rectangle(m_pos.x() - ds, m_pos.y() - ds, m_size.cx() + 2 * ds, m_size.cy() + 2 * ds);
-         //pcontext->rounded_rectangle(m_pos.x(), m_pos.y(), m_size.cx(), m_size.cy(), cr);
+         //pcontext->rectangle(m_pos.x - ds, m_pos.y - ds, m_size.cx + 2 * ds, m_size.cy + 2 * ds);
+         //pcontext->rounded_rectangle(m_pos.x, m_pos.y, m_size.cx, m_size.cy, cr);
          //pcontext->path_winding(::nano2d::e_solidity_hole);
          //pcontext->fill_paint(shadow_paint);
          //pcontext->fill();
@@ -209,29 +210,29 @@ void Window::on_destroy_window()
          if (m_title.has_character()) {
             /* Draw header */
             ::nano2d::paint header_paint = pcontext->linear_gradient(
-               (float)m_pos.x(), (float)m_pos.y(), (float)m_pos.x(),
-               (float)m_pos.y() + (float)hh,
+               (float)m_pos.x, (float)m_pos.y, (float)m_pos.x,
+               (float)m_pos.y + (float)hh,
                m_ptheme->m_colorWindowHeaderGradientTop,
                m_ptheme->m_colorWindowHeaderGradientBottom);
 
             pcontext->begin_path();
-            pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)hh, (float)cr);
+            pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)hh, (float)cr);
 
             pcontext->fill_paint(header_paint);
             pcontext->fill();
 
             pcontext->begin_path();
-            pcontext->rounded_rectangle((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)hh, (float)cr);
+            pcontext->rounded_rectangle((float)m_pos.x, (float)m_pos.y, (float)m_size.cx, (float)hh, (float)cr);
             pcontext->stroke_color(m_ptheme->m_colorWindowHeaderSeparationTop);
 
             //pcontext->Save();
-            //pcontext->intersect_scissor(m_pos.x(), m_pos.y(), m_size.cx(), 0.5f);
+            //pcontext->intersect_scissor(m_pos.x, m_pos.y, m_size.cx, 0.5f);
             //pcontext->stroke();
             //pcontext->Restore();
 
             pcontext->begin_path();
-            pcontext->move_to(m_pos.x() + 0.5f, m_pos.y() + hh - 1.5f);
-            pcontext->line_to(m_pos.x() + m_size.cx() - 0.5f, m_pos.y() + hh - 1.5f);
+            pcontext->move_to(m_pos.x + 0.5f, m_pos.y + hh - 1.5f);
+            pcontext->line_to(m_pos.x + m_size.cx - 0.5f, m_pos.y + hh - 1.5f);
             pcontext->stroke_color(m_ptheme->m_colorWindowHeaderSeparationBottom);
             pcontext->stroke();
 
@@ -241,13 +242,13 @@ void Window::on_destroy_window()
 
             //pcontext->font_blur(2);
             //pcontext->fill_color(m_ptheme->m_colorDropShadow);
-            //pcontext->text(m_pos.x() + m_size.cx() / 2,
-               // m_pos.y() + hh / 2, m_title.c_str(), nullptr);
+            //pcontext->text(m_pos.x + m_size.cx / 2,
+               // m_pos.y + hh / 2, m_title.c_str(), nullptr);
 
             //pcontext->font_blur(0);
             pcontext->fill_color(focused() ? m_ptheme->m_colorWindowTitleFocused
                : m_ptheme->m_colorWindowTitleUnfocused);
-            pcontext->text(m_pos.x() + m_size.cx() / 2.f, m_pos.y() + hh / 2.f - 1.f,
+            pcontext->text(m_pos.x + m_size.cx / 2.f, m_pos.y + hh / 2.f - 1.f,
                m_title);
          }
 
@@ -326,10 +327,10 @@ void Window::on_destroy_window()
             }
 
             informationf("rectangleOld (%d, %d, %d, %d)",
-                        rectangleOld.left(),
-                        rectangleOld.top(),
-                        rectangleOld.right(),
-                        rectangleOld.bottom());
+                        rectangleOld.left,
+                        rectangleOld.top,
+                        rectangleOld.right,
+                        rectangleOld.bottom);
             
             ::int_rectangle_array_base rectanglea;
             
@@ -352,21 +353,21 @@ void Window::on_destroy_window()
                if (ppopup->side() == Popup::Left)
                {
 
-                  rectangleOld.right() += ppopup->anchor_size();
+                  rectangleOld.right += ppopup->anchor_size();
 
                }
                else
                {
 
-                  rectangleOld.left() -= ppopup->anchor_size();
+                  rectangleOld.left -= ppopup->anchor_size();
 
                }
 
                informationf("extra Popup Button : rectangleOld (%d, %d, %d, %d)",
-                  rectangleOld.left(),
-                  rectangleOld.top(),
-                  rectangleOld.right(),
-                  rectangleOld.bottom());
+                  rectangleOld.left,
+                  rectangleOld.top,
+                  rectangleOld.right,
+                  rectangleOld.bottom);
 
                rectanglea.add(rectangleOld);
 
@@ -382,10 +383,10 @@ void Window::on_destroy_window()
             }
             
             informationf("rectangleNew (%d, %d, %d, %d)",
-                        rectangleNew.left(),
-                        rectangleNew.top(),
-                        rectangleNew.right(),
-                        rectangleNew.bottom());
+                        rectangleNew.left,
+                        rectangleNew.top,
+                        rectangleNew.right,
+                        rectangleNew.bottom);
 
             rectanglea.add(rectangleNew);
 
@@ -410,21 +411,21 @@ void Window::on_destroy_window()
                if (ppopup->side() == Popup::Left)
                {
 
-                  rectangleNew.right() += ppopup->anchor_size();
+                  rectangleNew.right += ppopup->anchor_size();
 
                }
                else
                {
 
-                  rectangleNew.left() -= ppopup->anchor_size();
+                  rectangleNew.left -= ppopup->anchor_size();
 
                }
 
                informationf("extra Popup Button : rectangleNew (%d, %d, %d, %d)",
-                  rectangleNew.left(),
-                  rectangleNew.top(),
-                  rectangleNew.right(),
-                  rectangleNew.bottom());
+                  rectangleNew.left,
+                  rectangleNew.top,
+                  rectangleNew.right,
+                  rectangleNew.bottom);
 
                rectanglea.add(rectangleNew);
 
@@ -481,7 +482,7 @@ void Window::on_destroy_window()
          if (down)
          {
 
-            auto bDrag = down && (pointCursor.y() - m_pos.y()) < m_ptheme->m_iWindowHeaderHeight;
+            auto bDrag = down && (pointCursor.y - m_pos.y) < m_ptheme->m_iWindowHeaderHeight;
 
             m_bDrag = bDrag;
 

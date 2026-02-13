@@ -36,10 +36,6 @@
 //
 //
 ////inline void __string_exchange(text_stream & s, ::int_rectangle & r) { s.network_payload_exchange(r); }
-//
-//
-//
-//
 //template < typename TYPE >
 //inline void text_stream::network_payload_exchange(TYPE & t)
 //{

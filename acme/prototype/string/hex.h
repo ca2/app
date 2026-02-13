@@ -130,7 +130,7 @@ namespace hex
    }
 
    
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr auto upper_case_from(INTEGRAL i)
    {
 
@@ -143,7 +143,7 @@ namespace hex
    }
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr auto lower_case_from(INTEGRAL i)
    {
 

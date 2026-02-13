@@ -37,7 +37,7 @@ public:
    millis(enum enum_now);
    millis(enum no_initialize_t) {}
     
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    millis(INTEGRAL i) { m_i = i; }
     
    millis(const secs & secs) { m_i = secs.m_i * 1'000; }
@@ -285,7 +285,7 @@ inline unsigned char as_byte(const ::millis & millis) { return (unsigned char) m
 inline millis __tick(double d) { return (long long) d; }
 
 
-inline millis operator "" _tick(unsigned long long u) { return u; }
+inline millis operator""_tick(unsigned long long u) { return u; }
 
 
 #ifdef CPP20
@@ -300,7 +300,7 @@ typedef CLASS_DECL_ACME numeric_array < millis > millis_array;
 inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
 
-inline millis operator "" _ms(unsigned long long u) { return (long long) u; }
+inline millis operator""_ms(unsigned long long u) { return (long long) u; }
 
 
 inline millis operator -(const ::millis& millis1, const ::millis& millis2)
@@ -322,7 +322,7 @@ inline millis operator +(const ::millis& millis1, const ::millis& millis2)
 
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline millis operator *(const ::millis& millis, const NUMBER& number)
 {
 
@@ -331,7 +331,7 @@ inline millis operator *(const ::millis& millis, const NUMBER& number)
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline millis operator /(const ::millis& millis, const NUMBER& number)
 {
 

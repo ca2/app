@@ -43,8 +43,8 @@ namespace hotplugin
       m_bReload         = false;
       m_bInstalling     = false;
 
-      m_pointCursorPhase.x() = 0;
-      m_pointCursorPhase.y() = 0;
+      m_pointCursorPhase.x = 0;
+      m_pointCursorPhase.y = 0;
 
       m_etheme = ::user::e_theme_lite;
 
@@ -274,7 +274,7 @@ namespace hotplugin
 
 #ifdef WINDOWS_DESKTOP
 
-         ::PostMessage(m_phost->::aura::ipc::ipc::m_oswindow, WM_USER + 100, 3, 1);
+         ::PostMessage(m_phost->::aura::ipc::ipc::m_pacmewindowingwindow, WM_USER + 100, 3, 1);
 
 #else
 
@@ -622,9 +622,9 @@ namespace hotplugin
 
       ::int_rectangle rectangleWindow(rectangleParam);
 
-      int cx = rectangleWindow.right() - rectangleWindow.left();
+      int cx = rectangleWindow.right - rectangleWindow.left;
 
-      int cy = rectangleWindow.bottom() - rectangleWindow.top();
+      int cy = rectangleWindow.bottom - rectangleWindow.top;
 
       double dRate = get_progress_rate();
 
@@ -632,7 +632,7 @@ namespace hotplugin
 
       int x;
 
-      int y = rectangleWindow.top();
+      int y = rectangleWindow.top;
 
       int pcx = cx;
 
@@ -651,20 +651,20 @@ namespace hotplugin
          {
 
             if(dRate < dStart)
-               x = rectangleWindow.left();
+               x = rectangleWindow.left;
             else
-               x = (int) (rectangleWindow.left() + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
+               x = (int) (rectangleWindow.left + ((((dRate - dStart) * (double) pcx) / (dEnd - dStart))));
 
             if(iLine >= (iLineCount - 1))
-               pcy = rectangleWindow.bottom() - y;
+               pcy = rectangleWindow.bottom - y;
 
-            rectangleP.top()      = y;
+            rectangleP.top      = y;
 
-            rectangleP.bottom()   = y + pcy;
+            rectangleP.bottom   = y + pcy;
 
-            rectangleP.left()     = x;
+            rectangleP.left     = x;
 
-            rectangleP.right()    = rectangleWindow.right();
+            rectangleP.right    = rectangleWindow.right;
 
             pgraphics->fill_rectangle(rectangleP, argb(90, 90, 90, 80));
 
@@ -797,7 +797,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 //#endif
 //         }
 
-         uptr size = m_sizeBitmapData.cx() * m_sizeBitmapData.cy() * sizeof(color32_t);
+         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
 
          ::file::path pathName = directory()->appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
 
@@ -856,7 +856,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 //
 //         }
 //
-//         uptr size = m_sizeBitmapData.cx() * m_sizeBitmapData.cy() * sizeof(color32_t);
+//         uptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(color32_t);
 //
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -1139,7 +1139,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 #ifndef UNIVERSAL_WINDOWS
 
 #if !defined(LINUX) && !defined(APPLEOS) && !defined(__ANDROID__)
-      if(bEnsureTx || ::IsWindow(::aura::ipc::tx::m_oswindow))
+      if(bEnsureTx || ::IsWindow(::aura::ipc::tx::m_pacmewindowingwindow))
 #endif
       {
 

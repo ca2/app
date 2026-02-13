@@ -51,6 +51,7 @@ public:
    //::property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
    ::collection::index index_of(const ::atom& atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
+   ::collection::index index_of_name(const ::scoped_string &scopedstr, ::collection::index iStart = 0) const;
    ::property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i)
    ::property & property(const ::atom & atom); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
    const ::property& property(const ::atom& atom) const
@@ -101,16 +102,16 @@ public:
    inline ::property & operator[](const ::atom_array_base & atoma) { return property(atoma); }
    inline ::property & operator[](const ::atom & atom) { return property(atom); }
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline const ::property & property_at(INTEGRAL i) const { return *this->element_at(i); }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline ::property & property_at(INTEGRAL i) { return *this->element_at(i); }
 
 
 
-   //template < primitive_character_range RANGE >
+   //template < prototype_character_range RANGE >
    //inline ::property & operator[](const RANGE & range) { return property(range); }
-   //template < primitive_character_range RANGE >
+   //template < prototype_character_range RANGE >
    //inline const ::property & operator[](const RANGE & range) const { return property(range); }
 
    //template < has_get_string HAS_GET_STRING >
@@ -195,6 +196,8 @@ public:
    ::collection::count erase_string_count(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
    bool has_property(const ::atom & atom) const;
+
+   bool has_replace(const ::atom& atom, const ::payload & payload);
 
    bool is_true(const ::atom & atom) const;
 
@@ -440,7 +443,7 @@ public:
 
 
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    T * cast(const ::atom & atom, T * pDefault = nullptr)
    {
 
@@ -456,7 +459,7 @@ public:
    }
 
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    T * cast(const ::atom & atom, T * pDefault = nullptr) const
    {
 

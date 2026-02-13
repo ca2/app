@@ -371,10 +371,6 @@ namespace nano2d
 //
 //		// Debug function to dump cached path data.
 //		CLASS_DECL_NANO2D void debug_dump_path_cache(  CONTEXT* pcontext);
-//
-//
-//
-//
 //		// Begin drawing a ___new frame
 //// Calls to nanovg drawing API should be wrapped in BeginFrame() & EndFrame()
 //// BeginFrame() defines the size of the window to render to in relation currently

@@ -115,6 +115,8 @@ namespace acme
          virtual void set_timer(uptr uEvent, const class ::time& millisElapse, const ::procedure& procedure = {}, bool bPeriodic = true);
          virtual void kill_timer(uptr uEvent);
 
+         
+         virtual bool on_add_child(::acme::user::interaction * pacmeuserinteractionChild);
 
          //void show_window() override;
 
@@ -168,6 +170,7 @@ namespace acme
          virtual ::acme::user::interaction * on_acme_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
 
          virtual ::int_rectangle get_client_rectangle();
+         virtual ::int_size get_window_minimum_size();
 
 
          /// @brief  Child

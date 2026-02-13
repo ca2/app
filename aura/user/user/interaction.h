@@ -286,13 +286,17 @@ namespace user
 
       bool                                      m_bUpdateBufferPending;
 
-      //::oswindow                              m_oswindow;
+      //::oswindow                              m_pacmewindowingwindow;
       e_window_flag                             m_ewindowflag;
       bool                                      m_bAutomaticallyStoreWindowRectangle;
       bool                                      m_bPendingSaveWindowRectangle;
       bool                                      m_bLoadingWindowRectangle;
 
 
+      ::int_rectangle                           m_rectangleMargin1;
+
+::pointer < ::message::mouse > m_pmousePendingBackUpdateHover;
+      ::draw2d::graphics * m_pgraphicsInternalPriority = nullptr;
       //bool                                      m_bVisualChanged;
 
       // <3ThomasBorreggardSoerensen_!!
@@ -311,7 +315,7 @@ namespace user
       ::collection::index                                     m_iColumn;
 
       atom                                      m_uiText;
-      ::type_atom                               m_typeatom;
+      ::platform::type                          m_type;
       atom                                      m_atomPrivateDataSection;
       //::atom                                  m_atomTranslated;
       enum_control_type                         m_econtroltype;
@@ -434,7 +438,7 @@ namespace user
       ::pointer<::user::form>                      m_pform;
       ::pointer<alpha_source>                      m_palphasource;
       //::pointer<::aura::drawable>                m_pdrawableBackground;
-      //::pointer<primitive_impl>                    m_pprimitiveimpl;
+      //::pointer<prototype_impl>                    m_pprimitiveimpl;
       //::pointer<interaction_impl>                  m_pinteractionimpl;
       ::pointer<interaction_array>                 m_puserinteractionpointeraOwned;
       //::pointer<interaction_array>                 m_puserinteractionpointeraChild;
@@ -562,9 +566,9 @@ namespace user
          //fFontSize = pgraphics->m_puserinteraction->get_window()->dpiy((float)m_dFontSize);
 
 
-      //inline oswindow get_oswindow() const { return m_oswindow; }
+      //inline oswindow get_oswindow() const { return m_pacmewindowingwindow; }
       //virtual bool attach(::windowing::window * pwindow_New) override;
-      ::oswindow detach_window() override;
+      //::acme::windowing::window * detach_win32_HWND() override;
 
 
       ::windowing::window * window() override;
@@ -881,13 +885,14 @@ namespace user
       virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_previous(::user::activation_token * puseractivationtoken, bool bScreenVisible = false);
+      virtual void display_visible_trying_to_restore_last_visible(const ::user::activation & useractivation);
+      virtual void display_strictly_previous(const ::user::activation & useractivation);
+      virtual void display_stored_state();
       virtual void display_normal(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_docked(::e_display edisplay, const ::user::activation & useractivation);
       virtual void display_zoomed();
       virtual void display_iconic();
       virtual void display_full_screen(::collection::index iMonitor, const ::user::activation & useractivation);
-      virtual void display_stored_state();
       virtual void display_notify_icon();
 
       
@@ -1115,7 +1120,7 @@ namespace user
 
 
       virtual bool _is_window() const override;
-      inline bool is_window() const { return m_ewindowflag & e_window_flag_is_window; }
+      inline bool is_window() const { return this->_is_window();}
 
       virtual void ExitHelpMode();
 
@@ -1127,7 +1132,7 @@ namespace user
 
       virtual bool on_before_set_parent(::user::interaction_base * pinterface);
       virtual bool on_set_parent(::user::interaction_base * pinterface);
-      virtual bool on_add_child(::user::interaction * puserinteractionChild);
+      bool on_add_child(::acme::user::interaction * puserinteractionChild) override;
       virtual void on_after_set_parent();
 
 
@@ -1377,7 +1382,7 @@ namespace user
 
 
       element * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
-      //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
+      //virtual prototype * keyboard_set_focus_next(prototype * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
       virtual void get_child_rect(::int_rectangle & rectangle);
@@ -1603,11 +1608,15 @@ namespace user
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
+      virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      
       //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_graphics(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics(::draw2d::graphics_pointer & pgraphics);
+      //virtual void do_graphics();
       virtual void defer_do_layout(::draw2d::graphics_pointer & pgraphics);
       void _000TopCallOnLayout(::draw2d::graphics_pointer& pgraphics);
       void _000TopCallOnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -1766,8 +1775,8 @@ namespace user
       //virtual ::oswindow _oswindow();
 
 
-      inline ::oswindow get_safe_oswindow();
-      virtual ::oswindow oswindow();
+      //inline void get_safe_oswindow();
+      ::acme::windowing::window * acme_windowing_window() override;
 
 
       //virtual ::windowing::window * window();
@@ -1975,7 +1984,9 @@ namespace user
 
       //virtual bool is_descendant(const ::user::interaction_base * pinteraction, bool bIncludeSelf = false) override;
 
-      ::oswindow GetParentHandle();
+      //::oswindow GetParentHandle();
+
+      //void * __win32_get_parent_W
 
       ::user::interaction* get_focusable_descendant() override;
 
@@ -2031,8 +2042,8 @@ namespace user
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence) override;
-      virtual void viewport_client_to_screen(::sequence2_int & sequence) override;
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::int_rectangle & rect) override;
       virtual void viewport_screen_to_client(::int_rectangle & rect) override;
 
@@ -2261,8 +2272,8 @@ namespace user
 
       virtual void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch);
 
-      inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x() > 0; }
-      inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y() > 0; }
+      inline bool _001HasBarXDragScrolling() const { return m_pointBarDragScrollMax.x > 0; }
+      inline bool _001HasBarYDragScrolling() const { return m_pointBarDragScrollMax.y > 0; }
 
 
       //virtual double get_x_scroll();
@@ -2271,7 +2282,7 @@ namespace user
       virtual bool is_system_message_window();
 
 
-      virtual ::int_size get_window_minimum_size();
+      ::int_size get_window_minimum_size() override;
 
       virtual ::int_rectangle get_window_normal_stored_rectangle();
       virtual ::int_rectangle get_window_broad_stored_rectangle();
@@ -2293,6 +2304,7 @@ namespace user
       virtual void user_interaction_on_hide();
 
 
+      virtual void show() override;
       virtual void hide() override;
 
       //virtual ::pointer_array < ::user::interaction > synchronized_get_children();
@@ -2509,6 +2521,7 @@ namespace user
       virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
+      virtual void defer_update_hover(::draw2d::graphics_pointer & pgraphics);
       virtual void on_update_hover(::item * pitem);
 
       virtual bool is_mouse_hover() const;
@@ -2858,19 +2871,19 @@ namespace user
    };
 
 
-   inline ::oswindow interaction::get_safe_oswindow()
-   {
-
-      if (::is_null(this))
-      {
-
-         return nullptr;
-
-      }
-
-      return this->oswindow();
-
-   }
+   // inline ::oswindow interaction::get_safe_oswindow()
+   // {
+   //
+   //    if (::is_null(this))
+   //    {
+   //
+   //       return nullptr;
+   //
+   //    }
+   //
+   //    return this->oswindow();
+   //
+   // }
 
 
    class lock_sketch_to_design
@@ -2895,7 +2908,7 @@ namespace user
    };
 
 
-   //compile_time_assert((offsetof(::user::interaction, m_oswindow) & 4) == 0);
+   //compile_time_assert((offsetof(::user::interaction, m_pacmewindowingwindow) & 4) == 0);
 
 
 

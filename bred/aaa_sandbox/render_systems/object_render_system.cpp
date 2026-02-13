@@ -8,10 +8,10 @@
 #include "bred/graphics3d/scene_object.h"
 #include "bred/graphics3d/frame.h"
 // // External
-// #define GLM_FORCE_RADIANS
-// #define GLM_FORCE_DEPTH_ZERO_TO_ONE
-// #include <glm/glm.hpp>
-//#include <glm/gtc/constants.hpp>
+// 
+// 
+// 
+//
 
 // STD
 //////#include <stdexcept>
@@ -23,12 +23,12 @@
 namespace graphics3d
 {
 	struct PushConstantData {
-		glm::mat4 modelMatrix{ 1.f };
-		glm::mat4 normalMatrix{ 1.f };
+		floating_matrix4 modelMatrix{ 1.f };
+		floating_matrix4 normalMatrix{ 1.f };
 		//int textureIndex;
 	};
 
-	// object_render_system::object_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+	// object_render_system::object_render_system(graphics3d::device *pdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)
 	// 	: m_pgpudevice(pdevice)//, m_globalSetLayout(globalSetLayout)
 	// {
 	//
@@ -42,7 +42,7 @@ namespace graphics3d
 	// void object_render_system::init(
 	// 	graphics3d::device * pdevice,
 	// 	VkRenderPass renderPass,
-	// 	VkDescriptorSetLayout globalSetLayout,
+	// 	aaaVkDescriptorSetLayout globalSetLayout,
 	// 	graphics3d::sandbox_descriptor_pool& descriptorPool,
 	// 	size_t frameCount)
 	// {
@@ -89,7 +89,7 @@ namespace graphics3d
 
 			auto & transformcomponent = psceneobject->transform();
 			PushConstantData push{};
-			push.modelMatrix = transformcomponent.mat4();
+			push.modelMatrix = transformcomponent.floating_matrix4();
 			push.normalMatrix = transformcomponent.normalMatrix();
 			//
 			// vkCmdPushConstants(
@@ -115,14 +115,14 @@ namespace graphics3d
 	}
 
 
-	// void object_render_system::createPipelineLayout(VkDescriptorSetLayout globalSetLayout) {
+	// void object_render_system::createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout) {
 	//
 	// 	VkPushConstantRange pushConstantRange{};
 	// 	pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
 	// 	pushConstantRange.offset = 0;
 	// 	pushConstantRange.size = sizeof(PushConstantData);
 	//
-	// 	::array_base<VkDescriptorSetLayout> descriptorSetLayouts = {
+	// 	::array_base<aaaVkDescriptorSetLayout> descriptorSetLayouts = {
 	// 		globalSetLayout
 	// 	};
 	//

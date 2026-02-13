@@ -106,15 +106,11 @@ namespace user
 
 //namespace user
 //{
-//
-//
-//
-//
 //   template < class VIEW >
 //   inline ::pointer<VIEW>impact::create_impact(::user::document* pdocument, ::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
-//      return create_impact(::type < VIEW >(), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+//      return create_impact(::type<VIEW>(), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 //
 //   }
 //

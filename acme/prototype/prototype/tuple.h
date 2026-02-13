@@ -48,7 +48,7 @@ class tuple_recursion
 //};
 template <::collection::index i, typename L, typename... types>
 class tuple_recursion < i, L, types... > :
-   public tuple_item < i, typename ::erase_reference<L>::TYPE >,
+   public tuple_item < i, typename ::non_reference<L>::TYPE >,
    public tuple_recursion<i + 1, types... >
 {
 public:
@@ -57,7 +57,7 @@ public:
 
    }
    template <typename CL, typename... CArgs>
-   tuple_recursion(CL&& arg, CArgs &&... args) : tuple_item<i, typename erase_reference<CL>::TYPE>(std::forward<CL>(arg)),
+   tuple_recursion(CL&& arg, CArgs &&... args) : tuple_item<i, typename non_reference<CL>::TYPE>(std::forward<CL>(arg)),
       tuple_recursion<i + 1, types...>(std::forward < CArgs(args)... > )
    {
    }

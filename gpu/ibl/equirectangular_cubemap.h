@@ -7,7 +7,7 @@
 // #include "gpu/ibl/hdri_cube.h"
 #include "bred/gpu/context_object.h"
 //#include "bred/gpu/context_object.h"
-
+#include "bred/gpu/properties.h"
 
 namespace gpu
 {
@@ -15,32 +15,36 @@ namespace gpu
 
    namespace ibl
    {
-      /**
-       * A cubemap texture created from an equirectangular image.
-       */
+
+
       class CLASS_DECL_GPU equirectangular_cubemap : 
          virtual public ::gpu::context_object
       {
       public:
 
 
-         const unsigned int m_uCubemapWidth = 512;
-         const unsigned int m_uCubemapHeight = 512;
+         
+      struct push_constants
+         {
+         /// @brief  model view projection
+         floating_matrix4 mvp;
+
+         //int faceIndex;
+         int hdri;
+         };
+
+         const unsigned int m_uCubemapWidth = 2048;
+         const unsigned int m_uCubemapHeight = 2048;
 
          ::pointer<::gpu::shader>            m_pshaderHdri;
-         ::pointer<::gpu::ibl::hdri_cube>    m_phdricube;
-         //::pointer<::graphics3d::skybox>   m_pskybox;
-         ::pointer<cubemap_framebuffer>      m_pframebuffer;
-         
+         //::pointer<::gpu::ibl::hdri_cube>    m_phdricube;
+         //::pointer<cubemap_framebuffer>      m_pframebuffer;
+         ::pointer<::gpu::texture>           m_ptextureCubemap;
+         ::pointer<::gpu::texture>           m_ptextureHdr;
+         ::pointer<::graphics3d::renderable> m_prenderableCube;
 
 
-         /**
-          * Initialize an equirectangular_cubemap.
-          * @param hdriPath path to an .hdr image in equirectangular projection format
-          */
          equirectangular_cubemap();
-
-
          ~equirectangular_cubemap() override;
 
          virtual ::block embedded_ibl_hdri_cube_vert();
@@ -48,25 +52,12 @@ namespace gpu
 
          
 
-         //virtual void initialize_equirectangular_cubemap(::gpu::context * pgpucontext, const ::file::path & pathHdri);
-         /// it uses current skybox renderable in pscenebase
-         //virtual void initialize_equirectangular_cubemap(::gpu::context * pgpucontext, ::graphics3d::skybox * pskybox);
-         //virtual void initialize_equirectangular_cubemap_with_hdr(::gpu::context *pgpucontext, const ::file::path & pathHdri);
          virtual void initialize_equirectangular_cubemap_with_hdr_on_memory(::gpu::context *pgpucontext, const ::block & block);
 
 
-
-         /**
-          * Render the equirectangular cubemap.
-          */
-         virtual void compute();
+         virtual void compute_equirectangular_cubemap(::gpu::command_buffer *pgpucommandbuffer);
 
 
-         /**
-          * Get the GL texture ID of the computed cubemap.
-          * @return
-          */
-         //unsigned int getCubemapId();
 
       };
 
@@ -75,3 +66,7 @@ namespace gpu
 
 
 } // namespace gpu
+
+
+
+DECLARE_GPU_PROPERTIES(CLASS_DECL_GPU, ::gpu::ibl::equirectangular_cubemap::push_constants)

@@ -43,9 +43,6 @@
     <Filter Include="Header Files\ibl">
       <UniqueIdentifier>{1e4332f9-c214-4eca-9d50-d238a9f96556}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\gltf">
-      <UniqueIdentifier>{ec397ecc-99f7-4462-acd1-f141d9fd298b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\ibl\hlsl">
       <UniqueIdentifier>{feab7de8-76aa-4ed8-940c-cf9bec94febc}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,15 @@
     </Filter>
     <Filter Include="Header Files\gltf">
       <UniqueIdentifier>{a775e29d-1366-45fa-acb2-7b2e99974a3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ibl\_aaa">
+      <UniqueIdentifier>{e351062d-b8a4-413f-9f58-3a3d56eea144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\model">
+      <UniqueIdentifier>{bf93917b-2fcd-47a1-aeb3-ba700da7d8a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{fc1cfa3b-1c27-4213-8255-93fc35a7a463}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -162,19 +168,13 @@
     <ClInclude Include="platform\tinyexpr.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="cube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="hdr_texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ibl\specular_map.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\mipmap_cubemap_framebuffer.h">
-      <Filter>Header Files\ibl</Filter>
-    </ClInclude>
-    <ClInclude Include="ibl\hdri_cube.h">
+    <ClInclude Include="ibl\aaa_mipmap_cubemap_framebuffer.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
     <ClInclude Include="ibl\equirectangular_cubemap.h">
@@ -183,10 +183,7 @@
     <ClInclude Include="ibl\diffuse_irradiance_map.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\cubemap_framebuffer.h">
-      <Filter>Header Files\ibl</Filter>
-    </ClInclude>
-    <ClInclude Include="ibl\brdf_convolution_framebuffer.h">
+    <ClInclude Include="ibl\aaa_cubemap_framebuffer.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
     <ClInclude Include="ibl\_.h">
@@ -201,62 +198,95 @@
     <ClInclude Include="_ktx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ibl\hlsl\specularenv.frag.h">
-      <Filter>Header Files\ibl\hlsl</Filter>
-    </ClInclude>
-    <ClInclude Include="ibl\hlsl\specularenv.vert.h">
-      <Filter>Header Files\ibl\hlsl</Filter>
-    </ClInclude>
     <ClInclude Include="ibl\_hlsl.h">
       <Filter>Header Files\ibl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\hdricube.frag.h">
+    <ClInclude Include="_assimp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\aaa_hdri_cube.h">
+      <Filter>Header Files\ibl</Filter>
+    </ClInclude>
+    <ClInclude Include="aaa_cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\brdf_convolution_map.frag.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\hdricube.vert.h">
+    <ClInclude Include="ibl\hlsl\brdf_convolution_map.vert.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\pbr.frag.h">
+    <ClInclude Include="ibl\hlsl\diffuse_irradiance_map.frag.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\pbr.vert.h">
+    <ClInclude Include="ibl\hlsl\diffuse_irradiance_map.vert.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\brdfconvolution.frag.h">
+    <ClInclude Include="ibl\hlsl\equirectangular_cubemap.frag.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\brdfconvolution.vert.h">
+    <ClInclude Include="ibl\hlsl\equirectangular_cubemap.vert.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\diffuseirradiance.frag.h">
+    <ClInclude Include="ibl\hlsl\prefiltered_environment_map.frag.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="ibl\hlsl\diffuseirradiance.vert.h">
+    <ClInclude Include="ibl\hlsl\prefiltered_environment_map.vert.h">
       <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\_.h">
-      <Filter>Header Files\gltf</Filter>
+    <ClInclude Include="ibl\hlsl\skybox.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\vertex.h">
-      <Filter>Header Files\gltf</Filter>
+    <ClInclude Include="ibl\hlsl\skybox.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\model_base.h">
-      <Filter>Header Files\gltf</Filter>
+    <ClInclude Include="ibl\hlsl\skybox_hdr.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\model.h">
-      <Filter>Header Files\gltf</Filter>
+    <ClInclude Include="ibl\hlsl\wavefront.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\mesh.h">
-      <Filter>Header Files\gltf</Filter>
+    <ClInclude Include="ibl\hlsl\wavefront.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\material.h">
-      <Filter>Header Files\gltf</Filter>
+    <ClInclude Include="ibl\aaa_brdf_convolution_framebuffer.h">
+      <Filter>Header Files\ibl</Filter>
     </ClInclude>
-    <ClInclude Include="gltf\_constant.h">
-      <Filter>Header Files\gltf</Filter>
+    <ClInclude Include="ibl\hlsl\gltf.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\gltf.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\scene.frag.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="ibl\hlsl\scene.vert.h">
+      <Filter>Header Files\ibl\hlsl</Filter>
+    </ClInclude>
+    <ClInclude Include="model\model_base.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\model.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\mesh.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\material.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\_constant.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\_.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\__assimp.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="model\_assimp.h">
+      <Filter>Header Files\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -269,28 +299,13 @@
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
     </ClCompile>
-    <ClCompile Include="cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hdr_texture.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ibl\brdf_convolution_framebuffer.cpp">
-      <Filter>Source Files\ibl</Filter>
-    </ClCompile>
-    <ClCompile Include="ibl\cubemap_framebuffer.cpp">
-      <Filter>Source Files\ibl</Filter>
     </ClCompile>
     <ClCompile Include="ibl\diffuse_irradiance_map.cpp">
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
     <ClCompile Include="ibl\equirectangular_cubemap.cpp">
-      <Filter>Source Files\ibl</Filter>
-    </ClCompile>
-    <ClCompile Include="ibl\hdri_cube.cpp">
-      <Filter>Source Files\ibl</Filter>
-    </ClCompile>
-    <ClCompile Include="ibl\mipmap_cubemap_framebuffer.cpp">
       <Filter>Source Files\ibl</Filter>
     </ClCompile>
     <ClCompile Include="ibl\specular_map.cpp">
@@ -299,26 +314,38 @@
     <ClCompile Include="full_screen_quad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gltf\mesh.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
-    <ClCompile Include="gltf\model.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
     <ClCompile Include="context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="_ktx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gltf\model_base.cpp">
-      <Filter>Source Files\gltf</Filter>
-    </ClCompile>
-    <ClCompile Include="timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ibl\_hlsl.cpp">
       <Filter>Source Files\ibl</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\aaa_brdf_convolution_framebuffer.cpp">
+      <Filter>Source Files\ibl\_aaa</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\aaa_cubemap_framebuffer.cpp">
+      <Filter>Source Files\ibl\_aaa</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\aaa_hdri_cube.cpp">
+      <Filter>Source Files\ibl\_aaa</Filter>
+    </ClCompile>
+    <ClCompile Include="ibl\aaa_mipmap_cubemap_framebuffer.cpp">
+      <Filter>Source Files\ibl\_aaa</Filter>
+    </ClCompile>
+    <ClCompile Include="model\material.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\mesh.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\model.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="model\model_base.cpp">
+      <Filter>Source Files\model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,49 +354,56 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="ibl\hlsl\specularenv.vert">
+    <CustomBuild Include="ibl\hlsl\wavefront.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\specularenv.frag">
+    <CustomBuild Include="ibl\hlsl\wavefront.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\hdricube.vert">
+    <CustomBuild Include="ibl\hlsl\skybox_hdr.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\pbr.vert">
+    <CustomBuild Include="ibl\hlsl\brdf_convolution_map.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\pbr.frag">
+    <CustomBuild Include="ibl\hlsl\brdf_convolution_map.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\diffuseirradiance.vert">
+    <CustomBuild Include="ibl\hlsl\diffuse_irradiance_map.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\diffuseirradiance.frag">
+    <CustomBuild Include="ibl\hlsl\diffuse_irradiance_map.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\brdfconvolution.vert">
+    <CustomBuild Include="ibl\hlsl\equirectangular_cubemap.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\brdfconvolution.frag">
+    <CustomBuild Include="ibl\hlsl\equirectangular_cubemap.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-    <CustomBuild Include="ibl\hlsl\hdricube.frag">
-      <Filter>Source Files\ibl</Filter>
+    <CustomBuild Include="ibl\hlsl\gltf.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ibl\hlsl\pbr1.vert">
+    <CustomBuild Include="ibl\hlsl\gltf.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
-    </None>
-    <None Include="ibl\hlsl\pbr1.frag">
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\prefiltered_environment_map.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
-    </None>
-    <None Include="ibl\hlsl\pbr2.vert">
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\prefiltered_environment_map.vert">
       <Filter>Source Files\ibl\hlsl</Filter>
-    </None>
-    <None Include="ibl\hlsl\pbr2.frag">
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\skybox.frag">
       <Filter>Source Files\ibl\hlsl</Filter>
-    </None>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\skybox.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\scene.frag">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ibl\hlsl\scene.vert">
+      <Filter>Source Files\ibl\hlsl</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

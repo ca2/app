@@ -9,7 +9,9 @@
 #include "acme/platform/system.h"
 #include "acme/prototype/prototype/memory.h"
 #include "acme/windowing/windowing.h"
+#include "bred/platform/system.h"
 #include "bred/typeface/character.h"
+#include "bred/typeface/allocator.h"
 
 
 namespace gpu
@@ -56,9 +58,11 @@ namespace gpu
       if (!pface)
       {
 
-         system()->initialize_typeface();
+         ::cast < ::bred::system > psystem = ::system();
 
-         øconstruct(pface);
+         pface = psystem->typeface_allocator()->create_face("");
+
+         ///pface = ::system()->create_typeface_face();
 
          pface->m_strFontName = strFontFamilyName;
 

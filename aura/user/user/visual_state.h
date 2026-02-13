@@ -65,20 +65,20 @@ namespace user
       ::int_size size() const { return m_size; }
       ::int_size & size() { return m_size; }
 
-      //template < primitive_rectangle RECTANGLE >
+      //template < prototype_rectangle RECTANGLE >
       //visual_state & operator = (const RECTANGLE & rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
 
-      int left() const { return m_point2.x(); }
-      //int & left() { return m_point.x(); }
+      int left() const { return m_point2.x; }
+      //int & left { return m_point.x; }
 
-      int top() const { return m_point2.y(); }
-      //int & top() { return m_point.y(); }
+      int top() const { return m_point2.y; }
+      //int & top { return m_point.y; }
 
-      int width() const { return m_size.cx(); }
-      int & width() { return m_size.cx(); }
+      int width() const { return m_size.cx; }
+      int & width() { return m_size.cx; }
 
-      int height() const { return m_size.cy(); }
-      int & height() { return m_size.cy(); }
+      int height() const { return m_size.cy; }
+      int & height() { return m_size.cy; }
 
       bool operator == (const visual_state & state) const
       {

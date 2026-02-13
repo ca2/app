@@ -46,7 +46,7 @@ struct DOUBLE_POLE
 };
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 class pole_type :
    public sequence_type < NUMBER, 3 >
 {
@@ -60,86 +60,86 @@ public:
 
    pole_type(nullptr_t = nullptr) : sequence_type<NUMBER, 3>() {  }
    pole_type(no_initialize_t) { }
-   template < primitive_number X, primitive_number Y, primitive_number Z >
-   pole_type(X xP, Y yP, Z zP) { this->x() = xP; this->y() = yP; this->z() = zP; }
+   template < prototype_number X, prototype_number Y, prototype_number Z >
+   pole_type(X xP, Y yP, Z zP) { this->x = xP; this->y = yP; this->z = zP; }
 
 
-   const UNIT_TYPE& x() const { return this->a(); }
-   UNIT_TYPE& x() { return this->a(); }
-   const UNIT_TYPE& y() const { return this->b(); }
-   UNIT_TYPE& y() { return this->b(); }
-   const UNIT_TYPE& z() const { return this->c(); }
-   UNIT_TYPE& z() { return this->c(); }
+   //const UNIT_TYPE& x() const { return this->x; }
+   //UNIT_TYPE& x() { return this->x; }
+   //const UNIT_TYPE& y() const { return this->y; }
+   //UNIT_TYPE& y() { return this->y; }
+   //const UNIT_TYPE& z() const { return this->c(); }
+   //UNIT_TYPE& z() { return this->c(); }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type operator +(const POLE& pole) const
    {
 
       pole_type p;
 
-      p.x() = this->x() + pole.x();
-      p.y() = this->y() + pole.y();
-      p.z() = this->z() + pole.z();
+      p.x = this->x + pole.x;
+      p.y = this->y + pole.y;
+      p.z = this->z + pole.z;
 
       return p;
 
    }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& operator +=(const POLE& pole)
    {
 
-      this->x() += pole.x();
-      this->y() += pole.y();
-      this->z() += pole.z();
+      this->x += pole.x;
+      this->y += pole.y;
+      this->z += pole.z;
 
       return *this;
 
    }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& operator -=(const POLE& pole)
    {
 
-      this->x() -= pole.x();
-      this->y() -= pole.y();
-      this->z() -= pole.z();
+      this->x -= pole.x;
+      this->y -= pole.y;
+      this->z -= pole.z;
 
       return *this;
 
    }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& operator = (const POLE& pole)
    {
 
-      this->x() = pole.x();
-      this->y() = pole.y();
-      this->z() = pole.z();
+      this->x = pole.x;
+      this->y = pole.y;
+      this->z = pole.z;
 
       return *this;
 
    }
 
 
-   template < primitive_number NUMBER_TYPE >
+   template < prototype_number NUMBER_TYPE >
    pole_type& operator *= (NUMBER_TYPE n)
    {
 
-      this->x() *= n;
-      this->y() *= n;
-      this->z() *= n;
+      this->x *= n;
+      this->y *= n;
+      this->z *= n;
 
       return *this;
 
    }
 
 
-   template < primitive_number NUMBER_TYPE >
+   template < prototype_number NUMBER_TYPE >
    pole_type operator * (NUMBER_TYPE n)
    {
 
@@ -156,23 +156,23 @@ public:
    const SIZE_TYPE& cxy()const { return (const SIZE_TYPE&)*this; }
 
 
-   template < primitive_pole POLE >
+   template < prototype_pole POLE >
    pole_type& rotate(const POLE& pole)
    {
     
       pole_type pole1;
-      pole1.x() = this->x() * cos(pole.z()) - this->y() * sin(pole.z());
-      pole1.y() = this->x() * sin(pole.z()) + this->y() * cos(pole.z());
-      pole1.z() = this->z();
+      pole1.x = this->x * cos(pole.z) - this->y * sin(pole.z);
+      pole1.y = this->x * sin(pole.z) + this->y * cos(pole.z);
+      pole1.z = this->z;
 
       pole_type pole2;
-      pole2.y() = pole1.y() * cos(pole.x()) - pole1.z() * sin(pole.x());
-      pole2.z() = pole1.y() * sin(pole.x()) + pole1.z() * cos(pole.x());
-      pole2.x() = pole1.x();
+      pole2.y = pole1.y * cos(pole.x) - pole1.z * sin(pole.x);
+      pole2.z = pole1.y * sin(pole.x) + pole1.z * cos(pole.x);
+      pole2.x = pole1.x;
 
-      this->z() = pole2.z() * cos(pole.y()) - pole2.x() * sin(pole.y());
-      this->x() = pole2.z() * sin(pole.y()) + pole2.x() * cos(pole.y());
-      this->y() = pole2.y();
+      this->z = pole2.z * cos(pole.y) - pole2.x * sin(pole.y);
+      this->x = pole2.z * sin(pole.y) + pole2.x * cos(pole.y);
+      this->y = pole2.y;
 
       return *this;
 
@@ -185,7 +185,7 @@ public:
 };
 
 
-template < primitive_pole POLE >
+template < prototype_pole POLE >
 inline typename POLE::POINT_TYPE & __point(POLE & pole)
 {
 
@@ -194,20 +194,20 @@ inline typename POLE::POINT_TYPE & __point(POLE & pole)
 }
 
 
-template < primitive_pole POLE >
+template < prototype_pole POLE >
 inline ::double_point as_double_point(const POLE & pole)
 {
 
-   return { (double)pole.x(), (double)pole.y() };
+   return { (double)pole.x, (double)pole.y };
 
 }
 
 
-template < primitive_pole POLE >
+template < prototype_pole POLE >
 inline ::int_point as_int_point(const POLE & pole)
 {
 
-   return {(int)pole.x(), (int) pole.y() };
+   return {(int)pole.x, (int) pole.y };
 
 }
 

@@ -14,7 +14,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX apex :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

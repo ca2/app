@@ -36,7 +36,7 @@ namespace write_text
    void write_text::on_initialize_particle()
    {
 
-      ::acme::department::on_initialize_particle();
+      ::platform::department::on_initialize_particle();
 
       //m_pparticleFontTextMapSynchronization = node()->create_mutex();
 
@@ -112,7 +112,7 @@ namespace write_text
 
       //auto estatus = 
       
-      ::acme::department::term();
+      ::platform::department::term();
 
       //return success;
 
@@ -126,7 +126,7 @@ namespace write_text
 
       //auto estatus = 
       
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
       //return estatus;
 

@@ -12,7 +12,7 @@ namespace input
 
 
    class CLASS_DECL_APEX input :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

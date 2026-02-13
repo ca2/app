@@ -61,7 +61,7 @@ namespace draw2d
 
    //};
 
-
+class graphics_context;
 
 /// <summary>
 /// graphics * -> ::image::image_source_pointer concept
@@ -81,14 +81,15 @@ namespace draw2d
       bool                                         m_bForWindowDraw2d;
       bool                                         m_bBeginDraw;
       bool                                         m_bInheritDraw;
-      // try to draw using paths and full primitives
+      int                                          m_iYFlipHeight;
+      // try to draw using paths and full prototypes
       // there is little control over lines drawn with move_to line_to than generalized
       //bool                                         m_bHasCurrentPoint;
       bool                                         m_bOutline;
       void* m_pthis;
       ::pointer < ::user::interaction >            m_puserinteraction;
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
-
+      double                                       m_dSizeScaler;
       bool                                         m_bPat;
       ///::image32_callback                           m_callbackImage32CpuBuffer;
 
@@ -122,7 +123,7 @@ namespace draw2d
       enum_interpolation_mode                m_einterpolationmode;
       enum_compositing_quality                  m_ecompositingquality;
       ::write_text::enum_rendering           m_ewritetextrendering;
-      double                                 m_dFontFactor;
+      //double                                 m_dFontFactor;
 
       ::double_size                             m_sizeScaling;
       ::double_point                            m_pointOrigin;
@@ -165,8 +166,14 @@ namespace draw2d
 
       virtual bool is_y_flip();
 
+      virtual double size_scaler();
+      virtual void set_size_scaler(double dSizeScaler);
 
-      virtual void do_on_context(const ::procedure& procedure);
+      //virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure);
+
+
+      virtual void send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure & procedure);
+
 
       inline operator ::user::style& ()
       {
@@ -325,12 +332,12 @@ namespace draw2d
 
       virtual void create_window_graphics(::windowing::window* pwindow);
       virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
-      virtual void create_memory_graphics(const ::int_size& size = {});
+      virtual void create_memory_graphics(const ::int_size& sizeParameter);
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
       virtual void CreateCompatibleDC(::draw2d::graphics* pgraphics);
-      virtual void CreateWindowDC(oswindow wnd);
+      virtual void CreateWindowDC(::acme::windowing::window * pacmewindowingwindow);
 
 
       virtual ::pointer < ::draw2d::path > create_path();
@@ -341,8 +348,8 @@ namespace draw2d
 
       virtual void defer_resize_memory_graphics(const ::int_size& size);
 
-      virtual void on_begin_draw(oswindow wnd, const ::double_size& sz);
-      virtual void on_end_draw(oswindow wnd);
+      virtual void on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::double_size& sz);
+      virtual void on_end_draw(::acme::windowing::window * pacmewindowingwindow);
       virtual void on_present();
 
       virtual void DeleteDC();
@@ -608,7 +615,7 @@ namespace draw2d
       //inline void set_current_point(const ::double_point& point)
       //{
 
-      //   return set_current_point(point.x(), point.y());
+      //   return set_current_point(point.x, point.y);
 
       //}
 
@@ -616,7 +623,7 @@ namespace draw2d
       //virtual void line_to(const ::double_point& point)
       //{
 
-      //   return line_to(point.x(), point.y());
+      //   return line_to(point.x, point.y);
 
       //}
 
@@ -632,7 +639,7 @@ namespace draw2d
       inline void line(const ::double_point& point1, const ::double_point& point2)
       {
 
-         return line(point1.x(), point1.y(), point2.x(), point2.y());
+         return line(point1.x, point1.y, point2.x, point2.y);
 
       }
 
@@ -640,7 +647,7 @@ namespace draw2d
       inline void line(const ::double_point& point1, const ::double_point& point2, ::draw2d::pen* ppen)
       {
 
-         return line(point1.x(), point1.y(), point2.x(), point2.y(), ppen);
+         return line(point1.x, point1.y, point2.x, point2.y, ppen);
 
       }
 
@@ -852,7 +859,7 @@ namespace draw2d
       //virtual void stretch_blend(const ::double_rectangle & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::double_rectangle & rectangleSource = ::double_rectangle());
 
 
-      //template < primitive_size SIZE >
+      //template < prototype_size SIZE >
       //inline void alpha_blend(const SIZE & sizeDst, const ::image::image_drawing & imagedrawing, double dOpacity)
       //{
 
@@ -865,7 +872,7 @@ namespace draw2d
       //}
 
 
-      //template < primitive_rectangle RECTANGLE >
+      //template < prototype_rectangle RECTANGLE >
       //inline void alpha_blend(const RECTANGLE & rectangleTarget, const ::image::image_drawing & imagedrawing, double dOpacity)
       //{
 
@@ -874,7 +881,7 @@ namespace draw2d
       //}
 
       //
-      //template < primitive_rectangle RECTANGLE, primitive_point POINT >
+      //template < prototype_rectangle RECTANGLE, prototype_point POINT >
       //inline void alpha_blend(const RECTANGLE & rectangleTarget, const ::image::image_drawing & imagedrawing, const POINT & pointSrc, double dOpacity)
       //{
 
@@ -892,7 +899,7 @@ namespace draw2d
       //}
 
 
-      //template < primitive_rectangle RECTANGLE_DST, primitive_rectangle RECTANGLE_SRC >
+      //template < prototype_rectangle RECTANGLE_DST, prototype_rectangle RECTANGLE_SRC >
       //inline void alpha_blend(const RECTANGLE_DST & rectangleTarget, const ::image::image_drawing & imagedrawing, const RECTANGLE_SRC & rectangleSource, double dOpacity)
       //{
 
@@ -940,7 +947,7 @@ namespace draw2d
       inline void text_out(const ::double_point& point, const ::scoped_string& scopedstr)
       {
 
-         return text_out(point.x(), point.y(), scopedstr);
+         return text_out(point.x, point.y, scopedstr);
 
       }
 
@@ -1414,6 +1421,65 @@ namespace draw2d
 
 
    };
+
+   
+   class CLASS_DECL_AURA graphics_context_interface :
+      virtual public ::particle
+   {
+   public:
+   
+      virtual void _context_lock() = 0;
+      virtual void _context_unlock() = 0;
+
+   };
+
+
+   class CLASS_DECL_AURA graphics_context :
+      virtual public ::particle
+   {
+   public:
+      
+      
+      ::pointer < ::draw2d::graphics > m_pgraphics;
+      ::pointer < ::draw2d::graphics_context_interface > m_pgraphicscontextinterface;
+      ::pointer < ::graphics::buffer_item > m_pbufferitem;
+      
+      
+      graphics_context()
+      {
+         
+         
+      }
+      
+      
+      ~graphics_context()
+      {
+         
+         m_pgraphics.release();
+         
+         if(m_pgraphicscontextinterface)
+         {
+            
+            m_pgraphicscontextinterface->_context_unlock();
+            
+         }
+         
+      }
+   
+
+      void insert_graphics_and_context(::draw2d::graphics_context_interface * pinterface)
+      {
+         
+         m_pgraphicscontextinterface = pinterface;
+       
+         m_pgraphicscontextinterface->_context_lock();
+         
+      }
+
+
+   };
+
+
 
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_graphics();
    //CLASS_DECL_AURA ::draw2d::graphics_pointer create_memory_graphics();

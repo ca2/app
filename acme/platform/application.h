@@ -774,8 +774,15 @@ namespace platform
       virtual void on_system_main();
 
 
+      virtual string user_cloud_application_file_setting(const ::scoped_string& scopedstrFileName);
+      virtual string app_roaming_application_file_setting(const ::scoped_string& scopedstrFileName);
       virtual string application_file_setting(const ::scoped_string& scopedstrFileName);
+      virtual void set_application_file_setting(const ::scoped_string &scopedstrFileName,
+                                                const ::scoped_string &scopedstr);
 
+      virtual string application_file_setting_by_operating_system(const ::scoped_string& scopedstrFileName);
+      virtual void set_application_file_setting_by_operating_system(const ::scoped_string &scopedstrFileName,
+                                                const ::scoped_string &scopedstr);
 
    };
 

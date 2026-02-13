@@ -22,15 +22,10 @@ namespace acme
 
 
       display::display() : m_pointCursor2(I32_MINIMUM)
-
       {
 
 
-         m_bDisplayOpened = false;
-
          defer_create_synchronization();
-
-         //m_edisplaytype = e_display_type_none;
 
 
       }
@@ -50,6 +45,32 @@ namespace acme
       }
 
 
+
+      void display::_enumerate_monitors()
+      {
+
+
+      }
+
+
+      void display::_on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace)
+      {
+
+         m_rectanglea.ø(iIndex) = rectangle;
+
+      }
+
+
+      bool display::is_display_opened() const
+      {
+
+         throw ::interface_only();
+
+         return false;
+
+      }
+
+
       ::collection::count display::get_monitor_count()
       {
 
@@ -60,6 +81,22 @@ namespace acme
       }
 
 
+      void * display::_get_x11_display()
+      {
+
+         return nullptr;
+
+      }
+
+
+      long long display::_get_x11_root_window()
+      {
+
+         throw ::interface_only();
+
+         return 0;
+
+      }
 
 
       void display::destroy()
@@ -378,6 +415,22 @@ namespace acme
       void display::set_desktop_icon_theme(const ::scoped_string& scopedtrDesktopIconTheme)
       {
 
+
+      }
+
+
+      bool display::is_x11()
+      {
+
+         return false;
+
+      }
+
+
+      bool display::is_wayland()
+      {
+
+         return false;
 
       }
 

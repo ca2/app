@@ -15,13 +15,13 @@ namespace user
 
       m_bFillParent = true;
 
-      m_sizeSpan.cx() = 1;
+      m_sizeSpan.cx = 1;
 
-      m_sizeSpan.cy() = 1;
+      m_sizeSpan.cy = 1;
 
-      m_sizeWeight.cx() = 1.0;
+      m_sizeWeight.cx = 1.0;
 
-      m_sizeWeight.cy() = 1.0;
+      m_sizeWeight.cy = 1.0;
 
       m_elayoutexperience = e_layout_experience_none;
 
@@ -142,7 +142,7 @@ namespace user
    //void interaction_layout::move_to(const int_point & point)
    //{
 
-   //   move_to(point.x(), point.y());
+   //   move_to(point.x, point.y);
 
    //}
 
@@ -160,7 +160,7 @@ namespace user
    //void interaction_layout::set_size(const ::int_size& size)
    //{
 
-   //   set_size(size.cx(), size.cy());
+   //   set_size(size.cx, size.cy);
 
    //}
 

@@ -12,7 +12,7 @@ namespace write_text
 
 
    class CLASS_DECL_AURA write_text :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

@@ -4,8 +4,9 @@
 #pragma once
 
 
-//#include "acme/prototype/geometry2d/_geometry2d.h"
-////#include "acme/prototype/prototype/object.h"
+#include "acme/prototype/geometry2d/rectangle_array.h"
+
+
 namespace acme
 {
 
@@ -19,13 +20,9 @@ namespace acme
       public:
 
 
-         ::int_point             m_pointCursor2;
-
-         //enum_display_type       m_edisplaytype;
-
+         ::int_point                      m_pointCursor2;
          ::string                         m_strDarkModeAnnotation;
-         bool                             m_bDisplayOpened;
-
+         ::int_rectangle_array_base       m_rectanglea;
 
 
          display();
@@ -35,15 +32,23 @@ namespace acme
          virtual void open_display();
 
 
+         virtual void _enumerate_monitors();
+
+
+         virtual void _on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace);
+
+
+         virtual bool is_display_opened() const;
+
+
          void destroy() override;
 
 
          ::collection::count get_monitor_count();
-         //virtual enum_display_type get_display_type();
 
+         virtual void * _get_x11_display();
 
-         //virtual void initialize_display_type(enum_display_type edisplaytype);
-
+         virtual long long _get_x11_root_window();
 
          void kick_idle() override;
 
@@ -57,8 +62,6 @@ namespace acme
          virtual ::int_size get_main_screen_size();
 
          virtual void * raw_x11_display();
-
-         //virtual void release_mouse_capture();
 
 
          virtual bool is_dark_mode_through_theming();
@@ -94,7 +97,13 @@ namespace acme
 
 
          //virtual void enable_wallpaper_change_notification();
-         
+
+
+         virtual bool is_x11();
+
+         virtual bool is_wayland();
+
+
       };
 
 

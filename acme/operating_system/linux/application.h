@@ -44,45 +44,9 @@
 //      virtual void init2();
 //      virtual void init3();
 //      virtual void term_instance() override;
-//
-//
-//
-//
 //      virtual bool startup_command(::create * pdata);
 //
 ////	  virtual bool update_module_paths();
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //      virtual void show_wait_cursor(bool bShow = true);
 //
@@ -111,10 +75,6 @@
 //
 //
 //} // namespace linux
-//
-//
-//
-//
 //
 //
 

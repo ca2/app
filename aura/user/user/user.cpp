@@ -93,7 +93,7 @@ namespace user
       print_line("::user::user::initialize (aura)");
 
 
-      ::acme::department::initialize(pparticle);
+      ::platform::department::initialize(pparticle);
 
 
       m_pmutexUser = node()->create_mutex();
@@ -168,8 +168,10 @@ namespace user
 
          //auto estatus = 
 
-         if (ødefer_construct_new(m_puserstyle))
+         if (!m_puserstyle)
          {
+            
+            øconstruct_new(m_puserstyle);
 
             //if (!estatus)
             //{
@@ -216,41 +218,41 @@ namespace user
    }
 
 
-   ::user::interaction * user::interaction(oswindow oswindow)
-   {
-
-      auto pwindowing =system()->windowing();
-
-      if (::is_null(pwindowing))
-      {
-
-         return nullptr;
-
-      }
-
-      auto pwindow = pwindowing->window(oswindow);
-
-      if (::is_null(pwindowing))
-      {
-
-         return nullptr;
-
-      }
-
-      //auto pwindow = pwindow->m_pwindow;
-
-      //if (::is_null(pwindow))
-      //{
-
-      //   return nullptr;
-
-      //}
-      
-      ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteraction;
-
-      return puserinteraction;
-
-   }
+   // ::user::interaction * user::interaction(::acme::windowing::window * pacmewindowingwindow)
+   // {
+   //
+   //    // auto pwindowing =system()->windowing();
+   //    //
+   //    // if (::is_null(pwindowing))
+   //    // {
+   //    //
+   //    //    return nullptr;
+   //    //
+   //    // }
+   //    //
+   //    // auto pwindow = pwindowing->window(oswindow);
+   //    //
+   //    // if (::is_null(pwindowing))
+   //    // {
+   //    //
+   //    //    return nullptr;
+   //    //
+   //    // }
+   //    //
+   //    // //auto pwindow = pwindow->m_pwindow;
+   //    //
+   //    // //if (::is_null(pwindow))
+   //    // //{
+   //    //
+   //    // //   return nullptr;
+   //    //
+   //    // //}
+   //
+   //    ::cast< ::user::interaction > puserinteraction = pwindow->m_pacmeuserinteraction;
+   //
+   //    return puserinteraction;
+   //
+   // }
 
 
    ::user::interaction * user::get_mouse_capture(::thread * pthread)
@@ -482,7 +484,7 @@ namespace user
    void user::init1()
    {
 
-      ::acme::department::init1();
+      ::platform::department::init1();
 
 
       factory()->add_factory_item <::user::thread >();
@@ -510,7 +512,7 @@ namespace user
    {
 
       //if (!
-      ::acme::department::init();
+      ::platform::department::init();
 
       //{
 
@@ -591,7 +593,7 @@ namespace user
 
       //auto estatus =
       
-      ::acme::department::init2();
+      ::platform::department::init2();
 
       //if(!estatus)
       //{
@@ -639,7 +641,7 @@ namespace user
 
 
       //auto estatus =
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
       // if (m_pdesktopenvironment)
       // {
@@ -739,7 +741,7 @@ namespace user
       try
       {
 
-         ::acme::department::term();
+         ::platform::department::term();
 
       }
       catch(...)
@@ -876,8 +878,8 @@ namespace user
 }
 
 
-::type_atom user::get_html_document_type() { return m_typeatomHtmlDocument; }
-::type_atom user::get_html_impact_type() { return m_typeatomHtmlImpact; }
+::platform::type user::get_html_document_type() { return m_typeHtmlDocument; }
+::platform::type user::get_html_impact_type() { return m_typeHtmlImpact; }
 
 
 //   ::user::front_end_schema * GetUfeSchema(::particle * pparticle)
@@ -933,7 +935,7 @@ namespace user
 //   }
 
 
-   ::type_atom user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
+   ::platform::type user::controltype_to_typeinfo(::user::enum_control_type econtroltype)
    {
 
       return {};
@@ -1285,7 +1287,7 @@ namespace aura
    //   }
 
    //}
-   ::type_atom system::get_simple_frame_window_type_info()
+   ::platform::type system::get_simple_frame_window_type_info()
    {
 
       return {};

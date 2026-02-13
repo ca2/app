@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "bred/graphics3d/model.h"
+//#include "bred/graphics3d/model.h"
 #include "bred/graphics3d/entity.h"
 #include "bred/graphics3d/game_object.h"
 //#include "SceneFoundry/graphics3d/object_model.h"
-#include <glm/gtc/matrix_transform.hpp>
+//
 
 // std
 //#include <memory>
@@ -24,7 +24,7 @@
 //
 //       //::graphics3d::transform m_transform;
 //       //::pointer<::graphics3d::IModel> m_pmodel;
-//       glm::vec3 m_color{};
+//       floating_sequence3 m_color{};
 //       bool m_bIsOBJ{ false };
 // //      ::graphics3d::point_light_component m_pointlight;
 //
@@ -46,7 +46,7 @@
 //
 //       long long getId() override;
 //
-//       glm::vec3 color() override;
+//       floating_sequence3 color() override;
 //
 //       // const ::graphics3d::point_light_component * getPointLight() const override {
 //       //    return &m_pointlight;

@@ -43,9 +43,7 @@ namespace launch
 
       }
 
-
       auto psummary = node()->operating_system_summary();
-
 
       m_strDistro = psummary->m_strSystem;
 
@@ -108,6 +106,13 @@ namespace launch
          print_line("This is FreeBSD System...");
 
          m_strBranch = strBranch;
+
+         //if(strBranch == "kde")
+         //{
+
+         //m_strBranch = "gnome";
+
+         //}
          
 
       }
@@ -196,7 +201,12 @@ namespace launch
       }
 
       m_strRelease = strRelease;
+      
+      printf_line("Release is \"%s\"", m_strRelease.c_str());
 
+      m_strArchitecture = psummary->m_strSystemArchitecture;
+      
+      printf_line("Architecture is \"%s\"", m_strArchitecture.c_str());
 
    }
 
@@ -346,7 +356,7 @@ namespace launch
          }
 
          m_strLaunchAppId = ::system()->m_args[1];
-         ;
+
       }
 
       auto iSlash = m_strLaunchAppId.find_index('/');
@@ -400,11 +410,12 @@ namespace launch
 
          auto psummary = node()->operating_system_summary();
 
-         strErr.formatf("Server seems not to have build of \"%s/%s\" for this operating-system release \"%s\" (%s)",
+         strErr.formatf("Server seems not to have build of \"%s/%s\" for this operating-system release \"%s\" (%s, %s)",
                         m_strAppRoot.c_str(),
                         m_strAppName.c_str(),
                         psummary->m_strName.c_str(),
-                        psummary-> m_strSystemReleaseName.c_str());
+                        psummary-> m_strSystemReleaseName.c_str(),
+                        psummary-> m_strSystemArchitecture.c_str());
 
          if(m_strBranch.has_character())
          {
@@ -609,10 +620,11 @@ namespace launch
       if (m_strBranch.has_character())
       {
 
-         strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",
+         strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s/%s.zip",
          m_strDistro.c_str(),
          m_strBranch.c_str(),
          m_strRelease.c_str(),
+         m_strArchitecture.c_str(),
          m_strAppRoot.c_str(),
          m_strAppName.c_str());
 
@@ -620,9 +632,10 @@ namespace launch
       else
       {
 
-         strUrl.formatf("https://%s.ca2.store/%s/%s/%s.zip",
+         strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",
          m_strDistro.c_str(),
          m_strRelease.c_str(),
+         m_strArchitecture.c_str(),
          m_strAppRoot.c_str(),
          m_strAppName.c_str());
 

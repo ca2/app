@@ -29,21 +29,36 @@ namespace typeface
    }
 
 
-   void face::initialize_gpu_buffer(::gpu::renderer* pgpurenderer)
+
+   void face::initialize(::particle * pparticle)
    {
 
+      ::particle::initialize(pparticle);
 
-      m_pgpurenderer = pgpurenderer;
+      defer_create_synchronization();
 
    }
+
+
+   // void face::initialize_gpu_buffer(::gpu::renderer* pgpurenderer)
+   // {
+   //
+   //
+   //    m_pgpurenderer = pgpurenderer;
+   //
+   // }
 
 
    character& face::get_character(const ::scoped_string& scopedstr)
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       ::string str(scopedstr);
 
-      character& ch = m_mapCharacter[str];
+      int iUnicodeIndex = unicode_index(scopedstr);
+
+      character& ch = m_mapCharacter[iUnicodeIndex];
 
       if (ch.m_bInit)
       {
@@ -52,7 +67,8 @@ namespace typeface
 
       }
       ch.m_bInit = true;
-      ch.m_iUnicode = unicode_index(scopedstr);
+      //ch.m_iUnicode = unicode_index(scopedstr);
+      ch.m_iUnicode = iUnicodeIndex;
       create_character(ch, scopedstr);
       return ch;
 
@@ -110,11 +126,19 @@ namespace typeface
    void face::create_texture(character& ch, const unsigned char* p)
    {
 
-      ch.m_ppixmap = m_pgpurenderer->m_pgpucontext->create_gpu_pixmap({ ch.Size.x, ch.Size.y });
-
-      //ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
-
-      ch.m_ppixmap->set_pixels(p);
+      auto size = ch.Size.x * ch.Size.y * 4;
+      //ch.m_memory.set_size(ch.Size.x * ch.Size.y * 4)
+      ch.m_memory.assign(p, size);
+      // ch.m_ppixmap = m_pgpurenderer->m_pgpucontext->create_gpu_pixmap({ ch.Size.x, ch.Size.y });
+      //
+      // //ch.m_ppixmap->initialize_gpu_pixmap(m_pgpurenderer, { ch.Size.x, ch.Size.y });
+      //
+      // if (::is_set(p))
+      // {
+      //
+      //    ch.m_ppixmap->set_pixels(p);
+      //
+      // }
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture

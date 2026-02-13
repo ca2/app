@@ -23,7 +23,7 @@ namespace image
 
 
 class CLASS_DECL_AURA imaging :
-   virtual public ::acme::department
+   virtual public ::platform::department
 {
 public:
 
@@ -199,10 +199,6 @@ public:
 //      unsigned int & uiStartScanLine,
 //      unsigned int & uiScanLineCount,
 //      int & iLimitYParam);
-//
-//
-//
-//
 //
 //
 //   bool GrayVRCP(

@@ -33,10 +33,6 @@
 //
 //
 //critical_section * factory_critical_section() { return &g_criticalsectionFactory; }
-//
-//
-//
-//
 //#if !defined(WINDOWS)
 //
 //critical_section g_criticalsectionDemangle;
@@ -65,10 +61,6 @@
 ////
 ////::critical_section * message_dispatch_critical_section() { return &g_criticalsectionMessageDispatch; }
 ////
-//
-//
-//
-//
 //#ifdef __ANDROID__
 //
 //::critical_section g_criticalsectionOutputDebugStringA;

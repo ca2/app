@@ -2,6 +2,17 @@ cmake_minimum_required(VERSION 3.16)
 project(acme CXX)
 
 
+if(${ANDROID})
+
+   # 1. Define the path to the cpufeatures source in the NDK
+   set(CPU_FEATURES_PATH ${ANDROID_NDK}/sources/android/cpufeatures)
+
+   add_library(cpufeatures STATIC
+      ${ANDROID_NDK}/sources/android/cpufeatures/cpu-features.c)
+
+endif()
+
+
 list(APPEND library_source
         #compress/zip/api.cpp
         #compress/zip/file.cpp
@@ -201,6 +212,8 @@ list(APPEND library_source
         filesystem/filesystem/_2.h
         filesystem/filesystem/_impl.h
         filesystem/filesystem/_impl2.h
+        filesystem/filesystem/dialog_base.cpp
+        filesystem/filesystem/dialog_base.h        
         filesystem/filesystem/directory_context.cpp
         filesystem/filesystem/directory_context.h
         filesystem/filesystem/directory_system.cpp
@@ -447,6 +460,7 @@ list(APPEND library_source
         operating_system/console.cpp
         operating_system/console_client.cpp
         operating_system/console_client.h
+        operating_system/cpu_features.h
         operating_system/debug.cpp
         operating_system/dynamic_library.cpp
         operating_system/dynamic_library.h
@@ -2094,6 +2108,7 @@ if (${ANDROID})
             #operating_system/android/_os_remote.h
             operating_system/android/acme.cpp
             operating_system/android/callstack.cpp
+       operating_system/android/cpu_features.cpp
             operating_system/android/cross_win_file.h
             operating_system/android/cross_win_gdi.h
             operating_system/android/cross_win_gdi_internal.h
@@ -2392,7 +2407,9 @@ if (${WIN32} OR ${UWP})
             #      operating_system/windows_common/base.cpp
             #      operating_system/windows_common/bstring.cpp
             #      operating_system/windows_common/com.cpp
-            operating_system/windows_common/debug.cpp
+       operating_system/windows_common/cpu_features.cpp
+
+       operating_system/windows_common/debug.cpp
             #operating_system/windows_common/desktop.cpp
             operating_system/windows_common/dll.cpp
             operating_system/windows_common/file.cpp
@@ -2413,6 +2430,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/networking.cpp
             operating_system/windows_common/parallelization.cpp
             operating_system/windows_common/process.cpp
+       operating_system/windows_common/task.cpp
             operating_system/windows_common/time.cpp
             operating_system/windows_common/unicode.cpp
             #operating_system/windows_common/user.cpp
@@ -2444,6 +2462,7 @@ if (${LINUX})
             #operating_system/linux/_user.h
             operating_system/linux/application.h
             operating_system/linux/callstack.cpp
+            operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
             #operating_system/linux/cross_win_file.h
             #operating_system/linux/cross_win_gdi.cpp
@@ -2486,6 +2505,15 @@ if (${LINUX})
             operating_system/linux/util.cpp
             operating_system/linux/win_base.cpp
     )
+if(${TARGET_ARCH} STREQUAL "x64")
+list(APPEND library_source
+   operating_system/linux/cpu_features_x86_64.cpp
+)
+elseif(${TARGET_ARCH} STREQUAL "aarch64")
+   list(APPEND library_source
+      operating_system/linux/cpu_features_aarch64.cpp
+   )
+   endif()
 
 
 endif ()
@@ -2822,6 +2850,7 @@ if (${FREEBSD})
             #operating_system/freebsd/_user.h
             operating_system/freebsd/application.h
             operating_system/freebsd/call_stack.cpp
+            operating_system/freebsd/cpu_features.cpp
             #      operating_system/freebsd/cross_win_file.cpp
             #      operating_system/freebsd/cross_win_file.h
             #      operating_system/freebsd/cross_win_gdi.cpp
@@ -2866,6 +2895,18 @@ if (${FREEBSD})
             operating_system/freebsd/win_base.cpp
     )
 
+    if(${__SYSTEM_ARCHITECTURE} STREQUAL "amd64")
+       list(APPEND library_source
+          operating_system/freebsd/cpu_features_amd64.cpp
+       )
+    elseif(${__SYSTEM_ARCHITECTURE} STREQUAL "arm64")
+       list(APPEND library_source
+          operating_system/freebsd/cpu_features_arm64.cpp
+       )
+    else()
+       message(FATAL "uknown architecture")
+    endif()
+
 endif ()
 
 
@@ -2899,6 +2940,7 @@ if (${OPENBSD})
             #operating_system/openbsd/_user.h
             operating_system/openbsd/application.h
             operating_system/openbsd/call_stack.cpp
+            operating_system/openbsd/cpu_features.cpp
             #      operating_system/openbsd/cross_win_file.cpp
             #      operating_system/openbsd/cross_win_file.h
             #      operating_system/openbsd/cross_win_gdi.cpp
@@ -3003,7 +3045,9 @@ endif ()
 if (${__BSD__})
 
     list(APPEND library_source
-            operating_system/bsd/time.cpp
+       operating_system/bsd/file.cpp
+       operating_system/bsd/parallelization.cpp
+       operating_system/bsd/time.cpp
     )
 
     if (NOT ${OPENBSD})
@@ -3096,7 +3140,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/windows/geometry2d.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
@@ -3116,7 +3161,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-if (MSVC)
+if(${WIN32})
 
     message(STATUS "acme LIBRARY_OUTPUT_PATH is ${LIBRARY_OUTPUT_PATH}")
     message(STATUS "some target link options ${PROJECT_NAME} PRIVATE \"/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme.lib\"")
@@ -3169,7 +3214,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
         #list(APPEND this_system_libraries z idn)
         list(APPEND library_references zlib iconv idn)
-        list(APPEND this_system_libraries log)
+        list(APPEND this_system_libraries log cpufeatures)
+        #list(APPEND this_system_libraries log)
         #list(APPEND static_this_system_libraries pthread)
         #message(SEND_ERROR "test is really android?! ${this_system_libraries}")
         message(STATUS "For acme at ANDROID library_references ${library_references}")
@@ -3226,8 +3272,14 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
+
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
+
+if(${ANDROID})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CPU_FEATURES_PATH})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${CPU_FEATURES_PATH})
+endif()
 
 
 # defining C Macro _acme_project

@@ -17,7 +17,7 @@ namespace user
    public:
 
 
-      //::oswindow                                   m_oswindow;
+      //::oswindow                                   m_pacmewindowingwindow;
 
       bool                                         m_bSnapToBars : 1;
       bool                                         m_bAddToTitle : 1;
@@ -126,7 +126,7 @@ void on_before_create_window(acme::windowing::window* pacmewindowingwindow) over
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::type_atom & typeatom = "user::toolbar");
+      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::platform::type & type = "user::toolbar");
 
 
       virtual void on_create_bars();

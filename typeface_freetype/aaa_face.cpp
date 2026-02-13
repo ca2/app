@@ -53,23 +53,23 @@ namespace typeface_freetype
    void face::create_draw_buffers()
    {
       glGenVertexArrays(1, &m_FaceVAO);
-      GLCheckError("");
+      ::opengl::check_error("");
       glGenBuffers(1, &m_FaceVBO);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBindVertexArray(m_FaceVAO);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBindBuffer(GL_ARRAY_BUFFER, m_FaceVBO);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
-      GLCheckError("");
+      ::opengl::check_error("");
       glEnableVertexAttribArray(0);
-      GLCheckError("");
+      ::opengl::check_error("");
       glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBindBuffer(GL_ARRAY_BUFFER, 0);
-      GLCheckError("");
+      ::opengl::check_error("");
       glBindVertexArray(0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 

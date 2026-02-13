@@ -56,13 +56,13 @@ namespace geometry
    {
       for (int i = 0; i < iCount; i++)
       {
-         double x = ppoint[i].x() - xParam;
+         double x = ppoint[i].x - xParam;
 
-         double y = ppoint[i].y() - yParam;
+         double y = ppoint[i].y - yParam;
 
-         ppoint[i].x() = (int)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x = (int)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y() = (int)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y = (int)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
@@ -87,13 +87,13 @@ namespace geometry
    {
       for (int i = 0; i < iCount; i++)
       {
-         double x = ppoint[i].x() - xParam;
+         double x = ppoint[i].x - xParam;
 
-         double y = ppoint[i].y() - yParam;
+         double y = ppoint[i].y - yParam;
 
-         ppoint[i].x() = (int)(((x * phicos - y * phisin)) + xParam);
+         ppoint[i].x = (int)(((x * phicos - y * phisin)) + xParam);
 
-         ppoint[i].y() = (int)(((x * phisin + y * phicos)) + yParam);
+         ppoint[i].y = (int)(((x * phisin + y * phicos)) + yParam);
 
       }
    }
@@ -102,9 +102,9 @@ namespace geometry
    //void geometry::RandomPoint(::int_point * ppoint, const ::int_rectangle & rectangle)
    //{
 
-   //   ppoint->x = (int)Sy(rectangle.left(),rectangle.right());
+   //   ppoint->x = (int)Sy(rectangle.left,rectangle.right);
 
-   //   ppoint->y = (int)random(rectangle.top(),rectangle.bottom());
+   //   ppoint->y = (int)random(rectangle.top,rectangle.bottom);
 
    //}
 
@@ -133,13 +133,13 @@ namespace geometry
    //{
    //   ::int_rectangle rectangle(prectangle);
 
-   //   prectangle->left() = range_rate(rectangle.left(), rectangle.right(), dLeftRate);
+   //   prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
 
-   //   prectangle->right() = range_rate(rectangle.right(), rectangle.left(), dRightRate);
+   //   prectangle->right = range_rate(rectangle.right, rectangle.left, dRightRate);
 
-   //   prectangle->top() = range_rate(rectangle.top(), rectangle.bottom(), dTopRate);
+   //   prectangle->top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
 
-   //   prectangle->bottom() = range_rate(rectangle.bottom(), rectangle.top(), dBottomRate);
+   //   prectangle->bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
 
 
    //}
@@ -150,13 +150,13 @@ namespace geometry
    {
       for (int i = 0; i < iCount; i++)
       {
-         long x = ppoint[i].x() - m_iXCenter;
+         long x = ppoint[i].x - m_iXCenter;
 
-         long y = ppoint[i].y() - m_iYCenter;
+         long y = ppoint[i].y - m_iYCenter;
 
-         ppoint[i].x() = ((int)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
+         ppoint[i].x = ((int)(x * m_dCosPhi - y * m_dSinPhi)) + m_iXCenter;
 
-         ppoint[i].y() = ((int)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
+         ppoint[i].y = ((int)(x * m_dSinPhi + y * m_dCosPhi)) + m_iYCenter;
 
       }
    }

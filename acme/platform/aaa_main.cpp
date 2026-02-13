@@ -1856,10 +1856,6 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //         //         oswindow_data::s_pdataptra = nullptr;
 //         //
 //         //#endif // defined(LINUX)
-//
-//
-//
-//
 //      }
 //
 //
@@ -1868,10 +1864,6 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //
 //
 //} // namespace axis
-//
-//
-//
-//
 //
 
 #ifdef WINDOWS

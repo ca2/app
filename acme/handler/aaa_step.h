@@ -47,10 +47,6 @@
 //
 //
 //};
-//
-//
-//
-//
 
 
 //template < typename OBJECT, typename TRANSPORT , typename SEQUENCE >

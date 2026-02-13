@@ -192,8 +192,8 @@ namespace draw2d
    //      for (::collection::index j = 0; j < ppolycounts[i]; j++)
    //      {
 
-   //         pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
-   //         pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
+   //         pitem->m_polygona[i]->element_at(j).x = ppoints->x;
+   //         pitem->m_polygona[i]->element_at(j).y = ppoints->y;
 
    //         ppoints++;
 
@@ -236,8 +236,8 @@ namespace draw2d
    //      for (::collection::index j = 0; j < ppolycounts[i]; j++)
    //      {
 
-   //         pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
-   //         pitem->m_polygona[i]->element_at(j).y() = ppoints->y();
+   //         pitem->m_polygona[i]->element_at(j).x = ppoints->x;
+   //         pitem->m_polygona[i]->element_at(j).y = ppoints->y;
 
    //         ppoints++;
 
@@ -515,13 +515,13 @@ namespace draw2d
    //   for(int i = 0; i < m_nCount; i++)
    //   {
 
-   //      prectangle->left() = minimum(prectangle->left(),m_lppoints[i].x());
+   //      prectangle->left = minimum(prectangle->left,m_lppoints[i].x);
 
-   //      prectangle->right() = maximum(prectangle->right(),m_lppoints[i].x());
+   //      prectangle->right = maximum(prectangle->right,m_lppoints[i].x);
 
-   //      prectangle->top() = minimum(prectangle->left(),m_lppoints[i].y());
+   //      prectangle->top = minimum(prectangle->left,m_lppoints[i].y);
 
-   //      prectangle->bottom() = maximum(prectangle->right(),m_lppoints[i].y());
+   //      prectangle->bottom = maximum(prectangle->right,m_lppoints[i].y);
 
    //   }
 
@@ -541,13 +541,13 @@ namespace draw2d
    //      for(int j = 0; j < iCount; j++,n++)
    //      {
 
-   //         prectangle->left() = minimum(prectangle->left(),m_lppoints[n].x());
+   //         prectangle->left = minimum(prectangle->left,m_lppoints[n].x);
 
-   //         prectangle->right() = maximum(prectangle->right(),m_lppoints[n].x());
+   //         prectangle->right = maximum(prectangle->right,m_lppoints[n].x);
 
-   //         prectangle->top() = minimum(prectangle->left(),m_lppoints[n].y());
+   //         prectangle->top = minimum(prectangle->left,m_lppoints[n].y);
 
-   //         prectangle->bottom() = maximum(prectangle->right(),m_lppoints[n].y());
+   //         prectangle->bottom = maximum(prectangle->right,m_lppoints[n].y);
 
    //      }
 
@@ -584,7 +584,7 @@ namespace draw2d
    //bool region::internal_rectangle_contains(const ::double_point & point)
    //{
 
-   //   return point.x() >= m_x1 && point.y() >= m_y1 && point.x() <= m_x2 && point.y() <= m_y2;
+   //   return point.x >= m_x1 && point.y >= m_y1 && point.x <= m_x2 && point.y <= m_y2;
 
    //}
 
@@ -605,9 +605,9 @@ namespace draw2d
 
    //   }
    //
-   //   double x = point.x();
+   //   double x = point.x;
 
-   //   double y = point.y();
+   //   double y = point.y;
    //   
    //   double Δx = x - centerx;
    //   

@@ -6,7 +6,7 @@
 
 
 class CLASS_DECL_APEX service_handler :
-   virtual public ::acme::department
+   virtual public ::platform::department
 {
 public:
 

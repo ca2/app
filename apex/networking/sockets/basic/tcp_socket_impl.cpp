@@ -132,10 +132,6 @@
 //      //   return false;
 //
 //      //}
-//
-//
-//
-//
 ////      if(socket_handler()->get_count() >= FD_SETSIZE)
 ////      {
 ////
@@ -403,10 +399,6 @@
 ////         SetCloseAndDelete();
 ////      }
 ////   }
-//
-//
-//
-//
 //   int tcp_socket_impl::recv(void * buf, int nBufSize)
 //   {
 //      return -1;
@@ -1215,10 +1207,6 @@
 //   //   }
 //   //   return false;
 //   //}
-//
-//
-//
-//
 //   void tcp_socket_impl::OnSSLConnect()
 //   {
 //

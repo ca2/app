@@ -1274,25 +1274,25 @@ namespace user
 
    }
 
-
-   void interaction_base::subclass_window(oswindow posdata)
-   {
-
-      throw ::interface_only();
-
-      //return false;
-
-   }
-
-
-   oswindow interaction_base::unsubclass_window()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+   //
+   // void interaction_base::subclass_window(oswindow posdata)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    //return false;
+   //
+   // }
+   //
+   //
+   // oswindow interaction_base::unsubclass_window()
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    //void interaction_base::create_child(::user::interaction * puserinteractionParent)
@@ -2103,7 +2103,7 @@ namespace user
    }
 
 
-   void interaction_base::viewport_client_to_screen(::sequence2_int & sequence)
+   void interaction_base::viewport_client_to_screen(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -2111,7 +2111,7 @@ namespace user
    }
 
 
-   void interaction_base::viewport_screen_to_client(::sequence2_int & sequence)
+   void interaction_base::viewport_screen_to_client(::int_sequence2 & sequence)
    {
 
       throw ::interface_only();
@@ -2426,7 +2426,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::attach(oswindow oswindow)
+   //bool interaction_base::attach(::acme::windowing::window * pacmewindowingwindow)
    //{
 
    //   throw ::interface_only();
@@ -2436,7 +2436,7 @@ namespace user
    //}
 
 
-   oswindow interaction_base::detach_window()
+   void * interaction_base::detach_win32_HWND()
    {
 
       return nullptr;
@@ -2843,9 +2843,9 @@ namespace user
 
    //   ::double_size sizePaddedFitting;
 
-   //   sizePaddedFitting.cx() = rectanglePadding.left() + sizeFitting.cx() + rectanglePadding.right();
+   //   sizePaddedFitting.cx = rectanglePadding.left + sizeFitting.cx + rectanglePadding.right;
 
-   //   sizePaddedFitting.cy() = rectanglePadding.top() + sizeFitting.cy() + rectanglePadding.bottom();
+   //   sizePaddedFitting.cy = rectanglePadding.top + sizeFitting.cy + rectanglePadding.bottom;
 
    //   return sizePaddedFitting;
 
@@ -4168,7 +4168,7 @@ namespace user
    }
 
 
-   bool interaction_base::keyboard_focus_OnKillFocus(oswindow oswindowNew)
+   bool interaction_base::keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew)
    {
 
       return true;
@@ -4472,7 +4472,7 @@ namespace user
    void interaction_base::destroy()
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       // auto & procedureaDestroying1 = ::user::drag_client::m_procedureaDestroying;
       //

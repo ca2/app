@@ -10,14 +10,14 @@
 #include "_concept.h"
 
 
-// inline auto left(const ::int_rectangle &rectangle) { return rectangle.left(); }
-// inline auto top(const ::int_rectangle &rectangle) { return rectangle.top(); }
-// inline auto left(const ::long_long_rectangle & rectangle) { return rectangle.left(); }
-// inline auto top(const ::long_long_rectangle & rectangle) { return rectangle.top(); }
-// inline auto left(const ::float_rectangle & rectangle) { return rectangle.left(); }
-// inline auto top(const ::float_rectangle & rectangle) { return rectangle.top(); }
-// inline auto left(const ::double_rectangle & rectangle) { return rectangle.left(); }
-// inline auto top(const ::double_rectangle & rectangle) { return rectangle.top(); }
+// inline auto left(const ::int_rectangle &rectangle) { return rectangle.left; }
+// inline auto top(const ::int_rectangle &rectangle) { return rectangle.top; }
+// inline auto left(const ::long_long_rectangle & rectangle) { return rectangle.left; }
+// inline auto top(const ::long_long_rectangle & rectangle) { return rectangle.top; }
+// inline auto left(const ::float_rectangle & rectangle) { return rectangle.left; }
+// inline auto top(const ::float_rectangle & rectangle) { return rectangle.top; }
+// inline auto left(const ::double_rectangle & rectangle) { return rectangle.left; }
+// inline auto top(const ::double_rectangle & rectangle) { return rectangle.top; }
 
 
 //template < typename TARGET, typename SOURCE >
@@ -83,71 +83,71 @@ struct ::double_rectangle;
 //inline long long i32muldiv(long long i, long long iNum, long long iDen);
 
 
-template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3, primitive_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
+template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2, prototype_integral INTEGRAL3, prototype_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
 inline INTEGRAL_RESULT muldiv(INTEGRAL1 i, INTEGRAL2 iNumerator, INTEGRAL3 iDenominator);
 
 
-template < primitive_rectangle RECTANGLE >
-inline auto width(const RECTANGLE & rectangle) { return rectangle.right() - rectangle.left(); }
+template < prototype_rectangle RECTANGLE >
+inline auto width(const RECTANGLE & rectangle) { return rectangle.right - rectangle.left; }
 
-template < primitive_rectangle RECTANGLE >
-inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom() - rectangle.top(); }
+template < prototype_rectangle RECTANGLE >
+inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom - rectangle.top; }
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline auto area(const RECTANGLE & rectangle) { return maximum(width(rectangle), 0) * maximum(height(rectangle), 0); }
 
 
-template < primitive_rectangle RECTANGLE >
-inline auto left(const RECTANGLE & rectangle) { return rectangle.left(); }
+template < prototype_rectangle RECTANGLE >
+inline auto left(const RECTANGLE & rectangle) { return rectangle.left; }
 
-template < primitive_rectangle RECTANGLE >
-inline auto top(const RECTANGLE & rectangle) { return rectangle.top(); }
+template < prototype_rectangle RECTANGLE >
+inline auto top(const RECTANGLE & rectangle) { return rectangle.top; }
 
 
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto width(const XYDim & rectangle) { return rectangle.Width; }
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto height(const XYDim & rectangle) { return rectangle.Height; }
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto area(const XYDim & rectangle) { return maximum(rectangle.Width, 0) * maximum(rectangle.Height, 0); }
 
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto left(const XYDim & rectangle) { return rectangle.X; }
 
-template < primitive_XYDim XYDim >
+template < prototype_XYDim XYDim >
 inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
-//template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+//template < prototype_rectangle RECTANGLE, prototype_XYDim XYDim >
 //inline void copy(RECTANGLE & rectangle, const XYDim & xydim)
 //{
 //
-//   rectangle.left() = (decltype(rectangle.left())) xydim.X;
-//   rectangle.top() = (decltype(rectangle.top())) xydim.Y;
-//   rectangle.right() = (decltype(rectangle.right()))(xydim.X + xydim.Width);
-//   rectangle.bottom() = (decltype(rectangle.bottom()))(xydim.Y + xydim.Height);
+//   rectangle.left = (decltype(rectangle.left)) xydim.X;
+//   rectangle.top = (decltype(rectangle.top)) xydim.Y;
+//   rectangle.right = (decltype(rectangle.right))(xydim.X + xydim.Width);
+//   rectangle.bottom = (decltype(rectangle.bottom))(xydim.Y + xydim.Height);
 //
 //}
 //
 //
-//template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+//template < prototype_XYDim XYDim, prototype_rectangle RECTANGLE >
 //inline void copy(XYDim & xydim, const RECTANGLE & rectangle)
 //{
 //
-//   xydim.X = (decltype(xydim.X)) rectangle.left();
-//   xydim.Y = (decltype(xydim.Y)) rectangle.top();
-//   xydim.Width = (decltype(xydim.Width))(rectangle.right() + rectangle.left());
-//   xydim.Height = (decltype(xydim.Height))(rectangle.bottom() + rectangle.top());
+//   xydim.X = (decltype(xydim.X)) rectangle.left;
+//   xydim.Y = (decltype(xydim.Y)) rectangle.top;
+//   xydim.Width = (decltype(xydim.Width))(rectangle.right + rectangle.left);
+//   xydim.Height = (decltype(xydim.Height))(rectangle.bottom + rectangle.top);
 //
 //}
 
 
 
-//inline bool contains(const ::int_rectangle &rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::int_rectangle &rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::int_rectangle & null(::int_rectangle & rectDst) { return ::null_rect(rectDst); }
 //inline bool is_equal(const ::int_rectangle &rect1, const ::int_rectangle &rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::int_rectangle & inflate(::int_rectangle & rectangle, int x, int y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -159,7 +159,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline int height(const ::int_rectangle &rectangle) { return ::rect_height(rectangle); }
 //inline int area(const ::int_rectangle &rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::int_rectangle &rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::int_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::int_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline int width(const ::int_rectangle &rectangle) { return ::width(&rectangle); }
 //inline int height(const ::int_rectangle &rectangle) { return ::height(&rectangle); }
@@ -169,10 +169,10 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool is_empty(::int_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
-//inline bool is_empty(::long_long_size & size) { return size.cx() <= 0 || size.cy() <= 0; }
-//inline bool is_empty(::float_size & size) { return size.cx() <= 0.f || size.cy() <= 0.f; }
-//inline bool is_empty(::double_size & size) { return size.cx() <= 0. || size.cy() <= 0.; }
+//inline bool is_empty(::int_size & size) { return size.cx <= 0 || size.cy <= 0; }
+//inline bool is_empty(::long_long_size & size) { return size.cx <= 0 || size.cy <= 0; }
+//inline bool is_empty(::float_size & size) { return size.cx <= 0.f || size.cy <= 0.f; }
+//inline bool is_empty(::double_size & size) { return size.cx <= 0. || size.cy <= 0.; }
 
 
 
@@ -181,7 +181,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::long_long_rectangle & null(::long_long_rectangle & rectDst) { return ::null_rect(rectDst); }
 //inline bool is_equal(const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::long_long_rectangle & inflate(::long_long_rectangle & rectangle, long long x, long long y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -193,7 +193,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline long long height(const ::long_long_rectangle & rectangle) { return ::rect_height(rectangle); }
 //inline long long area(const ::long_long_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::long_long_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline long long width(const ::long_long_rectangle & rectangle) { return ::width(&rectangle); }
 //inline long long height(const ::long_long_rectangle & rectangle) { return ::height(&rectangle); }
@@ -205,7 +205,7 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool contains(const ::float_rectangle & rectangle, const ::float_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::float_rectangle & rectangle, const ::float_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::float_rectangle & null(::float_rectangle & rect) { return ::null_rect(rect); }
 //inline bool is_equal(const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::float_rectangle & inflate(::float_rectangle & rectangle, float x, float y) { return ::rect_inflate_point(rectangle, x, y); }
@@ -214,13 +214,13 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline bool intersect(::float_rectangle & rectangle, const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 //inline ::float_rectangle & unite(::float_rectangle & rectangle, const ::float_rectangle & rect1, const ::float_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
 //inline float width(const ::float_rectangle & rectangle) { return ::rect_width(rectangle); }
-////template < primitive_rectangle RECTANGLE > 
+////template < prototype_rectangle RECTANGLE > 
 ////inline auto height(const RECTANGLE  & rectangle) { return ::rect_height(rectangle); }
-////template < primitive_rectangle RECTANGLE >
+////template < prototype_rectangle RECTANGLE >
 ////inline auto height(const RECTANGLE & rectangle) { return ::height(&rectangle); }
 //inline float area(const ::float_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::float_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::float_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::float_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline float width(const ::float_rectangle& rectangle) { return ::width(&rectangle); }
 ////inline float height(const ::float_rectangle& rectangle) { return ::height(&rectangle); }
@@ -231,14 +231,14 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 
 
 
-//inline bool contains(const ::double_rectangle & rectangle, const ::double_point & point) { return ::rectangle_contains(rectangle, point.x(), point.y()); }
+//inline bool contains(const ::double_rectangle & rectangle, const ::double_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::double_rectangle & null(::double_rectangle & rect) { return ::null_rect(rect); }
 //inline bool is_equal(const ::double_rectangle & rect1, const ::double_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
 //inline ::double_rectangle & inflate(::double_rectangle & rectangle, double x, double y) { return ::rect_inflate_point(rectangle, x, y); }
 //inline ::double_rectangle & deflate(::double_rectangle & rectangle, double x, double y) { return ::rect_deflate_point(rectangle, x, y); }
 //inline ::double_rectangle & offset(::double_rectangle & rectangle, double x, double y) { return ::offset_rect(rectangle, x, y); }
 
-template < primitive_rectangle RECTANGLE >
+template < prototype_rectangle RECTANGLE >
 inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate);
 
 
@@ -248,7 +248,7 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 ////inline double height(const ::double_rectangle  & rectangle) { return ::rect_height(rectangle); }
 //inline double area(const ::double_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::double_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
-//inline void swap_left_right(::double_rectangle & rectangle) noexcept { ::__swap(rectangle.left(), rectangle.right()); }
+//inline void swap_left_right(::double_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
 //inline double width(const ::double_rectangle & rectangle) { return ::width(&rectangle); }
 //inline double height(const ::double_rectangle& rectangle) { return ::height(&rectangle); }
@@ -327,16 +327,16 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 //
 //inline void copy(int_rectangle & rectDst, const ::winrt::Windows::Foundation::Rect * prectSrc)
 //{
-//   rectDst->left() = (int) prectSrc->X;
-//   rectDst->top() = (int)prectSrc->Y;
-//   rectDst->right() = (int) (prectSrc->X + prectSrc->Width);
-//   rectDst->bottom() = (int) (prectSrc->Y + prectSrc->Height);
+//   rectDst->left = (int) prectSrc->X;
+//   rectDst->top = (int)prectSrc->Y;
+//   rectDst->right = (int) (prectSrc->X + prectSrc->Width);
+//   rectDst->bottom = (int) (prectSrc->Y + prectSrc->Height);
 //}
 //
 //inline void copy(::winrt::Windows::Foundation::Rect& rectDst, int_rectangle* prectSrc)
 //{
-//   rectDst->X = (float) prectSrc->left();
-//   rectDst->Y = (float) prectSrc->top();
+//   rectDst->X = (float) prectSrc->left;
+//   rectDst->Y = (float) prectSrc->top;
 //   rectDst->Width = (float) prectSrc->width();
 //   rectDst->Height = (float) prectSrc->height();
 //}
@@ -376,25 +376,21 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 #include "ellipse.h"
 
 
-//template < primitive_point POINT >
+//template < prototype_point POINT >
 //inline ::string as_string(const POINT & point);
 //
 //
-//template < primitive_size SIZE >
+//template < prototype_size SIZE >
 //inline ::string as_string(const SIZE & size);
 //
-//
-//
-//
-//
 
 
 
 //
-//inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx(), size.cy()); }
-//inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx(), size.cy()); }
-//inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx(), size.cy()); }
-//inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx(), size.cy()); }
+//inline auto ::int_point(const ::int_size & size) noexcept { return ::int_point(size.cx, size.cy); }
+//inline auto __point64(const ::long_long_size & size) noexcept { return ::long_long_point(size.cx, size.cy); }
+//inline auto __pointf(const ::float_size & size) noexcept { return ::float_point(size.cx, size.cy); }
+//inline auto __pointd(const ::double_size & size) noexcept { return ::double_point(size.cx, size.cy); }
 //
 
 

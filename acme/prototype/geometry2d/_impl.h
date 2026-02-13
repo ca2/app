@@ -5,9 +5,9 @@
 //#include "acme/platform/lparam.h"
 //
 //
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //point_type(const lparam & lparam) :
-//   sequence_type < UNIT_TYPE, 2 >(lparam.x(), lparam.y())
+//   sequence_type < UNIT_TYPE, 2 >(lparam.x, lparam.y)
 //{
 //
 //}

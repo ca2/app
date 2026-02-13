@@ -29,7 +29,7 @@ namespace gpu
 
       initialize_gpu_context_object(pgpucontext);
 
-      m_modeldata.m_vertexes = {
+      m_modeldata.set_vertexes({
          // positions   // textureCoordinates
          {{-1.0f, 1.0f}, {0.0f, 1.0f}},
          {{-1.0f, -1.0f}, {0.0f, 0.0f}},
@@ -38,21 +38,23 @@ namespace gpu
          {{-1.0f, 1.0f}, {0.0f, 1.0f}}, 
          {{1.0f, -1.0f}, {1.0f, 0.0f}}, 
          {{1.0f, 1.0f}, {1.0f, 1.0f}}
-       };
+       });
 
       øconstruct(m_pmodelbuffer);
       
-      m_pmodelbuffer->initialize_model(pgpucontext, m_modeldata);
+      m_pmodelbuffer->initialize_gpu_context_object(pgpucontext);
+      
+      m_pmodelbuffer->set_data(m_modeldata);
 
       //loadVertexData();
 
    }
 
 
-   void full_screen_quad::draw(::gpu::command_buffer *pcommandbuffer)
+   void full_screen_quad::draw2(::gpu::command_buffer *pcommandbuffer)
    {
-      m_pmodelbuffer->bind(pcommandbuffer);
-      m_pmodelbuffer->draw(pcommandbuffer);
+      m_pmodelbuffer->bind2(pcommandbuffer);
+      m_pmodelbuffer->draw2(pcommandbuffer);
       m_pmodelbuffer->unbind(pcommandbuffer);
       // glDisable(GL_DEPTH_TEST);
       // glBindVertexArray(mVAO);

@@ -79,7 +79,7 @@ CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 #define ENSURE(cond)      ENSURE_THROW(cond, throw_exception(error_bad_argument))
 #define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw_exception(error_bad_argument))
 
-// Debug ASSERT_VALIDs then throws. Retail throws if p is nullptr
+// Debug ASSERT_OKs then throws. Retail throws if p is nullptr
 #define ENSURE_VALID_THROW(p, exception)   \
    do { ASSERT_OK(p); if (!(p)){exception;} } while (false)
 #define ENSURE_VALID(p)   ENSURE_VALID_THROW(p, throw_exception(error_bad_argument))

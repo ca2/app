@@ -6,7 +6,7 @@ namespace filehandler
 
 
    department::department(::particle * pparticle) :
-      ::acme::department(pparticle)
+      ::platform::department(pparticle)
    {
 
       m_ptemplateMenu   = nullptr;
@@ -34,7 +34,7 @@ namespace filehandler
       add_factory_item <frame >();
       add_factory_item <impact >();
 
-      if(!::acme::department::init_instance())
+      if(!::platform::department::init_instance())
          return false;
 
 
@@ -42,9 +42,9 @@ namespace filehandler
       ::user::single_document_template* pdoctemplate = ___new ::user::single_document_template(
       this,
       "html/frame",
-      ::type < document >(),
-      ::type < frame >(),       // top level SDI frame::windowing::window
-      ::type < pane_impact >());
+      ::type<document>(),
+      ::type<frame>(),       // top level SDI frame::windowing::window
+      ::type<pane_impact>());
       papp->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
@@ -59,7 +59,7 @@ namespace filehandler
       try
       {
 
-         ::acme::department::term_instance();
+         ::platform::department::term_instance();
 
       }
       catch(...)

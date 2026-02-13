@@ -24,7 +24,7 @@ int _get_exe_path_len()
 void _get_exe_path(char * pszPath, int size)
 {
    
-   strncpy(scopedstrPath, [[[NSBundle mainBundle] executablePath] UTF8String], size);
+   strncpy(pszPath, [[[NSBundle mainBundle] executablePath] UTF8String], size);
    
 }
 
@@ -63,7 +63,7 @@ bool _ui_library_dir(char * psz, unsigned int * puiSize)
    
    *puiSize = (unsigned int) strlen([pstr UTF8String]);
    
-   strncpy(scopedstr, [pstr UTF8String], *puiSize);
+   strncpy(psz, [pstr UTF8String], *puiSize);
    
    return true;
    
@@ -179,7 +179,7 @@ bool ns_open_url(const char * psz)
 bool ns_open_file(const char * psz)
 {
    
-   return ns_open_url(scopedstr);
+   return ns_open_url(psz);
 //   NSString * path = [NSString stringWithUTF8String:psz];
 //   
 //   if(path == NULL)
@@ -233,3 +233,17 @@ void ui_open_url(const char  *pszUrl)
 
 
 
+
+
+
+char * _ios_app_document_folder()
+{
+   
+   //https://www.infragistics.com/community/blogs/b/stevez/posts/ios-objective-c-working-with-files
+   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+   //From this array, we're going to grab the first //value. As thats the root path to the directory //we're looking for.
+
+   NSString* rootPath = paths[0];
+   
+   return strdup([rootPath UTF8String]);
+}

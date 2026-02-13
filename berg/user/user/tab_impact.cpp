@@ -824,6 +824,24 @@ namespace user
 
       }
 
+      if (m_pimpactdata->id().is_text() && m_pimpactdata->id().as_string().begins("options_impact_handler://"))
+      {
+
+         auto atom = pimpactdata->id();
+
+         auto phandlerimpact = m_maphandlerimpact[atom];
+
+         ::cast<::user::options_impact_handler> poptionsimpacthandler = m_mapoptionsimpacthandler[pimpactdata->id()];
+
+         if (poptionsimpacthandler)
+         {
+
+            poptionsimpacthandler->on_after_create_form(atom, phandlerimpact);
+
+         }
+
+      }
+
    }
 
 
@@ -969,12 +987,32 @@ namespace user
       if (pimpactdata->id() == OPTIONS_IMPACT
          || pimpactdata->id() == APP_OPTIONS_IMPACT
          || pimpactdata->id() == CONTEXT_OPTIONS_IMPACT
-         || pimpactdata->id() == ABOUT_IMPACT)
+         || pimpactdata->id() == ABOUT_IMPACT
+         || (pimpactdata->id().is_text() && pimpactdata->id().as_string().begins("options_impact_handler://")))
       {
 
          m_maphandlerimpact[pimpactdata->id()] = create_impact < handler_impact >(pimpactdata);
 
-         if (pimpactdata->id() == APP_OPTIONS_IMPACT)
+         if ((pimpactdata->id().is_text() && pimpactdata->id().as_string().begins("options_impact_handler://")))
+         {
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
+            ::cast<::user::options_impact_handler> poptionsimpacthandler = m_mapoptionsimpacthandler[pimpactdata->id()];
+
+            if (!poptionsimpacthandler)
+            {
+               poptionsimpacthandler = this;
+            }
+
+
+            auto functionHandler = [poptionsimpacthandler, pimpactdata](auto puserinteraction)
+            {
+                  poptionsimpacthandler->create_options_impact(pimpactdata->id(), puserinteraction);
+            };
+
+            phandlerimpact->call_handler(functionHandler);
+
+         }
+         else if (pimpactdata->id() == APP_OPTIONS_IMPACT)
          {
 
             auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
@@ -987,7 +1025,7 @@ namespace user
                if(poptionsimpacthandler)
                {
 
-                  poptionsimpacthandler->create_options_impact(puserinteraction);
+                  poptionsimpacthandler->create_options_impact(APP_OPTIONS_IMPACT, puserinteraction);
 
                }
 
@@ -1004,7 +1042,7 @@ namespace user
             auto functionHandler = [this](auto puserinteraction)
                {
 
-                  application()->create_about_impact(puserinteraction);
+                  application()->create_about_impact(ABOUT_IMPACT, puserinteraction);
 
                };
 
@@ -1105,7 +1143,7 @@ namespace user
                [poptionsimpacthandler](auto puserinteractionParent)
                {
 
-                  poptionsimpacthandler->create_options_impact(puserinteractionParent);
+                  poptionsimpacthandler->create_options_impact(CONTEXT_OPTIONS_IMPACT, puserinteractionParent);
 
                });
 
@@ -1488,7 +1526,7 @@ namespace user
 
             pointOffset = const_layout().layout().origin();
 
-            if (pointOffset.y() == 31)
+            if (pointOffset.y == 31)
             {
 
                //information() << "31";
@@ -1525,7 +1563,7 @@ namespace user
             if(timeEllapsed > 50_ms)
             {
 
-               string strType = ::type(this).name();
+               string strType = ::platform::type(this).name();
 
 #ifdef VERBOSE_LOG               
 
@@ -1691,7 +1729,7 @@ namespace user
 
                auto pchild = m_pimpactdata->m_pplaceholder;
 
-               ::string strType = ::type(pchild).name();
+               ::string strType = ::platform::type(pchild).name();
 
                if (strType.case_insensitive_contains("place_holder"))
                {
@@ -1702,14 +1740,14 @@ namespace user
 
                      ::cast <::user::interaction> puserinteractionChild = pchild->m_pacmeuserinteractionaChildren->first();
 
-                     ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
+                     ::string strTypePlaceHolderChild = ::platform::type(puserinteractionChild).name();
 
                      if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
                      {
 
                         ::cast <::user::interaction> puserinteractionChild2 = puserinteractionChild->m_pacmeuserinteractionaChildren->first();
 
-                        ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+                        ::string strTypePlaceHolderChild2 = ::platform::type(puserinteractionChild2).name();
 
                         if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
                         {

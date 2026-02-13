@@ -84,7 +84,7 @@ namespace userstack
 
       void check_apps();
 
-      void mt_show_window(oswindow oswindow, int iShow);
+      void mt_show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
 
       static unsigned int c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 

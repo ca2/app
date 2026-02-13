@@ -132,10 +132,6 @@ typedef void THREAD_ROUTINE(thread_parameter parameter);
 
 
 //CLASS_DECL_ACME bool succeeded(const ::payload& payload);
-//
-//
-//
-//
 
 
 CLASS_DECL_ACME bool is_filemanager(const ::atom& atom);

@@ -1804,8 +1804,8 @@ void TransformSkewX(float* t, float a)
 	//
 	//		if (loop) {
 	//			// Loop it
-	//			context::__vset)(dst, verts[0].x(), verts[0].y(), u0, 1); dst++;
-	//			context::__vset)(dst, verts[1].x(), verts[1].y(), u1, 1); dst++;
+	//			context::__vset)(dst, verts[0].x, verts[0].y, u0, 1); dst++;
+	//			context::__vset)(dst, verts[1].x, verts[1].y, u1, 1); dst++;
 	//		}
 	//		else {
 	//			// Add cap
@@ -1898,7 +1898,7 @@ void TransformSkewX(float* t, float a)
 	//		}
 	//		else {
 	//			for (j = 0; j < path->count; ++j) {
-	//				context::__vset)(dst, pts[j].x(), pts[j].y(), 0.5f, 1);
+	//				context::__vset)(dst, pts[j].x, pts[j].y, 0.5f, 1);
 	//				dst++;
 	//			}
 	//		}
@@ -1938,8 +1938,8 @@ void TransformSkewX(float* t, float a)
 	//			}
 	//
 	//			// Loop it
-	//			context::__vset)(dst, verts[0].x(), verts[0].y(), lu, 1); dst++;
-	//			context::__vset)(dst, verts[1].x(), verts[1].y(), ru, 1); dst++;
+	//			context::__vset)(dst, verts[0].x, verts[0].y, lu, 1); dst++;
+	//			context::__vset)(dst, verts[1].x, verts[1].y, ru, 1); dst++;
 	//
 	//			path->nstroke = (int)(dst - verts);
 	//			verts = dst;
@@ -1978,7 +1978,7 @@ void TransformSkewX(float* t, float a)
       //float vals[] = { ::nano2d::e_command_move_to, x, y };
       //context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));
       //move_to(x, y);
-      move_to(p.x(), p.y());
+      move_to(p.x, p.y);
       
    }
 
@@ -1998,7 +1998,7 @@ void TransformSkewX(float* t, float a)
       /*float vals[] = { ::nano2d::e_command_line_to, x, y };
       context::__appendCommands)(ctx, vals, NANO2D_COUNTOF(vals));*/
 
-      line_to(p.x(), p.y());
+      line_to(p.x, p.y);
       
    }
 
@@ -2760,8 +2760,8 @@ void TransformSkewX(float* t, float a)
 		//	}
 		//	prevIter = iter;
 		//	positions[npos].str = iter.str;
-		//	positions[npos].x() = iter.x() * invscale;
-		//	positions[npos].minx = context::__minf)(iter.x(), q.x0) * invscale;
+		//	positions[npos].x = iter.x * invscale;
+		//	positions[npos].minx = context::__minf)(iter.x, q.x0) * invscale;
 		//	positions[npos].maxx = context::__maxf)(iter.nextx, q.x1) * invscale;
 		//	npos++;
 		//	if (npos >= maxPositions)
@@ -3192,14 +3192,14 @@ void TransformSkewX(float* t, float a)
 		//			// Skip white space until the beginning of the line
 		//			if (type == NVG_CHAR || type == NVG_CJK_CHAR) {
 		//				// The current char is the row so far
-		//				rowStartX = iter.x();
+		//				rowStartX = iter.x;
 		//				rowStart = iter.str;
 		//				rowEnd = iter.next;
 		//				rowWidth = iter.nextx - rowStartX;
 		//				rowMinX = q.x0 - rowStartX;
 		//				rowMaxX = q.x1 - rowStartX;
 		//				wordStart = iter.str;
-		//				wordStartX = iter.x();
+		//				wordStartX = iter.x;
 		//				wordMinX = q.x0 - rowStartX;
 		//				// Set null break point
 		//				breakEnd = rowStart;
@@ -3225,7 +3225,7 @@ void TransformSkewX(float* t, float a)
 		//			// track last beginning of a word
 		//			if ((typePrevious == NVG_SPACE && (type == NVG_CHAR || type == NVG_CJK_CHAR)) || type == NVG_CJK_CHAR) {
 		//				wordStart = iter.str;
-		//				wordStartX = iter.x();
+		//				wordStartX = iter.x;
 		//				wordMinX = q.x0;
 		//			}
 
@@ -3243,14 +3243,14 @@ void TransformSkewX(float* t, float a)
 		//					nrows++;
 		//					if (nrows >= maxRows)
 		//						return nrows;
-		//					rowStartX = iter.x();
+		//					rowStartX = iter.x;
 		//					rowStart = iter.str;
 		//					rowEnd = iter.next;
 		//					rowWidth = iter.nextx - rowStartX;
 		//					rowMinX = q.x0 - rowStartX;
 		//					rowMaxX = q.x1 - rowStartX;
 		//					wordStart = iter.str;
-		//					wordStartX = iter.x();
+		//					wordStartX = iter.x;
 		//					wordMinX = q.x0 - rowStartX;
 		//				}
 		//				else {
@@ -3404,10 +3404,10 @@ void TransformSkewX(float* t, float a)
 		m_pstate->m_ealignText = oldAlign;
 	
 		if (bounds != NULL) {
-			bounds[0] = minx;
-			bounds[1] = miny;
-			bounds[2] = maxx;
-			bounds[3] = maxy;
+			bounds->left = minx;
+			bounds->top = miny;
+			bounds->right = maxx;
+			bounds->bottom = maxy;
 		}
 	////	throw_todo();
 	}

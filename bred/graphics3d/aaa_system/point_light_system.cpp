@@ -6,10 +6,10 @@
 #include "point_light_system.h"
 
 // libs
-#define GLM_FORCE_RADIANS
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#include <glm/glm.hpp>
-#include <glm/gtc/constants.hpp>
+
+
+
+
 
 // std
 #include <array>
@@ -23,8 +23,8 @@ namespace graphics3d
 
 
    //struct PointLightPushConstants {
-   //   glm::vec4 position{};
-   //   glm::vec4 color{};
+   //   floating_sequence4 position{};
+   //   floating_sequence4 color{};
    //   float radius;
    //};
 
@@ -37,7 +37,7 @@ namespace graphics3d
 
 
    void point_light_system::initialize_point_light_system(::gpu::context * pgpucontext)
-      //context* pvkcdevice, VkRenderPass renderPass, VkDescriptorSetLayout globalSetLayout)
+      //context* pvkcdevice, VkRenderPass renderPass, aaaVkDescriptorSetLayout globalSetLayout)
       //: m_pgpucontext{ pvkcdevice }
    {
       m_pgpucontext = pgpucontext;
@@ -57,7 +57,7 @@ namespace graphics3d
    }
 
 
-   void point_light_system::prepare()//(VkDescriptorSetLayout globalSetLayout) 
+   void point_light_system::prepare()//(aaaVkDescriptorSetLayout globalSetLayout) 
    {
 
       m_pshader = m_pgpucontext->m_pimpact->m_pengine->create_shader(
@@ -74,7 +74,7 @@ namespace graphics3d
       //pushConstantRange.offset = 0;
       //pushConstantRange.size = sizeof(PointLightPushConstants);
 
-      //std::vector<VkDescriptorSetLayout> descriptorSetLayouts{ globalSetLayout };
+      //std::vector<aaaVkDescriptorSetLayout> descriptorSetLayouts{ globalSetLayout };
 
       //VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
       //pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
@@ -138,8 +138,8 @@ namespace graphics3d
          auto& obj = pscene->m_mapObjects[it->second];
          ::cast < ::graphics3d::point_light > ppointlight = obj;
          //PointLightPushConstants push{};
-         m_pshader->setVec4("position", glm::vec4(obj->m_transform.translation, 1.f));
-         m_pshader->setVec4("color", glm::vec4(obj->m_color, ppointlight->m_pointlightcomponent.lightIntensity));
+         m_pshader->setVec4("position", floating_sequence4(obj->m_transform.translation, 1.f));
+         m_pshader->setVec4("color", floating_sequence4(obj->m_color, ppointlight->m_pointlightcomponent.lightIntensity));
          m_pshader->setFloat("radius", obj->m_transform.scale.x);
 
          m_pshader->push_properties();
@@ -165,7 +165,7 @@ namespace graphics3d
    {
 
       auto dt = m_pgpucontext->m_pimpact->m_pengine->dt();
-      auto rotateLight = glm::rotate(glm::mat4(1.f), 0.5f * dt, { 0.f, -1.f, 0.f });
+      auto rotateLight = glm::rotate(floating_matrix4(1.f), 0.5f * dt, { 0.f, -1.f, 0.f });
 
       int lightIndex = 0;
 
@@ -182,13 +182,13 @@ namespace graphics3d
 
          // update light position
          ppointlight->m_transform.translation =
-            glm::vec3(rotateLight * glm::vec4(ppointlight->m_transform.translation, 1.f));
+            floating_sequence3(rotateLight * floating_sequence4(ppointlight->m_transform.translation, 1.f));
 
          // copy light to ubo
          ubo.pointLights[lightIndex].position = 
-            glm::vec4(ppointlight->m_transform.translation, 1.f);
+            floating_sequence4(ppointlight->m_transform.translation, 1.f);
          ubo.pointLights[lightIndex].color = 
-            glm::vec4(obj->m_color, ppointlight->m_pointlightcomponent.lightIntensity);
+            floating_sequence4(obj->m_color, ppointlight->m_pointlightcomponent.lightIntensity);
 
          lightIndex += 1;
       }

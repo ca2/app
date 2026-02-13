@@ -16,7 +16,7 @@ namespace account
 
 
    class CLASS_DECL_AXIS department :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

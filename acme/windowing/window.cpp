@@ -9,11 +9,7 @@
 // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
 // // Merged from windowing_base to
 //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
-//
-
-//
-
-   //
+//   //
 // Created by camilo on 2023-10-06 <3ThomasBorregaardSorensen!!
 //
 // micro::window Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
@@ -81,6 +77,8 @@ namespace acme
 
          //m_uAcmeWindowingWindowFlags = 0;
 
+         m_lX11NativeVisualId = -1;
+
       }
 
 
@@ -115,13 +113,39 @@ namespace acme
       }
 
 
-      ::oswindow window::oswindow()
+      // ::oswindow window::oswindow()
+      // {
+      //
+      //
+      //    return nullptr;
+      //
+      // }
+
+
+      long window::__x11_Window()
       {
 
+         return 0;
+
+      }
+
+
+      void * window::__x11_Display()
+      {
 
          return nullptr;
 
       }
+
+
+      void * window::__win32_HWND()
+      {
+
+         return nullptr;
+
+      }
+
+
 
 
       ::windowing::enum_bias window::windowing_bias() const
@@ -227,7 +251,7 @@ namespace acme
          //m_pacmeuserinteractionOwner.release();
          __check_refdbg
 
-         m_pdisplay.release();
+         m_pacmewindowingdisplayWindow.release();
          __check_refdbg
 
 
@@ -687,10 +711,10 @@ namespace acme
 
       //   //::int_rectangle rectangle;
 
-      //   //rectangle.left() = 0;
-      //   //rectangle.top() = 0;
-      //   //rectangle.right() = m_rectangle.width();
-      //   //rectangle.bottom() = m_rectangle.height();
+      //   //rectangle.left = 0;
+      //   //rectangle.top = 0;
+      //   //rectangle.right = m_rectangle.width();
+      //   //rectangle.bottom = m_rectangle.height();
 
       //   //return rectangle;
 
@@ -1337,6 +1361,14 @@ namespace acme
       }
 
 
+   
+   ::particle * window::get_acme_window_bridge()
+   {
+      
+      return nullptr;
+      
+   }
+
       // void window::draw(device * pnanodevice)
       // {
       //
@@ -1973,6 +2005,45 @@ void window::on_control_box_zoom()
 
    //} // namespace windowing
    
+      void window::get_os_window_handle(void *p, int iSize) 
+      {
+         
+         throw ::interface_only();
+      
+      }
+
+
+   void window::on_gpu_context_render_frame(int w, int h)
+   
+   {
+      
+      if(::is_null(m_pgpucontextrenderframe))
+      {
+         
+         return;
+         
+         //throw ::exception(error_wrong_state);
+         
+      }
+      
+      m_pgpucontextrenderframe->on_gpu_context_render_frame(w, h);
+
+   }
+
+   
+   void window::_lock_window_gpu_context()
+   {
+      
+      
+   }
+   
+   
+    void  window::_unlock_window_gpu_context()
+   {
+       
+    
+    }
+
    
 
    } // namespace windowing
@@ -1982,3 +2053,19 @@ void window::on_control_box_zoom()
 
 
 
+
+CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pacmewindowingwindow)
+{
+
+   if (::is_null(pacmewindowingwindow))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pHWND = pacmewindowingwindow->__win32_HWND();
+
+   return pHWND;
+
+}

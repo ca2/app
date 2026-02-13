@@ -742,15 +742,7 @@
 //
 //
 //
-//
-//
-//
-//
 ////} // namespace file
-//
-//
-//
-//
 //
 //inline const_char_pointer FormatArgument(const ::file::path & value) noexcept
 //{

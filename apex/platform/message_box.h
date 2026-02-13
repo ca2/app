@@ -22,10 +22,6 @@
 //
 //
 //};
-//
-//
-//
-//
 //inline ::payload operator + (::payload payload, const ::user::enum_message_box& emessagebox)
 //{
 //
@@ -50,21 +46,13 @@
 //   return ::payload(str) + e;
 //
 //}
-//
-//
-//
-//
 //inline ::payload operator + (const ::scoped_string & scopedstr, const ::user::enum_message_box& emessagebox)
 //{
 //
 //   return ::payload(scopedstr) + emessagebox;
 //
 //}
-//
-//
-//
-//
-//CLASS_DECL_APEX void auto pmessagebox = __initialize_new ::message_box(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+//CLASS_DECL_APEX void auto pmessagebox = __initialize_new ::message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 pmessagebox->sync();
 //CLASS_DECL_APEX void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());

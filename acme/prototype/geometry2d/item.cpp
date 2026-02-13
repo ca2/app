@@ -152,7 +152,7 @@ namespace geometry2d
    //}
 
 
-   //::draw2d::enum_item rectangle_item::type() const 
+   //::draw2d::enum_item rectangle_item::platform::type() const 
    //{
    //   
    //   return ::draw2d::e_item_rectangle; 
@@ -188,15 +188,15 @@ namespace geometry2d
    //void rectangle_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
-   //   rectangle.left() = ::minimum(m_rectangle.left(), rectangle.left());
-   //   rectangle.top() = ::minimum(m_rectangle.top(), rectangle.top());
-   //   rectangle.right() = ::minimum(m_rectangle.right(), rectangle.right());
-   //   rectangle.bottom() = ::minimum(m_rectangle.bottom(), rectangle.bottom());
+   //   rectangle.left = ::minimum(m_rectangle.left, rectangle.left);
+   //   rectangle.top = ::minimum(m_rectangle.top, rectangle.top);
+   //   rectangle.right = ::minimum(m_rectangle.right, rectangle.right);
+   //   rectangle.bottom = ::minimum(m_rectangle.bottom, rectangle.bottom);
 
    //}
 
 
-   //::draw2d::enum_item ellipse_item::type() const 
+   //::draw2d::enum_item ellipse_item::platform::type() const 
    //{
    //   
    //   return ::draw2d::e_item_ellipse;
@@ -234,18 +234,18 @@ namespace geometry2d
 
    //   }
 
-   //   double x = p.x();
+   //   double x = p.x;
 
-   //   double y = p.y();
+   //   double y = p.y;
 
-   //   double Δx = x - center.x();
+   //   double Δx = x - center.x;
 
-   //   double Δy = y - center.y();
+   //   double Δy = y - center.y;
 
-   //   if (radius.cx() == radius.cy())
+   //   if (radius.cx == radius.cy)
    //   {
 
-   //      double r = radius.cx();
+   //      double r = radius.cx;
 
    //      double square_distance = (Δx * Δx) + (Δy * Δy);
 
@@ -257,7 +257,7 @@ namespace geometry2d
    //   else
    //   {
 
-   //      double normal_distance = ((Δx * Δx) / (radius.cx() * radius.cx()) + (Δy * Δy) / (radius.cx() * radius.cy()));
+   //      double normal_distance = ((Δx * Δx) / (radius.cx * radius.cx) + (Δy * Δy) / (radius.cx * radius.cy));
 
    //      return normal_distance <= 1.0;
 
@@ -269,15 +269,15 @@ namespace geometry2d
    //void ellipse_item::expand_bounding_box(::double_rectangle & rectangle)
    //{
 
-   //   ::expand_bounding_box(rectangle, m_ellipse);/* rectangleleft = ::minimum(m_rectangle.left(), rectangle.left());
-   //   rectangle.top() = ::minimum(m_rectangle.top(), rectangle.top());
-   //   rectangle.right() = ::minimum(m_rectangle.right(), rectangle.right());
-   //   rectangle.bottom() = ::minimum(m_rectangle.bottom(), rectangle.bottom());*/
+   //   ::expand_bounding_box(rectangle, m_ellipse);/* rectangleleft = ::minimum(m_rectangle.left, rectangle.left);
+   //   rectangle.top = ::minimum(m_rectangle.top, rectangle.top);
+   //   rectangle.right = ::minimum(m_rectangle.right, rectangle.right);
+   //   rectangle.bottom = ::minimum(m_rectangle.bottom, rectangle.bottom);*/
 
    //}
 
 
-   //::draw2d::enum_item arc_item::type() const
+   //::draw2d::enum_item arc_item::platform::type() const
    //{
    //   
    //   return ::draw2d::e_item_arc; 
@@ -316,10 +316,10 @@ namespace geometry2d
    //{
 
    //   ::expand_bounding_box(rectangle, m_arc);
-   //   //rectangle.left() = ::minimum(m_rectangle.left(), rectangle.left());
-   //   //rectangle.top() = ::minimum(m_rectangle.top(), rectangle.top());
-   //   //rectangle.right() = ::minimum(m_rectangle.right(), rectangle.right());
-   //   //rectangle.bottom() = ::minimum(m_rectangle.bottom(), rectangle.bottom());
+   //   //rectangle.left = ::minimum(m_rectangle.left, rectangle.left);
+   //   //rectangle.top = ::minimum(m_rectangle.top, rectangle.top);
+   //   //rectangle.right = ::minimum(m_rectangle.right, rectangle.right);
+   //   //rectangle.bottom = ::minimum(m_rectangle.bottom, rectangle.bottom);
 
    //}
 
@@ -393,7 +393,7 @@ namespace geometry2d
 
 
    
-   //::draw2d::enum_item poly_polygon_item::type() const 
+   //::draw2d::enum_item poly_polygon_item::platform::type() const 
    //{
    //   
    //   return ::draw2d::e_item_poly_polygon; 

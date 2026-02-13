@@ -119,7 +119,7 @@ namespace dynamic_source
 
       m_interfacea.clear();
          
-      m_phttpdsocket1.release();
+      m_phttpdsocket1 = nullptr;
 
       //m_pmanager2.release();
 

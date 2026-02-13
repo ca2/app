@@ -110,10 +110,6 @@ inline int_bool critical_section::Unlock()
 //   return m_iEvent;
 //}
 //
-//
-//
-//
-//
 ////template <class T >
 ////inline synch_index_iterator::synch_index_iterator(synch_ptr_array < T > & ptra,bool bInitialLock):
 ////   single_lock(&ptra.m_pmutex,true)
@@ -124,14 +120,6 @@ inline int_bool critical_section::Unlock()
 ////   init(&ptra.m_indexptra,bInitialLock);
 //
 ////}
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //template <typename T>
 //struct hold
@@ -330,10 +318,6 @@ inline int_bool critical_section::Unlock()
 //}
 //
 //
-//
-//
-//
-//
 ////inline thread_parameter::thread_parameter(const object * psimpleobject)
 ////{
 ////
@@ -342,10 +326,6 @@ inline int_bool critical_section::Unlock()
 ////   m_psimpleobject->increment_reference_count();
 ////
 ////}
-//
-//
-//
-//
 
 //
 //template < typename PRED >
@@ -371,10 +351,6 @@ inline int_bool critical_section::Unlock()
 //   return ::fork(::get_task(), pred);
 //
 //}
-//
-//
-//
-//
 //
 //template < typename PRED >
 //void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, enum_priority epriority)

@@ -140,10 +140,6 @@ namespace acme
 // #endif
 //
 //       //::pointer < ::draw2d::draw2d  >                          m_pdraw2d;
-//
-//
-//
-//
 //       ::pointer < ::datetime::datetime >                       m_pdatetime;
 //
 //       ::pointer<::particle>                                    m_pmutexUiDestroyed;
@@ -201,10 +197,6 @@ namespace acme
 //       ::pointer < ::factory::factory_item_interface >      m_pfactoryitemCompressZlib;
 //       ::pointer < ::factory::factory_item_interface >      m_pfactoryitemUncompressZlib;
 //       ::pointer < ::compress >                             m_pcompressZlibCrc32;
-//
-//
-//
-//
 
 
       system();
@@ -505,9 +497,9 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[typeid(e).name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
 //
-//      m_mapTextToEnum[typeid(e).name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
 //
 //   }
 
@@ -518,7 +510,7 @@ namespace acme
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[typeid(e).name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(long long)e];
 //
 //   }
 
@@ -531,7 +523,7 @@ namespace acme
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].lookup(scopedstr, iValue))
+//      if (m_mapTextToEnum[::type<e>().name()].lookup(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -872,7 +864,7 @@ namespace acme
 //       virtual string crypto_md5_text(const ::scoped_string & scopedstr) override;
 //
 //
-//       //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
+//       //virtual pointer< ::extended::future < ::conversation > > _message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok) override;
 //       //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override;
 //
 //
@@ -890,10 +882,6 @@ namespace acme
 //       //virtual bool destroy();
 //
 //       //virtual void destroy() override;
-//
-//
-//
-//
 //       //virtual bool verb();
 //
 //       //virtual void main_user_async(const ::procedure & procedure, ::enum_priority epriority = e_priority_normal) override;
@@ -912,10 +900,6 @@ namespace acme
 //
 //
 //       //virtual ::aura::session * query_session(::collection::index iEdge) override;
-//
-//
-//
-//
 //       //virtual string dir_appmatter_locator(::particle * pparticle);
 //
 //
@@ -1006,10 +990,6 @@ namespace acme
 //       //   return *m_pcompress;   // only usable from base.dll and dependants
 //
 //       //}
-//
-//
-//
-//
 //       //inline ::file::system_dir & dir() { return *m_spdir; }
 //       //inline ::file::system_file & file() { return *m_spfile; }
 //
@@ -1052,17 +1032,17 @@ namespace acme
 //
 //
 //       //template < class T >
-//       //::type * type_info()
+//       //::platform::type * type_info()
 //       //{
 //
-//       //   return get_type_info(typeid(T));
+//       //   return get_type_info(::type<T>());
 //
 //       //}
 //
 //
-//       //virtual ::type_atom * get_type_info(const ::std::type_info & info);
+//       //virtual ::platform::type * get_type_info(const ::std::type_info & info);
 //
-//       //::type * get_type_info(const ::atom & idType)
+//       //::platform::type * get_type_info(const ::atom & idType)
 //       //{
 //
 //       //   if(idType.is_empty())
@@ -1139,10 +1119,6 @@ namespace acme
 //
 //
 //       //virtual bool is_system() const override;
-//
-//
-//
-//
 //   /*    static inline ::atom atom(const ::std::type_info & info);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
@@ -1157,10 +1133,6 @@ namespace acme
 //       //virtual bool assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
 //
 //       //virtual bool on_assert_failed_line(const ::scoped_string & scopedstrFileName,int iLine) override;
-//
-//
-//
-//
 //
 //
 //       //virtual void initialize_log(const ::scoped_string & scopedstrId) override;
@@ -1218,10 +1190,6 @@ namespace acme
 // //virtual string get_system_platform() override;
 // //virtual string get_system_configuration() override;
 // //virtual string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
-//
-//
-//
-//
 // //#ifndef UNIVERSAL_WINDOWS
 //
 // //virtual void get_time(timeval * int_point) override;
@@ -1272,10 +1240,6 @@ namespace acme
 //
 //       //virtual ::windowing::window * impl_from_handle(void * posdata);
 //       //virtual ::user::interaction * ui_from_handle(void * posdata);
-//
-//
-//
-//
 //       //virtual void on_extra(string str) override;
 //
 //       //virtual string standalone_setting(string str) override;
@@ -1359,10 +1323,6 @@ namespace acme
 //
 //       //      virtual ::pointer<::handler>handler();
 //
-//
-//
-//
-//
 //       //virtual int main();
 //
 //       //virtual void on_allocation_error(const ::scoped_string & scopedstr, ::object* pobjectSometimes) override;
@@ -1407,14 +1367,6 @@ namespace acme
 //
 //
 // //      virtual bool wait_twf(class ::time tickTimeout = U32_INFINITE_TIMEOUT);
-//
-//
-//
-//
-//
-//
-//
-//
 //       virtual string get_host_location_url() override;
 //
 //       //      virtual void add_impact_library(::acme::library* plibrary);
@@ -1445,9 +1397,9 @@ namespace acme
 //       //virtual void hist_hist(const ::scoped_string & scopedstr) override;
 //
 //
-//       virtual ::type_atom get_pane_tab_impact_type_info();
-//       virtual ::type_atom get_simple_frame_window_type_info();
-//       //virtual ::type_atom get_simple_child_frame_type_info();
+//       virtual ::platform::type get_pane_tab_impact_type_info();
+//       virtual ::platform::type get_simple_frame_window_type_info();
+//       //virtual ::platform::type get_simple_child_frame_type_info();
 //
 //       //virtual void on_start_find_applications_from_cache() override;
 //       //virtual void on_end_find_applications_from_cache(stream& is) override;
@@ -1473,10 +1425,6 @@ namespace acme
 //       //virtual void term_system() override;
 //
 //       //virtual ::pointer<::aura::session>on_create_session() override;
-//
-//
-//
-//
 //       //virtual ::install::canvas * install_create_canvas() override;
 //       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
 //       //virtual int install_canvas_increment_mode() override;
@@ -1525,10 +1473,6 @@ namespace acme
 } // namespace platform
 
 
-//
-//
-//
-//
 ////CLASS_DECL_ACME string get_latest_deployment_number(const ::scoped_string & scopedstrBranch);
 //
 //inline ::platform::system* system()

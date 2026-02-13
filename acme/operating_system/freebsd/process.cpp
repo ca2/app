@@ -1,4 +1,12 @@
+// Added launch_process_detached on 2026-01-03 05:53 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+
+#include <iostream>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
 //#include "_linux.h"
 ////#include "acme/platform/app_core.h"
 //#include <sys/types.h>
@@ -22,10 +30,6 @@
 //   __UNREFERENCED_PARAMETER(scopedstrDll);
 //
 //}
-//
-//
-//
-//
 //int create_process(const ::scoped_string & scopedstrCommandLine, int * pprocessId)
 //{
 //
@@ -695,10 +699,6 @@
 //}
 //
 //
-//
-//
-//
-//
 //CLASS_DECL_ACME int ca2_main();
 //
 //
@@ -778,10 +778,6 @@
 //   return 1;
 //
 //}
-//
-//
-//
-//
 //CLASS_DECL_ACME ::file::path core_app_path(const ::scoped_string & scopedstrApp)
 //{
 //
@@ -814,3 +810,61 @@ void install_operating_system_default_signal_handlers()
 
 }
 
+
+
+int launch_process_detached(const ::file::path & pathExecutable)
+{
+
+//::string strPath(scopedstrPath);
+//}
+
+    char * app_path = strdup(pathExecutable);
+
+
+        //const char* app_path = "/path/to/your/application";
+
+        // Fork a new process
+        pid_t pid = fork();
+
+        if (pid == -1) {
+            ::error() << "Fork failed!";
+            return 1;
+        }
+
+        if (pid == 0) {
+            // In the child process
+
+            // Step 1: Create a new session and detach from the parent
+            if (setsid() == -1) {
+                ::error() << "Failed to create a new session!";
+                return 1;
+            }
+
+            // Step 2: Optionally, close the standard file descriptors
+            close(STDIN_FILENO);
+            close(STDOUT_FILENO);
+            close(STDERR_FILENO);
+
+            // Optionally redirect output to a log file or /dev/null
+            int dev_null = open("/dev/null", O_RDWR);
+            if (dev_null != -1) {
+                dup2(dev_null, STDOUT_FILENO);
+                dup2(dev_null, STDERR_FILENO);
+            }
+
+            // Step 3: Replace the child process with the executable
+            const char* args[] = { app_path, nullptr };
+            execv(app_path, (char* const*)args);
+
+            // If execv() fails, print an error
+            ::error() << "Exec failed!";
+            return 1;
+        } else {
+            // In the parent process: Child is detached
+            ::information() << "Application : \""<<app_path<<"\" launched in the background with PID: " << pid;
+        }
+
+
+return 0;
+
+}

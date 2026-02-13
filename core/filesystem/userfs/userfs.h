@@ -9,7 +9,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE userfs :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

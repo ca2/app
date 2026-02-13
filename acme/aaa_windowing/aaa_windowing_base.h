@@ -15,7 +15,7 @@ namespace windowing
 
 
    class CLASS_DECL_ACME windowing_base :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

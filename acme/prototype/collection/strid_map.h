@@ -3,7 +3,7 @@
 
 #include "acme/prototype/collection/string_map.h"
 
-//template < class PAYLOAD, typename ARG_VALUE = typename argument_of < PAYLOAD >::type  >
+//template < class PAYLOAD, typename ARG_VALUE = typename argument_of < PAYLOAD >::type >
 //using strid_map = atom_map_base < PAYLOAD,ARG_VALUE > ;
 
 template < class T >

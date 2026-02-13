@@ -134,6 +134,8 @@ public:
          bool                                            m_bIsPredicate : 1; // Is helper thread (as opposite to a "main" thread)
 #ifdef WINDOWS
          bool                                            m_bCoInitialize : 1;
+         bool                                            m_bCoInitialized : 1;
+         bool                                            m_bCoInitializeMultithreaded : 1;
 #endif
          bool                                            m_bMessageThread : 1;
          bool                                            m_bHandleRequest : 1;
@@ -165,7 +167,53 @@ public:
 
 
    class ::time                                    m_timeSample;
-
+   
+   class finishing :
+   virtual public ::particle
+   {
+   public:
+      
+      
+      
+      
+      
+      class ::time m_timeFinishing;
+      
+      finishing()
+      {
+         ping();
+      }
+      ~finishing()
+      {
+         
+      }
+      
+      bool has_finishing_timed_out(const class ::time & timeTimeout)
+      {
+         
+         if(m_timeFinishing.elapsed() > timeTimeout)
+         {
+          
+            return true;
+            
+         }
+         
+         return false;
+         
+      }
+   
+      void ping()
+      {
+         
+         m_timeFinishing.Now();
+         
+      }
+      
+   };
+   
+   ::pointer < finishing > m_pfinishing;
+   //bool m_bDetectedHasFinishingFlag = false;
+   
    //::pointer<::manual_reset_happening>                 m_pmanualresethappeningNewProcedurePosted;
 
    ::synchronization_array                         m_synchronizationaMainLoop;
@@ -188,7 +236,7 @@ public:
    //::pointer<manual_reset_happening>                   m_pmanualresethappeningHappening;
    ::comparable_array<e_happening>                 m_ehappeninga;
 
-
+   ::string_map < ::procedure >                    m_mapDoHappenings;
 #ifdef WINDOWS
    error_code                                      m_errorcodeHresultCoInitialize;
 #endif
@@ -251,6 +299,12 @@ public:
    
    //void update_new_main_loop_happening() override;
    //bool has_main_loop_happening() override;
+
+#ifdef WINDOWS
+
+   virtual bool _defer_co_initialize_ex(bool bMultiThread);
+
+#endif
 
    
    virtual void on_single_lock_lock(::subparticle *psubparticleSynchronization,
@@ -320,6 +374,8 @@ public:
    
    
    virtual ::locale * locale();
+   
+   virtual bool has_dependant_tasks() const;
 
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);

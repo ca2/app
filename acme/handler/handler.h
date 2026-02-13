@@ -1,4 +1,4 @@
-// From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
+// From event_handler to handler at prototype_subject on day after ThomasBirthday2021 05:05 BRT
 // From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 20:00 BRT
 //
@@ -55,11 +55,13 @@ namespace handler
       };
 
 
-      ::pointer < ::request >             m_prequestHandler;
+      ::pointer < ::request >       m_prequestHandler;
+       
+      ::pointer < ::request >       m_prequestHandling;
       
-      ::pointer < ::request >             m_prequestBeingAttended;
+      ::pointer < ::request >       m_prequestBeingAttended;
 
-      ::payload                           m_payloadFile;
+      ::payload                     m_payloadFile;
 
 
       handler();
@@ -94,10 +96,11 @@ namespace handler
       // ThomasBorregaardSorensen!! Like handlers
       //virtual void call(const enum_message, long long iData = 0, ::matter * pmatter = nullptr);
       //virtual void call(const enum_id, long long iData = 0, ::matter* pmatter = nullptr);
-      virtual void call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
+      ::lresult call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr) override;
 
 
       // ThomasBorregaardSorensen!! Like handlers
+      using ::matter::handle;
       virtual void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       virtual void handle(::message::message * pmessage);
       virtual void handle(::request * prequest);

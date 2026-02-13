@@ -133,7 +133,7 @@ namespace gpu
 
                   ////{
 
-                  ////   float x = (float) psession->get_cursor_position().x();
+                  ////   float x = (float) psession->get_cursor_position().x;
 
                   ////   float y = (float) psession->get_cursor_position().y();
 
@@ -257,7 +257,7 @@ namespace gpu
 
             //////{
 
-            //////   float x = (float) psession->get_cursor_position().x();
+            //////   float x = (float) psession->get_cursor_position().x;
 
             //////   float y = (float) psession->get_cursor_position().y();
 

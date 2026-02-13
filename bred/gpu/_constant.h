@@ -3,6 +3,12 @@
 
 namespace gpu
 {
+   enum enum_layout
+   {
+      e_layout_std140,
+      e_layout_std430,
+
+   };
 
 
    enum enum_type
@@ -21,6 +27,50 @@ namespace gpu
 
    };
 
+   enum enum_texture
+   {
+
+      e_texture_none,
+      e_texture_image = 1,
+      e_texture_depth = 2,
+      e_texture_depth_stencil = 3,
+      e_texture_cube_map = 4,
+
+   };
+
+
+   enum enum_texture_data
+   {
+
+      e_texture_data_none,
+      e_texture_data_image_array,
+      e_texture_data_file_path,
+      e_texture_data_raw_scoped_data,
+
+   };
+
+
+   
+      enum enum_texture_state
+   {
+
+      e_texture_state_none,
+      e_texture_state_shader_read,
+      e_texture_state_color_attachment,
+      e_texture_state_copy_target,
+      e_texture_state_copy_source,
+      e_texture_state_present,
+
+   };
+
+            enum enum_buffer_state
+      {
+
+         e_buffer_state_none,
+         e_buffer_state_vertex,
+         e_buffer_state_index,
+
+      };
 
 
    enum enum_shader_source
@@ -105,14 +155,14 @@ namespace gpu
    };
 
 
-   enum enum_renderable_type
-   {
+   //enum enum_renderable_type
+   //{
 
-      e_renderable_type_none,
-      e_renderable_type_wavefront_obj,
-      e_renderable_type_gltf
+   //   e_renderable_type_none,
+   //   e_renderable_type_wavefront_obj,
+   //   e_renderable_type_gltf
 
-   };
+   //};
 
 
    enum enum_renderable_usage
@@ -136,6 +186,15 @@ namespace gpu
    };
 
 
+   
+   enum enum_model
+   {
+
+      e_model_none,
+      e_model_wavefront,
+      e_model_gltf,
+
+   };
 
 } // namespace gpu
 

@@ -3,7 +3,7 @@
 // Created by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
 // Renamed to topic by camilo on 2021-02-04 18:05 <3ThomasBorregaardSorensen!!
 // From handler: on 2022-10-30 08:15 <3ThomasBorregaardSorensen!!
-//    From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
+//    From event_handler to handler at prototype_subject on day after ThomasBirthday2021 05:05 BRT
 //    From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 //    From aura by camilo on ThomasBirthday2021 20:00 BRT
 //
@@ -52,10 +52,6 @@ class trace_statement;
 //   {
 //
 //   }
-//
-//
-//
-//
 //};
 
 
@@ -112,8 +108,7 @@ public:
 
    particle(const ::particle & particle) :
       ::quantum(particle),
-      ::subparticle(particle),
-      ::signal_handler::base(particle)
+      ::subparticle(particle)
    {
 
 
@@ -121,8 +116,7 @@ public:
 
    particle(::particle&& particle) :
       ::quantum(::transfer(particle)),
-      ::subparticle(::transfer(particle)),
-      ::signal_handler::base(::transfer(particle))
+      ::subparticle(::transfer(particle))
    {
 
 
@@ -282,12 +276,7 @@ public:
    virtual void set_finish();
 
 
-   // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual void call_member(long long hi);
-   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
-   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
-   //void handle(::message::message * pmessage) override;
+
 
 
    virtual bool is_branch_current() const;
@@ -381,6 +370,32 @@ public:
    virtual void tracef(enum_trace_level etracelevel, const_char_pointer pszFormat, ...) const;
 
    virtual void formatf_trace(enum_trace_level etracelevel, const_char_pointer pszFormat, va_list & arguments) const;
+
+
+   template<typename... Args>
+   void print_line(std::format_string<Args...> fmt, Args&&... args) const
+   {
+
+      string str;
+
+      str.format(fmt, ::std::forward < Args >(args)...);
+
+      print_line(str);
+
+   }
+
+
+   template<typename... Args>
+   void err_line(std::format_string<Args...> fmt, Args&&... args) const
+   {
+
+      string str;
+
+      str.format(fmt, ::std::forward < Args >(args)...);
+
+      err_line(str);
+
+   }
 
    virtual void print_line(const ::scoped_string & scopedstr) const;
    virtual void print_out(const ::scoped_string & scopedstr) const;
@@ -500,6 +515,15 @@ public:
    //void route(::topic * ptopic, ::handler_context * phandlercontext) override;
    //void post_process(::topic * ptopic, ::handler_context * phandlercontext) override;
 
+   // <3TBS_!! handle -> call_member <3TBS_!!
+   virtual void call_member(long long hi);
+   // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
+   //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
+   //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
+   //void handle(::message::message * pmessage) override;
+   virtual ::lresult call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
+
+   virtual ::lresult call_id_topic(const ::enum_id & eid, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
 
 
 //   void run() override;
@@ -559,7 +583,7 @@ public:
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE>__call__create(::factory::factory * pfactory = nullptr);
 
-   ::pointer<subparticle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
+   //::pointer<subparticle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
    inline ::pointer<TYPE> __call__create_new();
@@ -702,6 +726,25 @@ public:
    inline sequence_continuation post(const ::procedure & procedure);
    inline sequence_continuation async();
    inline sequence_continuation post();
+
+
+   inline sequence_continuation handle(bool bSynchronously, const ::procedure & procedure)
+   {
+
+      if (bSynchronously)
+      {
+         
+         return send(procedure);
+
+      }
+      else
+      {
+
+         return post(procedure);
+
+      }
+
+   }
    
 
 
@@ -761,10 +804,18 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline void __call__id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory * pfactory = nullptr);
+   inline void __call__construct_by_type(::pointer<BASE_TYPE>& ptype, const ::platform::type & type, ::factory::factory * pfactory = nullptr);
 
-   template < typename TYPE >
-   inline ::pointer < TYPE > __call__id_create(const ::atom & atom, ::factory::factory * pfactory = nullptr);
+   virtual ::pointer<::particle> __call__create_by_type(const ::platform::type & type, ::factory::factory *pfactory = nullptr);
+
+   virtual ::pointer<::particle> __call__create_by_custom_id(const ::type_custom_id & typecustomid, ::factory::factory* pfactory = nullptr);
+
+   virtual ::pointer<::particle> __call__create_by_ipair(const ::type_iptr_pair & ipair, ::factory::factory* pfactory = nullptr);
+
+   //template < typename BASE_TYPE >
+   //inline void __call__construct_by_type_index(::pointer<BASE_TYPE>& ptype, const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
+
+   //virtual ::pointer < ::particle > __call__create_by_type_index(const ::std::type_index & typeindex, ::factory::factory* pfactory = nullptr);
 
    template < typename TYPE >
    inline void __call__construct_new(::pointer<TYPE>& ptype);
@@ -1330,27 +1381,27 @@ CLASS_DECL_ACME void fatal(const ::scoped_string& scopedstr);
 template <typename... Args>
 void debug(std::string_view fmt, Args&&... args)
 {
-   ::debug(format(fmt, std::make_format_args(args...)));
+   ::debug(::format(fmt, std::make_format_args(args...)));
 }
 template <typename... Args>
-void information(std::string_view fmt, Args&&... args)
+void information(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::information(format(fmt, std::make_format_args(args...)));
+   ::information(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
-void warning(std::string_view fmt, Args&&... args)
+void warning(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::warning(format(fmt, std::make_format_args(args...)));
+   ::warning(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
-void error(std::string_view fmt, Args&&... args)
+void error(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::error(format(fmt, std::make_format_args(args...)));
+   ::error(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 template <typename... Args>
-void fatal(std::string_view fmt, Args&&... args)
+void fatal(const std::format_string<Args...> fmt, Args&&... args)
 {
-   ::fatal(format(fmt, std::make_format_args(args...)));
+   ::fatal(::format<Args...>(fmt, std::forward<Args>(args)...));
 }
 
 
@@ -1390,7 +1441,7 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
 // };
 
 
-template < primitive_container CONTAINER >
+template < prototype_container CONTAINER >
 inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_pointer pszFileName, int nLine)
 {
 

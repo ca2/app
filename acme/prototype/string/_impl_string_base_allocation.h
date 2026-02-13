@@ -195,7 +195,7 @@ requires other_primitive_character < OTHER_CHARACTER, CHARACTER > :
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_character CHARACTER2 >
+template < prototype_character CHARACTER2 >
 string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHARACTER2 * start, const CHARACTER2 * end)
 {
 
@@ -205,7 +205,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE > ::assign(const CHA
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_character CHARACTER2 >
+template < prototype_character CHARACTER2 >
 inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(const CHARACTER2 * start, character_count len)
 {
 
@@ -217,7 +217,7 @@ inline ::string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(c
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_character SAME_SIZE_CHARACTER >
+template < prototype_character SAME_SIZE_CHARACTER >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const SAME_SIZE_CHARACTER * pszSource, character_count length)
 requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
 {
@@ -303,7 +303,7 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
    if (pdataThis)
    {
 
-      ::release_base_data(pdataThis);
+      ::base_data_defer_release(pdataThis);
 
    }
 
@@ -314,7 +314,7 @@ requires (sizeof(SAME_SIZE_CHARACTER) == sizeof(CHARACTER))
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_character OTHER_SIZE_CHARACTER >
+template < prototype_character OTHER_SIZE_CHARACTER >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::_assign(const OTHER_SIZE_CHARACTER * pszSource, character_count srclen)
 requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
 {
@@ -400,7 +400,7 @@ requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
    if (pdataThis)
    {
 
-      ::release_base_data(pdataThis);
+      ::base_data_defer_release(pdataThis);
 
    }
 
@@ -410,7 +410,7 @@ requires (sizeof(OTHER_SIZE_CHARACTER) != sizeof(CHARACTER))
 
 
 template < typename ITERATOR_TYPE >
-template < primitive_character CHARACTER2 >
+template < prototype_character CHARACTER2 >
 inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHARACTER2 chSrc, character_count repeat)
 {
 

@@ -4,9 +4,13 @@
 #include "mesh.h"
 
 
+class simple_list_data;
+
 namespace user
 {
 
+
+   class list_column_array;
 
    class CLASS_DECL_CORE list :
       virtual public mesh

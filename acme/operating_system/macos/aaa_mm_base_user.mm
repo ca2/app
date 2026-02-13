@@ -8,7 +8,7 @@
 #import "_mm.h"
 
 //
-//int_bool get_nswindow_rect(oswindow oswindow, LPRECT lprect);
+//int_bool get_nswindow_rect(::acme::windowing::window * pacmewindowingwindow, LPRECT lprect);
 //void copy(LPRECT lprectDst, const CGRect & rectSrc);
 //
 //
@@ -225,7 +225,7 @@
 ////}
 //
 //
-////int_bool get_nswindow_rect(oswindow oswindow, LPRECT lprect)
+////int_bool get_nswindow_rect(::acme::windowing::window * pacmewindowingwindow, LPRECT lprect)
 ////{
 ////
 ////   NSRect rect = [__nswindow(oswindow) frame];

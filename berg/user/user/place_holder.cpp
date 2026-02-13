@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   bool place_holder::on_add_child(::user::interaction * puserinteractionChild)
+   bool place_holder::on_add_child(::acme::user::interaction * pacmeuserinteractionChild)
    {
 
       //if (m_puserinteractionpointeraChild)
@@ -124,7 +124,7 @@ namespace user
 
       //}
 
-      auto bOk = ::user::interaction::on_add_child(puserinteractionChild);
+      auto bOk = ::user::interaction::on_add_child(pacmeuserinteractionChild);
 
       if(!bOk)
       {
@@ -132,6 +132,8 @@ namespace user
          return false;
 
       }
+      
+      ::cast < ::user::interaction > puserinteractionChild = pacmeuserinteractionChild;
 
       puserinteractionChild->m_bExtendOnParentHostingArea = true;
 
@@ -641,7 +643,7 @@ namespace user
 
       get_parent()->get_child_rect(rectangle);
 
-      offset(rectangle, -rectangle.left(), -rectangle.top());
+      offset(rectangle, -rectangle.left, -rectangle.top);
 
    }
 

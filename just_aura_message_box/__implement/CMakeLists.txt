@@ -39,7 +39,7 @@ list(APPEND executable_references
 #endif()
 
 
-if (MSVC)
+if(${WIN32})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")

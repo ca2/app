@@ -629,6 +629,38 @@ namespace platform
    }
 
 
+   string platform::arguments_from1(::collection::index iArgument) const
+   {
+
+      auto iCount1 = this->get_argument_count1();
+
+      string strArguments;
+
+      for (::collection::index i = iArgument; i < iCount1; i++)
+      {
+
+         auto strArgument = get_argument1(i);
+
+         if (strArgument.contains_any_character_in(" \t"))
+         {
+
+            strArgument.surround("\"", "\"");
+
+         }
+         
+         strArguments += " ";
+         
+         strArguments += strArgument;
+
+      }
+
+      strArguments.trim_left();
+
+      return strArguments;
+
+   }
+
+
    bool platform::has_argument(const ::scoped_string & scopedArgument) const
    {
 
@@ -701,12 +733,12 @@ namespace platform
 #endif
 
 
-   ::factory::factory * platform::get_factory(const ::atom & atomSource)
+   ::factory::factory * platform::get_factory(const ::atom & atomFactory)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      auto & pfactory = m_factorymap[atomSource];
+      auto & pfactory = m_factorymap[atomFactory];
 
       if (!pfactory)
       {
@@ -876,7 +908,15 @@ g_bWindowingOutputDebugString = true;
       //m_pfactory = øallocate ::factory::factory();
 
 
-      m_pfactory->InitHashTable(16381);
+      //m_pfactory->m_mapByRawNamePointer.InitHashTable(16381);
+
+      m_pfactory->m_mapByTypeName.InitHashTable(16381);
+
+      m_pfactory->m_mapByTypeIndex.InitHashTable(16381);
+
+      m_pfactory->m_mapByCustomNameId2.InitHashTable(16381);
+
+      m_pfactory->m_mapByCustomIpairId.InitHashTable(16381);
 
       //::acme::acme::g_pstaticstatic->m_pfactorya = ___new factory_array();
 
@@ -901,61 +941,153 @@ g_bWindowingOutputDebugString = true;
    }
 
 
-   ::pointer<::factory::factory_item_interface> & platform::get_factory_item(const ::atom & atom, const ::atom & atomSource)
+   // ::factory::factory_item_interface* platform::get_factory_item_by_type_index(const ::std::type_index & typeindex)
+   // {
+   //
+   //    critical_section_lock cs(&m_criticalsection);
+   //
+   //    return m_pfactory->get_factory_item_by_type_index(typeindex);
+   //
+   // }
+
+
+   // ::factory::factory_item_interface* platform::get_factory_item_by_custom_id(const ::type_custom_id & typecustomid)
+   // {
+   //
+   //    critical_section_lock cs(&m_criticalsection);
+   //
+   //    return m_pfactory->get_factory_item_by_custom_id(typecustomid);
+   //
+   // }
+
+
+   // ::factory::factory_item_interface * platform::get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory)
+   // {
+   //
+   //    critical_section_lock cs(&m_criticalsection);
+   //
+   //    if (atomFactory.is_empty())
+   //    {
+   //
+   //       return m_pfactory->get_factory_item_by_type_index(typeindex);
+   //
+   //    }
+   //
+   //    auto pfactory = get_factory(atomFactory);
+   //
+   //    return pfactory->get_factory_item_by_type_index(typeindex);
+   //
+   // }
+
+
+   // ::factory::factory_item_interface * platform::get_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::atom & atomFactory)
+   // {
+   //
+   //    critical_section_lock cs(&m_criticalsection);
+   //
+   //    if (atomFactory.is_empty())
+   //    {
+   //
+   //       return m_pfactory->get_factory_item_by_custom_id(typecustomid);
+   //
+   //    }
+   //
+   //    auto pfactory = get_factory(atomFactory);
+   //
+   //    return pfactory->get_factory_item_by_custom_id(typecustomid);
+   //
+   // }
+
+
+   ::factory::factory_item_interface * platform::find_factory_item(const ::platform::type & type, const ::atom & atomFactory)
    {
 
       critical_section_lock cs(&m_criticalsection);
 
-      return (*get_factory(atomSource))[atom];
-
-   }
-
-
-   bool platform::has_factory_item(const ::atom & atom)
-   {
-
-      critical_section_lock cs(&m_criticalsection);
-
-      auto iterator = m_pfactory->find(atom);
-
-      if (!iterator)
+      if (atomFactory.is_empty())
       {
 
-         return false;
+         return m_pfactory->_find_factory_item(type);
 
       }
 
-      if (!iterator->payload())
-      {
+      auto pfactory = get_factory(atomFactory);
 
-         return false;
-
-      }
-
-      return true;
+      return pfactory->_find_factory_item(type);
 
    }
 
 
+   // bool platform::has_factory_item_by_type_index(const ::std::type_index & typeindex)
+   // {
+   //
+   //    critical_section_lock cs(&m_criticalsection);
+   //
+   //    auto bHasFactoryItemByTypeIndex = m_pfactory->has_factory_item_by_type_index(typeindex);
+   //
+   //    return bHasFactoryItemByTypeIndex;
+   //
+   // }
 
-   void platform::set_factory(const ::atom & atom, const ::pointer<::factory::factory_item_interface> & pfactory)
+
+   // bool platform::has_factory_item_by_custom_id(const ::type_custom_id & typecustomid)
+   // {
+   //
+   //    critical_section_lock cs(&m_criticalsection);
+   //
+   //    auto bHasFactoryItemByCustomId = m_pfactory->has_factory_item_by_custom_id(typecustomid);
+   //
+   //    return bHasFactoryItemByCustomId;
+   //
+   // }
+
+
+   bool platform::has_factory_item(const ::platform::type & type)
    {
 
       critical_section_lock cs(&m_criticalsection);
 
-      m_pfactory->set_at(atom, pfactory);
+      auto bHasFactoryItem = m_pfactory->has_factory_item(type);
+
+      return bHasFactoryItem;
 
    }
 
 
-   void platform::set_factory_from(const ::atom & atom, const ::atom & atomSource, const ::pointer<::factory::factory_item_interface> & pfactory)
-   {
+   // void platform::set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
+   // {
+   //
+   //    m_pfactory->set_factory_item_by_type(type, pfactoryitem);
+   //
+   // }
 
-      critical_section_lock cs(&m_criticalsection);
 
-      get_factory(atomSource)->set_at(atom, pfactory);
+   // void platform::set_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::pointer<::factory::factory_item_interface>& pfactoryitem)
+   // {
+   //
+   //    m_pfactory->set_factory_item_by_custom_id(typecustomid, pfactoryitem);
+   //
+   // }
 
-   }
+
+   // void platform::set_factory_item_by_type_for_factory(const ::platform::type & type, const ::atom& atomFactory, const ::pointer<::factory::factory_item_interface>& pfactoryitem)
+   // {
+   //
+   //    auto pfactory = get_factory(atomFactory);
+   //
+   //    pfactory->set_factory_item_by_type(type, pfactoryitem);
+   //
+   // }
+
+
+   // void platform::set_factory_item_by_custom_id_for_factory(const ::type_custom_id & typecustomid, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem)
+   // {
+   //
+   //    auto pfactory = get_factory(atomFactory);
+   //
+   //    pfactory->set_factory_item_by_custom_id(typecustomid, pfactoryitem);
+   //
+   // }
 
 
    ::factory::factory_pointer & platform::factory()
@@ -964,8 +1096,6 @@ g_bWindowingOutputDebugString = true;
       return m_pfactory;
 
    }
-
-
 
 
    ::factory::factory_pointer & platform::factory(const ::scoped_string & scopedstrLibraryRequest)
@@ -1238,8 +1368,10 @@ g_bWindowingOutputDebugString = true;
 
          informationf("Library not found : \"%s\".\n", strLibrary.c_str());
 
+         return pfactory;
+
          //pfactory = (const ::extended::status&)plibrary;
-         throw ::exception(error_resource, scopedstrComponent + "_" + scopedstrImplementation + "_factory not found!!");
+//         throw ::exception(error_resource, scopedstrComponent + "_" + scopedstrImplementation + "_factory not found!!");
 
       }
 
@@ -1318,9 +1450,11 @@ g_bWindowingOutputDebugString = true;
    void platform::factory_terminate()
    {
 
+      m_pfactory->terminate();
+
       critical_section_lock synchronouslock(factory_critical_section());
 
-      m_pfactory->erase_all();
+      //m_pfactory->m_mapByRawNamePointer.erase_all();
 
       m_factorymap.erase_all();
 

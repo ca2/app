@@ -11,7 +11,7 @@ namespace collection
 {
 
 
-   template < primitive_array ARRAY >
+   template < prototype_array ARRAY >
    void swap_quick_sort(ARRAY & a, const ::function< void(index, index) > & swap)
    {
 
@@ -161,7 +161,7 @@ namespace collection
    }
 
 
-   template < primitive_array ARRAY, primitive_array INDEX_ARRAY >
+   template < prototype_array ARRAY, prototype_array INDEX_ARRAY >
    void case_insensitive_get_quick_sort(ARRAY & a, INDEX_ARRAY & ia)
    {
 

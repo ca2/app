@@ -7,10 +7,6 @@
 //
 #pragma once
 
-
-//
-
-
 struct integral_nanosecond;
 struct integral_microsecond;
 struct integral_millisecond;

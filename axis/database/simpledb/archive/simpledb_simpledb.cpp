@@ -7,7 +7,7 @@ namespace simpledb
 
    simpledb::simpledb(::particle * pparticle) :
       ::object(pparticle),
-      ::acme::department(pparticle)
+      ::platform::department(pparticle)
    {
 
       m_pserver         = nullptr;

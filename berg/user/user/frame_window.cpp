@@ -38,6 +38,7 @@
 #include "berg/user/user/place_holder.h"
 #include "berg/platform/application.h"
 #include "berg/platform/session.h"
+#include "berg/user/simple/toolbar.h"
 
 
 namespace user
@@ -590,7 +591,7 @@ namespace user
 
                   //estatus = 
                   
-                  pimage2->create({ 300, rectangle.size().cy() * 300 / rectangle.size().cx() });
+                  pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
 
                   //if (!estatus)
                   //{
@@ -847,7 +848,7 @@ namespace user
       __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
       throw ::interface_only();
-      /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
+      /*   ::acme::windowing::window * pacmewindowingwindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
       ::windowing::window * pwindow = interaction_impl::FromHandlePermanent(oswindow);
@@ -979,7 +980,7 @@ namespace user
       if (pusersystem != nullptr)
       {
 
-         if (pusersystem->m_typeatomNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
+         if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
             auto pinteraction = pusersystem->create_impact(this, FIRST_PANE);
@@ -987,7 +988,7 @@ namespace user
             if(!pinteraction)
             {
 
-               warning() <<"the impact wasn't created: " << pusersystem->m_typeatomNewImpact.as_string();
+               warning() << "the impact wasn't created: " << pusersystem->m_typeNewImpact;
 
             }
 
@@ -1121,7 +1122,7 @@ namespace user
       __UNREFERENCED_PARAMETER(puiParent);
 
       // only do this once
-      //   ASSERT_VALID_IDR(nIDResource);
+      //   ASSERT_OK_IDR(nIDResource);
       //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
 
       m_strMatterHelp = scopedstrMatter;    // ID for help context (+HID_BASE_RESOURCE)
@@ -1432,7 +1433,7 @@ namespace user
 //      return false;
 
       // only do this once
-      //   ASSERT_VALID_IDR(nIDResource);
+      //   ASSERT_OK_IDR(nIDResource);
       //   ASSERT(m_nIDHelp == 0 || m_nIDHelp == nIDResource);
 
       /*m_nIDHelp = pszMatter;    // ID for help context (+HID_BASE_RESOURCE)
@@ -1514,7 +1515,7 @@ namespace user
 
       }
 
-      //   oswindow oswindow = get_handle();
+      //   ::acme::windowing::window * pacmewindowingwindow = get_handle();
       //   unsigned int uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       //   bool bChild =  uStyle & WS_CHILD;
 
@@ -2006,7 +2007,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
    {
 
       try
@@ -2017,7 +2018,7 @@ namespace user
          if (bCreate && !ptoolbartransport)
          {
 
-            ptoolbartransport = create_toolbar(idToolbar, scopedstrToolbarParam, dwCtrlStyle, uStyle, "simple_toolbar");
+            ptoolbartransport = create_toolbar(idToolbar, scopedstrToolbarParam, dwCtrlStyle, uStyle, ::type < simple_toolbar>());
 
             add_control_bar(ptoolbartransport);
 
@@ -2083,10 +2084,10 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::type_atom & typeatom)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
    {
 
-      ::pointer < toolbar> ptoolbar = øid_create (typeatom);
+      ::pointer < toolbar> ptoolbar = øcreate_by_type (type);
 
       ptoolbar->m_dwStyle = uStyle;
 
@@ -2568,7 +2569,7 @@ namespace user
 
       }
 
-      ::string strType(::type(this).name());
+      ::string strType(::platform::type(this).name());
       // reposition all the child windows (regardless of ID)
       //if (GetStyle() & FWS_SNAPTOBARS)
       if(m_bSnapToBars)
@@ -2871,8 +2872,8 @@ namespace user
    void frame_window::common_construct()
    {
 
-      m_sizeMinimum.cx() = 0;
-      m_sizeMinimum.cy() = 0;
+      m_sizeMinimum.cx = 0;
+      m_sizeMinimum.cy = 0;
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
       m_nIDTracking = 0;
@@ -2988,7 +2989,7 @@ namespace user
 //
 //      bool bUpdateWindow;
 //
-//      auto type = ::type(this);
+//      auto type = ::platform::type(this);
 //
 //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {
@@ -3120,7 +3121,7 @@ namespace user
       if(pstyle)
       {
 
-         ::get_task()->payload("debug") = 123;
+         //::get_task()->payload("debug") = 123;
 
          if (pstyle->_001OnDrawMainFrameBackground(pgraphics, this))
          {

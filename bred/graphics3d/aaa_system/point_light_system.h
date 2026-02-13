@@ -2,7 +2,7 @@
 
 
 #include "bred/graphics3d/properties.h"
-#include <glm/glm.hpp>
+
 
 
 namespace graphics3d
@@ -11,8 +11,8 @@ namespace graphics3d
 
 
    //struct PointLightPushConstants {
-   //   glm::vec4 position{};
-   //   glm::vec4 color{};
+   //   floating_sequence4 position{};
+   //   floating_sequence4 color{};
    //   float radius;
    //};
 
@@ -40,7 +40,7 @@ namespace graphics3d
    //      "projection", ::gpu::e_type_mat4,
    //      "view", ::gpu::e_type_mat4,
    //      "inverseVew", ::gpu::e_type_mat4,
-   //      "vec4", ::gpu::e_type_seq4,
+   //      "floating_sequence4", ::gpu::e_type_seq4,
 
    //   };
 
@@ -70,7 +70,7 @@ namespace graphics3d
       virtual void render(::graphics3d::scene * pscene);
       virtual void update(::graphics3d::scene* pscene);
 
-      //void createPipelineLayout(VkDescriptorSetLayout globalSetLayout);
+      //void createPipelineLayout(aaaVkDescriptorSetLayout globalSetLayout);
       //void createPipeline(VkRenderPass renderPass);
 
       virtual void prepare();

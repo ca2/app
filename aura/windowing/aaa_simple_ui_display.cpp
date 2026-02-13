@@ -248,9 +248,9 @@ namespace windowing
 //      if (a.width > 0 && a.height > 0)
 //      {
 //
-//         m_size.cx() = a.width;
+//         m_size.cx = a.width;
 //
-//         m_size.cy() = a.height;
+//         m_size.cy = a.height;
 //
 //      }
 //
@@ -330,7 +330,7 @@ namespace windowing
 //
 //            const char *buf = "Test";
 //
-//            XftDrawRect(m_pdraw, &m_colorBack, 0, 0, m_size.cx(), m_size.cy());
+//            XftDrawRect(m_pdraw, &m_colorBack, 0, 0, m_size.cx, m_size.cy);
 //
 //         }
 //
@@ -354,7 +354,7 @@ namespace windowing
 //
 //            }
 //
-//            int right = m_size.cx() - m_iMarginRight;
+//            int right = m_size.cx - m_iMarginRight;
 //
 //            XftColor colorFore;
 //            XftColor colorBack;
@@ -369,10 +369,10 @@ namespace windowing
 //
 //               ::int_rectangle &rButtonOuter = pbutton->m_rectangle;
 //
-//               rButtonOuter.right() = right;
-//               rButtonOuter.left() = right - m_iButtonWidth;
-//               rButtonOuter.top() = m_iButtonTop;
-//               rButtonOuter.bottom() = m_iButtonTop + m_iButtonHeight;
+//               rButtonOuter.right = right;
+//               rButtonOuter.left = right - m_iButtonWidth;
+//               rButtonOuter.top = m_iButtonTop;
+//               rButtonOuter.bottom = m_iButtonTop + m_iButtonHeight;
 //
 //               ::int_rectangle rButton = rButtonOuter;
 //
@@ -439,33 +439,33 @@ namespace windowing
 //               {
 //
 //                  rButtonOuter.inflate(3);
-//                  XftDrawRect(m_pdraw, &m_colorBorderHover3, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//                  XftDrawRect(m_pdraw, &m_colorBorderHover3, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                              rButtonOuter.height());
 //                  rButtonOuter.deflate(1);
-//                  XftDrawRect(m_pdraw, &m_colorBorderHover2, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//                  XftDrawRect(m_pdraw, &m_colorBorderHover2, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                              rButtonOuter.height());
 //                  rButtonOuter.deflate(1);
-//                  XftDrawRect(m_pdraw, &m_colorBorderHover1, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//                  XftDrawRect(m_pdraw, &m_colorBorderHover1, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                              rButtonOuter.height());
 //                  rButtonOuter.deflate(1);
 //
 //               }
 //
-//               XftDrawRect(m_pdraw, &colorBorder, rButtonOuter.left(), rButtonOuter.top(), rButtonOuter.width(),
+//               XftDrawRect(m_pdraw, &colorBorder, rButtonOuter.left, rButtonOuter.top, rButtonOuter.width(),
 //                           rButtonOuter.height());
 //
-//               XftDrawRect(m_pdraw, &colorBack, rButton.left(), rButton.top(), rButton.width(), rButton.height());
+//               XftDrawRect(m_pdraw, &colorBack, rButton.left, rButton.top, rButton.width(), rButton.height());
 //
 //               ::int_rectangle rectangleText(rButton);
 //
 //               rectangleText.deflate(m_iButtonHPadding, m_iButtonVPadding);
 //
 //               XftDrawStringUtf8(m_pdraw, &colorFore, m_pfont,
-//                                 rectangleText.left() + (rectangleText.width() - rText.width) / 2,
-//                                 rectangleText.top() + m_iTextAscent,
+//                                 rectangleText.left + (rectangleText.width() - rText.width) / 2,
+//                                 rectangleText.top + m_iTextAscent,
 //                                 (FcChar8 *) pbutton->m_strLabel.c_str(), pbutton->m_strLabel.length());
 //
-//               right = rButton.left() - m_iButtonHSpacing;
+//               right = rButton.left - m_iButtonHSpacing;
 //
 //            }
 //
@@ -582,9 +582,9 @@ namespace windowing
 //
 //            XMapWindow(pdisplay, m_window);
 //
-//            XResizeWindow(pdisplay, m_window, m_size.cx(), m_size.cy());
+//            XResizeWindow(pdisplay, m_window, m_size.cx, m_size.cy);
 //
-//            XMoveWindow(pdisplay, m_window, m_point.x(), m_point.y());
+//            XMoveWindow(pdisplay, m_window, m_point.x, m_point.y);
 //
 //            hook();
 //
@@ -629,11 +629,11 @@ namespace windowing
 //
 //         XftTextExtentsUtf8(pdisplay, m_pfont, (FcChar8 *) strMeasure.c_str(), strMeasure.length(), &info);
 //
-//         sizeLine.cx() = maximum(sizeLine.cx(), info.x() + info.width - infoDummy.width);
+//         sizeLine.cx = maximum(sizeLine.cx, info.x + info.width - infoDummy.width);
 //
-//         m_iTextAscent = maximum(m_iTextAscent, info.y());
+//         m_iTextAscent = maximum(m_iTextAscent, info.y);
 //
-//         sizeLine.cy() = maximum(sizeLine.cy(), info.height);
+//         sizeLine.cy = maximum(sizeLine.cy, info.height);
 //
 //      }
 //
@@ -661,37 +661,37 @@ namespace windowing
 //
 //         iMaxButtonTextWidth = maximum(iMaxButtonTextWidth, infoText.width);
 //
-//         m_iTextAscent = maximum(m_iTextAscent, info.y());
+//         m_iTextAscent = maximum(m_iTextAscent, info.y);
 //
-//         sizeLine.cy() = maximum(sizeLine.cy(), infoText.height);
+//         sizeLine.cy = maximum(sizeLine.cy, infoText.height);
 //
 //      }
 //
 //      m_iButtonWidth = m_iButtonHPadding + iMaxButtonTextWidth + m_iButtonHPadding;
 //
-//      m_iLineHeight = sizeLine.cy();
+//      m_iLineHeight = sizeLine.cy;
 //
 //      m_iButtonHeight = m_iButtonVPadding + m_iLineHeight + m_iButtonVPadding;
 //
 //      ::int_size sizeTotal;
 //
-//      sizeTotal.cx() = maximum(m_iMarginLeft + sizeLine.cx() + m_iMarginRight,
+//      sizeTotal.cx = maximum(m_iMarginLeft + sizeLine.cx + m_iMarginRight,
 //                         m_iMarginLeft + m_iButtonWidth * m_buttona.get_count() +
 //                         (m_iButtonHSpacing) * (m_buttona.get_count() - 1) + m_iMarginRight);
 //
-//      sizeTotal.cy() = m_iMarginTop;
+//      sizeTotal.cy = m_iMarginTop;
 //
-//      sizeTotal.cy() += m_iLineHeight * m_stra.get_count();
+//      sizeTotal.cy += m_iLineHeight * m_stra.get_count();
 //
-//      sizeTotal.cy() += m_iLineSpacing * (m_stra.get_count() - 1);
+//      sizeTotal.cy += m_iLineSpacing * (m_stra.get_count() - 1);
 //
-//      sizeTotal.cy() += m_iMidSpacing;
+//      sizeTotal.cy += m_iMidSpacing;
 //
-//      m_iButtonTop = sizeTotal.cy();
+//      m_iButtonTop = sizeTotal.cy;
 //
-//      sizeTotal.cy() += m_iButtonHeight;
+//      sizeTotal.cy += m_iButtonHeight;
 //
-//      sizeTotal.cy() += m_iMarginBottom;
+//      sizeTotal.cy += m_iMarginBottom;
 //
 //      int iButtonWidth = 100;
 //
@@ -724,13 +724,13 @@ namespace windowing
 //
 //      }
 //
-//      m_point.x() = xScreen;
+//      m_point.x = xScreen;
 //
-//      m_point.y() = yScreen;
+//      m_point.y = yScreen;
 //
-//      m_point.x() += (cxScreen - m_size.cx()) / 2;
+//      m_point.x += (cxScreen - m_size.cx) / 2;
 //
-//      m_point.y() += (cyScreen - m_size.cy()) / 3;
+//      m_point.y += (cyScreen - m_size.cy) / 3;
 
    }
 
@@ -752,7 +752,7 @@ namespace windowing
 //         else if (e.type == MotionNotify)
 //         {
 //
-//            ::int_point point(e.xmotion.x(), e.xmotion.y());
+//            ::int_point point(e.xmotion.x, e.xmotion.y);
 //
 //            bool bRedraw = false;
 //
@@ -783,7 +783,7 @@ namespace windowing
 //         else if (e.type == ButtonPress)
 //         {
 //
-//            ::int_point point(e.xbutton.x(), e.xbutton.y());
+//            ::int_point point(e.xbutton.x, e.xbutton.y);
 //
 //            bool bRedraw = false;
 //
@@ -814,7 +814,7 @@ namespace windowing
 //         else if (e.type == ButtonRelease)
 //         {
 //
-//            ::int_point point(e.xbutton.x(), e.xbutton.y());
+//            ::int_point point(e.xbutton.x, e.xbutton.y);
 //
 //            bool bRedraw = false;
 //

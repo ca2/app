@@ -64,7 +64,7 @@
 //   {
 //
 //      glBindTexture(GL_TEXTURE_2D, m_gluTexture);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //
 //   }
 //
@@ -73,7 +73,7 @@
 //   {
 //
 //      glBindTexture(GL_TEXTURE_2D, 0);
-//      GLCheckError("");
+//      ::opengl::check_error("");
 //
 //   }
 //

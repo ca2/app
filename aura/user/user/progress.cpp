@@ -57,7 +57,7 @@ namespace user
 
       rectangle.deflate(1, 1);
 
-      rectangle.right() = (int) (rectangle.width() * m_dRate + rectangle.left());
+      rectangle.right = (int) (rectangle.width() * m_dRate + rectangle.left);
 
       pgraphics->fill_rectangle(rectangle, argb(255, 100, 220,180));
 

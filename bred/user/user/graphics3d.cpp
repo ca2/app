@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "graphics3d.h"
 #include "acme/exception/interface_only.h"
+#include "bred/gpu/block.h"
 #include "bred/gpu/context.h"
 #include "bred/gpu/frame.h"
 #include "bred/graphics3d/asset_manager.h"
@@ -12,6 +13,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
 #include "acme/platform/session.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/context.h"
@@ -76,7 +78,7 @@ namespace user
    void graphics3d::on_message_key_down(::message::message* pmessage)
    {
 
-      auto pkey = pmessage->m_union.m_pkey;
+      //auto pkey = pmessage->m_union.m_pkey;
 
       pmessage->m_bRet = true;
 
@@ -86,7 +88,7 @@ namespace user
    void graphics3d::on_message_key_up(::message::message* pmessage)
    {
 
-      auto pkey = pmessage->m_union.m_pkey;
+      //auto pkey = pmessage->m_union.m_pkey;
 
       pmessage->m_bRet = true;
 
@@ -182,7 +184,6 @@ namespace user
    void graphics3d::on_load_engine()
    {
 
-
       auto pgpucontextEngine = m_pengine->gpu_context();
 
       pgpucontextEngine->m_pengine = m_pengine;
@@ -202,6 +203,10 @@ namespace user
       m_pengine->m_pimmersionlayer->m_pscene = psceneMain;
 
       psceneMain->m_pgpucontext = pgpucontextEngine;
+
+      //auto pblockGlobalUbo1 = psceneMain->global_ubo1(pgpucontextEngine);
+
+      //pblockGlobalUbo1->create_gpu_block(pgpucontextEngine);
 
       //psceneMain->generateIbl();
 
@@ -245,6 +250,23 @@ namespace user
    void graphics3d::on_message_left_button_down(::message::message* pmessage)
    {
 
+      auto pengine = m_pengine;
+
+      if (::is_null(pengine))
+      {
+
+         return;
+
+      }
+
+      auto pinput = pengine->m_pinput;
+
+      if (::is_null(pinput))
+      {
+
+         return;
+
+      }
       auto pmouse = pmessage->m_union.m_pmouse;
 
       pmessage->m_bRet = true;
@@ -253,10 +275,10 @@ namespace user
 
       host_to_client()(point);
 
-      auto &mousestate = m_pengine->m_pinput->m_mousestate;
+      auto &mousestate = pinput->m_mousestate;
 
-      mousestate.m_position.x = (float) point.x();
-      mousestate.m_position.y = (float) point.y();
+      mousestate.m_position.x = (float) point.x;
+      mousestate.m_position.y = (float) point.y;
       mousestate.m_buttons.left = true;
 
       set_mouse_capture();
@@ -277,8 +299,8 @@ namespace user
 
       host_to_client()(point);
 
-      m_pengine->m_pinput->m_mousestate.m_position.x = (float) point.x();
-      m_pengine->m_pinput->m_mousestate.m_position.y = (float) point.y();
+      m_pengine->m_pinput->m_mousestate.m_position.x = (float) point.x;
+      m_pengine->m_pinput->m_mousestate.m_position.y = (float) point.y;
       m_pengine->m_pinput->m_mousestate.m_buttons.left = false;
 
       
@@ -338,6 +360,111 @@ namespace user
    }
 
 
+   void graphics3d::draw_gpu_statistics(::draw2d::graphics_pointer& pgraphics)
+   {
+
+      auto rectangleX = this->rectangle();
+
+      if (rectangleX.is_empty())
+      {
+
+         return;
+         
+      }
+
+      {
+
+         //::color::color color_dk(dk_red());
+
+#ifdef DEBUG_WORK
+
+         ::int_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
+
+         pgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
+
+#endif
+
+         pgraphics->set_text_color(::color::white);
+
+         auto psystem = system();
+
+         auto pnode = psystem->draw2d();
+
+         auto pwritetext = pnode->write_text();
+
+         auto fontsize = ::write_text::font_size(48.0 * rectangleX.height() / 1'080, e_unit_pixel);
+         
+         if(!m_pfontThomasBS_)
+         {
+            
+            m_pfontThomasBS_ = pwritetext->font("Fira Code", fontsize);
+            
+         }
+
+         pgraphics->set(m_pfontThomasBS_);
+
+         pgraphics->set_text_rendering_hint(write_text::e_rendering_anti_alias);
+
+         pgraphics->set_alpha_mode(draw2d::e_alpha_mode_blend);
+
+         string_array &stra = m_straLineStats;
+
+         //bool bWhite = true;
+
+         //double x = 0.;
+
+         double y = 0.;
+
+         ::int_point point;
+
+         string strText;
+
+         m_iFrameCounter++;
+
+         strText.formatf("øçåJErDgTBS__!!; %d", m_iFrameCounter);
+
+         stra.ø(0) = strText;
+
+         auto size = pgraphics->get_text_extent(strText);
+
+         m_fpscounter.update();
+
+         ::string strFps;
+
+         strFps.format("FPS {:.1f}", m_fpscounter.getAverageFps());
+
+         stra.ø(1) = strFps;
+
+         ::string strFrameTime;
+
+         strFrameTime.format("Frame Time: {:.1f}ms", m_fpscounter.getAverageFrameTime());
+
+         stra.ø(2) = strFrameTime;
+
+         //bool bFixedPosition = true;
+
+         point = {10, 10};
+
+         //::color::color color;
+
+         //auto opacity = ::opacity(200);
+
+         for (auto &strItem: stra)
+         {
+
+            y += size.cy;
+
+            pgraphics->text_out(point.x, point.y + y, strItem);
+            
+         }
+
+         pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      }
+
+   }
+
+
    void graphics3d::_001OnNcClip(::draw2d::graphics_pointer& pgraphics)
    {
 
@@ -363,6 +490,7 @@ namespace user
 
 
    void graphics3d::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
+   //void graphics3d::_000OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
       if (!m_pengine)
@@ -395,8 +523,8 @@ namespace user
 
             //double_rectangle r;
 
-            //r.left() = 400.0;
-            //r.top() = 200.0;
+            //r.left = 400.0;
+            //r.top = 200.0;
             //r.set_size(50.0, 50.0);
 
             //pgraphics->fill_solid_rectangle(r, argb(1.0, 0.5, 0.75, 0.95));

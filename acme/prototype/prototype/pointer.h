@@ -34,10 +34,6 @@ inline long long increment_reference_count(c_derived * pca);
 class subparticle;
 
 // ::ca::null_class back link to operational system oswindow.h
-//
-//
-//
-//
 // operational system nullptr/void itself to a windowing service
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
@@ -191,6 +187,13 @@ public:
 
    }
 
+   /// consumes a referer
+   template < class T2 >
+   inline pointer(const ::cast<T2>& p) :
+      pointer(p.m_p)
+   {
+
+   }
 
    inline bool operator !() const
    {
@@ -364,7 +367,7 @@ public:
    //template < typename OTHER >
    //inline pointer & operator -=(::pointer<OTHER>& p) { m_p->release(p); return *this; }
 
-   //inline static const_char_pointer ::type(this).name();
+   //inline static const_char_pointer ::platform::type(this).name();
 
    inline T* operator ->() { return m_p; }
    inline T* operator ->() const { return m_p; }
@@ -401,6 +404,8 @@ public:
    template < class T2 >
    inline pointer & operator = (::pointer<T2> && t);
 
+   template < class T2 >
+   inline pointer& operator = (const ::cast<T2>& t);
 
    template < typename T2 >
    inline pointer < T2 > defer_get_new(::particle* pparticle);
@@ -459,7 +464,7 @@ public:
 
 
    //template < class T2 >
-   //inline pointer& operator = (const ::primitive::composite < T2 >& composite)
+   //inline pointer& operator = (const ::prototype::composite < T2 >& composite)
    //{
 
    //   return operator = (composite.get());
@@ -468,7 +473,7 @@ public:
 
 
    //template < class T2 >
-   //inline pointer& operator = (const ::primitive::reference < T2 >& reference)
+   //inline pointer& operator = (const ::prototype::reference < T2 >& reference)
    //{
 
    //   return operator = (reference.get());
@@ -991,10 +996,6 @@ template < typename T, typename ...Args >
 //
 //
 //
-//
-//
-//
-//
 //template < typename TYPE >
 //ptr < TYPE > & ptr < TYPE >::operator =(const ::pointer < TYPE > & p)
 //{
@@ -1407,8 +1408,8 @@ concept pointer_derived = requires(POINTER  p) {
 };
 
 template < typename POINTER >
-concept primitive_subparticle_pointer = 
-::std::is_base_of_v < ::subparticle, ::erase_pointer < POINTER > > 
+concept prototype_subparticle_pointer = 
+::std::is_base_of_v < ::subparticle, ::non_pointer < POINTER > > 
 || pointer_derived<POINTER>;
 
 
@@ -1417,7 +1418,7 @@ using subparticle_pointer = ::pointer < ::subparticle >;
 class time;
 
 template < typename RUNNABLE >
-concept primitive_runnable = requires(RUNNABLE r) {
+concept prototype_runnable = requires(RUNNABLE r) {
    
    { r() } ->::std::convertible_to<void>;
 #if defined(MS_COMPILER)
@@ -1428,7 +1429,7 @@ concept primitive_runnable = requires(RUNNABLE r) {
 };
 
 
-template < primitive_subparticle SUBPARTICLE >
+template < prototype_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > as_pointer(SUBPARTICLE* p)
 {
 
@@ -1437,7 +1438,7 @@ template < primitive_subparticle SUBPARTICLE >
 }
 
 
-template < primitive_subparticle SUBPARTICLE >
+template < prototype_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > as_pointer(const ::pointer < SUBPARTICLE > & p)
 {
 
@@ -1446,7 +1447,7 @@ template < primitive_subparticle SUBPARTICLE >
 }
 
 
-template < primitive_subparticle SUBPARTICLE >
+template < prototype_subparticle SUBPARTICLE >
 ::pointer < SUBPARTICLE > transfer_as_pointer(SUBPARTICLE* p)
 {
 
@@ -1496,7 +1497,7 @@ public:
 #endif
 
 
-   template < primitive_subparticle SUBPARTICLE >
+   template < prototype_subparticle SUBPARTICLE >
    ::pointer < SUBPARTICLE > operator << (SUBPARTICLE* p)
    { 
 
@@ -1523,7 +1524,7 @@ public:
    
    }
 
-   template < primitive_subparticle SUBPARTICLE >
+   template < prototype_subparticle SUBPARTICLE >
    ::pointer < SUBPARTICLE > operator += (SUBPARTICLE* p)
    {
       

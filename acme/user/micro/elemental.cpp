@@ -248,13 +248,13 @@ namespace micro
 
             //auto r = pelemental->get_rectangle();
 
-            //pmicrodevice->translate(r.left(), r.top());
+            //pmicrodevice->translate(r.left, r.top);
 
             //pelemental->draw_background(pmicrodevice);
 
             //pelemental->draw_foreground(pmicrodevice);
 
-            //pmicrodevice->translate(-r.left(), -r.top());
+            //pmicrodevice->translate(-r.left, -r.top);
 
          }
 
@@ -275,13 +275,13 @@ namespace micro
 
       auto r = pelemental->get_rectangle();
 
-      pmicrodevice->translate(r.left(), r.top());
+      pmicrodevice->translate(r.left, r.top);
 
       pelemental->draw_background(pmicrodevice);
 
       pelemental->draw_foreground(pmicrodevice);
 
-      pmicrodevice->translate(-r.left(), -r.top());
+      pmicrodevice->translate(-r.left, -r.top);
 
    }
 
@@ -293,9 +293,9 @@ namespace micro
 
       auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
-      m_rectangle.right() = m_rectangle.left() + size.cx();
+      m_rectangle.right = m_rectangle.left + size.cx;
 
-      m_rectangle.bottom() = m_rectangle.top() + size.cy();
+      m_rectangle.bottom = m_rectangle.top + size.cy;
 
    }
 
@@ -773,13 +773,7 @@ namespace micro
    void elemental::add_child(::micro::elemental * pelementalChild)
    {
 
-      pelementalChild->m_pacmeuserinteractionParent = this;
-
-      ødefer_construct_new(m_pacmeuserinteractionaChildren);
-
-      __refdbg_add_referer
-
-         m_pacmeuserinteractionaChildren->add(pelementalChild);
+      on_add_child(pelementalChild);
 
    }
 
@@ -1642,7 +1636,7 @@ namespace micro
    ::micro::elemental * elemental::micro_parent()
    {
 
-      return m_pacmeuserinteractionParent.cast<::micro::elemental>();
+      return m_pacmeuserinteractionParent.raw_cast<::micro::elemental>();
 
    }
 
@@ -2222,7 +2216,7 @@ namespace micro
    ::trace_statement & elemental::raw_trace_statement_prefix(::trace_statement & statement) const
    {
 
-      ::string strType = ::type(this).name();
+      ::string strType = ::platform::type(this).name();
 
       statement << strType;
 

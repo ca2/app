@@ -5,24 +5,24 @@
 
 #include "acme/filesystem/file/byte2_stream.h"
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline byte2_stream &  operator >> (byte2_stream & stream, size_type < NUMBER > &size)
 {
 
-   stream >> size.cx();
-   stream >> size.cy();
+   stream >> size.cx;
+   stream >> size.cy;
 
    return stream;
 
 }
 
 
-template < primitive_number NUMBER >
+template < prototype_number NUMBER >
 inline byte2_stream &  operator << (byte2_stream & stream, const size_type < NUMBER > &size)
 {
 
-   stream << size.cx();
-   stream << size.cy();
+   stream << size.cx;
+   stream << size.cy;
 
    return stream;
 

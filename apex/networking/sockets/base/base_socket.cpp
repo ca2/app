@@ -375,7 +375,7 @@ namespace sockets
 
       m_psocketthread.release();
 
-      m_transferprogressfunction.clear();
+      m_transferprogressfunction.release();
 
       ::object::destroy();
 

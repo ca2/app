@@ -458,7 +458,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 
    auto pmessagemessage = øallocate::message::message();
 
-   pmessagemessage->m_oswindow = pmessage->m_oswindow;
+   pmessagemessage->m_pacmewindowingwindow = pmessage->m_pacmewindowingwindow;
    pmessagemessage->m_eusermessage = pmessage->m_eusermessage;
    pmessagemessage->m_wparam = pmessage->m_wparam;
    pmessagemessage->m_lparam = pmessage->m_lparam;

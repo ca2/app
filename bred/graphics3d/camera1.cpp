@@ -5,9 +5,9 @@
 #include "engine.h"
 #include "aura/platform/application.h"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+
+
+
 #include <cmath> 
 // std
 #include <cassert>
@@ -34,16 +34,16 @@ namespace graphics3d
    }
 
 
-   void camera::initialize_camera(glm::vec3 position, float yaw, float pitch)
+   void camera::initialize_camera(const ::floating_sequence3 & position, float yaw, float pitch)
    {
       
       m_locationPosition = position;
 
-      m_fYaw = yaw;
+      m_angleYaw = yaw;
 
-      m_fPitch = pitch;
+      m_anglePitch = pitch;
 
-      m_poleWorldUp = { 0.0f, 1.0f, 0.0f };
+      //m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
 
       m_fZoom = 75.0f;
 
@@ -54,18 +54,18 @@ namespace graphics3d
    }
 
 
-   void camera::initialize_camera(glm::vec3 target, glm::vec3 camera)
+   void camera::initialize_camera(floating_sequence3 target, floating_sequence3 camera)
    {
 
       m_locationPosition = camera;
 
       auto direction = glm::normalize(target - camera);
 
-      m_fYaw = atan2(direction.z, direction.x);
+      m_angleYaw = atan2(direction.z, direction.x);
 
-      m_fPitch = asin(direction.y);
+      m_anglePitch = asin(direction.y);
 
-      m_poleWorldUp = { 0.0f, 1.0f, 0.0f };
+      //m_sequence3WorldUp = { 0.0f, 1.0f, 0.0f };
       
       m_fZoom = glm::radians(75.0f);
       
@@ -83,13 +83,13 @@ namespace graphics3d
       xoffset *= sensitivity;
       yoffset *= sensitivity;
 
-      m_fYaw += xoffset;
-      m_fPitch += yoffset;
+      m_angleYaw += xoffset;
+      m_anglePitch += yoffset;
 
       if (constrainPitch) 
       {
          
-         m_fPitch = minimum_maximum(m_fPitch, glm::radians(-89.0f), glm::radians(89.0f));
+         m_anglePitch = minimum_maximum(m_anglePitch, glm::radians(-89.0f), glm::radians(89.0f));
 
       }
 
@@ -104,13 +104,13 @@ namespace graphics3d
       auto velocity = m_fMovementSpeed * deltaTime;  // Use movement speed
 
       if (direction == FORWARD)
-         m_locationPosition += m_poleFront * velocity;
+         m_locationPosition += m_sequence3Front * velocity;
       if (direction == BACKWARD)
-         m_locationPosition -= m_poleFront * velocity;
+         m_locationPosition -= m_sequence3Front * velocity;
       if (direction == LEFT)
-         m_locationPosition -= m_poleRight * velocity;
+         m_locationPosition -= m_sequence3Right * velocity;
       if (direction == RIGHT)
-         m_locationPosition += m_poleRight * velocity;
+         m_locationPosition += m_sequence3Right * velocity;
 
    }
 
@@ -119,7 +119,7 @@ namespace graphics3d
       float left, float right, float top, float bottom, float fNear, float fFar) 
    {
 
-      m_matrixProjection = glm::mat4{ 1.0f };
+      m_matrixProjection = floating_matrix4{ 1.0f };
       m_matrixProjection[0][0] = 2.f / (right - left);
       m_matrixProjection[1][1] = 2.f / (bottom - top);
       m_matrixProjection[2][2] = 1.f / (fFar - fNear);
@@ -149,7 +149,7 @@ namespace graphics3d
 
       /*assert(glm::abs(aspect - std::numeric_limits<float>::epsilon()) > 0.0f);
       const float tanHalfFovy = tan(fovy / 2.f);
-      m_matrixProjection = glm::mat4{ 0.0f };
+      m_matrixProjection = floating_matrix4{ 0.0f };
       m_matrixProjection[0][0] = 1.f / (aspect * tanHalfFovy);
       m_matrixProjection[1][1] = 1.f / (tanHalfFovy);
       m_matrixProjection[2][2] = fFar / (fFar - fNear);
@@ -159,14 +159,14 @@ namespace graphics3d
    }
 
 
-   void camera::setViewDirection(glm::vec3 position, glm::vec3 direction, glm::vec3 up) 
+   void camera::setViewDirection(const ::floating_sequence3 & position, const ::floating_sequence3 & direction, const ::floating_sequence3 & up) 
    {
 
-      const glm::vec3 w{ glm::normalize(direction) };
-      const glm::vec3 u{ glm::normalize(glm::cross(w, up)) };
-      const glm::vec3 v{ glm::cross(w, u) };
+      const floating_sequence3 w{ glm::normalize(direction) };
+      const floating_sequence3 u{ glm::normalize(glm::cross(w, up)) };
+      const floating_sequence3 v{ glm::cross(w, u) };
 
-      m_matrixImpact = glm::mat4{ 1.f };
+      m_matrixImpact = floating_matrix4{ 1.f };
       m_matrixImpact[0][0] = u.x;
       m_matrixImpact[1][0] = u.y;
       m_matrixImpact[2][0] = u.z;
@@ -179,7 +179,7 @@ namespace graphics3d
       m_matrixImpact[3][0] = -glm::dot(u, position);
       m_matrixImpact[3][1] = -glm::dot(v, position);
       m_matrixImpact[3][2] = -glm::dot(w, position);
-      m_matrixAntImpact = glm::mat4{ 1.f };
+      m_matrixAntImpact = floating_matrix4{ 1.f };
       m_matrixAntImpact[0][0] = u.x;
       m_matrixAntImpact[0][1] = u.y;
       m_matrixAntImpact[0][2] = u.z;
@@ -196,7 +196,7 @@ namespace graphics3d
    }
 
    
-   void camera::setViewTarget(glm::vec3 position, glm::vec3 target, glm::vec3 up) 
+   void camera::setViewTarget(const ::floating_sequence3 & position, const ::floating_sequence3 & target, const ::floating_sequence3 & up) 
    {
 
       setViewDirection(position, target - position, up);
@@ -204,14 +204,14 @@ namespace graphics3d
    }
 
 
-   //void camera::setViewYXZ(glm::vec3 position, glm::vec3 rotation) 
+   //void camera::setViewYXZ(const ::floating_sequence3 & position, floating_sequence3 rotation) 
    //{
 
    //   m_locationPosition = position;
 
-   //   m_fPitch = rotation.x;
+   //   m_anglePitch = rotation.x;
 
-   //   m_fYaw = rotation.y;
+   //   m_angleYaw = rotation.y;
 
    //   UpdateCameraVectors();
 
@@ -226,15 +226,15 @@ namespace graphics3d
    {
 
       // Calculate the new front vector based on yaw and pitch
-      glm::vec3 front;
-      front.x = cos(m_fPitch) * cos(m_fYaw);
-      front.y = sin(m_fPitch);
-      front.z = cos(m_fPitch) * sin(m_fYaw);
-      this->m_poleFront = glm::normalize(front);
+      floating_sequence3 front;
+      front.x = cos(m_anglePitch) * cos(m_angleYaw);
+      front.y = sin(m_anglePitch);
+      front.z = cos(m_anglePitch) * sin(m_angleYaw);
+      this->m_sequence3Front = glm::normalize(front);
 
       // Re-calculate the right and up vector
-      this->m_poleRight = glm::normalize(glm::cross(this->m_poleFront, m_poleWorldUp));
-      this->m_poleUp = glm::normalize(glm::cross(this->m_poleRight, this->m_poleFront));
+      this->m_sequence3Right = glm::normalize(glm::cross(this->m_sequence3Front, m_sequence3WorldUp));
+      this->m_sequence3Up = glm::normalize(glm::cross(this->m_sequence3Right, this->m_sequence3Front));
 
    }
 
@@ -258,23 +258,23 @@ namespace graphics3d
 
 
    // Get the view matrix
-   glm::mat4 camera::GetViewMatrix() const
+   floating_matrix4 camera::GetViewMatrix() const
    {
 
       //if (m_pengine->m_fYScale < 0.f)
       //{
-      //   return glm::lookAtRH(m_locationPosition, m_locationPosition + m_poleFront, m_poleUp);
+      //   return glm::lookAtRH(m_locationPosition, m_locationPosition + m_sequence3Front, m_sequence3Up);
       //}
       //else
       {
-         return glm::lookAt(m_locationPosition, m_locationPosition + m_poleFront, m_poleUp);
+         return glm::lookAt(m_locationPosition, m_locationPosition + m_sequence3Front, m_sequence3Up);
 
       }
 
    }
 
    // Get the camera position
-   glm::vec3 camera::GetPosition() const
+   floating_sequence3 camera::GetPosition() const
    {
 
       return m_locationPosition;
@@ -294,16 +294,16 @@ namespace graphics3d
       const float teleportDistance = 0.40f; // Set teleport distance to 50 units
 
       if (direction == FORWARD) {
-         m_locationPosition += m_poleFront * teleportDistance;
+         m_locationPosition += m_sequence3Front * teleportDistance;
       }
       else if (direction == BACKWARD) {
-         m_locationPosition -= m_poleFront * teleportDistance;
+         m_locationPosition -= m_sequence3Front * teleportDistance;
       }
       else if (direction == LEFT) {
-         m_locationPosition -= m_poleRight * teleportDistance;
+         m_locationPosition -= m_sequence3Right * teleportDistance;
       }
       else if (direction == RIGHT) {
-         m_locationPosition += m_poleRight * teleportDistance;
+         m_locationPosition += m_sequence3Right * teleportDistance;
       }
    }
 

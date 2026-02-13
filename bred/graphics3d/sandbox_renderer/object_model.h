@@ -5,13 +5,13 @@
 //#include "SceneFoundry/graphics3d/renderer_i.h"
 #include "bred/gpu/types.h"
 // libs
-#define GLM_FORCE_RADIANS	
-#define GLM_FORCE_DEPTH_ZERO_TO_ONE
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/hash.hpp>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+	
+
+
+
+
+
+
 
 // std
 //#include <memory>
@@ -46,10 +46,10 @@ namespace graphics3d
       ::pointer < ::gpu::model_buffer > m_pmodelbuffer;
 
       struct Vertex {
-         glm::vec3 position{};
-         glm::vec3 color{};
-         glm::vec3 normal{};
-         glm::vec2 uv{};
+         floating_sequence3 position{};
+         floating_sequence3 color{};
+         floating_sequence3 normal{};
+         floating_sequence2 uv{};
 
          //static ::array_base<VkVertexInputBindingDescription> getBindingDescriptions();
          //static ::array_base<VkVertexInputAttributeDescription> getAttributeDescriptions();
@@ -62,7 +62,7 @@ namespace graphics3d
       };
 
       struct SkyboxVertex {
-         glm::vec3 position;
+         floating_sequence3 position;
          //static ::array_base<VkVertexInputBindingDescription>   getBindingDescriptions();
          //static ::array_base<VkVertexInputAttributeDescription> getAttributeDescriptions();
       };
@@ -70,7 +70,7 @@ namespace graphics3d
          uint32_t      firstIndex;
          uint32_t      indexCount;
          int           textureIndex; // index into textures[]
-         glm::mat4     modelMatrix;
+         floating_matrix4     modelMatrix;
       };
       struct Builder {
          ::array_base<Vertex> vertexes{};

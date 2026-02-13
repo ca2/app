@@ -31,7 +31,7 @@ namespace sandbox_windowing
 
 //
 //      ::pointer<::sandbox_windowing::window>         m_pwindowKeyboardFocus;
-//      ::pointer<::sandbox_windowing::window>         m_pwindowMouseCapture;
+//      ::pointer<::sandbox_windowing::window>         m_pacmewindowingwindowMouseCapture;
 //      ::pointer<::sandbox_windowing::window>         m_pwindowActive;
 //
 //
@@ -58,7 +58,7 @@ namespace sandbox_windowing
 
       void finalize_windowing() override;
 
-      void defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
+      ::particle * defer_initialize_host_window(const ::int_rectangle* lpcrect) override;
 
       ::acme::windowing::window* get_application_host_window() override;
 
@@ -75,7 +75,7 @@ namespace sandbox_windowing
 //
       void erase_window(::windowing::window* pwindow) override;
 
-      ::acme::windowing::window* window(oswindow oswindow) override;
+      //::acme::windowing::window* window(::acme::windowing::window * pacmewindowingwindow) override;
 
       virtual void _message_handler(void* p) override;
 

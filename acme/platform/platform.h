@@ -279,6 +279,8 @@ namespace platform
 
       string get_argument1(::collection::index iArgument) const;
 
+      string arguments_from1(::collection::index iArgument) const;
+
       bool has_argument(const ::scoped_string & scopedArgument) const;
 
       inline ::collection::count get_argument_count1() const { return _get_argc() - 1; }
@@ -319,28 +321,39 @@ namespace platform
       virtual ::string component_factory_implementation_name(const ::scoped_string & scopedstrComponent);
 
 
-      ::pointer<::factory::factory_item_interface> & get_factory_item(const ::atom & atom, const ::atom & atomSource);
+      //::factory::factory_item_interface* get_factory_item_by_type_index(const ::std::type_index & typeindex);
+      //::factory::factory_item_interface* get_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
+      ::factory::factory_item_interface* find_factory_item(const ::platform::type & type);
 
 
-      bool has_factory_item(const ::atom & atom);
+      //::factory::factory_item_interface * get_factory_item_by_type_index(const ::std::type_index & typeindex, const ::atom & atomFactory);
+      //::factory::factory_item_interface * get_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::atom & atomFactory);
+      ::factory::factory_item_interface * find_factory_item(const ::platform::type & type, const ::atom & atomFactory);
 
 
-      void set_factory(const ::atom & atom, const ::pointer<::factory::factory_item_interface> & pfactory);
+      //bool has_factory_item_by_type_index(const ::std::type_index & typeindex);
+      //bool has_factory_item_by_custom_id(const ::type_custom_id & typecustomid);
+      bool has_factory_item(const ::platform::type & type);
 
 
-      void set_factory_from(const ::atom & atom, const ::atom & atomSource, const ::pointer<::factory::factory_item_interface> & pfactory);
+      //void set_factory_item_by_type(const ::platform::type & type, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      //void set_factory_item_by_custom_id(const ::type_custom_id & typecustomid, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
 
 
-      template < typename TYPE, typename BASE >
-      void add_factory_item(const ::atom & atom)
-      {
-
-         set_factory(atom, øallocate ::factory::factory_item < TYPE, BASE > ());
-
-      }
+      //void set_factory_item_by_type_for_factory(const ::platform::type & type, const ::atom & atomFactory, const ::pointer<::factory::factory_item_interface> & pfactoryitem);
+      //void set_factory_item_by_custom_id_for_factory(const ::type_custom_id & typecustomid, const ::atom& atomFactory, const ::pointer<::factory::factory_item_interface>& pfactoryitem);
 
 
-      ::factory::factory * get_factory(const ::atom & atomSource);
+      //template < typename TYPE, typename BASE >
+      //void add_factory_item_by_custom_id(const ::type_custom_id & typecustomid)
+      //{
+         
+      //   set_factory_item_by_custom_id(typecustomid, øallocate ::factory::factory_item < TYPE, BASE > ());
+
+      //}
+
+
+      ::factory::factory * get_factory(const ::atom & atomFactory);
 
 
 

@@ -9,7 +9,7 @@ namespace innate_ui
 {
 
    class CLASS_DECL_APEX innate_ui :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

@@ -1721,7 +1721,7 @@
     <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\keyboard.cpp" />
     <ClCompile Include="user\user\keyboard_layout.cpp" />
-    <ClCompile Include="user\user\primitive_impl.cpp" />
+    <ClCompile Include="user\user\prototype_impl.cpp" />
     <ClCompile Include="user\user\interaction_prodevian.cpp" />
     <ClCompile Include="user\user\interaction_thread.cpp" />
     <ClCompile Include="user\user\item.cpp" />
@@ -2653,7 +2653,7 @@
     <ClInclude Include="primitive\primitive\object.h" />
     <ClInclude Include="primitive\primitive\pointer.h" />
     <ClInclude Include="primitive\primitive\pointer2.h" />
-    <ClInclude Include="primitive\primitive\primitive_update.h" />
+    <ClInclude Include="primitive\primitive\prototype_update.h" />
     <ClInclude Include="primitive\primitive\promise.h" />
     <ClInclude Include="primitive\primitive\property.h" />
     <ClInclude Include="primitive\primitive\::property_set.h" />
@@ -2840,7 +2840,7 @@
     <ClInclude Include="user\user\interaction_impl.h" />
     <ClInclude Include="user\user\keyboard.h" />
     <ClInclude Include="user\user\keyboard_layout.h" />
-    <ClInclude Include="user\user\primitive_impl.h" />
+    <ClInclude Include="user\user\prototype_impl.h" />
     <ClInclude Include="user\user\interaction_prodevian.h" />
     <ClInclude Include="user\user\interaction_thread.h" />
     <ClInclude Include="user\user\item.h" />

@@ -13,7 +13,7 @@ inline STRING & string_concatenate(STRING & strResult, const typename STRING::CH
 #include "acme/prototype/prototype/natural_pointer.h"
 
 
-// template < primitive_character CHARACTER >
+// template < prototype_character CHARACTER >
 // class string_heap_data :
 //    public heap_data < CHARACTER >
 // {

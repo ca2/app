@@ -20,7 +20,7 @@ namespace draw2d
       unsigned int                         itemID;
       unsigned int                         itemAction;
       int                           itemState;
-      oswindow                      oswindowItem;
+      ::acme::windowing::window * m_pacmewindowingwindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;
       ::int_rectangle               rcItem;
       uptr                          itemData;

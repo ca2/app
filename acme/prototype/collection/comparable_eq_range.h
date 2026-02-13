@@ -40,13 +40,13 @@
 //   comparable_eq_range(const RANGE &range) : BASE_RANGE(range) {}
 //   template<typed_range<const_iterator> RANGE>
 //   comparable_eq_range(const RANGE &range) : BASE_RANGE(range) {}
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   comparable_eq_range(const_iterator begin, INTEGRAL count) : BASE_RANGE(begin, count) {}
 //   comparable_eq_range(const_iterator begin, const_iterator end) : BASE_RANGE(begin, end) {}
 //   comparable_eq_range(const_iterator begin) : BASE_RANGE(begin, find_first_null_character(begin)) {}
 //
 //
-//   //template < primitive_range RANGE >
+//   //template < prototype_range RANGE >
 //   //comparable_eq_range & operator = (const RANGE & range) { BASE_RANGE::operator=(range); return *this; }
 //   comparable_eq_range & operator = (const comparable_eq_range & range) { BASE_RANGE::operator=(range); return *this; }
 //   comparable_eq_range & operator = (comparable_eq_range && range) { BASE_RANGE::operator=(::transfer(range)); return *this; }
@@ -109,10 +109,6 @@
 //      return this->equals_start_count(range, start, count, ::comparison::comparison < ITEM >());
 //
 //   }
-//
-//
-//
-//
 //   using BASE_RANGE::_find;
 //
 //   constexpr const_iterator _find(const CONST_RAW_RANGE & range) const
@@ -461,10 +457,6 @@
 //      return this->skip_start_count(item, start, count, ::comparison::comparison < ITEM >());
 //
 //   }
-//
-//
-//
-//
 //   using BASE_RANGE::_rear_find_item;
 //
 //   constexpr const_iterator _rear_find_item(const ITEM & item) const

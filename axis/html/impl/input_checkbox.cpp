@@ -187,7 +187,7 @@ namespace html
          //m_pcheckbox->window_rectangle(rectangleWindow);
   //       ::int_point pointPreviousContextOrg = pgraphics->get_origin();
 
-    //     pgraphics->offset_origin((int) m_box.left(), (int) m_box.top());
+    //     pgraphics->offset_origin((int) m_box.left, (int) m_box.top);
 
          m_pcheckbox->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 

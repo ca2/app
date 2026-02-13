@@ -465,7 +465,7 @@ namespace apex
       void dump_command_line_and_environment_variables_to_file() override;
 
 
-      //void system_id_update(long long iUpdate, long long iPayload) override;
+      //void system_id_topic(int iId, long long llWparam, long long llLparam) override;
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 

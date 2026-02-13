@@ -282,12 +282,12 @@ namespace app_shader
                   
                   auto pointCursor = m_puserinteraction->mouse_cursor_position();
                   
-                  float x = (float)pointCursor.x();
+                  float x = (float)pointCursor.x;
                   
-                  float y = (float)pointCursor.y();
+                  float y = (float)pointCursor.y;
                   
-                  m_pgpushader->set_seq2("mouse", x, y);
-                  m_pgpushader->set_seq2("iMouse", x, y);
+                  m_pgpushader->set_sequence2("mouse", x, y);
+                  m_pgpushader->set_sequence2("iMouse", x, y);
                   
                }
                
@@ -297,8 +297,8 @@ namespace app_shader
                   
                   float cy = (float)m_pgpucontext->m_pcpubuffer->m_pimagetarget->m_pimage->height();
                   
-                  m_pgpushader->set_seq2("resolution", cx, cy);
-                  m_pgpushader->set_seq2("iResolution", cx, cy);
+                  m_pgpushader->set_sequence2("resolution", cx, cy);
+                  m_pgpushader->set_sequence2("iResolution", cx, cy);
                   
                }
                
@@ -335,8 +335,8 @@ namespace app_shader
       ::int_rectangle rectangle;
 
 
-      //rectangle.left() = rectangle.right() - 48;
-      //rectangle.top() = rectangle.bottom() - 48;
+      //rectangle.left = rectangle.right - 48;
+      //rectangle.top = rectangle.bottom - 48;
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

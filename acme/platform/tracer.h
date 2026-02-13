@@ -101,7 +101,7 @@ public:
 ////   tracer & operator << (const floating_hour & time) { return format(time); }
 ////   tracer & operator << (const floating_day & time) { return format(time); }
 //   
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   tracer & operator << (const INTEGRAL integral) { return operator << (::as_string(integral)); }
 //
 //

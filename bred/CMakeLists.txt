@@ -13,6 +13,10 @@ list(APPEND library_source
    #gpu/aaa_end_draw.cpp
    #gpu/aaa_end_draw.h
    #gpu/aaaa_gpu.h
+   gpu/binding.cpp
+   gpu/binding.h
+   gpu/block.cpp
+   gpu/block.h
    gpu/bred_approach.cpp
    gpu/bred_approach.h
    gpu/command_buffer.cpp
@@ -31,6 +35,8 @@ list(APPEND library_source
    gpu/device.h
    gpu/draw2d.cpp
    gpu/draw2d.h
+   gpu/empty_texture_source.cpp
+   gpu/empty_texture_source.h
    gpu/frame.cpp
    gpu/frame.h
    gpu/frame_ephemeral.cpp
@@ -49,6 +55,8 @@ list(APPEND library_source
    gpu/memory_buffer.h
    gpu/model_buffer.cpp
    gpu/model_buffer.h
+   gpu/model_data.cpp
+   gpu/model_data.h
    gpu/object.cpp
    gpu/object.h
    gpu/pixmap.cpp
@@ -77,22 +85,22 @@ list(APPEND library_source
    gpu/texture.h
    gpu/types.cpp
    gpu/types.h
-   graphics3d/render_systems/gltf_render_system.cpp
-   graphics3d/render_systems/gltf_render_system.h
-   graphics3d/render_systems/point_light_render_system.cpp
-   graphics3d/render_systems/point_light_render_system.h
-   graphics3d/render_systems/scene_render_system.cpp
-   graphics3d/render_systems/scene_render_system.h
-   graphics3d/render_systems/skybox_ibl_render_system.cpp
-   graphics3d/render_systems/skybox_ibl_render_system.h
-   graphics3d/render_systems/skybox_render_system.cpp
-   graphics3d/render_systems/skybox_render_system.h
-   graphics3d/render_systems/wavefront_obj_render_system.cpp
-   graphics3d/render_systems/wavefront_obj_render_system.h
+   graphics3d/render_system/point_light_render_system.cpp
+   graphics3d/render_system/point_light_render_system.h
+   #graphics3d/render_systems/gltf_render_system.cpp
+   #graphics3d/render_systems/gltf_render_system.h
+   graphics3d/render_system/pbr_with_ibl_render_system_base.cpp
+   graphics3d/render_system/pbr_with_ibl_render_system_base.h
+   #graphics3d/render_systems/scene_render_system.cpp
+   #graphics3d/render_systems/scene_render_system.h
+   graphics3d/render_system/skybox_render_system.cpp
+   graphics3d/render_system/skybox_render_system.h
+   graphics3d/render_system/wavefront_obj_render_system.cpp
+   graphics3d/render_system/wavefront_obj_render_system.h
    graphics3d/_.h
    graphics3d/_constant.h
    graphics3d/_sandbox_interfaces.h
-   graphics3d/_types.h
+   #graphics3d/_types.h
    graphics3d/aaa_frame_info.h
    graphics3d/aaa_model.h
    graphics3d/aaa_transform_component.h
@@ -108,7 +116,11 @@ list(APPEND library_source
    graphics3d/immersion_layer.cpp
    graphics3d/immersion_layer.h
    graphics3d/game_object.h
-   graphics3d/model.h
+   #graphics3d/global_ubo.cpp
+   #graphics3d/global_ubo.h
+   graphics3d/global_ubo1.cpp
+   graphics3d/global_ubo1.h
+   #graphics3d/model.h
    graphics3d/provider.h
    graphics3d/render_system.cpp
    graphics3d/render_system.h
@@ -144,8 +156,8 @@ list(APPEND library_source
    graphics3d/input.h
    graphics3d/key_map.cpp
    graphics3d/key_map.h
-   graphics3d/model.cpp
-   graphics3d/model.h
+   #graphics3d/model.cpp
+   #graphics3d/model.h
    graphics3d/scene_object.cpp
    graphics3d/scene_object.h
    graphics3d/scene_renderable.cpp
@@ -154,6 +166,9 @@ list(APPEND library_source
    #graphics3d/scene_system.h
    graphics3d/types.cpp
    graphics3d/types.h
+   #graphics3d/tinyobjloader_Builder.cpp
+   #graphics3d/tinyobjloader_Builder.h
+   #graphics3d/tinyobjloader_002.cpp
    graphics3d/utilities.h
    include/_.h
    inline/__debug_box_clear_impl.h
@@ -176,14 +191,20 @@ list(APPEND library_source
    platform/session.h
    platform/system.cpp
    platform/system.h
+   platform/timer.cpp
+   platform/timer.h
    prodevian/actor.cpp
    prodevian/actor.h
    prodevian/immersion.cpp
    prodevian/immersion.h
    typeface/_.h
+   typeface/allocator.cpp
+   typeface/allocator.h
    typeface/character.h
    typeface/face.cpp
    typeface/face.h
+   typeface/typeface.cpp
+   typeface/typeface.h
    user/user/graphics3d.cpp
    user/user/graphics3d.h
    user/user/user.cpp
@@ -215,7 +236,12 @@ list(APPEND library_references
    berg)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   typeface/character.cpp
+   gpu/fence.cpp
+   gpu/fence.h
+   gpu/semaphore.cpp
+   gpu/semaphore.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -233,7 +259,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-if (MSVC)
+if(${WIN32})
 
 
    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")

@@ -35,7 +35,9 @@ namespace gpu_opengl
 
       //m_fboID = 0;
 
-      m_bMesa = false;
+      //;
+      //;
+      //m_bMesa = false;
 
       //m_emode = e_mode_system;
 
@@ -52,10 +54,22 @@ namespace gpu_opengl
    }
 
 
-   bool device_win32::is_mesa()
-   {
+   //bool device_win32::is_mesa()
+   //{
 
-      return m_bMesa;
+   //   return m_bMesa;
+
+   //}
+
+
+   void device_win32::create_main_context(::acme::windowing::window * pacmewindowingwindow)
+   {
+      
+      ::cast<::win32::acme::windowing::window> pwindow = pacmewindowingwindow;
+      m_pwindow = pwindow;
+      m_hwnd = pwindow->m_hwnd;
+
+      ::gpu_opengl::device::create_main_context(pacmewindowingwindow);
 
    }
 
@@ -66,30 +80,13 @@ namespace gpu_opengl
       ::gpu::device::initialize_gpu_device_for_swap_chain(papproach, pwindow);
 
       m_pgpuapproach = papproach;
-      m_pwindow = pwindow;
+      //m_pwindow = pwindow;
       m_bAddSwapChainSupport = true;
-      m_hwnd = (HWND) m_pwindow->oswindow();
+      //m_hwnd = (HWND) m_pwindow->oswindow();
 
-      _create_device(m_pwindow->get_window_rectangle().size());
-
-
-      auto pcontext = main_context();
-
-      pcontext->m_pgpudevice = this;
-
-      pcontext->_send([this, pcontext]()
-         {
-
-            pcontext->initialize_gpu_context(this,
-               ::gpu::e_output_gpu_buffer,
-               m_pwindow,
-               m_pwindow->get_window_rectangle().size());
-
-            auto pswapchain = pcontext->get_swap_chain();
-
-            pswapchain->initialize_swap_chain_window(pcontext, m_pwindow);
-
-         });
+      //;
+      //;
+      //_create_device(pwindow->get_window_rectangle().size());
 
    }
 
@@ -105,7 +102,7 @@ namespace gpu_opengl
       ::cast < ::windowing_win32::window > pwin32window = m_pwindow;
       m_hwnd = pwin32window->m_hwnd;
 
-      _create_device(rectanglePlacement.size());
+      //_create_device(rectanglePlacement.size());
 
    }
 
@@ -125,8 +122,8 @@ namespace gpu_opengl
 
          if (!::SetWindowPos(m_hwnd,
             nullptr, 0, 0,
-            size.cx()
-            , size.cy(), SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE
+            size.cx
+            , size.cy, SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE
             | SWP_NOCOPYBITS | SWP_NOSENDCHANGING
             | SWP_NOREPOSITION | SWP_NOREDRAW))
          {
@@ -153,8 +150,8 @@ namespace gpu_opengl
       dwStyle &= ~WS_BORDER;
       int x = 0;
       int y = 0;
-      int nWidth = size.cx();
-      int nHeight = size.cy();
+      int nWidth = size.cx;
+      int nHeight = size.cy;
       HWND hWndParent = nullptr;
       HMENU hMenu = nullptr;
       HINSTANCE hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
@@ -175,291 +172,291 @@ namespace gpu_opengl
 
    }
 
-
-   extern PFNWGLCREATECONTEXTATTRIBSARBPROC loaded_wglCreateContextAttribsARB;
-   extern PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB;
-
-
-   void device_win32::_create_device(const ::int_size& size)
-   {
-
-      if (m_hdc && m_hglrc)
-      {
-
-         return;
-
-      }
-
-      ::cast < approach > pgpuapproach = m_pgpuapproach;
-
-      if (!pgpuapproach->m_atomClass)
-      {
-
-         informationf("MS GDI - RegisterClass failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         throw ::exception(error_failed);
-
-      }
-
-      //// create WGL context, make current
-
-      //PIXELFORMATDESCRIPTOR pixformat;
-
-      //int chosenformat;
-
-      //HDC hdc;
-
-      //if (m_hdc)
-      //{
-
-      //   hdc = m_hdc;
-
-      //}
-      //else
-      //{
-
-      //   hdc = GetDC(m_hwnd);
-
-      //   if (!hdc)
-      //   {
-
-      //      informationf("MS GDI - GetDC failed");
-
-      //      informationf("last-error code: %d\n", GetLastError());
-
-      //      throw ::exception(error_failed);
-
-      //   }
-
-      //}
-
-      //zero(pixformat);
-      //pixformat.nSize = sizeof(pixformat);
-      //pixformat.nVersion = 1;
-      //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-      //pixformat.iPixelType = PFD_TYPE_RGBA;
-      //pixformat.cColorBits = 32;
-      //pixformat.cRedShift = 16;
-      //pixformat.cGreenShift = 8;
-      //pixformat.cBlueShift = 0;
-      //pixformat.cAlphaShift = 24;
-      //pixformat.cAlphaBits = 8;
-      //pixformat.cDepthBits = 24;
-      //pixformat.cStencilBits = 8;
-
-      //chosenformat = ChoosePixelFormat(hdc, &pixformat);
-
-      //if (chosenformat == 0)
-      //{
-
-      //   informationf("MS GDI - ChoosePixelFormat failed");
-
-      //   informationf("last-error code: %d\n", GetLastError());
-
-      //   ReleaseDC(m_hwnd, hdc);
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
-
-      //if (!spfok)
-      //{
-
-      //   informationf("MS GDI - SetPixelFormat failed");
-
-      //   informationf("last-error code: %d\n", GetLastError());
-
-      //   ReleaseDC(m_hwnd, hdc);
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      //HGLRC hglrc = wglCreateContext(hdc);
-
-      //if (!hglrc)
-      //{
-
-      //   informationf("MS WGL - wglCreateContext failed");
-
-      //   informationf("last-error code: %d\n", GetLastError());
-
-      //   ReleaseDC(m_hwnd, hdc);
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      //bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
-
-      //if (!bMakeCurrentOk)
-      //{
-
-      //   informationf("MS WGL - wglMakeCurrent failed");
-
-      //   informationf("last-error code: %d\n", GetLastError());
-
-      //   ReleaseDC(m_hwnd, hdc);
-
-      //   throw ::exception(error_failed);
-
-      //}
-
-      //pgpuapproach->defer_init_gpu_library();
-
-      //auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
-      ////::e_status estatus = 
-
-      //::string strVersion(scopedstrVersion);
-
-      //if (strVersion.case_insensitive_contains("mesa"))
-      //{
-
-      //   m_bMesa = true;
-
-      //}
-
-      ////if (!estatus)
-      ////{
-
-      ////   ReleaseDC(window, hdc);
-
-      ////   return estatus;
-
-      ////}
-
-      //m_hwnd = m_hwnd;
-      //m_hdc = hdc;
-      //m_hrc = hglrc;
-
-      //wglMakeCurrent(nullptr, nullptr);
-
-      //m_itaskCurrentGpuContext = {};
-
-      //RECT rectClient;
-
-      //::GetClientRect(m_hwnd, &rectClient);
-
-      //m_rectangleWin32 = rectClient;
-
-      //m_estatus = ::success;
-
-      //set_ok_flag();
-
-HDC hdc = GetDC(m_hwnd);
-
-//int pixelAttribs[] = {
-//    WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
-//    WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
-//    WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
-//    WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
-//    WGL_COLOR_BITS_ARB, 32,
-//    WGL_DEPTH_BITS_ARB, 24,
-//    WGL_STENCIL_BITS_ARB, 8,
+//
+//   extern PFNWGLCREATECONTEXTATTRIBSARBPROC loaded_wglCreateContextAttribsARB;
+//   extern PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB;
+//
+//
+//   void device_win32::_create_device(const ::int_size& size)
+//   {
+//
+//      if (m_hdc && m_hglrc)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      ::cast < approach > pgpuapproach = m_pgpuapproach;
+//
+//      if (!pgpuapproach->m_atomClass)
+//      {
+//
+//         informationf("MS GDI - RegisterClass failed");
+//
+//         informationf("last-error code: %d\n", GetLastError());
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
+//      //// create WGL context, make current
+//
+//      //PIXELFORMATDESCRIPTOR pixformat;
+//
+//      //int chosenformat;
+//
+//      //HDC hdc;
+//
+//      //if (m_hdc)
+//      //{
+//
+//      //   hdc = m_hdc;
+//
+//      //}
+//      //else
+//      //{
+//
+//      //   hdc = GetDC(m_hwnd);
+//
+//      //   if (!hdc)
+//      //   {
+//
+//      //      informationf("MS GDI - GetDC failed");
+//
+//      //      informationf("last-error code: %d\n", GetLastError());
+//
+//      //      throw ::exception(error_failed);
+//
+//      //   }
+//
+//      //}
+//
+//      //zero(pixformat);
+//      //pixformat.nSize = sizeof(pixformat);
+//      //pixformat.nVersion = 1;
+//      //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+//      //pixformat.iPixelType = PFD_TYPE_RGBA;
+//      //pixformat.cColorBits = 32;
+//      //pixformat.cRedShift = 16;
+//      //pixformat.cGreenShift = 8;
+//      //pixformat.cBlueShift = 0;
+//      //pixformat.cAlphaShift = 24;
+//      //pixformat.cAlphaBits = 8;
+//      //pixformat.cDepthBits = 24;
+//      //pixformat.cStencilBits = 8;
+//
+//      //chosenformat = ChoosePixelFormat(hdc, &pixformat);
+//
+//      //if (chosenformat == 0)
+//      //{
+//
+//      //   informationf("MS GDI - ChoosePixelFormat failed");
+//
+//      //   informationf("last-error code: %d\n", GetLastError());
+//
+//      //   ReleaseDC(m_hwnd, hdc);
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+//      //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
+//
+//      //if (!spfok)
+//      //{
+//
+//      //   informationf("MS GDI - SetPixelFormat failed");
+//
+//      //   informationf("last-error code: %d\n", GetLastError());
+//
+//      //   ReleaseDC(m_hwnd, hdc);
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+//      //HGLRC hglrc = wglCreateContext(hdc);
+//
+//      //if (!hglrc)
+//      //{
+//
+//      //   informationf("MS WGL - wglCreateContext failed");
+//
+//      //   informationf("last-error code: %d\n", GetLastError());
+//
+//      //   ReleaseDC(m_hwnd, hdc);
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+//      //bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
+//
+//      //if (!bMakeCurrentOk)
+//      //{
+//
+//      //   informationf("MS WGL - wglMakeCurrent failed");
+//
+//      //   informationf("last-error code: %d\n", GetLastError());
+//
+//      //   ReleaseDC(m_hwnd, hdc);
+//
+//      //   throw ::exception(error_failed);
+//
+//      //}
+//
+//      //pgpuapproach->defer_init_gpu_library();
+//
+//      //auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
+//      ////::e_status estatus = 
+//
+//      //::string strVersion(scopedstrVersion);
+//
+//      //if (strVersion.case_insensitive_contains("mesa"))
+//      //{
+//
+//      //   m_bMesa = true;
+//
+//      //}
+//
+//      ////if (!estatus)
+//      ////{
+//
+//      ////   ReleaseDC(window, hdc);
+//
+//      ////   return estatus;
+//
+//      ////}
+//
+//      //m_hwnd = m_hwnd;
+//      //m_hdc = hdc;
+//      //m_hrc = hglrc;
+//
+//      //wglMakeCurrent(nullptr, nullptr);
+//
+//      //m_itaskCurrentGpuContext = {};
+//
+//      //RECT rectClient;
+//
+//      //::GetClientRect(m_hwnd, &rectClient);
+//
+//      //m_rectangleWin32 = rectClient;
+//
+//      //m_estatus = ::success;
+//
+//      //set_ok_flag();
+//
+//HDC hdc = GetDC(m_hwnd);
+//
+////int pixelAttribs[] = {
+////    WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
+////    WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
+////    WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
+////    WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
+////    WGL_COLOR_BITS_ARB, 32,
+////    WGL_DEPTH_BITS_ARB, 24,
+////    WGL_STENCIL_BITS_ARB, 8,
+////    0
+////};
+//
+//int_array_base pixelAttribs;
+//
+//
+//pixelAttribs.append({ WGL_DRAW_TO_WINDOW_ARB, GL_TRUE });
+//pixelAttribs.append({WGL_SUPPORT_OPENGL_ARB, GL_TRUE });
+//if(m_bAddSwapChainSupport)
+//{
+//   pixelAttribs.append({ WGL_DOUBLE_BUFFER_ARB, GL_TRUE });       // <-- double buffering
+//}
+//pixelAttribs.append({ WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB });
+//pixelAttribs.append({ WGL_COLOR_BITS_ARB, 32 });               // total color bits
+//pixelAttribs.append({ WGL_RED_BITS_ARB, 8 });
+//pixelAttribs.append({ WGL_GREEN_BITS_ARB, 8 });
+//pixelAttribs.append({ WGL_BLUE_BITS_ARB, 8 });
+//pixelAttribs.append({ WGL_ALPHA_BITS_ARB, 8 });                // <-- alpha support
+//pixelAttribs.append({ WGL_DEPTH_BITS_ARB, 24 });              // optional, for depth buffer
+//pixelAttribs.append({ WGL_STENCIL_BITS_ARB, 8 });            // optional, for stencil
+//pixelAttribs.add(0); // terminator
+//
+//int format = 0;
+//UINT numFormats = 0;
+//loaded_wglChoosePixelFormatARB(hdc, pixelAttribs.data(), NULL, 1, &format, &numFormats);
+//PIXELFORMATDESCRIPTOR pfd;
+//DescribePixelFormat(hdc, format, sizeof(pfd), &pfd);
+//SetPixelFormat(hdc, format, &pfd);
+//
+//int contextAttribs[] = {
+//    WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
+//    WGL_CONTEXT_MINOR_VERSION_ARB, 3,
+//    WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
 //    0
 //};
-
-int_array_base pixelAttribs;
-
-
-pixelAttribs.append({ WGL_DRAW_TO_WINDOW_ARB, GL_TRUE });
-pixelAttribs.append({WGL_SUPPORT_OPENGL_ARB, GL_TRUE });
-if(m_bAddSwapChainSupport)
-{
-   pixelAttribs.append({ WGL_DOUBLE_BUFFER_ARB, GL_TRUE });       // <-- double buffering
-}
-pixelAttribs.append({ WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB });
-pixelAttribs.append({ WGL_COLOR_BITS_ARB, 32 });               // total color bits
-pixelAttribs.append({ WGL_RED_BITS_ARB, 8 });
-pixelAttribs.append({ WGL_GREEN_BITS_ARB, 8 });
-pixelAttribs.append({ WGL_BLUE_BITS_ARB, 8 });
-pixelAttribs.append({ WGL_ALPHA_BITS_ARB, 8 });                // <-- alpha support
-pixelAttribs.append({ WGL_DEPTH_BITS_ARB, 24 });              // optional, for depth buffer
-pixelAttribs.append({ WGL_STENCIL_BITS_ARB, 8 });            // optional, for stencil
-pixelAttribs.add(0); // terminator
-
-int format;
-UINT numFormats;
-loaded_wglChoosePixelFormatARB(hdc, pixelAttribs.data(), NULL, 1, &format, &numFormats);
-PIXELFORMATDESCRIPTOR pfd;
-DescribePixelFormat(hdc, format, sizeof(pfd), &pfd);
-SetPixelFormat(hdc, format, &pfd);
-
-int contextAttribs[] = {
-    WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
-    WGL_CONTEXT_MINOR_VERSION_ARB, 3,
-    WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
-    0
-};
-
-HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
-//wglMakeCurrent(dc, rc);
 //
-//*outRC = rc;
-//*outDC = dc;*/
-////::ReleaseDC(hwnd, dc);
-
-      bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
-
-      if (!bMakeCurrentOk)
-      {
-
-         informationf("MS WGL - wglMakeCurrent failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         ReleaseDC(m_hwnd, hdc);
-
-         throw ::exception(error_failed);
-
-      }
-
-      pgpuapproach->defer_init_gpu_library();
-
-      auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
-      //::e_status estatus = 
-
-      ::string strVersion(pszVersion);
-
-      if (strVersion.case_insensitive_contains("mesa"))
-      {
-
-         m_bMesa = true;
-
-      }
-
-      //if (!estatus)
-      //{
-
-      //   ReleaseDC(window, hdc);
-
-      //   return estatus;
-
-      //}
-
-      //m_hwnd = m_hwnd;
-      m_hdc = hdc;
-      m_hglrc = hglrc;
-
-      wglMakeCurrent(nullptr, nullptr);
-
-      m_itaskCurrentGpuContext = {};
-
-      RECT rectClient;
-
-      ::GetClientRect(m_hwnd, &rectClient);
-
-      m_rectangleWin32 = rectClient;
-
-      m_estatus = ::success;
-
-      set_ok_flag();
-
-   }
+//HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
+////wglMakeCurrent(dc, rc);
+////
+////*outRC = rc;
+////*outDC = dc;*/
+//////::ReleaseDC(hwnd, dc);
+//
+//      bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
+//
+//      if (!bMakeCurrentOk)
+//      {
+//
+//         informationf("MS WGL - wglMakeCurrent failed");
+//
+//         informationf("last-error code: %d\n", GetLastError());
+//
+//         ReleaseDC(m_hwnd, hdc);
+//
+//         throw ::exception(error_failed);
+//
+//      }
+//
+//      pgpuapproach->defer_init_gpu_library();
+//
+//      auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
+//      //::e_status estatus = 
+//
+//      ::string strVersion(pszVersion);
+//
+//      if (strVersion.case_insensitive_contains("mesa"))
+//      {
+//
+//         m_bMesa = true;
+//
+//      }
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   ReleaseDC(window, hdc);
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //m_hwnd = m_hwnd;
+//      m_hdc = hdc;
+//      m_hglrc = hglrc;
+//
+//      wglMakeCurrent(nullptr, nullptr);
+//
+//      m_itaskCurrentGpuContext = {};
+//
+//      RECT rectClient;
+//
+//      ::GetClientRect(m_hwnd, &rectClient);
+//
+//      m_rectangleWin32 = rectClient;
+//
+//      m_estatus = ::success;
+//
+//      set_ok_flag();
+//
+//   }
 
 
    //void device_win32::_create_window_context(::windowing::window* pwindowParam)
@@ -654,8 +651,8 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
    //      //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
 
    //      //BIH.biSize = sizeof(pwindow->m_bitmapinfoheaderProto);        // размер структуры
-   //      //BIH.biWidth = m_size.cx();       // геометрия
-   //      //BIH.biHeight = m_size.cy();      // битмапа
+   //      //BIH.biWidth = m_size.cx;       // геометрия
+   //      //BIH.biHeight = m_size.cy;      // битмапа
    //      //BIH.biPlanes = 1;          // один план
    //      //BIH.biBitCount = 32;       // 24 bits per pixel
    //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
@@ -740,7 +737,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
    //   //#ifdef WINDOWS_DESKTOP
    //   //
-   //   //      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx(), size.cy(), SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
+   //   //      ::SetWindowPos(m_hwnd, 0, 0, 0, size.cx, size.cy, SWP_NOZORDER | SWP_NOMOVE | SWP_HIDEWINDOW);
    //   //
    //   //#else
 
@@ -757,10 +754,10 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
    //         make_current();
 
-   //         glViewport(0, 0, size.cx(), size.cy());
+   //         glViewport(0, 0, size.cx, size.cy);
    //         //glMatrixMode(GL_PROJECTION);
    //         //glLoadIdentity();
-   //         //glOrtho(0, size.cx(), 0, size.cy(), -10, 10);
+   //         //glOrtho(0, size.cx, 0, size.cy, -10, 10);
    //         //glMatrixMode(GL_MODELVIEW);
    //         //glutPostRedisplay();
 
@@ -1003,17 +1000,17 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
 
       ::e_status estatus = ::success;
 
-      if (m_hglrc == NULL && m_hdc == NULL && m_hwnd == NULL)
-      {
+      //if (m_hglrc == NULL && m_hdc == NULL && m_hwnd == NULL)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      wglMakeCurrent(nullptr, nullptr);
-      wglDeleteContext(m_hglrc);
-      ::ReleaseDC(m_hwnd, m_hdc);
-      ::DestroyWindow(m_hwnd);
+      //wglMakeCurrent(nullptr, nullptr);
+      //wglDeleteContext(m_hglrc);
+      //::ReleaseDC(m_hwnd, m_hdc);
+      //::DestroyWindow(m_hwnd);
       //m_size.set(0, 0);
       //m_hrc = NULL;
       //m_hwnd = NULL;
@@ -1035,7 +1032,7 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
    void device_win32::_swap_buffers()
    {
 
-      SwapBuffers(m_hdc);
+      //SwapBuffers(m_hdc);
 
    }
 
@@ -1073,60 +1070,60 @@ HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, 0, contextAttribs);
    //}
 
 
-   void device_win32::_opengl_lock()
-   {
+   //void device_win32::_opengl_lock()
+   //{
 
-      if (wglGetCurrentContext() != m_hglrc || wglGetCurrentDC() != m_hdc)
-      {
+   //   if (wglGetCurrentContext() != m_hglrc || wglGetCurrentDC() != m_hdc)
+   //   {
 
-         bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hglrc);
+   //      bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hglrc);
 
-         if (!bMakeCurrentOk)
-         {
+   //      if (!bMakeCurrentOk)
+   //      {
 
-            informationf("MS WGL - wglMakeCurrent failed");
+   //         informationf("MS WGL - wglMakeCurrent failed");
 
-            int iLastError = GetLastError();
+   //         int iLastError = GetLastError();
 
-            informationf("last-error code: %d\n", iLastError);
+   //         informationf("last-error code: %d\n", iLastError);
 
-            throw ::exception(error_failed);
+   //         throw ::exception(error_failed);
 
-         }
+   //      }
 
-         //bMadeCurrentNow = true;
+   //      //bMadeCurrentNow = true;
 
-      }
-
-
-   }
+   //   }
 
 
-   void device_win32::_opengl_unlock()
-   {
+   //}
 
 
-      if (wglGetCurrentContext() != m_hglrc || wglGetCurrentDC() != m_hdc)
-      {
+   //void device_win32::_opengl_unlock()
+   //{
 
-         throw ::exception(error_wrong_state, "wrong state");
 
-      }
+   //   if (wglGetCurrentContext() != m_hglrc || wglGetCurrentDC() != m_hdc)
+   //   {
 
-      bool bReleaseOk = wglMakeCurrent(nullptr, nullptr);
+   //      throw ::exception(error_wrong_state, "wrong state");
 
-      if (!bReleaseOk)
-      {
+   //   }
 
-         informationf("MS WGL - wglMakeCurrent failed");
+   //   bool bReleaseOk = wglMakeCurrent(nullptr, nullptr);
 
-         informationf("last-error code: %d\n", GetLastError());
+   //   if (!bReleaseOk)
+   //   {
 
-         throw ::exception(error_failed);
+   //      informationf("MS WGL - wglMakeCurrent failed");
 
-      }
+   //      informationf("last-error code: %d\n", GetLastError());
 
-   }
+   //      throw ::exception(error_failed);
+
+   //   }
+
+   //}
 
 
 } // namespace gpu_opengl

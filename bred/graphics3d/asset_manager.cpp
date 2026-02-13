@@ -1,5 +1,4 @@
 #include "framework.h"
-// asset_manager.cpp
 #include "engine.h"
 #include "renderable.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -8,13 +7,7 @@
 #include "bred/gpu/texture.h"
 #include "bred/graphics3d/skybox.h"
 #include <chrono>
-// #include "acme/exception/r"
-// #include <json.hpp>
-////#include <fstream>
-////#include <spdlog/spdlog.h>
-// #include <glm/glm.hpp>
 
-// using json = nlohmann::json;
 
 namespace graphics3d
 {
@@ -212,13 +205,13 @@ namespace graphics3d
 
                   prenderable = pgpucontext->load_model(entry);
 
-                  if (prenderable->renderable_type() == ::gpu::e_renderable_type_wavefront_obj)
+                  if (prenderable->emodel() == ::gpu::e_model_wavefront)
                   {
                      // auto model = loadObjModel(name, path, false);
                      informationf("[asset_manager] Successfully loaded OBJ model '%s' from '%s'", prenderable->m_strName.c_str(),
                                  prenderable->m_pathRenderable.c_str());
                   }
-                  else if (prenderable->renderable_type() == ::gpu::e_renderable_type_gltf)
+                  else if (prenderable->emodel() == ::gpu::e_model_gltf)
                   {
                      // uint32_t flags = entry.get("flags", 0); // Optional flags
                      // float scale = entry.get("scale", 1.0f); // Optional scale

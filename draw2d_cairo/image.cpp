@@ -139,7 +139,7 @@ namespace draw2d_cairo
       if (iGoodStride < 0)
       {
 
-         iGoodStride = size.cx() * sizeof(color32_t);
+         iGoodStride = size.cx * sizeof(color32_t);
 
       }
 
@@ -280,13 +280,13 @@ namespace draw2d_cairo
 //   bool image::to(::draw2d::graphics * pgraphics, const ::int_point & point, const ::int_size & size, const ::int_point & ptSrc)
 //   {
 //
-//      return pgraphics->BitBlt(point, size.cx(), size.cy(), get_graphics(), ptSrc.x(), ptSrc.y()) != false;
+//      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != false;
 //
 //      /*  return SetDIBitsToDevice(
 //           (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
-//           point.x(), point.y(),
-//           size.cx(), size.cy(),
-//           ptSrc.x(), ptSrc.y(), ptSrc.y(), cy - ptSrc.y(),
+//           point.x, point.y,
+//           size.cx, size.cy,
+//           ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
 //           m_pcolorrefMap, &m_info, 0)
 //              != false; */
 //
@@ -326,7 +326,7 @@ namespace draw2d_cairo
 //   bool image::from(const ::int_point & pointDest, ::draw2d::graphics * pgraphics, const ::int_point & point, const ::int_size & size)
 //   {
 //
-//      return m_spgraphics->BitBlt(pointDest.x(), pointDest.y(), sz.cx(), sz.cy(), pgraphics, point.x(), point.y());
+//      return m_spgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y);
 //
 //   }
 
@@ -530,7 +530,7 @@ namespace draw2d_cairo
 //      if(pdata != (unsigned char *) m_pimage32Raw && pdata != nullptr)
 //      {
 //
-//         ::memory_copy(m_pimage32Raw, pdata, m_sizeRaw.cy() * m_iScan);
+//         ::memory_copy(m_pimage32Raw, pdata, m_sizeRaw.cy * m_iScan);
 //
 //      }
 
@@ -539,7 +539,7 @@ namespace draw2d_cairo
 //      if(!bApplyAlphaTransform)
 //      {
 //
-//         int size = m_iScan * m_sizeRaw.cy() / sizeof(color32_t);
+//         int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
 //
 //         while(size > 0)
 //         {
@@ -613,14 +613,14 @@ namespace draw2d_cairo
 
 //      unsigned char * pdata =  (unsigned char *) m_pimage32Raw;
 //
-//      int size = m_iScan * m_sizeRaw.cy() / sizeof(color32_t);
+//      int size = m_iScan * m_sizeRaw.cy / sizeof(color32_t);
 //
 //      pdata =  (unsigned char *) cairo_image_surface_get_data(surface);
 //
 //      if(pdata != (unsigned char *)m_pimage32Raw && pdata != nullptr)
 //      {
 //
-//         ::memory_copy(pdata, m_pimage32Raw, m_sizeRaw.cy() * m_iScan);
+//         ::memory_copy(pdata, m_pimage32Raw, m_sizeRaw.cy * m_iScan);
 //
 //      }
 
@@ -777,7 +777,7 @@ namespace draw2d_cairo
 //
 //      ::int_rectangle rectangle(rectangleWindow);
 //
-//      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx(), m_size.cy(), m_iScan);
+//      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
 //
 //      return true;
 //
@@ -803,10 +803,10 @@ namespace draw2d_cairo
 //      //      unsigned int dw = ::get_last_error();
 //      ::int_size size = pbitmap->get_size();
 //
-//      rectx.left() = 0;
-//      rectx.top() = 0;
-//      rectx.right() = size.cx();
-//      rectx.bottom() = size.cy();
+//      rectx.left = 0;
+//      rectx.top = 0;
+//      rectx.right = size.cx;
+//      rectx.bottom = size.cy;
 //
 //      try
 //      {
@@ -844,14 +844,14 @@ namespace draw2d_cairo
 //         m_spgraphics-> set_origin(::int_point());
 //         puserinteraction->_000OnDraw(pimage1->g());
 //         m_spgraphics->set_origin(::int_point());
-//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left(), rectangleUpdate.top(), 100, 100, 255);
+//         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         m_spgraphics->set_origin(::int_point());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
-//         m_spgraphics->BitBlt(rectanglePaint.left(), rectanglePaint.top(),
+//         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
 //                              rectanglePaint.width(), rectanglePaint.height(),
-//                              pgraphics, rectangleUpdate.left(), rectangleUpdate.top(),
+//                              pgraphics, rectangleUpdate.left, rectangleUpdate.top,
 //                              SRCCOPY);
 //
 //      }
@@ -867,28 +867,12 @@ namespace draw2d_cairo
 //
 //
 //#elif defined(LINUX)
-//
-//
-//
-//
 ////   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 ////   {
 ////
 ////      return true;
 ////
 ////   }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -906,7 +890,7 @@ namespace draw2d_cairo
 ////
 ////      ::int_rectangle rectangle(rectangleWindow);
 ////
-//////      papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx(), m_size.cy(), m_iScan, bTransferBuffer);
+//////      papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 ////
 ////      return true;
 ////
@@ -917,24 +901,12 @@ namespace draw2d_cairo
 //#elif defined(__ANDROID__)
 //
 //
-//
-//
-//
-//
 //   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 //   {
 //
 //      return true;
 //
 //   }
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //   bool image::update_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage, bool bTransferBuffer)
@@ -951,7 +923,7 @@ namespace draw2d_cairo
 //
 //      ::int_rectangle rectangle(rectangleWindow);
 //
-//      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx(), m_size.cy(), m_iScan, bTransferBuffer);
+//      //papp->window_graphics_update_window(puserinteraction->get_window_graphics(), puserinteraction->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 //
 //      return true;
 //
@@ -979,47 +951,47 @@ namespace draw2d_cairo
 
       pointDst += m_point;
 
-      if (pointDst.x() < 0)
+      if (pointDst.x < 0)
       {
-         pointDst.x() -= pointSrc.x();
-         pointSrc.x() = 0;
+         pointDst.x -= pointSrc.x;
+         pointSrc.x = 0;
       }
 
-      if (pointSrc.y() < 0)
+      if (pointSrc.y < 0)
       {
-         pointDst.y() -= pointSrc.y();
-         pointSrc.y() = 0;
+         pointDst.y -= pointSrc.y;
+         pointSrc.y = 0;
       }
 
-      if (pointDst.x() < 0)
+      if (pointDst.x < 0)
       {
-         size.cx() += pointDst.x();
-         pointDst.x() = 0;
+         size.cx += pointDst.x;
+         pointDst.x = 0;
       }
 
-      if (size.cx() < 0)
-      {
-
-         return;
-
-      }
-
-      if (pointDst.y() < 0)
-      {
-         size.cy() += pointDst.y();
-         pointDst.y() = 0;
-      }
-
-      if (size.cy() < 0)
+      if (size.cx < 0)
       {
 
          return;
 
       }
 
-      int xEnd = minimum(size.cx(), minimum(pimplSrc->width() - pointSrc.x(), pimplDst->width() - pointDst.x()));
+      if (pointDst.y < 0)
+      {
+         size.cy += pointDst.y;
+         pointDst.y = 0;
+      }
 
-      int yEnd = minimum(size.cy(), minimum(pimplSrc->height() - pointSrc.y(), pimplDst->height() - pointDst.y()));
+      if (size.cy < 0)
+      {
+
+         return;
+
+      }
+
+      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+
+      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 
       if (xEnd < 0)
       {
@@ -1044,15 +1016,15 @@ namespace draw2d_cairo
       unsigned char * psrc2;
 
 #ifdef APPLEOS
-      unsigned char * pdst = &((unsigned char *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
+      unsigned char * pdst = &((unsigned char *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
 
-      unsigned char * psrc = &((unsigned char *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
+      unsigned char * psrc = &((unsigned char *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
 
 #else
 
-      unsigned char * pdst = &((unsigned char *)pimplDst->m_pimage32)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
+      unsigned char * pdst = &((unsigned char *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 
-      unsigned char * psrc = &((unsigned char *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
+      unsigned char * psrc = &((unsigned char *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
 
 #endif
 
@@ -1303,25 +1275,25 @@ namespace draw2d_cairo
 //
 //      pointDst += m_point;
 //
-//      if (pointSrc.x() < 0)
+//      if (pointSrc.x < 0)
 //      {
-//         pointDst.x() -= pointSrc.x();
-//         pointSrc.x() = 0;
+//         pointDst.x -= pointSrc.x;
+//         pointSrc.x = 0;
 //      }
 //
-//      if (pointSrc.y() < 0)
+//      if (pointSrc.y < 0)
 //      {
-//         pointDst.y() -= pointSrc.y();
-//         pointSrc.y() = 0;
+//         pointDst.y -= pointSrc.y;
+//         pointSrc.y = 0;
 //      }
 //
-//      if (pointDst.x() < 0)
+//      if (pointDst.x < 0)
 //      {
-//         size.cx() += pointDst.x();
-//         pointDst.x() = 0;
+//         size.cx += pointDst.x;
+//         pointDst.x = 0;
 //      }
 //
-//      if (size.cx() < 0)
+//      if (size.cx < 0)
 //      {
 //
 //         return;
@@ -1329,22 +1301,22 @@ namespace draw2d_cairo
 //      }
 //      //return true;
 //
-//      if (pointDst.y() < 0)
+//      if (pointDst.y < 0)
 //      {
-//         size.cy() += pointDst.y();
-//         pointDst.y() = 0;
+//         size.cy += pointDst.y;
+//         pointDst.y = 0;
 //      }
 //
-//      if (size.cy() < 0)
+//      if (size.cy < 0)
 //      {
 //         //   return true;
 //
 //         return;
 //      }
 //
-//      int xEnd = minimum(size.cx(), minimum(pimageSrc->width() - pointSrc.x(), pimageDst->width() - pointDst.x()));
+//      int xEnd = minimum(size.cx, minimum(pimageSrc->width() - pointSrc.x, pimageDst->width() - pointDst.x));
 //
-//      int yEnd = minimum(size.cy(), minimum(pimageSrc->height() - pointSrc.y(), pimageDst->height() - pointDst.y()));
+//      int yEnd = minimum(size.cy, minimum(pimageSrc->height() - pointSrc.y, pimageDst->height() - pointDst.y));
 //
 //      if (xEnd < 0)
 //      {
@@ -1364,9 +1336,9 @@ namespace draw2d_cairo
 //
 //      int scanSrc = pimageSrc->m_iScan;
 //
-//      unsigned char * pdst = ((unsigned char *) pimageDst->colorref()) + (scanDst * pointDst.y()) + (pointDst.x() * sizeof(color32_t));
+//      unsigned char * pdst = ((unsigned char *) pimageDst->colorref()) + (scanDst * pointDst.y) + (pointDst.x * sizeof(color32_t));
 //
-//      unsigned char * psrc = ((unsigned char *) pimageSrc->colorref()) + (scanSrc * pointSrc.y()) + (pointSrc.x() * sizeof(color32_t));
+//      unsigned char * psrc = ((unsigned char *) pimageSrc->colorref()) + (scanSrc * pointSrc.y) + (pointSrc.x * sizeof(color32_t));
 //
 //      unsigned char * pdst2;
 //
@@ -1494,47 +1466,47 @@ namespace draw2d_cairo
 //
 //      pointDst += m_point;
 //
-//      if (pointDst.x() < 0)
+//      if (pointDst.x < 0)
 //      {
-//         pointDst.x() -= pointSrc.x();
-//         pointSrc.x() = 0;
+//         pointDst.x -= pointSrc.x;
+//         pointSrc.x = 0;
 //      }
 //
-//      if (pointSrc.y() < 0)
+//      if (pointSrc.y < 0)
 //      {
-//         pointDst.y() -= pointSrc.y();
-//         pointSrc.y() = 0;
+//         pointDst.y -= pointSrc.y;
+//         pointSrc.y = 0;
 //      }
 //
-//      if (pointDst.x() < 0)
+//      if (pointDst.x < 0)
 //      {
-//         size.cx() += pointDst.x();
-//         pointDst.x() = 0;
+//         size.cx += pointDst.x;
+//         pointDst.x = 0;
 //      }
 //
-//      if (size.cx() < 0)
-//      {
-//
-//         return;
-//
-//      }
-//
-//      if (pointDst.y() < 0)
-//      {
-//         size.cy() += pointDst.y();
-//         pointDst.y() = 0;
-//      }
-//
-//      if (size.cy() < 0)
+//      if (size.cx < 0)
 //      {
 //
 //         return;
 //
 //      }
 //
-//      int xEnd = minimum(size.cx(), minimum(pimplSrc->width() - pointSrc.x(), pimplDst->width() - pointDst.x()));
+//      if (pointDst.y < 0)
+//      {
+//         size.cy += pointDst.y;
+//         pointDst.y = 0;
+//      }
 //
-//      int yEnd = minimum(size.cy(), minimum(pimplSrc->height() - pointSrc.y(), pimplDst->height() - pointDst.y()));
+//      if (size.cy < 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      int xEnd = minimum(size.cx, minimum(pimplSrc->width() - pointSrc.x, pimplDst->width() - pointDst.x));
+//
+//      int yEnd = minimum(size.cy, minimum(pimplSrc->height() - pointSrc.y, pimplDst->height() - pointDst.y));
 //
 //      if (xEnd < 0)
 //      {
@@ -1559,15 +1531,15 @@ namespace draw2d_cairo
 //      unsigned char * psrc2;
 //
 //#ifdef APPLEOS
-//      unsigned char * pdst = &((unsigned char *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y() - yEnd) + ptDst.x() * sizeof(color32_t)];
+//      unsigned char * pdst = &((unsigned char *)imageDst.m_pcolorrefMap)[scanDst * (imageDst.height() - ptDst.y - yEnd) + ptDst.x * sizeof(color32_t)];
 //
-//      unsigned char * psrc = &((unsigned char *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y() - yEnd) + ptSrc.x() * sizeof(color32_t)];
+//      unsigned char * psrc = &((unsigned char *)imageSrc.m_pcolorrefMap)[scanSrc * (imageSrc.height() - ptSrc.y - yEnd) + ptSrc.x * sizeof(color32_t)];
 //
 //#else
 //
-//      unsigned char * pdst = &((unsigned char *)pimplDst->m_pimage32)[scanDst * pointDst.y() + pointDst.x() * sizeof(color32_t)];
+//      unsigned char * pdst = &((unsigned char *)pimplDst->m_pimage32)[scanDst * pointDst.y + pointDst.x * sizeof(color32_t)];
 //
-//      unsigned char * psrc = &((unsigned char *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y() + pointSrc.x() * sizeof(color32_t)];
+//      unsigned char * psrc = &((unsigned char *)pimplSrc->m_pimage32)[scanSrc *  pointSrc.y + pointSrc.x * sizeof(color32_t)];
 //
 //#endif
 //

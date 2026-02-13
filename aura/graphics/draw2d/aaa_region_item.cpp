@@ -85,18 +85,18 @@ namespace draw2d
 
       }
 
-      double x = p.x();
+      double x = p.x;
 
-      double y = p.y();
+      double y = p.y;
 
-      double Δx = x - center.x();
+      double Δx = x - center.x;
 
-      double Δy = y - center.y();
+      double Δy = y - center.y;
 
-      if (radius.cx() == radius.cy())
+      if (radius.cx == radius.cy)
       {
 
-         double r = radius.cx();
+         double r = radius.cx;
 
          double square_distance = (Δx * Δx) + (Δy * Δy);
 
@@ -108,7 +108,7 @@ namespace draw2d
       else
       {
 
-         double normal_distance = ((Δx * Δx) / (radius.cx() * radius.cx()) + (Δy * Δy) / (radius.cx() * radius.cy()));
+         double normal_distance = ((Δx * Δx) / (radius.cx * radius.cx) + (Δy * Δy) / (radius.cx * radius.cy));
 
          return normal_distance <= 1.0;
 

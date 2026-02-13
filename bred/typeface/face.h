@@ -4,6 +4,7 @@
 
 
 #include "bred/typeface/character.h"
+#include "acme/prototype/collection/map.h"
 
 
 namespace typeface
@@ -16,11 +17,12 @@ namespace typeface
    public:
 
 
-      ::pointer < ::gpu::renderer > m_pgpurenderer;
+      //::pointer < ::gpu::renderer > m_pgpurenderer;
 
       int m_iPixelSize;
       ::string m_strFontName;
-      ::string_map_base<::typeface::character> m_mapCharacter;
+      //::string_map_base<::typeface::character> m_mapCharacter;
+      ::int_map<::typeface::character> m_mapCharacter;
 //      unsigned int m_VAO, m_VBO;
       //::pointer < ::gpu::model_buffer > m_pmodelbufferBox;
 
@@ -29,7 +31,9 @@ namespace typeface
       ~face() override;
 
 
-      virtual void initialize_gpu_buffer(::gpu::renderer* pgpurenderer);
+      void initialize(::particle * pparticle) override;
+
+      //virtual void initialize_typeface_face(::gpu::renderer* pgpurenderer);
 
       virtual character& get_character(const ::scoped_string& scopedstr);
 

@@ -9,7 +9,7 @@
 //
 //
 //   class CLASS_DECL_SPHERE department :
-//      virtual public ::acme::department
+//      virtual public ::platform::department
 //   {
 //   public:
 //

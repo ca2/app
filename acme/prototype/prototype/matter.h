@@ -351,7 +351,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 //
 //template < typename TYPE >
-//inline ::pointer<TYPE>matter::øid_create(const ::atom & atom, ::factory::factory * pfactory)
+//inline ::pointer<TYPE>matter::øcreate_by_type(const ::atom & atom, ::factory::factory * pfactory)
 //{
 //
 //   auto pfactoryitem = pfactory->get_factory_item(atom);
@@ -509,10 +509,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 //template < typename TYPE >
-//inline void particle::øid_construct(::pointer<TYPE> & p, const ::atom & atom)
+//inline void particle::øconstruct_by_id(::pointer<TYPE> & p, const ::atom & atom)
 //{
 //
-//   ::øid_construct(this, p, atom);
+//   ::øconstruct_by_id(this, p, atom);
 //
 //}
 
@@ -613,7 +613,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember)
+//inline void matter::__refer(::pointer<BASE_TYPE> preference, const ::prototype::member < SOURCE >& pmember)
 //{
 //
 //   __refer(preference, pmember.get() );

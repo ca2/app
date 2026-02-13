@@ -167,10 +167,6 @@
 //
 //const int heap_memory::m_iPaddingAfter = 16;
 //
-//
-//
-//
-//
 //c_class c_class::s_cclass;
 //
 //
@@ -189,10 +185,6 @@
 //#endif
 //
 //plex_heap_alloc_array * g_pheap = nullptr;
-//
-//
-//
-//
 //
 //#define AXIS_MEMORY_MANAGEMENT true
 //
@@ -477,10 +469,6 @@
 //#endif
 //
 //#if !defined(__VLD) && !defined(__MCRTDBG)
-//
-//
-//
-//
 //#if !defined(MCHECK)
 //
 //#undef ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
@@ -527,10 +515,6 @@
 //#endif
 //
 //}
-//
-//
-//
-//
 //void * memory_calloc(memsize size, memsize bytes)
 //{
 //
@@ -558,10 +542,6 @@
 //
 //}
 //#endif
-//
-//
-//
-//
 //
 //
 //void * memory_reallocate_debug(void * pmemory, memsize size, int nBlockUse, const_char_pointer szFileName, int nLine)
@@ -743,10 +723,6 @@
 //
 //#endif
 //
-//
-//
-//
-//
 //void memory_free_debug(void * pmemory, int iBlockType)
 //{
 //
@@ -920,10 +896,6 @@
 //   return system_heap_alloc(size);
 //
 //}
-//
-//
-//
-//
 //void * ::system()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(memsize size)
 //{
 //
@@ -1002,10 +974,6 @@
 //
 //
 //#endif
-//
-//
-//
-//
 //
 //
 //

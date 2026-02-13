@@ -192,10 +192,18 @@ namespace file
    }
 
 
+   void file_dialog::on_dialog_response()
+   {
+
+      m_procedureResponse(this);
+
+   }
+
+
    void file_dialog::pick_single_file(
       ::user::element* puserelement,
       const file_dialog_filter& filedialogfilter,
-      const ::function < void(::pointer<file_dialog>) >& function,
+      const ::function < void(::pointer<file_dialog>) >& procedureResponse,
       bool bSave,
       const ::file::path& pathStartFolder)
    {
@@ -222,7 +230,7 @@ namespace file
 
       m_puserelement = puserelement;
       m_filedialogfilter.copy(filedialogfilter);
-      m_function = function;
+      m_procedureResponse = procedureResponse;
       m_pathStartFolder = pathStartFolder;
       m_bSave = bSave;
       m_bMultiple = false;
@@ -247,7 +255,7 @@ namespace file
    void file_dialog::pick_multiple_file(
       ::user::element* puserelement,
       const file_dialog_filter& filedialogfilter,
-      const ::function < void(::pointer<file_dialog>) >& function,
+      const ::function < void(::pointer<file_dialog>) >& procedureResponse,
       const ::file::path& pathStartFolder)
    {
       //
@@ -267,7 +275,7 @@ namespace file
 
       m_puserelement = puserelement;
       m_filedialogfilter.copy(filedialogfilter);
-      m_function = function;
+      m_procedureResponse = procedureResponse;
       m_pathStartFolder = pathStartFolder;
       m_bSave = false;
       m_bMultiple = true;
@@ -341,12 +349,12 @@ namespace file
    }
 
 
-   void file_dialog::do_callback()
-   {
-
-      m_function(this);
-
-   }
+   // void file_dialog::do_callback()
+   // {
+   //
+   //    m_function(this);
+   //
+   // }
 
 
    ::string file_dialog::get_selected_filter_main_extension() const

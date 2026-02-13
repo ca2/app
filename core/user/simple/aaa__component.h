@@ -29,15 +29,7 @@
 //
 //
 //} // namespace user
-//
-//
-//
-//
 //#include "static.h"
-//
-//
-//
-//
 //
 ////#include "scroll_bar.h"
 //
@@ -59,15 +51,7 @@
 //
 //#include "list_data.h"
 //
-//
-//
-//
-//
 //#include "printer_list_impact.h"
-//
-//
-//
-//
 //
 //#include "form_list_impact.h"
 //#include "tab_impact.h"

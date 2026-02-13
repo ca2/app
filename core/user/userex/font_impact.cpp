@@ -7,7 +7,7 @@
 #include "acme/handler/topic.h"
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/user/user/frame_interaction.h"
-//#include "aura/user/user/primitive_impl.h"
+//#include "aura/user/user/prototype_impl.h"
 #include "berg/user/user/document.h"
 #include "core/user/user/font_list_impact.h"
 
@@ -170,14 +170,14 @@ namespace userex
    }
 
 
-   void font_impact::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      //m_pprimitiveimpl->defer_do_graphics(pgraphics);
-
-      ::user::split_impact::defer_do_graphics(pgraphics);
-
-   }
+//   void font_impact::do_graphics()
+//   {
+//
+//      //m_pprimitiveimpl->defer_do_graphics(pgraphics);
+//
+//      ::user::split_impact::do_graphics();
+//
+//   }
 
 
    void font_impact::on_layout(::draw2d::graphics_pointer & pgraphics)

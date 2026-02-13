@@ -53,7 +53,7 @@ enum enum_range : int
 };
 
 //
-//template < primitive_character CHARACTER, character_count n >
+//template < prototype_character CHARACTER, character_count n >
 //constexpr ::range < const CHARACTER* > as_string_literal(const CHARACTER* s)
 //{
 //
@@ -95,7 +95,7 @@ auto & get(const TYPE * p)
 DECLARE_ENUMERATION(e_range, enum_range);
 
 
-template < primitive_range RANGE >
+template < prototype_range RANGE >
 constexpr RANGE _start_end_range(const RANGE & range, memsize start, typename RANGE::const_iterator end)
 {
 
@@ -107,7 +107,7 @@ constexpr RANGE _start_end_range(const RANGE & range, memsize start, typename RA
 }
 
 
-template < primitive_range RANGE >
+template < prototype_range RANGE >
 constexpr RANGE _start_count_range(const RANGE & range, memsize start, memsize count)
 {
 
@@ -272,15 +272,15 @@ public:
    template<::collection::count count>
    constexpr range(const ITEM(&array)[count], enum_range erange = e_range_none) 
       requires
-      (!primitive_character < ITEM >)
+      (!prototype_character < ITEM >)
       : range(array, count, erange)
    {
    }
 
    //template < typename CHARACTER, character_count n >
    //constexpr range(const CHARACTER(& s)[n]) requires
-   //   primitive_character < CHARACTER > &&
-   //   ::std::is_same_v<non_const<erase_pointer<CHARACTER>>, non_const<erase_pointer<ITEM>>>
+   //   prototype_character < CHARACTER > &&
+   //   ::std::is_same_v<non_const<non_pointer<CHARACTER>>, non_const<non_pointer<ITEM>>>
    //{
 
    //   if constexpr (n >= 1)
@@ -351,7 +351,7 @@ public:
    }
 
 
-   template<primitive_integral INTEGRAL>
+   template<prototype_integral INTEGRAL>
    constexpr range(this_iterator begin, INTEGRAL count, enum_range erange = e_range_none) :
       m_begin(begin), m_end(begin + count), m_erange(erange)
    {
@@ -428,7 +428,7 @@ public:
    //constexpr void clear_string_flag() { m_erange = (enum_range) (m_erange & ~e_range_string); }
 
 
-   template < primitive_integral START >
+   template < prototype_integral START >
    constexpr THIS_RAW_RANGE operator()(START start) const
    {
 
@@ -437,7 +437,7 @@ public:
    }
 
 
-   template < primitive_integral START, primitive_integral COUNT >
+   template < prototype_integral START, prototype_integral COUNT >
    constexpr THIS_RAW_RANGE operator()(START start, COUNT count) const
    {
 
@@ -446,11 +446,11 @@ public:
    }
 
    //
-   // template < primitive_character CHARACTER >
+   // template < prototype_character CHARACTER >
    // character_count __utf_length(CHARACTER * ptrigger, character_count *& plen) const;
    //
    //
-   // template < primitive_character CHARACTER >
+   // template < prototype_character CHARACTER >
    // void __utf_concatenate_to(CHARACTER *& p, character_count *& plen) const;
    //
 
@@ -488,7 +488,7 @@ public:
 
    }
 
-   template < primitive_integral START >
+   template < prototype_integral START >
    constexpr THIS_RAW_RANGE operator()(START start)
    {
 
@@ -497,7 +497,7 @@ public:
    }
 
 
-   template < primitive_integral START, primitive_integral COUNT >
+   template < prototype_integral START, prototype_integral COUNT >
    THIS_RAW_RANGE operator()(START start, COUNT count)
    {
 
@@ -607,6 +607,14 @@ public:
 
       return !this->is_end(iterator);
 
+
+   }
+
+
+   constexpr bool is_this_range(const range& range) const
+   {
+
+      return this->m_begin == range.m_begin && this->m_end == range.m_end;
 
    }
 
@@ -1301,6 +1309,106 @@ public:
    //      return static_skip_any_character_in(_start_count_range(start, count), rangeBlock, equality);
    //
    //   }
+
+
+   template < typename ITEM2 >
+   static constexpr bool
+      _initialize_find_first_character(const_iterator & p, const THIS_RAW_RANGE & range, ITEM2 item) noexcept
+   {
+
+      if (range.is_empty())
+      {
+
+         p = nullptr;
+
+         return true;
+
+      }
+
+      if (item == 0)
+      {
+
+         p = range.begin();
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr const_iterator
+      _static_find_first_character(THIS_RAW_RANGE range, ITEM item, EQUALITY equality) noexcept
+   {
+
+      do
+      {
+
+         if (equality.equals(*range.begin(), item))
+         {
+
+            // found a matching item...
+            // stop find_first_character_inning and return address of the matching item
+
+            return range.begin();
+
+         }
+
+         // Didn't found matching item...
+         // continue find_first_character...
+
+         range.begin()++;
+
+      } while (!range.is_end(range.begin()));
+
+      // reached end of the find_first_character_inning range...
+      // and didn't find any matching items...
+      // return address immediately after end of find_first_character_inning range....
+
+      return nullptr;
+
+   }
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   static constexpr const_iterator
+      static_find_first_character(const THIS_RAW_RANGE & range, ITEM item, EQUALITY equality) noexcept
+   {
+
+      const_iterator p;
+
+      if (_initialize_find_first_character(p, range, item))
+      {
+
+         return p;
+
+      }
+
+      return _static_find_first_character(range, item, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator _find_first_character(ITEM item, EQUALITY equality) const
+   {
+
+      return _static_find_first_character(*this, item, equality);
+
+   }
+
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr const_iterator find_first_character(ITEM item, EQUALITY equality) const
+   {
+
+      return static_find_first_character(*this, item, equality);
+
+   }
+
+
 
    static constexpr bool
       _initialize_find_first_character_in(const_iterator & p, const THIS_RAW_RANGE & range, const THIS_RAW_RANGE & rangeBlock) noexcept
@@ -2576,7 +2684,7 @@ auto end(::range<ITERATOR_TYPE> & t)
 
 }
 
-template<primitive_range RANGE>
+template<prototype_range RANGE>
 void end_skip_any_character_in_null(RANGE & range)
 {
 
@@ -2664,7 +2772,7 @@ constexpr bool null_terminated_ends(const ITEM * pz, const ITEM * pzSuffix, EQUA
 }
 
 
-//template < primitive_character CHARACTER, character_count n >
+//template < prototype_character CHARACTER, character_count n >
 //constexpr class ::range < const CHARACTER* > as_string_range(const CHARACTER(&s)[n])
 //{
 //
@@ -2673,7 +2781,7 @@ constexpr bool null_terminated_ends(const ITEM * pz, const ITEM * pzSuffix, EQUA
 //}
 
 
-template < primitive_character CHARACTER, character_count n >
+template < prototype_character CHARACTER, character_count n >
 constexpr class ::character_range < const CHARACTER* > as_string_literal(const CHARACTER* s)
 {
 

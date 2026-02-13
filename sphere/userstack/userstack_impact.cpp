@@ -43,11 +43,7 @@ namespace userstack
       USER_MESSAGE_LINK(::user::e_message_create, pchannel, this, &impact::on_message_create);
       USER_MESSAGE_LINK(::user::e_message_context_menu, pchannel, this, &impact::on_message_context_menu);
       //USER_MESSAGE_LINK(::user::e_message_set_cursor, pchannel, this, &impact::on_message_set_cursor);
-      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);
-
-//
-
-   }
+      USER_MESSAGE_LINK(::user::e_message_left_button_up, pchannel, this, &impact::on_message_left_button_up);   }
    /////////////////////////////////////////////////////////////////////////////
    // ::impact drawing
 
@@ -170,7 +166,7 @@ namespace userstack
          return;
       }
 
-      m_ppaneimpact = (create_impact(::type < pane_impact >(), get_document(), this, 102));
+      m_ppaneimpact = (create_impact(::type<pane_impact>(), get_document(), this, 102));
 
 
    }
@@ -248,24 +244,24 @@ namespace userstack
       
       if(iArea == m_iV)
       {
-         lprect->bottom() = rectangleX.bottom();
-         lprect->top() = lprect->bottom() - m_iVH;
-         lprect->left() = 1;
-         lprect->right() = lprect->left() + m_iVW;
+         lprect->bottom = rectangleX.bottom;
+         lprect->top = lprect->bottom - m_iVH;
+         lprect->left = 1;
+         lprect->right = lprect->left + m_iVW;
       }
       else if(iArea == m_i_veriwell)
       {
-         lprect->bottom() = rectangleX.bottom();
-         lprect->top() = lprect->bottom() - m_i_veriwell_h;
-         lprect->left() = 1 + m_iVW + 5;
-         lprect->right() = lprect->left() + m_i_veriwell_w;
+         lprect->bottom = rectangleX.bottom;
+         lprect->top = lprect->bottom - m_i_veriwell_h;
+         lprect->left = 1 + m_iVW + 5;
+         lprect->right = lprect->left + m_i_veriwell_w;
       }
       else if(iArea == m_i_winactionarea)
       {
-         lprect->bottom() = rectangleX.bottom();
-         lprect->top() = lprect->bottom() - m_i_winactionarea_h;
-         lprect->left() = 1 + m_iVW + 5 + m_i_veriwell_w + 5;
-         lprect->right() = lprect->left() + m_i_winactionarea_w;
+         lprect->bottom = rectangleX.bottom;
+         lprect->top = lprect->bottom - m_i_winactionarea_h;
+         lprect->left = 1 + m_iVW + 5 + m_i_veriwell_w + 5;
+         lprect->right = lprect->left + m_i_winactionarea_w;
       }
    }
 
@@ -354,7 +350,7 @@ namespace userstack
    }
 
 
-   void impact::mt_show_window(oswindow oswindow, int iShow)
+   void impact::mt_show_window(::acme::windowing::window * pacmewindowingwindow, int iShow)
    {
       __UNREFERENCED_PARAMETER(oswindow);
       __UNREFERENCED_PARAMETER(iShow);
@@ -365,14 +361,14 @@ namespace userstack
       auto rectangleX = this->rectangle();
       if(m_ppaneimpact != nullptr)
       {
-         m_ppaneimpact->set_window_position(e_zorder_top, rectangleX.top(), rectangleX.left(), rectangleX.width(), rectangleX.height(), SWP_SHOWWINDOW);
+         m_ppaneimpact->set_window_position(e_zorder_top, rectangleX.top, rectangleX.left, rectangleX.width(), rectangleX.height(), SWP_SHOWWINDOW);
       }
       else
       {
          user::interaction * pinteraction = get_top_child();
          if(pinteraction != nullptr)
          {
-            pinteraction->set_window_position(e_zorder_top, rectangleX.top(), rectangleX.left(), rectangleX.width(), rectangleX.height(), SWP_SHOWWINDOW);
+            pinteraction->set_window_position(e_zorder_top, rectangleX.top, rectangleX.left, rectangleX.width(), rectangleX.height(), SWP_SHOWWINDOW);
          }
       }
       ::user::show < ::user::interaction >::on_layout(pgraphics);

@@ -1,8 +1,4 @@
 #pragma once
-
-
-//
-
 //#include "acme/prototype/prototype/payload.h"
 //#include "acme/prototype/collection/pointer_array.h"
 

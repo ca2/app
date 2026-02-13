@@ -10,20 +10,20 @@
 //#include <Tlhelp32.h>
 
 
-inline HWND as_hwnd(oswindow oswindow)
-{
-
-   return (HWND)oswindow;
-
-}
-
-
-inline oswindow as_oswindow(HWND hwnd)
-{
-
-   return (oswindow)hwnd;
-
-}
+// inline HWND as_hwnd(::acme::windowing::window * pacmewindowingwindow)
+// {
+//
+//    return (HWND)oswindow;
+//
+// }
+//
+//
+// inline oswindow as_oswindow(HWND hwnd)
+// {
+//
+//    return (oswindow)hwnd;
+//
+// }
 
 
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
@@ -53,16 +53,18 @@ CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array
 
 #include "acme/operating_system/message.h"
 
+CLASS_DECL_ACME ::acme::windowing::window * acme_windowing_window_from_HWND(void * pHWND);
+CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pwindow);
 
 inline void copy(MESSAGE & message, const MSG & msg)
 {
 
-   message.m_oswindow = (oswindow)(msg.hwnd);
+   message.m_pacmewindowingwindow = ::acme_windowing_window_from_HWND(msg.hwnd);
    message.m_eusermessage = (::user::enum_message)msg.message;
    message.m_wparam = msg.wParam;
    message.m_lparam = msg.lParam;
-   message.m_point.x() = msg.pt.x;
-   message.m_point.y() = msg.pt.y;
+   message.m_point.x = msg.pt.x;
+   message.m_point.y = msg.pt.y;
    message.m_time = msg.time;
 
 
@@ -72,12 +74,12 @@ inline void copy(MESSAGE & message, const MSG & msg)
 inline void copy(MSG & msg, const MESSAGE & message)
 {
 
-   msg.hwnd = (HWND)(message.m_oswindow);
+   msg.hwnd = (HWND) HWND_from_acme_windowing_window(message.m_pacmewindowingwindow);
    msg.message = (UINT)message.m_eusermessage;
    msg.wParam = message.m_wparam;
    msg.lParam = message.m_lparam;
-   msg.pt.x = message.m_point.x();
-   msg.pt.y = message.m_point.y();
+   msg.pt.x = message.m_point.x;
+   msg.pt.y = message.m_point.y;
    msg.time = (DWORD)message.m_time;
 
 }

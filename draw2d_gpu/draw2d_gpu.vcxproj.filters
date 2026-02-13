@@ -65,22 +65,16 @@
     <ClInclude Include="draw2d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_opengl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="face_freetype.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="face_gdiplus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="face.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aaa_opengl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -130,16 +124,10 @@
     <ClCompile Include="initialize_opengl_version.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_win32.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="face_freetype.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="face_gdiplus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="face.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aaa_draw2d_win32.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -22,8 +22,8 @@ namespace userex
    group_image_list_impact::group_image_list_impact()
    {
 
-      m_size.cx() = 7;
-      m_size.cy() = 5;
+      m_size.cx = 7;
+      m_size.cy = 5;
 
 
    }
@@ -528,13 +528,13 @@ namespace userex
 
       ::int_rectangle rectangleMenu(rectangleX);
 
-      rectangleMenu.bottom() = rectangleX.top() + 32;
+      rectangleMenu.bottom = rectangleX.top + 32;
 
       m_pbuttonMenu->display_child(rectangleMenu);
 
       ::int_rectangle rectangleList(rectangleX);
 
-      rectangleList.top() = rectangleX.top() + 32;
+      rectangleList.top = rectangleX.top + 32;
 
       auto * plist = get_current_list();
 

@@ -16,11 +16,11 @@ namespace aura
    }
 
 
-   shell_launcher::shell_launcher(oswindow oswindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, duration durationTimeout)
+   shell_launcher::shell_launcher(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrOperation, const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrDirectory, ::e_display edisplay, duration durationTimeout)
    {
 
       m_iMode              = 0;
-      m_oswindow           = oswindow;
+      m_pacmewindowingwindow           = oswindow;
       m_strOperation       = pszOperation;
       m_strFile            = pszFile;
       m_strParameters      = pszParameters;

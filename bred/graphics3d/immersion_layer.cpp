@@ -91,12 +91,66 @@ namespace graphics3d
    void immersion_layer::load_camera(const ::property_set & set)
    {
 
+      auto pos = set.get("position", ::float_array_base{0.f, 0.f, 0.f});
+      auto rot = set.get("rotation", ::float_array_base{0.f, 0.f});
+
+      m_initialCameraPosition = {pos[0], pos[1], pos[2]};
+      m_rotationInitialCamera.set(::degrees(rot[0]), ::degrees(rot[1]));
+
+      m_pscene->m_bInitialCameraLoaded = true;
+
+      information("Camera position: ({}, {}, {}), rotation (deg): ({}, {}, {})", pos[0], pos[1], pos[2], rot[0], rot[1],
+                  rot[2]);
+
+
+   }
+
+
+   ::pointer<::graphics3d::camera> immersion_layer::allocate_camera()
+   {
+
+      auto pcamera = øcreate<::graphics3d::camera>();
+
+      return pcamera;
 
    }
 
 
    void immersion_layer::on_initial_camera_load()
    {
+
+         //{
+      auto pcameraLoaded = this->allocate_camera();
+
+         //auto pcameraLoaded = øcreate_new<SandboxCamera>();
+
+         // pcameraLoaded->initialize_SandboxCamera(::floating_sequence3(0.f, 0.f, 3.f));
+
+         pcameraLoaded->m_pengine = m_pengine;
+
+         //         // ::floating_sequence3 camera = ::floating_sequence3(0.0f, 1.0f *m_pengine->m_fYScale, 3.0f);
+         //::floating_sequence3 camera = ::floating_sequence3(0.0f, 1.0f, 3.0f);
+         //::floating_sequence3 target = ::floating_sequence3(0.0f, 0.0f, 0.0f); // Look at origin
+         //// ::floating_sequence3 direction = glm::normalize(target - cameraPos);
+         //// camera camera{ ::floating_sequence3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
+         // auto pcameraDefault = øcreate<SandboxCamera>();
+         // pcameraDefault->m_pengine = m_pimmersionlayer->m_pengine;
+
+         // pcamera->m_pimpact = m_pimpact;
+
+
+         // pcameraDefault->m_pengine = m_pimmersionlayer->m_pengine;
+
+         // pcameraLoaded->m_position = m_initialCameraPosition;
+
+         // pcameraLoaded->m_pitch = m_initialCameraRotation.x;
+
+         // pcameraLoaded->m_yaw = m_initialCameraRotation.y;
+         pcameraLoaded->initialize_camera(m_initialCameraPosition, m_rotationInitialCamera);
+
+         m_pscene->set_default_camera(pcameraLoaded);
+
+      //}
 
 
    }

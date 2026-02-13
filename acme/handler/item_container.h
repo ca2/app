@@ -62,15 +62,15 @@ public:
 
    //virtual ::user::item * user_item(const ::atom & atom);
 
-   virtual ::item_pointer item(const ::atom & atom);
+   virtual ::item * item(const ::atom & atom);
 
    virtual const ::item * item(const ::atom & atom) const;
 
    virtual bool contains_item(const ::atom & atom) const;
 
-   virtual ::item_pointer find_item(enum_element eelement, ::collection::index iItem = -1);
+   virtual ::item * find_item(enum_element eelement, ::collection::index iItem = -1);
 
-   virtual ::item_pointer defer_item(enum_element eelement, ::collection::index iItem = -1);
+   virtual ::item * defer_item(enum_element eelement, ::collection::index iItem = -1);
 
    virtual ::collection::index item_index() const;
 
@@ -82,16 +82,16 @@ public:
 
 
    virtual bool is_item_selected(::item * pitem);
-   virtual ::item_pointer selected_item();
+   virtual ::item * selected_item();
 
    virtual bool is_item_hover(::item * pitem);
-   virtual ::item_pointer hover_item();
+   virtual ::item * hover_item();
 
 
    virtual void on_item_selected(::item * pitem);
    virtual void on_item_hover(::item * pitem);
 
-   virtual ::item_pointer get_child_as_item(::collection::index iIndex);
+   virtual ::item * get_child_as_item(::collection::index iIndex);
    virtual ::collection::count get_child_as_item_count();
 
 

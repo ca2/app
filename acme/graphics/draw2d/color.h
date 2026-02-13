@@ -165,11 +165,11 @@ namespace color
 
       constexpr color() { m_uchRed = m_uchGreen = m_uchBlue = m_uchOpacity = 0; }
       constexpr color(no_initialize_t) { }
-      template < primitive_number GRAY, primitive_number ALPHA >
+      template < prototype_number GRAY, prototype_number ALPHA >
       constexpr color(GRAY gray, ALPHA u8Opacity) { set_red(gray); set_green(gray); set_blue(gray); set_opacity(u8Opacity); }
-      //template < primitive_number R, primitive_number G, primitive_number B >
+      //template < prototype_number R, prototype_number G, prototype_number B >
       //constexpr color(R r, G g, B b) { set_red(r); set_green(g); set_blue(b); }
-      //template < primitive_number R, primitive_number G, primitive_number B, primitive_number A >
+      //template < prototype_number R, prototype_number G, prototype_number B, prototype_number A >
       //constexpr color(R r, G g, B b, A a) { set_red(r); set_green(g); set_blue(b); set_opacity(a); }
       constexpr color(const ::color32_t & color32) { set(color32); }
       constexpr color(const ::rgba_t & rgba) { set(rgba); }
@@ -710,6 +710,7 @@ namespace color
          break;
       case e_plain_color_gray:
          ui = ::rgb(127, 127, 127).m_ui;
+         break;
       default:
          ui = 0;
          break;

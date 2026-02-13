@@ -123,9 +123,9 @@ public:
    DECLARE_COMPARISON_WITH_DURATION(NON_INLINE)
 
 
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    inline class time operator / (const NUMBER & number)const{ return time(m_iSecond / number, m_iNanosecond / number); }
-   template < primitive_number NUMBER >
+   template < prototype_number NUMBER >
    inline class time operator * (const NUMBER & number) const{ return time(m_iSecond * number, m_iNanosecond * number); }
 
 

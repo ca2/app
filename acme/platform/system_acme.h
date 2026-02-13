@@ -527,9 +527,9 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[typeid(e).name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
 //
-//      m_mapTextToEnum[typeid(e).name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
 //
 //   }
 
@@ -540,7 +540,7 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[typeid(e).name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(long long)e];
 //
 //   }
 
@@ -553,7 +553,7 @@ namespace platform
 //
 //      long long iValue;
 //
-//      if (m_mapTextToEnum[typeid(e).name()].find(scopedstr, iValue))
+//      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
 //      {
 //
 //         e = (ENUM)iValue;
@@ -616,7 +616,7 @@ namespace platform
       virtual void get_public_internet_domain_extension_list(string_array_base & stra);
       virtual ::string fetch_public_internet_domain_extension_list_text();
 
-      virtual void system_id_update(int iUpdate, long long iPayload);
+      virtual ::lresult system_id_topic(int iId, long long llWparam, long long llLparam);
 
       //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 

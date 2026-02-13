@@ -72,10 +72,6 @@
 //      m_pcontext->m_pgpudevice->m_pparticleSynchronization->unlock();
 //
 //   }
-//
-//
-//
-//
 //   //};
 //
 //

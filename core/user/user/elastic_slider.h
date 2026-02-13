@@ -17,18 +17,18 @@ namespace user
 
 
 
-      ::pointer < scalar >          m_pscalarVelocity;
-      ::pointer < scalar >          m_pscalarPosition;
+      ::pointer < ::number::scalar >      m_pscalarVelocity;
+      ::pointer < ::number::scalar >      m_pscalarPosition;
 
-      enum_scalar                   m_escalar;
+      enum_scalar                         m_escalar;
 
-      class ::time                    m_timeLastTime;
+      class ::time                        m_timeLastTime;
 
-      double                        m_dPosition;// 0.0 = minimum 1.0 = maximum
-      double                        m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
-      bool                          m_bSlide;
-      ::collection::index                         m_iScalar;
-      double_array                  m_daScalar;
+      double                              m_dPosition;// 0.0 = minimum 1.0 = maximum
+      double                              m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
+      bool                                m_bSlide;
+      ::collection::index                 m_iScalar;
+      double_array                        m_daScalar;
 
 
       elastic_slider();
@@ -49,7 +49,7 @@ namespace user
 
 
 
-      void SetStreamingVelocityMode(scalar * pscalarVelocity, scalar* pscalarPosition);
+      void SetStreamingVelocityMode(::number::scalar * pscalarVelocity, ::number::scalar* pscalarPosition);
 
 
       void UpdatePosition();

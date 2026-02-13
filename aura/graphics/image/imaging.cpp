@@ -125,10 +125,10 @@ int                 cy)
    */
    sizeText = pgraphics->get_text_extent(string(pcsz,cb));
 
-   rectangleText.left()    = x;
-   rectangleText.right()   = int (x + cx + sizeText.cx());
-   rectangleText.top()     = y;
-   rectangleText.bottom()  = int(y + cy + sizeText.cy());
+   rectangleText.left    = x;
+   rectangleText.right   = int (x + cx + sizeText.cx);
+   rectangleText.top     = y;
+   rectangleText.bottom  = int(y + cy + sizeText.cy);
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rectangleText, psz, cb, nullptr);
 
    //pgraphics->SetBkMode(TRANSPARENT);
@@ -173,7 +173,7 @@ int                 cy)
 //   ::collection::count nSize;
 //
 //   nSize = pArray->get_size();
-//   pSize->cx() = 0;
+//   pSize->cx = 0;
 //
 //   ::int_size size;
 //   for(nIndex = 0; nIndex < nSize; nIndex++)
@@ -181,18 +181,18 @@ int                 cy)
 //      const ::scoped_string & scopedstr = pArray->get_at(nIndex);
 //      wstring wstr(str);
 //      GetTextExtentPoint32W(hDC,wstr,(int)wstr.get_length(),&size);
-//      if(size.cx() > pSize->cx())
+//      if(size.cx > pSize->cx)
 //
-//         pSize->cx() = size.cx();
+//         pSize->cx = size.cx;
 //
 //   }
-//   //   pSize->cy() =
+//   //   pSize->cy =
 //
 //   //      (tm.tmHeight +
 //   //      tm.tmExternalLeading +
 //   //      tm.tmInternalLeading) *
 //   nSize;
-//   pSize->cy() = (int)((tm.tmHeight + tm.tmExternalLeading) * nSize);
+//   pSize->cy = (int)((tm.tmHeight + tm.tmExternalLeading) * nSize);
 //
 //
 //#else
@@ -279,10 +279,10 @@ int                 cy)
 
 //             pitmapMask,
 
-//             rectangle.left(),
-//             rectangle.top(),
-//             rectangle.right() - rectangle.left(),
-//             rectangle.bottom() - rectangle.top(),
+//             rectangle.left,
+//             rectangle.top,
+//             rectangle.right - rectangle.left,
+//             rectangle.bottom - rectangle.top,
 //             crTransparent);
 //}
 
@@ -305,7 +305,7 @@ for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::int_rectangle & rectangle = ii.m_rectangle;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), rgb(192, 192, 192));
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), rgb(192, 192, 192));
 }
 return pil;
 
@@ -337,8 +337,8 @@ const ::int_rectangle & rectangle = ii.m_rectangle;
 HueVRCP(
 spgraphics->get_os_data(),
 ii.hbmImage,
-rectangle.left(),
-rectangle.top(),
+rectangle.left,
+rectangle.top,
 rectangle.width(),
 rectangle.height(),
 crHue,
@@ -421,7 +421,7 @@ for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::int_rectangle & rectangle = ii.m_rectangle;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left(), rectangle.top(), rectangle.width(), rectangle.height(), rgb(192, 192, 192));
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), rgb(192, 192, 192));
 }
 return pil;
 
@@ -484,17 +484,17 @@ return pil;
 ////   const ::int_size & size = pitmap->get_size();
 
 ////
-////   unsigned int cbLine = ((size.cx() * 3 + 3) & ~3);
-////   unsigned int cbImage = size.cy() * cbLine;
+////   unsigned int cbLine = ((size.cx * 3 + 3) & ~3);
+////   unsigned int cbImage = size.cy * cbLine;
 ////
-////   unsigned int cbMask = size.cy() * ((size.cx() + 3) & ~3);
+////   unsigned int cbMask = size.cy * ((size.cx + 3) & ~3);
 ////
 ////
 ////   BITMAPINFO bmi;
 ////
 ////   bmi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-////   bmi.bmiHeader.biWidth = size.cx();
-////   bmi.bmiHeader.biHeight = - size.cy();
+////   bmi.bmiHeader.biWidth = size.cx;
+////   bmi.bmiHeader.biHeight = - size.cy;
 ////   bmi.bmiHeader.biPlanes = 1;
 ////   bmi.bmiHeader.biBitCount = 24;
 ////   bmi.bmiHeader.biCompression = BI_RGB;
@@ -521,7 +521,7 @@ return pil;
 ////
 ////#ifdef WINDOWS_DESKTOP
 ////
-////   unsigned int uScanLines = size.cy();
+////   unsigned int uScanLines = size.cy;
 ////
 ////
 ////   if(!GetDIBits(
@@ -553,9 +553,9 @@ return pil;
 ////
 ////   pmiMask->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
-////   pmiMask->bmiHeader.biWidth = sizeMask.cx();
+////   pmiMask->bmiHeader.biWidth = sizeMask.cx;
 
-////   pmiMask->bmiHeader.biHeight = - sizeMask.cy();
+////   pmiMask->bmiHeader.biHeight = - sizeMask.cy;
 
 ////   pmiMask->bmiHeader.biPlanes = 1;
 
@@ -610,17 +610,17 @@ return pil;
 
 
 
-////   unsigned char * pBaseShadow = pShadow + size.cx() * y + x * 3;
+////   unsigned char * pBaseShadow = pShadow + size.cx * y + x * 3;
 
 
 
 
-////   unsigned char * pBaseMask = pMask + size.cx() * y + x;
+////   unsigned char * pBaseMask = pMask + size.cx * y + x;
 
 
 
 
-////   unsigned char * pBaseMaskShift = pMask + size.cx() * (y + 1) + (x + 1);
+////   unsigned char * pBaseMaskShift = pMask + size.cx * (y + 1) + (x + 1);
 
 
 
@@ -653,12 +653,12 @@ return pil;
 
 
 
-////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx * i;
 
 
 
 
-////      unsigned char * pLineMask = pBaseMask + size.cy() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cy * i;
 
 
 
@@ -737,7 +737,7 @@ return pil;
 ////
 ////   for(i = 0; i < cy; i ++)
 ////   {
-////      unsigned char * pLineMask = pBaseMask + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cx * i;
 
 
 
@@ -764,12 +764,12 @@ return pil;
 
 
 
-////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx * i;
 
 
 
 
-////      unsigned char * pLineMask = pBaseMaskShift + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMaskShift + size.cx * i;
 
 
 
@@ -823,12 +823,12 @@ return pil;
 
 
 
-////      unsigned char * pLineShadow = pBaseShadow + size.cx() * i;
+////      unsigned char * pLineShadow = pBaseShadow + size.cx * i;
 
 
 
 
-////      unsigned char * pLineMask = pBaseMask + size.cx() * i;
+////      unsigned char * pLineMask = pBaseMask + size.cx * i;
 
 
 
@@ -941,8 +941,8 @@ return pil;
 
 //   ::int_rectangle rectangle(rectangleParam);
 //
-//   //   int x = rectangle.left();
-//   int y = rectangle.top();
+//   //   int x = rectangle.left;
+//   int y = rectangle.top;
 //   //   int cx = rectangle.width();
 //   int cy = rectangle.height();
 //
@@ -1247,7 +1247,7 @@ uiStartScanLineParam = uiStartScanLine;
 //unsigned int uStartScanLine = bm.bmHeight - y - cy;
 unsigned int uScanLines = cy;
 uiScanLineCountParam = uiScanLines;
-int xOffset = (x + pointContext.x()) * 3;
+int xOffset = (x + pointContext.x) * 3;
 //if(!GetDIBits(dcAux.get_os_data(), bitmap, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
 //  throw ::exception(::exception("integer_exception" + as_string($1)));
@@ -1266,9 +1266,9 @@ DIB_RGB_COLORS)))
 throw ::exception(::exception("integer_exception" + as_string($1)));
 int iLimitX = cx;
 
-if(bm.bmWidth - x - pointContext.x() < iLimitX)
+if(bm.bmWidth - x - pointContext.x < iLimitX)
 {
-iLimitX = bm.bmWidth - x - pointContext.x();
+iLimitX = bm.bmWidth - x - pointContext.x;
 }
 
 graphicsMem->set(pmpMemOld);
@@ -1725,10 +1725,10 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
 
    ::int_point pointContext;
    pointContext = pgraphics->get_origin();
-   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
+   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y;
    //unsigned int uStartScanLine = bm.bmHeight - y - cy;
    unsigned int uScanLines = cy;
-   int xOffset = (x + pointContext.x()) * 3;
+   int xOffset = (x + pointContext.x) * 3;
    //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
    //  throw ::exception(::exception("integer_exception" + as_string($1)));
@@ -1746,9 +1746,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    return false;
    int iLimitX = cx;
 
-   if(bm.bmWidth - x - pointContext.x() < iLimitX)
+   if(bm.bmWidth - x - pointContext.x < iLimitX)
    {
-   iLimitX = bm.bmWidth - x - pointContext.x();
+   iLimitX = bm.bmWidth - x - pointContext.x;
    }
 
    unsigned char * p;
@@ -1840,10 +1840,10 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    LPVOID pv = memstorageA.get_data();
 
    ::int_point pointContext = pgraphics->get_origin();
-   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y();
+   unsigned int uStartScanLine = bm.bmHeight - y - cy - pointContext.y;
    //unsigned int uStartScanLine = bm.bmHeight - y - cy;
    unsigned int uScanLines = cy;
-   int xOffset = (x + pointContext.x()) * 3;
+   int xOffset = (x + pointContext.x) * 3;
 
 
    //int xOffset = (x) * 3;
@@ -1863,9 +1863,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    int iLimitX = cx;
 
 
-   if(bm.bmWidth - x - pointContext.x() < iLimitX)
+   if(bm.bmWidth - x - pointContext.x < iLimitX)
    {
-   iLimitX = bm.bmWidth - x - pointContext.x();
+   iLimitX = bm.bmWidth - x - pointContext.x;
    }
 
    unsigned char * p;
@@ -2087,7 +2087,7 @@ void imaging::trait(::image::image *pimage, long long iTrait)
 //
 //      const ::int_size & size = pbitmap->get_size();
 //
-//      if(size.cx() >= cx && size.cy() >= cy)
+//      if(size.cx >= cx && size.cy >= cy)
 //      {
 //
 //         bCreate = false;
@@ -2156,7 +2156,7 @@ void imaging::trait(::image::image *pimage, long long iTrait)
 //
 //      const ::int_size & size = pitmap->get_size();
 //
-//      if(size.cx() >= cx && size.cy() >= cy)
+//      if(size.cx >= cx && size.cy >= cy)
 //      {
 //
 //         bCreate = false;
@@ -2945,7 +2945,7 @@ void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
 void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::int_point & pointDst,const ::int_size & size,::draw2d::graphics * pdcSrc,const ::int_point & pointSrc,int iChannel,int iRadius)
 {
 
-   if (size.cx() <= 0 || size.cy() <= 0)
+   if (size.cx <= 0 || size.cy <= 0)
    {
 
       throw ::exception(error_wrong_state);
@@ -3709,7 +3709,7 @@ const ::int_size & sizeFilter,
 unsigned char * pFilter)
 {
 
-   if (size.cx() <= 0 || size.cy() <= 0)
+   if (size.cx <= 0 || size.cy <= 0)
    {
 
       throw ::exception(error_wrong_state);
@@ -3757,8 +3757,8 @@ unsigned char * pFilter)
       pimageDst,
       pimageSrc,
       iChannel,
-      sizeFilter.cx(),
-      sizeFilter.cy(),
+      sizeFilter.cx,
+      sizeFilter.cy,
       pFilter);
    /*{
 
@@ -4202,16 +4202,16 @@ void imaging::color_blend(::draw2d::graphics * pgraphics, const ::int_point & po
 //
 //   ::int_point pointAlpha(pointAlphaParam);
 //
-//   if(point.x() < 0)
+//   if(point.x < 0)
 //   {
-//      pointAlpha.x() += -point.x();
-//      point.x() = 0;
+//      pointAlpha.x += -point.x;
+//      point.x = 0;
 //   }
 //
-//   if(point.y() < 0)
+//   if(point.y < 0)
 //   {
-//      pointAlpha.y() += -point.y();
-//      point.y() = 0;
+//      pointAlpha.y += -point.y;
+//      point.y = 0;
 //   }
 //
 //
@@ -4350,7 +4350,7 @@ int w3)
 
 //void imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::int_point & pointDst,const ::int_size & size,::draw2d::graphics * pdcSrc,const ::int_point & pointSrc,unsigned char bMin)
 //{
-//   if(size.cx() <= 0 || size.cy() <= 0)
+//   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
 //   unsigned int user;
@@ -4421,10 +4421,10 @@ int w3)
 //   const ::int_point & pointContextDst = pdcDst->get_origin();
 //   const ::int_point & pointContextSrc = pdcSrc->get_origin();
 //
-//   int xvpDst = pointDst.x() + pointContextDst.x();
-//   int xvpSrc = pointSrc.x() + pointContextSrc.x();
+//   int xvpDst = pointDst.x + pointContextDst.x;
+//   int xvpSrc = pointSrc.x + pointContextSrc.x;
 //
-//   int iLimitX = size.cx();
+//   int iLimitX = size.cx;
 //
 //   if(bmDst.bmWidth - xvpDst < iLimitX)
 //   {
@@ -4484,7 +4484,7 @@ int w3)
 //         throw ::exception(::exception("integer_exception" + as_string($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDst);
 
-//      if(!pdcDst->BitBlt(pointDst.x(),pointDst.y(),size.cx(),size.cy(),graphicsMem,pointSrc.x(),pointSrc.y()))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(false);
 //      }
@@ -4525,7 +4525,7 @@ int w3)
 //void imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::int_point & pointDst,const ::int_size & size,::draw2d::graphics * pdcSrc,const ::int_point & pointSrc,unsigned char bMin,int iRadius)
 //{
 //
-//   if(size.cx() <= 0 || size.cy() <= 0)
+//   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
 //   //   single_lock synchronouslock(&m_csMem, true);
@@ -4600,10 +4600,10 @@ int w3)
 //   const ::int_point & pointContextDest = pdcDst->get_origin();
 //   const ::int_point & pointContextSrc = pdcSrc->get_origin();
 //
-//   int xvpDest = pointDst.x() + pointContextDest.x();
-//   int xvpSrc = pointDst.y() + pointContextSrc.x();
+//   int xvpDest = pointDst.x + pointContextDest.x;
+//   int xvpSrc = pointDst.y + pointContextSrc.x;
 //
-//   int iLimitX = size.cx();
+//   int iLimitX = size.cx;
 //
 //   if(bmDest.bmWidth - xvpDest < iLimitX)
 //   {
@@ -4663,7 +4663,7 @@ int w3)
 //         throw ::exception(::exception("integer_exception" + as_string($1)));
 //      ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapDest);
 
-//      if(!pdcDst->BitBlt(pointDst.x(),pointDst.y(),size.cx(),size.cy(),graphicsMem,pointSrc.x(),pointSrc.y()))
+//      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
 //         ASSERT(false);
 //      }
@@ -5660,10 +5660,6 @@ breakFilter2:
 //   }
 //
 //   return true;*/
-//
-//
-//
-//
 //   if(cx <= 0 || cy <= 0)
 //      return true;
 //
@@ -5677,16 +5673,16 @@ breakFilter2:
 //   memory memstorageC;
 //
 //   ::int_rectangle rectangleDest;
-//   rectangleDest.left() = xDest;
-//   rectangleDest.right() = xDest + cx;
-//   rectangleDest.top() = yDest;
-//   rectangleDest.bottom() = yDest + cy;
+//   rectangleDest.left = xDest;
+//   rectangleDest.right = xDest + cx;
+//   rectangleDest.top = yDest;
+//   rectangleDest.bottom = yDest + cy;
 //
 //   ::int_rectangle rectangleSource;
-//   rectangleSource.left() = xSrc;
-//   rectangleSource.right() = xSrc + cx;
-//   rectangleSource.top() = ySrc;
-//   rectangleSource.bottom() = ySrc + cy;
+//   rectangleSource.left = xSrc;
+//   rectangleSource.right = xSrc + cx;
+//   rectangleSource.top = ySrc;
+//   rectangleSource.bottom = ySrc + cy;
 //
 //   int iwDest;
 //
@@ -5749,8 +5745,8 @@ breakFilter2:
 //   const ::int_point & pointContextDest = pdcDst->get_origin();
 //   const ::int_point & pointContextSrc = pdcSrc->get_origin();
 //
-//   int xvpDest = xDest + pointContextDest.x();
-//   int xvpSrc = xSrc + pointContextSrc.x();
+//   int xvpDest = xDest + pointContextDest.x;
+//   int xvpSrc = xSrc + pointContextSrc.x;
 //
 //   int iLimitX = cx;
 //
@@ -6218,22 +6214,22 @@ int      iSize)
 //
 //
 //   ::int_rectangle rectangleDest;
-//   rectangleDest.left() = xDest;
-//   rectangleDest.right() = xDest + cx;
-//   rectangleDest.top() = yDest;
-//   rectangleDest.bottom() = yDest + cy;
+//   rectangleDest.left = xDest;
+//   rectangleDest.right = xDest + cx;
+//   rectangleDest.top = yDest;
+//   rectangleDest.bottom = yDest + cy;
 //
 //   ::int_rectangle rectangleSrc1;
-//   rectangleSrc1.left() = xSrc1;
-//   rectangleSrc1.right() = xSrc1 + cx;
-//   rectangleSrc1.top() = ySrc1;
-//   rectangleSrc1.bottom() = ySrc1 + cy;
+//   rectangleSrc1.left = xSrc1;
+//   rectangleSrc1.right = xSrc1 + cx;
+//   rectangleSrc1.top = ySrc1;
+//   rectangleSrc1.bottom = ySrc1 + cy;
 //
 //   ::int_rectangle rectangleSrc2;
-//   rectangleSrc2.left() = xSrc2;
-//   rectangleSrc2.right() = xSrc2 + cx;
-//   rectangleSrc2.top() = ySrc2;
-//   rectangleSrc2.bottom() = ySrc2 + cy;
+//   rectangleSrc2.left = xSrc2;
+//   rectangleSrc2.right = xSrc2 + cx;
+//   rectangleSrc2.top = ySrc2;
+//   rectangleSrc2.bottom = ySrc2 + cy;
 //
 //   int iwDest;
 //
@@ -6316,9 +6312,9 @@ int      iSize)
 //   const ::int_point & pointContextSrc1 = pdcSrc1->get_origin();
 //   const ::int_point & pointContextSrc2 = pdcSrc2->get_origin();
 //
-//   int xvpDest = xDest + pointContextDest.x();
-//   int xvpSrc1 = xSrc1 + pointContextSrc1.x();
-//   int xvpSrc2 = xSrc2 + pointContextSrc2.x();
+//   int xvpDest = xDest + pointContextDest.x;
+//   int xvpSrc1 = xSrc1 + pointContextSrc1.x;
+//   int xvpSrc2 = xSrc2 + pointContextSrc2.x;
 //
 //   int iLimitX = cx;
 //
@@ -7008,10 +7004,6 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const
 //    return ::error_failed;
 //
 // }
-//
-//
-//
-//
 //
 //#endif
 //

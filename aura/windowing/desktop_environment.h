@@ -12,7 +12,7 @@ namespace windowing
 
 
    class CLASS_DECL_AURA desktop_environment :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
    public:
 

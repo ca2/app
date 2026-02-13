@@ -220,10 +220,6 @@
 //
 //
 //}
-//
-//
-//
-//
 //template < typename TYPE >
 //inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a)
 //{
@@ -520,7 +516,7 @@
 //
 //   string strText;
 //
-//   auto type = ::type(p).name();
+//   auto type = ::platform::type(p).name();
 //
 //   if (p->has(e_flag_factory))
 //   {
@@ -762,7 +758,7 @@
 ////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
 ////   ::atom idFactory;
 ////   binary_stream.exchange("", idFactory);
-////   auto pparticle = øid_create<::matter>(idFactory);
+////   auto pparticle = øcreate_by_type<::matter>(idFactory);
 ////   pparticle->exchange(binary_stream);
 ////   return pparticle;
 ////}
@@ -901,14 +897,14 @@
 //inline void __exchange(::binary_stream & s, ::int_rectangle & rectangle)
 //{
 //
-//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
+//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //
 //}
 //
 //inline void __exchange(::binary_stream & s, ::long_long_rectangle & rectangle)
 //{
 //
-//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
+//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //
 //}
 //
@@ -916,40 +912,32 @@
 //
 //inline void __exchange(::binary_stream & s, ::float_rectangle & rectangle)
 //{
-//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
+//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::double_rectangle & rectangle)
 //{
-//   s.exchange("left", rectangle.left()); s.exchange("top", rectangle.top()); s.exchange("right", rectangle.right()); s.exchange("bottom", rectangle.bottom());
+//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //}
-//
-//
-//
-//
 //
 //inline void __exchange(::binary_stream & s, ::int_size & size)
 //{
-//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
 //
 //
 ////
 ////inline void __exchange(::binary_stream & s, SIZEL & size)
 ////{
-////   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+////   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 ////}
 ////
-////
-//
-//
-//
-//inline void __exchange(::binary_stream & s, ::float_size & size)
+////inline void __exchange(::binary_stream & s, ::float_size & size)
 //{
 //
-//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //
 //}
 //
@@ -957,37 +945,33 @@
 //
 //inline void __exchange(::binary_stream & s, ::double_size & size)
 //{
-//   s.exchange("cx", size.cx()); s.exchange("cy", size.cy());
+//   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
-//
-//
-//
-//
 //
 //inline void __exchange(::binary_stream & s, ::int_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::long_long_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::float_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
 //inline void __exchange(::binary_stream & s, ::double_point & point)
 //{
-//   s.exchange("x", point.x()); s.exchange("y", point.y());
+//   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //template < typename TYPE >
@@ -1116,10 +1100,6 @@
 //  }
 //
 //}
-//
-//
-//
-//
 //template < typename TYPE >
 //inline void payload_stream::var_exchange(const ::atom & atom, TYPE & t)
 //{

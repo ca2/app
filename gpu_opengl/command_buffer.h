@@ -24,12 +24,16 @@ namespace gpu_opengl
       void set_scissor(const ::int_rectangle& rectangle) override;
 
 
-      void draw(int a) override;
+      void draw_int_a_count(int a) override;
 
 
       void set_render_target() override;
       void draw_vertexes(int iVertexCount) override;
       void draw_indexes(int iIndexCount) override;
+
+
+      void begin_render(::gpu::shader *pgpushader, ::gpu::texture *pgputextureTarget) override;
+      void end_render() override;
 
 
    };

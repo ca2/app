@@ -5,10 +5,6 @@
 //namespace imaging_freeimage
 //{
 //
-//
-//
-//
-//
 //   factory_exchange::factory_exchange()
 //   {
 //

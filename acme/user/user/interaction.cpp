@@ -324,15 +324,20 @@ namespace acme
                 i >= 0; i--)
             {
 
-               ::pointer<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
-
-               auto rectangle = pelemental->m_rectangle;
-
-               if (rectangle.contains(point))
+               ::cast<::micro::elemental> pelemental = m_pacmeuserinteractionaChildren->element_at(i);
+               
+               if(::is_set(pelemental))
                {
-
-                  return pelemental;
-
+                  
+                  auto rectangle = pelemental->m_rectangle;
+                  
+                  if (rectangle.contains(point))
+                  {
+                     
+                     return pelemental;
+                     
+                  }
+                  
                }
 
             }
@@ -365,9 +370,9 @@ namespace acme
 
       //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
 
-      //   m_rectangle.right() = m_rectangle.left() + size.cx();
+      //   m_rectangle.right = m_rectangle.left + size.cx;
 
-      //   m_rectangle.bottom() = m_rectangle.top() + size.cy();
+      //   m_rectangle.bottom = m_rectangle.top + size.cy;
 
       //}
 
@@ -719,11 +724,11 @@ namespace acme
 
                __check_refdbg
 
-               auto childrena = ::transfer(*pchildren);
+               auto pchildrena = ::transfer(pchildren);
 
                __check_refdbg
 
-               for (auto & pchild : childrena)
+               for (auto & pchild : *pchildrena)
                {
 
                   if (pchild)
@@ -1413,6 +1418,14 @@ namespace acme
          }
 
 
+         ::int_size interaction::get_window_minimum_size()
+         {
+
+            return { 250, 250 };
+
+         }
+
+
          //::collection::count interaction::nano_user_button_count()
          //{
 
@@ -1728,6 +1741,32 @@ namespace acme
 
          }
 
+   
+   bool interaction::on_add_child(::acme::user::interaction *pacmeuserinteractionChild)
+   {
+      
+      ødefer_construct_new(m_pacmeuserinteractionaChildren);
+      
+      auto &pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
+
+      if(pacmeuserinteractionaChildren->contains(pacmeuserinteractionChild))
+      {
+         
+         return false;
+         
+      }
+      
+      pacmeuserinteractionChild->m_pacmeuserinteractionParent = this;
+
+
+      
+         __refdbg_add_referer
+         
+         pacmeuserinteractionaChildren->add(pacmeuserinteractionChild);
+
+      return true;
+      
+   }
 
          //void interaction::get_client_rectangle(::int_rectangle & rectangle)
          //{
@@ -1969,7 +2008,11 @@ namespace acme
          void interaction::on_create_window_object()
          {
 
-            øconstruct(m_pacmewindowingwindow, ::system()->m_pfactoryAcmeWindowing);
+            //auto pfactoryAcmeWindowing = ::system()->m_pfactoryAcmeWindowing.m_p;
+
+            //øconstruct(m_pacmewindowingwindow, pfactoryAcmeWindowing);
+
+            øconstruct(m_pacmewindowingwindow);
 
          }
 
@@ -2094,7 +2137,7 @@ namespace acme
          ::trace_statement & interaction::raw_trace_statement_prefix(::trace_statement & statement) const
          {
 
-            ::string strType = ::type(this).name();
+            ::string strType = ::platform::type(this).name();
 
             statement << strType;
 

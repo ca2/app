@@ -64,10 +64,6 @@
 //
 //} // namespace aura
 //
-//
-//
-//
-//
 //CLASS_DECL_AURA bool out_push_packet(WAVE_OUT_PACKET * ppacket)
 //{
 //

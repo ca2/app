@@ -275,10 +275,6 @@ const_char_pointer memory_counter_id(T * pthis)
 ////   return t->clone();
 ////
 ////}
-//
-//
-//
-//
 //template < typename T >
 //template < typename T2 >
 //inline pointer < T > & pointer < T >::clone(T2 * p)
@@ -402,17 +398,13 @@ const_char_pointer memory_counter_id(T * pthis)
 //#ifndef __cplusplus_winrt
 //
 //
-//template < primitive_integral MULTIPLICATOR, primitive_integral NUMERATOR, primitive_integral DENOMINATOR, primitive_integral RESULT >
+//template < prototype_integral MULTIPLICATOR, prototype_integral NUMERATOR, prototype_integral DENOMINATOR, prototype_integral RESULT >
 //inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMINATOR iDenominator)
 //{
 //
 //   return iMultiplicator * iNumerator / iDenominator;
 //
 //}
-//
-//
-//
-//
 ////template < typename TYPE >
 ////::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
 ////{
@@ -483,15 +475,7 @@ const_char_pointer memory_counter_id(T * pthis)
 ////
 //
 //#endif // __cplusplus_winrt
-//
-//
-//
-//
 ////#ifndef __cplusplus_winrt
-//
-//
-//
-//
 //
 //
 

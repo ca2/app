@@ -11,12 +11,12 @@ struct MESSAGE
 {
 
    
-   ::oswindow              m_oswindow = nullptr;
-   ::user::enum_message    m_eusermessage = ::user::e_message_null;
-   wparam                  m_wparam;
-   lparam                  m_lparam;
-   ::int_point             m_point;
-   unsigned long long      m_time = 0;
+   ::acme::windowing::window *   m_pacmewindowingwindow = nullptr;
+   ::user::enum_message          m_eusermessage = ::user::e_message_null;
+   wparam                        m_wparam;
+   lparam                        m_lparam;
+   ::int_point                   m_point;
+   unsigned long long            m_time = 0;
 
 
    MESSAGE() {}
@@ -32,7 +32,7 @@ struct MESSAGE
    MESSAGE & operator = (const MESSAGE & message)
    {
       
-      m_oswindow = message.m_oswindow;
+      m_pacmewindowingwindow = message.m_pacmewindowingwindow;
       m_eusermessage = message.m_eusermessage;
       m_wparam = message.m_wparam;
       m_lparam = message.m_lparam;

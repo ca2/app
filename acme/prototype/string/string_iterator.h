@@ -8,7 +8,7 @@
 #pragma once
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 class unicode_iterator
 {
 public:
@@ -27,7 +27,7 @@ public:
    unicode_iterator & operator ++();
    unicode_iterator operator ++(int);
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    unicode_iterator operator +(INTEGRAL i) const
    {
 

@@ -11,6 +11,8 @@ namespace graphics3d
 {
 
 
+
+
    class CLASS_DECL_BRED renderable :
       virtual public ::particle,
       public ::gpu::renderable_t
@@ -27,16 +29,19 @@ namespace graphics3d
       ~renderable();
 
 
-      virtual ::gpu::enum_renderable_type renderable_type();
+      virtual ::gpu::enum_model emodel();
       //virtual void set_emodel(::gpu::enum_model emodel);
       virtual ::gpu::enum_renderable_usage renderable_usage();
       //virtual void set_model_usage(::gpu::enum_model_usage emodelusage);
       virtual ::gpu::texture *get_target_texture();
 
-      virtual void bind(::gpu::command_buffer *pcommandbuffer);
+      virtual void bind2(::gpu::command_buffer *pcommandbuffer);
 
 
-      virtual void draw(::gpu::command_buffer *pcommandbuffer);
+      virtual void draw2(::gpu::command_buffer *pcommandbuffer);
+
+
+      virtual void draw_model(::gpu::command_buffer *pcommandbuffer);
 
 
       virtual void unbind(::gpu::command_buffer *pcommandbuffer);

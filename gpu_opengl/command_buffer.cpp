@@ -31,11 +31,11 @@ namespace gpu_opengl
    {
 
       glViewport(
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height());
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -44,23 +44,25 @@ namespace gpu_opengl
    {
 
       glEnable(GL_SCISSOR_TEST);
-
+      ::opengl::check_error("");
       glScissor(
-         rectangle.left(),
-         rectangle.top(),
+         rectangle.left,
+         rectangle.top,
          rectangle.width(),
          rectangle.height()
       );
+      ::opengl::check_error("");
+      //glDisable(GL_SCISSOR_TEST);
 
    }
 
 
 
-   void command_buffer::draw(int a)
+   void command_buffer::draw_int_a_count(int a)
    {
 
       glDrawArrays(GL_TRIANGLES, 0, a);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -72,18 +74,24 @@ namespace gpu_opengl
       ::cast < render_target > prendertarget = m_pgpurendertarget;
 
       ::cast < texture > ptexture = prendertarget->current_texture(::gpu::current_frame());
+      
+      //auto gluFbo = ptexture->frame_buffer_object();
 
-      if (!ptexture->m_gluFbo)
+      //if (!ptexture->m_gluFbo)
       {
 
          if (prendertarget->m_pgpurenderer->m_pgpucontext->m_escene == ::gpu::e_scene_3d)
          {
 
-            ptexture->create_depth_resources();
+            if(!ptexture->m_gluDepthStencilRBO)
+            {
+               ptexture->create_depth_resources();
+               
+            }
 
          }
             
-         ptexture->create_render_target();
+         //ptexture->create_render_target();
 
       }
 
@@ -109,7 +117,7 @@ namespace gpu_opengl
       }
 
       glDrawArrays(mode, 0, iVertexCount);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
@@ -135,10 +143,24 @@ namespace gpu_opengl
       etype = GL_UNSIGNED_INT;
 
       glDrawElements(mode, iIndexCount, etype, 0);
-      GLCheckError("");
+      ::opengl::check_error("");
 
    }
 
+
+   void command_buffer::begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget)
+   {
+
+      ::gpu::command_buffer::begin_render(pgpushader, pgputextureTarget);
+
+   }
+
+
+   void command_buffer::end_render()
+   {
+
+
+   }
 
 
 //   GLuint createFullscreenQuad(GLuint& quadVBO) {

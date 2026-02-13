@@ -34,7 +34,7 @@ namespace core
 {
 
    
-   ::type_atom user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
+   ::platform::type user::get_pane_tab_impact_type_info() { return ::type<::userex::pane_tab_impact>(); }
 
 
 } // namespace core
@@ -1070,6 +1070,17 @@ namespace userex
    //}
 
 
+   //void pane_tab_impact::create_options_impact(const ::atom &atom, ::user::interaction *puserinteractionParent)
+   //{
+
+   //   if (atom == "options_impact_handler://gpu")
+   //   {
+   //      auto playout = create_line_layout(puserinteractionParent, e_orientation_vertical);
+   //   }
+
+   //}
+
+
    void pane_tab_impact::prepare_form(const ::atom & atom, ::form_document * pdocument)
    {
 
@@ -1121,10 +1132,10 @@ namespace userex
 //namespace aura
 //{
 //
-//::type system::get_pane_tab_impact_type_info()
+//::platform::type system::get_pane_tab_impact_type_info()
 //{
 //
-//   return ::type < userex::pane_tab_impact >();
+//   return ::type<userex::pane_tab_impact>();
 //
 //}
 //

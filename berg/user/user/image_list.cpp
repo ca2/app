@@ -29,8 +29,8 @@ namespace user
 
       m_iTextHeight = 30;
       m_bMultiSel = true;
-      m_size.cx() = 128;
-      m_size.cy() = 128;
+      m_size.cx = 128;
+      m_size.cy = 128;
 
       m_iMargin = 10;
 
@@ -233,9 +233,9 @@ namespace user
 
    //      int cx = rectangleX.width();
 
-   //      int w = m_size.cx();
+   //      int w = m_size.cx;
 
-   //      int h = m_size.cy();
+   //      int h = m_size.cy;
 
    //      int iColCount = (cx - xpad) / (w + xpad);
 
@@ -280,13 +280,13 @@ namespace user
 
    //      }
 
-   //      item.m_rectangle.left() = x;
+   //      item.m_rectangle.left = x;
 
-   //      item.m_rectangle.right() = x + w;
+   //      item.m_rectangle.right = x + w;
 
-   //      item.m_rectangle.top() = y;
+   //      item.m_rectangle.top = y;
 
-   //      item.m_rectangle.bottom() = y + h + text_height;
+   //      item.m_rectangle.bottom = y + h + text_height;
 
    //      return true;
 
@@ -310,7 +310,7 @@ namespace user
    //      if (!m_bNoName)
    //      {
 
-   //         item.m_rectangle.bottom() -= m_iTextHeight;
+   //         item.m_rectangle.bottom -= m_iTextHeight;
 
    //      }
 
@@ -340,7 +340,7 @@ namespace user
 
    //      }
 
-   //      item.m_rectangle.top() += m_size.cy();
+   //      item.m_rectangle.top += m_size.cy;
 
    //      return true;
 
@@ -487,7 +487,7 @@ namespace user
          if (m_bLabel)
          {
 
-            rectangleForImage.bottom() -= m_iLabelHeight;
+            rectangleForImage.bottom -= m_iLabelHeight;
 
          }
 
@@ -561,13 +561,13 @@ namespace user
 
                ::int_rectangle rectangleImage;
 
-               rectangleImage.left() = rectangleForImage.left() + (rectangleForImage.width() - pimage->width()) / 2;
+               rectangleImage.left = rectangleForImage.left + (rectangleForImage.width() - pimage->width()) / 2;
 
-               rectangleImage.top() = rectangleForImage.top() + (rectangleForImage.height() - pimage->height()) / 2;
+               rectangleImage.top = rectangleForImage.top + (rectangleForImage.height() - pimage->height()) / 2;
 
-               rectangleImage.right() = rectangleImage.left() + pimage->width();
+               rectangleImage.right = rectangleImage.left + pimage->width();
 
-               rectangleImage.bottom() = rectangleImage.top() + pimage->height();
+               rectangleImage.bottom = rectangleImage.top + pimage->height();
 
                rectangleSel = rectangleImage;
 
@@ -576,9 +576,9 @@ namespace user
                if (m_bLabel)
                {
 
-                  rectangleText.top() = rectangleText.bottom() - m_iLabelHeight;
+                  rectangleText.top = rectangleText.bottom - m_iLabelHeight;
 
-                  rectangleSel.bottom() = rectangleText.bottom();
+                  rectangleSel.bottom = rectangleText.bottom;
 
                }
 
@@ -751,12 +751,12 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         if (x > left && x + m_size.cx() + m_iMargin >= rectangleX.width())
+         if (x > left && x + m_size.cx + m_iMargin >= rectangleX.width())
          {
 
             x = left;
 
-            y += m_size.cy() + m_iMargin;
+            y += m_size.cy + m_iMargin;
 
             if (m_bLabel)
             {
@@ -767,19 +767,19 @@ namespace user
 
          }
 
-         puseritem->m_rectangle2.left() = x;
-         puseritem->m_rectangle2.right() = x + m_size.cx();
-         puseritem->m_rectangle2.top() = y;
-         puseritem->m_rectangle2.bottom() = y + m_size.cy();
+         puseritem->m_rectangle2.left = x;
+         puseritem->m_rectangle2.right = x + m_size.cx;
+         puseritem->m_rectangle2.top = y;
+         puseritem->m_rectangle2.bottom = y + m_size.cy;
 
          if (m_bLabel)
          {
 
-            puseritem->m_rectangle2.bottom() += m_iLabelHeight;
+            puseritem->m_rectangle2.bottom += m_iLabelHeight;
 
          }
 
-         x = puseritem->m_rectangle2.right() + m_iMargin;
+         x = puseritem->m_rectangle2.right + m_iMargin;
 
          rectangleTotal.unite(rectangleTotal, puseritem->m_rectangle2);
 
@@ -790,17 +790,17 @@ namespace user
 
       //   m_sizeImage = sizeImage;
 
-      //   //m_iWheelDeltaScroll = (short) (sizeImage.cy() / 3);
+      //   //m_iWheelDeltaScroll = (short) (sizeImage.cy / 3);
 
       //   m_pimageaThumb->m_imagea.erase_all();
 
       //}
 
-      rectangleTotal.left() = 0;
+      rectangleTotal.left = 0;
 
-      rectangleTotal.top() = 0;
+      rectangleTotal.top = 0;
 
-      rectangleTotal.bottom() += m_iMargin;
+      rectangleTotal.bottom += m_iMargin;
 
       set_total_size(rectangleTotal.size(), ::user::e_layout_design);
 

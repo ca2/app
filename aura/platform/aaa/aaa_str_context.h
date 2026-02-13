@@ -147,10 +147,6 @@
 //   public:
 //
 //
-//
-//
-//
-//
 //      textcontext();
 //      virtual ~textcontext();
 //
@@ -240,10 +236,6 @@
 //
 //
 //   };
-//
-//
-//
-//
 //} // namespace aura
 
 

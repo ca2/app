@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include <time.h>
-//#include "apex/primitive/math/prime100k.h"
+//#include "apex/prototype/math/prime100k.h"
 #ifdef LINUX
 
 #endif
@@ -284,7 +284,7 @@ namespace mathematics
    void math::initialize(::particle * pparticle)
    {
 
-      auto estatus = ::acme::department::initialize(pparticle);
+      auto estatus = ::platform::department::initialize(pparticle);
 
       if (!estatus)
       {
@@ -310,7 +310,7 @@ namespace mathematics
    void math::destroy()
    {
 
-      ::acme::department::destroy();
+      ::platform::department::destroy();
 
    }
 

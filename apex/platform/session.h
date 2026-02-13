@@ -26,19 +26,11 @@ namespace apex
 
 //
 //       ///__creatable(session);
-//
-//
-//
-//
 // //#if defined UNIVERSAL_WINDOWS
 // //
 // //      ::universal_windows::directx_framework_impact ^                          m_frameworkview;
 // //
 // //#endif
-//
-//
-//
-//
 //       //::aqua::session* m_paquasession;
 //       //::aura::session* m_paurasession;
 //       //::axis::session* m_paxissession;
@@ -465,7 +457,7 @@ namespace apex
 
       virtual void on_request(::request * prequest) override;
 
-      virtual void defer_initialize_host_window(const ::int_rectangle * lpcrect = nullptr) override;
+      ::particle * defer_initialize_host_window(const ::int_rectangle * lpcrect = nullptr) override;
 
       ::pointer<::apex::application>get_current_application();
 

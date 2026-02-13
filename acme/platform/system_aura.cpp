@@ -126,7 +126,7 @@ namespace platform
    //void aura_system_layer::defer_xml(){}
 
 
-   //void node_will_finish_launching() override{}
+   //void node_will_aaa_finish_launching() override{}
 
 
    //void windowing_post_quit() override{}
@@ -153,6 +153,8 @@ namespace platform
    // }
    //
 
+   //virtual pointer< ::extended::future < ::conversation > > _message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok) override{}
+   //virtual ::enum_dialog_result message_box_timeout(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::future & future = ::future()) override{}
    //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override{}
    //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override{}
 
@@ -331,17 +333,17 @@ namespace platform
 
 
    //template < class T >
-   //::type * type_info()
+   //::platform::type * type_info()
    //{
 
-   //   return get_type_info(typeid(T)){}
+   //   return get_type_info(::type<T>()){}
 
    //}
 
 
-   //virtual ::type_atom * get_type_info(const ::std::type_info & info){}
+   //virtual ::platform::type * get_type_info(const ::std::type_info & info){}
 
-   //::type * get_type_info(const ::atom & idType)
+   //::platform::type * get_type_info(const ::atom & idType)
    //{
 
    //   if(idType.is_empty())
@@ -751,19 +753,19 @@ namespace platform
    //void aura_system_layer::hist_hist(const ::string & psz) override{}
 
 
-   ::type_atom  aura_system_layer::get_pane_tab_impact_type_info()
+   ::platform::type  aura_system_layer::get_pane_tab_impact_type_info()
    {
       return {};
    }
 
 
-   ::type_atom  aura_system_layer::get_simple_frame_window_type_info()
+   ::platform::type  aura_system_layer::get_simple_frame_window_type_info()
    {
       return {};
    }
 
 
-   //virtual ::type_atom get_simple_child_frame_type_info(){}
+   //virtual ::platform::type get_simple_child_frame_type_info(){}
 
    //void aura_system_layer::on_start_find_applications_from_cache() override{}
    //void aura_system_layer::on_end_find_applications_from_cache(stream& is) override{}

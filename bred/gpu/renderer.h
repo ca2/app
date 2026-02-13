@@ -18,6 +18,8 @@ namespace gpu
    {
    public:
 
+      ::collection::index m_iGpuRenderer=-1;
+
       class ::time m_timeLast5s;
 
       int m_iSentLayerCount = 0;
@@ -31,13 +33,13 @@ namespace gpu
       //string                              m_strProjection;
       //string                              m_strFragment;
       //::pointer<::gpu::context>             m_pgpucontextUpper;
-      ::pointer<::gpu::context>             m_pgpucontext;
-      ::pointer<::gpu::graphics>     m_pgraphics;
+      ::pointer<::gpu::context>                 m_pgpucontext;
+      ::pointer<::gpu::graphics>                m_pgraphics;
       //::pointer<::gpu::context>             m_pgpucontextOutput;
-      bool                                  m_bDisableDepthStencil = false;
+      bool                                      m_bDisableDepthStencil = false;
       ::int_size m_sizeRenderer;
-      ::pointer < command_buffer >            m_pcommandbufferLoadAssets;
-      ::pointer < command_buffer >            m_pcommandbufferLoadAssets2;
+      ::pointer < command_buffer >              m_pcommandbufferLoadAssets;
+      ::pointer < command_buffer >              m_pcommandbufferLoadAssets2;
 
       //::pointer<::gpu::approach>            m_papproach;
       //::image::image_pointer                m_pimageFromGpu;
@@ -56,19 +58,19 @@ namespace gpu
       //bool                                m_bPrepared;
       //::string                            m_strRender;
 
-      bool isFrameStarted = false;
+      bool m_bFrameStarted = false;
       bool m_bNeedToRecreateSwapChain = false;
 
 
       ::pointer_array<command_buffer>	         m_commandbuffera;
 
 
-      ::pointer < render_target >   m_pgpurendertarget;
+      ::pointer < ::gpu::render_target >   m_pgpurendertarget2;
       ::pointer < swap_chain >      m_pswapchain;
       ::pointer < render_state >    m_prenderstate;
 
-            ::procedure_array m_procedureaOnAfterEndFrame;
-      ::procedure_array m_procedureaPostOnJustBeforeFrameNextStart;
+      ::procedure_array m_procedureaOnAfterEndFrame;
+      ::procedure_array m_procedureaOnJustBeforeFrameNextStart;
 
 
 
@@ -91,13 +93,14 @@ namespace gpu
 
       virtual void free_command_buffers();
 
-      bool isFrameInProgress() const { return isFrameStarted; }
+      bool isFrameInProgress() const { return m_bFrameStarted; }
 
 
       virtual ::particle_array * current_frame_particle_array();
       ::particle_array* ongoing_particle_array() override;
 
-
+      virtual ::gpu::render_target *render_target();
+      virtual void defer_initialize_render_target();
       virtual ::gpu::texture* current_render_target_texture(::gpu::frame* pgpuframe);
 
       //virtual ::int_rectangle rectangle();
@@ -186,6 +189,7 @@ namespace gpu
       virtual void on_end_draw();
 
       virtual void defer_end_frame_layer_copy();
+      virtual void defer_end_frame_layer_after_submit();
 
       virtual void draw();
       virtual void read_to_cpu_buffer();
@@ -207,7 +211,7 @@ namespace gpu
 
       virtual void defer_update_renderer();
 
-      virtual ::pointer < render_target > on_create_render_target();
+      virtual ::pointer < ::gpu::render_target > on_create_render_target();
       virtual ::pointer < swap_chain > on_create_swap_chain();
 
       //virtual render_target* back_buffer_render_target();
@@ -217,9 +221,9 @@ namespace gpu
       //virtual void on_graphics_end_draw(::user::interaction * puserinteraction);
 
       virtual void blend(::gpu::renderer* prenderer);
-      virtual void clear(::gpu::texture* ptexture);
-      virtual void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
-      virtual void blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
+      //virtual void clear(::gpu::texture* ptexture);
+      //virtual void copy(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
+      //virtual void blend(::gpu::texture* pgputextureTarget, ::gpu::texture* pgputextureSource);
 
       virtual void soft_restore_context();
 

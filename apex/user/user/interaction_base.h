@@ -228,8 +228,8 @@ namespace user
 
 
 
-      void subclass_window(oswindow posdata) override;
-      oswindow unsubclass_window() override;
+      //void subclass_window(oswindow posdata) override;
+      //oswindow unsubclass_window() override;
 
       string get_class_name() override;
 
@@ -440,7 +440,7 @@ namespace user
 
 
       //virtual bool attach(::windowing::window * pwindow_New);
-      oswindow detach_window() override;
+      void * detach_win32_HWND() override;
 
 
       ::windowing::window * window() override;
@@ -464,8 +464,8 @@ namespace user
 
       void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      void viewport_screen_to_client(::sequence2_int & sequence) override;
-      void viewport_client_to_screen(::sequence2_int & sequence) override;
+      void viewport_screen_to_client(::int_sequence2 & sequence) override;
+      void viewport_client_to_screen(::int_sequence2 & sequence) override;
       void viewport_client_to_screen(::int_rectangle & rectangle) override;
       void viewport_screen_to_client(::int_rectangle & rectangle) override;
 
@@ -607,7 +607,7 @@ namespace user
 
 
       bool keyboard_focus_is_focusable() override;
-      bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
+      bool keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew) override;
       bool keyboard_focus_OnChildKillFocus() override;
       ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       //virtual interaction_base * get_keyboard_focus() const;

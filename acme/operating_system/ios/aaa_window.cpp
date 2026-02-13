@@ -12,7 +12,7 @@
 #include "acme/platform/message_queue.h"
 
 
-UIWindow * __uiwindow(oswindow oswindow)
+UIWindow * __uiwindow(::acme::windowing::window * pacmewindowingwindow)
 {
    
    return (UIWindow *) oswindow->window();
@@ -189,7 +189,7 @@ oswindow oswindow_data::get_parent()
 }
 
 
-oswindow oswindow_data::set_parent(oswindow oswindow)
+oswindow oswindow_data::set_parent(::acme::windowing::window * pacmewindowingwindow)
 {
 
    if(is_null())
@@ -214,7 +214,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 
 }
 
-bool oswindow_data::is_child(::oswindow oswindow)
+bool oswindow_data::is_child(::::acme::windowing::window * pacmewindowingwindow)
 {
 
    if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)

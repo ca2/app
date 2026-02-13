@@ -15,12 +15,11 @@ namespace gpu_opengl
    {
    public:
 
-
-      bool                                m_bMesa;
-      HGLRC                               m_hglrc;
-      HDC                                 m_hdc;
+            
+      //bool                                m_bMesa;
+      //HDC                                 m_hdc;
       HWND                                m_hwnd;
-      HDC                                 m_hdcGraphics;
+      //HDC                                 m_hdcGraphics;
       ::pointer < ::windowing::window >   m_pwindow;
       bool                                m_bAddSwapChainSupport;
       ::int_rectangle                     m_rectangleWin32;
@@ -29,6 +28,9 @@ namespace gpu_opengl
 
       device_win32();
       ~device_win32() override;
+
+
+      void create_main_context(::acme::windowing::window * pacmewindowingwindow) override;
 
       void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
       void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement) override;
@@ -52,7 +54,7 @@ namespace gpu_opengl
       //void _defer_create_window_context(::windowing::window* pwindow) override;
       //virtual void _create_window_context(::windowing::window* pwindow);
 
-      virtual void _create_device(const ::int_size & size);
+      //virtual void _create_device(const ::int_size & size);
       //void _create_offscreen_buffer(const ::int_size& size) override;
       //void resize_offscreen_buffer(const ::int_size& size) override;
       //void destroy_offscreen_buffer() override;
@@ -67,7 +69,7 @@ namespace gpu_opengl
 
       void _swap_buffers() override;
 
-      bool is_mesa() override;
+      //bool is_mesa() override;
 
       //void render();
 
@@ -77,8 +79,8 @@ namespace gpu_opengl
 
       //void swap_buffers() override;
 
-      virtual void _opengl_lock();
-      virtual void _opengl_unlock();
+      //void _opengl_lock() override;
+      //void _opengl_unlock() override;
 
 
    };

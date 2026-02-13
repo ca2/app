@@ -65,7 +65,7 @@ namespace nanoui
 
       void set_callback(const ::function<void(Scalar)>& cb) {
          TextBox::set_callback(
-            [cb, this](const ::scoped_string& str) {
+            [cb, this](const ::scoped_string& str) ->bool{
                Scalar value = 0;
                try
                {
@@ -318,7 +318,7 @@ virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bD
    if (bDown && m_bSpinnable && !focused() && ekeyModifiers & ::user::e_key_right_button && is_mouse_down())
    {
 
-      int value_delta = static_cast<int>((p.x() - m_pointMouseDown.x()) / float(10));
+      int value_delta = static_cast<int>((p.x - m_pointMouseDown.x) / float(10));
 
       set_value(m_iMouseDownValue + value_delta * m_iIncrementValue, e_source_user);
 
@@ -351,7 +351,7 @@ virtual bool scroll_event(const int_point& p, const float_size& rel) override
    if (m_bSpinnable && !focused())
    {
 
-      int value_delta = (rel.cy() > 0) ? 1 : -1;
+      int value_delta = (rel.cy > 0) ? 1 : -1;
 
       set_value(value() + value_delta * m_iIncrementValue, e_source_user);
 

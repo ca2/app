@@ -25,7 +25,7 @@ namespace user
 
 
 
-   ::user::interaction * interaction_ptra::find_first_typed(const ::type_atom & typeatom)
+   ::user::interaction * interaction_ptra::find_first_typed(const ::platform::type & type)
    {
 
       for (int i = 0; i < this->get_size(); i++)
@@ -33,7 +33,7 @@ namespace user
 
          ::user::interaction * pinteraction = this->element_at(i);
 
-         if (typeatom == pinteraction)
+         if (type == pinteraction)
          {
 
             return pinteraction;
@@ -47,13 +47,13 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_ptra::find_first(oswindow oswindow)
+   ::user::interaction * interaction_ptra::find_first(::acme::windowing::window * pacmewindowingwindow)
    {
 
       for (int i = 0; i < this->get_size(); i++)
       {
 
-         if (this->element_at(i)->get_safe_oswindow() == oswindow)
+         if (this->element_at(i)->m_pacmewindowingwindow.m_p == pacmewindowingwindow)
          {
 
             return this->element_at(i);
@@ -187,7 +187,7 @@ namespace user
    //}
 
 
-   //::user::interaction * interaction_pointer_array::find_first_typed(const ::type_atom & typeatom)
+   //::user::interaction * interaction_pointer_array::find_first_typed(const ::platform::type & type)
    //{
 
    //   for (int i = 0; i < interaction_count(); i++)
@@ -195,7 +195,7 @@ namespace user
 
    //      auto pprimitive = interaction_at(i).m_p;
 
-   //      if (typeatom == pprimitive)
+   //      if (type == pprimitive)
    //      {
 
    //         return pprimitive;
@@ -209,7 +209,7 @@ namespace user
    //}
 
 
-   //::user::interaction * interaction_pointer_array::find_first(oswindow oswindow)
+   //::user::interaction * interaction_pointer_array::find_first(::acme::windowing::window * pacmewindowingwindow)
    //{
 
    //   for (int i = 0; i < interaction_count(); i++)
@@ -391,13 +391,13 @@ namespace user
 #endif
 
 
-   ::pointer<::user::interaction>interaction_array::find_first(oswindow oswindow)
+   ::pointer<::user::interaction>interaction_array::find_first(::acme::windowing::window * pacmewindowingwindow)
    {
 
       for (int i = 0; i < this->interaction_count(); i++)
       {
 
-         if (this->interaction_at(i)->get_safe_oswindow() == oswindow)
+         if (this->interaction_at(i)->m_pacmewindowingwindow.m_p == pacmewindowingwindow)
          {
 
             return this->interaction_at(i);

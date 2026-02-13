@@ -82,7 +82,7 @@ enum
 // 0000 -> 6FFF : ::account::user resources
 // 7000 -> 7FFF : _ (and standard windows) resources
 // IDR ranges (NOTE: IDR_ values must be <32768)
-#define ASSERT_VALID_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
+#define ASSERT_OK_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
 
 /////////////////////////////////////////////////////////////////////////////
 // Context sensitive help support (see Technical note TN028 for more details)
@@ -317,19 +317,19 @@ namespace user
 //CLASS_DECL_ACME long long oswindow_id(oswindow w);
 
 
-//CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
+//CLASS_DECL_ACME int_bool is_window(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_focus();
-//CLASS_DECL_ACME oswindow set_keyboard_focus(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_keyboard_focus(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_active_window();
-//CLASS_DECL_ACME oswindow set_active_window(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_active_window(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME oswindow get_capture();
-//CLASS_DECL_ACME oswindow set_mouse_capture(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_mouse_capture(::acme::windowing::window * pacmewindowingwindow);
 //CLASS_DECL_ACME int_bool release_mouse_capture();
-//CLASS_DECL_ACME int_bool destroy_window(oswindow oswindow);
-//CLASS_DECL_ACME oswindow get_window(oswindow oswindow, int iWindow);
+//CLASS_DECL_ACME int_bool destroy_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
 //CLASS_DECL_ACME oswindow get_desktop_window();
-//CLASS_DECL_ACME int_bool show_window(oswindow oswindow, int iShow);
-//CLASS_DECL_ACME int_bool set_foreground_window(oswindow oswindow);
+//CLASS_DECL_ACME int_bool show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
+//CLASS_DECL_ACME int_bool set_foreground_window(::acme::windowing::window * pacmewindowingwindow);
 //
 //
 //#ifdef WINDOWS_DESKTOP

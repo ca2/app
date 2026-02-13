@@ -596,7 +596,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="primitive\primitive_shared_file.cpp" />
+    <ClCompile Include="primitive\prototype_shared_file.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ace\ace.vcxproj">

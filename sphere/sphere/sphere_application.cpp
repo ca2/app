@@ -516,7 +516,7 @@ namespace sphere
 
    //   //      string strId;
    //   //
-   //   //      ::pointer<::acme::department>pcaapp;
+   //   //      ::pointer<::platform::department>pcaapp;
    //   //
    //   //      POSITION pos = m_mapApplication.get_start_position();
    //   //
@@ -529,7 +529,7 @@ namespace sphere
    //   //
    //   //         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
    //   //
-   //   //         ::pointer<::acme::department>papp = (pcaapp);
+   //   //         ::pointer<::platform::department>papp = (pcaapp);
    //   //
    //   //         papp->set_finish();
    //   //
@@ -599,9 +599,9 @@ namespace sphere
       m_ptemplate_pane = ___new ::user::single_document_template(
       this,
       "bergedge/frame",
-      ::type < ::userstack::document >(),
-      ::type < ::userstack::frame >(),
-      ::type < ::userstack::pane_impact >());
+      ::type<::userstack::document>(),
+      ::type<::userstack::frame>(),
+      ::type<::userstack::pane_impact>());
 
    }
 
@@ -641,7 +641,7 @@ namespace sphere
             data.dwData = 2000;
             data.cbData = (unsigned int)file.get_length();
             data.lpData = file.get_data();
-            ::oswindow oswindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
+            ::::acme::windowing::window * pacmewindowingwindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
 
             ::SendMessage(oswindow, WM_COPYDATA, (WPARAM)0, (LPARAM)&data);
 

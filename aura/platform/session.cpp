@@ -775,8 +775,8 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////      }
 ////
 ////#ifdef WINDOWS_DESKTOP
-////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
-////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      //if (!IsWindowVisible(pimpl->m_pacmewindowingwindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_pacmewindowingwindow))
 ////      {
 ////
 ////         pimpl->set_pending_focus();
@@ -786,7 +786,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////#endif
 ////      {
 ////
-////         ::set_keyboard_focus(pimpl->m_oswindow);
+////         ::set_keyboard_focus(pimpl->m_pacmewindowingwindow);
 ////
 ////      }
 ////
@@ -940,8 +940,8 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      }
 ////
 ////#ifdef WINDOWS_DESKTOP
-////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
-////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      //if (!IsWindowVisible(pimpl->m_pacmewindowingwindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_pacmewindowingwindow))
 ////      {
 ////
 ////         pimpl->set_pending_focus();
@@ -951,7 +951,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 ////#endif
 //      {
 //
-//         ::erase_focus(pimpl->m_oswindow);
+//         ::erase_focus(pimpl->m_pacmewindowingwindow);
 //
 //      }
 //
@@ -1098,8 +1098,8 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      }
 //
 ////#ifdef WINDOWS_DESKTOP
-////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
-////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      //if (!IsWindowVisible(pimpl->m_pacmewindowingwindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_pacmewindowingwindow))
 ////      {
 ////
 ////         pimpl->set_pending_focus();
@@ -1819,10 +1819,10 @@ return m_psavings;
    }
 
 
-   void session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
+::particle * session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
    {
 
-      system()->windowing()->defer_initialize_host_window(lpcrect);
+   ::particle * pparticleAcmeWindowBridge = system()->windowing()->defer_initialize_host_window(lpcrect);
 
       //return ::success;
 
@@ -1906,6 +1906,8 @@ return m_psavings;
 //
 //#endif
 
+   return pparticleAcmeWindowBridge;
+   
    }
 
 
@@ -2282,7 +2284,7 @@ namespace aura
 
          øconstruct(m_puser);
 
-         information() << "aura::session user type : " << ::type(m_puser).name();
+         information() << "aura::session user type : " << ::platform::type(m_puser).name();
 
          //}
 

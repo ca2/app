@@ -5,10 +5,6 @@
 //
 //namespace graphics3d
 //{
-//
-//
-//
-//
 //   frame::frame()
 //   {
 //

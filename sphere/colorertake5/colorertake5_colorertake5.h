@@ -6,7 +6,7 @@ namespace colorertake5
 
 
    class CLASS_DECL_SPHERE colorertake5 :
-      virtual public ::acme::department
+      virtual public ::platform::department
    {
       public:
 

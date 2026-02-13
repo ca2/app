@@ -62,8 +62,8 @@ void host_interaction::create_context_button()
       
       auto r = get_rectangle();
       
-      r.left() = r.right() - 32;
-      r.top() = r.bottom() - 32;
+      r.left = r.right - 32;
+      r.top = r.bottom - 32;
       
       m_pbuttonContext->id() = id_context_button;
 
@@ -88,16 +88,16 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 
       ::int_rectangle rectanglePointTo;
 
-      rectanglePointTo.left() = 0;
-      rectanglePointTo.top() = 0;
-      rectanglePointTo.right() = rectanglePointTo.left() + 200;
-      rectanglePointTo.bottom() = rectanglePointTo.top() + 2;
+      rectanglePointTo.left = 0;
+      rectanglePointTo.top = 0;
+      rectanglePointTo.right = rectanglePointTo.left + 200;
+      rectanglePointTo.bottom = rectanglePointTo.top + 2;
 
       ppopupbutton->acme_windowing_window()->m_rectanglePointingTo = rectanglePointTo;
 
       ppopupbutton->initialize_popup_button(
          "About...",
-         pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(),
+         pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y,
          this);
 
       auto puseractivationtoken = ::as_pointer(pmouse->user_activation_token());

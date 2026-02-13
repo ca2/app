@@ -28,6 +28,14 @@ namespace user
 
    }
 
+
+   void form_handler::on_after_create_form(const ::atom &atom, ::user::interaction *puserinteractionParent)
+   {
+
+
+   }
+
+
    ::write_text::font_pointer form_handler::get_title1_font()
    {
 

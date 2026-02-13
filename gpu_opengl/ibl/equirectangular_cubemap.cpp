@@ -3,20 +3,19 @@
 #include "framework.h"
 #include "equirectangular_cubemap.h"
 #include "bred/gpu/context.h"
+#include "bred/graphics3d/_functions.h"
+#include "bred/graphics3d/engine.h"
 #include "bred/graphics3d/skybox.h"
 #include "bred/gpu/device.h"
-#include <glm/gtc/matrix_transform.hpp>
-#include "glad/glad.h"
-#include "glm/glm.hpp"
-
-#include "gpu/gltf/_constant.h"
+//#include "glad/glad.h"
+#include "gpu/model/_constant.h"
+#include "bred/platform/timer.h"
 #include "gpu_opengl/_gpu_opengl.h"
-// #include "timer.h"
-#include "cubemap_framebuffer.h"
-#include "hdri_cube.h"
+//#include "cubemap_framebuffer.h"
+//#include "hdri_cube.h"
+#include "shader/equirectangular_cubemap.vert.h"
+#include "shader/equirectangular_cubemap.frag.h"
 
-#include "shaders/hdricube.frag.h"
-#include "shaders/hdricube.vert.h"
 
 namespace gpu_opengl
 {
@@ -24,6 +23,7 @@ namespace gpu_opengl
 
    namespace ibl
    {
+
 
       equirectangular_cubemap::equirectangular_cubemap()
       {
@@ -42,98 +42,119 @@ namespace gpu_opengl
       ::block equirectangular_cubemap::embedded_ibl_hdri_cube_vert()
       {
 
-         return {g_psz_hdricube_vert, sizeof(g_psz_hdricube_vert) - 1};
+         return g_psz_equirectangular_cubemap_vert;
+
       }
 
 
       ::block equirectangular_cubemap::embedded_ibl_hdri_cube_frag()
       {
 
-         return {g_psz_hdricube_frag, sizeof(g_psz_hdricube_frag) - 1};
+         return g_psz_equirectangular_cubemap_frag;
+
       }
 
 
-      // equirectangular_cubemap::equirectangular_cubemap(const ::string &engineRoot, const ::string &hdriPath) {
-      //     ::string hdriVertexShaderPath = engineRoot + "/src/ibl/shaders/hdri_cube.vert";
-      //     ::string hdriFragmentShaderPath = engineRoot + "/src/ibl/shaders/hdri_cube.frag";
-      //
-      //     hdriShader = std::make_unique<Shader>(hdriVertexShaderPath.c_str(), hdriFragmentShaderPath.c_str());
-      //     hdri_cube = std::make_unique<hdri_cube>(hdriPath);
-      //     framebuffer = std::make_unique<cubemap_framebuffer>(cubemapWidth, cubemapHeight);
-      // }
-
-      void equirectangular_cubemap::compute()
+      void equirectangular_cubemap::compute_equirectangular_cubemap(::gpu::command_buffer * pgpucommandbuffer)
       {
-         // Timer timer;
 
-         auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
-         glm::mat4 model = ::gpu::gltf::mIndentity4;
-         glm::mat4 cameraAngles[] = {glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitX, -::gpu::gltf::unitY),
-                                     glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitX, -::gpu::gltf::unitY),
-                                     glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitY, ::gpu::gltf::unitZ),
-                                     glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitY, -::gpu::gltf::unitZ),
-                                     glm::lookAt(::gpu::gltf::origin, ::gpu::gltf::unitZ, -::gpu::gltf::unitY),
-                                     glm::lookAt(::gpu::gltf::origin, -::gpu::gltf::unitZ, -::gpu::gltf::unitY)};
-         glm::mat4 projection = glm::perspective(glm::radians(90.0f), // 90 degrees to cover one face
-                                                 1.0f, // its a square
-                                                 0.1f, 2.0f);
+         gpu::ibl::equirectangular_cubemap::compute_equirectangular_cubemap(pgpucommandbuffer);
 
-         glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
-
-         // render the equirectangular HDR texture to a cubemap
-         //m_pframebuffer->bind();
-         m_pshaderHdri->bind(nullptr, m_pframebuffer->m_ptexture);
-
-         // render to each side of the cubemap
-         for (auto i = 0; i < 6; i++)
-         {
-            
-            m_pshaderHdri->setModelViewProjectionMatrices(model, cameraAngles[i], projection);
-            
-            m_pframebuffer->setCubeFace(i, m_pshaderHdri);
-            
-            m_pshaderHdri->push_properties(pgpucommandbuffer);
-
-
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            
-            GLCheckError("");
-
-                // auto pshader = pcommandbuffer->m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->
-            //   m_pshaderBound;
-
-            //m_pshaderHdri->set_int("hdri", 0);
-
-
-            m_phdricube->draw(pgpucommandbuffer);
-
-         }
-
-         m_pframebuffer->generateMipmap();
-
+         // ::bred::Timer timer;
+         //
+         // auto pgpucommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
+         //
+         // using namespace graphics3d;
+         //
+         // floating_matrix4 model = ::graphics3d::mIndentity4;
+         //
+         // floating_matrix4 cameraAngles[] =
+         // {
+         //
+         //    lookAt(origin, unitX, -unitY), // X+ (right)
+         //    lookAt(origin, -unitX, -unitY), // X- (left)
+         //    lookAt(origin, unitY, unitZ), // Y+ (top)
+         //    lookAt(origin, -unitY, -unitZ), // Y- (bottom)
+         //    lookAt(origin, unitZ, -unitY), // Z+ (front)
+         //    lookAt(origin, -unitZ, -unitY) // Z- (back)
+         //
+         // };
+         //
+         // floating_matrix4 projection = m_pgpucontext->m_pengine->perspective(
+         //    90f_degrees, // 90 degrees to cover one face
+         //    1.0f, // its a square
+         //    0.1f,
+         //    2.0f);
+         //
+         // // render the equirectangular HDR texture to a cubemap
+         // m_pshaderHdri->bind(nullptr, m_pframebuffer->m_ptexture);
+         //
+         // // render to each side of the cubemap
+         // for (auto i = 0; i < 6; i++)
+         // {
+         //
+         //    auto impact = cameraAngles[i];
+         //
+         //    m_pshaderHdri->setModelViewProjection(model, impact, projection);
+         //
+         //    m_pframebuffer->setCubeFace(i, m_pshaderHdri);
+         //
+         //    //m_pshaderHdri->set_int("faceIndex", i);
+         //
+         //    m_pshaderHdri->push_properties(pgpucommandbuffer);
+         //
+         //    glViewport(0, 0, m_uCubemapWidth, m_uCubemapHeight);
+         //
+         //    glEnable(GL_DEPTH_TEST);
+         //    ::opengl::check_error("");
+         //    glDepthMask(GL_TRUE);
+         //    ::opengl::check_error("");
+         //
+         //
+         //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+         //    ::opengl::check_error("");
+         //
+         //
+         //    glDisable(GL_DEPTH_TEST);
+         //    ::opengl::check_error("");
+         //    glDepthMask(GL_FALSE);
+         //    ::opengl::check_error("");
+         //
+         //    m_prenderableCube->bind(pgpucommandbuffer);
+         //
+         //    m_prenderableCube->draw(pgpucommandbuffer);
+         //
+         //    m_prenderableCube->unbind(pgpucommandbuffer);
+         //
+         // }
+         //
+         // m_pframebuffer->generateMipmap();
+         //
          // timer.logDifference("Rendered equirectangular cubemap");
+         //
+         // GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+         //
+         // if (status != GL_FRAMEBUFFER_COMPLETE)
+         // {
+         //
+         //    printf("Framebuffer incomplete!\n");
+         //
+         // }
+         //
+         // glBindFramebuffer(GL_FRAMEBUFFER, 0);
+         // ::opengl::check_error("");
 
-         GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-
-         if (status != GL_FRAMEBUFFER_COMPLETE)
-         {
-
-            printf("Framebuffer incomplete!\n");
-         }
-
-         // timer.logDifference("Rendered specular brdf convolution map");
-
-         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-         GLCheckError("");
       }
 
 
-      unsigned int equirectangular_cubemap::getCubemapId()
-      {
-
-         ::cast<cubemap_framebuffer> pframebuffer = m_pframebuffer;
-         return pframebuffer->getCubemapTextureId();
-      }
+      // unsigned int equirectangular_cubemap::getCubemapId()
+      // {
+      //
+      //    ::cast<cubemap_framebuffer> pframebuffer = m_pframebuffer;
+      //
+      //    return pframebuffer->getCubemapTextureId();
+      //
+      // }
 
 
    } // namespace ibl

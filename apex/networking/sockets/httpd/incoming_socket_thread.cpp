@@ -67,7 +67,7 @@ namespace httpd
    ::pointer < ::httpd::incoming_socket > incoming_socket_thread::create_incoming_socket()
    {
 
-      auto pincomingsocket = øid_create(m_typeIncomingSocket);
+      auto pincomingsocket = øcreate_by_type(m_typeIncomingSocket);
 
       return pincomingsocket;
 
@@ -77,7 +77,7 @@ namespace httpd
    //::pointer < ::sockets::listen_socket > socket_thread::create_listen_socket()
    //{
 
-   //   return øid_create(m_typeatomSocket);
+   //   return øcreate_by_type(m_typeSocket);
 
    //}
 
@@ -106,7 +106,7 @@ namespace httpd
 
             m_psockethandlerIncoming->EnablePool();
 
-            m_pincomingsocket = øid_create(m_typeIncomingSocket, m_pfactoryIncomingSocket);
+            m_pincomingsocket = øcreate_by_type(m_typeIncomingSocket, m_pfactoryIncomingSocket);
 
             //m_pincomingsocket->initialize_listen_socket(m_typeDetachIncomingSocket);
 

@@ -19,7 +19,7 @@
 
 
 class CLASS_DECL_ACME directory_system :
-   virtual public ::acme::department,
+   virtual public ::platform::department,
    virtual public ::file::enumerator
 {
 public:
@@ -286,8 +286,9 @@ public:
 
 
 
-   virtual ::file::path get_current();
+   virtual ::file::path current();
    virtual void change_current(const ::file::path & path);
+   virtual void set_current(const ::file::path& path);
    virtual void change_to_home();
 
 

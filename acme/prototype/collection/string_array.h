@@ -71,7 +71,7 @@ public:
    string_base_array(CHARACTER * const * ppsz, ::collection::count c);
    ~string_base_array();
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    string_base_array & operator = (const CONTAINER & container)
    {
       this->assign_a_container(container);
@@ -141,7 +141,7 @@ public:
 
    void copy(const string_base_array & src);
 
-   template < primitive_array ARRAY >
+   template < prototype_array ARRAY >
    void copy(const ARRAY & src);
 
 
@@ -169,7 +169,7 @@ public:
 
    Type & insert_at(::collection::index nIndex, const Type & strElement);
    void insert_at(::collection::index nIndex, const Type & strElement, ::collection::count nCount);
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    void insert_at(::collection::index nStartIndex, const CONTAINER & container);
 
 
@@ -183,7 +183,11 @@ public:
    void insert_empty(::collection::index nIndex, ::collection::count c);
 
 
+   ::collection::count truncate_on_find_character(CHARACTER ch);
+
+
    //class ::memory GetFormatV004();
+   ::collection::count erase_prefixed(const ::scoped_string & scopedstrPrefix);
    ::collection::count erase_empty();
    ::collection::count erase_empty_end();
    ::collection::count erase_empty_begin();
@@ -365,24 +369,24 @@ public:
    bool theres(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return found(case_insensitive_substring_find_first(strSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
 
 
-   template < primitive_array INDEX_ARRAY >
+   template < prototype_array INDEX_ARRAY >
    ::collection::count case_insensitive_begins(INDEX_ARRAY & ia, const SCOPED_STRING & strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
-   template < primitive_array INDEX_ARRAY >
+   template < prototype_array INDEX_ARRAY >
    ::collection::count begins(INDEX_ARRAY & ia, const SCOPED_STRING & strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   template < primitive_array STRING_ARRAY >
+   template < prototype_array STRING_ARRAY >
    ::collection::count case_insensitive_ends(STRING_ARRAY & stra, const SCOPED_STRING & strSuffix, ::collection::index first = 0, ::collection::index iLast = -1);
 
-   template < primitive_array STRING_ARRAY >
+   template < prototype_array STRING_ARRAY >
    ::collection::count ends(STRING_ARRAY & stra, const SCOPED_STRING & strSuffix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   template < primitive_array STRING_ARRAY >
+   template < prototype_array STRING_ARRAY >
    ::collection::count case_insensitive_search(STRING_ARRAY & stra, const SCOPED_STRING & strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
-   template < primitive_array STRING_ARRAY >
+   template < prototype_array STRING_ARRAY >
    ::collection::count search(STRING_ARRAY & stra, const SCOPED_STRING & strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
@@ -431,10 +435,10 @@ public:
    ::collection::count erase(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    ::collection::count case_insensitive_erase(const CONTAINER & container);
 
-   template < primitive_container CONTAINER >
+   template < prototype_container CONTAINER >
    ::collection::count erase(const CONTAINER & container);
 
    string_base_array & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);

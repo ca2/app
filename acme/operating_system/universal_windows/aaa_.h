@@ -34,9 +34,9 @@ CLASS_DECL_ACME htask main_htask();
 CLASS_DECL_ACME itask main_itask();
 
 //CLASS_DECL_ACME oswindow get_focus();
-//CLASS_DECL_ACME oswindow set_focus(oswindow oswindow);
+//CLASS_DECL_ACME oswindow set_focus(::acme::windowing::window * pacmewindowingwindow);
 
-//CLASS_DECL_ACME oswindow get_window(oswindow oswindow, int iWindow);
+//CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
 
 //CLASS_DECL_ACME void attach_thread_input_to_main_thread(int_bool bAttach);
 

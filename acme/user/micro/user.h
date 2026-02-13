@@ -23,8 +23,9 @@
 namespace micro
 {
 
+
    class CLASS_DECL_ACME user :
-      virtual public acme::department,
+      virtual public ::platform::department,
       virtual public ::reificator < ::message_box >
    {
    public:

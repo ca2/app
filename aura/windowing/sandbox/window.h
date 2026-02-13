@@ -58,7 +58,7 @@ namespace sandbox_windowing
 
       ::e_status set_window_icon(const ::file::path& path) override;
 
-      bool is_child(::oswindow candidateChildOrDescendant) override; // or descendant
+      bool window_is_child(::acme::windowing::window * pacmewindowingwindowChildOrDescendant) override; // or descendant
 
       //::windowing::window* get_parent() override;
       //virtual ::Window get_parent_handle();
@@ -161,12 +161,12 @@ namespace sandbox_windowing
       //virtual int wm_test_state_raw(windowing_android_WINDOW_MEMBER const ::scoped_string & scopedstrNetStateFlag);
       //virtual int wm_test_list_raw(windowing_android_WINDOW_MEMBER Atom atomList, Atom atomFlag);
       //virtual bool wm_add_remove_list_raw(windowing_android_WINDOW_MEMBER Atom atomList, Atom atomFlag, bool bSet);
-      //virtual void wm_add_remove_state_mapped_raw(windowing_android_WINDOW_MEMBER::x11::enuid() eatomNetWmState, bool bSet);
-      //virtual void wm_add_remove_state_mapped(windowing_android_WINDOW_MEMBER::x11::enuid() eatomNetWmState, bool bSet);
-      //virtual void wm_add_remove_state_unmapped_raw(windowing_android_WINDOW_MEMBER::x11::enuid() eatomNetWmState, bool bSet);
-      //virtual void wm_add_remove_state_unmapped(windowing_android_WINDOW_MEMBER::x11::enuid() eatomNetWmState, bool bSet);
-      //virtual void wm_add_remove_state_raw(windowing_android_WINDOW_MEMBER::x11::enuid() eatomNetWmState, bool bSet);
-      //virtual void wm_add_remove_state(windowing_android_WINDOW_MEMBER::x11::enuid() eatomNetWmState, bool bSet);
+      //virtual void wm_add_remove_state_mapped_raw(windowing_android_WINDOW_MEMBER::x11::enum_atom eatomNetWmState, bool bSet);
+      //virtual void wm_add_remove_state_mapped(windowing_android_WINDOW_MEMBER::x11::enum_atom eatomNetWmState, bool bSet);
+      //virtual void wm_add_remove_state_unmapped_raw(windowing_android_WINDOW_MEMBER::x11::enum_atom eatomNetWmState, bool bSet);
+      //virtual void wm_add_remove_state_unmapped(windowing_android_WINDOW_MEMBER::x11::enum_atom eatomNetWmState, bool bSet);
+      //virtual void wm_add_remove_state_raw(windowing_android_WINDOW_MEMBER::x11::enum_atom eatomNetWmState, bool bSet);
+      //virtual void wm_add_remove_state(windowing_android_WINDOW_MEMBER::x11::enum_atom eatomNetWmState, bool bSet);
       //virtual void wm_state_clear_raw(windowing_android_WINDOW_MEMBER bool bSet);
       //virtual void wm_state_below_raw(windowing_android_WINDOW_MEMBER bool bSet);
       //virtual void wm_state_above_raw(windowing_android_WINDOW_MEMBER bool bSet);

@@ -270,10 +270,6 @@ class synchronous_lock;
 //void wait(size_t numberOfItems, synchronization** psynchronizationobject, const duration& duration = duration::infinite(), bool waitForAll = false);
 //
 //#endif
-//
-//
-//
-//
 ////CLASS_DECL_ACME bool __task_sleep(task* task);
 ////
 ////CLASS_DECL_ACME bool __task_sleep(task* ptask, ::duration ::duration);
@@ -296,8 +292,4 @@ class synchronous_lock;
 //
 //
 //#include "acme/platform/synchronized_predicate_routine.h"
-//
-//
-//
-//
 //

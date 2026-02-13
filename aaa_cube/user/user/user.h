@@ -27,7 +27,7 @@ namespace bred
       //::user::multiple_document_template *         m_ptemplateProgress2;
 
 
-      //map < ::type, ::user::impact_system * >      m_mapTemplate;
+      //map < ::platform::type, ::user::impact_system * >      m_mapTemplate;
 
       //atom_map < ::user::impact_system * >           m_mapimpactsystem;
 
@@ -41,9 +41,9 @@ namespace bred
 //
 //      string_array_base                                 m_straEscape;
 //
-//      ::type_atom                                  m_typeatomDefaultMeshData;
-//      ::type_atom                                  m_typeatomDefaultListHeader;
-//      ::type_atom                                  m_typeatomDefaultListData;
+//      ::platform::type                             m_typeDefaultMeshData;
+//      ::platform::type                             m_typeDefaultListHeader;
+//      ::platform::type                             m_typeDefaultListData;
 //
 //      ::pointer<::userfs::userfs>               m_puserfs;
 //
@@ -190,9 +190,9 @@ namespace bred
 //      ::pointer<::user::list_data>default_create_list_data(::particle * pparticle);
 //
 //
-//      ::type_atom default_type_mesh_data();
-//      ::type_atom default_type_list_header();
-//      ::type_atom default_type_list_data();
+//      ::platform::type default_type_mesh_data();
+//      ::platform::type default_type_list_header();
+//      ::platform::type default_type_list_data();
 //
 //
 //      virtual void will_use_impact_hint(::atom idImpact);
@@ -205,10 +205,6 @@ namespace bred
 //
 //      ::collection::count get_template_count() const;
 //      ::pointer<::user::impact_system>get_template(::collection::index index) const;
-//
-//
-//
-//
 //      ::user::document * hold(::pointer<::user::interaction>pinteraction);
 //
 //
@@ -230,16 +226,12 @@ namespace bred
 //      //virtual ::pointer<::userfs::userfs>create_userfs();
 //
 //
-//      virtual ::type_atom get_pane_tab_impact_type_info();
-//      //virtual ::type_atom get_simple_frame_window_type_info() override;
-//      //virtual ::type_atom get_simple_child_frame_type_info();
+//      virtual ::platform::type get_pane_tab_impact_type_info();
+//      //virtual ::platform::type get_simple_frame_window_type_info() override;
+//      //virtual ::platform::type get_simple_child_frame_type_info();
 //
 //
 //      virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
-//
-//
-//
-//
 //      //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 //
 //      //virtual bool is_session() const override;
@@ -464,10 +456,6 @@ namespace bred
 //      //virtual ::collection::index get_good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction);
 //
 //      //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
-//
-//
-//
-//
 //      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
 //
 //
@@ -498,21 +486,17 @@ namespace bred
 //
 //      //template < typename VIEW >
 //      //::pointer<::user::document>  create_form(::pointer<::user::interaction>userinteractionParent = nullptr, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-//      //::pointer<::user::document>  create_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+//      //::pointer<::user::document>  create_form(::platform::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_child_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
 //      //template < typename VIEW >
 //      //::pointer<::user::document>  create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
-//      //::pointer<::user::document>  create_child_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
+//      //::pointer<::user::document>  create_child_form(::platform::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
 //      //::pointer<::user::document>  create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
 //
 //
 //      ////virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item* pitem) override;
-//
-//
-//
-//
 //      //bool InitializeLocalDataCentral();
 //
 //      ////virtual void bergedge_start() override;
@@ -676,10 +660,6 @@ namespace bred
 //      //virtual void init1() override;
 //      //virtual void init2() override;
 //      //virtual void init() override;
-//
-//
-//
-//
 //      //virtual ::user::interaction_base* get_mouse_focus_LButtonDown();
 //      //virtual void set_mouse_focus_LButtonDown(::user::interaction_base* pmousefocus);
 //      //virtual ::user::interaction_base* get_mouse_focus_RButtonDown();
@@ -691,7 +671,7 @@ namespace bred
 //
 //      virtual void term() override;
 //
-//      virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+//      virtual ::platform::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 //
 //
 

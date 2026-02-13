@@ -396,7 +396,7 @@ namespace image
 //inline void copy_image32(::color32_t * pimage32Dst, const ::int_size & size, int iStrideDst, const ::color32_t * pimage32Src, int iStrideSrc)
 //{
 //
-//   return copy_image32(pimage32Dst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+//   return copy_image32(pimage32Dst, size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
 //
 //}
 

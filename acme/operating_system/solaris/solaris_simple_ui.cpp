@@ -125,8 +125,8 @@ namespace os
       Window window = XCreateWindow(
                       display,
                       DefaultRootWindow(display),
-                      lpcrect->left(),
-                      lpcrect->top(),
+                      lpcrect->left,
+                      lpcrect->top,
                       width(lpcrect),
                       height(lpcrect),
                       0,
@@ -145,10 +145,10 @@ namespace os
 
       }
 
-      m_point.x() = lpcrect.left();
-      m_point.y() = lpcrect.top();
-      m_size.cx() = width(lpcrect);
-      m_size.cy() = height(lpcrect);
+      m_point.x = lpcrect.left;
+      m_point.y = lpcrect.top;
+      m_size.cx = width(lpcrect);
+      m_size.cy = height(lpcrect);
 
       m_rectangleWindow = *lpcrect;
       m_rectangleWindow.deflate(1, 1); // make intentionally different from actual int_rectangle to trigger simple_ui on_move and on_size happenings
@@ -169,7 +169,7 @@ namespace os
       if(bShow)
       {
 
-         set_window_position(m_window, nullptr, m_point.x(), m_point.y(), m_size.cx(), m_size.cy(), SWP_SHOWWINDOW | SWP_NOZORDER);
+         set_window_position(m_window, nullptr, m_point.x, m_point.y, m_size.cx, m_size.cy, SWP_SHOWWINDOW | SWP_NOZORDER);
 
       }
       else
@@ -205,7 +205,7 @@ namespace os
 
       //on_size(width(lpcrect), height(lpcrect));
 
-      //on_move(lpcrect->left(), lpcrect->top());
+      //on_move(lpcrect->left, lpcrect->top);
 
       xdisplay d(m_window->display());
 
@@ -222,7 +222,7 @@ namespace os
 
       //bool bShow = true;
 
-//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right()-m_point.x(), m_rectangleDesktop.bottom()-m_point.y(), m_size.cx(), m_size.cy());
+//      XMoveResizeWindow(m_window->display(), m_window->window(), m_rectangleDesktop.right-m_point.x, m_rectangleDesktop.bottom-m_point.y, m_size.cx, m_size.cy);
 
       //XMoveResizeWindow(m_window->display(), m_window->window(), 500, 0, 200, 200);
 
@@ -311,7 +311,7 @@ namespace os
                         {
                            if(e.xbutton.button == Button1)
                            {
-                              on_lbutton_down(e.xbutton.x(), e.xbutton.y());
+                              on_lbutton_down(e.xbutton.x, e.xbutton.y);
                            }
                            else if(e.xbutton.button == Button2)
                            {
@@ -331,7 +331,7 @@ namespace os
                         {
                            if(e.xbutton.button == Button1)
                            {
-                              on_lbutton_up(e.xbutton.x(), e.xbutton.y());
+                              on_lbutton_up(e.xbutton.x, e.xbutton.y);
                            }
                            else if(e.xbutton.button == Button2)
                            {
@@ -445,7 +445,7 @@ namespace os
                         //lpMsg->wParam        = 0;
                         //lpMsg->lParam        = make_int(e.xmotion.x_root, e.xmotion.y_root);
 
-                        on_mouse_move(e.xmotion.x(), e.xmotion.y());
+                        on_mouse_move(e.xmotion.x, e.xmotion.y);
 
                         //bRet                 = true;
 
@@ -584,10 +584,10 @@ namespace os
 
       *prectangle = m_rectangleWindow;
 
-      prectangle->right() -= prectangle->left();
-      prectangle->bottom() -= prectangle->top();
-      prectangle->left() = 0;
-      prectangle->top() = 0;
+      prectangle->right -= prectangle->left;
+      prectangle->bottom -= prectangle->top;
+      prectangle->left = 0;
+      prectangle->top = 0;
 
    }
 
@@ -609,7 +609,7 @@ namespace os
       if(rectangleWindow.top_left() != m_rectangleWindow.top_left())
       {
 
-         on_move(rectangleWindow.left(), rectangleWindow.top());
+         on_move(rectangleWindow.left, rectangleWindow.top);
 
       }
 
@@ -643,7 +643,7 @@ namespace os
 
 /*         unsigned char *dst = (unsigned char*) m_pimage->get_data();
 
-         long long size = m_size.cx() * m_size.cy();
+         long long size = m_size.cx * m_size.cy;
 
 
          // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -703,13 +703,13 @@ namespace os
    bool simple_ui::on_move(int x, int y)
    {
 
-      m_point.x() = x;
-      m_point.y() = y;
+      m_point.x = x;
+      m_point.y = y;
 
-      m_rectangle.left() = m_point.x();
-      m_rectangle.right() = m_point.x() + m_size.cx();
-      m_rectangle.top() = m_point.y();
-      m_rectangle.bottom() = m_point.y() + m_size.cy();
+      m_rectangle.left = m_point.x;
+      m_rectangle.right = m_point.x + m_size.cx;
+      m_rectangle.top = m_point.y;
+      m_rectangle.bottom = m_point.y + m_size.cy;
 
       return true;
 
@@ -718,16 +718,16 @@ namespace os
    bool simple_ui::on_size(int cx, int cy)
    {
 
-      m_size.cx() = cx;
-      m_size.cy() = cy;
+      m_size.cx = cx;
+      m_size.cy = cy;
 
-      m_rectangle.left() = m_point.x();
-      m_rectangle.right() = m_point.x() + m_size.cx();
-      m_rectangle.top() = m_point.y();
-      m_rectangle.bottom() = m_point.y() + m_size.cy();
+      m_rectangle.left = m_point.x;
+      m_rectangle.right = m_point.x + m_size.cx;
+      m_rectangle.top = m_point.y;
+      m_rectangle.bottom = m_point.y + m_size.cy;
 
 /*      m_pimage = create_image({get_app()->create_new,  this});
-/*      m_pimage = create_image({m_size.cx(),  m_size.cy()});
+/*      m_pimage = create_image({m_size.cx,  m_size.cy});
 
       m_xlib.create(m_window, cx, cy);
 
@@ -775,13 +775,13 @@ namespace os
 
       ::set_window_position(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
-      m_rectangle.left() = x;
-      m_rectangle.top() = y;
-      m_rectangle.right() = x + m_size.cx();
-      m_rectangle.bottom() = y + m_size.cy();
+      m_rectangle.left = x;
+      m_rectangle.top = y;
+      m_rectangle.right = x + m_size.cx;
+      m_rectangle.bottom = y + m_size.cy;
 
-      m_point.x() = x;
-      m_point.y() = y;
+      m_point.x = x;
+      m_point.y = y;
 
       return true;
 

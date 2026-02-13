@@ -155,6 +155,7 @@ enum enum_dialog_result : ::iptr
    e_dialog_result_close = 8,
    e_dialog_result_help = 9,
    e_dialog_result_continue = 11,
+   e_dialog_result_try_again = 12,
    e_dialog_result_timeout = 32000,
 
 
@@ -197,7 +198,7 @@ enum enum_type
    e_type_string = 4096,
    e_type_pstring,
    e_type_ansi_range,
-   e_type_type,
+   //e_type_type,
    //e_type_integral_nanosecond,
    //e_type_pintegral_nanosecond,
    //e_type_integral_microsecond,
@@ -1102,6 +1103,15 @@ enum enum_synchronicity
 
    e_synchronicity_synchronous,
    e_synchronicity_asynchronous
+
+};
+
+
+enum enum_matrix_major
+{
+
+   e_matrix_major_column,
+   e_matrix_major_row
 
 };
 

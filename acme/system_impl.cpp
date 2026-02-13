@@ -2377,7 +2377,7 @@ namespace platform
 
       }
 
-      information() << "::apex::system::on_request session = " << ::type(psession).name() << "(" << ((iptr)psession) << ")";
+      information() << "::apex::system::on_request session = " << ::platform::type(psession).name() << "(" << ((iptr)psession) << ")";
 
       psession->post_request(prequest);
 
@@ -2977,7 +2977,7 @@ namespace platform
 
       //   auto pnode = node();
       //
-      //   pnode->_will_finish_launching();
+      //   pnode->_will_aaafinish_launching();
 
       //   auto pnode = session();
       //
@@ -2985,11 +2985,11 @@ namespace platform
       //
       //   auto pwindowing = system()->windowing();
       //
-      //   pwindowing->_will_finish_launching();
+      //   pwindowing->_will_aaa_finish_launching();
 
       auto pnode = node();
 
-      pnode->_will_finish_launching();
+      pnode->_will_aaa_finish_launching();
 
       //return ::success;
 
@@ -4069,7 +4069,7 @@ namespace platform
 
          nano()->graphics();
 
-         ::string strToolkit = ::windowing::get_user_toolkit_id();
+         ::string strToolkit = get_acme_windowing_toolkit_id()();
 
          m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
 

@@ -110,7 +110,7 @@ namespace graphics
 #include "aura/user/user/text.h"
 #include "aura/user/user/window_state.h"
 #include "aura/user/user/callback.h"
-#include "aura/user/user/primitive.h"
+#include "aura/user/user/prototype.h"
 
 #include "aura/user/user/style_base.h"
 #include "aura/user/user/style.h"

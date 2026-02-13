@@ -358,8 +358,8 @@ namespace user
 
 
 
-      virtual void subclass_window(oswindow posdata);
-      virtual oswindow unsubclass_window();
+      //virtual void subclass_window(oswindow posdata);
+      //virtual oswindow unsubclass_window();
 
       virtual string get_class_name();
 
@@ -597,7 +597,7 @@ namespace user
 
 
       //virtual bool attach(::windowing::window * pwindow_New);
-      virtual oswindow detach_window();
+      virtual void * detach_win32_HWND();
 
 
       virtual ::windowing::window * window();
@@ -621,8 +621,8 @@ namespace user
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(::sequence2_int & sequence);
-      virtual void viewport_client_to_screen(::sequence2_int & sequence);
+      virtual void viewport_screen_to_client(::int_sequence2 & sequence);
+      virtual void viewport_client_to_screen(::int_sequence2 & sequence);
       virtual void viewport_client_to_screen(::int_rectangle & point);
       virtual void viewport_screen_to_client(::int_rectangle & point);
 
@@ -797,13 +797,13 @@ namespace user
 
       virtual ::user::element * get_parent_primitive();
 
-      virtual ::user::primitive_impl * get_primitive_impl();
+      virtual ::user::prototype_impl * get_primitive_impl();
 
       virtual ::user::interaction * get_first_child_window();
 
 
       virtual bool keyboard_focus_is_focusable();
-      virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
+      virtual bool keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
       virtual element * keyboard_get_next_focusable(element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual element * get_keyboard_focus() const;

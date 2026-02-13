@@ -264,7 +264,7 @@ public:
    }
 
 
-   bool is_null()
+   bool is_null() const
    {
 
       return m_p == nullptr;
@@ -272,7 +272,7 @@ public:
    }
 
 
-   bool is_set()
+   bool is_set() const
    {
 
       return !is_null();

@@ -9,7 +9,7 @@ void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
    //   hash table int_size of (which is fairly small)
 {
 
-   ASSERT_VALID(this);
+   ASSERT_OK(this);
    ASSERT(this->m_nCount == 0);
    ASSERT(nHashSize > 0);
 

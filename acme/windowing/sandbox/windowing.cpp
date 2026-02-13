@@ -173,7 +173,7 @@ void windowing::initialize(::particle * pparticle)
 }
 
 
-void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
 {
    
    //      if (::is_set(m_phostinteraction))
@@ -205,27 +205,33 @@ void windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
    if(::is_set(m_pwindowApplicationHost))
    {
       
-      return;
+      return m_pwindowApplicationHost;
       
    }
    
    øconstruct(m_phostinteraction);
    
-   m_phostinteraction->create_window();
+   auto puserinteraction = m_phostinteraction;
    
-//   m_phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+   puserinteraction->create_window();
    
-   m_phostinteraction->display();
+   //puserinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
    
-//   m_phostinteraction->m_bNeedPerformLayout = true;
+   //puserinteraction->display();
    
-  // m_phostinteraction->set_need_layout();
+   //puserinteraction->m_bNeedPerformLayout = true;
    
-   m_phostinteraction->set_need_redraw();
+   //puserinteraction->set_need_layout();
    
-   m_phostinteraction->post_redraw();
+   puserinteraction->set_need_redraw();
    
-   m_pwindowApplicationHost = m_phostinteraction->acme_windowing_window();
+   puserinteraction->post_redraw();
+   
+   m_pwindowApplicationHost = puserinteraction->acme_windowing_window();
+   
+   auto pacmewindowbridge = m_pwindowApplicationHost->get_acme_window_bridge();
+   
+   return pacmewindowbridge;
    
 }
 
@@ -236,6 +242,8 @@ void windowing::_will_finish_launching()
    //defer_initialize_host_window(nullptr);
 //
 //   ::acme::windowing::windowing::_will_finish_launching();
+   
+   system()->post_application_start();
    
 }
 
@@ -503,27 +511,27 @@ bool windowing::targeted_keyboard_messages()
 //   
 //}
 
-#if defined(WINDOWS_DESKTOP)
-
-::acme::windowing::window* windowing::window(oswindow oswindow)
-{
-
-   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-
-   return m_oswindowmap[oswindow];
-
-}
-
-#else
-
-::acme::windowing::window* windowing::window(oswindow oswindow)
-{
-   
-   return oswindow;
-   
-}
-
-#endif
+// #if defined(WINDOWS_DESKTOP)
+//
+// ::acme::windowing::window* windowing::window(::acme::windowing::window * pacmewindowingwindow)
+// {
+//
+//    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+//
+//    return m_oswindowmap[oswindow];
+//
+// }
+//
+// #else
+//
+// ::acme::windowing::window* windowing::window(::acme::windowing::window * pacmewindowingwindow)
+// {
+//
+//    return oswindow;
+//
+// }
+//
+// #endif
 
 
 void windowing::_message_handler(void* p)
@@ -567,7 +575,7 @@ void windowing::_message_handler(void* p)
    
    ////return pwindow;
    
-   return m_pwindowMouseCapture;
+   return m_pacmewindowingwindowMouseCapture;
    
 }
 
@@ -575,14 +583,14 @@ void windowing::_message_handler(void* p)
 bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowing::window * pwindow)
 {
    
-   if (!m_pwindowMouseCapture)
+   if (!m_pacmewindowingwindowMouseCapture)
    {
       
       return false;
       
    }
    
-   if (m_pwindowMouseCapture != pwindow)
+   if (m_pacmewindowingwindowMouseCapture != pwindow)
    {
       
       return false;
@@ -591,7 +599,7 @@ bool windowing::defer_release_mouse_capture(::thread * pthread, ::acme::windowin
    
    pwindow->m_pacmeuserinteractionMouseCapture.release();
    
-   m_pwindowMouseCapture.release();
+   m_pacmewindowingwindowMouseCapture.release();
    
    return true;
    

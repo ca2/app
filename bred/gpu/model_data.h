@@ -3,7 +3,7 @@
 #pragma once
 
 
-//#include "acme/prototype/prototype/poolable.h"
+#include "bred/gpu/properties.h"
 //#include "bred/gpu/context.h"
 //#include "bred/gpu/context_object.h"
 //#include "bred/gpu/frame.h"
@@ -17,16 +17,229 @@
 namespace gpu
 {
 
-
-   template<typename VERTEX>
-   class model_data
+   struct dummy_t
    {
+   };
+
+   class CLASS_DECL_BRED model_data_base :
+      virtual public ::particle
+   {
+   protected:
+
+            ::gpu::property *m_ppropertyProperties;
+
+
+      ::collection::index m_iVertexCount;
+      memsize m_iVertexByteSize;
+      memsize m_iVertexTypeSize;
+      ::collection::index m_iIndexCount;
+      memsize m_iIndexByteSize;
+      memsize m_iIndexTypeSize;
+      bool m_bDummy = false;
+
+
+      virtual void _set_vertex_array_base(const void * p);
+      virtual void _set_index_array_base(const void *p);
+
    public:
 
+
+
+      model_data_base();
+      model_data_base(dummy_t, int iVertexCount, int iIndexCount = -1)
+      {
+
+         m_bDummy = true;
+         m_iIndexTypeSize = -1;
+         m_iIndexByteSize = -1;
+         m_iVertexTypeSize = -1;
+         m_iVertexByteSize = -1;
+         m_iVertexCount = iVertexCount;
+         m_iIndexCount = iIndexCount;
+
+      }
+      ~model_data_base() override;
+
+      virtual ::gpu::property *gpu_properties() const;
+      virtual ::block vertex_data();
+      virtual ::block index_data() ;
+      virtual const ::block vertex_data() const;
+      virtual const ::block  index_data() const;
+      virtual ::platform::type vertex_type() const;
+      virtual ::platform::type index_type() const;
+
+      template < typename VERTEX>
+      void set_vertexes(const ::array_base<VERTEX> & vertexes)
+      {
+         if (typeid(VERTEX) != this->vertex_type())
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+         _set_vertex_array_base(&vertexes);
+
+      }
+
+            template<typename INDEX>
+      void set_indexes(const ::array_base<INDEX> &indexes)
+      {
+         if (typeid(INDEX) != this->index_type())
+         {
+
+            throw ::exception(error_wrong_state);
+         }
+         _set_index_array_base(&indexes);
+      }
+      template<typename INDEX>
+      void set_index_type_and_count(int iIndexCount)
+      {
+         if (typeid(INDEX) != this->index_type())
+         {
+
+            throw ::exception(error_wrong_state);
+         }
+         set_index_count(iIndexCount);
+      }
+      ::collection::index index_count() const { return m_iIndexCount; }
+      ::collection::index vertex_count() const { return m_iVertexCount; }
+      memsize index_type_size() const { return m_iIndexTypeSize; }
+      memsize vertex_type_size() const { return m_iVertexTypeSize; }
+      memsize index_bytes() const { return m_iIndexByteSize; }
+      memsize vertex_bytes() const { return m_iVertexByteSize; };
+      ::gpu::property *properties() const { return (::gpu::property *) m_ppropertyProperties; };
+      virtual void set_vertex_count(::collection::index iVertexCount);
+      virtual void set_index_count(::collection::index iIndexCount);
+      virtual bool is_empty() const;
+      virtual bool has_data() const;
+      bool is_dummy() const
+      { return m_bDummy;
+
+      }
+      virtual void update();
+   };
+
+
+
+   template<typename VERTEX, typename INDEX>
+   class model_data :
+      virtual public model_data_base
+   {
+   protected:
       ::array_base<VERTEX> m_vertexes;
-      ::array_base<unsigned int> m_indexes;
+      ::array_base<INDEX> m_indexes;
 
 
+      void update_vertexes()
+      {
+         this->m_ppropertyProperties = ::gpu_properties<VERTEX>();
+         this->m_iVertexCount = m_vertexes.get_size();
+         this->m_iVertexTypeSize = sizeof(VERTEX);
+         this->m_iVertexByteSize = this->m_iVertexTypeSize * this->m_iVertexCount;
+      }
+      void update_indexes()
+      {
+         this->m_iIndexCount = m_indexes.get_size();
+         this->m_iIndexTypeSize = sizeof(INDEX);
+         this->m_iIndexByteSize = this->m_iIndexTypeSize * this->m_iIndexCount;
+      }
+
+      void _set_vertex_array_base( const void *p) override
+      {
+         auto pvertexes = (const ::array_base<VERTEX> *)p;
+         m_vertexes = *pvertexes;
+         update_vertexes();
+      }
+
+      void _set_index_array_base(const void *p) override
+      {
+         auto pindexes = (const ::array_base<INDEX> *)p;
+         m_indexes = *pindexes;
+         update_indexes();
+      }
+
+   public:
+
+
+            void update() override
+      {
+
+         update_vertexes();
+         update_indexes();
+      }
+
+
+      model_data() {}
+      model_data(int iVertexCount, int iIndexCount)
+      { m_vertexes.set_size(iVertexCount);
+         m_indexes.set_size(iIndexCount);
+         update();
+
+      }
+      model_data(const model_data & data) :
+         m_vertexes(data.m_vertexes),
+         m_indexes(data.m_indexes) { update();
+      }
+      model_data(model_data &&data) : 
+         m_vertexes(::transfer(data.m_vertexes)),
+         m_indexes(::transfer(data.m_indexes)) {
+         update();
+      }
+
+      bool is_empty() const override
+      {
+
+         return m_vertexes.is_empty() && m_indexes.is_empty();
+
+      }
+
+      bool has_data() const override
+      {
+
+         return !this->is_empty();
+
+      }
+
+
+      ::platform::type vertex_type() const override
+      {
+
+         return ::type<VERTEX>();
+
+      }
+
+
+      ::platform::type index_type() const override
+      
+      { return ::type<INDEX>(); }
+
+
+
+
+      void set_vertex_count(::collection::index iVertexCount) override
+      { m_vertexes.set_size(iVertexCount);
+         update_vertexes();
+      }
+      void set_index_count(::collection::index iIndexCount) override
+      { m_indexes.set_size(iIndexCount);
+         update_indexes();
+
+
+      }
+
+
+      void set_vertexes(const ::array_base<VERTEX> &vertexes)
+      {
+         ::gpu::model_data_base::set_vertexes<VERTEX>(vertexes);
+      }
+
+      
+      void set_indexes(const ::array_base<INDEX> & indexes)
+      {
+
+         ::gpu::model_data_base::set_indexes<INDEX>(indexes);
+
+      }
       //::pointer <::graphics3d::model> create_model(
       //   ::gpu::renderer* prenderer)
       //{
@@ -47,6 +260,51 @@ namespace gpu
       //   return pmodel;
 
       //}
+
+
+      model_data & operator=(const model_data & modeldata)
+      {
+
+         if (this != &modeldata)
+         {
+
+            this->m_vertexes = modeldata.m_vertexes;
+            this->m_indexes = modeldata.m_indexes;
+
+         }
+
+         return *this;
+
+      }
+
+
+      model_data &operator=(model_data &&modeldata)
+      {
+
+         if (this != &modeldata)
+         {
+
+            this->m_vertexes = ::transfer(modeldata.m_vertexes);
+            this->m_indexes = ::transfer(modeldata.m_indexes);
+         }
+
+         return *this;
+      }
+
+
+      ::block vertex_data() override{ return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
+      ::block index_data() override { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
+
+      const ::block vertex_data()const override { return {m_vertexes.data(), m_vertexes.get_size_in_bytes()}; }
+      const ::block index_data() const override { return {m_indexes.data(), m_indexes.get_size_in_bytes()}; }
+
+      const ::array_base<VERTEX> & vertexes() const { return m_vertexes; }
+      const ::array_base<INDEX> &indexes() const { return m_indexes; }
+
+      ::array_base<VERTEX> &vertexes() { return m_vertexes; }
+      ::array_base<INDEX> &indexes() { return m_indexes; }
+
+
    };
 
 

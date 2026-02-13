@@ -30,7 +30,7 @@ struct add_reference
 template<class TYPE>
 struct add_lvalue_reference
 {
-   typedef typename add_reference<TYPE>::type type;
+   typedef typename add_reference<TYPE>::typetype;
 };
 
 
@@ -314,9 +314,9 @@ void __swap(TYPE & t1,TYPE & t2)
 //struct tuple_element<0,tuple<TYPE1,REST1...> >
 //{
 //   typedef TYPE1 type;
-//   typedef typename add_lvalue_reference<const TYPE1>::type _Ctype;
-//   typedef typename add_lvalue_reference<TYPE1>::type _Rtype;
-//   //typedef typename add_rvalue_reference<TYPE1>::type _RRtype;
+//   typedef typename add_lvalue_reference<const TYPE1>::type_Ctype;
+//   typedef typename add_lvalue_reference<TYPE1>::type_Rtype;
+//   //typedef typename add_rvalue_reference<TYPE1>::type_RRtype;
 //   typedef tuple<TYPE1,REST1...> TUPLE_TYPE;
 //};
 //
@@ -332,7 +332,7 @@ void __swap(TYPE & t1,TYPE & t2)
 //      : public tuple_element<m_iIndex,TUPLE>
 //{
 //   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
-//   typedef typename add_const<typename BASE_TYPE::type>::type type;
+//   typedef typename add_const<typename BASE_TYPE::platform::type>::typetype;
 //};
 //
 //template<size_t m_iIndex, class TUPLE>
@@ -340,7 +340,7 @@ void __swap(TYPE & t1,TYPE & t2)
 //      : public tuple_element<m_iIndex,TUPLE>
 //{
 //   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
-//   typedef typename add_volatile<typename BASE_TYPE::type>::type type;
+//   typedef typename add_volatile<typename BASE_TYPE::platform::type>::typetype;
 //};
 //
 //template<size_t m_iIndex,
@@ -349,7 +349,7 @@ void __swap(TYPE & t1,TYPE & t2)
 //      : public tuple_element<m_iIndex,TUPLE>
 //{
 //   typedef tuple_element<m_iIndex,TUPLE> BASE_TYPE;
-//   typedef typename add_cv<typename BASE_TYPE::type>::type type;
+//   typedef typename add_cv<typename BASE_TYPE::platform::type>::typetype;
 //};
 //
 //

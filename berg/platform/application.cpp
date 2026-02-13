@@ -243,10 +243,10 @@ namespace berg
    // }
 
 
-   void application::create_options_impact(::user::interaction * pparent)
+   void application::create_options_impact(const ::atom &atom, ::user::interaction *pparent)
    {
 
-      if(factory()->has(::type < ::user::options_impact_handler >()))
+      if(factory()->has_factory_item< ::user::options_impact_handler >())
       {
 
          øconstruct(m_poptionsimpacthandler);
@@ -255,34 +255,34 @@ namespace berg
 
       auto playout = create_line_layout(pparent, e_orientation_vertical);
 
-      create_options_header(playout);
-      create_options_body(playout);
-      create_options_footer(playout);
+      create_options_header(atom, playout);
+      create_options_body(atom, playout);
+      create_options_footer(atom, playout);
 
    }
 
 
-   void application::create_options_header(::user::interaction * pparent)
+   void application::create_options_header(const ::atom &atom, ::user::interaction *pparent)
    {
 
 
    }
 
 
-   void application::create_options_body(::user::interaction * pparent)
+   void application::create_options_body(const ::atom &atom, ::user::interaction *pparent)
    {
 
       if(m_poptionsimpacthandler)
       {
 
-         m_poptionsimpacthandler->create_options_impact(pparent);
+         m_poptionsimpacthandler->create_options_impact(atom, pparent);
 
       }
 
    }
 
 
-   void application::create_options_footer(::user::interaction * pparent)
+   void application::create_options_footer(const ::atom &atom, ::user::interaction *pparent)
    {
 
       for (auto & strLibrary : m_straOptionsFormMakerLibrary)
@@ -302,16 +302,16 @@ namespace berg
       if (m_bEnableAutoStartOption)
       {
 
-         create_auto_start_option(pparent);
+         create_auto_start_option(atom, pparent);
 
       }
 
-      create_about_option(pparent);
+      create_about_option(atom, pparent);
 
    }
 
 
-   void application::create_auto_start_option(::user::interaction* pparent)
+   void application::create_auto_start_option(const ::atom &atom, ::user::interaction *pparent)
    {
 
       auto playoutLine = create_line_layout(pparent, e_orientation_horizontal);
@@ -347,12 +347,12 @@ namespace berg
    }
 
 
-   void application::create_about_option(::user::interaction * pparent)
+   void application::create_about_option(const ::atom &atom, ::user::interaction *pparent)
    {
 
       auto pbutton = create_button<::user::button>(pparent, "About");
 
-      pbutton->m_callbackOnClick = [this](::user::interaction * puserinteraction, ::item * pitem, ::user::activation_token * puseractivationtoken)
+      pbutton->m_callbackOnClick = [this](::user::interaction * puserinteraction, ::item * pitem, ::user::activation_token * puseractivationtoken)->bool
          {
 
             show_about_box(puseractivationtoken);
@@ -364,7 +364,7 @@ namespace berg
    }
 
 
-   void application::create_about_impact(::user::interaction * pparent)
+   void application::create_about_impact(const ::atom &atom, ::user::interaction *pparent)
    {
 
       auto playoutLine = create_line_layout(pparent, e_orientation_vertical);

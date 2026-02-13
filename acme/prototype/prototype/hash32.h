@@ -20,11 +20,11 @@ struct hash32
    hash32() : m_u(0) {};
    template < typename T >
    hash32(const T * p) : m_u((unsigned int)(::uptr)p) {};
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    constexpr hash32(INTEGRAL i) : m_u((unsigned int)i) { }
-   template < primitive_enum ENUM >
+   template < prototype_enum ENUM >
    constexpr hash32(ENUM e) : m_u((unsigned int)e) { }
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    constexpr hash32(FLOATING f) : hash32(&f, sizeof(f)) { }
    template < typename T >
    constexpr hash32(const ::pointer < T > & t) : hash32(t.m_p) { }
@@ -43,6 +43,11 @@ struct hash32
 template < typename T >
 ::hash32 as_hash32(const T & t) { return (::hash32)t; }
 
+#include <typeindex>
+
+template <  >
+inline ::hash32 as_hash32<::std::type_index>(const ::std::type_index & typeindex)
+{ return (::hash32)typeindex.hash_code(); }
 
 //#include "acme/include/_numeric_concepts.h"
 //#include "acme/prototype/prototype/enumeration.h"
@@ -57,7 +62,7 @@ template < typename T >
 //
 //   template < typename T >
 //   hash32(const T* p) : m_u((unsigned int)(::uptr)p) {}
-//   template < primitive_integral INTEGRAL >
+//   template < prototype_integral INTEGRAL >
 //   hash32(INTEGRAL i) : m_u((unsigned int)i) {}
 //   template < a_enum ENUM >
 //   hash32(const ::enumeration < ENUM > & e) : m_u((unsigned int)e.m_eenum) {}
@@ -69,9 +74,5 @@ template < typename T >
 //   hash32() {}
 //
 //};
-//
-//
-//
-//
 
 

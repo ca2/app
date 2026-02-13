@@ -28,7 +28,7 @@ namespace sockets
 
 
 
-   void listen_socket::set_attend_socket_type(const ::type_atom& type)
+   void listen_socket::set_attend_socket_type(const ::platform::type & type)
    {
 
       m_typeAttendSocket = type;
@@ -450,7 +450,7 @@ namespace sockets
 
    ::pointer < ::sockets::socket > listen_socket::create_attend_socket()
    {
-      return øid_create(m_typeAttendSocket, m_pfactory);
+      return øcreate_by_type(m_typeAttendSocket, m_pfactory);
    }
 
    //void listen_socket::OnOptions(int,int,int,socket_id)

@@ -61,7 +61,10 @@
 
 ////#include "apex/compress/zip/_.h"
 #include "acme/constant/id.h"
-
+struct cache_file_descriptor
+{
+class ::time m_timeLastDownload = ::time::now();
+};
 
 #ifndef WINDOWS
 #include <sys/stat.h>
@@ -1487,7 +1490,7 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = øallocate read_only_memory(block);
+      auto pmemory = øallocate ::make_particle1 < read_only_memory >(block);
 
       auto pfile = øallocate::memory_file(pmemory);
 
@@ -1633,6 +1636,14 @@ void file_context::calculate_main_resource_memory()
 
    }
 
+   if (path.case_insensitive_ends("/wavefront.vert")
+      && path.case_insensitive_contains("/_std/_std/"))
+   {
+
+      information("/wavefront.vert with /_std/_std/");
+
+   }
+
    _synchronous_lock synchronouslock(pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    if (pfolder->locate_file(path))
@@ -1768,21 +1779,21 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    ::file::path pathSource;
 
-   if (::is_nok(preader))
-   {
-
-      pathSource = application()->defer_process_path(varSource.as_file_path());
-
-      if (exists(pathSource))
-      {
-
-         pfilesystem->copy(pathTarget, pathSource, !bFailIfExists);
-
-         return;
-
-      }
-
-   }
+   // if (::is_nok(preader))
+   // {
+   //
+   //    pathSource = application()->defer_process_path(varSource.as_file_path());
+   //
+   //    if (exists(pathSource))
+   //    {
+   //
+   //       pfilesystem->copy(pathTarget, pathSource, !bFailIfExists);
+   //
+   //       return;
+   //
+   //    }
+   //
+   // }
 
    if (bFailIfExists)
    {
@@ -1820,7 +1831,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    try
    {
 
-      information() << "preader : " << (iptr)preader.m_p;
+      //information() << "preader : " << (iptr)preader.m_p;
 
       if (::is_nok(preader))
       {
@@ -3406,20 +3417,47 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
       pathCache.replace_with("_/", "://");
 #endif
       pathCache = directory()->cache() / (pathCache + ".cache");
-
+information() << "file_context::http_get_file pathCache = file://" << pathCache;
       if (exists(pathCache))
+      {
+
+      information() << "file_context::http_get_file file exists = file://" << pathCache;
+
+      auto memoryDescriptor = safe_get_memory(pathCache + ".cache_file_descriptor");
+      auto pdescriptor = (cache_file_descriptor *) memoryDescriptor.data();
+
+
+
+      if(::is_set(pdescriptor))
+      {
+       auto timeLastDownloadElapsed = pdescriptor->m_timeLastDownload.elapsed();
+      if(timeLastDownloadElapsed < 24_hour)
       {
 
          auto pfile = get_reader(pathCache);
 
-         if (pfile.ok() && pfile->size() > 0)
+         //bool bOk =pfile.ok();
+
+         //information() << "file_context::http_get_file file bOk = "<<bOk<<" file://" << pathCache;
+         //auto size =pfile->size();
+         //information() << "file_context::http_get_file file size = "<<size<<" file://" << pathCache;
+
+         //if (bOk && size > 0)
          {
 
+            information() << "file_context::http_get_file returning cached file file://" << pathCache;
             return pfile;
 
          }
 
       }
+      }
+//      else
+      {
+        information() << "file_context::http_get_file file doesn't exist or timed out = file://" << pathCache;
+      }
+
+   }
 
    }
 
@@ -3516,6 +3554,9 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
       }
 
+        cache_file_descriptor descriptor;
+
+        put(pathCache + ".cache_file_descriptor", descriptor);
       try
       {
 
@@ -3734,6 +3775,15 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
       informationf("Ok let's hey hohohou");
       informationf("Ok let's hey hohohou");
+
+      //pathProcessed = "zipresource://_matter/integration/_std/_std/main/icon-256.png";
+
+   }
+   else if (path == "matter://shaders/directx11/wavefront.vert")
+   {
+
+      informationf("matter://shaders/directx11/wavefront.vert");
+      informationf("matter://shaders/directx11/wavefront.vert");
 
       //pathProcessed = "zipresource://_matter/integration/_std/_std/main/icon-256.png";
 

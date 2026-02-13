@@ -5,11 +5,11 @@
 //#include "_geometry2d.h"
 
 
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //class polygon_base;
 
 
-//template < primitive_number NUMBER >
+//template < prototype_number NUMBER >
 //class point_array_base;
 
 

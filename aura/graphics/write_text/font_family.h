@@ -20,7 +20,7 @@ namespace write_text
    //protected:
       font_family(enum_font efont);
 
-      template < primitive_character_range RANGE >
+      template < prototype_character_range RANGE >
       font_family(const RANGE & rangeFamilyName)
       {
 
@@ -30,7 +30,7 @@ namespace write_text
 
       }
 
-      template < primitive_character_range RANGE, primitive_character_range RANGE2 >
+      template < prototype_character_range RANGE, prototype_character_range RANGE2 >
       font_family(const RANGE & rangeFamilyName, const RANGE2 & rangeBranch)
       {
 
@@ -43,7 +43,7 @@ namespace write_text
       }
 
 
-      template < primitive_character CHARACTER >
+      template < prototype_character CHARACTER >
       font_family(const CHARACTER * pszFamilyName)
       {
 
@@ -54,7 +54,7 @@ namespace write_text
       }
 
 
-      template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+      template < prototype_character CHARACTER, prototype_character CHARACTER2 >
       font_family(const CHARACTER * pszFamilyName, const CHARACTER2 * pszBranch)
       {
 
@@ -99,27 +99,27 @@ namespace write_text
       font_family_pointer(enum_font efont = e_font_default);
 
 
-      template < primitive_character_range RANGE >
+      template < prototype_character_range RANGE >
       font_family_pointer(const RANGE & rangeFamilyName):
          ::pointer < font_family >(øallocate font_family(rangeFamilyName))
       {
       }
 
-      template < primitive_character_range RANGE, primitive_character_range RANGE2 >
+      template < prototype_character_range RANGE, prototype_character_range RANGE2 >
       font_family_pointer(const RANGE & rangeFamilyName, const RANGE2 & rangeBranch) :
          ::pointer < font_family >(øallocate font_family(rangeFamilyName, rangeBranch))
       {
       }
 
 
-      template < primitive_character CHARACTER >
+      template < prototype_character CHARACTER >
       font_family_pointer(const CHARACTER * pszFamilyName):
          ::pointer < font_family >(øallocate font_family(pszFamilyName))
       {
 
       }
 
-      template < primitive_character CHARACTER, primitive_character CHARACTER2 >
+      template < prototype_character CHARACTER, prototype_character CHARACTER2 >
       font_family_pointer(const CHARACTER * pszFamilyName, const CHARACTER2 * pszBranch) :
          ::pointer < font_family >(øallocate font_family(pszFamilyName, pszBranch))
       {

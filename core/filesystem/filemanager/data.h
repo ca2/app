@@ -48,7 +48,7 @@ namespace filemanager
       ::pointer < ::user::document >         m_pdocumentTopic;
       ::pointer < ::filemanager::document >  m_pfilemanagerdocument;
       string                                 m_strTitle;
-      ::type_atom                            m_typeatomFileList;
+      ::platform::type                       m_typeFileList;
       // callback *                          m_pfilemanager;
       // callback *                          m_pcallback;
       // bool                                m_bTransparentBackground;

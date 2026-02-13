@@ -3,9 +3,11 @@
 #include "acme/constant/id.h"
 #include "acme/crypto/crypto.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/topic.h"
+#include "acme/operating_system/file.h"
 #include "acme/windowing/windowing.h"
 #include "acme/platform/node.h"
 #include "acme/platform/profiler.h"
@@ -28,8 +30,13 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "framework.h"
+//#include "nanovg.h"
 #include "node.h"
 #include "session.h"
+
+
+CLASS_DECL_ACME bool is_wayland();
+CLASS_DECL_ACME bool is_x11();
 
 
 //CLASS_DECL_ACME ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
@@ -634,56 +641,80 @@ namespace aura
    ::factory::factory * system::node_factory()
    {
 
-      auto & pfactory = factory("node", OPERATING_SYSTEM_NAME);
+      ::factory::factory* pfactory = nullptr;
 
-//#ifdef LINUX
-//
-//      auto edesktop = get_eoperating_ambient();
-//
-//      if (edesktop & ::user::e_operating_ambient_kde)
-//      {
-//
-//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
-//
-//      }
-//      else if (edesktop & ::user::e_operating_ambient_gnome)
-//      {
-//
-//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
-//
-//      }
-//      else
-//      {
-//
-//         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
-//
-//         if (!estatus)
-//         {
-//
-//            estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
-//
-//         }
-//
-//      }
-//
-//#else
-//
-//      estatus = ([a-z0-9_]+)_factory("aura", "windows");
-//
-//#endif
+      try
+      {
+
+
+         pfactory = factory("node", OPERATING_SYSTEM_NAME);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
 
       if (!pfactory)
       {
 
-         informationf("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
-
-         return pfactory;
+         pfactory = factory("aura", OPERATING_SYSTEM_NAME);
 
       }
 
-      pfactory->merge_to_global_factory();
 
-      return pfactory;
+
+         //#ifdef LINUX
+         //
+         //      auto edesktop = get_eoperating_ambient();
+         //
+         //      if (edesktop & ::user::e_operating_ambient_kde)
+         //      {
+         //
+         //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
+         //
+         //      }
+         //      else if (edesktop & ::user::e_operating_ambient_gnome)
+         //      {
+         //
+         //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
+         //
+         //      }
+         //      else
+         //      {
+         //
+         //         estatus = ([a-z0-9_]+)_factory("desktop_environment", "gnome");
+         //
+         //         if (!estatus)
+         //         {
+         //
+         //            estatus = ([a-z0-9_]+)_factory("desktop_environment", "kde");
+         //
+         //         }
+         //
+         //      }
+         //
+         //#else
+         //
+         //      estatus = ([a-z0-9_]+)_factory("aura", "windows");
+         //
+         //#endif
+
+         if (!pfactory)
+         {
+
+            informationf("Fatal Error: Failed to do node factory_item exchange (system::([a-z0-9_]+)_factory).\n");
+
+            return pfactory;
+
+         }
+
+         pfactory->merge_to_global_factory();
+
+         return pfactory;
+
 
    }
 
@@ -1925,7 +1956,7 @@ namespace aura
       //if (::succeeded(estatus))
       //{
 
-      factory()->add_factory_item < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
+      factory()->add_factory_item_with_custom_id < ::draw2d::task_tool_item >(::e_task_tool_draw2d);
 
       //}
 
@@ -2630,7 +2661,7 @@ namespace aura
 
    //   //   try
    //   //   {
-   //   //      strMessage += ::type(pparticle).name();
+   //   //      strMessage += ::platform::type(pparticle).name();
 
    //   //   }
    //   //   catch (...)
@@ -3146,7 +3177,7 @@ namespace aura
 
    //   }
 
-   //   informationf("%s", ("::aura::system::on_request session = " + string(::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
+   //   informationf("%s", ("::aura::system::on_request session = " + string(::platform::type(psession).name()) + "("+as_string((iptr) psession)+")\n\n").c_str());
 
    //   psession->do_request(pcreate);
 
@@ -3703,13 +3734,13 @@ namespace aura
 //
 //      ::winrt::Windows::Foundation::Rect rectangle = pwindow->window_rectangle();
 //
-//      prectangle->left() = rectangle.X;
+//      prectangle->left = rectangle.X;
 //
-//      prectangle->top() = rectangle.Y;
+//      prectangle->top = rectangle.Y;
 //
-//      prectangle->right() = prectangle->left() + rectangle.Width;
+//      prectangle->right = prectangle->left + rectangle.Width;
 //
-//      prectangle->bottom() = prectangle->top() + rectangle.Height;
+//      prectangle->bottom = prectangle->top + rectangle.Height;
 //
 //
 //      return true;
@@ -4013,9 +4044,9 @@ namespace aura
 //      GetWorkspaceRect(prectangle, (int) iWorkspace);
 //
 //
-//      //      prectangle->top() += ::mac::get_system_main_menu_bar_height();
+//      //      prectangle->top += ::mac::get_system_main_menu_bar_height();
 //
-//      //    prectangle->bottom() -= ::mac::get_system_dock_height();
+//      //    prectangle->bottom -= ::mac::get_system_dock_height();
 //
 //#elif defined(LINUX)
 //
@@ -5811,7 +5842,7 @@ if(!m_pimaging)
    // }
 
 
-//   void system::node_will_finish_launching()
+//   void system::node_will_aaa_finish_launching()
 //   {
 //
 //      auto pnode = session();
@@ -5820,7 +5851,7 @@ if(!m_pimaging)
 //
 //      auto pwindowing = system()->windowing();
 //
-//      pwindowing->_will_finish_launching();
+//      pwindowing->_will_aaa_finish_launching();
 //
 //   }
 
@@ -6626,10 +6657,10 @@ if(!m_pimaging)
    //}
 
 
-   //::type system::get_pane_tab_impact_type_info()
+   //::platform::type system::get_pane_tab_impact_type_info()
    //{
 
-   //   return ::type < userex::pane_tab_impact >();
+   //   return ::type<userex::pane_tab_impact>();
 
    //}
 
@@ -7109,10 +7140,10 @@ if(!m_pimaging)
 
       //}
 
-   ::type_atom system::get_pane_tab_impact_type_info()
+   ::platform::type system::get_pane_tab_impact_type_info()
    {
 
-      return m_typeatomPaneTabImpact;
+      return m_typePaneTabImpact;
 
    }
 
@@ -7158,6 +7189,12 @@ if(!m_pimaging)
    {
 
       //auto estatus =
+
+      if(m_pdraw2d)
+      {
+         m_pdraw2d->destroy();
+         m_pdraw2d.release();
+      }
       
       ::aqua::system::destroy();
 
@@ -7291,7 +7328,7 @@ if(!m_pimaging)
       if(!m_bOperatingAmbientFactory)
       {
 
-         ::string strOperatingAmbient = ::windowing::get_eoperating_ambient_name();
+         auto strOperatingAmbient = this->get_operating_ambient();
 
          auto pfactory = factory("operating_ambient", strOperatingAmbient);
 
@@ -7312,7 +7349,7 @@ if(!m_pimaging)
 
          ::aqua::system::do_graphics_and_windowing_factory();
 
-         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+         ::string strUserToolkit = this->get_user_toolkit_id();
 
          if (strUserToolkit.has_character())
          {

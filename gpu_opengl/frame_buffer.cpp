@@ -95,8 +95,10 @@ namespace gpu_opengl
          printf("Framebuffer not complete! %d\n", status);
 
       }
+      
+      glBindTexture(GL_TEXTURE_2D, 0);
 
-      glBindFramebuffer(GL_FRAMEBUFFER, 0);
+      //glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
       m_size = sizeNew;
 
@@ -121,7 +123,7 @@ namespace gpu_opengl
       if (drawFboId != m_fbo)
       {
 
-         glViewport(0, 0, m_size.cx(), m_size.cy());
+         glViewport(0, 0, m_size.cx, m_size.cy);
 
       }
       //glBindFramebuffer(GL_FRAMEBUFFER, m_fbo);

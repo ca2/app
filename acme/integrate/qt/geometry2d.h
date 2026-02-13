@@ -7,10 +7,10 @@
 inline ::int_rectangle & copy(::int_rectangle & rectangle, const QRect &qrect)
 {
 
-   rectangle.left() = qrect.left();
-   rectangle.top() = qrect.top();
-   rectangle.right() = qrect.right();
-   rectangle.bottom() = qrect.bottom();
+   rectangle.left = qrect.left();
+   rectangle.top = qrect.top();
+   rectangle.right = qrect.right();
+   rectangle.bottom = qrect.bottom();
 
    return rectangle;
 

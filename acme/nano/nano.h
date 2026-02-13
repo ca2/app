@@ -18,42 +18,42 @@ namespace nano
 {
 
 
-class CLASS_DECL_ACME nano :
-virtual public acme::department
-{
-public:
+   class CLASS_DECL_ACME nano :
+   virtual public platform::department
+   {
+   public:
 
 
-   ::pointer <::nano::account::account>m_paccount;
-   ::pointer <::nano::archive::archive>m_parchive;
-   ::pointer <::nano::compress::compress>m_pcompress;
-   //::pointer <::nano::dynamic_library::dynamic_library>m_pdynamiclibrary;
-   ::pointer <::nano::graphics::graphics>m_pgraphics;
-   ::pointer <::nano::http::http>m_phttp;
-   ::pointer <::nano::idn::idn>m_pidn;
-   ::pointer <::nano::shell::shell>m_pshell;
-   ::pointer <::nano::speech::speech>m_pspeech;
-   //::pointer <::micro::user>m_puser;
+      ::pointer <::nano::account::account>m_paccount;
+      ::pointer <::nano::archive::archive>m_parchive;
+      ::pointer <::nano::compress::compress>m_pcompress;
+      //::pointer <::nano::dynamic_library::dynamic_library>m_pdynamiclibrary;
+      ::pointer <::nano::graphics::graphics>m_pgraphics;
+      ::pointer <::nano::http::http>m_phttp;
+      ::pointer <::nano::idn::idn>m_pidn;
+      ::pointer <::nano::shell::shell>m_pshell;
+      ::pointer <::nano::speech::speech>m_pspeech;
+      //::pointer <::micro::user>m_puser;
    
    
-   nano();
-   ~nano() override;
+      nano();
+      ~nano() override;
 
 
-   ::nano::account::account*account();
-   ::nano::archive::archive*archive();
-   ::nano::compress::compress*compress();
-   //::nano::dynamic_library::dynamic_library*dynamic_library();
-   ::nano::graphics::graphics*graphics();
-   ::nano::http::http*http();
-   ::nano::idn::idn*idn();
-   ::nano::shell::shell*shell();
-   ::nano::speech::speech*speech();
-   //s::micro::user*user();
-   //::acme::windowing::windowing * windowing();
+      ::nano::account::account*account();
+      ::nano::archive::archive*archive();
+      ::nano::compress::compress*compress();
+      //::nano::dynamic_library::dynamic_library*dynamic_library();
+      ::nano::graphics::graphics*graphics();
+      ::nano::http::http*http();
+      ::nano::idn::idn*idn();
+      ::nano::shell::shell*shell();
+      ::nano::speech::speech*speech();
+      //s::micro::user*user();
+      //::acme::windowing::windowing * windowing();
 
    
-};
+   };
 
 } // namespace nano
 

@@ -7,7 +7,7 @@ namespace calculator
 
    calculator::calculator(::particle * pparticle) :
       ::object(pparticle),
-      ::acme::department(pparticle)
+      ::platform::department(pparticle)
    {
    
    }

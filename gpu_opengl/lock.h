@@ -18,10 +18,6 @@
 //
 //      opengl_lock(::gpu::context * pcontext);
 //      ~opengl_lock();
-//
-//
-//
-//
 //   };
 //
 //

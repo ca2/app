@@ -100,7 +100,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
    pmessagequeue->m_messagea.predicate_erase([=](MESSAGE & message)
    {
 
-      return message.m_oswindow == pwindow->oswindow();
+      return message.m_pacmewindowingwindow == pwindow;
 
    });
 

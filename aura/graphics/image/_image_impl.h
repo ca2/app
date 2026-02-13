@@ -173,10 +173,6 @@
 ////   return øconstruct(pimage, size, eobjectCreate, iGoodStride, true);
 ////
 ////}
-//
-//
-//
-//
 ////inline ::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK)
 ////{
 ////

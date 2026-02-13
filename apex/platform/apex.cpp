@@ -774,10 +774,6 @@ void on_term_thread();
 ////      //return true;
 ////
 ////   }
-//
-//
-//
-//
 ////} // namespace static_start
 //
 //
@@ -817,10 +813,6 @@ void on_term_thread();
 //   return ::apex::g_pmutexCred;
 //
 //}
-//
-//
-//
-//
 //
 
 
@@ -963,10 +955,6 @@ void on_term_thread();
 //         //         oswindow_data::s_pdataptra = nullptr;
 //         //
 //         //#endif // defined(LINUX)
-//
-//
-//
-//
 //      }
 //
 //
@@ -975,10 +963,6 @@ void on_term_thread();
 //
 //
 //} // namespace axis
-//
-//
-//
-//
 //
 
 
@@ -1033,54 +1017,6 @@ void on_term_thread();
 ////
 ////
 ////      }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1091,22 +1027,6 @@ void on_term_thread();
 
 
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //      CLASS_DECL_APEX void term()
 //      {
 //
@@ -1120,10 +1040,6 @@ void on_term_thread();
 //         //#endif // defined(__APPLE__)
 //
 //
-//
-//
-//
-//
 //      }
 //
 //
@@ -1132,10 +1048,6 @@ void on_term_thread();
 //
 //
 //} // namespace berg
-//
-//
-//
-//
 //
 
 

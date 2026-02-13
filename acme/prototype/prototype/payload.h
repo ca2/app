@@ -66,7 +66,7 @@ public:
       void * m_pvoid;
       para_return                            m_parareturn;
       atom                                   m_atomPayload;
-      type_atom                              m_typeatom;
+      //type                                   m_type;
       bool                                   m_b;
       bool * m_pb;
       char                                   m_ch;
@@ -209,16 +209,16 @@ public:
    //payload(::property * pproperty);
    payload(::subparticle * pparticle);
    payload(class ::time * ptime);
-   template < character_range CHARACTER_RANGE >
+   template < prototype_character_range CHARACTER_RANGE >
    payload(const CHARACTER_RANGE & range);
    //template < ::collection::count count >
-   //payload(const ::ansi_character(&sz)[count]) : payload((const ::ansi_character *)sz, count) {}
-   template < primitive_integral INTEGRAL >
-   payload(const ::ansi_character * begin, INTEGRAL count) : payload(begin, begin + count) {}
-   payload(const ::ansi_character * begin, const ::ansi_character * end);
-   payload(const ::ansi_character * psz);
-   payload(const ::string & str);
-   payload(const ::type_atom & typeatom);
+   //payload(const ::ansi_character(&sz)[count]) : payload((const_char_pointer )sz, count) {}
+   template < prototype_integral INTEGRAL >
+   payload(const_char_pointer begin, INTEGRAL count) : payload(begin, begin + count) {}
+   payload(const_char_pointer begin, const_char_pointer end);
+   payload(const_char_pointer psz);
+   payload(const ::scoped_string & scopedstr);
+   //payload(const ::platform::type & type);
    payload(const ::atom & atom);
    payload(const ::earth::time & time);
    payload(const ::color::color & color);
@@ -287,7 +287,7 @@ public:
    }
 
 
-   //   template < primitive_character CHARACTER2, character_count sizeMaximumLength >
+   //   template < prototype_character CHARACTER2, character_count sizeMaximumLength >
    //   payload(const ::inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
    //      payload(::string(inlinestring))
    //   {
@@ -314,7 +314,7 @@ public:
    //      operator = (t);
    //   }
 
-   template < primitive_enum ENUM >
+   template < prototype_enum ENUM >
    payload(ENUM e) :
    m_etype(e_type_atom),
    m_atomPayload(e)
@@ -333,14 +333,14 @@ public:
    atom::enum_type atom_type() const;
 
 
-   void set_type(const ::type_atom & typeatom);
+   //void set_type(const ::platform::type & type);
 
 
    template < typename T >
    void set_pointer(const ::pointer < T > & p)
    {
 
-      operator[](::type < T >().name()) = p;
+      operator[](::platform::type(p)) = p;
 
    }
 
@@ -348,7 +348,7 @@ public:
    bool has_pointer() const
    {
 
-      return has_property(::type < T >().name());
+      return has_property(::platform::type(::type<T>()));
 
    }
 
@@ -356,14 +356,14 @@ public:
    ::property * find_pointer() const
    {
 
-      return find_property(::type < T >().name());
+      return _find_property(::platform::type(::type<T>()));
 
    }
 
    template < typename TYPE >
    ::pointer < TYPE > pointer() const;
 
-   bool get_type(::type_atom & typeatom) const;
+   //bool get_type(::platform::type & type) const;
 
    long long payload_release();
 
@@ -380,7 +380,7 @@ public:
    bool is_numeric() const;
 
 
-   bool has_reference_of_type(enum_type type) const;
+   bool has_reference_of_type(enum_type etype) const;
 
 
    inline bool is_number() const
@@ -433,7 +433,7 @@ public:
 #undef IMPLEMENT_PAYLOAD_ENUMERATION
 
 
-   template < primitive_enum ENUM >
+   template < prototype_enum ENUM >
    bool operator ==(ENUM e) const
    {
 
@@ -733,7 +733,7 @@ public:
    double & double_reference();
 
 
-   template < primitive_signed SIGNED >
+   template < prototype_signed SIGNED >
    inline SIGNED & reference()
    {
 
@@ -772,7 +772,7 @@ public:
    }
 
 
-   template < primitive_unsigned UNSIGNED >
+   template < prototype_unsigned UNSIGNED >
    inline UNSIGNED & reference()
    {
 
@@ -811,7 +811,7 @@ public:
    }
 
 
-   template < primitive_const CONST_TYPE >
+   template < prototype_const CONST_TYPE >
    CONST_TYPE & reference() const
    {
 
@@ -820,7 +820,7 @@ public:
    }
 
 
-   template < primitive_non_const NON_CONST_TYPE >
+   template < prototype_non_const NON_CONST_TYPE >
    NON_CONST_TYPE * raw_pointer()
    {
 
@@ -829,7 +829,7 @@ public:
    }
 
 
-   template < primitive_const CONST_TYPE >
+   template < prototype_const CONST_TYPE >
    CONST_TYPE * raw_pointer() const
    {
 
@@ -851,15 +851,17 @@ public:
 
    }
 
-   template < primitive_function FUNCTION >
+
+   template < prototype_function FUNCTION >
    inline payload & operator = (const FUNCTION & function)
    {
 
-      _set_element(function.m_pbase);
+      _set_element(function.m_p);
 
       return *this;
 
    }
+
 
    inline payload & operator = (nullptr_t){ set_type(e_type_null, false); return *this; }
 
@@ -978,73 +980,73 @@ protected:
 
 
    template < typename PRIMITIVE >
-   bool __assign_to_held_pointer_member(PRIMITIVE primitive)
+   bool __assign_to_held_pointer_member(PRIMITIVE prototype)
    {
 
       if(get_type() == e_type_pbool)
       {
 
-         *m_pb = (bool) primitive;
+         *m_pb = (bool) prototype;
 
       }
       else if(get_type() == e_type_punsigned_char)
       {
 
-         *m_puch = (unsigned char) primitive;
+         *m_puch = (unsigned char) prototype;
 
       }
       else if(get_type() == e_type_pchar)
       {
 
-         *m_pch = (char) primitive;
+         *m_pch = (char) prototype;
 
       }
       else if(get_type() == e_type_punsigned_short)
       {
 
-         *m_push = (unsigned short) primitive;
+         *m_push = (unsigned short) prototype;
 
       }
       else if(get_type() == e_type_pshort)
       {
 
-         *m_psh = (short) primitive;
+         *m_psh = (short) prototype;
 
       }
       else if(get_type() == e_type_punsigned_int)
       {
 
-         *m_pui = (unsigned int) primitive;
+         *m_pui = (unsigned int) prototype;
 
       }
       else if(get_type() == e_type_pint)
       {
 
-         *m_pi = (int) primitive;
+         *m_pi = (int) prototype;
 
       }
       else if(get_type() == e_type_punsigned_long_long)
       {
 
-         *m_phn = (unsigned long long) primitive;
+         *m_pull = (unsigned long long) prototype;
 
       }
       else if(get_type() == e_type_plong_long)
       {
 
-         *m_phi = (long long) primitive;
+         *m_pll = (long long) prototype;
 
       }
       else if(get_type() == e_type_pfloat)
       {
 
-         *m_pf = (float) primitive;
+         *m_pf = (float) prototype;
 
       }
       else if(get_type() == e_type_pdouble)
       {
 
-         *m_pd = (double) primitive;
+         *m_pd = (double) prototype;
 
       }
       else
@@ -1060,7 +1062,7 @@ protected:
 
 
    template < typename PRIMITIVE >
-   payload& __assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITIVE primitive);
+   payload& __assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITIVE prototype);
 
 
    template < typename PRIMITIVE >
@@ -1128,7 +1130,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::property & prop);
    //payload & operator = (const ::property * pproperty);
 
-   //template < primitive_character CHARACTER, int t_size >
+   //template < prototype_character CHARACTER, int t_size >
    //payload & operator = (const const_string_range_static_array< const CHARACTER *, t_size > & a)
    //{
 
@@ -1143,7 +1145,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::property_set & propset);
    payload & operator = (const ::atom & atom);
    payload & operator = (::atom * pid);
-   template < primitive_enum ENUM >
+   template < prototype_enum ENUM >
    payload & operator = (ENUM e) { this->operator = ((const ::atom &) e); return *this; }
    //payload & operator = (const ::second & second);
    //payload & operator = (class ::second * ptime);
@@ -1240,10 +1242,10 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
 
-   //template < primitive_subparticle T >
+   //template < prototype_subparticle T >
    //T * cast();
 
-   template < primitive_subparticle T >
+   template < prototype_subparticle T >
    ::pointer < T > cast(T* pDefault = nullptr);
 
    template < class T >
@@ -1288,7 +1290,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    ::subparticle * as_subparticle() const { return ((payload *)this)->as_subparticle(); }
 
-   template < primitive_particle T >
+   template < prototype_particle T >
    T * cast() const
    {
       return ((payload *)this)->cast < T >();
@@ -1339,20 +1341,20 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    bool equals_scoped_string(const ::scoped_string & scopedstr) const;
 
 
-   template < primitive_character CHARACTER >
+   template < prototype_character CHARACTER >
    bool operator == (const CHARACTER * psz) const { return equals_scoped_string(psz); }
-   template < primitive_character CHARACTER  >
-   bool operator == (const range < const CHARACTER * > & range) const { return equals_scoped_string(range); }
-   template < primitive_character CHARACTER  >
+   template < prototype_character CHARACTER  >
+   bool operator == (const character_range < const CHARACTER * > & range) const { return equals_scoped_string(range); }
+   template < prototype_character CHARACTER  >
    bool operator == (const scoped_string_base < const CHARACTER * > & scoped_string) const { return equals_scoped_string(scoped_string); }
-   template < primitive_character CHARACTER  >
+   template < prototype_character CHARACTER  >
    bool operator == (const string_base < const CHARACTER * > & string) const { return equals_scoped_string(string); }
-   template < primitive_character CHARACTER  >
+   template < prototype_character CHARACTER  >
    bool operator == (const string_range < const CHARACTER * > & string_range) const { return equals_scoped_string(string_range); }
-   //bool operator == (const ::string & str) const;
-   template < primitive_signed SIGNED >
+   //bool operator == (const ::scoped_string & scopedstr) const;
+   template < prototype_signed SIGNED >
    bool operator == (SIGNED i) const { return equals_signed(i); }
-   template < primitive_unsigned UNSIGNED >
+   template < prototype_unsigned UNSIGNED >
    bool operator == (UNSIGNED u) const { return equals_unsigned(u); }
    //bool operator == (int i) const;
    //bool operator == (bool b) const;
@@ -1420,38 +1422,56 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //::property * find_property(const ::scoped_string & scopedstr) const;
    //::property & get_property(const ::scoped_string & scopedstr);
    ::payload find_property(const ::atom & atom) const; // { return atom.is_text() ? find_property_text_key((const ::scoped_string &)atom.m_str) : find_property_index(atom.m_i); }
+   ::property * _find_property(const ::atom & atom) const;
    ::property & get_property(const ::atom & atom); // { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i); }
 
    ::payload find_property_by_text(const ::scoped_string & scopedstr) const; 
+
+   ::payload find_property_by_name(const ::scoped_string &scopedstr) const; 
 
 
 
    //::payload operator[] (const ::atom & atom);
    //::payload operator[] (const ::atom & atom) const;
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline ::payload operator[] (INTEGRAL i) { return at(i); }
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    inline ::payload operator[] (INTEGRAL i) const { return at(i); }
 
-   template < primitive_character CHARACTER >
+   template < prototype_character CHARACTER >
    inline ::property & operator[] (const CHARACTER * psz) { return get_property(psz); }
-   template < primitive_character CHARACTER >
-   inline ::payload operator[] (const CHARACTER * psz) const { return find_property_by_text(psz); }
+   template < prototype_character CHARACTER >
+   inline ::payload operator[] (const CHARACTER * psz) const { return find_property_by_name(psz); }
 
-   template < character_range RANGE >
+   template < prototype_character_range RANGE >
    inline ::property & operator[] (const RANGE & range) { return get_property(range); }
-   template < character_range RANGE >
-   inline ::payload operator[] (const RANGE & range) const { return find_property_by_text(range); }
+   template < prototype_character_range RANGE >
+   inline ::payload operator[](const RANGE &range) const
+   {
+      return find_property_by_name(range);
+   }
 
    template < has_as_string HAS_AS_STRING >
-   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) { return get_property(has_as_string.as_string()); }
+   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) 
+   requires (!prototype_character_range<HAS_AS_STRING>)
+   { return get_property(has_as_string.as_string()); }
    template < has_as_string HAS_AS_STRING >
-   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const { return find_property_by_text(has_as_string.as_string()); }
+   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const
+   requires (!prototype_character_range<HAS_AS_STRING>)
+   {
+      return find_property_by_name(has_as_string.as_string());
+   }
 
    template < has_get_string HAS_GET_STRING >
-   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) { return get_property(has_get_string.get_string()); }
+   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) 
+   requires (!prototype_character_range<HAS_GET_STRING> && has_as_string<HAS_GET_STRING>)
+   { return get_property(has_get_string.get_string()); }
    template < has_get_string HAS_GET_STRING >
-   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const { return find_property_by_text(has_get_string.get_string()); }
+   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const 
+   requires (!prototype_character_range<HAS_GET_STRING>&& has_as_string<HAS_GET_STRING>)
+   {
+      return find_property_by_name(has_get_string.get_string());
+   }
 
 
    //inline ::property & operator[] (::iptr i);
@@ -1468,44 +1488,44 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    ::payload equals_ci_get(const ::scoped_string & scopedstrCompare,::payload varOnEqual,payload varOnDifferent) const;
    ::payload equals_ci_get(const ::scoped_string & scopedstrCompare,::payload varOnEqual) const;
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload operator - (INTEGRAL i) const;
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload operator - (FLOATING f) const;
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload operator + (INTEGRAL i) const;
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload operator + (FLOATING f) const;
 
    //::payload operator + (const ::scoped_string & scopedstr) const;
    //::payload operator + (const ::string & str) const;
    //::payload operator + (const ::inline_number_string & inline_number_string) const;
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload operator / (INTEGRAL i) const;
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload operator / (FLOATING f) const;
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload operator * (INTEGRAL i) const;
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload operator * (FLOATING d) const;
 
    ::std::strong_ordering str_compare(const ::property & prop) const;
 
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload & operator -= (INTEGRAL i);
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload & operator -= (FLOATING f);
 
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload & operator += (INTEGRAL i);
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload & operator += (FLOATING f);
 
    //::payload & operator += (const ::scoped_string & scopedstr);
@@ -1517,14 +1537,14 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < typename ITERATOR_TYPE, int t_size >
    //::payload & operator += (const const_string_range_static_array < ITERATOR_TYPE, t_size > & a) { return *this += ::string(a);}
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload & operator /= (INTEGRAL i);
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload & operator /= (FLOATING f);
 
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    ::payload & operator *= (INTEGRAL i);
-   template < primitive_floating FLOATING >
+   template < prototype_floating FLOATING >
    ::payload & operator *= (FLOATING d);
 
 
@@ -1832,11 +1852,11 @@ inline ::payload __visible(::payload varOptions, bool bVisible);
 inline payload __visible(bool bVisible = true);
 
 
-//template < character_range RANGE, primitive_payload PAYLOAD >
+//template < prototype_character_range RANGE, prototype_payload PAYLOAD >
 //::string operator + (const RANGE & range, const PAYLOAD & has_as_string);
 
 
-template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+template < prototype_payload PAYLOAD1, prototype_payload PAYLOAD2 >
 inline PAYLOAD1 operator +(const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 {
 
@@ -1849,7 +1869,7 @@ inline PAYLOAD1 operator +(const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 }
 
 
-template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+template < prototype_payload PAYLOAD1, prototype_payload PAYLOAD2 >
 inline PAYLOAD1 & operator +=(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 {
 
@@ -1858,7 +1878,7 @@ inline PAYLOAD1 & operator +=(PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 }
 
 
-template < primitive_payload PAYLOAD, character_pointer CHARACTER_POINTER >
+template < prototype_payload PAYLOAD, character_pointer CHARACTER_POINTER >
 inline ::string operator +(const PAYLOAD & payload, CHARACTER_POINTER psz)
 {
 
@@ -1871,7 +1891,7 @@ inline ::string operator +(const PAYLOAD & payload, CHARACTER_POINTER psz)
 }
 
 
-template < primitive_payload PAYLOAD, primitive_character CHARACTER >
+template < prototype_payload PAYLOAD, prototype_character CHARACTER >
 inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 {
 
@@ -1882,7 +1902,7 @@ inline PAYLOAD & operator +=(PAYLOAD & payload, const CHARACTER * psz)
 }
 
 
-//template < primitive_character CHARACTER, primitive_payload PAYLOAD >
+//template < prototype_character CHARACTER, prototype_payload PAYLOAD >
 //inline ::string operator +(const CHARACTER * psz, const PAYLOAD & payload)
 //{
 //
@@ -1900,7 +1920,7 @@ CLASS_DECL_ACME void copy(::payload & payload, const int & i);
 CLASS_DECL_ACME  void copy(::payload & payload, const ::string & str);
 
 
-template < primitive_payload PAYLOAD1, primitive_payload PAYLOAD2 >
+template < prototype_payload PAYLOAD1, prototype_payload PAYLOAD2 >
 inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 {
 
@@ -1912,7 +1932,7 @@ inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
 
 
 
-template < character_range CHARACTER_RANGE >
+template < prototype_character_range CHARACTER_RANGE >
 payload::payload(const CHARACTER_RANGE& range) :
    payload(no_initialize_t{})
 {
@@ -1924,7 +1944,7 @@ payload::payload(const CHARACTER_RANGE& range) :
 }
 
 
-template < primitive_character CHARACTER, primitive_payload PAYLOAD >
+template < prototype_character CHARACTER, prototype_payload PAYLOAD >
 inline ::file::path operator / (
    const ::range < const CHARACTER * > & range,
    const PAYLOAD & payload)

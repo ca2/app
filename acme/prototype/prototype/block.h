@@ -27,15 +27,12 @@ using BLOCK = ::range < unsigned char * >;
 //
 //};
 
-template <std::size_t N>
-struct ____array_count
+template<typename T, std::size_t N>
+constexpr std::size_t øarray_count(const T (&)[N])
 {
-    typedef char type[N];
-};
+   return N;
+}
 
-
-template <typename T, std::size_t Size>
-typename ____array_count<Size>::type& ___array_count(T(&)[Size]);
 
 template <typename TYPE >
 const TYPE * __memory_address_of(const TYPE a[]) { return (TYPE *)a; }
@@ -58,33 +55,55 @@ struct CLASS_DECL_ACME block :
       this->m_begin = block.m_begin;
       this->m_end = block.m_end;
    }
+
    block(const range < unsigned char * > & range);
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const atom & atom);
-   template < ::collection::count c >
-   block(const char(&sz)[c])
+
+   //template < ::collection::count c >
+   //block(const char(&sz)[c])
+   //{
+
+   //   this->m_begin = (unsigned char *)(sz);
+   //   this->m_end = (unsigned char *)(this->m_begin + c);
+
+   //}
+   //template < ::collection::count c >
+   //block(const unsigned char(&ba)[c])
+   //{
+
+   //   this->m_begin = (unsigned char *) ba;
+   //   this->m_end = (unsigned char *) (this->m_begin + c);
+
+   //}
+   template<const_pointer_to_prototype_character PSZ>
+   block(PSZ psz)
    {
-
-      this->m_begin = (unsigned char *)(sz);
-      this->m_end = (unsigned char *)(this->m_begin + c);
-
+      this->m_begin = (unsigned char *)(psz);
+      this->m_end = (unsigned char *)(psz + ::string_safe_length(psz));
    }
-   template < ::collection::count c >
-   block(const unsigned char(&ba)[c])
+
+   template<const_array_of_prototype_character CONSTCHARACTERA>
+   block(CONSTCHARACTERA a)
    {
-
-      this->m_begin = (unsigned char *) ba;
-      this->m_end = (unsigned char *) (this->m_begin + c);
-
+      this->m_begin = (unsigned char *) (a);
+      this->m_end = (unsigned char *)(&a[0] + øarray_count(a) - 1);
    }
-   block(const_char_pointer psz)
+   template<array_of_non_prototype_character NONCHARACTERA>
+   block(NONCHARACTERA & a)
    {
-      this->m_begin = (unsigned char *) psz;
-      this->m_end = this->m_begin + ::string_safe_length(psz);
+      this->m_begin = (unsigned char *)(a);
+      this->m_end = (unsigned char *)(&a[0] + øarray_count(a));
    }
+
+   // template<prototype_character CHARACTER, ::collection::count c>
+   //   requires(c > 1)
+   //block(const CHARACTER (&a)[c]) : block((const void *)a, (memsize)(sizeof(CHARACTER) * (c - 1)))
+   //{
+   //}
    //block(const ::scoped_string  & scopedstr);
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    block(INTEGRAL & i) : block(e_as_little_endian_block, i) {}
    template < typename TYPE >
    block(enum_as_little_endian_block, TYPE & t) : 
@@ -99,7 +118,7 @@ struct CLASS_DECL_ACME block :
    template < typename TYPE >
    block(enum_as_block, const TYPE & t) : block((void *)&t, sizeof(t)) {}
    block(const void * begin, const void * end) : BLOCK((unsigned char *)begin, (unsigned char *)end) {}
-   template < primitive_integral INTEGRAL >
+   template < prototype_integral INTEGRAL >
    block(const void * data, INTEGRAL count) : BLOCK((unsigned char *) data, count) { }
 
    //block & operator = (const block & block) 
@@ -178,7 +197,7 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   template < primitive_aggregate AGGREGATE >
+   template < prototype_aggregate AGGREGATE >
    block & operator = (const AGGREGATE & aggregate)
    {
 
@@ -436,7 +455,7 @@ inline ::block as_memory_block(const TYPE & type)
 }
 
 
-template < primitive_character CHARACTER >
+template < prototype_character CHARACTER >
 inline ::block as_block(const ::range<const CHARACTER *> & range)
 {
 

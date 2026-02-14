@@ -181,6 +181,7 @@
 
 
 //#include "acme/prototype/string/prototype_character_range.h"
+//#include "acme/prototype/string/character_range.h"
 
 
 #include "acme/prototype/string/_format.h"
@@ -196,8 +197,6 @@
 
 
 #include  "acme/filesystem/file/binary_stream.h"
-#include  "acme/exception/interface_only.h"
-#include  "acme/exception/not_implemented.h"
 
 
 #include  "acme/handler/topic.h"

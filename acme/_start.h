@@ -14,7 +14,7 @@
 #include "acme/platform/_features.h"
 #include "debugbreak.h"
 #include "operating_system/platform_setup.h"
-#include "configuration/debug.h"
+//#include "configuration/debug.h"
 #include "operating_system/configuration.h"
 #include "include/_setup.h"
 

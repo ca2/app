@@ -82,8 +82,8 @@ DO(short, short, sh, SHORT); \
 DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
 DO(int, int, i, INT); \
 DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
-DO(long long, long_long, hi, HUGE_INTEGER); \
-DO(unsigned long long, unsigned_long_long, hn, HUGE_NATURAL); \
+DO(long long, long_long, ll, HUGE_INTEGER); \
+DO(unsigned long long, unsigned_long_long, ull, HUGE_NATURAL); \
 DO(float, float, f, FLOAT); \
 DO(double, double, d, DOUBLE);
 

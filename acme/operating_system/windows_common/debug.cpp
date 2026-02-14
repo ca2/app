@@ -245,6 +245,13 @@ namespace windows
    }
 
 
+   CLASS_DECL_ACME unsigned int last_error()
+   {
+
+      return ::GetLastError();
+
+   }
+
 
 } // namespace windows
 

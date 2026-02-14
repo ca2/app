@@ -52,4 +52,18 @@ namespace operating_system
 } // namespace operating_system
 
 
+#if defined(WIN32)
+
+
+namespace windows
+{
+
+   CLASS_DECL_ACME unsigned int last_error();
+
+} // namespace windows
+
+
+#endif
+
+
 

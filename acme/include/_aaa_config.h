@@ -1,6 +1,8 @@
 #pragma once
 
 
+#error "This file is not meant to be included directly. Include acme/_config.h instead."
+
 #define NTDDI_VERSION   0x0A000000 // NTDDI_WIN10
 #define _WIN32_WINNT    0x0A00 // _WIN32_WINNT_WIN10
 #define WINVER          0x0A00 // _WIN32_WINNT_WIN10

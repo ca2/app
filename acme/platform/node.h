@@ -1022,10 +1022,18 @@ namespace platform
       ::memory on_protocol_get_data(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrPath) override;
 
 
+
+
+
 //    void media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block) override;
 //    ::memory media_store_get_data(const ::scoped_string & scopedstrPath) override;
 
 
+      virtual memsize get_current_memory_usage();
+
+
+      virtual bool _windows_isVistaOrLater();
+      virtual bool _windows_isWin7();
 
    };
 

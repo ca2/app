@@ -19,7 +19,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME string last_error_message(DWORD dwError)
+   CLASS_DECL_ACME string last_error_message(unsigned int uError)
    {
 
       wstring wstrMessage;
@@ -31,7 +31,7 @@ namespace windows
          auto dwSize = FormatMessageW(
             FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ALLOCATE_BUFFER,
             nullptr,
-            dwError,
+            uError,
             0,
             (LPWSTR)&lpBuffer,
             256,
@@ -53,6 +53,20 @@ namespace windows
       string strMessage;
 
       strMessage = wstrMessage;
+
+      return strMessage;
+
+   }
+
+
+   CLASS_DECL_ACME string last_error_message(const ::scoped_string & scopedstrErrorMessage, unsigned int uError)
+   {
+
+      ::string strSystemError = last_error_message(uError);
+
+      string strMessage;
+
+      strMessage.format("{} ({})", scopedstrErrorMessage, strSystemError);
 
       return strMessage;
 

@@ -39,7 +39,7 @@ inline void copy_construct_count(TYPE * p, ::collection::count c, const TYPE & t
 
 
 template < typename TYPE >
-inline void copy_construct_count(TYPE * p, ::collection::count c, const TYPE * psource)
+inline void copy_construct_array(TYPE * p, ::collection::count c, const TYPE * psource)
 {
 
    while (c > 0)
@@ -333,7 +333,7 @@ namespace typed
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -452,7 +452,7 @@ namespace typed
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline  void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -588,7 +588,7 @@ namespace typed
       }
 
 
-      inline  void copy_construct_count(TYPE* pdst, ::collection::count c, const TYPE* psrc)
+      inline  void copy_construct_array(TYPE* pdst, ::collection::count c, const TYPE* psrc)
       {
 
          while (c > 0)
@@ -725,7 +725,7 @@ namespace typed
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline  void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          memory_copy(pdst, psrc, sizeof(TYPE) * c);
@@ -845,7 +845,7 @@ namespace typed
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline  void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -968,7 +968,7 @@ namespace typed
 
       }
 
-      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline  void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -1087,7 +1087,7 @@ namespace typed
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline  void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -1200,7 +1200,7 @@ namespace typed
    //      }
    //
    //      
-   //      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+   //      inline  void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
    //      {
    //
    //         while (c > 0)

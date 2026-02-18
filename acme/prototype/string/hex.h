@@ -17,7 +17,7 @@ namespace hex
 
    CLASS_DECL_ACME long long to_long_long(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME unsigned long long to_unsigned_long_long(const string & pcsz);
+   CLASS_DECL_ACME unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstr);
 
    CLASS_DECL_ACME unsigned int to_unsigned_int(const ::scoped_string & scopedstr);
 

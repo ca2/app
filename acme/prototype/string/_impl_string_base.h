@@ -2746,6 +2746,49 @@ inline ::collection::count string_base < ITERATOR_TYPE >::erase_character(CHARAC
 
 }
 
+
+template < typename ITERATOR_TYPE >
+inline ::collection::count string_base < ITERATOR_TYPE >::erase_any_character_in(const SCOPED_STRING & scopedstrCharacters)
+{
+
+      character_count nLength = this->size();
+
+      CHARACTER * pszBuffer = get_buffer<true>(nLength);
+
+      CHARACTER * pszSource = pszBuffer;
+
+      CHARACTER * pszDest = pszBuffer;
+
+      CHARACTER * pszEnd = pszBuffer + nLength;
+
+      while (pszSource < pszEnd)
+      {
+         CHARACTER * pszNewSource = pszSource + 1;
+         if (scopedstrCharacters.contains(*pszSource))
+         {
+            // copy the source to the destination.  Remember to copy all bytes of an MBCS character
+            // copy the source to the destination.  Remember to copy all bytes of an MBCS character
+            size_t NewSourceGap = (pszNewSource - pszSource);
+            CHARACTER * pszNewDest = pszDest + NewSourceGap;
+            size_t i = 0;
+            for (i = 0; pszDest != pszNewDest && i < NewSourceGap; i++)
+            {
+               *pszDest = *pszSource;
+               pszSource++;
+               pszDest++;
+            }
+         }
+         pszSource = pszNewSource;
+      }
+      *pszDest = 0;
+      character_count count = character_count(pszSource - pszDest);
+      release_buffer(nLength - count);
+
+      return(count);
+
+
+}
+
 // find the first occurrence of character 'ch', starting at character_count 'start'
 template < typename ITERATOR_TYPE >
 inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_string_range < ITERATOR_TYPE >::find(CHARACTER ch) const RELEASENOTHROW
@@ -5264,3 +5307,11 @@ string_base<ITERATOR_TYPE>::string_base(const ::c::string & cstring) :
 
 
 
+
+template<typename ITERATOR_TYPE>
+inline const ::block string_base<ITERATOR_TYPE>::block_with_null_terminator() const
+{
+
+   return {(const void *) this->data(), this->size_in_bytes_with_null_terminator()};
+
+}

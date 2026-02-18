@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   void prototype_impl::create_message_queue(::user::interaction * pinteraction, const ::string & lpszName)
+   void prototype_impl::create_message_queue(::user::interaction * pinteraction, const ::scoped_string & scopedstrName)
    {
 
       throw ::interface_only();
@@ -1113,7 +1113,7 @@ namespace user
    //}
 
 
-//   void prototype_impl::set_window_text(const ::string& pszString)
+//   void prototype_impl::set_window_text(const ::scoped_string & scopedstrString)
 //   {
 //
 //

@@ -423,25 +423,25 @@ extern QRcode *QRcode_encodeInput(QRinput *input);
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  * @throw ::exception( ERANGE input data is too large.
  */
-extern QRcode *QRcode_encodeString(const ::string &string, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
+extern QRcode *QRcode_encodeString(const ::scoped_string & scopedstring, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
 
 /**
  * Same to QRcode_encodeString(), but encode whole data in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode *QRcode_encodeString8bit(const ::string &string, int version, QRecLevel level);
+extern QRcode *QRcode_encodeString8bit(const ::scoped_string & scopedstring, int version, QRecLevel level);
 
 /**
  * Micro QR Code version of QRcode_encodeString().
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode *QRcode_encodeStringMQR(const ::string &string, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
+extern QRcode *QRcode_encodeStringMQR(const ::scoped_string & scopedstring, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
 
 /**
  * Micro QR Code version of QRcode_encodeString8bit().
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode *QRcode_encodeString8bitMQR(const ::string &string, int version, QRecLevel level);
+extern QRcode *QRcode_encodeString8bitMQR(const ::scoped_string & scopedstring, int version, QRecLevel level);
 
 /**
  * Encode unsigned char stream (may include '\0') in 8-bit mode.
@@ -496,13 +496,13 @@ extern QRcode_List *QRcode_encodeInputStructured(QRinput_Struct *s);
  * @throw ::exception( EINVAL invalid input object.
  * @throw ::exception( ENOMEM unable to allocate memory for input objects.
  */
-extern QRcode_List *QRcode_encodeStringStructured(const ::string &string, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
+extern QRcode_List *QRcode_encodeStringStructured(const ::scoped_string & scopedstring, int version, QRecLevel level, QRencodeMode hint, int casesensitive);
 
 /**
  * Same to QRcode_encodeStringStructured(), but encode whole data in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
  */
-extern QRcode_List *QRcode_encodeString8bitStructured(const ::string &string, int version, QRecLevel level);
+extern QRcode_List *QRcode_encodeString8bitStructured(const ::scoped_string & scopedstring, int version, QRecLevel level);
 
 /**
  * Create structured symbols from unsigned char stream (may include '\0'). Wholde data

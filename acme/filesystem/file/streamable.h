@@ -9,12 +9,17 @@ namespace file
 {
 
 
-   class CLASS_DECL_ACME readable
+
+
+
+   class CLASS_DECL_ACME readable :
+      virtual public translatable
    {
    public:
 
 
-      virtual ~readable() {}
+      readable();
+      ~readable() override;
 
       virtual memsize read(void * p, ::memsize s);
 
@@ -26,12 +31,14 @@ namespace file
    };
 
 
-   class CLASS_DECL_ACME writable
+   class CLASS_DECL_ACME writable :
+      virtual public translatable
    {
    public:
 
 
-      virtual ~writable() {}
+      writable();
+      ~writable() override ;
 
 
       virtual void write(const void * p, ::memsize s);
@@ -50,12 +57,12 @@ namespace file
       virtual ::memsize defer_write(const void * p, ::memsize s);
 
       inline ::memsize defer_write(const ::block & block) { return defer_write(block.data(), block.size()); }
+      virtual void flush();
 
    };
 
 
    class CLASS_DECL_ACME streamable :
-      virtual public translatable,
       virtual public readable,
       virtual public writable
    {
@@ -71,7 +78,6 @@ namespace file
 
       void translate(filesize offset, ::enum_seek eseek) override;
 
-      virtual void flush();
       virtual void close();
       virtual void abort();
 

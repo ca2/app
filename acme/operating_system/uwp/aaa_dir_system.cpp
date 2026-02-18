@@ -170,7 +170,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path directory_system::default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_system::default_userappdata(::particle * pparticle,const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "appdata";
@@ -178,7 +178,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path directory_system::default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_system::default_userdata(::particle * pparticle,const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "data";

@@ -74,6 +74,14 @@ CLASS_DECL_ACME  void copy(::payload & payload, const ::scoped_string & scopedst
 //   *ppayload1 = *ppayload2;
 //
 //}
+payload::payload() :
+   m_etype(e_type_new)
+#if REFERENCING_DEBUGGING
+   , m_preferer(nullptr)
+#endif
+{
+
+}
 
 
 
@@ -303,7 +311,7 @@ payload::payload(bool * pb) :
 //
 //   m_etype = e_type_unsigned_long_long;
 //
-//   m_hn = u;
+//   m_ull = u;
 //
 //}
 
@@ -318,7 +326,7 @@ payload::payload(long l)
 {
 
    m_etype = e_type_long_long;
-   m_hi = (long long) l;
+   m_ll = (long long) l;
 
 }
 
@@ -847,10 +855,10 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_ui = this->as_unsigned_int();
             break;
          case e_type_long_long:
-            m_hi = this->as_long_long();
+            m_ll = this->as_long_long();
             break;
          case e_type_unsigned_long_long:
-            m_hn = this->as_unsigned_long_long();
+            m_ull = this->as_unsigned_long_long();
             break;
          case e_type_double:
             m_d = this->as_double();
@@ -932,19 +940,19 @@ void payload::set_string(::string && str)
 }
 
 
-void payload::set_string(const ::string & str)
+void payload::set_string(const ::scoped_string & scopedstr)
 {
 
    if (get_type() == e_type_string)
    {
 
-      m_str = str;
+      m_str = scopedstr;
 
    }
    else if (get_type() == e_type_pstring)
    {
 
-      *m_pstr = str;
+      *m_pstr = scopedstr;
 
    }
    //else if (get_type() == e_type_payload_pointer)
@@ -964,7 +972,7 @@ void payload::set_string(const ::string & str)
 
       set_type(e_type_string, false);
 
-      m_str = str;
+      m_str = scopedstr;
 
    }
 
@@ -1264,7 +1272,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //
 //   set_type(type_file_time, false);
 //
-//   m_hn = make64_from32(file_time.dwLowDateTime, file_time.dwHighDateTime);
+//   m_ull = make64_from32(file_time.dwLowDateTime, file_time.dwHighDateTime);
 //
 //   return *this;
 //
@@ -1291,7 +1299,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //   else
 //   {
 //      set_type(e_type_long_long, false);
-//      m_hi = i;
+//      m_ll = i;
 //   }
 //   return *this;
 //}
@@ -1314,7 +1322,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //   else
 //   {
 //      set_type(e_type_unsigned_long_long, false);
-//      m_hn = u;
+//      m_ull = u;
 //   }
 //   return *this;
 //}
@@ -1349,7 +1357,7 @@ class ::payload & payload::operator = (long l)
    class ::payload & payload::operator = (long l)
    {
       set_type(e_type_long_long,false);
-      m_hi = l;
+      m_ll = l;
       return *this;
    }
 #endif
@@ -1776,10 +1784,10 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_ui = payload.m_ui;
             break;
          case e_type_long_long:
-            m_hi = payload.m_hi;
+            m_ll = payload.m_ll;
             break;
          case e_type_unsigned_long_long:
-            m_hn = payload.m_hn;
+            m_ull = payload.m_ull;
             break;
          case e_type_pchar:
             m_pch = payload.m_pch;
@@ -2482,9 +2490,9 @@ bool payload::is_true() const
       case e_type_unsigned_int:
          return m_ui != 0;
       case e_type_long_long:
-         return m_hi != 0;
+         return m_ll != 0;
       case e_type_unsigned_long_long:
-         return m_hn != 0;
+         return m_ull != 0;
       case e_type_double:
          return m_d != 0;
       case e_type_bool:
@@ -3474,13 +3482,13 @@ string payload::as_string(const ::scoped_string & scopedstrOnNull) const
       else if(m_etype == ::e_type_long_long)
       {
 
-         str = i64toa_dup(m_hi);
+         str = i64toa_dup(m_ll);
 
       }
       else if(m_etype == ::e_type_unsigned_long_long)
       {
 
-         str = ::as_string(m_hn);
+         str = ::as_string(m_ull);
 
       }
       else if(m_etype == ::e_type_double)
@@ -3680,13 +3688,13 @@ string & payload::string_reference()
       else if(m_etype == ::e_type_long_long)
       {
 
-         atom = (::collection::index) m_hi;
+         atom = (::collection::index) m_ll;
 
       }
       else if(m_etype == ::e_type_unsigned_long_long)
       {
 
-         atom = (::collection::index) m_hn;
+         atom = (::collection::index) m_ull;
 
       }
       else if (m_etype == ::e_type_float)
@@ -3814,7 +3822,7 @@ int payload::as_int(int iDefault) const
    case e_type_int:
       return m_ui;
    case e_type_long_long:
-      return (int) m_hi;
+      return (int) m_ll;
    case e_type_unsigned_char:
       return (int)m_uch;
    case e_type_unsigned_short:
@@ -3822,7 +3830,7 @@ int payload::as_int(int iDefault) const
    case e_type_unsigned_int:
       return (int)m_ui;
    case e_type_unsigned_long_long:
-      return (int) m_hn;
+      return (int) m_ull;
    case e_type_element:
    case e_type_path:
       return iDefault;
@@ -3902,9 +3910,9 @@ unsigned int payload::as_unsigned_int(unsigned int uiDefault) const
    case e_type_path:
       return (unsigned int) uiDefault;
    case e_type_long_long:
-      return (unsigned int)m_hi;
+      return (unsigned int)m_ll;
    case e_type_unsigned_long_long:
-      return (unsigned int) m_hn;
+      return (unsigned int) m_ull;
    //case e_type_payload_pointer:
    //   return m_ppayload->as_unsigned_int(uiDefault);
    //case e_type_property:
@@ -3974,9 +3982,9 @@ long long payload::as_long_long(long long iDefault) const
       case e_type_unsigned_int:
          return m_ui;
       case e_type_long_long:
-         return m_hi;
+         return m_ll;
       case e_type_unsigned_long_long:
-         return m_hn;
+         return m_ull;
       case e_type_atom:
          return m_atomPayload.as_long_long();
       case e_type_pchar:
@@ -4078,11 +4086,11 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 //
 //      set_type(e_type_long_long, false);
 //
-//      m_hi = i;
+//      m_ll = i;
 //
 //   }
 //
-//   return m_hi;
+//   return m_ll;
 //
 //}
 //
@@ -4103,9 +4111,9 @@ unsigned long long payload::as_unsigned_long_long(unsigned long long uiDefault) 
    case e_type_unsigned_int:
       return m_ui;
    case e_type_long_long:
-      return m_hi;
+      return m_ll;
    case e_type_unsigned_long_long:
-      return m_hn;
+      return m_ull;
    case e_type_float:
       return (unsigned long long) m_f;
    case e_type_double:
@@ -4147,11 +4155,11 @@ unsigned long long payload::as_unsigned_long_long(unsigned long long uiDefault) 
 //
 //      set_type(e_type_unsigned_long_long, false);
 //
-//      m_hn = i;
+//      m_ull = i;
 //
 //   }
 //
-//   return m_hn;
+//   return m_ull;
 //
 //}
 //
@@ -4247,9 +4255,9 @@ char payload::as_char(char iDefault) const
    case e_type_unsigned_int:
       return (char)m_ui;
    case e_type_long_long:
-      return (char)m_hi;
+      return (char)m_ll;
    case e_type_unsigned_long_long:
-      return (char)m_hn;
+      return (char)m_ull;
    case e_type_float:
       return (char) m_f;
    case e_type_double:
@@ -4289,9 +4297,9 @@ unsigned char payload::as_unsigned_char(unsigned char uDefault) const
    case e_type_unsigned_int:
       return (unsigned char)m_ui;
    case e_type_long_long:
-      return (unsigned char)m_hi;
+      return (unsigned char)m_ll;
    case e_type_unsigned_long_long:
-      return (unsigned char)m_hn;
+      return (unsigned char)m_ull;
    case e_type_float:
       return (unsigned char)m_f;
    case e_type_double:
@@ -4358,9 +4366,9 @@ short payload::as_short(short iDefault) const
    case e_type_unsigned_int:
       return (short)m_ui;
    case e_type_long_long:
-      return (short)m_hi;
+      return (short)m_ll;
    case e_type_unsigned_long_long:
-      return (short)m_hn;
+      return (short)m_ull;
    case e_type_float:
       return (short)m_f;
    case e_type_double:
@@ -4428,9 +4436,9 @@ unsigned short payload::as_unsigned_short(unsigned short uDefault) const
    case e_type_unsigned_int:
       return (unsigned short)m_ui;
    case e_type_long_long:
-      return (unsigned short)m_hi;
+      return (unsigned short)m_ll;
    case e_type_unsigned_long_long:
-      return (unsigned short)m_hn;
+      return (unsigned short)m_ull;
    case e_type_float:
       return (unsigned short)m_f;
    case e_type_double:
@@ -4498,9 +4506,9 @@ float payload::as_float(float fDefault) const
    case e_type_unsigned_int:
       return (float) m_ui;
    case e_type_long_long:
-      return (float) m_hi;
+      return (float) m_ll;
    case e_type_unsigned_long_long:
-      return (float) m_hn;
+      return (float) m_ull;
    case e_type_float:
       return m_f;
    case e_type_double:
@@ -4593,13 +4601,13 @@ double payload::as_double(double dDefault) const
    else if(m_etype == ::e_type_long_long)
    {
 
-      d = (double) m_hi;
+      d = (double) m_ll;
 
    }
    else if(m_etype == ::e_type_unsigned_long_long)
    {
 
-      d = (double) m_hn;
+      d = (double) m_ull;
 
    }
    else if(m_etype == ::e_type_float)
@@ -4855,7 +4863,7 @@ class ::memory & payload::memory_reference()
 //}
 
 
-string_array_base payload::as_string_array() const
+string_array payload::as_string_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -4931,7 +4939,7 @@ string_array_base payload::as_string_array() const
 }
 
 
-string_array_base & payload::string_array_reference()
+string_array & payload::string_array_reference()
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -4999,7 +5007,7 @@ string_array_base & payload::string_array_reference()
 }
 
 
-::int_array_base payload::as_int_array() const
+::int_array payload::as_int_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5052,7 +5060,7 @@ string_array_base & payload::string_array_reference()
 }
 
 
-int_array_base & payload::int_array_reference()
+int_array & payload::int_array_reference()
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5107,7 +5115,7 @@ int_array_base & payload::int_array_reference()
 }
 
 
-long_long_array_base payload::as_long_long_array() const
+long_long_array payload::as_long_long_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5165,7 +5173,7 @@ long_long_array_base payload::as_long_long_array() const
 }
 
 
-::long_long_array_base & payload::long_long_array_reference()
+::long_long_array & payload::long_long_array_reference()
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5220,7 +5228,7 @@ long_long_array_base payload::as_long_long_array() const
 }
 
 
-::float_array_base payload::as_float_array() const
+::float_array payload::as_float_array() const
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5273,7 +5281,7 @@ long_long_array_base payload::as_long_long_array() const
 }
 
 
-float_array_base& payload::float_array_reference()
+float_array & payload::float_array_reference()
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5329,7 +5337,7 @@ float_array_base& payload::float_array_reference()
 
 
 
-::double_array_base payload::as_double_array() const
+::double_array payload::as_double_array() const
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5382,7 +5390,7 @@ float_array_base& payload::float_array_reference()
 }
 
 
-double_array_base& payload::double_array_reference()
+double_array & payload::double_array_reference()
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -6732,9 +6740,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_unsigned_int:
 //      return m_ui / (::uptr) ul;
 //   case ::e_type_long_long:
-//      return m_hi / (long long) ul;
+//      return m_ll / (long long) ul;
 //   case ::e_type_unsigned_long_long:
-//      return m_hn / (unsigned long long) ul;
+//      return m_ull / (unsigned long long) ul;
 //   case ::e_type_float:
 //      return m_f / (float) ul;
 //   case ::e_type_double:
@@ -6789,9 +6797,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_unsigned_int:
 //      return (uptr) ul / payload.m_ui;
 //   case ::e_type_long_long:
-//      return (long long) ul / payload.m_hi;
+//      return (long long) ul / payload.m_ll;
 //   case ::e_type_unsigned_long_long:
-//      return (unsigned long long) ul / payload.m_hn;
+//      return (unsigned long long) ul / payload.m_ull;
 //   case ::e_type_float:
 //      return (float) ul / payload.m_f;
 //   case ::e_type_double:
@@ -6845,9 +6853,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_unsigned_int:
 //      return m_ui * (::uptr) ul;
 //   case ::e_type_long_long:
-//      return m_hi * (long long) ul;
+//      return m_ll * (long long) ul;
 //   case ::e_type_unsigned_long_long:
-//      return m_hn * (unsigned long long) ul;
+//      return m_ull * (unsigned long long) ul;
 //   case ::e_type_float:
 //      return m_f * (float) ul;
 //   case ::e_type_double:
@@ -6903,9 +6911,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_unsigned_int:
 //      return (uptr) ul * payload.m_ui;
 //   case ::e_type_long_long:
-//      return (long long) ul * payload.m_hi;
+//      return (long long) ul * payload.m_ll;
 //   case ::e_type_unsigned_long_long:
-//      return (unsigned long long) ul * payload.m_hn;
+//      return (unsigned long long) ul * payload.m_ull;
 //   case ::e_type_float:
 //      return (float) ul * payload.m_f;
 //   case ::e_type_double:
@@ -7609,7 +7617,7 @@ bool payload::has_string_reference() const
 //   else if (m_etype == e_type_long_long || m_etype == e_type_unsigned_long_long)
 //   {
 //
-//      return m_hi != 0;
+//      return m_ll != 0;
 //
 //   }
 //   else if (m_etype == e_type_int || m_etype == e_type_unsigned_int)
@@ -8794,7 +8802,7 @@ bool payload::has_reference_of_type(enum_type etype) const
 }
 
 
-const ::string_array_base & payload::string_array_reference() const
+const ::string_array & payload::string_array_reference() const
 {
 
    if(m_etype == e_type_string_array)
@@ -8825,7 +8833,7 @@ const ::string_array_base & payload::string_array_reference() const
 }
 
 
-const ::int_array_base & payload::int_array_reference() const
+const ::int_array & payload::int_array_reference() const
 {
 
    if(m_etype == e_type_int_array)
@@ -8856,7 +8864,7 @@ const ::int_array_base & payload::int_array_reference() const
 }
 
 
-const ::long_long_array_base & payload::long_long_array_reference() const
+const ::long_long_array & payload::long_long_array_reference() const
 {
 
    if(m_etype == e_type_long_long_array)
@@ -8887,7 +8895,7 @@ const ::long_long_array_base & payload::long_long_array_reference() const
 }
 
 
-const ::float_array_base& payload::float_array_reference() const
+const ::float_array & payload::float_array_reference() const
 {
 
    if (m_etype == e_type_float_array)
@@ -8918,7 +8926,7 @@ const ::float_array_base& payload::float_array_reference() const
 }
 
 
-const ::double_array_base& payload::double_array_reference() const
+const ::double_array & payload::double_array_reference() const
 {
 
    if (m_etype == e_type_double_array)
@@ -9562,11 +9570,11 @@ bool payload::is_false() const
    case e_type_punsigned_int:
       return !m_pui || !*m_pui;
    case e_type_long_long:
-      return !m_hi;
+      return !m_ll;
    case e_type_plong_long:
       return !m_pll || !*m_pll;
    case e_type_unsigned_long_long:
-      return !m_hn;
+      return !m_ull;
    case e_type_punsigned_long_long:
       return !m_pull || !*m_pull;
 
@@ -9693,7 +9701,7 @@ bool payload::is_false() const
 //   case e_type_enum_status:
 //   case e_type_enum_check:
 //      case e_type_enum_flag:
-//      return !m_hi;
+//      return !m_ll;
    case e_type_color:
       return !m_color.m_ui;
    case e_type_hls:
@@ -9755,11 +9763,11 @@ bool payload::is_set_false() const
    case e_type_punsigned_int:
       return !m_pui || !*m_pui;
    case e_type_long_long:
-      return !m_hi;
+      return !m_ll;
    case e_type_plong_long:
       return !m_pll || !*m_pll;
    case e_type_unsigned_long_long:
-      return !m_hn;
+      return !m_ull;
    case e_type_punsigned_long_long:
       return !m_pull || !*m_pull;
    // floating int_point
@@ -9884,7 +9892,7 @@ bool payload::is_set_false() const
 //   case e_type_enum_status:
 //   case e_type_enum_check:
 //      case e_type_enum_flag:
-//      return !m_hi;
+//      return !m_ll;
    case e_type_color:
       return !m_color.m_ui;
    case e_type_hls:
@@ -10418,7 +10426,7 @@ long & payload::long_reference()
    if(m_etype == e_type_long_long)
    {
       
-      return (long &) m_hi;
+      return (long &) m_ll;
       
    }
    else if(m_etype == e_type_plong_long)
@@ -10432,7 +10440,7 @@ long & payload::long_reference()
    
       set_type(e_type_long_long);
    
-      return (long &) m_hi;
+      return (long &) m_ll;
       
    }
 
@@ -10445,7 +10453,7 @@ unsigned long & payload::unsigned_long_reference()
    if(m_etype == e_type_unsigned_long_long)
    {
       
-      return (unsigned long &) m_hn;
+      return (unsigned long &) m_ull;
       
    }
    else if(m_etype == e_type_punsigned_long_long)
@@ -10459,7 +10467,7 @@ unsigned long & payload::unsigned_long_reference()
    
       set_type(e_type_unsigned_long_long);
    
-      return (unsigned long &) m_hn;
+      return (unsigned long &) m_ull;
       
    }
 
@@ -11970,7 +11978,7 @@ payload & payload::add(const ::payload & payload)
                if((unsigned long long) m_ui + (unsigned long long) payload.as_unsigned_int() >= (unsigned long long) UINT_MAX)
                {
                   set_type(e_type_unsigned_long_long);
-                  m_hn += payload.as_unsigned_int();
+                  m_ull += payload.as_unsigned_int();
                }
                else
                {
@@ -11981,7 +11989,7 @@ payload & payload::add(const ::payload & payload)
                if(((long long) m_i + (long long) payload.as_int() > (long long) INT_MAX) || ((long long) m_i + (long long) payload.as_int() < (long long) INT_MIN))
                {
                   set_type(e_type_long_long);
-                  m_hi += payload.as_int();
+                  m_ll += payload.as_int();
                }
                else
                {
@@ -11989,10 +11997,10 @@ payload & payload::add(const ::payload & payload)
                }
                break;
             case e_type_unsigned_long_long:
-               m_hn += payload.as_unsigned_long_long();
+               m_ull += payload.as_unsigned_long_long();
                break;
             case e_type_long_long:
-               m_hi += payload.as_long_long();
+               m_ll += payload.as_long_long();
                break;
             case e_type_punsigned_char:
                *m_puch += payload.as_unsigned_char();
@@ -12253,7 +12261,7 @@ payload & payload::subtract(const ::payload & payload)
                if((long long) m_ui - (long long) payload.as_long_long() < 0)
                {
                   set_type(e_type_long_long);
-                  m_hi -= payload.as_long_long();
+                  m_ll -= payload.as_long_long();
                }
                else
                {
@@ -12264,7 +12272,7 @@ payload & payload::subtract(const ::payload & payload)
                if(((long long) m_i + (long long) payload.as_int() >= (long long) INT_MAX) || ((long long) m_i - (long long) payload.as_int() < (long long) INT_MIN))
                {
                   set_type(e_type_long_long);
-                  m_hi -= payload.as_int();
+                  m_ll -= payload.as_int();
                }
                else
                {
@@ -12272,10 +12280,10 @@ payload & payload::subtract(const ::payload & payload)
                }
                break;
             case e_type_unsigned_long_long:
-               m_hn -= payload.as_unsigned_long_long();
+               m_ull -= payload.as_unsigned_long_long();
                break;
             case e_type_long_long:
-               m_hi -= payload.as_long_long();
+               m_ll -= payload.as_long_long();
                break;
             case e_type_punsigned_char:
                *m_puch -= payload.as_unsigned_char();
@@ -12531,7 +12539,7 @@ payload &  payload::multiply(const ::payload & payload)
                if ((unsigned long long) m_ui + (unsigned long long) payload.as_unsigned_int() >= 65536)
                {
                   set_type(e_type_unsigned_long_long);
-                  m_hn *= payload.as_unsigned_int();
+                  m_ull *= payload.as_unsigned_int();
                } else
                {
                   m_ui *= payload.as_unsigned_int();
@@ -12541,17 +12549,17 @@ payload &  payload::multiply(const ::payload & payload)
                if ((long long) m_i + (long long) payload.as_int() >= 64769)
                {
                   set_type(e_type_long_long);
-                  m_hi *= payload.as_int();
+                  m_ll *= payload.as_int();
                } else
                {
                   m_i *= payload.as_int();
                }
                break;
             case e_type_unsigned_long_long:
-               m_hn *= payload.as_unsigned_long_long();
+               m_ull *= payload.as_unsigned_long_long();
                break;
             case e_type_long_long:
-               m_hi *= payload.as_long_long();
+               m_ll *= payload.as_long_long();
                break;
             case e_type_punsigned_char:
                *m_puch *= payload.as_unsigned_char();
@@ -12809,7 +12817,7 @@ payload &  payload::divide(const ::payload & payload)
                if((unsigned long long) m_ui + (unsigned long long) payload.as_unsigned_int() >= 65536)
                {
                   set_type(e_type_unsigned_long_long);
-                  m_hn /= payload.as_unsigned_int();
+                  m_ull /= payload.as_unsigned_int();
                }
                else
                {
@@ -12820,7 +12828,7 @@ payload &  payload::divide(const ::payload & payload)
                if((long long) m_i + (long long) payload.as_int() >= 64769)
                {
                   set_type(e_type_long_long);
-                  m_hi /= payload.as_int();
+                  m_ll /= payload.as_int();
                }
                else
                {
@@ -12828,10 +12836,10 @@ payload &  payload::divide(const ::payload & payload)
                }
                break;
             case e_type_unsigned_long_long:
-               m_hn /= payload.as_unsigned_long_long();
+               m_ull /= payload.as_unsigned_long_long();
                break;
             case e_type_long_long:
-               m_hi /= payload.as_long_long();
+               m_ll /= payload.as_long_long();
                break;
             case e_type_punsigned_char:
                *m_puch /= payload.as_unsigned_char();

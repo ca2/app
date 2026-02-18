@@ -233,32 +233,32 @@ namespace windows
    }
 
 
-   string last_error_message(unsigned int dwError)
-   {
-
-      wstring wstr;
-
-      unichar* p = nullptr;
-
-      unsigned int dw = FormatMessageW(
-         FORMAT_MESSAGE_FROM_SYSTEM
-         | FORMAT_MESSAGE_ALLOCATE_BUFFER,
-         nullptr,
-         dwError,
-         0,
-         (LPWSTR)&p,
-         64,
-         nullptr);
-
-      wstr = p;
-
-      ::LocalFree(p);
-
-      string str(wstr);
-
-      return str;
-
-   }
+   // string last_error_message(unsigned int dwError)
+   // {
+   //
+   //    wstring wstr;
+   //
+   //    unichar* p = nullptr;
+   //
+   //    unsigned int dw = FormatMessageW(
+   //       FORMAT_MESSAGE_FROM_SYSTEM
+   //       | FORMAT_MESSAGE_ALLOCATE_BUFFER,
+   //       nullptr,
+   //       dwError,
+   //       0,
+   //       (LPWSTR)&p,
+   //       64,
+   //       nullptr);
+   //
+   //    wstr = p;
+   //
+   //    ::LocalFree(p);
+   //
+   //    string str(wstr);
+   //
+   //    return str;
+   //
+   // }
 
 
    CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError)

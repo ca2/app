@@ -510,7 +510,7 @@ namespace user
 
    }
 
-   //void still::_001SetButtonText(const ::string & pcszText)
+   //void still::_001SetButtonText(const ::scoped_string & scopedstrText)
 
    //{
    //   m_istrButtonText = pcszText;

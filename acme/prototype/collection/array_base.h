@@ -610,7 +610,7 @@ inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy
 
       this->erase_all();
 
-      this->append(src);
+      this->append_container(src);
 
       //      auto nSrcSize = src.size();
       //

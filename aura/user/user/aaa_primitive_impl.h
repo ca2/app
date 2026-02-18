@@ -109,7 +109,7 @@ namespace user
       //virtual void _window_request_presentation_locked();
       //virtual void _window_request_presentation_unlocked();
 
-      virtual void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName);
+      virtual void create_message_queue(::user::interaction * pinteraction, const ::scoped_string & scopedstrName);
       
       //virtual void graphics_thread_update_screen();
 
@@ -196,7 +196,7 @@ namespace user
       
       virtual void post_message(::message::message* pusermessage);
 
-      //virtual void set_window_text(const ::string& pszString);
+      //virtual void set_window_text(const ::scoped_string & scopedstrString);
 
       virtual void on_set_window_text();
 

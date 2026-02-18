@@ -10,6 +10,34 @@ namespace file
 {
 
 
+   readable::readable()
+   {
+
+
+   }
+
+
+   readable::~readable()
+   {
+
+
+   }
+
+
+   writable::writable()
+   {
+
+
+   }
+
+
+   writable::~writable()
+   {
+
+
+   }
+
+
    enum_status streamable::_open(const ::scoped_string & scopestrFilePath, const ::file::enum_open &eopen)
    {
 
@@ -59,7 +87,7 @@ namespace file
 
    }
 
-   void streamable::flush()
+   void writable::flush()
    {
 
       throw error_interface_only;

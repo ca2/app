@@ -1,19 +1,22 @@
 //
-// Created by camilo on 2026-02-15 21:52 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2026-02-15 21:54 <3ThomasBorregaardSørensen!!
 //
-
 #pragma once
 
 
 
-namespace remoting
+namespace platform
 {
 
-   class remoting :
-   virtual public  ::platform::remoting
+   class CLASS_DECL_ACME remoting :
+      virtual public  ::particle
    {
+   public:
+
+      remoting();
+      ~remoting() override;
 
    };
 
-} // remoting
+} // namespace platform
 

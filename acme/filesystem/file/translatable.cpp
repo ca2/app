@@ -8,6 +8,26 @@ namespace file
 {
 
 
+   streamable_base::streamable_base()
+   {
+
+
+   }
+
+
+   streamable_base::~streamable_base()
+   {
+
+
+   }
+
+
+   void streamable_base::close()
+   {
+
+
+   }
+
    void translatable::translate(filesize offset, enum_seek eseek)
    {
 

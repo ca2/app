@@ -5027,7 +5027,29 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //   }
 //
+   memsize node::get_current_memory_usage()
+   {
 
+
+      return 0;
+
+   }
+
+
+   bool node::_windows_isVistaOrLater()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_windows_isWin7()
+   {
+
+      return false;
+
+   }
 
 } // namespace platform
 

@@ -40,13 +40,13 @@
       return false;
    }
 
-   void os_context::terminate_processes_by_title(const ::string & lpszName)
+   void os_context::terminate_processes_by_title(const ::scoped_string & scopedstrName)
    {
       __UNREFERENCED_PARAMETER(lpszName);
       throw ::interface_only("this is an interface");
    }
 
-   bool os_context::get_pid_by_path(const ::string & lpszName, unsigned int & dwPid)
+   bool os_context::get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid)
    {
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
@@ -54,7 +54,7 @@
       return false;
    }
 
-   bool os_context::get_pid_by_title(const ::string & lpszName, unsigned int & dwPid)
+   bool os_context::get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid)
    {
       __UNREFERENCED_PARAMETER(lpszName);
       __UNREFERENCED_PARAMETER(dwPid);
@@ -231,7 +231,7 @@
 
    /// Windows (IE), macOS (Safari), Linux (Firefox, oder...)
    /// Remark: it is not default browser (necessarily)
-   bool os_context::native_full_web_browser(const ::string & pcsz)
+   bool os_context::native_full_web_browser(const ::scoped_string & scopedstr)
 
    {
 
@@ -243,7 +243,7 @@
 
    /// Windows (Edge), fallback to native_full_web_browser
    /// Remark: it is not default browser (necessarily)
-   bool os_context::native_modern_web_browser(const ::string & pcsz)
+   bool os_context::native_modern_web_browser(const ::scoped_string & scopedstr)
 
    {
 

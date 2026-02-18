@@ -1130,21 +1130,25 @@ public:
    ::collection::count append_container(const CONTAINER & container);
    ::collection::count append_initializer_list(const ::std::initializer_list < TYPE > & list_base);
    ::collection::count append(const TYPE * p, ::collection::count c);
+   ::collection::count append_element(const TYPE & t, ::collection::count c);
    ::collection::count append(const base_array & src); // return old int_size
    ::collection::count rear_append(const TYPE * p, ::collection::count c);
    ::collection::count rear_append(const base_array & src); // return old int_size
    template < typename CONTAINER >
    void copy_container(const CONTAINER & container);
    void copy_initializer_list(const ::std::initializer_list < TYPE > & list_base);
-   void copy(const TYPE* p, ::collection::count c);
+   void copy_element(const TYPE & t, ::collection::count c);
+   void copy(const TYPE * p, ::collection::count c);
    void copy(const base_array & src);
 
-   void assign(::collection::count c, const TYPE & t)
+   void assign_element(const TYPE & t, ::collection::count c)
    {
-      this->copy(&t, c);
+      this->copy_element(t, c);
 
    }
    
+   void assign(const TYPE * p, ::collection::count c);
+
 
 
    //template < prototype_container CONTAINER >
@@ -1998,7 +2002,7 @@ TYPE * base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at
 
    auto p = this->raw_allocate_at(i, c);
 
-   TYPED::copy_construct_count(p, c, pelements);
+   TYPED::copy_construct_array(p, c, pelements);
  
    return p;
 
@@ -2130,6 +2134,23 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_element(const TYPE & t, ::collection::count c)
+{
+
+   ::collection::count nOldSize = this->size();
+
+   ::collection::count nSrcSize = c;
+
+   allocate(nOldSize + nSrcSize, false, true);
+
+   TYPED::copy_construct_count((this->m_begin + nOldSize), nSrcSize, t);
+
+   return nOldSize;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const TYPE * p, ::collection::count c)
 {
 
@@ -2139,11 +2160,29 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 
    allocate(nOldSize + nSrcSize, false, true);
 
-   TYPED::copy_construct_count((this->m_begin + nOldSize), nSrcSize, p);
+   TYPED::copy_construct_count((this->m_begin + nOldSize), nSrcSize, *p);
 
    return nOldSize;
 
 }
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::assign(const TYPE * p, ::collection::count c)
+{
+
+   ::collection::count nOldSize = this->size();
+
+   ::collection::count nSrcSize = c;
+
+   allocate(nOldSize + nSrcSize, false, true);
+
+   TYPED::copy_construct_array((this->m_begin + nOldSize), nSrcSize, p);
+
+   //return nOldSize;
+
+}
+
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
@@ -2176,7 +2215,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 ::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::rear_append(const base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
 {
 
-   return rear_append(src.data(), src.size());
+    return rear_append(src.data(), src.size());
 
 }
 
@@ -2202,7 +2241,6 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy_initia
 }
 
 
-
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
 void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const TYPE * p, ::collection::count c)
 {
@@ -2226,10 +2264,41 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const 
       return;
 
    }
+
+   erase_all();
+
+   append(p, c);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy_element(const TYPE & t, ::collection::count c)
+{
+
+   if(this->data() == &t)
+   {
+
+      if (c > this->size())
+      {
+
+         throw_exception(error_wrong_state);
+
+      }
+      else if (c < this->size())
+      {
+
+         set_size(c);
+
+      }
+
+      return;
+
+   }
    
    erase_all();
    
-   append(p, c);
+   append_element(t, c);
 
 }
 
@@ -2238,7 +2307,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >& src)
 {
 
-   copy(src.data(), src.size());
+   assign(src.data(), src.size());
 
 }
 

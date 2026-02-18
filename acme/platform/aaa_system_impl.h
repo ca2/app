@@ -448,12 +448,12 @@ namespace acme
       virtual class ::time get_update_poll_time(const ::atom & atom);
 
 
-      virtual ::acme::library* on_get_library(const ::string& pszLibrary);
+      virtual ::acme::library* on_get_library(const ::scoped_string & scopedstrLibrary);
 
 
 
 
-      //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
+      //virtual ::pointer<::acme::library> & library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation);
 
 
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -492,7 +492,7 @@ namespace acme
 
 //
 //   template < typename ENUM >
-//   inline void set_enum_text(ENUM e, const ::string &psz)
+//   inline void set_enum_text(ENUM e, const ::scoped_string & scopedstr)
 //   {
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
@@ -516,7 +516,7 @@ namespace acme
 
 //
 //   template < class ENUM >
-//   inline ENUM text_enum(ENUM& e, const ::string &psz, ENUM eDefault = (ENUM)0)
+//   inline ENUM text_enum(ENUM& e, const ::scoped_string & scopedstr, ENUM eDefault = (ENUM)0)
 //   {
 //
 //      critical_section_lock lock(&m_csEnumText);
@@ -542,7 +542,7 @@ namespace acme
 //
 //
 //   template < class ENUM, ENUM edefault = 0>
-//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::string &psz, ENUM eDefault = edefault)
+//   inline base_enum < ENUM, edefault >& text_enum(base_enum < ENUM, edefault >& b, const ::scoped_string & scopedstr, ENUM eDefault = edefault)
 //   {
 //
 //      return b = text_enum(b.m_evalue, psz, eDefault);
@@ -576,7 +576,7 @@ namespace acme
       virtual void check_exit();
 
       virtual ::regular_expression_pointer create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr);
-      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount);
       virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::scoped_string & scopedstrStyle);
 
       virtual ::regular_expression_pointer compile_pcre(const ::scoped_string & scopedstr);

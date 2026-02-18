@@ -14,7 +14,7 @@ namespace windowing
 {
 
 
-   simple_ui_display::simple_ui_display(const string &strMessageParam, const string &strTitle,
+   simple_ui_display::simple_ui_display(const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitle,
                                         const ::::user::e_message_box &emessagebox) :
       m_strTitle(strTitle),
       m_strFontName("serif"),
@@ -118,7 +118,7 @@ namespace windowing
    }
 
 
-   button *simple_ui_display::new_button(const ::string &pszLabel, enum_dialog_result edialogresult)
+   button *simple_ui_display::new_button(const ::scoped_string & scopedstrLabel, enum_dialog_result edialogresult)
    {
 
       return nullptr;

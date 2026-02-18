@@ -272,7 +272,7 @@ namespace user
 
       virtual bool clear_pending_focus();
 
-      void create_message_queue(::user::interaction * pinteraction, const ::string & lpszName) override;
+      void create_message_queue(::user::interaction * pinteraction, const ::scoped_string & scopedstrName) override;
 
       //virtual bool create_native_window(::user::native_window_initialize * pinitialize) override;
       //virtual void set_destroying();

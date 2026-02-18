@@ -73,7 +73,7 @@ inline const TYPE & for_copy(TYPE && t)
 
 template < typename ITERATOR_TYPE >
 class character_range :
-   public ::range < ITERATOR_TYPE >
+   public ::block_range < ITERATOR_TYPE >
 {
 public:
 
@@ -81,8 +81,8 @@ public:
    using RAW_CHARACTER_RANGE = THIS_CHARACTER_RANGE;
 
    using BASE_RANGE = ::character_range < ITERATOR_TYPE >;
-   using BASE_RAW_RANGE = ::character_range < ITERATOR_TYPE >;
-   using _BASE_RAW_RANGE = ::range < ITERATOR_TYPE >;
+   using BASE_RAW_RANGE = ::block_range < ITERATOR_TYPE >;
+   using _BASE_RAW_RANGE = ::block_range < ITERATOR_TYPE >;
 
    using this_iterator = typename _BASE_RAW_RANGE::this_iterator;
 
@@ -564,6 +564,7 @@ using character_decay = typename character_decay_struct<T>::type;
 
 
 template <prototype_character_range CHARACTER_RANGE >
+requires(sizeof(::character_decay<::non_pointer<::non_const< typename CHARACTER_RANGE::this_iterator>>>) == 1)
 struct std::formatter<CHARACTER_RANGE>
 {
    using BASE_TYPE = CHARACTER_RANGE;
@@ -591,6 +592,7 @@ struct std::formatter<CHARACTER_RANGE>
       );
    }
 };
+
 
 template <typename ITERATOR_TYPE>
 struct std::formatter<::character_range<ITERATOR_TYPE>>

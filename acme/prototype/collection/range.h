@@ -569,6 +569,12 @@ public:
       return this->m_end - this->m_begin;
    }
 
+   constexpr memsize size_in_bytes() const
+   {
+      return this->size() * this->item_size();
+   }
+
+
    constexpr bool is_empty() const
    {
       return size() <= 0;
@@ -2801,4 +2807,175 @@ constexpr class ::character_range < const CHARACTER* > as_string_literal(const C
 
 }
 
+struct block;
 
+template<typename ITERATOR_TYPE>
+class block_range :
+   public ::range <ITERATOR_TYPE >
+{
+public:
+
+
+
+   using this_iterator = ITERATOR_TYPE;
+   using iterator = get_iterator<ITERATOR_TYPE>;
+   using const_iterator = get_const_iterator<iterator>;
+
+
+   using THIS_RAW_RANGE = ::range<ITERATOR_TYPE>;
+   using RAW_RANGE = ::range<iterator>;
+   using CONST_RAW_RANGE = ::range<const_iterator>;
+   using _BASE_RAW_RANGE = ::range<ITERATOR_TYPE>;
+
+   using THIS_RANGE = ::block_range<ITERATOR_TYPE>;
+   using RANGE = ::block_range<iterator>;
+   using CONST_RANGE = ::block_range<const_iterator>;
+
+
+   using ITEM_POINTER = get_type_item_pointer<iterator>;
+
+
+   using THIS_ITEM = get_iterator_item<this_iterator>;
+   using ITEM = non_const<THIS_ITEM>;
+   using CONST_ITEM = add_const<THIS_ITEM>;
+   using ARG_ITEM = argument_of < ITEM >;
+
+
+   //this_iterator     m_begin;
+   //this_iterator     m_end;
+   //enum_range        m_erange;
+
+
+   constexpr block_range(no_initialize_t noinitialize) :
+   _BASE_RAW_RANGE(noinitialize)
+   {
+   }
+
+   constexpr block_range(nullptr_t) :
+      _BASE_RAW_RANGE(nullptr)
+   {
+
+   };
+
+   constexpr block_range() :
+   _BASE_RAW_RANGE()
+   {
+   }
+
+
+   template<::collection::count count>
+   constexpr block_range(const ITEM(&array)[count], enum_range erange = e_range_none)
+      requires
+      (!prototype_character < ITEM >)
+      : _BASE_RAW_RANGE(array, count, erange)
+   {
+   }
+
+   //template < typename CHARACTER, character_count n >
+   //constexpr range(const CHARACTER(& s)[n]) requires
+   //   prototype_character < CHARACTER > &&
+   //   ::std::is_same_v<non_const<non_pointer<CHARACTER>>, non_const<non_pointer<ITEM>>>
+   //{
+
+   //   if constexpr (n >= 1)
+   //   {
+
+   //      if (s[n - 1] == CHARACTER{})
+   //      {
+
+   //         this->m_begin = s;
+   //         this->m_end = s + n - 1;
+   //         this->m_erange = e_range_null_terminated;
+
+   //         return;
+
+   //      }
+
+   //   }
+
+   //   this->m_begin = s;
+   //   this->m_end = s + n;
+   //   this->m_erange = e_range_none;
+
+   //}
+
+
+   template<typed_range<iterator> TYPED_RANGE>
+   constexpr block_range(const TYPED_RANGE& range)
+      requires(!::std::is_same_v < TYPED_RANGE, THIS_RANGE >) :
+      _BASE_RAW_RANGE((this_iterator)range.begin(),(this_iterator)range.end(),range.m_erange)
+   {
+
+
+   }
+
+
+   constexpr block_range(const block_range & range) :
+      _BASE_RAW_RANGE(range)
+   {
+
+   }
+
+
+   constexpr block_range(block_range && range) :
+      _BASE_RAW_RANGE(::transfer(range))
+   {
+
+
+   }
+
+
+   template<typename TYPE>
+   constexpr block_range(TYPE *& p) :
+      _BASE_RAW_RANGE((this_iterator)p,(this_iterator)find_first_null_character(p), e_range_none)
+   {
+
+   }
+
+
+   template<prototype_integral INTEGRAL>
+   constexpr block_range(this_iterator begin, INTEGRAL count, enum_range erange = e_range_none) :
+      _BASE_RAW_RANGE(begin, begin + count,erange)
+   {
+   }
+
+   constexpr block_range(this_iterator begin, this_iterator end, enum_range erange = e_range_none) :
+      _BASE_RAW_RANGE(begin, end, erange)
+   {
+   }
+
+   template<::comparison::equality<ITEM> EQUALITY>
+   constexpr block_range(this_iterator begin, EQUALITY equality) :
+      _BASE_RAW_RANGE(begin, (this_iterator)find_first_null_character(begin, equality), e_range_none)
+   {
+   }
+
+
+
+
+
+   block_range & operator =(const block_range & range)
+   {
+
+      _BASE_RAW_RANGE::operator =(range);
+
+      return *this;
+
+   }
+
+
+   block_range & operator=(block_range && range)
+   {
+
+      _BASE_RAW_RANGE::operator =(::transfer(range));
+
+      return *this;
+
+   }
+
+
+   const ::block block() const;
+   ::block block();
+
+
+};

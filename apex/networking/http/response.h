@@ -27,7 +27,7 @@ namespace http
       ::memory_file * file() { return m_pmemfileBody; }
       
       //void print(const ::scoped_string & scopedstr) { m_pmemfileBody->print(str); }
-      //void println(const::string & str) { m_pmemfileBody->println(str); }
+      //void println(const ::scoped_string & scopedstr) { m_pmemfileBody->println(str); }
       //void printf(const ::scoped_string & scopedstr, ...);
 
       void clear();

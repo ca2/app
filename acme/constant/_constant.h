@@ -345,18 +345,39 @@ enum enum_trace_category
 
 };
 
+// tight
+//   static const int LOG_INTERR = 0;
+//   static const int LOG_ERR = 1;
+//   static const int LOG_WARN = 2;
+//   static const int LOG_MSG = 3;
+//   static const int LOG_INFO = 4;
+//   static const int LOG_DETAIL = 5;
+//   static const int LOG_DEBUG = 9;
+
+/// 2025
+// e_trace_level_undefined,
+// e_trace_level_none,
+// e_trace_level_debug,       // debug
+// e_trace_level_information, // info
+// e_trace_level_warning,     // warn
+// e_trace_level_error,       // error
+// e_trace_level_fatal,       // fatal
+// e_trace_level_count
 
 enum enum_trace_level
 {
 
 
-   e_trace_level_undefined,
-   e_trace_level_none,
-   e_trace_level_debug,       // debug
-   e_trace_level_information, // info
-   e_trace_level_warning,     // warn
-   e_trace_level_error,       // error
-   e_trace_level_fatal,       // fatal
+   e_trace_level_undefined = -1,
+   e_trace_level_none = 0,
+   e_trace_level_fatal = 1,       // fatal
+   e_trace_level_error = 2,       // error
+   e_trace_level_warning = 3,     // warn
+   e_trace_level_message = 4,     // message
+   e_trace_level_information = 5, // information
+   e_trace_level_detail = 6,      // detail
+   e_trace_level_debug = 9,       // debug
+   e_trace_level_last = e_trace_level_debug,
    e_trace_level_count
 
 

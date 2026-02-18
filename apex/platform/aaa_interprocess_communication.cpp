@@ -258,7 +258,7 @@ void interprocess_intercommunication::connect(const ::scoped_string & scopedstrA
 }
 
 
-string interprocess_intercommunication::key(const string &strApp, const ::atom & idPid)
+string interprocess_intercommunication::key(const ::scoped_string & scopedstrApp, const ::atom & idPid)
 {
 
    string strKey;

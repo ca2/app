@@ -88,6 +88,8 @@ public:
 
    virtual ::payload length(const ::file::path & path, ::payload * pvarQuery);
 
+   virtual void truncate(const ::file::path & path, filesize size = 0);
+   virtual void set_length(const ::file::path & path, filesize size);
 
    virtual ::file::path module();
 

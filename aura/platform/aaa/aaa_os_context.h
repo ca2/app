@@ -22,14 +22,14 @@
       virtual bool reboot();
       virtual bool shutdown(bool bPowerOff);
 
-      virtual void terminate_processes_by_title(const ::string & lpszName);
+      virtual void terminate_processes_by_title(const ::scoped_string & scopedstrName);
 
 #ifdef WINDOWS
       virtual ::file::path get_module_path(HMODULE hmodule);
 #endif
 
-      virtual bool get_pid_by_path(const ::string & lpszName, unsigned int & dwPid);
-      virtual bool get_pid_by_title(const ::string & lpszName, unsigned int & dwPid);
+      virtual bool get_pid_by_path(const ::scoped_string & scopedstrName, unsigned int & dwPid);
+      virtual bool get_pid_by_title(const ::scoped_string & scopedstrName, unsigned int & dwPid);
       virtual void get_all_processes(unsigned_int_array & dwa);
       virtual ::file::path get_process_path(unsigned int dwPid);
 
@@ -55,10 +55,10 @@
       virtual bool file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrParam);
       virtual bool file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam);
 
-      virtual bool native_full_web_browser(const ::string & pcsz);
+      virtual bool native_full_web_browser(const ::scoped_string & scopedstr);
 
 
-      virtual bool native_modern_web_browser(const ::string & pcsz);
+      virtual bool native_modern_web_browser(const ::scoped_string & scopedstr);
 
 
       virtual void create_service();

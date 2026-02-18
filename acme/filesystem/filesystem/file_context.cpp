@@ -408,6 +408,27 @@ bool file_context::exists(const ::file::path & pathParam)
 
 }
 
+void file_context::truncate(const ::file::path & path, filesize size)
+{
+
+   if (size >= this->length(path))
+   {
+
+      return;
+
+   }
+
+   this->set_length(path, size);
+
+}
+
+
+void file_context::set_length(const ::file::path & path, filesize size)
+{
+
+   throw ::interface_only();
+
+}
 
 ::file::path file_context::module()
 {

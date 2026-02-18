@@ -544,7 +544,7 @@ namespace user
       }
 
 
-      shell::e_folder shell::get_folder_type(::particle * pparticle, const ::string & pcszPath)
+      shell::e_folder shell::get_folder_type(::particle * pparticle, const ::scoped_string & scopedstrPath)
       {
 
          wstring wstr(pcszPath);

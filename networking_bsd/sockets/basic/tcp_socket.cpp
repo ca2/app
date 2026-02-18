@@ -1881,6 +1881,13 @@ m_ibuf(isize)
    }
 
 
+   void tcp_socket::flush()
+   {
+
+
+
+   }
+
 
    void tcp_socket::OnSocks4Connect()
    {

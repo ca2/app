@@ -63,7 +63,7 @@
 //   }
 //
 //
-//   void os_context::terminate_processes_by_title(const ::string & lpszName)
+//   void os_context::terminate_processes_by_title(const ::scoped_string & scopedstrName)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(lpszName);
@@ -172,7 +172,7 @@
 //   }
 //
 //
-//   void os_context::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(scopedstrKey);
@@ -183,7 +183,7 @@
 //   }
 //
 //
-//   void os_context::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(scopedstrKey);
@@ -194,7 +194,7 @@
 //   }
 //
 //
-//   void os_context::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(scopedstrKey);
@@ -205,7 +205,7 @@
 //   }
 //
 //
-//   void os_context::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::string& pszArguments, bool bSet)
+//   void os_context::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(scopedstrKey);
@@ -286,7 +286,7 @@
 //
 //   /// Windows (IE), macOS (Safari), Linux (Firefox, oder...)
 //   /// Remark: it is not default browser (necessarily)
-//   void os_context::native_full_web_browser(const ::string & pcsz)
+//   void os_context::native_full_web_browser(const ::scoped_string & scopedstr)
 //
 //   {
 //
@@ -298,7 +298,7 @@
 //
 //   /// Windows (Edge), fallback to native_full_web_browser
 //   /// Remark: it is not default browser (necessarily)
-//   void os_context::native_modern_web_browser(const ::string & pcsz)
+//   void os_context::native_modern_web_browser(const ::scoped_string & scopedstr)
 //
 //   {
 //

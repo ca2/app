@@ -123,13 +123,13 @@ return nullptr;
       //virtual string get_locale_schema_dir(const ::scoped_string & scopedstrLocale);
       //virtual string get_locale_schema_dir() override;
 
-      //virtual void set_locale(const string & pcsz, const ::action_context & action_context);
+      //virtual void set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
-      //virtual void set_schema(const string & pcsz, const ::action_context & action_context);
+      //virtual void set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
- /*     virtual void on_set_locale(const string & pcsz, const ::action_context & action_context);
+ /*     virtual void on_set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context);
 
-      virtual void on_set_schema(const string & pcsz, const ::action_context & action_context);
+      virtual void on_set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context);
 */
 
 

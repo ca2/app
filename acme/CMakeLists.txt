@@ -701,6 +701,8 @@ list(APPEND library_source
         platform/reference_referer.h
         platform/referencing_debugging.cpp
         platform/referencing_debugging.h
+   platform/remoting.cpp
+   platform/remoting.h
         platform/system.cpp
         platform/system_acme.cpp
         platform/system_acme.h

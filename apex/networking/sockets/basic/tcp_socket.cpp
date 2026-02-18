@@ -2922,30 +2922,30 @@ return true;
    }
 
    
-   //int tcp_socket::flush_memory_file_buffer()
-   //{
-
-   //   if (tcp_socket_interface() == this)
-   //   {
-
-   //      auto pmemory = m_memoryfileBuffer.detach();
-
-   //      if (pmemory)
-   //      {
-
-   //         m_memoryfileBuffer.seek_to_begin();
-
-   //         return _try_write(pmemory->data(), pmemory->size());
-
-   //      }
-
-   //      return 0;
-
-   //   }
-
-   //   return tcp_socket_interface()->flush_memory_file_buffer();
-
-   //}
+   // void tcp_socket::flush()
+   // {
+   //
+   //    if (tcp_socket_interface() == this)
+   //    {
+   //
+   // //      auto pmemory = m_memoryfileBuffer.detach();
+   //
+   // //      if (pmemory)
+   // //      {
+   //
+   // //         m_memoryfileBuffer.seek_to_begin();
+   //
+   // //         return _try_write(pmemory->data(), pmemory->size());
+   //
+   // //      }
+   //
+   // //      return 0;
+   //
+   // //   }
+   //
+   //    return tcp_socket_interface()->flush_memory_file_buffer();
+   //
+   // }
 
 
    int tcp_socket::try_write(const void* buf, int len)

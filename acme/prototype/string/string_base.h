@@ -362,7 +362,7 @@ public:
    //string_base(::ansi_character ansich) : string_base(&ansich, 1) {}
    //string_base(::wd16_character wd16ch) : string_base(&wd16ch, 1) {}
    //string_base(::wd32_character wd32ch) : string_base(&wd32ch, 1) {}
-   //string_base(const ::string & cstr) :NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
+   //string_base(const ::scoped_string & scopedstr) :NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(str); }
    //string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct_from_a_range(scopedwstr); }
 #if defined(__STD_FORMAT__)
    string_base(const ::std::string & str) : string_base(str.c_str()) { }
@@ -1014,6 +1014,25 @@ public:
 //   }
 
 
+   ::character_count size_with_null_terminator() const
+   {
+
+      return this->size() + 1;
+
+   }
+
+
+   ::character_count size_in_bytes_with_null_terminator() const
+   {
+
+      return this->size_with_null_terminator() * this->item_size();
+
+   }
+
+
+   inline const ::block block_with_null_terminator() const;
+
+
    template<typename SAME_CHARACTER_RANGE >
    string_base &assign_range(const SAME_CHARACTER_RANGE & range) 
       requires (typed_character_range<SAME_CHARACTER_RANGE, CHARACTER>)
@@ -1609,6 +1628,18 @@ public:
    inline this_iterator & truncate(INTEGRAL count) {return truncate(this->m_begin + count);}
 
    template < prototype_integral INTEGRAL >
+   inline this_iterator & rear_truncate(INTEGRAL count)
+   {
+
+      auto count2 = ::minimum(this->length(), count);
+
+      return this->truncate(this->length() - count2);
+
+   }
+
+
+
+   template < prototype_integral INTEGRAL >
    inline string_base truncated(INTEGRAL count) const
    {
 
@@ -2063,6 +2094,7 @@ public:
 
    // erase all occurrences of character 'chRemove'
    ::collection::count erase_character(CHARACTER chRemove);
+   ::collection::count erase_any_character_in(const SCOPED_STRING & scopedstrCharacters);
 
    string_base Tokenize(const SCOPED_STRING & scopedstrTokens, character_count & iStart) const;
 
@@ -2538,7 +2570,7 @@ public:
 
 
 // For MSVC, but not for GCC?
-//inline ::string operator + (const ::string & cstrA, const ::string & cstrB)
+//inline ::string operator + (const ::scoped_string & scopedstrA, const ::scoped_string & scopedstrB)
 //{
 //
 //   auto str = strA;
@@ -2550,7 +2582,7 @@ public:
 //}
 
 
-//inline ::string operator +(const ::string & cstr, const ::const_ansi_range & range)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::const_ansi_range & range)
 //{
 //
 //   auto strResult = str;
@@ -2562,9 +2594,9 @@ public:
 //}
 
 
-//inline ::string operator + (const ::string & cstr, char ch);
+//inline ::string operator + (const ::scoped_string & scopedstr, char ch);
 
-//inline ::string operator +(const ::string & cstr, const_char_pointer psz)
+//inline ::string operator +(const ::scoped_string & scopedstr, const_char_pointer psz)
 //{
 //
 //   return str + ::string(scopedstr);
@@ -2573,13 +2605,13 @@ public:
 
 
 //template < ::collection::count c >
-//inline ::string operator +(const ::string & cstr, const char(&sz)[c]);
+//inline ::string operator +(const ::scoped_string & scopedstr, const char(&sz)[c]);
 //
 //
 //template < character_count m_sizeMaximumLength >
-//inline ::string operator +(const ::string & cstr, const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
 
-//inline ::string operator +(const ::scoped_string & scopedstr, const ::string & cstr)
+//inline ::string operator +(const ::scoped_string & scopedstr, const ::scoped_string & scopedstr)
 //{
 //
 //   return ::string(str) + str;
@@ -2587,12 +2619,12 @@ public:
 //}
 
 
-//inline ::string operator +(char ch, const ::string & cstr);
+//inline ::string operator +(char ch, const ::scoped_string & scopedstr);
 
 
 // For MSVC, but not for GCC?
 //template < ::collection::count c >
-//inline ::string operator +(const char(&sz)[c], const ::string & cstr)
+//inline ::string operator +(const char(&sz)[c], const ::scoped_string & scopedstr)
 //{
 //
 //   return ::string(sz) + str;
@@ -2610,7 +2642,7 @@ public:
 
 
 // For MSVC, but not for GCC?
-//inline ::string operator +(const ::const_ansi_range & range, const ::string & cstr)
+//inline ::string operator +(const ::const_ansi_range & range, const ::scoped_string & scopedstr)
 //{
 //
 //   return ::string(range) + str;
@@ -3127,7 +3159,7 @@ string_base<ITERATOR_TYPE>& string_base<ITERATOR_TYPE>::single_quote(bool bEscap
 }
 
 
-CLASS_DECL_ACME ::string _(const ::string & cstr);
+CLASS_DECL_ACME ::string _(const ::scoped_string & scopedstr);
 
 
 
@@ -3298,3 +3330,36 @@ template < prototype_character_range RANGE, typed_character_pointer < typename R
 
 
 
+
+
+template <prototype_character_range CHARACTER_RANGE >
+requires(sizeof(::character_decay<::non_pointer<::non_const< typename CHARACTER_RANGE::this_iterator>>>) > 1)
+struct std::formatter<CHARACTER_RANGE>
+{
+   using BASE_TYPE = CHARACTER_RANGE;
+   using this_iterator = typename BASE_TYPE::this_iterator;
+   using character_type = ::character_decay<::non_pointer<::non_const< this_iterator>>>;
+   //using string_view_type = ::std::basic_string_view<character_type>;
+   using string_view_type = ::std::string_view;
+   using target_iterator = const char*;
+
+   std::formatter<string_view_type> base;
+
+   // Forward parse explicitly
+   template <typename FormatContext>
+   constexpr auto parse(FormatContext& ctx) {
+      return base.parse(ctx);
+   }
+
+   template <typename FormatContext>
+   auto format(const BASE_TYPE & characterrange, FormatContext& ctx) const {
+      ::string str(characterrange);
+      return base.format(
+         string_view_type{
+            (target_iterator) str.begin(),
+            (target_iterator) str.end()
+         },
+         ctx
+      );
+   }
+};

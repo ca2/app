@@ -73,7 +73,7 @@ CLASS_DECL_ACME::string get_operating_system_name();
 
 
 CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception,
-   const ::string& strMoreDetails);
+   const ::scoped_string & scopedstrMoreDetails);
 
 
 CLASS_DECL_ACME void trace_category_static_init(::platform::system* psystem);
@@ -137,7 +137,7 @@ CLASS_DECL_ACME bool is_wayland();
 
 
 enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle,
-   const ::enum_message_box& emessagebox);
+   const ::user::enum_message_box& emessagebox);
 
 
 #include "acme/_operating_system.h"
@@ -199,6 +199,7 @@ namespace platform
 #if REFERENCING_DEBUGGING
       iAddUp += sizeof(payload.m_preferer);
 #endif
+      int iETypeSizeHere = (int)((unsigned char*)pAll - (unsigned char*)pType);
       int iComputed = (int)(((unsigned char*)pAll - (unsigned char*)pType) + iAll + iAddUp);
       int iColor = sizeof(payload.m_color);
       int iStr = sizeof(payload.m_str);
@@ -284,7 +285,7 @@ namespace platform
       if (!m_papplicationMain)
       {
 
-         __raw_construct(m_papplicationMain);
+         øraw_construct(m_papplicationMain);
 
       }
 
@@ -517,7 +518,7 @@ namespace platform
    ::thread_storage* system::_thread_storage_unlocked(const ::task_index& taskindex)
    {
 
-      auto ppairThreadStorage = m_mapThreadStorage.plookup(taskindex);
+      auto ppairThreadStorage = m_mapThreadStorage.find(taskindex);
 
       if (!ppairThreadStorage)
       {
@@ -541,13 +542,13 @@ namespace platform
 
       //::output_debug_string("Going to create simple log\n");
 
-      //m_plogger = __create_new < ::simple_log >();
+      //m_plogger = øcreate_new < ::simple_log >();
 
-      __øconstruct(m_plogger);
+      øconstruct(m_plogger);
 
-      //__øconstruct(m_pmutexTask);
+      //øconstruct(m_pmutexTask);
 
-      //__øconstruct(m_pmutexTaskOn);
+      //øconstruct(m_pmutexTaskOn);
 
       //::output_debug_string("output_debug_string : simple log created\n");
 
@@ -619,7 +620,7 @@ namespace platform
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __allocate ::parallelization::cleanup_task();
+      //m_pcleanuptask = øallocate  ::parallelization::cleanup_task();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -628,9 +629,9 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      __defer_construct_new(m_pmathematics);
+      ødefer_construct_new(m_pmathematics);
 
-      __defer_construct_new(m_pprototype);
+      ødefer_construct_new(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -698,7 +699,7 @@ namespace platform
 
       //information() << "initialize_system create nano";
 
-      //__øconstruct(m_pnano);
+      //øconstruct(m_pnano);
 
       //m_psystemimpl = ___new system_impl();
 
@@ -887,7 +888,7 @@ namespace platform
       if (!m_psystemfactory)
       {
 
-         __construct_new(m_psystemfactory);
+         øconstruct_new(m_psystemfactory);
 
       }
 
@@ -941,7 +942,7 @@ namespace platform
 
 #if !defined(WINDOWS)
 
-      __øconstruct(m_pexceptiontranslator);
+      øconstruct(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -949,7 +950,7 @@ namespace platform
 
       //information() << "create_os_node going to create node";
 
-      papplication->__øconstruct(m_pnode);
+      papplication->øconstruct(m_pnode);
 
       m_pnode = m_pnode;
 
@@ -960,9 +961,9 @@ namespace platform
       //
       // }
 
-      //__øconstruct(m_pmutexTask);
+      //øconstruct(m_pmutexTask);
 
-      __øconstruct(m_pmutexHttpDownload);
+      øconstruct(m_pmutexHttpDownload);
 
       //if(!estatus)
       //{
@@ -1031,18 +1032,18 @@ namespace platform
 
 #endif
 
-      __construct_new(m_purlcontext);
+      øconstruct_new(m_purlcontext);
 
       //::acme::idpool::init(this);
 
       //      /// Create/Replace logger
 
-      __construct_new(m_pdatetime);
+      øconstruct_new(m_pdatetime);
 
 
       m_pnode->m_htaskSystem = m_htask;
 
-      //auto estatus = __defer_construct_new(m_pfactorysquare);
+      //auto estatus = ødefer_construct_new(m_pfactorysquare);
 
       //if (!estatus)
       //{
@@ -1060,7 +1061,7 @@ namespace platform
 
       // }
 
-      //estatus = __øconstruct(m_pnode);
+      //estatus = øconstruct(m_pnode);
 
       //if (!m_pnode)
       //{
@@ -1069,9 +1070,9 @@ namespace platform
 
       //}
 
-      //auto estatus = __raw_construct(m_pdirectorysystem);
+      //auto estatus = øraw_construct(m_pdirectorysystem);
 
-      __raw_construct(m_pdirectorysystem);
+      øraw_construct(m_pdirectorysystem);
 
       /*if (!estatus)
        {
@@ -1084,9 +1085,9 @@ namespace platform
 
        //    m_pdirectorysystem->increment_reference_count();
 
-       //estatus = __raw_construct(m_pfilesystem);
+       //estatus = øraw_construct(m_pfilesystem);
 
-      __raw_construct(m_pfilesystem);
+      øraw_construct(m_pfilesystem);
 
       //if (!estatus)
       //{
@@ -1095,9 +1096,9 @@ namespace platform
 
       //}
 
-      //estatus = __raw_construct(m_ppathsystem);
+      //estatus = øraw_construct(m_ppathsystem);
 
-      __raw_construct(m_ppathsystem);
+      øraw_construct(m_ppathsystem);
 
       //if (!estatus)
       //{
@@ -1171,7 +1172,7 @@ namespace platform
       ////}
       ////estatus =
 
-      //__øconstruct(m_pfilesystem);
+      //øconstruct(m_pfilesystem);
 
       ////if(!estatus)
       ////{
@@ -1186,7 +1187,7 @@ namespace platform
 
       ////::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
-      //__øconstruct(m_pdirectorysystem);
+      //øconstruct(m_pdirectorysystem);
 
       //if (!estatus)
       //{
@@ -1452,7 +1453,7 @@ namespace platform
 
       critical_section_lock criticalsectionlock(&m_criticalsectionThreadStorage);
 
-      auto ppairThreadStorage = m_mapThreadStorage.plookup(ptask->m_taskindex);
+      auto ppairThreadStorage = m_mapThreadStorage.find(ptask->m_taskindex);
 
       if (!ppairThreadStorage->m_element2.m_ptask)
       {
@@ -1529,8 +1530,8 @@ namespace platform
       // if (pacmewindowing)
       // {
       //
-      //    m_pmanualresethappeningReadyToExit = __allocate manual_reset_happening();
-      //    m_pmanualresethappeningMainLoopEnd = __allocate manual_reset_happening();
+      //    m_pmanualresethappeningReadyToExit = øallocate  manual_reset_happening();
+      //    m_pmanualresethappeningMainLoopEnd = øallocate  manual_reset_happening();
       //
       //    auto pReadyToExit = m_pmanualresethappeningReadyToExit;
       //    auto pMainLoopEnd = m_pmanualresethappeningMainLoopEnd;
@@ -1732,6 +1733,14 @@ namespace platform
    }
 
 
+   ::platform::remoting * system::remoting()
+   {
+
+      return m_premoting;
+
+   }
+
+
    class ::time* system::file_listing_cache_time()
    {
 
@@ -1752,7 +1761,7 @@ namespace platform
 
       ::string str;
 
-      if (m_mapText[scopedstrPath].lookup(scopedstrKey, str))
+      if (m_mapText[scopedstrPath].find(scopedstrKey, str))
       {
 
          return str;
@@ -1778,7 +1787,7 @@ namespace platform
    }
 
 
-   string_array* system::http_download_array()
+   string_array_base* system::http_download_array()
    {
 
       return &m_straHttpDownloading;
@@ -1786,7 +1795,7 @@ namespace platform
    }
 
 
-   string_array* system::http_exists_array()
+   string_array_base* system::http_exists_array()
    {
 
       return &m_straHttpExists;
@@ -1946,24 +1955,24 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   string system::__get_text(const ::string& str)
+   string system::__get_text(const ::scoped_string & scopedstr)
    {
 
-      return str;
+      return scopedstr;
 
    }
 
 
-   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __allocate ::sequence < ::conversation > ();
+   //   auto psequence = øallocate  ::sequence < ::conversation > ();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __allocate status < enum_dialog_result > ();
+   //   //auto pprocess = øallocate  status < enum_dialog_result > ();
 
    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
@@ -2271,7 +2280,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          //initialize_nano_window(factory());
 
-         __construct_new(m_pnano);
+         øconstruct_new(m_pnano);
 
       }
 
@@ -2299,7 +2308,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          }
 
-         __øconstruct(pcomponent);
+         øconstruct(pcomponent);
 
          pcomponent->m_strComponent = scopedstrComponent;
 
@@ -2353,7 +2362,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //      initialize_nano_http(factory());
    //
-   //      __øconstruct(m_pnanohttp);
+   //      øconstruct(m_pnanohttp);
    //
    //   }
    //
@@ -2370,7 +2379,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //         initialize_nano_http(factory());
    //
-   //         __øconstruct(m_pnanohttp);
+   //         øconstruct(m_pnanohttp);
    //
    //      }
    //
@@ -2447,7 +2456,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer<::acme::library> system::library(const ::string& strComponent, const ::string& strImplementationParam)
+   //::pointer<::acme::library> system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementationParam)
    //{
 
    //   string strImplementation(strImplementationParam);
@@ -2472,7 +2481,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer<::acme::library>& system::library(const ::string & strComponent, const ::string & strImplementation)
+   //::pointer<::acme::library>& system::library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -2508,7 +2517,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer<::acme::library>system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   //::pointer<::acme::library>system::open_containerized_component_library(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -2567,7 +2576,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate  ::acme::library();
 
    //      plibrary->initialize_matter(this);
 
@@ -2602,7 +2611,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::acme::library* system::on_get_library(const ::string& pszLibrary)
+   ::acme::library* system::on_get_library(const ::scoped_string & scopedstrLibrary)
    {
 
       return nullptr;
@@ -2610,7 +2619,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation)
+   //   ::extended::transport < ::factory::factory > system::([a-z0-9_]+)_factory(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
    //   {
    //
    //      auto& pfactory = m_mapFactoryMap[strComponent][strImplementation];
@@ -2659,11 +2668,11 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //      }
    //
-   //      plibrary = __allocate ::acme::library();
+   //      plibrary = øallocate  ::acme::library();
    //
    //      plibrary->initialize_matter(this);
    //
-   //      __construct_new(plibrary->m_pfactory);
+   //      øconstruct_new(plibrary->m_pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -2707,7 +2716,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //
    //      }
    //
-   //      __construct_new(pfactory);
+   //      øconstruct_new(pfactory);
    //
    //      plibrary->m_pfactory->initialize_matter(this);
    //
@@ -2727,10 +2736,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const string& str)
+   ::regular_expression_pointer system::create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr)
    {
 
-      auto pcontext = get_regular_expression_context(pszStyle);
+      auto pcontext = get_regular_expression_context(scopedstrStyle);
 
       if (!pcontext)
       {
@@ -2739,7 +2748,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       }
 
-      auto pregularexpression = pcontext->compile(str);
+      auto pregularexpression = pcontext->compile(scopedstr);
 
       if (!pregularexpression)
       {
@@ -2753,19 +2762,19 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::pointer<::regular_expression::context> system::get_regular_expression_context(const ::string& pszStyle)
+   ::pointer<::regular_expression::context> system::get_regular_expression_context(const ::scoped_string & scopedstrStyle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      __defer_construct_new(m_pmapRegularExpressionContext);
+      ødefer_construct_new(m_pmapRegularExpressionContext);
 
-      auto& pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
+      auto& pcontext = (*m_pmapRegularExpressionContext)[scopedstrStyle];
 
       if (!pcontext)
       {
 
-         auto& pfactory = factory("regular_expression", pszStyle);
+         auto& pfactory = factory("regular_expression", scopedstrStyle);
 
          if (!pfactory)
          {
@@ -2774,7 +2783,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          }
 
-         pfactory->__øconstruct(this, pcontext);
+         pfactory->øconstruct(this, pcontext);
 
       }
 
@@ -2783,10 +2792,10 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::regular_expression_pointer system::compile_pcre(const string& str)
+   ::regular_expression_pointer system::compile_pcre(const ::scoped_string & scopedstr)
    {
 
-      return create_regular_expression("pcre2", str);
+      return create_regular_expression("pcre2", scopedstr);
 
    }
 
@@ -2799,7 +2808,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //   int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
+   //   int system::pcre_add_tokens(string_array& stra, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrRegexp, int nCount)
    //   {
    //
    //      throw_todo();
@@ -2819,7 +2828,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::get_public_internet_domain_extension_list(string_array& stra)
+   void system::get_public_internet_domain_extension_list(string_array_base& stra)
    {
 
       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
@@ -2918,7 +2927,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       ::pointer<::platform::session> psession;
 
       //auto estatus =
-      __raw_construct(psession);
+      øraw_construct(psession);
 
       //psession->set_platform();
 
@@ -2952,7 +2961,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    ::platform::session* system::session(::collection::index iEdge)
    {
 
-      auto iterator = m_sessionmap.plookup(iEdge);
+      auto iterator = m_sessionmap.find(iEdge);
 
       if (iterator.is_null())
       {
@@ -3017,7 +3026,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       auto psession = m_sessionmap[iEdge];
 
-      m_sessionmap.erase_item(iEdge);
+      m_sessionmap.erase(iEdge);
 
       if (m_sessionmap.is_empty() && m_bFinalizeIfNoSession)
       {
@@ -3112,7 +3121,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::post_application_start()
    {
 
-      auto prequest = __create_new<::request>();
+      auto prequest = øcreate_new<::request>();
 
       prequest->m_ecommand = e_command_application_start;
 
@@ -3134,12 +3143,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //      m_bPostedInitialRequest = true;
 
-   //      auto prequest = __create_new<::request>();
+   //      auto prequest = øcreate_new<::request>();
 
    //      post_request(prequest);
 
 
-   //      auto prequest = __create_new<::request>();
+   //      auto prequest = øcreate_new<::request>();
 
    //      auto strCommandLine = this->m_strCommandLine;
 
@@ -3248,7 +3257,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   void system::defer_post_file_open()
+   void system::defer_post_application_start_file_open_request()
    {
 
       if (!m_bPostedCommandLineFileOpen)
@@ -3256,9 +3265,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          m_bPostedCommandLineFileOpen = true;
 
-         auto prequest = __create_new<::request>();
+         auto prequest = øcreate_new<::request>();
 
-         auto strCommandLine = this->m_strCommandLine;
+         auto strCommandLine = this->command_line();
 
          strCommandLine.trim();
 
@@ -3375,7 +3384,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::post_application_started()
    {
 
-      auto prequest = __create_new<::request>();
+      auto prequest = øcreate_new<::request>();
       
       prequest->m_ecommand = e_command_application_started;
       prequest->m_strAppId = m_papplication->m_strAppId;
@@ -3580,7 +3589,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          ::file::path path = pathFolder / (strModifier + "_command_line.txt");
 
-         file_system()->put_contents(path, this->m_strCommandLine);
+         file_system()->put_contents(path, this->command_line_text());
 
          ::file::path pathExecutable = file_system()->module();
 
@@ -3934,7 +3943,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   void system::on_open_file(const ::string& pszFile)
+   void system::on_open_file(const ::scoped_string & scopedstrFile)
    {
 
       throw ::interface_only();
@@ -4187,7 +4196,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   //::pointer < ::subparticle > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //::pointer < ::subparticle > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -4233,7 +4242,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          if (strAppId.is_empty() || this->is_console())
          {
 
-            papp = __øcreate<::platform::application>();
+            papp = øcreate<::platform::application>();
 
             papp->increment_reference_count();
 
@@ -4311,7 +4320,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
             if (pfactory)
             {
 
-               papp = __øcreate<::platform::application>(pfactory);
+               papp = øcreate<::platform::application>(pfactory);
 
                if (!papp)
                {
@@ -4421,7 +4430,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember,
+   bool system::_handle_call(::payload& payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember,
       ::property_set& propertyset)
    {
 
@@ -4433,7 +4442,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          if (m_papplication)
          {
 
-            if (m_papplication->_handle_call(payload, strObject, strMember, propertyset))
+            if (m_papplication->_handle_call(payload, scopedstrObject, scopedstrMember, propertyset))
             {
 
                return true;
@@ -4453,7 +4462,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   string system::get_latest_deployment_number(const ::string& strBranch)
+   string system::get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
    {
 
       return "(lastest deployed build)";
@@ -4464,7 +4473,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresethappening = __allocate manual_reset_happening();
+   //      auto pmanualresethappening = øallocate  manual_reset_happening();
    //
    //      windowing_post([pmanualresethappening, procedure]()
    //                     {
@@ -4552,7 +4561,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::file::path system::local_get_matter_path(string strMatter)
+   ::file::path system::local_get_matter_path(const ::scoped_string & scopedstrMatter)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -4561,7 +4570,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 #else
 
-      return local_get_matter_path() / strMatter;
+      return local_get_matter_path() / scopedstrMatter;
 
 #endif
 
@@ -4576,54 +4585,54 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::file::path system::local_get_matter_cache_path(string strMatter)
+   ::file::path system::local_get_matter_cache_path(const ::scoped_string & scopedstrMatter)
    {
 
-      return local_get_matter_cache_path() / strMatter;
+      return local_get_matter_cache_path() / scopedstrMatter;
 
    }
 
 
-   string system::get_system_configuration()
-   {
-
-#ifndef CA2_PLATFORM_VERSION
-
-#error "CA2_PLATFORM_VERSION not defined"
-
-#endif
-
-#ifndef CA2_BASIS
-
-#error "CA2_BASIS not defined"
-
-#endif
-
-#ifndef CA2_STAGE
-
-#error "CA2_STAGE not defined"
-
-#endif
-
-#if CA2_PLATFORM_VERSION == CA2_BASIS
-
-      return "basis";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
-
-#elif CA2_PLATFORM_VERSION == CA2_STAGE
-
-      return "stage";
-
-      //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
-
-#else
-
-#error "CA2_PLATFORM_VERSION has unsupported definition"
-
-#endif
-
-   }
+//    string system::get_system_configuration()
+//    {
+//
+// #ifndef CA2_PLATFORM_VERSION
+//
+// #error "CA2_PLATFORM_VERSION not defined"
+//
+// #endif
+//
+// #ifndef CA2_BASIS
+//
+// #error "CA2_BASIS not defined"
+//
+// #endif
+//
+// #ifndef CA2_STAGE
+//
+// #error "CA2_STAGE not defined"
+//
+// #endif
+//
+// #if CA2_PLATFORM_VERSION == CA2_BASIS
+//
+//       return "basis";
+//
+//       //#pragma message "CA2_PLATFORM_VERSION is CA2_BASIS"
+//
+// #elif CA2_PLATFORM_VERSION == CA2_STAGE
+//
+//       return "stage";
+//
+//       //#pragma message "CA2_PLATFORM_VERSION is CA2_STAGE"
+//
+// #else
+//
+// #error "CA2_PLATFORM_VERSION has unsupported definition"
+//
+// #endif
+//
+//    }
 
 
    string system::get_system_platform()
@@ -4844,7 +4853,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::on_application_dark_mode_change()
    {
 
-      auto ptopic = __allocate::topic(id_application_dark_mode_change);
+      auto ptopic = øallocate  ::topic(id_application_dark_mode_change);
 
       application()->handle(ptopic, nullptr);
 
@@ -5008,7 +5017,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!m_pmicrouser)
       {
 
-         __construct_new(m_pmicrouser);
+         øconstruct_new(m_pmicrouser);
 
       }
 
@@ -5025,7 +5034,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          do_graphics_and_windowing_factory();
 
-         __øconstruct(m_pacmewindowing);
+         øconstruct(m_pacmewindowing);
 
       }
 
@@ -5270,9 +5279,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
+   //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    //                                                       const ::e_message_box & emessagebox,
-   //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+   //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //   {
    //
    //
@@ -5286,9 +5295,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
    //::pointer < ::message_box > system::exception_message_box(
-   //    const ::exception & exception, const ::string & strMessage,
-   //   const ::string & strTitle,
-   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
+   //   const ::scoped_string & scopedstrTitle,
+   //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //   return micro_user()->exception_message_box(
    //exception,
@@ -5301,9 +5310,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   //::pointer < ::message_box > system::message_console(const ::string & strMessage, const ::string & strTitle,
+   //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    //                                                           const ::e_message_box & emessagebox,
-   //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+   //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
    //
    //   return micro_user()->message_console(
@@ -5317,9 +5326,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
    //::pointer < ::message_box > system::exception_message_console(
-   //    const ::exception & exception, const ::string & strMessage,
-   //   const ::string & strTitle,
-   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
+   //   const ::scoped_string & scopedstrTitle,
+   //    const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
    //   return micro_user()->exception_message_console(
@@ -5341,7 +5350,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //      do_graphics_and_windowing_system_factory();
 
-   //      __øconstruct(m_pwindowingbase);
+   //      øconstruct(m_pwindowingbase);
 
    //   }
 
@@ -5369,7 +5378,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 ////}
 //
 //
-//CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
+//CLASS_DECL_ACME string get_latest_deployment_number(const ::scoped_string & scopedstrBranch)
 //{
 //
 //   return system()->get_latest_deployment_number(strBranch);
@@ -5378,7 +5387,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
 //
-//CLASS_DECL_ACME string __get_text(const string & str)
+//CLASS_DECL_ACME string __get_text(const ::scoped_string & scopedstr)
 //{
 //
 //   return ::g_psystem->__get_text(str);

@@ -17,6 +17,8 @@ namespace platform
 {
 
 
+   class remoting;
+
    /// For GUI applications:
    /// Never let system and other "system" threads (like session, application)
    /// be the main thread object.
@@ -52,6 +54,7 @@ namespace platform
 
 
       static ::platform::system *            s_p;
+      ::pointer < ::platform::remoting >     m_premoting;
       //::pointer < ::platform::system  >      m_psystemComposite;
 
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
@@ -163,6 +166,8 @@ namespace platform
 
       virtual ::networking::networking * networking() override;
 
+      virtual ::platform::remoting * remoting();
+
       virtual ::platform::node * node() override;
 
       virtual class ::base64 * base64() override;
@@ -227,7 +232,9 @@ namespace platform
       //virtual string get_system_configuration() override;
 
 
+      //virtual void defer_post_file_open();
 
+      //virtual void defer_post_application_start_file_open_request();
 
 
       virtual void defer_audio() override;

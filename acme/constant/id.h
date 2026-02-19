@@ -9,6 +9,7 @@ enum enum_id : ::uptr
 
 
    id_none = 0,
+   id_full = ID_FULL,
 
 
    id_initial_update,
@@ -19,7 +20,6 @@ enum enum_id : ::uptr
    id_save_document,
    id_event,
    id_update,
-   id_full,
    id_document,
    id_topic_ok,
    id_initialize,
@@ -365,6 +365,8 @@ enum enum_id : ::uptr
    id_implementation_disabled,
    id_change_theme,
    id_application_did_finish_launching,
+   id_remoting_connecting,
+   id_remoting_connected,
 
 };
 

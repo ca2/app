@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "application_acme.h"
+#include "acme/constant/id.h"
 
 
 namespace platform

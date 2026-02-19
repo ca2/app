@@ -2764,7 +2764,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::erase_any_character_in
       while (pszSource < pszEnd)
       {
          CHARACTER * pszNewSource = pszSource + 1;
-         if (scopedstrCharacters.contains(*pszSource))
+         if (!scopedstrCharacters.contains(*pszSource))
          {
             // copy the source to the destination.  Remember to copy all bytes of an MBCS character
             // copy the source to the destination.  Remember to copy all bytes of an MBCS character
@@ -2780,9 +2780,9 @@ inline ::collection::count string_base < ITERATOR_TYPE >::erase_any_character_in
          }
          pszSource = pszNewSource;
       }
-      *pszDest = 0;
-      character_count count = character_count(pszSource - pszDest);
-      release_buffer(nLength - count);
+   *pszDest = 0;
+   character_count count = character_count(pszSource - pszDest);
+   release_buffer(nLength - count);
 
       return(count);
 

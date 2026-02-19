@@ -29,7 +29,7 @@
 #include "acme/user/user/activation_token.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/windowing/windowing.h"
-
+#include "acme/constant/id.h"
 
 #ifdef WINDOWS_DESKTOP
 
@@ -184,6 +184,14 @@ namespace platform
       __check_refdbg
 
       factory()->add_factory_item < ::platform::session >();
+
+   }
+
+
+   ::lresult application::handle_direct_id(const ::enum_id eid, ::wparam wparam, ::lparam lparam)
+   {
+
+      return 0;
 
    }
 

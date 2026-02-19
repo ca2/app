@@ -255,6 +255,20 @@ application_menu * application_menu::separator()
 //
 //}
 
+   bool application_menu::is_popup() const
+   {
+
+      return this->has_elements() || m_bPopup;
+
+   }
+
+   bool application_menu::is_separator() const
+   {
+
+      return this->m_atomMenu == id_separator;
+
+   }
+
    void application_menu::destroy()
    {
 

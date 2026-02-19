@@ -13,7 +13,7 @@
 
 struct popup_flag_t{};
 
-#include "acme/constant/id.h"
+//#include "acme/constant/id.h"
 
 #include "acme/user/menu/menu.h"
 
@@ -67,19 +67,9 @@ public:
    
    ::collection::index find_child_with_name(const_char_pointer pszName) const;
    
-   bool is_popup() const
-   {
-      
-      return this->has_elements() || m_bPopup;
-      
-   }
-   
-   bool is_separator() const
-   {
+   virtual bool is_popup() const;
 
-      return this->m_atomMenu == id_separator;
-
-   }
+   virtual bool is_separator() const;
 
    void destroy() override;
 

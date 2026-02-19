@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "theme.h"
+#include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/filesystem/filesystem/directory_context.h"

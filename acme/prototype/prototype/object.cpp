@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "object_meta.h"
+#include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/extended_topic.h"
 //#include "acme/update.h"

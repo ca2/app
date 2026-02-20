@@ -13,8 +13,12 @@ namespace platform
    {
    public:
 
+      void* m_pHinstance = nullptr;
+
       remoting();
       ~remoting() override;
+
+      void* remoting_impact_hinstance();
 
    };
 

@@ -23,5 +23,11 @@ namespace platform
    }
 
 
+   void * remoting::remoting_impact_hinstance()
+   {
+
+      return m_pHinstance;
+
+   }
 
 } // namespace platform

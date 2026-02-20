@@ -681,3 +681,19 @@ namespace windows
 
 
 
+
+
+
+CLASS_DECL_ACME HMODULE GetModuleFromFunction(void* pFunc)
+{
+   HMODULE hModule = NULL;
+
+   GetModuleHandleEx(
+      GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+      GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+      (LPCTSTR)pFunc,
+      &hModule
+   );
+
+   return hModule;
+}

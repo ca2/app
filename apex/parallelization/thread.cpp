@@ -1,3 +1,4 @@
+#include "framework.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
 #include "acme/handler/request.h"
@@ -18,7 +19,7 @@
 #include "apex/platform/system.h"
 #include "apex/user/user/interaction_base.h"
 #include "apex/user/user/message.h"
-#include "framework.h"
+
 
 
 //#ifdef WINDOWS_DESKTOP

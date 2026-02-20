@@ -4326,6 +4326,9 @@
     <ClInclude Include="filesystem\filesystem\dialog_base.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\environment.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6200,6 +6203,9 @@
     <ClCompile Include="filesystem\filesystem\dialog_base.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\environment.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">
@@ -6240,6 +6246,12 @@
     </None>
     <None Include="inline\application\main.inl">
       <Filter>Header Files\inline\application</Filter>
+    </None>
+    <None Include="inline\application\main_application_library.inl">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="inline\application\main_executable.inl">
+      <Filter>Header Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

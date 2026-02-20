@@ -99,7 +99,7 @@ namespace user
 
 
       bool keyboard_focus_is_focusable() override;
-      bool keyboard_focus_OnKillFocus(::oswindow oswindowNew) override;
+      bool keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew) override;
 
 
       //bool has_pending_graphical_update() override;

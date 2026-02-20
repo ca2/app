@@ -54,7 +54,7 @@ CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array
 #include "acme/operating_system/message.h"
 
 CLASS_DECL_ACME ::acme::windowing::window * acme_windowing_window_from_HWND(void * pHWND);
-CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pwindow);
+//CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pwindow);
 
 inline void copy(MESSAGE & message, const MSG & msg)
 {
@@ -71,18 +71,7 @@ inline void copy(MESSAGE & message, const MSG & msg)
 }
 
 
-inline void copy(MSG & msg, const MESSAGE & message)
-{
-
-   msg.hwnd = (HWND) HWND_from_acme_windowing_window(message.m_pacmewindowingwindow);
-   msg.message = (UINT)message.m_eusermessage;
-   msg.wParam = message.m_wparam;
-   msg.lParam = message.m_lparam;
-   msg.pt.x = message.m_point.x;
-   msg.pt.y = message.m_point.y;
-   msg.time = (DWORD)message.m_time;
-
-}
+CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message);
 
 
 namespace windows

@@ -2524,6 +2524,7 @@
     <ClCompile Include="handler\task_handler.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
+    <ClCompile Include="operating_system\environment.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="_information_n.cpp" />
@@ -2556,6 +2557,7 @@
     <ClInclude Include="filesystem\file\protocol_file.h" />
     <ClInclude Include="operating_system\cpu_features.h" />
     <ClInclude Include="operating_system\dos_time1.h" />
+    <ClInclude Include="operating_system\environment.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />

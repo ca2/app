@@ -2,6 +2,7 @@
 #include "acme/operating_system/parallelization.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/debug.h"
+#include "acme/windowing/window.h"
 
 
 #include "acme/_operating_system.h"
@@ -679,5 +680,21 @@ namespace windows
 
 } // namespace windows
 
+
+
+
+
+CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
+{
+
+    msg.hwnd = (HWND)message.m_pacmewindowingwindow->__win32_HWND();
+    msg.message = (UINT)message.m_eusermessage;
+    msg.wParam = message.m_wparam;
+    msg.lParam = message.m_lparam;
+    msg.pt.x = message.m_point.x;
+    msg.pt.y = message.m_point.y;
+    msg.time = (DWORD)message.m_time;
+
+}
 
 

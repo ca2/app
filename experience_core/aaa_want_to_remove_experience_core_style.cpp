@@ -498,7 +498,7 @@ namespace experience_lite
          int iTabHeight = 16;
          int cy;
          ::draw2d::graphics_pointer graphics(this_create);
-         pgraphics->CreateCompatibleDC(NULL);
+         pgraphics->create_compatible_graphics(NULL);
          ::draw2d::graphics_pointer & pgraphics = graphics;
          pgraphics->SelectObject(ptab->get_data()->m_pfontBold);
 

@@ -119,7 +119,7 @@ namespace draw2d_gpu
                     const_char_pointer lpszOutput, const void * lpInitData);
       void create_memory_graphics(const ::int_size & size = {}) override;
       void create_window_graphics(::windowing::window * pwindow) override;
-      void CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
+      void create_compatible_graphics(::draw2d::graphics * pgraphics) override;
 
       //void set_hint_window_output() override;
 

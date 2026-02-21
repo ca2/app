@@ -90,7 +90,7 @@ BOOL ca2rdp_end_paint(rdpContext* context)
 
    /*#ifdef WINDOWS
       ::draw2d::graphics_pointer g(((ca2rdpContext*)context)->get_app()->create_new, this);
-      g->CreateCompatibleDC(nullptr);
+      g->create_compatible_graphics(nullptr);
       g->Attach(gdi->primary->hdc->alpha);
       ca2rdpi->primary->get_graphics()->BitBlt(ca2rdpi->update_rect.left,ca2rdpi->update_rect.top,
          ca2rdpi->update_rect.width(),ca2rdpi->update_rect.height,g,0, 0);

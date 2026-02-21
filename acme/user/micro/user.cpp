@@ -143,12 +143,22 @@ namespace micro
          if (ptopic->id() == id_set_application_dark_mode)
          {
 
-            auto windowa = system()->acme_windowing()->m_windowa;
+            auto & windowmap = system()->acme_windowing()->m_windowmap;
 
-            for (auto & pacmewindowingwindow : windowa)
+            for (auto & pair : windowmap)
             {
-               pacmewindowingwindow->handle(ptopic, phandlercontext);
+
+               auto pacmewindowingwindow = pair.element2();
+
+               if (::is_set(pacmewindowingwindow))
+               {
+
+                  pacmewindowingwindow->handle(ptopic, phandlercontext);
+
+               }
+
             }
+
          }
       }
 
@@ -387,16 +397,23 @@ namespace micro
 
          auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
-         auto microwindowingwindowa = system()->acme_windowing()->m_windowa;
+         auto & windowmap = system()->acme_windowing()->m_windowmap;
 
-         for (auto & pacmewindowingwindow : microwindowingwindowa)
+         for (auto & pair : windowmap)
          {
 
-            pacmewindowingwindow->handle(ptopic, nullptr);
+            auto pacmewindowingwindow = pair.element2();
 
-            pacmewindowingwindow->set_need_redraw();
+            if (::is_set(pacmewindowingwindow))
+            {
 
-            pacmewindowingwindow->post_redraw();
+               pacmewindowingwindow->handle(ptopic, nullptr);
+
+               pacmewindowingwindow->set_need_redraw();
+
+               pacmewindowingwindow->post_redraw();
+
+            }
 
          }
 
@@ -450,27 +467,27 @@ namespace micro
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto windowa = system()->acme_windowing()->m_windowa;
+         /// Expensive operation, we don't want to hold the lock while doing it,
+         /// but we need to make sure that the window map doesn't 
+         /// change while we're iterating it, 
+         /// so we copy the window map and then release the lock.
+         auto windowmap = system()->acme_windowing()->m_windowmap;
 
          synchronouslock.unlock();
 
-         //if (::micro::window_implementation::microwindowimplementationa().has_element())
-         //{
-
-         for (auto & pacmewindowingwindow : windowa)
+         for (auto & pair : windowmap)
          {
 
-            if (pacmewindowingwindow)
-            {
+            auto pacmewindowingwindow = pair.element2();
 
+            if (::is_set(pacmewindowingwindow))
+            {
+            
                pacmewindowingwindow->window_message_loop_step();
 
             }
 
          }
-
-
-
 
       }
 

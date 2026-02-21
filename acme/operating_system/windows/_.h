@@ -53,13 +53,13 @@ CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array
 
 #include "acme/operating_system/message.h"
 
-CLASS_DECL_ACME ::acme::windowing::window * acme_windowing_window_from_HWND(void * pHWND);
-//CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pwindow);
+CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd);
+CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window & operatingsystemwindow);
 
 inline void copy(MESSAGE & message, const MSG & msg)
 {
 
-   message.m_pacmewindowingwindow = ::acme_windowing_window_from_HWND(msg.hwnd);
+   message.m_operatingsystemwindow = ::as_operating_system_window(msg.hwnd);
    message.m_eusermessage = (::user::enum_message)msg.message;
    message.m_wparam = msg.wParam;
    message.m_lparam = msg.lParam;

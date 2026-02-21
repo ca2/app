@@ -77,7 +77,7 @@ namespace acme
 
          //m_uAcmeWindowingWindowFlags = 0;
 
-         m_lX11NativeVisualId = -1;
+         //m_lX11NativeVisualId = -1;
 
       }
 
@@ -113,13 +113,20 @@ namespace acme
       }
 
 
-      // ::oswindow window::operating_system_window()
-      // {
-      //
-      //
-      //    return nullptr;
-      //
-      // }
+      bool window::should_avoid_default_swap_chain_present()
+      {
+      
+         return false;
+      
+      }
+
+
+      ::operating_system::window window::operating_system_window() const
+      {
+      
+         return {};
+      
+      }
 
 
       //long window::__x11_Window()
@@ -138,20 +145,20 @@ namespace acme
       //}
 
 
-      void * window::__win32_HWND()
-      {
+      //void * window::__win32_HWND()
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
 
-   long long window::__CGWindowID()
-   {
+   //long long window::__CGWindowID()
+   //{
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
       ::windowing::enum_bias window::windowing_bias() const
@@ -283,7 +290,7 @@ namespace acme
             {
                __check_refdbg
 
-               pacmewindowing->m_windowa.erase(this);
+               pacmewindowing->m_windowmap.erase(this->operating_system_window());
                __check_refdbg
 
             }
@@ -2058,20 +2065,3 @@ void window::on_control_box_zoom()
 } //  namespace acme
 
 
-
-
-CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pacmewindowingwindow)
-{
-
-   if (::is_null(pacmewindowingwindow))
-   {
-
-      return nullptr;
-
-   }
-
-   auto pHWND = pacmewindowingwindow->__win32_HWND();
-
-   return pHWND;
-
-}

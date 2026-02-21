@@ -543,3 +543,38 @@ namespace windows
 } // namespace windows
 
 
+CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window& operatingsystemwindow)
+{
+
+   if (operatingsystemwindow.is_null())
+   {
+
+      return nullptr;
+
+   }
+
+   ::operating_system::windows_window window(operatingsystemwindow);
+
+   return window.as_HWND();
+
+}
+
+
+CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd)
+{
+
+   if (::is_null(hwnd) || hwnd == INVALID_HANDLE_VALUE)
+   {
+
+      return nullptr;
+
+   }
+
+   ::operating_system::windows_window window(hwnd);
+
+   return window.m_opaque;
+
+}
+
+
+

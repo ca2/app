@@ -3739,7 +3739,7 @@ bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & oper
 
       MSG msg;
 
-      auto hwnd = as_HWND(pacmewindowingwindow->operating_system_window());
+      auto hwnd = ::as_HWND(operatingsystemwindow);
 
       if (::PeekMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax,
                          bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
@@ -4061,7 +4061,7 @@ void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & opera
    if (m_bAuraMessageQueue)
    {
 
-      get_message_queue()->get_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
+      get_message_queue()->get_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
       if (pMsg->m_eusermessage == ::user::e_message_quit)
       {
@@ -4077,7 +4077,7 @@ void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & opera
    if (m_pmessagequeue)
    {
 
-      if (m_pmessagequeue->peek_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, true))
+      if (m_pmessagequeue->peek_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax, true))
       {
 
          set_finishing_flag();
@@ -4121,7 +4121,7 @@ void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & opera
 
       }
 
-      auto hwnd = (HWND) pacmewindowingwindow->__win32_HWND();
+      auto hwnd = ::as_HWND(operatingsystemwindow);
 
       iRet = ::GetMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax);
 
@@ -4188,7 +4188,7 @@ void thread::post_message(const ::operating_system::window & operatingsystemwind
    if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
-      auto hwnd = (HWND) pacmewindowingwindow->__win32_HWND();
+      auto hwnd = ::as_HWND(operatingsystemwindow);
 
       if (::PostMessage(hwnd, (UINT) eusermessage, wparam, lparam))
       {
@@ -4510,7 +4510,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.m_pacmewindowingwindow != nullptr || message.m_eusermessage == ::user::e_message_timer)
+      if (message.m_operatingsystemwindow.is_set() || message.m_eusermessage == ::user::e_message_timer)
       {
 
          MSG msg;

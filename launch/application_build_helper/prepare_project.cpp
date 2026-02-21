@@ -68,6 +68,8 @@ namespace application_build_helper
 
          auto pathStorage = pathBeforeBase / "operating_system/storage-windows";
 
+         m_strBuildPlatform = ::operating_system::machine_architecture();
+
          auto pathPlatformConfiguration = pathStorage / m_strBuildPlatform / m_strBuildConfiguration;
 
          string strPlatformConfiguration = pathPlatformConfiguration;

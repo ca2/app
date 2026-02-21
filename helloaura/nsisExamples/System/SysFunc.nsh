@@ -248,7 +248,7 @@ m_Paint:
    ; Begin Paint
    System::Call "${sysBeginPaint} (r2, R9) .R7"
 
-   ; CreateCompatibleDC
+   ; create_compatible_graphics
    System::Call "${sysCreateCompatibleDC} (R7) .R6"
 
    ; GetClientRect

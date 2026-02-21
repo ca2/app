@@ -304,8 +304,8 @@ namespace draw2d
    void graphics::create_memory_graphics()
    {
 
-      CreateCompatibleDC(nullptr);
-      //if (!CreateCompatibleDC(nullptr))
+      create_compatible_graphics(nullptr);
+      //if (!create_compatible_graphics(nullptr))
       //{
 
       //   return false;
@@ -317,7 +317,7 @@ namespace draw2d
    }
 
 
-   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -3806,7 +3806,7 @@ namespace draw2d
    //   graphics_pointer(e_create)
    //{
 
-   //   m_p->CreateCompatibleDC(nullptr);
+   //   m_p->create_compatible_graphics(nullptr);
 
    //}
 

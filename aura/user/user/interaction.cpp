@@ -18877,10 +18877,12 @@ if(get_parent())
       break;
       case ::user::e_message_prototype_scroll:
       {
+         
          _NEW_MESSAGE(::message::scroll);
 
 #ifdef WINDOWS_DESKTOP
-         pmessage->m_pacmewindowingwindowScrollBar = acme_windowing_window_from_HWND((void*)(::iptr)(lparam));
+
+         pmessage->m_pacmewindowingwindowScrollBar = system()->acme_windowing()->acme_windowing_window(lparam);
 
 #endif
 

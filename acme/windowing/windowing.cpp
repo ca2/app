@@ -266,11 +266,23 @@ namespace acme
       {
          if (ptopic->id() == id_set_application_dark_mode)
          {
-            for (auto& pwindow: m_windowa)
+
+            for (auto& pair: m_windowmap)
             {
-               pwindow->handle(ptopic, phandlercontext);
+
+               auto pacmewindowingwindow = pair.element2(); 
+
+               if (::is_set(pacmewindowingwindow))
+               {
+               
+                  pacmewindowingwindow->handle(ptopic, phandlercontext);
+
+               }
+
             }
+
          }
+
       }
 
 
@@ -361,7 +373,7 @@ namespace acme
 
          m_pacmedisplay.defer_destroy();
 
-         m_windowa.clear();
+         m_windowmap.clear();
 
          ::platform::department::destroy();
 
@@ -414,8 +426,20 @@ namespace acme
          return pacmewindowingwindow;
          
       }
-   
-   
+
+
+      ::acme::windowing::window * windowing::acme_windowing_window(const ::lparam& lparam)
+      {
+
+         auto operatingsystemwindow = operating_system_window(lparam);  
+
+         auto pacmewindowingwindow = acme_windowing_window(operatingsystemwindow);  
+
+         return pacmewindowingwindow;
+
+      }
+
+
       ::operating_system::window windowing::operating_system_window(const ::wparam & wparam)
       {
          
@@ -641,14 +665,21 @@ namespace acme
 
          auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
-         for (auto& pwindow: m_windowa)
+         for (auto& pair: m_windowmap)
          {
 
-            pwindow->handle(ptopic, nullptr);
+            auto pacmewindowingwindow = pair.element2();
 
-            pwindow->set_need_redraw();
+            if (::is_set(pacmewindowingwindow))
+            {
 
-            pwindow->post_redraw();
+               pacmewindowingwindow->handle(ptopic, nullptr);
+
+               pacmewindowingwindow->set_need_redraw();
+
+               pacmewindowingwindow->post_redraw();
+
+            }
 
          }
 
@@ -720,20 +751,15 @@ namespace acme
          //if (::micro::window_implementation::nanowindowimplementationa().has_element())
          //{
 
-         for (auto& ppair: m_windowmap)
+         for (auto& pair: m_windowmap)
          {
 
-            if (ppair)
+            auto pacmewindowingwindow = pair.element2();   
+
+            if (::is_set(pacmewindowingwindow))
             {
                
-               auto pwindow = ppair->m_element2;
-               
-               if(pwindow)
-               {
-                  
-                  pwindow->window_message_loop_step();
-                  
-               }
+               pacmewindowingwindow->window_message_loop_step();
 
             }
 

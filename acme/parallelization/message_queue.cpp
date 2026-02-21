@@ -51,7 +51,7 @@ void message_queue::on_initialize_particle()
 }
 
 
-void message_queue::post_message(::acme::windowing::window * pacmewindowingwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+void message_queue::post_message(const ::operating_system::window & operatingsystemwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    if (m_bQuit)
@@ -64,7 +64,7 @@ void message_queue::post_message(::acme::windowing::window * pacmewindowingwindo
 
    MESSAGE message;
 
-   message.m_pacmewindowingwindow = pacmewindowingwindow;
+   message.m_operatingsystemwindow = operatingsystemwindow;
    message.m_eusermessage = eusermessage;
    message.m_wparam = wparam;
    message.m_lparam = lparam;
@@ -133,7 +133,7 @@ void message_queue::kick_idle()
 }
 
 
-::e_status message_queue::get_message(MESSAGE * pmessage, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
+::e_status message_queue::get_message(MESSAGE * pmessage, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
 {
 
    long long iFilterMinimum = wMsgFilterMin;
@@ -205,7 +205,9 @@ void message_queue::kick_idle()
 
          auto emessage = message.m_eusermessage;
 
-         if ((::is_null(pacmewindowingwindow) || message.m_pacmewindowingwindow == pacmewindowingwindow) && emessage >= iFilterMinimum && emessage <= iFilterMaximum)
+         if ((operatingsystemwindow.is_null() 
+            || message.m_operatingsystemwindow == operatingsystemwindow)
+            && emessage >= iFilterMinimum && emessage <= iFilterMaximum)
          {
 
             *pmessage = message;
@@ -299,7 +301,9 @@ bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::windo
 
       MESSAGE & msg = m_messagea[i];
 
-      if((::is_null(pacmewindowingwindow) || msg.m_pacmewindowingwindow == pacmewindowingwindow) && msg.m_eusermessage >= wMsgFilterMin && msg.m_eusermessage <= wMsgFilterMax)
+      if((operatingsystemwindow.is_null()
+         || msg.m_operatingsystemwindow == operatingsystemwindow)
+         && msg.m_eusermessage >= wMsgFilterMin && msg.m_eusermessage <= wMsgFilterMax)
       {
 
          *pMsg = msg;

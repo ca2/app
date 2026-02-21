@@ -698,10 +698,12 @@ CLASS_DECL_ACME HMODULE GetModuleFromFunction(void* pFunc)
 
    return hModule;
 }
+
+
 CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
 {
 
-    msg.hwnd = (HWND)message.m_pacmewindowingwindow->__win32_HWND();
+    msg.hwnd = ::as_HWND(message.m_operatingsystemwindow);
     msg.message = (UINT)message.m_eusermessage;
     msg.wParam = message.m_wparam;
     msg.lParam = message.m_lparam;

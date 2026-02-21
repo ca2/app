@@ -1109,33 +1109,61 @@ void window::set_user_interaction(::windowing::window* pimpl)
 }
 
 
-bool window::window_is_child(::acme::windowing::window * pacmewindowingwindow)
+bool window::operating_system_window_is_child(const ::operating_system::window & operatingsystemwindow)
 {
 
-#if !defined(WINDOWS_DESKTOP)
-
-   if (::is_null(pacmewindowingwindow) || pacmewindowingwindow->m_pacmeuserinteraction == nullptr)
-   {
-
-      return false;
-
-   }
-
-   if (::is_null(m_pacmeuserinteraction))
-   {
-
-      return false;
-
-   }
-
-   return m_pacmeuserinteraction->is_child(oswindow->m_pacmeuserinteraction);
-
-#endif
+//#if !defined(WINDOWS_DESKTOP)
+//
+//   if (operatingsystemwindow.is_null())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (::is_null(m_pacmeuserinteraction))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return m_pacmeuserinteraction->is_child(oswindow->m_pacmeuserinteraction);
+//
+//#endif
 
    return false;
 
 
    
+}
+
+
+bool window::operating_system_window_is_descendant(const ::operating_system::window& operatingsystemwindow)
+{
+
+   //#if !defined(WINDOWS_DESKTOP)
+   //
+   //   if (operatingsystemwindow.is_null())
+   //   {
+   //
+   //      return false;
+   //
+   //   }
+   //
+   //   if (::is_null(m_pacmeuserinteraction))
+   //   {
+   //
+   //      return false;
+   //
+   //   }
+   //
+   //   return m_pacmeuserinteraction->is_child(oswindow->m_pacmeuserinteraction);
+   //
+   //#endif
+
+   return false;
+
 }
 
 

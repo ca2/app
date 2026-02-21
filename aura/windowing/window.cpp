@@ -1749,7 +1749,7 @@ namespace windowing
    //   }
 
 
-   // ::oswindow window::oswindow() const
+   // ::oswindow window::operating_system_window() const
    // {
    //
    //    throw interface_only();
@@ -7577,7 +7577,7 @@ namespace windowing
 
 
    //// interaction_impl
-   ///* window::operator oswindow() const
+   ///* window::operator operating_system_window() const
    //{ return this == nullptr ? nullptr : get_handle(); }*/
    //void window::operator==(const interaction_impl& wnd) const
    //{
@@ -13557,7 +13557,7 @@ slGraphics.unlock();
    //      
    //   }
 
-   //   return (oswindow) oswindow();
+   //   return (oswindow) operating_system_window();
 
    //}
 
@@ -13844,7 +13844,7 @@ slGraphics.unlock();
 
    //   //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-   //   if (psetkeyboardfocus->m_pacmewindowingwindow != oswindow())
+   //   if (psetkeyboardfocus->m_pacmewindowingwindow != operating_system_window())
    //   {
 
    //      psetkeyboardfocus->m_bRet = true;
@@ -14956,7 +14956,7 @@ slGraphics.unlock();
    //
    //         auto pwindowing = windowing();
    //
-   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->oswindow();
+   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->operating_system_window();
    //
    //         if (pimplFocus == this)
    //         {
@@ -16367,10 +16367,10 @@ slGraphics.unlock();
    }
 
 
-   //:/*:oswindow window::oswindow() const
+   //:/*:oswindow window::operating_system_window() const
    //{
 
-   //   return oswindow();
+   //   return operating_system_window();
 
    //}*/
 
@@ -17247,7 +17247,7 @@ slGraphics.unlock();
    //
    //      auto pwindow = this;
    //
-   //      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
+   //      auto oswindow = pwindow ? pwindow->operating_system_window() : nullptr;
    //
    //      switch (eprototype)
    //      {

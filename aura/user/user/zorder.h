@@ -22,7 +22,7 @@ public:
 
    //oswindow get_os_data() const;
 
-   //operator oswindow() const;
+   //operator operating_system_window() const;
 
    void * __win32_HWND() const;
 

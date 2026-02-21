@@ -526,7 +526,7 @@ namespace windowing
       // inline bool operator == (const ::windowing::window & window) const
       // {
       //
-      //    return oswindow() == window.get_os_data();
+      //    return operating_system_window() == window.get_os_data();
       //
       // }
       //

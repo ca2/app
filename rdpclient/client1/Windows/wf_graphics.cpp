@@ -79,7 +79,7 @@ wfBitmap* wf_image_new(wfContext* wfc, int width, int height, int bpp, unsigned 
 
 	hdc = GetDC(nullptr);
 /*	pimage = (wfBitmap*) malloc(sizeof(wfBitmap));
-/*	image->hdc = CreateCompatibleDC(hdc);
+/*	image->hdc = create_compatible_graphics(hdc);
 
 /*	image->bitmap = wf_create_dib(wfc, width, height, bpp, data, &(image->pdata));
 
@@ -110,7 +110,7 @@ void wf_Bitmap_New(wfContext* wfc, rdpBitmap* bitmap)
 	wf_bitmap = (wfBitmap*) bitmap;
 
 	hdc = GetDC(nullptr);
-	wf_bitmap->hdc = CreateCompatibleDC(hdc);
+	wf_bitmap->hdc = create_compatible_graphics(hdc);
 
 	if (!bitmap->data)
 		wf_bitmap->bitmap = CreateCompatibleBitmap(hdc, bitmap->width, bitmap->height);

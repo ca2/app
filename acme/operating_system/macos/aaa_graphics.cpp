@@ -98,7 +98,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return false;
 //}
-//HDC CreateCompatibleDC(HDC hdc)
+//HDC create_compatible_graphics(HDC hdc)
 //{
 //   return nullptr;
 //}
@@ -853,7 +853,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // {
 //     return false;
 // }
-// HDC CreateCompatibleDC(HDC hdc)
+// HDC create_compatible_graphics(HDC hdc)
 // {
 //     return nullptr;
 // }

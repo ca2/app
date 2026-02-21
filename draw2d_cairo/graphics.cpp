@@ -305,7 +305,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1068,7 +1068,7 @@ namespace draw2d_cairo
 //
 //        HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pimage32, nullptr, 0);
 //
-//        HDC hdc = ::CreateCompatibleDC(nullptr);
+//        HDC hdc = ::create_compatible_graphics(nullptr);
 //
 //        HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
 //

@@ -94,7 +94,7 @@ namespace draw2d_gpu
 
       //   //m_bFont = true;
 
-      //   ((font *)this)->m_hdcFont = ::CreateCompatibleDC(nullptr);
+      //   ((font *)this)->m_hdcFont = ::create_compatible_graphics(nullptr);
 
       //   ((font *)this)->m_baseFont = glGenLists(256);								// Storage For 256 Characters
 

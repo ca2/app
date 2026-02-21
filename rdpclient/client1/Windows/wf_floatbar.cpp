@@ -238,7 +238,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, unsigned int Msg, WPARAM wParam, LPARA
 			floatbar->height = floatbar->rectangle.bottom - floatbar->rectangle.top;
 
 			hdc = GetDC(hWnd);
-			floatbar->hdcmem = CreateCompatibleDC(hdc);
+			floatbar->hdcmem = create_compatible_graphics(hdc);
 			ReleaseDC(hWnd, hdc);
 
 			tme.cbSize = sizeof(TRACKMOUSEEVENT);

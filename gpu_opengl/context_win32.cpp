@@ -3,20 +3,39 @@
 #define STB_USE_HUNTER
 #include "_gpu_opengl.h"
 #include "approach.h"
-#include "context.h"
+#include "context_win32.h"
 #include "device.h"
 #include "device_win32.h"
-#include "acme_windowing_win32/window.h"
 #include "acme/platform/application.h"
+#include "windowing_win32/window.h"
 #include <glad/glad_wgl.h>
+
 
 namespace gpu_opengl
 {
+   
+   
    extern PFNWGLCREATECONTEXTATTRIBSARBPROC loaded_wglCreateContextAttribsARB;
    extern PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB;
 
+   context_win32::context_win32()
+   {
+   
+      m_hdc = nullptr;
+      m_hglrc = nullptr;
+      m_hwnd = nullptr;
+   
+   } 
 
-    void context::_create_cpu_buffer(const ::int_size &size)
+
+   context_win32::~context_win32()
+   {
+
+
+   }
+
+
+   void context_win32::_create_cpu_buffer(const ::int_size &size)
    {
 
        if (!m_pgpudevice)
@@ -405,8 +424,10 @@ namespace gpu_opengl
 //      //}
 //   }
 
-      void context::_opengl_lock()
+   
+   void context_win32::_context_lock()
    {
+
          if (m_taskindex)
          {
 
@@ -459,7 +480,7 @@ namespace gpu_opengl
    }
 
 
-   void context::_opengl_unlock()
+   void context_win32::_context_unlock()
    {
 
 
@@ -531,7 +552,7 @@ namespace gpu_opengl
    }
 
 
-   void context::assert_there_is_current_context()
+   void context_win32::assert_there_is_current_context()
    {
 
       HGLRC hglrcContext = wglGetCurrentContext();
@@ -541,7 +562,8 @@ namespace gpu_opengl
       }
    }
 
-   void context::swap_buffers()
+   
+   void context_win32::swap_buffers()
    {
 
       ::SwapBuffers(m_hdc);
@@ -549,14 +571,237 @@ namespace gpu_opengl
    }
 
 
-   void context::_create_window_buffer()
+   void context_win32::_create_window_context(::acme::windowing::window *pwindowParam)
+   {
+
+         ::cast < ::windowing_win32::window > pwindow = pwindowParam;
+
+         if (!m_hdc || !m_hglrc)
+         {
+
+            ::cast < approach > pgpuapproach = m_pgpudevice->m_pgpuapproach;
+
+            //if (!popengl->m_atomClass)
+            //{
+
+            //   informationf("MS GDI - RegisterClass failed");
+
+            //   informationf("last-error code: %d\n", GetLastError());
+
+            //   throw ::exception(error_failed);
+
+            //}
+
+            if (!m_hwnd)
+            {
+
+               auto hwnd = pwindow->m_hwnd;
+
+
+               m_hwnd = hwnd;
+
+
+               //// create WGL context, make current
+
+               //PIXELFORMATDESCRIPTOR pixformat;
+
+               //int chosenformat;
+
+               HDC hdc = GetDC(m_hwnd);
+
+               //if (!hdc)
+               //{
+
+               //   informationf("MS GDI - GetDC failed");
+
+               //   informationf("last-error code: %d\n", GetLastError());
+
+               //   throw ::exception(error_failed);
+
+               //}
+
+               //zero(pixformat);
+               //pixformat.nSize = sizeof(pixformat);
+               //pixformat.nVersion = 1;
+               //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+               //pixformat.iPixelType = PFD_TYPE_RGBA;
+               //pixformat.cColorBits = 32;
+               //pixformat.cRedShift = 16;
+               //pixformat.cGreenShift = 8;
+               //pixformat.cBlueShift = 0;
+               //pixformat.cAlphaShift = 24;
+               //pixformat.cAlphaBits = 8;
+               //pixformat.cDepthBits = 24;
+               //pixformat.cStencilBits = 8;
+
+               //chosenformat = ChoosePixelFormat(hdc, &pixformat);
+
+               //if (chosenformat == 0)
+               //{
+
+               //   informationf("MS GDI - ChoosePixelFormat failed");
+
+               //   informationf("last-error code: %d\n", GetLastError());
+
+               //   ReleaseDC(m_hwnd, hdc);
+
+               //   throw ::exception(error_failed);
+
+               //}
+
+               //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
+
+               //if (!spfok)
+               //{
+
+               //   informationf("MS GDI - SetPixelFormat failed");
+
+               //   informationf("last-error code: %d\n", GetLastError());
+
+               //   ReleaseDC(m_hwnd, hdc);
+
+               //   throw ::exception(error_failed);
+
+               //}
+
+               auto hglrc = wglCreateContext(hdc);
+
+               pwindow->m_hglrcProto = hglrc;
+
+               //         int context_attribs[] = {
+               //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
+               //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
+               //0, 0
+               //         };
+               //         auto hglrc = wglCreateContextAttribsARB(hdc, NULL, context_attribs);
+               //         if (!hglrc) {
+               //            //ReleaseDC(hWnd, hDC);
+               //            //DestroyWindow(hWnd);
+
+               //            throw ::exception(error_failed);
+               //         }
+               //         //ReleaseDC(hWnd, hDC);
+
+               if (!pwindow->m_hglrcProto)
+               {
+
+                  informationf("MS WGL - wglCreateContext failed");
+
+                  informationf("last-error code: %d\n", GetLastError());
+
+                  ReleaseDC(m_hwnd, hdc);
+
+                  throw ::exception(error_failed);
+
+               }
+
+               auto hglrcProto = pwindow->m_hglrcProto;
+
+               bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrcProto);
+
+               if (!bMakeCurrentOk)
+               {
+
+                  informationf("MS WGL - wglMakeCurrent failed");
+
+                  informationf("last-error code: %d\n", GetLastError());
+
+                  ReleaseDC(m_hwnd, hdc);
+
+                  throw ::exception(error_failed);
+
+               }
+
+               m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
+
+               auto pszVersion = (const_char_pointer )glGetString(GL_VERSION);
+               //::e_status estatus =
+
+               ::string strVersion(pszVersion);
+
+               if (strVersion.case_insensitive_contains("mesa"))
+               {
+
+                  m_bMesa = true;
+
+               }
+
+               //if (!estatus)
+               //{
+
+               //   ReleaseDC(window, hdc);
+
+               //   return estatus;
+
+               //}
+
+               m_hwnd = m_hwnd;
+               m_hdc = hdc;
+               m_hglrc = pwindow->m_hglrcProto;
+
+               wglMakeCurrent(nullptr, nullptr);
+
+            }
+
+         }
+
+         RECT rectClient;
+
+         ::GetClientRect(m_hwnd, &rectClient);
+
+       //  ::int_size sizeNew = { rectClient.right - rectClient.left,
+       //rectClient.bottom - rectClient.top };
+
+       //  if (m_size != sizeNew)
+       //  {
+       //     m_size = sizeNew;
+
+       //     m_sizeHost = sizeNew;
+       //     //HDC pdcDIB;                      // контекст устройства в памяти
+       //     //HBITMAP hbmpDIB;                 // и его текущий битмапvoid *pBitsDIB(NULL);            // содержимое
+       //     битмапаint cxDIB(200); int cyDIB(300);  // его размеры (например для окна 200х300)
+       //     //auto &BIH=pwindow->m_bitmapinfoheaderProto;            // и заголовок// …// создаем DIB section//
+       //     создаем структуру BITMAPINFOHEADER, описывающую наш DIBint iSize = sizeof(BITMAPINFOHEADER);  // размер
+       //     //memset(&BIH, 0, sizeof(pwindow->m_bitmapinfoheaderProto));
+
+       //     //BIH.biSize = sizeof(pwindow->m_bitmapinfoheaderProto);        // размер структуры
+       //     //BIH.biWidth = m_size.cx;       // геометрия
+       //     //BIH.biHeight = m_size.cy;      // битмапа
+       //     //BIH.biPlanes = 1;          // один план
+       //     //BIH.biBitCount = 32;       // 24 bits per pixel
+       //     //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
+       //     ////pdcDIB = CreateCompatibleDC(NULL);
+       //     ////void * pBits = nullptr;
+       //     //// создаем DIB-секцию
+       //     //pwindow->m_hbitmapProto = CreateDIBSection(
+       //     //  m_hdc,                  // контекст устройства
+       //     //  (BITMAPINFO *)&BIH,       // информация о битмапе
+       //     //  DIB_RGB_COLORS,          // параметры цвета
+       //     //  &pwindow->m_pbitsProto,               // местоположение буфера (память выделяет система)
+       //     //  NULL,                    // не привязываемся к отображаемым в память файлам
+       //     //  0);
+
+       //     //// выберем новый битмап (DIB section) для контекста устройства в памяти
+       //     //SelectObject(m_hdc, pwindow->m_hbitmapProto);
+       //     //pwindow->m_hdcProto = m_hdc;
+       //  }
+
+         //m_itaskGpu = ::current_itask();
+
+         m_estatus = ::success;
+
+         set_ok_flag();
+   }
+
+
+   void context_win32::_create_window_buffer()
    {
 
 #if defined(WINDOWS_DESKTOP)
 
-      ::cast<device_win32> pdevice = m_pgpudevice;
+      //::cast<device_win32> pdevice = m_pgpudevice;
 
-      pdevice->_create_device(m_rectangle.size());
+      //pdevice->_create_device(m_rectangle.size());
 
 #elif defined(LINUX)
 

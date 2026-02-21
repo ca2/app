@@ -125,7 +125,7 @@ void main() {
       //m_hdc = nullptr;
       //m_hdcGraphics = nullptr;
       m_ewritetextrendering = ::write_text::e_rendering_anti_alias_grid_fit;
-      m_dFontFactor = 1.0;
+      //m_dFontFactor = 1.0;
 
    }
 
@@ -1261,7 +1261,8 @@ void main() {
       if (pmodelbufferRectangle->is_new())
       {
 
-         pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
+         //pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
+         pmodelbufferRectangle->sequence2_color_create_rectangle(gpu_context());
 
       }
 
@@ -5437,7 +5438,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
          //    { xpos + w, ypos + h,   1.0f, 0.0f }
          //};
          // render glyph texture over quad
-         if (ch.m_ppixmap)
+         if (ch.m_ppixmapOptional)
          {
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //// update content of VBO memory
@@ -5943,7 +5944,7 @@ color = vec4(c.r,c.g, c.b, c.a);
              {{ xpos + w, ypos + h},{   1.0f, 0.0f} }
          };
          // render glyph texture over quad
-         if (ch.m_ppixmap)
+         if (ch.m_ppixmapOptional)
          {
 
             auto pmodelbuffer = model_buffer(::draw2d::e_model_character);
@@ -5971,7 +5972,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             // 
             // 
 
-            pcommandbuffer->draw(ch.m_ppixmap);
+            pcommandbuffer->draw(ch.m_ppixmapOptional);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //::opengl::check_error("");
             //// update content of VBO memory
@@ -6664,10 +6665,10 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //}
 
-   void graphics::do_on_context(const ::procedure& procedure)
+   void graphics::send_on_context(::draw2d::graphics_context *pgraphicscontext, const ::procedure &procedure)
    {
 
-      ::draw2d_gpu::graphics::do_on_context(procedure);
+      ::draw2d_gpu::graphics::send_on_context(pgraphicscontext, procedure);
 
       //m_pgpucontextCompositor->send(procedure);
 

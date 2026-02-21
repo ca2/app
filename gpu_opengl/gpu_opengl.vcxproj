@@ -715,18 +715,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="context_win32.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="context_win32.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="device_win32.h" />
+    <ClInclude Include="fence.h" />
     <ClInclude Include="frame.h" />
     <ClInclude Include="frame_buffer.h" />
     <ClInclude Include="gltf\material.h" />
@@ -807,6 +799,7 @@
     <ClInclude Include="program.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="render_target.h" />
+    <ClInclude Include="semaphore.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="swap_chain.h" />
     <ClInclude Include="swap_chain_render_target.h" />
@@ -847,6 +840,7 @@
     </ClCompile>
     <ClCompile Include="device.cpp" />
     <ClCompile Include="device_win32.cpp" />
+    <ClCompile Include="fence.cpp" />
     <ClCompile Include="frame_buffer.cpp" />
     <ClCompile Include="full_screen_quad.cpp" />
     <ClCompile Include="gltf\mesh.cpp" />
@@ -904,6 +898,7 @@
     <ClCompile Include="pixmap.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="render_target.cpp" />
+    <ClCompile Include="semaphore.cpp" />
     <ClCompile Include="swap_chain.cpp" />
     <ClCompile Include="swap_chain_render_target.cpp" />
     <ClCompile Include="swap_chain_win32.cpp" />
@@ -924,6 +919,7 @@
     <ClCompile Include="program.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClCompile Include="_glad.cpp" />
     <ClCompile Include="_gpu_opengl.cpp" />
   </ItemGroup>
   <ItemGroup>

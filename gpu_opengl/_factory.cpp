@@ -43,6 +43,7 @@
 #if defined(WINDOWS_DESKTOP)
 
 #include "device_win32.h"
+#include "context_win32.h"
 
 #elif defined(LINUX) || defined(__BSD__)
 
@@ -80,6 +81,7 @@ __FACTORY_EXPORT void gpu_opengl_factory(::factory::factory * pfactory)
 #if defined(WINDOWS_DESKTOP)
 
    pfactory->add_factory_item < ::gpu_opengl::device_win32, ::gpu::device >();
+   pfactory->add_factory_item<::gpu_opengl::context_win32, ::gpu::context>();
 
 #elif defined(LINUX) || defined(__BSD__)
 

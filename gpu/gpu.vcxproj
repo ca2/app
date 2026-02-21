@@ -227,7 +227,6 @@
     <ClInclude Include="__defer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="context.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

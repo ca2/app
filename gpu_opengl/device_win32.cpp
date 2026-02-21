@@ -1126,6 +1126,16 @@ namespace gpu_opengl
    //}
 
 
+   void *device_win32::current_operating_system_gpu_context()
+   {
+
+      auto pwglcontext = wglGetCurrentContext();
+
+      return pwglcontext;
+
+   }
+
+
 } // namespace gpu_opengl
 
 

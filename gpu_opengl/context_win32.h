@@ -17,6 +17,7 @@ namespace gpu_opengl
    public:
 
 
+      HWND        m_hwnd;   
       HDC         m_hdc;
       HGLRC       m_hglrc;
       bool        m_bContextSelected = false;
@@ -27,6 +28,12 @@ namespace gpu_opengl
 
       context_win32();
       ~context_win32() override;
+
+
+      void _create_window_context(::acme::windowing::window *pwindowParam) override;
+
+
+      void _create_cpu_buffer(const ::int_size &size) override;
 
 
       void assert_there_is_current_context() override;

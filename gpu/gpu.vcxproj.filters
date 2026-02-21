@@ -34,9 +34,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{e61edb41-436c-4e0f-812d-d34bddf4617c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{28e5c993-7608-46fa-ad2a-2011b35072ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ibl">
       <UniqueIdentifier>{ed0212c8-4764-4da3-bd29-a8d00feeaabf}</UniqueIdentifier>
     </Filter>
@@ -295,9 +292,6 @@
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="hdr_texture.cpp">
       <Filter>Source Files</Filter>

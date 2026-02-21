@@ -90,10 +90,25 @@ namespace gpu_opengl
 
       LoadWGLExtensions();
 
+      if (!gladLoadWGL(dummyDC))
+      {
+
+         throw ::exception(error_failed, "Failed to load glad using WGL");
+
+      }
+
+      if (!gladLoadGL())
+      {
+         
+         throw ::exception(error_failed, "Failed to load glad using OpenGL");
+
+      }
+
       wglMakeCurrent(NULL, NULL);
       wglDeleteContext(dummyRC);
       ReleaseDC(dummyHWND, dummyDC);
       DestroyWindow(dummyHWND);
+
    }
 
 

@@ -50,13 +50,9 @@ namespace gpu_opengl
    context::context()
    {
 
-      #ifdef WINDOWS_DESKTOP
-      m_hdc = nullptr;
-      m_hglrc = nullptr;
-#endif
-
       m_eapi = ::gpu::e_api_opengl;
       m_gluLayerFrameBuffer = 0;
+      
       //m_globalUBO = 0;
       //m_gluLayFrameBufferRenderer = 0;
 

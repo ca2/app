@@ -122,20 +122,20 @@ namespace acme
       // }
 
 
-      long window::__x11_Window()
-      {
+      //long window::__x11_Window()
+      //{
 
-         return 0;
+      //   return 0;
 
-      }
+      //}
 
 
-      void * window::__x11_Display()
-      {
+      //void * window::__x11_Display()
+      //{
 
-         return nullptr;
+      //   return 0;
 
-      }
+      //}
 
 
       void * window::__win32_HWND()

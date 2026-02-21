@@ -12,6 +12,7 @@
 #include "acme/parallelization/tools.h"
 #include "acme/platform/log.h"
 #include "acme/prototype/prototype/memory.h"
+#include "acme/windowing/window.h"
 #include "apex/message/message.h"
 #include "apex/platform/application.h"
 #include "apex/platform/node.h"
@@ -3738,7 +3739,7 @@ bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindow
 
       MSG msg;
 
-      HWND hwnd = (HWND)HWND_from_acme_windowing_window(pacmewindowingwindow);
+      HWND hwnd = (HWND)pacmewindowingwindow->__win32_HWND();
 
       if (::PeekMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax,
                          bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
@@ -4120,7 +4121,7 @@ void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowi
 
       }
 
-      auto hwnd = (HWND) HWND_from_acme_windowing_window(pacmewindowingwindow);
+      auto hwnd = (HWND) pacmewindowingwindow->__win32_HWND();
 
       iRet = ::GetMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax);
 
@@ -4189,7 +4190,7 @@ void thread::post_message(::acme::windowing::window * pacmewindowingwindow, ::us
    if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
-      auto hwnd = (HWND) HWND_from_acme_windowing_window(pacmewindowingwindow);
+      auto hwnd = (HWND) pacmewindowingwindow->__win32_HWND();
 
       if (::PostMessage(hwnd, (UINT) eusermessage, wparam, lparam))
       {

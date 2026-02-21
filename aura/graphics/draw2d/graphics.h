@@ -336,7 +336,7 @@ class graphics_context;
       virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
       virtual void defer_set_size(const ::int_size& size = {});
       virtual void _create_memory_graphics(const ::int_size& size = {});
-      virtual void CreateCompatibleDC(::draw2d::graphics* pgraphics);
+      virtual void create_compatible_graphics(::draw2d::graphics* pgraphics);
       virtual void CreateWindowDC(::acme::windowing::window * pacmewindowingwindow);
 
 

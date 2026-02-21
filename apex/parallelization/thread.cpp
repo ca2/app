@@ -3739,7 +3739,7 @@ bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindow
 
       MSG msg;
 
-      HWND hwnd = (HWND)pacmewindowingwindow->__win32_HWND();
+      auto hwnd = as_HWND(pacmewindowingwindow->operating_system_window());
 
       if (::PeekMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax,
                          bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))

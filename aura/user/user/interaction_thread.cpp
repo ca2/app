@@ -345,7 +345,7 @@ namespace user
 
       //m_himc = ImmGetContext(puserinteraction->get_handle());
 
-//      m_pacmewindowingwindow = puserinteraction->m_pwindow->oswindow();
+//      m_pacmewindowingwindow = puserinteraction->m_pwindow->operating_system_window();
 
 //      if(puserinteraction->const_layout().sketch().is_screen_visible())
 //      {

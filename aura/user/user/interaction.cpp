@@ -707,7 +707,7 @@ namespace user
 
       //RECT rWindow;
 
-      // ::GetWindowRect((HWND)window()->oswindow(), &rWindow);
+      // ::GetWindowRect((HWND)window()->operating_system_window(), &rWindow);
 
       int iLastXAbs = get_last_x_abs();
 
@@ -4231,7 +4231,7 @@ namespace user
 
             pmessage->m_eusermessage = ::user::e_message_mouse_leave;
             //pmessage->m_pwindow = window();
-            //pmessage->m_pacmewindowingwindow = window()->oswindow();
+            //pmessage->m_pacmewindowingwindow = window()->operating_system_window();
             //pmessage->m_wparam = 0;
             //pmessage->m_lparam = 0;
             //          pmessage->m_time = phappening->time;
@@ -18274,7 +18274,7 @@ if(get_parent())
    }
 
 
-   // ::oswindow interaction::oswindow()
+   // ::oswindow interaction::operating_system_window()
    // {
    //
    //    auto pwindowThis = window();
@@ -18286,7 +18286,7 @@ if(get_parent())
    //
    //    }
    //
-   //    auto oswindow = pwindowThis->oswindow();
+   //    auto oswindow = pwindowThis->operating_system_window();
    //
    //    if (!oswindow)
    //    {
@@ -18303,7 +18303,7 @@ if(get_parent())
    //::oswindow interaction::_oswindow() const
    //{
 
-   //   return oswindow();
+   //   return operating_system_window();
 
    //}
 
@@ -18521,7 +18521,7 @@ if(get_parent())
 
 #endif
 
-      //m_pacmewindowingwindow = m_pwindow->oswindow();
+      //m_pacmewindowingwindow = m_pwindow->operating_system_window();
 
    }
 
@@ -27895,7 +27895,7 @@ __check_refdbg;
       pcontextmenu->m_pointMessage = pmouse->m_pointHost;
 
       //;; pcontextmenu->m_wpar
-      //pcontextmenu->set(oswindow(), window(), ::user::e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
+      //pcontextmenu->set(operating_system_window(), window(), ::user::e_message_context_menu, (wparam)(iptr)operating_system_window(), pmouse->m_point.lparam());
 
       message_handler(pcontextmenu);
 
@@ -31437,7 +31437,7 @@ __check_refdbg;
       //   bool save)
       //{
       //
-      //      node()->pick_single_file(oswindow(),
+      //      node()->pick_single_file(operating_system_window(),
       //                                   filetypes,
       //                                   function,
       //                                   save);
@@ -31450,7 +31450,7 @@ __check_refdbg;
       //   const ::function < void(const ::file::path_array_base &) >& function)
       //{
       //
-      //   node()->pick_multiple_file(oswindow(),
+      //   node()->pick_multiple_file(operating_system_window(),
       //                                filetypes,
       //                                function);
       //
@@ -31463,7 +31463,7 @@ __check_refdbg;
       //                        //,       bool save);
       //{
       //
-      //   node()->pick_single_folder(oswindow(),
+      //   node()->pick_single_folder(operating_system_window(),
       //                                function);
       //
       //}
@@ -31578,6 +31578,16 @@ __check_refdbg;
       auto pacmewindowindowing = ::acme::user::interaction::acme_windowing_window();
 
       return pacmewindowindowing;
+
+   }
+
+
+   ::operating_system::window interaction::operating_system_window()
+   {
+
+      auto operatingsystemwindow = ::acme::user::interaction::operating_system_window();
+
+      return operatingsystemwindow;
 
    }
 

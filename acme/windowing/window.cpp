@@ -113,7 +113,7 @@ namespace acme
       }
 
 
-      // ::oswindow window::oswindow()
+      // ::oswindow window::operating_system_window()
       // {
       //
       //

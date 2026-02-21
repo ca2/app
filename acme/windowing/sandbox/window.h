@@ -62,8 +62,10 @@ public:
    
    virtual ::e_status set_window_icon(const ::file::path& path);
    
-   virtual bool window_is_child(::acme::windowing::window * pacmewindowingwindow); // or descendant
-   
+   virtual bool operating_system_window_is_child(const ::operating_system::window & operatingsystemwindowChildCandidate);
+
+   virtual bool operating_system_window_is_descendant(const ::operating_system::window & operatingsystemwindowDescendantCandidate);
+
    //::windowing::window* get_parent() override;
    //virtual ::Window get_parent_handle();
    //::oswindow get_parent_oswindow() override;

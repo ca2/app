@@ -460,7 +460,7 @@ namespace user
 
          m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
 
-         get_message(&m_message, nullptr, 0, 0);
+         get_message(&m_message, {}, 0, 0);
 
          if (m_message.m_eusermessage == ::user::e_message_quit)
          {

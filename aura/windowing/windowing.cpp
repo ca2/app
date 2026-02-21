@@ -750,7 +750,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::key * pkey, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::key * pkey, const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       auto pkeyboard = keyboard();
@@ -760,7 +760,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::mouse * pmouse, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::mouse * pmouse, const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
 

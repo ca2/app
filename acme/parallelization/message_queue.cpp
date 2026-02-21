@@ -257,7 +257,7 @@ void message_queue::kick_idle()
 }
 
 
-bool message_queue::peek_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax, bool bRemoveMessage)
+bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax, bool bRemoveMessage)
 {
 
    if(wMsgFilterMax == 0)

@@ -558,7 +558,7 @@ namespace graphics3d
 
             if (pdatabaseclient)
             {
-               auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
+               //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
                pdatabaseclient->datastream()->set("input", m_pinput->as_block());
                pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
                //pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
@@ -607,7 +607,7 @@ namespace graphics3d
 
       auto pgpuapproach = papp->get_gpu_approach();
 
-      auto pwindow = m_pusergraphics3d->window();
+      //auto pwindow = m_pusergraphics3d->window();
 
       pgpuapproach->m_rectangleOffscreen = rectanglePlacement;
 
@@ -911,9 +911,9 @@ namespace graphics3d
       if (!m_rectanglePlacementNew.is_empty())
       {
          
-         auto wNew = m_rectanglePlacementNew.width();
+         //auto wNew = m_rectanglePlacementNew.width();
          
-         auto hNew = m_rectanglePlacementNew.height();
+         //auto hNew = m_rectanglePlacementNew.height();
 
          if (m_rectanglePlacementNew != m_rectanglePlacement)
          {

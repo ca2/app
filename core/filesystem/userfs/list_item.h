@@ -25,7 +25,7 @@ namespace userfs
       //index CompareArrangeByName(const list_item & item) const;
       //index GetIndex() const;
 
-      inline int get_type_weight() { return IsFolder() ? 0 : 1; }
+      inline int get_type_weight() { return is_folder() ? 0 : 1; }
 
       list_item & operator = (const list_item & item);
 

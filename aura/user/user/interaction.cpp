@@ -3006,7 +3006,7 @@ namespace user
          if (pkey)
          {
 
-            windowing()->set(pkey, pkey->m_pacmewindowingwindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
+            windowing()->set(pkey, pkey->m_operatingsystemwindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
 
          }
 
@@ -18739,7 +18739,7 @@ if(get_parent())
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
-   pmessage->m_pacmewindowingwindow = pacmewindowingwindow; \
+   pmessage->m_operatingsystemwindow = this->operating_system_window(); \
    pmessage->m_puserinteraction = this; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_eusermessage = eusermessage; \
@@ -18900,7 +18900,7 @@ if(get_parent())
       case ::user::e_message_prototype_kill_focus:
       {
          _NEW_MESSAGE(::message::kill_keyboard_focus);
-         pmessage->m_pacmewindowingwindowNew = acme_windowing_window_from_HWND((void*)(::iptr)wparam.m_number);
+         pmessage->m_operatingsystemwindow = system()->windowing()->operating_system_window(wparam);
       }
       break;
 #if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
@@ -19007,7 +19007,7 @@ if(get_parent())
 
             auto pwindowing = system()->windowing();
 
-            auto pwindow = acme_windowing_window_from_HWND((void *) (::iptr) lparam);
+            auto pwindow = system()->windowing()->windowing_window(lparam);
 
             if (pwindow)
             {
@@ -27889,7 +27889,7 @@ __check_refdbg;
 
       auto pcontextmenu = øallocate::message::context_menu();
 
-      pcontextmenu->m_pacmewindowingwindow = m_pacmewindowingwindow;
+      pcontextmenu->m_operatingsystemwindow = operating_system_window();
       pcontextmenu->m_pwindow = window();
       pcontextmenu->m_eusermessage = ::user::e_message_context_menu;
       pcontextmenu->m_pointMessage = pmouse->m_pointHost;

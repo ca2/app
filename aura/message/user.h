@@ -511,7 +511,7 @@ namespace message
    public:
 
 
-      drag_and_drop(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage);
+      drag_and_drop(const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage);
       //
       //#ifdef WINDOWS
       //

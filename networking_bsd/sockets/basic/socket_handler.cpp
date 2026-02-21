@@ -1720,7 +1720,7 @@ end_processing_adding:
 
                }
 
-               auto iteratorSocket = m_socketmap.find(socket);
+               //auto iteratorSocket = m_socketmap.find(socket);
 
                if (::is_set(pbasesocket)) // found
                {

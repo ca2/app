@@ -202,9 +202,12 @@ namespace windowing
 
       void install_message_routing(::channel * pchannel) override;
 
-      void * __x11_Display() override;
-      long __x11_Window() override;
+      //void * __x11_Display() override;
+      //long __x11_Window() override;
 
+      ::operating_system::window operating_system_window() const override;
+      
+      
       void create_window() override;
 
       void _create_window() override;
@@ -1351,7 +1354,9 @@ namespace windowing
       virtual void on_show_window();
 
 
-      void * __win32_HWND() override;
+      //void * __win32_HWND() override;
+      
+      //::operating_system_window operating_system_window() const override;
 
       //void destroy() override;
 

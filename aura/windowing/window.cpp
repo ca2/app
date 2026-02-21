@@ -734,27 +734,27 @@ namespace windowing
    }
 
 
-
-   void * window::__x11_Display()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
-
-
-   long window::__x11_Window()
-   {
-
-      throw ::interface_only();
-
-      return 0;
-
-   }
-
-
+//
+//   void * window::__x11_Display()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   long window::__x11_Window()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
+//
+//
 
    void window::create_window()
    {
@@ -1357,6 +1357,12 @@ namespace windowing
    //}
 
 
+   //bool window::should_avoid_default_swap_chain_present()
+//{
+//      
+//      
+//   }
+
    void window::on_a_system_menu_item(::operating_system::a_system_menu_item* psystemmenuitem, ::user::activation_token* puseractivationtoken)
    {
 
@@ -1495,7 +1501,7 @@ namespace windowing
 
       auto preposition = øcreate_new<::message::reposition>();
 
-      preposition->m_pacmewindowingwindow = this;
+      preposition->m_operatingsystemwindow = operating_system_window();
 
       preposition->m_pwindow = this;
 
@@ -1548,7 +1554,7 @@ namespace windowing
 
       auto psize = øcreate_new<::message::size>();
 
-      psize->m_pacmewindowingwindow = this;
+      psize->m_operatingsystemwindow = operating_system_window();
 
       psize->m_pwindow = this;
 
@@ -6459,7 +6465,7 @@ namespace windowing
 
       auto pwindowing = windowing();
 
-      pwindowing->set(pmouse, this, this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
+      pwindowing->set(pmouse, this->operating_system_window(), this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
 
       //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
@@ -13883,8 +13889,8 @@ slGraphics.unlock();
 
       //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-      if (pkillkeyboardfocus->m_pacmewindowingwindowNew
-         == pkillkeyboardfocus->m_pacmewindowingwindow)
+      if (pkillkeyboardfocus->m_operatingsystemwindow
+         == pkillkeyboardfocus->m_operatingsystemwindow)
       {
 
          pkillkeyboardfocus->m_bRet = true;
@@ -19745,14 +19751,14 @@ slGraphics.unlock();
 
    }
 
-   void *window::__win32_HWND()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+//   void *window::__win32_HWND()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
 
 } // namespace windowing
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "data.h"
 #include "thumbnail.h"
+#include "acme/constant/id.h"
 #include "acme/handler/topic.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "document.h"

@@ -1959,11 +1959,11 @@ namespace gpu
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
 
-      auto etype = this->m_etype;
-
-      auto eoutput = this->m_eoutput;
-
-      auto rectangleContext = this->rectangle();
+//      auto etype = this->m_etype;
+//
+//      auto eoutput = this->m_eoutput;
+//
+//      auto rectangleContext = this->rectangle();
 
       if (m_etype != e_type_window)
       {

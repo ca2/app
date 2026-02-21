@@ -20,7 +20,7 @@
 //#include "acme/user/user/interaction_base.h"
 //#include "acme/prototype/geometry2d/rectangle.h"
 //#include "acme/user/user/item.h"
-
+#include "acme/operating_system/window.h"
 
 #include "acme/user/user/element.h"
 
@@ -97,8 +97,8 @@ namespace acme
 
          ::pointer < ::acme::windowing::display >           m_pacmewindowingdisplayWindow;
 
-         long                                               m_lX11NativeVisualId;
-         int                                                m_lX11MapNotify = -1;
+//         long                                               m_lX11NativeVisualId;
+//         int                                                m_lX11MapNotify = -1;
 
 
 
@@ -120,9 +120,14 @@ namespace acme
 
          //virtual void * __win32_HWND();
 
-         virtual long __x11_Window();
-         virtual void * __x11_Display();
-         virtual void * __win32_HWND();
+         //virtual long __x11_Window();
+         //virtual void * __x11_Display();
+         //virtual void * __win32_HWND();
+         //virtual long long __CGWindowID() const;
+         
+         virtual bool should_avoid_default_swap_chain_present();
+         
+         virtual ::operating_system::window operating_system_window() const;
          virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);
          virtual void set_user_thread(::user::thread * puserthread);
          virtual void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread);

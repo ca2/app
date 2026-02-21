@@ -111,7 +111,7 @@ namespace gpu_opengl
       glBindBuffer(GL_UNIFORM_BUFFER, m_iUBO);
       ::opengl::check_error("");
 
-      int iSize = this->size(false);
+      int iSize = (int) this->size(false);
 
       // Map the entire buffer for writing
       void *p = glMapBufferRange(

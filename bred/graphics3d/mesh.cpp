@@ -58,10 +58,10 @@ namespace graphics3d
    {
 
       // bind appropriate textures
-      unsigned int diffuseNr = 1;
-      unsigned int specularNr = 1;
-      unsigned int normalNr = 1;
-      unsigned int heightNr = 1;
+//      unsigned int diffuseNr = 1;
+//      unsigned int specularNr = 1;
+//      unsigned int normalNr = 1;
+//      unsigned int heightNr = 1;
       for (unsigned int i = 0; i < m_texturea.size(); i++)
       {
          

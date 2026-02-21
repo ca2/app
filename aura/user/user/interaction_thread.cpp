@@ -576,12 +576,12 @@ namespace user
 
          }
 
-         auto pacmewindowingwindow = message.m_pacmewindowingwindow;
+         auto operatoratingsystemwindow = message.m_operatingsystemwindow;
 
-         if (::is_set(pacmewindowingwindow))
+         if (operatoratingsystemwindow.is_set())
          {
 
-            auto pwindow = pacmewindowingwindow;
+            auto pwindow = system()->windowing()->windowing_window(operatoratingsystemwindow);
 
             if (!pwindow)
             {
@@ -722,7 +722,7 @@ namespace user
    bool thread::process_message(::message::message * pmessage)
    {
 
-      if (pmessage->m_pacmewindowingwindow)
+      if (pmessage->m_operatingsystemwindow.is_set())
       {
 
          return process_user_message(pmessage);

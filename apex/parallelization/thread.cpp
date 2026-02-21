@@ -3707,7 +3707,7 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
+bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
                           bool bRemoveMessage)
 {
 
@@ -3723,7 +3723,7 @@ bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindow
 
       }
 
-      if (m_pmessagequeue->peek_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
+      if (m_pmessagequeue->peek_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
       {
 
          return true;
@@ -4053,7 +4053,7 @@ bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindow
 //}
 
 
-void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -4166,16 +4166,14 @@ void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowi
 
    auto pmessagequeue = get_message_queue();
 
-
-
-   pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+   pmessagequeue->get_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax);
 
 #endif
 
 }
 
 
-void thread::post_message(::acme::windowing::window * pacmewindowingwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+void thread::post_message(const ::operating_system::window & operatingsystemwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    //if (m_bThreadClosed)
@@ -4205,7 +4203,7 @@ void thread::post_message(::acme::windowing::window * pacmewindowingwindow, ::us
 
    //return get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
 
-   get_message_queue()->post_message(pacmewindowingwindow, eusermessage, wparam, lparam);
+   get_message_queue()->post_message(operatingsystemwindow, eusermessage, wparam, lparam);
 
 }
 

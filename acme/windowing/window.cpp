@@ -146,6 +146,12 @@ namespace acme
       }
 
 
+   long long window::__CGWindowID()
+   {
+
+      return 0;
+
+   }
 
 
       ::windowing::enum_bias window::windowing_bias() const

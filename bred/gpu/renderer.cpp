@@ -145,7 +145,7 @@ namespace gpu
 
       }
 
-      auto eoutput = m_pgpucontext->m_eoutput;
+      //auto eoutput = m_pgpucontext->m_eoutput;
 
       //auto previous = render_target();
 
@@ -944,9 +944,9 @@ namespace gpu
          if (m_pgpucontext->m_pgpucompositor)
          {
 
-            auto etypeContext = m_pgpucontext->m_etype;
+            //auto etypeContext = m_pgpucontext->m_etype;
 
-            auto eoutputContext = m_pgpucontext->m_eoutput;
+            //auto eoutputContext = m_pgpucontext->m_eoutput;
 
             m_iSentLayerCount++;
 
@@ -1162,7 +1162,7 @@ namespace gpu
 
       auto sizeContext = rectangleContext.size();
 
-      auto etypeContext = m_pgpucontext->m_etype;
+      //auto etypeContext = m_pgpucontext->m_etype;
 
       auto prendertarget = render_target();
 
@@ -1446,11 +1446,11 @@ namespace gpu
    void renderer::start_frame()
    {
 
-      auto etype = m_pgpucontext->m_etype;
-
-      auto eoutput = m_pgpucontext->m_eoutput;
-
-      auto escene = m_pgpucontext->m_escene;
+//      auto etype = m_pgpucontext->m_etype;
+//
+//      auto eoutput = m_pgpucontext->m_eoutput;
+//
+//      auto escene = m_pgpucontext->m_escene;
 
       defer_update_renderer();
 
@@ -1547,15 +1547,15 @@ namespace gpu
 
       auto iFrameIndex = pcommandbuffer->m_iCommandBufferFrameIndex;
 
-      auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
+//      auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
 
       static int s_iFrameIndex0LayerDraw2dCount = 0;
 
-      auto iLayer = pgpudevice->m_iLayer;
-
-      auto iFrameSerial = pgpudevice->m_iFrameSerial2;
-
-      auto iCurrentFrame = pgpudevice->m_iCurrentFrame2;
+//      auto iLayer = pgpudevice->m_iLayer;
+//
+//      auto iFrameSerial = pgpudevice->m_iFrameSerial2;
+//
+//      auto iCurrentFrame = pgpudevice->m_iCurrentFrame2;
 
       if (iFrameIndex == 0 && pcommandbuffer->m_strAnnotation == "layer.draw2d")
       {

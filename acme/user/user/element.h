@@ -10,6 +10,7 @@
 #include "acme/user/user/text.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
+#include "acme/operating_system/window.h"
 #include "acme/platform/message_box.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/prototype/geometry2d/rectangle.h"
@@ -129,6 +130,7 @@ namespace user
 
       virtual ::acme::user::interaction * acme_user_interaction();
       virtual ::acme::windowing::window * acme_windowing_window();
+      virtual ::operating_system::window operating_system_window();
 
 
       virtual ::user::interaction_base * user_interaction_base();

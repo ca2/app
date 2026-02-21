@@ -108,7 +108,7 @@ namespace gpu
    ::gpu::frame* compositor::end_gpu_layer(::gpu::frame* pgpuframe)
    {
 
-      auto pcontext = gpu_context();
+      //auto pcontext = gpu_context();
 
       auto player = pgpuframe->m_pgpulayer;
 

@@ -402,6 +402,38 @@ namespace acme
       //    system()->post_aaa_application_started();
       //
       // }
+   
+   
+      ::acme::windowing::window * windowing::acme_windowing_window(const ::operating_system::window & operatingsystemwindow)
+      {
+       
+         ::synchronous_lock synchronouslock(this->synchronization());
+         
+         auto & pacmewindowingwindow = m_windowmap[operatingsystemwindow];
+         
+         return pacmewindowingwindow;
+         
+      }
+   
+   
+      ::operating_system::window windowing::operating_system_window(const ::wparam & wparam)
+      {
+         
+         throw ::interface_only();
+         
+         return {};
+         
+      }
+   
+   
+      ::operating_system::window windowing::operating_system_window(const ::lparam & lparam)
+      {
+      
+         throw ::interface_only();
+         
+         return {};
+
+      }
 
 
       ::windowing::windowing* windowing::windowing_windowing()
@@ -681,20 +713,27 @@ namespace acme
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto interchangea = m_windowa;
+         //auto interchangea = m_windowa;
 
-         synchronouslock.unlock();
+         //synchronouslock.unlock();
 
          //if (::micro::window_implementation::nanowindowimplementationa().has_element())
          //{
 
-         for (auto& pwindow: interchangea)
+         for (auto& ppair: m_windowmap)
          {
 
-            if (pwindow)
+            if (ppair)
             {
-
-               pwindow->window_message_loop_step();
+               
+               auto pwindow = ppair->m_element2;
+               
+               if(pwindow)
+               {
+                  
+                  pwindow->window_message_loop_step();
+                  
+               }
 
             }
 

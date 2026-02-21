@@ -183,6 +183,16 @@ namespace user
    }
 
 
+   ::operating_system::window drawable::operating_system_window()
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
 
 } // namespace user
 

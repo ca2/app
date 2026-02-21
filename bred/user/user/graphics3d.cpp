@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "graphics3d.h"
+#include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
 #include "bred/gpu/block.h"
 #include "bred/gpu/context.h"

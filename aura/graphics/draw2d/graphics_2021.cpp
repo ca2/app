@@ -329,7 +329,7 @@ namespace draw2d
    }
 
 
-   void graphics::CreateWindowDC(::acme::windowing::window * pacmewindowingwindow)
+   void graphics::create_window_graphics(::acme::windowing::window * pacmewindowingwindow)
    {
 
       __UNREFERENCED_PARAMETER(wnd);

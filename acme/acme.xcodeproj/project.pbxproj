@@ -3061,6 +3061,9 @@
 		9AA8FFE927BA72A0008FF9AA /* serial.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8FAE227BA7296008FF9AA /* serial.h */; };
 		9AA8FFEA27BA72A0008FF9AA /* serial.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8FAE227BA7296008FF9AA /* serial.h */; };
 		9AA8FFEC27BA72A0008FF9AA /* parallelization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8FAE327BA7296008FF9AA /* parallelization.cpp */; };
+		9AAC57802F48DA6E0095CC0F /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAC577F2F48DA680095CC0F /* window.h */; };
+		9AAC57812F48DA6E0095CC0F /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAC577F2F48DA680095CC0F /* window.h */; };
+		9AAC57822F48DA6E0095CC0F /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAC577F2F48DA680095CC0F /* window.h */; };
 		9AAE6E92251920CE00F10692 /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E8B251920CD00F10692 /* color.h */; };
 		9AAE6E97251920CE00F10692 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6E90251920CD00F10692 /* _.h */; };
 		9AAF90022B4C8DBD00E120B2 /* libarchive.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A818F5B2A721B89008F470C /* libarchive.dylib */; };
@@ -6874,6 +6877,7 @@
 		9AA8FC9627BA7297008FF9AA /* time.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
 		9AA8FC9727BA7297008FF9AA /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AA8FC9827BA7297008FF9AA /* _common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _common.h; sourceTree = "<group>"; };
+		9AAC577F2F48DA680095CC0F /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
 		9AAE6E8B251920CD00F10692 /* color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
 		9AAE6E8C251920CD00F10692 /* color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = color.cpp; sourceTree = "<group>"; };
 		9AAE6E8D251920CD00F10692 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -9371,6 +9375,7 @@
 				9AA8F94A27BA7295008FF9AA /* time.h */,
 				9AA8FC9627BA7297008FF9AA /* time.cpp */,
 				9AA8FB7827BA7297008FF9AA /* user.h */,
+				9AAC577F2F48DA680095CC0F /* window.h */,
 				9AA8FC9527BA7297008FF9AA /* windowing.cpp */,
 				9AA8FC0027BA7297008FF9AA /* winpr_input.h */,
 				9AA8F99927BA7295008FF9AA /* winpr_keycode.cpp */,
@@ -10061,6 +10066,7 @@
 				9A8F43642A23022C00097EE1 /* _struct.h in Headers */,
 				9A892DEC26CD9061008D6412 /* context.h in Headers */,
 				9AC018D8274888C8006BEBCC /* uncompress.h in Headers */,
+				9AAC57822F48DA6E0095CC0F /* window.h in Headers */,
 				9A68ACE125114434008DABD2 /* allocation.h in Headers */,
 				9A0843A129366D39009F7FF4 /* what_exclamation_exception.h in Headers */,
 				9A2353FB2BF0907500E20450 /* nano.h in Headers */,
@@ -11819,6 +11825,7 @@
 				9AC104122B6AC9BD0053DB45 /* _new.h in Headers */,
 				9AC104132B6AC9BD0053DB45 /* unicode.h in Headers */,
 				9AC104142B6AC9BD0053DB45 /* numeric_array_range.h in Headers */,
+				9AAC57802F48DA6E0095CC0F /* window.h in Headers */,
 				9AC104152B6AC9BD0053DB45 /* opacity.h in Headers */,
 				9A7DE1312D26A51900118A10 /* key.h in Headers */,
 				9AC104162B6AC9BD0053DB45 /* _c.h in Headers */,
@@ -12681,6 +12688,7 @@
 				9A8F43972A23022C00097EE1 /* types.h in Headers */,
 				9A8F43952A23022C00097EE1 /* _.h in Headers */,
 				9ACF5F762D9BDA11002033DF /* item_base.h in Headers */,
+				9AAC57812F48DA6E0095CC0F /* window.h in Headers */,
 				9A0842C22935E694009F7FF4 /* _container.h in Headers */,
 				9AA3F9332A948586004283CA /* hasher_algorithm.h in Headers */,
 				9A08445229369AD1009F7FF4 /* time.h in Headers */,
@@ -12972,11 +12980,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A68A41D25114352008DABD2 /* Build configuration list for PBXNativeTarget "acme" */;
 			buildPhases = (
-				9AA012D32D7181C500A28EED /* ShellScript */,
+				9AA012D32D7181C500A28EED /* _on_before_build_project */,
 				9A68A41025114352008DABD2 /* Headers */,
 				9A52406E2CD47411006ED868 /* Sources */,
 				9A68A41225114352008DABD2 /* Frameworks */,
-				9A5955792D6D8A4C00B096D0 /* ShellScript */,
+				9A5955792D6D8A4C00B096D0 /* _on_after_build_dylib */,
 			);
 			buildRules = (
 			);
@@ -13117,7 +13125,7 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9A5955792D6D8A4C00B096D0 /* ShellScript */ = {
+		9A5955792D6D8A4C00B096D0 /* _on_after_build_dylib */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -13128,6 +13136,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_NAME)",
 				"$(WorkspaceDir)/output_copy.txt",
 			);
+			name = _on_after_build_dylib;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -13137,7 +13146,7 @@
 			shellPath = /bin/sh;
 			shellScript = ". $HOME/code/operating_system/tool/bin/_on_after_build_dylib\n";
 		};
-		9AA012D32D7181C500A28EED /* ShellScript */ = {
+		9AA012D32D7181C500A28EED /* _on_before_build_project */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -13146,6 +13155,7 @@
 			);
 			inputPaths = (
 			);
+			name = _on_before_build_project;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -13153,7 +13163,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\nprepare_project()\n{\n\n   cd ${WorkspaceDir}\n   \n   echo \"WorkspaceDir=${WorkspaceDir}\"\n   echo \"HOME=${HOME}\"\n   \n   ${HOME}/code/operating_system/tool/bin/application_build_helper --prepare-project app/acme\n\n\n}\n\n\nif [[ ! \"${WorkspaceDir}\" =~ \"code/console_build_tools\" ]]; then\n\nprepare_project\n\nfi\n\n\n\n";
+			shellScript = "#exit 0\n\n$HOME/code/operating_system/tool/bin/_on_before_build_project\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

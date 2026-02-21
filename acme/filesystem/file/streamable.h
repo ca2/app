@@ -78,7 +78,7 @@ namespace file
 
       void translate(filesize offset, ::enum_seek eseek) override;
 
-      virtual void close();
+      void close() override;
       virtual void abort();
 
 

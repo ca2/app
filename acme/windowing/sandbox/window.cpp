@@ -1114,14 +1114,14 @@ bool window::window_is_child(::acme::windowing::window * pacmewindowingwindow)
 
 #if !defined(WINDOWS_DESKTOP)
 
-   if (oswindow == nullptr || oswindow->m_pacmeuserinteraction == nullptr)
+   if (::is_null(pacmewindowingwindow) || pacmewindowingwindow->m_pacmeuserinteraction == nullptr)
    {
 
       return false;
 
    }
 
-   if (m_pacmeuserinteraction == nullptr)
+   if (::is_null(m_pacmeuserinteraction))
    {
 
       return false;

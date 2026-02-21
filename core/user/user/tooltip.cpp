@@ -166,7 +166,7 @@ namespace user
 
       ::draw2d::graphics_pointer g(e_create, this);
 
-      g->CreateCompatibleDC(nullptr);
+      g->create_compatible_graphics(nullptr);
 
       g->set(m_pfont);
 

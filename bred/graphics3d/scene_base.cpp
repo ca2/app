@@ -173,7 +173,7 @@ namespace graphics3d
 
                return;
 
-            throw ::exception(error_not_found, "Model not found in cache: " + strModel);
+//            throw ::exception(error_not_found, "Model not found in cache: " + strModel);
          }
          }
       }

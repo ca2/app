@@ -525,10 +525,10 @@ namespace draw2d
    }
 
 
-   void graphics::CreateWindowDC(::acme::windowing::window * pacmewindowingwindow)
+   void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
    {
 
-      __UNREFERENCED_PARAMETER(pacmewindowingwindow);
+      __UNREFERENCED_PARAMETER(operatingsystemwindow);
 
 
 

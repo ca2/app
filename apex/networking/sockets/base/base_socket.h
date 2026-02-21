@@ -269,7 +269,7 @@ namespace sockets
 
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
-      virtual void close();
+      void close() override;
 
       virtual void _001InitSSLServer();
       virtual void set_end();

@@ -99,12 +99,22 @@ FragColor = texture(uTexture, TexCoord);
 
       }
 
-      if (m_pgpucontext->m_pacmewindowingwindowWindowSurface->__x11_Display()
-          &&
-          m_pgpucontext->m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
+//      if (m_pgpucontext->m_pacmewindowingwindowWindowSurface->__x11_Display()
+//          &&
+//          m_pgpucontext->m_pacmewindowingwindowWindowSurface->m_lX11MapNotify != 1)
+//      {
+//
+//         information("swap_chain::present m_lX11MapNotify != 1");
+//
+//         return;
+//
+//      }
+
+      
+      if (m_pgpucontext->m_pacmewindowingwindowWindowSurface->should_avoid_default_swap_chain_present())
       {
 
-         information("swap_chain::present m_lX11MapNotify != 1");
+         information("swap_chain::present should_avoid_platform_swap_chain_present()");
 
          return;
 

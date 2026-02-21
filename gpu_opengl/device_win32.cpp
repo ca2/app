@@ -82,7 +82,7 @@ namespace gpu_opengl
       m_pgpuapproach = papproach;
       //m_pwindow = pwindow;
       m_bAddSwapChainSupport = true;
-      //m_hwnd = (HWND) m_pwindow->oswindow();
+      //m_hwnd = (HWND) m_pwindow->operating_system_window();
 
       //;
       //;
@@ -656,7 +656,7 @@ namespace gpu_opengl
    //      //BIH.biPlanes = 1;          // один план
    //      //BIH.biBitCount = 32;       // 24 bits per pixel
    //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
-   //      ////pdcDIB = CreateCompatibleDC(NULL);
+   //      ////pdcDIB = create_compatible_graphics(NULL);
    //      ////void * pBits = nullptr;
    //      //// создаем DIB-секцию
    //      //pwindow->m_hbitmapProto = CreateDIBSection(

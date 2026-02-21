@@ -281,7 +281,7 @@ namespace gpu
    void memory_buffer::_assign(const ::block& block)
    {
 
-      _assign(block);
+      //::poolable < memory_buffer >::_assign(block);
 
    }
 

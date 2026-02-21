@@ -4328,6 +4328,7 @@
     </ClInclude>
     <ClInclude Include="platform\remoting.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
     <ClInclude Include="operating_system\environment.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>

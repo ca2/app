@@ -714,3 +714,12 @@ CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
 }
 
 
+CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
+{
+
+   return (HINSTANCE) GetModuleFromFunction(pFunc);
+
+}
+
+
+

@@ -41,7 +41,7 @@ namespace acme
 
          //::pointer_array < ::acme::windowing::window >      m_windowa;
          
-         ::map < ::operating_system::window, ::pointer < ::acme::windowing::window > > m_windowmap;
+         //::map < ::operating_system::window, ::pointer < ::acme::windowing::window > > m_windowmap;
          
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
@@ -92,10 +92,12 @@ namespace acme
          
          //      ::windowing::window* new_window(::windowing::window* pimpl) override;
          //
+         virtual void add_window(::acme::windowing::window *pwindow);
          virtual void erase_window(::acme::windowing::window* pwindow);
          
-         virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
+         //virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
 
+         virtual void each_window(const ::function<void(::acme::windowing::window *)> &function);  
          
          virtual void _message_handler(void* p);
          

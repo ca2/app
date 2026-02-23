@@ -1068,7 +1068,7 @@ namespace draw2d_cairo
 //
 //        HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pimage32, nullptr, 0);
 //
-//        HDC hdc = ::create_compatible_graphics(nullptr);
+//        HDC hdc = ::CreateCompatibleDC(nullptr);
 //
 //        HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
 //

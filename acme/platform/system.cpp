@@ -5564,12 +5564,12 @@ CLASS_DECL_ACME task_pointer fork(::particle* pparticle, const ::procedure& proc
 
 }
 
-CLASS_DECL_ACME ::acme::windowing::window *acme_windowing_window_from_HWND(void * pHWND)
-{
-
-
-   auto pacmewindowingwindow = ::system()->acme_windowing()->window_from_HWND(pHWND);
-
-   return pacmewindowingwindow;
-
-}
+//CLASS_DECL_ACME ::acme::windowing::window *acme_windowing_window_from_HWND(void * pHWND)
+//{
+//
+//
+//   auto pacmewindowingwindow = ::system()->acme_windowing()->window_from_HWND(pHWND);
+//
+//   return pacmewindowingwindow;
+//
+//}

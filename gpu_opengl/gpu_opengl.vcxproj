@@ -804,6 +804,7 @@
     <ClInclude Include="swap_chain.h" />
     <ClInclude Include="swap_chain_render_target.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="wgl_context.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
     <ClInclude Include="framework.h" />
@@ -903,6 +904,7 @@
     <ClCompile Include="swap_chain_render_target.cpp" />
     <ClCompile Include="swap_chain_win32.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="wgl_context.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

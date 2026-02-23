@@ -143,25 +143,16 @@ namespace micro
          if (ptopic->id() == id_set_application_dark_mode)
          {
 
-            auto & windowmap = system()->acme_windowing()->m_windowmap;
-
-            for (auto & pair : windowmap)
+            system()->acme_windowing()->each_window([ptopic, phandlercontext](auto pacmewindowingwindow)
             {
 
-               auto pacmewindowingwindow = pair.element2();
+               pacmewindowingwindow->handle(ptopic, phandlercontext);
 
-               if (::is_set(pacmewindowingwindow))
-               {
-
-                  pacmewindowingwindow->handle(ptopic, phandlercontext);
-
-               }
-
-            }
+            });
 
          }
-      }
 
+      }
 
 
       void user::process_messages()
@@ -397,25 +388,34 @@ namespace micro
 
          auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
-         auto & windowmap = system()->acme_windowing()->m_windowmap;
-
-         for (auto & pair : windowmap)
-         {
-
-            auto pacmewindowingwindow = pair.element2();
-
-            if (::is_set(pacmewindowingwindow))
+         system()->acme_windowing()->each_window([ptopic](auto pacmewindowingwindow)   
             {
-
+               //pacmewindowingwindow->handle(ptopic, nullptr);
                pacmewindowingwindow->handle(ptopic, nullptr);
 
                pacmewindowingwindow->set_need_redraw();
 
                pacmewindowingwindow->post_redraw();
 
-            }
+            });
 
-         }
+         //for (auto & pair : windowmap)
+         //{
+
+         //   auto pacmewindowingwindow = pair.element2();
+
+         //   if (::is_set(pacmewindowingwindow))
+         //   {
+
+         //      pacmewindowingwindow->handle(ptopic, nullptr);
+
+         //      pacmewindowingwindow->set_need_redraw();
+
+         //      pacmewindowingwindow->post_redraw();
+
+         //   }
+
+         //}
 
       }
 
@@ -465,29 +465,31 @@ namespace micro
       void user::_do_tasks()
       {
 
-         _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
          /// Expensive operation, we don't want to hold the lock while doing it,
          /// but we need to make sure that the window map doesn't 
          /// change while we're iterating it, 
          /// so we copy the window map and then release the lock.
-         auto windowmap = system()->acme_windowing()->m_windowmap;
+         //auto windowmap = system()->acme_windowing()->m_windowmap;
 
-         synchronouslock.unlock();
-
-         for (auto & pair : windowmap)
-         {
-
-            auto pacmewindowingwindow = pair.element2();
-
-            if (::is_set(pacmewindowingwindow))
+         system()->acme_windowing()->each_window(
+            [](auto pacmewindowingwindow)
             {
-            
+               // synchronouslock.unlock();
+
+               // for (auto & pair : windowmap)
+               //{
+
+               // auto pacmewindowingwindow = pair.element2();
+
+               // if (::is_set(pacmewindowingwindow))
+               //{
+
                pacmewindowingwindow->window_message_loop_step();
 
-            }
-
-         }
+               //}
+            });
 
       }
 

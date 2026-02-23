@@ -317,7 +317,7 @@ namespace draw2d
    }
 
 
-   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
+   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);

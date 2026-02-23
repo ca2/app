@@ -35,6 +35,14 @@ namespace gpu_opengl
    }
 
 
+   void context_win32::destroy()
+   {
+
+      ::gpu_opengl::context::destroy();
+      wgl_context::destroy();
+
+   }
+
    void context_win32::_create_cpu_buffer(const ::int_size &size)
    {
 
@@ -222,81 +230,13 @@ namespace gpu_opengl
          // m_estatus = ::success;
 
          // set_ok_flag();
+
+         //scoped_dummy_wgl_context wglcontextDummy(this);
+
          ::cast<::gpu_opengl::device_win32> pdevice = m_pgpudevice;
          ::cast<::win32::acme::windowing::window> pwindow = m_pgpudevice->m_pwindow;
 
-         HWND hwnd = pwindow->m_hwnd;
-
-         HDC hdc = GetDC(hwnd);
-
-         // int pixelAttribs[] = {
-         //     WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
-         //     WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
-         //     WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
-         //     WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
-         //     WGL_COLOR_BITS_ARB, 32,
-         //     WGL_DEPTH_BITS_ARB, 24,
-         //     WGL_STENCIL_BITS_ARB, 8,
-         //     0
-         // };
-
-         int_array_base pixelAttribs;
-
-
-         pixelAttribs.append({WGL_DRAW_TO_WINDOW_ARB, GL_TRUE});
-         pixelAttribs.append({WGL_SUPPORT_OPENGL_ARB, GL_TRUE});
-         if (pdevice->m_bAddSwapChainSupport)
-         {
-            pixelAttribs.append({WGL_DOUBLE_BUFFER_ARB, GL_TRUE}); // <-- double buffering
-         }
-         pixelAttribs.append({WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB});
-         pixelAttribs.append({WGL_COLOR_BITS_ARB, 32}); // total color bits
-         pixelAttribs.append({WGL_RED_BITS_ARB, 8});
-         pixelAttribs.append({WGL_GREEN_BITS_ARB, 8});
-         pixelAttribs.append({WGL_BLUE_BITS_ARB, 8});
-         pixelAttribs.append({WGL_ALPHA_BITS_ARB, 8}); // <-- alpha support
-         pixelAttribs.append({WGL_DEPTH_BITS_ARB, 24}); // optional, for depth buffer
-         pixelAttribs.append({WGL_STENCIL_BITS_ARB, 8}); // optional, for stencil
-         pixelAttribs.add(0); // terminator
-
-         int format = 0;
-         UINT numFormats = 0;
-         loaded_wglChoosePixelFormatARB(hdc, pixelAttribs.data(), NULL, 1, &format, &numFormats);
-         PIXELFORMATDESCRIPTOR pfd;
-         DescribePixelFormat(hdc, format, sizeof(pfd), &pfd);
-         SetPixelFormat(hdc, format, &pfd);
-
-         int contextAttribs[] = {
-            WGL_CONTEXT_MAJOR_VERSION_ARB,    3, WGL_CONTEXT_MINOR_VERSION_ARB, 3, WGL_CONTEXT_PROFILE_MASK_ARB,
-            WGL_CONTEXT_CORE_PROFILE_BIT_ARB, 0};
-
-         HGLRC hglrc = loaded_wglCreateContextAttribsARB(hdc, pgpuapproach->m_hglrcShare, contextAttribs);
-
-         if (!pgpuapproach->m_hglrcShare)
-         {
-
-            pgpuapproach->m_hglrcShare = hglrc;
-
-         }
-         // wglMakeCurrent(dc, rc);
-         //
-         //*outRC = rc;
-         //*outDC = dc;*/
-         ////::ReleaseDC(hwnd, dc);
-
-         bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrc);
-
-         if (!bMakeCurrentOk)
-         {
-
-            informationf("MS WGL - wglMakeCurrent failed");
-
-            informationf("last-error code: %d\n", GetLastError());
-
-            ReleaseDC(hwnd, hdc);
-
-            throw ::exception(error_failed);
-         }
+         create_offscreen_wgl_context();
 
          pgpuapproach->defer_init_gpu_library();
 
@@ -321,16 +261,16 @@ namespace gpu_opengl
          //}
 
          // m_hwnd = m_hwnd;
-         m_hdc = hdc;
-         m_hglrc = hglrc;
+         //m_hdc = hdc;
+         //m_hglrc = hglrc;
 
          wglMakeCurrent(nullptr, nullptr);
 
          //m_itaskCurrentGpuContext = {};
 
-         RECT rectClient;
+         //RECT rectClient;
 
-         ::GetClientRect(hwnd, &rectClient);
+         //::GetClientRect(hwnd, &rectClient);
 
          //m_rectangleWin32 = rectClient;
 
@@ -428,127 +368,16 @@ namespace gpu_opengl
    void context_win32::_context_lock()
    {
 
-         if (m_taskindex)
-         {
+      wgl_context::select();
 
-            throw ::exception(error_wrong_state, "context already selected in this or other thread");
-         }
-         if (m_itask.is_set())
-         {
-
-            throw ::exception(error_wrong_state, "context already selected in this or other thread");
-         }
-         if (m_htask.is_set())
-         {
-
-            throw ::exception(error_wrong_state, "context already selected in this or other thread");
-         }
-
-         if (m_bContextSelected)
-         {
-
-            throw ::exception(error_wrong_state, "context already selected in this or other thread");
-
-         }
-
-      if (wglGetCurrentContext() != m_hglrc || wglGetCurrentDC() != m_hdc)
-      {
-
-         bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hglrc);
-
-         if (!bMakeCurrentOk)
-         {
-
-            informationf("MS WGL - wglMakeCurrent failed");
-
-            int iLastError = GetLastError();
-
-            informationf("last-error code: %d\n", iLastError);
-
-            throw ::exception(error_failed);
-         }
-
-               m_taskindex = current_task_index();
-         m_itask = current_itask();
-         m_htask = current_htask();
-
-                  m_bContextSelected = true;
-
-
-         // bMadeCurrentNow = true;
-      }
    }
 
 
    void context_win32::_context_unlock()
    {
-
-
-      if (!m_taskindex)
-      {
-
-         throw ::exception(error_wrong_state, "context not selected");
-      }
-      if (!m_itask)
-      {
-
-         throw ::exception(error_wrong_state, "context not selected");
-      }
-      if (!m_htask)
-      {
-
-         throw ::exception(error_wrong_state, "context not selected");
-      }
-
-      auto taskindexCurrent = ::current_task_index();
-      auto itaskCurrent = ::current_itask();
-      auto htaskCurrent = ::current_htask();
-      if (m_taskindex != taskindexCurrent)
-      {
-
-         throw ::exception(error_wrong_state, "context already selected on other thread");
-      }
-      if (m_itask != itaskCurrent)
-      {
-
-         throw ::exception(error_wrong_state, "context already selected on other thread");
-      }
-      if (m_htask != htaskCurrent)
-      {
-
-         throw ::exception(error_wrong_state, "context already selected on other thread");
-      }
-
-      if (!m_bContextSelected)
-      {
-
-         throw ::exception(error_wrong_state, "context is not currently selected");
-
-      }
-
-
-      if (wglGetCurrentContext() != m_hglrc || wglGetCurrentDC() != m_hdc)
-      {
-
-         throw ::exception(error_wrong_state, "wrong state");
-      }
-
-      bool bReleaseOk = wglMakeCurrent(nullptr, nullptr);
-
-      if (!bReleaseOk)
-      {
-
-         informationf("MS WGL - wglMakeCurrent failed");
-
-         informationf("last-error code: %d\n", GetLastError());
-
-         throw ::exception(error_failed);
-      }
-      m_bContextSelected = false;
-      m_taskindex = 0;
-      m_itask = nullptr;
-      m_htask = nullptr;
-
+      
+      wgl_context::unselect(); 
+   
    }
 
 
@@ -556,10 +385,14 @@ namespace gpu_opengl
    {
 
       HGLRC hglrcContext = wglGetCurrentContext();
+
       if (!hglrcContext)
       {
+
          printf("NO CURRENT CONTEXT\n");
+
       }
+
    }
 
    
@@ -595,122 +428,9 @@ namespace gpu_opengl
             if (!m_hwnd)
             {
 
-               auto hwnd = pwindow->m_hwnd;
+               auto hwnd = pwindow->_HWND();
 
-
-               m_hwnd = hwnd;
-
-
-               //// create WGL context, make current
-
-               //PIXELFORMATDESCRIPTOR pixformat;
-
-               //int chosenformat;
-
-               HDC hdc = GetDC(m_hwnd);
-
-               //if (!hdc)
-               //{
-
-               //   informationf("MS GDI - GetDC failed");
-
-               //   informationf("last-error code: %d\n", GetLastError());
-
-               //   throw ::exception(error_failed);
-
-               //}
-
-               //zero(pixformat);
-               //pixformat.nSize = sizeof(pixformat);
-               //pixformat.nVersion = 1;
-               //pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-               //pixformat.iPixelType = PFD_TYPE_RGBA;
-               //pixformat.cColorBits = 32;
-               //pixformat.cRedShift = 16;
-               //pixformat.cGreenShift = 8;
-               //pixformat.cBlueShift = 0;
-               //pixformat.cAlphaShift = 24;
-               //pixformat.cAlphaBits = 8;
-               //pixformat.cDepthBits = 24;
-               //pixformat.cStencilBits = 8;
-
-               //chosenformat = ChoosePixelFormat(hdc, &pixformat);
-
-               //if (chosenformat == 0)
-               //{
-
-               //   informationf("MS GDI - ChoosePixelFormat failed");
-
-               //   informationf("last-error code: %d\n", GetLastError());
-
-               //   ReleaseDC(m_hwnd, hdc);
-
-               //   throw ::exception(error_failed);
-
-               //}
-
-               //bool spfok = SetPixelFormat(hdc, chosenformat, &pixformat);
-
-               //if (!spfok)
-               //{
-
-               //   informationf("MS GDI - SetPixelFormat failed");
-
-               //   informationf("last-error code: %d\n", GetLastError());
-
-               //   ReleaseDC(m_hwnd, hdc);
-
-               //   throw ::exception(error_failed);
-
-               //}
-
-               auto hglrc = wglCreateContext(hdc);
-
-               pwindow->m_hglrcProto = hglrc;
-
-               //         int context_attribs[] = {
-               //WGL_CONTEXT_MAJOR_VERSION_ARB, 2,
-               //WGL_CONTEXT_MINOR_VERSION_ARB, 1,
-               //0, 0
-               //         };
-               //         auto hglrc = wglCreateContextAttribsARB(hdc, NULL, context_attribs);
-               //         if (!hglrc) {
-               //            //ReleaseDC(hWnd, hDC);
-               //            //DestroyWindow(hWnd);
-
-               //            throw ::exception(error_failed);
-               //         }
-               //         //ReleaseDC(hWnd, hDC);
-
-               if (!pwindow->m_hglrcProto)
-               {
-
-                  informationf("MS WGL - wglCreateContext failed");
-
-                  informationf("last-error code: %d\n", GetLastError());
-
-                  ReleaseDC(m_hwnd, hdc);
-
-                  throw ::exception(error_failed);
-
-               }
-
-               auto hglrcProto = pwindow->m_hglrcProto;
-
-               bool bMakeCurrentOk = wglMakeCurrent(hdc, hglrcProto);
-
-               if (!bMakeCurrentOk)
-               {
-
-                  informationf("MS WGL - wglMakeCurrent failed");
-
-                  informationf("last-error code: %d\n", GetLastError());
-
-                  ReleaseDC(m_hwnd, hdc);
-
-                  throw ::exception(error_failed);
-
-               }
+               create_window_wgl_context(pwindow);
 
                m_pgpudevice->m_pgpuapproach->defer_init_gpu_library();
 
@@ -735,9 +455,9 @@ namespace gpu_opengl
 
                //}
 
-               m_hwnd = m_hwnd;
-               m_hdc = hdc;
-               m_hglrc = pwindow->m_hglrcProto;
+               //m_hwnd = m_hwnd;
+               //m_hdc = hdc;
+               //m_hglrc = pwindow->m_hglrcProto;
 
                wglMakeCurrent(nullptr, nullptr);
 
@@ -967,6 +687,8 @@ namespace gpu_opengl
       //set_ok_flag();
 
    }
+
+
 
 
 } // namespace gpu_opengl

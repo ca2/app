@@ -66,8 +66,10 @@ namespace gpu_opengl
    {
       
       ::cast<::win32::acme::windowing::window> pwindow = pacmewindowingwindow;
+      
       m_pwindow = pwindow;
-      m_hwnd = pwindow->m_hwnd;
+      
+      m_hwnd = pwindow->_HWND();
 
       ::gpu_opengl::device::create_main_context(pacmewindowingwindow);
 
@@ -100,7 +102,7 @@ namespace gpu_opengl
       m_pwindow = m_papplication->m_pacmeuserinteractionMain->window();
       m_bAddSwapChainSupport = false;
       ::cast < ::windowing_win32::window > pwin32window = m_pwindow;
-      m_hwnd = pwin32window->m_hwnd;
+      m_hwnd = pwin32window->_HWND();
 
       //_create_device(rectanglePlacement.size());
 

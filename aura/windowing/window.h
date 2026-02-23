@@ -23,6 +23,7 @@ namespace windowing
       virtual public ::windowing::window_base
    {
    public:
+
       
       struct mouse_reposition_throttling
       {
@@ -205,7 +206,7 @@ namespace windowing
       //void * __x11_Display() override;
       //long __x11_Window() override;
 
-      ::operating_system::window operating_system_window() const override;
+      //::operating_system::window operating_system_window() const override;
       
       
       void create_window() override;
@@ -309,7 +310,7 @@ namespace windowing
 
       
       virtual ::windowing::window * window_get_owner();
-      //virtual ::oswindow get_owner_oswindow();
+      virtual ::operating_system::window get_owner_operating_system_window();
       virtual void set_owner(::windowing::window * pwindowNewOwner);
 
 

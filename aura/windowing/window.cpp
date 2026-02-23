@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "cursor.h"
 #include "display.h"
+#include "apex/gpu/approach.h"
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
@@ -2080,14 +2081,14 @@ namespace windowing
    }
 
 
-   // oswindow window::get_owner_oswindow()
-   // {
-   //
-   //    throw ::interface_only();
-   //
-   //    return nullptr;
-   //
-   // }
+   ::operating_system::window window::get_owner_operating_system_window()
+   {
+   
+       throw ::interface_only();
+   
+       return {};
+   
+   }
 
 
    void window::set_owner(::windowing::window* pwindowNewOwner)
@@ -8946,6 +8947,19 @@ namespace windowing
    void window::_001OnPrioAfterCreate(::message::message* pmessage)
    {
 
+      if (user_interaction()->is_graphical())
+      {
+
+         /// graphics things shouldn't be created inside window creation?!?!?
+         /// because of wgl at windows with some Intel or AMD drivers?
+         /// so now: setting icon that can create graphical assets just
+         /// after creation here.
+         /// but does it maybe late to do it here after creation?
+         /// can it in some systems be done here and others like before?
+         user_interaction()->defer_set_icon();
+
+      }
+
       if (user_interaction())
       {
 
@@ -8997,6 +9011,15 @@ namespace windowing
       if (user_interaction()->is_graphical())
       {
 
+         //if (m_papplication->m_bGpu)
+         //{
+
+         //   auto pgpuapproach = m_papplication->get_gpu_approach();
+
+         //   pgpuapproach->gpu_on_create_window(this);
+
+         //}
+
          if (::is_null(m_papplication->m_pacmeuserinteractionMain))
          {
 
@@ -9006,7 +9029,9 @@ namespace windowing
 
          //draw2d()->on_create_window(this);
 
-         user_interaction()->defer_set_icon();
+         /// graphics things shouldn't be created inside window creation?!?!?
+         /// because of wgl at windows with some Intel or AMD drivers?
+         //user_interaction()->defer_set_icon();
 
       }
 
@@ -10683,7 +10708,9 @@ namespace windowing
 
          m_pgraphicscontextDrawingFrame->m_pgraphics->send_on_context(m_pgraphicscontextDrawingFrame, [this]()
          {
+            
             draw_frame_layout(m_pgraphicscontextDrawingFrame->m_pgraphics);
+
          });
 
             //draw_on_context();

@@ -107,8 +107,8 @@ namespace windowing
       //virtual void set_cursor_position(const ::int_point & pointCursor);
       virtual ::windowing::display * display();
 
-      ::acme::windowing::window * acme_windowing_window(const ::operating_system::window & operatingsystemwindow) override;
-      ::acme::windowing::window * acme_windowing_window(const ::lparam & lparam) override;
+      //::acme::windowing::window * acme_windowing_window(const ::operating_system::window & operatingsystemwindow) override;
+      //::acme::windowing::window * acme_windowing_window(const ::lparam & lparam) override;
       virtual ::windowing::window * windowing_window(const ::operating_system::window & operatingsystemwindow);
       virtual ::windowing::window * windowing_window(const ::lparam & lparam);
 
@@ -256,7 +256,7 @@ namespace windowing
       virtual bool _visible_top_level_contains_name(const ::scoped_string & scopedstr) = 0;
       virtual bool _visible_top_level_contains_all_names(const ::string_array_base & stra) = 0;
       virtual bool _top_level_contains_name(const ::scoped_string & scopedstr) = 0;
-      virtual string _get_window_text_timeout(::acme::windowing::window * pacmewindowingwindow, const class ::time& time = 1_s) = 0;
+      //virtual string _get_window_text_timeout(HWND hwnd, const class ::time& time = 1_s) = 0;
 
 
 #endif

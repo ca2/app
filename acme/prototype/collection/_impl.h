@@ -165,7 +165,7 @@ inline sequence_continuation particle::async()
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
+::collection::count base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::collection::count nNewSize, bool bShrink, bool bRaw, bool bFollowingIsArray, const TYPE * ptype)
 {
 
    //if (this->m_erange & e_range_array_allocate)

@@ -972,18 +972,18 @@ public:
    ::collection::count allocate(::collection::count nNewSize, bool bShrink, bool bRaw, P & p)
    {
       TYPE t(p);
-      return _allocate(nNewSize, bShrink, bRaw, &t);
+      return _allocate(nNewSize, bShrink, bRaw, false, &t);
    }
    template < pointer_castable_to < TYPE * > T >
    ::collection::count allocate(::collection::count nNewSize, bool bShrink, bool bRaw, T & t)
    {
-      return _allocate(nNewSize, bShrink, bRaw, &t);
+      return _allocate(nNewSize, bShrink, bRaw, false, &t);
    }
    ::collection::count allocate(::collection::count nNewSize, bool bShrink, bool bRaw)
    {
-      return _allocate(nNewSize, bShrink, bRaw, nullptr);
+      return _allocate(nNewSize, bShrink, bRaw, false, nullptr);
    }
-   ::collection::count _allocate(::collection::count nNewSize, bool bShrink, bool bRaw, const TYPE * type);
+   ::collection::count _allocate(::collection::count nNewSize, bool bShrink, bool bRaw, bool bFollowingIsArray, const TYPE * type);
    
    //::collection::count allocate(::collection::count nNewSize, bool bShrink, const TYPE * ptype = nullptr);
    
@@ -2160,7 +2160,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 
    allocate(nOldSize + nSrcSize, false, true);
 
-   TYPED::copy_construct_count((this->m_begin + nOldSize), nSrcSize, *p);
+   TYPED::copy_construct_array((this->m_begin + nOldSize), nSrcSize, p);
 
    return nOldSize;
 

@@ -290,7 +290,8 @@ namespace acme
             {
                __check_refdbg
 
-               pacmewindowing->m_windowmap.erase(this->operating_system_window());
+                  //pacmewindowing->erase_operating_system_window(this->operating_system_window());
+               pacmewindowing->erase_window(this);
                __check_refdbg
 
             }

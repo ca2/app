@@ -96,3 +96,10 @@ inline ::int_point lparam_as_point(LPARAM lparam)
    return ::int_point(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
 
 }
+
+
+
+CLASS_DECL_ACME HINSTANCE hinstance_from_function(void *pFunc);
+
+
+

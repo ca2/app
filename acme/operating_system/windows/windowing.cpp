@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "windowing.h"
+#include "window.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
@@ -37,6 +38,66 @@ namespace windows
 
 
    }
+
+
+   ::acme::windowing::window * windowing::acme_windowing_window(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      auto pacmewindowingwindow = m_windowmap[hwnd];
+
+      return pacmewindowingwindow;
+
+   }
+
+
+   void windowing::add_window(::acme::windowing::window *pacmewindowingwindow) 
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization()); 
+
+      auto operatingsystemwindow = pacmewindowingwindow->operating_system_window();
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+      
+      m_windowmap[hwnd] = pacmewindowingwindow;
+   
+   }
+
+
+
+   
+   void windowing::each_window(const ::function<void(::acme::windowing::window *)> &function)
+   {
+
+      for (auto &pair: m_windowmap)
+      {
+
+         auto pacmewindowingwindow = pair.element2();
+
+         if (::is_set(pacmewindowingwindow))
+         {
+
+            function(pacmewindowingwindow);
+
+         }
+      }
+
+   }
+
+
+   ::operating_system::window windowing::operating_system_window(const ::wparam &wparam)
+   {
+
+      ::operating_system::windows_window windowswindow((HWND) wparam.m_number);
+
+      return windowswindow.as_operating_system_window();
+   
+   }
+
 
 
 } // namespace windows

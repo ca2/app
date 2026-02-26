@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "cursor.h"
 #include "display.h"
+#include "apex/gpu/approach.h"
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
@@ -734,27 +735,27 @@ namespace windowing
    }
 
 
-
-   void * window::__x11_Display()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
-
-
-   long window::__x11_Window()
-   {
-
-      throw ::interface_only();
-
-      return 0;
-
-   }
-
-
+//
+//   void * window::__x11_Display()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   long window::__x11_Window()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
+//
+//
 
    void window::create_window()
    {
@@ -1357,6 +1358,12 @@ namespace windowing
    //}
 
 
+   //bool window::should_avoid_default_swap_chain_present()
+//{
+//      
+//      
+//   }
+
    void window::on_a_system_menu_item(::operating_system::a_system_menu_item* psystemmenuitem, ::user::activation_token* puseractivationtoken)
    {
 
@@ -1495,7 +1502,7 @@ namespace windowing
 
       auto preposition = øcreate_new<::message::reposition>();
 
-      preposition->m_pacmewindowingwindow = this;
+      preposition->m_operatingsystemwindow = operating_system_window();
 
       preposition->m_pwindow = this;
 
@@ -1548,7 +1555,7 @@ namespace windowing
 
       auto psize = øcreate_new<::message::size>();
 
-      psize->m_pacmewindowingwindow = this;
+      psize->m_operatingsystemwindow = operating_system_window();
 
       psize->m_pwindow = this;
 
@@ -1749,7 +1756,7 @@ namespace windowing
    //   }
 
 
-   // ::oswindow window::oswindow() const
+   // ::oswindow window::operating_system_window() const
    // {
    //
    //    throw interface_only();
@@ -2074,14 +2081,14 @@ namespace windowing
    }
 
 
-   // oswindow window::get_owner_oswindow()
-   // {
-   //
-   //    throw ::interface_only();
-   //
-   //    return nullptr;
-   //
-   // }
+   ::operating_system::window window::get_owner_operating_system_window()
+   {
+   
+       throw ::interface_only();
+   
+       return {};
+   
+   }
 
 
    void window::set_owner(::windowing::window* pwindowNewOwner)
@@ -6459,7 +6466,7 @@ namespace windowing
 
       auto pwindowing = windowing();
 
-      pwindowing->set(pmouse, this, this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
+      pwindowing->set(pmouse, this->operating_system_window(), this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
 
       //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
@@ -7577,7 +7584,7 @@ namespace windowing
 
 
    //// interaction_impl
-   ///* window::operator oswindow() const
+   ///* window::operator operating_system_window() const
    //{ return this == nullptr ? nullptr : get_handle(); }*/
    //void window::operator==(const interaction_impl& wnd) const
    //{
@@ -8940,6 +8947,19 @@ namespace windowing
    void window::_001OnPrioAfterCreate(::message::message* pmessage)
    {
 
+      if (user_interaction()->is_graphical())
+      {
+
+         /// graphics things shouldn't be created inside window creation?!?!?
+         /// because of wgl at windows with some Intel or AMD drivers?
+         /// so now: setting icon that can create graphical assets just
+         /// after creation here.
+         /// but does it maybe late to do it here after creation?
+         /// can it in some systems be done here and others like before?
+         user_interaction()->defer_set_icon();
+
+      }
+
       if (user_interaction())
       {
 
@@ -8991,6 +9011,15 @@ namespace windowing
       if (user_interaction()->is_graphical())
       {
 
+         //if (m_papplication->m_bGpu)
+         //{
+
+         //   auto pgpuapproach = m_papplication->get_gpu_approach();
+
+         //   pgpuapproach->gpu_on_create_window(this);
+
+         //}
+
          if (::is_null(m_papplication->m_pacmeuserinteractionMain))
          {
 
@@ -9000,7 +9029,9 @@ namespace windowing
 
          //draw2d()->on_create_window(this);
 
-         user_interaction()->defer_set_icon();
+         /// graphics things shouldn't be created inside window creation?!?!?
+         /// because of wgl at windows with some Intel or AMD drivers?
+         //user_interaction()->defer_set_icon();
 
       }
 
@@ -10677,7 +10708,9 @@ namespace windowing
 
          m_pgraphicscontextDrawingFrame->m_pgraphics->send_on_context(m_pgraphicscontextDrawingFrame, [this]()
          {
+            
             draw_frame_layout(m_pgraphicscontextDrawingFrame->m_pgraphics);
+
          });
 
             //draw_on_context();
@@ -13557,7 +13590,7 @@ slGraphics.unlock();
    //      
    //   }
 
-   //   return (oswindow) oswindow();
+   //   return (oswindow) operating_system_window();
 
    //}
 
@@ -13844,7 +13877,7 @@ slGraphics.unlock();
 
    //   //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-   //   if (psetkeyboardfocus->m_pacmewindowingwindow != oswindow())
+   //   if (psetkeyboardfocus->m_pacmewindowingwindow != operating_system_window())
    //   {
 
    //      psetkeyboardfocus->m_bRet = true;
@@ -13883,8 +13916,8 @@ slGraphics.unlock();
 
       //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-      if (pkillkeyboardfocus->m_pacmewindowingwindowNew
-         == pkillkeyboardfocus->m_pacmewindowingwindow)
+      if (pkillkeyboardfocus->m_operatingsystemwindow
+         == pkillkeyboardfocus->m_operatingsystemwindow)
       {
 
          pkillkeyboardfocus->m_bRet = true;
@@ -14956,7 +14989,7 @@ slGraphics.unlock();
    //
    //         auto pwindowing = windowing();
    //
-   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->oswindow();
+   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->operating_system_window();
    //
    //         if (pimplFocus == this)
    //         {
@@ -16367,10 +16400,10 @@ slGraphics.unlock();
    }
 
 
-   //:/*:oswindow window::oswindow() const
+   //:/*:oswindow window::operating_system_window() const
    //{
 
-   //   return oswindow();
+   //   return operating_system_window();
 
    //}*/
 
@@ -17247,7 +17280,7 @@ slGraphics.unlock();
    //
    //      auto pwindow = this;
    //
-   //      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
+   //      auto oswindow = pwindow ? pwindow->operating_system_window() : nullptr;
    //
    //      switch (eprototype)
    //      {
@@ -19745,14 +19778,14 @@ slGraphics.unlock();
 
    }
 
-   void *window::__win32_HWND()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+//   void *window::__win32_HWND()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
 
 } // namespace windowing
 

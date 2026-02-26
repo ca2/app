@@ -232,7 +232,7 @@ namespace gpu_gpu
          
          //stbi_set_flip_vertically_on_load(true);
 
-         unsigned char *data = stbi_load_from_memory(inputData, inputSize, &width, &height, &numChannels, 0);
+         unsigned char *data = stbi_load_from_memory(inputData, (int) inputSize, &width, &height, &numChannels, 0);
 
          //stbi_set_flip_vertically_on_load(false);
 

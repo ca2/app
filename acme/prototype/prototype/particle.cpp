@@ -22,7 +22,7 @@
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
 //#include "acme/prototype/prototype/payload.h"
-
+#include "acme/filesystem/filesystem/path_system.h"
 
 
 #if defined(__BSD__) || defined(__APPLE__)
@@ -563,6 +563,15 @@ class ::user::user* particle::user() const
 {
 
    return system()->file_watcher();
+
+}
+
+
+
+::pointer < ::file::item > particle::file_item(const ::file::path & path)
+{
+
+   return this->path_system()->file_item(path);
 
 }
 

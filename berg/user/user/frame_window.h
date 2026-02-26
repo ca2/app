@@ -293,7 +293,7 @@ namespace user
 
       // implementation helpers for Shift+F1 help mode
       bool ProcessHelpMsg(MESSAGE & msg, unsigned int * pContext);
-      ::oswindow SetHelpCapture(const ::int_point & point, bool * pbDescendant);
+      ::acme::windowing::window * SetHelpCapture(const ::int_point & point, bool * pbDescendant);
 
       // frame_window list_base management
       void AddFrameWnd();

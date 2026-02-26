@@ -64,7 +64,7 @@ public:
 
    virtual ::file::path symbolic_link_destination(const ::scoped_string & scopedstrLink);
 
-
+   virtual ::pointer < ::file::item > file_item(const ::file::path & path);
 
    virtual bool has_custom_icon(const ::file::path & path);
 

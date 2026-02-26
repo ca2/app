@@ -265,7 +265,7 @@
 //};
 //
 //
-////inline block::block(const ::string & cstr):
+////inline block::block(const ::scoped_string & scopedstr):
 ////        block((iterator)scopedstr.begin(), (iterator)scopedstr.end())
 ////{
 ////
@@ -274,7 +274,7 @@
 //
 //
 ////template < typename ITERATOR_TYPE >
-////inline string_base < ITERATOR_TYPE >::string_base(const ::string & cstr)
+////inline string_base < ITERATOR_TYPE >::string_base(const ::scoped_string & scopedstr)
 ////{
 ////
 ////   if (sizeof(typename scoped_string::ITEM) == sizeof(CHARACTER)

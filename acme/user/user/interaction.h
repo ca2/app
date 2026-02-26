@@ -265,6 +265,7 @@ namespace acme
 
          ::acme::user::interaction * acme_user_interaction() override;
          ::acme::windowing::window * acme_windowing_window() override;
+         ::operating_system::window operating_system_window() override;
 
          virtual ::acme::user::interaction * acme_user_parent();
 

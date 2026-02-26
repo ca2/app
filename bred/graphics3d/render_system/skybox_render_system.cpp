@@ -146,7 +146,7 @@ namespace graphics3d
 	   //m_pshaderHdr->m_bindingCubeSampler.set();
       m_pshaderHdr->m_propertiesPushShared.set_properties(ppropertiesPush);
       pgpucontext->layout_push_constants(m_pshaderHdr->m_propertiesPushShared, false);
-      auto iSize = sizeof(::gpu::gltf::vertex);
+      //auto iSize = sizeof(::gpu::gltf::vertex);
 
       //if (false)
       //if(m_bHdr)
@@ -188,7 +188,7 @@ namespace graphics3d
          //m_pshaderNormal->m_bindingCubeSampler.set();
          m_pshaderNormal->m_propertiesPushShared.set_properties(ppropertiesPush);
          pgpucontext->layout_push_constants(m_pshaderNormal->m_propertiesPushShared, false);
-         auto iSize = sizeof(::graphics3d::shape_factory::Vertex);
+         //auto iSize = sizeof(::graphics3d::shape_factory::Vertex);
 
          // if (false)
          // if(m_bHdr)
@@ -252,11 +252,11 @@ namespace graphics3d
 
 	   auto pgpurenderer = pgpucontext->m_pgpurenderer;
 
-	   auto iFrameSerial = pgpudevice->m_iFrameSerial2;
+	   //auto iFrameSerial = pgpudevice->m_iFrameSerial2;
 
-      auto prendertarget = pgpurenderer->render_target();
+      //auto prendertarget = pgpurenderer->render_target();
 
-	   auto ptextureDst = prendertarget->current_texture(::gpu::current_frame());
+	   //auto ptextureDst = prendertarget->current_texture(::gpu::current_frame());
 
       pgpucontext->start_debug_happening(::gpu::current_command_buffer(), "skybox_render_system on_render");
 

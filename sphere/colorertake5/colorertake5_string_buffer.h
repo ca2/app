@@ -17,7 +17,7 @@ public:
   /** Creates string buffer with @ca string */
   str_buffer(string cstring, int s = 0, int l = -1);
   /** Creates string buffer with @ca string */
-  str_buffer(const string &cstring, int s = 0, int l = -1);
+  str_buffer(const ::scoped_string & scopedstring, int s = 0, int l = -1);
   /** Destructor */
   ~str_buffer();
 

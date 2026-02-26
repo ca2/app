@@ -4294,7 +4294,7 @@ namespace user
 
                       auto pmessage = øcreate_new < ::message::mouse >();
 
-                      pmessage->m_pacmewindowingwindow = oswindow();
+                      pmessage->m_operatingsystemwindow = this->operating_system_window();
 
                       pmessage->m_pwindow = window();
 

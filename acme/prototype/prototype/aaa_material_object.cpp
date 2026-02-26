@@ -123,7 +123,7 @@
 //
 //   }
 //
-//   m_papplication->__defer_construct_new(m_pmapPropertyProcedure);
+//   m_papplication->ødefer_construct_new(m_pmapPropertyProcedure);
 //
 //   return &m_pmapPropertyProcedure->operator[](atom);
 //
@@ -155,7 +155,7 @@
 //::long_long_array & material_object::idarray() const
 //{
 //
-//   m_papplication->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia;
+//   m_papplication->ødefer_construct_new(((material_object *)this)->m_pia); return *m_pia;
 //
 //
 //}

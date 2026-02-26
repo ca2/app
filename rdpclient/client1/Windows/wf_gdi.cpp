@@ -365,7 +365,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 //	rdpCodecs* codecs = context->codecs;
 //	wfContext* wfc = (wfContext*) context;
 //
-//	hdc = CreateCompatibleDC(GetDC(nullptr));
+//	hdc = create_compatible_graphics(GetDC(nullptr));
 //	if (!hdc)
 //		return false;
 //

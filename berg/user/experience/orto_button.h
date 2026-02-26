@@ -16,8 +16,8 @@ namespace experience
 
       
 
-      ::oswindow                             m_oswindowPreviousFocus;
-      ::draw2d::region_pointer               m_pregion;
+      ::pointer < ::acme::windowing::window >   m_pacmewindowingwindowPreviousFocus;
+      ::draw2d::region_pointer                  m_pregion;
 
 
       orto_button();

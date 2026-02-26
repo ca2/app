@@ -10,8 +10,9 @@
 #include "acme/platform/node.h"
 #include "acme/platform/http.h"
 #include "acme/prototype/collection/map_interface.h"
+#include "filesystem/file/item.h"
 
-CLASS_DECL_ACME::string get_operating_system_name();
+CLASS_DECL_ACME ::string get_operating_system_name();
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -462,6 +463,19 @@ bool path_system::is_symbolic_link(const ::scoped_string & scopedstrLink)
    
    return "";
    
+}
+
+
+::pointer < ::file::item > path_system::file_item(const ::file::path & path)
+{
+
+   auto pfileitem = øcreate_new <::file::item>();
+
+   pfileitem->set_user_path(path);
+   //pfileitem->set_final_path(path);
+
+   return pfileitem;
+
 }
 
 

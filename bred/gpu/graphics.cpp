@@ -272,7 +272,7 @@ namespace gpu
    ::geometry2d::matrix graphics::context_matrix(enum_transform_context etransformcontext)
    {
 
-      auto pcontext = gpu_context();
+      //auto pcontext = gpu_context();
       
       ::geometry2d::matrix contextmatrix;
 
@@ -790,7 +790,7 @@ namespace gpu
 
       auto pshader = rectangle_shader();
 
-      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
+//      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
 
       ::double_point points1[2];
 
@@ -802,7 +802,7 @@ namespace gpu
       __transform(points1[0]);
       __transform(points1[1]);
 
-      auto size = pcontext->m_rectangle.size();
+      //auto size = pcontext->m_rectangle.size();
 
       //::geometry2d::matrix m;
       //m.translate(0.5, -0.5);
@@ -909,8 +909,8 @@ namespace gpu
       //glEnable(GL_CULL_FACE);
       //glEnable(GL_BLEND);
       //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      int xpos = 0;
-      int ypos = 0;
+      //int xpos = 0;
+      //int ypos = 0;
       while (next_unicode_character(strChar, psz))
       {
 
@@ -919,7 +919,7 @@ namespace gpu
          //float xpos = x + ch.Bearing.x * scale;
          //float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
 
-         float w = (float) ch.Size.x;
+         //float w = (float) ch.Size.x;
          float h = (float)ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
@@ -1224,7 +1224,7 @@ namespace gpu
       {
 
          auto& ch = pface->get_character(strChar);
-         float h2 = (float)(ch.Size.y - ch.Bearing.y);
+         //float h2 = (float)(ch.Size.y - ch.Bearing.y);
          float xpos = (float) (point.x + Δx + ch.Bearing.x);
          //float ypos = (float) (point.y + h2);
          float ypos = (float) (point.y);

@@ -161,9 +161,9 @@ public:
    message_queue* get_message_queue();
    message_queue* _get_message_queue();
 
-   bool peek_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage = false);
-   void get_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
-   void post_message(::acme::windowing::window * pacmewindowingwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
+   bool peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage = false);
+   void get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+   void post_message(const ::operating_system::window & operatingsystemwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
    ::user::interaction_base_array & userprimitivea();

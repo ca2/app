@@ -297,7 +297,7 @@ pil->create(pilParam);
 
 ::draw2d::graphics_pointer spgraphics(e_create);
 
-spgraphics->CreateCompatibleDC(pgraphics);
+spgraphics->create_compatible_graphics(pgraphics);
 
 ::image::image_list::info ii;
 
@@ -326,7 +326,7 @@ return false;
 
 ::draw2d::graphics_pointer spgraphics(e_create);
 
-spgraphics->CreateCompatibleDC(pgraphics);
+spgraphics->create_compatible_graphics(pgraphics);
 
 ::image::image_list::info ii;
 
@@ -413,7 +413,7 @@ pil->create(pilParam);
 
 ::draw2d::graphics_pointer spgraphics(e_create);
 
-spgraphics->CreateCompatibleDC(pgraphics);
+spgraphics->create_compatible_graphics(pgraphics);
 
 ::image::image_list::info ii;
 
@@ -1195,7 +1195,7 @@ pitmap->CreateBitmap(cx + 100, cy + 100, 1, 24, nullptr);
 }
 
 ::draw2d::graphics_pointer graphicsMem(e_create);
-graphicsMem->CreateCompatibleDC(pgraphics);
+graphicsMem->create_compatible_graphics(pgraphics);
 ::draw2d::bitmap * pmpMemOld = graphicsMem->set(pitmap);
 
 
@@ -1681,7 +1681,7 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,int x,int y,int cx,int 
    }
 
    ::draw2d::graphics_pointer graphicsMem(e_create);
-   graphicsMem->CreateCompatibleDC(pgraphics);
+   graphicsMem->create_compatible_graphics(pgraphics);
    ::draw2d::bitmap * pmpMemOld = graphicsMem->set(bitmapA);
 
    graphicsMem->BitBlt(
@@ -4470,7 +4470,7 @@ int w3)
 
 //   {
 //      ::draw2d::graphics_pointer graphicsMem(e_create);
-//      graphicsMem->CreateCompatibleDC(pdcDst);
+//      graphicsMem->create_compatible_graphics(pdcDst);
 //      if(!SetDIBits(
 //               (HDC)graphicsMem->get_os_data(),
 //               (HBITMAP)bitmapDst->get_os_data(),
@@ -4649,7 +4649,7 @@ int w3)
 
 //   {
 //      ::draw2d::graphics_pointer graphicsMem(e_create);
-//      graphicsMem->CreateCompatibleDC(pdcDst);
+//      graphicsMem->create_compatible_graphics(pdcDst);
 //      if(!SetDIBits(
 //               (HDC)graphicsMem->get_os_data(),
 //               (HBITMAP)bitmapDest->get_os_data(),
@@ -5609,13 +5609,13 @@ breakFilter2:
 //   {
 //   ::draw2d::graphics_pointer dcScreen;
 //   spgraphicsScreen->CreateDC("DISPLAY", nullptr, nullptr, nullptr);
-//   imageA.get_graphics()->CreateCompatibleDC(&dcScreen);
+//   imageA.get_graphics()->create_compatible_graphics(&dcScreen);
 //   }
 //   if(imageB.get_graphics()->get_os_data() == nullptr)
 //   {
 //   ::draw2d::graphics_pointer dcScreen;
 //   spgraphicsScreen->CreateDC("DISPLAY", nullptr, nullptr, nullptr);
-//   imageB.get_graphics()->CreateCompatibleDC(&dcScreen);
+//   imageB.get_graphics()->create_compatible_graphics(&dcScreen);
 //   }
 //   if(spbitmapB->m_hObject == nullptr)
 //   {
@@ -5794,7 +5794,7 @@ breakFilter2:
 
 //   {
 //      ::draw2d::graphics_pointer graphicsMem(e_create);
-//      graphicsMem->CreateCompatibleDC(pdcDst);
+//      graphicsMem->create_compatible_graphics(pdcDst);
 //      if(!SetDIBits(
 //               (HDC)graphicsMem->get_os_data(),
 //               (HBITMAP)bitmapDest->get_os_data(),
@@ -6374,7 +6374,7 @@ int      iSize)
 
 //   {
 //      ::draw2d::graphics_pointer graphicsMem(e_create);
-//      graphicsMem->CreateCompatibleDC(pdcDst);
+//      graphicsMem->create_compatible_graphics(pdcDst);
 //      if(!SetDIBits(
 //               (HDC)graphicsMem->get_os_data(),
 //               (HBITMAP)bitmapDest->get_os_data(),

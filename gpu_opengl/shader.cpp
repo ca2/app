@@ -237,7 +237,9 @@ namespace gpu_opengl
 
       ::cast<texture> ptextureTarget = pgputextureTarget;
       
-      if(::is_set(ptextureTarget))
+      if(::is_set(ptextureTarget)
+         && ptextureTarget->m_gluTextureID != 0 
+         && ptextureTarget->m_gluTextureID != -1023)
       {
          
          auto gluFbo = ptextureTarget->frame_buffer_object();

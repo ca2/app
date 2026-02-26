@@ -14,7 +14,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const ::scoped_strin
 
 }
 
-//system_setup::system_setup(const ::string & lpszName, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication) :
+//system_setup::system_setup(const ::scoped_string & scopedstrName, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication) :
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(pfnNewAuraApplication),
 //   m_pfnNewAuraLibrary(nullptr),
@@ -26,7 +26,7 @@ system_setup::system_setup(::system_setup::enum_flag eflag, const ::scoped_strin
 //}
 //
 //
-//system_setup::system_setup(const ::string & lpszName, PFN_NEW_AURA_LIBRARY pfnNewLibrary):
+//system_setup::system_setup(const ::scoped_string & scopedstrName, PFN_NEW_AURA_LIBRARY pfnNewLibrary):
 //   m_pszName(lpszName),
 //   m_pfnNewAuraApplication(nullptr),
 //   m_pfnNewAuraLibrary(pfnNewLibrary),
@@ -73,7 +73,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
 
 }
 
-//::system_setup * system_setup::get(const ::string & lpszName)
+//::system_setup * system_setup::get(const ::scoped_string & scopedstrName)
 //{
 //
 //   if(s_papp == nullptr)

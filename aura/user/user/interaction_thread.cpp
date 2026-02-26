@@ -345,7 +345,7 @@ namespace user
 
       //m_himc = ImmGetContext(puserinteraction->get_handle());
 
-//      m_pacmewindowingwindow = puserinteraction->m_pwindow->oswindow();
+//      m_pacmewindowingwindow = puserinteraction->m_pwindow->operating_system_window();
 
 //      if(puserinteraction->const_layout().sketch().is_screen_visible())
 //      {
@@ -576,12 +576,12 @@ namespace user
 
          }
 
-         auto pacmewindowingwindow = message.m_pacmewindowingwindow;
+         auto operatoratingsystemwindow = message.m_operatingsystemwindow;
 
-         if (::is_set(pacmewindowingwindow))
+         if (operatoratingsystemwindow.is_set())
          {
 
-            auto pwindow = pacmewindowingwindow;
+            auto pwindow = system()->windowing()->windowing_window(operatoratingsystemwindow);
 
             if (!pwindow)
             {
@@ -722,7 +722,7 @@ namespace user
    bool thread::process_message(::message::message * pmessage)
    {
 
-      if (pmessage->m_pacmewindowingwindow)
+      if (pmessage->m_operatingsystemwindow.is_set())
       {
 
          return process_user_message(pmessage);

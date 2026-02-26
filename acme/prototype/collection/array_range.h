@@ -11,12 +11,12 @@
 ///// consecutive items arranged as array of ITEM
 template < typename TYPE, typename ARG_TYPE >
 class array_range :
-   public ::range < TYPE * >
+   public ::block_range < TYPE * >
 {
 public:
 
    
-   using BASE_RANGE = ::range<TYPE *>;
+   using BASE_RANGE = ::block_range<TYPE *>;
    using RAW_BASE_ARRAY = array_range;
    using BASE_RAW_RANGE = ::range<TYPE *>;
    using BASE_TYPE = TYPE;

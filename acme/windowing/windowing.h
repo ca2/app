@@ -20,6 +20,7 @@
 #include "acme/prototype/collection/comparable_list.h"
 #include "_.h"
 #include "acme/handler/task_handler.h"
+#include "acme/operating_system/window.h"
 
 
 namespace acme
@@ -38,7 +39,10 @@ namespace acme
       public:
 
 
-         ::pointer_array < ::acme::windowing::window >      m_windowa;
+         //::pointer_array < ::acme::windowing::window >      m_windowa;
+         
+         //::map < ::operating_system::window, ::pointer < ::acme::windowing::window > > m_windowmap;
+         
          ::pointer<::acme::windowing::display>              m_pacmedisplay;
          ::windowing::enum_windowing                        m_ewindowing;
          ::pointer<::acme::windowing::window>               m_pacmewindowingwindowMouseCapture;
@@ -88,10 +92,12 @@ namespace acme
          
          //      ::windowing::window* new_window(::windowing::window* pimpl) override;
          //
+         virtual void add_window(::acme::windowing::window *pwindow);
          virtual void erase_window(::acme::windowing::window* pwindow);
          
-         virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
+         //virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
 
+         virtual void each_window(const ::function<void(::acme::windowing::window *)> &function);  
          
          virtual void _message_handler(void* p);
          
@@ -142,6 +148,13 @@ namespace acme
 
          virtual ::acme::windowing::display * acme_display();
 
+         virtual ::acme::windowing::window * acme_windowing_window(const ::operating_system::window & operatingsystemwindow);
+
+         virtual ::operating_system::window operating_system_window(const ::wparam & wparam);
+         
+         virtual ::operating_system::window operating_system_window(const ::lparam & lparam);
+
+         virtual ::acme::windowing::window * acme_windowing_window(const ::lparam & lparam);
 
          virtual ::windowing::windowing * windowing_windowing();
 

@@ -576,6 +576,7 @@ namespace windows
       information() << strMessage;
 
       return (library_t*)plibrary;
+
    }
 
 

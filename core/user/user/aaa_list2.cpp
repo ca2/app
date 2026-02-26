@@ -5453,7 +5453,7 @@ namespace user
 
       }
 
-      __defer_construct_new(m_pcolumna);
+      ødefer_construct_new(m_pcolumna);
 
       m_pcolumna->Initialize(this);
 

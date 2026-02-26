@@ -42,7 +42,7 @@
 //// }
 //
 //
-//// HDC CreateCompatibleDC(HDC hdcParam)
+//// HDC create_compatible_graphics(HDC hdcParam)
 //// {
 //
 ////    HDC hdc = øallocate device_context();

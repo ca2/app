@@ -582,6 +582,8 @@ namespace platform
 
       void on_set_platform() override;
 
+      virtual ::lresult handle_direct_id(const ::enum_id eid, ::wparam wparam, ::lparam lparam);
+
 
       void on_initialize_particle() override;
 

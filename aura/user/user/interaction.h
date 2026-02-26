@@ -1777,6 +1777,7 @@ namespace user
 
       //inline void get_safe_oswindow();
       ::acme::windowing::window * acme_windowing_window() override;
+      ::operating_system::window operating_system_window() override;
 
 
       //virtual ::windowing::window * window();
@@ -2881,7 +2882,7 @@ namespace user
    //
    //    }
    //
-   //    return this->oswindow();
+   //    return this->operating_system_window();
    //
    // }
 

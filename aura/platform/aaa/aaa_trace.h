@@ -250,7 +250,7 @@ namespace aura
 {
 
 
-   CLASS_DECL_AURA void raw_trace_v(const ::string &pszFileName,int nLine,unsigned int dwCategory,unsigned int nLevel, const ::scoped_string & scopedstrFmt,va_list args);
+   CLASS_DECL_AURA void raw_trace_v(const ::scoped_string & scopedstrFileName,int nLine,unsigned int dwCategory,unsigned int nLevel, const ::scoped_string & scopedstrFmt,va_list args);
 
 
    namespace trace
@@ -327,7 +327,7 @@ namespace aura
 
          }
 
-         void TraceV(const ::string &pszFileName,int nLine,e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFmt,va_list args) const;
+         void TraceV(const ::scoped_string & scopedstrFileName,int nLine,e_trace_category ecategory, enum_trace_level elevel, const ::scoped_string & scopedstrFmt,va_list args) const;
 
 
          /*bool LoadSettings(const ::scoped_string & scopedstrFileName = nullptr) const

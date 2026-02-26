@@ -52,6 +52,16 @@ endif()
 
 set(CMAKE_CXX_STANDARD 20)
 
+if(DEFINED ENV{HOME})
+   set(HOME_DIR $ENV{HOME})
+elseif(DEFINED ENV{USERPROFILE})
+   set(HOME_DIR $ENV{USERPROFILE})
+else()
+   message(FATAL_ERROR "Cannot determine home directory")
+endif()
+
+message(STATUS "HOME_DIR is ${HOME_DIR}")
+
 message(STATUS "CMAKE_SYSTEM_PROCESSOR is ${CMAKE_SYSTEM_PROCESSOR}")
 
 if (CMAKE_SYSTEM_PROCESSOR MATCHES "(x86)|(X86)|(amd64)|(AMD64)")
@@ -90,7 +100,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(ROOT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(WORKSPACE_FOLDER ${ROOT_SOURCE_DIR})
-set(APPLICATION_BUILD_HELPER_BINARY "$ENV{HOME}/code/operating_system/tool/bin/application_build_helper")
+set(APPLICATION_BUILD_HELPER_BINARY "${HOME_DIR}/code/operating_system/tool/bin/application_build_helper")
 
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -111,7 +121,7 @@ endif ()
 
 
 include_directories(${WORKSPACE_FOLDER})
-include_directories($ENV{HOME}/__config)
+include_directories(${HOME_DIR}/__config)
 include_directories(${WORKSPACE_FOLDER}/source)
 include_directories(${WORKSPACE_FOLDER}/source/app)
 include_directories(${WORKSPACE_FOLDER}/source/app/include)

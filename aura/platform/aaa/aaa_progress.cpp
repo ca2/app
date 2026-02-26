@@ -134,7 +134,7 @@ void progress_control::redraw()
 
 }
 
-void progress_control::format_status(const ::string &pszFormat)
+void progress_control::format_status(const ::scoped_string & scopedstrFormat)
 {
 
    string strStatus(scopedstrFormat);

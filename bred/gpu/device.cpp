@@ -815,6 +815,9 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
          m_pgpucontextMain->m_etype = ::gpu::context::e_type_generic;
 
          eoutput = ::gpu::e_output_gpu_buffer;
+
+         //eoutput = ::gpu::e_output_cpu_buffer;
+
       }
 
       m_eoutput = eoutput;
@@ -843,7 +846,10 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
          else
          {
 
-            m_pgpucontextMain->create_cpu_buffer(sizeWindow);
+            m_pwindow = pwindow;
+
+            m_pgpucontextMain->create_gpu_context(this, m_eoutput, e_scene_2d, sizeWindow);
+            //m_pgpucontextMain->create_cpu_buffer(sizeWindow);
 
          }
 

@@ -2,6 +2,7 @@
 #include "acme/operating_system/parallelization.h"
 #include "acme/filesystem/filesystem/path.h"
 #include "acme/platform/debug.h"
+#include "acme/windowing/window.h"
 
 
 #include "acme/_operating_system.h"
@@ -678,6 +679,47 @@ namespace windows
 
 
 } // namespace windows
+
+
+
+
+
+
+CLASS_DECL_ACME HMODULE GetModuleFromFunction(void* pFunc)
+{
+   HMODULE hModule = NULL;
+
+   GetModuleHandleEx(
+      GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
+      GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
+      (LPCTSTR)pFunc,
+      &hModule
+   );
+
+   return hModule;
+}
+
+
+CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
+{
+
+    msg.hwnd = ::as_HWND(message.m_operatingsystemwindow);
+    msg.message = (UINT)message.m_eusermessage;
+    msg.wParam = message.m_wparam;
+    msg.lParam = message.m_lparam;
+    msg.pt.x = message.m_point.x;
+    msg.pt.y = message.m_point.y;
+    msg.time = (DWORD)message.m_time;
+
+}
+
+
+CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
+{
+
+   return (HINSTANCE) GetModuleFromFunction(pFunc);
+
+}
 
 
 

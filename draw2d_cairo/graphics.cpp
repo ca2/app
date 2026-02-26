@@ -305,7 +305,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

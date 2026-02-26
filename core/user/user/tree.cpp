@@ -1776,7 +1776,7 @@ namespace user
 
       //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      //pgraphics->CreateCompatibleDC(nullptr);
+      //pgraphics->create_compatible_graphics(nullptr);
 
       //auto pfont = øcreate < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());

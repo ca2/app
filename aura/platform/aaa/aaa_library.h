@@ -80,7 +80,7 @@ namespace aura
 
 
       virtual ::pointer<::matter>create_object(::object* pparticle, const ::scoped_string & scopedstrClass);
-      virtual bool has_object_class(const ::string & lpszClass);
+      virtual bool has_object_class(const ::scoped_string & scopedstrClass);
 
 
       virtual string get_library_name();
@@ -91,13 +91,13 @@ namespace aura
       virtual void get_extension_list(string_array_base & stra);
 
 
-      virtual ::matter * factory_new(::particle * pparticle, const ::string & lpszClass);
+      virtual ::matter * factory_new(::particle * pparticle, const ::scoped_string & scopedstrClass);
 
 
-      virtual ::pointer<::matter>factory_create(::particle * pparticle, const ::string & lpszClass);
-      virtual bool factory_has_object_class(const ::string & lpszClass);
+      virtual ::pointer<::matter>factory_create(::particle * pparticle, const ::scoped_string & scopedstrClass);
+      virtual bool factory_has_object_class(const ::scoped_string & scopedstrClass);
 
-      library_object_allocator_base * find_allocator(const ::string & lpszClass);
+      library_object_allocator_base * find_allocator(const ::scoped_string & scopedstrClass);
 
       virtual void initialize_factory();
 

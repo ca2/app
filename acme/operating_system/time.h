@@ -30,7 +30,10 @@ void copy(struct tm * ptmUTC, const system_time * psystemtimeUTC);
 
 
 //CLASS_DECL_ACME system_time as_system_time(const tm * ptm);
-CLASS_DECL_ACME class ::time as_time(const ::file_time & filetime);
+/// class ::time constructor accepts const ::file_time &
+///CLASS_DECL_ACME class ::time as_time(const ::file_time & filetime);
+
+
 
 
 CLASS_DECL_ACME bool is_valid_file_time(const ::file_time & filetime);

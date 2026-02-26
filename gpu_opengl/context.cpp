@@ -50,13 +50,9 @@ namespace gpu_opengl
    context::context()
    {
 
-      #ifdef WINDOWS_DESKTOP
-      m_hdc = nullptr;
-      m_hglrc = nullptr;
-#endif
-
       m_eapi = ::gpu::e_api_opengl;
       m_gluLayerFrameBuffer = 0;
+      
       //m_globalUBO = 0;
       //m_gluLayFrameBufferRenderer = 0;
 
@@ -2390,7 +2386,7 @@ namespace gpu_opengl
       //      //BIH.biPlanes = 1;          // один план
       //      //BIH.biBitCount = 32;       // 24 bits per pixel
       //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
-      //      ////pdcDIB = CreateCompatibleDC(NULL);
+      //      ////pdcDIB = create_compatible_graphics(NULL);
       //      ////void * pBits = nullptr;
       //      //// создаем DIB-секцию
       //      //pwindow->m_hbitmapProto = CreateDIBSection(

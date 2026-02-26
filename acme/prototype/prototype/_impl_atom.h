@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/constant/id.h"
+//#include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/user_message.h"
 
@@ -1390,7 +1390,7 @@ inline ::enum_message atom::as_emessage1() const
 inline enum_id atom::as_eid() const
 {
 
-   return m_etype == e_type_id ? m_eid : (enum_id)id_none;
+   return m_etype == e_type_id ? m_eid : (enum_id)0;
 
 }
 

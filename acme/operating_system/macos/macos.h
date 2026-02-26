@@ -23,3 +23,8 @@ string macos_error_description(OSStatus status);
 #endif
 
 
+struct macos_window_t
+{
+   CGWindowID m_cgwindowid;
+   
+};

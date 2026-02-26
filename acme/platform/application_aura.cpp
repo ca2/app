@@ -552,13 +552,13 @@ namespace platform
    //::string aura_application_layer::get_locale_schema_dir(const ::scoped_string & scopedstrLocale) override{}
    //::string aura_application_layer::get_locale_schema_dir() override{}
 
-   //void aura_application_layer::set_locale(const string & pcsz, const ::action_context & action_context) override{}
+   //void aura_application_layer::set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
-   //void aura_application_layer::set_schema(const string & pcsz, const ::action_context & action_context) override{}
+   //void aura_application_layer::set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
-   //void aura_application_layer::on_set_locale(const string & pcsz, const ::action_context & action_context) override{}
+   //void aura_application_layer::on_set_locale(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
-   //void aura_application_layer::on_set_schema(const string & pcsz, const ::action_context & action_context) override{}
+   //void aura_application_layer::on_set_schema(const ::scoped_string & scopedstr, const ::action_context & action_context) override{}
 
 
    //void aura_application_layer::fill_locale_schema(::text::international::locale_schema & localeschema) override{}

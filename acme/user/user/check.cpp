@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "check.h"
+#include "acme/constant/id.h"
 #include "acme/prototype/data/property_container.h"
 #include "acme/prototype/prototype/action_context.h"
 //#if !BROAD_PRECOMPILED_HEADER

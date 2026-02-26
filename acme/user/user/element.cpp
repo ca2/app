@@ -2678,6 +2678,13 @@ namespace user
    }
 
 
+   ::operating_system::window element::operating_system_window()
+   {
+
+      return {};
+
+   }
+
 
    ::user::interaction_base * element::user_interaction_base()
    {

@@ -75,7 +75,7 @@ wfBitmap* wf_image_new(wfContext* wfc, UINT32 width, UINT32 height,
 	wfBitmap* image;
 	hdc = GetDC(NULL);
 	image = (wfBitmap*) malloc(sizeof(wfBitmap));
-	image->hdc = CreateCompatibleDC(hdc);
+	image->hdc = create_compatible_graphics(hdc);
 	image->bitmap = wf_create_dib(wfc, width, height, format, data,
 	                              &(image->pdata));
 	image->org_bitmap = (HBITMAP) SelectObject(image->hdc, image->bitmap);
@@ -107,7 +107,7 @@ static BOOL wf_Bitmap_New(rdpContext* context, rdpBitmap* bitmap)
 
 	wf_bitmap = (wfBitmap*) bitmap;
 	hdc = GetDC(NULL);
-	wf_bitmap->hdc = CreateCompatibleDC(hdc);
+	wf_bitmap->hdc = create_compatible_graphics(hdc);
 
 	if (!bitmap->data)
 		wf_bitmap->bitmap = CreateCompatibleBitmap(hdc, bitmap->width, bitmap->height);

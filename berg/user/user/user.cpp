@@ -8,6 +8,7 @@
 #include "split_impact.h"
 #include "tab_impact.h"
 #include "split_bar.h"
+#include "acme/constant/id.h"
 #include "acme/exception/exit.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"

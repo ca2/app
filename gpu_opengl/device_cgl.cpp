@@ -309,7 +309,7 @@ namespace gpu_opengl
       m_pgpuapproach = papproach;
       m_pwindow = pwindow;
       //m_bAddSwapChainSupport = true;
-      //m_hwnd = (HWND) m_pwindow->oswindow();
+      //m_hwnd = (HWND) m_pwindow->operating_system_window();
 
       //auto size = m_pwindow->get_window_rectangle().size();
       

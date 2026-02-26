@@ -198,7 +198,7 @@ namespace filemanager
       if (_001HitTest_(point, iItem))
       {
 
-         if (fs_list_item((::collection::index) iItem)->IsFolder())
+         if (fs_list_item((::collection::index) iItem)->is_folder())
          {
 
             _017OpenContextMenuFolder(fs_list_item((::collection::index) iItem), ::e_source_user);
@@ -1689,7 +1689,7 @@ namespace filemanager
 
             ::collection::index iStrict = display_to_strict(iItem);
 
-            if (fs_list_item(iStrict)->IsFolder())
+            if (fs_list_item(iStrict)->is_folder())
             {
 
                _017OpenContextMenuFolder(fs_list_item(iStrict), context);
@@ -1956,7 +1956,7 @@ namespace filemanager
          {
 
             // can drop if destination is folder
-            return fs_list_item(iStrict)->IsFolder();
+            return fs_list_item(iStrict)->is_folder();
 
          }
 
@@ -1978,7 +1978,7 @@ namespace filemanager
 
       // auto pcontext = get_context();
 
-      if (strict >= 0 && fs_list_item(strict)->IsFolder())
+      if (strict >= 0 && fs_list_item(strict)->is_folder())
       {
 
          ::file::path strPath = fs_list_item(strictDrag)->final_path();
@@ -2256,7 +2256,7 @@ namespace filemanager
             if (ptopic->payload(id_folder).has_character())
             {
 
-               ::file::path pathFolder = filemanager_item()->user_path() / ptopic->payload(id_folder);
+               ::file::path pathFolder = filemanager_item()->user_path() / ptopic->payload(id_folder).as_string();
 
                // auto pcontext = get_context();
 

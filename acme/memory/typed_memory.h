@@ -215,7 +215,7 @@ namespace allocator
       }
 
       
-      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -343,7 +343,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -470,7 +470,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          /*   while (c > 0)
@@ -579,7 +579,7 @@ namespace allocator
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
       {
 
          while (c > 0)
@@ -596,7 +596,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -729,7 +729,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -864,7 +864,7 @@ namespace allocator
       }
 
       
-      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+      inline void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -979,7 +979,7 @@ namespace allocator
 //      }
 //
 //      
-//      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
+//      inline  void copy_construct_array(TYPE * pdst, ::collection::count c, const TYPE * psrc)
 //      {
 //
 //         while (c > 0)

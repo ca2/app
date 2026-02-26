@@ -430,7 +430,7 @@ namespace userfs
    void list::_017OpenItem(::pointer<::file::item>pitem, bool bOpenFile, const ::action_context & action_context)
    {
 
-      if (pitem->IsFolder())
+      if (pitem->is_folder())
       {
 
          m_pdocument->browse(pitem, action_context);
@@ -509,7 +509,7 @@ namespace userfs
 
             ::pointer<::userfs::list_item>pitem = pdata->item(iStrict);
 
-            if (pitem->IsFolder())
+            if (pitem->is_folder())
             {
 
                _017OpenContextMenuFolder(pitem, context);

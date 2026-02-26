@@ -178,7 +178,7 @@ void mq_post_thread_message(::task_index & taskindex, ::user::enum_message euser
 //}
 
 
-CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
    auto pmessagequeue = ::system()->task_message_queue()->current_task_message_queue(true);
@@ -190,9 +190,11 @@ CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, ::acme::windowing::win
 
    }
 
-   auto estatus = pmessagequeue->get_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax);
+   auto estatus = pmessagequeue->get_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax);
 
    return estatus;
 
 }
+
+
 

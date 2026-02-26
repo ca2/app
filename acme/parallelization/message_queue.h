@@ -29,9 +29,9 @@ public:
    void on_initialize_particle() override;
 
 
-   bool peek_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage);
-   ::e_status get_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time = ::time::infinity());
-   void post_message(::acme::windowing::window * pacmewindowingwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
+   bool peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage);
+   ::e_status get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time = ::time::infinity());
+   void post_message(const ::operating_system::window & operatingsystemwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
    void post_message(const MESSAGE & message);
 
    void kick_idle() override;

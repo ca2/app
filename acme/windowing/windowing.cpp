@@ -194,6 +194,15 @@ namespace acme
       }
 
 
+
+      void windowing::add_window(::acme::windowing::window* pwindow)
+      {
+
+
+         //::synchronous_lock synchronouslock(this->synchronization());
+         //
+         //m_windowmap[pwindow->operating_system_window()] = pwindow;
+      }
       //      ::windowing::window* new_window(::windowing::window* pimpl) override;
       //
       void windowing::erase_window(::acme::windowing::window* pwindow)
@@ -204,13 +213,21 @@ namespace acme
       }
 
 
-      ::acme::windowing::window *windowing::window_from_HWND(void *pHWND)
+      //::acme::windowing::window *windowing::window_from_HWND(void *pHWND)
+      //{
+
+      //   throw ::interface_only();
+
+      //   return nullptr;
+
+      //}
+
+
+      void windowing::each_window(const ::function < void(::acme::windowing::window*) > & function)
       {
 
          throw ::interface_only();
-
-         return nullptr;
-
+       
       }
 
 
@@ -266,11 +283,31 @@ namespace acme
       {
          if (ptopic->id() == id_set_application_dark_mode)
          {
-            for (auto& pwindow: m_windowa)
+
+            each_window([ptopic, phandlercontext](auto& pacmewindowingwindow)
             {
-               pwindow->handle(ptopic, phandlercontext);
-            }
+               if (::is_set(pacmewindowingwindow))
+               {
+                  pacmewindowingwindow->handle(ptopic, phandlercontext);
+               }
+               });   
+
+            //for (auto& pair: m_windowmap)
+            //{
+
+            //   auto pacmewindowingwindow = pair.element2(); 
+
+            //   if (::is_set(pacmewindowingwindow))
+            //   {
+            //   
+            //      pacmewindowingwindow->handle(ptopic, phandlercontext);
+
+            //   }
+
+            //}
+
          }
+
       }
 
 
@@ -361,7 +398,7 @@ namespace acme
 
          m_pacmedisplay.defer_destroy();
 
-         m_windowa.clear();
+         //m_windowmap.clear();
 
          ::platform::department::destroy();
 
@@ -402,6 +439,54 @@ namespace acme
       //    system()->post_aaa_application_started();
       //
       // }
+   
+   
+      ::acme::windowing::window * windowing::acme_windowing_window(const ::operating_system::window & operatingsystemwindow)
+      {
+
+         throw ::interface_only();
+
+         return nullptr;
+       
+         //::synchronous_lock synchronouslock(this->synchronization());
+         //
+         //auto & pacmewindowingwindow = m_windowmap[operatingsystemwindow];
+         //
+         //return pacmewindowingwindow;
+         
+      }
+
+
+      ::acme::windowing::window * windowing::acme_windowing_window(const ::lparam& lparam)
+      {
+
+         auto operatingsystemwindow = operating_system_window(lparam);  
+
+         auto pacmewindowingwindow = acme_windowing_window(operatingsystemwindow);  
+
+         return pacmewindowingwindow;
+
+      }
+
+
+      ::operating_system::window windowing::operating_system_window(const ::wparam & wparam)
+      {
+         
+         throw ::interface_only();
+         
+         return {};
+         
+      }
+   
+   
+      ::operating_system::window windowing::operating_system_window(const ::lparam & lparam)
+      {
+      
+         throw ::interface_only();
+         
+         return {};
+
+      }
 
 
       ::windowing::windowing* windowing::windowing_windowing()
@@ -609,16 +694,34 @@ namespace acme
 
          auto ptopic = øallocate ::topic(id_application_dark_mode_change);
 
-         for (auto& pwindow: m_windowa)
+         each_window([ptopic](auto& pacmewindowingwindow)
          {
+            if (::is_set(pacmewindowingwindow))
+            {
+               pacmewindowingwindow->handle(ptopic, nullptr);
 
-            pwindow->handle(ptopic, nullptr);
+               pacmewindowingwindow->set_need_redraw();
 
-            pwindow->set_need_redraw();
+               pacmewindowingwindow->post_redraw();
+            }
+            });
+         //for (auto& pair: m_windowmap)
+         //{
 
-            pwindow->post_redraw();
+         //   auto pacmewindowingwindow = pair.element2();
 
-         }
+         //   if (::is_set(pacmewindowingwindow))
+         //   {
+
+         //      pacmewindowingwindow->handle(ptopic, nullptr);
+
+         //      pacmewindowingwindow->set_need_redraw();
+
+         //      pacmewindowingwindow->post_redraw();
+
+         //   }
+
+         //}
 
       }
 
@@ -681,24 +784,34 @@ namespace acme
 
          _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto interchangea = m_windowa;
+         //auto interchangea = m_windowa;
 
-         synchronouslock.unlock();
+         //synchronouslock.unlock();
 
          //if (::micro::window_implementation::nanowindowimplementationa().has_element())
          //{
 
-         for (auto& pwindow: interchangea)
+         each_window([](auto& pacmewindowingwindow)
          {
-
-            if (pwindow)
+            if (::is_set(pacmewindowingwindow))
             {
-
-               pwindow->window_message_loop_step();
-
+               pacmewindowingwindow->window_message_loop_step();
             }
+            });      
 
-         }
+         //for (auto& pair: m_windowmap)
+         //{
+
+         //   auto pacmewindowingwindow = pair.element2();   
+
+         //   if (::is_set(pacmewindowingwindow))
+         //   {
+         //      
+         //      pacmewindowingwindow->window_message_loop_step();
+
+         //   }
+
+         //}
 
       }
 

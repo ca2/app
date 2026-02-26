@@ -11,7 +11,7 @@ namespace http
 
       __UNREFERENCED_PARAMETER(version);
 
-      __defer_construct_new(m_pmemfileBody);
+      ødefer_construct_new(m_pmemfileBody);
 
    }
 
@@ -35,7 +35,7 @@ namespace http
 
       transaction::operator=(src);
 
-      __defer_construct_new(m_pmemfileBody);
+      ødefer_construct_new(m_pmemfileBody);
 
       m_pmemfileBody->memory() = src.m_pmemfileBody->memory();
 
@@ -65,7 +65,7 @@ namespace http
 
       transaction::clear();
 
-      __defer_construct_new(m_pmemfileBody);
+      ødefer_construct_new(m_pmemfileBody);
 
       m_pmemfileBody->set_size(0);
    

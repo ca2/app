@@ -1272,7 +1272,7 @@ namespace axis
 
 
 
-   //void application::set_locale(const string & pcsz, const ::action_context & context)
+   //void application::set_locale(const ::scoped_string & scopedstr, const ::action_context & context)
 
    //{
 
@@ -1288,7 +1288,7 @@ namespace axis
    //}
 
 
-   //void application::set_schema(const string & pcsz, const ::action_context & context)
+   //void application::set_schema(const ::scoped_string & scopedstr, const ::action_context & context)
 
    //{
 
@@ -1304,7 +1304,7 @@ namespace axis
    //}
 
 
-   //void application::on_set_locale(const string & pcsz, const ::action_context & context)
+   //void application::on_set_locale(const ::scoped_string & scopedstr, const ::action_context & context)
 
    //{
    //   __UNREFERENCED_PARAMETER(context);
@@ -1314,7 +1314,7 @@ namespace axis
    //}
 
 
-   //void application::on_set_schema(const string & pcsz, const ::action_context & context)
+   //void application::on_set_schema(const ::scoped_string & scopedstr, const ::action_context & context)
 
    //{
    //   __UNREFERENCED_PARAMETER(context);

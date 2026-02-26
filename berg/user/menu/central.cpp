@@ -78,7 +78,7 @@ namespace user
 
       ::draw2d::graphics_pointer spgraphics(e_create, this);
 
-      spgraphics->CreateCompatibleDC(nullptr);
+      spgraphics->create_compatible_graphics(nullptr);
 
       imaging()->change_hue(
       m_pimagelistHue,

@@ -233,6 +233,7 @@ error_serialization,
 error_premature_end_of_file,
 error_serialization_unexpected_value,
 error_file_open,
+   error_remoting,
 
    error_file = INT_FAILURE_STATUS(STATUS_RANGE_FILE),
    error_file_not_found,

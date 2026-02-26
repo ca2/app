@@ -707,7 +707,7 @@ namespace user
 
       //RECT rWindow;
 
-      // ::GetWindowRect((HWND)window()->oswindow(), &rWindow);
+      // ::GetWindowRect((HWND)window()->operating_system_window(), &rWindow);
 
       int iLastXAbs = get_last_x_abs();
 
@@ -3006,7 +3006,7 @@ namespace user
          if (pkey)
          {
 
-            windowing()->set(pkey, pkey->m_pacmewindowingwindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
+            windowing()->set(pkey, pkey->m_operatingsystemwindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
 
          }
 
@@ -4231,7 +4231,7 @@ namespace user
 
             pmessage->m_eusermessage = ::user::e_message_mouse_leave;
             //pmessage->m_pwindow = window();
-            //pmessage->m_pacmewindowingwindow = window()->oswindow();
+            //pmessage->m_pacmewindowingwindow = window()->operating_system_window();
             //pmessage->m_wparam = 0;
             //pmessage->m_lparam = 0;
             //          pmessage->m_time = phappening->time;
@@ -18274,7 +18274,7 @@ if(get_parent())
    }
 
 
-   // ::oswindow interaction::oswindow()
+   // ::oswindow interaction::operating_system_window()
    // {
    //
    //    auto pwindowThis = window();
@@ -18286,7 +18286,7 @@ if(get_parent())
    //
    //    }
    //
-   //    auto oswindow = pwindowThis->oswindow();
+   //    auto oswindow = pwindowThis->operating_system_window();
    //
    //    if (!oswindow)
    //    {
@@ -18303,7 +18303,7 @@ if(get_parent())
    //::oswindow interaction::_oswindow() const
    //{
 
-   //   return oswindow();
+   //   return operating_system_window();
 
    //}
 
@@ -18521,7 +18521,7 @@ if(get_parent())
 
 #endif
 
-      //m_pacmewindowingwindow = m_pwindow->oswindow();
+      //m_pacmewindowingwindow = m_pwindow->operating_system_window();
 
    }
 
@@ -18739,7 +18739,7 @@ if(get_parent())
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
-   pmessage->m_pacmewindowingwindow = pacmewindowingwindow; \
+   pmessage->m_operatingsystemwindow = this->operating_system_window(); \
    pmessage->m_puserinteraction = this; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_eusermessage = eusermessage; \
@@ -18877,10 +18877,12 @@ if(get_parent())
       break;
       case ::user::e_message_prototype_scroll:
       {
+         
          _NEW_MESSAGE(::message::scroll);
 
 #ifdef WINDOWS_DESKTOP
-         pmessage->m_pacmewindowingwindowScrollBar = acme_windowing_window_from_HWND((void*)(::iptr)(lparam));
+
+         pmessage->m_pacmewindowingwindowScrollBar = system()->acme_windowing()->acme_windowing_window(lparam);
 
 #endif
 
@@ -18900,7 +18902,7 @@ if(get_parent())
       case ::user::e_message_prototype_kill_focus:
       {
          _NEW_MESSAGE(::message::kill_keyboard_focus);
-         pmessage->m_pacmewindowingwindowNew = acme_windowing_window_from_HWND((void*)(::iptr)wparam.m_number);
+         pmessage->m_operatingsystemwindow = system()->windowing()->operating_system_window(wparam);
       }
       break;
 #if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
@@ -19007,7 +19009,7 @@ if(get_parent())
 
             auto pwindowing = system()->windowing();
 
-            auto pwindow = acme_windowing_window_from_HWND((void *) (::iptr) lparam);
+            auto pwindow = system()->windowing()->windowing_window(lparam);
 
             if (pwindow)
             {
@@ -27889,13 +27891,13 @@ __check_refdbg;
 
       auto pcontextmenu = øallocate::message::context_menu();
 
-      pcontextmenu->m_pacmewindowingwindow = m_pacmewindowingwindow;
+      pcontextmenu->m_operatingsystemwindow = operating_system_window();
       pcontextmenu->m_pwindow = window();
       pcontextmenu->m_eusermessage = ::user::e_message_context_menu;
       pcontextmenu->m_pointMessage = pmouse->m_pointHost;
 
       //;; pcontextmenu->m_wpar
-      //pcontextmenu->set(oswindow(), window(), ::user::e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
+      //pcontextmenu->set(operating_system_window(), window(), ::user::e_message_context_menu, (wparam)(iptr)operating_system_window(), pmouse->m_point.lparam());
 
       message_handler(pcontextmenu);
 
@@ -31437,7 +31439,7 @@ __check_refdbg;
       //   bool save)
       //{
       //
-      //      node()->pick_single_file(oswindow(),
+      //      node()->pick_single_file(operating_system_window(),
       //                                   filetypes,
       //                                   function,
       //                                   save);
@@ -31450,7 +31452,7 @@ __check_refdbg;
       //   const ::function < void(const ::file::path_array_base &) >& function)
       //{
       //
-      //   node()->pick_multiple_file(oswindow(),
+      //   node()->pick_multiple_file(operating_system_window(),
       //                                filetypes,
       //                                function);
       //
@@ -31463,7 +31465,7 @@ __check_refdbg;
       //                        //,       bool save);
       //{
       //
-      //   node()->pick_single_folder(oswindow(),
+      //   node()->pick_single_folder(operating_system_window(),
       //                                function);
       //
       //}
@@ -31578,6 +31580,16 @@ __check_refdbg;
       auto pacmewindowindowing = ::acme::user::interaction::acme_windowing_window();
 
       return pacmewindowindowing;
+
+   }
+
+
+   ::operating_system::window interaction::operating_system_window()
+   {
+
+      auto operatingsystemwindow = ::acme::user::interaction::operating_system_window();
+
+      return operatingsystemwindow;
 
    }
 

@@ -89,11 +89,11 @@ endif()
 
 if(${__CMAKE_BUILD_TYPE} STREQUAL "Release")
 
-    set(LAUNCH_EXECUTABLE $ENV{HOME}/bin/launch)
+    set(LAUNCH_EXECUTABLE ${HOME_DIR}/bin/launch)
 
 else()
 
-    set(LAUNCH_EXECUTABLE $ENV{HOME}/bin/launch)
+    set(LAUNCH_EXECUTABLE ${HOME_DIR}/bin/launch)
 
 endif()
 

@@ -2003,6 +2003,24 @@ namespace acme
             return m_pacmewindowingwindow;
 
          }
+   
+   
+   ::operating_system::window interaction::operating_system_window()
+   {
+      
+      auto pacmewindowingwindow = this->acme_windowing_window();
+      
+      if(::is_null(pacmewindowingwindow))
+      {
+         
+         return {};
+         
+      }
+      
+      return pacmewindowingwindow->operating_system_window();
+      
+   }
+
 
 
          void interaction::on_create_window_object()

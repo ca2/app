@@ -816,7 +816,7 @@ namespace user
    }
 
 
-   bool list_box::keyboard_focus_OnKillFocus(::oswindow oswindowNew)
+   bool list_box::keyboard_focus_OnKillFocus(::acme::windowing::window * pacmewindowingwindowNew)
    {
 
       if (is_window_visible(::user::e_layout_sketch))

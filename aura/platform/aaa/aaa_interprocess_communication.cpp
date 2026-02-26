@@ -460,7 +460,7 @@ started:
    }
 
 
-   string inteprocess_channel::key(const string &strApp, const ::atom & idPid)
+   string inteprocess_channel::key(const ::scoped_string & scopedstrApp, const ::atom & idPid)
    {
 
       string strKey;

@@ -74,17 +74,17 @@ namespace linux
       virtual ::file::path commonappdata() override;
       virtual ::file::path element_commonappdata(const ::scoped_string & scopedstrElement) override;
 
-//      virtual ::file::path usersystemappdata(const string & pcszPrefix);
+//      virtual ::file::path usersystemappdata(const ::scoped_string & scopedstrPrefix);
 
 //      virtual ::file::path userappdata(::particle * pparticle);
 //      virtual ::file::path userdata(::particle * pparticle);
 //      //virtual ::file::path userfolder(::particle * pparticle);
 //      virtual ::file::path default_os_user_path_prefix(::particle * pparticle);
-//      virtual ::file::path default_userappdata(const string & pcszPrefix, const string & lpcszLogin);
+//      virtual ::file::path default_userappdata(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrLogin);
 
-//      virtual ::file::path default_userdata(const string & pcszPrefix, const string & lpcszLogin);
+//      virtual ::file::path default_userdata(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrLogin);
 
-//      virtual ::file::path default_userfolder(const string & pcszPrefix, const string & lpcszLogin);
+//      virtual ::file::path default_userfolder(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrLogin);
 
       virtual ::file::path userquicklaunch(::particle * pparticle);
       virtual ::file::path userprograms(::particle * pparticle);

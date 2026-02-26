@@ -1,5 +1,8 @@
 #include "framework.h"
+#include "gpu_opengl/_gpu_opengl.h"
+#include "gpu_opengl/wgl_context.h"
 #include "approach.h"
+#include "context_win32.h"
 #include "device.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -12,102 +15,33 @@
 #include <dwmapi.h>
 
 
+CLASS_DECL_ACME HINSTANCE hinstance_from_function(void *pFunc);
+
+
 namespace gpu_opengl
 {
 
 
-   
-   //// Helper to create dummy OpenGL context
-   // HGLRC CreateDummyContext(HDC hdc) {
-   //    PIXELFORMATDESCRIPTOR pfd = {
-   //        sizeof(PIXELFORMATDESCRIPTOR), 1,
-   //        PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER,
-   //        PFD_TYPE_RGBA, 32,
-   //        0, 0, 0, 0, 0, 0,
-   //        0, 0, 0, 0, 0, 0, 0,
-   //        24, 8, 0,
-   //        PFD_MAIN_PLANE,
-   //        0, 0, 0, 0
-   //    };
-
-   //   int pixelFormat = ChoosePixelFormat(hdc, &pfd);
-   //   SetPixelFormat(hdc, pixelFormat, &pfd);
-   //   return wglCreateContext(hdc);
-   //}
-   // WGL extension function pointer
-
-   // Create dummy window and context to load WGL extensions
-   HGLRC CreateDummyContext(HDC *outDC, HWND *outHWND)
-   {
-      WNDCLASSW wc = {0};
-      wc.style = CS_OWNDC;
-      wc.lpfnWndProc = DefWindowProc;
-      wc.hInstance = GetModuleHandle(NULL);
-      wc.lpszClassName = L"DummyGL";
-
-      RegisterClass(&wc);
-      HWND hwnd =
-         ::CreateWindowW(wc.lpszClassName, L"", WS_OVERLAPPEDWINDOW, 0, 0, 1, 1, NULL, NULL, wc.hInstance, NULL);
-
-      HDC dc = GetDC(hwnd);
-      PIXELFORMATDESCRIPTOR pfd = {sizeof(PIXELFORMATDESCRIPTOR), 1};
-      pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-      pfd.iPixelType = PFD_TYPE_RGBA;
-      pfd.cColorBits = 32;
-
-      int pf = ChoosePixelFormat(dc, &pfd);
-      SetPixelFormat(dc, pf, &pfd);
-
-      HGLRC rc = wglCreateContext(dc);
-      wglMakeCurrent(dc, rc);
-
-      *outDC = dc;
-      *outHWND = hwnd;
-      return rc;
-   }
-
-   PFNWGLCREATECONTEXTATTRIBSARBPROC loaded_wglCreateContextAttribsARB = NULL;
-   PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB = NULL;
-   // Load only required WGL extensions
-   void LoadWGLExtensions()
-   {
-      loaded_wglCreateContextAttribsARB =
-         (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");
-      loaded_wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC)wglGetProcAddress("wglChoosePixelFormatARB");
-   }
-
-   void defer_load_wgl_extensions()
-   {
-      if (loaded_wglCreateContextAttribsARB && loaded_wglChoosePixelFormatARB)
-      {
-         return;
-      }
-
-      // Step 1: Create dummy context to load WGL extensions
-      HDC dummyDC;
-      HWND dummyHWND;
-      HGLRC dummyRC = CreateDummyContext(&dummyDC, &dummyHWND);
-
-      LoadWGLExtensions();
-
-      wglMakeCurrent(NULL, NULL);
-      wglDeleteContext(dummyRC);
-      ReleaseDC(dummyHWND, dummyDC);
-      DestroyWindow(dummyHWND);
-   }
-
 
    
 
-    void approach::_on_before_create_window(::acme::windowing::window* pwindow)
+    void approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
        {
           //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
           //papproach->_on_before_create_window(pwindow);
    // #if defined(WINDOWS_DESKTOP)
-          defer_load_wgl_extensions();
+          //defer_load_wgl_extensions(this);
    // #endif
    //
        }
+
+       void approach::gpu_on_create_window(::acme::windowing::window *pacmewindowingwindow)
+       {
+
+          ::gpu::bred_approach::gpu_on_create_window(pacmewindowingwindow);
+       }
+
+
 
    // void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance, HGLRC* outRC, HDC* outDC)
    void opengl_on_create_window(HWND hwnd, HINSTANCE hInstance)
@@ -150,7 +84,7 @@ namespace gpu_opengl
    }
 
 
-   void approach::_on_create_window(::acme::windowing::window *pwindowParam)
+   void approach::_gpu_on_create_window(::acme::windowing::window *pwindowParam)
    {
 
 //#if defined(WINDOWS_DESKTOP)
@@ -159,7 +93,7 @@ namespace gpu_opengl
 
       ::cast < ::windowing_win32::window > pwindow = pwindowParam;
 
-      auto hwnd = pwindow->m_hwnd;
+      auto hwnd = pwindow->_HWND();
 
       opengl_on_create_window(hwnd, (HINSTANCE) ::system()->m_hinstanceThis);
 

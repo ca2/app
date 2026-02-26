@@ -5027,6 +5027,8 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //   }
 //
+   memsize node::get_current_memory_usage()
+   {
 
    ::string_array node::get_operating_system_information_box_lines()
    {
@@ -5034,6 +5036,23 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       return {};
 
    }
+
+
+   bool node::_windows_isVistaOrLater()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_windows_isWin7()
+   {
+
+      return false;
+
+   }
+
 } // namespace platform
 
 

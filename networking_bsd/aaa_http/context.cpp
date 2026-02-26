@@ -1068,7 +1068,7 @@ namespace http
    //}
 
 
-   bool context::open(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrProtocolParam, ::property_set & set, const string &strVersionParam)
+   bool context::open(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrHost, const ::scoped_string & scopedstrProtocolParam, ::property_set & set, const ::scoped_string & scopedstrVersionParam)
    {
 
       auto tickTimeProfile1 = ::duration::now();

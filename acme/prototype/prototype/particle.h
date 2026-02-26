@@ -239,6 +239,9 @@ public:
    virtual ::file::watcher * file_watcher() const;
 
 
+   ::pointer < ::file::item > file_item(const ::file::path & path);
+
+
    ::networking::networking * networking() const;
    //::http_system * http_system() const;
    //::platform::context * http() const;

@@ -95,7 +95,7 @@ namespace handler
       }
 
 
-      inline bool operator==(const ::atom & atom) const { return id() == atom || id() == id_full; }
+      inline bool operator==(const ::atom & atom) const { return id() == atom || id() == (enum_id) ID_FULL; }
 
       void subject_common_construct();
 

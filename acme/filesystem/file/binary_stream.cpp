@@ -255,13 +255,13 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       stream << payload.m_i;
       break;
    case e_type_long_long:
-      stream << payload.m_hi;
+      stream << payload.m_ll;
       break;
    case e_type_unsigned_int:
       stream << payload.m_ui;
       break;
    case e_type_unsigned_long_long:
-      stream << payload.m_hn;
+      stream << payload.m_ull;
       break;
    case e_type_pchar:
       stream << *payload.m_pch;
@@ -563,7 +563,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(e_type_long_long, false);
 
-      *this >> payload.m_hi;
+      *this >> payload.m_ll;
 
    }
    break;
@@ -573,7 +573,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(::e_type_unsigned_int, false);
 
-      *this >> payload.m_ui;
+      *this >> payload.m_ull;
 
    }
    break;
@@ -583,7 +583,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       payload.set_type(::e_type_unsigned_long_long, false);
 
-      *this >> payload.m_hn;
+      *this >> payload.m_ull;
 
    }
    break;

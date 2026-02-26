@@ -197,6 +197,8 @@
 
 
 #include  "acme/filesystem/file/binary_stream.h"
+#include  "acme/exception/interface_only.h"
+#include  "acme/exception/not_implemented.h"
 
 
 #include  "acme/handler/topic.h"

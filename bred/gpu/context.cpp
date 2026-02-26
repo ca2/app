@@ -28,7 +28,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/windowing/window.h"
 #include "aura/graphics/image/context.h"
-
+#include "aura/user/user/interaction_thread.h"
 #include "acme/windowing/windowing.h"
 #include "bred/gpu/command_buffer.h"
 #include "bred/gpu/context_lock.h"
@@ -1352,7 +1352,19 @@ namespace gpu
       if (m_htask.is_null())
       {
 
+#if defined(WINDOWS)
+
+         auto pwindow = pacmewindowingwindow->windowing_window();
+
+         m_htask = pwindow->m_puserthread->m_htask;
+
+         m_itask = pwindow->m_puserthread->m_itask;
+
+#else
+
          branch_synchronously();
+
+#endif
 
          m_pgpudevice = pgpudevice;
 
@@ -1959,11 +1971,11 @@ namespace gpu
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
    {
 
-      auto etype = this->m_etype;
-
-      auto eoutput = this->m_eoutput;
-
-      auto rectangleContext = this->rectangle();
+//      auto etype = this->m_etype;
+//
+//      auto eoutput = this->m_eoutput;
+//
+//      auto rectangleContext = this->rectangle();
 
       if (m_etype != e_type_window)
       {

@@ -8,8 +8,21 @@ namespace file
 {
 
 
-   class CLASS_DECL_ACME translatable :
+
+   class CLASS_DECL_ACME streamable_base :
       virtual public ::particle
+   {
+   public:
+
+      streamable_base();
+      ~streamable_base() override;
+
+      virtual void close();
+
+   };
+
+   class CLASS_DECL_ACME translatable :
+      virtual public streamable_base
    {
    public:
 

@@ -691,7 +691,7 @@ try1:;
    //}
 
 
-   //::file::path directory_context::default_userappdata(const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_context::default_userappdata(const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "appdata";
@@ -699,7 +699,7 @@ try1:;
    //}
 
 
-   //::file::path directory_context::default_userdata(const string & lpcszPrefix,const string & lpcszLogin)
+   //::file::path directory_context::default_userdata(const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin)
    //{
 
    //   return default_userfolder(pparticle,lpcszPrefix,lpcszLogin) / "data";

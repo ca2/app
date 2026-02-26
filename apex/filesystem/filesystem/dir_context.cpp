@@ -371,7 +371,7 @@ inline bool myspace(char ch)
 //}
 
 
-//::file::path directory_context::relpath(const string & pcszSource,const string & lpcszRelative)
+//::file::path directory_context::relpath(const ::scoped_string & scopedstrSource,const ::scoped_string & scopedstrRelative)
 
 //{
 //   __UNREFERENCED_PARAMETER(pcszSource);
@@ -382,7 +382,7 @@ inline bool myspace(char ch)
 //}
 
 
-//::file::path directory_context::relpath(const string & pcszSource, const string & lpcszRelative, const ::scoped_string & scopedstr2)
+//::file::path directory_context::relpath(const ::scoped_string & scopedstrSource, const ::scoped_string & scopedstrRelative, const ::scoped_string & scopedstr2)
 
 //{
 //   __UNREFERENCED_PARAMETER(pcszSource);
@@ -2702,7 +2702,7 @@ ret:
 }
 
 
-//::file::path directory_context::usersystemappdata(const string & pcszPrefix)
+//::file::path directory_context::usersystemappdata(const ::scoped_string & scopedstrPrefix)
 
 //{
 //   __UNREFERENCED_PARAMETER(pparticle);
@@ -2742,7 +2742,7 @@ ret:
 //}
 
 
-//::file::path directory_context::default_userappdata(const string & pcszPrefix, const string & lpcszLogin)
+//::file::path directory_context::default_userappdata(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrLogin)
 
 //{
 //   __UNREFERENCED_PARAMETER(pparticle);
@@ -2753,7 +2753,7 @@ ret:
 //   throw ::interface_only("this is an interface");
 //}
 
-//::file::path directory_context::default_userdata(const string & pcszPrefix, const string & lpcszLogin)
+//::file::path directory_context::default_userdata(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrLogin)
 
 //{
 //   __UNREFERENCED_PARAMETER(pparticle);
@@ -2764,7 +2764,7 @@ ret:
 //   throw ::interface_only("this is an interface");
 //}
 
-//::file::path directory_context::default_userfolder(const string & pcszPrefix, const string & lpcszLogin)
+//::file::path directory_context::default_userfolder(const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrLogin)
 
 //{
 //   __UNREFERENCED_PARAMETER(pparticle);

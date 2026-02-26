@@ -77,7 +77,7 @@ int_point g_pointLastBottomRight;
 CLASS_DECL_ACME void monitor_pointer(void *p);
 
 #define REDRAW_HINTING
-//CLASS_DECL_AURA bool task_set_name(const ::string &psz);
+//CLASS_DECL_AURA bool task_set_name(const ::scoped_string & scopedstr);
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 //void windowing_output_debug_string(const ::scoped_string & scopedstrDebugString);
@@ -317,7 +317,7 @@ namespace user
    }
 
 
-   void interaction_impl::create_message_queue(::user::interaction *pinteraction, const ::string &lpszName)
+   void interaction_impl::create_message_queue(::user::interaction *pinteraction, const ::scoped_string & scopedstrName)
    {
 
       if (_is_window())
@@ -4084,7 +4084,7 @@ namespace user
    }
 
 
-   //   void interaction_impl::set_window_text(const ::string& pszString)
+   //   void interaction_impl::set_window_text(const ::scoped_string & scopedstrString)
    //
    //   {
    //
@@ -6173,7 +6173,7 @@ namespace user
 
                synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               if (pgraphics->__defer_construct_new(pgraphics->m_puserredraw))
+               if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
                {
 
                   if (system()->draw2d()->graphics_context_does_full_redraw())
@@ -6886,7 +6886,7 @@ namespace user
    }
 
 
-   void interaction_impl::set_bitmap_source(const string &strBitmapSource)
+   void interaction_impl::set_bitmap_source(const ::scoped_string & scopedstrBitmapSource)
    {
 
       m_strBitmapSource = strBitmapSource;
@@ -6932,7 +6932,7 @@ namespace user
 
          m_pgraphicsgraphics = user()->desktop_environment()->create_graphics();
 
-         //__raw_construct(m_pgraphicsgraphics);
+         //øraw_construct(m_pgraphicsgraphics);
 
          //if (!estatus)
          //{

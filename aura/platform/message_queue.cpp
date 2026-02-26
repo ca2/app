@@ -40,7 +40,7 @@
 //
 //   //if (!
 //   
-//   pmq->post_message(pwindow->oswindow(), eusermessage, wparam, lparam);
+//   pmq->post_message(pwindow->operating_system_window(), eusermessage, wparam, lparam);
 //   //{
 //
 //   //   return false;
@@ -100,7 +100,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
    pmessagequeue->m_messagea.predicate_erase([=](MESSAGE & message)
    {
 
-      return message.m_pacmewindowingwindow == pwindow;
+      return message.m_operatingsystemwindow == pwindow->operating_system_window();
 
    });
 

@@ -82,6 +82,8 @@ namespace gpu_opengl
       //void _opengl_lock() override;
       //void _opengl_unlock() override;
 
+      void * current_operating_system_gpu_context() override;
+
 
    };
 

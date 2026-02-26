@@ -282,6 +282,33 @@ namespace windowing
    //
    // }
 
+   
+   ::windowing::window * windowing::windowing_window(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto pacmewindowingwindow = acme_windowing_window(operatingsystemwindow);
+
+      ::cast<::windowing::window > pwindow = pacmewindowingwindow;
+
+      return pwindow;
+
+   }
+   
+
+   ::windowing::window * windowing::windowing_window(const ::lparam & lparam)
+   {
+
+      auto operatingsystemwindow = operating_system_window(lparam);
+
+      auto pacmewindowingwindow = acme_windowing_window(operatingsystemwindow);
+
+      ::cast<::windowing::window> pwindow = pacmewindowingwindow;
+
+      return pwindow;
+
+   }
+
+
 
 ::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
    {
@@ -750,7 +777,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::key * pkey, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::key * pkey, const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       auto pkeyboard = keyboard();
@@ -760,7 +787,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::mouse * pmouse, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::mouse * pmouse, const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
 

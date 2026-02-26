@@ -55,7 +55,7 @@ namespace gpu
 
       auto pgpurenderer = m_pgpurenderer;
 
-      auto pgpurendertarget = pgpurenderer->render_target();
+      //auto pgpurendertarget = pgpurenderer->render_target();
 
       auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
 

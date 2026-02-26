@@ -872,7 +872,7 @@ namespace aura
    }
 
    
-   ::matter* library::factory_new(::object* pparticle, const ::string & lpszClass)
+   ::matter* library::factory_new(::object* pparticle, const ::scoped_string & scopedstrClass)
    {
 
       return nullptr;
@@ -880,7 +880,7 @@ namespace aura
    }
 
 
-   ::pointer<::matter>library::factory_create(::particle * pparticle, const ::string & lpszClass)
+   ::pointer<::matter>library::factory_create(::particle * pparticle, const ::scoped_string & scopedstrClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);
@@ -908,7 +908,7 @@ namespace aura
    }
 
 
-   bool library::factory_has_object_class(const ::string & lpszClass)
+   bool library::factory_has_object_class(const ::scoped_string & scopedstrClass)
    {
 
       return find_allocator(lpszClass) != nullptr;
@@ -916,7 +916,7 @@ namespace aura
    }
 
 
-   library_object_allocator_base * library::find_allocator(const ::string & lpszClass)
+   library_object_allocator_base * library::find_allocator(const ::scoped_string & scopedstrClass)
    {
 
       auto pFind = m_allocatorptra.predicate_find_first([&](auto & pallocator)

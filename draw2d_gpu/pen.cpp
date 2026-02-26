@@ -131,8 +131,8 @@ namespace draw2d_gpu
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
-      if(graphicsMem->CreateCompatibleDC(nullptr) &&
-         graphicsMask->CreateCompatibleDC(nullptr))
+      if(graphicsMem->create_compatible_graphics(nullptr) &&
+         graphicsMask->create_compatible_graphics(nullptr))
       {
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm);
 //         pDest->delete_object();
@@ -189,8 +189,8 @@ namespace draw2d_gpu
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
-      if(graphicsMem->CreateCompatibleDC(pgraphics) &&
-         graphicsMask->CreateCompatibleDC(pgraphics) &&
+      if(graphicsMem->create_compatible_graphics(pgraphics) &&
+         graphicsMask->create_compatible_graphics(pgraphics) &&
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm) &&
          bmpMask->CreateBitmap(bm.bmWidth, bm.bmHeight, 1, 1, nullptr))
       {
@@ -236,9 +236,9 @@ namespace draw2d_gpu
       ::draw2d::brush pbrushChecker;
       static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
-      if(graphicsSrc->CreateCompatibleDC(nullptr) &&
-         graphicsMask->CreateCompatibleDC(nullptr) &&
-         graphicsDest->CreateCompatibleDC(nullptr))
+      if(graphicsSrc->create_compatible_graphics(nullptr) &&
+         graphicsMask->create_compatible_graphics(nullptr) &&
+         graphicsDest->create_compatible_graphics(nullptr))
       {
          if(const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm))
          {
@@ -305,8 +305,8 @@ namespace draw2d_gpu
       ::draw2d::brush pbrushChecker;
       static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
-      if(graphicsSrc->CreateCompatibleDC(pgraphics) &&
-         graphicsMask->CreateCompatibleDC(pgraphics) &&
+      if(graphicsSrc->create_compatible_graphics(pgraphics) &&
+         graphicsMask->create_compatible_graphics(pgraphics) &&
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm))
       {
          // create checker brush

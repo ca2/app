@@ -42,7 +42,7 @@ namespace graphics
 
          //bool bOk = 
          
-         m_spgraphics->CreateWindowDC(m_pwindow);
+         m_spgraphics->create_window_graphics(m_pwindow);
 
          //if (!bOk)
          //{

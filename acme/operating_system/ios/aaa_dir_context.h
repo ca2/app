@@ -65,9 +65,9 @@ namespace ios
 //      virtual ::file::path userdata(::particle * pparticle);
 //      //virtual ::file::path userfolder(::particle * pparticle);
 //      virtual ::file::path default_os_user_path_prefix(::particle * pparticle);
-//      virtual ::file::path default_userappdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin );
-//      virtual ::file::path default_userdata(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin);
-//      virtual ::file::path default_userfolder(::particle * pparticle,const string & lpcszPrefix,const string & lpcszLogin);
+//      virtual ::file::path default_userappdata(::particle * pparticle,const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin );
+//      virtual ::file::path default_userdata(::particle * pparticle,const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin);
+//      virtual ::file::path default_userfolder(::particle * pparticle,const ::scoped_string & scopedstrPrefix,const ::scoped_string & scopedstrLogin);
       virtual ::file::path userquicklaunch() override;
       virtual ::file::path userprograms() override;
       

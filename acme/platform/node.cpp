@@ -5028,7 +5028,12 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //   }
 //
 
+   ::string_array node::get_operating_system_information_box_lines()
+   {
 
+      return {};
+
+   }
 } // namespace platform
 
 

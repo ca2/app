@@ -747,6 +747,8 @@ namespace platform
 
       void show_about_box(::user::activation_token* puseractivationtoken) override;
 
+
+
       bool handle_command(const ::atom& atom, ::user::activation_token* puseractivationtoken) override;
 
       bool on_command_final(const ::atom& atom, ::user::activation_token* puseractivationtoken) override;

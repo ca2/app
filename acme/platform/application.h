@@ -741,15 +741,15 @@ namespace platform
       //virtual void pos_run() override;
       //virtual void application_pos_run() override;
 
-      virtual void init_application() override;
+      void init_application() override;
 
-      virtual void term_application() override;
+      void term_application() override;
 
-      virtual ::string_array_base get_about_box_lines() override;
+      ::string_array_base get_about_box_lines() override;
 
       void show_about_box(::user::activation_token* puseractivationtoken) override;
 
-
+      ::string_array_base get_operating_system_information_lines() override;
 
       bool handle_command(const ::atom& atom, ::user::activation_token* puseractivationtoken) override;
 

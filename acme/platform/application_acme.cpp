@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "application_acme.h"
 #include "acme/constant/id.h"
+#include "acme/platform/node.h"
 
 
 namespace platform
@@ -404,10 +405,10 @@ void acme_application_layer::start_application()
    }
 
 
-   ::string_array_base acme_application_layer::get_operating_system_information_box_lines()
+   ::string_array_base acme_application_layer::get_operating_system_information_lines()
    {
 
-      node()->get_operating_system_information_box_lines();
+      return {};
 
    }
 

@@ -5027,16 +5027,15 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //   }
 //
-   memsize node::get_current_memory_usage()
+
+
+   ::string_array_base node::get_operating_system_information_lines() 
    {
-
-   ::string_array node::get_operating_system_information_box_lines()
-   {
-
-      return {};
-
+      return {}; 
+      
    }
 
+   memsize node::get_current_memory_usage() { return 0; }
 
    bool node::_windows_isVistaOrLater()
    {

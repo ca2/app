@@ -2388,6 +2388,14 @@ void application::start_application()
    }
 
 
+   ::string_array_base application::get_operating_system_information_lines()
+   {
+
+      return node()->get_operating_system_information_lines();
+
+   }
+
+
    bool application::handle_command(const ::atom& atom, ::user::activation_token * puseractivationtoken)
    {
 

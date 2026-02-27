@@ -386,7 +386,7 @@ namespace berg
 
       auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
 
-      auto lines = get_about_box_lines();
+      auto lines = get_operating_system_information_lines();
 
       for (auto &line: lines)
       {

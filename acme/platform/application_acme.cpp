@@ -404,6 +404,14 @@ void acme_application_layer::start_application()
    }
 
 
+   ::string_array_base acme_application_layer::get_operating_system_information_box_lines()
+   {
+
+      node()->get_operating_system_information_box_lines();
+
+   }
+
+
    // bool acme_application_layer::on_command_final(const ::atom& atom, ::user::activation_token * puseractivationtoken)
    // {
    //

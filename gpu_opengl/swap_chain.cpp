@@ -281,7 +281,11 @@ FragColor = texture(uTexture, TexCoord);
 
          //pdevice->_swap_buffers();
 
-         swap_buffers();
+          /// please try to not call swap_buffers in present
+          /// please try to not call swap_buffers in present
+          /// probably you gonna call it after this present call but outside of it
+          /// probably you gonna call it after this present call but outside of it
+         ///swap_buffers();
 
       }
       catch (...)

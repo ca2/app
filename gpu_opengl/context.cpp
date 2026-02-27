@@ -2082,7 +2082,7 @@ namespace gpu_opengl
       if (::is_set(pgpufence))
       {
 
-         *pgpufence = pcommandbuffer->insert_gpu_fence();
+         *pgpufence = pcommandbuffer->insert_gpu_fence(true);
 
       }
 

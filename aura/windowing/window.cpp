@@ -12094,7 +12094,9 @@ slGraphics.unlock();
 
                   }
 
-                  pgraphics->on_begin_draw();
+                  
+
+                     pgraphics->on_begin_draw();
 
                   //pgraphics->reset_clip();
 

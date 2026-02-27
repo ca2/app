@@ -123,6 +123,11 @@ return nullptr;
 
    void base_application_layer::create_about_impact(const ::atom &atom, ::user::interaction *pparent) {}
 
+   void base_application_layer::create_operating_system_information_impact(const ::atom &atom,
+                                                                           ::user::interaction *pparent)
+   {
+   }
+
    void base_application_layer::on_after_prepare_impact_menu(::user::menu * pmenu){}
 
 

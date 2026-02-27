@@ -125,6 +125,7 @@ namespace gpu_opengl
    }
 
 
+   
    void renderer::on_begin_frame()
    {
 

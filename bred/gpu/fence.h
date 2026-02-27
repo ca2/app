@@ -22,10 +22,10 @@ namespace gpu
       ~fence() override;
 
 
-      virtual void initialize_gpu_fence(::gpu::context * pgpucontext);
+      virtual void initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled);
       
       
-      virtual void reset();
+      virtual void reset_gpu_fence();
 
       virtual void wait_gpu_fence();
 

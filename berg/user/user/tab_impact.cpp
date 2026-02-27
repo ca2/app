@@ -857,7 +857,8 @@ namespace user
          && m_pimpactdataOld->id() != MENU_IMPACT
          && m_pimpactdataOld->id() != OPTIONS_IMPACT
          && m_pimpactdataOld->id() != APP_OPTIONS_IMPACT
-         && m_pimpactdataOld->id() != CONTEXT_OPTIONS_IMPACT
+         && m_pimpactdataOld->id() != CONTEXT_OPTIONS_IMPACT 
+         && m_pimpactdataOld->id() != OPERATING_SYSTEM_INFORMATION_IMPACT
          && m_pimpactdataOld->id() != ABOUT_IMPACT)
       {
 
@@ -986,7 +987,8 @@ namespace user
    
       if (pimpactdata->id() == OPTIONS_IMPACT
          || pimpactdata->id() == APP_OPTIONS_IMPACT
-         || pimpactdata->id() == CONTEXT_OPTIONS_IMPACT
+         || pimpactdata->id() == CONTEXT_OPTIONS_IMPACT 
+         || pimpactdata->id() == OPERATING_SYSTEM_INFORMATION_IMPACT
          || pimpactdata->id() == ABOUT_IMPACT
          || (pimpactdata->id().is_text() && pimpactdata->id().as_string().begins("options_impact_handler://")))
       {
@@ -1049,6 +1051,23 @@ namespace user
             phandlerimpact->call_handler(functionHandler);
 
          }
+         else if (pimpactdata->id() == OPERATING_SYSTEM_INFORMATION_IMPACT)
+         {
+
+            auto phandlerimpact = m_maphandlerimpact[pimpactdata->id()];
+
+            auto functionHandler = [this](auto puserinteraction)
+            {
+               //int width = GetSystemMetrics(SM_CXSCREEN);
+               //int height = GetSystemMetrics(SM_CYSCREEN);
+
+               application()->create_operating_system_information_impact(OPERATING_SYSTEM_INFORMATION_IMPACT, puserinteraction);
+            };
+
+            phandlerimpact->call_handler(functionHandler);
+         }
+         //int width = GetSystemMetrics(SM_CXSCREEN);
+         //int height = GetSystemMetrics(SM_CYSCREEN);
 
          //pimpactdata->m_eflag += ::user::e_flag_hide_all_others_on_show;
 

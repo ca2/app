@@ -26,12 +26,28 @@ namespace gpu
 
       ::pointer < ::pointer_array < ::gpu::texture > >   m_ptextureaSwapChain;
       int                                                m_iCurrentSwapChainFrame;
+      int                                                m_iCurrentSwapChainImage;
       ::pointer_array<::gpu::semaphore>                  m_gpusemaphoreaWait;
 
+      
+      struct frame_sync
+      {
+         // VkFence                                m_vkfenceInFlight = VK_NULL_HANDLE;
+         // VkSemaphore                            m_vksemaphoreImageAvailable = VK_NULL_HANDLE;
+         // VkSemaphore                            m_vksemaphoreRenderFinished = VK_NULL_HANDLE;
+         ::pointer<::gpu::fence> m_pgpufenceInFlight;
+         ::pointer<::gpu::semaphore> m_pgpusemaphoreImageAvailable;
+         ::pointer<::gpu::semaphore> m_pgpusemaphoreRenderFinished;
+      };
+
+      ::array_base<frame_sync> m_framesynca;
 
 
       swap_chain();
       ~swap_chain() override;
+
+
+      virtual void on_new_frame();
 
 
       virtual void create_images();
@@ -49,10 +65,17 @@ namespace gpu
       virtual void set_present_state();
       virtual void swap_buffers();
       virtual int swap_chain_frame_index();
+      virtual int swap_chain_image_index();
       virtual int swap_chain_frame_count();
       virtual ::gpu::texture* current_swap_chain_texture();
 
       void on_gpu_context_render_frame(int w, int h) override;
+
+            virtual bool create_frame_sync(frame_sync &frame);
+      virtual void destroy_frame_sync(frame_sync &frame);
+
+      virtual frame_sync &frame(::collection::index iFrameIndex);
+
 
    };
 

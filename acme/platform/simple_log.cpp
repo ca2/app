@@ -261,7 +261,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
    }
 
-   if(tracestatement.m_etracelevel >= m_etracelevelMinimum)
+   if(tracestatement.m_etracelevel <= m_etracelevelMinimum)
    {
 
       string str;

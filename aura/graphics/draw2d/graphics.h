@@ -92,7 +92,8 @@ class graphics_context;
       double                                       m_dSizeScaler;
       bool                                         m_bPat;
       ///::image32_callback                           m_callbackImage32CpuBuffer;
-
+      int                                          m_iTargetLayer;
+      int                                          m_iLayer;
 
       //bool                                   m_bAlphaBlend;
 

@@ -436,17 +436,17 @@ namespace gpu
 
       }
 
-      ::collection::index iFrameIndex;
+      ::collection::index iImageIndex;
 
       if (m_pgpucontext->m_eoutput == e_output_swap_chain)
       {
 
-         iFrameIndex = m_pgpucontext->get_swap_chain()->swap_chain_frame_index();
+         iImageIndex = m_pgpucontext->get_swap_chain()->swap_chain_image_index();
 
-         if (iFrameIndex < 0)
+         if (iImageIndex < 0)
          {
 
-            ::warning("iFrameIndex < 0 (1)");
+            ::warning("iImageIndex < 0 (1)");
 
          }
 
@@ -454,20 +454,22 @@ namespace gpu
       else
       {
 
-         iFrameIndex = render_target()->get_frame_index();
+         iImageIndex = render_target()->get_frame_index();
 
-         if (iFrameIndex < 0)
+         if (iImageIndex < 0)
          {
 
-            ::warning("iFrameIndex < 0 (2)");
+            ::warning("iImageIndex < 0 (2)");
 
          }
 
       }
 
-      auto pcommandbuffer = m_commandbuffera[iFrameIndex];
+      auto pcommandbuffer = m_commandbuffera[iImageIndex];
 
-      pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
+      pcommandbuffer->m_iCommandBufferFrameIndex2 = m_pgpurendertarget2->get_frame_index();
+
+      pcommandbuffer->m_iCommandBufferImageIndex = iImageIndex;
 
       pcommandbuffer->m_strAnnotation.empty();
 
@@ -521,7 +523,7 @@ namespace gpu
             m_pgpucontext->m_pgpudevice->graphics_queue(),
             e_command_buffer_graphics);
 
-         pcommandbuffer->m_iCommandBufferFrameIndex = i;
+         pcommandbuffer->m_iCommandBufferImageIndex = i;
 
       }
 
@@ -553,7 +555,7 @@ namespace gpu
    ::particle_array * renderer::current_frame_particle_array()
    {
 
-      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index2();
+      auto iFrameIndex = m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       auto pparticlea = m_pgpucontext->m_pgpudevice->frame_particle_array(iFrameIndex);
 
@@ -911,6 +913,18 @@ namespace gpu
    }
 
 
+   void renderer::on_new_frame()
+   {
+
+      //auto prendertarget = render_target();
+
+      //prendertarget->on_new_frame();
+
+      
+
+   }
+
+
    void renderer::on_begin_render(frame* pframe)
    {
 
@@ -978,8 +992,8 @@ namespace gpu
 
          auto etypeGpuContext = m_pgpucontext->m_etype;
 
-         if (!bUseSwapChain
-            || etypeGpuContext != ::gpu::context::e_type_window)
+         //if (!bUseSwapChain
+            //|| etypeGpuContext != ::gpu::context::e_type_window)
          {
 
             _on_begin_render(pframe);
@@ -1028,7 +1042,19 @@ namespace gpu
       }
 
 
+               auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+      auto etypeGpuContext = m_pgpucontext->m_etype;
+
+      if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
+      {
+
       _on_end_render(pframe);
+      }
+
+
+
+
 
 
 
@@ -1354,27 +1380,6 @@ namespace gpu
    }
 
 
-   void renderer::do_on_frame(bool bForDrawing, const ::function < void(::gpu::frame*) > & on_frame)
-   {
-
-      if (!bForDrawing)
-      {
-
-         frame_prefix();
-
-         on_frame(::gpu::current_frame());
-
-         return;
-
-      }
-
-//      frame_prefix();
-
-      on_frame(::gpu::current_frame());
-
-      frame_suffix();
-
-   }
 
 
    void renderer::start_layer()
@@ -1545,7 +1550,7 @@ namespace gpu
 
       ::cast < command_buffer > pcommandbuffer = getCurrentCommandBuffer2(pgpuframe);
 
-      auto iFrameIndex = pcommandbuffer->m_iCommandBufferFrameIndex;
+      auto iImageIndex = pcommandbuffer->m_iCommandBufferImageIndex;
 
 //      auto pszCommandBufferAnnotation = pcommandbuffer->m_strAnnotation.c_str();
 
@@ -1557,7 +1562,7 @@ namespace gpu
 //
 //      auto iCurrentFrame = pgpudevice->m_iCurrentFrame2;
 
-      if (iFrameIndex == 0 && pcommandbuffer->m_strAnnotation == "layer.draw2d")
+      if (iImageIndex == 0 && pcommandbuffer->m_strAnnotation == "layer.draw2d")
       {
 
          s_iFrameIndex0LayerDraw2dCount++;
@@ -1574,8 +1579,8 @@ namespace gpu
 
       auto etypeGpuContext = m_pgpucontext->m_etype;
 
-      if (!bUseSwapChain
-         || etypeGpuContext != ::gpu::context::e_type_window)
+      //if (!bUseSwapChain
+        // || etypeGpuContext != ::gpu::context::e_type_window)
       {
 
          wait_command_buffer_ready();

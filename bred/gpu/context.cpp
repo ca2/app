@@ -409,6 +409,21 @@ namespace gpu
    }
 
 
+   void context::on_new_frame()
+   {
+
+
+      auto pswapchain = get_swap_chain();
+
+      if (::is_set(pswapchain))
+      {
+
+         pswapchain->on_new_frame();
+
+      }
+
+   }
+
    ::gpu::texture *context::generic_texture(const ::file::path &path, bool bSrgb)
    {
 
@@ -1002,7 +1017,7 @@ namespace gpu
 
       pcommandbuffer->begin_command_buffer(true);
 
-      pcommandbuffer->m_iCommandBufferFrameIndex = 0;
+      pcommandbuffer->m_iCommandBufferImageIndex = -1;
 
       return pcommandbuffer;
 
@@ -1207,10 +1222,11 @@ namespace gpu
                              ::gpu::texture *pgputexture)
    {
 
-      auto iFrameIndex = pgpucommandbuffer->m_iCommandBufferFrameIndex;
+      auto iImageIndex = pgpucommandbuffer->m_iCommandBufferImageIndex;
+
       if (pgpushader == m_pshaderBound
          && pgpushader->m_iFrameBound ==
-         iFrameIndex)
+         iImageIndex)
       {
 
          pgpushader->on_bind_already_bound(pgpucommandbuffer, pgputexture);
@@ -1402,8 +1418,17 @@ namespace gpu
                   {
 
                      pswapchain->initialize_swap_chain_window(pcontextMain, pacmewindowingwindow);
+
+                     auto pgpurenderer = pcontextMain->get_gpu_renderer();
+
+                     pswapchain->initialize_gpu_swap_chain(pgpurenderer);
+
+                     pswapchain->on_new_swap_chain();
+
                   }
+
                }
+
             });
       }
 
@@ -1864,7 +1889,7 @@ namespace gpu
    }
 
 
-   void context::send_on_context(const ::procedure& procedureParam)
+   void context::send_on_context(bool bForDrawing, const ::procedure& procedureParam)
    {
 
       //::gpu::rear_guard rear_guard(this);
@@ -1873,10 +1898,10 @@ namespace gpu
 
       procedure.set_timeout(5_min);
 
-      _send([this, procedure]()
+      do_on_frame(bForDrawing, [this, procedure](::gpu::frame * pframe)
          {
 
-            do_on_context(procedure);
+            procedure();
 
          });
 
@@ -1946,6 +1971,13 @@ namespace gpu
       if (m_etype != e_type_window)
       {
 
+         if (m_pgpudevice->m_pgpucontextMain == this)
+         {
+
+            return nullptr;
+
+         }
+
          //throw ::exception(error_failed);
 
          return m_pgpudevice->m_pgpucontextMain->get_swap_chain();
@@ -1957,15 +1989,80 @@ namespace gpu
       if (!m_pgpuswapchain)
       {
 
-         ødefer_construct(m_pgpuswapchain);
+         auto pgpurenderer = get_gpu_renderer();
 
-         ///m_pswapchain->initialize_gpu_swap_chain(this, m_pwindow);
+         ødefer_construct(m_pgpuswapchain);
 
       }
 
       return m_pgpuswapchain;
 
    }
+
+
+   void context::top_do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame)
+   {
+
+      // if (!bForDrawing)
+      //{
+
+      //   frame_prefix();
+
+      //   on_frame(::gpu::current_frame());
+
+      //   return;
+
+      //}
+
+      _send(
+         [this, on_frame]()
+         {
+            //if (bForDrawing)
+            //{
+            //   frame_prefix();
+            //}
+
+            on_frame(::gpu::current_frame());
+
+            //if (bForDrawing)
+            //{
+            //   frame_suffix();
+            //}
+         });
+   }
+
+
+   void context::do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame)
+   {
+
+      // if (!bForDrawing)
+      //{
+
+      //   frame_prefix();
+
+      //   on_frame(::gpu::current_frame());
+
+      //   return;
+
+      //}
+
+      _send(
+         [this, on_frame, bForDrawing]()
+         {
+            if (bForDrawing)
+            {
+               frame_prefix();
+            }
+
+            on_frame(::gpu::current_frame());
+
+            if (bForDrawing)
+            {
+               frame_suffix();
+            }
+         });
+   }
+
 
 
    void context::top_send_on_context(::gpu::context* pcontextInnerStart, bool bForDrawing, const ::procedure& procedure)
@@ -1984,7 +2081,7 @@ namespace gpu
 
       }
 
-      if (!bForDrawing)
+      if (bForDrawing)
       {
 
          m_pgpudevice->on_new_frame();
@@ -1995,322 +2092,357 @@ namespace gpu
 
       }
 
-      ::procedure procedureOnContext = [this, pcontextInnerStart, bForDrawing, procedure]()
+
+      int iGpuContextInnerStart = pcontextInnerStart->m_iGpuContext;
+      //::procedure procedureOnContext = [this, pcontextInnerStart, bForDrawing, procedure]()
+        // {
+
+          //  auto pgpurenderer = get_gpu_renderer();
+
+         top_do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure](::gpu::frame* pgpuframe)
          {
 
-            auto pgpurenderer = get_gpu_renderer();
-
-            pgpurenderer->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure](::gpu::frame* pgpuframe)
+               pcontextInnerStart->do_on_frame(bForDrawing, [this, pcontextInnerStart, bForDrawing, procedure](::gpu::frame* pgpuframe)
                {
+            procedure();
 
-                  if (bForDrawing)
+                  });
+
+
+                                                   if (bForDrawing)
                   {
+                     // while (!m_pgpudevice->m_playera ||
+                     //    m_pgpudevice->m_playera->count() < 3)
+                     //{
 
-                     pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
-                        {
+                     //   preempt(10_ms);
 
-                           //if (bForDrawing)
-                           {
+                     //}
 
-                              auto prenderer = pcontextInnerStart->get_gpu_renderer();
+                                                                              auto prendererBackBuffer = get_gpu_renderer();
 
-                              prenderer->defer_update_renderer();
 
-                              auto λ = [procedure](::gpu::frame* pgpuframe)
-                                 {
+                                                                      prendererBackBuffer->frame_prefix();
+                                                                              // prendererBackBuffer->frame_prefix();
+                                                                              //on_new_frame();
+                                                                              pgpuframe = ::gpu::current_frame();
 
-                                    procedure();
+                     ::pointer_array<layer> layera;
 
-                                 };
-                              
-                              ::gpu::context_lock contextlock(pcontextInnerStart);
+                     auto playera2 = m_pgpudevice->m_playera;
 
-                              prenderer->do_on_frame(bForDrawing, λ);
-
-                           }
-                           //else
-                           //{
-
-                           //   procedure();
-
-                           //}
-
-                        });
-
-                     if (bForDrawing)
+                     if (playera2)
                      {
-                        //while (!m_pgpudevice->m_playera || 
-                        //   m_pgpudevice->m_playera->count() < 3)
-                        //{
 
-                        //   preempt(10_ms);
+                        layera = *playera2;
 
-                        //}
+                        auto timeStart = ::time::now();
 
-                        ::pointer_array < layer > layera;
-
-                        auto playera2 = m_pgpudevice->m_playera;
-
-                        if (playera2)
+                        while (timeStart.elapsed() < 5_s)
                         {
 
-                           layera = *playera2;
+                           bool bAnyFailed = false;
 
-                           auto timeStart = ::time::now();
-
-                           while (timeStart.elapsed() < 5_s)
+                           for (auto player: layera)
                            {
 
-                              bool bAnyFailed = false;
-
-                              for (auto player : layera)
+                              if (!player->finished_manual_reset_happening()->_wait(0_s))
                               {
 
-                                 if (!player->finished_manual_reset_happening()->_wait(0_s))
-                                 {
-
-                                    bAnyFailed = true;
-
-                                    break;
-
-                                 }
-
-                              }
-
-                              if (!bAnyFailed)
-                              {
+                                 bAnyFailed = true;
 
                                  break;
-
                               }
-
-                              preempt(1_ms);
-
                            }
 
-                           auto fMilliseconds = timeStart.elapsed().floating_millisecond();
+                           if (!bAnyFailed)
+                           {
 
-                           information("it took {} ms waiting for layers to finish drawing", fMilliseconds);
+                              break;
+                           }
 
+                           preempt(1_ms);
                         }
 
-                        if (layera.has_element())
-                        {
+                        auto fMilliseconds = timeStart.elapsed().floating_millisecond();
 
-                           auto prendererBackBuffer = get_gpu_renderer();
-
-                           auto prendertargetBackBuffer = prendererBackBuffer->render_target();
-
-                           //auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
-
-                           auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
-                           //
-                           // for (auto player : layera)
-                           // {
-                           //
-                           //    if (player->getCurrentCommandBuffer4())
-                           //    {
-                           //
-                           //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
-                           //
-                           //    }
-                           //
-                           // }
-
-
-                           ::pointer_array < ::gpu::semaphore > semaphoreaMergeLayersReady;
-
-                           {
-
-                              // int iLayer = 0;
-                              //
-                              // for (auto player: layera)
-                              // {
-                              //
-                              //    if (iLayer == 2)
-                              //    {
-                              //       // information("What happened to the 3D Layer?");
-                              //    }
-                              //
-                              //
-                              //    //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
-                              //
-                              //    auto pgpufence = player->m_pgpufence;
-                              //
-                              //    if (::is_set(pgpufence))
-                              //    {
-                              //
-                              //       pgpufence->wait_gpu_fence();
-                              //
-                              //    }
-                              //
-                              //    // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
-                              //    iLayer++;
-                              // }
-
-                              ::gpu::context_lock contextlock(this);
-
-                              auto pqueueGraphics = m_pgpudevice->graphics_queue();
-
-                              auto pgpucommandbuffer = beginSingleTimeCommands(pqueueGraphics);
-
-                              merge_layers(pgpucommandbuffer, ptextureBackBuffer, &layera);
-
-                              ::pointer_array < ::gpu::semaphore > semaphoreaWait;
-
-                              for (auto & player : layera)
-                              {
-
-                                 if (player)
-                                 {
-
-                                    if (player->m_pgpusemaphoreSignal)
-                                    {
-
-                                       semaphoreaWait.add(player->m_pgpusemaphoreSignal);
-
-                                    }
-
-                                 }
-
-                              }
-
-                              if (ødefer_construct(m_pgpusemaphoreMergeLayersReady))
-                              {
-
-                                 m_pgpusemaphoreMergeLayersReady->initialize_gpu_semaphore(this);
-
-                              }
-
-                              semaphoreaMergeLayersReady.add(m_pgpusemaphoreMergeLayersReady);
-
-                              pgpucommandbuffer->m_semaphoreaWait.append_unique(semaphoreaWait);
-
-                              pgpucommandbuffer->m_semaphoreaSignal.append_unique(semaphoreaMergeLayersReady);
-
-                              endSingleTimeCommands(pgpucommandbuffer);
-
-                           }
-
-                           ::cast < swap_chain > pswapchain = get_swap_chain();
-
-                           if (!pswapchain->m_bSwapChainInitialized)
-                           {
-
-                              pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
-
-                           }
-
-                           ::cast < gpu::render_target > pgpurendertarget = pswapchain;
-
-                           if (pgpurendertarget)
-                           {
-
-                              if (!pgpurendertarget->m_pgpurenderer)
-                              {
-
-                                 pgpurendertarget->initialize_render_target(
-                                 m_pgpurenderer,
-                                    m_rectangle.size(), 
-                                    nullptr);
-                                 
-                              }
-
-                           }
-
-                           // for (auto player : *playera)
-                           // {
-                           //
-                           //    if (player->getCurrentCommandBuffer4())
-                           //    {
-                           //
-                           //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
-                           //
-                           //    }
-                           //
-                           // }
-                           
-//#if !defined(__APPLE__)
-
-
-                           auto pgpucontext = pswapchain->m_pgpucontext;
-
-                           ::cast < renderer > pgpurenderer = pgpucontext->m_pgpurenderer;
-
-                           ::cast < command_buffer > pcommandbuffer = pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
-
-                           pcommandbuffer->m_semaphoreaWait.append_unique(semaphoreaMergeLayersReady);
-
-                           pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
-                           // system()->acme_windowing()
-                           // ->_main_send([pswapchain, ptextureBackBuffer]()
-                           {
-
-                              pswapchain->present(ptextureBackBuffer);
-
-                           });
-                           
-//#endif
-
-                        }
-
+                        information("it took {} ms waiting for layers to finish drawing", fMilliseconds);
                      }
 
-                  }
-                  else
-                  {
+                     if (layera.has_element())
+                     {
 
-                     pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+                        auto prendertargetBackBuffer = prendererBackBuffer->render_target();
+
+                        // auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
+
+                        auto ptextureBackBuffer = prendertargetBackBuffer->current_texture(pgpuframe);
+                        //
+                        // for (auto player : layera)
+                        // {
+                        //
+                        //    if (player->getCurrentCommandBuffer4())
+                        //    {
+                        //
+                        //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+                        //
+                        //    }
+                        //
+                        // }
+
+                        auto iFrameIndex = prendertargetBackBuffer->get_frame_index();
+
+
+                        ::pointer_array<::gpu::semaphore> semaphoreaMergeLayersReady;
+
                         {
 
-                           //if (bForDrawing)
+                           // int iLayer = 0;
+                           //
+                           // for (auto player: layera)
+                           // {
+                           //
+                           //    if (iLayer == 2)
+                           //    {
+                           //       // information("What happened to the 3D Layer?");
+                           //    }
+                           //
+                           //
+                           //    //::cast<::gpu_opengl::texture> ptextureSrc = player->texture();
+                           //
+                           //    auto pgpufence = player->m_pgpufence;
+                           //
+                           //    if (::is_set(pgpufence))
+                           //    {
+                           //
+                           //       pgpufence->wait_gpu_fence();
+                           //
+                           //    }
+                           //
+                           //    // m_pshaderBlend3->bind_source(nullptr, ptextureSrc, 0);
+                           //    iLayer++;
+                           // }
+
+                           ::gpu::context_lock contextlock(this);
+
+                           auto pqueueGraphics = m_pgpudevice->graphics_queue();
+
+                           auto pgpucommandbuffer = beginSingleTimeCommands(pqueueGraphics);
+
+                           merge_layers(pgpucommandbuffer, ptextureBackBuffer, &layera);
+
+                           ::pointer_array<::gpu::semaphore> semaphoreaWait;
+
+                           for (auto &player: layera)
                            {
 
-                              auto prenderer = pcontextInnerStart->get_gpu_renderer();
+                              if (player)
+                              {
 
-                              prenderer->defer_update_renderer();
-
-                              auto λ = [procedure](::gpu::frame* pgpuframe)
+                                 if (player->m_pgpusemaphoreSignal)
                                  {
 
-                                    procedure();
-
-                                 };
-
-                              prenderer->do_on_frame(bForDrawing, λ);
-
+                                    semaphoreaWait.add(player->m_pgpusemaphoreSignal);
+                                 }
+                              }
                            }
-                           //else
-                           //{
 
-                           //   procedure();
+                           if (ødefer_construct(m_gpusemaphoreaMergeLayersReady.ø(iFrameIndex)))
+                           {
 
-                           //}
+                              m_gpusemaphoreaMergeLayersReady[iFrameIndex]->initialize_gpu_semaphore(this);
+                           }
 
-                        });
+                           semaphoreaMergeLayersReady.add(m_gpusemaphoreaMergeLayersReady[iFrameIndex]);
 
+                           pgpucommandbuffer->m_semaphoreaWait.append_unique(semaphoreaWait);
+
+                           pgpucommandbuffer->m_semaphoreaSignal.append_unique(semaphoreaMergeLayersReady);
+
+                           endSingleTimeCommands(pgpucommandbuffer);
+                        }
+
+                        ::cast<swap_chain> pswapchain = get_swap_chain();
+
+                        if (!pswapchain->m_bSwapChainInitialized)
+                        {
+
+                           pswapchain->initialize_gpu_swap_chain(prendererBackBuffer);
+                        }
+
+                        ::cast<gpu::render_target> pgpurendertarget = pswapchain;
+
+                        if (pgpurendertarget)
+                        {
+
+                           if (!pgpurendertarget->m_pgpurenderer)
+                           {
+
+                              pgpurendertarget->initialize_render_target(m_pgpurenderer, m_rectangle.size(), nullptr);
+                           }
+                        }
+
+                        // for (auto player : *playera)
+                        // {
+                        //
+                        //    if (player->getCurrentCommandBuffer4())
+                        //    {
+                        //
+                        //       player->getCurrentCommandBuffer4()->wait_commands_to_execute();
+                        //
+                        //    }
+                        //
+                        // }
+
+                        // #if !defined(__APPLE__)
+
+
+                        auto pgpucontext = pswapchain->m_pgpucontext;
+
+                        ::cast<renderer> pgpurenderer = pgpucontext->m_pgpurenderer;
+
+                        ::cast<command_buffer> pcommandbuffer =
+                           pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
+
+                        pcommandbuffer->begin_command_buffer(false);
+                        if (ødefer_construct(m_gpusemaphoreaPresentReady.ø(iFrameIndex)))
+                        {
+
+                           m_gpusemaphoreaPresentReady[iFrameIndex]->initialize_gpu_semaphore(this);
+                        }
+
+                        auto &framesync = pswapchain->frame(iFrameIndex);
+
+                        if (::is_set(framesync.m_pgpusemaphoreImageAvailable))
+                        {
+
+                           pcommandbuffer->m_semaphoreaWait.add_unique(framesync.m_pgpusemaphoreImageAvailable);
+                        }
+                        if (semaphoreaMergeLayersReady.has_element())
+                        {
+
+                           pcommandbuffer->m_semaphoreaWait.append_unique(semaphoreaMergeLayersReady);
+                        }
+                        pcommandbuffer->m_semaphoreaSignal.add_unique(m_gpusemaphoreaPresentReady.ø(iFrameIndex));
+
+                        // pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
+                        //  system()->acme_windowing()
+                        //  ->_main_send([pswapchain, ptextureBackBuffer]()
+                        //{
+
+
+
+                        pswapchain->present(ptextureBackBuffer);
+
+                        // pcommandbuffer->m_semaphoreaWait.add_unique(pswapchain->m_fr->m_semaphoreaSignal);
+                        //}
+
+                        //});
+
+                                                                        prendererBackBuffer->frame_suffix();
+
+
+                        // #endif
+                        pcommandbuffer->submit_command_buffer(nullptr);
+
+                        if (pcommandbuffer->m_semaphoreaSignal.has_element())
+                        {
+
+                           pswapchain->m_gpusemaphoreaWait.append_unique(pcommandbuffer->m_semaphoreaSignal);
+                        }
+
+                        
+                        pswapchain->swap_buffers();
+                     }
                   }
+                  //if (bForDrawing)
+                  //{
 
-               });
+                  //   pcontextInnerStart->send_on_context([this, pcontextInnerStart, bForDrawing, procedure]()
+                  //      {
 
-         };
+                  //         //if (bForDrawing)
+                  //         {
+
+                  //            auto prenderer = pcontextInnerStart->get_gpu_renderer();
+
+                  //            prenderer->defer_update_renderer();
+
+                  //            auto λ = [procedure](::gpu::frame* pgpuframe)
+                  //               {
+
+                  //                  procedure();
+
+                  //               };
+                  //            
+                  //            ::gpu::context_lock contextlock(pcontextInnerStart);
+
+                  //            prenderer->do_on_frame(bForDrawing, λ);
+
+                  //         }
+                  //         //else
+                  //         //{
+
+                  //         //   procedure();
+
+                  //         //}
+
+                  //      });
 
 
-         if (procedure.timeout().is_set())
-         {
 
-            procedureOnContext.set_timeout(procedure.timeout());
+         });
 
-         }
 
-         send_on_context(procedureOnContext);
 
-         if (bForDrawing)
-         {
+   //}
+   //else
+   //{
 
-            m_pgpudevice->on_end_frame();
+   //   pcontextInnerStart->send_on_context(
+   //      [this, pcontextInnerStart, bForDrawing, procedure]()
+   //      {
+   //         // if (bForDrawing)
+   //         {
 
-         }
+   //            auto prenderer = pcontextInnerStart->get_gpu_renderer();
+
+   //            prenderer->defer_update_renderer();
+
+   //            auto λ = [procedure](::gpu::frame *pgpuframe)
+   //            {
+   //               procedure();
+   //            };
+
+   //            prenderer->do_on_frame(bForDrawing, λ);
+   //         }
+   //         // else
+   //         //{
+
+   //         //   procedure();
+
+   //         //}
+   //      });
+   //}
+
+
+
+
+         //if (procedure.timeout().is_set())
+         //{
+
+         //   procedureOnContext.set_timeout(procedure.timeout());
+
+         //}
+
+         //send_on_context(procedureOnContext);
+
+         //if (bForDrawing)
+         //{
+
+         //   m_pgpudevice->on_end_frame();
+
+         //}
 
 
 
@@ -3586,7 +3718,7 @@ void main() {
 
       ::cast<command_buffer> pcommandbuffer = ::gpu::current_command_buffer();
 
-      player->m_pgpufence = pcommandbuffer->insert_gpu_fence();
+      player->m_pgpufence = pcommandbuffer->insert_gpu_fence(true);
 
       //auto ptextureTarget = player->texture();
 
@@ -3662,6 +3794,20 @@ void main() {
    void context::frame_prefix()
    {
 
+      auto pgpurenderer = this->get_gpu_renderer();
+
+      pgpurenderer->frame_prefix();
+
+      int iGpuContext = m_iGpuContext;
+
+      auto estate = pgpurenderer->m_prenderstate->m_estate;
+
+      if (estate != ::gpu::e_state_began_render)
+      {
+
+         information("What?!?! This context's renderer's render state didn't begin render?!?!");
+
+      }
 
    }
 
@@ -3669,6 +3815,9 @@ void main() {
    void context::frame_suffix()
    {
 
+      auto pgpurenderer = this->get_gpu_renderer();
+
+      pgpurenderer->frame_suffix();
 
    }
 

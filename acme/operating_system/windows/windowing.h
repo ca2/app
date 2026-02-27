@@ -44,6 +44,8 @@ namespace windows
 
       ::operating_system::window operating_system_window(const ::wparam &wparam) override;
 
+      ::operating_system::window operating_system_window(const ::lparam &lparam) override;
+
 
    };
 

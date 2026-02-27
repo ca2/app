@@ -99,6 +99,16 @@ namespace windows
    }
 
 
+   ::operating_system::window windowing::operating_system_window(const ::lparam &lparam)
+   {
+
+      ::operating_system::windows_window windowswindow((HWND)lparam.m_lparam);
+
+      return windowswindow.as_operating_system_window();
+
+   }
+
+
 
 } // namespace windows
 

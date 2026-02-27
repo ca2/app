@@ -80,6 +80,8 @@ namespace berg
 
       void create_about_impact(const ::atom &atom, ::user::interaction *pparent) override;
 
+      void create_operating_system_information_impact(const ::atom &atom, ::user::interaction *pparent) override;
+
       void on_after_prepare_impact_menu(::user::menu * pmenu) override;
 
 

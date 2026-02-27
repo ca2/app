@@ -26,6 +26,7 @@ enum enum_impact : long long
    e_impact_app_options = APP_OPTIONS_IMPACT,
    e_impact_context_options = CONTEXT_OPTIONS_IMPACT,
    e_impact_about = ABOUT_IMPACT,
+   e_impact_operating_system_information = OPERATING_SYSTEM_INFORMATION_IMPACT,
    e_impact_tic_tac_toe = 0x1000,
    e_impact_playlist,
    e_impact_karaoke,

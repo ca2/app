@@ -57,18 +57,18 @@ namespace gpu
 
       //auto pgpurendertarget = pgpurenderer->render_target();
 
-      auto iFrameIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
+      auto iImageIndex = pgpurenderer->m_pgpucontext->m_pgpudevice->get_image_index();
 
-      if (iFrameIndex < 0)
+      if (iImageIndex < 0)
       {
 
-         ::warning("iFrameIndex < 0 (1) as gpu::layer");
+         ::warning("iImageIndex < 0 (1) as gpu::layer");
 
       }
 
-      auto pcommandbufferLayer = m_commandbufferaLayer[iFrameIndex];
+      auto pcommandbufferLayer = m_commandbufferaLayer[iImageIndex];
 
-      pcommandbufferLayer->m_iCommandBufferFrameIndex = iFrameIndex;
+      pcommandbufferLayer->m_iCommandBufferImageIndex = iImageIndex;
 
       pcommandbufferLayer->m_strAnnotation = "layer";
 
@@ -139,12 +139,12 @@ namespace gpu
 
       m_commandbufferaLayer.set_size(m_pgpurenderer->m_iDefaultFrameCount);
 
-      int iFrame = -1;
+      int iImageIndex = -1;
 
       for (auto& pcommandbufferLayer : m_commandbufferaLayer)
       {
 
-         iFrame++;
+         iImageIndex++;
 
          ødefer_construct(pcommandbufferLayer);
 
@@ -152,7 +152,7 @@ namespace gpu
             m_pgpurenderer->m_pgpucontext->m_pgpudevice->graphics_queue(),
             ::gpu::e_command_buffer_graphics);
 
-         pcommandbufferLayer->m_iCommandBufferFrameIndex = iFrame;
+         pcommandbufferLayer->m_iCommandBufferImageIndex = iImageIndex;
 
       }
 
@@ -226,7 +226,7 @@ namespace gpu
    ::pointer < texture >& layer::texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
+      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       auto & ptexture = m_texturea.element_at_grow(iFrameIndex);
 
@@ -252,29 +252,16 @@ namespace gpu
    ::pointer < texture >& layer::source_texture()
    {
 
-      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index2();
+      int iFrameIndex = m_pgpurenderer->m_pgpucontext->m_pgpudevice->get_frame_index3();
 
       auto& ptextureSource = m_textureaSource.element_at_grow(iFrameIndex);
 
-      m_pgpurenderer->ødefer_construct(ptextureSource);
+      if (m_pgpurenderer->ødefer_construct(ptextureSource))
+      {
 
-      auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
+         m_pgpurenderer->m_pgpurendertarget2->initialize_render_target_image(ptextureSource);
 
-      auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
-
-      ::gpu::texture_attributes textureattributes(rectangle);
-
-      ::gpu::texture_flags textureflags;
-
-      textureflags.m_bRenderTarget = true;
-
-      textureflags.m_bTransferTarget = true;
-
-      textureflags.m_bTransferSource = true;
-
-      textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
-
-      ptextureSource->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+      }
 
       return ptextureSource;
 

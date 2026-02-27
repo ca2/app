@@ -381,6 +381,20 @@ namespace berg
    }
 
 
+      void application::create_operating_system_information_impact(const ::atom &atom, ::user::interaction *pparent)
+   {
+
+      auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
+
+      auto lines = get_about_box_lines();
+
+      for (auto &line: lines)
+      {
+
+         create_label<::user::still>(playoutLine, line);
+      }
+   }
+
    void application::on_after_prepare_impact_menu(::user::menu * pmenu)
    {
       

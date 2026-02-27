@@ -1011,9 +1011,11 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       m_iFrameSerial2++;
 
-      m_iCurrentFrame2 = (m_iCurrentFrame2 + 1) % iFrameCount;
+      m_pgpucontextMain->on_new_frame();
 
-      auto& pframestorage = m_framestoragea.ø(m_iCurrentFrame2);
+      //m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
+
+      auto& pframestorage = m_framestoragea.ø(m_iCurrentFrame3);
 
       if (!pframestorage)
       {
@@ -1028,7 +1030,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       pframestorage->m_iBufferOffset = 0;
 
-      auto& pframeephemeral = m_frameephemerala.ø(m_iCurrentFrame2);
+      auto& pframeephemeral = m_frameephemerala.ø(m_iCurrentFrame3);
 
       øconstruct(pframeephemeral);
 
@@ -1040,25 +1042,24 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       auto pframestorage = current_frame_storage();
 
-      try
+      if (::is_set(pframestorage))
       {
+         try
+         {
 
-         pframestorage->on_end_frame();
-
+            pframestorage->on_end_frame();
+         }
+         catch (...)
+         {
+         }
       }
-      catch (...)
-      {
-
-
-      }
-
    }
 
 
    bool device::is_starting_frame()const
    {
 
-      return m_iFrameSerial2 == m_iCurrentFrame2;
+      return m_iFrameSerial2 == m_iCurrentFrame3;
 
    }
 
@@ -1069,7 +1070,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
       if (this->get_frame_count() > 1)
       {
 
-         m_iCurrentFrame2 = -1;
+         m_iCurrentFrame3 = 0;
          m_iFrameSerial2 = -1;
 
          //m_pgpurenderer->m_prenderstate->on_happening(e_happening_reset_frame_counter);
@@ -1079,13 +1080,13 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    }
 
 
-   int device::get_frame_index2()
+   int device::get_frame_index3()
    {
 
       if (this->get_frame_count() > 1)
       {
 
-         return (int)m_iCurrentFrame2;
+         return (int)m_iCurrentFrame3;
 
       }
       else
@@ -1093,6 +1094,23 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
          return 0;
 
+      }
+
+   }
+
+
+   int device::get_image_index()
+   {
+
+      if (this->get_frame_count() > 1)
+      {
+
+         return (int)m_iCurrentImage;
+      }
+      else
+      {
+
+         return 0;
       }
 
    }
@@ -1491,7 +1509,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    frame_storage* device::current_frame_storage()
    {
 
-      return m_framestoragea.ø(m_iCurrentFrame2);
+      return m_framestoragea.ø(m_iCurrentFrame3);
 
    }
 
@@ -1499,7 +1517,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    ::gpu::frame_ephemeral* device::current_frame_ephemeral()
    {
 
-      return m_frameephemerala.ø(m_iCurrentFrame2);
+      return m_frameephemerala.ø(m_iCurrentFrame3);
 
    }
 

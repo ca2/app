@@ -25,7 +25,7 @@ namespace gpu
    }
 
 
-   void fence::initialize_gpu_fence(::gpu::context * pgpucontext)
+   void fence::initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled)
    {
 
 
@@ -35,11 +35,12 @@ namespace gpu
    }
 
 
-   void fence::reset()
+   void fence::reset_gpu_fence()
    {
       
       
    }
+
 
    void fence::wait_gpu_fence()
    {

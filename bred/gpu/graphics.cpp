@@ -123,6 +123,8 @@ namespace gpu
 
       //thread_select();
 
+      //m_iLayer = 0;
+
       auto pcontext = gpu_context();
 
       auto pgpudevice = pcontext->m_pgpudevice;
@@ -130,8 +132,39 @@ namespace gpu
       auto prenderer = pcontext->get_gpu_renderer();
 
       auto prendertarget = prenderer->render_target();
+      if (m_egraphics == e_graphics_draw)
+      {
 
-      if (prenderer->m_prenderstate->m_estate == ::gpu::e_state_began_render)
+
+         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+         auto etypeGpuContext = pcontext->m_etype;
+
+         //if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
+         {
+            // if (prenderer->m_prenderstate->m_estate != e_state_initial)
+            {
+
+               //prenderer->frame_prefix();
+
+               on_new_frame();
+            }
+         }
+
+         // int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+         // m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         // m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         // m_poolmodelbufferLine.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+      }
+
+      auto iGpuContext1 = pcontext->m_iGpuContext;
+
+      auto iGpuContext2 = prenderer->m_pgpucontext->m_iGpuContext;
+
+      auto estate = prenderer->m_prenderstate->m_estate;
+
+      if (estate == ::gpu::e_state_began_render)
       {
 
          int iFrameIndex = prendertarget->get_frame_index();
@@ -165,20 +198,7 @@ namespace gpu
 
       }
 
-      if (m_egraphics == e_graphics_draw)
-      {
-
-         on_new_frame();
-
-         //int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
-
-         //m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-         //m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-         //m_poolmodelbufferLine.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-
-      }
-
-      ::int_rectangle rectangle;
+            ::int_rectangle rectangle;
 
       if (!m_puserinteraction && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
@@ -436,6 +456,8 @@ namespace gpu
 
    void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure)
    {
+
+
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->acme_windowing_window());
 

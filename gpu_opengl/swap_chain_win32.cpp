@@ -12,6 +12,9 @@ namespace gpu_opengl
    {
    
       m_pgpucontext->swap_buffers();
+
+      m_gpusemaphoreaWait.clear();
+
    
    }
 

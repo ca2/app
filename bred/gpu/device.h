@@ -40,7 +40,8 @@ namespace gpu
       ::gpu::enum_output                     m_eoutput;
 
 
-      ::collection::index                    m_iCurrentFrame2 = -1;
+      ::collection::index                    m_iCurrentFrame3 = 0;
+      ::collection::index                    m_iCurrentImage = -1;
       ::collection::index                    m_iFrameSerial2 = -1;
       ::collection::count                    m_iFrameCount = 3;
       int                                    m_iLayer;
@@ -118,7 +119,8 @@ namespace gpu
 
       virtual void on_new_frame();
       virtual void on_end_frame();
-      virtual int get_frame_index2();
+      virtual int get_frame_index3();
+      virtual int get_image_index();
       virtual int get_frame_count();
       virtual void restart_frame_counter();
       virtual bool is_starting_frame()const;

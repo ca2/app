@@ -7,6 +7,7 @@
 #include "device.h"
 #include "device_win32.h"
 #include "acme/platform/application.h"
+#include "bred/gpu/context_lock.h"
 #include "windowing_win32/window.h"
 #include <glad/glad_wgl.h>
 
@@ -399,7 +400,18 @@ namespace gpu_opengl
    void context_win32::swap_buffers()
    {
 
-      ::SwapBuffers(m_hdc);
+      ::gpu::context_lock contextlock(this);
+
+      if (!::SwapBuffers(m_hdc))
+      {
+
+         auto dwLastError = ::GetLastError();
+
+         auto strMessage = ::windows::last_error_message(dwLastError);
+
+         ::error(strMessage);
+
+      }
 
    }
 

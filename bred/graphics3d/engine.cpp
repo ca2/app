@@ -136,18 +136,18 @@ namespace graphics3d
 
             auto pgpurendertarget = prenderer->render_target();
 
-            int iFrameIndex = pgpurendertarget->get_frame_index();
+            //int iFrameIndex = pgpurendertarget->get_image_index();
 
-            if (iFrameIndex < 0)
-            {
+            //if (iFrameIndex < 0)
+            //{
 
-               ::warning("iFrameIndex < 0 (1) at ::graphics3d::engine");
+            //   ::warning("iFrameIndex < 0 (1) at ::graphics3d::engine");
 
-            }
+            //}
 
-            auto pcommandbuffer = pframe->m_pgpucommandbuffer;
+            //auto pcommandbuffer = pframe->m_pgpucommandbuffer;
 
-            pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
+            //pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
             pscene->on_render(pgpucontext);
 

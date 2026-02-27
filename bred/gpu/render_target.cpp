@@ -41,15 +41,78 @@ namespace gpu
    }
 
 
-   ::pointer_array < ::gpu::texture >* render_target::texturea()
+   void render_target::on_new_frame()
    {
+
+
+
+   }
+
+
+   ::pointer_array < ::gpu::texture >* render_target::texturea2()
+   {
+
+      if (!m_ptexturea)
+      {
+
+         auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
+
+         ødefer_construct_new(m_ptexturea);
+
+         m_ptexturea->set_size(iFrameCount);
+
+      }
 
       return m_ptexturea;
 
    }
 
+     
+   ::gpu::texture *render_target::texture(::collection::index i) 
+   {
 
-   ::pointer_array < ::gpu::texture >* render_target::depth_texturea()
+      auto &texturea = *this->texturea2();
+
+      auto &ptexture = texturea[i];
+
+      if (!ptexture)
+      {
+
+         ødefer_construct(ptexture);
+
+      }
+
+         if (ptexture->size() != m_size && !m_size.is_empty())
+      {
+
+         initialize_render_target_image(ptexture);
+
+         //::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+
+         //::gpu::texture_flags textureflags;
+
+         // on_create_render_target_texture(textureattributes, textureflags);
+
+         //// ptexture->m_pgpurendertarget = this;
+
+         // textureflags.m_bWithDepth = m_bWithDepth;
+
+         // ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+      }
+      return ptexture;
+
+   }
+
+   ::gpu::texture *render_target::depth_texture(::collection::index i)
+   {
+
+      return nullptr;
+
+   }
+
+
+
+   ::pointer_array < ::gpu::texture >* render_target::depth_texturea2()
    {
 
       return m_ptextureaDepth;
@@ -90,12 +153,12 @@ namespace gpu
 
       m_bRenderTargetInit = true;
 
-      if (!m_ptexturea)
-      {
+      //if (!m_ptexturea)
+      //{
 
-         create_images();
+      //   create_images();
 
-      }
+      //}
 
       //if (!m_bBackBuffer)
       //{
@@ -184,18 +247,18 @@ namespace gpu
 
          auto iFrameSerial2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2;
 
-         auto iCurrentFrame2 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
+         auto iCurrentFrame3 = m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
 
          auto estate = m_pgpurenderer->m_prenderstate->m_estate;
 
          assert(
             iFrameSerial2 >= 0 
-            && iCurrentFrame2 >= 0 
+            && iCurrentFrame3 >= 0 
             && estate != e_state_initial
             && "Cannot get frame index when frame not in progress");
 
 #endif
-         return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
+         return (int)m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
 
       }
       else
@@ -216,7 +279,7 @@ namespace gpu
          return m_pgpurenderer->m_pgpucontext->get_swap_chain()->swap_chain_frame_count();
       }
 
-      return (int)m_ptexturea->size();
+      return (int)texturea2()->size();
 
    }
 
@@ -227,7 +290,7 @@ namespace gpu
    void render_target::on_init()
    {
 
-      create_images();
+      //create_images();
 
    }
 
@@ -244,47 +307,47 @@ namespace gpu
 
       m_size = size;
 
-      create_images();
+      //create_images();
 
    }
 
 
-   void render_target::create_images()
-   {
+   //void render_target::create_images()
+   //{
 
-      auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
+   //   auto iFrameCount = m_pgpurenderer->m_iDefaultFrameCount;
 
-      ødefer_construct_new(m_ptexturea);
+   //   ødefer_construct_new(m_ptexturea);
 
-      m_ptexturea->set_size(iFrameCount);
+   //   m_ptexturea->set_size(iFrameCount);
 
-      auto& texturea = *this->texturea();
+   //   auto& texturea = *this->texturea();
 
-      for (auto& ptexture : texturea)
-      {
+   //   for (auto& ptexture : texturea)
+   //   {
 
-         ødefer_construct(ptexture);
+   //      ødefer_construct(ptexture);
 
-         if (ptexture->size() != m_size && !m_size.is_empty())
-         {
+   //      if (ptexture->size() != m_size && !m_size.is_empty())
+   //      {
 
-            ::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+   //         ::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
 
-            ::gpu::texture_flags textureflags;
+   //         ::gpu::texture_flags textureflags;
 
-            on_create_render_target_texture(textureattributes, textureflags);
+   //         on_create_render_target_texture(textureattributes, textureflags);
 
-            //ptexture->m_pgpurendertarget = this;
+   //         //ptexture->m_pgpurendertarget = this;
 
-            textureflags.m_bWithDepth =m_bWithDepth;
+   //         textureflags.m_bWithDepth =m_bWithDepth;
 
-            ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+   //         ptexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void render_target::on_create_render_target_texture(::gpu::texture_attributes &textureattributes,
@@ -320,6 +383,31 @@ namespace gpu
    }
 
 
+   void render_target::initialize_render_target_image(::gpu::texture *pgputexture)
+   {
+
+      auto rectangle = m_pgpurenderer->m_pgpucontext->rectangle();
+
+      auto escene = m_pgpurenderer->m_pgpucontext->m_escene;
+
+      ::gpu::texture_attributes textureattributes(rectangle);
+
+      ::gpu::texture_flags textureflags;
+
+      textureflags.m_bRenderTarget = true;
+
+      textureflags.m_bTransferTarget = true;
+
+      textureflags.m_bTransferSource = true;
+
+      textureflags.m_bWithDepth = escene == ::gpu::e_scene_3d;
+
+      pgputexture->initialize_texture(m_pgpurenderer->m_pgpucontext, textureattributes, textureflags);
+
+
+   }
+
+
    texture * render_target::current_texture(::gpu::frame* pgpuframe)
    {
 
@@ -345,7 +433,7 @@ namespace gpu
       
       //auto size = m_ptexturea->size();
 
-      auto ptexture = m_ptexturea->element_at(iFrameIndex);
+      auto ptexture = this->texture(iFrameIndex);
 
       return ptexture;
 
@@ -358,7 +446,7 @@ namespace gpu
       if (pgpuframe->m_pgpulayer)
       {
 
-         ::cast < texture > ptexture = pgpuframe->m_pgpulayer->source_texture();
+         auto ptexture = pgpuframe->m_pgpulayer->source_texture();
 
          if (!ptexture)
          {
@@ -388,7 +476,7 @@ namespace gpu
 
       //auto size = m_ptexturea->size();
 
-      ::cast < texture > ptexture = m_ptexturea->element_at(iFrameIndex);
+      auto ptexture = m_ptexturea->element_at(iFrameIndex);
 
       if (!ptexture)
       {
@@ -451,7 +539,7 @@ namespace gpu
    {
 
       return m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iFrameSerial2 
-         == m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame2;
+         == m_pgpurenderer->m_pgpucontext->m_pgpudevice->m_iCurrentFrame3;
 
    }
 

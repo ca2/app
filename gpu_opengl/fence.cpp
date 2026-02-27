@@ -34,17 +34,22 @@ namespace gpu_opengl
    }
 
 
-   void fence::initialize_gpu_fence(::gpu::context * pgpucontext)
+   void fence::initialize_gpu_fence(::gpu::context * pgpucontext, bool bCreateSignaled)
    {
       
-      ::gpu::fence::initialize_gpu_fence(pgpucontext);
+      ::gpu::fence::initialize_gpu_fence(pgpucontext, bCreateSignaled);
    
-      reset();
+      if (!bCreateSignaled)
+      {
+         
+         reset_gpu_fence();
+
+      }
    
    }
 
 
-void fence::reset()
+void fence::reset_gpu_fence()
 {
    
    if(m_glsyncFence != nullptr)

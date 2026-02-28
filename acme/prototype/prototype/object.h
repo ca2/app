@@ -136,7 +136,11 @@ public:
    //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
    //virtual void on_finish() override;
 
-   virtual bool set_children_to_finish_and_check_them_finished();
+
+   virtual bool has_child_task() const;
+   virtual void set_child_tasks_to_finish();
+
+   //virtual bool set_children_to_finish_and_check_them_finished();
 
    void destroy() override;
 

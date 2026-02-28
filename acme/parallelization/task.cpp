@@ -406,6 +406,16 @@ bool task::task_get_run() const
 
    }
 
+   if (((::task*)this)->m_timeLastFinishingReport.has_timed_out_with_update(1_s))
+   {
+
+      ::string strTaskName = m_strTaskName;
+
+      information("Task \"{}\" has finishing flag.", strTaskName);
+
+
+   }
+
    if (m_waitingcallstack.has_element())
    {
 
@@ -434,14 +444,18 @@ bool task::task_get_run() const
 
    }
 
-   if(((::task *)this)->set_children_to_finish_and_check_them_finished())
+   if (has_child_task())
    {
 
-      return false;
+      auto ptaskThis = (::task *)this;
+
+      ptaskThis->set_child_tasks_to_finish();
+
+      return true;
 
    }
 
-   return true;
+   return false;
 
 }
 
@@ -474,16 +488,19 @@ bool task::is_task_set2() const
 }
 
 
-bool task::set_children_to_finish_and_check_them_finished()
+void task::set_child_tasks_to_finish()
 {
 
-   set_finishing_flag();
+   if (!has_finishing_flag())
+   {
 
-   auto b = ::object::set_children_to_finish_and_check_them_finished();
+      set_finishing_flag();
+
+   }
+
+   ::object::set_child_tasks_to_finish();
 
    update_task_ready_to_quit();
-
-   return b;
 
 }
 
@@ -1288,6 +1305,14 @@ bool task::handle_messages()
 }
 
 
+bool task::has_child_task() const
+{
+
+   return ::object::has_child_task();
+
+}
+
+
 void task::stop_task()
 {
 
@@ -1324,7 +1349,7 @@ void task::stop_task()
 
    set_finish();
 
-   while (true)
+   while (task_get_run())
    {
 
       // auto bWaitFinished = ev._wait(1_s);
@@ -1336,20 +1361,20 @@ void task::stop_task()
       //
       // }
 
-      auto bTasksFinished = set_children_to_finish_and_check_them_finished();
+      //auto bTasksFinished = set_children_to_finish_and_check_them_finished();
 
-      if (bTasksFinished)
-      {
+      //if (bTasksFinished)
+      //{
 
-         break;
+      //   break;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         informationf("tasks still not finished for task : %s", m_strTaskName.c_str());
+      //   informationf("tasks still not finished for task : %s", m_strTaskName.c_str());
 
-      }
+      //}
 
       if (!::system()->is_task_set(taskindexThis))
       {

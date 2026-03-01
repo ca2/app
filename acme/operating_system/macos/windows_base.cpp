@@ -38,3 +38,17 @@ char * pBuffer
 
 }
 
+
+
+CGWindowID as_CGWindowID(const ::operating_system::window & operatingsystemwindow);
+//{
+//
+//   auto pwindow = (::windowing_macos::window *) oswindow->m_pWindow2;
+//
+//   auto pnswindow = pwindow->m_pnswindow;
+//
+//   auto windowId = ns_get_window_id(pnswindow);
+//
+//   return windowId;
+//
+//}

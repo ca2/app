@@ -251,13 +251,13 @@ string apple_get_executable_path()
 
 
 
-long long oswindow_id(oswindow w)
-{
-
-   return (long long) (w);
-
-}
-
+//long long oswindow_id(oswindow w)
+//{
+//
+//   return (long long) (w);
+//
+//}
+//
 
 //int is_window(oswindow window)
 //{

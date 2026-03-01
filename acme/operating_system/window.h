@@ -200,8 +200,7 @@ namespace operating_system
       }
 
 
-      typename
-      bool operator == (const WINDOW_T & window) const
+      bool operator == (const WINDOW_TYPE & window) const
       {
 
          return this->m_window == window;
@@ -330,7 +329,7 @@ namespace operating_system
 
       
       template < typename WINDOW_OPAQUE_T >
-         requires (!::is_same < WINDOW_T, window_t >
+         requires (!::is_same < WINDOW_T, window_opaque_t >
       && ::is_same < WINDOW_OPAQUE_T, window_opaque_t >)
       a_window(const enum_operating_system& eoperatingsystem, const WINDOW_OPAQUE_T & windowopaque) :
          m_eoperatingsystem(eoperatingsystem),
@@ -393,11 +392,26 @@ namespace operating_system
       }
       
       
-      ::operating_system::window & operator = (const ::operating_system::window& operatingsystemwindow)
+     
+      template < typename WINDOW >
+         requires (!::is_same < WINDOW_TYPE, window_opaque_t >
+      && ::is_same < WINDOW, window >)
+      ::operating_system::window & operator = (const WINDOW & window)
       {
 
-         this->m_eoperatingsystem = operatingsystemwindow.m_eoperatingsystem;
-         BASE_TYPE::operator = (operatingsystemwindow.m_window);
+         this->m_eoperatingsystem = window.m_eoperatingsystem;
+         BASE_TYPE::operator = (window.m_window);
+
+         return *this;
+
+      }
+      
+
+      a_window & operator = (const a_window & awindow)
+      {
+
+         this->m_eoperatingsystem = awindow.m_eoperatingsystem;
+         BASE_TYPE::operator = (awindow.m_window);
 
          return *this;
 

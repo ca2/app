@@ -224,7 +224,7 @@
 		9A8E9AA4282A2B89005FF778 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8E9AA5282A2B89005FF778 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A8E9AA6282A2B89005FF778 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A8E9D84282A2C09005FF778 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
+		9A8E9D84282A2C09005FF778 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = _matter.zip; sourceTree = "<group>"; };
 		9A8E9D9C282A2DAA005FF778 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8E9D9E282A2DAA005FF778 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8EC0DD2F35AAA3001EAC80 /* libios_acme_windowing_kit.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme_windowing_kit.a; sourceTree = BUILT_PRODUCTS_DIR; };

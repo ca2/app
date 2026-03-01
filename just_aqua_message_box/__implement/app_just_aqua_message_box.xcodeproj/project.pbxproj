@@ -78,7 +78,7 @@
 
 /* Begin PBXFileReference section */
 		070B8EEA1B6E53F900D26137 /* _app_just_aqua_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_just_aqua_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1CC4652CF3100A004A00CB /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
+		9A1CC4652CF3100A004A00CB /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = _matter.zip; sourceTree = SOURCE_ROOT; };
 		9A22742027CF35F40042BAC2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		9A4423172D72C408004246CC /* libacme.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = "<group>"; };
 		9A4423182D72C408004246CC /* libacme_apple.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libacme_apple.dylib; sourceTree = "<group>"; };

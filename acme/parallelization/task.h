@@ -117,7 +117,7 @@ class CLASS_DECL_ACME task :
 public:
 
 
-
+   class ::time m_timeLastFinishingReport;
    //Creatable(task);
 
    //bool                                            m_bAutoRelease : 1;
@@ -468,7 +468,11 @@ public:
    //virtual bool task_active() const;
    //virtual bool is_running() const override;
 
-   bool set_children_to_finish_and_check_them_finished() override;
+   //bool set_children_to_finish_and_check_them_finished() override;
+
+   bool has_child_task() const override;
+
+   void set_child_tasks_to_finish() override;
 
    virtual void update_task_ready_to_quit();
 

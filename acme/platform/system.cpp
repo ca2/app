@@ -1481,7 +1481,7 @@ namespace platform
 
       auto pthreadstorage = _thread_storage_unlocked(taskindex);
 
-      return ::is_set(pthreadstorage->m_ptask);
+      return pthreadstorage && ::is_set(pthreadstorage->m_ptask);
 
    }
 

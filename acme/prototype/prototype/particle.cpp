@@ -757,6 +757,14 @@ bool particle::_is_ok() const
 }
 
 
+bool particle::task_get_run() const
+{
+
+   return true;
+
+}
+
+
 void particle::on_notify(::particle* pparticle, enum_id eid)
 {
 

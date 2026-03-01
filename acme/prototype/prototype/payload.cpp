@@ -906,53 +906,91 @@ void payload::set_type(enum_type etype, bool bConvert)
 
 }
 
+//
+//void payload::set_string(::string && str)
+//{
+//
+//   if (get_type() == e_type_pstring)
+//   {
+//
+//      *m_pstr = ::transfer(str);
+//
+//   }
+//   //else if (get_type() == e_type_payload_pointer)
+//   //{
+//
+//   //   m_ppayload->set_string(::transfer(str));
+//
+//   //}
+//   //else if (get_type() == e_type_property)
+//   //{
+//
+//   //   m_pproperty->set_string(::transfer(str));
+//
+//   //}
+//   else
+//   {
+//
+//      set_type(e_type_string, false);
+//
+//      m_str = ::transfer(str);
+//
+//   }
+//
+//}
 
-void payload::set_string(::string && str)
-{
+//
+//void payload::set_string(const ::string & str)
+//{
+//
+//   if (get_type() == e_type_string)
+//   {
+//
+//      m_str = str;
+//
+//   }
+//   else if (get_type() == e_type_pstring)
+//   {
+//
+//      *m_pstr = str;
+//
+//   }
+//   //else if (get_type() == e_type_payload_pointer)
+//   //{
+//
+//   //   m_ppayload->set_string(str);
+//
+//   //}
+//   //else if (get_type() == e_type_property)
+//   //{
+//
+//   //   m_pproperty->set_string(str);
+//
+//   //}
+//   else
+//   {
+//
+//      set_type(e_type_string, false);
+//
+//      m_str = str;
+//
+//   }
+//
+//}
 
-   if (get_type() == e_type_pstring)
-   {
-
-      *m_pstr = ::transfer(str);
-
-   }
-   //else if (get_type() == e_type_payload_pointer)
-   //{
-
-   //   m_ppayload->set_string(::transfer(str));
-
-   //}
-   //else if (get_type() == e_type_property)
-   //{
-
-   //   m_pproperty->set_string(::transfer(str));
-
-   //}
-   else
-   {
-
-      set_type(e_type_string, false);
-
-      m_str = ::transfer(str);
-
-   }
-
-}
-
-
-void payload::set_string(const ::string & str)
+void payload::set_string(const ::scoped_string & scopedstr)
 {
 
    if (get_type() == e_type_string)
    {
 
-      m_str = str;
+      m_str = scopedstr;
 
    }
    else if (get_type() == e_type_pstring)
    {
 
-      *m_pstr = str;
+      *m_pstr = scopedstr;
 
    }
    //else if (get_type() == e_type_payload_pointer)
@@ -972,11 +1010,12 @@ void payload::set_string(const ::string & str)
 
       set_type(e_type_string, false);
 
-      m_str = str;
+      m_str = scopedstr;
 
    }
 
 }
+
 
 
 //void payload::set_string(::string && str)

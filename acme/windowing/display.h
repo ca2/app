@@ -60,6 +60,10 @@ namespace acme
 
 
          virtual ::int_size get_main_screen_size();
+         
+         virtual ::int_size get_main_screen_size_with_scaling_factor();
+         
+         virtual float get_main_screen_scaling_factor();
 
          virtual void * raw_x11_display();
 

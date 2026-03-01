@@ -6,6 +6,7 @@
 #include "acme/operating_system/shared_posix/time1.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
+#include "acme/operating_system/posix/_.h"
 //#include "acme/prototype/collection/map_interface.h"
 //#if defined( FREEBSD)
 //#define __XSI_VISIBLE 1
@@ -1574,4 +1575,49 @@ CLASS_DECL_ACME ::file::path get_home_folder_path()
 
    // 3) Failure case
    return {};
+}
+
+
+CLASS_DECL_ACME void set_modified_file_time(
+   const ::file::path& path,
+   const file_time& filetimeModified)
+{
+   struct timespec times[2];
+
+   // Preserve access time
+   times[0].tv_nsec = UTIME_OMIT;
+
+   // Convert Windows FILETIME (100ns since 1601)
+   const unsigned long long ft = filetimeModified.get_file_time();
+
+   if (ft < file_time::EPOCH_DIFFERENCE_NANOS)
+   {
+      // Before Unix epoch
+      times[1].tv_sec  = 0;
+      times[1].tv_nsec = 0;
+   }
+   else
+   {
+      unsigned long long unix_100ns =
+         ft - file_time::EPOCH_DIFFERENCE_NANOS;
+
+      // 100ns → seconds + nanoseconds
+      times[1].tv_sec =
+         static_cast<time_t>(unix_100ns / 10'000'000ULL);
+
+      times[1].tv_nsec =
+         static_cast<long>((unix_100ns % 10'000'000ULL) * 100ULL);
+   }
+
+   if (utimensat(AT_FDCWD, path.c_str(), times, 0) != 0)
+   {
+      c_error_number err;
+
+      throw_file_errno_exception(
+         path,
+         ::file::e_open_write,
+                                 "set_modified_file_time utimensat failed",
+                                 err
+         );
+   }
 }

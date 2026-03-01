@@ -378,17 +378,6 @@ void get_file_time_set(const ::file::path & path, file_time & file_timeCreation,
 }
 
 
-CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const class ::time& time)
-{
-
-   //auto filetime = as_file_time(&time);
-
-   //set_modified_file_time(path, file_time(time));
-   set_modified_file_time(path, file_time(time));
-
-}
-
-
 CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const file_time & filetimeModified)
 {
 
@@ -454,9 +443,6 @@ bool file_time_set::modified_timeout(int iSeconds) const
 }
 
 
-
-
-
 CLASS_DECL_ACME file_time as_local_file_time(const ::file_time & filetime)
 {
 
@@ -464,3 +450,17 @@ CLASS_DECL_ACME file_time as_local_file_time(const ::file_time & filetime)
    return {};
 
 }
+
+
+CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const class ::time& time)
+{
+
+   //auto filetime = as_file_time(&time);
+
+   //set_modified_file_time(path, file_time(time));
+   set_modified_file_time(path, file_time(time));
+
+}
+
+
+

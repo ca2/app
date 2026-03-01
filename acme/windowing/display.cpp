@@ -174,7 +174,22 @@ namespace acme
          return {800, 600};
 
       }
-
+   
+   
+   ::int_size display::get_main_screen_size_with_scaling_factor()
+   {
+      
+      return this->get_main_screen_size() * get_main_screen_scaling_factor();
+      
+   }
+   
+   
+   float display::get_main_screen_scaling_factor()
+   {
+      
+      return 1.0f;
+      
+   }
 
       //      enum_display_type display::get_display_type()
       //      {

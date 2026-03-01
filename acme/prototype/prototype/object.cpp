@@ -1284,27 +1284,43 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
 }
 
 
-bool object::set_children_to_finish_and_check_them_finished()
+bool object::has_child_task() const
 {
 
    if (::is_null(m_pparticleaChildrenTask))
    {
 
-      return true;
+      return false;
+
+   }
+
+   if (m_pparticleaChildrenTask->is_empty())
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+
+void object::set_child_tasks_to_finish()
+{
+
+   if (::is_null(m_pparticleaChildrenTask))
+   {
+
+      return;
 
    }
 
    if (has_flag(e_flag_checking_children_task))
    {
 
-      if(m_pparticleaChildrenTask->is_empty())
-      {
-
-         return true;
-
-      }
-
-      return false;
+      return;
 
    }
 
@@ -1313,14 +1329,7 @@ bool object::set_children_to_finish_and_check_them_finished()
    if (has_flag(e_flag_checking_children_task))
    {
 
-      if(m_pparticleaChildrenTask->is_empty())
-      {
-
-         return true;
-
-      }
-
-      return false;
+      return;
 
    }
 
@@ -1329,48 +1338,48 @@ bool object::set_children_to_finish_and_check_them_finished()
    try
    {
 
-      for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
-      {
+      //for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
+      //{
 
-         auto & ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
+      //   auto & ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
-         if (ptaskChild)
-         {
+      //   if (ptaskChild)
+      //   {
 
-            string strType;
+      //      string strType;
 
-            try
-            {
+      //      try
+      //      {
 
-               try
-               {
+      //         try
+      //         {
 
-                  strType = ::platform::type(ptaskChild).name();
+      //            strType = ::platform::type(ptaskChild).name();
 
-               }
-               catch (...)
-               {
+      //         }
+      //         catch (...)
+      //         {
 
-               }
+      //         }
 
-               ptaskChild->set_finish();
+      //         ptaskChild->set_finish();
 
-            }
-            catch (...)
-            {
+      //      }
+      //      catch (...)
+      //      {
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
       for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); )
       {
 
           auto ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
-          if (!ptaskChild)
+          if (!ptaskChild || !ptaskChild->task_get_run())
           {
 
              m_pparticleaChildrenTask->erase_at(iChildTask);
@@ -1378,6 +1387,13 @@ bool object::set_children_to_finish_and_check_them_finished()
           }
           else
           {
+
+             if (!ptaskChild->has_finishing_flag())
+             {
+
+                ptaskChild->set_finish();
+
+             }
 
              iChildTask++;
 
@@ -1391,14 +1407,14 @@ bool object::set_children_to_finish_and_check_them_finished()
 
    }
 
-   if (m_pparticleaChildrenTask->is_empty())
-   {
+   //if (m_pparticleaChildrenTask->is_empty())
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
-   return false;
+   //return false;
 
 }
 
@@ -1419,8 +1435,10 @@ bool object::set_children_to_finish_and_check_them_finished()
 void object::destroy_tasks()
 {
 
-   while (!set_children_to_finish_and_check_them_finished())
+   while (task_get_run())
    {
+
+      set_child_tasks_to_finish();
 
       task_run(100_ms);
 

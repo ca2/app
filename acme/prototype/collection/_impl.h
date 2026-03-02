@@ -6,6 +6,7 @@
 
 #include "_impl_generic_map.h"
 #include "_impl_numeric_array.h"
+#include "_impl_payload.h"
 
 
 template<typename ITERATOR_TYPE>
@@ -730,6 +731,8 @@ base_array(const OTHER_RANGE & range) requires
    }
 
 }
+
+
 
 
 

@@ -273,7 +273,7 @@ namespace sqlite
    }
 
 
-   ::pointer<class payload_array> database::query_row(const ::scoped_string & scopedstr)
+   ::pointer<::database::row> database::query_row(const ::scoped_string & scopedstr)
    {
 
       return ::database::database_impl::query_row(scopedstr);

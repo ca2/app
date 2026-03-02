@@ -22,8 +22,8 @@ public:
    payload_array_base(const string_array_base & stra);
    payload_array_base(const ::int_array_base & inta);
    payload_array_base(const ::property_set & propset);
-   payload_array_base(const payload_array_base & payloada);
-   payload_array_base(payload_array_base && payloada);
+   payload_array_base(const typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY& payloada);
+   payload_array_base(typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY&& payloada);
    ~payload_array_base();
 
 
@@ -167,20 +167,6 @@ inline ::payload payload_array_base::value_at(::collection::index i) const
 }
 
 
-class payload_array :
-   public ::array_particle < payload_array_base >
-{
-public:
-
-
-   using BASE_ARRAY = ::array_particle< payload_array_base >;
-
-
-   using BASE_ARRAY::BASE_ARRAY;
-   using BASE_ARRAY::operator =;
-
-
-};
 
 
 namespace acme

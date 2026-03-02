@@ -36,12 +36,12 @@ payload_array_base::payload_array_base(const ::property_set & propset)
    operator = (propset);
 }
 
-payload_array_base::payload_array_base(const payload_array_base & payloada) :
+payload_array_base::payload_array_base(const typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY& payloada) :
 BASE_ARRAY(payloada)
 {
 }
 
-payload_array_base::payload_array_base(payload_array_base && payloada) :
+payload_array_base::payload_array_base(typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY&& payloada) :
 BASE_ARRAY(::transfer(payloada))
 {
 

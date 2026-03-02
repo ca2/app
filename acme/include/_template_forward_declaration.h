@@ -1000,7 +1000,7 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 
 
 
-class payload_array;
+using payload_array = ::array_particle < payload_array_base >;
 
 
 

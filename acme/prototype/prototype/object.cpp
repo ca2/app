@@ -705,7 +705,7 @@ bool object::is_thread_class() const
 bool object::task_get_run() const
 {
 
-   return ::task_get_run();
+    return !has_finishing_flag();
 
 }
 
@@ -1434,6 +1434,8 @@ void object::set_child_tasks_to_finish()
 
 void object::destroy_tasks()
 {
+
+   set_finishing_flag();
 
    while (task_get_run())
    {

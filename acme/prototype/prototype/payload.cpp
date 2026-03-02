@@ -4902,7 +4902,7 @@ class ::memory & payload::memory_reference()
 //}
 
 
-string_array payload::as_string_array() const
+string_array_base payload::as_string_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5046,7 +5046,7 @@ string_array & payload::string_array_reference()
 }
 
 
-::int_array payload::as_int_array() const
+::int_array_base payload::as_int_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5154,7 +5154,7 @@ int_array & payload::int_array_reference()
 }
 
 
-long_long_array payload::as_long_long_array() const
+long_long_array_base payload::as_long_long_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)
@@ -5267,7 +5267,7 @@ long_long_array payload::as_long_long_array() const
 }
 
 
-::float_array payload::as_float_array() const
+::float_array_base payload::as_float_array() const
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5376,7 +5376,7 @@ float_array & payload::float_array_reference()
 
 
 
-::double_array payload::as_double_array() const
+::double_array_base payload::as_double_array() const
 {
 
    /*   if (m_etype == e_type_payload_pointer)
@@ -5698,7 +5698,7 @@ class ::time & payload::time_reference()
 //}
 //
 
-payload_array payload::as_payload_array() const
+payload_array_base payload::as_payload_array() const
 {
 
 /*   if (m_etype == e_type_payload_pointer)

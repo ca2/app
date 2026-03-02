@@ -375,7 +375,7 @@ public:
    
    virtual ::locale * locale();
    
-   virtual bool has_dependant_tasks() const;
+   //virtual bool has_dependant_tasks() const;
 
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);

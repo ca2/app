@@ -402,7 +402,16 @@ bool task::task_get_run() const
    if(!has_finishing_flag())
    {
 
+      ((::task *)this)->m_pfinishing.release();
+
       return true;
+
+   }
+
+   if (!m_pfinishing)
+   {
+
+      ((::task *)this)->øconstruct_new(((::task *)this)->m_pfinishing);
 
    }
 
@@ -1054,7 +1063,7 @@ void task::run_loop()
       if(m_pfinishing)
       {
          
-         if(has_dependant_tasks())
+         if(has_child_task())
          {
             
             if(m_pfinishing->has_finishing_timed_out(30_minute))
@@ -1191,24 +1200,6 @@ bool task::task_iteration()
    handle_next_posted_request();
 
    handle_posted_procedures();
-   
-   if(this->has_finishing_flag())
-   {
-      
-      if(!m_pfinishing)
-      {
-         
-         øconstruct_new(m_pfinishing);
-         
-      }
-      
-   }
-   else
-   {
-    
-      m_pfinishing.release();
-      
-   }
    
    return true;
 
@@ -1972,26 +1963,26 @@ void task::__task_term()
 }
 
 
-bool task::has_dependant_tasks() const
-{
-   
-   if(!m_pparticleaChildrenTask)
-   {
-      
-      return false;
-      
-   }
-   
-   if(m_pparticleaChildrenTask->is_empty())
-   {
-      
-      return false;
-      
-   }
- 
-   return true;
-
-}
+//bool task::has_dependant_tasks() const
+//{
+//   
+//   if(!m_pparticleaChildrenTask)
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   if(m_pparticleaChildrenTask->is_empty())
+//   {
+//      
+//      return false;
+//      
+//   }
+// 
+//   return true;
+//
+//}
 
 
 void task::_post(const ::procedure & procedure)

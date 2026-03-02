@@ -567,7 +567,7 @@ namespace sockets
             //}
             //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
             string strUserAgent = MyUseragent();
-            inheader("user_agent") = strUserAgent;
+            inheader("user-agent") = strUserAgent;
          }
          //inheader("Content-Length") = 0;
          inheader("Upgrade") = "websocket";

@@ -68,7 +68,6 @@ namespace micro
 
       ::micro::main_window::create_window();
 
-
    }
 
 

@@ -194,7 +194,7 @@ namespace sockets
          if (m_request.attr("minimal_headers").is_false())
          {
 
-            inheader("user_agent") = "ca2_netnode";
+            inheader("user-agent") = "ca2_netnode";
 
             if (inheader("accept").is_empty())
             {
@@ -367,7 +367,7 @@ namespace sockets
 
       inheader("host") = strHost; // oops - this is actually a request header that we're adding..
 
-      inheader("user_agent") = MyUseragent();
+      inheader("user-agent") = MyUseragent();
 
       inheader("accept") = "text/html, text/plain, */*;q=0.01";
 

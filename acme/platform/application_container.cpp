@@ -4,7 +4,7 @@
 #include "application.h"
 #include "system.h"
 #include "acme/constant/user_message.h"
-////#include "acme/exception/exception.h"
+#include "acme/exception/exit.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/handler/request.h"
@@ -602,6 +602,12 @@ namespace platform
       {
 
          papplication = create_application(scopedstrAppId);
+
+      }
+      catch (const ::exit_exception &e)
+      {
+
+         throw e;
 
       }
       catch (const ::exception& e)

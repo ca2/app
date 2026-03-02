@@ -1176,6 +1176,14 @@ void task::run()
       }
 
    }
+   catch (const ::exit_exception & e)
+   {
+
+      set_finishing_flag();
+
+      m_estatus = e.m_estatus;
+
+   }
    catch (::exception & exception)
    {
 
@@ -3099,7 +3107,19 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
          auto phappeningProtectionWhileWaiting = m_phappeningInitialization;
 
-         phappeningProtectionWhileWaiting->wait();
+         m_estatus = phappeningProtectionWhileWaiting->wait(::as_continue_predicate([this]()
+            {
+
+               if (has_finishing_flag())
+               {
+
+                  return false;
+
+               }
+
+               return true;
+
+            }));
 
       }
 
@@ -3110,7 +3130,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
          ::e_status estatusExit = m_estatus;
 
-         throw ::exception(estatusExit);
+         throw ::exit_exception(error_exit_thread, this, "Failed", estatusExit);
 
       }
 

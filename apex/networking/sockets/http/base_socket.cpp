@@ -125,10 +125,10 @@ namespace sockets
 
       }
 
-      if(m_request.headers().has_property("user_agent"))
+      if(m_request.headers().has_property("user-agent"))
       {
 
-         information() << "user-agent: " << m_request.header("user_agent").as_string();
+         information() << "user-agent: " << m_request.header("user-agent").as_string();
 
       }
       else

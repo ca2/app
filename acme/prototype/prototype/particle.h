@@ -1498,3 +1498,15 @@ inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_point
 }
 
 
+CLASS_DECL_ACME bool function_continue_predicate(::subparticle *psubparticle);
+
+inline continue_predicate_t as_continue_predicate(const ::function < bool() > & functionContinue)
+{
+
+   return {&::function_continue_predicate, functionContinue.m_psubparticle};
+
+}
+
+
+
+

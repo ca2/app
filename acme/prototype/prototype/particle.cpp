@@ -3067,4 +3067,21 @@ void particle::assert_particle_ok() const
 }
 
 
+CLASS_DECL_ACME bool function_continue_predicate(::subparticle * psubparticle)
+{
+
+   ::cast<typename ::function<bool()>::base> pbase = psubparticle;
+
+   if (::is_null(pbase))
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   return pbase->function_get();
+
+}
+
+
 

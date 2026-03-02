@@ -324,6 +324,8 @@ public:
    //void task_osinit() override;
    //void task_osterm() override;
 
+   bool is_locked() const override;
+
    bool has_main_loop_happening() override;
    virtual bool _has_main_loop_happening_unlocked();
 

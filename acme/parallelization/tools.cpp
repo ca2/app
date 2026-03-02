@@ -207,7 +207,7 @@ void task_group::set_ready_to_start()
 }
 
 
-::e_status task_group::wait()
+::e_status task_group::wait(const continue_predicate_t &predicate)
 {
 
    //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

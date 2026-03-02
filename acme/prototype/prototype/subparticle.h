@@ -24,6 +24,55 @@ class sequence;
 #include "quantum.h"
 
 
+typedef bool FUNCTION_CONTINUE(::subparticle * psubparticle);
+using PFN_FUNCTION_CONTINUE = FUNCTION_CONTINUE *;
+
+
+struct continue_predicate_t
+{
+
+   
+   PFN_FUNCTION_CONTINUE         m_pfnContinue;
+   ::pointer<::subparticle>      m_psubparticle;
+
+
+   continue_predicate_t() : m_pfnContinue(nullptr) {}
+   continue_predicate_t(const continue_predicate_t &predicate) :
+       m_pfnContinue(predicate.m_pfnContinue), m_psubparticle(predicate.m_psubparticle)
+   {
+   }
+   continue_predicate_t(PFN_FUNCTION_CONTINUE pfnContinue, ::subparticle *psubparticle) :
+       m_pfnContinue(pfnContinue), m_psubparticle(psubparticle)
+   {
+   }
+
+   bool should_continue() const
+   {
+
+      bool bShouldContinue = true;
+
+      if (m_pfnContinue)
+      {
+
+         bShouldContinue = m_pfnContinue(m_psubparticle);
+
+      }
+
+      return bShouldContinue;
+
+   }
+
+   bool operator()() const
+   {
+
+      return this->should_continue();
+
+   }
+
+
+};
+
+
 class CLASS_DECL_ACME subparticle :
    virtual public ::quantum
 {
@@ -264,6 +313,7 @@ public:
 
    virtual ::e_status wait();
    virtual ::e_status wait(const class time& timeWait);
+   virtual ::e_status wait(const continue_predicate_t &predicate);
 
    virtual void _lock();
    virtual bool _lock(const class time& timeWait);

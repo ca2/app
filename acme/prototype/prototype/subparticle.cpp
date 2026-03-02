@@ -616,9 +616,59 @@ void subparticle::_wait()
 }
 
 
-::e_status subparticle::wait(const class time& timeWait)
+::e_status subparticle::wait(const continue_predicate_t & predicate)
 {
 
+   auto ptask = ::get_task();
+
+   while (true)
+   {
+
+      if (::is_set(ptask))
+      {
+
+         ::task_iteration();
+
+      }
+
+      auto waitNow = 100_ms;
+
+      bool bOk = _wait(waitNow);
+
+      if (bOk)
+      {
+
+         return ::success;
+
+      }
+
+      if (::is_set(ptask))
+      {
+
+         if (!ptask->task_get_run())
+         {
+
+            return error_discontinued;
+
+         }
+
+      }
+
+      if (!predicate())
+      {
+
+         return error_discontinued;
+
+      }
+
+   }
+
+}
+
+
+::e_status subparticle::wait(const class time& timeWait)
+{
+   
    if (timeWait < 200_ms)
    {
 
@@ -765,10 +815,6 @@ void subparticle::exit_wait()
 
 
 }
-
-
-
-
 
 
 bool subparticle::_wait(const class time& timeWait)

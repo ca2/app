@@ -265,6 +265,50 @@ void task::set_active_user_interaction(::acme::user::interaction * pacmeuserinte
 }
 
 
+bool task::is_locked() const
+{
+
+#ifdef WINDOWS
+
+   auto hTask = ::as_HANDLE(m_htask);
+
+   if (!hTask || hTask == INVALID_HANDLE_VALUE)
+   {
+
+      return false;
+
+   }
+
+   DWORD dwResult = ::WaitForSingleObject(hTask, 0);
+
+   if (dwResult == WAIT_TIMEOUT)
+   {
+      
+      // Thread is still running
+      return true;
+
+   }
+   else if (dwResult == WAIT_OBJECT_0)
+   {
+      
+      // Thread has terminated
+      return false;
+
+   }
+   else
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+#else
+
+   return m_htask.is_set();
+
+#endif
+
+}
 
 
 bool task::has_main_loop_happening()
@@ -446,12 +490,17 @@ bool task::task_get_run() const
 
    }
 
-   if (m_requestaPosted.has_element())
-   {
+   // maybe later
+   // you can check if there is any
+   // finalizing requests (possibly known by a flag set in the request) to be attended
+   // by now, not going to attend
+   // new requests because task is finishing...
+   //if (m_requestaPosted.has_element())
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
    if (has_child_task())
    {

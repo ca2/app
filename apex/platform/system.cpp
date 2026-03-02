@@ -1477,11 +1477,13 @@ pdirectorysystem->create("/ca2core");
    //   }
    //
 
-//
-//   void system::init_task()
-//   {
-//
-//      ::thread::init_task();
+
+   void system::init_task()
+   {
+
+      m_strTaskName = ::type(*this).name();
+
+      ::platform::system::init_task();
 //
 //      call_init_system();
 //
@@ -1561,7 +1563,7 @@ pdirectorysystem->create("/ca2core");
 ////
 ////      //return true;
 //
-//   }
+   }
 
 
    void system::init()

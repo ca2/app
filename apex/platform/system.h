@@ -97,6 +97,9 @@ namespace apex
       void system_construct(::platform::application* papplication) override;
 
 
+      void init_task() override;
+
+
       //virtual void _compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
       //virtual void _uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction = {}) override;
 

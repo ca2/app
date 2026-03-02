@@ -416,6 +416,8 @@ namespace apex
    void session::init_task()
    {
 
+      m_strTaskName = ::type(*this).name();
+
       ::platform::session::init_task();
 
       // init_session();

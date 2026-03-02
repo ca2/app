@@ -1653,6 +1653,8 @@ namespace apex
    void application::init_task()
    {
 
+      m_strTaskName = ::type(*this).name();
+
       ::platform::application::init_task();
 
    }

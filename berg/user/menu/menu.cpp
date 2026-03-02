@@ -558,14 +558,14 @@ namespace user
 
       }
 
-      if (!m_pmenuitem->create_buttons(pgraphics, this))
-      {
+      m_pmenuitem->create_buttons(pgraphics, this);
+      //{
 
-         ASSERT(false);
+      //   ASSERT(false);
 
-         return;
+      //   return;
 
-      }
+      //}
 
       //if(m_procedureOnAfterInitializeUserMenu)
       //{

@@ -11462,47 +11462,58 @@ if(get_parent())
    bool interaction::_is_window() const
    {
 
-      if (::is_null(this))
+      if (!this->_is_this_window())
       {
 
          return false;
 
       }
       
-      if(!(m_ewindowflag & e_window_flag_is_window))
-      {
-         
-         return false;
-         
-      }
-         if(!(m_ewindowflag & e_window_flag_window_created))
-         {
-            
-            return false;
-            
-         }
-//         if(::is_set(m_pacmewindowingwindow ))
-//         {
-//            
-//            if(!m_pacmewindowingwindow->is_window())
-//            {
-//               return false;
-//               
-//            }
-//            
-//         }
-
-      //if (::is_null(window()))
-      //{
-
-      //   return false;
-
-      //}
-
       if (((interaction *)this)->get_parent() != nullptr)
       {
 
          if (!((interaction *)this)->get_parent()->is_window())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   bool interaction::_is_this_window() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return false;
+
+      }
+
+      if (!(m_ewindowflag & e_window_flag_is_window))
+      {
+
+         return false;
+
+      }
+      
+      if (!(m_ewindowflag & e_window_flag_window_created))
+      {
+
+         return false;
+
+      }
+
+      if (((interaction *)this)->get_parent() == nullptr)
+      {
+
+         if (!((interaction *)this)->m_pacmewindowingwindow->is_window())
          {
 
             return false;
@@ -21445,7 +21456,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_update_notify_icon_menu(::collection::index & iNotifyIconIndex)
+   void interaction::on_update_notify_icon_menu(::application_menu *pmenu)
    {
 
    }

@@ -277,17 +277,17 @@ public:
 
    //virtual string notification_area_get_xml_menu();
 
-   void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex) override;
+   void on_update_notify_icon_menu(::application_menu * pmenu) override;
 
-   virtual void on_update_notify_icon_menu_header(::collection::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_header(::application_menu *pmenu);
 
-   virtual void on_update_notify_icon_menu_top(::collection::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_top(::application_menu *pmenu);
 
-   virtual void on_update_notify_icon_menu_main(::collection::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_main(::application_menu *pmenu);
 
-   virtual void on_update_notify_icon_menu_bottom(::collection::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_bottom(::application_menu *pmenu);
 
-   virtual void on_update_notify_icon_menu_footer(::collection::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_footer(::application_menu *pmenu);
 
 };
 

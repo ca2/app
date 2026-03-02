@@ -817,7 +817,7 @@ void channel::command_handler(::message::command * pcommand)
          && !pcommand->m_bHasCommandHandler)
       {
 
-         if (on_command_final(pcommand->m_eusermessage, pcommand->user_activation_token()))
+         if (on_command_final(pcommand->command_id(), pcommand->user_activation_token()))
          {
 
             pcommand->m_bRet = true;

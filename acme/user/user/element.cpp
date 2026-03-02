@@ -1272,8 +1272,16 @@ namespace user
    bool element::_is_window() const
    {
 
-      return m_bUserElementOk;
+      return this->_is_this_window();
 
+   }
+
+
+   bool element::_is_this_window() const 
+   {
+         
+      return m_bUserElementOk; 
+      
    }
 
 

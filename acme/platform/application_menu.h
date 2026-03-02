@@ -35,6 +35,7 @@ public:
    };
    
    
+   ::collection::index m_iCurrentLayoutItemIndex = 0;
    bool        m_bPopup = false;
    string      m_strName;
    ::atom      m_atomMenu;

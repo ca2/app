@@ -481,7 +481,7 @@ namespace menu
    }
 
 
-   bool item::create_buttons(::draw2d::graphics_pointer & pgraphics, ::user::menu * pusermenu)
+   void item::create_buttons(::draw2d::graphics_pointer & pgraphics, ::user::menu * pusermenu)
    {
 
       ::user::style_pointer pstyle;
@@ -517,11 +517,11 @@ namespace menu
          if (pinteraction.is_null())
          {
 
-            return false;
+            throw ::exception(error_failed);
 
          }
 
-         if (pinteraction->is_window())
+         if (pinteraction->is_this_window())
          {
 
             pinteraction->destroy_window();
@@ -539,10 +539,10 @@ namespace menu
 
          pinteraction->m_pmenuitem = pitem;
 
-         if (!pinteraction->is_window())
+         if (!pinteraction->is_this_window())
          {
 
-            return false;
+            throw ::exception(error_failed);
 
          }
 
@@ -561,7 +561,7 @@ namespace menu
 
       }
 
-      return true;
+      //return true;
 
    }
 

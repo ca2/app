@@ -995,7 +995,7 @@ namespace user
       
       virtual ::user::notify_icon * notify_icon();
 
-      virtual void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex);
+      virtual void on_update_notify_icon_menu(::application_menu *pmenu);
       
       virtual void on_app_activated(::user::activation_token * puseractivationtoken);
 
@@ -1120,7 +1120,9 @@ namespace user
 
 
       virtual bool _is_window() const override;
+      virtual bool _is_this_window() const override;
       inline bool is_window() const { return this->_is_window();}
+      inline bool is_this_window() const { return this->_is_this_window(); }
 
       virtual void ExitHelpMode();
 

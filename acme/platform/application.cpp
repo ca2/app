@@ -1004,15 +1004,15 @@ void application::start_application()
 
          {
 
-            auto ppopupApp = papplicationmenu->popup(application_title());
+            auto ppopupApp = papplicationmenu->defer_add_popup(application_title());
 
             //pmenuMain->add(pmenuApp);
 
-            ppopupApp->item("About " + application_title(), "show_about_box", "", "");
+            ppopupApp->defer_add_item("About " + application_title(), "show_about_box", "", "");
 
-            ppopupApp->separator();
+            ppopupApp->add_separator();
 
-            ppopupApp->item("Quit " + application_title(), "try_close_application", "", "");
+            ppopupApp->defer_add_item("Quit " + application_title(), "try_close_application", "", "");
 
          }
 

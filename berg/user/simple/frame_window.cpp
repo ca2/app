@@ -232,7 +232,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::application_menu *
 
    auto strAppTitle = papp->application_title();
 
-   pmenu->stock_item_at(pmenu->m_iCurrentLayoutItemIndex, strAppTitle, "notify_icon_topic");
+   pmenu->insert_stock_item(strAppTitle, "notify_icon_topic");
 
    if (papp->application_menu()->has_element())
    {
@@ -247,7 +247,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::application_menu *
 
             auto ppopupApp = papp->application_menu()->first();
 
-            pmenu->separator_at(pmenu->m_iCurrentLayoutItemIndex);
+            pmenu->insert_separator();
             
             for (::collection::index iIndexPopup = 0; iIndexPopup < ppopupApp->count(); iIndexPopup++)
             {
@@ -289,7 +289,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::application_menu *
 
             }
 
-            pmenu->separator_at(pmenu->m_iCurrentLayoutItemIndex);
+            pmenu->insert_separator();
 
          }
 
@@ -373,11 +373,11 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::application_menu *
 
             //auto pmenu = m_pnotifyicon->menu();
 
-            auto ppopupView = pmenu->popup_at(pmenu->m_iCurrentLayoutItemIndex, "View");
+            auto ppopupView = pmenu->insert_popup("View");
 
             //ppopupView->add(pmenuView);
 
-            ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+            ppopupView->add_item("Transparent Frame", "transparent_frame", "", "");
 
          }
 
@@ -394,10 +394,10 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::application_menu *
 void simple_frame_window::on_update_notify_icon_menu_footer(::application_menu * pmenu)
 {
 
-   pmenu->separator_at(pmenu->m_iCurrentLayoutItemIndex);
+   pmenu->insert_separator();
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-   pmenu->stock_item_at(pmenu->m_iCurrentLayoutItemIndex, "Exit", "try_close_application");
+   pmenu->insert_stock_item("Exit", "try_close_application");
 
 }
 

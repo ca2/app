@@ -54,16 +54,16 @@ public:
       const ::scoped_string & scopedstrDescription = {});
 
 
-   virtual application_menu * popup_at(::collection::index & iIndex, const ::scoped_string & scopedstrName);
-   virtual application_menu * popup(const ::scoped_string & scopedstrName);
-   virtual application_menu * _item_at(::collection::index & iIndex, bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
-   virtual application_menu * _item(bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
-   virtual application_menu * item_at(::collection::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
-   virtual application_menu * stock_item_at(::collection::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
-   virtual application_menu * item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
-   virtual application_menu * stock_item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
-   virtual application_menu * separator_at(::collection::index & iIndex);
-   virtual application_menu * separator();
+   virtual application_menu * insert_popup(const ::scoped_string & scopedstrName);
+   virtual application_menu * defer_add_popup(const ::scoped_string & scopedstrName);
+   virtual application_menu * _set_item_at_and_go_next(::collection::index & iIndex, bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+   virtual application_menu * add_item(bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+   virtual application_menu * insert_item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+   virtual application_menu * insert_stock_item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+   virtual application_menu * defer_add_item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+   virtual application_menu * add_stock_item(const ::scoped_string & scopedstrName, const ::atom & atom = {}, const ::scoped_string & scopedstrMacosAccelerator = {}, const ::scoped_string & scopedstrDescription = {});
+   virtual application_menu * insert_separator();
+   virtual application_menu * add_separator();
 
    
    ::collection::index find_child_with_name(const_char_pointer pszName) const;

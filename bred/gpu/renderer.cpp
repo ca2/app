@@ -988,9 +988,9 @@ namespace gpu
       if (!bLayerStarted)
       {
 
-         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+         //auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
 
-         auto etypeGpuContext = m_pgpucontext->m_etype;
+         //auto etypeGpuContext = m_pgpucontext->m_etype;
 
          //if (!bUseSwapChain
             //|| etypeGpuContext != ::gpu::context::e_type_window)

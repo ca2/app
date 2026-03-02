@@ -122,7 +122,7 @@ public:
 
 
    virtual bool is_thread_class() const override;
-   virtual bool task_get_run() const;
+   bool task_get_run() const override;
    virtual bool is_task_set2() const;
    //virtual void child_post_quit(const ::scoped_string & scopedstrTag);
    //virtual void child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time);

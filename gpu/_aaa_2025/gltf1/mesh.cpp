@@ -156,7 +156,7 @@ namespace gpu
          //
          // glBindVertexArray(0);
 
-         øconstruct(m_pmodelbuffer);
+         constructø(m_pmodelbuffer);
 
          m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
 

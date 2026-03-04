@@ -310,9 +310,12 @@ namespace apex
 
 
       void show_about_box(::user::activation_token * puseractivationtoken) override;
+      void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken) override;
 
 
-      virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size) override;
+      ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size) override;
+      ::pointer<::innate_ui::icon>
+      innate_ui_icon(const ::scoped_string &scopedstrIconUrl, const ::int_size &size) override;
 
 
       virtual void init_fs_set(::fs::set* pfsset) override;
@@ -393,7 +396,7 @@ namespace apex
 
       virtual void DoWaitCursor(int nCode) override; // 0 => restore, 1=> begin, -1=> end
 
-      void _001TryCloseApplication() override;
+      void _001PostTryCloseApplication() override;
 
 
       virtual void _001CloseApplication() override;
@@ -504,9 +507,9 @@ namespace apex
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessageboxpayload = __initialize_new ::message_box_payload(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
-      //pmessagebox->sync();
+      //send(pmessageboxpayload);
 
 
       //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());

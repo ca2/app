@@ -13,7 +13,7 @@ void action_context::add(const ::particle * pparticle)
    if (!m_pparticlea)
    {
 
-      m_pparticlea = øallocate pointer_array < ::particle > ();
+      m_pparticlea = allocateø pointer_array < ::particle > ();
 
    }
    

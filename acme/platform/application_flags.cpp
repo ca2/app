@@ -1084,7 +1084,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //
 //         string strLibrary = ::future::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = øallocate ::acme::library();
+//         m_plibrary = allocateø ::acme::library();
 //
 //         m_plibrary->initialize(psystem);
 //
@@ -1394,7 +1394,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //CLASS_DECL_APEX long apex_prefix(::apex::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = allocateø app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1418,7 +1418,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //CLASS_DECL_APEX long apex_fork(::apex::system * psystem, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = øallocate app_core(pmaindata);
+//   //pmaindata->m_pappcore = allocateø app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {

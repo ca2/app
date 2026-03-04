@@ -52,7 +52,7 @@ void interprocess_intercommunication::initialize_interprocess_communication(::pa
 
    call_routines_with_id(CREATE_ROUTINE);
 
-   /*estatus = */ øconstruct(m_prx);
+   /*estatus = */ constructø(m_prx);
 
    //if (!estatus)
    //{
@@ -119,7 +119,7 @@ void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp
    if(pmutex.is_null())
    {
 
-      pmutex = øallocate ::pointer < ::mutex > ();
+      pmutex = allocateø ::pointer < ::mutex > ();
 
    }
 
@@ -143,7 +143,7 @@ void interprocess_intercommunication::start(const ::scoped_string & scopedstrApp
 
    }
 
-   auto plauncher = øallocate ::apex::app_launcher();
+   auto plauncher = allocateø ::apex::app_launcher();
    
    plauncher->initialize_app_launcher(this, process_platform_name(), strApp);
 
@@ -520,7 +520,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::task>interprocess_intercommunication::create_task(::interprocess::call * pcall, const ::atom & idPid)
 {
 
-   auto pobjectTask = øallocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
+   auto pobjectTask = allocateø ::interprocess::task(pcall, idPid, m_iTaskSeed++);
 
    synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -546,7 +546,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 ::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
 {
 
-   return øallocate ::interprocess::call(this, strApp, strObject, strMember);
+   return allocateø ::interprocess::call(this, strApp, strObject, strMember);
 
 }
 

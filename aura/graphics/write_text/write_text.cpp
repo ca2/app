@@ -66,7 +66,7 @@ namespace write_text
 
          //auto estatus = 
          
-         øconstruct(m_pfonts);
+         constructø(m_pfonts);
 
          //if (!estatus)
          //{
@@ -175,7 +175,7 @@ namespace write_text
 
       }
 
-      øconstruct_new(pmemory);
+      construct_newø(pmemory);
 
       *pmemory = file()->as_memory(path);
 
@@ -225,7 +225,7 @@ namespace write_text
 
    //   ::pointer<true_type_font_utilities>ptruetypefontutilities;
 
-   //   øconstruct_new(ptruetypefontutilities);
+   //   construct_newø(ptruetypefontutilities);
 
    //   if (pdoc->load(strSystemFonts))
    //   {
@@ -280,7 +280,7 @@ namespace write_text
 
    //                     path /= strFile;
 
-   //                     pitem = øallocate ::write_text::font_enumeration_item();
+   //                     pitem = allocateø ::write_text::font_enumeration_item();
 
    //                     if (file_system()->exists(path))
    //                     {
@@ -325,7 +325,7 @@ namespace write_text
    //      for (auto & path : listing)
    //      {
 
-   //         pitem = øallocate ::write_text::font_enumeration_item();
+   //         pitem = allocateø ::write_text::font_enumeration_item();
 
    //         pitem->m_mapFileName[400] = path;
 
@@ -353,7 +353,7 @@ namespace write_text
    //      
    //      auto pnode = node();
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_monospace);
 
@@ -362,7 +362,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans);
 
@@ -371,7 +371,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif);
 
@@ -380,7 +380,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_ex);
 
@@ -389,7 +389,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ex);
 
@@ -398,7 +398,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_sans_fx);
 
@@ -407,7 +407,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_fx);
 
@@ -416,7 +416,7 @@ namespace write_text
    //      itema.add(pitem);
 
 
-   //      pitem = øallocate ::write_text::font_enumeration_item();
+   //      pitem = allocateø ::write_text::font_enumeration_item();
 
    //      pitem->m_mapFileName[400] = pnode->font_name(e_font_serif_ui);
 
@@ -442,7 +442,7 @@ namespace write_text
 
    }
 
-   øconstruct(pinternalfont);
+   constructø(pinternalfont);
 
    auto pmemory = get_file_memory(pcontext, path);
 

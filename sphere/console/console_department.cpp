@@ -30,7 +30,7 @@ namespace console
          return false;
 
 
-      m_spprompt = øallocate prompt(this);
+      m_spprompt = allocateø prompt(this);
 
       console_prompt().impact(false);
 

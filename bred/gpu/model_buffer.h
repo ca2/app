@@ -57,7 +57,7 @@ namespace gpu
             || typeid(INDEX) != m_pmodeldatabase2->index_type())
          {
 
-            m_pmodeldatabase2 = øallocate ::gpu::model_data<VERTEX, INDEX>();
+            m_pmodeldatabase2 = allocateø ::gpu::model_data<VERTEX, INDEX>();
 
          }
          return *m_pmodeldatabase2;

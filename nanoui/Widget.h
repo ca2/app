@@ -339,7 +339,7 @@ namespace nanoui
       /// Variadic shorthand notation to construct and add a pwidgetChild pwidget
       template<typename WidgetClass, typename... Args>
       ::pointer < WidgetClass>  add(const Args&... args) {
-         return øallocate WidgetClass(this, args...);
+         return allocateø WidgetClass(this, args...);
       }
 
       /// Walk up the hierarchy and return the parent window

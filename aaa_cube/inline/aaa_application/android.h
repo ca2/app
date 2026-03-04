@@ -15,13 +15,13 @@
 //
 //#endif
 //
-//   auto psystem = øallocate ::aura::system();
+//   auto psystem = allocateø ::aura::system();
 //
 //   psystem->construct_system(argc, argv);
 //
 ////   return aura_run_system(psystem);
 //
-//   auto psystem = øallocate ::aura::system();
+//   auto psystem = allocateø ::aura::system();
 //
 //   psystem->payload("main_string") = strMainString;
 //
@@ -50,7 +50,7 @@
 //
 //      {
 //
-//         auto psystem = øallocate ::aura::system();
+//         auto psystem = allocateø ::aura::system();
 //
 //         psystem->set_main_struct(&mainstruct);
 //

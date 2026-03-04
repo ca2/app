@@ -281,6 +281,8 @@ public:
 
    ::pointer<task> fork(const ::procedure & procedure, const create_task_attributes& createtaskattributes);
 
+   dispatch_arrayø forkø();
+
    virtual ::pointer < ::parallelization::queue> queue(const ::atom & atomQueue);
 
    virtual ::pointer<::task> branch_procedure(const ::procedure& procedure, bool bAutoDelete = true, enum_parallelization eparallelization = e_parallelization_asynchronous, const create_task_attributes_t & createtaskattributes = {});

@@ -737,7 +737,7 @@ namespace image
 
       pinfo->m_pimage = m_pimage;
 
-      //auto estatus = ((image_list*)this)->øconstruct(pinfo->m_pimage);
+      //auto estatus = ((image_list*)this)->constructø(pinfo->m_pimage);
 
       //pinfo->m_pimage->copy_from(m_pimage);
 

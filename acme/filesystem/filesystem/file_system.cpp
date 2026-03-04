@@ -1961,7 +1961,7 @@ bool file_system::_file_system_has_script(const ::file_system_cache_item & pfile
    if (pfilesystemitem.m_estatus != success_already_set)
    {
 
-      øconstruct_new(pfilesystemitem);
+      construct_newø(pfilesystemitem);
 
       pfilesystemitem->m_pathReal1 = realandlogicalpath.m_pathReal1;
 

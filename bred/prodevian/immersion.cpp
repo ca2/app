@@ -55,7 +55,7 @@ namespace prodevian
 
       information("immersion::onInit");
 
-      øconstruct(m_pscene);
+      constructø(m_pscene);
 
       //m_scene = øcreate_pointer<sandbox_scene>(m_windowInput, m_assetManager);
       m_pscene->initialize_scene(this);

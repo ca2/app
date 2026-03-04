@@ -1133,7 +1133,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
             ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
 
-      return øallocate ::winrt::rsa(provider->CreateKeyPair(1024));
+      return allocateø ::winrt::rsa(provider->CreateKeyPair(1024));
 
    }
 
@@ -1684,7 +1684,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 //   ::pointer<::crypto::rsa>crypto::generate_rsa_key()
 //   {
 //
-//      auto popensslrsa = øallocate ::winrt::rsa();
+//      auto popensslrsa = allocateø ::winrt::rsa();
 //
 //      RSA*& prsa = popensslrsa->m_prsa;
 //
@@ -1791,7 +1791,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       }
 
-      auto pwinrtrsa = øallocate ::winrt::rsa();
+      auto pwinrtrsa = allocateø ::winrt::rsa();
 
       //RSA*& prsa = pwinrtrsa->m_prsa;
 
@@ -1816,7 +1816,7 @@ pdirectorysystem->system() / "user" / "databin.bin";
 
       }
 
-      auto pwinrtrsa = øallocate ::winrt::rsa();
+      auto pwinrtrsa = allocateø ::winrt::rsa();
 
       //RSA*& prsa = pwinrtrsa->m_prsa;
 

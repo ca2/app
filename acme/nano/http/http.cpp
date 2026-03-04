@@ -106,17 +106,17 @@ namespace nano
          for(int iRedirect = 0; iRedirect < iRedirectLimit; iRedirect++)
          {
 
-            auto defer_get = øcreate_new < ::nano::http::get>();
+            auto phttpget = øcreate_new < ::nano::http::get>();
 
-            defer_get->m_url = strUrl;
+            phttpget->m_url = strUrl;
 
-            defer_get->payload("only_headers") = true;
+            phttpget->payload("only_headers") = true;
             
-            defer_get->m_timeSyncTimeout = 5_min;
+            phttpget->m_timeSyncTimeout = 5_min;
 
-            defer_get->send();
+            send(phttpget);
 
-            auto strLocation = defer_get->payload("location").as_string();
+            auto strLocation = phttpget->payload("location").as_string();
 
             if (strLocation.is_empty())
             {
@@ -147,17 +147,17 @@ namespace nano
 
          ::string strUrl(get_effective_url(url).as_string());
 
-         auto defer_get = øcreate_new < ::nano::http::get>();
+         auto phttpget = øcreate_new < ::nano::http::get>();
 
-         defer_get->m_url = strUrl;
+         phttpget->m_url = strUrl;
 
-         defer_get->payload("only_headers") = true;
+         phttpget->payload("only_headers") = true;
 
-         defer_get->m_timeSyncTimeout = 5_min;
+         phttpget->m_timeSyncTimeout = 5_min;
 
-         defer_get->send();
+         send(phttpget);
 
-         auto iHttpStatusCode = defer_get->payload("http_status_code").as_int();
+         auto iHttpStatusCode = phttpget->payload("http_status_code").as_int();
 
          return iHttpStatusCode == 200;
 
@@ -170,19 +170,19 @@ namespace nano
 
          auto urlEffetive = get_effective_url(url);
 
-         auto defer_get = øcreate_new < ::nano::http::get>();
+         auto phttpget = øcreate_new < ::nano::http::get>();
 
-         defer_get->m_url = urlEffetive;
+         phttpget->m_url = urlEffetive;
 
-         defer_get->m_timeSyncTimeout = 5_min;
+         phttpget->m_timeSyncTimeout = 5_min;
 
-         defer_get->send();
+         send(phttpget);
 
-         auto iHttpStatusCode = defer_get->payload("http_status_code").as_int();
+         auto iHttpStatusCode = phttpget->payload("http_status_code").as_int();
 
          ::string strOutput;
 
-         strOutput = defer_get->get_memory_response()->as_utf8();
+         strOutput = phttpget->get_memory_response()->as_utf8();
 
          return strOutput;
 
@@ -194,17 +194,17 @@ namespace nano
 
          auto urlEffective = get_effective_url(url);
 
-         auto defer_get = øcreate_new < ::nano::http::get>();
+         auto phttpget = øcreate_new < ::nano::http::get>();
 
-         defer_get->m_url = urlEffective;
+         phttpget->m_url = urlEffective;
 
-         defer_get->m_timeSyncTimeout = 2_hour;
+         phttpget->m_timeSyncTimeout = 2_hour;
 
-         defer_get->send();
+         send(phttpget);
 
-         auto iHttpStatusCode = defer_get->payload("http_status_code").as_int();
+         auto iHttpStatusCode = phttpget->payload("http_status_code").as_int();
 
-         file_system()->put_block(path, *defer_get->get_memory_response());
+         file_system()->put_block(path, *phttpget->get_memory_response());
 
       }
 

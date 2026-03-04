@@ -249,7 +249,7 @@ namespace berg
       if(factory()->has_factory_item< ::user::options_impact_handler >())
       {
 
-         øconstruct(m_poptionsimpacthandler);
+         constructø(m_poptionsimpacthandler);
 
       }
 
@@ -361,6 +361,39 @@ namespace berg
 
          };
 
+      auto pbuttonOperatingSystemInformation =
+         create_button<::user::button>(pparent, "Operating System Information");
+
+      pbuttonOperatingSystemInformation->m_callbackOnClick =
+         [this](::user::interaction *puserinteraction, ::item *pitem,
+                                          ::user::activation_token *puseractivationtoken) -> bool
+      {
+         if (::is_set(m_ptabimpactBerg))
+         {
+
+            m_ptabimpactBerg->add_tab("Operating System Information", OPERATING_SYSTEM_INFORMATION_IMPACT);
+
+            m_ptabimpactBerg->get_parent()->set_need_layout();
+
+            m_ptabimpactBerg->get_parent()->set_need_perform_layout();
+
+            m_ptabimpactBerg->set_need_layout();
+
+            m_ptabimpactBerg->set_need_redraw();
+
+            m_ptabimpactBerg->post_redraw();
+
+         }
+         else
+         {
+
+            system()->show_operating_system_information_box(puseractivationtoken);
+
+         }
+
+         return true;
+      };
+
    }
 
 
@@ -402,7 +435,7 @@ namespace berg
       if (!pmenu->m_pmenuitem)
       {
 
-         pmenu->øconstruct_new(pmenu->m_pmenuitem);
+         pmenu->construct_newø(pmenu->m_pmenuitem);
 
          pmenu->m_pmenuitem->m_pmenu = pmenu;
 
@@ -452,6 +485,23 @@ namespace berg
 
    }
 
+
+      void application::show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl,  ::user::activation_token *puseractivationtoken)
+   {
+
+      ::axis::application::show_lines_box(straLines, scopedstrIconUrl, puseractivationtoken);
+
+      // if (!m_ptabimpactBase)
+      //{
+
+      //   ::axis::application::show_about_box();
+
+      //   return;
+
+      //}
+
+      // m_ptabimpactBase->show_about_tab_pane();
+   }
 
    void application::add_impact_system(const ::atom & atom, const ::pointer < ::user::impact_system > & pimpactsystem)
    {

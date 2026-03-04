@@ -70,11 +70,11 @@ namespace draw2d
 
       //}
 
-      øconstruct_new(m_pimagea);
+      construct_newø(m_pimagea);
 
       //estatus = 
 
-      øconstruct_new(m_papi);
+      construct_newø(m_papi);
 
       //if (!estatus)
       //{
@@ -477,7 +477,7 @@ namespace draw2d
 
       ::draw2d::brush_pointer pbrush;
 
-      øconstruct(pbrush);
+      constructø(pbrush);
 
       pbrush->create_solid(color);
 
@@ -616,7 +616,7 @@ void draw2d::emboss_predicate(
 
       //auto estatus =
 
-      øconstruct(pimage);
+      constructø(pimage);
 
       //if (!estatus)
       //{
@@ -738,7 +738,7 @@ void draw2d::emboss_predicate(
       else
       {
 
-         filter = øallocate memory();
+         filter = allocateø memory();
 
          filter->set_size(iFilterArea);
 
@@ -1053,7 +1053,7 @@ void draw2d::emboss_predicate(
       }
       else
       {
-         filter = øallocate memory();
+         filter = allocateø memory();
          filter->set_size(iFilterArea);
          pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)
@@ -1356,7 +1356,7 @@ void draw2d::emboss_predicate(
 
       //estatus = 
 
-      øconstruct(m_pwritetext);
+      constructø(m_pwritetext);
 
       //if (!estatus)
       //{

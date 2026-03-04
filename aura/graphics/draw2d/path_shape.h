@@ -11,7 +11,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::double_line & line, holdee < ::draw2d::path >)
 //{
 //
-//   return øallocate double_line_shape< ::draw2d::path > (line);
+//   return allocateø double_line_shape< ::draw2d::path > (line);
 //
 //}
 //
@@ -20,7 +20,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::double_rectangle & rectangle, holdee < ::draw2d::path >)
 //{
 //
-//   return øallocate double_rectangle_shape<::draw2d::path> (rectangle);
+//   return allocateø double_rectangle_shape<::draw2d::path> (rectangle);
 //
 //}
 //
@@ -29,7 +29,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::double_ellipse & ellipse, holdee < ::draw2d::path >)
 //{
 //
-//   return øallocate ellipse_double_shape <::draw2d::path> (ellipse);
+//   return allocateø ellipse_double_shape <::draw2d::path> (ellipse);
 //
 //}
 //
@@ -38,7 +38,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::double_lines & lines, holdee < ::draw2d::path >)
 //{
 //
-//   return øallocate lines_double_shape<::draw2d::path> (lines);
+//   return allocateø lines_double_shape<::draw2d::path> (lines);
 //
 //}
 //
@@ -47,7 +47,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::double_polygon & polygon, holdee < ::draw2d::path >)
 //{
 //
-//   return øallocate double_polygon_shape<::draw2d::path> (polygon);
+//   return allocateø double_polygon_shape<::draw2d::path> (polygon);
 //
 //}
 //

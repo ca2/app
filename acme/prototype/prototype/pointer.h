@@ -90,7 +90,7 @@ public:
 
       REFDBG_THIS(this);
 
-      pparticle->øconstruct_new(*this);
+      pparticle->construct_newø(*this);
 
    }
 
@@ -106,7 +106,7 @@ public:
 
       REFDBG_THIS(this);
 
-      pparticle->øconstruct(*this, pfactory);
+      pparticle->constructø(*this, pfactory);
 
    }
 
@@ -550,7 +550,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = øallocate TYPE(*m_p);
+   //   auto pModified = allocateø TYPE(*m_p);
 
    //   pModified->apply(pparticle, attribute);
 
@@ -806,7 +806,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 
 
 //template < typename T, typename ...Args >
-//::pointer < T > øallocate(Args &&... args)
+//::pointer < T > allocateø(Args &&... args)
 //{
 //
 //   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
@@ -1553,7 +1553,7 @@ public:
 
 #define __preferernew_transfer_as_pointer __pointer_site(__refdbg_function_file_line__preferernew) <<
 
-#define øallocate __transfer_as_pointer new
+#define allocateø __transfer_as_pointer new
 
 #define __preferernew_allocate __preferernew_transfer_as_pointer new
 

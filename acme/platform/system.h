@@ -81,7 +81,7 @@ namespace platform
 //      void main()
 //      {
 //         
-//         auto pfactoryitem = øallocate ::factory::factory_item < APPLICATION, ::platform::application >;
+//         auto pfactoryitem = allocateø ::factory::factory_item < APPLICATION, ::platform::application >;
 //
 //         this->application_main(pfactoryitem);
 //         
@@ -522,6 +522,8 @@ namespace platform
       ::task_tool * task_tool(::enum_task_tool etool);
 
 
+      virtual void show_operating_system_information_box(::user::activation_token *puseractivationtoken);
+
 
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
@@ -612,7 +614,7 @@ namespace platform
       //virtual void windowing_post(const ::procedure & procedure);
 
 
-      void _post(const ::procedure & procedure) override;
+      void post(const ::procedure & procedure) override;
 
 
       bool _handle_call(::payload & payload, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember, ::property_set & propertyset) override;
@@ -694,15 +696,15 @@ namespace platform
       virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent) override;
       virtual bool _defer_component_factory(const ::scoped_string & scopedstrComponent) override;
 
-      //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
+      //::pointer < ::message_box_payload > & realize(::pointer < ::message_box_payload > & pmessagebox);
 
-      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box_payload > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 

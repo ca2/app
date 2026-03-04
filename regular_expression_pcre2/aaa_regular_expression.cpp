@@ -20,7 +20,7 @@ pcre_regex::~pcre_regex()
 
    ::pointer<pcre_context_impl> pcreContextImpl = pcre_context::create_context(0);
 
-   auto putil = øallocate pcre_util_impl(pcreContextImpl);
+   auto putil = allocateø pcre_util_impl(pcreContextImpl);
 
    putil->compile(str);
 

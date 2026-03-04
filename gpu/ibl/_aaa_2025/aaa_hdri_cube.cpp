@@ -36,11 +36,11 @@
 //       void hdri_cube::initialize_hdri_cube_with_hdr_on_memory(::gpu::renderer *pgpurenderer, const ::block & block)
 //       {
 //
-//          øconstruct(m_ptextureHdr);
+//          constructø(m_ptextureHdr);
 //
 //          m_ptextureHdr->initialize_hdr_texture_on_memory(pgpurenderer, block);
 //
-//          øconstruct(m_pcube);
+//          constructø(m_pcube);
 //
 //          m_pcube->initialize_gpu_cube(pgpurenderer->m_pgpucontext);
 //

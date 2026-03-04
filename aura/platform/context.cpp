@@ -68,7 +68,7 @@ namespace aura
             try
             {
 
-               øconstruct(m_pimagecontext);
+               constructø(m_pimagecontext);
 
             }
             catch (...)

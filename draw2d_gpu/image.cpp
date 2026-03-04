@@ -88,7 +88,7 @@ namespace draw2d_gpu
       m_bitmapinfo.bmiHeader.biCompression   = BI_RGB;
       m_bitmapinfo.bmiHeader.biSizeImage     = iStride  * size.cy;
 
-      øconstruct(m_pbitmap);
+      constructø(m_pbitmap);
 
       image32_t * pimage32 = nullptr;
       m_pbitmap->create_bitmap(nullptr, size, (void **)&pimage32, &iStride);
@@ -144,7 +144,7 @@ namespace draw2d_gpu
 
       ::memory_copy((::pixmap *) this, ppixmap, sizeof(::pixmap));
 
-      //øconstruct(m_pbitmap);
+      //constructø(m_pbitmap);
       ødefer_construct(m_pgraphics);
       //m_pgraphics->set(m_pbitmap);
 
@@ -2438,7 +2438,7 @@ namespace draw2d_gpu
 
          }
 
-         ((image *)this)->øconstruct(((image*)this)->m_pgraphics);
+         ((image *)this)->constructø(((image*)this)->m_pgraphics);
 
 
          ((image *)this)->m_pgraphics->set(m_pbitmap);

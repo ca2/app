@@ -1,6 +1,6 @@
 #include "framework.h"
 #include <time.h>
-//#undef øconstruct
+//#undef constructø
 //#undef øcreate
 #include "random_number_generator.h"
 #include <chrono>

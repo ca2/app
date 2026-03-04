@@ -98,7 +98,7 @@ public:
          }
       }
 
-      this->add(::øallocate MAIN_TYPE(key));
+      this->add(::allocateø MAIN_TYPE(key));
 
       return this->last();
 

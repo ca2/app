@@ -438,7 +438,7 @@ namespace networking_bsd
 //
 //      if (u.s.m_family == AF_INET || u.s.m_family == AF_INET6)
 //      {
-//         m_posdata->m_hostname = ref øallocate< ::winrt::Windows::Networking::HostName(get_display_number >());
+//         m_posdata->m_hostname = ref allocateø< ::winrt::Windows::Networking::HostName(get_display_number >());
 //      }
 //      else if (m_posdata->m_hostname != nullptr)
 //      {

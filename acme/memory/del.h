@@ -174,7 +174,7 @@ namespace acme
 
    //   ::acme::del(p);
 
-   //   return p = øallocate T();
+   //   return p = allocateø T();
 
    //}
 

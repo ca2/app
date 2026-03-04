@@ -30,10 +30,10 @@
 //      m_strGeometry = strGeometry;
 //
 //      //::e_status estatus = 
-//      /*::øconstruct_new(*/
+//      /*::construct_newø(*/
 //      
 //      
-//      pparticle->øconstruct_new(m_pshader);
+//      pparticle->construct_newø(m_pshader);
 //
 //
 //      //if (!estatus)

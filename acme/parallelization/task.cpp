@@ -455,7 +455,7 @@ bool task::task_get_run() const
    if (!m_pfinishing)
    {
 
-      ((::task *)this)->øconstruct_new(((::task *)this)->m_pfinishing);
+      ((::task *)this)->construct_newø(((::task *)this)->m_pfinishing);
 
    }
 
@@ -1082,7 +1082,7 @@ void task::main()
    catch (::exception & exception)
    {
 
-      send(__initialize_new::message_box(exception, application()->m_strAppId, exception.m_strDetails));
+      send(__initialize_new ::message_box_payload(exception, application()->m_strAppId, exception.m_strDetails));
 
    }
    catch (...)
@@ -1191,7 +1191,7 @@ void task::run()
 
       strMoreDetails = "task::run";
 
-      send(__initialize_new::message_box(exception,  strMoreDetails));
+      send(__initialize_new ::message_box_payload(exception,  strMoreDetails));
 
    }
 
@@ -2042,7 +2042,7 @@ void task::__task_term()
 //}
 
 
-void task::_post(const ::procedure & procedure)
+void task::post(const ::procedure & procedure)
 {
 
    if (!procedure)
@@ -2113,7 +2113,7 @@ void task::_post(const ::procedure & procedure)
 //}
 
 
-void task::_send(const ::procedure & procedure)
+void task::send(const ::procedure & procedure)
 {
 
    ::cast < ::sequence > psequence = procedure;
@@ -2142,7 +2142,7 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      øconstruct_new(pmanualresethappeningOnEndOfSequence);
+      construct_newø(pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequenceToSetInProcedure = pmanualresethappeningOnEndOfSequence;
 
@@ -2175,7 +2175,7 @@ void task::_send(const ::procedure & procedure)
                catch (...)
                {
 
-                  pexception = øallocate::exception(error_catch_all_exception);
+                  pexception = allocateø::exception(error_catch_all_exception);
 
                }
 
@@ -2212,7 +2212,7 @@ void task::_send(const ::procedure & procedure)
       catch (...)
       {
 
-         pexception = øallocate::exception(error_catch_all_exception);
+         pexception = allocateø::exception(error_catch_all_exception);
 
       }
 
@@ -3065,7 +3065,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //if (bSynchInitialization)
    {
 
-      m_phappeningInitialization = øallocate manual_reset_happening();
+      m_phappeningInitialization = allocateø manual_reset_happening();
 
    }
 
@@ -3423,7 +3423,7 @@ bool task::task_sleep(const class time & timeWait)
 //void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   auto ptask = øallocate task();
+//   auto ptask = allocateø task();
 //
 //   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -3480,7 +3480,7 @@ bool task::task_sleep(const class time & timeWait)
 void task::kick_idle()
 {
 
-   _post([]() {});
+   post([]() {});
 
 }
 
@@ -3585,7 +3585,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = øallocate manual_reset_happening();
+            ptask->m_pevSleep = allocateø manual_reset_happening();
 
             ptask->m_pevSleep->reset_happening();
 

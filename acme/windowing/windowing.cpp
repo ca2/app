@@ -551,18 +551,18 @@ namespace acme
       }
 
 
-      void windowing::_main_send(const ::procedure& procedure)
+      void windowing::main_send(const ::procedure& procedure)
       {
 
-         _user_send(procedure);
+         user_send(procedure);
 
       }
 
 
-      void windowing::_main_post(const ::procedure& procedure)
+      void windowing::main_post(const ::procedure& procedure)
       {
 
-         _user_post(procedure);
+         user_post(procedure);
 
       }
 
@@ -692,7 +692,7 @@ namespace acme
 
          }
 
-         auto ptopic = øallocate ::topic(id_application_dark_mode_change);
+         auto ptopic = allocateø ::topic(id_application_dark_mode_change);
 
          each_window([ptopic](auto& pacmewindowingwindow)
          {
@@ -883,12 +883,12 @@ namespace acme
       //}
 
 
-      bool windowing::defer_realize(::pointer<::reified<::message_box>>& preifiedMessageBox, ::message_box* p)
-      {
-
-         return false;
-
-      }
+      // bool windowing::defer_realize(::pointer<::reified<::message_box>>& preifiedMessageBox, ::message_box* p)
+      // {
+      //
+      //    return false;
+      //
+      // }
 
 
       bool windowing::has_resizing()

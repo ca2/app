@@ -86,7 +86,7 @@ namespace filemanager
 
             initialize_split_layout();
 
-            øconstruct_new(m_ptree);
+            construct_newø(m_ptree);
 
             m_ptree->m_pserver = this;
 

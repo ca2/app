@@ -957,7 +957,7 @@ namespace bred
 
       //auto estatus =
 
-      pfactoryGpu->øconstruct(this, m_pgpuapproach);
+      pfactoryGpu->constructø(this, m_pgpuapproach);
 
 
       m_pgpuapproach->initialize_gpu_approach();

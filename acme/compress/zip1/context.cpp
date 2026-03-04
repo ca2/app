@@ -307,7 +307,7 @@ namespace str
 
       ::pointer<::zip::in_file>pinfile;
 
-      øconstruct_new(pinfile);
+      construct_newø(pinfile);
 
       if (!pinfile->unzip_open(pfile, straPath, 2, petype))
       {

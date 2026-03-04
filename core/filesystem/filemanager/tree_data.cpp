@@ -483,7 +483,7 @@ namespace filemanager
       //            if (ptreeitemChild == nullptr)
       //            {
 
-      //               pitemChild = øallocate ::userfs::item(this);
+      //               pitemChild = allocateø ::userfs::item(this);
 
       //               pitemChild->set_user_path(pathAscendant);
 
@@ -554,7 +554,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = øallocate ::data::tree_item();
+      //         ptreeitemChild = allocateø ::data::tree_item();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -579,7 +579,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = øallocate ::userfs::item(this);
+      //         pitemChild = allocateø ::userfs::item(this);
 
       //         ptreeitemChild->m_pitem = pitemChild;
 
@@ -637,7 +637,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = øallocate ::data::tree_item();
+      //         ptreeitemChild = allocateø ::data::tree_item();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -660,7 +660,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = øallocate ::userfs::item(this);
+      //         pitemChild = allocateø ::userfs::item(this);
 
       //         ptreeitemChild->m_pitem = pitemChild;
 
@@ -892,7 +892,7 @@ return;
          if (!pchild)
          {
 
-            auto pitemNew = øallocate ::userfs::item(this);
+            auto pitemNew = allocateø ::userfs::item(this);
 
             pitemNew->set_user_path(path);
 
@@ -1028,7 +1028,7 @@ return;
    //            if (ptreeitemChild == nullptr)
    //            {
 
-   //               pitemChild = øallocate ::userfs::item(this);
+   //               pitemChild = allocateø ::userfs::item(this);
 
    //               pitemChild->set_user_path(pathAscendant);
 
@@ -1099,7 +1099,7 @@ return;
    //      if (ptreeitemChild.is_null())
    //      {
 
-   //         ptreeitemChild = øallocate ::data::tree_item();
+   //         ptreeitemChild = allocateø ::data::tree_item();
 
    //         ptreeitemChild->m_ptree = this;
 
@@ -1124,7 +1124,7 @@ return;
    //      if (!pitemChild)
    //      {
 
-   //         pitemChild = øallocate ::userfs::item(this);
+   //         pitemChild = allocateø ::userfs::item(this);
 
    //         ptreeitemChild->m_pitem = pitemChild;
 
@@ -1358,7 +1358,7 @@ return;
 
       auto puserfsitem = dynamic_cast < ::userfs::item *> (ptreeitembase->_item());
 
-      auto pfileitem = øallocate ::file::item(*puserfsitem);
+      auto pfileitem = allocateø ::file::item(*puserfsitem);
 
       filemanager_document()->browse(pfileitem, context);
 

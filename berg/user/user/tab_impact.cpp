@@ -495,7 +495,7 @@ namespace user
 
       create_tab_by_id(::user::tab::index_id(pchannel->get_data()->m_iClickTab));
 
-      m_pdroptargetwindow = øallocate tab_drop_target_window();
+      m_pdroptargetwindow = allocateø tab_drop_target_window();
 
       m_pdroptargetwindow->initialize_tab_drop_target_window(this, (int)pchannel->get_data()->m_iClickTab);
 
@@ -1159,10 +1159,14 @@ namespace user
          {
 
             phandlerimpact->call_handler(
-               [poptionsimpacthandler](auto puserinteractionParent)
+               [this, poptionsimpacthandler](auto puserinteractionParent)
                {
 
                   poptionsimpacthandler->create_options_impact(CONTEXT_OPTIONS_IMPACT, puserinteractionParent);
+
+                  /// todo?!?!?! if ! has tab pAPP_OPTIONS_IMPACT
+                  
+//                  m_papplication->create_options_footer(APP_OPTIONS_IMPACT, puserinteractionParent);
 
                });
 
@@ -1240,7 +1244,7 @@ namespace user
          //if (!pmenu->m_pmenuitem->m_pmenuitema)
          //{
 
-         //   pmenu->m_pmenuitem->m_pmenuitema = øallocate ::menu::item_ptra(pmenu->m_pmenuitem);
+         //   pmenu->m_pmenuitem->m_pmenuitema = allocateø ::menu::item_ptra(pmenu->m_pmenuitem);
 
          //}
 

@@ -410,9 +410,9 @@ namespace user
       catch (const ::exception& exception)
       {
 
-         auto pmessagebox = __initialize_new::message_box(exception, __FUNCTION_FILE_LINE__);
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, __FUNCTION_FILE_LINE__);
 
-         pmessagebox->async();
+         post(pmessageboxpayload);
 
          return false;
 
@@ -518,7 +518,7 @@ namespace user
          if (m_pitemClose.is_null())
          {
 
-            m_pitemClose = øallocate::menu::item();
+            m_pitemClose = allocateø::menu::item();
 
             m_pitemClose->id() = "close_menu";
 
@@ -679,7 +679,7 @@ namespace user
          //}
 
 #else
-         //auto pusersystem = øallocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
+         //auto pusersystem = allocateø ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
 
          //if (!create_window_ex(pusersystem, puiParent))
          //if (!create_host())
@@ -1228,7 +1228,7 @@ namespace user
       ////
       ////                           m_pmenuitemSub = pitem;
       ////
-      ////                           m_psubmenu = øallocate menu(pitem);
+      ////                           m_psubmenu = allocateø menu(pitem);
       ////
       ////                           m_psubmenu->initialize(this);
       ////
@@ -1408,7 +1408,7 @@ namespace user
 
       hide_sub_menu();
 
-      auto pusermenu = øallocate::user::menu(pmenuitem);
+      auto pusermenu = allocateø::user::menu(pmenuitem);
 
       pusermenu->initialize(this);
 
@@ -1420,7 +1420,7 @@ namespace user
 
       m_pmenuSubMenu->update_track_rectangle(rectangle);
 
-      auto ptrackpopup = øallocate::menu::track_popup(pusermenu,
+      auto ptrackpopup = allocateø::menu::track_popup(pusermenu,
          pmenuitem->m_puserinteraction,
          m_pchannelNotify,
          mouse_cursor_position(),
@@ -1571,7 +1571,7 @@ namespace user
 
             //   m_atomSubMenu = m_atomTimerMenu;
 
-            //   m_psubmenu = øallocate menu(pmenuitema->find(m_atomTimerMenu));
+            //   m_psubmenu = allocateø menu(pmenuitema->find(m_atomTimerMenu));
 
             //   m_psubmenu->initialize(this);
 

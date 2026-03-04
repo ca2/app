@@ -654,11 +654,11 @@ namespace user
 
       void host_post(const ::procedure& procedure) override;
 
-      void _user_send(const ::procedure & procedure) override;
-      void _user_post(const ::procedure & procedure) override;
+      void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
 
-      void _main_send(const ::procedure & procedure) override;
-      void _main_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
       //post_continuation main_async() override;
 
@@ -867,7 +867,7 @@ namespace user
       //void window_move(int x, int y) override;
 
 
-      //auto fps_interest() { return øallocate ::fps_interest(this); }
+      //auto fps_interest() { return allocateø ::fps_interest(this); }
 
       virtual bool should_save_window_rectangle();
       
@@ -2642,7 +2642,7 @@ namespace user
 
 
 
-      void _post(const ::procedure & procedure) override;
+      void post(const ::procedure & procedure) override;
       //virtual void fps_interest_post_procedure(const ::procedure & procedure);
 
 

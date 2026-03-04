@@ -507,8 +507,8 @@ namespace windowing
       
       virtual void frame_toggle_restore(::user::activation_token * puseractivationtoken);
 
-      void _user_send(const ::procedure & procedure) override;
-      void _user_post(const ::procedure & procedure) override;
+      void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
 
       bool is_branch_current() const override;
 
@@ -589,8 +589,8 @@ namespace windowing
       void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken) override;
 
 
-      void _main_send(const ::procedure & procedure) override;
-      void _main_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
 
 

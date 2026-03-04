@@ -126,8 +126,8 @@ namespace heap
       //s_allocatora[::heap::e_allocator_a2] = _new_allocator(::heap::e_allocator_a2);
 
 
-      //m_pallocatorSystemMemory = øallocate system_memory_allocator();
-      //m_pallocatorDefaultMemory = øallocate default_memory_allocator();
+      //m_pallocatorSystemMemory = allocateø system_memory_allocator();
+      //m_pallocatorDefaultMemory = allocateø default_memory_allocator();
 
       for (::collection::index i = 0; i < ::heap::e_memory_count; i++)
       {
@@ -142,11 +142,11 @@ namespace heap
       //s_memorya[::heap::e_memory_property] = new_memory(::heap::e_memory_property);
       //s_memorya[::heap::e_memory_string] = new_memory(::heap::e_memory_string);
 
-      //m_pmemoryallocateMain = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateSecondary = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateArray = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateProperty = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
-      //m_pmemoryallocateString = øallocate < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateMain = allocateø < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateSecondary = allocateø < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateArray = allocateø < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateProperty = allocateø < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
+      //m_pmemoryallocateString = allocateø < ::acme::get()->m_pheapmanagement->memory >(::heap::e_memory_main)->allocate);
 
    }
 

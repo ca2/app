@@ -226,7 +226,7 @@ namespace berg
 
       //auto estatus = 
 
-      øconstruct_new(m_pmenucentral);
+      construct_newø(m_pmenucentral);
 
       //if (!estatus)
       //{
@@ -535,7 +535,7 @@ namespace berg
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = øallocate::user::menu_button();
+      auto pmenubutton = allocateø::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -589,7 +589,7 @@ namespace berg
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = øallocate::user::interaction();
+      auto pinteraction = allocateø::user::interaction();
 
       pinteraction->create_child(puiParent);
 
@@ -777,7 +777,7 @@ namespace berg
    //   if (m_pfontlistSingleColumn.is_null())
    //   {
 
-   //      øconstruct(m_pfontlistSingleColumn, øcreate_new < ::write_text::font_list > ());
+   //      constructø(m_pfontlistSingleColumn, øcreate_new < ::write_text::font_list > ());
 
    //      m_pfontlistSingleColumn->m_etype = ::write_text::font_list::type_single_column;
 
@@ -1334,7 +1334,7 @@ namespace berg
 
       ::user::style_pointer pstyle;
 
-      pexperience->m_pfactory->øconstruct(papp, pstyle);
+      pexperience->m_pfactory->constructø(papp, pstyle);
 
       if (!pstyle)
       {
@@ -1728,9 +1728,9 @@ namespace berg
 
 #ifdef _DEBUG
 
-         auto pmessagebox = __initialize_new::message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create form \"" + pathFile + "\"");
 
-         pmessagebox->async();
+         post(pmessageboxpayload);
 
 #endif
 
@@ -1742,9 +1742,9 @@ namespace berg
 
          ::exception exception(error_catch_all_exception);
 
-         auto pmessagebox = __initialize_new::message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create form \"" + pathFile + "\"");
 
-         pmessagebox->async();
+         post(pmessageboxpayload);
 
 #endif
 
@@ -1795,7 +1795,7 @@ namespace berg
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return øallocate::user::show < ::calculator::edit >();
+      return allocateø::user::show < ::calculator::edit >();
 
    }
 
@@ -1818,7 +1818,7 @@ namespace berg
 
          add_impact_system(
             atom,
-            øallocate::user::multiple_document_template(
+            allocateø::user::multiple_document_template(
                "system/form",
                ::type<form_document>(),
                get_simple_child_frame_type_info(),
@@ -1862,7 +1862,7 @@ namespace berg
    ::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = øallocate::user::menu_button();
+      auto pmenubutton = allocateø::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 

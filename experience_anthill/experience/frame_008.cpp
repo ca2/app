@@ -58,11 +58,11 @@ namespace experience_anthill
       frame::initialize(pparticle);
 
 
-      øconstruct(m_ppenHollow1);
-      øconstruct(m_ppenHollow2);
-      øconstruct(m_ppenHollow3);
-      øconstruct(m_ppenHollow4);
-      øconstruct(m_ppenHollow5);
+      constructø(m_ppenHollow1);
+      constructø(m_ppenHollow2);
+      constructø(m_ppenHollow3);
+      constructø(m_ppenHollow4);
+      constructø(m_ppenHollow5);
 
    }
 

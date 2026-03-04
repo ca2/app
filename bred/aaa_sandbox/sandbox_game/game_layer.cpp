@@ -27,7 +27,7 @@ namespace sandbox_game
    void immersion_layer::onInit()
    {
       information("immersion_layer::onInit");
-      øconstruct(m_pscene);
+      constructø(m_pscene);
       //m_scene = øcreate_pointer<sandbox_scene>(m_windowInput, m_assetManager);
       m_pscene->initialize_scene(m_pwindowinput, m_passetmanager);
       m_pscene->loadSceneFile("default_scene"); // TODO: Eventually specify which scene file to load in a better way than this probably via UI

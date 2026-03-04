@@ -60,7 +60,7 @@ namespace gpu
             // ASSERT(::is_set(texture_albedo()));
             // ASSERT(::is_set(m_ptextureNormal));
 
-            øconstruct(m_pbindingslotset);
+            constructø(m_pbindingslotset);
 
             auto pbindingset = m_pgpucontext->global_ubo1_binding_set();
 

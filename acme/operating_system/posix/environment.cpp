@@ -62,7 +62,7 @@ namespace acme_posix
 ::pointer < ::operating_system::environment > operating_system_get_environment()
 {
 
-   auto p = øallocate ::acme_posix::environment();
+   auto p = allocateø ::acme_posix::environment();
    
    return p;
 

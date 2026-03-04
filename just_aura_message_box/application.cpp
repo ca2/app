@@ -95,7 +95,7 @@ namespace app_just_aura_message_box
    //void application::show_message_box()
    //{
 
-   //   auto pmessagebox = __initialize_new::message_box(
+   //   auto pmessageboxpayload = __initialize_new ::message_box_payload(
    //      "Showing a message box as requested.\n\nIs it ok?",
    //      nullptr, ::user::e_message_box_yes_no_cancel);
 
@@ -108,13 +108,13 @@ namespace app_just_aura_message_box
    //         if (edialogresult == e_dialog_result_cancel)
    //         {
 
-   //            _001TryCloseApplication();
+   //            _001PostTryCloseApplication();
 
    //         }
    //         else  if (edialogresult == e_dialog_result_no)
    //         {
 
-   //            auto pmessagebox = __initialize_new::message_box("No!", nullptr, ::user::e_message_box_ok);
+   //            auto pmessageboxpayload = __initialize_new ::message_box_payload("No!", nullptr, ::user::e_message_box_ok);
 
    //            pmessagebox->post()
    //               << [this]
@@ -128,13 +128,13 @@ namespace app_just_aura_message_box
    //         else  if (edialogresult == e_dialog_result_yes)
    //         {
 
-   //            auto pmessagebox = __initialize_new::message_box("Yes!!", nullptr, ::user::e_message_box_ok);
+   //            auto pmessageboxpayload = __initialize_new ::message_box_payload("Yes!!", nullptr, ::user::e_message_box_ok);
 
    //            pmessagebox->post() <<
    //               [this]()
    //               {
 
-   //                  _001TryCloseApplication();
+   //                  _001PostTryCloseApplication();
 
    //               };
 
@@ -151,7 +151,7 @@ namespace app_just_aura_message_box
 
    //      //                     auto papp = get_app();
 
-   //      //                     papp->_001TryCloseApplication();
+   //      //                     papp->_001PostTryCloseApplication();
 
    //      //                  }
    //      //                  else

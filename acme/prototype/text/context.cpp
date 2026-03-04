@@ -18,7 +18,7 @@ namespace text
    {
 
 
-      m_plocaleschema = øallocate ::text::international::locale_schema();
+      m_plocaleschema = allocateø ::text::international::locale_schema();
 
 
    }

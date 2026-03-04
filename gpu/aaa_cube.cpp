@@ -127,7 +127,7 @@
        // };
 
 
-              øconstruct(m_pmodelbuffer);
+              constructø(m_pmodelbuffer);
 
 
        m_pmodelbuffer->initialize_model(pgpucontext, m_modeldata);

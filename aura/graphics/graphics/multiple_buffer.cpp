@@ -47,7 +47,7 @@ namespace graphics
 
       //}
 
-      //øconstruct_new(m_pim);
+      //construct_newø(m_pim);
 
 #ifdef MACOS
 
@@ -62,7 +62,7 @@ namespace graphics
       for (auto & pbufferitem : m_bufferitema)
       {
 
-         øconstruct_new(pbufferitem);
+         construct_newø(pbufferitem);
 
          //pimage->defer_create_synchronization();
 

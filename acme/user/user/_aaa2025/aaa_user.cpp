@@ -231,7 +231,7 @@ namespace acme
 
       //      system()->do_graphics_and_windowing_system_factory();
 
-      //      øconstruct(m_pdisplaybase);
+      //      constructø(m_pdisplaybase);
 
       //      m_pdisplaybase->open_display();
 
@@ -383,7 +383,7 @@ namespace acme
 
          }
 
-         auto ptopic = øallocate ::topic(id_application_dark_mode_change);
+         auto ptopic = allocateø ::topic(id_application_dark_mode_change);
 
          auto nanowindowingwindowa = system()->acme_windowing()->m_windowa;
 

@@ -464,7 +464,7 @@ namespace sockets
 
       socket::initialize(pparticle);
 
-      øconstruct(m_plistensocketImpl);
+      constructø(m_plistensocketImpl);
 
       //m_p2 = m_plistensocketImpl->m_p2;
 

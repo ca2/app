@@ -504,7 +504,11 @@ namespace apex
 
       void on_application_dark_mode_change() override;
 
+      virtual ::pointer<::innate_ui::icon> operating_system_innate_ui_icon(const ::int_size &size);
+      virtual ::string operating_system_innate_ui_icon_url(const ::int_size &size);
+      void show_operating_system_information_box(::user::activation_token *puseractivationtoken) override;
 
+    
    };
 
 

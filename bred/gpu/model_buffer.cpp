@@ -840,7 +840,7 @@ namespace gpu
       initialize_gpu_context_object(pgpucontext);
 
 
-      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, iVertexCount);
+      m_pmodeldatabase2 = allocateø ::gpu::model_data_base(::gpu::dummy_t{}, iVertexCount);
 
       //m_iVertexCount = iVertexCount;
 
@@ -959,7 +959,7 @@ namespace gpu
       // m_pgpurenderer = pgpurenderer;
 
       //m_bDummy = true;
-      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, ivertexes);
+      m_pmodeldatabase2 = allocateø ::gpu::model_data_base(::gpu::dummy_t{}, ivertexes);
 
       ødefer_construct(m_pbufferVertex);
 

@@ -100,7 +100,7 @@ void directory_system::init_system()
 
    }
 
-   //øconstruct(m_pfilewatcher);
+   //constructø(m_pfilewatcher);
 
    pdirectorysystem->create(directory_system()->bookmark());
 
@@ -114,7 +114,7 @@ void directory_system::init_system()
    //if (m_pziputil == nullptr)
    //{
 
-   //   m_pziputil = øallocate ::zip::util();
+   //   m_pziputil = allocateø ::zip::util();
 
    //}
 

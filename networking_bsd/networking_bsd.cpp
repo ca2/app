@@ -691,7 +691,7 @@ CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const_char_pointer hostname)
 
 //#ifdef UNIVERSAL_WINDOWS
 //
-//   return (ref øallocate< ::winrt::Windows::Networking::HostName(string >(hostname)))->DisplayName;
+//   return (ref allocateø< ::winrt::Windows::Networking::HostName(string >(hostname)))->DisplayName;
 //
 //#else
 

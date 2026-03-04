@@ -84,7 +84,7 @@ public:
 #define RETURN_OR_THROW(bReturn, ppexception, EXCEPTION, ...) \
    if(bReturn) \
    { \
-      if(ppexception) *ppexception = øallocate EXCEPTION(__VA_ARGS__); \
+      if(ppexception) *ppexception = allocateø EXCEPTION(__VA_ARGS__); \
       return; \
    } \
    throw EXCEPTION(__VA_ARGS__)

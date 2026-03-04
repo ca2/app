@@ -444,7 +444,7 @@ namespace write_text
          //if (bCheckHover && rectangle.contains_y(pointCursor.y))
          //{
 
-         //   //m_puserinteraction->m_pitemHover = øallocate ::item({ ::e_element_item, i });
+         //   //m_puserinteraction->m_pitemHover = allocateø ::item({ ::e_element_item, i });
 
          //   m_puserinteraction->m_pitemHover = pfontlistitem;
 
@@ -553,7 +553,7 @@ namespace write_text
 
          string str = pitem->m_strName;
 
-         øconstruct(pbox->m_pfont);
+         constructø(pbox->m_pfont);
 
          if (str.case_insensitive_order("GOUDY STOUT") == 0)
          {
@@ -1155,7 +1155,7 @@ namespace write_text
 
                bNew = true;
 
-               plistitem = øallocate font_list_item();
+               plistitem = allocateø font_list_item();
 
                plistitem->m_item.m_iItem = iItem;
 
@@ -1642,7 +1642,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = øallocate ::item(::e_element_none);
+         auto pitemNone = allocateø ::item(::e_element_none);
 
          return pitemNone;
 
@@ -1677,14 +1677,14 @@ namespace write_text
          if (pfontlistitem->m_box[BOX].m_rectangle.contains(point))
          {
 
-            //return øallocate ::item(::e_element_item, iItem);
+            //return allocateø ::item(::e_element_item, iItem);
             return pfontlistitem;
 
          }
 
       }
 
-      //auto pitemNone = øallocate ::item(::e_element_none);
+      //auto pitemNone = allocateø ::item(::e_element_none);
 
       //return pitemNone;
 
@@ -1703,7 +1703,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = øallocate ::item(::e_element_none);
+         auto pitemNone = allocateø ::item(::e_element_none);
 
          return pitemNone;
 
@@ -1734,7 +1734,7 @@ namespace write_text
 
       }
 
-      //auto pitemNone = øallocate ::item(::e_element_none);
+      //auto pitemNone = allocateø ::item(::e_element_none);
 
       // return pitemNone;
 

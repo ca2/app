@@ -29,7 +29,7 @@ namespace sockets
 //      if (pcontext.is_null())
 //      {
 //
-//         pcontext = øallocate ssl_client_context(pmethod);
+//         pcontext = allocateø ssl_client_context(pmethod);
 //
 //      }
 //

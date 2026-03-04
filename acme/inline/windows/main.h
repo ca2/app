@@ -8,7 +8,7 @@ int WINAPI acme_win_main(::platform::application* papp, HINSTANCE hinstanceThis,
 int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 {
 
-	auto papp = øallocate APPLICATION::application();
+	auto papp = allocateø APPLICATION::application();
 
 	return ::acme::win_main(papp, hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 

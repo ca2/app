@@ -12,227 +12,232 @@
 //#include "user.h"
 
 
-dialog::dialog()
+namespace userex
 {
-
-   m_pformdocument = nullptr;
-   m_pframe = nullptr;
-
-}
-
-
-dialog::dialog(const ::scoped_string & scopedstrMatter, ::pointer<::user::interaction>puiParent)
-{
-
-   initialize(puiParent);
-
-   m_strMatter = scopedstrMatter;
-   m_pformdocument    = nullptr;
-   m_pframe       = nullptr;
-
-}
-
-
-dialog::~dialog()
-{
-   if(m_pformdocument != nullptr)
+   dialog::dialog()
    {
-      m_pformdocument->on_close_document();
+
       m_pformdocument = nullptr;
+      m_pframe = nullptr;
+
    }
-   if(m_pframe != nullptr)
-   {
-//      m_pframe->DestroyWindow();
-      // m_pframe = nullptr;
-   }
-}
 
 
-void dialog::handle(::topic * ptopic, ::handler_context * phandlercontext)
-{
-
-   if(::is_set(ptopic->user_interaction()) && m_pform == nullptr)
+   dialog::dialog(const ::scoped_string & scopedstrMatter, ::pointer<::user::interaction>puiParent)
    {
 
-      if(ptopic->id() == ::id_create)
+      initialize(puiParent);
+
+      m_strMatter = scopedstrMatter;
+      m_pformdocument    = nullptr;
+      m_pframe       = nullptr;
+
+   }
+
+
+   dialog::~dialog()
+   {
+      if(m_pformdocument != nullptr)
+      {
+         m_pformdocument->on_close_document();
+         m_pformdocument = nullptr;
+      }
+      if(m_pframe != nullptr)
+      {
+         //      m_pframe->DestroyWindow();
+         // m_pframe = nullptr;
+      }
+   }
+
+
+   void dialog::handle(::topic * ptopic, ::handler_context * phandlercontext)
+   {
+
+      if(::is_set(ptopic->user_interaction()) && m_pform == nullptr)
       {
 
-         m_pform = ptopic->user_interaction();
+         if(ptopic->id() == ::id_create)
+         {
+
+            m_pform = ptopic->user_interaction();
+
+         }
 
       }
 
    }
 
-}
 
-
-bool dialog::show(const ::scoped_string & scopedstrMatter)
-{
-
-   string strMatter(scopedstrMatter);
-
-   if(!case_insensitive_string_begins(strMatter, "matter://"))
+   bool dialog::show(const ::scoped_string & scopedstrMatter)
    {
 
-      strMatter = "matter://" + strMatter;
+      string strMatter(scopedstrMatter);
+
+      if(!case_insensitive_string_begins(strMatter, "matter://"))
+      {
+
+         strMatter = "matter://" + strMatter;
+
+      }
+
+      m_strMatter = ::file::path(strMatter);
+
+      ::payload payload;
+
+      payload["url"] = strMatter;
+
+      payload["hold"] = false;
+
+      ::payload varArgs;
+
+      varArgs["window_frame"] = true;
+
+      auto pcontext = m_papplication;
+
+      auto psession = pcontext->m_psession;
+
+      auto puser = psession->m_puser;
+
+      m_pformdocument = puser->create_form(this, nullptr, this, psession->get_user_interaction_host(), payload, varArgs);
+
+      if(m_pformdocument == nullptr)
+      {
+
+         string str;
+
+         str.formatf("Could not show dialog %s", scopedstrMatter.as_string().c_str());
+
+         informationf(str);
+
+         return false;
+
+      }
+
+      m_pframe = m_pformdocument->get_impact()->parent_frame();
+
+      m_pframe->m_bCloseApplicationIfLastVisibleFrame = false;
+
+      //m_pframe->add_each_routine_from(DIALOG_RESULT_PROCESS, this);
+
+      m_pform = m_pformdocument->get_typed_impact<::user::form>();
+
+      on_position_parent_frame();
+
+      on_show(m_strMatter);
+
+      //m_pframe->_001FancyInitialFramePlacement();
+      //
+      //m_pframe->RunModalLoop();
+
+      //m_pframe->DestroyWindow();
+
+      //m_pformdocument->close_document();
+
+      //m_pform.release();
+
+      //m_pframe.release();
+
+      //m_pformdocument.release();
+
+      return true;
 
    }
 
-   m_strMatter = ::file::path(strMatter);
 
-   ::payload payload;
-
-   payload["url"] = strMatter;
-
-   payload["hold"] = false;
-
-   ::payload varArgs;
-
-   varArgs["window_frame"] = true;
-
-   auto pcontext = m_papplication;
-   
-   auto psession = pcontext->m_psession;
-   
-   auto puser = psession->m_puser;
-
-   m_pformdocument = puser->create_form(this, nullptr, this, psession->get_user_interaction_host(), payload, varArgs);
-
-   if(m_pformdocument == nullptr)
+   void dialog::on_show(const ::scoped_string & scopedstrMatter)
    {
 
-      string str;
+      m_pform->set_need_redraw();
 
-      str.formatf("Could not show dialog %s", scopedstrMatter.as_string().c_str());
-
-      informationf(str);
-
-      return false;
+      m_pform->post_redraw();
 
    }
 
-   m_pframe = m_pformdocument->get_impact()->parent_frame();
 
-   m_pframe->m_bCloseApplicationIfLastVisibleFrame = false;
-
-   //m_pframe->add_each_routine_from(DIALOG_RESULT_PROCESS, this);
-
-   m_pform = m_pformdocument->get_typed_impact<::user::form>();
-
-   on_position_parent_frame();
-
-   on_show(m_strMatter);
-
-   //m_pframe->_001FancyInitialFramePlacement();
-//
-   //m_pframe->RunModalLoop();
-
-   //m_pframe->DestroyWindow();
-
-   //m_pformdocument->close_document();
-
-   //m_pform.release();
-
-   //m_pframe.release();
-
-   //m_pformdocument.release();
-
-   return true;
-
-}
-
-
-void dialog::on_show(const ::scoped_string & scopedstrMatter)
-{
-
-   m_pform->set_need_redraw();
-
-   m_pform->post_redraw();
-
-}
-
-
-void dialog::EndModalLoop(atom idResult)
-{
-
-   if (m_pframe == nullptr)
+   void dialog::EndModalLoop(atom idResult)
    {
 
-      return;
+      if (m_pframe == nullptr)
+      {
+
+         return;
+
+      }
+
+      m_pframe->display(e_display_none);
+
+      m_pframe->set_need_redraw();
+
+      m_pframe->post_redraw();
+
+      m_pframe->set_dialog_result(idResult);
 
    }
 
-   m_pframe->display(e_display_none);
-
-   m_pframe->set_need_redraw();
-
-   m_pframe->post_redraw();
-
-   m_pframe->set_dialog_result(idResult);
-
-}
 
 
 
 
 
 
+   void dialog::on_position_parent_frame()
+   {
 
-void dialog::on_position_parent_frame()
-{
+      ::int_rectangle rectangleOpen;
 
-   ::int_rectangle rectangleOpen;
+      m_pframe->best_monitor(&rectangleOpen);
 
-   m_pframe->best_monitor(&rectangleOpen);
+      int iWidth = rectangleOpen.width();
 
-   int iWidth = rectangleOpen.width();
+      int iHeight = rectangleOpen.height();
 
-   int iHeight = rectangleOpen.height();
+      rectangleOpen.deflate(iWidth / 5, iHeight / 5);
 
-   rectangleOpen.deflate(iWidth / 5, iHeight / 5);
+      m_pframe->order(e_zorder_top);
 
-   m_pframe->order(e_zorder_top);
+      m_pframe->place(rectangleOpen);
 
-   m_pframe->place(rectangleOpen);
+      m_pframe->ActivateFrame();
 
-   m_pframe->ActivateFrame();
+      m_pframe->set_need_layout();
 
-   m_pframe->set_need_layout();
+      m_pframe->set_need_redraw();
 
-   m_pframe->set_need_redraw();
+      m_pframe->display();
 
-   m_pframe->display();
+   }
 
-}
+   void dialog::OnCancel()
+   {
+   }
 
-void dialog::OnCancel()
-{
-}
+   void dialog::OnOK()
+   {
+   }
 
-void dialog::OnOK()
-{
-}
+   void dialog::form_from_user()
+   {
+   }
 
-void dialog::form_from_user()
-{
-}
-
-void dialog::form_to_user()
-{
-}
-
-
-void dialog::do_data_exchange(::user::data_exchange * pdx)
-{
-}
+   void dialog::form_to_user()
+   {
+   }
 
 
-int_bool dialog::on_init_dialog()
-{
+   void dialog::do_data_exchange(::user::data_exchange * pdx)
+   {
+   }
 
-   return true;
 
-}
+   int_bool dialog::on_init_dialog()
+   {
+
+      return true;
+
+   }
+
+
+} // namespace userex
 
 
 

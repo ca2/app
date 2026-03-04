@@ -79,7 +79,7 @@ namespace filemanager
 
             //auto estatus = 
             
-            øconstruct_new(m_puserlistcache);
+            construct_newø(m_puserlistcache);
 
             set_cache_interface(m_puserlistcache);
 
@@ -812,7 +812,7 @@ namespace filemanager
                               }
 
                               */
-                  m_itema.add(øallocate Item(item));
+                  m_itema.add(allocateø Item(item));
                   iNode++;
                }
             }
@@ -836,7 +836,7 @@ namespace filemanager
                   item.m_iImage = m_iIconSong;
 
 
-                  m_itema.add(øallocate Item(item));
+                  m_itema.add(allocateø Item(item));
                   iNode++;
                }
             }

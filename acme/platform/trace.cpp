@@ -16,7 +16,7 @@
 //   if(!g_plogger)
 //   {
 //
-//   pcontext->øconstruct(t_plogger);
+//   pcontext->constructø(t_plogger);
 //
 //}
 //

@@ -621,7 +621,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   ::e_status estatus = øconstruct(m_pbuffer);
+   //   ::e_status estatus = constructø(m_pbuffer);
 
    //   if (!estatus)
    //   {
@@ -1062,7 +1062,7 @@ namespace gpu_opengl
 //      if (!m_pshaderCopy)
 //      {
 //
-//         øconstruct_new(m_pshaderCopy);
+//         construct_newø(m_pshaderCopy);
 //
 //         // Vertex shader
 //         const_char_pointer vertexShaderSource = R"(
@@ -2509,7 +2509,7 @@ namespace gpu_opengl
    //       if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
    //       {
    //
-   //          m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
+   //          m_pgpudevice->m_pgpucontextCurrent4->sendø() << [this]()
    //          {
    //
    //             m_pgpudevice->m_pgpucontextCurrent4->_context_unlock();

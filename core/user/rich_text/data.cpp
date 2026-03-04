@@ -113,7 +113,7 @@ namespace user
 
          //estatus = 
 
-         //øconstruct_new(m_pformathost);
+         //construct_newø(m_pformathost);
 
          //if (!estatus)
          //{
@@ -152,7 +152,7 @@ namespace user
       ::pointer<span>data::create_span()
       {
 
-         return øallocate span(this);
+         return allocateø span(this);
 
       }
 
@@ -162,7 +162,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         return øallocate class span (this, span);
+         return allocateø class span (this, span);
 
       }
 

@@ -137,7 +137,7 @@ namespace filemanager
       if(m_ppropform == nullptr)
       {
 
-         m_ppropform = øallocate file_properties_form();
+         m_ppropform = allocateø file_properties_form();
 
       }
 

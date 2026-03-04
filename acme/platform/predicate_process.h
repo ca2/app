@@ -83,7 +83,7 @@ public:
 //::future __process(PRED pred)
 //{
 //
-//    return øallocate predicate_process< PRED > (pred);
+//    return allocateø predicate_process< PRED > (pred);
 //
 //}
 

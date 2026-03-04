@@ -197,8 +197,8 @@ namespace user
 
       }
 
-      øconstruct_new(m_pimagea);
-      øconstruct_new(m_pimageaThumb);
+      construct_newø(m_pimagea);
+      construct_newø(m_pimageaThumb);
 
 
    }
@@ -380,7 +380,7 @@ namespace user
 
       ////item = ::e_element_none;
 
-      //auto pitemNone = øallocate ::item(e_element_none);
+      //auto pitemNone = allocateø ::item(e_element_none);
 
       //return pitemNone;
 
@@ -515,7 +515,7 @@ namespace user
                if (m_pimageaThumb->image_at(iImage)->is_null())
                {
 
-                  øconstruct(m_pimageaThumb->image_at(iImage));
+                  constructø(m_pimageaThumb->image_at(iImage));
 
                }
 
@@ -923,7 +923,7 @@ namespace user
       if (m_iaSel.get_count() == 1)
       {
 
-         return øallocate ::item(e_element_item, m_iaSel[0]);
+         return allocateø ::item(e_element_item, m_iaSel[0]);
 
       }
 

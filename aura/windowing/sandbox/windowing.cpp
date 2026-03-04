@@ -178,9 +178,9 @@ auto      pwindow = ::windowing::windowing::get_new_window();
 //
 //      }
 //
-//      //øconstruct_new(m_phostinteraction);
+//      //construct_newø(m_phostinteraction);
 //      
-//      øconstruct(m_phostinteraction);
+//      constructø(m_phostinteraction);
 //
 //      //m_phostinteraction->place(*lpcrect);
 //
@@ -206,7 +206,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
          
       }
       
-      øconstruct(m_phostinteraction);
+      constructø(m_phostinteraction);
 //      
 //      auto pacmewindowingwindow =       m_phostinteraction->acme_windowing_window();
    
@@ -393,7 +393,7 @@ auto      pwindow = ::windowing::windowing::get_new_window();
          //auto estatus =
          //
          //
-         øconstruct_new(m_pcursormanager);
+         construct_newø(m_pcursormanager);
 
          //         if (!estatus)
          //         {

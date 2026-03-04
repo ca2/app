@@ -15,7 +15,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
    //if (m_pstrOutputDebugStringA == nullptr)
    //{
 
-   //   m_pstrOutputDebugStringA = øallocate string();
+   //   m_pstrOutputDebugStringA = allocateø string();
 
    //}
 

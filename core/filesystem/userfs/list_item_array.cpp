@@ -48,7 +48,7 @@ namespace userfs
    void list_item_array::add_fs_item(list_item & item)
    {
 
-      add(øallocate list_item(item));
+      add(allocateø list_item(item));
 
    }
 

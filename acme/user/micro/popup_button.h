@@ -17,7 +17,7 @@ namespace micro
    public:
 
 
-      ::payload m_payloadPopupButtonResult;
+      //::payload m_payloadPopupButtonResult;
 
 
       popup_button();

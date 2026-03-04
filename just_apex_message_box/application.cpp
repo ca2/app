@@ -98,16 +98,16 @@ namespace app_just_apex_message_box
 //      {
 //
 //
-//         auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
+//         auto pmessageboxpayload = __initialize_new ::message_box_payload("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 //
-//         pmessagebox->sync();
+//         send(pmessageboxpayload);
 //
 //         auto result = pmessagebox->m_payloadResult.as_atom().m_edialogresult;
 //
 //         if (result == e_dialog_result_cancel)
 //         {
 //
-//            _001TryCloseApplication();
+//            _001PostTryCloseApplication();
 //
 //            break;
 //
@@ -115,19 +115,19 @@ namespace app_just_apex_message_box
 //         else  if (result == e_dialog_result_no)
 //         {
 //
-//            auto pmessagebox = __initialize_new ::message_box("No!", nullptr, ::user::e_message_box_ok);
+//            auto pmessageboxpayload = __initialize_new ::message_box_payload("No!", nullptr, ::user::e_message_box_ok);
 //
-//            pmessagebox->sync();
+//            send(pmessageboxpayload);
 //
 //         }
 //         else  if (result == e_dialog_result_yes)
 //         {
 //
-//            auto pmessagebox = __initialize_new ::message_box("Yes!!", nullptr, ::user::e_message_box_ok);
+//            auto pmessageboxpayload = __initialize_new ::message_box_payload("Yes!!", nullptr, ::user::e_message_box_ok);
 //
-//            pmessagebox->sync();
+//            send(pmessageboxpayload);
 //
-//            _001TryCloseApplication();
+//            _001PostTryCloseApplication();
 //
 //            break;
 //
@@ -144,7 +144,7 @@ namespace app_just_apex_message_box
 //
 //      //                     auto papp = get_app();
 //
-//      //                     papp->_001TryCloseApplication();
+//      //                     papp->_001PostTryCloseApplication();
 //
 //      //                  }
 //      //                  else

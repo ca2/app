@@ -55,7 +55,7 @@ application_menu * application_menu::insert_popup(const ::scoped_string & scoped
 {
 
    auto ppopup = 
-      __initialize(øallocate ::application_menu(scopedstrName, popup_flag_t{}));
+      __initialize(allocateø ::application_menu(scopedstrName, popup_flag_t{}));
 
    this->insert_at(m_iCurrentLayoutItemIndex++, ppopup);
 
@@ -98,7 +98,7 @@ application_menu * application_menu::_set_item_at_and_go_next(::collection::inde
 {
 
    auto papplicationmenuItem =
-      __initialize(øallocate ::application_menu(bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription));
+      __initialize(allocateø ::application_menu(bStockItem, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription));
 
    this->insert_at(i++, papplicationmenuItem);
 
@@ -114,7 +114,7 @@ application_menu * application_menu::add_item(bool bStockItem, const ::scoped_st
 
    auto pitem = _set_item_at_and_go_next(m_iCurrentLayoutItemIndex, bStockItem, scopedstrName, atom,
                                          scopedstrAccelerator, scopedstrDescription);
-      //__initialize(øallocate ::application_menu(bStockItem, strName, strId, strMacosAccelerator, strDescription));
+      //__initialize(allocateø ::application_menu(bStockItem, strName, strId, strMacosAccelerator, strDescription));
 
    return pitem;
 

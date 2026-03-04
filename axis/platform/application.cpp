@@ -714,7 +714,7 @@ namespace axis
       if (m_psimpledb.is_null())
       {
 
-         øconstruct_new(m_psimpledb);
+         construct_newø(m_psimpledb);
 
       }
 

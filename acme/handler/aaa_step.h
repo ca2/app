@@ -56,7 +56,7 @@
 //   if (!m_pfuture)
 //   {
 //
-//      system()->øconstruct_new(m_pfuture);
+//      system()->construct_newø(m_pfuture);
 //       
 //      m_pfuture->system() = system();
 //
@@ -75,7 +75,7 @@
 //inline ::pointer<TYPE>property_object::øcreate_new()
 //{
 //
-//   auto p = øallocate TYPE();
+//   auto p = allocateø TYPE();
 //
 //   p->initialize_matter(this);
 //

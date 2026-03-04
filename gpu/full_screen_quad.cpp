@@ -40,7 +40,7 @@ namespace gpu
          {{1.0f, 1.0f}, {1.0f, 1.0f}}
        });
 
-      øconstruct(m_pmodelbuffer);
+      constructø(m_pmodelbuffer);
       
       m_pmodelbuffer->initialize_gpu_context_object(pgpucontext);
       

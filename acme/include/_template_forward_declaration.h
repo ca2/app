@@ -921,7 +921,7 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return øallocate han<PREDICATE> (predicate);
+////   return allocateø han<PREDICATE> (predicate);
 ////
 ////}
 

@@ -60,8 +60,8 @@ enum enum_flag : unsigned long long
    e_flag_carriage_return = 1ll << 43,
    //e_flag_realized = 1 << 44,
    e_flag_initialized = 1ll << 47,
-   e_flag_automatic_result_just_after_running = 1ll << 48,
-   e_flag_should_create_sequence_on_synchronicity = 1ll << 49,
+   //e_flag_automatic_result_just_after_running = 1ll << 48,
+   //e_flag_should_create_sequence_on_synchronicity = 1ll << 49,
    e_flag_destroyed = 1ll << 50,
    e_flag_preallocated = 1ll << 51,
 

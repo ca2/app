@@ -146,7 +146,7 @@ namespace image
       m_rectangle.right = (decay<decltype(m_rectangle.right)>)(pframeSource->m_rectangle.right * dx);
       m_rectangle.bottom = (decay<decltype(m_rectangle.bottom)>)(pframeSource->m_rectangle.bottom * dy);
 
-      øconstruct(m_pimage);
+      constructø(m_pimage);
 
       ::double_size size = pframea->m_size;
 

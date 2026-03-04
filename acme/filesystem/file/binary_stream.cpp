@@ -669,7 +669,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
       //case e_type_property:
       //{
 
-      //   auto pproperty = øallocate ::property_particle();
+      //   auto pproperty = allocateø ::property_particle();
 
       //   *this >> pproperty->object();
 

@@ -122,7 +122,7 @@ void request::initialize_create(arguments arguments)
 
          //auto estatus = 
          
-         //øconstruct(m_pcommandline);
+         //constructø(m_pcommandline);
 
          //if (!estatus)
          //{
@@ -292,7 +292,7 @@ void request::finish_initialization()
 
    //   //estatus = 
    //   
-   //   øconstruct(m_pcommandline);
+   //   constructø(m_pcommandline);
 
    //   //if (!estatus)
    //   //{
@@ -444,7 +444,7 @@ void request::common_construct()
 //      
 //   }
 //   
-//   auto prequeststack = øallocate request_stack(this);
+//   auto prequeststack = allocateø request_stack(this);
 //   
 //   m_requeststacka.add(prequeststack);
 //   

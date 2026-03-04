@@ -709,7 +709,7 @@ void html_form::create_html_data()
 
    //auto estatus = 
    
-   øconstruct_new(m_phtmldata);
+   construct_newø(m_phtmldata);
 
    //if (!estatus)
    //{
@@ -720,7 +720,7 @@ void html_form::create_html_data()
       
    //estatus = 
    
-   m_phtmldata->øconstruct_new(m_phtmldata->m_pcompositeCoreData);
+   m_phtmldata->construct_newø(m_phtmldata->m_pcompositeCoreData);
 
    //if (!estatus)
    //{

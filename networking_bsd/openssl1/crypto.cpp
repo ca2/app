@@ -1162,7 +1162,7 @@ namespace crypto
             ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
 
-      return øallocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
+      return allocateø ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
 
    }
 
@@ -1700,7 +1700,7 @@ namespace crypto
    ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
-      auto popensslrsa = øallocate ::openssl::rsa();
+      auto popensslrsa = allocateø ::openssl::rsa();
 
       RSA*& prsa = popensslrsa->m_prsa;
 
@@ -1799,7 +1799,7 @@ namespace crypto
 
       }
 
-      auto popensslrsa = øallocate ::openssl::rsa();
+      auto popensslrsa = allocateø ::openssl::rsa();
 
       RSA*& prsa = popensslrsa->m_prsa;
 
@@ -1826,7 +1826,7 @@ namespace crypto
 
       }
 
-      auto popensslrsa = øallocate ::openssl::rsa();
+      auto popensslrsa = allocateø ::openssl::rsa();
 
       RSA*& prsa = popensslrsa->m_prsa;
 

@@ -21,7 +21,7 @@ namespace data
 
       m_bFill = false;
 
-      //m_proot = øallocate tree_item();
+      //m_proot = allocateø tree_item();
 
       //if (m_proot == nullptr)
       //{
@@ -36,7 +36,7 @@ namespace data
 
       //_get_tree() = this;
 
-      //m_pparent = øallocate ::data::tree_item ();
+      //m_pparent = allocateø ::data::tree_item ();
 
    }
 

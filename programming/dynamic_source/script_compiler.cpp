@@ -93,7 +93,7 @@ namespace dynamic_source
 
       //node()->integration_factory();
 
-      //øconstruct(m_pintegrationcontext);
+      //constructø(m_pintegrationcontext);
 
       //m_pintegrationcontext->m_strPlatform = "x64";
 
@@ -1479,7 +1479,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[scopedstrLibrary] = øallocate library(this);
+      m_mapLib[scopedstrLibrary] = allocateø library(this);
 
       library& l = *m_mapLib[scopedstrLibrary];
 
@@ -2928,7 +2928,7 @@ namespace dynamic_source
 
       single_lock slLibrary(m_pmutex, true);
 
-      øconstruct(m_plibraryLib);
+      constructø(m_plibraryLib);
 
       m_plibraryLib->open(m_strLibraryPath);
       // return;

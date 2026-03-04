@@ -52,7 +52,7 @@
        //void hdri_cube::initialize_hdri_cube(const ::scoped_string &hdriPath)
        //{
 
-          //øconstruct_new(m_phdrtexture);
+          //construct_newø(m_phdrtexture);
 
          // m_pcube = øcreate_new < ::gpu_opengl::cube > ();
 

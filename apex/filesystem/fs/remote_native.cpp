@@ -344,7 +344,7 @@ namespace fs
    file_pointer remote_native::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
-      file_pointer pfile = øallocate remote_native_file(payloadFile);
+      file_pointer pfile = allocateø remote_native_file(payloadFile);
 
       //auto result =
       pfile->open(payloadFile, eopen, ppfileexception);

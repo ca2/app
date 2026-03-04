@@ -1139,7 +1139,7 @@ namespace filemanager
 
       ::pointer<icon_layout>piconlayout;
 
-      øconstruct_new(piconlayout);
+      construct_newø(piconlayout);
 
 //      papp->datastream()->get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
 

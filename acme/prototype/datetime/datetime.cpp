@@ -72,7 +72,7 @@ namespace datetime
 
       //}
          
-      ///*estatus = */ øconstruct_new(m_pinternational);
+      ///*estatus = */ construct_newø(m_pinternational);
 
       //if (!estatus)
       //{
@@ -81,7 +81,7 @@ namespace datetime
 
       //}
 
-//      /*estatus = */ øconstruct_new(m_pstr);
+//      /*estatus = */ construct_newø(m_pstr);
 
       //if (!estatus)
       //{

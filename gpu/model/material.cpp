@@ -33,7 +33,7 @@ namespace gpu
                // ASSERT(::is_set(texture_albedo()));
                // ASSERT(::is_set(m_ptextureNormal));
 
-               øconstruct(m_pbindingslotsetSceneGltfPbr);
+               constructø(m_pbindingslotsetSceneGltfPbr);
 
                auto pbindingset = m_pgpucontext->scene_gltf_pbr_binding_set();
 
@@ -63,7 +63,7 @@ namespace gpu
                // ASSERT(::is_set(m_ptextureAmbientOcclusion));
                // ASSERT(::is_set(m_ptextureEmissive));
 
-               øconstruct(m_pbindingslotsetGltfPbr);
+               constructø(m_pbindingslotsetGltfPbr);
 
                //m_pbindingslotsetGltfPbr->m_pbindingset = m_pgpucontext->gltf_pbr_binding_set();
 
@@ -110,7 +110,7 @@ namespace gpu
          //   ASSERT(::is_set(m_ptextureAmbientOcclusion));
          //   ASSERT(::is_set(m_ptextureEmissive));
          //
-         //   øconstruct(m_ptextureAlbedo);
+         //   constructø(m_ptextureAlbedo);
 
          //   m_pbindingslotsetIbl1->m_pbindingset = m_pgpucontext->ibl1_binding_set();
 

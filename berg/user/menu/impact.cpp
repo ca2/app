@@ -182,10 +182,10 @@ namespace user
 
       payload(FONTSEL_IMPACT) = true;
 
-      øconstruct(m_pbrushBkSel);
-      øconstruct(m_pbrushBkHoverSel);
-      øconstruct(m_ppenBkSel);
-      øconstruct(m_ppen);
+      constructø(m_pbrushBkSel);
+      constructø(m_pbrushBkHoverSel);
+      constructø(m_ppenBkSel);
+      constructø(m_ppen);
 
 
       m_pbrushBkHoverSel->create_solid(argb(255, 230, 230, 230));
@@ -203,7 +203,7 @@ namespace user
 
       //auto estatus = 
       
-      //øconstruct_new(m_pxmldoc);
+      //construct_newø(m_pxmldoc);
 
       //if (!estatus)
       //{
@@ -228,11 +228,11 @@ namespace user
 
       m_pimageLogo = image()->load_image("matter://main/logo.png", { .cache = false });
 
-      øconstruct(m_pfontTitle);
+      constructø(m_pfontTitle);
 
       m_pfontTitle->create_font(e_font_sans_ui, 14_pt, 800);
 
-      øconstruct(m_pfont);
+      constructø(m_pfont);
 
       m_pfont->create_font(e_font_sans_ui, 14_pt, 400);
 
@@ -458,7 +458,7 @@ namespace user
 
       pgraphics->draw(imagedrawing);
 
-      //øconstruct_new(m_pitema);
+      //construct_newø(m_pitema);
 
 //      ::int_rectangle rectangle;
 
@@ -480,7 +480,7 @@ namespace user
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
 
-         ///main_content().add_item(øallocate ::item(::e_element_item, iPos, iMenu, -1));
+         ///main_content().add_item(allocateø ::item(::e_element_item, iPos, iMenu, -1));
 
          string strTitle;
          
@@ -737,9 +737,9 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         auto pmessagebox = øallocate ::message_box(exception, __FUNCTION_FILE_LINE__);
+         auto pmessageboxpayload = allocateø ::message_box_payload(exception, __FUNCTION_FILE_LINE__);
 
-         pmessagebox->async();
+         post(pmessageboxpayload);
 
          return false;
 
@@ -777,7 +777,7 @@ namespace user
 
          auto pmenuitemMenuBar = øcreate_new < ::menu::item >();
 
-         pmenuitemMenuBar->m_pmenuitema = øallocate ::menu::item_ptra(pmenuitemMenuBar);
+         pmenuitemMenuBar->m_pmenuitema = allocateø ::menu::item_ptra(pmenuitemMenuBar);
 
          pmenuitemParent->add_item(pmenuitemMenuBar);
 

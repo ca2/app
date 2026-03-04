@@ -21,7 +21,7 @@
 simple_menu_bar::simple_menu_bar()
 {
 
-   øconstruct_new(m_pmenu);
+   construct_newø(m_pmenu);
 
    m_bTracking = false;
    m_iTopMenuCount = 0;
@@ -168,7 +168,7 @@ bool simple_menu_bar::_track_popup_menu(::collection::index iItem)
    information() << "simple_menu_bar::_track_popup_menu" << iItem;
    
    m_iTracking = iItem;
-   m_pitemPressed = øallocate ::item(::e_element_item, iItem);
+   m_pitemPressed = allocateø ::item(::e_element_item, iItem);
    set_need_redraw();
    auto statusrectangle = index_element_rectangle(iItem, ::e_element_item, ::user::e_state_none);
    client_to_screen()(statusrectangle);

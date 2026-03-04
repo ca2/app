@@ -119,7 +119,7 @@ namespace dynamic_source
 
       m_prealpathinterfacecache = øcreate_new < ::file_system_real_path_interface_cache >();
 
-      //øconstruct_new(m_pfilesystemcache);
+      //construct_newø(m_pfilesystemcache);
 
 
       //if (!estatus)
@@ -129,7 +129,7 @@ namespace dynamic_source
 
       //}
 
-      //estatus = øconstruct_new(m_pmessagequeue);
+      //estatus = construct_newø(m_pmessagequeue);
       //
       //if(!estatus)
       //{
@@ -245,7 +245,7 @@ namespace dynamic_source
 
          //auto estatus = 
 
-         øconstruct_new(m_pcache);
+         construct_newø(m_pcache);
 
          //if (!estatus)
          //{
@@ -256,7 +256,7 @@ namespace dynamic_source
 
          m_pcache->m_pmanager = this;
 
-         m_pcompiler = øallocate script_compiler();
+         m_pcompiler = allocateø script_compiler();
 
          //estatus = 
 
@@ -290,7 +290,7 @@ namespace dynamic_source
 
       {
 
-         auto pwatcher = øallocate clear_include_matches_file_watcher(this);
+         auto pwatcher = allocateø clear_include_matches_file_watcher(this);
 
          pwatcher->m_pmanager = this;
 
@@ -314,7 +314,7 @@ namespace dynamic_source
          if (case_insensitive_string_begins(path.title(), "net-"))
          {
 
-            auto pwatcher = øallocate clear_include_matches_file_watcher(this);
+            auto pwatcher = allocateø clear_include_matches_file_watcher(this);
 
             pwatcher->m_pmanager = this;
 
@@ -1271,7 +1271,7 @@ namespace dynamic_source
 
       }
 
-      auto psession = øallocate ::dynamic_source::session();
+      auto psession = allocateø ::dynamic_source::session();
 
       psession->initialize_dynamic_source_session(scopedstrId, this);
 

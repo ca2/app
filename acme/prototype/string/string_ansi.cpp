@@ -703,7 +703,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //void __cdecl string::Construct(class string * pstring)
 //{
-//   øallocate<  >(pstring) class string;
+//   allocateø<  >(pstring) class string;
 //}
 //
 //

@@ -93,7 +93,7 @@
 //delay_thread * predicate_delay(::particle * pparticle, class ::time tickDelay, PRED pred)
 //{
 //
-//   auto pthread  = øallocate predicate_delay_thread < PRED > (pparticle, pred, tickDelay);
+//   auto pthread  = allocateø predicate_delay_thread < PRED > (pparticle, pred, tickDelay);
 //
 //   pthread->begin();
 //

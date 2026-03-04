@@ -258,9 +258,9 @@ namespace integration
       if (iExitCode != 0)
       {
 
-         auto pmessagebox = __initialize_new ::message_box("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
+         auto pmessageboxpayload = __initialize_new ::message_box_payload("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
 
-         pmessagebox->sync();
+         send(pmessageboxpayload);
 
          throw ::exception(error_exception);
 

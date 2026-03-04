@@ -46,7 +46,7 @@ namespace user
 
          ::draw2d::path_pointer ppath;
 
-         puserinteraction->øconstruct(ppath);
+         puserinteraction->constructø(ppath);
 
          ppath->add_rectangle(rectangle, 45_degrees);
 

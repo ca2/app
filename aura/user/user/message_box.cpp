@@ -38,7 +38,7 @@ namespace user
 
       enable_drag(pitemClient, e_zorder_back);
 
-      auto pitemResize = øallocate ::item(e_element_resize);
+      auto pitemResize = allocateø ::item(e_element_resize);
 
       enable_drag(pitemResize, e_zorder_back);
 
@@ -74,10 +74,10 @@ namespace user
    }
 
 
-   void message_box::on_realize(::message_box * pmessagebox)
+   void message_box::display(::dialog * pdialog)
    {
 
-      //auto psequencer = øallocate ::sequencer <::conversation > ();
+      //auto psequencer = allocateø ::sequencer <::conversation > ();
 
       //psequencer->m_psequence = this;
 
@@ -87,17 +87,19 @@ namespace user
 
       //m_strTitle = pmessa;
 
-      ::string strMessage(pmessagebox->m_strMessage);
+      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+
+      ::string strMessage(pmessageboxpayload->m_strMessage);
 
       strMessage.case_insensitive_replace_with(" \n", "<br>");
 
-      øconstruct_new(m_pstill);
+      construct_newø(m_pstill);
 
       m_pstill->set_window_text(strMessage);
 
       m_stra.add_lines(strMessage);
 
-      m_pbuttonClose = øallocate ::user::button("", e_dialog_result_close);
+      m_pbuttonClose = allocateø ::user::button("", e_dialog_result_close);
 
       m_pbuttonClose->set_button_style(::user::button::e_style_stock_icon);
 
@@ -108,7 +110,7 @@ namespace user
 
       //::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
 
-      ::acme::user::message_box::on_realize(pmessagebox);
+      ::acme::user::message_box::display(pmessageboxpayload);
 
       m_pbuttonClose->initialize(this);
 
@@ -242,7 +244,11 @@ namespace user
       else if (ptopic->id() == ::id_click)
       {
 
-         m_prealizable->m_payloadResult = ptopic->m_puserelement->user_interaction()->id();
+         //set_dialog_result((
+
+         //m_prealizable->m_payloadResult = ptopic->m_puserelement->user_interaction()->id();
+
+         ::acme::user::message_box::set_dialog_result(ptopic->m_puserelement->user_interaction()->id());
 
          m_estatus = ::success;
 
@@ -359,7 +365,7 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics;
 
-      øconstruct(pgraphics);
+      constructø(pgraphics);
 
       auto sizeModernOnePixel = ::int_size{ 1920, 1080 };
 
@@ -367,7 +373,7 @@ namespace user
 
       pgraphics->m_pdraw2dhost = this;
 
-      m_pinteractionScaler = øallocate ::user::interaction_scaler();
+      m_pinteractionScaler = allocateø ::user::interaction_scaler();
 
       m_pinteractionScaler->on_display_change(this);
 

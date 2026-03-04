@@ -36,8 +36,8 @@ namespace user
          //
          // Sel* -> Selection
          // (selection index:
-         //     øallocate< line = 1 sel index  >(only one sel index increment even for "\r\n")
-         //     øallocate< line due wrap = 0 sel index  >(no sel increment index, m_bCaretRight hinting for the Caret through mouse selection)
+         //     allocateø< line = 1 sel index  >(only one sel index increment even for "\r\n")
+         //     allocateø< line due wrap = 0 sel index  >(no sel increment index, m_bCaretRight hinting for the Caret through mouse selection)
          // Pos* -> Position (Selection Indexing, but not necessary a selection)
          // Char* -> Very String Specific, just "small" string part indexing
 

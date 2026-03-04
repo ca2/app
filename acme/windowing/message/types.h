@@ -96,12 +96,12 @@ namespace message
 
       }
 
-      message_box(::message_box * pmessagebox)
+      message_box(::message_box_payload * pmessageboxpayload)
       {
-         pmessagebox->increment_reference_count();
-         m_llMessageBoxSequence = (long long)(::iptr)(void*)pmessagebox;
-         m_strMessage = pmessagebox->m_strMessage;
-         m_strTitle = pmessagebox->m_strTitle;
+         pmessageboxpayload->increment_reference_count();
+         m_llMessageBoxSequence = (long long)(::iptr)(void*)pmessageboxpayload;
+         m_strMessage = pmessageboxpayload->m_strMessage;
+         m_strTitle = pmessageboxpayload->m_strTitle;
          m_iButton = 0;
 
       }

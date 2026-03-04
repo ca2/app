@@ -50,7 +50,7 @@ namespace user
    void tooltip::on_message_create(::message::message * pmessage)
    {
 
-      øconstruct(m_pfont);
+      constructø(m_pfont);
 
       pmessage->previous();
 

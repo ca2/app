@@ -17,7 +17,7 @@ CLASS_DECL_ACME int main_uwp(Array < String^ >^ stra, const ::scoped_string & sc
    //mainstruct.m_bUserEx = true;
    //mainstruct.m_bShowApplicationInformation = false;
 
-   auto psystem = øallocate ::platform::system();
+   auto psystem = allocateø ::platform::system();
 
    psystem->construct_system(stra);
 

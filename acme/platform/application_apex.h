@@ -432,6 +432,8 @@ namespace platform
 
 
       virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size);
+      virtual ::pointer<::innate_ui::icon> innate_ui_icon(const ::scoped_string & scopedstrIconUrl, const ::int_size &size);
+      
 
 
       virtual void init_fs_set(::fs::set* pfsset);
@@ -509,7 +511,7 @@ namespace platform
 
       virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
 
-      virtual void _001TryCloseApplication();
+      virtual void _001PostTryCloseApplication();
 
 
       virtual void _001CloseApplication();
@@ -620,9 +622,9 @@ namespace platform
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessageboxpayload = __initialize_new ::message_box_payload(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
-      //pmessagebox->sync();
+      //send(pmessageboxpayload);
 
 
       //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());

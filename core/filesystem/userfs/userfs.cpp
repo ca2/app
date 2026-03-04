@@ -68,7 +68,7 @@ namespace core
    //::pointer<::userfs::userfs>user::create_userfs()
    //{
 
-   //  auto puserfs  = øallocate ::userfs::userfs(this);
+   //  auto puserfs  = allocateø ::userfs::userfs(this);
 
    //  return puserfs;
 
@@ -84,7 +84,7 @@ namespace core
 
       // auto estatus =
 
-      øconstruct(m_puserfs);
+      constructø(m_puserfs);
 
       // if (!estatus)
       //{

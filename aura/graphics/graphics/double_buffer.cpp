@@ -43,14 +43,14 @@ namespace graphics
       //}
       m_bufferitema.set_size(2);
 
-      øconstruct_new(m_bufferitema[0]);
-      øconstruct(m_bufferitema[0]->m_pimage2);
-      øconstruct(m_bufferitema[0]->m_pmutex);
+      construct_newø(m_bufferitema[0]);
+      constructø(m_bufferitema[0]->m_pimage2);
+      constructø(m_bufferitema[0]->m_pmutex);
       m_bufferitema[0]->m_pimage2->id() = 0;
 
-      øconstruct_new(m_bufferitema[1]);
-      øconstruct(m_bufferitema[1]->m_pimage2);
-      øconstruct(m_bufferitema[1]->m_pmutex);
+      construct_newø(m_bufferitema[1]);
+      constructø(m_bufferitema[1]->m_pimage2);
+      constructø(m_bufferitema[1]->m_pmutex);
       m_bufferitema[1]->m_pimage2->id() = 1;
 
       //return estatus;

@@ -674,7 +674,7 @@ namespace user
          if (!r.contains(point))
          {
 
-            auto pitem = øallocate ::item(e_element_none);
+            auto pitem = allocateø ::item(e_element_none);
 
             return pitem;
 
@@ -707,7 +707,7 @@ namespace user
 
          //return prichtextdata->hit_test(point);
 
-         auto pitem = øallocate ::item(e_element_item);
+         auto pitem = allocateø ::item(e_element_item);
 
          auto prichtextdata = get_rich_text_data();
 

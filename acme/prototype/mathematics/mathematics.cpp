@@ -10,7 +10,7 @@
 #include <wincrypt.h>
 #endif
 #include "mathematics.h"
-//#undef øconstruct
+//#undef constructø
 //#undef øcreate
 #include "random_number_generator.h"
 
@@ -302,7 +302,7 @@ namespace mathematics
 
       //}
 
-      øconstruct_new(m_posdata);
+      construct_newø(m_posdata);
 
       //if (!estatus)
       //{
@@ -664,7 +664,7 @@ namespace mathematics
 
    //      g_pmathematics = ___new class mathematics ();
 
-   //      //task_untrack_øallocate(g_pmathematics);
+   //      //task_untrack_allocateø(g_pmathematics);
 
    //   }
 

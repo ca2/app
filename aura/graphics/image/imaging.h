@@ -279,7 +279,7 @@ public:
    //inline void load_image(::image::image_pointer & pimage, ::memory_pointer pmemory)
    //{ 
 
-   //   auto estatus = øconstruct(pimage);
+   //   auto estatus = constructø(pimage);
 
    //   if (!estatus)
    //   {
@@ -295,7 +295,7 @@ public:
    //inline void load_image(::image::image_pointer & pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
    //{
 
-   //   auto estatus = øconstruct(pimage);
+   //   auto estatus = constructø(pimage);
 
    //   if (!estatus)
    //   {

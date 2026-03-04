@@ -29,12 +29,12 @@ namespace console
 
       {
 
-         auto pmessagebox = m_pparticle.cast < ::message_box >();
+         auto pmessageboxpayload = m_pparticle.cast < ::message_box_payload >();
 
-         if (pmessagebox)
+         if (pmessageboxpayload)
          {
 
-            m_payloadResult = run_message_box(pmessagebox);
+            m_payloadResult = run_message_box(pmessageboxpayload);
 
             return;
 

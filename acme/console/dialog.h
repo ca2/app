@@ -29,7 +29,7 @@ namespace console
       //void complete_step(::sequencer & sequencer) override;
 
       
-      ::enum_dialog_result run_message_box(::message_box * pmessage);
+      ::enum_dialog_result run_message_box(::message_box_payload * pmessageboxpayload);
 
 
    };

@@ -81,7 +81,7 @@ namespace regular_expression_pcre2
    ::pointer<::regular_expression::result>regular_expression::run(const ::scoped_string & scopedstr)
    {
 
-      auto presult = øallocate class result ();
+      auto presult = allocateø class result ();
 
       presult->m_pregularexpression = this;
 

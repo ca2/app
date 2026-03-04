@@ -2184,7 +2184,7 @@ end_processing_adding:
 
                         synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                        auto ppoolsocket = øallocate pool_socket(psocket);
+                        auto ppoolsocket = allocateø pool_socket(psocket);
 
                         ppoolsocket->m_psockethandler = this;
 
@@ -2444,7 +2444,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>presolvsocket = øallocate resolv_socket(pbasesocket, host, port);
+//      ::pointer<resolv_socket>presolvsocket = allocateø resolv_socket(pbasesocket, host, port);
 //
 //      presolvsocket->m_psockethandler = this;
 //
@@ -2481,7 +2481,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = øallocate resolv_socket(pbasesocket, host, port, true);
+//      ::pointer<resolv_socket>resolv = allocateø resolv_socket(pbasesocket, host, port, true);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2516,7 +2516,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = øallocate resolv_socket(pbasesocket, a);
+//      ::pointer<resolv_socket>resolv = allocateø resolv_socket(pbasesocket, a);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2551,7 +2551,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = øallocate resolv_socket(pbasesocket, a);
+//      ::pointer<resolv_socket>resolv = allocateø resolv_socket(pbasesocket, a);
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2589,7 +2589,7 @@ end_processing_adding:
 //
 //         m_resolver_port = port;
 //
-//         auto presolvserver = øallocate resolv_server();
+//         auto presolvserver = allocateø resolv_server();
 //
 //         m_resolver = presolvserver;
 //

@@ -69,7 +69,7 @@ void imaging::initialize(::particle * pparticle)
 
    //return estatus;
 
-   øconstruct_new(m_pimageaWork);
+   construct_newø(m_pimageaWork);
 
 }
 
@@ -1549,7 +1549,7 @@ void imaging::BitmapDivBlend(
    ::image::image_pointer pimage;
 
    //auto estatus = 
-   øconstruct(pimage);
+   constructø(pimage);
 
    /*if (!estatus)
    {
@@ -5154,7 +5154,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    auto & pmemory = pdraw2d->m_alpha_spread__32CC_filterMap[iRadius];
 
-   system()->øconstruct_new(pmemory);
+   system()->construct_newø(pmemory);
 
    if (pmemory->size() != iFilterArea)
    {

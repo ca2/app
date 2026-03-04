@@ -46,7 +46,7 @@ char * const * alloc_c_string_array(const string_array_base & stra);
 
    }
 
-   ::pointer<menu_shared>pmenushared = øallocate menu_shared();
+   ::pointer<menu_shared>pmenushared = allocateø menu_shared();
 
    pmenushared->m_iCount = iCount;
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);

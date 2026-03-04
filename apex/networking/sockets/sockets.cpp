@@ -72,9 +72,9 @@ namespace sockets
 //
       //m_psslinit = øcreate<::sockets::SSLInitializer>();
 //
-//      //estatus = øconstruct_new(m_pnet);
+//      //estatus = construct_newø(m_pnet);
 //
-//      øconstruct_new(m_pnet);
+//      construct_newø(m_pnet);
 //
 //      if (!m_pnet)
 //      {
@@ -106,7 +106,7 @@ namespace sockets
 ////      {
 ////
 ////#ifdef WINDOWS
-////         øconstruct(m_pportforward);
+////         constructø(m_pportforward);
 ////#endif
 ////
 ////      }

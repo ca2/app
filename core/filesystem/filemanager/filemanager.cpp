@@ -261,7 +261,7 @@ namespace filemanager
       //factory()->add_factory_item <fs::simple::list_impact >();
       //factory()->add_factory_item <fs::simple::tree >();
 
-      //øconstruct_new(this, m_pmap);
+      //construct_newø(this, m_pmap);
 
       //auto& user = User;
 
@@ -282,7 +282,7 @@ namespace filemanager
          ::type<form_child_frame>(),
          ::type<form>()));
 
-      //øconstruct(m_pimpactsystemForm, pmulti);
+      //constructø(m_pimpactsystemForm, pmulti);
 
     /*  
 
@@ -295,7 +295,7 @@ namespace filemanager
          ::type<operation_child_frame>(),
          ::type<operation_impact>()));
 
-      //øconstruct(m_pimpactsystemOperation, psingle);
+      //constructø(m_pimpactsystemOperation, psingle);
 
       //psession->add_document_template(psingle);
 
@@ -787,7 +787,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = øallocate ::create(papp->handler(), payloadFile, true);
+      //   pcreate = allocateø ::create(papp->handler(), payloadFile, true);
 
       //}
 
@@ -944,7 +944,7 @@ namespace filemanager
    //   if (pcreate == nullptr)
    //   {
 
-   //      pcreate = øallocate ::create(pappOnBehalfOf->handler());
+   //      pcreate = allocateø ::create(pappOnBehalfOf->handler());
 
    //   }
    //   else
@@ -1075,7 +1075,7 @@ namespace filemanager
    //   if (pcreate.is_null())
    //   {
 
-   //      pcreate = øallocate ::create(pappOnBehalfOf->handler());
+   //      pcreate = allocateø ::create(pappOnBehalfOf->handler());
 
    //   }
    //   else
@@ -1196,7 +1196,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = øallocate ::filemanager::data(this);
+   //      pfilemanagerdata = allocateø ::filemanager::data(this);
 
    //   }
 
@@ -1250,7 +1250,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = øallocate ::filemanager::data(this);
+   //      pfilemanagerdata = allocateø ::filemanager::data(this);
 
    //   }
 
@@ -1308,7 +1308,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = øallocate ::filemanager::data(this);
+   //      pfilemanagerdata = allocateø ::filemanager::data(this);
 
    //   }
 

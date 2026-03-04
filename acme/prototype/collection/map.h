@@ -145,7 +145,7 @@ public:
 //    template < typename PAYLOAD2 >
 //    iterator find_payload(const PAYLOAD2 & payload) const;
 //
-//    //add a øallocate<  >(key, value) node
+//    //add a allocateø<  >(key, value) node
 //    iterator set_at(ARG_KEY key, ARG_PAYLOAD newValue)
 //    {
 //
@@ -158,7 +158,7 @@ public:
 //    }
 //
 //
-//    //add a øallocate<  >(key, value) node
+//    //add a allocateø<  >(key, value) node
 //    void set_pair(const PAIR & pair)
 //    {
 //

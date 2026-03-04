@@ -190,7 +190,7 @@ namespace gpu_opengl
       if (!m_pwglcontextDummy)
       {
 
-         øconstruct_new(m_pwglcontextDummy);
+         construct_newø(m_pwglcontextDummy);
 
          m_pwglcontextDummy->create_dummy_wgl_context();
 

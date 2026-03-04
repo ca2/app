@@ -580,7 +580,7 @@ namespace user
 
                   //auto estatus = 
                   
-                  øconstruct(pimage2);
+                  constructø(pimage2);
 
                   //if (!estatus)
                   //{
@@ -958,7 +958,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = øallocate ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
+   //   auto pusersystem = allocateø ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->id()))
    //   {
@@ -1168,7 +1168,7 @@ namespace user
 
       //informationf("----> m_bLayoutEnable false");
 
-      //auto pusersystem = øallocate ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
+      //auto pusersystem = allocateø ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->id()))
       //{
@@ -2032,9 +2032,9 @@ namespace user
 
 #ifdef _DEBUG
 
-         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-         pmessagebox->async();
+         post(pmessageboxpayload);
 
 #endif
 
@@ -2046,9 +2046,9 @@ namespace user
 
          ::exception exception(error_catch_all_exception);
 
-         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-         pmessagebox->async();
+         post(pmessageboxpayload);
 
 #endif
 
@@ -2077,7 +2077,7 @@ namespace user
 
       //auto pmessagebox = message_box("Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-      //pmessagebox->async();
+      //post(pmessageboxpayload);
 
       return nullptr;
 

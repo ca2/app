@@ -22,7 +22,7 @@
 //      ~console_dialog() override;
 //
 //      
-//      void create_message_box(::message_box * pmessagebox);
+//      void create_message_box(::message_box_payload * pmessageboxpayload);
 //      
 //      void run() override;
 //      void complete_step(::sequencer & sequencer) override;

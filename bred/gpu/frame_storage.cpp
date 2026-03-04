@@ -70,7 +70,7 @@ namespace gpu
       if (!pbuffer)
       {
 
-         øconstruct(pbuffer);
+         constructø(pbuffer);
 
          pbuffer->initialize_memory_buffer_with_context(
             pgpumemorybuffer->m_pcontext, 

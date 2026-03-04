@@ -63,7 +63,7 @@ namespace draw2d
 
    //   m_eregion = e_region_rect;
 
-   //   auto pitem = øallocate rectangle_item();
+   //   auto pitem = allocateø rectangle_item();
 
    //   pitem->m_rectangle = rectangle;
 
@@ -86,7 +86,7 @@ namespace draw2d
 
    //   m_eregion = e_region_ellipse;
 
-   //   auto pitem = øallocate ellipse_item();
+   //   auto pitem = allocateø ellipse_item();
 
    //   pitem->m_rectangle = rectangle;
 
@@ -109,7 +109,7 @@ namespace draw2d
 
    //   m_eregion = e_region_polygon;
 
-   //   auto pitem = øallocate polygon_item();
+   //   auto pitem = allocateø polygon_item();
 
    //   pitem->m_polygon.set_size(nCount);
 
@@ -144,7 +144,7 @@ namespace draw2d
 
    //   m_eregion = e_region_polygon;
 
-   //   auto pitem = øallocate polygon_item();
+   //   auto pitem = allocateø polygon_item();
 
    //   pitem->m_polygon.set_size(nCount);
 
@@ -178,14 +178,14 @@ namespace draw2d
 
    //   m_eregion = e_region_polygon;
 
-   //   auto pitem = øallocate poly_polygon_item();
+   //   auto pitem = allocateø poly_polygon_item();
 
    //   pitem->m_polygona.set_size(nCount);
 
    //   for (::collection::index i = 0; i < nCount; i++)
    //   {
 
-   //      pitem->m_polygona[i] = øallocate polygon();
+   //      pitem->m_polygona[i] = allocateø polygon();
 
    //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
@@ -222,14 +222,14 @@ namespace draw2d
 
    //   m_eregion = e_region_poly_polygon;
 
-   //   auto pitem = øallocate poly_polygon_item();
+   //   auto pitem = allocateø poly_polygon_item();
 
    //   pitem->m_polygona.set_size(nCount);
 
    //   for (::collection::index i = 0; i < nCount; i++)
    //   {
 
-   //      pitem->m_polygona[i] = øallocate polygon();
+   //      pitem->m_polygona[i] = allocateø polygon();
 
    //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
@@ -270,7 +270,7 @@ namespace draw2d
 
    //   m_eregion = e_region_combine;
 
-   //   auto pitem = øallocate combine_item();
+   //   auto pitem = allocateø combine_item();
 
    //   pitem->m_pregion1 = pregion1;
 

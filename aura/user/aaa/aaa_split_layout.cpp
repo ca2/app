@@ -147,7 +147,7 @@ namespace user
          if(!m_splitbara[i])
          {
             
-            auto estatus = øconstruct(m_splitbara[i]);
+            auto estatus = constructø(m_splitbara[i]);
 
             if (!estatus)
             {
@@ -177,7 +177,7 @@ namespace user
          if(m_panea[i].is_null())
          {
 
-            m_panea[i] = øallocate ::user::split_pane();
+            m_panea[i] = allocateø ::user::split_pane();
 
             m_panea(i).m_bFixedSize =  false;
 

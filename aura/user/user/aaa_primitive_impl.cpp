@@ -1960,7 +1960,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(øallocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // m_puserinteraction->interaction_post(allocateø call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 
@@ -2151,7 +2151,7 @@ namespace user
       if (m_ptimerarray.is_null())
       {
 
-         øconstruct_new(m_ptimerarray);
+         construct_newø(m_ptimerarray);
 
          m_ptimerarray->m_pcallback = m_puserinteraction;
 
@@ -2468,7 +2468,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(øallocate call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
+      // m_puserinteraction->interaction_post(allocateø call_message_handler_task(m_puserinteraction, emessage, wparam, lparam));
 
       //auto pmessage
 

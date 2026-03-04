@@ -102,9 +102,9 @@ namespace acme
 ////void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
-////   auto posmessagebox = øallocate ::acme::auto pmessagebox = __initialize_new ::message_box(scopedstrText, pszTitle, emessagebox);
+////   auto posmessagebox = allocateø ::acme::auto pmessageboxpayload = __initialize_new ::message_box_payload(scopedstrText, pszTitle, emessagebox);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 ////
 ////   return __realize(posmessagebox, process);
 ////
@@ -162,16 +162,16 @@ CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const_char_pointer pszFileNam
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running", pszFileName,iLineNumber);
 
-   auto pmessagebox = 
+   auto pmessageboxpayload =
       __initialize_new_with(system())
-      ::message_box(
+      ::message_box_payload(
          szMessage,
          "ASSERT",
          ::user::e_message_box_cancel_try_continue | ::user::e_message_box_icon_error);
 
-   pmessagebox->sync();
+   system()->send(pmessageboxpayload);
 
-   return pmessagebox->m_payloadResult;
+   return pmessageboxpayload->m_payloadResult;
 
 }
 

@@ -2512,6 +2512,7 @@
     <ClCompile Include="graphics\image\pixmap.cpp" />
     <ClCompile Include="graphics\image\image32.cpp" />
     <ClCompile Include="handler\command_handler.cpp" />
+    <ClCompile Include="handler\dispatch_array.cpp" />
     <ClCompile Include="handler\extended_topic.cpp" />
     <ClCompile Include="handler\handler.cpp" />
     <ClCompile Include="handler\handler_context.cpp" />
@@ -4517,7 +4518,6 @@
     <ClCompile Include="prototype\prototype\object_meta.cpp" />
     <ClCompile Include="prototype\prototype\particle.cpp" />
     <ClCompile Include="prototype\prototype\pool.cpp" />
-    <ClCompile Include="prototype\prototype\sequence_continuation.cpp" />
     <ClCompile Include="prototype\prototype\prototype.cpp" />
     <ClCompile Include="prototype\prototype\property_object.cpp" />
     <ClCompile Include="prototype\prototype\e_status.cpp" />

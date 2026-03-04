@@ -80,7 +80,7 @@ public:
 
 
    ::interlocked_count                 m_countReference;
-   ::pointer < ::sequence >            m_psequence;
+   //::pointer < ::sequence >            m_psequence;
 
 
 #if REFERENCING_DEBUGGING
@@ -143,9 +143,9 @@ public:
 
    ::platform::system* system() const;
 
-   virtual void on_sequence();
+   //virtual void on_sequence();
    
-   virtual bool should_create_sequence_on_synchronicity();
+///   virtual bool should_create_sequence_on_synchronicity();
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
 

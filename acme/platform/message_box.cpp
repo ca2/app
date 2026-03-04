@@ -62,8 +62,270 @@ namespace acme
 //
 //}
 
+dialog::dialog()
+{
 
-message_box::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+
+}
+
+
+dialog::~dialog()
+{
+
+
+}
+
+
+::string dialog::dialog_title() const
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
+void dialog::display_dialog()
+{
+
+
+
+}
+
+
+void dialog::display(::dialog * pdialog)
+{
+
+   throw ::interface_only();
+
+}
+
+
+void dialog::set_dialog_result(const ::payload & payloadResult)
+{
+
+   throw ::interface_only();
+
+}
+
+
+void dialog::on_dialog_result(const ::payload & payloadResult)
+{
+
+   throw ::interface_only();
+
+}
+
+
+class time dialog::dialog_time_remaining_from_timeout() const
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
+message_box_payload * dialog::get_message_box_payload()
+{
+
+   return nullptr;
+
+}
+
+
+class time dialog::dialog_timeout() const
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
+
+::string dialog::dialog_details() const
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
+dialog_payload::dialog_payload()
+{
+
+
+}
+
+
+dialog_payload::~dialog_payload()
+{
+
+
+}
+
+
+
+::string dialog_payload::dialog_title() const
+{
+
+   return m_strTitle;
+
+}
+
+
+
+void dialog_payload::display(::dialog * pdialog)
+{
+
+   throw ::interface_only();
+
+}
+
+
+void dialog_payload::on_dialog_result(const ::payload & payloadResult)
+{
+
+   m_functionOnDialogResult(payloadResult);
+
+}
+
+
+class ::time dialog_payload::dialog_time_remaining_from_timeout() const
+{
+
+   if (m_timeTimeout.is_null())
+   {
+
+      return 0_s;
+
+   }
+
+   auto timeElapsed = m_timeShowStart.elapsed();
+
+   if (timeElapsed > m_timeTimeout || m_timeCancelledTimeout.is_set())
+   {
+
+      return 0_s;
+
+   }
+
+   return m_timeTimeout - timeElapsed;
+
+}
+
+
+class ::time dialog_payload::dialog_timeout() const
+{
+
+   return m_timeTimeout;
+
+}
+
+
+
+
+
+dialog_reifier::dialog_reifier()
+{
+
+
+}
+
+
+dialog_reifier::~dialog_reifier()
+{
+
+
+}
+
+
+
+::string dialog_reifier::dialog_title() const
+{
+
+   return m_pdialog->dialog_title();
+
+}
+
+
+void dialog_reifier::display_dialog()
+{
+
+   throw ::interface_only();
+
+}
+
+
+void dialog_reifier::display(::dialog * pdialog)
+{
+
+   m_pdialog = pdialog;
+
+   display_dialog();
+
+}
+
+
+
+void dialog_reifier::set_dialog_result(const ::payload & payloadResult)
+{
+
+   try
+   {
+
+      if (m_pdialog)
+      {
+
+         m_pdialog->on_dialog_result(payloadResult);
+
+      }
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+   on_dialog_result(payloadResult);
+
+}
+
+
+class time dialog_reifier::dialog_time_remaining_from_timeout() const
+{
+
+   return m_pdialog->dialog_time_remaining_from_timeout();
+
+}
+
+
+class time dialog_reifier::dialog_timeout() const
+{
+
+   return m_pdialog->dialog_timeout();
+
+}
+
+
+message_box_payload *dialog_reifier::get_message_box_payload()
+{
+
+   ::cast < class message_box_payload > pmessageboxpayload = m_pdialog;
+
+   return pmessageboxpayload;
+
+}
+
+
+message_box_payload::message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    m_strMessage = scopedstrMessage;
@@ -79,7 +341,7 @@ message_box::message_box(const ::scoped_string & scopedstrMessage, const ::scope
 }
 
 
-message_box::message_box(const ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
+message_box_payload::message_box_payload(const ::exception & exception, const ::scoped_string & scopedstrMoreDetails)
 {
 
    m_strMessage = exception.m_strMessage;
@@ -125,7 +387,7 @@ message_box::message_box(const ::exception & exception, const ::scoped_string & 
 
 
 
-message_box::message_box(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
+message_box_payload::message_box_payload(const ::exception & exception, const ::scoped_string & strMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    m_strMessage = exception.m_strMessage;
@@ -147,34 +409,46 @@ message_box::message_box(const ::exception & exception, const ::scoped_string & 
 }
 
 
-message_box::~message_box()
+message_box_payload::~message_box_payload()
 {
 
 
 }
 
 
-#ifdef _DEBUG
-
-
-long long message_box::increment_reference_count()
+message_box_payload *message_box_payload::get_message_box_payload()
 {
 
-   return ::particle::increment_reference_count();
+
+   return this;
 
 }
 
 
-long long message_box::decrement_reference_count()
-{
-
-   return ::particle::decrement_reference_count();
-
-}
 
 
-#endif
 
+//#ifdef _DEBUG
+//
+//
+//long long message_box_payload::increment_reference_count()
+//{
+//
+//   return ::particle::increment_reference_count();
+//
+//}
+//
+//
+//long long message_box_payload::decrement_reference_count()
+//{
+//
+//   return ::particle::decrement_reference_count();
+//
+//}
+//
+//
+//#endif
+//
 
 
 //void conversation_message::aggregate(sequence * psequence)
@@ -224,7 +498,7 @@ long long message_box::decrement_reference_count()
 //
 //}
 
-::payload message_box::get_result_payload()
+::payload message_box_payload::get_result_payload()
 {
 
    return m_payloadResult;
@@ -232,29 +506,57 @@ long long message_box::decrement_reference_count()
 }
 
 
-void message_box::on_timed_out()
+void message_box_payload::on_timed_out()
 {
 
    m_payloadResult = e_dialog_result_timeout;
 
-   on_sequence();
+   if (m_functionOnTimeOut)
+   {
+
+      m_functionOnTimeOut(this);
+
+    //  on_sequence();
+   }
 
 }
 
 
-
-void message_box::run()
+::string message_box_payload::dialog_details() const
 {
 
-//   auto psequence = ::sequence::current();
-//
-//   if (psequence)
-//   {
-//
-//      psequence->m_pparticle = this;
-//
-//   }
-
-   m_preified->call();
+   return m_strDetails;
 
 }
+
+
+// void message_box_payload::async()
+// {
+//
+//
+// }
+//
+//
+// void message_box_payload::sync()
+// {
+//
+//
+// }
+
+
+//
+// void message_box_payload::run()
+// {
+// //
+// ////   auto psequence = ::sequence::current();
+// ////
+// ////   if (psequence)
+// ////   {
+// ////
+// ////      psequence->m_pparticle = this;
+// ////
+// ////   }
+// //
+// //   m_preified->call();
+// //
+// }

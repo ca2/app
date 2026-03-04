@@ -708,7 +708,7 @@ namespace graphics3d
    ::pointer<::graphics3d::point_light> scene_base::create_point_light(float intensity, float radius,
                                                                        const ::color::color &color)
    {
-      auto ppointlight = øallocate ::graphics3d::point_light;
+      auto ppointlight = allocateø ::graphics3d::point_light;
       m_pointlighta.add(ppointlight);
       ppointlight->m_color = color;
       ppointlight->m_sequence3Scaling.x = radius;

@@ -12,7 +12,7 @@ namespace user
       { 
          
       
-         return øallocate class format (*m_pformat);
+         return allocateø class format (*m_pformat);
       
       }
 

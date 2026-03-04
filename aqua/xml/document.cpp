@@ -214,7 +214,7 @@ namespace xml
 
       }
 
-      auto pnode = øallocate class node ((node *) this);
+      auto pnode = allocateø class node ((node *) this);
 
       m_nodea.add(pnode);
 
@@ -323,7 +323,7 @@ namespace xml
    //   {
 
    //      // Not found: create one.
-   //      auto pnodeRoot = øallocate ::xml::node((document *)this);
+   //      auto pnodeRoot = allocateø ::xml::node((document *)this);
 
    //      pnodeRoot->set_name("root");
    //      pnodeRoot->m_pnodeParent = (node *)this;

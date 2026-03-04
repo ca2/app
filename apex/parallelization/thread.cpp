@@ -2709,7 +2709,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = øallocate thread_startup();
+//      m_pstartup = allocateø thread_startup();
 //
 //   }
 //
@@ -3347,10 +3347,10 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
       if (!is_task_set2())
       {
 
-         _post([this, eusermessage, wparam, lparam]()
+         post([this, eusermessage, wparam, lparam]()
          {
 
-            post_message(eusermessage, wparam, lparam);
+            message_call(eusermessage, wparam, lparam);
 
          });
 
@@ -3424,7 +3424,7 @@ void thread::send_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
    //}
 
-   auto pmessage = øallocate ::send_thread_message(this);
+   auto pmessage = allocateø ::send_thread_message(this);
 
    pmessage->m_message.m_eusermessage = eusermessage;
 
@@ -4421,7 +4421,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = øallocate ref_array < ::user::interaction_base > ();
+   //   m_spuiptra = allocateø ref_array < ::user::interaction_base > ();
 
    //}
 
@@ -4936,7 +4936,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         øconstruct(m_pmutexThreadUiPtra);
+         constructø(m_pmutexThreadUiPtra);
 
       }
 
@@ -5133,7 +5133,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = øallocate file_info();
+   m_pfileinfo = allocateø file_info();
 
    return m_pfileinfo;
 

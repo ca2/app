@@ -101,27 +101,27 @@ namespace write_text
 
       template < prototype_character_range RANGE >
       font_family_pointer(const RANGE & rangeFamilyName):
-         ::pointer < font_family >(øallocate font_family(rangeFamilyName))
+         ::pointer < font_family >(allocateø font_family(rangeFamilyName))
       {
       }
 
       template < prototype_character_range RANGE, prototype_character_range RANGE2 >
       font_family_pointer(const RANGE & rangeFamilyName, const RANGE2 & rangeBranch) :
-         ::pointer < font_family >(øallocate font_family(rangeFamilyName, rangeBranch))
+         ::pointer < font_family >(allocateø font_family(rangeFamilyName, rangeBranch))
       {
       }
 
 
       template < prototype_character CHARACTER >
       font_family_pointer(const CHARACTER * pszFamilyName):
-         ::pointer < font_family >(øallocate font_family(pszFamilyName))
+         ::pointer < font_family >(allocateø font_family(pszFamilyName))
       {
 
       }
 
       template < prototype_character CHARACTER, prototype_character CHARACTER2 >
       font_family_pointer(const CHARACTER * pszFamilyName, const CHARACTER2 * pszBranch) :
-         ::pointer < font_family >(øallocate font_family(pszFamilyName, pszBranch))
+         ::pointer < font_family >(allocateø font_family(pszFamilyName, pszBranch))
       {
 
       }

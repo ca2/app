@@ -47,7 +47,7 @@ namespace message
    //dispatcher(PREDICATE predicate)
    //{
    //
-   //   ::particle_pointer::operator = (øallocate predicate_handler < PREDICATE > (predicate));
+   //   ::particle_pointer::operator = (allocateø predicate_handler < PREDICATE > (predicate));
    //
    //   m_pparticleHandlerTarget = m_p;
    //

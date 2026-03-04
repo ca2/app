@@ -204,7 +204,7 @@ namespace filemanager
       ////add_factory_item <fs::simple::impact >();
       ////add_factory_item <fs::simple::list_impact >();
 
-      ////øconstruct_new(this, m_pmap);
+      ////construct_newø(this, m_pmap);
 
       //throw ::exception(todo("core"));
       ////psession->userex()->shell()->initialize(&Session);
@@ -215,7 +215,7 @@ namespace filemanager
       ////                   ::type<form_child_frame>(),
       ////                   ::type<form>()));
 
-      ////øconstruct(m_pimpactsystemForm, pmulti);
+      ////constructø(m_pimpactsystemForm, pmulti);
 
       ////psession->add_document_template(pmulti);
 
@@ -225,7 +225,7 @@ namespace filemanager
       ////                    ::type<operation_child_frame>(),
       ////                    ::type<operation_impact>()));
       ////
-      ////øconstruct(m_pimpactsystemOperation, psingle);
+      ////constructø(m_pimpactsystemOperation, psingle);
 
       ////psession->add_document_template(psingle);
 
@@ -266,7 +266,7 @@ namespace filemanager
    //   }
 
    //   throw ::exception(todo("core"));
-   //   //auto pdata = øallocate data();
+   //   //auto pdata = allocateø data();
 
    //   //pdata->initialize_filemanager_data(this);
 
@@ -335,7 +335,7 @@ namespace filemanager
       throw ::exception(todo("core"));
       //add_reference(pdata);
 
-      //øconstruct(datamap()[atom], pdata);
+      //constructø(datamap()[atom], pdata);
 
    }
 
@@ -629,7 +629,7 @@ pdirectorysystem->localconfig() / "user.component";
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = øallocate ::create(papp->handler(), payloadFile, true);
+      //   pcreate = allocateø ::create(papp->handler(), payloadFile, true);
 
       //}
 
@@ -767,7 +767,7 @@ pdirectorysystem->localconfig() / "user.component";
  /*     if (!pdata)
       {
 
-         øconstruct(pdata, filemanager_create_data(atom));
+         constructø(pdata, filemanager_create_data(atom));
 
       }*/
 
@@ -785,7 +785,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pcreate == nullptr)
 //   {
 
-//      pcreate = øallocate ::create(pappOnBehalfOf->handler());
+//      pcreate = allocateø ::create(pappOnBehalfOf->handler());
 
 //   }
 //   else
@@ -916,7 +916,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pcreate.is_null())
 //   {
 
-//      pcreate = øallocate ::create(pappOnBehalfOf->handler());
+//      pcreate = allocateø ::create(pappOnBehalfOf->handler());
 
 //   }
 //   else
@@ -1037,7 +1037,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = øallocate ::filemanager::data(this);
+//      pfilemanagerdata = allocateø ::filemanager::data(this);
 
 //   }
 
@@ -1091,7 +1091,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = øallocate ::filemanager::data(this);
+//      pfilemanagerdata = allocateø ::filemanager::data(this);
 
 //   }
 
@@ -1149,7 +1149,7 @@ pdirectorysystem->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = øallocate ::filemanager::data(this);
+//      pfilemanagerdata = allocateø ::filemanager::data(this);
 
 //   }
 

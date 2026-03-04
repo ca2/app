@@ -101,7 +101,7 @@ string get_callstack(particle * pparticle, const ::scoped_string & scopedstrForm
 
    }
 
-   auto pcallstack = øallocate callstack(scopedstrFormat, (int)iSkip, caller_address, (int)iCount);
+   auto pcallstack = allocateø callstack(scopedstrFormat, (int)iSkip, caller_address, (int)iCount);
 
    return pcallstack;
 

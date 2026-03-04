@@ -382,8 +382,8 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void _post(const ::procedure & procedure) override;
-   void _send(const ::procedure & procedure) override;
+   void post(const ::procedure & procedure) override;
+   void send(const ::procedure & procedure) override;
 
    //void _post(::subparticle * p) override;
    //void _send(::subparticle * p) override;

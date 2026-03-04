@@ -34,7 +34,7 @@ namespace platform
    //
    // #endif
 
-   void acme_application_layer::_001TryCloseApplication()
+   void acme_application_layer::_001PostTryCloseApplication()
    {
    }
 
@@ -403,6 +403,9 @@ void acme_application_layer::start_application()
 
 
    }
+
+
+   void acme_application_layer::show_lines_box(const ::string_array_base & straLines, const ::scoped_string &scopedstrIconUrl, ::user::activation_token *puseractivationtoken) {}
 
 
    ::string_array_base acme_application_layer::get_operating_system_information_lines()

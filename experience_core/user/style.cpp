@@ -52,7 +52,7 @@ namespace experience_core
       if (::is_null(m_pfont))
       {
 
-         øconstruct(m_pfont);
+         constructø(m_pfont);
 
          //auto pnode = node();
 

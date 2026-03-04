@@ -27,7 +27,7 @@ namespace userex
    void wait_message_dialog::on_show(const ::scoped_string & scopedstrMatter)
    {
 
-      ::dialog::on_show(scopedstrMatter);
+      ::userex::dialog::on_show(scopedstrMatter);
 
    }
 
@@ -35,7 +35,7 @@ namespace userex
    void wait_message_dialog::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
       
-      dialog::handle(ptopic, phandlercontext);
+      ::userex::dialog::handle(ptopic, phandlercontext);
       
       if(ptopic->user_interaction() == m_pform)
       {

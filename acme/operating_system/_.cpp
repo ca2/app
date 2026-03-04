@@ -38,7 +38,7 @@ app_factory::app_factory(PFN_factory pfnFactory)
 ::pointer<::platform::application>app_factory::new_app(::particle * pparticle)
 {
 
-   auto pfactory = øallocate ::factory::factory();
+   auto pfactory = allocateø ::factory::factory();
 
    g_pfnFactoryApp(pfactory);
 

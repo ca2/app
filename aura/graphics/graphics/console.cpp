@@ -193,7 +193,7 @@ namespace graphics
 
       m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
 
-      m_papplication->øconstruct(m_pimage->g()->m_pfont);
+      m_papplication->constructø(m_pimage->g()->m_pfont);
 
       m_pimage->g()->m_pfont->create_font(e_font_monospace, ::write_text::font_size(m_sizeTile.cy * 0.92, e_unit_pixel));
 
@@ -327,7 +327,7 @@ namespace graphics
       if (ppen2.is_null())
       {
 
-         øconstruct(ppen2);
+         constructø(ppen2);
 
          ppen2->create_solid(2.0, console_dos_color(edoscolor));
 
@@ -346,7 +346,7 @@ namespace graphics
       if (ppen1.is_null())
       {
 
-         øconstruct(ppen1);
+         constructø(ppen1);
 
          ppen1->create_solid(1.0, console_dos_color(edoscolor));
 

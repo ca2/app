@@ -85,7 +85,7 @@ namespace filemanager
 
          ::file::path filepathUser = m_papplication->defer_process_matter_path(filepathFinal);
 
-         auto pfileitem = øallocate ::file::item(filepathUser, filepathFinal);
+         auto pfileitem = allocateø ::file::item(filepathUser, filepathFinal);
 
          filemanager_document()->on_file_manager_open_folder(pfileitem, ::e_source_user);
 
@@ -184,7 +184,7 @@ namespace filemanager
          //      unsigned int uFlags;
          if (pcolumn->m_pimagelist == nullptr)
          {
-            pcolumn->m_pimagelist = øallocate ::image::image_list();
+            pcolumn->m_pimagelist = allocateø ::image::image_list();
          }
          ::image::image_list_pointer pil = pcolumn->m_pimagelist;
          //if(pil->GetSafeHandle() != nullptr)

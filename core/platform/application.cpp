@@ -246,7 +246,7 @@ namespace core
       if (!pfilemanager)
       {
 
-         ((application *)this)->øconstruct_new(pfilemanager);
+         ((application *)this)->construct_newø(pfilemanager);
 
          pfilemanager->initialize_filemanager_component(((application *)this));
 
@@ -357,7 +357,7 @@ namespace core
       if(m_ppaneimpactCore && puserdocument)
       {
          
-         m_ppaneimpactCore->post() 
+         m_ppaneimpactCore->postø()
             << [this, puserdocument]()
                                            {
             

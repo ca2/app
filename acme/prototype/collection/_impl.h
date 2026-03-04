@@ -32,109 +32,109 @@ inline ::block block_range < ITERATOR_TYPE >::block()
 
 }
 
-#include "acme/handler/sequence_continuation.h"
+#include "acme/handler/dispatch_array.h"
 
 
-inline sequence_continuation particle::user_send(const ::procedure & procedure)
+// inline sequence_continuation particle::user_send(const ::procedure & procedure)
+// {
+//    return { this, e_dispatch_user_send, procedure };
+// }
+inline dispatch_arrayø particle::user_sendø()
 {
-   return { this, e_dispatch_user_send, procedure };
+    return { this, e_dispatch_user_send };
 }
-inline sequence_continuation particle::user_send()
+// inline sequence_continuation particle::user_sync()
+// {
+//    return { this, e_dispatch_user_send, (::subparticle*) this };
+// }
+
+
+
+
+// inline sequence_continuation particle::user_post(const ::procedure & procedure)
+// {
+//    return { this, e_dispatch_user_post, procedure };
+// }
+inline dispatch_arrayø particle::user_postø()
 {
-   return { this, e_dispatch_user_send };
+    return { this, e_dispatch_user_post };
 }
-inline sequence_continuation particle::user_sync()
+// inline sequence_continuation particle::user_async()
+// {
+//    return { this, e_dispatch_user_post, (::subparticle*) this };
+// }
+
+
+// inline sequence_continuation particle::main_send(const ::procedure & procedure)
+// {
+//    return { this, e_dispatch_main_send, procedure };
+// }
+inline dispatch_arrayø particle::main_sendø()
 {
-   return { this, e_dispatch_user_send, (::subparticle*) this };
+    return { this, e_dispatch_main_send };
 }
+// inline sequence_continuation particle::main_sync()
+// {
+//    return { this, e_dispatch_main_send, this };
+// }
 
 
-
-
-inline sequence_continuation particle::user_post(const ::procedure & procedure)
+// inline sequence_continuation particle::main_post(const ::procedure & procedure)
+// {
+//    return { this, e_dispatch_main_post, procedure };
+// }
+inline dispatch_arrayø particle::main_postø()
 {
-   return { this, e_dispatch_user_post, procedure };
+    return { this, e_dispatch_main_post };
 }
-inline sequence_continuation particle::user_post()
+// inline sequence_continuation particle::main_async()
+// {
+//    return { this, e_dispatch_main_post, this };
+// }
+
+
+// inline sequence_continuation particle::send(const ::procedure & procedure)
+// {
+//    return { this, e_dispatch_send, procedure };
+// }
+inline dispatch_arrayø particle::sendø()
 {
-   return { this, e_dispatch_user_post };
-}
-inline sequence_continuation particle::user_async()
-{
-   return { this, e_dispatch_user_post, (::subparticle*) this };
-}
-
-
-inline sequence_continuation particle::main_send(const ::procedure & procedure)
-{
-   return { this, e_dispatch_main_send, procedure };
-}
-inline sequence_continuation particle::main_send()
-{
-   return { this, e_dispatch_main_send };
-}
-inline sequence_continuation particle::main_sync()
-{
-   return { this, e_dispatch_main_send, this };
-}
-
-inline sequence_continuation particle::main_post(const ::procedure & procedure)
-{
-   return { this, e_dispatch_main_post, procedure };
-}
-inline sequence_continuation particle::main_post()
-{
-   return { this, e_dispatch_main_post };
-}
-inline sequence_continuation particle::main_async()
-{
-   return { this, e_dispatch_main_post, this };
-}
-
-
-inline sequence_continuation particle::send(const ::procedure & procedure)
-{
-   return { this, e_dispatch_send, procedure };
-}
-inline sequence_continuation particle::send()
-{
-   return { this, e_dispatch_send };
-}
-
-
-inline sequence_continuation particle::sync(const class ::time & timeTimeout)
-{
-   
-   ::procedure procedure;
-
-   procedure.m_p = this;
-   
-   if (!timeTimeout.is_null())
-   {
-
-      procedure.m_timeTimeout = timeTimeout;
-
-   }
-
-   return { this, e_dispatch_send, procedure, should_create_sequence_on_synchronicity()};
-
+    return { this, e_dispatch_send };
 }
 
 
-inline sequence_continuation particle::post(const ::procedure & procedure)
+// inline sequence_continuation particle::sync(const class ::time & timeTimeout)
+// {
+//
+//    ::procedure procedure;
+//
+//    procedure.m_p = this;
+//
+//    if (!timeTimeout.is_null())
+//    {
+//
+//       procedure.m_timeTimeout = timeTimeout;
+//
+//    }
+//
+//    return { this, e_dispatch_send, procedure };
+//
+// }
+//
+//
+// inline sequence_continuation particle::post(const ::procedure & procedure)
+// {
+//    return { this, e_dispatch_post, procedure };
+// }
+inline dispatch_arrayø particle::postø()
 {
-   return { this, e_dispatch_post, procedure };
+    return { this, e_dispatch_post };
 }
-inline sequence_continuation particle::post()
-{
-
-   return { this, e_dispatch_post };
-}
-inline sequence_continuation particle::async()
-{
-
-   return { this, e_dispatch_post, this };
-}
+// inline sequence_continuation particle::async()
+// {
+//
+//    return { this, e_dispatch_post, this };
+// }
 
 #include "acme/exception/cancel.h"
 
@@ -148,7 +148,7 @@ inline sequence_continuation particle::async()
       try
       {
 
-         ::procedure_array::run();
+         ::procedure_array_base::run();
 
       }
       catch (const ::cancel_exception<CONTEXT_TYPE> & cancelexception)

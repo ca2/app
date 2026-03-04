@@ -717,7 +717,7 @@ bool file_context::try_create_file(const ::file::path & path, bool bTryDelete)
 
    ::pointer<::file::file>pfile;
 
-   øconstruct(pfile);
+   constructø(pfile);
 
    if (!m_estatus)
    {
@@ -1511,11 +1511,11 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = øallocate ::make_particle1 < read_only_memory >(block);
+      auto pmemory = allocateø ::make_particle1 < read_only_memory >(block);
 
-      auto pfile = øallocate::memory_file(pmemory);
+      auto pfile = allocateø::memory_file(pmemory);
 
-      system()->folder_factory()->øconstruct(m_papplication, m_pfolderResource);
+      system()->folder_factory()->constructø(m_papplication, m_pfolderResource);
 
       m_pfolderResource->initialize(this);
 
@@ -2740,7 +2740,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   ::pointer<::file::file>pfile2;
 //
-//   øconstruct(pfile2);
+//   constructø(pfile2);
 //
 //   memsize iBufSize = 1024 * 1024;
 //
@@ -3224,7 +3224,7 @@ file_pointer file_context::file_get_file(::file::path path, ::file::e_open eopen
 
    file_pointer pfile;
 
-   øconstruct(pfile);
+   constructø(pfile);
 
    pfile->open(path, eopen);
 
@@ -3295,7 +3295,7 @@ file_pointer file_context::data_get_file(const ::scoped_string & scopedstrData, 
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            ::pointer<memory_file>pmemoryfile = øallocate memory_file();
+            ::pointer<memory_file>pmemoryfile = allocateø memory_file();
 
             auto psystem = system();
 
@@ -3741,7 +3741,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
          if (eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = øallocate::file::file();
+            pfile = allocateø::file::file();
 
             pfile->m_estatus = error_not_a_file;
 
@@ -3830,7 +3830,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
       if (eopen & ::file::e_open_no_exception_on_open)
       {
 
-         øconstruct_new(pfile);
+         construct_newø(pfile);
 
          pfile->m_estatus = error_file_not_found;
 
@@ -3946,7 +3946,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
 
    ::file_pointer pfile;
 
-   øconstruct(pfile);
+   constructø(pfile);
 
    pfile->open(path, eopen, pfileexception);
 

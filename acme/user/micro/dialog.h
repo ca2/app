@@ -16,16 +16,19 @@ namespace micro
 
 
    class CLASS_DECL_ACME dialog :
-      virtual public ::micro::main_window
+      virtual public ::micro::main_window,
+      virtual public ::dialog_reifier
    {
    public:
 
 
-      ::collection::index                       m_iDefaultButton = -1;
-      //::function < void(::acme::user::interaction *) >        m_functionClose;
-      manual_reset_happening                        m_manualresethappeningFinished;
-      bool                                      m_bRunningModalLoop;
-      class ::time                              m_timeDialogTimeout;
+      ::collection::index                                      m_iDefaultButton = -1;
+      //::function < void(::acme::user::interaction *) >       m_functionClose;
+      manual_reset_happening                                   m_manualresethappeningFinished;
+      bool                                                     m_bRunningModalLoop;
+      class ::time                                             m_timeDialogTimeout;
+      //::payload                                                m_payloadDialogResult;
+      //::function < void(::acme::user::interaction *) >         m_functionOnDialogResult;
 
 
       dialog();
@@ -40,7 +43,7 @@ namespace micro
 
       virtual bool is_waiting_for_dialog_result() override;
       virtual void set_dialog_result(const ::payload & payloadResult) override;
-      virtual void on_dialog_result_set();
+      void on_dialog_result(const ::payload & payloadResult) override;
       virtual ::payload wait_for_dialog_result(const class ::time & timeTimeout = ::time::infinity()) override;
 
       virtual ::payload get_dialog_result() override;
@@ -48,7 +51,7 @@ namespace micro
       virtual ::micro::dialog * micro_dialog();
 
       void on_window_close() override;
-
+      virtual void on_dialog_finished();
 
 
    };

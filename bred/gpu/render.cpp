@@ -120,7 +120,7 @@ namespace gpu
            // && m_pgpucontext->m_pbuffer->m_pixmap.is_ok())
       if (::is_set(m_pgpucontext))
       {
-         m_pgpucontext->_send([this]()
+         m_pgpucontext->sendø() << [this]()
             {
                //if (::is_set(m_pobject))
                {
@@ -222,7 +222,7 @@ namespace gpu
                //         pgraphics->set(matrixOriginal);
                //
                //#endif
-         });
+         };
 
       }
 

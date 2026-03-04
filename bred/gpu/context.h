@@ -87,8 +87,8 @@ namespace gpu
 
       using thread::send;
       using thread::post;
-      using thread::_send;
-      using thread::_post;
+      //using thread::send;
+      //using thread::post;
 
 
       enum enum_type
@@ -183,7 +183,7 @@ namespace gpu
 
       virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
 
-      void _send(const ::procedure& procedure) override;
+      void send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
 
       virtual void construct(::pointer < ::gpu::shader >& pgpushader);

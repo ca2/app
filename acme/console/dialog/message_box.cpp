@@ -14,29 +14,29 @@ namespace console
 {
 
 
-   enum_dialog_result dialog::run_message_box(::message_box * pmessagebox)
+   enum_dialog_result dialog::run_message_box(::message_box_payload * pmessageboxpayload)
    {
 
       string strLine;
 
       strLine = "\n";
 
-      if (pmessagebox->m_strTitle.has_character())
+      if (pmessageboxpayload->m_strTitle.has_character())
       {
 
-         strLine += pmessagebox->m_strTitle;
+         strLine += pmessageboxpayload->m_strTitle;
 
          strLine += "\n";
 
       }
 
-      strLine += pmessagebox->m_strMessage;
+      strLine += pmessageboxpayload->m_strMessage;
 
       enum_dialog_result edialogresultDefault = e_dialog_result_ok;
 
       string str;
 
-      auto etype = (pmessagebox->m_emessagebox & ::user::e_message_box_type_mask);
+      auto etype = (pmessageboxpayload->m_emessagebox & ::user::e_message_box_type_mask);
 
       if (etype == ::user::e_message_box_yes_no_cancel)
       {
@@ -47,7 +47,7 @@ namespace console
          str += "y/n";
       }
 
-      if (pmessagebox->m_strDetails.is_empty())
+      if (pmessageboxpayload->m_strDetails.is_empty())
       {
 
          str += "/d";
@@ -56,7 +56,7 @@ namespace console
 
       //bool bDefault = false;
 
-      auto edefaultbutton = (pmessagebox->m_emessagebox & ::user::e_message_box_default_button_mask);
+      auto edefaultbutton = (pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask);
 
       if (edefaultbutton == ::user::e_message_box_default_button_1 && str.size() >= 1)
       {
@@ -96,8 +96,8 @@ namespace console
 
    repeat:
 
-      if ((pmessagebox->m_emessagebox & ::user::e_message_box_icon_exclamation)
-         || (pmessagebox->m_emessagebox & ::user::e_message_box_icon_stop))
+      if ((pmessageboxpayload->m_emessagebox & ::user::e_message_box_icon_exclamation) ||
+          (pmessageboxpayload->m_emessagebox & ::user::e_message_box_icon_stop))
       {
 
          fputs(strLine.c_str(), stderr);
@@ -136,13 +136,13 @@ namespace console
 
          c = ::ansi_tolower(c);
 
-         if (pmessagebox->m_strDetails.has_character())
+         if (pmessageboxpayload->m_strDetails.has_character())
          {
 
             if (c == 'd')
             {
 
-               printf("%s", pmessagebox->m_strDetails.c_str());
+               printf("%s", pmessageboxpayload->m_strDetails.c_str());
 
                goto repeat;
 

@@ -252,7 +252,7 @@ namespace gpu
    //   if (!m_pgpucontextCompositorOutput)
    //   {
 
-   //      øconstruct(m_pgpucontextCompositorOutput);
+   //      constructø(m_pgpucontextCompositorOutput);
 
    //      m_pgpucontextCompositorOutput = m_papplication->get_gpu()->get_device()->start_swap_chain_context(this, pwindow);
 
@@ -636,7 +636,7 @@ namespace gpu
          if (!m_pshaderSourceRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -676,7 +676,7 @@ namespace gpu
          if (!m_pshaderBlendRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -1093,7 +1093,7 @@ namespace gpu
       if (!m_pgpushaderTextOut)
       {
 
-         øconstruct(m_pgpushaderTextOut);
+         constructø(m_pgpushaderTextOut);
 
          auto pcontext = gpu_context();
 

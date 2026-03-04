@@ -10,7 +10,7 @@
 ::platform::application* get_acid_app()
 {
 
-   return øallocate APP_TYPE();
+   return allocateø APP_TYPE();
 
 }
 

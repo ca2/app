@@ -198,7 +198,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = øallocate ::write_text::font_enumeration_item_array();
+      pitema = allocateø ::write_text::font_enumeration_item_array();
 
       auto psystem = system();
 
@@ -241,7 +241,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = øallocate ::write_text::font_enumeration_item_array();
+      pitema = allocateø ::write_text::font_enumeration_item_array();
 
       auto psystem = system();
 

@@ -74,7 +74,7 @@ extern thread_data_index g_tlsindexLastError;
 //    if (!ppropertyset)
 //    {
 
-//       ppropertyset = øallocate ::property_set();
+//       ppropertyset = allocateø ::property_set();
 
 //    }
 

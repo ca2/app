@@ -60,7 +60,7 @@ namespace user
 
       }
 
-      øconstruct_new(m_pacmetool);
+      construct_newø(m_pacmetool);
 
       m_itemcontainermap[id_tool] = m_pacmetool;
 
@@ -77,7 +77,7 @@ namespace user
 
       }
 
-      øconstruct_new(m_pacmecontentMain);
+      construct_newø(m_pacmecontentMain);
 
       m_itemcontainermap[id_content] = m_pacmecontentMain;
 
@@ -207,7 +207,7 @@ namespace user
          if (!puseritembase)
          {
 
-            puseritembase = øallocate ::simple_item_base < ::item>();
+            puseritembase = allocateø ::simple_item_base < ::item>();
 
          }
 
@@ -325,7 +325,7 @@ namespace user
    //::item_pointer acme_container::add_item(const ::item_t & item)
    //{
 
-   //   auto pitem = øallocate ::item(item);
+   //   auto pitem = allocateø ::item(item);
 
    //   pitem->initialize(this);
 
@@ -737,7 +737,7 @@ namespace user
    ::item_pointer acme_container::on_create_stock_item(enum_element eelement)
    {
 
-      auto pitem = øallocate::item(eelement);
+      auto pitem = allocateø::item(eelement);
 
       tool().add_item(pitem);
 

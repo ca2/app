@@ -103,11 +103,23 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 
       auto puseractivationtoken = ::as_pointer(pmouse->user_activation_token());
 
-      ppopupbutton->main_async()
-         << [this, ppopupbutton, puseractivationtoken]()
+      //ppopupbutton->m_p
+
+
+//      ppo
+
+  //    post(ppopupbutton);
+
+      //ppopupbutton->main_async()
+      ::cast <::message_box_payload > pmessageboxpayload = ppopupbutton->m_pdialog;
+
+      pmessageboxpayload->m_functionOnDialogResult = [this, ppopupbutton, puseractivationtoken](const ::payload & payloadResult)
          {
-            
+
+         if (payloadResult == e_dialog_result_yes)
+         {
             application()->show_about_box(puseractivationtoken);
+         }
 
 //            auto result = ppopupbutton->m_payloadPopupButtonResult;
 //
@@ -121,6 +133,8 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 //            }
 
          };
+
+      post(ppopupbutton);
       
       pmouse->m_bRet = true;
       

@@ -16,7 +16,7 @@
 //
 //      }
 //
-//      auto pappNew = øallocate APP();
+//      auto pappNew = allocateø APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -175,7 +175,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = øallocate ::message::route_array();
+//        proutea = allocateø ::message::route_array();
 //
 //     }
 //
@@ -256,7 +256,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = øallocate ::message::route_array();
+//        proutea = allocateø ::message::route_array();
 //
 //     }
 //
@@ -326,7 +326,7 @@
 //   while (c > 0)
 //   {
 //
-//      auto p = øallocate TYPE(&a);
+//      auto p = allocateø TYPE(&a);
 //
 //      stream >> *p;
 //

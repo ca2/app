@@ -142,7 +142,7 @@ namespace gpu
          return;
       }
 
-      _send(
+      sendø()<<
          [this, size]()
          {
             ::cast<device> pgpudevice = m_pgpudevice;
@@ -162,7 +162,7 @@ namespace gpu
             _create_cpu_buffer(size);
 
             m_bCreated = true;
-         });
+         };
    }
 
 
@@ -216,7 +216,7 @@ namespace gpu
    }
 
 
-   void context::_send(const ::procedure & procedure)
+   void context::send(const ::procedure & procedure)
    {
 
       ::procedure procedureForward = [this, procedure]()
@@ -243,13 +243,13 @@ namespace gpu
       {
 
        //  m_pacmewindowingwindowWindowSurface->_user_send(procedure);
-         m_pacmewindowingwindowWindowSurface->_main_send(procedure);
+         m_pacmewindowingwindowWindowSurface->main_send(procedure);
 
       }
       else
       {
 
-         ::thread::_send(procedureForward);
+         ::thread::send(procedureForward);
 
       }
 
@@ -315,7 +315,7 @@ namespace gpu
       {
       }
 
-      øconstruct(pgpushader);
+      constructø(pgpushader);
    }
 
 
@@ -1386,7 +1386,7 @@ namespace gpu
 
          // rear_guard guard(this);
 
-         _send(
+         sendø() <<
             [this, pacmewindowingwindow]()
             {
 
@@ -1429,7 +1429,7 @@ namespace gpu
 
                }
 
-            });
+            };
       }
 
    }
@@ -1455,12 +1455,12 @@ namespace gpu
 
       //rear_guard guard(this);
 
-      _send([this, pgpudevice, eoutput, size]()
+      sendø() <<[this, pgpudevice, eoutput, size]()
          {
 
             initialize_gpu_context(pgpudevice, eoutput, nullptr, size);
 
-         });
+         };
 
    }
 
@@ -1501,12 +1501,12 @@ namespace gpu
 
       m_bD3D11On12Shared = true;
 
-      _send([this, pgpudevice, eoutput, size]()
+      sendø() << [this, pgpudevice, eoutput, size]()
          {
 
             initialize_gpu_context(pgpudevice, eoutput, nullptr, size);
 
-         });
+         };
 
    }
 
@@ -1522,7 +1522,7 @@ namespace gpu
 
    //   rear_guard guard(this);
 
-   //   _send([this, pgpudevice, eoutput, pwindow]()
+   //   sendø() << [this, pgpudevice, eoutput, pwindow]()
    //      {
 
    //         initialize_gpu_context(pgpudevice, eoutput, pwindow, {});
@@ -1543,7 +1543,7 @@ namespace gpu
 
    //   rear_guard guard(this);
 
-   //   _send([this]()
+   //   sendø() << [this]()
    //      {
 
    //         initialize_gpu_context(startcontext);
@@ -1562,7 +1562,7 @@ namespace gpu
 
    //   rear_guard guard(this);
 
-   //   _send([this, &startcontext]()
+   //   sendø() << [this, &startcontext]()
    //      {
 
    //         initialize_gpu_context(startcontext);
@@ -2014,8 +2014,8 @@ namespace gpu
 
       //}
 
-      _send(
-         [this, on_frame]()
+      sendø()
+         <<[this, on_frame]()
          {
             //if (bForDrawing)
             //{
@@ -2028,7 +2028,7 @@ namespace gpu
             //{
             //   frame_suffix();
             //}
-         });
+         };
    }
 
 
@@ -2046,7 +2046,7 @@ namespace gpu
 
       //}
 
-      _send(
+      sendø()<<
          [this, on_frame, bForDrawing]()
          {
             if (bForDrawing)
@@ -2060,7 +2060,7 @@ namespace gpu
             {
                frame_suffix();
             }
-         });
+         };
    }
 
 
@@ -2747,7 +2747,7 @@ namespace gpu
       if (!m_pgpurenderer)
       {
 
-         øconstruct(m_pgpurenderer);
+         constructø(m_pgpurenderer);
 
          m_pgpurenderer->initialize_gpu_renderer(this);
 
@@ -2766,7 +2766,7 @@ namespace gpu
    //   if (!m_pgpurendererBackBuffer)
    //   {
 
-   //      øconstruct(m_pgpurendererBackBuffer);
+   //      constructø(m_pgpurendererBackBuffer);
 
    //      m_pgpurendererBackBuffer->initialize_gpu_renderer(this);
 
@@ -2791,7 +2791,7 @@ namespace gpu
 
    //      ::gpu::enum_scene escene = m_escene;
 
-   //      øconstruct(m_pgpucontextDraw2d->m_pgpurenderer);
+   //      constructø(m_pgpucontextDraw2d->m_pgpurenderer);
 
    //      auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
@@ -2816,7 +2816,7 @@ namespace gpu
 
    //      ::gpu::enum_scene escene = m_escene;
 
-   //      øconstruct(m_pgpurendererEngine);
+   //      constructø(m_pgpurendererEngine);
 
    //      auto eoutputEngine = m_papplication->m_gpu.m_eoutputEngine;
 
@@ -2842,7 +2842,7 @@ namespace gpu
 
    //   ::gpu::enum_scene escene = m_escene;
 
-   //   øconstruct(pgpurendererDraw2d);
+   //   constructø(pgpurendererDraw2d);
 
    //   //auto eoutputDraw2d = m_papplication->m_gpu.m_eoutputDraw2d;
 
@@ -3114,7 +3114,7 @@ namespace gpu
       if (!m_pbindingsetGlobalUbo1)
       {
 
-         øconstruct(m_pbindingsetGlobalUbo1);
+         constructø(m_pbindingsetGlobalUbo1);
 
          auto pbindingGlobalUbo = m_pbindingsetGlobalUbo1->binding(0);
 
@@ -3136,7 +3136,7 @@ namespace gpu
       if (!m_pbindingsetIbl1)
       {
 
-         øconstruct(m_pbindingsetIbl1);
+         constructø(m_pbindingsetIbl1);
 
          auto pbindingIrradiance = m_pbindingsetIbl1->binding(0);
          pbindingIrradiance->m_ebinding = ::gpu::e_binding_cube_sampler;
@@ -3165,7 +3165,7 @@ namespace gpu
       if (!m_pbindingsetGltfPbr)
       {
 
-         øconstruct(m_pbindingsetGltfPbr);
+         constructø(m_pbindingsetGltfPbr);
 
          auto pbindingAlbedo = m_pbindingsetGltfPbr->binding(0);
          pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;
@@ -3203,7 +3203,7 @@ namespace gpu
       if (!m_pbindingsetSceneGltfPbr)
       {
 
-         øconstruct(m_pbindingsetSceneGltfPbr);
+         constructø(m_pbindingsetSceneGltfPbr);
 
          auto pbindingAlbedo = m_pbindingsetSceneGltfPbr->binding(0);
          pbindingAlbedo->m_ebinding = ::gpu::e_binding_sampler2d;

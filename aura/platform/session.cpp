@@ -194,7 +194,7 @@ namespace aura
 
    //   }
 
-   //   øconstruct_new(m_puserstyle);
+   //   construct_newø(m_puserstyle);
 
    //   m_puserstyle->default_style_construct();
 
@@ -259,7 +259,7 @@ namespace aura
       //}
 
 
-      //estatus = øconstruct_new(m_ptextcontext);
+      //estatus = construct_newø(m_ptextcontext);
 
       //if (!estatus)
       //{
@@ -1740,7 +1740,7 @@ return m_psavings;
 
       //}
 
-      //auto estatus = øconstruct_new(m_pfs);
+      //auto estatus = construct_newø(m_pfs);
 
       //if (!estatus)
       //{
@@ -1759,7 +1759,7 @@ return m_psavings;
       //if (!m_pifs)
       //{
 
-      //   estatus = øconstruct(m_pifs, øallocate ifs(""));
+      //   estatus = constructø(m_pifs, allocateø ifs(""));
 
       //   if (!estatus)
       //   {
@@ -1775,7 +1775,7 @@ return m_psavings;
       //if (!m_premotefs)
       //{
 
-      //   estatus = øconstruct(m_premotefs, øallocate ::fs::remote_native(""));
+      //   estatus = constructø(m_premotefs, allocateø ::fs::remote_native(""));
 
       //   if (!estatus)
       //   {
@@ -1801,7 +1801,7 @@ return m_psavings;
 
       //   pset->m_spafsdata.add(øcreate_new < ::fs::native>());
 
-      //   estatus = øconstruct(m_pfsdata, pset);
+      //   estatus = constructø(m_pfsdata, pset);
 
       //   if (!estatus)
       //   {
@@ -1881,7 +1881,7 @@ return m_psavings;
 ////
 ////      }
 //
-//      auto pcs = øallocate ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen);
+//      auto pcs = allocateø ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen);
 //
 //      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
 //
@@ -1950,7 +1950,7 @@ return m_psavings;
 
       //estatus = 
       
-      øconstruct_new(m_psavings);
+      construct_newø(m_psavings);
 
       //return estatus;
 
@@ -1973,7 +1973,7 @@ return m_psavings;
       //   if (m_pfsdata.is_null())
       //   {
 
-      //      øconstruct(m_pfsdata, øallocate ::fs::set());
+      //      constructø(m_pfsdata, allocateø ::fs::set());
 
       //   }
 
@@ -2027,7 +2027,7 @@ return m_psavings;
 
    //   m_bUiInit = true;
 
-   //   øconstruct_new(m_puserstyleDefault);
+   //   construct_newø(m_puserstyleDefault);
 
    //   m_puserstyleDefault->default_style_construct();
 
@@ -2266,12 +2266,12 @@ namespace aura
          //if (psetup)
          //{
 
-         //   estatus = øconstruct(m_puser, psetup->create_new_object());
+         //   estatus = constructø(m_puser, psetup->create_new_object());
 
          //   if(!estatus)
          //   {
 
-         //      informationf("----> Failed to øconstruct(m_puser)");
+         //      informationf("----> Failed to constructø(m_puser)");
 
          //   }
 
@@ -2282,7 +2282,7 @@ namespace aura
 
          //estatus =
 
-         øconstruct(m_puser);
+         constructø(m_puser);
 
          information() << "aura::session user type : " << ::platform::type(m_puser).name();
 
@@ -2291,7 +2291,7 @@ namespace aura
          if (!m_puser)
          {
 
-            warningf("Failed to øconstruct_new(m_puser)");
+            warningf("Failed to construct_newø(m_puser)");
 
             error() << ".4";
 

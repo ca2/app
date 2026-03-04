@@ -158,7 +158,7 @@ namespace platform
 
       }
 
-      øconstruct_new(m_ptaskmessagequeue);
+      construct_newø(m_ptaskmessagequeue);
 
    }
 

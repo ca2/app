@@ -31,6 +31,6 @@
 //inline ::pointer<::count_runnable>__process(const TYPE & t, PRED pred)
 //{
 //
-//   return øallocate future_predicate < TYPE, PRED > (t, pred);
+//   return allocateø future_predicate < TYPE, PRED > (t, pred);
 //
 //}

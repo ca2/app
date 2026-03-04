@@ -36,7 +36,7 @@ namespace simple_shader
       //            if (::is_ok(m_pimage1))
       //            {
 
-      //               øconstruct(m_pimage2);
+      //               constructø(m_pimage2);
 
       //               m_pimage2->copy_from(m_pimage1);
 

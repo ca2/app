@@ -69,7 +69,7 @@ namespace simpledb
 
    ::simpledb::dataset * database::create_dataset()
    {
-      return øallocate< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
+      return allocateø< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
    }
 
 

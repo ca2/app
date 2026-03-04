@@ -331,8 +331,10 @@ namespace platform
 
       virtual bool is_wayland() override;
 
-      void _user_send(const ::procedure & procedure) override;
-      void _user_post(const ::procedure & procedure) override;
+      void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
       //virtual void _user_send(::subparticle * psubparticle) override;
       //virtual void _user_post(::subparticle * psubparticle) override;
@@ -1036,6 +1038,8 @@ namespace platform
 
       virtual bool _windows_isVistaOrLater();
       virtual bool _windows_isWin7();
+
+
 
    };
 

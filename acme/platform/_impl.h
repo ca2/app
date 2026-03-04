@@ -74,7 +74,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      }
 //
-//      auto pappNew = øallocate APP();
+//      auto pappNew = allocateø APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -423,7 +423,7 @@ const_char_pointer memory_counter_id(T * pthis)
 ////   while (c > 0)
 ////   {
 ////
-////      auto p = øallocate TYPE(&a);
+////      auto p = allocateø TYPE(&a);
 ////
 ////      stream >> *p;
 ////

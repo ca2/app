@@ -280,14 +280,14 @@ void subparticle::call()
 
    }
    
-   if(has_flag(e_flag_automatic_result_just_after_running))
-   {
+   //if(has_flag(e_flag_automatic_result_just_after_running))
+   //{
 
-      on_sequence();
-      
-   }
+   //   on_sequence();
+   //   
+   //}
 
-   //m_eflagElement -= e_flag_running;
+   ////m_eflagElement -= e_flag_running;
 
 }
 
@@ -348,31 +348,31 @@ void subparticle::destroy_os_data()
 }
 
 
-void subparticle::on_sequence()
-{
- 
-   if(::is_null(m_psequence))
-   {
-      
-      // nothing to do sequence for?
-      
-      return;
-      
-      //throw ::exception(error_wrong_state);
-      
-   }
-   
-   m_psequence->on_subparticle_sequence(this);
-   
-}
+//void subparticle::on_sequence()
+//{
+// 
+//   if(::is_null(m_psequence))
+//   {
+//      
+//      // nothing to do sequence for?
+//      
+//      return;
+//      
+//      //throw ::exception(error_wrong_state);
+//      
+//   }
+//   
+//   m_psequence->on_subparticle_sequence(this);
+//   
+//}
 
-
-bool subparticle::should_create_sequence_on_synchronicity()
-{
-
-   return has_flag(e_flag_should_create_sequence_on_synchronicity);
-
-}
+//
+// bool subparticle::should_create_sequence_on_synchronicity()
+// {
+//
+//    return has_flag(e_flag_should_create_sequence_on_synchronicity);
+//
+// }
 
 
 void subparticle::delete_this()

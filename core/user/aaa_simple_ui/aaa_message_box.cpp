@@ -78,7 +78,7 @@ namespace simple_ui
    void message_box::create_button(pointer_array < tap > & tapa,atom atom, const ::scoped_string & scopedstrText)
    {
 
-      auto ptap = øallocate ::simple_ui::tap();
+      auto ptap = allocateø ::simple_ui::tap();
 
       ptap->create_child(this);
 
@@ -165,7 +165,7 @@ namespace simple_ui
 
       rectangleFontopus.bottom = rectangleFontopus.top + h;
 
-      //auto pusersystem = øallocate ::user::system(WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus);
+      //auto pusersystem = allocateø ::user::system(WS_EX_LAYERED, nullptr, nullptr, 0, rectangleFontopus);
 
       if(!create_interaction(puiParent))
       {
@@ -493,9 +493,9 @@ namespace simple_ui
 //CLASS_DECL_CORE void system_message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int uFlags)
 //{
 //
-//   return auto pmessagebox = __initialize_new ::message_box(oswindow, pszText, pszCaption, uFlags, function);
+//   return auto pmessageboxpayload = __initialize_new ::message_box_payload(oswindow, pszText, pszCaption, uFlags, function);
 
-pmessagebox->sync();
+send(pmessageboxpayload);
 //
 //}
 
@@ -537,7 +537,7 @@ pmessagebox->sync();
 //
 //   {
 //
-//      ::pointer<::simple_ui::message_box>pmessagebox = øallocate ::simple_ui::message_box(get_app(),pText,lpCaption,uFlags);
+//      ::pointer<::simple_ui::message_box>pmessagebox = allocateø ::simple_ui::message_box(get_app(),pText,lpCaption,uFlags);
 //
 //      try
 //      {

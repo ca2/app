@@ -150,9 +150,9 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         papex = øallocate class apex_apex ();
+//         papex = allocateø class apex_apex ();
 //
-//         pmaindata = øallocate apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//         pmaindata = allocateø apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

@@ -182,9 +182,9 @@ namespace experience_tranquillum
 
       }
 
-      øconstruct(m_ppen);
+      constructø(m_ppen);
       
-      øconstruct(m_pbrush);
+      constructø(m_pbrush);
 
    }
 
@@ -214,9 +214,9 @@ namespace experience_tranquillum
 
       ::experience::button::on_layout(pgraphics);
 
-      //øconstruct(m_spregion);
-      //øconstruct(m_ppen);
-      //øconstruct(m_pbrush);
+      //constructø(m_spregion);
+      //constructø(m_ppen);
+      //constructø(m_pbrush);
       //   
       //auto rectangleX = this->rectangle();
       //
@@ -239,7 +239,7 @@ namespace experience_tranquillum
       //if (m_spregion.is_null())
       //{
 
-      //   auto pitemNone = øallocate ::item(e_element_none);
+      //   auto pitemNone = allocateø ::item(e_element_none);
 
       //   return pitemNone;
 
@@ -248,13 +248,13 @@ namespace experience_tranquillum
       //if (!m_spregion->contains(point))
       //{
 
-      //   auto pitemNone = øallocate ::item(e_element_none);
+      //   auto pitemNone = allocateø ::item(e_element_none);
 
       //   return pitemNone;
 
       //}
 
-      //return øallocate ::item(::e_element_client);
+      //return allocateø ::item(::e_element_client);
 
    }
 

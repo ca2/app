@@ -97,7 +97,7 @@ namespace user
 
       virtual void initialize_graphics_thread(::user::interaction * puserinteraction);
 
-
+      void stop_task() override;
       bool graphics_thread_reset(::user::interaction * pinteraction);
       bool graphics_thread_iteration();
       void on_graphics_thread_iteration_end();

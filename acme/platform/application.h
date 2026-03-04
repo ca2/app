@@ -535,7 +535,7 @@ namespace platform
 //         struct CLASS_DECL_ACME core_application_layer_t
 //         {
 
-
+      ::pointer<::user::tab_impact> m_ptabimpactBerg;
       ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
       ::pointer < ::filemanager::filemanager> m_pfilemanager;
 
@@ -567,7 +567,7 @@ namespace platform
 
 #endif
 
-      virtual void _001TryCloseApplication() override;
+      virtual void _001PostTryCloseApplication() override;
 
       virtual void application_on_status(::e_status estatus, ::particle* pparticle = nullptr, long long hi = 0, void* p = nullptr) override;
 

@@ -343,11 +343,11 @@ namespace experience_tranquillum
 
       }
 
-      øconstruct(m_ppenText1);
-      øconstruct(m_ppenFace1);
-      øconstruct(m_ppenHilight1);
-      øconstruct(m_ppenShadow1);
-      øconstruct(m_ppenDkShadow1);
+      constructø(m_ppenText1);
+      constructø(m_ppenFace1);
+      constructø(m_ppenHilight1);
+      constructø(m_ppenShadow1);
+      constructø(m_ppenDkShadow1);
 
       set_frame_color_system_default_001();
       set_moveable_border_color(m_pframewindow->get_moveable_border_color());
@@ -431,7 +431,7 @@ namespace experience_tranquillum
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         øconstruct(ppen);
+         constructø(ppen);
 
          ppen->create_solid(1.0, crTopLeft);
 
@@ -456,7 +456,7 @@ namespace experience_tranquillum
       if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != crBottomRight))
       {
 
-         øconstruct(ppen);
+         constructø(ppen);
 
          ppen->create_solid(1.0, crBottomRight);
 

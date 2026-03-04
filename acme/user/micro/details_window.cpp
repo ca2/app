@@ -69,7 +69,9 @@ namespace micro
 
          //string m_strDetails;
 
-         display_temporary_file_with_text(m_prealizable->m_strDetails);
+         ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+
+         display_temporary_file_with_text(pmessageboxpayload->m_strDetails);
 
          //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", ::user::e_message_box_ok, m_strDetails);
 

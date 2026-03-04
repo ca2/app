@@ -3179,7 +3179,7 @@ void simple_frame_window::defer_create_notification_icon()
 
             //auto estatus = 
 
-            øconstruct(m_piconNotify);
+            constructø(m_piconNotify);
 
             if(m_piconNotify)
             {
@@ -3664,7 +3664,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
          //auto puser = user();
          
          
-         auto ptrackpopup  = øallocate  ::menu::track_popup (
+         auto ptrackpopup  = allocateø  ::menu::track_popup (
                                                            pmenu,
                                                            this,
                                                            m_pnotifyicon,

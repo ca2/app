@@ -178,7 +178,7 @@ namespace platform
       //for (auto & papplication : applicationa)
       //{
 
-      //   øconstruct_new(papplication->m_phappeningFinished);
+      //   construct_newø(papplication->m_phappeningFinished);
 
       //   multiplelock.m_synchronizationa.add(papplication->m_phappeningFinished);
 

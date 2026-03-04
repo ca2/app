@@ -13,7 +13,7 @@
 
 //    //   {
 
-//    //      auto psystem = øallocate ::platform::system();
+//    //      auto psystem = allocateø ::platform::system();
 
 //    //      psystem->set_main_struct(&mainstruct);
 

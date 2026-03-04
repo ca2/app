@@ -223,7 +223,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_graphics_thread, false);
     
-      //øconstruct(g_pmutexImage);
+      //constructø(g_pmutexImage);
 
       m_bProdevianMouse = false;
 
@@ -375,7 +375,7 @@ namespace aura
 
       }
 
-      øconstruct(m_phardwaredevices);
+      constructø(m_phardwaredevices);
 
    }
 
@@ -432,12 +432,12 @@ namespace aura
 //      if (plibrary.is_null())
 //      {
 //
-//         øconstruct(plibrary, on_get_library(strLibrary));
+//         constructø(plibrary, on_get_library(strLibrary));
 //
 //         if (plibrary.is_null())
 //         {
 //
-//            øconstruct_new(plibrary);
+//            construct_newø(plibrary);
 //
 //            if (!plibrary->open(strLibrary))
 //            {
@@ -908,7 +908,7 @@ namespace aura
 //
 //      }
 
-      //estatus = øconstruct_new(m_pxml);
+      //estatus = construct_newø(m_pxml);
 
       //if (!estatus)
       //{
@@ -1025,7 +1025,7 @@ namespace aura
 //
 //#ifndef APPLE_IOS
 //
-//         auto estatus = øconstruct_new(m_pmachinehappeningcentral);
+//         auto estatus = construct_newø(m_pmachinehappeningcentral);
 //
 //         if (!estatus)
 //         {
@@ -1052,7 +1052,7 @@ namespace aura
 //
 //      }
 
-      //if(!øconstruct(m_pfilesystem))
+      //if(!constructø(m_pfilesystem))
       //{
 
       //   error() <<"failed to initialize file-system";
@@ -1061,7 +1061,7 @@ namespace aura
 
       //}
 
-      //if(!øconstruct(m_pdirectorysystem))
+      //if(!constructø(m_pdirectorysystem))
       //{
 
       //   error() <<"failed to initialize dir-system";
@@ -1115,7 +1115,7 @@ namespace aura
       ////informationf("Common App Data (matter) : " + directory()->commonappdata() + "\n");
       ////informationf("common app data (matter) : " + directory()->commonappdata() + "\n");
 
-      //øconstruct_new(m_pcrypto);
+      //construct_newø(m_pcrypto);
 
       //if (!::is_set(m_pcrypto))
       //{
@@ -1246,7 +1246,7 @@ namespace aura
 
       ///estatus = 
       
-      øconstruct(m_pdraw2d);
+      constructø(m_pdraw2d);
 
       //if (!estatus)
       //{
@@ -1970,7 +1970,7 @@ namespace aura
 //
 //#endif
 
-      //auto estatus = øconstruct_new(m_puserstr);
+      //auto estatus = construct_newø(m_puserstr);
 
       //if (!m_puserstr || !estatus)
       //{
@@ -2003,7 +2003,7 @@ namespace aura
 
       //throw ::exception(todo("filehandler"));
 
-      //estatus = øconstruct_new(m_pfilehandler);
+      //estatus = construct_newø(m_pfilehandler);
 
       //if (!estatus)
       //{
@@ -2626,11 +2626,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > ();
+//         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > ();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+//         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -2776,7 +2776,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = øconstruct_new(m_ptrace);
+   //   auto estatus = construct_newø(m_ptrace);
 
    //   if (!estatus)
    //   {
@@ -4195,9 +4195,9 @@ namespace aura
 //      if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
 //      {
 //
-//         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, ::user::e_message_box_ok);
+//         //::auto pmessageboxpayload = __initialize_new ::message_box_payload(NULL, strUrl, strUrl, ::user::e_message_box_ok);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 //
 //         pcontext->os().link_open(strUrl);
 //
@@ -4333,7 +4333,7 @@ namespace aura
 //         string * pstrNew = ___new string(strUrl);
 //
 //         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//            ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
+//            ref allocateø< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
 //               {
 //
 //                  ::winrt::Windows::Foundation::Uri ^ uri = ref ___new ::winrt::Windows::Foundation::Uri (*pstrNew);
@@ -4867,7 +4867,7 @@ namespace aura
 //      if (!m_pestamira)
 //      {
 //
-//         øconstruct_new(m_pestamira);
+//         construct_newø(m_pestamira);
 //
 //         m_pestamira->init_instance();
 //
@@ -4932,7 +4932,7 @@ namespace aura
 //
 //      //auto estatus =
 //      
-//      pfactoryGpu->øconstruct(this, m_pgpu);
+//      pfactoryGpu->constructø(this, m_pgpu);
 //
 //      //if (!estatus)
 //      //{
@@ -4985,7 +4985,7 @@ namespace aura
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = øallocate ::task_group(this, epriority);
+   //      auto pgroup = allocateø ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -5006,7 +5006,7 @@ namespace aura
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = øallocate ::task_tool();
+   //      auto ptool = allocateø ::task_tool();
 
    //      ptool->id() = etool;
 
@@ -5209,7 +5209,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return øallocate ::axis::session();
+   //   return allocateø ::axis::session();
 
    //}
 
@@ -5583,7 +5583,7 @@ namespace aura
   //      m_ppatch = ___new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = øconstruct(m_puserset, øallocate ::account::user_set(this));
+  //      estatus = constructø(m_puserset, allocateø ::account::user_set(this));
   //
   //      if (!estatus)
   //      {
@@ -5692,7 +5692,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = øconstruct_new(m_pxml);
+   //   auto estatus = construct_newø(m_pxml);
 
    //   if (!estatus)
    //   {
@@ -5756,7 +5756,7 @@ namespace aura
       if (!m_phistory)
       {
 
-         øconstruct_new(m_phistory);
+         construct_newø(m_phistory);
 
       }
 
@@ -5781,7 +5781,7 @@ if(!m_pimaging)
    if (application()->m_bImaging)
    {
 
-      øconstruct_new(m_pimaging);
+      construct_newø(m_pimaging);
 
    }
 }
@@ -5810,7 +5810,7 @@ if(!m_pimaging)
    //    if (application()->m_bImaging)
    //    {
    //
-   //       øconstruct_new(m_pimaging);
+   //       construct_newø(m_pimaging);
    //
    //    }
    //    /*/if (!estatus)
@@ -5995,7 +5995,7 @@ if(!m_pimaging)
 //   void system::init1()
 //   {
 //
-//      m_pfilehandler = øallocate ::filehandler::handler(this);
+//      m_pfilehandler = allocateø ::filehandler::handler(this);
 //
 //      //if (!::aura::application::init1())
 //      //{
@@ -6108,7 +6108,7 @@ if(!m_pimaging)
 
    //   if(m_phistory == nullptr)
    //   {
-   //      m_phistory = øallocate os_history(this);
+   //      m_phistory = allocateø os_history(this);
    //   }
 
    //   return true;
@@ -6142,7 +6142,7 @@ if(!m_pimaging)
 
    //   //}
 
-   //   //m_pbergedgemap = øallocate ::aura::session::map();
+   //   //m_pbergedgemap = allocateø ::aura::session::map();
 
 
    //   return true;
@@ -6223,7 +6223,7 @@ if(!m_pimaging)
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return øallocate ::aura::session();
+   //   return allocateø ::aura::session();
 
    //}
 
@@ -6264,7 +6264,7 @@ if(!m_pimaging)
    //void system::set_history(::apex::history* phistory)
    //{
 
-   //   auto estatus = øconstruct(m_phistory, phistory);
+   //   auto estatus = constructø(m_phistory, phistory);
 
    //   if (!estatus)
    //   {
@@ -6774,11 +6774,11 @@ if(!m_pimaging)
        //}
 
        //auto estatus =
-       pfactory->øconstruct(this, m_pestamira);
+       pfactory->constructø(this, m_pestamira);
 
       //auto estatus = 
       
-//      øconstruct(m_pestamira, pfactory->create < ::aqua::estamira > ());
+//      constructø(m_pestamira, pfactory->create < ::aqua::estamira > ());
 
       //if (!estatus)
       //{

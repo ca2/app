@@ -431,7 +431,7 @@ namespace openssl
 ::pointer<::crypto::rsa>__create_rsa(const ::scoped_string & scopedstr)
 {
 
-   return øallocate ::openssl::rsa(str);
+   return allocateø ::openssl::rsa(str);
 
 }
 

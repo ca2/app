@@ -61,7 +61,7 @@ namespace gpu
          //m_modeldata.m_indexes = indexa;
          m_pmaterial = pmaterial;
 
-         øconstruct(m_pmodelbuffer);
+         constructø(m_pmodelbuffer);
 
          m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
 
@@ -196,7 +196,7 @@ namespace gpu
       //
       //    }
       //
-      //    øconstruct(m_pmodelbuffer);
+      //    constructø(m_pmodelbuffer);
       //
       //    m_pmodelbuffer->initialize_gpu_context_object(m_pgpucontext);
       //

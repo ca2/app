@@ -367,11 +367,11 @@ namespace experience_anthill
 
       }
 
-      øconstruct(m_ppenText1);
-      øconstruct(m_ppenFace1);
-      øconstruct(m_ppenHilight1);
-      øconstruct(m_ppenShadow1);
-      øconstruct(m_ppenDkShadow1);
+      constructø(m_ppenText1);
+      constructø(m_ppenFace1);
+      constructø(m_ppenHilight1);
+      constructø(m_ppenShadow1);
+      constructø(m_ppenDkShadow1);
 
 
       m_minSize = int_size(144, 48);
@@ -462,7 +462,7 @@ namespace experience_anthill
       if (eborder & e_border_top || eborder & e_border_left)
       {
 
-         øconstruct(ppen);
+         constructø(ppen);
 
          ppen->create_solid(1.0, crTopLeft);
 
@@ -487,7 +487,7 @@ namespace experience_anthill
       if ((eborder & e_border_right || eborder & e_border_bottom) && (!ppen || ppen->m_color != crBottomRight))
       {
 
-         øconstruct(ppen);
+         constructø(ppen);
 
          ppen->create_solid(1.0, crBottomRight);
 

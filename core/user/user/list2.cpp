@@ -75,37 +75,37 @@ namespace user
 
       //plabelTitle->set_font(pfont);
 
-      //øconstruct_new(m_pstill);
+      //construct_newø(m_pstill);
 
-      //øconstruct_new(m_pedit);
+      //construct_newø(m_pedit);
 
-      //øconstruct_new(m_pbuttonClear);
+      //construct_newø(m_pbuttonClear);
 
-      //øconstruct_new(m_pbuttonGenerateAndCopy);
+      //construct_newø(m_pbuttonGenerateAndCopy);
 
-      //øconstruct_new(m_pstillKey);
+      //construct_newø(m_pstillKey);
 
-      //øconstruct_new(m_peditKey);
+      //construct_newø(m_peditKey);
 
-      //øconstruct_new(m_pstillTrial);
+      //construct_newø(m_pstillTrial);
 
-      //øconstruct_new(m_pcheckboxTrial);
+      //construct_newø(m_pcheckboxTrial);
 
-      //øconstruct_new(m_pstillDays);
+      //construct_newø(m_pstillDays);
 
-      //øconstruct_new(m_peditDays);
+      //construct_newø(m_peditDays);
 
-      //øconstruct_new(m_pstillYear);
+      //construct_newø(m_pstillYear);
 
-      //øconstruct_new(m_peditYear);
+      //construct_newø(m_peditYear);
       //
-      //øconstruct_new(m_pstillMonth);
+      //construct_newø(m_pstillMonth);
       //
-      //øconstruct_new(m_peditMonth);
+      //construct_newø(m_peditMonth);
 
-      //øconstruct_new(m_pstillDay);
+      //construct_newø(m_pstillDay);
 
-      //øconstruct_new(m_peditDay);
+      //construct_newø(m_peditDay);
 
       //m_pstill->create_control(this, "still");
 
@@ -861,7 +861,7 @@ namespace user
    //                     }
 
    //                     */
-   //         m_useritema.add(øallocate Item(item));
+   //         m_useritema.add(allocateø Item(item));
    //         iNode++;
    //      }
    //   }
@@ -885,7 +885,7 @@ namespace user
    //         item.m_iImage = m_iIconSong;
 
 
-   //         m_useritema.add(øallocate Item(item));
+   //         m_useritema.add(allocateø Item(item));
    //         iNode++;
    //      }
    //   }

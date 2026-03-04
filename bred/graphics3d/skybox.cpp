@@ -58,7 +58,7 @@ namespace graphics3d
 
       //auto modeldataCube = ::graphics3d::shape_factory::create_cube(32.0f);
 
-      ////øconstruct(m_pmodelCube);
+      ////constructø(m_pmodelCube);
 
       //auto pmodelCube = øcreate<::gpu::model_buffer>();
 

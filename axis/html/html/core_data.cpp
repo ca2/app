@@ -198,7 +198,7 @@ namespace html
          if (*m_fonta[i] == font)
             return i;
       }
-      auto pfont = øallocate class font (font);
+      auto pfont = allocateø class font (font);
       pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (int)m_fonta.get_upper_bound();
@@ -296,7 +296,7 @@ namespace html
 
       }
 
-      m_pelement = øallocate ::html::element ();
+      m_pelement = allocateø ::html::element ();
 
       m_pelement->initialize_html_elemental(this);
 
@@ -926,7 +926,7 @@ namespace html
 
       //auto estatus = 
       
-      øconstruct(pimage);
+      constructø(pimage);
       
       //if (!estatus)
       //{
@@ -977,7 +977,7 @@ namespace html
 
       //auto estatus = 
       
-      øconstruct(pimage);
+      constructø(pimage);
 
       //if (!estatus)
       //{
@@ -1019,7 +1019,7 @@ namespace html
 
       //auto estatus = 
       
-      øconstruct(pimage);
+      constructø(pimage);
       
       //if (!estatus)
       //{

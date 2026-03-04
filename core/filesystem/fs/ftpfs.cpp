@@ -57,7 +57,7 @@ void ftpfs::initialize_ftpfs(::particle * pparticle, const ::scoped_string & sco
 //void ftpfs::initialize(::particle * pparticle)
 //{
 //
-//   auto estatus = øconstruct_new(this, m_pftpnet);
+//   auto estatus = construct_newø(this, m_pftpnet);
 //
 //   return estatus;
 //
@@ -483,7 +483,7 @@ retry:
 
       file_pointer spfile;
 
-      spfile = øallocate ftpfs_file(this, pclient);
+      spfile = allocateø ftpfs_file(this, pclient);
 
       //auto result = 
       
@@ -522,7 +522,7 @@ bool ftpfs::file_exists(const ::file::path & path)
 void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, const ::scoped_string & scopedstrPath)
 {
 
-   auto plogon = øallocate ::ftp::logon();
+   auto plogon = allocateø ::ftp::logon();
 
    auto psystem = system();
 
@@ -544,13 +544,13 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, const ::scoped_st
    if (!pclient)
    {
 
-      pclient = øallocate ::ftp::client_socket();
+      pclient = allocateø ::ftp::client_socket();
 
       //pclient->initialize_socket(m_pftpnet->m_psockethandler);
 
       ::pointer<::ftp::output>& poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
 
-      poutput = øallocate ::ftp::output();
+      poutput = allocateø ::ftp::output();
 
       pclient->AttachObserver(poutput);
 

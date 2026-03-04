@@ -48,22 +48,22 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
 //#define øcreate __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
-//#define øconstruct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
+//#define constructø __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 //#define øcreate_by_type __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_create
 //#define øcreate_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
 //#define øconstruct_by_type __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__id_construct
 //#define øraw_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
-//#define øconstruct_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
+//#define construct_newø __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
 //#define ødefer_construct __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
 //#define øcreate_new_clone __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
 //#define ødefer_construct_new __call__add_referer2({ nullptr, refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
 #define øcreate __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create
-#define øconstruct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
+#define constructø __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct
 #define øcreate_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->template __call__create_new
 //#define øcreate_by_type __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_by_type
 #define øraw_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__raw_construct
-#define øconstruct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
+#define construct_newø __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_new
 #define ødefer_construct __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct
 //#define øconstruct_by_type __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__construct_by_type
 #define øcreate_new_clone __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__create_new_clone
@@ -97,8 +97,8 @@ CLASS_DECL_ACME::subparticle * refdbg_this();
 
 
 //#define ___new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
-//#define øallocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__calløallocate
-//#define øallocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
+//#define allocateø __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__callallocateø
+//#define allocateø __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
 
 //#define __refdbg_function_file_line_for__(p) { p, refdbg_this(), __FUNCTION_FILE_LINE__ }
 //#define __comma_refdbg_function_file_line_for__(p) , __refdbg_function_file_line_for__(p)
@@ -214,10 +214,10 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 
 /// _____create
 #define øcreate __call__create
-#define øconstruct __call__construct
+#define constructø __call__construct
 #define øcreate_new __call__create_new
 #define øraw_construct __call__raw_construct
-#define øconstruct_new __call__construct_new
+#define construct_newø __call__construct_new
 #define ødefer_construct __call__defer_construct
 #define øcreate_new_clone __call__create_new_clone
 #define ødefer_construct_new __call__defer_construct_new
@@ -235,12 +235,12 @@ CLASS_DECL_ACME ::reference_referer* refdbg_get_top_releaser();
 
 
 #define øallocate__prefix(x) 
-//#define øallocate __calløallocate
-//#define øallocate __calløallocate
+//#define allocateø __callallocateø
+//#define allocateø __callallocateø
 //#define øallocate_and_initialize __calløallocate_and_initialize
 //#define __delete __call__delete
 
-//#define øconstruct_new(p) __call__construct_new(p)
+//#define construct_newø(p) __call__construct_new(p)
 #define __new__prefix(pprefererGet) __new_site() <<
 
 #define __refdbg_function_file_line__

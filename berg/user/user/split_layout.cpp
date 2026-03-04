@@ -159,7 +159,7 @@ namespace user
 
             //auto estatus = 
             
-            øconstruct(m_splitbara[i]);
+            constructø(m_splitbara[i]);
 
             //if (!estatus)
             {
@@ -195,7 +195,7 @@ namespace user
 
             //auto estatus =
             
-            øconstruct_new(ppane);
+            construct_newø(ppane);
 
             ////if (!estatus)
             //{
@@ -231,7 +231,7 @@ namespace user
       for(::collection::index i = 0; i < m_panea.get_count(); i++)
       {
 
-         øconstruct_new(m_panea[i]);
+         construct_newø(m_panea[i]);
 
          if(m_panea[i]->m_pplaceholder.is_null())
          {
@@ -534,7 +534,7 @@ namespace user
          if (!m_splitbara.element_at(i))
          {
 
-            øconstruct_new(m_splitbara.element_at(i));
+            construct_newø(m_splitbara.element_at(i));
 
          }
 
@@ -957,7 +957,7 @@ namespace user
 
       auto & ppane = m_panea.add_new_at(iIndex);
 
-      øconstruct_new(ppane);
+      construct_newø(ppane);
 
       ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleHosting);
 
@@ -999,7 +999,7 @@ namespace user
 
          auto & psplitbar = m_splitbara.add_new();
          
-         øconstruct(psplitbar);
+         constructø(psplitbar);
 
          psplitbar->m_iIndex = i;
 

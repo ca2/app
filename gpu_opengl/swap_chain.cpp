@@ -446,7 +446,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 //                                                                  m_pgpurenderer, pvertexshader, pfragmentshader,
 //                                                                  //{}, {},
 //                                                                  m_pgpucontext->input_layout(::gpu_properties<::graphics3d::sequence2_uv>()));
-//      øconstruct_new(m_ptextureSwapChain);
+//      construct_newø(m_ptextureSwapChain);
 //      m_ptextureSwapChain->m_pgpurenderer = m_pgpucontext->m_pgpurenderer;
 //      m_ptextureSwapChain->m_gluTextureID = -1023;
 //      m_ptextureSwapChain->m_gluType = 0;
@@ -498,7 +498,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
       )
    {
       
-      øconstruct_new(m_ptexturePresent);
+      construct_newø(m_ptexturePresent);
 #if defined(__APPLE__)
       defer_update_swap_chain_textures(size);
 //      m_ptexturePresent = m_p
@@ -536,12 +536,12 @@ void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
       || m_ptextureaSwapChain->size() != 3
       || m_ptextureaSwapChain->first()->size() != size)
    {
-      øconstruct_new(m_ptextureaSwapChain);
+      construct_newø(m_ptextureaSwapChain);
 
       for(int i = 0; i < 3; i++)
       {
          auto & ptextureSwapChain = m_ptextureaSwapChain->ø(i);
-         øconstruct(ptextureSwapChain);
+         constructø(ptextureSwapChain);
          ::gpu::texture_attributes textureattributes(size);
          ptextureSwapChain->initialize_texture(m_pgpucontext, textureattributes);
 

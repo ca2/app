@@ -348,7 +348,7 @@ namespace platform
       //void add_factory_item_by_custom_id(const ::type_custom_id & typecustomid)
       //{
          
-      //   set_factory_item_by_custom_id(typecustomid, øallocate ::factory::factory_item < TYPE, BASE > ());
+      //   set_factory_item_by_custom_id(typecustomid, allocateø ::factory::factory_item < TYPE, BASE > ());
 
       //}
 

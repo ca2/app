@@ -56,11 +56,11 @@ namespace imaging_freeimage
                for (::collection::index iFrame = 0; iFrame < cFrame; iFrame++)
                {
 
-                  auto pframe = øallocate ::image::image_frame();
+                  auto pframe = allocateø ::image::image_frame();
 
                   pframea->add(pframe);
 
-                  øconstruct(pframe->m_pimage);
+                  constructø(pframe->m_pimage);
 
                   pframe->m_iFrame = iFrame;
 
@@ -282,7 +282,7 @@ namespace imaging_freeimage
 
       //auto estatus = 
       
-      pimageCompose->øconstruct(pimageFrame);
+      pimageCompose->constructø(pimageFrame);
 
       //if (!estatus || !pimageFrame)
       if (!pimageFrame)

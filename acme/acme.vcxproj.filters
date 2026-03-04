@@ -5906,9 +5906,6 @@
     <ClCompile Include="console\dialog.cpp">
       <Filter>Source Files\console</Filter>
     </ClCompile>
-    <ClCompile Include="prototype\prototype\sequence_continuation.cpp">
-      <Filter>Source Files\prototype\prototype</Filter>
-    </ClCompile>
     <ClCompile Include="prototype\collection\procedure_array.cpp">
       <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
@@ -6214,6 +6211,9 @@
     </ClCompile>
     <ClCompile Include="platform\remoting.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\dispatch_array.cpp">
+      <Filter>Source Files\handler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

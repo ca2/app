@@ -136,7 +136,7 @@
 #ifdef _WIN32
 #ifdef _DEBUG
    #ifndef DBG_NEW
-      #define DBG_NEW øallocate<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+      #define DBG_NEW allocateø<  >( _NORMAL_BLOCK , __FILE__ , __LINE__ )
       #define ___new DBG_NEW
    #endif
 #endif //__DEBUG

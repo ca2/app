@@ -42,7 +42,7 @@ namespace userfs
 
       //estatus = 
       
-      //øconstruct_new(m_pfsset);
+      //construct_newø(m_pfsset);
 
       //if (!estatus)
       //{

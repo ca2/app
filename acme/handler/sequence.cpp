@@ -537,7 +537,7 @@ sequence::~sequence()
 //
 //      m_stepa.add(step);
 //
-//      m_phappening = øallocate manual_reset_happening();
+//      m_phappening = allocateø manual_reset_happening();
 //
 //      lock.unlock();
 //
@@ -588,7 +588,7 @@ sequence::~sequence()
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = øallocate manual_reset_happening();
+//      m_phappening = allocateø manual_reset_happening();
 //
 //      if (!m_phappening->wait(timeWait))
 //      {
@@ -622,7 +622,7 @@ sequence::~sequence()
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_phappening = øallocate manual_reset_happening();
+//      m_phappening = allocateø manual_reset_happening();
 //
 //      lock.unlock();
 //
@@ -757,13 +757,13 @@ void sequence::on_subparticle_sequence(::subparticle * psubparticle)
    
    ::cast < ::subparticle > p = this->element_at(iNext);
    
-   if(p->m_psequence != this)
-   {
-      
-      throw ::exception(error_wrong_state);
-      
-   }
-   
+   //if(p->m_psequence != this)
+   //{
+   //   
+   //   throw ::exception(error_wrong_state);
+   //   
+   //}
+   //
    p->call();
    
 }

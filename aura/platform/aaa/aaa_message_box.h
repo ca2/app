@@ -64,18 +64,18 @@ inline ::payload operator + (const ::scoped_string & scopedstr, const ::enum_mes
 
 
 
-CLASS_DECL_AURA void auto pmessagebox = __initialize_new ::message_box(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
+CLASS_DECL_AURA void auto pmessageboxpayload = __initialize_new ::message_box_payload(::acme::windowing::window * pacmewindowingwindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
-pmessagebox->sync();
+send(pmessageboxpayload);
 CLASS_DECL_AURA void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback());
 
 
 inline void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback())
 {
 
-   return auto pmessagebox = __initialize_new ::message_box(nullptr, pszText, pszTitle, emessagebox, callback);
+   return auto pmessageboxpayload = __initialize_new ::message_box_payload(nullptr, pszText, pszTitle, emessagebox, callback);
 
-pmessagebox->sync();
+send(pmessageboxpayload);
 
 }
 

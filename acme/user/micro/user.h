@@ -20,13 +20,16 @@
 #include "_.h"
 
 
+
+
 namespace micro
 {
 
 
    class CLASS_DECL_ACME user :
       virtual public ::platform::department,
-      virtual public ::reificator < ::message_box >
+      virtual public ::dialog
+      //virtual public ::reificator < ::message_box >
    {
    public:
 
@@ -96,8 +99,8 @@ namespace micro
 
       virtual void * get_display();
 
-      void _main_send(const ::procedure & procedure) override;
-      void _main_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
       //void _main_send(::subparticle * p) override;
       //void _main_post(::subparticle * p) override;
@@ -115,14 +118,14 @@ namespace micro
       virtual void windowing_system_post_quit();
 
 
-      void display(::message_box * pmessagebox);
-      void display_exception(const ::exception & exception, ::message_box * pmessagebox);
+      void display(::message_box_payload * pmessageboxpayload);
+      void display_exception(const ::exception & exception, ::message_box_payload * pmessageboxpayload);
 
 
-      //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
-      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
-      ////::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
-      ////::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+      //::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+      //::pointer < ::message_box_payload > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+      ////::pointer < ::message_box_payload > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+      ////::pointer < ::message_box_payload > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
 
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
@@ -144,7 +147,9 @@ namespace micro
 
       virtual ::pixmap get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile);
 
-      ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
+      //::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
+
+      ///virtual void display(::message_box_payload * pmessageboxpayload);
 
 
    };

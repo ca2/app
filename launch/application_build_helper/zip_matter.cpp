@@ -88,7 +88,7 @@ namespace application_build_helper
 
          ::pointer < ::folder > pfolder;
 
-         pfactoryFolderZip->øconstruct(this, pfolder);
+         pfactoryFolderZip->constructø(this, pfolder);
 
          pfolder->open_for_writing(pwriter);
          //bool bFirst = true;

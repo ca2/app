@@ -474,7 +474,7 @@ namespace acme
 
          //} // user
 
-         void _main_post(const ::procedure & procedure) override;
+         void main_post(const ::procedure & procedure) override;
 
          
          virtual bool should_use_desktop_ambient_like_control_box() const;

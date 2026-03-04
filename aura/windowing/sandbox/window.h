@@ -58,7 +58,7 @@ namespace sandbox_windowing
 
       ::e_status set_window_icon(const ::file::path& path) override;
 
-      bool window_is_child(::acme::windowing::window * pacmewindowingwindowChildOrDescendant) override; // or descendant
+      bool operating_system_window_is_child(const ::operating_system::window & operatingsystemwindow) override; // or descendant
 
       //::windowing::window* get_parent() override;
       //virtual ::Window get_parent_handle();

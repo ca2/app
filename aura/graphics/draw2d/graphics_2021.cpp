@@ -2828,7 +2828,7 @@ namespace draw2d
 //
 //         auto pregionOld = m_pregion;
 //
-//         øconstruct(m_pregion);
+//         constructø(m_pregion);
 //
 //         m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
 //
@@ -3329,7 +3329,7 @@ namespace draw2d
 //
 //         auto pregionOld = m_pregion;
 //
-//         øconstruct(m_pregion);
+//         constructø(m_pregion);
 //
 //         m_pregion->combine(pregionOld, pregion, ecombine);
 //
@@ -4716,7 +4716,7 @@ namespace draw2d
 
          ::pointer<::draw2d::path>ppath;
 
-         øconstruct(ppath);
+         constructø(ppath);
 
          ppath->begin_figure();
          ppath->add_line(rectangle.top_left(), rectangle.bottom_right());
@@ -4927,7 +4927,7 @@ namespace draw2d
 
          //auto estatus = 
          
-         øconstruct(pimage);
+         constructø(pimage);
 
          //if (!estatus)
          //{

@@ -79,7 +79,7 @@ void trace_category_static_init(::platform::system * psystem)
 
       const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = øallocate trace_category(etracecategory, scopedstrCategory);
+      auto pcategory = allocateø trace_category(etracecategory, scopedstrCategory);
 
       pcategory->initialize(psystem);
 

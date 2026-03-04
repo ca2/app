@@ -375,7 +375,7 @@ namespace core
 
       //estatus = 
 
-      øconstruct(m_phtml);
+      constructø(m_phtml);
 
       //if(!estatus)
       //{
@@ -1575,7 +1575,7 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return øallocate ::user::user();
+   //   return allocateø ::user::user();
 
    //}
 
@@ -1857,9 +1857,9 @@ namespace core
 
    //   }
 
-   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+   //   return auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //}
 

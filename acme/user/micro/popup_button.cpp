@@ -172,9 +172,10 @@ namespace micro
    void popup_button::set_dialog_result(const ::payload & payloadResult)
    {
 
-      m_payloadPopupButtonResult = payloadResult;
+      ::dialog_reifier::set_dialog_result(payloadResult);
+      //m_payloadPopupButtonResult = payloadResult;
 
-      on_dialog_result_set();
+      //on_dialog_result_set();
 
    }
 

@@ -102,10 +102,10 @@ void Window::on_destroy_window()
       if (!m_button_panel) 
       {
       
-         m_button_panel = øallocate Widget(this);
+         m_button_panel = allocateø Widget(this);
 
          m_button_panel->set_layout(
-            øallocate BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(0, 0, 0, 0), 4));
+            allocateø BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(0, 0, 0, 0), 4));
 
       }
 
@@ -549,7 +549,7 @@ void Window::on_destroy_window()
    //void Window::_nanoui_to_user(::user::interaction * puserinteraction)
    //{
    //
-   //   //puserinteraction->øconstruct(m_pbox);
+   //   //puserinteraction->constructø(m_pbox);
    //
    //   //m_pbox->create_control(puserinteraction, (iptr)(void*) this);
    //

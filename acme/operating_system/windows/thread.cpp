@@ -217,7 +217,7 @@ namespace platform
 {
 
 
-   void node::_user_post(const ::procedure & procedure)
+   void node::user_post(const ::procedure & procedure)
    {
 
       //if (is_main_thread())
@@ -229,7 +229,7 @@ namespace platform
 
       //}
 
-      system()->acme_windowing()->_main_post(procedure);
+      system()->acme_windowing()->main_post(procedure);
 
       //auto ptask = ::get_task();
 

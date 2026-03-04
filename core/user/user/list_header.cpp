@@ -783,7 +783,7 @@ namespace user
       //   if (!m_pshapeaClip)
       //   {
 
-      //      øconstruct_new(m_pshapeaClip);
+      //      construct_newø(m_pshapeaClip);
 
       //      ::int_rectangle rectangleIntersect;
 
@@ -796,9 +796,9 @@ namespace user
 
       //         host_to_client(rectangleX);
 
-      //         m_pshapeaClip->add_item(øallocate rectangle_shape(::double_rectangle(rectangleX)));
+      //         m_pshapeaClip->add_item(allocateø rectangle_shape(::double_rectangle(rectangleX)));
 
-      //         m_pshapeaClip->add_item(øallocate intersect_clip_shape());
+      //         m_pshapeaClip->add_item(allocateø intersect_clip_shape());
 
       //         pinteraction = pinteraction->get_parent();
 
@@ -842,7 +842,7 @@ namespace user
       ////   if(!m_pshapeaClip)
       ////   {
 
-      ////      øconstruct_new(m_pshapeaClip);
+      ////      construct_newø(m_pshapeaClip);
       ////      
       ////      ::user::interaction * pinteraction = this;
 
@@ -876,9 +876,9 @@ namespace user
 
       ////         rectangleFocus.right++;
 
-      ////         m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleIntersect));
+      ////         m_pshapeaClip->add_item(allocateø rectangle_shape(rectangleIntersect));
 
-      ////         m_pshapeaClip->add_item(øallocate intersect_clip_shape());
+      ////         m_pshapeaClip->add_item(allocateø intersect_clip_shape());
 
       ////         i++;
 

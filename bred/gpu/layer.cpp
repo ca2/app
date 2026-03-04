@@ -34,7 +34,7 @@ namespace gpu
       if (!m_pmanualresethappeningFinished)
       {
 
-         øconstruct_new(m_pmanualresethappeningFinished);
+         construct_newø(m_pmanualresethappeningFinished);
 
       }
 

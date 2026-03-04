@@ -290,7 +290,7 @@
 //
 //    message_loop();
 //
-//    auto pmanualresethappening = øallocate manual_reset_happening();
+//    auto pmanualresethappening = allocateø manual_reset_happening();
 //
 //    m_pinterface->m_psequencer->then([ pmanualresethappening](auto psequencer)
 //    {

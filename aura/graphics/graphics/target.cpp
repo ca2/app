@@ -62,7 +62,7 @@ namespace graphics
    //   //   if (!m_pimage)
    //   //   {
    //
-   //   //      øconstruct(m_pimage);
+   //   //      constructø(m_pimage);
    //
    //   //   }
    //

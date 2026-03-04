@@ -33,10 +33,10 @@
 //      //if (g_iMemoryCounters)
 //      //{
 //
-//      //   //g_pmutexMemoryCounters = øallocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_particle_trackers");
-//      //   //øconstruct(pparticle, g_pmutexMemoryCounters);
+//      //   //g_pmutexMemoryCounters = allocateø ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_particle_trackers");
+//      //   //constructø(pparticle, g_pmutexMemoryCounters);
 //
-//      //   øconstruct_new(pparticle, g_pmapMemoryCounter);
+//      //   construct_newø(pparticle, g_pmapMemoryCounter);
 //
 //      //}
 //
@@ -53,7 +53,7 @@
 ////   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
 ////   {
 ////
-////      g_pMemoryCounters = øallocate ::file::path();
+////      g_pMemoryCounters = allocateø ::file::path();
 ////
 ////#if defined(UNIVERSAL_WINDOWS)
 ////

@@ -141,7 +141,7 @@ namespace app_integration
 
       ////auto estatus = 
       //
-      //øconstruct_new(m_prender);
+      //construct_newø(m_prender);
 
       //if(!estatus)
       //{

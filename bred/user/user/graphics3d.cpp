@@ -161,7 +161,7 @@ namespace user
 
          m_pkeymap->m_pimpact = this;
 
-         øconstruct(m_pengine);
+         constructø(m_pengine);
 
          m_pengine->initialize_engine(this);
 

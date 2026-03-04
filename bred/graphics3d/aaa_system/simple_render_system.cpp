@@ -98,7 +98,7 @@ namespace graphics3d
 	//	std::string vertShaderPath = "matter://Shaders/SpirV/vert.vert.spv";
 	//	std::string fragShaderPath = "matter://Shaders/SpirV/frag.frag.spv";
 
-	//	m_ppipeline = øallocate pipeline();
+	//	m_ppipeline = allocateø pipeline();
 	//	
 	//	m_ppipeline->initialize_pipeline(
 	//		m_pcontext,

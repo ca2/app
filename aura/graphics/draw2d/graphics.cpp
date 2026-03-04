@@ -2934,7 +2934,7 @@ namespace draw2d
 
       ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
 
-      puserinteraction->_send([procedure]()
+      puserinteraction->send([procedure]()
          {
 
             procedure();
@@ -3457,7 +3457,7 @@ namespace draw2d
    //
    //         auto pregionOld = m_pregion;
    //
-   //         øconstruct(m_pregion);
+   //         constructø(m_pregion);
    //
    //         m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
    //
@@ -3678,7 +3678,7 @@ namespace draw2d
       if (!pdraw2dregion)
       {
 
-         øconstruct(pdraw2dregion);
+         constructø(pdraw2dregion);
 
          //pdraw2dregion->m_eregion = pregion->m_eregion;
 
@@ -4105,7 +4105,7 @@ namespace draw2d
    //
    //         auto pregionOld = m_pregion;
    //
-   //         øconstruct(m_pregion);
+   //         constructø(m_pregion);
    //
    //         m_pregion->combine(pregionOld, pregion, ecombine);
    //
@@ -5322,7 +5322,7 @@ namespace draw2d
          if (!pfontUnderline)
          {
 
-            øconstruct(pfontUnderline);
+            constructø(pfontUnderline);
 
             pfontUnderline->operator=(*get_current_font());
 
@@ -5799,7 +5799,7 @@ namespace draw2d
 
          ::pointer<::draw2d::path>ppath;
 
-         øconstruct(ppath);
+         constructø(ppath);
 
          ppath->begin_figure();
          ppath->add_line(rectangle.top_left(), rectangle.bottom_right());
@@ -6043,7 +6043,7 @@ namespace draw2d
 
          //auto estatus = 
 
-         øconstruct(pimage);
+         constructø(pimage);
 
          //if (!estatus)
          //{

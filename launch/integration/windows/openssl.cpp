@@ -35,7 +35,7 @@ namespace console_integration
 
          acmenode()->integration_factory();
 
-         //øconstruct(m_papplication);
+         //constructø(m_papplication);
 
          m_papplication->m_bMsys = false;
 

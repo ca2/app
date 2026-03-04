@@ -58,31 +58,31 @@
 
             if(strSchema == "001")
             {
-               return  øallocate ::experience::experience_lite::frame_001(this);
+               return  allocateø ::experience::experience_lite::frame_001(this);
             }
             else if(strSchema == "002")
             {
-               return  øallocate ::experience::experience_lite::frame_002(this);
+               return  allocateø ::experience::experience_lite::frame_002(this);
             }
             else if(strSchema == "005")
             {
-               return  øallocate ::experience::experience_lite::frame_005(this);
+               return  allocateø ::experience::experience_lite::frame_005(this);
             }
             else if(strSchema == "008")
             {
-               return  øallocate ::experience::experience_lite::frame_008(this);
+               return  allocateø ::experience::experience_lite::frame_008(this);
             }
             else if(strSchema == "011")
             {
-               return  øallocate ::experience::experience_lite::frame_011(this);
+               return  allocateø ::experience::experience_lite::frame_011(this);
             }
             else if(strSchema == "013")
             {
-               return  øallocate ::experience::experience_lite::frame_013(this);
+               return  allocateø ::experience::experience_lite::frame_013(this);
             }
             else if(strSchema == "Minimal001")
             {
-               return  øallocate ::experience::experience_lite::frame_Minimal001(this);
+               return  allocateø ::experience::experience_lite::frame_Minimal001(this);
             }
 
             return nullptr;

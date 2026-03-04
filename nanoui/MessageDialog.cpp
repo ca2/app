@@ -28,7 +28,7 @@ namespace nanoui
          e_alignment_middle, ::int_rectangle(10, 10, 10, 10), 10));
       set_modal(true);
 
-      Widget* panel1 = øallocate Widget(this);
+      Widget* panel1 = allocateø Widget(this);
       panel1->set_layout(__initialize_new BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(10, 10, 10, 10), 15));
       int icon = 0;
       switch (type) {
@@ -36,9 +36,9 @@ namespace nanoui
       case Type::Question: icon = m_ptheme->m_efontawesomeMessageQuestion; break;
       case Type::Warning: icon = m_ptheme->m_efontawesomeMessageWarning; break;
       }
-      Label* icon_label = øallocate Label(panel1, ::string(get_utf8_character(icon)), "icons");
+      Label* icon_label = allocateø Label(panel1, ::string(get_utf8_character(icon)), "icons");
       icon_label->set_font_size(50);
-      Widget* panelB = øallocate Widget(panel1);
+      Widget* panelB = allocateø Widget(panel1);
       panelB->set_layout(__initialize_new BoxLayout(e_orientation_vertical, e_alignment_middle, ::int_rectangle(0, 0, 0, 0), 5));
       if (functionExtras)
       {
@@ -46,15 +46,15 @@ namespace nanoui
          functionExtras(panelB);
 
       }
-      m_message_label = øallocate Label(panelB, message);
+      m_message_label = allocateø Label(panelB, message);
       //m_message_label->set_fixed_width(200);
-      auto panel2 = øallocate Widget(this);
+      auto panel2 = allocateø Widget(this);
       panel2->set_layout(__initialize_new BoxLayout(e_orientation_horizontal, e_alignment_middle, ::int_rectangle(0, 0, 0, 0), 15));
 
       if (alt_button) 
       {
 
-         auto button = øallocate Button(panel2, alt_button_text, m_ptheme->m_efontawesomeMessageAltButton);
+         auto button = allocateø Button(panel2, alt_button_text, m_ptheme->m_efontawesomeMessageAltButton);
 
          button->set_callback([&]
             {
@@ -73,7 +73,7 @@ namespace nanoui
             });
 
       }
-      auto button = øallocate Button(panel2, button_text, m_ptheme->m_efontawesomeMessagePrimaryButton);
+      auto button = allocateø Button(panel2, button_text, m_ptheme->m_efontawesomeMessagePrimaryButton);
       button->set_callback([this] {
          auto callback = m_callback;
          dispose();

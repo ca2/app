@@ -745,7 +745,7 @@ void main() {
 
    //      //}
 
-   //      //m_pgraphics = øallocate< plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data >());
+   //      //m_pgraphics = allocateø< plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data >());
 
    //      //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -1131,7 +1131,7 @@ void main() {
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
       //      .build();
 
-      //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
+      //   auto pdescriptorpoolbuilder = allocateø::gpu_vulkan::descriptor_pool::Builder();
 
       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -1151,7 +1151,7 @@ void main() {
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
       //      .build();
 
-      //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
+      //   auto pdescriptorpoolbuilder = allocateø::gpu_vulkan::descriptor_pool::Builder();
 
       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -1168,7 +1168,7 @@ void main() {
          if (!m_pshaderSourceRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -1213,7 +1213,7 @@ void main() {
          if (!m_pshaderBlendRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -3956,7 +3956,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   //if(hdc != nullptr)
    //   //{
 
-   //   //   m_pgraphics = øallocate< ::plusplus::Graphics( >(HDC) hdc);
+   //   //   m_pgraphics = allocateø< ::plusplus::Graphics( >(HDC) hdc);
 
    //   //   m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -7045,7 +7045,7 @@ BOOL CALLBACK draw2d_gpu_EnumFamCallBack(LPLOGFONT lplf, LPNEWTEXTMETRIC lpntm, 
    else if (FontType & TRUETYPE_FONTTYPE)
    {
 
-      pfonts->m_itema.add(øallocate::write_text::font_enumeration_item(lplf->lfFaceName));
+      pfonts->m_itema.add(allocateø::write_text::font_enumeration_item(lplf->lfFaceName));
 
    }
    else

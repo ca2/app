@@ -75,7 +75,7 @@ namespace account
 
       //estatus = 
 
-      øconstruct_new(m_plogin);
+      construct_newø(m_plogin);
 
       //if (!estatus)
       //{
@@ -282,7 +282,7 @@ namespace account
 
       }
 
-      //auto pusersystem = øallocate ::user::system(0, nullptr, nullptr, 0, rectangleFontopus);
+      //auto pusersystem = allocateø ::user::system(0, nullptr, nullptr, 0, rectangleFontopus);
 
       //create_host(e_parallelization_synchronous);
 

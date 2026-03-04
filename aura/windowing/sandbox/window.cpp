@@ -1105,7 +1105,7 @@ namespace sandbox_windowing
    }
 
 
-   bool window::window_is_child(::acme::windowing::window * pacmewindowingwindow)
+   bool window::operating_system_window_is_child(const ::operating_system::window & operatingsystemwindow)
    {
 
       throw ::interface_only();

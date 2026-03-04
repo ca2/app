@@ -25,6 +25,18 @@
 //inline ::payload & payload::operator += (const ::scoped_string & scopedstr) { return *this += ::scoped_string(str); }
 //inline ::payload & payload::operator += (const ::inline_number_string & inline_number_string) { return *this = (*this + inline_number_string); }
 
+template < prototype_enum ENUM >
+payload & payload::operator = (ENUM e) { this->operator = ((const ::atom &) e); return *this; }
+
+
+template < character_count n >
+payload & payload::operator = (const char(&cha)[n])
+{
+
+   return this->operator = (::string(cha));
+
+}
+
 
 inline ::string payload::as_string() const
 {

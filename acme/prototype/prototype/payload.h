@@ -1156,7 +1156,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::atom & atom);
    payload & operator = (::atom * pid);
    template < prototype_enum ENUM >
-   payload & operator = (ENUM e) { this->operator = ((const ::atom &) e); return *this; }
+   payload & operator = (ENUM e);
    //payload & operator = (const ::second & second);
    //payload & operator = (class ::second * ptime);
    //payload & operator = (const class time & time);
@@ -1244,12 +1244,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
    template < character_count n >
-   payload & operator = (const char(&cha)[n])
-   {
-
-      return this->operator = (::string(cha));
-
-   }
+   payload & operator = (const char(&cha)[n]);
 
 
    //template < prototype_subparticle T >

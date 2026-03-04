@@ -378,23 +378,23 @@ void __node_term_multitasking()
 
 #if defined(LINUX) // || defined(__ANDROID__)
 
+
 bool (*g_pfn_defer_process_x_message)(htask htask, MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, bool bPeek) = nullptr;
 
 
 bool aura_defer_process_x_message(htask htask, MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, bool bPeek)
-
 {
 
    if (g_pfn_defer_process_x_message == nullptr)
       return false;
 
-   return (*g_pfn_defer_process_x_message)(htask, pMsg, oswindow, bPeek);
+   return (*g_pfn_defer_process_x_message)(htask, pMsg, pacmewindowingwindow, bPeek);
 
 
 }
 
-void set_defer_process_x_message(bool (*pfn)(htask htask, MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, bool bPeek))
 
+void set_defer_process_x_message(bool (*pfn)(htask htask, MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, bool bPeek))
 {
 
    g_pfn_defer_process_x_message = pfn;

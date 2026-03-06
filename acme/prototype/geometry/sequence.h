@@ -648,10 +648,11 @@ struct sequence_type :
       return *this;
    }
 
-   sequence_type &operator/=(const NUMBER &n)
+   template < prototype_number NUMBER1 >
+   sequence_type &operator/=(const NUMBER1 &n)
    {
       for (::collection::count i = 0; i < SIZE; ++i)
-         this->m_coordinatea[i] /= n;
+         this->m_coordinatea[i] = (UNIT_TYPE) ((largest_number < UNIT_TYPE, NUMBER1 >)this->m_coordinatea[i] / (largest_number < UNIT_TYPE, NUMBER1 >)n);
       return *this;
    }
 

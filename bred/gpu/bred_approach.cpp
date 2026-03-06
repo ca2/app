@@ -77,16 +77,16 @@ namespace gpu
 
       ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
 
-      auto pszType = strType.c_str();
+      //auto pszType = strType.c_str();
 
       if (!pdevice)
       {
 
-         øconstruct(pdevice);
+         constructø(pdevice);
 
          ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
          
-         const char *pszType = strType.c_str();
+         //const char *pszType = strType.c_str();
 
          if (m_papplication->m_gpu.m_bUseSwapChainWindow)
          {

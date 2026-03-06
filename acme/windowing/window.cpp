@@ -77,7 +77,7 @@ namespace acme
 
          //m_uAcmeWindowingWindowFlags = 0;
 
-         m_lX11NativeVisualId = -1;
+         //m_lX11NativeVisualId = -1;
 
       }
 
@@ -113,39 +113,52 @@ namespace acme
       }
 
 
-      // ::oswindow window::oswindow()
-      // {
-      //
-      //
-      //    return nullptr;
-      //
-      // }
-
-
-      long window::__x11_Window()
+      bool window::should_avoid_default_swap_chain_present()
       {
-
-         return 0;
-
+      
+         return false;
+      
       }
 
 
-      void * window::__x11_Display()
+      ::operating_system::window window::operating_system_window() const
       {
-
-         return nullptr;
-
+      
+         return {};
+      
       }
 
 
-      void * window::__win32_HWND()
-      {
+      //long window::__x11_Window()
+      //{
 
-         return nullptr;
+      //   return 0;
 
-      }
+      //}
 
 
+      //void * window::__x11_Display()
+      //{
+
+      //   return 0;
+
+      //}
+
+
+      //void * window::__win32_HWND()
+      //{
+
+      //   return nullptr;
+
+      //}
+
+
+   //long long window::__CGWindowID()
+   //{
+
+   //   return 0;
+
+   //}
 
 
       ::windowing::enum_bias window::windowing_bias() const
@@ -181,7 +194,7 @@ namespace acme
 
          //m_ebias = calculate_bias();
 
-         //øconstruct(m_pacmeuserinteraction);
+         //constructø(m_pacmeuserinteraction);
 
          //m_pacmeuserinteraction->m_pacmeuserinteraction = this;
 
@@ -277,7 +290,8 @@ namespace acme
             {
                __check_refdbg
 
-               pacmewindowing->m_windowa.erase(this);
+                  //pacmewindowing->erase_operating_system_window(this->operating_system_window());
+               pacmewindowing->erase_window(this);
                __check_refdbg
 
             }
@@ -1543,7 +1557,7 @@ namespace acme
       //
       //    message_loop();
       //
-      //    // auto pmanualresethappening = øallocate manual_reset_happening();
+      //    // auto pmanualresethappening = allocateø manual_reset_happening();
       //    //
       //    // m_pinterface->m_psequencer->then([ pmanualresethappening](auto psequencer)
       //    // {
@@ -2052,20 +2066,3 @@ void window::on_control_box_zoom()
 } //  namespace acme
 
 
-
-
-CLASS_DECL_ACME void * HWND_from_acme_windowing_window(::acme::windowing::window * pacmewindowingwindow)
-{
-
-   if (::is_null(pacmewindowingwindow))
-   {
-
-      return nullptr;
-
-   }
-
-   auto pHWND = pacmewindowingwindow->__win32_HWND();
-
-   return pHWND;
-
-}

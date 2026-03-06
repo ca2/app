@@ -130,7 +130,7 @@ namespace message
 
          m_pdispatchera = message.m_pdispatchera;
          m_pchannel = message.m_pchannel;
-         m_pacmewindowingwindow = message.m_pacmewindowingwindow;
+         m_operatingsystemwindow = message.m_operatingsystemwindow;
          m_eflagMessage = message.m_eflagMessage;
          // m_iRouteIndex = message.m_iRouteIndex;
          m_iParam = message.m_iRouteIndex;

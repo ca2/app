@@ -687,7 +687,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 //
 //   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
 //
-//   pmessagebox->sync();
+//   send(pmessageboxpayload);
 //
 //   return psequencer;
 //
@@ -749,7 +749,7 @@ bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrO
 //::topic_pointer matter::create_topic(const ::atom & atom)
 //{
 //
-//   auto ptopic = øallocate ::topic(atom);
+//   auto ptopic = allocateø ::topic(atom);
 //
 //   ptopic->m_papplication = system();
 //
@@ -761,7 +761,7 @@ bool matter::handle_call(::payload & payload, const ::scoped_string & scopedstrO
 bool matter::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
 {
 
-   auto psynchronizer = øallocate ::parallelization::synchronizer();
+   auto psynchronizer = allocateø ::parallelization::synchronizer();
 
    psynchronizer->set_nok();
 
@@ -818,7 +818,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedureParam)
 {
 
-   auto psignalization = øallocate ::parallelization::signalization();
+   auto psignalization = allocateø ::parallelization::signalization();
 
    auto procedure = procedureParam;
 

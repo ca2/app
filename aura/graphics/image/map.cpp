@@ -23,7 +23,7 @@ namespace image
       if (pimage->is_null())
       {
 
-         system()->øconstruct(pimage);
+         system()->constructø(pimage);
 
          pimage->create(key.m_size);
 
@@ -94,7 +94,7 @@ namespace image
       if (pimage->is_null())
       {
 
-         system()->øconstruct(pimage);
+         system()->constructø(pimage);
 
          pimage->create(size);
 

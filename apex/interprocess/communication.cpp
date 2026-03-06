@@ -77,7 +77,7 @@ namespace interprocess
 
       //call_procedures(CREATE_ROUTINE);
 
-      /*estatus = */ øconstruct(m_ptarget);
+      /*estatus = */ constructø(m_ptarget);
 
       //if (!estatus)
       //{
@@ -327,7 +327,7 @@ namespace interprocess
       if (pmutex.is_null())
       {
 
-         øconstruct(pmutex);
+         constructø(pmutex);
 
       }
 
@@ -728,7 +728,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::create_task(::interprocess::call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = øallocate ::interprocess::task(pcall, idPid, m_iTaskSeed++);
+      auto pobjectTask = allocateø ::interprocess::task(pcall, idPid, m_iTaskSeed++);
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -754,7 +754,7 @@ namespace interprocess
    ::pointer<::interprocess::call>communication::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
-      return øallocate ::interprocess::call(this, scopedstrApp, scopedstrObject, scopedstrMember);
+      return allocateø ::interprocess::call(this, scopedstrApp, scopedstrObject, scopedstrMember);
 
    }
 

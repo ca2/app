@@ -147,7 +147,7 @@ namespace user
 
          }
 
-         øconstruct_new(m_plinea);
+         construct_newø(m_plinea);
 
          
 
@@ -457,7 +457,7 @@ namespace user
 
          //bool bFirstParagraph = true;
 
-         auto plinea = øallocate pointer_array < line > ();
+         auto plinea = allocateø pointer_array < line > ();
 
          ::pointer<line>pline;
 
@@ -466,7 +466,7 @@ namespace user
    //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
 
-   //   m_pformathost.add(øallocate format(this));
+   //   m_pformathost.add(allocateø format(this));
 
    //}
 
@@ -480,7 +480,7 @@ namespace user
          //   if (m_spana.first_pointer()->m_iFormat >= m_pformathost.get_count())
          //   {
 
-         //      m_pformathost.add(øallocate format(this));
+         //      m_pformathost.add(allocateø format(this));
 
          //   }
 
@@ -543,9 +543,9 @@ namespace user
 
                defer_add_line();
 
-               øconstruct_new(pline);
+               construct_newø(pline);
 
-               //pline = øallocate line();
+               //pline = allocateø line();
 
                x = (int)rectangle.left;
 
@@ -555,7 +555,7 @@ namespace user
 
                x = (int)rectangle.left;
 
-               //pbox = øallocate box(pspan);
+               //pbox = allocateø box(pspan);
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
@@ -646,7 +646,7 @@ namespace user
                   if (pline->is_empty())
                   {
 
-                     auto pbox = øallocate box(pspan);
+                     auto pbox = allocateø box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -705,7 +705,7 @@ namespace user
                   if (cWords > 0)
                   {
 
-                     auto pbox = øallocate box(pspan);
+                     auto pbox = allocateø box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -754,7 +754,7 @@ namespace user
 
                      longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right - x);
 
-                     auto pbox = øallocate box(pspan);
+                     auto pbox = allocateø box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -788,7 +788,7 @@ namespace user
                else
                {
 
-                  auto pbox = øallocate box(pspan);
+                  auto pbox = allocateø box(pspan);
 
                   pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -1155,7 +1155,7 @@ namespace user
 
             ::image::image_pointer pimage;
 
-            øconstruct(pimage);
+            constructø(pimage);
 
             pimage->create(m_ppictureimpl->m_rectangleDrawing.size());
 
@@ -1291,7 +1291,7 @@ namespace user
          if (!m_prichtextdataOwned)
          {
 
-            øconstruct_new(m_prichtextdataOwned);
+            construct_newø(m_prichtextdataOwned);
 
             m_prichtextdataOwned->initialize_data();
 
@@ -2387,7 +2387,7 @@ namespace user
                //if (pformat.is_null())
                //{
 
-               //   pformat = øallocate format(this);
+               //   pformat = allocateø format(this);
 
                //}
 

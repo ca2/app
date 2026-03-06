@@ -91,7 +91,7 @@ using memory_particle = ::make_particle1 < memory >;
 
 using memory_pointer = ::pointer< ::memory_particle>;
 
-inline memory_pointer create_memory() { return øallocate ::memory_particle (); }
+inline memory_pointer create_memory() { return allocateø ::memory_particle (); }
 
 
 inline ::memory memory_base::slice(memsize start, memsize count)

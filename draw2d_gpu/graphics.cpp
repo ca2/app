@@ -125,7 +125,7 @@ void main() {
       //m_hdc = nullptr;
       //m_hdcGraphics = nullptr;
       m_ewritetextrendering = ::write_text::e_rendering_anti_alias_grid_fit;
-      m_dFontFactor = 1.0;
+      //m_dFontFactor = 1.0;
 
    }
 
@@ -248,7 +248,7 @@ void main() {
    }
 
 
-   void graphics::CreateCompatibleDC(::draw2d::graphics* pgraphics)
+   void graphics::create_compatible_graphics(::draw2d::graphics* pgraphics)
    {
 
       opengl_create_offscreen_buffer({ 1920, 1080 });
@@ -745,7 +745,7 @@ void main() {
 
    //      //}
 
-   //      //m_pgraphics = øallocate< plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data >());
+   //      //m_pgraphics = allocateø< plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data >());
 
    //      //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -1131,7 +1131,7 @@ void main() {
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
       //      .build();
 
-      //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
+      //   auto pdescriptorpoolbuilder = allocateø::gpu_vulkan::descriptor_pool::Builder();
 
       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -1151,7 +1151,7 @@ void main() {
       //      .addBinding(0, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT)
       //      .build();
 
-      //   auto pdescriptorpoolbuilder = øallocate::gpu_vulkan::descriptor_pool::Builder();
+      //   auto pdescriptorpoolbuilder = allocateø::gpu_vulkan::descriptor_pool::Builder();
 
       //   pdescriptorpoolbuilder->initialize_builder(m_pgpucontextCompositor);
       //   pdescriptorpoolbuilder->setMaxSets(iFrameCount * 10);
@@ -1168,7 +1168,7 @@ void main() {
          if (!m_pshaderSourceRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -1213,7 +1213,7 @@ void main() {
          if (!m_pshaderBlendRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -1261,7 +1261,8 @@ void main() {
       if (pmodelbufferRectangle->is_new())
       {
 
-         pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
+         //pmodelbufferRectangle->sequence2_color_create_rectangle(::gpu::current_frame());
+         pmodelbufferRectangle->sequence2_color_create_rectangle(gpu_context());
 
       }
 
@@ -3955,7 +3956,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   //if(hdc != nullptr)
    //   //{
 
-   //   //   m_pgraphics = øallocate< ::plusplus::Graphics( >(HDC) hdc);
+   //   //   m_pgraphics = allocateø< ::plusplus::Graphics( >(HDC) hdc);
 
    //   //   m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -5437,7 +5438,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
          //    { xpos + w, ypos + h,   1.0f, 0.0f }
          //};
          // render glyph texture over quad
-         if (ch.m_ppixmap)
+         if (ch.m_ppixmapOptional)
          {
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //// update content of VBO memory
@@ -5943,7 +5944,7 @@ color = vec4(c.r,c.g, c.b, c.a);
              {{ xpos + w, ypos + h},{   1.0f, 0.0f} }
          };
          // render glyph texture over quad
-         if (ch.m_ppixmap)
+         if (ch.m_ppixmapOptional)
          {
 
             auto pmodelbuffer = model_buffer(::draw2d::e_model_character);
@@ -5971,7 +5972,7 @@ color = vec4(c.r,c.g, c.b, c.a);
             // 
             // 
 
-            pcommandbuffer->draw(ch.m_ppixmap);
+            pcommandbuffer->draw(ch.m_ppixmapOptional);
             //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
             //::opengl::check_error("");
             //// update content of VBO memory
@@ -6567,7 +6568,7 @@ color = vec4(c.r,c.g, c.b, c.a);
 
 
 
-   void graphics::CreateWindowDC(::acme::windowing::window * pacmewindowingwindow)
+   void graphics::create_window_graphics(const ::operating_system::window & operatingsystemwindow)
    {
 
       // http://stackoverflow.com/questions/4052940/how-to-make-an-opengl-rendering-context-with-transparent-background
@@ -6664,10 +6665,10 @@ color = vec4(c.r,c.g, c.b, c.a);
 
    //}
 
-   void graphics::do_on_context(const ::procedure& procedure)
+   void graphics::send_on_context(::draw2d::graphics_context *pgraphicscontext, const ::procedure &procedure)
    {
 
-      ::draw2d_gpu::graphics::do_on_context(procedure);
+      ::draw2d_gpu::graphics::send_on_context(pgraphicscontext, procedure);
 
       //m_pgpucontextCompositor->send(procedure);
 
@@ -7044,7 +7045,7 @@ BOOL CALLBACK draw2d_gpu_EnumFamCallBack(LPLOGFONT lplf, LPNEWTEXTMETRIC lpntm, 
    else if (FontType & TRUETYPE_FONTTYPE)
    {
 
-      pfonts->m_itema.add(øallocate::write_text::font_enumeration_item(lplf->lfFaceName));
+      pfonts->m_itema.add(allocateø::write_text::font_enumeration_item(lplf->lfFaceName));
 
    }
    else

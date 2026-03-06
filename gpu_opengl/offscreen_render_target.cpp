@@ -40,7 +40,7 @@ namespace gpu_opengl
    void offscreen_render_target::on_init()
    {
 
-      create_images();
+      //create_images();
       createRenderPassImpl();
       createImageViews();
       createRenderPass();

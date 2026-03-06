@@ -28,7 +28,7 @@ namespace micro
          ::pointer<::micro::still>                 m_pstillTimeout;
          //::pointer<::micro::still>               m_pstillIcon;
          ::pointer<::nano::graphics::icon>         m_picon;
-         //::pointer < ::message_box >               m_pmessagebox;
+         //::pointer < ::message_box_payload >               m_pmessagebox;
 
 
          message_box();
@@ -41,9 +41,9 @@ namespace micro
          
          
          //void on_sequence() override;
-         //virtual void set(::message_box * pmessagebox);
+         //virtual void set(::message_box_payload * pmessageboxpayload);
 
-         void on_realize(::message_box * pmessagebox) override;
+         void display(::dialog * pdialog) override;
          
          
          void on_context_menu(::user::mouse * pmouse) override;

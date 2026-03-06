@@ -58,8 +58,8 @@ namespace experience_tranquillum
    {
 
 
-      øconstruct(m_pbrushGrip);
-      øconstruct(m_pbrushTextCaption);
+      constructø(m_pbrushGrip);
+      constructø(m_pbrushTextCaption);
 
 
       frame::on_initialize_experience_frame();

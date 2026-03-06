@@ -70,7 +70,7 @@ namespace account
 
       //estatus = 
       
-      øconstruct_new(m_plogin);
+      construct_newø(m_plogin);
 
       //if (!estatus)
       //{
@@ -192,7 +192,7 @@ namespace account
 
                   synchronous_lock slInteractive(m_pcredentials->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  pcredentials = øallocate ::account::credentials(*m_pcredentials);
+                  pcredentials = allocateø ::account::credentials(*m_pcredentials);
 
                }
 
@@ -382,7 +382,7 @@ namespace account
 
 #endif
 
-      // auto pusersystem = øallocate ::user::system(rectangleFontopus);
+      // auto pusersystem = allocateø ::user::system(rectangleFontopus);
       create_child(puiParent);
       //if(!create_child(puiParent))
       //{

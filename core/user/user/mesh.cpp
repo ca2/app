@@ -64,9 +64,9 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_mesh;
 
-      øconstruct_new(m_piconlayout);
+      construct_newø(m_piconlayout);
 
-      øconstruct_new(m_pmeshlayout);
+      construct_newø(m_pmeshlayout);
 
       m_piconlayout->m_iaDisplayToStrict.set_empty_a(-1);
       m_piconlayout->m_iaDisplayToStrict.set_empty_b(-1);
@@ -388,7 +388,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = øallocate draw_mesh_group();
+            auto pdrawgroup = allocateø draw_mesh_group();
 
             pdrawgroup->initialize_draw_mesh_group(this);
 
@@ -812,7 +812,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawmeshitem = øallocate draw_mesh_item();
+         auto pdrawmeshitem = allocateø draw_mesh_item();
 
          pdrawmeshitem->initialize_draw_mesh_item(this);
 
@@ -845,7 +845,7 @@ namespace user
       if (!psubitem)
       {
 
-         psubitem = øallocate draw_mesh_subitem();
+         psubitem = allocateø draw_mesh_subitem();
 
          psubitem->m_pitem = pitem;
 
@@ -3311,7 +3311,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(øallocate ::item(::e_element_item, iDisplayItemLButtonUp), pmouse);
+                     on_click(allocateø ::item(::e_element_item, iDisplayItemLButtonUp), pmouse);
 
                   }
                   else
@@ -3319,7 +3319,7 @@ namespace user
 
                       auto pmessage = øcreate_new < ::message::mouse >();
 
-                      pmessage->m_pacmewindowingwindow = oswindow();
+                      pmessage->m_operatingsystemwindow = operating_system_window();
 
                       pmessage->m_pwindow = window();
 
@@ -3662,8 +3662,8 @@ namespace user
    {
 
 
-      øconstruct(m_ppenFocused);
-      øconstruct(m_ppenHighlight);
+      constructø(m_ppenFocused);
+      constructø(m_ppenHighlight);
 
       ::pointer<::message::create>pcreate(pmessage);
 
@@ -5438,7 +5438,7 @@ namespace user
    //::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   ::item_pointer pitemHitTest = øallocate ::item();
+   //   ::item_pointer pitemHitTest = allocateø ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -5482,7 +5482,7 @@ namespace user
    ::item_pointer mesh::on_hit_test(const ::int_point& point, e_zorder ezorder)
    {
 
-      ::item_pointer pitemHitTest = øallocate ::item();
+      ::item_pointer pitemHitTest = allocateø ::item();
 
       //auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -6400,7 +6400,7 @@ namespace user
    //::pointer<::user::mesh_data>list_base::create_mesh_data()
    //{
 
-   //   return øallocate mesh_data();
+   //   return allocateø mesh_data();
 
    //}
 

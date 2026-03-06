@@ -808,7 +808,7 @@ namespace platform
    }
 
 
-   //øallocate < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
+   //allocateø < ::pointer < ::mutex > >(this, false, "Local\\ca2-appmatter")
 
    ::pointer < ::mutex > node::create_local_named_mutex(::particle * pparticleContext, bool bInitialOwner, const ::scoped_string & scopedstrName, security_attributes * psecurityattributes)
    {
@@ -849,7 +849,7 @@ namespace platform
 
       return open_global_named_mutex(pparticleContext, strName);
 
-   //øallocate< ::install::pointer < ::mutex > >(this, process_platform_name()
+   //allocateø< ::install::pointer < ::mutex > >(this, process_platform_name()
 
    }
 
@@ -1416,7 +1416,7 @@ namespace platform
    }
 
 
-   void node::_user_send(const ::procedure & procedure)
+   void node::user_send(const ::procedure & procedure)
    {
 
       if(::is_main_thread())
@@ -1428,7 +1428,7 @@ namespace platform
 
       }
 
-      auto phappening = øallocate manual_reset_happening();
+      auto phappening = allocateø manual_reset_happening();
 
       user_post([ procedure, phappening ]
       {
@@ -1445,6 +1445,23 @@ namespace platform
          throw ::exception(error_timeout);
 
       }
+
+   }
+
+
+   void node::main_send(const ::procedure & procedure)
+   {
+
+      user_send(procedure);
+
+   }
+
+
+
+   void node::main_post(const ::procedure & procedure)
+   {
+
+      user_post(procedure);
 
    }
 
@@ -2352,7 +2369,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::scoped_string & scopedstrMoreDetails)
    {
 
-      send(__initialize_new ::message_box(exception, scopedstrMoreDetails));
+      send(__initialize_new ::message_box_payload(exception, scopedstrMoreDetails));
 
    }
 
@@ -3040,7 +3057,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
    if (scopedstrComponent == "nano_http")
    {
 
-      auto pfactory = øallocate::factory::factory();
+      auto pfactory = allocateø::factory::factory();
 
       nano_http_wininet_factory(pfactory);
 
@@ -3052,7 +3069,7 @@ bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
       else if (scopedstrComponent == "nano_compress")
       {
 
-         auto pfactory = øallocate::factory::factory();
+         auto pfactory = allocateø::factory::factory();
 
          nano_compress_windows_factory(pfactory);
 
@@ -4965,7 +4982,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          pdatablock->initialize_set_operation(scopedstrPath, "application/octet-stream", block);
 
-         øconstruct_new(pdatablock->m_pmanualresethappening);
+         construct_newø(pdatablock->m_pmanualresethappening);
 
          this->post_media_store_operation(pdatablock);
 
@@ -4992,7 +5009,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
          pdatablock->initialize_get_operation(scopedstrPath, "application/octet-stream");
 
-         øconstruct_new(pdatablock->m_pmanualresethappening);
+         construct_newø(pdatablock->m_pmanualresethappening);
 
          this->post_media_store_operation(pdatablock);
 
@@ -5027,14 +5044,15 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //   }
 //
-   memsize node::get_current_memory_usage()
+
+
+   ::string_array_base node::get_operating_system_information_lines() 
    {
-
-
-      return 0;
-
+      return {}; 
+      
    }
 
+   memsize node::get_current_memory_usage() { return 0; }
 
    bool node::_windows_isVistaOrLater()
    {

@@ -643,7 +643,7 @@ namespace gpu_gpu
 //
 //    //   }
 //
-//    //   ::e_status estatus = øconstruct(m_pbuffer);
+//    //   ::e_status estatus = constructø(m_pbuffer);
 //
 //    //   if (!estatus)
 //    //   {
@@ -971,7 +971,7 @@ namespace gpu_gpu
 //       if (!m_pshaderCopy)
 //       {
 //
-//          øconstruct_new(m_pshaderCopy);
+//          construct_newø(m_pshaderCopy);
 //
 //          // Vertex shader
 //          const_char_pointer vertexShaderSource = R"(
@@ -2369,7 +2369,7 @@ namespace gpu_gpu
 //       //      //BIH.biPlanes = 1;          // один план
 //       //      //BIH.biBitCount = 32;       // 24 bits per pixel
 //       //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
-//       //      ////pdcDIB = CreateCompatibleDC(NULL);
+//       //      ////pdcDIB = create_compatible_graphics(NULL);
 //       //      ////void * pBits = nullptr;
 //       //      //// создаем DIB-секцию
 //       //      //pwindow->m_hbitmapProto = CreateDIBSection(
@@ -2490,7 +2490,7 @@ namespace gpu_gpu
 //          if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
 //          {
 //
-//             m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
+//             m_pgpudevice->m_pgpucontextCurrent4->sendø() << [this]()
 //             {
 //
 //                ///m_pgpudevice->release_current(m_pgpudevice->m_pgpucontextCurrent4);
@@ -2969,7 +2969,7 @@ namespace gpu_gpu
       if (!m_piblequirectangularcubemap)
       {
 
-         øconstruct(m_piblequirectangularcubemap);
+         constructø(m_piblequirectangularcubemap);
 
          m_piblequirectangularcubemap->initialize_equirectangular_cubemap(this, m_pengine->m_pimmersionlayer->m_pscene->current_sky_box());
 
@@ -2984,7 +2984,7 @@ namespace gpu_gpu
       if (!m_piblspecularmap)
       {
 
-         øconstruct(m_piblspecularmap);
+         constructø(m_piblspecularmap);
 
          m_piblspecularmap->initialize_specular_map(this, m_prenderableSkybox);
 
@@ -3028,7 +3028,7 @@ namespace gpu_gpu
       if (!m_pibldiffuseirradiancemap)
       {
 
-         øconstruct(m_pibldiffuseirradiancemap);
+         constructø(m_pibldiffuseirradiancemap);
 m_pibldiffuseirradiancemap->initialize_diffuse_irradiance_map(m_pgpurenderer, m_prenderableSkybox);
 
       }

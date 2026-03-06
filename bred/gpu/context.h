@@ -87,8 +87,8 @@ namespace gpu
 
       using thread::send;
       using thread::post;
-      using thread::_send;
-      using thread::_post;
+      //using thread::send;
+      //using thread::post;
 
 
       enum enum_type
@@ -156,7 +156,8 @@ namespace gpu
       //::memory                                   m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >              m_pgpuswapchain;
       ::pointer_array < ::gpu::shader >            m_shaderaRetire;
-      ::pointer < ::gpu::semaphore >               m_pgpusemaphoreMergeLayersReady;
+      ::pointer_array < ::gpu::semaphore >         m_gpusemaphoreaMergeLayersReady;
+      ::pointer_array<::gpu::semaphore>            m_gpusemaphoreaPresentReady;
       ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemap;
       ::string_map_base < ::pointer < ::gpu::texture > >    m_texturemapGeneric;
 
@@ -182,7 +183,7 @@ namespace gpu
 
       virtual ::gpu::texture* current_target_texture(::gpu::frame* pgpuframe);
 
-      void _send(const ::procedure& procedure) override;
+      void send(const ::procedure& procedure) override;
       //void _post(const ::procedure& procedure) override;
 
       virtual void construct(::pointer < ::gpu::shader >& pgpushader);
@@ -193,7 +194,7 @@ namespace gpu
 
 
       virtual ::pointer < ::gpu::texture > create_empty_texture();
-
+      virtual void on_new_frame();
 
       /// loads different types of image
       virtual ::gpu::texture* generic_texture(const ::file::path & path, bool bSrgb);
@@ -302,8 +303,10 @@ namespace gpu
       virtual void assert_there_is_current_context();
 
       virtual void do_on_context(const ::procedure & procedure);
-      virtual void send_on_context(const ::procedure & procedure);
+      virtual void send_on_context(bool bForDrawing, const ::procedure &procedure);
       virtual void top_send_on_context(::gpu::context * pcontextInnerStart, bool bForDrawing, const ::procedure& procedure);
+      virtual void top_do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
+      virtual void do_on_frame(bool bForDrawing, const ::function<void(::gpu::frame *)> &on_frame);
 
 
       //virtual void top_post_to_context(::gpu::context * pcontextInnerStart, const ::procedure& procedure);

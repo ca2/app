@@ -44,7 +44,7 @@ namespace user
       //virtual oswindow _oswindow() const;
 
       virtual ::acme::windowing::window * acme_windowing_window();
-
+      virtual ::operating_system::window operating_system_window();
 
       virtual bool is_composite();
 

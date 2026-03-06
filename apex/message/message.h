@@ -34,7 +34,7 @@ namespace message
 
       ::message::dispatcher_array *m_pdispatchera;
       channel *m_pchannel;
-      ::acme::windowing::window * m_pacmewindowingwindow;
+      ::operating_system::window m_operatingsystemwindow;
       enumeration<enum_flag> m_eflagMessage;
       ::collection::index m_iRouteIndex;
       ::collection::index m_iParam;
@@ -55,7 +55,7 @@ namespace message
 
 
       inline bool is_message() const { return m_eusermessage != ::user::e_message_undefined; }
-      inline bool is_thread_message() const { return is_message() && ::is_null(m_pacmewindowingwindow); }
+      inline bool is_thread_message() const { return is_message() && m_operatingsystemwindow.is_null(); }
 
 
       virtual bool route_message();

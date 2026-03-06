@@ -141,7 +141,7 @@ namespace gpu
       //   else
       //   {
 
-      //      øconstruct_new(pmaterial);
+      //      construct_newø(pmaterial);
       //   }
 
       //   // vertices

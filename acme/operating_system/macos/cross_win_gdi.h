@@ -7,7 +7,7 @@
 // int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 // int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
 // int_bool DeleteObject(HGDIOBJ hgdiobj);
-// HDC CreateCompatibleDC(HDC hdc);
+// HDC create_compatible_graphics(HDC hdc);
 // HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, unsigned int usage, void **ppvBits, HANDLE hSection, unsigned int offset);
 
 // int_bool SetTextColor(HDC hdc, color32_t color32);

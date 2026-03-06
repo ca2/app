@@ -747,7 +747,7 @@
 //
 ////void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::particle * pparticle)
 ////{
-////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream binary_stream(allocateø< ::payload(&payload()[atom].propset >()));
 ////   binary_stream.exchange("", idFactory);
 ////   pparticle->exchange(binary_stream);
 ////}
@@ -755,7 +755,7 @@
 ////
 ////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
-////   payload_stream binary_stream(øallocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream binary_stream(allocateø< ::payload(&payload()[atom].propset >()));
 ////   ::atom idFactory;
 ////   binary_stream.exchange("", idFactory);
 ////   auto pparticle = øcreate_by_type<::matter>(idFactory);

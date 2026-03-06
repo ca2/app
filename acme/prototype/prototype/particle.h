@@ -26,7 +26,8 @@ namespace platform
 
 
 } // namespace platform
-
+class dispatch_arrayø;
+class dispatch_array2;
 
 class tracer;
 
@@ -55,7 +56,7 @@ class trace_statement;
 //};
 
 
-#include "acme/handler/sequence_continuation.h"
+//#include "acme/handler/sequence_continuation.h"
 #include "acme/platform/trace_statement.h"
 #include "acme/prototype/string/string.h"
 
@@ -149,6 +150,9 @@ public:
 
 
    bool _is_ok() const override;
+
+
+   virtual bool task_get_run() const;
 
 
    virtual void on_notify(::particle * pparticle, enum_id eid);
@@ -566,17 +570,17 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box_payload > message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
-   //virtual ::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box_payload > exception_message_box(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box_payload > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box_payload > exception_message_console(const ::exception& exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box& emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //virtual void display(::message_box * pmessagebox);
-   //virtual void display_exception(const ::exception& exception, ::message_box * pmessagebox);
+   //virtual void display(::message_box_payload * pmessageboxpayload);
+   //virtual void display_exception(const ::exception& exception, ::message_box_payload * pmessageboxpayload);
 
    virtual ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
    //inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open_binary);
@@ -599,7 +603,7 @@ public:
    {
 
       auto p = ::transfer(
-         øallocate T(
+         allocateø T(
             ::std::forward<Args>(args)...));
 
       p->initialize(this);
@@ -693,65 +697,50 @@ public:
    virtual ::task_pointer task_fork(const ::procedure & procedure);
 
    
-   virtual void _user_send(const ::procedure & procedure);
-   inline sequence_continuation user_send(const ::procedure & procedure);
-   inline sequence_continuation user_send();
-   inline sequence_continuation user_sync();
+   virtual void user_send(const ::procedure & procedure);
+   //virtual void user_send(const ::procedure & procedure);
+   inline dispatch_arrayø user_sendø();
+   //inline sequence_continuation user_sync();
 
 
-   virtual void _user_post(const ::procedure & procedure);
-   inline sequence_continuation user_post(const ::procedure & procedure);
-   inline sequence_continuation user_post();
-   inline sequence_continuation user_async();
+   virtual void user_post(const ::procedure & procedure);
+   //virtual void  user_post(const ::procedure & procedure);
+   inline dispatch_arrayø user_postø();
+   //inline sequence_continuation user_async();
 
 
-   virtual void _main_send(const ::procedure & procedure);
-   inline sequence_continuation main_send(const ::procedure & procedure);
-   inline sequence_continuation main_send();
-   inline sequence_continuation main_sync();
+   virtual void main_send(const ::procedure & procedure);
+   //virtual void  main_send(const ::procedure & procedure);
+   inline dispatch_arrayø main_sendø();
+   //inline sequence_continuation main_sync();
 
 
-   virtual void _main_post(const ::procedure & procedure);
-   inline sequence_continuation main_post(const ::procedure & procedure);
-   inline sequence_continuation main_post();
-   inline sequence_continuation main_async();
+   virtual void main_post(const ::procedure & procedure);
+   //virtual void  main_post(const ::procedure & procedure);
+   inline dispatch_arrayø main_postø();
+   //inline sequence_continuation main_async();
 
 
    virtual class ::time get_default_run_timeout();
 
 
-   virtual void _send(const ::procedure & procedure);
-   inline sequence_continuation send(const ::procedure & procedure);
-   inline sequence_continuation sync(const class ::time & timeout = {});
-   inline sequence_continuation send();
+   virtual void send(const ::procedure & procedure);
+   //virtual void  send(const ::procedure & procedure);
+   //inline sequence_continuation sync(const class ::time & timeout = {});
+   inline dispatch_arrayø sendø();
 
-   virtual void _post(const ::procedure & procedure);
-   inline sequence_continuation post(const ::procedure & procedure);
-   inline sequence_continuation async();
-   inline sequence_continuation post();
-
-
-   inline sequence_continuation handle(bool bSynchronously, const ::procedure & procedure)
-   {
-
-      if (bSynchronously)
-      {
-         
-         return send(procedure);
-
-      }
-      else
-      {
-
-         return post(procedure);
-
-      }
-
-   }
-   
+   virtual void post(const ::procedure & procedure);
+   //virtual void  post(const ::procedure & procedure);
+   //inline sequence_continuation async();
+   inline dispatch_arrayø postø();
 
 
-   virtual void _call_procedure(enum_dispatch edispatch, const procedure & procedure);
+   virtual void handle(bool bSynchronously, const ::procedure & procedure);
+
+
+
+   virtual void dispatch_procedure(enum_dispatch edispatch, const procedure & procedure);
+   virtual void dispatch(const dispatch_array2 & dispatcha);
 
    //inline post_procedure_continuation queue();
 
@@ -1493,5 +1482,17 @@ inline void __assert_container_ok(const CONTAINER * pcontainer, const_char_point
    pcontainer->container_ok();
 
 }
+
+
+CLASS_DECL_ACME bool function_continue_predicate(::subparticle *psubparticle);
+
+inline continue_predicate_t as_continue_predicate(const ::function < bool() > & functionContinue)
+{
+
+   return {&::function_continue_predicate, functionContinue.m_psubparticle};
+
+}
+
+
 
 

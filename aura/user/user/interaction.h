@@ -654,11 +654,11 @@ namespace user
 
       void host_post(const ::procedure& procedure) override;
 
-      void _user_send(const ::procedure & procedure) override;
-      void _user_post(const ::procedure & procedure) override;
+      void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
 
-      void _main_send(const ::procedure & procedure) override;
-      void _main_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
       //post_continuation main_async() override;
 
@@ -867,7 +867,7 @@ namespace user
       //void window_move(int x, int y) override;
 
 
-      //auto fps_interest() { return øallocate ::fps_interest(this); }
+      //auto fps_interest() { return allocateø ::fps_interest(this); }
 
       virtual bool should_save_window_rectangle();
       
@@ -995,7 +995,7 @@ namespace user
       
       virtual ::user::notify_icon * notify_icon();
 
-      virtual void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex);
+      virtual void on_update_notify_icon_menu(::application_menu *pmenu);
       
       virtual void on_app_activated(::user::activation_token * puseractivationtoken);
 
@@ -1120,7 +1120,9 @@ namespace user
 
 
       virtual bool _is_window() const override;
+      virtual bool _is_this_window() const override;
       inline bool is_window() const { return this->_is_window();}
+      inline bool is_this_window() const { return this->_is_this_window(); }
 
       virtual void ExitHelpMode();
 
@@ -1777,6 +1779,7 @@ namespace user
 
       //inline void get_safe_oswindow();
       ::acme::windowing::window * acme_windowing_window() override;
+      ::operating_system::window operating_system_window() override;
 
 
       //virtual ::windowing::window * window();
@@ -2639,7 +2642,7 @@ namespace user
 
 
 
-      void _post(const ::procedure & procedure) override;
+      void post(const ::procedure & procedure) override;
       //virtual void fps_interest_post_procedure(const ::procedure & procedure);
 
 
@@ -2881,7 +2884,7 @@ namespace user
    //
    //    }
    //
-   //    return this->oswindow();
+   //    return this->operating_system_window();
    //
    // }
 

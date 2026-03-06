@@ -66,8 +66,10 @@ namespace gpu_opengl
    {
       
       ::cast<::win32::acme::windowing::window> pwindow = pacmewindowingwindow;
+      
       m_pwindow = pwindow;
-      m_hwnd = pwindow->m_hwnd;
+      
+      m_hwnd = pwindow->_HWND();
 
       ::gpu_opengl::device::create_main_context(pacmewindowingwindow);
 
@@ -82,7 +84,7 @@ namespace gpu_opengl
       m_pgpuapproach = papproach;
       //m_pwindow = pwindow;
       m_bAddSwapChainSupport = true;
-      //m_hwnd = (HWND) m_pwindow->oswindow();
+      //m_hwnd = (HWND) m_pwindow->operating_system_window();
 
       //;
       //;
@@ -100,7 +102,7 @@ namespace gpu_opengl
       m_pwindow = m_papplication->m_pacmeuserinteractionMain->window();
       m_bAddSwapChainSupport = false;
       ::cast < ::windowing_win32::window > pwin32window = m_pwindow;
-      m_hwnd = pwin32window->m_hwnd;
+      m_hwnd = pwin32window->_HWND();
 
       //_create_device(rectanglePlacement.size());
 
@@ -656,7 +658,7 @@ namespace gpu_opengl
    //      //BIH.biPlanes = 1;          // один план
    //      //BIH.biBitCount = 32;       // 24 bits per pixel
    //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
-   //      ////pdcDIB = CreateCompatibleDC(NULL);
+   //      ////pdcDIB = create_compatible_graphics(NULL);
    //      ////void * pBits = nullptr;
    //      //// создаем DIB-секцию
    //      //pwindow->m_hbitmapProto = CreateDIBSection(
@@ -773,7 +775,7 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      øconstruct(pgpucontext);
+      constructø(pgpucontext);
 
       return pgpucontext;
 
@@ -1124,6 +1126,16 @@ namespace gpu_opengl
    //   }
 
    //}
+
+
+   void *device_win32::current_operating_system_gpu_context()
+   {
+
+      auto pwglcontext = wglGetCurrentContext();
+
+      return pwglcontext;
+
+   }
 
 
 } // namespace gpu_opengl

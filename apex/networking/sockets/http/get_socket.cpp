@@ -102,7 +102,7 @@ namespace sockets
             }
          }
          //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-         inheader("user_agent") = MyUseragent();
+         inheader("user-agent") = MyUseragent();
       }
       //inheader("Content-Length") = 0;
       //inheader("Cache-Controlngth") = 0;

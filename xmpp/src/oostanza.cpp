@@ -55,7 +55,7 @@ Stanza::~Stanza()
 
 Stanza *Stanza::create(Context *ctx)
 {
-    return øallocate< (ctx) Stanza >(ctx);
+    return allocateø< (ctx) Stanza >(ctx);
 }
 
 void Stanza::release()

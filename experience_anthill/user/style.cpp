@@ -1663,7 +1663,7 @@ namespace experience_anthill
          int iTabHeight = 16;
          int cy;
          //         ::draw2d::graphics_pointer graphics(e_create);
-           //       pgraphics->CreateCompatibleDC(nullptr);
+           //       pgraphics->create_compatible_graphics(nullptr);
              //     ::draw2d::graphics_pointer & pgraphics = graphics;
 
          pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));

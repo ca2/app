@@ -351,14 +351,14 @@ namespace experience
 
       auto_hide_on_message_create(pmessage);
 
-      øconstruct(m_pbrushButtonBack);
-      øconstruct(m_pbrushButtonBackSel);
-      øconstruct(m_pbrushButtonBackFocus);
-      øconstruct(m_pbrushButtonBackDisabled);
-      øconstruct(m_ppenButtonBack);
-      øconstruct(m_ppenButtonBackSel);
-      øconstruct(m_ppenButtonBackFocus);
-      øconstruct(m_ppenButtonBackDisabled);
+      constructø(m_pbrushButtonBack);
+      constructø(m_pbrushButtonBackSel);
+      constructø(m_pbrushButtonBackFocus);
+      constructø(m_pbrushButtonBackDisabled);
+      constructø(m_ppenButtonBack);
+      constructø(m_ppenButtonBackSel);
+      constructø(m_ppenButtonBackFocus);
+      constructø(m_ppenButtonBackDisabled);
 
 
       pmessage->previous();
@@ -373,7 +373,7 @@ namespace experience
       if (!m_pfontMarlett)
       {
 
-         øconstruct(m_pfontMarlett);
+         constructø(m_pfontMarlett);
 
          m_pfontMarlett->create_font("Marlett", 16_px);
 
@@ -1275,7 +1275,7 @@ namespace experience
 //         if(!m_pshapeaClip)
 //         {
 //
-//            øconstruct_new(m_pshapeaClip);
+//            construct_newø(m_pshapeaClip);
 //
 //            ::user::interaction * pinteraction = this;
 //
@@ -1288,9 +1288,9 @@ namespace experience
 //
 //               screen_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleFocus));
+//               m_pshapeaClip->add_item(allocateø rectangle_shape(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(øallocate intersect_clip_shape());
+//               m_pshapeaClip->add_item(allocateø intersect_clip_shape());
 //
 //               pinteraction = pinteraction->get_parent();
 //

@@ -117,7 +117,7 @@ class CLASS_DECL_ACME task :
 public:
 
 
-
+   class ::time m_timeLastFinishingReport;
    //Creatable(task);
 
    //bool                                            m_bAutoRelease : 1;
@@ -324,6 +324,8 @@ public:
    //void task_osinit() override;
    //void task_osterm() override;
 
+   bool is_locked() const override;
+
    bool has_main_loop_happening() override;
    virtual bool _has_main_loop_happening_unlocked();
 
@@ -375,13 +377,13 @@ public:
    
    virtual ::locale * locale();
    
-   virtual bool has_dependant_tasks() const;
+   //virtual bool has_dependant_tasks() const;
 
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void _post(const ::procedure & procedure) override;
-   void _send(const ::procedure & procedure) override;
+   void post(const ::procedure & procedure) override;
+   void send(const ::procedure & procedure) override;
 
    //void _post(::subparticle * p) override;
    //void _send(::subparticle * p) override;
@@ -468,7 +470,11 @@ public:
    //virtual bool task_active() const;
    //virtual bool is_running() const override;
 
-   bool set_children_to_finish_and_check_them_finished() override;
+   //bool set_children_to_finish_and_check_them_finished() override;
+
+   bool has_child_task() const override;
+
+   void set_child_tasks_to_finish() override;
 
    virtual void update_task_ready_to_quit();
 

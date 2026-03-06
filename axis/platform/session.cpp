@@ -364,7 +364,7 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = øallocate ::acme::library();
+//                     plibrary = allocateø ::acme::library();
 //
 //                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
@@ -388,9 +388,9 @@ namespace axis
 //
 //#ifndef UNIVERSAL_WINDOWS
 //
-//                        auto pmessagebox = __initialize_new ::message_box(nullptr, "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
+//                        auto pmessageboxpayload = __initialize_new ::message_box_payload(nullptr, "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 //
 //#endif
 //
@@ -515,8 +515,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-//         psystem->m_spmutexSystemAppData = øallocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+//         psystem->m_spmutexUserAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+//         psystem->m_spmutexSystemAppData = allocateø ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 //
 //      }
 //
@@ -816,7 +816,7 @@ namespace axis
    //   //   return estatus;
 
    //   //}
-   //   auto estatus = øconstruct(m_puser);
+   //   auto estatus = constructø(m_puser);
 
    //   if (!estatus || !m_puser)
    //   {
@@ -873,7 +873,7 @@ namespace axis
 
 
 
-   //   auto estatus = øconstruct_new(m_puserex);
+   //   auto estatus = construct_newø(m_puserex);
 
    //   if (!estatus)
    //   {

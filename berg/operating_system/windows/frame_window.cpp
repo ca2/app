@@ -71,9 +71,9 @@
 //
 //      //   //hicon = load_icon(get_app(), straMatter, "icon.ico", 24, 24);
 //
-//      //   //øconstruct(m_picon, papp->load_icon("matter://icon.ico"));
+//      //   //constructø(m_picon, papp->load_icon("matter://icon.ico"));
 //
-//      //   //øconstruct(m_picon, m_picon->);
+//      //   //constructø(m_picon, m_picon->);
 //
 //      //}
 //

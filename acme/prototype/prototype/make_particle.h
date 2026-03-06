@@ -20,6 +20,7 @@ public:
 
 
 
+
 template < typename TYPE >
 class array_particle :
    virtual public ::particle,

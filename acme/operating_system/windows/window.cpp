@@ -17,7 +17,7 @@ namespace windows
    {
       m_bMovingNow = false;
       m_bSizeMoveMode = false;
-      m_hwnd = nullptr;
+      //m_hwnd = nullptr;
       m_hmenuSystem = nullptr;
       m_bDefaultSystemMenu = true;
    }
@@ -115,7 +115,9 @@ namespace windows
 
                RECT r;
 
-               GetWindowRect(m_hwnd, &r);
+               auto hwnd = _HWND();
+
+               GetWindowRect(hwnd, &r);
 
                m_bMovingNow = true;
 
@@ -123,7 +125,7 @@ namespace windows
 
                auto y = (int)(r.top + Δy);
 
-               SetWindowPos(m_hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+               SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
                m_bMovingNow = false;
                m_timeLastSizeMove.Now();
 
@@ -131,9 +133,12 @@ namespace windows
             }
 
             {
+
+               auto hwnd = _HWND();
+
                POINT pointCursor{};
                RECT r{};
-               GetWindowRect(m_hwnd, &r);
+               GetWindowRect(hwnd, &r);
                pointCursor.x = r.left + m_pointSizeMoveStart.x;
                pointCursor.y = r.top + m_pointSizeMoveStart.y;
                ::SetCursorPos(pointCursor.x, pointCursor.y);
@@ -158,7 +163,10 @@ namespace windows
 
                //GetWindowRect(m_hwnd, &r);
                m_bMovingNow = true;
-               SetWindowPos(m_hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+               auto hwnd = _HWND();
+
+
+               SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
                //m_timeLastSizeMove.Now();
                m_bMovingNow = false;
             }
@@ -248,7 +256,7 @@ namespace windows
 
       }
 
-      auto hwnd = m_hwnd;
+      auto hwnd = _HWND();
 
       hmenuSystem = hmenu;
 
@@ -377,17 +385,20 @@ namespace windows
       else if (wmId == SC_MOVE)
       {
          m_dVelocity = 0.;
-         ::SetCapture(m_hwnd);
+
+         auto hwnd = _HWND();
+
+         ::SetCapture(hwnd);
          POINT pointCursor{};
          ::GetCursorPos(&pointCursor);
          RECT r{};
-         ::GetWindowRect(m_hwnd, &r);
+         ::GetWindowRect(hwnd, &r);
          m_pointSizeMoveStart.x = pointCursor.x - r.left;
          m_pointSizeMoveStart.y = pointCursor.y - r.top;
          ::SetCursor(::LoadCursor(nullptr, IDC_SIZEALL));
          m_bSizeMoveMode = true;
 
-         //PostMessage(m_hwnd, WM_SYSCOMMAND, SC_MOVE, 0);
+         //PostMessage(hwnd, WM_SYSCOMMAND, SC_MOVE, 0);
          lresult = 0;
          return true;
 
@@ -395,7 +406,9 @@ namespace windows
       else if (wmId == SC_CLOSE)
       {
 
-         SendMessage(m_hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
+         auto hwnd = _HWND();
+
+         SendMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
          lresult = 0;
          return true;
 
@@ -409,16 +422,28 @@ namespace windows
    void window::_defer_show_system_menu(::user::mouse * pmouse)
    {
 
-      auto hmenu = GetSystemMenu(m_hwnd, true);
-      m_hmenuSystem = GetSystemMenu(m_hwnd, false);
+      auto hwnd = _HWND();
+
+      auto hmenu = GetSystemMenu(hwnd, true);
+      m_hmenuSystem = GetSystemMenu(hwnd, false);
       //SetForegroundWindow(hwnd);
       TrackPopupMenu(m_hmenuSystem,
          TPM_LEFTALIGN | TPM_TOPALIGN,
          pmouse->m_pointAbsolute.x,
          pmouse->m_pointAbsolute.y,
          0,
-         m_hwnd, NULL);
+         hwnd, NULL);
       //PostMessage(hwnd, WM_NULL, 0, 0);
+
+   }
+
+
+   HWND window::_HWND() const
+   {
+
+      auto hwnd = m_windowswindow.as_HWND();
+
+      return hwnd;
 
    }
 
@@ -472,6 +497,9 @@ namespace windows
          }
 
       }
+
+      auto operatingsystemwindow = as_operating_system_window(hwnd);
+
       if (msg == WM_NCCREATE)
       {
 
@@ -483,7 +511,7 @@ namespace windows
 
          ::windows::g_pwindowing->m_windowmap[hwnd] = pwindow;
 
-         pwindow->m_hwnd = hwnd;
+         pwindow->m_windowswindow = hwnd;
 
       }
       else
@@ -498,7 +526,9 @@ namespace windows
       if (!pwindow)
       {
 
-         return DefWindowProc(hwnd, msg, wParam, lParam);
+         LRESULT lresult = DefWindowProc(hwnd, msg, wParam, lParam);
+
+         return lresult;
 
       }
 
@@ -541,5 +571,40 @@ namespace windows
 
 
 } // namespace windows
+
+
+CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window& operatingsystemwindow)
+{
+
+   if (operatingsystemwindow.is_null())
+   {
+
+      return nullptr;
+
+   }
+
+   ::operating_system::windows_window window(operatingsystemwindow);
+
+   return window.as_HWND();
+
+}
+
+
+CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd)
+{
+
+   if (::is_null(hwnd) || hwnd == INVALID_HANDLE_VALUE)
+   {
+
+      return nullptr;
+
+   }
+
+   ::operating_system::windows_window window(hwnd);
+
+   return window.as_operating_system_window();
+
+}
+
 
 

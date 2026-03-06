@@ -47,8 +47,14 @@ namespace gpu
       ~render_target() override;
 
 
-      virtual ::pointer_array < ::gpu::texture > *texturea();
-      virtual ::pointer_array < ::gpu::texture >* depth_texturea();
+
+      virtual void on_new_frame();
+
+
+      virtual ::pointer_array < ::gpu::texture > *texturea2();
+      virtual ::pointer_array < ::gpu::texture >* depth_texturea2();
+      virtual ::gpu::texture *texture(::collection::index i);
+      virtual ::gpu::texture *depth_texture(::collection::index i);
 
       virtual void initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous);
 
@@ -66,7 +72,7 @@ namespace gpu
 
       virtual void on_resize(const ::int_size & size);
 
-      virtual void create_images();
+      //virtual void create_images();
 
       virtual void on_create_render_target_texture(::gpu::texture_attributes & textureattributes, ::gpu::texture_flags & textureflags);
 
@@ -80,8 +86,11 @@ namespace gpu
       virtual int height();
 
 
-      virtual texture* current_texture(::gpu::frame* pgpuframe);
-      virtual texture* current_depth_texture(::gpu::frame* pgpuframe);
+      virtual void initialize_render_target_image(::gpu::texture *pgputexture);
+
+
+      virtual ::gpu::texture* current_texture(::gpu::frame* pgpuframe);
+      virtual ::gpu::texture *current_depth_texture(::gpu::frame *pgpuframe);
 
 
       virtual void on_before_begin_draw_frame(::gpu::graphics* pgraphics);

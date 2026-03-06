@@ -53,7 +53,7 @@ namespace gpu
       if (!pbinding)
       {
 
-         øconstruct(pbinding);
+         constructø(pbinding);
 
          pbinding->m_bSet = true;
          pbinding->m_iSlot = iSlot;
@@ -214,7 +214,7 @@ namespace gpu
       for (::collection::index iSlot = 0; iSlot < m_pbindingset->size(); iSlot++)
       {
 
-         auto pbindingslot = binding_slot(iSlot);
+         auto pbindingslot = binding_slot((int) iSlot);
 
          auto &pgputextureSource = ppgputexture[iSlot];
 

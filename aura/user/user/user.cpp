@@ -171,7 +171,7 @@ namespace user
          if (!m_puserstyle)
          {
             
-            øconstruct_new(m_puserstyle);
+            construct_newø(m_puserstyle);
 
             //if (!estatus)
             //{
@@ -762,9 +762,9 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = øconstruct(m_pshell, øallocate ::windows::shell());
+         //estatus = constructø(m_pshell, allocateø ::windows::shell());
          //estatus =
-         øconstruct(m_pshell);
+         constructø(m_pshell);
 
          //if (!estatus)
          //{
@@ -1593,7 +1593,7 @@ namespace user
 
    //      desktop_environment()->windowing() = windowing();
 
-   //      //øconstruct(windowing());
+   //      //constructø(windowing());
 
    //      //m_pdesktopenvironment->windowing() = windowing();
 
@@ -1668,7 +1668,7 @@ namespace user
    //
    //    //   system()->do_graphics_and_windowing_system_factory();
    //
-   //    //   øconstruct(windowing());
+   //    //   constructø(windowing());
    //
    //    //   windowing()->initialize_windowing(this);
    //
@@ -1701,7 +1701,7 @@ namespace user
    //    if (!m_pdesktopenvironment)
    //    {
    //
-   //       øconstruct(m_pdesktopenvironment);
+   //       constructø(m_pdesktopenvironment);
    //
    //
    //    }
@@ -1722,7 +1722,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return øallocate ::user::plain_edit();
+      return allocateø ::user::plain_edit();
 
    }
 

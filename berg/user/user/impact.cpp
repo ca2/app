@@ -880,7 +880,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create, this);
 
-      auto pusersystem = øallocate ::user::system();
+      auto pusersystem = allocateø ::user::system();
 
       m_pusersystem = pusersystem;
 
@@ -930,7 +930,7 @@ namespace user
 
          __check_refdbg
 
-         øconstruct_new(pusersystem->m_prequest);
+         construct_newø(pusersystem->m_prequest);
 
          __check_refdbg
 
@@ -998,7 +998,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create_new, pdocument);
 
-      auto pusersystem= øallocate ::user::system();
+      auto pusersystem= allocateø ::user::system();
 
       pusersystem->m_typeNewImpact = type;
 

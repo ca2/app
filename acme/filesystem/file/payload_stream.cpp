@@ -43,7 +43,7 @@
 ////   void payload_stream::write(const void *pdata, memsize nCount)
 //
 ////   {
-////      auto pm = øallocate memory();
+////      auto pm = allocateø memory();
 ////      pm->assign(pdata, nCount);
 //
 ////      m_var = pm;
@@ -225,7 +225,7 @@
 ////void payload_stream::write_object(const ::atom & atom, ::particle * pparticle)
 ////{
 ////
-////   payload_stream stream(øallocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream stream(allocateø< ::payload(&payload()[atom].propset >()));
 ////
 ////   ::atom idType = ::platform::type(pparticle).name();
 ////
@@ -243,7 +243,7 @@
 ////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
 ////
-////   payload_stream stream(øallocate< ::payload(&payload()[atom].propset >()));
+////   payload_stream stream(allocateø< ::payload(&payload()[atom].propset >()));
 ////
 ////   string strId;
 ////

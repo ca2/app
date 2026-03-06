@@ -186,7 +186,7 @@ namespace app_shader
 
          //estatus = 
          
-         øconstruct(m_pshader);
+         constructø(m_pshader);
 
       }
 
@@ -252,7 +252,7 @@ namespace app_shader
          
       }
       
-      m_pgpucontext->_send([this]
+      m_pgpucontext->sendø() << [this]
                                     {
          
          //::gpu::context_lock lock(m_pgpucontext);
@@ -384,13 +384,13 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            øconstruct(pbrush);
+            constructø(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            øconstruct(pfont);
+            constructø(pfont);
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
@@ -511,13 +511,13 @@ namespace app_shader
 
             ::draw2d::brush_pointer pbrush;
 
-            øconstruct(pbrush);
+            constructø(pbrush);
 
             pbrush->create_solid(colorBackground);
 
             ::write_text::font_pointer pfont;
 
-            øconstruct(pfont);
+            constructø(pfont);
 
             auto pnode = system()->node();
 
@@ -616,7 +616,7 @@ namespace app_shader
       //            if (m_pimage1.ok())
       //            {
 
-      //               øconstruct(m_pimage2);
+      //               constructø(m_pimage2);
 
       //               m_pimage2->copy_from(m_pimage1);
 

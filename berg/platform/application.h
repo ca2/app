@@ -80,10 +80,13 @@ namespace berg
 
       void create_about_impact(const ::atom &atom, ::user::interaction *pparent) override;
 
+      void create_operating_system_information_impact(const ::atom &atom, ::user::interaction *pparent) override;
+
       void on_after_prepare_impact_menu(::user::menu * pmenu) override;
 
 
       void show_about_box(::user::activation_token * puseractivationtoken) override;
+      void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken) override;
 
       
       void add_impact_system(const ::atom & atom, const ::pointer<::user::impact_system> & pimpactsystem) override;

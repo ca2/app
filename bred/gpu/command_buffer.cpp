@@ -46,7 +46,7 @@ namespace gpu
       }
       m_ecommandbuffer = e_command_buffer_none;
       m_bLoadingCommandBuffer = false;
-      m_iCommandBufferFrameIndex = -1;
+      m_iCommandBufferImageIndex = -1;
    }
 
 
@@ -252,21 +252,21 @@ namespace gpu
    }
 
 
-   ::gpu::fence * command_buffer::insert_gpu_fence()
+   ::gpu::fence * command_buffer::insert_gpu_fence(bool bCreateSignaled)
    {
 
       if(!m_pgpufence)
       {
        
-         øconstruct(m_pgpufence);
+         constructø(m_pgpufence);
 
-         m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext);
+         m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext, bCreateSignaled);
 
       }
       else
       {
          
-         m_pgpufence->reset();
+         m_pgpufence->reset_gpu_fence();
          
       }
 

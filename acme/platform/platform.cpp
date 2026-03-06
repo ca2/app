@@ -743,7 +743,7 @@ namespace platform
       if (!pfactory)
       {
 
-         ::system()->øconstruct_new(pfactory);
+         ::system()->construct_newø(pfactory);
 
       }
 
@@ -905,7 +905,7 @@ g_bWindowingOutputDebugString = true;
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = øallocate ::factory::factory();
+      //m_pfactory = allocateø ::factory::factory();
 
 
       //m_pfactory->m_mapByRawNamePointer.InitHashTable(16381);
@@ -1483,10 +1483,10 @@ g_bWindowingOutputDebugString = true;
 
          string strDetails = exception.get_consolidated_details(this);
 
-         auto pmessagebox = __initialize_new_with(this) ::message_box(strMessage, "Library Loading Failure", ::user::e_message_box_ok | ::user::e_message_box_icon_warning,
+         auto pmessageboxpayload = __initialize_new_with(this) ::message_box_payload(strMessage, "Library Loading Failure", ::user::e_message_box_ok | ::user::e_message_box_icon_warning,
             strDetails);
 
-         pmessagebox->async();
+         post(pmessageboxpayload);
 
          throw exception;
 
@@ -1590,10 +1590,10 @@ g_bWindowingOutputDebugString = true;
 //      catch (library_not_loaded& librarynotloaded)
   //    {
 
-    //     auto pmessagebox = __initialize_new_with(this) ::message_box(librarynotloaded.get_message(),
+    //     auto pmessageboxpayload = __initialize_new_with(this) ::message_box_payload(librarynotloaded.get_message(),
             //"Library not loaded", ::user::e_message_box_icon_error, librarynotloaded.m_strDetails);
 
-      //   pmessagebox->async();
+      //   post(pmessageboxpayload);
 
       //}
       //catch (...)

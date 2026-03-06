@@ -70,7 +70,7 @@ namespace gpu_opengl
 
 
 
-      int get_frame_index2() override;
+      int get_frame_index3() override;
 
       int get_frame_count() override;
 

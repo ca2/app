@@ -18,7 +18,7 @@ public:
 
       system() = ::pointer_transfer(platform_create_system(nullptr));
 
-      //      system() = øallocate ::aura::system();
+      //      system() = allocateø ::aura::system();
 
       system()->console_initialize();
 
@@ -118,7 +118,7 @@ public:
 //
 //   //   {
 //
-//   //      auto psystem = øallocate ::aura::system();
+//   //      auto psystem = allocateø ::aura::system();
 //
 //   //      psystem->system_construct(&mainstruct, argc, argv);
 //
@@ -128,7 +128,7 @@ public:
 //
 //   //}
 //
-//   auto psystem = øallocate ::aura::system();
+//   auto psystem = allocateø ::aura::system();
 //
 //   psystem->console_initialize();
 //

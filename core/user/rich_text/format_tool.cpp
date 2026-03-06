@@ -125,31 +125,31 @@ namespace user
 
          }
          int iControl = 0;
-         øconstruct(m_pbuttonBold);
+         constructø(m_pbuttonBold);
          iControl++;
-         øconstruct(m_pbuttonItalic);
+         constructø(m_pbuttonItalic);
          iControl++;
-         øconstruct(m_pbuttonUnderline);
+         constructø(m_pbuttonUnderline);
          iControl++;
-         øconstruct(m_pcomboFamily);
+         constructø(m_pcomboFamily);
          iControl++;
-         øconstruct(m_pcomboSize);
+         constructø(m_pcomboSize);
          iControl++;
-         øconstruct(m_pbuttonForeground);
+         constructø(m_pbuttonForeground);
          iControl++;
-         øconstruct(m_pbuttonBackground);
+         constructø(m_pbuttonBackground);
          iControl++;
-         øconstruct(m_pbuttonSubscript);
+         constructø(m_pbuttonSubscript);
          iControl++;
-         øconstruct(m_pbuttonSuperscript);
+         constructø(m_pbuttonSuperscript);
          iControl++;
-         øconstruct(m_pbuttonLineHeight);
+         constructø(m_pbuttonLineHeight);
          iControl++;
-         øconstruct(m_pbuttonAlignLeft);
+         constructø(m_pbuttonAlignLeft);
          iControl++;
-         øconstruct(m_pbuttonAlignCenter);
+         constructø(m_pbuttonAlignCenter);
          iControl++;
-         øconstruct(m_pbuttonAlignRight);
+         constructø(m_pbuttonAlignRight);
          iControl++;
 
          m_pbuttonBold->create_control(this, "font_bold");

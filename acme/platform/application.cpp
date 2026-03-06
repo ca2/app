@@ -82,7 +82,7 @@ namespace platform
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 
-      m_pfilesystemoptions = øallocate::filesystem::file_system_options();
+      m_pfilesystemoptions = allocateø::filesystem::file_system_options();
 
       m_bApplicationFirstRequest = true;
 
@@ -388,7 +388,7 @@ void application::start_application()
 #endif
 
 
-   void application::_001TryCloseApplication()
+   void application::_001PostTryCloseApplication()
    {
 
       if (!::system()->is_console())
@@ -454,12 +454,12 @@ void application::start_application()
 
       ::function < void(const ::atom& atom) > function;
 
-      auto pmessagebox = __initialize_new::message_box(
+      auto pmessageboxpayload = __initialize_new ::message_box_payload(
          "Application needs iCloud and it is not Available",
          "iCloud is not Available.",
          ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 
-      pmessagebox->sync();
+      send(pmessageboxpayload);
 
    }
 
@@ -1004,15 +1004,15 @@ void application::start_application()
 
          {
 
-            auto ppopupApp = papplicationmenu->popup(application_title());
+            auto ppopupApp = papplicationmenu->defer_add_popup(application_title());
 
             //pmenuMain->add(pmenuApp);
 
-            ppopupApp->item("About " + application_title(), "show_about_box", "", "");
+            ppopupApp->defer_add_item("About " + application_title(), "show_about_box", "", "");
 
-            ppopupApp->separator();
+            ppopupApp->add_separator();
 
-            ppopupApp->item("Quit " + application_title(), "try_close_application", "", "");
+            ppopupApp->defer_add_item("Quit " + application_title(), "try_close_application", "", "");
 
          }
 
@@ -1144,26 +1144,27 @@ void application::start_application()
    void application::user_confirm_close_application()
    {
 
-      auto pmessagebox = __initialize_new::message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
+      auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
-      pmessagebox->async()
-         << [this, pmessagebox]()
+      pmessageboxpayload->m_functionOnDialogResult = [this](const ::payload & payloadResult)
          {
 
-            if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_yes)
+            if (payloadResult == e_dialog_result_yes)
             {
 
                auto papp = get_app();
 
-               papp->_001TryCloseApplication();
+               papp->_001PostTryCloseApplication();
 
             }
-            else if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_cancel)
+            else if (payloadResult == e_dialog_result_cancel)
             {
 
             }
 
          };
+
+      post(pmessageboxpayload);
 
    }
 
@@ -1777,13 +1778,13 @@ void application::start_application()
 
          handle_exception(e);
 
-         auto pmessagebox = __initialize_new::message_box(
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(
             "Application failed to initialize (1).\n\n" + e.m_strMessage,
             m_strAppName,
             ::user::e_message_box_ok,
             e.m_strMessage + "\n" + e.m_strDetails);
 
-         pmessagebox->sync();
+         send(pmessageboxpayload);
 
          throw e;
 
@@ -1791,11 +1792,11 @@ void application::start_application()
       catch (...)
       {
 
-         auto pmessagebox = __initialize_new::message_box(
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(
             "Application failed to initialize (2). Unknown exception",
             m_strAppName);
 
-         pmessagebox->sync();
+         send(pmessageboxpayload);
 
          throw "Unknown exception";
 
@@ -1840,13 +1841,13 @@ void application::start_application()
       catch (const ::exception& exception)
       {
 
-         auto pmessagebox = __initialize_new::message_box(
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(
             "Application failed to initialize (4). Unknown exception",
             m_strAppName,
             ::user::e_message_box_ok,
             exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
 
-         pmessagebox->sync();
+         send(pmessageboxpayload);
 
          throw exception;
 
@@ -1854,11 +1855,11 @@ void application::start_application()
       catch (...)
       {
 
-         auto pmessagebox = __initialize_new::message_box(
+         auto pmessageboxpayload = __initialize_new ::message_box_payload(
             "Application failed to initialize (4). Unknown exception",
             m_strAppName);
 
-         pmessagebox->sync();
+         send(pmessageboxpayload);
 
          throw "Unknown exception";
 
@@ -2357,7 +2358,7 @@ void application::start_application()
 
       picon->load_image_from_file(pfile);
 
-      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, "", picon);
+      auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box_payload("About\n\n" + strMessage, nullptr, ::user::e_message_box_ok, "", picon);
 
       //psequencer->then([this, strPath](auto pconversation)
       //      {
@@ -2380,10 +2381,18 @@ void application::start_application()
 
       paboutbox->m_puseractivationtoken = puseractivationtoken;
 
-      paboutbox->async();
+      post(paboutbox);
 
 
 
+
+   }
+
+
+   ::string_array_base application::get_operating_system_information_lines()
+   {
+
+      return node()->get_operating_system_information_lines();
 
    }
 
@@ -2417,7 +2426,7 @@ void application::start_application()
       else if(atom == "try_close_application")
       {
        
-         _001TryCloseApplication();
+         _001PostTryCloseApplication();
 
          return true;
          

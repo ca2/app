@@ -8,13 +8,17 @@ namespace gpu_opengl
 {
 
 
+
+   class wgl_context;
+
+
    class CLASS_DECL_GPU_OPENGL approach :
       virtual public ::gpu::bred_approach
    {
    public:
 
       #ifdef WINDOWS_DESKTOP
-
+      ::pointer < ::gpu_opengl::wgl_context > m_pwglcontextDummy;
       HGLRC m_hglrcShare = nullptr;
       #endif
       
@@ -49,11 +53,8 @@ namespace gpu_opengl
 
       void initialize(::particle * pparticle) override;
 
-      virtual void _on_before_create_window(::acme::windowing::window* pwindow);
-      virtual void _on_create_window(::acme::windowing::window* pwindow);
-
-
-      
+      void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
+      void _gpu_on_create_window(::acme::windowing::window* pwindow) override;
 
       //::pointer < ::gpu::context > _create_context(::particle * pparticle, ::gpu::enum_output eoutput, ::windowing::window* pwindow, const ::int_rectangle& rectanglePlacement) override;
 
@@ -72,7 +73,11 @@ namespace gpu_opengl
 
       //virtual void make_current();
 
-      void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
+      
+      virtual ::gpu_opengl::wgl_context *dummy_wgl_context();
+
+
+      //void gpu_on_before_create_window(::acme::windowing::window* pwindow) override;
       void gpu_on_create_window(::acme::windowing::window* pwindow) override;
 
 

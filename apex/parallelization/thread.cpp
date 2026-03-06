@@ -12,6 +12,7 @@
 #include "acme/parallelization/tools.h"
 #include "acme/platform/log.h"
 #include "acme/prototype/prototype/memory.h"
+#include "acme/windowing/window.h"
 #include "apex/message/message.h"
 #include "apex/platform/application.h"
 #include "apex/platform/node.h"
@@ -2708,7 +2709,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = øallocate thread_startup();
+//      m_pstartup = allocateø thread_startup();
 //
 //   }
 //
@@ -3346,10 +3347,10 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
       if (!is_task_set2())
       {
 
-         _post([this, eusermessage, wparam, lparam]()
+         post([this, eusermessage, wparam, lparam]()
          {
 
-            post_message(eusermessage, wparam, lparam);
+            message_call(eusermessage, wparam, lparam);
 
          });
 
@@ -3423,7 +3424,7 @@ void thread::send_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
    //}
 
-   auto pmessage = øallocate ::send_thread_message(this);
+   auto pmessage = allocateø ::send_thread_message(this);
 
    pmessage->m_message.m_eusermessage = eusermessage;
 
@@ -3706,7 +3707,7 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
+bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
                           bool bRemoveMessage)
 {
 
@@ -3722,7 +3723,7 @@ bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindow
 
       }
 
-      if (m_pmessagequeue->peek_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
+      if (m_pmessagequeue->peek_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
       {
 
          return true;
@@ -3738,7 +3739,7 @@ bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindow
 
       MSG msg;
 
-      auto hwnd = as_HWND(pacmewindowingwindow->operating_system_window());
+      auto hwnd = ::as_HWND(operatingsystemwindow);
 
       if (::PeekMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax,
                          bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
@@ -4052,7 +4053,7 @@ bool thread::peek_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindow
 //}
 
 
-void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -4060,7 +4061,7 @@ void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowi
    if (m_bAuraMessageQueue)
    {
 
-      get_message_queue()->get_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
+      get_message_queue()->get_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
       if (pMsg->m_eusermessage == ::user::e_message_quit)
       {
@@ -4076,7 +4077,7 @@ void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowi
    if (m_pmessagequeue)
    {
 
-      if (m_pmessagequeue->peek_message(pMsg, pacmewindowingwindow, wMsgFilterMin, wMsgFilterMax, true))
+      if (m_pmessagequeue->peek_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax, true))
       {
 
          set_finishing_flag();
@@ -4120,7 +4121,7 @@ void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowi
 
       }
 
-      auto hwnd = (HWND) HWND_from_acme_windowing_window(pacmewindowingwindow);
+      auto hwnd = ::as_HWND(operatingsystemwindow);
 
       iRet = ::GetMessageW(&msg, hwnd, wMsgFilterMin, wMsgFilterMax);
 
@@ -4165,16 +4166,14 @@ void thread::get_message(MESSAGE* pMsg, ::acme::windowing::window * pacmewindowi
 
    auto pmessagequeue = get_message_queue();
 
-
-
-   pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+   pmessagequeue->get_message(pMsg, operatingsystemwindow, wMsgFilterMin, wMsgFilterMax);
 
 #endif
 
 }
 
 
-void thread::post_message(::acme::windowing::window * pacmewindowingwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+void thread::post_message(const ::operating_system::window & operatingsystemwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
 {
 
    //if (m_bThreadClosed)
@@ -4189,7 +4188,7 @@ void thread::post_message(::acme::windowing::window * pacmewindowingwindow, ::us
    if (m_htask.is_set() && !m_bAuraMessageQueue)
    {
 
-      auto hwnd = (HWND) HWND_from_acme_windowing_window(pacmewindowingwindow);
+      auto hwnd = ::as_HWND(operatingsystemwindow);
 
       if (::PostMessage(hwnd, (UINT) eusermessage, wparam, lparam))
       {
@@ -4204,7 +4203,7 @@ void thread::post_message(::acme::windowing::window * pacmewindowingwindow, ::us
 
    //return get_message_queue()->post_message(oswindow, eusermessage, wparam, lparam);
 
-   get_message_queue()->post_message(pacmewindowingwindow, eusermessage, wparam, lparam);
+   get_message_queue()->post_message(operatingsystemwindow, eusermessage, wparam, lparam);
 
 }
 
@@ -4422,7 +4421,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = øallocate ref_array < ::user::interaction_base > ();
+   //   m_spuiptra = allocateø ref_array < ::user::interaction_base > ();
 
    //}
 
@@ -4511,7 +4510,7 @@ bool thread::process_message()
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.m_pacmewindowingwindow != nullptr || message.m_eusermessage == ::user::e_message_timer)
+      if (message.m_operatingsystemwindow.is_set() || message.m_eusermessage == ::user::e_message_timer)
       {
 
          MSG msg;
@@ -4937,7 +4936,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         øconstruct(m_pmutexThreadUiPtra);
+         constructø(m_pmutexThreadUiPtra);
 
       }
 
@@ -5134,7 +5133,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = øallocate file_info();
+   m_pfileinfo = allocateø file_info();
 
    return m_pfileinfo;
 

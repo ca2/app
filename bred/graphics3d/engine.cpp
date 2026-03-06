@@ -136,18 +136,18 @@ namespace graphics3d
 
             auto pgpurendertarget = prenderer->render_target();
 
-            int iFrameIndex = pgpurendertarget->get_frame_index();
+            //int iFrameIndex = pgpurendertarget->get_image_index();
 
-            if (iFrameIndex < 0)
-            {
+            //if (iFrameIndex < 0)
+            //{
 
-               ::warning("iFrameIndex < 0 (1) at ::graphics3d::engine");
+            //   ::warning("iFrameIndex < 0 (1) at ::graphics3d::engine");
 
-            }
+            //}
 
-            auto pcommandbuffer = pframe->m_pgpucommandbuffer;
+            //auto pcommandbuffer = pframe->m_pgpucommandbuffer;
 
-            pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
+            //pcommandbuffer->m_iCommandBufferFrameIndex = iFrameIndex;
 
             pscene->on_render(pgpucontext);
 
@@ -558,7 +558,7 @@ namespace graphics3d
 
             if (pdatabaseclient)
             {
-               auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
+               //auto &pcameraScene = m_pimmersionlayer->m_pscene->m_pcameraScene;
                pdatabaseclient->datastream()->set("input", m_pinput->as_block());
                pdatabaseclient->datastream()->set("transform", as_memory_block(m_transform));
                //pdatabaseclient->datastream()->set("camera", pcameraScene->as_block());
@@ -607,7 +607,7 @@ namespace graphics3d
 
       auto pgpuapproach = papp->get_gpu_approach();
 
-      auto pwindow = m_pusergraphics3d->window();
+      //auto pwindow = m_pusergraphics3d->window();
 
       pgpuapproach->m_rectangleOffscreen = rectanglePlacement;
 
@@ -664,7 +664,7 @@ namespace graphics3d
 
       m_rectanglePlacementNew = rectanglePlacement;
 
-      get_gpu_context()->_send([this, rectanglePlacement]()
+      get_gpu_context()->sendø()<<[this, rectanglePlacement]()
       {
 
             auto pcontext = gpu_context();
@@ -686,7 +686,7 @@ namespace graphics3d
 
             }
 
-         });
+         };
 
    }
 
@@ -716,7 +716,7 @@ namespace graphics3d
       if (!m_pshapefactory)
       {
 
-         øconstruct_new(m_pshapefactory);
+         construct_newø(m_pshapefactory);
 
       }
 
@@ -799,7 +799,7 @@ namespace graphics3d
 
       auto pcontext = gpu_context();
 
-      pcontext->_send([this]()
+      pcontext->sendø() <<[this]()
          {
 
             auto pcontext = gpu_context();
@@ -823,7 +823,7 @@ namespace graphics3d
 
             }
 
-         });
+         };
 
 //      m_pgpurendererGraphics3D->on_new_frame();
 
@@ -911,9 +911,9 @@ namespace graphics3d
       if (!m_rectanglePlacementNew.is_empty())
       {
          
-         auto wNew = m_rectanglePlacementNew.width();
+         //auto wNew = m_rectanglePlacementNew.width();
          
-         auto hNew = m_rectanglePlacementNew.height();
+         //auto hNew = m_rectanglePlacementNew.height();
 
          if (m_rectanglePlacementNew != m_rectanglePlacement)
          {
@@ -937,16 +937,16 @@ namespace graphics3d
             //   //return;
 
 
-            //   //m_pinput = øallocate::graphics3d::input();
+            //   //m_pinput = allocateø::graphics3d::input();
 
             //   //m_pinput->m_pimpact = m_pimpact;
 
-            //   //m_pcamera = øallocate::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+            //   //m_pcamera = allocateø::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
 
             //   ////m_pcamera->m_pimpact
 
             //   ////m_pglcapplication = m_pimpact->start_opengl_application();
-            //   ////øconstruct(m_pgpucontextCompositor);
+            //   ////constructø(m_pgpucontextCompositor);
 
             //   //if (!m_papplication->m_bUseSwapChainWindow)
             //   //{
@@ -955,7 +955,7 @@ namespace graphics3d
 
             //   //}
 
-            //   //m_prenderer = øallocate::graphics3d_opengl::renderer();
+            //   //m_prenderer = allocateø::graphics3d_opengl::renderer();
 
             //   ////return;
             //   //// Initialize the game logic and scene data
@@ -1045,7 +1045,7 @@ namespace graphics3d
       //if (!m_prenderer)
       //{
 
-      //   øconstruct(m_prenderer);
+      //   constructø(m_prenderer);
 
       //   //::graphics3d::engine::m_prenderer = m_prenderer;
 
@@ -1057,13 +1057,13 @@ namespace graphics3d
       //m_prenderer->on_context_resize();
       //m_pglobalpool->initialize_pool(pgpucontext);
 
-      //= øallocate
+      //= allocateø
       //   descriptor_pool::Builder(pgpucontext)
       //   .setMaxSets(swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
       //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, swap_chain_render_pass::MAX_FRAMES_IN_FLIGHT)
       //   .build();
 
-      //pgpucontext = øallocate context(m_pvulkandevice);
+      //pgpucontext = allocateø context(m_pvulkandevice);
 
       //          m_prenderer->getRenderPass(),
         //        globalSetLayout->getDescriptorSetLayout()
@@ -1147,16 +1147,16 @@ namespace graphics3d
       //         //return;
       //
       //
-      //         //m_pinput = øallocate::graphics3d::input();
+      //         //m_pinput = allocateø::graphics3d::input();
       //
       //         //m_pinput->m_pimpact = m_pimpact;
       //
-      //         //m_pcamera = øallocate::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
+      //         //m_pcamera = allocateø::graphics3d::camera(floating_sequence3(0.0f, 3.0f, 3.0f), -90.0f, 0.0f);
       //
       //         ////m_pcamera->m_pimpact
       //
       //         ////m_pglcapplication = m_pimpact->start_opengl_application();
-      //         ////øconstruct(m_pgpucontextCompositor);
+      //         ////constructø(m_pgpucontextCompositor);
       //
       //         //if (!m_papplication->m_bUseSwapChainWindow)
       //         //{
@@ -1165,7 +1165,7 @@ namespace graphics3d
       //
       //         //}
       //
-      //         //m_prenderer = øallocate::graphics3d_opengl::renderer();
+      //         //m_prenderer = allocateø::graphics3d_opengl::renderer();
       //
       //         ////return;
       //         //// Initialize the game logic and scene data
@@ -1209,7 +1209,7 @@ namespace graphics3d
    //
    //    ::pointer < ::gpu::model_buffer > pmodelbuffer;
    //
-   //    øconstruct(pmodelbuffer);
+   //    constructø(pmodelbuffer);
    //
    //    (*(::gpu::renderable_t *)pmodelbuffer) = model;
    //

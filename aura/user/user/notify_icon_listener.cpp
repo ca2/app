@@ -272,7 +272,7 @@ namespace user
 
    //   }
 
-   //   auto pitem = øallocate item(strName, strId, strLabel, strAccelerator, strDescription);
+   //   auto pitem = allocateø item(strName, strId, strLabel, strAccelerator, strDescription);
 
    //   pitem->m_bStockItem = bStockItem;
 

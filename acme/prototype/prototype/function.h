@@ -271,7 +271,7 @@ public:
 //       //
 //       // }
 //       //
-//       // m_pbase = øallocate composite(p, timeTimeout);
+//       // m_pbase = allocateø composite(p, timeTimeout);
 //
 //    }
 //
@@ -284,7 +284,7 @@ public:
 //       if (!pbase)
 //       {
 //
-//          m_pbase = øallocate composite(m_pbase, timeTimeout);
+//          m_pbase = allocateø composite(m_pbase, timeTimeout);
 //
 //       }
 //       else
@@ -444,7 +444,7 @@ public:
    template < typename PROCEDURE >
    requires(prototype_pure_procedure<PROCEDURE>)
    function(const PROCEDURE &procedure, const class time &timeTimeout = default_run_timeout()) :
-      function_common_base(timeTimeout), base_pointer(øallocate pure_procedure(procedure))
+      function_common_base(timeTimeout), base_pointer(allocateø pure_procedure(procedure))
    {
 
       // if constexpr(::std::is_same_v<PROCEDURE, nullptr_t>)
@@ -491,7 +491,7 @@ public:
       // else
       // {
       //
-      //    this->m_pbase = øallocate implementation (procedure, timeTimeout);
+      //    this->m_pbase = allocateø implementation (procedure, timeTimeout);
       //
       // }
 
@@ -624,7 +624,7 @@ public:
    requires(prototype_return_function<FUNCTION, RETURN_TYPE > )
    function(const FUNCTION &functionParam, const class ::time & timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
-   base_pointer(øallocate return_function<FUNCTION, RETURN_TYPE>(functionParam))
+   base_pointer(allocateø return_function<FUNCTION, RETURN_TYPE>(functionParam))
    {
 
       // if constexpr(::std::is_same_v<FUNCTION, nullptr_t>)
@@ -648,7 +648,7 @@ public:
       // else
       // {
       //
-      //    this->m_pbase = øallocate implementation<FUNCTION >(function, timeTimeout);
+      //    this->m_pbase = allocateø implementation<FUNCTION >(function, timeTimeout);
       //
       // }
 
@@ -862,7 +862,7 @@ public:
    requires(prototype_arguments_function<FUNCTION, RETURN_TYPE, ARGUMENTS...>)
    function(const FUNCTION &functionParam, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
-   base_pointer(øallocate arguments_function<FUNCTION, RETURN_TYPE, ARGUMENTS...>(functionParam))
+   base_pointer(allocateø arguments_function<FUNCTION, RETURN_TYPE, ARGUMENTS...>(functionParam))
    {
 
       // if constexpr(::std::is_same_v<FUNCTION, nullptr_t>)
@@ -886,7 +886,7 @@ public:
       // else
       // {
       //
-      //    this->m_pbase = øallocate implementation <FUNCTION > (function, timeTimeout);
+      //    this->m_pbase = allocateø implementation <FUNCTION > (function, timeTimeout);
       //
       // }
 
@@ -1195,7 +1195,7 @@ public:
    requires(prototype_arguments_procedure<PROCEDURE, ARGUMENTS ...>)
    function(const PROCEDURE &procedure, const class ::time &timeTimeout = default_run_timeout()) :
    function_common_base(timeTimeout),
-   base_pointer(øallocate arguments_procedure<PROCEDURE, ARGUMENTS...>(procedure))
+   base_pointer(allocateø arguments_procedure<PROCEDURE, ARGUMENTS...>(procedure))
    //
    //      requires (::std::is_convertible_v<PROCEDURE, :: >)
    {
@@ -1233,7 +1233,7 @@ public:
    //    requires (LambdaWithVoidAndarguments< PROCEDURE, ARGUMENTS... >)
    // {
    //
-   //    this->m_pbase = øallocate function_4_implementation< PROCEDURE, ARGUMENTS... >(procedure, timeTimeout);
+   //    this->m_pbase = allocateø function_4_implementation< PROCEDURE, ARGUMENTS... >(procedure, timeTimeout);
    //
    // }
 

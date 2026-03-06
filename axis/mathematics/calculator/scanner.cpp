@@ -75,7 +75,7 @@ namespace calculator
    token * scanner::look_ahead()
    {
 
-      m_ptoken = øallocate class token ();
+      m_ptoken = allocateø class token ();
 
       if (m_ptoken.is_null())
       {

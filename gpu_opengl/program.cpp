@@ -29,7 +29,7 @@
 //
 //      //::e_status estatus = 
 //      
-//      pparticle->øconstruct(m_pshader);
+//      pparticle->constructø(m_pshader);
 //
 //      //if (!estatus)
 //      //{

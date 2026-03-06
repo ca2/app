@@ -375,7 +375,7 @@ namespace berg
 //      if (pstyle.is_null())
 //      {
 //
-//         pstyle = øallocate style(this);
+//         pstyle = allocateø style(this);
 //
 //      }
 //

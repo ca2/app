@@ -44,7 +44,7 @@ namespace user
 
          //auto estatus = 
          
-         øconstruct_new(prequest);
+         construct_newø(prequest);
 
          //if (!estatus)
          //{
@@ -139,7 +139,7 @@ namespace user
 
       ::pointer<::user::system>pusersystem;
       
-      pimpactdata->m_pplaceholder->get_app()->øconstruct_new(pusersystem);
+      pimpactdata->m_pplaceholder->get_app()->construct_newø(pusersystem);
 
       prequest->m_pmatterUserPayload = pusersystem;
 

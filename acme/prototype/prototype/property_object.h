@@ -154,7 +154,7 @@ public:
 
    ::payload& payload(const ::atom& atom) { return this->property(atom); }
 
-   ::payload payload(const ::atom & atom) const { return this->property(atom); }
+   ::payload payload(const ::atom& atom) const;
    //::payload payload(const ::atom & atom, const ::payload & payloadDefault) const;
 
    ::collection::index index_of_payload(const ::atom & atom) const;

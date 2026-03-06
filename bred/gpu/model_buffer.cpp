@@ -320,7 +320,7 @@ namespace gpu
       float fG = color.f32_green() * fA;
       float fB = color.f32_blue() * fA;
 
-      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
+      //float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
 
       ::array<::graphics3d::sequence2_color> quadvertexes = {
          // Triangle 1
@@ -360,7 +360,7 @@ namespace gpu
       float fG = color.f32_green() * fA;
       float fB = color.f32_blue() * fA;
 
-      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
+      //float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
 
       ::array<::graphics3d::sequence2_color> quadvertexes = {
          // Triangle 1
@@ -572,7 +572,7 @@ namespace gpu
       m.transform(points[1]);
 
 
-      float g_z = 0.f;
+      //float g_z = 0.f;
 
       graphics3d::sequence2_color linevertexes[] = {
          {{(float)points[0].x, (float)points[0].y}, {fR, fG, fB, fA}},
@@ -840,7 +840,7 @@ namespace gpu
       initialize_gpu_context_object(pgpucontext);
 
 
-      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, iVertexCount);
+      m_pmodeldatabase2 = allocateø ::gpu::model_data_base(::gpu::dummy_t{}, iVertexCount);
 
       //m_iVertexCount = iVertexCount;
 
@@ -959,7 +959,7 @@ namespace gpu
       // m_pgpurenderer = pgpurenderer;
 
       //m_bDummy = true;
-      m_pmodeldatabase2 = øallocate ::gpu::model_data_base(::gpu::dummy_t{}, ivertexes);
+      m_pmodeldatabase2 = allocateø ::gpu::model_data_base(::gpu::dummy_t{}, ivertexes);
 
       ødefer_construct(m_pbufferVertex);
 

@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "cursor.h"
 #include "display.h"
+#include "apex/gpu/approach.h"
 #include "aura/user/user/frame_interaction.h"
 #include "placement_log.h"
 #include "acme/constant/user_message.h"
@@ -734,27 +735,27 @@ namespace windowing
    }
 
 
-
-   void * window::__x11_Display()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
-
-
-   long window::__x11_Window()
-   {
-
-      throw ::interface_only();
-
-      return 0;
-
-   }
-
-
+//
+//   void * window::__x11_Display()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   long window::__x11_Window()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
+//
+//
 
    void window::create_window()
    {
@@ -927,7 +928,7 @@ namespace windowing
       //catch (...)
       //{
 
-      //   pexception = øallocate::exception(error_catch_all_exception);
+      //   pexception = allocateø::exception(error_catch_all_exception);
 
       //}
       
@@ -965,7 +966,7 @@ namespace windowing
    void window::create_graphics_thread()
    {
 
-      //øconstruct(m_pgraphicsthread);
+      //constructø(m_pgraphicsthread);
 
       m_pgraphicsthread->branch_synchronously();
 
@@ -1036,7 +1037,7 @@ namespace windowing
       if(!m_pplacementlog)
       {
          
-         øconstruct_new(m_pplacementlog);
+         construct_newø(m_pplacementlog);
          
       }
 
@@ -1357,6 +1358,12 @@ namespace windowing
    //}
 
 
+   //bool window::should_avoid_default_swap_chain_present()
+//{
+//      
+//      
+//   }
+
    void window::on_a_system_menu_item(::operating_system::a_system_menu_item* psystemmenuitem, ::user::activation_token* puseractivationtoken)
    {
 
@@ -1495,7 +1502,7 @@ namespace windowing
 
       auto preposition = øcreate_new<::message::reposition>();
 
-      preposition->m_pacmewindowingwindow = this;
+      preposition->m_operatingsystemwindow = operating_system_window();
 
       preposition->m_pwindow = this;
 
@@ -1548,7 +1555,7 @@ namespace windowing
 
       auto psize = øcreate_new<::message::size>();
 
-      psize->m_pacmewindowingwindow = this;
+      psize->m_operatingsystemwindow = operating_system_window();
 
       psize->m_pwindow = this;
 
@@ -1749,7 +1756,7 @@ namespace windowing
    //   }
 
 
-   // ::oswindow window::oswindow() const
+   // ::oswindow window::operating_system_window() const
    // {
    //
    //    throw interface_only();
@@ -2074,14 +2081,14 @@ namespace windowing
    }
 
 
-   // oswindow window::get_owner_oswindow()
-   // {
-   //
-   //    throw ::interface_only();
-   //
-   //    return nullptr;
-   //
-   // }
+   ::operating_system::window window::get_owner_operating_system_window()
+   {
+   
+       throw ::interface_only();
+   
+       return {};
+   
+   }
 
 
    void window::set_owner(::windowing::window* pwindowNewOwner)
@@ -3829,7 +3836,7 @@ namespace windowing
 
 #endif
 
-         øconstruct(m_pmutexDraw);
+         constructø(m_pmutexDraw);
 
       }
 
@@ -4198,7 +4205,7 @@ namespace windowing
       //
       //         //auto estatus =
       //
-      //         øconstruct(m_pwindow);
+      //         constructø(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -4243,7 +4250,7 @@ namespace windowing
          else
          {
 
-            pusersystem = øallocate::user::system();
+            pusersystem = allocateø::user::system();
 
          }
 
@@ -4407,7 +4414,7 @@ namespace windowing
       //
       //         //auto estatus =
       //
-      //         øconstruct(m_pwindow);
+      //         constructø(m_pwindow);
       //
       //         //if (!estatus)
       //         //{
@@ -4449,7 +4456,7 @@ namespace windowing
       else
       {
 
-         pusersystem = øallocate::user::system();
+         pusersystem = allocateø::user::system();
 
       }
 
@@ -4638,7 +4645,7 @@ namespace windowing
    //       //                      pusersystem->m_createstruct.cx,
    //       //                      pusersystem->m_createstruct.cy));
    //
-   //       //auto psynca = øallocate synchronization_array();
+   //       //auto psynca = allocateø synchronization_array();
    //
    //       //::pointer<manual_reset_happening>phappeningStartedUser;
    //
@@ -4666,7 +4673,7 @@ namespace windowing
    //
    //          m_puserthread = m_puserthread;
    //
-   //          //phappeningStartedUser = øallocate manual_reset_happening();
+   //          //phappeningStartedUser = allocateø manual_reset_happening();
    //
    //          //m_puserthread->m_phappeningStarted = phappeningStartedUser;
    //
@@ -4914,7 +4921,7 @@ namespace windowing
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = øallocate ::user::system();
+//      //auto pusersystem = allocateø ::user::system();
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //
@@ -5291,7 +5298,7 @@ namespace windowing
 
       }
 
-      auto poutputpurpose = øallocate::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
+      auto poutputpurpose = allocateø::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
 
       bool bHadGraphicalOutputPurpose = user_interaction()->has_graphical_output_purpose();
 
@@ -6459,7 +6466,7 @@ namespace windowing
 
       auto pwindowing = windowing();
 
-      pwindowing->set(pmouse, this, this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
+      pwindowing->set(pmouse, this->operating_system_window(), this, pmouse->m_eusermessage, pmouse->m_wparam, pmouse->m_lparam);
 
       //information() << "omousemsg pwnd : " << (::iptr) pmouse->m_pwindow.m_p;
 
@@ -7577,7 +7584,7 @@ namespace windowing
 
 
    //// interaction_impl
-   ///* window::operator oswindow() const
+   ///* window::operator operating_system_window() const
    //{ return this == nullptr ? nullptr : get_handle(); }*/
    //void window::operator==(const interaction_impl& wnd) const
    //{
@@ -8940,6 +8947,19 @@ namespace windowing
    void window::_001OnPrioAfterCreate(::message::message* pmessage)
    {
 
+      if (user_interaction()->is_graphical())
+      {
+
+         /// graphics things shouldn't be created inside window creation?!?!?
+         /// because of wgl at windows with some Intel or AMD drivers?
+         /// so now: setting icon that can create graphical assets just
+         /// after creation here.
+         /// but does it maybe late to do it here after creation?
+         /// can it in some systems be done here and others like before?
+         user_interaction()->defer_set_icon();
+
+      }
+
       if (user_interaction())
       {
 
@@ -8991,6 +9011,15 @@ namespace windowing
       if (user_interaction()->is_graphical())
       {
 
+         //if (m_papplication->m_bGpu)
+         //{
+
+         //   auto pgpuapproach = m_papplication->get_gpu_approach();
+
+         //   pgpuapproach->gpu_on_create_window(this);
+
+         //}
+
          if (::is_null(m_papplication->m_pacmeuserinteractionMain))
          {
 
@@ -9000,7 +9029,9 @@ namespace windowing
 
          //draw2d()->on_create_window(this);
 
-         user_interaction()->defer_set_icon();
+         /// graphics things shouldn't be created inside window creation?!?!?
+         /// because of wgl at windows with some Intel or AMD drivers?
+         //user_interaction()->defer_set_icon();
 
       }
 
@@ -9072,7 +9103,7 @@ namespace windowing
       if (::is_null(user_interaction()->m_pinteractionScaler))
       {
 
-         user_interaction()->m_pinteractionScaler = øallocate::user::interaction_scaler();
+         user_interaction()->m_pinteractionScaler = allocateø::user::interaction_scaler();
 
       }
 
@@ -9289,12 +9320,12 @@ namespace windowing
          if (m_uOnHide)
          {
 
-            post_continuation continuation(this);
+            dispatch_arrayø dispatchaø(this, e_dispatch_post);
 
             if (m_bQuitGraphicsOnHide)
             {
 
-               continuation <<
+               dispatchaø <<
                   [this]()
                   {
 
@@ -9304,10 +9335,28 @@ namespace windowing
 
             }
 
+
+            if (m_bTryCloseApplicationOnHide)
+            {
+
+               auto papp = get_app();
+
+               dispatchaø << [papp]()
+               {
+                  papp->_001PostTryCloseApplication();
+               };
+            }
+
             if (m_bDestroyWindowOnHide)
             {
 
-               continuation <<
+              /// this destroy_window continuation should be last?!?!
+               /// I think so, because this post_continuation probably
+               /// going to run in the window thread context, and
+               /// after the window is destroyed, the continuation
+               /// after its destruction may no run.
+
+               dispatchaø <<
                   [this]()
                   {
 
@@ -9317,24 +9366,22 @@ namespace windowing
 
             }
 
-            if (m_bTryCloseApplicationOnHide)
-            {
+            //            if (m_bTryCloseApplicationOnHide)
+            //{
 
-               auto papp = get_app();
+            //   auto papp = get_app();
 
-               continuation <<
-                  [papp]()
-                  {
+            //   continuation << [papp]()
+            //   {
+            //      papp->_001PostTryCloseApplication();
+            //   };
+            //}
 
-                     papp->_001TryCloseApplication();
 
-                  };
-
-            }
 
          }
 
-         //pmessagebox->async();
+         //post(pmessageboxpayload);
 
          return;
 
@@ -9613,7 +9660,7 @@ namespace windowing
 // //
 // //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
-// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 // //
 // //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 // //
@@ -9656,7 +9703,7 @@ namespace windowing
 // //                      if(!pgraphicscontext->m_pgraphics->m_puserredraw)
 // //                      {
 // //
-// //                         øconstruct_new(pgraphicscontext->m_pgraphics->m_puserredraw);
+// //                         construct_newø(pgraphicscontext->m_pgraphics->m_puserredraw);
 // //
 // //                         if (system()->draw2d()->graphics_context_does_full_redraw())
 // //                         {
@@ -9951,7 +9998,7 @@ namespace windowing
 // //
 // //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
-// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 // //
 // //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 // //
@@ -9990,7 +10037,7 @@ namespace windowing
 // //
 // //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
-// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 // //
 // //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 // //
@@ -10289,7 +10336,7 @@ namespace windowing
 // //
 // //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
-// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 // //
 // //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 // //
@@ -10328,7 +10375,7 @@ namespace windowing
 // //
 // //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 // //
-// //                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+// //                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 // //
 // //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 // //
@@ -10677,7 +10724,9 @@ namespace windowing
 
          m_pgraphicscontextDrawingFrame->m_pgraphics->send_on_context(m_pgraphicscontextDrawingFrame, [this]()
          {
+            
             draw_frame_layout(m_pgraphicscontextDrawingFrame->m_pgraphics);
+
          });
 
             //draw_on_context();
@@ -10720,7 +10769,7 @@ namespace windowing
 //
 //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -10763,7 +10812,7 @@ namespace windowing
 //                      if(!pgraphicscontext->m_pgraphics->m_puserredraw)
 //                      {
 //
-//                         øconstruct_new(pgraphicscontext->m_pgraphics->m_puserredraw);
+//                         construct_newø(pgraphicscontext->m_pgraphics->m_puserredraw);
 //
 //                         if (system()->draw2d()->graphics_context_does_full_redraw())
 //                         {
@@ -11090,7 +11139,7 @@ slGraphics.unlock();
 //
 //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -11129,7 +11178,7 @@ slGraphics.unlock();
 //
 //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -11428,7 +11477,7 @@ slGraphics.unlock();
 //
 //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -11467,7 +11516,7 @@ slGraphics.unlock();
 //
 //                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                   //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                   //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -11768,7 +11817,7 @@ slGraphics.unlock();
 
                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+                  //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 
                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -11811,7 +11860,7 @@ slGraphics.unlock();
                      if(!pgraphics->m_puserredraw)
                      {
 
-                        øconstruct_new(pgraphics->m_puserredraw);
+                        construct_newø(pgraphics->m_puserredraw);
 
                         if (system()->draw2d()->graphics_context_does_full_redraw())
                         {
@@ -12061,7 +12110,9 @@ slGraphics.unlock();
 
                   }
 
-                  pgraphics->on_begin_draw();
+                  
+
+                     pgraphics->on_begin_draw();
 
                   //pgraphics->reset_clip();
 
@@ -12071,7 +12122,7 @@ slGraphics.unlock();
 
                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+                  //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 
                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -12110,7 +12161,7 @@ slGraphics.unlock();
 
                   //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+                  //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 
                   //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 
@@ -12432,7 +12483,7 @@ slGraphics.unlock();
 //
 //                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                  //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -12475,7 +12526,7 @@ slGraphics.unlock();
 //                     if(!pgraphics->m_puserredraw)
 //                     {
 //                        
-//                        øconstruct_new(pgraphics->m_puserredraw);
+//                        construct_newø(pgraphics->m_puserredraw);
 //                        
 //                        if (system()->draw2d()->graphics_context_does_full_redraw())
 //                        {
@@ -12777,7 +12828,7 @@ slGraphics.unlock();
 //
 //                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                  //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -12816,7 +12867,7 @@ slGraphics.unlock();
 //
 //                  //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//                  //   pgraphics->øconstruct_new(pgraphics->m_puserredraw);
+//                  //   pgraphics->construct_newø(pgraphics->m_puserredraw);
 //
 //                  //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
 //
@@ -13278,7 +13329,7 @@ slGraphics.unlock();
       if (m_pgraphicsgraphics.is_null())
       {
 
-         øconstruct(m_pgraphicsgraphics);
+         constructø(m_pgraphicsgraphics);
 
          if (m_pgraphicsgraphics)
          {
@@ -13557,7 +13608,7 @@ slGraphics.unlock();
    //      
    //   }
 
-   //   return (oswindow) oswindow();
+   //   return (oswindow) operating_system_window();
 
    //}
 
@@ -13844,7 +13895,7 @@ slGraphics.unlock();
 
    //   //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-   //   if (psetkeyboardfocus->m_pacmewindowingwindow != oswindow())
+   //   if (psetkeyboardfocus->m_pacmewindowingwindow != operating_system_window())
    //   {
 
    //      psetkeyboardfocus->m_bRet = true;
@@ -13883,8 +13934,8 @@ slGraphics.unlock();
 
       //user_interaction()->m_ewindowflag -= e_window_flag_focus;
 
-      if (pkillkeyboardfocus->m_pacmewindowingwindowNew
-         == pkillkeyboardfocus->m_pacmewindowingwindow)
+      if (pkillkeyboardfocus->m_operatingsystemwindow
+         == pkillkeyboardfocus->m_operatingsystemwindow)
       {
 
          pkillkeyboardfocus->m_bRet = true;
@@ -14370,7 +14421,7 @@ slGraphics.unlock();
       if (m_pmutexRedraw == nullptr)
       {
 
-         øconstruct(m_pmutexRedraw);
+         constructø(m_pmutexRedraw);
 
       }
 
@@ -14956,7 +15007,7 @@ slGraphics.unlock();
    //
    //         auto pwindowing = windowing();
    //
-   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->oswindow();
+   //         ::::acme::windowing::window * pacmewindowingwindow = pimplFocus->operating_system_window();
    //
    //         if (pimplFocus == this)
    //         {
@@ -15214,7 +15265,7 @@ slGraphics.unlock();
          && !user_interaction()->is_window_docking())
       {
 
-         user_interaction()->main_async()
+         user_interaction()->main_postø()
             << [this, rectangle]()
             {
 
@@ -16367,10 +16418,10 @@ slGraphics.unlock();
    }
 
 
-   //:/*:oswindow window::oswindow() const
+   //:/*:oswindow window::operating_system_window() const
    //{
 
-   //   return oswindow();
+   //   return operating_system_window();
 
    //}*/
 
@@ -17247,7 +17298,7 @@ slGraphics.unlock();
    //
    //      auto pwindow = this;
    //
-   //      auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
+   //      auto oswindow = pwindow ? pwindow->operating_system_window() : nullptr;
    //
    //      switch (eprototype)
    //      {
@@ -18389,7 +18440,7 @@ slGraphics.unlock();
 
       // }
 
-      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), eusermessage, wparam, lparam));
+      // user_interaction()->interaction_post(allocateø call_message_handler_task(user_interaction(), eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -18582,7 +18633,7 @@ slGraphics.unlock();
    //   if (m_ptimerarray.is_null())
    //   {
 
-   //      øconstruct_new(m_ptimerarray);
+   //      construct_newø(m_ptimerarray);
 
    //      m_ptimerarray->m_pcallback = user_interaction();
 
@@ -18868,7 +18919,7 @@ slGraphics.unlock();
 
       // }
 
-      // user_interaction()->interaction_post(øallocate call_message_handler_task(user_interaction(), eusermessage, wparam, lparam));
+      // user_interaction()->interaction_post(allocateø call_message_handler_task(user_interaction(), eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -19539,70 +19590,70 @@ slGraphics.unlock();
    //}
 
 
-   void window::_user_send(const ::procedure& procedure)
+   void window::user_send(const ::procedure& procedure)
    {
 
       if (!user_interaction())
       {
 
-         ::channel::_user_send(procedure);
+         ::channel::user_send(procedure);
 
          return;
 
       }
 
-      user_interaction()->_user_send(procedure);
+      user_interaction()->user_send(procedure);
 
    }
 
 
-   void window::_user_post(const ::procedure& procedure)
+   void window::user_post(const ::procedure& procedure)
    {
 
       if (!user_interaction())
       {
 
-         ::channel::_user_post(procedure);
+         ::channel::user_post(procedure);
 
          return;
 
       }
 
-      user_interaction()->_user_post(procedure);
+      user_interaction()->user_post(procedure);
 
    }
 
 
-   void window::_main_send(const ::procedure& procedure)
+   void window::main_send(const ::procedure& procedure)
    {
 
       if (!user_interaction())
       {
 
-         ::channel::_main_send(procedure);
+         ::channel::main_send(procedure);
 
          return;
 
       }
 
-      user_interaction()->_main_send(procedure);
+      user_interaction()->main_send(procedure);
 
    }
 
 
-   void window::_main_post(const ::procedure& procedure)
+   void window::main_post(const ::procedure& procedure)
    {
 
       if (!user_interaction())
       {
 
-         ::channel::_main_post(procedure);
+         ::channel::main_post(procedure);
 
          return;
 
       }
 
-      user_interaction()->_main_post(procedure);
+      user_interaction()->main_post(procedure);
 
    }
 
@@ -19745,14 +19796,14 @@ slGraphics.unlock();
 
    }
 
-   void *window::__win32_HWND()
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
+//   void *window::__win32_HWND()
+//   {
+//
+//      throw ::interface_only();
+//
+//      return nullptr;
+//
+//   }
 
 } // namespace windowing
 

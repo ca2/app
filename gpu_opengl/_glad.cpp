@@ -41,6 +41,16 @@ void insert_debug_message(const_char_pointer pszMessage)
    }
 }
 
+CLASS_DECL_GPU_OPENGL void *operating_system_current_context() { 
+   
+   HGLRC hglrc = wglGetCurrentContext();
+
+
+   return hglrc;
+
+
+}
+
 } // namespace opengl
 
 

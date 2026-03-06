@@ -45,9 +45,9 @@ string ca2_module_folder_dup();
 //   if(g_pcsPid2 == nullptr)
 //   {
 //
-//      g_pcsPid2 = øallocate critical_section();
+//      g_pcsPid2 = allocateø critical_section();
 //
-//      g_ppid = øallocate chldstatus_map();
+//      g_ppid = allocateø chldstatus_map();
 //
 //
 //   }

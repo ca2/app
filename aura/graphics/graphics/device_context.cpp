@@ -33,7 +33,7 @@ namespace graphics
       if (m_spgraphics.is_null())
       {
 
-         øconstruct(m_spgraphics);
+         constructø(m_spgraphics);
 
       }
 
@@ -42,7 +42,7 @@ namespace graphics
 
          //bool bOk = 
          
-         m_spgraphics->CreateWindowDC(m_pwindow);
+         m_spgraphics->create_window_graphics(m_pwindow);
 
          //if (!bOk)
          //{

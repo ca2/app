@@ -123,6 +123,8 @@ namespace gpu
 
       //thread_select();
 
+      //m_iLayer = 0;
+
       auto pcontext = gpu_context();
 
       auto pgpudevice = pcontext->m_pgpudevice;
@@ -130,8 +132,39 @@ namespace gpu
       auto prenderer = pcontext->get_gpu_renderer();
 
       auto prendertarget = prenderer->render_target();
+      if (m_egraphics == e_graphics_draw)
+      {
 
-      if (prenderer->m_prenderstate->m_estate == ::gpu::e_state_began_render)
+
+         auto bUseSwapChain = m_papplication->m_gpu.m_bUseSwapChainWindow;
+
+         auto etypeGpuContext = pcontext->m_etype;
+
+         //if (!bUseSwapChain || etypeGpuContext != ::gpu::context::e_type_window)
+         {
+            // if (prenderer->m_prenderstate->m_estate != e_state_initial)
+            {
+
+               //prenderer->frame_prefix();
+
+               on_new_frame();
+            }
+         }
+
+         // int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
+
+         // m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         // m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+         // m_poolmodelbufferLine.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
+      }
+
+      auto iGpuContext1 = pcontext->m_iGpuContext;
+
+      auto iGpuContext2 = prenderer->m_pgpucontext->m_iGpuContext;
+
+      auto estate = prenderer->m_prenderstate->m_estate;
+
+      if (estate == ::gpu::e_state_began_render)
       {
 
          int iFrameIndex = prendertarget->get_frame_index();
@@ -165,20 +198,7 @@ namespace gpu
 
       }
 
-      if (m_egraphics == e_graphics_draw)
-      {
-
-         on_new_frame();
-
-         //int iFrameIndex = pcontext->m_pgpurenderer->m_pgpurendertarget->get_frame_index();
-
-         //m_poolmodelbufferRectangle.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-         //m_poolmodelbufferCharacter.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-         //m_poolmodelbufferLine.m_ppoolgroup = pgpudevice->frame_pool_group(iFrameIndex);
-
-      }
-
-      ::int_rectangle rectangle;
+            ::int_rectangle rectangle;
 
       if (!m_puserinteraction && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
@@ -232,7 +252,7 @@ namespace gpu
    //   if (!m_pgpucontextCompositorOutput)
    //   {
 
-   //      øconstruct(m_pgpucontextCompositorOutput);
+   //      constructø(m_pgpucontextCompositorOutput);
 
    //      m_pgpucontextCompositorOutput = m_papplication->get_gpu()->get_device()->start_swap_chain_context(this, pwindow);
 
@@ -272,7 +292,7 @@ namespace gpu
    ::geometry2d::matrix graphics::context_matrix(enum_transform_context etransformcontext)
    {
 
-      auto pcontext = gpu_context();
+      //auto pcontext = gpu_context();
       
       ::geometry2d::matrix contextmatrix;
 
@@ -436,6 +456,8 @@ namespace gpu
 
    void graphics::send_on_context(::draw2d::graphics_context * pgraphicscontext, const ::procedure& procedure)
    {
+
+
 
       auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->acme_windowing_window());
 
@@ -614,7 +636,7 @@ namespace gpu
          if (!m_pshaderSourceRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -654,7 +676,7 @@ namespace gpu
          if (!m_pshaderBlendRectangle)
          {
 
-            //auto pshadervertexinput = øallocate::gpu_vulkan::shader_vertex_input();
+            //auto pshadervertexinput = allocateø::gpu_vulkan::shader_vertex_input();
 
             //pshadervertexinput->m_bindings.add(
             //   {
@@ -790,7 +812,7 @@ namespace gpu
 
       auto pshader = rectangle_shader();
 
-      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
+//      float g_z = 0.0f; // Assuming z is 0 for 2D rendering, adjust as needed
 
       ::double_point points1[2];
 
@@ -802,7 +824,7 @@ namespace gpu
       __transform(points1[0]);
       __transform(points1[1]);
 
-      auto size = pcontext->m_rectangle.size();
+      //auto size = pcontext->m_rectangle.size();
 
       //::geometry2d::matrix m;
       //m.translate(0.5, -0.5);
@@ -909,8 +931,8 @@ namespace gpu
       //glEnable(GL_CULL_FACE);
       //glEnable(GL_BLEND);
       //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      int xpos = 0;
-      int ypos = 0;
+      //int xpos = 0;
+      //int ypos = 0;
       while (next_unicode_character(strChar, psz))
       {
 
@@ -919,7 +941,7 @@ namespace gpu
          //float xpos = x + ch.Bearing.x * scale;
          //float ypos = y - (ch.Size.y - ch.Bearing.y) * scale;
 
-         float w = (float) ch.Size.x;
+         //float w = (float) ch.Size.x;
          float h = (float)ch.Size.y;
          y = maximum(h, y);
          //// update VBO for each character
@@ -1071,7 +1093,7 @@ namespace gpu
       if (!m_pgpushaderTextOut)
       {
 
-         øconstruct(m_pgpushaderTextOut);
+         constructø(m_pgpushaderTextOut);
 
          auto pcontext = gpu_context();
 
@@ -1224,7 +1246,7 @@ namespace gpu
       {
 
          auto& ch = pface->get_character(strChar);
-         float h2 = (float)(ch.Size.y - ch.Bearing.y);
+         //float h2 = (float)(ch.Size.y - ch.Bearing.y);
          float xpos = (float) (point.x + Δx + ch.Bearing.x);
          //float ypos = (float) (point.y + h2);
          float ypos = (float) (point.y);

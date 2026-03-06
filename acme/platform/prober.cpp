@@ -34,7 +34,7 @@ namespace platform
    void prober::add_prober(const ::scoped_string& name, const ::procedure& test)
    {
 
-      m_testcasea.add(øallocate test_case(name, test));
+      m_testcasea.add(allocateø test_case(name, test));
 
    }
 

@@ -77,7 +77,7 @@ namespace write_text
    ::subparticle_pointer font_family::clone()
    {
 
-      return øallocate font_family(*this);
+      return allocateø font_family(*this);
 
    }
 

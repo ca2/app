@@ -34,7 +34,7 @@ void openssl::initialize(::particle * pparticle)
    
    acmenode()->integration_factory();
    
-   øconstruct(m_papplication);
+   constructø(m_papplication);
    
    m_papplication->m_bMsys = true;
    

@@ -93,7 +93,7 @@ void message_box::defer_create_details_still()
    if (m_strDetails.has_character())
    {
 
-      m_pstillDetails = øallocate ::micro::still();
+      m_pstillDetails = allocateø ::micro::still();
 
       m_pstillDetails->id() = "details";
 
@@ -138,7 +138,7 @@ void message_box::set_icon(::nano::graphics::icon* picon)
 //       return;
 //
 //    }
-//    øconstruct_new(m_pstillIcon);
+//    construct_newø(m_pstillIcon);
 //
 //    m_pstillIcon->set_icon(picon);
 }
@@ -353,7 +353,7 @@ void message_box::_aaa_on_create_window()
 //pointer< ::sequence < ::conversation > > message_box::display(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox)
 //{
 //
-//   auto psequence = øallocate ::sequence <::conversation > ();
+//   auto psequence = allocateø ::sequence <::conversation > ();
 //
 //   psequence->m_p = this;
 //
@@ -555,9 +555,9 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
    
    return psequencer;
    
-   //auto atomResult = pmessagebox->sync();
+   //auto atomResult = send(pmessageboxpayload);
    
-//   auto pmanualresethappening = øallocate manual_reset_happening();
+//   auto pmanualresethappening = allocateø manual_reset_happening();
 //
 //   atom atomResult;
 //
@@ -621,7 +621,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
                                                               emessagebox,
                                                               scopedstrDetails, picon);
 
-      return pmessagebox->sync();
+      return send(pmessageboxpayload);
 
    }
 
@@ -655,9 +655,9 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
    auto psequencer = pnode->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
    
-   auto atomResult = pmessagebox->sync();
+   auto atomResult = send(pmessageboxpayload);
    
-//   auto pmanualresethappening = øallocate manual_reset_happening();
+//   auto pmanualresethappening = allocateø manual_reset_happening();
 //
 //   atom atomResult;
 //
@@ -714,7 +714,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
-   auto pmessagebox = øallocate ::micro::message_box_conversation_message();
+   auto pmessagebox = allocateø ::micro::message_box_conversation_message();
 
    pmessagebox->m_pobject = pparticle;
    pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails, picon);

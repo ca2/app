@@ -245,7 +245,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = øallocate ::handler(this);
+      //m_phandler = allocateø ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -1115,14 +1115,24 @@ namespace apex
    ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::int_size & size)
    {
 
-      auto pfile = file()->get("matter://main/icon.png");
+      auto pfile = file()->get_reader("matter://main/icon.png");
 
       return system()->innate_ui()->innate_ui_icon(pfile, size);
 
    }
 
 
-   void application::init_fs_set(::fs::set * pfsset)
+   ::pointer<::innate_ui::icon> application::innate_ui_icon(const ::scoped_string &scopedstrIconUrl,
+                                                            const ::int_size &size)
+   {
+
+      auto pfile = file()->get_reader(scopedstrIconUrl);
+
+      return system()->innate_ui()->innate_ui_icon(pfile, size);
+   }
+
+
+   void application::init_fs_set(::fs::set *pfsset)
    {
 
       ::e_status estatus = ::success;
@@ -1133,7 +1143,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              øconstruct(m_pfsdata, øallocate ::fs::set());
+      //              constructø(m_pfsdata, allocateø ::fs::set());
 
       //           }*/
 
@@ -1173,9 +1183,9 @@ namespace apex
    //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+   //   return ::auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //}
 
@@ -1222,9 +1232,9 @@ namespace apex
 
    //   }
 
-   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //}
 
@@ -1241,9 +1251,9 @@ namespace apex
 
    //   }
 
-   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-   // pmessagebox->sync();
+   // send(pmessageboxpayload);
 
    //}
 
@@ -1652,6 +1662,8 @@ namespace apex
 
    void application::init_task()
    {
+
+      m_strTaskName = ::type(*this).name();
 
       ::platform::application::init_task();
 
@@ -2592,9 +2604,9 @@ namespace apex
 
    //      handle_exception(e);
 
-   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, ::user::e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   //      auto pmessageboxpayload = __initialize_new ::message_box_payload("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, ::user::e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //      throw e;
 
@@ -2602,9 +2614,9 @@ namespace apex
    //   catch (...)
    //   {
 
-   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (2). Unknown exception", m_strAppName);
+   //      auto pmessageboxpayload = __initialize_new ::message_box_payload("Application failed to initialize (2). Unknown exception", m_strAppName);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //      throw "Unknown exception";
 
@@ -2669,9 +2681,9 @@ namespace apex
    //   catch (...)
    //   {
 
-   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (4). Unknown exception", m_strAppName);
+   //      auto pmessageboxpayload = __initialize_new ::message_box_payload("Application failed to initialize (4). Unknown exception", m_strAppName);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //      throw "Unknown exception";
 
@@ -3139,7 +3151,7 @@ namespace apex
       //if (m_psimpledb.is_null())
       //{
 
-      //   øconstruct_new(m_psimpledb);
+      //   construct_newø(m_psimpledb);
 
       //}
 
@@ -3351,7 +3363,7 @@ namespace apex
    //   try
    //   {
 
-   //      return øallocate ::interprocess::channel();
+   //      return allocateø ::interprocess::channel();
 
    //   }
    //   catch (...)
@@ -3382,7 +3394,7 @@ namespace apex
       auto psystem = system();
 
       //estatus =
-      m_puserlanguagemap = øallocate ::user::language_map();
+      m_puserlanguagemap = allocateø ::user::language_map();
 
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -3833,9 +3845,9 @@ namespace apex
       if (pathPreviousLocation.has_character())
       {
 
-         //auto pmessagebox = __initialize_new ::message_box("there is a previous location");
+         //auto pmessageboxpayload = __initialize_new ::message_box_payload("there is a previous location");
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
          auto pida = node()->module_path_processes_identifiers(pathPreviousLocation);
 
@@ -4226,9 +4238,9 @@ namespace apex
       if (eexclusive == e_exclusive_instance_local)
       {
 
-         //auto pmessagebox = __initialize_new ::message_box("e_exclusive_instance_local");
+         //auto pmessageboxpayload = __initialize_new ::message_box_payload("e_exclusive_instance_local");
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
          return on_exclusive_instance_local_conflict(prequest, bHandled);
 
@@ -5316,7 +5328,7 @@ namespace apex
 
       pmessage->m_bRet = true;
 
-      _001TryCloseApplication();
+      _001PostTryCloseApplication();
 
    }
 
@@ -5770,7 +5782,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = øallocate ::xml::document();
+      //auto pdocument = allocateø ::xml::document();
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -5937,7 +5949,7 @@ namespace apex
    // }
 
 
-   void application::_001TryCloseApplication()
+   void application::_001PostTryCloseApplication()
    {
 
       post_message(::user::e_message_close, 1, 0);
@@ -5977,7 +5989,7 @@ namespace apex
       //
       //::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
       //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      //ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
+      //ref allocateø< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
       //{
       //::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
       //}));
@@ -6283,7 +6295,7 @@ namespace apex
    //   if (m_psimpledb.is_null())
    //   {
 
-   //      øconstruct_new(m_psimpledb);
+   //      construct_newø(m_psimpledb);
 
    //   }
 
@@ -7371,7 +7383,7 @@ namespace apex
    //::html::html * application::create_html()
    //{
 
-   //   return øallocate< ::html::html(get_app >());
+   //   return allocateø< ::html::html(get_app >());
 
    //}
 
@@ -10005,7 +10017,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return øallocate ::apex::session();
+   //   return allocateø ::apex::session();
    //
    //}
 
@@ -10486,7 +10498,17 @@ namespace apex
          pbutton->set_size({100, 35});
          
          pbutton->set_position({minimum(520,max_width) - 100 -30, y});
-         
+
+         auto pbuttonOperatingSystemInformation = øcreate<::innate_ui::button>();
+
+         pbuttonOperatingSystemInformation->create_child(pdialog);
+
+         pbuttonOperatingSystemInformation->set_text("Operating System Information");
+
+         pbuttonOperatingSystemInformation->set_size({minimum(520, max_width) - 100 - 30 - 30, 35});
+
+         pbuttonOperatingSystemInformation->set_position({30, y});
+        
          y += 35;
          
          pdialog->adjust_for_client_size({minimum(520,max_width), y+30});
@@ -10495,7 +10517,14 @@ namespace apex
          
          auto pdialogRaw = pdialog.m_p;
 
-         pbutton->set_callback_on_click([pdialogRaw]()
+         pbuttonOperatingSystemInformation->set_callback_on_click(
+            [this]()
+            {
+               system()->show_operating_system_information_box(nullptr);
+            });
+
+         pbutton->set_callback_on_click(
+            [pdialogRaw]()
                                         {
             
             pdialogRaw->hide();
@@ -10508,6 +10537,97 @@ namespace apex
          
       });
 
+   }
+
+
+      void application::show_lines_box(const ::string_array_base & straLinesParameter, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtokenParameter)
+   {
+
+      auto puseractivationtoken = ::as_pointer(puseractivationtokenParameter);
+
+      auto straLines = straLinesParameter;
+
+      ::string strIconUrl = scopedstrIconUrl;
+
+      main_post(
+         [this, puseractivationtoken, straLines, strIconUrl]()
+         {
+            system()->defer_innate_ui();
+
+            auto pdialog = øcreate<::innate_ui::dialog>();
+
+            pdialog->create();
+
+            int max_width = system()->acme_windowing()->acme_display()->get_main_screen_size().cx;
+
+            ::string strTitle;
+
+            strTitle = "About " + m_strAppId;
+
+            pdialog->set_text(strTitle);
+
+            auto stra = straLines;
+
+            int y = 30;
+
+            auto pstillIcon = øcreate<::innate_ui::still>();
+
+            pstillIcon->create_icon_still(pdialog);
+
+            pstillIcon->set_size({48, 48});
+
+            pstillIcon->set_position({30, 30});
+
+            auto piconApplication = innate_ui_icon(strIconUrl, {48, 48});
+
+            pstillIcon->set_icon(piconApplication);
+
+            for (auto str: stra)
+            {
+
+               auto pstill = øcreate<::innate_ui::still>();
+
+               pstill->create_child(pdialog);
+
+               pstill->set_text(str);
+
+               pstill->set_position({30 + 48 + 10, y});
+
+               pstill->set_size({minimum(400, max_width), 30});
+
+               y += 30;
+            }
+
+            y += 30;
+
+            auto pbutton = øcreate<::innate_ui::button>();
+
+            pbutton->create_child(pdialog);
+
+            pbutton->set_text("OK");
+
+            pbutton->set_size({100, 35});
+
+            pbutton->set_position({minimum(520, max_width) - 100 - 30, y});
+
+            y += 35;
+
+            pdialog->adjust_for_client_size({minimum(520, max_width), y + 30});
+
+            pdialog->center();
+
+            auto pdialogRaw = pdialog.m_p;
+
+            pbutton->set_callback_on_click(
+               [pdialogRaw]()
+               {
+                  pdialogRaw->hide();
+
+                  pdialogRaw->destroy_window();
+               });
+
+            pdialog->show_front(puseractivationtoken);
+         });
    }
 
 

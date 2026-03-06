@@ -122,7 +122,7 @@ namespace userfs
 
       ::user::list_data::initialize(pparticle);
 
-      øconstruct_new(m_pitema);
+      construct_newø(m_pitema);
 
    }
 
@@ -370,7 +370,7 @@ namespace userfs
 
       //}
 
-      øconstruct_new(m_pitema);
+      construct_newø(m_pitema);
 
       information() << "::userfs::list update";
 
@@ -409,10 +409,10 @@ namespace userfs
       m_pitema->predicate_sort([](auto pitem1, auto pitem2)
          {
 
-            if (is_different(pitem1->IsFolder(), pitem2->IsFolder()))
+            if (is_different(pitem1->is_folder(), pitem2->is_folder()))
             {
 
-               return pitem1->IsFolder();
+               return pitem1->is_folder();
 
             }
 

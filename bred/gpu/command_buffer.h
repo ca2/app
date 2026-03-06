@@ -28,7 +28,8 @@ namespace gpu
       ::pointer < ::gpu::render_target >     m_pgpurendertarget;
       ::pointer < ::gpu::queue >             m_pgpuqueue;
       bool                                   m_bLoadingCommandBuffer;
-      ::collection::index                    m_iCommandBufferFrameIndex;
+      ::collection::index                    m_iCommandBufferFrameIndex2;
+      ::collection::index                    m_iCommandBufferImageIndex;
       ::collection::index                    m_iSerial;
       ::string                               m_strAnnotation;
       ::string                               m_strName;
@@ -57,7 +58,7 @@ namespace gpu
 
       virtual void reset();
 
-      virtual ::gpu::fence * insert_gpu_fence();
+      virtual ::gpu::fence * insert_gpu_fence(bool bCreateSignaled);
 
       virtual void begin_render(::gpu::shader * pgpushader, ::gpu::texture * pgputextureTarget);
       virtual void set_shader(::gpu::shader *pgpushader);

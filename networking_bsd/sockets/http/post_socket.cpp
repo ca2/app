@@ -67,7 +67,7 @@ namespace sockets
          if (m_pmultipart == nullptr)
          {
 
-            m_pmultipart = øallocate multipart(this);
+            m_pmultipart = allocateø multipart(this);
 
          }
          m_pmultipart->m_map[name].m_spfile = file()->get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);

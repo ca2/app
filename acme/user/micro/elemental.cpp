@@ -481,7 +481,7 @@ namespace micro
          //::pointer<::operating_system::a_system_menu> elemental::create_system_menu(bool bContextual)
          //{
 
-         //   auto psystemmenu = øallocate ::operating_system::a_system_menu();
+         //   auto psystemmenu = allocateø ::operating_system::a_system_menu();
 
          //   if (m_bMinimizeBox)
          //   {
@@ -680,7 +680,7 @@ namespace micro
 
    //   do_asynchronously();
 
-   //   auto pmanualresethappening = øallocate manual_reset_happening();
+   //   auto pmanualresethappening = allocateø manual_reset_happening();
 
    //   if (m_psequencer)
    //   {
@@ -781,7 +781,7 @@ namespace micro
    void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
    {
 
-      auto pbutton = øallocate::micro::button();
+      auto pbutton = allocateø::micro::button();
 
       pbutton->m_strText = scopedstrText;
       pbutton->id() = edialogresult;
@@ -2134,7 +2134,7 @@ namespace micro
 
    //      }
 
-   //      øconstruct(acme_windowing_window());
+   //      constructø(acme_windowing_window());
 
    //   }
 

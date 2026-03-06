@@ -432,7 +432,7 @@ namespace colorertake5
                continue;
             };
 
-            class region *region = øallocate< class region(qname1, regionDescr, getRegion(qname2), regionNamesVector.get_size >());
+            class region *region = allocateø< class region(qname1, regionDescr, getRegion(qname2), regionNamesVector.get_size >());
             regionNamesVector.add(region);
             regionNamesHash.set_at(qname1, region);
 

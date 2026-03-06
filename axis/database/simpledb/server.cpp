@@ -75,7 +75,7 @@ namespace simpledb
 
       //}
 
-      pfactoryDatabase->øconstruct(this, m_pdatabaseLocal);
+      pfactoryDatabase->constructø(this, m_pdatabaseLocal);
 
       //if (!estatus)
       //{
@@ -119,7 +119,7 @@ namespace simpledb
 
       //estatus =
       
-      øconstruct_new(m_psimpledb);
+      construct_newø(m_psimpledb);
 
       //if (!estatus)
       //{
@@ -149,7 +149,7 @@ namespace simpledb
 
       //estatus = 
       
-      øconstruct_new(m_pstorage);
+      construct_newø(m_pstorage);
 
       //if (!estatus)
       //{
@@ -169,7 +169,7 @@ namespace simpledb
 
       //}
 
-      //m_pstorage = øallocate storage(this);
+      //m_pstorage = allocateø storage(this);
 
       m_bWorking = true;
 
@@ -198,7 +198,7 @@ namespace simpledb
 
       //auto estatus = 
       
-      øconstruct_new(m_psimpledb);
+      construct_newø(m_psimpledb);
 
       //if (!estatus)
       //{

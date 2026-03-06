@@ -769,7 +769,7 @@ namespace write_text
 //
 //      ::draw2d::graphics_pointer spgraphics(e_create);
 //
-//      spgraphics->CreateCompatibleDC(nullptr);
+//      spgraphics->create_compatible_graphics(nullptr);
 //
 //      ::draw2d::font * pFontOld = spgraphics->set(m_pfont);
 //

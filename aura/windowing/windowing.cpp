@@ -64,7 +64,7 @@ namespace windowing
    void windowing::on_create_window_object(::acme::user::interaction * puserinteraction)
    {
 
-      puserinteraction->øconstruct(puserinteraction->m_pacmewindowingwindow);
+      puserinteraction->constructø(puserinteraction->m_pacmewindowingwindow);
 
       puserinteraction->m_pacmewindowingwindow->initialize_window(puserinteraction);
 
@@ -193,7 +193,7 @@ namespace windowing
 
          __check_refdbg
 
-         øconstruct_new(m_pcursormanager);
+         construct_newø(m_pcursormanager);
 
          __check_refdbg
 
@@ -230,7 +230,7 @@ namespace windowing
       if(!m_pcursormanager)
       {
          
-         øconstruct_new(m_pcursormanager);
+         construct_newø(m_pcursormanager);
          
       }
 
@@ -281,6 +281,33 @@ namespace windowing
    //    return nullptr;
    //
    // }
+
+   
+   ::windowing::window * windowing::windowing_window(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto pacmewindowingwindow = acme_windowing_window(operatingsystemwindow);
+
+      ::cast<::windowing::window > pwindow = pacmewindowingwindow;
+
+      return pwindow;
+
+   }
+   
+
+   ::windowing::window * windowing::windowing_window(const ::lparam & lparam)
+   {
+
+      auto operatingsystemwindow = operating_system_window(lparam);
+
+      auto pacmewindowingwindow = acme_windowing_window(operatingsystemwindow);
+
+      ::cast<::windowing::window> pwindow = pacmewindowingwindow;
+
+      return pwindow;
+
+   }
+
 
 
 ::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
@@ -750,7 +777,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::key * pkey, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::key * pkey, const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       auto pkeyboard = keyboard();
@@ -760,7 +787,7 @@ namespace windowing
    }
 
 
-   void windowing::set(::message::mouse * pmouse, ::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   void windowing::set(::message::mouse * pmouse, const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
 
@@ -807,7 +834,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         øconstruct(m_pkeyboard);
+         constructø(m_pkeyboard);
 
          initialize_keyboard(m_pkeyboard);
 

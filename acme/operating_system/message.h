@@ -5,13 +5,13 @@
 //#include "acme/prototype/mathematics/c_number.h"
 #include "acme/prototype/prototype/atom.h"
 #include "acme/prototype/geometry2d/point.h"
-
+#include "acme/operating_system/window.h"
 
 struct MESSAGE
 {
 
    
-   ::acme::windowing::window *   m_pacmewindowingwindow = nullptr;
+   ::operating_system::window    m_operatingsystemwindow;
    ::user::enum_message          m_eusermessage = ::user::e_message_null;
    wparam                        m_wparam;
    lparam                        m_lparam;
@@ -32,7 +32,7 @@ struct MESSAGE
    MESSAGE & operator = (const MESSAGE & message)
    {
       
-      m_pacmewindowingwindow = message.m_pacmewindowingwindow;
+      m_operatingsystemwindow = message.m_operatingsystemwindow;
       m_eusermessage = message.m_eusermessage;
       m_wparam = message.m_wparam;
       m_lparam = message.m_lparam;

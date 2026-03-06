@@ -39,7 +39,7 @@ using handle_function = ::function < void(::topic *, ::handler_context *) >;
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return øallocate han<PREDICATE> (predicate);
+////   return allocateø han<PREDICATE> (predicate);
 ////
 ////}
 

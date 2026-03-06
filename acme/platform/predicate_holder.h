@@ -69,7 +69,7 @@
 //   void predicate_add(PRED pred)
 //   {
 //
-//      add(øallocate predicate_holder < PRED > (pred));
+//      add(allocateø predicate_holder < PRED > (pred));
 //
 //   }
 //

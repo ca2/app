@@ -24,7 +24,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/request.h"
-//#include "apex/id.h"
+#include "acme/prototype/geometry2d/size.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
@@ -350,7 +350,7 @@ namespace apex
    void system::process_init()
    {
 
-      øconstruct_new(m_pinternet);
+      construct_newø(m_pinternet);
 
 
       if (!application()->m_bShowApplicationInformation)
@@ -413,7 +413,7 @@ namespace apex
       //auto estatus =
       ::platform::system::process_init();
 
-      øconstruct_new(m_pthreading);
+      construct_newø(m_pthreading);
 
       thread::s_bAllocReady = true;
 
@@ -451,7 +451,7 @@ namespace apex
 
       //estatus =
 
-      øconstruct_new(m_pbase64);
+      construct_newø(m_pbase64);
 
       //if (!estatus)
       //{
@@ -461,7 +461,7 @@ namespace apex
       //}
 
       //estatus =
-      øconstruct_new(m_poperatingsystem);
+      construct_newø(m_poperatingsystem);
 
       //if (!estatus)
       //{
@@ -486,7 +486,7 @@ namespace apex
 #ifdef _DEBUG
 
       //estatus =
-      //øconstruct_new(m_pdumpcontext);
+      //construct_newø(m_pdumpcontext);
 
       //if (!estatus)
       //{
@@ -506,7 +506,7 @@ namespace apex
       m_nSafetyPoolSize = 512;        // default int_size
 
       //estatus =
-      øconstruct_new(m_pgeometry);
+      construct_newø(m_pgeometry);
 
       //if (!estatus)
       //{
@@ -625,7 +625,7 @@ namespace apex
 
       // }
 
-      //estatus = øconstruct(m_papexnode);
+      //estatus = constructø(m_papexnode);
 
       //if (!estatus)
       //{
@@ -769,7 +769,7 @@ namespace apex
 //
 //      }
 
-      //estatus = øconstruct_new(m_pxml);
+      //estatus = construct_newø(m_pxml);
 
       //if (!estatus)
       //{
@@ -885,7 +885,7 @@ pdirectorysystem->create("/ca2core");
 #ifndef APPLE_IOS
 
          //auto estatus =
-         øconstruct_new(m_pmachinehappeningcentral);
+         construct_newø(m_pmachinehappeningcentral);
 
          //if (!estatus)
          //{
@@ -988,7 +988,7 @@ pdirectorysystem->create("/ca2core");
 //         pfactoryCrypto->merge_to_global_factory();
 //
 //         //estatus =
-//         pfactoryCrypto->øconstruct(this, m_pcrypto);
+//         pfactoryCrypto->constructø(this, m_pcrypto);
 //
 //      }
 
@@ -1149,7 +1149,7 @@ pdirectorysystem->create("/ca2core");
 
       //throw ::exception(todo("filehandler"));
 
-      //estatus = øconstruct_new(m_pfilehandler);
+      //estatus = construct_newø(m_pfilehandler);
 
       //if (!estatus)
       //{
@@ -1300,7 +1300,7 @@ pdirectorysystem->create("/ca2core");
    //}
 
    //estatus =
-      øconstruct_new(m_ptexttable);
+      construct_newø(m_ptexttable);
 
       auto strMain = directory()->install() / "app/_appmatter/main";
 
@@ -1342,7 +1342,7 @@ pdirectorysystem->create("/ca2core");
 
       // estatus =
 
-      øconstruct_new(m_phistory);
+      construct_newø(m_phistory);
 
       //if(!estatus)
       //{
@@ -1477,11 +1477,13 @@ pdirectorysystem->create("/ca2core");
    //   }
    //
 
-//
-//   void system::init_task()
-//   {
-//
-//      ::thread::init_task();
+
+   void system::init_task()
+   {
+
+      m_strTaskName = ::type(*this).name();
+
+      ::platform::system::init_task();
 //
 //      call_init_system();
 //
@@ -1561,7 +1563,7 @@ pdirectorysystem->create("/ca2core");
 ////
 ////      //return true;
 //
-//   }
+   }
 
 
    void system::init()
@@ -1711,7 +1713,7 @@ pdirectorysystem->create("/ca2core");
 
    //      strMoreDetails = "command line: " + string(this->m_strCommandLine) + "\n\n";
 
-   //      auto pmessagebox = __initialize_new ::message_box(exception, strMoreDetails);
+   //      auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, strMoreDetails);
 
    //      throw exception;
 
@@ -1994,7 +1996,7 @@ pdirectorysystem->create("/ca2core");
       if (!m_pfilewatcher)
       {
 
-         ((system*)this)->øconstruct(((system *)this)->m_pfilewatcher);
+         ((system*)this)->constructø(((system *)this)->m_pfilewatcher);
 
       }
 
@@ -2198,11 +2200,11 @@ pdirectorysystem->create("/ca2core");
    //
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > ();
+   //         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > ();
    //
    //#else
    //
-   //         m_spmutexOpenweatherCity = øallocate ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
+   //         m_spmutexOpenweatherCity = allocateø ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
    //
    //#endif
    //
@@ -3475,9 +3477,9 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
       if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
       {
 
-         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, ::user::e_message_box_ok);
+         //::auto pmessageboxpayload = __initialize_new ::message_box_payload(NULL, strUrl, strUrl, ::user::e_message_box_ok);
 
-         pmessagebox->sync();
+         send(pmessageboxpayload);
 
          m_papplication->os().link_open(strUrl);
 
@@ -3613,7 +3615,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
          string * pstrNew = ___new string(strUrl);
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref øallocate< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
+            ref allocateø< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
                {
 
                   ::winrt::Windows::Foundation::Uri ^ uri = ref ___new ::winrt::Windows::Foundation::Uri (*pstrNew);
@@ -4146,7 +4148,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = øallocate ::task_group(this, epriority);
+   //      auto pgroup = allocateø ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4167,7 +4169,7 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = øallocate ::task_tool();
+   //      auto ptool = allocateø ::task_tool();
 
    //      ptool->id() = etool;
 
@@ -4228,7 +4230,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       m_pfactoryCrypto = factory("crypto", "openssl");
 
-      øconstruct(m_pcrypto, m_pfactoryCrypto);
+      constructø(m_pcrypto, m_pfactoryCrypto);
       
    }
 
@@ -4394,7 +4396,7 @@ namespace apex
    {
 
       //auto estatus =
-      //øconstruct(m_phistory, phistory);
+      //constructø(m_phistory, phistory);
 
       m_phistory = phistory;
 
@@ -5054,7 +5056,7 @@ namespace apex
 //
 //#endif
 
-         øconstruct(m_pinnateui);
+         constructø(m_pinnateui);
 
       }
 
@@ -5183,15 +5185,15 @@ namespace apex
          pfactoryNetworking->merge_to_global_factory();
 
          //estatus =
-         pfactoryNetworking->øconstruct(this, m_pnetworking);
+         pfactoryNetworking->constructø(this, m_pnetworking);
 
 
          if (!m_pnetworking)
          {
 
-            //estatus = øconstruct_new(m_psockets);
+            //estatus = construct_newø(m_psockets);
 
-            //øconstruct(m_pnetworking);
+            //constructø(m_pnetworking);
 
             //if (!estatus)
             //{
@@ -5222,6 +5224,39 @@ namespace apex
       send_signal(id_application_dark_mode_change);
 
       ::platform::system::on_application_dark_mode_change();
+
+   }
+
+
+   ::pointer<::innate_ui::icon> system::operating_system_innate_ui_icon(const ::int_size &size)
+   {
+
+      auto strUrl = operating_system_innate_ui_icon_url(size);
+
+      auto pfile = file()->get(strUrl);
+
+      return innate_ui()->innate_ui_icon(pfile, size);
+
+   }
+
+
+   ::string system::operating_system_innate_ui_icon_url(const ::int_size & size)
+   {
+
+      ::string strUrl;
+
+      strUrl.format("https://ca2.store/image/operating-system/{}/{}.png", size.cx, OPERATING_SYSTEM_NAME);
+
+      return strUrl;
+
+   }
+
+
+   void system::show_operating_system_information_box(::user::activation_token * puseractivationtoken)
+   {
+
+      m_papplication->show_lines_box(m_papplication->get_operating_system_information_lines(),
+                                     operating_system_innate_ui_icon_url({48, 48}), puseractivationtoken);
 
    }
 

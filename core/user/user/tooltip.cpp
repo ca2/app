@@ -50,7 +50,7 @@ namespace user
    void tooltip::on_message_create(::message::message * pmessage)
    {
 
-      øconstruct(m_pfont);
+      constructø(m_pfont);
 
       pmessage->previous();
 
@@ -166,7 +166,7 @@ namespace user
 
       ::draw2d::graphics_pointer g(e_create, this);
 
-      g->CreateCompatibleDC(nullptr);
+      g->create_compatible_graphics(nullptr);
 
       g->set(m_pfont);
 

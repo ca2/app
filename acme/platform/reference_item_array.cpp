@@ -990,7 +990,7 @@ reference_item_array * subparticle::reference_itema()
    //if (::is_null(m_preferenceitema))
    //{
 
-   //   m_preferenceitema = øallocate reference_item_array(this);
+   //   m_preferenceitema = allocateø reference_item_array(this);
 
    //}
 

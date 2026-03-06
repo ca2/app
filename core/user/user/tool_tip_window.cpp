@@ -377,7 +377,7 @@ namespace user
 
    //   m_pfont->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
-   //   auto pusersystem = øallocate ::user::system();
+   //   auto pusersystem = allocateø ::user::system();
 
    //   return create_window_ex(pusersystem, nullptr, atom) != 0;
 
@@ -512,7 +512,7 @@ namespace user
    ///////////////////////////////////////////////////////////
    void tool_tip_window::update_drawing_objects()
    {
-      øconstruct(m_pfont);
+      constructø(m_pfont);
 
       /*::draw2d::region rgn;
       auto rectangleX = this->rectangle();

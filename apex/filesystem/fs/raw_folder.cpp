@@ -285,7 +285,7 @@ namespace fs
       //else
       //{
 
-         øconstruct(pfile);
+         constructø(pfile);
 
 //      }
 

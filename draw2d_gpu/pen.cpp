@@ -52,7 +52,7 @@ namespace draw2d_gpu
       m_nPenStyle    = nPenStyle;
       m_dWidth       = dWidth;
       m_colorColor      = crColor;
-      m_ppen         = øallocate< plusplus::Pen(plusplus::Color >(crColor), dWidth);
+      m_ppen         = allocateø< plusplus::Pen(plusplus::Color >(crColor), dWidth);
 
    }
 
@@ -131,8 +131,8 @@ namespace draw2d_gpu
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
-      if(graphicsMem->CreateCompatibleDC(nullptr) &&
-         graphicsMask->CreateCompatibleDC(nullptr))
+      if(graphicsMem->create_compatible_graphics(nullptr) &&
+         graphicsMask->create_compatible_graphics(nullptr))
       {
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm);
 //         pDest->delete_object();
@@ -189,8 +189,8 @@ namespace draw2d_gpu
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
-      if(graphicsMem->CreateCompatibleDC(pgraphics) &&
-         graphicsMask->CreateCompatibleDC(pgraphics) &&
+      if(graphicsMem->create_compatible_graphics(pgraphics) &&
+         graphicsMask->create_compatible_graphics(pgraphics) &&
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm) &&
          bmpMask->CreateBitmap(bm.bmWidth, bm.bmHeight, 1, 1, nullptr))
       {
@@ -236,9 +236,9 @@ namespace draw2d_gpu
       ::draw2d::brush pbrushChecker;
       static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
-      if(graphicsSrc->CreateCompatibleDC(nullptr) &&
-         graphicsMask->CreateCompatibleDC(nullptr) &&
-         graphicsDest->CreateCompatibleDC(nullptr))
+      if(graphicsSrc->create_compatible_graphics(nullptr) &&
+         graphicsMask->create_compatible_graphics(nullptr) &&
+         graphicsDest->create_compatible_graphics(nullptr))
       {
          if(const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm))
          {
@@ -305,8 +305,8 @@ namespace draw2d_gpu
       ::draw2d::brush pbrushChecker;
       static const unsigned short wPat[8] = {0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa, 0x55, 0xaa};
 
-      if(graphicsSrc->CreateCompatibleDC(pgraphics) &&
-         graphicsMask->CreateCompatibleDC(pgraphics) &&
+      if(graphicsSrc->create_compatible_graphics(pgraphics) &&
+         graphicsMask->create_compatible_graphics(pgraphics) &&
          const_cast<::draw2d::bitmap &>(rSrc).GetBitmap(&bm))
       {
          // create checker brush
@@ -363,12 +363,12 @@ namespace draw2d_gpu
       //   if (m_epen == ::draw2d::e_pen_brush)
       //   {
       //      
-      //      ((pen *) this)->m_ppen = øallocate< plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(),  >(plusplus::REAL) m_dWidth);
+      //      ((pen *) this)->m_ppen = allocateø< plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(),  >(plusplus::REAL) m_dWidth);
 
       //   }
       //   else
       //   {
-      //      ((pen *) this)->m_ppen = øallocate< plusplus::Pen(plusplus::Color >(
+      //      ((pen *) this)->m_ppen = allocateø< plusplus::Pen(plusplus::Color >(
       //         color32_byte_opacity(m_color),
       //         color32_byte_red(m_color),
       //         color32_byte_green(m_color),

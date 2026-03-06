@@ -23,6 +23,7 @@ namespace windowing
       virtual public ::windowing::window_base
    {
    public:
+
       
       struct mouse_reposition_throttling
       {
@@ -202,9 +203,12 @@ namespace windowing
 
       void install_message_routing(::channel * pchannel) override;
 
-      void * __x11_Display() override;
-      long __x11_Window() override;
+      //void * __x11_Display() override;
+      //long __x11_Window() override;
 
+      //::operating_system::window operating_system_window() const override;
+      
+      
       void create_window() override;
 
       void _create_window() override;
@@ -306,7 +310,7 @@ namespace windowing
 
       
       virtual ::windowing::window * window_get_owner();
-      //virtual ::oswindow get_owner_oswindow();
+      virtual ::operating_system::window get_owner_operating_system_window();
       virtual void set_owner(::windowing::window * pwindowNewOwner);
 
 
@@ -503,8 +507,8 @@ namespace windowing
       
       virtual void frame_toggle_restore(::user::activation_token * puseractivationtoken);
 
-      void _user_send(const ::procedure & procedure) override;
-      void _user_post(const ::procedure & procedure) override;
+      void user_send(const ::procedure & procedure) override;
+      void user_post(const ::procedure & procedure) override;
 
       bool is_branch_current() const override;
 
@@ -526,7 +530,7 @@ namespace windowing
       // inline bool operator == (const ::windowing::window & window) const
       // {
       //
-      //    return oswindow() == window.get_os_data();
+      //    return operating_system_window() == window.get_os_data();
       //
       // }
       //
@@ -585,8 +589,8 @@ namespace windowing
       void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken) override;
 
 
-      void _main_send(const ::procedure & procedure) override;
-      void _main_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
 
 
@@ -1351,7 +1355,9 @@ namespace windowing
       virtual void on_show_window();
 
 
-      void * __win32_HWND() override;
+      //void * __win32_HWND() override;
+      
+      //::operating_system_window operating_system_window() const override;
 
       //void destroy() override;
 

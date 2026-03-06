@@ -282,6 +282,8 @@ list(APPEND library_source
         graphics/image/pixmap.cpp
         handler/_.h
         handler/command_handler.cpp
+   handler/dispatch_array.h
+   handler/dispatch_array.cpp
         handler/extended_topic.cpp
         handler/extended_topic.h
         handler/handler.cpp
@@ -1056,7 +1058,7 @@ list(APPEND library_source
         #prototype/prototype/runnable.cpp
         #prototype/prototype/runnable.h
         prototype/prototype/scope_stack.h
-        prototype/prototype/sequence_continuation.cpp
+        #prototype/prototype/sequence_continuation.cpp
         #prototype/prototype/shared_memory.cpp
         #prototype/prototype/shared_memory.h
         #prototype/prototype/simple_object.h

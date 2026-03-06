@@ -90,7 +90,7 @@ namespace apex
       if (!m_pmanagerroom)
       {
 
-         øconstruct_new(m_pmanagerroom);
+         construct_newø(m_pmanagerroom);
 
       }
 

@@ -32,7 +32,7 @@ namespace filemanager
 
       get_document()->m_poperationthread->m_pimpact = this;
 
-      m_pviewcreator = øallocate ::user::impact_creator();
+      m_pviewcreator = allocateø ::user::impact_creator();
 
       SetPaneCount(2);
 

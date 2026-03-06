@@ -64,7 +64,7 @@ namespace write_text
       if (!m_pimage)
       {
 
-         plist->øconstruct(m_pimage);
+         plist->constructø(m_pimage);
 
          if (!m_pimage)
          {

@@ -309,7 +309,7 @@ string object::as_string() const
 ::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto pextendedtopic = øallocate ::extended_topic(atom);
+   auto pextendedtopic = allocateø ::extended_topic(atom);
 
    pextendedtopic->initialize(this);
 
@@ -705,7 +705,7 @@ bool object::is_thread_class() const
 bool object::task_get_run() const
 {
 
-   return ::task_get_run();
+    return !has_finishing_flag();
 
 }
 
@@ -1284,27 +1284,43 @@ bool object::is_ascendant_task(::object * ptaskCandidateAscendant) const
 }
 
 
-bool object::set_children_to_finish_and_check_them_finished()
+bool object::has_child_task() const
 {
 
    if (::is_null(m_pparticleaChildrenTask))
    {
 
-      return true;
+      return false;
+
+   }
+
+   if (m_pparticleaChildrenTask->is_empty())
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+
+void object::set_child_tasks_to_finish()
+{
+
+   if (::is_null(m_pparticleaChildrenTask))
+   {
+
+      return;
 
    }
 
    if (has_flag(e_flag_checking_children_task))
    {
 
-      if(m_pparticleaChildrenTask->is_empty())
-      {
-
-         return true;
-
-      }
-
-      return false;
+      return;
 
    }
 
@@ -1313,14 +1329,7 @@ bool object::set_children_to_finish_and_check_them_finished()
    if (has_flag(e_flag_checking_children_task))
    {
 
-      if(m_pparticleaChildrenTask->is_empty())
-      {
-
-         return true;
-
-      }
-
-      return false;
+      return;
 
    }
 
@@ -1329,48 +1338,48 @@ bool object::set_children_to_finish_and_check_them_finished()
    try
    {
 
-      for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
-      {
+      //for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); iChildTask++)
+      //{
 
-         auto & ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
+      //   auto & ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
-         if (ptaskChild)
-         {
+      //   if (ptaskChild)
+      //   {
 
-            string strType;
+      //      string strType;
 
-            try
-            {
+      //      try
+      //      {
 
-               try
-               {
+      //         try
+      //         {
 
-                  strType = ::platform::type(ptaskChild).name();
+      //            strType = ::platform::type(ptaskChild).name();
 
-               }
-               catch (...)
-               {
+      //         }
+      //         catch (...)
+      //         {
 
-               }
+      //         }
 
-               ptaskChild->set_finish();
+      //         ptaskChild->set_finish();
 
-            }
-            catch (...)
-            {
+      //      }
+      //      catch (...)
+      //      {
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
       for (int iChildTask = 0; iChildTask < m_pparticleaChildrenTask->get_size(); )
       {
 
           auto ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
-          if (!ptaskChild)
+          if (!ptaskChild || !ptaskChild->task_get_run())
           {
 
              m_pparticleaChildrenTask->erase_at(iChildTask);
@@ -1378,6 +1387,13 @@ bool object::set_children_to_finish_and_check_them_finished()
           }
           else
           {
+
+             if (!ptaskChild->has_finishing_flag())
+             {
+
+                ptaskChild->set_finish();
+
+             }
 
              iChildTask++;
 
@@ -1391,14 +1407,14 @@ bool object::set_children_to_finish_and_check_them_finished()
 
    }
 
-   if (m_pparticleaChildrenTask->is_empty())
-   {
+   //if (m_pparticleaChildrenTask->is_empty())
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
-   return false;
+   //return false;
 
 }
 
@@ -1419,8 +1435,12 @@ bool object::set_children_to_finish_and_check_them_finished()
 void object::destroy_tasks()
 {
 
-   while (!set_children_to_finish_and_check_them_finished())
+   set_finishing_flag();
+
+   while (task_get_run())
    {
+
+      set_child_tasks_to_finish();
 
       task_run(100_ms);
 
@@ -1852,7 +1872,7 @@ void object::branch_each(const ::procedure_array& routinea)
    if (!m_pqueuemap)
    {
 
-      øconstruct_new(m_pqueuemap);
+      construct_newø(m_pqueuemap);
 
    }
 
@@ -1861,7 +1881,7 @@ void object::branch_each(const ::procedure_array& routinea)
    if (!pqueue)
    {
 
-      øconstruct_new(pqueue);
+      construct_newø(pqueue);
 
       pqueue->m_pobjectFork = this;
 
@@ -1993,9 +2013,9 @@ void object::handle_exception(const ::exception& e)
    else if (e.estatus() == error_library_not_found)
    {
 
-      auto pmessagebox = __initialize_new ::message_box(e.m_strMessage);
+      auto pmessageboxpayload = __initialize_new ::message_box_payload(e.m_strMessage);
 
-      pmessagebox->sync();
+      send(pmessageboxpayload);
 
    }
 
@@ -2200,7 +2220,7 @@ void object::sleep(const class time & time)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = øallocate manual_reset_happening();
+            ptask->m_pevSleep = allocateø manual_reset_happening();
 
             ptask->m_pevSleep->reset_happening();
 
@@ -2520,7 +2540,7 @@ void object::_001OnUpdate(::message::message* pmessage)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return øallocate ::handle::ini (         auto psystem = system();
+//   return allocateø ::handle::ini (         auto psystem = system();
 
 //         auto pdirectorysystem = psystem->m_pdirectorysystem;
 //
@@ -2554,9 +2574,9 @@ struct context_object_test_struct :
 //void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = øallocate struct context_object_test_struct (pparticle);
+//   auto p1 = allocateø struct context_object_test_struct (pparticle);
 //
-//   auto p2 = øallocate struct context_object_test_struct (pparticle);
+//   auto p2 = allocateø struct context_object_test_struct (pparticle);
 //
 //   p2 = p1;
 //
@@ -2706,9 +2726,9 @@ void call_sync(const ::procedure_array& methoda)
 //   if (!estatus)
 //   {
 //
-////      estatus = ::auto pmessagebox = __initialize_new ::message_box(scopedstrMessage, pszTitle, emessagebox, process);
+////      estatus = ::auto pmessageboxpayload = __initialize_new ::message_box_payload(scopedstrMessage, pszTitle, emessagebox, process);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 //
 //   }
 //
@@ -3210,22 +3230,22 @@ void object::initialize(::particle * pparticle)
 //template < typename TYPE >
 //inline ::pointer<TYPE>øcreate_new();
 
-//inline void øconstruct(::pointer<::image::image>& pimage);
+//inline void constructø(::pointer<::image::image>& pimage);
 
-//inline void øconstruct(::pointer<::image::image>& pimage, ::image::image *pimageSource);
+//inline void constructø(::pointer<::image::image>& pimage, ::image::image *pimageSource);
 
-//inline void ødefer_construct(::pointer<::image::image>& pimage) { return !pimage ? øconstruct(pimage) : void(::success); }
+//inline void ødefer_construct(::pointer<::image::image>& pimage) { return !pimage ? constructø(pimage) : void(::success); }
 
 // for composition (ownership)
 
 //template < typename BASE_TYPE >
-//inline void øconstruct(::pointer<BASE_TYPE> pusermessage);
+//inline void constructø(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void øconstruct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
+//inline void constructø(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void øconstruct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
+//inline void constructø(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
 //template < typename BASE_TYPE >
 //inline void øconstruct_by_id(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
@@ -3243,13 +3263,13 @@ void object::initialize(::particle * pparticle)
 //inline void __raw_construct_new(::pointer<TYPE> ptype);
 
 //template < typename TYPE >
-//inline void øconstruct_new(::pointer<TYPE> ptype);
+//inline void construct_newø(::pointer<TYPE> ptype);
 
 
 
 
 //template < typename BASE_TYPE >
-//inline void ødefer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? øconstruct(pusermessage) : void(::success); }
+//inline void ødefer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? constructø(pusermessage) : void(::success); }
 
 //template < typename BASE_TYPE >
 //inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? øconstruct_by_id(pusermessage) : void(::success); }
@@ -3258,19 +3278,19 @@ void object::initialize(::particle * pparticle)
 //inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
 
 //template < typename TYPE >
-//inline void ødefer_construct_new(::pointer<TYPE> ptype) { return !ptype ? øconstruct_new(ptype) : void(::success); }
+//inline void ødefer_construct_new(::pointer<TYPE> ptype) { return !ptype ? construct_newø(ptype) : void(::success); }
 
 
 
 
 //template < typename BASE_TYPE >
-//inline void øconstruct(::pointer<BASE_TYPE> pusermessage);
+//inline void constructø(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
 //inline void øconstruct_by_id(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
 //template < typename TYPE >
-//inline void øconstruct_new(::pointer<TYPE> pusermessage);
+//inline void construct_newø(::pointer<TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
 //inline void __release(::pointer<BASE_TYPE> pcomposite);
@@ -3868,7 +3888,7 @@ bool object::IsSerializable() const
 
 
    //template < typename TYPE >
-   //void øconstruct(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
+   //void constructø(::thread_pointer& p, void (TYPE::* pfn)(), enum_priority epriority);
 
    //template < typename TYPE >
    //void __construct_below_normal(::thread_pointer& p, void (TYPE::* pfn)());
@@ -3895,7 +3915,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = øallocate predicate_task < PRED > (pparticle, pred);
+//    //ptask = allocateø predicate_task < PRED > (pparticle, pred);
 ////
 ////   ptask->branch();
 ////
@@ -3931,7 +3951,7 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
    if (::is_null(ptask))
    {
 
-      øconstruct(ptask);
+      constructø(ptask);
 
       //ptask->m_bAutoRelease = true;
 
@@ -3987,3 +4007,9 @@ void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
 }
 
 
+dispatch_arrayø object::forkø()
+{
+
+   return {this, e_dispatch_fork};
+
+}

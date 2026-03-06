@@ -223,7 +223,7 @@ namespace user
       //   if (rectangleElement.contains(point))
       //   {
 
-      //      auto pitem = øallocate ::item(e_element_drop_down);
+      //      auto pitem = allocateø ::item(e_element_drop_down);
 
       //      auto puseritem = user_item(pitem);
       //      
@@ -240,7 +240,7 @@ namespace user
       //if (rectangleX.contains(point))
       //{
 
-      //   auto pitem = øallocate ::item(e_element_text);
+      //   auto pitem = allocateø ::item(e_element_text);
 
       //   auto puseritem = user_item(pitem);
       //      
@@ -250,7 +250,7 @@ namespace user
 
       //}
       //
-      //auto pitemNone = øallocate ::item(e_element_none);
+      //auto pitemNone = allocateø ::item(e_element_none);
       //
       //return pitemNone;
 
@@ -642,7 +642,7 @@ namespace user
 
    //      auto itemCurrent = _001FindListText(str);
 
-   //      set_current_item(øallocate ::item(e_element_item, itemCurrent), actioncontext);
+   //      set_current_item(allocateø ::item(e_element_item, itemCurrent), actioncontext);
 
    //   }
 

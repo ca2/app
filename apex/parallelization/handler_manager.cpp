@@ -41,7 +41,7 @@ void handler_manager::initialize_handler_manager(::particle * pparticle, const :
 
    //m_iAliveCount = iAliveCount;
 
-   ///øconstruct_new(m_pevTaskOnQueue);
+   ///construct_newø(m_pevTaskOnQueue);
 
    //m_iAlive = 0;
 

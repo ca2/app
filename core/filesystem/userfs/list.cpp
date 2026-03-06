@@ -430,7 +430,7 @@ namespace userfs
    void list::_017OpenItem(::pointer<::file::item>pitem, bool bOpenFile, const ::action_context & action_context)
    {
 
-      if (pitem->IsFolder())
+      if (pitem->is_folder())
       {
 
          m_pdocument->browse(pitem, action_context);
@@ -509,7 +509,7 @@ namespace userfs
 
             ::pointer<::userfs::list_item>pitem = pdata->item(iStrict);
 
-            if (pitem->IsFolder())
+            if (pitem->is_folder())
             {
 
                _017OpenContextMenuFolder(pitem, context);
@@ -671,7 +671,7 @@ namespace userfs
    //                  continue;
    //               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
    //            }
-   //            itema.add(øallocate ::file::item(pdata->item(iStrict)));
+   //            itema.add(allocateø ::file::item(pdata->item(iStrict)));
    //         }
    //      }
    //   }

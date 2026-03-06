@@ -18,7 +18,7 @@ namespace platform
    class CLASS_DECL_ACME context :
       virtual public ::task,
       //virtual public ::handler::handler,
-      virtual public ::reificator < ::message_box >,
+      //virtual public ::reificator < ::message_box >,
 //   virtual public ::platform::acme_context_layer_t,
 //   virtual public ::platform::apex_context_layer_t,
 //   virtual public ::platform::aqua_context_layer_t,
@@ -139,7 +139,9 @@ namespace platform
 
       virtual void finalize_context() override;
 
-      ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
+      //::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p) override;
+
+
 
       virtual ::image::image_context * image() override;
 

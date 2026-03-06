@@ -12,7 +12,7 @@ namespace acme
 
 
    template < typename TYPE >
-   ::pointer<TYPE>clone(const TYPE & t) { return øallocate TYPE(t); }
+   ::pointer<TYPE>clone(const TYPE & t) { return allocateø TYPE(t); }
 
 
 } // namespace acme

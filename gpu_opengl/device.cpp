@@ -430,7 +430,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   ::e_status estatus = øconstruct(m_pbuffer);
+   //   ::e_status estatus = constructø(m_pbuffer);
 
    //   if (!estatus)
    //   {
@@ -677,7 +677,7 @@ namespace gpu_opengl
    //}
 
 
-   int device::get_frame_index2()
+   int device::get_frame_index3()
    {
 
       return 0;

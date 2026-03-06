@@ -16,7 +16,7 @@
 #include "aura/user/user/style.h"
 #include "berg/user/user/impact.h"
 #include "berg/user/user/document.h"
-
+#include "acme/handler/dispatch_array.h"
 
 
 namespace user
@@ -78,7 +78,7 @@ namespace user
    void tree::user_tree_common_construct()
    {
 
-      øconstruct_new(m_ptreeitemptraSelected);
+      construct_newø(m_ptreeitemptraSelected);
 
       m_bHover = false;
       m_iHoverAlphaInit = 0;
@@ -138,7 +138,7 @@ namespace user
 
       //estatus = 
 
-      øconstruct_new(m_pimagelist);
+      construct_newø(m_pimagelist);
 
       //if (!estatus)
       //{
@@ -161,9 +161,9 @@ namespace user
       //   return;
 
       //}
-      _user_post([this]
+      user_postø() << [this]
          {
-            fork([this]()
+            forkø() << [this]()
                {
 
                   _001SetExpandImage("matter://list/expand.png");
@@ -193,14 +193,16 @@ namespace user
 
                   }
 
-               });
+               };
 
-               });
+               }
 
-      _user_post([this]
+      <<
+
+      [this]
    {
 
-      fork([this]()
+      forkø()<< [this]()
          {
 
             _001SetCollapseImage("matter://list/collapse.png");
@@ -234,9 +236,9 @@ namespace user
 
             }
 
-         });
+         };
 
-      });
+      };
 
    }
 
@@ -1776,7 +1778,7 @@ namespace user
 
       //auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      //pgraphics->CreateCompatibleDC(nullptr);
+      //pgraphics->create_compatible_graphics(nullptr);
 
       //auto pfont = øcreate < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());

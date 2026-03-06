@@ -12,7 +12,7 @@ namespace http
 
 
    request::request() :
-      m_binarystreamOutput(m_pmemfileBody=øallocate memory_file ())
+      m_binarystreamOutput(m_pmemfileBody=allocateø memory_file ())
    {
 
    }

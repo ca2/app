@@ -93,6 +93,8 @@ namespace platform
 
       virtual void create_about_impact(const ::atom &atom, ::user::interaction *pparent);
 
+      virtual void create_operating_system_information_impact(const ::atom &atom, ::user::interaction *pparent);
+
       virtual void on_after_prepare_impact_menu(::user::menu * pmenu);
 
 

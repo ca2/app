@@ -215,16 +215,7 @@ public:
    //inline auto names(::collection::index iStart = 0, ::collection::index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
 
 
-   inline ::property & set_at(const ::atom & atom, const ::payload & payload)
-   {
-
-      auto & property = this->property(atom);
-
-      property = payload;
-
-      return property;
-
-   }
+   inline ::property& set_at(const ::atom& atom, const ::payload& payload);
 
    bool _get_string(string& strResult, const ::atom & atom) const;
 

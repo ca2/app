@@ -105,7 +105,7 @@ namespace platform
 //
 // #endif
 
-      virtual void _001TryCloseApplication();
+      virtual void _001PostTryCloseApplication();
 
       virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long hi = 0, void * p = nullptr);
 
@@ -272,6 +272,9 @@ namespace platform
       virtual ::string_array_base get_about_box_lines();
 
       virtual void show_about_box(::user::activation_token * puseractivationtoken);
+      virtual void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken);
+
+      virtual ::string_array_base get_operating_system_information_lines();
 
       //bool on_command_final(const ::atom & atom, ::user::activation_token * puseractivationtoken) override;
 

@@ -163,7 +163,7 @@ namespace gpu
 
                   //  = pmodel->m_pgpucontext;
                   //
-                  // pmodel->øconstruct(pmesh->m_pmodelbuffer);
+                  // pmodel->constructø(pmesh->m_pmodelbuffer);
                   // pmesh->m_pmodelbuffer->initialize_gpu_context_object(pmodel->m_pgpucontext);
                   // pmesh->m_pmodelbuffer->set_data(pmesh->m_pmodeldata);
                   auto m = node->mTransformation;
@@ -227,7 +227,7 @@ namespace gpu
          else
          {
 
-            pmodel->øconstruct_new(pmaterial);
+            pmodel->construct_newø(pmaterial);
             pmaterial->m_pgpucontext = pmodel->m_pgpucontext;
          }
 
@@ -355,8 +355,8 @@ namespace gpu
             if (pmodel->m_bExternalPbr)
             {
                // albedo
-               if (pmaterial->m_textureaPbr[e_texture_albedo] =
-                      ::gpu::model::loadMaterialTexture(pmodel, "albedo.ktx", aiTextureType_DIFFUSE))
+               if ((pmaterial->m_textureaPbr[e_texture_albedo] =
+                      ::gpu::model::loadMaterialTexture(pmodel, "albedo.ktx", aiTextureType_DIFFUSE)))
                {
 
                   pmaterial->useTextureAlbedo = true;
@@ -412,22 +412,22 @@ namespace gpu
                }
 
                // normal
-               if (pmaterial->m_textureaPbr[e_texture_normal] =
-                      loadMaterialTexture(pmodel, "normal.ktx", aiTextureType_NORMALS))
+               if ((pmaterial->m_textureaPbr[e_texture_normal] =
+                      loadMaterialTexture(pmodel, "normal.ktx", aiTextureType_NORMALS)))
                {
                   pmaterial->useTextureNormal = true;
                }
 
                // ambient occlusion
-               if (pmaterial->m_textureaPbr[e_texture_ambient_occlusion] =
-                      loadMaterialTexture(pmodel, "ao.ktx", aiTextureType_LIGHTMAP))
+               if ((pmaterial->m_textureaPbr[e_texture_ambient_occlusion] =
+                      loadMaterialTexture(pmodel, "ao.ktx", aiTextureType_LIGHTMAP)))
                {
                   pmaterial->useTextureAmbientOcclusion = true;
                }
 
                // emissive
-               if (pmaterial->m_textureaPbr[e_texture_emissive] =
-                      loadMaterialTexture(pmodel, "emissive.ktx", aiTextureType_EMISSIVE))
+               if ((pmaterial->m_textureaPbr[e_texture_emissive] =
+                      loadMaterialTexture(pmodel, "emissive.ktx", aiTextureType_EMISSIVE)))
                {
                   pmaterial->useTextureEmissive = true;
                }

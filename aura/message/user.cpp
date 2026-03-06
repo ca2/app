@@ -717,12 +717,12 @@ namespace message
 
    //}
 
-   drag_and_drop::drag_and_drop(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage)
+   drag_and_drop::drag_and_drop(const ::operating_system::window & operatingsystemwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage)
    {
 
       m_lresult = 0;
 
-      m_pacmewindowingwindow = pacmewindowingwindow;
+      m_operatingsystemwindow = operatingsystemwindow;
       
       m_pwindow = pwindow;
       

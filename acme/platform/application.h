@@ -535,7 +535,7 @@ namespace platform
 //         struct CLASS_DECL_ACME core_application_layer_t
 //         {
 
-
+      ::pointer<::user::tab_impact> m_ptabimpactBerg;
       ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
       ::pointer < ::filemanager::filemanager> m_pfilemanager;
 
@@ -567,7 +567,7 @@ namespace platform
 
 #endif
 
-      virtual void _001TryCloseApplication() override;
+      virtual void _001PostTryCloseApplication() override;
 
       virtual void application_on_status(::e_status estatus, ::particle* pparticle = nullptr, long long hi = 0, void* p = nullptr) override;
 
@@ -741,13 +741,15 @@ namespace platform
       //virtual void pos_run() override;
       //virtual void application_pos_run() override;
 
-      virtual void init_application() override;
+      void init_application() override;
 
-      virtual void term_application() override;
+      void term_application() override;
 
-      virtual ::string_array_base get_about_box_lines() override;
+      ::string_array_base get_about_box_lines() override;
 
       void show_about_box(::user::activation_token* puseractivationtoken) override;
+
+      ::string_array_base get_operating_system_information_lines() override;
 
       bool handle_command(const ::atom& atom, ::user::activation_token* puseractivationtoken) override;
 

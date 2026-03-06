@@ -87,7 +87,7 @@ namespace user
 
    //      {
 
-   //         auto pitemClose = øallocate ::item(::e_element_close_button, ::id_close_app);
+   //         auto pitemClose = allocateø ::item(::e_element_close_button, ::id_close_app);
 
    //         tool().add_item(pitemClose);
 
@@ -97,7 +97,7 @@ namespace user
 
    //      {
 
-   //         auto pitemMaximize = øallocate ::item(::e_element_maximize_button, ::id_maximize);
+   //         auto pitemMaximize = allocateø ::item(::e_element_maximize_button, ::id_maximize);
 
    //         tool().add_item(pitemMaximize);
 
@@ -107,7 +107,7 @@ namespace user
 
    //      {
 
-   //         auto pitemMinimize = øallocate ::item(::e_element_minimize_button, ::id_minimize);
+   //         auto pitemMinimize = allocateø ::item(::e_element_minimize_button, ::id_minimize);
 
    //         tool().add_item(pitemMinimize);
 
@@ -145,7 +145,7 @@ namespace user
 
          {
 
-            auto pitemClose = øallocate ::item(::e_element_close_button, ::id_close_app);
+            auto pitemClose = allocateø ::item(::e_element_close_button, ::id_close_app);
 
             tool().add_item(pitemClose);
 
@@ -155,7 +155,7 @@ namespace user
 
          {
 
-            auto pitemMaximize = øallocate ::item(::e_element_maximize_button, ::id_maximize);
+            auto pitemMaximize = allocateø ::item(::e_element_maximize_button, ::id_maximize);
 
             tool().add_item(pitemMaximize);
 
@@ -165,7 +165,7 @@ namespace user
 
          {
 
-            auto pitemMinimize = øallocate ::item(::e_element_minimize_button, ::id_minimize);
+            auto pitemMinimize = allocateø ::item(::e_element_minimize_button, ::id_minimize);
 
             tool().add_item(pitemMinimize);
 
@@ -266,7 +266,7 @@ namespace user
          if(!m_pusersystem)
          {
 
-            øconstruct_new(m_pusersystem);
+            construct_newø(m_pusersystem);
 
          }
 

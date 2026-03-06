@@ -83,7 +83,7 @@
 ; HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 !define sysSelectObject "gdi32::SelectObject(p, p) p"
 
-; HDC CreateCompatibleDC(HDC hdc);
+; HDC create_compatible_graphics(HDC hdc);
 !define sysCreateCompatibleDC "gdi32::CreateCompatibleDC(p) p"
 
 ; BOOL DeleteDC(HDC hdc);

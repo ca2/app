@@ -444,7 +444,7 @@ namespace platform
    //
    // #if !defined(WINDOWS)
    //
-   //       øconstruct(m_pexceptiontranslator);
+   //       constructø(m_pexceptiontranslator);
    //
    //       m_pexceptiontranslator->attach();
    //
@@ -452,7 +452,7 @@ namespace platform
    //
    //       //information() << "create_os_node going to create node";
    //
-   //       øconstruct(m_pnode);
+   //       constructø(m_pnode);
    //
    //       m_pnode = m_pnode;
    //
@@ -541,13 +541,13 @@ namespace platform
    //
    // #endif
    //
-   //       øconstruct_new(m_purlcontext);
+   //       construct_newø(m_purlcontext);
    //
    //       //::acme::idpool::init(this);
    //
    // //      /// Create/Replace logger
    //
-   //       øconstruct_new(m_pdatetime);
+   //       construct_newø(m_pdatetime);
    //
    //
    //
@@ -571,7 +571,7 @@ namespace platform
    //
    //       // }
    //
-   //       //estatus = øconstruct(m_pnode);
+   //       //estatus = constructø(m_pnode);
    //
    //       //if (!m_pnode)
    //       //{
@@ -683,7 +683,7 @@ namespace platform
    //       //}
    //       //estatus =
    //
-   //       øconstruct(m_pfilesystem);
+   //       constructø(m_pfilesystem);
    //
    //       //if(!estatus)
    //       //{
@@ -698,7 +698,7 @@ namespace platform
    //
    //       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
    //
-   //       øconstruct(m_pdirectorysystem);
+   //       constructø(m_pdirectorysystem);
    //
    //       //if (!estatus)
    //       //{
@@ -1126,13 +1126,13 @@ namespace platform
    //    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //    //{
    //
-   //    //   auto psequence = øallocate ::sequence < ::conversation > ();
+   //    //   auto psequence = allocateø ::sequence < ::conversation > ();
    //
    //    //   psequence->set_status(error_interface_only);
    //
    //    //   //return presult;
    //
-   //    //   //auto pprocess = øallocate status < enum_dialog_result > ();
+   //    //   //auto pprocess = allocateø status < enum_dialog_result > ();
    //
    //    //   //pprocess->set_result(message_box_for_console(scopedstrText, pszTitle, emessagebox));
    //
@@ -1212,9 +1212,9 @@ namespace platform
    //       catch (::exception& exception)
    //       {
    //
-   //          //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, ::user::e_message_box_ok, exception.m_strDetails);
+   //          //auto pmessageboxpayload = __initialize_new ::message_box_payload(exception.m_strMessage, m_strAppId, ::user::e_message_box_ok, exception.m_strDetails);
    //
-   // //pmessagebox->sync();
+   // //send(pmessageboxpayload);
    //
    //          string strMoreDetails;
    //
@@ -1313,7 +1313,7 @@ namespace platform
    //
    //          //initialize_nano_window(factory());
    //
-   //          øconstruct_new(m_pnano);
+   //          construct_newø(m_pnano);
    //
    //       }
    //
@@ -1353,7 +1353,7 @@ namespace platform
    //    //
    //    //      initialize_nano_http(factory());
    //    //
-   //    //      øconstruct(m_pnanohttp);
+   //    //      constructø(m_pnanohttp);
    //    //
    //    //   }
    //    //
@@ -1370,7 +1370,7 @@ namespace platform
    //    //
    //    //         initialize_nano_http(factory());
    //    //
-   //    //         øconstruct(m_pnanohttp);
+   //    //         constructø(m_pnanohttp);
    //    //
    //    //      }
    //    //
@@ -1571,7 +1571,7 @@ namespace platform
    //    //   if (!plibrary)
    //    //   {
    //
-   //    //      plibrary = øallocate ::acme::library();
+   //    //      plibrary = allocateø ::acme::library();
    //
    //    //      plibrary->initialize_matter(this);
    //
@@ -1663,11 +1663,11 @@ namespace platform
    //    //
    //    //      }
    //    //
-   //    //      plibrary = øallocate ::acme::library();
+   //    //      plibrary = allocateø ::acme::library();
    //    //
    //    //      plibrary->initialize_matter(this);
    //    //
-   //    //      øconstruct_new(plibrary->m_pfactory);
+   //    //      construct_newø(plibrary->m_pfactory);
    //    //
    //    //      plibrary->m_pfactory->initialize_matter(this);
    //    //
@@ -1711,7 +1711,7 @@ namespace platform
    //    //
    //    //      }
    //    //
-   //    //      øconstruct_new(pfactory);
+   //    //      construct_newø(pfactory);
    //    //
    //    //      plibrary->m_pfactory->initialize_matter(this);
    //    //
@@ -1778,7 +1778,7 @@ namespace platform
    //
    //          }
    //
-   //          pfactory->øconstruct(this, pcontext);
+   //          pfactory->constructø(this, pcontext);
    //
    //       }
    //
@@ -2945,7 +2945,7 @@ namespace platform
    //    //
    //    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
    //    //
-   //    //   pmessagebox->sync();
+   //    //   send(pmessageboxpayload);
    //    //
    //    //   return psequencer;
    //    //
@@ -3203,7 +3203,7 @@ namespace platform
    //    //   void acme_system_layer::system::windowing_send(const ::procedure & procedure)
    //    //   {
    //    //
-   //    //      auto pmanualresethappening = øallocate manual_reset_happening();
+   //    //      auto pmanualresethappening = allocateø manual_reset_happening();
    //    //
    //    //      windowing_post([pmanualresethappening, procedure]()
    //    //                     {
@@ -3547,7 +3547,7 @@ namespace platform
    //    void acme_system_layer::system::on_application_dark_mode_change()
    //    {
    //
-   //       auto ptopic = øallocate ::topic(id_application_dark_mode_change);
+   //       auto ptopic = allocateø ::topic(id_application_dark_mode_change);
    //
    //       application()->handle(ptopic, nullptr);
    //
@@ -3707,7 +3707,7 @@ namespace platform
    //       if (!m_pmicrouser)
    //       {
    //
-   //          øconstruct_new(m_pmicrouser);
+   //          construct_newø(m_pmicrouser);
    //
    //       }
    //
@@ -3724,7 +3724,7 @@ namespace platform
    //
    //          do_graphics_and_windowing_system_factory();
    //
-   //          øconstruct(m_pacmewindowing);
+   //          constructø(m_pacmewindowing);
    //
    //       }
    //
@@ -3762,7 +3762,7 @@ namespace platform
    //    }
    //
    //
-   //    //::pointer < ::message_box > & system::realize(::pointer < ::message_box > & pmessagebox)
+   //    //::pointer < ::message_box_payload > & system::realize(::pointer < ::message_box_payload > & pmessagebox)
    //    //{
    //
    //    //   return micro_user()->realize(pmessagebox);
@@ -3770,7 +3770,7 @@ namespace platform
    //    //}
    //
    //
-   // //   ::pointer < ::message_box > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+   // //   ::pointer < ::message_box_payload > system::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    // //                                                       const ::user::e_message_box & emessagebox,
    // //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    // //   {
@@ -3785,7 +3785,7 @@ namespace platform
    // //   }
    //
    //
-   //    //::pointer < ::message_box > system::exception_message_box(
+   //    //::pointer < ::message_box_payload > system::exception_message_box(
    //    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //    //   const ::scoped_string & scopedstrTitle,
    //    //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
@@ -3801,7 +3801,7 @@ namespace platform
    //    //}
    //
    //
-   //    //::pointer < ::message_box > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+   //    //::pointer < ::message_box_payload > system::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
    //    //                                                           const ::user::e_message_box & emessagebox,
    //    //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //    //{
@@ -3816,7 +3816,7 @@ namespace platform
    //    //}
    //
    //
-   //    //::pointer < ::message_box > system::exception_message_console(
+   //    //::pointer < ::message_box_payload > system::exception_message_console(
    //    //    const ::exception & exception, const ::scoped_string & scopedstrMessage,
    //    //   const ::scoped_string & scopedstrTitle,
    //    //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
@@ -3841,7 +3841,7 @@ namespace platform
    //
    //    //      do_graphics_and_windowing_system_factory();
    //
-   //    //      øconstruct(m_pwindowingbase);
+   //    //      constructø(m_pwindowingbase);
    //
    //    //   }
    //
@@ -4984,15 +4984,15 @@ void acme_system_layer::on_open_untitled_file()
    }
 
 
-   //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
+   //::pointer < ::message_box_payload > & realize(::pointer < ::message_box_payload > & pmessagebox);
 
-   //::pointer < ::message_box > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box_payload > exception_message_box(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box_payload > message_console(const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //::pointer < ::message_box_payload > exception_message_console(const ::exception & exception, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 } // namespace platform

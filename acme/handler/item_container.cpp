@@ -146,7 +146,7 @@ void item_container::indexed_add_item(::item * pitem)
 //   if (!puseritem)
 //   {
 //
-//      øconstruct_new(puseritem);
+//      construct_newø(puseritem);
 //
 //   }
 //
@@ -259,7 +259,7 @@ bool item_container::contains_item(const ::atom & atom) const
 ::item_pointer item_container::add_item(enum_element eelement, ::collection::index iItem)
 {
 
-   auto pitem = øallocate ::item(eelement, iItem);
+   auto pitem = allocateø ::item(eelement, iItem);
 
    pitem->initialize(this);
 

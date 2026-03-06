@@ -49,7 +49,7 @@ namespace programming
 
       node()->integration_factory();
 
-      øconstruct(m_pintegrationcontext);
+      constructø(m_pintegrationcontext);
 
       //if (!estatus)
       //{

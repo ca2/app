@@ -227,7 +227,7 @@ namespace gpu_opengl
          
          auto iVertexCount = m_pmodeldatabase2->vertex_count();
 
-         glDrawArrays(mode, 0, iVertexCount);
+         glDrawArrays(mode, 0, (int) iVertexCount);
          ::opengl::check_error("");
 
       }
@@ -272,7 +272,7 @@ namespace gpu_opengl
          //else
          {
 
-            glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
+            glDrawArrays(GL_LINES, 0, (int) m_pmodeldatabase2->vertex_count());
             ::opengl::check_error("");
 
          }
@@ -281,7 +281,7 @@ namespace gpu_opengl
       else
       {
 
-         glDrawArrays(GL_LINES, 0, m_pmodeldatabase2->vertex_count());
+         glDrawArrays(GL_LINES, 0, (int) m_pmodeldatabase2->vertex_count());
          ::opengl::check_error("");
 
       }

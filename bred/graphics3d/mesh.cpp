@@ -58,10 +58,10 @@ namespace graphics3d
    {
 
       // bind appropriate textures
-      unsigned int diffuseNr = 1;
-      unsigned int specularNr = 1;
-      unsigned int normalNr = 1;
-      unsigned int heightNr = 1;
+//      unsigned int diffuseNr = 1;
+//      unsigned int specularNr = 1;
+//      unsigned int normalNr = 1;
+//      unsigned int heightNr = 1;
       for (unsigned int i = 0; i < m_texturea.size(); i++)
       {
          
@@ -117,7 +117,7 @@ namespace graphics3d
       //data.m_vertexes = m_Vertices;
       //data.m_indexes = m_Indices;
 
-      øconstruct_new(m_pmodel);
+      construct_newø(m_pmodel);
 
       m_pmodel->initialize_gpu_context_object(m_pgpucontext);
 

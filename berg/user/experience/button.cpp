@@ -152,7 +152,7 @@ namespace experience
 //         if(!m_pshapeaClip)
 //         {
 //
-//            øconstruct_new(m_pshapeaClip);
+//            construct_newø(m_pshapeaClip);
 //
 //            ::user::interaction * pinteraction = this;
 //
@@ -169,9 +169,9 @@ namespace experience
 //
 //               host_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleFocus));
+//               m_pshapeaClip->add_item(allocateø rectangle_shape(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(øallocate intersect_clip_shape());
+//               m_pshapeaClip->add_item(allocateø intersect_clip_shape());
 //
 //               i++;
 //
@@ -210,7 +210,7 @@ namespace experience
             if(has_mouse_capture())
             {
 
-               return øallocate ::item(::e_element_non_client);
+               return allocateø ::item(::e_element_non_client);
 
             }
 
@@ -221,7 +221,7 @@ namespace experience
          //   if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
          //   {
 
-         //      return øallocate ::item(::e_element_non_client);
+         //      return allocateø ::item(::e_element_non_client);
 
          //   }
 

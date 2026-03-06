@@ -210,6 +210,11 @@ namespace platform
       return {};
    }
 
+   ::pointer<::innate_ui::icon> apex_application_layer::innate_ui_icon(const ::scoped_string &scopedstrIconUrl,
+                                                                       const ::int_size &size)
+   {
+      return {};
+   }
 
    void apex_application_layer::init_fs_set(::fs::set* pfsset)
    {
@@ -319,7 +324,7 @@ namespace platform
    {
    } // 0 => restore, 1=> begin, -1=> end
 
-   void apex_application_layer::_001TryCloseApplication()
+   void apex_application_layer::_001PostTryCloseApplication()
    {
    }
 
@@ -486,7 +491,7 @@ namespace platform
    //// os_* functions generally
    //// reserves a lot of surprises from each
    //// operating system specific behavior
-   //void apex_application_layer::auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
+   //void apex_application_layer::auto pmessageboxpayload = __initialize_new ::message_box_payload(::user::interaction_base * puiOwner, const ::string apex_application_layer::& pszMessage, const ::string apex_application_layer::& pszTitle, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, ::callback callback = ::callback()){}
 
    //pmessagebox->sync(){}
 

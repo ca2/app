@@ -29,12 +29,22 @@ namespace windows
    public:
 
       
-      map_base < HWND, ::pointer < ::windows::window > >     m_windowmap;
+      ::map < HWND, ::pointer < ::windows::window > > m_windowmap;
 
 
       windowing();
       ~windowing() override;
 
+      ::acme::windowing::window *
+      acme_windowing_window(const ::operating_system::window &operatingsystemwindow) override;
+   
+      void add_window(::acme::windowing::window * pacmewindowingwindow);
+
+      void each_window(const ::function < void(::acme::windowing::window * pacmewindowingwindow) > & function) override;
+
+      ::operating_system::window operating_system_window(const ::wparam &wparam) override;
+
+      ::operating_system::window operating_system_window(const ::lparam &lparam) override;
 
 
    };

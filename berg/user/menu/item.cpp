@@ -36,7 +36,7 @@ namespace menu
       m_puserinteractionHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
-      m_pmenuitema = øallocate item_ptra(this);
+      m_pmenuitema = allocateø item_ptra(this);
       m_iLevel = 0;
       m_bPopup = false;
       m_item.m_eelement = e_element_item;
@@ -138,7 +138,7 @@ namespace menu
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
-         auto pitemNewChild = øallocate item();
+         auto pitemNewChild = allocateø item();
          pitemNewChild->m_bPopup = false;
          if (strCommand.is_empty())
          {
@@ -481,7 +481,7 @@ namespace menu
    }
 
 
-   bool item::create_buttons(::draw2d::graphics_pointer & pgraphics, ::user::menu * pusermenu)
+   void item::create_buttons(::draw2d::graphics_pointer & pgraphics, ::user::menu * pusermenu)
    {
 
       ::user::style_pointer pstyle;
@@ -517,11 +517,11 @@ namespace menu
          if (pinteraction.is_null())
          {
 
-            return false;
+            throw ::exception(error_failed);
 
          }
 
-         if (pinteraction->is_window())
+         if (pinteraction->is_this_window())
          {
 
             pinteraction->destroy_window();
@@ -539,10 +539,10 @@ namespace menu
 
          pinteraction->m_pmenuitem = pitem;
 
-         if (!pinteraction->is_window())
+         if (!pinteraction->is_this_window())
          {
 
-            return false;
+            throw ::exception(error_failed);
 
          }
 
@@ -561,7 +561,7 @@ namespace menu
 
       }
 
-      return true;
+      //return true;
 
    }
 

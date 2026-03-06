@@ -250,7 +250,7 @@ namespace userex
 
       pmessage->previous();
 
-      øconstruct(m_pprogress);
+      constructø(m_pprogress);
 
       m_pprogress->create_control(this, "progress_control");
 

@@ -50,13 +50,9 @@ namespace gpu_opengl
    context::context()
    {
 
-      #ifdef WINDOWS_DESKTOP
-      m_hdc = nullptr;
-      m_hglrc = nullptr;
-#endif
-
       m_eapi = ::gpu::e_api_opengl;
       m_gluLayerFrameBuffer = 0;
+      
       //m_globalUBO = 0;
       //m_gluLayFrameBufferRenderer = 0;
 
@@ -625,7 +621,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   ::e_status estatus = øconstruct(m_pbuffer);
+   //   ::e_status estatus = constructø(m_pbuffer);
 
    //   if (!estatus)
    //   {
@@ -1066,7 +1062,7 @@ namespace gpu_opengl
 //      if (!m_pshaderCopy)
 //      {
 //
-//         øconstruct_new(m_pshaderCopy);
+//         construct_newø(m_pshaderCopy);
 //
 //         // Vertex shader
 //         const_char_pointer vertexShaderSource = R"(
@@ -2086,7 +2082,7 @@ namespace gpu_opengl
       if (::is_set(pgpufence))
       {
 
-         *pgpufence = pcommandbuffer->insert_gpu_fence();
+         *pgpufence = pcommandbuffer->insert_gpu_fence(true);
 
       }
 
@@ -2390,7 +2386,7 @@ namespace gpu_opengl
       //      //BIH.biPlanes = 1;          // один план
       //      //BIH.biBitCount = 32;       // 24 bits per pixel
       //      //BIH.biCompression = BI_RGB;// без сжатия// создаем новый DC в памяти
-      //      ////pdcDIB = CreateCompatibleDC(NULL);
+      //      ////pdcDIB = create_compatible_graphics(NULL);
       //      ////void * pBits = nullptr;
       //      //// создаем DIB-секцию
       //      //pwindow->m_hbitmapProto = CreateDIBSection(
@@ -2513,7 +2509,7 @@ namespace gpu_opengl
    //       if (::is_set(m_pgpudevice->m_pgpucontextCurrent4))
    //       {
    //
-   //          m_pgpudevice->m_pgpucontextCurrent4->_send([this]()
+   //          m_pgpudevice->m_pgpucontextCurrent4->sendø() << [this]()
    //          {
    //
    //             m_pgpudevice->m_pgpucontextCurrent4->_context_unlock();

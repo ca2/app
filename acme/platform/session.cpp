@@ -117,7 +117,7 @@ namespace platform
    {
 
 
-      øconstruct_new(m_ptextcontext);
+      construct_newø(m_ptextcontext);
 
       //initialize_context();
 

@@ -282,7 +282,7 @@ namespace draw2d_cairo
 
       //auto pnode = psystem->node();
 
-      øconstruct(m_pfont);
+      constructø(m_pfont);
 
       m_pfont->m_pfontfamily = e_font_sans;
 
@@ -305,7 +305,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
+   void graphics::create_compatible_graphics(::draw2d::graphics * pgraphics)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -6695,7 +6695,7 @@ namespace draw2d_cairo
 //    for (int i = 0; i < n_families; i++)
 //    {
 //
-//        item = øallocate ::write_text::font_enumeration_item();
+//        item = allocateø ::write_text::font_enumeration_item();
 //
 //        PangoFontFamily * pfamily = families[i];
 //
@@ -6731,12 +6731,12 @@ namespace draw2d_cairo
 ////
 ////   ::pointer<ttf_util>putil;
 ////
-////   ::e_status estatus = øconstruct_new(putil);
+////   ::e_status estatus = construct_newø(putil);
 ////
 ////   for (auto& path : listing)
 ////   {
 ////
-////      pitem = øallocate ::write_text::font_enumeration_item();
+////      pitem = allocateø ::write_text::font_enumeration_item();
 ////
 ////      pitem->m_strFile = path;
 ////
@@ -6802,7 +6802,7 @@ namespace draw2d_cairo
 ////   for (i = 0; fs && i < fs->nfont; i++)
 ////   {
 ////
-////      pitem = øallocate ::write_text::font_enumeration_item();
+////      pitem = allocateø ::write_text::font_enumeration_item();
 ////
 ////      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
 ////

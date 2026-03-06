@@ -24,7 +24,7 @@ namespace colorertake5
       string str;
       is >> str;
 
-      ::pointer<::xml::document>hbase = øallocate< xml::document(get_app >());
+      ::pointer<::xml::document>hbase = allocateø< xml::document(get_app >());
       hbase->load(str);
 
       if (hbase->get_name() != "hrd")

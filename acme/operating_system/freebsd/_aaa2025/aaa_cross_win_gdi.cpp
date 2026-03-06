@@ -30,7 +30,7 @@
 ////// {
 ////
 ////
-//////    HDC hdc = øallocate device_context();
+//////    HDC hdc = allocateø device_context();
 ////
 //////    hdc->m_pdisplay      = hwnd->display();
 //////    hdc->m_window        = hwnd->window();
@@ -42,10 +42,10 @@
 //// }
 //
 //
-//// HDC CreateCompatibleDC(HDC hdcParam)
+//// HDC create_compatible_graphics(HDC hdcParam)
 //// {
 //
-////    HDC hdc = øallocate device_context();
+////    HDC hdc = allocateø device_context();
 //
 ////    return hdc;
 //

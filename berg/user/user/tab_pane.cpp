@@ -56,11 +56,11 @@ namespace user
 
       m_ptab = ptab;
 
-      øconstruct(m_pbrushFill);
-      øconstruct(m_pbrushFillSel);
-      øconstruct(m_pbrushFillHover);
+      constructø(m_pbrushFill);
+      constructø(m_pbrushFillSel);
+      constructø(m_pbrushFillHover);
 
-      m_pitemClose = øallocate ::item(e_element_close_tab_button);
+      m_pitemClose = allocateø ::item(e_element_close_tab_button);
 
       //return estatus;
 

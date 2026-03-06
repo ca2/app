@@ -2,6 +2,7 @@
 #include "_gpu_opengl.h"
 #include "approach.h"
 #include "device.h"
+#include "wgl_context.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/application.h"
@@ -182,27 +183,38 @@ namespace gpu_opengl
 
    }
 
-   
-   void approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
+
+   ::gpu_opengl::wgl_context * approach::dummy_wgl_context()
    {
 
-      ::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
+      if (!m_pwglcontextDummy)
+      {
 
-      papproach->_on_before_create_window(pwindow);
-      //      defer_load_wgl_extensions();
+         construct_newø(m_pwglcontextDummy);
+
+         m_pwglcontextDummy->create_dummy_wgl_context();
+
+         //m_pwglcontextDummy->select();
+
+         //defer_load_wgl_extensions(this);
+
+         //m_pwglcontextDummy->unselect();
+
+      }
+
+      return m_pwglcontextDummy;
 
    }
-
-
    
+   //void approach::gpu_on_before_create_window(::acme::windowing::window* pwindow)
+   //{
 
-   void approach::gpu_on_create_window(::acme::windowing::window *pacmewindowingwindow)
-   {
+   //   //::cast < ::gpu_opengl::approach > papproach = m_papplication->get_gpu_approach();
 
-      ::gpu::bred_approach::gpu_on_create_window(pacmewindowingwindow);
+   //   //papproach->_on_before_create_window(pwindow);
+   //   //      defer_load_wgl_extensions();
 
-
-   }
+   //}
 
 
 } // namespace gpu_opengl

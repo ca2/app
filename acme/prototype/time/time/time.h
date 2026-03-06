@@ -212,6 +212,13 @@ public:
    
    }
 
+   inline bool has_timed_out_with_update(const class time & timeOut)
+   {
+
+      return !is_time_out_ok_with_update(timeOut);
+
+   }
+
    inline time update_elapsed() { return update_elapsed(now()); }
 
    constexpr time update_elapsed(const class time & timeStop)

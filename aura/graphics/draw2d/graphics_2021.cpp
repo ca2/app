@@ -304,8 +304,8 @@ namespace draw2d
    void graphics::create_memory_graphics()
    {
 
-      CreateCompatibleDC(nullptr);
-      //if (!CreateCompatibleDC(nullptr))
+      create_compatible_graphics(nullptr);
+      //if (!create_compatible_graphics(nullptr))
       //{
 
       //   return false;
@@ -329,7 +329,7 @@ namespace draw2d
    }
 
 
-   void graphics::CreateWindowDC(::acme::windowing::window * pacmewindowingwindow)
+   void graphics::create_window_graphics(::acme::windowing::window * pacmewindowingwindow)
    {
 
       __UNREFERENCED_PARAMETER(wnd);
@@ -2828,7 +2828,7 @@ namespace draw2d
 //
 //         auto pregionOld = m_pregion;
 //
-//         øconstruct(m_pregion);
+//         constructø(m_pregion);
 //
 //         m_pregion->combine(pregionOld, pregion, ::draw2d::e_combine_intersect, this);
 //
@@ -3329,7 +3329,7 @@ namespace draw2d
 //
 //         auto pregionOld = m_pregion;
 //
-//         øconstruct(m_pregion);
+//         constructø(m_pregion);
 //
 //         m_pregion->combine(pregionOld, pregion, ecombine);
 //
@@ -3806,7 +3806,7 @@ namespace draw2d
    //   graphics_pointer(e_create)
    //{
 
-   //   m_p->CreateCompatibleDC(nullptr);
+   //   m_p->create_compatible_graphics(nullptr);
 
    //}
 
@@ -4716,7 +4716,7 @@ namespace draw2d
 
          ::pointer<::draw2d::path>ppath;
 
-         øconstruct(ppath);
+         constructø(ppath);
 
          ppath->begin_figure();
          ppath->add_line(rectangle.top_left(), rectangle.bottom_right());
@@ -4927,7 +4927,7 @@ namespace draw2d
 
          //auto estatus = 
          
-         øconstruct(pimage);
+         constructø(pimage);
 
          //if (!estatus)
          //{

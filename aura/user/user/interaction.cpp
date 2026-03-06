@@ -707,7 +707,7 @@ namespace user
 
       //RECT rWindow;
 
-      // ::GetWindowRect((HWND)window()->oswindow(), &rWindow);
+      // ::GetWindowRect((HWND)window()->operating_system_window(), &rWindow);
 
       int iLastXAbs = get_last_x_abs();
 
@@ -1819,7 +1819,7 @@ namespace user
 
    //   arguments.insert_at(0, this);
 
-   //   auto pdescriptor = øallocate control_descriptor(arguments);
+   //   auto pdescriptor = allocateø control_descriptor(arguments);
 
    //   //if (::is_null(pdescriptor->m_puserinteractionParent))
    //   //{
@@ -1839,7 +1839,7 @@ namespace user
 
    //   }
 
-   //   //auto pdescriptor = øallocate control_descriptor();
+   //   //auto pdescriptor = allocateø control_descriptor();
 
 
    //   //pdescriptor->id() = atom;
@@ -2783,7 +2783,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = øallocate ::user::system();
+         //auto pusersystem = allocateø ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 
@@ -3006,7 +3006,7 @@ namespace user
          if (pkey)
          {
 
-            windowing()->set(pkey, pkey->m_pacmewindowingwindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
+            windowing()->set(pkey, pkey->m_operatingsystemwindow, pkey->m_pwindow, pkey->m_eusermessage, pkey->m_wparam, pkey->m_lparam);
 
          }
 
@@ -4231,7 +4231,7 @@ namespace user
 
             pmessage->m_eusermessage = ::user::e_message_mouse_leave;
             //pmessage->m_pwindow = window();
-            //pmessage->m_pacmewindowingwindow = window()->oswindow();
+            //pmessage->m_pacmewindowingwindow = window()->operating_system_window();
             //pmessage->m_wparam = 0;
             //pmessage->m_lparam = 0;
             //          pmessage->m_time = phappening->time;
@@ -4755,7 +4755,7 @@ namespace user
 
             //_synchronous_lock synchronouslock(puserinteractionParent->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-            //auto puserinteractionpointeraChild = øallocate(
+            //auto puserinteractionpointeraChild = allocateø(
             //   ::user::interaction_array(*puserinteractionParent->m_puserinteractionpointeraChild));
 
             //if (puserinteractionParent->m_bUserElementOk)
@@ -5310,7 +5310,7 @@ namespace user
 
          //      hostToClient(rectangleNeedRedraw);
 
-         //      auto prectangle = øallocate ::draw2d::clip_rectangle();
+         //      auto prectangle = allocateø ::draw2d::clip_rectangle();
 
          //      prectangle->m_item = rectangleNeedRedraw;
 
@@ -7014,7 +7014,7 @@ namespace user
 
       __check_refdbg
 
-         m_pgraphicscalla->add(øallocate::draw2d::graphics_call(function));
+         m_pgraphicscalla->add(allocateø::draw2d::graphics_call(function));
 
       __check_refdbg
 
@@ -7822,7 +7822,7 @@ if(get_parent())
 
          ødefer_construct_new(m_pusersystem);
 
-         m_pusersystem->add(øallocate::graphics::output_purpose(pparticle, epurpose));
+         m_pusersystem->add(allocateø::graphics::output_purpose(pparticle, epurpose));
 
          return;
 
@@ -8225,7 +8225,7 @@ if(get_parent())
    }
 
 
-   void interaction::_user_send(const ::procedure & procedure)
+   void interaction::user_send(const ::procedure & procedure)
    {
 
       auto puserthread = user_thread();
@@ -8248,12 +8248,12 @@ if(get_parent())
 
       }
 
-      puserthread->_send(procedure);
+      puserthread->send(procedure);
 
    }
 
 
-   void interaction::_user_post(const ::procedure & procedure)
+   void interaction::user_post(const ::procedure & procedure)
    {
 
       auto puserthread = user_thread();
@@ -8267,23 +8267,23 @@ if(get_parent())
 
       }
 
-      puserthread->_post(procedure);
+      puserthread->post(procedure);
 
    }
 
 
-   void interaction::_main_send(const ::procedure & procedure)
+   void interaction::main_send(const ::procedure & procedure)
    {
 
-      window()->_main_send(procedure);
+      window()->main_send(procedure);
 
    }
 
 
-   void interaction::_main_post(const ::procedure & procedure)
+   void interaction::main_post(const ::procedure & procedure)
    {
 
-      window()->_main_post(procedure);
+      window()->main_post(procedure);
 
    }
 
@@ -8335,7 +8335,7 @@ if(get_parent())
 
       //__matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
-      auto phappening = øallocate manual_reset_happening();
+      auto phappening = allocateø manual_reset_happening();
 
       host_post([procedure, phappening]
                 {
@@ -8387,7 +8387,7 @@ if(get_parent())
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      //m_pitemClient = øallocate ::item(e_element_client);
+      //m_pitemClient = allocateø ::item(e_element_client);
 
       if (m_bEnableDragClient || m_bDefaultClickHandling)
       {
@@ -10209,7 +10209,7 @@ if(get_parent())
 
       auto a = eusermessage;
 
-      auto pLresult = øallocate particle_primitive < ::lresult >();
+      auto pLresult = allocateø particle_primitive < ::lresult >();
 
       pLresult->m_t = 0;
 
@@ -10451,7 +10451,7 @@ if(get_parent())
 
       auto a = eusermessage;
 
-      //auto pLresult = øallocate particle_primitive < ::lresult >();
+      //auto pLresult = allocateø particle_primitive < ::lresult >();
 
       //pLresult->m_t = 0;
 
@@ -11462,47 +11462,58 @@ if(get_parent())
    bool interaction::_is_window() const
    {
 
-      if (::is_null(this))
+      if (!this->_is_this_window())
       {
 
          return false;
 
       }
       
-      if(!(m_ewindowflag & e_window_flag_is_window))
-      {
-         
-         return false;
-         
-      }
-         if(!(m_ewindowflag & e_window_flag_window_created))
-         {
-            
-            return false;
-            
-         }
-//         if(::is_set(m_pacmewindowingwindow ))
-//         {
-//            
-//            if(!m_pacmewindowingwindow->is_window())
-//            {
-//               return false;
-//               
-//            }
-//            
-//         }
-
-      //if (::is_null(window()))
-      //{
-
-      //   return false;
-
-      //}
-
       if (((interaction *)this)->get_parent() != nullptr)
       {
 
          if (!((interaction *)this)->get_parent()->is_window())
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   bool interaction::_is_this_window() const
+   {
+
+      if (::is_null(this))
+      {
+
+         return false;
+
+      }
+
+      if (!(m_ewindowflag & e_window_flag_is_window))
+      {
+
+         return false;
+
+      }
+      
+      if (!(m_ewindowflag & e_window_flag_window_created))
+      {
+
+         return false;
+
+      }
+
+      if (((interaction *)this)->get_parent() == nullptr)
+      {
+
+         if (!((interaction *)this)->m_pacmewindowingwindow->is_window())
          {
 
             return false;
@@ -14043,7 +14054,7 @@ if(get_parent())
 
       //auto preferenceitemaA1 = m_pacmeuserinteractionaChildren->m_preferenceitema;
 
-      auto puiptraChildNew = øallocate ::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
+      auto puiptraChildNew = allocateø ::pointer_array < ::acme::user::interaction >(*m_pacmeuserinteractionaChildren);
 
       //auto preferenceitemaA2 = m_pacmeuserinteractionaChildren->m_preferenceitema;
 
@@ -16569,7 +16580,7 @@ if(get_parent())
 
       // }
 
-      // this->interaction_post(øallocate call_message_handler_task(m_puserinteraction, eusermessage, wparam, lparam));
+      // this->interaction_post(allocateø call_message_handler_task(m_puserinteraction, eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -16600,7 +16611,7 @@ if(get_parent())
 
       // }
 
-      // this->interaction_post(øallocate call_message_handler_task(m_puserinteraction, eusermessage, wparam, lparam));
+      // this->interaction_post(allocateø call_message_handler_task(m_puserinteraction, eusermessage, wparam, lparam));
 
       //auto pmessage
 
@@ -16631,12 +16642,12 @@ if(get_parent())
 
       }
 
-      _post([this, eusermessage, wparam, lparam]()
-         {
+      post([this, eusermessage, wparam, lparam]()
+      {
 
-            message_call(eusermessage, wparam, lparam);
+         message_call(eusermessage, wparam, lparam);
 
-            });
+      });
       //return window()->post_message(eusermessage, wparam, lparam);
 
    }
@@ -18274,7 +18285,7 @@ if(get_parent())
    }
 
 
-   // ::oswindow interaction::oswindow()
+   // ::oswindow interaction::operating_system_window()
    // {
    //
    //    auto pwindowThis = window();
@@ -18286,7 +18297,7 @@ if(get_parent())
    //
    //    }
    //
-   //    auto oswindow = pwindowThis->oswindow();
+   //    auto oswindow = pwindowThis->operating_system_window();
    //
    //    if (!oswindow)
    //    {
@@ -18303,7 +18314,7 @@ if(get_parent())
    //::oswindow interaction::_oswindow() const
    //{
 
-   //   return oswindow();
+   //   return operating_system_window();
 
    //}
 
@@ -18376,7 +18387,7 @@ if(get_parent())
 
 
             _synchronous_lock synchronouslock(m_puserinteractionParent->window()->m_pparticleChildrenSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
-            //auto puiptraChildNew = øallocate(
+            //auto puiptraChildNew = allocateø(
 //                    ::user::interaction_array(*m_puserinteractionParent->m_puserinteractionpointeraChild));
             m_puserinteractionParent->m_pacmeuserinteractionaChildren->erase(this);
             //m_puserinteractionParent->m_puserinteractionpointeraChild = puiptraChildNew;
@@ -18473,7 +18484,7 @@ if(get_parent())
 //      // if (::is_set(m_puserinteractionpointeraChild))
 //      // {
 //
-//      //    puserinteractionpointeraChildNew = øallocate ::user::interaction_array(*m_puserinteractionpointeraChild);
+//      //    puserinteractionpointeraChildNew = allocateø ::user::interaction_array(*m_puserinteractionpointeraChild);
 //
 //      // }
 //      // else
@@ -18521,7 +18532,7 @@ if(get_parent())
 
 #endif
 
-      //m_pacmewindowingwindow = m_pwindow->oswindow();
+      //m_pacmewindowingwindow = m_pwindow->operating_system_window();
 
    }
 
@@ -18739,7 +18750,7 @@ if(get_parent())
 #define _NEW_MESSAGE(TYPE) \
    auto pmessage = øcreate_new<TYPE>(); \
    pmessage->m_pchannel = this; \
-   pmessage->m_pacmewindowingwindow = pacmewindowingwindow; \
+   pmessage->m_operatingsystemwindow = this->operating_system_window(); \
    pmessage->m_puserinteraction = this; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_eusermessage = eusermessage; \
@@ -18877,10 +18888,12 @@ if(get_parent())
       break;
       case ::user::e_message_prototype_scroll:
       {
+         
          _NEW_MESSAGE(::message::scroll);
 
 #ifdef WINDOWS_DESKTOP
-         pmessage->m_pacmewindowingwindowScrollBar = acme_windowing_window_from_HWND((void*)(::iptr)(lparam));
+
+         pmessage->m_pacmewindowingwindowScrollBar = system()->acme_windowing()->acme_windowing_window(lparam);
 
 #endif
 
@@ -18900,7 +18913,7 @@ if(get_parent())
       case ::user::e_message_prototype_kill_focus:
       {
          _NEW_MESSAGE(::message::kill_keyboard_focus);
-         pmessage->m_pacmewindowingwindowNew = acme_windowing_window_from_HWND((void*)(::iptr)wparam.m_number);
+         pmessage->m_operatingsystemwindow = system()->windowing()->operating_system_window(wparam);
       }
       break;
 #if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
@@ -19007,7 +19020,7 @@ if(get_parent())
 
             auto pwindowing = system()->windowing();
 
-            auto pwindow = acme_windowing_window_from_HWND((void *) (::iptr) lparam);
+            auto pwindow = system()->windowing()->windowing_window(lparam);
 
             if (pwindow)
             {
@@ -21443,7 +21456,7 @@ if(get_parent())
    }
 
 
-   void interaction::on_update_notify_icon_menu(::collection::index & iNotifyIconIndex)
+   void interaction::on_update_notify_icon_menu(::application_menu *pmenu)
    {
 
    }
@@ -22573,7 +22586,7 @@ if(get_parent())
             catch (...)
             {
 
-               pexception = øallocate::exception(::error_catch_all_exception, "Failed to create window");
+               pexception = allocateø::exception(::error_catch_all_exception, "Failed to create window");
 
             }
 
@@ -23400,9 +23413,9 @@ if(get_parent())
          if (m_bDestroyOnHide)
          {
 
-            post_continuation continuation(this);
+            dispatch_arrayø dispatch_arrayø(this, e_dispatch_post);
 
-            continuation <<
+            dispatch_arrayø <<
                [this]()
                {
 
@@ -24137,7 +24150,7 @@ if(get_parent())
       //      if (m_ptooltip.is_null())
       //      {
       //
-      //         m_ptooltip = øallocate tooltip(this);
+      //         m_ptooltip = allocateø tooltip(this);
       //
       //
       //         m_ptooltip->create_window_ex(pusersystem);
@@ -24584,7 +24597,7 @@ if(get_parent())
 
    //               m_bMouseHover = true;
 
-   //               auto pmouse = øallocate message::mouse();
+   //               auto pmouse = allocateø message::mouse();
 
    //               pmouse->m_eflagMessage += ::message::flag_synthesized;
 
@@ -25251,19 +25264,19 @@ void interaction::on_control_box_zoom(){
    }
 
 
-   void interaction::_post(const ::procedure & procedure)
+   void interaction::post(const ::procedure & procedure)
    {
 
       if (::is_null(user_thread()))
       {
 
-         ::user::interaction_base::_post(procedure);
+         ::user::interaction_base::post(procedure);
 
          return;
 
       }
 
-      user_thread()->_post(procedure);
+      user_thread()->post(procedure);
 
    }
 
@@ -27887,15 +27900,15 @@ __check_refdbg;
 
       }
 
-      auto pcontextmenu = øallocate::message::context_menu();
+      auto pcontextmenu = allocateø::message::context_menu();
 
-      pcontextmenu->m_pacmewindowingwindow = m_pacmewindowingwindow;
+      pcontextmenu->m_operatingsystemwindow = operating_system_window();
       pcontextmenu->m_pwindow = window();
       pcontextmenu->m_eusermessage = ::user::e_message_context_menu;
       pcontextmenu->m_pointMessage = pmouse->m_pointHost;
 
       //;; pcontextmenu->m_wpar
-      //pcontextmenu->set(oswindow(), window(), ::user::e_message_context_menu, (wparam)(iptr)oswindow(), pmouse->m_point.lparam());
+      //pcontextmenu->set(operating_system_window(), window(), ::user::e_message_context_menu, (wparam)(iptr)operating_system_window(), pmouse->m_point.lparam());
 
       message_handler(pcontextmenu);
 
@@ -31437,7 +31450,7 @@ __check_refdbg;
       //   bool save)
       //{
       //
-      //      node()->pick_single_file(oswindow(),
+      //      node()->pick_single_file(operating_system_window(),
       //                                   filetypes,
       //                                   function,
       //                                   save);
@@ -31450,7 +31463,7 @@ __check_refdbg;
       //   const ::function < void(const ::file::path_array_base &) >& function)
       //{
       //
-      //   node()->pick_multiple_file(oswindow(),
+      //   node()->pick_multiple_file(operating_system_window(),
       //                                filetypes,
       //                                function);
       //
@@ -31463,7 +31476,7 @@ __check_refdbg;
       //                        //,       bool save);
       //{
       //
-      //   node()->pick_single_folder(oswindow(),
+      //   node()->pick_single_folder(operating_system_window(),
       //                                function);
       //
       //}
@@ -31578,6 +31591,16 @@ __check_refdbg;
       auto pacmewindowindowing = ::acme::user::interaction::acme_windowing_window();
 
       return pacmewindowindowing;
+
+   }
+
+
+   ::operating_system::window interaction::operating_system_window()
+   {
+
+      auto operatingsystemwindow = ::acme::user::interaction::operating_system_window();
+
+      return operatingsystemwindow;
 
    }
 

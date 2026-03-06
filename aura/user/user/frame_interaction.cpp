@@ -53,7 +53,7 @@ namespace user
    void frame_interaction::create_window()
    {
 
-      //øconstruct(windowing_window());
+      //constructø(windowing_window());
 
       //windowing_window()->create_window();
 
@@ -164,7 +164,7 @@ namespace user
 
           //auto estatus =
 
-         //øconstruct(windowing_window());
+         //constructø(windowing_window());
 
          information() << "interaction::create_host(5)";
 
@@ -185,7 +185,7 @@ namespace user
                  //
                  //#else
 
-                 //auto pusersystem = øallocate ::user::system(uExStyle, uStyle, rectangle, pcreate);
+                 //auto pusersystem = allocateø ::user::system(uExStyle, uStyle, rectangle, pcreate);
 
                  //#endif
 
@@ -489,7 +489,7 @@ namespace user
 
       ::pointer<::aura::application>papp = get_app();
 
-      papp->_001TryCloseApplication();
+      papp->_001PostTryCloseApplication();
 
       if (pmessage != nullptr)
       {
@@ -524,7 +524,7 @@ namespace user
 
 //      ::pointer<::aura::application>papp = get_app();
 //
-//      papp->_001TryCloseApplication();
+//      papp->_001PostTryCloseApplication();
 //
 //      if (pmessage != nullptr)
 //      {
@@ -542,7 +542,7 @@ namespace user
       if(!m_ptaskpool)
       {
          
-         øconstruct_new(m_ptaskpool);
+         construct_newø(m_ptaskpool);
          
       }
 
@@ -763,7 +763,7 @@ namespace user
 
       ///auto estatus = 
       
-      øconstruct(m_pdrawicon);
+      constructø(m_pdrawicon);
 
       //if (!estatus)
       //{
@@ -1172,7 +1172,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = øallocate ::user::system();
+         //auto pusersystem = allocateø ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 

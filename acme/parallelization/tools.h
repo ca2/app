@@ -131,7 +131,7 @@ public:
 
    void prepare(::enum_task_op eop, ::collection::count cIteration = 0);
    virtual void set_ready_to_start();
-   ::e_status wait() override;
+   ::e_status wait(const continue_predicate_t &predicate = {}) override;
    virtual void process();
 
    bool add_procedure(const ::procedure & procedure);
@@ -186,7 +186,7 @@ public:
 
          throw ::exception(todo);
 
-//         ::pointer<predicate_holder_base>pusermessage = øallocate forking_count_predicate < PRED > (pparticle, iOrder, iOrder + iStart, iScan, iCount, pred);
+//         ::pointer<predicate_holder_base>pusermessage = allocateø forking_count_predicate < PRED > (pparticle, iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //         if (!add_predicate(pusermessage))
 //         {

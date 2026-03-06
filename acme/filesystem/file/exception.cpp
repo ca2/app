@@ -212,7 +212,7 @@ namespace file
       ::pointer < ::subparticle > exception::clone()
       {
 
-         auto pexception = øallocate ::file::exception(*this);
+         auto pexception = allocateø ::file::exception(*this);
 
          return pexception;
 

@@ -70,7 +70,7 @@ namespace graphics3d
    void object_model::createVertexBuffers(const ::array_base<Vertex>& vertexes)
    {
 
-      øconstruct(m_pmodelbuffer);
+      constructø(m_pmodelbuffer);
 
       m_pmodelbuffer->static_initialize_vertexes(vertexes);
 
@@ -104,7 +104,7 @@ namespace graphics3d
    void object_model::createIndexBuffers(const ::array_base<uint32_t>& indexes)
    {
 
-      øconstruct(m_pmodelbuffer);
+      constructø(m_pmodelbuffer);
 
       m_pmodelbuffer->static_initialize_indexes(indexes);
 

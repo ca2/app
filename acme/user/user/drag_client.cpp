@@ -59,7 +59,7 @@ namespace user
       if (::is_null(pdrag))
       {
 
-         øconstruct_new(pdrag);
+         construct_newø(pdrag);
 
          pdrag->m_pitem = pitem;
 

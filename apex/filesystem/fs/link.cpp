@@ -42,7 +42,7 @@ namespace fs
 
       //estatus = 
       
-      øconstruct_new(m_plisting);
+      construct_newø(m_plisting);
 
       //if (!estatus)
       //{

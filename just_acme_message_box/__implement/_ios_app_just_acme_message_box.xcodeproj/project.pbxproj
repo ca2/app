@@ -142,7 +142,7 @@
 		9A4752BE2CF5124100ED30AE /* _ios_app_just_acme_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_just_acme_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4752DB2CF5135C00ED30AE /* app_just_acme_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_acme_message_box.xcodeproj; path = ../app_just_acme_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A47537F2CF5174A00ED30AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9A4753832CF517F300ED30AE /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = SOURCE_ROOT; };
+		9A4753832CF517F300ED30AE /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = _matter.zip; sourceTree = SOURCE_ROOT; };
 		9A4753852CF5184A00ED30AE /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = SOURCE_ROOT; };
 		9A4753862CF5184A00ED30AE /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = SOURCE_ROOT; };
 		9A47538C2CF51A0400ED30AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };

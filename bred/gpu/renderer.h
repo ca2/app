@@ -147,6 +147,9 @@ namespace gpu
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
+
+      virtual void on_new_frame();
+
       //virtual void defer_prepare();
 
       //virtual void _prepare();
@@ -230,7 +233,6 @@ namespace gpu
       virtual void endDrawEndDraw();
 
 
-      virtual void do_on_frame(bool bForDrawing, const ::function < void(::gpu::frame*) > & on_frame);
       virtual void frame_prefix();
       virtual void frame_suffix();
 

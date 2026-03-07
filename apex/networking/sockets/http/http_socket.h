@@ -159,6 +159,8 @@ namespace sockets
 
       virtual void Respond();
       
+      virtual void on_websocket_data(const ::scoped_string & scopedstr);
+      
 
    };
 

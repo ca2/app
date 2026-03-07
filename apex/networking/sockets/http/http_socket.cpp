@@ -106,6 +106,13 @@ namespace sockets
    }
 
 
+   void http_socket::on_websocket_data(const ::scoped_string & scopedstr)
+   {
+      
+      
+   }
+
+
    void http_socket::OnRawData(char *buf, memsize len)
    {
       

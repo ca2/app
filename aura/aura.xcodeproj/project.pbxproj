@@ -188,6 +188,9 @@
 		9A5498662A2C00320052BAB6 /* holdee.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5498632A2C00310052BAB6 /* holdee.cpp */; };
 		9A5498672A2C00320052BAB6 /* holdee.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5498642A2C00310052BAB6 /* holdee.h */; };
 		9A5498682A2C00320052BAB6 /* holder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5498652A2C00310052BAB6 /* holder.cpp */; };
+		9A5D250F2F5BE3A600103AC2 /* notification_listener.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D250D2F5BE38300103AC2 /* notification_listener.h */; };
+		9A5D25112F5BE4AC00103AC2 /* notification_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D25102F5BE4A800103AC2 /* notification_listener.cpp */; };
+		9A5D25122F5BE4AC00103AC2 /* notification_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D25102F5BE4A800103AC2 /* notification_listener.cpp */; };
 		9A5ECD4028CCC3940084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
 		9A5ECD4128CCC3940084D354 /* shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5ECD3E28CCC3940084D354 /* shape.h */; };
 		9A5ECD4428CCC39E0084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
@@ -807,6 +810,8 @@
 		9A5498632A2C00310052BAB6 /* holdee.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = holdee.cpp; sourceTree = "<group>"; };
 		9A5498642A2C00310052BAB6 /* holdee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = holdee.h; sourceTree = "<group>"; };
 		9A5498652A2C00310052BAB6 /* holder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = holder.cpp; sourceTree = "<group>"; };
+		9A5D250D2F5BE38300103AC2 /* notification_listener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = notification_listener.h; sourceTree = "<group>"; };
+		9A5D25102F5BE4A800103AC2 /* notification_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = notification_listener.cpp; sourceTree = "<group>"; };
 		9A5ECD3D28CCC3940084D354 /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
 		9A5ECD3E28CCC3940084D354 /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
 		9A6854782432ED410002FE94 /* bitmap_source_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_source_buffer.h; sourceTree = "<group>"; };
@@ -1561,6 +1566,8 @@
 				9A92304D27EACA3B00B5A78D /* main_window.cpp */,
 				9A92302527EACA3B00B5A78D /* message_box.h */,
 				9A922FFC27EACA3A00B5A78D /* message_box.cpp */,
+				9A5D25102F5BE4A800103AC2 /* notification_listener.cpp */,
+				9A5D250D2F5BE38300103AC2 /* notification_listener.h */,
 				9A92302C27EACA3B00B5A78D /* notify_icon.h */,
 				9A92301227EACA3A00B5A78D /* notify_icon.cpp */,
 				9A92302B27EACA3B00B5A78D /* notify_icon_listener.h */,
@@ -1895,6 +1902,7 @@
 				9A750F96282B90B700C4861B /* main_window.h in Headers */,
 				9A2488D22452C4F200F23D28 /* _.h in Headers */,
 				9A979CC228C7F98C0013DC54 /* path_optimization.h in Headers */,
+				9A5D250F2F5BE3A600103AC2 /* notification_listener.h in Headers */,
 				9A979D9228C82B1C0013DC54 /* scroll_state.h in Headers */,
 				9A750F7A282B90B700C4861B /* progress.h in Headers */,
 				9A24892E2452CE7900F23D28 /* framework.h in Headers */,
@@ -2363,6 +2371,7 @@
 				9A750F56282B906600C4861B /* layout_state.cpp in Sources */,
 				9AC88B182B6B4F9C008F1C20 /* interaction_graphics_thread.cpp in Sources */,
 				9A0F53A128E8D5FA00025231 /* scroll_base_x.cpp in Sources */,
+				9A5D25112F5BE4AC00103AC2 /* notification_listener.cpp in Sources */,
 				9A201AD9247733D900A31CBF /* path.cpp in Sources */,
 				9A750FD8282B929E00C4861B /* image.cpp in Sources */,
 				9A201ADA247733D900A31CBF /* pen.cpp in Sources */,
@@ -2551,6 +2560,7 @@
 				9A3764D92409BF0C002D15D3 /* graphics.cpp in Sources */,
 				9A3764B02409BF0C002D15D3 /* bitmap.cpp in Sources */,
 				9A92310B27EACF2100B5A78D /* frame_array.cpp in Sources */,
+				9A5D25122F5BE4AC00103AC2 /* notification_listener.cpp in Sources */,
 				9A2273BC27CF053B0042BAC2 /* _shape.cpp in Sources */,
 				9A92313727EACF2100B5A78D /* load_gif_frame.cpp in Sources */,
 				9A3764D32409BF0C002D15D3 /* path.cpp in Sources */,

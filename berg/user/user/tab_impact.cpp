@@ -64,6 +64,13 @@ namespace user
          application()->m_ptabimpactBase = this;
 
       }
+      
+      if(!application()->m_ptabimpactBerg)
+      {
+         
+         application()->m_ptabimpactBerg = this;
+         
+      }
 
       if (pmessage->previous())
       {

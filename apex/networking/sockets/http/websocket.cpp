@@ -1158,6 +1158,8 @@ namespace sockets
    void websocket::on_websocket_data(const ::scoped_string & scopedstr)
    {
 
+      m_phttpsocket->on_websocket_data(scopedstr);
+      
    }
 
 

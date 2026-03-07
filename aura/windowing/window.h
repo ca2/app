@@ -10,6 +10,7 @@
 #include "apex/windowing/window_base.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
+#include "aura/user/user/notification_listener.h"
 #include "aura/user/user/redraw.h"
 #include "acme/prototype/collection/list.h"
 
@@ -178,7 +179,7 @@ namespace windowing
 
       ::int_rectangle                           m_rectangle;
 
-      ::user::interaction_array                 m_userinteractionaKeyboardLayoutChange;
+      ::pointer_array < ::user::notification_listener >               m_notificationlistenera;
 
 
       window();
@@ -218,7 +219,7 @@ namespace windowing
 
       virtual void on_finished_window_creation();
 
-      virtual void notify_keyboard_layout_change(::user::interaction * puserinteraction);
+      virtual void add_user_notification_listener(::user::notification_listener * pusernotificationlistener);
       virtual void on_keyboard_layout_change(const char * pszKeyboardLayoutId);
 
       virtual void process_messages();

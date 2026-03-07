@@ -999,10 +999,10 @@ namespace windowing
    }
 
 
-void window::notify_keyboard_layout_change(::user::interaction * puserinteraction)
+void window::add_user_notification_listener(::user::notification_listener * pusernotificationlistener)
 {
    
-   m_userinteractionaKeyboardLayoutChange.add_interaction(puserinteraction);
+   m_notificationlistenera.add(pusernotificationlistener);
    
 }
 
@@ -1010,13 +1010,18 @@ void window::notify_keyboard_layout_change(::user::interaction * puserinteractio
 void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 {
    
-   for(auto puserinteraction: m_userinteractionaKeyboardLayoutChange.interactiona())
+   for(auto plistener: m_notificationlistenera)
    {
       
-      if(::is_set(puserinteraction))
+      if(::is_set(plistener))
       {
          
-         puserinteraction->on_keyboard_layout_change(pszKeyboardLayoutId);
+         if(plistener->m_enotificationa.contains(::user::e_notification_keyboard_layout_change))
+         {
+            
+            plistener->on_keyboard_layout_change(pszKeyboardLayoutId);
+            
+         }
          
       }
       

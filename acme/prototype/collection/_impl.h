@@ -148,7 +148,7 @@ inline dispatch_arrayø particle::postø()
       try
       {
 
-         ::procedure_array_base::run();
+         ::procedure_array::run();
 
       }
       catch (const ::cancel_exception<CONTEXT_TYPE> & cancelexception)

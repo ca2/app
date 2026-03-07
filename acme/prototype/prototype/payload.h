@@ -275,14 +275,7 @@ public:
 
 
    template < typename BLOCK_TYPE >
-   payload(const ::raw_block < BLOCK_TYPE > & rawblock) :
-      payload(e_type_new)
-   {
-
-      //m_etype = e_type_new;
-      operator = (rawblock.block());
-
-   }
+   payload(const ::raw_block < BLOCK_TYPE > & rawblock) ;
 
 
    payload(const ::inline_number_string& a);

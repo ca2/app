@@ -1,7 +1,9 @@
 // Created based on ca2 sequence theoric classed by
 //     camilo on 2024-1007 17:40 <3ThomasBorregaardSorensen!!
 #pragma once
-#include "prototype/collection/procedure_array.h"
+
+
+#include "acme/prototype/collection/procedure_array.h"
 
 
 class sequence;

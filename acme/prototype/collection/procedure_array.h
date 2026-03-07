@@ -43,7 +43,7 @@ public:
 
    }
    procedure_array_with_context(procedure_array_base &&procedurea) :
-      procedure_array_base(::transfer(procedurea)), 
+      procedure_array(::transfer(procedurea)), 
       ::array_particle<::procedure_array_base>(::transfer(procedurea))
    {
 

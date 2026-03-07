@@ -729,20 +729,20 @@ namespace sockets
    }
 
 
-   CLASS_DECL_APEX string http_method_string(e_http_method emethod)
+   CLASS_DECL_APEX string http_method_string(enum_http_method emethod)
    {
 
       switch (emethod)
       {
-      case http_method_get:
+      case e_http_method_get:
 
          return "GET";
 
-      case http_method_post:
+      case e_http_method_post:
 
          return "POST";
 
-      case http_method_put:
+      case e_http_method_put:
 
          return "PUT";
 
@@ -755,7 +755,7 @@ namespace sockets
    }
 
 
-   CLASS_DECL_APEX e_http_method string_http_method(const ::scoped_string & scopedstr)
+   CLASS_DECL_APEX enum_http_method string_http_method(const ::scoped_string & scopedstr)
    {
 
       string strMethod(scopedstr);
@@ -765,25 +765,25 @@ namespace sockets
       if (strMethod == "get")
       {
 
-         return http_method_get;
+         return e_http_method_get;
 
       }
       else if (strMethod == "post")
       {
 
-         return http_method_post;
+         return e_http_method_post;
 
       }
       else if (strMethod == "put")
       {
 
-         return http_method_put;
+         return e_http_method_put;
 
       }
       else
       {
 
-         return http_method_get;
+         return e_http_method_get;
 
       }
 

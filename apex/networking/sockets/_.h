@@ -19,6 +19,8 @@ namespace sockets
 
    using socket_pointer = ::pointer<base_socket>;
 
+   class websocket;
+
    
    //namespace sockets
    //{
@@ -49,7 +51,7 @@ namespace httpd
 
 }
 
-//#include "ssl/_.h"
+#include "apex/networking/sockets/http/_.h"
 
 
 

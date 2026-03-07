@@ -22,7 +22,7 @@ namespace sockets
       //http_client_socket(h)
    {
 
-      m_emethod = http_method_post;
+      m_emethod = e_http_method_post;
 
    }
 
@@ -47,7 +47,7 @@ namespace sockets
 
       initialize_http_client_socket(url);
 
-      m_emethod = http_method_post;
+      m_emethod = e_http_method_post;
 
    }
 

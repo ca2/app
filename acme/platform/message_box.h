@@ -130,18 +130,18 @@ public:
    ::string dialog_title() const override;
 
 
-   virtual void display_dialog();
-   virtual void display(::dialog * pdialog);
+   void display_dialog() override;
+   void display(::dialog * pdialog) override;
 
 
-   virtual void set_dialog_result(const ::payload & payloadResult);
+   void set_dialog_result(const ::payload & payloadResult) override;
 
 
    class ::time dialog_time_remaining_from_timeout() const override;
    class ::time dialog_timeout() const override;
 
 
-   virtual message_box_payload * get_message_box_payload();
+   message_box_payload * get_message_box_payload() override;
 
 
 

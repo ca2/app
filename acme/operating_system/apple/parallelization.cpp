@@ -107,7 +107,7 @@ namespace platform
 {
 
 
-   void node::_user_post(const ::procedure & procedure)
+   void node::user_post(const ::procedure & procedure)
    {
 
       main_asynchronous(procedure);

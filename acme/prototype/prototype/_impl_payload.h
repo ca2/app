@@ -97,6 +97,18 @@ inline class payload & payload::operator = (const inline_number_string & inlinen
 
 
 
+template < typename BLOCK_TYPE >
+payload::payload(const ::raw_block < BLOCK_TYPE > & rawblock) :
+   payload(e_type_new)
+{
+
+   //m_etype = e_type_new;
+   operator = (rawblock.block());
+
+}
+
+
+
 
 
 //inline void payload::set_string(const ::scoped_string & scopedstr, character_count size)

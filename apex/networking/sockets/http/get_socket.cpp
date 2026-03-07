@@ -47,7 +47,7 @@ namespace sockets
 
       initialize_http_client_socket(url);
       
-      m_emethod = http_method_get;
+      m_emethod = e_http_method_get;
 
 
    }
@@ -77,7 +77,7 @@ namespace sockets
 
       initialize_http_client_socket(strUrl);
 
-      m_emethod = http_method_get;
+      m_emethod = e_http_method_get;
 
    }
 

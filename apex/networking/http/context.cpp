@@ -1942,7 +1942,7 @@ namespace http
 
          dynamic_cast <::sockets::http_put_socket *> (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
 
-         psocket->m_emethod = ::sockets::http_method_put;
+         psocket->m_emethod = ::sockets::e_http_method_put;
 
       }
       else if (set["post"].property_set_reference().has_property() || set["http_method"] == "POST")
@@ -1967,7 +1967,7 @@ namespace http
 
          }
 
-         psocket->m_emethod = ::sockets::http_method_post;
+         psocket->m_emethod = ::sockets::e_http_method_post;
 
       }
       else

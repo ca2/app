@@ -202,6 +202,12 @@
 		9A5407762C299C55004C70B3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5407732C299C54004C70B3 /* _.h */; };
 		9A5407772C299C55004C70B3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5407732C299C54004C70B3 /* _.h */; };
 		9A5407782C299C55004C70B3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5407732C299C54004C70B3 /* _.h */; };
+		9A5D24F72F5BB28600103AC2 /* websocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D24F52F5BB28600103AC2 /* websocket.h */; };
+		9A5D24F82F5BB28600103AC2 /* websocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D24F62F5BB28600103AC2 /* websocket.cpp */; };
+		9A5D24F92F5BB28600103AC2 /* websocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D24F52F5BB28600103AC2 /* websocket.h */; };
+		9A5D24FA2F5BB28600103AC2 /* websocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D24F62F5BB28600103AC2 /* websocket.cpp */; };
+		9A5D24FB2F5BB28600103AC2 /* websocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D24F52F5BB28600103AC2 /* websocket.h */; };
+		9A5D24FC2F5BB28600103AC2 /* websocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D24F62F5BB28600103AC2 /* websocket.cpp */; };
 		9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A615C2928B1B7A300377F68 /* libacme.dylib */; };
 		9A68BB3C2511444D008DABD2 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
 		9A68BB3D2511444D008DABD2 /* stringhelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B40E2511444A008DABD2 /* stringhelper.cpp */; };
@@ -1280,6 +1286,8 @@
 		9A5242FF2CD48FE6006ED868 /* proxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = proxy.h; sourceTree = "<group>"; };
 		9A5243002CD48FE6006ED868 /* proxy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = proxy.cpp; sourceTree = "<group>"; };
 		9A5407732C299C54004C70B3 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A5D24F52F5BB28600103AC2 /* websocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = websocket.h; sourceTree = "<group>"; };
+		9A5D24F62F5BB28600103AC2 /* websocket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = websocket.cpp; sourceTree = "<group>"; };
 		9A615C2228B1B7A300377F68 /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A68A446251143F8008DABD2 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68B40D2511444A008DABD2 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
@@ -1674,23 +1682,23 @@
 				9A97BF9A28C83B0000A43004 /* basic */,
 				9A97BFB228C83B0000A43004 /* http */,
 				9ABBFE5D2B3FE1B70036DF8C /* httpd */,
-				9A239CFD26CDF9AE00F98012 /* http_batch_buffer.cpp */,
-				9A239D6826CDF9AE00F98012 /* link_in_socket.cpp */,
-				9A239CF926CDF9AE00F98012 /* link_out_socket.cpp */,
-				9A239CC126CDF9AE00F98012 /* transfer_socket.cpp */,
-				9A239CC226CDF9AE00F98012 /* websocket_client.cpp */,
 				9A239D7226CDF9AE00F98012 /* _.h */,
 				9A239CF826CDF9AE00F98012 /* _sockets.h */,
 				9A239CFB26CDF9AE00F98012 /* http_batch_buffer.h */,
+				9A239CFD26CDF9AE00F98012 /* http_batch_buffer.cpp */,
 				9A239D0026CDF9AE00F98012 /* http_buffer.h */,
+				9A239D6826CDF9AE00F98012 /* link_in_socket.cpp */,
 				9A239CFA26CDF9AE00F98012 /* link_in_socket.h */,
 				9A239CFF26CDF9AE00F98012 /* link_out_socket.h */,
+				9A239CF926CDF9AE00F98012 /* link_out_socket.cpp */,
 				9A239D6926CDF9AE00F98012 /* logger.h */,
 				9A97C06F28C83B9400A43004 /* socket_id_list.h */,
-				9A97C06D28C83B9300A43004 /* sockets.cpp */,
 				9A97C06E28C83B9300A43004 /* sockets.h */,
+				9A97C06D28C83B9300A43004 /* sockets.cpp */,
 				9A239CC426CDF9AE00F98012 /* transfer_socket.h */,
+				9A239CC126CDF9AE00F98012 /* transfer_socket.cpp */,
 				9A239CFE26CDF9AE00F98012 /* websocket_client.h */,
+				9A239CC226CDF9AE00F98012 /* websocket_client.cpp */,
 			);
 			path = sockets;
 			sourceTree = "<group>";
@@ -2243,6 +2251,8 @@
 				9A97BFB328C83B0000A43004 /* post_socket.cpp */,
 				9A97BFC128C83B0100A43004 /* put_socket.h */,
 				9A97BFB728C83B0000A43004 /* put_socket.cpp */,
+				9A5D24F52F5BB28600103AC2 /* websocket.h */,
+				9A5D24F62F5BB28600103AC2 /* websocket.cpp */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -2486,6 +2496,7 @@
 				9A51A5582C3142E300B52EDF /* folder_sync.h in Headers */,
 				9A239E6C26CDF9AF00F98012 /* transaction.h in Headers */,
 				9A97C04A28C83B0400A43004 /* post_socket.h in Headers */,
+				9A5D24F72F5BB28600103AC2 /* websocket.h in Headers */,
 				9A68BCD92511444E008DABD2 /* shell_launcher.h in Headers */,
 				9A99795F2D8460FE00A1FC11 /* raw_folder.h in Headers */,
 				9A9979602D8460FE00A1FC11 /* raw_folder_protocol.h in Headers */,
@@ -2803,6 +2814,7 @@
 				9AC97F802A71B39E00B1BCF3 /* _.h in Headers */,
 				9AC97F812A71B39E00B1BCF3 /* manager.h in Headers */,
 				9AC97F832A71B39E00B1BCF3 /* machine_event_central.h in Headers */,
+				9A5D24FB2F5BB28600103AC2 /* websocket.h in Headers */,
 				9AC97F842A71B39E00B1BCF3 /* _.h in Headers */,
 				9AC97F862A71B39E00B1BCF3 /* data.h in Headers */,
 				9AC97F872A71B39E00B1BCF3 /* service_status.h in Headers */,
@@ -3035,6 +3047,7 @@
 				9AD6946C251A754800C0EBD7 /* remote_native_file.h in Headers */,
 				9AD6946F251A754800C0EBD7 /* global.h in Headers */,
 				9A787D88264C960F003DF8A0 /* delay_thread.h in Headers */,
+				9A5D24F92F5BB28600103AC2 /* websocket.h in Headers */,
 				9AD6947B251A754800C0EBD7 /* android.h in Headers */,
 				9AD6947F251A754800C0EBD7 /* console.h in Headers */,
 				9A28988C2A652A4E00F46A84 /* message.h in Headers */,
@@ -3203,6 +3216,7 @@
 				9A787D73264C960F003DF8A0 /* thread.cpp in Sources */,
 				9A7963492ACD1BD20056777F /* input.cpp in Sources */,
 				9A226D0127CE8FAB0042BAC2 /* apex.cpp in Sources */,
+				9A5D24F82F5BB28600103AC2 /* websocket.cpp in Sources */,
 				9A68BB4A2511444D008DABD2 /* event_change.cpp in Sources */,
 				9A787D8D264C960F003DF8A0 /* _.cpp in Sources */,
 				9A97C05228C83B0400A43004 /* client_socket.cpp in Sources */,
@@ -3368,6 +3382,7 @@
 				9AC97FEC2A71B39E00B1BCF3 /* thread.cpp in Sources */,
 				9A79634A2ACD1BD50056777F /* input.cpp in Sources */,
 				9AC97FED2A71B39E00B1BCF3 /* apex.cpp in Sources */,
+				9A5D24FC2F5BB28600103AC2 /* websocket.cpp in Sources */,
 				9AC97FEE2A71B39E00B1BCF3 /* event_change.cpp in Sources */,
 				9AC97FEF2A71B39E00B1BCF3 /* _.cpp in Sources */,
 				9A523E422CD3C377006ED868 /* window_base.cpp in Sources */,
@@ -3591,6 +3606,7 @@
 				9AD69527251A754800C0EBD7 /* client.cpp in Sources */,
 				9A787DE5264CA98C003DF8A0 /* node.cpp in Sources */,
 				9A751012282B942D00C4861B /* transfer_socket.cpp in Sources */,
+				9A5D24FA2F5BB28600103AC2 /* websocket.cpp in Sources */,
 				9AC88B232B6B50D9008F1C20 /* incoming_socket_thread.cpp in Sources */,
 				9A40BDC92B6B708B0077053E /* input.cpp in Sources */,
 				9A0F53B528E8D8A900025231 /* debug_socket.cpp in Sources */,

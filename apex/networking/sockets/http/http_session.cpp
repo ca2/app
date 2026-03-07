@@ -64,7 +64,7 @@ namespace sockets
    }
 
 
-   void http_session::request(e_http_method emethod, const ::scoped_string & scopedstrRequest)
+   void http_session::request(enum_http_method emethod, const ::scoped_string & scopedstrRequest)
    {
 
       m_emethod                  = emethod;
@@ -95,19 +95,19 @@ namespace sockets
 
       switch (m_emethod)
       {
-      case http_method_get:
+      case e_http_method_get:
 
          http_get_socket::http_request_step();
 
          break;
 
-      case http_method_post:
+      case e_http_method_post:
 
          http_post_socket::http_request_step();
 
          break;
 
-      case http_method_put:
+      case e_http_method_put:
 
          http_put_socket::http_request_step();
 

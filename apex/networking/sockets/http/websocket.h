@@ -1,14 +1,14 @@
 #pragma once
 
 
-#include "apex/networking/sockets/http/client_socket.h"
+#include "apex/networking/sockets/http/http_socket.h"
 
 
 namespace sockets
 {
 
 
-   class http_base_socket;
+   class http_socket;
 
 
    class CLASS_DECL_APEX websocket :
@@ -53,7 +53,7 @@ namespace sockets
       ::pointer < ::mutex >       m_pmutexWebsocketWrite;
       string            m_strOrigin;
       
-      ::pointer < ::sockets::http_base_socket > m_phttpbasesocket;
+      ::pointer < ::sockets::http_socket > m_phttpsocket;
 
       websocket();
       
@@ -61,7 +61,7 @@ namespace sockets
       ~websocket() override;
 
 
-      virtual void initialize_websocket(::sockets::http_base_socket * phttpbasesocket);
+      virtual void initialize_websocket(::sockets::http_socket * phttpsocket);
 
       //virtual void InitSSLClient() override;
 

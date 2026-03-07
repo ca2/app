@@ -8,8 +8,11 @@ namespace sockets
 {
 
 
+   class http_base_socket;
+
+
    class CLASS_DECL_APEX websocket :
-      virtual public http_client_socket
+      virtual public ::particle
    {
    public:
 
@@ -49,37 +52,37 @@ namespace sockets
       int         m_iLastPos;
       ::pointer < ::mutex >       m_pmutexWebsocketWrite;
       string            m_strOrigin;
+      
+      ::pointer < ::sockets::http_base_socket > m_phttpbasesocket;
 
-
-      websocket_client();
+      websocket();
       
       //websocket_client(const ::scoped_string & scopedstrHost, ::networking::port_t port, const string & url);
-      ~websocket_client() override;
+      ~websocket() override;
 
 
-      virtual void initialize_websocket_client(const string & url, const ::scoped_string & scopedstrProtocol);
+      virtual void initialize_websocket(::sockets::http_base_socket * phttpbasesocket);
 
-      virtual void InitSSLClient() override;
+      //virtual void InitSSLClient() override;
 
-      bool http_request_step() override;
+      bool http_request_step();
 
-      void OnLine(const ::scoped_string & scopedstrLine) override;
+      //void OnLine(const ::scoped_string & scopedstrLine);
 
-      void OnHeaderComplete() override;
+      void OnHeaderComplete();
 
-      long cert_common_name_check(const ::string & common_name) override;
+      long cert_common_name_check(const ::string & common_name);
 
-      virtual void OnDataComplete() override;
+      virtual void OnDataComplete();
 
       
-      using http_client_socket::write;
-      virtual void write(const void * p, ::memsize s) override;
+      virtual void write(const void * p, ::memsize s);
 
 
       virtual bool send_network_payload(::payload varNetworkPayload);
       virtual bool send_memory(memory & memory);
 
-      virtual void OnRawData(char *buf, memsize len) override;
+      virtual void OnRawData(char *buf, memsize len);
 
       virtual void on_websocket_data(unsigned char * pdata, int len);
       virtual void on_websocket_data(const ::scoped_string & scopedstr);

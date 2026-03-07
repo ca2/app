@@ -1094,6 +1094,47 @@ namespace sockets
    }
 
 
+   void websocket::defer_negotiate_incoming_request()
+   {
+   
+      
+                     string strKey = m_phttpsocket->inheader("sec-websocket-key");//
+                     //string strKey = "dGhlIHNhbXBsZSBub25jZQ==";
+                     strKey.trim();
+                     strKey += "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
+                     memory mem;
+                     mem.assign(strKey);
+                     memory memSha1;
+      
+                     auto psystem = system();
+      
+                     auto pcrypto = crypto();
+      
+                     pcrypto->sha1(memSha1, mem);
+      
+                     auto pbase64 = psystem->base64();
+      
+                     strKey = pbase64->encode(memSha1);
+                     m_phttpsocket->outheader("Sec-WebSocket-Accept") = strKey;
+                     m_phttpsocket->outheader("Connection") = "Upgrade";
+                     m_phttpsocket->outheader("Upgrade") = "websocket";
+                     m_phttpsocket->outattr("http_status_code") = 101;
+                     m_phttpsocket->outattr("http_version") = "HTTP/1.1";
+                     m_phttpsocket->outattr("http_status") = "Switching Protocols";
+                     m_phttpsocket->Respond();
+                     memory m;
+                     string strMessage = "yes_account_com";
+                     m.set_size(strMessage.length() + 2);
+                     m.data()[0] = 0x81;
+                     m.data()[1] = (unsigned char) (strMessage.length());
+                     ::memory_copy(&m.data()[2], strMessage.c_str(), strMessage.length());
+                     write(m.data(), m.size());
+                     //return;
+
+      
+   }
+
+
    void websocket::on_websocket_data(unsigned char * pdata, int len)
    {
 

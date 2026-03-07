@@ -1034,6 +1034,15 @@ namespace sockets
       
    }
 
+
+   void http_socket::Respond()
+   {
+   
+      throw ::interface_only();
+      
+   }
+
+
    bool http_socket::http_request_step()
    {
       

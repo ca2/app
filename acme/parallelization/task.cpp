@@ -4346,3 +4346,12 @@ CLASS_DECL_ACME bool is_main_thread()
 
 
 
+
+
+
+bool cpp_task_get_run()
+{
+   
+   return ::task_get_run();
+   
+}

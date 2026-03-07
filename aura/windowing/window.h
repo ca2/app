@@ -178,6 +178,7 @@ namespace windowing
 
       ::int_rectangle                           m_rectangle;
 
+      ::user::interaction_array                 m_userinteractionaKeyboardLayoutChange;
 
 
       window();
@@ -217,6 +218,8 @@ namespace windowing
 
       virtual void on_finished_window_creation();
 
+      virtual void notify_keyboard_layout_change(::user::interaction * puserinteraction);
+      virtual void on_keyboard_layout_change(const char * pszKeyboardLayoutId);
 
       virtual void process_messages();
 

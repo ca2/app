@@ -1085,7 +1085,7 @@ namespace sockets
          
          websocket().http_request_step();
 
-         if (websocket().m_bWebSocket)
+         if (websocket().m_bWebSocket || websocket().m_bRequestSent)
          {
 
             return true;

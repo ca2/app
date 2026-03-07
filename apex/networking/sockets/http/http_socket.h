@@ -11,6 +11,19 @@
 namespace sockets
 {
 
+   class CLASS_DECL_APEX http_callback :
+      virtual public ::particle
+   {
+   public:
+
+      
+      http_callback();
+      ~http_callback() override;
+
+      void on_websocket_text(const ::scoped_string & scopedstrText);
+      void on_websocket_data(const ::scoped_string& scopedstrText);
+
+   };
 
    /** \defgroup http HTTP Sockets */
    /** HTTP request/response axis class.

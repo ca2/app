@@ -645,10 +645,13 @@ namespace sockets
 
          m_bRequestSent = true;
          m_phttpsocket->SendRequest();
+         return true;
+
       }
       else
       {
-         //if (m_memPong.size() > 0 && (m_timeLastSpontaneousPong.elapsed()) > 10000)
+
+         //if (m_memPong.size() > 0 && m_timeLastSpontaneousPong.elapsed() > 10_s)
          //{
          //
          //   write(m_memPong.data(), m_memPong.size());
@@ -663,7 +666,7 @@ namespace sockets
 
       }
 
-      return ::success;
+      return false;
 
    }
 

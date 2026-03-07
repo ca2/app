@@ -157,6 +157,8 @@ namespace sockets
       
       virtual bool http_request_step();
 
+      virtual void Respond();
+      
 
    };
 

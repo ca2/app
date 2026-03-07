@@ -65,7 +65,10 @@ namespace sockets
 
       //virtual void InitSSLClient() override;
 
-      bool http_request_step();
+      virtual bool http_request_step();
+      
+      
+      virtual void defer_negotiate_incoming_request();
 
       //void OnLine(const ::scoped_string & scopedstrLine);
 

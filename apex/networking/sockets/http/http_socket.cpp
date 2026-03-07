@@ -95,7 +95,7 @@ namespace sockets
             
             construct_newø(m_pwebsocket);
             
-            m_pwebsocket->initialize(m_pwebsocket);
+            m_pwebsocket->initialize_websocket(this);
             
          }
          
@@ -1033,6 +1033,15 @@ namespace sockets
       m_bWebSocketEnabled = true;
       
    }
+
+
+   void http_socket::Respond()
+   {
+   
+      throw ::interface_only();
+      
+   }
+
 
    bool http_socket::http_request_step()
    {

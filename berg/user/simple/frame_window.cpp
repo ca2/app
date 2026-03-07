@@ -207,24 +207,23 @@ void simple_frame_window::enable_default_notification_icon(bool bEnableDefaultNo
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu(::collection::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu(::application_menu *pmenu)
 {
 
-   on_update_notify_icon_menu_header(iNotifyIconItem);
+   on_update_notify_icon_menu_header(pmenu);
 
-   on_update_notify_icon_menu_top(iNotifyIconItem);
+   on_update_notify_icon_menu_top(pmenu);
 
-   on_update_notify_icon_menu_main(iNotifyIconItem);
+   on_update_notify_icon_menu_main(pmenu);
 
-   on_update_notify_icon_menu_bottom(iNotifyIconItem);
+   on_update_notify_icon_menu_bottom(pmenu);
 
-   on_update_notify_icon_menu_footer(iNotifyIconItem);
-
+   on_update_notify_icon_menu_footer(pmenu);
 
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_header(::collection::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_header(::application_menu *pmenu)
 {
 
    auto papp = application();
@@ -233,9 +232,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 
    auto strAppTitle = papp->application_title();
 
-   auto pmenu = m_pnotifyicon->menu();
-
-   pmenu->stock_item_at(iNotifyIconItem, strAppTitle, "notify_icon_topic");
+   pmenu->insert_stock_item(strAppTitle, "notify_icon_topic");
 
    if (papp->application_menu()->has_element())
    {
@@ -250,7 +247,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 
             auto ppopupApp = papp->application_menu()->first();
 
-            pmenu->separator_at(iNotifyIconItem);
+            pmenu->insert_separator();
             
             for (::collection::index iIndexPopup = 0; iIndexPopup < ppopupApp->count(); iIndexPopup++)
             {
@@ -288,11 +285,11 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 
                }
 
-               pmenu->insert_at(iNotifyIconItem++, pitem);
+               pmenu->insert_at(pmenu->m_iCurrentLayoutItemIndex++, pitem);
 
             }
 
-            pmenu->separator_at(iNotifyIconItem);
+            pmenu->insert_separator();
 
          }
 
@@ -311,7 +308,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 
          auto papplicationmenu = papp->application_menu()->element_at(iIndexSource);
 
-         pmenu->insert_at(iNotifyIconItem++, papplicationmenu);
+         pmenu->insert_at(pmenu->m_iCurrentLayoutItemIndex++, papplicationmenu);
 
       }
 
@@ -325,7 +322,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::collection::index 
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_top(::collection::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_top(::application_menu*pmenu)
 {
 
    //auto papp = auraapplication();
@@ -346,7 +343,7 @@ void simple_frame_window::on_update_notify_icon_menu_top(::collection::index & i
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_main(::collection::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_main(::application_menu * pmenu)
 {
 
 
@@ -354,7 +351,7 @@ void simple_frame_window::on_update_notify_icon_menu_main(::collection::index & 
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_bottom(::collection::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_bottom(::application_menu * pmenu)
 {
 
    if (m_pframe != nullptr
@@ -374,13 +371,13 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::collection::index 
 
          {
 
-            auto pmenu = m_pnotifyicon->menu();
+            //auto pmenu = m_pnotifyicon->menu();
 
-            auto ppopupView = pmenu->popup_at(iNotifyIconItem, "View");
+            auto ppopupView = pmenu->insert_popup("View");
 
             //ppopupView->add(pmenuView);
 
-            ppopupView->item("Transparent Frame", "transparent_frame", "", "");
+            ppopupView->add_item("Transparent Frame", "transparent_frame", "", "");
 
          }
 
@@ -394,13 +391,13 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::collection::index 
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_footer(::collection::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_footer(::application_menu * pmenu)
 {
 
-   m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
+   pmenu->insert_separator();
 
    //m_pnotifyicon->notify_icon_insert_item(iNotifyIconItem, _("Exit"), "app_exit");
-   m_pnotifyicon->menu()->stock_item_at(iNotifyIconItem, "Exit", "try_close_application");
+   pmenu->insert_stock_item("Exit", "try_close_application");
 
 }
 
@@ -1217,9 +1214,11 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                              //m_pnotifyicon->m_puserinteraction = this;
 
-                             ::collection::index iNotifyIconItem = 0;
+                             auto pmenu = m_pnotifyicon->menu();
 
-                             on_update_notify_icon_menu(iNotifyIconItem);
+                             pmenu->m_iCurrentLayoutItemIndex = 0;
+
+                             on_update_notify_icon_menu(pmenu);
 
                              post_message(::user::e_message_update_notify_icon);
 
@@ -3180,7 +3179,7 @@ void simple_frame_window::defer_create_notification_icon()
 
             //auto estatus = 
 
-            øconstruct(m_piconNotify);
+            constructø(m_piconNotify);
 
             if(m_piconNotify)
             {
@@ -3665,7 +3664,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
          //auto puser = user();
          
          
-         auto ptrackpopup  = øallocate  ::menu::track_popup (
+         auto ptrackpopup  = allocateø  ::menu::track_popup (
                                                            pmenu,
                                                            this,
                                                            m_pnotifyicon,

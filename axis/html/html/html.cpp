@@ -42,8 +42,8 @@ namespace html
 
       //}
 
-      //øconstruct_new(this, m_pentitysolver = ___new LiteHTMLEntityResolver(pparticle);
-      øconstruct_new(m_pentitysolver);
+      //construct_newø(this, m_pentitysolver = ___new LiteHTMLEntityResolver(pparticle);
+      construct_newø(m_pentitysolver);
 
       m_clrInvalid = color::white;
       m_percentMax = USHRT_MAX;
@@ -845,7 +845,7 @@ namespace axis
       //auto estatus =
          
          
-         øconstruct_new(m_phtml);
+         construct_newø(m_phtml);
 
       //if (!estatus)
       //{

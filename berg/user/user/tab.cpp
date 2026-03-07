@@ -228,7 +228,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanea.add_new();
 
-      øconstruct_new(ppane);
+      construct_newø(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -275,7 +275,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanea.add_new();
 
-      øconstruct_new(ppane);
+      construct_newø(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -1252,7 +1252,7 @@ namespace user
       if(!should_draw())
       {
        
-         auto pitemNone = øallocate ::item(e_element_none);
+         auto pitemNone = allocateø ::item(e_element_none);
 
          return pitemNone;
          
@@ -1337,7 +1337,7 @@ namespace user
                         if (rectangleText.contains(point))
                         {
 
-                           return øallocate ::item((enum_element)((int)e_element_split + iTitle), iIndex);
+                           return allocateø ::item((enum_element)((int)e_element_split + iTitle), iIndex);
 
                         }
 
@@ -1378,7 +1378,7 @@ namespace user
                   user_item(ppane)->m_rectangle2 = rectangle;
 
                   return ppane;
-                  //return øallocate ::item(e_element_tab, iIndex);
+                  //return allocateø ::item(e_element_tab, iIndex);
 
                }
 
@@ -1388,7 +1388,7 @@ namespace user
 
       }
 
-      auto pitemNone = øallocate ::item(e_element_none);
+      auto pitemNone = allocateø ::item(e_element_none);
 
       return pitemNone;
 
@@ -1439,7 +1439,7 @@ namespace user
          if(!m_pitemTabFarScroll)
          {
             
-            m_pitemTabFarScroll = øallocate ::item(::e_element_tab_far_scroll, -1);
+            m_pitemTabFarScroll = allocateø ::item(::e_element_tab_far_scroll, -1);
             
             enable_drag(m_pitemTabFarScroll, ::user::e_zorder_front);
             
@@ -1452,7 +1452,7 @@ namespace user
          if(!m_pitemTabNearScroll)
          {
             
-            m_pitemTabNearScroll = øallocate ::item(::e_element_tab_near_scroll, -1);
+            m_pitemTabNearScroll = allocateø ::item(::e_element_tab_near_scroll, -1);
             
             enable_drag(m_pitemTabNearScroll, ::user::e_zorder_front);
             
@@ -1581,7 +1581,7 @@ namespace user
 
       set_default_mouse_cursor(pcursor);
 
-      øconstruct_new(get_data()->m_pimagelist);
+      construct_newø(get_data()->m_pimagelist);
 
       get_data()->m_pimagelist->create(16, 16, 0, 0, 16);
 

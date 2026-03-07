@@ -275,24 +275,10 @@ public:
 
 
    template < typename BLOCK_TYPE >
-   payload(const ::raw_block < BLOCK_TYPE > & rawblock) :
-      payload(e_type_new)
-   {
-
-      //m_etype = e_type_new;
-      operator = (rawblock.block());
-
-   }
+   payload(const ::raw_block < BLOCK_TYPE > & rawblock) ;
 
 
-   payload(const ::inline_number_string & a) :
-      payload(e_type_new)
-   {
-      
-      //m_etype = e_type_new;
-      operator = (a);
-
-   }
+   payload(const ::inline_number_string& a);
 
 
    //   template < prototype_character CHARACTER2, character_count sizeMaximumLength >
@@ -533,12 +519,12 @@ public:
    ::atom as_atom(const ::atom & idDefault) const;
 
    ::memory as_memory() const;
-   ::string_array as_string_array() const;
-   ::int_array as_int_array() const;
-   ::long_long_array as_long_long_array() const;
-   ::float_array as_float_array() const;
-   ::double_array as_double_array() const;
-   ::payload_array as_payload_array()  const;
+   ::string_array_base as_string_array() const;
+   ::int_array_base as_int_array() const;
+   ::long_long_array_base as_long_long_array() const;
+   ::float_array_base as_float_array() const;
+   ::double_array_base as_double_array() const;
+   ::payload_array_base as_payload_array()  const;
    ::property_set as_property_set() const;
    class ::time as_time() const;
    //::property as_property() const;
@@ -1163,7 +1149,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & operator = (const ::atom & atom);
    payload & operator = (::atom * pid);
    template < prototype_enum ENUM >
-   payload & operator = (ENUM e) { this->operator = ((const ::atom &) e); return *this; }
+   payload & operator = (ENUM e);
    //payload & operator = (const ::second & second);
    //payload & operator = (class ::second * ptime);
    //payload & operator = (const class time & time);
@@ -1251,12 +1237,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    }
 
    template < character_count n >
-   payload & operator = (const char(&cha)[n])
-   {
-
-      return this->operator = (::string(cha));
-
-   }
+   payload & operator = (const char(&cha)[n]);
 
 
    //template < prototype_subparticle T >
@@ -1274,7 +1255,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
       if (!p)
       {
 
-         p = øallocate T();
+         p = allocateø T();
 
          operator =(p);
 

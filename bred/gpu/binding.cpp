@@ -53,7 +53,7 @@ namespace gpu
       if (!pbinding)
       {
 
-         øconstruct(pbinding);
+         constructø(pbinding);
 
          pbinding->m_bSet = true;
          pbinding->m_iSlot = iSlot;

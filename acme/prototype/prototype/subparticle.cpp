@@ -280,14 +280,14 @@ void subparticle::call()
 
    }
    
-   if(has_flag(e_flag_automatic_result_just_after_running))
-   {
+   //if(has_flag(e_flag_automatic_result_just_after_running))
+   //{
 
-      on_sequence();
-      
-   }
+   //   on_sequence();
+   //   
+   //}
 
-   //m_eflagElement -= e_flag_running;
+   ////m_eflagElement -= e_flag_running;
 
 }
 
@@ -348,31 +348,31 @@ void subparticle::destroy_os_data()
 }
 
 
-void subparticle::on_sequence()
-{
- 
-   if(::is_null(m_psequence))
-   {
-      
-      // nothing to do sequence for?
-      
-      return;
-      
-      //throw ::exception(error_wrong_state);
-      
-   }
-   
-   m_psequence->on_subparticle_sequence(this);
-   
-}
+//void subparticle::on_sequence()
+//{
+// 
+//   if(::is_null(m_psequence))
+//   {
+//      
+//      // nothing to do sequence for?
+//      
+//      return;
+//      
+//      //throw ::exception(error_wrong_state);
+//      
+//   }
+//   
+//   m_psequence->on_subparticle_sequence(this);
+//   
+//}
 
-
-bool subparticle::should_create_sequence_on_synchronicity()
-{
-
-   return has_flag(e_flag_should_create_sequence_on_synchronicity);
-
-}
+//
+// bool subparticle::should_create_sequence_on_synchronicity()
+// {
+//
+//    return has_flag(e_flag_should_create_sequence_on_synchronicity);
+//
+// }
 
 
 void subparticle::delete_this()
@@ -616,9 +616,59 @@ void subparticle::_wait()
 }
 
 
-::e_status subparticle::wait(const class time& timeWait)
+::e_status subparticle::wait(const continue_predicate_t & predicate)
 {
 
+   auto ptask = ::get_task();
+
+   while (true)
+   {
+
+      if (::is_set(ptask))
+      {
+
+         ::task_iteration();
+
+      }
+
+      auto waitNow = 100_ms;
+
+      bool bOk = _wait(waitNow);
+
+      if (bOk)
+      {
+
+         return ::success;
+
+      }
+
+      if (::is_set(ptask))
+      {
+
+         if (!ptask->task_get_run())
+         {
+
+            return error_discontinued;
+
+         }
+
+      }
+
+      if (!predicate())
+      {
+
+         return error_discontinued;
+
+      }
+
+   }
+
+}
+
+
+::e_status subparticle::wait(const class time& timeWait)
+{
+   
    if (timeWait < 200_ms)
    {
 
@@ -765,10 +815,6 @@ void subparticle::exit_wait()
 
 
 }
-
-
-
-
 
 
 bool subparticle::_wait(const class time& timeWait)

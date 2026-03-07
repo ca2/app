@@ -68,9 +68,9 @@ namespace networking_bsd
 
       m_psslinit = øcreate_new<::networking_bsd::SSLInitializer>();
 
-      //estatus = øconstruct_new(m_pnet);
+      //estatus = construct_newø(m_pnet);
 
-      øconstruct_new(m_pnet);
+      construct_newø(m_pnet);
 
       if (!m_pnet)
       {
@@ -102,7 +102,7 @@ namespace networking_bsd
 //      {
 //
 //#ifdef WINDOWS
-//         øconstruct(m_pportforward);
+//         constructø(m_pportforward);
 //#endif
 //
 //      }
@@ -267,7 +267,7 @@ namespace networking_bsd
    ::pointer<::networking::address>networking_bsd::create_address(const ::scoped_string & scopedstrHostname)
    {
 
-      return øallocate address(strHostname);
+      return allocateø address(strHostname);
 
    }
 

@@ -139,7 +139,7 @@ namespace gpu
       if (!pbindingset)
       {
 
-         øconstruct(pbindingset);
+         constructø(pbindingset);
 
          auto & pbindingslotset = binding_slot_set_array()->ø(iSet);
 
@@ -225,7 +225,7 @@ namespace gpu
       if (!pbindingslotset)
       {
 
-         øconstruct(pbindingslotset);
+         constructø(pbindingslotset);
 
       }
 

@@ -185,4 +185,21 @@ namespace windowing
 
 
 
+enum enum_dispatch
+{
+
+   e_dispatch_none,
+   e_dispatch_send = 1,
+   e_dispatch_post = 2,
+   e_dispatch_fork = 4,
+   e_dispatch_main_send = 0x10 | e_dispatch_send,
+   e_dispatch_main_post = 0x10 | e_dispatch_post,
+   e_dispatch_user_send = 0x100 | e_dispatch_send,
+   e_dispatch_user_post = 0x100 | e_dispatch_post,
+
+
+};
+
+
+
 

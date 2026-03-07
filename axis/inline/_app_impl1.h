@@ -150,9 +150,9 @@ int WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         paura = øallocate class aura_aura ();
+//         paura = allocateø class aura_aura ();
 //
-//         pmaindata = øallocate aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//         pmaindata = allocateø aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

@@ -102,7 +102,7 @@ public:
 
       pointer < T > & p = BASE_ARRAY::add_new();
 
-      pparticle->øconstruct(p);
+      pparticle->constructø(p);
 
       return p;
 
@@ -113,7 +113,7 @@ public:
    pointer<T> & main_add(Args... args)
    {
 
-      auto pNew = øallocate T (args...);
+      auto pNew = allocateø T (args...);
       
       auto iIndex = this->add(pNew); 
 
@@ -1878,7 +1878,7 @@ template < typename OBJECT >
    for (; i < c; i++)
    {
 
-      pparticle->øconstruct(this->element_at(i));
+      pparticle->constructø(this->element_at(i));
 
    }
 

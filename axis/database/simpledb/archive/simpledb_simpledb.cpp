@@ -55,7 +55,7 @@ namespace simpledb
 //#endif
       }
 
-      m_pserver = øallocate db_server(get_app());
+      m_pserver = allocateø db_server(get_app());
 
 
       m_pserver->add_client(this);

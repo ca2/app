@@ -32,7 +32,7 @@ namespace graphics3d
 
       m_pengine = pengine;
 
-      øconstruct_new(m_passetmanager);
+      construct_newø(m_passetmanager);
 
       m_passetmanager->initialize_asset_manager(m_pengine);
 

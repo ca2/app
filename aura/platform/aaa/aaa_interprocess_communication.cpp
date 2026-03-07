@@ -158,7 +158,7 @@ namespace aura
    ::pointer<synchronization_array>inteprocess_channel::call::synca()
    {
 
-      auto psynca = øallocate synchronization_array();
+      auto psynca = allocateø synchronization_array();
 
       for (auto & task : this->tasks())
       {
@@ -265,7 +265,7 @@ namespace aura
 
       runall(CREATE_ROUTINE);
 
-      estatus = øconstruct_new(m_prx);
+      estatus = construct_newø(m_prx);
 
       if (!estatus)
       {
@@ -327,7 +327,7 @@ namespace aura
       if(pmutex.is_null())
       {
 
-         pmutex = øallocate ::pointer < ::mutex > ();
+         pmutex = allocateø ::pointer < ::mutex > ();
 
       }
 
@@ -399,7 +399,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = øallocate ::aura::ipc::tx();
+         m_txmap[strKey] = allocateø ::aura::ipc::tx();
 
       }
 
@@ -416,7 +416,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = øallocate ::aura::ipc::tx();
+         m_txmap[strKey] = allocateø ::aura::ipc::tx();
 
       }
 
@@ -444,7 +444,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = øallocate ::aura::ipc::tx();
+         m_txmap[strKey] = allocateø ::aura::ipc::tx();
 
       }
 
@@ -677,7 +677,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    ::pointer<class inteprocess_channel::task> inteprocess_channel::create_task(call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = øallocate class task (pcall, idPid, atomic_increment(&m_iTaskSeed));
+      auto pobjectTask = allocateø class task (pcall, idPid, atomic_increment(&m_iTaskSeed));
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
@@ -703,7 +703,7 @@ pdirectorysystem->system() / "inteprocess_channel" / strApp / as_string(idPid);
    ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::scoped_string & scopedstrApp, const ::scoped_string & scopedstrObject, const ::scoped_string & scopedstrMember)
    {
 
-      return øallocate class call (this, strApp, strObject, strMember);
+      return allocateø class call (this, strApp, strObject, strMember);
 
    }
 

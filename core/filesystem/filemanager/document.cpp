@@ -392,7 +392,7 @@ namespace filemanager
 
    //   ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 
-   //   ::pointer<::file::item>pitem = øallocate ::file::item(pathUser, pathFinal);
+   //   ::pointer<::file::item>pitem = allocateø ::file::item(pathUser, pathFinal);
 
    //   browse(pitem, context);
 
@@ -1618,7 +1618,7 @@ namespace filemanager
    //   //   if (ptemplate.is_null())
    //   //   {
 
-   //   //      m_pfilemanagerdata = øallocate data(this);
+   //   //      m_pfilemanagerdata = allocateø data(this);
 
    //   //   }
    //   //   else
@@ -1648,7 +1648,7 @@ namespace filemanager
    ::pointer<::filemanager::data>document::create_file_manager_data(::request * prequest)
    {
 
-      ::pointer<::filemanager::data>pfilemanagerdata(øallocate data());
+      ::pointer<::filemanager::data>pfilemanagerdata(allocateø data());
 
       ::filemanager::callback * pcallback = nullptr;
 

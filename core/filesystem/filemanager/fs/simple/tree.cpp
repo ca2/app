@@ -47,7 +47,7 @@ namespace filemanager
 
             //}
 
-            øconstruct_new(m_pimagelist);
+            construct_newø(m_pimagelist);
 
             m_pimagelist->create(16, 16);
 
@@ -203,14 +203,14 @@ namespace filemanager
                if(ptreeitemChild)
                {
 
-                  ptreeitemChild = insert_item(øallocate ::data::simple_item(this), ::data::e_relative_last_child, ptreeitemParent);
+                  ptreeitemChild = insert_item(allocateø ::data::simple_item(this), ::data::e_relative_last_child, ptreeitemParent);
 
                }
 
                if(!ptreeitemChild->m_pitem)
                {
 
-                  ptreeitemChild->m_pitem = øallocate ::data::simple_item(this);
+                  ptreeitemChild->m_pitem = allocateø ::data::simple_item(this);
 
                }
 

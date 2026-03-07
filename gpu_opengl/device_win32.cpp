@@ -775,7 +775,7 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      øconstruct(pgpucontext);
+      constructø(pgpucontext);
 
       return pgpucontext;
 

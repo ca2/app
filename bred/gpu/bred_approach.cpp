@@ -82,7 +82,7 @@ namespace gpu
       if (!pdevice)
       {
 
-         øconstruct(pdevice);
+         constructø(pdevice);
 
          ::string strType = ::type(pacmewindowingwindow->m_pacmeuserinteraction).name();
          

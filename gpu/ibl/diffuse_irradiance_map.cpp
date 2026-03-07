@@ -59,7 +59,7 @@ namespace gpu
 
          initialize_scene_object(pscenebase);
 
-         øconstruct(m_pshaderDiffuseIrradiance);
+         constructø(m_pshaderDiffuseIrradiance);
 
          m_pshaderDiffuseIrradiance->m_bDisableDepthTest = true;
          m_pshaderDiffuseIrradiance->m_bEnableBlend = false;
@@ -84,7 +84,7 @@ namespace gpu
             embedded_diffuse_irradiance_frag(), 
             pinputlayoutVertex);
 
-         øconstruct(m_ptextureDiffuseIrradianceCubemap);
+         constructø(m_ptextureDiffuseIrradianceCubemap);
 
          ::gpu::texture_attributes textureattributes(::int_rectangle {
             API_CHANGED_ARGUMENT, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});

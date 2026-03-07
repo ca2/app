@@ -321,7 +321,7 @@ namespace experience_core
 
       }
 
-      øconstruct(m_pregion);
+      constructø(m_pregion);
       
       ::double_ellipse ellipse;
       
@@ -333,7 +333,7 @@ namespace experience_core
 
       auto puseritem = user_item(pitemClient);
 
-      øconstruct(puseritem->m_ppath);
+      constructø(puseritem->m_ppath);
 
       //m_pitemClient->m_item.m_eelement = e_element_client;
 

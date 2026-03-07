@@ -10,7 +10,7 @@ template < >
 inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::double_rectangle & rectangle, holdee < ::draw2d::region >)
 {
 
-   return øallocate rectangle_shape<::draw2d::region> (rectangle);
+   return allocateø rectangle_shape<::draw2d::region> (rectangle);
 
 }
 
@@ -19,7 +19,7 @@ template < >
 inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::double_ellipse & ellipse, holdee < ::draw2d::region >)
 {
 
-   return øallocate ellipse_shape <::draw2d::region> (ellipse);
+   return allocateø ellipse_shape <::draw2d::region> (ellipse);
 
 }
 
@@ -28,7 +28,7 @@ inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::double_ellip
    inline ::pointer<___shape>__create_shape(const ::lines & lines, holdee < ::draw2d::region >)
    {
 
-      return øallocate lines_shape<path> (lines);
+      return allocateø lines_shape<path> (lines);
 
    }*/
 
@@ -37,7 +37,7 @@ template < >
 inline ::pointer<___shape<::draw2d::region>> __create_shape(const ::polygon & polygon, holdee < ::draw2d::region >)
 {
 
-   return øallocate polygon_shape<::draw2d::region> (polygon);
+   return allocateø polygon_shape<::draw2d::region> (polygon);
 
 }
 

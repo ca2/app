@@ -125,10 +125,10 @@ namespace sockets
 
       }
 
-      if(m_request.headers().has_property("user_agent"))
+      if(m_request.headers().has_property("user-agent"))
       {
 
-         information() << "user-agent: " << m_request.header("user_agent").as_string();
+         information() << "user-agent: " << m_request.header("user-agent").as_string();
 
       }
       else
@@ -151,8 +151,6 @@ namespace sockets
          informationf("accept-language: %s", m_request.header("accept-language").as_string().c_str());
 
       }
-
-      //m_request.InitBody(m_body_size_left);
 
    }
 
@@ -873,6 +871,7 @@ namespace sockets
       return true;
 
    }
+
 
 
 } // namespace sockets

@@ -55,7 +55,7 @@ namespace aqua
 
          auto pfactory = system()->factory("audio_mixer_user", "base");
 
-         pfactory->øconstruct(this, m_paudiomixeruser);
+         pfactory->constructø(this, m_paudiomixeruser);
 
       }
 

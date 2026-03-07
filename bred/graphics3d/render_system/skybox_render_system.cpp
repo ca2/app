@@ -102,7 +102,7 @@ namespace graphics3d
 
       }
 
-      // øconstruct(m_pmodelCube);
+      // constructø(m_pmodelCube);
 
       /*auto pmodelCube = øcreate<::gpu::model_buffer>();
 

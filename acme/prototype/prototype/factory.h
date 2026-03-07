@@ -526,7 +526,7 @@ namespace factory
 
       critical_section_lock lock(&m_criticalsection);
 
-      auto pfactoryitem = øallocate ::factory::factory_item< TYPE, TYPE > ();
+      auto pfactoryitem = allocateø ::factory::factory_item< TYPE, TYPE > ();
 
       set_factory_item_by_custom_id(typecustomid, pfactoryitem);
 
@@ -555,7 +555,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactoryitem = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
+//      auto pfactoryitem = allocateø ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      get_factory_item < ORIGIN_TYPE >(atomSource) = pfactoryitem;
 //
@@ -570,7 +570,7 @@ namespace factory
 
    //   critical_section_lock lock(&m_criticalsection);
 
-   //   auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
+   //   auto pfactory = allocateø ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
    //   factory_item < ORIGIN_TYPE >() = pfactory;
 
@@ -585,7 +585,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = øallocate ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > ();
+//      auto pfactory = allocateø ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      factory_item < TYPE, ORIGIN_TYPE >() = pfactory;
 //
@@ -668,7 +668,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = øallocate ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
+//      auto pfactory = allocateø ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      this->get_factory_item < ORIGIN_TYPE >() = pfactory;
 //
@@ -678,7 +678,7 @@ namespace factory
 
 //
 //   template < typename ORIGIN_TYPE >
-//   inline void factory::øconstruct(::particle * pparticleInitializer, ::pointer < ORIGIN_TYPE > & p)
+//   inline void factory::constructø(::particle * pparticleInitializer, ::pointer < ORIGIN_TYPE > & p)
 //   {
 //
 //      øraw_construct(p);
@@ -928,7 +928,7 @@ namespace factory
 //
 //      string strMessage;
 //
-//      strMessage.formatf("matter::øconstruct has failed to find factory_item for type \"%s\"", __type_name < TYPE >().c_str());
+//      strMessage.formatf("matter::constructø has failed to find factory_item for type \"%s\"", __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_not_implemented, strMessage);
 //
@@ -941,7 +941,7 @@ namespace factory
 //
 //      string strMessage;
 //
-//      strMessage.formatf("matter::øconstruct no memory to allocate implementation of type \"%ss\"", __type_name < TYPE >().c_str());
+//      strMessage.formatf("matter::constructø no memory to allocate implementation of type \"%ss\"", __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_no_memory, strMessage);
 //
@@ -956,7 +956,7 @@ namespace factory
 //
 //      string strMessage;
 //
-//      strMessage.formatf("matter::øconstruct object(%s) is not of type \"%s\"", ::platform::type(pparticleNew).name().c_str(), __type_name < TYPE >().c_str());
+//      strMessage.formatf("matter::constructø object(%s) is not of type \"%s\"", ::platform::type(pparticleNew).name().c_str(), __type_name < TYPE >().c_str());
 //
 //      throw_exception(::error_wrong_type, strMessage);
 //
@@ -979,7 +979,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 
 
 //template < typename TYPE >
-//inline void øconstruct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory * pfactory = nullptr);
+//inline void constructø(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory * pfactory = nullptr);
 //{
 //
 //   øraw_construct(p, pfactory);
@@ -995,7 +995,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 //
 //   ::pointer < BASE_TYPE > p;
 //
-//   øconstruct(pparticle, p, pfactory);
+//   constructø(pparticle, p, pfactory);
 //
 //   return p;
 //
@@ -1009,7 +1009,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 //   if (!p)
 //   {
 //
-//      øconstruct(pparticle, p, pfactory);
+//      constructø(pparticle, p, pfactory);
 //
 //   }
 //

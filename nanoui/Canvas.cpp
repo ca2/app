@@ -160,7 +160,7 @@ void Canvas::draw(::nano2d::context  * pcontext) {
    if (!m_pimage)
    {
 
-      screen()->m_puserinteraction->øconstruct(m_pimage);
+      screen()->m_puserinteraction->constructø(m_pimage);
 
       m_pimage->create({ m_size.cx, m_size.cy });
 

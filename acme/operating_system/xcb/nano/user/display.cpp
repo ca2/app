@@ -396,7 +396,7 @@ namespace xcb
 
                pparticle->information() << "xcb nano display::get (2)";
 
-               auto p = øallocate display();
+               auto p = allocateø display();
 
                p->initialize(pparticle);
 

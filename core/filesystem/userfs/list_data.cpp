@@ -122,7 +122,7 @@ namespace userfs
 
       ::user::list_data::initialize(pparticle);
 
-      øconstruct_new(m_pitema);
+      construct_newø(m_pitema);
 
    }
 
@@ -370,7 +370,7 @@ namespace userfs
 
       //}
 
-      øconstruct_new(m_pitema);
+      construct_newø(m_pitema);
 
       information() << "::userfs::list update";
 

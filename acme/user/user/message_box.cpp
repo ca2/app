@@ -19,10 +19,33 @@ namespace acme
    {
 
 
-      void message_box::on_realize(::message_box * pmessagebox)
+      message_box::message_box()
       {
 
-         auto emessageboxType = pmessagebox->m_emessagebox & ::user::e_message_box_type_mask;
+
+      }
+
+
+      message_box::~message_box()
+      {
+
+
+      }
+
+
+      void message_box::display(::dialog * pdialog)
+      {
+
+         ::cast < ::message_box_payload > pmessageboxpayload = pdialog;
+
+         if (::is_null(pmessageboxpayload))
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
+
+         auto emessageboxType = pmessageboxpayload->m_emessagebox & ::user::e_message_box_type_mask;
 
          switch (emessageboxType)
          {
@@ -66,6 +89,7 @@ namespace acme
       void message_box::set_dialog_result(const ::payload & payloadResult)
       {
 
+         m_pdialog->on_dialog_result(payloadResult);
 
       }
 

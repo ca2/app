@@ -611,7 +611,7 @@ namespace aura
 //
 //      //sqlite3_config(SQLITE_CONFIG_MULTITHREAD);
 //
-//      //::channel::s_pmutexChannel = øallocate ::pointer < ::mutex > ();
+//      //::channel::s_pmutexChannel = allocateø ::pointer < ::mutex > ();
 //
 //      //g_paurastrpool = aaa_primitive_new aura_str_pool();
 //

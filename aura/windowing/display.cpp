@@ -679,7 +679,7 @@ namespace windowing
 
          information() << "create_monitor";
 
-         øconstruct(pmonitor);
+         constructø(pmonitor);
 
          if (!pmonitor)
          {

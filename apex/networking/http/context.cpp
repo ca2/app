@@ -1151,7 +1151,7 @@ namespace http
 
       string strSessId;
 
-      psession = øallocate ::sockets::http_session(connectrange);
+      psession = allocateø ::sockets::http_session(connectrange);
 
       /*::pointer<::account::user>puser;
 
@@ -1694,7 +1694,7 @@ namespace http
 //            else
 //            {
 //
-//               set["get_memory"] = øallocate memory(psession->GetDataPtr(), psession->GetContentLength());
+//               set["get_memory"] = allocateø memory(psession->GetDataPtr(), psession->GetContentLength());
 //
 //            }
 //
@@ -1942,7 +1942,7 @@ namespace http
 
          dynamic_cast <::sockets::http_put_socket *> (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
 
-         psocket->m_emethod = ::sockets::http_method_put;
+         psocket->m_emethod = ::sockets::e_http_method_put;
 
       }
       else if (set["post"].property_set_reference().has_property() || set["http_method"] == "POST")
@@ -1967,7 +1967,7 @@ namespace http
 
          }
 
-         psocket->m_emethod = ::sockets::http_method_post;
+         psocket->m_emethod = ::sockets::e_http_method_post;
 
       }
       else
@@ -2637,7 +2637,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = øallocate memory(psocket->GetDataPtr(), psocket->GetContentLength());
+            set["get_memory"] = allocateø memory(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 

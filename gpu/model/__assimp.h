@@ -163,7 +163,7 @@ namespace gpu
 
                   //  = pmodel->m_pgpucontext;
                   //
-                  // pmodel->øconstruct(pmesh->m_pmodelbuffer);
+                  // pmodel->constructø(pmesh->m_pmodelbuffer);
                   // pmesh->m_pmodelbuffer->initialize_gpu_context_object(pmodel->m_pgpucontext);
                   // pmesh->m_pmodelbuffer->set_data(pmesh->m_pmodeldata);
                   auto m = node->mTransformation;
@@ -227,7 +227,7 @@ namespace gpu
          else
          {
 
-            pmodel->øconstruct_new(pmaterial);
+            pmodel->construct_newø(pmaterial);
             pmaterial->m_pgpucontext = pmodel->m_pgpucontext;
          }
 

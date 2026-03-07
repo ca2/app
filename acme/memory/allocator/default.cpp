@@ -23,7 +23,7 @@
 //   ::pointer < allocator > heap::_create_c_allocator()
 //   {
 //
-//      return øallocate c_allocator();
+//      return allocateø c_allocator();
 //
 //   }
 //

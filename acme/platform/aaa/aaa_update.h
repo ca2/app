@@ -97,5 +97,5 @@ public:
 using manager_pointer = ::pointer<::update>
 
 
-inline auto new_update(const ::atom & atom) { return øallocate ::update(atom); }
+inline auto new_update(const ::atom & atom) { return allocateø ::update(atom); }
 

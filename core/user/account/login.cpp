@@ -114,20 +114,20 @@ namespace account
       //
       m_bSubmitted = false;
 
-      //if (!(estatus = øconstruct_new(m_pstillUser))) return false;
-      //if(!(estatus = øconstruct_new(m_peditUser))) return false;
-      //if (!(estatus = øconstruct_new(m_pstillPassword))) return false;
-      //if (!(estatus = øconstruct_new(m_peditPassword))) return false;
-      //if (!(estatus = øconstruct_new(m_pbutton))) return false;
-      //if (!(estatus = øconstruct_new(m_pbuttonClose))) return false;
+      //if (!(estatus = construct_newø(m_pstillUser))) return false;
+      //if(!(estatus = construct_newø(m_peditUser))) return false;
+      //if (!(estatus = construct_newø(m_pstillPassword))) return false;
+      //if (!(estatus = construct_newø(m_peditPassword))) return false;
+      //if (!(estatus = construct_newø(m_pbutton))) return false;
+      //if (!(estatus = construct_newø(m_pbuttonClose))) return false;
 
 
-      øconstruct_new(m_pstillUser);
-      øconstruct_new(m_peditUser);
-      øconstruct_new(m_pstillPassword);
-      øconstruct_new(m_peditPassword);
-      øconstruct_new(m_pbutton);
-      øconstruct_new(m_pbuttonClose);
+      construct_newø(m_pstillUser);
+      construct_newø(m_peditUser);
+      construct_newø(m_pstillPassword);
+      construct_newø(m_peditPassword);
+      construct_newø(m_pbutton);
+      construct_newø(m_pbuttonClose);
 
       //return estatus;
 

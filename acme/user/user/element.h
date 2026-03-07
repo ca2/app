@@ -273,6 +273,7 @@ namespace user
 
 
       virtual bool _is_window() const;
+      virtual bool _is_this_window() const;
 
       virtual ::user::interaction * first_child();
       virtual ::user::interaction * last_child();

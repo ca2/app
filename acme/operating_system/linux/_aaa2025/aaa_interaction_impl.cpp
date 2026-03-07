@@ -315,7 +315,7 @@ namespace linux
             if(m_px11data.is_null())
             {
 
-               m_px11data = øallocate x11data();
+               m_px11data = allocateø x11data();
 
             }
 
@@ -1814,9 +1814,9 @@ namespace linux
 //
 //      }
 //
-//      int nResult = ::auto pmessagebox = __initialize_new ::message_box((oswindow)get_handle(), pszText, strCaption, nType);
+//      int nResult = ::auto pmessageboxpayload = __initialize_new ::message_box_payload((oswindow)get_handle(), pszText, strCaption, nType);
 
-pmessagebox->sync();
+send(pmessageboxpayload);
 //
 //      return nResult;
 //

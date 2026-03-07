@@ -95,7 +95,8 @@ namespace user
 
       // message_box_interface
       //::pointer < ::subparticle > show(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox) override;
-      void on_realize(::message_box * pmessagebox) override;
+      using ::user::interaction::display;
+      void display(::dialog * pdialog) override;
       void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, char chLetter) override;
 
       void destroy() override;
@@ -194,9 +195,9 @@ namespace user
 //} // namespace user
 //
 //
-////CLASS_DECL_AURA void auto pmessagebox = __initialize_new ::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const future & process = ::future());
+////CLASS_DECL_AURA void auto pmessageboxpayload = __initialize_new ::message_box_payload(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const future & process = ::future());
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 //
 //
 //

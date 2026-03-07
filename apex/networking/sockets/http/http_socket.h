@@ -55,6 +55,13 @@ namespace sockets
       ::pointer<::http::listener>    m_plistener;
       long long                m_iHttpSocketRequestSerial;
 
+      enum_http_method                    m_emethod;
+
+      ::pointer < ::sockets::websocket > m_pwebsocket;
+
+      bool m_bWebSocketEnabled;
+
+      
       http_socket();
       ~http_socket() override;
 
@@ -140,6 +147,15 @@ namespace sockets
       virtual void client_to_server(http_socket * psocket);
 
       void destroy() override;
+      
+      
+      virtual void enable_websocket();
+
+
+      
+      virtual ::sockets::websocket & websocket();
+      
+      virtual bool http_request_step();
 
 
    };

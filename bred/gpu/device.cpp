@@ -541,7 +541,7 @@ namespace gpu
 
    //   }
 
-   //   //øconstruct(m_pbuffer);
+   //   //constructø(m_pbuffer);
 
    //   //m_pbuffer->m_pimage = image()->create_image(size);
 
@@ -706,7 +706,7 @@ namespace gpu
 
    //   branch_synchronously();
 
-   //   _send([this, &startcontext]()
+   //   sendø() << [this, &startcontext]()
    //      {
 
    //         initialize_gpu_context(startcontext);
@@ -912,7 +912,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
       if (!m_pgpucontextMainDraw2d)
       {
 
-         øconstruct(m_pgpucontextMainDraw2d);
+         constructø(m_pgpucontextMainDraw2d);
 
          m_pgpucontextMainDraw2d->m_etype = ::gpu::context::e_type_draw2d;
 
@@ -928,7 +928,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
             m_pgpucontextMainDraw2d->branch_synchronously();
 
-            m_pgpucontextMainDraw2d->_send([this, puserinteraction]()
+            m_pgpucontextMainDraw2d->sendø() << [this, puserinteraction]()
                {
 
                   auto pinteraction = (::user::interaction*)puserinteraction.m_p;
@@ -946,7 +946,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
                      size
                   );
 
-               });
+               };
 
          }
 
@@ -1020,7 +1020,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
       if (!pframestorage)
       {
 
-         øconstruct(pframestorage);
+         constructø(pframestorage);
 
          pframestorage->initialize_gpu_frame_storage(this);
 
@@ -1032,7 +1032,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       auto& pframeephemeral = m_frameephemerala.ø(m_iCurrentFrame3);
 
-      øconstruct(pframeephemeral);
+      constructø(pframeephemeral);
 
    }
 
@@ -1148,7 +1148,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
       if (!pparticleaFrame)
       {
 
-         øconstruct_new(pparticleaFrame);
+         construct_newø(pparticleaFrame);
 
       }
 
@@ -1216,7 +1216,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    //   if (!m_prenderer)
    //   {
 
-   //      øconstruct(m_prenderer);
+   //      constructø(m_prenderer);
 
    //      m_prenderer->initialize_renderer(this);
 

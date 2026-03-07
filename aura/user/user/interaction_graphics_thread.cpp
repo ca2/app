@@ -161,7 +161,7 @@ namespace user
          {
 
             
-            m_puserinteraction->user_thread()->_post([this]()
+            m_puserinteraction->user_thread()->post([this]()
                                                      {
                
                branch();
@@ -696,6 +696,14 @@ namespace user
       }
 
       return true;
+
+   }
+
+
+   void graphics_thread::stop_task()
+   {
+
+      ::thread::stop_task();
 
    }
 

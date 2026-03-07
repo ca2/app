@@ -72,7 +72,7 @@ IMPLEMENT_APPLICATION_FACTORY();
 
       throw "not designed to show a graphical user interface";
 
-      øconstruct_new(m_pmainwindow);
+      construct_newø(m_pmainwindow);
 
       m_pmainwindow->display(e_display_normal);
 

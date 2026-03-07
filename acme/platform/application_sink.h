@@ -58,7 +58,7 @@ namespace platform
 //                               const ::scoped_string & scopedstrMimeType,
 //                               const class ::time & timeTimeout);
 
-    virtual void post_message_box(::message_box *pmessagebox);
+    virtual void post_message_box(::message_box_payload *pmessageboxpayload);
 
     //virtual ::pointer<::message_box> pick_message_box();
 

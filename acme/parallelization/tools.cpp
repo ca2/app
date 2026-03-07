@@ -207,7 +207,7 @@ void task_group::set_ready_to_start()
 }
 
 
-::e_status task_group::wait()
+::e_status task_group::wait(const continue_predicate_t &predicate)
 {
 
    //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -290,8 +290,8 @@ void tool_task::initialize_tool_task(::task_group* pgroup)
    m_pgroup = pgroup;
 
    m_iIndex = 0;
-   m_pevStart = øallocate manual_reset_happening();
-   m_pevReady = øallocate manual_reset_happening();
+   m_pevStart = allocateø manual_reset_happening();
+   m_pevReady = allocateø manual_reset_happening();
 
    //return estatus;
 

@@ -82,7 +82,7 @@ namespace dynamic_source
 
       //}
 
-      øconstruct_new(m_pfileError);
+      construct_newø(m_pfileError);
 
       m_textstreamError.m_pfile = m_pfileError;
 
@@ -195,9 +195,9 @@ namespace dynamic_source
       if (!pfolderlisting || pfolderlisting->m_timeLastEnumeration.elapsed() > 1_hour)
       {
 
-         øconstruct_new(pfolderlisting);
+         construct_newø(pfolderlisting);
 
-         øconstruct_new(pfolderlisting->m_plisting);
+         construct_newø(pfolderlisting->m_plisting);
 
          procedureListing(*pfolderlisting->m_plisting);
 
@@ -537,7 +537,7 @@ namespace dynamic_source
       if (m_plibrary.is_null() || m_plibrary->is_closed())
       {
 
-         øconstruct(m_plibrary);
+         constructø(m_plibrary);
 
          string strStagePath = m_pscriptmanager1->get_full_stage_path(m_strScriptPath);
 

@@ -106,7 +106,7 @@ namespace browser
 
       bool bAlternate = string(id()).case_insensitive_contains("switcher");
 
-      m_prender = øallocate render(get_app(), bAlternate);
+      m_prender = allocateø render(get_app(), bAlternate);
 
       m_prender->m_pimpact = this;
 

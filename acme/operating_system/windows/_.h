@@ -103,3 +103,7 @@ CLASS_DECL_ACME HINSTANCE hinstance_from_function(void *pFunc);
 
 
 
+inline HANDLE as_HANDLE(const htask &htask) { return (HANDLE)htask.m_h; }
+
+
+

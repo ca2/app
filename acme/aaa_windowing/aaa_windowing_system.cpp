@@ -62,7 +62,7 @@ namespace windowing
 
             system()->do_graphics_and_windowing_system_factory();
 
-            øconstruct(m_pdisplaybase);
+            constructø(m_pdisplaybase);
 
             m_pdisplaybase->open_display();
 
@@ -214,7 +214,7 @@ namespace windowing
 
         }
 
-        auto ptopic = øallocate ::topic(id_application_dark_mode_change);
+        auto ptopic = allocateø ::topic(id_application_dark_mode_change);
 
         for (auto & pwindowbase : m_windowbasea)
         {

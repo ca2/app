@@ -430,7 +430,7 @@ namespace gpu_opengl
 
    //   }
 
-   //   ::e_status estatus = øconstruct(m_pbuffer);
+   //   ::e_status estatus = constructø(m_pbuffer);
 
    //   if (!estatus)
    //   {

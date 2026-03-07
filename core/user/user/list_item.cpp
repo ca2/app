@@ -453,7 +453,7 @@ namespace user
       if (!pbrushText)
       {
 
-         m_pitem->m_pmesh->m_plist->øconstruct(pbrushText);
+         m_pitem->m_pmesh->m_plist->constructø(pbrushText);
 
       }
 

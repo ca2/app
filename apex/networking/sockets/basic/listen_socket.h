@@ -239,7 +239,7 @@ namespace sockets
    //      else
    //      {
 
-   //         pbasesocket = øallocate LISTENER();
+   //         pbasesocket = allocateø LISTENER();
 
    //         m_psocket = dynamic_cast < LISTENER * >(pbasesocket.m_p);
 

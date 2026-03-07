@@ -43,7 +43,7 @@ namespace account
 
       m_estatus = error_authentication_none;
 
-      m_phttpcookies = øallocate ::http::cookies();
+      m_phttpcookies = allocateø ::http::cookies();
 
       m_estatus = error_none;
 
@@ -273,7 +273,7 @@ namespace account
 
       m_bDeferRegistration = bInteractive;
 
-      ::pointer<credentials>pcredentials = øallocate credentials();
+      ::pointer<credentials>pcredentials = allocateø credentials();
 
       auto psession = session();
 

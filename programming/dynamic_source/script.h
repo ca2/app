@@ -77,7 +77,7 @@ namespace dynamic_source
          if(!p)
          {
 
-            øconstruct_new(p);
+            construct_newø(p);
 
             pparticle = p;
 
@@ -140,7 +140,7 @@ namespace dynamic_source
       virtual ::pointer<script_instance>create_instance()
       {
          
-         return øallocate T();
+         return allocateø T();
 
       }
 

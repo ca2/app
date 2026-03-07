@@ -393,7 +393,7 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      common_construct();
 //
-//      m_pplatform = øallocate ::sub_system(this);
+//      m_pplatform = allocateø ::sub_system(this);
 //
 //   }
 

@@ -363,7 +363,7 @@ namespace mysql
 
          //   m_iLastUsedTime = ::aura::profiler::microsecond();
 
-         //   auto presult  = øallocate result(this, nullptr);
+         //   auto presult  = allocateø result(this, nullptr);
 
          //   presult->m_uiAffectedRows = mysql_affected_rows((MYSQL *)m_pmysql);
 
@@ -497,11 +497,11 @@ namespace mysql
 
       }
 
-      auto pset = øallocate ::database::result_set();
+      auto pset = allocateø ::database::result_set();
 
       MYSQL_ROW row;
 
-      pset->m_prowa = øallocate ::database::row_array();
+      pset->m_prowa = allocateø ::database::row_array();
 
       auto& prowa = pset->m_prowa;
 
@@ -546,7 +546,7 @@ namespace mysql
 
          }
 
-         auto prow = øallocate ::database::row();
+         auto prow = allocateø ::database::row();
 
          prow->set_size(iNumFields);
 

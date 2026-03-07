@@ -8,21 +8,23 @@
 #include "acme/prototype/collection/comparable_array.h"
 
 
-class CLASS_DECL_ACME procedure_array :
-   virtual public ::comparable_array < ::procedure >
+class CLASS_DECL_ACME procedure_array : 
+   virtual public ::array_particle<::procedure_array_base>
 {
 public:
 
-   procedure_array();
-   procedure_array(const procedure_array & procedurea);
-   procedure_array(procedure_array && procedurea);
+
+   using BASE_ARRAY = ::array_particle<::procedure_array_base>;
 
 
-   procedure_array & operator = (const procedure_array & procedurea);
+   using BASE_ARRAY::BASE_ARRAY;
+
+   using BASE_ARRAY::operator =;
 
 
    void run() override;
    virtual void on_end_procedure();
+
 
 };
 
@@ -34,21 +36,23 @@ class procedure_array_with_context :
 public:
 
    procedure_array_with_context() {}
-   procedure_array_with_context(const procedure_array & procedurea) :
-      procedure_array(procedurea)
+   procedure_array_with_context(const procedure_array_base &procedurea) :
+      procedure_array(procedurea), 
+      ::array_particle<::procedure_array_base>(procedurea)
    {
 
    }
-   procedure_array_with_context(procedure_array && procedurea) :
-      procedure_array(::transfer(procedurea))
+   procedure_array_with_context(procedure_array_base &&procedurea) :
+      procedure_array(::transfer(procedurea)), 
+      ::array_particle<::procedure_array_base>(::transfer(procedurea))
    {
 
    }
 
 
-   procedure_array_with_context & operator = (const procedure_array & procedurea)
+   procedure_array_with_context &operator=(const procedure_array_base &procedurea)
    {
-      ::procedure_array::operator =(procedurea);
+      ::procedure_array_base::operator=(procedurea);
       return *this;
 
    }
@@ -58,6 +62,5 @@ public:
 
 
 };
-
 
 

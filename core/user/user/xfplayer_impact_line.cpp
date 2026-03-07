@@ -68,7 +68,7 @@ void xfplayer_impact_line::initialize_xfplayer_impact_line(xfplayer_impact_linea
    //   
    //}
    
-   øconstruct(m_pfont);
+   constructø(m_pfont);
 
    m_pContainer = pContainer;
    m_bEnhancedEmboss = true;
@@ -839,7 +839,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    if (m_bColonPrefix)
    {
 
-      øconstruct(m_pfontPrefix);
+      constructø(m_pfontPrefix);
 
       *m_pfontPrefix = *m_pfont;
 
@@ -1432,7 +1432,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       ::draw2d::pen_pointer ppen;
 
-      øconstruct(ppen);
+      constructø(ppen);
 
       ppen->create_solid(iWidth * 2, crOutline);
 

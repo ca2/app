@@ -58,7 +58,7 @@ public:
    */
 
    ///  \brief		waits for an happening forever
-   ::e_status wait () override;
+   ::e_status wait() override;
 
    ///  \brief		waits for an happening for a specified time
    ///  \lparam		time time period to wait for an happening

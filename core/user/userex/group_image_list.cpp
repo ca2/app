@@ -95,7 +95,7 @@ namespace userex
    ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, const ::scoped_string & scopedstrIcon, const ::scoped_string & scopedstrTitle, ::file::path pathFolder)
    {
 
-      ::pointer<group>pgroup = øallocate group();
+      ::pointer<group>pgroup = allocateø group();
 
       pgroup->m_iIndex = m_groupa.get_size();
 
@@ -139,7 +139,7 @@ namespace userex
 
       m_atomaHandledCommands.add(id());
 
-      øconstruct_new(m_pbuttonMenu);
+      construct_newø(m_pbuttonMenu);
 
       m_pbuttonMenu->create_control(this, id());
 

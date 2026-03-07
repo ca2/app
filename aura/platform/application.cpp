@@ -181,7 +181,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = øallocate ::handler(this);
+      //m_phandler = allocateø ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -274,7 +274,7 @@ namespace aura
 
       //estatus =
       
-      øconstruct_new(m_puserinteractiona);
+      construct_newø(m_puserinteractiona);
 
       //if (!estatus)
       //{
@@ -285,7 +285,7 @@ namespace aura
 
       //estatus = 
       
-      øconstruct_new(m_puserinteractionaFrame);
+      construct_newø(m_puserinteractionaFrame);
 
       //if (!estatus)
       //{
@@ -334,7 +334,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = øallocate application_menu();
+   //      m_pappmenu = allocateø application_menu();
 
    //   }
 
@@ -798,9 +798,9 @@ namespace aura
    //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+   //   return ::auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //}
 
@@ -847,9 +847,9 @@ namespace aura
 
    //   }
 
-   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //}
 
@@ -866,9 +866,9 @@ namespace aura
 
    //   }
 
-   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 
    //}
 
@@ -2059,7 +2059,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
       
-      øconstruct(m_pshellopen);
+      constructø(m_pshellopen);
 
       //if (!estatus)
       //{
@@ -2463,7 +2463,7 @@ retry_license:
    //   try
    //   {
 
-   //      return øallocate ::interprocess::communication(m_strAppName);
+   //      return allocateø ::interprocess::communication(m_strAppName);
 
    //   }
    //   catch (...)
@@ -2496,7 +2496,7 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   øconstruct(m_pimagecontext);
+      //   constructø(m_pimagecontext);
 
       //   //if (!estatus)
       //   //{
@@ -2520,7 +2520,7 @@ retry_license:
 
       //    //estatus = 
          
-      //    øconstruct_new(m_pimagecontext);
+      //    construct_newø(m_pimagecontext);
 
       //    //if (!estatus)
       //    //{
@@ -4142,7 +4142,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = øallocate ::user::message();
+   //   auto pusermessage = allocateø ::user::message();
 
    //   if (!pusermessage)
    //   {
@@ -4630,7 +4630,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = øallocate ::xml::document();
+   //   //auto pdocument = allocateø ::xml::document();
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -5766,7 +5766,7 @@ retry_license:
       //::html::html * application::create_html()
       //{
 
-      //   return øallocate< ::html::html(get_app >());
+      //   return allocateø< ::html::html(get_app >());
 
       //}
 
@@ -8445,7 +8445,7 @@ namespace aura
    //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //   {
    //
-   //      return øallocate ::aura::session();
+   //      return allocateø ::aura::session();
    //
    //   }
 
@@ -8530,7 +8530,7 @@ namespace aura
 
             pframe->hide_and_then_destroy();
 
-            //            _001TryCloseApplication();
+            //            _001PostTryCloseApplication();
 
          }
          else
@@ -8592,7 +8592,7 @@ namespace aura
 
       //auto estatus =
 
-      øconstruct_new(m_ptheme);
+      construct_newø(m_ptheme);
 
       //if (!estatus)
       //{
@@ -8990,7 +8990,7 @@ namespace aura
 
       }
 
-      pinteraction = øallocate ::account::simple_ui(this,strRequestUrl);
+      pinteraction = allocateø ::account::simple_ui(this,strRequestUrl);
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -9010,7 +9010,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return øallocate ::user::user();
+   //   return allocateø ::user::user();
 
    //}
 
@@ -9663,15 +9663,15 @@ namespace aura
    ////   ::pointer < ::graphics::application> papp = m_papplication;
 
 
-   ////   øconstruct_new(m_pvkcdevice);
+   ////   construct_newø(m_pvkcdevice);
 
    ////   m_pvkcdevice->initialize_device(m_pvkcontainer);
 
-   ////   øconstruct_new(m_prenderer);
+   ////   construct_newø(m_prenderer);
 
    ////   m_prenderer->initialize_renderer(m_pvkcontainer, m_pvkcdevice);
 
-   ////   auto pglobalpoolbuilder = øallocate VkcDescriptorPool::Builder();
+   ////   auto pglobalpoolbuilder = allocateø VkcDescriptorPool::Builder();
 
    ////   pglobalpoolbuilder->initialize_builder(m_pvkcdevice);
    ////   pglobalpoolbuilder->setMaxSets(VkcRenderPass::MAX_FRAMES_IN_FLIGHT);
@@ -9681,14 +9681,14 @@ namespace aura
 
    ////   //m_pglobalpool->initialize_pool(m_pvkcdevice);
 
-   ////   //= øallocate
+   ////   //= allocateø
    ////   //   VkcDescriptorPool::Builder(m_pvkcdevice)
    ////   //   .setMaxSets(VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
    ////   //   .addPoolSize(VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VkcSwapChain::MAX_FRAMES_IN_FLIGHT)
    ////   //   .build();
    ////   loadGameObjects();
 
-   ////   //m_pvkcdevice = øallocate VkcDevice(m_pvulkandevice);
+   ////   //m_pvkcdevice = allocateø VkcDevice(m_pvulkandevice);
 
    ////   ::pointer_array<buffer> uboBuffers;
 
@@ -9697,7 +9697,7 @@ namespace aura
    ////   for (int i = 0; i < uboBuffers.size(); i++)
    ////   {
 
-   ////      uboBuffers[i] = øallocate buffer();
+   ////      uboBuffers[i] = allocateø buffer();
 
    ////      uboBuffers[i]->initialize_buffer(
    ////         m_pvkcdevice,

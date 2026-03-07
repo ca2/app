@@ -911,7 +911,7 @@ bool  stream_base::is_version(int i)
 //   if (!m_pvarOptions)
 //   {
 //
-//      m_pvarOptions = øallocate ::payload();
+//      m_pvarOptions = allocateø ::payload();
 //
 //   }
 //

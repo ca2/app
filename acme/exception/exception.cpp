@@ -131,7 +131,7 @@ exception::~exception()
 ::pointer < ::subparticle > exception::clone()
 {
 
-   auto pexception = øallocate::exception(*this);
+   auto pexception = allocateø::exception(*this);
 
    return pexception;
 
@@ -509,9 +509,9 @@ CLASS_DECL_ACME const_char_pointer status_short_description(const ::e_status & e
 //
 //   }
 //
-//   auto pmessagebox = __initialize_new ::message_box(pparticle, strMessage, strTitle, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation, strDetails);
+//   auto pmessageboxpayload = __initialize_new ::message_box_payload(pparticle, strMessage, strTitle, ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation, strDetails);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 //
 //}
 

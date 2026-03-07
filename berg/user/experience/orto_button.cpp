@@ -270,7 +270,7 @@ namespace experience
       if (m_pregion.is_null())
       {
 
-         return øallocate ::item(::e_element_none);
+         return allocateø ::item(::e_element_none);
 
       }
 

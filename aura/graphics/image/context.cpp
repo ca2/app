@@ -362,7 +362,7 @@ namespace image
 
       ::image::icon_pointer picon;
 
-      øconstruct(picon);
+      constructø(picon);
 
       _get_icon(picon, payloadFile);
 
@@ -376,7 +376,7 @@ namespace image
 
       ::image::image_pointer pimage;
 
-      øconstruct(pimage);
+      constructø(pimage);
 
       _get_image(pimage, payloadFile, loadoptions);
 
@@ -501,7 +501,7 @@ namespace image
 
       //auto estatus = 
 
-      øconstruct(pimage);
+      constructø(pimage);
 
       /*if (!estatus)
       {
@@ -533,7 +533,7 @@ namespace image
 
       //auto estatus = 
 
-      øconstruct(pimage);
+      constructø(pimage);
 
       //if (!estatus)
       //{
@@ -565,7 +565,7 @@ namespace image
 
       //auto estatus = 
 
-      øconstruct(pimage);
+      constructø(pimage);
 
       //if (!estatus)
       //{
@@ -596,7 +596,7 @@ namespace image
       ::image::image_pointer pimage;
 
       //auto estatus = 
-      øconstruct(pimage);
+      constructø(pimage);
 
       //if (!estatus)
       //{
@@ -986,7 +986,7 @@ namespace image
    //
    //   ::pointer<image_frame_array>pframea;
    //
-   //   øconstruct_new(pframea);
+   //   construct_newø(pframea);
    //
    //   pframea->m_pimage = this;
    //
@@ -1052,13 +1052,13 @@ namespace image
 
       ::pointer<image_frame_array>pframea;
 
-      øconstruct_new(pframea);
+      construct_newø(pframea);
 
       pframea->m_pimage = this;
 
       ::image::image_pointer pimageCompose;
 
-      pimage->øconstruct(pimageCompose);
+      pimage->constructø(pimageCompose);
 
       pimageCompose->set_ok_flag();
 

@@ -45,7 +45,7 @@ namespace app_message_box
 
       //::app_app::main_window::on_create_user_interaction();
 
-      øconstruct(m_pbuttonShowMessageBox);
+      constructø(m_pbuttonShowMessageBox);
 
       m_pbuttonShowMessageBox->create_child(this);
 
@@ -69,7 +69,7 @@ namespace app_message_box
 
       pmessage->m_bRet = true;
 
-      auto pmessagebox = __initialize_new ::message_box("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
+      auto pmessageboxpayload = __initialize_new ::message_box_payload("Are you sure you want to close application?", nullptr, ::user::e_message_box_yes_no);
 
       pmessagebox->async()
          << [this, pmessagebox]()
@@ -80,7 +80,7 @@ namespace app_message_box
 
                auto papp = get_app();
 
-               papp->_001TryCloseApplication();
+               papp->_001PostTryCloseApplication();
 
             }
             else if (pmessagebox->m_payloadResult.as_int() == e_dialog_result_cancel)
@@ -92,7 +92,7 @@ namespace app_message_box
 
          };
 
-      //pmessagebox->async();
+      //post(pmessageboxpayload);
 
    }
 
@@ -161,7 +161,7 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
+      auto pmessageboxpayload = __initialize_new ::message_box_payload("Showing a message box as requested.\n\nIs it ok?", nullptr, ::user::e_message_box_yes_no_cancel);
 
       pmessagebox->async()
          << [this, pmessagebox]()
@@ -182,7 +182,7 @@ namespace app_message_box
 
          };
 
-      //pmessagebox->async();
+      //post(pmessageboxpayload);
 
    }
 

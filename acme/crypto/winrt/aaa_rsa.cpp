@@ -156,7 +156,7 @@ namespace winrt
 ::pointer<::crypto::rsa>__create_rsa(const ::scoped_string & scopedstr)
 {
 
-   return øallocate ::winrt::rsa(str);
+   return allocateø ::winrt::rsa(str);
 
 }
 

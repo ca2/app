@@ -50,7 +50,7 @@ namespace sqlite
    //::pointer<::database::dataset>database::dataset()
    //{
 
-   //   return øallocate class dataset (this);
+   //   return allocateø class dataset (this);
 
    //}
 
@@ -205,7 +205,7 @@ namespace sqlite
 
       m_strLastError.empty();
 
-      ::pointer<::database::result_set>presultset = øallocate ::database::result_set();
+      ::pointer<::database::result_set>presultset = allocateø ::database::result_set();
 
       char * errmsg = nullptr;
 
@@ -273,7 +273,7 @@ namespace sqlite
    }
 
 
-   ::pointer<class payload_array> database::query_row(const ::scoped_string & scopedstr)
+   ::pointer<::database::row> database::query_row(const ::scoped_string & scopedstr)
    {
 
       return ::database::database_impl::query_row(scopedstr);
@@ -977,7 +977,7 @@ int database_sqlite3_sqlite_callback(void * res_ptr,int ncol, char** reslt,char*
 
       }
 
-      auto prow = øallocate ::database::row();
+      auto prow = allocateø ::database::row();
 
       ::payload payload;
 

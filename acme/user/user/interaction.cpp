@@ -833,7 +833,7 @@ namespace acme
             if (m_ptimerarray.is_null())
             {
 
-               øconstruct_new(m_ptimerarray);
+               construct_newø(m_ptimerarray);
 
                m_ptimerarray->m_pcallback = this;
 
@@ -915,7 +915,7 @@ namespace acme
 
          //   do_asynchronously();
 
-         //   auto pmanualresethappening = øallocate manual_reset_happening();
+         //   auto pmanualresethappening = allocateø manual_reset_happening();
 
          //   if (m_psequencer)
          //   {
@@ -1048,7 +1048,7 @@ namespace acme
          //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
          //{
 
-         //   auto pbutton = øallocate ::micro::button();
+         //   auto pbutton = allocateø ::micro::button();
 
          //   pbutton->m_strText = scopedstrText;
          //   pbutton->id() = edialogresult;
@@ -2028,9 +2028,9 @@ namespace acme
 
             //auto pfactoryAcmeWindowing = ::system()->m_pfactoryAcmeWindowing.m_p;
 
-            //øconstruct(m_pacmewindowingwindow, pfactoryAcmeWindowing);
+            //constructø(m_pacmewindowingwindow, pfactoryAcmeWindowing);
 
-            øconstruct(m_pacmewindowingwindow);
+            constructø(m_pacmewindowingwindow);
 
          }
 
@@ -2173,13 +2173,13 @@ namespace acme
          }
 
 
-         void interaction::_main_post(const ::procedure & procedure)
+         void interaction::main_post(const ::procedure & procedure)
          {
 
             if (m_pacmewindowingwindow)
             {
 
-               m_pacmewindowingwindow->_main_post(procedure);
+               m_pacmewindowingwindow->main_post(procedure);
 
             }
             else
@@ -2190,13 +2190,13 @@ namespace acme
                if (pacmewindowingwindow)
                {
 
-                  pacmewindowingwindow->_main_post(procedure);
+                  pacmewindowingwindow->main_post(procedure);
 
                }
                else
                {
 
-                  ::user::element::_main_post(procedure);
+                  ::user::element::main_post(procedure);
 
                }
 

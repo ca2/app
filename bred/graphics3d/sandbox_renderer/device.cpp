@@ -159,7 +159,7 @@ namespace graphics3d
    //
    //    ::pointer < ::graphics3d::pipeline> ppipeline;
    //
-   //    øconstruct(ppipeline);
+   //    constructø(ppipeline);
    //
    //    return ppipeline;
    //

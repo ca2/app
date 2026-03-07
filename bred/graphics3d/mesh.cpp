@@ -117,7 +117,7 @@ namespace graphics3d
       //data.m_vertexes = m_Vertices;
       //data.m_indexes = m_Indices;
 
-      øconstruct_new(m_pmodel);
+      construct_newø(m_pmodel);
 
       m_pmodel->initialize_gpu_context_object(m_pgpucontext);
 

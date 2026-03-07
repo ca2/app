@@ -116,8 +116,8 @@ namespace acme
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
-         void _main_send(const ::procedure & procedure) override;
-         void _main_post(const ::procedure & procedure) override;
+         void main_send(const ::procedure & procedure) override;
+         void main_post(const ::procedure & procedure) override;
 
          //void _main_send(::subparticle * p) override;
          //void _main_post(::subparticle * p) override;
@@ -233,7 +233,7 @@ namespace acme
 
          virtual bool shell_open(const ::file::path & path);
 
-         virtual bool defer_realize(         ::pointer < ::reified < ::message_box > > & preifiedMessageBox, ::message_box * p);
+         //virtual bool defer_realize(         ::pointer < ::reified < ::message_box > > & preifiedMessageBox, ::message_box * p);
 
          virtual bool has_resizing();
 

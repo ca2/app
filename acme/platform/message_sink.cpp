@@ -36,7 +36,7 @@ void message_sink::on_initialize_particle()
 ::pointer < ::platform::message > message_sink::create_message(::enum_message emessage, long long llWparam, long long llLparam)
 {
 
-   auto pmessage = øallocate ::platform::message();
+   auto pmessage = allocateø ::platform::message();
 
    pmessage->initialize(this);
 
@@ -71,7 +71,7 @@ void message_sink::post_message(::platform::message * pmessage)
 
    auto p = ::as_pointer(pmessage);
 
-   pacmewindowing->_main_post(
+   pacmewindowing->main_post(
       [this, p]()
       {
 
@@ -166,7 +166,7 @@ void message_sink::dispatch_message(::platform::message * pmessage)
 //
 //
 //   ::pointer < ::jni_object_impl > pobject =
-//      øallocate jni_application_message(pmessage);
+//      allocateø jni_application_message(pmessage);
 //
 //   pobject->initialize(this);
 //

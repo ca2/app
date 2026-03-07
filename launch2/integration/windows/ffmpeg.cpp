@@ -46,7 +46,7 @@ namespace console_integration
 
          acmenode()->integration_factory();
 
-         øconstruct(m_papplication);
+         constructø(m_papplication);
 
          m_papplication->m_bMsys = true;
 
@@ -228,7 +228,7 @@ namespace console_integration
 
          //}
 
-         //øconstruct_new(m_px264);
+         //construct_newø(m_px264);
 
          //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
 
@@ -287,7 +287,7 @@ namespace console_integration
 
          }
 
-         //øconstruct_new(m_px264);
+         //construct_newø(m_px264);
 
          //m_px264->m_papplication->m_pathPrefix = m_papplication->m_pathPrefix;
 

@@ -22,7 +22,7 @@ namespace sockets
       //http_client_socket(h)
    {
 
-      m_emethod = http_method_post;
+      m_emethod = e_http_method_post;
 
    }
 
@@ -47,7 +47,7 @@ namespace sockets
 
       initialize_http_client_socket(url);
 
-      m_emethod = http_method_post;
+      m_emethod = e_http_method_post;
 
    }
 
@@ -77,7 +77,7 @@ namespace sockets
          if (m_pmultipart == nullptr)
          {
 
-            m_pmultipart = øallocate multipart(this);
+            m_pmultipart = allocateø multipart(this);
 
          }
          m_pmultipart->m_map[name].m_spfile = file()->get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
@@ -194,7 +194,7 @@ namespace sockets
          if (m_request.attr("minimal_headers").is_false())
          {
 
-            inheader("user_agent") = "ca2_netnode";
+            inheader("user-agent") = "ca2_netnode";
 
             if (inheader("accept").is_empty())
             {
@@ -367,7 +367,7 @@ namespace sockets
 
       inheader("host") = strHost; // oops - this is actually a request header that we're adding..
 
-      inheader("user_agent") = MyUseragent();
+      inheader("user-agent") = MyUseragent();
 
       inheader("accept") = "text/html, text/plain, */*;q=0.01";
 

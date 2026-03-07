@@ -32,8 +32,8 @@ namespace crypto
       virtual void defer_initialize();
 
 
-      virtual ::pointer<hasher_algorithm>create_hasher_algorithm(enum_hash ehash);
-      virtual ::pointer<hasher>create_hasher(enum_hash ehash);
+      virtual ::pointer<::crypto::hasher_algorithm>create_hasher_algorithm(enum_hash ehash);
+      virtual ::pointer<::crypto::hasher>create_hasher(enum_hash ehash);
 
 
       virtual void encrypt(memory& storageEncrypt, const block & blockDecrypt, const block & blockKey) = 0;

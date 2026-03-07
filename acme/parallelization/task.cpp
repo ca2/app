@@ -265,6 +265,50 @@ void task::set_active_user_interaction(::acme::user::interaction * pacmeuserinte
 }
 
 
+bool task::is_locked() const
+{
+
+#ifdef WINDOWS
+
+   auto hTask = ::as_HANDLE(m_htask);
+
+   if (!hTask || hTask == INVALID_HANDLE_VALUE)
+   {
+
+      return false;
+
+   }
+
+   DWORD dwResult = ::WaitForSingleObject(hTask, 0);
+
+   if (dwResult == WAIT_TIMEOUT)
+   {
+      
+      // Thread is still running
+      return true;
+
+   }
+   else if (dwResult == WAIT_OBJECT_0)
+   {
+      
+      // Thread has terminated
+      return false;
+
+   }
+   else
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
+#else
+
+   return m_htask.is_set();
+
+#endif
+
+}
 
 
 bool task::has_main_loop_happening()
@@ -402,7 +446,16 @@ bool task::task_get_run() const
    if(!has_finishing_flag())
    {
 
+      ((::task *)this)->m_pfinishing.release();
+
       return true;
+
+   }
+
+   if (!m_pfinishing)
+   {
+
+      ((::task *)this)->construct_newø(((::task *)this)->m_pfinishing);
 
    }
 
@@ -437,12 +490,17 @@ bool task::task_get_run() const
 
    }
 
-   if (m_requestaPosted.has_element())
-   {
+   // maybe later
+   // you can check if there is any
+   // finalizing requests (possibly known by a flag set in the request) to be attended
+   // by now, not going to attend
+   // new requests because task is finishing...
+   //if (m_requestaPosted.has_element())
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
    if (has_child_task())
    {
@@ -1024,7 +1082,7 @@ void task::main()
    catch (::exception & exception)
    {
 
-      send(__initialize_new::message_box(exception, application()->m_strAppId, exception.m_strDetails));
+      send(__initialize_new ::message_box_payload(exception, application()->m_strAppId, exception.m_strDetails));
 
    }
    catch (...)
@@ -1054,7 +1112,7 @@ void task::run_loop()
       if(m_pfinishing)
       {
          
-         if(has_dependant_tasks())
+         if(has_child_task())
          {
             
             if(m_pfinishing->has_finishing_timed_out(30_minute))
@@ -1118,6 +1176,14 @@ void task::run()
       }
 
    }
+   catch (const ::exit_exception & e)
+   {
+
+      set_finishing_flag();
+
+      m_estatus = e.m_estatus;
+
+   }
    catch (::exception & exception)
    {
 
@@ -1125,7 +1191,7 @@ void task::run()
 
       strMoreDetails = "task::run";
 
-      send(__initialize_new::message_box(exception,  strMoreDetails));
+      send(__initialize_new ::message_box_payload(exception,  strMoreDetails));
 
    }
 
@@ -1191,24 +1257,6 @@ bool task::task_iteration()
    handle_next_posted_request();
 
    handle_posted_procedures();
-   
-   if(this->has_finishing_flag())
-   {
-      
-      if(!m_pfinishing)
-      {
-         
-         øconstruct_new(m_pfinishing);
-         
-      }
-      
-   }
-   else
-   {
-    
-      m_pfinishing.release();
-      
-   }
    
    return true;
 
@@ -1972,29 +2020,29 @@ void task::__task_term()
 }
 
 
-bool task::has_dependant_tasks() const
-{
-   
-   if(!m_pparticleaChildrenTask)
-   {
-      
-      return false;
-      
-   }
-   
-   if(m_pparticleaChildrenTask->is_empty())
-   {
-      
-      return false;
-      
-   }
- 
-   return true;
+//bool task::has_dependant_tasks() const
+//{
+//   
+//   if(!m_pparticleaChildrenTask)
+//   {
+//      
+//      return false;
+//      
+//   }
+//   
+//   if(m_pparticleaChildrenTask->is_empty())
+//   {
+//      
+//      return false;
+//      
+//   }
+// 
+//   return true;
+//
+//}
 
-}
 
-
-void task::_post(const ::procedure & procedure)
+void task::post(const ::procedure & procedure)
 {
 
    if (!procedure)
@@ -2065,7 +2113,7 @@ void task::_post(const ::procedure & procedure)
 //}
 
 
-void task::_send(const ::procedure & procedure)
+void task::send(const ::procedure & procedure)
 {
 
    ::cast < ::sequence > psequence = procedure;
@@ -2094,7 +2142,7 @@ void task::_send(const ::procedure & procedure)
    else
    {
 
-      øconstruct_new(pmanualresethappeningOnEndOfSequence);
+      construct_newø(pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequenceToSetInProcedure = pmanualresethappeningOnEndOfSequence;
 
@@ -2127,7 +2175,7 @@ void task::_send(const ::procedure & procedure)
                catch (...)
                {
 
-                  pexception = øallocate::exception(error_catch_all_exception);
+                  pexception = allocateø::exception(error_catch_all_exception);
 
                }
 
@@ -2164,7 +2212,7 @@ void task::_send(const ::procedure & procedure)
       catch (...)
       {
 
-         pexception = øallocate::exception(error_catch_all_exception);
+         pexception = allocateø::exception(error_catch_all_exception);
 
       }
 
@@ -3017,7 +3065,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //if (bSynchInitialization)
    {
 
-      m_phappeningInitialization = øallocate manual_reset_happening();
+      m_phappeningInitialization = allocateø manual_reset_happening();
 
    }
 
@@ -3059,7 +3107,19 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
          auto phappeningProtectionWhileWaiting = m_phappeningInitialization;
 
-         phappeningProtectionWhileWaiting->wait();
+         m_estatus = phappeningProtectionWhileWaiting->wait(::as_continue_predicate([this]()
+            {
+
+               if (has_finishing_flag())
+               {
+
+                  return false;
+
+               }
+
+               return true;
+
+            }));
 
       }
 
@@ -3070,7 +3130,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 
          ::e_status estatusExit = m_estatus;
 
-         throw ::exception(estatusExit);
+         throw ::exit_exception(error_exit_thread, this, "Failed", estatusExit);
 
       }
 
@@ -3363,7 +3423,7 @@ bool task::task_sleep(const class time & timeWait)
 //void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   auto ptask = øallocate task();
+//   auto ptask = allocateø task();
 //
 //   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -3420,7 +3480,7 @@ bool task::task_sleep(const class time & timeWait)
 void task::kick_idle()
 {
 
-   _post([]() {});
+   post([]() {});
 
 }
 
@@ -3525,7 +3585,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = øallocate manual_reset_happening();
+            ptask->m_pevSleep = allocateø manual_reset_happening();
 
             ptask->m_pevSleep->reset_happening();
 

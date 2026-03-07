@@ -35,7 +35,7 @@ namespace app_just_message_box
    void application::show_message_box()
    {
 
-      auto pmessagebox = __initialize_new::message_box(
+      auto pmessageboxpayload = __initialize_new ::message_box_payload(
          "Showing a message box as requested.\n\nIs it ok?",
          nullptr,
          ::user::e_message_box_yes_no_cancel);
@@ -47,13 +47,13 @@ namespace app_just_message_box
             if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
             {
 
-               _001TryCloseApplication();
+               _001PostTryCloseApplication();
 
             }
             else  if (pmessagebox->m_payloadResult == e_dialog_result_no)
             {
 
-               auto pmessageboxNo = __initialize_new::message_box("No!", nullptr, ::user::e_message_box_ok);
+               auto pmessageboxNo = __initialize_new ::message_box_payload("No!", nullptr, ::user::e_message_box_ok);
 
                pmessageboxNo->async()
                   << [this]()
@@ -67,13 +67,13 @@ namespace app_just_message_box
             else  if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
-               auto pmessageboxYes = __initialize_new::message_box("Yes!!", nullptr, ::user::e_message_box_ok);
+               auto pmessageboxYes = __initialize_new ::message_box_payload("Yes!!", nullptr, ::user::e_message_box_ok);
 
                pmessageboxYes->async()
                   << [this]()
                   {
 
-                     _001TryCloseApplication();
+                     _001PostTryCloseApplication();
 
                   };
 

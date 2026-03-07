@@ -889,8 +889,8 @@ namespace image
 //// Compose, Construct, Create and Add_Reference Porngraphs
 ////
 //// øcreate      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
-//// øconstruct     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
-//// øconstruct   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
+//// constructø     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
+//// constructø   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
 //// add_reference // ::pointer<BASE_TYPE>& SOURCE psource
 ////
 //// >>
@@ -906,21 +906,21 @@ namespace image
 //}
 //
 //// template < typename COMPOSER >
-//// void øconstruct(COMPOSER && pcomposer, __ & pimage);
+//// void constructø(COMPOSER && pcomposer, __ & pimage);
 // //
 // template < typename COMPOSER >
-// inline void øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource);
+// inline void constructø(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, ::image::image *pimageSource);
 // //
 // //
 // template < typename COMPOSER >
-// inline void øconstruct(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
+// inline void constructø(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
 // //
 // //
 // template < typename COMPOSER >
 // inline void __preserve(COMPOSER && pcomposer, ::pointer<::image::image>& pimage, const ::int_size & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
 // //
 //
-//void øconstruct(::image::image_pointer & pimage);
+//void constructø(::image::image_pointer & pimage);
 
 inline void __call__construct(::image::image_pointer & pimage, ::image::image *pimageSource);
 //

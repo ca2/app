@@ -56,7 +56,7 @@ namespace menu
       virtual ::collection::count get_separator_item_count();
       virtual ::collection::count get_full_height_item_count();
 
-      virtual bool create_buttons(::draw2d::graphics_pointer& pgraphics, ::user::menu * pusermenu);
+      virtual void create_buttons(::draw2d::graphics_pointer& pgraphics, ::user::menu * pusermenu);
       virtual bool contains_menu_item(::menu::item * pitem, bool bRecursive = true) const;
 
       

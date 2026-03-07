@@ -456,7 +456,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 ::pointer<::message::message>channel::get_message(MESSAGE * pmessage)
 {
 
-   auto pmessagemessage = øallocate::message::message();
+   auto pmessagemessage = allocateø::message::message();
 
    pmessagemessage->m_operatingsystemwindow = pmessage->m_operatingsystemwindow;
    pmessagemessage->m_eusermessage = pmessage->m_eusermessage;
@@ -467,7 +467,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 
 }
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = øallocate TYPE(); \
+   auto pmessage = allocateø TYPE(); \
    pmessageBase = pmessage; \
    pmessage->m_eusermessage = eusermessage; \
    pmessage->m_wparam = wparam; \
@@ -507,7 +507,7 @@ void channel::_route_command_probe(::message::command * pcommand)
    }
 
 
-   //auto pmessagemessage = øallocate ::message::message();
+   //auto pmessagemessage = allocateø ::message::message();
 
    //pmessagemessage->id() = atom;
    //pmessagemessage->m_wparam = wparam;
@@ -817,7 +817,7 @@ void channel::command_handler(::message::command * pcommand)
          && !pcommand->m_bHasCommandHandler)
       {
 
-         if (on_command_final(pcommand->m_eusermessage, pcommand->user_activation_token()))
+         if (on_command_final(pcommand->command_id(), pcommand->user_activation_token()))
          {
 
             pcommand->m_bRet = true;

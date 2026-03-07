@@ -416,6 +416,8 @@ namespace apex
    void session::init_task()
    {
 
+      m_strTaskName = ::type(*this).name();
+
       ::platform::session::init_task();
 
       // init_session();
@@ -950,7 +952,7 @@ class ::fs::data * session::fs()
       if (!m_pmapKeyPressed)
       {
 
-         øconstruct_new(m_pmapKeyPressed);
+         construct_newø(m_pmapKeyPressed);
 
       }
 
@@ -1035,7 +1037,7 @@ ret:
       if (!m_pmapKeyPressed)
       {
 
-         øconstruct_new(m_pmapKeyPressed);
+         construct_newø(m_pmapKeyPressed);
 
       }
 
@@ -1064,7 +1066,7 @@ ret:
       //}
 
       //estatus = 
-      øconstruct_new(m_pfs);
+      construct_newø(m_pfs);
 
 
       __check_refdbg
@@ -1073,7 +1075,7 @@ ret:
       //if (!estatus)
       //{
 
-      //   informationf("----> Failed to øconstruct_new(m_pfs)");
+      //   informationf("----> Failed to construct_newø(m_pfs)");
 
       //   m_result.add(estatus);
 
@@ -1096,7 +1098,7 @@ ret:
 
       //}
 
-      //estatus = øconstruct_new(m_puserpresence);
+      //estatus = construct_newø(m_puserpresence);
 
       //if (!estatus)
       //{
@@ -1153,7 +1155,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = øallocate ftpfs();
+      //   auto pftpfs = allocateø ftpfs();
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 
@@ -1166,7 +1168,7 @@ ret:
 
       //   }
 
-      //   øconstruct(m_pftpfs, pftpfs);
+      //   constructø(m_pftpfs, pftpfs);
 
       //}
 
@@ -1249,7 +1251,7 @@ ret:
          //if (!m_paccount)
          //{
 
-         //   estatus = øconstruct_new(m_paccount);
+         //   estatus = construct_newø(m_paccount);
 
          //   if (!estatus)
          //   {

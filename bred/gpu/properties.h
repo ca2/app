@@ -31,7 +31,7 @@ public:
       if (!m_pmemory)
       {
 
-         øconstruct(m_pmemory);
+         constructø(m_pmemory);
 
       }
 

@@ -44,7 +44,7 @@ void machine_event_central::initialize(::particle * pparticle)
 
    //estatus = 
    
-   øconstruct_new(m_pmachinehappening);
+   construct_newø(m_pmachinehappening);
 
    //if (!estatus)
    //{

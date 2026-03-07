@@ -1272,8 +1272,16 @@ namespace user
    bool element::_is_window() const
    {
 
-      return m_bUserElementOk;
+      return this->_is_this_window();
 
+   }
+
+
+   bool element::_is_this_window() const 
+   {
+         
+      return m_bUserElementOk; 
+      
    }
 
 
@@ -3965,28 +3973,28 @@ namespace user
 //      case ::message::PrototypeNone:
 //      {
 //
-//         pmessage = øallocate ::user::message();
+//         pmessage = allocateø ::user::message();
 //
 //      }
 //      break;
 //      case ::message::PrototypeCreate:
 //      {
-//         pmessage = øallocate ::message::create();
+//         pmessage = allocateø ::message::create();
 //      }
 //      break;
 //      case ::message::PrototypeEnable:
 //      {
-//         pmessage = øallocate ::message::enable();
+//         pmessage = allocateø ::message::enable();
 //      }
 //      break;
 //      case ::message::PrototypeNcActivate:
 //      {
-//         pmessage = øallocate ::message::nc_activate();
+//         pmessage = allocateø ::message::nc_activate();
 //      }
 //      break;
 //      case ::message::PrototypeKey:
 //      {
-//         pmessage = øallocate ::message::key();
+//         pmessage = allocateø ::message::key();
 //      }
 //      break;
 //      case ::message::PrototypeTimer:
@@ -3994,95 +4002,95 @@ namespace user
 //         
 //         //throw ::exception(::exception("do not use ::user::e_message_timer or Windows set_timer/kill_timer"));
 //         
-//         pmessage = øallocate ::message::timer();
+//         pmessage = allocateø ::message::timer();
 //
 //      }
 //      break;
 //      case ::message::PrototypeShowWindow:
 //      {
-//         pmessage = øallocate ::message::show_window();
+//         pmessage = allocateø ::message::show_window();
 //      }
 //      break;
 //      case ::message::PrototypeSetCursor:
 //      {
-//         pmessage = øallocate ::message::set_cursor();
+//         pmessage = allocateø ::message::set_cursor();
 //      }
 //      break;
 //      case ::message::PrototypeNcHitTest:
 //      {
-//         pmessage = øallocate ::message::nc_hit_test();
+//         pmessage = allocateø ::message::nc_hit_test();
 //      }
 //      break;
 //      case ::message::PrototypeMove:
 //      {
-//         pmessage = øallocate ::message::transfer();
+//         pmessage = allocateø ::message::transfer();
 //      }
 //      break;
 //      case ::message::PrototypeEraseBkgnd:
 //      {
-//         pmessage = øallocate ::message::erase_bkgnd();
+//         pmessage = allocateø ::message::erase_bkgnd();
 //      }
 //      break;
 //      case ::message::PrototypeScroll:
 //      {
-//         pmessage = øallocate ::message::scroll();
+//         pmessage = allocateø ::message::scroll();
 //      }
 //      break;
 //      case ::message::PrototypeSetFocus:
 //      {
-//         pmessage = øallocate ::message::set_keyboard_focus();
+//         pmessage = allocateø ::message::set_keyboard_focus();
 //      }
 //      break;
 //      case ::message::PrototypeKillFocus:
 //      {
-//         pmessage = øallocate ::message::kill_keyboard_focus();
+//         pmessage = allocateø ::message::kill_keyboard_focus();
 //      }
 //      break;
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__)
 //      case ::message::PrototypeWindowPos:
 //      {
-//         pmessage = øallocate ::message::window_pos();
+//         pmessage = allocateø ::message::window_pos();
 //      }
 //      break;
 //      case ::message::PrototypeNcCalcSize:
 //      {
-//         pmessage = øallocate ::message::nc_calc_size();
+//         pmessage = allocateø ::message::nc_calc_size();
 //      }
 //      break;
 //#endif
 //      case ::message::PrototypeMouse:
 //      {
-//         pmessage = øallocate ::message::mouse();
+//         pmessage = allocateø ::message::mouse();
 //      }
 //      break;
 //      case ::message::PrototypeMouseWheel:
 //      {
-//         pmessage = øallocate ::message::mouse_wheel();
+//         pmessage = allocateø ::message::mouse_wheel();
 //      }
 //      break;
 //      case ::message::PrototypeSize:
 //      {
-//         pmessage = øallocate ::message::size();
+//         pmessage = allocateø ::message::size();
 //      }
 //      break;
 //      case ::message::PrototypeActivate:
 //      {
-//         pmessage = øallocate ::message::activate();
+//         pmessage = allocateø ::message::activate();
 //      }
 //      break;
 //      case ::message::PrototypeMouseActivate:
 //      {
-//         pmessage = øallocate ::message::mouse_activate();
+//         pmessage = allocateø ::message::mouse_activate();
 //      }
 //      break;
 //      case ::message::PrototypeSimpleCommand:
 //      {
-//         pmessage = øallocate ::message::simple_command();
+//         pmessage = allocateø ::message::simple_command();
 //      }
 //      break;
 //      default:
 //      {
-//         pmessage = øallocate ::message::message();
+//         pmessage = allocateø ::message::message();
 //      }
 //      break;
 //      }

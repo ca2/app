@@ -43,7 +43,7 @@ namespace micro
 
       id() = e_dialog_result_none;
 
-      set_flag(e_flag_should_create_sequence_on_synchronicity);
+      //set_flag(e_flag_should_create_sequence_on_synchronicity);
 
    }
 
@@ -58,7 +58,9 @@ namespace micro
    ::string message_box::get_title()
    {
 
-      return m_prealizable->m_strTitle;
+      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+
+      return pmessageboxpayload->m_strTitle;
 
    }
 
@@ -67,7 +69,6 @@ namespace micro
    {
 
       ::micro::main_window::create_window();
-
 
    }
 
@@ -123,8 +124,10 @@ namespace micro
 
       }
 
+      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+
       pmicrodevice->draw_text123(
-         m_prealizable->m_strMessage,
+         pmessageboxpayload->m_strMessage,
          rectangleText,
          e_align_top_left,
          e_draw_text_word_break,
@@ -138,10 +141,12 @@ namespace micro
    void message_box::defer_create_details_still()
    {
 
-      if (m_prealizable->m_strDetails.has_character())
+      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+
+      if (pmessageboxpayload->m_strDetails.has_character())
       {
 
-         m_pstillDetails = øallocate::micro::still();
+         m_pstillDetails = allocateø::micro::still();
 
          m_pstillDetails->id() = "details";
 
@@ -195,21 +200,23 @@ namespace micro
    }
 
 
-   void message_box::on_realize(::message_box* pmessagebox)
+   void message_box::display(::dialog * pdialog)
    {
+
+      ::cast < ::message_box_payload > pmessageboxpayload = pdialog;
 
       calculate_size();
 
-      ::acme::user::message_box::on_realize(pmessagebox);
+      ::acme::user::message_box::display(pmessageboxpayload);
 
-      set_icon(m_prealizable->m_picon);
+      set_icon(pmessageboxpayload->m_picon);
 
       defer_create_details_still();
 
-      if (m_prealizable->m_emessagebox & ::user::e_message_box_default_button_mask)
+      if (pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask)
       {
 
-         int iDefaultButtonMask = (int)(m_prealizable->m_emessagebox & ::user::e_message_box_default_button_mask);
+         int iDefaultButtonMask = (int)(pmessageboxpayload->m_emessagebox & ::user::e_message_box_default_button_mask);
 
          int iDefaultButtonIndex = iDefaultButtonMask >> 8;
 
@@ -307,7 +314,7 @@ namespace micro
       if (ptimer->m_uTimer == 1021)
       {
 
-         m_pstillTimeout->m_strText.formatf("%0.2fs", m_prealizable->m_psequence->remaining_from_timeout().floating_second());
+         m_pstillTimeout->m_strText.formatf("%0.2fs", m_pdialog->dialog_time_remaining_from_timeout().floating_second());
 
          redraw();
 
@@ -319,9 +326,13 @@ namespace micro
    void message_box::set_dialog_result(const ::payload& payloadResult)
    {
 
-      m_prealizable->m_payloadResult = payloadResult;
+      ::dialog_reifier::set_dialog_result(payloadResult);
 
-      on_dialog_result_set();
+//      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+
+  //    pmessageboxpayload->m_payloadResult = payloadResult;
+
+    //  on_dialog_result_set();
 
    }
 
@@ -329,7 +340,9 @@ namespace micro
    ::payload message_box::get_dialog_result()
    {
 
-      return m_prealizable->m_payloadResult;
+      ::cast < ::message_box_payload > pmessageboxpayload = m_pdialog;
+
+      return pmessageboxpayload->m_payloadResult;
 
    }
 
@@ -359,20 +372,19 @@ namespace micro
 
       }
 
-
-      if (m_prealizable->m_psequence)
+      if (m_pdialog->dialog_timeout() > 0_s)
       {
 
-         if (!m_prealizable->m_psequence->m_timeLocked.is_null())
-         {
+         //if (!pmessageboxpayload->m_psequence->m_timeLocked.is_null())
+         //{
 
-            m_pstillTimeout = øallocate::micro::still();
+            m_pstillTimeout = allocateø::micro::still();
 
             m_pstillTimeout->id() = "timeout";
 
             add_child(m_pstillTimeout);
 
-         }
+         //}
 
       }
       if (m_pstillTimeout)
@@ -413,15 +425,15 @@ namespace micro
 
          //auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
 
-         auto pmessageboxDetails = __initialize_new::message_box(
-            m_prealizable->m_strDetails,
-            m_prealizable->m_strTitle + " : Details",
+         auto pmessageboxDetails = __initialize_new ::message_box_payload(
+            m_pdialog->dialog_details(),
+            m_pdialog->dialog_title() + " : Details",
             ::user::e_message_box_ok,
-            m_prealizable->m_strDetails);
+            m_pdialog->dialog_details());
 
          pmessageboxDetails->m_bDetails = true;
 
-         pmessageboxDetails->send();
+         send(pmessageboxDetails);
 
          pmouse->m_bRet = true;
 
@@ -489,13 +501,16 @@ namespace micro
          pmouse->m_pointAbsolute.x, pmouse->m_pointAbsolute.y,
          this);
 #endif
-      ppopupbutton->main_async()
-         << [this, ppopupbutton]()
+
+
+      auto pmessageboxpayload =ppopupbutton->get_message_box_payload();
+
+      pmessageboxpayload->m_functionOnDialogResult = [this,  pmessageboxpayload](const::payload & payloadResult)
          {
 
-            auto result = ppopupbutton->m_payloadPopupButtonResult;
+            //auto result = ppopupbutton->m_payloadPopupButtonResult;
 
-            if (result == e_dialog_result_yes)
+            if (payloadResult == e_dialog_result_yes)
             {
 
 #ifdef APPLE_IOS
@@ -507,14 +522,17 @@ namespace micro
 #else
 
                display_temporary_file_with_text(
-                  m_prealizable->m_strMessage + "\n\n"
-                  + m_prealizable->m_strDetails);
+                  pmessageboxpayload->m_strMessage + "\n\n"
+                  + pmessageboxpayload->m_strDetails);
 
 #endif
 
             }
 
          };
+
+      post(ppopupbutton);
+
 
       pmouse->m_bRet = true;
       

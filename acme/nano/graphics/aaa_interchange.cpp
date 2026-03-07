@@ -81,7 +81,7 @@ void interchange::on_initialize_particle()
    
    ::object::on_initialize_particle();
    
-   øconstruct(m_pwindowbase);
+   constructø(m_pwindowbase);
    
    m_pwindowbase->m_puserinteractionbase = this;
    
@@ -301,7 +301,7 @@ void interchange::create_drawing_objects()
       
 #endif
       
-      øconstruct(m_pfont, nullptr);
+      constructø(m_pfont, nullptr);
       
       m_pfont->m_iFontSize = m_iFontSize;
       
@@ -459,7 +459,7 @@ void interchange::add_child(::micro::child * pchild)
 void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
    
-   auto pbutton = øallocate ::micro::button();
+   auto pbutton = allocateø ::micro::button();
    
    pbutton->m_strText = scopedstrText;
    pbutton->id() = edialogresult;
@@ -838,7 +838,7 @@ void interchange::_run_modal_loop()
 
        message_loop();
 
-       auto pmanualresethappening = øallocate manual_reset_happening();
+       auto pmanualresethappening = allocateø manual_reset_happening();
 
        m_psequencer->then([ pmanualresethappening](auto psequencer)
        {

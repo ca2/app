@@ -41,7 +41,10 @@ namespace sockets
 
       int      m_iContentLength;
 
+
       http_base_socket();
+      http_base_socket(const http_base_socket& s);
+
       ~http_base_socket();
 
 
@@ -54,7 +57,6 @@ namespace sockets
       void Respond();
 
       void OnWriteComplete();
-
 
       virtual void OnExecute();
       virtual void OnResponseComplete();
@@ -71,7 +73,6 @@ namespace sockets
 
 
 
-      http_base_socket(const http_base_socket& s);
       void Reset();
 
       void Execute();
@@ -85,7 +86,7 @@ namespace sockets
 
       virtual bool dump_memory(const ::block & block);
 
-
+    
    };
 
 

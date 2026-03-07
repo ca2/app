@@ -255,7 +255,7 @@ void user::init(){
 //
 //      //estatus = 
 //
-//      øconstruct(m_phtml);
+//      constructø(m_phtml);
 //
 //      //if(!estatus)
 //      //{
@@ -1461,7 +1461,7 @@ void user::destroy()
 //   //::pointer<::user::user>application::create_userex()
 //   //{
 //
-//   //   return øallocate ::user::user();
+//   //   return allocateø ::user::user();
 //
 //   //}
 //
@@ -1704,9 +1704,9 @@ void user::destroy()
 //
 //   //   }
 //
-//   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+//   //   return auto pmessageboxpayload = __initialize_new ::message_box_payload(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
 
-//pmessagebox->sync();
+//send(pmessageboxpayload);
 //
 //   //}
 //

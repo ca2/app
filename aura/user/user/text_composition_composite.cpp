@@ -39,7 +39,7 @@ namespace user
 
 		//auto estatus =
 
-		puserinteraction->øconstruct(m_ptextcompositionclient);
+		puserinteraction->constructø(m_ptextcompositionclient);
 
 		//if (!estatus)
 		//{

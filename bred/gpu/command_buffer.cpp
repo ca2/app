@@ -258,7 +258,7 @@ namespace gpu
       if(!m_pgpufence)
       {
        
-         øconstruct(m_pgpufence);
+         constructø(m_pgpufence);
 
          m_pgpufence->initialize_gpu_fence(m_pgpurendertarget->m_pgpurenderer->m_pgpucontext, bCreateSignaled);
 

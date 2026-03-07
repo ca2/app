@@ -243,7 +243,7 @@ namespace colorertake5
 
       if (pair != nullptr)
       {
-         PairMatch *pm = øallocate< PairMatch(pair, lineNo, pair->region->hasParent >(def_PairStart));
+         PairMatch *pm = allocateø< PairMatch(pair, lineNo, pair->region->hasParent >(def_PairStart));
          pm->setStart(pair);
          return pm;
       }

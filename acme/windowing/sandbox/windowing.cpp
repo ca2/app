@@ -183,9 +183,9 @@ void windowing::initialize(::particle * pparticle)
    //
    //      }
    //
-   //      //øconstruct_new(m_phostinteraction);
+   //      //construct_newø(m_phostinteraction);
    //
-   //      øconstruct(m_phostinteraction);
+   //      constructø(m_phostinteraction);
    //
    //      //m_phostinteraction->place(*lpcrect);
    //
@@ -209,7 +209,7 @@ void windowing::initialize(::particle * pparticle)
       
    }
    
-   øconstruct(m_phostinteraction);
+   constructø(m_phostinteraction);
    
    auto puserinteraction = m_phostinteraction;
    
@@ -407,7 +407,7 @@ bool windowing::targeted_keyboard_messages()
 //      //auto estatus =
 //      //
 //      //
-//      øconstruct_new(m_pcursormanager);
+//      construct_newø(m_pcursormanager);
 //      
 //      //         if (!estatus)
 //      //         {

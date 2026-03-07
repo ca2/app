@@ -59,7 +59,7 @@ namespace micro
 
       //}
 
-      //::pointer < ::message_box > user::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+      //::pointer < ::message_box_payload > user::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
       //                                                       const ::user::e_message_box & emessagebox,
       //                                                       const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
@@ -71,7 +71,7 @@ namespace micro
       //}
 
 
-      //::pointer < ::message_box > user::exception_message_box(
+      //::pointer < ::message_box_payload > user::exception_message_box(
       //    const ::exception & exception, const ::scoped_string & scopedstrMessageParam, const ::scoped_string & scopedstrTitleParam,
       //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetailsParam, ::nano::graphics::icon * picon)
       //{
@@ -114,7 +114,7 @@ namespace micro
       //}
 
 
-      //::pointer < ::message_box > user::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
+      //::pointer < ::message_box_payload > user::message_console(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
       //                                                           const ::user::e_message_box & emessagebox,
       //                                                           const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
@@ -124,7 +124,7 @@ namespace micro
       //}
 
 
-      //::pointer < ::message_box > user::exception_message_console(
+      //::pointer < ::message_box_payload > user::exception_message_console(
       //    const ::exception & exception, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle,
       //    const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
       //{
@@ -234,7 +234,7 @@ namespace micro
 
       //      system()->do_graphics_and_windowing_system_factory();
 
-      //      øconstruct(m_pdisplaybase);
+      //      constructø(m_pdisplaybase);
 
       //      m_pdisplaybase->open_display();
 
@@ -276,7 +276,7 @@ namespace micro
       }
 
 
-      void user::_main_send(const ::procedure & procedure)
+      void user::main_send(const ::procedure & procedure)
       {
 
          system()->acme_windowing()->main_send(procedure);
@@ -284,7 +284,7 @@ namespace micro
       }
 
 
-      void user::_main_post(const ::procedure & procedure)
+      void user::main_post(const ::procedure & procedure)
       {
 
          system()->acme_windowing()->main_post(procedure);
@@ -386,7 +386,7 @@ namespace micro
 
          }
 
-         auto ptopic = øallocate ::topic(id_application_dark_mode_change);
+         auto ptopic = allocateø ::topic(id_application_dark_mode_change);
 
          system()->acme_windowing()->each_window([ptopic](auto pacmewindowingwindow)   
             {
@@ -529,38 +529,43 @@ namespace micro
       }
 
 
-      ::pointer < ::reified < ::message_box > > user::realize(::realizable < ::message_box > * p)
+      //::pointer < ::reified < ::message_box > > user::realize(::realizable < ::message_box > * p)
+      void user::display(::message_box_payload * pmessageboxpayload)
       {
 
-         ::pointer < ::message_box > pmessageboxRealizable;
+         // ::pointer < ::message_box_payload > pmessageboxRealizable;
+         //
+         // pmessageboxRealizable = p;
+         //
+         // ::pointer < ::reified < ::message_box > > pmessageboxReified;
 
-         pmessageboxRealizable = p;
-         
-         ::pointer < ::reified < ::message_box > > pmessageboxReified;
+         //system()->acme_windowing()->display(pmessagebox);
 
-         if(system()->acme_windowing()->defer_realize(pmessageboxReified, pmessageboxRealizable))
-         {
+         //if()
+         //{
             
-            return pmessageboxReified;
+            //return pmessageboxReified;
             
-         }
+         //}
 
-         if (pmessageboxRealizable->m_bDetails)
+         ::pointer < ::dialog_reifier > pdialogreifier;
+
+         if (pmessageboxpayload->m_bDetails)
          {
 
-            pmessageboxReified = øcreate_new < ::micro::details_window >();
+            pdialogreifier = øcreate_new < ::micro::details_window >();
 
          }
          else
          {
 
-            pmessageboxReified = øcreate_new < ::micro::message_box >();
+            pdialogreifier = øcreate_new < ::micro::message_box >();
 
          }
 
-         pmessageboxReified->realize(p);
+         pdialogreifier->display(pmessageboxpayload);
 
-         return pmessageboxReified;
+         //return pmessageboxReified;
 
       }
 

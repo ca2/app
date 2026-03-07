@@ -151,7 +151,7 @@ namespace user
    //   if (!m_pplaineditinternal)
    //   {
 
-   //      øconstruct(m_pplaineditinternal);
+   //      constructø(m_pplaineditinternal);
 
    //      m_pplaineditinternal->update(pgraphics, )
 
@@ -458,7 +458,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     øconstruct(ppen);
+                     constructø(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -480,7 +480,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     øconstruct(ppen);
+                     constructø(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -519,7 +519,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     øconstruct(ppen);
+                     constructø(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
@@ -762,7 +762,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     øconstruct(ppen);
+                     constructø(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
@@ -784,7 +784,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     øconstruct(ppen);
+                     constructø(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
@@ -823,7 +823,7 @@ namespace user
                   if (!ppen)
                   {
 
-                     øconstruct(ppen);
+                     constructø(ppen);
 
                      ppen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
@@ -1067,7 +1067,7 @@ namespace user
    //   if (userstyle()->m_mapColor.is_null())
    //   {
 
-   //      userstyle()->m_mapColor = øallocate color_map();
+   //      userstyle()->m_mapColor = allocateø color_map();
 
    //   }
 
@@ -1084,7 +1084,7 @@ namespace user
   //    if (userstyle()->m_mapFont.is_null())
   //    {
 
-  //       userstyle()->m_mapFont = øallocate font_map();
+  //       userstyle()->m_mapFont = allocateø font_map();
 
   //    }
 
@@ -1170,7 +1170,7 @@ namespace user
    //   if (userstyle()->m_mapTranslucency.is_null())
    //   {
 
-   //      userstyle()->m_mapTranslucency = øallocate translucency_map();
+   //      userstyle()->m_mapTranslucency = allocateø translucency_map();
 
    //   }
 
@@ -1187,7 +1187,7 @@ namespace user
    //   if (userstyle()->m_mapFlag.is_null())
    //   {
 
-   //      userstyle()->m_mapFlag = øallocate translucency_map();
+   //      userstyle()->m_mapFlag = allocateø translucency_map();
 
    //   }
 
@@ -1252,7 +1252,7 @@ namespace user
    //   if (userstyle()->m_mapRect.is_null())
    //   {
 
-   //      userstyle()->m_mapRect = øallocate rect_map();
+   //      userstyle()->m_mapRect = allocateø rect_map();
 
    //   }
 
@@ -1285,7 +1285,7 @@ namespace user
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = øallocate ::user::int_map();
+   //      userstyle()->m_mapInt = allocateø ::user::int_map();
 
    //   }
 
@@ -1302,7 +1302,7 @@ namespace user
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = øallocate ::user::double_map();
+   //      userstyle()->m_mapDouble = allocateø ::user::double_map();
 
    //   }
 
@@ -1725,7 +1725,7 @@ namespace user
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = øallocate style(this);
+   //         spuserstyle = allocateø style(this);
 
    //      }
 

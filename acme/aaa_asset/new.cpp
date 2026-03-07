@@ -123,7 +123,7 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //#endif
 //
 //
-//#define C_NEW øallocate<  >(c_class::s_cclass)
+//#define C_NEW allocateø<  >(c_class::s_cclass)
 
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)

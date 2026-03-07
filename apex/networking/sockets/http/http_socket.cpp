@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "http_socket.h"
+#include "websocket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/platform/system.h"
@@ -84,8 +85,43 @@ namespace sockets
    }
 
 
+   ::sockets::websocket & http_socket::websocket()
+   {
+
+      if(m_bWebSocketEnabled)
+      {
+         if(!m_pwebsocket)
+         {
+            
+            construct_newø(m_pwebsocket);
+            
+            m_pwebsocket->initialize(m_pwebsocket);
+            
+         }
+         
+      }
+      
+      return *m_pwebsocket;
+      
+   }
+
+
    void http_socket::OnRawData(char *buf, memsize len)
    {
+      
+      if(m_bWebSocketEnabled)
+      {
+         
+         if(websocket().m_bWebSocket)
+         {
+            
+            websocket().OnRawData(buf, len);
+            
+            return;
+            
+         }
+         
+      }
 
       if (!m_bHeader)
       {
@@ -980,6 +1016,125 @@ namespace sockets
 
       }*/
 
+      //m_request.InitBody(m_body_size_left);
+      if(m_bWebSocketEnabled)
+      {
+         
+         websocket().OnHeaderComplete();
+         
+      }
+
+   }
+
+
+   void http_socket::enable_websocket()
+   {
+
+      m_bWebSocketEnabled = true;
+      
+   }
+
+   bool http_socket::http_request_step()
+   {
+      
+      if(m_bWebSocketEnabled)
+      {
+         
+         websocket().http_request_step();
+         //
+         //      if (!websocket().m_bWebSocket)
+         //      {
+         //
+         //         w
+         //
+         //         inheader("Host") = m_urlparts.connect().host();
+         //
+         //
+         //         //      if (!(bool)inattr("minimal_headers"))
+         //         {
+         //            //inheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";
+         //            //inheader("Accept-Language") = "en-us,en;q=0.5";
+         //            //if (m_pfile == nullptr) // by the time, inline gzip decompression not yet implemented
+         //            //{
+         //            //   inheader("accept-encoding") = "gzip,deflate";
+         //            //}
+         //            //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
+         //            string strUserAgent = MyUseragent();
+         //            inheader("user-agent") = strUserAgent;
+         //         }
+         //         //inheader("Content-Length") = 0;
+         //         inheader("Upgrade") = "websocket";
+         //         inheader("Connection") = "Upgrade";
+         //
+         //         memory m;
+         //
+         //         m.set_size(16);
+         //
+         //         mathematics()->random(m);
+         //
+         //         auto psystem = system();
+         //
+         //         auto pbase64 = psystem->base64();
+         //
+         //         m_pwebsocket->m_strBase64 = pbase64->encode(m);
+         //
+         //         //int iLen;
+         //
+         //         //iLen = (int)(m_strBase64.length());
+         //
+         //         inheader("Sec-WebSocket-Key") = m_pwebsocket->m_strBase64;
+         //         if (m_pwebsocket->m_strWebSocketProtocol.has_character())
+         //         {
+         //            inheader("Sec-WebSocket-Protocol") = m_pwebsocket->m_strWebSocketProtocol;
+         //
+         //         }
+         //         inheader("Sec-WebSocket-Version") = "13";
+         //
+         //         if (m_pwebsocket->m_strOrigin.has_character())
+         //         {
+         //
+         //            inheader("Origin") = m_pwebsocket->m_strOrigin;
+         //
+         //         }
+         //
+         //
+         //         /*      if (GetUrlPort() != 80 && GetUrlPort() != 443)
+         //          inheader("host") = GetUrlHost() + ":" + as_string(GetUrlPort());
+         //          else
+         //          inheader("host") = GetUrlHost();*/
+         //
+         //#ifdef WINRT_SOCKETS
+         //
+         //         m_bExpectResponse = true;
+         //
+         //         m_bExpectRequest = false;
+         //
+         //#endif
+         //
+         //         m_pwebsocket->m_bRequestSent = true;
+         //         SendRequest();
+         //      }
+         //      else
+         //      {
+         //         //if (m_memPong.size() > 0 && (m_timeLastSpontaneousPong.elapsed()) > 10000)
+         //         //{
+         //         //
+         //         //   write(m_memPong.data(), m_memPong.size());
+         //
+         //         //   m_memPong.set_size(2);
+         //
+         //         //   m_memPong.data()[1] = 0;
+         //
+         //         //   m_timeLastSpontaneousPong= ::time::now();
+         //
+         //         //}
+         //
+         //      }
+         
+      }
+      
+      return true;
+      
    }
 
 

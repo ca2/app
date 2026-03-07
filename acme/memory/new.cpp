@@ -139,7 +139,7 @@
 ////#endif
 ////
 ////
-////#define C_NEW øallocate<  >(c_class::s_cclass)
+////#define C_NEW allocateø<  >(c_class::s_cclass)
 //
 //
 //#if !defined(NO_ACME_MEMORY_MANAGEMENT)

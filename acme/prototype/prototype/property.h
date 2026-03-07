@@ -141,21 +141,7 @@ public:
 
 
    using payload::operator =;
-   property & operator = (const property & property)
-   {
-
-      if(this != &property)
-      {
-
-         m_atomName = property.m_atomName;
-
-         payload::operator=((const ::payload & )property);
-
-      }
-
-      return *this;
-
-   }
+   property& operator = (const property& property);
 
 
    ::atom name() const { return m_atomName; }

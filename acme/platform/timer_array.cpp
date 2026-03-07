@@ -46,7 +46,7 @@ namespace acme
 
          }
 
-         ptimer = øallocate timer_task();
+         ptimer = allocateø timer_task();
 
          ptimer->m_ptimercallback = this;
 

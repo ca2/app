@@ -74,7 +74,7 @@ namespace message
 } // namespace message
 
 
-class message_box;
+class message_box_payload;
 
 
 class component;

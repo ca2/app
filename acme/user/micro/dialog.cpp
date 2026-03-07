@@ -61,7 +61,7 @@ namespace micro
    }
 
 
-   void dialog::on_dialog_result_set()
+   void dialog::on_dialog_result(const ::payload & payloadResult)
    {
 
       m_manualresethappeningFinished.set_happening();
@@ -70,7 +70,7 @@ namespace micro
 
       destroy_window();
       
-      on_sequence();
+      on_dialog_finished();
       
       if(system()->acme_windowing()->get_application_host_window())
       {
@@ -132,8 +132,14 @@ namespace micro
 
    }
 
-   
-   //void dialog::set_dialog_result(const ::payload & payloadResult)
+
+   void dialog::on_dialog_finished()
+   {
+
+
+   }
+
+   // void dialog::set_dialog_result(const ::payload & payloadResult)
    //{
 
    //}

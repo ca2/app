@@ -1,10 +1,15 @@
 # Created by camilo on 2026-01-04 14:54 ThomasBorregaardSørensen!!
 
 
+message(STATUS "")
+message(STATUS "")
+message(STATUS "")
+message(STATUS "source/app/__operating_system_node_posix.cmake")
+message(STATUS "")
 
 execute_process(COMMAND uname -m OUTPUT_VARIABLE __SYSTEM_ARCHITECTURE)
 string(STRIP ${__SYSTEM_ARCHITECTURE} __SYSTEM_ARCHITECTURE)
-message(STATUS "__SYSTEM_ARCHITECTURE is ${__SYSTEM_ARCHITECTURE}")
+message(STATUS "__SYSTEM_ARCHITECTURE is \"${__SYSTEM_ARCHITECTURE}\"")
 
 
 if(EXISTS "${CMAKE_SOURCE_DIR}/raspberrypios.txt")
@@ -27,10 +32,9 @@ else()
 
    set(__TARGET_SYSTEM_ARCHITECTURE ${__SYSTEM_ARCHITECTURE})
 
-
 endif()
 
-message(STATUS "__TARGET_SYSTEM_ARCHITECTURE is ${__TARGET_SYSTEM_ARCHITECTURE}")
+message(STATUS "__TARGET_SYSTEM_ARCHITECTURE is \"${__TARGET_SYSTEM_ARCHITECTURE}\"")
 
 #execute_process(COMMAND uname -m OUTPUT_VARIABLE __SYSTEM_ARCHITECTURE)
 #string(STRIP ${__SYSTEM_ARCHITECTURE} __SYSTEM_ARCHITECTURE)
@@ -77,6 +81,9 @@ endif()
 
 
 execute_process(COMMAND uname -s OUTPUT_VARIABLE __UNAME_S)
+string(STRIP ${__UNAME_S} __UNAME_S)
+message(STATUS "__UNAME_S is \"${__UNAME_S}\"")
+
 
 if("${__UNAME_S}" STREQUAL "OpenBSD")
 
@@ -85,8 +92,11 @@ if("${__UNAME_S}" STREQUAL "OpenBSD")
 elseif("${__UNAME_S}" STREQUAL "Linux")
 
    execute_process(COMMAND lsb_release -is OUTPUT_VARIABLE __OPERATING_SYSTEM)
+   #message(STATUS "__OPERATING_SYSTEM (1) is ${__OPERATING_SYSTEM}")
    string(STRIP ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
+   #message(STATUS "__OPERATING_SYSTEM (2) is ${__OPERATING_SYSTEM}")
    string(TOLOWER ${__OPERATING_SYSTEM} __OPERATING_SYSTEM)
+   #message(STATUS "__OPERATING_SYSTEM (3) is ${__OPERATING_SYSTEM}")
 
 endif()
 

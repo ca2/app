@@ -100,7 +100,7 @@ namespace sockets
 
       REFDBG_THIS(psocket);
 
-      ::pointer<link_in_socket>pinsocket = øallocate link_in_socket();
+      ::pointer<link_in_socket>pinsocket = allocateø link_in_socket();
 
       pinsocket->SetSocketHandler(psocket->socket_handler());
 

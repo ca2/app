@@ -9252,7 +9252,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
          //auto estatus =
          
-         øconstruct(pimage);
+         constructø(pimage);
 
          //if (!estatus)
          //{
@@ -9284,7 +9284,7 @@ void image::gradient_fill(::color::color color1, ::color::color color2, const in
 
          //auto estatus =
          
-         øconstruct(pimage);
+         constructø(pimage);
 
          //if (!estatus)
          //{
@@ -9658,7 +9658,7 @@ void image_copy(::image::image* pimagethis, ::image::image* pimage)
 //void image_create(::object* pparticle, ::image::image_pointer& pimage)
 //{
 //
-//   øconstruct(pimage, pparticle);
+//   constructø(pimage, pparticle);
 //
 //}
 
@@ -10581,7 +10581,7 @@ void image::_unmap()
    if (::is_null(m_pextension))
    {
 
-      øconstruct_new(m_pextension);
+      construct_newø(m_pextension);
 
    }
 
@@ -10629,7 +10629,7 @@ void image::draw(const ::image::image_drawing & imagedrawing)
 
          auto pextension = get_extension();
 
-         øconstruct_new(pextension->m_pframea);
+         construct_newø(pextension->m_pframea);
 
          pextension->m_pframea->m_size = this->m_size;
 
@@ -10677,7 +10677,7 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 
    ::image::image_pointer pimage;
 
-   m_papplication->øconstruct(pimage);
+   m_papplication->constructø(pimage);
 
    pimage->create(size);
 

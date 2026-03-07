@@ -11,18 +11,11 @@ namespace sockets
 {
 
 
-   enum e_http_method
-   {
-      http_method_none,
-      http_method_get,
-      http_method_post,
-      http_method_put
-
-   };
 
 
-   CLASS_DECL_APEX string http_method_string(e_http_method emethod);
-   CLASS_DECL_APEX e_http_method string_http_method(const ::scoped_string & scopedstr);
+
+   CLASS_DECL_APEX string http_method_string(enum_http_method emethod);
+   CLASS_DECL_APEX enum_http_method string_http_method(const ::scoped_string & scopedstr);
 
 
    /** get http response to file or memory.
@@ -44,7 +37,6 @@ namespace sockets
       ::file::file *                   m_pfile;
       long long                              m_iFinalSize;
       ::progress::integer              m_progressinteger;
-      e_http_method                    m_emethod;
 
 
       //memory    m_memoryData; ///< Ptr to buffer where to store response

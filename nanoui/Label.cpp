@@ -118,7 +118,7 @@ void Label::draw(::nano2d::context  * pcontext)
 //
 //   return;
 //
-//   //puserinteraction->øconstruct(m_pstill);
+//   //puserinteraction->constructø(m_pstill);
 //
 //   //m_pstill->m_pappearance = this;
 //

@@ -6,9 +6,10 @@
 #include "acme/platform/system.h"
 
 
-exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThreadExit, const ::scoped_string & scopedstrMessage) :
+exit_exception::exit_exception(const ::e_status &estatus, ::task *playeredThreadExit,
+                               const ::scoped_string &scopedstrMessage, const ::e_status &estatusSecond) :
    exception(::error_failed, scopedstrMessage),
-   m_ptaskExit(playeredThreadExit)
+   m_ptaskExit(playeredThreadExit), m_estatusSecond(estatusSecond)
 {
 
    m_estatus = estatus;
@@ -25,22 +26,25 @@ exit_exception::exit_exception(const ::e_status & estatus, ::task * playeredThre
 }
 
 
-exit_exception::exit_exception(::platform::application * papplication, const ::scoped_string & scopedstrMessage) :
-   exit_exception(error_exit_application, papplication, scopedstrMessage) 
+exit_exception::exit_exception(::platform::application *papplication, const ::scoped_string &scopedstrMessage,
+                               const ::e_status &estatusSecond) :
+    exit_exception(error_exit_application, papplication, scopedstrMessage, estatusSecond)
 {
 
 }
 
 
-exit_exception::exit_exception(::platform::session * psession, const ::scoped_string & scopedstrMessage) :
-   exit_exception(error_exit_session, psession, scopedstrMessage) 
+exit_exception::exit_exception(::platform::session *psession,
+                               const ::scoped_string &scopedstrMessage, const ::e_status &estatusSecond) :
+    exit_exception(error_exit_session, psession, scopedstrMessage, estatusSecond)
 {
 
 }
 
 
-exit_exception::exit_exception(::platform::system * psystem, const ::scoped_string & scopedstrMessage) :
-   exit_exception(error_exit_system, psystem, scopedstrMessage) 
+exit_exception::exit_exception(::platform::system *psystem,
+                               const ::scoped_string &scopedstrMessage, const ::e_status &estatusSecond) :
+   exit_exception(error_exit_system, psystem, scopedstrMessage, estatusSecond)
 {
 
 

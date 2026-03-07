@@ -59,7 +59,7 @@ namespace gpu
 
          initialize_gpu_context_object(pgpucontext);
 
-         øconstruct(m_pshaderHdri);
+         constructø(m_pshaderHdri);
 
          auto pbindingSampler = m_pshaderHdri->binding();
          pbindingSampler->m_strUniform = "hdri";
@@ -84,13 +84,13 @@ namespace gpu
             m_pgpucontext->m_pgpurenderer, embedded_ibl_hdri_cube_vert(), embedded_ibl_hdri_cube_frag(), 
             pinputlayoutVertex);
 
-         øconstruct(m_ptextureHdr);
+         constructø(m_ptextureHdr);
 
          m_ptextureHdr->m_textureflags.m_bShaderResource = true;
 
          m_ptextureHdr->initialize_hdr_texture_on_memory(m_pgpucontext, block);
 
-         øconstruct(m_ptextureCubemap);
+         constructø(m_ptextureCubemap);
 
          ::gpu::texture_attributes textureattributes(::int_rectangle{API_CHANGED_ARGUMENT, m_uCubemapWidth,
                                                                     m_uCubemapHeight});

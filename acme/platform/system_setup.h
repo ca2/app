@@ -92,7 +92,7 @@ class static_library_factory :
 public:
 
 
-   ::pointer<::acme::library>_create_library() override { return øallocate LIBRARY(); }
+   ::pointer<::acme::library>_create_library() override { return allocateø LIBRARY(); }
 
 
    explicit static_library_factory(const ::scoped_string & scopedstrName = "") :
@@ -113,7 +113,7 @@ class static_object_factory :
 public:
 
 
-   ::particle_pointer _create_particle() override { return øallocate OBJECT(); }
+   ::particle_pointer _create_particle() override { return allocateø OBJECT(); }
 
 
    explicit static_object_factory(::system_setup::enum_flag eflag, const_char_pointer pszName = nullptr) :
@@ -156,7 +156,7 @@ public:
    ::particle_pointer  _create_application_as_particle() override
    {
 
-      auto papp = øallocate APPLICATION_TYPE();
+      auto papp = allocateø APPLICATION_TYPE();
 
       return papp;
 

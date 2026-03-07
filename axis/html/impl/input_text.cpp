@@ -83,7 +83,7 @@ namespace html
             }
             else
             {
-               m_pedit = øallocate ::user::plain_edit();
+               m_pedit = allocateø ::user::plain_edit();
             }
 
             m_pedit->initialize(this);

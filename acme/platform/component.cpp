@@ -305,7 +305,7 @@ bool component::is_implementation_enabled(const ::scoped_string & scopedstrImple
 
    ::pointer < ::component_implementation > pimplementation;
 
-   øconstruct(pimplementation, pfactory);
+   constructø(pimplementation, pfactory);
 
    if (pimplementation.is_null())
    {

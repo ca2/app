@@ -75,7 +75,7 @@ namespace gpu
 
          initialize_scene_object(pscenebase);
          
-         øconstruct(m_pshaderPrefilteredEnvMap);
+         constructø(m_pshaderPrefilteredEnvMap);
 
          auto blockVert = prefiltered_environment_map_vert_memory();
 
@@ -101,7 +101,7 @@ namespace gpu
          m_pshaderPrefilteredEnvMap->initialize_shader_with_block(m_pgpucontext->m_pgpurenderer, blockVert, blockFrag,
                                                                   pinputlayoutVertex);
 
-         øconstruct(m_ptexturePrefilteredEnvMapCubemap);
+         constructø(m_ptexturePrefilteredEnvMapCubemap);
 
          ::gpu::texture_attributes textureattributesPrefilteredEnvMap(
             ::int_rectangle{API_CHANGED_ARGUMENT, m_uPrefilteredEnvMapWidth, m_uPrefilteredEnvMapHeight});
@@ -123,7 +123,7 @@ namespace gpu
 
          m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 1.f);
 
-         øconstruct(m_pshaderBrdfConvolution);
+         constructø(m_pshaderBrdfConvolution);
 
          m_pshaderBrdfConvolution->m_bDisableDepthTest = true;
          m_pshaderBrdfConvolution->m_bEnableBlend = false;
@@ -133,7 +133,7 @@ namespace gpu
             m_pgpucontext->m_pgpurenderer, brdf_convolution_vert_memory(), brdf_convolution_frag_memory(), 
             m_pgpucontext->input_layout(::gpu_properties<::gpu::position2_uv>()));
 
-         øconstruct(m_ptextureBrdfConvolutionMap);
+         constructø(m_ptextureBrdfConvolutionMap);
 
          ::gpu::texture_attributes textureattributesBrdfConvMap(int_rectangle{API_CHANGED_ARGUMENT, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight});
          textureattributesBrdfConvMap.m_iBitsPerChannel = 16;

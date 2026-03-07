@@ -1071,12 +1071,12 @@ puiParent->SendMessage(::user::e_message_scroll_y, MAKEWPARAM(e_scroll_command_L
 void simple_scroll_bar::on_message_create(::message::message * pmessage)
 {
 
-   øconstruct(m_ppenDraw);
-   øconstruct(m_pbrushDraw);
-   øconstruct(m_pregionA); // regiao da primeira seta
-   øconstruct(m_pregionB); // regiao da segunda seta
+   constructø(m_ppenDraw);
+   constructø(m_pbrushDraw);
+   constructø(m_pregionA); // regiao da primeira seta
+   constructø(m_pregionB); // regiao da segunda seta
 
-   auto pitemScrollbarTrackbar = øallocate ::item(::item_t{ e_element_scrollbar_trackbar });
+   auto pitemScrollbarTrackbar = allocateø ::item(::item_t{ e_element_scrollbar_trackbar });
 
    tool().add_item(pitemScrollbarTrackbar);
 
@@ -1438,7 +1438,7 @@ void simple_scroll_bar::UpdateBitmaps()
 //   trw()
 //   {
 //
-//      //auto pusersystem = øallocate ::user::system(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
+//      //auto pusersystem = allocateø ::user::system(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
 //
 //      //if(create_window_ex(pusersystem))
 //      //if(create_host())
@@ -1536,7 +1536,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
    //   if(!m_pshapeaClip)
    //   {
 
-   //      øconstruct_new(m_pshapeaClip);
+   //      construct_newø(m_pshapeaClip);
 
    //      ::user::interaction * pinteraction = this;
 
@@ -1564,9 +1564,9 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
    //         screen_to_client(rectangleFocus);
 
-   //         m_pshapeaClip->add_item(øallocate rectangle_shape(rectangleFocus));
+   //         m_pshapeaClip->add_item(allocateø rectangle_shape(rectangleFocus));
 
-   //         m_pshapeaClip->add_item(øallocate intersect_clip_shape());
+   //         m_pshapeaClip->add_item(allocateø intersect_clip_shape());
 
    //         i++;
 
@@ -2005,7 +2005,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //auto estatus = 
 
-      øconstruct(m_pimageDots);
+      constructø(m_pimageDots);
 
       //if (!estatus)
       //{
@@ -2385,7 +2385,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
 //if (statusrectangleTrack.contains(point))
 //{
 
-//   return øallocate ::item(::e_element_scrollbar_trackbar);
+//   return allocateø ::item(::e_element_scrollbar_trackbar);
 
 //}
 //else
@@ -2398,7 +2398,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
 //   if (statusrectanglePageA.contains(point))
 //   {
 
-//      return øallocate ::item(::e_element_scrollbar_pageA);
+//      return allocateø ::item(::e_element_scrollbar_pageA);
 
 //   }
 
@@ -2407,25 +2407,25 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
 //   if (statusrectanglePageB.contains(point))
 //   {
 
-//      return øallocate ::item(::e_element_scrollbar_pageB);
+//      return allocateø ::item(::e_element_scrollbar_pageB);
 
 //   }
 
    //if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //{
 
-   //   return øallocate ::item(::e_element_scrollbar_rectA);
+   //   return allocateø ::item(::e_element_scrollbar_rectA);
 
    //}
 
    //if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //{
 
-   //   return øallocate ::item(::e_element_scrollbar_rectB);
+   //   return allocateø ::item(::e_element_scrollbar_rectB);
 
    //}
 
-//   auto pitemNone = øallocate ::item(e_element_none);
+//   auto pitemNone = allocateø ::item(e_element_none);
 
 //   return pitemNone;
 
@@ -2448,7 +2448,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
    //if (statusrectangleTrack.contains(point))
    //{
 
-   //   return øallocate ::item(::e_element_scrollbar_trackbar);
+   //   return allocateø ::item(::e_element_scrollbar_trackbar);
 
    //}
    //else
@@ -2461,7 +2461,7 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
    //   if (statusrectanglePageA.contains(point))
    //   {
 
-   //      return øallocate ::item(::e_element_scrollbar_pageA);
+   //      return allocateø ::item(::e_element_scrollbar_pageA);
 
    //   }
 
@@ -2470,25 +2470,25 @@ bool simple_scroll_bar::on_drag_start(::int_point & point, ::user::mouse * pmous
    //   if (statusrectanglePageB.contains(point))
    //   {
 
-   //      return øallocate ::item(::e_element_scrollbar_pageB);
+   //      return allocateø ::item(::e_element_scrollbar_pageB);
 
    //   }
 
    //   if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //   {
 
-   //      return øallocate ::item(::e_element_scrollbar_rectA);
+   //      return allocateø ::item(::e_element_scrollbar_rectA);
 
    //   }
 
    //   if (get_buttonA_rectangle(rectangleX, pgraphics).contains(point))
    //   {
 
-   //      return øallocate ::item(::e_element_scrollbar_rectB);
+   //      return allocateø ::item(::e_element_scrollbar_rectB);
 
    //   }
 
-   //   auto pitemNone = øallocate ::item(e_element_none);
+   //   auto pitemNone = allocateø ::item(e_element_none);
 
    //   return pitemNone;
 

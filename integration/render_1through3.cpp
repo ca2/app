@@ -33,7 +33,7 @@ namespace app_integration
          if (!m_pimage1)
          {
 
-            øconstruct(m_pimage1);
+            constructø(m_pimage1);
 
             m_papplication->fork([this]()
             {
@@ -45,7 +45,7 @@ namespace app_integration
 
                   ::pointer<::image::image> pimage2;
 
-                  øconstruct(pimage2);
+                  constructø(pimage2);
 
                   pimage2->copy_from(pimage1);
 

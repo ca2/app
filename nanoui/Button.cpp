@@ -594,7 +594,7 @@ namespace nanoui
    //
    //   return;
    //
-   //   //puserinteraction->øconstruct(m_pbutton);
+   //   //puserinteraction->constructø(m_pbutton);
    //
    //   //m_pbutton->m_pappearance = this;
    //

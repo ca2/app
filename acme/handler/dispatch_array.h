@@ -3,6 +3,9 @@
 #pragma once
 
 
+#include "acme/prototype/collection/procedure_array.h"
+
+
 class sequence;
 
 #include "acme/prototype/prototype/function.h"
@@ -99,7 +102,7 @@ class sequence;
 //////   if (!m_pfuture)
 //////   {
 //////
-//////      system()->øconstruct_new(m_pfuture);
+//////      system()->construct_newø(m_pfuture);
 //////       
 //////      m_pfuture->system() = system();
 //////
@@ -118,7 +121,7 @@ class sequence;
 //////inline ::pointer<TYPE>property_object::øcreate_new()
 //////{
 //////
-//////   auto p = øallocate TYPE();
+//////   auto p = allocateø TYPE();
 //////
 //////   p->initialize_matter(this);
 //////
@@ -133,73 +136,106 @@ class sequence;
 using particle_pointer = ::pointer <  ::particle  >;
 
 
-enum enum_dispatch
-{
 
-   e_dispatch_none,
-   e_dispatch_send = 1,
-   e_dispatch_post = 2,
-   e_dispatch_main_send = 0x10 | e_dispatch_send,
-   e_dispatch_main_post = 0x10 | e_dispatch_post,
-   e_dispatch_user_send = 0x100 | e_dispatch_send,
-   e_dispatch_user_post = 0x100 | e_dispatch_post,
-
-};
-
-
-class CLASS_DECL_ACME sequence_continuation
+class CLASS_DECL_ACME dispatch_array2 :
+   virtual public ::procedure_array
 {
 public:
 
+
    
-   ::procedure                                  m_procedure;
-   ::pointer < sequence >                       m_psequence;
-   ::cast < ::particle >                        m_pparticleTarget;
+   //::procedure                                  m_procedure;
+   //::pointer < sequence >                       m_psequence;
+   ::cast < ::particle >                        m_pparticleDispatcher;
    enum_dispatch                                m_edispatch;
    
 
-   sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch);
-   sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch, const ::procedure & procedure, bool bCreateSequence = false);
-   sequence_continuation & operator << (const ::procedure & procedure);
+   //dispatch_array2(::particle * pparticleDispatcher, enum_dispatch edispatch);
+   dispatch_array2(::particle * pparticleDispatcher, enum_dispatch edispatch);
+   //sequence_continuation(::particle * pparticleTarget, enum_dispatch edispatch, const ::procedure & procedure, bool bCreateSequence = false);
+   dispatch_array2(::particle * pparticleDispatcher, enum_dispatch edispatch, const ::procedure &procedure);
+   dispatch_array2(const dispatch_array2 & dispatcha);
 
 
-   ~sequence_continuation();
+
+   dispatch_array2 & operator << (const ::procedure & procedure);
+
+
+   ~dispatch_array2();
+
+
+   void run() override;
+
+
+   void dispatch_this();
+
 
 };
 
 
 
 
-
-class CLASS_DECL_ACME post_continuation :
-   public sequence_continuation
+class CLASS_DECL_ACME dispatch_arrayø :
+   virtual public ::dispatch_array2
 {
 public:
 
 
-   post_continuation(::particle * pparticleTarget) : sequence_continuation(pparticleTarget, e_dispatch_post) {}
-   post_continuation(::particle * pparticleTarget, const::procedure & procedure) : sequence_continuation(pparticleTarget, e_dispatch_post, procedure) {}
-   post_continuation & operator << (const ::procedure & procedure)
+   using  dispatch_array2::dispatch_array2;
+
+
+   ~dispatch_arrayø()
    {
-      sequence_continuation::operator <<(procedure);
-      return *this;
+
+      try
+      {
+
+         dispatch_this();
+
+      }
+      catch (...)
+      {
+
+      }
+
    }
+
 
 };
 
 
-class CLASS_DECL_ACME send_continuation :
-   public sequence_continuation
-{
-public:
 
 
-   send_continuation(::particle * pparticleTarget) : sequence_continuation(pparticleTarget, e_dispatch_send) {}
-   send_continuation(::particle * pparticleTarget, const::procedure & procedure) : sequence_continuation(pparticleTarget, e_dispatch_send, procedure) {}
-   send_continuation & operator << (const ::procedure & procedure)
-   {
-      sequence_continuation::operator <<(procedure);
-      return *this;
-   }
 
-};
+// class CLASS_DECL_ACME post_dispatch_array :
+//    public dispatch_arrayø
+// {
+// public:
+//
+//
+//    post_dispatch_array(::particle * pparticleDispatcher) : dispatch_arrayø(pparticleDispatcher, e_dispatch_post) {}
+//    post_dispatch_array(::particle * pparticleDispatcher, const::procedure & procedure) : dispatch_arrayø(pparticleDispatcher, e_dispatch_post, procedure) {}
+//    post_dispatch_array & operator << (const ::procedure & procedure)
+//    {
+//       dispatch_arrayø::operator <<(procedure);
+//       return *this;
+//    }
+//
+// };
+//
+//
+// class CLASS_DECL_ACME send_dispatch_array :
+//    public dispatch_arrayø
+// {
+// public:
+//
+//
+//    send_dispatch_array(::particle * pparticleDispatcher) : dispatch_arrayø(pparticleDispatcher, e_dispatch_send) {}
+//    send_dispatch_array(::particle * pparticleDispatcher, const::procedure & procedure) : dispatch_arrayø(pparticleDispatcher, e_dispatch_send, procedure) {}
+//    send_dispatch_array & operator << (const ::procedure & procedure)
+//    {
+//       dispatch_arrayø::operator <<(procedure);
+//       return *this;
+//    }
+//
+// };

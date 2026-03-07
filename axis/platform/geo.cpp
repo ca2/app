@@ -128,7 +128,7 @@ namespace geo
 
             DEBUGF_LINE("abcxxx3");
 
-            auto pfile = øallocate memory_file(memory);
+            auto pfile = allocateø memory_file(memory);
 
             DEBUGF_LINE("abcxxx4");
 
@@ -228,11 +228,11 @@ namespace geo
 
             DEBUGF_LINE("jklxxc1");
 
-            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
+            auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("jklxxc3");
 
-            pmessagebox->async();
+            post(pmessageboxpayload);
 
          }
          catch (...)
@@ -244,11 +244,11 @@ namespace geo
 
             DEBUGF_LINE("jklxxc4");
 
-            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
+            auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("jklxxc5");
 
-            pmessagebox->async();
+            post(pmessageboxpayload);
 
          }
 
@@ -389,11 +389,11 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe1 exception type : " + ::platform::type(exception).name());
 
-            auto pmessagebox = __initialize_new ::message_box(exception, "geo::defer_check_openweather_city_list");
+            auto pmessageboxpayload = __initialize_new ::message_box_payload(exception, "geo::defer_check_openweather_city_list");
 
             DEBUGF_LINE("pqrxxe2");
 
-            pmessagebox->async();
+            post(pmessageboxpayload);
 
          }
          catch (...)
@@ -401,11 +401,11 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessagebox = __initialize_new::message_box("Unable to download \"https://ca2.network/city-list_base.json\"");
+            auto pmessageboxpayload = __initialize_new ::message_box_payload("Unable to download \"https://ca2.network/city-list_base.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 
-            pmessagebox->async();
+            post(pmessageboxpayload);
 
          }
 

@@ -102,7 +102,7 @@ namespace graphics3d
    //     ::string vertShaderPath = "matter://shaders/spirV/point_light.vert.spv";
    //     ::string fragShaderPath = "matter://shaders/spirV/point_light.frag.spv";
    //
-   //     //m_ppipeline = øallocate graphics3d::pipeline(
+   //     //m_ppipeline = allocateø graphics3d::pipeline(
    //     //    m_pgpudevice,
    //     //    vertShaderPath.c_str(),
    //     //    fragShaderPath.c_str(),

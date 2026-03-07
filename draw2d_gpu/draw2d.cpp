@@ -88,7 +88,7 @@ namespace draw2d_gpu
    //   if (!pface)
    //   {
 
-   //      øconstruct(pface);
+   //      constructø(pface);
 
    //      pface->m_strFontName = strFontFamilyName;
 
@@ -218,7 +218,7 @@ namespace draw2d_gpu
 
    //   }
 
-   //   øconstruct_new(pfont);
+   //   construct_newø(pfont);
 
    //   pfont->m_pcollection = ___new Gdiplus::PrivateFontCollection();
 
@@ -267,7 +267,7 @@ namespace draw2d_gpu
    //int  draw2d::opengl_init()
    //{
 
-   //   //øconstruct(m_popenglcontext);
+   //   //constructø(m_popenglcontext);
 
    //   //if (m_atomClass)
    //   //{

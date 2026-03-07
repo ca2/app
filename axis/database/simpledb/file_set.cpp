@@ -46,11 +46,11 @@ namespace simpledb
 
       ::pointer<::file::path_array>ppatha;
 
-      øconstruct_new(ppatha);
+      construct_newø(ppatha);
 
       ::pointer<bool_array>pbaRecursive;
 
-      øconstruct_new(pbaRecursive);
+      construct_newø(pbaRecursive);
 
       if (!datastream()->get(::atom(), *ppatha))
       {

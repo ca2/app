@@ -47,7 +47,7 @@ namespace sockets
 
       initialize_http_client_socket(url);
       
-      m_emethod = http_method_get;
+      m_emethod = e_http_method_get;
 
 
    }
@@ -77,7 +77,7 @@ namespace sockets
 
       initialize_http_client_socket(strUrl);
 
-      m_emethod = http_method_get;
+      m_emethod = e_http_method_get;
 
    }
 
@@ -102,7 +102,7 @@ namespace sockets
             }
          }
          //inheader("Accept-Charset") = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-         inheader("user_agent") = MyUseragent();
+         inheader("user-agent") = MyUseragent();
       }
       //inheader("Content-Length") = 0;
       //inheader("Cache-Controlngth") = 0;

@@ -49,7 +49,7 @@ namespace userfs
 
       //estatus = 
       
-      //øconstruct_new(m_pfsset);
+      //construct_newø(m_pfsset);
 
       //if (!estatus)
       //{
@@ -98,7 +98,7 @@ namespace userfs
 
    //   }
 
-   //      m_pitem = øallocate ::file::item(*pitem);
+   //      m_pitem = allocateø ::file::item(*pitem);
 
    //   //   try
    //   //   {
@@ -118,7 +118,7 @@ namespace userfs
 
    //   //      // auto pcontext = get_context();
 
-   //   //      m_pitem = øallocate ::file::item(m_papplication->defer_process_matter_path(strOldPath), strOldPath);
+   //   //      m_pitem = allocateø ::file::item(m_papplication->defer_process_matter_path(strOldPath), strOldPath);
 
    //   //      OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -282,7 +282,7 @@ namespace userfs
 
       ::file::path pathFinal = m_papplication->defer_process_matter_path(pathUser);
 
-      ::pointer<::file::item>pitem = øallocate ::file::item(pathUser, pathFinal);
+      ::pointer<::file::item>pitem = allocateø ::file::item(pathUser, pathFinal);
 
       browse(pitem, context);
 
@@ -355,7 +355,7 @@ namespace userfs
 
       pathItemUserPath = pitem->user_path();
 
-      //øconstruct_new(m_puserfslistdata);
+      //construct_newø(m_puserfslistdata);
 
       if(pathItemUserPath.is_empty())
       {
@@ -606,7 +606,7 @@ namespace userfs
 
       }
 
-      get_document()->m_impacta.first()->post()
+      get_document()->m_impacta.first()->postø()
          << [this, pitem, context]()
       {
 

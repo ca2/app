@@ -194,7 +194,7 @@ namespace acme
 
          //m_ebias = calculate_bias();
 
-         //øconstruct(m_pacmeuserinteraction);
+         //constructø(m_pacmeuserinteraction);
 
          //m_pacmeuserinteraction->m_pacmeuserinteraction = this;
 
@@ -1557,7 +1557,7 @@ namespace acme
       //
       //    message_loop();
       //
-      //    // auto pmanualresethappening = øallocate manual_reset_happening();
+      //    // auto pmanualresethappening = allocateø manual_reset_happening();
       //    //
       //    // m_pinterface->m_psequencer->then([ pmanualresethappening](auto psequencer)
       //    // {

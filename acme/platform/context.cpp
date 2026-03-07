@@ -147,7 +147,7 @@ namespace platform
 
       __check_refdbg
 
-      m_ptexttranslator = øallocate ::text::translator();
+      m_ptexttranslator = allocateø ::text::translator();
 
       __check_refdbg
 
@@ -258,7 +258,7 @@ namespace platform
    void context::initialize_context()
    {
 
-      øconstruct_new(m_ptexttranslator);
+      construct_newø(m_ptexttranslator);
 
 
       //auto estatus =
@@ -272,7 +272,7 @@ namespace platform
       //}
 
       /*estatus = */
-      øconstruct(m_pfilecontext);
+      constructø(m_pfilecontext);
 
       //if (!estatus)
       //{
@@ -282,7 +282,7 @@ namespace platform
       //}
 
       //estatus =
-      øconstruct(m_pdirectorycontext);
+      constructø(m_pdirectorycontext);
 
       //if (!estatus)
       //{
@@ -470,12 +470,12 @@ namespace platform
    }
 
 
-   ::pointer<::reified<::message_box>> context::realize(::realizable<::message_box>* p)
-   {
+   //::pointer<::reified<::message_box>> context::realize(::realizable<::message_box>* p)
+   //{
 
-      return system()->micro_user()->realize(p);
+   //   return system()->micro_user()->realize(p);
 
-   }
+   //}
 
 
    ::image::image_context * context::image()
@@ -847,14 +847,14 @@ namespace platform
 
       ::collection::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-      auto pcounter = øallocate ::parallelization::counter(cScan, procedureCompletion);
+      auto pcounter = allocateø ::parallelization::counter(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
       for (::collection::index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
-         auto ppredtask = øallocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
+         auto ppredtask = allocateø forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
 
          //if (::is_set(ptask))
          //{

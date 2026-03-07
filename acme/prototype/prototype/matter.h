@@ -462,10 +462,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 //
 //template < typename TYPE >
-//inline void particle::øconstruct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//inline void particle::constructø(::pointer<TYPE> & p, ::factory::factory * pfactory)
 //{
 //
-//   ::øconstruct(this, p, pfactory);
+//   ::constructø(this, p, pfactory);
 //
 //}
 
@@ -486,7 +486,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_null(p))
 //   {
 //
-//      error() << "particle::øconstruct p is null";
+//      error() << "particle::constructø p is null";
 //
 //      throw_exception(::error_null_pointer);
 //
@@ -497,7 +497,7 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //   if (::is_null(ptype))
 //   {
 //
-//      error() <<"particle::øconstruct p is null (is assignee type derived from BASE_TYPE?";
+//      error() <<"particle::constructø p is null (is assignee type derived from BASE_TYPE?";
 //
 //      throw_exception(::error_null_pointer);
 //
@@ -519,10 +519,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 //
 //template < typename TYPE >
-//inline void matter::øconstruct_new(::pointer<TYPE> & p)
+//inline void matter::construct_newø(::pointer<TYPE> & p)
 //{
 //
-//   ::øconstruct_new(this, p);
+//   ::construct_newø(this, p);
 //
 //}
 

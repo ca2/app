@@ -10,6 +10,9 @@
 #pragma once
 
 
+#include "acme/platform/message_box.h"
+
+
 namespace acme
 {
 
@@ -19,21 +22,29 @@ namespace acme
 
 
       class CLASS_DECL_ACME message_box :
-         virtual public ::reified < ::message_box >
+         virtual public ::dialog_reifier
+         //virtual public ::reified < ::message_box >
+         //virtual public ::message_box
       {
       public:
 
 
+         //::pointer <::message_box_payload >m_pmessagebox;
+
+
+         message_box();
+         ~message_box() override;
+
          // ::pointer < ::
 
          //virtual ::pointer < ::subparticle > show(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox);
-         void on_realize(::message_box * pmessagebox) override;
+         void display(::dialog * pdialog) override;
 
 
          virtual void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter) = 0;
 
          
-         virtual void set_dialog_result(const ::payload & payloadResult);
+         void set_dialog_result(const ::payload & payloadResult) override;
 
             
       };

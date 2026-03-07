@@ -225,6 +225,14 @@ namespace sockets
 
       m_response.attr("request_uri") = strRequest;
 
+      if (m_urlparts.connect().protocol() == "ws" ||
+         m_urlparts.connect().protocol() == "wss")
+      {
+
+         m_bWebSocketEnabled = true;
+
+      }
+
        //set_url(strUrlParam);
 
 //#ifdef BSD_STYLE_SOCKETS
@@ -793,7 +801,7 @@ namespace sockets
    bool http_client_socket::http_request_step()
    {
 
-      return true;
+      return http_socket::http_request_step();
 
    }
 

@@ -95,7 +95,7 @@ namespace sockets
             
             construct_newø(m_pwebsocket);
             
-            m_pwebsocket->initialize(m_pwebsocket);
+            m_pwebsocket->initialize_websocket(this);
             
          }
          
@@ -1041,6 +1041,13 @@ namespace sockets
       {
          
          websocket().http_request_step();
+
+         if (websocket().m_bWebSocket)
+         {
+
+            return true;
+
+         }
          //
          //      if (!websocket().m_bWebSocket)
          //      {
@@ -1133,7 +1140,7 @@ namespace sockets
          
       }
       
-      return true;
+      return false;
       
    }
 

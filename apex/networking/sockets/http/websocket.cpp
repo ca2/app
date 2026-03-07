@@ -1120,12 +1120,85 @@ namespace sockets
    }
 
 
-   ::memory websocket::get_client_send(int fin, memory & memory, bool useMask)
+   ::memory websocket::get_client_send(int opcode, memory& payload, bool useMask)
    {
 
-      throw interface_only();
+      memsize payload_len = payload.size();
 
-      return {};
+      memsize header_size = 2;
+
+      if (payload_len >= 126 && payload_len <= 65535)
+      {
+         header_size += 2;
+      }
+      else if (payload_len > 65535)
+      {
+         header_size += 8;
+      }
+
+      if (useMask)
+      {
+         header_size += 4;
+      }
+
+      memory frame;
+      frame.set_size(header_size + payload_len);
+
+      unsigned char* data = frame.data();
+
+      int i = 0;
+
+      // FIN + opcode
+      data[i++] = 0x80 | (opcode & 0x0f);
+
+      // Payload length
+      if (payload_len < 126)
+      {
+         data[i++] = (useMask ? 0x80 : 0) | (unsigned char)payload_len;
+      }
+      else if (payload_len <= 65535)
+      {
+         data[i++] = (useMask ? 0x80 : 0) | 126;
+         data[i++] = (payload_len >> 8) & 0xff;
+         data[i++] = (payload_len) & 0xff;
+      }
+      else
+      {
+         data[i++] = (useMask ? 0x80 : 0) | 127;
+
+         for (int shift = 56; shift >= 0; shift -= 8)
+         {
+            data[i++] = (payload_len >> shift) & 0xff;
+         }
+      }
+
+      unsigned char masking_key[4] = {};
+
+      if (useMask)
+      {
+         mathematics()->random(memory(masking_key, 4));
+
+         for (int k = 0; k < 4; k++)
+         {
+            data[i++] = masking_key[k];
+         }
+      }
+
+      unsigned char* dst = &data[i];
+
+      if (useMask)
+      {
+         for (memsize n = 0; n < payload_len; n++)
+         {
+            dst[n] = payload[n] ^ masking_key[n & 3];
+         }
+      }
+      else
+      {
+         ::memory_copy(dst, payload.data(), payload_len);
+      }
+
+      return frame;
 
    }
 
@@ -1133,9 +1206,10 @@ namespace sockets
    ::memory websocket::get_client_send(int fin, const_char_pointer src)
    {
       
-      throw interface_only();
+      memory memory(src, ansi_length(src));
 
-      return {};
+      return get_client_send(fin, memory, true)
+
 
    }
 

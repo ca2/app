@@ -2476,6 +2476,7 @@
     <ClCompile Include="networking\sockets\http\http_session.cpp" />
     <ClCompile Include="networking\sockets\http\http_socket.cpp" />
     <ClCompile Include="networking\sockets\http\http_tunnel.cpp" />
+    <ClCompile Include="networking\sockets\http\websocket.cpp" />
     <ClCompile Include="networking\sockets\http_batch_buffer.cpp" />
     <ClCompile Include="networking\sockets\link_in_socket.cpp" />
     <ClCompile Include="networking\sockets\link_out_socket.cpp" />

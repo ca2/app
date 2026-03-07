@@ -1558,6 +1558,9 @@
     <ClCompile Include="message\simple_command.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
+    <ClCompile Include="networking\sockets\http\websocket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="filesystem\_impl.h">

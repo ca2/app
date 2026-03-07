@@ -764,6 +764,13 @@ namespace url
 
       }
 
+      if (m_rangePort.has_character())
+      {
+
+         return atoi(::string(m_rangePort));
+
+      }
+
       if (m_rangeProtocol == "https"
          || m_rangeProtocol == "wss")
       {

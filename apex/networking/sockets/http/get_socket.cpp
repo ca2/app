@@ -90,6 +90,13 @@ namespace sockets
    bool http_get_socket::http_request_step()
    {
 
+      if (http_client_socket::http_request_step())
+      {
+
+         return true;
+
+      }
+
       if (inattr("minimal_headers").is_false())
       {
          //inheader("Accept") = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,video/x-mng,image/png,image/jpeg,image/gif;q=0.2,*/*;q=0.1";

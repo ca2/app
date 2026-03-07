@@ -22591,6 +22591,7 @@ if(get_parent())
    }
 
 
+
    void interaction::_create_window()
    {
 
@@ -28982,6 +28983,12 @@ __check_refdbg;
 
    }
 
+
+void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
+{
+   
+   
+}
 
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {

@@ -2432,6 +2432,7 @@ namespace user
 
       virtual void _001OnDeiconify(::user::activation_token * puseractivationtoken, ::e_display edisplay);
 
+      virtual void on_keyboard_layout_change(const char * pszKeyboardLayoutId);
 
       virtual ::e_status is_edit_delete_enabled();
       virtual bool on_edit_delete(const ::action_context& action_context);

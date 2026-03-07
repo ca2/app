@@ -999,6 +999,31 @@ namespace windowing
    }
 
 
+void window::notify_keyboard_layout_change(::user::interaction * puserinteraction)
+{
+   
+   m_userinteractionaKeyboardLayoutChange.add_interaction(puserinteraction);
+   
+}
+
+
+void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
+{
+   
+   for(auto puserinteraction: m_userinteractionaKeyboardLayoutChange.interactiona())
+   {
+      
+      if(::is_set(puserinteraction))
+      {
+         
+         puserinteraction->on_keyboard_layout_change(pszKeyboardLayoutId);
+         
+      }
+      
+   }
+   
+}
+
    void window::set_context_org(draw2d::graphics_pointer& pgraphics)
    {
 

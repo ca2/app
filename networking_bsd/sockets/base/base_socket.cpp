@@ -690,7 +690,7 @@ namespace sockets_bsd
    {
       
       //return base_socket_interface()->on_select_idle();
-
+      
       return false;
 
    }

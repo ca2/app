@@ -70,8 +70,11 @@ namespace sockets
 
    socket_thread::socket_thread()
    {
+      
 #if COUNTERS_001
+      
       m_iAllocatedCount = g_iSocketThread++;
+      
 #endif
 
    }
@@ -81,10 +84,13 @@ namespace sockets
    {
 
 #if COUNTERS_001
+      
       g_iSocketThread--;
 
       informationf("--->>>>>socket_thread::~SOCKET_thread\n");
+      
 #endif
+      
    }
 
 
@@ -214,8 +220,8 @@ namespace sockets
             try
             {
 
-               m_psockethandler->select(1, 0);
-
+               m_psockethandler->select(0, 100'000);
+               
             }
             catch (...)
             {
@@ -223,6 +229,8 @@ namespace sockets
                break;
 
             }
+            
+            task_iteration();
 
          }
 

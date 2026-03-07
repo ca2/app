@@ -182,7 +182,6 @@ namespace sockets
       
       /** "Default" constructor */
       base_socket();
-
       ~base_socket() override;
 
 

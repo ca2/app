@@ -25,6 +25,7 @@ namespace sockets
 
       };
 
+      bool        m_bServer;
       bool        m_bTls;
       string      m_strBase64;
       bool        m_bRequestSent;
@@ -37,9 +38,11 @@ namespace sockets
       class ::time m_timeLastPong;
       class ::time m_timeLastSpontaneousPong;
       e_ping      m_eping;
+      memory      m_memoryPing;
       memory      m_memPong;
 
       class ::time  m_timeClientPingTimeout;
+      class ::time m_timeServerPingInterval;
 
       int         m_fin;
       int         m_opcode;
@@ -78,6 +81,9 @@ namespace sockets
 
       virtual void OnDataComplete();
 
+      virtual void on_websocket_write();
+      
+      virtual void on_select_idle();
       
       virtual void write(const void * p, ::memsize s);
 
@@ -89,14 +95,26 @@ namespace sockets
 
       virtual void on_websocket_data(unsigned char * pdata, int len);
       virtual void on_websocket_data(const ::scoped_string & scopedstr);
+      
+      virtual void server_ping();
 
       virtual bool client_ping_pong_ok();
-
-      virtual memory get_client_send(int fin, memory & memory, bool useMask);
+      
+      
+      virtual memory get_server_send(int fin, memory & memory);
+      virtual memory get_server_send(int fin, const_char_pointer src);
+      
+      
+      virtual memory get_client_send(int fin, memory & memory);
       virtual memory get_client_send(int fin, const_char_pointer src);
 
+      
+      virtual memory get_frame_send(int fin, memory & memory, bool useMask);
+      virtual memory get_frame_send(int fin, const_char_pointer src, bool useMask);
+
+      
       virtual memory get_client_send_text(const_char_pointer src);
-      virtual memory get_client_send_text(const_char_pointer src, bool bMasked);
+      //virtual memory get_client_send_text(const_char_pointer src);
       virtual memory get_client_send_binary(memory & memory);
 
 

@@ -58,12 +58,12 @@ namespace sockets
 
       void OnLine(const ::scoped_string & scopedstrParam) override;
 
-      virtual bool http_request_step();
+      bool http_request_step() override;
 
-      virtual void OnFirst() override;
-      virtual void OnHeader(const ::atom & atom, const ::scoped_string & scopedstr) override;
-      virtual void OnHeaderComplete() override;
-      virtual void OnData(const_char_pointer psz, memsize size) override;
+      void OnFirst() override;
+      void OnHeader(const ::atom & atom, const ::scoped_string & scopedstr) override;
+      void OnHeaderComplete() override;
+      void OnData(const_char_pointer psz, memsize size) override;
 
 
    };

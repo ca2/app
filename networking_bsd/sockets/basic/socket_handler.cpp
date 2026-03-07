@@ -1965,6 +1965,12 @@ end_processing_adding:
                      iteratorSocket->m_psocket->SetCloseAndDelete();
 
                   }
+                  else
+                  {
+                     
+                     iteratorSocket->m_psocket->on_select_idle();
+                     
+                  }
 
                }
 

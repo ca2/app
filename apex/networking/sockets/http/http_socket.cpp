@@ -706,6 +706,33 @@ namespace sockets
    }
 
 
+   bool http_socket::on_select_idle()
+   {
+      
+      if(m_bWebSocketEnabled)
+      {
+         
+         if(m_pwebsocket != nullptr)
+         {
+            
+            if(m_pwebsocket->m_bWebSocket)
+            {
+
+               m_pwebsocket->on_select_idle();
+               
+            }
+            
+         }
+         
+      }
+      
+      //return base_socket_interface()->on_select_idle();
+      
+      return false;
+
+   }
+
+
    void http_socket::SendResponseBody()
    {
 
@@ -857,7 +884,7 @@ namespace sockets
       m_bHeader = true;
       m_bRequest = false;
       m_bResponse = false;
-      SetLineProtocol(true);
+      //SetLineProtocol(true);
       m_request.clear();
       m_response.clear();
    }

@@ -1157,9 +1157,9 @@ namespace url
 
             m_rangePort.m_begin = pszPortColon + 1;
 
-            m_iPort = ::as_int(m_rangePort);
-
             m_rangePort.m_end = range.m_end;
+
+            m_iPort = ::as_int(m_rangePort);
 
             m_range.m_end = m_rangePort.m_end;
 

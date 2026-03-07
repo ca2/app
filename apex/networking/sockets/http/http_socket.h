@@ -149,6 +149,9 @@ namespace sockets
       void destroy() override;
       
       
+      bool on_select_idle() override;
+      
+      
       virtual void enable_websocket();
 
 

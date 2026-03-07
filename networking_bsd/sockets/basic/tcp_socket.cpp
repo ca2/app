@@ -1784,9 +1784,11 @@ m_ibuf(isize)
    {
 
       const unsigned char* buf = (const unsigned char*)p;
-
+      
       if (!Ready() && !is_connecting())
       {
+         
+         bool bReady = Ready();
 
          warning() << "write: Attempt to write to a non-ready socket"; // warning
 

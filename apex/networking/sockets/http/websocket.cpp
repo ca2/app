@@ -115,7 +115,7 @@
 //}
 //
 //
-//int client_send(memory & m, int fin, memory & memory, bool useMask)
+//int client_send(memory & m, int fin, memory & memory, bool bUseMask)
 //{
 //
 //   long long message_size = memory.size();
@@ -137,7 +137,7 @@
 //
 //   unsigned char masking_key[4];
 //
-//   if (useMask)
+//   if (bUseMask)
 //   {
 //
 //      length += 4;
@@ -157,7 +157,7 @@
 //   if (message_size < 126)
 //   {
 //
-//      frame[1] = (message_size & 0xff) | (useMask ? 0x80 : 0);
+//      frame[1] = (message_size & 0xff) | (bUseMask ? 0x80 : 0);
 //
 //      iOffset = 2;
 //
@@ -165,7 +165,7 @@
 //   else if (message_size < 65536)
 //   {
 //
-//      frame[1] = 126 | (useMask ? 0x80 : 0);
+//      frame[1] = 126 | (bUseMask ? 0x80 : 0);
 //      frame[2] = (message_size >> 8) & 0xff;
 //      frame[3] = (message_size >> 0) & 0xff;
 //
@@ -175,7 +175,7 @@
 //   else
 //   {
 //
-//      frame[1] = 127 | (useMask ? 0x80 : 0);
+//      frame[1] = 127 | (bUseMask ? 0x80 : 0);
 //      frame[2] = (message_size >> 56) & 0xff;
 //      frame[3] = (message_size >> 48) & 0xff;
 //      frame[4] = (message_size >> 40) & 0xff;
@@ -189,7 +189,7 @@
 //
 //   }
 //
-//   if (useMask)
+//   if (bUseMask)
 //   {
 //
 //      frame[iOffset + 0] = masking_key[0];
@@ -203,7 +203,7 @@
 //
 //   ::memory_copy(&frame[iOffset], memory.data(), memory.get_length());
 //
-//   if (useMask)
+//   if (bUseMask)
 //   {
 //
 //      for (memsize i = 0; i < memory.get_length(); i++)
@@ -377,6 +377,8 @@ namespace sockets
       m_eping = ping_none;
 
       m_timeLastPing.Now();
+      
+      m_timeServerPingInterval = 10_s;
 
    }
 
@@ -533,11 +535,11 @@ namespace sockets
          //memory m;
 
          // bool bUseMask = m_bUseMask;
-         bool bUseMask = false;
+         //bool bUseMask = false;
 
          //         client_send(m, e_opcode::PONG, m1, m_bUseMask);
          
-         auto memory = get_client_send(e_opcode::PING, m1, bUseMask);
+         auto memory = get_client_send(e_opcode::PING, m1);
 
          m_phttpsocket->write(memory);
 
@@ -548,6 +550,26 @@ namespace sockets
 
       return true;
 
+   }
+
+
+   void websocket::server_ping()
+   {
+      
+      class ::time timeNow;
+      
+      timeNow.Now();
+      
+      m_timeLastPing = timeNow;
+      
+      m_memoryPing.assign(&m_timeLastPing, sizeof(m_timeLastPing));
+
+      auto memoryPing = m_memoryPing;
+      
+      auto memory = get_server_send(e_opcode::PING, memoryPing);
+
+      m_phttpsocket->write(memory);
+      
    }
 
 
@@ -657,82 +679,89 @@ namespace sockets
 
    void websocket::OnHeaderComplete()
    {
-
-      int iHttpStatusCode;
-
-      iHttpStatusCode = m_phttpsocket->outattr("http_status_code").as_int();
-
-      string strStatus;
-
-      strStatus = m_phttpsocket->outattr("http_status");
-
-      if (iHttpStatusCode == 101 && strStatus == "Switching Protocols")
+      
+      if(!m_bWebSocket)
       {
-
-         string strUpgrade;
-
-         strUpgrade = m_phttpsocket->outheader("upgrade");
-
-         if (strUpgrade.case_insensitive_order("websocket") == 0)
+         
+         int iHttpStatusCode;
+         
+         iHttpStatusCode = m_phttpsocket->outattr("http_status_code").as_int();
+         
+         string strStatus;
+         
+         strStatus = m_phttpsocket->outattr("http_status");
+         
+         if (iHttpStatusCode == 101 && strStatus == "Switching Protocols")
          {
-
-            string strConnection;
-
-            strConnection = m_phttpsocket->outheader("connection");
-
-            if (strConnection.case_insensitive_order("Upgrade") == 0)
+            
+            string strUpgrade;
+            
+            strUpgrade = m_phttpsocket->outheader("upgrade");
+            
+            if (strUpgrade.case_insensitive_order("websocket") == 0)
             {
-
-               m_timeLastPing.Now();
-
-               string strAccept;
-
-               strAccept = m_phttpsocket->outheader("sec-websocket-accept");
-
-               string strKey = m_strBase64;
-
-               strKey.trim();
-
-               strKey += "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-
-               memory mem;
-
-               mem.assign(strKey);
-
-               memory mem2;
-
-               auto psystem = system();
-
-               auto pbase64 = psystem->base64();
-
-               auto pcrypto = psystem->crypto();
-
-               pcrypto->sha1(mem2, mem);
-
-               strKey = pbase64->encode(mem2);
-
-               if (strAccept == strKey)
+               
+               string strConnection;
+               
+               strConnection = m_phttpsocket->outheader("connection");
+               
+               if (strConnection.case_insensitive_order("Upgrade") == 0)
                {
-
-                  m_bWebSocket = true;
-
-                  m_strWebSocketProtocol = m_phttpsocket->outheader("sec-websocket-protocol");
-
-                  informationf("---->  now : websocket\n");
-
-                  if (m_strWebSocketProtocol.has_character())
+                  
+                  m_timeLastPing.Now();
+                  
+                  string strAccept;
+                  
+                  strAccept = m_phttpsocket->outheader("sec-websocket-accept");
+                  
+                  string strKey = m_strBase64;
+                  
+                  strKey.trim();
+                  
+                  strKey += "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
+                  
+                  memory mem;
+                  
+                  mem.assign(strKey);
+                  
+                  memory mem2;
+                  
+                  auto psystem = system();
+                  
+                  auto pbase64 = psystem->base64();
+                  
+                  auto pcrypto = psystem->crypto();
+                  
+                  pcrypto->sha1(mem2, mem);
+                  
+                  strKey = pbase64->encode(mem2);
+                  
+                  if (strAccept == strKey)
                   {
-
-                     information("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
-
+                     
+                     m_bWebSocket = true;
+                     
+                     m_phttpsocket->SetLineProtocol(false);
+                     
+                     m_strWebSocketProtocol = m_phttpsocket->outheader("sec-websocket-protocol");
+                     
+                     informationf("---->  now : websocket\n");
+                     
+                     if (m_strWebSocketProtocol.has_character())
+                     {
+                        
+                        information("Sec-WebSocket-Protocol: " + m_strWebSocketProtocol + "\n");
+                        
+                     }
+                     
                   }
-
+                  
                }
-
+               
             }
-
+            
          }
-
+         
       }
 
    }
@@ -799,7 +828,7 @@ namespace sockets
 
       varNetworkPayload.get_network_payload(strNetworkPayload, true);
 
-      auto memory = get_client_send_text(strNetworkPayload, true);
+      auto memory = get_client_send_text(strNetworkPayload);
 
       m_phttpsocket->write(memory);
 
@@ -1055,7 +1084,7 @@ namespace sockets
 
                memory m1(&data[m_header_size], m_iN);
 
-               m_memPong = get_client_send( e_opcode::PONG, m1, true);
+               m_memPong = get_client_send( e_opcode::PONG, m1);
 
                m_phttpsocket->write(m_memPong);
 
@@ -1097,39 +1126,50 @@ namespace sockets
    void websocket::defer_negotiate_incoming_request()
    {
    
-      
-                     string strKey = m_phttpsocket->inheader("sec-websocket-key");//
-                     //string strKey = "dGhlIHNhbXBsZSBub25jZQ==";
-                     strKey.trim();
-                     strKey += "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-                     memory mem;
-                     mem.assign(strKey);
-                     memory memSha1;
-      
-                     auto psystem = system();
-      
-                     auto pcrypto = crypto();
-      
-                     pcrypto->sha1(memSha1, mem);
-      
-                     auto pbase64 = psystem->base64();
-      
-                     strKey = pbase64->encode(memSha1);
-                     m_phttpsocket->outheader("Sec-WebSocket-Accept") = strKey;
-                     m_phttpsocket->outheader("Connection") = "Upgrade";
-                     m_phttpsocket->outheader("Upgrade") = "websocket";
-                     m_phttpsocket->outattr("http_status_code") = 101;
-                     m_phttpsocket->outattr("http_version") = "HTTP/1.1";
-                     m_phttpsocket->outattr("http_status") = "Switching Protocols";
-                     m_phttpsocket->Respond();
-                     memory m;
-                     string strMessage = "yes_account_com";
-                     m.set_size(strMessage.length() + 2);
-                     m.data()[0] = 0x81;
-                     m.data()[1] = (unsigned char) (strMessage.length());
-                     ::memory_copy(&m.data()[2], strMessage.c_str(), strMessage.length());
-                     write(m.data(), m.size());
-                     //return;
+      if(!m_bWebSocket)
+      {
+         
+         m_bServer = true;
+         m_bWebSocket = true;
+         
+         string strKey = m_phttpsocket->inheader("sec-websocket-key");//
+         //string strKey = "dGhlIHNhbXBsZSBub25jZQ==";
+         strKey.trim();
+         strKey += "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
+         memory mem;
+         mem.assign(strKey);
+         memory memSha1;
+         
+         auto psystem = system();
+         
+         auto pcrypto = crypto();
+         
+         pcrypto->sha1(memSha1, mem);
+         
+         auto pbase64 = psystem->base64();
+         
+         strKey = pbase64->encode(memSha1);
+         m_phttpsocket->outheader("Sec-WebSocket-Accept") = strKey;
+         m_phttpsocket->outheader("Connection") = "Upgrade";
+         m_phttpsocket->outheader("Upgrade") = "websocket";
+         m_phttpsocket->outattr("http_status_code") = 101;
+         m_phttpsocket->outattr("http_version") = "HTTP/1.1";
+         m_phttpsocket->outattr("http_status") = "Switching Protocols";
+         m_phttpsocket->Respond();
+         m_phttpsocket->SetLineProtocol(false);
+         /// Considering websocket establishment an
+         /// implicit ping
+         m_timeLastPing.Now();
+         //                     memory m;
+         //                     string strMessage = "yes_account_com";
+         //                     m.set_size(strMessage.length() + 2);
+         //                     m.data()[0] = 0x81;
+         //                     m.data()[1] = (unsigned char) (strMessage.length());
+         //                     ::memory_copy(&m.data()[2], strMessage.c_str(), strMessage.length());
+         //                     write(m.data(), m.size());
+         //                     //return;
+         
+      }
 
       
    }
@@ -1155,6 +1195,7 @@ namespace sockets
 
    }
 
+
    void websocket::on_websocket_data(const ::scoped_string & scopedstr)
    {
 
@@ -1163,7 +1204,40 @@ namespace sockets
    }
 
 
-   ::memory websocket::get_client_send(int opcode, memory& payload, bool useMask)
+   memory websocket::get_server_send(int fin, memory & memory)
+   {
+   
+      return get_frame_send(fin, memory, false);
+   
+   }
+
+   
+   memory websocket::get_server_send(int fin, const_char_pointer src)
+   {
+      
+      return get_frame_send(fin, src, false);
+      
+   }
+
+
+   memory websocket::get_client_send(int fin, memory & memory)
+   {
+   
+      return get_frame_send(fin, memory, m_bUseMask);
+      
+   }
+
+
+   memory websocket::get_client_send(int fin, const_char_pointer src)
+   {
+   
+      return get_frame_send(fin, src, m_bUseMask);
+      
+   }
+
+
+
+   ::memory websocket::get_frame_send(int opcode, memory& payload, bool bUseMask)
    {
 
       memsize payload_len = payload.size();
@@ -1179,7 +1253,7 @@ namespace sockets
          header_size += 8;
       }
 
-      if (useMask)
+      if (bUseMask)
       {
          header_size += 4;
       }
@@ -1197,17 +1271,17 @@ namespace sockets
       // Payload length
       if (payload_len < 126)
       {
-         data[i++] = (useMask ? 0x80 : 0) | (unsigned char)payload_len;
+         data[i++] = (bUseMask ? 0x80 : 0) | (unsigned char)payload_len;
       }
       else if (payload_len <= 65535)
       {
-         data[i++] = (useMask ? 0x80 : 0) | 126;
+         data[i++] = (bUseMask ? 0x80 : 0) | 126;
          data[i++] = (payload_len >> 8) & 0xff;
          data[i++] = (payload_len) & 0xff;
       }
       else
       {
-         data[i++] = (useMask ? 0x80 : 0) | 127;
+         data[i++] = (bUseMask ? 0x80 : 0) | 127;
 
          for (int shift = 56; shift >= 0; shift -= 8)
          {
@@ -1217,7 +1291,7 @@ namespace sockets
 
       unsigned char masking_key[4] = {};
 
-      if (useMask)
+      if (bUseMask)
       {
          mathematics()->random(memory(masking_key, 4));
 
@@ -1229,7 +1303,7 @@ namespace sockets
 
       unsigned char* dst = &data[i];
 
-      if (useMask)
+      if (bUseMask)
       {
          for (memsize n = 0; n < payload_len; n++)
          {
@@ -1246,14 +1320,38 @@ namespace sockets
    }
 
 
-   ::memory websocket::get_client_send(int fin, const_char_pointer src)
+   ::memory websocket::get_frame_send(int fin, const_char_pointer src, bool bUseMask)
    {
       
       memory memory(src, ansi_length(src));
 
-      return get_client_send(fin, memory, true)
+      return get_frame_send(fin, memory, bUseMask);
+
+   }
 
 
+   void websocket::on_websocket_write()
+   {
+      
+      
+   }
+
+
+   void websocket::on_select_idle()
+   {
+   
+      if(m_bServer)
+      {
+
+         if(m_timeLastPing.elapsed() > m_timeServerPingInterval)
+         {
+            
+            server_ping();
+            
+         }
+         
+      }
+      
    }
 
 
@@ -1268,19 +1366,19 @@ namespace sockets
    ::memory websocket::get_client_send_binary(memory & memory)
    {
 
-      return get_client_send(0x82, memory, true);
+      return get_frame_send(0x82, memory, m_bUseMask);
 
    }
    
 
-   ::memory websocket::get_client_send_text(const_char_pointer src, bool bMasked)
-   {
-
-      memory m2(src, ansi_len(src));
-
-      return get_client_send(0x81, m2, bMasked);
-
-   }
+//   ::memory websocket::get_client_send_text(const_char_pointer src)
+//   {
+//
+//      memory m2(src, ansi_len(src));
+//
+//      return get_client_send(0x81, m2, m_bUseMask);
+//
+//   }
    
 
 } // namespace sockets

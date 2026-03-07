@@ -293,7 +293,6 @@ namespace sockets
 
       }
 
-      
       OnResponseComplete();
       
       if (!m_b_keepalive)
@@ -306,11 +305,11 @@ namespace sockets
       else
       {
 
-         SetCloseAndDelete();
+         //SetCloseAndDelete();
 
-         //m_iKeepAliveCount++;
+         m_iKeepAliveCount++;
 
-         //information() << "keep-alive : " << m_iKeepAliveCount;
+         information() << "keep-alive : " << m_iKeepAliveCount;
 
          //if (m_request.m_url.as_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
          //{

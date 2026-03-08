@@ -6,6 +6,8 @@
 #include "proxy.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/nano/http/get.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/prototype/url_domain.h"
 #include "acme/parallelization/manual_reset_happening.h"
@@ -16,12 +18,11 @@
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"
 #include "apex/networking/http/message.h"
-#include "apex/networking/sockets/http/http_tunnel.h"
-#include "apex/networking/sockets/http/http_session.h"
-#include "apex/networking/sockets/http/websocket.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
-#include "acme/filesystem/filesystem/directory_context.h"
-#include "acme/filesystem/filesystem/file_context.h"
+#include "apex/networking/sockets/http/http_callback.h"
+#include "apex/networking/sockets/http/http_session.h"
+#include "apex/networking/sockets/http/http_tunnel.h"
+#include "apex/networking/sockets/http/websocket.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
@@ -2110,6 +2111,10 @@ namespace http
          psocket->request().header("cookie") = set["cookie"];
 
       }
+
+      auto phttpcallback = set["socket_http_callback"].cast < ::sockets::http_callback >();
+
+      psocket->m_phttpcallback = phttpcallback;
 
       auto pmanualresethappeningWebsocketStarted = set["websocket_started_manual_reset_happening"].cast < ::manual_reset_happening >();
 

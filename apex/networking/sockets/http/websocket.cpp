@@ -1052,7 +1052,18 @@ namespace sockets
                if (m_fin)
                {
 
-                  _call_on_websocket_data2(m_memReceivedData);
+                  if ((m_fin & 1) == 1)
+                  {
+
+                     _call_on_websocket_text(m_memReceivedData);
+
+                  }
+                  else
+                  {
+
+                     _call_on_websocket_data2(m_memReceivedData);
+
+                  }
 
                   m_memReceivedData.set_size(0);
 

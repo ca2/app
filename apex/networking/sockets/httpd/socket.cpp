@@ -297,7 +297,12 @@ namespace httpd
    void socket::send_response()
    {
 
-      on_send_response();
+      if(on_send_response())
+      {
+         
+         return;
+         
+      }
 
       int iStatusCode;
 
@@ -420,9 +425,10 @@ namespace httpd
    }
 
 
-   void socket::on_send_response()
+   bool socket::on_send_response()
    {
 
+      return false;
 
    }
 

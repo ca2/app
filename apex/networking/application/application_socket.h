@@ -26,7 +26,7 @@ namespace networking
       void on_set_parent_socket() override;
 
 
-      virtual void on_send_response() override;
+      virtual bool on_send_response() override;
 
 
       string on_send_http_response();

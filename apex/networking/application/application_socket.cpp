@@ -39,7 +39,7 @@ namespace networking
    }
 
 
-   void application_socket::on_send_response()
+   bool application_socket::on_send_response()
    {
 
       auto pnetworkingapplication = m_pnetworkingapplication;
@@ -57,6 +57,8 @@ namespace networking
       auto estatus = pnetworkingapplication->on_html_response(this, strHtml, strUrl, setPost);
 
       response().file()->write(strHtml);
+      
+      return false;
 
    }
 

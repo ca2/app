@@ -90,7 +90,7 @@ namespace httpd
 
       virtual void send_response();
 
-      virtual void on_send_response();
+      virtual bool on_send_response();
 
       virtual bool http_filter_response_header(atom key, string_array_base& straValue);
 

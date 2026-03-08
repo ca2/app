@@ -4,10 +4,10 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/platform/system.h"
-//#include "acme/prototype/string/hex.h"
 #include "acme/prototype/string/parse.h"
 #include "acme/prototype/string/str.h"
 #include "apex/constant/idpool.h"
+#include "apex/networking/sockets/http/http_callback.h"
 
 #define HEAVY_HTTP_LOG 0
 

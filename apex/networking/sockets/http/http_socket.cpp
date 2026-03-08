@@ -106,9 +106,28 @@ namespace sockets
    }
 
 
-   void http_socket::on_websocket_data(const ::scoped_string & scopedstr)
+   void http_socket::on_websocket_text(const ::scoped_string & scopedstrText)
+   {
+
+      if (m_phttpcallback)
+      {
+
+         m_phttpcallback->on_websocket_text(scopedstrText);
+
+      }
+
+   }
+
+
+   void http_socket::on_websocket_data2(const ::block & blockData)
    {
       
+      if (m_phttpcallback)
+      {
+
+         m_phttpcallback->on_websocket_data(blockData);
+
+      }
       
    }
 

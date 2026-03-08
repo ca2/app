@@ -2471,6 +2471,7 @@
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
     <ClCompile Include="networking\sockets\http\base_socket.cpp" />
+    <ClCompile Include="networking\sockets\http\http_callback.cpp" />
     <ClCompile Include="networking\sockets\http\post_socket.cpp" />
     <ClCompile Include="networking\sockets\http\put_socket.cpp" />
     <ClCompile Include="networking\sockets\http\http_session.cpp" />
@@ -2685,6 +2686,7 @@
     <ClInclude Include="networking\sockets\http\debug_socket.h" />
     <ClInclude Include="networking\sockets\http\get_socket.h" />
     <ClInclude Include="networking\sockets\http\base_socket.h" />
+    <ClInclude Include="networking\sockets\http\http_callback.h" />
     <ClInclude Include="networking\sockets\http\post_socket.h" />
     <ClInclude Include="networking\sockets\http\put_socket.h" />
     <ClInclude Include="networking\sockets\http\http_session.h" />

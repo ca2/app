@@ -794,6 +794,7 @@ concept prototype_object =
    && !prototype_pointer2 < OBJECT >
    && !prototype_raw_type < OBJECT >;
 
+
 template < typename PARTICLE >
 concept prototype_particle = ::std::is_base_of_v<::particle, PARTICLE>;
 

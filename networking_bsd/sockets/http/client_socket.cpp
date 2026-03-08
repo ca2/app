@@ -386,6 +386,23 @@ namespace sockets
 
       OnContent();
 
+      if (m_pmanualresethappeningWebSocketStarted)
+      {
+
+         if (m_pwebsocket)
+         {
+
+            if (m_pwebsocket->m_bWebSocket)
+            {
+
+               m_pmanualresethappeningWebsocketStarted->set_happening();
+
+            }
+
+         }
+
+      }
+
       if(!m_bNoClose || m_b_close_when_complete)
       {
 

@@ -37,6 +37,7 @@ namespace sockets
       ::file::file *                   m_pfile;
       long long                              m_iFinalSize;
       ::progress::integer              m_progressinteger;
+      ::pointer < ::manual_reset_happening > m_pmanualresethappeningWebsocketStarted;
 
 
       //memory    m_memoryData; ///< Ptr to buffer where to store response
@@ -104,6 +105,7 @@ namespace sockets
 
       /** close socket when response received. */
       virtual void SetCloseOnComplete(bool = true);
+      virtual void set_happening_on_websocket_started(::manual_reset_happening* pmanualresethappeningWebsocketStarted);
 
       /** get protocol used from url. */
       ::string GetUrlProtocol();

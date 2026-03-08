@@ -1357,6 +1357,10 @@ m_ibuf(isize)
 
       on_read(buf, n);
 
+      m_memRead.delete_begin(n);
+
+      m_memRead.erase_offset();
+
    }
 
 

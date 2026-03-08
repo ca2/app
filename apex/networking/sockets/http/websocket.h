@@ -81,7 +81,9 @@ namespace sockets
 
       virtual void OnDataComplete();
 
-      virtual void on_websocket_write();
+      //virtual void on_websocket_text(const ::scoped_string & scopedstrText);
+
+      //virtual void on_websocket_data2(const ::block & blockData);
       
       virtual void on_select_idle();
       
@@ -93,8 +95,11 @@ namespace sockets
 
       virtual void OnRawData(char *buf, memsize len);
 
-      virtual void on_websocket_data(unsigned char * pdata, int len);
-      virtual void on_websocket_data(const ::scoped_string & scopedstr);
+      virtual void _call_on_websocket_text(const ::scoped_string& scopedstrText);
+      virtual void _call_on_websocket_data2(const ::block & blockData);
+
+      virtual void _on_websocket_text(const ::scoped_string& scopedstrText);
+      virtual void _on_websocket_data2(const ::block & blockData);
       
       virtual void server_ping();
 

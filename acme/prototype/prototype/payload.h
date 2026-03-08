@@ -1244,7 +1244,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //T * cast();
 
    template < prototype_subparticle T >
-   ::pointer < T > cast(T* pDefault = nullptr);
+   ::pointer < T > cast(T* pDefault);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)
@@ -1288,12 +1288,11 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    ::subparticle * as_subparticle() const { return ((payload *)this)->as_subparticle(); }
 
-   template < prototype_particle T >
-   T * cast() const
-   {
-      return ((payload *)this)->cast < T >();
-   }
+   template < prototype_subparticle T >
+   T* cast() const;
 
+   template < prototype_subparticle T >
+   T* cast();
 
    ::subparticle * get_subparticle();
 

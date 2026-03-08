@@ -8,6 +8,7 @@
 #include "acme/nano/http/get.h"
 #include "acme/prototype/prototype/url.h"
 #include "acme/prototype/prototype/url_domain.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/prototype/prototype/_text_stream.h"
@@ -17,6 +18,7 @@
 #include "apex/networking/http/message.h"
 #include "apex/networking/sockets/http/http_tunnel.h"
 #include "apex/networking/sockets/http/http_session.h"
+#include "apex/networking/sockets/http/websocket.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -2109,6 +2111,17 @@ namespace http
 
       }
 
+      auto pmanualresethappeningWebsocketStarted = set["websocket_started_manual_reset_happening"].cast < ::manual_reset_happening >();
+
+      if (pmanualresethappeningWebsocketStarted)
+      {
+
+         psocket->m_bNoClose = true;
+
+         psocket->set_happening_on_websocket_started(pmanualresethappeningWebsocketStarted);
+
+      }
+
       if (!psocket->m_bNoClose)
       {
 
@@ -2268,8 +2281,27 @@ namespace http
 
       tick1 = ::time::now();
 
-      while (psockethandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
+      while (true)
       {
+
+         if (psockethandler->get_count() <= 0)
+         {
+
+            break;
+
+         } 
+         
+         if (::get_task() != nullptr)
+         {
+
+            if (!::task_get_run())
+            {
+
+               break;
+
+            }
+
+         }
 
          if (psocket->get_last_interaction_time().elapsed() > tickTotalTimeout)
          {
@@ -2358,7 +2390,7 @@ namespace http
 
          }
 
-         if (psocket->m_b_complete)
+         if (psocket->m_b_complete && (!psocket->m_pwebsocket || !psocket->m_pwebsocket->m_bWebSocket))
          {
 
             information() << LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second();

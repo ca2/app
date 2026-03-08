@@ -1079,6 +1079,9 @@
     <ClInclude Include="message\simple_command.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
+    <ClInclude Include="networking\sockets\http\http_callback.h">
+      <Filter>Header Files\networking\sockets\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1559,6 +1562,9 @@
       <Filter>Source Files\message</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http\websocket.cpp">
+      <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\http\http_callback.cpp">
       <Filter>Source Files\networking\sockets\http</Filter>
     </ClCompile>
   </ItemGroup>

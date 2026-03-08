@@ -1052,7 +1052,7 @@ namespace sockets
                if (m_fin)
                {
 
-                  on_websocket_data(m_memReceivedData.data(), (int)(m_memReceivedData.size()));
+                  _call_on_websocket_data2(m_memReceivedData);
 
                   m_memReceivedData.set_size(0);
 
@@ -1178,32 +1178,83 @@ namespace sockets
    }
 
 
-   void websocket::on_websocket_data(unsigned char * pdata, int len)
+   //void websocket::_call_on_websocket_text(const ::scoped_string& scopedstrText)
+   //{
+
+   //   m_timeLastPong.Now();
+
+   //   _on_websocket_data2(scopedstrText);
+
+   //   //::string strText(scopedstrText);
+
+   //   ////::fork(get_app(), [=]()
+   //   ////{
+
+   //   //// DO FORK if necessary only in inner loops,
+   //   //// taking care of only writing to websocket when it is proper.
+   //   ////on_websocket_data(str);
+
+   //   ////});
+
+
+   //}
+
+
+   void websocket::_call_on_websocket_text(const ::scoped_string & scopedstrText)
    {
 
       m_timeLastPong.Now();
 
-      string str((const_char_pointer )pdata, len);
+      _on_websocket_text(scopedstrText);
+
+      //::string strText(scopedstrText);
+
+      ////::fork(get_app(), [=]()
+      ////{
+
+      //// DO FORK if necessary only in inner loops,
+      //// taking care of only writing to websocket when it is proper.
+      ////on_websocket_data(str);
+
+      ////});
+
+   }
+
+
+   void websocket::_on_websocket_text(const ::scoped_string & scopedstrText)
+   {
+
+      m_phttpsocket->on_websocket_text(scopedstrText);
+      
+   }
+
+
+   void websocket::_call_on_websocket_data2(const ::block& blockData)
+   {
+
+      m_timeLastPong.Now();
+
+      _on_websocket_data2(blockData);
+
+      //::string strText(scopedstrText);
 
       //::fork(get_app(), [=]()
       //{
 
       // DO FORK if necessary only in inner loops,
       // taking care of only writing to websocket when it is proper.
-      on_websocket_data(str);
+      //on_websocket_data(str);
 
       //});
-
-
 
    }
 
 
-   void websocket::on_websocket_data(const ::scoped_string & scopedstr)
+   void websocket::_on_websocket_data2(const ::block & blockData)
    {
 
-      m_phttpsocket->on_websocket_data(scopedstr);
-      
+      m_phttpsocket->on_websocket_data2(blockData);
+
    }
 
 
@@ -1333,11 +1384,11 @@ namespace sockets
    }
 
 
-   void websocket::on_websocket_write()
-   {
-      
-      
-   }
+   //void websocket::on_websocket_write()
+   //{
+   //   
+   //   
+   //}
 
 
    void websocket::on_select_idle()

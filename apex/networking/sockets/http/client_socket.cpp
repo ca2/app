@@ -1,9 +1,10 @@
 #include "framework.h"
 #include "client_socket.h"
+#include "websocket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/memory/counter.h"
+#include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/prototype/url.h"
-//#include "acme/prototype/string/hex.h"
 #include "apex/constant/idpool.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"
@@ -423,12 +424,29 @@ namespace sockets
 
       OnContent();
 
-      //if(!m_bNoClose || m_b_close_when_complete)
-      //{
+      if (m_pmanualresethappeningWebsocketStarted)
+      {
 
-      //   SetCloseAndDelete();
+         if (m_pwebsocket)
+         {
 
-      //}
+            if (m_pwebsocket->m_bWebSocket)
+            {
+
+               m_pmanualresethappeningWebsocketStarted->set_happening();
+
+            }
+
+         }
+
+      }
+
+      if (!m_bNoClose || m_b_close_when_complete)
+      {
+
+         SetCloseAndDelete();
+
+      }
 
 #ifdef WINRT_SOCKETS
 
@@ -593,6 +611,14 @@ namespace sockets
    {
 
       m_b_close_when_complete = x;
+
+   }
+
+
+   void http_client_socket::set_happening_on_websocket_started(::manual_reset_happening* pmanualresethappeningWebsocketStarted)
+   {
+
+      m_pmanualresethappeningWebsocketStarted = pmanualresethappeningWebsocketStarted;
 
    }
 

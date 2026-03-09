@@ -1294,6 +1294,12 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    template < prototype_subparticle T >
    T* cast();
 
+   template < prototype_subparticle T >
+   ::pointer < T > as_pointer() const;
+
+   template < prototype_subparticle T >
+   ::pointer < T > as_pointer();
+
    ::subparticle * get_subparticle();
 
    //   bool strictly_equal(const payload & payload) const;

@@ -567,6 +567,42 @@ inline T * payload::cast() const
 }
 
 
+template < prototype_subparticle T >
+inline ::pointer < T > payload::as_pointer()
+{
+
+   auto psubparticle = get_subparticle();
+
+   if (!psubparticle)
+   {
+
+      return nullptr;
+
+   }
+
+   ::pointer < T > p = psubparticle;
+
+   if (!p)
+   {
+
+      return nullptr;
+
+   }
+
+   return ::transfer(p);
+
+}
+
+
+template < prototype_subparticle T >
+inline ::pointer < T > payload::as_pointer() const
+{
+
+   return ::transfer(((::payload*)this)->as_pointer < T >());
+
+}
+
+
 //template < class T >
 //inline T & payload::get_cast(T * pDefault)
 //{

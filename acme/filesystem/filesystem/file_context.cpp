@@ -1751,7 +1751,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       return;
    }
 
-   auto preader = varSource.cast < ::file::file >();
+   auto preader = varSource.as_pointer < ::file::file >();
 
    bool bSourceEmpty = varSource.as_file_path().is_empty();
 
@@ -1762,7 +1762,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
    }
 
-   auto pwriter = varTarget.cast < ::file::file >();
+   auto pwriter = varTarget.as_pointer < ::file::file >();
 
    bool bTargetEmpty = varTarget.as_file_path().is_empty();
 
@@ -1945,7 +1945,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
             bStatusFail = true;
 
-            information() << "During copy, failed to set status to output file \""
+            information() << "During copy, failed to copy modification time to output file \""
                << varTarget.as_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false");
 
          }

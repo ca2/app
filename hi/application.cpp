@@ -1086,7 +1086,7 @@ namespace console_hello
       while (true)
       {
 
-         auto pmessagebox = message_box((const_char_pointer )unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", ::user::e_message_box_yes_no_cancel | ::user::e_message_box_default_button_3, "Hello Multiverse!!");
+         auto pmessageboxpayload = message_box((const_char_pointer )unsigned char"Hello!!\nNo: for exception test(\u2717)!!", "Hello App!", ::user::e_message_box_yes_no_cancel | ::user::e_message_box_default_button_3, "Hello Multiverse!!");
 
          auto result = send(pmessageboxpayload);
 
@@ -1144,7 +1144,7 @@ namespace console_hello
                psequencer->then([this](auto)
                   {
 
-                     auto pmessagebox = message_box("Got ::exception", "Got ::exception", ::user::e_message_box_ok | ::user::e_message_box_icon_information);
+                     auto pmessageboxpayload = message_box("Got ::exception", "Got ::exception", ::user::e_message_box_ok | ::user::e_message_box_icon_information);
 
                      post(pmessageboxpayload);
 
@@ -1164,7 +1164,7 @@ namespace console_hello
                psequencer->then([this](auto)
                {
 
-                     auto pmessagebox = message_box("Caught (...)", "Caught (...)", ::user::e_message_box_ok | ::user::e_message_box_icon_information);
+                     auto pmessageboxpayload = message_box("Caught (...)", "Caught (...)", ::user::e_message_box_ok | ::user::e_message_box_icon_information);
 
                      post(pmessageboxpayload);
 

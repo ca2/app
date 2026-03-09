@@ -564,8 +564,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${WorkspaceDir}/../operating_system/tool/bin/_on_before_build_executable",
+				"$(BUILT_PRODUCTS_DIR)/$(EXECUTABLE_FOLDER_PATH)/$(EXECUTABLE_NAME)",
 				"$(WorkspaceDir)/output_copy.txt",
+				"$(SRCROOT)/input.xcfilelist",
+				$HOME/code/operating_system/tool/bin/application_build_helper,
+				$HOME/code/operating_system/tool/bin/_on_after_build_executable,
 			);
 			name = _on_after_build_executable;
 			outputFileListPaths = (
@@ -586,9 +589,12 @@
 			inputFileListPaths = (
 			);
 			inputFileListPaths = (
-				"$(SRCROOT)/../matter.txt",
+				"",
 			);
 			inputPaths = (
+				$HOME/code/operating_system/tool/bin/_on_before_build_executable,
+				"$(SRCROOT)/../matter.txt",
+				$HOME/code/operating_system/tool/bin/application_build_helper,
 			);
 			name = _on_before_build_executable;
 			outputFileListPaths = (
@@ -596,6 +602,7 @@
 			outputPaths = (
 				"$(SRCROOT)/_matter.zip",
 				"$(SRCROOT)/output.xcfilelist",
+				"$(SRCROOT)/input.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

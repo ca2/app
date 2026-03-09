@@ -1518,6 +1518,8 @@ namespace file
    
    void file::set_modification_time(const class ::time& time)
    {
+      
+      ::string strType = ::type(*this).name();
 
       throw ::interface_only();
 

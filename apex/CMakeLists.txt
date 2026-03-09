@@ -333,6 +333,8 @@ list(APPEND apex_source
    networking/sockets/http/debug_socket.h
    networking/sockets/http/get_socket.cpp
    networking/sockets/http/get_socket.h
+   networking/sockets/http/http_callback.cpp
+   networking/sockets/http/http_callback.h
    #networking/http/listener.cpp
    #networking/sockets/http/listener.h
    networking/sockets/http/post_socket.cpp
@@ -345,6 +347,8 @@ list(APPEND apex_source
    networking/sockets/http/http_socket.h
    networking/sockets/http/http_tunnel.cpp
    networking/sockets/http/http_tunnel.h
+   networking/sockets/http/websocket.cpp
+   networking/sockets/http/websocket.h
    networking/sockets/_.h
    #networking/sockets/_system_sockets.cpp
    networking/sockets/http_batch_buffer.cpp

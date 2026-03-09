@@ -13311,7 +13311,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#exit 0\n\n$HOME/code/operating_system/tool/bin/_on_before_build_project\n\n";
+			shellScript = ". $HOME/code/operating_system/tool/bin/_on_before_build_project\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -715,9 +715,12 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"$(SRCROOT)/../matter.txt",
+				"",
 			);
 			inputPaths = (
+				$HOME/code/operating_system/tool/bin/_on_before_build_executable,
+				"$(SRCROOT)/../matter.txt",
+				$HOME/code/operating_system/tool/bin/application_build_helper,
 			);
 			name = _on_before_build_executable;
 			outputFileListPaths = (
@@ -725,6 +728,7 @@
 			outputPaths = (
 				"$(SRCROOT)/_matter.zip",
 				"$(SRCROOT)/output.xcfilelist",
+				"$(SRCROOT)/input.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

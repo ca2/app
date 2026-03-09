@@ -21,9 +21,34 @@ public:
 
    using BASE_ARRAY::operator =;
 
+   procedure_array(procedure_array&& procedurea) :
+      BASE_ARRAY(::transfer(procedurea))
+   {
+
+   }
+
+   procedure_array(const procedure_array& procedurea) :
+      BASE_ARRAY(procedurea)
+   {
+
+   }
+
 
    void run() override;
    virtual void on_end_procedure();
+
+
+   procedure_array & operator=(const procedure_array& procedurea)
+   {
+      BASE_ARRAY::operator=(procedurea);
+      return *this;
+   }
+
+   procedure_array & operator=(procedure_array&& procedurea)
+   {
+      BASE_ARRAY::operator=(::transfer(procedurea));
+      return *this;
+   }
 
 
 };

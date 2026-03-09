@@ -35,6 +35,7 @@ void acme_system_term();
 
 
 #include "acme/platform/platform.h"
+#include "acme/platform/message_box.h"
 #include "acme/operating_system/acme_initialize.h"
 
 
@@ -61,12 +62,22 @@ namespace acme
 }
 
 
+extern char **environ;
+
+
 #ifdef WINDOWS
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 #else
-int main(int argc, char ** argv, char ** envp)
+int main(int argc, char ** argv)
+//int main(int argc, char ** argv, char ** envp)
 #endif
 {
+   
+#if !defined(WINDOWS)
+   
+   auto envp = environ;
+   
+#endif
 
    auto psystem = ::hold(new ::PLATFORM_LAYER_NAME::system);
 
@@ -160,9 +171,9 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::system()) ::message_box(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         auto pmessageboxpayload = __initialize_new_with(::system()) ::message_box_payload(exception, "Exception", "Exception", ::user::e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
-         send(pmessageboxpayload);
+         ::system()->send(pmessageboxpayload);
 
       }
 
@@ -181,9 +192,9 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         auto pmessagebox = __initialize_new_with(::system()) ::message_box("Unhandled Exception");
+         auto pmessageboxpayload = __initialize_new_with(::system()) ::message_box_payload("Unhandled Exception");
 
-         send(pmessageboxpayload);
+         ::system()->send(pmessageboxpayload);
 
       }
 

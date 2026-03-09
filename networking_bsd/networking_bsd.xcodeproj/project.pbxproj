@@ -79,6 +79,13 @@
 			remoteGlobalIDString = 9A68A445251143F8008DABD2;
 			remoteInfo = apex;
 		};
+		9A23800A2F5E3118009005E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE33AD22F5E30E500526D74 /* nano_idn_libidn.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE834ED2C1CCEF900096100;
+			remoteInfo = nano_idn_libidn;
+		};
 		9A818E382A71D978008F470C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */;
@@ -113,6 +120,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 9AD695C2251A754800C0EBD7;
 			remoteInfo = ios_apex;
+		};
+		9AE33ADC2F5E30E500526D74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE33AD22F5E30E500526D74 /* nano_idn_libidn.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AE834EE2C1CCEF900096100;
+			remoteInfo = nano_idn_libidn;
+		};
+		9AE33ADE2F5E30E500526D74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE33AD22F5E30E500526D74 /* nano_idn_libidn.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC1B6F82C32171500B503A1;
+			remoteInfo = ios_nano_idn_libidn;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -228,6 +249,7 @@
 		9ABBFE9A2B3FFC770036DF8C /* listen_socket_impl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = listen_socket_impl.cpp; sourceTree = "<group>"; };
 		9AC019342748A002006BEBCC /* libnetworking_bsd.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnetworking_bsd.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9AE33AD22F5E30E500526D74 /* nano_idn_libidn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = nano_idn_libidn.xcodeproj; path = ../nano_idn_libidn/nano_idn_libidn.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */,
+				9AE33AD22F5E30E500526D74 /* nano_idn_libidn.xcodeproj */,
 				9A0F89A828D1166C002601B1 /* networking_bsd */,
 				9AC019352748A002006BEBCC /* Products */,
 				9AC019C82748A722006BEBCC /* Frameworks */,
@@ -456,6 +479,15 @@
 				9AC019E22748A7D4006BEBCC /* libapex.dylib */,
 				9AC019E42748A7D4006BEBCC /* libios_apex.a */,
 				9A818E592A71D979008F470C /* libstatic_apex.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AE33AD82F5E30E500526D74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AE33ADD2F5E30E500526D74 /* libnano_idn_libidn.dylib */,
+				9AE33ADF2F5E30E500526D74 /* libios_nano_idn_libidn.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -533,6 +565,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A23800B2F5E3118009005E8 /* PBXTargetDependency */,
 				9A226D7727CEB24A0042BAC2 /* PBXTargetDependency */,
 			);
 			name = networking_bsd;
@@ -571,6 +604,10 @@
 					ProductGroup = 9AC019DD2748A7D4006BEBCC /* Products */;
 					ProjectRef = 9AC019DC2748A7D4006BEBCC /* apex.xcodeproj */;
 				},
+				{
+					ProductGroup = 9AE33AD82F5E30E500526D74 /* Products */;
+					ProjectRef = 9AE33AD22F5E30E500526D74 /* nano_idn_libidn.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -601,6 +638,20 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libios_apex.a;
 			remoteRef = 9AC019E32748A7D4006BEBCC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AE33ADD2F5E30E500526D74 /* libnano_idn_libidn.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libnano_idn_libidn.dylib;
+			remoteRef = 9AE33ADC2F5E30E500526D74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AE33ADF2F5E30E500526D74 /* libios_nano_idn_libidn.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_nano_idn_libidn.a;
+			remoteRef = 9AE33ADE2F5E30E500526D74 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -715,6 +766,11 @@
 			isa = PBXTargetDependency;
 			name = apex;
 			targetProxy = 9A226D7627CEB24A0042BAC2 /* PBXContainerItemProxy */;
+		};
+		9A23800B2F5E3118009005E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = nano_idn_libidn;
+			targetProxy = 9A23800A2F5E3118009005E8 /* PBXContainerItemProxy */;
 		};
 		9A818E372A71D978008F470C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

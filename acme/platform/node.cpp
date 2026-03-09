@@ -354,7 +354,7 @@ namespace platform
       //m_pparticleQuit = create_quit_particle(pnode);
 
       auto psystem = system();
-
+      
       psystem->m_papplication->__task_init();
 
       psystem->init_task();
@@ -386,7 +386,19 @@ namespace platform
          psystem->m_papplication->property_set().merge(prequest->property_set());
 
          psystem->m_papplication->main();
+         
+         if(psystem->m_iExitCode == 0)
+         {
+          
+            if(psystem->m_papplication->m_iExitCode != 0)
+            {
 
+               psystem->m_iExitCode = psystem->m_papplication->m_iExitCode;
+
+            }
+            
+         }
+         
       }
 
       //::system::->m_pnode.release();

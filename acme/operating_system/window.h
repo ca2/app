@@ -38,8 +38,8 @@ namespace operating_system
       union
       {
 
-         unsigned char m_opaque[32];
-         unsigned long long m_la[4];
+         unsigned char              m_opaque[24];
+         unsigned long long         m_ulla[3];
 
       };
 
@@ -70,10 +70,10 @@ namespace operating_system
       void Null()
       {
 
-         this->m_la[0] = 0;
-         this->m_la[1] = 0;
-         this->m_la[2] = 0;
-         this->m_la[3] = 0;
+         this->m_ulla[0] = 0;
+         this->m_ulla[1] = 0;
+         this->m_ulla[2] = 0;
+         this->m_ulla[3] = 0;
 
       }
 
@@ -82,10 +82,10 @@ namespace operating_system
       {
 
          return
-            this->m_la[0] == 0
-            && this->m_la[1] == 0
-            && this->m_la[2] == 0
-            && this->m_la[3] == 0;
+            this->m_ulla[0] == 0
+            && this->m_ulla[1] == 0
+            && this->m_ulla[2] == 0
+            && this->m_ulla[3] == 0;
 
       }
 
@@ -102,10 +102,9 @@ namespace operating_system
       {
 
          return
-            this->m_la[0] == windowopaque.m_la[0]
-            && this->m_la[1] == windowopaque.m_la[1]
-            && this->m_la[2] == windowopaque.m_la[2]
-            && this->m_la[3] == windowopaque.m_la[3];
+            this->m_ulla[0] == windowopaque.m_ulla[0]
+            && this->m_ulla[1] == windowopaque.m_ulla[1]
+            && this->m_ulla[2] == windowopaque.m_ulla[2];
 
       }
 
@@ -113,10 +112,9 @@ namespace operating_system
       window_opaque_t& operator = (const window_opaque_t& windowopaque)
       {
 
-         this->m_la[0] = windowopaque.m_la[0];
-         this->m_la[1] = windowopaque.m_la[1];
-         this->m_la[2] = windowopaque.m_la[2];
-         this->m_la[3] = windowopaque.m_la[3];
+         this->m_ulla[0] = windowopaque.m_ulla[0];
+         this->m_ulla[1] = windowopaque.m_ulla[1];
+         this->m_ulla[2] = windowopaque.m_ulla[2];
 
          return *this;
 
@@ -125,10 +123,10 @@ namespace operating_system
 
       operator ::hash32() const
       {
-         return ::as_hash32(this->m_la[0])
-            + ::as_hash32(this->m_la[1])
-            + ::as_hash32(this->m_la[2])
-            + ::as_hash32(this->m_la[3]);
+         return ::as_hash32(this->m_ulla[0])
+            + ::as_hash32(this->m_ulla[1])
+            + ::as_hash32(this->m_ulla[2])
+            + ::as_hash32(this->m_ulla[3]);
       }
 
 
@@ -152,7 +150,7 @@ namespace operating_system
 
       };
 
-      
+
       a_window_t(nullptr_t) { this->Null(); }
 
       
@@ -282,8 +280,8 @@ namespace operating_system
       
       using WINDOW_TYPE = typename BASE_TYPE::WINDOW_TYPE;
       
-      
-      enum_operating_system   m_eoperatingsystem;
+      ::acme::windowing::window *   m_pacmewindowingwindow;
+      enum_operating_system         m_eoperatingsystem;
 
 
       a_window(nullptr_t)
@@ -302,7 +300,8 @@ namespace operating_system
       
 
       a_window(const a_window & awindow) :
-      m_eoperatingsystem(awindow.m_eoperatingsystem),
+         m_pacmewindowingwindow(awindow.m_pacmewindowingwindow),
+         m_eoperatingsystem(awindow.m_eoperatingsystem),
          BASE_TYPE(awindow.m_window)
       {
          
@@ -313,6 +312,7 @@ namespace operating_system
          requires (!::is_same < WINDOW_TYPE, window_opaque_t >
       && ::is_same < WINDOW, window >)
       a_window(const WINDOW & window) :
+         m_pacmewindowingwindow(window.m_pacmewindowingwindow),
          m_eoperatingsystem(window.m_eoperatingsystem),
          BASE_TYPE(window.m_opaque)
       {
@@ -320,7 +320,8 @@ namespace operating_system
       }
 
 
-      a_window(const WINDOW_TYPE & window) :
+      a_window(const WINDOW_TYPE & window, ::acme::windowing::window * pacmewindowingwindow = nullptr) :
+         m_pacmewindowingwindow(pacmewindowingwindow),
          m_eoperatingsystem(t_eoperatingsystem),
          BASE_TYPE(window)
       {
@@ -331,7 +332,8 @@ namespace operating_system
       template < typename WINDOW_OPAQUE_T >
          requires (!::is_same < WINDOW_T, window_opaque_t >
       && ::is_same < WINDOW_OPAQUE_T, window_opaque_t >)
-      a_window(const enum_operating_system& eoperatingsystem, const WINDOW_OPAQUE_T & windowopaque) :
+      a_window(const enum_operating_system& eoperatingsystem, const WINDOW_OPAQUE_T & windowopaque, ::acme::windowing::window* pacmewindowingwindow = nullptr) :
+         m_pacmewindowingwindow(pacmewindowingwindow),
          m_eoperatingsystem(eoperatingsystem),
          BASE_TYPE(windowopaque)
       {
@@ -342,6 +344,7 @@ namespace operating_system
       void Null()
       {
          this->m_window.Null();
+         m_pacmewindowingwindow = nullptr;
          m_eoperatingsystem = e_operating_system_none;
       }  
 
@@ -369,8 +372,8 @@ namespace operating_system
       bool is_null() const
       {
       
-         return m_eoperatingsystem == e_operating_system_none
-         || BASE_TYPE::is_null();
+         return (m_eoperatingsystem == e_operating_system_none
+         || BASE_TYPE::is_null()) && m_pacmewindowingwindow == nullptr;
 
       }
 
@@ -386,8 +389,15 @@ namespace operating_system
       bool operator == (const ::operating_system::window& operatingsystemwindow) const
       {
 
-         return this->m_eoperatingsystem == operatingsystemwindow.m_eoperatingsystem
-            && BASE_TYPE::operator == (operatingsystemwindow.m_window);
+         if (operatingsystemwindow.m_eoperatingsystem != e_operating_system_none)
+         {
+
+            return (this->m_eoperatingsystem == operatingsystemwindow.m_eoperatingsystem
+               && BASE_TYPE::operator == (operatingsystemwindow.m_window));
+
+         }
+
+         return m_pacmewindowingwindow == operatingsystemwindow.m_pacmewindowingwindow;
 
       }
       
@@ -399,6 +409,7 @@ namespace operating_system
       ::operating_system::window & operator = (const WINDOW & window)
       {
 
+         this->m_pacmewindowingwindow = window.m_pacmewindowingwindow;
          this->m_eoperatingsystem = window.m_eoperatingsystem;
          BASE_TYPE::operator = (window.m_window);
 
@@ -410,6 +421,7 @@ namespace operating_system
       a_window & operator = (const a_window & awindow)
       {
 
+         this->m_pacmewindowingwindow = awindow.m_pacmewindowingwindow;
          this->m_eoperatingsystem = awindow.m_eoperatingsystem;
          BASE_TYPE::operator = (awindow.m_window);
 
@@ -419,6 +431,7 @@ namespace operating_system
 
 
    };
+
 
    //class window
    //{

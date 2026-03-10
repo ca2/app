@@ -107,6 +107,14 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #endif
 
 
+#if defined(LINUX) || defined(__BSD__)
+
+extern char _binary__matter_zip_start[];
+extern char _binary__matter_zip_end[];
+
+#endif
+
+
 #if defined(WINDOWS)
 int WINAPI wWinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, WCHAR* pCmdLine, int nCmdShow)
 #else
@@ -123,7 +131,9 @@ int main(int argc, char* argv[], char* envp[])
    const char * p2 = nullptr; //_todo_end;
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #else
-   APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp);
+   const char * p1 = _binary__matter_zip_start;
+   const char * p2 = _binary__matter_zip_end;
+   APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #endif
 
    auto iExitCode = APPLICATION_NAMESPACE_MAIN(main)();

@@ -40,46 +40,50 @@ namespace app_just_message_box
          nullptr,
          ::user::e_message_box_yes_no_cancel);
 
-      pmessagebox->main_async()
-         << [this, pmessagebox]()
+      pmessageboxpayload->m_functionOnDialogResult = [this](const ::payload & payloadResult)
          {
 
-            if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
+            if (payloadResult == e_dialog_result_cancel)
             {
 
                _001PostTryCloseApplication();
 
             }
-            else  if (pmessagebox->m_payloadResult == e_dialog_result_no)
+            else  if (payloadResult == e_dialog_result_no)
             {
 
                auto pmessageboxNo = __initialize_new ::message_box_payload("No!", nullptr, ::user::e_message_box_ok);
 
-               pmessageboxNo->async()
-                  << [this]()
+               pmessageboxNo->m_functionOnDialogResult = [this](const ::payload & payloadResult)
                   {
 
                      show_message_box();
 
                   };
 
+               post(pmessageboxNo);
+
             }
-            else  if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+            else  if (payloadResult == e_dialog_result_yes)
             {
 
                auto pmessageboxYes = __initialize_new ::message_box_payload("Yes!!", nullptr, ::user::e_message_box_ok);
 
-               pmessageboxYes->async()
-                  << [this]()
+               pmessageboxYes->m_functionOnDialogResult = [this](const ::payload & payloadResult)
                   {
 
                      _001PostTryCloseApplication();
 
                   };
 
+               post(pmessageboxYes);
+
             }
 
          };
+
+      post(pmessageboxpayload);
+
 
    }
 

@@ -70,7 +70,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_sys
 #elif defined(__ANDROID__)
 APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[])
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #endif
 {
 
@@ -96,10 +96,12 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_sys
 #endif
 
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
-
-      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
-
+//
+//       psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+      psystem->set_resource_block(p1, p2);
+//
 #elif defined(__ANDROID__)
+//#if defined(__ANDROID__)
 
       psystem->set_resource_block(p1, p2);
 
@@ -117,7 +119,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_con
 #elif defined(__ANDROID__)
 APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
-APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[])
+APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_console_system)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #endif
 {
 
@@ -137,7 +139,7 @@ APPLICATION_NAMESPACE_MAIN_EXPORT void APPLICATION_NAMESPACE_MAIN(initialize_con
 
 #if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
 
-      psystem->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
+      psystem->set_resource_block(p1, p2);
 
 #elif defined(__ANDROID__)
 

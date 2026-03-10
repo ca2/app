@@ -272,6 +272,8 @@ namespace operating_system
    class a_window :
       public a_window_t < WINDOW_T >
    {
+   protected:
+      ::acme::windowing::window *   m_pacmewindowingwindow;
    public:
 
       
@@ -280,7 +282,6 @@ namespace operating_system
       
       using WINDOW_TYPE = typename BASE_TYPE::WINDOW_TYPE;
       
-      ::acme::windowing::window *   m_pacmewindowingwindow;
       enum_operating_system         m_eoperatingsystem;
 
 
@@ -339,6 +340,24 @@ namespace operating_system
       {
 
       }
+
+
+
+      void _set_acme_windowing_window(::acme::windowing::window * pwindow)
+      {
+
+         m_pacmewindowingwindow = pwindow;
+
+      }
+
+
+      ::acme::windowing::window * _get_acme_windowing_window() const
+      {
+
+         return m_pacmewindowingwindow;
+
+      }
+
 
 
       void Null()

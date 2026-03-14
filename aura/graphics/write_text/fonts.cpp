@@ -3,6 +3,7 @@
 #include "font.h"
 #include "font_enumeration_item.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 
 
@@ -18,18 +19,21 @@ namespace write_text
    fonts::fonts()
    {
 
+      information("write_text::fonts");
+
    }
 
 
    fonts::~fonts()
    {
 
+      information("write_text::~fonts");
+
    }
 
 
    void fonts::initialize(::particle * pparticle)
    {
-
 
       ::platform::department::initialize(pparticle);
 
@@ -61,7 +65,7 @@ namespace write_text
       if (!m_mapFontEnumeration[strFontBranch])
       {
 
-         enumerate_fonts(strFontBranch);
+         enumerate_fonts(true, strFontBranch);
 
       }
 
@@ -70,14 +74,16 @@ namespace write_text
    }
 
    
-   void fonts::enumerate_fonts(const ::scoped_string & scopedstrFontBranch)
+   void fonts::enumerate_fonts(bool bSynchronously, const ::scoped_string & scopedstrFontBranch)
    {
-
-      _synchronous_lock syncronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       ::pointer < ::write_text::font_enumeration > pfontenumeration;
 
       ::string strFontBranch = scopedstrFontBranch;
+
+      auto pparticleSynchronization = this->synchronization();
+
+      _synchronous_lock synchronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       strFontBranch.make_lower();
 
@@ -115,23 +121,49 @@ namespace write_text
 
       //}
 
-      if (!m_mapFontEnumeration[scopedstrFontBranch])
+      auto & pfontenumerationAssign = m_mapFontEnumeration[strFontBranch];
+
+      if (!pfontenumerationAssign)
       {
 
-         m_mapFontEnumeration[scopedstrFontBranch] = pfontenumeration;
+         pfontenumerationAssign = pfontenumeration;
 
       }
 
-      fork([this, pfontenumeration, scopedstrFontBranch]
+      if (bSynchronously)
       {
 
          pfontenumeration->enumerate_fonts();
 
-         _synchronous_lock syncronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+         pfontenumerationAssign = pfontenumeration;
 
-         m_mapFontEnumeration[scopedstrFontBranch] = pfontenumeration;
+      }
+      else
+      {
 
-      });
+         synchronouslock.unlock();
+
+         ::procedure procedure = [this, pfontenumeration, strFontBranch]()
+         {
+
+            ::procedure procedure = [this, pfontenumeration, strFontBranch]()
+            {
+
+               auto pparticleSynchronization = this->synchronization();
+
+               _synchronous_lock syncronouslock(pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+               m_mapFontEnumeration[strFontBranch] = pfontenumeration;
+
+            };
+
+            pfontenumeration->enumerate_fonts(procedure);
+
+         };
+
+         m_papplication->fork(procedure);
+
+      }
 
       //return ::success;
 

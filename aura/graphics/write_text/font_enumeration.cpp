@@ -6,6 +6,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/fonts.h"
 
@@ -22,7 +23,7 @@ namespace write_text
       m_bOther = true;
 
       m_iUpdateId = -1;
-      m_bUpdating = true;
+      //m_bUpdating = true;
 
       m_happeningReady.reset_happening();
 
@@ -49,6 +50,8 @@ namespace write_text
       //}
 
       //return estatus;
+
+      defer_create_synchronization();
 
    }
 
@@ -192,42 +195,44 @@ namespace write_text
    void font_enumeration::check_need_update(::topic * ptopic)
    {
 
-      m_bUpdating = true;
+      //m_bUpdating = true;
 
       //auto pgraphics = ::draw2d::create_memory_graphics();
 
-      ::pointer<::write_text::font_enumeration_item_array>pitema;
+      // ::pointer<::write_text::font_enumeration_item_array>pitema;
+      //
+      // pitema = allocateø ::write_text::font_enumeration_item_array();
+      //
+      // auto psystem = system();
+      //
+      // auto pdraw2d = psystem->draw2d();
 
-      pitema = allocateø ::write_text::font_enumeration_item_array();
+      update();
 
-      auto psystem = system();
+      //enumerate_fonts();
 
-      auto pdraw2d = psystem->draw2d();
-
-      enumerate_fonts();
-
-      sort_fonts();
-
-      if (m_pfontenumerationitema.is_set() && ::acme::array::is_equal(*pitema, *m_pfontenumerationitema))
-      {
-
-         m_bUpdating = false;
-
-         ptopic->id() = id_not_modified;
-
-         return;
-
-      }
-
-      m_pfontenumerationitema = pitema;
-
-      m_iUpdateId++;
-
-      m_bUpdating = false;
-
-      ptopic->set_modified_flag();
-
-      //ptopic->id() = id_handle;
+      // sort_fonts();
+      //
+      // if (m_pfontenumerationitema.is_set() && ::acme::array::is_equal(*pitema, *m_pfontenumerationitema))
+      // {
+      //
+      //    m_bUpdating = false;
+      //
+      //    ptopic->id() = id_not_modified;
+      //
+      //    return;
+      //
+      // }
+      //
+      // m_pfontenumerationitema = pitema;
+      //
+      // m_iUpdateId++;
+      //
+      // //m_bUpdating = false;
+      //
+      // ptopic->set_modified_flag();
+      //
+      // //ptopic->id() = id_handle;
 
    }
 
@@ -235,17 +240,17 @@ namespace write_text
    void font_enumeration::update()
    {
 
-      m_bUpdating = true;
+      //m_bUpdating = true;
 
       //auto g = create_memory_graphics();
 
-      ::pointer<::write_text::font_enumeration_item_array>pitema;
-
-      pitema = allocateø ::write_text::font_enumeration_item_array();
-
-      auto psystem = system();
-
-      auto pdraw2d = psystem->draw2d();
+      // ::pointer<::write_text::font_enumeration_item_array>pitema;
+      //
+      // pitema = allocateø ::write_text::font_enumeration_item_array();
+      //
+      // auto psystem = system();
+      //
+      // auto pdraw2d = psystem->draw2d();
 
       //auto estatus = 
       
@@ -262,7 +267,7 @@ namespace write_text
 
       //estatus =
       
-      sort_fonts();
+      //sort_fonts();
 
       //if (!estatus)
       //{
@@ -273,25 +278,85 @@ namespace write_text
 
       //}
 
-      m_pfontenumerationitema = pitema;
+//      m_pfontenumerationitema = pitema;
 
       m_iUpdateId++;
 
-      m_bUpdating = false;
+      //m_bUpdating = false;
 
       //return estatus;
 
    }
 
 
-   void font_enumeration::enumerate_fonts()
+   void font_enumeration::enumerate_fonts(const ::procedure & procedureOnFinishedEnumeration)
    {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      if (procedureOnFinishedEnumeration.is_set())
+      {
+
+         m_procedureaOnFinishedEnumeration.add(procedureOnFinishedEnumeration);
+
+      }
+
+      if (m_bEnumeratingFonts)
+      {
+
+         information("This font enumeration is already enumerating fonts");
+
+         return;
+
+      }
+
+      information("This font enumeration is going to start enumerating fonts");information("This font enumeration is already enumerating fonts");
+
+      m_bEnumeratingFonts = true;
 
       m_happeningReady.reset_happening();
 
-      on_enumerate_fonts();
+      auto pfontenumerationHoldThis = ::as_pointer(this);
 
-      sort_fonts();
+      synchronouslock.unlock();
+
+      try
+      {
+
+         on_enumerate_fonts();
+
+         sort_fonts();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+
+      synchronouslock._lock();
+
+      for (auto procedure : m_procedureaOnFinishedEnumeration)
+      {
+
+         try
+         {
+
+            m_papplication->fork(procedure);
+
+         }
+         catch (...)
+         {
+
+
+         }
+
+      }
+
+      m_procedureaOnFinishedEnumeration.erase_all();
+
+      m_bEnumeratingFonts = false;
 
       m_happeningReady.set_happening();
 

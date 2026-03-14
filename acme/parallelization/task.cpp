@@ -1041,7 +1041,7 @@ void task::main()
 
    }
 
-   if (m_procedure && m_procedure != this)
+   if (m_procedure.is_set() && m_procedure.m_p != this)
    {
 
       task_iteration();

@@ -1834,9 +1834,9 @@ namespace core
 
             auto pwritetext = pdraw2d->write_text();
 
-            auto pfonts = pwritetext->fonts();
+            auto pfonts = ::as_pointer(pwritetext->fonts());
 
-            pfonts->enumerate_fonts("system");
+            pfonts->enumerate_fonts(false,"system");
 
          });
 

@@ -1939,7 +1939,7 @@ namespace write_text
 
       }
 
-      if (m_pfontenumeration->m_bUpdating)
+      if (m_pfontenumeration->m_bEnumeratingFonts)
       {
 
          return true;

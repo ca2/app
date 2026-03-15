@@ -73,12 +73,25 @@ namespace allocator
    void _push_referer(::reference_referer * preferer)
    {
 
+      auto i  = ::current_task_index();
+
+      if (i == 27)
+      {
+
+         //information("task index 27");
+         printf("task index 27\n");
+         //information("task index 27");
+         //information("task index 27");
+
+      }
+
       if (t_preferencerefererTopic)
       {
 
          throw "123";
 
       }
+
 
       t_preferencerefererTopic = preferer;
 

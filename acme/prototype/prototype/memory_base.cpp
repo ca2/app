@@ -374,20 +374,27 @@ void memory_base::delete_begin(memsize iSize)
       throw ::exception(error_bad_argument);
 
    }
-   else if (iSize > this->size())
+   else
    {
 
-      throw ::exception(error_bad_argument);
+      auto sizeThis = this->size();
+
+      if (iSize > sizeThis)
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
+      else if (iSize == 0)
+      {
+
+         return;
+
+      }
+
+      this->m_begin += iSize;
 
    }
-   else if (iSize == 0)
-   {
-
-      return;
-
-   }
-
-   this->m_begin += iSize;
 
 }
 

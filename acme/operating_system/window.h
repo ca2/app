@@ -313,7 +313,7 @@ namespace operating_system
          requires (!::is_same < WINDOW_TYPE, window_opaque_t >
       && ::is_same < WINDOW, window >)
       a_window(const WINDOW & window) :
-         m_pacmewindowingwindow(window.m_pacmewindowingwindow),
+         m_pacmewindowingwindow(window._get_acme_windowing_window()),
          m_eoperatingsystem(window.m_eoperatingsystem),
          BASE_TYPE(window.m_opaque)
       {

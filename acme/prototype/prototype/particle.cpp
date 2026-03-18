@@ -1202,6 +1202,8 @@ class tracer* particle::tracer() const
 
    auto ptracer = this->tracer();
 
+   __check_refdbg
+
    auto statement = ::transfer(::trace_statement(ptracer));
 
    trace_statement_prefix(statement);

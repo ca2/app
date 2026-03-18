@@ -246,6 +246,13 @@ namespace nano2d
    void draw2d_context::rotate(float angle)
    {
 
+      if (::std::isinf(angle))
+      {
+
+         return;
+
+      }
+
       ::geometry2d::matrix matrix;
 
       matrix.rotate(angle);

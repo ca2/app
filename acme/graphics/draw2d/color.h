@@ -107,7 +107,7 @@ namespace color
 
  
 
-      hls() {}
+      hls(): HLS{ 0.0,0.0, 0.0 } {}
       hls(enum_zero_init) : HLS{ 0.0,0.0, 0.0 } {}
       hls(double dH, double dL = 0.5, double dS = 1.0) :HLS{ dH, dL, dS } {}
       hls(const ::color::color & color);

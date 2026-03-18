@@ -75,7 +75,7 @@ bool is_filemanager_group(const ::atom & atom, int iGroup)
 
 
 
-bool is_color_sel(const ::atom & atom)
+bool _is_color_sel(const ::atom & atom)
 {
    
    return is_impact_group(atom.as_long_long(), COLORSEL_IMPACT);
@@ -83,12 +83,14 @@ bool is_color_sel(const ::atom & atom)
 }
 
 
-bool is_font_sel(const ::atom & atom) 
+bool _is_font_sel(const ::atom & atom) 
 {
    
    return is_impact_group(atom.as_long_long(), FONTSEL_IMPACT);
 
 }
+
+
 
 
 ::string atom::as_string() const

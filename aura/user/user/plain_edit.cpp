@@ -590,6 +590,8 @@ namespace user
 
          bool bComposing = ::is_set(m_pitemComposing);
 
+      __check_refdbg
+
       bool bStrongSelection = bComposing || has_keyboard_focus();
 
       __check_refdbg

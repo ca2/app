@@ -3,6 +3,8 @@
 #include "color_selector_control.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_message.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/graphics/image/image32.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -17,6 +19,8 @@
 #include "aura/platform/system.h"
 #include "berg/user/user/document.h"
 
+
+extern int g_iColorWheelExit;
 
 namespace user
 {
@@ -149,6 +153,7 @@ namespace user
    void color_selector_control::on_message_create(::message::message * pmessage)
    {
 
+      g_iColorWheelExit = atoi(file()->as_string(directory()->home()/"color_wheel_exit.txt"));
 
       constructø(m_pfont);
 

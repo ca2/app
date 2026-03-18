@@ -627,7 +627,7 @@ namespace userex
       //   }
 
       //}
-      else if (is_font_sel(pimpactdata->id()))
+      else if (is_impact_group(pimpactdata->id().as_iptr(), FONTSEL_IMPACT))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -676,7 +676,7 @@ namespace userex
          }
 
       }
-      else if (is_color_sel(pimpactdata->id()))
+      else if (is_impact_group(pimpactdata->id().as_iptr(), COLORSEL_IMPACT))
       {
 
          pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
@@ -689,7 +689,7 @@ namespace userex
 
          puser->will_use_impact_hint(COLORSEL_IMPACT);
 
-         auto pimpactsystem = puser->impact_system(COLORSEL_IMPACT);
+         //auto pimpactsystem = puser->impact_system(COLORSEL_IMPACT);
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
@@ -709,6 +709,8 @@ namespace userex
             m_pcolorselectorimpact->add_handler(pimpact);
 
          }
+
+         return;
 
       }
       else if(is_filemanager(pimpactdata->id()))

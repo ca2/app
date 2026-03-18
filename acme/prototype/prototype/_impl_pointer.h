@@ -92,6 +92,14 @@ inline pointer < T > ::pointer(place_t, T2 * p)
                m_psubparticle->m_prefererTransfer2 = nullptr;
 
             }
+            else if(m_psubparticle->m_prefererLast2)
+            {
+
+               m_preferer = m_psubparticle->m_prefererLast2;
+
+               m_psubparticle->m_prefererLast2 = nullptr;
+
+            }
             else
             {
 
@@ -174,6 +182,14 @@ pointer < T >::pointer(allocate_t, Args &&... args)
             m_preferer = m_psubparticle->m_prefererTransfer2;
 
             m_psubparticle->m_prefererTransfer2 = nullptr;
+
+         }
+         else if(m_psubparticle->m_prefererLast2)
+         {
+
+            m_preferer = m_psubparticle->m_prefererLast2;
+
+            m_psubparticle->m_prefererLast2 = nullptr;
 
          }
          else

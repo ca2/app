@@ -375,6 +375,8 @@ namespace graphics
 
 namespace core
 {
+
+   
    namespace graphics
    {
 
@@ -386,12 +388,8 @@ namespace core
 
          m_bCompact = false;
 
-         //m_atomImpact = COLORSEL_IMPACT;
-
          m_bLButtonPressedOnHue = false;
          m_bLButtonPressedOnLuminance = false;
-
-         //id() = COLORSEL_IMPACT;
 
          m_strOk = "OK";
 

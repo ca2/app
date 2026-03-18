@@ -8,21 +8,33 @@ class tracer * fallback_tracer();
 
 trace_statement::trace_statement(class tracer * ptracer) :
    trace_statement_struct(ptracer)
-{ 
+{
+
+   __check_refdbg
    
    m_pprintingformat = ptracer;
+
+   __check_refdbg
 
    if(m_ptracer == nullptr)
    {
 
+      __check_refdbg
+
       m_ptracer = fallback_tracer();
+
+      __check_refdbg
 
    }
 
    if(m_pprintingformat == nullptr)
    {
 
+      __check_refdbg
+
       m_pprintingformat = fallback_tracer();
+
+      __check_refdbg
 
    }
 
@@ -32,10 +44,16 @@ trace_statement::trace_statement(class tracer * ptracer) :
 trace_statement::~trace_statement()
 {
 
+   __check_refdbg
+
    if (m_ptracer)
    {
 
+      __check_refdbg
+
       m_ptracer->flush(*this);
+
+      __check_refdbg
 
    }
 

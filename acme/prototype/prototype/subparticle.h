@@ -214,6 +214,7 @@ public:
    void *                              m_pType = nullptr;
    memsize                             m_sType = sizeof(::subparticle);
    ::reference_referer *               m_prefererTransfer2 = nullptr;
+   ::reference_referer *               m_prefererLast2 = nullptr;
    bool                                m_bReferencingDebuggingEnabled5 = true;
    bool                                m_bIncludeCallStackTrace = false;
 
@@ -246,7 +247,7 @@ public:
    void disable_referencing_debugging();
 
    //void add_initial_reference_item();
-   void add_reference_item(bool bIncludeCallStackTrace);
+   void add_reference_item(bool bConstructing, bool bIncludeCallStackTrace);
    void add_referer(::reference_referer * preferer);
    //void _add_reference_item();
    void erase_reference_item();

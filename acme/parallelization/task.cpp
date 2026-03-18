@@ -1569,7 +1569,11 @@ void * task::s_os_task(void * p)
 
    {
 
+      __check_refdbg
+
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
+
+      __check_refdbg
 
       ptaskhandler->__task_handle();
 

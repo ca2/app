@@ -29,8 +29,8 @@ namespace gpu
 
       bool                                         m_bWithDepth;
 
-      ::pointer < ::pointer_array < texture > >    m_ptexturea;
-      ::pointer < ::pointer_array < texture > >    m_ptextureaDepth;
+      ::pointer < ::pointer_array < ::gpu::texture > >    m_ptexturea;
+      ::pointer < ::pointer_array < ::gpu::texture > >    m_ptextureaDepth;
 
 
       ::int_size m_size;

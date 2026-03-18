@@ -477,7 +477,7 @@ string object_name(matter* p)
 //}
 
 
-void subparticle::add_reference_item(bool bIncludeCallStackTrace)
+void subparticle::add_reference_item(bool bConstructing, bool bIncludeCallStackTrace)
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
@@ -574,7 +574,22 @@ void subparticle::add_reference_item(bool bIncludeCallStackTrace)
 
       //pitema->add_item(preferenc);
 
-      pitema->add_item(bIncludeCallStackTrace);
+      auto prefererTop = ::allocator::pop_referer();
+
+      if (bConstructing)
+      {
+
+         m_prefererTransfer2 = prefererTop;
+
+      }
+      else
+      {
+
+         m_prefererLast2 = prefererTop;
+
+      }
+
+      pitema->add_referer(prefererTop, bIncludeCallStackTrace);
 
    }
    catch (...)

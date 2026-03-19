@@ -87,7 +87,7 @@ class graphics_context;
       //bool                                         m_bHasCurrentPoint;
       bool                                         m_bOutline;
       void* m_pthis;
-      ::pointer < ::user::interaction >            m_puserinteraction;
+      ::pointer < ::user::interaction >            m_puserinteractionDraw2dGraphics;
       ::pointer<::draw2d::host>                    m_pdraw2dhost;
       double                                       m_dSizeScaler;
       bool                                         m_bPat;

@@ -81,7 +81,7 @@ namespace draw2d
       //_m_bYFlip = false;
       m_bForWindowDraw2d = false;
       m_bDraw = true;
-      m_puserinteraction = nullptr;
+//      m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
       m_pointTranslateOutput.x = 0.;
@@ -482,7 +482,7 @@ namespace draw2d
 
       m_bForWindowDraw2d = true;
 
-      m_puserinteraction = puserinteraction;
+      m_puserinteractionDraw2dGraphics = puserinteraction;
 
       //create_memory_graphics(size);
 
@@ -2932,7 +2932,7 @@ namespace draw2d
 
       //throw ::interface_only();
 
-      ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
+      ::cast < ::user::interaction > puserinteraction = m_puserinteractionDraw2dGraphics;
 
       puserinteraction->send([procedure]()
          {

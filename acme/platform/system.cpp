@@ -3402,7 +3402,6 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-
    void system::canonical_system_main()
    {
 

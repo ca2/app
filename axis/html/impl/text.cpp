@@ -189,7 +189,7 @@ namespace html
 
          }
 
-         pgraphics->m_puserinteraction = pdata->m_pcoredata->m_puserinteraction;
+         pgraphics->m_puserinteractionDraw2dGraphics = pdata->m_pcoredata->m_puserinteraction;
 
          ::float_size size = pgraphics->get_text_extent(strMax);
 
@@ -369,7 +369,7 @@ namespace html
          if (pgraphics == nullptr)
             return false;
 
-         pgraphics->m_puserinteraction = pdata->m_pcoredata->m_puserinteraction;
+         pgraphics->m_puserinteractionDraw2dGraphics = pdata->m_pcoredata->m_puserinteraction;
 
          pgraphics->set(pdata->get_font(m_pelemental)->m_pfont);
 

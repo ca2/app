@@ -10628,6 +10628,8 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //user_interaction()->defer_do_graphics(pgraphics);
 
       //{
+      
+      auto puserinteraction = this->user_interaction();
 
       auto pgraphicscontext = øcreate_new < ::draw2d::graphics_context >();
 
@@ -10738,7 +10740,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
             }
 
-            pgraphicscontext->m_pgraphics->m_puserinteraction = m_pacmeuserinteraction;
+            pgraphicscontext->m_pgraphics->m_puserinteractionDraw2dGraphics = m_pacmeuserinteraction;
 
             pgraphicscontext->m_pbufferitem = pbufferitem;
 
@@ -11088,6 +11090,8 @@ slGraphics.unlock();
              return;
 
           }
+    
+    pgraphics->m_puserinteractionDraw2dGraphics = puserinteraction;
 
           //draw2dlock.unlock();
 

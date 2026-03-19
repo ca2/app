@@ -5396,9 +5396,9 @@ namespace user
    void interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scoped_restore(pgraphics->m_puserinteraction);
+      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
 
-      pgraphics->m_puserinteraction = this;
+      pgraphics->m_puserinteractionDraw2dGraphics = this;
 
       if (pgraphics == nullptr)
       {
@@ -5595,9 +5595,9 @@ namespace user
 
       }
 
-      scoped_restore(pgraphics->m_puserinteraction);
+      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
 
-      pgraphics->m_puserinteraction = this;
+      pgraphics->m_puserinteractionDraw2dGraphics = this;
 
       //int_point pointScroll = m_pointScroll;
 
@@ -6719,9 +6719,9 @@ namespace user
    void interaction::defer_do_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scoped_restore(pgraphics->m_puserinteraction);
+      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
 
-      pgraphics->m_puserinteraction = this;
+      pgraphics->m_puserinteractionDraw2dGraphics = this;
 
       ::string strType = ::platform::type(this).name();
 
@@ -6817,7 +6817,7 @@ namespace user
    void interaction::_000CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scoped_restore(pgraphics->m_puserinteraction);
+      scoped_restore(pgraphics->m_puserinteractionDraw2dGraphics);
 
       //pgraphics->m_puserinteraction = m_puserinteraction;
 

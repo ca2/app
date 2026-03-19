@@ -200,17 +200,17 @@ namespace gpu
 
             ::int_rectangle rectangle;
 
-      if (!m_puserinteraction && m_papplication->m_gpu.m_bUseSwapChainWindow)
+      if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
 
-         m_puserinteraction = dynamic_cast <::user::interaction*>(m_papplication->m_pacmeuserinteractionMain.m_p);
+         m_puserinteractionDraw2dGraphics = dynamic_cast <::user::interaction*>(m_papplication->m_pacmeuserinteractionMain.m_p);
 
       }
 
-      if (m_puserinteraction && !m_puserinteraction->host_rectangle().size().is_empty())
+      if (m_puserinteractionDraw2dGraphics && !m_puserinteractionDraw2dGraphics->host_rectangle().size().is_empty())
       {
 
-         rectangle = m_puserinteraction->host_rectangle();
+         rectangle = m_puserinteractionDraw2dGraphics->host_rectangle();
 
       }
       else
@@ -459,7 +459,7 @@ namespace gpu
 
 
 
-      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteraction->acme_windowing_window());
+      auto pgpudevice = m_papplication->get_gpu_approach()->get_gpu_device(m_puserinteractionDraw2dGraphics->acme_windowing_window());
 
       auto pcontextMain = pgpudevice->main_context();
 
@@ -470,7 +470,7 @@ namespace gpu
       //
       // }
 
-      ::cast < ::user::interaction > puserinteraction = m_puserinteraction;
+      ::cast < ::user::interaction > puserinteraction = m_puserinteractionDraw2dGraphics;
 
       auto pwindow = puserinteraction->window();
 
@@ -536,7 +536,7 @@ namespace gpu
    void graphics::create_for_window_draw2d(::user::interaction* puserinteraction, const ::int_size& size)
    {
 
-      m_puserinteraction = puserinteraction;
+      m_puserinteractionDraw2dGraphics = puserinteraction;
 
       ::draw2d::graphics::create_for_window_draw2d(puserinteraction, size);
       ///create_offscreen_graphics_for_swap_chain_blitting(puserinteraction, size);

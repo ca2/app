@@ -2253,6 +2253,7 @@ namespace http
          psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_int());
 
       }
+
       //else
       //{
 
@@ -2275,8 +2276,6 @@ namespace http
          psocket->SetRetain();
 
       }
-
-      
 
       long long iContentLength = -1;
 

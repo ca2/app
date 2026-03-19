@@ -266,6 +266,8 @@ namespace draw2d
    class ::write_text::write_text * draw2d::write_text()
    {
 
+      _synchronous_lock synchronouslock(this->synchronization());
+
       if(!m_pwritetext)
       {
 
@@ -273,6 +275,41 @@ namespace draw2d
          {
 
             initialize_write_text();
+
+            synchronouslock.unlock();
+
+
+            //if (!estatus)
+            //{
+
+            //   information() << "Couldn't construct aaa_memory_new write_text.";
+
+            //   return estatus;
+
+            //}
+
+            //estatus =
+
+            m_pwritetext->init1();
+
+            //if (!estatus)
+            //{
+
+            //   information() << "Couldn't initialize write_text (init1).";
+
+            //   return estatus;
+
+            //}
+
+            //if (::succeeded(estatus))
+            //{
+
+            factory()->add_factory_item_with_custom_id < ::draw2d::task_tool_item >(::atom(::e_task_tool_draw2d));
+
+            //}
+
+            //return estatus;
+
 
          }
 
@@ -1358,36 +1395,6 @@ void draw2d::emboss_predicate(
 
       constructø(m_pwritetext);
 
-      //if (!estatus)
-      //{
-
-      //   information() << "Couldn't construct aaa_memory_new write_text.";
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-
-      m_pwritetext->init1();
-
-      //if (!estatus)
-      //{
-
-      //   information() << "Couldn't initialize write_text (init1).";
-
-      //   return estatus;
-
-      //}
-
-      //if (::succeeded(estatus))
-      //{
-
-      factory()->add_factory_item_with_custom_id < ::draw2d::task_tool_item >(::atom(::e_task_tool_draw2d));
-
-      //}
-
-      //return estatus;
 
    }
 

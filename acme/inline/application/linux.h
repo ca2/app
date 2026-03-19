@@ -6,12 +6,12 @@
 
 
 
-#ifdef LINUX
+//#ifdef LINUX
+//
+//extern char _binary__matter_zip_start[];
+//extern char _binary__matter_zip_end[];
 
-extern char _binary__matter_zip_start[];
-extern char _binary__matter_zip_end[];
-
-#endif
+//#endif
 
 //#ifndef __APP_ID
 //

@@ -73,12 +73,25 @@ namespace allocator
    void _push_referer(::reference_referer * preferer)
    {
 
+      auto i  = ::current_task_index();
+
+      if (i == 27)
+      {
+
+         //information("task index 27");
+         printf("task index 27\n");
+         //information("task index 27");
+         //information("task index 27");
+
+      }
+
       if (t_preferencerefererTopic)
       {
 
          throw "123";
 
       }
+
 
       t_preferencerefererTopic = preferer;
 
@@ -730,7 +743,7 @@ namespace allocator
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 
-         pparticle->add_reference_item(pparticle->m_bIncludeCallStackTrace);
+         pparticle->add_reference_item(true, pparticle->m_bIncludeCallStackTrace);
 
          // if (!pparticle->m_prefererTransfer
          //    && pparticle->m_preferenceitema->m_itema[0])

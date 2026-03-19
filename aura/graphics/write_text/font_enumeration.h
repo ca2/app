@@ -21,10 +21,11 @@ namespace write_text
       bool                                            m_bOther : 1;
       int                                             m_iUpdateId;
       ::pointer<font_enumeration_item_array>          m_pfontenumerationitema;
-      bool                                            m_bUpdating;
+      //bool                                            m_bUpdating;
+      bool                                            m_bEnumeratingFonts = false;
       manual_reset_happening                              m_happeningReady;
       ::file::path_array_base                              m_pathaLoading;
-
+::procedure_array m_procedureaOnFinishedEnumeration;
 
       font_enumeration();
       ~font_enumeration() override;
@@ -45,7 +46,7 @@ namespace write_text
       virtual void update();
 
 
-      virtual void enumerate_fonts();
+      virtual void enumerate_fonts(const ::procedure & procedureOnFinishedEnumeration = {});
 
    protected:
       virtual void sort_fonts();

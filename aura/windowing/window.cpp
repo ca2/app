@@ -13666,12 +13666,18 @@ slGraphics.unlock();
    ::user::element* window::get_keyboard_focus()
    {
 
+      __check_refdbg
+
       if (!has_keyboard_focus())
       {
+
+         __check_refdbg
 
          return nullptr;
 
       }
+
+      __check_refdbg
 
       return m_pacmeuserinteractionKeyboardFocus;
 

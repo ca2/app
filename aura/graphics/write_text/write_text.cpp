@@ -20,6 +20,7 @@ namespace write_text
    write_text::write_text()
    {
 
+      ::information("write_text::write_text");
 
    }
 
@@ -37,6 +38,8 @@ namespace write_text
    {
 
       ::platform::department::on_initialize_particle();
+
+      defer_create_synchronization();
 
       //m_pparticleFontTextMapSynchronization = node()->create_mutex();
 
@@ -61,12 +64,14 @@ namespace write_text
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_pfonts == nullptr)
+      if (::is_null(m_pfonts))
       {
 
          //auto estatus = 
          
          constructø(m_pfonts);
+
+         synchronouslock.unlock();
 
          //if (!estatus)
          //{
@@ -138,7 +143,7 @@ namespace write_text
 
       auto pfonts = this->fonts();
 
-      pfonts->enumerate_fonts("system");
+      pfonts->enumerate_fonts(false, "system");
 
    }
 

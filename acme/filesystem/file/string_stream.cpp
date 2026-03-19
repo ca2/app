@@ -8,7 +8,11 @@
 string_stream::string_stream()
 {
 
+   __check_refdbg
+
    m_pfile = allocateø class string_buffer ();
+
+   __check_refdbg
 
 }
 

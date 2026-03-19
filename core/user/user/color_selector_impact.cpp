@@ -129,7 +129,7 @@ namespace user
 
       //set_impact_title("__CoLoR_");
 
-      parent_frame()->set_frame_title("__CoLoR_");
+      //parent_frame()->set_frame_title("__CoLoR_");
 
    }
 

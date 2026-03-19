@@ -1041,7 +1041,7 @@ void task::main()
 
    }
 
-   if (m_procedure && m_procedure != this)
+   if (m_procedure.is_set() && m_procedure.m_p != this)
    {
 
       task_iteration();
@@ -1569,7 +1569,11 @@ void * task::s_os_task(void * p)
 
    {
 
+      __check_refdbg
+
       auto ptaskhandler = ::transfer_as_pointer((::task_handler *)p);
+
+      __check_refdbg
 
       ptaskhandler->__task_handle();
 

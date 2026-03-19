@@ -1296,7 +1296,12 @@ g_bWindowingOutputDebugString = true;
       if (pfactory)
       {
 
-         debugf("Returning existing factory \"%s\" - \"%s\".\n", scopedstrComponent.as_string().c_str(), scopedstrImplementation.as_string().c_str());
+         ///BIG WARNING, putting logs in this factory thing can compromise
+         /// debuging and referencing couutning debugging, because the trace_statment
+         /// function uses referencing counting debuggin, and frequently
+         /// this factory function is used during eartly times in the allocation of an object.
+
+         //debugf("Returning existing factory \"%s\" - \"%s\".\n", scopedstrComponent.as_string().c_str(), scopedstrImplementation.as_string().c_str());
 
          return pfactory;
 

@@ -129,7 +129,11 @@ namespace acme
       bool interaction::has_keyboard_focus()
       {
 
+         __check_refdbg
+
          auto pwindow = acme_windowing_window();
+
+         __check_refdbg
 
          if (::is_null(pwindow))
          {
@@ -137,6 +141,8 @@ namespace acme
             return false;
 
          }
+
+         __check_refdbg
 
          if (pwindow->get_keyboard_focus() == this)
          {
@@ -148,7 +154,11 @@ namespace acme
          while (true)
          {
 
+            __check_refdbg
+
             auto pwindowOwner = pwindow->owner_window();
+
+            __check_refdbg
 
             if (::is_null(pwindowOwner))
             {

@@ -162,7 +162,7 @@ long long subparticle::increment_reference_count()
 
 #if REFERENCING_DEBUGGING
 
-   add_reference_item(m_bIncludeCallStackTrace);
+   add_reference_item(false, m_bIncludeCallStackTrace);
 
 #endif
 

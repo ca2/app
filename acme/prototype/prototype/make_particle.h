@@ -37,6 +37,7 @@ public:
 
 
    array_particle(const RAW_BASE_ARRAY& a) : BASE_ARRAY(a) {}
+   array_particle(RAW_BASE_ARRAY&& a) : BASE_ARRAY(::transfer(a)) {}
 
 
    void destroy() override

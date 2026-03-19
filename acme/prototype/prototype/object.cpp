@@ -1838,7 +1838,13 @@ void object::branch_each(const ::procedure_array& routinea)
 ::task_pointer object::defer_branch(const ::atom& atom, const ::procedure & procedure, enum_priority epriority)
 {
 
-   auto ptask = property_set()["thread"][atom].cast < ::task>();
+   ::string strAtom(atom);
+
+   information("object::defer_branch : {}", strAtom);
+
+   auto & propertyTask = property_set()["thread"][atom];
+
+   auto ptask = propertyTask.as_pointer < ::task>();
 
    if(ptask && ptask->is_task_set2())
    {
@@ -1851,9 +1857,9 @@ void object::branch_each(const ::procedure_array& routinea)
 
    ptask->m_procedure = procedure;
 
-   property_set()["thread"][atom] = ptask;
+   propertyTask = ptask;
 
-   auto ptask2 = property_set()["thread"][atom].cast < ::task>();
+   auto ptask2 = propertyTask.cast < ::task>();
 
    ptask->branch();
 

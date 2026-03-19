@@ -4799,6 +4799,18 @@ double payload::as_double(double dDefault) const
       hls = m_hls;
 
    }
+   else if (m_etype == e_type_string)
+   {
+
+      ::string str = this->as_string();
+
+      auto psz = str.c_str();
+
+      ::information("payload({})::as_hls", psz);
+
+      hls = hlsDefault;
+
+   }
    else
    {
 

@@ -138,21 +138,23 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile, ::file::e_open_create);
 
-      auto defer_get = øcreate < ::nano::http::get >();
+      auto phttpget = øcreate < ::nano::http::get >();
 
-      defer_get->m_url = url;
+      phttpget->m_url = url;
 
-      defer_get->property_set() = set;
+      phttpget->property_set() = set;
 
-      defer_get->want_memory_response();
+      phttpget->want_memory_response();
 
-      defer_get->m_timeSyncTimeout =  timeTimeout;
+      phttpget->m_timeSyncTimeout =  timeTimeout;
 
-      defer_get->call();
+      phttpget->call();
 
-      set = defer_get->property_set();
+      set = phttpget->property_set();
 
-      pfile->write(*defer_get->get_memory_response());
+      auto pmemory = phttpget->get_memory_response();
+
+      pfile->write(*pmemory);
 
       pfile->seek_to_begin();
 

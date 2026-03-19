@@ -171,10 +171,10 @@ CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, const ::scoped_str
 CLASS_DECL_ACME bool is_filemanager_group(const ::atom& atom, int iGroup);
 
 
-CLASS_DECL_ACME bool is_color_sel(const ::atom& atom);
+CLASS_DECL_ACME bool _is_color_sel(const ::atom& atom);
 
 
-CLASS_DECL_ACME bool is_font_sel(const ::atom& atom);
+CLASS_DECL_ACME bool _is_font_sel(const ::atom& atom);
 
 
 

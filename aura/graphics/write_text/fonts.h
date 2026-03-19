@@ -26,7 +26,7 @@ namespace write_text
       void initialize(::particle * pparticle) override;
 
 
-      virtual void enumerate_fonts(const ::scoped_string & scopedstrFontBranch);
+      virtual void enumerate_fonts(bool bSynchronously, const ::scoped_string & scopedstrFontBranch);
 
 
       virtual font_enumeration* enumeration(const ::scoped_string & scopedstrFontBranch);

@@ -1338,11 +1338,11 @@ class graphics_context;
       //inline void fill_rect_dim(double x, double y, double cx, double cy, ::draw2d::brush * pbrush); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), pbrush); }
 
       //inline void polygon(int_point_array & pointa) { return polygon(pointa.data(), pointa.size()); }
-      inline void polygon(double_point_array& pointa) { return polygon(pointa.data(), pointa.size()); }
+      inline void polygon(double_point_array_base &pointa) { return polygon(pointa.data(), pointa.size()); }
       //inline void draw_polygon(int_point_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
-      inline void draw_polygon(double_point_array& pointa) { return draw_polygon(pointa.data(), pointa.size()); }
+      inline void draw_polygon(double_point_array_base &pointa) { return draw_polygon(pointa.data(), pointa.size()); }
       //inline void fill_polygon(int_point_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
-      inline void fill_polygon(double_point_array& pointa) { return fill_polygon(pointa.data(), pointa.size()); }
+      inline void fill_polygon(double_point_array_base& pointa) { return fill_polygon(pointa.data(), pointa.size()); }
 
       //inline void fill_solid_rect_dim(double x, double y, int cx, int cy, const ::color::color & color) { return fill_rectangle(double_rectangle_dimension(x, y, cx, cy), color); }
       //inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color::color & color); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), color); }

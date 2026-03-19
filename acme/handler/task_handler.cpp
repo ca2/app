@@ -31,9 +31,15 @@ void task_handler::__task_handle()
 
    {
 
+      __check_refdbg
+
       auto ptask = ::transfer(m_ptask);
 
+      __check_refdbg
+
       __task_prefix(ptask);
+
+      __check_refdbg
 
       m_htaskHandler = ptask->m_htask;
 

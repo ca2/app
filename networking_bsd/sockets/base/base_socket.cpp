@@ -126,8 +126,13 @@ namespace sockets_bsd
       //m_pcallback    = nullptr;
       m_bEnablePool  = true;
 
+      // 2025
+      //m_timeConnectionMaximum = 2_min;
+      //m_timeKeepConnectionAfterLastIO = 2_min;
+
+      // 2026-03
       m_timeConnectionMaximum = 2_min;
-      m_timeKeepConnectionAfterLastIO = 2_min;
+      m_timeKeepConnectionAfterLastIO = 20_s;
 
    }
 

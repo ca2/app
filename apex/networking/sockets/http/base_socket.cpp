@@ -275,6 +275,7 @@ namespace sockets
       }
 
       response().file()->set_size(0);
+
    }
 
 
@@ -298,7 +299,8 @@ namespace sockets
       if (!m_b_keepalive)
       {
 
-      //   //informationf("SetCloseAndDelete");
+         // informationf("SetCloseAndDelete");
+
          SetCloseAndDelete();
 
       }
@@ -433,7 +435,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea, const ::scoped_string & scopedstrContentType)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea, const ::scoped_string & scopedstrContentType, unsigned int uEnumReadFile)
    {
 
       ::file::path pcsz(pcszParam);
@@ -475,72 +477,77 @@ namespace sockets
 
       }
 
-      string strReferer;
-      
-      strReferer = inheader("referer");
-
-      ::url::url url(strReferer);
-
-      string strRefererHost = url.connect().host();
-
-      string_array_base straAllowedOrigin;
-
-      straAllowedOrigin.add("ca2.network");
-      straAllowedOrigin.add("ca2.network");
-      straAllowedOrigin.add("ca2.network");
-      straAllowedOrigin.add("ca2.store");
-
-      bool bAllowedOrigin = false;
-
-      for (auto& strAllowedOrigin : straAllowedOrigin)
+      if (!(uEnumReadFile & e_read_file_no_allowed_origin_check))
       {
 
-         if (strRefererHost.case_insensitive_ends("." + strAllowedOrigin) || strRefererHost.case_insensitive_order(strAllowedOrigin) == 0)
+         string strReferer;
+
+         strReferer = inheader("referer");
+
+         ::url::url url(strReferer);
+
+         string strRefererHost = url.connect().host();
+
+         string_array_base straAllowedOrigin;
+
+         straAllowedOrigin.add("ca2.network");
+         straAllowedOrigin.add("ca2.network");
+         straAllowedOrigin.add("ca2.network");
+         straAllowedOrigin.add("ca2.store");
+
+         bool bAllowedOrigin = false;
+
+         for (auto& strAllowedOrigin : straAllowedOrigin)
          {
 
-            bAllowedOrigin = true;
+            if (strRefererHost.case_insensitive_ends("." + strAllowedOrigin) || strRefererHost.case_insensitive_order(strAllowedOrigin) == 0)
+            {
 
-            break;
+               bAllowedOrigin = true;
+
+               break;
+
+            }
 
          }
 
-      }
-
-      if (bAllowedOrigin)
-      {
-
-         string strOrigin = strRefererHost;
-
-         if (strExtension == "ttf")
+         if (bAllowedOrigin)
          {
-            
-            outheader("access-control-allow-origin") = strOrigin;
-            
-            outheader("vary") = "origin";
 
-         }
-         else if (strExtension == "otf")
-         {
-            
-            outheader("access-control-allow-origin") = strOrigin;
-            
-            outheader("vary") = "origin";
+            string strOrigin = strRefererHost;
 
-         }
-         else if (strExtension == "woff")
-         {
-            
-            outheader("access-control-allow-origin") = strOrigin;
-            
-            outheader("vary") = "origin";
+            if (strExtension == "ttf")
+            {
 
-         }
-         else if (strExtension == "woff2")
-         {
-            
-            outheader("access-control-allow-origin") = strOrigin;
-            
-            outheader("vary") = "origin";
+               outheader("access-control-allow-origin") = strOrigin;
+
+               outheader("vary") = "origin";
+
+            }
+            else if (strExtension == "otf")
+            {
+
+               outheader("access-control-allow-origin") = strOrigin;
+
+               outheader("vary") = "origin";
+
+            }
+            else if (strExtension == "woff")
+            {
+
+               outheader("access-control-allow-origin") = strOrigin;
+
+               outheader("vary") = "origin";
+
+            }
+            else if (strExtension == "woff2")
+            {
+
+               outheader("access-control-allow-origin") = strOrigin;
+
+               outheader("vary") = "origin";
+
+            }
 
          }
 

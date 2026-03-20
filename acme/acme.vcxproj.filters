@@ -4335,6 +4335,9 @@
     <ClInclude Include="prototype\_impl.h">
       <Filter>Header Files\prototype</Filter>
     </ClInclude>
+    <ClInclude Include="constant\read_file.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

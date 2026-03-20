@@ -4664,6 +4664,10 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       {
          return "application/octetstream";
       }
+      else if (scopedstrExtension == "sh")
+      {
+         return "text/plain";
+      }
       else if (scopedstrExtension == "mp3")
       {
          return "audio/mpeg";

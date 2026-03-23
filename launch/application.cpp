@@ -36,47 +36,58 @@ namespace launch
    void application::calculate_distro__branch_and_release()
    {
 
-      if(m_strDistro.has_character())
+      if (m_poperatingsystemsummary)
       {
 
          return;
 
       }
 
-      auto psummary = node()->operating_system_summary();
+      m_poperatingsystemsummary = node()->operating_system_summary();
 
-      m_strDistro = psummary->m_strSystem;
+      m_strSystem = m_poperatingsystemsummary->m_strSystem;
 
-      m_strDistro.make_lower();
+      m_strSystem.make_lower();
 
-      ::string strBranch = psummary->m_strSystemBranch;
+      m_strSystemFamily = m_poperatingsystemsummary->m_strSystemFamily;
+
+      m_strSystemFamily.make_lower();
+
+      ::string strBranch = m_poperatingsystemsummary->m_strSystemBranch;
 
       strBranch.make_lower();
 
       ::string strRelease;
 
-      strRelease = psummary->m_strSystemRelease;
+      strRelease = m_poperatingsystemsummary->m_strSystemRelease;
 
-      if (m_strDistro == "ubuntu")
+      if (m_strSystemFamily.has_character())
+      {
+
+         print_line("System family is \"" + m_strSystemFamily + "\"...");
+
+      }
+
+      if (m_strSystem == "ubuntu")
       {
          if (strBranch == "kde")
          {
-            m_strDistro = "kubuntu";
+            m_strSystem = "kubuntu";
             print_line("This is Kubuntu System...");
          }
          else if(strBranch == "xfce")
          {
-            m_strDistro = "xubuntu";
+            m_strSystem = "xubuntu";
             print_line("This is Xubuntu System...");
          }
          else if(strBranch == "lxde")
          {
-            m_strDistro = "lubuntu";
+            m_strSystem = "lubuntu";
             print_line("This is Lubuntu System (LXDE)...");
          }
          else if(strBranch == "lxqt")
          {
-            m_strDistro = "lubuntu";
+            m_strSystem = "lubuntu";
             print_line("This is Xubuntu System (LXQt)...");
          }
          else
@@ -84,7 +95,7 @@ namespace launch
             print_line("This is Ubuntu System (Unity)...");
          }
       }
-      else if (m_strDistro == "fedora")
+      else if (m_strSystem == "fedora")
       {
 
          print_line("This is Fedora Linux System...\n");
@@ -92,7 +103,7 @@ namespace launch
          m_strBranch = strBranch;
 
       }
-      else if (m_strDistro == "debian")
+      else if (m_strSystem == "debian")
       {
 
          print_line("This is Debian Linux System...\n");
@@ -100,7 +111,7 @@ namespace launch
          m_strBranch = strBranch;
 
       }
-      else if (m_strDistro == "freebsd")
+      else if (m_strSystem == "freebsd")
       {
 
          print_line("This is FreeBSD System...");
@@ -116,7 +127,7 @@ namespace launch
          
 
       }
-      else if (m_strDistro == "openbsd")
+      else if (m_strSystem == "openbsd")
       {
 
          print_line("This is OpenBSD System...");
@@ -126,7 +137,7 @@ namespace launch
          printf_line("Branch is \"%s\"", m_strBranch.c_str());
 
       }
-      else if (m_strDistro == "netbsd")
+      else if (m_strSystem == "netbsd")
       {
 
          print_line("This is NetBSD System...");
@@ -134,10 +145,10 @@ namespace launch
          m_strBranch = strBranch;
 
       }
-      else if (m_strDistro == "linuxmint")
+      else if (m_strSystem == "linuxmint")
       {
 
-         m_strDistro = "ubuntu";
+         m_strSystem = "ubuntu";
 
          if(strRelease == "21")
          {
@@ -175,7 +186,7 @@ namespace launch
          }
 
       }
-      else if (m_strDistro == "opensuse-tumbleweed")
+      else if (m_strSystem == "opensuse-tumbleweed")
       {
 
          print_line("This is openSUSE Tumbleweed System...\n");
@@ -183,7 +194,7 @@ namespace launch
          m_strBranch = strBranch;
 
       }
-      else if (m_strDistro == "opensuse-leap")
+      else if (m_strSystem == "opensuse-leap")
       {
 
          print_line("This is openSUSE Leap System...\n");
@@ -191,7 +202,7 @@ namespace launch
          m_strBranch = strBranch;
 
       }
-      else if (psummary->m_strSystemFamily == "arch")
+      else if (m_poperatingsystemsummary->m_strSystemFamily == "arch")
       {
 
          print_line("This is Arch based system...\n");
@@ -204,7 +215,7 @@ namespace launch
       
       printf_line("Release is \"%s\"", m_strRelease.c_str());
 
-      m_strArchitecture = psummary->m_strSystemArchitecture;
+      m_strArchitecture = m_poperatingsystemsummary->m_strSystemArchitecture;
       
       printf_line("Architecture is \"%s\"", m_strArchitecture.c_str());
 
@@ -219,18 +230,31 @@ namespace launch
    //
    // }
 
+
    void application::install_dependencies()
    {
 
-
       print_line("Going to install dependencies: ");
 
-      auto lines = file_system()->lines(m_pathBinaryFolder/"operating_system_packages.txt");
+      auto straDependencies = file_system()->lines(m_pathBinaryFolder/"operating_system_packages.txt");
+
+      if(straDependencies.is_empty())
+      {
+
+         print_line("no dependencies to install");
+
+         return;
+
+      }
+
+      auto straNotInstalled = system()->not_installed_operating_system_packages(straDependencies);
+
+      auto lines = straNotInstalled;
 
       if(lines.is_empty())
       {
 
-         print_line("no dependencies to install");
+         print_line("dependencies already installed");
 
          return;
 
@@ -242,9 +266,7 @@ namespace launch
 
       ::string strCommand;
 
-      if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu"
-      || m_strDistro == "lubuntu"
-      || m_strDistro == "debian" || m_strDistro == "linuxmint")
+      if(m_strSystemFamily == "debian")
       {
 
          strCommand.formatf("sudo apt -y install %s", strPackages.c_str());
@@ -252,7 +274,7 @@ namespace launch
          //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
 
       }
-      else if(m_strDistro ==  "fedora")
+      else if(m_strSystem ==  "fedora")
       {
 
          strCommand.formatf("sudo dnf --assumeyes install %s",strPackages.c_str());
@@ -262,15 +284,15 @@ namespace launch
          //log_system(scopedstrCommand);
 
       }
-      else if(m_strDistro == "freebsd")
+      else if(m_strSystem == "freebsd")
       {
 
          strCommand.formatf("sudo pkg install %s", strPackages.c_str());
 
       }
-      else if(m_strDistro == "opensuse"
-         || m_strDistro == "opensuse-tumbleweed"
-         || m_strDistro == "opensuse-leap")
+      else if(m_strSystem == "opensuse"
+         || m_strSystem == "opensuse-tumbleweed"
+         || m_strSystem == "opensuse-leap")
       {
 
          strCommand.formatf("sudo zypper install %s", strPackages.c_str());
@@ -298,7 +320,6 @@ namespace launch
             printf_line("\"%s\" Command failed with error code %d", strCommand.c_str(), iError);
 
          }
-
 
       }
 
@@ -408,19 +429,17 @@ namespace launch
 
          ::string strErr;
 
-         auto psummary = node()->operating_system_summary();
-
          strErr.formatf("Server seems not to have build of \"%s/%s\" for this operating-system release \"%s\" (%s, %s)",
                         m_strAppRoot.c_str(),
                         m_strAppName.c_str(),
-                        psummary->m_strName.c_str(),
-                        psummary-> m_strSystemReleaseName.c_str(),
-                        psummary-> m_strSystemArchitecture.c_str());
+                        m_poperatingsystemsummary->m_strName.c_str(),
+                        m_poperatingsystemsummary-> m_strSystemReleaseName.c_str(),
+                        m_poperatingsystemsummary-> m_strSystemArchitecture.c_str());
 
          if(m_strBranch.has_character())
          {
 
-            strErr.append_formatf(" \"%s\".", psummary->m_strSystemBranchName.c_str());
+            strErr.append_formatf(" \"%s\".", m_poperatingsystemsummary->m_strSystemBranchName.c_str());
 
          }
          else
@@ -549,7 +568,6 @@ namespace launch
 
       printf_line("Installing dependencies for %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
 
-
       install_dependencies();
 
       if(::system()->has_argument("--install-only")
@@ -596,7 +614,7 @@ namespace launch
 
       calculate_distro__branch_and_release();
 
-      if (m_strDistro.is_empty() || m_strRelease.is_empty())
+      if (m_strSystem.is_empty() || m_strRelease.is_empty())
       {
 
          return {};
@@ -621,7 +639,7 @@ namespace launch
       {
 
          strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s/%s.zip",
-         m_strDistro.c_str(),
+         m_strSystem.c_str(),
          m_strBranch.c_str(),
          m_strRelease.c_str(),
          m_strArchitecture.c_str(),
@@ -633,7 +651,7 @@ namespace launch
       {
 
          strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",
-         m_strDistro.c_str(),
+         m_strSystem.c_str(),
          m_strRelease.c_str(),
          m_strArchitecture.c_str(),
          m_strAppRoot.c_str(),

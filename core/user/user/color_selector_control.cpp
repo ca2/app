@@ -164,7 +164,7 @@ namespace user
 
       //m_pimageBeam->fill(0);
 
-      //auto ppen = øcreate < ::draw2d::pen > ();
+      //auto ppen = createø < ::draw2d::pen > ();
 
       //ppen->create_solid(1.0, argb(255, 255, 255, 255));
 
@@ -352,7 +352,7 @@ namespace user
 
    //   rectangleInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
 
-   //   auto pbrush = øcreate < ::draw2d::brush >();
+   //   auto pbrush = createø < ::draw2d::brush >();
 
    //   pbrush->create_solid(argb(255, 0, 0, 0));
 
@@ -424,7 +424,7 @@ namespace user
 
    //   rectangleOuter.inflate(dSize / 2.0, dSize / 2.0);
 
-   //   auto pbrush = øcreate < ::draw2d::brush >();
+   //   auto pbrush = createø < ::draw2d::brush >();
 
    //   pbrush->create_solid(argb(255, 0, 0, 0));
 

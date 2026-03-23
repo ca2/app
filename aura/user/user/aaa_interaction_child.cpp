@@ -207,7 +207,7 @@ namespace user
          //m_puserinteraction->send_message(::user::e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
          if (!(m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created))
          {
-//            auto pmessage = øcreate_new <::message::create>();
+//            auto pmessage = create_newø <::message::create>();
 //            pmessage->m_emessage = ::user::e_message_create;
 //            m_puserinteraction->send_message(pmessage);
 

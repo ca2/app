@@ -321,7 +321,7 @@ namespace gpu
       //      }
       //   }
 
-      //   auto pmesh = øcreate<::gpu::gltf::mesh>();
+      //   auto pmesh = createø<::gpu::gltf::mesh>();
 
       //   pmesh->initialize_gpu_gltf_mesh(vertices, indices, pmaterial);
 
@@ -367,7 +367,7 @@ namespace gpu
          {
          }
 
-         // auto ptexture = øcreate<::gpu::texture>();
+         // auto ptexture = createø<::gpu::texture>();
          //
          information() << "Process material: " << scopedstr;
 

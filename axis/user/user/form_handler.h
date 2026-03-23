@@ -30,7 +30,7 @@ namespace axis
 
          auto pline = create_line_layout(puserinteractionParent, e_orientation_horizontal);
 
-         auto pcheckbox = øcreate_new<CHECK_BOX>();
+         auto pcheckbox = create_newø<CHECK_BOX>();
 
          pcheckbox->m_bAutoResize = true;
 
@@ -60,7 +60,7 @@ namespace axis
       ::pointer < MULTIPLE_OPTION >create_multiple_option(::user::interaction* puserinteractionParent, const ::data::property & property, const ::atom_array & atomaOptions, const ::string_array_base& straName)
       {
 
-         auto pmultipleoption = øcreate_new<MULTIPLE_OPTION>();
+         auto pmultipleoption = create_newø<MULTIPLE_OPTION>();
 
          pmultipleoption->create_child(puserinteractionParent);
 

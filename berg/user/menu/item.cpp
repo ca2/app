@@ -189,7 +189,7 @@ namespace menu
    item * item::separator()
    {
 
-      auto pitem = øcreate_new<item>();
+      auto pitem = create_newø<item>();
 
       pitem->id() = id_separator;
 
@@ -271,7 +271,7 @@ namespace menu
 
          auto pnodeChild = pnode->child_at(i);
 
-         auto pitemNewChild = øcreate_new<item>();
+         auto pitemNewChild = create_newø<item>();
 
          pitemNewChild->m_pmenu = m_pmenu;
 

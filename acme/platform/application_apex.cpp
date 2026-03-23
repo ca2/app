@@ -20,13 +20,13 @@ namespace platform
    //// void dump(dump_context & dumpcontext) const override{}
 
 
-   ::string apex_application_layer::apex_application_layer::__get_text(const ::scoped_string & scopedstr)
+   ::string apex_application_layer::__get_text(const ::scoped_string & scopedstr)
    {
       return {};
    }
 
 
-   ::pointer<::fs::folder_sync> fs_folder_sync(const ::scoped_string& scopedstr)
+   ::pointer<::fs::folder_sync> apex_application_layer::fs_folder_sync(const ::scoped_string& scopedstr)
    {
       return {};
    }

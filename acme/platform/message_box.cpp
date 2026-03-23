@@ -23,7 +23,7 @@ namespace acme
    //::pointer<::conversation>node::create_new_message_conversation()
    //{
    //
-   //   return øcreate_new < ::conversation_message >();
+   //   return create_newø < ::conversation_message >();
    //
    //}
 
@@ -454,7 +454,7 @@ message_box_payload *message_box_payload::get_message_box_payload()
 //void conversation_message::aggregate(sequence * psequence)
 //{
 //   
-//   //m_psequencer->m_phappening = øcreate_new < manual_reset_happening >();
+//   //m_psequencer->m_phappening = create_newø < manual_reset_happening >();
 //
 //   do_asynchronously();
 //   

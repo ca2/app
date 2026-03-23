@@ -201,7 +201,7 @@ started:
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = createø < ::inteprocess::caller>();
 
    }
 
@@ -218,7 +218,7 @@ void interprocess_intercommunication::connect(const ::scoped_string & scopedstrA
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = øcreate<::inteprocess::caller>();
+      m_txmap[strKey] = createø<::inteprocess::caller>();
 
    }
 
@@ -242,7 +242,7 @@ void interprocess_intercommunication::connect(const ::scoped_string & scopedstrA
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = øcreate < ::inteprocess::caller>();
+      m_txmap[strKey] = createø < ::inteprocess::caller>();
 
    }
 

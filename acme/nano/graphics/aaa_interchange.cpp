@@ -854,7 +854,7 @@ void interchange::_run_modal_loop()
 
       }
 
-       // //   auto pmessagebox = pparticle->øcreate_new < message_box >();
+       // //   auto pmessagebox = pparticle->create_newø < message_box >();
        // //
        // //   atom idResult;
        // //

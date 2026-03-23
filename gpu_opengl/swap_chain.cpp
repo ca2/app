@@ -428,7 +428,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 //   {
 //      
 //
-//      pshaderCopyTexture2 = øcreate_new<::gpu_opengl::shader>();
+//      pshaderCopyTexture2 = create_newø<::gpu_opengl::shader>();
 //      
 //      m_pshaderCopyTextureOnEndDraw2 = pshaderCopyTexture2;
 //      
@@ -458,7 +458,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 
 ::pointer<::gpu::shader > swap_chain::create_copy_texture_shader()
 {
-  auto pshaderCopyTexture2 = øcreate_new<::gpu_opengl::shader>();
+  auto pshaderCopyTexture2 = create_newø<::gpu_opengl::shader>();
       
       pshaderCopyTexture2->m_bEnableBlend = false;
       

@@ -99,7 +99,7 @@ namespace html
          if(!m_pcheckbox || !m_pcheckbox->is_window())
          {
 
-            m_pcheckbox = øcreate_new < user::check_box > ();
+            m_pcheckbox = create_newø < user::check_box > ();
 
             m_pcheckbox->m_pform = pdata->m_pcoredata->m_pform;
 

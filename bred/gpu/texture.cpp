@@ -518,7 +518,7 @@ namespace gpu
       m_iAtlasY = iAtlasY;
       m_iAtlasCurrentRowHeight = iAtlasH;
 
-      auto ppixmap = øcreate<::gpu::pixmap>();
+      auto ppixmap = createø<::gpu::pixmap>();
 
       ppixmap->initialize_gpu_pixmap(this, 
          {iAtlasX, iAtlasY,
@@ -620,7 +620,7 @@ namespace gpu
 
       }
 
-      ødefer_construct(m_ptextureDepth);
+      defer_constructø(m_ptextureDepth);
 
       m_ptextureDepth->initialize_depth_texture(m_pgpucontext, m_textureattributes.m_rectangleTarget);
 

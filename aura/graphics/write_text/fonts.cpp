@@ -101,7 +101,7 @@ namespace write_text
       if (strFontBranch == "system")
       {
 
-         pfontenumeration = øcreate < ::write_text::font_enumeration >();
+         pfontenumeration = createø < ::write_text::font_enumeration >();
 
       }
       else
@@ -109,7 +109,7 @@ namespace write_text
 
          auto pfactory = system()->factory("font_enumeration", strFontBranch);
 
-         pfontenumeration = øcreate < ::write_text::font_enumeration >(pfactory);
+         pfontenumeration = createø < ::write_text::font_enumeration >(pfactory);
 
       }
 

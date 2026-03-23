@@ -6956,7 +6956,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,int left,int top, const
 
    }
 
-   auto pbrushText = øcreate < ::draw2d::brush > ();
+   auto pbrushText = createø < ::draw2d::brush > ();
 
    if(dBlend >= 1.0)
    {

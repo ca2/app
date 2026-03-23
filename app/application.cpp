@@ -49,7 +49,7 @@ namespace app_app
       if (!m_pmainwindow)
       {
 
-         m_pmainwindow = øcreate_new<::app_app::main_window>();
+         m_pmainwindow = create_newø<::app_app::main_window>();
 
          m_pmainwindow->create_main_window(prequest);
 

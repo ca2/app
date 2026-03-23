@@ -576,7 +576,7 @@ namespace nanoui
    void Screen::common_construct()
    {
 
-      m_pfontsink = m_puserinteraction->øcreate_new < ::nano2d::font_sink >();
+      m_pfontsink = m_puserinteraction->create_newø < ::nano2d::font_sink >();
 
       set_theme(allocateø Theme());
 

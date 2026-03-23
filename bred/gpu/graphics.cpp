@@ -648,7 +648,7 @@ namespace gpu
             //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
             //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
-            auto pshaderRectangle = øcreate<::gpu::shader>();
+            auto pshaderRectangle = createø<::gpu::shader>();
 
             m_pshaderSourceRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -688,7 +688,7 @@ namespace gpu
             //pshadervertexinput->m_attribs.add({ .location = 0, .binding = 0, .format = VK_FORMAT_R32G32B32_SFLOAT, .offset = offsetof(RectangleVertex, pos) });
             //pshadervertexinput->m_attribs.add({ .location = 1, .binding = 0, .format = VK_FORMAT_R32G32B32A32_SFLOAT, .offset = offsetof(RectangleVertex, color) });
 
-            auto pshaderRectangle = øcreate<::gpu::shader>();
+            auto pshaderRectangle = createø<::gpu::shader>();
 
             m_pshaderBlendRectangle = pshaderRectangle;
             //m_pshaderBlendRectangle->m_bDisableDepthTest = true;
@@ -1183,7 +1183,7 @@ namespace gpu
       if (!m_pmodelbufferTextOutDummy)
       {
 
-         m_pmodelbufferTextOutDummy = øcreate < ::gpu::model_buffer >();
+         m_pmodelbufferTextOutDummy = createø < ::gpu::model_buffer >();
 
          m_pmodelbufferTextOutDummy->initialize_dummy_model(pcontext, 4);
 

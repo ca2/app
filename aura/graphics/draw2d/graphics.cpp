@@ -584,7 +584,7 @@ namespace draw2d
    void graphics::set_text_color(::color::color color)
    {
 
-      auto pbrush = øcreate < ::draw2d::brush >();
+      auto pbrush = createø < ::draw2d::brush >();
 
       //if (!pbrush)
       //{
@@ -2620,7 +2620,7 @@ namespace draw2d
    void graphics::fill_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
-      auto pbrushSolidColor = øcreate < ::draw2d::brush >();
+      auto pbrushSolidColor = createø < ::draw2d::brush >();
 
       pbrushSolidColor->create_solid(color);
 
@@ -2632,7 +2632,7 @@ namespace draw2d
    void graphics::fill_inset_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
-      auto pbrushSolidColor = øcreate < ::draw2d::brush >();
+      auto pbrushSolidColor = createø < ::draw2d::brush >();
 
       pbrushSolidColor->create_solid(color);
 
@@ -2660,7 +2660,7 @@ namespace draw2d
    void graphics::fill_solid_rectangle(const ::double_rectangle & rectangle, const ::color::color & color)
    {
 
-      auto pbrushSolidColor = øcreate < ::draw2d::brush >();
+      auto pbrushSolidColor = createø < ::draw2d::brush >();
 
       pbrushSolidColor->create_solid(color);
 
@@ -3448,7 +3448,7 @@ namespace draw2d
    //   int graphics::IntersectClipRect(const ::double_rectangle & rectangleParam)
    //   {
    //
-   //      auto pregion = øcreate < ::draw2d::region > ();
+   //      auto pregion = createø < ::draw2d::region > ();
    //
    //      pregion->create_rect(rectangleParam);
    //
@@ -4616,7 +4616,7 @@ namespace draw2d
    void graphics::set_solid_pen(double dWidth, const ::color::color & color)
    {
 
-      ødefer_construct(m_ppen);
+      defer_constructø(m_ppen);
 
       m_ppen->create_solid(dWidth, color);
 
@@ -4739,7 +4739,7 @@ namespace draw2d
 
       }
 
-      auto ppath = øcreate < ::draw2d::path >();
+      auto ppath = createø < ::draw2d::path >();
 
       ppath->add_round_rectangle(rectangle, dRadius, e_border_all);
 
@@ -4771,7 +4771,7 @@ namespace draw2d
 
          }
 
-         auto ppath = øcreate < ::draw2d::path >();
+         auto ppath = createø < ::draw2d::path >();
 
          ppath->add_round_rectangle(rectangle, dRadius, eborder);
 
@@ -4803,7 +4803,7 @@ namespace draw2d
 
    //   ::double_rectangle rectangle(rectangleParam);
 
-   //   auto ppen = øcreate < ::draw2d::pen > ();
+   //   auto ppen = createø < ::draw2d::pen > ();
 
    //   ppen->create_solid(1.0, color);
 
@@ -4827,7 +4827,7 @@ namespace draw2d
    //void graphics::draw_round_top_left(const ::double_rectangle & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
    //{
 
-   //   auto ppath = øcreate < ::draw2d::path > ();
+   //   auto ppath = createø < ::draw2d::path > ();
 
    //   //ppath->begin_figure(false, ::draw2d::e_fill_mode_winding);
 
@@ -4851,7 +4851,7 @@ namespace draw2d
 
    //   int dia = 2 * radius;
 
-   //   auto ppen = øcreate < ::draw2d::pen > ();
+   //   auto ppen = createø < ::draw2d::pen > ();
 
    //   ppen->create_solid(1.0, color);
 
@@ -4882,7 +4882,7 @@ namespace draw2d
    //void graphics::draw_round_bottom_right(const ::double_rectangle & rectangle, ::draw2d::pen  * ppen, int radius, const ::e_border & eborder)
    //{
 
-   //   auto ppath = øcreate < ::draw2d::path > ();
+   //   auto ppath = createø < ::draw2d::path > ();
 
    //   //ppath->begin_figure(false, ::draw2d::e_fill_mode_winding);
 
@@ -4908,7 +4908,7 @@ namespace draw2d
 
    //   int dia = 2 * radius;
 
-   //   auto ppen = øcreate < ::draw2d::pen > ();
+   //   auto ppen = createø < ::draw2d::pen > ();
 
    //   ppen->create_solid(1.0, color);
 
@@ -4952,7 +4952,7 @@ namespace draw2d
    void graphics::fill_round_rectangle(const ::double_rectangle & rectangle, const ::color::color & color, double radius)
    {
 
-      auto pbrush = øcreate < ::draw2d::brush >();
+      auto pbrush = createø < ::draw2d::brush >();
 
       pbrush->create_solid(color);
 
@@ -4980,7 +4980,7 @@ namespace draw2d
    void graphics::fill_round_rectangle(const ::double_rectangle & rectangle, ::draw2d::brush * pbrush, double radius)
    {
 
-      auto ppath = øcreate < ::draw2d::path >();
+      auto ppath = createø < ::draw2d::path >();
 
       ppath->begin_figure();
 
@@ -6210,7 +6210,7 @@ namespace draw2d
 
       ::int_rectangle rectangle(x + b, y + b, x + b + z, y + b + z);
 
-      auto ppen = øcreate < ::draw2d::pen >();
+      auto ppen = createø < ::draw2d::pen >();
 
       ppen->create_solid(1.0, colorBorder);
 
@@ -6421,7 +6421,7 @@ namespace draw2d
 
       ::int_rectangle rectangle(x + bIn + bOut, y + bIn + bOut, x + bIn + bOut + z - 1, y + bIn + bOut + z - 1);
 
-      auto ppen = øcreate < ::draw2d::pen >();
+      auto ppen = createø < ::draw2d::pen >();
 
       ppen->create_solid(1.0, colorIn);
 
@@ -6487,7 +6487,7 @@ namespace draw2d
    ::pointer < ::draw2d::path > graphics::create_path()
    {
 
-      return øcreate<::draw2d::path>();
+      return createø<::draw2d::path>();
 
    }
 
@@ -6495,7 +6495,7 @@ namespace draw2d
    ::pointer < ::draw2d::pen > graphics::create_solid_pen(double dWidth, const ::color::color & color)
    {
 
-      auto ppen  =øcreate<::draw2d::pen>();
+      auto ppen  =createø<::draw2d::pen>();
 
       ppen->create_solid(dWidth, color);
 
@@ -6507,7 +6507,7 @@ namespace draw2d
    ::pointer < ::draw2d::brush > graphics::create_solid_brush(const ::color::color & color)
    {
 
-      auto pbrush  =øcreate<::draw2d::brush>();
+      auto pbrush  =createø<::draw2d::brush>();
 
       pbrush->create_solid(color);
 
@@ -6795,7 +6795,7 @@ namespace draw2d
 
       //float impact[4], cx, cy, hw, hh, aspect, px;
 
-      auto ppath = øcreate < ::draw2d::path >();
+      auto ppath = createø < ::draw2d::path >();
 
       ppath->nanosvg_drawframe(pnsvgimage, x, y, w, h);
 
@@ -6803,7 +6803,7 @@ namespace draw2d
 
       place_impact_area(x, y, w, h);
 
-      auto ppen = øcreate < ::draw2d::pen >();
+      auto ppen = createø < ::draw2d::pen >();
 
       ppen->create_solid(1.0, argb(255, 0, 128, 0));
 

@@ -14,11 +14,11 @@ namespace simple_shader
 
       //string strFontFamily = get_font();
 
-      //auto ppen = øcreate < ::draw2d::pen > ();
+      //auto ppen = createø < ::draw2d::pen > ();
 
-      //auto pbrush = øcreate < ::draw2d::brush >();
+      //auto pbrush = createø < ::draw2d::brush >();
 
-      //auto pfont = øcreate < ::write_text::font > ();
+      //auto pfont = createø < ::write_text::font > ();
 
       //if (m_iDrawing == 3)
       //{

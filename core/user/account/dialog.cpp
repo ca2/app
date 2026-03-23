@@ -329,7 +329,7 @@ namespace account
          if(papp != nullptr)
          {
 
-            auto phyperlink = øcreate_new < ::hyperlink >();
+            auto phyperlink = create_newø < ::hyperlink >();
 
             phyperlink->m_strLink = "ca2account:this";
 
@@ -341,7 +341,7 @@ namespace account
          else
          {
 
-            auto phyperlink = øcreate_new < ::hyperlink >();
+            auto phyperlink = create_newø < ::hyperlink >();
 
             phyperlink->m_strLink = "ca2account:this";
 

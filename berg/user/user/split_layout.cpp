@@ -947,7 +947,7 @@ namespace user
    bool split_layout::InsertPaneAt(::collection::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::atom atom)
    {
 
-      auto  pbar =øcreate_new<split_bar>();
+      auto  pbar =create_newø<split_bar>();
 
       m_splitbara.insert_at(iIndex, pbar);
 

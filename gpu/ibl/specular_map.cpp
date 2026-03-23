@@ -261,7 +261,7 @@ namespace gpu
          
          //auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
 
-         m_pfullscreenquadBrdf = øcreate<::gpu::full_screen_quad>();
+         m_pfullscreenquadBrdf = createø<::gpu::full_screen_quad>();
 
          m_pfullscreenquadBrdf->initialize_full_screen_quad(m_pgpucontext);
          

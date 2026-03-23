@@ -360,7 +360,7 @@ namespace filemanager
 
    //   }
 
-   //   auto pdata = øcreate_new<data>();
+   //   auto pdata = create_newø<data>();
 
    //   pdata->initialize_filemanager_data(this);
 
@@ -433,7 +433,7 @@ namespace filemanager
 
       //}
 
-      auto pdata = øcreate_new<data>();
+      auto pdata = create_newø<data>();
 
       pdata->initialize_filemanager_data(this);
 

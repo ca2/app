@@ -505,7 +505,7 @@ namespace micro
       void user::update_micro_theme()
       {
 
-         ødefer_construct_new(m_pmicrotheme);
+         defer_construct_newø(m_pmicrotheme);
 
          m_pmicrotheme->update_drawing_objects();
 
@@ -553,13 +553,13 @@ namespace micro
          if (pmessageboxpayload->m_bDetails)
          {
 
-            pdialogreifier = øcreate_new < ::micro::details_window >();
+            pdialogreifier = create_newø < ::micro::details_window >();
 
          }
          else
          {
 
-            pdialogreifier = øcreate_new < ::micro::message_box >();
+            pdialogreifier = create_newø < ::micro::message_box >();
 
          }
 

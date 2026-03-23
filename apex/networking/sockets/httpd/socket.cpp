@@ -95,7 +95,7 @@ namespace httpd
       if (m_typeSocketThread.is_empty())
       {
 
-         return øcreate < ::sockets::socket_thread >(m_pfactorySocketThread);
+         return createø < ::sockets::socket_thread >(m_pfactorySocketThread);
 
       }
       else

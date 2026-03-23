@@ -93,7 +93,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = puserinteraction->øcreate < ::draw2d::pen >();
+      auto ppen = puserinteraction->createø < ::draw2d::pen >();
 
       auto pstyle = puserinteraction->get_style(pgraphics);
 
@@ -137,7 +137,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      auto ppen = puserinteraction->øcreate < ::draw2d::pen >();
+      auto ppen = puserinteraction->createø < ::draw2d::pen >();
 
       //::draw2d::brush_pointer pbrush(e_create, puserinteraction);
 

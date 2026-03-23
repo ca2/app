@@ -230,7 +230,7 @@ namespace sockets
 
       m_bHeaders = true;
 
-      ødefer_construct_new(m_pfileBody);
+      defer_construct_newø(m_pfileBody);
 
       m_pfileBody->set_size(0);
 

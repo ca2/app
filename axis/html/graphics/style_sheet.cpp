@@ -62,7 +62,7 @@ namespace html
             range.m_begin++;
          }
 
-         auto pstyle = øcreate_new < class style >();
+         auto pstyle = create_newø < class style >();
 
          string strStyle = str.left(range.m_begin - pszStart);
 

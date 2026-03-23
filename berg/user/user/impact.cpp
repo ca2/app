@@ -911,7 +911,7 @@ namespace user
 
          __check_refdbg
 
-         pusersystem = øcreate_new < ::user::system >();
+         pusersystem = create_newø < ::user::system >();
 
          __check_refdbg
          

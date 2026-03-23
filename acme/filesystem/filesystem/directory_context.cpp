@@ -582,7 +582,7 @@ bool directory_context::_enumerate(::file::listing_base& listing)
       else
       {
 
-         auto pfolder = øcreate < ::folder >(pfactory);
+         auto pfolder = createø < ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1120,7 +1120,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
 //   //   else
 //   //   {
 //
-//   //      auto pfolder = øcreate< ::folder >(pfactory);
+//   //      auto pfolder = createø< ::folder >(pfactory);
 //
 //   //      if (!pfolder)
 //   //      {
@@ -1322,7 +1322,7 @@ bool directory_context::fast_has_subdir(const ::file::path& path)
       else
       {
 
-         auto pfolder = øcreate< ::folder >(pfactory);
+         auto pfolder = createø< ::folder >(pfactory);
 
          if (!pfolder)
          {
@@ -1412,7 +1412,7 @@ bool directory_context::name_is(const ::file::path& strPath)
       else
       {
 
-         auto pfolder = øcreate < ::folder >(pfactory);
+         auto pfolder = createø < ::folder >(pfactory);
 
          if (!pfolder)
          {

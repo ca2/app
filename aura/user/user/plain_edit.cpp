@@ -1046,7 +1046,7 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
-               auto ppen = øcreate < ::draw2d::pen >();
+               auto ppen = createø < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb((unsigned char)iErrorA, 255, 0, 0));
 
@@ -2643,7 +2643,7 @@ namespace user
             if (has_keyboard_focus())
             {
 
-               auto pcontextmenu = øcreate_new < ::message::context_menu >();
+               auto pcontextmenu = create_newø < ::message::context_menu >();
 
                pcontextmenu->m_eusermessage = ::user::e_message_context_menu;
 
@@ -5109,7 +5109,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ødefer_construct(pgraphics);
+      defer_constructø(pgraphics);
 
       pgraphics->set_font(this, ::e_element_none);
 

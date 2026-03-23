@@ -88,9 +88,9 @@ namespace simpledb
       if(!m_ppathaSearch || (i = m_ppathaSearch->case_insensitive_find_first(pathSearchFolder)) < 0)
       {
 
-         ødefer_construct_new(m_ppathaSearch);
+         defer_construct_newø(m_ppathaSearch);
 
-         ødefer_construct_new(m_pbaRecursive);
+         defer_construct_newø(m_pbaRecursive);
 
          m_ppathaSearch->add(pathSearchFolder);
 

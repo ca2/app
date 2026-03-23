@@ -288,7 +288,7 @@ namespace gpu
 
          auto &pbindingslotset = this->element_at(iSet);
 
-         ødefer_construct(pbindingslotset);
+         defer_constructø(pbindingslotset);
 
          pbindingslotset->m_iSet = iSet;
 

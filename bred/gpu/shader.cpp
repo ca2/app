@@ -143,7 +143,7 @@ namespace gpu
 
          auto & pbindingslotset = binding_slot_set_array()->ø(iSet);
 
-         if (ødefer_construct(pbindingslotset))
+         if (defer_constructø(pbindingslotset))
          {
 
             pbindingslotset->m_iSet = iSet;
@@ -1129,7 +1129,7 @@ namespace gpu
 
       auto & pbindingseta = binding_slot_set_array()->m_pbindingseta;
 
-      ødefer_construct(pbindingseta);
+      defer_constructø(pbindingseta);
 
       return pbindingseta;
 
@@ -1139,7 +1139,7 @@ namespace gpu
    ::gpu::binding_slot_set_array *shader::binding_slot_set_array()
    {
 
-      ødefer_construct(m_pbindingslotseta);
+      defer_constructø(m_pbindingslotseta);
 
       return m_pbindingslotseta;
 

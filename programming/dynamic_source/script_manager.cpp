@@ -117,7 +117,7 @@ namespace dynamic_source
 
       m_iFileSystemScriptSlotIndex = file_system()->file_system_item_slot_index("dynamic_source::script");
 
-      m_prealpathinterfacecache = øcreate_new < ::file_system_real_path_interface_cache >();
+      m_prealpathinterfacecache = create_newø < ::file_system_real_path_interface_cache >();
 
       //construct_newø(m_pfilesystemcache);
 
@@ -444,7 +444,7 @@ namespace dynamic_source
 
       auto timeT1 = ::time::now();
 
-      auto pscriptmain1 = øcreate < script_main >();
+      auto pscriptmain1 = createø < script_main >();
 
       pinstance->m_pscriptmain1 = pscriptmain1;
 
@@ -814,7 +814,7 @@ namespace dynamic_source
 
                   pimpl = pscriptmain1;
 
-                  //pimpl = ::øcreate < script_interface >();
+                  //pimpl = ::createø < script_interface >();
 
                   //pimpl->m_strNote = "impl://" + pinstance->m_strNote;
 

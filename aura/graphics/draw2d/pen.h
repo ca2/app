@@ -105,7 +105,7 @@ namespace draw2d
    //inline pen_pointer solid_pen(double dWidth, const ::color::color& color)
    //{
 
-   //   auto ppen = ::øcreate < pen >();
+   //   auto ppen = ::createø < pen >();
 
    //   ppen->create_solid(dWidth, color);
 

@@ -44,7 +44,7 @@ namespace nano
       //void http::sync(::nano::http::get* defer_get)
       //{
 
-      //   auto phappening = øcreate_new < ::manual_reset_happening >();
+      //   auto phappening = create_newø < ::manual_reset_happening >();
 
       //   defer_get->m_functionOnFinished = [phappening](auto)
       //      {
@@ -106,7 +106,7 @@ namespace nano
          for(int iRedirect = 0; iRedirect < iRedirectLimit; iRedirect++)
          {
 
-            auto phttpget = øcreate_new < ::nano::http::get>();
+            auto phttpget = create_newø < ::nano::http::get>();
 
             phttpget->m_url = strUrl;
 
@@ -147,7 +147,7 @@ namespace nano
 
          ::string strUrl(get_effective_url(url).as_string());
 
-         auto phttpget = øcreate_new < ::nano::http::get>();
+         auto phttpget = create_newø < ::nano::http::get>();
 
          phttpget->m_url = strUrl;
 
@@ -170,7 +170,7 @@ namespace nano
 
          auto urlEffetive = get_effective_url(url);
 
-         auto phttpget = øcreate_new < ::nano::http::get>();
+         auto phttpget = create_newø < ::nano::http::get>();
 
          phttpget->m_url = urlEffetive;
 
@@ -194,7 +194,7 @@ namespace nano
 
          auto urlEffective = get_effective_url(url);
 
-         auto phttpget = øcreate_new < ::nano::http::get>();
+         auto phttpget = create_newø < ::nano::http::get>();
 
          phttpget->m_url = urlEffective;
 

@@ -151,7 +151,7 @@ namespace write_text
    font_pointer write_text::font(const font_family_pointer & pfontfamily, const font_size & fontsize, int iFontWeight)
    {
 
-      auto pfont = øcreate < class font >();
+      auto pfont = createø < class font >();
 
       pfont->create_font(pfontfamily, fontsize, iFontWeight);
 
@@ -163,7 +163,7 @@ namespace write_text
    font_pointer write_text::create_font()
    {
 
-      return øcreate < class font > ();
+      return createø < class font > ();
       
    }
 

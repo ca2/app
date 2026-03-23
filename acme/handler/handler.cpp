@@ -86,7 +86,7 @@ namespace handler
    ::manual_reset_happening * handler::new_main_loop_happening()
    {
 
-      ødefer_construct_new(m_pmanualresethappeningMainLoop);
+      defer_construct_newø(m_pmanualresethappeningMainLoop);
 
       return m_pmanualresethappeningMainLoop;
 

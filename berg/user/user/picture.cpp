@@ -135,7 +135,7 @@ namespace user
       if (bEnable)
       {
 
-         ødefer_construct_new(m_ppictureimpl);
+         defer_construct_newø(m_ppictureimpl);
 
       }
       else

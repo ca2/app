@@ -135,7 +135,7 @@ namespace graphics3d
    //
    //    auto pmodel = create_tinyobjloader_model(path);
    //
-   //    auto pobject = øcreate < ::graphics3d::scene_object>();
+   //    auto pobject = createø < ::graphics3d::scene_object>();
    //
    //    add_object(pobject);
    //

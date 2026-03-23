@@ -23,9 +23,9 @@ namespace app_integration
 
       string strFontFamily = get_font();
 
-      auto ppen = øcreate < ::draw2d::pen >();
+      auto ppen = createø < ::draw2d::pen >();
 
-      auto pbrush = øcreate < ::draw2d::brush >();
+      auto pbrush = createø < ::draw2d::brush >();
 
       if (m_iDrawing == 3)
       {

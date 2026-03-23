@@ -159,7 +159,7 @@ namespace filemanager
 
                   // auto pcontext = get_context();
 
-               auto phttpmessage = øcreate_new < ::http::message >();
+               auto phttpmessage = create_newø < ::http::message >();
 
                phttpmessage->payload("request") = "";
 

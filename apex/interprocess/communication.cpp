@@ -351,7 +351,7 @@ namespace interprocess
 
       }
 
-      auto plauncher = øcreate < ::apex::app_launcher>();
+      auto plauncher = createø < ::apex::app_launcher>();
 
       plauncher->initialize_app_launcher(this, node()->process_platform_name(), scopedstrApp);
 
@@ -409,7 +409,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = øcreate < ::interprocess::caller>();
+         m_callermap[strKey] = createø < ::interprocess::caller>();
 
       }
 
@@ -426,7 +426,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = øcreate<::interprocess::caller>();
+         m_callermap[strKey] = createø<::interprocess::caller>();
 
       }
 
@@ -450,7 +450,7 @@ namespace interprocess
       if (m_callermap[strKey].is_null())
       {
 
-         m_callermap[strKey] = øcreate < ::interprocess::caller>();
+         m_callermap[strKey] = createø < ::interprocess::caller>();
 
       }
 

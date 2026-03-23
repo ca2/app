@@ -604,7 +604,7 @@ namespace apex
 
       }
 
-      pfsfoldersync = pfactory->øcreate < ::fs::folder_sync >(this);
+      pfsfoldersync = pfactory->createø < ::fs::folder_sync >(this);
 
       return pfsfoldersync;
 
@@ -1164,7 +1164,7 @@ namespace apex
 
       //pfsset->root_ones();
 
-      auto pnativefs = øcreate_new < ::fs::native>();
+      auto pnativefs = create_newø < ::fs::native>();
 
       pfsset->m_spafsdata.add(pnativefs);
 
@@ -4444,7 +4444,7 @@ namespace apex
    void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
-      auto prequest = øcreate_new < ::request >();
+      auto prequest = create_newø < ::request >();
 
       prequest->initialize_command_line2(scopedstrCommandLine);
 
@@ -6715,7 +6715,7 @@ namespace apex
 
       auto psystem = system();
 
-      auto plocaleschema = øcreate_new < ::text::international::locale_schema >();
+      auto plocaleschema = create_newø < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -10282,7 +10282,7 @@ namespace apex
    void application::create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
 
-      ødefer_construct(m_pnetworkingapplication);
+      defer_constructø(m_pnetworkingapplication);
 
       if (::is_set(papplicationhandlerCreateNetworkApplication))
       {
@@ -10442,7 +10442,7 @@ namespace apex
          
          system()->defer_innate_ui();
          
-         auto pdialog = øcreate < ::innate_ui::dialog>();
+         auto pdialog = createø < ::innate_ui::dialog>();
          
          pdialog->create();
          
@@ -10458,7 +10458,7 @@ namespace apex
          
          int y = 30;
          
-         auto pstillIcon = øcreate < ::innate_ui::still>();
+         auto pstillIcon = createø < ::innate_ui::still>();
          
          pstillIcon->create_icon_still(pdialog);
          
@@ -10473,7 +10473,7 @@ namespace apex
          for (auto str : stra)
          {
             
-            auto pstill = øcreate < ::innate_ui::still>();
+            auto pstill = createø < ::innate_ui::still>();
             
             pstill->create_child(pdialog);
             
@@ -10489,7 +10489,7 @@ namespace apex
          
          y += 30;
          
-         auto pbutton = øcreate < ::innate_ui::button>();
+         auto pbutton = createø < ::innate_ui::button>();
          
          pbutton->create_child(pdialog);
          
@@ -10499,7 +10499,7 @@ namespace apex
          
          pbutton->set_position({minimum(520,max_width) - 100 -30, y});
 
-         auto pbuttonOperatingSystemInformation = øcreate<::innate_ui::button>();
+         auto pbuttonOperatingSystemInformation = createø<::innate_ui::button>();
 
          pbuttonOperatingSystemInformation->create_child(pdialog);
 
@@ -10554,7 +10554,7 @@ namespace apex
          {
             system()->defer_innate_ui();
 
-            auto pdialog = øcreate<::innate_ui::dialog>();
+            auto pdialog = createø<::innate_ui::dialog>();
 
             pdialog->create();
 
@@ -10570,7 +10570,7 @@ namespace apex
 
             int y = 30;
 
-            auto pstillIcon = øcreate<::innate_ui::still>();
+            auto pstillIcon = createø<::innate_ui::still>();
 
             pstillIcon->create_icon_still(pdialog);
 
@@ -10585,7 +10585,7 @@ namespace apex
             for (auto str: stra)
             {
 
-               auto pstill = øcreate<::innate_ui::still>();
+               auto pstill = createø<::innate_ui::still>();
 
                pstill->create_child(pdialog);
 
@@ -10600,7 +10600,7 @@ namespace apex
 
             y += 30;
 
-            auto pbutton = øcreate<::innate_ui::button>();
+            auto pbutton = createø<::innate_ui::button>();
 
             pbutton->create_child(pdialog);
 

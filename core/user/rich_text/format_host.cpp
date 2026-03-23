@@ -27,7 +27,7 @@ namespace user
       ::pointer<format>format_host::add_format()
       {
 
-         auto pformat = øcreate_new < format >();
+         auto pformat = create_newø < format >();
 
          pformat->initialize_user_rich_text_format(this);
 

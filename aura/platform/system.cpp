@@ -2874,7 +2874,7 @@ namespace aura
 //
 //#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 //
-//            auto plauncher = øcreate_new<::apex::shell_launcher>();
+//            auto plauncher = create_newø<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //            
@@ -2910,7 +2910,7 @@ namespace aura
 //            throw ::exception(todo);
 //
 //#else
-//            auto plauncher = øcreate_new<::apex::shell_launcher>();
+//            auto plauncher = create_newø<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -2952,7 +2952,7 @@ namespace aura
 //
 //#else
 //
-//            auto plauncher = øcreate_new<::apex::shell_launcher>();
+//            auto plauncher = create_newø<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //
@@ -2988,7 +2988,7 @@ namespace aura
 //
 //#else
 //
-//            auto plauncher = øcreate_new<::apex::shell_launcher>();
+//            auto plauncher = create_newø<::apex::shell_launcher>();
 //
 //            // auto pcontext = get_context();
 //

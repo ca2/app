@@ -322,9 +322,9 @@ bool image::host(::pixmap* ppixmap, ::windowing::window * pwindow)
 
    //destroy();
 
-   ødefer_construct(m_pbitmap);
+   defer_constructø(m_pbitmap);
 
-   ødefer_construct(m_pgraphics);
+   defer_constructø(m_pgraphics);
 
    //if (m_pbitmap.is_null())
    //{
@@ -10422,7 +10422,7 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, int Δx, int Δy,
 ::subparticle_pointer image::clone()
 {
 
-   auto pimage = this->øcreate<::image::image>();
+   auto pimage = this->createø<::image::image>();
 
    pimage->copy_from((::image::image *) this);
 

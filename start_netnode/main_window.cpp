@@ -203,7 +203,7 @@ namespace app_app
 
          auto pointCursor = pwindow->get_mouse_cursor_position();
 
-         auto pmouse = øcreate_new < ::user::mouse >();
+         auto pmouse = create_newø < ::user::mouse >();
 
          pmouse->m_point = pointCursor;
 

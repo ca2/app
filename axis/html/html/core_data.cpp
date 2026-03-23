@@ -264,7 +264,7 @@ namespace html
 
       delete_contents();
 
-      auto phtmlreader = øcreate_new < lite_html_reader >();
+      auto phtmlreader = create_newø < lite_html_reader >();
 
       ::html::reader reader;
 
@@ -663,7 +663,7 @@ namespace html
       if (strPath.begins_eat("ext://"))
       {
 
-         auto phyperlink =øcreate_new < hyperlink>();
+         auto phyperlink =create_newø < hyperlink>();
 
          phyperlink->m_strLink = strPath;
 

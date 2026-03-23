@@ -289,7 +289,7 @@ namespace micro
    void elemental::resize_to_fit()
    {
 
-      auto pdevice = øcreate<::nano::graphics::device>();
+      auto pdevice = createø<::nano::graphics::device>();
 
       auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 

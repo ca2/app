@@ -752,7 +752,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //   if (is_null())
 //   {
 //
-//      operator=(øcreate < TYPE >());
+//      operator=(createø < TYPE >());
 //
 //   }
 //
@@ -1704,7 +1704,7 @@ void reference_count_debug_release(TYPE * & p)
 //   m_pparticle(nullptr)
 //{
 //
-//   operator=(p->øcreate < T >());
+//   operator=(p->createø < T >());
 //
 //}
 
@@ -1742,7 +1742,7 @@ void reference_count_debug_release(TYPE * & p)
 //
 
 //template < typename TYPE >
-//inline bool particle::ødefer_construct(::pointer<TYPE> & p, ::factory::factory * pfactory)
+//inline bool particle::defer_constructø(::pointer<TYPE> & p, ::factory::factory * pfactory)
 //{
 //
 //   if (::is_set(p))
@@ -1760,7 +1760,7 @@ void reference_count_debug_release(TYPE * & p)
 
 
 template < typename TYPE >
-inline bool particle::__call__defer_construct_new(::pointer<TYPE> & p)
+inline bool particle::__calldefer_construct_newø(::pointer<TYPE> & p)
 {
 
    if (::is_set(p))

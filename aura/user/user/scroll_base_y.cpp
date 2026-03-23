@@ -708,7 +708,7 @@ namespace user
 
       }
 
-      auto pbar = øcreate < scroll_bar >();
+      auto pbar = createø < scroll_bar >();
 
       pbar->m_eorientation = ::e_orientation_vertical;
 

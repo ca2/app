@@ -60,7 +60,7 @@ namespace graphics3d
 
       ////constructø(m_pmodelCube);
 
-      //auto pmodelCube = øcreate<::gpu::model_buffer>();
+      //auto pmodelCube = createø<::gpu::model_buffer>();
 
       //pmodelCube->initialize_model(pscene->m_pimmersionlayer->m_pengine->
       //   gpu_context(), modeldataCube);
@@ -202,7 +202,7 @@ namespace graphics3d
 
       }
 
-      ødefer_construct(m_ptexture);
+      defer_constructø(m_ptexture);
 
       ::gpu::texture_attributes textureattributes(::int_rectangle{sizeItem},8, 4, 0,0, 
          ::gpu::e_texture_cube_map,  6);

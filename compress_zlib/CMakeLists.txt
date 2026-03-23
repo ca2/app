@@ -10,12 +10,13 @@ unset(PKGCONFIG_LIBRARIES)
 list(APPEND library_source
    _.cpp
    _.h
+    _factory.cpp
    ##_library.h
-   compress.cpp
-   compress.h
-   uncompress.cpp
-   uncompress.h
-   _factory.cpp)
+        compress.cpp
+        compress.h
+        uncompress.cpp
+        uncompress.h
+   )
 
 
 

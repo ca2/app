@@ -62,7 +62,7 @@ namespace parallelization
       }
 
 
-      auto phappening = øcreate_new < manual_reset_happening >();
+      auto phappening = create_newø < manual_reset_happening >();
 
       async([procedure, phappening]()
          {

@@ -308,7 +308,7 @@ namespace platform
    ::particle_pointer node::create_mutex()
    {
 
-      return øcreate < ::mutex >();
+      return createø < ::mutex >();
 
    }
   
@@ -377,7 +377,7 @@ namespace platform
       else
       {
 
-         auto prequest = øcreate_new < ::request >();
+         auto prequest = create_newø < ::request >();
 
          ::string strCommandLine = ::system()->command_line();
 
@@ -2391,7 +2391,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
 
    //   system()->do_graphics_and_windowing_system_factory();
 
-   //   return øcreate_new < ::micro::message_box >();
+   //   return create_newø < ::micro::message_box >();
 
    //}
 
@@ -2399,7 +2399,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //::pointer < ::subparticle > node::create_message_box_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
-   //   //auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
+   //   //auto psequencer = create_newø < ::sequencer < ::conversation > >();
 
    //   auto pmessageboxconversation = create_new_message_box_conversation();
 
@@ -2417,7 +2417,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    //::pointer < ::subparticle > node::create_message_sequencer(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
    //{
 
-   //   ///auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
+   //   ///auto psequencer = create_newø < ::sequencer < ::conversation > >();
 
    //   auto pmessageconversation = create_new_message_conversation();
 
@@ -2972,7 +2972,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    ::pointer < ::file::file_dialog > node::node_file_dialog()
    {
       
-      return øcreate_new < file_dialog >();
+      return create_newø < file_dialog >();
       
    }
 
@@ -2989,7 +2989,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    ::pointer < ::file::folder_dialog > node::node_folder_dialog()
    {
       
-      return øcreate_new < folder_dialog >();
+      return create_newø < folder_dialog >();
       
    }
 
@@ -3511,7 +3511,7 @@ bool node::_is_smart_git_installed()
    ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
    {
       
-      auto papplication = øcreate < ::operating_system::application >();
+      auto papplication = createø < ::operating_system::application >();
       
       papplication->open_by_process_identifier(processidentifier);
       
@@ -3528,7 +3528,7 @@ bool node::_is_smart_git_installed()
       for (auto & processidentifier : processidentifiera)
       {
 
-         auto papplication = øcreate < ::operating_system::application >();
+         auto papplication = createø < ::operating_system::application >();
 
          papplication->open_by_process_identifier(processidentifier);
 
@@ -4242,7 +4242,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //         }
 //
-//         auto plink = øcreate_new < ::file::link >();
+//         auto plink = create_newø < ::file::link >();
 //
 //         string strLink = stra[0];
 //
@@ -4336,7 +4336,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //
 //#else
 //
-//         auto plink = øcreate_new < ::file::link >();
+//         auto plink = create_newø < ::file::link >();
 //         
 //         string strLink;
 //
@@ -4994,7 +4994,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       if(scopedstrProtocol == "mediastore")
       {
 
-         auto pdatablock = øcreate_new<::data::block>();
+         auto pdatablock = create_newø<::data::block>();
 
          pdatablock->initialize_set_operation(scopedstrPath, "application/octet-stream", block);
 
@@ -5021,7 +5021,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       if(scopedstrProtocol == "mediastore")
       {
 
-         auto pdatablock = øcreate_new<::data::block>();
+         auto pdatablock = create_newø<::data::block>();
 
          pdatablock->initialize_get_operation(scopedstrPath, "application/octet-stream");
 

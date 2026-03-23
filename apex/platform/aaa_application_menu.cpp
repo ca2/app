@@ -229,7 +229,7 @@ application_menu * application_menu::separator()
    //string simple_frame_window::notification_area_get_xml_menu()
 //{
 //
-//   auto pxmldocument = øcreate_new < ::xml::document >();
+//   auto pxmldocument = create_newø < ::xml::document >();
 //
 //   pxmldocument->create_root("menu");
 //

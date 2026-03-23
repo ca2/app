@@ -96,7 +96,7 @@ namespace user
 
       //estatus = 
 
-      ødefer_construct_new(m_pdata);
+      defer_construct_newø(m_pdata);
 
       //if (estatus == ::success)
       //{

@@ -28,9 +28,9 @@
 //::pointer < ::subparticle > message_box::create_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 //{
 //
-//   //auto psequencer = pparticle->øcreate_new < ::sequencer < ::conversation > >();
+//   //auto psequencer = pparticle->create_newø < ::sequencer < ::conversation > >();
 //
-//   auto pmessagebox = pparticle->øcreate < ::operating_system::message_box >();
+//   auto pmessagebox = pparticle->createø < ::operating_system::message_box >();
 //   
 //   //psequencer->m_psequence = pmessagebox;
 //

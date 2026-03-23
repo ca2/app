@@ -11,10 +11,10 @@ public:
 
    ::array < ARRAY * >    m_2a;
 
-   void add_array(ARRAY & a)
+   void add_array(ARRAY * parray)
    {
 
-      m_2a.add(&a);
+      m_2a.add(parray);
 
    }
 

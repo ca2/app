@@ -163,7 +163,7 @@ file_pointer file_system::get_file(const ::payload& payloadFile, ::file::e_open 
 
    }
 
-   auto pfile = application()->øcreate<::file::file>();
+   auto pfile = application()->createø<::file::file>();
 
    if (!pfile)
    {
@@ -232,7 +232,7 @@ string file_system::as_string(const ::file::path& pathParam, character_count iRe
 
    }
 
-   //auto pfile = m_papplication->øcreate_new < stdio_file >();
+   //auto pfile = m_papplication->create_newø < stdio_file >();
 
    //if (bNoExceptionIfNotFound)
    //{
@@ -973,9 +973,9 @@ bool file_system::copy_if_text_is_different(const ::file::path& pathTarget, cons
 bool file_system::_memory_map_file_copy(const ::file::path& pathTarget, const ::file::path& pathSource)
 {
 
-   auto pmemorymapSource = øcreate<::file::memory_map>();
+   auto pmemorymapSource = createø<::file::memory_map>();
 
-   auto pmemorymapTarget = øcreate<::file::memory_map>();
+   auto pmemorymapTarget = createø<::file::memory_map>();
 
    if (!pmemorymapSource->open_path(pathSource, true, false, false))
    {

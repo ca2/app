@@ -272,7 +272,7 @@ namespace account
       if ((rectangleFontopus.width() < 300 || rectangleFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         auto phyperlink = øcreate_new < ::hyperlink >();
+         auto phyperlink = create_newø < ::hyperlink >();
 
          phyperlink->m_strLink = "ca2account:this";
 

@@ -694,7 +694,7 @@ namespace experience
       if (bCreate)
       {
 
-         ødefer_construct_new(iterator->m_element2);
+         defer_construct_newø(iterator->m_element2);
 
       }
 
@@ -719,7 +719,7 @@ namespace experience
 
       auto pfactory = m_pframewindow->m_pframe->m_pexperience->m_pfactory;
 
-      pfactory->ødefer_construct(this, pbutton);
+      pfactory->defer_constructø(this, pbutton);
 
       pbutton->display(e_display_none);
 
@@ -914,7 +914,7 @@ namespace experience
 
       //auto estatus =
 
-      ødefer_construct_new(pitem);
+      defer_construct_newø(pitem);
 
       //if (!estatus)
       //{

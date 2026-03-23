@@ -113,9 +113,9 @@ namespace gpu_opengl
          //   0.1f,
          //   2.0f);
 
-         ////auto pcube = øcreate<::gpu::cube>();
+         ////auto pcube = createø<::gpu::cube>();
          //////::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
-         ////auto pcube = øcreate<::gpu::cube>();
+         ////auto pcube = createø<::gpu::cube>();
          //auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
          ////pcube->initialize_gpu_cube(m_pgpucontext);
 
@@ -126,7 +126,7 @@ namespace gpu_opengl
 
 
          //
-         ////auto pcube = øcreate<::gpu::cube >();
+         ////auto pcube = createø<::gpu::cube >();
 
          //auto pskybox = m_pscene->current_skybox();
 

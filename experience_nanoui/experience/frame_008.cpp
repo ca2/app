@@ -546,12 +546,12 @@ SizingNone:;
 
       ::color::color color = m_colorMoveableBorderDkShadow;
 
-      ødefer_construct(m_ppenHollow0);
-      ødefer_construct(m_ppenHollow1);
-      ødefer_construct(m_ppenHollow2);
-      ødefer_construct(m_ppenHollow3);
-      ødefer_construct(m_ppenHollow4);
-      ødefer_construct(m_ppenHollow5);
+      defer_constructø(m_ppenHollow0);
+      defer_constructø(m_ppenHollow1);
+      defer_constructø(m_ppenHollow2);
+      defer_constructø(m_ppenHollow3);
+      defer_constructø(m_ppenHollow4);
+      defer_constructø(m_ppenHollow5);
 
       color.set_opacity(8);
 

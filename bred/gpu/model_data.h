@@ -244,7 +244,7 @@ namespace gpu
       //   ::gpu::renderer* prenderer)
       //{
 
-      //   auto pmodel = prenderer->øcreate < ::graphics3d::model >();
+      //   auto pmodel = prenderer->createø < ::graphics3d::model >();
 
       //   pmodel->initialize_model(
       //      prenderer,

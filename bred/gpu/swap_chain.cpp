@@ -175,7 +175,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    // Fence (CPU → GPU)
    // ----------------------------------------------------
 
-   ødefer_construct(frame.m_pgpufenceInFlight);
+   defer_constructø(frame.m_pgpufenceInFlight);
 
    frame.m_pgpufenceInFlight->initialize_gpu_fence(m_pgpucontext, true);
 
@@ -198,11 +198,11 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
    // Semaphores (GPU → GPU)
    // ----------------------------------------------------
 
-   ødefer_construct(frame.m_pgpusemaphoreImageAvailable);
+   defer_constructø(frame.m_pgpusemaphoreImageAvailable);
 
    frame.m_pgpusemaphoreImageAvailable->initialize_gpu_semaphore(m_pgpucontext);
 
-   ødefer_construct(frame.m_pgpusemaphoreRenderFinished);
+   defer_constructø(frame.m_pgpusemaphoreRenderFinished);
 
    frame.m_pgpusemaphoreRenderFinished->initialize_gpu_semaphore(m_pgpucontext);
 

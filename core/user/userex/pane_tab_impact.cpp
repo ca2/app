@@ -222,7 +222,7 @@ namespace userex
 
       auto & pfactory = system()->factory(scopedstrLibrary);
 
-      auto phandler = øcreate <handler>(pfactory);
+      auto phandler = createø <handler>(pfactory);
 
       phandler->initialize(this);
 
@@ -792,7 +792,7 @@ namespace userex
          //if(pfilemanagerdata->m_prequest.is_null())
          //{
 
-         //   pfilemanagerdata->m_prequest = øcreate_new< ::request>();
+         //   pfilemanagerdata->m_prequest = create_newø< ::request>();
 
          //   pfilemanagerdata->m_prequest->finish_initialization();
 

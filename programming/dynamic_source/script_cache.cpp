@@ -72,7 +72,7 @@ namespace dynamic_source
    //::pointer<ds_script>script_cache::allocate_ds_script(const ::scoped_string & scopedstrName)
    //{
 
-   //   auto pscript = øcreate_new< ds_script >();
+   //   auto pscript = create_newø< ds_script >();
 
    //   pscript->m_pmanager = m_pmanager;
 
@@ -86,7 +86,7 @@ namespace dynamic_source
    ::pointer<ds_script>script_cache::allocate_ds_script(const ::file_system_cache_item & pfilesystemcacheitem)
    {
 
-      auto pscript = øcreate_new< ds_script >();
+      auto pscript = create_newø< ds_script >();
 
       pscript->set_manager(m_pmanager);
 

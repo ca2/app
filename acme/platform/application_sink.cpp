@@ -91,7 +91,7 @@ namespace platform
 //                                 const ::block & block)
 //{
 //
-//           auto pdatablock = øcreate_new<::data::block>();
+//           auto pdatablock = create_newø<::data::block>();
 //   pdatablock->m_bWrite = true;
 //   pdatablock->m_strPath = scopedstrRelativeName;
 //   pdatablock->m_strMime = scopedstrMimeType;
@@ -115,7 +115,7 @@ namespace platform
 //
 //         bool bRead = false;
 //
-//   auto pdatablock = øcreate_new<::data::block>();
+//   auto pdatablock = create_newø<::data::block>();
 //   pdatablock->m_bWrite = false;
 //   pdatablock->m_strPath = scopedstrRelativeName;
 //   pdatablock->m_strMime = scopedstrMimeType;

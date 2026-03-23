@@ -33,7 +33,7 @@ namespace console_integration
 
       acmenode()->integration_factory();
       
-      ødefer_construct(m_papplication);
+      defer_constructø(m_papplication);
 
    }
 

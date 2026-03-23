@@ -79,7 +79,7 @@ namespace application_build_helper
                
             }
 
-         auto pffmpeg = øcreate_new < ::console_integration::linux::ffmpeg >();
+         auto pffmpeg = create_newø < ::console_integration::linux::ffmpeg >();
             
          pffmpeg->m_papplication->m_pathFolder = m_pathFolder;
 
@@ -117,7 +117,7 @@ namespace application_build_helper
          try
          {
             
-            auto popenssl = øcreate_new < ::console_integration::linux::openssl >();
+            auto popenssl = create_newø < ::console_integration::linux::openssl >();
             
             
             popenssl->m_papplication->m_pathFolder = m_pathFolder;
@@ -145,7 +145,7 @@ namespace application_build_helper
          try
          {
             
-            auto px264 = øcreate_new < ::console_integration::linux::x264 >();
+            auto px264 = create_newø < ::console_integration::linux::x264 >();
             
 //            px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
             
@@ -172,7 +172,7 @@ namespace application_build_helper
          try
          {
             
-                     auto px265 = øcreate_new < ::console_integration::linux::x265 >();
+                     auto px265 = create_newø < ::console_integration::linux::x265 >();
             
             
             px265->m_papplication->m_pathFolder = m_pathFolder;
@@ -216,7 +216,7 @@ namespace application_build_helper
          try
          {
             
-                     auto pfdkaac = øcreate_new < ::console_integration::linux::fdk_aac >();
+                     auto pfdkaac = create_newø < ::console_integration::linux::fdk_aac >();
             
             
             pfdkaac->m_papplication->m_pathFolder = m_pathFolder;
@@ -259,7 +259,7 @@ namespace application_build_helper
          try
          {
             
-                     auto plame = øcreate_new < ::console_integration::linux::lame >();
+                     auto plame = create_newø < ::console_integration::linux::lame >();
             
             
             plame->m_papplication->m_pathFolder = m_pathFolder;
@@ -303,7 +303,7 @@ namespace application_build_helper
          try
          {
             
-                     auto pfreetype = øcreate_new < ::console_integration::linux::freetype >();
+                     auto pfreetype = create_newø < ::console_integration::linux::freetype >();
             
             
             pfreetype->m_papplication->m_pathFolder = m_pathFolder;
@@ -346,7 +346,7 @@ namespace application_build_helper
 
          try
          {
-            //         auto pthirdwinrt = øcreate_new < linux::third >();
+            //         auto pthirdwinrt = create_newø < linux::third >();
             
             //pthirdwinrt->m_papplication->m_pathFolder = m_pathFolder;
 

@@ -37,7 +37,7 @@ namespace gpu
 
          initialize_gpu_context_object(pgpucontext);
 
-         ødefer_construct(m_ptexture);
+         defer_constructø(m_ptexture);
 
          auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
 

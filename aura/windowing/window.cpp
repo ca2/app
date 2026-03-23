@@ -1530,7 +1530,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
         // m_pointWindow = p;
 
-      auto preposition = øcreate_new<::message::reposition>();
+      auto preposition = create_newø<::message::reposition>();
 
       preposition->m_operatingsystemwindow = operating_system_window();
 
@@ -1583,7 +1583,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    void window::_on_size(int cx, int cy)
    {
 
-      auto psize = øcreate_new<::message::size>();
+      auto psize = create_newø<::message::size>();
 
       psize->m_operatingsystemwindow = operating_system_window();
 
@@ -2174,7 +2174,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    ::pointer<::windowing::icon> window::load_icon(const ::payload& payloadFile)
    {
 
-      auto picon = øcreate<icon>();
+      auto picon = createø<icon>();
 
       if (!picon)
       {
@@ -4686,7 +4686,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //       if (bNewOwnThread)
    //       {
    //
-   //          puserthread = øcreate_new<::user::thread>();
+   //          puserthread = create_newø<::user::thread>();
    //
    //          m_puserthread = puserthread;
    //
@@ -4722,7 +4722,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //       if (bProdevianThread && user_interaction()->is_graphical())
    //       {
    //
-   //          pgraphicsthread = øcreate_new<::user::graphics_thread>();
+   //          pgraphicsthread = create_newø<::user::graphics_thread>();
    //
    //          m_pgraphicsthread = pgraphicsthread;
    //
@@ -8259,7 +8259,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
             if (m_redrawitema.is_empty())
             {
 
-               auto predrawitem = øcreate_new<::user::redraw_item>();
+               auto predrawitem = create_newø<::user::redraw_item>();
 
                if (function)
                {
@@ -8298,7 +8298,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
          }
 
-         auto predrawitem = øcreate_new<::user::redraw_item>();
+         auto predrawitem = create_newø<::user::redraw_item>();
 
          predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
 
@@ -9345,7 +9345,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
          }
 
-         //auto psequencer = øcreate_new < sequencer<sequence<window>>>();
+         //auto psequencer = create_newø < sequencer<sequence<window>>>();
 
          if (m_uOnHide)
          {
@@ -9524,7 +9524,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //
 //       //{
 //
-//       auto pgraphicscontext = øcreate_new < ::draw2d::graphics_context >();
+//       auto pgraphicscontext = create_newø < ::draw2d::graphics_context >();
 //
 //       //::string strType = ::platform::type(*user_interaction()).name();
 //
@@ -10631,7 +10631,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       
       auto puserinteraction = this->user_interaction();
 
-      auto pgraphicscontext = øcreate_new < ::draw2d::graphics_context >();
+      auto pgraphicscontext = create_newø < ::draw2d::graphics_context >();
 
       //::string strType = ::platform::type(*user_interaction()).name();
 
@@ -17299,7 +17299,7 @@ slGraphics.unlock();
 
 
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = øcreate_new<TYPE>(); \
+   auto pmessage = create_newø<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_pacmewindowingwindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
@@ -17310,7 +17310,7 @@ slGraphics.unlock();
 
 
    //#define _NEW_MESSAGE(TYPE) \
-   //   auto pmessage = øcreate_new<TYPE>(); \
+   //   auto pmessage = create_newø<TYPE>(); \
    //   pmessage->m_pchannel = this; \
    //   pmessage->m_eusermessage = atom; \
    //   pmessage->m_wparam = wparam; \

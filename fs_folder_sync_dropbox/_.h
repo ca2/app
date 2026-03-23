@@ -4,6 +4,7 @@
 
 
 #include "apex/_.h"
+#include "dropbox/_.h"
 
 
 #if defined(_fs_folder_sync_dropbox_project)

@@ -94,7 +94,7 @@ namespace filemanager
 
             string str;
 
-            auto pxmldocument = øcreate_new < ::xml::document >();
+            auto pxmldocument = create_newø < ::xml::document >();
 
             pxmldocument->load(scopedstrSource);
 
@@ -144,7 +144,7 @@ namespace filemanager
                if (iNewItem < 0)
                {
 
-                  pfolder = øcreate_new<folder>();
+                  pfolder = create_newø<folder>();
 
                   m_foldera.add(pfolder);
 

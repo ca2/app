@@ -40,7 +40,7 @@ void source::destroy()
 //void source::add_signal_handler(const ::signal_handler& signalhandler, bool bPriority)
 //{
 //
-//   ødefer_construct_new(m_psignalhandlera);
+//   defer_construct_newø(m_psignalhandlera);
 //
 //   if (bPriority)
 //   {

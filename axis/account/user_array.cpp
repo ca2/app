@@ -145,7 +145,7 @@ namespace account
    ::pointer<user>user_array::allocate_user()
    {
 
-      return øcreate < ::account::user > ();
+      return createø < ::account::user > ();
 
    }
 

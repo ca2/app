@@ -80,7 +80,7 @@ public:
       if (m_aPool.is_empty())
       {
 
-         auto p = m_ppoolgroup->m_pallocator->øcreate<TYPE >();
+         auto p = m_ppoolgroup->m_pallocator->createø<TYPE >();
 
          p->m_ppool = this;
 

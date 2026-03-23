@@ -128,7 +128,7 @@ string object::as_string() const
 //
 //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   ødefer_construct_new(m_pcompositea);
+//   defer_construct_newø(m_pcompositea);
 //
 //   if (!m_pcompositea->add_unique(pelement))
 //   {
@@ -153,7 +153,7 @@ string object::as_string() const
 //
 //   _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//   ødefer_construct_new(m_preferencea);
+//   defer_construct_newø(m_preferencea);
 //
 //   m_preferencea->add_unique(pelement);
 //
@@ -388,7 +388,7 @@ void object::dev_log(const ::scoped_string & scopedstrMessage)
 //
 //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      ødefer_construct_new(m_pobjecta);
+//      defer_construct_newø(m_pobjecta);
 //
 //      m_pobjecta->add_unique(pparticle);
 //
@@ -398,7 +398,7 @@ void object::dev_log(const ::scoped_string & scopedstrMessage)
 //
 //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 //
-//      ødefer_construct_new(pparticle->m_pobjecta);
+//      defer_construct_newø(pparticle->m_pobjecta);
 //
 //      pparticle->m_pobjecta->add_unique(this);
 //
@@ -1052,7 +1052,7 @@ void object::add_task(::object* pobjectTask)
 
    }
 
-   ødefer_construct_new(m_pparticleaChildrenTask);
+   defer_construct_newø(m_pparticleaChildrenTask);
 
    string strType = ::platform::type(this).name();
 
@@ -1213,7 +1213,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
-   ødefer_construct_new(m_pparticleaChildrenTask);
+   defer_construct_newø(m_pparticleaChildrenTask);
 
    pointer_array < ::object > objectaChildrenTask;
 
@@ -1853,7 +1853,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
-   ptask = øcreate_new < task >();
+   ptask = create_newø < task >();
 
    ptask->m_procedure = procedure;
 
@@ -1908,7 +1908,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
-   auto ptask = øcreate_new < ::task >();
+   auto ptask = create_newø < ::task >();
 
    if (!ptask)
    {
@@ -1942,7 +1942,7 @@ void object::branch_each(const ::procedure_array& routinea)
 
    }
 
-   auto ptask = øcreate_new < ::task >();
+   auto ptask = create_newø < ::task >();
 
    if (!ptask)
    {
@@ -2404,7 +2404,7 @@ void object::sleep(const class time & time)
 //   unsigned int dwCreateFlags = 0)
 //{
 //
-//   auto pthread = øcreate_new< ::thread >();
+//   auto pthread = create_newø< ::thread >();
 //
 //   ::task::start(pthread);
 //
@@ -3089,7 +3089,7 @@ void object::initialize(::particle * pparticle)
 //::thread_pointer object::launch(const ::procedure & procedure)
 //{
 //
-//   auto pthread = øcreate_new < ::thread >();
+//   auto pthread = create_newø < ::thread >();
 //
 //   pthread->m_pelement = routine;
 //
@@ -3228,19 +3228,19 @@ void object::initialize(::particle * pparticle)
 //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
-//inline ::pointer<BASE_TYPE>øcreate();
+//inline ::pointer<BASE_TYPE>createø();
 
 //template < typename BASE_TYPE >
 //inline ::pointer<BASE_TYPE>øcreate_by_type(const ::atom& atom);
 
 //template < typename TYPE >
-//inline ::pointer<TYPE>øcreate_new();
+//inline ::pointer<TYPE>create_newø();
 
 //inline void constructø(::pointer<::image::image>& pimage);
 
 //inline void constructø(::pointer<::image::image>& pimage, ::image::image *pimageSource);
 
-//inline void ødefer_construct(::pointer<::image::image>& pimage) { return !pimage ? constructø(pimage) : void(::success); }
+//inline void defer_constructø(::pointer<::image::image>& pimage) { return !pimage ? constructø(pimage) : void(::success); }
 
 // for composition (ownership)
 
@@ -3275,7 +3275,7 @@ void object::initialize(::particle * pparticle)
 
 
 //template < typename BASE_TYPE >
-//inline void ødefer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? constructø(pusermessage) : void(::success); }
+//inline void defer_constructø(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? constructø(pusermessage) : void(::success); }
 
 //template < typename BASE_TYPE >
 //inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? øconstruct_by_id(pusermessage) : void(::success); }
@@ -3284,7 +3284,7 @@ void object::initialize(::particle * pparticle)
 //inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
 
 //template < typename TYPE >
-//inline void ødefer_construct_new(::pointer<TYPE> ptype) { return !ptype ? construct_newø(ptype) : void(::success); }
+//inline void defer_construct_newø(::pointer<TYPE> ptype) { return !ptype ? construct_newø(ptype) : void(::success); }
 
 
 

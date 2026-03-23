@@ -43,7 +43,7 @@ namespace gpu_opengl
    ::pointer <::gpu::context > allocate_cgl_context(::particle * pparticle)
    {
 
-      return pparticle->øcreate_new < context_cgl >();
+      return pparticle->create_newø < context_cgl >();
 
    }
 

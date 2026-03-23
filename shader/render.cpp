@@ -394,7 +394,7 @@ namespace app_shader
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
-            ødefer_construct(m_pimageLabel);
+            defer_constructø(m_pimageLabel);
 
             if (m_pimageLabel->g() == nullptr)
             {
@@ -525,7 +525,7 @@ namespace app_shader
 
             pfont->create_font(e_font_sans_ui, 12_pt);
 
-            ødefer_construct(m_pimageError);
+            defer_constructø(m_pimageError);
 
             if(m_pimageError->g() == nullptr)
             {
@@ -594,11 +594,11 @@ namespace app_shader
 
       //string strFontFamily = get_font();
 
-      //auto ppen = øcreate < ::draw2d::pen > ();
+      //auto ppen = createø < ::draw2d::pen > ();
 
-      //auto pbrush = øcreate < ::draw2d::brush >();
+      //auto pbrush = createø < ::draw2d::brush >();
 
-      //auto pfont = øcreate < ::write_text::font > ();
+      //auto pfont = createø < ::write_text::font > ();
 
       //if (m_iDrawing == 3)
       //{

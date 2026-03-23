@@ -510,7 +510,7 @@ namespace acme
          if(path.has_character() && !file_system()->exists(path))
          {
 
-            auto pfile = øcreate_new<::linux::desktop_file>();
+            auto pfile = create_newø<::linux::desktop_file>();
 
             pfile->set_app_id(m_strAppId);
 

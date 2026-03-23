@@ -463,7 +463,7 @@ namespace user
          {
 
             continue;
-            //pitem = øcreate_new<item>();
+            //pitem = create_newø<item>();
 
             //pitem->m_item.m_iItem = iImage;
 
@@ -503,7 +503,7 @@ namespace user
             if (pimageSrc.ok())
             {
 
-               ødefer_construct_new(m_pimageaThumb);
+               defer_construct_newø(m_pimageaThumb);
 
                if (m_pimageaThumb->image_count() < m_pimagea->image_count())
                {
@@ -731,7 +731,7 @@ namespace user
 
       ::int_rectangle rectangleTotal;
 
-      ødefer_construct_new(main_content().m_pitema);
+      defer_construct_newø(main_content().m_pitema);
 
       for (::collection::index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
@@ -741,7 +741,7 @@ namespace user
          if (pitem == nullptr)
          {
 
-            pitem = øcreate_new<::item>();
+            pitem = create_newø<::item>();
 
             pitem->m_item.m_iItem = iImage;
 

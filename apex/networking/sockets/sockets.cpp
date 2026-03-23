@@ -62,7 +62,7 @@ namespace sockets
 
       //}
 
-//      auto paddressdepartment = pparticle->øcreate<class ::networking::networking>();
+//      auto paddressdepartment = pparticle->createø<class ::networking::networking>();
 //
 //      paddressdepartment->increment_reference_count();
 //
@@ -70,7 +70,7 @@ namespace sockets
 //
 //      generate_random_bytes(m_baTicketKey, sizeof(m_baTicketKey));
 //
-      //m_psslinit = øcreate<::sockets::SSLInitializer>();
+      //m_psslinit = createø<::sockets::SSLInitializer>();
 //
 //      //estatus = construct_newø(m_pnet);
 //

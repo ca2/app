@@ -542,7 +542,7 @@ namespace platform
 
       //::output_debug_string("Going to create simple log\n");
 
-      //m_plogger = øcreate_new < ::simple_log >();
+      //m_plogger = create_newø < ::simple_log >();
 
       constructø(m_plogger);
 
@@ -629,9 +629,9 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      ødefer_construct_new(m_pmathematics);
+      defer_construct_newø(m_pmathematics);
 
-      ødefer_construct_new(m_pprototype);
+      defer_construct_newø(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -1043,7 +1043,7 @@ namespace platform
 
       m_pnode->m_htaskSystem = m_htask;
 
-      //auto estatus = ødefer_construct_new(m_pfactorysquare);
+      //auto estatus = defer_construct_newø(m_pfactorysquare);
 
       //if (!estatus)
       //{
@@ -2252,7 +2252,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!payloadFile.is_empty())
       {
 
-         auto prequest = øcreate_new<::request>();
+         auto prequest = create_newø<::request>();
 
          prequest->m_ecommand = e_command_file_open;
 
@@ -2774,7 +2774,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ødefer_construct_new(m_pmapRegularExpressionContext);
+      defer_construct_newø(m_pmapRegularExpressionContext);
 
       auto& pcontext = (*m_pmapRegularExpressionContext)[scopedstrStyle];
 
@@ -3128,7 +3128,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::post_application_start()
    {
 
-      auto prequest = øcreate_new<::request>();
+      auto prequest = create_newø<::request>();
 
       prequest->m_ecommand = e_command_application_start;
 
@@ -3150,12 +3150,12 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //      m_bPostedInitialRequest = true;
 
-   //      auto prequest = øcreate_new<::request>();
+   //      auto prequest = create_newø<::request>();
 
    //      post_request(prequest);
 
 
-   //      auto prequest = øcreate_new<::request>();
+   //      auto prequest = create_newø<::request>();
 
    //      auto strCommandLine = this->m_strCommandLine;
 
@@ -3272,7 +3272,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          m_bPostedCommandLineFileOpen = true;
 
-         auto prequest = øcreate_new<::request>();
+         auto prequest = create_newø<::request>();
 
          auto strCommandLine = this->command_line();
 
@@ -3391,7 +3391,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::post_application_started()
    {
 
-      auto prequest = øcreate_new<::request>();
+      auto prequest = create_newø<::request>();
       
       prequest->m_ecommand = e_command_application_started;
       prequest->m_strAppId = m_papplication->m_strAppId;
@@ -4248,7 +4248,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          if (strAppId.is_empty() || this->is_console())
          {
 
-            papp = øcreate<::platform::application>();
+            papp = createø<::platform::application>();
 
             papp->increment_reference_count();
 
@@ -4326,7 +4326,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
             if (pfactory)
             {
 
-               papp = øcreate<::platform::application>(pfactory);
+               papp = createø<::platform::application>(pfactory);
 
                if (!papp)
                {

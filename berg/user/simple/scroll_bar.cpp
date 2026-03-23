@@ -1894,7 +1894,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    {
 
-      auto ppenArrow = øcreate < ::draw2d::pen >();
+      auto ppenArrow = createø < ::draw2d::pen >();
 
       ppenArrow->m_elinecapBeg = ::draw2d::e_line_cap_round;
 
@@ -1966,7 +1966,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    rectangleDraw.deflate(1, 1);
 
-   auto ppen = øcreate < ::draw2d::pen >();
+   auto ppen = createø < ::draw2d::pen >();
 
    ppen->create_solid(2.0, argb(150 * uchAlpha / 255, 108, 108, 100));
 
@@ -1974,7 +1974,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    pgraphics->draw_ellipse(rectangleDraw);
 
-   auto pbrush = øcreate < ::draw2d::brush >();
+   auto pbrush = createø < ::draw2d::brush >();
 
    ::int_rectangle rectangleDotto(0, 0, 5, 5);
 

@@ -1239,7 +1239,7 @@ namespace user
          && pframe->notify_icon())
       {
 
-         ødefer_construct_new(pmenu->m_pmenuitem);
+         defer_construct_newø(pmenu->m_pmenuitem);
 
          user()->from_application_menu(
             pmenu->m_pmenuitem,
@@ -1267,7 +1267,7 @@ namespace user
 
          //   }
 
-         //   auto pmenuitem = øcreate_new < ::menu::item >();
+         //   auto pmenuitem = create_newø < ::menu::item >();
 
          //   pmenuitem->m_pmenu = pmenu;
 

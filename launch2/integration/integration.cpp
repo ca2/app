@@ -194,7 +194,7 @@ namespace application_build_helper
 //
 //            //}
 //
-//            auto pffmpeg = øcreate_new < macos::ffmpeg >();
+//            auto pffmpeg = create_newø < macos::ffmpeg >();
 //
 //            pffmpeg->m_papplication->m_strPlatform = strPlatform;
 //
@@ -220,7 +220,7 @@ namespace application_build_helper
 //         else if (strArgument.case_insensitive_equals("openssl"))
 //         {
 //
-//            auto popenssl = øcreate_new < openssl >();
+//            auto popenssl = create_newø < openssl >();
 //
 //            popenssl->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
@@ -232,7 +232,7 @@ namespace application_build_helper
 //         else if (strArgument.case_insensitive_equals("x264"))
 //         {
 //
-//            auto px264 = øcreate_new < x264 >();
+//            auto px264 = create_newø < x264 >();
 //
 //            px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
@@ -246,7 +246,7 @@ namespace application_build_helper
 //         else if (strArgument.case_insensitive_equals("x265"))
 //         {
 //
-//            auto px264 = øcreate_new < x265 >();
+//            auto px264 = create_newø < x265 >();
 //
 //            px264->m_papplication->m_strPlatform = psubsystem->get_argument1(1);
 //
@@ -260,7 +260,7 @@ namespace application_build_helper
 //         else if (strArgument.case_insensitive_equals("third_winrt"))
 //         {
 //
-//            auto pthirdwinrt = øcreate_new < third_winrt >();
+//            auto pthirdwinrt = create_newø < third_winrt >();
 //
 //            pthirdwinrt->build();
 //
@@ -268,7 +268,7 @@ namespace application_build_helper
 //         else if (strArgument.case_insensitive_equals("third"))
 //         {
 //
-//            auto pthirdwinrt = øcreate_new < third >();
+//            auto pthirdwinrt = create_newø < third >();
 //
 //            pthirdwinrt->build();
 //

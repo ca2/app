@@ -486,7 +486,7 @@ namespace draw2d
    ::draw2d::graphics_pointer draw2d::create_graphics(::draw2d::host * pdraw2dhost)
    {
 
-      auto pgraphics = pdraw2dhost->øcreate< ::draw2d::graphics>();
+      auto pgraphics = pdraw2dhost->createø< ::draw2d::graphics>();
 
       pgraphics->m_pdraw2dhost = pdraw2dhost;
 
@@ -591,7 +591,7 @@ namespace draw2d
 
       auto opacity = colorfilter.opacity();
 
-      auto pbrushText = øcreate < ::draw2d::brush >();
+      auto pbrushText = createø < ::draw2d::brush >();
 
       pbrushText->create_solid(colorText & opacity);
 
@@ -675,7 +675,7 @@ void draw2d::emboss_predicate(
 
       pimage->fill_byte(0);
 
-      auto pbrushText = øcreate < ::draw2d::brush >();
+      auto pbrushText = createø < ::draw2d::brush >();
 
       pbrushText->create_solid(argb(255, 255, 255, 255));
       pimage->get_graphics()->set(pbrushText);

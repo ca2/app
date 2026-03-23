@@ -45,7 +45,7 @@ namespace file
    ::pointer < ::file::link > link::create_clean_new() const
    {
 
-      return ((link *)this)->øcreate_new < ::file::link >();
+      return ((link *)this)->create_newø < ::file::link >();
 
    }
 

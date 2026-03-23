@@ -24,7 +24,7 @@ namespace multimedia
    ::pointer<decoder>decoder_plugin::NewDecoder()
    {
 
-      auto pdecoder = øcreate < ::multimedia::decoder >(m_pfactory);
+      auto pdecoder = createø < ::multimedia::decoder >(m_pfactory);
 
       if (!pdecoder)
       {

@@ -176,7 +176,7 @@ namespace fs
       //if (eopen & ::file::e_open_text)
       //{
 
-      //   pfile = øcreate_new<::stdio_file>();
+      //   pfile = create_newø<::stdio_file>();
 
       //}
       //else

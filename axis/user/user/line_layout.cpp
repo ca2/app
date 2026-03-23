@@ -246,6 +246,7 @@ namespace user
                }
 
                auto strType = ::platform::type(puserinteraction).name();
+
                auto pszWndTxt = puserinteraction->get_window_text().c_str();
 
                auto sizeItem = puserinteraction->size(e_layout_sketch);
@@ -283,7 +284,10 @@ namespace user
                if (m_ealignrelativeOrthogonal == e_align_relative_base_bottom_line)
                {
 
-                  auto dAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
+                  auto pfont = pstyle->get_font(puserinteraction,
+                     puserinteraction->m_eelementMain);
+
+                  auto dAscent = pfont->get_ascent(pgraphics);
 
                   point.set_orthogonal_dimension(m_eorientation,
                      (int) (dMaximumAscent - dAscent));

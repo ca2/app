@@ -125,7 +125,7 @@ void handler_manager::on_destroy()
 //
 //      auto phandlermanager = as_pointer(this);
 //
-//      phandlermanager->m_pthread = øcreate_new < ::task >();
+//      phandlermanager->m_pthread = create_newø < ::task >();
 //
 //      phandlermanager->m_pthread->m_procedure = [phandlermanager]()
 //         {

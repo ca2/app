@@ -48,7 +48,7 @@ namespace prodevian
       ::pointer < SCENE> create_scene(const ::scoped_string& scopedstrName)
       {
 
-         auto pscene = øcreate_new < SCENE>();
+         auto pscene = create_newø < SCENE>();
 
          pscene->m_strSceneName = scopedstrName;
 

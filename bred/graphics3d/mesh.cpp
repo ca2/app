@@ -110,7 +110,7 @@ namespace graphics3d
    void mesh::SetupMesh() 
    {
 
-      //ødefer_construct(m_pmodel);
+      //defer_constructø(m_pmodel);
 
       //::graphics3d::model_data<Vertex> data;
 

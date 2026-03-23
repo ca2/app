@@ -569,7 +569,7 @@ namespace core
    //{
 
    //   return nullptr;
-   //   //auto pbox = pparticle->øcreate_new < class ::userex::message_box >();
+   //   //auto pbox = pparticle->create_newø < class ::userex::message_box >();
 
    //   ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
@@ -601,7 +601,7 @@ namespace core
 
    //   return nullptr;
 
-   //   //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
+   //   //auto pbox = pparticle->create_newø < ::userex::message_box >();
 
    //   //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
@@ -736,7 +736,7 @@ namespace core
 
    //   //__UNREFERENCED_PARAMETER(puiOwner);
 
-   //   //auto pbox = pparticle->øcreate_new < ::userex::message_box >();
+   //   //auto pbox = pparticle->create_newø < ::userex::message_box >();
 
    //   //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
@@ -1027,7 +1027,7 @@ namespace core
 
    //   //}
 
-   //   auto prequest = ::øcreate_new < ::request >(pparticle);
+   //   auto prequest = ::create_newø < ::request >(pparticle);
 
    //   prequest->m_bMakeVisible = false;
 
@@ -1109,7 +1109,7 @@ namespace core
 
    //   }
 
-   //   auto prequest = ::øcreate_new < ::request > (pparticle);
+   //   auto prequest = ::create_newø < ::request > (pparticle);
 
    //   prequest->m_bMakeVisible = true;
 

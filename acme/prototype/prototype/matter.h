@@ -340,10 +340,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE> matter::øcreate(::factory::factory * pfactory)
+//inline ::pointer<TYPE> matter::createø(::factory::factory * pfactory)
 //{
 //
-//   return ::øcreate<TYPE>(this, pfactory);
+//   return ::createø<TYPE>(this, pfactory);
 //
 //}
 
@@ -402,10 +402,10 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //
 
 //template < typename TYPE >
-//inline ::pointer<TYPE>matter::øcreate_new()
+//inline ::pointer<TYPE>matter::create_newø()
 //{
 //
-//   return ::øcreate_new<TYPE>(this);
+//   return ::create_newø<TYPE>(this);
 //
 //}
 

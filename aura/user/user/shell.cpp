@@ -417,7 +417,7 @@ namespace user
          if (m_pimagelist[iSize].is_null())
          {
 
-            m_pimagelist[iSize] = øcreate_new < ::image::image_list >();
+            m_pimagelist[iSize] = create_newø < ::image::image_list >();
             m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
@@ -431,7 +431,7 @@ namespace user
          if (m_pimagelistHover[iSize].is_null())
          {
 
-            m_pimagelistHover[iSize] = øcreate_new < ::image::image_list >();
+            m_pimagelistHover[iSize] = create_newø < ::image::image_list >();
 
             m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
@@ -1783,11 +1783,11 @@ namespace user
 
       ::file::path path = m_papplication->defer_process_matter_path(pathIcon);
 
-      auto pwindowingicon = øcreate < windowing::icon >();
+      auto pwindowingicon = createø < windowing::icon >();
 
       pwindowingicon->load_file(path);
 
-      auto pdraw2dicon = øcreate < ::image::icon >();
+      auto pdraw2dicon = createø < ::image::icon >();
 
       pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
 

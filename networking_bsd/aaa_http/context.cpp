@@ -121,7 +121,7 @@ namespace http
    void context::_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      auto pmessage = øcreate_new < ::http::message >();
+      auto pmessage = create_newø < ::http::message >();
 
       pmessage->m_ppropertyset = &set;
 
@@ -635,7 +635,7 @@ namespace http
             m_mapPac.erase_key(scopedstrUrl);
          }
 
-         auto ppac = øcreate_new < class pac >();
+         auto ppac = create_newø < class pac >();
 
          ppac->m_durationLastChecked= ::duration::now();
 
@@ -712,7 +712,7 @@ namespace http
             m_mapPac.erase_key(scopedstrUrl);
          }
 
-         auto pproxy = øcreate_new < class ::http::context::proxy >();
+         auto pproxy = create_newø < class ::http::context::proxy >();
 
          pproxy->m_durationLastChecked= ::duration::now();
 
@@ -1957,7 +1957,7 @@ namespace http
       if (!psockethandler)
       {
 
-         psockethandler = øcreate_new < ::sockets::socket_handler >();
+         psockethandler = create_newø < ::sockets::socket_handler >();
 
          psocket->initialize_socket(psockethandler);
 
@@ -2596,7 +2596,7 @@ namespace http
 
       pmessage->get_property_set() = process_set(*pmessage->m_ppropertyset, pmessageMessage->m_strUrl);
 
-      auto phandler = øcreate_new < ::sockets::socket_handler >();
+      auto phandler = create_newø < ::sockets::socket_handler >();
 
       ::property_set & set = pmessage->get_property_set();
 
@@ -2676,7 +2676,7 @@ namespace http
    bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, ::property_set & set)
    {
 
-      auto phandler = øcreate_new < ::sockets::socket_handler >();
+      auto phandler = create_newø < ::sockets::socket_handler >();
 
       ::pointer<::sockets::http_client_socket>psocket;
 
@@ -2749,7 +2749,7 @@ namespace http
 
          synchronouslock.unlock();
 
-         auto phandler = øcreate_new < ::sockets::socket_handler >();
+         auto phandler = create_newø < ::sockets::socket_handler >();
 
          set["only_headers"] = true;
 

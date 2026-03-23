@@ -59,7 +59,7 @@ namespace httpd
    ::pointer <::sockets::socket_handler > incoming_socket_thread::create_socket_handler()
    {
 
-      return øcreate< ::sockets::socket_handler >();
+      return createø< ::sockets::socket_handler >();
 
    }
 

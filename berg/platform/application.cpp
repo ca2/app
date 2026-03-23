@@ -84,7 +84,7 @@ namespace berg
    ::pointer < ::data::data > application::create_default_new_document_data()
    {
 
-      auto pdataNewDocument = øcreate_new < ::data::data >();
+      auto pdataNewDocument = create_newø < ::data::data >();
 
       return pdataNewDocument;
 
@@ -184,7 +184,7 @@ namespace berg
    void application::on_file_manager_open(::filemanager::data* pdata, const ::file::item_array& itema, const ::action_context& action_context)
    {
 
-      auto prequest = øcreate_new<::request>();
+      auto prequest = create_newø<::request>();
 
       if (itema.get_size() == 1)
       {
@@ -290,7 +290,7 @@ namespace berg
 
          auto & pfactory = system()->factory(strLibrary);
 
-         auto pformhandler = øcreate<::user::form_handler>(pfactory);
+         auto pformhandler = createø<::user::form_handler>(pfactory);
 
          pformhandler->design_form(pparent);
 
@@ -443,7 +443,7 @@ namespace berg
       else
       {
 
-         auto pitemNewChild = øcreate_new<::menu::item>();
+         auto pitemNewChild = create_newø<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
          pitemNewChild->id() = "separator";
          pmenu->m_pmenuitem->add_item(pitemNewChild);
@@ -455,7 +455,7 @@ namespace berg
 
       {
 
-         auto pitemNewChild = øcreate_new<::menu::item>();
+         auto pitemNewChild = create_newø<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
          pitemNewChild->id() = "display_about";
          pitemNewChild->m_strTitle = "About";

@@ -249,7 +249,7 @@ void object::process_exit_status(const ::e_status & estatus)
     ::thread_pointer object::launch(const ::procedure & procedure)
     {
 
-       auto pthread = øcreate_new < ::thread >();
+       auto pthread = create_newø < ::thread >();
 
        pthread->m_pmatter = routine;
 
@@ -388,19 +388,19 @@ void object::process_exit_status(const ::e_status & estatus)
    //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
-   //inline ::pointer<BASE_TYPE>øcreate();
+   //inline ::pointer<BASE_TYPE>createø();
 
    //template < typename BASE_TYPE >
    //inline ::pointer<BASE_TYPE>øcreate_by_type(const ::atom& atom);
 
    //template < typename TYPE >
-   //inline ::pointer<TYPE>øcreate_new();
+   //inline ::pointer<TYPE>create_newø();
 
    //inline void constructø(::pointer<::image::image>& pimage);
 
    //inline void constructø(::pointer<::image::image>& pimage, ::image::image *pimageSource);
 
-   //inline void ødefer_construct(::pointer<::image::image>& pimage) { return !pimage ? constructø(pimage) : void(::success); }
+   //inline void defer_constructø(::pointer<::image::image>& pimage) { return !pimage ? constructø(pimage) : void(::success); }
 
    // for composition (ownership)
 
@@ -435,7 +435,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
    //template < typename BASE_TYPE >
-   //inline void ødefer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? constructø(pusermessage) : void(::success); }
+   //inline void defer_constructø(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? constructø(pusermessage) : void(::success); }
 
    //template < typename BASE_TYPE >
    //inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? øconstruct_by_id(pusermessage) : void(::success); }
@@ -444,7 +444,7 @@ void object::process_exit_status(const ::e_status & estatus)
    //inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
 
    //template < typename TYPE >
-   //inline void ødefer_construct_new(::pointer<TYPE> ptype) { return !ptype ? construct_newø(ptype) : void(::success); }
+   //inline void defer_construct_newø(::pointer<TYPE> ptype) { return !ptype ? construct_newø(ptype) : void(::success); }
 
 
 

@@ -119,7 +119,7 @@ namespace networking_bsd
 //
 //      ::pointer < ::item_array > pitema;
 //
-//      ødefer_construct_new(pitema);
+//      defer_construct_newø(pitema);
 //
 //      char line[500]; // Read with fgets().
 //      char ip_address[500]; // Obviously more space than necessary, just illustrating here.
@@ -169,7 +169,7 @@ namespace networking_bsd
 
       ::pointer < ::item_array > pitema;
 
-      ødefer_construct_new(pitema);
+      defer_construct_newø(pitema);
 
 //      char line[500]; // Read with fgets().
 //      char ip_address[500]; // Obviously more space than necessary, just illustrating here.

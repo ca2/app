@@ -76,7 +76,7 @@ namespace user
    ::user::document * server::open_data(::data::data * pdata, bool bMakeVisible, ::user::interaction * puiParent, e_window_flag eflag, ::atom atom)
    {
 
-      auto prequest = pdata->øcreate_new< ::request>();
+      auto prequest = pdata->create_newø< ::request>();
 
       ::payload payloadOptions;
 
@@ -96,7 +96,7 @@ namespace user
    ::user::document* server::open_document_file(::platform::application * pappOnBehalfOf, ::payload payloadFile, bool bMakeVisible, ::user::interaction* puiParent, e_window_flag eflag, ::atom atom)
    {
 
-      auto prequest = pappOnBehalfOf->øcreate_new< ::request>();
+      auto prequest = pappOnBehalfOf->create_newø< ::request>();
 
       prequest->m_ecommand = e_command_file_open;
 
@@ -121,7 +121,7 @@ namespace user
       //   ::e_type_null,
       //   true,
       //   pimpactdata->m_pplaceholder);
-      auto prequest = pimpactdata->m_pplaceholder->get_app()->øcreate_new< ::request>();
+      auto prequest = pimpactdata->m_pplaceholder->get_app()->create_newø< ::request>();
 
       ::payload payloadOptions;
 

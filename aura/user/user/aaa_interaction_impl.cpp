@@ -993,7 +993,7 @@ namespace user
       if (bNewOwnThread)
       {
 
-         puserthread = øcreate_new<::user::thread>();
+         puserthread = create_newø<::user::thread>();
 
          m_puserthread = puserthread;
 
@@ -1029,7 +1029,7 @@ namespace user
       if (bProdevianThread && m_puserinteraction->is_graphical())
       {
 
-         pgraphicsthread = øcreate_new<::user::graphics_thread>();
+         pgraphicsthread = create_newø<::user::graphics_thread>();
 
          m_pgraphicsthread = pgraphicsthread;
 
@@ -4467,7 +4467,7 @@ namespace user
          if (m_redrawitema.is_empty())
          {
 
-            auto predrawitem = øcreate_new<redraw_item>();
+            auto predrawitem = create_newø<redraw_item>();
 
             if (function)
             {
@@ -4505,7 +4505,7 @@ namespace user
 
       }
 
-      auto predrawitem = øcreate_new<redraw_item>();
+      auto predrawitem = create_newø<redraw_item>();
 
       predrawitem->m_rectanglea.append(rectangleaHostNeedRedraw);
 
@@ -6173,7 +6173,7 @@ namespace user
 
                synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               if (pgraphics->ødefer_construct_new(pgraphics->m_puserredraw))
+               if (pgraphics->defer_construct_newø(pgraphics->m_puserredraw))
                {
 
                   if (system()->draw2d()->graphics_context_does_full_redraw())

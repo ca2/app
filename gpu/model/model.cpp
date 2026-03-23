@@ -219,7 +219,7 @@ namespace gpu
 
          }
 
-         // auto ptexture = øcreate<::gpu::texture>();
+         // auto ptexture = createø<::gpu::texture>();
          //
          information() << "Process material: " << scopedstr;
 

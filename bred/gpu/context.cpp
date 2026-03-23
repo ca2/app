@@ -153,7 +153,7 @@ namespace gpu
                throw ::exception(error_null_pointer);
             }
 
-            ødefer_construct(m_pcpubuffer);
+            defer_constructø(m_pcpubuffer);
 
             m_pcpubuffer->initialize_cpu_buffer(this);
 
@@ -379,7 +379,7 @@ namespace gpu
    ::pointer<::gpu::texture> context::create_empty_texture()
    {
 
-      auto ptextureEmpty = øcreate<::gpu::texture>();
+      auto ptextureEmpty = createø<::gpu::texture>();
 
       ::int_rectangle rectangleSize(API_CHANGED_ARGUMENT, 1, 1);
 
@@ -399,7 +399,7 @@ namespace gpu
    void context::load_texture(::pointer<::gpu::texture> &ptexture, const ::file::path &path, bool bIsSrgb)
    {
 
-      if (ødefer_construct(ptexture))
+      if (defer_constructø(ptexture))
       {
 
          ptexture->initialize_texture_from_file_path(this, path, bIsSrgb);
@@ -459,7 +459,7 @@ namespace gpu
 
       throw interface_only();
 
-      // if (ødefer_construct(ptexture))
+      // if (defer_constructø(ptexture))
       // {
       //
       //    ptexture->initialize_image_texture(m_pgpurenderer, path);
@@ -1009,7 +1009,7 @@ namespace gpu
 
       ::pointer < command_buffer > pcommandbuffer;
 
-      ødefer_construct(pcommandbuffer);
+      defer_constructø(pcommandbuffer);
 
       pcommandbuffer->initialize_command_buffer(m_pgpurenderer->render_target(), 
          pqueue,
@@ -1320,7 +1320,7 @@ namespace gpu
    //bool context::defer_construct_new(::pointer < ::gpu::memory_buffer >& pmemorybuffer, memsize size, memory_buffer::enum_type etype)
    //{
 
-   //   if (ødefer_construct(pmemorybuffer))
+   //   if (defer_constructø(pmemorybuffer))
    //   {
 
    //      pmemorybuffer->initialize_memory_buffer_with_conext(this, size, etype);
@@ -1765,7 +1765,7 @@ namespace gpu
    ::pointer<::gpu::input_layout> context::input_layout(const ::gpu::property *pproperties)
    {
 
-      auto pinputlayout = øcreate<::gpu::input_layout>();
+      auto pinputlayout = createø<::gpu::input_layout>();
 
       pinputlayout->initialize_input_layout(this, pproperties);
 
@@ -1937,7 +1937,7 @@ namespace gpu
          || (!(ppixmap = m_textureaAtlas.last()->create_gpu_pixmap(size))))
       {
 
-         auto ptextureNewAtlas = øcreate<::gpu::texture >();
+         auto ptextureNewAtlas = createø<::gpu::texture >();
 
          ::gpu::texture_attributes textureattributes(::int_rectangle{API_CHANGED_ARGUMENT, 4096, 4096}); 
 
@@ -1991,7 +1991,7 @@ namespace gpu
 
          auto pgpurenderer = get_gpu_renderer();
 
-         ødefer_construct(m_pgpuswapchain);
+         defer_constructø(m_pgpuswapchain);
 
       }
 
@@ -2247,7 +2247,7 @@ namespace gpu
                               }
                            }
 
-                           if (ødefer_construct(m_gpusemaphoreaMergeLayersReady.ø(iFrameIndex)))
+                           if (defer_constructø(m_gpusemaphoreaMergeLayersReady.ø(iFrameIndex)))
                            {
 
                               m_gpusemaphoreaMergeLayersReady[iFrameIndex]->initialize_gpu_semaphore(this);
@@ -2305,7 +2305,7 @@ namespace gpu
                            pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
                         pcommandbuffer->begin_command_buffer(false);
-                        if (ødefer_construct(m_gpusemaphoreaPresentReady.ø(iFrameIndex)))
+                        if (defer_constructø(m_gpusemaphoreaPresentReady.ø(iFrameIndex)))
                         {
 
                            m_gpusemaphoreaPresentReady[iFrameIndex]->initialize_gpu_semaphore(this);
@@ -3243,7 +3243,7 @@ namespace gpu
    ::pointer < ::gpu::block > context::create_global_ubo1(const ::gpu::property * ppropertyProperties)
    {
 
-      auto pblock = øcreate<::gpu::block>();
+      auto pblock = createø<::gpu::block>();
 
       pblock->set_properties(ppropertyProperties);
 
@@ -3297,7 +3297,7 @@ namespace gpu
       if (!m_pmodelbufferDummy)
       {
 
-         ødefer_construct(m_pmodelbufferDummy);
+         defer_constructø(m_pmodelbufferDummy);
 
          m_pmodelbufferDummy->initialize_dummy_model(m_pgpurenderer, 3);
 
@@ -3347,7 +3347,7 @@ void main() {
 }
 )frag";
 
-            ødefer_construct(m_pshaderBlend3);
+            defer_constructø(m_pshaderBlend3);
 
             m_pshaderBlend3->m_bEnableBlend = true;
             //m_pshaderBlend3->m_bindingSampler.set();
@@ -3932,7 +3932,7 @@ void main() {
    ::pointer <::gpu::model_buffer> context::create_sequence2_uv_fullscreen_quad_model_buffer(::gpu::frame* pgpuframe)
    {
 
-      auto pmodelbufferFullscreenQuad = øcreate <::gpu::model_buffer>();
+      auto pmodelbufferFullscreenQuad = createø <::gpu::model_buffer>();
       
       pmodelbufferFullscreenQuad->sequence2_uv_create_fullscreen_quad(this);
    
@@ -4116,7 +4116,7 @@ return {};
       {
 
 
-         auto pshaderRgbaFromB_G = øcreate<::gpu::shader>();
+         auto pshaderRgbaFromB_G = createø<::gpu::shader>();
 
          // m_pshaderBlendRectangle->m_bDisableDepthTest = true;
          pshaderRgbaFromB_G->m_bDisableDepthTest = true;
@@ -4160,7 +4160,7 @@ return {};
       int h2 = pgputextureRoughness->height();
       ASSERT(w1 == w2 && h1 == h2);
 
-      auto pgputextureMetallicRoughness = øcreate<::gpu::texture>();
+      auto pgputextureMetallicRoughness = createø<::gpu::texture>();
       ::int_rectangle r(0, 0, w1, h1);
       ::gpu::texture_attributes textureattributes(r);
       textureattributes.m_iBitsPerChannel = 8;

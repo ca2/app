@@ -667,7 +667,7 @@ namespace dynamic_source
       if (!pinstance)
       {
 
-         pinstance = øcreate_new<fallback_script_instance>();
+         pinstance = create_newø<fallback_script_instance>();
 
       }
 

@@ -72,7 +72,7 @@
 
 
 //template < typename TYPE >
-//inline ::pointer<TYPE>property_object::øcreate_new()
+//inline ::pointer<TYPE>property_object::create_newø()
 //{
 //
 //   auto p = allocateø TYPE();

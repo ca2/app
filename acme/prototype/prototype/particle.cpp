@@ -144,7 +144,7 @@ void particle::defer_create_synchronization()
       //
       //#endif
 
-      set_synchronization(øcreate< ::mutex >(nullptr));
+      set_synchronization(createø< ::mutex >(nullptr));
 
    }
 
@@ -2673,7 +2673,7 @@ void particle::process_owned_procedure_list(::procedure_list_base& procedurelist
 memory_file_pointer particle::create_memory_file()
 {
 
-   return øcreate_new< ::memory_file >();
+   return create_newø< ::memory_file >();
 
 }
 

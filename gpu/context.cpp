@@ -68,7 +68,7 @@ namespace gpu_gpu
          m_pcommandbufferMain = beginSingleTimeCommands(m_pgpudevice->graphics_queue());
 
          // Pre-compute IBL stuff
-         auto piblequirectangularcubemap = øcreate<::gpu::ibl::equirectangular_cubemap>();
+         auto piblequirectangularcubemap = createø<::gpu::ibl::equirectangular_cubemap>();
 
          piblequirectangularcubemap->initialize_equirectangular_cubemap_with_hdr_on_memory(this, block);
 
@@ -121,7 +121,7 @@ namespace gpu_gpu
                                                    bool b32)
    {
    
-         auto ptexture = øcreate<::gpu::texture>();
+         auto ptexture = createø<::gpu::texture>();
    
          ptexture->m_pgpucontext = this;
 
@@ -201,7 +201,7 @@ namespace gpu_gpu
                                       bool bSrgb)
    {
 
-      ødefer_construct(ptexture);
+      defer_constructø(ptexture);
       ptexture->m_pgpucontext = this;
       ptexture->m_textureflags.m_bShaderResource = true;
 
@@ -318,7 +318,7 @@ namespace gpu_gpu
 
       //if (model.m_ecoordinatesystem)
 
-      auto pmodel = øcreate<::gpu::model::model>();
+      auto pmodel = createø<::gpu::model::model>();
 
       (*(::gpu::renderable_t *)pmodel) = model;
 

@@ -307,7 +307,7 @@ namespace graphics3d
 
          //VkcCamera camera(floating_sequence3(0.0f, 2.0f, -10.0f), .0f, 0.0f);
 
-         //auto viewerObject = øcreate <::graphics3d::scene_object>();
+         //auto viewerObject = createø <::graphics3d::scene_object>();
          //papp->m_pimpact->m_bLastMouse = true;
          //viewerObject->m_transform.translation.z = -2.5f;
          //m_transform.translation.z = -2.5f;

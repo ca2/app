@@ -469,7 +469,7 @@ bool path_system::is_symbolic_link(const ::scoped_string & scopedstrLink)
 ::pointer < ::file::item > path_system::file_item(const ::file::path & path)
 {
 
-   auto pfileitem = øcreate_new <::file::item>();
+   auto pfileitem = create_newø <::file::item>();
 
    pfileitem->set_user_path(path);
    //pfileitem->set_final_path(path);
@@ -604,7 +604,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
       }
 
-      auto plink = øcreate_new < ::file::link >();
+      auto plink = create_newø < ::file::link >();
 
       string strLink = stra[0];
 
@@ -702,7 +702,7 @@ bool path_system::is_absolute_path(const ::scoped_string & scopedstr)
 
 #else
 
-      auto plink = øcreate_new < ::file::link >();
+      auto plink = create_newø < ::file::link >();
       
       string strLink;
 

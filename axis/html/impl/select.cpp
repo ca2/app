@@ -79,7 +79,7 @@ namespace html
          if(pelement->m_phtmlbase->get_type() == ::html::base::type_tag && (!m_pcombo || !m_pcombo->is_window()))
          {
 
-            m_pcombo = øcreate_new < ::user::combo_box>();
+            m_pcombo = create_newø < ::user::combo_box>();
 
             m_pcombo->m_bMultiLine = false;
 

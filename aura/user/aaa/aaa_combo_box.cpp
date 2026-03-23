@@ -188,7 +188,7 @@ namespace user
 
       this->rectangle(rectangleX);
 
-      auto pbrush = øcreate < ::draw2d::brush > ();
+      auto pbrush = createø < ::draw2d::brush > ();
 
       if(m_bEdit)
       {
@@ -305,7 +305,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleDropIn);
 
-      auto ppath = øcreate < ::draw2d::path > ();
+      auto ppath = createø < ::draw2d::path > ();
 
       point_array pointa;
 

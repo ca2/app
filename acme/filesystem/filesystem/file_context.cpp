@@ -2810,7 +2810,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //   long long iLen;
 //   MD5_CTX ctx;
 //
-//   auto pfile2 = øcreate < ::file::file >();
+//   auto pfile2 = createø < ::file::file >();
 //
 //   memsize uRead;
 //
@@ -3338,7 +3338,7 @@ folder_pointer file_context::get_folder(::file::file * pfile, const ::scoped_str
 
    }
 
-   auto pfolder = øcreate < ::folder >(pfactory);
+   auto pfolder = createø < ::folder >(pfactory);
 
    if (!pfolder)
    {
@@ -3392,7 +3392,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   auto pdomain = øcreate_new < ::url_domain >();
+   auto pdomain = create_newø < ::url_domain >();
 
    pdomain->create(url.connect().host());
 
@@ -3528,7 +3528,7 @@ information() << "file_context::http_get_file pathCache = file://" << pathCache;
 
    }
 
-   auto defer_get = øcreate < ::nano::http::get >();
+   auto defer_get = createø < ::nano::http::get >();
 
    defer_get->m_url = url;
 
@@ -3928,7 +3928,7 @@ file_pointer file_context::_get_file(const ::payload & payloadFile, ::file::e_op
    if(scopedstrProtocol == "mediastore")
    {
 
-      auto pfile = øcreate_new < ::protocol_file >();
+      auto pfile = create_newø < ::protocol_file >();
 
       pfile->open(path, eopen, pfileexception);
 

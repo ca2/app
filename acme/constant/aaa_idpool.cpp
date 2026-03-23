@@ -25,7 +25,7 @@
 //   void idpool::init(::platform::system * psystem)
 //   {
 //
-//      auto pidpool = psystem->øcreate < idpool >();
+//      auto pidpool = psystem->createø < idpool >();
 //
 //      pidpool->increment_reference_count();
 //

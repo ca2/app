@@ -382,7 +382,7 @@ namespace user
 //   lresult frame_window::send_create_message()
 //   {
 //      
-//      auto pcreate = øcreate_new < ::message::create >();
+//      auto pcreate = create_newø < ::message::create >();
 //      
 //      pcreate->id() = ::user::e_message_create;
 //      

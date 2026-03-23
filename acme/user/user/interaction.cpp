@@ -376,7 +376,7 @@ namespace acme
       //void interaction::resize_to_fit()
       //{
 
-      //   auto pdevice = øcreate < ::nano::graphics::device >();
+      //   auto pdevice = createø < ::nano::graphics::device >();
 
       //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
 
@@ -1755,7 +1755,7 @@ namespace acme
    bool interaction::on_add_child(::acme::user::interaction *pacmeuserinteractionChild)
    {
       
-      ødefer_construct_new(m_pacmeuserinteractionaChildren);
+      defer_construct_newø(m_pacmeuserinteractionaChildren);
       
       auto &pacmeuserinteractionaChildren = m_pacmeuserinteractionaChildren;
 

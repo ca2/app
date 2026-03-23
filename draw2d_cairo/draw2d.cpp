@@ -314,7 +314,7 @@ return g_pdraw2dcairo;
 //
 //      auto bA = colorfilter.opacity().get_alpha();
 //
-//      auto pbrushText = øcreate < ::draw2d::brush > ();
+//      auto pbrushText = createø < ::draw2d::brush > ();
 //      pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
 //      pgraphics->set(pbrushText);
 //      pgraphics->set(pfont);

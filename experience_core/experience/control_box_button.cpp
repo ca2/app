@@ -260,7 +260,7 @@ namespace experience_core
       else
       {
 
-         auto pbrush = øcreate < ::draw2d::brush >();
+         auto pbrush = createø < ::draw2d::brush >();
 
          if (pbrush && pgraphics->get_current_pen())
          {
@@ -271,7 +271,7 @@ namespace experience_core
 
          pgraphics->set(pbrush);
 
-         auto ppen = øcreate < ::draw2d::pen > ();
+         auto ppen = createø < ::draw2d::pen > ();
 
          ppen->create_solid(1.0f, ::color::white);
 

@@ -89,43 +89,43 @@ namespace experience_nanoui
       if (strSchema == "001")
       {
 
-         return øcreate_new< ::experience_nanoui::frame_001 >();
+         return create_newø< ::experience_nanoui::frame_001 >();
 
       }
       else if (strSchema == "002")
       {
 
-         return øcreate_new< ::experience_nanoui::frame_002 >();
+         return create_newø< ::experience_nanoui::frame_002 >();
 
       }
       else if (strSchema == "005")
       {
 
-         return øcreate_new< ::experience_nanoui::frame_005 >();
+         return create_newø< ::experience_nanoui::frame_005 >();
 
       }
       else if (strSchema == "008")
       {
 
-         return øcreate_new< ::experience_nanoui::frame_008 >();
+         return create_newø< ::experience_nanoui::frame_008 >();
 
       }
       else if (strSchema == "011")
       {
 
-         return øcreate_new< ::experience_nanoui::frame_011 >();
+         return create_newø< ::experience_nanoui::frame_011 >();
 
       }
       else if (strSchema == "013")
       {
 
-         return øcreate_new< ::experience_nanoui::frame_013 >();
+         return create_newø< ::experience_nanoui::frame_013 >();
 
       }
       else if (strSchema == "Minimal001")
       {
 
-         return øcreate_new< ::experience_nanoui::frame_Minimal001 >();
+         return create_newø< ::experience_nanoui::frame_Minimal001 >();
 
       }
 

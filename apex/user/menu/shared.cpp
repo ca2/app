@@ -48,7 +48,7 @@
 //
 //   int iCount = (int) straParent.get_count();
 //
-//   auto pmenushared = pparticle->øcreate_new < menu_shared >();
+//   auto pmenushared = pparticle->create_newø < menu_shared >();
 //
 //   pmenushared->m_iCount = iCount;
 //   pmenushared->m_ppszParent = alloc_c_string_array(straParent);

@@ -336,7 +336,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
    //bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
    //{
 
-   //   auto pcreateNew = øcreate_new < ::create >();
+   //   auto pcreateNew = create_newø < ::create >();
 
    //   pcreateNew->m_payloadFile = pszPathName;
 
@@ -1791,15 +1791,15 @@ return m_psavings;
       //if (!m_pfsdata)
       //{
 
-      //   auto pset = øcreate_new<::fs::set>();
+      //   auto pset = create_newø<::fs::set>();
 
-      //   auto plink = øcreate_new < ::fs::link>();
+      //   auto plink = create_newø < ::fs::link>();
 
       //   plink->fill_os_user();
 
       //   pset->m_spafsdata.add(plink);
 
-      //   pset->m_spafsdata.add(øcreate_new < ::fs::native>());
+      //   pset->m_spafsdata.add(create_newø < ::fs::native>());
 
       //   estatus = constructø(m_pfsdata, pset);
 

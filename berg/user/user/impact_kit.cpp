@@ -11,7 +11,7 @@ namespace user
    void impact_kit::add_impact_item(const ::atom & atom, const ::scoped_string & scopedstrTitle, ::user::impact_creator * pimpactcreator)
    {
 
-      auto pitem = øcreate_new < item >();
+      auto pitem = create_newø < item >();
 
       pitem->id() = atom;
 

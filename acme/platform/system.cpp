@@ -34,8 +34,10 @@
 #include "acme/operating_system/dynamic_library.h"
 #include "acme/operating_system/file.h"
 #include "acme/operating_system/process.h"
+#include "acme/operating_system/summary.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
+#include "acme/platform/node.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/prototype/prototype.h"
@@ -52,6 +54,12 @@
 #include "prototype/string/_str.h"
 //#include "acme/user/user/conversation.h"
 
+#if defined(LINUX)
+
+bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
+::string_array_base debian_not_installed_packages(const ::string_array_base & straPackageNames);
+
+#endif
 
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
@@ -4660,6 +4668,52 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::install_progress_add_up(int iAddUp)
    {
 
+
+   }
+
+
+   bool system::is_operating_system_package_installed(const ::scoped_string & scopedstrPackageName)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return debian_is_package_installed(scopedstrPackageName);
+
+      }
+
+#endif
+
+      return false;
+
+   }
+
+
+   ::string_array_base system::not_installed_operating_system_packages(const ::string_array_base & straPackageNames)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return ::transfer(debian_not_installed_packages(straPackageNames));
+
+      }
+
+#endif
+
+      return straPackageNames;
 
    }
 

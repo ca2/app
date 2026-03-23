@@ -659,8 +659,10 @@ namespace platform
       virtual ::file::path local_get_matter_path() override;
       virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
-      virtual void install_progress_add_up(int iAddUp = 1) override;
 
+      virtual void install_progress_add_up(int iAddUp = 1) override;
+      virtual bool is_operating_system_package_installed(const ::scoped_string & scopedstrPackageName);
+      virtual ::string_array_base not_installed_operating_system_packages(const ::string_array_base & straPackageNames);
 
       virtual ::string get_application_server_name() override;
 

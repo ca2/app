@@ -58,6 +58,7 @@
 
 bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 ::string_array_base debian_not_installed_packages(const ::string_array_base & straPackageNames);
+::string debian_install_packages_command_line(const ::string_array_base & straPackageNames);
 
 #endif
 
@@ -4714,6 +4715,29 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #endif
 
       return straPackageNames;
+
+   }
+
+
+   ::string system::install_operating_system_packages_command_line(const ::string_array_base & straPackageNames)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return ::transfer(debian_install_packages_command_line(straPackageNames));
+
+      }
+
+#endif
+
+      return "echo \"Unknown command line for installing operating packages.\"";
 
    }
 

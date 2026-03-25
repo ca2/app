@@ -101,3 +101,18 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName)
 }
 
 
+::string debian_install_packages_command_line(const ::string_array_base & straPackageNames)
+{
+
+    auto strPackages = straPackageNames.implode(" ");
+
+    ::string strCommandLine;
+
+    strCommandLine.format("sudo apt -y install {}", strPackages);
+
+    return strCommandLine;
+
+}
+
+
+

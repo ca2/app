@@ -905,7 +905,7 @@ namespace windows
 } // namespace windows
 
 
-void integration_library_factory(::factory::factory* pfactory)
+void coding_factory(::factory::factory* pfactory)
 {
 
    pfactory->add_factory_item<::windows::coding::integration, ::coding::integration>();

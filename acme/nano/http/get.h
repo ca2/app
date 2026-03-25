@@ -30,6 +30,8 @@ namespace nano
 
          ::url::url                    m_url;
 
+         ::string                      m_strUserAgent;
+
          //::property_set                m_setIn;
 
          //::property_set                m_setOut;
@@ -50,6 +52,7 @@ namespace nano
          auto& url() {return m_url; }
 
          virtual void set_out_header(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrPayload);
+         //virtual void set_out_headers(const ::scoped_string & scopedstrOutHeaders);
          
          virtual void set_response(long http_status, const void * data, long size);
          virtual void append_response(const void * data, long size);
@@ -62,6 +65,7 @@ namespace nano
          virtual void run() override;
          void want_memory_response(memory_base * pusermessage = nullptr);
          void want_string_response();
+         bool does_want_memory_response();
 
          memory_pointer get_memory_response();
          string get_string_response();

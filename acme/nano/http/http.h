@@ -43,18 +43,21 @@ namespace nano
          //
          //virtual void async(::nano::http::get * defer_get);
 
-         virtual void perform(::nano::http::get * defer_get) override;
+         virtual void perform(::nano::http::get * pnanohttpget) override;
 
 
          // Follow redirects and find final resource.
-         virtual ::url::url get_effective_url(const ::url::url & url) override;
+         virtual ::url::url get_effective_url(const ::url::url & url, ::property_set & set) override;
 
-         virtual bool check_url_ok(const ::url::url & url);
+         virtual bool check_url_ok(const ::url::url & url, ::property_set & set);
 
-         virtual ::string get(const ::url::url & url);
+         virtual ::string get(const ::url::url & url, ::property_set & set);
 
-         virtual void download(const ::file::path & path, const ::url::url & url);
+         virtual ::memory as_memory(const ::url::url & url, ::property_set & set);
 
+         void download(const ::payload& payloadFile, const ::url::url& url, ::property_set & set,
+                            const class ::time& timeTimeout = 5_h) override;
+         virtual void download(const ::file::path & pathFile, const ::url::url & url, ::property_set & set);
 
       };
       

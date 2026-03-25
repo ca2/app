@@ -78,7 +78,7 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${library_references} ${global_library_references})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES} ${static_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
     message(STATUS "(9) PKGCONFIG_LIBRARIES is " ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 

@@ -4,6 +4,8 @@
 // camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
 // From acme/nano/dynamic_library on 2024-06-02 18:06 by camilo <3ThomasBorregaardSorensen!!
 #include "framework.h"
+
+#if !defined(CUBE)
 #include "dynamic_library_dl.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/_operating_system.h"
@@ -365,3 +367,6 @@ namespace operating_system
 
 
 } // namespace operating_system
+
+
+#endif

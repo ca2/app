@@ -16,24 +16,25 @@
 //#include "summary.h"
 //#include "tab_impact.h"
 //#include "task_group.h"
-#include "coding.h"
+//#include "coding.h"
 //#include "install_impact_interface.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/operating_system/summary.h"
 #include "acme/platform/http.h"
 #include "acme/platform/node.h"
 #include "acme/platform/scoped_restore.h"
-#include "apex/database/stream.h"
-#include "apex/filesystem/fs/folder_sync.h"
+//#include "apex/database/stream.h"
+//#include "apex/filesystem/fs/folder_sync.h"
 //#include "berg/user/user/single_document_template.h"
 //#include "berg/user/simple/tab_document.h"
 #include "dropbox/_.h"
 #include "dropbox/dropbox.h"
 
-void integration_library_factory(::factory::factory * pfactory);
+//void coding_factory(::factory::factory * pfactory);
 #define TEST_DATA_LOCAL 1
 bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 ::string_array_base debian_not_installed_packages(const ::string_array_base & straPackages);
@@ -59,11 +60,12 @@ namespace coding
       m_bFirstFolderSetupDetection = true;
 
       m_bWinRT = false;
-
       //m_eapplication = e_application_none;
 
       m_bJustInstalledDropbox = false;
       m_bJustCreatedDropboxFolder = false;
+
+      m_strBrowser = "chrome";
 
 #if INTEGRATION_INTEGRATION_HAS_AUDIO
 
@@ -151,17 +153,17 @@ namespace coding
    //
    // }
 
-
-   ::atom application::current_fs_folder_sync_provider()
-   {
-
-#if defined(WINDOWS)
-      return "onedrive";
-#else
-      return "dropbox";
-#endif
-
-   }
+//
+//    ::atom application::current_fs_folder_sync_provider()
+//    {
+//
+// #if defined(WINDOWS)
+//       return "onedrive";
+// #else
+//       return "dropbox";
+// #endif
+//
+//    }
 
 
 
@@ -177,22 +179,22 @@ namespace coding
 
    }
 
-
-
-   ::fs::folder_sync* application::current_fs_folder_sync()
-   {
-
-      return fs_folder_sync(current_fs_folder_sync_provider());
-
-   }
-
-
-   ::file::path application::cloud_folder()
-   {
-
-      return current_fs_folder_sync()->m_pathProtocol;
-
-   }
+   //
+   //
+   // ::fs::folder_sync* application::current_fs_folder_sync()
+   // {
+   //
+   //    return fs_folder_sync(current_fs_folder_sync_provider());
+   //
+   // }
+   //
+   //
+   // ::file::path application::cloud_folder()
+   // {
+   //
+   //    return current_fs_folder_sync()->m_pathProtocol;
+   //
+   // }
 
 
    void application::init_instance()
@@ -207,14 +209,14 @@ namespace coding
       //factory()->add_factory_item <::coding::integration >();
       //factory()->add_factory_item <::coding::summary >();
       
-      integration_library_factory(factory());
+      //coding_factory(factory());
       
       
       //factory()->add_factory_item <::integration_integration::options_impact >();
 
       //safactory()->add_factory_item < ::coding::options_impact_handler, ::user::options_impact_handler >();
 
-      ::apex::application::init_instance();
+      ::platform::application::init_instance();
 
       m_strDnsSuffix = ".camilothomas.com";
       //
@@ -250,7 +252,7 @@ namespace coding
    void application::term_application()
    {
 
-      ::apex::application::term_application();
+      ::platform::application::term_application();
 
    }
 
@@ -721,9 +723,6 @@ namespace coding
    //}
 
 
-
-
-
    bool application::__is_smart_git_installed()
    {
 
@@ -741,6 +740,64 @@ namespace coding
 
    }
 
+
+   string application::__smart_git_download_url()
+   {
+
+      auto pathUrl = fetch_download_link("linux/smartgit");
+
+      print_line("syntevo Smart Git download url : " + pathUrl);
+
+      return pathUrl;
+
+   }
+
+
+   void application::__download_smart_git()
+   {
+
+      ::file::path pathSource = __smart_git_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathSmartGitTarGz = pathTarget;
+
+   }
+
+
+   void application::__install_smart_git()
+   {
+
+      __download_smart_git();
+
+      print_line("Uncompressing syntevo Smart Git...");
+
+      auto pathSyntevo = directory_system()->home() / "application_opt/syntevo";
+
+      directory_system()->create(pathSyntevo);
+
+      node()->posix_shell_command("tar -xzvf \""+ m_pathSmartGitTarGz + "\" -C \"" + pathSyntevo + "\"",
+         e_posix_shell_system_default,
+   [this](auto etracelevel, auto & str, bool bCarriage)
+      {
+
+         print_line(str);
+
+      });
+
+      print_line("Installing syntevo Smart Git...");
+
+      node()->posix_shell_command(pathSyntevo / "smartgit/bin/add-menuitem.sh");
+
+      node()->detached_command("/bin/bash -c " + (pathSyntevo / "smartgit/bin/smartgit.sh"), {});
+
+   }
 
 
    bool application::__is_git_credential_manager_installed()
@@ -1085,6 +1142,62 @@ namespace coding
    }
 
 
+   string application::__google_chrome_download_url()
+   {
+
+      ::file::path pathUrl;
+
+      auto psummary = node()->operating_system_summary();
+
+      if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
+      {
+         pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb";
+      }
+      else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
+      {
+         pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm";
+      }
+
+      return pathUrl;
+
+   }
+
+
+   void application::__download_google_chrome()
+   {
+
+      ::file::path pathSource = __google_chrome_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathBrowserInstaller = pathTarget;
+
+   }
+
+
+   void application::__install_browser()
+   {
+
+      if (m_strBrowser == "chrome")
+      {
+
+         __download_google_chrome();
+
+         install_from_operating_system_package_file(m_pathBrowserInstaller);
+
+      }
+
+   }
+
+
+
+
    bool application::__is_google_chrome_installed()
    {
 
@@ -1113,6 +1226,89 @@ namespace coding
       return bInstalled;
 
    }
+
+   string application::__visual_studio_code_download_url()
+   {
+
+      ::file::path pathUrl;
+
+      auto psummary = node()->operating_system_summary();
+
+      if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
+      {
+
+         ::string strRedirectingUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
+
+         ::property_set set;
+
+         pathUrl = http()->get_effective_url(strRedirectingUrl, set).as_string();
+
+      }
+      else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
+      {
+
+         ::string strRedirectingUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
+
+         ::property_set set;
+
+         pathUrl = http()->get_effective_url(strRedirectingUrl, set).as_string();
+
+      }
+
+      return pathUrl;
+
+   }
+
+
+   void application::__download_visual_studio_code()
+   {
+
+      ::file::path pathSource = __visual_studio_code_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathVisualStudioCode = pathTarget;
+
+   }
+
+
+   void application::__install_visual_studio_code()
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
+      {
+
+         __download_visual_studio_code();
+
+         install_from_operating_system_package_file(m_pathVisualStudioCode);
+
+      }
+      else
+      {
+      }
+
+   }
+
+
+   void application::install_from_operating_system_package_file(const::file::path & pathPackageFile)
+   {
+
+      auto strCommandLine = system()->install_operating_system_packages_command_line({pathPackageFile});
+
+      node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+
+
+   }
+
+
 
 
 #ifdef MACOS
@@ -1434,6 +1630,15 @@ namespace coding
    }
 
 
+   string application::current_repository()
+   {
+
+
+      return m_strRepository;
+
+   }
+
+
    bool application::_is_simple_repository_installed()
    {
 
@@ -1694,7 +1899,7 @@ namespace coding
       case     e_install_browser:
          return m_strBrowser;
       case     e_install_repositories:
-         return m_propertyRepository.get_property().as_atom();
+         return m_strRepository;
       case     e_install_visual_studio_code:
          return "visual_studio_code";
       case     e_install_deps:
@@ -1787,11 +1992,11 @@ namespace coding
          case e_install_xcode:
             return "Xcode";
       case     e_install_cloud_data_provider:
-         return m_propertyCloudDataProviderTitle.get_property().as_string();
+         return m_strCloudDataProviderTitle;
       case     e_install_browser:
-         return m_propertyBrowserTitle.get_property().as_string();
+         return m_strBrowserTitle;
       case     e_install_repositories:
-         return m_propertyRepositoryTitle.get_property().as_string();
+         return m_strRepositoryTitle;
       case     e_install_visual_studio_code:
          return "Visual Studio Code";
       case     e_install_deps:
@@ -1845,11 +2050,11 @@ namespace coding
          case     e_install_xcode:
             return "An excellent IDE for coding ca2 projects.";
       case     e_install_cloud_data_provider:
-         return m_propertyCloudDataProviderTitle.get_property().as_string();
+         return m_strCloudDataProviderTitle;
       case     e_install_browser:
-         return m_propertyBrowserTitle.get_property().as_string();
+         return m_strBrowserTitle;
       case     e_install_repositories:
-         return m_propertyRepositoryDescription.get_property().as_string();
+         return m_strRepositoryDescription;
       case     e_install_visual_studio_code:
          return "Visual Studio Code";
       case     e_install_deps:
@@ -1870,16 +2075,16 @@ namespace coding
       if (einstall == e_install_strawberry_perl)
       {
 
-         if (bJustInstalled)
-         {
-
-            auto pdocument = m_ptabimpact->get_document();
-
-            auto pintegration = pdocument->m_pintegration;
-            
-            pintegration->prepare_build();
-
-         }
+         // if (bJustInstalled)
+         // {
+         //
+         //    auto pdocument = m_ptabimpact->get_document();
+         //
+         //    auto pintegration = pdocument->m_pintegration;
+         //
+         //    pintegration->prepare_build();
+         //
+         // }
 
       }
 
@@ -1935,10 +2140,10 @@ namespace coding
 
 
 
-void application::defer_task_groups(::coding::integration* pintegration)
-{
-   
-}
+// void application::defer_task_groups(::coding::integration* pintegration)
+// {
+//
+// }
 
 } // namespace coding
 

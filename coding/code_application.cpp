@@ -20,14 +20,14 @@
 #include "acme/operating_system/process.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "apex/networking/http/context.h"
+#include "acme/nano/http/http.h"
 
-#include "apex/platform/node.h"
+#include "acme/platform/node.h"
 //#include "axis/user/user/line_layout.h"
 //#include "apex/platform/os_context.h"
 
 //#include "aura/node/windows/registry.h"
-#include "apex/platform/session.h"
+#include "acme/platform/session.h"
 //#include "aura/os/_os.h"
 //#include "aura/update.h"
 #include "code.h"
@@ -319,7 +319,7 @@ namespace coding
       // factory()->add_factory_item<::coding::impact>();
       // factory()->add_factory_item<::coding::tab_impact>();
 
-      ::apex::application::init_instance();
+      ::platform::application::init_instance();
 
       //if (!::aura::application::init_instance())
       //{
@@ -476,7 +476,7 @@ namespace coding
       // }
       //
       //
-      // auto repositoryOption = m_propertyRepository.get_property().as_atom();
+      // auto repositoryOption = m_strRepository;
       //
       // if (!m_atomaRepository.contains(repositoryOption))
       // {
@@ -1961,92 +1961,92 @@ namespace coding
 
 
 
-   void code_application::on_installed(::coding::enum_install einstall, bool bJustInstalled)
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      auto pinstall = code()->install_map()[einstall];
-
-      // if (pinstall->m_pinstallimpactinterface->is_selected())
-      // {
-      //
-      //    pinstall->m_pinstallimpactinterface->unselect();
-      //
-      // }
-
-      switch (einstall)
-      {
-      case ::coding::e_install_browser:
-         if(bJustInstalled)
-         {
-            if (m_strBrowser == "chrome")
-            {
-
-               node()->detached_command("google-chrome", {});
-
-            }
-            else if (m_strBrowser == "opera")
-            {
-
-
-            }
-
-            
-
-         }
-         break;
-      case ::coding::e_install_visual_studio_code:
-         if(bJustInstalled)
-         {
-
-            node()->detached_command("code", {});
-
-         }
-         break;
-      default:
-         break;
-
-      }
-
-      defer_release_install();
-
-   }
-
-
+   // void code_application::on_installed(::coding::enum_install einstall, bool bJustInstalled)
+   // {
+   //
+   //    _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //    auto pinstall = code()->install_map()[einstall];
+   //
+   //    // if (pinstall->m_pinstallimpactinterface->is_selected())
+   //    // {
+   //    //
+   //    //    pinstall->m_pinstallimpactinterface->unselect();
+   //    //
+   //    // }
+   //
+   //    switch (einstall)
+   //    {
+   //    case ::coding::e_install_browser:
+   //       if(bJustInstalled)
+   //       {
+   //          if (m_strBrowser == "chrome")
+   //          {
+   //
+   //             node()->detached_command("google-chrome", {});
+   //
+   //          }
+   //          else if (m_strBrowser == "opera")
+   //          {
+   //
+   //
+   //          }
+   //
+   //
+   //
+   //       }
+   //       break;
+   //    case ::coding::e_install_visual_studio_code:
+   //       if(bJustInstalled)
+   //       {
+   //
+   //          node()->detached_command("code", {});
+   //
+   //       }
+   //       break;
+   //    default:
+   //       break;
+   //
+   //    }
+   //
+   //    defer_release_install();
+   //
+   // }
 
 
-   ::e_status code_application::application_build_helper_initial_ambient_setup(bool bSystemNotifyIfNeeded)
-   {
-
-      auto pcodeInitialSetup = code(::coding::e_mode_initial_setup);
-
-      pcodeInitialSetup->m_strMainStatus = "Downloading application_build_helper...";
-
-      post_impact_redraw();
-
-      pcodeInitialSetup->m_strMainStatus = "Running application_build_helper --initial-ambient-setup ...";
-
-      post_impact_redraw();
-
-      ::string strOptions;
-
-      if (!bSystemNotifyIfNeeded)
-      {
-
-         strOptions = " --no-system-notify-even-if-needed";
-
-      }
-
-      node()->command_system(m_pathApplicationBuildHelper + " --initial-ambient-setup" + strOptions, 15_min);
-
-      preempt(2_s);
-
-      pcodeInitialSetup->m_strMainStatus = "Setting up coding ambient...";
-
-      return ::success;
-
-   }
+   //
+   //
+   // ::e_status code_application::application_build_helper_initial_ambient_setup(bool bSystemNotifyIfNeeded)
+   // {
+   //
+   //    auto pcodeInitialSetup = code(::coding::e_mode_initial_setup);
+   //
+   //    pcodeInitialSetup->m_strMainStatus = "Downloading application_build_helper...";
+   //
+   //    post_impact_redraw();
+   //
+   //    pcodeInitialSetup->m_strMainStatus = "Running application_build_helper --initial-ambient-setup ...";
+   //
+   //    post_impact_redraw();
+   //
+   //    ::string strOptions;
+   //
+   //    if (!bSystemNotifyIfNeeded)
+   //    {
+   //
+   //       strOptions = " --no-system-notify-even-if-needed";
+   //
+   //    }
+   //
+   //    node()->command_system(m_pathApplicationBuildHelper + " --initial-ambient-setup" + strOptions, 15_min);
+   //
+   //    preempt(2_s);
+   //
+   //    pcodeInitialSetup->m_strMainStatus = "Setting up coding ambient...";
+   //
+   //    return ::success;
+   //
+   // }
 
 
 
@@ -2164,265 +2164,265 @@ namespace coding
    //}
 
 
-   void code_application::defer_release_install()
-   {
+   // void code_application::defer_release_install()
+   // {
+   //
+   //    //m_pimpact->release_install("C:/simple/solution-windows/simple.sln");
+   //
+   //    //preempt(5_s);
+   //
+   //    bool bInstalling = is_installing();
+   //
+   //    if (m_bLastDeferReleaseInstallInstalling)
+   //    {
+   //
+   //       if (!bInstalling)
+   //       {
+   //
+   //          _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //          auto & installmap = code()->install_map();
+   //
+   //          // for (auto& pinstall : installmap.payloads())
+   //          // {
+   //          //
+   //          //    try
+   //          //    {
+   //          //
+   //          //       if (pinstall)
+   //          //       {
+   //          //
+   //          //          if (pinstall->m_pinstallimpactinterface)
+   //          //          {
+   //          //             pinstall->m_pinstallimpactinterface->enable_selection();
+   //          //          }
+   //          //
+   //          //       }
+   //          //
+   //          //
+   //          //
+   //          //    }
+   //          //    catch (...)
+   //          //    {
+   //          //
+   //          //
+   //          //    }
+   //          //
+   //          // }
+   //
+   //       }
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       if (bInstalling)
+   //       {
+   //
+   //          _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //          auto & installmap = code()->install_map();
+   //
+   //          // for (auto& pinstall : installmap.payloads())
+   //          // {
+   //          //
+   //          //    try
+   //          //    {
+   //          //
+   //          //       if (pinstall)
+   //          //       {
+   //          //
+   //          //          if (pinstall->m_pinstallimpactinterface)
+   //          //          {
+   //          //
+   //          //             pinstall->m_pinstallimpactinterface->disable_selection();
+   //          //
+   //          //          }
+   //          //
+   //          //       }
+   //          //
+   //          //    }
+   //          //    catch (...)
+   //          //    {
+   //          //
+   //          //
+   //          //    }
+   //          //
+   //          // }
+   //
+   //       }
+   //
+   //    }
+   //
+   //    m_bLastDeferReleaseInstallInstalling = bInstalling;
+   //
+   //    auto pcode = code(get_code_mode());
+   //
+   //    // if(pcode && pcode->m_pimpact)
+   //    // {
+   //    //
+   //    //    pcode->m_pimpact->defer_enable_release_install();
+   //    //
+   //    // }
+   //
+   //    bool bGitScmOk = is_installed(::coding::e_install_git_scm, true);
+   //
+   //    //bool bGitScmScheduled = is_install_selected(::coding::e_install_git_scm);
+   //
+   //    _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //    auto & installmap = code()->install_map();
+   //
+   //    auto pitemToolOs = installmap[::coding::e_install_tool_os];
+   //
+   //    // if (pitemToolOs)
+   //    // {
+   //    //
+   //    //    if (pitemToolOs->m_pinstallimpactinterface)
+   //    //    {
+   //    //
+   //    //       pitemToolOs->m_pinstallimpactinterface->enable_window(bGitScmOk || bGitScmScheduled);
+   //    //
+   //    //    }
+   //    //
+   //    // }
+   //
+   //    auto pitemAppSimple = installmap[::coding::e_install_repositories];
+   //
+   //    // if (pitemAppSimple && pitemAppSimple->m_pinstallimpactinterface)
+   //    // {
+   //    //
+   //    //    pitemAppSimple->m_pinstallimpactinterface->enable_window(bGitScmOk || bGitScmScheduled);
+   //    //
+   //    // }
+   //    //
+   //    // if (pcode && pcode->m_pimpact)
+   //    // {
+   //    //
+   //    //    pcode->m_pimpact->update_start_button();
+   //    //
+   //    // }
+   //
+   //
+   //    //      m_pimpact->parent_frame()->display(e_display_none);
+   //    //
+   //    //      m_pimpact->parent_frame()->set_need_redraw();
+   //    //
+   //    //      m_pimpact->parent_frame()->post_redraw();
+   //    //
+   //    //      task_sleep(8_s);
+   //    //
+   //    //      ::file::path path;
+   //    //
+   //    //#ifdef WINDOWS
+   //    //
+   //    //      path = "C:/simple/solution-windows/simple.sln";
+   //    //
+   //    //#else
+   //    //
+   //    //      path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
+   //    //
+   //    //#endif
+   //    //
+   //    //      //path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
+   //    //
+   //    //      for(int iTry = 0; iTry < 6; iTry++)
+   //    //      {
+   //    //
+   //    //         preempt(3_s);
+   //    //
+   //    //         if (iTry % 2 == 0)
+   //    //         {
+   //    //
+   //    //            auto p = message_box("There maybe a prompt for which program to open simple.sln.\n\n\"Visual Studio Version selector\" is good default choice as it generally selects Visual Studio of same version as the one used to edit project/solution file being opened.", "Prompt for selecting application for opening simple.sln", e_message_box_ok);
+   //    //
+   //    //            p->do_synchronously();
+   //    //
+   //    //            preempt(2_s);
+   //    //
+   //    //         }
+   //    //
+   //    //         try
+   //    //         {
+   //    //
+   //    //            node()->file_open(path);
+   //    //
+   //    //            break;
+   //    //
+   //    //         }
+   //    //         catch (...)
+   //    //         {
+   //    //
+   //    //
+   //    //         }
+   //    //
+   //    //      }
+   //    //
+   //    //      //auto p = message_box("Git is installed", "Git is installed", e_message_box_ok);
+   //    //
+   //    ////p->do_synchronously();
+   //    //
+   //    //
+   //    //      class ::time tickStart;
+   //    //
+   //    //      tickStart.Now();
+   //    //
+   //    //      while (tickStart.elapsed() < 3_min)
+   //    //      {
+   //    //
+   //    //         if (has_visible_top_level_window_named_simple__microsoft_visual_studio())
+   //    //         {
+   //    //
+   //    //            break;
+   //    //
+   //    //         }
+   //    //
+   //    //      }
+   //    //
+   //    //      task_sleep(10_s);
+   //    //
+   //    //      visual_studio_select_project(acmesystem(), "ca2project://source/simple/app-simple/drawing");
+   //    //
+   //    //      task_sleep(2_s);
+   //    //
+   //    //      visual_studio_select_configuration_platform(acmesystem(), "Debug", "x64");
+   //    //
+   //    //      task_sleep(5_s);
+   //    //
+   //    //      set_finish();
+   //
+   // }
 
-      //m_pimpact->release_install("C:/simple/solution-windows/simple.sln");
 
-      //preempt(5_s);
-
-      bool bInstalling = is_installing();
-
-      if (m_bLastDeferReleaseInstallInstalling)
-      {
-
-         if (!bInstalling)
-         {
-
-            _synchronous_lock synchronouslock(this->synchronization());
-
-            auto & installmap = code()->install_map();
-
-            // for (auto& pinstall : installmap.payloads())
-            // {
-            //
-            //    try
-            //    {
-            //
-            //       if (pinstall)
-            //       {
-            //
-            //          if (pinstall->m_pinstallimpactinterface)
-            //          {
-            //             pinstall->m_pinstallimpactinterface->enable_selection();
-            //          }
-            //
-            //       }
-            //
-            //
-            //
-            //    }
-            //    catch (...)
-            //    {
-            //
-            //
-            //    }
-            //
-            // }
-
-         }
-
-      }
-      else
-      {
-
-         if (bInstalling)
-         {
-
-            _synchronous_lock synchronouslock(this->synchronization());
-
-            auto & installmap = code()->install_map();
-
-            // for (auto& pinstall : installmap.payloads())
-            // {
-            //
-            //    try
-            //    {
-            //
-            //       if (pinstall)
-            //       {
-            //
-            //          if (pinstall->m_pinstallimpactinterface)
-            //          {
-            //
-            //             pinstall->m_pinstallimpactinterface->disable_selection();
-            //
-            //          }
-            //
-            //       }
-            //
-            //    }
-            //    catch (...)
-            //    {
-            //
-            //
-            //    }
-            //
-            // }
-
-         }
-
-      }
-
-      m_bLastDeferReleaseInstallInstalling = bInstalling;
-
-      auto pcode = code(get_code_mode());
-
-      // if(pcode && pcode->m_pimpact)
-      // {
-      //
-      //    pcode->m_pimpact->defer_enable_release_install();
-      //
-      // }
-
-      bool bGitScmOk = is_installed(::coding::e_install_git_scm, true);
-
-      bool bGitScmScheduled = is_install_selected(::coding::e_install_git_scm);
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      auto & installmap = code()->install_map();
-
-      auto pitemToolOs = installmap[::coding::e_install_tool_os];
-
-      // if (pitemToolOs)
-      // {
-      //
-      //    if (pitemToolOs->m_pinstallimpactinterface)
-      //    {
-      //
-      //       pitemToolOs->m_pinstallimpactinterface->enable_window(bGitScmOk || bGitScmScheduled);
-      //
-      //    }
-      //
-      // }
-
-      auto pitemAppSimple = installmap[::coding::e_install_repositories];
-
-      // if (pitemAppSimple && pitemAppSimple->m_pinstallimpactinterface)
-      // {
-      //
-      //    pitemAppSimple->m_pinstallimpactinterface->enable_window(bGitScmOk || bGitScmScheduled);
-      //
-      // }
-      //
-      // if (pcode && pcode->m_pimpact)
-      // {
-      //
-      //    pcode->m_pimpact->update_start_button();
-      //
-      // }
-
-
-      //      m_pimpact->parent_frame()->display(e_display_none);
-      //
-      //      m_pimpact->parent_frame()->set_need_redraw();
-      //
-      //      m_pimpact->parent_frame()->post_redraw();
-      //
-      //      task_sleep(8_s);
-      //
-      //      ::file::path path;
-      //
-      //#ifdef WINDOWS
-      //
-      //      path = "C:/simple/solution-windows/simple.sln";
-      //
-      //#else
-      //
-      //      path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
-      //
-      //#endif
-      //
-      //      //path = directory_system()->home() / "simple/solution-" OPERATING_SYSTEM_NAME "/simple.sln";
-      //
-      //      for(int iTry = 0; iTry < 6; iTry++)
-      //      {
-      //
-      //         preempt(3_s);
-      //
-      //         if (iTry % 2 == 0)
-      //         {
-      //
-      //            auto p = message_box("There maybe a prompt for which program to open simple.sln.\n\n\"Visual Studio Version selector\" is good default choice as it generally selects Visual Studio of same version as the one used to edit project/solution file being opened.", "Prompt for selecting application for opening simple.sln", e_message_box_ok);
-      //
-      //            p->do_synchronously();
-      //
-      //            preempt(2_s);
-      //
-      //         }
-      //
-      //         try
-      //         {
-      //
-      //            node()->file_open(path);
-      //
-      //            break;
-      //
-      //         }
-      //         catch (...)
-      //         {
-      //
-      //
-      //         }
-      //
-      //      }
-      //
-      //      //auto p = message_box("Git is installed", "Git is installed", e_message_box_ok);
-      //
-      ////p->do_synchronously();
-      //
-      //
-      //      class ::time tickStart;
-      //
-      //      tickStart.Now();
-      //
-      //      while (tickStart.elapsed() < 3_min)
-      //      {
-      //
-      //         if (has_visible_top_level_window_named_simple__microsoft_visual_studio())
-      //         {
-      //
-      //            break;
-      //
-      //         }
-      //
-      //      }
-      //
-      //      task_sleep(10_s);
-      //
-      //      visual_studio_select_project(acmesystem(), "ca2project://source/simple/app-simple/drawing");
-      //
-      //      task_sleep(2_s);
-      //
-      //      visual_studio_select_configuration_platform(acmesystem(), "Debug", "x64");
-      //
-      //      task_sleep(5_s);
-      //
-      //      set_finish();
-
-   }
-
-
-   bool code_application::calculate_enable(::coding::enum_install einstall)
-   {
-
-      auto & installmap = code()->install_map();
-
-      auto pinstall = installmap[einstall];
-
-      if(!pinstall) return true;
-
-      auto & einstallaDependency = code()->m_einstallaDependency[einstall];
-
-      if(einstallaDependency.is_empty())
-         return true;
-
-      for(auto einstallDependency : einstallaDependency)
-      {
-
-         if(!is_installed(einstallDependency, false) && !is_install_selected(einstallDependency))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      return true;
-
-   }
+   // bool code_application::calculate_enable(::coding::enum_install einstall)
+   // {
+   //
+   //    auto & installmap = code()->install_map();
+   //
+   //    auto pinstall = installmap[einstall];
+   //
+   //    if(!pinstall) return true;
+   //
+   //    auto & einstallaDependency = code()->m_einstallaDependency[einstall];
+   //
+   //    if(einstallaDependency.is_empty())
+   //       return true;
+   //
+   //    for(auto einstallDependency : einstallaDependency)
+   //    {
+   //
+   //       if(!is_installed(einstallDependency, false) && !is_install_selected(einstallDependency))
+   //       {
+   //
+   //          return false;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return true;
+   //
+   // }
 
 
 
@@ -2561,187 +2561,187 @@ namespace coding
 
 
 
-   bool code_application::is_installing()
-   {
-
-      if (can_start_installing())
-      {
-
-         if (m_bStartingInstallation2)
-         {
-
-            return true;
-
-         }
-
-      }
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      auto & installmap = code()->install_map();
-
-      for (auto & pinstall : installmap.payloads())
-      {
-
-         //auto p = pinstall.m_p;
-
-         if (pinstall && pinstall->m_bInstalling)
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-
-   bool code_application::is_install_selected(::coding::enum_install einstall)
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      auto & installmap = code()->install_map();
-
-      auto ppair = installmap.find(einstall);
-
-      if(::is_set(ppair))
-      {
-         auto pinstall = ppair->m_element2;
-         if (pinstall
-            && pinstall->m_pinstallimpactinterface
-            && pinstall->m_pinstallimpactinterface->has_check() && pinstall->m_pinstallimpactinterface->is_selected())
-         {
-
-            return true;
-
-         }
-      }
-
-      return false;
-
-   }
-
-
-   bool code_application::can_start_installing()
-   {
-
-      if (is_install_selected(::coding::e_install_visual_studio))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_jetbrains_clion))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_jetbrains_toolbox))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_browser))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_cloud_data_provider))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_visual_studio_code))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_git_scm))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_patch_shell))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_deps))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_git_credential_manager))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_tortoise_git))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_smart_git))
-      {
-
-         return true;
-
-      }
-
-      if (is_install_selected(::coding::e_install_setup_folders))
-      {
-
-         return true;
-
-      }
-
-      if (is_installed(::coding::e_install_git_scm, true))
-      {
-
-         if (is_install_selected(::coding::e_install_tool_os))
-         {
-
-            return true;
-
-         }
-
-         if (is_install_selected(::coding::e_install_repositories))
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
+   // bool code_application::is_installing()
+   // {
+   //
+   //    if (can_start_installing())
+   //    {
+   //
+   //       if (m_bStartingInstallation2)
+   //       {
+   //
+   //          return true;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //    auto & installmap = code()->install_map();
+   //
+   //    for (auto & pinstall : installmap.payloads())
+   //    {
+   //
+   //       //auto p = pinstall.m_p;
+   //
+   //       if (pinstall && pinstall->m_bInstalling)
+   //       {
+   //
+   //          return true;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return false;
+   //
+   // }
+
+
+   // bool code_application::is_install_selected(::coding::enum_install einstall)
+   // {
+   //
+   //    _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //    auto & installmap = code()->install_map();
+   //
+   //    auto ppair = installmap.find(einstall);
+   //
+   //    if(::is_set(ppair))
+   //    {
+   //       auto pinstall = ppair->m_element2;
+   //       if (pinstall
+   //          && pinstall->m_pinstallimpactinterface
+   //          && pinstall->m_pinstallimpactinterface->has_check() && pinstall->m_pinstallimpactinterface->is_selected())
+   //       {
+   //
+   //          return true;
+   //
+   //       }
+   //    }
+   //
+   //    return false;
+   //
+   // }
+
+
+   // bool code_application::can_start_installing()
+   // {
+   //
+   //    if (is_install_selected(::coding::e_install_visual_studio))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_jetbrains_clion))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_jetbrains_toolbox))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_browser))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_cloud_data_provider))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_visual_studio_code))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_git_scm))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_patch_shell))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_deps))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_git_credential_manager))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_tortoise_git))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_smart_git))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_install_selected(::coding::e_install_setup_folders))
+   //    {
+   //
+   //       return true;
+   //
+   //    }
+   //
+   //    if (is_installed(::coding::e_install_git_scm, true))
+   //    {
+   //
+   //       if (is_install_selected(::coding::e_install_tool_os))
+   //       {
+   //
+   //          return true;
+   //
+   //       }
+   //
+   //       if (is_install_selected(::coding::e_install_repositories))
+   //       {
+   //
+   //          return true;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return false;
+   //
+   // }
 
 
    //void code_application::set_status1(string strStatus)
@@ -2793,19 +2793,19 @@ namespace coding
    //}
 
 
-   void code_application::post_impact_redraw()
-   {
-
-      if (::is_set(m_pcodetabimpact))
-      {
-
-         m_pcodetabimpact->set_need_redraw();
-
-         m_pcodetabimpact->post_redraw();
-
-      }
-
-   }
+   // void code_application::post_impact_redraw()
+   // {
+   //
+   //    if (::is_set(m_pcodetabimpact))
+   //    {
+   //
+   //       m_pcodetabimpact->set_need_redraw();
+   //
+   //       m_pcodetabimpact->post_redraw();
+   //
+   //    }
+   //
+   // }
 
 
 #ifdef LINUX

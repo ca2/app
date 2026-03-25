@@ -43,12 +43,14 @@ namespace acme
 
       virtual void prepare_argc_argv(int& argc, char** argv, char* cmd_line);
       virtual int command(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr);
+      virtual int command_memory(const ::scoped_string& scopedstr, const memory_dump_function & memorydumpfunction);
 
 
 
       //virtual void command_system(string_array_base & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
 //      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
       virtual int command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
+      virtual int command_system_memory(const ::scoped_string& scopedstr, const memory_dump_function & memorydumpfunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
 
       virtual int interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
       //      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
@@ -58,9 +60,13 @@ namespace acme
       virtual int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
       virtual ::string get_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
-      virtual ::string get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+      virtual ::string get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, ::string * pstrError = nullptr, int * piExitCode = nullptr);
 
-      virtual int get_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+      virtual ::memory get_command_output_memory(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, ::memory * pmemoryError = nullptr, int * piExitCode = nullptr);
+
+      virtual int get_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+
+      virtual int get_command_output_memory(::memory & memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
       virtual ::string get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, int * piExitCode = nullptr, const class ::time& timeOut = 15_min);
 

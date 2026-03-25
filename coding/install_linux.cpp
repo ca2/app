@@ -15,7 +15,7 @@
 #include "acme/nano/http/http.h"
 #include "acme/platform/system.h"
 #include "acme/operating_system/summary.h"
-#include "apex/filesystem/fs/folder_sync.h"
+//#include "apex/filesystem/fs/folder_sync.h"
 #include <sys/stat.h>
 
 
@@ -33,7 +33,9 @@ namespace coding
 
       informationf("gonna get effective url of : %s", strUrl);
 
-      auto strRedir = http()->get_effective_url(strUrl).as_string();
+      ::property_set set;
+
+      auto strRedir = http()->get_effective_url(strUrl, set).as_string();
 
       auto pszRedir = strRedir.c_str();
 
@@ -98,29 +100,23 @@ namespace coding
          break;
       case e_install_browser:
          {
-            if (m_papp->current_browser() == "chrome")
-            {
-               if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
-               {
-                  pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb";
-               }
-               else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
-               {
-                  pathUrl = "https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm";
-               }
-            }
+         m_papp->__google_chrome_download_url();
          }
          break;
       case e_install_visual_studio_code:
          {
-            if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
+
+         if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
             {
 
                ::string strRedirectingUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
 
+               ::property_set set;
 
-               pathUrl = http()->get_effective_url(strRedirectingUrl).as_string();
-strName = "visual_studio_code.deb";
+               pathUrl = http()->get_effective_url(strRedirectingUrl, set).as_string();
+
+               strName = "visual_studio_code.deb";
+
             }
             else
             {
@@ -171,190 +167,190 @@ strName = "visual_studio_code.deb";
    }
 
 
-   void install::dropbox_exclude_all_except(const ::string_array& straInclude)
-   {
-
-      auto pfsfoldersyncDropbox = application()->fs_folder_sync("dropbox");
-
-      bool bShouldRemoveFromExclusion = false;
-
-      pfsfoldersyncDropbox->m_iStableOkCount = 0;
-
-      ::string_array straExclusionList;
-
-      ::function<void(const ::scoped_string&)> callbackStatus = [this](const ::scoped_string& scopedstr)
-      {
-
-         set_status2(scopedstr);
-
-      };
-
-      while (::task_get_run())
-      {
-
-         restart:
-
-         auto straExclude = pfsfoldersyncDropbox->ls_folder("", callbackStatus);
-
-         straExclude.erase(straInclude);
-
-         auto straToExclude = straExclude;
-
-         straToExclude.erase(straExclusionList);
-
-         if (straToExclude.has_elements())
-         {
-
-            pfsfoldersyncDropbox->sync_exclude(straToExclude, callbackStatus);
-
-         }
-
-         if (bShouldRemoveFromExclusion)
-         {
-
-            pfsfoldersyncDropbox->sync_reinclude(straInclude, callbackStatus);
-
-            bShouldRemoveFromExclusion = false;
-
-         }
-
-         for (::collection::index j = 0; j < 12; j++)
-         {
-
-            set_status2("Excluding other folders from synchronization... please wait...");
-
-            straExclusionList = pfsfoldersyncDropbox->sync_exclusion_list(callbackStatus);
-
-            if (pfsfoldersyncDropbox->has_operation_error())
-            {
-
-               pfsfoldersyncDropbox->m_iStableOkCount = 0;
-
-               continue;
-
-            }
-
-            if (straExclusionList.is_empty())
-            {
-
-               set_status2("At least one extra folder other than box should exist at Dropbox folder...");
-
-               pfsfoldersyncDropbox->m_iStableOkCount = 0;
-
-               continue;
-
-            }
-
-            bool bOk = true;
-
-            for (auto& str : straExclusionList)
-            {
-
-               if (straInclude.contains(str))
-               {
-
-                  bShouldRemoveFromExclusion = true;
-
-                  bOk = false;
-
-                  pfsfoldersyncDropbox->m_iStableOkCount = 0;
-
-                  goto restart;
-
-               }
-
-            }
-
-            if(bOk)
-            {
-
-               for (auto& strExclude : straExclude)
-               {
-
-                  if (!straExclusionList.contains(strExclude))
-                  {
-
-                     bOk = false;
-
-                     pfsfoldersyncDropbox->m_iStableOkCount  = 0;
-
-                     goto restart;
-
-                  }
-
-               }
-
-            }
-
-            if(bOk)
-            {
-
-               for (auto& strExclude : straExclude)
-               {
-
-                  auto path = pfsfoldersyncDropbox->local_folder_path() / strExclude;
-
-                  if(directory_system()->is(path))
-                  {
-
-                     bOk = false;
-
-                     break;
-
-                  }
-
-               }
-
-            }
-
-            if(bOk)
-            {
-
-               for (auto& strExclude : straExclusionList)
-               {
-
-                  auto path = pfsfoldersyncDropbox->local_folder_path() / strExclude;
-
-                  if(directory_system()->is(path))
-                  {
-
-                     bOk = false;
-
-                     break;
-
-                  }
-
-               }
-
-            }
-
-            if (bOk)
-            {
-
-               bShouldRemoveFromExclusion = false;
-
-               pfsfoldersyncDropbox->m_iStableOkCount++;
-
-               if (pfsfoldersyncDropbox->m_iStableOkCount >= 8)
-               {
-
-                  return;
-
-               }
-
-            }
-            else
-            {
-
-               pfsfoldersyncDropbox->m_iStableOkCount = 0;
-
-            }
-
-         }
-
-      }
-
-   }
+   // void install::dropbox_exclude_all_except(const ::string_array& straInclude)
+   // {
+   //
+   //    auto pfsfoldersyncDropbox = application()->fs_folder_sync("dropbox");
+   //
+   //    bool bShouldRemoveFromExclusion = false;
+   //
+   //    pfsfoldersyncDropbox->m_iStableOkCount = 0;
+   //
+   //    ::string_array straExclusionList;
+   //
+   //    ::function<void(const ::scoped_string&)> callbackStatus = [this](const ::scoped_string& scopedstr)
+   //    {
+   //
+   //       set_status2(scopedstr);
+   //
+   //    };
+   //
+   //    while (::task_get_run())
+   //    {
+   //
+   //       restart:
+   //
+   //       auto straExclude = pfsfoldersyncDropbox->ls_folder("", callbackStatus);
+   //
+   //       straExclude.erase(straInclude);
+   //
+   //       auto straToExclude = straExclude;
+   //
+   //       straToExclude.erase(straExclusionList);
+   //
+   //       if (straToExclude.has_elements())
+   //       {
+   //
+   //          pfsfoldersyncDropbox->sync_exclude(straToExclude, callbackStatus);
+   //
+   //       }
+   //
+   //       if (bShouldRemoveFromExclusion)
+   //       {
+   //
+   //          pfsfoldersyncDropbox->sync_reinclude(straInclude, callbackStatus);
+   //
+   //          bShouldRemoveFromExclusion = false;
+   //
+   //       }
+   //
+   //       for (::collection::index j = 0; j < 12; j++)
+   //       {
+   //
+   //          set_status2("Excluding other folders from synchronization... please wait...");
+   //
+   //          straExclusionList = pfsfoldersyncDropbox->sync_exclusion_list(callbackStatus);
+   //
+   //          if (pfsfoldersyncDropbox->has_operation_error())
+   //          {
+   //
+   //             pfsfoldersyncDropbox->m_iStableOkCount = 0;
+   //
+   //             continue;
+   //
+   //          }
+   //
+   //          if (straExclusionList.is_empty())
+   //          {
+   //
+   //             set_status2("At least one extra folder other than box should exist at Dropbox folder...");
+   //
+   //             pfsfoldersyncDropbox->m_iStableOkCount = 0;
+   //
+   //             continue;
+   //
+   //          }
+   //
+   //          bool bOk = true;
+   //
+   //          for (auto& str : straExclusionList)
+   //          {
+   //
+   //             if (straInclude.contains(str))
+   //             {
+   //
+   //                bShouldRemoveFromExclusion = true;
+   //
+   //                bOk = false;
+   //
+   //                pfsfoldersyncDropbox->m_iStableOkCount = 0;
+   //
+   //                goto restart;
+   //
+   //             }
+   //
+   //          }
+   //
+   //          if(bOk)
+   //          {
+   //
+   //             for (auto& strExclude : straExclude)
+   //             {
+   //
+   //                if (!straExclusionList.contains(strExclude))
+   //                {
+   //
+   //                   bOk = false;
+   //
+   //                   pfsfoldersyncDropbox->m_iStableOkCount  = 0;
+   //
+   //                   goto restart;
+   //
+   //                }
+   //
+   //             }
+   //
+   //          }
+   //
+   //          if(bOk)
+   //          {
+   //
+   //             for (auto& strExclude : straExclude)
+   //             {
+   //
+   //                auto path = pfsfoldersyncDropbox->local_folder_path() / strExclude;
+   //
+   //                if(directory_system()->is(path))
+   //                {
+   //
+   //                   bOk = false;
+   //
+   //                   break;
+   //
+   //                }
+   //
+   //             }
+   //
+   //          }
+   //
+   //          if(bOk)
+   //          {
+   //
+   //             for (auto& strExclude : straExclusionList)
+   //             {
+   //
+   //                auto path = pfsfoldersyncDropbox->local_folder_path() / strExclude;
+   //
+   //                if(directory_system()->is(path))
+   //                {
+   //
+   //                   bOk = false;
+   //
+   //                   break;
+   //
+   //                }
+   //
+   //             }
+   //
+   //          }
+   //
+   //          if (bOk)
+   //          {
+   //
+   //             bShouldRemoveFromExclusion = false;
+   //
+   //             pfsfoldersyncDropbox->m_iStableOkCount++;
+   //
+   //             if (pfsfoldersyncDropbox->m_iStableOkCount >= 8)
+   //             {
+   //
+   //                return;
+   //
+   //             }
+   //
+   //          }
+   //          else
+   //          {
+   //
+   //             pfsfoldersyncDropbox->m_iStableOkCount = 0;
+   //
+   //          }
+   //
+   //       }
+   //
+   //    }
+   //
+   // }
 
 
    // void install::dropbox_include_box()
@@ -441,212 +437,212 @@ strName = "visual_studio_code.deb";
    // }
 
 
-   void install::dropbox_exclude_all_except_box()
-   {
-
-      dropbox_exclude_all_except({"box"});
-
-      //dropbox_exclude_all();
-
-      //dropbox_include_box();
-
-   }
-
-
-   bool install::dropbox_is_box_excluded()
-   {
-
-      bool bBoxExcludedFromSyncing = true;
-
-      int iStableResponseCount = 0;
-
-      while (true)
-      {
-
-         preempt(1_s);
-
-         ::string strLs;
-
-         int iExitCode = node()->get_posix_shell_command_output(
-            strLs, dropbox_client() + " exclude list");
-
-         auto pszLs = strLs.c_str();
-
-         print_line(pszLs);
-
-         ::string_array stra;
-
-         stra.add_lines(pszLs);
-
-         if (stra.has_element())
-         {
-
-            ::string strFirstLine = stra.first();
-
-            if (strFirstLine.case_insensitive_begins("excluded:"))
-            {
-
-               auto bResponse = stra.contains("box");
-
-               if (is_equal(bResponse, bBoxExcludedFromSyncing))
-               {
-
-                  iStableResponseCount++;
-
-                  if (iStableResponseCount >= 5)
-                  {
-
-                     break;
-
-                  }
-
-               }
-               else
-               {
-
-                  iStableResponseCount = 0;
-
-                  bResponse = bBoxExcludedFromSyncing;
-
-               }
-
-            }
-
-         }
-
-      }
-
-      return bBoxExcludedFromSyncing;
-
-   }
-
-
-   bool install::_install_dropbox()
-   {
-
-      ::file::path pathHomeFolder = directory_system()->home();
-
-      ::file::path pathDropboxBin = pathHomeFolder / "bin/dropbox";
-
-      if (!m_papp->has_Dropbox_folder())
-      {
-
-         m_papp->m_bJustCreatedDropboxFolder = true;
-
-         ::file::path pathUrl = "https://www.dropbox.com/download?plat=lnx.x86_64";
-
-         download_and_gzuntar(pathUrl, pathHomeFolder);
-
-         set_status2("Starting Dropbox daemon...");
-
-         node()->detached_command(pathHomeFolder / ".dropbox-dist/dropboxd &", {});
-
-         m_papp->m_bJustInstalledDropbox = true;
-
-      }
-
-      if (!file_system()->exists(pathDropboxBin))
-      {
-
-         set_status2("Installing Dropbox client...");
-
-         ::file::path pathUrl = "https://www.dropbox.com/download?dl=packages/dropbox.py";
-
-         ::file::path pathFinalUrl = http()->get_effective_url(pathUrl).as_string();
-
-         auto pszFinalUrl = pathFinalUrl.c_str();
-
-         auto path = download_to_downloads_code__(pathFinalUrl, "dropbox");
-
-         file_system()->copy(pathDropboxBin, path, true);
-
-         chmod(pathDropboxBin, S_IRWXU);
-
-         m_papp->m_bJustInstalledDropbox = true;
-
-      }
-
-      {
-
-         ::function<void(const ::scoped_string&)> callbackStatus = [this](auto & str)
-         {
-            set_status2(str);
-         };
-
-         set_status2("Waitin Dropbox daemon...");
-
-         auto pfoldersync = m_papp->current_fs_folder_sync();
-
-         if (pfoldersync)
-         {
-
-            pfoldersync->wait_up_and_running(callbackStatus);
-
-         }
-
-      }
-
-      return m_papp->m_bJustInstalledDropbox;
-
-   }
-
-
-   void install::defer_setup_dropbox()
-   {
-
-      bool bJustInstalledDropbox = m_papp->m_bJustInstalledDropbox;
-
-      set_status2("Waiting for Dropbox to be up and running... please wait...");
-
-      {
-
-         auto pfoldersync = m_papp->current_fs_folder_sync();
-
-         if (pfoldersync)
-         {
-
-            pfoldersync->wait_up_and_running();
-
-         }
-
-      }
-
-      if (bJustInstalledDropbox
-         ||
-         (m_papp->m_checkExcludeAllFoldersExceptBoxFolderFromDropboxSynchronization.is_checked()))
-      {
-
-         set_status2("Limiting Dropbox synchronization to just \"box\" folder... please wait...");
-
-         dropbox_exclude_all_except_box();
-
-      }
-      else
-      {
-
-         set_status2(
-            "Checking that \"box\" folder is not excluded from Dropbox synchronization... please wait...");
-
-         bool bBoxExcludedFromSyncing = dropbox_is_box_excluded();
-
-         if (bBoxExcludedFromSyncing)
-         {
-
-            set_status2("Removing \"box\" from Dropbox synchronization exclusion list... please wait...");
-
-            dropbox_exclude_all_except_box();
-
-         }
-
-      }
-
-   }
+   // void install::dropbox_exclude_all_except_box()
+   // {
+   //
+   //    dropbox_exclude_all_except({"box"});
+   //
+   //    //dropbox_exclude_all();
+   //
+   //    //dropbox_include_box();
+   //
+   // }
+
+   //
+   // bool install::dropbox_is_box_excluded()
+   // {
+   //
+   //    bool bBoxExcludedFromSyncing = true;
+   //
+   //    int iStableResponseCount = 0;
+   //
+   //    while (true)
+   //    {
+   //
+   //       preempt(1_s);
+   //
+   //       ::string strLs;
+   //
+   //       int iExitCode = node()->get_posix_shell_command_output(
+   //          strLs, dropbox_client() + " exclude list");
+   //
+   //       auto pszLs = strLs.c_str();
+   //
+   //       print_line(pszLs);
+   //
+   //       ::string_array stra;
+   //
+   //       stra.add_lines(pszLs);
+   //
+   //       if (stra.has_element())
+   //       {
+   //
+   //          ::string strFirstLine = stra.first();
+   //
+   //          if (strFirstLine.case_insensitive_begins("excluded:"))
+   //          {
+   //
+   //             auto bResponse = stra.contains("box");
+   //
+   //             if (is_equal(bResponse, bBoxExcludedFromSyncing))
+   //             {
+   //
+   //                iStableResponseCount++;
+   //
+   //                if (iStableResponseCount >= 5)
+   //                {
+   //
+   //                   break;
+   //
+   //                }
+   //
+   //             }
+   //             else
+   //             {
+   //
+   //                iStableResponseCount = 0;
+   //
+   //                bResponse = bBoxExcludedFromSyncing;
+   //
+   //             }
+   //
+   //          }
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return bBoxExcludedFromSyncing;
+   //
+   // }
+   //
+   //
+   // bool install::_install_dropbox()
+   // {
+   //
+   //    ::file::path pathHomeFolder = directory_system()->home();
+   //
+   //    ::file::path pathDropboxBin = pathHomeFolder / "bin/dropbox";
+   //
+   //    if (!m_papp->has_Dropbox_folder())
+   //    {
+   //
+   //       m_papp->m_bJustCreatedDropboxFolder = true;
+   //
+   //       ::file::path pathUrl = "https://www.dropbox.com/download?plat=lnx.x86_64";
+   //
+   //       download_and_gzuntar(pathUrl, pathHomeFolder);
+   //
+   //       set_status2("Starting Dropbox daemon...");
+   //
+   //       node()->detached_command(pathHomeFolder / ".dropbox-dist/dropboxd &", {});
+   //
+   //       m_papp->m_bJustInstalledDropbox = true;
+   //
+   //    }
+   //
+   //    if (!file_system()->exists(pathDropboxBin))
+   //    {
+   //
+   //       set_status2("Installing Dropbox client...");
+   //
+   //       ::file::path pathUrl = "https://www.dropbox.com/download?dl=packages/dropbox.py";
+   //
+   //       ::file::path pathFinalUrl = http()->get_effective_url(pathUrl).as_string();
+   //
+   //       auto pszFinalUrl = pathFinalUrl.c_str();
+   //
+   //       auto path = download_to_downloads_code__(pathFinalUrl, "dropbox");
+   //
+   //       file_system()->copy(pathDropboxBin, path, true);
+   //
+   //       chmod(pathDropboxBin, S_IRWXU);
+   //
+   //       m_papp->m_bJustInstalledDropbox = true;
+   //
+   //    }
+   //
+   //    {
+   //
+   //       ::function<void(const ::scoped_string&)> callbackStatus = [this](auto & str)
+   //       {
+   //          set_status2(str);
+   //       };
+   //
+   //       set_status2("Waitin Dropbox daemon...");
+   //
+   //       auto pfoldersync = m_papp->current_fs_folder_sync();
+   //
+   //       if (pfoldersync)
+   //       {
+   //
+   //          pfoldersync->wait_up_and_running(callbackStatus);
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return m_papp->m_bJustInstalledDropbox;
+   //
+   // }
+   //
+   //
+   // void install::defer_setup_dropbox()
+   // {
+   //
+   //    bool bJustInstalledDropbox = m_papp->m_bJustInstalledDropbox;
+   //
+   //    set_status2("Waiting for Dropbox to be up and running... please wait...");
+   //
+   //    {
+   //
+   //       auto pfoldersync = m_papp->current_fs_folder_sync();
+   //
+   //       if (pfoldersync)
+   //       {
+   //
+   //          pfoldersync->wait_up_and_running();
+   //
+   //       }
+   //
+   //    }
+   //
+   //    if (bJustInstalledDropbox
+   //       ||
+   //       (m_papp->m_checkExcludeAllFoldersExceptBoxFolderFromDropboxSynchronization.is_checked()))
+   //    {
+   //
+   //       set_status2("Limiting Dropbox synchronization to just \"box\" folder... please wait...");
+   //
+   //       dropbox_exclude_all_except_box();
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       set_status2(
+   //          "Checking that \"box\" folder is not excluded from Dropbox synchronization... please wait...");
+   //
+   //       bool bBoxExcludedFromSyncing = dropbox_is_box_excluded();
+   //
+   //       if (bBoxExcludedFromSyncing)
+   //       {
+   //
+   //          set_status2("Removing \"box\" from Dropbox synchronization exclusion list... please wait...");
+   //
+   //          dropbox_exclude_all_except_box();
+   //
+   //       }
+   //
+   //    }
+   //
+   // }
 
 
    void install::install_setup_folders()
    {
 
-      defer_setup_cloud_data_provider();
+//      defer_setup_cloud_data_provider();
 
       install_user_ssh_keys();
 
@@ -893,159 +889,159 @@ strName = "visual_studio_code.deb";
    }
 
 
-   void install::install_cloud_listed_repositories()
-   {
-      auto psummary = node()->operating_system_summary();
-
-      ::file::path pathFolder = directory_system()->home();
-
-      ::file::path pathDropboxBin = directory_system()->home() / "bin/dropbox";
-
-      ::string strDropboxCommand(pathDropboxBin);
-
-      ::file::path pathIndex = directory_system()->home() / ".config/integration/code/___repositories/index.txt";
-
-      auto pathSourceFolder = pathFolder / "Dropbox/box/___repositories";
-
-      auto pathSourceIndex = pathSourceFolder / "index.txt";
-
-      set_status2(
-         "Checking for index.txt at Dropbox/box/___repositories... (index.txt should exist to continue installation with code...)");
-
-      while (true)
-      {
-         if (file_system()->exists(pathSourceIndex))
-         {
-            break;
-         }
-         preempt(1_s);
-      }
-
-      set_status2("Checking if index.txt is up-to-date and present...");
-
-      ::string_array lines;
-
-      lines.add("index.txt");
-
-      directory_system()->change_current(pathSourceFolder);
-
-      while (true)
-      {
-         preempt(1_s);
-
-         ::string strLs;
-
-         int iExitCode = node()->
-            get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
-
-         auto pszLs = strLs.c_str();
-
-         print_line(pszLs);
-
-         ::string_array stra;
-
-         stra.add_lines(pszLs);
-
-         bool bOk = true;
-         for (auto& line : lines)
-         {
-            auto pszLine = line.c_str();
-
-            print_line("font_at_index.txt: " + line);
-
-            int iFind = stra.case_insensitive_find_first_begins(line + ":");
-
-            if (iFind < 0)
-            {
-               bOk = false;
-
-               break;
-            }
-
-            auto dropboxLine = stra[iFind];
-
-            if (!dropboxLine.case_insensitive_ends("up to date"))
-            {
-               bOk = false;
-               break;
-            }
-
-            auto pathFile = pathSourceFolder / line;
-
-            if (!file_system()->exists(pathFile))
-            {
-               bOk = false;
-
-               break;
-            }
-
-            if (file_system()->as_string(pathFile).trimmed().is_empty())
-            {
-               bOk = false;
-
-               break;
-            }
-         }
-
-
-         if (bOk)
-         {
-            break;
-         }
-      }
-
-      set_status2("Checking if index.txt contents are ok...");
-
-      ::string strIndex;
-
-      while (true)
-      {
-         strIndex = file_system()->as_string(pathSourceIndex);
-
-         strIndex.trim();
-
-         if (strIndex.has_character())
-         {
-            break;
-         }
-      }
-
-      if (strIndex.case_insensitive_equals("(empty)"))
-      {
-
-         set_status2("index.txt is (empty) so installing simple repository");
-
-         install_app_simple_repository();
-
-      }
-      else
-      {
-
-         ::string_array straLines;
-
-         straLines.add_lines(strIndex);
-
-         for (auto& strLine : straLines)
-         {
-
-            set_status2("Installing repository \"" + strLine + "\"...");
-
-            _install_repository(strLine);
-
-         }
-
-      }
-
-      if (m_papp->__are_repositories_installed(strIndex))
-      {
-
-         file_system()->copy(pathIndex, pathSourceIndex, true);
-
-      }
-
-      on_finished();
-
-   }
+   // void install::install_cloud_listed_repositories()
+   // {
+   //    auto psummary = node()->operating_system_summary();
+   //
+   //    ::file::path pathFolder = directory_system()->home();
+   //
+   //    ::file::path pathDropboxBin = directory_system()->home() / "bin/dropbox";
+   //
+   //    ::string strDropboxCommand(pathDropboxBin);
+   //
+   //    ::file::path pathIndex = directory_system()->home() / ".config/integration/code/___repositories/index.txt";
+   //
+   //    auto pathSourceFolder = pathFolder / "Dropbox/box/___repositories";
+   //
+   //    auto pathSourceIndex = pathSourceFolder / "index.txt";
+   //
+   //    set_status2(
+   //       "Checking for index.txt at Dropbox/box/___repositories... (index.txt should exist to continue installation with code...)");
+   //
+   //    while (true)
+   //    {
+   //       if (file_system()->exists(pathSourceIndex))
+   //       {
+   //          break;
+   //       }
+   //       preempt(1_s);
+   //    }
+   //
+   //    set_status2("Checking if index.txt is up-to-date and present...");
+   //
+   //    ::string_array lines;
+   //
+   //    lines.add("index.txt");
+   //
+   //    directory_system()->change_current(pathSourceFolder);
+   //
+   //    while (true)
+   //    {
+   //       preempt(1_s);
+   //
+   //       ::string strLs;
+   //
+   //       int iExitCode = node()->
+   //          get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
+   //
+   //       auto pszLs = strLs.c_str();
+   //
+   //       print_line(pszLs);
+   //
+   //       ::string_array stra;
+   //
+   //       stra.add_lines(pszLs);
+   //
+   //       bool bOk = true;
+   //       for (auto& line : lines)
+   //       {
+   //          auto pszLine = line.c_str();
+   //
+   //          print_line("font_at_index.txt: " + line);
+   //
+   //          int iFind = stra.case_insensitive_find_first_begins(line + ":");
+   //
+   //          if (iFind < 0)
+   //          {
+   //             bOk = false;
+   //
+   //             break;
+   //          }
+   //
+   //          auto dropboxLine = stra[iFind];
+   //
+   //          if (!dropboxLine.case_insensitive_ends("up to date"))
+   //          {
+   //             bOk = false;
+   //             break;
+   //          }
+   //
+   //          auto pathFile = pathSourceFolder / line;
+   //
+   //          if (!file_system()->exists(pathFile))
+   //          {
+   //             bOk = false;
+   //
+   //             break;
+   //          }
+   //
+   //          if (file_system()->as_string(pathFile).trimmed().is_empty())
+   //          {
+   //             bOk = false;
+   //
+   //             break;
+   //          }
+   //       }
+   //
+   //
+   //       if (bOk)
+   //       {
+   //          break;
+   //       }
+   //    }
+   //
+   //    set_status2("Checking if index.txt contents are ok...");
+   //
+   //    ::string strIndex;
+   //
+   //    while (true)
+   //    {
+   //       strIndex = file_system()->as_string(pathSourceIndex);
+   //
+   //       strIndex.trim();
+   //
+   //       if (strIndex.has_character())
+   //       {
+   //          break;
+   //       }
+   //    }
+   //
+   //    if (strIndex.case_insensitive_equals("(empty)"))
+   //    {
+   //
+   //       set_status2("index.txt is (empty) so installing simple repository");
+   //
+   //       install_app_simple_repository();
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       ::string_array straLines;
+   //
+   //       straLines.add_lines(strIndex);
+   //
+   //       for (auto& strLine : straLines)
+   //       {
+   //
+   //          set_status2("Installing repository \"" + strLine + "\"...");
+   //
+   //          _install_repository(strLine);
+   //
+   //       }
+   //
+   //    }
+   //
+   //    if (m_papp->__are_repositories_installed(strIndex))
+   //    {
+   //
+   //       file_system()->copy(pathIndex, pathSourceIndex, true);
+   //
+   //    }
+   //
+   //    on_finished();
+   //
+   // }
 
 
    int install::synchronous_posix_terminal(const ::scoped_string& scopedstr)
@@ -1581,41 +1577,41 @@ strName = "visual_studio_code.deb";
    void install::_install_gnome_extensions()
    {
 
-      auto path = m_papp->current_fs_folder_sync()->m_pathProtocol / ("box/___gnome_extensions/" OPERATING_SYSTEM_NAME
-         ".txt");
-
-      ::string strMessage;
-
-      strMessage.formatf("Checking for packages to install at %s", path.c_str());
-
-      set_status2(strMessage);
-
-      auto lines = m_papp->current_fs_folder_sync()->safe_get_lines(path);
-
-      lines.trim();
-
-      lines.erase_empty();
-
-      lines.erase_duplicates();
-
-      if (lines.has_elements())
-      {
-
-         _install_packages(
-{
-         "gnome-shell-extensions",
-         "gnome-tweaks",
-         "gnome-browser-connector"
-         });
-
-      }
-
-      for (auto line : lines)
-      {
-
-         node()->open_internet_link(line);
-
-      }
+//       auto path = m_papp->current_fs_folder_sync()->m_pathProtocol / ("box/___gnome_extensions/" OPERATING_SYSTEM_NAME
+//          ".txt");
+//
+//       ::string strMessage;
+//
+//       strMessage.formatf("Checking for packages to install at %s", path.c_str());
+//
+//       set_status2(strMessage);
+//
+//       auto lines = m_papp->current_fs_folder_sync()->safe_get_lines(path);
+//
+//       lines.trim();
+//
+//       lines.erase_empty();
+//
+//       lines.erase_duplicates();
+//
+//       if (lines.has_elements())
+//       {
+//
+//          _install_packages(
+// {
+//          "gnome-shell-extensions",
+//          "gnome-tweaks",
+//          "gnome-browser-connector"
+//          });
+//
+//       }
+//
+//       for (auto line : lines)
+//       {
+//
+//          node()->open_internet_link(line);
+//
+//       }
 
    }
 
@@ -1638,31 +1634,31 @@ strName = "visual_studio_code.deb";
    void install::_install_user_packages()
    {
 
-      auto path = m_papp->current_fs_folder_sync()->m_pathProtocol / ("box/___install/" OPERATING_SYSTEM_NAME ".txt");
-
-      ::string strMessage;
-
-      strMessage.formatf("Checking for packages to install at %s", path.c_str());
-
-      set_status2(strMessage);
-
-      auto lines = m_papp->current_fs_folder_sync()->safe_get_lines(path);
-
-      lines.trim();
-
-      lines.erase_empty();
-
-      lines.erase_duplicates();
-
-      auto straNotInstalled = system()->not_installed_operating_system_packages(lines);
-
-      _install_packages(straNotInstalled);
-
-      auto pathHome = directory_system()->home();
-
-      auto pathInstallIndex = pathHome / ".config/integration/code/___install/index.txt";
-
-      file_system()->put_lines(pathInstallIndex, lines);
+      // auto path = m_papp->current_fs_folder_sync()->m_pathProtocol / ("box/___install/" OPERATING_SYSTEM_NAME ".txt");
+      //
+      // ::string strMessage;
+      //
+      // strMessage.formatf("Checking for packages to install at %s", path.c_str());
+      //
+      // set_status2(strMessage);
+      //
+      // auto lines = m_papp->current_fs_folder_sync()->safe_get_lines(path);
+      //
+      // lines.trim();
+      //
+      // lines.erase_empty();
+      //
+      // lines.erase_duplicates();
+      //
+      // auto straNotInstalled = system()->not_installed_operating_system_packages(lines);
+      //
+      // _install_packages(straNotInstalled);
+      //
+      // auto pathHome = directory_system()->home();
+      //
+      // auto pathInstallIndex = pathHome / ".config/integration/code/___install/index.txt";
+      //
+      // file_system()->put_lines(pathInstallIndex, lines);
 
    }
 

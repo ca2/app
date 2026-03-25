@@ -7,7 +7,7 @@
 #include "code.h"
 #include "code_application.h"
 //#include "install_impact_interface.h"
-#include "coding.h"
+//#include "coding.h"
 //#include "task_group.h"
 #include "acme/constant/id.h"
 #include "acme/compress/uncompress.h"
@@ -25,8 +25,8 @@
 #include "acme/platform/system.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/prototype/prototype/url.h"
-#include "apex/filesystem/fs/folder_sync.h"
-#include "apex/networking/http/context.h"
+//#include "apex/filesystem/fs/folder_sync.h"
+//#include "apex/networking/http/context.h"
 //#include "axis/user/user/line_layout.h"
 #if defined(LINUX) || defined(MACOS)
 #include <sys/stat.h>
@@ -119,12 +119,12 @@ namespace coding
          install_app_simple_repository();
 
       }
-      else
-      {
-
-         install_cloud_listed_repositories();
-
-      }
+      // else
+      // {
+      //
+      //    install_cloud_listed_repositories();
+      //
+      // }
 
    }
 
@@ -161,7 +161,7 @@ namespace coding
          install_browser();
          break;
       case e_install_cloud_data_provider:
-         install_cloud_data_provider();
+         //install_cloud_data_provider();
          break;
 
 #if JETBRAINS_CLION
@@ -237,56 +237,56 @@ namespace coding
    }
 
 
-   ::string install::dropbox_client()
-   {
+   // ::string install::dropbox_client()
+   // {
+   //
+   //    throw ::exception(todo);
+   //
+   //    //return file()->dropbox_client();
+   //
+   //    return {};
+   //
+   // }
+   //
 
-      throw ::exception(todo);
-      
-      //return file()->dropbox_client();
-      
-      return {};
-
-   }
-
-
-   void install::wait_cloud_data_provider_up_and_running()
-   {
-
-      //auto atomProvider = m_papp->current_fs_folder_sync_provider();
-
-      auto pfoldersync = m_papp->current_fs_folder_sync();
-
-      if(pfoldersync)
-      {
-
-         pfoldersync->wait_up_and_running();
-
-      }
-
-      //if(atomProvider == "dropbox")
-      //{
-
-        // wait_dropbox_up_and_running();
-
-      //}
-
-   }
-
-
-   void install::defer_setup_cloud_data_provider()
-   {
-
-      auto atomProvider = m_papp->current_fs_folder_sync_provider();
-
-      if(atomProvider == "dropbox")
-      {
-
-         defer_setup_dropbox();
-
-      }
-
-   }
-
+   // void install::wait_cloud_data_provider_up_and_running()
+   // {
+   //
+   //    //auto atomProvider = m_papp->current_fs_folder_sync_provider();
+   //
+   //    auto pfoldersync = m_papp->current_fs_folder_sync();
+   //
+   //    if(pfoldersync)
+   //    {
+   //
+   //       pfoldersync->wait_up_and_running();
+   //
+   //    }
+   //
+   //    //if(atomProvider == "dropbox")
+   //    //{
+   //
+   //      // wait_dropbox_up_and_running();
+   //
+   //    //}
+   //
+   // }
+   //
+   //
+   // void install::defer_setup_cloud_data_provider()
+   // {
+   //
+   //    auto atomProvider = m_papp->current_fs_folder_sync_provider();
+   //
+   //    if(atomProvider == "dropbox")
+   //    {
+   //
+   //       defer_setup_dropbox();
+   //
+   //    }
+   //
+   // }
+   //
 
    void install::on_finished()
    {
@@ -594,65 +594,65 @@ namespace coding
    //   return m_papp->is_installed(m_einstall);
 
    //}
-
-
-   trace_function install::task_group_trace_function(task_group* ptaskgroup)
-   {
-
-      if (ptaskgroup)
-      {
-
-         if (!m_pinstallloginterface && ptaskgroup->m_pintegration)
-         {
-
-            m_pinstallloginterface = ptaskgroup->m_pintegration->m_pimpactinterface;
-
-         }
-
-         m_ptaskgroupOptional = ptaskgroup;
-
-      }
-
-      ::trace_function tracefunction = [this](enum_trace_level etracelevel, const ::scoped_string& scopedstr, bool bCarriage)
-         {
-
-
-            if (m_ptaskgroupOptional)
-            {
-
-               ::string strStatus;
-
-               ::string strLine(scopedstr);
-
-               strStatus.formatf("%c: %s", trace_level_letter(etracelevel), strLine.c_str());
-
-               {
-
-                  _synchronous_lock synchronouslock(m_ptaskgroupOptional->synchronization());
-
-                  m_ptaskgroupOptional->m_straLine3.feed_line(strStatus, bCarriage);
-
-               }
-
-               m_ptaskgroupOptional->m_pintegration->m_pimpactinterface->on_lines_change();
-
-            }
-            else
-            {
-
-               ::string strStatus;
-
-               strStatus.formatf("%c: %s%c", trace_level_letter(etracelevel), scopedstr.c_str(), line_feed_letter(bCarriage));
-
-               set_status2(strStatus);
-
-            }
-
-         };
-
-      return tracefunction;
-
-   }
+   //
+   //
+   // trace_function install::task_group_trace_function(task_group* ptaskgroup)
+   // {
+   //
+   //    if (ptaskgroup)
+   //    {
+   //
+   //       if (!m_pinstallloginterface && ptaskgroup->m_pintegration)
+   //       {
+   //
+   //          m_pinstallloginterface = ptaskgroup->m_pintegration->m_pimpactinterface;
+   //
+   //       }
+   //
+   //       m_ptaskgroupOptional = ptaskgroup;
+   //
+   //    }
+   //
+   //    ::trace_function tracefunction = [this](enum_trace_level etracelevel, const ::scoped_string& scopedstr, bool bCarriage)
+   //       {
+   //
+   //
+   //          if (m_ptaskgroupOptional)
+   //          {
+   //
+   //             ::string strStatus;
+   //
+   //             ::string strLine(scopedstr);
+   //
+   //             strStatus.formatf("%c: %s", trace_level_letter(etracelevel), strLine.c_str());
+   //
+   //             {
+   //
+   //                _synchronous_lock synchronouslock(m_ptaskgroupOptional->synchronization());
+   //
+   //                m_ptaskgroupOptional->m_straLine3.feed_line(strStatus, bCarriage);
+   //
+   //             }
+   //
+   //             m_ptaskgroupOptional->m_pintegration->m_pimpactinterface->on_lines_change();
+   //
+   //          }
+   //          else
+   //          {
+   //
+   //             ::string strStatus;
+   //
+   //             strStatus.formatf("%c: %s%c", trace_level_letter(etracelevel), scopedstr.c_str(), line_feed_letter(bCarriage));
+   //
+   //             set_status2(strStatus);
+   //
+   //          }
+   //
+   //       };
+   //
+   //    return tracefunction;
+   //
+   // }
 
 
    void install::download_and_gzuntar(const ::file::path& pathUrl, const ::file::path& pathFolder, int iEat)
@@ -673,9 +673,12 @@ namespace coding
       auto pathTarGz = pathDownloadFolder / pathUrl.name();
 
       {
+
          auto pfileTarGz = file()->get_writer(pathTarGz);
 
-         auto url = http()->get_effective_url(pathUrl);
+         ::property_set set;
+
+         auto url = http()->get_effective_url(pathUrl, set);
 
          set_status2("Downloading \"" + url + "\"...");
 
@@ -943,22 +946,22 @@ namespace coding
 
    }
 
-
-   void install::install_cloud_data_provider()
-   {
-
-      auto atomProvider = m_papp->current_fs_folder_sync_provider();
-
-      if (atomProvider == "dropbox")
-      {
-
-         _install_dropbox();
-
-      }
-
-      on_finished();
-
-   }
+   //
+   // void install::install_cloud_data_provider()
+   // {
+   //
+   //    auto atomProvider = m_papp->current_fs_folder_sync_provider();
+   //
+   //    if (atomProvider == "dropbox")
+   //    {
+   //
+   //       _install_dropbox();
+   //
+   //    }
+   //
+   //    on_finished();
+   //
+   // }
 
 
    void install::install_user_ssh_keys()
@@ -973,77 +976,77 @@ namespace coding
 
       set_status2("Setting up SSH keys... please wait...");
 
-      ::file::path pathSourceFolder = m_papp->cloud_folder() / "box/.ssh";
+      //::file::path pathSourceFolder = m_papp->cloud_folder() / "box/.ssh";
 
-      ::string_array straSource;
-
-      straSource.add("id_auth");
-      straSource.add("id_auth.pub");
-      straSource.add("id_sign");
-      straSource.add("id_sign.pub");
-
-      ::file::path pathTargetFolder = directory_system()->home() / ".ssh";
-
-      if (directory_system()->contains_files(pathTargetFolder, straSource, 32))
-      {
-
-         return;
-
-      }
-
-      auto pfsfoldersync = m_papp->current_fs_folder_sync();
-
-      if (pfsfoldersync->check_files(pathSourceFolder, straSource, callbackStatus2))
-      {
-
-         pfsfoldersync->copy_files_out(pathTargetFolder, pathSourceFolder, straSource, callbackStatus2);
-
-      }
-
-#if defined(LINUX) || defined(MACOS)
-
-      chmod(pathTargetFolder / "id_auth", S_IRUSR | S_IWUSR);
-
-#endif
+//       ::string_array straSource;
+//
+//       straSource.add("id_auth");
+//       straSource.add("id_auth.pub");
+//       straSource.add("id_sign");
+//       straSource.add("id_sign.pub");
+//
+//       ::file::path pathTargetFolder = directory_system()->home() / ".ssh";
+//
+//       if (directory_system()->contains_files(pathTargetFolder, straSource, 32))
+//       {
+//
+//          return;
+//
+//       }
+//
+//       auto pfsfoldersync = m_papp->current_fs_folder_sync();
+//
+//       if (pfsfoldersync->check_files(pathSourceFolder, straSource, callbackStatus2))
+//       {
+//
+//          pfsfoldersync->copy_files_out(pathTargetFolder, pathSourceFolder, straSource, callbackStatus2);
+//
+//       }
+//
+// #if defined(LINUX) || defined(MACOS)
+//
+//       chmod(pathTargetFolder / "id_auth", S_IRUSR | S_IWUSR);
+//
+// #endif
 
 
    }
 
 
-   ::string install::cloud_non__empty__file_as_string(const ::file::path& path)
-   {
-
-      auto callbackStatus2 = [this](const ::scoped_string& scopedstr)
-         {
-
-            set_status2(scopedstr);
-
-         };
-
-      auto pfsfoldersync = m_papp->current_fs_folder_sync();
-
-      ::string str = pfsfoldersync->non__empty__file_as_string(path, callbackStatus2);
-
-      return str;
-
-   }
-
-
-   void install::wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
-   {
-
-      auto callbackStatus2 = [this](const ::scoped_string& scopedstr)
-         {
-
-            set_status2(scopedstr);
-
-         };
-
-      auto pfsfoldersync = m_papp->current_fs_folder_sync();
-
-      pfsfoldersync->wait_folder_contains_files(path, straName, iMinimumSize, callbackStatus2);
-
-   }
+   // ::string install::cloud_non__empty__file_as_string(const ::file::path& path)
+   // {
+   //
+   //    auto callbackStatus2 = [this](const ::scoped_string& scopedstr)
+   //       {
+   //
+   //          set_status2(scopedstr);
+   //
+   //       };
+   //
+   //    auto pfsfoldersync = m_papp->current_fs_folder_sync();
+   //
+   //    ::string str = pfsfoldersync->non__empty__file_as_string(path, callbackStatus2);
+   //
+   //    return str;
+   //
+   // }
+   //
+   //
+   // void install::wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
+   // {
+   //
+   //    auto callbackStatus2 = [this](const ::scoped_string& scopedstr)
+   //       {
+   //
+   //          set_status2(scopedstr);
+   //
+   //       };
+   //
+   //    auto pfsfoldersync = m_papp->current_fs_folder_sync();
+   //
+   //    pfsfoldersync->wait_folder_contains_files(path, straName, iMinimumSize, callbackStatus2);
+   //
+   // }
 
 
    bool install::are_fonts_installed()
@@ -1058,56 +1061,56 @@ namespace coding
 
       }
 
-      auto pathListing = m_papp->cloud_folder() / "box/___fonts/index.txt";
+      // auto pathListing = m_papp->cloud_folder() / "box/___fonts/index.txt";
+      //
+      // auto strListing = cloud_non__empty__file_as_string(pathListing);
+      //
+      // if (strListing.is_empty() || strListing.trimmed().case_insensitive_equals("(empty)"))
+      // {
+      //
+      //    return true;
+      //
+      // }
 
-      auto strListing = cloud_non__empty__file_as_string(pathListing);
-
-      if (strListing.is_empty() || strListing.trimmed().case_insensitive_equals("(empty)"))
-      {
-
-         return true;
-
-      }
-
-      ::string_array straName;
-
-      straName.add_lines(strListing);
-
-      straName.trim();
-
-      straName.erase_empty();
-
-      straName.erase_duplicates();
-
-#ifdef WINDOWS
-
-      straName.predicate_erase([](auto& str) {return str.contains("[no-windows]"); });
-
-#else
-
-      straName.predicate_each([](auto& str) {return str.find_replace("[no-windows]", ""); });
-
-#endif
-
-      if (!directory_system()->contains_files(___fontsFolder, straName, 1_KiB))
-      {
-
-         return false;
-
-      }
+//       ::string_array straName;
+//
+//       straName.add_lines(strListing);
+//
+//       straName.trim();
+//
+//       straName.erase_empty();
+//
+//       straName.erase_duplicates();
+//
+// #ifdef WINDOWS
+//
+//       straName.predicate_erase([](auto& str) {return str.contains("[no-windows]"); });
+//
+// #else
+//
+//       straName.predicate_each([](auto& str) {return str.find_replace("[no-windows]", ""); });
+//
+// #endif
+//
+//       if (!directory_system()->contains_files(___fontsFolder, straName, 1_KiB))
+//       {
+//
+//          return false;
+//
+//       }
 
       return true;
 
    }
 
 
-   ::file::path install::cloud_fonts_folder()
-   {
-
-      return m_papp->cloud_folder() / "box/___fonts";
-
-   }
-
+   // ::file::path install::cloud_fonts_folder()
+   // {
+   //
+   //    return m_papp->cloud_folder() / "box/___fonts";
+   //
+   // }
+   //
 
    void install::install_user_fonts()
    {
@@ -1134,112 +1137,112 @@ namespace coding
    void install::_install_user_fonts()
    {
 
-      auto pathSourceFolder = m_papp->cloud_folder() / "box/___fonts";
-
-      auto pathSourceIndex = pathSourceFolder / "index.txt";
-
-      auto pfscloudfolder = m_papp->current_fs_folder_sync();
-
-      set_status2(
-         "Checking for index.txt at " + pathSourceFolder + "... (index.txt should exist to continue installation with code...)");
-
-      while (true)
-      {
-
-         if (pfscloudfolder->file_exists(pathSourceIndex))
-         {
-
-            break;
-
-         }
-
-         preempt(1_s);
-
-      }
-
-      set_status2("Checking if " + ::string(pathSourceIndex) + " is up-to-date and present...");
-
-      //directory_system()->change_current(pathSourceFolder);
-
-      ::string_array lines;
-
-      ::string strIndex;
-
-      while (true)
-      {
-
-         preempt(1_s);
-
-         ::string strLs;
-
-         strIndex = pfscloudfolder->safe_get_string(pathSourceIndex);
-
-         lines.add_lines(strIndex);
-
-         if (lines.size() >= 7)
-         {
-
-            lines.erase_empty();
-
-            if (lines[0] == "empty")
-            {
-
-               break;
-
-            }
-
-         }
-
-         lines.trim();
-
-         lines.erase_empty();
-
-         lines.erase_duplicates();
-
-         if (lines.size() > 0)
-         {
-
-            break;
-
-         }
-
-      }
-
-      lines.predicate_erase([](auto& str) {return !str.case_insensitive_ends(".ttf") || str.begins("."); });
-
-      lines.erase_duplicates();
-
-#ifdef WINDOWS
-
-      lines.predicate_erase([](auto& str) {return str.contains("[no-windows]"); });
-
-#else
-
-      lines.predicate_each([](auto& str) {return str.find_replace("[no-windows]", ""); });
-
-#endif
-
-      if (lines.is_empty() || lines.first().trimmed().case_insensitive_equals("(empty)"))
-      {
-
-         return;
-
-      }
-      else
-      {
-
-         pfscloudfolder->check_files(pathSourceFolder, lines, [this](auto& str)
-            {
-
-               set_status2("Checking file : " + str);
-
-            });
-
-      }
-
-      auto pathSourceIndexProcessed = application()->defer_process_path(pathSourceIndex);
-
-      install_user_fonts_from_font_listing(pathSourceIndexProcessed);
+//       auto pathSourceFolder = m_papp->cloud_folder() / "box/___fonts";
+//
+//       auto pathSourceIndex = pathSourceFolder / "index.txt";
+//
+//       auto pfscloudfolder = m_papp->current_fs_folder_sync();
+//
+//       set_status2(
+//          "Checking for index.txt at " + pathSourceFolder + "... (index.txt should exist to continue installation with code...)");
+//
+//       while (true)
+//       {
+//
+//          if (pfscloudfolder->file_exists(pathSourceIndex))
+//          {
+//
+//             break;
+//
+//          }
+//
+//          preempt(1_s);
+//
+//       }
+//
+//       set_status2("Checking if " + ::string(pathSourceIndex) + " is up-to-date and present...");
+//
+//       //directory_system()->change_current(pathSourceFolder);
+//
+//       ::string_array lines;
+//
+//       ::string strIndex;
+//
+//       while (true)
+//       {
+//
+//          preempt(1_s);
+//
+//          ::string strLs;
+//
+//          strIndex = pfscloudfolder->safe_get_string(pathSourceIndex);
+//
+//          lines.add_lines(strIndex);
+//
+//          if (lines.size() >= 7)
+//          {
+//
+//             lines.erase_empty();
+//
+//             if (lines[0] == "empty")
+//             {
+//
+//                break;
+//
+//             }
+//
+//          }
+//
+//          lines.trim();
+//
+//          lines.erase_empty();
+//
+//          lines.erase_duplicates();
+//
+//          if (lines.size() > 0)
+//          {
+//
+//             break;
+//
+//          }
+//
+//       }
+//
+//       lines.predicate_erase([](auto& str) {return !str.case_insensitive_ends(".ttf") || str.begins("."); });
+//
+//       lines.erase_duplicates();
+//
+// #ifdef WINDOWS
+//
+//       lines.predicate_erase([](auto& str) {return str.contains("[no-windows]"); });
+//
+// #else
+//
+//       lines.predicate_each([](auto& str) {return str.find_replace("[no-windows]", ""); });
+//
+// #endif
+//
+//       if (lines.is_empty() || lines.first().trimmed().case_insensitive_equals("(empty)"))
+//       {
+//
+//          return;
+//
+//       }
+//       else
+//       {
+//
+//          pfscloudfolder->check_files(pathSourceFolder, lines, [this](auto& str)
+//             {
+//
+//                set_status2("Checking file : " + str);
+//
+//             });
+//
+//       }
+//
+//       auto pathSourceIndexProcessed = application()->defer_process_path(pathSourceIndex);
+//
+//       install_user_fonts_from_font_listing(pathSourceIndexProcessed);
 
    }
 
@@ -1805,14 +1808,14 @@ namespace coding
 
          m_strStatus = scopedstr;
 
-         if (m_pinstallloginterface)
-         {
-
-            m_pinstallloginterface->install_status(this, scopedstr);
-
-            m_pinstallloginterface->on_update_install_status(this);
-
-         }
+         // if (m_pinstallloginterface)
+         // {
+         //
+         //    m_pinstallloginterface->install_status(this, scopedstr);
+         //
+         //    m_pinstallloginterface->on_update_install_status(this);
+         //
+         // }
 
       }
 
@@ -1822,14 +1825,14 @@ namespace coding
 
          m_strStatus2 = scopedstr;
 
-         if (m_pinstallloginterface)
-         {
-
-            m_pinstallloginterface->install_status2(this, scopedstr);
-
-            m_pinstallloginterface->on_update_install_status(this);
-
-         }
+         // if (m_pinstallloginterface)
+         // {
+         //
+         //    m_pinstallloginterface->install_status2(this, scopedstr);
+         //
+         //    m_pinstallloginterface->on_update_install_status(this);
+         //
+         // }
 
       }
 
@@ -1839,16 +1842,16 @@ namespace coding
       {
 
          m_strStatus2 += scopedstr;
-
-         if (m_pinstallloginterface)
-         {
-
-            m_pinstallloginterface->install_append_status2(this, scopedstr);
-
-            m_pinstallloginterface->on_update_install_status(this);
-
-         }
-
+         //
+         // if (m_pinstallloginterface)
+         // {
+         //
+         //    m_pinstallloginterface->install_append_status2(this, scopedstr);
+         //
+         //    m_pinstallloginterface->on_update_install_status(this);
+         //
+         // }
+         //
 
 
       }
@@ -1896,17 +1899,17 @@ namespace coding
       //   }
 
 
-      void install::on_update_install_status()
-      {
-
-         if (m_pinstallloginterface)
-         {
-
-            m_pinstallloginterface->on_update_install_status(this);
-
-         }
-
-      }
+      // void install::on_update_install_status()
+      // {
+      //
+      //    if (m_pinstallloginterface)
+      //    {
+      //
+      //       m_pinstallloginterface->on_update_install_status(this);
+      //
+      //    }
+      //
+      // }
 
 
       ::string install::get_name()
@@ -1953,15 +1956,15 @@ namespace coding
          {
 
             auto pinstall = ppair->m_element2;
-
-            if (pinstall->m_pinstallimpactinterface
-               && pinstall->m_pinstallimpactinterface->is_selected()
-               && !m_papp->is_installed(einstallSoftDependency, false))
-            {
-
-               return false;
-
-            }
+            //
+            // if (pinstall->m_pinstallimpactinterface
+            //    && pinstall->m_pinstallimpactinterface->is_selected()
+            //    && !m_papp->is_installed(einstallSoftDependency, false))
+            // {
+            //
+            //    return false;
+            //
+            // }
 
          }
 

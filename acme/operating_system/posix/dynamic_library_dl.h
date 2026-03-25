@@ -2,6 +2,7 @@
 // From idn by camilo on 2024-06-02 18:09 <3ThomasBorregaardSorensen!!
 #pragma once
 
+#if !defined(CUBE)
 
 #include "acme/operating_system/dynamic_library.h"
 
@@ -47,3 +48,6 @@ namespace dl
 
 
 } // namespace dl
+
+
+#endif

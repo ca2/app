@@ -58,21 +58,21 @@ namespace coding
       install();
       ~install() override;
 
-      ::string dropbox_client();
+      //::string dropbox_client();
 
       void create_install(enum_install einstall);
 
-      virtual bool _install_dropbox();
+      //virtual bool _install_dropbox();
 
 #if !defined(WINDOWS)
 
-      virtual void dropbox_exclude_all_except(const ::string_array& straInclude);
+      //virtual void dropbox_exclude_all_except(const ::string_array& straInclude);
 
       //virtual void dropbox_include_box();
 
-      virtual bool dropbox_is_box_excluded();
+      //virtual bool dropbox_is_box_excluded();
 
-      virtual void dropbox_exclude_all_except_box();
+      //virtual void dropbox_exclude_all_except_box();
 
 #endif
 
@@ -125,18 +125,18 @@ namespace coding
       virtual void install_storage_os(const ::scoped_string& scopedstrOs);
       virtual void _install_app_simple_repository();
       virtual void install_app_simple_repository();
-      virtual void install_cloud_listed_repositories();
+//      virtual void install_cloud_listed_repositories();
 
-      virtual void install_cloud_data_provider();
+  ///    virtual void install_cloud_data_provider();
 
 
       virtual bool are_fonts_installed();
       virtual void install_user_fonts();
-      virtual ::file::path cloud_fonts_folder();
-      virtual void wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
+      //virtual ::file::path cloud_fonts_folder();
+      //virtual void wait_cloud_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
       //virtual bool check_whether_folder_contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
 
-      virtual ::string cloud_non__empty__file_as_string(const ::file::path& path);
+      //virtual ::string cloud_non__empty__file_as_string(const ::file::path& path);
 
       virtual void _install_user_fonts();
       virtual void install_user_fonts_from_font_listing(const ::file::path& pathListing);
@@ -189,11 +189,11 @@ namespace coding
 
       //void wait_dropbox_up_and_running();
 
-      void wait_cloud_data_provider_up_and_running();
+      //void wait_cloud_data_provider_up_and_running();
 
-      void defer_setup_dropbox();
+      //void defer_setup_dropbox();
 
-      void defer_setup_cloud_data_provider();
+      //void defer_setup_cloud_data_provider();
 
 #ifdef WINDOWS
       virtual void install_edge();
@@ -244,7 +244,7 @@ namespace coding
 
 #endif
 
-      virtual void on_update_install_status();
+///      virtual void on_update_install_status();
 
       virtual bool get_debug_project_enabled();
 

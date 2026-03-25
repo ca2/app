@@ -96,7 +96,7 @@ namespace coding
 
       m_papp->m_bStartingInstallation2 = true;
 
-      m_papp->defer_release_install();
+      //m_papp->defer_release_install();
 
         for(auto einstall : m_einstalla)
         {

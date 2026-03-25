@@ -2,7 +2,7 @@
 
 
 #include "coding/_constant.h"
-#include "apex/platform/application.h"
+#include "acme/platform/application.h"
 #include "acme/user/user/check.h"
 
 
@@ -11,7 +11,7 @@ namespace coding
 
 
    class CLASS_DECL_CODING application :
-      virtual public ::apex::application
+      virtual public ::platform::application
    {
    public:
 
@@ -45,9 +45,13 @@ class ::time      m_timeFoldersSetupDetected;
 
 
 
-         //::data::property        m_propertyCloudDataProvider;
-
-         //::data::property        m_propertyCloudDataProviderTitle;
+         //::string      m_strCloudDataProvider;
+      ::file::path m_pathBrowserInstaller;
+      ::file::path m_pathSmartGitTarGz;
+      ::string m_strBrowserTitle;
+      ::string m_strRepositoryTitle;
+      ::string m_strRepositoryDescription;
+         ::string        m_strCloudDataProviderTitle;
 
          ::atom_array            m_atomaCloudDataProviderOptions;
          ::string_array          m_straCloudDataProviderOptionsNames;
@@ -55,12 +59,12 @@ class ::time      m_timeFoldersSetupDetected;
 
       ::string                            m_strBrowser;
       ::string                            m_strCloudDataProvider;
-
+      ::string                            m_strRepository;
          //::data::property        m_propertyBrowser;
          //::data::property        m_propertyBrowserTitle;
          ::atom_array            m_atomaBrowser;
          ::string_array          m_straBrowserNames;
-
+::file::path m_pathVisualStudioCode;
          //::data::property        m_propertyRepository;
          //::data::property        m_propertyRepositoryTitle;
          //::data::property        m_propertyRepositoryDescription;
@@ -85,14 +89,14 @@ class ::time      m_timeFoldersSetupDetected;
       bool ssh_code_mode();
 
       virtual string fetch_download_link(const ::scoped_string & scopedstrId);
-      virtual ::atom current_fs_folder_sync_provider();
-      virtual ::fs::folder_sync* current_fs_folder_sync();
-      virtual ::file::path cloud_folder();
+      //virtual ::atom current_fs_folder_sync_provider();
+      ////////////virtual ::fs::folder_sync* current_fs_folder_sync();
+      //virtual ::file::path cloud_folder();
 
       virtual ::atom current_browser();
 
       virtual string preferred_experience() override;
-      virtual ::atom current_repository();
+      virtual string current_repository();
 
       virtual void init_instance() override;
       virtual void term_application() override;
@@ -132,11 +136,21 @@ class ::time      m_timeFoldersSetupDetected;
 #endif
 #if SMART_GIT
       //bool defer_install_smart_git(int iTry);
-      //void install_smart_git();
+      virtual void __install_smart_git();
+      virtual void __download_smart_git();
+      virtual ::string __smart_git_download_url();
       virtual bool __is_smart_git_installed();
 #endif
+
+      virtual void install_from_operating_system_package_file(const ::file::path & pathPackageFile);
+      virtual void __install_browser();
+      virtual void __download_google_chrome();
+      virtual ::string __google_chrome_download_url();
          virtual bool __is_google_chrome_installed();
          virtual bool __is_opera_browser_installed();
+      virtual void __install_visual_studio_code();
+      virtual void __download_visual_studio_code();
+      virtual ::string __visual_studio_code_download_url();
          virtual bool __is_visual_studio_code_installed();
       virtual bool __is_git_credential_manager_installed();
       virtual bool __is_shell_patched();

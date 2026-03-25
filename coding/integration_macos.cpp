@@ -499,7 +499,7 @@ void integration::defer_task_groups()
 
 
 
-void integration_library_factory(::factory::factory * pfactory)
+void coding_factory(::factory::factory * pfactory)
 {
    
    pfactory->add_factory_item<::macos::coding::integration, ::coding::integration>();

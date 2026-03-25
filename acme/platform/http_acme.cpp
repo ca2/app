@@ -39,9 +39,11 @@ namespace platform
    }
 
 
-   ::url::url acme_http_layer::get_effective_url(const ::url::url& url)
+   ::url::url acme_http_layer::get_effective_url(const ::url::url& url, ::property_set & set)
    {
+
       return url;
+
    }
 
 

@@ -58,12 +58,12 @@ list(APPEND library_source
    #    impact_interface.h
         install.cpp
         install.h
-   #    integration.cpp
-   #    integration.h
+      #coding.cpp
+   #coding.h
    #    integration_command.cpp
    #    integration_command.h
    #    integration_netnode.cpp
-   #    integration_linux.cpp
+    #  coding_linux.cpp
    #    integration_linux.h
    #    integration_main.cpp
         #install_form_handler.cpp
@@ -193,9 +193,9 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${shared_library_references} ${global_library_references})
-    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references})
+    #target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    #target_link_options(static_${PROJECT_NAME} PRIVATE -Wl,--whole-archive)
+    target_link_options(static_${PROJECT_NAME} PRIVATE -Wl,--whole-archive)
 
 
 endif ()

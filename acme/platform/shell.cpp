@@ -210,17 +210,37 @@ namespace acme
    }
 
 
-   ::string shell::get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut)
+   ::string shell::get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut, ::string * pstrError, int * piExitCode)
    {
 
       ::string strOutput;
 
-      auto iExitCode = get_command_output(strOutput, scopedstr, timeOut);
+      ::string strError;
+
+      auto iExitCode = get_command_output(strOutput, strError, scopedstr, timeOut);
 
       if (iExitCode != 0)
       {
 
-         throw ::exception(error_failed);
+         if (piExitCode)
+         {
+
+            *piExitCode = iExitCode;
+
+         }
+         else
+         {
+
+            throw ::exception(error_failed);
+
+         }
+
+      }
+
+      if (pstrError)
+      {
+
+         *pstrError = strError;
 
       }
 
@@ -229,18 +249,71 @@ namespace acme
    }
 
 
-
-   int shell::get_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   ::memory shell::get_command_output_memory(const ::scoped_string& scopedstr, const class ::time& timeOut, ::memory * pmemoryError, int * piExitCode)
    {
 
-      status_pointer <::string> pstring;
+      ::memory memoryOutput;
 
-      construct_newø(pstring);
+      ::memory memoryError;
 
-      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
+      auto iExitCode = get_command_output_memory(memoryOutput, memoryError, scopedstr, timeOut);
+
+      if (iExitCode != 0)
+      {
+
+         if (piExitCode)
          {
 
-            pstring->m_payload += str + (bCarriage ? "\r":"\n");
+            *piExitCode = iExitCode;
+
+         }
+         else
+         {
+
+            throw ::exception(error_failed);
+
+         }
+
+      }
+
+      if (pmemoryError)
+      {
+
+         *pmemoryError = memoryError;
+
+      }
+
+      return memoryOutput;
+
+   }
+
+
+   int shell::get_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   {
+
+      status_pointer <::string> pstringOutput;
+
+      construct_newø(pstringOutput);
+
+      status_pointer <::string> pstringError;
+
+      construct_newø(pstringError);
+
+      trace_function tracefunction = [pstringOutput, pstringError](enum_trace_level etracelevel, const scoped_string& str, bool bCarriage)
+         {
+
+            if (etracelevel == e_trace_level_information)
+            {
+
+               pstringOutput->m_payload += str + (bCarriage ? "\r":"\n");
+
+            }
+            else
+            {
+
+               pstringError->m_payload += str + (bCarriage ? "\r":"\n");
+
+            }
 
          };
 
@@ -248,7 +321,43 @@ namespace acme
 
       auto iExitCode = command(scopedstr, tracefunction);
 
-      strOutput = pstring->m_payload;
+      strOutput = pstringOutput->m_payload;
+
+      strError = pstringError->m_payload;
+
+      return iExitCode;
+
+   }
+
+
+   int shell::get_command_output_memory(::memory& memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   {
+
+      auto pmemoryOutput = ::as_pointer(&memoryOutput);
+
+      auto pmemoryError = ::as_pointer(&memoryError);
+
+      memory_dump_function memorydumpfunction = [pmemoryOutput, pmemoryError](enum_trace_level etracelevel, const void * p, memsize s)
+      {
+
+         if (etracelevel == e_trace_level_information)
+         {
+
+            pmemoryOutput->append(p, s);
+
+         }
+         else
+         {
+
+            pmemoryError->append(p, s);
+
+         }
+
+      };
+
+      memorydumpfunction.set_timeout(timeOut);
+
+      auto iExitCode = command_memory(scopedstr, memorydumpfunction);
 
       return iExitCode;
 
@@ -313,6 +422,14 @@ namespace acme
    }
 
 
+   int shell::command_memory(const ::scoped_string& scopedstr, const memory_dump_function& memorydumpfunction)
+   {
+
+      return command_system_memory(scopedstr, memorydumpfunction);
+
+   }
+
+
    int shell::command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
@@ -320,6 +437,13 @@ namespace acme
 
    }
 
+
+   int shell::command_system_memory(const ::scoped_string& scopedstr, const memory_dump_function & memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   {
+
+      return m_pshellComposite->command_system_memory(scopedstr, memorydumpfunction, pathWorkingDirectory, edisplay);
+
+   }
 
 
    int shell::interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)

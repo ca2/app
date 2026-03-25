@@ -125,19 +125,19 @@ namespace coding
       bool defer_application_build_helper();
       bool defer_initial_ambient_setup();
 
-      ::e_status application_build_helper_initial_ambient_setup(bool bSystemNotifyIfNeeded);
+      //::e_status application_build_helper_initial_ambient_setup(bool bSystemNotifyIfNeeded);
 
-      virtual void post_impact_redraw();
+      //virtual void post_impact_redraw();
 
-      void on_installed(::coding::enum_install einstall, bool bJustInstalled) override;
-      bool is_installing();
+      //void on_installed(::coding::enum_install einstall, bool bJustInstalled) override;
+      //bool is_installing();
 
-      bool is_install_selected(::coding::enum_install einstall);
+      //bool is_install_selected(::coding::enum_install einstall);
       //void _install_graphical_ide();
-      bool can_start_installing();
+      //bool can_start_installing();
 
 
-      virtual bool calculate_enable(::coding::enum_install einstall);
+      //virtual bool calculate_enable(::coding::enum_install einstall);
 
       virtual void code_on_change_selection();
 
@@ -147,7 +147,7 @@ namespace coding
       // bool is_tortoise_git_insftalled(int iAttempt = 0);
       //void set_status1(string strStatus);
       //void set_status2(string strStatus);
-      void defer_release_install();
+      //void defer_release_install();
       //void release_source();
 
       void start_install_graphical_ide();

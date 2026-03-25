@@ -3,7 +3,7 @@
 #include "acme/platform/release_time.h"
 
 
-__BEGIN_RELEASE_TIME(integration)
+__BEGIN_RELEASE_TIME(coding)
 #include "release_time.txt"
 __END_RELEASE_TIME()
 

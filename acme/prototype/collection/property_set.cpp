@@ -1306,17 +1306,112 @@ void property_set_base::_parse_network_arguments(const ::scoped_string & scopeds
 }
 
 
-void property_set_base::parse_network_headers(const ::scoped_string & scopedstrHeaders)
+enum_network_header property_set_base::parse_network_headers(const ::scoped_string & scopedstrHeaders)
 {
 
-   string_array_base stra;
+   string_array_base straHeaders;
 
-   stra.add_lines(scopedstrHeaders, true);
+   straHeaders.add_lines(scopedstrHeaders, true);
+
+   return parse_network_headers(straHeaders);
+
+}
+
+
+enum_network_header property_set_base::parse_network_headers(const ::string_array_base & straHeaders, ::collection::index iStart)
+{
+
+   ::collection::index iHttpBlock = -1;
+
+   for(::collection::index i = iStart; i < straHeaders.size(); i++)
+   {
+
+      if(straHeaders[i].case_insensitive_begins("HTTP/"))
+      {
+
+         iHttpBlock = i; // keep updating → last block wins
+
+      }
+
+   }
+
+   if(iHttpBlock >= 0)
+   {
+
+      ::tokenizer tokenizer(straHeaders[iHttpBlock]);
+
+      auto & outattributes = this->operator[]("out_attributes").property_set_reference();
+
+      ::string strHttpVersion;
+
+      tokenizer.get_word(strHttpVersion);
+
+      outattributes["http_version"];
+
+      ::string strHttpStatusCode;
+
+      tokenizer.get_word(strHttpStatusCode);
+
+      outattributes["http_status_code"] = ::as_int(strHttpStatusCode);
+
+      ::string strStatus;
+
+      tokenizer.get_line(strStatus);
+
+      outattributes["http_status"] = tokenizer;
+
+      auto & outheaders = this->operator[]("out_headers").property_set_reference();
+
+      outheaders._parse_network_headers(straHeaders, iHttpBlock + 1);
+
+      return e_network_header_response;
+
+   }
+   else
+   {
+      // Try to parse as request line: METHOD URI HTTP/1.1
+      ::string_array_base straParts;
+
+      straParts.explode(" ", straHeaders.first());
+
+      if(straParts.size() == 3 && straParts[2].case_insensitive_begins("HTTP/"))
+      {
+
+         auto & inattributes = this->operator[]("in_attributes").property_set_reference();
+         inattributes["http_method"] = straParts[0];
+         inattributes["request_uri"] = straParts[1];
+         inattributes["http_version"] = straParts[2];
+
+         auto & inheaders = this->operator[]("in_headers").property_set_reference();
+
+         inheaders._parse_network_headers(straHeaders, 1);
+
+         return e_network_header_request;
+
+      }
+      else
+      {
+
+         _parse_network_headers(straHeaders);
+
+         return e_network_header_raw;
+
+      }
+
+   }
+
+}
+
+
+void property_set_base::_parse_network_headers(const string_array_base & straHeaders, ::collection::index i)
+{
 
    string strName;
 
-   for (auto & str : stra)
+   for (; i < straHeaders.get_size(); i++)
    {
+
+      auto &str = straHeaders[i];
 
       auto pPos = str.find(":");
 
@@ -1348,6 +1443,7 @@ void property_set_base::parse_network_headers(const ::scoped_string & scopedstrH
    }
 
 }
+
 
 
 string property_set_base::_001Replace(const ::scoped_string & scopedstr) const

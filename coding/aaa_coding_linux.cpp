@@ -2,9 +2,9 @@
 // Created by camilo on 12/12/21 05:08 PM <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "integration.h"
-#include "integration_linux.h"
-#include "item.h"
+#include "coding.h"
+#include "coding_linux.h"
+//#include "item.h"
 #include "application.h"
 #include "impact_interface.h"
 #include "acme/filesystem/file/file.h"
@@ -16,7 +16,7 @@
 #include "acme/platform/node.h"
 #include "acme/handler/sequence.h"
 #include "acme/prototype/comparison/array.h"
-#include "aura/user/user/still.h"
+//#include "aura/user/user/still.h"
 
 
 #include "acme/_operating_system.h"
@@ -27,20 +27,20 @@ namespace linux
    namespace coding
    {
 
-      integration::integration()
+      coding::coding()
       {
 
       }
 
 
-      integration::~integration()
+      coding::~coding()
       {
 
       }
 
 
 
-      void integration::on_initialize_application_build_tool_task_groups()
+      void coding::on_initialize_application_build_tool_task_groups()
       {
 
          //_defer_task_group(::coding::e_task_openssl);
@@ -51,7 +51,7 @@ namespace linux
 
 
 
-      void integration::on_initialize_application_build_tool_operating_system_integrate_list()
+      void coding::on_initialize_application_build_tool_operating_system_integrate_list()
       {
 
          m_eintegrateaOperatingSystem.copy_initializer_list(
@@ -64,17 +64,17 @@ namespace linux
       }
 
 
-      void integration::prepare_build()
+      void coding::prepare_build()
       {
 
-         //      m_straunion.add_array(m_pintegrationcontext->m_straOutput);
+         //      m_straunion.add_array(m_pcodingcontext->m_straOutput);
          //
          //      m_straunion.add_array(m_straLine2);
 
       }
 
 
-      void integration::integrate_main2(::coding::item * pitem)
+      void coding::integrate_main2(::coding::item * pitem)
       {
 
          //auto strSystemSlashedIntegration = m_poperatingsystemsummary->m_strSlashedIntegration;
@@ -113,9 +113,9 @@ namespace linux
 
          }
 
-         information() << "integration_posix slashed : " << strSystemSlashedIntegration;
+         information() << "coding_posix slashed : " << strSystemSlashedIntegration;
 
-         //information() << "integration_posix release : " << scopedstrRelease;
+         //information() << "coding_posix release : " << scopedstrRelease;
 
          //m_strDistroRelease = scopedstrDistroRelease;
 
@@ -125,7 +125,7 @@ namespace linux
 
          ::file::path pathIntegrationFolder;
 
-         pathIntegrationFolder = directory_system()->home() / "integration" / strSystemSlashedIntegration;
+         pathIntegrationFolder = directory_system()->home() / "coding" / strSystemSlashedIntegration;
 
          m_pathStoreFolder1 = directory_system()->home() / "store" / strSystemSlashedIntegration;
 
@@ -163,7 +163,7 @@ namespace linux
       }
 
 
-      bool integration::integrate_posix_with_result(const ::scoped_string &scopedstrRelease)
+      bool coding::integrate_posix_with_result(const ::scoped_string &scopedstrRelease)
       {
 
          ::file::path pathBuildFolder = m_strRepositoryPath;
@@ -265,7 +265,7 @@ namespace linux
 
          }
 
-         m_integrationcommanda.clear();
+         //m_codingcommanda.clear();
 
          information() << "reading list of applications";
 
@@ -323,7 +323,7 @@ namespace linux
       }
 
 
-      bool integration::on_packaging(::string &strAppId, ::string &strTarget, ::string &strSource)
+      bool coding::on_packaging(::string &strAppId, ::string &strTarget, ::string &strSource)
       {
 
          if(!on_more_packaging(strAppId, strTarget, strSource))
@@ -337,7 +337,7 @@ namespace linux
             //
             //         }
 
-            integration_summary(strAppId, "📦", true);
+            //coding_summary(strAppId, "📦", true);
 
             return false;
 
@@ -378,7 +378,7 @@ namespace linux
          //         if(iExitCode != 0)
          //         {
          //
-         //            integration_summary(strAppId, "🏪");
+         //            coding_summary(strAppId, "🏪");
          //
          //
          ////            { x
@@ -412,7 +412,7 @@ namespace linux
       }
 
 
-      void integration::on_start_task_group(::coding::enum_task etaskGroup)
+      void coding::on_start_task_group(::coding::enum_task etaskGroup)
       {
 
          m_etaskGroupRunning = etaskGroup;
@@ -456,10 +456,10 @@ namespace linux
 
 
 
-void integration_library_factory(::factory::factory * pfactory)
+void coding_factory(::factory::factory * pfactory)
 {
 
-   pfactory->add_factory_item<::linux::coding::integration, ::coding::integration>();
+   pfactory->add_factory_item<::linux::coding::coding, ::coding::coding>();
 
 }
 

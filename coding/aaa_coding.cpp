@@ -3,17 +3,17 @@
 //
 #include "framework.h"
 #include "application.h"
-#include "group_checkout_for_another_system.h"
-#include "group_machine_box.h"
-#include "group_netnode.h"
-#include "group_new_release_prefix.h"
-#include "group_operating_system.h"
-#include "impact.h"
-#include "integration.h"
+//#include "group_checkout_for_another_system.h"
+//#include "group_machine_box.h"
+//#include "group_netnode.h"
+//#include "group_new_release_prefix.h"
+//#include "group_operating_system.h"
+//#include "impact.h"
+#include "coding.h"
 #include "integration_command.h"
-#include "item.h"
-#include "task.h"
-#include "task_group.h"
+//#include "item.h"
+//#include "task.h"
+//#include "task_group.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/nano/nano.h"
@@ -36,8 +36,8 @@
 #include "apex/networking/http/context.h"
 #include "apex/platform/node.h"
 #include "apex/platform/system.h"
-#include "aura/user/user/check_box.h"
-#include "aura/user/user/still.h"
+//#include "aura/user/user/check_box.h"
+//#include "aura/user/user/still.h"
 
 
 #include "acme/_operating_system.h"
@@ -51,7 +51,7 @@ namespace coding
 {
 
 
-   integration::integration()
+   coding::coding()
    {
 
       m_timeStart2.Now();
@@ -105,39 +105,44 @@ namespace coding
    }
 
 
-   integration::~integration()
+   coding::~coding()
    {
 
    }
 
 
-   ::file::path integration::base_integration_folder()
+   ::file::path coding::base_integration_folder()
    {
 
-      return m_pintegrationcontext->base_integration_folder();
+      //return m_pintegrationcontext->base_integration_folder();
+
+      return m_pathBaseIntegrationFolder;
 
       //#ifdef WINDOWS_DESKTOP
       //
-      //      return "C:/integration";
+      //      return "C:/coding";
       //
       //#else
       //
-      //      return directory_system() / "integration";
+      //      return directory_system() / "coding";
       //
       //#endif
 
    }
 
 
-   ::file::path integration::host_integration_folder()
+   ::file::path coding::host_integration_folder()
    {
 
-      return m_pintegrationcontext->host_integration_folder();
+      //
+      //return m_pintegrationcontext->host_integration_folder();
+
+      return m_pathHostIntegrationFolder;
 
    }
 
 
-   ::file::path integration::integration_folder()
+   ::file::path coding::integration_folder()
    {
 
       return host_integration_folder() / m_strIntegration;
@@ -145,7 +150,7 @@ namespace coding
    }
 
 
-   void integration::initialize(::particle* pparticle)
+   void coding::initialize(::particle* pparticle)
    {
 
       ::app_consumer<::coding::application, ::object>::initialize(pparticle);
@@ -171,20 +176,20 @@ namespace coding
    }
 
 
-   void integration::initialize_integration()
+   void coding::initialize_integration()
    {
 
       node()->integration_factory();
 
       m_pparticleHttpSynchronization = node()->create_mutex();
 
-      constructø(m_pintegrationcontext);
+      ///constructø(m_pintegrationcontext);
 
       defer_create_synchronization();
 
       m_poperatingsystemsummary = node()->operating_system_summary();
 
-      m_pmutexLines = m_pintegrationcontext->m_pmutexLines;
+      //m_pmutexLines = m_pintegrationcontext->m_pmutexLines;
 
       m_bSummaryError = true;
 
@@ -226,23 +231,23 @@ namespace coding
 #endif
 
 
-      if (m_papp->m_eapplication == e_application_build_tool)
-      {
-
-         on_initialize_application_build_tool();
-
-      }
-      else if (m_papp->m_eapplication == e_application_integration)
-      {
-
-         on_initialize_application_integration();
-
-      }
+      // if (m_papp->m_eapplication == e_application_build_tool)
+      // {
+      //
+      //    on_initialize_application_build_tool();
+      //
+      // }
+      // else if (m_papp->m_eapplication == e_application_integration)
+      // {
+      //
+      //    on_initialize_application_integration();
+      //
+      // }
 
    }
 
 
-   ::string_array integration::save_nodes()
+   ::string_array coding::save_nodes()
    {
 
       ::string_array straLines;
@@ -277,7 +282,7 @@ namespace coding
    }
 
 
-   void integration::load_nodes(const ::string_array& straLines)
+   void coding::load_nodes(const ::string_array& straLines)
    {
 
       m_straNode.clear();
@@ -329,13 +334,13 @@ namespace coding
          if (m_straNetnode.has_element())
          {
 
-            m_pgroupnetnode = create_newø < group_netnode >();
-
-            m_pgroupnetnode->m_pintegration = this;
-
-            m_pgroupnetnode->initialize_group_netnode(m_straNetnode);
-
-            //m_groupa.add(m_pgroupnetnode);
+            // m_pgroupnetnode = create_newø < group_netnode >();
+            //
+            // m_pgroupnetnode->m_pintegration = this;
+            //
+            // m_pgroupnetnode->initialize_group_netnode(m_straNetnode);
+            //
+            // //m_groupa.add(m_pgroupnetnode);
 
          }
          else
@@ -351,7 +356,7 @@ namespace coding
    }
 
 
-   void integration::read_nodes()
+   void coding::read_nodes()
    {
 
       ::file::path pathNetnode;
@@ -369,7 +374,7 @@ namespace coding
    }
 
 
-   void integration::write_nodes()
+   void coding::write_nodes()
    {
 
       ::file::path pathNetnode;
@@ -386,19 +391,19 @@ namespace coding
 
 
 
-   void integration::on_start_task_group(enum_task etaskGroup)
+   void coding::on_start_task_group(enum_task etaskGroup)
    {
 
    }
 
-   void integration::on_initialize_application_integration()
+   void coding::on_initialize_application_integration()
    {
 
-      m_pintegrationcontext->m_pathBaseIntegrationFolder = node()->get_default_base_integration_folder();
+      //m_pintegrationcontext->m_pathBaseIntegrationFolder = node()->get_default_base_integration_folder();
 
       auto pathHostIntegrationFolder = host_integration_folder();
 
-      information() << "open_integration (host integration folder) : " << pathHostIntegrationFolder;
+      information() << "open_integration (host coding folder) : " << pathHostIntegrationFolder;
 
       m_pathCheckoutThenPowerOff = pathHostIntegrationFolder / "checkout_then_power_off.txt";
 
@@ -675,7 +680,7 @@ namespace coding
    }
 
 
-   void integration::on_initialize_application_handler()
+   void coding::on_initialize_application_handler()
    {
 
       m_papp->datastream()->get("new_release_prefix", m_baPhaseEnable[e_phase_new_release_prefix]);
@@ -700,12 +705,12 @@ namespace coding
    }
 
 
-   void integration::open(const ::file::path& pathIntegrationFolder)
+   void coding::open(const ::file::path& pathIntegrationFolder)
    {
 
       m_pintegrationcontext->m_pathBaseIntegrationFolder = pathIntegrationFolder;
 
-      information() << "open_integration (integration folder) : " << m_pintegrationcontext->m_pathBaseIntegrationFolder;
+      information() << "open_integration (coding folder) : " << m_pintegrationcontext->m_pathBaseIntegrationFolder;
 
       ::file::path pathHost;
 
@@ -767,7 +772,7 @@ namespace coding
    }
 
 
-   void integration::on_open_integration()
+   void coding::on_open_integration()
    {
 
       //m_pintegrationcontext->m_pathBaseIntegrationFolder = pathIntegrationFolder;
@@ -792,7 +797,7 @@ namespace coding
    }
 
 
-   void integration::on_load()
+   void coding::on_load()
    {
 
       ::string strSystem = node()->operating_system_summary()->m_strSystem;
@@ -1165,7 +1170,7 @@ namespace coding
    }
 
 
-   void integration::initialize_integrate_operating_system()
+   void coding::initialize_integrate_operating_system()
    {
 
       if (m_eintegrateaOperatingSystem.has_element())
@@ -1187,7 +1192,7 @@ namespace coding
 
    }
 
-   void integration::set_impact_interface(impact_interface* pimpactinterface)
+   void coding::set_impact_interface(impact_interface* pimpactinterface)
    {
 
       m_pimpactinterface = pimpactinterface;
@@ -1195,7 +1200,7 @@ namespace coding
    }
 
 
-   void integration::set_integrate(enum_integrate eintegrate)
+   void coding::set_integrate(enum_integrate eintegrate)
    {
 
       m_eintegrate = eintegrate;
@@ -1205,7 +1210,7 @@ namespace coding
    }
 
 
-   void integration::run()
+   void coding::run()
    {
 
       m_timeSpeechSpamControl.Now();
@@ -1368,7 +1373,7 @@ namespace coding
             if (eintegrate == e_integrate_none)
             {
 
-               warningf("item with no integration inserted in item list?!?!");
+               warningf("item with no coding inserted in item list?!?!");
 
                continue;
 
@@ -1462,7 +1467,7 @@ namespace coding
    }
 
 
-   void integration::on_finished()
+   void coding::on_finished()
    {
 
       {
@@ -1505,23 +1510,23 @@ namespace coding
    }
 
 
-   //   ::file::path integration::log_base_folder()
+   //   ::file::path coding::log_base_folder()
    //   {
    //
    //#ifdef WINDOWS
    //
-   //      return "C:/integration";
+   //      return "C:/coding";
    //
    //#else
    //
-   //      return directory_system()->home() / "integration";
+   //      return directory_system()->home() / "coding";
    //
    //#endif
    //
    //   }
 
 
-   void integration::prepare1(const ::string& lpcszSource, const ::string& lpcszDest)
+   void coding::prepare1(const ::string& lpcszSource, const ::string& lpcszDest)
    {
 
       string_array stra;
@@ -1618,7 +1623,7 @@ namespace coding
    }
 
 
-   string integration::get_integration_name()
+   string coding::get_integration_name()
    {
 
       if (!m_pitem)
@@ -1633,7 +1638,7 @@ namespace coding
    }
 
 
-   task_group* integration::running_task_group()
+   task_group* coding::running_task_group()
    {
 
       if (m_etaskGroupRunning == e_task_none)
@@ -1648,7 +1653,7 @@ namespace coding
    }
 
 
-   class ::time integration::get_build_elapsed_time()
+   class ::time coding::get_build_elapsed_time()
    {
 
       class ::time timeElapsed;
@@ -1678,7 +1683,7 @@ namespace coding
    }
 
 
-   //void integration::set_topic_text(const ::scoped_string& scopedstr)
+   //void coding::set_topic_text(const ::scoped_string& scopedstr)
    //{
 
 
@@ -1688,14 +1693,14 @@ namespace coding
    //}
 
 
-   //void integration::set_topic_text2(const ::scoped_string& scopedstr)
+   //void coding::set_topic_text2(const ::scoped_string& scopedstr)
    //{
 
    //   m_pimpact->m_ptopicText2->set_window_text(scopedstr);
 
    //}
 
-//   string integration::get_name(enum_integrate eintegrate)
+//   string coding::get_name(enum_integrate eintegrate)
 //   {
 //
 //      switch (eintegrate)
@@ -1727,7 +1732,7 @@ namespace coding
 //   }
 
 
-   void integration::append_message(const ::ansi_character* pszFormat, ...)
+   void coding::append_message(const ::ansi_character* pszFormat, ...)
    {
 
       ::string strMessage;
@@ -1747,15 +1752,15 @@ namespace coding
    }
 
    //
-   //   void integration::add_store_copy(const ::file::path & pathZip, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
+   //   void coding::add_store_copy(const ::file::path & pathZip, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
    //   {
    //
    //
    //   }
 
    //
-   //   //void integration::start_store_copy(const ::file::path & pathZip, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
-   //   void integration::add_store_copy(const ::scoped_string & scopedstrAppId)
+   //   //void coding::start_store_copy(const ::file::path & pathZip, const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
+   //   void coding::add_store_copy(const ::scoped_string & scopedstrAppId)
    //   {
    //
    //      ::file::path pathTarget;
@@ -1796,7 +1801,7 @@ namespace coding
    //   }
 
 
-   void integration::add_store_copy(const ::scoped_string& scopedstrAppId)
+   void coding::add_store_copy(const ::scoped_string& scopedstrAppId)
    {
       
       ::file::path pathTarget;
@@ -1816,7 +1821,7 @@ namespace coding
    }
 
 
-   bool integration::is_upload_finished()
+   bool coding::is_upload_finished()
    {
 
       if (m_iCurrentStoreCopyItem >= m_copyitemaStore.get_size())
@@ -1836,7 +1841,7 @@ namespace coding
    }
 
 
-   void integration::add_store_copy(const ::scoped_string& scopedstrAppId, const ::file::path& pathTarget,
+   void coding::add_store_copy(const ::scoped_string& scopedstrAppId, const ::file::path& pathTarget,
       const ::file::path& pathSource)
    {
 
@@ -1920,7 +1925,7 @@ namespace coding
    }
 
 
-   void integration::release_package(const char* pszAppId, const char* pszTarget, const char* pszSource)
+   void coding::release_package(const char* pszAppId, const char* pszTarget, const char* pszSource)
    {
       
       m_timeTopicStoreStart.Now();
@@ -1943,7 +1948,7 @@ namespace coding
    }
 
 
-   void integration::store_copy(const ::scoped_string& scopedstrAppId, const ::file::path& pathTarget,
+   void coding::store_copy(const ::scoped_string& scopedstrAppId, const ::file::path& pathTarget,
       const ::file::path& pathSource)
    {
 
@@ -1994,7 +1999,7 @@ namespace coding
    }
 
 
-   void integration::store_copy_to_local_file_system_store(const ::file::path& pathFolder,
+   void coding::store_copy_to_local_file_system_store(const ::file::path& pathFolder,
       const ::scoped_string& scopedstrAppId,
       const ::file::path& pathTarget, ::file::file* pfileSource)
    {
@@ -2039,7 +2044,7 @@ namespace coding
    }
 
 
-   void integration::store_copy_to_http_server(const ::scoped_string& scopedstrAppId, const ::file::path& pathTarget,
+   void coding::store_copy_to_http_server(const ::scoped_string& scopedstrAppId, const ::file::path& pathTarget,
       ::file::file* pfileSource)
    {
 
@@ -2254,7 +2259,7 @@ namespace coding
    }
 
 
-class ::time integration::get_topic_elapsed_time()
+class ::time coding::get_topic_elapsed_time()
 {
    
    if(m_timeTopicBuildStart.is_null())
@@ -2269,7 +2274,7 @@ class ::time integration::get_topic_elapsed_time()
 }
 
 
-   void integration::main_status(const ::scoped_string& scopedstrMainStatus)
+   void coding::main_status(const ::scoped_string& scopedstrMainStatus)
    {
 
       ::string strLabel(scopedstrMainStatus);
@@ -2365,7 +2370,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   bool integration::on_more_packaging(::string& strAppId, ::string& strTarget, ::string& strSource)
+   bool coding::on_more_packaging(::string& strAppId, ::string& strTarget, ::string& strSource)
    {
 
       ::string strCommand;
@@ -2378,7 +2383,7 @@ class ::time integration::get_topic_elapsed_time()
 
       strName = pathSource.name() + "_" + m_strReleaseFilename + ".txt";
 
-      auto pathLog = directory_system()->home() / "integration/_____";
+      auto pathLog = directory_system()->home() / "coding/_____";
 
       auto strSystemAmbientReleaseArchitecture = node()->operating_system_summary()->m_strSystemAmbientReleaseArchitecture;
 
@@ -2440,7 +2445,7 @@ class ::time integration::get_topic_elapsed_time()
 
    }
 
-::coding::summary_item * integration::summary_item(const ::scoped_string & scopedstrItem)
+::coding::summary_item * coding::summary_item(const ::scoped_string & scopedstrItem)
 {
    _synchronous_lock synchronouslock(this->synchronization());
    
@@ -2454,7 +2459,7 @@ class ::time integration::get_topic_elapsed_time()
 
 }
 
-   void integration::integration_summary(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrOk, bool bBuild)
+   void coding::integration_summary(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrOk, bool bBuild)
    {
       
       class ::time timeBuild;
@@ -2595,7 +2600,7 @@ class ::time integration::get_topic_elapsed_time()
       strSummaryText += strSummaryTime + " ";
       strSummaryText += scopedstrAppId + "\n";
 
-      auto pathSummaryFolder = directory_system()->home() / "integration";
+      auto pathSummaryFolder = directory_system()->home() / "coding";
 
       pathSummaryFolder /= m_strReleaseFilename;
 
@@ -2631,7 +2636,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   bool integration::has_selected_build() const
+   bool coding::has_selected_build() const
    {
 
       for (auto pitem : m_itema)
@@ -2667,7 +2672,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::add_command(
+   void coding::add_command(
       const ::scoped_string& scopedstrLabel,
       const ::scoped_string& scopedstrCommand,
       const class ::time& timeTimeout
@@ -2691,7 +2696,7 @@ class ::time integration::get_topic_elapsed_time()
 
 
 
-   void integration::do_command(integration_command* pintegrationcommand)
+   void coding::do_command(integration_command* pintegrationcommand)
    {
 
       auto strStep = pintegrationcommand->get_step_text();
@@ -2838,7 +2843,7 @@ class ::time integration::get_topic_elapsed_time()
    //   }
 
 
-   bool integration::integrate_command_list()
+   bool coding::integrate_command_list()
    {
 
       string& strBuildResult = m_strBuildResult;
@@ -2919,7 +2924,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::on_finished_finish_animations()
+   void coding::on_finished_finish_animations()
    {
 
       auto pathHost = host_integration_folder();
@@ -2969,7 +2974,7 @@ class ::time integration::get_topic_elapsed_time()
          else
          {
 
-            information() << "integration : " << m_strIntegration;
+            information() << "coding : " << m_strIntegration;
 
             if (file_system()->exists(m_pathStartBuild))
             {
@@ -2989,7 +2994,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   log_interface* integration::task_log(enum_task etask)
+   log_interface* coding::task_log(enum_task etask)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -3040,7 +3045,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   bool integration::should_task_group_tasks_be_sequential(enum_task etaskGroup)
+   bool coding::should_task_group_tasks_be_sequential(enum_task etaskGroup)
    {
 
       switch (etaskGroup)
@@ -3055,7 +3060,7 @@ class ::time integration::get_topic_elapsed_time()
 
 
 
-   void integration::task_group_indexes(enum_task etaskGroup, ::numeric_array_base<::coding::enum_index>& eindexa)
+   void coding::task_group_indexes(enum_task etaskGroup, ::numeric_array_base<::coding::enum_index>& eindexa)
    {
 
       switch (etaskGroup)
@@ -3111,7 +3116,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::task_group_stages(enum_task etaskGroup, ::string_array& straStage)
+   void coding::task_group_stages(enum_task etaskGroup, ::string_array& straStage)
    {
 
       switch (etaskGroup)
@@ -3143,7 +3148,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::task_group_tasks_ordinals(enum_task etaskGroup, ::numeric_array_base < ::coding::enum_task >& etaskaOrdinal)
+   void coding::task_group_tasks_ordinals(enum_task etaskGroup, ::numeric_array_base < ::coding::enum_task >& etaskaOrdinal)
    {
      
 //      switch (etaskGroup)
@@ -3185,7 +3190,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   bool integration::integrate_posix_with_result(const ::scoped_string & scopedstrDistroRelease)
+   bool coding::integrate_posix_with_result(const ::scoped_string & scopedstrDistroRelease)
    {
 
       throw ::interface_only();
@@ -3195,7 +3200,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string& scopedstrText, int iExitCode)
+   void coding::speak(::collection::index iIndex, ::collection::index iCount, const ::scoped_string& scopedstrText, int iExitCode)
    {
 
       ::string strMessage;
@@ -3225,7 +3230,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::_speak(const ::scoped_string& scopedstrText)
+   void coding::_speak(const ::scoped_string& scopedstrText)
    {
 
       at_end_of_scope
@@ -3244,7 +3249,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::integrate_task_group(enum_task etaskGroup, ::coding::item* pitem)
+   void coding::integrate_task_group(enum_task etaskGroup, ::coding::item* pitem)
    {
 
       if (etaskGroup == e_task_none)
@@ -3257,7 +3262,7 @@ class ::time integration::get_topic_elapsed_time()
       if (!sort_of_ok_earth_time_from_international_string(m_strIntegration))
       {
 
-         throw ::exception(error_wrong_state, "bad integration (bad release date time, please set integration time with integration/handler)");
+         throw ::exception(error_wrong_state, "bad coding (bad release date time, please set coding time with coding/handler)");
 
       }
 
@@ -3298,7 +3303,7 @@ class ::time integration::get_topic_elapsed_time()
 
 
 
-   void integration::_defer_task_group(enum_task etaskGroup, ::pointer < task_group >* pptaskgroup)
+   void coding::_defer_task_group(enum_task etaskGroup, ::pointer < task_group >* pptaskgroup)
    {
 
       if (etaskGroup == e_task_none)
@@ -3380,7 +3385,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   // void integration::integrate_openssl(::coding::item* pitem)
+   // void coding::integrate_openssl(::coding::item* pitem)
    // {
 
    //    integrate_task_group(e_task_openssl, pitem);
@@ -3388,7 +3393,7 @@ class ::time integration::get_topic_elapsed_time()
    // }
 
 
-   // void integration::integrate_ffmpeg(::coding::item* pitem)
+   // void coding::integrate_ffmpeg(::coding::item* pitem)
    // {
 
    //    integrate_task_group(e_task_ffmpeg, pitem);
@@ -3396,7 +3401,7 @@ class ::time integration::get_topic_elapsed_time()
    // }
 
 
-   int integration::_do_task(::coding::task* ptask)
+   int coding::_do_task(::coding::task* ptask)
    {
 
       ::file_pointer pfileLog;
@@ -3486,7 +3491,7 @@ class ::time integration::get_topic_elapsed_time()
 
    }
 
-   enum_task integration::as_task_group(enum_integrate eintegrate)
+   enum_task coding::as_task_group(enum_integrate eintegrate)
    {
 
       auto eintegrateId = eintegrate & e_integrate_id_mask;
@@ -3506,7 +3511,7 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   bool integration::on_integrate(::coding::item* pitem)
+   bool coding::on_integrate(::coding::item* pitem)
    {
 
       auto etaskGroup = as_task_group(pitem->m_eintegrate);
@@ -3524,30 +3529,30 @@ class ::time integration::get_topic_elapsed_time()
 
    }
 
-   ::file::path integration::port_base_folder()
+   ::file::path coding::port_base_folder()
    {
 
       return directory_system()->home() / "port";
 
    }
-   bool integration::on_packaging(::string& strAppId, ::string& strTarget, ::string& strSource)
+   bool coding::on_packaging(::string& strAppId, ::string& strTarget, ::string& strSource)
    {
 
       return false;
    }
-   //::string integration::macos_archive(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
+   //::string coding::macos_archive(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
    //{
    // 
    //   return {};
    //   
    //}
 
-   void integration::prepare_build()
+   void coding::prepare_build()
    {
 
    }
 
-   void integration::call_integrate_main(::coding::item* pitem)
+   void coding::call_integrate_main(::coding::item* pitem)
    {
 
       auto strSystemAmbientReleaseArchitecture = m_poperatingsystemsummary->m_strSystemAmbientReleaseArchitecture;
@@ -3590,34 +3595,34 @@ class ::time integration::get_topic_elapsed_time()
    }
 
 
-   void integration::integrate_main2(::coding::item* pitem)
+   void coding::integrate_main2(::coding::item* pitem)
    {
 
    }
 
 
-   void integration::on_initialize_application_build_tool_operating_system_integrate_list()
-   {
-
-
-   }
-
-
-   void integration::on_initialize_application_build_tool_task_groups()
+   void coding::on_initialize_application_build_tool_operating_system_integrate_list()
    {
 
 
    }
 
 
-   void integration::integrate_new_release_prefix_windows()
+   void coding::on_initialize_application_build_tool_task_groups()
    {
 
 
    }
 
 
-   void integration::integrate_port(::coding::item* pitem)
+   void coding::integrate_new_release_prefix_windows()
+   {
+
+
+   }
+
+
+   void coding::integrate_port(::coding::item* pitem)
    {
 
       integrate_task_group(::coding::e_task_port, pitem);
@@ -3628,7 +3633,7 @@ class ::time integration::get_topic_elapsed_time()
 #ifdef MACOS
 
 
-   ::string integration::macos_archive(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
+   ::string coding::macos_archive(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrScheme)
    {
       
       return {};

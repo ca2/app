@@ -7,7 +7,7 @@
 #pragma once
 
 
-#include "integration.h"
+#include "coding.h"
 
 //
 //
@@ -43,8 +43,8 @@ namespace linux
 namespace coding
 {
 
-   class CLASS_DECL_CODING integration :
-           virtual public ::coding::integration
+   class CLASS_DECL_CODING coding :
+           virtual public ::coding::coding
    {
    public:
 
@@ -211,8 +211,8 @@ namespace coding
 //
 //      int m_iFailedTasks = 0;
 
-      integration();
-      ~integration() override;
+      coding();
+      ~coding() override;
 
 
       //void initialize(::particle* pparticle) override;

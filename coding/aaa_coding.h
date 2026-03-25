@@ -74,7 +74,8 @@ namespace coding
       ::string_array                         m_straMachineBox;
       ::string_array                         m_straNetnode;
       
-
+::file::path   m_pathBaseIntegrationFolder;
+      ::file::path   m_pathHostIntegrationFolder;
       ::string_array                         m_straNetnodePulse;
       ::coding::enum_task                              m_etaskGroupRunning;
 

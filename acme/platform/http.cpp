@@ -136,7 +136,9 @@ namespace platform
    void http::download(const ::payload & payloadFile, const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto pfile = file_system()->get_writer(payloadFile, ::file::e_open_create);
+      auto pfile = file_system()->get_writer(payloadFile,
+         ::file::e_open_create
+         | ::file::e_open_defer_create_directory);
 
       auto phttpget = createø < ::nano::http::get >();
 

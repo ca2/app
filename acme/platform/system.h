@@ -663,6 +663,7 @@ namespace platform
       virtual void install_progress_add_up(int iAddUp = 1) override;
       virtual bool is_operating_system_package_installed(const ::scoped_string & scopedstrPackageName);
       virtual ::string_array_base not_installed_operating_system_packages(const ::string_array_base & straPackageNames);
+      virtual ::string install_operating_system_packages_command_line(const ::string_array_base & straPackageNames);
 
       virtual ::string get_application_server_name() override;
 

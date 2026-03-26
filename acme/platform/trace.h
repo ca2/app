@@ -109,3 +109,8 @@ using memory_dump_function = ::function < void(enum_trace_level, const void * p,
 
 CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information);
 CLASS_DECL_ACME trace_function std_get_output(::string* pstrOutput);
+
+CLASS_DECL_ACME memory_dump_function std_inline_memory_dump(enum_trace_level etracelevelInformation = e_trace_level_information);
+
+
+

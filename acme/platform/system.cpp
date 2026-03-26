@@ -59,6 +59,7 @@
 bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 ::string_array_base debian_not_installed_packages(const ::string_array_base & straPackageNames);
 ::string debian_install_packages_command_line(const ::string_array_base & straPackageNames);
+::string debian_install_package_file_command_line(const ::file::path & pathPackageFile);
 
 #endif
 
@@ -4738,6 +4739,60 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #endif
 
       return "echo \"Unknown command line for installing operating packages.\"";
+
+   }
+
+
+   ::string system::install_operating_system_package_file_command_line(const ::file::path & pathPackageFile)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return ::transfer(debian_install_package_file_command_line(pathPackageFile));
+
+      }
+
+#endif
+
+      return "echo \"Unknown command line for installing operating package file.\"";
+
+   }
+
+   ::string system::defer_install_operating_system_packages(const ::string_array_base & straPackageNames)
+   {
+
+      auto straNotInstalledPackages = not_installed_operating_system_packages(straPackageNames);
+
+      if (straNotInstalledPackages.is_empty())
+      {
+
+         return {};
+
+      }
+
+      ::string strCommandLine = install_operating_system_packages_command_line(straNotInstalledPackages);
+
+      print_line(strCommandLine);
+
+      int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      ::string strInstalledPackages = straNotInstalledPackages.implode(" ");
+
+      return strInstalledPackages;
 
    }
 

@@ -48,6 +48,7 @@ class ::time      m_timeFoldersSetupDetected;
          //::string      m_strCloudDataProvider;
       ::file::path m_pathBrowserInstaller;
       ::file::path m_pathSmartGitTarGz;
+      ::file::path m_pathJetBrainsTarGz;
       ::string m_strBrowserTitle;
       ::string m_strRepositoryTitle;
       ::string m_strRepositoryDescription;
@@ -80,6 +81,8 @@ class ::time      m_timeFoldersSetupDetected;
 
 
       __DECLARE_APPLICATION_RELEASE_TIME();
+      virtual void preempt_message(const char * pszMessage);
+      virtual void micro_preempt(const char * pszMessage);
 
       /////////////bool did_just_install_cloud_data_provider();
 
@@ -158,8 +161,8 @@ class ::time      m_timeFoldersSetupDetected;
       virtual ::string_array get_install_dep_script_names();
       virtual ::string_array get_install_dep_package_names();
       virtual ::string_array get_install_dep_install_group_names();
-      virtual bool are_all_debian_packages_and_install_groups_installed();
-
+      virtual bool are_all_operating_system_packages_and_install_groups_installed();
+      virtual void __install_deps();
          virtual bool __are_folders_setup();
 #if JETBRAINS_CLION
          //bool defer_install_smart_git(int iTry);
@@ -188,9 +191,11 @@ class ::time      m_timeFoldersSetupDetected;
 
       virtual void start_install_clion();
 
-      virtual void install_clion();
+      virtual void __install_jetbrains_clion();
+      virtual void __download_jetbrains_clion();
+      virtual ::string __jetbrains_clion_download_url();
 
-      virtual bool is_clion_installed();
+      //virtual bool is_clion_installed();
 
 #endif
 

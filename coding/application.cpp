@@ -105,6 +105,43 @@ namespace coding
    }
 
 
+   void application::micro_preempt(const char * pszMessage)
+   {
+
+      print_line(pszMessage);
+      preempt(200_ms);
+
+   }
+
+   void application::preempt_message(const char * pszMessage)
+   {
+
+      print_line("");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line("____________________________________");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line(::string("   ") + ::string(pszMessage));
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+      print_line("");
+      preempt(200_ms);
+   }
+
    bool application::is_code_in_initial_setup()
    {
 
@@ -561,7 +598,7 @@ namespace coding
 
 #if defined(LINUX)
 
-      return is_clion_installed();
+      return __is_jetbrains_clion_installed();
 
 #elif defined(WINDOWS_DESKTOP)
 
@@ -795,7 +832,7 @@ namespace coding
 
       node()->posix_shell_command(pathSyntevo / "smartgit/bin/add-menuitem.sh");
 
-      node()->detached_command("/bin/bash -c " + (pathSyntevo / "smartgit/bin/smartgit.sh"), {});
+      //node()->detached_command("/bin/bash -c " + (pathSyntevo / "smartgit/bin/smartgit.sh"), {});
 
    }
 
@@ -961,7 +998,7 @@ namespace coding
 
 
 
-   bool application::are_all_debian_packages_and_install_groups_installed()
+   bool application::are_all_operating_system_packages_and_install_groups_installed()
    {
 
       if (m_bInstallDepsCalculated && m_timeLastInstallDepsCheck.elapsed() < 5_min)
@@ -971,15 +1008,50 @@ namespace coding
 
       }
 
+      m_bInstallDepsCalculated = true;
+
       m_timeLastInstallDepsCheck.Now();
 
       auto straPackageNames = get_install_dep_package_names();
 
-      auto straNotInstalledPackages = debian_not_installed_packages(straPackageNames);
+      preempt_message("Required dependencies for coding setup");
+
+      for (auto & strPackageName : straPackageNames)
+      {
+
+         micro_preempt(strPackageName);
+
+      }
+
+      auto straNotInstalledPackages = system()->not_installed_operating_system_packages(straPackageNames);
 
       m_bAllInstallDepsInstalled = straNotInstalledPackages.is_empty();
 
-      return true;
+      if (!m_bAllInstallDepsInstalled)
+      {
+
+         preempt_message("Required dependencies for coding setup that aren't installed");
+
+         for (auto & strPackageName : straNotInstalledPackages)
+         {
+
+            micro_preempt(strPackageName);
+
+         }
+
+      }
+
+      return m_bAllInstallDepsInstalled;
+
+   }
+
+
+   void application::__install_deps()
+   {
+
+      auto depsa = get_install_dep_package_names();
+
+      system()->defer_install_operating_system_packages(depsa);
 
    }
 
@@ -988,22 +1060,22 @@ namespace coding
    bool application::__are_deps_installed()
    {
 
-      auto psummary = node()->operating_system_summary();
+      //auto psummary = node()->operating_system_summary();
 
-      auto strSystemFamily = psummary->m_strSystemFamily;
+      //auto strSystemFamily = psummary->m_strSystemFamily;
 
-      if (strSystemFamily == "debian")
-      {
+      //if (strSystemFamily == "debian")
+      //{
 
-         return are_all_debian_packages_and_install_groups_installed();
+         return are_all_operating_system_packages_and_install_groups_installed();
 
-      }
+      //}
 
-      auto path = directory_system()->home() / ".config/integration/code/install_deps.txt";
+      //auto path = directory_system()->home() / ".config/integration/code/install_deps.txt";
 
-      auto bExists = file_system()->exists(path);
+      //auto bExists = file_system()->exists(path);
 
-      return bExists;
+      //return bExists;
 
    }
 
@@ -1237,11 +1309,7 @@ namespace coding
       if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
       {
 
-         ::string strRedirectingUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
-
-         ::property_set set;
-
-         pathUrl = http()->get_effective_url(strRedirectingUrl, set).as_string();
+         pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
 
       }
       else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
@@ -1263,7 +1331,15 @@ namespace coding
    void application::__download_visual_studio_code()
    {
 
-      ::file::path pathSource = __visual_studio_code_download_url();
+      ::file::path pathSource1 = __visual_studio_code_download_url();
+
+      print_line("Got this url for downloading Visual Studio Code : \"" + pathSource1+"\".");
+
+      ::property_set set1;
+
+      print_line("Going to calculate effective url...");
+
+      ::file::path pathSource = http()->get_effective_url(pathSource1, set1).as_string();
 
       ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
 
@@ -1301,10 +1377,9 @@ namespace coding
    void application::install_from_operating_system_package_file(const::file::path & pathPackageFile)
    {
 
-      auto strCommandLine = system()->install_operating_system_packages_command_line({pathPackageFile});
+      auto strCommandLine = system()->install_operating_system_package_file_command_line(pathPackageFile);
 
-      node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
-
+      node()->pty(strCommandLine);
 
    }
 

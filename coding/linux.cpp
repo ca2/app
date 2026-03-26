@@ -4,9 +4,12 @@
 #include "framework.h"
 #include "application.h"
 #include "install.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/archive/archive.h"
+#include "acme/platform/http.h"
 #include "acme/platform/node.h"
 
 
@@ -101,19 +104,72 @@ namespace coding
    //   }
 
 
-   void application::install_clion()
+
+   string application::__jetbrains_clion_download_url()
    {
 
+      auto pathUrl = fetch_download_link("linux/clion");
+
+      print_line("JetBrains CLion download url : " + pathUrl);
+
+      return pathUrl;
 
    }
 
 
-   bool application::is_clion_installed()
+   void application::__download_jetbrains_clion()
    {
 
-      return node()->has_posix_shell_command("clion");
+      ::file::path pathSource = __jetbrains_clion_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathJetBrainsTarGz = pathTarget;
 
    }
+
+
+   void application::__install_jetbrains_clion()
+   {
+
+      __download_jetbrains_clion();
+
+      print_line("Uncompressing JetBrains CLion...");
+
+      auto pathClion = directory_system()->home() / "application_opt/clion";
+
+      directory_system()->create(pathClion);
+
+      node()->posix_shell_command("tar -xzvf \""+ m_pathJetBrainsTarGz + "\" -C \"" + pathClion + "\" --strip-components=1",
+         e_posix_shell_system_default,
+   [this](auto etracelevel, auto & str, bool bCarriage)
+      {
+
+         print_line(str);
+
+      });
+
+      print_line("Launching JetBrains CLion...");
+
+      node()->posix_shell_command(pathClion / "bin/clion");
+
+      //node()->detached_command("/bin/bash -c " + (pathSyntevo / "smartgit/bin/smartgit.sh"), {});
+
+   }
+
+
+   // bool application::is_clion_installed()
+   // {
+   //
+   //    return node()->has_posix_shell_command("clion");
+   //
+   // }
 
 
 } // namespace coding

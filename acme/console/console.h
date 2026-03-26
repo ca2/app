@@ -25,6 +25,9 @@ namespace console
       console();
       ~console() override;
 
+
+      virtual void defer_non_root();
+
       virtual void start_input();
 
       virtual int getch(void);

@@ -115,4 +115,17 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName)
 }
 
 
+::string debian_install_package_file_command_line(const ::file::path & pathPackageFile)
+{
+
+   ::string strCommandLine;
+
+   strCommandLine.format("sudo apt -y install '{}'", pathPackageFile);
+
+   return strCommandLine;
+
+}
+
+
+
 

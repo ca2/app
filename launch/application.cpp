@@ -422,7 +422,9 @@ namespace launch
 
       printf_line("Checking if version exists at server... (%s)", strDownloadUrl.c_str());
 
-      if (!nano()->http()->check_url_ok(strDownloadUrl))
+      ::property_set setCheckUrlOkDownload;
+
+      if (!nano()->http()->check_url_ok(strDownloadUrl, setCheckUrlOkDownload))
       {
 
          m_iExitCode = -1;
@@ -536,7 +538,9 @@ namespace launch
 
       auto pathZipName = m_pathBinaryFolder / strZipName;
 
-      nano()->http()->download(pathZipName,strDownloadUrl );
+      ::property_set set;
+
+      nano()->http()->download(pathZipName,strDownloadUrl, set );
       // if (!strcasecmp(m_pszDistro, "freebsd")) {
       //
       // strcpy(szDownloadCommand, "curl ");

@@ -700,6 +700,23 @@ CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInform
 }
 
 
+CLASS_DECL_ACME memory_dump_function std_inline_memory_dump(enum_trace_level etracelevelInformation)
+{
+
+   auto predicate = [etracelevelInformation](auto etracelevel, const void * p, memsize s)
+   {
+
+      ::fwrite(p, 1, s, trace_level_FILE(etracelevel, etracelevelInformation));
+
+      ::fflush(trace_level_FILE(etracelevel, etracelevelInformation));
+
+   };
+
+   return predicate;
+
+}
+
+
 CLASS_DECL_ACME trace_function std_get_output(::string * pstrOutput)
 {
 

@@ -7,6 +7,24 @@
 
 namespace console
 {
+
+
+   void console::defer_non_root()
+   {
+
+      // getuid() returns 0 for the root user
+      if (getuid() == 0) {
+         error() << "WARNING: This program should not be run as root.";
+         // Optionally exit, or just warn
+         // exit(EXIT_FAILURE);
+         throw ::exception(error_failed);
+      }
+
+      information() << "Running with user ID: " << getuid();
+
+   }
+
+
    void console::start_input()
    {
 

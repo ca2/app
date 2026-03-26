@@ -219,21 +219,16 @@ namespace acme
 
       auto iExitCode = get_command_output(strOutput, strError, scopedstr, timeOut);
 
-      if (iExitCode != 0)
+      if (piExitCode)
       {
 
-         if (piExitCode)
-         {
+         *piExitCode = iExitCode;
 
-            *piExitCode = iExitCode;
+      }
+      else if (iExitCode != 0)
+      {
 
-         }
-         else
-         {
-
-            throw ::exception(error_failed);
-
-         }
+         throw ::exception(error_failed);
 
       }
 
@@ -249,30 +244,25 @@ namespace acme
    }
 
 
-   ::memory shell::get_command_output_memory(const ::scoped_string& scopedstr, const class ::time& timeOut, ::memory * pmemoryError, int * piExitCode)
+   ::memory shell::get_command_output_memory(const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut, ::memory * pmemoryError, int * piExitCode)
    {
 
       ::memory memoryOutput;
 
       ::memory memoryError;
 
-      auto iExitCode = get_command_output_memory(memoryOutput, memoryError, scopedstr, timeOut);
+      auto iExitCode = get_command_output_memory(memoryOutput, memoryError, scopedstr, bInteractive, timeOut);
 
-      if (iExitCode != 0)
+      if (piExitCode)
       {
 
-         if (piExitCode)
-         {
+         *piExitCode = iExitCode;
 
-            *piExitCode = iExitCode;
+      }
+      else if (iExitCode != 0)
+      {
 
-         }
-         else
-         {
-
-            throw ::exception(error_failed);
-
-         }
+         throw ::exception(error_failed);
 
       }
 
@@ -330,7 +320,7 @@ namespace acme
    }
 
 
-   int shell::get_command_output_memory(::memory& memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   int shell::get_command_output_memory(::memory& memoryOutput, ::memory & memoryError, const ::scoped_string& scopedstr, bool bInteractive, const class ::time& timeOut)
    {
 
       auto pmemoryOutput = ::as_pointer(&memoryOutput);
@@ -357,19 +347,21 @@ namespace acme
 
       memorydumpfunction.set_timeout(timeOut);
 
-      auto iExitCode = command_memory(scopedstr, memorydumpfunction);
+      auto iExitCode = command_memory(scopedstr, bInteractive, memorydumpfunction);
 
       return iExitCode;
 
    }
 
 
-   ::string shell::get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, int * piExitCode,  const class ::time& timeOut)
+   ::string shell::get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, ::string * pstrError, int * piExitCode,  const class ::time& timeOut)
    {
 
       ::string strOutput;
 
-      auto iExitCode = get_posix_shell_command_output(strOutput, scopedstr, eposixshell, timeOut);
+      ::string strError;
+
+      auto iExitCode = get_posix_shell_command_output(strOutput, strError, scopedstr, eposixshell, timeOut);
 
       if (piExitCode)
       {
@@ -384,22 +376,45 @@ namespace acme
 
       }
 
+      if (pstrError)
+      {
+
+         *pstrError = strError;
+
+      }
+
       return strOutput;
 
    }
 
 
-   int shell::get_posix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
+   int shell::get_posix_shell_command_output(::string& strOutput, ::string & strError, const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
    {
 
-      status_pointer <::string> pstring;
+      status_pointer <::string> pstringOut;
 
-      construct_newø(pstring);
+      construct_newø(pstringOut);
 
-      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
+      status_pointer <::string> pstringErr;
+
+      construct_newø(pstringErr);
+
+      trace_function tracefunction = [pstringOut, pstringErr]
+      (enum_trace_level etracelevel, const scoped_string& str, bool bCarriage)
          {
 
-            pstring->m_payload += str + (bCarriage ? "\r":"\n" );
+         if (etracelevel == e_trace_level_information)
+         {
+
+            pstringOut->m_payload += str + (bCarriage ? "\r":"\n" );
+
+         }
+         else
+         {
+
+            pstringErr->m_payload += str + (bCarriage ? "\r":"\n" );
+
+         }
 
          };
 
@@ -407,7 +422,9 @@ namespace acme
 
       auto iExitCode = posix_shell_command(scopedstr, eposixshell, tracefunction);
 
-      strOutput = pstring->m_payload;
+      strOutput = pstringOut->m_payload;
+
+      strError = pstringErr->m_payload;
 
       return iExitCode;
 
@@ -422,10 +439,10 @@ namespace acme
    }
 
 
-   int shell::command_memory(const ::scoped_string& scopedstr, const memory_dump_function& memorydumpfunction)
+   int shell::command_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function& memorydumpfunction)
    {
 
-      return command_system_memory(scopedstr, memorydumpfunction);
+      return command_system_memory(scopedstr, bInteractive, memorydumpfunction);
 
    }
 
@@ -438,21 +455,33 @@ namespace acme
    }
 
 
-   int shell::command_system_memory(const ::scoped_string& scopedstr, const memory_dump_function & memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   int shell::command_system_memory(const ::scoped_string& scopedstr, bool bInteractive, const memory_dump_function & memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
-      return m_pshellComposite->command_system_memory(scopedstr, memorydumpfunction, pathWorkingDirectory, edisplay);
+      return m_pshellComposite->command_system_memory(scopedstr, bInteractive, memorydumpfunction, pathWorkingDirectory, edisplay);
 
    }
 
 
-   int shell::interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   int shell::pty(const scoped_string& scopedstr)
    {
-
-      return m_pshellComposite->interactive_command_system(scopedstrPrompt, scopedstrCommand, tracefunction, pathWorkingDirectory, edisplay);
-
+      return m_pshellComposite->pty(scopedstr);
    }
 
+
+   // int shell::interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   // {
+   //
+   //    return m_pshellComposite->interactive_command_system(scopedstrPrompt, scopedstrCommand, tracefunction, pathWorkingDirectory, edisplay);
+   //
+   // }
+   //
+   // int shell::interactive_command_system_memory(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const memory_dump_function& memorydumpfunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
+   // {
+   //
+   //    return m_pshellComposite->interactive_command_system_memory(scopedstrPrompt, scopedstrCommand, memorydumpfunction, pathWorkingDirectory, edisplay);
+   //
+   // }
 
 
    //void shell::open_terminal_and_run(const ::scoped_string& scopedstr)
@@ -494,11 +523,13 @@ namespace acme
 
          strCommand.formatf("command -v %s", scopedstrCommand.as_string().c_str());
 
-         ::string strOutput;
+         ::string strOut;
 
-         auto iExitCode = get_posix_shell_command_output(strOutput, strCommand, eposixshell, 1_min);
+         ::string strErr;
 
-         return iExitCode == 0 || strOutput.has_character();
+         auto iExitCode = get_posix_shell_command_output(strOut, strErr, strCommand, eposixshell, 1_min);
+
+         return iExitCode == 0 || strOut.has_character();
 
       }
       catch (...)
@@ -685,81 +716,48 @@ namespace acme
    }
 
 
-   int shell::interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
+   int shell::posix_shell_command_memory(const ::scoped_string& scopedstrCommand, bool bInteractive, enum_posix_shell eposixshell, const memory_dump_function& memorydumpfunction)
    {
 
-      trace_function tracefunction = [](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
-         {
-
-            ::print_out(str);
-
-         };
-
-
-
-      if (m_pshellComposite != this)
+      if(m_pshellComposite != this)
       {
 
-         return m_pshellComposite->interactive_posix_shell(scopedstrCommand, eposixshell);
+         return m_pshellComposite->posix_shell_command_memory(scopedstrCommand, bInteractive, eposixshell, memorydumpfunction);
 
       }
 
       try
       {
 
-         //string strEscaped = scopedstrCommand;
+         string strEscaped = scopedstrCommand;
 
-         ::string strPrompt;
-         ::string strCommand = scopedstrCommand;
-         ////if (m_bInteractive)
-         //{
-
-         //   strCommand = "bash --noprofile --norc -i -c ";
-         //   strCommand += scopedstrCommand;
-         //   strCommand += "; echo __END_OF_COMMAND:$?__\n";
-
-         //}
+         ::string strCommand;
 
          information("Current Directory: {}", directory_system()->current());
-         //information("{}", scopedstrCommand);
+         information("{}", strEscaped);
 
 #ifdef WINDOWS_DESKTOP
 
          if (eposixshell == e_posix_shell_msys2)
          {
 
-            //strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" --noprofile --norc -i -c ";
-            //strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" -i -l";
-            strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" --noprofile --norc -i";
+            strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -l -c \'" + strEscaped + "\'";
 
          }
          else
          {
 
-            //strPrompt = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -i -l";
-            strPrompt = "\"C:\\Program Files\\Git\\bin\\bash.exe\" --noprofile --norc -i";
+            strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -l -c \"" + strEscaped + "\"";
 
          }
 
 #else
 
-         //strCommand = strEscaped;
+         strCommand = strEscaped;
 
-#endif 
+#endif
 
-         //::string strCommand;
-//if (m_bInteractive)
-         //{
-
-         //   strPrompt += "\"";
-         //   strPrompt += scopedstrCommand;
-         //   strPrompt += "; echo __END_OF_COMMAND:$?__\"";
-
-         //}
-
-
-
-         auto iExitCode = this->interactive_command_system(strPrompt, strCommand, tracefunction, {}, e_display_none);
+         auto iExitCode = this->command_system_memory(strCommand, bInteractive, memorydumpfunction);
 
          ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
 
@@ -775,21 +773,103 @@ namespace acme
 
    }
 
-   //::string shell::posix_shell_command_string(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
-   //{
 
-   //   ::string strLog;
-
-   //   auto iExitCode = posix_shell_command(scopedstrCommand, eposixshell, [&strLog](auto etracelevel, auto str, bool bCarriage)
-   //      {
-
-   //         strLog += ::string(str) + (bCarriage? "\r":"\n");
-
-   //      });
-
-   //   return strLog;
-
-   //}
+//    int shell::interactive_posix_shell(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
+//    {
+//
+//       if (m_pshellComposite != this)
+//       {
+//
+//          return m_pshellComposite->interactive_posix_shell(scopedstrCommand, eposixshell);
+//
+//       }
+//
+//       try
+//       {
+//
+//          //string strEscaped = scopedstrCommand;
+//
+//          ::string strPrompt;
+//          ::string strCommand = scopedstrCommand;
+//          ////if (m_bInteractive)
+//          //{
+//
+//          //   strCommand = "bash --noprofile --norc -i -c ";
+//          //   strCommand += scopedstrCommand;
+//          //   strCommand += "; echo __END_OF_COMMAND:$?__\n";
+//
+//          //}
+//
+//          information("Current Directory: {}", directory_system()->current());
+//          //information("{}", scopedstrCommand);
+//
+// #ifdef WINDOWS_DESKTOP
+//
+//          if (eposixshell == e_posix_shell_msys2)
+//          {
+//
+//             //strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" --noprofile --norc -i -c ";
+//             //strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" -i -l";
+//             strPrompt = "\"C:\\msys64\\usr\\bin\\bash.exe\" --noprofile --norc -i";
+//
+//          }
+//          else
+//          {
+//
+//             //strPrompt = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -i -l";
+//             strPrompt = "\"C:\\Program Files\\Git\\bin\\bash.exe\" --noprofile --norc -i";
+//
+//          }
+//
+// #else
+//
+//          //strCommand = strEscaped;
+//
+// #endif
+//
+//          //::string strCommand;
+// //if (m_bInteractive)
+//          //{
+//
+//          //   strPrompt += "\"";
+//          //   strPrompt += scopedstrCommand;
+//          //   strPrompt += "; echo __END_OF_COMMAND:$?__\"";
+//
+//          //}
+//
+//
+//
+//          auto iExitCode = this->interactive_command_system_memory(strPrompt, strCommand, std_inline_memory_dump(), {}, e_display_none);
+//
+//          ///command_system("cmd.exe -c \"C:\\msys64\\msys2_shell.cmd\" \"" + strEscaped + "\"");
+//
+//          return iExitCode;
+//
+//       }
+//       catch (...)
+//       {
+//
+//       }
+//
+//       return -1;
+//
+//    }
+//
+//    //::string shell::posix_shell_command_string(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
+//    //{
+//
+//    //   ::string strLog;
+//
+//    //   auto iExitCode = posix_shell_command(scopedstrCommand, eposixshell, [&strLog](auto etracelevel, auto str, bool bCarriage)
+//    //      {
+//
+//    //         strLog += ::string(str) + (bCarriage? "\r":"\n");
+//
+//    //      });
+//
+//    //   return strLog;
+//
+//    //}
 
 
 #ifdef WINDOWS_DESKTOP

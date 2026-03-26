@@ -1462,23 +1462,32 @@ namespace coding
 
          strCommand = "apt -qq list " + scopedstrPackageName;
 
-         ::string strOutput;
+         ::string strOut;
 
-         int iExitCode = node()->get_posix_shell_command_output(strOutput, strCommand);
+         ::string strErr;
+
+         int iExitCode = node()->get_posix_shell_command_output(strOut, strErr, strCommand);
 
          if (iExitCode == 0)
          {
-            strOutput.trim();
 
-            if (strOutput.case_insensitive_ends("[installed]"))
+            strOut.trim();
+
+            if (strOut.case_insensitive_ends("[installed]"))
             {
+
                return true;
+
             }
+
          }
+
       }
       else
       {
+
          set_status2("_is_package_installed not implemented for this distro : " + psummary->m_strSystem);
+
       }
 
       return false;

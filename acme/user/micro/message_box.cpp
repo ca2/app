@@ -516,8 +516,8 @@ namespace micro
 #ifdef APPLE_IOS
 
                system()->acme_windowing()->set_clipboard_text(
-                  m_prealizable->m_strMessage + "\n\n"
-                  + m_prealizable->m_strDetails);
+                  pmessageboxpayload->m_strMessage + "\n\n"
+                  + pmessageboxpayload->m_strDetails);
                
 #else
 

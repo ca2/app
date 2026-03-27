@@ -22,6 +22,7 @@ endif()
 list(APPEND library_references
         acme
         apex
+        dropbox
 )
 
 

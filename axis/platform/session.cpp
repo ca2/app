@@ -1202,7 +1202,7 @@ namespace axis
 
       auto puser = pcredentials->m_puser;
 
-      //auto pdialog = ::øcreate_new<::account::dialog>();
+      //auto pdialog = ::create_newø<::account::dialog>();
 
       //pdialog->initialize_account_dialog(pcredentials);
 

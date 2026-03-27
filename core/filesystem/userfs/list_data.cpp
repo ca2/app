@@ -360,7 +360,7 @@ namespace userfs
 
       //   listingFolderFinal.defer_add(pathFolderFinal);
 
-      //   auto plistitem = øcreate_new<list_item>();
+      //   auto plistitem = create_newø<list_item>();
 
       //   plistitem->m_pathFinal = pathFinal;
 
@@ -385,7 +385,7 @@ namespace userfs
 
          ::file::path & pathUser = listingUser[i];
 
-         auto plistitem = øcreate_new<list_item>();
+         auto plistitem = create_newø<list_item>();
 
          plistitem->final_path_reference() = pathFinal;
 

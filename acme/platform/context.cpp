@@ -654,7 +654,7 @@ namespace platform
    //   file_pointer context::get_file(const ::payload& payloadFile, ::file::e_open eopen)
    //   {
    //
-   //      auto pfile = øcreate < ::file::file >();
+   //      auto pfile = createø < ::file::file >();
    //
    //      auto path = payloadFile.file_path();
    //

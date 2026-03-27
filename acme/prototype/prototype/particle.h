@@ -643,7 +643,7 @@ public:
    ::pointer < T > create_clone(const T * pSource)
    {
 
-      auto p = this->øcreate< T >();
+      auto p = this->createø< T >();
 
       if (!p)
       {
@@ -674,7 +674,7 @@ public:
    ::pointer < T > __call__create_new_clone(const T * pSource)
    {
 
-      auto p = this->øcreate_new< T >();
+      auto p = this->create_newø< T >();
 
       if (!p)
       {
@@ -779,7 +779,7 @@ public:
    inline bool __call__defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline bool __call__defer_construct_new(::pointer<TYPE>& ptype);
+   inline bool __calldefer_construct_newø(::pointer<TYPE>& ptype);
 
    template < typename TYPE >
    inline bool __call__defer_raw_construct_new(::pointer<TYPE>& ptype);

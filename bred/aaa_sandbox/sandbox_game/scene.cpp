@@ -44,7 +44,7 @@ namespace sandbox_game
    void scene::init()
    {
 
-      auto pplayer = øcreate_new<player>();
+      auto pplayer = create_newø<player>();
 
       pplayer->initialize_sandbox_player(m_pwindowinput);
 
@@ -311,7 +311,7 @@ namespace sandbox_game
    ::pointer<::graphics3d::scene_object> scene::createGameObject()
    {
 
-      auto pgameobject = øcreate_new <game_object >();
+      auto pgameobject = create_newø <game_object >();
 
       auto idGameObject = m_interlockedcountGameObject++;
 

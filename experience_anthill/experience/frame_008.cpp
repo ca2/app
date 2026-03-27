@@ -335,7 +335,7 @@ namespace experience_anthill
          for (::collection::index i = 0; i < 11; i++)
          {
 
-            auto ppen = øcreate < ::draw2d::pen >();
+            auto ppen = createø < ::draw2d::pen >();
 
             ppen->create_solid(1.0, argb((unsigned char)((i + 1) * 10), iR, iG, iB));
 
@@ -548,7 +548,7 @@ namespace experience_anthill
       //      for (::collection::index i = 0; i < 9; i++)
       //      {
 
-      //         auto ppen = øcreate < ::draw2d::pen > ();
+      //         auto ppen = createø < ::draw2d::pen > ();
 
       //         ppen->create_solid(1.0, argb((i+1) * 5, 0, 0, 0));
 

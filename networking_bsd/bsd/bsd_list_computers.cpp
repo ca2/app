@@ -24,7 +24,7 @@ namespace networking_bsd
          
          initialize(p);
          
-         ødefer_construct_new(m_pitema);
+         defer_construct_newø(m_pitema);
          
          node()->arp_a(this, &arp_a::callback);
          
@@ -49,7 +49,7 @@ namespace networking_bsd
 
          information() << "arp_a status : " << status;
 
-         auto paddress = øcreate_new<::networking_bsd::address>();
+         auto paddress = create_newø<::networking_bsd::address>();
          
          paddress->set_address(inaddr);
 
@@ -65,7 +65,7 @@ namespace networking_bsd
 
       arp_a arpa(this);
       
-      //ødefer_construct_new(callback.m_pitema);
+      //defer_construct_newø(callback.m_pitema);
 
 //      auto callback = [this, pitema](void * addr, const_char_pointer ip_address, const_char_pointer host, const_char_pointer status)
 //      {

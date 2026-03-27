@@ -407,7 +407,7 @@ inline ::pointer<BASE_TYPE> particle::__raw_create(::factory::factory* pfactory)
 //
 //
 //template < typename BASE_TYPE >
-//inline ::pointer < BASE_TYPE > øcreate(::particle* pparticle, ::factory::factory* pfactory)
+//inline ::pointer < BASE_TYPE > createø(::particle* pparticle, ::factory::factory* pfactory)
 //{
 //
 //   ::pointer < BASE_TYPE > p;
@@ -443,7 +443,7 @@ inline bool particle::__call__defer_construct(::pointer<TYPE>& p, ::factory::fac
 
 
 //template < typename TYPE >
-//inline bool particle::ødefer_construct(::pointer<TYPE>& p, ::factory::factory* pfactory)
+//inline bool particle::defer_constructø(::pointer<TYPE>& p, ::factory::factory* pfactory)
 //{
 //
 //   if (!p)
@@ -576,7 +576,7 @@ inline void particle::__call__construct_by_type(::pointer<TYPE> &p, const ::plat
 //inline pointer < T >& pointer < T >::create(PARTICLE* pparticle, ::factory::factory* pfactory)
 //{
 //
-//   auto p = pparticle->øcreate < T >(pfactory);
+//   auto p = pparticle->createø < T >(pfactory);
 //
 //   return operator =(p);
 //

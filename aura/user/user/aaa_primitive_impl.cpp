@@ -787,7 +787,7 @@ namespace user
 
 
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = øcreate_new<TYPE>(); \
+   auto pmessage = create_newø<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_pacmewindowingwindow = oswindow; \
    pmessage->m_pwindow = pwindow; \
@@ -798,7 +798,7 @@ namespace user
 
 
 //#define _NEW_MESSAGE(TYPE) \
-//   auto pmessage = øcreate_new<TYPE>(); \
+//   auto pmessage = create_newø<TYPE>(); \
 //   pmessage->m_pchannel = this; \
 //   pmessage->m_emessage = atom; \
 //   pmessage->m_wparam = wparam; \

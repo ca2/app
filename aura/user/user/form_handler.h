@@ -27,7 +27,7 @@ namespace user
       ::pointer < LABEL >create_label(::user::interaction* puserinteractionParent)
       {
 
-         auto plabel = øcreate_new<LABEL>();
+         auto plabel = create_newø<LABEL>();
 
          plabel->m_bAutoResize = true;
 
@@ -100,7 +100,7 @@ namespace user
       ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::atom & atom)
       {
 
-         auto pcheckbox = øcreate_new<CHECK_BOX>();
+         auto pcheckbox = create_newø<CHECK_BOX>();
 
          pcheckbox->m_bAutoResize = true;
 
@@ -134,7 +134,7 @@ namespace user
       ::pointer < BUTTON >create_button(::user::interaction* puserinteractionParent, const ::scoped_string& scopedstrName)
       {
 
-         auto pbutton = øcreate_new<BUTTON>();
+         auto pbutton = create_newø<BUTTON>();
 
          pbutton->m_bAutoResize = true;
 
@@ -155,7 +155,7 @@ namespace user
       ::pointer < EDIT >create_edit(::user::interaction* puserinteractionParent)
       {
 
-         auto pedit = øcreate_new<EDIT>();
+         auto pedit = create_newø<EDIT>();
 
          //pbutton->m_bAutoResize = true;
 

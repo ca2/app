@@ -382,7 +382,7 @@ namespace sockets
 
             m_b_http_1_1 = strHttpVersion.ends("/1.1");
 
-            m_b_keepalive = m_b_http_1_1;
+            //m_b_keepalive = m_b_http_1_1;
 
             m_bRequest = true;
 
@@ -481,6 +481,7 @@ namespace sockets
          }
 
       }
+
       if (key == "host")
       {
 

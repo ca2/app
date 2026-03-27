@@ -488,7 +488,7 @@ namespace user
 
       colorBackground = get_color(pstyle, ::e_element_background);
 
-      auto pbrushBk = øcreate < ::draw2d::brush >();
+      auto pbrushBk = createø < ::draw2d::brush >();
 
       pbrushBk->create_solid(colorBackground);
 
@@ -519,7 +519,7 @@ namespace user
 
       auto pitemCurrent = current_item();
 
-      auto pbrush = øcreate < ::draw2d::brush >();
+      auto pbrush = createø < ::draw2d::brush >();
 
       for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
@@ -601,7 +601,7 @@ namespace user
 
       ::color::color crBorder = argb(255, 0, 0, 0);
 
-      auto ppen = øcreate < ::draw2d::pen >();
+      auto ppen = createø < ::draw2d::pen >();
 
       ppen->create_solid(1.0, crBorder);
 
@@ -1212,11 +1212,11 @@ namespace user
          if (rectangleItem.contains(point))
          {
 
-            ødefer_construct_new(main_content().m_pitema);
+            defer_construct_newø(main_content().m_pitema);
 
             auto& pitemNew = this->main_content().m_pitema->element_at_grow(iItem);
 
-            if (ødefer_construct_new(pitemNew))
+            if (defer_construct_newø(pitemNew))
             {
 
                pitemNew->m_item.m_eelement = e_element_item;
@@ -1647,7 +1647,7 @@ namespace user
 
                synchronous_lock synchronouslock(session()->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-               auto pinteraction = øcreate_new < ::user::interaction >();
+               auto pinteraction = create_newø < ::user::interaction >();
 
                auto puser = user();
 

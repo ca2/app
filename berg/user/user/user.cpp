@@ -777,7 +777,7 @@ namespace berg
    //   if (m_pfontlistSingleColumn.is_null())
    //   {
 
-   //      constructø(m_pfontlistSingleColumn, øcreate_new < ::write_text::font_list > ());
+   //      constructø(m_pfontlistSingleColumn, create_newø < ::write_text::font_list > ());
 
    //      m_pfontlistSingleColumn->m_etype = ::write_text::font_list::type_single_column;
 
@@ -1082,7 +1082,7 @@ namespace berg
    ::pointer<::menu::item > user::menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu)
    {
 
-      auto pmenuitem = øcreate_new < ::menu::item >();
+      auto pmenuitem = create_newø < ::menu::item >();
 
       from_application_menu(pmenuitem, papplicationmenu, pmenu);
 
@@ -1094,7 +1094,7 @@ namespace berg
    ::pointer<::menu::item > user::popup_menu_item_from_application_menu(::application_menu * papplicationmenu, ::user::menu * pmenu)
    {
 
-      auto pmenuitem = øcreate_new < ::menu::item >();
+      auto pmenuitem = create_newø < ::menu::item >();
 
       popup_from_application_menu(pmenuitem, papplicationmenu, pmenu);
 
@@ -1148,7 +1148,7 @@ namespace berg
       if (papplicationmenu)
       {
 
-         auto pusermenu = pmenu->øcreate_new < ::user::menu >();
+         auto pusermenu = pmenu->create_newø < ::user::menu >();
 
          pusermenu->m_pmenuitem = menu_item_from_application_menu(papplicationmenu, pusermenu);
 
@@ -1181,7 +1181,7 @@ namespace berg
 
       }
 
-      ::pointer<::user::menu>pmenu = pparticleContext->øcreate <  ::user::menu  >();
+      ::pointer<::user::menu>pmenu = pparticleContext->createø <  ::user::menu  >();
 
       if (!pmenu->load_xml_menu(strXml))
       {
@@ -1205,7 +1205,7 @@ namespace berg
       ptrackpopup->m_pmenuImplementation = pusermenu;
 
 
-      //ødefer_construct(pitem->m_pmenu);
+      //defer_constructø(pitem->m_pmenu);
 
       //pitem->m_pmenu->m_pmenuitem = pitem;
 
@@ -1252,7 +1252,7 @@ namespace berg
    //   ::pointer<::user::menu> user::track_popup_menu(::user::interaction * pinteraction, ::application_menu * papplicationmenu, int iFlags, const ::int_point & point, const ::int_size & sizeMinimum, ::channel * pchannelNotify)
    //   {
    //
-   //      ::pointer<::user::menu> pmenu = øcreate <  ::user::menu  >();
+   //      ::pointer<::user::menu> pmenu = createø <  ::user::menu  >();
    //
    //      auto pmenuitem = menu_item_from_application_menu(papplicationmenu, pmenu);
    //
@@ -1281,7 +1281,7 @@ namespace berg
    //         
    //      }
    //      
-   //      ::pointer<::user::menu>pmenu = pinteraction->øcreate <  ::user::menu  >();
+   //      ::pointer<::user::menu>pmenu = pinteraction->createø <  ::user::menu  >();
    //
    //      if (!pmenu->load_xml_menu(strXml))
    //      {
@@ -1559,7 +1559,7 @@ namespace berg
 
       }
 
-      auto prequest = øcreate_new< ::request >();
+      auto prequest = create_newø< ::request >();
 
       prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 
@@ -1691,7 +1691,7 @@ namespace berg
 
          }
 
-         auto prequest = pparticle->øcreate_new < ::request >();
+         auto prequest = pparticle->create_newø < ::request >();
 
          prequest->m_egraphicsoutputpurpose -= ::graphics::e_output_purpose_screen;
 

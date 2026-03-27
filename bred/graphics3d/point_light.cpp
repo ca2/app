@@ -29,7 +29,7 @@ namespace graphics3d
          try
          {
            
-            auto panimation = øcreate_new<animation>();
+            auto panimation = create_newø<animation>();
 
             panimation->from(payload["animation"]);
 

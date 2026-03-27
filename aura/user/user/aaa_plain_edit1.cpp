@@ -970,7 +970,7 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, minimum(iErrorEnd, strExtent1.length()));
 
-               auto ppen = øcreate < ::draw2d::pen >();
+               auto ppen = createø < ::draw2d::pen >();
 
                ppen->create_solid(1.0, argb((unsigned char)iErrorA, 255, 0, 0));
 

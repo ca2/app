@@ -260,7 +260,7 @@ namespace helloaxis
 //
 //      //      int iCount = 30;
 //
-//      auto pbrushText = øcreate < ::draw2d::brush > ();
+//      auto pbrushText = createø < ::draw2d::brush > ();
 //
 //      double T = 2.3;
 //
@@ -498,7 +498,7 @@ namespace helloaxis
 //
 //      //      int iCount = 30;
 //
-//      auto pbrushText = øcreate < ::draw2d::brush > ();
+//      auto pbrushText = createø < ::draw2d::brush > ();
 //
 //      double T = 2.3;
 //
@@ -973,7 +973,7 @@ namespace helloaxis
 //
 //               float fHeight = 100.0;
 //
-//               auto pfont = øcreate < ::write_text::font > ();
+//               auto pfont = createø < ::write_text::font > ();
 //
 //               pfont->create_pixel_font(pnode->font_name(e_font_sans), fHeight, e_font_weight_bold);
 //
@@ -999,7 +999,7 @@ namespace helloaxis
 //
 //            ca.set_hls(fmod(__double(::get_tick()), dPeriod) / dPeriod, 0.49, 0.84);
 //
-//            auto pbrush = øcreate < ::draw2d::brush >();
+//            auto pbrush = createø < ::draw2d::brush >();
 //
 //            pbrush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
@@ -1235,7 +1235,7 @@ namespace helloaxis
 //
 //      float fHeight = 100.0;
 //
-//      auto pfont = øcreate < ::write_text::font > ();
+//      auto pfont = createø < ::write_text::font > ();
 //
 ////      pfont->create_pixel_font(m_pimpact->m_strFont, fHeight, e_font_weight_bold);
 //
@@ -1259,17 +1259,17 @@ namespace helloaxis
 //
 //      size = pgraphics->get_text_extent(strHelloAXIS);
 //
-//      auto ppath = øcreate < ::draw2d::path > ();
+//      auto ppath = createø < ::draw2d::path > ();
 //
 //      ppath->m_bFill = false;
 //
 //      ppath->add_string((m_rectangleX.width() - size.cx) / 2, (m_rectangleX.height() - size.cy) / 2, strHelloAXIS, m_pfont);
 //
-//      auto ppen = øcreate < ::draw2d::pen > ();
+//      auto ppen = createø < ::draw2d::pen > ();
 //
 //      ppen->create_solid(1.0, argb(255, 90, 90, 80));
 //
-//      auto ppenW = øcreate < ::draw2d::pen > ();
+//      auto ppenW = createø < ::draw2d::pen > ();
 //
 //      ppenW->create_solid(3.0, argb(84, 255, 255, 255));
 //

@@ -107,7 +107,7 @@ namespace user
 
       layout().this->rectangle(rectangleX, ::user::e_layout_design);
 
-      auto pbrushBk = øcreate < ::draw2d::brush > ();
+      auto pbrushBk = createø < ::draw2d::brush > ();
 
       pbrushBk->create_solid(argb(230, 255, 255, 255));
 
@@ -140,7 +140,7 @@ namespace user
 
       ::collection::index iCurSel = current_item();
 
-      auto pbrush = øcreate < ::draw2d::brush > ();
+      auto pbrush = createø < ::draw2d::brush > ();
 
       for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
@@ -233,7 +233,7 @@ namespace user
 
       color32_t crBorder = argb(255, 0, 0, 0);
 
-      auto ppen = øcreate < ::draw2d::pen > ();
+      auto ppen = createø < ::draw2d::pen > ();
 
       ppen->create_solid(1.0, crBorder);
 

@@ -416,7 +416,7 @@ namespace platform
 
       //::output_debug_string("Going to create simple log\n");
 
-      //m_plogger = øcreate_new < ::simple_log >();
+      //m_plogger = create_newø < ::simple_log >();
 
       constructø(m_plogger);
 
@@ -498,9 +498,9 @@ namespace platform
       //m_pdirectorysystem = nullptr;
       //m_ppathsystem = nullptr;
 
-      ødefer_construct_new(m_pmathematics);
+      defer_construct_newø(m_pmathematics);
 
-      ødefer_construct_new(m_pprototype);
+      defer_construct_newø(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -846,7 +846,7 @@ namespace platform
 
       m_pnode->m_htaskSystem = m_htask;
 
-      //auto estatus = ødefer_construct_new(m_pfactorysquare);
+      //auto estatus = defer_construct_newø(m_pfactorysquare);
 
       //if (!estatus)
       //{
@@ -2064,7 +2064,7 @@ namespace platform
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ødefer_construct_new(m_pmapRegularExpressionContext);
+      defer_construct_newø(m_pmapRegularExpressionContext);
 
       auto & pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
 
@@ -2425,7 +2425,7 @@ namespace platform
 
          m_bPostedInitialRequest = true;
 
-         auto prequest = øcreate_new< ::request>();
+         auto prequest = create_newø< ::request>();
 
          auto strCommandLine = ::system()->m_strCommandLine;
 
@@ -3299,7 +3299,7 @@ namespace platform
          if (strAppId.is_empty() || ::system()->is_console())
          {
 
-            papp = øcreate < ::platform::application >();
+            papp = createø < ::platform::application >();
 
             papp->increment_reference_count();
 
@@ -3375,7 +3375,7 @@ namespace platform
             if (pfactory)
             {
 
-               papp = øcreate < ::platform::application >(pfactory);
+               papp = createø < ::platform::application >(pfactory);
 
                if (!papp)
                {

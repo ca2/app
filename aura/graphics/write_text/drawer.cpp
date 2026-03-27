@@ -426,7 +426,7 @@ namespace write_text
          if (strLine.has_character())
          {
 
-            auto ptextout = øcreate_new < text_out >();
+            auto ptextout = create_newø < text_out >();
 
             ptextout->m_strText = strLine;
 

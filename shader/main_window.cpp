@@ -299,7 +299,7 @@ namespace app_shader
 
          //::user::lock_sketch_to_design lockSketchToDesign(this);
 
-         auto prender = øcreate_new < render >();
+         auto prender = create_newø < render >();
 
          if (!prender)
          {

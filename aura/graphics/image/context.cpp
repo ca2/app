@@ -138,7 +138,7 @@ namespace image
    ::image::image_pointer image_context::create_image()
    {
 
-      auto pimage = øcreate < ::image::image >();
+      auto pimage = createø < ::image::image >();
 
       if (!pimage)
       {
@@ -155,7 +155,7 @@ namespace image
    ::image::image_pointer image_context::create_image(const ::int_size& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
-      auto pimage = m_papplication->øcreate < ::image::image >();
+      auto pimage = m_papplication->createø < ::image::image >();
 
       if (!pimage)
       {
@@ -404,7 +404,7 @@ namespace image
 
       }
 
-      ødefer_construct(pimage);
+      defer_constructø(pimage);
 
       _matter_image(pimage, scopedstrMatter, loadoptions);
 
@@ -432,7 +432,7 @@ namespace image
 
       }
 
-      ødefer_construct(pimage);
+      defer_constructø(pimage);
 
       if (loadoptions.pparticleSync)
       {
@@ -469,7 +469,7 @@ namespace image
 
       //auto estatus = 
 
-      ødefer_construct(pimage);
+      defer_constructø(pimage);
 
       //if (!estatus)
       //{
@@ -631,7 +631,7 @@ namespace image
    void image_context::_load_icon(::image::icon* picon, const ::payload& payloadFile)
    {
 
-      auto pwindowingicon = øcreate < ::windowing::icon >();
+      auto pwindowingicon = createø < ::windowing::icon >();
 
       pwindowingicon->load_file(payloadFile);
 
@@ -1304,7 +1304,7 @@ namespace image
       if (!pimage)
       {
 
-         pimage = øcreate<::image::image>();
+         pimage = createø<::image::image>();
 
          pimage->set_nok();
 

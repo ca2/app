@@ -77,7 +77,7 @@ namespace app_build
 
       }
 
-      ødefer_construct(m_pbuild);
+      defer_constructø(m_pbuild);
 
       m_pbuild->branch();
 

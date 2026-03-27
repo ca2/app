@@ -28,7 +28,7 @@ namespace networking_bsd
 
       ::pointer < ::item_array > pitema;
 
-      ødefer_construct_new(pitema);
+      defer_construct_newø(pitema);
 
 //      enum 
 //      {
@@ -89,7 +89,7 @@ namespace networking_bsd
 
           information() << "Interface Name : " << strName;
 
-         auto paddress = øcreate_new<::networking_bsd::address>();
+         auto paddress = create_newø<::networking_bsd::address>();
 
          paddress->set_address(*curr->ifa_addr);
 

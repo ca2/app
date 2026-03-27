@@ -56,8 +56,8 @@ endif()
 #
 #endif()
 
-
-
+add_subdirectory(coding)
+add_subdirectory(dropbox)
 
 if(${DESKTOP_AMBIENT})
 

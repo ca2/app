@@ -239,7 +239,7 @@ namespace app_app
 
             pitemClose->m_rectangle2.bottom = pitemClose->m_rectangle2.top + iSize;
 
-//            auto pmouse = øcreate_new < ::message::mouse >();
+//            auto pmouse = create_newø < ::message::mouse >();
 //
 //            pmouse->m_pointHost = host_mouse_cursor_position();
 //

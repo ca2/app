@@ -26,7 +26,7 @@ namespace netserver
    ::pointer <::sockets::socket_handler > socket_thread::create_socket_handler()
    {
 
-      return øcreate< ::sockets::socket_handler >();
+      return createø< ::sockets::socket_handler >();
 
    }
 

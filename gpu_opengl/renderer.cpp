@@ -205,7 +205,7 @@ namespace gpu_opengl
       //if (!m_pgpurendertarget->m_pgpuframe)
       //{
 
-      //   constructø(m_pgpurendertarget->m_pgpuframe);/* = øcreate_new < ::gpu_opengl::frame >()*/;
+      //   constructø(m_pgpurendertarget->m_pgpuframe);/* = create_newø < ::gpu_opengl::frame >()*/;
 
       //}
 
@@ -1166,7 +1166,7 @@ namespace gpu_opengl
 ////}
 ////)frag";
 ////
-////                     m_pshaderCopyTextureOnEndDraw = øcreate_new < ::gpu_opengl::shader >();
+////                     m_pshaderCopyTextureOnEndDraw = create_newø < ::gpu_opengl::shader >();
 ////
 ////                     m_pshaderCopyTextureOnEndDraw->initialize_shader_with_block(
 ////                        this,

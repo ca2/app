@@ -289,7 +289,7 @@ namespace account
 
       //}
 
-      m_pauthenticator = øcreate_new< network_authenticator >();
+      m_pauthenticator = create_newø< network_authenticator >();
 
       auto pusera = allocateø user_array();
       

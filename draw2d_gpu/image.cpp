@@ -145,7 +145,7 @@ namespace draw2d_gpu
       ::memory_copy((::pixmap *) this, ppixmap, sizeof(::pixmap));
 
       //constructø(m_pbitmap);
-      ødefer_construct(m_pgraphics);
+      defer_constructø(m_pgraphics);
       //m_pgraphics->set(m_pbitmap);
 
       if (m_papplication->m_gpu.m_bUseSwapChainWindow)

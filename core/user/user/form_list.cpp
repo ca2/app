@@ -2211,7 +2211,7 @@ namespace user
 
       auto & puserinteractiona = pcolumn->m_puserinteractiona;
 
-      ødefer_construct_new(puserinteractiona);
+      defer_construct_newø(puserinteractiona);
 
       ::collection::index iIndex = iItem - m_iTopDisplayIndex;
 

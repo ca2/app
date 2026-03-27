@@ -102,8 +102,15 @@ CLASS_DECL_ACME const_char_pointer get_windows_message_name(unsigned int nMsg);
 
 using trace_function = ::function < void(enum_trace_level, const ::scoped_string &, bool bCarriage) >;
 
+using memory_dump_function = ::function < void(enum_trace_level, const void * p, memsize s) >;
+
 
 
 
 CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information);
 CLASS_DECL_ACME trace_function std_get_output(::string* pstrOutput);
+
+CLASS_DECL_ACME memory_dump_function std_inline_memory_dump(enum_trace_level etracelevelInformation = e_trace_level_information);
+
+
+

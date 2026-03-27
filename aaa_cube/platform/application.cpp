@@ -32,7 +32,7 @@ namespace cube
    ::pointer < ::cube::application > application::start_cube_aplication()
    {
 
-      auto pcubeapplication = øcreate < cube::application>();
+      auto pcubeapplication = createø < cube::application>();
 
       return pcubeapplication;
 

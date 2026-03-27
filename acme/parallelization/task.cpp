@@ -199,7 +199,7 @@ void task::on_initialize_particle()
 //::manual_reset_happening * task::new_procedure_posted()
 //{
 //
-//   ødefer_construct_new(m_pmanualresethappeningNewProcedurePosted);
+//   defer_construct_newø(m_pmanualresethappeningNewProcedurePosted);
 //
 //   return m_pmanualresethappeningNewProcedurePosted;
 //
@@ -209,7 +209,7 @@ void task::on_initialize_particle()
 //::manual_reset_happening* task::new_happening()
 //{
 //
-//   ødefer_construct_new(m_pmanualresethappeningHappening);
+//   defer_construct_newø(m_pmanualresethappeningHappening);
 //
 //   return m_pmanualresethappeningHappening;
 //
@@ -1391,7 +1391,7 @@ void task::stop_task()
    //
    //m_procedureTaskEnded = procedure;
 
-   //ødefer_construct_new(m_phappeningFinished2);
+   //defer_construct_newø(m_phappeningFinished2);
 
    //auto phappeningFinished = m_phappeningFinished2;
 
@@ -1647,7 +1647,7 @@ void task::__task_init()
 
       REFDBG_THIS(this);
 
-      ødefer_construct(m_pexceptiontranslator);
+      defer_constructø(m_pexceptiontranslator);
 
       m_pexceptiontranslator->attach();
 
@@ -2138,7 +2138,7 @@ void task::send(const ::procedure & procedure)
    if (psequence)
    {
 
-      ødefer_construct_new(psequence->m_pmanualresethappeningOnEndOfSequence);
+      defer_construct_newø(psequence->m_pmanualresethappeningOnEndOfSequence);
 
       pmanualresethappeningOnEndOfSequence = psequence->m_pmanualresethappeningOnEndOfSequence;
 
@@ -3510,7 +3510,7 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
    }
 
-   auto pmanualresethappening = øcreate_new < manual_reset_happening >();
+   auto pmanualresethappening = create_newø < manual_reset_happening >();
 
    post([this, procedure, pmanualresethappening]()
       {

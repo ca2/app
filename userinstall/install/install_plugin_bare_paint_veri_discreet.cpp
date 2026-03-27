@@ -70,7 +70,7 @@ namespace hotplugin
 
 
 
-      auto ppen = øcreate < ::draw2d::pen > ();
+      auto ppen = createø < ::draw2d::pen > ();
 
       ppen->create_null();
 
@@ -96,7 +96,7 @@ namespace hotplugin
       {
 
          unsigned char uchR,uchG,uchB;
-         auto pbrush = øcreate < ::draw2d::brush > ();
+         auto pbrush = createø < ::draw2d::brush > ();
          get_progress_color(uchR,uchG,uchB,dRate,0);
          pbrush->create_solid(argb(184,uchR,uchG,uchB));
          pgraphics->FillRect(rectangleProgress,br);

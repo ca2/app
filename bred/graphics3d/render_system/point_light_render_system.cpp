@@ -77,7 +77,7 @@ namespace graphics3d
       ::graphics3d::render_system::initialize_render_system(pengine);
 
 
-      ødefer_construct_new(m_pmodelDummy);
+      defer_construct_newø(m_pmodelDummy);
 
       // ::graphics3d::model::Builder builderDummy;
 
@@ -94,7 +94,7 @@ namespace graphics3d
 
       auto prenderer = pgpucontext->m_pgpurenderer;
 
-      m_pshader = øcreate<::gpu::shader>();
+      m_pshader = createø<::gpu::shader>();
 
       m_pshader->m_propertiesPushShared.set_properties(::gpu_properties<::gpu::point_light_push_constants>());
       

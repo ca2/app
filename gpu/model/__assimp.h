@@ -119,7 +119,7 @@ namespace gpu
                   if (pmodel->m_egpumodel == ::gpu::e_model_gltf)
                   {
 
-                     auto pmodeldata = pmodel->øcreate_new < ::gpu::model_data<::gpu::gltf::vertex>>();
+                     auto pmodeldata = pmodel->create_newø < ::gpu::model_data<::gpu::gltf::vertex>>();
 
                      processMesh(pmodel, pmodeldata->vertexes(), pmodeldata->indexes(),
                         pmaterialNew,
@@ -133,7 +133,7 @@ namespace gpu
                   else if (pmodel->m_egpumodel == ::gpu::e_model_wavefront)
                   {
 
-                     auto pmodeldata = pmodel->øcreate_new<::gpu::model_data<::graphics3d::Vertex>>();
+                     auto pmodeldata = pmodel->create_newø<::gpu::model_data<::graphics3d::Vertex>>();
 
                   //::cast < ::gpu::model_data<::graphics3d::Vertex> >pmodeldata = pmesh->m_pmodeldata;
 
@@ -154,7 +154,7 @@ namespace gpu
 
                   }
 
-                  auto pmesh = pmodel->øcreate<::gpu::model::mesh>();
+                  auto pmesh = pmodel->createø<::gpu::model::mesh>();
 
                   pmesh->initialize_gpu_mesh(
                      pmodel->m_pgpucontext,
@@ -596,7 +596,7 @@ namespace gpu
             }
          }
 
-         //auto pmesh = øcreate<::gpu::model::mesh>();
+         //auto pmesh = createø<::gpu::model::mesh>();
 
          //pmesh->m_pgpucontext = m_pgpucontext;
 

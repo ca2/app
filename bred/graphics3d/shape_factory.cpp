@@ -31,7 +31,7 @@ namespace graphics3d
       // Generate a graphics3d with position, color, texture coordinates, and normals
    ::pointer < ::graphics3d::renderable > shape_factory::create_cube_001(::gpu::context * pgpucontext, float size)
    {
-      auto pshape = øcreate_new<shape>();
+      auto pshape = create_newø<shape>();
 
       float halfSize = size / 2.0f;
 
@@ -132,7 +132,7 @@ namespace graphics3d
 
    ::pointer<::graphics3d::renderable> shape_factory::create_cube_002(::gpu::context *pgpucontext, float size)
    {
-      auto pshape = øcreate_new<shape>();
+      auto pshape = create_newø<shape>();
       float s = size * 0.5f;
 
       pshape->set_vertexes( {
@@ -191,7 +191,7 @@ namespace graphics3d
    // Generate a plane (XZ plane by default) with position, texture coords, and normals
    ::pointer < ::graphics3d::renderable > shape_factory::create_plane(::gpu::context * pgpucontext, float width, float depth)
    {
-      auto pshape = øcreate_new<shape>();
+      auto pshape = create_newø<shape>();
 
       float halfWidth = width / 2.0f;
       float halfDepth = depth / 2.0f;
@@ -215,7 +215,7 @@ namespace graphics3d
    // Generate a wall (XY plane by default) with position, texture coords, and normals
    ::pointer < ::graphics3d::renderable > shape_factory::create_wall(::gpu::context * pgpucontext, float width, float height)
    {
-      auto pshape = øcreate_new<shape>();
+      auto pshape = create_newø<shape>();
 
       float halfWidth = width / 2.0f;
       float halfHeight = height / 2.0f;
@@ -240,7 +240,7 @@ namespace graphics3d
                                                                           unsigned int sectorCount,
                                                                   unsigned int stackCount)
    {
-      auto pshape = øcreate_new<shape>();
+      auto pshape = create_newø<shape>();
 
       ::array_base<::graphics3d::shape_factory::Vertex> vertexes;
 
@@ -341,7 +341,7 @@ namespace graphics3d
                                                                          ::gpu::model_data_base *pmodeldata)
    {
 
-      auto prenderable = øcreate<::gpu::model_buffer>();
+      auto prenderable = createø<::gpu::model_buffer>();
 
       prenderable->initialize_gpu_context_object(pgpucontext);
 

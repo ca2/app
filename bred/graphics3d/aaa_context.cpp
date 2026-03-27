@@ -537,7 +537,7 @@ namespace gpu_gpu
 //
 //       }
 //
-//       ødefer_construct(m_pframebuffer);
+//       defer_constructø(m_pframebuffer);
 //
 //       if (size.area() > 0)
 //       {
@@ -1108,7 +1108,7 @@ namespace gpu_gpu
 //       if (!m_pmodelbufferDummy)
 //       {
 //
-//          ødefer_construct(m_pmodelbufferDummy);
+//          defer_constructø(m_pmodelbufferDummy);
 //
 //          m_pmodelbufferDummy->initialize_gpu_context_object(this);
 //
@@ -1158,7 +1158,7 @@ namespace gpu_gpu
 // }
 // )frag";
 //
-//             ødefer_construct_new(m_pshaderBlend3);
+//             defer_construct_newø(m_pshaderBlend3);
 //
 //             m_pshaderBlend3->m_bEnableBlend = true;
 //             m_pshaderBlend3->m_bindingSampler.set();
@@ -2765,7 +2765,7 @@ namespace gpu_gpu
 //
 //       ::gpu::context_lock contextlock(this);
 //
-//       auto pmodel = øcreate_new<::gpu_opengl::gltf::model>();
+//       auto pmodel = create_newø<::gpu_opengl::gltf::model>();
 //
 //       //::cast<::gpu_opvulkan::queue> pqueueGraphics = graphics_queue();
 //
@@ -2782,7 +2782,7 @@ namespace gpu_gpu
 //                                       int iAssimpTextureType)
 //    {
 //
-//       ødefer_construct(ptexture);
+//       defer_constructø(ptexture);
 //
 //       auto memory = file()->as_memory(path);
 //
@@ -2912,7 +2912,7 @@ namespace gpu_gpu
 
   ::pointer < ::graphics3d::renderable > context::get_skybox_cube_model()
    {
-      auto pmodelbuffer = øcreate_new <::gpu::model_buffer>();
+      auto pmodelbuffer = create_newø <::gpu::model_buffer>();
       ::array_base<floating_sequence3> vertexa = {
          // positions
          {-1.0f,  1.0f, -1.0f },

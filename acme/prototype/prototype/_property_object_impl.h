@@ -38,7 +38,7 @@
 //
 //}
 //
-//inline void property_object::defer_propset() { system()->ødefer_construct_new(m_ppropertyset); }
+//inline void property_object::defer_propset() { system()->defer_construct_newø(m_ppropertyset); }
 //
 //
 //
@@ -271,7 +271,7 @@
 //}
 //
 //
-//inline ::long_long_array_base & material_object::idarray() const { system()->ødefer_construct_new(((material_object *)this)->m_pia); return *m_pia; }
+//inline ::long_long_array_base & material_object::idarray() const { system()->defer_construct_newø(((material_object *)this)->m_pia); return *m_pia; }
 //
 //
 //

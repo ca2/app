@@ -57,7 +57,7 @@ namespace user
 
          //estatus = 
 
-         //ødefer_construct_new(m_pformathost);
+         //defer_construct_newø(m_pformathost);
 
          //if (!estatus)
          //{
@@ -66,7 +66,7 @@ namespace user
 
          //}
 
-         //auto pformat = øcreate_new < ::user::rich_text::format >();
+         //auto pformat = create_newø < ::user::rich_text::format >();
 
          //if (!pformat)
          //{
@@ -266,7 +266,7 @@ namespace user
       void format_tool::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         auto pbrushBk = øcreate < ::draw2d::brush >();
+         auto pbrushBk = createø < ::draw2d::brush >();
 
          auto rectangleX = this->rectangle();
 
@@ -535,7 +535,7 @@ namespace user
                      if (!m_pcolorselectorpopupForeground)
                      {
 
-                        m_pcolorselectorpopupForeground = øcreate_new < ::user::color_selector_popup >();
+                        m_pcolorselectorpopupForeground = create_newø < ::user::color_selector_popup >();
 
                         m_pcolorselectorpopupForeground->m_bCompact = true;
 

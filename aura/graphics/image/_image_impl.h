@@ -8,7 +8,7 @@
 ////inline ::image::image_pointer object::create_image()
 ////{
 ////
-////   return øcreate < ::image::image >();
+////   return createø < ::image::image >();
 ////
 ////}
 ////
@@ -97,7 +97,7 @@
 ////   if (!pimage)
 ////   {
 ////
-////      pimage = øcreate < ::image::image >();
+////      pimage = createø < ::image::image >();
 ////
 ////      if (!pimage)
 ////      {
@@ -176,7 +176,7 @@
 ////inline ::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK)
 ////{
 ////
-////   auto ptype = øcreate < ::image::image >();
+////   auto ptype = createø < ::image::image >();
 ////
 ////   if (!ptype)
 ////   {

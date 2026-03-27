@@ -1951,9 +1951,9 @@ namespace user
    void toolbar::load_xml_toolbar(const ::payload & payloadFile)
    {
 
-      ::pointer < ::item_array > pitema = øcreate_new < ::item_array >();
+      ::pointer < ::item_array > pitema = create_newø < ::item_array >();
 
-      auto pxmldocument = øcreate_new < ::xml::document >();
+      auto pxmldocument = create_newø < ::xml::document >();
 
       auto strXml = file()->safe_get_string(payloadFile);
 
@@ -2003,7 +2003,7 @@ namespace user
          if (pchild->get_name() == "button")
          {
 
-            ptoolitem = øcreate_new < ::user::tool_item >();
+            ptoolitem = create_newø < ::user::tool_item >();
 
             //main_content().indexed_set_item_at(iItem, ptoolitem);
 
@@ -2055,7 +2055,7 @@ namespace user
          else if (pchild->get_name() == "separator")
          {
 
-            ptoolitem = øcreate_new < ::user::tool_item >();
+            ptoolitem = create_newø < ::user::tool_item >();
 
             //main_content().indexed_set_item_at(iItem, ptoolitem);
 
@@ -2085,7 +2085,7 @@ namespace user
       else
       {
 
-         ødefer_construct_new(main_content().m_pitema);
+         defer_construct_newø(main_content().m_pitema);
 
       }
 

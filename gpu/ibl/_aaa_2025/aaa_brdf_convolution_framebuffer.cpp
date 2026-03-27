@@ -40,7 +40,7 @@ namespace gpu
 
          auto pgpurenderer = m_pgpucontext->m_pgpurenderer;
 
-         ødefer_construct(m_ptexture);
+         defer_constructø(m_ptexture);
          //m_ptexture->m_pgpucontext = m_pgpucontext->m_pgpurenderer;
 
          ::gpu::texture_attributes textureattributes(int_rectangle{API_CHANGED_ARGUMENT, width, height});

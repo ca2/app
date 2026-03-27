@@ -982,7 +982,7 @@ namespace user
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 
-      auto pinteraction = pparticle->øcreate_new < ::user::interaction >();
+      auto pinteraction = pparticle->create_newø < ::user::interaction >();
 
       pinteraction->create_child(pinteractionParent);
 
@@ -1159,7 +1159,7 @@ namespace aura
       if (m_pfontlistSingleColumn.is_null())
       {
 
-         m_pfontlistSingleColumn = øcreate_new < ::write_text::font_list > ();
+         m_pfontlistSingleColumn = create_newø < ::write_text::font_list > ();
 
          m_pfontlistSingleColumn->set_font_list_type(::write_text::e_font_list_single_column);
 

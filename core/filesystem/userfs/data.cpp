@@ -533,7 +533,7 @@ namespace userfs
 
          information() << "folder user : " << pathFolderUser;
 
-         //auto plistitem = øcreate_new<list_item>();
+         //auto plistitem = create_newø<list_item>();
 
          //plistitem->m_pathFinal = pathFinal;
 
@@ -620,7 +620,7 @@ namespace userfs
    ::fs::set * data::fs_data()
    {
 
-      if (ødefer_construct_new(m_pfsset))
+      if (defer_construct_newø(m_pfsset))
       {
 
 

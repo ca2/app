@@ -2768,7 +2768,7 @@ namespace dynamic_source
 
          auto pscript1 = pinstance->m_pscript1;
 
-         auto pscriptmain1 = øcreate < script_main >();
+         auto pscriptmain1 = createø < script_main >();
 
          pscriptmain1->initialize_script_main(m_pscriptmanager2, nullptr, pscript1);
 

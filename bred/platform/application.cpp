@@ -650,7 +650,7 @@ namespace bred
 
          auto pstillTitle = create_label<::user::still>(pparent, "GPU API");
 
-         ødefer_construct(pstillTitle->m_pfont);
+         defer_constructø(pstillTitle->m_pfont);
 
          pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt);
 
@@ -701,7 +701,7 @@ namespace bred
 
          auto pstillTitle = create_label<::user::still>(pparent, "draw2d API");
 
-         ødefer_construct(pstillTitle->m_pfont);
+         defer_constructø(pstillTitle->m_pfont);
 
          pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt);
 
@@ -771,7 +771,7 @@ namespace bred
 
          auto pstillTitle = create_label<::user::still>(pparent, "graphics3d Output");
 
-         ødefer_construct(pstillTitle->m_pfont);
+         defer_constructø(pstillTitle->m_pfont);
 
          pstillTitle->m_pfont->create_font(e_font_sans_ui, 24_pt);
 

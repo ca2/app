@@ -211,7 +211,7 @@ namespace database
    void client::initialize_data_client(server * pserver)
    {
 
-      ødefer_construct_new(m_pstream);
+      defer_construct_newø(m_pstream);
 
       m_pstream->m_pclient = this;
 

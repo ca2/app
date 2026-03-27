@@ -1172,7 +1172,7 @@ namespace apex
    //::task_pool* context::taskpool()
    //{
 
-   //   ødefer_construct_new(m_ptaskpool);
+   //   defer_construct_newø(m_ptaskpool);
 
    //   return m_ptaskpool;
 

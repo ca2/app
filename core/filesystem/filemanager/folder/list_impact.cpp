@@ -59,7 +59,7 @@ namespace filemanager
 
          update_impact();
 
-         m_pfolderlistdata = øcreate_new < folder::list_data >();
+         m_pfolderlistdata = create_newø < folder::list_data >();
 
          m_pfolderlistdata->set_data_key_modifier(scopedstrDataKeyModifier);
 
@@ -93,7 +93,7 @@ namespace filemanager
             pcolumn->m_iSubItem = 1;
             pcolumn->m_text = m_papplication->__text("text://filemanager/list_impact/recursive/Recursive");
 
-            auto pcheckbox = øcreate_new <  ::user::check_box >();
+            auto pcheckbox = create_newø <  ::user::check_box >();
             pcheckbox->id() = pcolumn->id();
             pcheckbox->add_function(::user::e_control_function_check_box);
             _001AddControl(pcheckbox);

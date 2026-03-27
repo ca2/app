@@ -144,7 +144,7 @@ void particle::defer_create_synchronization()
       //
       //#endif
 
-      set_synchronization(øcreate< ::mutex >(nullptr));
+      set_synchronization(createø< ::mutex >(nullptr));
 
    }
 
@@ -866,6 +866,13 @@ void particle::print_out(const ::scoped_string& scopedstr) const
 
 void particle::printf_line(const_char_pointer pszFormat, ...) const
 {
+
+   if (has_flag(e_flag_no_stdout))
+   {
+
+      return;
+
+   }
 
    va_list arguments;
 
@@ -2673,7 +2680,7 @@ void particle::process_owned_procedure_list(::procedure_list_base& procedurelist
 memory_file_pointer particle::create_memory_file()
 {
 
-   return øcreate_new< ::memory_file >();
+   return create_newø< ::memory_file >();
 
 }
 

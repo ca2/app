@@ -314,7 +314,7 @@ namespace graphics3d
    void scene_base::load_scene_light(const ::payload & payload)
    {
 
-      auto ppointlight = øcreate_new<point_light>();
+      auto ppointlight = create_newø<point_light>();
 
       ppointlight->from(payload);
 
@@ -653,7 +653,7 @@ namespace graphics3d
 
       auto prenderable = pgpucontext->load_model(model);
 
-      auto pscenerenderable = øcreate_new<::graphics3d::scene_renderable>();
+      auto pscenerenderable = create_newø<::graphics3d::scene_renderable>();
 
       pscenerenderable->initialize_scene_renderable(this);
 
@@ -684,7 +684,7 @@ namespace graphics3d
    ::pointer<::graphics3d::scene_renderable> scene_base::create_scene_renderable()
    {
 
-      auto pscenerenderable = øcreate_new<::graphics3d::scene_renderable>();
+      auto pscenerenderable = create_newø<::graphics3d::scene_renderable>();
 
       pscenerenderable->initialize_scene_renderable(this);
 
@@ -696,7 +696,7 @@ namespace graphics3d
    ::pointer<::graphics3d::skybox> scene_base::create_sky_box()
    {
 
-      auto pskybox = øcreate_new<::graphics3d::skybox>();
+      auto pskybox = create_newø<::graphics3d::skybox>();
 
       pskybox->initialize_scene_renderable(this);
 
@@ -773,7 +773,7 @@ namespace graphics3d
    //
    //    auto prenderable = create_tinyobj_renderable(path);
    //
-   //    auto psceneobject = øcreate < ::graphics3d::scene_object>();
+   //    auto psceneobject = createø < ::graphics3d::scene_object>();
    //
    //    psceneobject->initialize_scene_object(this);
    //
@@ -796,7 +796,7 @@ namespace graphics3d
    //
    //    auto prenderable = pgpucontext->create_tinyobj_renderable(path);
    //
-   //    auto psceneobject = øcreate < ::graphics3d::scene_object>();
+   //    auto psceneobject = createø < ::graphics3d::scene_object>();
    //
    //    psceneobject->initialize_scene_object(this);
    //

@@ -1184,7 +1184,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                            {
 
 
-                              ødefer_construct(m_pnotifyicon);
+                              defer_constructø(m_pnotifyicon);
 
                            }
                            catch(::exception &)
@@ -2762,7 +2762,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //   {
 //
 //      //auto estatus = 
-//      ødefer_construct(m_pimageAlpha);
+//      defer_constructø(m_pimageAlpha);
 //
 //      //if(estatus.succeeded())
 //      //{
@@ -3224,7 +3224,7 @@ void simple_frame_window::defer_create_notification_icon()
          }
 
 
-         ødefer_construct(m_pnotifyicon);
+         defer_constructø(m_pnotifyicon);
 
          //m_pnotifyicon->m_puserinteraction = this;
          try
@@ -4611,7 +4611,7 @@ void simple_frame_window::notification_area_action(const ::atom & atom, ::user::
 //string simple_frame_window::notification_area_get_xml_menu()
 //{
 //
-//   auto pxmldocument = øcreate_new < ::xml::document >();
+//   auto pxmldocument = create_newø < ::xml::document >();
 //
 //   pxmldocument->create_root("menu");
 //

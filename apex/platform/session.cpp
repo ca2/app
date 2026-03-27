@@ -602,7 +602,7 @@ class ::fs::data * session::fs()
    bool session::open_by_file_extension(const ::scoped_string & scopedstrPathName, ::request * prequest)
    {
 
-      auto prequestNew = øcreate_new < ::request >();
+      auto prequestNew = create_newø < ::request >();
 
       prequestNew->m_payloadFile = scopedstrPathName;
 
@@ -1177,11 +1177,11 @@ ret:
 
          __check_refdbg
 
-         auto pset = øcreate_new<::fs::set>();
+         auto pset = create_newø<::fs::set>();
 
          __check_refdbg
 
-         auto plink = øcreate_new < ::fs::link>();
+         auto plink = create_newø < ::fs::link>();
 
          __check_refdbg
 
@@ -1197,7 +1197,7 @@ ret:
 
          __check_refdbg
 
-         ::pointer < ::fs::data > pfsdataNative = øcreate_new < ::fs::native>();
+         ::pointer < ::fs::data > pfsdataNative = create_newø < ::fs::native>();
 
          __check_refdbg
 
@@ -1883,7 +1883,7 @@ namespace apex
 //
 //      auto puser = pcredentials->m_puser;
 //
-//      //auto pdialog = ::øcreate_new<::account::dialog>();
+//      //auto pdialog = ::create_newø<::account::dialog>();
 //
 //      //pdialog->initialize_account_dialog(pcredentials);
 //

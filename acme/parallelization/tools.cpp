@@ -49,7 +49,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 
       auto & ptooltask = m_taska[iThread];
 
-      ptooltask = system()->øcreate_new < ::tool_task >();
+      ptooltask = system()->create_newø < ::tool_task >();
 
       ptooltask->initialize_tool_task(this);
 

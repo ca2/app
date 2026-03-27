@@ -69,7 +69,7 @@ namespace graphics3d
 
 		auto prenderer = pgpucontext->m_pgpurenderer;
 
-      m_pshader = øcreate<::gpu::shader>();
+      m_pshader = createø<::gpu::shader>();
       m_pshader->m_propertiesPushShared.set_properties(simple_render_properties());
       pgpucontext->layout_push_constants(
          m_pshader->m_propertiesPushShared, false);

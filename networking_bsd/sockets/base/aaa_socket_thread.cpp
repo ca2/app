@@ -81,7 +81,7 @@ namespace sockets_bsd
 
       initialize(psocket);
 
-      m_psockethandler = øcreate_new < socket_handler > ();
+      m_psockethandler = create_newø < socket_handler > ();
 
       __Socket(psocket)->m_psocketthread = this;
 

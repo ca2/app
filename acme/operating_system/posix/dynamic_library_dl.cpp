@@ -4,6 +4,8 @@
 // camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
 // From acme/nano/dynamic_library on 2024-06-02 18:06 by camilo <3ThomasBorregaardSorensen!!
 #include "framework.h"
+
+#if !defined(CUBE)
 #include "dynamic_library_dl.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/_operating_system.h"
@@ -155,7 +157,7 @@ namespace dl
    ::file::path dynamic_library::module_path(library_t* plibrary)
    {
 
-      auto pquery = øcreate_new<modules_query>();
+      auto pquery = create_newø<modules_query>();
 
       pquery->query_by_address(plibrary);
 
@@ -167,7 +169,7 @@ namespace dl
    ::library_t* dynamic_library::module_by_name(const ::scoped_string& scopedstrName)
    {
 
-      auto pquery = øcreate_new<modules_query>();
+      auto pquery = create_newø<modules_query>();
 
       pquery->query_by_name(scopedstrName);
 
@@ -179,7 +181,7 @@ namespace dl
    ::library_t* dynamic_library::module_by_path(const ::file::path& path)
    {
 
-      auto pquery = øcreate_new<modules_query>();
+      auto pquery = create_newø<modules_query>();
 
       pquery->query_by_path(path);
 
@@ -365,3 +367,6 @@ namespace operating_system
 
 
 } // namespace operating_system
+
+
+#endif

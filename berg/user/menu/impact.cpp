@@ -418,7 +418,7 @@ namespace user
 
       ::image::image_pointer pimage1;
 
-      ødefer_construct(m_pimageMem);
+      defer_constructø(m_pimageMem);
 
       pimage1 = m_pimageMem;
 
@@ -726,7 +726,7 @@ namespace user
 
       string strXml = file()->as_string(payloadFile);
 
-      auto pxmldoc = øcreate_new < ::xml::document >();
+      auto pxmldoc = create_newø < ::xml::document >();
 
       try
       {
@@ -766,7 +766,7 @@ namespace user
 
       //m_iaPopup.erase_all();
 
-      auto pmenuitemParent = øcreate_new < ::menu::item >();
+      auto pmenuitemParent = create_newø < ::menu::item >();
 
       m_pmenuitem = pmenuitemParent;
 
@@ -775,7 +775,7 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
 
-         auto pmenuitemMenuBar = øcreate_new < ::menu::item >();
+         auto pmenuitemMenuBar = create_newø < ::menu::item >();
 
          pmenuitemMenuBar->m_pmenuitema = allocateø ::menu::item_ptra(pmenuitemMenuBar);
 
@@ -794,7 +794,7 @@ namespace user
 
             auto pnodeChild = pnode->child_at(iCommand);
 
-            auto pmenuitemCommand = øcreate_new < ::menu::item >();
+            auto pmenuitemCommand = create_newø < ::menu::item >();
 
             //statusrectangle = get_menu_item_rectangle(iPos);
 
@@ -938,7 +938,7 @@ namespace user
 
       pgraphics->fill_polygon(pta);
 
-      auto ppath = øcreate<::draw2d::path>();
+      auto ppath = createø<::draw2d::path>();
 
       ppath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
       
@@ -980,7 +980,7 @@ namespace user
 
       pgraphics->fill_polygon(pta);
 
-      auto ppath = øcreate<::draw2d::path>();
+      auto ppath = createø<::draw2d::path>();
 
       ppath->set_current_point(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 

@@ -554,7 +554,7 @@
 //   bool websocket_client::http_request_step()
 //   {
 //
-//      ødefer_construct(m_pwebsocket);
+//      defer_constructø(m_pwebsocket);
 //
 //      if (!m_pwebsocket->m_bWebSocket)
 //      {

@@ -1595,7 +1595,7 @@ pdirectorysystem->create("/ca2core");
 
    //   //   m_bPostedInitialRequest = true;
 
-   //   //   auto prequest = øcreate_new< ::request>();
+   //   //   auto prequest = create_newø< ::request>();
 
    //   //   string strAppId = application()->m_strAppId;
 
@@ -1613,7 +1613,7 @@ pdirectorysystem->create("/ca2core");
 
    //   //   prequest->m_strAppId = strAppId;
 
-   //   //   //pcreate->m_pcommandline = øcreate_new < command_line >();
+   //   //   //pcreate->m_pcommandline = create_newø < command_line >();
    //   //   post_request(prequest);
 
    //   //}
@@ -2318,7 +2318,7 @@ pdirectorysystem->create("/ca2core");
 
       //}
 
-      //m_ptracelog = øcreate_new < ::apex::log >();
+      //m_ptracelog = create_newø < ::apex::log >();
 
       //if (!m_ptracelog)
       //{
@@ -2414,7 +2414,7 @@ pdirectorysystem->create("/ca2core");
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            auto plauncher = øcreate < ::apex::shell_launcher >();
+            auto plauncher = createø < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -2449,7 +2449,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = øcreate < ::apex::shell_launcher >();
+            auto plauncher = createø < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, nullptr, nullptr, e_display_normal);
 
@@ -2490,7 +2490,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = øcreate < ::apex::shell_launcher >();
+            auto plauncher = createø < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -2524,7 +2524,7 @@ pdirectorysystem->create("/ca2core");
 
 #else
 
-            auto plauncher = øcreate < ::apex::shell_launcher >();
+            auto plauncher = createø < ::apex::shell_launcher >();
 
             plauncher->setup(nullptr, nullptr, directory()->module() / strApp, strParameters, nullptr, e_display_normal);
 
@@ -3011,7 +3011,7 @@ pdirectorysystem->create("/ca2core");
 
    //   m_straCommandLineExtra.erase_all();
 
-   //   //auto pcreate = øcreate_new < ::create >();
+   //   //auto pcreate = create_newø < ::create >();
 
    //   string strExtra = straExtra.implode(" ");
 

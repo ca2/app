@@ -168,7 +168,7 @@ namespace sockets
    ::pointer < ::sockets::socket_thread > base_socket::create_socket_thread()
    {
 
-      return øcreate < ::sockets::socket_thread >();
+      return createø < ::sockets::socket_thread >();
 
    }
 

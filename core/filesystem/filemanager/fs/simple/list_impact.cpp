@@ -83,7 +83,7 @@ namespace filemanager
 
             set_cache_interface(m_puserlistcache);
 
-            m_pimagelist = øcreate_new< ::image::image_list>();
+            m_pimagelist = create_newø< ::image::image_list>();
 
             m_pimagelist->create(16, 16, 0, 0, 0);
 
@@ -757,7 +757,7 @@ namespace filemanager
 
             update_impact();
 
-            auto pxmldocument = øcreate_new < xml::document >();
+            auto pxmldocument = create_newø < xml::document >();
 
             pxmldocument->load(scopedstrXml);
 

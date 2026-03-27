@@ -54,7 +54,7 @@
 
           //construct_newø(m_phdrtexture);
 
-         // m_pcube = øcreate_new < ::gpu_opengl::cube > ();
+         // m_pcube = create_newø < ::gpu_opengl::cube > ();
 
        //}
 

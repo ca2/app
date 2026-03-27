@@ -34,7 +34,7 @@ namespace networking_bsd
 
       ::pointer < ::item_array > pitema;
 
-      ødefer_construct_new(pitema);
+      defer_construct_newø(pitema);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -60,7 +60,7 @@ namespace networking_bsd
          auto & row = ptable->table[i];
 
          
-         auto paddress = øcreate_new<::networking_bsd::address>();
+         auto paddress = create_newø<::networking_bsd::address>();
 
          sockaddr_in in{};
 

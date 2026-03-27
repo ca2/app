@@ -72,7 +72,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = øcreate <  ::menu::item  >();
+//         m_pmenuitem = createø <  ::menu::item  >();
 //
 //      }
 //
@@ -154,7 +154,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = øcreate <  ::menu::item  >();
+//         m_pmenuitem = createø <  ::menu::item  >();
 //
 //      }
 //
@@ -190,7 +190,7 @@ menu::~menu()
 //
 //      system()->_xml();
 //
-//      auto pxmldocument = øcreate_new < ::xml::document >();
+//      auto pxmldocument = create_newø < ::xml::document >();
 //
 //      try
 //      {
@@ -435,7 +435,7 @@ menu::~menu()
 //      if (m_pmenuitem.is_null())
 //      {
 //
-//         m_pmenuitem = øcreate <  ::menu::item  >();
+//         m_pmenuitem = createø <  ::menu::item  >();
 //
 //      }
 //
@@ -1709,7 +1709,7 @@ menu::~menu()
 //
 //         }
 //
-//         auto pmenucommand = øcreate_new< ::user::menu_command>();
+//         auto pmenucommand = create_newø< ::user::menu_command>();
 //
 //         pmenucommand->m_pitema = pitemParent->m_pmenuitema;
 //

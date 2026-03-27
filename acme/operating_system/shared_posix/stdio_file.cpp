@@ -13,8 +13,6 @@
 #include "acme/prototype/prototype/memory.h"
 
 
-#include <errno.h>
-
 
 stdio_file::stdio_file()
 {
@@ -451,7 +449,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 ::pointer <stdio_file> stdio_open(::particle * pparticle, const ::file::path & pathParam, const ::scoped_string & scopedstrAttrs, int iShare)
 {
 
-   auto pfile = pparticle->application()->øcreate_new < ::stdio_file >();
+   auto pfile = pparticle->application()->create_newø < ::stdio_file >();
 
    if (!pfile)
    {
@@ -473,7 +471,7 @@ void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 memory file_system::as_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-   auto pfile = m_papplication->øcreate_new < stdio_file >();
+   auto pfile = m_papplication->create_newø < stdio_file >();
 
    if (bNoExceptionIfNotFound)
    {
@@ -540,7 +538,7 @@ memory file_system::as_memory(const ::file::path & pathParam, character_count iR
 memory file_system::safe_get_memory(const ::file::path & pathParam, character_count iReadAtMostByteCount, bool bNoExceptionIfNotFound)
 {
 
-   auto pfile = m_papplication->øcreate_new < stdio_file >();
+   auto pfile = m_papplication->create_newø < stdio_file >();
 
    pfile->m_eopen |= ::file::e_open_no_exception_if_not_found;
 
@@ -690,6 +688,23 @@ CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInform
       //::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
       //          ::string(str).c_str());
       ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%s%c", ::string(str).c_str(), bCarriage ? '\r': '\n');
+
+      ::fflush(trace_level_FILE(etracelevel, etracelevelInformation));
+
+   };
+
+   return predicate;
+
+}
+
+
+CLASS_DECL_ACME memory_dump_function std_inline_memory_dump(enum_trace_level etracelevelInformation)
+{
+
+   auto predicate = [etracelevelInformation](auto etracelevel, const void * p, memsize s)
+   {
+
+      ::fwrite(p, 1, s, trace_level_FILE(etracelevel, etracelevelInformation));
 
       ::fflush(trace_level_FILE(etracelevel, etracelevelInformation));
 
@@ -1197,3 +1212,33 @@ CLASS_DECL_ACME ::string file_as_string(const ::file::path & path)
 
 
 
+FILE * g_pfileStdIn = nullptr;
+
+FILE * current_stdin()
+{
+
+   if (g_pfileStdIn == nullptr)
+   {
+
+      return stdin;
+
+   }
+
+   return g_pfileStdIn;
+
+}
+
+
+FILE * raw_stdin()
+{
+
+   return g_pfileStdIn;
+
+}
+
+void set_raw_stdin(FILE * pfileStdIn)
+{
+
+   g_pfileStdIn = pfileStdIn;
+
+}

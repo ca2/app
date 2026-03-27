@@ -159,13 +159,13 @@ namespace user
          else
          {
 
-            //auto pbrush = øcreate < ::draw2d::brush >();
+            //auto pbrush = createø < ::draw2d::brush >();
 
             //pbrush->create_solid(pgraphics->get_current_pen()->m_cr);
 
             //pgraphics->set(pbrush);
 
-            auto ppen = øcreate < ::draw2d::pen > ();
+            auto ppen = createø < ::draw2d::pen > ();
 
             ppen->m_color = pgraphics->get_current_brush()->m_color;
 
@@ -728,7 +728,7 @@ namespace user
       }
 
 
-      auto pbrushText = øcreate < ::draw2d::brush > ();
+      auto pbrushText = createø < ::draw2d::brush > ();
 
 
       if (!is_window_enabled())

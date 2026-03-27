@@ -423,7 +423,7 @@ namespace micro
       if (payload == "details")
       {
 
-         //auto psequencer = øcreate_new < ::sequencer < ::conversation > >();
+         //auto psequencer = create_newø < ::sequencer < ::conversation > >();
 
          auto pmessageboxDetails = __initialize_new ::message_box_payload(
             m_pdialog->dialog_details(),
@@ -480,7 +480,7 @@ namespace micro
    void message_box::on_context_menu(::user::mouse* pmouse)
    {
 
-      auto ppopupbutton = øcreate_new<popup_button>();
+      auto ppopupbutton = create_newø<popup_button>();
 
       ::int_rectangle rectanglePointTo;
 

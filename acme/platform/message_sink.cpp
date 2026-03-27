@@ -50,7 +50,7 @@ void message_sink::on_initialize_particle()
 void message_sink::post_simple_message(enum_message emessage)
 {
 
-   auto pmessage = øcreate_new < ::platform::message >();
+   auto pmessage = create_newø < ::platform::message >();
 
    pmessage->m_emessage = emessage;
 
@@ -85,7 +85,7 @@ void message_sink::post_message(::platform::message * pmessage)
 void message_sink::post_data_block_message(::enum_message emessage, ::data::block * pdatablock)
 {
 
-   auto pmessage = øcreate_new < ::platform::message >();
+   auto pmessage = create_newø < ::platform::message >();
 
    pmessage->m_emessage = emessage;
 

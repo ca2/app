@@ -160,7 +160,7 @@ namespace user
    //   if (!m_pitema)
    //   {
 
-   //      ødefer_construct_new(m_pitema);
+   //      defer_construct_newø(m_pitema);
 
    //   }
 
@@ -215,7 +215,7 @@ namespace user
 
          puseritembase->_set_item((::item *) pitem);
 
-         puseritembase->ødefer_construct_new(puseritembase->m_puseritem);
+         puseritembase->defer_construct_newø(puseritembase->m_puseritem);
 
          puseritembase->m_puseritem->m_pitem = pitem;
 
@@ -233,7 +233,7 @@ namespace user
          if (!puseritembase->m_puseritem)
          {
 
-            ødefer_construct_new(puseritembase->m_puseritem);
+            defer_construct_newø(puseritembase->m_puseritem);
 
          }
 

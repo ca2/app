@@ -888,7 +888,7 @@ namespace image
 ////
 //// Compose, Construct, Create and Add_Reference Porngraphs
 ////
-//// øcreate      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
+//// createø      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
 //// constructø     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
 //// constructø   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
 //// add_reference // ::pointer<BASE_TYPE>& SOURCE psource
@@ -901,7 +901,7 @@ namespace image
 //inline ::image::image_pointer __create_image()
 //{
 //
-//   return ::øcreate<::image::image>();
+//   return ::createø<::image::image>();
 //
 //}
 //

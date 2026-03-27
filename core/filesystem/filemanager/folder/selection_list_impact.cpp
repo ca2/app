@@ -59,7 +59,7 @@ namespace filemanager
 
       }
 
-      auto ptreedata = filemanager_document()->øcreate_new < ::filemanager::tree_data >();
+      auto ptreedata = filemanager_document()->create_newø < ::filemanager::tree_data >();
       
       if(ptreedata == nullptr)
       {

@@ -57,7 +57,7 @@ namespace networking
       factory()->add_factory_item < ::networking::application_socket>();
       factory()->add_factory_item < ::networking::application_incoming_socket>();
 
-      m_psocketthread = øcreate_new< ::networking::application_incoming_socket_thread >();
+      m_psocketthread = create_newø< ::networking::application_incoming_socket_thread >();
 
       m_psocketthread->m_pnetworkingapplication = this;
 

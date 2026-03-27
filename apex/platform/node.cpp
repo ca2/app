@@ -665,7 +665,7 @@ information() << "defer_create_app_shortcut";
    ::pointer < ::input::input > node::create_input()
    {
 
-      return øcreate < ::input::input > ();
+      return createø < ::input::input > ();
 
    }
 

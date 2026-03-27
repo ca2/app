@@ -899,7 +899,7 @@ namespace user
       for(i = 0; i < iSplitBarCount; i++)
       {
 
-         auto  pbar =øcreate_new<split_bar>();
+         auto  pbar =create_newø<split_bar>();
 
          m_splitbara.insert_at(iIndex, pbar);
 

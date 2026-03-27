@@ -680,7 +680,7 @@ namespace experience_anthill
          if(strWindowText.has_character())
          {
 
-            auto pbrushText = øcreate<::draw2d::brush>();
+            auto pbrushText = createø<::draw2d::brush>();
 
             pbrushText->create_solid(m_colorCaptionText);
 

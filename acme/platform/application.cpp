@@ -76,9 +76,12 @@ namespace platform
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
+#ifdef _DEBUG
       int cx = 204;
 
-      _001Test001(::as_string(cx));
+//      _001Test001(::as_string(cx));
+
+#endif
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 
@@ -318,7 +321,7 @@ void application::start_application()
    ::application_menu * application::application_menu()
    {
 
-      if (ødefer_construct_new(m_papplicationmenu))
+      if (defer_construct_newø(m_papplicationmenu))
       {
 
          m_papplicationmenu->m_strName = application_title();
@@ -424,7 +427,7 @@ void application::start_application()
          if (!m_bGUIReady)
          {
 
-            auto pusermessage = øcreate_new < user_message >();
+            auto pusermessage = create_newø < user_message >();
 
             pusermessage->m_estatus = estatus;
 
@@ -1343,7 +1346,7 @@ void application::start_application()
       else if (emessage == ::e_message_open_file_request)
       {
 
-         auto prequest = øcreate_new <::request>();
+         auto prequest = create_newø <::request>();
 
          ::string strUri = pmessage->m_memory.get_string();
 
@@ -2352,7 +2355,7 @@ void application::start_application()
 
       strMessage = lines.implode("\n");
 
-      auto picon = øcreate < ::nano::graphics::icon>();
+      auto picon = createø < ::nano::graphics::icon>();
 
       auto pfile = file()->get("matter://main/icon.png");
 
@@ -2481,7 +2484,7 @@ void application::start_application()
    void application::did_pick_document_at_url(const ::scoped_string & scopedstrUrl)
    {
 
-      auto prequest = øcreate_new <::request>();
+      auto prequest = create_newø <::request>();
 
       prequest->m_payloadFile = scopedstrUrl;
 
@@ -2495,7 +2498,7 @@ void application::start_application()
    void application::did_pick_document_at_urls(const ::string_array_base& straUrl)
    {
 
-      auto prequest = øcreate_new <::request>();
+      auto prequest = create_newø <::request>();
 
       prequest->m_payloadFile = straUrl;
 

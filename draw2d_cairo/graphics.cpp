@@ -298,7 +298,7 @@ namespace draw2d_cairo
 
       m_bForWindowDraw2d = true;
 
-      m_puserinteraction = puserinteraction;
+      m_puserinteractionDraw2dGraphics = puserinteraction;
 
       create_memory_graphics(size);
 
@@ -5461,14 +5461,14 @@ namespace draw2d_cairo
 
       //}
       
-      if (::is_set(m_puserinteraction))
+      if (::is_set(m_puserinteractionDraw2dGraphics))
       {
 
-         fPreferredDpiX = m_puserinteraction->preferred_dpi_x();
+         fPreferredDpiX = m_puserinteractionDraw2dGraphics->preferred_dpi_x();
 
-         fPreferredDpiY = m_puserinteraction->preferred_dpi_y();
+         fPreferredDpiY = m_puserinteractionDraw2dGraphics->preferred_dpi_y();
 
-         fPreferredDensity = m_puserinteraction->preferred_density();
+         fPreferredDensity = m_puserinteractionDraw2dGraphics->preferred_density();
 
       }
          

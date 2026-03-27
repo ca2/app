@@ -251,7 +251,7 @@ namespace gpu_opengl
    //::pointer <::gpu::context > allocate_egl_context(::particle * pparticle)
    //{
 
-     // return pparticle->øcreate_new < device_egl >();
+     // return pparticle->create_newø < device_egl >();
 
    //}
 
@@ -391,7 +391,7 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      pgpucontext=øcreate_new < ::gpu_opengl::context_egl>();
+      pgpucontext=create_newø < ::gpu_opengl::context_egl>();
 
       return pgpucontext;
 

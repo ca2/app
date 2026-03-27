@@ -2410,14 +2410,14 @@ namespace user
                if (m_ppictureimpl != nullptr && m_ppictureimpl->m_bOutline)
                {
 
-                  auto ppath = øcreate < ::draw2d::path >();
+                  auto ppath = createø < ::draw2d::path >();
 
                   //ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
                   ppath->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
-                  auto ppen = øcreate < ::draw2d::pen >();
+                  auto ppen = createø < ::draw2d::pen >();
 
-                  auto pbrush = øcreate < ::draw2d::brush >();
+                  auto pbrush = createø < ::draw2d::brush >();
 
                   ppen->create_solid(m_ppictureimpl->m_iOutlineWidth, ::color::color(m_ppictureimpl->m_hlsOutline));
 

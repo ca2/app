@@ -151,7 +151,7 @@ namespace image
       if(::is_null(m_pimagemap))
       {
 
-         m_pimagemap = system()->øcreate_new < size_image >();
+         m_pimagemap = system()->create_newø < size_image >();
 
       }
 

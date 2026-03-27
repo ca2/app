@@ -193,7 +193,7 @@ namespace userfs
       if (ptopic->id() == id_browse)
       {
 
-         //auto plistdata = øcreate_new < list_data>();
+         //auto plistdata = create_newø < list_data>();
 
          auto plistdata = fs_list();
 
@@ -910,7 +910,7 @@ namespace userfs
    ::pointer<::user::mesh_data>list::create_mesh_data()
    {
 
-      return øcreate_new < list_data >();
+      return create_newø < list_data >();
 
    }
 

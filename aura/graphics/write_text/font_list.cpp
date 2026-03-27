@@ -1001,7 +1001,7 @@ namespace write_text
       if (pfontlistdata == nullptr)
       {
 
-         pfontlistdata = øcreate_new < font_list_data >();
+         pfontlistdata = create_newø < font_list_data >();
 
          pfontlistdata->m_iSerial = 0;
 
@@ -1009,7 +1009,7 @@ namespace write_text
 
          auto countFont = m_pfontenumerationitema->get_count();
 
-         ødefer_construct_new(pfontlistdata->m_pitema);
+         defer_construct_newø(pfontlistdata->m_pitema);
 
          pfontlistdata->m_pitema->set_size(countFont);
 

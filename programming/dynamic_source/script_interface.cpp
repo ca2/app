@@ -93,19 +93,19 @@ namespace dynamic_source
 
                m_pscriptmain1 = pscript->m_pscriptmain1;
 
+               m_phttpdsocket1 = psocket;
+
                if (m_pscriptmain1)
                {
 
                   m_pscriptmain1->m_interfacea.add_unique(this);
 
+                  m_pscriptmanager1 = m_pscriptmain1->m_pscriptmanager1;
+
+                  // ... a fair good guess for a parent instance
+                  m_pinstanceParent1 = m_pscriptmain1->m_pscriptinstanceLastlyInstantiated;
+
                }
-
-               m_phttpdsocket1 = psocket;
-
-               m_pscriptmanager1 = m_pscriptmain1->m_pscriptmanager1;
-
-               // ... a fair good guess for a parent instance
-               m_pinstanceParent1 = m_pscriptmain1->m_pscriptinstanceLastlyInstantiated;
 
             }
 

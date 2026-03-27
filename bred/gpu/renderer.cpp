@@ -88,7 +88,7 @@ namespace gpu
 
       m_pgpucontext = pgpucontext;
 
-      ødefer_construct_new(m_prenderstate);
+      defer_construct_newø(m_prenderstate);
 
       //m_pgpucontext->m_prenderer = this;
 
@@ -246,7 +246,7 @@ namespace gpu
    ::pointer < texture> renderer::create_image_texture(const ::int_size& size, bool bWithDepth)
    {
 
-      auto ptexture = øcreate< texture>();
+      auto ptexture = createø< texture>();
 
       ::gpu::texture_attributes textureattributes(::int_rectangle{size});
 
@@ -274,7 +274,7 @@ namespace gpu
    //   ::gpu::shader::enum_flag eflag)
    //{
 
-   //   auto pshader = øcreate < ::gpu::shader >();
+   //   auto pshader = createø < ::gpu::shader >();
    //   pshader->initialize_shader(this,
    //      pathVert, pathFrag, eslota,
    //      pLocalDescriptorSet, ppropertiesPush, pinputlayout, eflag);
@@ -517,7 +517,7 @@ namespace gpu
 
          auto& pcommandbuffer = m_commandbuffera[i];
 
-         ødefer_construct(pcommandbuffer);
+         defer_constructø(pcommandbuffer);
 
          pcommandbuffer->initialize_command_buffer(render_target(),
             m_pgpucontext->m_pgpudevice->graphics_queue(),
@@ -857,7 +857,7 @@ namespace gpu
    //#endif
    //
    //
-   //   ødefer_construct(m_pimageFromGpu);
+   //   defer_constructø(m_pimageFromGpu);
    //
    //   auto size = m_pgpucontext->m_pcpubuffer->m_pixmap.m_size;
    //
@@ -1224,7 +1224,7 @@ namespace gpu
    ::pointer < render_target > renderer::on_create_render_target()
    {
 
-      auto prendertarget = øcreate<::gpu::render_target>();
+      auto prendertarget = createø<::gpu::render_target>();
 
       prendertarget->m_bAdvancedPipelineSynchronization = true;
 
@@ -1236,7 +1236,7 @@ namespace gpu
    ::pointer < swap_chain > renderer::on_create_swap_chain()
    {
 
-      return øcreate<swap_chain>();
+      return createø<swap_chain>();
 
    }
 
@@ -1524,7 +1524,7 @@ namespace gpu
 
       auto pgpudevice = pcontext->m_pgpudevice;
 
-      auto pgpuframe = øcreate < ::gpu::frame >();
+      auto pgpuframe = createø < ::gpu::frame >();
 
       ::gpu::set_current_frame(pgpuframe);
 

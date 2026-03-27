@@ -119,9 +119,9 @@ namespace gpu_opengl
 //
 //          auto ptexture = pskybox->m_ptexture;
 //
-//          //auto pcube = øcreate < ::gpu::cube >();
+//          //auto pcube = createø < ::gpu::cube >();
 //          //::cast < ::gpu_gpu::context > pcontext = m_pgpucontext;
-//          //auto pcube = øcreate<::gpu::cube>();
+//          //auto pcube = createø<::gpu::cube>();
 //          auto prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
 //          //pcube->initialize_gpu_cube(m_pgpucontext);
 //          ::cast<::gpu_opengl::texture> ptextureSkybox = ptexture;
@@ -223,7 +223,7 @@ namespace gpu_opengl
          //
          // auto pcommandbuffer = m_pgpucontext->beginSingleTimeCommands(m_pgpucontext->m_pgpudevice->graphics_queue());
          //
-         // auto pfullscreenquad = øcreate<::gpu::full_screen_quad>();
+         // auto pfullscreenquad = createø<::gpu::full_screen_quad>();
          //
          // pfullscreenquad->initialize_full_screen_quad(m_pgpucontext);
          // //m_pbrdfconvolutionframebuffer->bind();

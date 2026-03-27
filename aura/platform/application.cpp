@@ -5126,7 +5126,7 @@ retry_license:
    void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pathRoot, const ::scoped_string & scopedstrRelative)
    {
 
-      auto plocaleschema = øcreate_new < ::text::international::locale_schema >();
+      auto plocaleschema = create_newø < ::text::international::locale_schema >();
 
       //psession->fill_locale_schema(localeschema);
 
@@ -9318,7 +9318,7 @@ namespace aura
             if(pdisplay)
             {
 
-               auto pmonitor = psystem->øcreate_new<::windowing::monitor>();
+               auto pmonitor = psystem->create_newø<::windowing::monitor>();
 
                pmonitor->m_pdisplay = pdisplay;
 
@@ -9377,7 +9377,7 @@ namespace aura
    //
    //      }
    //
-   //      auto picon = øcreate_new < ::image::icon >();
+   //      auto picon = create_newø < ::image::icon >();
    //
    //      if (!picon)
    //      {
@@ -9455,7 +9455,7 @@ namespace aura
    void application::on_additional_local_instance(bool & bHandled, const ::scoped_string & scopedstrModule, int iPid, const ::scoped_string & scopedstrCommandLine)
    {
 
-      auto prequest = øcreate_new<::request >();
+      auto prequest = create_newø<::request >();
 
       prequest->_001ParseCommandLine(scopedstrCommandLine);
 

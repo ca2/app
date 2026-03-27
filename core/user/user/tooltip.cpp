@@ -99,7 +99,7 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      auto ppath = øcreate < ::draw2d::path > ();
+      auto ppath = createø < ::draw2d::path > ();
 
       ppath->set_current_point(rectangleX.left, rectangleX.bottom);
 
@@ -125,7 +125,7 @@ namespace user
 
       pgraphics->fill(ppath);
 
-      auto ppen = øcreate < ::draw2d::pen > ();
+      auto ppen = createø < ::draw2d::pen > ();
 
       pgraphics->set(ppen);
 

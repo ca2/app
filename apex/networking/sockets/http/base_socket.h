@@ -24,12 +24,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #include "http_socket.h"
+#include "acme/constant/read_file.h"
 
 
 namespace sockets
 {
 
-   
    class response;
 
 
@@ -78,7 +78,7 @@ namespace sockets
       void Execute();
 
       
-      virtual bool read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea = nullptr, const ::scoped_string & scopedstrContentType = nullptr);
+      virtual bool read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea = nullptr, const ::scoped_string & scopedstrContentType = nullptr, unsigned int uEnumReadFile = e_read_file_none);
 
 
       virtual bool read_text_file_for_linux(const ::payload & payloadFile);

@@ -93,7 +93,7 @@ namespace axis
 
          int h = rectangle.height();
 
-         auto ppen = øcreate < ::draw2d::pen >();
+         auto ppen = createø < ::draw2d::pen >();
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
@@ -165,13 +165,13 @@ namespace axis
 
          pgraphics->set(ppen);
 
-         auto ppath1 = øcreate < ::draw2d::path>();
+         auto ppath1 = createø < ::draw2d::path>();
 
          ppath1->set_current_point(2 * w / 15, 8 * h / 15);
          ppath1->add_line(6 * w / 15, 12 * h / 15);
          ppath1->add_line(13 * w / 15, 5 * h / 15);
 
-         auto ppath2 = øcreate < ::draw2d::path>();
+         auto ppath2 = createø < ::draw2d::path>();
 
          ppath2->set_current_point(2 * w / 15, 9 * h / 15);
          ppath2->add_line(6 * w / 15, 13 * h / 15);
@@ -250,7 +250,7 @@ namespace axis
       //      if (!pbrush)
       //      {
 
-      //         pbrush = øcreate < ::draw2d::brush >();
+      //         pbrush = createø < ::draw2d::brush >();
 
       //         pbrush->create_solid(pinteraction->get_color(this, ::e_element_background, ::user::e_state_hover));
 
@@ -403,7 +403,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = øcreate < ::draw2d::path >();
+      //            //auto ppathRound = createø < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -437,7 +437,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = øcreate < ::draw2d::path >();
+      //            //auto ppathRound = createø < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -472,7 +472,7 @@ namespace axis
 
       //         {
 
-      //            //auto ppathRound = øcreate < ::draw2d::path >();
+      //            //auto ppathRound = createø < ::draw2d::path >();
 
       //            //ppathRound->begin_figure(true, ::draw2d::e_fill_mode_winding);
 
@@ -531,7 +531,7 @@ namespace axis
       //   if (!ppen)
       //   {
 
-      //      ppen = øcreate < ::draw2d::pen >();
+      //      ppen = createø < ::draw2d::pen >();
 
       //      ppen->create_solid(1.0, pinteraction->get_color(this, ::e_element_border));
 
@@ -693,7 +693,7 @@ namespace axis
   ///*    if (font.is_null())
   //    {*/
 
-  //    ødefer_construct(font);
+  //    defer_constructø(font);
 
   //  //  }
 
@@ -1304,7 +1304,7 @@ namespace axis
   ///*    if (font.is_null())
   //    {*/
 
-  //    ødefer_construct(font);
+  //    defer_constructø(font);
 
   //  //  }
 

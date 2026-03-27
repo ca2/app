@@ -143,7 +143,7 @@ namespace gpu
 
       ::pointer < ::gpu::context > pgpucontext;
 
-      pgpucontext = øcreate< ::gpu::context >();
+      pgpucontext = createø< ::gpu::context >();
 
       return pgpucontext;
 
@@ -273,7 +273,7 @@ namespace gpu
    //::gpu::context* device::get_main_context()
    //{
 
-   //   if (ødefer_construct(m_pgpucontextMain))
+   //   if (defer_constructø(m_pgpucontextMain))
    //   {
 
    //      ::cast < ::user::interaction > puserinteractionMain = m_papplication->m_pacmeuserinteractionMain;
@@ -298,7 +298,7 @@ namespace gpu
    ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
    {
 
-      //auto pgpucontext = øcreate<::gpu::context>();
+      //auto pgpucontext = createø<::gpu::context>();
 
       auto pgpucontext = allocate_context();
 
@@ -589,7 +589,7 @@ namespace gpu
 
    //         }
 
-   //         ødefer_construct(m_pcpubuffer);
+   //         defer_constructø(m_pcpubuffer);
 
    //         m_pcpubuffer->initialize_cpu_buffer(this);
 
@@ -630,7 +630,7 @@ namespace gpu
 
    //         //}
 
-   //         //ødefer_construct(m_pcpubuffer);
+   //         //defer_constructø(m_pcpubuffer);
 
    //         //m_pcpubuffer->m_pgpucontext = this;
 
@@ -1131,7 +1131,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       auto & ppoolgroupFrame = m_poolgroupaFrame.element_at_grow(iFrameIndex);
 
-      ødefer_construct_new(ppoolgroupFrame);
+      defer_construct_newø(ppoolgroupFrame);
 
       ppoolgroupFrame->m_pallocator = this;
 
@@ -1191,7 +1191,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    //   ::gpu::shader::enum_flag eflag)
    //{
 
-   //   auto pshader = øcreate < ::gpu::shader >();
+   //   auto pshader = createø < ::gpu::shader >();
 
    //   pshader->initialize_shader(this, pathVert, pathFrag, eslota, pLocalDescriptorSet, pVertexInput, pproperties, eflag);
 
@@ -1439,11 +1439,11 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
       m_iLayer = m_iLayerCount;
       m_iLayerCount++;
 
-      ødefer_construct_new(m_playera);
+      defer_construct_newø(m_playera);
 
       auto & player = m_playera->element_at_grow(m_iLayer);
 
-      ødefer_construct(player);
+      defer_constructø(player);
 
       auto iFrameIndex = pgpurenderer->render_target()->get_frame_index();
 

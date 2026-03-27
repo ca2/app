@@ -503,7 +503,7 @@ namespace user
    void interaction::on_initialize_particle()
    {
 
-      //ødefer_construct_new(m_puseritema);
+      //defer_construct_newø(m_puseritema);
 
       if (id().is_empty())
       {
@@ -1441,6 +1441,10 @@ namespace user
 
    ::write_text::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
+
+      // If get_font top call is getting null from here,
+
+      // make sure get_font top call is done to a style.
 
       return {};
 
@@ -2764,7 +2768,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = øcreate<::windowing::window>();
+         auto pwindowNew = createø<::windowing::window>();
 
          auto strName = get_window_text();
 
@@ -2801,7 +2805,7 @@ namespace user
 
          on_set_parent(puserinteractionParent);
 
-         /*auto pwindowNew = øcreate_new<::user::interaction_child>();
+         /*auto pwindowNew = create_newø<::user::interaction_child>();
 
          pwindowNew->m_puserinteraction = this;*/
 
@@ -4227,7 +4231,7 @@ namespace user
 
             //call_message_handler(::user::e_message_mouse_leave);
 
-            auto pmessage = øcreate_new<::user::message>();
+            auto pmessage = create_newø<::user::message>();
 
             pmessage->m_eusermessage = ::user::e_message_mouse_leave;
             //pmessage->m_pwindow = window();
@@ -7010,7 +7014,7 @@ namespace user
 
       __check_refdbg
 
-         ødefer_construct_new(m_pgraphicscalla);
+         defer_construct_newø(m_pgraphicscalla);
 
       __check_refdbg
 
@@ -7761,7 +7765,7 @@ if(get_parent())
       if (!pwindowThis)
       {
 
-         ødefer_construct_new(m_pusersystem);
+         defer_construct_newø(m_pusersystem);
 
          m_pusersystem->add(poutputpurpose);
 
@@ -7820,7 +7824,7 @@ if(get_parent())
       if (!pwindowThis)
       {
 
-         ødefer_construct_new(m_pusersystem);
+         defer_construct_newø(m_pusersystem);
 
          m_pusersystem->add(allocateø::graphics::output_purpose(pparticle, epurpose));
 
@@ -10729,7 +10733,7 @@ if(get_parent())
    //
    //      ::pointer<prototype_impl>pwindowOld = window();
    //
-   //      auto pwindowNew = øcreate < interaction_impl >();
+   //      auto pwindowNew = createø < interaction_impl >();
    //
    //      pwindowNew->m_puserinteraction = this;
    //
@@ -10938,7 +10942,7 @@ if(get_parent())
             //   //else
             //   //{
 
-            //   //   window() = øcreate < interaction_impl >();
+            //   //   window() = createø < interaction_impl >();
 
             //   //}
 
@@ -11010,7 +11014,7 @@ if(get_parent())
 
             //_synchronous_lock synchronouslock(puserinteractionParent == nullptr ? nullptr : puserinteractionParent->synchronization());
 
-            //window() = øcreate_new<::user::interaction_child>();
+            //window() = create_newø<::user::interaction_child>();
 
             //window()->m_puserinteraction = this;
 
@@ -11325,7 +11329,7 @@ if(get_parent())
       //m_puserinteraction->send_message(::user::e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
       if (!(m_ewindowflag & ::e_window_flag_window_created))
       {
-         //            auto pmessage = øcreate_new <::message::create>();
+         //            auto pmessage = create_newø <::message::create>();
          //            pmessage->m_eusermessage = ::user::e_message_create;
          //            m_puserinteraction->send_message(pmessage);
 
@@ -13078,7 +13082,7 @@ if(get_parent())
    void interaction::on_add_owned(::user::interaction_base * pprimitive)
    {
 
-      ødefer_construct_new(m_puserinteractionpointeraOwned);
+      defer_construct_newø(m_puserinteractionpointeraOwned);
 
       m_puserinteractionpointeraOwned->add_interaction(dynamic_cast <::user::interaction *> (pprimitive));
 
@@ -18322,7 +18326,7 @@ if(get_parent())
    void interaction::OnLinkClick(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTarget)
    {
 
-      auto phyperlink = øcreate_new<::hyperlink>();
+      auto phyperlink = create_newø<::hyperlink>();
 
       phyperlink->m_strLink = scopedstr;
 
@@ -18492,7 +18496,7 @@ if(get_parent())
 //      
 //      auto &pacmeuserinteractionaChildren=m_pacmeuserinteractionaChildren;
 //
-//      ødefer_construct_new(pacmeuserinteractionaChildren);
+//      defer_construct_newø(pacmeuserinteractionaChildren);
 //
 //      // }
 //
@@ -18748,7 +18752,7 @@ if(get_parent())
 
 
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = øcreate_new<TYPE>(); \
+   auto pmessage = create_newø<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_operatingsystemwindow = this->operating_system_window(); \
    pmessage->m_puserinteraction = this; \
@@ -22658,7 +22662,7 @@ if(get_parent())
    ::pointer < ::user::thread > interaction::create_user_thread()
    {
 
-      auto puserthread = øcreate_new < ::user::thread >();
+      auto puserthread = create_newø < ::user::thread >();
 
       puserthread->initialize_user_thread(window());
 
@@ -22674,7 +22678,7 @@ if(get_parent())
    ::pointer < ::user::graphics_thread > interaction::create_user_graphics_thread()
    {
 
-      auto pusergraphicsthread = øcreate < ::user::graphics_thread >();
+      auto pusergraphicsthread = createø < ::user::graphics_thread >();
 
       pusergraphicsthread->initialize_graphics_thread(this);
 
@@ -22702,7 +22706,7 @@ if(get_parent())
 
       ////m_bUserElementOk = true;
 
-      ////window() = øcreate<interaction_impl>();
+      ////window() = createø<interaction_impl>();
 
       //if (!window())
       //{
@@ -24773,7 +24777,7 @@ if(get_parent())
 
       {
 
-         auto pmessageOnClick = øcreate_new<::message::message>();
+         auto pmessageOnClick = create_newø<::message::message>();
 
          pmessageOnClick->m_eusermessage = ::user::e_message_click;
 
@@ -28362,7 +28366,7 @@ __check_refdbg;
    ::item_pointer interaction::update_hover_according_to_last_hover_update(e_zorder ezorder)
    {
 
-      auto pmouse = øcreate_new < ::message::mouse >();
+      auto pmouse = create_newø < ::message::mouse >();
 
       pmouse->m_pointHost = host_mouse_cursor_position();
 
@@ -29037,7 +29041,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
 
       //            pgraphics->payload("set_transparent") = "set_transparent";
 
-      //            auto prectangleitem = øcreate_new < ::geometry2d::rectangle_item >();
+      //            auto prectangleitem = create_newø < ::geometry2d::rectangle_item >();
 
       //            pgraphics->get_clip_box(prectangleitem->m_item);
 
@@ -29328,7 +29332,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
    //pointer< ::sequence < ::conversation > > interaction::message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box& emessagebox)
    //{
 
-   //   auto pmessagebox = øcreate < ::user::message_box >();
+   //   auto pmessagebox = createø < ::user::message_box >();
 
    //   auto psequence = pmessagebox->show(this, strMessage, strTitle, emessagebox);
 

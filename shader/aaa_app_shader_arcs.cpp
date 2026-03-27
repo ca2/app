@@ -12,7 +12,7 @@ namespace simple_shader
    void render::draw_arc(::draw2d::graphics_pointer & pgraphics, int_rectangle& r, double dStart, double dAngle, bool bPath)
    {
 
-      auto pfont = øcreate < ::write_text::font > ();
+      auto pfont = createø < ::write_text::font > ();
 
       string strFontFamily = get_font();
 
@@ -62,9 +62,9 @@ namespace simple_shader
 
       pgraphics->text_out(rectangleBack.left + 4, rectangleBack.top + size.cy + 8, str2);
 
-      auto ppen = øcreate < ::draw2d::pen > ();
+      auto ppen = createø < ::draw2d::pen > ();
 
-      auto pbrush = øcreate < ::draw2d::brush >();
+      auto pbrush = createø < ::draw2d::brush >();
 
       pbrush->create_null();
 

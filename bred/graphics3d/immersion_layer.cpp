@@ -109,7 +109,7 @@ namespace graphics3d
    ::pointer<::graphics3d::camera> immersion_layer::allocate_camera()
    {
 
-      auto pcamera = øcreate<::graphics3d::camera>();
+      auto pcamera = createø<::graphics3d::camera>();
 
       return pcamera;
 
@@ -122,7 +122,7 @@ namespace graphics3d
          //{
       auto pcameraLoaded = this->allocate_camera();
 
-         //auto pcameraLoaded = øcreate_new<SandboxCamera>();
+         //auto pcameraLoaded = create_newø<SandboxCamera>();
 
          // pcameraLoaded->initialize_SandboxCamera(::floating_sequence3(0.f, 0.f, 3.f));
 
@@ -133,7 +133,7 @@ namespace graphics3d
          //::floating_sequence3 target = ::floating_sequence3(0.0f, 0.0f, 0.0f); // Look at origin
          //// ::floating_sequence3 direction = glm::normalize(target - cameraPos);
          //// camera camera{ ::floating_sequence3(0.0f, 2.0f, -15.0f), -90.0f, 0.0f };
-         // auto pcameraDefault = øcreate<SandboxCamera>();
+         // auto pcameraDefault = createø<SandboxCamera>();
          // pcameraDefault->m_pengine = m_pimmersionlayer->m_pengine;
 
          // pcamera->m_pimpact = m_pimpact;

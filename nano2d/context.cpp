@@ -2776,7 +2776,7 @@ void TransformSkewX(float* t, float a)
    ::pointer < ::nano2d::text_box > context::text_box_layout(const ::scoped_string& scopedstr, float breakRowWidth)
    {
 
-      ::pointer < ::nano2d::text_box > ptextbox = øcreate_new<::nano2d::text_box >();
+      ::pointer < ::nano2d::text_box > ptextbox = create_newø<::nano2d::text_box >();
    
       ptextbox->m_fWidth = breakRowWidth;
       
@@ -2900,7 +2900,7 @@ void TransformSkewX(float* t, float a)
          {
             
             // Always handle ___new lines.
-            auto prow = øcreate_new <::nano2d::text_row >();
+            auto prow = create_newø <::nano2d::text_row >();
             auto start = rowStart != NULL ? rowStart : range.m_begin;
             auto end = rowEnd != NULL ? rowEnd : range.m_begin;
             
@@ -3001,7 +3001,7 @@ void TransformSkewX(float* t, float a)
                   {
                      
                      // The current word is longer than the row length, just break it from here.
-                     auto prow = øcreate_new <::nano2d::text_row >();
+                     auto prow = create_newø <::nano2d::text_row >();
                      prow->m_str.assign(rowStart, range.begin());
                      //prow->end = iter.str;
                      prow->width = rowWidth * invscale;
@@ -3030,7 +3030,7 @@ void TransformSkewX(float* t, float a)
                   {
                      
                      // Break the line from the end of the last word, and start ___new line from the beginning of the ___new.
-                     auto prow = øcreate_new <::nano2d::text_row >();
+                     auto prow = create_newø <::nano2d::text_row >();
                      //prow->start = rowStart;
                      //prow->end = breakEnd;
 							prow->m_str.assign(rowStart, breakEnd);
@@ -3073,7 +3073,7 @@ void TransformSkewX(float* t, float a)
       if (rowStart != NULL)
       {
          
-         auto prow = øcreate_new <::nano2d::text_row >();
+         auto prow = create_newø <::nano2d::text_row >();
          //prow->start = rowStart;
          //prow->end = rowEnd;
 			prow->m_str.assign(rowStart, rowEnd);

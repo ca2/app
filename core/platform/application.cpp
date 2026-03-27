@@ -109,7 +109,7 @@ namespace core
    ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::scoped_string & scopedstrTitle, ::collection::count iProgressCount)
    {
 
-      auto pprogresscontrol = øcreate_new <  ::userex::progress_control >();
+      auto pprogresscontrol = create_newø <  ::userex::progress_control >();
 
       pprogresscontrol->defer_show(puiParent, scopedstrTitle, iProgressCount);
 

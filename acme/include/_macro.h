@@ -15,7 +15,7 @@
 #define __IMPLEMENT_APPLICATION_RELEASE_TIME(library) \
 extern "C" release_time_for_project __RELEASE_TIME(library)(); \
 namespace library { \
-release_time_for_project  application::release_time() { return __RELEASE_TIME(library)(); } \
+release_time_for_project application::release_time() { return __RELEASE_TIME(library)(); } \
 } // namespace library
 
 

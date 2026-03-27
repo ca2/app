@@ -11,7 +11,7 @@
 #endif
 #include "mathematics.h"
 //#undef constructø
-//#undef øcreate
+//#undef createø
 #include "random_number_generator.h"
 
 namespace mathematics

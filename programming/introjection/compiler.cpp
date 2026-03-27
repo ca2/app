@@ -584,7 +584,7 @@ namespace introjection
       if(!plibrary)
       {
 
-         plibrary = øcreate_new < library > ();
+         plibrary = create_newø < library > ();
 
          plibrary->defer_create_synchronization();
 

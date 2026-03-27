@@ -231,7 +231,7 @@ namespace fs_folder_sync_dropbox
    bool folder_sync::file_move(const ::file::path & pathTarget, const ::file::path & pathSource)
    {
 
-      return ::fs::folder_sync::file_move(scopedstrDst, pszSrc);
+      return ::fs::folder_sync::file_move(pathTarget, pathSource);
 
    }
 
@@ -329,11 +329,11 @@ namespace fs_folder_sync_dropbox
 
          auto pszLs = strLs.c_str();
 
-         print_line(scopedstrLs);
+         print_line(strLs);
 
          ::string_array_base stra;
 
-         stra.add_lines(scopedstrLs);
+         stra.add_lines(strLs);
 
          bool bOk = true;
 

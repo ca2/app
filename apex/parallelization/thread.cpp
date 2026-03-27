@@ -698,7 +698,7 @@ void thread::on_ping()
 ::task_pool* thread::taskpool()
 {
 
-   ødefer_construct_new(m_ptaskpool);
+   defer_construct_newø(m_ptaskpool);
 
    return m_ptaskpool;
 
@@ -5072,7 +5072,7 @@ thread_ptra::~thread_ptra()
 //   if (::is_null(pthread))
 //   {
 //
-//      auto pthreadNew = __object(pparticle)->øcreate_new < ::thread > ();
+//      auto pthreadNew = __object(pparticle)->create_newø < ::thread > ();
 //
 //      pthreadNew->increment_reference_count(REFERENCING_DEBUGGING_P_NOTE(pparticle, nullptr));
 //
@@ -5101,7 +5101,7 @@ void thread::add_waiting_happening(happening * phappening)
 
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   ødefer_construct_new(m_phappeningaWait);
+   defer_construct_newø(m_phappeningaWait);
 
    m_phappeningaWait->add(phappening);
 

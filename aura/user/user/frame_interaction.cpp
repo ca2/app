@@ -214,7 +214,7 @@ namespace user
          //else
          //{
 
-         //   pprimitiveimplNew = øcreate_new < ::user::interaction_child >();
+         //   pprimitiveimplNew = create_newø < ::user::interaction_child >();
 
          //   //m_pdescriptor.defer_create(this);
 
@@ -1153,7 +1153,7 @@ namespace user
       if (puserinteractionParent == nullptr)
       {
 
-         auto pwindowNew = øcreate<::windowing::window>();
+         auto pwindowNew = createø<::windowing::window>();
 
          auto strName = get_window_text();
 
@@ -1188,7 +1188,7 @@ namespace user
 
          on_set_parent(puserinteractionParent);
 
-         //auto pprimitiveimplNew = øcreate_new<::user::interaction_child>();
+         //auto pprimitiveimplNew = create_newø<::user::interaction_child>();
 
          //pprimitiveimplNew->m_puserinteraction = this;
 

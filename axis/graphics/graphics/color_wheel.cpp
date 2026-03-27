@@ -456,7 +456,7 @@ namespace graphics
 
       context.set_graphics(pgraphics);
 
-      //ødefer_construct_new(m_pfontsink);
+      //defer_construct_newø(m_pfontsink);
 
       //context.set_font_sink(m_pfontsink);
 

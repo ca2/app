@@ -1057,10 +1057,10 @@ namespace user
 
       m_colorTreeBackground = get_color(pstyle, ::e_element_background);
 
-      ødefer_construct(m_pbrushTextSelectedHighlight);
-      ødefer_construct(m_pbrushTextSelected);
-      ødefer_construct(m_pbrushTextHighlight);
-      ødefer_construct(m_pbrushText);
+      defer_constructø(m_pbrushTextSelectedHighlight);
+      defer_constructø(m_pbrushTextSelected);
+      defer_constructø(m_pbrushTextHighlight);
+      defer_constructø(m_pbrushText);
 
       m_pbrushTextSelectedHighlight->create_solid(get_color(pstyle, ::e_element_hilite_text, ::user::e_state_selected));
       m_pbrushTextSelected->create_solid(get_color(pstyle, ::e_element_item_text, ::user::e_state_selected));
@@ -1389,7 +1389,7 @@ namespace user
       //
       //      auto pointCursor = pwindowing->get_cursor_position();
       //
-      //      auto pmouse = øcreate_new < ::user::mouse >();
+      //      auto pmouse = create_newø < ::user::mouse >();
       //
       //      pmouse->m_point = pointCursor;
       //
@@ -1780,7 +1780,7 @@ namespace user
 
       //pgraphics->create_compatible_graphics(nullptr);
 
-      //auto pfont = øcreate < ::write_text::font > ();
+      //auto pfont = createø < ::write_text::font > ();
       //pfont->operator=(*pdraw2d->fonts().GetListCtrlFont());
       //pfont->set_bold();
       //g->set_font(font);

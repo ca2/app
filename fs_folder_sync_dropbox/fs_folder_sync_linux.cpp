@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "fs_folder_sync.h"
 #include "acme/filesystem/file/file.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/listing.h"
@@ -46,7 +47,9 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            node()->calculate_dropbox_installed();
+            //node()->calculate_dropbox_installed();
+
+            //directory()->dropbox();
 
             if (callbackStatus)
             {

@@ -66,7 +66,7 @@ namespace user
          });*/
 
 
-      //auto puser = øcreate_new <user>();
+      //auto puser = create_newø <user>();
 
       //puser->m_strEmail = "aaa@aaa.com";
 
@@ -806,7 +806,7 @@ namespace user
 
    //   _001OnUpdateItemCount(0);
 
-   //   auto pxmldocument = øcreate_new < xml::document >();
+   //   auto pxmldocument = create_newø < xml::document >();
 
    //   pxmldocument->load(strXml);
 
@@ -934,7 +934,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto pfont = øcreate < ::write_text::font >();
+      auto pfont = createø < ::write_text::font >();
 
       pfont->create_font(e_font_sans_ui, 12_pt);
 
@@ -987,7 +987,7 @@ namespace user
 
    //   m_pitema->clear();
 
-   //   auto puser = øcreate_new <user>();
+   //   auto puser = create_newø <user>();
 
    //   puser->m_strEmail = "Loading...";
 
@@ -1011,12 +1011,12 @@ namespace user
 
    //   auto payload = api_get(strUrl, set);
 
-   //   auto pitema = øcreate_new < pointer_array < ::item > >();
+   //   auto pitema = create_newø < pointer_array < ::item > >();
 
    //   for (auto & row : payload.payload_array_reference())
    //   {
 
-   //      auto puser = øcreate_new <user>();
+   //      auto puser = create_newø <user>();
 
    //      puser->m_strEmail = row[0];
 
@@ -1098,12 +1098,12 @@ namespace user
 
    //   update_data();
 
-   //   //auto pitema = øcreate_new < pointer_array < ::item > >();
+   //   //auto pitema = create_newø < pointer_array < ::item > >();
 
    //   //for (auto& row : payload.payload_array_reference())
    //   //{
 
-   //   //   auto puser = øcreate_new <user>();
+   //   //   auto puser = create_newø <user>();
 
    //   //   puser->m_strEmail = row[0];
 
@@ -1135,12 +1135,12 @@ namespace user
 
    //   update_data();
 
-   //   //auto pitema = øcreate_new < pointer_array < ::item > >();
+   //   //auto pitema = create_newø < pointer_array < ::item > >();
 
    //   //for (auto& row : payload.payload_array_reference())
    //   //{
 
-   //   //   auto puser = øcreate_new <user>();
+   //   //   auto puser = create_newø <user>();
 
    //   //   puser->m_strEmail = row[0];
 

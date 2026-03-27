@@ -149,7 +149,7 @@ namespace experience_nanoui
       else
       {
 
-         auto pbrush = øcreate < ::draw2d::brush >();
+         auto pbrush = createø < ::draw2d::brush >();
 
          if (pbrush && pgraphics->get_current_pen())
          {
@@ -160,7 +160,7 @@ namespace experience_nanoui
 
          pgraphics->set(pbrush);
 
-         auto ppen = øcreate < ::draw2d::pen >();
+         auto ppen = createø < ::draw2d::pen >();
 
          ppen->create_solid(1.0f, ::rgba(255, 255, 255, 255));
 
@@ -203,7 +203,7 @@ namespace experience_nanoui
 
       auto rectangleX = this->rectangle();
 
-      ødefer_construct(m_pregion);
+      defer_constructø(m_pregion);
 
       ::double_ellipse ellipse;
 

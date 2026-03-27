@@ -688,7 +688,7 @@ namespace windowing
    ::pointer < ::acme::windowing::window > windowing::get_new_window()
    {
       
-      auto pwindow = øcreate < ::windowing::window >();
+      auto pwindow = createø < ::windowing::window >();
 
       return pwindow;
 

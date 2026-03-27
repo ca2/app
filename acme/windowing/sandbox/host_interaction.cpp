@@ -58,7 +58,7 @@ host_interaction::~host_interaction()
 void host_interaction::create_context_button()
 {
 
-   if(ødefer_construct_new(m_pbuttonContext))
+   if(defer_construct_newø(m_pbuttonContext))
    {
       
       auto r = get_rectangle();
@@ -83,7 +83,7 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
    if(payload.as_atom() == id_context_button)
    {
       
-      auto ppopupbutton = øcreate_new<::micro::popup_button>();
+      auto ppopupbutton = create_newø<::micro::popup_button>();
 
       //auto pwindowParent = this->acme_windowing_window();
 

@@ -936,7 +936,7 @@ inline ::pointer < T2 > pointer < T > ::defer_get_new(::particle* pparticle)
 
       REFDBG_THIS(pparticle);
 
-      auto pNew = pparticle->øcreate_new < T2 >();
+      auto pNew = pparticle->create_newø < T2 >();
 
       this->operator = (pNew);
 

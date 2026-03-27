@@ -25,7 +25,7 @@ namespace typeface_freetype
       if (scopedstrName == "fontconfig" || scopedstrName.is_empty())
       {
 
-         return øcreate_new<::typeface_fontconfig::typeface>();
+         return create_newø<::typeface_fontconfig::typeface>();
 
       }
       else
@@ -47,7 +47,7 @@ namespace typeface_freetype
       if (scopedstrName == "freetype" || scopedstrName.is_empty())
       {
 
-         return øcreate_new<::typeface_freetype::face>();
+         return create_newø<::typeface_freetype::face>();
       }
       else
       {

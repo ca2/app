@@ -329,7 +329,7 @@ namespace user
 
          _synchronous_lock synchronouslock(prichtextdata->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         auto pformatSelectionCommon = øcreate_new < format >();
+         auto pformatSelectionCommon = create_newø < format >();
 
          pformatSelectionCommon->initialize_user_rich_text_format(prichtextdata);
 

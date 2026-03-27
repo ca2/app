@@ -651,6 +651,7 @@ namespace platform
       virtual ::string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) override;
 
 
+
       //class ::crypto::crypto * crypto();
 
 
@@ -659,7 +660,15 @@ namespace platform
       virtual ::file::path local_get_matter_path() override;
       virtual ::file::path local_get_matter_path(const ::scoped_string & scopedstrMatter) override;
 
+
       virtual void install_progress_add_up(int iAddUp = 1) override;
+
+      virtual bool is_operating_system_package_installed(const ::scoped_string & scopedstrPackageName);
+      virtual ::string_array_base not_installed_operating_system_packages(const ::string_array_base & straPackageNames);
+      virtual ::string install_operating_system_packages_command_line(const ::string_array_base & straPackageNames);
+      virtual ::string install_operating_system_package_file_command_line(const ::file::path & pathPackageFile);
+      virtual ::string defer_install_operating_system_packages(const ::string_array_base & straPackageNames);
+      virtual void defer_run_operating_system_package_installation_update_and_or_upgrade();
 
 
       virtual ::string get_application_server_name() override;

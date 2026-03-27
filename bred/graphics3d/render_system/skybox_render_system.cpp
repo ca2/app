@@ -104,7 +104,7 @@ namespace graphics3d
 
       // constructø(m_pmodelCube);
 
-      /*auto pmodelCube = øcreate<::gpu::model_buffer>();
+      /*auto pmodelCube = createø<::gpu::model_buffer>();
 
       pmodelCube->initialize_model(pgpucontext, modeldataCube);*/
 
@@ -122,7 +122,7 @@ namespace graphics3d
 
 
 	   // Initialize skybox shader
-	   ødefer_construct(m_pshaderHdr);
+	   defer_constructø(m_pshaderHdr);
 
 	   m_pshaderHdr->m_bDisableDepthTest = false;
       m_pshaderHdr->m_bDepthTestButNoDepthWrite = true;
@@ -164,7 +164,7 @@ namespace graphics3d
             
 
          	   // Initialize skybox shader
-         ødefer_construct(m_pshaderNormal);
+         defer_constructø(m_pshaderNormal);
 
          m_pshaderNormal->m_bDisableDepthTest = false;
          m_pshaderNormal->m_bDepthTestButNoDepthWrite = true;

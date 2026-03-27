@@ -246,7 +246,7 @@ public:
 
       }
 
-      ødefer_construct_new(ptask);
+      defer_construct_newø(ptask);
 
       ptask->m_procedure = procedure;
 

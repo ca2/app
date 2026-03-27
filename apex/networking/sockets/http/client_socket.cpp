@@ -331,7 +331,7 @@ namespace sockets
 
       http_tunnel::OnHeaderComplete();
 
-      ødefer_construct_new(m_pmemoryfile);
+      defer_construct_newø(m_pmemoryfile);
 
       m_pmemoryfile->set_size(0);
 

@@ -2539,6 +2539,7 @@
     <ClInclude Include="call.h" />
     <ClInclude Include="constant\call.h" />
     <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\read_file.h" />
     <ClInclude Include="constant\user_message.h" />
     <ClInclude Include="filesystem\filesystem\aaa_dir_system.h" />
     <ClInclude Include="filesystem\filesystem\aaa_file_system.h" />

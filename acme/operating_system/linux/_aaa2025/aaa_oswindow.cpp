@@ -424,7 +424,7 @@ oswindow_data * oswindow_get(Window window)
 bool oswindow_data::bamf_set_icon()
 {
 
-   auto pdesktopfile = øcreate_new < ::linux::desktop_file >();
+   auto pdesktopfile = create_newø < ::linux::desktop_file >();
 
    pfile->bamf_set_icon(papp);
 

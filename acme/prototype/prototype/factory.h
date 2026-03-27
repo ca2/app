@@ -28,7 +28,7 @@ CLASS_DECL_ACME string type_name(const ::std::type_info& typeinfo);
 //CLASS_DECL_ACME ::critical_section * factory_critical_section();
 //
 //template < typename TYPE >
-//inline void ødefer_construct(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory * pfactory = nullptr);
+//inline void defer_constructø(::particle* pparticle, ::pointer<TYPE>& p, ::factory::factory * pfactory = nullptr);
 
 namespace factory
 {
@@ -906,10 +906,10 @@ namespace factory
 //
 //
 //   template < typename BASE_TYPE >
-//   inline void factory::ødefer_construct(::particle * pparticle, ::pointer<BASE_TYPE> & ptype)
+//   inline void factory::defer_constructø(::particle * pparticle, ::pointer<BASE_TYPE> & ptype)
 //   {
 //
-//      ::ødefer_construct(pparticle, ptype, this);
+//      ::defer_constructø(pparticle, ptype, this);
 //
 //   }
 //
@@ -990,7 +990,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 //
 
 //template < typename BASE_TYPE >
-//inline ::pointer < BASE_TYPE > øcreate(::particle* pparticle, ::factory::factory * pfactory = nullptr);
+//inline ::pointer < BASE_TYPE > createø(::particle* pparticle, ::factory::factory * pfactory = nullptr);
 //{
 //
 //   ::pointer < BASE_TYPE > p;
@@ -1113,7 +1113,7 @@ inline ::pointer<BASE_TYPE> __raw_create(::factory::factory* pfactory);
 //inline pointer < T >& pointer < T >::__call__create(PARTICLE* pparticle, ::factory::factory* pfactory)
 //{
 //
-//   auto p = ::øcreate < T >(pparticle);
+//   auto p = ::createø < T >(pparticle);
 //
 //   return operator =(p);
 //

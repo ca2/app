@@ -166,7 +166,7 @@ namespace aura
    //pointer< ::extended::sequence < ::conversation > > node::message_box(::user::interaction * puserinteraction, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::user::e_message_box & emessagebox)
    //{
 
-   //   auto pmessagebox = puserinteraction->øcreate < ::user::message_box >();
+   //   auto pmessagebox = puserinteraction->createø < ::user::message_box >();
 
    //   auto pfuture = pmessagebox->::extended::asynchronous<::conversation>::sequence();
 
@@ -214,7 +214,7 @@ namespace aura
    //::pointer<::conversation>node::create_new_message_box_conversation()
    //{
 
-   //   return øcreate_new < ::micro_message_box >();
+   //   return create_newø < ::micro_message_box >();
 
    //}
 

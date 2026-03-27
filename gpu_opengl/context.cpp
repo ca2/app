@@ -515,7 +515,7 @@ namespace gpu_opengl
 
       }
 
-      ødefer_construct(m_pframebuffer);
+      defer_constructø(m_pframebuffer);
 
       if (size.area() > 0)
       {
@@ -786,7 +786,7 @@ namespace gpu_opengl
 //      if (pathFile.case_insensitive_ends(".ktx"))
 //      {
 //
-//         auto tex = øcreate<::gpu::texture>();
+//         auto tex = createø<::gpu::texture>();
 //
 //         // tex->m_pDevice = &m_pgpudevice;
 //
@@ -1232,7 +1232,7 @@ namespace gpu_opengl
 //       if (!m_pmodelbufferDummy)
 //       {
 //
-//          ødefer_construct(m_pmodelbufferDummy);
+//          defer_constructø(m_pmodelbufferDummy);
 //
 //          m_pmodelbufferDummy->initialize_dummy_model(m_pgpurenderer, 3);
 //
@@ -1282,7 +1282,7 @@ namespace gpu_opengl
 // }
 // )frag";
 //
-//             ødefer_construct_new(m_pshaderBlend3);
+//             defer_construct_newø(m_pshaderBlend3);
 //
 //             m_pshaderBlend3->m_bEnableBlend = true;
 //             //m_pshaderBlend3->m_bindingSampler.set();
@@ -2786,7 +2786,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    //
    //    ::gpu::context_lock contextlock(this);
    //
-   //    auto pmodel = øcreate<::gpu::gltf::model>();
+   //    auto pmodel = createø<::gpu::gltf::model>();
    //
    //    (*(::gpu::renderable_t *)pmodel) = model;
    //
@@ -2805,7 +2805,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    //                                   int iAssimpTextureType)
    //{
 
-   //   ødefer_construct(ptexture);
+   //   defer_constructø(ptexture);
 
    //   auto memory = file()->as_memory(path);
 

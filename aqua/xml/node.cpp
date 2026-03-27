@@ -354,13 +354,13 @@ namespace xml
                if(entity_value.has_character())
                {
                   //::constructø(m_pdocument, m_pdocument->m_pentitiesHash);
-                  //::ødefer_construct(m_pdocument, m_pdocument->m_pentitiesHash);
-                  m_pdocument->ødefer_construct(m_pdocument->m_pentitiesHash);
+                  //::defer_constructø(m_pdocument, m_pdocument->m_pentitiesHash);
+                  m_pdocument->defer_constructø(m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
                if(ext_entity_value.has_character())
                {
-                  m_pdocument->ødefer_construct(m_pdocument->m_pentitiesExtHash);
+                  m_pdocument->defer_constructø(m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }

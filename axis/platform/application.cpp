@@ -70,7 +70,7 @@ namespace axis
    ::pointer < ::geo::geo > application::create_geo()
    {
 
-      return øcreate_new < ::geo::geo >();;
+      return create_newø < ::geo::geo >();;
 
    }
 

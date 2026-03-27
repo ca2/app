@@ -151,7 +151,7 @@ namespace helloaxis
    {
       ::int_rectangle rcClient;
       ::this->rectangle(hwnd, rcClient);
-      auto pbrush = øcreate < ::draw2d::brush > ();
+      auto pbrush = createø < ::draw2d::brush > ();
 
       pbrush->create_solid(argb(255, 255, 0, 0));
       pgraphics->SelectObject(br);

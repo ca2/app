@@ -1418,7 +1418,7 @@ void property_set_base::_parse_network_headers(const string_array_base & straHea
       if (::is_null(pPos))
       {
 
-         strName = str.make_lower();
+         strName = str.lowered();
 
          set_at(strName, ::e_type_empty);
 

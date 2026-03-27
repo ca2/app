@@ -46,7 +46,7 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            node()->calculate_dropbox_installed();
+            //node()->calculate_dropbox_installed();
 
             if (callbackStatus)
             {
@@ -84,7 +84,9 @@ namespace fs_folder_sync_dropbox
 
          strCommand = strDropboxCommand + " " + scopedstr;
 
-         m_iLastExitCode = node()->get_posix_shell_command_output(str, strCommand);
+         ::string strCommandError;
+
+         m_iLastExitCode = node()->get_posix_shell_command_output(str, strCommandError, strCommand);
 
          if (m_iLastExitCode == 0)
          {

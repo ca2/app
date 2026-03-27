@@ -34,8 +34,10 @@
 #include "acme/operating_system/dynamic_library.h"
 #include "acme/operating_system/file.h"
 #include "acme/operating_system/process.h"
+#include "acme/operating_system/summary.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
+#include "acme/platform/node.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/prototype/prototype.h"
@@ -52,6 +54,15 @@
 #include "prototype/string/_str.h"
 //#include "acme/user/user/conversation.h"
 
+#if defined(LINUX)
+
+bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
+::string_array_base debian_not_installed_packages(const ::string_array_base & straPackageNames);
+::string debian_install_packages_command_line(const ::string_array_base & straPackageNames);
+::string debian_install_package_file_command_line(const ::file::path & pathPackageFile);
+::string_array_base debian_run_operating_system_package_installation_update_command_line_array();
+
+#endif
 
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
@@ -4659,6 +4670,199 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    void system::install_progress_add_up(int iAddUp)
    {
+
+
+   }
+
+
+   bool system::is_operating_system_package_installed(const ::scoped_string & scopedstrPackageName)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return debian_is_package_installed(scopedstrPackageName);
+
+      }
+
+#endif
+
+      return false;
+
+   }
+
+
+   ::string_array_base system::not_installed_operating_system_packages(const ::string_array_base & straPackageNames)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return ::transfer(debian_not_installed_packages(straPackageNames));
+
+      }
+
+#endif
+
+      return straPackageNames;
+
+   }
+
+
+   ::string system::install_operating_system_packages_command_line(const ::string_array_base & straPackageNames)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return ::transfer(debian_install_packages_command_line(straPackageNames));
+
+      }
+
+#endif
+
+      return "echo \"Unknown command line for installing operating packages.\"";
+
+   }
+
+
+   ::string system::install_operating_system_package_file_command_line(const ::file::path & pathPackageFile)
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         return ::transfer(debian_install_package_file_command_line(pathPackageFile));
+
+      }
+
+#endif
+
+      return "echo \"Unknown command line for installing operating package file.\"";
+
+   }
+
+   ::string system::defer_install_operating_system_packages(const ::string_array_base & straPackageNames)
+   {
+
+      auto straNotInstalledPackages = not_installed_operating_system_packages(straPackageNames);
+
+      if (straNotInstalledPackages.is_empty())
+      {
+
+         return {};
+
+      }
+
+      ::string strCommandLine = install_operating_system_packages_command_line(straNotInstalledPackages);
+
+      print_line(strCommandLine);
+
+      defer_run_operating_system_package_installation_update_and_or_upgrade();
+
+      //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      int iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      ::string strInstalledPackages = straNotInstalledPackages.implode(" ");
+
+      return strInstalledPackages;
+
+   }
+
+
+   void system::defer_run_operating_system_package_installation_update_and_or_upgrade()
+   {
+
+      if (payload("run_operating_system_package_installation_update_and_or_upgrade").is_true())
+      {
+
+         return;
+
+      }
+
+      payload("run_operating_system_package_installation_update_and_or_upgrade") = true;
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+      ::string_array_base straCommandLine;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         straCommandLine = debian_run_operating_system_package_installation_update_command_line_array();
+
+      }
+
+#endif
+
+      if (straCommandLine.has_elements())
+      {
+
+         for (auto & strCommandLine : straCommandLine)
+         {
+
+            print_line(strCommandLine);
+
+         }
+
+         straCommandLine.add("exit");
+
+         //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+
+         int iExitCode = node()->pty2(straCommandLine);
+
+         if (iExitCode != 0)
+         {
+
+            error("Commands \"{}\" failed with exit code {}", straCommandLine.implode("; ").trimmed(), iExitCode);
+
+            throw ::exception(error_failed);
+
+         }
+
+      }
 
 
    }

@@ -9,7 +9,13 @@
 #include "acme/prototype/collection/atom_array.h"
 #include "acme/prototype/string/_character_range.h"
 //#include "payload_reference.h"
-
+enum enum_network_header
+{
+   e_network_header_unknown,
+   e_network_header_request,
+   e_network_header_response,
+   e_network_header_raw
+};
 
 // ::property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
@@ -397,7 +403,9 @@ public:
    void parse_network_payload(::ansi_range & range);
    void parse_network_arguments(const ::scoped_string & scopedstrUrl);
    void _parse_network_arguments(const ::scoped_string & scopedstrUrlQuery);
-   void parse_network_headers(const ::scoped_string & scopedstrHeaders);
+   enum_network_header parse_network_headers(const ::scoped_string & scopedstrHeaders);
+   enum_network_header parse_network_headers(const string_array_base & straHeaders, ::collection::index i = 0);
+   void _parse_network_headers(const string_array_base & straHeaders, ::collection::index i = 0);
 
 
    string & get_network_arguments(string & str) const;

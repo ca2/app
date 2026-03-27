@@ -867,6 +867,13 @@ void particle::print_out(const ::scoped_string& scopedstr) const
 void particle::printf_line(const_char_pointer pszFormat, ...) const
 {
 
+   if (has_flag(e_flag_no_stdout))
+   {
+
+      return;
+
+   }
+
    va_list arguments;
 
    va_start(arguments, pszFormat);

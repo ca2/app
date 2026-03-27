@@ -80,35 +80,33 @@ namespace platform
    ::string http::get(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto defer_get = createø < ::nano::http::get >();
+      auto pnanohttpget = createø < ::nano::http::get >();
 
-      defer_get->m_url = url;
+      pnanohttpget->m_url = url;
 
-      defer_get->property_set() = set;
+      pnanohttpget->m_ppropertyset = &set;
 
-      defer_get->m_timeSyncTimeout = timeTimeout;
+      pnanohttpget->m_timeSyncTimeout = timeTimeout;
 
-      defer_get->want_memory_response();
+      pnanohttpget->want_memory_response();
 
-      defer_get->call();
+      pnanohttpget->call();
 
       ::string str;
       
-      auto pmemory = defer_get->get_memory_response();
+      auto pmemory = pnanohttpget->get_memory_response();
 
       str = pmemory->as_utf8();
-
-      set = defer_get->property_set();
 
       return str;
 
    }
 
 
-   ::url::url http::get_effective_url(const ::url::url& url)
+   ::url::url http::get_effective_url(const ::url::url& url, ::property_set & set)
    {
 
-      return nano()->http()->get_effective_url(url);
+      return nano()->http()->get_effective_url(url, set);
 
    }
 
@@ -118,15 +116,15 @@ namespace platform
 
       auto pfile = file_system()->get_writer(payloadFile);
 
-      auto defer_get = create_newø < ::nano::http::get >();
+      auto pnanohttpget = create_newø < ::nano::http::get >();
 
-      defer_get->m_url = url;
+      pnanohttpget->m_url = url;
 
-      defer_get->m_timeSyncTimeout =  timeTimeout;
+      pnanohttpget->m_timeSyncTimeout =  timeTimeout;
 
-      defer_get->call();
+      pnanohttpget->call();
 
-      pfile->write(*defer_get->get_memory_response());
+      pfile->write(*pnanohttpget->get_memory_response());
 
       pfile->seek_to_begin();
 
@@ -136,21 +134,21 @@ namespace platform
    void http::download(const ::payload & payloadFile, const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
-      auto pfile = file_system()->get_writer(payloadFile, ::file::e_open_create);
+      auto pfile = file_system()->get_writer(payloadFile,
+         ::file::e_open_create
+         | ::file::e_open_defer_create_directory);
 
       auto phttpget = createø < ::nano::http::get >();
 
       phttpget->m_url = url;
 
-      phttpget->property_set() = set;
+      phttpget->m_ppropertyset = &set;
 
       phttpget->want_memory_response();
 
       phttpget->m_timeSyncTimeout =  timeTimeout;
 
       phttpget->call();
-
-      set = phttpget->property_set();
 
       auto pmemory = phttpget->get_memory_response();
 

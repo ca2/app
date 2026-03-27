@@ -1566,13 +1566,13 @@ CLASS_DECL_ACME ::file::path get_home_folder_path()
          return ::file::path(home);
    }
 
-   // 2) Fallback: user database
-   struct passwd* pw = getpwuid(getuid());
-   if (pw && pw->pw_dir && *pw->pw_dir)
-   {
-      return ::file::path(pw->pw_dir);
-   }
-
+   // // 2) Fallback: user database
+   // struct passwd* pw = getpwuid(getuid());
+   // if (pw && pw->pw_dir && *pw->pw_dir)
+   // {
+   //    return ::file::path(pw->pw_dir);
+   // }
+   //
    // 3) Failure case
    return {};
 }

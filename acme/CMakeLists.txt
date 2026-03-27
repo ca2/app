@@ -115,7 +115,10 @@ list(APPEND library_source
         #compress/zip/_.h
         #compress/zip/context.cpp
         #compress/zip/context.h
-        constant/_.h
+   console/console.h
+   console/console.cpp
+
+   constant/_.h
         constant/code_page.h
         constant/earth.h
         constant/element.h
@@ -2258,6 +2261,7 @@ if (${WIN32})
             #operating_system/windows/base/print_job.h
             #operating_system/windows/base/_windows.h
             #operating_system/windows/console.h
+       operating_system/windows/geometry2d.h
             operating_system/windows/calculate_edesktop.cpp
             #operating_system/windows/calculate_etoolkit.cpp
             operating_system/windows/calculate_ewindowing.cpp
@@ -2455,6 +2459,7 @@ endif ()
 
 if (${LINUX})
     list(APPEND library_source
+       console/console_linux.cpp
             operating_system/linux/
             operating_system/linux/_.cpp
             operating_system/linux/_.h
@@ -3144,8 +3149,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   operating_system/windows/geometry2d.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

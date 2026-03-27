@@ -2,6 +2,8 @@
 #pragma once
 
 
+#include <acme/operating_system/summary.h>
+
 #include "acme/platform/application.h"
 
 
@@ -19,7 +21,11 @@ namespace launch
       //char **        m_argv;
       //int            m_iExitCode;
 
-      ::string       m_strDistro;
+
+      ::pointer < ::operating_system::summary > m_poperatingsystemsummary;
+
+      ::string       m_strSystem;
+      ::string       m_strSystemFamily;
       ::string       m_strBranch;
       ::string       m_strRelease;
       ::string       m_strArchitecture;

@@ -1,0 +1,2 @@
+MainPackage=C:\winmetro\time\Win32\basis\winmetro_app_core_hellomultiverse\winmetro_app_core_hellomultiverse_1.1.20.0_Win32_basis.appx
+ResourcePack=C:\winmetro\time\Win32\basis\winmetro_app_core_hellomultiverse\winmetro_app_core_hellomultiverse_1.1.20.0_scale-100.appx

@@ -7,7 +7,12 @@
 //
 #include "framework.h"
 #include "http.h"
+
+#include <prototype/datetime/datetime.h>
+
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/manual_reset_happening.h"
 #include "acme/prototype/prototype/factory.h"
@@ -34,9 +39,10 @@ namespace nano
       }
 
       
-      void http::perform(::nano::http::get * defer_get)
+      void http::perform(::nano::http::get * pnanohttpget)
       {
 
+         throw ::interface_only();
 
       }
 
@@ -96,7 +102,7 @@ namespace nano
       //}
 
 
-      ::url::url http::get_effective_url(const ::url::url & url)
+      ::url::url http::get_effective_url(const ::url::url & url, ::property_set & set)
       {
 
          ::string strUrl(url.as_string());
@@ -106,17 +112,19 @@ namespace nano
          for(int iRedirect = 0; iRedirect < iRedirectLimit; iRedirect++)
          {
 
-            auto phttpget = create_newø < ::nano::http::get>();
+            auto pnanohttpget = create_newø < ::nano::http::get>();
 
-            phttpget->m_url = strUrl;
+            pnanohttpget->m_url = strUrl;
 
-            phttpget->payload("only_headers") = true;
+            pnanohttpget->m_ppropertyset = &set;
+
+            pnanohttpget->payload("only_headers") = true;
             
-            phttpget->m_timeSyncTimeout = 5_min;
+            pnanohttpget->m_timeSyncTimeout = 5_min;
 
-            send(phttpget);
+            send(pnanohttpget);
 
-            auto strLocation = phttpget->payload("location").as_string();
+            auto strLocation = pnanohttpget->payload("out_headers")["location"].as_string();
 
             if (strLocation.is_empty())
             {
@@ -142,69 +150,107 @@ namespace nano
       }
 
 
-      bool http::check_url_ok(const ::url::url& url)
+      bool http::check_url_ok(const ::url::url& url, ::property_set & set)
       {
 
-         ::string strUrl(get_effective_url(url).as_string());
+         auto urlEffective = get_effective_url(url, set);
 
-         auto phttpget = create_newø < ::nano::http::get>();
+         auto pnanohttpget = create_newø < ::nano::http::get>();
 
-         phttpget->m_url = strUrl;
+         pnanohttpget->m_url = urlEffective;
 
-         phttpget->payload("only_headers") = true;
+         pnanohttpget->m_ppropertyset = &set;
 
-         phttpget->m_timeSyncTimeout = 5_min;
+         pnanohttpget->payload("only_headers") = true;
 
-         send(phttpget);
+         pnanohttpget->m_timeSyncTimeout = 5_min;
 
-         auto iHttpStatusCode = phttpget->payload("http_status_code").as_int();
+         send(pnanohttpget);
+
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
 
          return iHttpStatusCode == 200;
 
       }
 
 
-
-      ::string http::get(const ::url::url & url)
+      ::string http::get(const ::url::url & url, ::property_set & set)
       {
 
-         auto urlEffetive = get_effective_url(url);
+         auto memoryOutput = ::transfer(as_memory(url, set));
 
-         auto phttpget = create_newø < ::nano::http::get>();
-
-         phttpget->m_url = urlEffetive;
-
-         phttpget->m_timeSyncTimeout = 5_min;
-
-         send(phttpget);
-
-         auto iHttpStatusCode = phttpget->payload("http_status_code").as_int();
-
-         ::string strOutput;
-
-         strOutput = phttpget->get_memory_response()->as_utf8();
+         ::string strOutput = memoryOutput.as_utf8();
 
          return strOutput;
 
       }
 
 
-      void http::download(const ::file::path & path, const ::url::url & url)
+      ::memory http::as_memory(const ::url::url & url, ::property_set & set)
       {
 
-         auto urlEffective = get_effective_url(url);
+         auto urlEffetive = get_effective_url(url, set);
 
-         auto phttpget = create_newø < ::nano::http::get>();
+         auto pnanohttpget = create_newø < ::nano::http::get>();
 
-         phttpget->m_url = urlEffective;
+         pnanohttpget->m_url = urlEffetive;
 
-         phttpget->m_timeSyncTimeout = 2_hour;
+         pnanohttpget->m_ppropertyset = &set;
 
-         send(phttpget);
+         pnanohttpget->m_timeSyncTimeout = 5_min;
 
-         auto iHttpStatusCode = phttpget->payload("http_status_code").as_int();
+         pnanohttpget->want_memory_response();
 
-         file_system()->put_block(path, *phttpget->get_memory_response());
+         send(pnanohttpget);
+
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+
+         return *pnanohttpget->get_memory_response();
+
+      }
+
+
+      void http::download(const ::payload& payloadFile, const ::url::url& url, ::property_set & set,
+                   const class ::time& timeTimeout)
+      {
+
+         auto pfile = file_system()->get_writer(payloadFile,
+            ::file::e_open_create
+            | ::file::e_open_defer_create_directory);
+
+         class ::time time;
+
+         time.Now();
+
+         ::string strFileName = (datetime()->date_text_for_file() + "." + ::as_string(time.m_iNanosecond));
+
+         ::file::path pathTime = directory()->home() / "Downloads/Time!!" / strFileName;
+
+         download(pathTime, url, set);
+
+         file()->copy(pfile, pathTime);
+
+      }
+
+
+      void http::download(const ::file::path & path, const ::url::url & url, ::property_set & set)
+      {
+
+         auto urlEffective = get_effective_url(url, set);
+
+         auto pnanohttpget = create_newø < ::nano::http::get>();
+
+         pnanohttpget->m_url = urlEffective;
+
+         pnanohttpget->m_ppropertyset = &set;
+
+         pnanohttpget->m_timeSyncTimeout = 2_hour;
+
+         send(pnanohttpget);
+
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+
+         file_system()->put_block(path, *pnanohttpget->get_memory_response());
 
       }
 

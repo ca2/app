@@ -400,6 +400,18 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       if ((pplatform && pplatform->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
       {
 
+         if (tracestatement.m_pparticleLogging)
+         {
+
+            if (tracestatement.m_pparticleLogging->has_flag(e_flag_no_stdout))
+            {
+
+               return;
+
+            }
+
+         }
+
          if (tracestatement.m_etracelevel <= e_trace_level_information)
          {
 

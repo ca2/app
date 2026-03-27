@@ -56,8 +56,33 @@ namespace nano
       return payload("only_headers").as_bool();
       
    }
-
-   
+      //
+      //
+      // void get::set_out_headers(const ::scoped_string & scopedstrOutHeaders)
+      // {
+      //
+      //    ::tokenizer tokenizer(scopedstrOutHeaders);
+      //
+      //    ::string strHttpVersion;
+      //
+      //    tokenizer.get_word(strHttpVersion);
+      //
+      //    payload("http_version") = strHttpVersion;
+      //
+      //    ::string strHttpStatusCode;
+      //
+      //    tokenizer.get_word(strHttpStatusCode);
+      //
+      //    payload("http_status_code") = ::as_int(strHttpStatusCode);
+      //
+      //    ::string strHttpStatus;
+      //
+      //    tokenizer.get_line(strHttpStatus);
+      //
+      //    payload("http_status") = strHttpStatus;
+      //
+      // }
+      //
       void get::set_response(long http_status, const void * data, long size)
       {
          
@@ -98,6 +123,8 @@ namespace nano
       void get::run()
       {
 
+         m_strUserAgent = property_set()["in_headers"]["user-agent"];
+
          nano()->http()->perform(this);
 
       }
@@ -124,6 +151,14 @@ namespace nano
             payload("get_memory") = create_memory();
 
          }
+
+      }
+
+
+      bool get::does_want_memory_response()
+      {
+
+         return has_property("get_memory");
 
       }
 

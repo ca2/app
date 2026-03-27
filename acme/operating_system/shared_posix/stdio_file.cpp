@@ -14,7 +14,7 @@
 
 
 #include <errno.h>
-
+#include <termios.h>
 
 stdio_file::stdio_file()
 {
@@ -700,6 +700,23 @@ CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInform
 }
 
 
+CLASS_DECL_ACME memory_dump_function std_inline_memory_dump(enum_trace_level etracelevelInformation)
+{
+
+   auto predicate = [etracelevelInformation](auto etracelevel, const void * p, memsize s)
+   {
+
+      ::fwrite(p, 1, s, trace_level_FILE(etracelevel, etracelevelInformation));
+
+      ::fflush(trace_level_FILE(etracelevel, etracelevelInformation));
+
+   };
+
+   return predicate;
+
+}
+
+
 CLASS_DECL_ACME trace_function std_get_output(::string * pstrOutput)
 {
 
@@ -1195,5 +1212,108 @@ CLASS_DECL_ACME ::string file_as_string(const ::file::path & path)
 
 }
 
+FILE * g_pfileStdIn = nullptr;
+
+FILE * current_stdin()
+{
+
+   if (g_pfileStdIn == nullptr)
+   {
+
+      return stdin;
+
+   }
+
+   return g_pfileStdIn;
+
+}
 
 
+FILE * raw_stdin()
+{
+
+   return g_pfileStdIn;
+
+}
+
+void set_raw_stdin(FILE * pfileStdIn)
+{
+
+   g_pfileStdIn = pfileStdIn;
+
+}
+
+
+int fgetch(FILE * pfile)
+{
+   struct termios oldt, newt;
+   int ch;
+
+   auto iFileNo = fileno(pfile);
+
+   tcgetattr(iFileNo, &oldt);   // save terminal settings
+   newt = oldt;
+   newt.c_lflag &= ~(ICANON | ECHO); // disable buffered input + echo
+   tcsetattr(iFileNo, TCSANOW, &newt);
+
+   ch = fgetc(pfile);
+
+   tcsetattr(iFileNo, TCSANOW, &oldt); // restore settings
+
+   return ch;
+
+}
+
+
+int current_getch()
+{
+
+   int i = -1;
+
+   if (raw_stdin() == nullptr)
+   {
+
+      i = fgetch(stdin);
+
+      if (i != EOF)
+      {
+
+         return i;
+
+      }
+
+      set_raw_stdin(fopen("/dev/tty", "r"));
+
+      if (!raw_stdin())
+      {
+
+         throw ::exception(error_failed, "fopen /dev/tty");
+
+      }
+
+   }
+
+   i = fgetch(raw_stdin());
+
+   if (i == EOF)
+   {
+
+      throw ::exception(error_failed, "fgetch /dev/tty");
+
+   }
+
+   return i;
+
+}
+
+
+void defer_close_raw_stdin()
+{
+
+   if (g_pfileStdIn)
+   {
+      fclose(g_pfileStdIn);
+      g_pfileStdIn = nullptr;
+   }
+
+}

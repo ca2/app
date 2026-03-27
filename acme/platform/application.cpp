@@ -76,9 +76,12 @@ namespace platform
       m_gpu.m_eoutputDraw2d = ::gpu::e_output_none;
       m_gpu.m_eoutputEngine = ::gpu::e_output_none;
 
+#ifdef _DEBUG
       int cx = 204;
 
-      _001Test001(::as_string(cx));
+//      _001Test001(::as_string(cx));
+
+#endif
       //m_bTransferToContainer = true;
       //m_bTransferredToContainer = false;
 

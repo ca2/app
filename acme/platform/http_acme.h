@@ -36,7 +36,7 @@ namespace platform
       virtual ::string get(const ::url::url& url, ::property_set & set, const class ::time& timeTimeout = 5_min);
 
 
-      virtual ::url::url get_effective_url(const ::url::url& url);
+      virtual ::url::url get_effective_url(const ::url::url& url, ::property_set & set);
 
 
       //virtual void http_sync(::nano::http::get * defer_get);

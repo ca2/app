@@ -109,7 +109,7 @@ namespace coding
    {
 
       print_line(pszMessage);
-      preempt(200_ms);
+      preempt(50_ms);
 
    }
 
@@ -136,10 +136,10 @@ namespace coding
       preempt(200_ms);
       print_line("");
       preempt(200_ms);
-      print_line("");
-      preempt(200_ms);
-      print_line("");
-      preempt(200_ms);
+      // print_line("");
+      // preempt(200_ms);
+      // print_line("");
+      // preempt(200_ms);
    }
 
    bool application::is_code_in_initial_setup()
@@ -1014,6 +1014,9 @@ namespace coding
 
       auto straPackageNames = get_install_dep_package_names();
 
+
+#if defined(DEEP_DEBUG)
+
       preempt_message("Required dependencies for coding setup");
 
       for (auto & strPackageName : straPackageNames)
@@ -1022,6 +1025,17 @@ namespace coding
          micro_preempt(strPackageName);
 
       }
+
+#else
+
+      if (straPackageNames.is_empty())
+      {
+
+         error("Some error occurred : no packages dependencies");
+
+      }
+
+#endif
 
       auto straNotInstalledPackages = system()->not_installed_operating_system_packages(straPackageNames);
 
@@ -1176,6 +1190,95 @@ namespace coding
    }
 
 
+   bool application::__is_code_operating_system_folder_present()
+   {
+
+      ::file::path pathCodeOperatingSystem;
+
+      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
+
+      bool bPresent = directory()->is(pathCodeOperatingSystem);
+
+      return bPresent;
+
+   }
+
+
+   bool application::__is_operating_system_tool_cloned()
+   {
+
+      ::file::path pathCodeOperatingSystem;
+
+      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
+
+      ::file::path pathCodeOperatingSystemTool;
+
+      pathCodeOperatingSystemTool = pathCodeOperatingSystem / "tool";
+
+      ::file::path pathCodeOperatingSystemToolBin;
+
+      pathCodeOperatingSystemToolBin = pathCodeOperatingSystemTool / "bin";
+
+      bool bInstalled1 = directory()->is(pathCodeOperatingSystemToolBin);
+
+      bool bInstalled2 = directory()->is(pathCodeOperatingSystemTool /".git");
+
+      return bInstalled1 && bInstalled2;
+
+   }
+
+
+   void application::__create_code_operating_system_folder()
+   {
+
+      ::file::path pathCodeOperatingSystem;
+
+      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
+
+      directory()->create(pathCodeOperatingSystem);
+
+   }
+
+
+   void application::__clone_operating_system_tool()
+   {
+
+      ::file::path pathCodeOperatingSystem;
+
+      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
+
+      ::file::path pathCodeOperatingSystemTool;
+
+      pathCodeOperatingSystemTool = pathCodeOperatingSystem / "tool";
+
+      ::file::path pathCodeOperatingSystemToolBin;
+
+      pathCodeOperatingSystemToolBin = pathCodeOperatingSystemTool / "bin";
+
+      ::string strGitRepository = "https://github.com/ca2/tool-linux";
+
+      ::string strCommandLine;
+
+      strCommandLine.format("git clone {} \"{}\"", strGitRepository, pathCodeOperatingSystemTool);
+
+      print_line(strCommandLine);
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      int iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
 
 
    bool application::__is_google_drive_installed()
@@ -1379,7 +1482,20 @@ namespace coding
 
       auto strCommandLine = system()->install_operating_system_package_file_command_line(pathPackageFile);
 
-      node()->pty(strCommandLine);
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      int iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
 
    }
 

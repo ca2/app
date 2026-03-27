@@ -85,6 +85,8 @@ class ::time      m_timeFoldersSetupDetected;
       virtual void micro_preempt(const char * pszMessage);
 
       /////////////bool did_just_install_cloud_data_provider();
+      ///
+      ///
 
       bool is_code_in_initial_setup();
       bool standard_code_mode();
@@ -122,7 +124,11 @@ class ::time      m_timeFoldersSetupDetected;
       virtual ::file::path operating_system_folder();
       virtual ::file::path storage_os_folder(const ::scoped_string & scopedstrOs);
 
+      virtual bool __is_code_operating_system_folder_present();
+      virtual bool __is_operating_system_tool_cloned();
 
+      virtual void __create_code_operating_system_folder();
+      virtual void __clone_operating_system_tool();
 
          virtual bool __is_google_drive_installed();
          virtual bool __is_dropbox_installed();

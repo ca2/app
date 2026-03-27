@@ -53,7 +53,7 @@ namespace acme
 //      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
       virtual int command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
       virtual int command_system_memory(const ::scoped_string& scopedstr, bool bInteractive = false, const memory_dump_function & memorydumpfunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
-virtual int pty(const ::scoped_string &scopedstr);
+      virtual int pty2(const ::string_array_base & stra);
       //virtual int interactive_command_system(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
       //virtual int interactive_command_system_memory(const ::scoped_string& scopedstrPrompt, const ::scoped_string& scopedstrCommand, const memory_dump_function& memorydumpfunction = nullptr, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none);
       //      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);

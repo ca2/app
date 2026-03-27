@@ -4,6 +4,7 @@
 #include <termios.h>
 #include <unistd.h>
 
+int current_getch();
 
 namespace console
 {
@@ -35,18 +36,8 @@ namespace console
 
 
    int console::getch(void) {
-      struct termios oldt, newt;
-      int ch;
+      return ::current_getch();
 
-      tcgetattr(STDIN_FILENO, &oldt);   // save terminal settings
-      newt = oldt;
-      newt.c_lflag &= ~(ICANON | ECHO); // disable buffered input + echo
-      tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-      ch = getchar();
-
-      tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // restore settings
-      return ch;
    }
 
    int console::get_thoughtful_character()
@@ -61,7 +52,7 @@ namespace console
 
          timeStart.Now();
 
-         iCharacter = getch();
+         iCharacter = current_getch();
 
          if (iCharacter == EOF)
          {

@@ -60,6 +60,7 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 ::string_array_base debian_not_installed_packages(const ::string_array_base & straPackageNames);
 ::string debian_install_packages_command_line(const ::string_array_base & straPackageNames);
 ::string debian_install_package_file_command_line(const ::file::path & pathPackageFile);
+::string_array_base debian_run_operating_system_package_installation_update_command_line_array();
 
 #endif
 
@@ -4781,7 +4782,17 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       print_line(strCommandLine);
 
-      int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+      defer_run_operating_system_package_installation_update_and_or_upgrade();
+
+      //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      int iExitCode = node()->pty2(straCommands);
 
       if (iExitCode != 0)
       {
@@ -4793,6 +4804,66 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       ::string strInstalledPackages = straNotInstalledPackages.implode(" ");
 
       return strInstalledPackages;
+
+   }
+
+
+   void system::defer_run_operating_system_package_installation_update_and_or_upgrade()
+   {
+
+      if (payload("run_operating_system_package_installation_update_and_or_upgrade").is_true())
+      {
+
+         return;
+
+      }
+
+      payload("run_operating_system_package_installation_update_and_or_upgrade") = true;
+
+      auto psummary = node()->operating_system_summary();
+
+      ::string strSystemFamily = psummary->m_strSystemFamily;
+
+      ::string_array_base straCommandLine;
+
+#if defined(LINUX)
+
+      if (strSystemFamily.case_insensitive_equals("debian"))
+      {
+
+         straCommandLine = debian_run_operating_system_package_installation_update_command_line_array();
+
+      }
+
+#endif
+
+      if (straCommandLine.has_elements())
+      {
+
+         for (auto & strCommandLine : straCommandLine)
+         {
+
+            print_line(strCommandLine);
+
+         }
+
+         straCommandLine.add("exit");
+
+         //int iExitCode = node()->posix_shell_command(strCommandLine, e_posix_shell_system_default, std_inline_log());
+
+         int iExitCode = node()->pty2(straCommandLine);
+
+         if (iExitCode != 0)
+         {
+
+            error("Commands \"{}\" failed with exit code {}", straCommandLine.implode("; ").trimmed(), iExitCode);
+
+            throw ::exception(error_failed);
+
+         }
+
+      }
+
 
    }
 

@@ -210,7 +210,7 @@ void tracer::flush(trace_statement & tracestatement)
    else
    {
 
-      if (tracestatement.m_etracelevel >= system()->m_etracelevelMinimum)
+      if (tracestatement.m_etracelevel <= system()->m_etracelevelMinimum)
       {
 
          ::output_debug_string("OutDebStr:"+ tracestatement.as_string() + "\n");

@@ -651,6 +651,7 @@ namespace platform
       virtual ::string library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation) override;
 
 
+
       //class ::crypto::crypto * crypto();
 
 
@@ -667,6 +668,8 @@ namespace platform
       virtual ::string install_operating_system_packages_command_line(const ::string_array_base & straPackageNames);
       virtual ::string install_operating_system_package_file_command_line(const ::file::path & pathPackageFile);
       virtual ::string defer_install_operating_system_packages(const ::string_array_base & straPackageNames);
+      virtual void defer_run_operating_system_package_installation_update_and_or_upgrade();
+
 
       virtual ::string get_application_server_name() override;
 

@@ -463,9 +463,9 @@ namespace acme
    }
 
 
-   int shell::pty(const scoped_string& scopedstr)
+   int shell::pty2(const ::string_array_base& straCommands)
    {
-      return m_pshellComposite->pty(scopedstr);
+      return m_pshellComposite->pty2(straCommands);
    }
 
 

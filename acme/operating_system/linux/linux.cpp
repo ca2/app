@@ -127,5 +127,19 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName)
 }
 
 
+::string_array_base debian_run_operating_system_package_installation_update_command_line_array()
+{
+
+   ::string_array_base straCommandLine;
+
+   straCommandLine.add("sudo apt update");
+
+   straCommandLine.add("sudo apt upgrade");
+
+   return straCommandLine;
+
+}
+
+
 
 

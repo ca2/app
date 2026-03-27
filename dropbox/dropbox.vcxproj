@@ -111,7 +111,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0B0A6C45-0AE3-4DC5-889A-7235BC9DB154}</ProjectGuid>
+    <ProjectGuid>{89792511-14AB-4109-9421-7F89885533D7}</ProjectGuid>
     <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -2383,15 +2383,13 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="compress.h" />
-    <ClInclude Include="uncompress.h" />
+    <ClInclude Include="dropbox.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="compress.cpp" />
-    <ClCompile Include="uncompress.cpp" />
+    <ClCompile Include="dropbox.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">

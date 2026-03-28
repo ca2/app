@@ -24,7 +24,8 @@
 //#include <errno.h>
 #include <termios.h>
 
-
+FILE * raw_stdin();
+void set_raw_stdin(FILE * pfileStdIn);
 
 namespace unistd
 {
@@ -1695,11 +1696,13 @@ int current_getch()
 
 void defer_close_raw_stdin()
 {
+   
+   
 
-   if (g_pfileStdIn)
+   if (raw_stdin())
    {
-      fclose(g_pfileStdIn);
-      g_pfileStdIn = nullptr;
+      fclose(raw_stdin());
+      set_raw_stdin(nullptr);
    }
 
 }

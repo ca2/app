@@ -7,37 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A1EAA8C284B05B0000F05A8 /* uncompress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EB275010A4003F38EC /* uncompress.h */; };
-		9A1EAA8E284B05B0000F05A8 /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EA275010A4003F38EC /* compress.h */; };
 		9A1EAA8F284B05B0000F05A8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
 		9A1EAA90284B05B0000F05A8 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EC275010A4003F38EC /* framework.h */; };
-		9A1EAA92284B05B0000F05A8 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F503275010A5003F38EC /* compress.cpp */; };
 		9A1EAA93284B05B0000F05A8 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F502275010A5003F38EC /* _factory.cpp */; };
 		9A1EAA94284B05B0000F05A8 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
-		9A1EAA95284B05B0000F05A8 /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
 		9A1EAA96284B05B0000F05A8 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
-		9A2D75AC2AAB780F00DFCE25 /* uncompress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EB275010A4003F38EC /* uncompress.h */; };
-		9A2D75AD2AAB780F00DFCE25 /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EA275010A4003F38EC /* compress.h */; };
 		9A2D75AE2AAB780F00DFCE25 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
 		9A2D75AF2AAB780F00DFCE25 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EC275010A4003F38EC /* framework.h */; };
-		9A2D75B12AAB780F00DFCE25 /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F503275010A5003F38EC /* compress.cpp */; };
 		9A2D75B22AAB780F00DFCE25 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F502275010A5003F38EC /* _factory.cpp */; };
 		9A2D75B32AAB780F00DFCE25 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
-		9A2D75B42AAB780F00DFCE25 /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
 		9A2D75B52AAB780F00DFCE25 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
 		9A2D75B72AAB780F00DFCE25 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5482750142E003F38EC /* libz.tbd */; };
 		9A2D75B82AAB780F00DFCE25 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F53D275010ED003F38EC /* libacme.dylib */; };
 		9A81F513275010A6003F38EC /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C5275010A4003F38EC /* framework.cpp */; };
-		9A81F514275010A6003F38EC /* uncompress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4C6275010A4003F38EC /* uncompress.cpp */; };
 		9A81F527275010A6003F38EC /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F4E4275010A4003F38EC /* _.cpp */; };
-		9A81F528275010A6003F38EC /* compress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EA275010A4003F38EC /* compress.h */; };
-		9A81F529275010A6003F38EC /* uncompress.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EB275010A4003F38EC /* uncompress.h */; };
 		9A81F52A275010A6003F38EC /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F4EC275010A4003F38EC /* framework.h */; };
 		9A81F534275010A6003F38EC /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F502275010A5003F38EC /* _factory.cpp */; };
-		9A81F535275010A6003F38EC /* compress.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F503275010A5003F38EC /* compress.cpp */; };
 		9A81F536275010A6003F38EC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A81F508275010A6003F38EC /* _.h */; };
 		9A81F547275012E9003F38EC /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F53D275010ED003F38EC /* libacme.dylib */; };
 		9A81F5492750142E003F38EC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81F5482750142E003F38EC /* libz.tbd */; };
+		9AF2BDCE2F76A38F008B7D87 /* dropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF2BDCC2F76A38F008B7D87 /* dropbox.h */; };
+		9AF2BDCF2F76A38F008B7D87 /* dropbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2BDCD2F76A38F008B7D87 /* dropbox.cpp */; };
+		9AF2BDD02F76A38F008B7D87 /* dropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF2BDCC2F76A38F008B7D87 /* dropbox.h */; };
+		9AF2BDD12F76A38F008B7D87 /* dropbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2BDCD2F76A38F008B7D87 /* dropbox.cpp */; };
+		9AF2BDD22F76A38F008B7D87 /* dropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AF2BDCC2F76A38F008B7D87 /* dropbox.h */; };
+		9AF2BDD32F76A38F008B7D87 /* dropbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2BDCD2F76A38F008B7D87 /* dropbox.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,22 +66,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_compress_zlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_compress_zlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1EAA9D284B05B0000F05A8 /* libios_dropbox.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_dropbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2D75BC2AAB780F00DFCE25 /* libstatic_dropbox.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_dropbox.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A54A6322A2D66460052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A54A6332A2D66460052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
-		9A81F4B227501077003F38EC /* libcompress_zlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcompress_zlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A81F4B227501077003F38EC /* libdropbox.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libdropbox.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F4C5275010A4003F38EC /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
-		9A81F4C6275010A4003F38EC /* uncompress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uncompress.cpp; sourceTree = "<group>"; };
 		9A81F4E4275010A4003F38EC /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
-		9A81F4EA275010A4003F38EC /* compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compress.h; sourceTree = "<group>"; };
-		9A81F4EB275010A4003F38EC /* uncompress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uncompress.h; sourceTree = "<group>"; };
 		9A81F4EC275010A4003F38EC /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A81F502275010A5003F38EC /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
-		9A81F503275010A5003F38EC /* compress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compress.cpp; sourceTree = "<group>"; };
 		9A81F508275010A6003F38EC /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A81F537275010ED003F38EC /* acme.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = acme.xcodeproj; path = ../acme/acme.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A81F5482750142E003F38EC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		9AF2BDCC2F76A38F008B7D87 /* dropbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dropbox.h; sourceTree = "<group>"; };
+		9AF2BDCD2F76A38F008B7D87 /* dropbox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dropbox.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				9A81F537275010ED003F38EC /* acme.xcodeproj */,
-				9A81F4BF275010A4003F38EC /* compress_zlib */,
+				9A81F4BF275010A4003F38EC /* dropbox */,
 				9A81F4B327501077003F38EC /* Products */,
 				9A81F546275012E9003F38EC /* Frameworks */,
 			);
@@ -125,29 +117,27 @@
 		9A81F4B327501077003F38EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A81F4B227501077003F38EC /* libcompress_zlib.dylib */,
-				9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */,
-				9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */,
+				9A81F4B227501077003F38EC /* libdropbox.dylib */,
+				9A1EAA9D284B05B0000F05A8 /* libios_dropbox.a */,
+				9A2D75BC2AAB780F00DFCE25 /* libstatic_dropbox.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9A81F4BF275010A4003F38EC /* compress_zlib */ = {
+		9A81F4BF275010A4003F38EC /* dropbox */ = {
 			isa = PBXGroup;
 			children = (
+				9AF2BDCC2F76A38F008B7D87 /* dropbox.h */,
+				9AF2BDCD2F76A38F008B7D87 /* dropbox.cpp */,
 				9A54A6322A2D66460052BAB6 /* _____debug.xcconfig */,
 				9A54A6332A2D66460052BAB6 /* _____release.xcconfig */,
 				9A81F4E4275010A4003F38EC /* _.cpp */,
 				9A81F508275010A6003F38EC /* _.h */,
 				9A81F502275010A5003F38EC /* _factory.cpp */,
-				9A81F503275010A5003F38EC /* compress.cpp */,
-				9A81F4EA275010A4003F38EC /* compress.h */,
 				9A81F4C5275010A4003F38EC /* framework.cpp */,
 				9A81F4EC275010A4003F38EC /* framework.h */,
-				9A81F4C6275010A4003F38EC /* uncompress.cpp */,
-				9A81F4EB275010A4003F38EC /* uncompress.h */,
 			);
-			name = compress_zlib;
+			name = dropbox;
 			sourceTree = "<group>";
 		};
 		9A81F538275010ED003F38EC /* Products */ = {
@@ -175,9 +165,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A1EAA8C284B05B0000F05A8 /* uncompress.h in Headers */,
-				9A1EAA8E284B05B0000F05A8 /* compress.h in Headers */,
 				9A1EAA8F284B05B0000F05A8 /* _.h in Headers */,
+				9AF2BDD22F76A38F008B7D87 /* dropbox.h in Headers */,
 				9A1EAA90284B05B0000F05A8 /* framework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,9 +175,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2D75AC2AAB780F00DFCE25 /* uncompress.h in Headers */,
-				9A2D75AD2AAB780F00DFCE25 /* compress.h in Headers */,
 				9A2D75AE2AAB780F00DFCE25 /* _.h in Headers */,
+				9AF2BDCE2F76A38F008B7D87 /* dropbox.h in Headers */,
 				9A2D75AF2AAB780F00DFCE25 /* framework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,9 +185,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A81F529275010A6003F38EC /* uncompress.h in Headers */,
-				9A81F528275010A6003F38EC /* compress.h in Headers */,
 				9A81F536275010A6003F38EC /* _.h in Headers */,
+				9AF2BDD02F76A38F008B7D87 /* dropbox.h in Headers */,
 				9A81F52A275010A6003F38EC /* framework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,9 +194,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9A1EAA88284B05B0000F05A8 /* ios_compress_zlib */ = {
+		9A1EAA88284B05B0000F05A8 /* ios_dropbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A1EAA9A284B05B0000F05A8 /* Build configuration list for PBXNativeTarget "ios_compress_zlib" */;
+			buildConfigurationList = 9A1EAA9A284B05B0000F05A8 /* Build configuration list for PBXNativeTarget "ios_dropbox" */;
 			buildPhases = (
 				9A1EAA8B284B05B0000F05A8 /* Headers */,
 				9A1EAA91284B05B0000F05A8 /* Sources */,
@@ -218,14 +205,14 @@
 			);
 			dependencies = (
 			);
-			name = ios_compress_zlib;
+			name = ios_dropbox;
 			productName = compress_zlib;
-			productReference = 9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */;
+			productReference = 9A1EAA9D284B05B0000F05A8 /* libios_dropbox.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9A2D75A82AAB780F00DFCE25 /* static_compress_zlib */ = {
+		9A2D75A82AAB780F00DFCE25 /* static_dropbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A2D75B92AAB780F00DFCE25 /* Build configuration list for PBXNativeTarget "static_compress_zlib" */;
+			buildConfigurationList = 9A2D75B92AAB780F00DFCE25 /* Build configuration list for PBXNativeTarget "static_dropbox" */;
 			buildPhases = (
 				9A2D75AB2AAB780F00DFCE25 /* Headers */,
 				9A2D75B02AAB780F00DFCE25 /* Sources */,
@@ -235,14 +222,14 @@
 			);
 			dependencies = (
 			);
-			name = static_compress_zlib;
+			name = static_dropbox;
 			productName = compress_zlib;
-			productReference = 9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */;
+			productReference = 9A2D75BC2AAB780F00DFCE25 /* libstatic_dropbox.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		9A81F4B127501077003F38EC /* compress_zlib */ = {
+		9A81F4B127501077003F38EC /* dropbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A81F4B627501077003F38EC /* Build configuration list for PBXNativeTarget "compress_zlib" */;
+			buildConfigurationList = 9A81F4B627501077003F38EC /* Build configuration list for PBXNativeTarget "dropbox" */;
 			buildPhases = (
 				9A81F4AE27501077003F38EC /* Headers */,
 				9A81F4AF27501077003F38EC /* Sources */,
@@ -254,9 +241,9 @@
 			dependencies = (
 				9A81F541275010FB003F38EC /* PBXTargetDependency */,
 			);
-			name = compress_zlib;
+			name = dropbox;
 			productName = compress_zlib;
-			productReference = 9A81F4B227501077003F38EC /* libcompress_zlib.dylib */;
+			productReference = 9A81F4B227501077003F38EC /* libdropbox.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -273,7 +260,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A81F4AD27501076003F38EC /* Build configuration list for PBXProject "compress_zlib" */;
+			buildConfigurationList = 9A81F4AD27501076003F38EC /* Build configuration list for PBXProject "dropbox" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -292,9 +279,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				9A81F4B127501077003F38EC /* compress_zlib */,
-				9A1EAA88284B05B0000F05A8 /* ios_compress_zlib */,
-				9A2D75A82AAB780F00DFCE25 /* static_compress_zlib */,
+				9A81F4B127501077003F38EC /* dropbox */,
+				9A1EAA88284B05B0000F05A8 /* ios_dropbox */,
+				9A2D75A82AAB780F00DFCE25 /* static_dropbox */,
 			);
 		};
 /* End PBXProject section */
@@ -351,10 +338,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A1EAA92284B05B0000F05A8 /* compress.cpp in Sources */,
 				9A1EAA93284B05B0000F05A8 /* _factory.cpp in Sources */,
 				9A1EAA94284B05B0000F05A8 /* _.cpp in Sources */,
-				9A1EAA95284B05B0000F05A8 /* uncompress.cpp in Sources */,
+				9AF2BDD32F76A38F008B7D87 /* dropbox.cpp in Sources */,
 				9A1EAA96284B05B0000F05A8 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,10 +349,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A2D75B12AAB780F00DFCE25 /* compress.cpp in Sources */,
 				9A2D75B22AAB780F00DFCE25 /* _factory.cpp in Sources */,
 				9A2D75B32AAB780F00DFCE25 /* _.cpp in Sources */,
-				9A2D75B42AAB780F00DFCE25 /* uncompress.cpp in Sources */,
+				9AF2BDCF2F76A38F008B7D87 /* dropbox.cpp in Sources */,
 				9A2D75B52AAB780F00DFCE25 /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,10 +360,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A81F535275010A6003F38EC /* compress.cpp in Sources */,
 				9A81F534275010A6003F38EC /* _factory.cpp in Sources */,
 				9A81F527275010A6003F38EC /* _.cpp in Sources */,
-				9A81F514275010A6003F38EC /* uncompress.cpp in Sources */,
+				9AF2BDD12F76A38F008B7D87 /* dropbox.cpp in Sources */,
 				9A81F513275010A6003F38EC /* framework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,8 +516,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
-				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
@@ -647,8 +630,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
-				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
@@ -690,13 +672,10 @@
 		9A81F4B727501077003F38EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -704,13 +683,10 @@
 		9A81F4B827501077003F38EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
 				ENABLE_HARDENED_RUNTIME = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -718,7 +694,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A1EAA9A284B05B0000F05A8 /* Build configuration list for PBXNativeTarget "ios_compress_zlib" */ = {
+		9A1EAA9A284B05B0000F05A8 /* Build configuration list for PBXNativeTarget "ios_dropbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A1EAA9B284B05B0000F05A8 /* Debug */,
@@ -727,7 +703,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A2D75B92AAB780F00DFCE25 /* Build configuration list for PBXNativeTarget "static_compress_zlib" */ = {
+		9A2D75B92AAB780F00DFCE25 /* Build configuration list for PBXNativeTarget "static_dropbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A2D75BA2AAB780F00DFCE25 /* Debug */,
@@ -736,7 +712,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A81F4AD27501076003F38EC /* Build configuration list for PBXProject "compress_zlib" */ = {
+		9A81F4AD27501076003F38EC /* Build configuration list for PBXProject "dropbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A81F4B427501077003F38EC /* Debug */,
@@ -745,7 +721,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A81F4B627501077003F38EC /* Build configuration list for PBXNativeTarget "compress_zlib" */ = {
+		9A81F4B627501077003F38EC /* Build configuration list for PBXNativeTarget "dropbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A81F4B727501077003F38EC /* Debug */,

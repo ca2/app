@@ -1789,8 +1789,13 @@ m_ibuf(isize)
       {
          
          bool bReady = Ready();
-
-         warning() << "write: Attempt to write to a non-ready socket"; // warning
+         
+         if(!bReady)
+         {
+            
+            warning() << "write: Attempt to write to a non-ready socket"; // warning
+            
+         }
 
          if (GetSocketId() == INVALID_SOCKET)
          {

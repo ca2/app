@@ -20,7 +20,7 @@
 #include "berg/user/user/document.h"
 
 
-extern int g_iColorWheelExit;
+//extern int g_iColorWheelExit;
 
 namespace user
 {
@@ -153,7 +153,7 @@ namespace user
    void color_selector_control::on_message_create(::message::message * pmessage)
    {
 
-      g_iColorWheelExit = atoi(file()->as_string(directory()->home()/"color_wheel_exit.txt"));
+      //g_iColorWheelExit = atoi(file()->as_string(directory()->home()/"color_wheel_exit.txt"));
 
       constructø(m_pfont);
 

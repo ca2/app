@@ -34,7 +34,7 @@
 
 
 
-#define DEBUG_LEVEL_SICK 9
+#define DEBUG_LEVEL_SICK 6
 #define DEBUG_LEVEL_NORMAL 4
 #define HTTP_DEBUG_LEVEL DEBUG_LEVEL_NORMAL
 
@@ -1797,8 +1797,12 @@ namespace http
          iTryCount = 2;
 
       }
+      
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
+
       information() << "------------------------------------------------------";
 
+#endif
       
       string strRedirect;
 //#ifdef BSD_STYLE_SOCKETS
@@ -1827,8 +1831,12 @@ namespace http
       }
       else
       {
+         
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
 
          information() << "Start: http_serial:" << iHttpGetSerial << " " << url.as_string();
+         
+#endif
 
       }
 
@@ -2396,12 +2404,17 @@ namespace http
 
          if (psocket->m_b_complete && (!psocket->m_pwebsocket || !psocket->m_pwebsocket->m_bWebSocket))
          {
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_NORMAL
 
             information() << LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second();
+            
+#endif
 
             break;
 
          }
+         
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
 
          if (iContentLength >= 0)
          {
@@ -2416,13 +2429,9 @@ namespace http
 
          }
 
-
-         if (HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK)
-         {
-
-            information() << LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds;
-
-         }
+         information() << LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds;
+         
+#endif
 
          iIteration++;
 
@@ -2468,7 +2477,15 @@ namespace http
 
       iBodySizeDownloaded = psocket->m_body_size_downloaded;
 
-      information() << LOG_HTTP_PREFIX
+      bool bSick = false;
+#if HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK
+      bSick = true;
+#endif
+      
+      if(!psocket->m_b_complete || bSick)
+      {
+         
+         information() << LOG_HTTP_PREFIX
          << url.as_string()
          << " HTTP Status Code : "
          << iStatusCode
@@ -2482,6 +2499,34 @@ namespace http
          << iEnteredLoop
          << ", "
          << (psocket->m_b_complete ? "Finished!" : "Incomplete!");
+         
+      }
+      else
+      {
+         
+         information()
+         << "\n"
+         << "\n"
+         << "http_get         : "
+         << iHttpGetSerial
+         << "\n"
+         << "URL              : "
+         << url.as_string()
+         << "\n"
+         << "HTTP Status Code : "
+         << iStatusCode
+         << "\n"
+         << "HTTP Status      : "
+         << strStatus
+         << "\n"
+         << (bChunked ?
+            "Chunk Size       : " :
+            "Content Length   : ")
+         << (bChunked ? (memsize)iChunkSize :(memsize)iContentLength)
+         << "\n"
+         ;
+         
+      }
          //iHttpGetSerial,
          //.c_str(),
          //,
@@ -2709,9 +2754,11 @@ namespace http
 
          ::property_set & set = pmessage->property_set();
 
-         single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
+         single_lock synchronouslock(download_mutex(), true);
+         
+         auto url = pmessage->m_url;
 
-         if (!(system()->m_straHttpDownloading.contains(pmessageMessage->m_url.as_string())) && !exists(pmessageMessage->m_url.as_string(), set))
+         if (!is_downloading(url) && !is_checking_existence(url))
          {
 
             synchronouslock.unlock();
@@ -2868,14 +2915,14 @@ namespace http
    ::file::enum_type context::get_type(const ::url::url & url, ::property_set & set)
    {
 
-      single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
+      single_lock synchronouslock(download_mutex(), true);
 
       int iStatusCode = 0;
 
       try
       {
 
-         while (system()->m_straHttpExists.contains(url))
+         while (is_checking_existence(url))
          {
 
             synchronouslock.unlock();
@@ -2886,7 +2933,7 @@ namespace http
 
          }
 
-         system()->m_straHttpExists.add(url.as_string());
+         m_straHttpCheckingExistence.add(url.as_string());
 
          synchronouslock.unlock();
 
@@ -2912,7 +2959,7 @@ namespace http
 
             synchronouslock.lock();
 
-            system()->m_straHttpExists.erase(url);
+            m_straHttpCheckingExistence.erase(url);
 
             return ::file::e_type_doesnt_exist;
 
@@ -2928,7 +2975,7 @@ namespace http
 
       }
 
-      system()->m_straHttpExists.erase(url);
+      m_straHttpCheckingExistence.erase(url);
 
       bool bExists = iStatusCode == 200;
 

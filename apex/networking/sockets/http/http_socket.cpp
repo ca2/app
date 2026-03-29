@@ -10,6 +10,7 @@
 #include "apex/networking/sockets/http/http_callback.h"
 
 #define HEAVY_HTTP_LOG 0
+#define HEAVY_HTTP_HEADER_LOG 0
 
 template < typename T >
 T* non_const_of(const T* p)
@@ -453,7 +454,11 @@ namespace sockets
       auto pszLine = scopedstrLine.m_begin;
       OnHeader(key, value);
 
+#if HEAVY_HTTP_HEADER_LOG
+      
       printf_line("Header Key: %s Value: %s", key.as_string().c_str(), value.c_str());
+      
+#endif
 
       if(key.case_insensitive_order("x-forwarded-proto") == 0)
       {

@@ -375,8 +375,12 @@ namespace sockets
 
    void http_client_socket::OnDataComplete()
    {
+      
+#if HEAVY_HTTP_LOG
 
-      information() << "OnDataComplete";
+      information() << "http_client_socket::OnDataComplete";
+      
+#endif
 
       m_b_complete = true;
 

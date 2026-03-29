@@ -22,7 +22,9 @@ bool operating_system_has_ipv6_internet();
 
 #undef ERROR
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
-
+#define NETWORKING_LOG_LEVEL_HIGH 9
+#define NETWORKING_LOG_LEVEL_NORMAL 4
+#define NETWORKING_LOG_LEVEL NETWORKING_LOG_LEVEL_NORMAL
 //#include <stdio.h>
 #ifdef WINDOWS
 #include <winsock2.h>
@@ -3551,13 +3553,21 @@ namespace networking_bsd
       }
       else
       {
+         
+#if NETWORKING_LOG_LEVEL >= NETWORKING_LOG_LEVEL_HIGH
 
          information() << "networking() finding address (3)";
+         
+#endif
 
          if (this->has_ip6_internet() && lookup_ipv6(paddress, scopedstrAddress))
          {
+            
+#if NETWORKING_LOG_LEVEL >= NETWORKING_LOG_LEVEL_HIGH
 
             information() << "... going to check if address is disabled (3)...";
+            
+#endif
 
             if(m_straDisabledIpv6Addresses.contains(paddress->get_display_number()))
             {
@@ -3626,11 +3636,15 @@ namespace networking_bsd
 
          ::string strDisplay = paddress->get_display_number();
 
+#if NETWORKING_LOG_LEVEL >= 6
+         
          ::string str;
 
          str = "converted to IPV6 address : " + strDisplay;
 
          information() << str;
+         
+#endif
 
          //print_out(str);
 

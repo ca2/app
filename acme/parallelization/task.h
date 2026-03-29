@@ -620,39 +620,7 @@ using task_pointer = ::pointer<::task>;
 class task_pool;
 
 
-
-
-
-
-
-
-template < typename PRED >
-inline void while_predicateicate_Sleep(int iTime, PRED pred)
-{
-
-   iTime += 99;
-
-   iTime /= 100;
-
-   for (::collection::index i = 0; i < iTime; i++)
-   {
-
-      preempt(100_ms);
-
-      if (!pred())
-      {
-
-         return;
-
-      }
-
-      preempt();
-
-   }
-
-   throw ::exception(error_timeout);
-
-}
+CLASS_DECL_ACME void predicate_preempt(const class ::time & time, const ::function < bool() > & function);
 
 
 CLASS_DECL_ACME void task_release();

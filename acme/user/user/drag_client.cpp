@@ -129,7 +129,7 @@ namespace user
       //   {
       if(::is_set(pdrag))
       {
-
+         
          information() << "::is_set(pdrag)";
 
          if (pitem->m_item.m_eelement == e_element_resize)

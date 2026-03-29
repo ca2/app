@@ -181,9 +181,6 @@ namespace platform
 
       ::pointer < ::mutex >                                                   m_pmutexMatter;
 
-      ::pointer < ::mutex >                                                   m_pmutexHttpDownload;
-      string_array_base                                                            m_straHttpDownloading;
-      string_array_base                                                            m_straHttpExists;
          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)
   //    ::particle_pointer                                 m_pmutexXlib;
@@ -202,10 +199,6 @@ namespace platform
 
 
       virtual ::particle * matter_mutex();
-      virtual ::particle * http_download_mutex();
-
-      virtual ::string_array_base * http_download_array();
-      virtual ::string_array_base * http_exists_array();
 
       virtual class ::time * file_listing_cache_time();
 

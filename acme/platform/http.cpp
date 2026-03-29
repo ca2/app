@@ -28,6 +28,65 @@ namespace platform
    }
 
 
+   void http::initialize(::particle * pparticle)
+   {
+      
+      ::platform::department::initialize(pparticle);
+      
+      constructø(m_pmutexHttpDownload);
+
+
+      
+   }
+
+   string_array_base* http::download_array()
+   {
+
+      return &m_straHttpDownloading;
+
+   }
+
+
+   string_array_base* http::checking_existence_array()
+   {
+
+      return &m_straHttpCheckingExistence;
+
+   }
+
+   particle* http::download_mutex()
+   {
+
+      return m_pmutexHttpDownload;
+
+   }
+
+
+   bool http::is_downloading(const ::url::url & url)
+   {
+      
+      auto strUrl = url.as_string();
+      
+      _synchronous_lock synchronouslock(this->download_mutex());
+      
+      return m_straHttpDownloading.contains(strUrl);
+      
+   }
+
+
+   bool http::is_checking_existence(const ::url::url & url)
+   {
+      
+      auto strUrl = url.as_string();
+      
+      _synchronous_lock synchronouslock(this->download_mutex());
+      
+      return m_straHttpCheckingExistence.contains(strUrl);
+      
+   }
+
+
+
    bool http::exists(const ::url::url & url, ::property_set & set)
    {
 

@@ -844,6 +844,35 @@ CLASS_DECL_ACME void set_task(task * ptask)
 }
 
 
+CLASS_DECL_ACME void predicate_preempt(const class ::time & time, const ::function < bool() > & function)
+{
+
+   auto timeStart = ::time::now();
+   
+   while(true)
+   {
+
+      preempt(100_ms);
+
+      if (!function())
+      {
+
+         return;
+
+      }
+
+      if(timeStart.elapsed() > time)
+      {
+         
+         throw ::exception(error_timeout);
+
+      }
+
+   }
+
+}
+
+
 CLASS_DECL_ACME void task_release()
 {
 

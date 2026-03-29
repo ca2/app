@@ -24,10 +24,26 @@ namespace platform
 
 
       // ::property_set    m_setHttp;
+      
+      ::pointer < ::mutex >                              m_pmutexHttpDownload;
+      string_array_base                                  m_straHttpDownloading;
+      string_array_base                                  m_straHttpCheckingExistence;
+
 
 
       http();
       ~http() override;
+      
+      
+      void initialize(::particle * pparticle) override;
+      
+      virtual ::particle * download_mutex();
+
+      virtual ::string_array_base * download_array();
+      virtual ::string_array_base * checking_existence_array();
+
+      bool is_downloading(const ::url::url & url);
+      bool is_checking_existence(const ::url::url & url);
 
 
       virtual bool exists(const ::url::url& url, ::property_set & set) override;

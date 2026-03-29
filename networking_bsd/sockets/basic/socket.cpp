@@ -30,6 +30,7 @@
 #undef ERROR
 #define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
+#define SOCKET_DEBUG_LEVEL 1
 
 namespace sockets_bsd
 {
@@ -232,7 +233,11 @@ namespace sockets_bsd
          return INVALID_SOCKET;
       }
 
+#if SOCKET_DEBUG_LEVEL >= 6
+      
       information() << "socket::CreateSocket socket = " << (int) s;
+      
+#endif
 
       //attach(s);
       OnOptions(af, iType, protno, s);

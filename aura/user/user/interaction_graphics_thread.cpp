@@ -685,7 +685,7 @@ namespace user
             
             wait_to_present();
             
-            return;
+            return true;
             
          }
          

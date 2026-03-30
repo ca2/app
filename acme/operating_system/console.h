@@ -35,7 +35,7 @@ public:
 //};
 
 
-namespace console
+namespace operating_system
 {
 
 
@@ -70,7 +70,7 @@ namespace console
    };
 
 
-} // namespace console
+} // namespace operating_system
 
 
 

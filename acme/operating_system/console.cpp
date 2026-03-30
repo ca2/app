@@ -15,7 +15,7 @@ int getche();
 
 
 
-namespace console
+namespace operating_system
 {
 
 
@@ -50,7 +50,7 @@ namespace console
    }
 
 
-} // namespace console
+} // namespace operating_system
 
 
 //#if !defined(UNIVERSAL_WINDOWS) || defined(_UWP_CONSOLE)

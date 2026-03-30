@@ -5,12 +5,12 @@
 #include "console.h"
 
 
-namespace console
+namespace operating_system
 {
 
 
    class CLASS_DECL_ACME console_client:
-      virtual public console
+      virtual public ::operating_system::console
    {
    public:
 
@@ -35,7 +35,7 @@ namespace console
    };
 
 
-} // namespace console
+} // namespace operating_system
 
 
 

@@ -3122,7 +3122,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       ::string strAppId = m_papplication->m_strAppId;
 
       prequest->m_strAppId = strAppId;
-      prequest->m_bPreferSync = true;
+      //prequest->m_bPreferSync = true;
 
       post_request(prequest);
 
@@ -3364,9 +3364,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
             application()->property_set().merge(prequest->property_set());
 
-            prequest->m_bPreferSync = true;
+            ///prequest->m_bPreferSync = true;
 
-            call_request(prequest);
+            post_request(prequest);
 
          }
 
@@ -3382,7 +3382,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       
       prequest->m_ecommand = e_command_application_started;
       prequest->m_strAppId = m_papplication->m_strAppId;
-      prequest->m_bPreferSync = true;
+      //prequest->m_bPreferSync = true;
 
       post_request(prequest);
 

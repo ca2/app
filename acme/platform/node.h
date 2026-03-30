@@ -1030,11 +1030,11 @@ namespace platform
 //    void media_store_set_data(const ::scoped_string & scopedstrPath, const ::block & block) override;
 //    ::memory media_store_get_data(const ::scoped_string & scopedstrPath) override;
 
-
+      virtual ::string get_current_operating_system_name();
       virtual ::string_array_base get_operating_system_information_lines();
 
       virtual memsize get_current_memory_usage();
-
+      
 
       virtual bool _windows_isVistaOrLater();
       virtual bool _windows_isWin7();

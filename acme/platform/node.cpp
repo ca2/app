@@ -5061,6 +5061,12 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 //   }
 //
 
+   ::string node::get_current_operating_system_name()
+   {
+
+      return {};
+
+   }
 
    ::string_array_base node::get_operating_system_information_lines() 
    {

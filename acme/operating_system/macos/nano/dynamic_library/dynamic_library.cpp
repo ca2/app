@@ -13,7 +13,7 @@
 #include <mach-o/nlist.h>
 #include <sys/types.h> // for jl_raise_debugger
 //#include <link.h>
-
+void ns_log_executable_path_and_its_loaded_dynamic_library_module_paths();
 
 string apple_app_module_folder();
 
@@ -193,6 +193,8 @@ namespace macos
             goto finished;
             
          }
+         
+         //ns_log_executable_path_and_its_loaded_dynamic_library_module_paths();
          
          strError = dlerror();
          

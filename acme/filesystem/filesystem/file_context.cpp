@@ -3382,6 +3382,9 @@ folder_pointer file_context::get_folder(::file::file * pfile, const ::scoped_str
 }
 
 
+#define HEAVY_HTTP_CACHE_LOG 0
+
+
 file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open eopen, ::file::e_flag eflag)
 {
 
@@ -3438,68 +3441,68 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
       pathCache.replace_with("_/", "://");
 #endif
       pathCache = directory()->cache() / (pathCache + ".cache");
-information() << "file_context::http_get_file pathCache = file://" << pathCache;
+      
+#if HEAVY_HTTP_CACHE_LOG
+      
+      information() << "file_context::http_get_file pathCache = file://" << pathCache;
+      
+#endif
+      
       if (exists(pathCache))
       {
+         
+#if HEAVY_HTTP_CACHE_LOG
 
-      information() << "file_context::http_get_file file exists = file://" << pathCache;
+         information() << "file_context::http_get_file file exists = file://" << pathCache;
+         
+#endif
 
-      auto memoryDescriptor = safe_get_memory(pathCache + ".cache_file_descriptor");
-      auto pdescriptor = (cache_file_descriptor *) memoryDescriptor.data();
+         auto memoryDescriptor = safe_get_memory(pathCache + ".cache_file_descriptor");
+         
+         auto pdescriptor = (cache_file_descriptor *) memoryDescriptor.data();
 
-
-
-      if(::is_set(pdescriptor))
-      {
-       auto timeLastDownloadElapsed = pdescriptor->m_timeLastDownload.elapsed();
-      if(timeLastDownloadElapsed < 24_hour)
-      {
-
-         auto pfile = get_reader(pathCache);
-
-         //bool bOk =pfile.ok();
-
-         //information() << "file_context::http_get_file file bOk = "<<bOk<<" file://" << pathCache;
-         //auto size =pfile->size();
-         //information() << "file_context::http_get_file file size = "<<size<<" file://" << pathCache;
-
-         //if (bOk && size > 0)
+         if(::is_set(pdescriptor))
          {
+       
+            auto timeLastDownloadElapsed = pdescriptor->m_timeLastDownload.elapsed();
+      
+            if(timeLastDownloadElapsed < 24_hour)
+            {
 
-            information() << "file_context::http_get_file returning cached file file://" << pathCache;
-            return pfile;
+               auto pfile = get_reader(pathCache);
+
+#if HEAVY_HTTP_CACHE_LOG
+
+               information() << "file_context::http_get_file returning cached file file://" << pathCache << " size: " << ::as_string(pfile->size()) << " bytes.";
+               
+#else
+               
+               information() << "http_cached_file://" << pathCache << " size: " << ::as_string(pfile->size()) << " bytes.";
+
+#endif
+               
+               return pfile;
+
+            }
 
          }
+         
+      }
 
-      }
-      }
-//      else
-      {
-        information() << "file_context::http_get_file file doesn't exist or timed out = file://" << pathCache;
-      }
+      information() << "http_cache_miss/timeout://" << pathCache;
 
    }
 
-   }
-
-   while_predicateicate_Sleep(60 * 1000, [&]()
+   predicate_preempt(60_s, [&]()->bool
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      return http()->is_downloading(url) || http()->is_checking_existence(url);
 
-      return system()->http_download_array()->contains(url.as_string()) || system()->http_exists_array()->contains(url.as_string());
-
-      });/* .failed())
-   {
-
-      bSaveCache = false;
-
-   }*/
-
+   });
 
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(http()->download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       if (bDoCache && file_system()->exists(pathCache))
       {
@@ -3522,52 +3525,45 @@ information() << "file_context::http_get_file pathCache = file://" << pathCache;
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(http()->download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      system()->http_download_array()->add(url.as_string());
+      http()->download_array()->add(url.as_string());
 
    }
 
-   auto defer_get = createø < ::nano::http::get >();
+   auto pnanohttpget = createø < ::nano::http::get >();
 
-   defer_get->m_url = url;
+   pnanohttpget->m_url = url;
 
-   defer_get->m_timeSyncTimeout = 5_hour;
+   pnanohttpget->m_timeSyncTimeout = 5_hour;
 
    auto pmemoryfile = create_memory_file();
 
-   defer_get->want_memory_response(pmemoryfile->get_memory());
+   pnanohttpget->want_memory_response(pmemoryfile->get_memory());
 
-   defer_get->call();
+   pnanohttpget->call();
 
    const_char_pointer pszData = (const_char_pointer )pmemoryfile->get_memory()->data();
 
    auto size = static_cast<size_t>(pmemoryfile->get_memory()->size());
+   
+   information() << "Got http_file with size : " << size << " bytes.";
 
-   //*pmemoryfile->get_primitive_memory() = ;
-
-  /// ::property_set & set = payloadFile["http_set"].property_set_reference();
-
-   pmemoryfile->payload("http_set") = ::transfer(defer_get->property_set());
-   //{
-
-   //   return ::error_failed;
-
-   //}
+   pmemoryfile->payload("http_set") = ::transfer(pnanohttpget->property_set());
 
    if (bDoCache)
    {
 
-      _synchronous_lock synchronouslock(system()->http_download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+      _synchronous_lock synchronouslock(http()->download_mutex(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
       try
       {
 
          pmemoryfile->seek_to_begin();
 
-         auto pfileOut = file()->get_writer(pathCache);
+         auto pfileCache = file()->get_writer(pathCache);
 
-         transfer(pfileOut, pmemoryfile);
+         transfer(pfileCache, pmemoryfile);
 
       }
       catch (...)
@@ -3575,27 +3571,29 @@ information() << "file_context::http_get_file pathCache = file://" << pathCache;
 
       }
 
-        cache_file_descriptor descriptor;
+      cache_file_descriptor descriptor;
 
-        put(pathCache + ".cache_file_descriptor", descriptor);
+      put(pathCache + ".cache_file_descriptor", descriptor);
+      
+      pmemoryfile->seek_to_begin();
+
       try
       {
 
-         system()->http_download_array()->erase(url.as_string());
+         http()->download_array()->erase(url.as_string());
 
       }
       catch (...)
       {
 
       }
-
-      pmemoryfile->seek_to_begin();
 
    }
 
    return pmemoryfile;
 
 }
+
 
 ::file_pointer file_context::shared_reader(const ::payload & payloadFile, ::file::e_open eopen)
 {

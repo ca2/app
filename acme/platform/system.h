@@ -66,10 +66,10 @@ namespace platform
 
 
       virtual ::particle * matter_mutex() override;
-      virtual ::particle * http_download_mutex() override;
+      //virtual ::particle * http_download_mutex() override;
 
-      virtual ::string_array_base * http_download_array() override;
-      virtual ::string_array_base * http_exists_array() override;
+      //virtual ::string_array_base * http_download_array() override;
+      //virtual ::string_array_base * http_exists_array() override;
 
       virtual class ::time * file_listing_cache_time() override;
 

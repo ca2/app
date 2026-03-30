@@ -3857,26 +3857,7 @@ namespace platform
    }
 
 
-   ::particle* acme_system_layer::http_download_mutex()
-   {
-      return nullptr;
-   }
 
-
-   ::string_array_base * acme_system_layer::http_download_array()
-   {
-      
-      return nullptr;
-      
-   }
-
-
-   ::string_array_base * acme_system_layer::http_exists_array()
-   {
-      
-      return nullptr;
-      
-   }
 
 
    class ::time * acme_system_layer::file_listing_cache_time()

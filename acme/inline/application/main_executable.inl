@@ -130,9 +130,13 @@ int main(int argc, char* argv[], char* envp[])
    const char * p1 = nullptr; //_todo_begin;
    const char * p2 = nullptr; //_todo_end;
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
-#else
+#elif defined(LINUX) || defined(__BSD__)
    const char * p1 = _binary__matter_zip_start;
    const char * p2 = _binary__matter_zip_end;
+   APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
+#else
+   const char * p1 = nullptr; //_todo_begin;
+   const char * p2 = nullptr; //_todo_end;
    APPLICATION_NAMESPACE_MAIN(initialize_system)(argc, argv, envp, p1, p2);
 #endif
 

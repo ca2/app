@@ -693,9 +693,9 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -729,9 +729,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -782,8 +782,7 @@
 				
 					"$(WorkspaceDir)/platform/thirdparty/include",
 				);
-				INSTALL_PATH = /Library/Framework/ca2;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -823,8 +822,7 @@
 				
 					"$(WorkspaceDir)/platform/thirdparty/include",
 				);
-				INSTALL_PATH = /Library/Framework/ca2;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -841,7 +839,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INSTALL_PATH = "@executable_path";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -851,7 +848,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INSTALL_PATH = "@executable_path";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

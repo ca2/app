@@ -23,10 +23,7 @@
     <ClInclude Include="_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="compress.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="uncompress.h">
+    <ClInclude Include="dropbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -40,10 +37,7 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="compress.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="uncompress.cpp">
+    <ClCompile Include="dropbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

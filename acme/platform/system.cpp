@@ -974,8 +974,6 @@ namespace platform
 
       //constructø(m_pmutexTask);
 
-      constructø(m_pmutexHttpDownload);
-
       //if(!estatus)
       //{
 
@@ -1798,34 +1796,12 @@ namespace platform
    }
 
 
-   string_array_base* system::http_download_array()
-   {
-
-      return &m_straHttpDownloading;
-
-   }
-
-
-   string_array_base* system::http_exists_array()
-   {
-
-      return &m_straHttpExists;
-
-   }
 
 
    particle* system::matter_mutex()
    {
 
       return m_pmutexMatter;
-
-   }
-
-
-   particle* system::http_download_mutex()
-   {
-
-      return m_pmutexHttpDownload;
 
    }
 

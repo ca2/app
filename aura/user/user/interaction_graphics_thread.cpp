@@ -676,6 +676,20 @@ namespace user
          }
 
       }
+      
+      if(!m_bFps)
+      {
+         
+         if(m_iRedrawMessageCount <= 0)
+         {
+            
+            wait_to_present();
+            
+            return true;
+            
+         }
+         
+      }
 
       try
       {

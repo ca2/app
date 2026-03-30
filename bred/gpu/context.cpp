@@ -1989,7 +1989,7 @@ namespace gpu
       if (!m_pgpuswapchain)
       {
 
-         auto pgpurenderer = get_gpu_renderer();
+         //auto pgpurenderer = get_gpu_renderer();
 
          defer_constructø(m_pgpuswapchain);
 

@@ -2578,6 +2578,8 @@
 		9A930CD02D6DA768006557FC /* prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A930CCF2D6DA768006557FC /* prober.cpp */; };
 		9A930CD12D6DA768006557FC /* prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A930CCF2D6DA768006557FC /* prober.cpp */; };
 		9A930CD22D6DA768006557FC /* prober.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A930CCF2D6DA768006557FC /* prober.cpp */; };
+		9A9459A32F6C16E500AD9261 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9459A22F6C16E500AD9261 /* window.cpp */; };
+		9A9459A42F6C16E500AD9261 /* window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9459A12F6C16E500AD9261 /* window.h */; };
 		9A94D39728EB8DE400F7C157 /* tool_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94D39428EB8DE400F7C157 /* tool_item.cpp */; };
 		9A94D39828EB8DE400F7C157 /* tool_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94D39528EB8DE400F7C157 /* tool_item.h */; };
 		9A94D39928EB8DE400F7C157 /* tool_item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A94D39528EB8DE400F7C157 /* tool_item.h */; };
@@ -6645,6 +6647,8 @@
 		9A92314527EAE25D00B5A78D /* path_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = path_array.h; sourceTree = "<group>"; };
 		9A930CCB2D6DA757006557FC /* prober.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prober.h; sourceTree = "<group>"; };
 		9A930CCF2D6DA768006557FC /* prober.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = prober.cpp; sourceTree = "<group>"; };
+		9A9459A12F6C16E500AD9261 /* window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = window.h; sourceTree = "<group>"; };
+		9A9459A22F6C16E500AD9261 /* window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		9A94D39428EB8DE400F7C157 /* tool_item.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tool_item.cpp; sourceTree = "<group>"; };
 		9A94D39528EB8DE400F7C157 /* tool_item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tool_item.h; sourceTree = "<group>"; };
 		9A94DE71282C0BBD00F5C1CA /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -9675,30 +9679,32 @@
 			isa = PBXGroup;
 			children = (
 				9A94DEAE282C3A9D00F5C1CA /* nano */,
-				9A94DE71282C0BBD00F5C1CA /* _.cpp */,
 				9AA8FADF27BA7296008FF9AA /* _.h */,
+				9A94DE71282C0BBD00F5C1CA /* _.cpp */,
 				9AA8FAAA27BA7296008FF9AA /* _c.h */,
 				9AA8FADA27BA7296008FF9AA /* _factory.cpp */,
 				9AA8FAB127BA7296008FF9AA /* _ios.h */,
 				9AA8FA9727BA7296008FF9AA /* _mm.h */,
+				9AA8FAB727BA7296008FF9AA /* aaa_library.cpp */,
 				9AA8FAB027BA7296008FF9AA /* acme.cpp */,
-				9AA8FA9F27BA7296008FF9AA /* base_user.cpp */,
 				9AA8FA8F27BA7296008FF9AA /* base.cpp */,
+				9AA8FA9F27BA7296008FF9AA /* base_user.cpp */,
 				9A8EC2CB2F361D38001EAC80 /* cpu_features.cpp */,
 				9A8EC2CC2F361D38001EAC80 /* cpu_features_arm64.cpp */,
+				9AA8FAA327BA7296008FF9AA /* factory_exchange.h */,
 				9A40BDF12B6B91C40077053E /* file_image.mm */,
 				9AA8FAC127BA7296008FF9AA /* file2.cpp */,
 				9AA8FABA27BA7296008FF9AA /* graphics.cpp */,
 				9AA8FAAD27BA7296008FF9AA /* ios.cpp */,
-				9AA8FAB727BA7296008FF9AA /* aaa_library.cpp */,
 				9AA8FAD827BA7296008FF9AA /* main.cpp */,
 				9AA8FA9C27BA7296008FF9AA /* MessageBoxA_W.mm */,
 				9AA8FA9127BA7296008FF9AA /* mm.mm */,
+				9AA8FAC527BA7296008FF9AA /* parallelization.h */,
 				9AA8FAB927BA7296008FF9AA /* parallelization.cpp */,
 				9AA8FA8C27BA7296008FF9AA /* thread.cpp */,
 				9AA8FADE27BA7296008FF9AA /* time.cpp */,
-				9AA8FAA327BA7296008FF9AA /* factory_exchange.h */,
-				9AA8FAC527BA7296008FF9AA /* parallelization.h */,
+				9A9459A12F6C16E500AD9261 /* window.h */,
+				9A9459A22F6C16E500AD9261 /* window.cpp */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -11603,6 +11609,7 @@
 				9AC102DD2B6AC9BD0053DB45 /* atom_map.h in Headers */,
 				9AC102DE2B6AC9BD0053DB45 /* __payload_array.h in Headers */,
 				9AC102DF2B6AC9BD0053DB45 /* pointer_array_process.h in Headers */,
+				9A9459A42F6C16E500AD9261 /* window.h in Headers */,
 				9AC102E02B6AC9BD0053DB45 /* null_terminated_range.h in Headers */,
 				9AC102E12B6AC9BD0053DB45 /* set_app_id.h in Headers */,
 				9AC102E22B6AC9BD0053DB45 /* types.h in Headers */,
@@ -14393,6 +14400,7 @@
 				9AD6B9D72BE84B37005C6189 /* operation.cpp in Sources */,
 				9AE382102F2068A200FDA5D7 /* dialog_base.cpp in Sources */,
 				9AC105E52B6AC9BD0053DB45 /* listing.cpp in Sources */,
+				9A9459A32F6C16E500AD9261 /* window.cpp in Sources */,
 				9AC105E62B6AC9BD0053DB45 /* item.cpp in Sources */,
 				9AC105E72B6AC9BD0053DB45 /* data.cpp in Sources */,
 				9AC105E82B6AC9BD0053DB45 /* whole_word.cpp in Sources */,
@@ -15245,11 +15253,15 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
+				);
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -15277,8 +15289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
@@ -15359,11 +15370,15 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
+				);
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
-				DEVELOPMENT_TEAM = HS8735NRM5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -15390,8 +15405,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
-				INSTALL_PATH = "@executable_path";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",

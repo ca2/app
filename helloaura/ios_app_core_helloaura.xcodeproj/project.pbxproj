@@ -1748,7 +1748,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ios/wiosapp_core_helloaura-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1780,7 +1780,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/ios/wiosapp_core_helloaura-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1802,9 +1802,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -1829,9 +1829,9 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;

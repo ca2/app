@@ -32,7 +32,7 @@ int __is_ok_socket(socket_id fd) {
 #endif
 
 
-#define THIS_FILE_DEBUG_LEVEL 20
+#define THIS_FILE_DEBUG_LEVEL 0
 #define THIS_FILE_DEBUG_LEVEL_FOR_LISTENING 0
 
 
@@ -686,7 +686,11 @@ namespace sockets_bsd
                      if (psocket->IsSSL()) // SSL Enabled socket
                      {
 
-                        ptcpsocket->information() << "OnSSLConnect";
+#if THIS_FILE_DEBUG_LEVEL >= 9
+                              
+                              ptcpsocket->information() << "::sockets_bsd::socket_handler::call_on_connect OnSSLConnect";
+                              
+#endif
 
                         psocket->OnSSLConnect();
 
@@ -708,7 +712,11 @@ namespace sockets_bsd
                            if (ptcpsocket->GetOutputLength())
                            {
 
-                              ptcpsocket->information() << "OnWrite";
+#if THIS_FILE_DEBUG_LEVEL >= 9
+                              
+                              ptcpsocket->information() << "::sockets_bsd::socket_handler::call_on_connect OnWrite";
+                              
+#endif
 
                               psocket->OnWrite();
 
@@ -1737,7 +1745,11 @@ end_processing_adding:
                   else
                   {
 
-                     pbasesocket->information() << "OnWrite";
+#if THIS_FILE_DEBUG_LEVEL >= 9
+                              
+                     pbasesocket->information() << "::sockets_bsd::socket_handler::_select OnWrite";
+                              
+#endif
 
                      pbasesocket->OnWrite();
 

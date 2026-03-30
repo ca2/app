@@ -18,7 +18,7 @@
 #include "aura/graphics/image/image.h"
 #include "nano2d/draw2d_context.h"
 
-int g_iColorWheelExit = 0;
+//int g_iColorWheelExit = 0;
 namespace graphics
 {
 
@@ -79,15 +79,15 @@ namespace graphics
 
       double dAlphaThickness = u / 2.0;
 
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 100) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 100) return;
 
       ::nano2d::paint paint;
 
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 200) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 200) return;
 
          ::nano2d::guard guard(pcontext);
       
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 300) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 300) return;
 
 
          //::double_ellipse ellipse1;
@@ -106,25 +106,25 @@ namespace graphics
 
          ::cast < ::nano2d::draw2d_context > p = pcontext;
       
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 400) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <= 400) return;
 
          auto pgraphics = p->m_pgraphics;
       
       
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <=500) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=500) return;
 
          pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
       
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <=600) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=600) return;
 
          pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
       
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <=700) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=700) return;
 
          pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
       
       
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <=800) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=800) return;
 
          //::draw2d::path_pointer ppath;
 
@@ -285,28 +285,28 @@ namespace graphics
          ::color::hsv hsv;
 
       
-      if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5000) return;
+      // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5000) return;
 
          {
             // Selector
             ::nano2d::guard guard(pcontext);
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5100) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5100) return;
 
 
             //pcontext->save();
             pcontext->translate((float) cx, (float) cy);
          
          
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5200) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5200) return;
             
 //#if defined(__APPLE__)
 
          auto fAngle = (float) (-hue * ::nano2d::f_pi * 2);
 
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5250) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5250) return;
             pcontext->rotate(fAngle);
 
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5300) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5300) return;
 //#else
 //
 //            pcontext->rotate((float) (hue * ::nano2d::f_pi * 2));
@@ -317,47 +317,47 @@ namespace graphics
             pcontext->stroke_width((float)u);
 
          
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5400) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5400) return;
 
             pcontext->begin_path();
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5500) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5500) return;
             pcontext->circle(0, 0, (float) (r0 - 0.5));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5600) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5600) return;
             pcontext->circle(0, 0, (float) (r1 + 0.5f));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5700) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5700) return;
             pcontext->stroke_color(rgba(0, 0, 0, 64));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5800) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5800) return;
             //pcontext->stroke_width(1.0f);
             pcontext->stroke();
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5900) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=5900) return;
 
 
             // Marker on
             pcontext->begin_path();
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6000) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6000) return;
             pcontext->rectangle((float) (r0 - 1.),(float)(- 2. * u), (float) (r1 - r0 + 2.), (float) (4.0 * u));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6100) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6100) return;
             pcontext->stroke_color(rgba(255, 255, 255, 192));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6200) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6200) return;
             pcontext->stroke();
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6300) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6300) return;
             paint = pcontext->box_gradient((float)(r0 - 3.), (float)( - 5.), (float)(r1 - r0 + 6.), (float)(10.), (float)(2), (float)(4.), rgba(0, 0, 0, 128), rgba(0, 0, 0, 0));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6400) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6400) return;
             pcontext->begin_path();
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6500) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6500) return;
             pcontext->rectangle((float)(r0 - 2. -10.), (float)(-4. -10.), (float)(r1 - r0 + 4. + 20.), (float)(8. + 20.));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6600) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6600) return;
             pcontext->rectangle((float)(r0 - 2.), (float)(-4.), (float)(r1 - r0 + 4.), (float)(8.));
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6700) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6700) return;
             pcontext->path_winding(::nano2d::e_solidity_hole);
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6800) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6800) return;
             pcontext->fill_paint(paint);
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6900) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=6900) return;
 
             pcontext->fill();
 
 
-         if (g_iColorWheelExit > 0 && g_iColorWheelExit <=7000) return;
+         // if (g_iColorWheelExit > 0 && g_iColorWheelExit <=7000) return;
 
 
             //// Center triangle

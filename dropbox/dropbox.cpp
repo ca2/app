@@ -87,6 +87,14 @@ namespace dropbox
    }
 
 
+   ::file::path dropbox::dropbox_client_executable_path()
+   {
+
+      return {};
+
+   }
+
+
    file::path dropbox::folder_path()
    {
 

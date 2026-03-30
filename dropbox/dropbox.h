@@ -70,6 +70,7 @@ namespace dropbox
 
       virtual void initialize_dropbox(::particle * pparticle);
 
+      virtual ::file::path dropbox_client_executable_path();
 
       virtual ::file::path folder_path();
 

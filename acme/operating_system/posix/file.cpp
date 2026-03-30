@@ -21,7 +21,11 @@
 #include <sys/types.h>
 #include <pwd.h>
 #include <fcntl.h>
+//#include <errno.h>
+#include <termios.h>
 
+FILE * raw_stdin();
+void set_raw_stdin(FILE * pfileStdIn);
 
 namespace unistd
 {
@@ -1621,3 +1625,87 @@ CLASS_DECL_ACME void set_modified_file_time(
          );
    }
 }
+
+
+
+
+
+
+int fgetch(FILE * pfile)
+{
+   struct termios oldt, newt;
+   int ch;
+
+   auto iFileNo = fileno(pfile);
+
+   tcgetattr(iFileNo, &oldt);   // save terminal settings
+   newt = oldt;
+   newt.c_lflag &= ~(ICANON | ECHO); // disable buffered input + echo
+   tcsetattr(iFileNo, TCSANOW, &newt);
+
+   ch = fgetc(pfile);
+
+   tcsetattr(iFileNo, TCSANOW, &oldt); // restore settings
+
+   return ch;
+
+}
+
+
+int current_getch()
+{
+
+   int i = -1;
+
+   if (raw_stdin() == nullptr)
+   {
+
+      i = fgetch(stdin);
+
+      if (i != EOF)
+      {
+
+         return i;
+
+      }
+
+      set_raw_stdin(fopen("/dev/tty", "r"));
+
+      if (!raw_stdin())
+      {
+
+         throw ::exception(error_failed, "fopen /dev/tty");
+
+      }
+
+   }
+
+   i = fgetch(raw_stdin());
+
+   if (i == EOF)
+   {
+
+      throw ::exception(error_failed, "fgetch /dev/tty");
+
+   }
+
+   return i;
+
+}
+
+
+void defer_close_raw_stdin()
+{
+   
+   
+
+   if (raw_stdin())
+   {
+      fclose(raw_stdin());
+      set_raw_stdin(nullptr);
+   }
+
+}
+
+
+

@@ -145,3 +145,24 @@ void _ns_do_tasks(double dSeconds)
    }
    
 }
+
+
+#include <mach-o/dyld.h>
+
+void ns_log_executable_path_and_its_loaded_dynamic_library_module_paths()
+{
+   
+   NSLog(@"NSBundle executablePath = %@", [[NSBundle mainBundle] executablePath]);
+
+   uint32_t count = _dyld_image_count();
+   for (uint32_t i = 0; i < count; i++) {
+       const char *name = _dyld_get_image_name(i);
+       if (name) {
+           NSLog(@"dyld image[%u] = %s", i, name);
+       }
+   }
+
+}
+
+
+

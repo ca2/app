@@ -2526,6 +2526,7 @@
     <ClCompile Include="handler\topic.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="operating_system\environment.cpp" />
+    <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="platform\remoting.cpp" />

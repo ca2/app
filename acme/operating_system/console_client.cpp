@@ -4,7 +4,7 @@
 #include "acme/prototype/geometry2d/rectangle.h"
 
 
-namespace operating_system
+namespace console
 {
 
 
@@ -105,7 +105,7 @@ namespace operating_system
    }
 
 
-} // namespace operating_system
+} // namespace console
 
 
 

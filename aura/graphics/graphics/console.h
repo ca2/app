@@ -15,7 +15,7 @@ namespace graphics
 
 
    class CLASS_DECL_AURA console :
-      virtual public ::console::console,
+      virtual public ::operating_system::console,
       virtual public ::string_buffer
    {
    public:

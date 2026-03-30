@@ -13,8 +13,6 @@ int getche();
 #endif
 
 
-
-
 namespace console
 {
 
@@ -38,6 +36,57 @@ namespace console
    {
 
    }
+
+
+   void console::SetWindowSize(int iHeight,int iWidth)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetCursorVisibility(bool show)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetCursorPosition(int y,int x)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetTextColor(int color)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::SetScreenColor(::enum_dos_color color,int iLineStart,int iLineCount)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void console::write(const ::scoped_string & scopedstr)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+
 
 
    ::int_rectangle console::get_position_rectangle(int y, int x)

@@ -34,6 +34,8 @@
 #include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 
+CLASS_DECL_ACME ::string friendly_byte_count(unsigned long long ul, const char *pszFormat = nullptr);
+
 #ifdef WINDOWS_DESKTOP
 
 __FACTORY_EXPORT void nano_http_wininet_factory(::factory::factory * pfactory);
@@ -5068,9 +5070,103 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
    }
 
+
+   ::string node::get_more_operating_system_version_information()
+   {
+
+      return {};
+
+   }
+
+
+   ::int_size node::get_main_monitor_size()
+   {
+
+      return {};
+
+   }
+
+
    ::string_array_base node::get_operating_system_information_lines() 
    {
-      return {}; 
+      
+      ::string_array_base stra;
+
+      auto size = get_main_monitor_size();
+
+      ::string strDisplayResolution;
+
+      if (size.cx > 0 && size.cy > 0)
+      {
+
+         ::string strDisplayResolutionOptionalHelper;
+
+         if (size.cx == 1920 && size.cy == 1080)
+         {
+
+            strDisplayResolutionOptionalHelper = " (Full HD)";
+
+         }
+         else if (size.cx == 2560 && size.cy == 1440)
+         {
+
+            strDisplayResolutionOptionalHelper = " (2k - Quad HD)";
+
+         }
+         else if (size.cx == 3840 && size.cy == 2160)
+         {
+
+            strDisplayResolutionOptionalHelper = " (4K  -Ultra HD)";
+
+         }
+         else
+         {
+         
+            strDisplayResolutionOptionalHelper.empty();
+
+         }
+
+         strDisplayResolution.format("Display Resolution: {}x{}{}", size.cx, size.cy,
+                                     strDisplayResolutionOptionalHelper);
+      }
+
+      auto memsizeApplicationMemoryUsage = get_current_memory_usage();
+
+      ::string strApplicationMemoryUsage;
+
+      if (memsizeApplicationMemoryUsage > 0)
+      {
+         strApplicationMemoryUsage.format("Application Memory Usage: {}",
+                                          friendly_byte_count(memsizeApplicationMemoryUsage));
+      }
+
+      ::string strOperatingSystemName = get_current_operating_system_name();
+
+      if (strOperatingSystemName.has_character())
+      {
+         
+         strOperatingSystemName = "#" + strOperatingSystemName;
+
+      }
+
+      ::string strMoreOperatingSystemVersionInformation = get_more_operating_system_version_information();
+      if (strMoreOperatingSystemVersionInformation.has_character())
+      {
+
+         strMoreOperatingSystemVersionInformation = "-#" + strMoreOperatingSystemVersionInformation;
+      }
+
+      stra.add(strOperatingSystemName);
+      stra.add(strMoreOperatingSystemVersionInformation);
+      stra.add("<br />");
+      stra.add(strDisplayResolution);
+      stra.add(strApplicationMemoryUsage);
+
+      stra.trim();
+      stra.erase_empty();
+
+      return stra;
+
       
    }
 

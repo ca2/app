@@ -1031,6 +1031,8 @@ namespace platform
 //    ::memory media_store_get_data(const ::scoped_string & scopedstrPath) override;
 
       virtual ::string get_current_operating_system_name();
+      virtual ::string get_more_operating_system_version_information();
+      virtual ::int_size get_main_monitor_size();
       virtual ::string_array_base get_operating_system_information_lines();
 
       virtual memsize get_current_memory_usage();

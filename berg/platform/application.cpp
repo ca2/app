@@ -424,9 +424,24 @@ namespace berg
       for (auto &line: lines)
       {
 
-         create_label<::user::still>(playoutLine, line);
+         ::string strLine = line;
+
+         if (strLine.begins_eat("#"))
+         {
+         }
+         else if (strLine.begins_eat("-#"))
+         {
+         }
+         else if (strLine.begins_eat("<br />"))
+         {
+         }
+
+         create_label<::user::still>(playoutLine, strLine);
+
       }
+
    }
+
 
    void application::on_after_prepare_impact_menu(::user::menu * pmenu)
    {

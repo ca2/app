@@ -62,6 +62,7 @@
 #include "acme/prototype/geometry2d/geometry.h"
 #include "acme/platform/hyperlink.h"
 //#include "acme/platform/system_impl.h"
+#include "acme/operating_system/summary.h"
 #include "acme/prototype/string/base64.h"
 
 
@@ -5245,7 +5246,13 @@ namespace apex
 
       ::string strUrl;
 
-      strUrl.format("https://ca2.store/image/operating-system/{}/{}.png", size.cx, OPERATING_SYSTEM_NAME);
+      ::string strSystem;
+
+      auto psummary = node()->operating_system_summary();
+
+      strSystem = psummary->m_strSystem;
+
+      strUrl.format("https://ca2.store/image/operating-system/{}/{}.png", size.cx, strSystem);
 
       return strUrl;
 

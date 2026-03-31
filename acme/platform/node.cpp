@@ -20,6 +20,7 @@
 #include "acme/memory/counter.h"
 #include "acme/platform/exclusive.h"
 #include "acme/operating_system/application.h"
+#include "acme/operating_system/summary.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
@@ -33,6 +34,7 @@
 #include "acme/user/user/os_theme_colors.h"
 #include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
+#include "windowing/display.h"
 
 CLASS_DECL_ACME ::string friendly_byte_count(unsigned long long ul, const char *pszFormat = nullptr);
 
@@ -5066,7 +5068,11 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    ::string node::get_current_operating_system_name()
    {
 
-      return {};
+      auto psummary = operating_system_summary();
+
+      auto strFriendlyName = psummary->m_strFriendlyName;
+
+      return strFriendlyName;
 
    }
 
@@ -5074,7 +5080,11 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    ::string node::get_more_operating_system_version_information()
    {
 
-      return {};
+      auto psummary = operating_system_summary();
+
+      auto strSystemReleaseName = psummary->m_strSystemReleaseName;
+
+      return strSystemReleaseName;
 
    }
 
@@ -5082,7 +5092,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    ::int_size node::get_main_monitor_size()
    {
 
-      return {};
+      return system()->acme_windowing()->acme_display()->get_main_screen_size();
 
    }
 

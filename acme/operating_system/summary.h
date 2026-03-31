@@ -28,6 +28,8 @@ namespace operating_system
 
       ::string          m_strName;
 
+      ::string          m_strFriendlyName;
+
       ::string          m_strSystemName;
       ::string          m_strSystemFamilyName;
       ::string          m_strSystemBranchName;

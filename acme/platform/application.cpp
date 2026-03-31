@@ -30,6 +30,7 @@
 #include "acme/nano/graphics/icon.h"
 #include "acme/windowing/windowing.h"
 #include "acme/constant/id.h"
+#include "user/simple/dialog_box_line.h"
 
 #ifdef WINDOWS_DESKTOP
 
@@ -2335,7 +2336,7 @@ void application::start_application()
 
       ::string_array_base stra;
 
-      stra.add(m_strAppName);
+      stra.add("#"+m_strAppName);
 
       stra.add("Application ID: " + m_strAppId);
 
@@ -2350,6 +2351,17 @@ void application::start_application()
    {
 
       auto lines = get_about_box_lines();
+
+      for (auto & line : lines)
+      {
+
+         auto psimpledialogboxline = create_newø < ::simple_dialog_box_line >();
+
+         psimpledialogboxline->_001Parse(line);
+
+         line = psimpledialogboxline->m_str;
+
+      }
 
       ::string strMessage;
 

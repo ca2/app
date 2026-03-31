@@ -1372,7 +1372,8 @@ list(APPEND library_source
         #   user/nano/window_implementation.h
         #   user/nano/window_interface.cpp
         #   user/nano/window_interface.h
-        user/micro/
+        user/simple/dialog_box_line.cpp
+   user/simple/dialog_box_line.h
         user/user/_string.cpp
         user/user/_string.h
         user/user/_text_stream.h
@@ -2459,7 +2460,6 @@ endif ()
 
 if (${LINUX})
     list(APPEND library_source
-       console/console_linux.cpp
             operating_system/linux/
             operating_system/linux/_.cpp
             operating_system/linux/_.h
@@ -2471,6 +2471,7 @@ if (${LINUX})
             #operating_system/linux/_user.h
             operating_system/linux/application.h
             operating_system/linux/callstack.cpp
+            operating_system/linux/console.cpp
             operating_system/linux/cpu_features.cpp
             #operating_system/linux/cross_win_file.cpp
             #operating_system/linux/cross_win_file.h

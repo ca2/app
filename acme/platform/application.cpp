@@ -2338,7 +2338,9 @@ void application::start_application()
 
       stra.add("#"+m_strAppName);
 
-      stra.add("Application ID: " + m_strAppId);
+      stra.add("-#" + m_strAppId);
+
+      stra.add("<br />");
 
       stra.add("Release Time: " + ::as_string(releasetimeforproject));
 

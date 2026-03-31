@@ -10486,9 +10486,9 @@ namespace apex
             
             pstill->set_position({30 + 48+10, y});
             
-            pstill->set_size({minimum(400, max_width), 30});
+            pstill->set_size({minimum(400, pstill->layout_width()), pstill->layout_height()});
             
-            y += 30;
+            y += pstill->layout_height();
             
          }
          

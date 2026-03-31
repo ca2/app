@@ -7,6 +7,7 @@ simple_dialog_box_line::simple_dialog_box_line()
 {
 
    m_esimpledialogstyle = e_simple_dialog_style_normal;
+   m_bSpacingLine = false;
 
 }
 
@@ -97,7 +98,25 @@ void simple_dialog_box_line::_001Parse(const ::scoped_string & scopedstr)
       m_esimpledialogstyle = e_simple_dialog_style_normal;
       //m_dFontSizeEm = 1.0;
       //m_iFontWeight = 400;
+      m_bSpacingLine = true;
 
    }
 
 }
+
+
+bool simple_dialog_box_line::is_spacing_line() const
+{
+
+   return m_bSpacingLine;
+
+}
+
+
+string simple_dialog_box_line::get_line_height_text()
+{
+
+   return "THOMÁsg";
+
+}
+

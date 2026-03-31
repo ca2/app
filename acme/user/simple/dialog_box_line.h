@@ -14,6 +14,7 @@ public:
    //int                         m_iFontWeight;
    //::particle_pointer          m_pparticleFont;
    enum_simple_dialog_style      m_esimpledialogstyle;
+   bool                          m_bSpacingLine;
 
 
    simple_dialog_box_line();
@@ -29,7 +30,8 @@ public:
    virtual double get_font_size_em() const;
    virtual int get_font_weight() const;
    virtual int get_byte_text_color_strength() const;
-
+   virtual bool is_spacing_line() const;
+   virtual ::string get_line_height_text();
 
 };
 

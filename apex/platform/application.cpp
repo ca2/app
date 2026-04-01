@@ -6764,13 +6764,13 @@ namespace apex
       if (node()->is_debug_build())
       {
          
-         strUrl = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
+         strUrl = "http://basis-ca2.site/api/spaignition/download?authnone&configuration=basis&stage=";
 
       }
       else
       {
 
-         strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
+         strUrl = "http://stage-ca2.site/api/spaignition/download?authnone&configuration=stage&stage=";
 
       }
 

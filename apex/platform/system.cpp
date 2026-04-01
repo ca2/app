@@ -3558,13 +3558,13 @@ void system::open_internet_link_in_browser(const ::scoped_string & scopedstrUrl,
          if (strBrowser == "firefox")
          {
 
-            //strUrl = "https://ca2.network/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+            //strUrl = "https://ca2.site/open_f___?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 
          }
          else
          {
 
-            //strUrl = "https://ca2.network/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
+            //strUrl = "https://ca2.site/open_tab?url=" + ::url::encode(strUrl) + "&profile=" + ::url::encode(strProfile) + "&target=" + ::url::encode(strTarget);
 
          }
 

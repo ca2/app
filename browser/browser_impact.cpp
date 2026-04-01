@@ -394,7 +394,7 @@ namespace browser
                            //          Call CefWindowInfo::SetAsWindowless() before passing the CefWindowInfo structure to CefBrowserHost::CreateBrowser().If no parent window is passed to SetAsWindowless some functionality like context menus may not be available.
 
                            //m_pclienthandler = ___new ClientHandler(this);
-               CreateBrowser(info, browserSettings, CefString("https://ca2.network/"));
+               CreateBrowser(info, browserSettings, CefString("https://ca2.site/"));
                //m_pthreadBrowser = fork([=]()
                //                        // main_async([=]()
                //{

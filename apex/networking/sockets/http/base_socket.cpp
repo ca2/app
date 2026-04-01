@@ -85,16 +85,16 @@ namespace sockets
       
       strHost = m_request.header("host");
 
-      if (strHost.case_insensitive_ends_eat(".test.ca2.network"))
+      if (strHost.case_insensitive_ends_eat(".test.ca2.site"))
       {
 
-         m_request.header("host") = strHost + ".ca2.network";
+         m_request.header("host") = strHost + ".ca2.site";
 
       }
-      else if (strHost == "test.ca2.network")
+      else if (strHost == "test.ca2.site")
       {
 
-         m_request.header("host") = "ca2.network";
+         m_request.header("host") = "ca2.site";
 
       }
 
@@ -106,7 +106,7 @@ namespace sockets
 
       string strTest(strHost);
 
-      if (strTest.case_insensitive_ends_eat(".ca2.network"))
+      if (strTest.case_insensitive_ends_eat(".ca2.site"))
       {
 
          if (strTest.find_index('.') > 0)
@@ -194,10 +194,10 @@ namespace sockets
             informationf(" *** keepalive: false");
          }*/
 
-      if (m_request.m_url.as_string() == "https://ca2.network/")
+      if (m_request.m_url.as_string() == "https://ca2.site/")
       {
 
-         print_line("Testing Response for https://ca2.network/");
+         print_line("Testing Response for https://ca2.site/");
 
       }
 
@@ -490,9 +490,9 @@ namespace sockets
 
          string_array_base straAllowedOrigin;
 
-         straAllowedOrigin.add("ca2.network");
-         straAllowedOrigin.add("ca2.network");
-         straAllowedOrigin.add("ca2.network");
+         straAllowedOrigin.add("ca2.site");
+         straAllowedOrigin.add("ca2.site");
+         straAllowedOrigin.add("ca2.site");
          straAllowedOrigin.add("ca2.store");
 
          bool bAllowedOrigin = false;

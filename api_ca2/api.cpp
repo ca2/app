@@ -77,7 +77,7 @@ namespace api_ca2
 
       m_strState = system()->mathematics()->random_alphanumeric(64);
 
-      string strUrl = ::string("http://ca2.network/account/?platform=" PLATFORM_STRING);
+      string strUrl = ::string("http://ca2.site/account/?platform=" PLATFORM_STRING);
 
       strUrl += "&applogin=" + ::url::encode(m_strAppLogin);
 
@@ -203,8 +203,8 @@ namespace api_ca2
 
             string_array_base straAllowedOrigin;
 
-            straAllowedOrigin.add("ca2.network");
-            straAllowedOrigin.add("ca2.network");
+            straAllowedOrigin.add("ca2.site");
+            straAllowedOrigin.add("ca2.site");
             straAllowedOrigin.add("ca2.store");
 
             bool bAllowedOrigin = false;
@@ -317,7 +317,7 @@ namespace api_ca2
       set["raw_http"] = true;
       set["disable_common_name_cert_check"] = true;
 
-      string strGet = "https://ca2.network/account/token";
+      string strGet = "https://ca2.site/account/token";
 
       string strResponse = http()->get(strGet, set);
 

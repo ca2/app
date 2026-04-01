@@ -144,7 +144,7 @@ bool ifs::enumerate(::file::listing_base & listing)
 
    //string strUrl;
 
-   //strUrl = "http://file.ca2.network/ifs/ls?path=" + ::url::encode(listing.m_pathUser);
+   //strUrl = "http://file.ca2.site/ifs/ls?path=" + ::url::encode(listing.m_pathUser);
 
    //string strSource;
 

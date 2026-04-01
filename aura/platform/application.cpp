@@ -5183,11 +5183,11 @@ retry_license:
 
       if (node()->is_debug_build())
       {
-         strUrl1 = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
+         strUrl1 = "http://basis-ca2.site/api/spaignition/download?authnone&configuration=basis&stage=";
       }
       else
       {
-         strUrl1 = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
+         strUrl1 = "http://stage-ca2.site/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
       strUrl1 += ::url::encode(strRelative);
@@ -8973,7 +8973,7 @@ namespace aura
 
          string strIgnitionServer = file_system()->as_string(directory_system()->system() / "config\\system\\ignition_server.txt");
 
-         if(case_insensitive_string_ends(strIgnitionServer,".ca2.network"))
+         if(case_insensitive_string_ends(strIgnitionServer,".ca2.site"))
          {
 
             strRequestUrl = "https://" + strIgnitionServer + "/";
@@ -8982,11 +8982,11 @@ namespace aura
          else
          {
 
-            strRequestUrl = "https://account.ca2.network/";
+            strRequestUrl = "https://account.ca2.site/";
 
          }
 
-         strRequestUrl = "https://account.ca2.network/";
+         strRequestUrl = "https://account.ca2.site/";
 
       }
 

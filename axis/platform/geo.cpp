@@ -280,7 +280,7 @@ namespace geo
             ::payload payload;
 
             payload["nocache"] = true;
-            payload["url"] = "https://ca2.network/city-list.json";
+            payload["url"] = "https://ca2.site/city-list.json";
 
             DEBUGF_LINE("mnoxxd2");
 
@@ -401,7 +401,7 @@ namespace geo
 
             DEBUGF_LINE("pqrxxe3");
 
-            auto pmessageboxpayload = __initialize_new ::message_box_payload("Unable to download \"https://ca2.network/city-list_base.json\"");
+            auto pmessageboxpayload = __initialize_new ::message_box_payload("Unable to download \"https://ca2.site/city-list_base.json\"");
 
             DEBUGF_LINE("pqrxxe4");
 
@@ -730,7 +730,7 @@ namespace geo
 
       auto psystem = system();
 
-      string strGetUrl = "https://ca2.network/api/account/openweather?request=" + ::url::encode(strUrl);
+      string strGetUrl = "https://ca2.site/api/account/openweather?request=" + ::url::encode(strUrl);
 
       // auto pcontext = get_context();
 
@@ -1670,7 +1670,7 @@ namespace geo
 
       strLng.formatf("%0.2f", dLng);
 
-      string strUrl = "https://ca2.network/account/time_zone";
+      string strUrl = "https://ca2.site/account/time_zone";
 
       try
       {
@@ -1801,7 +1801,7 @@ namespace geo
 
       string strId = ::as_string(pcity->m_iId);
 
-      string strUrl = "http://ca2.network/account/weather";
+      string strUrl = "http://ca2.site/account/weather";
 
       try
       {

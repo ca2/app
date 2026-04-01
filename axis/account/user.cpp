@@ -97,18 +97,18 @@ namespace account
 //
 //      if(scopedstrText == nullptr)
 //      {
-//         pszText = "https://ca2.network/";
+//         pszText = "https://ca2.site/";
 //      }
 //      string strText(scopedstrText);
 //      if(strText.is_empty())
 //      {
-//         strText = "https://ca2.network/";
+//         strText = "https://ca2.site/";
 //      }
 //      strText = purl->get_server(strText);
 //      if(strText.is_empty())
 //         strText = pszText;
 //      string strSessId;
-//      if (strText == "api.ca2.network")
+//      if (strText == "api.ca2.site")
 //      {
 //         strSessId = psession->account()->m_mapAccountSessId[psession->account()->m_strFirstFontopusServer];
 //         if (strSessId.has_character())
@@ -148,12 +148,12 @@ namespace account
 //   {
 //      if(scopedstrText == nullptr)
 //      {
-//         pszText = "https://ca2.network/";
+//         pszText = "https://ca2.site/";
 //      }
 //      string strText(scopedstrText);
 //      if(strText.is_empty())
 //      {
-//         strText = "https://ca2.network/";
+//         strText = "https://ca2.site/";
 //      }
 //      strText = purl->get_server(strText);
 //      m_sessionidmap[strText] = pszSessid;
@@ -164,7 +164,7 @@ namespace account
 //   {
 //
 //      string strPrefix(scopedstrPrefix);
-//      string strDomain(".ca2.network");
+//      string strDomain(".ca2.site");
 //
 //      string_array_base straServer;
 //

@@ -482,7 +482,7 @@ namespace account
    //   return 0;
 
    //   login_thread thread;
-   //   thread.m_strRequestingServer = "account.ca2.network";
+   //   thread.m_strRequestingServer = "account.ca2.site";
    //   thread.m_strUsername = "";
    //   thread.m_strPassword = "";
    //   thread.run();

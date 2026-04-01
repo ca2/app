@@ -136,7 +136,7 @@ namespace sockets
 			{
 				m_estate = state_hello;
 				//print("HELO localhost\r\n");
-				print("EHLO account.ca2.network\r\n");
+				print("EHLO account.ca2.site\r\n");
 				m_strError += "Got initial response\n";
 			}
 		}

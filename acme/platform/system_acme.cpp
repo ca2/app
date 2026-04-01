@@ -1409,7 +1409,7 @@ namespace platform
    //
    //       }
    //
-   //       //::string strRoot = "ca2.network";
+   //       //::string strRoot = "ca2.site";
    //
    //       //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
    //
@@ -1826,7 +1826,7 @@ namespace platform
    //    void acme_system_layer::system::get_public_internet_domain_extension_list(string_array_base& stra)
    //    {
    //
-   //       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
+   //       //::file::path pathPublicDomainExtensionList = "https://ca2.site/public_internet_domain_extension_list.txt";
    //
    //       //file()->load_lines(stra, pathPublicDomainExtensionList);
    //

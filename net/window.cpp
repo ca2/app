@@ -14,7 +14,7 @@ namespace app_net
 
       //m_bSimpleUIDefaultMouseHandling = true;
 
-      m_strUrl = "https://ca2.network/time";
+      m_strUrl = "https://ca2.site/time";
 
       m_dBreathPeriod = 60.0;
 

@@ -448,7 +448,7 @@ namespace httpd
 
             domain.create(url.connect().host());
 
-            if (domain.m_strName == "ca2.network")
+            if (domain.m_strName == "ca2.site")
             {
 
                //straValue[i] = "https://" + papp->m_strFontopusServer + purl->get_object(straValue[i]);

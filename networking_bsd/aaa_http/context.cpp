@@ -52,13 +52,13 @@ namespace http
 
       string strServer = purl->get_root(scopedstrUrl);
 
-      if (strServer == "ca2.network")
+      if (strServer == "ca2.site")
       {
 
          set["raw_http"] = true;
 
       }
-      else if (!strServer.case_insensitive_ends("ca2.network") && strServer != "ca2.network")
+      else if (!strServer.case_insensitive_ends("ca2.site") && strServer != "ca2.site")
       {
 
          set["raw_http"] = true;
@@ -97,7 +97,7 @@ namespace http
    string context::api_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      ::file::path url("https://api.ca2.network/");
+      ::file::path url("https://api.ca2.site/");
 
       url /= pszUrl;
 
@@ -559,12 +559,12 @@ namespace http
 
       string_array_base straRequestingServer;
 
-      straRequestingServer.add("ca2.network");
+      straRequestingServer.add("ca2.site");
 
       if (!straRequestingServer.case_insensitive_contains(strHost))
       {
 
-         strHost = "ca2.network";
+         strHost = "ca2.site";
 
       }
 

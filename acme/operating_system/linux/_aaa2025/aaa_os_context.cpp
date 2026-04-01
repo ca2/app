@@ -472,7 +472,7 @@ namespace linux
 
                registry::Key keyPlugin;
 
-               if(keyPlugin.OpenKey(keyPlugins, "@ca2.network/npca2", true))
+               if(keyPlugin.OpenKey(keyPlugins, "@ca2.site/npca2", true))
                {
 
                   keyPlugin.SetValue("Description", "ca2 plugin for NPAPI");

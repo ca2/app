@@ -1781,7 +1781,7 @@ namespace platform
 
       set["raw_http"] = true;
 
-      http()->get(str, "https://ca2.network/text?path=" + scopedstrPath + "&key=" + scopedstrKey, set);
+      http()->get(str, "https://ca2.site/text?path=" + scopedstrPath + "&key=" + scopedstrKey, set);
 
       m_mapText[scopedstrPath].set_at(scopedstrKey, str);
 
@@ -2413,7 +2413,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
       }
 
-      //::string strRoot = "ca2.network";
+      //::string strRoot = "ca2.site";
 
       //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
 
@@ -2825,7 +2825,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    void system::get_public_internet_domain_extension_list(string_array_base& stra)
    {
 
-      //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
+      //::file::path pathPublicDomainExtensionList = "https://ca2.site/public_internet_domain_extension_list.txt";
 
       //file()->load_lines(stra, pathPublicDomainExtensionList);
 

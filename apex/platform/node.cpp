@@ -240,7 +240,7 @@ namespace apex
 
       ::file::path pathFolder;
 
-      pathFolder = "https://ca2.network/image/cc/ca2core/bkimageoftheday/common/";
+      pathFolder = "https://ca2.site/image/cc/ca2core/bkimageoftheday/common/";
 
       pfileset->m_listingAddUp.m_eflag = ::file::e_flag_file;
 

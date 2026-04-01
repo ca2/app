@@ -310,7 +310,7 @@ namespace apex
 
 
       void show_about_box(::user::activation_token * puseractivationtoken) override;
-      void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken) override;
+      void show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl, ::user::activation_token *puseractivationtoken) override;
 
 
       ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size) override;

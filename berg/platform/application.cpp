@@ -506,10 +506,10 @@ namespace berg
    }
 
 
-      void application::show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl,  ::user::activation_token *puseractivationtoken)
+      void application::show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl,  ::user::activation_token *puseractivationtoken)
    {
 
-      ::axis::application::show_lines_box(straLines, scopedstrIconUrl, puseractivationtoken);
+      ::axis::application::show_lines_box(straLines, straIconUrl, puseractivationtoken);
 
       // if (!m_ptabimpactBase)
       //{

@@ -4,6 +4,7 @@
 //#include "application.h"
 //#include "document.h"
 #include "about_the_operating_system_impact.h"
+//#include "imaging_freeimage/image_context.h"
 #include "acme/platform/_referencing_debugging.h"
 #include "acme/user/simple/dialog_box_line.h"
 #include "acme/constant/user_message.h"
@@ -12,8 +13,10 @@
 #include "acme/platform/node.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/user/simple/dialog_box_line.h"
-#include "aura/graphics/write_text/write_text.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/context.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/write_text/write_text.h"
 #include "aura/message/user.h"
 #include "berg/platform/application.h"
 
@@ -77,8 +80,28 @@ namespace berg
 
          return;
       }
+      ::cast < ::apex::system > papexsystem = system();
+      ::string strOperatingSystemImageUrl = papexsystem->operating_system_icon_url({128, 128});
+image()->load_image(strOperatingSystemImageUrl,
+{
+   .sync=false,.functionLoaded = [this](::image::image * pimage)
+   {
+      m_pimageOperatingSystem = pimage;
 
+   }
+});
 
+#if defined(LINUX)
+      ::string strOperatingAmbientImageUrl = papexsystem->operating_ambient_icon_url({64, 64});
+      image()->load_image(strOperatingAmbientImageUrl,
+      {
+         .sync=false,.functionLoaded = [this](::image::image * pimage)
+         {
+            m_pimageOperatingAmbient = pimage;
+
+         }
+      });
+#endif
       // application()->show_about_box();
    }
 
@@ -195,7 +218,7 @@ namespace berg
 
       pgraphics->set_text_color(color_dk);
 
-      
+
       // if (!m_pfontThomasBSHeading1)
       // {
       //
@@ -270,10 +293,44 @@ namespace berg
       else
       {
 
-         point.x = mathematics()->random(0, (int)(rectangleX.width() - size.cx));
+         point.x = mathematics()->random(0, (int)(rectangleX.width() - size.cx - 128 - 11));
          point.y = mathematics()->random(0, (int)(rectangleX.height() - size.cy * 2));
       }
 
+      if (m_pimageOperatingSystem)
+      {
+
+//         pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+
+         ::image::image_source imagesource(m_pimageOperatingSystem);
+
+         ::image::image_drawing_options imagedrawingoptions(::int_rectangle_dimension(point.x, point.y, m_pimageOperatingSystem->width(), m_pimageOperatingSystem->height()));
+
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+
+      }
+
+      if (m_pimageOperatingAmbient)
+      {
+
+         //         pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
+
+         ::image::image_source imagesource(m_pimageOperatingAmbient);
+
+         ::image::image_drawing_options imagedrawingoptions(::int_rectangle_dimension(point.x, point.y + 128+ 11, m_pimageOperatingAmbient->width(), m_pimageOperatingAmbient->height()));
+
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+         pgraphics->draw(imagedrawing);
+
+
+      }
+
+
+      point.x += 128+11;
       ::color::color color;
 
       //int iFont = -1024;

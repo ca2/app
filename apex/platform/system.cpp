@@ -5232,7 +5232,7 @@ namespace apex
    ::pointer<::innate_ui::icon> system::operating_system_innate_ui_icon(const ::int_size &size)
    {
 
-      auto strUrl = operating_system_innate_ui_icon_url(size);
+      auto strUrl = operating_system_icon_url(size);
 
       auto pfile = file()->get(strUrl);
 
@@ -5241,7 +5241,19 @@ namespace apex
    }
 
 
-   ::string system::operating_system_innate_ui_icon_url(const ::int_size & size)
+   ::pointer<::innate_ui::icon> system::operating_ambient_innate_ui_icon(const ::int_size &size)
+   {
+
+      auto strUrl = operating_ambient_icon_url(size);
+
+      auto pfile = file()->get(strUrl);
+
+      return innate_ui()->innate_ui_icon(pfile, size);
+
+   }
+
+
+   ::string system::operating_system_icon_url(const ::int_size & size)
    {
 
       ::string strUrl;
@@ -5259,11 +5271,29 @@ namespace apex
    }
 
 
+   ::string system::operating_ambient_icon_url(const ::int_size & size)
+   {
+
+      ::string strUrl;
+
+      ::string strAmbient;
+
+      auto psummary = node()->operating_system_summary();
+
+      strAmbient = psummary->m_strAmbient;
+
+      strUrl.format("https://ca2.store/image/operating-ambient/{}/{}.png", size.cx, strAmbient);
+
+      return strUrl;
+
+   }
+
    void system::show_operating_system_information_box(::user::activation_token * puseractivationtoken)
    {
 
       m_papplication->show_lines_box(m_papplication->get_operating_system_information_lines(),
-                                     operating_system_innate_ui_icon_url({48, 48}), puseractivationtoken);
+                                     {operating_system_icon_url({48, 48}),
+                                        operating_ambient_icon_url({32, 32})}, puseractivationtoken);
 
    }
 

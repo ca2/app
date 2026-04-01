@@ -20,6 +20,8 @@ namespace berg
       // ::write_text::font_pointer m_pfontThomasBS_;
       // ::write_text::font_pointer m_pfontThomasBSDetail;
       ::map_base < ::enum_simple_dialog_style, ::write_text::font_pointer > m_mapFontThomasBS_;
+      ::image::image_pointer m_pimageOperatingSystem;
+      ::image::image_pointer m_pimageOperatingAmbient;
       //string m_strFont1;
       int m_iSequence;
 

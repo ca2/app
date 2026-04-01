@@ -54,6 +54,7 @@
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/user/user/activation_token.h"
+#include "acme/user/simple/dialog_box_line.h"
 #include "acme/windowing/display.h"
 #include "acme/windowing/windowing.h"
 #include "apex/networking/application/application.h"
@@ -10476,14 +10477,18 @@ namespace apex
             auto pstill = createø < ::innate_ui::still>();
             
             pstill->create_child(pdialog);
-            
-            pstill->set_text(str);
+
+            auto psimpledialogboxline = create_newø < ::simple_dialog_box_line >();
+
+            psimpledialogboxline->_001Parse(str);
+
+            pstill->set(psimpledialogboxline);
             
             pstill->set_position({30 + 48+10, y});
             
-            pstill->set_size({minimum(400, max_width), 30});
+            pstill->set_size({minimum(400, pstill->layout_width()), pstill->layout_height()});
             
-            y += 30;
+            y += pstill->layout_height();
             
          }
          
@@ -10540,7 +10545,7 @@ namespace apex
    }
 
 
-      void application::show_lines_box(const ::string_array_base & straLinesParameter, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtokenParameter)
+   void application::show_lines_box(const ::string_array_base & straLinesParameter, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtokenParameter)
    {
 
       auto puseractivationtoken = ::as_pointer(puseractivationtokenParameter);
@@ -10552,6 +10557,7 @@ namespace apex
       main_post(
          [this, puseractivationtoken, straLines, strIconUrl]()
          {
+
             system()->defer_innate_ui();
 
             auto pdialog = createø<::innate_ui::dialog>();
@@ -10589,13 +10595,17 @@ namespace apex
 
                pstill->create_child(pdialog);
 
-               pstill->set_text(str);
+               auto psimpledialogboxline = create_newø < ::simple_dialog_box_line >();
+
+               psimpledialogboxline->_001Parse(str);
+
+               pstill->set(psimpledialogboxline);
 
                pstill->set_position({30 + 48 + 10, y});
 
-               pstill->set_size({minimum(400, max_width), 30});
+               pstill->set_size({minimum(400, pstill->layout_width()), pstill->layout_height()});
 
-               y += 30;
+               y += pstill->layout_height();
             }
 
             y += 30;

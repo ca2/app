@@ -14,6 +14,7 @@
 #include "axis/user/user/line_layout.h"
 #include "berg/user/menu/item.h"
 #include "berg/user/menu/menu.h"
+#include "berg/user/impact/about_the_operating_system_impact.h"
 #include "berg/user/user/document_manager.h"
 #include "berg/user/user/document_manager_container.h"
 #include "berg/user/user/impact_system.h"
@@ -417,16 +418,35 @@ namespace berg
       void application::create_operating_system_information_impact(const ::atom &atom, ::user::interaction *pparent)
    {
 
-      auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
+   ::cast < ::user::impact > pimpactParent = pparent;
 
-      auto lines = get_operating_system_information_lines();
+      pimpactParent->create_impact < ::berg::about_the_operating_system_impact >();
 
-      for (auto &line: lines)
-      {
+//      auto playoutLine = create_line_layout(pparent, e_orientation_vertical);
 
-         create_label<::user::still>(playoutLine, line);
-      }
+  //    auto lines = get_operating_system_information_lines();
+
+    //  for (auto &line: lines)
+      //{
+
+        // ::string strLine = line;
+
+ //        if (strLine.begins_eat("#"))
+   //      {
+     //    }
+       //  else if (strLine.begins_eat("-#"))
+         //{
+//         }
+  //       else if (strLine.begins_eat("<br />"))
+    //     {
+      //   }
+
+        // create_label<::user::still>(playoutLine, strLine);
+
+//      }
+
    }
+
 
    void application::on_after_prepare_impact_menu(::user::menu * pmenu)
    {

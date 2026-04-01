@@ -1,8 +1,7 @@
 // Created by camilo on 2026-03-25 18:33 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "console.h"
-#include <termios.h>
-#include <unistd.h>
+#include "acme/operating_system/console.h"
+#include <conio.h>
 
 int current_getch();
 
@@ -13,15 +12,17 @@ namespace console
    void console::defer_non_root()
    {
 
-      // getuid() returns 0 for the root user
-      if (getuid() == 0) {
-         error() << "WARNING: This program should not be run as root.";
-         // Optionally exit, or just warn
-         // exit(EXIT_FAILURE);
-         throw ::exception(error_failed);
-      }
+      throw todo;
 
-      information() << "Running with user ID: " << getuid();
+      //// getuid() returns 0 for the root user
+      //if (getuid() == 0) {
+      //   error() << "WARNING: This program should not be run as root.";
+      //   // Optionally exit, or just warn
+      //   // exit(EXIT_FAILURE);
+      //   throw ::exception(error_failed);
+      //}
+
+      //information() << "Running with user ID: " << getuid();
 
    }
 
@@ -30,7 +31,7 @@ namespace console
    {
 
 
-      setbuf(stdout, 0);
+      //setbuf(stdout, 0);
 
    }
 
@@ -178,3 +179,12 @@ namespace console
 
 
 
+
+
+int current_getch()
+{
+
+   return ::getch();
+
+}
+   

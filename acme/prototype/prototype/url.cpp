@@ -1025,11 +1025,22 @@ namespace url
    void url::parse(const ::scoped_string& scopedstr)
    {
 
+      
+
       m_str = scopedstr;
 
-      m_connectrange.parse(m_str);
+      try
+      {
 
-      m_requestrange.parse(m_connectrange.request_range());
+         m_connectrange.parse(m_str);
+
+         m_requestrange.parse(m_connectrange.request_range());
+
+      }
+      catch (...)
+      {
+
+      }
 
       ///construct_connect();
 

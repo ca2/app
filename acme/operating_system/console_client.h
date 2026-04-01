@@ -10,7 +10,7 @@ namespace console
 
 
    class CLASS_DECL_ACME console_client:
-      virtual public console
+      virtual public ::console::console
    {
    public:
 

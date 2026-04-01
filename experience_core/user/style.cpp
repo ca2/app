@@ -328,15 +328,21 @@ namespace experience_core
             else
             {
 
-               ppath->begin_figure();
+               if (defer_constructø(ppath))
+               {
 
-               ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1, rectangleBorder.bottom);
-               ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
-               ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left, rectangleBorder.top);
-               ppath->add_line(rectangleBorder.right, rectangleBorder.top);
-               ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
+                  ppath->begin_figure();
 
-               ppath->close_figure();
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom, rectangleBorder.left + 1,
+                                  rectangleBorder.bottom);
+                  ppath->add_line(rectangleBorder.left, rectangleBorder.top - (rectangleBorder.left - rectangleX.left));
+                  ppath->add_line(bTextRect ? rectangleText.left : rectangleBorder.left, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.top);
+                  ppath->add_line(rectangleBorder.right, rectangleBorder.bottom);
+
+                  ppath->close_figure();
+                
+               }
 
                if (::is_item(ptab->m_pitemHover, iTab)
                   && !::is_element(ptab->m_pitemHover, ::e_element_close_tab_button)
@@ -421,7 +427,7 @@ namespace experience_core
                      if (!pfont)
                      {
 
-                        pfont = ptab->get_font(pstyle, e_element_none);
+                        pfont = pstyle->get_font(ptab, e_element_none);
 
                      }
 

@@ -808,3 +808,38 @@ void install_operating_system_default_signal_handlers()
 
 
 
+
+
+/*
+ * Measures the current (and peak) resident and virtual memories
+ * usage of your linux C process, in kB
+ */
+void get_proc_self_status_memory(
+    int* currRealMem, int* peakRealMem,
+    int* currVirtMem, int* peakVirtMem)
+{
+
+   // stores each word in status file
+   char buffer[1024] = "";
+
+   // linux file contains this-process info
+   FILE* file = fopen("/proc/self/status", "r");
+
+   // read the entire file
+   while (fscanf(file, " %1023s", buffer) == 1) {
+
+      if (currRealMem && strcmp(buffer, "VmRSS:") == 0) {
+         fscanf(file, " %d", currRealMem);
+      }
+      if (peakRealMem && strcmp(buffer, "VmHWM:") == 0) {
+         fscanf(file, " %d", peakRealMem);
+      }
+      if (currVirtMem && strcmp(buffer, "VmSize:") == 0) {
+         fscanf(file, " %d", currVirtMem);
+      }
+      if (peakVirtMem && strcmp(buffer, "VmPeak:") == 0) {
+         fscanf(file, " %d", peakVirtMem);
+      }
+   }
+   fclose(file);
+}

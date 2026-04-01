@@ -1,3 +1,4 @@
+// 2026.3 API Created by camilo on 2026-03-25 18:27 <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -38,6 +39,14 @@ public:
 namespace console
 {
 
+   enum enum_response
+   {
+
+      e_response_no = -1,
+      e_response_cancel = 0,
+      e_response_yes = 1,
+
+   };
 
    class CLASS_DECL_ACME console:
       virtual public ::particle
@@ -54,18 +63,29 @@ namespace console
       ~console() override;
 
 
+      // 2025 API
       inline ::write_text_stream & cout() { return m_cout; }
-
-
       virtual void redirect_io();
-      virtual void SetWindowSize(int iHeight,int iWidth) = 0;
-      virtual void SetCursorVisibility(bool show) = 0;
-      virtual void SetCursorPosition(int y,int x) = 0;
-      virtual void SetTextColor(int color) = 0;
+      virtual void SetWindowSize(int iHeight,int iWidth);
+      virtual void SetCursorVisibility(bool show);
+      virtual void SetCursorPosition(int y,int x);
+      virtual void SetTextColor(int color);
       inline int GetTextColor() { return m_iTextColor; }
-      virtual void SetScreenColor(::enum_dos_color color,int iLineStart = 0,int iLineCount = -1) = 0;
-      virtual void write(const ::scoped_string & scopedstr) = 0;
+      virtual void SetScreenColor(::enum_dos_color color,int iLineStart = 0,int iLineCount = -1);
+      virtual void write(const ::scoped_string & scopedstr);
       virtual ::int_rectangle get_position_rectangle(int y, int x);
+
+
+
+      // 2026.3 API
+      virtual void defer_non_root();
+      virtual void start_input();
+      virtual int getch(void);
+      virtual int get_thoughtful_character();
+      virtual enum_response yes_no(const char * pszPrompt);
+      virtual enum_response yes_no_default_yes(const char * pszPrompt);
+
+
 
    };
 

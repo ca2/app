@@ -475,6 +475,12 @@
     <Filter Include="Header Files\template">
       <UniqueIdentifier>{82e900b5-be5f-43c0-b831-b555d49865a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{92b1998d-4807-4e71-97da-95db378e5df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\simple">
+      <UniqueIdentifier>{e993135c-41f8-41df-9dec-96d6a5b348c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4338,6 +4344,12 @@
     <ClInclude Include="constant\read_file.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
+    <ClInclude Include="user\simple\_.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\dialog_box_line.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6220,6 +6232,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\console.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\dialog_box_line.cpp">
+      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

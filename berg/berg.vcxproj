@@ -1674,6 +1674,7 @@
     <ClCompile Include="user\experience\size_manager.cpp" />
     <ClCompile Include="user\form\document.cpp" />
     <ClCompile Include="user\form\impact.cpp" />
+    <ClCompile Include="user\impact\about_the_operating_system_impact.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
     <ClCompile Include="user\menu\list_impact.cpp" />
@@ -1792,6 +1793,7 @@
     <ClInclude Include="user\form\impact.h" />
     <ClInclude Include="user\form\update_hint.h" />
     <ClInclude Include="user\form\_.h" />
+    <ClInclude Include="user\impact\about_the_operating_system_impact.h" />
     <ClInclude Include="user\menu\button.h" />
     <ClInclude Include="user\menu\central.h" />
     <ClInclude Include="user\menu\list_impact.h" />

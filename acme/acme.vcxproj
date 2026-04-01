@@ -2530,6 +2530,7 @@
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="platform\remoting.cpp" />
+    <ClCompile Include="user\simple\dialog_box_line.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
@@ -3323,6 +3324,8 @@
     <ClInclude Include="user\micro\theme.h" />
     <ClInclude Include="user\micro\user.h" />
     <ClInclude Include="user\micro\_.h" />
+    <ClInclude Include="user\simple\dialog_box_line.h" />
+    <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\user\activation.h" />
     <ClInclude Include="user\user\activation_token.h" />
     <ClInclude Include="user\user\check.h" />

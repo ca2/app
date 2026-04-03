@@ -374,6 +374,8 @@ namespace berg
 
             m_ptabimpactBerg->add_tab("Operating System Information", OPERATING_SYSTEM_INFORMATION_IMPACT);
 
+            m_ptabimpactBerg->set_current_tab_by_id(OPERATING_SYSTEM_INFORMATION_IMPACT);
+
             m_ptabimpactBerg->get_parent()->set_need_layout();
 
             m_ptabimpactBerg->get_parent()->set_need_perform_layout();
@@ -381,6 +383,8 @@ namespace berg
             m_ptabimpactBerg->set_need_layout();
 
             m_ptabimpactBerg->set_need_redraw();
+
+            m_ptabimpactBerg->set_need_perform_layout();
 
             m_ptabimpactBerg->post_redraw();
 

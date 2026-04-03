@@ -61,8 +61,9 @@ namespace berg
 
       ::user::impact::install_message_routing(psender);
 
-      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &impact::on_message_create);
-      USER_MESSAGE_LINK(::user::e_message_destroy, psender, this, &impact::on_message_destroy);
+      USER_MESSAGE_LINK(::user::e_message_create, psender, this, &about_the_operating_system_impact::on_message_create);
+      USER_MESSAGE_LINK(::user::e_message_destroy, psender, this,
+                        &about_the_operating_system_impact::on_message_destroy);
    }
 
 
@@ -119,7 +120,7 @@ image()->load_image(strOperatingSystemImageUrl,
    //document *about_the_operating_system_impact::get_document() { return dynamic_cast<document *>(::user::impact::get_document()); }
 
 
-   void about_the_operating_system_impact::_001OnClip(::draw2d::graphics_pointer &pgraphics) {}
+   //void about_the_operating_system_impact::_001OnClip(::draw2d::graphics_pointer &pgraphics) {}
 
 
    ::write_text::font * about_the_operating_system_impact::get_font(::simple_dialog_box_line * psimpledialogboxline)
@@ -297,7 +298,7 @@ image()->load_image(strOperatingSystemImageUrl,
          point.y = mathematics()->random(0, (int)(rectangleX.height() - size.cy * 2));
       }
 
-      if (m_pimageOperatingSystem)
+      if (::is_ok(m_pimageOperatingSystem))
       {
 
 //         pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);

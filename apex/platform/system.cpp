@@ -5264,7 +5264,34 @@ namespace apex
 
       strSystem = psummary->m_strSystem;
 
+      auto strSystemRelease= psummary->m_strSystemRelease;
+
+      if (strSystem == "windows")
+      {
+
+         if (strSystemRelease == "10")
+         {
+
+            strSystem = "windows10";
+
+         }
+         else if (strSystemRelease == "11")
+         {
+
+            strSystem = "windows11";
+
+         }
+         else
+         {
+
+            strSystem = "windows" + strSystemRelease;
+
+         }
+
+      }
+
       strUrl.format("https://ca2.store/image/operating-system/{}/{}.png", size.cx, strSystem);
+
 
       return strUrl;
 

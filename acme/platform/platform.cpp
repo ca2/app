@@ -232,7 +232,20 @@ namespace platform
       if (!args && !wargs)
       {
 
-         throw ::exception(error_wrong_state);
+         if (::system()->m_bSystemLoadedFromALibrary)
+         {
+
+            m_strCommandLineCalculated.empty();
+
+            return;
+
+         }
+         else
+         {
+
+            throw ::exception(error_wrong_state);
+
+         }
 
       }
 

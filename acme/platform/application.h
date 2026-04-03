@@ -122,6 +122,7 @@ namespace platform
       string                           m_strStandalone;
       //int                              m_iExitCode = 0;
       bool                             m_bApplicationFirstRequest;
+      
       //::pointer < ::request >                         m_prequest;
 
 

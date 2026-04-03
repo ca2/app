@@ -642,7 +642,7 @@ namespace acme
       }
 
 
-      void windowing::windowing_application_main_loop()
+      void windowing::run()
       {
 
 

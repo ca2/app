@@ -552,8 +552,25 @@ namespace windows
    }
 
 
+   HINSTANCE g_hinstanceWindowProcedureModule = nullptr;
+
+
+   void set_window_procedure_hinstance(HINSTANCE hinstance)
+   {
+
+      g_hinstanceWindowProcedureModule = hinstance; 
+   
+   }
+
    CLASS_DECL_ACME HINSTANCE get_window_procedure_hinstance()
    {
+
+      if (g_hinstanceWindowProcedureModule)
+      {
+
+         return g_hinstanceWindowProcedureModule;
+
+      }
 
       HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
 

@@ -1145,12 +1145,17 @@ void task::run_loop()
 void task::run()
 {
 
-   at_end_of_scope
-   {
+   run_main_loop();
 
-      m_eflagElement -= e_flag_running;
+}
 
-   };
+
+void task::run_main_loop()
+{
+
+   
+
+   at_end_of_scope { m_eflagElement -= e_flag_running; };
 
    m_eflagElement += e_flag_running;
 
@@ -1165,34 +1170,29 @@ void task::run()
       {
 
          return;
-
       }
 
       if (b)
       {
 
          run_loop();
-
       }
-
    }
-   catch (const ::exit_exception & e)
+   catch (const ::exit_exception &e)
    {
 
       set_finishing_flag();
 
       m_estatus = e.m_estatus;
-
    }
-   catch (::exception & exception)
+   catch (::exception &exception)
    {
 
       string strMoreDetails;
 
       strMoreDetails = "task::run";
 
-      send(__initialize_new ::message_box_payload(exception,  strMoreDetails));
-
+      send(__initialize_new ::message_box_payload(exception, strMoreDetails));
    }
 
 }
@@ -1805,22 +1805,36 @@ int task::__task_main()
    //::pointer < manual_reset_happening > pmanualresethappeningFinished;
    ::os_on_init_thread();
 
+   iExitCode = call_main();
+   
+   ::os_on_term_thread();
+
+   return iExitCode;
+
+}
+
+
+int task::call_main()
+{
+
+   int iExitCode = -1;
+   
    try
    {
 
       __check_refdbg
 
-      //os_task_init_term ostaskinitterm;
-      
+      // os_task_init_term ostaskinitterm;
+
       __task_init();
-         
-      //__check_refdbg
-
-         //::set_task(this);
 
       //__check_refdbg
 
-         //      ptask->_os_task();
+      //::set_task(this);
+
+      //__check_refdbg
+
+      //      ptask->_os_task();
 
 #if 0
 
@@ -1828,7 +1842,7 @@ int task::__task_main()
 
 #endif
 
-      //ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
+      // ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
 
       try
       {
@@ -1836,33 +1850,29 @@ int task::__task_main()
          main();
 
          iExitCode = m_iExitCode;
-
       }
-      catch (::exit_exception & exitexception)
+      catch (::exit_exception &exitexception)
       {
 
          error() << "Exit Exception reached task procedure (1)";
 
          exitexception.finish(this);
-
       }
-      catch (::exception & exception)
+      catch (::exception &exception)
       {
 
          error() << "Exception reached task procedure : " << exception;
          error() << "Exception call stack : " << exception.m_strCallStackTrace;
-
       }
       catch (...)
       {
 
          error() << "Exception reached task procedure (...)";
-
       }
 
-      //auto psystem = system();
+      // auto psystem = system();
 
-      //if (psystem)
+      // if (psystem)
       //{
 
       //   auto ptaskmessagequeue = psystem->m_ptaskmessagequeue;
@@ -1876,7 +1886,7 @@ int task::__task_main()
 
       //}
 
-      ///release();
+      /// release();
 
       //::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
 
@@ -1889,35 +1899,29 @@ int task::__task_main()
          {
 
             check_pending_releases();
-
          }
-
       }
 
 #endif
 
-      //try
+      // try
       //{
 
       //   on_before_destroy_task();
 
       //}
-      //catch (...)
+      // catch (...)
       //{
 
       //}
 
-      //procedureTaskEnded = ::transfer(m_procedureTaskEnded);
+      // procedureTaskEnded = ::transfer(m_procedureTaskEnded);
 
       __task_term();
-
    }
    catch (...)
    {
-
    }
-   
-   ::os_on_term_thread();
 
    return iExitCode;
 

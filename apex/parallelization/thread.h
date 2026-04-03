@@ -306,9 +306,10 @@ public:
    void __task_term() override;
 
 
-   virtual void run() override;
+   void run() override;
+   void run_main_loop() override;
    //virtual void main() override;
-   virtual bool on_idle() override;
+   bool on_idle() override;
 
    //virtual void on_pos_run_thread();
    //void term_task() override;

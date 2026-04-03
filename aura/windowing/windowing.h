@@ -270,7 +270,7 @@ namespace windowing
       virtual ::pointer < ::user::interaction > create_message_window(const ::scoped_string & scopedstrName, ::user::interaction_listener * plistener = nullptr);
 
 
-      virtual void windowing_application_main_loop() override;
+      virtual void run() override;
 
       virtual int system_metrics_get_cx_icon_spacing();
       virtual int system_metrics_get_cy_icon_spacing();

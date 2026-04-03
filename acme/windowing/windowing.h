@@ -58,6 +58,7 @@ namespace acme
          inline ::windowing::enum_bias windowing_bias() { return m_ewindowingbias; }
 
 
+         virtual ::string get_version();
          //inline static const_char_pointer represented_component_name() { return "nano_windowing"; }
 
          //::acme::windowing::window * windowing_window() override;

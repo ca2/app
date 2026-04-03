@@ -551,6 +551,14 @@ namespace acme
       }
 
 
+      string windowing::get_version()
+      {
+
+         return {};
+
+      }
+
+
       void windowing::main_send(const ::procedure& procedure)
       {
 

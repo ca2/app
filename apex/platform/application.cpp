@@ -10594,9 +10594,9 @@ namespace apex
 
                   auto strSystemIconUrl = straIconUrl[0];
 
-                  auto piconApplication = innate_ui_icon(strSystemIconUrl, {48, 48});
+                  //auto piconApplication = innate_ui_icon(strSystemIconUrl, {48, 48});
 
-                  pstillIcon->set_icon(piconApplication);
+                  pstillIcon->set_icon_path(strSystemIconUrl, {48, 48});
 
                }
                catch (...)
@@ -10611,7 +10611,6 @@ namespace apex
 
             if (straIconUrl.size() >= 2)
             {
-
                try
                {
 
@@ -10625,17 +10624,12 @@ namespace apex
 
                   auto strAmbientIconUrl = straIconUrl[1];
 
-                  auto piconAmbient = innate_ui_icon(strAmbientIconUrl, {32, 32});
-
-                  pstillIcon->set_icon(piconAmbient);
+                  pstillIcon->set_icon_path(strAmbientIconUrl, {32, 32});
 
                }
                catch (...)
                {
-
-
                }
-
             }
 
             y_icon += 32 + 5;

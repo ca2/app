@@ -15,8 +15,9 @@ namespace innate_ui
    public:
 
 
-      ::memory       m_memory;
-      ::int_size     m_size;
+      ::memory                m_memory;
+      ::int_size              m_size;
+      ::image::image_pointer  m_pimage;
 
 
       icon();

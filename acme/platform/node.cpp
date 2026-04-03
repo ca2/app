@@ -5140,6 +5140,28 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
                                      strDisplayResolutionOptionalHelper);
       }
 
+      auto psummary = this->operating_system_summary();
+
+      ::string strDesktopAmbient;
+
+#if defined(LINUX)
+
+      auto strOperatingAmbient = psummary->m_strAmbient;
+
+      if (strOperatingAmbient.has_character())
+      {
+
+         if (strOperatingAmbient.contains("gnome"))
+         {
+
+            strDesktopAmbient.format("Desktop Ambient: GNOME {}", system()->acme_windowing()->get_version());
+
+         }
+
+      }
+
+#endif
+
       auto memsizeApplicationMemoryUsage = get_current_memory_usage();
 
       ::string strApplicationMemoryUsage;
@@ -5169,6 +5191,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       stra.add(strOperatingSystemName);
       stra.add(strMoreOperatingSystemVersionInformation);
       stra.add("<br />");
+      stra.add(strDesktopAmbient);
       stra.add(strDisplayResolution);
       stra.add(strApplicationMemoryUsage);
 

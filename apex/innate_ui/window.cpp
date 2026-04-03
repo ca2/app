@@ -3,6 +3,8 @@
 #include "innate_ui.h"
 #include "window.h"
 #include "acme/platform/system.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "apex/platform/application.h"
 
 
 namespace innate_ui
@@ -82,6 +84,14 @@ namespace innate_ui
    }
 
 
+   double window::get_scale_factor()
+   {
+
+      return 1.0;
+
+   }
+
+
    void window::set_position(const ::int_point & point)
    {
 
@@ -107,6 +117,22 @@ namespace innate_ui
    void window::set_icon(icon * picon)
    {
 
+
+   }
+
+
+   void window::set_icon_path(const scoped_string& scopedstr, const int_size & size)
+   {
+
+      ::cast < ::apex::application > papexapplication = m_papplication;
+
+      //auto dScaleFactor = get_scale_factor();
+
+      //int_size sizeScaled(round(size.cx * dScaleFactor), round(size.cy * dScaleFactor));
+
+      auto picon = papexapplication->innate_ui_icon(scopedstr, size);
+
+      set_icon(picon);
 
    }
 

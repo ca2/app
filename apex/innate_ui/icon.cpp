@@ -22,6 +22,7 @@ namespace innate_ui
    void icon::_create()
    {
 
+
    }
 
 
@@ -33,7 +34,6 @@ namespace innate_ui
       m_size = size;
 
       _create();
-
 
    }
 

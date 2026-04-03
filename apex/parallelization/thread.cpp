@@ -940,7 +940,16 @@ bool thread::handle_messages()
 //
 //}
 
+
 void thread::run()
+{
+
+   ::task::run();
+
+}
+
+
+void thread::run_main_loop()
 {
 
    ASSERT_OK(this);
@@ -955,17 +964,16 @@ void thread::run()
       task_set_name(id().as_string());
 
       return m_procedure();
-
    }
 
-   //if (m_bSimpleMessageLoop)
+   // if (m_bSimpleMessageLoop)
    //{
 
    //   information() << "running thread with simple message loop";
 
    //}
 
-   ::task::run();
+   ::task::run_main_loop();
 
 }
 

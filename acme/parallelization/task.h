@@ -482,9 +482,12 @@ public:
 
    virtual void kick_thread();
 
+   virtual int call_main();
    virtual void main();
 
    void run() override;
+
+   virtual void run_main_loop();
 
 
    virtual void run_loop();

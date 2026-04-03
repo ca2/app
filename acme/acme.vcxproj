@@ -2565,6 +2565,13 @@
     <ClInclude Include="operating_system\environment.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
+    <ClInclude Include="operating_system\windows_common\com\bstring.h" />
+    <ClInclude Include="operating_system\windows_common\com\comptr.h" />
+    <ClInclude Include="operating_system\windows_common\com\comptr_array.h" />
+    <ClInclude Include="operating_system\windows_common\com\cotaskptr.h" />
+    <ClInclude Include="operating_system\windows_common\com\hresult_exception.h" />
+    <ClInclude Include="operating_system\windows_common\com\prop_variant.h" />
+    <ClInclude Include="operating_system\windows_common\com\variant.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />

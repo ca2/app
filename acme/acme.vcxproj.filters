@@ -481,6 +481,9 @@
     <Filter Include="Header Files\user\simple">
       <UniqueIdentifier>{e993135c-41f8-41df-9dec-96d6a5b348c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system\windows_common\com">
+      <UniqueIdentifier>{332cfa00-9ef2-4b2f-a3d5-4b3e67962ee1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4349,6 +4352,27 @@
     </ClInclude>
     <ClInclude Include="user\simple\dialog_box_line.h">
       <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\variant.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\prop_variant.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\hresult_exception.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\cotaskptr.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\comptr_array.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\comptr.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\com\bstring.h">
+      <Filter>Header Files\operating_system\windows_common\com</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

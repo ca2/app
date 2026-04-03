@@ -2553,8 +2553,18 @@ void application::start_application()
 
       information() << "platform::application::on_system_main";
 
-      system()->acme_windowing()->windowing_application_main_loop();
+      if (system()->m_bBranchMainThread)
+      {
 
+         system()->acme_windowing()->branch();
+
+      }
+      else
+      {
+
+         system()->acme_windowing()->call_main();
+
+      }
 
    }
 

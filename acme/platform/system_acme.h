@@ -59,7 +59,8 @@ namespace platform
       ::pointer < ::platform::session >               m_psession;
       bool                                            m_bFinalizeIfNoSessionSetting;
       bool                                            m_bFinalizeIfNoSession;
-
+      bool m_bBranchMainThread;       
+      bool m_bSystemLoadedFromALibrary;
       ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 

@@ -6636,7 +6636,9 @@ if(!m_pimaging)
    void     system::main()
    {
 
-      return ::aqua::system::main();
+      ::aqua::system::main();
+
+      information() << "aura::system::main ended";
 
    }
 

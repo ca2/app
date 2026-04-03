@@ -194,7 +194,7 @@ namespace acme
 
          virtual void windowing_application_on_start();
 
-         virtual void windowing_application_main_loop();
+         void run() override;
 
          virtual void windowing_post_quit();
 

@@ -195,6 +195,10 @@ namespace platform
       m_etracelevelMinimum = e_trace_level_warning;
 #endif
 
+      m_bBranchMainThread = false;
+      m_bSystemLoadedFromALibrary = false;
+
+
 #ifdef _DEBUG
       ::atom atom;
       int iAtom1 = sizeof(atom);

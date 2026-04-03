@@ -272,7 +272,7 @@ namespace platform
       virtual ::string_array_base get_about_box_lines();
 
       virtual void show_about_box(::user::activation_token * puseractivationtoken);
-      virtual void show_lines_box(const ::string_array_base & straLines, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtoken);
+      virtual void show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl, ::user::activation_token *puseractivationtoken);
 
       virtual ::string_array_base get_operating_system_information_lines();
 

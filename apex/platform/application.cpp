@@ -10545,17 +10545,17 @@ namespace apex
    }
 
 
-   void application::show_lines_box(const ::string_array_base & straLinesParameter, const ::scoped_string & scopedstrIconUrl, ::user::activation_token *puseractivationtokenParameter)
+   void application::show_lines_box(const ::string_array_base & straLinesParameter, const ::string_array_base & straIconUrlParameter, ::user::activation_token *puseractivationtokenParameter)
    {
 
       auto puseractivationtoken = ::as_pointer(puseractivationtokenParameter);
 
       auto straLines = straLinesParameter;
 
-      ::string strIconUrl = scopedstrIconUrl;
+      auto straIconUrl = straIconUrlParameter;
 
       main_post(
-         [this, puseractivationtoken, straLines, strIconUrl]()
+         [this, puseractivationtoken, straLines, straIconUrl]()
          {
 
             system()->defer_innate_ui();
@@ -10574,19 +10574,71 @@ namespace apex
 
             auto stra = straLines;
 
-            int y = 30;
+            int y_text = 30;
 
-            auto pstillIcon = createø<::innate_ui::still>();
+            int y_icon = 30;
 
-            pstillIcon->create_icon_still(pdialog);
+            if (straIconUrl.size() >= 1)
+            {
 
-            pstillIcon->set_size({48, 48});
+               try
+               {
 
-            pstillIcon->set_position({30, 30});
+                  auto pstillIcon = createø<::innate_ui::still>();
 
-            auto piconApplication = innate_ui_icon(strIconUrl, {48, 48});
+                  pstillIcon->create_icon_still(pdialog);
 
-            pstillIcon->set_icon(piconApplication);
+                  pstillIcon->set_size({48, 48});
+
+                  pstillIcon->set_position({30, y_icon});
+
+                  auto strSystemIconUrl = straIconUrl[0];
+
+                  auto piconApplication = innate_ui_icon(strSystemIconUrl, {48, 48});
+
+                  pstillIcon->set_icon(piconApplication);
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            }
+
+            y_icon += 48 + 5;
+
+            if (straIconUrl.size() >= 2)
+            {
+
+               try
+               {
+
+                  auto pstillIcon = createø<::innate_ui::still>();
+
+                  pstillIcon->create_icon_still(pdialog);
+
+                  pstillIcon->set_size({32, 32});
+
+                  pstillIcon->set_position({30 + 48 - 32, y_icon});
+
+                  auto strAmbientIconUrl = straIconUrl[1];
+
+                  auto piconAmbient = innate_ui_icon(strAmbientIconUrl, {32, 32});
+
+                  pstillIcon->set_icon(piconAmbient);
+
+               }
+               catch (...)
+               {
+
+
+               }
+
+            }
+
+            y_icon += 32 + 5;
 
             for (auto str: stra)
             {
@@ -10601,14 +10653,17 @@ namespace apex
 
                pstill->set(psimpledialogboxline);
 
-               pstill->set_position({30 + 48 + 10, y});
+               pstill->set_position({30 + 48 + 10, y_text});
 
                pstill->set_size({minimum(400, pstill->layout_width()), pstill->layout_height()});
 
-               y += pstill->layout_height();
+               y_text += pstill->layout_height();
+
             }
 
-            y += 30;
+            y_text += 5;
+
+            auto y = maximum(y_icon, y_text);
 
             auto pbutton = createø<::innate_ui::button>();
 
@@ -10631,12 +10686,15 @@ namespace apex
             pbutton->set_callback_on_click(
                [pdialogRaw]()
                {
+
                   pdialogRaw->hide();
 
                   pdialogRaw->destroy_window();
+
                });
 
             pdialog->show_front(puseractivationtoken);
+
          });
    }
 

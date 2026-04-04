@@ -300,7 +300,7 @@ bool pixmap::create(::memory& memory, const ::int_size& size, int stride)
 void pixmap::reference(const pixmap& pixmap)
 {
 
-   memcpy(this, pixmap, sizeof(*this));
+   memcpy((void *) this, pixmap, sizeof(*this));
 
 }
 

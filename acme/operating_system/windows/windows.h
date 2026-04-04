@@ -11,6 +11,8 @@ namespace windows
    CLASS_DECL_ACME bool defer_release_mouse_capture(itask itask, HWND hwnd);
 
 
+
+
 } // namespace windows
 
 

@@ -11,6 +11,7 @@ namespace innate_ui
 
    class button;
    class still;
+   class text_box;
 
    class icon;
 

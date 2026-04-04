@@ -291,7 +291,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
             if (this->m_erange & e_range_array_clear_on_allocate)
             {
 
-               memset(this->m_begin, 0, maximum(0, countOld) * sizeof(TYPE));
+               memset((void *) this->m_begin, 0, maximum(0, countOld) * sizeof(TYPE));
 
             }
 
@@ -368,7 +368,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       if (this->m_erange & e_range_array_clear_on_allocate)
       {
 
-         memset(this->m_begin, 0, nAllocSize * sizeof(TYPE));
+         memset((void *) this->m_begin, 0, nAllocSize * sizeof(TYPE));
 
       }
 
@@ -428,11 +428,12 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
             if (this->m_erange & e_range_array_clear_on_allocate)
             {
 
-               memset(this->m_begin + nNewSize, 0, (countOld - nNewSize) * sizeof(TYPE));
+               memset((void *) (this->m_begin + nNewSize), 0, (countOld - nNewSize) * sizeof(TYPE));
 
             }
             else
             {
+               
                TYPED::construct_count(this->m_begin + nNewSize, countOld - nNewSize);
 
             }
@@ -540,7 +541,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       if (this->m_erange & e_range_array_clear_on_allocate)
       {
 
-         memset(this->m_begin + countOld, 0, (countNewAllocation - countOld) * sizeof(TYPE));
+         memset((void *) (this->m_begin + countOld), 0, (countNewAllocation - countOld) * sizeof(TYPE));
 
       }
 

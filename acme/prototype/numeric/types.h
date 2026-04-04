@@ -32,8 +32,8 @@ using uptr = unsigned int;
 //using hyper_integer = __int128;
 //using hyper_natural = unsigned __int128;
 //#endif
-using iptr = long long;
-using uptr = unsigned long long;
+typedef long long iptr;
+typedef unsigned long long uptr;
 
 
 #define IPTR_MAXIMUM I64_MAXIMUM
@@ -114,27 +114,7 @@ DO(double, double, d, DOUBLE);
 //#endif
 
 
-namespace collection
-{
-
-
-   using index = iptr;
-
-
-} // namespace collection
-
-
 #define __priindex PRIiPTR
-
-
-namespace collection
-{
-
-   
-   using count = ::iptr;
-
-
-} // namespace collection
 
 
 #define __pricount PRIiPTR
@@ -142,7 +122,7 @@ namespace collection
 
 // insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
 /// task_index starts at 1, task_index 0 is not ok
-using task_index = unsigned long long;
+typedef unsigned long long task_index;
 
 
 

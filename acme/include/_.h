@@ -56,10 +56,12 @@
 
 
 //#include "_macro.h"
+#include "operating_system/types.h"
 #include "acme/include/_tags.h"
 #include "acme/include/_configuration.h"
 #include "acme/include/_types.h"
 #include "acme/include/_integer.h"
+#include "acme/include/_macro.h"
 #include "acme/constant/_.h"
 #include "acme/include/_forward_declaration.h"
 #include "acme/include/_structures.h"

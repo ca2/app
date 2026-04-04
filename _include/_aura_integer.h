@@ -57,7 +57,7 @@ TARGET throw_cast(SOURCE src)
 #define DOUBLE_MAXIMUM  (DBL_MAX)
 
 
-using int_bool = int;
+typedef int int_bool;
 
 
 

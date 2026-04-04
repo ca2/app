@@ -29,7 +29,13 @@
 #else
 
 
+#if __cplusplus
+
+
 #include "acme/platform/system.h"
+
+
+#endif
 
 
 #endif

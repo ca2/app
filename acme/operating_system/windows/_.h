@@ -9,6 +9,20 @@
 
 //#include <Tlhelp32.h>
 
+namespace windows
+{
+
+
+CLASS_DECL_REMOTING_COMMON int message_box(
+   HWND hwnd,
+   const ::scoped_string & scopedstrMessage,
+   const ::scoped_string & scopedstrCaption,
+   UINT uType);
+
+
+
+}
+
 
 // inline HWND as_hwnd(::acme::windowing::window * pacmewindowingwindow)
 // {

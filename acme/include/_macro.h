@@ -414,3 +414,34 @@ TOKEN_CONCATENATE(name, _factory)(pfactory)
 
 
 
+
+_STUD_API bool is_system(enum_operating_system eoperatingsystem) noexcept {
+   if (eoperatingsystem == e_operating_system_windows) {
+      return is_windows();
+   }
+   else if (eoperatingsystem == e_operating_system_linux) {
+      return is_linux();
+   }
+   else if (eoperatingsystem == e_operating_system_unix) {
+      return is_unix();
+   }
+   else if (eoperatingsystem == e_operating_system_macos) {
+      return is_macos();
+   }
+   else if (eoperatingsystem == e_operating_system_freebsd) {
+      return is_freebsd();
+   }
+   else if (eoperatingsystem == e_operating_system_android) {
+      return is_android();
+   }
+   else {
+      return false;
+   }
+}
+
+#define _STUD_MAKE_NONCOPYABLE(type) _STUD_API type(const ::platform::type &) noexcept = delete; \
+_STUD_API type& operator=(const ::platform::type &) noexcept = delete
+#define _STUD_MAKE_NONMOVEABLE(type) _STUD_API type(type&&) noexcept = delete;
+
+//_STUD_API_END
+

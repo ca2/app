@@ -5,6 +5,30 @@
 //typedef unsigned long long file_time_t;
 
 
+
+namespace collection
+{
+
+
+   using index = iptr;
+
+
+} // namespace collection
+
+
+namespace collection
+{
+
+   
+   using count = ::iptr;
+
+
+} // namespace collection
+
+
+
+
+
 using process_identifier = long long;
 
 

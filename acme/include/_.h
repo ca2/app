@@ -75,7 +75,7 @@
 #include "acme/include/_template_function_declarations.h"
 #include "acme/include/_inline_functions.h"
 #include "acme/include/_template_inline_functions.h"
-
+#include "acme/include/_string.h"
 
 #include "acme/crypto/_.h"
 #include "acme/exception/_.h"
@@ -195,7 +195,6 @@
 #include  "acme/platform/url_context.h"
 
 
-#include "acme/include/_string.h"
 
 
 #include  "acme/filesystem/file/binary_stream.h"

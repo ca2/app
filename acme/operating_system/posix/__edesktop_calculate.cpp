@@ -5,6 +5,7 @@
 #include "acme/constant/windowing2.h"
 #include <sys/utsname.h>
 
+
 #if defined(__BSD__)
 #include <stdio.h>
 #include <strings.h>
@@ -25,19 +26,19 @@ namespace windowing
 
       printf_line("calculate_edesktop e_operating_ambient_android");
 
-         return ::windowing::e_operating_ambient_android;
+      return ::windowing::e_operating_ambient_android;
 
 #elif defined(APPLE_IOS)
 
-         printf_line("calculate_edesktop e_operating_ambient_ios");
+      printf_line("calculate_edesktop e_operating_ambient_ios");
 
-         return ::windowing::e_operating_ambient_ios;
+      return ::windowing::e_operating_ambient_ios;
 
 #elif defined(MACOS)
 
-         printf_line("calculate_edesktop e_operating_ambient_macos");
+      printf_line("calculate_edesktop e_operating_ambient_macos");
 
-         return ::windowing::e_operating_ambient_macos;
+      return ::windowing::e_operating_ambient_macos;
       
 #else
 

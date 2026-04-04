@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include "acme/prototype/prototype/particle.h"
 
 
 class CLASS_DECL_ACME work :

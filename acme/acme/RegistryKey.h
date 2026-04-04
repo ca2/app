@@ -25,127 +25,131 @@
 #pragma once
 
 
-#include "remoting/remoting_common/util/CommonHeader.h"
+#include "acme/platform/registry.h"
+
+namespace acme
+{
 
 class CLASS_DECL_REMOTING_COMMON RegistryKey
 {
 public:
-  RegistryKey(HKEY rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true, SECURITY_ATTRIBUTES *sa = 0);
-  RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true, SECURITY_ATTRIBUTES *sa = 0);
-  RegistryKey(HKEY rootKey);
-  // Default contructor for a defer initialization.
-  RegistryKey();
-
+   RegistryKey(::acme::RegX * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true);//, SECURITY_ATTRIBUTES *sa = 0);
+   RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true); //, SECURITY_ATTRIBUTES *sa = 0);
+   RegistryKey(::acme::RegX * rootKey);
+   // Default contructor for a defer initialization.
+   RegistryKey();
+   
 public:
-
-  virtual ~RegistryKey();
-
-
-  // Defer initialization. Can be used only when it has been
-  // created by the default constructor.
-  void open(HKEY rootKey, const ::scoped_string & scopedstrEntry,
-            bool createIfNotExists = true,
-            SECURITY_ATTRIBUTES *sa = 0);
-
-  // Defer initialization. Can be used only when it has been
-  // created by the default constructor.
-  void open(RegistryKey *rootKey,
-            const ::scoped_string & scopedstrEntry,
-            bool createIfNotExists = true,
-            SECURITY_ATTRIBUTES *sa = 0);
-
-  //
-  // Returns WinAPI HKEY handle.
-  //
-  HKEY getHKEY() const;
-
-  // Creates subkey.
-  //
-  // Returns true in two cases:
-  // 1) subkey exists;
-  // 2) subkey didn't exists, and subkey was succerfully created
-  //    by method call.
-  //
-  bool createSubKey(const ::scoped_string & scopedstrSubkey);
-  // Deletes subkey from this registry entry.
-  bool deleteSubKey(const ::scoped_string & scopedstrSubkey);
-  // Deletes subkey tree from this registry entry
-  bool deleteSubKeyTree(const ::scoped_string & scopedstrSubkey);
-  // Deletes value from this registry entry.
-  bool deleteValue(const ::scoped_string & scopedstrName);
-
-  //
-  // Set value methods
-  //
-
-  bool setValueAsInt32(const ::scoped_string & scopedstrName, int value);
-  bool setValueAsInt64(const ::scoped_string & scopedstrName, long value);
-  bool setValueAsString(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrPayload);
-  bool setValueAsBinary(const ::scoped_string & scopedstrName, const void *value,
-                        size_t sizeInBytes);
-
-  //
-  // Get value methods
-  //
-
-  bool getValueAsInt32(const ::scoped_string & scopedstrName, int *out);
-  bool getValueAsInt64(const ::scoped_string & scopedstrName, long *out);
-  bool getValueAsString(const ::scoped_string & scopedstrName, ::string & out);
-  bool getValueAsBinary(const ::scoped_string & scopedstrName, void *value, size_t *sizeInBytes);
-
-  //
-  // Sets subkey names ::list_base to subKeyNames array.
-  // Remark: if subKeyNames is NULL then count of subkeys
-  // is sets to count output var.
-  //
-  // Parameters:
-  // [out, optional] subKeyNames - output array to place subkey names,
-  // can be NULL.
-  // [out, optional] count - output value to place subkey count,
-  // can be NULL.
-  //
-
-  bool getSubKeyNames(::string_array & straKeyNames);
-
-  // Returns true if key is valid and opened.
-  bool isOpened();
-  // Closes registry entry if it's opened.
-  void close();
-
+   
+   virtual ~RegistryKey();
+   
+   
+   // Defer initialization. Can be used only when it has been
+   // created by the default constructor.
+   void open(::acme::RegX * rootKey, const ::scoped_string & scopedstrEntry,
+             bool createIfNotExists = true); //,
+             //SECURITY_ATTRIBUTES *sa = 0);
+   
+   // Defer initialization. Can be used only when it has been
+   // created by the default constructor.
+   void open(RegistryKey *rootKey,
+             const ::scoped_string & scopedstrEntry,
+             bool createIfNotExists = true); //,
+             //SECURITY_ATTRIBUTES *sa = 0);
+   
+   //
+   // Returns WinAPI ::acme::RegX * handle.
+   //
+   ::acme::RegX * getRegX() const;
+   
+   // Creates subkey.
+   //
+   // Returns true in two cases:
+   // 1) subkey exists;
+   // 2) subkey didn't exists, and subkey was succerfully created
+   //    by method call.
+   //
+   bool createSubKey(const ::scoped_string & scopedstrSubkey);
+   // Deletes subkey from this registry entry.
+   bool deleteSubKey(const ::scoped_string & scopedstrSubkey);
+   // Deletes subkey tree from this registry entry
+   bool deleteSubKeyTree(const ::scoped_string & scopedstrSubkey);
+   // Deletes value from this registry entry.
+   bool deleteValue(const ::scoped_string & scopedstrName);
+   
+   //
+   // Set value methods
+   //
+   
+   bool setValueAsInt32(const ::scoped_string & scopedstrName, int value);
+   bool setValueAsInt64(const ::scoped_string & scopedstrName, long value);
+   bool setValueAsString(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrPayload);
+   bool setValueAsBinary(const ::scoped_string & scopedstrName, const void *value,
+                         size_t sizeInBytes);
+   
+   //
+   // Get value methods
+   //
+   
+   bool getValueAsInt32(const ::scoped_string & scopedstrName, int *out);
+   bool getValueAsInt64(const ::scoped_string & scopedstrName, long *out);
+   bool getValueAsString(const ::scoped_string & scopedstrName, ::string & out);
+   bool getValueAsBinary(const ::scoped_string & scopedstrName, void *value, size_t *sizeInBytes);
+   
+   //
+   // Sets subkey names ::list_base to subKeyNames array.
+   // Remark: if subKeyNames is NULL then count of subkeys
+   // is sets to count output var.
+   //
+   // Parameters:
+   // [out, optional] subKeyNames - output array to place subkey names,
+   // can be NULL.
+   // [out, optional] count - output value to place subkey count,
+   // can be NULL.
+   //
+   
+   bool getSubKeyNames(::string_array & straKeyNames);
+   
+   // Returns true if key is valid and opened.
+   bool isOpened();
+   // Closes registry entry if it's opened.
+   void close();
+   
 private:
-
-  // Helper method to avoid code duplicate in class constructor.
-  void initialize(HKEY rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists, SECURITY_ATTRIBUTES *sa);
-
-  // Sets subkey name to name output variable not depending
-  // on output buffer size, cause buffer allocates inside method.
-  //
-  // Returns return value of RegEnumKey if it's
-  // not equal to ERROR_MORE_DATA.
-  DWORD enumKey(DWORD i, ::string & name);
-
-  /**
-   * Opens subkey or creates it if it's does not exists.
-   * @param [in] key root key.
-   * @param [in] subkey subkey name (can include more than one subkey).
-   * @param [out] openedKey created or opened key.
-   * @param [in] createIfNotExists flag determinates to create key if it does not exists.
-   * @param [in, opt] sa security attributes.
-   * @return true if operation successfull executed, false otherwise.
-   */
-  static bool tryOpenSubKey(HKEY key, const ::scoped_string & scopedstrSubkey,
-                            HKEY *openedKey, bool createIfNotExists,
-                            SECURITY_ATTRIBUTES *sa);
-
+   
+   // Helper method to avoid code duplicate in class constructor.
+   void initialize(::acme::RegX * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists); //, SECURITY_ATTRIBUTES *sa);
+   
+   // Sets subkey name to name output variable not depending
+   // on output buffer size, cause buffer allocates inside method.
+   //
+   // Returns return value of RegEnumKey if it's
+   // not equal to ERROR_MORE_DATA.
+   DWORD enumKey(DWORD i, ::string & name);
+   
+   /**
+    * Opens subkey or creates it if it's does not exists.
+    * @param [in] key root key.
+    * @param [in] subkey subkey name (can include more than one subkey).
+    * @param [out] openedKey created or opened key.
+    * @param [in] createIfNotExists flag determinates to create key if it does not exists.
+    * @param [in, opt] sa security attributes.
+    * @return true if operation successfull executed, false otherwise.
+    */
+   static bool tryOpenSubKey(::acme::RegX * key, const ::scoped_string & scopedstrSubkey,
+                             ::acme::RegX * *openedKey, bool createIfNotExists);
+   //,                             SECURITY_ATTRIBUTES *sa);
+   
 protected:
-  // Registry entry associated with this class instance.
-  HKEY m_key;
-  // Root registry key (local machine, current user, etc).
-  HKEY m_rootKey;
-  // Registry entry name.
-  ::string m_entry;
-
-  friend class Registry;
+   // Registry entry associated with this class instance.
+   ::acme::RegX * m_key;
+   // Root registry key (local machine, current user, etc).
+   ::acme::RegX * m_rootKey;
+   // Registry entry name.
+   ::string m_entry;
+   
+   friend class Registry;
 };
 
 
+} // namespace acme

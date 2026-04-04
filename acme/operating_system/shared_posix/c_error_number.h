@@ -1,10 +1,8 @@
 // From acme/platform/error.h by camilo on 2023-07-06 08:41 <3ThomasBorregaardSorense!!
-
-
 #pragma once
 
 
-CLASS_DECL_ACME::e_status get_last_status();
+CLASS_DECL_ACME ::e_status get_last_status();
 CLASS_DECL_ACME void set_last_status(const ::e_status & estatus);
 
 

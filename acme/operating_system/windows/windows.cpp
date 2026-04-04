@@ -723,3 +723,25 @@ CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
 
 
 
+
+namespace windows
+{
+
+
+
+int message_box(
+                HWND hwnd,
+                const ::scoped_string & scopedstrMessage,
+                const ::scoped_string & scopedstrCaption,
+                UINT uType)
+{
+   
+   auto iResult = ::MessageBox(hwnd, ::wstring(scopedstrMessage), ::wstring(scopedstrCaption), uType);
+   
+   return iResult;
+   
+}
+
+
+
+} 

@@ -80,3 +80,10 @@ namespace prototype
 } // namespace prototype
 
 
+class particle;
+
+
+using lockable = particle;
+
+
+

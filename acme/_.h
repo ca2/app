@@ -11,7 +11,7 @@
 #if __OBJC__
 
 
-#if __cplusplus
+#ifdef __cplusplus
 
 
 #include "acme/include/objcpp.h"
@@ -29,7 +29,7 @@
 #else
 
 
-#if __cplusplus
+#ifdef __cplusplus
 
 
 #include "acme/platform/system.h"

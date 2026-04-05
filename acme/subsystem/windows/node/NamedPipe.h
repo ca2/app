@@ -28,65 +28,74 @@
 #include "acme/subsystem/_common_header.h"
 #include "WindowsEvent.h"
 #include "acme/subsystem/io/Channel.h"
-#include "remoting/remoting_common/thread/LocalMutex.h"
-#include "Pipe.h"
+//#include "remoting/remoting_common/thread/LocalMutex.h"
+#include "acme/subsystem/node/NamedPipe.h"
 
-/**
- * NamedPipe transport.
- *
- * @author yuri, enikey.
- */
-class CLASS_DECL_REMOTING_COMMON NamedPipe : public Channel, public Pipe
+
+namespace windows
 {
-public:
-  /**
-   * Creates pipe transport.
-   */
-  NamedPipe(HANDLE hPipe, unsigned int maxPortionSize, bool asServer);
-  /**
-   * Destroys instance.
-   */
-  virtual ~NamedPipe();
+   namespace  subsystem
+   {
+      /**
+       * NamedPipe transport.
+       *
+       * @author yuri, enikey.
+       */
+      class CLASS_DECL_REMOTING_COMMON NamedPipe :
+         virtual public ::subsystem::composite<NamedPipeInterface>
+         virtual public ::subsystem::Channel
+      {
+      public:
+         /**
+          * Creates pipe transport.
+          */
+         NamedPipe(HANDLE hPipe, unsigned int maxPortionSize, bool asServer);
+         /**
+          * Destroys instance.
+          */
+         virtual ~NamedPipe();
 
-  /**
-   * Closes transport.
-   *
-   * @throws ::remoting::Exception on fail.
-   */
-  void close();
+         /**
+          * Closes transport.
+          *
+          * @throws ::remoting::Exception on fail.
+          */
+         void close();
 
-  /**
-   * Reads data from pipe.
-   * Implemented from Channel interface.
-   * @param buffer buffer to receive data.
-   * @param len count of bytes to read.
-   * @throws ::io_exception on io error.
-   */
-  virtual size_t read(void *buffer, size_t len);
+         /**
+          * Reads data from pipe.
+          * Implemented from Channel interface.
+          * @param buffer buffer to receive data.
+          * @param len count of bytes to read.
+          * @throws ::io_exception on io error.
+          */
+         virtual size_t read(void *buffer, size_t len);
 
-  /**
-   * Writes data to pipe.
-   * Implemented from Channel interface.
-   * @param buffer buffer with data to write.
-   * @param len count of bytes to write.
-   * @throws ::io_exception on io error.
-   */
-  virtual memsize defer_write(const void *buffer, memsize len);
+         /**
+          * Writes data to pipe.
+          * Implemented from Channel interface.
+          * @param buffer buffer with data to write.
+          * @param len count of bytes to write.
+          * @throws ::io_exception on io error.
+          */
+         virtual memsize defer_write(const void *buffer, memsize len);
 
-  virtual size_t available() { return 0; };
+         virtual size_t available() { return 0; };
 
-  virtual HANDLE getHandle() const;
+         virtual HANDLE getHandle() const;
 
-private:
-  void checkPipeHandle();
+      private:
+         void checkPipeHandle();
 
-  HANDLE m_hPipe;
-  LocalMutex m_hPipeMutex;
-  ::string m_pipeName;
+         HANDLE m_hPipe;
+         LocalMutex m_hPipeMutex;
+         ::string m_pipeName;
 
-  WindowsEvent m_readEvent;
-  WindowsEvent m_writeEvent;
-  bool m_asServer;
-};
+         WindowsEvent m_readEvent;
+         WindowsEvent m_writeEvent;
+         bool m_asServer;
+      };
 
-//// __NAMEDPIPE_H__
+      //// __NAMEDPIPE_H__
+   } // namespace subsystem
+} // namespace windows

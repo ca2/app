@@ -28,27 +28,36 @@
 #include "acme/subsystem/_common_header.h"
 #include <Tlhelp32.h>
 
-// Retrieves information of the parent process.
-class CLASS_DECL_REMOTING_COMMON ParentProcess
+namespace windows
 {
-public:
-  ParentProcess();
-  virtual ~ParentProcess();
+   namespace subsystem
+   {
+      // Retrieves information of the parent process.
+      class CLASS_DECL_REMOTING_COMMON ParentProcess
+      {
+      public:
 
-  // Returns true if the parent process is alive.
-  bool isAlive();
+         PROCESSENTRY32 m_parentPe;
 
-private:
-  void init();
-  // Returns true and fills the *pe argument if a process entry has been found.
-  bool getProcessEntry(PROCESSENTRY32 *peOut, DWORD Pid,
-                        HANDLE hSnapshot);
+         // Is true if the m_parentPe field was successfully initialized.
+         bool m_isInitialized;
 
-  PROCESSENTRY32 m_parentPe;
 
-  // Is true if the m_parentPe field was successfully initialized.
-  bool m_isInitialized;
 
-};
+         ParentProcess();
+         virtual ~ParentProcess();
 
-//// __PARENTPROCESS_H__
+         // Returns true if the parent process is alive.
+         bool isAlive();
+
+      //private:
+         void init();
+         // Returns true and fills the *pe argument if a process entry has been found.
+         bool getProcessEntry(PROCESSENTRY32 *peOut, DWORD Pid,
+                               HANDLE hSnapshot);
+
+      };
+
+      //// __PARENTPROCESS_H__
+   } // namespace  subsystem
+} // namespace windows

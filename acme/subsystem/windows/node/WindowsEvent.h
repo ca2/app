@@ -26,20 +26,27 @@
 
 
 #include "acme/subsystem/_common_header.h"
+#include "acme/_operating_system.h"
 
-class CLASS_DECL_REMOTING_COMMON WindowsEvent
+namespace windows
 {
-public:
-  WindowsEvent(const ::scoped_string & scopedstrName = 0);
-  virtual ~WindowsEvent();
+   namespace subsystem
+   {
+      class CLASS_DECL_ACME WindowsEvent
+      {
+      public:
+         WindowsEvent(const ::scoped_string & scopedstrName = 0);
+         virtual ~WindowsEvent();
 
-  void notify();
-  void waitForEvent(DWORD milliseconds = INFINITE);
+         void notify();
+         void waitForEvent(const class ::time & time = ::time::infinity());
 
-  HANDLE getHandle() const { return m_hEvent; }
+         HANDLE getHandle() const { return m_hEvent; }
 
-protected:
-  HANDLE m_hEvent;
-};
+      //protected:
+         HANDLE m_hEvent;
+      };
+   } // namespac subsystem
 
-//// __WINDOWSEVENT_H__
+   //// __WINDOWSEVENT_H__
+} // namespace windows

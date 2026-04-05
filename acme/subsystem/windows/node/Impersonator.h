@@ -28,47 +28,54 @@
 #include "acme/subsystem/_common_header.h"
 //////#include "remoting/remoting_common/util/::string.h"
 //#include "log_writer/LogWriter.h"
+#include "acme/subsystem/node/Impersonator.h"
+#include "acme/subsystem/node/SystemException.h"
 
-#include "SystemException.h"
 
-/**
-Class for impersonating current process as user that logged on current
-console session.
-@remark: can work only in XP and later cause it uses WTSQueryUserToken function.
-*/
-class CLASS_DECL_REMOTING_COMMON Impersonator
+namespace subsystem
 {
-public:
-  Impersonator(LogWriter *log);
-  virtual ~Impersonator();
 
-  /**
-  Impersonates calling process as user that logged on current console session.
-  @throws SystemException if impersonation fails.
-  */
-  virtual void impersonateAsLoggedUser();
+   /**
+   Class for impersonating current process as user that logged on current
+   console session.
+   @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
+   */
+   class CLASS_DECL_REMOTING_COMMON Impersonator
+   {
+   public:
+      Impersonator(LogWriter *log);
+      virtual ~Impersonator();
 
-  /**
-  Impersonates calling process as user with given token.
-  @throws SystemException if impersonation fails.
-  */
-  virtual void impersonateAsCurrentProcessUser(bool rdpEnabled);
+      /**
+      Impersonates calling process as user that logged on current console session.
+      @throws SystemException if impersonation fails.
+      */
+      virtual void impersonateAsLoggedUser();
 
-  /**
-  Cancels effect of impersonateAsLoggedUser method call.
-  @throws SystemException on fail.
-  */
-  virtual void revertToSelf();
+      /**
+      Impersonates calling process as user with given token.
+      @throws SystemException if impersonation fails.
+      */
+      virtual void impersonateAsCurrentProcessUser(bool rdpEnabled);
 
-  virtual bool sessionIsLocked(bool rdpEnabled);
+      /**
+      Cancels effect of impersonateAsLoggedUser method call.
+      @throws SystemException on fail.
+      */
+      virtual void revertToSelf();
 
-protected:
-  void impersonateAsUser(HANDLE token);
+      virtual bool sessionIsLocked(bool rdpEnabled);
 
-  HANDLE m_token;
-  HANDLE m_dupToken;
+   protected:
+      void impersonateAsUser(HANDLE token);
 
-  LogWriter *m_log;
-};
+      HANDLE m_token;
+      HANDLE m_dupToken;
+
+      LogWriter *m_log;
+   };
+
+
+} // namespace subsystem
 
 

@@ -13,7 +13,7 @@
 
 //CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = ::user::e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-CLASS_DECL_ACME void throw_exit_exception(const ::e_status & estatus = error_failed, ::task * playeredThreadExit = nullptr, const ::scoped_string & scopedstrMessage = nullptr);
+CLASS_DECL_ACME void throw_exit_exception(const ::e_status& estatus = error_failed, ::task* playeredThreadExit = nullptr, const ::scoped_string& scopedstrMessage = nullptr);
 
 CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessage, const ::scoped_string & strTitle = nullptr, int iMessageBox = 0);
 CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str);

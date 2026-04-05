@@ -205,6 +205,8 @@ namespace platform
 
       ::component * component(const ::scoped_string & scopedstrComponent)override;
 
+      //::string_table* string_table() override;
+
       ::string component_path(const ::scoped_string & scopedstrComponent) override;
 
       void defer_innate_ui() override;
@@ -1443,5 +1445,44 @@ inline ::platform::system * system()
    return ::platform::system::s_p;
 
 }
+
+
+
+
+template < typename APPLICATION >
+APPLICATION* main_application()
+{
+
+   auto psystem = ::system();
+
+   if (::is_null(psystem))
+   {
+
+      return nullptr;
+
+   }
+
+   auto pacmeapplication = psystem->m_papplication;
+
+   if (::is_null(pacmeapplication))
+   {
+
+      return nullptr;
+
+   }
+
+   ::cast < APPLICATION > papplication = pacmeapplication;
+
+   if (::is_null(papplication))
+   {
+
+      return nullptr;
+
+   }
+
+   return papplication;
+
+}
+
 
 

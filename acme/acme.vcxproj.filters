@@ -484,6 +484,21 @@
     <Filter Include="Header Files\operating_system\windows_common\com">
       <UniqueIdentifier>{332cfa00-9ef2-4b2f-a3d5-4b3e67962ee1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\subsystem">
+      <UniqueIdentifier>{93023440-7647-47fd-83f3-722e631d1d42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\subsystem">
+      <UniqueIdentifier>{eadce081-0894-4136-b2dd-982407fc407f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\subsystem\thread">
+      <UniqueIdentifier>{8056a99e-6bcc-4568-9574-169b6a4add6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\subsystem\windows">
+      <UniqueIdentifier>{fd41fa92-61ae-4778-a9b7-2e43d01e843d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\subsystem\windows\thread">
+      <UniqueIdentifier>{da2d8052-1bca-44ff-939f-30260510af60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4374,6 +4389,174 @@
     <ClInclude Include="operating_system\windows_common\com\bstring.h">
       <Filter>Header Files\operating_system\windows_common\com</Filter>
     </ClInclude>
+    <ClInclude Include="subsystem\_.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\aaa_Environment.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\aaa_framework.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\AnonymousPipe.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\AnonymousPipeFactory.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\ApplicationCrashEvents.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\AutoImpersonator.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\CurrentConsoleProcess.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\DibSection.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\DynamicLibrary.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\EmulatedAnonymousPipeFactory.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\HookEventListener.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Impersonator.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\InputInjector.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Keyboard.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\LocalWindowsApplication.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\NamedPipe.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\ParentProcess.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Pipe.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\PipeClient.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\PipeImpersonatedThread.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\PipeServer.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Process.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\ProcessHandle.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Registry.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\RegistryKey.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\resource.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\SCMClient.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Screen.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\SecurityAttributes.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Service.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\SharedMemory.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Shell.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\SystemException.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\SystemInformation.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\UipiControl.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\VersionInfo.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinClipboard.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinCommandLineArgs.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinCursor.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WindowsApplication.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WindowsDisplays.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WindowsEvent.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WindowsEventEx.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinHandles.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinHooks.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinProcessCommandLine.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinStaLibrary.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WinTimeMillis.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\Workstation.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WsaStartup.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\WTS.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\string_table.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\string_table.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\exception.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\particle.h">
+      <Filter>Header Files\subsystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6259,6 +6442,204 @@
     </ClCompile>
     <ClCompile Include="user\simple\dialog_box_line.cpp">
       <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\_.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\AnonymousPipe.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\AnonymousPipeFactory.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\AutoImpersonator.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\CtrlAltDelSimulator.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\CurrentConsoleProcess.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\DibSection.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\DynamicLibrary.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\EmulatedAnonymousPipeFactory.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Impersonator.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\InputInjector.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Keyboard.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\LocalWindowsApplication.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\NamedPipe.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\ParentProcess.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Pipe.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\PipeClient.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\PipeImpersonatedThread.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\PipeServer.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Process.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\ProcessHandle.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Registry.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\RegistryKey.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\SCMClient.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Screen.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\SecurityAttributes.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\SecurityDescriptor.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\SecurityIdentifier.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Service.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\SharedMemory.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Shell.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\SystemException.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\SystemInformation.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\UipiControl.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\VersionInfo.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinClipboard.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinCommandLineArgs.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinCursor.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WindowsApplication.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WindowsDisplays.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WindowsEvent.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WindowsEventEx.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinHandles.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinHooks.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinProcessCommandLine.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinStaLibrary.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WinTimeMillis.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\Workstation.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WsaStartup.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\WTS.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\string_table.cpp">
+      <Filter>Source Files\subsystem</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\thread\AutoLock.cpp">
+      <Filter>Source Files\subsystem\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\thread\DesktopSelector.cpp">
+      <Filter>Source Files\subsystem\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\thread\GlobalMutex.cpp">
+      <Filter>Source Files\subsystem\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\thread\GuiThread.cpp">
+      <Filter>Source Files\subsystem\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\thread\LocalMutex.cpp">
+      <Filter>Source Files\subsystem\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\thread\Thread.cpp">
+      <Filter>Source Files\subsystem\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\thread\ThreadCollector.cpp">
+      <Filter>Source Files\subsystem\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\windows\thread\AutoLock.cpp">
+      <Filter>Source Files\subsystem\windows\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\windows\thread\DesktopSelector.cpp">
+      <Filter>Source Files\subsystem\windows\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\windows\thread\GlobalMutex.cpp">
+      <Filter>Source Files\subsystem\windows\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\windows\thread\GuiThread.cpp">
+      <Filter>Source Files\subsystem\windows\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\windows\thread\LocalMutex.cpp">
+      <Filter>Source Files\subsystem\windows\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\windows\thread\Thread.cpp">
+      <Filter>Source Files\subsystem\windows\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\windows\thread\ThreadCollector.cpp">
+      <Filter>Source Files\subsystem\windows\thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

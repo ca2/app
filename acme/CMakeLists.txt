@@ -1314,6 +1314,191 @@ list(APPEND library_source
         regular_expression/regular_expression.h
         regular_expression/result.cpp
         regular_expression/result.h
+   subsystem/io/_.cpp
+   subsystem/io/_.h
+   #subsystem/io/_____debug.xcconfig
+   #subsystem/io/_____release.xcconfig
+   #subsystem/io/aaa_framework.cpp
+   #subsystem/io/aaa_framework.h
+   #subsystem/io/aaa_io_exception.h
+   subsystem/io/BufferedInputStream.cpp
+   subsystem/io/BufferedInputStream.h
+   subsystem/io/BufferedOutputStream.cpp
+   subsystem/io/BufferedOutputStream.h
+   subsystem/io/ByteArrayInputStream.cpp
+   subsystem/io/ByteArrayInputStream.h
+   subsystem/io/ByteArrayOutputStream.cpp
+   subsystem/io/ByteArrayOutputStream.h
+   subsystem/io/Channel.cpp
+   subsystem/io/Channel.h
+   #subsystem/io/CMakeLists.txt
+   subsystem/io/DataCopy.cpp
+   subsystem/io/DataCopy.h
+   subsystem/io/DataInputStream.cpp
+   subsystem/io/DataInputStream.h
+   subsystem/io/DataOutputStream.cpp
+   subsystem/io/DataOutputStream.h
+   subsystem/io/InputStream.cpp
+   subsystem/io/InputStream.h
+   subsystem/io/io_exception.cpp
+   #subsystem/io/io_lib.vcproj
+   #subsystem/io/matter.txt
+   subsystem/io/OutputStream.cpp
+   subsystem/io/OutputStream.h
+   subsystem/node/SystemException.cpp
+   subsystem/node/SystemException.h
+   subsystem/thread/   _.cpp
+   subsystem/thread/_.h
+   #subsystem/thread/_____debug.xcconfig
+   #subsystem/thread/_____release.xcconfig
+   #subsystem/thread/aaa_framework.cpp
+   #subsystem/thread/aaa_framework.h
+   #subsystem/thread/aaa_ZombieKiller.cpp
+   #subsystem/thread/aaa_ZombieKiller.h
+   subsystem/thread/AutoLock.cpp
+   subsystem/thread/AutoLock.h
+   #subsystem/thread/CMakeLists.txt
+   subsystem/thread/DesktopSelector.cpp
+   subsystem/thread/DesktopSelector.h
+   subsystem/thread/GlobalMutex.cpp
+   subsystem/thread/GlobalMutex.h
+   subsystem/thread/GuiThread.cpp
+   subsystem/thread/GuiThread.h
+   subsystem/thread/LocalMutex.cpp
+   subsystem/thread/LocalMutex.h
+   subsystem/thread/Lockable.h
+   #subsystem/thread/matter.txt
+   #subsystem/thread/remoting_thread.vcxproj
+   #subsystem/thread/remoting_thread.vcxproj.filters
+   #subsystem/thread/remoting_thread.vcxproj.user
+   subsystem/thread/resource.h
+   subsystem/thread/Thread.cpp
+   subsystem/thread/Thread.h
+   subsystem/thread/thread.vcproj
+   subsystem/thread/ThreadCollector.cpp
+   subsystem/thread/ThreadCollector.h
+   subsystem/_.cpp
+   subsystem/_.h
+#   subsystem/_____debug.xcconfig
+#   subsystem/_____release.xcconfig
+   subsystem/_common_header.h
+#   subsystem/aaa_Environment.cpp
+#   subsystem/aaa_Environment.h
+#   subsystem/aaa_framework.cpp
+#   subsystem/aaa_framework.h
+#   subsystem/aaa_StringStorage.h
+   #subsystem/AnonymousPipe.cpp
+   #subsystem/AnonymousPipe.h
+   #subsystem/AnonymousPipeFactory.cpp
+   #subsystem/AnonymousPipeFactory.h
+   #subsystem/ApplicationCrashEvents.h
+   #subsystem/AutoImpersonator.cpp
+   #subsystem/AutoImpersonator.h
+   #subsystem/CurrentConsoleProcess.cpp
+   #subsystem/CurrentConsoleProcess.h
+   subsystem/DibSection.cpp
+   subsystem/DibSection.h
+   #subsystem/DynamicLibrary.cpp
+   #subsystem/DynamicLibrary.h
+   #subsystem/EmulatedAnonymousPipeFactory.cpp
+   #subsystem/EmulatedAnonymousPipeFactory.h
+   subsystem/Exception.cpp
+   subsystem/Exception.h
+   #subsystem/HookEventListener.h
+   #subsystem/Impersonator.cpp
+   #subsystem/Impersonator.h
+   subsystem/Inflater.cpp
+   subsystem/Inflater.h
+   #subsystem/InputInjector.cpp
+   #subsystem/InputInjector.h
+   #subsystem/Keyboard.cpp
+   #subsystem/Keyboard.h
+   #subsystem/LocalWindowsApplication.cpp
+   #subsystem/LocalWindowsApplication.h
+   #subsystem/matter.txt
+   #subsystem/NamedPipe.cpp
+   #subsystem/NamedPipe.h
+   #subsystem/ParentProcess.cpp
+   #subsystem/ParentProcess.h
+   subsystem/particle.h
+   #subsystem/Pipe.cpp
+   #subsystem/Pipe.h
+   #subsystem/PipeClient.cpp
+   #subsystem/PipeClient.h
+   #subsystem/PipeImpersonatedThread.cpp
+   #subsystem/PipeImpersonatedThread.h
+   #subsystem/PipeServer.cpp
+   #subsystem/PipeServer.h
+   #subsystem/Process.cpp
+   #subsystem/Process.h
+   #subsystem/ProcessHandle.cpp
+   #subsystem/ProcessHandle.h
+   subsystem/Registry.cpp
+   subsystem/Registry.h
+   subsystem/RegistryKey.cpp
+   subsystem/RegistryKey.h
+   #subsystem/resource.h
+   #subsystem/SCMClient.cpp
+   #subsystem/SCMClient.h
+   #subsystem/Screen.cpp
+   #subsystem/Screen.h
+   #subsystem/SecurityAttributes.cpp
+   #subsystem/SecurityAttributes.h
+   #subsystem/SecurityDescriptor.cpp
+   #subsystem/SecurityIdentifier.cpp
+   #subsystem/Service.cpp
+   #subsystem/Service.h
+   #subsystem/SharedMemory.cpp
+   #subsystem/SharedMemory.h
+   #subsystem/Shell.cpp
+   #subsystem/Shell.h
+   subsystem/Singleton.h
+   subsystem/string_table.cpp
+   subsystem/string_table.h
+   subsystem/StringParser.cpp
+   subsystem/StringParser.h
+   #subsystem/StringStorage.cpp
+   #subsystem/SystemInformation.cpp
+   #subsystem/SystemInformation.h
+   #subsystem/UipiControl.cpp
+   #subsystem/UipiControl.h
+   #subsystem/VersionInfo.cpp
+   #subsystem/VersionInfo.h
+   #subsystem/win_system.vcproj
+   #subsystem/WinClipboard.cpp
+   #subsystem/WinClipboard.h
+   #subsystem/WinCommandLineArgs.cpp
+   #subsystem/WinCommandLineArgs.h
+   #subsystem/WinCursor.cpp
+   #subsystem/WinCursor.h
+   #subsystem/WindowsApplication.cpp
+   #subsystem/WindowsApplication.h
+   #subsystem/WindowsDisplays.cpp
+   #subsystem/WindowsDisplays.h
+   #subsystem/WindowsEvent.cpp
+   #subsystem/WindowsEvent.h
+   #subsystem/WindowsEventEx.cpp
+   #subsystem/WindowsEventEx.h
+   #subsystem/WinHandles.cpp
+   #subsystem/WinHandles.h
+   #subsystem/WinHooks.cpp
+   #subsystem/WinHooks.h
+   #subsystem/WinProcessCommandLine.cpp
+   #subsystem/WinProcessCommandLine.h
+   #subsystem/WinStaLibrary.cpp
+   #subsystem/WinStaLibrary.h
+   #subsystem/WinTimeMillis.cpp
+   #subsystem/WinTimeMillis.h
+   #subsystem/Workstation.cpp
+   #subsystem/Workstation.h
+   #subsystem/WsaStartup.cpp
+   #subsystem/WsaStartup.h
+   #subsystem/WTS.cpp
+   #subsystem/WTS.h
+   subsystem/ZLibBase.cpp
+   subsystem/ZLibBase.h
+   subsystem/ZlibException.cpp
+   subsystem/ZlibException.h
         user/micro/_.h
         user/micro/button.cpp
         user/micro/button.h
@@ -2211,6 +2396,7 @@ endif ()
 if (${WIN32})
 
     list(APPEND library_source
+
             #      operating_system/windows/console.cpp
             #      operating_system/windows/_factory.cpp
             #      operating_system/windows/file.cpp
@@ -2324,6 +2510,132 @@ if (${WIN32})
             operating_system/windows/nano/http/request.h
             operating_system/windows/nano/http/session.cpp
             operating_system/windows/nano/http/session.h
+       subsystem/windows/node/_.cpp
+       subsystem/windows/node/_.h
+       #       subsystem/windows/node/_____debug.xcconfig
+       #       subsystem/windows/node/_____release.xcconfig
+       #       subsystem/windows/node/aaa_Environment.cpp
+       #       subsystem/windows/node/aaa_Environment.h
+       #       subsystem/windows/node/aaa_framework.cpp
+       #       subsystem/windows/node/aaa_framework.h
+       subsystem/windows/node/AnonymousPipe.cpp
+       subsystem/windows/node/AnonymousPipe.h
+       subsystem/windows/node/AnonymousPipeFactory.cpp
+       subsystem/windows/node/AnonymousPipeFactory.h
+       subsystem/windows/node/ApplicationCrashEvents.h
+       subsystem/windows/node/AutoImpersonator.cpp
+       subsystem/windows/node/AutoImpersonator.h
+       #subsystem/windows/node/CMakeLists.txt
+       subsystem/windows/node/LocalWindowsApplication.h
+       #subsystem/windows/node/matter.txt
+       subsystem/windows/node/NamedPipe.cpp
+       subsystem/windows/node/NamedPipe.h
+       subsystem/windows/node/ParentProcess.cpp
+       subsystem/windows/node/ParentProcess.h
+       subsystem/windows/node/Pipe.cpp
+       subsystem/windows/node/Pipe.h
+       subsystem/windows/node/PipeClient.cpp
+       subsystem/windows/node/PipeClient.h
+       subsystem/windows/node/PipeImpersonatedThread.cpp
+       subsystem/windows/node/PipeImpersonatedThread.h
+       subsystem/windows/node/PipeServer.cpp
+       subsystem/windows/node/PipeServer.h
+       subsystem/windows/node/Process.cpp
+       subsystem/windows/node/Process.h
+       subsystem/windows/node/ProcessHandle.cpp
+       subsystem/windows/node/ProcessHandle.h
+       subsystem/windows/node/Registry.cpp
+       subsystem/windows/node/Registry.h
+       subsystem/windows/node/RegistryKey.cpp
+       subsystem/windows/node/RegistryKey.h
+       #       subsystem/windows/node/remoting_win_system.vcxproj
+       #       subsystem/windows/node/remoting_win_system.vcxproj.filters
+       #       subsystem/windows/node/remoting_win_system.vcxproj.user
+       subsystem/windows/node/resource.h
+       subsystem/windows/node/SCMClient.cpp
+       subsystem/windows/node/SCMClient.h
+       subsystem/windows/node/Screen.cpp
+       subsystem/windows/node/Screen.h
+       subsystem/windows/node/SecurityAttributes.cpp
+       subsystem/windows/node/SecurityAttributes.h
+       subsystem/windows/node/SecurityDescriptor.cpp
+       subsystem/windows/node/SecurityIdentifier.cpp
+       subsystem/windows/node/Service.cpp
+       subsystem/windows/node/Service.h
+       subsystem/windows/node/SharedMemory.cpp
+       subsystem/windows/node/SharedMemory.h
+       subsystem/windows/node/Shell.cpp
+       subsystem/windows/node/Shell.h
+       subsystem/windows/node/SystemException.cpp
+       subsystem/windows/node/SystemException.h
+       subsystem/windows/node/SystemInformation.cpp
+       subsystem/windows/node/SystemInformation.h
+       subsystem/windows/node/ThemeLib.cpp
+       subsystem/windows/node/ThemeLib.h
+       subsystem/windows/node/UipiControl.cpp
+       subsystem/windows/node/UipiControl.h
+       subsystem/windows/node/VersionInfo.cpp
+       subsystem/windows/node/VersionInfo.h
+       subsystem/windows/node/win_system.vcproj
+       subsystem/windows/node/WinClipboard.cpp
+       subsystem/windows/node/WinClipboard.h
+       subsystem/windows/node/WinCommandLineArgs.cpp
+       subsystem/windows/node/WinCommandLineArgs.h
+       subsystem/windows/node/WinCursor.cpp
+       subsystem/windows/node/WinCursor.h
+       subsystem/windows/node/WindowsApplication.cpp
+       subsystem/windows/node/WindowsApplication.h
+       subsystem/windows/node/WindowsDisplays.cpp
+       subsystem/windows/node/WindowsDisplays.h
+       subsystem/windows/node/WindowsEvent.cpp
+       subsystem/windows/node/WindowsEvent.h
+       subsystem/windows/node/WindowsEventEx.cpp
+       subsystem/windows/node/WindowsEventEx.h
+       subsystem/windows/node/WinHandles.cpp
+       subsystem/windows/node/WinHandles.h
+       subsystem/windows/node/WinHooks.cpp
+       subsystem/windows/node/WinHooks.h
+       subsystem/windows/node/WinProcessCommandLine.cpp
+       subsystem/windows/node/WinProcessCommandLine.h
+       subsystem/windows/node/WinStaLibrary.cpp
+       subsystem/windows/node/WinStaLibrary.h
+       subsystem/windows/node/WinTimeMillis.cpp
+       subsystem/windows/node/WinTimeMillis.h
+       subsystem/windows/node/Workstation.cpp
+       subsystem/windows/node/Workstation.h
+       subsystem/windows/node/WsaStartup.cpp
+       subsystem/windows/node/WsaStartup.h
+       subsystem/windows/node/WTS.cpp
+       subsystem/windows/node/WTS.h
+       #subsystem/windows/thread/_____debug.xcconfig
+       #subsystem/windows/thread/_____release.xcconfig
+       #subsystem/windows/thread/aaa_framework.cpp
+       #subsystem/windows/thread/aaa_framework.h
+       #subsystem/thread/aaa_ZombieKiller.cpp
+       #subsystem/thread/aaa_ZombieKiller.h
+       subsystem/thread/AutoLock.cpp
+       subsystem/thread/AutoLock.h
+       #subsystem/thread/CMakeLists.txt
+       subsystem/thread/DesktopSelector.cpp
+       subsystem/thread/DesktopSelector.h
+       subsystem/thread/GlobalMutex.cpp
+       subsystem/thread/GlobalMutex.h
+       subsystem/thread/GuiThread.cpp
+       subsystem/thread/GuiThread.h
+       subsystem/thread/LocalMutex.cpp
+       subsystem/thread/LocalMutex.h
+       subsystem/thread/Lockable.h
+       #subsystem/thread/matter.txt
+       #subsystem/thread/remoting_thread.vcxproj
+       #subsystem/thread/remoting_thread.vcxproj.filters
+       #subsystem/thread/remoting_thread.vcxproj.user
+       subsystem/thread/resource.h
+       subsystem/thread/Thread.cpp
+       subsystem/thread/Thread.h
+       subsystem/thread/thread.vcproj
+       subsystem/thread/ThreadCollector.cpp
+       subsystem/thread/ThreadCollector.h
+
     )
 else ()
 
@@ -3150,7 +3462,9 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   subsystem/subsystem.h
+   subsystem/subsystem.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

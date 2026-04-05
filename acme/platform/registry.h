@@ -8,17 +8,84 @@
 #pragma once
 
 
-namespace acme
+#include "acme/subsystem/particle.h"
+
+
+namespace subsystem
 {
 
 
+   class registry_key_interface;
 
-/* --------------------------------------------------------------------------
-   Opaque handles
-   -------------------------------------------------------------------------- */
 
-typedef struct RegX RegX;
-typedef struct RegXKey RegXKey;
+   class CLASS_DECL_ACME registry_interface :
+      virtual public ::subsystem::particle_interface
+   {
+   public:
+
+      ::file::path   m_path;
+
+
+      virtual void open_from_file(const ::file::path & path) = 0;
+
+      virtual void flush() = 0;
+
+      virtual void close() = 0;
+
+      virtual ::pointer < registry_key_interface > open_key(const ::file::path & path) = 0;
+
+      virtual ::pointer < registry_key_interface > create_key(const ::file::path & path) = 0;
+
+      virtual bool delete_key(const ::file::path & path) = 0;
+
+
+   };
+
+   class CLASS_DECL_ACME registry_key_interface :
+   virtual public ::particle
+   {
+   public:
+
+      ::pointer < registry_interface > m_pregistry;
+      ::file::path m_path;
+
+
+      virtual void close() =0;
+
+      virtual void set_string(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPayload) = 0;
+      virtual void set_dword(const ::scoped_string & scopedstr, unsigned int value) = 0;
+      virtual void set_binary(const ::scoped_string & scopedstr, const ::block & block) = 0;
+
+      ::string get_string(const ::scoped_string & scopedstr);
+
+      unsigned get_dword(const ::scoped_string & scopedstr);
+
+      /*
+          Gets a binary value.
+
+          Usage pattern:
+              size_t size = 0;
+              RegXGetBinary(key, "Blob", NULL, &size);
+              void *buf = malloc(size);
+              RegXGetBinary(key, "Blob", buf, &size);
+      */
+      ::memory get_binary(const ::scoped_string & scopedstr) = 0;
+
+   };
+
+// /* --------------------------------------------------------------------------
+//    Opaque handles
+//    -------------------------------------------------------------------------- */
+//
+//    struct registry {
+//       std::string filename;
+//       Document doc;
+//    };
+//
+//    struct registry_key {
+//       registry *owner;
+//       std::string path;
+//    };
 
 /* --------------------------------------------------------------------------
    Types
@@ -59,20 +126,20 @@ typedef enum RegXStatus {
     Opens or creates a registry database backed by a JSON file.
 
     Example:
-        RegX *reg = NULL;
+        registry *reg = NULL;
         RegXOpen("registry.json", &reg);
 */
-int RegXOpen(const char *filename, RegX **out_reg);
+//::pointer < registry > RegXOpen(const ::file::path & path);
 
 /*
     Writes the in-memory registry to disk.
 */
-int RegXFlush(RegX *reg);
+//int RegXFlush(registry *reg);
 
 /*
     Flushes and destroys the registry object.
 */
-void RegXClose(RegX *reg);
+//void RegXClose(registry *reg);
 
 /* --------------------------------------------------------------------------
    Key lifetime
@@ -81,7 +148,7 @@ void RegXClose(RegX *reg);
 /*
     Frees a key handle created by RegXOpenKey / RegXCreateKey.
 */
-void RegXCloseKey(RegXKey *key);
+//void RegXCloseKey(registry_key *key);
 
 /* --------------------------------------------------------------------------
    Key operations
@@ -91,10 +158,10 @@ void RegXCloseKey(RegXKey *key);
     Opens an existing key.
 
     Example:
-        RegXKey *key = NULL;
+        registry_key *key = NULL;
         RegXOpenKey(reg, "HKCU\\Software\\MyApp", &key);
 */
-int RegXOpenKey(RegX *reg, const char *path, RegXKey **out_key);
+//int RegXOpenKey(registry *reg, const char *path, registry_key **out_key);
 
 /*
     Creates a key and any missing parents.
@@ -102,20 +169,20 @@ int RegXOpenKey(RegX *reg, const char *path, RegXKey **out_key);
     Example:
         RegXCreateKey(reg, "HKCU\\Software\\MyApp", &key);
 */
-int RegXCreateKey(RegX *reg, const char *path, RegXKey **out_key);
+//int RegXCreateKey(registry *reg, const char *path, registry_key **out_key);
 
 /*
     Deletes a key and all descendants.
 */
-int RegXDeleteKey(RegX *reg, const char *path);
+//int RegXDeleteKey(registry *reg, const char *path);
 
 /* --------------------------------------------------------------------------
    Value set operations
    -------------------------------------------------------------------------- */
 
-int RegXSetString(RegXKey *key, const char *name, const char *value);
-int RegXSetDword (RegXKey *key, const char *name, uint32_t value);
-int RegXSetBinary(RegXKey *key, const char *name, const void *data, size_t size);
+// int RegXSetString(registry_key *key, const char *name, const char *value);
+// int RegXSetDword (registry_key *key, const char *name, uint32_t value);
+// int RegXSetBinary(registry_key *key, const char *name, const void *data, size_t size);
 
 /* --------------------------------------------------------------------------
    Value get operations
@@ -130,9 +197,9 @@ int RegXSetBinary(RegXKey *key, const char *name, const void *data, size_t size)
         char *buf = malloc(len);
         RegXGetString(key, "UserName", buf, &len);
 */
-int RegXGetString(RegXKey *key, const char *name, char *buf, size_t *inout_len);
+int RegXGetString(registry_key *key, const char *name, char *buf, size_t *inout_len);
 
-int RegXGetDword(RegXKey *key, const char *name, uint32_t *out_value);
+int RegXGetDword(registry_key *key, const char *name, uint32_t *out_value);
 
 /*
     Gets a binary value.
@@ -143,15 +210,15 @@ int RegXGetDword(RegXKey *key, const char *name, uint32_t *out_value);
         void *buf = malloc(size);
         RegXGetBinary(key, "Blob", buf, &size);
 */
-int RegXGetBinary(RegXKey *key, const char *name, void *buf, size_t *inout_len);
+int RegXGetBinary(registry_key *key, const char *name, void *buf, size_t *inout_len);
 
 /* --------------------------------------------------------------------------
    Value utility
    -------------------------------------------------------------------------- */
 
-int RegXDeleteValue(RegXKey *key, const char *name);
-int RegXValueExists(RegXKey *key, const char *name);
-int RegXGetValueType(RegXKey *key, const char *name, RegXType *out_type);
+int RegXDeleteValue(registry_key *key, const char *name);
+int RegXValueExists(registry_key *key, const char *name);
+int RegXGetValueType(registry_key *key, const char *name, RegXType *out_type);
 
 /* --------------------------------------------------------------------------
    Error strings
@@ -159,7 +226,7 @@ int RegXGetValueType(RegXKey *key, const char *name, RegXType *out_type);
 
 const char *RegXStrError(int status);
 
-} // namespace acme
+} // namespace subsystem
 
 
 

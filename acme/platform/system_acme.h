@@ -100,7 +100,9 @@ namespace platform
       ::pointer < ::platform::system_factory >        m_psystemfactory;
       // END FROM ::main (Now main2)
 
-
+      ::pointer < ::subsystem::subsystem > m_psubsystem;
+      //::pointer < ::subsystem::string_table > m_pstringtable;
+      //::pointer < ::subsystem::resource_loader > m_presourceloader;
       //::pointer<::platform::application>     application();
       // ::pointer<::platform::application>     application();
 
@@ -284,6 +286,9 @@ namespace platform
       virtual ::micro::user * micro_user();
       virtual ::acme::windowing::windowing * acme_windowing();
       virtual ::windowing::windowing * windowing();
+
+      virtual ::subsystem::subsystem * subsystem();
+//         virtual ::subsystem::resource_loader* resource_loader();
 
 
       virtual ::component * component(const ::scoped_string & scopedstrComponent);

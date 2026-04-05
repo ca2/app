@@ -4087,6 +4087,14 @@ return nullptr;
    }
 
 
+   // ::string_table* acme_system_layer::string_table()
+   // {
+   //
+   //    return nullptr;
+   //
+   // }
+
+
    ::component * acme_system_layer::component(const ::scoped_string & scopedstrComponent)
    {
 

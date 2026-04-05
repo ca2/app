@@ -294,8 +294,8 @@ namespace platform
 
       //::user::interaction *                      m_puiMainContainer;
 
-      string_table m_stringtable;
-      string_table m_stringtableStd;
+      ::string_table m_stringtable;
+      ::string_table m_stringtableStd;
       atom_map_base<string> m_stringmap;
 
       atom_map_base<::pointer<::channel>> m_mapNotify;

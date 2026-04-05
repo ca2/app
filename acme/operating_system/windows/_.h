@@ -13,15 +13,15 @@ namespace windows
 {
 
 
-CLASS_DECL_REMOTING_COMMON int message_box(
-   HWND hwnd,
-   const ::scoped_string & scopedstrMessage,
-   const ::scoped_string & scopedstrCaption,
-   UINT uType);
+   CLASS_DECL_ACME int message_box(
+      HWND hwnd,
+      const ::scoped_string & scopedstrMessage,
+      const ::scoped_string & scopedstrCaption,
+      UINT uType);
 
 
 
-}
+} // namespace windows
 
 
 // inline HWND as_hwnd(::acme::windowing::window * pacmewindowingwindow)

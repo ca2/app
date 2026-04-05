@@ -25,28 +25,43 @@
 #pragma once
 
 
-#include "remoting/remoting_common/thread/Thread.h"
-#include "WindowsEvent.h"
+#include "acme/subsystem/node/PipeImpersonatedThread.h"
+#include "acme/subsystem/windows/node/WindowsEvent.h"
 
-class CLASS_DECL_REMOTING_COMMON PipeImpersonatedThread : public Thread
+namespace windows
 {
-public:
-  PipeImpersonatedThread(HANDLE pipeHandle);
-  virtual ~PipeImpersonatedThread();
 
-  void waitUntilImpersonated();
-  bool getImpersonationSuccess();
-  ::string getFaultReason();
+namespace subsystem
+{
+   class CLASS_DECL_REMOTING_COMMON PipeImpersonatedThread :
 
-private:
-  virtual void execute();
-  virtual void onTerminate();
+      virtual public ::subsystem::composite<PipeImpersonatedThreadInterface>
+   {
+   public:
+      //PipeImpersonatedThread(HANDLE pipeHandle);
+      PipeImpersonatedThread();
+      ~PipeImpersonatedThread() override;
 
-  HANDLE m_pipeHandle;
-  bool m_success;
-  ::string m_faultReason;
-  WindowsEvent m_impersonationReadyEvent;
-  WindowsEvent m_threadSleeper;
-};
 
-//// __PIPEIMPERSONATEDTHREAD_H__
+      void initialize_pipe_impersonated_thread(HANDLE pipeHandle);
+
+      void waitUntilImpersonated() override;
+      bool getImpersonationSuccess() override;
+      ::string getFaultReason() override;
+
+      //private:
+      void execute() override;
+      void onTerminate() override;
+
+      HANDLE m_pipeHandle;
+      bool m_success;
+      ::string m_faultReason;
+      WindowsEvent m_impersonationReadyEvent;
+      WindowsEvent m_threadSleeper;
+   };
+
+   //// __PIPEIMPERSONATEDTHREAD_H__
+} // namespace subsystem
+
+
+} // namespace windows

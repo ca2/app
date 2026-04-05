@@ -75,7 +75,6 @@
 #include "acme/include/_template_function_declarations.h"
 #include "acme/include/_inline_functions.h"
 #include "acme/include/_template_inline_functions.h"
-#include "acme/include/_string.h"
 
 #include "acme/crypto/_.h"
 #include "acme/exception/_.h"
@@ -87,6 +86,7 @@
 #include "acme/parallelization/_.h"
 #include "acme/platform/_.h"
 #include "acme/prototype/_.h"
+#include "acme/subsystem/_.h"
 #include "acme/user/_.h"
 #include "acme/windowing/_.h"
 //#include "acme/windowing/_.h"
@@ -193,6 +193,11 @@
 
 
 #include  "acme/platform/url_context.h"
+
+
+#include "acme/include/_string.h"
+
+
 
 
 

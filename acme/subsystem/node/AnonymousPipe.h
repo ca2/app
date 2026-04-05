@@ -26,82 +26,167 @@
 
 
 #include "acme/subsystem/io/Channel.h"
-//#include "acme/subsystem/Pipe.h"
+#include "acme/subsystem/node/Pipe.h"
 #include "acme/subsystem/_common_header.h"
 
 //#include "acme/remoting_common/win_system/WindowsEvent.h"
-#include "remoting/remoting_common/thread/LocalMutex.h"
+//#include "remoting/remoting_common/thread/LocalMutex.h"
 //#include "log_writer/LogWriter.h"
 
-class CLASS_DECL_REMOTING_COMMON AnonymousPipe : public Channel, public Pipe
+namespace subsystem
 {
-public:
-  // @param hWrite is a write handle getting by the CreatePipe()
-  // function calling.
-  // @param hRead is a read handle getting by the CreatePipe()
-  // function calling but is not the same as for hWrite.
-  AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
-  virtual ~AnonymousPipe();
 
-  /**
-   * Closes transport.
-   *
-   * @throws ::remoting::Exception on fail.
-   */
-  void close();
 
-  /**
-   * Reads data from pipe.
-   * Implemented from Channel interface.
-   * @param buffer buffer to receive data.
-   * @param len count of bytes to read.
-   * @throws ::io_exception on io error.
-   */
-  virtual size_t read(void *buffer, size_t len);
+   class CLASS_DECL_ACME AnonymousPipeInterface :
+   virtual public Pipe,
+   virtual public Channel
+   {
+   public:
+      // @param hWrite is a write handle getting by the CreatePipe()
+      // function calling.
+      // @param hRead is a read handle getting by the CreatePipe()
+      // function calling but is not the same as for hWrite.
+      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
+      virtual ~AnonymousPipeInterface() = 0;
 
-  /**
-   * Writes data to pipe.
-   * Implemented from Channel interface.
-   * @param buffer buffer with data to write.
-   * @param len count of bytes to write.
-   * @throws ::io_exception on io error.
-   */
-  virtual memsize defer_write(const void *buffer, memsize len);
+      /**
+       * Closes transport.
+       *
+       * @throws ::remoting::Exception on fail.
+       */
+      virtual void close() = 0;
 
-  virtual size_t available() { return 0; };
+      /**
+       * Reads data from pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer to receive data.
+       * @param len count of bytes to read.
+       * @throws ::io_exception on io error.
+       */
+      virtual size_t read(void *buffer, size_t len) = 0;
 
-  // Returns pipe handle to write
-  HANDLE getWriteHandle() const;
+      /**
+       * Writes data to pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer with data to write.
+       * @param len count of bytes to write.
+       * @throws ::io_exception on io error.
+       */
+      virtual memsize defer_write(const void *buffer, memsize len) = 0;
 
-  // Returns pipe handle to read
-  HANDLE getReadHandle() const;
+      virtual size_t available() { return 0; };
 
-  // This function assigns the handles for another process.
-  // @param hTargetProc is a handle to the other process.
-  // If neededToClose parameter set to true then after calling this function
-  // the destructor will try to close the assigned handles. If the handles
-  // assigned for another process then set neededToClose flag to false.
-  // If keepCloseRight is true then source process keeps the right to close
-  // the new handles.
-  // @throw ::remoting::Exception on a fail.
-  void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
-                        bool keepCloseRight = false);
+      // Returns pipe handle to write
+      //HANDLE getWriteHandle() const;
 
-  void setTimeOut(unsigned int timeOut);
+      // Returns pipe handle to read
+      //HANDLE getReadHandle() const;
 
-private:
-  void checkPipeHandle(HANDLE handle);
+      // This function assigns the handles for another process.
+      // @param hTargetProc is a handle to the other process.
+      // If neededToClose parameter set to true then after calling this function
+      // the destructor will try to close the assigned handles. If the handles
+      // assigned for another process then set neededToClose flag to false.
+      // If keepCloseRight is true then source process keeps the right to close
+      // the new handles.
+      // @throw ::remoting::Exception on a fail.
+      //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
+                            //bool keepCloseRight = false);
 
-  HANDLE m_hWrite;
-  HANDLE m_hRead;
-  bool m_neededToClose;
-  unsigned int m_timeOut;
+      virtual void setTimeOut(unsigned int timeOut) = 0;
 
-  LocalMutex m_hPipeMutex;
-  WindowsEvent m_readEvent;
-  WindowsEvent m_writeEvent;
+   //private:
+      //void checkPipeHandle(HANDLE handle);
 
-  LogWriter *m_log;
-};
+      // HANDLE m_hWrite;
+      // HANDLE m_hRead;
+      // bool m_neededToClose;
+      // unsigned int m_timeOut;
+      //
+      // LocalMutex m_hPipeMutex;
+      // WindowsEvent m_readEvent;
+      // WindowsEvent m_writeEvent;
+      //
+      // LogWriter *m_log;
+   };
 
-//// __ANONYMOUSPIPE_H__
+
+
+   class CLASS_DECL_ACME AnonymousPipe :
+   virtual public ::subsystem::composite<AnonymousPipeInterface>
+   {
+   public:
+      // @param hWrite is a write handle getting by the CreatePipe()
+      // function calling.
+      // @param hRead is a read handle getting by the CreatePipe()
+      // function calling but is not the same as for hWrite.
+      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
+      AnonymousPipe();
+      ~AnonymousPipe() override;
+
+      /**
+       * Closes transport.
+       *
+       * @throws ::remoting::Exception on fail.
+       */
+      void close() override;
+
+      /**
+       * Reads data from pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer to receive data.
+       * @param len count of bytes to read.
+       * @throws ::io_exception on io error.
+       */
+      size_t read(void *buffer, size_t len) override;
+
+      /**
+       * Writes data to pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer with data to write.
+       * @param len count of bytes to write.
+       * @throws ::io_exception on io error.
+       */
+      memsize defer_write(const void *buffer, memsize len) override;
+
+      size_t available() override { return 0; }
+
+      // Returns pipe handle to write
+      //HANDLE getWriteHandle() const;
+
+      // Returns pipe handle to read
+      //HANDLE getReadHandle() const;
+
+      // This function assigns the handles for another process.
+      // @param hTargetProc is a handle to the other process.
+      // If neededToClose parameter set to true then after calling this function
+      // the destructor will try to close the assigned handles. If the handles
+      // assigned for another process then set neededToClose flag to false.
+      // If keepCloseRight is true then source process keeps the right to close
+      // the new handles.
+      // @throw ::remoting::Exception on a fail.
+      //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
+                            //bool keepCloseRight = false);
+
+      void setTimeOut(unsigned int timeOut) override;
+
+   //private:
+      //void checkPipeHandle(HANDLE handle);
+
+      // HANDLE m_hWrite;
+      // HANDLE m_hRead;
+      // bool m_neededToClose;
+      // unsigned int m_timeOut;
+      //
+      // LocalMutex m_hPipeMutex;
+      // WindowsEvent m_readEvent;
+      // WindowsEvent m_writeEvent;
+      //
+      // LogWriter *m_log;
+   };
+
+
+   //// __ANONYMOUSPIPE_H__
+} // namespace subsystem
+
+

@@ -23,30 +23,41 @@
 //
 #include "framework.h"
 //#include "acme/_operating_system.h"
-#include "AutoImpersonator.h"
+#include "LocalOperatingSystemApplication.h"
 
+//#include "remoting/remoting_common/util/winhdr.h"
+//#include "remoting/remoting_common/thread/DesktopSelector.h"
 
 namespace subsystem
 {
+   //LocalOperatingSystemApplication::LocalWindowsApplication(HINSTANCE hInstance,
+     //                                               const ::scoped_string & scopedstrwindowClassName)
+    //: WindowsApplication(hInstance, scopedstrwindowClassName)
+    LocalOperatingSystemApplication::LocalOperatingSystemApplication()
+    {
 
-   AutoImpersonator::AutoImpersonator(ImpersonatorInterface *imp, LogWriter *log)
-   : m_pimpersonator(imp),
-     m_log(log)
-   {
-      try {
-         m_pimpersonator->impersonateAsLoggedUser();
-      } catch (::exception &e) {
-         m_log->error(e.get_message());
-      }
+      // HWINSTA winSta = 0;
+      //
+      // winSta = OpenWindowStation(L"WinSta0", TRUE, GENERIC_ALL);
+      //
+      // if (winSta== 0) {
+      //    throw SystemException();
+      // }
+      //
+      // if (SetProcessWindowStation(winSta) == 0) {
+      //    CloseWindowStation(winSta);
+      //    throw SystemException();
+      // }
+      //
+      // CloseWindowStation(winSta);
+      //
+      // // FIXME: why we don't check returning values?
+      // DesktopSelector::selectDesktop();
    }
 
-   AutoImpersonator::~AutoImpersonator()
+   LocalOperatingSystemApplication::~LocalOperatingSystemApplication()
    {
-      try {
-         m_pimpersonator->revertToSelf();
-      } catch (::exception &e) {
-         m_log->error(e.get_message());
-      }
    }
 } // namespace subsystem
+
 

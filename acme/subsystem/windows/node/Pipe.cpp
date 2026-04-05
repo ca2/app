@@ -27,7 +27,7 @@
 #include "acme/subsystem/Exception.h"
 #include <crtdbg.h>
 //#include "remoting/remoting_common/win_system/Environment.h"
-#include "remoting/remoting_common/thread/AutoLock.h"
+//#include "remoting/remoting_common/thread/AutoLock.h"
 
 Pipe::Pipe(unsigned int maxPortionSize)
 : m_totalRead(0),

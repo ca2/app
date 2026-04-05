@@ -17,40 +17,60 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// with this program; if not, write to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "acme/_operating_system.h"
-#include "LocalWindowsApplication.h"
 
-#include "remoting/remoting_common/util/winhdr.h"
-#include "remoting/remoting_common/thread/DesktopSelector.h"
+#include "SecurityDescriptor.h"
 
-LocalWindowsApplication::LocalWindowsApplication(HINSTANCE hInstance,
-                                                 const ::scoped_string & scopedstrwindowClassName)
- : WindowsApplication(hInstance, scopedstrwindowClassName)
+#include <AccCtrl.h>
+#include <Aclapi.h>
+#include <crtdbg.h>
+
+SecurityDescriptor::SecurityDescriptor()
 {
-  HWINSTA winSta = 0;
-
-  winSta = OpenWindowStation(L"WinSta0", TRUE, GENERIC_ALL);
-
-  if (winSta== 0) {
-    throw SystemException();
-  }
-
-  if (SetProcessWindowStation(winSta) == 0) {
-    CloseWindowStation(winSta);
-    throw SystemException();
-  }
-
-  CloseWindowStation(winSta);
-
-  // FIXME: why we don't check returning values?
-  DesktopSelector::selectDesktop();
+  InitializeSecurityDescriptor(&m_sd, SECURITY_DESCRIPTOR_REVISION);
 }
 
-LocalWindowsApplication::~LocalWindowsApplication()
+SecurityDescriptor::~SecurityDescriptor()
 {
+}
+
+void SecurityDescriptor::setRulesAsDacl(size_t count,
+                                        EXPLICIT_ACCESS *rules)
+{
+  PACL acl = 0;
+
+  ULONG constrCount = (ULONG)count;
+  _ASSERT(constrCount == count);
+  DWORD ret = SetEntriesInAcl(constrCount, rules, NULL, &acl);
+
+  if (ret != ERROR_SUCCESS) {
+    throw SystemException(ret);
+  }
+
+  setUserDacl(acl);
+}
+
+void SecurityDescriptor::setUserDacl(ACL *acl)
+{
+  if (SetSecurityDescriptorDacl(&m_sd, TRUE, acl,  FALSE) == FALSE) {
+    throw SystemException();
+  }
+}
+
+void SecurityDescriptor::clearOwner()
+{
+  SetSecurityDescriptorOwner(&m_sd, 0, TRUE);
+}
+
+bool SecurityDescriptor::isValid()
+{
+  return IsValidSecurityDescriptor(&m_sd) == TRUE;
+}
+
+SECURITY_DESCRIPTOR *SecurityDescriptor::getSD()
+{
+  return &m_sd;
 }

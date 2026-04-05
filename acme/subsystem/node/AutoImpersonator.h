@@ -25,20 +25,24 @@
 #pragma once
 
 
-#include "Impersonator.h"
+#include "acme/subsystem/node/Impersonator.h"
 //#include "log_writer/LogWriter.h"
 
-// This class automaticly impesonates at the constructor and
-// revertes at the destructor.
-// This class doesn't throw ::remoting::Exception.
-class CLASS_DECL_REMOTING_COMMON AutoImpersonator
+namespace subsystem
 {
-public:
-  AutoImpersonator(Impersonator *imp, LogWriter *log);
-  virtual ~AutoImpersonator();
-private:
-  Impersonator *m_imp;
-  LogWriter *m_log;
-};
+   // This class automaticly impesonates at the constructor and
+   // revertes at the destructor.
+   // This class doesn't throw ::remoting::Exception.
+   class CLASS_DECL_ACME AutoImpersonator
+   {
+   public:
+      AutoImpersonator(ImpersonatorInterface *imp, LogWriter *log);
+      ~AutoImpersonator();
+   //private:
+      ImpersonatorInterface *m_pimpersonator;
+      LogWriter *m_log;
+   };
+
+} //namespace subsystem
 
 //// __AUTOIMPERSONATOR_H__

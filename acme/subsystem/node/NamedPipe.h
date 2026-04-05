@@ -28,7 +28,7 @@
 #include "acme/subsystem/_common_header.h"
 //#include "win-system/WindowsEvent.h"
 #include "acme/subsystem/io/Channel.h"
-//#include "remoting/remoting_common/thread/LocalMutex.h"
+////#include "remoting/remoting_common/thread/LocalMutex.h"
 #include "acme/subsystem/node/Pipe.h"
 
 
@@ -88,7 +88,7 @@ namespace subsystem
       //virtual HANDLE getHandle() const;
 
       //private:
-      void checkPipeHandle() = 0;
+      virtual void checkPipeHandle() = 0;
 
       // HANDLE m_hPipe;
       // LocalMutex m_hPipeMutex;

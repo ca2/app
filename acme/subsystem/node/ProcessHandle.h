@@ -21,31 +21,67 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#pragma once
 
-#include "remoting/remoting_common/util/COmmonHeader.h"
+#include "acme/include/_types.h"
+#include "acme/subsystem/_common_header.h"
 
-// This class is a mere envelop for process handle that will automatically
-// closed at destructor calling.
-class CLASS_DECL_REMOTING_COMMON ProcessHandle
-{
-public:
-  ProcessHandle();
-  virtual ~ProcessHandle();
+   namespace subsystem
+   {
+      // This class is a mere envelop for process handle that will automatically
+      // closed at destructor calling.
+      class CLASS_DECL_ACME ProcessHandleInterface :
+      virtual public ::subsystem::particle_interface
 
-  // @throws ::remoting::Exception on an error.
-  void openProcess(DWORD dwDesiredAccess,
-                   BOOL bInheritHandle,
-                   DWORD dwProcessId);
+      {
+      public:
+         //ProcessHandle();
+         virtual ~ProcessHandleInterface() = 0;
 
-  // Returns the handle of the openned process by openProcess() function.
-  // If openProcess() function has not been called before then getHandle()
-  // will return zero.
-  HANDLE getHandle() const;
+         // @throws ::remoting::Exception on an error.
+         virtual void openProcess(unsigned int dwDesiredAccess,
+                          bool bInheritHandle,
+                          ::process_identifier processidentifier) = 0;
 
-  // Returns process module path. Call the openProcess() function before.
-  // @throws ::remoting::Exception on an error.
-  ::string getProcessModulePath();
+         // Returns the handle of the openned process by openProcess() function.
+         // If openProcess() function has not been called before then getHandle()
+         // will return zero.
+         //HANDLE getHandle() const;
 
-//private:
-  HANDLE m_hProcess;
-};
+         // Returns process module path. Call the openProcess() function before.
+         // @throws ::remoting::Exception on an error.
+         virtual ::string getProcessModulePath() = 0;
+
+         //private:
+         //HANDLE m_hProcess;
+      };
+
+
+      // This class is a mere envelop for process handle that will automatically
+      // closed at destructor calling.
+      class CLASS_DECL_ACME ProcessHandle :
+      virtual public ::subsystem::composite<ProcessHandleInterface>
+
+      {
+      public:
+         ProcessHandle();
+         ~ProcessHandle() override;
+
+         // @throws ::remoting::Exception on an error.
+         void openProcess(unsigned int dwDesiredAccess,
+                          bool bInheritHandle,
+                          ::process_identifier processidentifier) override;
+
+         // Returns the handle of the openned process by openProcess() function.
+         // If openProcess() function has not been called before then getHandle()
+         // will return zero.
+//         HANDLE getHandle() const;
+
+         // Returns process module path. Call the openProcess() function before.
+         // @throws ::remoting::Exception on an error.
+         ::string getProcessModulePath() override;
+
+         //private:
+         //HANDLE m_hProcess;
+      };
+   } //namespace subsystem

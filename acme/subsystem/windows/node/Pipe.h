@@ -28,7 +28,7 @@
 #include "acme/subsystem/_common_header.h"
 #include "WindowsEvent.h"
 #include "acme/subsystem/io/Channel.h"
-#include "remoting/remoting_common/thread/LocalMutex.h"
+//#include "remoting/remoting_common/thread/LocalMutex.h"
 
 // This class is not an interface but is a class that contain common
 // methods/source codes for derived classes to work with pipe handles.

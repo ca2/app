@@ -22,17 +22,20 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/_operating_system.h"
-#include "WindowsApplication.h"
+//#include "acme/_operating_system.h"
+#include "OperatingSystemApplication.h"
 
 #include "acme/subsystem/_common_header.h"
-#include "remoting/remoting_common/thread/AutoLock.h"
+////#include "remoting/remoting_common/thread/AutoLock.h"
 
-LocalMutex WindowsApplication::m_MDLMutex;
+namespace subsystem
+{
 
-::comparable_list_base<HWND> WindowsApplication::m_modelessDialogList;
+//LocalMutex OperatingSystemApplication::m_MDLMutex;
 
-WindowsApplication::WindowsApplication(HINSTANCE appInstance,
+//::comparable_list_base<HWND> OperatingSystemApplication::m_modelessDialogList;
+
+OperatingSystemApplication::OperatingSystemApplication(::hinstance appInstance,
                                        const ::scoped_string & scopedstrwindowClassName)
 : m_appInstance(appInstance),
   m_mainWindow(0),
@@ -40,11 +43,11 @@ WindowsApplication::WindowsApplication(HINSTANCE appInstance,
 {
 }
 
-WindowsApplication::~WindowsApplication()
+OperatingSystemApplication::~OperatingSystemApplication()
 {
 }
 
-void WindowsApplication::run()
+void OperatingSystemApplication::run()
 {
   WNDCLASS wndClass;
   registerWindowClass(&wndClass);
@@ -56,7 +59,7 @@ void WindowsApplication::run()
   }
 }
 
-int WindowsApplication::processMessages()
+int OperatingSystemApplication::processMessages()
 {
   MSG msg;
   BOOL ret;
@@ -73,7 +76,7 @@ int WindowsApplication::processMessages()
   return (int)msg.wParam;
 }
 
-void WindowsApplication::createWindow(const ::scoped_string & scopedstrClassName)
+void OperatingSystemApplication::createWindow(const ::scoped_string & scopedstrClassName)
 {
   m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
                               0, 0,
@@ -83,7 +86,7 @@ void WindowsApplication::createWindow(const ::scoped_string & scopedstrClassName
                               0);
 }
 
-void WindowsApplication::registerWindowClass(WNDCLASS *wndClass)
+void OperatingSystemApplication::registerWindowClass(WNDCLASS *wndClass)
 {
   memset(wndClass, 0, sizeof(WNDCLASS));
 
@@ -95,31 +98,31 @@ void WindowsApplication::registerWindowClass(WNDCLASS *wndClass)
   RegisterClass(wndClass);
 }
 
-void WindowsApplication::shutdown()
+void OperatingSystemApplication::shutdown()
 {
   PostMessage(m_mainWindow, WM_CLOSE, 0, 0);
 }
 
-void WindowsApplication::postMessage(UINT scopedstrMessage, WPARAM wParam, LPARAM lParam)
+void OperatingSystemApplication::postMessage(UINT scopedstrMessage, WPARAM wParam, LPARAM lParam)
 {
   PostMessage(m_mainWindow, scopedstrMessage, wParam, lParam);
 }
 
-void WindowsApplication::addModelessDialog(HWND dialogWindow)
+void OperatingSystemApplication::addModelessDialog(HWND dialogWindow)
 {
   AutoLock l(&m_MDLMutex);
 
   m_modelessDialogList.add(dialogWindow);
 }
 
-void WindowsApplication::removeModelessDialog(HWND dialogWindow)
+void OperatingSystemApplication::removeModelessDialog(HWND dialogWindow)
 {
   AutoLock l(&m_MDLMutex);
 
   m_modelessDialogList.erase(dialogWindow);
 }
 
-bool WindowsApplication::processDialogMessage(MSG *msg)
+bool OperatingSystemApplication::processDialogMessage(MSG *msg)
 {
   AutoLock l(&m_MDLMutex);
   for (::list_base<HWND>::iterator iter = m_modelessDialogList.begin();
@@ -131,7 +134,7 @@ bool WindowsApplication::processDialogMessage(MSG *msg)
   return false;
 }
 
-LRESULT CALLBACK WindowsApplication::wndProc(HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK OperatingSystemApplication::wndProc(HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
   switch (msg) {
   case WM_CLOSE:

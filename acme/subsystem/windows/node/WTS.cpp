@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "WTS.h"
 #include "SystemException.h"
-#include "remoting/remoting_common/thread/AutoLock.h"
+//#include "remoting/remoting_common/thread/AutoLock.h"
 //#include "Environment.h"
 #include "PipeImpersonatedThread.h"
 #include "acme/platform/node.h"

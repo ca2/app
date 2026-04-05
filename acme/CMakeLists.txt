@@ -1345,8 +1345,111 @@ list(APPEND library_source
    #subsystem/io/matter.txt
    subsystem/io/OutputStream.cpp
    subsystem/io/OutputStream.h
+   subsystem/node/security/SecurityDescriptor.cpp
+   subsystem/node/security/SecurityDescriptor.h
+   subsystem/node/security/SecurityIdentifier.cpp
+   subsystem/node/security/SecurityIdentifier.h
+   #subsystem/node/SystemException.cpp
+   #subsystem/node/SystemException.h
+   subsystem/node/AnonymousPipe.cpp
+   subsystem/node/AnonymousPipe.h
+   subsystem/node/AnonymousPipeFactory.cpp
+   subsystem/node/AnonymousPipeFactory.h
+   subsystem/node/ApplicationCrashEvents.h
+   subsystem/node/AutoImpersonator.cpp
+   subsystem/node/AutoImpersonator.h
+   subsystem/node/CMakeLists.txt
+   subsystem/node/CurrentConsoleProcess.cpp
+   subsystem/node/CurrentConsoleProcess.h
+   subsystem/node/DynamicLibrary.cpp
+   subsystem/node/DynamicLibrary.h
+   subsystem/node/EmulatedAnonymousPipeFactory.cpp
+   subsystem/node/EmulatedAnonymousPipeFactory.h
+   subsystem/node/HookEventListener.h
+   subsystem/node/Impersonator.cpp
+   subsystem/node/Impersonator.h
+   subsystem/node/InputInjector.cpp
+   subsystem/node/InputInjector.h
+   subsystem/node/Keyboard.cpp
+   subsystem/node/Keyboard.h
+   subsystem/node/LocalOperatingSystemApplication.cpp
+   subsystem/node/LocalOperatingSystemApplication.h
+   subsystem/node/matter.txt
+   subsystem/node/NamedPipe.cpp
+   subsystem/node/NamedPipe.h
+   subsystem/node/OperatingSystemApplication.cpp
+   subsystem/node/OperatingSystemApplication.h
+   subsystem/node/ParentProcess.cpp
+   subsystem/node/Pipe.cpp
+   subsystem/node/Pipe.h
+   subsystem/node/PipeClient.cpp
+   subsystem/node/PipeClient.h
+   subsystem/node/PipeImpersonatedThread.cpp
+   subsystem/node/PipeImpersonatedThread.h
+   subsystem/node/PipeServer.cpp
+   subsystem/node/PipeServer.h
+   subsystem/node/Process.cpp
+   subsystem/node/Process.h
+   subsystem/node/ProcessHandle.cpp
+   subsystem/node/ProcessHandle.h
+   subsystem/node/remoting_win_system.vcxproj
+   subsystem/node/remoting_win_system.vcxproj.filters
+   subsystem/node/remoting_win_system.vcxproj.user
+   subsystem/node/resource.h
+   subsystem/node/Screen.cpp
+   subsystem/node/Screen.h
+   subsystem/node/SecurityAttributes.cpp
+   subsystem/node/SecurityAttributes.h
+   #subsystem/node/SecurityDescriptor.cpp
+   #subsystem/node/SecurityIdentifier.cpp
+   subsystem/node/Service.cpp
+   subsystem/node/Service.h
+   subsystem/node/ServiceControlManagerClient.cpp
+   subsystem/node/ServiceControlManagerClient.h
+   subsystem/node/SharedMemory.cpp
+   subsystem/node/SharedMemory.h
+   subsystem/node/Shell.cpp
+   subsystem/node/Shell.h
+   subsystem/node/string_table.cpp
+   subsystem/node/string_table.h
+   subsystem/node/StringStorage.cpp
    subsystem/node/SystemException.cpp
    subsystem/node/SystemException.h
+   subsystem/node/SystemInformation.cpp
+   subsystem/node/SystemInformation.h
+   subsystem/node/UipiControl.cpp
+   subsystem/node/UipiControl.h
+   subsystem/node/VersionInfo.cpp
+   subsystem/node/VersionInfo.h
+   subsystem/node/win_system.vcproj
+   subsystem/node/WinClipboard.cpp
+   subsystem/node/WinClipboard.h
+   subsystem/node/WinCommandLineArgs.cpp
+   subsystem/node/WinCommandLineArgs.h
+   subsystem/node/WinCursor.cpp
+   subsystem/node/WinCursor.h
+   subsystem/node/WindowsDisplays.cpp
+   subsystem/node/WindowsDisplays.h
+   subsystem/node/WindowsEvent.cpp
+   subsystem/node/WindowsEvent.h
+   subsystem/node/WindowsEventEx.cpp
+   subsystem/node/WindowsEventEx.h
+   subsystem/node/WinHandles.cpp
+   subsystem/node/WinHandles.h
+   subsystem/node/WinHooks.cpp
+   subsystem/node/WinHooks.h
+   subsystem/node/WinProcessCommandLine.cpp
+   subsystem/node/WinProcessCommandLine.h
+   subsystem/node/WinStaLibrary.cpp
+   subsystem/node/WinStaLibrary.h
+   subsystem/node/WinTimeMillis.cpp
+   subsystem/node/WinTimeMillis.h
+   subsystem/node/Workstation.cpp
+   subsystem/node/Workstation.h
+   subsystem/node/WsaStartup.cpp
+   subsystem/node/WsaStartup.h
+   subsystem/node/WTS.cpp
+   subsystem/node/WTS.h
    subsystem/thread/   _.cpp
    subsystem/thread/_.h
    #subsystem/thread/_____debug.xcconfig
@@ -1458,6 +1561,8 @@ list(APPEND library_source
    subsystem/StringParser.cpp
    subsystem/StringParser.h
    #subsystem/StringStorage.cpp
+   subsystem/subsystem.h
+   subsystem/subsystem.cpp
    #subsystem/SystemInformation.cpp
    #subsystem/SystemInformation.h
    #subsystem/UipiControl.cpp
@@ -2510,6 +2615,10 @@ if (${WIN32})
             operating_system/windows/nano/http/request.h
             operating_system/windows/nano/http/session.cpp
             operating_system/windows/nano/http/session.h
+       subsystem/windows/node/security/SecurityDescriptor.cpp
+       subsystem/windows/node/security/SecurityDescriptor.h
+       subsystem/windows/node/security/SecurityIdentifier.cpp
+       subsystem/windows/node/security/SecurityIdentifier.h
        subsystem/windows/node/_.cpp
        subsystem/windows/node/_.h
        #       subsystem/windows/node/_____debug.xcconfig
@@ -2552,22 +2661,22 @@ if (${WIN32})
        #       subsystem/windows/node/remoting_win_system.vcxproj.filters
        #       subsystem/windows/node/remoting_win_system.vcxproj.user
        subsystem/windows/node/resource.h
-       subsystem/windows/node/SCMClient.cpp
-       subsystem/windows/node/SCMClient.h
        subsystem/windows/node/Screen.cpp
        subsystem/windows/node/Screen.h
        subsystem/windows/node/SecurityAttributes.cpp
        subsystem/windows/node/SecurityAttributes.h
-       subsystem/windows/node/SecurityDescriptor.cpp
-       subsystem/windows/node/SecurityIdentifier.cpp
+       #subsystem/windows/node/SecurityDescriptor.cpp
+       #subsystem/windows/node/SecurityIdentifier.cpp
        subsystem/windows/node/Service.cpp
        subsystem/windows/node/Service.h
+       subsystem/windows/node/ServiceControlManagerClient.cpp
+       subsystem/windows/node/ServiceControlManagerClient.h
        subsystem/windows/node/SharedMemory.cpp
        subsystem/windows/node/SharedMemory.h
        subsystem/windows/node/Shell.cpp
        subsystem/windows/node/Shell.h
-       subsystem/windows/node/SystemException.cpp
-       subsystem/windows/node/SystemException.h
+       #subsystem/windows/node/SystemException.cpp
+       #subsystem/windows/node/SystemException.h
        subsystem/windows/node/SystemInformation.cpp
        subsystem/windows/node/SystemInformation.h
        subsystem/windows/node/ThemeLib.cpp
@@ -3462,9 +3571,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   subsystem/subsystem.h
-   subsystem/subsystem.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

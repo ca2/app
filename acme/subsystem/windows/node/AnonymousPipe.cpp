@@ -25,7 +25,7 @@
 #include "acme/_operating_system.h"
 #include "AnonymousPipe.h"
 //#include "remoting/remoting_common/win_system/Environment.h"
-#include "remoting/remoting_common/thread/AutoLock.h"
+//#include "remoting/remoting_common/thread/AutoLock.h"
 
 AnonymousPipe::AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log)
 : Pipe(maxPortionSize),

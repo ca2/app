@@ -25,21 +25,31 @@
 #include "acme/_operating_system.h"
 #include "Keyboard.h"
 
-void Keyboard::getState(BYTE state[256])
-{
-  if (!GetKeyboardState(state)) {
-    throw SystemException();
-  }
-}
 
-void Keyboard::setState(BYTE state[256])
+namespace subsystem
 {
-  if (!SetKeyboardState(state)) {
-    throw SystemException();
-  }
-}
+   void Keyboard::getState(unsigned char state[256])
+   {
+      m_pparticleThis->getState(state);
+      // if (!GetKeyboardState(state)) {
+      //    throw SystemException();
+      // }
+   }
 
-bool Keyboard::isKeyPressed(BYTE vkCode)
-{
-  return (GetAsyncKeyState(vkCode) & 0x8000) != 0;
-}
+   void Keyboard::setState(unsigned char state[256])
+   {
+      //if (!SetKeyboardState(state)) {
+        // throw SystemException();
+      //}
+      m_pparticleThis->setState(state);
+   }
+
+   bool Keyboard::isKeyPressed(unsigned char vkCode)
+   {
+      //return (GetAsyncKeyState(vkCode) & 0x8000) != 0;
+
+      m_pparticleThis->isKeyPressed(vkCode);
+   }
+
+
+} //namespace subsystem

@@ -28,7 +28,7 @@
 
 //#include "remoting/remoting_common/util/::earth::time.h"
 //#include <vector>
-#include "remoting/remoting_common/thread/LocalMutex.h"
+//#include "remoting/remoting_common/thread/LocalMutex.h"
 
 class CLASS_DECL_REMOTING_COMMON WindowsDisplays
 {

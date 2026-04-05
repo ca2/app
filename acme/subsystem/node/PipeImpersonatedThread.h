@@ -30,7 +30,8 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_REMOTING_COMMON PipeImpersonatedThreadInterface : public Thread
+   class CLASS_DECL_ACME PipeImpersonatedThreadInterface :
+   public Thread
    {
    public:
       //PipeImpersonatedThread(HANDLE pipeHandle);
@@ -55,8 +56,8 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
-   class CLASS_DECL_REMOTING_COMMON PipeImpersonatedThread :
-   virtual public ::subsystem::composite< < PipeImpersonatedThreadInterface>
+   class CLASS_DECL_ACME PipeImpersonatedThread :
+   virtual public ::subsystem::composite < PipeImpersonatedThreadInterface>
    {
    public:
       //PipeImpersonatedThread(HANDLE pipeHandle);
@@ -64,7 +65,7 @@ namespace subsystem
        ~PipeImpersonatedThread() override;
 
       void waitUntilImpersonated() override;
-      bool getImpersonationSuccess() override
+      bool getImpersonationSuccess() override;
       ::string getFaultReason() override;
 
    //private:

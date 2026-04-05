@@ -26,7 +26,7 @@
 #include "WindowsApplication.h"
 
 #include "acme/subsystem/_common_header.h"
-#include "remoting/remoting_common/thread/AutoLock.h"
+//#include "remoting/remoting_common/thread/AutoLock.h"
 
 LocalMutex WindowsApplication::m_MDLMutex;
 

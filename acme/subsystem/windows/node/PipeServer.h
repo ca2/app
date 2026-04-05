@@ -28,7 +28,7 @@
 #include "acme/subsystem/_common_header.h"
 
 #include "NamedPipe.h"
-#include "remoting/remoting_common/thread/LocalMutex.h"
+//#include "remoting/remoting_common/thread/LocalMutex.h"
 #include "SecurityAttributes.h"
 #include "DynamicLibrary.h"
 

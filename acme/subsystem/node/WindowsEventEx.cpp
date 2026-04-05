@@ -22,32 +22,32 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/_operating_system.h"
-#include "../WindowsEventEx.h"
-#include "acme/subsystem/Exception.h"
-#include <Aclapi.h>
-
-WindowsEventEx::WindowsEventEx(const ::scoped_string & scopedstrName)
-: WindowsEvent(scopedstrName)
-{
-  bool needToInit = GetLastError() != ERROR_ALREADY_EXISTS;
-  if (needToInit) {
-    setAccessToAll(getHandle());
-  }
-}
-
-void WindowsEventEx::setAccessToAll(HANDLE objHandle)
-{
-  DWORD errorCode = SetSecurityInfo(objHandle, SE_KERNEL_OBJECT,
-                                    DACL_SECURITY_INFORMATION, // Modify DACL
-                                    0,
-                                    0,
-                                    0, // Pointer to DACL (0 = access to all)
-                                    0);
-  if (errorCode != ERROR_SUCCESS &&
-      errorCode != ERROR_NO_SECURITY_ON_OBJECT) {
-    ::string errMess;
-    errMess.formatf("Cannot SetSecurityInfo with error = {}", (int)errorCode);
-    throw ::remoting::Exception(errMess);
-  }
-}
+// #include "acme/_operating_system.h"
+// #include "../WindowsEventEx.h"
+// #include "acme/subsystem/Exception.h"
+// #include <Aclapi.h>
+//
+// WindowsEventEx::WindowsEventEx(const ::scoped_string & scopedstrName)
+// : WindowsEvent(scopedstrName)
+// {
+//   bool needToInit = GetLastError() != ERROR_ALREADY_EXISTS;
+//   if (needToInit) {
+//     setAccessToAll(getHandle());
+//   }
+// }
+//
+// void WindowsEventEx::setAccessToAll(HANDLE objHandle)
+// {
+//   DWORD errorCode = SetSecurityInfo(objHandle, SE_KERNEL_OBJECT,
+//                                     DACL_SECURITY_INFORMATION, // Modify DACL
+//                                     0,
+//                                     0,
+//                                     0, // Pointer to DACL (0 = access to all)
+//                                     0);
+//   if (errorCode != ERROR_SUCCESS &&
+//       errorCode != ERROR_NO_SECURITY_ON_OBJECT) {
+//     ::string errMess;
+//     errMess.formatf("Cannot SetSecurityInfo with error = {}", (int)errorCode);
+//     throw ::remoting::Exception(errMess);
+//   }
+// }

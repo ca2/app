@@ -1,4 +1,4 @@
-// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -21,52 +21,28 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
-#pragma once
-
-
-#include "acme/subsystem/_common_header.h"
-#include "NamedPipe.h"
-
+#include "framework.h"
+#include "CommandLineArguments.h"
 
 namespace subsystem
 {
-   /**
-    * Pipe client factory.
-    */
-   class CLASS_DECL_ACME PipeClientInterface :
-   virtual public ::subsystem::particle_interface
+
+
+   CommandLineArguments::CommandLineArguments()
    {
-   public:
+   }
 
-
-      virtual ~PipeClientInterface() =0;
-
-      virtual NamedPipe *connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) = 0;
-
-   //private:
-
-
-      //unsigned int m_maxPortionSize;
-   };
-
-   /**
- * Pipe client factory.
- */
-   class CLASS_DECL_ACME PipeClient :
-   virtual public ::subsystem::composite<PipeClientInterface>
+   CommandLineArguments::~CommandLineArguments()
    {
-   public:
+   }
 
-      PipeClient();
+   ::string_array CommandLineArguments::getArguments() const
+   {
 
-      NamedPipe *connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) override;
+      return m_straArguments;
 
-   // private:
-   //    PipeClient();
-   //
-   //    unsigned int m_maxPortionSize;
-   };
+   }
 
-   //// __PIPECLIENT_H__
-} //namespace subsystem
+} // namespace subsystem
+
+

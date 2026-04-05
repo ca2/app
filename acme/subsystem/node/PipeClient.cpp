@@ -26,43 +26,49 @@
 #include "PipeClient.h"
 #include "acme/subsystem/Exception.h"
 
-PipeClient::PipeClient()
+
+namespace subsystem
 {
-}
+   PipeClient::PipeClient()
+   {
+   }
 
-NamedPipe *PipeClient::connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize)
-{
-  ::string pipeName;
-  pipeName.formatf("\\\\.\\pipe\\{}", ::string(scopedstrName).c_str());
-
-  HANDLE hPipe;
-  hPipe = CreateFile(::wstring(pipeName),  // pipe name
-                     GENERIC_READ |         // read and write access
-                     GENERIC_WRITE,
-                     0,                     // no sharing
-                     NULL,                  // default security attributes
-                     OPEN_EXISTING,         // opens existing pipe
-                     FILE_FLAG_OVERLAPPED,  // asynchronous mode
-                     NULL);                 // no template file
-
-  if (hPipe == INVALID_HANDLE_VALUE) {
-    int errCode = GetLastError();
-    ::string errMess;
-    errMess.formatf("Connect to pipe server failed, error code = {}", errCode);
-    throw ::remoting::Exception(errMess);
-  }
-
-  DWORD dwMode = PIPE_READMODE_BYTE;
-  if (!SetNamedPipeHandleState(hPipe,   // pipe handle
-                               &dwMode,   // new pipe mode
-                               NULL,      // don't set maximum bytes
-                               NULL)      // don't set maximum time
-                               ) {
-    int errCode = GetLastError();
-    ::string errMess;
-    errMess.formatf("SetNamedPipeHandleState failed, error code = {}", errCode);
-    throw ::remoting::Exception(errMess);
-  }
-
-  return new NamedPipe(hPipe, maxPortionSize, false);
-}
+   NamedPipe *PipeClient::connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize)
+   {
+      return m_pparticleThis->connect(scopedstrName, maxPortionSize);
+      //}
+      // ::string pipeName;
+      // pipeName.formatf("\\\\.\\pipe\\{}", ::string(scopedstrName).c_str());
+      //
+      // HANDLE hPipe;
+      // hPipe = CreateFile(::wstring(pipeName),  // pipe name
+      //                    GENERIC_READ |         // read and write access
+      //                    GENERIC_WRITE,
+      //                    0,                     // no sharing
+      //                    NULL,                  // default security attributes
+      //                    OPEN_EXISTING,         // opens existing pipe
+      //                    FILE_FLAG_OVERLAPPED,  // asynchronous mode
+      //                    NULL);                 // no template file
+      //
+      // if (hPipe == INVALID_HANDLE_VALUE) {
+      //   int errCode = GetLastError();
+      //   ::string errMess;
+      //   errMess.formatf("Connect to pipe server failed, error code = {}", errCode);
+      //   throw ::remoting::Exception(errMess);
+      // }
+      //
+      // DWORD dwMode = PIPE_READMODE_BYTE;
+      // if (!SetNamedPipeHandleState(hPipe,   // pipe handle
+      //                              &dwMode,   // new pipe mode
+      //                              NULL,      // don't set maximum bytes
+      //                              NULL)      // don't set maximum time
+      //                              ) {
+      //   int errCode = GetLastError();
+      //   ::string errMess;
+      //   errMess.formatf("SetNamedPipeHandleState failed, error code = {}", errCode);
+      //   throw ::remoting::Exception(errMess);
+      // }
+      //
+      // return new NamedPipe(hPipe, maxPortionSize, false);
+   }
+} // namespace subsystem

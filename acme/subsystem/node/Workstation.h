@@ -25,27 +25,58 @@
 #pragma once
 
 
-#include "remoting/remoting_common/util/winhdr.h"
+//#include "remoting/remoting_common/util/winhdr.h"
 
-#include "SystemException.h"
+//#include "SystemException.h"
+#include "acme/subsystem/particle.h"
 
-/**
- * Wrapper on WinAPI workstation functions.
- */
-class CLASS_DECL_REMOTING_COMMON Workstation
+
+namespace subsystem
 {
-public:
-  /**
-   * Locks workstation.
-   * @throws SystemException on fail.
-   */
-  static void lock();
-  /**
-   * Logs off interactive user.
-   * @throws SystemException on fail.
-   * @remark caller must be run on interactive session.
-   */
-  static void logOff();
-};
+   /**
+    * Wrapper on WinAPI workstation functions.
+    */
+   class CLASS_DECL_ACME WorkstationInterface :
+      virtual public ::subsystem::particle_interface
+   {
+   public:
 
 
+      virtual ~WorkstationInterface()=0;
+      /**
+       * Locks workstation.
+       * @throws SystemException on fail.
+       */
+      virtual void workstation_lock()=0;
+      /**
+       * Logs off interactive user.
+       * @throws SystemException on fail.
+       * @remark caller must be run on interactive session.
+       */
+      virtual void workstation_logOff() = 0;
+   };
+
+
+   /**
+    * Wrapper on WinAPI workstation functions.
+    */
+   class CLASS_DECL_ACME Workstation :
+      virtual public ::subsystem::composite<WorkstationInterface>
+   {
+   public:
+
+      Workstation();
+      ~Workstation() override;
+      /**
+       * Locks workstation.
+       * @throws SystemException on fail.
+       */
+      void workstation_lock() override;
+      /**
+       * Logs off interactive user.
+       * @throws SystemException on fail.
+       * @remark caller must be run on interactive session.
+       */
+      void workstation_logOff() override;
+   };
+} // namespace  subsystem

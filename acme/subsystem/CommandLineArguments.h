@@ -1,4 +1,4 @@
-// Copyright (C) 2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -25,41 +25,26 @@
 #pragma once
 
 
-#include "WinCommandLineArgs.h"
+#include "acme/subsystem/_common_header.h"
+//#include <vector>
 
-// This class is a primitive command line parser
-class CLASS_DECL_REMOTING_COMMON WinProcessCommandLine
+namespace subsystem
 {
-public:
-  WinProcessCommandLine();
-  virtual ~WinProcessCommandLine();
+   // This class produce initial parse of a command line.
+   // Each word or expression will be saved at self index.
+   class CLASS_DECL_ACME CommandLineArguments
+   {
+   public:
+      CommandLineArguments();
+      virtual ~CommandLineArguments();
 
-  // returns the number of arguments in command line
-  // for example, program: help
-  size_t getArgumentsCount();
+      // Copies internal argument ::array_base to the out variable.
+      ::string_array getArguments() const;
 
-  // returns the number of options in command line
-  // for example, -V=123456
-  size_t getOptionsCount();
+//   protected:
+      ::string_array m_straArguments;
+   };
 
-  // returns the value of parameter by valName
-  bool findOptionValue(const ::string valName, ::string &  strOut);
-
-  // returns the argument value with index
-  bool getArgument(size_t index, ::string &  strOut);
-
-  // returns the option value with index
-  bool getOption(size_t index, ::string &  strOut);
-
-//protected:
-  WinCommandLineArgs *m_wcla;
-
-  ::string_array m_strParam;
-  ::array_base<::pair<::string, ::string>> m_strParams;
-
-//private:
-  void optionParser(::string & out);
-
-};
-
+   //// __COMMANDLINEARGS_H__
+} // namespace subsystem
 

@@ -56,7 +56,7 @@ namespace subsystem
       virtual ~NamedPipeInterface() = 0;
 
 
-      //virtual void initialize_named_pipe_interface(HANDLE hPipe, unsigned int maxPortionSize, bool asServer);
+      virtual void initialize_named_pipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) = 0;
 
       /**
        * Closes transport.
@@ -85,7 +85,7 @@ namespace subsystem
 
       virtual size_t available() = 0 ; //{ return 0; };
 
-      //virtual HANDLE getHandle() const;
+      virtual FileInterface * getFile() const = 0;
 
       //private:
       virtual void checkPipeHandle() = 0;
@@ -112,12 +112,15 @@ namespace subsystem
       /**
        * Creates pipe transport.
        */
-      //NamedPipe(HANDLE hPipe, unsigned int maxPortionSize, bool asServer);
+      NamedPipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer);
       NamedPipe();
       /**
        * Destroys instance.
        */
       ~NamedPipe() override;
+
+
+      void initialize_named_pipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) override;
 
       /**
        * Closes transport.

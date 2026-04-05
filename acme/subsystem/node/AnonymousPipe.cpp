@@ -28,13 +28,14 @@
 //#include "remoting/remoting_common/thread/AutoLock.h"
 namespace subsystem
 {
-   AnonymousPipe::AnonymousPipe()
-   // : Pipe(maxPortionSize),
+   AnonymousPipe::AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+    : Pipe(maxPortionSize)
    //   m_hWrite(hWrite),
    //   m_hRead(hRead),
    //   m_neededToClose(true),
    //   m_log(log)
    {
+      initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
    }
 
    AnonymousPipe::~AnonymousPipe()
@@ -48,14 +49,15 @@ namespace subsystem
    }
 
    //
-   // AnonymousPipe::AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log)
+   void AnonymousPipe::initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
    // : Pipe(maxPortionSize),
    //   m_hWrite(hWrite),
    //   m_hRead(hRead),
    //   m_neededToClose(true),
    //   m_log(log)
-   // {
-   // }
+   {
+      m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log)
+   }
 
    void AnonymousPipe::close()
    {

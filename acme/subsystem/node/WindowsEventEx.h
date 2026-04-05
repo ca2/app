@@ -25,15 +25,15 @@
 #pragma once
 
 
-#include "win-system/WindowsEvent.h"
-
-class CLASS_DECL_REMOTING_COMMON WindowsEventEx : public WindowsEvent
-{
-public:
-  WindowsEventEx(const ::scoped_string & scopedstrName = 0);
-
-protected:
-  void setAccessToAll(HANDLE objHandle);
-};
-
-//// __WINDOWSEVENT_H__
+// #include "win-system/WindowsEvent.h"
+//
+// class CLASS_DECL_REMOTING_COMMON WindowsEventEx : public WindowsEvent
+// {
+// public:
+//   WindowsEventEx(const ::scoped_string & scopedstrName = 0);
+//
+// protected:
+//   void setAccessToAll(HANDLE objHandle);
+// };
+//
+// //// __WINDOWSEVENT_H__

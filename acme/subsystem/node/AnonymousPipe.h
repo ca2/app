@@ -38,7 +38,7 @@ namespace subsystem
 
 
    class CLASS_DECL_ACME AnonymousPipeInterface :
-   virtual public Pipe,
+   virtual public PipeInterface,
    virtual public Channel
    {
    public:
@@ -49,6 +49,7 @@ namespace subsystem
       //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
       virtual ~AnonymousPipeInterface() = 0;
 
+      virtual void initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log) = 0;
       /**
        * Closes transport.
        *
@@ -120,9 +121,12 @@ namespace subsystem
       // function calling.
       // @param hRead is a read handle getting by the CreatePipe()
       // function calling but is not the same as for hWrite.
-      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
-      AnonymousPipe();
+      AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log);
+      //AnonymousPipe();
       ~AnonymousPipe() override;
+
+
+      void initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log) override;
 
       /**
        * Closes transport.

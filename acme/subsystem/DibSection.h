@@ -52,7 +52,7 @@ namespace subsystem
       virtual ~DibSectionInterface() = 0;
 
 
-      void initialize_dib_section(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindow = {});
+      virtual void initialize_dib_section(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindow = {}) = 0;
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
@@ -128,7 +128,10 @@ namespace subsystem
       // It may be changed many times later. Note that changed DC must be compatible with
       // the DIB section.
       DibSection(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {});
-      virtual ~DibSection();
+      ~DibSection() override;
+
+
+      void initialize_dib_section(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {}) override;
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.

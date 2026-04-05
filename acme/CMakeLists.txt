@@ -1367,10 +1367,14 @@ list(APPEND library_source
    subsystem/node/CurrentConsoleProcess.h
    subsystem/node/Cursor.cpp
    subsystem/node/Cursor.h
+   subsystem/node/Displays.cpp
+   subsystem/node/Displays.h
    subsystem/node/DynamicLibrary.cpp
    subsystem/node/DynamicLibrary.h
    subsystem/node/EmulatedAnonymousPipeFactory.cpp
    subsystem/node/EmulatedAnonymousPipeFactory.h
+   subsystem/node/File.cpp
+   subsystem/node/File.h
    subsystem/node/HookEventListener.h
    subsystem/node/Impersonator.cpp
    subsystem/node/Impersonator.h
@@ -1426,31 +1430,29 @@ list(APPEND library_source
    subsystem/node/VersionInfo.cpp
    subsystem/node/VersionInfo.h
    subsystem/node/win_system.vcproj
-   subsystem/node/WinCommandLineArgs.cpp
-   subsystem/node/WinCommandLineArgs.h
-   subsystem/node/WindowsDisplays.cpp
-   subsystem/node/WindowsDisplays.h
+   #subsystem/node/WinCommandLineArgs.cpp
+   #subsystem/node/WinCommandLineArgs.h
    subsystem/node/WindowsEvent.cpp
    subsystem/node/WindowsEvent.h
    subsystem/node/WindowsEventEx.cpp
    subsystem/node/WindowsEventEx.h
-   subsystem/node/WinHandles.cpp
-   subsystem/node/WinHandles.h
-   subsystem/node/WinHooks.cpp
-   subsystem/node/WinHooks.h
-   subsystem/node/WinProcessCommandLine.cpp
-   subsystem/node/WinProcessCommandLine.h
-   subsystem/node/WinStaLibrary.cpp
-   subsystem/node/WinStaLibrary.h
-   subsystem/node/WinTimeMillis.cpp
-   subsystem/node/WinTimeMillis.h
+   #subsystem/node/WinHandles.cpp
+   #subsystem/node/WinHandles.h
+   #subsystem/node/WinHooks.cpp
+   #subsystem/node/WinHooks.h
+   #subsystem/node/WinProcessCommandLine.cpp
+   #subsystem/node/WinProcessCommandLine.h
+   #subsystem/node/WinStaLibrary.cpp
+   #subsystem/node/WinStaLibrary.h
+   #subsystem/node/WinTimeMillis.cpp
+   #subsystem/node/WinTimeMillis.h
    subsystem/node/Workstation.cpp
    subsystem/node/Workstation.h
-   subsystem/node/WsaStartup.cpp
-   subsystem/node/WsaStartup.h
-   subsystem/node/WTS.cpp
-   subsystem/node/WTS.h
-   subsystem/thread/   _.cpp
+   #subsystem/node/WsaStartup.cpp
+   #subsystem/node/WsaStartup.h
+   #subsystem/node/WTS.cpp
+   #subsystem/node/WTS.h
+   subsystem/thread/_.cpp
    subsystem/thread/_.h
    #subsystem/thread/_____debug.xcconfig
    #subsystem/thread/_____release.xcconfig
@@ -1497,6 +1499,8 @@ list(APPEND library_source
    #subsystem/ApplicationCrashEvents.h
    #subsystem/AutoImpersonator.cpp
    #subsystem/AutoImpersonator.h
+   subsystem/CommandLineArguments.cpp
+   subsystem/CommandLineArguments.h
    #subsystem/CurrentConsoleProcess.cpp
    #subsystem/CurrentConsoleProcess.h
    subsystem/DibSection.cpp
@@ -2641,6 +2645,8 @@ if (${WIN32})
        subsystem/windows/node/Cursor.cpp
        subsystem/windows/node/Cursor.h
        #subsystem/windows/node/CMakeLists.txt
+       subsystem/windows/node/Displays.cpp
+       subsystem/windows/node/Displays.h
        subsystem/windows/node/LocalWindowsApplication.h
        #subsystem/windows/node/matter.txt
        subsystem/windows/node/NamedPipe.cpp
@@ -2690,22 +2696,20 @@ if (${WIN32})
        subsystem/windows/node/VersionInfo.cpp
        subsystem/windows/node/VersionInfo.h
        subsystem/windows/node/win_system.vcproj
-       subsystem/windows/node/WinCommandLineArgs.cpp
-       subsystem/windows/node/WinCommandLineArgs.h
        subsystem/windows/node/WindowsApplication.cpp
        subsystem/windows/node/WindowsApplication.h
-       subsystem/windows/node/WindowsDisplays.cpp
-       subsystem/windows/node/WindowsDisplays.h
+       subsystem/windows/node/WindowsCommandLineArguments.cpp
+       subsystem/windows/node/WindowsCommandLineArguments.h
        subsystem/windows/node/WindowsEvent.cpp
        subsystem/windows/node/WindowsEvent.h
        subsystem/windows/node/WindowsEventEx.cpp
        subsystem/windows/node/WindowsEventEx.h
+       subsystem/windows/node/WindowsProcessCommandLine.cpp
+       subsystem/windows/node/WindowsProcessCommandLine.h
        subsystem/windows/node/WinHandles.cpp
        subsystem/windows/node/WinHandles.h
        subsystem/windows/node/WinHooks.cpp
        subsystem/windows/node/WinHooks.h
-       subsystem/windows/node/WinProcessCommandLine.cpp
-       subsystem/windows/node/WinProcessCommandLine.h
        subsystem/windows/node/WinStaLibrary.cpp
        subsystem/windows/node/WinStaLibrary.h
        subsystem/windows/node/WinTimeMillis.cpp

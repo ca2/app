@@ -36,7 +36,8 @@ namespace subsystem
    /**
     * Helper class with only static methods to get strings from resources.
     */
-   class CLASS_DECL_ACME string_table
+   class CLASS_DECL_ACME string_table :
+   virtual public ::particle
    {
    public:
 

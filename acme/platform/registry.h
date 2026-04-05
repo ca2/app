@@ -18,35 +18,68 @@ namespace subsystem
    class registry_key_interface;
 
 
-   class CLASS_DECL_ACME registry_interface :
-      virtual public ::subsystem::particle_interface
+   /* --------------------------------------------------------------------------
+      Types
+      -------------------------------------------------------------------------- */
+
+   enum enum_registry {
+      e_registry_none   = 0,
+      e_registry_string     = 1,
+      e_registry_dword = 2,
+      e_registry_binary = 3
+  };
+
+  //  typedef enum RegXStatus {
+  //     REGX_OK = 0,
+  //     REGX_ERR_INVALID_ARG = -1,
+  //     REGX_ERR_NOT_FOUND   = -2,
+  //     REGX_ERR_EXISTS      = -3,
+  //     REGX_ERR_IO          = -4,
+  //     REGX_ERR_NOMEM       = -5,
+  //     REGX_ERR_TYPE        = -6,
+  //     REGX_ERR_BUFFER      = -7
+  // } RegXStatus;
+  //
+   /* --------------------------------------------------------------------------
+      Root key strings
+      -------------------------------------------------------------------------- */
+
+#define REGX_HKCU "HKCU"
+#define REGX_HKLM "HKLM"
+#define REGX_HKCR "HKCR"
+#define REGX_HKU  "HKU"
+
+
+
+   class CLASS_DECL_ACME registry :
+      virtual public ::particle
    {
    public:
 
       ::file::path   m_path;
 
 
-      virtual void open_from_file(const ::file::path & path) = 0;
+      virtual void open_from_file(const ::file::path & path);
 
-      virtual void flush() = 0;
+      virtual void flush();
 
-      virtual void close() = 0;
+      virtual void close();
 
-      virtual ::pointer < registry_key_interface > open_key(const ::file::path & path) = 0;
+      virtual ::pointer < registry_key_interface > open_key(const ::file::path & path);
 
-      virtual ::pointer < registry_key_interface > create_key(const ::file::path & path) = 0;
+      virtual ::pointer < registry_key_interface > create_key(const ::file::path & path);
 
-      virtual bool delete_key(const ::file::path & path) = 0;
+      virtual bool delete_key(const ::file::path & path);
 
 
    };
 
-   class CLASS_DECL_ACME registry_key_interface :
-   virtual public ::particle
+   class CLASS_DECL_ACME registry_key :
+      virtual public ::particle
    {
    public:
 
-      ::pointer < registry_interface > m_pregistry;
+      ::pointer < registry > m_pregistry;
       ::file::path m_path;
 
 
@@ -69,7 +102,11 @@ namespace subsystem
               void *buf = malloc(size);
               RegXGetBinary(key, "Blob", buf, &size);
       */
-      ::memory get_binary(const ::scoped_string & scopedstr) = 0;
+      virtual ::memory get_binary(const ::scoped_string & scopedstr) = 0;
+
+      virtual void erase_payload(const ::scoped_string & scopedstr) = 0;
+      virtual bool has_payload(const ::scoped_string & scopedstr) = 0;
+      virtual enum_registry payload_type(const ::scoped_string & scopedstr) = 0;
 
    };
 
@@ -86,37 +123,6 @@ namespace subsystem
 //       registry *owner;
 //       std::string path;
 //    };
-
-/* --------------------------------------------------------------------------
-   Types
-   -------------------------------------------------------------------------- */
-
-typedef enum RegXType {
-    REGX_NONE   = 0,
-    REGX_SZ     = 1,
-    REGX_DWORD  = 2,
-    REGX_BINARY = 3
-} RegXType;
-
-typedef enum RegXStatus {
-    REGX_OK = 0,
-    REGX_ERR_INVALID_ARG = -1,
-    REGX_ERR_NOT_FOUND   = -2,
-    REGX_ERR_EXISTS      = -3,
-    REGX_ERR_IO          = -4,
-    REGX_ERR_NOMEM       = -5,
-    REGX_ERR_TYPE        = -6,
-    REGX_ERR_BUFFER      = -7
-} RegXStatus;
-
-/* --------------------------------------------------------------------------
-   Root key strings
-   -------------------------------------------------------------------------- */
-
-#define REGX_HKCU "HKCU"
-#define REGX_HKLM "HKLM"
-#define REGX_HKCR "HKCR"
-#define REGX_HKU  "HKU"
 
 /* --------------------------------------------------------------------------
    Registry lifecycle
@@ -197,9 +203,9 @@ typedef enum RegXStatus {
         char *buf = malloc(len);
         RegXGetString(key, "UserName", buf, &len);
 */
-int RegXGetString(registry_key *key, const char *name, char *buf, size_t *inout_len);
+//int RegXGetString(registry_key *key, const char *name, char *buf, size_t *inout_len);
 
-int RegXGetDword(registry_key *key, const char *name, uint32_t *out_value);
+//int RegXGetDword(registry_key *key, const char *name, uint32_t *out_value);
 
 /*
     Gets a binary value.
@@ -210,15 +216,15 @@ int RegXGetDword(registry_key *key, const char *name, uint32_t *out_value);
         void *buf = malloc(size);
         RegXGetBinary(key, "Blob", buf, &size);
 */
-int RegXGetBinary(registry_key *key, const char *name, void *buf, size_t *inout_len);
+//int RegXGetBinary(registry_key *key, const char *name, void *buf, size_t *inout_len);
 
 /* --------------------------------------------------------------------------
    Value utility
    -------------------------------------------------------------------------- */
 
-int RegXDeleteValue(registry_key *key, const char *name);
-int RegXValueExists(registry_key *key, const char *name);
-int RegXGetValueType(registry_key *key, const char *name, RegXType *out_type);
+//int RegXDeleteValue(registry_key *key, const char *name);
+//int RegXValueExists(registry_key *key, const char *name);
+//int RegXGetValueType(registry_key *key, const char *name, RegXType *out_type);
 
 /* --------------------------------------------------------------------------
    Error strings

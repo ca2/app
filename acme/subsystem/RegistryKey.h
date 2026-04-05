@@ -126,7 +126,7 @@ private:
    //
    // Returns return value of RegEnumKey if it's
    // not equal to ERROR_MORE_DATA.
-   DWORD enumKey(DWORD i, ::string & name);
+   unsigned int enumKey(unsigned int i, ::string & name);
    
    /**
     * Opens subkey or creates it if it's does not exists.

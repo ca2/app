@@ -26,39 +26,39 @@
 #include "WindowsEvent.h"
 #include "acme/subsystem/Exception.h"
 
-
-namespace subsystem
-{
-   WindowsEvent::WindowsEvent(const ::scoped_string & scopedstrName)
-   {
-      m_hEvent = CreateEvent(0, FALSE, FALSE, ::wstring(scopedstrName));
-      if (m_hEvent == 0) {
-         int errCode = GetLastError();
-         ::string errMess;
-         errMess.formatf("Cannot create windows event with error = {}", errCode);
-         throw ::remoting::Exception(errMess);
-      }
-   }
-
-   WindowsEvent::~WindowsEvent()
-   {
-      if (m_hEvent) {
-         CloseHandle(m_hEvent);
-      }
-   }
-
-   void WindowsEvent::notify()
-   {
-      if (m_hEvent) {
-         SetEvent(m_hEvent);
-      }
-   }
-
-   void WindowsEvent::waitForEvent(DWORD milliseconds)
-   {
-      // FIXME: Check WaitForSingleObject result to an error
-      if (m_hEvent) {
-         WaitForSingleObject(m_hEvent, milliseconds);
-      }
-   }
-} // namespace subsystem
+//
+// namespace subsystem
+// {
+//    WindowsEvent::WindowsEvent(const ::scoped_string & scopedstrName)
+//    {
+//       m_hEvent = CreateEvent(0, FALSE, FALSE, ::wstring(scopedstrName));
+//       if (m_hEvent == 0) {
+//          int errCode = GetLastError();
+//          ::string errMess;
+//          errMess.formatf("Cannot create windows event with error = {}", errCode);
+//          throw ::remoting::Exception(errMess);
+//       }
+//    }
+//
+//    WindowsEvent::~WindowsEvent()
+//    {
+//       if (m_hEvent) {
+//          CloseHandle(m_hEvent);
+//       }
+//    }
+//
+//    void WindowsEvent::notify()
+//    {
+//       if (m_hEvent) {
+//          SetEvent(m_hEvent);
+//       }
+//    }
+//
+//    void WindowsEvent::waitForEvent(DWORD milliseconds)
+//    {
+//       // FIXME: Check WaitForSingleObject result to an error
+//       if (m_hEvent) {
+//          WaitForSingleObject(m_hEvent, milliseconds);
+//       }
+//    }
+// } // namespace subsystem

@@ -22,27 +22,27 @@
 //-------------------------------------------------------------------------
 //
 
-#pragma once
-
-
-#include "acme/subsystem/_common_header.h"
-
-namespace subsystem
-{
-   class CLASS_DECL_ACME WindowsEvent
-   {
-   public:
-      WindowsEvent(const ::scoped_string & scopedstrName = 0);
-      virtual ~WindowsEvent();
-
-      void notify();
-      void waitForEvent(DWORD milliseconds = INFINITE);
-
-      HANDLE getHandle() const { return m_hEvent; }
-
-   //protected:
-      HANDLE m_hEvent;
-   };
-
-   //// __WINDOWSEVENT_H__
-} // namespace subsystem
+// #pragma once
+//
+//
+// #include "acme/subsystem/_common_header.h"
+//
+// namespace subsystem
+// {
+//    class CLASS_DECL_ACME WindowsEvent
+//    {
+//    public:
+//       WindowsEvent(const ::scoped_string & scopedstrName = 0);
+//       virtual ~WindowsEvent();
+//
+//       void notify();
+//       void waitForEvent(DWORD milliseconds = INFINITE);
+//
+//       HANDLE getHandle() const { return m_hEvent; }
+//
+//    //protected:
+//       HANDLE m_hEvent;
+//    };
+//
+//    //// __WINDOWSEVENT_H__
+// } // namespace subsystem

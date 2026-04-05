@@ -41,14 +41,27 @@ namespace subsystem
       if (!m_pregistryCurrentUser)
       {
 
+         construct_newø(m_pregistryCurrentUser);
+
+         m_pregistryCurrentUser->open_from_file(REGX_HKCU);
 
       }
-      return HKEY_CURRENT_USER;
+      return m_pregistryCurrentUser;
+      //return HKEY_CURRENT_USER;
    }
 
-   ::subsystem::registry * Registry::getCurrentLocalMachineKey()
+   ::subsystem::registry * Registry::getLocalMachineKey()
    {
-      return HKEY_LOCAL_MACHINE;
+      if (!m_pregistryLocalMachine)
+      {
+
+         construct_newø(m_pregistryLocalMachine);
+
+         m_pregistryLocalMachine->open_from_file(REGX_HKLM);
+
+      }
+      return m_pregistryLocalMachine;
+      //return HKEY_LOCAL_MACHINE;
    }
 
 

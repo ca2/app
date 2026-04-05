@@ -1,4 +1,4 @@
-// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -25,48 +25,37 @@
 #pragma once
 
 
+#include "remoting/remoting_common/region/Point.h"
 #include "acme/subsystem/_common_header.h"
-#include "NamedPipe.h"
-
 
 namespace subsystem
 {
-   /**
-    * Pipe client factory.
-    */
-   class CLASS_DECL_ACME PipeClientInterface :
+
+class CLASS_DECL_ACME CursorInterface :
    virtual public ::subsystem::particle_interface
+{
+public:
+  //Cursor();
+  virtual ~CursorInterface() = 0;
+
+  virtual Point getCursorPos() const = 0;
+
+
+};
+
+
+   class CLASS_DECL_ACME Cursor :
+   virtual public ::subsystem::composite<CursorInterface>
    {
    public:
+      Cursor();
+      ~Cursor() override;
+
+      Point getCursorPos() const override;
 
 
-      virtual ~PipeClientInterface() =0;
-
-      virtual NamedPipe *connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) = 0;
-
-   //private:
-
-
-      //unsigned int m_maxPortionSize;
    };
 
-   /**
- * Pipe client factory.
- */
-   class CLASS_DECL_ACME PipeClient :
-   virtual public ::subsystem::composite<PipeClientInterface>
-   {
-   public:
-
-      PipeClient();
-
-      NamedPipe *connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) override;
-
-   // private:
-   //    PipeClient();
-   //
-   //    unsigned int m_maxPortionSize;
-   };
-
-   //// __PIPECLIENT_H__
-} //namespace subsystem
+//// __WINCURSOR_H__
+///
+} // namespace subsystem

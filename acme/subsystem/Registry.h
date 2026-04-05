@@ -30,16 +30,16 @@
 namespace subsystem
 {
 
-   enum enum_registry
-   {
-
-      e_registry_string = 1,
-      e_registry_expand_string = 2,
-      e_registry_binary = 3,
-      e_registry_dword = 4,
-      e_registry_qword = 5,
-
-   };
+   // enum enum_windows_registry
+   // {
+   //
+   //    e_registry_string = 1,
+   //    e_registry_expand_string = 2,
+   //    e_registry_binary = 3,
+   //    e_registry_dword = 4,
+   //    e_registry_qword = 5,
+   //
+   // };
 
 
 class CLASS_DECL_ACME Registry :

@@ -33,6 +33,11 @@ namespace subsystem
    using LogWriter = ::particle;
 
 
+   class File;
+
+   class FileInterface;
+
+
 } // namespace subsystem
 
 

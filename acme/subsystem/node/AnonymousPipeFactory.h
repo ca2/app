@@ -39,7 +39,7 @@ namespace subsystem
       //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
       virtual ~AnonymousPipeFactoryInterface() = 0;
 
-      void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
+      virtual void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
 
       // This function generates the ::pair of the AnonymousPipe
       // objects that connected to each other.

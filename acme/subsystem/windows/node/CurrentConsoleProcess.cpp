@@ -27,7 +27,7 @@
 
 #include "remoting/remoting_common/win_system/WinStaLibrary.h"
 //#include "remoting/remoting_common/win_system/Environment.h"
-#include "remoting/remoting_common/win_system/SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
 #include "remoting/remoting_common/win_system/Workstation.h"
 #include "remoting/remoting_common/win_system/WTS.h"
 

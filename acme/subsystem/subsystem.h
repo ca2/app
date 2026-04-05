@@ -31,6 +31,7 @@ namespace subsystem
       ::pointer < ::subsystem::string_table >     m_pstringtable;
       ::pointer < ::subsystem::resource_loader >     m_presourceloader;
       ::pointer < ::subsystem::Registry >     m_pregistry;
+      ::pointer < ::subsystem::Shell >     m_pshell;
 
       subsystem();
       ~subsystem() override;
@@ -39,6 +40,7 @@ namespace subsystem
       virtual ::subsystem::string_table * string_table();
       virtual ::subsystem::resource_loader* resource_loader();
       virtual ::subsystem::Registry* registry();
+      virtual ::subsystem::Shell* shell();
 
 
    };

@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "ProcessHandle.h"
-#include "remoting/remoting_common/win_system/SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
 
 ProcessHandle::ProcessHandle()
 : m_hProcess(0)

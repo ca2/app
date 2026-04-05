@@ -27,27 +27,64 @@
 
 #include "acme/subsystem/_common_header.h"
 
-class CLASS_DECL_REMOTING_COMMON SystemInformation {
-public:
+namespace subsystem
+{
 
-  // get rectangle of all desktop area
-  void getDesktopAllArea(RECT * rc);
 
-  // get rectangle of user desktop area
-  // without button 'Start' (only primary monitor).
-  bool getDesktopArea(RECT *rc);
+   class CLASS_DECL_ACME SystemInformationInterface :
+   virtual public ::subsystem::particle_interface
+   {
+   public:
 
-  // return true if StretchBlt is used
-  // in provided device
-  bool isSupportStretchBlt(HDC hdc);
+      // get rectangle of all desktop area
+      virtual ::int_rectangle getDesktopAllArea() = 0;
 
-  // return how many bits per pixel
-  // for provided device
-  int getBitsPixel(HDC hdc);
+      // get rectangle of user desktop area
+      // without button 'Start' (only primary monitor).
+      virtual ::int_rectangle getDesktopArea() = 0;
 
-  // get the number of monitors that plugged 
-  // into video card
-  int getMonitorCount();
-};
+      // return true if StretchBlt is used
+      // in provided device
+      //virtual bool isSupportStretchBlt(HDC hdc) = 0;
+
+      // return how many bits per pixel
+      // for provided device
+      //virtual int getBitsPixel(HDC hdc) = 0;
+
+      // get the number of monitors that plugged
+      // into video card
+      virtual int getMonitorCount() = 0;
+   };
+
+   class CLASS_DECL_ACME SystemInformation :
+   virtual public ::subsystem::composite<SystemInformationInterface>
+   {
+   public:
+
+      SystemInformation();
+
+      ~SystemInformation() override;
+
+      // get rectangle of all desktop area
+      ::int_rectangle getDesktopAllArea() override;
+
+      // get rectangle of user desktop area
+      // without button 'Start' (only primary monitor).
+      ::int_rectangle getDesktopArea() override;
+
+      // // return true if StretchBlt is used
+      // // in provided device
+      // bool isSupportStretchBlt(HDC hdc);
+      //
+      // // return how many bits per pixel
+      // // for provided device
+      // int getBitsPixel(HDC hdc);
+
+      // get the number of monitors that plugged
+      // into video card
+      int getMonitorCount() override;
+   };
+
+} // namespace subsystem
 
 

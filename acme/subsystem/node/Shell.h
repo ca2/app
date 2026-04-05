@@ -23,43 +23,93 @@
 //
 
 #pragma once
+#include "subsystem/particle.h"
 
 
-#include "remoting/remoting_common/util/winhdr.h"
+//#include "remoting/remoting_common/util/winhdr.h"
 
-#include "SystemException.h"
+//#include "SystemException.h"
 
-/**
+namespace subsystem
+{
+   /**
+    * Wrapper over WinAPI shell functions.
+    *
+    * @author enikey.
+    */
+   class CLASS_DECL_ACME ShellInterface :
+   virtual public ::subsystem::particle_interface
+   {
+   public:
+
+
+
+      virtual ~ShellInterface() = 0;
+      /**
+       * Runs application as administrator and waits until execution finished.
+       * @param pathToFile path to executable.
+       * @param parameters execute parameters.
+       * @throws SystemException on fail.
+       */
+      virtual void runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters) = 0;
+
+      /**
+       * Opens file with default action specified in Windows.
+       * @param file target file.
+       * @param parameters parameters.
+       * @param workDirectory working directory.
+       * @throws SystemException on fail.
+       */
+      virtual void open(const ::scoped_string & scopedstrFile,
+                       const ::scoped_string & scopedstrParameters,
+                       const ::scoped_string & scopedstrworkDirectory) = 0;
+   //private:
+      /**
+       * Don't allow instanizing of class.
+       */
+
+   };
+
+
+
+   /**
  * Wrapper over WinAPI shell functions.
  *
  * @author enikey.
  */
-class CLASS_DECL_REMOTING_COMMON Shell
-{
-public:
-  /**
-   * Runs application as administrator and waits until execution finished.
-   * @param pathToFile path to executable.
-   * @param parameters execute parameters.
-   * @throws SystemException on fail.
-   */
-  static void runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters);
+   class CLASS_DECL_ACME Shell :
+   virtual public ::subsystem::composite<ShellInterface>
+   {
+   public:
 
-  /**
-   * Opens file with default action specified in Windows.
-   * @param file target file.
-   * @param parameters parameters.
-   * @param workDirectory working directory.
-   * @throws SystemException on fail.
-   */
-  static void open(const ::scoped_string & scopedstrFile,
-                   const ::scoped_string & scopedstrParameters,
-                   const ::scoped_string & scopedstrworkDirectory);
-private:
-  /**
-   * Don't allow instanizing of class.
-   */
-  Shell();
-};
+      Shell();
+
+      ~Shell() override;
+      /**
+       * Runs application as administrator and waits until execution finished.
+       * @param pathToFile path to executable.
+       * @param parameters execute parameters.
+       * @throws SystemException on fail.
+       */
+       void runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters) override;
+
+      /**
+       * Opens file with default action specified in Windows.
+       * @param file target file.
+       * @param parameters parameters.
+       * @param workDirectory working directory.
+       * @throws SystemException on fail.
+       */
+      void open(const ::scoped_string & scopedstrFile,
+                       const ::scoped_string & scopedstrParameters,
+                       const ::scoped_string & scopedstrworkDirectory) override;
+      //private:
+      /**
+       * Don't allow instanizing of class.
+       */
+
+   };
+
+} // namespace subsystem
 
 

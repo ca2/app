@@ -22,101 +22,118 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/_operating_system.h"
+//#include "acme/_operating_system.h"
 #include "Service.h"
 
-#include "remoting/remoting_common/win_system/SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
 
-#include <crtdbg.h>
+//#include <crtdbg.h>
 
-#include "win-system/SCMClient.h"
+//#include "win-system/ServiceControlManagerClient.h"
 
-Service *Service::g_service = 0;
-
-void WINAPI Service::ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv)
+namespace subsystem
 {
-  g_service->m_statusHandle = RegisterServiceCtrlHandler(::wstring(g_service->m_name),
-                                                         &Service::ServiceControlHandler);
+   Service *Service::g_service = 0;
 
-  if (!g_service->m_statusHandle) {
-    throw SystemException();
-  }
+   // void WINAPI Service::ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv)
+   // {
+   //   g_service->m_statusHandle = RegisterServiceCtrlHandler(::wstring(g_service->m_name),
+   //                                                          &Service::ServiceControlHandler);
+   //
+   //   if (!g_service->m_statusHandle) {
+   //     throw SystemException();
+   //   }
+   //
+   //   g_service->m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
+   //   g_service->m_status.dwServiceSpecificExitCode = 0;
+   //
+   //   try {
+   //     g_service->onStart();
+   //   } catch (::remoting::Exception &) {
+   //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
+   //     // TODO: Report to ServiceControlManageranager about critical error.
+   //   }
+   //
+   //   g_service->reportStatus(SERVICE_RUNNING, NO_ERROR, 0);
+   //
+   //   try {
+   //     g_service->main();
+   //   } catch (::remoting::Exception &) {
+   //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
+   //     // TODO: Report to ServiceControlManageranager about critical error.
+   //   }
+   //
+   //   g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
+   // }
+   //
+   // void WINAPI Service::ServiceControlHandler(DWORD dwCtrlCode)
+   // {
+   //   if (dwCtrlCode == SERVICE_CONTROL_STOP) {
+   //     Service::g_service->reportStatus(SERVICE_STOP_PENDING, NO_ERROR, 0);
+   //
+   //     Service::g_service->onStop();
+   //   }
+   // }
 
-  g_service->m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
-  g_service->m_status.dwServiceSpecificExitCode = 0;
+   bool Service::reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode, unsigned int dwWaitHint)
+   {
+      m_pparticleThis->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);
+      // }
+      //   if (dwCurrentState == SERVICE_START_PENDING) {
+      //     m_status.dwControlsAccepted = 0;
+      //   } else {
+      //     m_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;
+      //   }
+      //
+      //   m_status.dwCurrentState = dwCurrentState;
+      //   m_status.dwWin32ExitCode = dwWin32ExitCode;
+      //   m_status.dwWaitHint = dwWaitHint;
+      //
+      //   if ((dwCurrentState == SERVICE_RUNNING) || (dwCurrentState == SERVICE_STOPPED)) {
+      //     m_status.dwCheckPoint = 0;
+      //   } else {
+      //     m_status.dwCheckPoint++;
+      //   }
+      //
+      //   return SetServiceStatus(m_statusHandle, &m_status) == TRUE;
+   }
 
-  try {
-    g_service->onStart();
-  } catch (::remoting::Exception &) {
-    g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-    // TODO: Report to SCManager about critical error.
-  }
+   // Service::Service(const ::scoped_string & scopedstrName)
+   // {
+   //   _ASSERT(Service::g_service == NULL);
+   //
+   //   Service::g_service = this;
+   //
+   //   m_name= scopedstrName;
+   // }
 
-  g_service->reportStatus(SERVICE_RUNNING, NO_ERROR, 0);
 
-  try {
-    g_service->main();
-  } catch (::remoting::Exception &) {
-    g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-    // TODO: Report to SCManager about critical error.
-  }
+   Service::Service(const scoped_string& scopedstrName)
+   {
 
-  g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-}
+   }
 
-void WINAPI Service::ServiceControlHandler(DWORD dwCtrlCode)
-{
-  if (dwCtrlCode == SERVICE_CONTROL_STOP) {
-    Service::g_service->reportStatus(SERVICE_STOP_PENDING, NO_ERROR, 0);
 
-    Service::g_service->onStop();
-  }
-}
+   Service::~Service()
+   {
+      Service::g_service = 0;
+   }
 
-bool Service::reportStatus(DWORD dwCurrentState, DWORD dwWin32ExitCode, DWORD dwWaitHint)
-{
-  if (dwCurrentState == SERVICE_START_PENDING) {
-    m_status.dwControlsAccepted = 0;
-  } else {
-    m_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;
-  }
+   void Service::run()
+   {
 
-  m_status.dwCurrentState = dwCurrentState;
-  m_status.dwWin32ExitCode = dwWin32ExitCode;
-  m_status.dwWaitHint = dwWaitHint;
+      m_pparticleThis->run();
+      //}
+      // TCHAR name[1024];
+      //
+      // _tcscpy_s(name, 1024, ::wstring(m_name));
+      //
+      // SERVICE_TABLE_ENTRY dispatchTable[] =  {{name, (LPSERVICE_MAIN_FUNCTION)ServiceMain }, { NULL, NULL }};
+      //
+      // if (!StartServiceCtrlDispatcher(dispatchTable)) {
+      //   throw SystemException();
+      // }
+   }
+} // namespace subsystem
 
-  if ((dwCurrentState == SERVICE_RUNNING) || (dwCurrentState == SERVICE_STOPPED)) {
-    m_status.dwCheckPoint = 0;
-  } else {
-    m_status.dwCheckPoint++;
-  }
 
-  return SetServiceStatus(m_statusHandle, &m_status) == TRUE;
-}
-
-Service::Service(const ::scoped_string & scopedstrName)
-{
-  _ASSERT(Service::g_service == NULL);
-
-  Service::g_service = this;
-
-  m_name= scopedstrName;
-}
-
-Service::~Service()
-{
-  Service::g_service = 0;
-}
-
-void Service::run()
-{
-  TCHAR name[1024];
-
-  _tcscpy_s(name, 1024, ::wstring(m_name));
-
-  SERVICE_TABLE_ENTRY dispatchTable[] =  {{name, (LPSERVICE_MAIN_FUNCTION)ServiceMain }, { NULL, NULL }};
-
-  if (!StartServiceCtrlDispatcher(dispatchTable)) {
-    throw SystemException();
-  }
-}

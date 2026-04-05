@@ -91,7 +91,7 @@ protected:
 
 protected:
   /**
-   * Service name for SCM.
+   * Service name for ServiceControlManager.
    */
   ::string m_name;
 

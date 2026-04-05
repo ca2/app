@@ -73,4 +73,20 @@ namespace subsystem
    }
 
 
+   ::subsystem::Shell * subsystem::shell()
+   {
+
+      if (!m_pshell)
+      {
+
+         constructø(m_pshell);
+
+      }
+
+      return m_pshell;
+
+   }
+
+
+
 }//namespace subsystem

@@ -64,19 +64,19 @@ namespace subsystem
       // }
    }
 
-   void InputInjector::injectKeyPress(unsigned int vkCode)
+   void InputInjector::injectKeyPress(unsigned char vkCode)
    {
       //injectKeyEvent(vkCode, false);
       m_pparticleThis->injectKeyPress(vkCode);
    }
 
-   void InputInjector::injectKeyRelease(unsigned int vkCode)
+   void InputInjector::injectKeyRelease(unsigned char vkCode)
    {
       //injectKeyEvent(vkCode, true);
       m_pparticleThis->injectKeyPress(vkCode);
    }
 
-   void InputInjector::injectKeyEvent(unsigned int vkCode, bool release, bool extended)
+   void InputInjector::injectKeyEvent(unsigned char vkCode, bool release, bool extended)
    {
       m_pparticleThis->injectKeyEvent(vkCode, release, extended);
       // m_log->debug("Prepare to inject the key event:"

@@ -25,11 +25,11 @@
 #include "acme/_operating_system.h"
 #include "Service.h"
 
-#include "remoting/remoting_common/win_system/SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
 
 #include <crtdbg.h>
 
-#include "SCMClient.h"
+#include "ServiceControlManagerClient.h"
 
 Service *Service::g_service = 0;
 
@@ -49,7 +49,7 @@ void WINAPI Service::ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv)
     g_service->onStart();
   } catch (::remoting::Exception &) {
     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-    // TODO: Report to SCManager about critical error.
+    // TODO: Report to ServiceControlManageranager about critical error.
   }
 
   g_service->reportStatus(SERVICE_RUNNING, NO_ERROR, 0);
@@ -58,7 +58,7 @@ void WINAPI Service::ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv)
     g_service->main();
   } catch (::remoting::Exception &) {
     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-    // TODO: Report to SCManager about critical error.
+    // TODO: Report to ServiceControlManageranager about critical error.
   }
 
   g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);

@@ -23,7 +23,7 @@
 //
 #include "framework.h"
 #include "GlobalMutex.h"
-#include "remoting/remoting_common/win_system/SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
 #include <Aclapi.h>
 
 GlobalMutex::GlobalMutex(const ::scoped_string & scopedstrName, bool interSession, bool throwIfExist)

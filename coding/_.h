@@ -25,7 +25,7 @@
 #endif
 
 #define SMART_GIT 1
-#define INSTALL_GIT_SCM 1
+#define INSTALL_GIT_ServiceControlManager 1
 
 #ifdef LINUX
 #define JETBRAINS_CLION 1

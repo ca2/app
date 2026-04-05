@@ -1,4 +1,4 @@
-// Copyright (C) 2012 GlavSoft LLC.
+// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -21,20 +21,31 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#include "framework.h"
+#include "string_table.h"
+#include "resource_loader.h"
+#include "subsystem/subsystem.h"
 
-#pragma once
 
-
-#include "remoting/remoting_common/region/Point.h"
-#include "acme/subsystem/_common_header.h"
-
-class CLASS_DECL_REMOTING_COMMON WinCursor
+namespace subsystem
 {
-public:
-  WinCursor();
-  virtual ~WinCursor();
+   //::iptr_map<::string> StringTable::s_mapString;
 
-  Point getCursorPos() const;
-};
+   string_table::string_table() {}
 
-//// __WINCURSOR_H__
+   ::string string_table::getString(::iptr i)
+   {
+
+      ::string str;
+
+      auto p = m_mapString.find(i);
+
+      if (!p)
+      {
+         p = m_mapString.get(i);
+         p->element2() = ::main_subsystem()->resource_loader()->loadString(i);
+      }
+
+      return p->element2();
+   }
+} // namespace subsystem

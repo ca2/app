@@ -1,4 +1,4 @@
-// Copyright (C) 2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -25,42 +25,37 @@
 #pragma once
 
 
+#include "remoting/remoting_common/region/Point.h"
 #include "acme/subsystem/_common_header.h"
 
-#include "security/SecurityIdentifier.h"
-#include "security/SecurityDescriptor.h"
-//#include <vector>
+namespace subsystem
+{
 
-class CLASS_DECL_REMOTING_COMMON SecurityAttributes
+class CLASS_DECL_ACME CursorInterface :
+   virtual public ::subsystem::particle_interface
 {
 public:
-  SecurityAttributes();
-  virtual ~SecurityAttributes();
+  //Cursor();
+  virtual ~CursorInterface() = 0;
 
-  // Sets the security attributes to default values. After calling this
-  // function the getSecurityAttributes() function will to return zero until
-  // attributes was changed by another functions.
-  void setDefaultAttributes();
+  virtual Point getCursorPos() const = 0;
 
-  // Sets security attributes that allow all access to all.
-  void shareToAllUsers();
 
-  // If immediately before was called the setDefaultAttributes() function
-  // returns zero otherwise returns pointer to SECURITY_ATTRIBUTES structure.
-  SECURITY_ATTRIBUTES *getSecurityAttributes();
-
-  // Set inheritable flag of the SECURITY_ATTRIBUTES structure to true
-  void setInheritable();
-
-private:
-  SECURITY_ATTRIBUTES m_securityAttributes;
-
-  bool m_isDefaultAttributes;
-
-  /**
-   * Members that needed for shareToAllUsers() method.
-   */
-  SecurityDescriptor m_sd;
 };
 
-//// __SECURITYATTRIBUTES_H__
+
+   class CLASS_DECL_ACME Cursor :
+   virtual public ::subsystem::composite<CursorInterface>
+   {
+   public:
+      Cursor();
+      ~Cursor() override;
+
+      Point getCursorPos() const override;
+
+
+   };
+
+//// __WINCURSOR_H__
+///
+} // namespace subsystem

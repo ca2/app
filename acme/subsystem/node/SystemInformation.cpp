@@ -22,31 +22,59 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/_operating_system.h"
 #include "SystemInformation.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 
-void SystemInformation::getDesktopAllArea(RECT * rc) 
+namespace subsystem
 {
-  GetClientRect(GetDesktopWindow(), rc);
-}
 
-bool SystemInformation::getDesktopArea(RECT *rc) 
-{
-  return !!SystemParametersInfo(SPI_GETWORKAREA, 0, rc, 0);
-}
 
-bool SystemInformation::isSupportStretchBlt(HDC hdc) 
-{
-  int rasterCaps = GetDeviceCaps(hdc, RASTERCAPS);
-  return !!(rasterCaps & RC_STRETCHBLT);
-}
+   SystemInformation::~SystemInformation()
+   {
 
-int SystemInformation::getBitsPixel(HDC hdc) 
-{
-  return GetDeviceCaps(hdc, BITSPIXEL);
-}
 
-int SystemInformation::getMonitorCount() 
-{
-  return GetSystemMetrics(SM_CMONITORS);
-}
+   }
+
+
+   SystemInformation::SystemInformation()
+   {
+
+
+
+   }
+
+
+   ::int_rectangle SystemInformation::getDesktopAllArea()
+   {
+//      GetClientRect(GetDesktopWindow(), rc);
+      return m_pparticleThis->getDesktopAllArea();
+   }
+
+   ::int_rectangle SystemInformation::getDesktopArea()
+   {
+  //    return !!SystemParametersInfo(SPI_GETWORKAREA, 0, rc, 0);
+
+      return m_pparticleThis->getDesktopArea();
+   }
+
+   // bool SystemInformation::isSupportStretchBlt(HDC hdc)
+   // {
+   //  //  int rasterCaps = GetDeviceCaps(hdc, RASTERCAPS);
+   //    //return !!(rasterCaps & RC_STRETCHBLT);
+   // }
+   //
+   // int SystemInformation::getBitsPixel(HDC hdc)
+   // {
+   //    //return GetDeviceCaps(hdc, BITSPIXEL);
+   // }
+
+   int SystemInformation::getMonitorCount()
+   {//return GetSystemMetrics(SM_CMONITORS);
+
+
+      return m_pparticleThis->getMonitorCount();
+   }
+
+} // namespace subsystem
+
+

@@ -24,89 +24,89 @@
 
 #include "SecurityIdentifier.h"
 
-#include <Sddl.h>
-#include <crtdbg.h>
-#include <winnt.h>
+// #include <Sddl.h>
+// #include <crtdbg.h>
+// #include <winnt.h>
 
-SecurityIdentifier::SecurityIdentifier(SID *sid)
-{
-  m_sid = (SID *)LocalAlloc(LPTR, SECURITY_MAX_SID_SIZE);
+// SecurityIdentifier::SecurityIdentifier(SID *sid)
+// {
+  // m_sid = (SID *)LocalAlloc(LPTR, SECURITY_MAX_SID_SIZE);
 
-  memset(m_sid, 0, SECURITY_MAX_SID_SIZE);
+  // memset(m_sid, 0, SECURITY_MAX_SID_SIZE);
 
-  if (!CopySid(SECURITY_MAX_SID_SIZE, m_sid, sid)) {
-    throw SystemException();
-  }
-}
+  // if (!CopySid(SECURITY_MAX_SID_SIZE, m_sid, sid)) {
+    // throw SystemException();
+  // }
+// }
 
-SecurityIdentifier::SecurityIdentifier(const TCHAR *sidString)
-: m_sid(0)
-{
-  getSidByString(sidString, (PSID *)&m_sid);
-}
+// SecurityIdentifier::SecurityIdentifier(const TCHAR *sidString)
+// : m_sid(0)
+// {
+  // getSidByString(sidString, (PSID *)&m_sid);
+// }
 
-SecurityIdentifier::~SecurityIdentifier()
-{
-  LocalFree(m_sid);
-}
+// SecurityIdentifier::~SecurityIdentifier()
+// {
+  // LocalFree(m_sid);
+// }
 
-bool SecurityIdentifier::isValid()
-{
-  return IsValidSid(m_sid) == TRUE;
-}
+// bool SecurityIdentifier::isValid()
+// {
+  // return IsValidSid(m_sid) == TRUE;
+// }
 
-void SecurityIdentifier::toString(StringStorage *sidString)
-{
-  TCHAR *localAllocatedSidString;
+// void SecurityIdentifier::toString(StringStorage *sidString)
+// {
+  // TCHAR *localAllocatedSidString;
 
-  if (ConvertSidToStringSid(m_sid, &localAllocatedSidString) == FALSE) {
-    throw SystemException();
-  }
+  // if (ConvertSidToStringSid(m_sid, &localAllocatedSidString) == FALSE) {
+    // throw SystemException();
+  // }
 
-  sidString->setString(localAllocatedSidString);
+  // sidString->setString(localAllocatedSidString);
 
-  LocalFree(localAllocatedSidString);
-}
+  // LocalFree(localAllocatedSidString);
+// }
 
-// FIXME: refactor this method.
-SecurityIdentifier *SecurityIdentifier::getProcessOwner(HANDLE processHandle)
-{
-  HANDLE procToken;
+// // FIXME: refactor this method.
+// SecurityIdentifier *SecurityIdentifier::getProcessOwner(HANDLE processHandle)
+// {
+  // HANDLE procToken;
 
-  if (OpenProcessToken(processHandle, TOKEN_QUERY, &procToken)) {
-    try {
-      char buffer[1024];
-      DWORD retLen = 0;
-      if (!GetTokenInformation(procToken, TokenUser, &buffer, sizeof(buffer), &retLen)) {
-        throw SystemException();
-      }
-      CloseHandle(procToken);
-      return new SecurityIdentifier((SID *)((TOKEN_USER *)buffer)->User.Sid);
-    } catch (...) {
-      CloseHandle(procToken);
-      throw;
-    }
-    CloseHandle(procToken);
-  } else {
-    throw SystemException();
-  }
-}
+  // if (OpenProcessToken(processHandle, TOKEN_QUERY, &procToken)) {
+    // try {
+      // char buffer[1024];
+      // DWORD retLen = 0;
+      // if (!GetTokenInformation(procToken, TokenUser, &buffer, sizeof(buffer), &retLen)) {
+        // throw SystemException();
+      // }
+      // CloseHandle(procToken);
+      // return new SecurityIdentifier((SID *)((TOKEN_USER *)buffer)->User.Sid);
+    // } catch (...) {
+      // CloseHandle(procToken);
+      // throw;
+    // }
+    // CloseHandle(procToken);
+  // } else {
+    // throw SystemException();
+  // }
+// }
 
-SecurityIdentifier *SecurityIdentifier::createSidFromString(const TCHAR *sidString)
-{
-  return new SecurityIdentifier(sidString);
-}
+// SecurityIdentifier *SecurityIdentifier::createSidFromString(const TCHAR *sidString)
+// {
+  // return new SecurityIdentifier(sidString);
+// }
 
-SID *SecurityIdentifier::getSid() const
-{
-  return m_sid;
-}
+// SID *SecurityIdentifier::getSid() const
+// {
+  // return m_sid;
+// }
 
-void SecurityIdentifier::getSidByString(const TCHAR *sidString, PSID *sid)
-{
-  if (ConvertStringSidToSid(sidString, sid) == FALSE) {
-    throw SystemException();
-  }
+// void SecurityIdentifier::getSidByString(const TCHAR *sidString, PSID *sid)
+// {
+  // if (ConvertStringSidToSid(sidString, sid) == FALSE) {
+    // throw SystemException();
+  // }
 
-  _ASSERT(IsValidSid(*sid));
-}
+  // _ASSERT(IsValidSid(*sid));
+// }

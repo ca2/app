@@ -55,12 +55,12 @@ namespace subsystem
       virtual ~ProcessInterface() = 0;
 
 
-      void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {});
+      virtual void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) = 0;
       /**
        * Sets executable filename for process.
        * @param path.
        */
-      void setFilename(const ::scoped_string & scopedstrPath);
+      virtual void setFilename(const ::scoped_string & scopedstrPath) = 0;
 
       /**
        * Sets arguments for process.
@@ -73,7 +73,7 @@ namespace subsystem
 
       // If handlesIsInerited is true the handles of the parent process can
       // be used by the child process.
-      virtual void setHandleInheritances(bool handlesIsInerited  = 0);
+      virtual void setHandleInheritances(bool handlesIsInerited) = 0;
 
       /**
        * Starts execution of process.

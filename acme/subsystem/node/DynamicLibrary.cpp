@@ -27,40 +27,48 @@
 
 #include <crtdbg.h>
 
-DynamicLibrary::DynamicLibrary(const ::scoped_string & scopedstrFilename)
-: m_module(0)
+namespace subsystem
 {
-  init(scopedstrFilename);
-}
+   DynamicLibrary::DynamicLibrary(const ::scoped_string & scopedstrFilename)
+   //: m_module(0)
+   {
+      init(scopedstrFilename);
+   }
 
-DynamicLibrary::DynamicLibrary()
-: m_module(0)
-{
-}
+   // DynamicLibrary::DynamicLibrary()
+   // //: m_module(0)
+   // {
+   // }
 
-DynamicLibrary::~DynamicLibrary()
-{
-  if (m_module != 0) {
-    FreeLibrary(m_module);
-  }
-}
+   DynamicLibrary::~DynamicLibrary()
+   {
+      // if (m_module != 0) {
+      //    FreeLibrary(m_module);
+      // }
+   }
 
-void DynamicLibrary::init(const ::scoped_string & scopedstrFilename)
-{
-  m_module = LoadLibrary(::wstring(scopedstrFilename));
+   void DynamicLibrary::init(const ::scoped_string & scopedstrFilename)
+   {
+      m_pparticleThis->init(scopedstrFilename);
+      // m_module = LoadLibrary(::wstring(scopedstrFilename));
+      //
+      // if (m_module == 0) {
+      //    ::string errMsg;
+      //
+      //    errMsg.format("{} library not found", scopedstrFilename);
+      //
+      //    throw ::remoting::Exception(errMsg);
+      // }
+   }
 
-  if (m_module == 0) {
-    ::string errMsg;
+   void * DynamicLibrary::getProcAddress(const char *procName)
+   {
 
-    errMsg.format("{} library not found", scopedstrFilename);
+      return m_pparticleThis->getProcAddress(procName);
+      //_ASSERT(m_module != 0);
 
-    throw ::remoting::Exception(errMsg);
-  }
-}
+      //return ::GetProcAddress(m_module, procName);
+   }
+} // namespace subsystem
 
-FARPROC DynamicLibrary::getProcAddress(const char *procName)
-{
-  _ASSERT(m_module != 0);
 
-  return ::GetProcAddress(m_module, procName);
-}

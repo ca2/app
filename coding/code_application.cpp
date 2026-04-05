@@ -1118,7 +1118,7 @@ namespace coding
 #endif
 
 
-#if INSTALL_GIT_SCM
+#if INSTALL_GIT_ServiceControlManager
 
    //bool code_application::defer_install_git_scm(int iTry)
    //{

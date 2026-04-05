@@ -697,18 +697,18 @@ namespace linux
             || !papp->is_serviceable())
                return false;
 
-            SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
+            SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
             string strcalling = papp->m_strModulePath + " : app=" + papp->m_XstrAppId + " service usehos_contexttlogin";
 
-            if(hdlSCM == 0)
+            if(hdlServiceControlManager == 0)
             {
                //::get_last_error()
                return false;
             }
 
             SC_HANDLE hdlServ = ::CreateService(
-               hdlSCM,                    // SCManager database
+               hdlServiceControlManager,                    // ServiceControlManageranager database
                "acme-" + papp->m_strAppName,               // name of service
                "ccwarehouse ca2 account " + papp->m_strAppName,        // service name to display
                STANDARD_RIGHTS_REQUIRED,  // desired access
@@ -724,13 +724,13 @@ namespace linux
 
             if (!hdlServ)
             {
-               Clos_contexteServiceHandle(hdlSCM);
+               Clos_contexteServiceHandle(hdlServiceControlManager);
                //Ret = ::get_last_error();
                return false;
             }
 
             Clos_contexteServiceHandle(hdlServ);
-            Clos_contexteServiceHandle(hdlSCM);
+            Clos_contexteServiceHandle(hdlServiceControlManager);
 
             return true;
       */
@@ -749,23 +749,23 @@ namespace linux
             || !papp->is_serviceable())
                return false;
 
-            SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+            SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-            if(hdlSCM == 0)
+            if(hdlServiceControlManager == 0)
             {
                //::get_last_error();
                return false;
             }
 
             SC_HANDLE hdlServ = ::OpenService(
-               hdlSCM,                    // SCManager database
+               hdlServiceControlManager,                    // ServiceControlManageranager database
                "acme-" + papp->m_strAppName,               // name of service
                DELETE);                     // no password
 
             if (!hdlServ)
             {
                // Ret = ::get_last_error();
-               Clos_contexteServiceHandle(hdlSCM);
+               Clos_contexteServiceHandle(hdlServiceControlManager);
                return false;
             }
 
@@ -773,7 +773,7 @@ namespace linux
 
             Clos_contexteServiceHandle(hdlServ);
 
-            Clos_contexteServiceHandle(hdlSCM);
+            Clos_contexteServiceHandle(hdlServiceControlManager);
 
             return false;
       */
@@ -790,23 +790,23 @@ namespace linux
             || !papp->is_serviceable())
                return false;
 
-            SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+            SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-            if(hdlSCM == 0)
+            if(hdlServiceControlManager == 0)
             {
                //::get_last_error();
                return false;
             }
 
             SC_HANDLE hdlServ = ::OpenService(
-               hdlSCM,                    // SCManager database
+               hdlServiceControlManager,                    // ServiceControlManageranager database
                "acme-" + papp->m_strAppName,               // name of service
                SERVICE_START);                     // no password
 
 
             if (!hdlServ)
             {
-               Clos_contexteServiceHandle(hdlSCM);
+               Clos_contexteServiceHandle(hdlServiceControlManager);
                //Ret = ::get_last_error();
                return false;
             }
@@ -814,7 +814,7 @@ namespace linux
             bool bOk = StartService(hdlServ, 0, nullptr) != false;
 
             Clos_contexteServiceHandle(hdlServ);
-            Clos_contexteServiceHandle(hdlSCM);
+            Clos_contexteServiceHandle(hdlServiceControlManager);
 
             return bOk != false;
             */
@@ -831,23 +831,23 @@ namespace linux
             || !papp->is_serviceable())
                return false;
 
-            SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
+            SC_HANDLE hdlServiceControlManager = OpenServiceControlManageranager(0, 0, SC_MANAGER_ALL_ACCESS);
 
-            if(hdlSCM == 0)
+            if(hdlServiceControlManager == 0)
             {
                //::get_last_error();
                return false;
             }
 
             SC_HANDLE hdlServ = ::OpenService(
-               hdlSCM,                    // SCManager database
+               hdlServiceControlManager,                    // ServiceControlManageranager database
                "acme-" + papp->m_strAppName,               // name of service
                SERVICE_STOP);                     // no password
 
             if (!hdlServ)
             {
                // Ret = ::get_last_error();
-               Clos_contexteServiceHandle(hdlSCM);
+               Clos_contexteServiceHandle(hdlServiceControlManager);
                return false;
             }
 
@@ -861,7 +861,7 @@ namespace linux
 
             Clos_contexteServiceHandle(hdlServ);
 
-            Clos_contexteServiceHandle(hdlSCM);
+            Clos_contexteServiceHandle(hdlServiceControlManager);
 
             return bOk != false;
       */

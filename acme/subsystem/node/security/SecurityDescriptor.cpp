@@ -24,53 +24,53 @@
 
 #include "SecurityDescriptor.h"
 
-#include <AccCtrl.h>
-#include <Aclapi.h>
-#include <crtdbg.h>
+// #include <AccCtrl.h>
+// #include <Aclapi.h>
+// #include <crtdbg.h>
 
-SecurityDescriptor::SecurityDescriptor()
-{
-  InitializeSecurityDescriptor(&m_sd, SECURITY_DESCRIPTOR_REVISION);
-}
+// SecurityDescriptor::SecurityDescriptor()
+// {
+//   InitializeSecurityDescriptor(&m_sd, SECURITY_DESCRIPTOR_REVISION);
+// }
 
-SecurityDescriptor::~SecurityDescriptor()
-{
-}
+// SecurityDescriptor::~SecurityDescriptor()
+// {
+// }
 
-void SecurityDescriptor::setRulesAsDacl(size_t count,
-                                        EXPLICIT_ACCESS *rules)
-{
-  PACL acl = 0;
+// void SecurityDescriptor::setRulesAsDacl(size_t count,
+//                                         EXPLICIT_ACCESS *rules)
+// {
+//   PACL acl = 0;
 
-  ULONG constrCount = (ULONG)count;
-  _ASSERT(constrCount == count);
-  DWORD ret = SetEntriesInAcl(constrCount, rules, NULL, &acl);
+//   ULONG constrCount = (ULONG)count;
+//   _ASSERT(constrCount == count);
+//   DWORD ret = SetEntriesInAcl(constrCount, rules, NULL, &acl);
 
-  if (ret != ERROR_SUCCESS) {
-    throw SystemException(ret);
-  }
+//   if (ret != ERROR_SUCCESS) {
+//     throw SystemException(ret);
+//   }
 
-  setUserDacl(acl);
-}
+//   setUserDacl(acl);
+// }
 
-void SecurityDescriptor::setUserDacl(ACL *acl)
-{
-  if (SetSecurityDescriptorDacl(&m_sd, TRUE, acl,  FALSE) == FALSE) {
-    throw SystemException();
-  }
-}
+// void SecurityDescriptor::setUserDacl(ACL *acl)
+// {
+//   if (SetSecurityDescriptorDacl(&m_sd, TRUE, acl,  FALSE) == FALSE) {
+//     throw SystemException();
+//   }
+// }
 
-void SecurityDescriptor::clearOwner()
-{
-  SetSecurityDescriptorOwner(&m_sd, 0, TRUE);
-}
+// void SecurityDescriptor::clearOwner()
+// {
+//   SetSecurityDescriptorOwner(&m_sd, 0, TRUE);
+// }
 
-bool SecurityDescriptor::isValid()
-{
-  return IsValidSecurityDescriptor(&m_sd) == TRUE;
-}
+// bool SecurityDescriptor::isValid()
+// {
+//   return IsValidSecurityDescriptor(&m_sd) == TRUE;
+// }
 
-SECURITY_DESCRIPTOR *SecurityDescriptor::getSD()
-{
-  return &m_sd;
-}
+// SECURITY_DESCRIPTOR *SecurityDescriptor::getSD()
+// {
+//   return &m_sd;
+// }

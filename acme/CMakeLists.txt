@@ -1349,6 +1349,8 @@ list(APPEND library_source
    subsystem/node/security/SecurityDescriptor.h
    subsystem/node/security/SecurityIdentifier.cpp
    subsystem/node/security/SecurityIdentifier.h
+   subsystem/node/security/SecurityAttributes.cpp
+   subsystem/node/security/SecurityAttributes.h
    #subsystem/node/SystemException.cpp
    #subsystem/node/SystemException.h
    subsystem/node/AnonymousPipe.cpp
@@ -1358,9 +1360,13 @@ list(APPEND library_source
    subsystem/node/ApplicationCrashEvents.h
    subsystem/node/AutoImpersonator.cpp
    subsystem/node/AutoImpersonator.h
+   subsystem/node/Clipboard.cpp
+   subsystem/node/Clipboard.h
    subsystem/node/CMakeLists.txt
    subsystem/node/CurrentConsoleProcess.cpp
    subsystem/node/CurrentConsoleProcess.h
+   subsystem/node/Cursor.cpp
+   subsystem/node/Cursor.h
    subsystem/node/DynamicLibrary.cpp
    subsystem/node/DynamicLibrary.h
    subsystem/node/EmulatedAnonymousPipeFactory.cpp
@@ -1398,8 +1404,6 @@ list(APPEND library_source
    subsystem/node/resource.h
    subsystem/node/Screen.cpp
    subsystem/node/Screen.h
-   subsystem/node/SecurityAttributes.cpp
-   subsystem/node/SecurityAttributes.h
    #subsystem/node/SecurityDescriptor.cpp
    #subsystem/node/SecurityIdentifier.cpp
    subsystem/node/Service.cpp
@@ -1410,9 +1414,9 @@ list(APPEND library_source
    subsystem/node/SharedMemory.h
    subsystem/node/Shell.cpp
    subsystem/node/Shell.h
-   subsystem/node/string_table.cpp
-   subsystem/node/string_table.h
-   subsystem/node/StringStorage.cpp
+   #subsystem/node/string_table.cpp
+   #subsystem/node/string_table.h
+   #subsystem/node/StringStorage.cpp
    subsystem/node/SystemException.cpp
    subsystem/node/SystemException.h
    subsystem/node/SystemInformation.cpp
@@ -1422,12 +1426,8 @@ list(APPEND library_source
    subsystem/node/VersionInfo.cpp
    subsystem/node/VersionInfo.h
    subsystem/node/win_system.vcproj
-   subsystem/node/WinClipboard.cpp
-   subsystem/node/WinClipboard.h
    subsystem/node/WinCommandLineArgs.cpp
    subsystem/node/WinCommandLineArgs.h
-   subsystem/node/WinCursor.cpp
-   subsystem/node/WinCursor.h
    subsystem/node/WindowsDisplays.cpp
    subsystem/node/WindowsDisplays.h
    subsystem/node/WindowsEvent.cpp
@@ -2619,6 +2619,8 @@ if (${WIN32})
        subsystem/windows/node/security/SecurityDescriptor.h
        subsystem/windows/node/security/SecurityIdentifier.cpp
        subsystem/windows/node/security/SecurityIdentifier.h
+       subsystem/windows/node/security/SecurityAttributes.cpp
+       subsystem/windows/node/security/SecurityAttributes.h
        subsystem/windows/node/_.cpp
        subsystem/windows/node/_.h
        #       subsystem/windows/node/_____debug.xcconfig
@@ -2634,6 +2636,10 @@ if (${WIN32})
        subsystem/windows/node/ApplicationCrashEvents.h
        subsystem/windows/node/AutoImpersonator.cpp
        subsystem/windows/node/AutoImpersonator.h
+       subsystem/windows/node/Clipboard.cpp
+       subsystem/windows/node/Clipboard.h
+       subsystem/windows/node/Cursor.cpp
+       subsystem/windows/node/Cursor.h
        #subsystem/windows/node/CMakeLists.txt
        subsystem/windows/node/LocalWindowsApplication.h
        #subsystem/windows/node/matter.txt
@@ -2663,8 +2669,6 @@ if (${WIN32})
        subsystem/windows/node/resource.h
        subsystem/windows/node/Screen.cpp
        subsystem/windows/node/Screen.h
-       subsystem/windows/node/SecurityAttributes.cpp
-       subsystem/windows/node/SecurityAttributes.h
        #subsystem/windows/node/SecurityDescriptor.cpp
        #subsystem/windows/node/SecurityIdentifier.cpp
        subsystem/windows/node/Service.cpp
@@ -2686,12 +2690,8 @@ if (${WIN32})
        subsystem/windows/node/VersionInfo.cpp
        subsystem/windows/node/VersionInfo.h
        subsystem/windows/node/win_system.vcproj
-       subsystem/windows/node/WinClipboard.cpp
-       subsystem/windows/node/WinClipboard.h
        subsystem/windows/node/WinCommandLineArgs.cpp
        subsystem/windows/node/WinCommandLineArgs.h
-       subsystem/windows/node/WinCursor.cpp
-       subsystem/windows/node/WinCursor.h
        subsystem/windows/node/WindowsApplication.cpp
        subsystem/windows/node/WindowsApplication.h
        subsystem/windows/node/WindowsDisplays.cpp

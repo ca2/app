@@ -358,7 +358,7 @@ namespace sockets
 //         tv = 0;
 //         for (cmsg = CMSG_FIRSTHDR(&msg); cmsg != nullptr; cmsg = CMSG_NXTHDR(&msg, cmsg))
 //         {
-//            if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == SCM_TIMESTAMP)
+//            if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == ServiceControlManager_TIMESTAMP)
 //            {
 //               tv = (struct timeval *)CMSG_DATA(cmsg);
 //            }

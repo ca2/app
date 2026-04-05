@@ -22,30 +22,30 @@
 //-------------------------------------------------------------------------
 //
 
-#pragma once
-
-
-#include "acme/subsystem/_common_header.h"
-
-class CLASS_DECL_REMOTING_COMMON SharedMemory
-{
-public:
-  // @throw ::remoting::Exception
-  SharedMemory(const ::scoped_string & scopedstrName, size_t size);
-  virtual ~SharedMemory();
-
-  void *getMemPointer() { return m_memory; }
-
-protected:
-  // Return true if need to init
-  bool createFile(const ::scoped_string & scopedstrName, size_t size);
-  void mapViewOfFile();
-  void setAllAccess(HANDLE objHandle);
-
-  void freeRes();
-
-  HANDLE m_hToMap;
-  void *m_memory;
-};
-
-//// __SHAREDMEMORY_H__
+// #pragma once
+//
+//
+// #include "acme/subsystem/_common_header.h"
+//
+// class CLASS_DECL_REMOTING_COMMON SharedMemory
+// {
+// public:
+//   // @throw ::remoting::Exception
+//   SharedMemory(const ::scoped_string & scopedstrName, size_t size);
+//   virtual ~SharedMemory();
+//
+//   void *getMemPointer() { return m_memory; }
+//
+// protected:
+//   // Return true if need to init
+//   bool createFile(const ::scoped_string & scopedstrName, size_t size);
+//   void mapViewOfFile();
+//   void setAllAccess(HANDLE objHandle);
+//
+//   void freeRes();
+//
+//   HANDLE m_hToMap;
+//   void *m_memory;
+// };
+//
+// //// __SHAREDMEMORY_H__

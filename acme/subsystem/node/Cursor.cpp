@@ -23,22 +23,27 @@
 //
 #include "framework.h"
 #include "acme/_operating_system.h"
-#include "WinCursor.h"
+#include "Cursor.h"
 
-WinCursor::WinCursor()
-{
-}
 
-WinCursor::~WinCursor()
+namespace subsystem
 {
-}
+   WinCursor::WinCursor()
+   {
+   }
 
-Point WinCursor::getCursorPos() const
-{
-  POINT curPoint;
-  GetCursorPos(&curPoint);
-  // Correcting point to frame buffer coordinates
-  curPoint.x -= GetSystemMetrics(SM_XVIRTUALSCREEN);
-  curPoint.y -= GetSystemMetrics(SM_YVIRTUALSCREEN);
-  return Point(curPoint.x, curPoint.y);
-}
+   WinCursor::~WinCursor()
+   {
+   }
+
+   Point WinCursor::getCursorPos() const
+   {
+      // POINT curPoint;
+      // GetCursorPos(&curPoint);
+      // // Correcting point to frame buffer coordinates
+      // curPoint.x -= GetSystemMetrics(SM_XVIRTUALSCREEN);
+      // curPoint.y -= GetSystemMetrics(SM_YVIRTUALSCREEN);
+      // return Point(curPoint.x, curPoint.y);
+   }
+} // namespace subsystem
+

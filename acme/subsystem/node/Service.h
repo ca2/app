@@ -28,91 +28,183 @@
 #include "remoting/remoting_common/util/winhdr.h"
 //////#include "remoting/remoting_common/util/::string.h"
 #include "acme/subsystem/Exception.h"
-#include "remoting/remoting_common/thread/Thread.h"
+#include "subsystem/particle.h"
+//#include "remoting/remoting_common/thread/Thread.h"
 
-/**
- * Win32 service class (abstract).
- * @usage create service subclass, instanize subclass and call run() method.
- * @remark service is singleton (you can have only one service instance).
- * @author enikey.
- */
-class CLASS_DECL_REMOTING_COMMON Service
+namespace subsystem
 {
-public:
-  /**
-   * Creates new Service class instance.
-   * @remark pointer to global service (singleton) saves here.
-   * @param name name of service.
-   */
-  Service(const ::scoped_string & scopedstrName);
 
-  /**
-   * Deletes service instance.
-   * @remark releases singleton pointer.
-   */
-  virtual ~Service();
+      /**
+    * Win32 service class (abstract).
+    * @usage create service subclass, instanize subclass and call run() method.
+    * @remark service is singleton (you can have only one service instance).
+    * @author enikey.
+    */
+   class CLASS_DECL_ACME ServiceInterface :
+   virtual public ::subsystem::particle_interface
+   {
+   public:
+      /**
+       * Creates new Service class instance.
+       * @remark pointer to global service (singleton) saves here.
+       * @param name name of service.
+       */
+      //Service(const ::scoped_string & scopedstrName);
 
-  /**
-   * Starts service execution.
-   */
-  void run();
+      /**
+       * Deletes service instance.
+       * @remark releases singleton pointer.
+       */
+      virtual ~ServiceInterface() = 0;
 
-protected:
-  /**
-   * Called from service control manager when service needs to start.
-   */
-  virtual void onStart() = 0;
-  /**
-   * Service main.
-   */
-  virtual void main() = 0;
-  /**
-   * Called from service control manager when service needs to stop/
-   */
-  virtual void onStop() = 0;
+      virtual void initialize_service(const ::scoped_string & scopedstrName) = 0;
 
-  /**
-   * Win32 API service main function.
-   * @see MSDN for details.
-   */
-  static void WINAPI ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv);
-  /**
-   * Win32 API service control handler.
-   * @see MSDN for details.
-   */
-  static void WINAPI ServiceControlHandler(DWORD dwCtrlCode);
+      /**
+       * Starts service execution.
+       */
+      virtual void run() = 0;
 
-protected:
-  /**
-   * @fixme add comment to it.
-   */
-  bool reportStatus(DWORD dwCurrentState, DWORD dwWin32ExitCode,
-                    DWORD dwWaitHint);
+   //protected:
+      /**
+       * Called from service control manager when service needs to start.
+       */
+      virtual void onStart() = 0;
+      /**
+       * Service main.
+       */
+      virtual void main() = 0;
+      /**
+       * Called from service control manager when service needs to stop/
+       */
+      virtual void onStop() = 0;
 
-protected:
-  /**
-   * Service name for SCM.
-   */
-  ::string m_name;
+      /**
+       * Win32 API service main function.
+       * @see MSDN for details.
+       */
+      //static void WINAPI ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv);
+      /**
+       * Win32 API service control handler.
+       * @see MSDN for details.
+       */
+      //static void WINAPI ServiceControlHandler(DWORD dwCtrlCode);
 
-  /**
-   * Current service status.
-   */
-  SERVICE_STATUS m_status;
-  /**
-   * Service handle.
-   */
-  SERVICE_STATUS_HANDLE m_statusHandle;
+   //protected:
+      /**
+       * @fixme add comment to it.
+       */
+      virtual bool reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode,
+                        unsigned int dwWaitHint) = 0;
 
-  /**
-   * Flag determinates if service is terminating.
-   */
-  volatile bool m_isTerminating;
+   // protected:
+   //    /**
+   //     * Service name for ServiceControlManager.
+   //     */
+   //    ::string m_name;
+   //
+   //    /**
+   //     * Current service status.
+   //     */
+   //    SERVICE_STATUS m_status;
+   //    /**
+   //     * Service handle.
+   //     */
+   //    SERVICE_STATUS_HANDLE m_statusHandle;
+   //
+   //    /**
+   //     * Flag determinates if service is terminating.
+   //     */
+   //    volatile bool m_isTerminating;
+   //
+   //    /**
+   //     * Service (global instance).
+   //     */
+   //    static Service *g_service;
+   };
+   /**
+    * Win32 service class (abstract).
+    * @usage create service subclass, instanize subclass and call run() method.
+    * @remark service is singleton (you can have only one service instance).
+    * @author enikey.
+    */
+   class CLASS_DECL_ACME Service :
+   virtual public ::subsystem::composite< ServiceInterface>
+   {
+   public:
+      /**
+       * Creates new Service class instance.
+       * @remark pointer to global service (singleton) saves here.
+       * @param name name of service.
+       */
+      Service(const ::scoped_string & scopedstrName);
 
-  /**
-   * Service (global instance).
-   */
-  static Service *g_service;
-};
+      /**
+       * Deletes service instance.
+       * @remark releases singleton pointer.
+       */
+      ~Service() override;
 
+      /**
+       * Starts service execution.
+       */
+      void run() override;
+
+   //protected:
+      /**
+       * Called from service control manager when service needs to start.
+       */
+      void onStart() override;
+      /**
+       * Service main.
+       */
+      void main()override;
+      /**
+       * Called from service control manager when service needs to stop/
+       */
+      void onStop() override;
+
+      /**
+       * Win32 API service main function.
+       * @see MSDN for details.
+       */
+      //static void WINAPI ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv);
+      /**
+       * Win32 API service control handler.
+       * @see MSDN for details.
+       */
+      //static void WINAPI ServiceControlHandler(DWORD dwCtrlCode);
+
+   //protected:
+      /**
+       * @fixme add comment to it.
+       */
+      bool reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode,
+                        unsigned int dwWaitHint) override;
+
+   // protected:
+   //    /**
+   //     * Service name for ServiceControlManager.
+   //     */
+   //    ::string m_name;
+   //
+   //    /**
+   //     * Current service status.
+   //     */
+   //    SERVICE_STATUS m_status;
+   //    /**
+   //     * Service handle.
+   //     */
+   //    SERVICE_STATUS_HANDLE m_statusHandle;
+   //
+   //    /**
+   //     * Flag determinates if service is terminating.
+   //     */
+   //    volatile bool m_isTerminating;
+   //
+   //    /**
+   //     * Service (global instance).
+   //     */
+       static Service *g_service;
+   };
+} // namespace subsystem
 

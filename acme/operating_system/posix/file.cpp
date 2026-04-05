@@ -136,7 +136,7 @@ close();
        *
        * The file is suitable for buffer sharing between processes by
        * transmitting the file descriptor over Unix sockets using the
-       * SCM_RIGHTS methods.
+       * ServiceControlManager_RIGHTS methods.
        */
       int    file::create_anonymous_file(memsize size)
       {

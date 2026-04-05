@@ -220,7 +220,7 @@ namespace coding
 //
 //       //m_bSvnInstalled = false;
 //
-//       //#if INSTALL_GIT_SCM
+//       //#if INSTALL_GIT_ServiceControlManager
 //       //
 //       //      m_cPendingInstall += 2; // git scm and download source with git scm
 //       //
@@ -352,7 +352,7 @@ namespace coding
 //       //
 //       //#endif
 //       //
-// #if INSTALL_GIT_SCM
+// #if INSTALL_GIT_ServiceControlManager
 //
 //       defer_start_installation(::coding::e_install_git_scm);
 //

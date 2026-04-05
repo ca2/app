@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "DibSection.h"
-#include "remoting/remoting_common/win_system/SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
 
 DibSection::DibSection(const PixelFormat & pf, const ::int_size & dim, HWND compatibleWin)
 : m_isOwnTargetDC(false),

@@ -176,7 +176,7 @@ class ::time      m_timeFoldersSetupDetected;
          virtual bool __is_jetbrains_clion_installed();
          virtual bool __is_jetbrains_toolbox_installed();
 #endif
-#if INSTALL_GIT_SCM
+#if INSTALL_GIT_ServiceControlManager
       //bool defer_install_git_scm(int iTry);
       //void install_git_scm();
       virtual bool __is_git_scm_installed();

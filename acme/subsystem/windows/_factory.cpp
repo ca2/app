@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "thread/GlobalMutex.h"
+#include "node/Shell.h"
 
 namespace subsystem
 {
@@ -11,6 +12,7 @@ CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory)
 {
 
    pfactory->add_factory_item<::windows::subsystem::GlobalMutex, ::subsystem::GlobalMutex>();
+   pfactory->add_factory_item<::windows::subsystem::Shell, ::subsystem::Shell>();
 
 }
 

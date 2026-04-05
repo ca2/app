@@ -24,44 +24,44 @@
 #include "framework.h"
 //#include "operating_system/windows_common/_.h"
 //#include "acme/_operating_system.h"
-#include "SCMClient.h"
+#include "ServiceControlManagerClient.h"
 
 //#include "remoting/remoting_common/thread/Thread.h"
 
 namespace subsystem
 {
-   SCMClientException::SCMClientException(int scmErrCode)
+   ServiceControlManagerClientException::ServiceControlManagerClientException(int iServiceControlManagerErrorCode)
    : SystemException("[::remoting::Exception description is not avaliable]")
    {
-      switch (scmErrCode) {
+      switch (iServiceControlManagerErrorCode) {
          case ERROR_ALREADY_STOPPED:
          case ERROR_STOP_TIMEOUT:
          case ERROR_ALREADY_RUNNING:
          case ERROR_START_TIMEOUT:
             break;
          default:
-            _ASSERT(FALSE);
+            _ASSERT(false);
       };
 
-      m_scmErrCode = scmErrCode;
+      m_iServiceControlManagerErrorCode = iServiceControlManagerErrorCode;
    }
 
-   int SCMClientException::getSCMErrorCode() const
+   int ServiceControlManagerClientException::getServiceControlManagerErrorCode() const
    {
-      return m_scmErrCode;
+      return m_iServiceControlManagerErrorCode;
    }
 
-   //SCMClient::SCMClient(DWORD desiredAccess)
-   SCMClient::SCMClient()
+   //ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
+   ServiceControlManagerClient::ServiceControlManagerClient()
    {
-      // m_managerHandle = OpenSCManager(NULL, NULL, desiredAccess);
+      // m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
       //
       // if (m_managerHandle == NULL) {
       //    throw SystemException();
       // }
    }
 
-   SCMClient::~SCMClient()
+   ServiceControlManagerClient::~ServiceControlManagerClient()
    {
       // if (m_managerHandle != NULL) {
       //    CloseServiceHandle(m_managerHandle);
@@ -69,21 +69,21 @@ namespace subsystem
    }
 
 
-   // SCMClient::SCMClient(DWORD desiredAccess)
+   // ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
    // {
-   //    m_managerHandle = OpenSCManager(NULL, NULL, desiredAccess);
+   //    m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
    //
    //    if (m_managerHandle == NULL) {
    //       throw SystemException();
    //    }
    // }
 
-   void SCMClient::installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
+   void ServiceControlManagerClient::installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
                                   const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies)
    {
       m_pparticleThis->installService(scopedstrName, scopedstrNameToDisplay, scopedstrBinPath, scopedstrDependencies);
       // SC_HANDLE serviceHandle = CreateService(
-      //   m_managerHandle,              // SCManager database
+      //   m_managerHandle,              // ServiceControlManageranager database
       //   ::wstring(scopedstrName),                         // name of service
       //   ::wstring(scopedstrNameToDisplay),               // name to display
       //   SERVICE_ALL_ACCESS,           // desired access
@@ -120,7 +120,7 @@ namespace subsystem
       // CloseServiceHandle(serviceHandle);
    }
 
-   void SCMClient::removeService(const ::scoped_string & scopedstrName)
+   void ServiceControlManagerClient::removeService(const ::scoped_string & scopedstrName)
    {
 
       m_pparticleThis->removeService(scopedstrName);
@@ -157,7 +157,7 @@ namespace subsystem
       // }
    }
 
-   void SCMClient::startService(const ::scoped_string & scopedstrName, bool waitCompletion)
+   void ServiceControlManagerClient::startService(const ::scoped_string & scopedstrName, bool waitCompletion)
    {
 
       m_pparticleThis->startService(scopedstrName, waitCompletion);
@@ -171,7 +171,7 @@ namespace subsystem
       // try {
       //    DWORD state = getServiceState(serviceHandle);
       //    if (state == SERVICE_RUNNING || state == SERVICE_START_PENDING) {
-      //       throw SCMClientException(SCMClientException::ERROR_ALREADY_RUNNING);
+      //       throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_RUNNING);
       //    }
       //    if (StartService(serviceHandle, 0, 0) == FALSE) {
       //       throw SystemException();
@@ -188,7 +188,7 @@ namespace subsystem
       //          Sleep(msDelayBetweenChecks);
       //       }
       //       if (state != SERVICE_RUNNING) {
-      //          throw SCMClientException(SCMClientException::ERROR_START_TIMEOUT);
+      //          throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_START_TIMEOUT);
       //       }
       //    }
       // } catch(...) {
@@ -199,7 +199,7 @@ namespace subsystem
       // CloseServiceHandle(serviceHandle);
    }
 
-   void SCMClient::stopService(const ::scoped_string & scopedstrName, bool waitCompletion)
+   void ServiceControlManagerClient::stopService(const ::scoped_string & scopedstrName, bool waitCompletion)
    {
       m_pparticleThis->stopService(scopedstrName, waitCompletion);
       // SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_STOP | SERVICE_QUERY_STATUS);
@@ -210,7 +210,7 @@ namespace subsystem
       // try {
       //    DWORD state = getServiceState(serviceHandle);
       //    if (state == SERVICE_STOPPED || state == SERVICE_STOP_PENDING) {
-      //       throw SCMClientException(SCMClientException::ERROR_ALREADY_STOPPED);
+      //       throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_STOPPED);
       //    }
       //    SERVICE_STATUS status;
       //    if (ControlService(serviceHandle, SERVICE_CONTROL_STOP, &status) == FALSE) {
@@ -228,7 +228,7 @@ namespace subsystem
       //          Sleep(msDelayBetweenChecks);
       //       }
       //       if (state != SERVICE_STOPPED) {
-      //          throw SCMClientException(SCMClientException::ERROR_STOP_TIMEOUT);
+      //          throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_STOP_TIMEOUT);
       //       }
       //    }
       // } catch(...) {
@@ -239,7 +239,7 @@ namespace subsystem
       // CloseServiceHandle(serviceHandle);
    }
 
-   // DWORD SCMClient::getServiceState(SC_HANDLE hService) const
+   // DWORD ServiceControlManagerClient::getServiceState(SC_HANDLE hService) const
    // {
    //    mpparticleThis->getService
    //    DWORD bytesNeeded;

@@ -134,8 +134,10 @@ namespace subsystem
        * Creates WindowsApplication instance.
        * @param appInstance parameter that passed to WinMain.
        */
+
       //OperatingSystemApplicationInterface(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName);
 
+      OperatingSystemApplication();
       /**
        * Destroys WindowsApplication instance.
        * @remark it does not shutdown application if it's executing it
@@ -161,7 +163,7 @@ namespace subsystem
       /**
        * Posts scopedstrMessage to main window.
        */
-      void postMessage(unsigned int scopedstrMessage, ::wparam wParam = 0, ::lparam lParam = 0) override;
+      void postMessage(unsigned int uMessage, ::wparam wParam = 0, ::lparam lParam = 0) override;
 
       /**
        * Adds modeless dialog to application modeless dialog ::list_base to

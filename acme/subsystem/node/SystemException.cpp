@@ -30,7 +30,7 @@
 namespace subsystem
 {
    SystemException::SystemException()
-   : ::subsystem::::Exception(), m_errcode(GetLastError())
+   : ::subsystem::Exception(), m_errcode(GetLastError())
    {
       createMessage(0, m_errcode);
    }

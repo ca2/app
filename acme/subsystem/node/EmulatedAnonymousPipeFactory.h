@@ -25,25 +25,56 @@
 #pragma once
 
 
-#include "NamedPipe.h"
+#include "acme/subsystem/node/NamedPipe.h"
+#include "subsystem/subsystem.h"
 //#include "log_writer/LogWriter.h"
 
-// The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
-// This is similar to anonymous pipe generation.
-class CLASS_DECL_REMOTING_COMMON EmulatedAnonymousPipeFactory
+namespace subsystem
 {
-public:
-  EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
-  virtual ~EmulatedAnonymousPipeFactory();
+   // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
+   // This is similar to anonymous pipe generation.
+   class CLASS_DECL_ACME EmulatedAnonymousPipeFactoryInterface :
+   virtual subsystem::particle_interface
+   {
+   public:
+      //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
+      virtual ~EmulatedAnonymousPipeFactory() = 0;
 
-  void generatePipes(NamedPipe **serverPipe, bool serverInheritable,
-                     NamedPipe **clientPipe, bool clientInheritable);
+      virtual initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
 
-//private:
-  ::string getUniqPipeName();
+      virtual void generatePipes(NamedPipe **serverPipe, bool serverInheritable,
+                         NamedPipe **clientPipe, bool clientInheritable) = 0;
 
-  LogWriter *m_log;
-  unsigned int m_bufferSize;
-};
+      //private:
+      virtual ::string getUniqPipeName() = 0;
 
-//// __EMULATEDANONYMOUSPIPEFACTORY_H__
+      // LogWriter *m_log;
+      // unsigned int m_bufferSize;
+   };
+
+   class CLASS_DECL_ACME EmulatedAnonymousPipeFactory :
+   virtual public ::subsystem::composite< EmulatedAnonymousPipeFactoryInterface>
+   {
+   public:
+
+
+      EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
+       ~EmulatedAnonymousPipeFactory() override;
+
+
+      void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) override;
+
+      void generatePipes(NamedPipe **serverPipe, bool serverInheritable,
+                         NamedPipe **clientPipe, bool clientInheritable) override;
+
+      //private:
+      ::string getUniqPipeName() override;
+
+      //LogWriter *m_log;
+      //unsigned int m_bufferSize;
+   };
+
+   //// __EMULATEDANONYMOUSPIPEFACTORY_H__
+} // namespace subsystem
+
+

@@ -28,6 +28,8 @@ namespace subsystem
 
    class PixelFormat;
 
+   class Shell;
+
    using LogWriter = ::particle;
 
 

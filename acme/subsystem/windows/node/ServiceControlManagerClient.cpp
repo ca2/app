@@ -23,11 +23,11 @@
 //
 #include "framework.h"
 #include "acme/_operating_system.h"
-#include "SCMClient.h"
+#include "ServiceControlManagerClient.h"
 
 #include "remoting/remoting_common/thread/Thread.h"
 
-SCMClientException::SCMClientException(int scmErrCode)
+ServiceControlManagerClientException::ServiceControlManagerClientException(int scmErrCode)
 : SystemException("[::remoting::Exception description is not avaliable]")
 {
   switch (scmErrCode) {
@@ -43,32 +43,32 @@ SCMClientException::SCMClientException(int scmErrCode)
   m_scmErrCode = scmErrCode;
 }
 
-int SCMClientException::getSCMErrorCode() const
+int ServiceControlManagerClientException::getServiceControlManagerErrorCode() const
 {
   return m_scmErrCode;
 }
 
-SCMClient::SCMClient(DWORD desiredAccess)
+ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
 {
-  m_managerHandle = OpenSCManager(NULL, NULL, desiredAccess);
+  m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
 
   if (m_managerHandle == NULL) {
     throw SystemException();
   }
 }
 
-SCMClient::~SCMClient()
+ServiceControlManagerClient::~ServiceControlManagerClient()
 {
   if (m_managerHandle != NULL) {
     CloseServiceHandle(m_managerHandle);
   }
 }
 
-void SCMClient::installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
+void ServiceControlManagerClient::installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
                                const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies)
 {
   SC_HANDLE serviceHandle = CreateService(
-    m_managerHandle,              // SCManager database
+    m_managerHandle,              // ServiceControlManageranager database
     ::wstring(scopedstrName),                         // name of service
     ::wstring(scopedstrNameToDisplay),               // name to display
     SERVICE_ALL_ACCESS,           // desired access
@@ -105,7 +105,7 @@ void SCMClient::installService(const ::scoped_string & scopedstrName, const ::sc
   CloseServiceHandle(serviceHandle);
 }
 
-void SCMClient::removeService(const ::scoped_string & scopedstrName)
+void ServiceControlManagerClient::removeService(const ::scoped_string & scopedstrName)
 {
   try { stopService(scopedstrName); } catch (...) { }
 
@@ -140,7 +140,7 @@ void SCMClient::removeService(const ::scoped_string & scopedstrName)
   }
 }
 
-void SCMClient::startService(const ::scoped_string & scopedstrName, bool waitCompletion)
+void ServiceControlManagerClient::startService(const ::scoped_string & scopedstrName, bool waitCompletion)
 {
   // FIXME: Wrap SC_HANDLE into a class with a call to CloseServiceHandle()
   //        in the destructor.
@@ -152,7 +152,7 @@ void SCMClient::startService(const ::scoped_string & scopedstrName, bool waitCom
   try {
     DWORD state = getServiceState(serviceHandle);
     if (state == SERVICE_RUNNING || state == SERVICE_START_PENDING) {
-      throw SCMClientException(SCMClientException::ERROR_ALREADY_RUNNING);
+      throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_RUNNING);
     }
     if (StartService(serviceHandle, 0, 0) == FALSE) {
       throw SystemException();
@@ -169,7 +169,7 @@ void SCMClient::startService(const ::scoped_string & scopedstrName, bool waitCom
         Sleep(msDelayBetweenChecks);
       }
       if (state != SERVICE_RUNNING) {
-        throw SCMClientException(SCMClientException::ERROR_START_TIMEOUT);
+        throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_START_TIMEOUT);
       }
     }
   } catch(...) {
@@ -180,7 +180,7 @@ void SCMClient::startService(const ::scoped_string & scopedstrName, bool waitCom
   CloseServiceHandle(serviceHandle);
 }
 
-void SCMClient::stopService(const ::scoped_string & scopedstrName, bool waitCompletion)
+void ServiceControlManagerClient::stopService(const ::scoped_string & scopedstrName, bool waitCompletion)
 {
   SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_STOP | SERVICE_QUERY_STATUS);
   if (serviceHandle == NULL) {
@@ -190,7 +190,7 @@ void SCMClient::stopService(const ::scoped_string & scopedstrName, bool waitComp
   try {
     DWORD state = getServiceState(serviceHandle);
     if (state == SERVICE_STOPPED || state == SERVICE_STOP_PENDING) {
-      throw SCMClientException(SCMClientException::ERROR_ALREADY_STOPPED);
+      throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_STOPPED);
     }
     SERVICE_STATUS status;
     if (ControlService(serviceHandle, SERVICE_CONTROL_STOP, &status) == FALSE) {
@@ -208,7 +208,7 @@ void SCMClient::stopService(const ::scoped_string & scopedstrName, bool waitComp
         Sleep(msDelayBetweenChecks);
       }
       if (state != SERVICE_STOPPED) {
-        throw SCMClientException(SCMClientException::ERROR_STOP_TIMEOUT);
+        throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_STOP_TIMEOUT);
       }
     }
   } catch(...) {
@@ -219,7 +219,7 @@ void SCMClient::stopService(const ::scoped_string & scopedstrName, bool waitComp
   CloseServiceHandle(serviceHandle);
 }
 
-DWORD SCMClient::getServiceState(SC_HANDLE hService) const
+DWORD ServiceControlManagerClient::getServiceState(SC_HANDLE hService) const
 {
   DWORD bytesNeeded;
   SERVICE_STATUS_PROCESS status;

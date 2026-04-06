@@ -1,4 +1,4 @@
-// Copyright (C) 2008,2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -21,37 +21,34 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#include "framework.h"
+#include "rfb/PixelFormat.h"
 
-#pragma once
+#include <string.h>
 
-namespace remoting
+PixelFormat::PixelFormat()
 {
+  memset(this, 0, sizeof(PixelFormat));
+}
 
-
-struct CLASS_DECL_REMOTING_COMMON PixelFormat
+void PixelFormat::initBigEndianByNative()
 {
-  PixelFormat();
-  // Initializes the bigEndian field by native machine value.
-  void initBigEndianByNative();
+  union {
+    char test;
+    int i;
+  } testBigEndian;
+  testBigEndian.i = 1;
+  bigEndian = (testBigEndian.test == 0);
+}
 
-  bool operator == (const PixelFormat & pf) const;
-
-  unsigned short bitsPerPixel;
-  unsigned short colorDepth;
-
-  unsigned short redMax;
-  unsigned short greenMax;
-  unsigned short blueMax;
-
-  unsigned short redShift;
-  unsigned short greenShift;
-  unsigned short blueShift;
-
-  bool bigEndian;
-};
-
-//// __PIXELFORMAT_H__
-///
-} // namespace remoting
-
-
+bool PixelFormat::operator ==(const PixelFormat & pf) const {
+  return bitsPerPixel == pf.bitsPerPixel &&
+         colorDepth   == pf.colorDepth &&
+         redMax       == pf.redMax &&
+         greenMax     == pf.greenMax &&
+         blueMax      == pf.blueMax &&
+         redShift     == pf.redShift &&
+         greenShift   == pf.greenShift &&
+         blueShift    == pf.blueShift &&
+         bigEndian    == pf.bigEndian;
+}

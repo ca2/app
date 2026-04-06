@@ -32,10 +32,10 @@ namespace innate_subsystem
       StringVector *classNames;
    };
 
-   BOOL CALLBACK WindowFinder::findWindowsByClassFunc(HWND hwnd, LPARAM lParam)
+   BOOL CALLBACK WindowFinder::findWindowsByClassFunc(HWND hwnd, ::lparam lparam)
    {
       if (IsWindowVisible(hwnd) != 0) {
-         WindowsParam *windowsParam = (WindowsParam *)lParam;
+         WindowsParam *windowsParam = (WindowsParam *)::lparam;
          StringVector::iterator classNameIter;
 
          const size_t maxTcharCount = 256;
@@ -53,7 +53,7 @@ namespace innate_subsystem
             }
 
             // Recursion
-            EnumChildWindows(hwnd, findWindowsByClassFunc, (LPARAM) windowsParam);
+            EnumChildWindows(hwnd, findWindowsByClassFunc, (::lparam) windowsParam);
          }
       }
       return TRUE;
@@ -68,11 +68,11 @@ namespace innate_subsystem
       WindowsParam windowsParam;
       windowsParam.classNames = &classNames;
       windowsParam.hwndVector = &hwndVector;
-      EnumWindows(findWindowsByClassFunc, (LPARAM)&windowsParam);
+      EnumWindows(findWindowsByClassFunc, (::lparam)&windowsParam);
       return hwndVector;
    }
 
-   BOOL CALLBACK WindowFinder::findWindowsByNameFunc(HWND hwnd, LPARAM lParam)
+   BOOL CALLBACK WindowFinder::findWindowsByNameFunc(HWND hwnd, ::lparam lparam)
    {
       if (IsWindowVisible(hwnd) != 0) {
          const size_t maxTcharCount = 256;
@@ -82,7 +82,7 @@ namespace innate_subsystem
             winName.toLowerCase();
 
             if (winName.getLength() > 0 && hwnd != 0) {
-               WindowsParam *winParams = (WindowsParam *)lParam;
+               WindowsParam *winParams = (WindowsParam *)::lparam;
                StringStorage *substr = &(*(winParams->classNames)).front();
                if (_tcsstr(winName.getString(), substr->getString()) != 0) {
                   (*(winParams->hwndVector)).push_back(hwnd);
@@ -102,7 +102,7 @@ namespace innate_subsystem
       winNameVector[0].toLowerCase();
       WindowsParam winParams = { &hwndVector, &winNameVector };
 
-      EnumWindows(findWindowsByNameFunc, (LPARAM)&winParams);
+      EnumWindows(findWindowsByNameFunc, (::lparam)&winParams);
       if (hwndVector.size() != 0) {
          return hwndVector[0];
       } else {

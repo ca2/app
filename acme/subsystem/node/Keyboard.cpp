@@ -28,28 +28,44 @@
 
 namespace subsystem
 {
-   void Keyboard::getState(unsigned char state[256])
+
+   Keyboard::Keyboard()
    {
-      m_pparticleThis->getState(state);
-      // if (!GetKeyboardState(state)) {
-      //    throw SystemException();
-      // }
+
+
+
    }
 
-   void Keyboard::setState(unsigned char state[256])
+
+   Keyboard::~Keyboard()
    {
-      //if (!SetKeyboardState(state)) {
-        // throw SystemException();
-      //}
-      m_pparticleThis->setState(state);
+
+
    }
 
-   bool Keyboard::isKeyPressed(unsigned char vkCode)
-   {
-      //return (GetAsyncKeyState(vkCode) & 0x8000) != 0;
-
-      return m_pparticleThis->isKeyPressed(vkCode);
-   }
+   //
+   // void Keyboard::getState(unsigned char state[256])
+   // {
+   //    m_pparticleThis->getState(state);
+   //    // if (!GetKeyboardState(state)) {
+   //    //    throw SystemException();
+   //    // }
+   // }
+   //
+   // void Keyboard::setState(unsigned char state[256])
+   // {
+   //    //if (!SetKeyboardState(state)) {
+   //      // throw SystemException();
+   //    //}
+   //    m_pparticleThis->setState(state);
+   // }
+   //
+   // bool Keyboard::isKeyPressed(unsigned char vkCode)
+   // {
+   //    //return (GetAsyncKeyState(vkCode) & 0x8000) != 0;
+   //
+   //    return m_pparticleThis->isKeyPressed(vkCode);
+   // }
 
 
 } //namespace subsystem

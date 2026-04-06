@@ -45,22 +45,22 @@ public:
   void termMenu();
   
   int getMenuItemCount();
-  bool appendMenu(StringStorage strVal, UINT uID); 
+  bool appendMenu(StringStorage strVal, unsigned int uID); 
   bool appendSeparator();
   bool appendSubMenu(StringStorage strVal, Menu *pMenu);
 
-  bool insertMenuItem(UINT uItem, StringStorage strVal, UINT uID);
-  bool insertCheckMenuItem(UINT uItem, StringStorage strVal, UINT uID);
-  bool insertSeparator(UINT uItem);
-  bool insertSubMenu(UINT uItem, StringStorage strVal, Menu *pMenu);
+  bool insertMenuItem(unsigned int uItem, StringStorage strVal, unsigned int uID);
+  bool insertCheckMenuItem(unsigned int uItem, StringStorage strVal, unsigned int uID);
+  bool insertSeparator(unsigned int uItem);
+  bool insertSubMenu(unsigned int uItem, StringStorage strVal, Menu *pMenu);
 
-  bool enableMenuItem(UINT uID, UINT uEnable);
-  bool checkedMenuItem(UINT uID, bool bEnable);
-  bool deleteMenu(UINT uPosition);
+  bool enableMenuItem(unsigned int uID, unsigned int uEnable);
+  bool checkedMenuItem(unsigned int uID, bool bEnable);
+  bool deleteMenu(unsigned int uPosition);
 
-  int findMenuItem(UINT uID);
+  int findMenuItem(unsigned int uID);
 
-  bool setDefaultItem(UINT uID);
+  bool setDefaultItem(unsigned int uID);
 
   void operator= (HMENU hmenu)
   {
@@ -68,10 +68,10 @@ public:
   }
 
 private:
-  bool appendMenu(UINT uFlags, UINT_PTR uIDNewItem, LPCTSTR lpNewItem);
-  bool insertMenuItem(UINT uItem, BOOL fByPosition, LPCMENUITEMINFO lpmii);
-  bool modifyMenu(UINT uPosition, UINT uFlags, LONG_PTR uIDNewItem, LPCTSTR lpNewItem);
-  bool setMenuItem(UINT uItem, BOOL fByPosition, LPMENUITEMINFO lpmii);
+  bool appendMenu(unsigned int uFlags, unsigned int_PTR uIDNewItem, LPCTSTR lpNewItem);
+  bool insertMenuItem(unsigned int uItem, BOOL fByPosition, LPCMENUITEMINFO lpmii);
+  bool modifyMenu(unsigned int uPosition, unsigned int uFlags, LONG_PTR uIDNewItem, LPCTSTR lpNewItem);
+  bool setMenuItem(unsigned int uItem, BOOL fByPosition, LPMENUITEMINFO lpmii);
 
 protected:
   HMENU m_menu;

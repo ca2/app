@@ -24,7 +24,8 @@
 
 #pragma once
 
-#include "acme/subsystem/_common_header.h"
+//nclude "acme/subsystem/_common_header.h"
+#include "apex/innate_subsystem/Window.h"
 //#include "acme/subsystem/StringStorage.h"
 //#include "acme/_operating_system.h"
 
@@ -44,7 +45,7 @@ namespace innate_subsystem
    //
 
    class ControlInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::innate_subsystem::WindowInterface
    {
    public:
 
@@ -153,44 +154,44 @@ namespace innate_subsystem
       // Sets windows style for this control
       //
 
-      virtual void setStyle(unsigned int styleFlags) = 0;
+      //virtual void setStyle(unsigned int styleFlags) = 0;
 
       //
       // Gets windows style for this control
       //
 
-      virtual unsigned int getStyle() = 0;
+      //virtual unsigned int getStyle() = 0;
 
       //
       // Adds style to this control
       //
 
-      virtual void addStyle(unsigned int styleFlag) = 0;
-
+      // virtual void addStyle(unsigned int styleFlag) = 0;
       //
-      // Removes style from this control
+      // //
+      // // Removes style from this control
+      // //
       //
+      // virtual void removeStyle(unsigned int styleFlag) = 0;
 
-      virtual void removeStyle(unsigned int styleFlag) = 0;
-
+      // //
+      // // Returns true if styleFlags parameter is in
+      // // this control's style
+      // //
       //
-      // Returns true if styleFlags parameter is in
-      // this control's style
+      // virtual bool isStyleEnabled(unsigned int styleFlags) = 0;
       //
-
-      virtual bool isStyleEnabled(unsigned int styleFlags) = 0;
-
+      // //
+      // // Private methods for manipulation window extended styles
+      // //
       //
-      // Private methods for manipulation window extended styles
+      // virtual void setExStyle(unsigned int style) = 0;
+      // virtual void addExStyle(unsigned int styleFlag) = 0;
+      // virtual void removeExStyle(unsigned int styleFlag) = 0;
       //
-
-      virtual void setExStyle(unsigned int style) = 0;
-      virtual void addExStyle(unsigned int styleFlag) = 0;
-      virtual void removeExStyle(unsigned int styleFlag) = 0;
-
-      virtual unsigned int getExStyle() = 0;
-      virtual bool isExStyleEnabled(unsigned int styleFlag) = 0;
-
+      // virtual unsigned int getExStyle() = 0;
+      // virtual bool isExStyleEnabled(unsigned int styleFlag) = 0;
+      //
       //
       // Replaces default window proc with wndProc.
       //
@@ -199,6 +200,8 @@ namespace innate_subsystem
       //
 
       //void replaceWindowProc(WNDPROC wndProc);
+
+      virtual void subclassWindow() = 0;
 
    // protected:
    //
@@ -221,7 +224,8 @@ namespace innate_subsystem
    //
 
    class Control :
-       public ::subsystem::composite < ControlInterface >
+      virtual public ::subsystem::composite < ControlInterface >,
+      virtual public Window
    {
    public:
 
@@ -234,6 +238,8 @@ namespace innate_subsystem
       ~Control() override;
 
 
+      bool is_subsystem_implementation() const  override {return false;}
+      bool is_subsystem_composite() const  override {return true;}
       //
       // Sets HWND associated with this control
       //
@@ -327,43 +333,43 @@ namespace innate_subsystem
       // Sets windows style for this control
       //
 
-       void setStyle(unsigned int styleFlags) override;
+       //void setStyle(unsigned int styleFlags) override;
 
       //
       // Gets windows style for this control
       //
 
-       unsigned int getStyle() override;
+       //unsigned int getStyle() override;
 
       //
       // Adds style to this control
       //
 
-       void addStyle(unsigned int styleFlag) override;
+       //void addStyle(unsigned int styleFlag) override;
 
       //
       // Removes style from this control
       //
 
-       void removeStyle(unsigned int styleFlag) override;
+       //void removeStyle(unsigned int styleFlag) override;
 
       //
       // Returns true if styleFlags parameter is in
       // this control's style
       //
 
-       bool isStyleEnabled(unsigned int styleFlags) override;
+       ///bool isStyleEnabled(unsigned int styleFlags) override;
 
       //
       // Private methods for manipulation window extended styles
       //
 
-       void setExStyle(unsigned int style) override;
-       void addExStyle(unsigned int styleFlag) override;
-       void removeExStyle(unsigned int styleFlag) override;
-
-       unsigned int getExStyle() override;
-       bool isExStyleEnabled(unsigned int styleFlag) override;
+       // void setExStyle(unsigned int style) override;
+       // void addExStyle(unsigned int styleFlag) override;
+       // void removeExStyle(unsigned int styleFlag) override;
+       //
+       // unsigned int getExStyle() override;
+       // bool isExStyleEnabled(unsigned int styleFlag) override;
 
       //
       // Replaces default window proc with wndProc.
@@ -373,6 +379,9 @@ namespace innate_subsystem
       //
 
       //void replaceWindowProc(WNDPROC wndProc);
+
+
+      void subclassWindow() override;
 
    // protected:
    //

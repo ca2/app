@@ -42,10 +42,10 @@ namespace windows
 
       void ListBox::addString(const TCHAR *str, void *tag)
       {
-         LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (LPARAM)str);
+         LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (::lparam)str);
          int i = (int)lresult;
          _ASSERT(i == lresult);
-         setItemData(i, (LPARAM)tag);
+         setItemData(i, (::lparam)tag);
       }
 
       void ListBox::removeString(int index)
@@ -70,7 +70,7 @@ namespace windows
          size_t length = SendMessage(m_hwnd, LB_GETTEXTLEN, index, NULL);
          _ASSERT(length <= 65536);
          std::vector<TCHAR> buffer(length + 1);
-         SendMessage(m_hwnd, LB_GETTEXT, index, (LPARAM)&buffer.front());
+         SendMessage(m_hwnd, LB_GETTEXT, index, (::lparam)&buffer.front());
          storage->setString(&buffer.front());
       }
 
@@ -79,9 +79,9 @@ namespace windows
          int si = getSelectedIndex();
          int top = getTopIndex();
          LRESULT lresult = SendMessage(m_hwnd, LB_GETTOPINDEX, NULL, NULL);
-         UINT topIndex = (UINT)lresult;
+         unsigned int topIndex = (unsigned int)lresult;
          _ASSERT(topIndex == lresult);
-         LPARAM data = getItemData(index);
+         ::lparam data = getItemData(index);
          removeString(index);
          insertString(index, str, data);
          if (si == index) {
@@ -90,9 +90,9 @@ namespace windows
          setTopIndex(top);
       }
 
-      void ListBox::appendString(const TCHAR *str, LPARAM data)
+      void ListBox::appendString(const TCHAR *str, ::lparam data)
       {
-         LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (LPARAM)str);
+         LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (::lparam)str);
          int index = (int)lresult;
          _ASSERT(index == lresult);
          setItemData(index, data);
@@ -100,23 +100,23 @@ namespace windows
 
       void ListBox::insertString(int index, const TCHAR *str)
       {
-         SendMessage(m_hwnd, LB_INSERTSTRING, index, (LPARAM)str);
+         SendMessage(m_hwnd, LB_INSERTSTRING, index, (::lparam)str);
       }
 
-      void ListBox::insertString(int index, const TCHAR *str, LPARAM data)
+      void ListBox::insertString(int index, const TCHAR *str, ::lparam data)
       {
-         LRESULT lresult = SendMessage(m_hwnd, LB_INSERTSTRING, index, (LPARAM)str);
+         LRESULT lresult = SendMessage(m_hwnd, LB_INSERTSTRING, index, (::lparam)str);
          int i = (int)lresult;
          _ASSERT(i == lresult);
          setItemData(i, data);
       }
 
-      void ListBox::setItemData(int index, LPARAM data)
+      void ListBox::setItemData(int index, ::lparam data)
       {
          SendMessage(m_hwnd, LB_SETITEMDATA, index, data);
       }
 
-      LPARAM ListBox::getItemData(int index)
+      ::lparam ListBox::getItemData(int index)
       {
          return SendMessage(m_hwnd, LB_GETITEMDATA, index, NULL);
       }

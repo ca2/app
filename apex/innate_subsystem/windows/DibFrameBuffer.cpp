@@ -56,12 +56,12 @@ namespace windows
          throw Exception(_T("Wrong: You shouln't use the DibFrameBuffer::clone() function."));
       }
 
-      void DibFrameBuffer::setColor(UINT8 reg, UINT8 green, UINT8 blue)
+      void DibFrameBuffer::setColor(unsigned int8 reg, unsigned int8 green, unsigned int8 blue)
       {
          m_fb.setColor(reg, green, blue);
       }
 
-      void DibFrameBuffer::fillRect(const Rect *dstRect, UINT32 color)
+      void DibFrameBuffer::fillRect(const ::int_rectangle &dstRect, unsigned int32 color)
       {
          m_fb.fillRect(dstRect, color);
       }
@@ -71,7 +71,7 @@ namespace windows
          return m_fb.isEqualTo(frameBuffer);
       }
 
-      bool DibFrameBuffer::copyFrom(const Rect *dstRect, const FrameBuffer *srcFrameBuffer,
+      bool DibFrameBuffer::copyFrom(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
                                     int srcX, int srcY)
       {
          return m_fb.copyFrom(dstRect, srcFrameBuffer, srcX, srcY);
@@ -82,18 +82,18 @@ namespace windows
          return m_fb.copyFrom(srcFrameBuffer, srcX, srcY);
       }
 
-      bool DibFrameBuffer::overlay(const Rect *dstRect, const FrameBuffer *srcFrameBuffer,
+      bool DibFrameBuffer::overlay(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
                                    int srcX, int srcY, const char *andMask)
       {
          return m_fb.overlay(dstRect, srcFrameBuffer, srcX, srcY, andMask);
       }
 
-      void DibFrameBuffer::move(const Rect *dstRect, const int srcX, const int srcY)
+      void DibFrameBuffer::move(const ::int_rectangle &dstRect, const int srcX, const int srcY)
       {
          m_fb.move(dstRect, srcX, srcY);
       }
 
-      bool DibFrameBuffer::cmpFrom(const Rect *dstRect, const FrameBuffer *srcFrameBuffer,
+      bool DibFrameBuffer::cmpFrom(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
                                    const int srcX, const int srcY)
       {
          return m_fb.cmpFrom(dstRect, srcFrameBuffer, srcX, srcY);
@@ -104,12 +104,12 @@ namespace windows
          throw Exception(_T("Wrong: You shouln't use the DibFrameBuffer::clone() function."));
       }
 
-      bool DibFrameBuffer::setDimension(const Rect *rect)
+      bool DibFrameBuffer::setDimension(const ::int_rectangle &rect)
       {
          throw Exception(_T("Wrong: You shouln't use the DibFrameBuffer::clone() function."));
       }
 
-      void DibFrameBuffer::setEmptyDimension(const Rect *dimByRect)
+      void DibFrameBuffer::setEmptyDimension(const ::int_rectangle &dimByRect)
       {
          throw Exception(_T("This function is deprecated"));
       }
@@ -144,17 +144,17 @@ namespace windows
          throw Exception(_T("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function."));
       }
 
-      bool DibFrameBuffer::setProperties(const Rect *dimByRect, const PixelFormat *pixelFormat)
+      bool DibFrameBuffer::setProperties(const ::int_rectangle &dimByRect, const PixelFormat *pixelFormat)
       {
          throw Exception(_T("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function."));
       }
 
-      UINT8 DibFrameBuffer::getBitsPerPixel() const
+      unsigned int8 DibFrameBuffer::getBitsPerPixel() const
       {
          return m_fb.getBitsPerPixel();
       }
 
-      UINT8 DibFrameBuffer::getBytesPerPixel() const
+      unsigned int8 DibFrameBuffer::getBytesPerPixel() const
       {
          return m_fb.getBytesPerPixel();
       }
@@ -184,25 +184,25 @@ namespace windows
          return m_fb.getBytesPerRow();
       }
 
-      void DibFrameBuffer::blitToDibSection(const Rect *rect)
+      void DibFrameBuffer::blitToDibSection(const ::int_rectangle &rect)
       {
          checkDibValid();
          m_dibSection->blitToDibSection(rect);
       }
 
-      void DibFrameBuffer::blitTransparentToDibSection(const Rect *rect)
+      void DibFrameBuffer::blitTransparentToDibSection(const ::int_rectangle &rect)
       {
          checkDibValid();
          m_dibSection->blitTransparentToDibSection(rect);
       }
 
-      void DibFrameBuffer::blitFromDibSection(const Rect *rect)
+      void DibFrameBuffer::blitFromDibSection(const ::int_rectangle &rect)
       {
          checkDibValid();
          m_dibSection->blitFromDibSection(rect);
       }
 
-      void DibFrameBuffer::stretchFromDibSection(const Rect *srcRect, const Rect *dstRect)
+      void DibFrameBuffer::stretchFromDibSection(const ::int_rectangle &srcRect, const ::int_rectangle &dstRect)
       {
          checkDibValid();
          m_dibSection->stretchFromDibSection(srcRect, dstRect);

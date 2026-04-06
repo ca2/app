@@ -13,7 +13,7 @@ namespace universal_windows
 
       ::windowing::window * m_pimpl;
 
-      ::winrt::Windows::Foundation::Point                m_pointLastCursor;
+      ::winrt::Windows::Foundation::::int_point                m_pointLastCursor;
 
       unsigned int                                     m_dwMouseMoveThrottle;
 
@@ -77,7 +77,7 @@ namespace universal_windows
 
 
       virtual ::winrt::Windows::Foundation::Rect window_rectangle() override;
-      virtual ::winrt::Windows::Foundation::Point get_cursor_position() override;
+      virtual ::winrt::Windows::Foundation::::int_point get_cursor_position() override;
 
       virtual ::winrt::Windows::Foundation::Rect get_input_content_rect() override;
       virtual ::winrt::Windows::Foundation::Rect get_input_selection_rect() override;

@@ -107,13 +107,13 @@ namespace innate_subsystem
 //#ifdef WINDOWS
   //    virtual bool onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis);
 //#endif
-      virtual void onMessageReceived(unsigned int uMsg, ::wparam wParam, ::lparam lParam);
+      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam);
 
       //
       // Window message proccessing method
       //
 
-      //static INT_PTR CALLBACK dialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+      //static INT_PTR CALLBACK dialogProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
 
       virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam);
    //private:

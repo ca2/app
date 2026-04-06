@@ -4,28 +4,42 @@
 #include "framework.h"
 #include "ImageList.h"
 
-namespace innate_subsystem
+
+namespace windows
 {
-
-   ImageList::ImageList()
+   namespace innate_subsystem
    {
 
-   }
+      ImageList::ImageList()
+      {
+
+      }
 
 
-   ImageList::~ImageList()
-   {
+      ImageList::~ImageList()
+      {
 
 
-   }
+      }
 
 
-   void ImageList::initialize_image_list()
-   {
+      void ImageList::initialize_image_list()
+      {
 
 
 
-   }
+      }
 
 
-}// namespace innate_subsystem
+      void ImageList::create(int cx, int cy, int flags, int iInitialSize, int iGrow)
+      {
+        m_himagelist = ImageList_Create(cx,
+                              cy,
+                                                     flags, iInitialSize,iGrow);
+
+
+      }
+
+
+   }// namespace innate_subsystem
+}// namnamespace  windows

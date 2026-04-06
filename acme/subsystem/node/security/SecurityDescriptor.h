@@ -33,8 +33,8 @@ namespace subsystem
    /**
     * Contains the security information associated with an object.
     */
-   class CLASS_DECL_ACME SecurityDescriptorInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME SecurityDescriptor :
+   virtual public ::subsystem::particle
    {
    public:
       /**
@@ -43,8 +43,8 @@ namespace subsystem
        * no discretionary access control list (DACL), no owner, no primary group,
        * and all control flags set to FALSE (NULL). Thus, except for its revision level, it is empty
        */
-   //   SecurityDescriptor();
-      virtual ~SecurityDescriptorInterface() = 0;
+      SecurityDescriptor();
+      ~SecurityDescriptor() override;
 
       /**
        * Sets rules list for security descriptor.
@@ -84,59 +84,59 @@ namespace subsystem
    //    SECURITY_DESCRIPTOR m_sd;
    };
 
-   /**
- * Contains the security information associated with an object.
- */
-   class CLASS_DECL_ACME SecurityDescriptor :
-   virtual public ::subsystem::composite<SecurityDescriptorInterface>
-   {
-   public:
-      /**
-       * Creates new security descriptor.
-       * @remark created security descriptor have no system access control list (SACL),
-       * no discretionary access control list (DACL), no owner, no primary group,
-       * and all control flags set to FALSE (NULL). Thus, except for its revision level, it is empty
-       */
-        SecurityDescriptor();
-       ~SecurityDescriptor() override;
-
-      /**
-       * Sets rules list for security descriptor.
-       * It creates dalc from specified rules and link created dalc with security
-       * descriptor using setUserDacl method.
-       * @param count count of rules in rules array.
-       * @param rules rules array.
-       * @throws SystemException on fail.
-       */
-      //void setRulesAsDacl(size_t count,
-      //                  EXPLICIT_ACCESS *rules) throw(SystemException);
-
-      /**
-       * Sets information in a discretionary access control list (DACL).
-       * Built-in DACL value in acl param cannot be passed.
-       * @param acl access control list.
-       * @throws SystemException on fail.
-       */
-      //void setUserDacl(ACL *acl) throw(SystemException);
-
-      /**
-      Marks the security descriptor as having no owner.
-      */
-      void clearOwner() override;
-
-      /**
-       * Determines whether the components of a security descriptor are valid.
-       */
-      bool isValid() override;
-
-      /**
-       Returns pointer to WinAPI security descriptor.
-       */
-      //    SECURITY_DESCRIPTOR *getSD();
-      //
-      // private:
-      //    SECURITY_DESCRIPTOR m_sd;
-   };
+ //   /**
+ // * Contains the security information associated with an object.
+ // */
+ //   class CLASS_DECL_ACME SecurityDescriptor :
+ //   virtual public ::subsystem::composite<SecurityDescriptorInterface>
+ //   {
+ //   public:
+ //      /**
+ //       * Creates new security descriptor.
+ //       * @remark created security descriptor have no system access control list (SACL),
+ //       * no discretionary access control list (DACL), no owner, no primary group,
+ //       * and all control flags set to FALSE (NULL). Thus, except for its revision level, it is empty
+ //       */
+ //        SecurityDescriptor();
+ //       ~SecurityDescriptor() override;
+ //
+ //      /**
+ //       * Sets rules list for security descriptor.
+ //       * It creates dalc from specified rules and link created dalc with security
+ //       * descriptor using setUserDacl method.
+ //       * @param count count of rules in rules array.
+ //       * @param rules rules array.
+ //       * @throws SystemException on fail.
+ //       */
+ //      //void setRulesAsDacl(size_t count,
+ //      //                  EXPLICIT_ACCESS *rules) throw(SystemException);
+ //
+ //      /**
+ //       * Sets information in a discretionary access control list (DACL).
+ //       * Built-in DACL value in acl param cannot be passed.
+ //       * @param acl access control list.
+ //       * @throws SystemException on fail.
+ //       */
+ //      //void setUserDacl(ACL *acl) throw(SystemException);
+ //
+ //      /**
+ //      Marks the security descriptor as having no owner.
+ //      */
+ //      void clearOwner() override;
+ //
+ //      /**
+ //       * Determines whether the components of a security descriptor are valid.
+ //       */
+ //      bool isValid() override;
+ //
+ //      /**
+ //       Returns pointer to WinAPI security descriptor.
+ //       */
+ //      //    SECURITY_DESCRIPTOR *getSD();
+ //      //
+ //      // private:
+ //      //    SECURITY_DESCRIPTOR m_sd;
+ //   };
 
    //#endif
 } // namespace subsystem

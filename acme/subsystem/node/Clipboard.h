@@ -31,13 +31,14 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_ACME ClipboardInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME Clipboard :
+   virtual public ::subsystem::particle
    {
    public:
 
       //ClipboardInterface(HWND hwnd);
-      virtual ~ClipboardInterface() = 0;
+      Clipboard();
+      ~Clipboard() override;
 
 
       virtual void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) = 0;
@@ -65,39 +66,39 @@ namespace subsystem
       // HWND m_hwnd;
    };
 
-   class CLASS_DECL_ACME Clipboard :
-   virtual public ::subsystem::composite< ClipboardInterface>
-   {
-   public:
-
-      Clipboard(const ::operating_system::window & operatingsystemwindow);
-       ~Clipboard() override;
-
-
-      void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) override;
-
-      void setHWnd(const ::operating_system::window & operatingsystemwindow) override;
-
-      // get string from windows clipboard
-      bool getString(::string & str) override;
-
-      // update windows clipboard
-      bool setString(const ::scoped_string & scopedstr) override;
-
-      // //protected:
-      // static const char CR = '\r';
-      // static const char LF = '\n';
-
-      //protected:
-      // function removed CR before LF
-      ::string removeCR(const ::scoped_string & scopedstr)override;
-
-      // function replaced LF to CR+LF. If before LF already is CR, this not added second
-      ::string addCR(const ::scoped_string & scopedstr) override;
-
-      // HANDLE m_hndClipboard;
-      // HWND m_hwnd;
-   };
+   // class CLASS_DECL_ACME Clipboard :
+   // virtual public ::subsystem::composite< ClipboardInterface>
+   // {
+   // public:
+   //
+   //    Clipboard(const ::operating_system::window & operatingsystemwindow);
+   //     ~Clipboard() override;
+   //
+   //
+   //    void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) override;
+   //
+   //    void setHWnd(const ::operating_system::window & operatingsystemwindow) override;
+   //
+   //    // get string from windows clipboard
+   //    bool getString(::string & str) override;
+   //
+   //    // update windows clipboard
+   //    bool setString(const ::scoped_string & scopedstr) override;
+   //
+   //    // //protected:
+   //    // static const char CR = '\r';
+   //    // static const char LF = '\n';
+   //
+   //    //protected:
+   //    // function removed CR before LF
+   //    ::string removeCR(const ::scoped_string & scopedstr)override;
+   //
+   //    // function replaced LF to CR+LF. If before LF already is CR, this not added second
+   //    ::string addCR(const ::scoped_string & scopedstr) override;
+   //
+   //    // HANDLE m_hndClipboard;
+   //    // HWND m_hwnd;
+   // };
 } // namespace subsystem
 
 

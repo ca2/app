@@ -1,8 +1,28 @@
 //
-// Created by camilo on 2026-04-06.
+// Created by camilo on 2026-04-06 10:07 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef MAIN___H
-#define MAIN___H
 
-#endif //MAIN___H
+namespace innate_subsystem
+{
+
+   class Bitmap;
+
+   class BitmapGraphics;
+
+   class Brush;
+
+   class DeviceContext;
+
+   class Graphics;
+
+   class Icon;
+
+   class Pen;
+
+   class SolidBrush;
+
+}
+
+

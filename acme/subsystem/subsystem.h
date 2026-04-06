@@ -7,14 +7,6 @@
 #pragma once
 
 
-#include "acme/handler/handler.h"
-//#include "acme/platform/ini.h"
-#include "acme/platform/system_acme.h"
-#include "acme/platform/system_apex.h"
-#include "acme/platform/system_aqua.h"
-#include "acme/platform/system_aura.h"
-#include "acme/platform/system_axis.h"
-#include "acme/platform/system_core.h"
 
 
 namespace subsystem

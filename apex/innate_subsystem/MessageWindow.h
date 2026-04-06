@@ -45,7 +45,7 @@ public:
 
 protected:
   // Function must return true value if the message has been processed.
-  virtual bool wndProc(UINT message, WPARAM wParam, LPARAM lParam) { return true; }
+  virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) { return true; }
 
   HWND m_hwnd;
   WindowMessageHandler *m_messageHandler;
@@ -57,9 +57,9 @@ private:
   ATOM regClass(HINSTANCE hinst, TCHAR *windowClassName);
 
   static LRESULT CALLBACK staticWndProc(HWND hwnd,
-                                        UINT message,
-                                        WPARAM wParam,
-                                        LPARAM lParam);
+                                        unsigned int message,
+                                        ::wparam wparam,
+                                        ::lparam lparam);
 };
 
 #endif // __WINDOW_H__

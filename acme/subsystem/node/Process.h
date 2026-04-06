@@ -27,7 +27,9 @@
 
 #include "acme/subsystem/_common_header.h"
 
-#include "SystemException.h"
+
+
+//#include "SystemException.h"
 
 namespace subsystem
 {
@@ -37,8 +39,8 @@ namespace subsystem
       /**
     * Enables you to start and stop local processes.
     */
-   class CLASS_DECL_ACME ProcessInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME Process :
+   virtual public ::subsystem::particle
    {
    public:
       /**
@@ -47,12 +49,12 @@ namespace subsystem
        * @param args arguments for application.
        */
       //Process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {});
-
+Process();
       /**
        * Destroys Process instance.
        * Running process will not be interrupted.
        */
-      virtual ~ProcessInterface() = 0;
+      ~Process();
 
 
       virtual void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) = 0;
@@ -106,7 +108,7 @@ namespace subsystem
       /**
        * Returns the process handle if process already run and zero otherwise.
        */
-      ProcessHandleInterface * getProcessHandle();
+      virtual ProcessHandleInterface * getProcessHandle() = 0;
 
    //protected:
       /**
@@ -142,113 +144,113 @@ namespace subsystem
    };
 
 
-   /**
-    * Enables you to start and stop local processes.
-    */
-   class CLASS_DECL_ACME Process :
-   virtual public ::subsystem::composite<ProcessInterface>
-   {
-   public:
-      /**
-       * Creates new Process class instance.
-       * @param path full path to file.
-       * @param args arguments for application.
-       */
-      Process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {});
-
-      /**
-       * Destroys Process instance.
-       * Running process will not be interrupted.
-       */
-      ~Process() override;
-
-
-      void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) override;
-
-      /**
-       * Sets executable filename for process.
-       * @param path.
-       */
-      void setFilename(const ::scoped_string & scopedstrPath) override;
-
-      /**
-       * Sets arguments for process.
-       * @param args.
-       */
-      void setArguments(const ::scoped_string & scopedstrArgs) override;
-
-      // Sets standard in/out/error handles for the child process.
-      void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) override;
-
-      // If handlesIsInerited is true the handles of the parent process can
-      // be used by the child process.
-      void setHandleInheritances(bool handlesIsInerited) override;
-
-      /**
-       * Starts execution of process.
-       * @throws SystemException on error.
-       */
-      void start() override;
-
-      /**
-       * Terminates running process.
-       * @throws SystemException on fail.
-       */
-      void kill() override;
-
-      /**
-       * Blocks the current thread of execution until the process has exited.
-       */
-      void waitForExit() override;
-
-      /**
-       * Breaks awaiting caused by waitForExit call.
-       */
-      void stopWait() override;
-
-      /**
-       * Returns exit code of terminated process.
-       * @throws SystemException on fail.
-       */
-      unsigned int getExitCode() override;
-
-      /**
-       * Returns the process handle if process already run and zero otherwise.
-       */
-      //HANDLE getProcessHandle();
-
-   //protected:
-      /**
-       * Returns command line string for process execution.
-       * Used to avoid code duplicates.
-       */
-      ::string getCommandLineString() override;
-
-      // Fills the STARTUPINFO structure.
-      // Before to use the STARTUPINFO structure in this class a function
-      // must to call this function.
-      //void getStartupInfo(STARTUPINFO *sti);
-
-      /**
-       * Closes WinAPI handles if their are open.
-       */
-      void cleanup() override;
-
-      // ::string m_path;
-      // ::string m_args;
-      //
-      // HANDLE m_hProcess;
-      // HANDLE m_hThread;
-      //
-      // HANDLE m_hStopWait;
-      //
-      // // Standard in/out/error handles for the child process.
-      // HANDLE m_stdIn;
-      // HANDLE m_stdOut;
-      // HANDLE m_stdErr;
-      //
-      // bool m_handlesIsInherited;
-   };
+   // /**
+   //  * Enables you to start and stop local processes.
+   //  */
+   // class CLASS_DECL_ACME Process :
+   // virtual public ::subsystem::composite<ProcessInterface>
+   // {
+   // public:
+   //    /**
+   //     * Creates new Process class instance.
+   //     * @param path full path to file.
+   //     * @param args arguments for application.
+   //     */
+   //    Process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {});
+   //
+   //    /**
+   //     * Destroys Process instance.
+   //     * Running process will not be interrupted.
+   //     */
+   //    ~Process() override;
+   //
+   //
+   //    void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) override;
+   //
+   //    /**
+   //     * Sets executable filename for process.
+   //     * @param path.
+   //     */
+   //    void setFilename(const ::scoped_string & scopedstrPath) override;
+   //
+   //    /**
+   //     * Sets arguments for process.
+   //     * @param args.
+   //     */
+   //    void setArguments(const ::scoped_string & scopedstrArgs) override;
+   //
+   //    // Sets standard in/out/error handles for the child process.
+   //    void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) override;
+   //
+   //    // If handlesIsInerited is true the handles of the parent process can
+   //    // be used by the child process.
+   //    void setHandleInheritances(bool handlesIsInerited) override;
+   //
+   //    /**
+   //     * Starts execution of process.
+   //     * @throws SystemException on error.
+   //     */
+   //    void start() override;
+   //
+   //    /**
+   //     * Terminates running process.
+   //     * @throws SystemException on fail.
+   //     */
+   //    void kill() override;
+   //
+   //    /**
+   //     * Blocks the current thread of execution until the process has exited.
+   //     */
+   //    void waitForExit() override;
+   //
+   //    /**
+   //     * Breaks awaiting caused by waitForExit call.
+   //     */
+   //    void stopWait() override;
+   //
+   //    /**
+   //     * Returns exit code of terminated process.
+   //     * @throws SystemException on fail.
+   //     */
+   //    unsigned int getExitCode() override;
+   //
+   //    /**
+   //     * Returns the process handle if process already run and zero otherwise.
+   //     */
+   //    ProcessHandleInterface * getProcessHandle() override;
+   //
+   // //protected:
+   //    /**
+   //     * Returns command line string for process execution.
+   //     * Used to avoid code duplicates.
+   //     */
+   //    ::string getCommandLineString() override;
+   //
+   //    // Fills the STARTUPINFO structure.
+   //    // Before to use the STARTUPINFO structure in this class a function
+   //    // must to call this function.
+   //    //void getStartupInfo(STARTUPINFO *sti);
+   //
+   //    /**
+   //     * Closes WinAPI handles if their are open.
+   //     */
+   //    void cleanup() override;
+   //
+   //    // ::string m_path;
+   //    // ::string m_args;
+   //    //
+   //    // HANDLE m_hProcess;
+   //    // HANDLE m_hThread;
+   //    //
+   //    // HANDLE m_hStopWait;
+   //    //
+   //    // // Standard in/out/error handles for the child process.
+   //    // HANDLE m_stdIn;
+   //    // HANDLE m_stdOut;
+   //    // HANDLE m_stdErr;
+   //    //
+   //    // bool m_handlesIsInherited;
+   // };
 
    //// __PROCESSMANAGER_H__
 } // namespace subsystem

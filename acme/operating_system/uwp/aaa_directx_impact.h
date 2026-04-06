@@ -20,7 +20,7 @@ namespace universal_windows
       virtual void Uninitialize() = 0;
 
       virtual ::winrt::Windows::Foundation::Rect window_rectangle() = 0;
-      virtual ::winrt::Windows::Foundation::Point get_cursor_position() = 0;
+      virtual ::winrt::Windows::Foundation::::int_point get_cursor_position() = 0;
 
 
       virtual ::winrt::Windows::Foundation::Rect get_input_content_rect() = 0;

@@ -70,7 +70,7 @@ namespace windows
          if (bitmapDC == 0) {
             bitmapDC = GetDC(0);
             if (bitmapDC == NULL) {
-               throw ::remoting::Exception("Can't get a bitmap dc");
+               throw ::subsystem::Exception("Can't get a bitmap dc");
             }
          }
 
@@ -85,7 +85,7 @@ namespace windows
             errMess = ::windows::last_error_message("Can't get a DIBits", ::windows::last_error());
             DeleteObject(hbm);
             DeleteDC(bitmapDC);
-            throw ::remoting::Exception(errMess);
+            throw ::subsystem::Exception(errMess);
          }
 
          // The color table is filled only if it is used BI_BITFIELDS
@@ -95,7 +95,7 @@ namespace windows
                errMess = ::windows::last_error_message("Can't get a DIBits",::windows::last_error());
                DeleteObject(hbm);
                DeleteDC(bitmapDC);
-               throw ::remoting::Exception(errMess);
+               throw ::subsystem::Exception(errMess);
             }
          }
 
@@ -107,7 +107,7 @@ namespace windows
 
       void Screen::fillPixelFormat(const BMI *bmi)
       {
-         memset(&m_pixelFormat, 0, sizeof(PixelFormat));
+         memset(&m_pixelFormat, 0, sizeof(::subsystem::PixelFormat));
 
          m_pixelFormat.initBigEndianByNative();
 

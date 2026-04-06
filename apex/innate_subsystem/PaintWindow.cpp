@@ -46,7 +46,7 @@ namespace innate_subsystem
    void PaintWindow::onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct) {
    }
 
-   bool PaintWindow::wndProc(UINT message, WPARAM wParam, LPARAM lParam)
+   bool PaintWindow::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
    {
       if (message == WM_PAINT) {
          m_hdc = BeginPaint(m_hWnd, &m_paintStruct);
@@ -57,7 +57,7 @@ namespace innate_subsystem
          m_bIsDraw = false;
          return true;
       }
-      return BaseWindow::wndProc(message, wParam, lParam);
+      return BaseWindow::wndProc(message, ::wparam, ::lparam);
    }
 } // namespace innate_subsystem
 

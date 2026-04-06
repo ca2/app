@@ -34,7 +34,7 @@ namespace subsystem
     * Windows application that runs on WinSta0 and current active desktop.
     * @fixme move functionality to WindowsApplication class.
     */
-   class CLASS_DECL_ACME LocalOperatingSystemApplicationInterface :
+   class CLASS_DECL_ACME LocalOperatingSystemApplication :
       virtual public OperatingSystemApplication
    {
    public:
@@ -45,27 +45,28 @@ namespace subsystem
        */
       //LocalWindowsApplication(HINSTANCE hInstance,
         //                      const ::scoped_string & scopedstrwindowClassName);
-      virtual ~LocalOperatingSystemApplicationInterface() = 0;
-   };
-
-
-   /**
- * Windows application that runs on WinSta0 and current active desktop.
- * @fixme move functionality to WindowsApplication class.
- */
-   class CLASS_DECL_ACME LocalOperatingSystemApplication :
-   virtual public ::subsystem::composite < LocalOperatingSystemApplicationInterface >
-   {
-   public:
-      /**
-       * Creates class instance and prepare environment for application
-       * (selects needed window station and desktop).
-       * @throws SystemException if error occured.
-       */
       LocalOperatingSystemApplication();
-      //LocalWindowsApplication(HINSTANCE hInstance,
-        //                      const ::scoped_string & scopedstrwindowClassName);
       ~LocalOperatingSystemApplication() override;
    };
+
+
+ //   /**
+ // * Windows application that runs on WinSta0 and current active desktop.
+ // * @fixme move functionality to WindowsApplication class.
+ // */
+ //   class CLASS_DECL_ACME LocalOperatingSystemApplication :
+ //   virtual public ::subsystem::composite < LocalOperatingSystemApplicationInterface >
+ //   {
+ //   public:
+ //      /**
+ //       * Creates class instance and prepare environment for application
+ //       * (selects needed window station and desktop).
+ //       * @throws SystemException if error occured.
+ //       */
+ //      LocalOperatingSystemApplication();
+ //      //LocalWindowsApplication(HINSTANCE hInstance,
+ //        //                      const ::scoped_string & scopedstrwindowClassName);
+ //      ~LocalOperatingSystemApplication() override;
+ //   };
 
 } // namespace subsystem

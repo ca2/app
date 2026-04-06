@@ -22,32 +22,37 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _PAINT_WINDOW_H_
-#define _PAINT_WINDOW_H_
+#pragma once
 
-#include "BaseWindow.h"
+
+#include "apex/innate_subsystem/Window.h"
 #include "drawing/DeviceContext.h"
 
-class PaintWindow: public BaseWindow
+namespace innate_subsystem
 {
-public:
-  PaintWindow();
-  virtual ~PaintWindow();
+   class PaintWindow:
+   virtual public Window
+   {
+   public:
+      PaintWindow();
+      virtual ~PaintWindow();
 
-private:
-  HDC getHDCPaint();
+   private:
+      HDC getHDCPaint();
 
-  friend class DeviceContext;
+      friend class DeviceContext;
 
-protected:
-  virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
+   protected:
+      virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
 
-  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam);
+      bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 
-  bool m_bIsDraw;
-  PAINTSTRUCT m_paintStruct;
-  HDC m_hdc;
+      bool m_bIsDraw;
+      PAINTSTRUCT m_paintStruct;
+      HDC m_hdc;
 
-};
+   };
 
-#endif
+
+} // namespace innate_subsystem
+

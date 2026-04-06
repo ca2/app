@@ -91,7 +91,7 @@ enum e_set_version
 //   virtual stream & write (float f) override;
 //   virtual stream & write (double d) override;
 //   virtual stream & write(const ::int_point * ppoint);
-//   virtual stream & write(const ::int_size * psize) ;
+//   virtual stream & write(const ::int_size & psize) ;
 //   virtual stream & write (const ::int_rectangle * prectangle) ;
 //   virtual stream & write (const ::scoped_string & scopedstr) override;
 //   virtual stream & write (const ::scoped_string & scopedstr) override;

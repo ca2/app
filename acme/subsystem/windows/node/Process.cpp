@@ -23,9 +23,9 @@
 //
 #include "framework.h"
 #include "Process.h"
+#include "acme/subsystem/node/SystemException.h"
+//#include "port/base/iconv/lib/stringprep.h"
 
-#include "port/base/iconv/lib/stringprep.h"
-//#include "SystemException.h"
 
 namespace windows
 {
@@ -34,7 +34,7 @@ namespace windows
 
 
       Process::Process()
-      : m_hProcess(0),
+      : //m_hProcess(0),
         m_hThread(0),
         m_handlesIsInherited(false),
         m_hStopWait(0),
@@ -77,11 +77,11 @@ namespace windows
          m_args= scopedstrArgs;
       }
 
-      void Process::setStandardIoHandles(HANDLE stdIn, HANDLE stdOut, HANDLE stdErr)
+      void Process::setStandardIoHandles(::subsystem::FileInterface * pfileStdIn, ::subsystem::FileInterface * pfileStdOut, ::subsystem::FileInterface * pfileStdErr)
       {
-         m_stdIn = stdIn;
-         m_stdOut = stdOut;
-         m_stdErr = stdErr;
+         m_stdIn = pfileStdIn;
+         m_stdOut = pfileStdOut;
+         m_stdErr = pfileStdErr;
       }
 
       void Process::setHandleInheritances(bool handlesIsInerited)
@@ -115,23 +115,24 @@ namespace windows
          if (CreateProcess(NULL, (LPTSTR) ::wstring(commandLine).c_str(),
                            NULL, NULL, m_handlesIsInherited, NULL, NULL, NULL,
                            &sti, &pi) == 0) {
-            throw SystemException();
+            throw ::subsystem::SystemException();
                            }
 
          m_hThread = pi.hThread;
-         m_hProcess = pi.hProcess;
+         m_pprocesshandle = create_newø<ProcessHandle>();
+         m_pprocesshandle->m_hProcess= pi.hProcess;
       }
 
       void Process::kill()
       {
-         if (TerminateProcess(m_hProcess, 0) == 0) {
-            throw SystemException();
+         if (TerminateProcess(m_pprocesshandle->m_hProcess, 0) == 0) {
+            throw ::subsystem::SystemException();
          }
       }
 
       void Process::waitForExit()
       {
-         HANDLE handleArray[2] = { m_hProcess, m_hStopWait };
+         HANDLE handleArray[2] = { m_pprocesshandle->m_hProcess, m_hStopWait };
 
          WaitForMultipleObjects(2, handleArray, FALSE, INFINITE);
       }
@@ -141,20 +142,20 @@ namespace windows
          SetEvent(m_hStopWait);
       }
 
-      DWORD Process::getExitCode()
+      unsigned int Process::getExitCode()
       {
-         DWORD exitCode;
+         DWORD dwExitCode;
 
-         if (GetExitCodeProcess(m_hProcess, &exitCode) == 0) {
-            throw SystemException();
+         if (GetExitCodeProcess(m_pprocesshandle->m_hProcess, &dwExitCode) == 0) {
+            throw ::subsystem::SystemException();
          }
 
-         return exitCode;
+         return dwExitCode;
       }
 
-      HANDLE Process::getProcessHandle()
+      ::subsystem::ProcessHandleInterface * Process::getProcessHandle()
       {
-         return m_hProcess;
+         return m_pprocesshandle;
       }
 
       ::string Process::getCommandLineString()

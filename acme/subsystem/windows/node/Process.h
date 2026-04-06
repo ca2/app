@@ -28,6 +28,7 @@
 //#include "acme/subsystem/_common_header.h"
 #include "acme/subsystem/node/Process.h"
 #include "acme/_operating_system.h"
+#include "acme/subsystem/windows/node/ProcessHandle.h"
 
 //#include "SystemException.h"
 
@@ -107,7 +108,7 @@ namespace  windows
          /**
           * Returns the process handle if process already run and zero otherwise.
           */
-         //HANDLE getProcessHandle();
+         ::subsystem::ProcessHandleInterface * getProcessHandle() override;
 
       //protected:
          /**
@@ -129,7 +130,7 @@ namespace  windows
          ::string m_path;
          ::string m_args;
 
-         HANDLE m_hProcess;
+         ::pointer < ::windows::subsystem::ProcessHandle > m_pprocesshandle;
          HANDLE m_hThread;
 
          HANDLE m_hStopWait;
@@ -140,6 +141,7 @@ namespace  windows
          HANDLE m_stdErr;
 
          bool m_handlesIsInherited;
+
       };
 
       //// __PROCESSMANAGER_H__

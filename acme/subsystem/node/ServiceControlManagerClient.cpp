@@ -51,208 +51,212 @@ namespace subsystem
       return m_iServiceControlManagerErrorCode;
    }
 
-   //ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
-   ServiceControlManagerClient::ServiceControlManagerClient(unsigned int uDesiredAccess)
+   ServiceControlManagerClient::ServiceControlManagerClient()
    {
-      initialize_service_control_manager_client(uDesiredAccess);
-      // m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
-      //
-      // if (m_managerHandle == NULL) {
-      //    throw SystemException();
-      // }
+
+
    }
-
-   ServiceControlManagerClient::~ServiceControlManagerClient()
-   {
-      // if (m_managerHandle != NULL) {
-      //    CloseServiceHandle(m_managerHandle);
-      // }
-   }
-
-
-   // ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
+   // ServiceControlManagerClient::ServiceControlManagerClient(unsigned int uDesiredAccess)
    // {
-   //    m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
-   //
-   //    if (m_managerHandle == NULL) {
-   //       throw SystemException();
-   //    }
+   //    initialize_service_control_manager_client(uDesiredAccess);
+   //    // m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
+   //    //
+   //    // if (m_managerHandle == NULL) {
+   //    //    throw SystemException();
+   //    // }
    // }
-
-   void ServiceControlManagerClient::installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
-                                  const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies)
-   {
-      m_pparticleThis->installService(scopedstrName, scopedstrNameToDisplay, scopedstrBinPath, scopedstrDependencies);
-      // SC_HANDLE serviceHandle = CreateService(
-      //   m_managerHandle,              // ServiceControlManageranager database
-      //   ::wstring(scopedstrName),                         // name of service
-      //   ::wstring(scopedstrNameToDisplay),               // name to display
-      //   SERVICE_ALL_ACCESS,           // desired access
-      //   SERVICE_WIN32_OWN_PROCESS,
-      //   // service type
-      //   SERVICE_AUTO_START,           // start type
-      //   SERVICE_ERROR_NORMAL,         // error control type
-      //   ::wstring(scopedstrBinPath),                      // service's binary
-      //   NULL,                         // no load ordering group
-      //   NULL,                         // no tag identifier
-      //   ::wstring(scopedstrDependencies),                 // dependencies
-      //   NULL,                         // LocalSystem account
-      //   NULL);                        // no password
-      //
-      // if (serviceHandle == NULL) {
-      //    throw SystemException();
-      // }
-      //
-      // // Make the service action to restart on a failure.
-      // SC_ACTION scAction;
-      // scAction.Type = SC_ACTION_RESTART; // action on failure
-      // scAction.Delay = 5000; // Delay before the action
-      //
-      // SERVICE_FAILURE_ACTIONS failureAction;
-      // failureAction.dwResetPeriod = 0;
-      // failureAction.lpRebootMsg = 0;
-      // failureAction.lpCommand = 0;
-      // failureAction.cActions = 1;
-      // failureAction.lpsaActions = &scAction;
-      //
-      // ChangeServiceConfig2(serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS,
-      //                      &failureAction);
-      //
-      // CloseServiceHandle(serviceHandle);
-   }
-
-   void ServiceControlManagerClient::removeService(const ::scoped_string & scopedstrName)
-   {
-
-      m_pparticleThis->removeService(scopedstrName);
-      // try { stopService(scopedstrName); } catch (...) { }
-      //
-      // SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_ALL_ACCESS);
-      //
-      // if (serviceHandle == NULL) {
-      //    throw SystemException();
-      // }
-      //
-      // if (!DeleteService(serviceHandle)) {
-      //    CloseServiceHandle(serviceHandle);
-      //    throw SystemException();
-      // }
-      //
-      // CloseServiceHandle(serviceHandle);
-      //
-      // // Wait until service entry will be removed.
-      //
-      // int triesCount = 0;
-      // while (true) {
-      //    SC_HANDLE service = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_ALL_ACCESS);
-      //    if (service == 0) {
-      //       break;
-      //    } else {
-      //       CloseServiceHandle(service);
-      //       Thread::sleep(1000);
-      //       // FIXME: Magic number.
-      //       if (triesCount++ > 10) {
-      //          throw SystemException(1070);
-      //       }
-      //    }
-      // }
-   }
-
-   void ServiceControlManagerClient::startService(const ::scoped_string & scopedstrName, bool waitCompletion)
-   {
-
-      m_pparticleThis->startService(scopedstrName, waitCompletion);
-      // // FIXME: Wrap SC_HANDLE into a class with a call to CloseServiceHandle()
-      // //        in the destructor.
-      // SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_START | SERVICE_QUERY_STATUS);
-      // if (serviceHandle == NULL) {
-      //    throw SystemException();
-      // }
-      //
-      // try {
-      //    DWORD state = getServiceState(serviceHandle);
-      //    if (state == SERVICE_RUNNING || state == SERVICE_START_PENDING) {
-      //       throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_RUNNING);
-      //    }
-      //    if (StartService(serviceHandle, 0, 0) == FALSE) {
-      //       throw SystemException();
-      //    }
-      //
-      //    if (waitCompletion) {
-      //       int numChecks = 10;
-      //       int msDelayBetweenChecks = 1000;
-      //
-      //       while ((state = getServiceState(serviceHandle)) != SERVICE_RUNNING) {
-      //          if (--numChecks <= 0) {
-      //             break;
-      //          }
-      //          Sleep(msDelayBetweenChecks);
-      //       }
-      //       if (state != SERVICE_RUNNING) {
-      //          throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_START_TIMEOUT);
-      //       }
-      //    }
-      // } catch(...) {
-      //    CloseServiceHandle(serviceHandle);
-      //    throw;
-      // }
-      //
-      // CloseServiceHandle(serviceHandle);
-   }
-
-   void ServiceControlManagerClient::stopService(const ::scoped_string & scopedstrName, bool waitCompletion)
-   {
-      m_pparticleThis->stopService(scopedstrName, waitCompletion);
-      // SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_STOP | SERVICE_QUERY_STATUS);
-      // if (serviceHandle == NULL) {
-      //    throw SystemException();
-      // }
-      //
-      // try {
-      //    DWORD state = getServiceState(serviceHandle);
-      //    if (state == SERVICE_STOPPED || state == SERVICE_STOP_PENDING) {
-      //       throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_STOPPED);
-      //    }
-      //    SERVICE_STATUS status;
-      //    if (ControlService(serviceHandle, SERVICE_CONTROL_STOP, &status) == FALSE) {
-      //       throw SystemException();
-      //    }
-      //
-      //    if (waitCompletion) {
-      //       int numChecks = 10;
-      //       int msDelayBetweenChecks = 1000;
-      //
-      //       while ((state = getServiceState(serviceHandle)) != SERVICE_STOPPED) {
-      //          if (--numChecks <= 0) {
-      //             break;
-      //          }
-      //          Sleep(msDelayBetweenChecks);
-      //       }
-      //       if (state != SERVICE_STOPPED) {
-      //          throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_STOP_TIMEOUT);
-      //       }
-      //    }
-      // } catch(...) {
-      //    CloseServiceHandle(serviceHandle);
-      //    throw;
-      // }
-      //
-      // CloseServiceHandle(serviceHandle);
-   }
-
-   // DWORD ServiceControlManagerClient::getServiceState(SC_HANDLE hService) const
+   //
+    ServiceControlManagerClient::~ServiceControlManagerClient()
+    {
+   //    // if (m_managerHandle != NULL) {
+   //    //    CloseServiceHandle(m_managerHandle);
+   //    // }
+    }
+   //
+   //
+   // // ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
+   // // {
+   // //    m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
+   // //
+   // //    if (m_managerHandle == NULL) {
+   // //       throw SystemException();
+   // //    }
+   // // }
+   //
+   // void ServiceControlManagerClient::installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
+   //                                const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies)
    // {
-   //    mpparticleThis->getService
-   //    DWORD bytesNeeded;
-   //    SERVICE_STATUS_PROCESS status;
-   //
-   //    if (!QueryServiceStatusEx(hService, SC_STATUS_PROCESS_INFO,
-   //                              (LPBYTE)&status, sizeof(status), &bytesNeeded)) {
-   //       throw SystemException();
-   //                              }
-   //
-   //    return status.dwCurrentState;
+   //    m_pparticleThis->installService(scopedstrName, scopedstrNameToDisplay, scopedstrBinPath, scopedstrDependencies);
+   //    // SC_HANDLE serviceHandle = CreateService(
+   //    //   m_managerHandle,              // ServiceControlManageranager database
+   //    //   ::wstring(scopedstrName),                         // name of service
+   //    //   ::wstring(scopedstrNameToDisplay),               // name to display
+   //    //   SERVICE_ALL_ACCESS,           // desired access
+   //    //   SERVICE_WIN32_OWN_PROCESS,
+   //    //   // service type
+   //    //   SERVICE_AUTO_START,           // start type
+   //    //   SERVICE_ERROR_NORMAL,         // error control type
+   //    //   ::wstring(scopedstrBinPath),                      // service's binary
+   //    //   NULL,                         // no load ordering group
+   //    //   NULL,                         // no tag identifier
+   //    //   ::wstring(scopedstrDependencies),                 // dependencies
+   //    //   NULL,                         // LocalSystem account
+   //    //   NULL);                        // no password
+   //    //
+   //    // if (serviceHandle == NULL) {
+   //    //    throw SystemException();
+   //    // }
+   //    //
+   //    // // Make the service action to restart on a failure.
+   //    // SC_ACTION scAction;
+   //    // scAction.Type = SC_ACTION_RESTART; // action on failure
+   //    // scAction.Delay = 5000; // Delay before the action
+   //    //
+   //    // SERVICE_FAILURE_ACTIONS failureAction;
+   //    // failureAction.dwResetPeriod = 0;
+   //    // failureAction.lpRebootMsg = 0;
+   //    // failureAction.lpCommand = 0;
+   //    // failureAction.cActions = 1;
+   //    // failureAction.lpsaActions = &scAction;
+   //    //
+   //    // ChangeServiceConfig2(serviceHandle, SERVICE_CONFIG_FAILURE_ACTIONS,
+   //    //                      &failureAction);
+   //    //
+   //    // CloseServiceHandle(serviceHandle);
    // }
+   //
+   // void ServiceControlManagerClient::removeService(const ::scoped_string & scopedstrName)
+   // {
+   //
+   //    m_pparticleThis->removeService(scopedstrName);
+   //    // try { stopService(scopedstrName); } catch (...) { }
+   //    //
+   //    // SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_ALL_ACCESS);
+   //    //
+   //    // if (serviceHandle == NULL) {
+   //    //    throw SystemException();
+   //    // }
+   //    //
+   //    // if (!DeleteService(serviceHandle)) {
+   //    //    CloseServiceHandle(serviceHandle);
+   //    //    throw SystemException();
+   //    // }
+   //    //
+   //    // CloseServiceHandle(serviceHandle);
+   //    //
+   //    // // Wait until service entry will be removed.
+   //    //
+   //    // int triesCount = 0;
+   //    // while (true) {
+   //    //    SC_HANDLE service = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_ALL_ACCESS);
+   //    //    if (service == 0) {
+   //    //       break;
+   //    //    } else {
+   //    //       CloseServiceHandle(service);
+   //    //       Thread::sleep(1000);
+   //    //       // FIXME: Magic number.
+   //    //       if (triesCount++ > 10) {
+   //    //          throw SystemException(1070);
+   //    //       }
+   //    //    }
+   //    // }
+   // }
+   //
+   // void ServiceControlManagerClient::startService(const ::scoped_string & scopedstrName, bool waitCompletion)
+   // {
+   //
+   //    m_pparticleThis->startService(scopedstrName, waitCompletion);
+   //    // // FIXME: Wrap SC_HANDLE into a class with a call to CloseServiceHandle()
+   //    // //        in the destructor.
+   //    // SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_START | SERVICE_QUERY_STATUS);
+   //    // if (serviceHandle == NULL) {
+   //    //    throw SystemException();
+   //    // }
+   //    //
+   //    // try {
+   //    //    DWORD state = getServiceState(serviceHandle);
+   //    //    if (state == SERVICE_RUNNING || state == SERVICE_START_PENDING) {
+   //    //       throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_RUNNING);
+   //    //    }
+   //    //    if (StartService(serviceHandle, 0, 0) == FALSE) {
+   //    //       throw SystemException();
+   //    //    }
+   //    //
+   //    //    if (waitCompletion) {
+   //    //       int numChecks = 10;
+   //    //       int msDelayBetweenChecks = 1000;
+   //    //
+   //    //       while ((state = getServiceState(serviceHandle)) != SERVICE_RUNNING) {
+   //    //          if (--numChecks <= 0) {
+   //    //             break;
+   //    //          }
+   //    //          Sleep(msDelayBetweenChecks);
+   //    //       }
+   //    //       if (state != SERVICE_RUNNING) {
+   //    //          throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_START_TIMEOUT);
+   //    //       }
+   //    //    }
+   //    // } catch(...) {
+   //    //    CloseServiceHandle(serviceHandle);
+   //    //    throw;
+   //    // }
+   //    //
+   //    // CloseServiceHandle(serviceHandle);
+   // }
+   //
+   // void ServiceControlManagerClient::stopService(const ::scoped_string & scopedstrName, bool waitCompletion)
+   // {
+   //    m_pparticleThis->stopService(scopedstrName, waitCompletion);
+   //    // SC_HANDLE serviceHandle = OpenService(m_managerHandle, ::wstring(scopedstrName), SERVICE_STOP | SERVICE_QUERY_STATUS);
+   //    // if (serviceHandle == NULL) {
+   //    //    throw SystemException();
+   //    // }
+   //    //
+   //    // try {
+   //    //    DWORD state = getServiceState(serviceHandle);
+   //    //    if (state == SERVICE_STOPPED || state == SERVICE_STOP_PENDING) {
+   //    //       throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_ALREADY_STOPPED);
+   //    //    }
+   //    //    SERVICE_STATUS status;
+   //    //    if (ControlService(serviceHandle, SERVICE_CONTROL_STOP, &status) == FALSE) {
+   //    //       throw SystemException();
+   //    //    }
+   //    //
+   //    //    if (waitCompletion) {
+   //    //       int numChecks = 10;
+   //    //       int msDelayBetweenChecks = 1000;
+   //    //
+   //    //       while ((state = getServiceState(serviceHandle)) != SERVICE_STOPPED) {
+   //    //          if (--numChecks <= 0) {
+   //    //             break;
+   //    //          }
+   //    //          Sleep(msDelayBetweenChecks);
+   //    //       }
+   //    //       if (state != SERVICE_STOPPED) {
+   //    //          throw ServiceControlManagerClientException(ServiceControlManagerClientException::ERROR_STOP_TIMEOUT);
+   //    //       }
+   //    //    }
+   //    // } catch(...) {
+   //    //    CloseServiceHandle(serviceHandle);
+   //    //    throw;
+   //    // }
+   //    //
+   //    // CloseServiceHandle(serviceHandle);
+   // }
+   //
+   // // DWORD ServiceControlManagerClient::getServiceState(SC_HANDLE hService) const
+   // // {
+   // //    mpparticleThis->getService
+   // //    DWORD bytesNeeded;
+   // //    SERVICE_STATUS_PROCESS status;
+   // //
+   // //    if (!QueryServiceStatusEx(hService, SC_STATUS_PROCESS_INFO,
+   // //                              (LPBYTE)&status, sizeof(status), &bytesNeeded)) {
+   // //       throw SystemException();
+   // //                              }
+   // //
+   // //    return status.dwCurrentState;
+   // // }
 } // namespace subsystem
 
 

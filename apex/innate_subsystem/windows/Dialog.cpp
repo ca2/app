@@ -74,7 +74,7 @@ namespace windows
          m_resourceId = id;
       }
 
-      void BaseDialog::setDefaultPushButton(UINT buttonId)
+      void BaseDialog::setDefaultPushButton(unsigned int buttonId)
       {
          SendMessage(m_ctrlThis.getWindow(), DM_SETDEFID, buttonId, 0);
       }
@@ -120,7 +120,7 @@ namespace windows
          }
 
          window = CreateDialogParam(GetModuleHandle(NULL), getResouceName(),
-                                    parentWindow, dialogProc, (LPARAM)this);
+                                    parentWindow, dialogProc, (::lparam)this);
 
          m_isModal = false;
 
@@ -135,7 +135,7 @@ namespace windows
             HWND parentWindow = (m_ctrlParent != NULL) ? m_ctrlParent->getWindow() : NULL;
             result = (int)DialogBoxParam(GetModuleHandle(NULL),
                                          getResouceName(),
-                                         parentWindow, dialogProc, (LPARAM)this);
+                                         parentWindow, dialogProc, (::lparam)this);
          } else {
             m_ctrlThis.setVisible(true);
             m_ctrlThis.setForeground();
@@ -162,23 +162,23 @@ namespace windows
          return !!IsWindow(m_ctrlThis.getWindow());
       }
 
-      BOOL BaseDialog::onDrawItem(WPARAM controlID, LPDRAWITEMSTRUCT dis)
+      BOOL BaseDialog::onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis)
       {
          return TRUE;
       }
 
-      void BaseDialog::onMessageReceived(UINT uMsg, WPARAM wParam, LPARAM lParam)
+      void BaseDialog::onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam)
       {
       }
 
-      INT_PTR CALLBACK BaseDialog::dialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+      INT_PTR CALLBACK BaseDialog::dialogProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
       {
          BaseDialog *_this;
          BOOL bResult;
 
          bResult = FALSE;
          if (uMsg == WM_INITDIALOG) {
-            _this = (BaseDialog *)lParam;
+            _this = (BaseDialog *)::lparam;
             SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)_this);
             _this->m_ctrlThis.setWindow(hwnd);
             _this->updateIcon();
@@ -189,17 +189,17 @@ namespace windows
             }
          }
 
-         _this->onMessageReceived(uMsg, wParam, lParam);
+         _this->onMessageReceived(uMsg, ::wparam, ::lparam);
 
          switch (uMsg) {
             case WM_INITDIALOG:
                bResult = _this->onInitDialog();
                break;
             case WM_NOTIFY:
-               bResult = _this->onNotify(LOWORD(wParam), lParam);
+               bResult = _this->onNotify(LOWORD(::wparam), ::lparam);
                break;
             case WM_COMMAND:
-               bResult =_this->onCommand(LOWORD(wParam), HIWORD(wParam));
+               bResult =_this->onCommand(LOWORD(::wparam), HIWORD(::wparam));
                break;
             case WM_CLOSE:
                bResult = _this->onClose();
@@ -208,7 +208,7 @@ namespace windows
                bResult = _this->onDestroy();
                break;
             case WM_DRAWITEM:
-               bResult = _this->onDrawItem(wParam, (LPDRAWITEMSTRUCT)lParam);
+               bResult = _this->onDrawItem(::wparam, (LPDRAWITEMSTRUCT)::lparam);
                break;
          }
 
@@ -253,12 +253,12 @@ namespace windows
          return FALSE;
       }
 
-      BOOL BaseDialog::onNotify(UINT controlID, LPARAM data)
+      BOOL BaseDialog::onNotify(unsigned int controlID, ::lparam data)
       {
          return FALSE;
       }
 
-      BOOL BaseDialog::onCommand(UINT controlID, UINT notificationID)
+      BOOL BaseDialog::onCommand(unsigned int controlID, unsigned int notificationID)
       {
          return FALSE;
       }

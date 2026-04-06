@@ -37,19 +37,19 @@ public:
   DibFrameBuffer();
   virtual ~DibFrameBuffer();
 
-  virtual void setColor(UINT8 reg, UINT8 green, UINT8 blue);
-  virtual void fillRect(const Rect *dstRect, UINT32 color);
+  virtual void setColor(unsigned int8 reg, unsigned int8 green, unsigned int8 blue);
+  virtual void fillRect(const ::int_rectangle &dstRect, unsigned int32 color);
 
   virtual bool isEqualTo(const FrameBuffer *frameBuffer);
 
-  virtual bool copyFrom(const Rect *dstRect, const FrameBuffer *srcFrameBuffer,
+  virtual bool copyFrom(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
                         int srcX, int srcY);
   virtual bool copyFrom(const FrameBuffer *srcFrameBuffer,
                         int srcX, int srcY);
-  virtual bool overlay(const Rect *dstRect, const FrameBuffer *srcFrameBuffer,
+  virtual bool overlay(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
                        int srcX, int srcY, const char *andMask);
-  virtual void move(const Rect *dstRect, const int srcX, const int srcY);
-  virtual bool cmpFrom(const Rect *dstRect, const FrameBuffer *srcFrameBuffer,
+  virtual void move(const ::int_rectangle &dstRect, const int srcX, const int srcY);
+  virtual bool cmpFrom(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
                        const int srcX, const int srcY);
 
   virtual inline Dimension getDimension() const;
@@ -70,9 +70,9 @@ public:
   // got from a compatible window on object creation. This function can be call many times.
   void setTargetDC(HDC targetDC);
 
-  virtual UINT8 getBitsPerPixel() const;
+  virtual unsigned int8 getBitsPerPixel() const;
 
-  virtual UINT8 getBytesPerPixel() const;
+  virtual unsigned int8 getBytesPerPixel() const;
 
   virtual inline void *getBuffer() const;
 
@@ -85,25 +85,25 @@ public:
   // DIB section) to the DIB section.
   // Note that this function does not copy any transparent windows.
   // This function throwing an exception on a failure.
-  void blitToDibSection(const Rect *rect);
+  void blitToDibSection(const ::int_rectangle &rect);
 
   // This function copies a block of bits from a source DC (that has been used to create the
   // DIB section) to the DIB section.
   // Note that this function copies transparent windows too.
   // This function throwing an exception on a failure.
-  void blitTransparentToDibSection(const Rect *rect);
+  void blitTransparentToDibSection(const ::int_rectangle &rect);
 
   // This function copies a block of bits from the DIB section to the source DC
   // (that has been used to create the compatible DIB section).
   // Note that this function does not copy any transparent windows.
   // This function throwing an exception on a failure.
-  void blitFromDibSection(const Rect *rect);
+  void blitFromDibSection(const ::int_rectangle &rect);
 
   // This function copies with strech a block of bits from the DIB section to the source DC
   // (that has been used to create the compatible DIB section).
   // Note that this function does not copy any transparent windows.
   // This function throwing an exception on a failure.
-  void stretchFromDibSection(const Rect *srcRect, const Rect *dstRect);
+  void stretchFromDibSection(const ::int_rectangle &srcRect, const ::int_rectangle &dstRect);
 
 private:
   // This section to reduce access to some function that have been inherited from the
@@ -112,12 +112,12 @@ private:
   virtual bool assignProperties(const FrameBuffer *srcFrameBuffer);
   virtual bool clone(const FrameBuffer *srcFrameBuffer);
   virtual bool setDimension(const Dimension *newDim);
-  virtual bool setDimension(const Rect *rect);
-  virtual void setEmptyDimension(const Rect *dimByRect);
+  virtual bool setDimension(const ::int_rectangle &rect);
+  virtual void setEmptyDimension(const ::int_rectangle &dimByRect);
   virtual bool setPixelFormat(const PixelFormat *pixelFormat);
   virtual void setEmptyPixelFmt(const PixelFormat *pf);
   virtual bool setProperties(const Dimension *newDim, const PixelFormat *pixelFormat);
-  virtual bool setProperties(const Rect *dimByRect, const PixelFormat *pixelFormat);
+  virtual bool setProperties(const ::int_rectangle &dimByRect, const PixelFormat *pixelFormat);
   virtual void setPropertiesWithoutResize(const Dimension *newDim, const PixelFormat *pf);
   virtual void setBuffer(void *newBuffer);
 

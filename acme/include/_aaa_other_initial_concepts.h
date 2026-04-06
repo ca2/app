@@ -57,8 +57,8 @@ concept prototype_size = requires(SIZE size)
 };
 
 
-template < typename Dimension >
-concept prototype_Dimension = requires(Dimension dimension)
+template < typename ::int_size >
+concept prototype_Dimension = requires(::int_size dimension)
 {
    dimension.Width;
    dimension.Height;

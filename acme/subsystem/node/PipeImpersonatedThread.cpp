@@ -47,45 +47,45 @@ namespace subsystem
 
 
    //}
-   void PipeImpersonatedThread::onTerminate()
-   {
-      //m_threadSleeper.notify();
-      m_pparticleThis->onTerminate();
-   }
-
-   void PipeImpersonatedThread::waitUntilImpersonated()
-   {
-      //m_impersonationReadyEvent.waitForEvent();
-      m_pparticleThis->waitUntilImpersonated();
-   }
-
-   bool PipeImpersonatedThread::getImpersonationSuccess()
-   {
-      //return m_success;
-      return m_pparticleThis->getImpersonationSuccess();
-   }
-
-   ::string PipeImpersonatedThread::getFaultReason()
-   {
-      //return m_faultReason;
-      return m_pparticleThis->getFaultReason();
-   }
-
-   void PipeImpersonatedThread::execute()
-   {
-      m_pparticleThis->execute();
-      // m_success = ImpersonateNamedPipeClient(m_pipeHandle) != 0;
-      // if (!m_success) {
-      //    // Store fault reason
-      //    m_faultReason = ::windows::last_error_message(::windows::last_error());
-      // }
-      // m_impersonationReadyEvent.notify();
-      //
-      // while (!isTerminating()) {
-      //    m_threadSleeper.waitForEvent();
-      // }
-      // RevertToSelf();
-   }
+   // void PipeImpersonatedThread::onTerminate()
+   // {
+   //    //m_threadSleeper.notify();
+   //    m_pparticleThis->onTerminate();
+   // }
+   //
+   // void PipeImpersonatedThread::waitUntilImpersonated()
+   // {
+   //    //m_impersonationReadyEvent.waitForEvent();
+   //    m_pparticleThis->waitUntilImpersonated();
+   // }
+   //
+   // bool PipeImpersonatedThread::getImpersonationSuccess()
+   // {
+   //    //return m_success;
+   //    return m_pparticleThis->getImpersonationSuccess();
+   // }
+   //
+   // ::string PipeImpersonatedThread::getFaultReason()
+   // {
+   //    //return m_faultReason;
+   //    return m_pparticleThis->getFaultReason();
+   // }
+   //
+   // void PipeImpersonatedThread::execute()
+   // {
+   //    m_pparticleThis->execute();
+   //    // m_success = ImpersonateNamedPipeClient(m_pipeHandle) != 0;
+   //    // if (!m_success) {
+   //    //    // Store fault reason
+   //    //    m_faultReason = ::windows::last_error_message(::windows::last_error());
+   //    // }
+   //    // m_impersonationReadyEvent.notify();
+   //    //
+   //    // while (!isTerminating()) {
+   //    //    m_threadSleeper.waitForEvent();
+   //    // }
+   //    // RevertToSelf();
+   // }
 } // namespace subsystem
 
 

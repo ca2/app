@@ -72,7 +72,7 @@ namespace innate_subsystem
         //virtual void calcRect(RECT* buttonRect, bool isButtonPressed,
         //              DWORD textWidth, DWORD textHeight,
         //              DWORD imageWidth, DWORD imageHeight,
-        //              RECT *textRect, RECT* imageRect);
+        //              ::int_rectangle &textRect, RECT* imageRect);
 
         //virtual void drawIcon(HDC* dc, RECT* imageRect, bool isPressed, bool isDisabled);
     //protected:
@@ -89,7 +89,7 @@ namespace innate_subsystem
         //int m_iconWidth;
         //int m_iconHeight;
   //  private:
-    //    static LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    //    static LRESULT CALLBACK wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam);
     };
 
 //#endif

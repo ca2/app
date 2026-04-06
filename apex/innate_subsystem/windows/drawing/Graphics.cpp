@@ -103,7 +103,7 @@ void Graphics::drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h)
   memDC.selectObject(oldBitmap);
 }
 
-void Graphics::drawText(const TCHAR *text, int cchText, RECT *rect, UINT format)
+void Graphics::drawText(const TCHAR *text, int cchText, ::int_rectangle &rect, unsigned int format)
 {
   DrawText(m_dc->m_dc, text, cchText, rect, format);
 }

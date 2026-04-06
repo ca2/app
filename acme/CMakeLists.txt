@@ -1314,8 +1314,12 @@ list(APPEND library_source
         regular_expression/regular_expression.h
         regular_expression/result.cpp
         regular_expression/result.h
+   subsystem/framebuffer/DibFrameBuffer.cpp
+   subsystem/framebuffer/DibFrameBuffer.h
    subsystem/framebuffer/DibSection.cpp
    subsystem/framebuffer/DibSection.h
+   subsystem/framebuffer/FrameBuffer.cpp
+   subsystem/framebuffer/FrameBuffer.h
    subsystem/framebuffer/PixelFormat.cpp
    subsystem/framebuffer/PixelFormat.h
    subsystem/io/_.cpp
@@ -2564,6 +2568,8 @@ if (${WIN32})
             #operating_system/windows/calculate_etoolkit.cpp
             operating_system/windows/calculate_ewindowing.cpp
             operating_system/windows/callstack.cpp
+       operating_system/windows/device_context.cpp
+       operating_system/windows/device_context.h
             operating_system/windows/file1.cpp
             #operating_system/windows/heap_allocator.cpp
             #operating_system/windows/heap_allocator.h

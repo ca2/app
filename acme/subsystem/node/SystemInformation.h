@@ -31,10 +31,14 @@ namespace subsystem
 {
 
 
-   class CLASS_DECL_ACME SystemInformationInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME SystemInformation :
+   virtual public ::subsystem::particle
    {
    public:
+
+      SystemInformation();
+      ~SystemInformation() override;
+
 
       // get rectangle of all desktop area
       virtual void getDesktopAllArea(int_rectangle & rectangle) = 0;
@@ -56,34 +60,34 @@ namespace subsystem
       virtual int getMonitorCount() = 0;
    };
 
-   class CLASS_DECL_ACME SystemInformation :
-   virtual public ::subsystem::composite<SystemInformationInterface>
-   {
-   public:
-
-      SystemInformation();
-
-      ~SystemInformation() override;
-
-      // get rectangle of all desktop area
-      void getDesktopAllArea(int_rectangle & rectangle) override;
-
-      // get rectangle of user desktop area
-      // without button 'Start' (only primary monitor).
-      bool getDesktopArea(int_rectangle & rectangle) override;
-
-      // // return true if StretchBlt is used
-      // // in provided device
-      // bool isSupportStretchBlt(HDC hdc);
-      //
-      // // return how many bits per pixel
-      // // for provided device
-      // int getBitsPixel(HDC hdc);
-
-      // get the number of monitors that plugged
-      // into video card
-      int getMonitorCount() override;
-   };
+   // class CLASS_DECL_ACME SystemInformation :
+   // virtual public ::subsystem::composite<SystemInformationInterface>
+   // {
+   // public:
+   //
+   //    SystemInformation();
+   //
+   //    ~SystemInformation() override;
+   //
+   //    // get rectangle of all desktop area
+   //    void getDesktopAllArea(int_rectangle & rectangle) override;
+   //
+   //    // get rectangle of user desktop area
+   //    // without button 'Start' (only primary monitor).
+   //    bool getDesktopArea(int_rectangle & rectangle) override;
+   //
+   //    // // return true if StretchBlt is used
+   //    // // in provided device
+   //    // bool isSupportStretchBlt(HDC hdc);
+   //    //
+   //    // // return how many bits per pixel
+   //    // // for provided device
+   //    // int getBitsPixel(HDC hdc);
+   //
+   //    // get the number of monitors that plugged
+   //    // into video card
+   //    int getMonitorCount() override;
+   // };
 
 } // namespace subsystem
 

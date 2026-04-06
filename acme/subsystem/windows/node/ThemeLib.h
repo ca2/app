@@ -40,19 +40,19 @@ typedef HRESULT (__stdcall *PFNCLOSETHEMEDATA)(HTHEME hTheme);
 
 typedef HRESULT (__stdcall *PFNDRAWTHEMEBACKGROUND)(HTHEME hTheme, HDC hdc,
                                                     int iPartId, int iStateId,
-                                                    const RECT *pRect,
-                                                    const RECT *pClipRect);
+                                                    const ::int_rectangle &pRect,
+                                                    const ::int_rectangle &pClipRect);
 
 typedef HTHEME (__stdcall *PFNOPENTHEMEDATA)(HWND hwnd, LPCWSTR pszClassList);
 
 typedef HRESULT (__stdcall *PFNDRAWTHEMETEXT)(HTHEME hTheme, HDC hdc, int iPartId,
                                               int iStateId, LPCWSTR pszText,
                                               int iCharCount, DWORD dwTextFlags,
-                                              DWORD dwTextFlags2, const RECT *pRect);
+                                              DWORD dwTextFlags2, const ::int_rectangle &pRect);
 
 typedef HRESULT (__stdcall *PFNGETTHEMEBACKGROUNDCONTENTRECT)(HTHEME hTheme,  HDC hdc,
                                                               int iPartId, int iStateId,
-                                                              const RECT *pBoundingRect,
+                                                              const ::int_rectangle &pBoundingRect,
                                                               RECT *pContentRect);
 
 class ThemeLib
@@ -70,19 +70,19 @@ public:
 
   static HRESULT DrawThemeBackground(HTHEME hTheme, HDC hdc,
                                      int iPartId, int iStateId,
-                                     const RECT *pRect,
-                                     const RECT *pClipRect);
+                                     const ::int_rectangle &pRect,
+                                     const ::int_rectangle &pClipRect);
 
   static HTHEME OpenThemeData(HWND hwnd, LPCWSTR pszClassList);
 
   static HRESULT DrawThemeText(HTHEME hTheme, HDC hdc, int iPartId,
                                int iStateId, LPCWSTR pszText,
                                int iCharCount, DWORD dwTextFlags,
-                               DWORD dwTextFlags2, const RECT *pRect);
+                               DWORD dwTextFlags2, const ::int_rectangle &pRect);
 
   static HRESULT GetThemeBackgroundContentRect(HTHEME hTheme,  HDC hdc,
                                                int iPartId, int iStateId,
-                                               const RECT *pBoundingRect,
+                                               const ::int_rectangle &pBoundingRect,
                                                RECT *pContentRect);
 
 private:

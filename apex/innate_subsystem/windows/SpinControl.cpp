@@ -42,13 +42,13 @@ namespace windows
 
       void SpinControl::setBuddy(Control *buddyControl)
       {
-         SendMessage(m_hwnd, UDM_SETBUDDY, (WPARAM)buddyControl->getWindow(), NULL);
+         SendMessage(m_hwnd, UDM_SETBUDDY, (::wparam)buddyControl->getWindow(), NULL);
          m_buddy = buddyControl;
       }
 
       void SpinControl::setRange(short lower, short upper)
       {
-         SendMessage(m_hwnd, UDM_SETRANGE, NULL, (LPARAM)MAKELONG(upper, lower));
+         SendMessage(m_hwnd, UDM_SETRANGE, NULL, (::lparam)MAKELONG(upper, lower));
       }
 
       void SpinControl::setRange32(int lower, int upper)
@@ -56,13 +56,13 @@ namespace windows
          SendMessage(m_hwnd, UDM_SETRANGE32, lower, upper);
       }
 
-      void SpinControl::setAccel(UINT nSec, UINT nInc)
+      void SpinControl::setAccel(unsigned int nSec, unsigned int nInc)
       {
          UDACCEL accel = {0};
          accel.nSec = nSec;
          accel.nInc = nInc;
 
-         SendMessage(m_hwnd, UDM_SETACCEL, 1, (LPARAM)&accel);
+         SendMessage(m_hwnd, UDM_SETACCEL, 1, (::lparam)&accel);
       }
 
       void SpinControl::autoAccelerationHandler(LPNMUPDOWN message)

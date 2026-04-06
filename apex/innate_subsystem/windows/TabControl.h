@@ -59,7 +59,7 @@ public:
   // Tab work rect methods
   //
 
-  void adjustRect(RECT *rect);
+  void adjustRect(::int_rectangle &rect);
 
 protected:
   TabContainer m_tabContainer;

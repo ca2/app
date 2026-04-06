@@ -91,28 +91,28 @@ namespace innate_subsystem
       return GetMenuItemCount(m_menu);
    }
 
-   bool Menu::appendMenu(UINT uFlags, UINT_PTR uIDNewItem, LPCTSTR lpNewItem)
+   bool Menu::appendMenu(unsigned int uFlags, unsigned int_PTR uIDNewItem, LPCTSTR lpNewItem)
    {
       _ASSERT(m_menu != 0);
 
       return !!AppendMenu(m_menu, uFlags, uIDNewItem, lpNewItem);
    }
 
-   bool Menu::insertMenuItem(UINT uItem, BOOL fByPosition, LPCMENUITEMINFO lpmii)
+   bool Menu::insertMenuItem(unsigned int uItem, BOOL fByPosition, LPCMENUITEMINFO lpmii)
    {
       _ASSERT(m_menu != 0);
 
       return !!InsertMenuItem(m_menu, uItem, fByPosition, lpmii);
    }
 
-   bool Menu::modifyMenu(UINT uPosition, UINT uFlags, LONG_PTR uIDNewItem, LPCTSTR lpNewItem)
+   bool Menu::modifyMenu(unsigned int uPosition, unsigned int uFlags, LONG_PTR uIDNewItem, LPCTSTR lpNewItem)
    {
       _ASSERT(m_menu != 0);
 
       return !!ModifyMenu(m_menu, uPosition, uFlags, uIDNewItem, lpNewItem);
    }
 
-   bool Menu::deleteMenu(UINT uPosition)
+   bool Menu::deleteMenu(unsigned int uPosition)
    {
       _ASSERT(m_menu != 0);
 
@@ -131,14 +131,14 @@ namespace innate_subsystem
       return (!tmenu?false:true);
    }
 
-   bool Menu::enableMenuItem(UINT uID, UINT uEnable)
+   bool Menu::enableMenuItem(unsigned int uID, unsigned int uEnable)
    {
       _ASSERT(m_menu != 0);
 
       return !!EnableMenuItem(m_menu, uID, uEnable);
    }
 
-   bool Menu::setMenuItem(UINT uItem, BOOL fByPosition, LPMENUITEMINFO lpmii)
+   bool Menu::setMenuItem(unsigned int uItem, BOOL fByPosition, LPMENUITEMINFO lpmii)
    {
       _ASSERT(m_menu != 0);
 
@@ -161,7 +161,7 @@ namespace innate_subsystem
       }
    }
 
-   int Menu::findMenuItem(UINT uID)
+   int Menu::findMenuItem(unsigned int uID)
    {
       _ASSERT(m_menu != 0);
 
@@ -173,7 +173,7 @@ namespace innate_subsystem
       return -1;
    }
 
-   bool Menu::appendMenu(StringStorage strVal, UINT uID)
+   bool Menu::appendMenu(StringStorage strVal, unsigned int uID)
    {
       return appendMenu(MF_STRING, uID, strVal.getString());
    }
@@ -185,10 +185,10 @@ namespace innate_subsystem
 
    bool Menu::appendSubMenu(StringStorage strVal, Menu *pMenu)
    {
-      return appendMenu(MF_POPUP, (UINT_PTR)pMenu->getMenu(), strVal.getString());
+      return appendMenu(MF_POPUP, (unsigned int_PTR)pMenu->getMenu(), strVal.getString());
    }
 
-   bool Menu::insertMenuItem(UINT uItem, StringStorage strVal, UINT uID)
+   bool Menu::insertMenuItem(unsigned int uItem, StringStorage strVal, unsigned int uID)
    {
       MENUITEMINFO mii;
 
@@ -201,7 +201,7 @@ namespace innate_subsystem
       return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
-   bool Menu::insertCheckMenuItem(UINT uItem, StringStorage strVal, UINT uID)
+   bool Menu::insertCheckMenuItem(unsigned int uItem, StringStorage strVal, unsigned int uID)
    {
       MENUITEMINFO mii;
 
@@ -214,7 +214,7 @@ namespace innate_subsystem
       return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
-   bool Menu::checkedMenuItem(UINT uID, bool bEnable)
+   bool Menu::checkedMenuItem(unsigned int uID, bool bEnable)
    {
       _ASSERT(m_menu != 0);
 
@@ -222,12 +222,12 @@ namespace innate_subsystem
       if (pos == -1) {
          return false;
       }
-      UINT command = bEnable ? MF_CHECKED : MF_UNCHECKED;
+      unsigned int command = bEnable ? MF_CHECKED : MF_UNCHECKED;
       DWORD res = CheckMenuItem(m_menu, pos, MF_BYPOSITION | command);
       return (res == -1) ? false : true;
    }
 
-   bool Menu::insertSeparator(UINT uItem)
+   bool Menu::insertSeparator(unsigned int uItem)
    {
       MENUITEMINFO mii;
 
@@ -237,7 +237,7 @@ namespace innate_subsystem
       return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
-   bool Menu::insertSubMenu(UINT uItem, StringStorage strVal, Menu *pMenu)
+   bool Menu::insertSubMenu(unsigned int uItem, StringStorage strVal, Menu *pMenu)
    {
       MENUITEMINFO mii;
 
@@ -248,7 +248,7 @@ namespace innate_subsystem
       return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
-   bool Menu::setDefaultItem(UINT uID)
+   bool Menu::setDefaultItem(unsigned int uID)
    {
       _ASSERT(m_menu != 0);
 

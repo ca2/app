@@ -30,12 +30,12 @@
 namespace subsystem
 {
 
-   GlobalMutex::GlobalMutex(const ::scoped_string & scopedstrName, bool interSession, bool throwIfExist)
+   GlobalMutex::GlobalMutex()
    {
 
       //if (is_in)
       //m_pglobalmutexThis = create_particle < GlobalMutex >();
-      m_pparticleThis->initialize_global_mutex(scopedstrName, interSession, throwIfExist);
+      //m_pparticleThis->initialize_global_mutex(scopedstrName, interSession, throwIfExist);
       //m_pglobalmutexThis->initialize_global_mutex(scopedstrName, interSession, throwIfExist);
       // ::string mutexName;
       //
@@ -54,6 +54,31 @@ namespace subsystem
       //    throw SystemException();
       // }
    }
+   // GlobalMutex::GlobalMutex(const ::scoped_string & scopedstrName, bool interSession, bool throwIfExist)
+   // {
+   //
+   //    //if (is_in)
+   //    //m_pglobalmutexThis = create_particle < GlobalMutex >();
+   //    m_pparticleThis->initialize_global_mutex(scopedstrName, interSession, throwIfExist);
+   //    //m_pglobalmutexThis->initialize_global_mutex(scopedstrName, interSession, throwIfExist);
+   //    // ::string mutexName;
+   //    //
+   //    // mutexName.format("{}\\{}", interSession ? "Global" :"Local", scopedstrName);
+   //    //
+   //    // m_mutex = CreateMutex(0, FALSE, ::wstring(mutexName).c_str());
+   //    //
+   //    // if (m_mutex == 0) {
+   //    //    throw SystemException();
+   //    // }
+   //    //
+   //    // if (GetLastError() != ERROR_ALREADY_EXISTS) {
+   //    //    setAccessToAll(m_mutex);
+   //    // } else if (throwIfExist) {
+   //    //    CloseHandle(m_mutex);
+   //    //    throw SystemException();
+   //    // }
+   // }
+   //
 
    GlobalMutex::~GlobalMutex()
    {

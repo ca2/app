@@ -41,12 +41,12 @@ namespace subsystem
    console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
-   class CLASS_DECL_ACME ImpersonatorInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME Impersonator :
+   virtual public ::subsystem::particle
    {
    public:
       //Impersonator(LogWriter *log);
-      virtual ~ImpersonatorInterface() = 0;
+      virtual ~Impersonator() = 0;
 
 
       virtual void initialize_impersonator(LogWriter *log) = 0;
@@ -81,49 +81,49 @@ namespace subsystem
    };
 
 
-   /**
-   Class for impersonating current process as user that logged on current
-   console session.
-   @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
-   */
-   class CLASS_DECL_ACME Impersonator :
-   virtual public ::subsystem::composite<ImpersonatorInterface>
-   {
-   public:
-
-      Impersonator();
-      ~Impersonator() override;
-
-      void initialize_impersonator(LogWriter *log) override;
-
-      /**
-      Impersonates calling process as user that logged on current console session.
-      @throws SystemException if impersonation fails.
-      */
-      void impersonateAsLoggedUser() override;
-
-      /**
-      Impersonates calling process as user with given token.
-      @throws SystemException if impersonation fails.
-      */
-      void impersonateAsCurrentProcessUser(bool rdpEnabled) override;
-
-      /**
-      Cancels effect of impersonateAsLoggedUser method call.
-      @throws SystemException on fail.
-      */
-      void revertToSelf() override;
-
-      bool sessionIsLocked(bool rdpEnabled) override;
-
-   //protected:
-      //void impersonateAsUser(HANDLE token);
-
-      // HANDLE m_token;
-      // HANDLE m_dupToken;
-      //
-      // LogWriter *m_log;
-   };
+   // /**
+   // Class for impersonating current process as user that logged on current
+   // console session.
+   // @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
+   // */
+   // class CLASS_DECL_ACME Impersonator :
+   // virtual public ::subsystem::composite<ImpersonatorInterface>
+   // {
+   // public:
+   //
+   //    Impersonator();
+   //    ~Impersonator() override;
+   //
+   //    void initialize_impersonator(LogWriter *log) override;
+   //
+   //    /**
+   //    Impersonates calling process as user that logged on current console session.
+   //    @throws SystemException if impersonation fails.
+   //    */
+   //    void impersonateAsLoggedUser() override;
+   //
+   //    /**
+   //    Impersonates calling process as user with given token.
+   //    @throws SystemException if impersonation fails.
+   //    */
+   //    void impersonateAsCurrentProcessUser(bool rdpEnabled) override;
+   //
+   //    /**
+   //    Cancels effect of impersonateAsLoggedUser method call.
+   //    @throws SystemException on fail.
+   //    */
+   //    void revertToSelf() override;
+   //
+   //    bool sessionIsLocked(bool rdpEnabled) override;
+   //
+   // //protected:
+   //    //void impersonateAsUser(HANDLE token);
+   //
+   //    // HANDLE m_token;
+   //    // HANDLE m_dupToken;
+   //    //
+   //    // LogWriter *m_log;
+   // };
 
 
 } // namespace subsystem

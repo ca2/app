@@ -152,86 +152,91 @@ list(APPEND apex_source
    inline/console.h
    inline/console_common.h
    #inline/library.h
+   innate_subsystem/drawing/_.h
    innate_subsystem/drawing/Bitmap.cpp
-   innate_subsystem/drawing/DeviceContext.h
    innate_subsystem/drawing/Bitmap.h
-   innate_subsystem/drawing/Graphics.cpp
-   innate_subsystem/drawing/Brush.h
+   innate_subsystem/drawing/BitmapGraphics.cpp
    innate_subsystem/drawing/BitmapGraphics.h
-   innate_subsystem/drawing/Icon.h
-   innate_subsystem/drawing/SolidBrush.h
-   innate_subsystem/drawing/DeviceContext.cpp
    innate_subsystem/drawing/Brush.cpp
+   innate_subsystem/drawing/Brush.h
+   innate_subsystem/drawing/DeviceContext.cpp
+   innate_subsystem/drawing/DeviceContext.h
+   innate_subsystem/drawing/Graphics.cpp
+   innate_subsystem/drawing/Graphics.h
+   innate_subsystem/drawing/Icon.cpp
+   innate_subsystem/drawing/Icon.h
+   innate_subsystem/drawing/Pen.cpp
    innate_subsystem/drawing/Pen.h
    innate_subsystem/drawing/SolidBrush.cpp
-   innate_subsystem/drawing/Pen.cpp
-   innate_subsystem/drawing/Icon.cpp
-   innate_subsystem/drawing/Graphics.h
-   innate_subsystem/drawing/BitmapGraphics.cpp
+   innate_subsystem/drawing/SolidBrush.h
    innate_subsystem/_.h
-   innate_subsystem/CommonControlsEx.cpp
-   #innate_subsystem/gui.vcxproj.filters
-   innate_subsystem/Menu.cpp
-   innate_subsystem/TextBox.h
-   innate_subsystem/Trackbar.cpp
-   innate_subsystem/Tab.cpp
-   innate_subsystem/ListBox.h
-   innate_subsystem/BaseWindow.cpp
-   innate_subsystem/TabContainer.h
-   innate_subsystem/FilteredTextBox.h
-   innate_subsystem/FilteredTextBox.cpp
-   innate_subsystem/TextBox.cpp
-   innate_subsystem/NotifyIcon.h
-   innate_subsystem/WindowProcHolder.cpp
-   innate_subsystem/PaintWindow.h
-   innate_subsystem/Trackbar.h
-   innate_subsystem/ToolBar.cpp
-   innate_subsystem/Control.cpp
-   innate_subsystem/NotifyIconWindow.h
-   innate_subsystem/ListView.h
-   innate_subsystem/ProgressBar.cpp
-   innate_subsystem/Menu.h
-   innate_subsystem/PaintWindow.cpp
-   innate_subsystem/ProgressBar.h
-   innate_subsystem/BaseDialog.h
-   innate_subsystem/Tooltip.cpp
-   innate_subsystem/StringFilter.cpp
-   innate_subsystem/MessageWindow.cpp
-   innate_subsystem/BaseWindow.h
-   innate_subsystem/ListBox.cpp
-   innate_subsystem/NotifyIcon.cpp
-   innate_subsystem/gui.vcxproj.user
-   innate_subsystem/ToolBar.h
-   innate_subsystem/SpinControl.h
-   innate_subsystem/CommonControlsEx.h
-   innate_subsystem/CheckBox.h
-   innate_subsystem/SpinControl.cpp
-   innate_subsystem/gui.vcproj
-   innate_subsystem/TabControl.h
-   innate_subsystem/ComboBox.h
-   innate_subsystem/Control.h
-   innate_subsystem/WindowMessageHandler.h
-   innate_subsystem/ScrollBar.cpp
-   innate_subsystem/WindowFinder.h
-   innate_subsystem/ScrollBar.h
-   innate_subsystem/Tab.h
    #innate_subsystem/gui.vcxproj
-   innate_subsystem/ImagedButton.cpp
-   innate_subsystem/CheckBox.cpp
-   innate_subsystem/WindowFinder.cpp
-   innate_subsystem/TabContainer.cpp
-   innate_subsystem/NotifyIconWindow.cpp
-   innate_subsystem/ComboBox.cpp
-   innate_subsystem/Tooltip.h
-   innate_subsystem/ListView.cpp
+   #innate_subsystem/gui.vcxproj.filters
    innate_subsystem/BalloonTip.cpp
-   innate_subsystem/WindowProcHolder.h
-   innate_subsystem/MessageWindow.h
-   innate_subsystem/ImagedButton.h
-   innate_subsystem/StringFilter.h
-   innate_subsystem/BaseDialog.cpp
-   innate_subsystem/TabControl.cpp
    innate_subsystem/BalloonTip.h
+   innate_subsystem/BaseDialog.cpp
+   innate_subsystem/BaseDialog.h
+   innate_subsystem/BaseWindow.cpp
+   innate_subsystem/BaseWindow.h
+   innate_subsystem/CheckBox.cpp
+   innate_subsystem/CheckBox.h
+   innate_subsystem/ComboBox.cpp
+   innate_subsystem/ComboBox.h
+   innate_subsystem/CommonControlsEx.cpp
+   innate_subsystem/CommonControlsEx.h
+   innate_subsystem/Control.cpp
+   innate_subsystem/Control.h
+   innate_subsystem/FilteredTextBox.cpp
+   innate_subsystem/FilteredTextBox.h
+   innate_subsystem/ImagedButton.cpp
+   innate_subsystem/ImagedButton.h
+   innate_subsystem/ImageList.cpp
+   innate_subsystem/ImageList.h
+   innate_subsystem/ListBox.cpp
+   innate_subsystem/ListBox.h
+   innate_subsystem/ListView.cpp
+   innate_subsystem/ListView.h
+   innate_subsystem/Menu.cpp
+   innate_subsystem/Menu.h
+   innate_subsystem/MessageWindow.cpp
+   innate_subsystem/MessageWindow.h
+   innate_subsystem/NotifyIcon.cpp
+   innate_subsystem/NotifyIcon.h
+   innate_subsystem/NotifyIconWindow.cpp
+   innate_subsystem/NotifyIconWindow.h
+   innate_subsystem/PaintWindow.cpp
+   innate_subsystem/PaintWindow.h
+   innate_subsystem/ProgressBar.cpp
+   innate_subsystem/ProgressBar.h
+   innate_subsystem/ScrollBar.cpp
+   innate_subsystem/ScrollBar.h
+   innate_subsystem/SpinControl.cpp
+   innate_subsystem/SpinControl.h
+   innate_subsystem/StringFilter.cpp
+   innate_subsystem/StringFilter.h
+   innate_subsystem/subsystem.cpp
+   innate_subsystem/subsystem.h
+   innate_subsystem/Tab.cpp
+   innate_subsystem/Tab.h
+   innate_subsystem/TabContainer.cpp
+   innate_subsystem/TabContainer.h
+   innate_subsystem/TabControl.cpp
+   innate_subsystem/TabControl.h
+   innate_subsystem/TextBox.cpp
+   innate_subsystem/TextBox.h
+   innate_subsystem/ToolBar.cpp
+   innate_subsystem/ToolBar.h
+   innate_subsystem/Tooltip.cpp
+   innate_subsystem/Tooltip.h
+   innate_subsystem/Trackbar.cpp
+   innate_subsystem/Trackbar.h
+   innate_subsystem/WindowFinder.cpp
+   innate_subsystem/WindowFinder.h
+   innate_subsystem/WindowMessageHandler.h
+   innate_subsystem/WindowProcHolder.cpp
+   innate_subsystem/WindowProcHolder.h
+   #innate_subsystem/gui.vcproj
+   #innate_subsystem/gui.vcxproj.user
    innate_ui/button.cpp
    innate_ui/button.h
    innate_ui/dialog.cpp
@@ -780,7 +785,7 @@ if (WIN32)
       #operating_system/win32/font.h
       #operating_system/win32/window.cpp
       #operating_system/win32/window.h
-
+      innate_subsystem/windows/_factory.cpp
       innate_subsystem/windows/drawing/Bitmap.cpp
       innate_subsystem/windows/drawing/DeviceContext.h
       innate_subsystem/windows/drawing/Bitmap.h
@@ -821,6 +826,8 @@ if (WIN32)
       #innate_subsystem/windows/gui.vcxproj.user
       innate_subsystem/windows/ImagedButton.cpp
       innate_subsystem/windows/ImagedButton.h
+      innate_subsystem/windows/ImageList.cpp
+      innate_subsystem/windows/ImageList.h
       innate_subsystem/windows/ListBox.cpp
       innate_subsystem/windows/ListBox.h
       innate_subsystem/windows/ListView.cpp
@@ -844,6 +851,8 @@ if (WIN32)
       innate_subsystem/windows/SpinControl.h
       innate_subsystem/windows/StringFilter.cpp
       innate_subsystem/windows/StringFilter.h
+      innate_subsystem/windows/subsystem.cpp
+      innate_subsystem/windows/subsystem.h
       innate_subsystem/windows/Tab.cpp
       innate_subsystem/windows/Tab.h
       innate_subsystem/windows/TabContainer.cpp
@@ -1619,7 +1628,9 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source})
+add_library(${PROJECT_NAME} SHARED ${apex_source}
+   innate_subsystem/ImageList.h
+   innate_subsystem/ImageList.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 

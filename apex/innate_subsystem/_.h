@@ -25,7 +25,18 @@ namespace innate_subsystem
     };
 
 
+   class Control;
+   class ControlInterface;
+   class Window;
+   class WindowInterface;
+
+   class Cursor;
+
 } // namespace innate_subsystem
+
+
+
+#include "apex/innate_subsystem/drawing/_.h"
 
 
 

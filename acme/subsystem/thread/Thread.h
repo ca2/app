@@ -53,8 +53,8 @@ namespace subsystem
     * @fixme some methods seems to be not thread-safe (that uses m_active member).
     * @fixme member of HDESK type in THREAD class???
     */
-   class CLASS_DECL_ACME ThreadInterface :
-      virtual public particle_interface
+   class CLASS_DECL_ACME Thread :
+      virtual public particle
    {
    public:
 
@@ -65,13 +65,12 @@ namespace subsystem
        * Creates new thread.
        * @remark thread is suspended by default.
        */
-      //Thread();
+      Thread();
       /**
        * Deletes thread.
        * @remark does not stops thread execution if it's still running.
        */
-      virtual ~ThreadInterface() = 0;
-
+      ~Thread() override;
       /**
        * Waits until thread stops.
        * @return false on error.
@@ -170,130 +169,130 @@ namespace subsystem
    };
 
 
-   /**
-    * Thread class.
-    *
-    * @fixme some of methods return bool instead of raising exceptions.
-    * @fixme some methods seems to be not thread-safe (that uses m_active member).
-    * @fixme member of HDESK type in THREAD class???
-    */
-   class CLASS_DECL_ACME Thread :
-      virtual public ::subsystem::composite < ThreadInterface >
-   {
-   public:
-
-
-      //::pointer < Thread > m_pthreadThis;
-
-      /**
-       * Creates new thread.
-       * @remark thread is suspended by default.
-       */
-      Thread();
-      /**
-       * Deletes thread.
-       * @remark does not stops thread execution if it's still running.
-       */
-      ~Thread() override;
-
-      /**
-       * Waits until thread stops.
-       * @return false on error.
-       */
-      ::e_status wait() override;
-      /**
-       * Suspends thread execution.
-       * @return false on error.
-       */
-      bool suspend() override;
-      /**
-       * Resume thread execution.
-       * @return false on error.
-       */
-      bool resume() override;
-      /**
-       * Terminates thread execution.
-       * @remark thread-safe.
-       */
-      void terminate() override;
-
-      /**
-       * Checks if thread is not dead.
-       * @return true if thread is not dead (still running or suspended).
-       */
-      bool isActive() const override;
-
-      /**
-       * Returns thread id.
-       */
-      ::itask getThreadId() const override;
-
-      /**
-       * Sets thread priority.
-       * @param value thread priority.
-       */
-      bool setPriority(THREAD_PRIORITY value) override;
-
-      /**
-       * Suspends the execution of the current thread until the time-out interval elapses.
-       * @param millis time to sleep.
-       */
-      void sleep(const class ::time & time) override;
-
-      /**
-       * Yield execution to the next ready thread.
-       */
-      void yield() override;
-
-   //protected:
-      /**
-       * Returns true if terminate() method was called.
-       * @remark thread-safe.
-       */
-      bool isTerminating() override;
-
-      /**
-       * Slot of terminate() signal.
-       * Method called from terminate() method.
-       * Can be overrided by subclasses to gracefully shutdown thread.
-       */
-      void onTerminate() override;
-
-      /**
-       * Thread's runnable body.
-       */
-      void execute() override;
-
-   //private:
-      /**
-       * WinApi thread func.
-       */
-      //static DWORD WINAPI threadProc(LPVOID pThread);
-
-      // This function calling before call a derived execute() function to
-      // perform any additional action.
-      void initByDerived() override;
-
-   //private:
-      /**
-       * Win32 thread handle.
-       */
-      //HANDLE m_hThread;
-      /**
-       * Thread ID.
-       */
-      //DWORD m_threadID;
-      /**
-       * Activity flag.
-       */
-      //bool m_active;
-      /**
-       * Terminating flag.
-       */
-      //volatile bool m_terminated;
-   };
-
-   //// __THREAD_H__
+   // /**
+   //  * Thread class.
+   //  *
+   //  * @fixme some of methods return bool instead of raising exceptions.
+   //  * @fixme some methods seems to be not thread-safe (that uses m_active member).
+   //  * @fixme member of HDESK type in THREAD class???
+   //  */
+   // class CLASS_DECL_ACME Thread :
+   //    virtual public ::subsystem::composite < ThreadInterface >
+   // {
+   // public:
+   //
+   //
+   //    //::pointer < Thread > m_pthreadThis;
+   //
+   //    /**
+   //     * Creates new thread.
+   //     * @remark thread is suspended by default.
+   //     */
+   //    Thread();
+   //    /**
+   //     * Deletes thread.
+   //     * @remark does not stops thread execution if it's still running.
+   //     */
+   //    ~Thread() override;
+   //
+   //    /**
+   //     * Waits until thread stops.
+   //     * @return false on error.
+   //     */
+   //    ::e_status wait() override;
+   //    /**
+   //     * Suspends thread execution.
+   //     * @return false on error.
+   //     */
+   //    bool suspend() override;
+   //    /**
+   //     * Resume thread execution.
+   //     * @return false on error.
+   //     */
+   //    bool resume() override;
+   //    /**
+   //     * Terminates thread execution.
+   //     * @remark thread-safe.
+   //     */
+   //    void terminate() override;
+   //
+   //    /**
+   //     * Checks if thread is not dead.
+   //     * @return true if thread is not dead (still running or suspended).
+   //     */
+   //    bool isActive() const override;
+   //
+   //    /**
+   //     * Returns thread id.
+   //     */
+   //    ::itask getThreadId() const override;
+   //
+   //    /**
+   //     * Sets thread priority.
+   //     * @param value thread priority.
+   //     */
+   //    bool setPriority(THREAD_PRIORITY value) override;
+   //
+   //    /**
+   //     * Suspends the execution of the current thread until the time-out interval elapses.
+   //     * @param millis time to sleep.
+   //     */
+   //    void sleep(const class ::time & time) override;
+   //
+   //    /**
+   //     * Yield execution to the next ready thread.
+   //     */
+   //    void yield() override;
+   //
+   // //protected:
+   //    /**
+   //     * Returns true if terminate() method was called.
+   //     * @remark thread-safe.
+   //     */
+   //    bool isTerminating() override;
+   //
+   //    /**
+   //     * Slot of terminate() signal.
+   //     * Method called from terminate() method.
+   //     * Can be overrided by subclasses to gracefully shutdown thread.
+   //     */
+   //    void onTerminate() override;
+   //
+   //    /**
+   //     * Thread's runnable body.
+   //     */
+   //    void execute() override;
+   //
+   // //private:
+   //    /**
+   //     * WinApi thread func.
+   //     */
+   //    //static DWORD WINAPI threadProc(LPVOID pThread);
+   //
+   //    // This function calling before call a derived execute() function to
+   //    // perform any additional action.
+   //    void initByDerived() override;
+   //
+   // //private:
+   //    /**
+   //     * Win32 thread handle.
+   //     */
+   //    //HANDLE m_hThread;
+   //    /**
+   //     * Thread ID.
+   //     */
+   //    //DWORD m_threadID;
+   //    /**
+   //     * Activity flag.
+   //     */
+   //    //bool m_active;
+   //    /**
+   //     * Terminating flag.
+   //     */
+   //    //volatile bool m_terminated;
+   // };
+   //
+   // //// __THREAD_H__
 
 
 } // namespace subsystem

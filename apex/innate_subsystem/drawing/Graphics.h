@@ -69,7 +69,7 @@ namespace innate_subsystem
       // Draws bitmap.
       void drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h);
       // Draws text.
-      void drawText(const TCHAR *text, int cchText, RECT *rect, UINT format);
+      void drawText(const TCHAR *text, int cchText, ::int_rectangle &rect, unsigned int format);
 
    protected:
       DeviceContext *m_dc;

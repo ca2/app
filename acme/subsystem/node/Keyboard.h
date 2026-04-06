@@ -37,14 +37,14 @@ namespace subsystem
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
-   class CLASS_DECL_ACME KeyboardInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME Keyboard :
+   virtual public ::subsystem::particle
    {
    public:
 
 
-
-      virtual ~KeyboardInterface() = 0;
+Keyboard();
+      ~Keyboard() override;
       /**
        * Copied current keyboard state (256 virtual keys state) to state array.
        * @param state [out] array of 256 virtual key states.
@@ -68,39 +68,39 @@ namespace subsystem
 
    };
 
-   /**
-    * Wrapper on base WinAPI keyboard functions.
-    */
-   class CLASS_DECL_ACME Keyboard :
-   virtual public ::subsystem::composite <KeyboardInterface>
-   {
-   public:
-
-
-      Keyboard();
-      ~Keyboard() override;
-      /**
-       * Copied current keyboard state (256 virtual keys state) to state array.
-       * @param state [out] array of 256 virtual key states.
-       * @throws SystemException on error.
-       */
-      void getState(unsigned char state[256]) override;
-
-      /**
-       * Sets current keyboard state.
-       * @param state array of 256 virtual key states.
-       * @throws SystemException on error.
-       */
-      void setState(unsigned char state[256]) override;
-
-      /**
-       * Check if specified key is in pressed state.
-       * @param vkCode virtual code of key.
-       * @return true if key is pressed, false if released.
-       */
-      bool isKeyPressed(unsigned char vkCode) override;
-
-   };
+   // /**
+   //  * Wrapper on base WinAPI keyboard functions.
+   //  */
+   // class CLASS_DECL_ACME Keyboard :
+   // virtual public ::subsystem::composite <KeyboardInterface>
+   // {
+   // public:
+   //
+   //
+   //    Keyboard();
+   //    ~Keyboard() override;
+   //    /**
+   //     * Copied current keyboard state (256 virtual keys state) to state array.
+   //     * @param state [out] array of 256 virtual key states.
+   //     * @throws SystemException on error.
+   //     */
+   //    void getState(unsigned char state[256]) override;
+   //
+   //    /**
+   //     * Sets current keyboard state.
+   //     * @param state array of 256 virtual key states.
+   //     * @throws SystemException on error.
+   //     */
+   //    void setState(unsigned char state[256]) override;
+   //
+   //    /**
+   //     * Check if specified key is in pressed state.
+   //     * @param vkCode virtual code of key.
+   //     * @return true if key is pressed, false if released.
+   //     */
+   //    bool isKeyPressed(unsigned char vkCode) override;
+   //
+   // };
 } // namespace subsystem
 
 

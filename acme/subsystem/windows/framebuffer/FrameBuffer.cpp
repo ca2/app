@@ -38,14 +38,14 @@ FrameBuffer::~FrameBuffer(void)
   }
 }
 
-bool FrameBuffer::assignProperties(const FrameBuffer *srcFrameBuffer)
+bool FrameBuffer::assignProperties(const ::subsystem::PixelFormat &srcFrameBuffer)
 {
   setProperties(srcFrameBuffer->getDimension(),
                 srcFrameBuffer->getPixelFormat());
   return resizeBuffer();
 }
 
-bool FrameBuffer::clone(const FrameBuffer *srcFrameBuffer)
+bool FrameBuffer::clone(const ::subsystem::PixelFormat &srcFrameBuffer)
 {
   if (!assignProperties(srcFrameBuffer)) {
     return false;
@@ -98,13 +98,13 @@ void FrameBuffer::fillRect(const ::int_rectangle & dstRect, unsigned int color)
     memcpy(dstLinePtr, srcLinePtr, sizeLineRect);
 }
 
-bool FrameBuffer::isEqualTo(const FrameBuffer *frameBuffer)
+bool FrameBuffer::isEqualTo(const ::subsystem::PixelFormat &frameBuffer)
 {
   return m_dimension == frameBuffer->getDimension() &&
          m_pixelFormat == frameBuffer->getPixelFormat();
 }
 
-void FrameBuffer::clipRect(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+void FrameBuffer::clipRect(const ::int_rectangle & dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                            const int srcX, const int srcY,
                            ::int_rectangle *dstClippedRect, ::int_rectangle *srcClippedRect)
 {
@@ -143,7 +143,7 @@ void FrameBuffer::clipRect(const ::int_rectangle & dstRect, const ::int_rectangl
 }
 
 bool FrameBuffer::overlay(const ::int_rectangle & dstRect,
-                          const FrameBuffer *srcFrameBuffer,
+                          const ::subsystem::PixelFormat &srcFrameBuffer,
                           int srcX, int srcY,
                           const char *andMask)
 {
@@ -163,7 +163,7 @@ bool FrameBuffer::overlay(const ::int_rectangle & dstRect,
 }
 
 template<class PIXEL_T> bool FrameBuffer::overlayT(const ::int_rectangle & dstRect,
-                                                   const FrameBuffer *srcFrameBuffer,
+                                                   const ::subsystem::PixelFormat &srcFrameBuffer,
                                                    int srcX, int srcY,
                                                    const char *andMask)
 {
@@ -193,7 +193,7 @@ template<class PIXEL_T> bool FrameBuffer::overlayT(const ::int_rectangle & dstRe
   return true;
 }
 
-bool FrameBuffer::copyFrom(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+bool FrameBuffer::copyFrom(const ::int_rectangle & dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                            int srcX, int srcY)
 {
   if (m_pixelFormat != srcFrameBuffer->getPixelFormat()) {
@@ -230,13 +230,13 @@ bool FrameBuffer::copyFrom(const ::int_rectangle & dstRect, const FrameBuffer *s
   return true;
 }
 
-bool FrameBuffer::copyFrom(const FrameBuffer *srcFrameBuffer,
+bool FrameBuffer::copyFrom(const ::subsystem::PixelFormat &srcFrameBuffer,
                            int srcX, int srcY)
 {
   return copyFrom(m_dimension, srcFrameBuffer, srcX, srcY);
 }
 
-bool FrameBuffer::copyFromRotated90(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+bool FrameBuffer::copyFromRotated90(const ::int_rectangle & dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                                     int srcX, int srcY)
 {
   if (m_pixelFormat.bitsPerPixel != 32 || m_pixelFormat != srcFrameBuffer->getPixelFormat())
@@ -286,7 +286,7 @@ bool FrameBuffer::copyFromRotated90(const ::int_rectangle & dstRect, const Frame
   return true;
 }
 
-bool FrameBuffer::copyFromRotated180(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+bool FrameBuffer::copyFromRotated180(const ::int_rectangle & dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                                     int srcX, int srcY)
 {
   if (m_pixelFormat.bitsPerPixel != 32 || m_pixelFormat != srcFrameBuffer->getPixelFormat())
@@ -338,7 +338,7 @@ bool FrameBuffer::copyFromRotated180(const ::int_rectangle & dstRect, const Fram
   return true;
 }
 
-bool FrameBuffer::copyFromRotated270(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+bool FrameBuffer::copyFromRotated270(const ::int_rectangle & dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                                     int srcX, int srcY)
 {
   if (m_pixelFormat.bitsPerPixel != 32 || m_pixelFormat != srcFrameBuffer->getPixelFormat())
@@ -388,7 +388,7 @@ bool FrameBuffer::copyFromRotated270(const ::int_rectangle & dstRect, const Fram
   return true;
 }
 
-bool FrameBuffer::cmpFrom(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+bool FrameBuffer::cmpFrom(const ::int_rectangle & dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                           const int srcX, const int srcY)
 {
   if (m_pixelFormat != srcFrameBuffer->getPixelFormat())

@@ -113,9 +113,9 @@ namespace windows
          }
       }
 
-      void AnonymousPipe::checkPipeHandle(HANDLE handle)
+      void AnonymousPipe::checkPipeFile(::subsystem::FileInterface * pfile)
       {
-         if (handle == INVALID_HANDLE_VALUE) {
+         if (::is_null(pfile) || ::as_HANDLE(pfile) == INVALID_HANDLE_VALUE || ::as_HANDLE(pfile) == nullptr) {
             throw ::io_exception(error_io, "Invalid pipe handle");
          }
       }
@@ -141,21 +141,19 @@ namespace windows
             errText = windows::last_error_message("Cannot dupplicate write"
                                    " handle for the anonymous pipe", ::windows::last_error());
 
-            throw ::remoting::Exception(errText);
+            throw ::subsystem::Exception(errText);
                              }
-         m_hWrite = hWrite;
-         if (DuplicateHandle(hSrcProc, m_hRead, hTargetProc, &hRead, 0, FALSE,
+         if (DuplicateHandle(hSrcProc, m_pfileRead->m_handle, hTargetProc, &hRead, 0, FALSE,
                              DUPLICATE_CLOSE_SOURCE | DUPLICATE_SAME_ACCESS) == 0) {
             ::string errText;
             errText = windows::last_error_message("Cannot dupplicate read"
                                    " handle for the anonymous pipe",
                                    ::windows::last_error());
-            throw ::remoting::Exception(errText);
+            throw ::subsystem::Exception(errText);
                              }
-         m_hRead = hRead;
          // Try keep of the close rights.
          if (keepCloseRight) {
-            if (DuplicateHandle(hTargetProc, m_hWrite, 0, 0, 0, FALSE,
+            if (DuplicateHandle(hTargetProc, m_pfileWrite, 0, 0, 0, FALSE,
                                 DUPLICATE_CLOSE_SOURCE) == 0) {
                ::string errText;
                errText = ::windows::last_error_message("Cannot keep the right to close of the write"
@@ -173,6 +171,8 @@ namespace windows
                                 }
             // Now the current process can close the handles.
          }
+         m_pfileWrite->m_handle= hWrite;
+         m_pfileRead->m_handle = hRead;
          m_neededToClose = neededToClose;
       }
 

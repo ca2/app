@@ -52,11 +52,13 @@ namespace subsystem
    /**
     * Synchronized (thread-safe) object that can be locked and unlocked.
     */
-   class CLASS_DECL_ACME LockableInterface :
-      virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME Lockable :
+      virtual public ::subsystem::particle
    {
    public:
-      virtual ~LockableInterface() = 0;
+
+      Lockable();
+      ~Lockable() override;
 
       /**
        * Locks object.

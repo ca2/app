@@ -25,6 +25,8 @@
 #include "acme/_operating_system.h"
 #include "AnonymousPipeFactory.h"
 #include "acme/subsystem/windows/node/security/SecurityAttributes.h"
+#include "AnonymousPipe.h"
+#include "File.h"
 
 
 namespace windows
@@ -64,50 +66,65 @@ namespace windows
                                                ::pointer < ::subsystem::AnonymousPipeInterface>&secondSide,
                                                bool secondSideIsInheritable)
       {
-         HANDLE hFirstSideWrite = 0, hFirstSideRead = 0,
-                hSecondSideWrite = 0, hSecondSideRead = 0;
+         ::pointer < ::windows::subsystem::File > pfileFirstSideWrite;
+         ::pointer < ::windows::subsystem::File > pfileFirstSideRead;
+         ::pointer < ::windows::subsystem::File > pfileSecondSideWrite;
+         ::pointer < ::windows::subsystem::File > pfileSecondSideRead;
+
+         construct_newø(pfileFirstSideWrite);
+         construct_newø(pfileFirstSideRead);
+         construct_newø(pfileSecondSideWrite);
+         construct_newø(pfileSecondSideRead);
+
+         pfileFirstSideWrite->m_bOwned = true;
+         pfileFirstSideRead->m_bOwned = true;
+         pfileSecondSideWrite->m_bOwned = true;
+         pfileSecondSideRead->m_bOwned = true;
 
          ::windows::subsystem::SecurityAttributes secAttr;
          secAttr.setInheritable();
 
          try {
-            if (CreatePipe(&hFirstSideRead, &hSecondSideWrite,
+            if (CreatePipe(&pfileFirstSideRead->m_handle, &pfileSecondSideWrite->m_handle,
                            secAttr._getSecurityAttributes(), m_bufferSize) == 0) {
                ::subsystem::SystemException("Cannot create anonymous pipe");
                            }
-            if (CreatePipe(&hSecondSideRead, &hFirstSideWrite,
+            if (CreatePipe(&pfileSecondSideRead->m_handle, &pfileFirstSideWrite->m_handle,
                            secAttr._getSecurityAttributes(), m_bufferSize) == 0) {
                ::subsystem::SystemException("Cannot create anonymous pipe");
                            }
          } catch (...) {
-            CloseHandle(hFirstSideWrite);
-            CloseHandle(hFirstSideRead);
-            CloseHandle(hSecondSideWrite);
-            CloseHandle(hSecondSideRead);
+//            CloseHandle(hFirstSideWrite);
+  //          CloseHandle(hFirstSideRead);
+    //        CloseHandle(hSecondSideWrite);
+      //      CloseHandle(hSecondSideRead);
             throw;
          }
 
          const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for anonymous pipe";
          if (!firstSideIsInheritable) {
-            if (SetHandleInformation(hFirstSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+            if (SetHandleInformation(pfileFirstSideWrite->m_handle, HANDLE_FLAG_INHERIT, 0) == 0) {
                ::subsystem::SystemException(errMess);
             }
-            if (SetHandleInformation(hFirstSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+            if (SetHandleInformation(pfileFirstSideRead->m_handle, HANDLE_FLAG_INHERIT, 0) == 0) {
                ::subsystem::SystemException(errMess);
             }
          }
          if (!secondSideIsInheritable) {
-            if (SetHandleInformation(hSecondSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+            if (SetHandleInformation(pfileSecondSideWrite->m_handle, HANDLE_FLAG_INHERIT, 0) == 0) {
                ::subsystem::SystemException(errMess);
             }
-            if (SetHandleInformation(hSecondSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+            if (SetHandleInformation(pfileSecondSideRead->m_handle, HANDLE_FLAG_INHERIT, 0) == 0) {
                ::subsystem::SystemException(errMess);
             }
          }
 
-         firstSide =allocateø AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_plogwriter);
-         firstSide->initialize(this);
-         secondSide = allocateø AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_plogwriter);
+         auto panonymouspipeFirst = create_newø < AnonymousPipe>();
+         panonymouspipeFirst->initialize_anonymous_pipe(pfileFirstSideWrite, pfileFirstSideRead, m_bufferSize, m_plogwriter);
+         firstSide =panonymouspipeFirst;
+         auto panonymouspipeSecond = create_newø < AnonymousPipe>();
+         panonymouspipeSecond->initialize_anonymous_pipe(pfileSecondSideWrite, pfileSecondSideRead, m_bufferSize, m_plogwriter);
+         secondSide = panonymouspipeSecond;
          secondSide->initialize(this);
       }
    } // namespace subsystem

@@ -23,31 +23,74 @@
 //
 
 #pragma once
+#include "acme/subsystem/particle.h"
+
 
 namespace innate_subsystem
 {
-   class Bitmap
+   class CLASS_DECL_APEX BitmapInterface :
+   virtual public ::subsystem::particle_interface
+   {
+   public:
+      // // Creates empty bitmap with specified size.
+      // Bitmap(int width, int height);
+      // // Creates compatible with dc bitmap with specified size.
+      // Bitmap(DeviceContext * pdevicecontext, int width, int height);
+      // // Creates bitmap from HBITMAP object.
+      // Bitmap(Bitmap * pbitmap);
+      // Destroys bitmap object.
+      virtual ~BitmapInterface() =0;
+
+      // Creates empty bitmap with specified size.
+      virtual void initialize_bitmap(int width, int height) = 0;
+      // Creates compatible with dc bitmap with specified size.
+      virtual void initialize_bitmap(DeviceContext * pdevicecontext, int width, int height) = 0;
+      // Creates bitmap from HBITMAP object.
+      virtual void initialize_bitmap(Bitmap * pbitmap) = 0;
+
+      // Returns bitmap width.
+      virtual int getWidth() const = 0;
+      // Returns bitmap height.
+      virtual int getHeight() const = 0;
+   // protected:
+   //    HBITMAP m_bitmap;
+   //
+   //    friend class Icon;
+   //    friend class Graphics;
+   //    friend class BitmapGraphics;
+   };
+
+
+   class CLASS_DECL_APEX Bitmap :
+      virtual public ::subsystem::composite < BitmapInterface >
    {
    public:
       // Creates empty bitmap with specified size.
       Bitmap(int width, int height);
       // Creates compatible with dc bitmap with specified size.
-      Bitmap(HDC dc, int width, int height);
+      Bitmap(DeviceContext * pdevicecontext, int width, int height);
       // Creates bitmap from HBITMAP object.
-      Bitmap(HBITMAP bitmap);
+      Bitmap(Bitmap * pbitmap);
       // Destroys bitmap object.
       virtual ~Bitmap();
 
-      // Returns bitmap width.
-      int getWidth() const;
-      // Returns bitmap height.
-      int getHeight() const;
-   protected:
-      HBITMAP m_bitmap;
+      // Creates empty bitmap with specified size.
+      void initialize_bitmap(int width, int height) override;
+      // Creates compatible with dc bitmap with specified size.
+      void initialize_bitmap(DeviceContext * pdevicecontext, int width, int height) override;
+      // Creates bitmap from HBITMAP object.
+      void initialize_bitmap(Bitmap * pbitmap) override;
 
-      friend class Icon;
-      friend class Graphics;
-      friend class BitmapGraphics;
+      // Returns bitmap width.
+      int getWidth() const override;
+      // Returns bitmap height.
+      int getHeight() const override;
+      // protected:
+      //    HBITMAP m_bitmap;
+      //
+      //    friend class Icon;
+      //    friend class Graphics;
+      //    friend class BitmapGraphics;
    };
 
 

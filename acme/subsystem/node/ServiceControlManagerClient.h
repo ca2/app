@@ -81,8 +81,8 @@ namespace subsystem
     * Gives access to install, remove, start, stop services and queries status
     * of service.
     */
-   class CLASS_DECL_ACME ServiceControlManagerClientInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME ServiceControlManagerClient :
+   virtual public ::subsystem::particle
    {
    public:
       /**
@@ -93,11 +93,11 @@ namespace subsystem
        */
       //ServiceControlManagerClient(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS);
 
-      //ServiceControlManagerClientInterface();
+      ServiceControlManagerClient();
       /**
        * Destructor, closes ServiceControlManagerClient.
        */
-      virtual ~ServiceControlManagerClientInterface() = 0;
+      ~ServiceControlManagerClient() override;
 
 
       virtual void initialize_service_control_manager_client(unsigned int desiredAccess = 0) = 0;
@@ -152,82 +152,82 @@ namespace subsystem
    };
 
 
-
-   /**
- * Service client manager client.
- *
- * Gives access to install, remove, start, stop services and queries status
- * of service.
- */
-   class CLASS_DECL_ACME ServiceControlManagerClient :
-   virtual public ::subsystem::composite<ServiceControlManagerClientInterface>
-   {
-   public:
-      /**
-       * Creates new ServiceControlManagerClient.
-       * @param desiredAccess desired acess (see OpenServiceControlManageranager WinAPI function description
-       * for details).
-       * @throws SystemException on fail.
-       */
-      //ServiceControlManagerClient(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS);
-      ServiceControlManagerClient(unsigned int desiredAccess = 0);
-      //ServiceControlManagerClient();
-      /**
-       * Destructor, closes ServiceControlManagerClient.
-       */
-      ~ServiceControlManagerClient() override;
-
-
-      //void initialize_service_control_manager_client(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS) override;
-      void initialize_service_control_manager_client(unsigned int desiredAccess = 0) override;
-      /**
-       * Registers new service in system.
-       * @param name name of service.
-       * @param nameToDisplay name to display in services ::list_base.
-       * @param binPath full path to service binary.
-       * @param dependencies [optional] service dependencies.
-       * @throws SystemException on fail.
-       */
-      void installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
-                          const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies = "") override;
-      /**
-       * Unregisters existing service from services.
-       * @param name name of service to unregister.
-       * @throws SystemException on fail.
-       */
-      void removeService(const ::scoped_string & scopedstrName) override;
-      /**
-       * Starts existing service.
-       * @param name name of service to start.
-       * @param waitCompletion if true, wait until the status becomes
-       *   SERVICE_RUNNING.
-       * @throws SystemException, ServiceControlManagerClientException on fail.
-       */
-      void startService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
-    ;
-      /**
-       * Stops running service execution.
-       * @param name name of service to stop.
-       * @param waitCompletion if true, wait until the status becomes
-       *   SERVICE_STOPPED.
-       * @throws SystemException, ServiceControlManagerClientException on fail.
-       */
-      void stopService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
-    ;
-
-   // private:
-   //    /**
-   //     * Gets current state of existing service specified by handle.
-   //     * @param hService handle of the service.
-   //     * @return current service state.
-   //     * @throws SystemException on failure.
-   //     */
-   //    DWORD getServiceState(SC_HANDLE hService) const;
-   //
-   // private:
-   //    /** Service client manager handle. */
-   //    SC_HANDLE m_managerHandle;
-   };
+ //
+ //   /**
+ // * Service client manager client.
+ // *
+ // * Gives access to install, remove, start, stop services and queries status
+ // * of service.
+ // */
+ //   class CLASS_DECL_ACME ServiceControlManagerClient :
+ //   virtual public ::subsystem::composite<ServiceControlManagerClientInterface>
+ //   {
+ //   public:
+ //      /**
+ //       * Creates new ServiceControlManagerClient.
+ //       * @param desiredAccess desired acess (see OpenServiceControlManageranager WinAPI function description
+ //       * for details).
+ //       * @throws SystemException on fail.
+ //       */
+ //      //ServiceControlManagerClient(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS);
+ //      ServiceControlManagerClient(unsigned int desiredAccess = 0);
+ //      //ServiceControlManagerClient();
+ //      /**
+ //       * Destructor, closes ServiceControlManagerClient.
+ //       */
+ //      ~ServiceControlManagerClient() override;
+ //
+ //
+ //      //void initialize_service_control_manager_client(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS) override;
+ //      void initialize_service_control_manager_client(unsigned int desiredAccess = 0) override;
+ //      /**
+ //       * Registers new service in system.
+ //       * @param name name of service.
+ //       * @param nameToDisplay name to display in services ::list_base.
+ //       * @param binPath full path to service binary.
+ //       * @param dependencies [optional] service dependencies.
+ //       * @throws SystemException on fail.
+ //       */
+ //      void installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
+ //                          const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies = "") override;
+ //      /**
+ //       * Unregisters existing service from services.
+ //       * @param name name of service to unregister.
+ //       * @throws SystemException on fail.
+ //       */
+ //      void removeService(const ::scoped_string & scopedstrName) override;
+ //      /**
+ //       * Starts existing service.
+ //       * @param name name of service to start.
+ //       * @param waitCompletion if true, wait until the status becomes
+ //       *   SERVICE_RUNNING.
+ //       * @throws SystemException, ServiceControlManagerClientException on fail.
+ //       */
+ //      void startService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
+ //    ;
+ //      /**
+ //       * Stops running service execution.
+ //       * @param name name of service to stop.
+ //       * @param waitCompletion if true, wait until the status becomes
+ //       *   SERVICE_STOPPED.
+ //       * @throws SystemException, ServiceControlManagerClientException on fail.
+ //       */
+ //      void stopService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
+ //    ;
+ //
+ //   // private:
+ //   //    /**
+ //   //     * Gets current state of existing service specified by handle.
+ //   //     * @param hService handle of the service.
+ //   //     * @return current service state.
+ //   //     * @throws SystemException on failure.
+ //   //     */
+ //   //    DWORD getServiceState(SC_HANDLE hService) const;
+ //   //
+ //   // private:
+ //   //    /** Service client manager handle. */
+ //   //    SC_HANDLE m_managerHandle;
+ //   };
 
 
 } // namespace subsystem

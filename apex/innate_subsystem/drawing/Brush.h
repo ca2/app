@@ -34,15 +34,32 @@ namespace innate_subsystem
    {
    public:
       //Brush();
-      virtual ~Brush() = 0;
+      virtual ~BrushInterface() = 0;
 
    //protected:
-      virtual void release() = 0;
+      virtual void on_release() = 0;
 
    // protected:
    //    HBRUSH m_brush;
    //
    //    friend class Graphics;
+   };
+
+
+   class CLASS_DECL_ACME Brush :
+      virtual public ::subsystem::composite<BrushInterface>
+   {
+   public:
+      Brush();
+      ~Brush() override;
+
+      //protected:
+      void on_release() override;
+
+      // protected:
+      //    HBRUSH m_brush;
+      //
+      //    friend class Graphics;
    };
 
 } // namespace innate_subsystem

@@ -92,7 +92,7 @@ namespace windows
                FrameRect(dc, &itemRect, shadow);
                DeleteObject(shadow);
             } else {
-               UINT uState = DFCS_BUTTONPUSH |
+               unsigned int uState = DFCS_BUTTONPUSH |
                              ((m_mouseOver) ? DFCS_HOT : 0) |
                              ((isPressed) ? DFCS_PUSHED : 0);
 
@@ -195,7 +195,7 @@ namespace windows
       void ImagedButton::calcRect(RECT* buttonRect, bool isButtonPressed,
                                   DWORD textWidth, DWORD textHeight,
                                   DWORD imageWidth, DWORD imageHeight,
-                                  RECT *textRect, RECT* imageRect)
+                                  ::int_rectangle &textRect, RECT* imageRect)
       {
          CopyRect(imageRect, buttonRect);
          CopyRect(textRect, buttonRect);
@@ -221,20 +221,20 @@ namespace windows
 
       void ImagedButton::drawIcon(HDC* dc, RECT* imageRect, bool isPressed, bool isDisabled)
       {
-         DrawState(*dc, NULL, NULL, (LPARAM)*m_icon, 0,
+         DrawState(*dc, NULL, NULL, (::lparam)*m_icon, 0,
                    imageRect->left, imageRect->top,
                    (imageRect->right - imageRect->left),
                    (imageRect->bottom - imageRect->top),
                    (isDisabled ? DSS_DISABLED : DSS_NORMAL) | DST_ICON);
       } // End of drawIcon
 
-      LRESULT CALLBACK ImagedButton::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+      LRESULT CALLBACK ImagedButton::wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam)
       {
          ImagedButton *_this = (ImagedButton *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
          switch (message) {
             case WM_LBUTTONDBLCLK:
-               PostMessage(hWnd, WM_LBUTTONDOWN, wParam, lParam);
+               PostMessage(hWnd, WM_LBUTTONDOWN, ::wparam, ::lparam);
                break;
             case WM_MOUSEMOVE:
                if (!_this->m_mouseOver) {
@@ -258,7 +258,7 @@ namespace windows
                break;
          } // switch
          // Any messages we don't process must be passed onto the original window function
-         return CallWindowProc((WNDPROC)_this->m_defWindowProc, hWnd, message, wParam, lParam);
+         return CallWindowProc((WNDPROC)_this->m_defWindowProc, hWnd, message, ::wparam, ::lparam);
       }
    } // namespace innate_subsystem
 } //namespace windows

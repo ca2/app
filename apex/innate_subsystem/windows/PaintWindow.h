@@ -42,7 +42,7 @@ private:
 protected:
   virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
 
-  bool wndProc(UINT message, WPARAM wParam, LPARAM lParam);
+  bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 
   bool m_bIsDraw;
   PAINTSTRUCT m_paintStruct;

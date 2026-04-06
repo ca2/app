@@ -767,12 +767,12 @@ namespace universal_windows
 
    }
 
-   ::winrt::Windows::Foundation::Point directx_framework_impact::get_cursor_position()
+   ::winrt::Windows::Foundation::::int_point directx_framework_impact::get_cursor_position()
    {
 
       single_lock synchronouslock(m_pmutex, true);
 
-      ::winrt::Windows::Foundation::Point p = m_pointLastCursor;
+      ::winrt::Windows::Foundation::::int_point p = m_pointLastCursor;
 
       /*      if(m_window == nullptr)
                return p;

@@ -97,12 +97,12 @@ namespace innate_subsystem
    //      other value - otherwise
    //
 
-   LRESULT  FilteredTextBox::onKeyDown(WPARAM code, LPARAM params)
+   LRESULT  FilteredTextBox::onKeyDown(::wparam code, ::lparam params)
    {
       return makeCheck();
    }
 
-   LRESULT FilteredTextBox::windowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+   LRESULT FilteredTextBox::windowProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
    {
       FilteredTextBox *_this = (FilteredTextBox *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
       if (_this == NULL) {
@@ -110,10 +110,10 @@ namespace innate_subsystem
       }
       switch (uMsg) {
          case WM_CHAR:
-            LRESULT result = CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, wParam, lParam);
-            return _this->onKeyDown(wParam, lParam);
+            LRESULT result = CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, ::wparam, ::lparam);
+            return _this->onKeyDown(::wparam, ::lparam);
       }
-      return CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, wParam, lParam);
+      return CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, ::wparam, ::lparam);
    }
 } // namespace innate_subsystem
 

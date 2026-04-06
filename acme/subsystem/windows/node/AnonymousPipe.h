@@ -51,7 +51,18 @@ namespace windows
          AnonymousPipe();
          ~AnonymousPipe() override;
 
+         bool is_subsystem_implementation(void) const override
+         {
 
+            return ::subsystem::implementation<::subsystem::AnonymousPipeInterface>::is_subsystem_implementation();
+
+         }
+         bool is_subsystem_composite(void) const override
+         {
+
+            return ::subsystem::implementation<::subsystem::AnonymousPipeInterface>::is_subsystem_composite();
+
+         }
          void initialize_anonymous_pipe(::subsystem::FileInterface* pfileWrite, ::subsystem::FileInterface* pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter* log) override;
 
          /**
@@ -101,7 +112,7 @@ namespace windows
          void setTimeOut(unsigned int timeOut);
 
       private:
-         void checkPipeHandle(HANDLE handle);
+         void checkPipeFile(::subsystem::FileInterface * pfile);
 
          ::pointer< ::windows::subsystem::File > m_pfileWrite;
          ::pointer< ::windows::subsystem::File > m_pfileRead;

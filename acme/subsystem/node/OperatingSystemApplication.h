@@ -39,8 +39,8 @@ namespace subsystem
     * Base Windows Application class.
     * Have hidden main window and main scopedstrMessage loop.
     */
-   class CLASS_DECL_ACME OperatingSystemApplicationInterface :
-      virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME OperatingSystemApplication :
+      virtual public ::subsystem::particle
    {
    public:
 
@@ -51,12 +51,14 @@ namespace subsystem
        */
       //OperatingSystemApplicationInterface(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName);
 
+      OperatingSystemApplication();
+
       /**
        * Destroys WindowsApplication instance.
        * @remark it does not shutdown application if it's executing it
        * separate thread.
        */
-      virtual ~OperatingSystemApplicationInterface() = 0;
+      ~OperatingSystemApplication()  override;
 
 
       //virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
@@ -122,95 +124,95 @@ namespace subsystem
       //static ::comparable_list_base<HWND> m_modelessDialogList;
    };
 
-    /**
-    * Base Windows Application class.
-    * Have hidden main window and main scopedstrMessage loop.
-    */
-   class CLASS_DECL_ACME OperatingSystemApplication :
-      virtual public ::subsystem::composite < OperatingSystemApplicationInterface >
-   {
-   public:
-
-      //int m_iExitCode = 0;
-      /**
-       * Creates WindowsApplication instance.
-       * @param appInstance parameter that passed to WinMain.
-       */
-
-      //OperatingSystemApplicationInterface(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName);
-
-      OperatingSystemApplication();
-      /**
-       * Destroys WindowsApplication instance.
-       * @remark it does not shutdown application if it's executing it
-       * separate thread.
-       */
-      ~OperatingSystemApplication() override;
-
-
-      //virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
-
-      /**
-       * Runs windows application.
-       * @remark really it creates main window and starts windows scopedstrMessage loop.
-       * @return application exit code.
-       */
-      void run() override;
-
-      /**
-       * Posts close and destroy scopedstrMessage to main window.
-       */
-      void shutdown() override;
-
-      /**
-       * Posts scopedstrMessage to main window.
-       */
-      void postMessage(unsigned int uMessage, ::wparam wParam = 0, ::lparam lParam = 0) override;
-
-      /**
-       * Adds modeless dialog to application modeless dialog ::list_base to
-       * enable switching between controls by pressing tab button.
-       * @param dialogWindow HWND of modeless dialog.
-       */
-      void addModelessDialog(const ::operating_system::window & operatingsystemwindow) override;
-
-      /**
-       * Removes dialog from application modeless dialog ::list_base.
-       * @param dialogWindow HWND of modeless dialog.
-       */
-      void removeModelessDialog(const ::operating_system::window & operatingsystemwindow) override;
-
-      //protected:
-      // Creates a window to receive messages.
-      //virtual void createWindow(const ::scoped_string & scopedstrClassName);
-
-      // Fills the wndClass argument and registers new class name in the Windows.
-      //virtual void registerWindowClass(WNDCLASS *wndClass);
-
-      // Runs main messages process cycle. The run() function returns
-      // value returned by this function.
-      int processMessages() override;
-
-      /**
-       * Windows prodecure for main application window.
-       */
-      //static LRESULT CALLBACK wndProc(HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam);
-
-      //HINSTANCE m_appInstance;
-      //HWND m_mainWindow;
-      //::wstring m_wstrWindowClassName;
-      //protected:
-      /**
-       * Helper method to process modeless dialog scopedstrMessage for modal dialog.
-       * @param msg scopedstrMessage to process.
-       * @return true if don't need to translate and dispatch scopedstrMessage in main scopedstrMessage loop.
-       */
-      //static bool processDialogMessage(MSG *msg);
-      //private:
-      //static LocalMutex m_MDLMutex; // Modeless dialog ::list_base mutex.
-      //static ::comparable_list_base<HWND> m_modelessDialogList;
-   };
-
+   //  /**
+   //  * Base Windows Application class.
+   //  * Have hidden main window and main scopedstrMessage loop.
+   //  */
+   // class CLASS_DECL_ACME OperatingSystemApplication :
+   //    virtual public ::subsystem::composite < OperatingSystemApplicationInterface >
+   // {
+   // public:
+   //
+   //    //int m_iExitCode = 0;
+   //    /**
+   //     * Creates WindowsApplication instance.
+   //     * @param appInstance parameter that passed to WinMain.
+   //     */
+   //
+   //    //OperatingSystemApplicationInterface(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName);
+   //
+   //    OperatingSystemApplication();
+   //    /**
+   //     * Destroys WindowsApplication instance.
+   //     * @remark it does not shutdown application if it's executing it
+   //     * separate thread.
+   //     */
+   //    ~OperatingSystemApplication() override;
+   //
+   //
+   //    //virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
+   //
+   //    /**
+   //     * Runs windows application.
+   //     * @remark really it creates main window and starts windows scopedstrMessage loop.
+   //     * @return application exit code.
+   //     */
+   //    void run() override;
+   //
+   //    /**
+   //     * Posts close and destroy scopedstrMessage to main window.
+   //     */
+   //    void shutdown() override;
+   //
+   //    /**
+   //     * Posts scopedstrMessage to main window.
+   //     */
+   //    void postMessage(unsigned int uMessage, ::wparam wParam = 0, ::lparam lParam = 0) override;
+   //
+   //    /**
+   //     * Adds modeless dialog to application modeless dialog ::list_base to
+   //     * enable switching between controls by pressing tab button.
+   //     * @param dialogWindow HWND of modeless dialog.
+   //     */
+   //    void addModelessDialog(const ::operating_system::window & operatingsystemwindow) override;
+   //
+   //    /**
+   //     * Removes dialog from application modeless dialog ::list_base.
+   //     * @param dialogWindow HWND of modeless dialog.
+   //     */
+   //    void removeModelessDialog(const ::operating_system::window & operatingsystemwindow) override;
+   //
+   //    //protected:
+   //    // Creates a window to receive messages.
+   //    //virtual void createWindow(const ::scoped_string & scopedstrClassName);
+   //
+   //    // Fills the wndClass argument and registers new class name in the Windows.
+   //    //virtual void registerWindowClass(WNDCLASS *wndClass);
+   //
+   //    // Runs main messages process cycle. The run() function returns
+   //    // value returned by this function.
+   //    int processMessages() override;
+   //
+   //    /**
+   //     * Windows prodecure for main application window.
+   //     */
+   //    //static LRESULT CALLBACK wndProc(HWND hWnd, UINT msg, WPARAM wparam, LPARAM lparam);
+   //
+   //    //HINSTANCE m_appInstance;
+   //    //HWND m_mainWindow;
+   //    //::wstring m_wstrWindowClassName;
+   //    //protected:
+   //    /**
+   //     * Helper method to process modeless dialog scopedstrMessage for modal dialog.
+   //     * @param msg scopedstrMessage to process.
+   //     * @return true if don't need to translate and dispatch scopedstrMessage in main scopedstrMessage loop.
+   //     */
+   //    //static bool processDialogMessage(MSG *msg);
+   //    //private:
+   //    //static LocalMutex m_MDLMutex; // Modeless dialog ::list_base mutex.
+   //    //static ::comparable_list_base<HWND> m_modelessDialogList;
+   // };
+   //
 
 
    //// __WINDOWSAPPLICATION_H__

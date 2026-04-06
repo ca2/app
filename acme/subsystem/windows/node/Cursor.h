@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "remoting/remoting_common/region/Point.h"
+//#include "remoting/remoting_common/region/::int_point.h"
 #include "acme/subsystem/_common_header.h"
 
 namespace subsystem
@@ -37,7 +37,7 @@ namespace subsystem
       //WinCursor();
       virtual ~CursorInterface() = 0;
 
-      virtual Point getCursorPos() const = 0;
+      virtual ::int_point getCursorPos() const = 0;
    };
 
    class CLASS_DECL_ACME Cursor :
@@ -47,7 +47,7 @@ namespace subsystem
       Cursor();
       ~Cursor() override;
 
-      Point getCursorPos() const override;
+      ::int_point getCursorPos() const override;
    };
 
    //// __WINCURSOR_H__

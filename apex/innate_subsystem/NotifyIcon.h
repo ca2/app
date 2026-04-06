@@ -22,8 +22,7 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _NOTIFY_ICON_H_
-#define _NOTIFY_ICON_H_
+#pragma once
 
 #include "acme/subsystem/_common_header.h"
 
@@ -60,8 +59,9 @@ namespace innate_subsystem
   //    NOTIFYICONDATA m_nid;
     //  Icon *m_icon;
       //bool m_visible;
-   }
-   ;
+   };
+
+
 }// namespace innate_subsystem
 
 //#endif

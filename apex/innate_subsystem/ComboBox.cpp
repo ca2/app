@@ -64,7 +64,7 @@ int ComboBox::getItemsCount() const
 
 void ComboBox::setItemData(int index, void *tag)
 {
-  ComboBox_SetItemData(m_hwnd, index, (LPARAM)tag);
+  ComboBox_SetItemData(m_hwnd, index, (::lparam)tag);
 }
 
 void *ComboBox::getItemData(int index) const

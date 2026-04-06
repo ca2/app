@@ -25,51 +25,101 @@
 #pragma once
 //#define __TEXTBOX_H_
 
+#include "acme/subsystem/particle.h"
 #include "apex/innate_subsystem/Control.h"
 #include "apex/innate_subsystem/Tooltip.h"
 
 
 namespace innate_subsystem
 {
-    class TextBox : public Control
-    {
-    public:
-        ~TextBox();
-    public:
 
-        //
-        // Text limit
-        //
 
-        virtual character_count getTextLengthLimit();
-        virtual void setTextLengthLimit(character_count limit);
+   class CLASS_DECL_APEX TextBox :
+      virtual public Control
+   {
+   public:
+      virtual ~TextBoxInterface() = 0;
 
-        //
-        // Methods for multiline textboxes
-        //
 
-        virtual int getCurrentLineIndex();
-        virtual int getLineCount();
+   ///public:
 
-        //
-        // Get / set caret position
-        //
+      //
+      // Text limit
+      //
 
-        virtual int getCaretPos();
-        virtual void setCaretPos(int h, int v);
+      virtual character_count getTextLengthLimit() = 0;
+      virtual void setTextLengthLimit(character_count limit) = 0;
 
-        //
-        // Text selection
-        //
+      //
+      // Methods for multiline textboxes
+      //
 
-        virtual void selectText(size_t startPos, size_t endPos);
+      virtual int getCurrentLineIndex() = 0;
+      virtual int getLineCount() = 0;
 
-        //
-        // Tooltip methods
-        //
+      //
+      // Get / set caret position
+      //
 
-        virtual void showBalloonTip(Tooltip *tip);
-    };
+      virtual int getCaretPos() = 0;
+      virtual void setCaretPos(int h, int v) = 0;
+
+      //
+      // Text selection
+      //
+
+      virtual void selectText(size_t startPos, size_t endPos) = 0;
+
+      //
+      // Tooltip methods
+      //
+
+      virtual void showBalloonTip(Tooltip *tip) = 0;
+   };
+
+
+   // class CLASS_DECL_APEX TextBox :
+   //    virtual public ::subsystem::composite<TextBoxInterface>,
+   //    virtual public Control
+   //  {
+   //  public:
+   //    TextBox();
+   //      ~TextBox() override;
+   //  //public:
+   //
+   //      //
+   //      // Text limit
+   //      //
+   //
+   //      virtual character_count getTextLengthLimit() override;
+   //      virtual void setTextLengthLimit(character_count limit) override;
+   //
+   //      //
+   //      // Methods for multiline textboxes
+   //      //
+   //
+   //      virtual int getCurrentLineIndex() override;
+   //      virtual int getLineCount() override;
+   //
+   //      //
+   //      // Get / set caret position
+   //      //
+   //
+   //      virtual int getCaretPos();
+   //      virtual void setCaretPos(int h, int v);
+   //
+   //      //
+   //      // Text selection
+   //      //
+   //
+   //      virtual void selectText(size_t startPos, size_t endPos);
+   //
+   //      //
+   //      // Tooltip methods
+   //      //
+   //
+   //      virtual void showBalloonTip(Tooltip *tip);
+   //  };
 
 
 } // namespace innate_subsystem

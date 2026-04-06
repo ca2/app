@@ -357,7 +357,7 @@ public:
 //}
 //
 //
-//text_stream & text_stream < FILE >::operator <<(const ::int_size * psize)
+//text_stream & text_stream < FILE >::operator <<(const ::int_size & psize)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);

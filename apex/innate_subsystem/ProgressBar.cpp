@@ -38,12 +38,12 @@ namespace innate_subsystem
 
    void ProgressBar::setRange(WORD min, WORD max)
    {
-      SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKELPARAM(min, max));
+      SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKE::lparam(min, max));
    }
 
    void ProgressBar::setPos(WORD pos)
    {
-      SendMessage(m_hwnd, PBM_SETPOS, (WPARAM)pos, 0);
+      SendMessage(m_hwnd, PBM_SETPOS, (::wparam)pos, 0);
    }
 } // namespace innate_subsystem
 

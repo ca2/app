@@ -2,42 +2,41 @@
 // Created by camilo on 2026-04-06 14:22 <3ThomasBorregaardSørensen!!
 //
 #pragma once
+#include <commctrl.h>
+
 #include "acme/subsystem/particle.h"
+#include "apex/innate_subsystem/ImageList.h"
+#include "acme/_operating_system.h"
+
+namespace windows
+{
 
 
 namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX ImageListInterface :
-   virtual public ::subsystem::particle_interface
-   {
-   public:
-
-
-      virtual ~ImageListInterface() = 0;
-
-      virtual void initialize_image_list() = 0;
-
-
-
-   };
-
-
-
    class CLASS_DECL_APEX ImageList :
-   virtual public ::subsystem::composite<ImageListInterface>
+   virtual public ::subsystem::composite<::innate_subsystem::ImageListInterface>
    {
    public:
+
+         HIMAGELIST  m_himagelist;
+
 
       ImageList();
-
-       ~ImageList()override;
+      ~ImageList() override;
 
       void initialize_image_list() override;
 
+      void create(int cx, int cy) override;
+
 
 
    };
 
+
 } // namespace innate_subsystem
+
+
+} // namespace windows

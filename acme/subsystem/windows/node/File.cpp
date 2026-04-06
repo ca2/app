@@ -35,10 +35,27 @@ namespace windows
       File::File()
       {
          m_handle=nullptr;
+         m_bOwned = false;
       }
 
       File::~File()
       {
+
+         if (m_bOwned && m_handle != nullptr && m_handle != INVALID_HANDLE_VALUE)
+         {
+
+            auto bOk = ::CloseHandle(m_handle);
+
+            if (!bOk)
+            {
+
+               error("windows::subsystem::File Close Handle failed");
+
+            }
+
+
+
+         }
       }
 
 

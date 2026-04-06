@@ -36,7 +36,7 @@ namespace subsystem
    {
    }
 
-   Point Cursor::getCursorPos() const
+   ::int_point Cursor::getCursorPos() const
    {
       return m_pparticleThis->getCursorPos();
       // POINT curPoint;
@@ -44,7 +44,7 @@ namespace subsystem
       // // Correcting point to frame buffer coordinates
       // curPoint.x -= GetSystemMetrics(SM_XVIRTUALSCREEN);
       // curPoint.y -= GetSystemMetrics(SM_YVIRTUALSCREEN);
-      // return Point(curPoint.x, curPoint.y);
+      // return ::int_point(curPoint.x, curPoint.y);
    }
 } // namespace subsystem
 

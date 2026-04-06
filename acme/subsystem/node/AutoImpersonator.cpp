@@ -29,7 +29,7 @@
 namespace subsystem
 {
 
-   AutoImpersonator::AutoImpersonator(ImpersonatorInterface *imp, LogWriter *log)
+   AutoImpersonator::AutoImpersonator(Impersonator *imp, LogWriter *log)
    : m_pimpersonator(imp),
      m_log(log)
    {

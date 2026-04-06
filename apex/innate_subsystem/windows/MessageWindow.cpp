@@ -85,13 +85,13 @@ namespace windows
          }
       }
 
-      LRESULT CALLBACK MessageWindow::staticWndProc(HWND hwnd, UINT message,
-                                             WPARAM wParam, LPARAM lParam)
+      LRESULT CALLBACK MessageWindow::staticWndProc(HWND hwnd, unsigned int message,
+                                             ::wparam wparam, ::lparam lparam)
       {
          MessageWindow *_this;
          if (message == WM_CREATE) {
-            _this = (MessageWindow *)((CREATESTRUCT *)lParam)->lpCreateParams;
-            wParam = (WPARAM)hwnd; // Pass hwnd throw wParam
+            _this = (MessageWindow *)((CREATESTRUCT *)::lparam)->lpCreateParams;
+            ::wparam = (::wparam)hwnd; // Pass hwnd throw ::wparam
          } else {
             _this = (MessageWindow *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
          }
@@ -99,17 +99,17 @@ namespace windows
             bool result;
             if (_this->m_messageHandler != 0) {
                result = _this->m_messageHandler->processMessage(message,
-                                                                wParam,
-                                                                lParam);
+                                                                ::wparam,
+                                                                ::lparam);
             } else {
-               result = _this->wndProc(message, wParam, lParam);
+               result = _this->wndProc(message, ::wparam, ::lparam);
             }
             if (result) {
                return 0;
             }
          }
 
-         return DefWindowProc(hwnd, message, wParam, lParam);
+         return DefWindowProc(hwnd, message, ::wparam, ::lparam);
       }
 
       ATOM MessageWindow::regClass(HINSTANCE hinst, TCHAR *windowClassName)

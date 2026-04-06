@@ -76,19 +76,19 @@ public:
   // the list of button images available for a toolbar.
   // Returns the index of the first new image if successful,
   // or -1 otherwise.
-  LRESULT addBitmap(int nButtons, UINT bitmapID);
+  LRESULT addBitmap(int nButtons, unsigned int bitmapID);
 
   // addSystemBitmap() adds the system-defined button bitmaps to the list
   // of the toolbar button specifying by stdBitmapID. Returns the index of 
   // the first new image if successful, or -1 otherwise.
-  LRESULT addSystemBitmap(UINT stdBitmapID);
+  LRESULT addSystemBitmap(unsigned int stdBitmapID);
 
   // addNButton() adds nButtons buttons to a toolbar.
   bool addNButton(int nButtons, LPTBBUTTON tbb);
 
   // addButton() adds one button.
   bool addButton(int iBitmap, int idCommand, BYTE state=TBSTATE_ENABLED, 
-                 BYTE style=TBSTYLE_BUTTON,  UINT dwData=0, int iString=0);
+                 BYTE style=TBSTYLE_BUTTON,  unsigned int dwData=0, int iString=0);
 
   // checkButton() checks or unchecks a given button in a toolbar control.
   bool checkButton(int idButton, bool check);

@@ -5,6 +5,9 @@
 #include "subsystem.h"
 
 
+namespace windows
+{
+
 namespace innate_subsystem
 {
 
@@ -92,4 +95,23 @@ namespace innate_subsystem
    //
    // }
 
+
+   int subsystem::message_box(
+                   HWND hwnd,
+                   const ::scoped_string & scopedstrMessage,
+                   const ::scoped_string & scopedstrCaption,
+                   unsigned int uType)
+   {
+
+      auto iResult = ::MessageBox(hwnd, ::wstring(scopedstrMessage), ::wstring(scopedstrCaption), uType);
+
+      return iResult;
+
+   }
+
+
+
 }//namespace subsystem
+
+
+} // namespace windows

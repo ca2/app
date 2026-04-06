@@ -39,7 +39,7 @@
 //}
 //
 
-// https://forums.codeguru.com/showthread.php?419763-Check-a-Point-lies-in-a-Line-segment
+// https://forums.codeguru.com/showthread.php?419763-Check-a-::int_point-lies-in-a-Line-segment
 
 
 template < prototype_number NUMBER1, prototype_number NUMBER2, prototype_number NUMBER >

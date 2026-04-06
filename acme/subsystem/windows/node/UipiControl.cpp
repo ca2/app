@@ -43,7 +43,7 @@ namespace windows
    typedef BOOL (WINAPI *SetFilter)(UINT scopedstrMessage,
                                     DWORD action);
 
-   UipiControl::UipiControl(LogWriter *log)
+   UipiControl::UipiControl(::subsystem::LogWriter *log)
    : m_plogwriter(log)
    {
    }
@@ -56,7 +56,7 @@ namespace windows
    {
       m_plogwriter->information("Try allow to receive the %u windows uMessage");
       if (::system()->node()->_windows_isVistaOrLater()) {
-         DynamicLibrary user32lib("user32.dll");
+         ::subsystem::DynamicLibrary user32lib("user32.dll");
          m_plogwriter->information("user32.dll successfully loaded.");
          SetFilterEx setFilterEx;
          // FIXME: Test this on Windows7.
@@ -67,7 +67,7 @@ namespace windows
             SetFilter setFilter;
             setFilter = (SetFilter)user32lib.getProcAddress("ChangeWindowMessageFilter");
             if (setFilter == 0) {
-               throw ::remoting::Exception("Can't load the ChangeWindowMessageFilterEx() or "
+               throw ::subsystem::Exception("Can't load the ChangeWindowMessageFilterEx() or "
                                "ChangeWindowMessageFilter() functions.");
             }
             m_plogwriter->information("The ChangeWindowMessageFilter() function "
@@ -77,7 +77,7 @@ namespace windows
                ::string errMess;
                errMess.formatf("Can't allow to receive the {} windows uMessage by "
                               "the ChangeWindowMessageFilter() function.");
-               throw SystemException(errMess, errCode);
+               throw ::subsystem::SystemException(errMess, errCode);
             }
             m_plogwriter->information("The ChangeWindowMessageFilter() function "
                       "successfully executed.");

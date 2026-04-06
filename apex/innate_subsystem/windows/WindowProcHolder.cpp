@@ -35,20 +35,20 @@ namespace windows
       {
       }
 
-      LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+      LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
       {
          WindowProcHolder *wph = (WindowProcHolder *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
          if (wph == 0) {
-            return DefWindowProc(hWnd, uMsg, wParam, lParam);
+            return DefWindowProc(hWnd, uMsg, ::wparam, ::lparam);
          }
 
          bool useDefWndProc = false;
 
-         LRESULT r = wph->windowProc(hWnd, uMsg, wParam, lParam, &useDefWndProc);
+         LRESULT r = wph->windowProc(hWnd, uMsg, ::wparam, ::lparam, &useDefWndProc);
 
          if (useDefWndProc) {
-            return DefWindowProc(hWnd, uMsg, wParam, lParam);
+            return DefWindowProc(hWnd, uMsg, ::wparam, ::lparam);
          }
 
          return r;

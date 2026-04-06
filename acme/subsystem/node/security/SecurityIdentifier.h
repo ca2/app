@@ -68,8 +68,8 @@ enum Authority {
  * variable number of subauthority or relative identifier (RID) values that uniquely
  * identify the trustee relative to the authority that issued the SID.
  */
-class CLASS_DECL_ACME SecurityIdentifierInterface :
-   virtual public ::subsystem::particle_interface
+class CLASS_DECL_ACME SecurityIdentifier :
+   virtual public ::subsystem::particle
 {
 public:
   /**
@@ -86,7 +86,7 @@ public:
   /**
    * Destructor.
    */
-  virtual ~SecurityIdentifierInterface() = 0;
+  virtual ~SecurityIdentifier() = 0;
 
    virtual void initialize_security_identifier(const ::scoped_string & scopedstr) = 0;
 
@@ -129,77 +129,77 @@ public:
 //private:
   //SID *m_sid;
 };
-
-//#endif
-
-   /**
- * A SID consists of the following components:
- * The revision level of the SID structure;
- * A 48-bit identifier authority value that identifies the authority that issued the SID.
- * variable number of subauthority or relative identifier (RID) values that uniquely
- * identify the trustee relative to the authority that issued the SID.
- */
-class CLASS_DECL_ACME SecurityIdentifier :
-   virtual public ::subsystem::composite<SecurityIdentifierInterface>
-{
-public:
-  /**
-   * Creates security identifier from WinAPI SID struct.
-   * @throws SystemException if copy failed.
-   */
-  //SecurityIdentifier(SID *sid) throw(SystemException);
-  /**
-   * Creates security identifier by a string.
-   * @throws SystemException if copy failed.
-   */
-  SecurityIdentifier(const scoped_string & scopedstr);
-
-  /**
-   * Destructor.
-   */
-  ~SecurityIdentifier() override;
-
-   void initialize_security_identifier(const ::scoped_string & scopedstr) override;
-
-  /**
-   * Validates a security identifier (SID) by verifying that the revision number is within a known range,
-   * and that the number of subauthorities is less than the maximum.
-   * @return true if the SID structure is valid, false otherwise.
-   */
-  bool isValid() override;
-
-  /**
-   * Converts a security identifier (SID) to a string.
-   * @param sidString string storage where result will be stored.
-   * @throws SystemException if error occurs.
-   */
-  void toString(::string & str) override;
-
-
-  /**
-   * Creates SID from sid string.
-   * @return created SID.
-   * @throws SystemException on fail.
-   */
-  //SecurityIdentifier *createSidFromString(const char *sidString) override;
 //
-  /**
-   * Returns pointer to WinAPI SID structure.
-   */
-  //SID *getSid() const;
-
-//private:
-  /**
-   * Don't allow to create security identifiers by using default constructor.
-   */
-  //SecurityIdentifier();
-
-  // Returned pointer to a sid must be freed by the LocalFree() function calls
-  //static void getSidByString(const TCHAR *sidString, PSID *sid);
-
-//private:
-  //SID *m_sid;
-};
+// //#endif
+//
+//    /**
+//  * A SID consists of the following components:
+//  * The revision level of the SID structure;
+//  * A 48-bit identifier authority value that identifies the authority that issued the SID.
+//  * variable number of subauthority or relative identifier (RID) values that uniquely
+//  * identify the trustee relative to the authority that issued the SID.
+//  */
+// class CLASS_DECL_ACME SecurityIdentifier :
+//    virtual public ::subsystem::composite<SecurityIdentifierInterface>
+// {
+// public:
+//   /**
+//    * Creates security identifier from WinAPI SID struct.
+//    * @throws SystemException if copy failed.
+//    */
+//   //SecurityIdentifier(SID *sid) throw(SystemException);
+//   /**
+//    * Creates security identifier by a string.
+//    * @throws SystemException if copy failed.
+//    */
+//   SecurityIdentifier(const scoped_string & scopedstr);
+//
+//   /**
+//    * Destructor.
+//    */
+//   ~SecurityIdentifier() override;
+//
+//    void initialize_security_identifier(const ::scoped_string & scopedstr) override;
+//
+//   /**
+//    * Validates a security identifier (SID) by verifying that the revision number is within a known range,
+//    * and that the number of subauthorities is less than the maximum.
+//    * @return true if the SID structure is valid, false otherwise.
+//    */
+//   bool isValid() override;
+//
+//   /**
+//    * Converts a security identifier (SID) to a string.
+//    * @param sidString string storage where result will be stored.
+//    * @throws SystemException if error occurs.
+//    */
+//   void toString(::string & str) override;
+//
+//
+//   /**
+//    * Creates SID from sid string.
+//    * @return created SID.
+//    * @throws SystemException on fail.
+//    */
+//   //SecurityIdentifier *createSidFromString(const char *sidString) override;
+// //
+//   /**
+//    * Returns pointer to WinAPI SID structure.
+//    */
+//   //SID *getSid() const;
+//
+// //private:
+//   /**
+//    * Don't allow to create security identifiers by using default constructor.
+//    */
+//   //SecurityIdentifier();
+//
+//   // Returned pointer to a sid must be freed by the LocalFree() function calls
+//   //static void getSidByString(const TCHAR *sidString, PSID *sid);
+//
+// //private:
+//   //SID *m_sid;
+//};
 
 //#endif
 

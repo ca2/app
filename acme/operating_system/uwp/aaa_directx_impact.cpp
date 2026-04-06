@@ -655,7 +655,7 @@ namespace universal_windows
    //Rect impact::GetElementRect(FrameworkElement matter)
    //{
    //   GeneralTransform transform = matter.TransformToVisual(null);
-   //   Point point = transform.TransformPoint(aaa_primitive_new Point());
+   //   ::int_point point = transform.TransformPoint(aaa_primitive_new ::int_point());
    //   return aaa_primitive_new Rect(point, aaa_primitive_new Size(matter.ActualWidth, matter.ActualHeight));
    //}
 

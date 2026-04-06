@@ -91,7 +91,7 @@ namespace windows
          //
 
          item.index = lvI.iItem;
-         item.tag = lvI.lParam;
+         item.tag = lvI.::lparam;
 
          return item;
       }
@@ -101,7 +101,7 @@ namespace windows
          addItem(index, caption, NULL);
       }
 
-      void ListView::addItem(int index, const TCHAR *caption, LPARAM tag)
+      void ListView::addItem(int index, const TCHAR *caption, ::lparam tag)
       {
          //
          // Prepare LVITEM structure
@@ -109,7 +109,7 @@ namespace windows
 
          LVITEM lvI;
          lvI.mask = LVIF_TEXT | LVIF_PARAM;
-         lvI.lParam = tag;
+         lvI.::lparam = tag;
          lvI.iItem = index;
          lvI.iSubItem = 0;
          lvI.pszText = (TCHAR*)caption;
@@ -121,7 +121,7 @@ namespace windows
          ListView_InsertItem(m_hwnd, &lvI);
       }
 
-      void ListView::addItem(int index, const TCHAR *caption, LPARAM tag, int imageIndex)
+      void ListView::addItem(int index, const TCHAR *caption, ::lparam tag, int imageIndex)
       {
          //
          // Prepare LVITEM structure
@@ -129,7 +129,7 @@ namespace windows
 
          LVITEM lvI;
          lvI.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE;
-         lvI.lParam = tag;
+         lvI.::lparam = tag;
          lvI.iItem = index;
          lvI.iSubItem = 0;
          lvI.iImage = imageIndex;
@@ -168,10 +168,10 @@ namespace windows
          // Send message to window
          //
 
-         SendMessage(m_hwnd, LVM_SETITEM, 0, (LPARAM)&lvI);
+         SendMessage(m_hwnd, LVM_SETITEM, 0, (::lparam)&lvI);
       }
 
-      void ListView::setItemData(int index, LPARAM tag)
+      void ListView::setItemData(int index, ::lparam tag)
       {
          //
          // Prepare LVITEM structure
@@ -179,19 +179,19 @@ namespace windows
 
          LVITEM lvI;
          lvI.mask = LVIF_PARAM;
-         lvI.lParam = tag;
+         lvI.::lparam = tag;
          lvI.iItem = index;
          lvI.iSubItem = 0;
-         lvI.lParam = tag;
+         lvI.::lparam = tag;
 
          //
          // Send message to window
          //
 
-         SendMessage(m_hwnd, LVM_SETITEM, 0, (LPARAM)&lvI);
+         SendMessage(m_hwnd, LVM_SETITEM, 0, (::lparam)&lvI);
       }
 
-      LPARAM ListView::getItemData(int index)
+      ::lparam ListView::getItemData(int index)
       {
          return getItem(index).tag;
       }
@@ -217,7 +217,7 @@ namespace windows
 
       void ListView::selectItem(int index)
       {
-         WPARAM itemIndex = (WPARAM)index;
+         ::wparam itemIndex = (::wparam)index;
          ListView_SetItemState(m_hwnd, -1, 0, LVIS_SELECTED);
          SendMessage(m_hwnd, LVM_ENSUREVISIBLE , itemIndex, FALSE);
          ListView_SetItemState(m_hwnd, itemIndex, LVIS_SELECTED, LVIS_SELECTED);
@@ -298,7 +298,7 @@ namespace windows
       void ListView::sort()
       {
          if (m_sortColumnIndex >= 0 && m_compareItem != 0) {
-            // use sortColumnIndex (lParamSort) as an index of column and
+            // use sortColumnIndex (::lparamSort) as an index of column and
             // as a flag: positive for ascending order,
             // negative for descending order
             int sortColumnIndex = m_sortColumnIndex + 1;
@@ -311,7 +311,7 @@ namespace windows
 
       void ListView::setExStyle(DWORD style)
       {
-         ::SendMessage(m_hwnd, LVM_SETEXTENDEDLISTVIEWSTYLE, 0, (LPARAM)style);
+         ::SendMessage(m_hwnd, LVM_SETEXTENDEDLISTVIEWSTYLE, 0, (::lparam)style);
       }
 
       DWORD ListView::getExStyle()

@@ -34,15 +34,18 @@ namespace subsystem
 {
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
-   class CLASS_DECL_ACME PipeInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_ACME Pipe :
+   virtual public ::subsystem::particle
    {
    public:
-      virtual unsigned int getMaxPortionSize() = 0;
 
       //protected:
       //Pipe(unsigned int maxPortionSize);
-      virtual ~PipeInterface() = 0;
+      Pipe();
+      ~Pipe() override;
+
+
+      virtual unsigned int getMaxPortionSize() = 0;
 
       virtual void initialize_pipe(unsigned int maxPortionSize) = 0;
 
@@ -73,43 +76,43 @@ namespace subsystem
 
 
 
-   // This class is not an interface but is a class that contain common
-   // methods/source codes for derived classes to work with pipe handles.
-   class CLASS_DECL_ACME Pipe :
-      virtual public ::subsystem::composite< PipeInterface>
-   {
-   public:
-      unsigned int getMaxPortionSize() override;
-
-      //protected:
-      Pipe(unsigned int maxPortionSize);
-      Pipe();
-      ~Pipe() override;
-
-      void initialize_pipe(unsigned int maxPortionSize) override;
-      // This read and write functions is common way to read and write
-      // by pipe handles asynchronously.
-
-      // The pointer uses because the functions must have access to
-      // the same variable as in a derived class to rich a thread safe
-      // handle usage.
-      //size_t readByHandle(void *buffer, size_t len, HANDLE pipeHandle);
-      //size_t writeByHandle(const void *buffer, size_t len, HANDLE pipeHandle);
-
-      // This mutex is to use for pipe handles that uses in the above functions.
-      // The mutex protect collision accesses to handle fields of derived classes.
-      //LocalMutex m_hPipeMutex;
-
-      //WindowsEvent m_readEvent;
-      //WindowsEvent m_writeEvent;
-
-      //private:
-      //void checkPipeHandle(HANDLE pipeHandle);
-
-      //unsigned long long m_totalWrote;
-      //unsigned long long m_totalRead;
-      //unsigned int m_maxPortionSize;
-   };
+   // // This class is not an interface but is a class that contain common
+   // // methods/source codes for derived classes to work with pipe handles.
+   // class CLASS_DECL_ACME Pipe :
+   //    virtual public ::subsystem::composite< PipeInterface>
+   // {
+   // public:
+   //    unsigned int getMaxPortionSize() override;
+   //
+   //    //protected:
+   //    Pipe(unsigned int maxPortionSize);
+   //    Pipe();
+   //    ~Pipe() override;
+   //
+   //    void initialize_pipe(unsigned int maxPortionSize) override;
+   //    // This read and write functions is common way to read and write
+   //    // by pipe handles asynchronously.
+   //
+   //    // The pointer uses because the functions must have access to
+   //    // the same variable as in a derived class to rich a thread safe
+   //    // handle usage.
+   //    //size_t readByHandle(void *buffer, size_t len, HANDLE pipeHandle);
+   //    //size_t writeByHandle(const void *buffer, size_t len, HANDLE pipeHandle);
+   //
+   //    // This mutex is to use for pipe handles that uses in the above functions.
+   //    // The mutex protect collision accesses to handle fields of derived classes.
+   //    //LocalMutex m_hPipeMutex;
+   //
+   //    //WindowsEvent m_readEvent;
+   //    //WindowsEvent m_writeEvent;
+   //
+   //    //private:
+   //    //void checkPipeHandle(HANDLE pipeHandle);
+   //
+   //    //unsigned long long m_totalWrote;
+   //    //unsigned long long m_totalRead;
+   //    //unsigned int m_maxPortionSize;
+   // };
 
    //// __PIPE_H__
 } // namespace subsystem

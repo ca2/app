@@ -41,50 +41,50 @@ namespace remoting
       FrameBuffer(void);
       virtual ~FrameBuffer(void);
 
-      virtual bool assignProperties(const FrameBuffer *srcFrameBuffer);
-      virtual bool clone(const FrameBuffer *srcFrameBuffer);
+      virtual bool assignProperties(const ::subsystem::PixelFormat &srcFrameBuffer);
+      virtual bool clone(const ::subsystem::PixelFormat &srcFrameBuffer);
       virtual void setColor(unsigned char red, unsigned char green, unsigned char blue);
       virtual void fillRect(const ::int_rectangle &  dstRect, unsigned int color);
 
       // Return value: true - if equal
       //               false - if PixelFormats or size differs
-      virtual bool isEqualTo(const FrameBuffer *frameBuffer);
+      virtual bool isEqualTo(const ::subsystem::PixelFormat &frameBuffer);
 
       // Copy to self by specified destination rectangle from the specified
       // coordinates of srcFrameBuffer
-      virtual bool copyFrom(const ::int_rectangle &  dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual bool copyFrom(const ::int_rectangle &  dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                     int srcX, int srcY);
       // The same as above but destination rect is m_dimension
-      virtual bool copyFrom(const FrameBuffer *srcFrameBuffer,
+      virtual bool copyFrom(const ::subsystem::PixelFormat &srcFrameBuffer,
                     int srcX, int srcY);
 
       // Copy to self by specified destination rectangle from the specified
       // coordinates of srcFrameBuffer. When source farmebuffer and source coordinates are
       // rotated with 90 degree.
-      virtual bool copyFromRotated90(const ::int_rectangle &  dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual bool copyFromRotated90(const ::int_rectangle &  dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                                      int srcX, int srcY);
 
       // Copy to self by specified destination rectangle from the specified
       // coordinates of srcFrameBuffer. When source farmebuffer and source coordinates are
       // rotated with 180 degree.
-      virtual bool copyFromRotated180(const ::int_rectangle &  dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual bool copyFromRotated180(const ::int_rectangle &  dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                                       int srcX, int srcY);
 
       // Copy to self by specified destination rectangle from the specified
       // coordinates of srcFrameBuffer. When source farmebuffer and source coordinates are
       // rotated with 270 degree.
-      virtual bool copyFromRotated270(const ::int_rectangle &  dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual bool copyFromRotated270(const ::int_rectangle &  dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                                       int srcX, int srcY);
 
       // Overlays the source image to this with by the AND mask
       virtual bool overlay(const ::int_rectangle &  dstRect,
-                   const FrameBuffer *srcFrameBuffer,
+                   const ::subsystem::PixelFormat &srcFrameBuffer,
                    int srcX, int srcY,
                    const char *andMask);
       virtual void move(const ::int_rectangle &  dstRect, const int srcX, const int srcY);
       // Return value: true - if equal
       //               false - if PixelFormats or data differs
-      virtual bool cmpFrom(const ::int_rectangle &  dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual bool cmpFrom(const ::int_rectangle &  dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                    const int srcX, const int srcY);
 
       virtual bool setDimension(const ::int_size & newDim);
@@ -148,7 +148,7 @@ namespace remoting
 
       //protected:
       bool resizeBuffer();
-      void clipRect(const ::int_rectangle &  dstRect, const FrameBuffer *srcFrameBuffer,
+      void clipRect(const ::int_rectangle &  dstRect, const ::subsystem::PixelFormat &srcFrameBuffer,
                     const int srcX, const int srcY,
                     ::int_rectangle *dstClippedRect, ::int_rectangle *srcClippedRect);
       void clipRect(const ::int_rectangle &  dstRect,const ::int_rectangle & srcBufferRect,
@@ -156,7 +156,7 @@ namespace remoting
                     ::int_rectangle *dstClippedRect, ::int_rectangle *srcClippedRect);
 
       template<class PIXEL_T> bool overlayT(const ::int_rectangle &  dstRect,
-                                            const FrameBuffer *srcFrameBuffer,
+                                            const ::subsystem::PixelFormat &srcFrameBuffer,
                                             int srcX, int srcY,
                                             const char *andMask);
 

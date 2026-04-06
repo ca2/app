@@ -113,7 +113,7 @@ namespace innate_subsystem
       return page;
    }
 
-   void TabControl::adjustRect(RECT *rect)
+   void TabControl::adjustRect(::int_rectangle &rect)
    {
       GetClientRect(m_hwnd, rect);
       TabCtrl_AdjustRect(m_hwnd, FALSE, rect);

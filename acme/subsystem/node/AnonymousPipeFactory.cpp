@@ -28,76 +28,82 @@
 
 
 namespace subsystem
-{
-   AnonymousPipeFactory::AnonymousPipeFactory(unsigned int bufferSize,
-                                              LogWriter *log)
+ {
+//    AnonymousPipeFactory::AnonymousPipeFactory(unsigned int bufferSize,
+//                                               LogWriter *log)
+//    // : m_bufferSize(bufferSize),
+//    //   m_log(log)
+//    {
+//       initialize_anonymous_pipe_factory(bufferSize, log);
+//    }
+
+   AnonymousPipeFactory::AnonymousPipeFactory()
    // : m_bufferSize(bufferSize),
    //   m_log(log)
    {
-      initialize_anonymous_pipe_factory(bufferSize, log);
+      //initialize_anonymous_pipe_factory(bufferSize, log);
    }
-
    AnonymousPipeFactory::~AnonymousPipeFactory()
    {
    }
-
-   void AnonymousPipeFactory::initialize_anonymous_pipe_factory(unsigned int bufferSize,
-                                           LogWriter *log)
-//: m_bufferSize(bufferSize),
-  //m_log(log)
-   {
-      m_pparticleThis->initialize_anonymous_pipe_factory(bufferSize, log);
-   }
-
-   void AnonymousPipeFactory::generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
-                                            bool firstSideIsInheritable,
-                                            ::pointer < AnonymousPipeInterface > &secondSide,
-                                            bool secondSideIsInheritable)
-   {
-
-      m_pparticleThis->generatePipes(firstSide, firstSideIsInheritable, secondSide, secondSideIsInheritable);
-      // HANDLE hFirstSideWrite = 0, hFirstSideRead = 0,
-      //        hSecondSideWrite = 0, hSecondSideRead = 0;
-      //
-      // SecurityAttributes secAttr;
-      // secAttr.setInheritable();
-      //
-      // try {
-      //    if (CreatePipe(&hFirstSideRead, &hSecondSideWrite,
-      //                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
-      //       SystemException("Cannot create anonymous pipe");
-      //                   }
-      //    if (CreatePipe(&hSecondSideRead, &hFirstSideWrite,
-      //                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
-      //       SystemException("Cannot create anonymous pipe");
-      //                   }
-      // } catch (...) {
-      //    CloseHandle(hFirstSideWrite);
-      //    CloseHandle(hFirstSideRead);
-      //    CloseHandle(hSecondSideWrite);
-      //    CloseHandle(hSecondSideRead);
-      //    throw;
-      // }
-      //
-      // const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for anonymous pipe";
-      // if (!firstSideIsInheritable) {
-      //    if (SetHandleInformation(hFirstSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
-      //       SystemException(errMess);
-      //    }
-      //    if (SetHandleInformation(hFirstSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
-      //       SystemException(errMess);
-      //    }
-      // }
-      // if (!secondSideIsInheritable) {
-      //    if (SetHandleInformation(hSecondSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
-      //       SystemException(errMess);
-      //    }
-      //    if (SetHandleInformation(hSecondSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
-      //       SystemException(errMess);
-      //    }
-      // }
-      //
-      // *firstSide = new AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_log);
-      // *secondSide = new AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_log);
-   }
+//
+//    void AnonymousPipeFactory::initialize_anonymous_pipe_factory(unsigned int bufferSize,
+//                                            LogWriter *log)
+// //: m_bufferSize(bufferSize),
+//   //m_log(log)
+//    {
+//       m_pparticleThis->initialize_anonymous_pipe_factory(bufferSize, log);
+//    }
+//
+//    void AnonymousPipeFactory::generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
+//                                             bool firstSideIsInheritable,
+//                                             ::pointer < AnonymousPipeInterface > &secondSide,
+//                                             bool secondSideIsInheritable)
+//    {
+//
+//       m_pparticleThis->generatePipes(firstSide, firstSideIsInheritable, secondSide, secondSideIsInheritable);
+//       // HANDLE hFirstSideWrite = 0, hFirstSideRead = 0,
+//       //        hSecondSideWrite = 0, hSecondSideRead = 0;
+//       //
+//       // SecurityAttributes secAttr;
+//       // secAttr.setInheritable();
+//       //
+//       // try {
+//       //    if (CreatePipe(&hFirstSideRead, &hSecondSideWrite,
+//       //                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
+//       //       SystemException("Cannot create anonymous pipe");
+//       //                   }
+//       //    if (CreatePipe(&hSecondSideRead, &hFirstSideWrite,
+//       //                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
+//       //       SystemException("Cannot create anonymous pipe");
+//       //                   }
+//       // } catch (...) {
+//       //    CloseHandle(hFirstSideWrite);
+//       //    CloseHandle(hFirstSideRead);
+//       //    CloseHandle(hSecondSideWrite);
+//       //    CloseHandle(hSecondSideRead);
+//       //    throw;
+//       // }
+//       //
+//       // const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for anonymous pipe";
+//       // if (!firstSideIsInheritable) {
+//       //    if (SetHandleInformation(hFirstSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+//       //       SystemException(errMess);
+//       //    }
+//       //    if (SetHandleInformation(hFirstSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+//       //       SystemException(errMess);
+//       //    }
+//       // }
+//       // if (!secondSideIsInheritable) {
+//       //    if (SetHandleInformation(hSecondSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+//       //       SystemException(errMess);
+//       //    }
+//       //    if (SetHandleInformation(hSecondSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+//       //       SystemException(errMess);
+//       //    }
+//       // }
+//       //
+//       // *firstSide = new AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_log);
+//       // *secondSide = new AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_log);
+//    }
 } // namespace subsystem

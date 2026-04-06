@@ -33,16 +33,16 @@ namespace innate_subsystem
 {
 
 
-   class BaseDialog :
+   class Dialog :
       virtual public Control
    {
    public:
 
 
-      BaseDialog();
-      BaseDialog(unsigned int resourceId);
-      BaseDialog(const char *resourceName);
-      ~BaseDialog() override;
+      Dialog();
+      Dialog(unsigned int resourceId);
+      Dialog(const char *resourceName);
+      ~Dialog() override;
 //   public:
 
       virtual void initialize_base_dialog(unsigned int resourceId);
@@ -55,7 +55,7 @@ namespace innate_subsystem
       // Methods creates windows and show it in nonmodal/modal mode
       //
 
-      virtual int show();
+      virtual void show();
       virtual int showModal();
 
       // Returns true if dialog is already created.
@@ -107,13 +107,13 @@ namespace innate_subsystem
 //#ifdef WINDOWS
   //    virtual bool onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis);
 //#endif
-      virtual void onMessageReceived(unsigned int uMsg, ::wparam wParam, ::lparam lParam);
+      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam);
 
       //
       // Window message proccessing method
       //
 
-      //static INT_PTR CALLBACK dialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+      //static INT_PTR CALLBACK dialogProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
 
       virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam);
    //private:

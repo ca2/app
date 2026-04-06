@@ -25,7 +25,7 @@
 #pragma once
 
 
-//#include "remoting/remoting_common/region/Point.h"
+//#include "remoting/remoting_common/region/::int_point.h"
 #include "acme/subsystem/node/File.h"
 
 namespace windows
@@ -38,10 +38,11 @@ namespace windows
       {
       public:
          File();
-         virtual ~File();
+         ~File() override;
 
          HANDLE m_handle;
 
+         bool m_bOwned;
 
       };
 

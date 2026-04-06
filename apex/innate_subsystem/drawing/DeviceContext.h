@@ -22,39 +22,41 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _DEVICE_CONTEXT_H_
-#define _DEVICE_CONTEXT_H_
+#pragma once
+#include "acme/subsystem/particle.h"
 
-#include "util/CommonHeader.h"
-#include "gui/PaintWindow.h"
+//#include "util/CommonHeader.h"
+//#include "gui/PaintWindow.h"
 
-class DeviceContext
+namespace innate_subsystem
 {
-public:
-  // Create device context linked to window DC.
-  DeviceContext(HWND window);
-  // Create device context complatible with other DC.
-  DeviceContext(DeviceContext* compatibleDevice);
-  // Destroys device context.
-  virtual ~DeviceContext();
+   class CLASS_DECL_ACME DeviceContext :
+      virtual public ::subsystem::particle_interface
+   {
+   public:
+      // Create device context linked to window DC.
+      DeviceContext(const ::operating_system::window & window);
+      // Create device context complatible with other DC.
+      DeviceContext(DeviceContext* compatibleDevice);
+      // Destroys device context.
+      virtual ~DeviceContext() = 0;
 
-private:
-  // Initialize class from PaintWindow
-  DeviceContext(class PaintWindow * pntWnd);
+      //private:
+      // Initialize class from PaintWindow
+      DeviceContext(class PaintWindow * pntWnd);
 
-  friend class PaintWindow;
+      friend class PaintWindow;
 
-protected:
-  // Selects an object into this device context.
-  HGDIOBJ selectObject(HGDIOBJ object);
+      //protected:
+      // Selects an object into this device context.
+      //HGDIOBJ _selectObject(HGDIOBJ object);
 
-protected:
-  HDC m_dc;
-  HWND m_wnd;
-  bool m_hasOwnDC;
-
-  friend class Graphics;
-  friend class BitmapGraphics;
-};
-
-#endif
+      // protected:
+      //   HDC m_dc;
+      //   HWND m_wnd;
+      //   bool m_hasOwnDC;
+      //
+      //   friend class Graphics;
+      //   friend class BitmapGraphics;
+   };
+} // namespace innate_subsystem

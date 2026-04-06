@@ -24,13 +24,16 @@
 #include "framework.h"
 #include "Tooltip.h"
 
-namespace innate_subsystem
+namespace windows
 {
-   Tooltip::Tooltip()
+   namespace innate_subsystem
    {
-   }
+      Tooltip::Tooltip()
+      {
+      }
 
-   Tooltip::~Tooltip()
-   {
-   }
-} // namespace innate_subsystem
+      Tooltip::~Tooltip()
+      {
+      }
+   } // namespace innate_subsystem
+} // namespace windows

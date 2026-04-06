@@ -22,16 +22,18 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _SOLID_BRUSH_H_
-#define _SOLID_BRUSH_H_
+#pragma once
 
-#include "Brush.h"
+#include "apex/innate_subsystem/drawing/Brush.h"
 
-class SolidBrush : public Brush
+namespace innate_subsystem
 {
-public:
-  SolidBrush(COLORREF color);
-  virtual ~SolidBrush();
-};
+   class SolidBrush : public Brush
+   {
+   public:
+      SolidBrush(COLORREF color);
+      virtual ~SolidBrush();
+   };
 
-#endif
+
+} // namespace innate_subsystem

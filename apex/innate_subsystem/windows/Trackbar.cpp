@@ -23,32 +23,32 @@
 //
 #include "framework.h"
 #include "Trackbar.h"
-
-namespace innate_subsystem
+namespace windows
 {
-   Trackbar::Trackbar()
+   namespace innate_subsystem
    {
-   }
+      Trackbar::Trackbar()
+      {
+      }
 
-   Trackbar::~Trackbar()
-   {
-   }
+      Trackbar::~Trackbar()
+      {
+      }
 
-   void Trackbar::setRange(long min, long max)
-   {
-      SendMessage(m_hwnd, TBM_SETRANGEMIN, FALSE, min);
-      SendMessage(m_hwnd, TBM_SETRANGEMAX, TRUE, max);
-   }
+      void Trackbar::setRange(long min, long max)
+      {
+         SendMessage(m_hwnd, TBM_SETRANGEMIN, FALSE, min);
+         SendMessage(m_hwnd, TBM_SETRANGEMAX, TRUE, max);
+      }
 
-   void Trackbar::setPos(long pos)
-   {
-      SendMessage(m_hwnd, TBM_SETPOS, TRUE, pos);
-   }
+      void Trackbar::setPos(long pos)
+      {
+         SendMessage(m_hwnd, TBM_SETPOS, TRUE, pos);
+      }
 
-   long Trackbar::getPos()
-   {
-      return (long)SendMessage(m_hwnd, TBM_GETPOS, 0, 0);
-   }
-} // namespace innate_subsystem
-
-
+      long Trackbar::getPos()
+      {
+         return (long)SendMessage(m_hwnd, TBM_GETPOS, 0, 0);
+      }
+   } // namespace innate_subsystem
+} // namespace windows

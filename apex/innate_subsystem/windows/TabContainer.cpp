@@ -23,12 +23,12 @@
 //
 #include "framework.h"
 #include "TabContainer.h"
-
-
-namespace innate_subsystem
+namespace windows
 {
+   namespace innate_subsystem
+   {
 
 
 
-} // namespace innate_subsystem
-
+   } // namespace innate_subsystem
+} // namespace windows

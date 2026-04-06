@@ -22,24 +22,27 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _BRUSH_H_
-#define _BRUSH_H_
+#pragma once
+#include "acme/subsystem/particle.h"
 
-#include "util/CommonHeader.h"
 
-class Brush
+namespace innate_subsystem
 {
-public:
-  Brush();
-  virtual ~Brush();
 
-protected:
-  void release();
+   class CLASS_DECL_ACME BrushInterface :
+   virtual public ::subsystem::particle_interface
+   {
+   public:
+      //Brush();
+      virtual ~Brush() = 0;
 
-protected:
-  HBRUSH m_brush;
+   //protected:
+      virtual void release() = 0;
 
-  friend class Graphics;
-};
+   // protected:
+   //    HBRUSH m_brush;
+   //
+   //    friend class Graphics;
+   };
 
-#endif
+} // namespace innate_subsystem

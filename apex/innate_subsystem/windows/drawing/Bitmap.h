@@ -22,39 +22,35 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef __BITMAP_H__
-#define __BITMAP_H__
+#pragma once
 
-#include "util/CommonHeader.h"
-
-#include <string>
-#include <sstream>
-
-// Class manipulating windows HBITMAP object
-// 
-//
-class Bitmap
+namespace innate_subsystem
 {
-public:
-  // Creates empty bitmap with specified size.
-  Bitmap(int width, int height);
-  // Creates compatible with dc bitmap with specified size.
-  Bitmap(HDC dc, int width, int height);
-  // Creates bitmap from HBITMAP object.
-  Bitmap(HBITMAP bitmap);
-  // Destroys bitmap object.
-  virtual ~Bitmap();
+   class Bitmap
+   {
+   public:
+      // Creates empty bitmap with specified size.
+      Bitmap(int width, int height);
+      // Creates compatible with dc bitmap with specified size.
+      Bitmap(HDC dc, int width, int height);
+      // Creates bitmap from HBITMAP object.
+      Bitmap(HBITMAP bitmap);
+      // Destroys bitmap object.
+      virtual ~Bitmap();
 
-  // Returns bitmap width.
-  int getWidth() const;
-  // Returns bitmap height.
-  int getHeight() const;
-protected:
-  HBITMAP m_bitmap;
+      // Returns bitmap width.
+      int getWidth() const;
+      // Returns bitmap height.
+      int getHeight() const;
+   protected:
+      HBITMAP m_bitmap;
 
-  friend class Icon;
-  friend class Graphics;
-  friend class BitmapGraphics;
-};
+      friend class Icon;
+      friend class Graphics;
+      friend class BitmapGraphics;
+   };
 
-#endif
+
+} // namespace innate_subsystem
+
+

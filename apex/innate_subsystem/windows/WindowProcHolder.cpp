@@ -23,33 +23,35 @@
 //
 #include "framework.h"
 #include "WindowProcHolder.h"
-
-namespace innate_subsystem
+namespace windows
 {
-   WindowProcHolder::WindowProcHolder()
+   namespace innate_subsystem
    {
-   }
-
-   WindowProcHolder::~WindowProcHolder()
-   {
-   }
-
-   LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-   {
-      WindowProcHolder *wph = (WindowProcHolder *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
-
-      if (wph == 0) {
-         return DefWindowProc(hWnd, uMsg, wParam, lParam);
+      WindowProcHolder::WindowProcHolder()
+      {
       }
 
-      bool useDefWndProc = false;
-
-      LRESULT r = wph->windowProc(hWnd, uMsg, wParam, lParam, &useDefWndProc);
-
-      if (useDefWndProc) {
-         return DefWindowProc(hWnd, uMsg, wParam, lParam);
+      WindowProcHolder::~WindowProcHolder()
+      {
       }
 
-      return r;
-   }
-} // namespace innate_subsystem
+      LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+      {
+         WindowProcHolder *wph = (WindowProcHolder *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
+
+         if (wph == 0) {
+            return DefWindowProc(hWnd, uMsg, wParam, lParam);
+         }
+
+         bool useDefWndProc = false;
+
+         LRESULT r = wph->windowProc(hWnd, uMsg, wParam, lParam, &useDefWndProc);
+
+         if (useDefWndProc) {
+            return DefWindowProc(hWnd, uMsg, wParam, lParam);
+         }
+
+         return r;
+      }
+   } // namespace innate_subsystem
+} // namespace windows

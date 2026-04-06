@@ -780,6 +780,91 @@ if (WIN32)
       #operating_system/win32/font.h
       #operating_system/win32/window.cpp
       #operating_system/win32/window.h
+
+      innate_subsystem/windows/drawing/Bitmap.cpp
+      innate_subsystem/windows/drawing/DeviceContext.h
+      innate_subsystem/windows/drawing/Bitmap.h
+      innate_subsystem/windows/drawing/Graphics.cpp
+      innate_subsystem/windows/drawing/Brush.h
+      innate_subsystem/windows/drawing/BitmapGraphics.h
+      innate_subsystem/windows/drawing/Icon.h
+      innate_subsystem/windows/drawing/SolidBrush.h
+      innate_subsystem/windows/drawing/DeviceContext.cpp
+      innate_subsystem/windows/drawing/Brush.cpp
+      innate_subsystem/windows/drawing/Pen.h
+      innate_subsystem/windows/drawing/SolidBrush.cpp
+      innate_subsystem/windows/drawing/Pen.cpp
+      innate_subsystem/windows/drawing/Icon.cpp
+      innate_subsystem/windows/drawing/Graphics.h
+      innate_subsystem/windows/drawing/BitmapGraphics.cpp
+      innate_subsystem/windows/BalloonTip.cpp
+      innate_subsystem/windows/BalloonTip.h
+      innate_subsystem/windows/BaseDialog.cpp
+      innate_subsystem/windows/BaseDialog.h
+      innate_subsystem/windows/BaseWindow.cpp
+      innate_subsystem/windows/BaseWindow.h
+      innate_subsystem/windows/CheckBox.cpp
+      innate_subsystem/windows/CheckBox.h
+      innate_subsystem/windows/ComboBox.cpp
+      innate_subsystem/windows/ComboBox.h
+      innate_subsystem/windows/CommonControlsEx.cpp
+      innate_subsystem/windows/CommonControlsEx.h
+      innate_subsystem/windows/Control.cpp
+      innate_subsystem/windows/Control.h
+      innate_subsystem/windows/DibFrameBuffer.cpp
+      innate_subsystem/windows/DibFrameBuffer.h
+      innate_subsystem/windows/FilteredTextBox.cpp
+      innate_subsystem/windows/FilteredTextBox.h
+      #innate_subsystem/windows/gui.vcproj
+      #innate_subsystem/windows/gui.vcxproj
+      #innate_subsystem/windows/gui.vcxproj.filters
+      #innate_subsystem/windows/gui.vcxproj.user
+      innate_subsystem/windows/ImagedButton.cpp
+      innate_subsystem/windows/ImagedButton.h
+      innate_subsystem/windows/ListBox.cpp
+      innate_subsystem/windows/ListBox.h
+      innate_subsystem/windows/ListView.cpp
+      innate_subsystem/windows/ListView.h
+      #innate_subsystem/windows/m (192.168.0.89) (M) - Shortcut.lnk
+      innate_subsystem/windows/Menu.cpp
+      innate_subsystem/windows/Menu.h
+      innate_subsystem/windows/MessageWindow.cpp
+      innate_subsystem/windows/MessageWindow.h
+      innate_subsystem/windows/NotifyIcon.cpp
+      innate_subsystem/windows/NotifyIcon.h
+      innate_subsystem/windows/NotifyIconWindow.cpp
+      innate_subsystem/windows/NotifyIconWindow.h
+      innate_subsystem/windows/PaintWindow.cpp
+      innate_subsystem/windows/PaintWindow.h
+      innate_subsystem/windows/ProgressBar.cpp
+      innate_subsystem/windows/ProgressBar.h
+      innate_subsystem/windows/ScrollBar.cpp
+      innate_subsystem/windows/ScrollBar.h
+      innate_subsystem/windows/SpinControl.cpp
+      innate_subsystem/windows/SpinControl.h
+      innate_subsystem/windows/StringFilter.cpp
+      innate_subsystem/windows/StringFilter.h
+      innate_subsystem/windows/Tab.cpp
+      innate_subsystem/windows/Tab.h
+      innate_subsystem/windows/TabContainer.cpp
+      innate_subsystem/windows/TabContainer.h
+      innate_subsystem/windows/TabControl.cpp
+      innate_subsystem/windows/TabControl.h
+      innate_subsystem/windows/TextBox.cpp
+      innate_subsystem/windows/TextBox.h
+      innate_subsystem/windows/ThemeLib.cpp
+      innate_subsystem/windows/ThemeLib.h
+      innate_subsystem/windows/ToolBar.cpp
+      innate_subsystem/windows/ToolBar.h
+      innate_subsystem/windows/Tooltip.cpp
+      innate_subsystem/windows/Tooltip.h
+      innate_subsystem/windows/Trackbar.cpp
+      innate_subsystem/windows/Trackbar.h
+      innate_subsystem/windows/WindowFinder.cpp
+      innate_subsystem/windows/WindowFinder.h
+      innate_subsystem/windows/WindowMessageHandler.h
+      innate_subsystem/windows/WindowProcHolder.cpp
+      innate_subsystem/windows/WindowProcHolder.h
    )
 else ()
 
@@ -1534,8 +1619,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source}
-   innate_subsystem/_.h)
+add_library(${PROJECT_NAME} SHARED ${apex_source})
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 

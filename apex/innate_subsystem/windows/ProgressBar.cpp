@@ -25,25 +25,27 @@
 #include "ProgressBar.h"
 
 #include <commctrl.h>
-
-namespace innate_subsystem
+namespace windows
 {
-   ProgressBar::ProgressBar()
+   namespace innate_subsystem
    {
-   }
+      ProgressBar::ProgressBar()
+      {
+      }
 
-   ProgressBar::~ProgressBar()
-   {
-   }
+      ProgressBar::~ProgressBar()
+      {
+      }
 
-   void ProgressBar::setRange(WORD min, WORD max)
-   {
-      SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKELPARAM(min, max));
-   }
+      void ProgressBar::setRange(WORD min, WORD max)
+      {
+         SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKELPARAM(min, max));
+      }
 
-   void ProgressBar::setPos(WORD pos)
-   {
-      SendMessage(m_hwnd, PBM_SETPOS, (WPARAM)pos, 0);
-   }
-} // namespace innate_subsystem
+      void ProgressBar::setPos(WORD pos)
+      {
+         SendMessage(m_hwnd, PBM_SETPOS, (WPARAM)pos, 0);
+      }
+   } // namespace innate_subsystem
+} // namespace windows
 

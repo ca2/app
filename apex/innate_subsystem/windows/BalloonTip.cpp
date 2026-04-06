@@ -21,55 +21,61 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "BalloonTip.h"
 
-BalloonTip::BalloonTip(const TCHAR *text, const TCHAR *caption)
+namespace windows
 {
-  setText(text);
-  setTitle(caption);
-}
+   namespace innate_subsystem
+   {
+      BalloonTip::BalloonTip(const TCHAR *text, const TCHAR *caption)
+      {
+         setText(text);
+         setTitle(caption);
+      }
 
-BalloonTip::BalloonTip()
-{
-  setText(_T(""));
-  setTitle(_T(""));
-}
+      BalloonTip::BalloonTip()
+      {
+         setText(_T(""));
+         setTitle(_T(""));
+      }
 
-BalloonTip::~BalloonTip()
-{
-}
+      BalloonTip::~BalloonTip()
+      {
+      }
 
-void BalloonTip::showTooltip(Control *control)
-{
-  MessageBox(control->getWindow(), m_text.getString(), m_title.getString(), MB_OK | MB_ICONWARNING);
-}
+      void BalloonTip::showTooltip(Control *control)
+      {
+         MessageBox(control->getWindow(), m_text.getString(), m_title.getString(), MB_OK | MB_ICONWARNING);
+      }
 
-void BalloonTip::setText(const TCHAR *text)
-{
-  m_text.setString(text);
-}
+      void BalloonTip::setText(const TCHAR *text)
+      {
+         m_text.setString(text);
+      }
 
-void BalloonTip::setTitle(const TCHAR *title)
-{
-  m_title.setString(title);
-}
+      void BalloonTip::setTitle(const TCHAR *title)
+      {
+         m_title.setString(title);
+      }
 
-void BalloonTip::getText(StringStorage *text) const
-{
-  text->setString(m_text.getString());
-}
+      void BalloonTip::getText(StringStorage *text) const
+      {
+         text->setString(m_text.getString());
+      }
 
-void BalloonTip::getTitle(StringStorage *title) const
-{
-  title->setString(m_title.getString());
-}
+      void BalloonTip::getTitle(StringStorage *title) const
+      {
+         title->setString(m_title.getString());
+      }
 
-void BalloonTip::setIconType(int iconType)
-{
-}
+      void BalloonTip::setIconType(int iconType)
+      {
+      }
 
-int BalloonTip::getIconType() const
-{
-  return 0;
-}
+      int BalloonTip::getIconType() const
+      {
+         return 0;
+      }
+   } // namespace innate_subsystem
+} //namespace windows

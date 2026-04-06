@@ -22,26 +22,35 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _PEN_H_
-#define _PEN_H_
+#pragma once
 
-#include "util/CommonHeader.h"
 
-class Pen
+
+
+//#include "util/CommonHeader.h"
+
+namespace innate_subsystem
 {
-public:
-  const static int SOLID_TYPE = PS_SOLID;
-  const static int DASH_TYPE = PS_DASH;
-  const static int NULL_TYPE = PS_NULL;
+   namespace innate_subsystem
+   {
+      class Pen
+      {
+      public:
+         const static int SOLID_TYPE = PS_SOLID;
+         const static int DASH_TYPE = PS_DASH;
+         const static int NULL_TYPE = PS_NULL;
 
-public:
-  Pen(int type, int width, COLORREF color);
-  virtual ~Pen();
+      //public:
+         Pen(int type, int width, COLORREF color);
+         virtual ~Pen();
 
-protected:
-  HPEN m_pen;
+      // protected:
+      //    HPEN m_pen;
+      //
+      //    friend class Graphics;
+      };
 
-  friend class Graphics;
-};
+//#endi
+   } // namespace innate_subsystem
+}
 
-#endif

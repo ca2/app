@@ -23,25 +23,27 @@
 //
 #include "framework.h"
 #include "Tab.h"
-
-namespace innate_subsystem
+namespace windows
 {
-   Tab::Tab()
-   : m_dialog(NULL)
+   namespace innate_subsystem
    {
-      m_caption.setString(_T(""));
-   }
-
-   Tab::Tab(BaseDialog *dialog, const TCHAR *caption)
-   : m_dialog(dialog)
-   {
-      m_caption.setString(caption);
-   }
-
-   void Tab::setVisible(bool visible)
-   {
-      if (m_dialog != NULL) {
-         m_dialog->getControl()->setVisible(visible);
+      Tab::Tab()
+      : m_dialog(NULL)
+      {
+         m_caption.setString(_T(""));
       }
-   }
-} // namespace innate_subsystem
+
+      Tab::Tab(BaseDialog *dialog, const TCHAR *caption)
+      : m_dialog(dialog)
+      {
+         m_caption.setString(caption);
+      }
+
+      void Tab::setVisible(bool visible)
+      {
+         if (m_dialog != NULL) {
+            m_dialog->getControl()->setVisible(visible);
+         }
+      }
+   } // namespace innate_subsystem
+} // namespace windows

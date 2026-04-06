@@ -26,77 +26,84 @@
 
 #include <Windowsx.h>
 
-ComboBox::ComboBox()
-{
-}
 
-ComboBox::~ComboBox()
+namespace windows
 {
-}
+   namespace  subsystem
+   {
+      ComboBox::ComboBox()
+      {
+      }
 
-int ComboBox::addItem(const TCHAR *text)
-{
-  return ComboBox_AddString(m_hwnd, text);
-}
+      ComboBox::~ComboBox()
+      {
+      }
 
-int ComboBox::addItem(const TCHAR *text, void *tag)
-{
-  int index = addItem(text);
-  setItemData(index, tag);
-  return index;
-}
+      int ComboBox::addItem(const TCHAR *text)
+      {
+         return ComboBox_AddString(m_hwnd, text);
+      }
 
-void ComboBox::insertItem(int index, const TCHAR *text)
-{
-  ComboBox_InsertString(m_hwnd, index, text);
-}
+      int ComboBox::addItem(const TCHAR *text, void *tag)
+      {
+         int index = addItem(text);
+         setItemData(index, tag);
+         return index;
+      }
 
-void ComboBox::insertItem(int index, const TCHAR *text, void *tag)
-{
-  insertItem(index, text);
-  setItemData(index, tag);
-}
+      void ComboBox::insertItem(int index, const TCHAR *text)
+      {
+         ComboBox_InsertString(m_hwnd, index, text);
+      }
 
-int ComboBox::getItemsCount() const
-{
-  return ComboBox_GetCount(m_hwnd);
-}
+      void ComboBox::insertItem(int index, const TCHAR *text, void *tag)
+      {
+         insertItem(index, text);
+         setItemData(index, tag);
+      }
 
-void ComboBox::setItemData(int index, void *tag)
-{
-  ComboBox_SetItemData(m_hwnd, index, (LPARAM)tag);
-}
+      int ComboBox::getItemsCount() const
+      {
+         return ComboBox_GetCount(m_hwnd);
+      }
 
-void *ComboBox::getItemData(int index) const
-{
-  return (void *)ComboBox_GetItemData(m_hwnd, index);
-}
+      void ComboBox::setItemData(int index, void *tag)
+      {
+         ComboBox_SetItemData(m_hwnd, index, (LPARAM)tag);
+      }
 
-void ComboBox::getItemText(int index, StringStorage *storage) const
-{
-  size_t length = ComboBox_GetLBTextLen(m_hwnd, index);
-  std::vector<TCHAR> buf(length + 1);
-  ComboBox_GetLBText(m_hwnd, index, &buf.front());
-  storage->setString(&buf.front());
-}
+      void *ComboBox::getItemData(int index) const
+      {
+         return (void *)ComboBox_GetItemData(m_hwnd, index);
+      }
 
-int ComboBox::getSelectedItemIndex()
-{
-  return ComboBox_GetCurSel(m_hwnd);
-}
+      void ComboBox::getItemText(int index, StringStorage *storage) const
+      {
+         size_t length = ComboBox_GetLBTextLen(m_hwnd, index);
+         std::vector<TCHAR> buf(length + 1);
+         ComboBox_GetLBText(m_hwnd, index, &buf.front());
+         storage->setString(&buf.front());
+      }
 
-void ComboBox::setSelectedItem(int index)
-{
-  ComboBox_SetCurSel(m_hwnd, index);
-}
+      int ComboBox::getSelectedItemIndex()
+      {
+         return ComboBox_GetCurSel(m_hwnd);
+      }
 
-void ComboBox::deleteItem(int index)
-{
-  ComboBox_DeleteString(m_hwnd, index);
-}
+      void ComboBox::setSelectedItem(int index)
+      {
+         ComboBox_SetCurSel(m_hwnd, index);
+      }
 
-void ComboBox::removeAllItems()
-{
-  ComboBox_ResetContent(m_hwnd);
-}
+      void ComboBox::deleteItem(int index)
+      {
+         ComboBox_DeleteString(m_hwnd, index);
+      }
 
+      void ComboBox::removeAllItems()
+      {
+         ComboBox_ResetContent(m_hwnd);
+      }
+   } // namespace subsystem
+
+} // namespace windows

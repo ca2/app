@@ -24,53 +24,57 @@
 #include "framework.h"
 #include "TextBox.h"
 
-namespace innate_subsystem
+
+namespace windows
 {
-   TextBox::~TextBox()
+   namespace innate_subsystem
    {
-   }
+      TextBox::~TextBox()
+      {
+      }
 
-   void TextBox::setCaretPos(int h, int v)
-   {
-      SendMessage(m_hwnd, EM_LINESCROLL, h, v);
-   }
+      void TextBox::setCaretPos(int h, int v)
+      {
+         SendMessage(m_hwnd, EM_LINESCROLL, h, v);
+      }
 
-   size_t TextBox::getTextLengthLimit()
-   {
-      return SendMessage(m_hwnd, EM_GETLIMITTEXT, 0, 0);
-   }
+      size_t TextBox::getTextLengthLimit()
+      {
+         return SendMessage(m_hwnd, EM_GETLIMITTEXT, 0, 0);
+      }
 
-   void TextBox::setTextLengthLimit(size_t n)
-   {
-      SendMessage(m_hwnd, EM_SETLIMITTEXT, n, 0);
-   }
+      void TextBox::setTextLengthLimit(size_t n)
+      {
+         SendMessage(m_hwnd, EM_SETLIMITTEXT, n, 0);
+      }
 
-   int TextBox::getCurrentLineIndex()
-   {
-      return (int)SendMessage(m_hwnd, EM_LINEINDEX, -1, 0);
-   }
+      int TextBox::getCurrentLineIndex()
+      {
+         return (int)SendMessage(m_hwnd, EM_LINEINDEX, -1, 0);
+      }
 
-   int TextBox::getLineCount()
-   {
-      return (int)SendMessage(m_hwnd, EM_GETLINECOUNT, 0, 0);
-   }
+      int TextBox::getLineCount()
+      {
+         return (int)SendMessage(m_hwnd, EM_GETLINECOUNT, 0, 0);
+      }
 
-   //
-   // FIXME: Unimplemented
-   //
+      //
+      // FIXME: Unimplemented
+      //
 
-   int TextBox::getCaretPos()
-   {
-      return 0;
-   }
+      int TextBox::getCaretPos()
+      {
+         return 0;
+      }
 
-   void TextBox::selectText(size_t startPos, size_t endPos)
-   {
-      SendMessage(getWindow(), EM_SETSEL, startPos, endPos);
-   }
+      void TextBox::selectText(size_t startPos, size_t endPos)
+      {
+         SendMessage(getWindow(), EM_SETSEL, startPos, endPos);
+      }
 
-   void TextBox::showBalloonTip(Tooltip *tip)
-   {
-      tip->showTooltip(this);
-   }
-} // namespace innate_subsystem
+      void TextBox::showBalloonTip(Tooltip *tip)
+      {
+         tip->showTooltip(this);
+      }
+   } // namespace innate_subsystem
+} // namespace windows

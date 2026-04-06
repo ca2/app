@@ -23,16 +23,20 @@
 //
 #include "framework.h"
 #include "CheckBox.h"
-
-namespace innate_subsystem
+namespace windows
 {
-   bool CheckBox::isChecked()
+   namespace innate_subsystem
    {
-      return (SendMessage(m_hwnd, BM_GETCHECK, NULL, NULL) != 0);
-   }
+      bool CheckBox::isChecked()
+      {
+         return (SendMessage(m_hwnd, BM_GETCHECK, NULL, NULL) != 0);
+      }
 
-   void CheckBox::check(bool checked)
-   {
-      SendMessage(m_hwnd, BM_SETCHECK, (checked) ? 1 : 0, NULL);
-   }
-} // namespace innate_subsystem
+      void CheckBox::check(bool checked)
+      {
+         SendMessage(m_hwnd, BM_SETCHECK, (checked) ? 1 : 0, NULL);
+      }
+   } // namespace innate_subsystem
+}
+
+namespace windows

@@ -23,11 +23,13 @@
 //
 #include "framework.h"
 #include "StringFilter.h"
-
-namespace innate_subsystem
+namespace windows
 {
-   bool StringFilter::isStringCorrect(const TCHAR *string)
+   namespace innate_subsystem
    {
-      return true;
-   }
-} // namespace innate_subsystem
+      bool StringFilter::isStringCorrect(const TCHAR *string)
+      {
+         return true;
+      }
+   } // namespace innate_subsystem
+} // namespace windows

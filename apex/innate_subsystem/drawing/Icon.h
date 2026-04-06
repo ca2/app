@@ -22,31 +22,34 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _ICON_H_
-#define _ICON_H_
+#pragme once
 
-#include "util/CommonHeader.h"
 
-#include "Bitmap.h"
+//#include "util/CommonHeader.h"
 
-class Icon
+#include "apex/innate_subsystem/drawing/Bitmap.h"
+
+namespace innate_subsystem
 {
-public:
-  Icon();
-  Icon(HICON icon);
-  Icon(Bitmap *bitmap);
-  Icon(Bitmap *bitmap, Bitmap *mask);
-  Icon(DWORD icon);
-  virtual ~Icon();
+   class Icon
+   {
+   public:
+      Icon();
+      Icon(HICON icon);
+      Icon(Bitmap *bitmap);
+      Icon(Bitmap *bitmap, Bitmap *mask);
+      Icon(DWORD icon);
+      virtual ~Icon();
 
-  HICON getHICON();
+      HICON getHICON();
 
-protected:
-  void fromBitmap(Bitmap *bitmap, Bitmap *mask);
+   //protected:
+      void fromBitmap(Bitmap *bitmap, Bitmap *mask);
 
-protected:
-  HICON m_icon;
-  bool m_hasOwnIcon;
-};
+   // protected:
+   //    HICON m_icon;
+   //    bool m_hasOwnIcon;
+   };
+} // namespace innate_subsystem
 
-#endif
+

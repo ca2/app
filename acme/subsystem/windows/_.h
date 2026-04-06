@@ -1,8 +1,21 @@
 //
-// Created by camilo on 2026-04-06.
+// Created by camilo on 2026-04-06 06:16 <3ThomasBorregaardSørensen!!
 //
 
-#ifndef MAIN___H
-#define MAIN___H
+#pragma once
 
-#endif //MAIN___H
+
+namespace windows
+{
+
+   namespace subsystem
+   {
+
+      class File;
+
+   } // namespace subsystem
+
+
+
+} // namespace windows
+

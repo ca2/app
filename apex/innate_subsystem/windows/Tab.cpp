@@ -21,24 +21,27 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "Tab.h"
 
-Tab::Tab()
-: m_dialog(NULL)
+namespace innate_subsystem
 {
-  m_caption.setString(_T(""));
-}
+   Tab::Tab()
+   : m_dialog(NULL)
+   {
+      m_caption.setString(_T(""));
+   }
 
-Tab::Tab(BaseDialog *dialog, const TCHAR *caption)
-: m_dialog(dialog)
-{
-  m_caption.setString(caption);
-}
+   Tab::Tab(BaseDialog *dialog, const TCHAR *caption)
+   : m_dialog(dialog)
+   {
+      m_caption.setString(caption);
+   }
 
-void Tab::setVisible(bool visible)
-{
-  if (m_dialog != NULL) {
-    m_dialog->getControl()->setVisible(visible);
-  }
-}
+   void Tab::setVisible(bool visible)
+   {
+      if (m_dialog != NULL) {
+         m_dialog->getControl()->setVisible(visible);
+      }
+   }
+} // namespace innate_subsystem

@@ -27,24 +27,27 @@
 
 #include "acme/subsystem/_common_header.h"
 
-#include "DynamicLibrary.h"
+#include "acme/subsystem/windows/node/DynamicLibrary.h"
 
-typedef BOOL (WINAPI* pWinStationConnectW)(HANDLE, ULONG, ULONG, PCWSTR, ULONG);
 
-class CLASS_DECL_REMOTING_COMMON WinStaLibrary
+namespace windows
 {
-public:
-  WinStaLibrary();
-  virtual ~WinStaLibrary();
+   typedef BOOL (WINAPI* pWinStationConnectW)(HANDLE, ULONG, ULONG, PCWSTR, ULONG);
 
-  BOOL WinStationConnectW(HANDLE server, ULONG connectSessionId,
-                          ULONG activeSessionId, PCWSTR password,
-                          ULONG unknown);
+   class CLASS_DECL_ACME WinStaLibrary
+   {
+   public:
+      WinStaLibrary();
+      virtual ~WinStaLibrary();
 
-protected:
-  DynamicLibrary *m_winStaDll;
+      BOOL WinStationConnectW(HANDLE server, ULONG connectSessionId,
+                              ULONG activeSessionId, PCWSTR password,
+                              ULONG unknown);
 
-  pWinStationConnectW m_winStationConnectW;
-};
+   protected:
+      ::windows::subsystem::DynamicLibrary *m_winStaDll;
 
+      pWinStationConnectW m_winStationConnectW;
+   };
+} // namespace windows
 

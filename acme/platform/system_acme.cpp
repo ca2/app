@@ -4086,6 +4086,12 @@ return nullptr;
 
    }
 
+   ::subsystem::subsystem * acme_system_layer::subsystem()
+   {
+
+      return nullptr;
+
+   }
 
    // ::string_table* acme_system_layer::string_table()
    // {

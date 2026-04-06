@@ -29,7 +29,7 @@
 //////#include "remoting/remoting_common/util/::string.h"
 //#include "log_writer/LogWriter.h"
 
-#include "acme/subsystem/SystemException.h"
+//#include "acme/subsystem/SystemException.h"
 
 namespace subsystem
 {
@@ -45,7 +45,7 @@ console session.
       //Impersonator(LogWriter *log);
 
 
-      virtual ~Impersonator() = 0;
+      virtual ~ImpersonatorInterface() = 0;
 
       virtual void initialize_impersonator(LogWriter * plogwriter) = 0;
 
@@ -92,27 +92,27 @@ console session.
       ~Impersonator() override;
 
 
-      voi initialize_impersonator(LogWriter * plogwriter);
+      void initialize_impersonator(LogWriter * plogwriter) override;
 
       /**
       Impersonates calling process as user that logged on current console session.
       @throws SystemException if impersonation fails.
       */
-      virtual void impersonateAsLoggedUser();
+      void impersonateAsLoggedUser() override;
 
       /**
       Impersonates calling process as user with given token.
       @throws SystemException if impersonation fails.
       */
-      virtual void impersonateAsCurrentProcessUser(bool rdpEnabled);
+      void impersonateAsCurrentProcessUser(bool rdpEnabled) override;
 
       /**
       Cancels effect of impersonateAsLoggedUser method call.
       @throws SystemException on fail.
       */
-      virtual void revertToSelf();
+      void revertToSelf() override;
 
-      virtual bool sessionIsLocked(bool rdpEnabled);
+      bool sessionIsLocked(bool rdpEnabled) override;
 
    //protected:
       //void impersonateAsUser(HANDLE token);

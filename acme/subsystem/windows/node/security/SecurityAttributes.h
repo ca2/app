@@ -25,42 +25,52 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/node/security/SecurityAttributes.h"
+#include "acme/subsystem/windows/node/security/SecurityIdentifier.h"
+#include "acme/subsystem/windows/node/security/SecurityDescriptor.h"
+#include "acme/_operating_system.h"
 
-#include "security/SecurityIdentifier.h"
-#include "security/SecurityDescriptor.h"
+
 //#include <vector>
 
-class CLASS_DECL_REMOTING_COMMON SecurityAttributes
+namespace windows
 {
-public:
-  SecurityAttributes();
-  virtual ~SecurityAttributes();
+   namespace subsystem
+   {
+      class CLASS_DECL_ACME SecurityAttributes :
+      virtual  public ::subsystem::implementation<::subsystem::SecurityAttributesInterface>
+      {
+      public:
+         SecurityAttributes();
+          ~SecurityAttributes() override;
 
-  // Sets the security attributes to default values. After calling this
-  // function the getSecurityAttributes() function will to return zero until
-  // attributes was changed by another functions.
-  void setDefaultAttributes();
+         // Sets the security attributes to default values. After calling this
+         // function the getSecurityAttributes() function will to return zero until
+         // attributes was changed by another functions.
+         void setDefaultAttributes() override;
 
-  // Sets security attributes that allow all access to all.
-  void shareToAllUsers();
+         // Sets security attributes that allow all access to all.
+         void shareToAllUsers() override;
 
-  // If immediately before was called the setDefaultAttributes() function
-  // returns zero otherwise returns pointer to SECURITY_ATTRIBUTES structure.
-  SECURITY_ATTRIBUTES *getSecurityAttributes();
+         // If immediately before was called the setDefaultAttributes() function
+         // returns zero otherwise returns pointer to SECURITY_ATTRIBUTES structure.
+         SECURITY_ATTRIBUTES *_getSecurityAttributes();
 
-  // Set inheritable flag of the SECURITY_ATTRIBUTES structure to true
-  void setInheritable();
+         // Set inheritable flag of the SECURITY_ATTRIBUTES structure to true
+         void setInheritable() override;
 
-private:
-  SECURITY_ATTRIBUTES m_securityAttributes;
+      //private:
+         SECURITY_ATTRIBUTES m_securityAttributes;
 
-  bool m_isDefaultAttributes;
+         bool m_isDefaultAttributes;
 
-  /**
-   * Members that needed for shareToAllUsers() method.
-   */
-  SecurityDescriptor m_sd;
-};
+         /**
+          * Members that needed for shareToAllUsers() method.
+          */
+         SecurityDescriptor m_sd;
+      };
 
-//// __SECURITYATTRIBUTES_H__
+      //// __SECURITYATTRIBUTES_H__
+   } // namespace subsystem
+} // namespace windows
+

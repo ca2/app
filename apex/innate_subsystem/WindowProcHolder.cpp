@@ -21,32 +21,35 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "WindowProcHolder.h"
 
-WindowProcHolder::WindowProcHolder()
+namespace innate_subsystem
 {
-}
+   WindowProcHolder::WindowProcHolder()
+   {
+   }
 
-WindowProcHolder::~WindowProcHolder()
-{
-}
+   WindowProcHolder::~WindowProcHolder()
+   {
+   }
 
-LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
-{
-  WindowProcHolder *wph = (WindowProcHolder *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
+   LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+   {
+      WindowProcHolder *wph = (WindowProcHolder *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 
-  if (wph == 0) {
-    return DefWindowProc(hWnd, uMsg, wParam, lParam);
-  }
+      if (wph == 0) {
+         return DefWindowProc(hWnd, uMsg, wParam, lParam);
+      }
 
-  bool useDefWndProc = false;
+      bool useDefWndProc = false;
 
-  LRESULT r = wph->windowProc(hWnd, uMsg, wParam, lParam, &useDefWndProc);
+      LRESULT r = wph->windowProc(hWnd, uMsg, wParam, lParam, &useDefWndProc);
 
-  if (useDefWndProc) {
-    return DefWindowProc(hWnd, uMsg, wParam, lParam);
-  }
+      if (useDefWndProc) {
+         return DefWindowProc(hWnd, uMsg, wParam, lParam);
+      }
 
-  return r;
-}
+      return r;
+   }
+} // namespace innate_subsystem

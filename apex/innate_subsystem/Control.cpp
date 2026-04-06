@@ -21,8 +21,11 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "Control.h"
+
+namespace innate_subsystem
+{
 
 Control::Control()
 : m_hwnd(NULL)
@@ -205,3 +208,15 @@ void Control::replaceWindowProc(WNDPROC wndProc)
   SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR)this);
   SetWindowLongPtr(m_hwnd, GWLP_WNDPROC, (LONG_PTR)wndProc);
 }
+
+
+void Control::postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam)
+{
+
+   m_pparticleThis->po
+
+}
+
+
+
+} // namespace innate_subsystem

@@ -45,6 +45,7 @@
 #include "acme/regular_expression/context.h"
 //#include "acme/prototype/prototype/payload.h"
 //#include "acme/prototype/string/hex.h"
+#include "acme/subsystem/subsystem.h"
 #include "acme/user/micro/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
@@ -66,6 +67,8 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
+
+CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory);
 
 //#elif defined(UNIVERSAL_WINDOWS)
 //
@@ -5241,6 +5244,9 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+
+
+
    void system::do_operating_ambient_factory()
    {
 
@@ -5457,6 +5463,23 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          }
 
       }
+
+   }
+
+
+   ::subsystem::subsystem * system::subsystem()
+   {
+
+      if (!m_psubsystem)
+      {
+
+         ::subsystem_factory(this->factory());
+
+         constructø(m_psubsystem);
+
+      }
+
+      return m_psubsystem;
 
    }
 

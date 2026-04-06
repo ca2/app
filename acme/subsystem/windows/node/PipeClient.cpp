@@ -23,46 +23,61 @@
 //
 #include "framework.h"
 #include "acme/_operating_system.h"
+#include "File.h"
 #include "PipeClient.h"
-#include "acme/subsystem/Exception.h"
+#include "acme/subsystem/node/SystemException.h"
 
-PipeClient::PipeClient()
+#include "acme/subsystem/windows/node/NamedPipe.h"
+
+namespace windows
 {
-}
+   namespace subsystem
+   {
+      PipeClient::PipeClient()
+      {
+      }
 
-NamedPipe *PipeClient::connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize)
-{
-  ::string pipeName;
-  pipeName.formatf("\\\\.\\pipe\\{}", ::string(scopedstrName).c_str());
+      ::pointer < ::subsystem::NamedPipe >PipeClient::connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize)
+      {
+         ::string pipeName;
+         pipeName.formatf("\\\\.\\pipe\\{}", ::string(scopedstrName).c_str());
 
-  HANDLE hPipe;
-  hPipe = CreateFile(::wstring(pipeName),  // pipe name
-                     GENERIC_READ |         // read and write access
-                     GENERIC_WRITE,
-                     0,                     // no sharing
-                     NULL,                  // default security attributes
-                     OPEN_EXISTING,         // opens existing pipe
-                     FILE_FLAG_OVERLAPPED,  // asynchronous mode
-                     NULL);                 // no template file
+         auto pfilePipe = create_newø< ::windows::subsystem::File>();
+         HANDLE hPipe;
+         hPipe = CreateFile(::wstring(pipeName),  // pipe name
+                            GENERIC_READ |         // read and write access
+                            GENERIC_WRITE,
+                            0,                     // no sharing
+                            NULL,                  // default security attributes
+                            OPEN_EXISTING,         // opens existing pipe
+                            FILE_FLAG_OVERLAPPED,  // asynchronous mode
+                            NULL);                 // no template file
 
-  if (hPipe == INVALID_HANDLE_VALUE) {
-    int errCode = GetLastError();
-    ::string errMess;
-    errMess.formatf("Connect to pipe server failed, error code = {}", errCode);
-    throw ::remoting::Exception(errMess);
-  }
+         if (hPipe == INVALID_HANDLE_VALUE) {
+            int errCode = GetLastError();
+            ::string errMess;
+            errMess.formatf("Connect to pipe server failed, error code = {}", errCode);
+            throw ::subsystem::Exception(errMess);
+         }
+         pfilePipe->m_handle = hPipe;
+         DWORD dwMode = PIPE_READMODE_BYTE;
+         if (!SetNamedPipeHandleState(hPipe,   // pipe handle
+                                      &dwMode,   // new pipe mode
+                                      NULL,      // don't set maximum bytes
+                                      NULL)      // don't set maximum time
+                                      ) {
+            int errCode = GetLastError();
+            ::string errMess;
+            errMess.formatf("SetNamedPipeHandleState failed, error code = {}", errCode);
+            throw ::subsystem::Exception(errMess);
+                                      }
 
-  DWORD dwMode = PIPE_READMODE_BYTE;
-  if (!SetNamedPipeHandleState(hPipe,   // pipe handle
-                               &dwMode,   // new pipe mode
-                               NULL,      // don't set maximum bytes
-                               NULL)      // don't set maximum time
-                               ) {
-    int errCode = GetLastError();
-    ::string errMess;
-    errMess.formatf("SetNamedPipeHandleState failed, error code = {}", errCode);
-    throw ::remoting::Exception(errMess);
-  }
+         auto pnamedpipe = create_newø< ::windows::subsystem::NamedPipe>();
 
-  return new NamedPipe(hPipe, maxPortionSize, false);
-}
+         pnamedpipe->initialize_named_pipe(pfilePipe, maxPortionSize, false);
+
+
+         return pnamedpipe;
+      }
+   } // namespace subsystem
+} // namespace  windows

@@ -22,69 +22,77 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _IMAGED_BUTTON_H_
-#define _IMAGED_BUTTON_H_
+//#ifndef _IMAGED_BUTTON_H_
+//#define _IMAGED_BUTTON_H_
 
-#include "Control.h"
-#include "ThemeLib.h"
+#pragma once
 
-//
-// Owner draw button, that displays button with image and text.
-//
+#include "apex/innate_subsystem/Control.h"
+//#include "ThemeLib.h"
 
-class ImagedButton : public Control
+namespace innate_subsystem
 {
-public:
-  ImagedButton();
-  ~ImagedButton();
+    //
+    // Owner draw button, that displays button with image and text.
+    //
 
-  //
-  // Draws this ownder-draw button.
-  // This method must be called in WM_DRAWITEM message handler of parent control
-  //
+    class ImagedButton : public Control
+    {
+    public:
+        ImagedButton();
+        ~ImagedButton();
 
-  void drawItem(LPDRAWITEMSTRUCT dis);
+        //
+        // Draws this ownder-draw button.
+        // This method must be called in WM_DRAWITEM message handler of parent control
+        //
 
-  virtual void setWindow(HWND hwnd);
+        //virtual void drawItem(LPDRAWITEMSTRUCT dis);
 
-  void setIcon(HICON *icon, int width, int height);
+        virtual void setWindow(const ::operating_system::window & window);
 
-private:
+        //virtual void setIcon(HICON *icon, int width, int height);
+        virtual void setIcon(::innate_ui::icon * picon, int width, int height);
 
-  //
-  // Parameters:
-  //
-  // IN buttonRect - button area rectangle
-  // IN isButtonPressed - flag that true if button pressed
-  // IN textWidth - width of button text that will be drawn in pixels
-  // IN textHeight - height of button text that will be drawn in pixels
-  // IN imageWidth - width of image in pixels
-  // IN imageHeight - height of image in pixels
-  // OUT textRect - output text rectangle
-  // OUT imageRect - output image rectangle
-  //
+    //private:
 
-  void calcRect(RECT* buttonRect, bool isButtonPressed,
-                DWORD textWidth, DWORD textHeight,
-                DWORD imageWidth, DWORD imageHeight,
-                RECT *textRect, RECT* imageRect);
+        //
+        // Parameters:
+        //
+        // IN buttonRect - button area rectangle
+        // IN isButtonPressed - flag that true if button pressed
+        // IN textWidth - width of button text that will be drawn in pixels
+        // IN textHeight - height of button text that will be drawn in pixels
+        // IN imageWidth - width of image in pixels
+        // IN imageHeight - height of image in pixels
+        // OUT textRect - output text rectangle
+        // OUT imageRect - output image rectangle
+        //
 
-  void drawIcon(HDC* dc, RECT* imageRect, bool isPressed, bool isDisabled);
-protected:
-  bool m_isUsingTheme;
-  bool m_mouseOver;
-  HTHEME m_theme;
+        //virtual void calcRect(RECT* buttonRect, bool isButtonPressed,
+        //              DWORD textWidth, DWORD textHeight,
+        //              DWORD imageWidth, DWORD imageHeight,
+        //              RECT *textRect, RECT* imageRect);
 
-  //
-  // Icon to display
-  //
+        //virtual void drawIcon(HDC* dc, RECT* imageRect, bool isPressed, bool isDisabled);
+    //protected:
+      //  bool m_isUsingTheme;
+        //bool m_mouseOver;
+        //HTHEME m_theme;
 
-  HICON *m_icon;
+        //
+        // Icon to display
+        //
 
-  int m_iconWidth;
-  int m_iconHeight;
-private:
-  static LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-};
+        //HICON *m_icon;
 
-#endif
+        //int m_iconWidth;
+        //int m_iconHeight;
+  //  private:
+    //    static LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    };
+
+//#endif
+} // namespace innate_subsystem
+
+

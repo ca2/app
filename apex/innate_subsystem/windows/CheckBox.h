@@ -22,16 +22,20 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef __CHECKBOX_H_
-#define __CHECKBOX_H_
+#pragma once
 
-#include "Control.h"
 
-class CheckBox : public Control
+#include "apex/innate_subsystem/Control.h"
+
+namespace innate_subsystem
 {
-public:
-  bool isChecked();
-  void check(bool checked);
-};
+    class CheckBox : public Control
+    {
+    public:
+        virtual bool isChecked();
+        virtual void check(bool checked);
+    };
 
-#endif
+    //#endif
+} // namespace innate_subsystem
+

@@ -22,145 +22,165 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/_operating_system.h"
 #include "Process.h"
-#include "SystemException.h"
 
-Process::Process(const ::file::path & path, const ::scoped_string & scopedstrArgs)
-: m_hProcess(0),
-  m_hThread(0),
-  m_handlesIsInherited(false),
-  m_hStopWait(0),
-  m_stdIn(0),
-  m_stdOut(0),
-  m_stdErr(0)
+#include "port/base/iconv/lib/stringprep.h"
+//#include "SystemException.h"
+
+namespace windows
 {
-  setFilename(path);
-  setArguments(scopedstrArgs);
+   namespace subsystem
+   {
 
-  m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
-}
 
-Process::~Process()
-{
-  cleanup();
+      Process::Process()
+      : m_hProcess(0),
+        m_hThread(0),
+        m_handlesIsInherited(false),
+        m_hStopWait(0),
+        m_stdIn(0),
+        m_stdOut(0),
+        m_stdErr(0)
+      {
+         //setFilename(path);
+         //setArguments(scopedstrArgs);
 
-  if (m_hStopWait) {
-    CloseHandle(m_hStopWait);
-  }
-}
+         m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
+      }
 
-void Process::setFilename(const ::scoped_string & scopedstrPath)
-{
-  m_path= scopedstrPath;
-}
+      Process::~Process()
+      {
+         cleanup();
 
-void Process::setArguments(const ::scoped_string & scopedstrArgs)
-{
-  m_args= scopedstrArgs;
-}
+         if (m_hStopWait) {
+            CloseHandle(m_hStopWait);
+         }
+      }
 
-void Process::setStandardIoHandles(HANDLE stdIn, HANDLE stdOut, HANDLE stdErr)
-{
-  m_stdIn = stdIn;
-  m_stdOut = stdOut;
-  m_stdErr = stdErr;
-}
 
-void Process::setHandleInheritances(bool handlesIsInerited)
-{
-  m_handlesIsInherited = handlesIsInerited;
-}
+      void Process::initialize_process(const ::file::path &path, const ::scoped_string &scopedstrArgs)
+      {
+         setFilename(path);
+         setArguments(scopedstrArgs);
 
-void Process::getStartupInfo(STARTUPINFO *sti)
-{
-  ZeroMemory(sti, sizeof(STARTUPINFO));
-  sti->cb = sizeof(STARTUPINFO);
-  sti->hStdError = m_stdErr;
-  sti->hStdInput = m_stdIn;
-  sti->hStdOutput = m_stdOut;
-  if (sti->hStdError != 0 || sti->hStdInput != 0 || sti->hStdOutput != 0) {
-    sti->dwFlags |= STARTF_USESTDHANDLES;
-  }
-}
+         //m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
+      }
 
-void Process::start()
-{
-  cleanup();
 
-  STARTUPINFO sti;
-  getStartupInfo(&sti);
-  PROCESS_INFORMATION pi;
+      void Process::setFilename(const ::scoped_string & scopedstrPath)
+      {
+         m_path= scopedstrPath;
+      }
 
-  ::string commandLine = getCommandLineString();
+      void Process::setArguments(const ::scoped_string & scopedstrArgs)
+      {
+         m_args= scopedstrArgs;
+      }
 
-  _ASSERT(!commandLine.is_empty());
-  if (CreateProcess(NULL, (LPTSTR) ::wstring(commandLine).c_str(),
-                    NULL, NULL, m_handlesIsInherited, NULL, NULL, NULL,
-                    &sti, &pi) == 0) {
-    throw SystemException();
-  }
+      void Process::setStandardIoHandles(HANDLE stdIn, HANDLE stdOut, HANDLE stdErr)
+      {
+         m_stdIn = stdIn;
+         m_stdOut = stdOut;
+         m_stdErr = stdErr;
+      }
 
-  m_hThread = pi.hThread;
-  m_hProcess = pi.hProcess;
-}
+      void Process::setHandleInheritances(bool handlesIsInerited)
+      {
+         m_handlesIsInherited = handlesIsInerited;
+      }
 
-void Process::kill()
-{
-  if (TerminateProcess(m_hProcess, 0) == 0) {
-    throw SystemException();
-  }
-}
+      void Process::getStartupInfo(STARTUPINFO *sti)
+      {
+         ZeroMemory(sti, sizeof(STARTUPINFO));
+         sti->cb = sizeof(STARTUPINFO);
+         sti->hStdError = m_stdErr;
+         sti->hStdInput = m_stdIn;
+         sti->hStdOutput = m_stdOut;
+         if (sti->hStdError != 0 || sti->hStdInput != 0 || sti->hStdOutput != 0) {
+            sti->dwFlags |= STARTF_USESTDHANDLES;
+         }
+      }
 
-void Process::waitForExit()
-{
-  HANDLE handleArray[2] = { m_hProcess, m_hStopWait };
+      void Process::start()
+      {
+         cleanup();
 
-  WaitForMultipleObjects(2, handleArray, FALSE, INFINITE);
-}
+         STARTUPINFO sti;
+         getStartupInfo(&sti);
+         PROCESS_INFORMATION pi;
 
-void Process::stopWait()
-{
-  SetEvent(m_hStopWait);
-}
+         ::string commandLine = getCommandLineString();
 
-DWORD Process::getExitCode()
-{
-  DWORD exitCode;
+         _ASSERT(!commandLine.is_empty());
+         if (CreateProcess(NULL, (LPTSTR) ::wstring(commandLine).c_str(),
+                           NULL, NULL, m_handlesIsInherited, NULL, NULL, NULL,
+                           &sti, &pi) == 0) {
+            throw SystemException();
+                           }
 
-  if (GetExitCodeProcess(m_hProcess, &exitCode) == 0) {
-    throw SystemException();
-  }
+         m_hThread = pi.hThread;
+         m_hProcess = pi.hProcess;
+      }
 
-  return exitCode;
-}
+      void Process::kill()
+      {
+         if (TerminateProcess(m_hProcess, 0) == 0) {
+            throw SystemException();
+         }
+      }
 
-HANDLE Process::getProcessHandle()
-{
-  return m_hProcess;
-}
+      void Process::waitForExit()
+      {
+         HANDLE handleArray[2] = { m_hProcess, m_hStopWait };
 
-::string Process::getCommandLineString()
-{
-  ::string result;
+         WaitForMultipleObjects(2, handleArray, FALSE, INFINITE);
+      }
 
-  if (m_args.is_empty()) {
-    return m_path;
-  }
+      void Process::stopWait()
+      {
+         SetEvent(m_hStopWait);
+      }
 
-  result.formatf("{} {}", m_path, m_args);
+      DWORD Process::getExitCode()
+      {
+         DWORD exitCode;
 
-  return result;
-}
+         if (GetExitCodeProcess(m_hProcess, &exitCode) == 0) {
+            throw SystemException();
+         }
 
-void Process::cleanup()
-{
-  if (m_hProcess) {
-    CloseHandle(m_hProcess);
-    m_hProcess = 0;
-  }
-  if (m_hThread) {
-    CloseHandle(m_hThread);
-    m_hThread = 0;
-  }
-}
+         return exitCode;
+      }
+
+      HANDLE Process::getProcessHandle()
+      {
+         return m_hProcess;
+      }
+
+      ::string Process::getCommandLineString()
+      {
+         ::string result;
+
+         if (m_args.is_empty()) {
+            return m_path;
+         }
+
+         result.formatf("{} {}", m_path, m_args);
+
+         return result;
+      }
+
+      void Process::cleanup()
+      {
+         if (m_hProcess) {
+            CloseHandle(m_hProcess);
+            m_hProcess = 0;
+         }
+         if (m_hThread) {
+            CloseHandle(m_hThread);
+            m_hThread = 0;
+         }
+      }
+
+   }//namespace subsystem
+} // namespace windows

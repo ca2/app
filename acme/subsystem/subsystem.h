@@ -42,6 +42,12 @@ namespace subsystem
       virtual ::subsystem::Registry* registry();
       virtual ::subsystem::Shell* shell();
 
+      /**
+       * Creates SID from sid string.
+       * @return created SID.
+       * @throws SystemException on fail.
+       */
+      virtual ::pointer < ::subsystem::SecurityIdentifier > createSidFromString(const ::scoped_string & scopedstr);
 
    };
 
@@ -53,6 +59,13 @@ namespace subsystem
 
 inline ::subsystem::subsystem * main_subsystem()
 {
+
+   if (!::subsystem::subsystem::s_p)
+   {
+
+      system()->subsystem();
+
+   }
 
    return ::subsystem::subsystem::s_p;
 

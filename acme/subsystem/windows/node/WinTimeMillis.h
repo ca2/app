@@ -25,27 +25,31 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
+#include "acme/_operating_system.h"
 
-class CLASS_DECL_REMOTING_COMMON WinTimeMillis
+namespace windows
 {
-public:
-  WinTimeMillis(void);
-  virtual ~WinTimeMillis(void);
+   class CLASS_DECL_ACME WinTimeMillis
+   {
+   public:
+      WinTimeMillis(void);
+      virtual ~WinTimeMillis(void);
 
-  // Set this object to current time, returns true on sucess.
-  bool update() { return setToCurrentTime(); }
+      // Set this object to current time, returns true on sucess.
+      bool update() { return setToCurrentTime(); }
 
-  // Return difference in milliseconds between two time points.
-  int diffFrom(const WinTimeMillis *older) const;
+      // Return difference in milliseconds between two time points.
+      int diffFrom(const WinTimeMillis *older) const;
 
-protected:
-  bool setToCurrentTime() { GetLocalTime(&m_time); 
-                            return true;}
+   protected:
+      bool setToCurrentTime() { GetLocalTime(&m_time);
+         return true;}
 
-  const SYSTEMTIME *getTime() const { return &m_time; }
+      const SYSTEMTIME *getTime() const { return &m_time; }
 
-  SYSTEMTIME m_time;
-};
+      SYSTEMTIME m_time;
+   };
 
-//// __WINTIMEMILLIS_H__
+   //// __WINTIMEMILLIS_H__
+} // namespace windows
+

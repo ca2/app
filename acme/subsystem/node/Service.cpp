@@ -77,7 +77,7 @@ namespace subsystem
 
    bool Service::reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode, unsigned int dwWaitHint)
    {
-      m_pparticleThis->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);
+      return m_pparticleThis->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);
       // }
       //   if (dwCurrentState == SERVICE_START_PENDING) {
       //     m_status.dwControlsAccepted = 0;

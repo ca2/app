@@ -22,19 +22,22 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _PROGRESS_BAR_H_
-#define _PROGRESS_BAR_H_
+#pragma once
+//#define _PROGRESS_BAR_H_
 
 #include "Control.h"
 
-class ProgressBar : public Control
+namespace innate_subsystem
 {
-public:
-  ProgressBar();
-  ~ProgressBar();
-  
-  void setRange(WORD min, WORD max);
-  void setPos(WORD pos);
-};
+    class ProgressBar : public Control
+    {
+    public:
+        ProgressBar();
+        ~ProgressBar();
 
-#endif
+        void setRange(unsigned short min, unsigned short max);
+        void setPos(unsigned short pos);
+    };
+} // namespace innate_subsystem
+
+//#endif

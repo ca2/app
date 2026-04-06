@@ -23,30 +23,33 @@
 //
 
 #include "acme/subsystem/_common_header.h"
-#include "remoting/remoting_common/win_system/HookEventListener.h"
+#include "acme/subsystem/windows/node/HookEventListener.h"
 
-// Class for intercepting keyboard on low level.
-class CLASS_DECL_REMOTING_COMMON WinHooks
+namespace windows
 {
-public:
-  WinHooks();
-  ~WinHooks();
-  
-  // Hook procedure.
-  static LRESULT CALLBACK lowLevelKeyboardHook(int nCode,
-                                               WPARAM wParam,
-                                               LPARAM lParam);
-  
-  // Registration of keyboard hook.
-  static void registerKeyboardHook(HookEventListener *hookEventListener);
+   // Class for intercepting keyboard on low level.
+   class CLASS_DECL_ACME WinHooks
+   {
+   public:
+      WinHooks();
+      ~WinHooks();
 
-  // Unregistration of keyboard hook.
-  static void unregisterKeyboardHook(HookEventListener *hookEventListener);
+      // Hook procedure.
+      static LRESULT CALLBACK lowLevelKeyboardHook(int nCode,
+                                                   WPARAM wParam,
+                                                   LPARAM lParam);
 
-private:
-  // Hook object.
-  static HHOOK s_hooks;
+      // Registration of keyboard hook.
+      static void registerKeyboardHook(HookEventListener *hookEventListener);
 
-  // Handler to the processing hooks function.
-  static HookEventListener *s_eventListener;
-};
+      // Unregistration of keyboard hook.
+      static void unregisterKeyboardHook(HookEventListener *hookEventListener);
+
+   private:
+      // Hook object.
+      static HHOOK s_hooks;
+
+      // Handler to the processing hooks function.
+      static HookEventListener *s_eventListener;
+   };
+} // namespace windows

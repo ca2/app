@@ -30,6 +30,7 @@
 #include "acme/subsystem/io/Channel.h"
 ////#include "remoting/remoting_common/thread/LocalMutex.h"
 #include "acme/subsystem/node/NamedPipe.h"
+#include "acme/subsystem/windows/node/Pipe.h"
 
 
 namespace windows
@@ -41,26 +42,51 @@ namespace windows
        *
        * @author yuri, enikey.
        */
-      class CLASS_DECL_REMOTING_COMMON NamedPipe :
-         virtual public ::subsystem::composite<NamedPipeInterface>
-         virtual public ::subsystem::Channel
+      class CLASS_DECL_ACME NamedPipe :
+         virtual public ::subsystem::implementation<::subsystem::NamedPipeInterface>,
+         virtual public Pipe
+
       {
       public:
          /**
           * Creates pipe transport.
           */
-         NamedPipe(HANDLE hPipe, unsigned int maxPortionSize, bool asServer);
+         NamedPipe();
          /**
           * Destroys instance.
           */
-         virtual ~NamedPipe();
+         ~NamedPipe() override;
+
+         void initialize_pipe(unsigned int maxPortionSize) override;
+
+         void initialize_named_pipe(::subsystem::FileInterface* pfilePipe, unsigned int maxPortionSize, bool asServer) override;
+
+         bool is_subsystem_implementation(void) const override
+         {
+
+            return ::subsystem::implementation<::subsystem::NamedPipeInterface>::is_subsystem_implementation();
+
+         }
+         bool is_subsystem_composite(void) const override
+         {
+
+            return ::subsystem::implementation<::subsystem::NamedPipeInterface>::is_subsystem_composite();
+
+         }
+
+         unsigned int getMaxPortionSize() override
+         {
+
+            return Pipe::getMaxPortionSize();
+
+         }
 
          /**
           * Closes transport.
           *
           * @throws ::remoting::Exception on fail.
           */
-         void close();
+         void close() override;
 
          /**
           * Reads data from pipe.
@@ -69,7 +95,7 @@ namespace windows
           * @param len count of bytes to read.
           * @throws ::io_exception on io error.
           */
-         virtual size_t read(void *buffer, size_t len);
+         size_t read(void *buffer, size_t len) override;
 
          /**
           * Writes data to pipe.
@@ -78,17 +104,17 @@ namespace windows
           * @param len count of bytes to write.
           * @throws ::io_exception on io error.
           */
-         virtual memsize defer_write(const void *buffer, memsize len);
+         memsize defer_write(const void *buffer, memsize len) override;
 
-         virtual size_t available() { return 0; };
+         size_t available() override;
 
-         virtual HANDLE getHandle() const;
+         virtual ::subsystem::FileInterface * getFile() const override;
 
-      private:
-         void checkPipeHandle();
+      //private:
+         void checkPipeFile() override;
 
-         HANDLE m_hPipe;
-         LocalMutex m_hPipeMutex;
+         ::pointer < ::subsystem::FileInterface > m_pfilePipe;
+         critical_section m_criticalsectionPipe;
          ::string m_pipeName;
 
          WindowsEvent m_readEvent;

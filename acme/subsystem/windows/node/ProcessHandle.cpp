@@ -26,43 +26,57 @@
 #include "ProcessHandle.h"
 #include "acme/subsystem/node/SystemException.h"
 
-ProcessHandle::ProcessHandle()
-: m_hProcess(0)
+namespace windows
 {
-}
+   namespace subsystem
+   {
+      ProcessHandle::ProcessHandle()
+      : m_hProcess(0)
+      {
+      }
 
-ProcessHandle::~ProcessHandle()
-{
-  if (m_hProcess != 0) {
-    CloseHandle(m_hProcess);
-  }
-}
+      ProcessHandle::ProcessHandle(HANDLE handle, bool bOwn)
+      : m_hProcess(0), m_bOwned(bOwn)
+      {
 
-void ProcessHandle::openProcess(DWORD dwDesiredAccess,
-                                BOOL bInheritHandle,
-                                DWORD dwProcessId)
-{
-  m_hProcess = OpenProcess(dwDesiredAccess, bInheritHandle, dwProcessId);
-  if (m_hProcess == 0) {
-    ::string errMess;
-    errMess.formatf("Can't open the {} process", dwProcessId);
-    throw SystemException(errMess);
-  }
-}
 
-HANDLE ProcessHandle::getHandle() const
-{
-  return m_hProcess;
-}
+      }
 
-::string ProcessHandle::getProcessModulePath()
-{
-  // FIXME: Test under Windows7
-  TCHAR path[MAX_PATH];
-  DWORD result = GetModuleFileNameEx(m_hProcess, 0, path,
-                                     sizeof(path) / sizeof(TCHAR));
-  if (result == 0) {
-    throw SystemException("Can't get process module path");
-  }
-  return path;
-}
+      ProcessHandle::~ProcessHandle()
+      {
+         if (m_hProcess != 0 && m_bOwned) {
+            CloseHandle(m_hProcess);
+         }
+      }
+
+      void ProcessHandle::openProcess(unsigned int dwDesiredAccess,
+                          bool bInheritHandle,
+                          ::process_identifier processidentifier)
+      {
+         m_hProcess = OpenProcess(dwDesiredAccess, bInheritHandle, processidentifier);
+         if (m_hProcess == 0) {
+            ::string errMess;
+            errMess.formatf("Can't open the {} process", processidentifier);
+            throw ::subsystem::SystemException(errMess);
+         }
+         m_bOwned = true;
+      }
+      //
+      // ::subsystem::ProcessHandle * ProcessHandle::getHandle() const
+      // {
+      //    return m_pprocessHandle;
+      // }
+
+      ::string ProcessHandle::getProcessModulePath()
+      {
+         // FIXME: Test under Windows7
+         TCHAR path[MAX_PATH];
+         DWORD result = GetModuleFileNameEx(m_hProcess, 0, path,
+                                            sizeof(path) / sizeof(TCHAR));
+         if (result == 0) {
+            throw ::subsystem::SystemException("Can't get process module path");
+         }
+         return path;
+      }
+   } // namespace subsystem
+}// namespace windows

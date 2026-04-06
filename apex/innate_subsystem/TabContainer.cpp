@@ -21,5 +21,14 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "TabContainer.h"
+
+
+namespace innate_subsystem
+{
+
+
+
+} // namespace innate_subsystem
+

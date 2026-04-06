@@ -25,22 +25,22 @@
 #include "acme/_operating_system.h"
 #include "AutoImpersonator.h"
 
-AutoImpersonator::AutoImpersonator(Impersonator *imp, LogWriter *log)
-: m_imp(imp),
-  m_log(log)
-{
-  try {
-    m_imp->impersonateAsLoggedUser();
-  } catch (::exception &e) {
-    m_log->error(e.get_message());
-  }
-}
-
-AutoImpersonator::~AutoImpersonator()
-{
-  try {
-    m_imp->revertToSelf();
-  } catch (::exception &e) {
-    m_log->error(e.get_message());
-  }
-}
+// AutoImpersonator::AutoImpersonator(Impersonator *imp, LogWriter *log)
+// : m_imp(imp),
+//   m_log(log)
+// {
+//   try {
+//     m_imp->impersonateAsLoggedUser();
+//   } catch (::exception &e) {
+//     m_log->error(e.get_message());
+//   }
+// }
+//
+// AutoImpersonator::~AutoImpersonator()
+// {
+//   try {
+//     m_imp->revertToSelf();
+//   } catch (::exception &e) {
+//     m_log->error(e.get_message());
+//   }
+// }

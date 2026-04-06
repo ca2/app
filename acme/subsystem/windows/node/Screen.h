@@ -25,69 +25,75 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
-#include "remoting/remoting_common/rfb/PixelFormat.h"
+#include "acme/subsystem/node/Screen.h"
+#include "acme/subsystem/framebuffer/PixelFormat.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 
 
-// This class get info for a windows desktop.
-class CLASS_DECL_REMOTING_COMMON Screen
+namespace windows
 {
-public:
-  Screen();
-  ~Screen();
+   namespace subsystem
+   {
+      // This class get info for a windows desktop.
+      class CLASS_DECL_ACME Screen
+      {
+      public:
+         Screen();
+         ~Screen();
 
-  void update();
+         void update();
 
-  // Returns a PixelFormat that was at latest call of the
-  // update() function.
-  PixelFormat getPixelFormat();
+         // Returns a PixelFormat that was at latest call of the
+         // update() function.
+         ::subsystem::PixelFormat getPixelFormat();
 
-  // Returns a desktop dimension that was at latest call of the
-  // update() function.
-  // Desktop dimension is a dimension of windows virtual desktop including
-  // all monitors.
-  ::int_size getDesktopDimension();
+         // Returns a desktop dimension that was at latest call of the
+         // update() function.
+         // Desktop dimension is a dimension of windows virtual desktop including
+         // all monitors.
+         ::int_size getDesktopDimension();
 
-  // Returns a rectangle that was at latest call of the
-  // update() function.
-  // The rectangle is a rectangle of windows virtual desktop including
-  // all monitors (coordinates can be negative).
-  ::int_rectangle getDesktopRect();
+         // Returns a rectangle that was at latest call of the
+         // update() function.
+         // The rectangle is a rectangle of windows virtual desktop including
+         // all monitors (coordinates can be negative).
+         ::int_rectangle getDesktopRect();
 
-  // This structure can be used by user code.
-  struct BMI
-  {
-    BITMAPINFOHEADER bmiHeader;
-    unsigned int red;
-    unsigned int green;
-    unsigned int blue;
-  };
+         // This structure can be used by user code.
+         struct BMI
+         {
+            BITMAPINFOHEADER bmiHeader;
+            unsigned int red;
+            unsigned int green;
+            unsigned int blue;
+         };
 
-  struct Palette8bitBMI
-  {
-    BITMAPINFOHEADER bmiHeader;
-    RGBQUAD rgbQuad[256];
-  };
+         struct Palette8bitBMI
+         {
+            BITMAPINFOHEADER bmiHeader;
+            RGBQUAD rgbQuad[256];
+         };
 
-  // Fills the BMI structure. If dc == 0 the getBMI() function will
-  // use a current desktop dc.
-  void getBMI(BMI *bmi, HDC dc);
+         // Fills the BMI structure. If dc == 0 the getBMI() function will
+         // use a current desktop dc.
+         void getBMI(BMI *bmi, HDC dc);
 
-  // Windows contain both visible and invisible pseudo-monitors
-  // that are associated with mirroring drivers.
-  // The function returns only visible monitor count.
-  size_t getVisibleMonitorCount();
+         // Windows contain both visible and invisible pseudo-monitors
+         // that are associated with mirroring drivers.
+         // The function returns only visible monitor count.
+         size_t getVisibleMonitorCount();
 
-private:
-  void fillPixelFormat(const BMI *bmi);
-  // Find position of first true bit
-  static inline int findFirstBit(const unsigned int bits);
+      private:
+         void fillPixelFormat(const BMI *bmi);
+         // Find position of first true bit
+         static inline int findFirstBit(const unsigned int bits);
 
-  void fillScreenRect();
+         void fillScreenRect();
 
-  PixelFormat m_pixelFormat;
-  ::int_rectangle m_virtDesktopRect;
-};
+         ::subsystem::PixelFormat m_pixelFormat;
+         ::int_rectangle m_virtDesktopRect;
+      };
 
-//// __SCREEN_H__
+      //// __SCREEN_H__
+   } // namespace  subsystem
+}// namespace windows

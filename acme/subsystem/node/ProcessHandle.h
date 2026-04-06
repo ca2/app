@@ -43,6 +43,8 @@
                           bool bInheritHandle,
                           ::process_identifier processidentifier) = 0;
 
+
+         virtual ::pointer < ::subsystem::SecurityIdentifier >getProcessOwner() =0;
          // Returns the handle of the openned process by openProcess() function.
          // If openProcess() function has not been called before then getHandle()
          // will return zero.
@@ -51,6 +53,8 @@
          // Returns process module path. Call the openProcess() function before.
          // @throws ::remoting::Exception on an error.
          virtual ::string getProcessModulePath() = 0;
+
+
 
          //private:
          //HANDLE m_hProcess;
@@ -76,6 +80,16 @@
          // If openProcess() function has not been called before then getHandle()
          // will return zero.
 //         HANDLE getHandle() const;
+
+         /**
+   * Returns SID of process owner.
+   * @param processHandle handle of process.
+   * @return SID of owner of specified process.
+   * @throws SystemException if operation failed.
+   * @fixme stub (returns invalid SID).
+   */
+         ::pointer < ::subsystem::SecurityIdentifier > getProcessOwner() override;
+
 
          // Returns process module path. Call the openProcess() function before.
          // @throws ::remoting::Exception on an error.

@@ -27,7 +27,10 @@
 
 #include "acme/subsystem/_common_header.h"
 
-class CLASS_DECL_REMOTING_COMMON SharedMemory
+namespace windows
+{
+
+class CLASS_DECL_ACME SharedMemory
 {
 public:
   // @throw ::remoting::Exception
@@ -36,7 +39,7 @@ public:
 
   void *getMemPointer() { return m_memory; }
 
-protected:
+//protected:
   // Return true if need to init
   bool createFile(const ::scoped_string & scopedstrName, size_t size);
   void mapViewOfFile();
@@ -49,3 +52,5 @@ protected:
 };
 
 //// __SHAREDMEMORY_H__
+///
+} // namespace windows

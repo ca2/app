@@ -44,17 +44,17 @@ namespace subsystem
    }
 
 
-   ::int_rectangle SystemInformation::getDesktopAllArea()
+   void SystemInformation::getDesktopAllArea(int_rectangle & rectangle)
    {
 //      GetClientRect(GetDesktopWindow(), rc);
-      return m_pparticleThis->getDesktopAllArea();
+      m_pparticleThis->getDesktopAllArea(rectangle);
    }
 
-   ::int_rectangle SystemInformation::getDesktopArea()
+   bool SystemInformation::getDesktopArea(int_rectangle & rectangle)
    {
   //    return !!SystemParametersInfo(SPI_GETWORKAREA, 0, rc, 0);
 
-      return m_pparticleThis->getDesktopArea();
+      return m_pparticleThis->getDesktopArea(rectangle);
    }
 
    // bool SystemInformation::isSupportStretchBlt(HDC hdc)

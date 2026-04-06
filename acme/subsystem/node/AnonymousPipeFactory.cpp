@@ -49,9 +49,9 @@ namespace subsystem
       m_pparticleThis->initialize_anonymous_pipe_factory(bufferSize, log);
    }
 
-   void AnonymousPipeFactory::generatePipes(AnonymousPipe **firstSide,
+   void AnonymousPipeFactory::generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
                                             bool firstSideIsInheritable,
-                                            AnonymousPipe **secondSide,
+                                            ::pointer < AnonymousPipeInterface > &secondSide,
                                             bool secondSideIsInheritable)
    {
 

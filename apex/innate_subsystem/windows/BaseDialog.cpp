@@ -21,13 +21,17 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "BaseDialog.h"
 
 #include "util/CommonHeader.h"
 
 #include <commctrl.h>
 #include <crtdbg.h>
+
+
+namespace innate_subsystem
+{
 
 BaseDialog::BaseDialog()
 : m_ctrlParent(NULL), m_resourceName(0), m_resourceId(0), m_hicon(0)
@@ -267,3 +271,13 @@ BOOL BaseDialog::onClose()
 {
   return FALSE;
 }
+
+
+bool BaseDialog::dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam)
+{
+
+   return false;
+
+}
+
+} // namespace innate_subsystem

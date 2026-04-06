@@ -25,66 +25,96 @@
 #include "acme/_operating_system.h"
 #include "NamedPipe.h"
 #include "acme/subsystem/Exception.h"
+#include "acme/subsystem/windows/node/File.h"
 #include <crtdbg.h>
 //#include "remoting/remoting_common/win_system/Environment.h"
 //#include "remoting/remoting_common/thread/AutoLock.h"
 
 #define MAX_PORTION_SIZE 512 * 1024
 
-NamedPipe::NamedPipe(HANDLE hPipe, unsigned int maxPortionSize, bool asServer)
-: Pipe(maxPortionSize),
-  m_hPipe(hPipe),
-  m_asServer(asServer)
+namespace windows
 {
-}
+   namespace subsystem
+   {
+//      NamedPipe::NamedPipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer):
+  //      m_asServer(false)
 
-NamedPipe::~NamedPipe(void)
-{
-  try {
-    close();
-  } catch (...) {
-  }
-}
+      NamedPipe::NamedPipe():
+            m_asServer(false)
+      {
+      }
 
-void NamedPipe::close()
-{
-  AutoLock al(&m_hPipeMutex);
-  if (m_asServer) {
-    if (DisconnectNamedPipe(m_hPipe) == 0) {
-      DWORD errCode = GetLastError();
-      ::string errMess;
-      errMess.formatf("DisconnectNamedPipe failed, error code = %u", errCode);
-      throw ::remoting::Exception(errMess);
-    }
-  }
+      NamedPipe::~NamedPipe(void)
+      {
+         try {
+            close();
+         } catch (...) {
+         }
+      }
 
-  if (m_hPipe != INVALID_HANDLE_VALUE) {
-    CloseHandle(m_hPipe);
-    m_hPipe = INVALID_HANDLE_VALUE;
-  }
-  // Unblock a blocked operation
-  m_readEvent.notify();
-  m_writeEvent.notify();
-}
+      void NamedPipe::initialize_pipe(unsigned int maxPortionSize)
+      {
 
-memsize NamedPipe::defer_write(const void *buffer, memsize len)
-{
-   return writeByHandle(buffer, len, m_hPipe);
-}
+         ::windows::subsystem::Pipe::initialize_pipe(maxPortionSize);
 
-size_t NamedPipe::read(void *buffer, size_t len)
-{
-  return readByHandle(buffer, len, m_hPipe);
-}
+      }
 
-HANDLE NamedPipe::getHandle() const
-{
-  return m_hPipe;
-}
+      void NamedPipe::initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer)
+      {
+         initialize_pipe(maxPortionSize);
+       m_pfilePipe = pfilePipe;
+       m_asServer = asServer;
+      }
 
-void NamedPipe::checkPipeHandle()
-{
-  if (m_hPipe == INVALID_HANDLE_VALUE) {
-    throw ::io_exception(error_io, "Invalid pipe handle");
-  }
-}
+      void NamedPipe::close()
+      {
+         critical_section_lock al(&m_criticalsectionPipe);
+         if (m_asServer) {
+            if (DisconnectNamedPipe(::as_HANDLE(m_pfilePipe)) == 0) {
+               DWORD errCode = GetLastError();
+               ::string errMess;
+               errMess.formatf("DisconnectNamedPipe failed, error code = %u", errCode);
+               throw ::subsystem::Exception(errMess);
+            }
+         }
+
+         if (::as_HANDLE(m_pfilePipe) != INVALID_HANDLE_VALUE) {
+            CloseHandle(::as_HANDLE(m_pfilePipe));
+            m_pfilePipe = nullptr;
+         }
+         // Unblock a blocked operation
+         m_readEvent.notify();
+         m_writeEvent.notify();
+      }
+
+      memsize NamedPipe::defer_write(const void *buffer, memsize len)
+      {
+         return writeByFile(buffer, len, m_pfilePipe);
+      }
+
+      size_t NamedPipe::read(void *buffer, size_t len)
+      {
+         return readByFile(buffer, len, m_pfilePipe);
+      }
+
+
+      size_t NamedPipe::available()
+      {
+         return 0;
+      }
+
+
+
+      ::subsystem::FileInterface * NamedPipe::getFile() const
+      {
+         return m_pfilePipe;
+      }
+
+      void NamedPipe::checkPipeFile()
+      {
+         if (::is_null(m_pfilePipe) || ::as_HANDLE(m_pfilePipe) == INVALID_HANDLE_VALUE) {
+            throw ::io_exception(error_io, "Invalid pipe handle");
+         }
+      }
+   } // namespace  subsystem
+} // namespace windows

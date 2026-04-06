@@ -25,38 +25,46 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/node/DynamicLibrary.h"
 
-#include "acme/subsystem/Exception.h"
+//#include "acme/subsystem/Exception.h"
 
-/**
-Dynamic library class.
-*/
-class CLASS_DECL_REMOTING_COMMON DynamicLibrary
+namespace windows
 {
-public:
-  /**
-  Load dynamic library with specified filename.
-  @param filename path to library file.
-  @throws ::remoting::Exception on error.
-  */
-  DynamicLibrary(const ::scoped_string & scopedstrFilename);
-  DynamicLibrary();
-  virtual ~DynamicLibrary();
-
-  // Use the init() function after default constructor calling to load
-  // a library before the getProcAddress() function calling.
-  void init(const ::scoped_string & scopedstrFilename);
-
-  /**
-  Gets procedure address.
-  @param procName procedure name.
-  @return address of procedure or 0 if failed.
-  */
-  FARPROC getProcAddress(const char *procName);
-
-protected:
-  HMODULE m_module;
-};
+   namespace subsystem
+   {
+      /**
+      Dynamic library class.
+      */
+      class CLASS_DECL_ACME DynamicLibrary :
+      virtual public ::subsystem::implementation<::subsystem::DynamicLibraryInterface>
+      {
+      public:
+         /**
+         Load dynamic library with specified filename.
+         @param filename path to library file.
+         @throws ::remoting::Exception on error.
+         */
+         DynamicLibrary(const ::scoped_string & scopedstrFilename);
+         DynamicLibrary();
+         ~DynamicLibrary() override;
 
 
+         void initialize_dynamic_library(const scoped_string& scopedstrFilename) override;
+
+         // Use the init() function after default constructor calling to load
+         // a library before the getProcAddress() function calling.
+         void init(const ::scoped_string & scopedstrFilename) override;
+
+         /**
+         Gets procedure address.
+         @param procName procedure name.
+         @return address of procedure or 0 if failed.
+         */
+         void * getProcAddress(const char *procName) override;
+
+      //protected:
+         HMODULE m_module;
+      };
+   } // namespace subsystem
+} // namespace windows

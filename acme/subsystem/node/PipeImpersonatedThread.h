@@ -39,7 +39,7 @@ namespace subsystem
       virtual ~PipeImpersonatedThreadInterface() = 0;
 
 
-      //void initialize_pipe_impersonated_thread(HANDLE pipeHandle);
+      virtual void initialize_pipe_impersonated_thread(FileInterface * pfilePipe) = 0;
 
       virtual void waitUntilImpersonated() = 0;
       virtual bool getImpersonationSuccess() = 0;
@@ -60,9 +60,11 @@ namespace subsystem
    virtual public ::subsystem::composite < PipeImpersonatedThreadInterface>
    {
    public:
-      //PipeImpersonatedThread(HANDLE pipeHandle);
+      PipeImpersonatedThread(FileInterface * pfilePipe);
       PipeImpersonatedThread();
        ~PipeImpersonatedThread() override;
+
+      void initialize_pipe_impersonated_thread(FileInterface * pfilePipe) override;
 
       void waitUntilImpersonated() override;
       bool getImpersonationSuccess() override;

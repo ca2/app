@@ -21,92 +21,126 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "SecurityIdentifier.h"
-
+#include "../ProcessHandle.h"
+#include "acme/subsystem/node/SystemException.h"
+#include "acme/subsystem/windows/subsystem.h"
 #include <Sddl.h>
 #include <crtdbg.h>
 #include <winnt.h>
 
-SecurityIdentifier::SecurityIdentifier(SID *sid)
+
+namespace windows
 {
-  m_sid = (SID *)LocalAlloc(LPTR, SECURITY_MAX_SID_SIZE);
-
-  memset(m_sid, 0, SECURITY_MAX_SID_SIZE);
-
-  if (!CopySid(SECURITY_MAX_SID_SIZE, m_sid, sid)) {
-    throw SystemException();
-  }
-}
-
-SecurityIdentifier::SecurityIdentifier(const TCHAR *sidString)
-: m_sid(0)
-{
-  getSidByString(sidString, (PSID *)&m_sid);
-}
-
-SecurityIdentifier::~SecurityIdentifier()
-{
-  LocalFree(m_sid);
-}
-
-bool SecurityIdentifier::isValid()
-{
-  return IsValidSid(m_sid) == TRUE;
-}
-
-void SecurityIdentifier::toString(StringStorage *sidString)
-{
-  TCHAR *localAllocatedSidString;
-
-  if (ConvertSidToStringSid(m_sid, &localAllocatedSidString) == FALSE) {
-    throw SystemException();
-  }
-
-  sidString->setString(localAllocatedSidString);
-
-  LocalFree(localAllocatedSidString);
-}
-
-// FIXME: refactor this method.
-SecurityIdentifier *SecurityIdentifier::getProcessOwner(HANDLE processHandle)
-{
-  HANDLE procToken;
-
-  if (OpenProcessToken(processHandle, TOKEN_QUERY, &procToken)) {
-    try {
-      char buffer[1024];
-      DWORD retLen = 0;
-      if (!GetTokenInformation(procToken, TokenUser, &buffer, sizeof(buffer), &retLen)) {
-        throw SystemException();
+   namespace subsystem
+   {
+      SecurityIdentifier::SecurityIdentifier(SID *sid)
+      {
+         initialize_security_identifier(sid);
       }
-      CloseHandle(procToken);
-      return new SecurityIdentifier((SID *)((TOKEN_USER *)buffer)->User.Sid);
-    } catch (...) {
-      CloseHandle(procToken);
-      throw;
-    }
-    CloseHandle(procToken);
-  } else {
-    throw SystemException();
-  }
-}
 
-SecurityIdentifier *SecurityIdentifier::createSidFromString(const TCHAR *sidString)
-{
-  return new SecurityIdentifier(sidString);
-}
+      SecurityIdentifier::SecurityIdentifier(const ::scoped_string & scopedstr)
+      : m_sid(0)
+      {
+         initialize_security_identifier(scopedstr);
+      }
 
-SID *SecurityIdentifier::getSid() const
-{
-  return m_sid;
-}
+      SecurityIdentifier::~SecurityIdentifier()
+      {
+         LocalFree(m_sid);
+      }
 
-void SecurityIdentifier::getSidByString(const TCHAR *sidString, PSID *sid)
-{
-  if (ConvertStringSidToSid(sidString, sid) == FALSE) {
-    throw SystemException();
-  }
+      void SecurityIdentifier::initialize_security_identifier(SID * sid)
+      {
+         m_sid = (SID *)LocalAlloc(LPTR, SECURITY_MAX_SID_SIZE);
 
-  _ASSERT(IsValidSid(*sid));
-}
+         memset(m_sid, 0, SECURITY_MAX_SID_SIZE);
+
+         if (!CopySid(SECURITY_MAX_SID_SIZE, m_sid, sid)) {
+            throw ::subsystem::SystemException();
+         }
+
+      }
+
+      void SecurityIdentifier::initialize_security_identifier(const ::scoped_string & scopedstr)
+      {
+         getSidByString(scopedstr, (PSID *)&m_sid);
+      }
+
+      bool SecurityIdentifier::isValid()
+      {
+         return IsValidSid(m_sid) == TRUE;
+      }
+
+      void SecurityIdentifier::toString(::string &sidString)
+      {
+         TCHAR *localAllocatedSidString;
+
+         if (ConvertSidToStringSid(m_sid, &localAllocatedSidString) == FALSE) {
+            throw ::subsystem::SystemException();
+         }
+
+         sidString = localAllocatedSidString;
+
+         LocalFree(localAllocatedSidString);
+      }
+
+      // FIXME: refactor this method.
+      ::pointer < ::subsystem::SecurityIdentifier>ProcessHandle::getProcessOwner()
+      {
+
+         HANDLE processHandle = this->m_hProcess;
+         HANDLE procToken;
+
+         if (OpenProcessToken(processHandle, TOKEN_QUERY, &procToken)) {
+            try {
+               char buffer[1024];
+               DWORD retLen = 0;
+               if (!GetTokenInformation(procToken, TokenUser, &buffer, sizeof(buffer), &retLen)) {
+                  throw ::subsystem::SystemException();
+               }
+               CloseHandle(procToken);
+               auto psecurityidentifier = create_newø< SecurityIdentifier>();
+
+               psecurityidentifier->initialize_security_identifier((SID *)((TOKEN_USER *)buffer)->User.Sid);
+
+               //psecurityidentifier->initialize(this);
+
+               return psecurityidentifier;
+            } catch (...) {
+               CloseHandle(procToken);
+               throw;
+            }
+            CloseHandle(procToken);
+         } else {
+            throw ::subsystem::SystemException();
+         }
+      }
+
+      ::pointer < ::subsystem::SecurityIdentifier> subsystem::createSidFromString(const ::scoped_string & scopedstr)
+      {
+         auto psecurityidentifier = create_newø <SecurityIdentifier>();
+
+         psecurityidentifier->initialize_security_identifier(scopedstr);
+
+         return psecurityidentifier;
+
+      }
+
+      SID *SecurityIdentifier::getSid() const
+      {
+         return m_sid;
+      }
+
+      void SecurityIdentifier::getSidByString(const ::scoped_string & scopedstrSid, PSID *sid)
+      {
+         ::wstring wstrSid(scopedstrSid);
+         if (ConvertStringSidToSid(wstrSid, sid) == FALSE) {
+            throw ::subsystem::SystemException();
+         }
+
+         _ASSERT(IsValidSid(*sid));
+      }
+   } // namespace subsystem
+} // namespace windows

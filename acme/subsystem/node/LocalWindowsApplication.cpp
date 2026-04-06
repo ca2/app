@@ -22,33 +22,42 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "rfb/PixelFormat.h"
+//#include "acme/_operating_system.h"
+#include "LocalWindowsApplication.h"
 
-#include <string.h>
+//#include "remoting/remoting_common/util/winhdr.h"
+#include "acme/_operating_system.h"
 
-PixelFormat::PixelFormat()
+//#include "remoting/remoting_common/thread/DesktopSelector.h"
+
+namespace subsystem
 {
-  memset(this, 0, sizeof(PixelFormat));
-}
+   LocalOperatingSystemApplication::LocalWindowsApplication(HINSTANCE hInstance,
+                                                    const ::scoped_string & scopedstrwindowClassName)
+    : WindowsApplication(hInstance, scopedstrwindowClassName)
+   {
+      HWINSTA winSta = 0;
 
-void PixelFormat::initBigEndianByNative()
-{
-  union {
-    char test;
-    int i;
-  } testBigEndian;
-  testBigEndian.i = 1;
-  bigEndian = (testBigEndian.test == 0);
-}
+      winSta = OpenWindowStation(L"WinSta0", TRUE, GENERIC_ALL);
 
-bool PixelFormat::operator ==(const PixelFormat & pf) const {
-  return bitsPerPixel == pf.bitsPerPixel &&
-         colorDepth   == pf.colorDepth &&
-         redMax       == pf.redMax &&
-         greenMax     == pf.greenMax &&
-         blueMax      == pf.blueMax &&
-         redShift     == pf.redShift &&
-         greenShift   == pf.greenShift &&
-         blueShift    == pf.blueShift &&
-         bigEndian    == pf.bigEndian;
-}
+      if (winSta== 0) {
+         throw SystemException();
+      }
+
+      if (SetProcessWindowStation(winSta) == 0) {
+         CloseWindowStation(winSta);
+         throw SystemException();
+      }
+
+      CloseWindowStation(winSta);
+
+      // FIXME: why we don't check returning values?
+      DesktopSelector::selectDesktop();
+   }
+
+   LocalWindowsApplication::~LocalWindowsApplication()
+   {
+   }
+} // namespace subsystem
+
+

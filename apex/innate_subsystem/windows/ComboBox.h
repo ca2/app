@@ -21,54 +21,68 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#pragma once
+//#ifndef _COMBOBOX_H_
+//#define _COMBOBOX_H_
 
-#ifndef _COMBOBOX_H_
-#define _COMBOBOX_H_
+//#include "acCommonHeader.h"
+#include "apex/innate_subsystem/Control.h"
 
-#include "util/CommonHeader.h"
-#include "Control.h"
 
-class ComboBox : public Control
+namespace innate_subsystem
 {
-public:
-  ComboBox();
-  ~ComboBox();
 
-  // Adds new item to the end of combo box items list.
-  int addItem(const TCHAR *text);
 
-  // Adds new item to the end of combo box items list.
-  int addItem(const TCHAR *text, void *tag);
+    class ComboBox : public Control
+    {
+    public:
 
-  // Inserts new item to the specified position
-  void insertItem(int index, const TCHAR *text);
 
-  // Inserts new item to the specified position
-  void insertItem(int index, const TCHAR *text, void *tag);
+        ComboBox();
+        ~ComboBox();
 
-  // Returns count of combo box items
-  int getItemsCount() const;
+        // Adds new item to the end of combo box items list.
+        virtual int addItem(const char *text);
 
-  // Sets user data (tag) associated with combo box item with specified index
-  void setItemData(int index, void *tag);
+        // Adds new item to the end of combo box items list.
+        virtual int addItem(const char *text, void *tag);
 
-  // Returns user data associated with combo box item with specified index
-  void *getItemData(int index) const;
+        // Inserts new item to the specified position
+        virtual void insertItem(int index, const char *text);
 
-  // Sets text associated with combo box item with specified index
-  virtual void getItemText(int index, StringStorage *storage) const;
+        // Inserts new item to the specified position
+        virtual void insertItem(int index, const char *text, void *tag);
 
-  // Returns current selected item index
-  int getSelectedItemIndex();
+        // Returns count of combo box items
+        virtual int getItemsCount() const;
 
-  // Selects item with specified index
-  void setSelectedItem(int index);
+        // Sets user data (tag) associated with combo box item with specified index
+        virtual void setItemData(int index, void *tag);
 
-  // Deletes item from specified location
-  void deleteItem(int index);
+        // Returns user data associated with combo box item with specified index
+        virtual void *getItemData(int index) const;
 
-  // Removes all combo box items
-  void removeAllItems();
-};
+        // Sets text associated with combo box item with specified index
+        virtual ::string getItemText(int index) const;
 
-#endif
+        // Returns current selected item index
+        virtual int getSelectedItemIndex();
+
+        // Selects item with specified index
+        virtual void setSelectedItem(int index);
+
+        // Deletes item from specified location
+        virtual void deleteItem(int index);
+
+        // Removes all combo box items
+        virtual void removeAllItems();
+
+
+    };
+
+    //#endif
+} // namespace innate_subsystem
+
+
+
+

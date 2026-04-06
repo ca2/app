@@ -52,8 +52,9 @@ namespace subsystem
    }
 
    //ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
-   ServiceControlManagerClient::ServiceControlManagerClient()
+   ServiceControlManagerClient::ServiceControlManagerClient(unsigned int uDesiredAccess)
    {
+      initialize_service_control_manager_client(uDesiredAccess);
       // m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
       //
       // if (m_managerHandle == NULL) {

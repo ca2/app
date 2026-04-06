@@ -22,50 +22,57 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef __TEXTBOX_H_
-#define __TEXTBOX_H_
+#pragma once
+//#define __TEXTBOX_H_
 
-#include "Control.h"
-#include "Tooltip.h"
+#include "apex/innate_subsystem/Control.h"
+#include "apex/innate_subsystem/Tooltip.h"
 
-class TextBox : public Control
+
+namespace innate_subsystem
 {
-public:
-  ~TextBox();
-public:
+    class TextBox : public Control
+    {
+    public:
+        ~TextBox();
+    public:
 
-  //
-  // Text limit
-  //
+        //
+        // Text limit
+        //
 
-  size_t getTextLengthLimit();
-  void setTextLengthLimit(size_t limit);
+        virtual character_count getTextLengthLimit();
+        virtual void setTextLengthLimit(character_count limit);
 
-  //
-  // Methods for multiline textboxes
-  //
+        //
+        // Methods for multiline textboxes
+        //
 
-  int getCurrentLineIndex();
-  int getLineCount();
+        virtual int getCurrentLineIndex();
+        virtual int getLineCount();
 
-  //
-  // Get / set caret position
-  //
+        //
+        // Get / set caret position
+        //
 
-  int getCaretPos();
-  void setCaretPos(int h, int v);
+        virtual int getCaretPos();
+        virtual void setCaretPos(int h, int v);
 
-  //
-  // Text selection
-  //
+        //
+        // Text selection
+        //
 
-  void selectText(size_t startPos, size_t endPos);
+        virtual void selectText(size_t startPos, size_t endPos);
 
-  //
-  // Tooltip methods
-  //
+        //
+        // Tooltip methods
+        //
 
-  void showBalloonTip(Tooltip *tip);
-};
+        virtual void showBalloonTip(Tooltip *tip);
+    };
 
-#endif
+
+} // namespace innate_subsystem
+
+
+

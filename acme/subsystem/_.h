@@ -26,8 +26,6 @@ namespace subsystem
 
    class subsystem;
 
-   class PixelFormat;
-
    class Shell;
 
    using LogWriter = ::particle;
@@ -37,9 +35,24 @@ namespace subsystem
 
    class FileInterface;
 
+   class SecurityIdentifier;
+
+   class SecurityAttributes;
+
+   class SecurityDescriptor;
+
+   class ProcessHandleInterface;
+
+   class PixelFormat;
 
 } // namespace subsystem
 
 
+
 #include "acme/subsystem/io/_.h"
 #include "acme/subsystem/thread/_.h"
+
+
+#ifdef WINDOWS
+#include "windows/_.h"
+#endif

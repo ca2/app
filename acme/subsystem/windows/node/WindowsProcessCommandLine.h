@@ -25,41 +25,44 @@
 #pragma once
 
 
-#include "WinCommandLineArgs.h"
+#include "acme/subsystem/windows/node/WindowsCommandLineArguments.h"
 
-// This class is a primitive command line parser
-class CLASS_DECL_REMOTING_COMMON WinProcessCommandLine
+namespace windows
 {
-public:
-  WinProcessCommandLine();
-  virtual ~WinProcessCommandLine();
+   // This class is a primitive command line parser
+   class CLASS_DECL_ACME WindowsProcessCommandLine
+   {
+   public:
+      WindowsProcessCommandLine();
+      virtual ~WindowsProcessCommandLine();
 
-  // returns the number of arguments in command line
-  // for example, program: help
-  size_t getArgumentsCount();
+      // returns the number of arguments in command line
+      // for example, program: help
+      size_t getArgumentsCount();
 
-  // returns the number of options in command line
-  // for example, -V=123456
-  size_t getOptionsCount();
+      // returns the number of options in command line
+      // for example, -V=123456
+      size_t getOptionsCount();
 
-  // returns the value of parameter by valName
-  bool findOptionValue(const ::string valName, ::string &  strOut);
+      // returns the value of parameter by valName
+      bool findOptionValue(const ::string valName, ::string &  strOut);
 
-  // returns the argument value with index
-  bool getArgument(size_t index, ::string &  strOut);
+      // returns the argument value with index
+      bool getArgument(size_t index, ::string &  strOut);
 
-  // returns the option value with index
-  bool getOption(size_t index, ::string &  strOut);
+      // returns the option value with index
+      bool getOption(size_t index, ::string &  strOut);
 
-//protected:
-  WinCommandLineArgs *m_wcla;
+      //protected:
+      WindowsCommandLineArguments *m_wcla;
 
-  ::string_array m_strParam;
-  ::array_base<::pair<::string, ::string>> m_strParams;
+      ::string_array m_strParam;
+      ::array_base<::pair<::string, ::string>> m_strParams;
 
-//private:
-  void optionParser(::string & out);
+      //private:
+      void optionParser(::string & out);
 
-};
+   };
+} // namespace windows
 
 

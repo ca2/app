@@ -22,63 +22,73 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _SECURITY_DESCRIPTOR_H_
-#define _SECURITY_DESCRIPTOR_H_
+#pragma once
+//#define _SECURITY_DESCRIPTOR_H_
 
-#include "util/winhdr.h"
-#include "win-system/SystemException.h"
+#include "acme/subsystem/node/security/SecurityDescriptor.h"
+
+#include "acme/_operating_system.h"
 #include <AccCtrl.h>
 
-/**
- * Contains the security information associated with an object.
- */
-class SecurityDescriptor {
-public:
-  /**
-   * Creates new security descriptor.
-   * @remark created security descriptor have no system access control list (SACL),
-   * no discretionary access control list (DACL), no owner, no primary group,
-   * and all control flags set to FALSE (NULL). Thus, except for its revision level, it is empty
-   */
-  SecurityDescriptor();
-  virtual ~SecurityDescriptor();
+#include "subsystem/particle.h"
 
-  /**
-   * Sets rules list for security descriptor.
-   * It creates dalc from specified rules and link created dalc with security
-   * descriptor using setUserDacl method.
-   * @param count count of rules in rules array.
-   * @param rules rules array.
-   * @throws SystemException on fail.
-   */
-  void setRulesAsDacl(size_t count,
-                      EXPLICIT_ACCESS *rules) throw(SystemException);
 
-  /**
-   * Sets information in a discretionary access control list (DACL).
-   * Built-in DACL value in acl param cannot be passed.
-   * @param acl access control list.
-   * @throws SystemException on fail.
-   */
-  void setUserDacl(ACL *acl) throw(SystemException);
+namespace windows
+{
+   namespace subsystem
+   {
+      /**
+       * Contains the security information associated with an object.
+       */
+      class SecurityDescriptor :
+      virtual public ::subsystem::implementation<::subsystem::SecurityDescriptorInterface>{
+      public:
+         /**
+          * Creates new security descriptor.
+          * @remark created security descriptor have no system access control list (SACL),
+          * no discretionary access control list (DACL), no owner, no primary group,
+          * and all control flags set to FALSE (NULL). Thus, except for its revision level, it is empty
+          */
+         SecurityDescriptor();
+         ~SecurityDescriptor() override;
 
-  /**
-  Marks the security descriptor as having no owner.
-  */
-  void clearOwner();
+         /**
+          * Sets rules list for security descriptor.
+          * It creates dalc from specified rules and link created dalc with security
+          * descriptor using setUserDacl method.
+          * @param count count of rules in rules array.
+          * @param rules rules array.
+          * @throws SystemException on fail.
+          */
+         void setRulesAsDacl(size_t count,
+                             EXPLICIT_ACCESS *rules);
 
-  /**
-   * Determines whether the components of a security descriptor are valid.
-   */
-  bool isValid();
+         /**
+          * Sets information in a discretionary access control list (DACL).
+          * Built-in DACL value in acl param cannot be passed.
+          * @param acl access control list.
+          * @throws SystemException on fail.
+          */
+         void setUserDacl(ACL *acl);
 
-  /**
-   Returns pointer to WinAPI security descriptor.
-   */
-  SECURITY_DESCRIPTOR *getSD();
+         /**
+         Marks the security descriptor as having no owner.
+         */
+         void clearOwner() override;
 
-private:
-  SECURITY_DESCRIPTOR m_sd;
-};
+         /**
+          * Determines whether the components of a security descriptor are valid.
+          */
+         bool isValid() override;
 
-#endif
+         /**
+          Returns pointer to WinAPI security descriptor.
+          */
+         SECURITY_DESCRIPTOR *getSD();
+
+      //private:
+         SECURITY_DESCRIPTOR m_sd;
+      };
+   }//namespace subsystem
+   //#endif
+} // namespace windows

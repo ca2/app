@@ -1314,6 +1314,10 @@ list(APPEND library_source
         regular_expression/regular_expression.h
         regular_expression/result.cpp
         regular_expression/result.h
+   subsystem/framebuffer/DibSection.cpp
+   subsystem/framebuffer/DibSection.h
+   subsystem/framebuffer/PixelFormat.cpp
+   subsystem/framebuffer/PixelFormat.h
    subsystem/io/_.cpp
    subsystem/io/_.h
    #subsystem/io/_____debug.xcconfig
@@ -1503,8 +1507,6 @@ list(APPEND library_source
    subsystem/CommandLineArguments.h
    #subsystem/CurrentConsoleProcess.cpp
    #subsystem/CurrentConsoleProcess.h
-   subsystem/DibSection.cpp
-   subsystem/DibSection.h
    #subsystem/DynamicLibrary.cpp
    #subsystem/DynamicLibrary.h
    #subsystem/EmulatedAnonymousPipeFactory.cpp
@@ -2651,6 +2653,8 @@ if (${WIN32})
        #subsystem/windows/node/matter.txt
        subsystem/windows/node/NamedPipe.cpp
        subsystem/windows/node/NamedPipe.h
+       subsystem/windows/node/OperatingSystemApplication.cpp
+       subsystem/windows/node/OperatingSystemApplication.h
        subsystem/windows/node/ParentProcess.cpp
        subsystem/windows/node/ParentProcess.h
        subsystem/windows/node/Pipe.cpp
@@ -2696,8 +2700,6 @@ if (${WIN32})
        subsystem/windows/node/VersionInfo.cpp
        subsystem/windows/node/VersionInfo.h
        subsystem/windows/node/win_system.vcproj
-       subsystem/windows/node/WindowsApplication.cpp
-       subsystem/windows/node/WindowsApplication.h
        subsystem/windows/node/WindowsCommandLineArguments.cpp
        subsystem/windows/node/WindowsCommandLineArguments.h
        subsystem/windows/node/WindowsEvent.cpp
@@ -2720,6 +2722,10 @@ if (${WIN32})
        subsystem/windows/node/WsaStartup.h
        subsystem/windows/node/WTS.cpp
        subsystem/windows/node/WTS.h
+       subsystem/windows/_.h
+       subsystem/windows/_factory.cpp
+       subsystem/windows/subsystem.cpp
+       subsystem/windows/subsystem.h
        #subsystem/windows/thread/_____debug.xcconfig
        #subsystem/windows/thread/_____release.xcconfig
        #subsystem/windows/thread/aaa_framework.cpp

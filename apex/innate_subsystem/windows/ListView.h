@@ -22,184 +22,189 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef __LISTVIEW_H_
-#define __LISTVIEW_H_
+#pragma once
 
-#include "util/CommonHeader.h"
-#include <commctrl.h>
-#include "Control.h"
+
+#include "acme/subsystem/_common_header.h"
+//#include <commctrl.h>
+#include "apex/innate_subsystem/Control.h"
 
 //
 // TODO: Maybe use class for this?
 //
 
-typedef struct
+namespace innate_subsystem
 {
-  int index;
-  LPARAM tag;
-} ListViewItem;
+   typedef struct
+   {
+      int index;
+      unsigned long long tag;
+   } ListViewItem;
 
-//
-// ListView class can be used only for listviews
-// that view data as report.
-//
+   //
+   // ListView class can be used only for listviews
+   // that view data as report.
+   //
 
-class ListView : public Control
-{
-public:
+   class ListView : public Control
+   {
+   public:
 
-  ListView();
+      ListView();
 
-  //
-  // Adds new column to list view
-  //
+      //
+      // Adds new column to list view
+      //
 
-  void addColumn(int index, const TCHAR *caption, int width, int fmt);
-  void addColumn(int index, const TCHAR *caption, int width);
+      virtual void addColumn(int index, const char *caption, int width, int fmt);
+      virtual void addColumn(int index, const char *caption, int width);
 
-  //
-  // Returns list view item structure with specified index
-  //
+      //
+      // Returns list view item structure with specified index
+      //
 
-  ListViewItem getItem(int index);
+      virtual ListViewItem getItem(int index);
 
-  //
-  // Returns list view items count
-  //
+      //
+      // Returns list view items count
+      //
 
-  int getCount() { return ListView_GetItemCount(m_hwnd); }
+      virtual int getCount();
 
-  //
-  // Inserts new item to list view with specified index and caption
-  //
+      //
+      // Inserts new item to list view with specified index and caption
+      //
 
-  void addItem(int index, const TCHAR *caption);
+      virtual void addItem(int index, const char *caption);
 
-  //
-  // Inserts new item to list view with specified index, caption
-  // and user data(tag)
-  //
+      //
+      // Inserts new item to list view with specified index, caption
+      // and user data(tag)
+      //
 
-  void addItem(int index, const TCHAR *caption, LPARAM tag);
+      virtual void addItem(int index, const char *caption, ::lparam tag);
 
-  //
-  // Inserts new item to list view
-  //
+      //
+      // Inserts new item to list view
+      //
 
-  void addItem(int index, const TCHAR *caption, LPARAM tag, int imageIndex);
+      virtual void addItem(int index, const char *caption, ::lparam tag, int imageIndex);
 
-  //
-  // Removes item with specified index from list view
-  //
+      //
+      // Removes item with specified index from list view
+      //
 
-  void removeItem(int i);
+      virtual void removeItem(int i);
 
-  //
-  // Removes all list view items from list view
-  //
+      //
+      // Removes all list view items from list view
+      //
 
-  void clear();
+      virtual void clear();
 
-  //
-  // Changes text of list view item subitem
-  //
+      //
+      // Changes text of list view item subitem
+      //
 
-  void setSubItemText(int index, int subIndex, const TCHAR *caption);
+      virtual void setSubItemText(int index, int subIndex, const char *caption);
 
-  //
-  // Changes user data (tag) of list view item with specified index
-  //
+      //
+      // Changes user data (tag) of list view item with specified index
+      //
 
-  void setItemData(int index, LPARAM tag);
+      virtual void setItemData(int index, ::lparam tag);
 
-  //
-  // Returns user data of list view item with specified index
-  //
+      //
+      // Returns user data of list view item with specified index
+      //
 
-  LPARAM getItemData(int index);
+      virtual ::lparam getItemData(int index);
 
-  //
-  // Returns first selected list view item 
-  //
+      //
+      // Returns first selected list view item
+      //
 
-  ListViewItem getSelectedItem();
+      virtual ListViewItem getSelectedItem();
 
-  //
-  // Returns index of first selected list view item
-  //
+      //
+      // Returns index of first selected list view item
+      //
 
-  int getSelectedIndex();
+      virtual int getSelectedIndex();
 
-  //
-  // Selectes list view item with specified index
-  //
+      //
+      // Selectes list view item with specified index
+      //
 
-  void selectItem(int index);
+      virtual void selectItem(int index);
 
-  //
-  // Changes full row select style of list view
-  //
+      //
+      // Changes full row select style of list view
+      //
 
-  void setFullRowSelectStyle(bool fullRowSelect);
+      virtual void setFullRowSelectStyle(bool fullRowSelect);
 
-  //
-  // Enabled or disables multi selection on list view
-  //
+      //
+      // Enabled or disables multi selection on list view
+      //
 
-  void allowMultiSelection(bool allow);
+      virtual void allowMultiSelection(bool allow);
 
-  //
-  // Returns count of selected items in list view
-  //
+      //
+      // Returns count of selected items in list view
+      //
 
-  unsigned int getSelectedItemsCount();
+      virtual unsigned int getSelectedItemsCount();
 
-  //
-  // Sets selected list view index to output indexes array
-  //
+      //
+      // Sets selected list view index to output indexes array
+      //
 
-  void getSelectedItemsIndexes(int *indexes);
+      virtual void getSelectedItemsIndexes(int *indexes);
 
-protected:
+   //protected:
 
-  void setExStyle(DWORD style);
-  DWORD getExStyle();
+      virtual void setExStyle(unsigned int style);
+      virtual unsigned int getExStyle();
 
-  void addExStyle(DWORD style);
-  void removeExStyle(DWORD style);
+      virtual void addExStyle(unsigned int style);
+      virtual void removeExStyle(unsigned int style);
 
-  //
-  // This method sort list of item by column "columnIndex".
-  // For comparing elements using function compareItem().
-  //
-  // Pointer to compareItem() must be not 0.
-  // After add or changing elements, list may be not sorted.
-  //
-  // For example, you need to call this method, if user changed parameters of sorting.
-  //
-  void sort(int columnIndex, PFNLVCOMPARE compareItem);
+      //
+      // This method sort list of item by column "columnIndex".
+      // For comparing elements using function compareItem().
+      //
+      // Pointer to compareItem() must be not 0.
+      // After add or changing elements, list may be not sorted.
+      //
+      // For example, you need to call this method, if user changed parameters of sorting.
+      //
+      //virtual void sort(int columnIndex, PFNLVCOMPARE compareItem);
 
-  //
-  // This method sort list of item by column m_sortColumIndex.
-  // After add and removing elements, list may be not sorted.
-  // For example, you need to call this method after add new element.
-  //
-  void sort();
+      //
+      // This method sort list of item by column m_sortColumIndex.
+      // After add and removing elements, list may be not sorted.
+      // For example, you need to call this method after add new element.
+      //
+      virtual void sort();
 
-private:
-  // Kind of sorting: ascending or descending
-  bool m_sortAscending;
+   // private:
+   //    // Kind of sorting: ascending or descending
+   //    bool m_sortAscending;
+   //
+   //    //
+   //    // Is list view not sorted, then m_sortClumnIndex is negative,
+   //    // else him contained index of column.
+   //    //
+   //    int m_sortColumnIndex;
+   //
+   //    //
+   //    // This pointer to compareFunction. By default is 0.
+   //    //
+   //    PFNLVCOMPARE m_compareItem;
+   };
 
-  //
-  // Is list view not sorted, then m_sortClumnIndex is negative,
-  // else him contained index of column.
-  //
-  int m_sortColumnIndex;
+} // namespace innate_subsystem
 
-  //
-  // This pointer to compareFunction. By default is 0.
-  //
-  PFNLVCOMPARE m_compareItem;
-};
 
-#endif
+

@@ -23,36 +23,40 @@
 //
 #include "framework.h"
 #include "acme/_operating_system.h"
-#include "WinCommandLineArgs.h"
+#include "WindowsCommandLineArguments.h"
 #include "acme/subsystem/Exception.h"
 
 #include <shellapi.h>
 
-
-WinCommandLineArgs::WinCommandLineArgs(const ::scoped_string & scopedstrCmdLineInWinFormat)
+namespace windows
 {
-   ::string strstorage(scopedstrCmdLineInWinFormat);
-  ::wstring uniCmdLine(strstorage);
-  size_t cmdLen = uniCmdLine.length();
-  if (cmdLen > 0) {
-    int nArgs;
-    LPWSTR *argList = CommandLineToArgvW(uniCmdLine, &nArgs);
-    if(argList == 0) {
-      throw ::remoting::Exception("Invalid command line");
-    }
-    for(int i = 0; i < nArgs; i++) {
-      ::wstring uniArg(argList[i]);
-      ::string arg;
-      arg = uniArg;
-      if (arg.length() > 0) {
-        m_args.add(arg);
+   WindowsCommandLineArguments::WindowsCommandLineArguments(const ::scoped_string & scopedstrCmdLineInWinFormat)
+   {
+      ::string strstorage(scopedstrCmdLineInWinFormat);
+      ::wstring uniCmdLine(strstorage);
+      size_t cmdLen = uniCmdLine.length();
+      if (cmdLen > 0) {
+         int nArgs;
+         LPWSTR *argList = CommandLineToArgvW(uniCmdLine, &nArgs);
+         if(argList == 0) {
+            throw ::subsystem::Exception("Invalid command line");
+         }
+         for(int i = 0; i < nArgs; i++) {
+            ::wstring uniArg(argList[i]);
+            ::string arg;
+            arg = uniArg;
+            if (arg.length() > 0) {
+               m_straArguments.add(arg);
+            }
+         }
+
+         LocalFree(argList);
       }
-    }
+   }
 
-    LocalFree(argList);
-  }
-}
+   WindowsCommandLineArguments::~WindowsCommandLineArguments()
+   {
+   }
+} // namespace windows
 
-WinCommandLineArgs::~WinCommandLineArgs()
-{
-}
+

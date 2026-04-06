@@ -25,15 +25,20 @@
 #pragma once
 
 
-#include "WindowsEvent.h"
+#include "acme/subsystem/windows/node/WindowsEvent.h"
 
-class CLASS_DECL_REMOTING_COMMON WindowsEventEx : public WindowsEvent
+namespace windows
 {
-public:
-  WindowsEventEx(const ::scoped_string & scopedstrName = 0);
+   class CLASS_DECL_ACME WindowsEventEx : public ::windows::WindowsEvent
+   {
+   public:
+      WindowsEventEx(const ::scoped_string & scopedstrName = 0);
 
-protected:
-  void setAccessToAll(HANDLE objHandle);
-};
+   protected:
+      void setAccessToAll(HANDLE objHandle);
+   };
 
-//// __WINDOWSEVENT_H__
+   //// __WINDOWSEVENT_H__
+} //  namespace windows
+
+

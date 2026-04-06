@@ -22,32 +22,42 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _TOOLTIP_H_
-#define _TOOLTIP_H_
+#pragma once
+//#define _TOOLTIP_H_
 
-#include "util/CommonHeader.h"
-#include "Control.h"
+//#include "util/CommonHeader.h"
+#include "apex/innate_subsystem/Control.h"
 
 //
 // Abstract tooltip class
 //
 
-class Tooltip
+namespace innate_subsystem
 {
-public:
-  Tooltip();
-  virtual ~Tooltip();
 
-  virtual void showTooltip(Control *control) = 0;
 
-  virtual void setText(const TCHAR *text) = 0;
-  virtual void setTitle(const TCHAR *caption) = 0;
+    class Tooltip :
+    virtual public ::particle
+    {
+    public:
+        Tooltip();
+        ~Tooltip() override;
 
-  virtual void getText(StringStorage *text) const = 0;
-  virtual void getTitle(StringStorage *title) const = 0;
+        virtual void showTooltip(Control *control);
 
-  virtual void setIconType(int iconType) = 0;
-  virtual int getIconType() const = 0;
-};
+        virtual void setText(const char *text);
+        virtual void setTitle(const char *caption);
 
-#endif
+        virtual ::string getText() const;
+        virtual ::string getTitle() const;
+
+        virtual void setIconType(int iconType);
+        virtual int getIconType() const;
+    };
+
+    //#endif
+
+}// namespace innate_subsystem
+
+
+

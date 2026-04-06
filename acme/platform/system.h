@@ -203,6 +203,8 @@ namespace platform
       ::acme::windowing::windowing * acme_windowing() override;
       ::windowing::windowing * windowing() override;
 
+      ::subsystem::subsystem * subsystem() override;
+
       ::component * component(const ::scoped_string & scopedstrComponent)override;
 
       //::string_table* string_table() override;

@@ -75,13 +75,13 @@ namespace subsystem
        */
       virtual memsize defer_write(const void *buffer, memsize len) = 0;
 
-      virtual size_t available() { return 0; };
+      virtual size_t available() = 0;
 
       // Returns pipe handle to write
-      //HANDLE getWriteHandle() const;
+      virtual FileInterface * getWriteFile() const = 0;
 
       // Returns pipe handle to read
-      //HANDLE getReadHandle() const;
+      virtual FileInterface * getReadFile() const = 0;
 
       // This function assigns the handles for another process.
       // @param hTargetProc is a handle to the other process.
@@ -97,7 +97,7 @@ namespace subsystem
       virtual void setTimeOut(unsigned int timeOut) = 0;
 
    //private:
-      //void checkPipeHandle(HANDLE handle);
+      virtual void checkPipeFile(FileInterface * pfile) = 0;
 
       // HANDLE m_hWrite;
       // HANDLE m_hRead;
@@ -153,13 +153,13 @@ namespace subsystem
        */
       memsize defer_write(const void *buffer, memsize len) override;
 
-      size_t available() override { return 0; }
+       size_t available() override;//{ return 0; }
 
       // Returns pipe handle to write
-      //HANDLE getWriteHandle() const;
+      FileInterface* getWriteFile() const override;
 
       // Returns pipe handle to read
-      //HANDLE getReadHandle() const;
+      FileInterface * getReadFile() const override;
 
       // This function assigns the handles for another process.
       // @param hTargetProc is a handle to the other process.
@@ -175,7 +175,7 @@ namespace subsystem
       void setTimeOut(unsigned int timeOut) override;
 
    //private:
-      //void checkPipeHandle(HANDLE handle);
+      void checkPipeFile(FileInterface * pfile) override;
 
       // HANDLE m_hWrite;
       // HANDLE m_hRead;

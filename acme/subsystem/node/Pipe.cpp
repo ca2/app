@@ -39,6 +39,10 @@ namespace subsystem
       m_pparticleThis->initialize_pipe(maxPortionSize);
    }
 
+   Pipe::Pipe()
+   {
+   }
+
    Pipe::~Pipe()
    {
    }

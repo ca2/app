@@ -24,65 +24,91 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "AnonymousPipeFactory.h"
-#include "remoting/remoting_common/win_system/SecurityAttributes.h"
+#include "acme/subsystem/windows/node/security/SecurityAttributes.h"
 
-AnonymousPipeFactory::AnonymousPipeFactory(unsigned int bufferSize,
-                                           LogWriter *log)
-: m_bufferSize(bufferSize),
-  m_log(log)
+
+namespace windows
 {
-}
+   namespace subsystem
+   {
+      AnonymousPipeFactory::AnonymousPipeFactory()
+      : m_bufferSize(0),
+        m_plogwriter(nullptr)
+      {
+      }
 
-AnonymousPipeFactory::~AnonymousPipeFactory()
-{
-}
+      AnonymousPipeFactory::~AnonymousPipeFactory()
+      {
+      }
 
-void AnonymousPipeFactory::generatePipes(AnonymousPipe **firstSide,
-                                         bool firstSideIsInheritable,
-                                         AnonymousPipe **secondSide,
-                                         bool secondSideIsInheritable)
-{
-  HANDLE hFirstSideWrite = 0, hFirstSideRead = 0,
-         hSecondSideWrite = 0, hSecondSideRead = 0;
 
-  SecurityAttributes secAttr;
-  secAttr.setInheritable();
+      void AnonymousPipeFactory::initialize_anonymous_pipe_factory(unsigned int bufferSize,
+                                                 ::subsystem::LogWriter *plogwriter)
+      //:
+        //m_log(log)
+      {
+         m_bufferSize = bufferSize;
 
-  try {
-    if (CreatePipe(&hFirstSideRead, &hSecondSideWrite,
-                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
-      SystemException("Cannot create anonymous pipe");
-    }
-    if (CreatePipe(&hSecondSideRead, &hFirstSideWrite,
-                   secAttr.getSecurityAttributes(), m_bufferSize) == 0) {
-      SystemException("Cannot create anonymous pipe");
-    }
-  } catch (...) {
-    CloseHandle(hFirstSideWrite);
-    CloseHandle(hFirstSideRead);
-    CloseHandle(hSecondSideWrite);
-    CloseHandle(hSecondSideRead);
-    throw;
-  }
+         m_plogwriter =  plogwriter;
+      }
 
-  const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for anonymous pipe";
-  if (!firstSideIsInheritable) {
-    if (SetHandleInformation(hFirstSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
-      SystemException(errMess);
-    }
-    if (SetHandleInformation(hFirstSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
-      SystemException(errMess);
-    }
-  }
-  if (!secondSideIsInheritable) {
-    if (SetHandleInformation(hSecondSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
-      SystemException(errMess);
-    }
-    if (SetHandleInformation(hSecondSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
-      SystemException(errMess);
-    }
-  }
+      // void AnonymousPipeFactory::init(unsigned int bufferSize,
+      //                                      ::subsystem::LogWriter *plogwriter)
+      // {
+      //    m_bufferSize = bufferSize;
+      //
+      //    m_plogwriter =  plogwriter;
+      // }
+      void AnonymousPipeFactory::generatePipes(::pointer < ::subsystem::AnonymousPipeInterface > &firstSide,
+                                               bool firstSideIsInheritable,
+                                               ::pointer < ::subsystem::AnonymousPipeInterface>&secondSide,
+                                               bool secondSideIsInheritable)
+      {
+         HANDLE hFirstSideWrite = 0, hFirstSideRead = 0,
+                hSecondSideWrite = 0, hSecondSideRead = 0;
 
-  *firstSide = new AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_log);
-  *secondSide = new AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_log);
-}
+         ::windows::subsystem::SecurityAttributes secAttr;
+         secAttr.setInheritable();
+
+         try {
+            if (CreatePipe(&hFirstSideRead, &hSecondSideWrite,
+                           secAttr._getSecurityAttributes(), m_bufferSize) == 0) {
+               ::subsystem::SystemException("Cannot create anonymous pipe");
+                           }
+            if (CreatePipe(&hSecondSideRead, &hFirstSideWrite,
+                           secAttr._getSecurityAttributes(), m_bufferSize) == 0) {
+               ::subsystem::SystemException("Cannot create anonymous pipe");
+                           }
+         } catch (...) {
+            CloseHandle(hFirstSideWrite);
+            CloseHandle(hFirstSideRead);
+            CloseHandle(hSecondSideWrite);
+            CloseHandle(hSecondSideRead);
+            throw;
+         }
+
+         const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for anonymous pipe";
+         if (!firstSideIsInheritable) {
+            if (SetHandleInformation(hFirstSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+               ::subsystem::SystemException(errMess);
+            }
+            if (SetHandleInformation(hFirstSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+               ::subsystem::SystemException(errMess);
+            }
+         }
+         if (!secondSideIsInheritable) {
+            if (SetHandleInformation(hSecondSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+               ::subsystem::SystemException(errMess);
+            }
+            if (SetHandleInformation(hSecondSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+               ::subsystem::SystemException(errMess);
+            }
+         }
+
+         firstSide =allocateø AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_plogwriter);
+         firstSide->initialize(this);
+         secondSide = allocateø AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_plogwriter);
+         secondSide->initialize(this);
+      }
+   } // namespace subsystem
+} // namespace windows

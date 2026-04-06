@@ -25,10 +25,11 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
-#include "acme/subsystem/Exception.h"
+#include "acme/subsystem/node/ServiceControlManagerClient.h"
+//#include "acme/subsystem/_common_header.h"
+//#include "acme/subsystem/Exception.h"
 
-#include "SystemException.h"
+//#include "SystemException.h"
 
 namespace windows
 {
@@ -80,7 +81,8 @@ namespace windows
        * Gives access to install, remove, start, stop services and queries status
        * of service.
        */
-      class ServiceControlManagerClient
+      class ServiceControlManagerClient :
+      virtual public ::subsystem::implementation<::subsystem::ServiceControlManagerClientInterface>
       {
       public:
          /**
@@ -89,11 +91,16 @@ namespace windows
           * for details).
           * @throws SystemException on fail.
           */
-         ServiceControlManagerClient(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS);
+         //ServiceControlManagerClient(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS);
+
+         ServiceControlManagerClient();
          /**
           * Destructor, closes ServiceControlManagerClient.
           */
-         virtual ~ServiceControlManagerClient();
+         ~ServiceControlManagerClient() override;
+
+
+         void initialize_service_control_manager_client(unsigned int uDesiredAccess) override;
          /**
           * Registers new service in system.
           * @param name name of service.
@@ -103,13 +110,13 @@ namespace windows
           * @throws SystemException on fail.
           */
          void installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
-                             const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies = "");
+                             const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies = "") override;
          /**
           * Unregisters existing service from services.
           * @param name name of service to unregister.
           * @throws SystemException on fail.
           */
-         void removeService(const ::scoped_string & scopedstrName);
+         void removeService(const ::scoped_string & scopedstrName) override;
          /**
           * Starts existing service.
           * @param name name of service to start.
@@ -117,7 +124,7 @@ namespace windows
           *   SERVICE_RUNNING.
           * @throws SystemException, ServiceControlManagerClientException on fail.
           */
-         void startService(const ::scoped_string & scopedstrName, bool waitCompletion = false)
+         void startService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
        ;
          /**
           * Stops running service execution.
@@ -126,10 +133,10 @@ namespace windows
           *   SERVICE_STOPPED.
           * @throws SystemException, ServiceControlManagerClientException on fail.
           */
-         void stopService(const ::scoped_string & scopedstrName, bool waitCompletion = false)
+         void stopService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
        ;
 
-      private:
+      //private:
          /**
           * Gets current state of existing service specified by handle.
           * @param hService handle of the service.
@@ -138,7 +145,7 @@ namespace windows
           */
          DWORD getServiceState(SC_HANDLE hService) const;
 
-      private:
+      //private:
          /** Service client manager handle. */
          SC_HANDLE m_managerHandle;
       };

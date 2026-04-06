@@ -22,11 +22,14 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _SPIN_CONTROL_H_
-#define _SPIN_CONTROL_H_
+#pragma once
+//#define _SPIN_CONTROL_H_
 
-#include "Control.h"
-#include <commctrl.h>
+#include "apex/innate_subsystem/Control.h"
+//#include <commctrl.h>
+
+namespace innate_subsystem
+{
 
 class SpinControl : public Control
 {
@@ -37,7 +40,7 @@ public:
   void setBuddy(Control *buddyControl);
   void setRange(short lower, short upper);
   void setRange32(int lower, int upper);
-  void setAccel(UINT nSec, UINT nInc);
+  void setAccel(unsigned int nSec, unsigned int nInc);
 
   //
   // Auto acceleration methods
@@ -47,22 +50,26 @@ public:
   // Handler, call it on UDN_DELTAPOS notification
   //
 
-  void autoAccelerationHandler(LPNMUPDOWN message);
+  //void autoAccelerationHandler(LPNMUPDOWN message);
   void enableAutoAcceleration(bool enabled);
-  void setAutoAccelerationParams(const std::vector<int> *limitters,
-                                 const std::vector<int> *deltas,
+  void setAutoAccelerationParams(const int_array & limitters,
+                                 const int_array & deltas,
                                  int maxDelta);
-protected:
-  Control *m_buddy;
-
-  //
-  // Members needed for auto acceleration
-  //
-
-  bool m_isAutoAccelerationEnabled;
-  std::vector<int> m_limitters;
-  std::vector<int> m_deltas;
-  int m_maxDelta;
+// protected:
+//   Control *m_buddy;
+//
+//   //
+//   // Members needed for auto acceleration
+//   //
+//
+//   bool m_isAutoAccelerationEnabled;
+//   std::vector<int> m_limitters;
+//   std::vector<int> m_deltas;
+//   int m_maxDelta;
 };
 
-#endif
+} // namespace innate_subsystem
+
+//#endif
+
+

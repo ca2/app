@@ -27,34 +27,43 @@
 
 #include "acme/subsystem/_common_header.h"
 
-#include "NotifyIconWindow.h"
+#include "apex/innate_subsystem/NotifyIconWindow.h"
 
 #include "apex/innate_subsystem/drawing/Icon.h"
 
-#include <shellapi.h>
+//#include <shellapi.h>
 
-// FIXME: Add documentation to class.
-class NotifyIcon : public NotifyIconWindow
+namespace innate_subsystem
 {
-public:
-  NotifyIcon(bool showAfterCreation = true);
-  virtual ~NotifyIcon();
 
-  const Icon *getIcon() const;
-  bool isVisible() const;
+   // FIXME: Add documentation to class.
+   class NotifyIcon : public NotifyIconWindow
+   {
+   public:
+      NotifyIcon();
+      virtual ~NotifyIcon();
 
-  void setIcon(Icon *icon);
-  void setText(const TCHAR *text);
+      void initialize_notify_icon(bool showAfterCreation = true);
 
-  void showBalloon(const TCHAR *message, const TCHAR *caption, DWORD timeoutMillis);
+      const Icon *getIcon() const;
+      bool isVisible() const;
 
-  void show();
-  void hide();
+      void setIcon(Icon *icon);
+      void setText(const TCHAR *text);
 
-protected:
-  NOTIFYICONDATA m_nid;
-  Icon *m_icon;
-  bool m_visible;
-};
+      void showBalloon(const TCHAR *message, const TCHAR *caption, DWORD timeoutMillis);
 
-#endif
+      void show();
+      void hide();
+
+//   protected:
+  //    NOTIFYICONDATA m_nid;
+    //  Icon *m_icon;
+      //bool m_visible;
+   }
+   ;
+}// namespace innate_subsystem
+
+//#endif
+
+

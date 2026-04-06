@@ -21,89 +21,93 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "WindowFinder.h"
 
-struct WindowsParam
+namespace innate_subsystem
 {
-  std::vector<HWND> *hwndVector;
-  StringVector *classNames;
-};
+   struct WindowsParam
+   {
+      std::vector<HWND> *hwndVector;
+      StringVector *classNames;
+   };
 
-BOOL CALLBACK WindowFinder::findWindowsByClassFunc(HWND hwnd, LPARAM lParam)
-{
-  if (IsWindowVisible(hwnd) != 0) {
-    WindowsParam *windowsParam = (WindowsParam *)lParam;
-    StringVector::iterator classNameIter;
+   BOOL CALLBACK WindowFinder::findWindowsByClassFunc(HWND hwnd, LPARAM lParam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         WindowsParam *windowsParam = (WindowsParam *)lParam;
+         StringVector::iterator classNameIter;
 
-    const size_t maxTcharCount = 256;
-    TCHAR winName[maxTcharCount];
-    if (GetClassName(hwnd, winName, maxTcharCount) != 0) {
-      StringStorage nextWinName(winName);
+         const size_t maxTcharCount = 256;
+         TCHAR winName[maxTcharCount];
+         if (GetClassName(hwnd, winName, maxTcharCount) != 0) {
+            StringStorage nextWinName(winName);
 
-      if (nextWinName.getLength() > 0 && hwnd != 0) {
-        for (classNameIter = windowsParam->classNames->begin();
-             classNameIter != windowsParam->classNames->end(); classNameIter++) {
-          if (nextWinName.isEqualTo(&(*classNameIter))) {
-            windowsParam->hwndVector->push_back(hwnd);
-          }
-        }
+            if (nextWinName.getLength() > 0 && hwnd != 0) {
+               for (classNameIter = windowsParam->classNames->begin();
+                    classNameIter != windowsParam->classNames->end(); classNameIter++) {
+                  if (nextWinName.isEqualTo(&(*classNameIter))) {
+                     windowsParam->hwndVector->push_back(hwnd);
+                  }
+                    }
+            }
+
+            // Recursion
+            EnumChildWindows(hwnd, findWindowsByClassFunc, (LPARAM) windowsParam);
+         }
       }
+      return TRUE;
+   }
 
-      // Recursion
-      EnumChildWindows(hwnd, findWindowsByClassFunc, (LPARAM) windowsParam);
-    }
-  }
-  return TRUE;
-}
-
-std::vector<HWND> WindowFinder::findWindowsByClass(StringVector classNames)
-{
-  std::vector<HWND> hwndVector;
-  if (classNames.empty()) {
-    return hwndVector;
-  }
-  WindowsParam windowsParam;
-  windowsParam.classNames = &classNames;
-  windowsParam.hwndVector = &hwndVector;
-  EnumWindows(findWindowsByClassFunc, (LPARAM)&windowsParam);
-  return hwndVector;
-}
-
-BOOL CALLBACK WindowFinder::findWindowsByNameFunc(HWND hwnd, LPARAM lParam)
-{
-  if (IsWindowVisible(hwnd) != 0) {
-    const size_t maxTcharCount = 256;
-    TCHAR nameChars[maxTcharCount];
-    if (GetWindowText(hwnd, nameChars, maxTcharCount) != 0) {
-      StringStorage winName(nameChars);
-      winName.toLowerCase();
-
-      if (winName.getLength() > 0 && hwnd != 0) {
-        WindowsParam *winParams = (WindowsParam *)lParam;
-        StringStorage *substr = &(*(winParams->classNames)).front();
-        if (_tcsstr(winName.getString(), substr->getString()) != 0) {
-          (*(winParams->hwndVector)).push_back(hwnd);
-          return FALSE;
-        }
+   std::vector<HWND> WindowFinder::findWindowsByClass(StringVector classNames)
+   {
+      std::vector<HWND> hwndVector;
+      if (classNames.empty()) {
+         return hwndVector;
       }
-    }
-  }
-  return TRUE;
-}
+      WindowsParam windowsParam;
+      windowsParam.classNames = &classNames;
+      windowsParam.hwndVector = &hwndVector;
+      EnumWindows(findWindowsByClassFunc, (LPARAM)&windowsParam);
+      return hwndVector;
+   }
 
-HWND WindowFinder::findFirstWindowByName(const StringStorage windowName)
-{
-  std::vector<HWND> hwndVector;
-  StringVector winNameVector;
-  winNameVector.push_back(windowName);
-  winNameVector[0].toLowerCase();
-  WindowsParam winParams = { &hwndVector, &winNameVector };
+   BOOL CALLBACK WindowFinder::findWindowsByNameFunc(HWND hwnd, LPARAM lParam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         const size_t maxTcharCount = 256;
+         TCHAR nameChars[maxTcharCount];
+         if (GetWindowText(hwnd, nameChars, maxTcharCount) != 0) {
+            StringStorage winName(nameChars);
+            winName.toLowerCase();
 
-  EnumWindows(findWindowsByNameFunc, (LPARAM)&winParams);
-  if (hwndVector.size() != 0) {
-    return hwndVector[0];
-  } else {
-    return 0;
-  }
-}
+            if (winName.getLength() > 0 && hwnd != 0) {
+               WindowsParam *winParams = (WindowsParam *)lParam;
+               StringStorage *substr = &(*(winParams->classNames)).front();
+               if (_tcsstr(winName.getString(), substr->getString()) != 0) {
+                  (*(winParams->hwndVector)).push_back(hwnd);
+                  return FALSE;
+               }
+            }
+         }
+      }
+      return TRUE;
+   }
+
+   HWND WindowFinder::findFirstWindowByName(const StringStorage windowName)
+   {
+      std::vector<HWND> hwndVector;
+      StringVector winNameVector;
+      winNameVector.push_back(windowName);
+      winNameVector[0].toLowerCase();
+      WindowsParam winParams = { &hwndVector, &winNameVector };
+
+      EnumWindows(findWindowsByNameFunc, (LPARAM)&winParams);
+      if (hwndVector.size() != 0) {
+         return hwndVector[0];
+      } else {
+         return 0;
+      }
+   }
+} // namespace innate_subsystem
+

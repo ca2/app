@@ -25,37 +25,30 @@
 #pragma once
 
 
-#include "remoting/remoting_common/region/Point.h"
-#include "acme/subsystem/_common_header.h"
+//#include "remoting/remoting_common/region/Point.h"
+#include "acme/subsystem/node/File.h"
 
-namespace subsystem
+namespace windows
 {
-
-class CLASS_DECL_ACME CursorInterface :
-   virtual public ::subsystem::particle_interface
-{
-public:
-  //Cursor();
-  virtual ~CursorInterface() = 0;
-
-  virtual Point getCursorPos() const = 0;
-
-
-};
-
-
-   class CLASS_DECL_ACME Cursor :
-   virtual public ::subsystem::composite<CursorInterface>
+   namespace subsystem
    {
-   public:
-      Cursor();
-      ~Cursor() override;
 
-      Point getCursorPos() const override;
+      class CLASS_DECL_ACME File :
+         virtual public ::subsystem::composite<::subsystem::FileInterface>
+      {
+      public:
+         File();
+         virtual ~File();
+
+         HANDLE m_handle;
 
 
-   };
+      };
 
-//// __WINCURSOR_H__
-///
-} // namespace subsystem
+   } // namespace subsystem
+} // namespace windows
+
+
+CLASS_DECL_ACME HANDLE as_HANDLE(::subsystem::FileInterface * pfile);
+CLASS_DECL_ACME bool is_ok(const ::windows::subsystem::File * pfile);
+CLASS_DECL_ACME bool is_ok(const ::pointer < ::windows::subsystem::File > & pfile);

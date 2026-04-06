@@ -22,11 +22,14 @@
 //-------------------------------------------------------------------------
 //
 
-#include "acme/subsystem/_common_header.h"
+#include "acme/_operating_system.h"
 
-// Abstract class for next using in WinHooks class and as a base class in others.
-class CLASS_DECL_REMOTING_COMMON HookEventListener
+namespace windows
 {
-public:
-  virtual LRESULT onHookProc(int code, WPARAM wParam, LPARAM lParam) = 0;
-};
+   // Abstract class for next using in WinHooks class and as a base class in others.
+   class CLASS_DECL_ACME HookEventListener
+   {
+   public:
+      virtual LRESULT onHookProc(int code, WPARAM wParam, LPARAM lParam) = 0;
+   };
+} // namespace windows

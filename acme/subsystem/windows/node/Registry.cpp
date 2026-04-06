@@ -25,20 +25,24 @@
 #include "acme/_operating_system.h"
 #include "Registry.h"
 
-Registry::Registry()
-{
-}
 
-Registry::~Registry()
+namespace windows
 {
-}
+   Registry::Registry()
+   {
+   }
 
-HKEY Registry::getCurrentUserKey()
-{
-  return HKEY_CURRENT_USER;
-}
+   Registry::~Registry()
+   {
+   }
 
-HKEY Registry::getCurrentLocalMachineKey()
-{
-  return HKEY_LOCAL_MACHINE;
-}
+   HKEY Registry::getCurrentUserKey()
+   {
+      return HKEY_CURRENT_USER;
+   }
+
+   HKEY Registry::getCurrentLocalMachineKey()
+   {
+      return HKEY_LOCAL_MACHINE;
+   }
+} // namespace windows

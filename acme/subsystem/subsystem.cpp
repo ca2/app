@@ -90,6 +90,11 @@ namespace subsystem
 
    }
 
+   ::pointer < ::subsystem::SecurityIdentifier > subsystem::createSidFromString(const ::scoped_string & scopedstr)
+   {
 
+      return nullptr;
+
+   }
 
 }//namespace subsystem

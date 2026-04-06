@@ -25,29 +25,35 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/node/SystemInformation.h"
 
-class CLASS_DECL_REMOTING_COMMON SystemInformation {
-public:
+namespace windows
+{
+   namespace subsystem
+   {
+      class CLASS_DECL_ACME SystemInformation :
+      virtual  public ::subsystem::composite<::subsystem::SystemInformationInterface>
+      {
+      public:
 
-  // get rectangle of all desktop area
-  void getDesktopAllArea(RECT * rc);
+         // get rectangle of all desktop area
+         void getDesktopAllArea(int_rectangle & rectangle) override;
 
-  // get rectangle of user desktop area
-  // without button 'Start' (only primary monitor).
-  bool getDesktopArea(RECT *rc);
+         // get rectangle of user desktop area
+         // without button 'Start' (only primary monitor).
+         bool getDesktopArea(int_rectangle & rectangle) override;
 
-  // return true if StretchBlt is used
-  // in provided device
-  bool isSupportStretchBlt(HDC hdc);
+         // return true if StretchBlt is used
+         // in provided device
+         virtual bool _isSupportStretchBlt(HDC hdc);
 
-  // return how many bits per pixel
-  // for provided device
-  int getBitsPixel(HDC hdc);
+         // return how many bits per pixel
+         // for provided device
+         virtual int _getBitsPixel(HDC hdc);
 
-  // get the number of monitors that plugged 
-  // into video card
-  int getMonitorCount();
-};
-
-
+         // get the number of monitors that plugged
+         // into video card
+         int getMonitorCount() override;
+      };
+   } // namespace subsystem
+} // namespace  windows

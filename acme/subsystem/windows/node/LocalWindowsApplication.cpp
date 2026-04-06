@@ -25,7 +25,9 @@
 #include "acme/_operating_system.h"
 #include "LocalWindowsApplication.h"
 
-#include "remoting/remoting_common/util/winhdr.h"
+//#include "remoting/remoting_common/util/winhdr.h"
+#include "acme/_operating_system.h"
+
 #include "remoting/remoting_common/thread/DesktopSelector.h"
 
 LocalWindowsApplication::LocalWindowsApplication(HINSTANCE hInstance,

@@ -25,13 +25,16 @@
 #pragma once
 
 
-#include "remoting/remoting_common/util/CommandLineArgs.h"
+#include "acme/subsystem/CommandLineArguments.h"
 
-class CLASS_DECL_REMOTING_COMMON WinCommandLineArgs : public CommandLineArgs
+namespace windows
 {
-public:
-  WinCommandLineArgs(const ::scoped_string & scopedstrCmdLineInWinFormat);
-  virtual ~WinCommandLineArgs();
-};
+   class CLASS_DECL_ACME WindowsCommandLineArguments : public ::subsystem::CommandLineArguments
+   {
+   public:
+      WindowsCommandLineArguments(const ::scoped_string & scopedstrCmdLineInWinFormat);
+      ~WindowsCommandLineArguments() override;
+   };
 
-//// __WINCOMMANDLINEARGS_H__
+   //// __WINCOMMANDLINEARGS_H__
+} // namespace windows

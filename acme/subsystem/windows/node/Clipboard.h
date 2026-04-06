@@ -24,39 +24,50 @@
 #pragma once
 
 
+#include "acme/subsystem/node/Clipboard.h"
 #include "acme/_operating_system.h"
 
 
 namespace windows
 {
-   class CLASS_DECL_REMOTING_COMMON WinClipboard
+
+   namespace subsystem
    {
-   public:
+      class CLASS_DECL_ACME Clipboard :
+         virtual public ::subsystem::implementation<::subsystem::ClipboardInterface>
+      {
+      public:
 
-      WinClipboard(HWND hwnd);
-      virtual ~WinClipboard();
+         //Clipboard(HWND hwnd);
+         Clipboard();
+         ~Clipboard() override;
 
-      void setHWnd(HWND hwnd);
 
-      // get string from windows clipboard
-      bool getString(::string & str);
+         void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) override;
 
-      // update windows clipboard
-      bool setString(const ::scoped_string & str);
+         void setHWnd(const ::operating_system::window & operatingsystemwindow) override;
 
-      //protected:
-      static const char CR = '\r';
-      static const char LF = '\n';
 
-      //protected:
-      // function removed CR before LF
-      ::string removeCR(const ::scoped_string & str);
+         // get string from windows clipboard
+         bool getString(::string & str) override;
 
-      // function replaced LF to CR+LF. If before LF already is CR, this not added second
-      ::string addCR(const ::scoped_string & str);
+         // update windows clipboard
+         bool setString(const ::scoped_string & str) override;
 
-      HANDLE m_hndClipboard;
-      HWND m_hwnd;
-   };
+         //protected:
+         static const char CR = '\r';
+         static const char LF = '\n';
+
+         //protected:
+         // function removed CR before LF
+         ::string removeCR(const ::scoped_string & str) override;
+
+         // function replaced LF to CR+LF. If before LF already is CR, this not added second
+         ::string addCR(const ::scoped_string & str) override;
+
+         HANDLE m_hndClipboard;
+         HWND m_hwnd;
+      };
+   } // namespace subsystem
 
 }// namespace windows

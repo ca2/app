@@ -40,8 +40,8 @@ namespace innate_subsystem
 
 
       BaseDialog();
-      // BaseDialog(DWORD resourceId);
-      // BaseDialog(const TCHAR *resourceName);
+      BaseDialog(unsigned int resourceId);
+      BaseDialog(const char *resourceName);
       ~BaseDialog() override;
 //   public:
 
@@ -74,7 +74,7 @@ namespace innate_subsystem
       // Return
       virtual Control *getControl() { return this; }
       // Setup control by ID
-      virtual void setControlById(Control * pcontrol, unsigned int id);
+      virtual void subclassControlById(::innate_subsystem::Control * pcontrol, unsigned int id);
       // Icon manipulation
       virtual void loadIcon(unsigned int id);
       virtual void updateIcon();
@@ -115,6 +115,7 @@ namespace innate_subsystem
 
       //static INT_PTR CALLBACK dialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+      virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam);
    //private:
      virtual char *getResouceName();
 

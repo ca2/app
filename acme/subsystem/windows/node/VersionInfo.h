@@ -26,32 +26,33 @@
 
 
 #include "acme/subsystem/_common_header.h"
-#include "SystemException.h"
+//#include "SystemException.h"
 
-/**
- * Contains information about executable file version info.
- */
-class CLASS_DECL_REMOTING_COMMON VersionInfo
+namespace windows
 {
-public:
-  /**
-   * Creates version info of specified file.
-   * @param pathToFile path to executable file to get version info from.
-   * @throws SystemException on fail.
-   */
-  VersionInfo(const ::file::path & pathToFile);
+   /**
+    * Contains information about executable file version info.
+    */
+   class CLASS_DECL_ACME VersionInfo
+   {
+   public:
+      /**
+       * Creates version info of specified file.
+       * @param pathToFile path to executable file to get version info from.
+       * @throws SystemException on fail.
+       */
+      VersionInfo(const ::file::path & pathToFile);
 
-  /**
-   * Returns product version info string.
-   * @return product version info string.
-   */
-  ::string getProductVersionString() const;
+      /**
+       * Returns product version info string.
+       * @return product version info string.
+       */
+      ::string getProductVersionString() const;
 
-private:
-  /**
-   * Product version as string.
-   */
-  ::string m_productVersionString;
-};
-
-
+   private:
+      /**
+       * Product version as string.
+       */
+      ::string m_productVersionString;
+   };
+} // namespace windows

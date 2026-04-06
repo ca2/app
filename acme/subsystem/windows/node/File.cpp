@@ -26,25 +26,69 @@
 #include "Cursor.h"
 
 
-namespace subsystem
+
+namespace windows
 {
-   Cursor::Cursor()
+   namespace subsystem
    {
+
+      File::File()
+      {
+         m_handle=nullptr;
+      }
+
+      File::~File()
+      {
+      }
+
+
+   } // namespace subsystem
+} // namespace windows
+
+
+CLASS_DECL_ACME HANDLE as_HANDLE(::subsystem::FileInterface * pfile)
+{
+
+   ::cast < ::windows::subsystem::File > pwindowssubsystemfile = pfile;
+
+   auto handle = pwindowssubsystemfile->m_handle;
+
+   return handle;
+
+}
+
+CLASS_DECL_ACME bool is_ok(const ::windows::subsystem::File * pfile)
+{
+
+   if (!::is_set(pfile))
+   {
+
+      return false;
+
    }
 
-   Cursor::~Cursor()
+   if (pfile->m_handle == nullptr)
    {
+
+      return false;
+
    }
 
-   Point Cursor::getCursorPos() const
+   if (pfile->m_handle == INVALID_HANDLE_VALUE)
    {
-      return m_pparticleThis->getCursorPos();
-      // POINT curPoint;
-      // GetCursorPos(&curPoint);
-      // // Correcting point to frame buffer coordinates
-      // curPoint.x -= GetSystemMetrics(SM_XVIRTUALSCREEN);
-      // curPoint.y -= GetSystemMetrics(SM_YVIRTUALSCREEN);
-      // return Point(curPoint.x, curPoint.y);
-   }
-} // namespace subsystem
 
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+CLASS_DECL_ACME bool is_ok(const ::pointer < ::windows::subsystem::File > & pfile)
+{
+
+   return ::is_ok(pfile.m_p);
+
+}

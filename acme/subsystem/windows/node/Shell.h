@@ -25,41 +25,52 @@
 #pragma once
 
 
-#include "remoting/remoting_common/util/winhdr.h"
+#include "acme/subsystem/node/Shell.h"
+#include "acme/_operating_system.h"
 
-#include "SystemException.h"
 
-/**
- * Wrapper over WinAPI shell functions.
- *
- * @author enikey.
- */
-class CLASS_DECL_REMOTING_COMMON Shell
+//#include "SystemException.h"
+namespace windows
 {
-public:
-  /**
-   * Runs application as administrator and waits until execution finished.
-   * @param pathToFile path to executable.
-   * @param parameters execute parameters.
-   * @throws SystemException on fail.
-   */
-  static void runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters);
+   namespace subsystem
 
-  /**
-   * Opens file with default action specified in Windows.
-   * @param file target file.
-   * @param parameters parameters.
-   * @param workDirectory working directory.
-   * @throws SystemException on fail.
-   */
-  static void open(const ::scoped_string & scopedstrFile,
-                   const ::scoped_string & scopedstrParameters,
-                   const ::scoped_string & scopedstrworkDirectory);
-private:
-  /**
-   * Don't allow instanizing of class.
-   */
-  Shell();
-};
+   {
+      /**
+       * Wrapper over WinAPI shell functions.
+       *
+       * @author enikey.
+       */
+      class CLASS_DECL_ACME Shell :
+      virtual public ::subsystem::implementation<::subsystem::ShellInterface>
+      {
+      public:
 
 
+         //private:
+         /**
+          * Don't allow instanizing of class.
+          */
+         Shell();
+         ~Shell() override;
+
+         /**
+          * Runs application as administrator and waits until execution finished.
+          * @param pathToFile path to executable.
+          * @param parameters execute parameters.
+          * @throws SystemException on fail.
+          */
+         void runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters) override;
+
+         /**
+          * Opens file with default action specified in Windows.
+          * @param file target file.
+          * @param parameters parameters.
+          * @param workDirectory working directory.
+          * @throws SystemException on fail.
+          */
+         void open(const ::scoped_string & scopedstrFile,
+                          const ::scoped_string & scopedstrParameters,
+                          const ::scoped_string & scopedstrworkDirectory) override;
+      };
+   } // namespace windows
+} // namespace windows

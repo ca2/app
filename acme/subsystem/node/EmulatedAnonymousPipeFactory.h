@@ -34,13 +34,13 @@ namespace subsystem
    // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
    // This is similar to anonymous pipe generation.
    class CLASS_DECL_ACME EmulatedAnonymousPipeFactoryInterface :
-   virtual subsystem::particle_interface
+   virtual public ::subsystem::particle_interface
    {
    public:
       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
-      virtual ~EmulatedAnonymousPipeFactory() = 0;
+      virtual ~EmulatedAnonymousPipeFactoryInterface() = 0;
 
-      virtual initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
+      virtual void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
 
       virtual void generatePipes(NamedPipe **serverPipe, bool serverInheritable,
                          NamedPipe **clientPipe, bool clientInheritable) = 0;

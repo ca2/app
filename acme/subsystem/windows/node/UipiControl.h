@@ -28,23 +28,26 @@
 #include "acme/subsystem/_common_header.h"
 //#include "log_writer/LogWriter.h"
 
-// This class allow to control the uipi for the current process.
-class CLASS_DECL_REMOTING_COMMON UipiControl
+namespace windows
 {
-public:
-  UipiControl(LogWriter *log);
-  ~UipiControl();
+   // This class allow to control the uipi for the current process.
+   class CLASS_DECL_ACME UipiControl
+   {
+   public:
+      UipiControl(::subsystem::LogWriter *log);
+      ~UipiControl();
 
-  // This function allow to receive the scopedstrMessage from a lower integrity
-  // level sender. The function will take effect only for an application
-  // running at Windows Vista and later.
-  // @param hwnd - handle to a window that will be to receive the allowed
-  // scopedstrMessage (ignored at Windows Vista or older).
-  // @throws ::remoting::Exception on a fail (Only for Vista and later).
-  void allowMessage(UINT scopedstrMessage, HWND hwnd);
+      // This function allow to receive the scopedstrMessage from a lower integrity
+      // level sender. The function will take effect only for an application
+      // running at Windows Vista and later.
+      // @param hwnd - handle to a window that will be to receive the allowed
+      // scopedstrMessage (ignored at Windows Vista or older).
+      // @throws ::remoting::Exception on a fail (Only for Vista and later).
+      void allowMessage(UINT scopedstrMessage, HWND hwnd);
 
-private:
-  LogWriter *m_log;
-};
+   //private:
+      ::pointer < ::subsystem::LogWriter > m_plogwriter;
+   };
 
-//// __UIPICONTROL_H__
+   //// __UIPICONTROL_H__
+} // namespace windows

@@ -25,21 +25,31 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
-#include "NamedPipe.h"
+//#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/node/PipeClient.h"
 
-/**
- * Pipe client factory.
- */
-class CLASS_DECL_REMOTING_COMMON PipeClient
+
+namespace windows
 {
-public:
-  static NamedPipe *connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize);
+   namespace subsystem
+   {
+      /**
+       * Pipe client factory.
+       */
+      class CLASS_DECL_ACME PipeClient :
+      virtual  public ::subsystem::implementation< ::subsystem::PipeClientInterface>
+      {
+      public:
+         ::pointer< ::subsystem::NamedPipe > connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) override;
 
-private:
-  PipeClient();
+      //private:
+         PipeClient();
 
-  unsigned int m_maxPortionSize;
-};
+         unsigned int m_maxPortionSize;
+      };
 
-//// __PIPECLIENT_H__
+      //// __PIPECLIENT_H__
+   } // namespace subsystem
+} // namespace windows
+
+

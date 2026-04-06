@@ -21,13 +21,16 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "Tooltip.h"
 
-Tooltip::Tooltip()
+namespace innate_subsystem
 {
-}
+   Tooltip::Tooltip()
+   {
+   }
 
-Tooltip::~Tooltip()
-{
-}
+   Tooltip::~Tooltip()
+   {
+   }
+} // namespace innate_subsystem

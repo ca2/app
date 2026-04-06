@@ -29,7 +29,7 @@
 
 #include "NamedPipe.h"
 //#include "remoting/remoting_common/thread/LocalMutex.h"
-#include "SecurityAttributes.h"
+//#include "SecurityAttributes.h"
 #include "DynamicLibrary.h"
 
 typedef BOOL(WINAPI* pGetNamedPipeClientProcessId)(HANDLE Pipe, PULONG ClientProcessId);

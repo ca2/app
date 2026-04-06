@@ -25,40 +25,44 @@
 #pragma once
 
 
-#include "remoting/remoting_common/util/winhdr.h"
+//#include "remoting/remoting_common/util/winhdr.h"
+#include "acme/_operating_system.h"
+
 //#include "remoting/remoting_common/thread/LocalMutex.h"
 #include "DynamicLibrary.h"
-#include "SystemException.h"
+//#include "acme/SystemException.h"
 //#include "log_writer/LogWriter.h"
 #include <WtsApi32.h>
 
-typedef DWORD (WINAPI *pWTSGetActiveConsoleSessionId)(void);
-typedef BOOL (WINAPI *pWTSQueryUserToken)(ULONG SessionId, PHANDLE phToken);
-typedef BOOL (WINAPI *pWTSQuerySessionInformationW)(
-  HANDLE hServer, DWORD SessionId,
-  WTS_INFO_CLASS WTSInfoClass,
-  LPWSTR **ppBuffer,
-  DWORD *pBytesReturned);
-typedef BOOL (WINAPI *pWTSQuerySessionInformationA)(
-  HANDLE hServer, DWORD SessionId,
-  WTS_INFO_CLASS WTSInfoClass,
-  LPSTR **ppBuffer,
-  DWORD *pBytesReturned);
-typedef VOID (WINAPI *pWTSFreeMemory)(void *buffer);
-typedef BOOL(WINAPI *pWTSEnumerateSessionsA)(
-  IN HANDLE          hServer,
-  IN DWORD           Reserved,
-  IN DWORD           Version,
-  PWTS_SESSION_INFOA *ppSessionInfo,
-  DWORD              *pCount
-);
-typedef BOOL(WINAPI *pWTSEnumerateSessionsW)(
-  IN HANDLE          hServer,
-  IN DWORD           Reserved,
-  IN DWORD           Version,
-  PWTS_SESSION_INFOW *ppSessionInfo,
-  DWORD              *pCount
-  );
+namespace windows
+{
+   typedef DWORD (WINAPI *pWTSGetActiveConsoleSessionId)(void);
+   typedef BOOL (WINAPI *pWTSQueryUserToken)(ULONG SessionId, PHANDLE phToken);
+   typedef BOOL (WINAPI *pWTSQuerySessionInformationW)(
+     HANDLE hServer, DWORD SessionId,
+     WTS_INFO_CLASS WTSInfoClass,
+     LPWSTR **ppBuffer,
+     DWORD *pBytesReturned);
+   typedef BOOL (WINAPI *pWTSQuerySessionInformationA)(
+     HANDLE hServer, DWORD SessionId,
+     WTS_INFO_CLASS WTSInfoClass,
+     LPSTR **ppBuffer,
+     DWORD *pBytesReturned);
+   typedef VOID (WINAPI *pWTSFreeMemory)(void *buffer);
+   typedef BOOL(WINAPI *pWTSEnumerateSessionsA)(
+     IN HANDLE          hServer,
+     IN DWORD           Reserved,
+     IN DWORD           Version,
+     PWTS_SESSION_INFOA *ppSessionInfo,
+     DWORD              *pCount
+   );
+   typedef BOOL(WINAPI *pWTSEnumerateSessionsW)(
+     IN HANDLE          hServer,
+     IN DWORD           Reserved,
+     IN DWORD           Version,
+     PWTS_SESSION_INFOW *ppSessionInfo,
+     DWORD              *pCount
+     );
 
 #ifdef UNICODE
 #define   pWTSQuerySessionInformation pWTSQuerySessionInformationW
@@ -69,112 +73,113 @@ typedef BOOL(WINAPI *pWTSEnumerateSessionsW)(
 #endif
 
 
-/**
- * Wrapper over WTS WinAPI functions.
- *
- * @author enikey.
- */
-class CLASS_DECL_REMOTING_COMMON WTS
-{
-public:
-  /**
-   * Gets active console session id.
-   * @return active console session id if WTS is avaliable or 0 if 
-   * WinAPI WTSGetActiveConsoleSessionId function not avaliable.
-   */
-  static DWORD getActiveConsoleSessionId(LogWriter *log);
+   /**
+    * Wrapper over WTS WinAPI functions.
+    *
+    * @author enikey.
+    */
+   class CLASS_DECL_ACME WTS
+   {
+   public:
+      /**
+       * Gets active console session id.
+       * @return active console session id if WTS is avaliable or 0 if
+       * WinAPI WTSGetActiveConsoleSessionId function not avaliable.
+       */
+      static DWORD getActiveConsoleSessionId(::subsystem::LogWriter *log);
 
-  /**
-  * Gets RDP console session id.
-  * @return RDP console session id if WTS is avaliable and RDP console exists or 0 if
-  * WinAPI WTSEnumerateSessions function not avaliable or there is no sessions with RDP in name.
-  */
-  static DWORD getRdpSessionId(LogWriter *log);
+      /**
+      * Gets RDP console session id.
+      * @return RDP console session id if WTS is avaliable and RDP console exists or 0 if
+      * WinAPI WTSEnumerateSessions function not avaliable or there is no sessions with RDP in name.
+      */
+      static DWORD getRdpSessionId(::subsystem::LogWriter *log);
 
-  /**
-  * @return true if sessionId is the RDP console session id.
-  */
-  static bool SessionIsRdpSession(DWORD sessionId, LogWriter *log);
+      /**
+      * @return true if sessionId is the RDP console session id.
+      */
+      static bool SessionIsRdpSession(DWORD sessionId, ::subsystem::LogWriter *log);
 
-  /**
-   * Queries user token in active console session.
-   * @return user token.
-   * @throws SystemException on fail.
-   * @remark if WTSQueryUserToken is avaliable when it will be used with
-   * session id equal to active console session id, if not, then user
-   * process id will be used to get user token (this id can be set by using of
-   * defineConsoleUserProcessId() method).
-   */
-  static HANDLE queryConsoleUserToken(LogWriter *log);
+      /**
+       * Queries user token in active console session.
+       * @return user token.
+       * @throws SystemException on fail.
+       * @remark if WTSQueryUserToken is avaliable when it will be used with
+       * session id equal to active console session id, if not, then user
+       * process id will be used to get user token (this id can be set by using of
+       * defineConsoleUserProcessId() method).
+       */
+      static HANDLE queryConsoleUserToken(::subsystem::LogWriter *log);
 
-  static HANDLE sessionUserToken(DWORD sessionId, LogWriter* log);
+      static HANDLE sessionUserToken(DWORD sessionId, ::subsystem::LogWriter* log);
 
-  /**
-   * Defines global (for WTS class) user process that will be used
-   * for getting token of user in active console session if WTSQueryUserToken WinAPI function
-   * is unavaliable (Windows 2000 case).
-   * @param userProcessId user process id.
-   */
-  static void defineConsoleUserProcessId(DWORD userProcessId);
+      /**
+       * Defines global (for WTS class) user process that will be used
+       * for getting token of user in active console session if WTSQueryUserToken WinAPI function
+       * is unavaliable (Windows 2000 case).
+       * @param userProcessId user process id.
+       */
+      static void defineConsoleUserProcessId(DWORD userProcessId);
 
-  // This function dupplicate token impersonated to named pipe cliend end.
-  // This should work only for win2000 because other windows version have
-  // rdp.
-  static void duplicatePipeClientToken(HANDLE pipeHandle);
+      // This function dupplicate token impersonated to named pipe cliend end.
+      // This should work only for win2000 because other windows version have
+      // rdp.
+      static void duplicatePipeClientToken(HANDLE pipeHandle);
 
-  static ::string getUserName(DWORD sessionId, LogWriter *log);
-  static ::string getCurrentUserName(LogWriter* log);
+      static ::string getUserName(DWORD sessionId,::subsystem:: LogWriter *log);
+      static ::string getCurrentUserName(::subsystem::LogWriter* log);
 
-  static bool sessionIsLocked(DWORD sessionId, LogWriter* log);
+      static bool sessionIsLocked(DWORD sessionId, ::subsystem::LogWriter* log);
 
-  static HANDLE duplicateCurrentProcessUserToken(bool rdpEnabled, LogWriter* log);
+      static HANDLE duplicateCurrentProcessUserToken(bool rdpEnabled,::subsystem:: LogWriter* log);
 
-  static HANDLE duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, LogWriter* log);
+      static HANDLE duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, ::subsystem::LogWriter* log);
 
-  /**
-   * Returns user name for given access token.
-   * @param token access or impersonation token.
-   */
-  static ::string getTokenUserName(HANDLE token);
+      /**
+       * Returns user name for given access token.
+       * @param token access or impersonation token.
+       */
+      static ::string getTokenUserName(HANDLE token);
 
-private:
-  /**
-   * Don't allow instanizing of WTS class.
-   */
-  WTS();
+   private:
+      /**
+       * Don't allow instanizing of WTS class.
+       */
+      WTS();
 
-  /**
-   * Initializes WTS functions.
-   */
-  static void initialize(LogWriter *log);
+      /**
+       * Initializes WTS functions.
+       */
+      static void initialize(::subsystem::LogWriter *log);
 
-  // The initialize() function should be already called before use the wtsFreeMemory() function.
-  static void wtsFreeMemory(void *buffer);
+      // The initialize() function should be already called before use the wtsFreeMemory() function.
+      static void wtsFreeMemory(void *buffer);
 
-  static DynamicLibrary *m_kernel32Library;
-  static DynamicLibrary *m_wtsapi32Library;
-  static pWTSGetActiveConsoleSessionId m_WTSGetActiveConsoleSessionId;
-  static pWTSQueryUserToken m_WTSQueryUserToken;
-  static pWTSQuerySessionInformation m_WTSQuerySessionInformation;
-  static pWTSFreeMemory m_WTSFreeMemory;
-  static pWTSEnumerateSessions m_WTSEnumerateSessions;
+      static ::windows::subsystem::DynamicLibrary *m_kernel32Library;
+      static ::windows::subsystem::DynamicLibrary *m_wtsapi32Library;
+      static pWTSGetActiveConsoleSessionId m_WTSGetActiveConsoleSessionId;
+      static pWTSQueryUserToken m_WTSQueryUserToken;
+      static pWTSQuerySessionInformation m_WTSQuerySessionInformation;
+      static pWTSFreeMemory m_WTSFreeMemory;
+      static pWTSEnumerateSessions m_WTSEnumerateSessions;
 
-  /**
-   * Determinates if WTS library was initialized.
-   */
-  static volatile bool m_initialized;
+      /**
+       * Determinates if WTS library was initialized.
+       */
+      static volatile bool m_initialized;
 
-  /**
-   * Token of interactive user process in active console session
-   * that will be used if WTSQueryToken WinAPI function is unavaliable
-   * in queryConsoleUserToken() call.
-   */
-  static HANDLE m_userProcessToken;
+      /**
+       * Token of interactive user process in active console session
+       * that will be used if WTSQueryToken WinAPI function is unavaliable
+       * in queryConsoleUserToken() call.
+       */
+      static HANDLE m_userProcessToken;
 
-  /**
-   * Thread-safety.
-   */
-  static LocalMutex m_mutex;
-};
+      /**
+       * Thread-safety.
+       */
+      static critical_section m_mutex;
+   };
+} // namespace windows
 
 

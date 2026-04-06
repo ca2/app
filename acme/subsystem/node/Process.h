@@ -69,7 +69,7 @@ namespace subsystem
       virtual void setArguments(const ::scoped_string & scopedstrArgs) = 0;
 
       // Sets standard in/out/error handles for the child process.
-      //void setStandardIoHandles(HANDLE stdIn, HANDLE stdOut, HANDLE stdErr);
+      virtual void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) = 0;
 
       // If handlesIsInerited is true the handles of the parent process can
       // be used by the child process.
@@ -106,7 +106,7 @@ namespace subsystem
       /**
        * Returns the process handle if process already run and zero otherwise.
        */
-      //HANDLE getProcessHandle();
+      ProcessHandleInterface * getProcessHandle();
 
    //protected:
       /**
@@ -178,7 +178,7 @@ namespace subsystem
       void setArguments(const ::scoped_string & scopedstrArgs) override;
 
       // Sets standard in/out/error handles for the child process.
-      //void setStandardIoHandles(HANDLE stdIn, HANDLE stdOut, HANDLE stdErr);
+      void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) override;
 
       // If handlesIsInerited is true the handles of the parent process can
       // be used by the child process.

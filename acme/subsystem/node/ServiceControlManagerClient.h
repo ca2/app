@@ -98,6 +98,10 @@ namespace subsystem
        * Destructor, closes ServiceControlManagerClient.
        */
       virtual ~ServiceControlManagerClientInterface() = 0;
+
+
+      virtual void initialize_service_control_manager_client(unsigned int desiredAccess = 0) = 0;
+
       /**
        * Registers new service in system.
        * @param name name of service.
@@ -166,14 +170,16 @@ namespace subsystem
        * @throws SystemException on fail.
        */
       //ServiceControlManagerClient(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS);
-      ServiceControlManagerClient();
+      ServiceControlManagerClient(unsigned int desiredAccess = 0);
+      //ServiceControlManagerClient();
       /**
        * Destructor, closes ServiceControlManagerClient.
        */
       ~ServiceControlManagerClient() override;
 
 
-      //void initialize_service_control_manager_client(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS) override;
+      //void initialize_service_control_manager_client(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS) override;
+      void initialize_service_control_manager_client(unsigned int desiredAccess = 0) override;
       /**
        * Registers new service in system.
        * @param name name of service.

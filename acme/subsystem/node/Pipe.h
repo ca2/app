@@ -83,7 +83,7 @@ namespace subsystem
 
       //protected:
       Pipe(unsigned int maxPortionSize);
-      //Pipe();
+      Pipe();
       ~Pipe() override;
 
       void initialize_pipe(unsigned int maxPortionSize) override;

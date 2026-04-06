@@ -30,8 +30,6 @@
 
 namespace windows
 {
-   namespace subsystem
-   {
       class CLASS_DECL_ACME WindowsEvent
       {
       public:
@@ -46,7 +44,6 @@ namespace windows
       //protected:
          HANDLE m_hEvent;
       };
-   } // namespac subsystem
 
    //// __WINDOWSEVENT_H__
 } // namespace windows

@@ -24,51 +24,65 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "PipeImpersonatedThread.h"
+#include "File.h"
 //#include "Environment.h"
 
-PipeImpersonatedThread::PipeImpersonatedThread(HANDLE pipeHandle)
-: m_pipeHandle(pipeHandle),
-  m_success(false)
+namespace windows
 {
-}
+   namespace subsystem
+   {
+      PipeImpersonatedThread::PipeImpersonatedThread()
+      : m_pfilePipe(nullptr),
+        m_success(false)
+      {
+      }
 
-PipeImpersonatedThread::~PipeImpersonatedThread()
-{
-  terminate();
-  wait();
-}
+      PipeImpersonatedThread::~PipeImpersonatedThread()
+      {
+         terminate();
+         wait();
+      }
 
-void PipeImpersonatedThread::onTerminate()
-{
-  m_threadSleeper.notify();
-}
+      void PipeImpersonatedThread::initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe)
+      {
+         m_pfilePipe = pfilePipe;
+           m_success = false;
 
-void PipeImpersonatedThread::waitUntilImpersonated()
-{
-  m_impersonationReadyEvent.waitForEvent();
-}
+      }
 
-bool PipeImpersonatedThread::getImpersonationSuccess()
-{
-  return m_success;
-}
+      void PipeImpersonatedThread::onTerminate()
+      {
+         m_threadSleeper.notify();
+      }
 
-::string PipeImpersonatedThread::getFaultReason()
-{
-  return m_faultReason;
-}
+      void PipeImpersonatedThread::waitUntilImpersonated()
+      {
+         m_impersonationReadyEvent.waitForEvent();
+      }
 
-void PipeImpersonatedThread::execute()
-{
-  m_success = ImpersonateNamedPipeClient(m_pipeHandle) != 0;
-  if (!m_success) {
-    // Store fault reason
-    m_faultReason = ::windows::last_error_message(::windows::last_error());
-  }
-  m_impersonationReadyEvent.notify();
+      bool PipeImpersonatedThread::getImpersonationSuccess()
+      {
+         return m_success;
+      }
 
-  while (!isTerminating()) {
-    m_threadSleeper.waitForEvent();
-  }
-  RevertToSelf();
-}
+      ::string PipeImpersonatedThread::getFaultReason()
+      {
+         return m_faultReason;
+      }
+
+      void PipeImpersonatedThread::execute()
+      {
+         m_success = ImpersonateNamedPipeClient(::as_HANDLE(m_pfilePipe)) != 0;
+         if (!m_success) {
+            // Store fault reason
+            m_faultReason = ::windows::last_error_message(::windows::last_error());
+         }
+         m_impersonationReadyEvent.notify();
+
+         while (!isTerminating()) {
+            m_threadSleeper.waitForEvent();
+         }
+         RevertToSelf();
+      }
+   } // namespace subsystem
+} // namespace windows

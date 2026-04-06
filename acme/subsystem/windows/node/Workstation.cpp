@@ -24,17 +24,38 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "Workstation.h"
+#include "acme/subsystem/node/SystemException.h"
 
-void Workstation::lock()
+namespace windows
 {
-  if (LockWorkStation() == FALSE) {
-    throw SystemException();
-  }
-}
+   namespace subsystem
+   {
+      Workstation::Workstation()
+      {
 
-void Workstation::logOff()
-{
-  if (ExitWindowsEx(EWX_LOGOFF, SHTDN_REASON_MAJOR_APPLICATION) == FALSE) {
-    throw SystemException();
-  }
-}
+
+      }
+
+
+      Workstation::~Workstation()
+      {
+
+
+      }
+
+
+      void Workstation::workstation_lock()
+      {
+         if (LockWorkStation() == FALSE) {
+            throw ::subsystem::SystemException();
+         }
+      }
+
+      void Workstation::workstation_logOff()
+      {
+         if (ExitWindowsEx(EWX_LOGOFF, SHTDN_REASON_MAJOR_APPLICATION) == FALSE) {
+            throw ::subsystem::SystemException();
+         }
+      }
+   }// namespace subsystem
+} // namespace windows

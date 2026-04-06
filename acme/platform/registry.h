@@ -26,7 +26,8 @@ namespace subsystem
       e_registry_none   = 0,
       e_registry_string     = 1,
       e_registry_dword = 2,
-      e_registry_binary = 3
+      e_registry_qword = 3,
+      e_registry_binary = 4
   };
 
   //  typedef enum RegXStatus {
@@ -87,11 +88,14 @@ namespace subsystem
 
       virtual void set_string(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPayload) = 0;
       virtual void set_dword(const ::scoped_string & scopedstr, unsigned int value) = 0;
+      virtual void set_qword(const ::scoped_string & scopedstr, unsigned long long value) = 0;
       virtual void set_binary(const ::scoped_string & scopedstr, const ::block & block) = 0;
 
       ::string get_string(const ::scoped_string & scopedstr);
 
-      unsigned get_dword(const ::scoped_string & scopedstr);
+      unsigned int get_dword(const ::scoped_string & scopedstr);
+
+      unsigned long long get_qword(const ::scoped_string & scopedstr);
 
       /*
           Gets a binary value.

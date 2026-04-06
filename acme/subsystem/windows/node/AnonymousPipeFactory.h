@@ -25,36 +25,46 @@
 #pragma once
 
 
-#include "AnonymousPipe.h"
+#include "acme/subsystem/node/AnonymousPipeFactory.h"
 //#include "log_writer/LogWriter.h"
-
-// The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
-// objects that connected to each other.
-class CLASS_DECL_REMOTING_COMMON AnonymousPipeFactory
+namespace windows
 {
-public:
-  AnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
-  virtual ~AnonymousPipeFactory();
+   namespace  subsystem
+   {
+      // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
+      // objects that connected to each other.
+      class CLASS_DECL_ACME AnonymousPipeFactory :
+      virtual public ::subsystem::implementation<::subsystem::AnonymousPipeFactoryInterface>
+      {
+      public:
+         //AnonymousPipeFactory(unsigned int bufferSize, ::subsystem::LogWriter *log);
+         AnonymousPipeFactory();
+         ~AnonymousPipeFactory() override;
 
-  // This function generates the ::pair of the AnonymousPipe
-  // objects that connected to each other.
-  // @param the fistSide and the secondSide is a pointer to an AnonymousPipe
-  // pointers that receive new the AnonymousPipe objects.
-  // @param If fistSideIsInheritable is true then allows to inherit the
-  // firstSide pipe handles by child('s) processes.
-  // @param If secondSideIsInheritable is true then allows to inherit the
-  // secondSide pipe handles by child('s) processes.
-  // @throw ::remoting::Exception if an error occured.
-  // After use the firstSide and secondSide object the caller must
-  // destroy it by delete operator.
-  void generatePipes(AnonymousPipe **firstSide,
-                     bool firstSideIsInheritable,
-                     AnonymousPipe **secondSide,
-                     bool secondSideIsInheritable);
 
-private:
-  LogWriter *m_log;
-  unsigned int m_bufferSize;
-};
+         void initialize_anonymous_pipe_factory(unsigned int bufferSize, ::subsystem::LogWriter *log) override;
 
-//// __ANONYMOUSPIPEFACTORY_H__
+         // This function generates the ::pair of the AnonymousPipe
+         // objects that connected to each other.
+         // @param the fistSide and the secondSide is a pointer to an AnonymousPipe
+         // pointers that receive new the AnonymousPipe objects.
+         // @param If fistSideIsInheritable is true then allows to inherit the
+         // firstSide pipe handles by child('s) processes.
+         // @param If secondSideIsInheritable is true then allows to inherit the
+         // secondSide pipe handles by child('s) processes.
+         // @throw ::remoting::Exception if an error occured.
+         // After use the firstSide and secondSide object the caller must
+         // destroy it by delete operator.
+         void generatePipes(::pointer < ::subsystem::AnonymousPipeInterface >& firstSide,
+                            bool firstSideIsInheritable,
+                            ::pointer < ::subsystem::AnonymousPipeInterface > &secondSide,
+                            bool secondSideIsInheritable);
+
+      //private:
+         ::subsystem::LogWriter *m_plogwriter;
+         unsigned int m_bufferSize;
+      };
+
+      //// __ANONYMOUSPIPEFACTORY_H__
+   } //namespace subsystem
+} // namespace windows

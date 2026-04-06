@@ -88,7 +88,7 @@ namespace subsystem
       virtual FileInterface * getFile() const = 0;
 
       //private:
-      virtual void checkPipeHandle() = 0;
+      virtual void checkPipeFile() = 0;
 
       // HANDLE m_hPipe;
       // LocalMutex m_hPipeMutex;
@@ -152,7 +152,7 @@ namespace subsystem
       //virtual HANDLE getHandle() const;
 
    //private:
-      void checkPipeHandle() override;
+      void checkPipeFile() override;
 
       // HANDLE m_hPipe;
       // LocalMutex m_hPipeMutex;

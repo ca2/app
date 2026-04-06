@@ -27,136 +27,142 @@
 #include "acme/subsystem/Exception.h"
 //#include "remoting/remoting_common/win_system/Environment.h"
 
-Screen::Screen()
+namespace windows
 {
-  update();
-}
+   namespace subsystem
+   {
+      Screen::Screen()
+      {
+         update();
+      }
 
-Screen::~Screen()
-{
-}
+      Screen::~Screen()
+      {
+      }
 
-void Screen::update()
-{
-  BMI bmi;
-  getBMI(&bmi, 0);
+      void Screen::update()
+      {
+         BMI bmi;
+         getBMI(&bmi, 0);
 
-  fillPixelFormat(&bmi);
-  fillScreenRect();
-}
+         fillPixelFormat(&bmi);
+         fillScreenRect();
+      }
 
-PixelFormat Screen::getPixelFormat()
-{
-  return m_pixelFormat;
-}
+      ::subsystem::PixelFormat Screen::getPixelFormat()
+      {
+         return m_pixelFormat;
+      }
 
-::int_size Screen::getDesktopDimension()
-{
-  return m_virtDesktopRect.size();
-}
+      ::int_size Screen::getDesktopDimension()
+      {
+         return m_virtDesktopRect.size();
+      }
 
-::int_rectangle Screen::getDesktopRect()
-{
-  return m_virtDesktopRect;
-}
+      ::int_rectangle Screen::getDesktopRect()
+      {
+         return m_virtDesktopRect;
+      }
 
-void Screen::getBMI(BMI *bmi, HDC dc)
-{
-  HDC bitmapDC = dc;
-  if (bitmapDC == 0) {
-    bitmapDC = GetDC(0);
-    if (bitmapDC == NULL) {
-      throw ::remoting::Exception("Can't get a bitmap dc");
-    }
-  }
+      void Screen::getBMI(BMI *bmi, HDC dc)
+      {
+         HDC bitmapDC = dc;
+         if (bitmapDC == 0) {
+            bitmapDC = GetDC(0);
+            if (bitmapDC == NULL) {
+               throw ::remoting::Exception("Can't get a bitmap dc");
+            }
+         }
 
-  memset(bmi, 0, sizeof(BMI));
-  bmi->bmiHeader.biBitCount = 0;
-  bmi->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+         memset(bmi, 0, sizeof(BMI));
+         bmi->bmiHeader.biBitCount = 0;
+         bmi->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 
-  HBITMAP hbm;
-  hbm = (HBITMAP)GetCurrentObject(bitmapDC, OBJ_BITMAP);
-  if (GetDIBits(bitmapDC, hbm, 0, 0, NULL, (LPBITMAPINFO)bmi, DIB_RGB_COLORS) == 0) {
-    ::string errMess;
-    errMess = ::windows::last_error_message("Can't get a DIBits", ::windows::last_error());
-    DeleteObject(hbm);
-    DeleteDC(bitmapDC);
-    throw ::remoting::Exception(errMess);
-  }
+         HBITMAP hbm;
+         hbm = (HBITMAP)GetCurrentObject(bitmapDC, OBJ_BITMAP);
+         if (GetDIBits(bitmapDC, hbm, 0, 0, NULL, (LPBITMAPINFO)bmi, DIB_RGB_COLORS) == 0) {
+            ::string errMess;
+            errMess = ::windows::last_error_message("Can't get a DIBits", ::windows::last_error());
+            DeleteObject(hbm);
+            DeleteDC(bitmapDC);
+            throw ::remoting::Exception(errMess);
+         }
 
-  // The color table is filled only if it is used BI_BITFIELDS
-  if (bmi->bmiHeader.biCompression == BI_BITFIELDS) {
-    if (GetDIBits(bitmapDC, hbm, 0, 0, NULL, (LPBITMAPINFO)bmi, DIB_RGB_COLORS) == 0) {
-      ::string errMess;
-      errMess = ::windows::last_error_message("Can't get a DIBits",::windows::last_error());
-      DeleteObject(hbm);
-      DeleteDC(bitmapDC);
-      throw ::remoting::Exception(errMess);
-    }
-  }
+         // The color table is filled only if it is used BI_BITFIELDS
+         if (bmi->bmiHeader.biCompression == BI_BITFIELDS) {
+            if (GetDIBits(bitmapDC, hbm, 0, 0, NULL, (LPBITMAPINFO)bmi, DIB_RGB_COLORS) == 0) {
+               ::string errMess;
+               errMess = ::windows::last_error_message("Can't get a DIBits",::windows::last_error());
+               DeleteObject(hbm);
+               DeleteDC(bitmapDC);
+               throw ::remoting::Exception(errMess);
+            }
+         }
 
-  DeleteObject(hbm);
-  if (dc == 0) {
-    DeleteDC(bitmapDC);
-  }
-}
+         DeleteObject(hbm);
+         if (dc == 0) {
+            DeleteDC(bitmapDC);
+         }
+      }
 
-void Screen::fillPixelFormat(const BMI *bmi)
-{
-  memset(&m_pixelFormat, 0, sizeof(PixelFormat));
+      void Screen::fillPixelFormat(const BMI *bmi)
+      {
+         memset(&m_pixelFormat, 0, sizeof(PixelFormat));
 
-  m_pixelFormat.initBigEndianByNative();
+         m_pixelFormat.initBigEndianByNative();
 
-  m_pixelFormat.bitsPerPixel = bmi->bmiHeader.biBitCount;
+         m_pixelFormat.bitsPerPixel = bmi->bmiHeader.biBitCount;
 
-  if (bmi->bmiHeader.biCompression == BI_BITFIELDS) {
-    m_pixelFormat.redShift   = findFirstBit(bmi->red);
-    m_pixelFormat.greenShift = findFirstBit(bmi->green);
-    m_pixelFormat.blueShift  = findFirstBit(bmi->blue);
+         if (bmi->bmiHeader.biCompression == BI_BITFIELDS) {
+            m_pixelFormat.redShift   = findFirstBit(bmi->red);
+            m_pixelFormat.greenShift = findFirstBit(bmi->green);
+            m_pixelFormat.blueShift  = findFirstBit(bmi->blue);
 
-    m_pixelFormat.redMax   = bmi->red    >> m_pixelFormat.redShift;
-    m_pixelFormat.greenMax = bmi->green  >> m_pixelFormat.greenShift;
-    m_pixelFormat.blueMax  = bmi->blue   >> m_pixelFormat.blueShift;
+            m_pixelFormat.redMax   = bmi->red    >> m_pixelFormat.redShift;
+            m_pixelFormat.greenMax = bmi->green  >> m_pixelFormat.greenShift;
+            m_pixelFormat.blueMax  = bmi->blue   >> m_pixelFormat.blueShift;
 
-  } else {
-    m_pixelFormat.bitsPerPixel = 32;
-    m_pixelFormat.colorDepth = 24;
-    m_pixelFormat.redMax = m_pixelFormat.greenMax = m_pixelFormat.blueMax = 0xff;
-    m_pixelFormat.redShift   = 16;
-    m_pixelFormat.greenShift = 8;
-    m_pixelFormat.blueShift  = 0;
-  }
+         } else {
+            m_pixelFormat.bitsPerPixel = 32;
+            m_pixelFormat.colorDepth = 24;
+            m_pixelFormat.redMax = m_pixelFormat.greenMax = m_pixelFormat.blueMax = 0xff;
+            m_pixelFormat.redShift   = 16;
+            m_pixelFormat.greenShift = 8;
+            m_pixelFormat.blueShift  = 0;
+         }
 
-  if (m_pixelFormat.bitsPerPixel == 32) {
-    m_pixelFormat.colorDepth = 24;
-  } else {
-    m_pixelFormat.colorDepth = 16;
-  }
-}
+         if (m_pixelFormat.bitsPerPixel == 32) {
+            m_pixelFormat.colorDepth = 24;
+         } else {
+            m_pixelFormat.colorDepth = 16;
+         }
+      }
 
-int Screen::findFirstBit(const unsigned int bits)
-{
-  unsigned int b = bits;
-  int shift;
+      int Screen::findFirstBit(const unsigned int bits)
+      {
+         unsigned int b = bits;
+         int shift;
 
-  for (shift = 0; (shift < 32) && ((b & 1) == 0); shift++) {
-    b >>= 1;
-  }
+         for (shift = 0; (shift < 32) && ((b & 1) == 0); shift++) {
+            b >>= 1;
+         }
 
-  return shift;
-}
+         return shift;
+      }
 
-void Screen::fillScreenRect()
-{
-  m_virtDesktopRect.left = GetSystemMetrics(SM_XVIRTUALSCREEN);
-  m_virtDesktopRect.top = GetSystemMetrics(SM_YVIRTUALSCREEN);
-  m_virtDesktopRect.set_width(GetSystemMetrics(SM_CXVIRTUALSCREEN));
-  m_virtDesktopRect.set_height(GetSystemMetrics(SM_CYVIRTUALSCREEN));
-}
+      void Screen::fillScreenRect()
+      {
+         m_virtDesktopRect.left = GetSystemMetrics(SM_XVIRTUALSCREEN);
+         m_virtDesktopRect.top = GetSystemMetrics(SM_YVIRTUALSCREEN);
+         m_virtDesktopRect.set_width(GetSystemMetrics(SM_CXVIRTUALSCREEN));
+         m_virtDesktopRect.set_height(GetSystemMetrics(SM_CYVIRTUALSCREEN));
+      }
 
-size_t Screen::getVisibleMonitorCount()
-{
-  int monitorCount = GetSystemMetrics(SM_CMONITORS);
-  // Why check for the result? Skip it.
-  return (size_t)monitorCount;
-}
+      size_t Screen::getVisibleMonitorCount()
+      {
+         int monitorCount = GetSystemMetrics(SM_CMONITORS);
+         // Why check for the result? Skip it.
+         return (size_t)monitorCount;
+      }
+   } // namespace subsystem
+} // namespace windows

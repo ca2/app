@@ -22,25 +22,32 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _TRACKBAR_H_
-#define _TRACKBAR_H_
+//#ifndef _TRACKBAR_H_
+//#define _TRACKBAR_H_
 
-#include "Control.h"
+#pragma once
 
-class Trackbar : public Control
+#include "apex/innate_subsystem/Control.h"
+
+
+namespace innate_subsystem
 {
-public:
-  Trackbar();
-  virtual ~Trackbar();
+    class Trackbar : public ::innate_subsystem::Control
+    {
+    public:
+        Trackbar();
+        virtual ~Trackbar();
 
-  // Sets the range of minimum and maximum logical positions for the slider.
-  void setRange(long min, long max);
+        // Sets the range of minimum and maximum logical positions for the slider.
+        void setRange(long min, long max);
 
-  // Sets the current logical position of the slider.
-  void setPos(long pos);
+        // Sets the current logical position of the slider.
+        void setPos(long pos);
 
-  // Returns the current logical position of the slider.
-  long getPos();
-};
+        // Returns the current logical position of the slider.
+        long getPos();
+    };
 
-#endif
+    //#endif
+} // namespace innate_subsystem
+

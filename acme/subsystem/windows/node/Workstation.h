@@ -25,27 +25,37 @@
 #pragma once
 
 
-#include "remoting/remoting_common/util/winhdr.h"
+#include "acme/subsystem/node/Workstation.h"
+#include "acme/_operating_system.h"
 
-#include "SystemException.h"
 
-/**
- * Wrapper on WinAPI workstation functions.
- */
-class CLASS_DECL_REMOTING_COMMON Workstation
+//#include "SystemException.h"
+
+namespace windows
 {
-public:
-  /**
-   * Locks workstation.
-   * @throws SystemException on fail.
-   */
-  static void lock();
-  /**
-   * Logs off interactive user.
-   * @throws SystemException on fail.
-   * @remark caller must be run on interactive session.
-   */
-  static void logOff();
-};
+   namespace subsystem
+   {
+      /**
+       * Wrapper on WinAPI workstation functions.
+       */
+      class CLASS_DECL_ACME Workstation:
+            virtual public ::subsystem::implementation<::subsystem::WorkstationInterface>
+      {
+      public:
 
-
+         Workstation();
+         ~Workstation() override;
+         /**
+          * Locks workstation.
+          * @throws SystemException on fail.
+          */
+         void workstation_lock() override;
+         /**
+          * Logs off interactive user.
+          * @throws SystemException on fail.
+          * @remark caller must be run on interactive session.
+          */
+         void workstation_logOff()override;
+      };
+   } // namespace subsystem
+} // namespace windows

@@ -22,10 +22,9 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _WINDOW_PROC_HOLDER_H_
-#define _WINDOW_PROC_HOLDER_H_
+#pragma once
 
-#include "util/CommonHeader.h"
+#include "acme/_operating_system.h"
 
 class WindowProcHolder
 {
@@ -41,4 +40,6 @@ protected:
   friend class NotifyIconWindow;
 };
 
-#endif
+
+
+

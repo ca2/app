@@ -28,13 +28,29 @@
 #include "remoting/remoting_common/region/Point.h"
 #include "acme/subsystem/_common_header.h"
 
-class CLASS_DECL_REMOTING_COMMON WinCursor
+namespace subsystem
 {
-public:
-  WinCursor();
-  virtual ~WinCursor();
+   class CLASS_DECL_ACME CursorInterface :
+   virtual public ::subsystem::particle_interface
+   {
+   public:
+      //WinCursor();
+      virtual ~CursorInterface() = 0;
 
-  Point getCursorPos() const;
-};
+      virtual Point getCursorPos() const = 0;
+   };
 
-//// __WINCURSOR_H__
+   class CLASS_DECL_ACME Cursor :
+   virtual public ::subsystem::composite<CursorInterface>
+   {
+   public:
+      Cursor();
+      ~Cursor() override;
+
+      Point getCursorPos() const override;
+   };
+
+   //// __WINCURSOR_H__
+} // namespace subsystem
+
+

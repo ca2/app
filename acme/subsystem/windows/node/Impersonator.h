@@ -31,51 +31,57 @@
 #include "acme/subsystem/node/Impersonator.h"
 #include "acme/subsystem/node/SystemException.h"
 
-
-namespace subsystem
+namespace windows
 {
-
-   /**
-   Class for impersonating current process as user that logged on current
-   console session.
-   @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
-   */
-   class CLASS_DECL_REMOTING_COMMON Impersonator
+   namespace subsystem
    {
-   public:
-      Impersonator(LogWriter *log);
-      virtual ~Impersonator();
 
       /**
-      Impersonates calling process as user that logged on current console session.
-      @throws SystemException if impersonation fails.
+      Class for impersonating current process as user that logged on current
+      console session.
+      @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
       */
-      virtual void impersonateAsLoggedUser();
+      class CLASS_DECL_ACME Impersonator :
+      virtual public ::subsystem::implementation< ::subsystem::ImpersonatorInterface>
+      {
+      public:
+         //Impersonator(LogWriter *log);
+         Impersonator();
+         ~Impersonator() override;
 
-      /**
-      Impersonates calling process as user with given token.
-      @throws SystemException if impersonation fails.
-      */
-      virtual void impersonateAsCurrentProcessUser(bool rdpEnabled);
+         void initialize_impersonator(::subsystem::LogWriter *log) override;
 
-      /**
-      Cancels effect of impersonateAsLoggedUser method call.
-      @throws SystemException on fail.
-      */
-      virtual void revertToSelf();
+         /**
+         Impersonates calling process as user that logged on current console session.
+         @throws SystemException if impersonation fails.
+         */
+         void impersonateAsLoggedUser() override;
 
-      virtual bool sessionIsLocked(bool rdpEnabled);
+         /**
+         Impersonates calling process as user with given token.
+         @throws SystemException if impersonation fails.
+         */
+         void impersonateAsCurrentProcessUser(bool rdpEnabled) override;
 
-   protected:
-      void impersonateAsUser(HANDLE token);
+         /**
+         Cancels effect of impersonateAsLoggedUser method call.
+         @throws SystemException on fail.
+         */
+         void revertToSelf() override;
 
-      HANDLE m_token;
-      HANDLE m_dupToken;
+         bool sessionIsLocked(bool rdpEnabled) override;
 
-      LogWriter *m_log;
-   };
+         //protected:
+         virtual void impersonateAsUser(HANDLE token);
+
+         HANDLE m_token;
+         HANDLE m_dupToken;
+         //
+         ::pointer < ::subsystem::LogWriter > m_plogwriter;
+      };
 
 
-} // namespace subsystem
+   } // namespace subsystem
+}// namespace windows
 
 

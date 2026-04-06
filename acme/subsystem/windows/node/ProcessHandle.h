@@ -22,30 +22,43 @@
 //-------------------------------------------------------------------------
 //
 
-#include "remoting/remoting_common/util/COmmonHeader.h"
+#include "acme/subsystem/node/ProcessHandle.h"
+#include "subsystem/node/security/SecurityIdentifier.h"
 
-// This class is a mere envelop for process handle that will automatically
-// closed at destructor calling.
-class CLASS_DECL_REMOTING_COMMON ProcessHandle
+
+namespace windows
 {
-public:
-  ProcessHandle();
-  virtual ~ProcessHandle();
+   namespace subsystem
+   {
+      // This class is a mere envelop for process handle that will automatically
+      // closed at destructor calling.
+      class CLASS_DECL_ACME ProcessHandle :
+      virtual public ::subsystem::implementation<::subsystem::ProcessHandleInterface>
+      {
+      public:
+         bool m_bOwned = false;
+         ProcessHandle();
+         ProcessHandle(HANDLE handle, bool bOwn = false);
+         ~ProcessHandle() override;
 
-  // @throws ::remoting::Exception on an error.
-  void openProcess(DWORD dwDesiredAccess,
-                   BOOL bInheritHandle,
-                   DWORD dwProcessId);
+         // @throws ::remoting::Exception on an error.
+         void openProcess(unsigned int dwDesiredAccess,
+                          bool bInheritHandle,
+                          ::process_identifier processidentifier) override;
 
-  // Returns the handle of the openned process by openProcess() function.
-  // If openProcess() function has not been called before then getHandle()
-  // will return zero.
-  HANDLE getHandle() const;
+         // Returns the handle of the openned process by openProcess() function.
+         // If openProcess() function has not been called before then getHandle()
+         // will return zero.
+         //::HANDLE getFile() const;
 
-  // Returns process module path. Call the openProcess() function before.
-  // @throws ::remoting::Exception on an error.
-  ::string getProcessModulePath();
+         ::pointer < ::subsystem::SecurityIdentifier > getProcessOwner() override;
 
-//private:
-  HANDLE m_hProcess;
-};
+         // Returns process module path. Call the openProcess() function before.
+         // @throws ::remoting::Exception on an error.
+         ::string getProcessModulePath() override;
+
+         //private:
+         HANDLE m_hProcess;
+      };
+   } // namespace subsystem
+} //namespace windows

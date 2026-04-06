@@ -48,7 +48,7 @@ namespace subsystem
    {
       //return (GetAsyncKeyState(vkCode) & 0x8000) != 0;
 
-      m_pparticleThis->isKeyPressed(vkCode);
+      return m_pparticleThis->isKeyPressed(vkCode);
    }
 
 

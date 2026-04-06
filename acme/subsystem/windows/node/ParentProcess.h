@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/node/ParentProcess.h"
 #include <Tlhelp32.h>
 
 namespace windows
@@ -33,7 +33,8 @@ namespace windows
    namespace subsystem
    {
       // Retrieves information of the parent process.
-      class CLASS_DECL_REMOTING_COMMON ParentProcess
+      class CLASS_DECL_ACME ParentProcess :
+      virtual public ::subsystem::implementation<::subsystem::ParentProcessInterface>
       {
       public:
 
@@ -45,10 +46,10 @@ namespace windows
 
 
          ParentProcess();
-         virtual ~ParentProcess();
+          ~ParentProcess() override;
 
          // Returns true if the parent process is alive.
-         bool isAlive();
+         bool isAlive() override;
 
       //private:
          void init();

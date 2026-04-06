@@ -52,9 +52,9 @@ namespace subsystem
       // @throw ::remoting::Exception if an error occured.
       // After use the firstSide and secondSide object the caller must
       // destroy it by delete operator.
-      virtual void generatePipes(AnonymousPipe **firstSide,
+      virtual void generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
                          bool firstSideIsInheritable,
-                         AnonymousPipe **secondSide,
+                         ::pointer < AnonymousPipeInterface > & secondSide,
                          bool secondSideIsInheritable) = 0;;
 
    // private:
@@ -86,9 +86,9 @@ namespace subsystem
       // @throw ::remoting::Exception if an error occured.
       // After use the firstSide and secondSide object the caller must
       // destroy it by delete operator.
-      void generatePipes(AnonymousPipe **firstSide,
+      void generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
                          bool firstSideIsInheritable,
-                         AnonymousPipe **secondSide,
+                         ::pointer < AnonymousPipeInterface > & secondSide,
                          bool secondSideIsInheritable) override;
 
    // private:

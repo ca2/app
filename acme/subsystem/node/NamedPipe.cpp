@@ -95,11 +95,11 @@ namespace subsystem
    //    return m_hPipe;
    // }
 
-   void NamedPipe::checkPipeHandle()
+   void NamedPipe::checkPipeFile()
    {
       //if (m_hPipe == INVALID_HANDLE_VALUE) {
         // throw ::io_exception(error_io, "Invalid pipe handle");
       //}
-      m_pparticleThis->checkPipeHandle();
+      m_pparticleThis->checkPipeFile();
    }
 } //namespace subsystem

@@ -25,7 +25,9 @@
 #pragma once
 
 
-#include "remoting/remoting_common/util/winhdr.h"
+//#include "remoting/remoting_common/util/winhdr.h"
+#include "acme/_operating_system.h"
+
 #include "subsystem/particle.h"
 
 //#include "../SystemException.h"

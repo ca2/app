@@ -21,10 +21,13 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "StringFilter.h"
 
-bool StringFilter::isStringCorrect(const TCHAR *string)
+namespace innate_subsystem
 {
-  return true;
-}
+   bool StringFilter::isStringCorrect(const TCHAR *string)
+   {
+      return true;
+   }
+} // namespace innate_subsystem

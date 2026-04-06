@@ -21,40 +21,43 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "PaintWindow.h"
 
-PaintWindow::PaintWindow()
- : m_bIsDraw(false)
+namespace innate_subsystem
 {
-}
+   PaintWindow::PaintWindow()
+    : m_bIsDraw(false)
+   {
+   }
 
-PaintWindow::~PaintWindow()
-{
-}
+   PaintWindow::~PaintWindow()
+   {
+   }
 
-HDC PaintWindow::getHDCPaint()
-{
-  if (!m_bIsDraw) {
-    return 0;
-  }
-  return m_hdc;
-}
+   HDC PaintWindow::getHDCPaint()
+   {
+      if (!m_bIsDraw) {
+         return 0;
+      }
+      return m_hdc;
+   }
 
-void PaintWindow::onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct) {
-}
+   void PaintWindow::onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct) {
+   }
 
-bool PaintWindow::wndProc(UINT message, WPARAM wParam, LPARAM lParam)
-{
-  if (message == WM_PAINT) {
-    m_hdc = BeginPaint(m_hWnd, &m_paintStruct);
-    m_bIsDraw = true;
-    DeviceContext dc(this); 
-    onPaint(&dc, &m_paintStruct);
-    EndPaint(m_hWnd, &m_paintStruct);
-    m_bIsDraw = false;
-    return true;
-  }
-  return BaseWindow::wndProc(message, wParam, lParam);
-}
+   bool PaintWindow::wndProc(UINT message, WPARAM wParam, LPARAM lParam)
+   {
+      if (message == WM_PAINT) {
+         m_hdc = BeginPaint(m_hWnd, &m_paintStruct);
+         m_bIsDraw = true;
+         DeviceContext dc(this);
+         onPaint(&dc, &m_paintStruct);
+         EndPaint(m_hWnd, &m_paintStruct);
+         m_bIsDraw = false;
+         return true;
+      }
+      return BaseWindow::wndProc(message, wParam, lParam);
+   }
+} // namespace innate_subsystem
 

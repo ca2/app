@@ -26,15 +26,19 @@
 #include "WsaStartup.h"
 #include "acme/subsystem/Exception.h"
 
-WsaStartup::WsaStartup(BYTE minorVer, BYTE majorVer)
+namespace windows
 {
-  WSAData wsaData;
-  if (WSAStartup(MAKEWORD(majorVer, minorVer), &wsaData) != 0) {
-    throw ::remoting::Exception("Failed to initialize WsaStartup.");
-  }
-}
+   WsaStartup::WsaStartup(BYTE minorVer, BYTE majorVer)
+   {
+      WSAData wsaData;
+      if (WSAStartup(MAKEWORD(majorVer, minorVer), &wsaData) != 0) {
+         throw ::subsystem::Exception("Failed to initialize WsaStartup.");
+      }
+   }
 
-WsaStartup::~WsaStartup()
-{
-  WSACleanup();
-}
+   WsaStartup::~WsaStartup()
+   {
+      WSACleanup();
+   }
+} // namespace windows
+

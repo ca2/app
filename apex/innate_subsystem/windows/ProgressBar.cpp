@@ -21,25 +21,29 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "ProgressBar.h"
 
 #include <commctrl.h>
 
-ProgressBar::ProgressBar()
+namespace innate_subsystem
 {
-}
+   ProgressBar::ProgressBar()
+   {
+   }
 
-ProgressBar::~ProgressBar()
-{
-}
+   ProgressBar::~ProgressBar()
+   {
+   }
 
-void ProgressBar::setRange(WORD min, WORD max)
-{
-  SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKELPARAM(min, max));
-}
+   void ProgressBar::setRange(WORD min, WORD max)
+   {
+      SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKELPARAM(min, max));
+   }
 
-void ProgressBar::setPos(WORD pos)
-{
-  SendMessage(m_hwnd, PBM_SETPOS, (WPARAM)pos, 0);
-}
+   void ProgressBar::setPos(WORD pos)
+   {
+      SendMessage(m_hwnd, PBM_SETPOS, (WPARAM)pos, 0);
+   }
+} // namespace innate_subsystem
+

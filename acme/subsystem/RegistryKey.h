@@ -34,9 +34,9 @@ class CLASS_DECL_ACME RegistryKey :
    virtual public ::particle
 {
 public:
-   RegistryKey(::subsystem::registry * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true);//, SECURITY_ATTRIBUTES *sa = 0);
+   RegistryKey(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true);//, SECURITY_ATTRIBUTES *sa = 0);
    RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true); //, SECURITY_ATTRIBUTES *sa = 0);
-   RegistryKey(::subsystem::registry * rootKey);
+   RegistryKey(::subsystem::registry_key * rootKey);
    // Default contructor for a defer initialization.
    RegistryKey();
    
@@ -47,7 +47,7 @@ public:
    
    // Defer initialization. Can be used only when it has been
    // created by the default constructor.
-   void open(::subsystem::registry * rootKey, const ::scoped_string & scopedstrEntry,
+   void open(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry,
              bool createIfNotExists = true); //,
              //SECURITY_ATTRIBUTES *sa = 0);
    
@@ -61,7 +61,7 @@ public:
    //
    // Returns WinAPI ::subsystem::registry * handle.
    //
-   ::subsystem::registry * getRegX() const;
+   ::subsystem::registry_key * get_registry_key() const;
    
    // Creates subkey.
    //
@@ -116,10 +116,10 @@ public:
    // Closes registry entry if it's opened.
    void close();
    
-private:
+//private:
    
    // Helper method to avoid code duplicate in class constructor.
-   void initialize(::subsystem::registry * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists); //, SECURITY_ATTRIBUTES *sa);
+   void initialize(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists); //, SECURITY_ATTRIBUTES *sa);
    
    // Sets subkey name to name output variable not depending
    // on output buffer size, cause buffer allocates inside method.
@@ -137,19 +137,19 @@ private:
     * @param [in, opt] sa security attributes.
     * @return true if operation successfull executed, false otherwise.
     */
-   static bool tryOpenSubKey(::subsystem::registry * key, const ::scoped_string & scopedstrSubkey,
-                             ::subsystem::registry * *openedKey, bool createIfNotExists);
+   virtual bool tryOpenSubKey(::subsystem::registry_key * key, const ::scoped_string & scopedstrSubkey,
+                             pointer < ::subsystem::registry_key > & openedKey, bool createIfNotExists);
    //,                             SECURITY_ATTRIBUTES *sa);
    
-protected:
+//protected:
    // Registry entry associated with this class instance.
-   ::subsystem::registry * m_key;
+   ::pointer < ::subsystem::registry_key > m_pregistrykey;
    // Root registry key (local machine, current user, etc).
-   ::subsystem::registry * m_rootKey;
+   ::pointer < ::subsystem::registry_key > m_pregistrykeyRoot;
    // Registry entry name.
    ::string m_entry;
    
-   friend class Registry;
+   //friend class Registry;
 };
 
 

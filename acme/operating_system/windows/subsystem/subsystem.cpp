@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "subsystem.h"
 #include "node/Shell.h"
+#include "node/WTS.h"
 
 
 namespace windows
@@ -26,6 +27,21 @@ namespace windows
 
       }
 
+
+       ::windows::WTS* subsystem::wts()
+      {
+
+          if (!m_pwts)
+          {
+
+              construct_newø(m_pwts);
+
+          }
+
+          return m_pwts;
+
+
+      }
 
 
    }//namespace subsystem

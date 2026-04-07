@@ -20,7 +20,7 @@
 //#include "acme/user/user/interaction_base.h"
 //#include "acme/prototype/geometry2d/rectangle.h"
 //#include "acme/user/user/item.h"
-#include "acme/operating_system/window.h"
+//#include "acme/operating_system/window.h"
 
 #include "acme/user/user/element.h"
 
@@ -51,8 +51,7 @@ namespace acme
 
          //::operating_system::window          m_operatingsystemwindow;
          ::pointer_array < ::exception >     m_exceptiona;
-::pointer < ::acme::windowing::gpu_context_render_frame >
-         m_pgpucontextrenderframe;
+         ::pointer < ::acme::windowing::gpu_context_render_frame >         m_pgpucontextrenderframe;
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 
          //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;

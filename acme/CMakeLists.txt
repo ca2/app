@@ -1412,6 +1412,8 @@ list(APPEND library_source
    subsystem/node/PipeServer.h
    subsystem/node/Process.cpp
    subsystem/node/Process.h
+   subsystem/node/ProcessCommandLine.cpp
+   subsystem/node/ProcessCommandLine.h
    subsystem/node/ProcessHandle.cpp
    subsystem/node/ProcessHandle.h
    subsystem/node/remoting_win_system.vcxproj
@@ -2681,6 +2683,8 @@ if (${WIN32})
        operating_system/windows/subsystem/node/PipeServer.h
        operating_system/windows/subsystem/node/Process.cpp
        operating_system/windows/subsystem/node/Process.h
+       operating_system/windows/subsystem/node/ProcessCommandLine.cpp
+       operating_system/windows/subsystem/node/ProcessCommandLine.h
        operating_system/windows/subsystem/node/ProcessHandle.cpp
        operating_system/windows/subsystem/node/ProcessHandle.h
        #       operating_system/windows/subsystem/node/remoting_win_system.vcxproj
@@ -2716,8 +2720,6 @@ if (${WIN32})
        operating_system/windows/subsystem/node/WindowsEvent.h
        operating_system/windows/subsystem/node/WindowsEventEx.cpp
        operating_system/windows/subsystem/node/WindowsEventEx.h
-       operating_system/windows/subsystem/node/WindowsProcessCommandLine.cpp
-       operating_system/windows/subsystem/node/WindowsProcessCommandLine.h
        operating_system/windows/subsystem/node/WindowsRegistry.cpp
        operating_system/windows/subsystem/node/WindowsRegistry.h
        operating_system/windows/subsystem/node/WindowsRegistryKey.cpp

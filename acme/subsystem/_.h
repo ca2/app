@@ -40,6 +40,8 @@ namespace subsystem
 
    class SecurityDescriptor;
 
+   class StringParser;
+
    class ProcessHandle;
 
    class ProcessHandleInterface;

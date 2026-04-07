@@ -7,6 +7,7 @@
 //  Copyright © 2026 ca2 Software Development. All rights reserved.
 //
 #pragma once
+//#include "acme/windowing/window.h"
 
 
 struct opaque_t {};
@@ -419,7 +420,27 @@ namespace operating_system
          return m_pacmewindowingwindow == operatingsystemwindow.m_pacmewindowingwindow;
 
       }
-      
+
+      bool operator == (const ::lparam & lparam) const
+      {
+
+         if (this->m_eoperatingsystem != e_operating_system_none)
+         {
+
+            // todo check if eoperatingsystem is of current operating_ambient native type
+
+            return this->m_opaque.m_ulla[0] == lparam.m_lparam
+            && this->m_opaque.m_ulla[1] == 0
+            && this->m_opaque.m_ulla[2] == 0
+            && this->m_opaque.m_ulla[3] == 0;
+
+         }
+
+         return m_pacmewindowingwindow->operating_system_window() == lparam;
+
+      }
+
+
       
      
       template < typename WINDOW >

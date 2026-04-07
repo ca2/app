@@ -23,6 +23,9 @@ namespace innate_subsystem
 
       static ::innate_subsystem::subsystem *            s_p;
 
+
+      ::pointer < ::innate_subsystem::SystemMetricsInterface > m_psystemmetrics;
+
       subsystem();
       ~subsystem() override;
 
@@ -32,6 +35,9 @@ namespace innate_subsystem
          const ::scoped_string & scopedstrMessage,
          const ::scoped_string & scopedstrCaption,
          unsigned int uType) override;
+
+
+      virtual ::innate_subsystem::SystemMetricsInterface * metrics();
 
 
 

@@ -32,6 +32,16 @@ namespace innate_subsystem
 
    class Cursor;
 
+    class Tab;
+    class TabInterface;
+
+    class ComboBox;
+    class ComboBoxInterface;
+
+   class SystemMetrics;
+   class SystemMetricsInterface;
+
+
 } // namespace innate_subsystem
 
 

@@ -29,6 +29,8 @@ namespace windows
          // ::pointer < ::subsystem::Registry >     m_pregistry;
          // ::pointer < ::subsystem::Shell >     m_pshell;
 
+          ::pointer < ::windows::WTS > m_pwts;
+
          subsystem();
          ~subsystem() override;
 
@@ -36,7 +38,7 @@ namespace windows
          // virtual ::subsystem::string_table * string_table();
          // virtual ::subsystem::resource_loader* resource_loader();
          // virtual ::subsystem::Registry* registry();
-         // virtual ::subsystem::Shell* shell();
+         virtual ::windows::WTS* wts();
 
          ::pointer < ::subsystem::SecurityIdentifier > createSidFromString(const ::scoped_string & scopedstr) override;
 

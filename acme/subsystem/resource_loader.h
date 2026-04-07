@@ -62,7 +62,7 @@ namespace subsystem
        * @param iconName icon name.
        * @return icon handle of 0 if cannot load icon.
        */
-      virtual ::pointer < innate_ui::icon > loadIcon(const ::scoped_string & scopedstr);
+      virtual ::pointer < innate_ui::icon > loadIconByIntResource(int iId);
 
       /**
        * Loads string from resources.

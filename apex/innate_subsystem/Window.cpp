@@ -31,111 +31,124 @@
 namespace innate_subsystem
 {
    Window::Window()
-   : m_hWnd(0),
-     m_hicon(0),
-     m_bWndCreated(false)
+   // : m_hWnd(0),
+   //   m_hicon(0),
+   //   m_bWndCreated(false)
    {
    }
 
    Window::~Window()
    {
-      if (m_bWndCreated && m_hWnd) {
-         DestroyWindow(m_hWnd);
-      }
-      if (m_hicon) {
-         DeleteObject(m_hicon);
-      }
+      // if (m_bWndCreated && m_hWnd) {
+      //    DestroyWindow(m_hWnd);
+      // }
+      // if (m_hicon) {
+      //    DeleteObject(m_hicon);
+      // }
    }
 
-   void Window::setClass(const StringStorage *className)
+   void Window::setClass(const ::scoped_string & scopedstrClassName)
    {
-      m_className = *className;
+      m_pparticleThis->setClass(className);
+      //m_className = *className;
    }
 
-   bool Window::createWindow(const StringStorage *windowName, DWORD style, HWND hWndParent,
+   bool Window::createWindow(const scoped_string & scopedstrWindowName, DWORD style, const ::operating_system::window & operatingsystemwindowParent,
                                  int xPos, int yPos, int width, int height)
    {
-      if (m_hWnd) {
-         return false;
-      }
-      m_windowName = *windowName;
-      m_hWnd = CreateWindow(m_className.getString(),
-                            m_windowName.getString(),
-                            style,
-                            xPos, yPos,
-                            width, height,
-                            hWndParent,
-                            0,
-                            GetModuleHandle(0),
-                            reinterpret_cast<LPVOID>(this));
-      m_bWndCreated = (m_hWnd == 0 ? false : true);
-      if (m_bWndCreated) {
-         SetWindowLongPtr(m_hWnd,
-                          GWLP_USERDATA,
-                          reinterpret_cast<LONG_PTR>(this));
-      }
-      return true;
+
+           return m_pparticleThis->createWindow(scopedstrWindowName,style, operatingsystemwindowParent, xPos, yPos, width, height);
+      // if (m_hWnd) {
+      //    return false;
+      // }
+      // m_windowName = *windowName;
+      // m_hWnd = CreateWindow(m_className.getString(),
+      //                       m_windowName.getString(),
+      //                       style,
+      //                       xPos, yPos,
+      //                       width, height,
+      //                       hWndParent,
+      //                       0,
+      //                       GetModuleHandle(0),
+      //                       reinterpret_cast<LPVOID>(this));
+      // m_bWndCreated = (m_hWnd == 0 ? false : true);
+      // if (m_bWndCreated) {
+      //    SetWindowLongPtr(m_hWnd,
+      //                     GWLP_USERDATA,
+      //                     reinterpret_cast<LONG_PTR>(this));
+      // }
+      // return true;
    }
 
    void Window::loadIcon(DWORD id)
    {
-      if (m_hicon) {
-         DeleteObject(m_hicon);
-         m_hicon = 0;
-      }
-      if (IS_INTRESOURCE(id)) {
-         m_hicon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(id));
-         SetClassLongPtr(m_hWnd, GCLP_HICON, reinterpret_cast<LONG_PTR>(m_hicon));
-      } else {
-         SetClassLongPtr(m_hWnd, GCLP_HICON, static_cast<LONG_PTR>(id));
-      }
+
+      m_pparticleThis ->loadIcon(id);
+      // if (m_hicon) {
+      //    DeleteObject(m_hicon);
+      //    m_hicon = 0;
+      // }
+      // if (IS_INTRESOURCE(id)) {
+      //    m_hicon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(id));
+      //    SetClassLongPtr(m_hWnd, GCLP_HICON, reinterpret_cast<LONG_PTR>(m_hicon));
+      // } else {
+      //    SetClassLongPtr(m_hWnd, GCLP_HICON, static_cast<LONG_PTR>(id));
+      // }
    }
 
    void Window::enableWindow(bool bEnable)
    {
-      _ASSERT(m_hWnd != 0);
-      EnableWindow(m_hWnd, bEnable);
+      m_pparticleThis ->enableWindow(bEnable);
+      // _ASSERT(m_hWnd != 0);
+      // EnableWindow(m_hWnd, bEnable);
    }
 
    bool Window::destroyWindow()
    {
-      if (m_hWnd) {
-         DestroyWindow(m_hWnd);
-         return true;
-      }
-      return false;
+      return m_pparticleThis->destroyWindow();
+      // if (m_hWnd) {
+      //    DestroyWindow(m_hWnd);
+      //    return true;
+      // }
+      //return false;
    }
 
    void Window::show()
    {
-      _ASSERT(m_hWnd != 0);
-      ShowWindow(m_hWnd, SW_SHOW);
+      m_pparticleThis->show();
+      // _ASSERT(m_hWnd != 0);
+      // ShowWindow(m_hWnd, SW_SHOW);
    }
 
    void Window::hide()
    {
-      _ASSERT(m_hWnd != 0);
-      ShowWindow(m_hWnd, SW_HIDE);
+      //_ASSERT(m_hWnd != 0);
+      //ShowWindow(m_hWnd, SW_HIDE);
+      m_pparticleThis->hide();
    }
 
    bool Window::setSize(int width, int height)
    {
-      _ASSERT(m_hWnd != 0);
-      return !!SetWindowPos(m_hWnd, 0, 0, 0, width, height,
-                            SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+      // _ASSERT(m_hWnd != 0);
+      // return !!SetWindowPos(m_hWnd, 0, 0, 0, width, height,
+      //                       SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
+      return m_pparticleThis->setSize(width, height);
    }
 
    bool Window::setPosition(int xPos, int yPos)
    {
-      _ASSERT(m_hWnd != 0);
-      return !!SetWindowPos(m_hWnd, 0, xPos, yPos, 0, 0,
-                            SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+      // _ASSERT(m_hWnd != 0);
+      // return !!SetWindowPos(m_hWnd, 0, xPos, yPos, 0, 0,
+      //                       SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+      return m_pparticleThis->setPosition(xPos, yPos);
    }
 
-   void Window::setParent(HWND hwnd)
+   void Window::setParent(const ::operating_system::window & operatingsystemwindow)
    {
-      _ASSERT(m_hWnd != 0);
-      SetParent(m_hWnd, hwnd);
+      // _ASSERT(m_hWnd != 0);
+      // SetParent(m_hWnd, hwnd);
+
+      m_pparticleThis->setParent(hwnd);
    }
 
 
@@ -172,6 +185,14 @@ namespace innate_subsystem
    {
       _ASSERT(m_hWnd != 0);
       SetClassLongPtr(m_hWnd, GCLP_MENUNAME, menu);
+   }
+
+
+   bool Window::we_want_WM_KEYDOWN_when_enter_is_pressed() const
+   {
+
+      m_pparticleThis->we
+
    }
 
    LONG Window::getStyle()
@@ -298,7 +319,7 @@ namespace innate_subsystem
       return onMessage(message, ::wparam, ::lparam);
    }
 
-   void Window::setHWnd(HWND hwnd)
+   void Window::setHWnd(const ::operating_system::window & operatingsystemwindow)
    {
       m_hWnd = hwnd;
    }

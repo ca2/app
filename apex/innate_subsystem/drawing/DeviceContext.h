@@ -30,22 +30,33 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_ACME DeviceContext :
-      virtual public ::subsystem::particle<DeviceContext>
+
+
+    class CLASS_DECL_ACME DeviceContextInterface :
+      virtual public ::subsystem::particle_interface
    {
    public:
       // Create device context linked to window DC.
-      DeviceContext(const ::operating_system::window & window);
+      //DeviceContext(const ::operating_system::window & window);
       // Create device context complatible with other DC.
-      DeviceContext(DeviceContext* compatibleDevice);
+      //DeviceContext(DeviceContext* compatibleDevice);
       // Destroys device context.
-      ~DeviceContext() override;
+      virtual ~DeviceContextInterface() = 0;
 
       //private:
       // Initialize class from PaintWindow
-      DeviceContext(class PaintWindow * pntWnd);
+      //DeviceContext(class PaintWindow * pntWnd);
 
-      friend class PaintWindow;
+       //private:
+       // Initialize class from PaintWindow
+       virtual void initialize_device_context(class PaintWindow * pntWnd) = 0;
+       // Create device context linked to window DC.
+       virtual void initialize_device_context(const ::operating_system::window & window) = 0;
+       // Create device context complatible with other DC.
+       virtual void initialize_device_context(DeviceContext* compatibleDevice) = 0;
+
+
+      //friend class PaintWindow;
 
       //protected:
       // Selects an object into this device context.
@@ -59,4 +70,40 @@ namespace innate_subsystem
       //   friend class Graphics;
       //   friend class BitmapGraphics;
    };
+
+
+        class CLASS_DECL_ACME DeviceContext :
+      virtual public ::subsystem::implementation < ::innate_subsystem::DeviceContextInterface >
+   {
+   public:
+
+
+      // Destroys device context.
+           DeviceContext();
+      ~DeviceContext() override;
+
+      //private:
+      // Initialize class from PaintWindow
+      void initialize_device_context(class PaintWindow * pntWnd) override;
+      // Create device context linked to window DC.
+      void initialize_device_context(const ::operating_system::window & window) override;
+      // Create device context complatible with other DC.
+      void initialize_device_context(DeviceContext* compatibleDevice) override;
+
+      //friend class PaintWindow;
+
+      //protected:
+      // Selects an object into this device context.
+      //HGDIOBJ _selectObject(HGDIOBJ object);
+
+      // protected:
+      //   HDC m_dc;
+      //   HWND m_wnd;
+      //   bool m_hasOwnDC;
+      //
+      //   friend class Graphics;
+      //   friend class BitmapGraphics;
+   };
+
+
 } // namespace innate_subsystem

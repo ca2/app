@@ -37,19 +37,22 @@ namespace innate_subsystem
       PaintWindow();
       virtual ~PaintWindow();
 
-   private:
-      HDC getHDCPaint();
+   //private:
+      ::pointer < DeviceContext > getHDCPaint();
 
-      friend class DeviceContext;
+      //friend class DeviceContext;
 
-   protected:
-      virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
+   //protected:
+      //virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
+      virtual void onPaint(DeviceContext *dc, const ::int_rectangle & rectangle);
 
       bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 
       bool m_bIsDraw;
-      PAINTSTRUCT m_paintStruct;
-      HDC m_hdc;
+      //PAINTSTRUCT m_paintStruct;
+      ::int_rectangle m_rectangle;
+      ::pointer < DeviceContext > m_pdevicecontext;
+      //HDC m_hdc;
 
    };
 

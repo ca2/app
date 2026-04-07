@@ -22,48 +22,53 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _TAB_H_
-#define _TAB_H_
+#pragma once
 
-#include "BaseDialog.h"
-#include "Control.h"
-#include "util/StringStorage.h"
 
-class Tab
+//#include "apex/innate_subsystem/Dialog.h"
+#include "apex/innate_subsystem/Control.h"
+//#include "util/StringStorage.h"
+
+namespace innate_subsystem
 {
-public:
-  Tab();
-  Tab(BaseDialog *dialog, const TCHAR *caption);
+    class Tab
+    {
+    public:
+        Tab();
+        Tab(BaseDialog *dialog, const TCHAR *caption);
 
-  //
-  // Access methods to protected members
-  //
+        //
+        // Access methods to protected members
+        //
 
-  void setCaption(const TCHAR *caption) { m_caption.setString(caption); }
+        void setCaption(const TCHAR *caption) { m_caption.setString(caption); }
 
-  const TCHAR *getCaption() {
-    return m_caption.getString();
-  }
+        const TCHAR *getCaption() {
+            return m_caption.getString();
+        }
 
-  void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
-  BaseDialog *getDialog() { return m_dialog; }
+        void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
+        BaseDialog *getDialog() { return m_dialog; }
 
-  //
-  // Method return true if tab has dialog
-  //
+        //
+        // Method return true if tab has dialog
+        //
 
-  bool isOk() { return m_dialog != NULL; }
+        bool isOk() { return m_dialog != NULL; }
 
-  //
-  // Changes visible state of dialog donates by this tab
-  //
+        //
+        // Changes visible state of dialog donates by this tab
+        //
 
-  void setVisible(bool visible);
+        void setVisible(bool visible);
 
-protected:
+    protected:
 
-  BaseDialog *m_dialog;
-  StringStorage m_caption;
-};
+        BaseDialog *m_dialog;
+        StringStorage m_caption;
+    };
 
-#endif
+    //#endif
+} // namespace innate_subsystem
+
+

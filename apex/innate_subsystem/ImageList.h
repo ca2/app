@@ -27,11 +27,13 @@ namespace innate_subsystem
 
       virtual ~ImageListInterface() = 0;
 
-      virtual void initialize_image_list() = 0;
+      virtual void initializeImageList() = 0;
 
-      virtual void create_image_list(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) = 0;
+      virtual void createImageList(const ::int_size & size, int flags, int iInitialSize = 1, int iGrow = 1) = 0;
 
-      virtual void destroy_image_list() = 0;
+      virtual void destroyImageList() = 0;
+
+      virtual void addIcon(::innate_ui::icon * pinnateuiicon) = 0;
 
 
 
@@ -48,11 +50,13 @@ namespace innate_subsystem
 
        ~ImageList()override;
 
-      void initialize_image_list() override;
+      void initializeImageList() override;
 
-      void create_image_list(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) override;
+      void createImageList(const ::int_size & size, int flags, int iInitialSize = 1, int iGrow = 1) override;
 
-      void destroy_image_list() override;
+      void destroyImageList() override;
+
+      virtual void addIcon(::innate_ui::icon * pinnateuiicon) override;
 
 
    };

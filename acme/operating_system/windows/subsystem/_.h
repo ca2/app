@@ -22,6 +22,8 @@ namespace windows
 
    class WindowsHookEventListener;
 
+   class WTS;
+
 } // namespace windows
 
 

@@ -14,7 +14,11 @@ namespace user
       e_notification_default = 0,
 
 
-      e_notification_button_clicked = 0, // ::user::e_notification_button_clicked
+      e_notification_button_clicked = 0, // _BN_CLICKED
+
+      e_notification_combo_box_selection_change = 1, // _CBN_SELCHANGE
+      e_notification_combo_box_lost_focus = 4, // _CBN_KILLFOCUS
+
 
    };
 

@@ -28,12 +28,29 @@
 
 namespace innate_subsystem
 {
-   class SolidBrush : public Brush
+   class CLASS_DECL_APEX SolidBrushInterface :
+      virtual public Brush
    {
    public:
-      SolidBrush(COLORREF color);
-      virtual ~SolidBrush();
+
+      //SolidBrush();
+      //SolidBrush(COLORREF color);
+      virtual ~SolidBrushInterface() = 0;
+
+      virtual void initialize_solid_brush(const ::color::color & color) = 0;
    };
 
+   class CLASS_DECL_APEX SolidBrush :
+   virtual public ::subsystem::composite < SolidBrushInterface >
+   {
+   public:
+
+      SolidBrush();
+      //SolidBrush(COLORREF color);
+      ~SolidBrush() override;
+
+      void initialize_solid_brush(const ::color::color & color) override;
+
+   };
 
 } // namespace innate_subsystem

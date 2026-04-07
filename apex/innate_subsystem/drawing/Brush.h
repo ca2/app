@@ -29,8 +29,8 @@
 namespace innate_subsystem
 {
 
-   class CLASS_DECL_ACME Brush :
-   virtual public ::subsystem::particle<Brush>
+   class CLASS_DECL_ACME BrushInterface :
+   virtual public ::subsystem::particle_interface
    {
    public:
       //Brush();
@@ -47,7 +47,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_ACME Brush :
-      virtual public ::subsystem::composite<Brush
+      virtual public ::subsystem::composite<BrushInterface >
    {
    public:
       Brush();

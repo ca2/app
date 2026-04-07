@@ -74,7 +74,7 @@ namespace innate_subsystem
       // Return
       virtual Control *getControl() { return this; }
       // Setup control by ID
-      virtual void subclassControlById(::innate_subsystem::Control * pcontrol, unsigned int id);
+      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id);
       // Icon manipulation
       virtual void loadIcon(unsigned int id);
       virtual void updateIcon();
@@ -95,7 +95,7 @@ namespace innate_subsystem
 
       }
 
-      template < typename WIDGET_TYPE >
+      template < typename WIDGET_TYPE  = ::innate_subsystem::Control>
       ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
       {
 

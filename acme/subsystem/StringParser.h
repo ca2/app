@@ -31,18 +31,22 @@
 
 namespace subsystem
 {
-   class StringParser
+
+   class CLASS_DECL_ACME StringParser :
+      virtual public ::particle
    {
    public:
-      static bool tryParseInt(const char *str);
-      static bool parseInt(const char *str, int *out);
+      virtual bool tryParseInt(const char *str);
+      virtual bool parseInt(const char *str, int *out);
       // FIXME: it returns true on values that greater then 0xFFFFFFFF.
-      static bool parseUInt(const char *str, unsigned int *out);
-      static bool parseUInt64(const char *str, unsigned long long *out);
-      static bool parseHex(const char *str, unsigned int *out);
-      static bool parseByte(const char *str, unsigned char *out);
-      static bool parseByteHex(const char *str, unsigned char *out);
+      virtual bool parseUInt(const char *str, unsigned int *out);
+      virtual bool parseUInt64(const char *str, unsigned long long *out);
+      virtual bool parseHex(const char *str, unsigned int *out);
+      virtual bool parseByte(const char *str, unsigned char *out);
+      virtual bool parseByteHex(const char *str, unsigned char *out);
    };
+
+
 } //   namespace subsystem
 
 //#endif

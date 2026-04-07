@@ -92,4 +92,18 @@ namespace innate_subsystem
    //
    // }
 
+   ::innate_subsystem::SystemMetricsInterface * subsystem::metrics()
+   {
+
+      if (!m_psystemmetrics)
+      {
+
+         constructø(m_psystemmetrics);
+
+      }
+
+      return m_psystemmetrics;
+
+   }
+
 }//namespace subsystem

@@ -1,4 +1,5 @@
 // Copyright (C) 2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -79,27 +80,65 @@ namespace windows
     *
     * @author enikey.
     */
-   class CLASS_DECL_ACME WTS
+   class CLASS_DECL_ACME WTS :
+    virtual public ::particle
    {
    public:
+
+       ::pointer < ::windows::subsystem::DynamicLibrary > m_pdynamiclibraryKernel32;
+       ::pointer < ::windows::subsystem::DynamicLibrary > m_pdynamiclibraryWtsApi32;
+       pWTSGetActiveConsoleSessionId m_WTSGetActiveConsoleSessionId;
+       pWTSQueryUserToken m_WTSQueryUserToken;
+       pWTSQuerySessionInformation m_WTSQuerySessionInformation;
+       pWTSFreeMemory m_WTSFreeMemory;
+       pWTSEnumerateSessions m_WTSEnumerateSessions;
+
+      /**
+       * Determinates if WTS library was initialized.
+       */
+       volatile bool m_initialized;
+
+      /**
+       * Token of interactive user process in active console session
+       * that will be used if WTSQueryToken WinAPI function is unavaliable
+       * in queryConsoleUserToken() call.
+       */
+       HANDLE m_userProcessToken;
+
+      /**
+       * Thread-safety.
+       */
+       critical_section m_mutex;
+
+       WTS();
+
+       ~WTS() override;
+
+
+      /**
+ * Initializes WTS functions.
+ */
+      virtual void initialize_wts(::subsystem::LogWriter *log);
+
+
       /**
        * Gets active console session id.
        * @return active console session id if WTS is avaliable or 0 if
        * WinAPI WTSGetActiveConsoleSessionId function not avaliable.
        */
-      static DWORD getActiveConsoleSessionId(::subsystem::LogWriter *log);
+       virtual DWORD getActiveConsoleSessionId(::subsystem::LogWriter *log);
 
       /**
       * Gets RDP console session id.
       * @return RDP console session id if WTS is avaliable and RDP console exists or 0 if
       * WinAPI WTSEnumerateSessions function not avaliable or there is no sessions with RDP in name.
       */
-      static DWORD getRdpSessionId(::subsystem::LogWriter *log);
+       virtual DWORD getRdpSessionId(::subsystem::LogWriter *log);
 
       /**
       * @return true if sessionId is the RDP console session id.
       */
-      static bool SessionIsRdpSession(DWORD sessionId, ::subsystem::LogWriter *log);
+       virtual bool SessionIsRdpSession(DWORD sessionId, ::subsystem::LogWriter *log);
 
       /**
        * Queries user token in active console session.
@@ -110,9 +149,9 @@ namespace windows
        * process id will be used to get user token (this id can be set by using of
        * defineConsoleUserProcessId() method).
        */
-      static HANDLE queryConsoleUserToken(::subsystem::LogWriter *log);
+       virtual HANDLE queryConsoleUserToken(::subsystem::LogWriter *log);
 
-      static HANDLE sessionUserToken(DWORD sessionId, ::subsystem::LogWriter* log);
+       HANDLE sessionUserToken(DWORD sessionId, ::subsystem::LogWriter* log);
 
       /**
        * Defines global (for WTS class) user process that will be used
@@ -120,67 +159,42 @@ namespace windows
        * is unavaliable (Windows 2000 case).
        * @param userProcessId user process id.
        */
-      static void defineConsoleUserProcessId(DWORD userProcessId);
+       virtual void defineConsoleUserProcessId(DWORD userProcessId);
 
       // This function dupplicate token impersonated to named pipe cliend end.
       // This should work only for win2000 because other windows version have
       // rdp.
-      static void duplicatePipeClientToken(HANDLE pipeHandle);
+       virtual void duplicatePipeClientToken(HANDLE pipeHandle);
 
-      static ::string getUserName(DWORD sessionId,::subsystem:: LogWriter *log);
-      static ::string getCurrentUserName(::subsystem::LogWriter* log);
+       virtual ::string getUserName(DWORD sessionId,::subsystem:: LogWriter *log);
+       virtual ::string getCurrentUserName(::subsystem::LogWriter* log);
 
-      static bool sessionIsLocked(DWORD sessionId, ::subsystem::LogWriter* log);
+       virtual bool sessionIsLocked(DWORD sessionId, ::subsystem::LogWriter* log);
 
-      static HANDLE duplicateCurrentProcessUserToken(bool rdpEnabled,::subsystem:: LogWriter* log);
+       virtual HANDLE duplicateCurrentProcessUserToken(bool rdpEnabled,::subsystem:: LogWriter* log);
 
-      static HANDLE duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, ::subsystem::LogWriter* log);
+       virtual HANDLE duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, ::subsystem::LogWriter* log);
 
       /**
        * Returns user name for given access token.
        * @param token access or impersonation token.
        */
-      static ::string getTokenUserName(HANDLE token);
+       virtual ::string getTokenUserName(HANDLE token);
 
-   private:
+   //private:
       /**
        * Don't allow instanizing of WTS class.
        */
-      WTS();
+      //WTS();
 
-      /**
-       * Initializes WTS functions.
-       */
-      static void initialize(::subsystem::LogWriter *log);
 
       // The initialize() function should be already called before use the wtsFreeMemory() function.
-      static void wtsFreeMemory(void *buffer);
+       virtual void wtsFreeMemory(void *buffer);
 
-      static ::windows::subsystem::DynamicLibrary *m_kernel32Library;
-      static ::windows::subsystem::DynamicLibrary *m_wtsapi32Library;
-      static pWTSGetActiveConsoleSessionId m_WTSGetActiveConsoleSessionId;
-      static pWTSQueryUserToken m_WTSQueryUserToken;
-      static pWTSQuerySessionInformation m_WTSQuerySessionInformation;
-      static pWTSFreeMemory m_WTSFreeMemory;
-      static pWTSEnumerateSessions m_WTSEnumerateSessions;
 
-      /**
-       * Determinates if WTS library was initialized.
-       */
-      static volatile bool m_initialized;
-
-      /**
-       * Token of interactive user process in active console session
-       * that will be used if WTSQueryToken WinAPI function is unavaliable
-       * in queryConsoleUserToken() call.
-       */
-      static HANDLE m_userProcessToken;
-
-      /**
-       * Thread-safety.
-       */
-      static critical_section m_mutex;
    };
+
+
 } // namespace windows
 
 

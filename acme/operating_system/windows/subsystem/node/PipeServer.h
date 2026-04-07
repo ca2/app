@@ -46,7 +46,8 @@ namespace windows
     * @author yuri, enikey.
     * @fixme not thread-safe, undone, strange code inside.
     */
-   class CLASS_DECL_ACME PipeServer
+   class CLASS_DECL_ACME PipeServer :
+   virtual public ::particle
    {
    public:
       /**
@@ -57,13 +58,22 @@ namespace windows
        *
        * @fixme stub.
        */
-      PipeServer(const ::scoped_string & scopedstrName, unsigned int bufferSize,
-                 ::subsystem::SecurityAttributesInterface *secAttr = 0,
-                 DWORD milliseconds = INFINITE);
+      // PipeServer(const ::scoped_string & scopedstrName, unsigned int bufferSize,
+      //            ::subsystem::SecurityAttributesInterface *secAttr = 0,
+      //            DWORD milliseconds = INFINITE);
+
+      PipeServer();
       /**
+       *
+       *
        * Destroys pipe server.
        */
       virtual ~PipeServer();
+
+
+      void initialize_pipe_server(const ::scoped_string & scopedstrName, unsigned int bufferSize,
+           ::subsystem::SecurityAttributesInterface *secAttr = 0,
+           DWORD milliseconds = INFINITE);
 
       /**
        * Waits until pipe client connects.
@@ -90,7 +100,7 @@ namespace windows
        */
       virtual void closeConnection();
 
-   private:
+   //private:
       void createServerPipe();
 
       // returns True on every error
@@ -100,16 +110,17 @@ namespace windows
       static void initialize();
       static volatile bool m_initialized;
 
-   private:
+   //private:
       static ::pointer < ::windows::subsystem::DynamicLibrary >  m_pdynamiclibraryKernel32;
       static pGetNamedPipeClientProcessId m_GetNamedPipeClientProcessId;
 
-   private:
+   //private:
       ::string m_pipeName;
       WindowsEvent m_winEvent;
       DWORD m_milliseconds;
-      ::subsystem::SecurityAttributes *m_secAttr;
-      HANDLE m_serverPipe;
+      ::pointer < ::windows::subsystem::SecurityAttributes > m_psecurityattributes;
+      ::pointer < ::windows::subsystem::File > m_pfileServerPipe;
+      //HANDLE m_serverPipe;
       unsigned int m_bufferSize;
    };
 

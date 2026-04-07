@@ -29,6 +29,8 @@
 //#include <commctrl.h>
 #include "apex/innate_subsystem/Control.h"
 
+
+
 //
 // TODO: Maybe use class for this?
 //
@@ -49,6 +51,11 @@ namespace innate_subsystem
    class ListView : public Control
    {
    public:
+
+
+      typedef int (ListView:: *PFUNCTION_list_data_compare)(::lparam lparamData1, ::lparam lparamData2, void * pCompare);
+
+
 
       ListView();
 
@@ -179,7 +186,7 @@ namespace innate_subsystem
       //
       // For example, you need to call this method, if user changed parameters of sorting.
       //
-      //virtual void sort(int columnIndex, PFNLVCOMPARE compareItem);
+      virtual void sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare);
 
       //
       // This method sort list of item by column m_sortColumIndex.

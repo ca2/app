@@ -24,31 +24,46 @@
 #include "framework.h"
 #include "WTS.h"
 #include "acme/subsystem/node/SystemException.h"
-//#include "remoting/remoting_common/thread/AutoLock.h"
+//#include "remoting/remoting_common/thread/critical_section_lock.h"
 //#include "Environment.h"
 #include "PipeImpersonatedThread.h"
 #include "acme/platform/node.h"
 #include <crtdbg.h>
 
+#include "DynamicLibrary.h"
+
+
 namespace windows
 {
-   DynamicLibrary *WTS::m_kernel32Library = 0;
-   DynamicLibrary *WTS::m_wtsapi32Library = 0;
-   pWTSGetActiveConsoleSessionId WTS::m_WTSGetActiveConsoleSessionId = 0;
-   pWTSQueryUserToken WTS::m_WTSQueryUserToken = 0;
-   pWTSQuerySessionInformation WTS::m_WTSQuerySessionInformation = 0;
-   pWTSEnumerateSessions WTS::m_WTSEnumerateSessions = 0;
-   pWTSFreeMemory WTS::m_WTSFreeMemory = 0;
 
-   volatile bool WTS::m_initialized = false;
+    WTS::WTS()
+    {
+        //DynamicLibrary *WTS::m_pdynamiclibraryKernel32 = 0;
+        //DynamicLibrary *WTS::m_pdynamiclibraryWtsApi32 = 0;
+        m_WTSGetActiveConsoleSessionId = nullptr;
+        m_WTSQueryUserToken = nullptr;
+        m_WTSQuerySessionInformation = nullptr;
+        m_WTSEnumerateSessions = nullptr;
+        m_WTSFreeMemory = nullptr;
 
-   HANDLE WTS::m_userProcessToken = INVALID_HANDLE_VALUE;
+        //volatile bool WTS::m_initialized = false;
+        m_initialized = false;
 
-   LocalMutex WTS::m_mutex;
+        //HANDLE WTS::m_userProcessToken = INVALID_HANDLE_VALUE;
+        m_userProcessToken = INVALID_HANDLE_VALUE;
 
-   DWORD WTS::getActiveConsoleSessionId(LogWriter *log)
+        //LocalMutex WTS::m_mutex;
+    }
+
+
+    WTS::~WTS()
+    {
+
+    }
+
+   DWORD WTS::getActiveConsoleSessionId(::subsystem::LogWriter *log)
    {
-      AutoLock l(&m_mutex);
+      critical_section_lock l(&m_mutex);
       DWORD id;
 
       if (!m_initialized) {
@@ -65,9 +80,9 @@ namespace windows
       return id;
    }
 
-   DWORD WTS::getRdpSessionId(LogWriter *log)
+   DWORD WTS::getRdpSessionId(::subsystem::LogWriter *log)
    {
-      AutoLock l(&m_mutex);
+      critical_section_lock l(&m_mutex);
 
       if (!m_initialized) {
          initialize(log);
@@ -99,10 +114,10 @@ namespace windows
    }
 
 
-   bool WTS::SessionIsRdpSession(DWORD sessionId, LogWriter *log)
+   bool WTS::SessionIsRdpSession(DWORD sessionId, ::subsystem::LogWriter *log)
    {
       {
-         AutoLock l(&m_mutex);
+         critical_section_lock l(&m_mutex);
 
          if (!m_initialized) {
             initialize(log);
@@ -130,24 +145,24 @@ namespace windows
    }
 
 
-   HANDLE WTS::queryConsoleUserToken(LogWriter *log)
+   HANDLE WTS::queryConsoleUserToken(::subsystem::LogWriter *log)
    {
       DWORD sessionId = getActiveConsoleSessionId(log);
       return sessionUserToken(sessionId, log);
    }
 
-   HANDLE WTS::sessionUserToken(DWORD sessionId, LogWriter* log)
+   HANDLE WTS::sessionUserToken(DWORD sessionId,::subsystem:: LogWriter* log)
    {
       HANDLE token = NULL;
       {
-         AutoLock l(&m_mutex);
+         critical_section_lock l(&m_mutex);
 
          if (!m_initialized) {
             initialize(log);
          }
       }
 
-      AutoLock l(&m_mutex);
+      critical_section_lock l(&m_mutex);
 
       if (m_WTSQueryUserToken != 0) {
          if (!m_WTSQueryUserToken(sessionId, &token)) {
@@ -167,14 +182,14 @@ namespace windows
    }
 
 
-   ::string WTS::getCurrentUserName(LogWriter *log)
+   ::string WTS::getCurrentUserName(::subsystem::LogWriter *log)
    {
 
       DWORD sessionId = getActiveConsoleSessionId(log);
       return getUserName(sessionId, log);
    }
 
-   ::string WTS::getUserName(DWORD sessionId, LogWriter* log)
+   ::string WTS::getUserName(DWORD sessionId, ::subsystem::LogWriter* log)
    {
       ::string userName;
       if (m_WTSQuerySessionInformation == 0) {
@@ -191,7 +206,7 @@ namespace windows
       return userName;
    }
 
-   bool WTS::sessionIsLocked(DWORD sessionId, LogWriter* log)
+   bool WTS::sessionIsLocked(DWORD sessionId, ::subsystem::LogWriter* log)
    {
 #ifndef UNICODE
       return false;
@@ -237,19 +252,19 @@ namespace windows
       HANDLE procHandle = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, userProcessId);
 
       if (procHandle == 0) {
-         throw SystemException();
+         throw ::subsystem::SystemException();
       }
 
       HANDLE userProcessToken;
 
       if (!OpenProcessToken(procHandle, TOKEN_ALL_ACCESS, &userProcessToken)) {
          CloseHandle(procHandle);
-         throw SystemException();
+         throw ::subsystem::SystemException();
       }
 
       CloseHandle(procHandle);
 
-      AutoLock l(&m_mutex);
+      critical_section_lock l(&m_mutex);
 
       if (m_userProcessToken != 0) {
          CloseHandle(m_userProcessToken);
@@ -260,7 +275,7 @@ namespace windows
 
    void WTS::duplicatePipeClientToken(HANDLE pipeHandle)
    {
-      PipeImpersonatedThread impThread(pipeHandle);
+      ::subsystem::PipeImpersonatedThread impThread(pipeHandle);
       impThread.resume();
       impThread.waitUntilImpersonated();
       if (!impThread.getImpersonationSuccess()) {
@@ -268,26 +283,26 @@ namespace windows
          faultReason = impThread.getFaultReason();
          errMessage.format("Can't impersonate thread by pipe handle: {}",
                            faultReason);
-         throw ::remoting::Exception(errMessage);
+         throw ::subsystem::Exception(errMessage);
       }
 
       HANDLE threadHandle = OpenThread(THREAD_QUERY_INFORMATION, FALSE,
                                        impThread.getThreadId());
       if (threadHandle == 0) {
-         throw SystemException("Can't open thread to duplicate"
+         throw ::subsystem::SystemException("Can't open thread to duplicate"
                                " impersonate token");
       }
       try {
          HANDLE userThreadToken;
          if (OpenThreadToken(threadHandle, TOKEN_ALL_ACCESS, TRUE, &userThreadToken) == 0) {
-            throw SystemException("Can't open process token to duplicate"
+            throw ::subsystem::SystemException("Can't open process token to duplicate"
                                   " impersonate token");
          }
          try {
             HANDLE userThreadDuplicatedToken;
             if (DuplicateTokenEx(userThreadToken, 0, 0, SecurityImpersonation,
                                  TokenPrimary, &userThreadDuplicatedToken) == 0) {
-               throw SystemException("Can't duplicate token from impersonated"
+               throw ::subsystem::SystemException("Can't duplicate token from impersonated"
                                      " to a named pipe client token");
                                  }
             if (m_userProcessToken != INVALID_HANDLE_VALUE) {
@@ -306,27 +321,29 @@ namespace windows
       CloseHandle(threadHandle);
    }
 
-   void WTS::initialize(LogWriter *log)
+   void WTS::initialize(::subsystem::LogWriter *log)
    {
       _ASSERT(!m_initialized);
 
       try {
-         m_kernel32Library = new DynamicLibrary("Kernel32.dll");
-         m_WTSGetActiveConsoleSessionId = (pWTSGetActiveConsoleSessionId)m_kernel32Library->getProcAddress("WTSGetActiveConsoleSessionId");
+         construct_newø(m_pdynamiclibraryKernel32);
+         m_pdynamiclibraryKernel32->initialize_dynamic_library("Kernel32.dll");
+         m_WTSGetActiveConsoleSessionId = (pWTSGetActiveConsoleSessionId)m_pdynamiclibraryKernel32->getProcAddress("WTSGetActiveConsoleSessionId");
       } catch (::exception &e) {
          log->error("Can't load the Kernel32.dll library: {}", e.get_message());
       }
       try {
-         m_wtsapi32Library = new DynamicLibrary("Wtsapi32.dll");
-         m_WTSQueryUserToken = (pWTSQueryUserToken)m_wtsapi32Library->getProcAddress("WTSQueryUserToken");
+         construct_newø(m_pdynamiclibraryWtsApi32);
+         m_pdynamiclibraryWtsApi32->initialize_dynamic_library("Wtsapi32.dll");
+         m_WTSQueryUserToken = (pWTSQueryUserToken)m_pdynamiclibraryWtsApi32->getProcAddress("WTSQueryUserToken");
 #ifdef UNICODE
-         m_WTSQuerySessionInformation = (pWTSQuerySessionInformation)m_wtsapi32Library->getProcAddress("WTSQuerySessionInformationW");
-         m_WTSEnumerateSessions = (pWTSEnumerateSessions)m_wtsapi32Library->getProcAddress("WTSEnumerateSessionsW");
+         m_WTSQuerySessionInformation = (pWTSQuerySessionInformation)m_pdynamiclibraryWtsApi32->getProcAddress("WTSQuerySessionInformationW");
+         m_WTSEnumerateSessions = (pWTSEnumerateSessions)m_pdynamiclibraryWtsApi32->getProcAddress("WTSEnumerateSessionsW");
 #else
-         m_WTSQuerySessionInformation = (pWTSQuerySessionInformation)m_wtsapi32Library->getProcAddress("WTSQuerySessionInformationA");
-         m_WTSEnumerateSessions = (pWTSEnumerateSessions)m_wtsapi32Library->getProcAddress("WTSEnumerateSessionsA");
+         m_WTSQuerySessionInformation = (pWTSQuerySessionInformation)m_pdynamiclibraryWtsApi32->getProcAddress("WTSQuerySessionInformationA");
+         m_WTSEnumerateSessions = (pWTSEnumerateSessions)m_pdynamiclibraryWtsApi32->getProcAddress("WTSEnumerateSessionsA");
 #endif
-         m_WTSFreeMemory = (pWTSFreeMemory)m_wtsapi32Library->getProcAddress("WTSFreeMemory");
+         m_WTSFreeMemory = (pWTSFreeMemory)m_pdynamiclibraryWtsApi32->getProcAddress("WTSFreeMemory");
       } catch (::exception &e) {
          log->error("Can't load the Wtsapi32.dll library: {}", e.get_message());
       }
@@ -334,19 +351,19 @@ namespace windows
       m_initialized = true;
    }
 
-   HANDLE currentProcessUserToken(LogWriter* log)
+   HANDLE currentProcessUserToken(::subsystem::LogWriter* log)
    {
       HANDLE token = NULL;
       HANDLE procHandle = GetCurrentProcess();
       log->debug("Try OpenProcessToken(%p, , )", (void*)procHandle);
       if (OpenProcessToken(procHandle, TOKEN_DUPLICATE, &token) == 0) {
-         throw SystemException();
+         throw ::subsystem::SystemException();
       }
       return token;
    }
 
 
-   HANDLE WTS::duplicateCurrentProcessUserToken(bool rdpEnabled, LogWriter* log)
+   HANDLE WTS::duplicateCurrentProcessUserToken(bool rdpEnabled, ::subsystem::LogWriter* log)
    {
       DWORD rdpSession = 0;
       DWORD activeSession = 0;
@@ -387,7 +404,7 @@ namespace windows
       return userToken;
    }
 
-   HANDLE WTS::duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, LogWriter* log)
+   HANDLE WTS::duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, ::subsystem::LogWriter* log)
    {
       HANDLE userToken;
 
@@ -398,7 +415,7 @@ namespace windows
         SecurityImpersonation,
         TokenPrimary,
         &userToken) == 0) {
-         throw SystemException();
+         throw ::subsystem::SystemException();
         }
 
       log->debug("Try SetTokenInformation(%p, , , )", (void*)userToken);
@@ -406,7 +423,7 @@ namespace windows
         (TOKEN_INFORMATION_CLASS)TokenSessionId,
         &sessionId,
         sizeof(sessionId)) == 0) {
-         throw SystemException();
+         throw ::subsystem::SystemException();
         }
       // Fix Windows 8/8.1 UIAccess restrictions (Alt-Tab) for server as service
       // http://stackoverflow.com/questions/13972165/pressing-winx-alt-tab-programatically
@@ -456,7 +473,7 @@ namespace windows
       return name;
    }
 
-   WTS::WTS()
-   {
-   }
+   // WTS::WTS()
+   // {
+   // }
 }  // namespace windows

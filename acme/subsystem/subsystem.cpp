@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "subsystem.h"
+#include "StringParser.h"
 #include "string_table.h"
 #include "resource_loader.h"
 #include "platform/registry.h"
@@ -25,6 +26,21 @@ namespace subsystem
    subsystem::~subsystem()
    {
 
+
+   }
+
+
+   ::subsystem::StringParser * subsystem::string_parser()
+   {
+
+      if (!m_pstringparser)
+      {
+
+         construct_newø(m_pstringparser);
+
+      }
+
+      return m_pstringparser;
 
    }
 

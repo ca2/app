@@ -6,7 +6,9 @@
 // Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSorensen!!
 #pragma once
 
+
 #include "acme/platform/user_interaction_sink.h"
+#include "acme/subsystem/StringParser.h"
 
 
 namespace subsystem
@@ -20,6 +22,7 @@ namespace subsystem
 
 
       static ::subsystem::subsystem *            s_p;
+      ::pointer < ::subsystem::StringParser >     m_pstringparser;
       ::pointer < ::subsystem::string_table >     m_pstringtable;
       ::pointer < ::subsystem::resource_loader >     m_presourceloader;
       ::pointer < ::subsystem::Registry >     m_pregistry;
@@ -29,6 +32,7 @@ namespace subsystem
       ~subsystem() override;
 
 
+      virtual ::subsystem::StringParser * string_parser();
       virtual ::subsystem::string_table * string_table();
       virtual ::subsystem::resource_loader* resource_loader();
       virtual ::subsystem::Registry* registry();

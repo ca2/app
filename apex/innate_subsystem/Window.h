@@ -61,7 +61,8 @@ namespace innate_subsystem
       // Set a class name only to the new window created by createWindow
       virtual void setClass(const ::scoped_string  & scopedstrWindowClassName) = 0;
 
-
+      // We want WM_KEYDOWN scopedstrMessage when enter is pressed
+      virtual bool we_want_WM_KEYDOWN_when_enter_is_pressed() const {return false;}
 
       // basic window manipulation procedures
       virtual void show() = 0;
@@ -202,6 +203,9 @@ namespace innate_subsystem
       void setClassCursor(::innate_subsystem::Cursor * pcursor) override;
       void setClassBackground(::innate_subsystem::Brush * pbrush) override;
       void setClassMenu(long long menu) override;
+
+
+      bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override;
 
       // for changing or get style and exstyle of window
       long long getStyle() override;

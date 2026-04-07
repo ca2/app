@@ -23,34 +23,60 @@
 //
 
 #pragma once
-
-
+#include "acme/subsystem/particle.h"
 
 
 //#include "util/CommonHeader.h"
 
 namespace innate_subsystem
 {
-   namespace innate_subsystem
+
+   enum enum_pen
    {
-      class Pen
+      e_pen_solid = 0, //PS_SOLID;
+      e_pen_dashed = 1, //PS_DASH;
+      e_pen_null =5, // PS_NULL;
+   }
+
+      class CLASS_DECL_APEX PenInterface :
+   virtual public ::subsystem::particle_interface
       {
       public:
-         const static int SOLID_TYPE = PS_SOLID;
-         const static int DASH_TYPE = PS_DASH;
-         const static int NULL_TYPE = PS_NULL;
 
       //public:
-         Pen(int type, int width, COLORREF color);
-         virtual ~Pen();
+         //Pen(int type, int width, const ::color::color & color);
+         //Pen();
+          virtual ~Pen() = 0;
+
+
+         virtual void initialize_pen(enum_pen epen, int width, const ::color::color & color) = 0;
 
       // protected:
       //    HPEN m_pen;
       //
       //    friend class Graphics;
       };
+   class CLASS_DECL_APEX Pen :
+virtual public ::subsystem::composite<PenInterface>
+   {
+   public:
+
+      //public:
+      //Pen(int type, int width, const ::color::color & color);
+      Pen();
+      ~Pen() override;
+
+
+      void initialize_pen(enum_pen epen, int width, const ::color::color & color) override;
+
+      // protected:
+      //    HPEN m_pen;
+      //
+      //    friend class Graphics;
+   };
+
 
 //#endi
-   } // namespace innate_subsystem
-}
+//   } // namespace innate_subsystem
+} // namespace innate_subsystem
 

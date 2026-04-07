@@ -77,7 +77,7 @@ void Control::setEnabled(bool enabled)
 void Control::setText(const char *text)
 {
 
-   m_pparticleThis->setText(text)
+   m_pparticleThis->setText(text);
   ///SetWindowText(m_hwnd, text);
 }
 

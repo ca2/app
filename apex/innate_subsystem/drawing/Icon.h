@@ -40,17 +40,17 @@ namespace innate_subsystem
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
       // Icon(unsigned int icon);
-      virtual ~Icon() = 0;
+      virtual ~IconInterface() = 0;
 
-      virtual void initialize_icon(Icon * picon) = 0;
-      virtual void initialize_icon(Bitmap *bitmap) = 0;
-      virtual void initialize_icon(Bitmap *bitmap, Bitmap *mask) = 0;
+      virtual void initialize_icon(IconInterface * picon) = 0;
+      virtual void initialize_icon(BitmapInterface *bitmap) = 0;
+      virtual void initialize_icon(BitmapInterface *bitmap, BitmapInterface *mask) = 0;
       virtual void initialize_icon(unsigned int icon) = 0;
 
       //HICON getHICON();
 
    //protected:
-      virtual void fromBitmap(Bitmap *bitmap, Bitmap *mask) = 0;
+      virtual void fromBitmap(BitmapInterface *bitmap, BitmapInterface *mask) = 0;
 
    // protected:
    //    HICON m_icon;
@@ -59,25 +59,25 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX Icon :
-virtual public ::subsystem::composite<Icon
+virtual public ::subsystem::composite<IconInterface>
    {
    public:
       Icon();
-      Icon(Icon * picon);
-      Icon(Bitmap *bitmap);
-      Icon(Bitmap *bitmap, Bitmap *mask);
-      Icon(unsigned int icon);
+      // Icon(Icon * picon);
+      // Icon(Bitmap *bitmap);
+      // Icon(Bitmap *bitmap, Bitmap *mask);
+      // Icon(unsigned int icon);
       ~Icon() override;
 
-      virtual void initialize_icon(Icon * picon) override;
-      virtual void initialize_icon(Bitmap *bitmap) override;
-      virtual void initialize_icon(Bitmap *bitmap, Bitmap *mask) override;
+      virtual void initialize_icon(IconInterface * picon) override;
+      virtual void initialize_icon(BitmapInterface *bitmap) override;
+      virtual void initialize_icon(BitmapInterface *bitmap, BitmapInterface *mask) override;
       virtual void initialize_icon(unsigned int icon) override;
 
       //HICON getHICON();
 
       //protected:
-      void fromBitmap(Bitmap *bitmap, Bitmap *mask) override;
+      void fromBitmap(BitmapInterface *bitmap, BitmapInterface *mask) override;
 
       // protected:
       //    HICON m_icon;

@@ -27,232 +27,273 @@
 namespace innate_subsystem
 {
    Menu::Menu()
-   : m_menu(0),
-     m_bCreated(false)
+   // : m_menu(0),
+   //   m_bCreated(false)
    {
    }
-
-   HMENU Menu::getMenu()
+   Menu::~Menu()
    {
-      return m_menu;
+      
+   }
+   // Menu::~Menu()
+   // {
+   //    if (m_menu && m_bCreated) {
+   //       DestroyMenu(m_menu);
+   //    }
+   // }
+
+   
+
+   // MenuInterface * Menu::getMenu()
+   // {
+   //    return m_menu;
+   // }
+   //
+   void Menu::setMenu(MenuInterface * pmenu)
+   {
+      // _ASSERT(m_menu == 0);
+      //
+      //m_menu = hmenu;
+      m_pparticleThis->setMenu(pmenu);
    }
 
-   void Menu::setMenu(HMENU hmenu)
+   bool Menu::getWindowMenu(WindowInterface * pwindow)
    {
-      _ASSERT(m_menu == 0);
+      //_ASSERT(m_menu == 0);
+      //m_menu = GetMenu(hwnd);//
+      //return (m_menu == 0 ? false : true);
 
-      m_menu = hmenu;
+      return m_pparticleThis->getWindowMenu(pwindow);
    }
 
-   bool Menu::getWindowMenu(const ::operating_system::window & operatingsystemwindow)
+   void Menu::getSystemMenu(WindowInterface * pwindow)
    {
-      _ASSERT(m_menu == 0);
+      //_ASSERT(m_menu == 0);
 
-      m_menu = GetMenu(hwnd);
-      return (m_menu == 0 ? false : true);
-   }
+      //m_menu = GetSystemMenu(hwnd, FALSE);
 
-   void Menu::getSystemMenu(const ::operating_system::window & operatingsystemwindow)
-   {
-      _ASSERT(m_menu == 0);
-
-      m_menu = GetSystemMenu(hwnd, FALSE);
+      m_pparticleThis->getSystemMenu(pwindow);
    }
 
    void Menu::create()
    {
-      _ASSERT(m_menu == 0);
-
-      m_menu = CreateMenu();
-      m_bCreated = true;
+      // _ASSERT(m_menu == 0);
+      //
+      // m_menu = CreateMenu();
+      // m_bCreated = true;
+      m_pparticleThis->create();
    }
 
-   bool Menu::loadMenu(LPCTSTR lpMenuName)
+   bool Menu::loadMenu(const char * lpMenuName)
    {
-      _ASSERT(m_menu == 0);
+      // _ASSERT(m_menu == 0);
+      //
+      // m_menu = LoadMenu(GetModuleHandle(0), lpMenuName);
+      // m_bCreated = true;
+      // return (!m_menu?false:true);
 
-      m_menu = LoadMenu(GetModuleHandle(0), lpMenuName);
-      m_bCreated = true;
-      return (!m_menu?false:true);
+      return m_pparticleThis->loadMenu(lpMenuName);
    }
 
    void Menu::createPopupMenu()
    {
-      _ASSERT(m_menu == 0);
+      // _ASSERT(m_menu == 0);
+      //
+      // m_menu = CreatePopupMenu();
+      // m_bCreated = true;
 
-      m_menu = CreatePopupMenu();
-      m_bCreated = true;
+      m_pparticleThis->createPopupMenu();
    }
 
    int Menu::getMenuItemCount()
    {
-      _ASSERT(m_menu != 0);
+      // _ASSERT(m_menu != 0);
+      //
+      // return GetMenuItemCount(m_menu);
 
-      return GetMenuItemCount(m_menu);
+      return m_pparticleThis->getMenuItemCount();
    }
 
-   bool Menu::appendMenu(unsigned int uFlags, unsigned int_PTR uIDNewItem, LPCTSTR lpNewItem)
-   {
-      _ASSERT(m_menu != 0);
+   // bool Menu::appendMenu(unsigned int uFlags, unsigned int_PTR uIDNewItem, LPCTSTR lpNewItem)
+   // {
+   //    // _ASSERT(m_menu != 0);
+   //    //
+   //    // return !!AppendMenu(m_menu, uFlags, uIDNewItem, lpNewItem);
+   //    return m_pparticleThis->appendMenu()
+   // }
 
-      return !!AppendMenu(m_menu, uFlags, uIDNewItem, lpNewItem);
-   }
+   // bool Menu::insertMenuItem(unsigned int uItem, bool fByPosition, LPCMENUITEMINFO lpmii)
+   // {
+   //    _ASSERT(m_menu != 0);
+   //
+   //    return !!InsertMenuItem(m_menu, uItem, fByPosition, lpmii);
+   // }
 
-   bool Menu::insertMenuItem(unsigned int uItem, BOOL fByPosition, LPCMENUITEMINFO lpmii)
-   {
-      _ASSERT(m_menu != 0);
-
-      return !!InsertMenuItem(m_menu, uItem, fByPosition, lpmii);
-   }
-
-   bool Menu::modifyMenu(unsigned int uPosition, unsigned int uFlags, LONG_PTR uIDNewItem, LPCTSTR lpNewItem)
-   {
-      _ASSERT(m_menu != 0);
-
-      return !!ModifyMenu(m_menu, uPosition, uFlags, uIDNewItem, lpNewItem);
-   }
+   // bool Menu::modifyMenu(unsigned int uPosition, unsigned int uFlags, LONG_PTR uIDNewItem, LPCTSTR lpNewItem)
+   // {
+   //    _ASSERT(m_menu != 0);
+   //
+   //    return !!ModifyMenu(m_menu, uPosition, uFlags, uIDNewItem, lpNewItem);
+   // }
 
    bool Menu::deleteMenu(unsigned int uPosition)
    {
-      _ASSERT(m_menu != 0);
-
-      return !!DeleteMenu(m_menu, uPosition, MF_BYPOSITION);
+      // _ASSERT(m_menu != 0);
+      //
+      // return !!DeleteMenu(m_menu, uPosition, MF_BYPOSITION);
+      return m_pparticleThis->deleteMenu(uPosition);
    }
 
-   bool Menu::getSubMenu(int nPos, Menu *menu)
+   bool Menu::getSubMenu(int nPos, MenuInterface *pmenu)
    {
-      HMENU tmenu;
 
-      _ASSERT(m_menu != 0 && menu);
-      tmenu = GetSubMenu(m_menu, nPos);
-      if (tmenu) {
-         menu->setMenu(tmenu);
-      }
-      return (!tmenu?false:true);
+      return m_pparticleThis->getSubMenu(nPos, pmenu);
+      // MenuInterface * tmenu;
+      //
+      // _ASSERT(m_menu != 0 && menu);
+      // tmenu = GetSubMenu(m_menu, nPos);
+      // if (tmenu) {
+      //    menu->setMenu(tmenu);
+      // }
+      // return (!tmenu?false:true);
    }
 
    bool Menu::enableMenuItem(unsigned int uID, unsigned int uEnable)
    {
-      _ASSERT(m_menu != 0);
+      //    _ASSERT(m_menu != 0);
+      //
+      //    return !!EnableMenuItem(m_menu, uID, uEnable);
+      // }
 
-      return !!EnableMenuItem(m_menu, uID, uEnable);
+      return m_pparticleThis->enableMenuItem(uID, uEnable);
    }
 
-   bool Menu::setMenuItem(unsigned int uItem, BOOL fByPosition, LPMENUITEMINFO lpmii)
-   {
-      _ASSERT(m_menu != 0);
-
-      return !!SetMenuItemInfo(m_menu, uItem, fByPosition, lpmii);
-   }
+   // bool Menu::setMenuItem(unsigned int uItem, bool fByPosition, LPMENUITEMINFO lpmii)
+   // {
+   //    // _ASSERT(m_menu != 0);
+   //    //
+   //    // return !!SetMenuItemInfo(m_menu, uItem, fByPosition, lpmii);
+   // }
 
    void Menu::termMenu()
    {
-      if (m_menu && m_bCreated) {
-         DestroyMenu(m_menu);
-      }
-      m_menu = 0;
-      m_bCreated = false;
+      m_pparticleThis->termMenu();
+      // if (m_menu && m_bCreated) {
+      //    DestroyMenu(m_menu);
+      // }
+      // m_menu = 0;
+      // m_bCreated = false;
    }
 
-   Menu::~Menu()
-   {
-      if (m_menu && m_bCreated) {
-         DestroyMenu(m_menu);
-      }
-   }
 
    int Menu::findMenuItem(unsigned int uID)
    {
-      _ASSERT(m_menu != 0);
-
-      for (int i = 0; i < getMenuItemCount(); i++) {
-         if (GetMenuItemID(m_menu, i) == uID) {
-            return i;
-         }
-      }
-      return -1;
+      return m_pparticleThis->findMenuItem(uID);
+      // _ASSERT(m_menu != 0);
+      //
+      // for (int i = 0; i < getMenuItemCount(); i++) {
+      //    if (GetMenuItemID(m_menu, i) == uID) {
+      //       return i;
+      //    }
+      // }
+      // return -1;
    }
 
-   bool Menu::appendMenu(::string strVal, unsigned int uID)
+   bool Menu::appendMenu(const ::scoped_string & scopedstr, unsigned int uID)
    {
-      return appendMenu(MF_STRING, uID, strVal.getString());
+      //return appendMenu(MF_STRING, uID, strVal.getString());
+      return m_pparticleThis->appendMenu(scopedstr, uID);
    }
 
    bool Menu::appendSeparator()
    {
-      return appendMenu(MF_MENUBREAK, 0, 0);
+      //return appendMenu(MF_MENUBREAK, 0, 0);
+
+      return m_pparticleThis->appendSeparator();
    }
 
-   bool Menu::appendSubMenu(::string strVal, Menu *pMenu)
+   bool Menu::appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pmenu)
    {
-      return appendMenu(MF_POPUP, (unsigned int_PTR)pMenu->getMenu(), strVal.getString());
+      return m_pparticleThis->appendSubMenu(scopedstr, pmenu);
+      //return appendMenu(MF_POPUP, (unsigned int_PTR)pMenu->getMenu(), strVal.getString());
    }
 
-   bool Menu::insertMenuItem(unsigned int uItem, ::string strVal, unsigned int uID)
+   bool Menu::insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID)
    {
-      MENUITEMINFO mii;
 
-      ZeroMemory(&mii, sizeof(MENUITEMINFO));
-      mii.cbSize = sizeof(MENUITEMINFO);
-      mii.fMask = MIIM_STRING | MIIM_ID;
-      mii.dwTypeData = (LPTSTR)strVal.getString();
-      mii.fState = MFS_DEFAULT;
-      mii.wID = uID;
-      return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
+      return m_pparticleThis->insertMenuItem(uItem, scopedstr, uID);
+      // MENUITEMINFO mii;
+      //
+      // ZeroMemory(&mii, sizeof(MENUITEMINFO));
+      // mii.cbSize = sizeof(MENUITEMINFO);
+      // mii.fMask = MIIM_STRING | MIIM_ID;
+      // mii.dwTypeData = (LPTSTR)strVal.getString();
+      // mii.fState = MFS_DEFAULT;
+      // mii.wID = uID;
+      // return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
-   bool Menu::insertCheckMenuItem(unsigned int uItem, ::string strVal, unsigned int uID)
+   bool Menu::insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID)
    {
-      MENUITEMINFO mii;
 
-      ZeroMemory(&mii, sizeof(MENUITEMINFO));
-      mii.cbSize = sizeof(MENUITEMINFO);
-      mii.fMask = MIIM_STRING | MIIM_ID | MIIM_STATE;
-      mii.dwTypeData = (LPTSTR)strVal.getString();
-      mii.fState = MFS_UNCHECKED;
-      mii.wID = uID;
-      return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
+      return m_pparticleThis->insertCheckMenuItem(uItem, scopedstr, uID);
+      // MENUITEMINFO mii;
+      //
+      // ZeroMemory(&mii, sizeof(MENUITEMINFO));
+      // mii.cbSize = sizeof(MENUITEMINFO);
+      // mii.fMask = MIIM_STRING | MIIM_ID | MIIM_STATE;
+      // mii.dwTypeData = (LPTSTR)strVal.getString();
+      // mii.fState = MFS_UNCHECKED;
+      // mii.wID = uID;
+      // return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
    bool Menu::checkedMenuItem(unsigned int uID, bool bEnable)
    {
-      _ASSERT(m_menu != 0);
+      // _ASSERT(m_menu != 0);
+      //
+      // int pos = findMenuItem(uID);
+      // if (pos == -1) {
+      //    return false;
+      // }
+      // unsigned int command = bEnable ? MF_CHECKED : MF_UNCHECKED;
+      // DWORD res = CheckMenuItem(m_menu, pos, MF_BYPOSITION | command);
+      // return (res == -1) ? false : true;
 
-      int pos = findMenuItem(uID);
-      if (pos == -1) {
-         return false;
-      }
-      unsigned int command = bEnable ? MF_CHECKED : MF_UNCHECKED;
-      DWORD res = CheckMenuItem(m_menu, pos, MF_BYPOSITION | command);
-      return (res == -1) ? false : true;
+      return m_pparticleThis->checkedMenuItem(uID, bEnable);
    }
 
    bool Menu::insertSeparator(unsigned int uItem)
    {
-      MENUITEMINFO mii;
-
-      ZeroMemory(&mii, sizeof(MENUITEMINFO));
-      mii.cbSize = sizeof(MENUITEMINFO);
-      mii.fType = MFT_SEPARATOR;
-      return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
+      // MENUITEMINFO mii;
+      //
+      // ZeroMemory(&mii, sizeof(MENUITEMINFO));
+      // mii.cbSize = sizeof(MENUITEMINFO);
+      // mii.fType = MFT_SEPARATOR;
+      // return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
+      return m_pparticleThis->insertSeparator(uItem);
    }
 
-   bool Menu::insertSubMenu(unsigned int uItem, ::string strVal, Menu *pMenu)
+   bool Menu::insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, MenuInterface *pmenu)
    {
-      MENUITEMINFO mii;
 
-      ZeroMemory(&mii, sizeof(MENUITEMINFO));
-      mii.cbSize = sizeof(MENUITEMINFO);
-      mii.fMask = MIIM_SUBMENU;
-      mii.hSubMenu = pMenu->getMenu();
-      return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
+      return m_pparticleThis->insertSubMenu(uItem, scopedstr, pmenu);
+      // MENUITEMINFO mii;
+      //
+      // ZeroMemory(&mii, sizeof(MENUITEMINFO));
+      // mii.cbSize = sizeof(MENUITEMINFO);
+      // mii.fMask = MIIM_SUBMENU;
+      // mii.hSubMenu = pMenu->getMenu();
+      // return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
    bool Menu::setDefaultItem(unsigned int uID)
    {
-      _ASSERT(m_menu != 0);
+      //_ASSERT(m_menu != 0);
 
-      return !!SetMenuDefaultItem(m_menu, uID, FALSE);
+      //return !!SetMenuDefaultItem(m_menu, uID, FALSE);
+
+      return m_pparticleThis->setDefaultItem(uID);
    }
 } // namespace innate_subsystem
 

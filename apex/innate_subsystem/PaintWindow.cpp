@@ -27,7 +27,7 @@
 namespace innate_subsystem
 {
    PaintWindow::PaintWindow()
-    : m_bIsDraw(false)
+//    : m_bIsDraw(false)
    {
    }
 
@@ -35,19 +35,27 @@ namespace innate_subsystem
    {
    }
 
-   HDC PaintWindow::getHDCPaint()
+   ::pointer < DeviceContextInterface > PaintWindow::getHDCPaint()
    {
-      if (!m_bIsDraw) {
-         return 0;
-      }
-      return m_hdc;
+
+       return m_pparticleThis->getPaintDeviceContext();
+      //if (!m_bIsDraw) {
+        // return 0;
+      //}
+      //return m_hdc;
    }
 
-   void PaintWindow::onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct) {
+   //void PaintWindow::onPaint(DeviceContextInterface *dc, PAINTSTRUCT *paintStruct)
+    void PaintWindow::onPaint(DeviceContextInterface *dc,const ::int_rectangle & rectangle)
+    {
+
+       m_pparticleThis->onPain(pdevicecontext, rectangle);
+
    }
 
    bool PaintWindow::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
    {
+       return m_pparticleThis->wndProc(message, wparam, lparam);
       if (message == WM_PAINT) {
          m_hdc = BeginPaint(m_hWnd, &m_paintStruct);
          m_bIsDraw = true;

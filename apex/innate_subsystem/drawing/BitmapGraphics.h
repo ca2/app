@@ -47,7 +47,7 @@ namespace innate_subsystem
       void initialize_bitmap_graphics(DeviceContextInterface * pdevicecontextCompatible, const ::int_size & size) = 0;
 
       // Returns target bitmap that we paint.
-      virtual Bitmap *getBitmap() = 0;
+      virtual BitmapInterface *getBitmap() = 0;
 
       virtual void beginPaint() = 0;
       virtual void endPaint() = 0;

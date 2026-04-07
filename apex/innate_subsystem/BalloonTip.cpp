@@ -21,55 +21,55 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
-#include "BalloonTip.h"
-
-BalloonTip::BalloonTip(const char *text, const char *caption)
-{
-  setText(text);
-  setTitle(caption);
-}
-
-BalloonTip::BalloonTip()
-{
-  setText(_T(""));
-  setTitle(_T(""));
-}
-
-BalloonTip::~BalloonTip()
-{
-}
-
-void BalloonTip::showTooltip(Control *control)
-{
-  MessageBox(control->getWindow(), m_text.getString(), m_title.getString(), MB_OK | MB_ICONWARNING);
-}
-
-void BalloonTip::setText(const char *text)
-{
-  m_text.setString(text);
-}
-
-void BalloonTip::setTitle(const char *title)
-{
-  m_title.setString(title);
-}
-
-void BalloonTip::getText(::string *text) const
-{
-  text->setString(m_text.getString());
-}
-
-void BalloonTip::getTitle(::string *title) const
-{
-  title->setString(m_title.getString());
-}
-
-void BalloonTip::setIconType(int iconType)
-{
-}
-
-int BalloonTip::getIconType() const
-{
-  return 0;
-}
+#include "framework.h"
+// #include "BalloonTip.h"
+//
+// BalloonTip::BalloonTip(const char *text, const char *caption)
+// {
+//   setText(text);
+//   setTitle(caption);
+// }
+//
+// BalloonTip::BalloonTip()
+// {
+//   setText(_T(""));
+//   setTitle(_T(""));
+// }
+//
+// BalloonTip::~BalloonTip()
+// {
+// }
+//
+// void BalloonTip::showTooltip(Control *control)
+// {
+//   MessageBox(control->getWindow(), m_text.getString(), m_title.getString(), MB_OK | MB_ICONWARNING);
+// }
+//
+// void BalloonTip::setText(const char *text)
+// {
+//   m_text.setString(text);
+// }
+//
+// void BalloonTip::setTitle(const char *title)
+// {
+//   m_title.setString(title);
+// }
+//
+// void BalloonTip::getText(::string *text) const
+// {
+//   text->setString(m_text.getString());
+// }
+//
+// void BalloonTip::getTitle(::string *title) const
+// {
+//   title->setString(m_title.getString());
+// }
+//
+// void BalloonTip::setIconType(int iconType)
+// {
+// }
+//
+// int BalloonTip::getIconType() const
+// {
+//   return 0;
+// }

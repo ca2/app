@@ -36,11 +36,11 @@ namespace innate_subsystem
     // Owner draw button, that displays button with image and text.
     //
 
-    class ImagedButton : public Control
+    class CLASS_DECL_APEX ImagedButtonInterface : public Control
     {
     public:
-        ImagedButton();
-        ~ImagedButton();
+       /// ImagedButton();
+        virtual ~ImagedButtonInterface() = 0;
 
         //
         // Draws this ownder-draw button.
@@ -49,10 +49,10 @@ namespace innate_subsystem
 
         //virtual void drawItem(LPDRAWITEMSTRUCT dis);
 
-        virtual void setWindow(const ::operating_system::window & window);
+        virtual void setWindow(const ::operating_system::window & window) =0;
 
         //virtual void setIcon(HICON *icon, const ::int_size & size);
-        virtual void setIcon(::innate_ui::icon * picon, const ::int_size & size);
+        virtual void setIcon(::innate_ui::icon * picon, const ::int_size & size) = 0;
 
     //private:
 
@@ -74,7 +74,7 @@ namespace innate_subsystem
         //              DWORD imageWidth, DWORD imageHeight,
         //              ::int_rectangle &textRect, RECT* imageRect);
 
-        //virtual void drawIcon(HDC* dc, RECT* imageRect, bool isPressed, bool isDisabled);
+        //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
     //protected:
       //  bool m_isUsingTheme;
         //bool m_mouseOver;
@@ -91,6 +91,66 @@ namespace innate_subsystem
   //  private:
     //    static LRESULT CALLBACK wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam);
     };
+
+
+   class CLASS_DECL_APEX ImagedButton :
+
+   virtual public ::subsystem::composite<ImagedButtonInterface>
+   {
+   public:
+      ImagedButton();
+      ~ImagedButton() override;
+
+      //
+      // Draws this ownder-draw button.
+      // This method must be called in WM_DRAWITEM message handler of parent control
+      //
+
+      //virtual void drawItem(LPDRAWITEMSTRUCT dis);
+
+      virtual void setWindow(const ::operating_system::window & window);
+
+      //virtual void setIcon(HICON *icon, const ::int_size & size);
+      virtual void setIcon(::innate_ui::icon * picon, const ::int_size & size);
+
+      //private:
+
+      //
+      // Parameters:
+      //
+      // IN buttonRect - button area rectangle
+      // IN isButtonPressed - flag that true if button pressed
+      // IN textWidth - width of button text that will be drawn in pixels
+      // IN textHeight - height of button text that will be drawn in pixels
+      // IN imageWidth - width of image in pixels
+      // IN imageHeight - height of image in pixels
+      // OUT textRect - output text rectangle
+      // OUT imageRect - output image rectangle
+      //
+
+      //virtual void calcRect(RECT* buttonRect, bool isButtonPressed,
+      //              DWORD textWidth, DWORD textHeight,
+      //              DWORD imageWidth, DWORD imageHeight,
+      //              ::int_rectangle &textRect, RECT* imageRect);
+
+      //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
+      //protected:
+      //  bool m_isUsingTheme;
+      //bool m_mouseOver;
+      //HTHEME m_theme;
+
+      //
+      // Icon to display
+      //
+
+      //HICON *m_icon;
+
+      //int m_iconWidth;
+      //int m_iconHeight;
+      //  private:
+      //    static LRESULT CALLBACK wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam);
+   };
+
 
 //#endif
 } // namespace innate_subsystem

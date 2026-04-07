@@ -173,7 +173,7 @@ bool Dialog::isCreated()
   return !!IsWindow(m_ctrlThis.getWindow());
 }
 
-BOOL Dialog::onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis)
+bool Dialog::onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis)
 {
   return TRUE;
 }
@@ -185,7 +185,7 @@ void Dialog::onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lpar
 INT_PTR CALLBACK Dialog::dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
 {
   Dialog *_this;
-  BOOL bResult;
+  bool bResult;
 
   bResult = FALSE;
   if (uMsg == WM_INITDIALOG) {
@@ -259,27 +259,27 @@ bool Dialog::setForeground()
   return m_ctrlThis.setForeground();
 }
 
-BOOL Dialog::onInitDialog()
+bool Dialog::onInitDialog()
 {
   return FALSE;
 }
 
-BOOL Dialog::onNotify(unsigned int controlID, ::lparam data)
+bool Dialog::onNotify(unsigned int controlID, ::lparam data)
 {
   return FALSE;
 }
 
-BOOL Dialog::onCommand(unsigned int controlID, unsigned int notificationID)
+bool Dialog::onCommand(unsigned int controlID, unsigned int notificationID)
 {
   return FALSE;
 }
 
-BOOL Dialog::onDestroy()
+bool Dialog::onDestroy()
 {
   return FALSE;
 }
 
-BOOL Dialog::onClose()
+bool Dialog::onClose()
 {
   return FALSE;
 }

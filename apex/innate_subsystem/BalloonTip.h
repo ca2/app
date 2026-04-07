@@ -22,37 +22,45 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _BALLOON_TIP_H_
-#define _BALLOON_TIP_H_
+#pragma once
 
-#include "Tooltip.h"
-#include "util/CommonHeader.h"
-#include <commctrl.h>
 
-/**
- * @deprecated, use ToolTip instead.
- */
-class BalloonTip : public Tooltip
-{
-public:
-  BalloonTip(const char *text, const char *caption);
-  BalloonTip();
-  virtual ~BalloonTip();
-
-  void showTooltip(Control *control);
-
-  void setText(const char *text);
-  void setTitle(const char *caption);
-
-  void getText(::string *text) const;
-  void getTitle(::string *title) const;
-
-  void setIconType(int iconType);
-  int getIconType() const;
-
-protected:
-  ::string m_text;
-  ::string m_title;
-};
-
-#endif
+// #include "apex/innate_subsystem/Tooltip.h"
+// //#include "util/CommonHeader.h"
+// //#include <commctrl.h>
+//
+// namespace innate_subsystem
+// {
+//
+// /**
+//  * @deprecated, use ToolTip instead.
+//  */
+// class BalloonTipInter : public Tooltip
+// {
+// public:
+//   BalloonTip(const char *text, const char *caption);
+//   BalloonTip();
+//   virtual ~BalloonTip();
+//
+//   void showTooltip(Control *control);
+//
+//   void setText(const char *text);
+//   void setTitle(const char *caption);
+//
+//   void getText(::string *text) const;
+//   void getTitle(::string *title) const;
+//
+//   void setIconType(int iconType);
+//   int getIconType() const;
+//
+// protected:
+//   ::string m_text;
+//   ::string m_title;
+// };
+//
+// ///#endif
+// ///
+// ///
+// } //  namespace innate_subsystem
+//
+//

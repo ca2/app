@@ -93,23 +93,25 @@ namespace innate_subsystem
 
    }
 
-   int Bitmap::getWidth() const
+   ::int_size Bitmap::getSize() const
    {
       // BITMAP bitmap;
       // if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {
       //    return 0;
       // }
       // return bitmap.bmWidth;
+
+      return m_pparticleThis->getSize();
    }
 
-   int Bitmap::getHeight() const
-   {
-      BITMAP bitmap;
-      if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {
-         return 0;
-      }
-      return bitmap.bmHeight;
-   }
+   // int Bitmap::getHeight() const
+   // {
+   //    BITMAP bitmap;
+   //    if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {
+   //       return 0;
+   //    }
+   //    return bitmap.bmHeight;
+   // }
 
 } // namespace innate_subsystem
 

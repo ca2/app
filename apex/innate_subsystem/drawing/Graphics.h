@@ -44,7 +44,7 @@ namespace innate_subsystem
       virtual ~GraphicsInterface() = 0;
 
 
-      virtual void initialize_graphics(DeviceContext *dc) = 0;
+      virtual void initialize_graphics(DeviceContextInterface *dc) = 0;
 
       // Sets background colors mix mode.
       virtual void setBkMode(bool transparent) = 0;
@@ -54,9 +54,9 @@ namespace innate_subsystem
       // Sets text color.
       virtual void setTextColor(const ::color::color & color) = 0;
       // Sets current brush.
-      virtual void setBrush(const Brush *brush) = 0;
+      virtual void setBrush(const BrushInterface *brush) = 0;
       // Sets current pen.
-      virtual void setPen(const Pen *pen) = 0;
+      virtual void setPen(const PenInterface *pen) = 0;
 
       // Moves cursor to specified position.
       virtual void moveTo(int x, int y) = 0;
@@ -64,14 +64,14 @@ namespace innate_subsystem
       virtual void lineTo(int x, int y) = 0;
 
       // Draws filled rect.
-      virtual void fillRect(int l, int t, int r, int b, const Brush *brush) = 0;
+      virtual void fillRect(int l, int t, int r, int b, const BrushInterface*brush) = 0;
       // Draws ellipse.
       virtual void ellipse(int l, int t, int r, int b) = 0;
       // Draws rectance.
       virtual void rectangle(int l, int t, int r, int b) = 0;
 
       // Draws bitmap.
-      virtual void drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h) = 0;
+      virtual void drawBitmap(const BitmapInterface *bitmap, int x, int y, int w, int h) = 0;
       // Draws text.
       virtual void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) = 0;
 
@@ -90,7 +90,7 @@ namespace innate_subsystem
       ~Graphics() override;
 
 
-      void initialize_graphics(DeviceContext *dc) override;
+      void initialize_graphics(DeviceContextInterface *dc) override;
 
       // Sets background colors mix mode.
       void setBkMode(bool transparent) override;
@@ -100,9 +100,9 @@ namespace innate_subsystem
       // Sets text color.
       void setTextColor(const ::color::color & color) override;
       // Sets current brush.
-      void setBrush(const Brush *brush) override;
+      void setBrush(const BrushInterface *brush) override;
       // Sets current pen.
-      void setPen(const Pen *pen) override;
+      void setPen(const PenInterface *pen) override;
 
       // Moves cursor to specified position.
       void moveTo(int x, int y) override;
@@ -110,14 +110,14 @@ namespace innate_subsystem
       void lineTo(int x, int y) override;
 
       // Draws filled rect.
-      void fillRect(int l, int t, int r, int b, const Brush *brush) override;
+      void fillRect(int l, int t, int r, int b, const BrushInterface *brush) override;
       // Draws ellipse.
       void ellipse(int l, int t, int r, int b) override;
       // Draws rectance.
       void rectangle(int l, int t, int r, int b) override;
 
       // Draws bitmap.
-      void drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h) override;
+      void drawBitmap(const BitmapInterface *bitmap, int x, int y, int w, int h) override;
       // Draws text.
       void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) override;
 

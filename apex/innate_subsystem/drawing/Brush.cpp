@@ -27,21 +27,25 @@
 namespace innate_subsystem
 {
    Brush::Brush()
-   : m_brush(0)
+   //: m_brush(0)
    {
    }
 
    Brush::~Brush()
    {
-      release();
+     // release();
    }
 
-   void Brush::release()
+
+   //void
+
+   void Brush::on_release()
    {
-      if (m_brush != 0) {
-         DeleteObject(m_brush);
-         m_brush = 0;
-      }
+      m_pparticleThis->on_release();
+      // if (m_brush != 0) {
+      //    DeleteObject(m_brush);
+      //    m_brush = 0;
+      // }
    }
 } // namespace innate_subsystem
 

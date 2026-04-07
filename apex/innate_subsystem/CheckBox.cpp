@@ -26,13 +26,29 @@
 
 namespace innate_subsystem
 {
-   bool CheckBox::isChecked()
+
+   CheckBox::CheckBox()
    {
-      return (SendMessage(m_hwnd, BM_GETCHECK, NULL, NULL) != 0);
+
    }
 
-   void CheckBox::check(bool checked)
+
+
+   CheckBox::~CheckBox()
    {
-      SendMessage(m_hwnd, BM_SETCHECK, (checked) ? 1 : 0, NULL);
+
+   }
+
+
+   bool CheckBox::isChecked()
+   {
+      return m_pparticleThis->isChecked();
+      //return (SendMessage(m_hwnd, BM_GETCHECK, NULL, NULL) != 0);
+   }
+
+   void CheckBox::setChecked(bool bChecked)
+   {
+      m_pparticleThis->setChecked(bChecked);
+      //SendMessage(m_hwnd, BM_SETCHECK, (checked) ? 1 : 0, NULL);
    }
 } // namespace innate_subsystem

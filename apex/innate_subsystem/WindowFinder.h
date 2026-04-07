@@ -39,8 +39,8 @@ public:
   static HWND findFirstWindowByName(const ::string windowName);
 
 protected:
-  static BOOL CALLBACK findWindowsByClassFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
-  static BOOL CALLBACK findWindowsByNameFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
+  static bool CALLBACK findWindowsByClassFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
+  static bool CALLBACK findWindowsByNameFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
 };
 
 #endif // __WINDOWFINDER_H__

@@ -32,7 +32,7 @@ namespace innate_subsystem
       StringVector *classNames;
    };
 
-   BOOL CALLBACK WindowFinder::findWindowsByClassFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam)
+   bool CALLBACK WindowFinder::findWindowsByClassFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam)
    {
       if (IsWindowVisible(hwnd) != 0) {
          WindowsParam *windowsParam = (WindowsParam *)::lparam;
@@ -72,7 +72,7 @@ namespace innate_subsystem
       return hwndVector;
    }
 
-   BOOL CALLBACK WindowFinder::findWindowsByNameFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam)
+   bool CALLBACK WindowFinder::findWindowsByNameFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam)
    {
       if (IsWindowVisible(hwnd) != 0) {
          const size_t maxTcharCount = 256;

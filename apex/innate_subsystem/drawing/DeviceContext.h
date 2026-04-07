@@ -53,7 +53,7 @@ namespace innate_subsystem
        // Create device context linked to window DC.
        virtual void initialize_device_context(const ::operating_system::window & window) = 0;
        // Create device context complatible with other DC.
-       virtual void initialize_device_context(DeviceContext* compatibleDevice) = 0;
+       virtual void initialize_device_context(DeviceContextInterface* compatibleDevice) = 0;
 
 
       //friend class PaintWindow;
@@ -88,7 +88,7 @@ namespace innate_subsystem
       // Create device context linked to window DC.
       void initialize_device_context(const ::operating_system::window & window) override;
       // Create device context complatible with other DC.
-      void initialize_device_context(DeviceContext* compatibleDevice) override;
+      void initialize_device_context(DeviceContextInterface* compatibleDevice) override;
 
       //friend class PaintWindow;
 

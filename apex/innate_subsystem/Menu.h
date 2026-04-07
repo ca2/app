@@ -92,8 +92,8 @@ class CLASS_DECL_ACME Menu :
 
       //HMENU getMenu();
       void setMenu(MenuInterface * phmenu) override;
-      bool getWindowMenu(WindowInterface * pwindowinterface) override;
-      void getSystemMenu(WindowInterface hwnd) override;
+      bool getWindowMenu(WindowInterface * pwindow) override;
+      void getSystemMenu(WindowInterface * pwindow) override;
       void create() override;
       bool loadMenu(const char * lpMenuName) override;
       void createPopupMenu() override;

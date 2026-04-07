@@ -21,35 +21,64 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#pragma once
 
-#ifndef _LIST_BOX_H_
-#define _LIST_BOX_H_
+#include "apex/innate_subsystem/Control.h"
+//#include "util/::string.h"
 
-#include "Control.h"
-#include "util/::string.h"
+namespace innate_subsystem
+{
 
-class ListBox : public Control
+   class CLASS_DECL_APEX ListBoxInterface : 
+   virtual public Control
 {
 public:
-  ListBox();
-  ~ListBox();
-public:
-  void addString(const char *str);
-  void addString(const char *str, void *tag);
-  void getItemText(int index, ::string *storage);
-  void setItemText(int index, const char *str);
-  void insertString(int index, const char *str);
-  void insertString(int index, const char *str, ::lparam data);
-  void appendString(const char *str, ::lparam data);
-  void setItemData(int index, ::lparam data);
-  void removeString(int index);
-  int getSelectedIndex();
-  int getTopIndex();
-  void setTopIndex(int index);
-  void setSelectedIndex(int index);
-  ::lparam getItemData(int index);
-  int getCount();
-  void clear();
+  //ListBox();
+  virtual ~ListBox() = 0;
+//public:
+  virtual void addString(const char *str) = 0;
+  virtual void addString(const char *str, void *tag) = 0;
+  virtual void getItemText(int index, ::string *storage) = 0;
+  virtual void setItemText(int index, const char *str) = 0;
+  virtual void insertString(int index, const char *str) = 0;
+  virtual void insertString(int index, const char *str, ::lparam data) = 0;
+  virtual void appendString(const char *str, ::lparam data) = 0;
+  virtual void setItemData(int index, ::lparam data) = 0;
+  virtual void removeString(int index) = 0;
+  virtual int getSelectedIndex() = 0;
+  virtual int getTopIndex() = 0;
+  virtual void setTopIndex(int index) = 0;
+  virtual void setSelectedIndex(int index) = 0;
+  virtual ::lparam getItemData(int index) = 0;
+  virtual int getCount() = 0;
+  virtual void clear() = 0;
 };
 
-#endif
+
+      class CLASS_DECL_APEX ListBox : virtual public ::subsystem::composite<ListBoxInterface >
+{
+         public:
+  //ListBox();
+  ~ListBox() override;
+//public:
+   void addString(const char *str) override;
+   void addString(const char *str, void *tag) override;
+   void getItemText(int index, ::string *storage) override;
+   void setItemText(int index, const char *str) override;
+   void insertString(int index, const char *str) override;
+   void insertString(int index, const char *str, ::lparam data) override;
+   void appendString(const char *str, ::lparam data) override;
+   void setItemData(int index, ::lparam data) override;
+   void removeString(int index) override;
+   int getSelectedIndex() override;
+   int getTopIndex() override;
+   void setTopIndex(int index) override;
+   void setSelectedIndex(int index) override;
+   ::lparam getItemData(int index) override;
+   int getCount() override;
+   void clear() override;
+};
+
+} // namespace innate_subsystem
+
+

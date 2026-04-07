@@ -22,44 +22,47 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef __WINDOW_H__
-#define __WINDOW_H__
+#pragma once
 
-#include "util/CommonHeader.h"
-#include "WindowMessageHandler.h"
+//#include "util/CommonHeader.h"
+//#include "WindowMessageHandler.h"
 
-class MessageWindow
-{
-public:
-  // messageHandler is an external message handler that replace the
-  // wndProc() function on message processing. If
-  // messageHandler == 0 the wndProc() function will be used.
-  MessageWindow(const HINSTANCE hinst, const char *windowClassName,
-                WindowMessageHandler *messageHandler = 0);
-  virtual ~MessageWindow(void);
-
-  virtual bool createWindow(WindowMessageHandler *messageHandler = 0);
-  virtual void destroyWindow();
-
-  HWND getHWND() const { return m_hwnd; }
-
-protected:
-  // Function must return true value if the message has been processed.
-  virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) { return true; }
-
-  HWND m_hwnd;
-  WindowMessageHandler *m_messageHandler;
-
-  HINSTANCE m_hinst;
-  char *m_windowClassName;
-
-private:
-  ATOM regClass(HINSTANCE hinst, char *windowClassName);
-
-  static LRESULT CALLBACK staticWndProc(const ::operating_system::window & operatingsystemwindow,
-                                        unsigned int message,
-                                        ::wparam wparam,
-                                        ::lparam lparam);
-};
-
-#endif // __WINDOW_H__
+//
+// namespace innate_subsystem
+// {
+//
+// class MessageWindow
+// {
+// public:
+//   // messageHandler is an external message handler that replace the
+//   // wndProc() function on message processing. If
+//   // messageHandler == 0 the wndProc() function will be used.
+//   MessageWindow(const HINSTANCE hinst, const char *windowClassName,
+//                 WindowMessageHandler *messageHandler = 0);
+//   virtual ~MessageWindow(void);
+//
+//   virtual bool createWindow(WindowMessageHandler *messageHandler = 0);
+//   virtual void destroyWindow();
+//
+//   HWND getHWND() const { return m_hwnd; }
+//
+// protected:
+//   // Function must return true value if the message has been processed.
+//   virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) { return true; }
+//
+//   HWND m_hwnd;
+//   WindowMessageHandler *m_messageHandler;
+//
+//   HINSTANCE m_hinst;
+//   char *m_windowClassName;
+//
+// private:
+//   ATOM regClass(HINSTANCE hinst, char *windowClassName);
+//
+//   static LRESULT CALLBACK staticWndProc(const ::operating_system::window & operatingsystemwindow,
+//                                         unsigned int message,
+//                                         ::wparam wparam,
+//                                         ::lparam lparam);
+// };
+//
+// #endif // __WINDOW_H__

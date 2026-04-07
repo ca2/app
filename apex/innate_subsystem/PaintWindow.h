@@ -26,36 +26,62 @@
 
 
 #include "apex/innate_subsystem/Window.h"
-#include "drawing/DeviceContext.h"
+//#include "drawing/DeviceContext.h"
 
 namespace innate_subsystem
 {
-   class PaintWindow:
+   class CLASS_DECL_APEX PaintWindowInterface:
    virtual public Window
    {
    public:
-      PaintWindow();
-      virtual ~PaintWindow();
+      //PaintWindow();
+      virtual ~PaintWindowInterface() = 0;
 
    //private:
-      ::pointer < DeviceContext > getHDCPaint();
+      virtual ::pointer < DeviceContextInterface > getPaintDeviceContext() = 0;
 
       //friend class DeviceContext;
 
    //protected:
       //virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
-      virtual void onPaint(DeviceContext *dc, const ::int_rectangle & rectangle);
+      virtual void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) = 0;
 
-      bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
+      //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 
-      bool m_bIsDraw;
+      //bool m_bIsDraw;
       //PAINTSTRUCT m_paintStruct;
-      ::int_rectangle m_rectangle;
-      ::pointer < DeviceContext > m_pdevicecontext;
+      //::int_rectangle m_rectangle;
+      //::pointer < DeviceContext > m_pdevicecontext;
       //HDC m_hdc;
 
    };
 
+
+       class CLASS_DECL_APEX PaintWindow:
+   virtual public ::subsystem::composite<PaintWindowInterface >
+   {
+   public:
+      PaintWindow();
+      ~PaintWindow() override;
+
+   //private:
+      ::pointer < DeviceContextInterface > getPaintDeviceContext() override;
+
+      //friend class DeviceContext;
+
+   //protected:
+      //virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
+      void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) override;
+
+      //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
+
+      //bool m_bIsDraw;
+      //PAINTSTRUCT m_paintStruct;
+      //::int_rectangle m_rectangle;
+      //::pointer < DeviceContext > m_pdevicecontext;
+      //HDC m_hdc;
+
+   };
 
 } // namespace innate_subsystem
 

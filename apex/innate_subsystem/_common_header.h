@@ -8,3 +8,19 @@
 
 
 
+namespace innate_subsystem
+{
+   struct draw_item_t {
+      unsigned int        CtlType;
+      unsigned int        CtlID;
+      unsigned int        itemID;
+      unsigned int        itemAction;
+      unsigned int        itemState;
+      ::operating_system::window        operatingsystemwindowItem;
+      DeviceContextInterface * m_pdevicecontext;
+      ::int_rectangle & m_rectangleItem;
+      ::uptr   itemData;
+   };
+
+
+} // namespace innate_subsystem

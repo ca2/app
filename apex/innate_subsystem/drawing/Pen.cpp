@@ -21,20 +21,35 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "Pen.h"
 
-#include <crtdbg.h>
+//#include <crtdbg.h>
 
-Pen::Pen(int type, int width, const ::color::color & color)
-: m_pen(NULL)
+namespace innate_subsystem
 {
-  m_pen = CreatePen(type, width, color);
 
-  _ASSERT(m_pen != NULL);
+//Pen::Pen(int type, int width, const ::color::color & color)
+   Pen::Pen()
+//: m_pen(NULL)
+{
+  // m_pen = CreatePen(type, width, color);
+  //
+  // _ASSERT(m_pen != NULL);
 }
 
 Pen::~Pen()
 {
-  DeleteObject(m_pen);
+  //DeleteObject(m_pen);
+}
+   void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
+   ///: m_pen(NULL)
+{
+
+   m_pparticleThis->initialize_pen(epen, width, color);
+}
+   // m_pen = CreatePen(type, width, color);
+   //
+   // _ASSERT(m_pen != NULL);
+
 }

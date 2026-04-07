@@ -20,12 +20,35 @@ namespace innate_subsystem
    }
 
 
-   void ImageList::initialize_image_list()
+   void ImageList::initializeImageList()
    {
 
 
 
    }
 
+
+   void ImageList::createImageList(const int_size& size, int flags, int iInitialSize, int iGrow)
+   {
+
+      m_pparticleThis->createImageList(size, flags, iInitialSize, iGrow);
+
+   }
+
+
+   void ImageList::destroyImageList()
+   {
+
+      m_pparticleThis->destroyImageList();
+
+   }
+
+
+   void ImageList::addIcon(innate_ui::icon* pinnateuiicon)
+   {
+
+      m_pparticleThis->addIcon(pinnateuiicon);
+
+   }
 
 }// namespace innate_subsystem

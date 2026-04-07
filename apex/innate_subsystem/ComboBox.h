@@ -33,52 +33,101 @@ namespace innate_subsystem
 {
 
 
-    class ComboBox : public Control
+    class CLASS_DECL_APEX ComboBoxInterface :
+         virtual public Control
     {
     public:
 
 
-        ComboBox();
-        ~ComboBox();
+        //ComboBox();
+        virtual ~ComboBoxInterface() = 0;
 
         // Adds new item to the end of combo box items list.
-        virtual int addItem(const char *text);
+        virtual int addItem(const char *text) = 0;
 
         // Adds new item to the end of combo box items list.
-        virtual int addItem(const char *text, void *tag);
+        virtual int addItem(const char *text, void *tag) = 0;
 
         // Inserts new item to the specified position
-        virtual void insertItem(int index, const char *text);
+        virtual void insertItem(int index, const char *text) = 0;
 
         // Inserts new item to the specified position
-        virtual void insertItem(int index, const char *text, void *tag);
+        virtual void insertItem(int index, const char *text, void *tag) = 0;
 
         // Returns count of combo box items
-        virtual int getItemsCount() const;
+        virtual int getItemsCount() const = 0;
 
         // Sets user data (tag) associated with combo box item with specified index
-        virtual void setItemData(int index, void *tag);
+        virtual void setItemData(int index, void *tag) = 0;
 
         // Returns user data associated with combo box item with specified index
-        virtual void *getItemData(int index) const;
+        virtual void *getItemData(int index) const = 0;
 
         // Sets text associated with combo box item with specified index
-        virtual ::string getItemText(int index) const;
+        virtual ::string getItemText(int index) const = 0;
 
         // Returns current selected item index
-        virtual int getSelectedItemIndex();
+        virtual int getSelectedItemIndex() = 0;
 
         // Selects item with specified index
-        virtual void setSelectedItem(int index);
+        virtual void setSelectedItem(int index) = 0;
 
         // Deletes item from specified location
-        virtual void deleteItem(int index);
+        virtual void deleteItem(int index) = 0;
 
         // Removes all combo box items
-        virtual void removeAllItems();
+        virtual void removeAllItems() = 0;
 
 
     };
+
+   class CLASS_DECL_APEX ComboBox :
+     virtual public ::subsystem::composite<ComboBoxInterface>
+   {
+   public:
+
+
+      ComboBox();
+      ~ComboBox() override;
+
+      // Adds new item to the end of combo box items list.
+      int addItem(const char *text) override;
+
+      // Adds new item to the end of combo box items list.
+      int addItem(const char *text, void *tag) override;
+
+      // Inserts new item to the specified position
+      void insertItem(int index, const char *text) override;
+
+      // Inserts new item to the specified position
+      void insertItem(int index, const char *text, void *tag) override;
+
+      // Returns count of combo box items
+      int getItemsCount() const override;
+
+      // Sets user data (tag) associated with combo box item with specified index
+      void setItemData(int index, void *tag) override;
+
+      // Returns user data associated with combo box item with specified index
+      void *getItemData(int index) const override;
+
+      // Sets text associated with combo box item with specified index
+      ::string getItemText(int index) const override;
+
+      // Returns current selected item index
+      int getSelectedItemIndex() override;
+
+      // Selects item with specified index
+      void setSelectedItem(int index) override;
+
+      // Deletes item from specified location
+      void deleteItem(int index) override;
+
+      // Removes all combo box items
+      void removeAllItems() override;
+
+
+   };
 
     //#endif
 } // namespace innate_subsystem

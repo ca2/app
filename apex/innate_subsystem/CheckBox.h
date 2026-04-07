@@ -27,14 +27,39 @@
 
 #include "apex/innate_subsystem/Control.h"
 
+
 namespace innate_subsystem
 {
-    class CheckBox : public Control
-    {
-    public:
-        virtual bool isChecked();
-        virtual void check(bool checked);
-    };
+
+
+   class CLASS_DECL_APEX CheckBoxInterface :
+      virtual public Control
+   {
+   public:
+
+
+      virtual ~CheckBoxInterface() = 0;
+
+      virtual bool isChecked() = 0;
+      virtual void setChecked(bool checked) = 0;
+
+   };
+
+
+   class CLASS_DECL_APEX CheckBox :
+   virtual public ::subsystem::composite<CheckBoxInterface>
+   {
+   public:
+
+
+      CheckBox();
+      ~CheckBox() override;
+
+      bool isChecked() override;
+      void setChecked(bool checked) override;
+
+   };
+
 
     //#endif
 } // namespace innate_subsystem

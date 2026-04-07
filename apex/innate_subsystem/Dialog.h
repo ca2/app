@@ -79,6 +79,37 @@ namespace innate_subsystem
       virtual void loadIcon(unsigned int id);
       virtual void updateIcon();
 
+
+      template < typename WIDGET_TYPE >
+      ::pointer < WIDGET_TYPE > & dialog_item(::pointer < WIDGET_TYPE > & pwidget, int iDlgItem)
+      {
+
+         constructø(pwidget);
+
+         auto operatingsystemwindow = dialog_item_operating_system_window(iDlgItem);
+
+         pwidget->set_operating_system_window(operatingsystemwindow);
+
+         return pwidget;
+
+
+      }
+
+      template < typename WIDGET_TYPE >
+      ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
+      {
+
+         ::pointer < WIDGET_TYPE> pwidget;
+
+         dialog_item(pwidget, iDlgItem);
+
+         return pwidget;
+
+
+      }
+
+
+
       // Puts this control foreground and activates it
       virtual bool setForeground();
 

@@ -1353,6 +1353,7 @@ list(APPEND library_source
    #subsystem/io/matter.txt
    subsystem/io/OutputStream.cpp
    subsystem/io/OutputStream.h
+   subsystem/node/OperatingSystemHookListener.cpp
    subsystem/node/security/SecurityDescriptor.cpp
    subsystem/node/security/SecurityDescriptor.h
    subsystem/node/security/SecurityIdentifier.cpp
@@ -1383,7 +1384,6 @@ list(APPEND library_source
    subsystem/node/EmulatedAnonymousPipeFactory.h
    subsystem/node/File.cpp
    subsystem/node/File.h
-   subsystem/node/HookEventListener.h
    subsystem/node/Impersonator.cpp
    subsystem/node/Impersonator.h
    subsystem/node/InputInjector.cpp
@@ -1397,6 +1397,10 @@ list(APPEND library_source
    subsystem/node/NamedPipe.h
    subsystem/node/OperatingSystemApplication.cpp
    subsystem/node/OperatingSystemApplication.h
+   subsystem/node/OperatingSystemHook.cpp
+   subsystem/node/OperatingSystemHook.h
+   subsystem/node/OperatingSystemHookListener.cpp
+   subsystem/node/OperatingSystemHookListener.h
    subsystem/node/ParentProcess.cpp
    subsystem/node/Pipe.cpp
    subsystem/node/Pipe.h
@@ -1533,6 +1537,8 @@ list(APPEND library_source
    #subsystem/NamedPipe.h
    #subsystem/ParentProcess.cpp
    #subsystem/ParentProcess.h
+
+   subsystem/particle.cpp
    subsystem/particle.h
    #subsystem/Pipe.cpp
    #subsystem/Pipe.h
@@ -2627,115 +2633,115 @@ if (${WIN32})
             operating_system/windows/nano/http/request.h
             operating_system/windows/nano/http/session.cpp
             operating_system/windows/nano/http/session.h
-       subsystem/windows/node/security/SecurityDescriptor.cpp
-       subsystem/windows/node/security/SecurityDescriptor.h
-       subsystem/windows/node/security/SecurityIdentifier.cpp
-       subsystem/windows/node/security/SecurityIdentifier.h
-       subsystem/windows/node/security/SecurityAttributes.cpp
-       subsystem/windows/node/security/SecurityAttributes.h
-       subsystem/windows/node/_.cpp
-       subsystem/windows/node/_.h
-       #       subsystem/windows/node/_____debug.xcconfig
-       #       subsystem/windows/node/_____release.xcconfig
-       #       subsystem/windows/node/aaa_Environment.cpp
-       #       subsystem/windows/node/aaa_Environment.h
-       #       subsystem/windows/node/aaa_framework.cpp
-       #       subsystem/windows/node/aaa_framework.h
-       subsystem/windows/node/AnonymousPipe.cpp
-       subsystem/windows/node/AnonymousPipe.h
-       subsystem/windows/node/AnonymousPipeFactory.cpp
-       subsystem/windows/node/AnonymousPipeFactory.h
-       subsystem/windows/node/ApplicationCrashEvents.h
-       subsystem/windows/node/AutoImpersonator.cpp
-       subsystem/windows/node/AutoImpersonator.h
-       subsystem/windows/node/Clipboard.cpp
-       subsystem/windows/node/Clipboard.h
-       subsystem/windows/node/Cursor.cpp
-       subsystem/windows/node/Cursor.h
-       #subsystem/windows/node/CMakeLists.txt
-       subsystem/windows/node/Displays.cpp
-       subsystem/windows/node/Displays.h
-       subsystem/windows/node/LocalWindowsApplication.h
-       #subsystem/windows/node/matter.txt
-       subsystem/windows/node/NamedPipe.cpp
-       subsystem/windows/node/NamedPipe.h
-       subsystem/windows/node/OperatingSystemApplication.cpp
-       subsystem/windows/node/OperatingSystemApplication.h
-       subsystem/windows/node/ParentProcess.cpp
-       subsystem/windows/node/ParentProcess.h
-       subsystem/windows/node/Pipe.cpp
-       subsystem/windows/node/Pipe.h
-       subsystem/windows/node/PipeClient.cpp
-       subsystem/windows/node/PipeClient.h
-       subsystem/windows/node/PipeImpersonatedThread.cpp
-       subsystem/windows/node/PipeImpersonatedThread.h
-       subsystem/windows/node/PipeServer.cpp
-       subsystem/windows/node/PipeServer.h
-       subsystem/windows/node/Process.cpp
-       subsystem/windows/node/Process.h
-       subsystem/windows/node/ProcessHandle.cpp
-       subsystem/windows/node/ProcessHandle.h
-       #       subsystem/windows/node/remoting_win_system.vcxproj
-       #       subsystem/windows/node/remoting_win_system.vcxproj.filters
-       #       subsystem/windows/node/remoting_win_system.vcxproj.user
-       subsystem/windows/node/resource.h
-       subsystem/windows/node/Screen.cpp
-       subsystem/windows/node/Screen.h
-       #subsystem/windows/node/SecurityDescriptor.cpp
-       #subsystem/windows/node/SecurityIdentifier.cpp
-       subsystem/windows/node/Service.cpp
-       subsystem/windows/node/Service.h
-       subsystem/windows/node/ServiceControlManagerClient.cpp
-       subsystem/windows/node/ServiceControlManagerClient.h
-       subsystem/windows/node/SharedMemory.cpp
-       subsystem/windows/node/SharedMemory.h
-       subsystem/windows/node/Shell.cpp
-       subsystem/windows/node/Shell.h
-       #subsystem/windows/node/SystemException.cpp
-       #subsystem/windows/node/SystemException.h
-       subsystem/windows/node/SystemInformation.cpp
-       subsystem/windows/node/SystemInformation.h
-       subsystem/windows/node/ThemeLib.cpp
-       subsystem/windows/node/ThemeLib.h
-       subsystem/windows/node/UipiControl.cpp
-       subsystem/windows/node/UipiControl.h
-       subsystem/windows/node/VersionInfo.cpp
-       subsystem/windows/node/VersionInfo.h
-       subsystem/windows/node/win_system.vcproj
-       subsystem/windows/node/WindowsCommandLineArguments.cpp
-       subsystem/windows/node/WindowsCommandLineArguments.h
-       subsystem/windows/node/WindowsEvent.cpp
-       subsystem/windows/node/WindowsEvent.h
-       subsystem/windows/node/WindowsEventEx.cpp
-       subsystem/windows/node/WindowsEventEx.h
-       subsystem/windows/node/WindowsProcessCommandLine.cpp
-       subsystem/windows/node/WindowsProcessCommandLine.h
-       subsystem/windows/node/WindowsRegistry.cpp
-       subsystem/windows/node/WindowsRegistry.h
-       subsystem/windows/node/WindowsRegistryKey.cpp
-       subsystem/windows/node/WindowsRegistryKey.h
-       subsystem/windows/node/WinHandles.cpp
-       subsystem/windows/node/WinHandles.h
-       subsystem/windows/node/WinHooks.cpp
-       subsystem/windows/node/WinHooks.h
-       subsystem/windows/node/WinStaLibrary.cpp
-       subsystem/windows/node/WinStaLibrary.h
-       subsystem/windows/node/WinTimeMillis.cpp
-       subsystem/windows/node/WinTimeMillis.h
-       subsystem/windows/node/Workstation.cpp
-       subsystem/windows/node/Workstation.h
-       subsystem/windows/node/WsaStartup.cpp
-       subsystem/windows/node/WsaStartup.h
-       subsystem/windows/node/WTS.cpp
-       subsystem/windows/node/WTS.h
-       subsystem/windows/_.h
-       subsystem/windows/_factory.cpp
-       subsystem/windows/subsystem.cpp
-       subsystem/windows/subsystem.h
-       #subsystem/windows/thread/_____debug.xcconfig
-       #subsystem/windows/thread/_____release.xcconfig
-       #subsystem/windows/thread/aaa_framework.cpp
-       #subsystem/windows/thread/aaa_framework.h
+       operating_system/windows/subsystem/node/security/SecurityDescriptor.cpp
+       operating_system/windows/subsystem/node/security/SecurityDescriptor.h
+       operating_system/windows/subsystem/node/security/SecurityIdentifier.cpp
+       operating_system/windows/subsystem/node/security/SecurityIdentifier.h
+       operating_system/windows/subsystem/node/security/SecurityAttributes.cpp
+       operating_system/windows/subsystem/node/security/SecurityAttributes.h
+       operating_system/windows/subsystem/node/_.cpp
+       operating_system/windows/subsystem/node/_.h
+       #       operating_system/windows/subsystem/node/_____debug.xcconfig
+       #       operating_system/windows/subsystem/node/_____release.xcconfig
+       #       operating_system/windows/subsystem/node/aaa_Environment.cpp
+       #       operating_system/windows/subsystem/node/aaa_Environment.h
+       #       operating_system/windows/subsystem/node/aaa_framework.cpp
+       #       operating_system/windows/subsystem/node/aaa_framework.h
+       operating_system/windows/subsystem/node/AnonymousPipe.cpp
+       operating_system/windows/subsystem/node/AnonymousPipe.h
+       operating_system/windows/subsystem/node/AnonymousPipeFactory.cpp
+       operating_system/windows/subsystem/node/AnonymousPipeFactory.h
+       operating_system/windows/subsystem/node/ApplicationCrashEvents.h
+       operating_system/windows/subsystem/node/AutoImpersonator.cpp
+       operating_system/windows/subsystem/node/AutoImpersonator.h
+       operating_system/windows/subsystem/node/Clipboard.cpp
+       operating_system/windows/subsystem/node/Clipboard.h
+       operating_system/windows/subsystem/node/Cursor.cpp
+       operating_system/windows/subsystem/node/Cursor.h
+       #operating_system/windows/subsystem/node/CMakeLists.txt
+       operating_system/windows/subsystem/node/Displays.cpp
+       operating_system/windows/subsystem/node/Displays.h
+       operating_system/windows/subsystem/node/LocalWindowsApplication.h
+       #operating_system/windows/subsystem/node/matter.txt
+       operating_system/windows/subsystem/node/NamedPipe.cpp
+       operating_system/windows/subsystem/node/NamedPipe.h
+       operating_system/windows/subsystem/node/OperatingSystemApplication.cpp
+       operating_system/windows/subsystem/node/OperatingSystemApplication.h
+       operating_system/windows/subsystem/node/OperatingSystemHook.cpp
+       operating_system/windows/subsystem/node/OperatingSystemHook.h
+       operating_system/windows/subsystem/node/ParentProcess.cpp
+       operating_system/windows/subsystem/node/ParentProcess.h
+       operating_system/windows/subsystem/node/Pipe.cpp
+       operating_system/windows/subsystem/node/Pipe.h
+       operating_system/windows/subsystem/node/PipeClient.cpp
+       operating_system/windows/subsystem/node/PipeClient.h
+       operating_system/windows/subsystem/node/PipeImpersonatedThread.cpp
+       operating_system/windows/subsystem/node/PipeImpersonatedThread.h
+       operating_system/windows/subsystem/node/PipeServer.cpp
+       operating_system/windows/subsystem/node/PipeServer.h
+       operating_system/windows/subsystem/node/Process.cpp
+       operating_system/windows/subsystem/node/Process.h
+       operating_system/windows/subsystem/node/ProcessHandle.cpp
+       operating_system/windows/subsystem/node/ProcessHandle.h
+       #       operating_system/windows/subsystem/node/remoting_win_system.vcxproj
+       #       operating_system/windows/subsystem/node/remoting_win_system.vcxproj.filters
+       #       operating_system/windows/subsystem/node/remoting_win_system.vcxproj.user
+       operating_system/windows/subsystem/node/resource.h
+       operating_system/windows/subsystem/node/Screen.cpp
+       operating_system/windows/subsystem/node/Screen.h
+       #operating_system/windows/subsystem/node/SecurityDescriptor.cpp
+       #operating_system/windows/subsystem/node/SecurityIdentifier.cpp
+       operating_system/windows/subsystem/node/Service.cpp
+       operating_system/windows/subsystem/node/Service.h
+       operating_system/windows/subsystem/node/ServiceControlManagerClient.cpp
+       operating_system/windows/subsystem/node/ServiceControlManagerClient.h
+       operating_system/windows/subsystem/node/SharedMemory.cpp
+       operating_system/windows/subsystem/node/SharedMemory.h
+       operating_system/windows/subsystem/node/Shell.cpp
+       operating_system/windows/subsystem/node/Shell.h
+       #operating_system/windows/subsystem/node/SystemException.cpp
+       #operating_system/windows/subsystem/node/SystemException.h
+       operating_system/windows/subsystem/node/SystemInformation.cpp
+       operating_system/windows/subsystem/node/SystemInformation.h
+       operating_system/windows/subsystem/node/ThemeLib.cpp
+       operating_system/windows/subsystem/node/ThemeLib.h
+       operating_system/windows/subsystem/node/UipiControl.cpp
+       operating_system/windows/subsystem/node/UipiControl.h
+       operating_system/windows/subsystem/node/VersionInfo.cpp
+       operating_system/windows/subsystem/node/VersionInfo.h
+       #operating_system/windows/subsystem/node/win_system.vcproj
+       operating_system/windows/subsystem/node/WindowsCommandLineArguments.cpp
+       operating_system/windows/subsystem/node/WindowsCommandLineArguments.h
+       operating_system/windows/subsystem/node/WindowsEvent.cpp
+       operating_system/windows/subsystem/node/WindowsEvent.h
+       operating_system/windows/subsystem/node/WindowsEventEx.cpp
+       operating_system/windows/subsystem/node/WindowsEventEx.h
+       operating_system/windows/subsystem/node/WindowsProcessCommandLine.cpp
+       operating_system/windows/subsystem/node/WindowsProcessCommandLine.h
+       operating_system/windows/subsystem/node/WindowsRegistry.cpp
+       operating_system/windows/subsystem/node/WindowsRegistry.h
+       operating_system/windows/subsystem/node/WindowsRegistryKey.cpp
+       operating_system/windows/subsystem/node/WindowsRegistryKey.h
+       operating_system/windows/subsystem/node/WinHandles.cpp
+       operating_system/windows/subsystem/node/WinHandles.h
+       operating_system/windows/subsystem/node/WinStaLibrary.cpp
+       operating_system/windows/subsystem/node/WinStaLibrary.h
+       operating_system/windows/subsystem/node/WinTimeMillis.cpp
+       operating_system/windows/subsystem/node/WinTimeMillis.h
+       operating_system/windows/subsystem/node/Workstation.cpp
+       operating_system/windows/subsystem/node/Workstation.h
+       operating_system/windows/subsystem/node/WsaStartup.cpp
+       operating_system/windows/subsystem/node/WsaStartup.h
+       operating_system/windows/subsystem/node/WTS.cpp
+       operating_system/windows/subsystem/node/WTS.h
+       operating_system/windows/subsystem/_.h
+       operating_system/windows/subsystem/_factory.cpp
+       operating_system/windows/subsystem/subsystem.cpp
+       operating_system/windows/subsystem/subsystem.h
+       #operating_system/windows/subsystem/thread/_____debug.xcconfig
+       #operating_system/windows/subsystem/thread/_____release.xcconfig
+       #operating_system/windows/subsystem/thread/aaa_framework.cpp
+       #operating_system/windows/subsystem/thread/aaa_framework.h
        #subsystem/thread/aaa_ZombieKiller.cpp
        #subsystem/thread/aaa_ZombieKiller.h
        subsystem/thread/AutoLock.cpp
@@ -3588,7 +3594,9 @@ endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
-   subsystem/particle.cpp)
+   operating_system/windows/subsystem/_common_header.h
+   platform/user_interaction_sink.h
+   platform/user_interaction_sink.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

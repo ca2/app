@@ -32,7 +32,7 @@
 #include "DynamicLibrary.h"
 #include "SystemException.h"
 //#include "log_writer/LogWriter.h"
-#include <WtsApi32.h>
+// #include aaa_<WtsApi32.h>
 
 typedef DWORD (WINAPI *pWTSGetActiveConsoleSessionId)(void);
 typedef BOOL (WINAPI *pWTSQueryUserToken)(ULONG SessionId, PHANDLE phToken);

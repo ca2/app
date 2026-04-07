@@ -28,7 +28,7 @@
 // //////#include "remoting/remoting_common/util/::string.h"
 // //#include "log_writer/LogWriter.h"
 //
-// #include <winnt.h>
+// // #include aaa_<winnt.h>
 //
 // namespace remoting
 // {

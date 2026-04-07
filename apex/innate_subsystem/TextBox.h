@@ -34,14 +34,14 @@ namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX TextBox :
+   class CLASS_DECL_APEX TextBoxInterface :
       virtual public Control
    {
    public:
 
 
-      TextBox();
-      ~TextBox() override;
+      //TextBoxInterface();
+      virtual ~TextBoxInterface() = 0;
 
 
    ///public:
@@ -81,48 +81,47 @@ namespace innate_subsystem
    };
 
 
-   // class CLASS_DECL_APEX TextBox :
-   //    virtual public ::subsystem::composite<TextBox,
-   //    virtual public Control
-   //  {
-   //  public:
-   //    TextBox();
-   //      ~TextBox() override;
-   //  //public:
-   //
-   //      //
-   //      // Text limit
-   //      //
-   //
-   //      virtual character_count getTextLengthLimit() override;
-   //      virtual void setTextLengthLimit(character_count limit) override;
-   //
-   //      //
-   //      // Methods for multiline textboxes
-   //      //
-   //
-   //      virtual int getCurrentLineIndex() override;
-   //      virtual int getLineCount() override;
-   //
-   //      //
-   //      // Get / set caret position
-   //      //
-   //
-   //      virtual int getCaretPos();
-   //      virtual void setCaretPos(int h, int v);
-   //
-   //      //
-   //      // Text selection
-   //      //
-   //
-   //      virtual void selectText(size_t startPos, size_t endPos);
-   //
-   //      //
-   //      // Tooltip methods
-   //      //
-   //
-   //      virtual void showBalloonTip(Tooltip *tip);
-   //  };
+   class CLASS_DECL_APEX TextBox :
+      virtual public ::subsystem::composite<TextBoxInterface >
+    {
+    public:
+      TextBox();
+        ~TextBox() override;
+    //public:
+
+        //
+        // Text limit
+        //
+
+        virtual character_count getTextLengthLimit() override;
+        virtual void setTextLengthLimit(character_count limit) override;
+
+        //
+        // Methods for multiline textboxes
+        //
+
+        virtual int getCurrentLineIndex() override;
+        virtual int getLineCount() override;
+
+        //
+        // Get / set caret position
+        //
+
+        virtual int getCaretPos();
+        virtual void setCaretPos(int h, int v);
+
+        //
+        // Text selection
+        //
+
+        virtual void selectText(size_t startPos, size_t endPos);
+
+        //
+        // Tooltip methods
+        //
+
+        virtual void showBalloonTip(Tooltip *tip);
+    };
 
 
 } // namespace innate_subsystem

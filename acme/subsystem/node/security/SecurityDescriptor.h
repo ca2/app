@@ -23,10 +23,11 @@
 //
 #pragma once
 
-//#include "util/winhdr.h"
+
+#include "acme/subsystem/_common_header.h"
 #include "acme/subsystem/node/SystemException.h"
-#include "subsystem/particle.h"
-//#include <AccCtrl.h>
+////#include "subsystem/particle.h"
+//// #include aaa_<AccCtrl.h>
 
 namespace subsystem
 {

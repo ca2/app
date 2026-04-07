@@ -8,7 +8,7 @@
 #include "platform/registry.h"
 #include "node/Shell.h"
 #include "Registry.h"
-
+#include "acme/exception/interface_only.h"
 
 namespace subsystem
 {
@@ -96,5 +96,19 @@ namespace subsystem
       return nullptr;
 
    }
+
+
+   int subsystem::message_box(
+   const ::user_interaction_sink & userinteractionsink,
+   const ::scoped_string & scopedstrMessage,
+   const ::scoped_string & scopedstrCaption,
+   unsigned int uType)
+   {
+
+      throw ::interface_only();
+
+      return 0;
+   }
+
 
 }//namespace subsystem

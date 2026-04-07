@@ -54,6 +54,3 @@ namespace subsystem
 #include "acme/subsystem/thread/_.h"
 
 
-#ifdef WINDOWS
-#include "windows/_.h"
-#endif

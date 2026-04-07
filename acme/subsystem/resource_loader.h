@@ -70,7 +70,7 @@ namespace subsystem
        * @param [out] string storage for string from resources.
        * @return true if string is loaded, false otherwise.
        */
-      virtual bool loadString(::string & str, unsigned int id);
+      virtual bool loadString(unsigned int id, ::string & str);
       virtual ::string loadString(unsigned int id);
 
       /**

@@ -42,7 +42,7 @@ namespace subsystem
       if (!p)
       {
          p = m_mapString.get(i);
-         if (!::main_subsystem()->resource_loader()->loadString(p->element2(),i))
+         if (!::main_subsystem()->resource_loader()->loadString(i, p->element2()))
          {
             p->element2() = "Requested string from StringTable cannot be received";
          }

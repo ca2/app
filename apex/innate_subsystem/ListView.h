@@ -164,11 +164,11 @@ namespace innate_subsystem
 
    //protected:
 
-      virtual void setExStyle(unsigned int style);
-      virtual unsigned int getExStyle();
-
-      virtual void addExStyle(unsigned int style);
-      virtual void removeExStyle(unsigned int style);
+      // virtual void setExStyle(unsigned int style);
+      // virtual unsigned int getExStyle();
+      //
+      // virtual void addExStyle(unsigned int style);
+      // virtual void removeExStyle(unsigned int style);
 
       //
       // This method sort list of item by column "columnIndex".

@@ -1,0 +1,88 @@
+// Copyright (C) 2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the TightVNC software.  Please visit our Web site:
+//
+//                       http://www.tightvnc.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+#include "framework.h"
+#include "acme/operating_system/windows/subsystem/_common_header.h"
+#include "PipeImpersonatedThread.h"
+#include "File.h"
+//#include "Environment.h"
+
+namespace windows
+{
+   namespace subsystem
+   {
+      PipeImpersonatedThread::PipeImpersonatedThread()
+      : m_pfilePipe(nullptr),
+        m_success(false)
+      {
+      }
+
+      PipeImpersonatedThread::~PipeImpersonatedThread()
+      {
+         terminate();
+         wait();
+      }
+
+      void PipeImpersonatedThread::initialize_pipe_impersonated_thread(::subsystem::FileInterface* pfilePipe)
+      {
+         m_pfilePipe = pfilePipe;
+           m_success = false;
+
+      }
+
+      void PipeImpersonatedThread::onTerminate()
+      {
+         m_threadSleeper.notify();
+      }
+
+      void PipeImpersonatedThread::waitUntilImpersonated()
+      {
+         m_impersonationReadyEvent.waitForEvent();
+      }
+
+      bool PipeImpersonatedThread::getImpersonationSuccess()
+      {
+         return m_success;
+      }
+
+      ::string PipeImpersonatedThread::getFaultReason()
+      {
+         return m_faultReason;
+      }
+
+      void PipeImpersonatedThread::execute()
+      {
+         m_success = ImpersonateNamedPipeClient(::as_HANDLE(m_pfilePipe)) != 0;
+         if (!m_success) {
+            // Store fault reason
+            m_faultReason = ::windows::last_error_message(::windows::last_error());
+         }
+         m_impersonationReadyEvent.notify();
+
+         while (!isTerminating()) {
+            m_threadSleeper.waitForEvent();
+         }
+         RevertToSelf();
+      }
+   } // namespace subsystem
+} // namespace windows

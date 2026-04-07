@@ -27,11 +27,11 @@ namespace innate_subsystem
       ~subsystem() override;
 
 
-      virtual int message_box(
-         WindowInterface * pwindow,
+      int message_box(
+         const ::user_interaction_sink & userinteractionsink,
          const ::scoped_string & scopedstrMessage,
          const ::scoped_string & scopedstrCaption,
-         unsigned int uType);
+         unsigned int uType) override;
 
 
 

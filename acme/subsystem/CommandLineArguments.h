@@ -26,23 +26,27 @@
 
 
 #include "acme/subsystem/_common_header.h"
-//#include <vector>
+//// #include aaa_<vector>
 
 namespace subsystem
 {
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
-   class CLASS_DECL_ACME CommandLineArguments
+   class CLASS_DECL_ACME CommandLineArguments :
+      virtual public ::particle
    {
    public:
+
+      ::string_array m_straArguments;
+
       CommandLineArguments();
-      virtual ~CommandLineArguments();
+      ~CommandLineArguments() override;
 
       // Copies internal argument ::array_base to the out variable.
       ::string_array getArguments() const;
 
 //   protected:
-      ::string_array m_straArguments;
+
    };
 
    //// __COMMANDLINEARGS_H__

@@ -3,25 +3,23 @@
 //
 #pragma once
 
+#include "application.h"
 #include "acme/operating_system/window.h"
+#include "acme/user/user/interaction.h"
 
-namespace a
+
+class CLASS_DECL_ACME user_interaction_sink :
+   virtual public ::particle
 {
-   class CLASS_DECL_ACME user_interaction :
-      virtual public ::particle
-   {
-   public:
+public:
 
-      user_interaction
 
-      ::operating_system::window m_operatingsystemwindow;
 
-      virtual ::operating_system::window operating_system_window()
-      {
+   ::operating_system::window m_operatingsystemwindow;
 
-         return m_operatingsystemwindow;
 
-      }
+   user_interaction_sink(const ::operating_system::window & operatingsystemwindow);
 
-   };
-} // namespace a
+   virtual ::operating_system::window best_effort_operating_system_window();
+
+};

@@ -6,7 +6,7 @@
 // Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSorensen!!
 #pragma once
 
-
+#include "acme/platform/user_interaction_sink.h"
 
 
 namespace subsystem
@@ -40,6 +40,14 @@ namespace subsystem
        * @throws SystemException on fail.
        */
       virtual ::pointer < ::subsystem::SecurityIdentifier > createSidFromString(const ::scoped_string & scopedstr);
+
+
+      virtual int message_box(
+         const ::user_interaction_sink & userinteractionsink,
+         const ::scoped_string & scopedstrMessage,
+         const ::scoped_string & scopedstrCaption,
+         unsigned int uType);
+
 
    };
 

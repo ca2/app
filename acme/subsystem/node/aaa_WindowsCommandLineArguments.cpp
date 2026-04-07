@@ -26,7 +26,7 @@
 #include "WinCommandLineArgs.h"
 #include "acme/subsystem/Exception.h"
 
-#include <shellapi.h>
+// #include aaa_<shellapi.h>
 
 
 WinCommandLineArgs::WinCommandLineArgs(const ::scoped_string & scopedstrCmdLineInWinFormat)

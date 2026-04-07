@@ -23,7 +23,7 @@
 //
 #include "framework.h"
 #include "FrameBuffer.h"
-#include <string.h>
+// #include aaa_<string.h>
 
 
 namespace subsystem

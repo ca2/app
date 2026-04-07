@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "ByteArrayOutputStream.h"
 
-#include <string.h>
+// #include aaa_<string.h>
 
 
 namespace subsystem

@@ -25,33 +25,76 @@
 #pragma once
 
 
-// #include "acme/subsystem/_common_header.h"
-// #include "../SystemException.h"
-//
-// /**
-//  * Contains information about executable file version info.
-//  */
-// class CLASS_DECL_REMOTING_COMMON VersionInfo
-// {
-// public:
-//   /**
-//    * Creates version info of specified file.
-//    * @param pathToFile path to executable file to get version info from.
-//    * @throws SystemException on fail.
-//    */
-//   VersionInfo(const ::file::path & pathToFile);
-//
-//   /**
-//    * Returns product version info string.
-//    * @return product version info string.
-//    */
-//   ::string getProductVersionString() const;
-//
-// private:
-//   /**
-//    * Product version as string.
-//    */
-//   ::string m_productVersionString;
-// };
-//
-//
+#include "acme/subsystem/_common_header.h"
+//#include "../SystemException.h"
+
+namespace subsystem
+{
+   /**
+    * Contains information about executable file version info.
+    */
+   class CLASS_DECL_ACME VersionInfoInterface :
+      virtual public ::subsystem::particle_interface
+   {
+   public:
+      /**
+       * Creates version info of specified file.
+       * @param pathToFile path to executable file to get version info from.
+       * @throws SystemException on fail.
+       */
+      //VersionInfo(const ::file::path & pathToFile);
+      virtual ~VersionInfoInterface() = 0;
+
+
+      virtual void initialize_version_info(const ::file::path & pathToFile) = 0;
+      /**
+       * Returns product version info string.
+       * @return product version info string.
+       */
+      virtual ::string getProductVersionString() const = 0;
+
+   //private:
+      /**
+       * Product version as string.
+       */
+     // ::string m_productVersionString;
+   };
+
+
+   /**
+ * Contains information about executable file version info.
+ */
+   class CLASS_DECL_ACME VersionInfo :
+      virtual public ::subsystem::composite<VersionInfoInterface>
+   {
+   public:
+      /**
+       * Creates version info of specified file.
+       * @param pathToFile path to executable file to get version info from.
+       * @throws SystemException on fail.
+       */
+      //VersionInfo(const ::file::path & pathToFile);
+      VersionInfo();
+      ~VersionInfo() override;
+
+
+      void initialize_version_info(const ::file::path & pathToFile) override;
+      /**
+       * Returns product version info string.
+       * @return product version info string.
+       */
+      ::string getProductVersionString() const override;
+
+      //private:
+      /**
+       * Product version as string.
+       */
+      // ::string m_productVersionString;
+   };
+
+
+} // namespace subsystem
+
+
+
+

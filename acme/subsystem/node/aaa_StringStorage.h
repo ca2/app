@@ -26,7 +26,7 @@
 // //#define _STRING_BUFFER_H_
 //
 // //#include "winhdr.h"
-// //#include <vector>
+// //// #include aaa_<vector>
 //
 // /**
 // String class.

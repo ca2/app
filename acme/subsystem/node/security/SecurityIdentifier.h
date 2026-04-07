@@ -26,7 +26,10 @@
 // #define _SECURITY_IDENTIFIER_H_
 
 #pragma once
-#include "subsystem/particle.h"
+//#include "subsystem/particle.h"
+
+
+#include "acme/subsystem/_common_header.h"
 
 
 namespace subsystem

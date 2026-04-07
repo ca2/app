@@ -25,7 +25,7 @@
 #include "ResourceLoader.h"
 #include "util/UnicodeStringStorage.h"
 
-#include <crtdbg.h>
+// #include aaa_<crtdbg.h>
 
 ResourceLoader::ResourceLoader(HINSTANCE appInst)
 : m_appInstance(appInst)

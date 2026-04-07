@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "BufferedInputStream.h"
-#include <string.h>
-#include <istream>
-#include <sstream>
-#include <algorithm>
+// #include aaa_<string.h>
+// #include aaa_<istream>
+// #include aaa_<sstream>
+// #include aaa_<algorithm>
 
 namespace subsystem
 {

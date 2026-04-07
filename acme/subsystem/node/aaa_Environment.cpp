@@ -24,15 +24,15 @@
 #include "framework.h"#include "Environment.h"
 #include "CtrlAltDelSimulator.h"
 
-#include <shlobj.h>
-#include <crtdbg.h>
+// #include aaa_<shlobj.h>
+// #include aaa_<crtdbg.h>
 #include "remoting/win_system/AutoImpersonator.h"
 #include "remoting/win_system/WTS.h"
 #include "remoting/win_system/ProcessHandle.h"
 #include "Shell.h"
 #include "DynamicLibrary.h"
-//#include <vector>
-#include <algorithm>
+//// #include aaa_<vector>
+// #include aaa_<algorithm>
 
 // OSVERSIONINFO Environment::m_osVerInfo = { 0 };
 // typedef VOID (WINAPI *SendSas)(BOOL asUser);

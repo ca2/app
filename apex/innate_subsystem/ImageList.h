@@ -29,7 +29,9 @@ namespace innate_subsystem
 
       virtual void initialize_image_list() = 0;
 
-      virtual void create(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) = 0
+      virtual void create_image_list(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) = 0;
+
+      virtual void destroy_image_list() = 0;
 
 
 
@@ -38,7 +40,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX ImageList :
-   virtual public ::subsystem::composite<ImageList
+   virtual public ::subsystem::composite<ImageListInterface>
    {
    public:
 
@@ -48,7 +50,9 @@ namespace innate_subsystem
 
       void initialize_image_list() override;
 
-      void create(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) override;
+      void create_image_list(int cx, int cy, int flags, int iInitialSize = 1, int iGrow = 1) override;
+
+      void destroy_image_list() override;
 
 
    };

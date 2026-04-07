@@ -25,6 +25,9 @@
 #include "util/CommonHeader.h"
 #include "Window.h"
 
+#include "acme/operating_system/windows/_.h"
+
+
 namespace innate_subsystem
 {
    Window::Window()
@@ -133,6 +136,18 @@ namespace innate_subsystem
    {
       _ASSERT(m_hWnd != 0);
       SetParent(m_hWnd, hwnd);
+   }
+
+
+   ::operating_system::window Window::dialog_item_operating_system_window(int iDlgItem)
+   {
+
+      auto hwndDlgItem = ::GetDlgItem(m_hWnd, iDlgItem);
+
+      auto operatingsystemwindow = as_operating_system_window(hwndDlgItem);
+
+      return operatingsystemwindow;
+
    }
 
    void Window::setClassStyle(DWORD style)

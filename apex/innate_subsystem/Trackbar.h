@@ -32,21 +32,40 @@
 
 namespace innate_subsystem
 {
-    class Trackbar : public ::innate_subsystem::Control
+    class CLASS_DECL_APEX TrackbarInterface :
+         virtual public ::innate_subsystem::Control
     {
     public:
-        Trackbar();
-        virtual ~Trackbar();
+
+        //Trackbar();
+        virtual ~TrackbarInterface() = 0;
 
         // Sets the range of minimum and maximum logical positions for the slider.
-        void setRange(long min, long max);
+        virtual void setRange(long min, long max) = 0;
 
         // Sets the current logical position of the slider.
-        void setPos(long pos);
+        virtual void setPos(long pos) = 0;
 
         // Returns the current logical position of the slider.
-        long getPos();
+        virtual long getPos() = 0;
     };
+
+   class CLASS_DECL_APEX Trackbar :
+      virtual public ::subsystem::composite < TrackbarInterface  >
+   {
+   public:
+      Trackbar();
+      ~Trackbar() override;
+
+      // Sets the range of minimum and maximum logical positions for the slider.
+      void setRange(long min, long max) override;
+
+      // Sets the current logical position of the slider.
+      void setPos(long pos) override;
+
+      // Returns the current logical position of the slider.
+      long getPos() override;
+   };
 
     //#endif
 } // namespace innate_subsystem

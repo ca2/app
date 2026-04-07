@@ -23,11 +23,11 @@
 //
 
 #pragma once
-#include "subsystem/particle.h"
-
+//#include "subsystem/particle.h"
+#include "acme/subsystem/_common_header.h"
 
 //#include "remoting/remoting_common/util/::earth::time.h"
-//#include <vector>
+//// #include aaa_<vector>
 //#include "remoting/remoting_common/thread/LocalMutex.h"
 
 namespace  subsystem

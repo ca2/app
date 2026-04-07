@@ -25,12 +25,14 @@
 #pragma once
 
 
+
+#include "acme/subsystem/_common_header.h"
 //#include "remoting/remoting_common/util/winhdr.h"
-#include "acme/_operating_system.h"
+//#include "acme/_operating_system.h"
 
 //////#include "remoting/remoting_common/util/::string.h"
-#include "acme/subsystem/Exception.h"
-#include "subsystem/particle.h"
+//#include "acme/subsystem/Exception.h"
+//#include "subsystem/particle.h"
 //#include "remoting/remoting_common/thread/Thread.h"
 
 namespace subsystem

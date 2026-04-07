@@ -46,11 +46,11 @@ namespace subsystem
       // function calling.
       // @param hRead is a read handle getting by the CreatePipe()
       // function calling but is not the same as for hWrite.
-      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
+      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *plogwriter);
       //AnonymousPipe();
       virtual ~AnonymousPipeInterface() = 0;
 
-      virtual void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log) = 0;
+      virtual void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter) = 0;
       /**
        * Closes transport.
        *
@@ -109,7 +109,7 @@ namespace subsystem
       // WindowsEvent m_readEvent;
       // WindowsEvent m_writeEvent;
       //
-      // LogWriter *m_log;
+      // LogWriter *m_plogwriter;
    };
 
 
@@ -123,11 +123,11 @@ namespace subsystem
       // function calling.
       // @param hRead is a read handle getting by the CreatePipe()
       // function calling but is not the same as for hWrite.
-      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
+      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *plogwriter);
       AnonymousPipe();
       ~AnonymousPipe() override;
 
-      void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter *log) override;
+      void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter *plogwriter) override;
       /**
        * Closes transport.
        *
@@ -186,7 +186,7 @@ namespace subsystem
       // WindowsEvent m_readEvent;
       // WindowsEvent m_writeEvent;
       //
-      // LogWriter *m_log;
+      // LogWriter *m_plogwriter;
    };
 
 

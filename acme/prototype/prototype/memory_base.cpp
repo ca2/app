@@ -32,7 +32,7 @@ MEMORY::MEMORY()
    m_sizeStorage = 0;
    m_end = 0;
    m_dwAllocationAddUp = 4096;
-   m_dAllocationRateUp = (double)(1.0 - ((double)m_dwAllocationAddUp / 2.0) * log((double)m_dwAllocationAddUp - 1.0)) / (1 - log((double)m_dwAllocationAddUp - 1.0));
+   m_dAllocationRateUp = (double)(1.0 - ((double)m_dwAllocationAddUp / 2.0) * ::log((double)m_dwAllocationAddUp - 1.0)) / (1 - ::log((double)m_dwAllocationAddUp - 1.0));
    m_pcontainer = nullptr;
    m_pprimitivememory = nullptr;
    m_psharedmemory = nullptr;

@@ -2560,7 +2560,7 @@ class CLASS_DECL_ACME task :
    virtual public ::object,
    virtual public ::acme::implementable,
    virtual public ::handler::handler,
-   virtual public ::tracer,
+   virtual public ::platform::tracer,
    virtual public ::source,
    virtual public ::data::property_container
 {

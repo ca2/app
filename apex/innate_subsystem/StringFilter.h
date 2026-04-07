@@ -30,7 +30,7 @@
 class StringFilter
 {
 public:
-  virtual bool isStringCorrect(const TCHAR *string);
+  virtual bool isStringCorrect(const char *string);
 };
 
 #endif

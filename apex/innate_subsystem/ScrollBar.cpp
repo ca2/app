@@ -70,7 +70,7 @@ namespace innate_subsystem
       }
    }
 
-   void ScrollBar::setWindow(HWND hwnd) {
+   void ScrollBar::setWindow(const ::operating_system::window & operatingsystemwindow) {
       m_hwnd = hwnd;
    }
 

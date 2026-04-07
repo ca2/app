@@ -54,7 +54,7 @@ namespace innate_subsystem
    }
 
    bool Window::createWindow(const scoped_string & scopedstrWindowName, DWORD style, const ::operating_system::window & operatingsystemwindowParent,
-                                 int xPos, int yPos, int width, int height)
+                                 int xPos, int yPos, const ::int_size & size)
    {
 
            return m_pparticleThis->createWindow(scopedstrWindowName,style, operatingsystemwindowParent, xPos, yPos, width, height);
@@ -127,7 +127,7 @@ namespace innate_subsystem
       m_pparticleThis->hide();
    }
 
-   bool Window::setSize(int width, int height)
+   bool Window::setSize(const ::int_size & size)
    {
       // _ASSERT(m_hWnd != 0);
       // return !!SetWindowPos(m_hWnd, 0, 0, 0, width, height,
@@ -329,7 +329,7 @@ namespace innate_subsystem
       return m_hWnd;
    }
 
-   void Window::setWindowText(const StringStorage *text)
+   void Window::setWindowText(const ::string *text)
    {
       _ASSERT(m_hWnd != 0);
       SetWindowText(m_hWnd, text->getString());

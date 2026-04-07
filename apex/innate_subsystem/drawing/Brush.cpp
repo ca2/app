@@ -21,23 +21,28 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "Brush.h"
 
-Brush::Brush()
-: m_brush(0)
+namespace innate_subsystem
 {
-}
+   Brush::Brush()
+   : m_brush(0)
+   {
+   }
 
-Brush::~Brush()
-{
-  release();
-}
+   Brush::~Brush()
+   {
+      release();
+   }
 
-void Brush::release()
-{
-  if (m_brush != 0) {
-    DeleteObject(m_brush);
-    m_brush = 0;
-  }
-}
+   void Brush::release()
+   {
+      if (m_brush != 0) {
+         DeleteObject(m_brush);
+         m_brush = 0;
+      }
+   }
+} // namespace innate_subsystem
+
+

@@ -34,12 +34,12 @@ namespace innate_subsystem
    {
    }
 
-   void ListBox::addString(const TCHAR *str)
+   void ListBox::addString(const char *str)
    {
       addString(str, 0);
    }
 
-   void ListBox::addString(const TCHAR *str, void *tag)
+   void ListBox::addString(const char *str, void *tag)
    {
       LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (::lparam)str);
       int i = (int)lresult;
@@ -64,16 +64,16 @@ namespace innate_subsystem
       SendMessage(m_hwnd, LB_SETTOPINDEX, index, NULL);
    }
 
-   void ListBox::getItemText(int index, StringStorage *storage)
+   void ListBox::getItemText(int index, ::string *storage)
    {
       size_t length = SendMessage(m_hwnd, LB_GETTEXTLEN, index, NULL);
       _ASSERT(length <= 65536);
-      std::vector<TCHAR> buffer(length + 1);
+      std::vector<char> buffer(length + 1);
       SendMessage(m_hwnd, LB_GETTEXT, index, (::lparam)&buffer.front());
       storage->setString(&buffer.front());
    }
 
-   void ListBox::setItemText(int index, const TCHAR *str)
+   void ListBox::setItemText(int index, const char *str)
    {
       int si = getSelectedIndex();
       int top = getTopIndex();
@@ -89,7 +89,7 @@ namespace innate_subsystem
       setTopIndex(top);
    }
 
-   void ListBox::appendString(const TCHAR *str, ::lparam data)
+   void ListBox::appendString(const char *str, ::lparam data)
    {
       LRESULT lresult = SendMessage(m_hwnd, LB_ADDSTRING, 0, (::lparam)str);
       int index = (int)lresult;
@@ -97,12 +97,12 @@ namespace innate_subsystem
       setItemData(index, data);
    }
 
-   void ListBox::insertString(int index, const TCHAR *str)
+   void ListBox::insertString(int index, const char *str)
    {
       SendMessage(m_hwnd, LB_INSERTSTRING, index, (::lparam)str);
    }
 
-   void ListBox::insertString(int index, const TCHAR *str, ::lparam data)
+   void ListBox::insertString(int index, const char *str, ::lparam data)
    {
       LRESULT lresult = SendMessage(m_hwnd, LB_INSERTSTRING, index, (::lparam)str);
       int i = (int)lresult;

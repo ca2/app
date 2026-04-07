@@ -41,9 +41,9 @@ namespace subsystem
    //   m_shiftIsPressed(false),
    //   m_winIsPressed(false),
    //   m_ctrlAltDelEnabled(ctrlAltDelEnabled),
-   //   m_log(log)
+   //   m_plogwriter(plogwriter)
    {
-      //m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, log);
+      //m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, plogwriter);
       // // FIXME: Better to call this function from an owner (Now, its
       // // possible only from trunk code because in the stable hive the owner is
       // // the deprecated KeyEvent class)
@@ -51,22 +51,22 @@ namespace subsystem
       //    resetModifiers();
       // }
       // catch (::exception &e) {
-      //    m_log->error("InputInjector: error occurred while reseting modifiers: {}",
+      //    m_plogwriter->error("InputInjector: error occurred while reseting modifiers: {}",
       //      e.get_message());
       // }
    }
 
 
-//    InputInjector::InputInjector(bool ctrlAltDelEnabled, LogWriter *log)
+//    InputInjector::InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter)
 // // : m_controlIsPressed(false),
 // //   m_menuIsPressed(false),
 // //   m_deleteIsPressed(false),
 // //   m_shiftIsPressed(false),
 // //   m_winIsPressed(false),
 // //   m_ctrlAltDelEnabled(ctrlAltDelEnabled),
-// //   m_log(log)
+// //   m_plogwriter(plogwriter)
 // {
-//       m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, log);
+//       m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, plogwriter);
 //       // // FIXME: Better to call this function from an owner (Now, its
 //       // // possible only from trunk code because in the stable hive the owner is
 //       // // the deprecated KeyEvent class)
@@ -74,7 +74,7 @@ namespace subsystem
 //       //    resetModifiers();
 //       // }
 //       // catch (::exception &e) {
-//       //    m_log->error("InputInjector: error occurred while reseting modifiers: {}",
+//       //    m_plogwriter->error("InputInjector: error occurred while reseting modifiers: {}",
 //       //      e.get_message());
 //       // }
 // }
@@ -102,12 +102,12 @@ namespace subsystem
    void InputInjector::injectKeyEvent(unsigned char vkCode, bool release, bool extended)
    {
       m_pparticleThis->injectKeyEvent(vkCode, release, extended);
-      // m_log->debug("Prepare to inject the key event:"
+      // m_plogwriter->debug("Prepare to inject the key event:"
       //            " vkCode = {}, release = {}, extended = {}",
       //            (int)vkCode,
       //            (int)release,
       //            (int)extended);
-      // m_log->debug("The modifier states before:"
+      // m_plogwriter->debug("The modifier states before:"
       //            " m_controlIsPressed = {};"
       //            " m_menuIsPressed = {};"
       //            " m_deleteIsPressed = {};"
@@ -134,7 +134,7 @@ namespace subsystem
       // if (vkCode == VK_LWIN || vkCode == VK_RWIN) {
       //    m_winIsPressed = !release;
       // }
-      // m_log->debug("The modifier states after:"
+      // m_plogwriter->debug("The modifier states after:"
       //            " m_controlIsPressed = {};"
       //            " m_menuIsPressed = {};"
       //            " m_deleteIsPressed = {};"
@@ -149,16 +149,16 @@ namespace subsystem
       // if (m_controlIsPressed && m_menuIsPressed && m_deleteIsPressed &&
       //     !m_winIsPressed && !m_shiftIsPressed) {
       //    if (m_ctrlAltDelEnabled) {
-      //       m_log->debug("Try simulate the Ctrl+Alt+Del combination");
+      //       m_plogwriter->debug("Try simulate the Ctrl+Alt+Del combination");
       //       throw todo;
       //       // if (node()->_windows_isVistaOrLater()) {
-      //       //   Environment::simulateCtrlAltDelUnderVista(m_log);
+      //       //   Environment::simulateCtrlAltDelUnderVista(m_plogwriter);
       //       // }
       //       // else {
-      //       //   Environment::simulateCtrlAltDel(m_log);
+      //       //   Environment::simulateCtrlAltDel(m_plogwriter);
       //       // }
       //    } else {
-      //       m_log->debug("The Ctrl+Alt+Del combination is disabled. Ignore the Del key pressing");
+      //       m_plogwriter->debug("The Ctrl+Alt+Del combination is disabled. Ignore the Del key pressing");
       //    }
       //     } else {
       //        INPUT keyEvent = {0};
@@ -191,7 +191,7 @@ namespace subsystem
    void InputInjector::injectCharEvent(int ch, bool release)
    {
       m_pparticleThis->injectKeyEvent(ch, release);
-      // m_log->debug("Try insert a char event: char = {}, release = {}",
+      // m_plogwriter->debug("Try insert a char event: char = {}, release = {}",
       //            (int)ch, (int)release);
       //
       // bool ctrlOrAltPressed = m_controlIsPressed || m_menuIsPressed;
@@ -199,14 +199,14 @@ namespace subsystem
       // HKL hklCurrent = (HKL)0x04090409;
       // try {
       //    hklCurrent = getCurrentKbdLayout();
-      //    m_log->debug("Current keyboard layout = {:#08x}", (int)hklCurrent);
+      //    m_plogwriter->debug("Current keyboard layout = {:#08x}", (int)hklCurrent);
       //    vkKeyScanResult = searchVirtKey(ch, hklCurrent);
-      //    m_log->debug("The virtual code scan result = {}", (int)vkKeyScanResult);
+      //    m_plogwriter->debug("The virtual code scan result = {}", (int)vkKeyScanResult);
       // } catch (...) {
-      //    m_log->debug("Can't insert the char by simulating a key press event,"
+      //    m_plogwriter->debug("Can't insert the char by simulating a key press event,"
       //              " therefore try insert it as an unicode symbol");
       //    if (ctrlOrAltPressed) {
-      //       m_log->warning("Can't insert the char by an unicode symbol because"
+      //       m_plogwriter->warning("Can't insert the char by an unicode symbol because"
       //                    " a modifier is pressed");
       //       throw;
       //    }
@@ -253,11 +253,11 @@ namespace subsystem
       //                       !release;
       // if ((ctrlPressNeeded || altPressNeeded) &&
       //     (m_controlIsPressed || m_menuIsPressed)) {
-      //    m_log->error("Received a control combination that we doesn't know how it can be made");
+      //    m_plogwriter->error("Received a control combination that we doesn't know how it can be made");
       //    return;
       //     }
       //
-      // m_log->debug("Variable states before generate key events to get the char:"
+      // m_plogwriter->debug("Variable states before generate key events to get the char:"
       //            " controlSym = {};"
       //            " resistantToCaps = {};"
       //            " invariantToShift = {};"

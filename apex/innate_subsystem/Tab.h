@@ -27,7 +27,7 @@
 
 //#include "apex/innate_subsystem/Dialog.h"
 #include "apex/innate_subsystem/Control.h"
-//#include "util/StringStorage.h"
+//#include "util/::string.h"
 
 namespace innate_subsystem
 {
@@ -35,15 +35,15 @@ namespace innate_subsystem
     {
     public:
         Tab();
-        Tab(BaseDialog *dialog, const TCHAR *caption);
+        Tab(BaseDialog *dialog, const char *caption);
 
         //
         // Access methods to protected members
         //
 
-        void setCaption(const TCHAR *caption) { m_caption.setString(caption); }
+        void setCaption(const char *caption) { m_caption.setString(caption); }
 
-        const TCHAR *getCaption() {
+        const char *getCaption() {
             return m_caption.getString();
         }
 
@@ -65,7 +65,7 @@ namespace innate_subsystem
     protected:
 
         BaseDialog *m_dialog;
-        StringStorage m_caption;
+        ::string m_caption;
     };
 
     //#endif

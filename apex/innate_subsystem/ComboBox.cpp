@@ -34,24 +34,24 @@ ComboBox::~ComboBox()
 {
 }
 
-int ComboBox::addItem(const TCHAR *text)
+int ComboBox::addItem(const char *text)
 {
   return ComboBox_AddString(m_hwnd, text);
 }
 
-int ComboBox::addItem(const TCHAR *text, void *tag)
+int ComboBox::addItem(const char *text, void *tag)
 {
   int index = addItem(text);
   setItemData(index, tag);
   return index;
 }
 
-void ComboBox::insertItem(int index, const TCHAR *text)
+void ComboBox::insertItem(int index, const char *text)
 {
   ComboBox_InsertString(m_hwnd, index, text);
 }
 
-void ComboBox::insertItem(int index, const TCHAR *text, void *tag)
+void ComboBox::insertItem(int index, const char *text, void *tag)
 {
   insertItem(index, text);
   setItemData(index, tag);
@@ -72,10 +72,10 @@ void *ComboBox::getItemData(int index) const
   return (void *)ComboBox_GetItemData(m_hwnd, index);
 }
 
-void ComboBox::getItemText(int index, StringStorage *storage) const
+void ComboBox::getItemText(int index, ::string *storage) const
 {
   size_t length = ComboBox_GetLBTextLen(m_hwnd, index);
-  std::vector<TCHAR> buf(length + 1);
+  std::vector<char> buf(length + 1);
   ComboBox_GetLBText(m_hwnd, index, &buf.front());
   storage->setString(&buf.front());
 }

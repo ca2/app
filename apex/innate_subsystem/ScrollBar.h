@@ -40,7 +40,7 @@ namespace innate_subsystem
    public:
       ScrollBar();
 
-      //void setWindow(HWND hwnd);
+      //void setWindow(const ::operating_system::window & operatingsystemwindow);
       bool showVertScroll(bool show);
       bool showHorzScroll(bool show);
       void setHorzRange(int imin, int imax, int istep);

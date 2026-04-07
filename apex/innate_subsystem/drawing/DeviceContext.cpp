@@ -21,39 +21,64 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "DeviceContext.h"
 
-DeviceContext::DeviceContext(HWND window)
+namespace innate_subsystem
+{
+   DeviceContext::DeviceContext(HWND window)
+   : m_hasOwnDC(false), m_wnd(window)
+   {
+      m_dc = GetDC(window);
+   }
+
+   DeviceContext::DeviceContext(DeviceContext* compatibleDevice)
+   : m_hasOwnDC(true)
+   {
+      m_wnd = compatibleDevice->m_wnd;
+      m_dc = CreateCompatibleDC(compatibleDevice->m_dc);
+   }
+
+   DeviceContext::DeviceContext(PaintWindow* pntWnd)
+   : m_wnd(0), m_hasOwnDC(false)
+   {
+      m_dc = pntWnd->getHDCPaint();
+   }
+
+   DeviceContext::~DeviceContext()
+   {
+      if (m_wnd) {
+         ReleaseDC(m_wnd, m_dc);
+      }
+      if (m_hasOwnDC) {
+         DeleteDC(m_dc);
+      }
+   }
+
+
+   DeviceContext::DeviceContext(HWND window)
 : m_hasOwnDC(false), m_wnd(window)
-{
-  m_dc = GetDC(window);
-}
+   {
+      m_dc = GetDC(window);
+   }
 
-DeviceContext::DeviceContext(DeviceContext* compatibleDevice)
-: m_hasOwnDC(true)
-{
-  m_wnd = compatibleDevice->m_wnd;
-  m_dc = CreateCompatibleDC(compatibleDevice->m_dc);
-}
+   void DeviceContext::initialize_device_context(DeviceContext* compatibleDevice)
+   //: m_hasOwnDC(true)
+   {
+      //m_wnd = compatibleDevice->m_wnd;
+      //m_dc = CreateCompatibleDC(compatibleDevice->m_dc);
+   }
 
-DeviceContext::DeviceContext(PaintWindow* pntWnd)
-: m_wnd(0), m_hasOwnDC(false)
-{
-  m_dc = pntWnd->getHDCPaint();
-}
+   void DeviceContext::initialize_device_context(PaintWindow* pntWnd)
+   //: m_wnd(0), m_hasOwnDC(false)
+   {
 
-DeviceContext::~DeviceContext()
-{
-  if (m_wnd) {
-    ReleaseDC(m_wnd, m_dc);
-  }
-  if (m_hasOwnDC) {
-    DeleteDC(m_dc);
-  }
-}
+      //m_dc = pntWnd->getHDCPaint();
+   }
 
-HGDIOBJ DeviceContext::selectObject(HGDIOBJ object)
-{
-  return SelectObject(m_dc, object);
-}
+   HGDIOBJ DeviceContext::selectObject(HGDIOBJ object)
+   {
+      return SelectObject(m_dc, object);
+   }
+}  // namespace innate_subsystem
+

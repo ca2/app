@@ -4,9 +4,9 @@
 #include <stdarg.h>
 
 
-class tracer * fallback_tracer();
+::platform::tracer * fallback_tracer();
 
-trace_statement::trace_statement(class tracer * ptracer) :
+trace_statement::trace_statement(::platform::tracer * ptracer) :
    trace_statement_struct(ptracer)
 {
 

@@ -1187,7 +1187,7 @@ void particle::fatal(const scoped_string& scopedstr) const
 }
 
 
-class tracer* particle::tracer() const
+::platform::tracer * particle::tracer() const
 {
 
    auto ptask = get_task();

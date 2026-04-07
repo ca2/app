@@ -111,7 +111,7 @@ int _fltused = 0;
 //     }
 //     return d;
 // #else
-//     return log(d);
+//     return plogwriter(d);
 // #endif
 // }
 

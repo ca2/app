@@ -22,34 +22,32 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "BaseDialog.h"
+#include "Dialog.h"
 
-#include "util/CommonHeader.h"
-
-#include <commctrl.h>
-#include <crtdbg.h>
+// #include <commctrl.h>
+// #include <crtdbg.h>
 
 
 namespace innate_subsystem
 {
 
-BaseDialog::BaseDialog()
-: m_ctrlParent(NULL), m_resourceName(0), m_resourceId(0), m_hicon(0)
+Dialog::Dialog()
+//: m_ctrlParent(NULL), m_resourceName(0), m_resourceId(0), m_hicon(0)
 {
 }
 
-BaseDialog::BaseDialog(DWORD resourceId)
+Dialog::Dialog(DWORD resourceId)
 : m_ctrlParent(NULL), m_resourceName(0), m_resourceId(resourceId), m_hicon(0)
 {
 }
 
-BaseDialog::BaseDialog(const TCHAR *resourceName)
+Dialog::Dialog(const char *resourceName)
 : m_ctrlParent(NULL), m_resourceName(0), m_resourceId(0), m_hicon(0)
 {
   setResourceName(resourceName);
 }
 
-BaseDialog::~BaseDialog()
+Dialog::~Dialog()
 {
   if (m_hicon) {
     DeleteObject(m_hicon);
@@ -59,7 +57,21 @@ BaseDialog::~BaseDialog()
   }
 }
 
-void BaseDialog::setResourceName(const TCHAR *resourceName)
+
+   void Dialog::initialize_dialog(DWORD resourceId)
+///: m_ctrlParent(NULL), m_resourceName(0), m_resourceId(resourceId), m_hicon(0)
+{
+   m_pparticleThis
+}
+
+   Dialog::Dialog(const char *resourceName)
+   : m_ctrlParent(NULL), m_resourceName(0), m_resourceId(0), m_hicon(0)
+{
+   setResourceName(resourceName);
+}
+
+
+void Dialog::setResourceName(const char *resourceName)
 {
   if (m_resourceName != 0) {
     free(m_resourceName);
@@ -68,22 +80,22 @@ void BaseDialog::setResourceName(const TCHAR *resourceName)
   m_resourceName = _tcsdup(resourceName);
 }
 
-void BaseDialog::setResourceId(DWORD id)
+void Dialog::setResourceId(DWORD id)
 {
   m_resourceId = id;
 }
 
-void BaseDialog::setDefaultPushButton(unsigned int buttonId)
+void Dialog::setDefaultPushButton(unsigned int buttonId)
 {
   SendMessage(m_ctrlThis.getWindow(), DM_SETDEFID, buttonId, 0);
 }
 
-void BaseDialog::setParent(Control *ctrlParent)
+void Dialog::setParent(Control *ctrlParent)
 {
   m_ctrlParent = ctrlParent;
 }
 
-int BaseDialog::show()
+int Dialog::show()
 {
   if (m_ctrlThis.getWindow() == NULL) {
     create();
@@ -93,12 +105,12 @@ int BaseDialog::show()
   return 0;
 }
 
-void BaseDialog::hide()
+void Dialog::hide()
 {
   m_ctrlThis.setVisible(false);
 }
 
-void BaseDialog::kill(int code)
+void Dialog::kill(int code)
 {
   // Destroy dialog
   if (!m_isModal) {
@@ -110,7 +122,7 @@ void BaseDialog::kill(int code)
   m_ctrlThis.setWindow(NULL);
 }
 
-void BaseDialog::create()
+void Dialog::create()
 {
   HWND window, parentWindow = NULL;
 
@@ -126,7 +138,7 @@ void BaseDialog::create()
   _ASSERT(window != NULL);
 }
 
-int BaseDialog::showModal()
+int Dialog::showModal()
 {
   int result = 0;
   if (m_ctrlThis.getWindow() == NULL) {
@@ -150,7 +162,7 @@ int BaseDialog::showModal()
   return result;
 }
 
-bool BaseDialog::isCreated()
+bool Dialog::isCreated()
 {
   bool isInit = m_ctrlThis.getWindow() != 0;
 
@@ -161,28 +173,28 @@ bool BaseDialog::isCreated()
   return !!IsWindow(m_ctrlThis.getWindow());
 }
 
-BOOL BaseDialog::onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis)
+BOOL Dialog::onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis)
 {
   return TRUE;
 }
 
-void BaseDialog::onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+void Dialog::onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam)
 {
 }
 
-INT_PTR CALLBACK BaseDialog::dialogProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+INT_PTR CALLBACK Dialog::dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
 {
-  BaseDialog *_this;
+  Dialog *_this;
   BOOL bResult;
 
   bResult = FALSE;
   if (uMsg == WM_INITDIALOG) {
-    _this = (BaseDialog *)::lparam;
+    _this = (Dialog *)::lparam;
     SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)_this);
     _this->m_ctrlThis.setWindow(hwnd);
     _this->updateIcon();
   } else {
-    _this = (BaseDialog *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+    _this = (Dialog *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
     if (_this == 0) {
       return FALSE;
     }
@@ -214,7 +226,7 @@ INT_PTR CALLBACK BaseDialog::dialogProc(HWND hwnd, unsigned int uMsg, ::wparam w
   return bResult;
 }
 
-TCHAR *BaseDialog::getResouceName()
+char *Dialog::getResouceName()
 {
   if (m_resourceId != 0) {
     return MAKEINTRESOURCE(m_resourceId);
@@ -222,19 +234,19 @@ TCHAR *BaseDialog::getResouceName()
   return m_resourceName;
 }
 
-void BaseDialog::setControlById(Control &control, DWORD id) 
+void Dialog::setControlById(Control &control, DWORD id) 
 {
   control = GetDlgItem(m_ctrlThis.getWindow(), id);
 }
 
-void BaseDialog::updateIcon()
+void Dialog::updateIcon()
 {
   if (m_hicon) {
     SetClassLongPtr(m_ctrlThis.getWindow(), GCLP_HICON, (LONG_PTR)m_hicon);
   }
 }
 
-void BaseDialog::loadIcon(DWORD id)
+void Dialog::loadIcon(DWORD id)
 {
   if (m_hicon) {
     DeleteObject(m_hicon);
@@ -242,38 +254,38 @@ void BaseDialog::loadIcon(DWORD id)
   m_hicon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(id));
 }
 
-bool BaseDialog::setForeground()
+bool Dialog::setForeground()
 {
   return m_ctrlThis.setForeground();
 }
 
-BOOL BaseDialog::onInitDialog()
+BOOL Dialog::onInitDialog()
 {
   return FALSE;
 }
 
-BOOL BaseDialog::onNotify(unsigned int controlID, ::lparam data)
+BOOL Dialog::onNotify(unsigned int controlID, ::lparam data)
 {
   return FALSE;
 }
 
-BOOL BaseDialog::onCommand(unsigned int controlID, unsigned int notificationID)
+BOOL Dialog::onCommand(unsigned int controlID, unsigned int notificationID)
 {
   return FALSE;
 }
 
-BOOL BaseDialog::onDestroy()
+BOOL Dialog::onDestroy()
 {
   return FALSE;
 }
 
-BOOL BaseDialog::onClose()
+BOOL Dialog::onClose()
 {
   return FALSE;
 }
 
 
-bool BaseDialog::dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam)
+bool Dialog::dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam)
 {
 
    return false;

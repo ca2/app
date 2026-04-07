@@ -99,7 +99,7 @@ namespace innate_subsystem
          } // if not pressed
       } // if not themed
 
-      StringStorage title;
+      ::string title;
       getText(&title);
 
       RECT captionRect = dis->rcItem;
@@ -165,7 +165,7 @@ namespace innate_subsystem
       } // if
    } // void
 
-   void ImagedButton::setWindow(HWND hwnd)
+   void ImagedButton::setWindow(const ::operating_system::window & operatingsystemwindow)
    {
       Control::setWindow(hwnd);
       // Replace window event handler
@@ -184,7 +184,7 @@ namespace innate_subsystem
       }
    }
 
-   void ImagedButton::setIcon(HICON *icon, int width, int height)
+   void ImagedButton::setIcon(HICON *icon, const ::int_size & size)
    {
       m_icon = icon;
       m_iconWidth = width;

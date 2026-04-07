@@ -26,7 +26,7 @@
 
 #include <crtdbg.h>
 
-Pen::Pen(int type, int width, COLORREF color)
+Pen::Pen(int type, int width, const ::color::color & color)
 : m_pen(NULL)
 {
   m_pen = CreatePen(type, width, color);

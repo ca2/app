@@ -51,8 +51,8 @@ namespace innate_subsystem
 
         virtual void setWindow(const ::operating_system::window & window);
 
-        //virtual void setIcon(HICON *icon, int width, int height);
-        virtual void setIcon(::innate_ui::icon * picon, int width, int height);
+        //virtual void setIcon(HICON *icon, const ::int_size & size);
+        virtual void setIcon(::innate_ui::icon * picon, const ::int_size & size);
 
     //private:
 

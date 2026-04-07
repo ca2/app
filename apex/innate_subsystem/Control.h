@@ -26,7 +26,7 @@
 
 //nclude "acme/subsystem/_common_header.h"
 #include "apex/innate_subsystem/Window.h"
-//#include "acme/subsystem/StringStorage.h"
+//#include "acme/subsystem/::string.h"
 //#include "acme/_operating_system.h"
 
 
@@ -54,7 +54,7 @@ namespace innate_subsystem
 
 
       //ControlInterface();
-      //Control(HWND hwnd);
+      //Control(const ::operating_system::window & operatingsystemwindow);
       virtual ~ControlInterface() = 0;
 
       //
@@ -141,7 +141,7 @@ namespace innate_subsystem
       // Gets HWND associated with this control
       //
 
-      virtual ::operating_system::window getWindow() = 0;
+      virtual ::operating_system::window operating_system_window() = 0;
 
       void operator= (const ::operating_system::window& window)
       {
@@ -233,7 +233,7 @@ namespace innate_subsystem
 
 
       Control();
-      //Control(HWND hwnd);
+      //Control(const ::operating_system::window & operatingsystemwindow);
       ~Control() override;
 
 
@@ -319,7 +319,7 @@ namespace innate_subsystem
       // Gets HWND associated with this control
       //
 
-       ::operating_system::window getWindow() override;
+       ::operating_system::window operating_system_window() override;
 
       void operator= (const ::operating_system::window& window)
       {

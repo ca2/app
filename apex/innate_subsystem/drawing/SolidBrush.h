@@ -34,7 +34,7 @@ namespace innate_subsystem
    public:
 
       //SolidBrush();
-      //SolidBrush(COLORREF color);
+      //SolidBrush(const ::color::color & color);
       virtual ~SolidBrushInterface() = 0;
 
       virtual void initialize_solid_brush(const ::color::color & color) = 0;
@@ -46,7 +46,7 @@ namespace innate_subsystem
    public:
 
       SolidBrush();
-      //SolidBrush(COLORREF color);
+      //SolidBrush(const ::color::color & color);
       ~SolidBrush() override;
 
       void initialize_solid_brush(const ::color::color & color) override;

@@ -45,13 +45,13 @@ HANDLE WTS::m_userProcessToken = INVALID_HANDLE_VALUE;
 
 LocalMutex WTS::m_mutex;
 
-DWORD WTS::getActiveConsoleSessionId(LogWriter *log)
+DWORD WTS::getActiveConsoleSessionId(LogWriter *plogwriter)
 {
   AutoLock l(&m_mutex);
   DWORD id;
 
   if (!m_initialized) {
-    initialize(log);
+    initialize(plogwriter);
   }
 
   if (m_WTSGetActiveConsoleSessionId == 0) {
@@ -59,17 +59,17 @@ DWORD WTS::getActiveConsoleSessionId(LogWriter *log)
   }
   id = m_WTSGetActiveConsoleSessionId();
 
-  log->debug("Active console session Id: {}", id);
+  plogwriter->debug("Active console session Id: {}", id);
 
   return id;
 }
 
-DWORD WTS::getRdpSessionId(LogWriter *log)
+DWORD WTS::getRdpSessionId(LogWriter *plogwriter)
 {
   AutoLock l(&m_mutex);
 
   if (!m_initialized) {
-    initialize(log);
+    initialize(plogwriter);
   }
 
   if (m_WTSEnumerateSessions == 0) {
@@ -84,11 +84,11 @@ DWORD WTS::getRdpSessionId(LogWriter *log)
     for (DWORD i = 0; i < count; i++) {
       if (sessionInfo[i].State == WTSActive) {
         ::string sessionName(sessionInfo[i].pWinStationName);
-        log->debug("Enumerate Sessions, Id: {}, Name: {}", sessionInfo[i].SessionId, sessionName);
+        plogwriter->debug("Enumerate Sessions, Id: {}, Name: {}", sessionInfo[i].SessionId, sessionName);
         sessionName.make_lower();
         if (sessionName.find("rdp") != 0) {
           sessionId = (DWORD)sessionInfo[i].SessionId;
-          log->debug("RDP Session selected, Id: {}", sessionId);
+          plogwriter->debug("RDP Session selected, Id: {}", sessionId);
         }
       }
     }
@@ -98,13 +98,13 @@ DWORD WTS::getRdpSessionId(LogWriter *log)
 }
 
 
-bool WTS::SessionIsRdpSession(DWORD sessionId, LogWriter *log)
+bool WTS::SessionIsRdpSession(DWORD sessionId, LogWriter *plogwriter)
 {
   {
     AutoLock l(&m_mutex);
 
     if (!m_initialized) {
-      initialize(log);
+      initialize(plogwriter);
     }
   }
   bool res = false;
@@ -129,20 +129,20 @@ bool WTS::SessionIsRdpSession(DWORD sessionId, LogWriter *log)
 }
 
 
-HANDLE WTS::queryConsoleUserToken(LogWriter *log)
+HANDLE WTS::queryConsoleUserToken(LogWriter *plogwriter)
 {
-  DWORD sessionId = getActiveConsoleSessionId(log);
-  return sessionUserToken(sessionId, log);
+  DWORD sessionId = getActiveConsoleSessionId(plogwriter);
+  return sessionUserToken(sessionId, plogwriter);
 }
 
-HANDLE WTS::sessionUserToken(DWORD sessionId, LogWriter* log)
+HANDLE WTS::sessionUserToken(DWORD sessionId, LogWriter* plogwriter)
 {
   HANDLE token = NULL;
   {
     AutoLock l(&m_mutex);
 
     if (!m_initialized) {
-      initialize(log);
+      initialize(plogwriter);
     }
   }
 
@@ -166,14 +166,14 @@ HANDLE WTS::sessionUserToken(DWORD sessionId, LogWriter* log)
 }
 
 
-::string WTS::getCurrentUserName(LogWriter *log)
+::string WTS::getCurrentUserName(LogWriter *plogwriter)
 {
 
-  DWORD sessionId = getActiveConsoleSessionId(log);
-  return getUserName(sessionId, log);
+  DWORD sessionId = getActiveConsoleSessionId(plogwriter);
+  return getUserName(sessionId, plogwriter);
 }
 
-::string WTS::getUserName(DWORD sessionId, LogWriter* log)
+::string WTS::getUserName(DWORD sessionId, LogWriter* plogwriter)
 {
   ::string userName;
   if (m_WTSQuerySessionInformation == 0) {
@@ -190,7 +190,7 @@ HANDLE WTS::sessionUserToken(DWORD sessionId, LogWriter* log)
   return userName;
 }
 
-bool WTS::sessionIsLocked(DWORD sessionId, LogWriter* log)
+bool WTS::sessionIsLocked(DWORD sessionId, LogWriter* plogwriter)
 {
 #ifndef UNICODE
   return false;
@@ -305,7 +305,7 @@ void WTS::duplicatePipeClientToken(HANDLE pipeHandle)
   CloseHandle(threadHandle);
 }
 
-void WTS::initialize(LogWriter *log)
+void WTS::initialize(LogWriter *plogwriter)
 {
   _ASSERT(!m_initialized);
 
@@ -313,7 +313,7 @@ void WTS::initialize(LogWriter *log)
     m_kernel32Library = new DynamicLibrary("Kernel32.dll");
     m_WTSGetActiveConsoleSessionId = (pWTSGetActiveConsoleSessionId)m_kernel32Library->getProcAddress("WTSGetActiveConsoleSessionId");
   } catch (::exception &e) {
-    log->error("Can't load the Kernel32.dll library: {}", e.get_message());
+    plogwriter->error("Can't load the Kernel32.dll library: {}", e.get_message());
   }
   try {
     m_wtsapi32Library = new DynamicLibrary("Wtsapi32.dll");
@@ -327,17 +327,17 @@ void WTS::initialize(LogWriter *log)
 #endif
     m_WTSFreeMemory = (pWTSFreeMemory)m_wtsapi32Library->getProcAddress("WTSFreeMemory");
   } catch (::exception &e) {
-    log->error("Can't load the Wtsapi32.dll library: {}", e.get_message());
+    plogwriter->error("Can't load the Wtsapi32.dll library: {}", e.get_message());
   }
 
   m_initialized = true;
 }
 
-HANDLE currentProcessUserToken(LogWriter* log)
+HANDLE currentProcessUserToken(LogWriter* plogwriter)
 {
   HANDLE token = NULL;
   HANDLE procHandle = GetCurrentProcess();
-  log->debug("Try OpenProcessToken(%p, , )", (void*)procHandle);
+  plogwriter->debug("Try OpenProcessToken(%p, , )", (void*)procHandle);
   if (OpenProcessToken(procHandle, TOKEN_DUPLICATE, &token) == 0) {
     throw SystemException();
   }
@@ -345,7 +345,7 @@ HANDLE currentProcessUserToken(LogWriter* log)
 }
 
 
-HANDLE WTS::duplicateCurrentProcessUserToken(bool rdpEnabled, LogWriter* log)
+HANDLE WTS::duplicateCurrentProcessUserToken(bool rdpEnabled, LogWriter* plogwriter)
 {
   DWORD rdpSession = 0;
   DWORD activeSession = 0;
@@ -353,44 +353,44 @@ HANDLE WTS::duplicateCurrentProcessUserToken(bool rdpEnabled, LogWriter* log)
   bool rdp = false;
 
   if (rdpEnabled) {
-    rdpSession = getRdpSessionId(log);
+    rdpSession = getRdpSessionId(plogwriter);
     if (rdpSession) {
       rdp = true;
     }
   }
-  activeSession = getActiveConsoleSessionId(log);
+  activeSession = getActiveConsoleSessionId(plogwriter);
 
-  log->debug("rdpSession user name: {}", getUserName(rdpSession, log));
-  log->debug("activeSession user name: {}", getUserName(activeSession, log));
+  plogwriter->debug("rdpSession user name: {}", getUserName(rdpSession, plogwriter));
+  plogwriter->debug("activeSession user name: {}", getUserName(activeSession, plogwriter));
 
   if (rdp) {
     sessionId = rdpSession;
-    log->information("Connect as RDP user at {} session", sessionId);
+    plogwriter->information("Connect as RDP user at {} session", sessionId);
   } else {
-    sessionId = getActiveConsoleSessionId(log);
-    log->information("Connect as current user at {} session", sessionId);
+    sessionId = getActiveConsoleSessionId(plogwriter);
+    plogwriter->information("Connect as current user at {} session", sessionId);
   }
-  log->debug("Session user name: {}", getUserName(sessionId, log));
+  plogwriter->debug("Session user name: {}", getUserName(sessionId, plogwriter));
 
   HANDLE token;
 
-  if (rdp && !sessionIsLocked(sessionId, log)) {
-    token = sessionUserToken(sessionId, log);
+  if (rdp && !sessionIsLocked(sessionId, plogwriter)) {
+    token = sessionUserToken(sessionId, plogwriter);
   } else {
-    token = currentProcessUserToken(log);
+    token = currentProcessUserToken(plogwriter);
   }
 
-  HANDLE userToken = duplicateUserImpersonationToken(token, sessionId, log);
+  HANDLE userToken = duplicateUserImpersonationToken(token, sessionId, plogwriter);
   CloseHandle(token);
 
   return userToken;
 }
 
-HANDLE WTS::duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, LogWriter* log)
+HANDLE WTS::duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, LogWriter* plogwriter)
 {
   HANDLE userToken;
 
-  log->debug("Try DuplicateTokenEx(%p, , , , , )", (void*)token);
+  plogwriter->debug("Try DuplicateTokenEx(%p, , , , , )", (void*)token);
   if (DuplicateTokenEx(token,
     MAXIMUM_ALLOWED,
     0,
@@ -400,7 +400,7 @@ HANDLE WTS::duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, LogWr
     throw SystemException();
   }
 
-  log->debug("Try SetTokenInformation(%p, , , )", (void*)userToken);
+  plogwriter->debug("Try SetTokenInformation(%p, , , )", (void*)userToken);
   if (SetTokenInformation(userToken,
     (TOKEN_INFORMATION_CLASS)TokenSessionId,
     &sessionId,
@@ -413,16 +413,16 @@ HANDLE WTS::duplicateUserImpersonationToken(HANDLE token, DWORD sessionId, LogWr
   // and run from "Program Files/"
 
   DWORD uiAccess = 1; // Nonzero enables UI control
-  log->debug("Try SetTokenInformation(%p, , , ) with UIAccess=1", (void*)userToken);
+  plogwriter->debug("Try SetTokenInformation(%p, , , ) with UIAccess=1", (void*)userToken);
 
   if (SetTokenInformation(userToken,
     (TOKEN_INFORMATION_CLASS)TokenUIAccess,
     &uiAccess,
     sizeof(uiAccess)) == 0) {
-    log->information("Can't set UIAccess=1, ignore it");
+    plogwriter->information("Can't set UIAccess=1, ignore it");
   }
   ::string name = getTokenUserName(userToken);
-  log->debug("duplicate user token for user: {}, session ID: {}", name, sessionId);
+  plogwriter->debug("duplicate user token for user: {}, session ID: {}", name, sessionId);
 
   return userToken;
 }

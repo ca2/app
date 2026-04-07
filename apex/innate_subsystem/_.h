@@ -8,9 +8,18 @@ namespace innate_subsystem
 {
 
 
-   class Control;
+   class resource_loader;
 
-   class BaseDialog;
+
+   class DeviceContext;
+   class DeviceContextInterface;
+   class Bitmap;
+   class BitmapInterface;
+   class Brush;
+   class BrushInterface;
+   class Pen;
+   class PenInterface;
+
 
 
     enum enum_id
@@ -25,10 +34,15 @@ namespace innate_subsystem
     };
 
 
-   class Control;
-   class ControlInterface;
    class Window;
    class WindowInterface;
+   class Control;
+   class ControlInterface;
+   class Dialog;
+   class DialogInterface;
+
+   class PaintWindow;
+   class PaintWindowInterface;
 
    class Cursor;
 
@@ -40,6 +54,13 @@ namespace innate_subsystem
 
    class SystemMetrics;
    class SystemMetricsInterface;
+
+
+   enum enum_system_command
+   {
+      e_system_command_none = 0,
+      e_system_command_close =       0xF060,
+   };
 
 
 } // namespace innate_subsystem

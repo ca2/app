@@ -206,6 +206,8 @@ list(APPEND apex_source
    innate_subsystem/PaintWindow.h
    innate_subsystem/ProgressBar.cpp
    innate_subsystem/ProgressBar.h
+   innate_subsystem/resource_loader.cpp
+   innate_subsystem/resource_loader.h
    innate_subsystem/ScrollBar.cpp
    innate_subsystem/ScrollBar.h
    innate_subsystem/SpinControl.cpp
@@ -1542,7 +1544,8 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source})
+add_library(${PROJECT_NAME} SHARED ${apex_source}
+   innate_subsystem/_common_header.h)
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 

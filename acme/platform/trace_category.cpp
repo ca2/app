@@ -196,7 +196,7 @@ const_char_pointer g_pszTraceLevelName[] =
    "warning",
    "error",
    "fatal",
-   "undefined log level"
+   "undefined plogwriter level"
 
 };
 

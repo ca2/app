@@ -36,11 +36,11 @@ namespace subsystem
    virtual public ::subsystem::particle_interface
    {
    public:
-      //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
+      //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
       //AnonymousPipeFactory();
       virtual ~AnonymousPipeFactoryInterface() =0;
 
-      virtual void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
+      virtual void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) = 0;
 
       // This function generates the ::pair of the AnonymousPipe
       // objects that connected to each other.
@@ -59,7 +59,7 @@ namespace subsystem
                          bool secondSideIsInheritable) = 0;;
 
    // private:
-   //    LogWriter *m_log;
+   //    LogWriter *m_plogwriter;
    //    unsigned int m_bufferSize;
    };
 
@@ -70,12 +70,12 @@ namespace subsystem
    virtual public ::subsystem::composite< AnonymousPipeFactoryInterface >
    {
    public:
-      //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
+      //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
       AnonymousPipeFactory();
       ~AnonymousPipeFactory() override;
 
 
-      void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) override;
+      void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) override;
 
       // This function generates the ::pair of the AnonymousPipe
       // objects that connected to each other.
@@ -94,7 +94,7 @@ namespace subsystem
                          bool secondSideIsInheritable) override;
 
    // private:
-   //    LogWriter *m_log;
+   //    LogWriter *m_plogwriter;
    //    unsigned int m_bufferSize;
    };
 

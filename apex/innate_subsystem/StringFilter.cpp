@@ -26,7 +26,7 @@
 
 namespace innate_subsystem
 {
-   bool StringFilter::isStringCorrect(const TCHAR *string)
+   bool StringFilter::isStringCorrect(const char *string)
    {
       return true;
    }

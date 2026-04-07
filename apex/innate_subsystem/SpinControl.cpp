@@ -74,7 +74,7 @@ namespace innate_subsystem
       int delta = m_maxDelta;
 
       // Get buddy textbox value
-      StringStorage storage;
+      ::string storage;
       m_buddy->getText(&storage);
       if (!StringParser::parseInt(storage.getString(), &currentValue)) {
          return;

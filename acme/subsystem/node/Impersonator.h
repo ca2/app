@@ -45,12 +45,12 @@ namespace subsystem
    virtual public ::subsystem::particle_interface
    {
    public:
-      //Impersonator(LogWriter *log);
+      //Impersonator(LogWriter *plogwriter);
       ///Impersonator();
       virtual ~ImpersonatorInterface() = 0 ;
 
 
-      virtual void initialize_impersonator(LogWriter *log) = 0;
+      virtual void initialize_impersonator(LogWriter *plogwriter) = 0;
 
       /**
       Impersonates calling process as user that logged on current console session.
@@ -78,7 +78,7 @@ namespace subsystem
       //HANDLE m_token;
       //HANDLE m_dupToken;
 
-      //LogWriter *m_log;
+      //LogWriter *m_plogwriter;
    };
 
 
@@ -95,7 +95,7 @@ namespace subsystem
       Impersonator();
       ~Impersonator() override;
 
-      void initialize_impersonator(LogWriter *log) override;
+      void initialize_impersonator(LogWriter *plogwriter) override;
 
       /**
       Impersonates calling process as user that logged on current console session.
@@ -123,7 +123,7 @@ namespace subsystem
       // HANDLE m_token;
       // HANDLE m_dupToken;
       //
-      // LogWriter *m_log;
+      // LogWriter *m_plogwriter;
    };
 
 

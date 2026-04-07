@@ -11,7 +11,7 @@
 
 
 class CLASS_DECL_ACME simple_log :
-   virtual public ::log
+   virtual public ::platform::log
 {
 public:
 

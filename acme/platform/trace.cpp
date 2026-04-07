@@ -28,23 +28,6 @@
 //
 //}
 
-
-
-trace::trace()
-{
-
-   //m_pobject = pparticle;
-
-}
-
-
-trace::~trace()
-{
-
-}
-
-
-
 trace_category::trace_category()
 {
 
@@ -59,104 +42,122 @@ trace_category::~trace_category()
 {
 
 }
+namespace platform
+{
+   trace::trace()
+   {
+
+      //m_pobject = pparticle;
+
+   }
 
 
-//tracer& tracer::operator << (const exception& exception)
-//{
-//
-//   m_str += exception.m_strMessage  + " (" + as_string(exception.m_estatus) + ")";
-//
-//   return *this;
-//
-//}
-//
-//
-//tracer& tracer::operator << (const e_status& estatus)
-//{
-//
-//   m_str += as_string(estatus);
-//
-//   return *this;
-//
-//}
-//
-//
-//tracer& tracer::operator << (const enum_status& estatus)
-//{
-//
-//   m_str += as_string(estatus);
-//
-//   return *this;
-//
-//}
-//
-//
-//tracer & tracer::operator << (const ::scoped_string & scopedstr)
-//{
-//
-//   m_str += str;
-//
-//   return *this;
-//
-//}
-//
-//
-//tracer & tracer::operator << (const ::scoped_string & scopedstr)
-//{
-//
-//   m_str += string(scopedstr);
-//
-//   return *this;
-//
-//}
-//
-//
-//tracer & tracer::operator << (enum_flush)
-//{
-//
-//   flush();
-//
-//   return *this;
-//
-//}
-//
-//
-////void tracer::print(const ::scoped_string & scopedstr)
-////{
-////
-////   m_str += str;
-////
-////}
-//
-//
-//tracer & tracer::operator << (const integral_byte & memsize)
-//{
-//
-//   if (memsize < 1_kb)
-//   {
-//
-//      return format_output("%d bytes", memsize);
-//
-//   }
-//   else if (memsize < 1_mb)
-//   {
-//
-//      return format_output("%0.2f kb", (double)memsize / (double)(1_kb));
-//
-//   }
-//   else if (memsize < 1_gb)
-//   {
-//
-//      return format_output("%0.2f MB", (double)memsize / (double)(1_mb));
-//
-//   }
-//   else
-//   {
-//
-//      return format_output("%0.2f GB", (double)memsize / (double)(1_gb));
-//
-//   }
-//
-//}
-//
-//
+   trace::~trace()
+   {
+
+   }
+
+
+
+
+
+   //tracer& tracer::operator << (const exception& exception)
+   //{
+   //
+   //   m_str += exception.m_strMessage  + " (" + as_string(exception.m_estatus) + ")";
+   //
+   //   return *this;
+   //
+   //}
+   //
+   //
+   //tracer& tracer::operator << (const e_status& estatus)
+   //{
+   //
+   //   m_str += as_string(estatus);
+   //
+   //   return *this;
+   //
+   //}
+   //
+   //
+   //tracer& tracer::operator << (const enum_status& estatus)
+   //{
+   //
+   //   m_str += as_string(estatus);
+   //
+   //   return *this;
+   //
+   //}
+   //
+   //
+   //tracer & tracer::operator << (const ::scoped_string & scopedstr)
+   //{
+   //
+   //   m_str += str;
+   //
+   //   return *this;
+   //
+   //}
+   //
+   //
+   //tracer & tracer::operator << (const ::scoped_string & scopedstr)
+   //{
+   //
+   //   m_str += string(scopedstr);
+   //
+   //   return *this;
+   //
+   //}
+   //
+   //
+   //tracer & tracer::operator << (enum_flush)
+   //{
+   //
+   //   flush();
+   //
+   //   return *this;
+   //
+   //}
+   //
+   //
+   ////void tracer::print(const ::scoped_string & scopedstr)
+   ////{
+   ////
+   ////   m_str += str;
+   ////
+   ////}
+   //
+   //
+   //tracer & tracer::operator << (const integral_byte & memsize)
+   //{
+   //
+   //   if (memsize < 1_kb)
+   //   {
+   //
+   //      return format_output("%d bytes", memsize);
+   //
+   //   }
+   //   else if (memsize < 1_mb)
+   //   {
+   //
+   //      return format_output("%0.2f kb", (double)memsize / (double)(1_kb));
+   //
+   //   }
+   //   else if (memsize < 1_gb)
+   //   {
+   //
+   //      return format_output("%0.2f MB", (double)memsize / (double)(1_mb));
+   //
+   //   }
+   //   else
+   //   {
+   //
+   //      return format_output("%0.2f GB", (double)memsize / (double)(1_gb));
+   //
+   //   }
+   //
+   //}
+   //
+   //
+} // namespace platform

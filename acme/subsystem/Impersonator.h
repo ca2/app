@@ -42,7 +42,7 @@ console session.
       virtual public ::subsystem::particle_interface
    {
    public:
-      //Impersonator(LogWriter *log);
+      //Impersonator(LogWriter *plogwriter);
 
 
       //ImpersonatorInterface);
@@ -77,7 +77,7 @@ console session.
       //HANDLE m_token;
       //HANDLE m_dupToken;
 
-      //LogWriter *m_log;
+      //LogWriter *m_plogwriter;
    };
 
    /**
@@ -89,7 +89,7 @@ console session.
    virtual public ::subsystem::composite<ImpersonatorInterface>
    {
    public:
-      //Impersonator(LogWriter *log);
+      //Impersonator(LogWriter *plogwriter);
       Impersonator();
       ~Impersonator() override;
 
@@ -122,7 +122,7 @@ console session.
       //HANDLE m_token;
       //HANDLE m_dupToken;
 
-      //LogWriter *m_log;
+      //LogWriter *m_plogwriter;
    };
 
 

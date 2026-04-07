@@ -33,18 +33,18 @@ namespace subsystem
    //   m_hWrite(hWrite),
    //   m_hRead(hRead),
    //   m_neededToClose(true),
-   //   m_log(log)
+   //   m_plogwriter(plogwriter)
    {
-      //initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
+      //initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
    }
-   // AnonymousPipe::AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+   // AnonymousPipe::AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter)
    //  //: Pipe(maxPortionSize)
    // //   m_hWrite(hWrite),
    // //   m_hRead(hRead),
    // //   m_neededToClose(true),
-   // //   m_log(log)
+   // //   m_plogwriter(plogwriter)
    // {
-   //    initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
+   //    initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
    // }
 
    AnonymousPipe::~AnonymousPipe()
@@ -52,29 +52,29 @@ namespace subsystem
       // try {
       //    close();
       // } catch (::exception & e) {
-      //    m_log->error("The close() function failed at AnonymousPipe destructor: {}",
+      //    m_plogwriter->error("The close() function failed at AnonymousPipe destructor: {}",
       //               e.get_message());
       // }
    }
 
    //
-   void AnonymousPipe::initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+   void AnonymousPipe::initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter)
    // : Pipe(maxPortionSize),
    //   m_hWrite(hWrite),
    //   m_hRead(hRead),
    //   m_neededToClose(true),
-   //   m_log(log)
+   //   m_plogwriter(plogwriter)
    {
-      m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
+      m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
    }
-   // void AnonymousPipe::initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+   // void AnonymousPipe::initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter)
    // // : Pipe(maxPortionSize),
    // //   m_hWrite(hWrite),
    // //   m_hRead(hRead),
    // //   m_neededToClose(true),
-   // //   m_log(log)
+   // //   m_plogwriter(plogwriter)
    // {
-   //    m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
+   //    m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
    // }
 
    void AnonymousPipe::close()
@@ -90,7 +90,7 @@ namespace subsystem
       //       wrErrText = ::windows::last_error_message("Cannot close anonymous pipe write handle.", ::windows::last_error());
       //       wrSuc = false;
       //    }
-      //    m_log->debug("Closed m_hWrite(%p) AnonymousPipe handle",
+      //    m_plogwriter->debug("Closed m_hWrite(%p) AnonymousPipe handle",
       //               m_hWrite);
       // }
       // m_hWrite = INVALID_HANDLE_VALUE;
@@ -99,7 +99,7 @@ namespace subsystem
       //       wrErrText = ::windows::last_error_message("Cannot close anonymous pipe read handle.", ::windows::last_error());
       //       rdSuc = false;
       //    }
-      //    m_log->debug("Closed m_hRead(%p) AnonymousPipe handle",
+      //    m_plogwriter->debug("Closed m_hRead(%p) AnonymousPipe handle",
       //               m_hRead);
       // }
       // m_hRead = INVALID_HANDLE_VALUE;
@@ -117,7 +117,7 @@ namespace subsystem
       // try {
       //    return readByHandle(buffer, len, m_hRead);
       // } catch (...) {
-      //    m_log->error("AnonymousPipe::read() failed (m_hRead = %p)",
+      //    m_plogwriter->error("AnonymousPipe::read() failed (m_hRead = %p)",
       //               m_hRead);
       //    throw;
       // }
@@ -129,7 +129,7 @@ namespace subsystem
       // try {
       //    return writeByHandle(buffer, len, m_hWrite);
       // } catch (...) {
-      //    m_log->error("AnonymousPipe::write() failed (m_hWrite = {})",
+      //    m_plogwriter->error("AnonymousPipe::write() failed (m_hWrite = {})",
       //               m_hWrite);
       //    throw;
       // }

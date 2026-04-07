@@ -55,7 +55,7 @@ namespace subsystem
        *
        * See description of Process constructor.
        */
-      //CurrentConsoleProcess(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
+      //CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
       CurrentConsoleProcess();
       /**
        * Destoys instance of class.
@@ -63,7 +63,7 @@ namespace subsystem
       ~CurrentConsoleProcess() override;
 
 
-      virtual void initialize_current_console_process(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) = 0;
+      virtual void initialize_current_console_process(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) = 0;
 
       /**
        * Starts process in interactive console session.
@@ -76,7 +76,7 @@ namespace subsystem
       virtual void start() = 0;
 
    // private:
-   //    LogWriter *m_log;
+   //    LogWriter *m_plogwriter;
    //    bool m_connectRdpSession;
    };
 
@@ -104,13 +104,13 @@ namespace subsystem
    //     *
    //     * See description of Process constructor.
    //     */
-   //    CurrentConsoleProcess(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
+   //    CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
    //    /**
    //     * Destoys instance of class.
    //     */
    //    ~CurrentConsoleProcess() override;
    //
-   //    void initialize_current_console_process(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) override;
+   //    void initialize_current_console_process(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) override;
    //
    //    /**
    //     * Starts process in interactive console session.
@@ -123,7 +123,7 @@ namespace subsystem
    //    void start() override;
    //
    // // private:
-   // //    LogWriter *m_log;
+   // //    LogWriter *m_plogwriter;
    // //    bool m_connectRdpSession;
    // };
 } // namespace subsystem

@@ -6,127 +6,130 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
 
-
-log::log()
+namespace platform
 {
+   log::log()
+   {
 
-   m_bLog = true;
-   m_bExtendedLog = false;
-   m_bLogFileName = false;
-   m_bLogFunctionName = false;
-   m_bLogThreadName = false;
+      m_bLog = true;
+      m_bExtendedLog = false;
+      m_bLogFileName = false;
+      m_bLogFunctionName = false;
+      m_bLogThreadName = false;
 
-}
-
-
-log::~log()
-{
+   }
 
 
-}
+   log::~log()
+   {
 
 
-void log::initialize(::particle * pparticle)
-{
+   }
 
-   ::logger::initialize(pparticle);
 
-   ::file::path pathHome;
+   void log::initialize(::particle * pparticle)
+   {
+
+      ::platform::logger::initialize(pparticle);
+
+      ::file::path pathHome;
 
 #ifdef WINDOWS
 
-   pathHome = getenv("USERPROFILE");
+      pathHome = getenv("USERPROFILE");
 
 #else
 
-   pathHome = getenv("HOME");
+      pathHome = getenv("HOME");
 
 #endif
 
-   auto pathLog = pathHome / "log.txt";
+      auto pathLog = pathHome / "log.txt";
 
-   if (file_exists(pathLog))
-   {
+      if (file_exists(pathLog))
+      {
 
-      m_bLog = true;
+         m_bLog = true;
+
+      }
+      else if(::system()->has_argument("--log"))
+      {
+
+         ::output_debug_string("--log argument present\n");
+
+         m_bLog = true;
+
+      }
+
+
+      //if (file_system()->is_true(directory_system()->system() / "log.txt"))
+      //{
+
+      //   m_bLog = true;
+
+      //}
+
+      //return estatus;
+
+      ::system()->m_bOutputDebugString = m_bLog;
+
 
    }
-   else if(::system()->has_argument("--log"))
+
+
+   void log::initialize_log(enum_trace_level etracelevelMin, const ::atom& atom)
    {
 
-      ::output_debug_string("--log argument present\n");
+      //return ::success;
 
-      m_bLog = true;
+
+
 
    }
 
 
-   //if (file_system()->is_true(directory_system()->system() / "log.txt"))
+   void log::process_init()
+   {
+
+      //return ::success;
+
+   }
+
+
+   void log::set_extended_log(bool bSet)
+   {
+
+      m_bExtendedLog = bSet;
+
+   }
+
+
+   bool log::get_extended_log()
+   {
+
+      return m_bExtendedLog;
+
+   }
+
+
+
+
+   //bool g_bVerboseLog = true;
+   //
+   //
+   //void set_verbose_log(bool bVerbose)
    //{
-
-   //   m_bLog = true;
-
+   //
+   //   g_bVerboseLog = bVerbose;
+   //
    //}
 
-   //return estatus;
 
-   ::system()->m_bOutputDebugString = m_bLog;
+   //bool is_verbose_log()
+   //{
+   //
+   //   return ::platform::platform::s_pplatform->m_papplication->m_bVerbose.is_set_true();
+   //
+   //}
+} // namespace platform
 
-
-}
-
-
-void log::initialize_log(enum_trace_level etracelevelMin, const ::atom& atom)
-{
-
-   //return ::success;
-
-
-
-
-}
-
-
-void log::process_init()
-{
-
-   //return ::success;
-
-}
-
-
-void log::set_extended_log(bool bSet)
-{
-
-   m_bExtendedLog = bSet;
-
-}
-
-
-bool log::get_extended_log()
-{
-
-   return m_bExtendedLog;
-
-}
-
-
-
-
-//bool g_bVerboseLog = true;
-//
-//
-//void set_verbose_log(bool bVerbose)
-//{
-//
-//   g_bVerboseLog = bVerbose;
-//
-//}
-
-
-//bool is_verbose_log()
-//{
-//
-//   return ::platform::platform::s_pplatform->m_papplication->m_bVerbose.is_set_true();
-//
-//}

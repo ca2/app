@@ -37,11 +37,11 @@ namespace subsystem
    virtual public ::subsystem::particle_interface
    {
    public:
-      //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
+      //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
       //EmulatedAnonymousPipeFactory();
       virtual ~EmulatedAnonymousPipeFactoryInterface() = 0 ;
 
-      virtual void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
+      virtual void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) = 0;
 
       virtual void generatePipes(
          ::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
@@ -50,7 +50,7 @@ namespace subsystem
       //private:
       virtual ::string getUniqPipeName() = 0;
 
-      // LogWriter *m_log;
+      // LogWriter *m_plogwriter;
       // unsigned int m_bufferSize;
    };
 
@@ -60,12 +60,12 @@ namespace subsystem
     public:
 
 
-       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
+       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
        EmulatedAnonymousPipeFactory();
         ~EmulatedAnonymousPipeFactory() override;
 
 
-       void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) override;
+       void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) override;
 
        void generatePipes(::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
                           ::pointer < NamedPipeInterface > & clientPipe, bool clientInheritable) override;
@@ -73,7 +73,7 @@ namespace subsystem
        //private:
        ::string getUniqPipeName() override;
 
-       //LogWriter *m_log;
+       //LogWriter *m_plogwriter;
        //unsigned int m_bufferSize;
     };
 

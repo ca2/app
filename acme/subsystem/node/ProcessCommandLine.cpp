@@ -22,30 +22,58 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/operating_system/windows/subsystem/_common_header.h"
-#include "WindowsProcessCommandLine.h"
-#include "WindowsCommandLineArguments.h"
+#include "acme/subsystem/_common_header.h"
+#include "ProcessCommandLine.h"
+#include "acme/subsystem/CommandLineArguments.h"
 
-namespace windows
+namespace subsystem
 {
-   WindowsProcessCommandLine::WindowsProcessCommandLine()
+   
+   ProcessCommandLineInterface::ProcessCommandLineInterface()
    {
-      ::string_array out;
-
-      construct_newø(m_pwindowscommandlinearguments);
-      m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
-
-      out = m_pwindowscommandlinearguments->getArguments();
-      for (size_t i = 0; i < out.size(); i++) {
-         if (out[i][0] != _T('-')) {
-            m_strParam.add(out[i]);
-         } else {
-            optionParser(out[i]);
-         }
-      }
+      // ::string_array out;
+      //
+      // construct_newø(m_pwindowscommandlinearguments);
+      // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
+      //
+      // out = m_pwindowscommandlinearguments->getArguments();
+      // for (size_t i = 0; i < out.size(); i++) {
+      //    if (out[i][0] != _T('-')) {
+      //       m_strParam.add(out[i]);
+      //    } else {
+      //       optionParser(out[i]);
+      //    }
+      // }
    }
 
-   void WindowsProcessCommandLine::optionParser(::string & out)
+
+
+   ProcessCommandLineInterface::~ProcessCommandLineInterface()
+      {
+         //if (m_wcla) {
+         // delete m_wcla;
+         //}
+      }
+
+   void ProcessCommandLineInterface::initialize_process_command_line()
+   {
+      // ::string_array out;
+      //
+      // construct_newø(m_pwindowscommandlinearguments);
+      // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
+      //
+      // out = m_pwindowscommandlinearguments->getArguments();
+      // for (size_t i = 0; i < out.size(); i++) {
+      //    if (out[i][0] != _T('-')) {
+      //       m_strParam.add(out[i]);
+      //    } else {
+      //       optionParser(out[i]);
+      //    }
+      // }
+   }
+
+
+   void ProcessCommandLineInterface::optionParser(::string & out)
    {
       ::pair<::string, ::string> strPair;
 
@@ -62,20 +90,20 @@ namespace windows
       m_strParams.add(strPair);
    }
 
-   size_t WindowsProcessCommandLine::getArgumentsCount()
+   ::collection::count ProcessCommandLineInterface::getArgumentsCount()
    {
       return m_strParam.size();
    }
 
-   size_t WindowsProcessCommandLine::getOptionsCount()
+   ::collection::count ProcessCommandLineInterface::getOptionsCount()
    {
       return m_strParams.size();
    }
 
-   bool WindowsProcessCommandLine::findOptionValue(const ::string valName, ::string &  strOut)
+   bool ProcessCommandLineInterface::findOptionValue(const ::scoped_string & scopedstrOptionName, ::string &  strOut)
    {
       for (size_t i = 0; i < getOptionsCount(); i++) {
-         if (m_strParams[i].m_element2 == valName) {
+         if (m_strParams[i].m_element2 == scopedstrOptionName) {
             strOut = m_strParams[i].m_element2;
 
             return true;
@@ -84,7 +112,7 @@ namespace windows
       return false;
    }
 
-   bool WindowsProcessCommandLine::getArgument(size_t index, ::string &  strOut)
+   bool ProcessCommandLineInterface::getArgument(::collection::index index, ::string &  strOut)
    {
       if (index < getArgumentsCount()) {
          strOut = m_strParam[index];
@@ -94,7 +122,7 @@ namespace windows
       return false;
    }
 
-   bool WindowsProcessCommandLine::getOption(size_t index, ::string &  strOut)
+   bool ProcessCommandLineInterface::getOption(::collection::index index, ::string &  strOut)
    {
       if (index < getOptionsCount()) {
          strOut = m_strParams[index].m_element1;
@@ -104,10 +132,99 @@ namespace windows
       return false;
    }
 
-   WindowsProcessCommandLine::~WindowsProcessCommandLine()
+   ProcessCommandLine::ProcessCommandLine()
+   {
+//      ::string_array out;
+      //
+      // construct_newø(m_pwindowscommandlinearguments);
+      // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
+      //
+      // out = m_pwindowscommandlinearguments->getArguments();
+      // for (size_t i = 0; i < out.size(); i++) {
+      //    if (out[i][0] != _T('-')) {
+      //       m_strParam.add(out[i]);
+      //    } else {
+      //       optionParser(out[i]);
+      //    }
+      // }
+   }
+
+
+         ProcessCommandLine::~ProcessCommandLine()
    {
       //if (m_wcla) {
-        // delete m_wcla;
+      // delete m_wcla;
       //}
    }
+
+
+   void ProcessCommandLine::optionParser(::string & out)
+   {
+      m_pparticleThis->optionParser(out);
+      // ::pair<::string, ::string> strPair;
+      //
+      // out.erase((character_count)0, (character_count)1);
+      // auto ipos = out.find_first_character('=');
+      // if (::is_null(ipos)) {
+      //    strPair.m_element1 = *out;
+      //    strPair.m_element2= "";
+      // } else {
+      //    strPair.m_element1 = out.substr(0, ipos);
+      //    strPair.m_element2 = out.substr(ipos + 1);
+      // }
+      // strPair.m_element1.make_lower();
+      // m_strParams.add(strPair);
+   }
+
+   ::collection::count ProcessCommandLine::getArgumentsCount()
+   {
+      //return m_strParam.size();
+      return m_pparticleThis->getArgumentsCount();
+   }
+
+   ::collection::count ProcessCommandLine::getOptionsCount()
+   {
+
+      return m_pparticleThis->getOptionsCount();
+      //return m_strParams.size();//
+   }
+
+   bool ProcessCommandLine::findOptionValue(const ::scoped_string  &scopedstrOptionName, ::string &  strOut)
+   {
+
+      return m_pparticleThis->findOptionValue(scopedstrOptionName, strOut);
+      // for (size_t i = 0; i < getOptionsCount(); i++) {
+      //    if (m_strParams[i].m_element2 == valName) {
+      //       strOut = m_strParams[i].m_element2;
+      //
+      //       return true;
+      //    }
+      // }
+      // return false;
+   }
+
+   bool ProcessCommandLine::getArgument(::collection::index index, ::string &  strOut)
+   {
+
+      return m_pparticleThis->getArgument(index, strOut);
+      // if (index < getArgumentsCount()) {
+      //    strOut = m_strParam[index];
+      //
+      //    return true;
+      // }
+      // return false;
+   }
+
+   bool ProcessCommandLine::getOption(::collection::index index, ::string &  strOut)
+   {
+
+      return m_pparticleThis->getOption(index, strOut);
+      // if (index < getOptionsCount()) {
+      //    strOut = m_strParams[index].m_element1;
+      //
+      //    return true;
+      // }
+      // return false;
+   }
+
 } // namespace windows

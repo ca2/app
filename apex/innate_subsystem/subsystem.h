@@ -23,11 +23,14 @@ namespace innate_subsystem
 
       static ::innate_subsystem::subsystem *            s_p;
 
-
+      ::pointer < ::innate_subsystem::resource_loader > m_presourceloader;
       ::pointer < ::innate_subsystem::SystemMetricsInterface > m_psystemmetrics;
 
       subsystem();
       ~subsystem() override;
+
+
+      ::innate_subsystem::resource_loader* resource_loader();
 
 
       int message_box(

@@ -36,7 +36,7 @@ namespace innate_subsystem
       e_pen_solid = 0, //PS_SOLID;
       e_pen_dashed = 1, //PS_DASH;
       e_pen_null =5, // PS_NULL;
-   }
+   };
 
       class CLASS_DECL_APEX PenInterface :
    virtual public ::subsystem::particle_interface
@@ -46,7 +46,7 @@ namespace innate_subsystem
       //public:
          //Pen(int type, int width, const ::color::color & color);
          //Pen();
-          virtual ~Pen() = 0;
+          virtual ~PenInterface() = 0;
 
 
          virtual void initialize_pen(enum_pen epen, int width, const ::color::color & color) = 0;
@@ -56,6 +56,8 @@ namespace innate_subsystem
       //
       //    friend class Graphics;
       };
+
+
    class CLASS_DECL_APEX Pen :
 virtual public ::subsystem::composite<PenInterface>
    {

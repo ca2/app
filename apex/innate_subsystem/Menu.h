@@ -32,32 +32,32 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_ACME Menunsigned interface :
+   class CLASS_DECL_ACME MenuInterface :
       virtual public ::subsystem::particle_interface
    {
    public:
       //Menu();
-      virtual ~Menu() = 0;
+      virtual ~MenuInterface() = 0;
 
       //HMENU getMenu();
-      virtual void setMenu(Menunsigned interface * pmenu) = 0;
+      virtual void setMenu(MenuInterface * pmenu) = 0;
       virtual bool getWindowMenu(WindowInterface * pwindowinterface) = 0;
       virtual void getSystemMenu(WindowInterface hwnd) = 0;
       virtual void create() = 0;
       virtual bool loadMenu(const char * lpMenuName) = 0;
       virtual void createPopupMenu() = 0;
-      virtual bool getSubMenu(int nPos, Menunsigned interface *pmenu) = 0;
+      virtual bool getSubMenu(int nPos, MenuInterface *pmenu) = 0;
       virtual void termMenu() = 0;
 
       virtual int getMenuItemCount() = 0;
       virtual bool appendMenu(const ::scoped_string & scopedstr, unsigned int uID) = 0;
       virtual bool appendSeparator() = 0;
-      virtual bool appendSubMenu(const ::scoped_string & scopedstr, Menunsigned interface *pMenu) = 0;
+      virtual bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) = 0;
 
-      virtual bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0s;
-      virtual bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0s;
+      virtual bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0;
+      virtual bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0;
       virtual bool insertSeparator(unsigned int uItem) = 0;
-      virtual bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, Menunsigned interface *pmenu) = 0;
+      virtual bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, MenuInterface *pmenu) = 0;
 
       virtual bool enableMenuItem(unsigned int uID, unsigned int uEnable) = 0;
       virtual bool checkedMenuItem(unsigned int uID, bool bEnable) = 0;
@@ -67,7 +67,7 @@ namespace innate_subsystem
 
       virtual bool setDefaultItem(unsigned int uID) = 0;
 
-      void operator= (Menunsigned interface * pmenu)
+      void operator= (MenuInterface * pmenu)
       {
          setMenu(pmenu);
       }
@@ -84,31 +84,31 @@ namespace innate_subsystem
    };
    
 class CLASS_DECL_ACME Menu :
-      virtual public ::subsystem::composite< Menunsigned interface>
+      virtual public ::subsystem::composite< MenuInterface>
    {
    public:
       Menu();
       ~Menu() override;
 
       //HMENU getMenu();
-      void setMenu(Menunsigned interface * phmenu) override;
+      void setMenu(MenuInterface * phmenu) override;
       bool getWindowMenu(WindowInterface * pwindowinterface) override;
       void getSystemMenu(WindowInterface hwnd) override;
       void create() override;
       bool loadMenu(const char * lpMenuName) override;
       void createPopupMenu() override;
-      bool getSubMenu(int nPos, Menunsigned interface *menu) override;
+      bool getSubMenu(int nPos, MenuInterface *menu) override;
       void termMenu() override;
 
       int getMenuItemCount() override;
       bool appendMenu(const ::scoped_string & scopedstr, unsigned int uID) override;
       bool appendSeparator() override;
-      bool appendSubMenu(const ::scoped_string & scopedstr, Menunsigned interface *pMenu) override;
+      bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) override;
 
-      bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0s;
-      bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0s;
+      bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override;
+      bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override;
       bool insertSeparator(unsigned int uItem) override;
-      bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, Menunsigned interface *pMenu) override;
+      bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, MenuInterface *pMenu) override;
 
       bool enableMenuItem(unsigned int uID, unsigned int uEnable) override;
       bool checkedMenuItem(unsigned int uID, bool bEnable) override;
@@ -118,7 +118,7 @@ class CLASS_DECL_ACME Menu :
 
       bool setDefaultItem(unsigned int uID) override;
 
-      void operator= (Menunsigned interface * pmenu)
+      void operator= (MenuInterface * pmenu)
       {
          setMenu(pmenu);
       }

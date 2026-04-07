@@ -43,7 +43,7 @@ public:
 
   TabContainer &getTabs() { return m_tabContainer; }
   Tab *getTab(int index);
-  void addTab(BaseDialog *dialog, const TCHAR *caption);
+  void addTab(BaseDialog *dialog, const char *caption);
   void showTab(int index);
   void showTab(const BaseDialog *dialog);
   void deleteAllTabs();

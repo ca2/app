@@ -33,26 +33,26 @@ namespace subsystem
 {
    EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory()
    //: m_bufferSize(bufferSize),
-     //m_log(log)
+     //m_plogwriter(plogwriter)
    {
-      //initialize_emulated_anonymous_pipe_factory(bufferSize, log);
+      //initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
    }
-   // EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log)
+   // EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter)
    // //: m_bufferSize(bufferSize),
-   //   //m_log(log)
+   //   //m_plogwriter(plogwriter)
    // {
-   //    initialize_emulated_anonymous_pipe_factory(bufferSize, log);
+   //    initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
    // }
 
    EmulatedAnonymousPipeFactory::~EmulatedAnonymousPipeFactory()
    {
    }
 
-   void EmulatedAnonymousPipeFactory::initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log)
+   void EmulatedAnonymousPipeFactory::initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter)
 //: m_bufferSize(bufferSize),
-  //m_log(log)
+  //m_plogwriter(plogwriter)
 {
-      m_pparticleThis->initialize_emulated_anonymous_pipe_factory(bufferSize, log);
+      m_pparticleThis->initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
 }
 
 

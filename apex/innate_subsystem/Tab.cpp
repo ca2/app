@@ -32,7 +32,7 @@ namespace innate_subsystem
       m_caption.setString(_T(""));
    }
 
-   Tab::Tab(BaseDialog *dialog, const TCHAR *caption)
+   Tab::Tab(BaseDialog *dialog, const char *caption)
    : m_dialog(dialog)
    {
       m_caption.setString(caption);

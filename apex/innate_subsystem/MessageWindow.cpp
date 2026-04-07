@@ -29,7 +29,7 @@
 namespace innate_subsystem
 {
    MessageWindow::MessageWindow(const HINSTANCE hinst,
-                                const TCHAR *windowClassName,
+                                const char *windowClassName,
                                 WindowMessageHandler *messageHandler)
    : m_hwnd(0),
      m_hinst(hinst),
@@ -84,7 +84,7 @@ namespace innate_subsystem
       }
    }
 
-   LRESULT CALLBACK MessageWindow::staticWndProc(HWND hwnd, unsigned int message,
+   LRESULT CALLBACK MessageWindow::staticWndProc(const ::operating_system::window & operatingsystemwindow, unsigned int message,
                                           ::wparam wparam, ::lparam lparam)
    {
       MessageWindow *_this;
@@ -111,7 +111,7 @@ namespace innate_subsystem
       return DefWindowProc(hwnd, message, ::wparam, ::lparam);
    }
 
-   ATOM MessageWindow::regClass(HINSTANCE hinst, TCHAR *windowClassName)
+   ATOM MessageWindow::regClass(HINSTANCE hinst, char *windowClassName)
    {
       WNDCLASS wcWindowClass = {0};
       wcWindowClass.lpfnWndProc = staticWndProc;

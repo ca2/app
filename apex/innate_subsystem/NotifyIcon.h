@@ -48,9 +48,9 @@ namespace innate_subsystem
       bool isVisible() const;
 
       void setIcon(Icon *icon);
-      void setText(const TCHAR *text);
+      void setText(const char *text);
 
-      void showBalloon(const TCHAR *message, const TCHAR *caption, DWORD timeoutMillis);
+      void showBalloon(const char *message, const char *caption, DWORD timeoutMillis);
 
       void show();
       void hide();

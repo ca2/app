@@ -45,13 +45,13 @@ namespace innate_subsystem
       return m_tabContainer.at(index);
    }
 
-   void TabControl::addTab(BaseDialog *dialog, const TCHAR *caption)
+   void TabControl::addTab(BaseDialog *dialog, const char *caption)
    {
       Tab *tab = new Tab(dialog, caption);
       m_tabContainer.push_back(tab);
       TCITEM tcitem = {0};
       tcitem.mask = TCIF_TEXT;
-      TCHAR fixedCaption[255];
+      char fixedCaption[255];
       _tcscpy(&fixedCaption[0], tab->getCaption());
       tcitem.pszText = fixedCaption;
       if (TabCtrl_InsertItem(getWindow(), m_tabContainer.size() - 1, &tcitem) == FALSE) {

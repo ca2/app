@@ -24,7 +24,7 @@
 
 #include "BalloonTip.h"
 
-BalloonTip::BalloonTip(const TCHAR *text, const TCHAR *caption)
+BalloonTip::BalloonTip(const char *text, const char *caption)
 {
   setText(text);
   setTitle(caption);
@@ -45,22 +45,22 @@ void BalloonTip::showTooltip(Control *control)
   MessageBox(control->getWindow(), m_text.getString(), m_title.getString(), MB_OK | MB_ICONWARNING);
 }
 
-void BalloonTip::setText(const TCHAR *text)
+void BalloonTip::setText(const char *text)
 {
   m_text.setString(text);
 }
 
-void BalloonTip::setTitle(const TCHAR *title)
+void BalloonTip::setTitle(const char *title)
 {
   m_title.setString(title);
 }
 
-void BalloonTip::getText(StringStorage *text) const
+void BalloonTip::getText(::string *text) const
 {
   text->setString(m_text.getString());
 }
 
-void BalloonTip::getTitle(StringStorage *title) const
+void BalloonTip::getTitle(::string *title) const
 {
   title->setString(m_title.getString());
 }

@@ -60,7 +60,7 @@ public:
   // attachToolBar()
   // This one will create and attach toolbar window to 
   // which handle is passed in hwnd. Only for toolbar from bitmap.
-  void attachToolBar(HWND hwnd);
+  void attachToolBar(const ::operating_system::window & operatingsystemwindow);
 
   ///////////////////////////////////////////////////////// 
   // Manual mode procedures
@@ -105,7 +105,7 @@ public:
 
   // setButtonSize() sets the size of the buttons to be added to a toolbar.
   // Button size must be largen the button bitmap.
-  bool setButtonsSize(int width, int height);
+  bool setButtonsSize(const ::int_size & size);
 
   // autoSize() resizes the toolbar window.
   void autoSize();

@@ -92,7 +92,7 @@ namespace innate_subsystem
       m_initialStr = id;
    }
 
-   void ToolBar::attachToolBar(HWND hwnd)
+   void ToolBar::attachToolBar(const ::operating_system::window & operatingsystemwindow)
    {
       std::vector<TBBUTTON> tbuttons;
 
@@ -156,7 +156,7 @@ namespace innate_subsystem
       return !!result;
    }
 
-   bool ToolBar::setButtonsSize(int width, int height)
+   bool ToolBar::setButtonsSize(const ::int_size & size)
    {
       LRESULT result = SendMessage(m_hWndToolbar, TB_SETBUTTONSIZE,
                                    0, MAKELONG(width, height));

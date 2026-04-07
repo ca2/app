@@ -21,19 +21,20 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#pragma once
 
-#ifndef _COMMON_CONTROLS_EX_H_
-#define _COMMON_CONTROLS_EX_H_
-
-#include "util/Exception.h"
-
-class CommonControlsEx
-{
-public:
-  CommonControlsEx();
-  virtual ~CommonControlsEx();
-
-  static void init() throw(Exception);
-};
-
-#endif
+// namespace innate_subsystem
+// {
+//    class CommonControlsEx
+//    {
+//    public:
+//       CommonControlsEx();
+//       virtual ~CommonControlsEx();
+//
+//       static void init();
+//    };
+// } //namespace innate_subsystem
+//
+//
+//
+//

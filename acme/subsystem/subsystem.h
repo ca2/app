@@ -34,9 +34,9 @@ namespace subsystem
 
       virtual ::subsystem::StringParser * string_parser();
       virtual ::subsystem::string_table * string_table();
-      virtual ::subsystem::resource_loader* resource_loader();
       virtual ::subsystem::Registry* registry();
       virtual ::subsystem::Shell* shell();
+      ::subsystem::resource_loader* resource_loader();
 
       /**
        * Creates SID from sid string.

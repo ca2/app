@@ -35,24 +35,24 @@
 class BalloonTip : public Tooltip
 {
 public:
-  BalloonTip(const TCHAR *text, const TCHAR *caption);
+  BalloonTip(const char *text, const char *caption);
   BalloonTip();
   virtual ~BalloonTip();
 
   void showTooltip(Control *control);
 
-  void setText(const TCHAR *text);
-  void setTitle(const TCHAR *caption);
+  void setText(const char *text);
+  void setTitle(const char *caption);
 
-  void getText(StringStorage *text) const;
-  void getTitle(StringStorage *title) const;
+  void getText(::string *text) const;
+  void getTitle(::string *title) const;
 
   void setIconType(int iconType);
   int getIconType() const;
 
 protected:
-  StringStorage m_text;
-  StringStorage m_title;
+  ::string m_text;
+  ::string m_title;
 };
 
 #endif

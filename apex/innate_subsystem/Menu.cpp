@@ -44,7 +44,7 @@ namespace innate_subsystem
       m_menu = hmenu;
    }
 
-   bool Menu::getWindowMenu(HWND hwnd)
+   bool Menu::getWindowMenu(const ::operating_system::window & operatingsystemwindow)
    {
       _ASSERT(m_menu == 0);
 
@@ -52,7 +52,7 @@ namespace innate_subsystem
       return (m_menu == 0 ? false : true);
    }
 
-   void Menu::getSystemMenu(HWND hwnd)
+   void Menu::getSystemMenu(const ::operating_system::window & operatingsystemwindow)
    {
       _ASSERT(m_menu == 0);
 
@@ -173,7 +173,7 @@ namespace innate_subsystem
       return -1;
    }
 
-   bool Menu::appendMenu(StringStorage strVal, unsigned int uID)
+   bool Menu::appendMenu(::string strVal, unsigned int uID)
    {
       return appendMenu(MF_STRING, uID, strVal.getString());
    }
@@ -183,12 +183,12 @@ namespace innate_subsystem
       return appendMenu(MF_MENUBREAK, 0, 0);
    }
 
-   bool Menu::appendSubMenu(StringStorage strVal, Menu *pMenu)
+   bool Menu::appendSubMenu(::string strVal, Menu *pMenu)
    {
       return appendMenu(MF_POPUP, (unsigned int_PTR)pMenu->getMenu(), strVal.getString());
    }
 
-   bool Menu::insertMenuItem(unsigned int uItem, StringStorage strVal, unsigned int uID)
+   bool Menu::insertMenuItem(unsigned int uItem, ::string strVal, unsigned int uID)
    {
       MENUITEMINFO mii;
 
@@ -201,7 +201,7 @@ namespace innate_subsystem
       return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
-   bool Menu::insertCheckMenuItem(unsigned int uItem, StringStorage strVal, unsigned int uID)
+   bool Menu::insertCheckMenuItem(unsigned int uItem, ::string strVal, unsigned int uID)
    {
       MENUITEMINFO mii;
 
@@ -237,7 +237,7 @@ namespace innate_subsystem
       return insertMenuItem(uItem, TRUE, (LPMENUITEMINFO)&mii);
    }
 
-   bool Menu::insertSubMenu(unsigned int uItem, StringStorage strVal, Menu *pMenu)
+   bool Menu::insertSubMenu(unsigned int uItem, ::string strVal, Menu *pMenu)
    {
       MENUITEMINFO mii;
 

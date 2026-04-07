@@ -105,7 +105,7 @@ void directory_system::initialize(::particle * pparticle)
 ::file::path directory_system::install_log(const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
 {
 
-   return install() / ("install-" +scopedstrPlatform + ".log");
+   return install() / ("install-" +scopedstrPlatform + ".plogwriter");
 
 }
 

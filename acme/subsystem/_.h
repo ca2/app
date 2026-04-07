@@ -46,6 +46,10 @@ namespace subsystem
 
    class ProcessHandleInterface;
 
+   class ProcessCommandLine;
+
+   class ProcessCommandLineInterface;
+
    class PixelFormat;
 
 } // namespace subsystem

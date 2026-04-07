@@ -9,118 +9,127 @@
 #include "acme/filesystem/file/print_formatting.h"
 
 
-class logger;
-
-
-class CLASS_DECL_ACME tracer :
-   public print_formatting
+namespace platform
 {
-public:
+   class logger;
 
 
-   //::platform::context *           m_papplication;
-   ::pointer < ::logger >          m_plogger;
+   class CLASS_DECL_ACME tracer :
+      public print_formatting
+   {
+   public:
 
 
-   tracer();
-   virtual ~tracer();
+      //::platform::context *           m_papplication;
+      ::pointer < ::platform::logger >          m_plogger;
 
 
-   virtual ::string trace_prefix() const;
+      tracer();
+      virtual ~tracer();
 
 
-   //void format_output_arguments(const_char_pointer psz, va_list & arguments)
-   //{
-
-   //   string str;
-
-   //   str.formatf_arguments(scopedstr, arguments);
-
-   //   operator << (str);
-
-   //}
+      virtual ::string trace_prefix() const;
 
 
-   //tracer & format_output(const_char_pointer psz, ...)
-   //{
+      //void format_output_arguments(const_char_pointer psz, va_list & arguments)
+      //{
 
-   //   va_list arguments;
+      //   string str;
 
-   //   va_start(arguments, psz);
+      //   str.formatf_arguments(scopedstr, arguments);
 
-   //   string str;
+      //   operator << (str);
 
-   //   str.formatf_arguments(scopedstr, arguments);
-
-   //   operator << (str);
-
-   //   va_end(arguments);
-
-   //   return *this;
-
-   //}
+      //}
 
 
-   //template < typename STRINGABLE >
-   //tracer & operator <<(const STRINGABLE & stringable)
-   //{
+      //tracer & format_output(const_char_pointer psz, ...)
+      //{
 
-   //   string str;
+      //   va_list arguments;
 
-   //   ::copy(str, stringable);
+      //   va_start(arguments, psz);
 
-   //   m_str += str;
+      //   string str;
 
-   //   return *this;
+      //   str.formatf_arguments(scopedstr, arguments);
 
-   //   //return operator << (str);
+      //   operator << (str);
 
-   //}
+      //   va_end(arguments);
 
-   //tracer & operator << (const exception & exception);
-   //tracer & operator << (const e_status & estatus);
-   //tracer & operator << (const enum_status& estatus);
-   //tracer & operator << (const ansi_string & str);
-   //tracer & operator << (const_char_pointer psz);
-//   tracer & operator << (enum_flush);
-//   tracer & operator << (const integral_byte & memsize);
-//
-//   tracer & operator << (const integral_nanosecond & time) { return format(time); }
-//   tracer & operator << (const integral_microsecond & time) { return format(time); }
-//   tracer & operator << (const integral_millisecond & time) { return format(time); }
-//   tracer & operator << (const integral_second & time) { return format(time); }
-//   tracer & operator << (const integral_minute & time) { return format(time); }
-//   tracer & operator << (const integral_hour & time) { return format(time); }
-//   tracer & operator << (const integral_day & time) { return format(time); }
-//
-////   tracer & operator << (const floating_nanosecond & time) { return format(time); }
-////   tracer & operator << (const floating_microsecond & time) { return format(time); }
-////   tracer & operator << (const floating_millisecond & time) { return format(time); }
-////   tracer & operator << (const floating_second & time) { return format(time); }
-////   tracer & operator << (const floating_minute & time) { return format(time); }
-////   tracer & operator << (const floating_hour & time) { return format(time); }
-////   tracer & operator << (const floating_day & time) { return format(time); }
-//   
-//   template < prototype_integral INTEGRAL >
-//   tracer & operator << (const INTEGRAL integral) { return operator << (::as_string(integral)); }
-//
-//
-   virtual void flush(trace_statement & tracestatement);
+      //   return *this;
+
+      //}
 
 
-};
+      //template < typename STRINGABLE >
+      //tracer & operator <<(const STRINGABLE & stringable)
+      //{
+
+      //   string str;
+
+      //   ::copy(str, stringable);
+
+      //   m_str += str;
+
+      //   return *this;
+
+      //   //return operator << (str);
+
+      //}
+
+      //tracer & operator << (const exception & exception);
+      //tracer & operator << (const e_status & estatus);
+      //tracer & operator << (const enum_status& estatus);
+      //tracer & operator << (const ansi_string & str);
+      //tracer & operator << (const_char_pointer psz);
+      //   tracer & operator << (enum_flush);
+      //   tracer & operator << (const integral_byte & memsize);
+      //
+      //   tracer & operator << (const integral_nanosecond & time) { return format(time); }
+      //   tracer & operator << (const integral_microsecond & time) { return format(time); }
+      //   tracer & operator << (const integral_millisecond & time) { return format(time); }
+      //   tracer & operator << (const integral_second & time) { return format(time); }
+      //   tracer & operator << (const integral_minute & time) { return format(time); }
+      //   tracer & operator << (const integral_hour & time) { return format(time); }
+      //   tracer & operator << (const integral_day & time) { return format(time); }
+      //
+      ////   tracer & operator << (const floating_nanosecond & time) { return format(time); }
+      ////   tracer & operator << (const floating_microsecond & time) { return format(time); }
+      ////   tracer & operator << (const floating_millisecond & time) { return format(time); }
+      ////   tracer & operator << (const floating_second & time) { return format(time); }
+      ////   tracer & operator << (const floating_minute & time) { return format(time); }
+      ////   tracer & operator << (const floating_hour & time) { return format(time); }
+      ////   tracer & operator << (const floating_day & time) { return format(time); }
+      //
+      //   template < prototype_integral INTEGRAL >
+      //   tracer & operator << (const INTEGRAL integral) { return operator << (::as_string(integral)); }
+      //
+      //
+      virtual void flush(trace_statement & tracestatement);
 
 
-//CLASS_DECL_ACME void trace_log_information() << const_char_pointer psz, ...;
-//CLASS_DECL_ACME void trace_log_warning() << const_char_pointer psz, ...;
-//CLASS_DECL_ACME void trace_log_error() << const_char_pointer psz, ...;
-//CLASS_DECL_ACME void trace_log_fatal() << const_char_pointer psz, ...;
+   };
 
-//
-//CLASS_DECL_ACME ::trace_statement log_statement();
-////CLASS_DECL_ACME trace_statement trace_log_warning() << ;
-////CLASS_DECL_ACME trace_statement trace_log_error() << ;
-////CLASS_DECL_ACME trace_statement trace_log_fatal() << ;
-//
-//
-//
+
+   //CLASS_DECL_ACME void trace_log_information() << const_char_pointer psz, ...;
+   //CLASS_DECL_ACME void trace_log_warning() << const_char_pointer psz, ...;
+   //CLASS_DECL_ACME void trace_log_error() << const_char_pointer psz, ...;
+   //CLASS_DECL_ACME void trace_log_fatal() << const_char_pointer psz, ...;
+
+   //
+   //CLASS_DECL_ACME ::trace_statement log_statement();
+   ////CLASS_DECL_ACME trace_statement trace_log_warning() << ;
+   ////CLASS_DECL_ACME trace_statement trace_log_error() << ;
+   ////CLASS_DECL_ACME trace_statement trace_log_fatal() << ;
+   //
+   //
+   //
+} // namespace platform
+
+
+
+
+
+

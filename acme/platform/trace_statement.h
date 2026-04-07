@@ -16,7 +16,7 @@ constexpr ::particle * trace_this() { return nullptr; }
 struct trace_statement_struct
 {
 
-   class tracer *          m_ptracer;
+   ::platform::tracer *          m_ptracer;
    ::particle *            m_pparticleLogging = nullptr;
    enum_trace_level        m_etracelevel = e_trace_level_information;
    enum_trace_category     m_etracecategory = e_trace_category_general;
@@ -24,7 +24,7 @@ struct trace_statement_struct
    const_char_pointer           m_pszFile = nullptr;
    int                     m_iLine = -1;
 
-   trace_statement_struct(class tracer * ptracer) : m_ptracer(ptracer) {}
+   trace_statement_struct(::platform::tracer * ptracer) : m_ptracer(ptracer) {}
    trace_statement_struct(trace_statement_struct && tracestatementstruct) = default;
 
 };
@@ -37,7 +37,7 @@ class CLASS_DECL_ACME trace_statement :
 public:
 
 
-   trace_statement(class tracer * ptracer);
+   trace_statement(::platform::tracer * ptracer);
    trace_statement(const trace_statement & tracestatement) = delete;
    trace_statement(trace_statement && tracestatement) :
       trace_statement_struct(::transfer(tracestatement)),

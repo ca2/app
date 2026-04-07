@@ -41,8 +41,8 @@
 // typedef BOOL (WINAPI *SetFilter)(UINT scopedstrMessage,
 //                                  DWORD action);
 //
-// UipiControl::UipiControl(LogWriter *log)
-// : m_log(log)
+// UipiControl::UipiControl(LogWriter *plogwriter)
+// : m_plogwriter(plogwriter)
 // {
 // }
 //
@@ -52,10 +52,10 @@
 //
 // void UipiControl::allowMessage(UINT uMessage, HWND hwnd)
 // {
-//   m_log->information("Try allow to receive the %u windows uMessage");
+//   m_plogwriter->information("Try allow to receive the %u windows uMessage");
 //   if (::system()->node()->_windows_isVistaOrLater()) {
 //     DynamicLibrary user32lib("user32.dll");
-//     m_log->information("user32.dll successfully loaded.");
+//     m_plogwriter->information("user32.dll successfully loaded.");
 //     SetFilterEx setFilterEx;
 //     // FIXME: Test this on Windows7.
 //     // Try to load the ChangeWindowMessageFilterEx() function.
@@ -68,7 +68,7 @@
 //         throw ::remoting::Exception("Can't load the ChangeWindowMessageFilterEx() or "
 //                         "ChangeWindowMessageFilter() functions.");
 //       }
-//       m_log->information("The ChangeWindowMessageFilter() function "
+//       m_plogwriter->information("The ChangeWindowMessageFilter() function "
 //                 "successfully found.");
 //       if (setFilter(uMessage, MSGFLT_ADD) != TRUE) {
 //         DWORD errCode = GetLastError();
@@ -77,11 +77,11 @@
 //                        "the ChangeWindowMessageFilter() function.");
 //         throw SystemException(errMess, errCode);
 //       }
-//       m_log->information("The ChangeWindowMessageFilter() function "
+//       m_plogwriter->information("The ChangeWindowMessageFilter() function "
 //                 "successfully executed.");
 //     } else {
 //       // FIXME: Can't to check for Windows7.
-//       m_log->information("The ChangeWindowMessageFilterEx() function "
+//       m_plogwriter->information("The ChangeWindowMessageFilterEx() function "
 //                 "successfully found.");
 //       if (setFilterEx(hwnd, uMessage, MSGFLT_ADD, 0) != TRUE) {
 //         DWORD errCode = GetLastError();
@@ -90,10 +90,10 @@
 //                        "the ChangeWindowMessageFilterEx() function.");
 //         throw SystemException(errMess, errCode);
 //       }
-//       m_log->information("The ChangeWindowMessageFilterEx() function "
+//       m_plogwriter->information("The ChangeWindowMessageFilterEx() function "
 //                 "successfully executed.");
 //     }
 //   } else {
-//     m_log->information("The allowMessage() function call is ignored.");
+//     m_plogwriter->information("The allowMessage() function call is ignored.");
 //   }
 // }

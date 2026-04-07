@@ -156,7 +156,7 @@ struct  u64_unsigned_int {
 };
 
 /**
- * determine the msb of a value in O(log log n)
+ * determine the msb of a value in O(plogwriter plogwriter n)
  * @author Sean Eron Anderson
  */
 inline unsigned int msb(unsigned long long value)

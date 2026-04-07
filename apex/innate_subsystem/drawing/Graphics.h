@@ -25,54 +25,104 @@
 #pragma once
 
 
-//#include "util/CommonHeader.h"
+#include "apex/innate_subsystem/_common_header.h"
 
-#include "apex/innate_subsystem/drawing/DeviceContext.h"
-#include "apex/innate_subsystem/drawing/Bitmap.h"
-#include "apex/innate_subsystem/drawing/Brush.h"
-#include "apex/innate_subsystem/drawing/Pen.h"
+// #include "apex/innate_subsystem/drawing/DeviceContext.h"
+// #include "apex/innate_subsystem/drawing/Bitmap.h"
+// #include "apex/innate_subsystem/drawing/Brush.h"
+// #include "apex/innate_subsystem/drawing/Pen.h"
 
 namespace innate_subsystem
 {
-   class Graphics
+   class CLASS_DECL_APEX GraphicsInterface :
+   virtual public subsystem::particle_interface
    {
    public:
       // Creates graphics object with specified device context.
-      Graphics(DeviceContext *dc);
+      ///Graphics(DeviceContext *dc);
       // Graphics class destructor.
-      virtual ~Graphics();
+      virtual ~GraphicsInterface() = 0;
+
+
+      virtual void initialize_graphics(DeviceContext *dc) = 0;
 
       // Sets background colors mix mode.
-      void setBkMode(bool transparent);
+      virtual void setBkMode(bool transparent) = 0;
       // Sets background color.
-      void setBkColor(COLORREF color);
+      virtual void setBkColor(const ::color::color & color) = 0;
 
       // Sets text color.
-      void setTextColor(COLORREF color);
+      virtual void setTextColor(const ::color::color & color) = 0;
       // Sets current brush.
-      void setBrush(const Brush *brush);
+      virtual void setBrush(const Brush *brush) = 0;
       // Sets current pen.
-      void setPen(const Pen *pen);
+      virtual void setPen(const Pen *pen) = 0;
 
       // Moves cursor to specified position.
-      void moveTo(int x, int y);
+      virtual void moveTo(int x, int y) = 0;
       // Draws line from current position to specified line.
-      void lineTo(int x, int y);
+      virtual void lineTo(int x, int y) = 0;
 
       // Draws filled rect.
-      void fillRect(int l, int t, int r, int b, const Brush *brush);
+      virtual void fillRect(int l, int t, int r, int b, const Brush *brush) = 0;
       // Draws ellipse.
-      void ellipse(int l, int t, int r, int b);
+      virtual void ellipse(int l, int t, int r, int b) = 0;
       // Draws rectance.
-      void rectangle(int l, int t, int r, int b);
+      virtual void rectangle(int l, int t, int r, int b) = 0;
 
       // Draws bitmap.
-      void drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h);
+      virtual void drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h) = 0;
       // Draws text.
-      void drawText(const TCHAR *text, int cchText, ::int_rectangle &rect, unsigned int format);
+      virtual void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) = 0;
 
-   protected:
-      DeviceContext *m_dc;
+   //protected:
+     //::pointer < DeviceContext > m_pdevicecontext;
+   };
+
+
+   class CLASS_DECL_APEX Graphics :
+      virtual public subsystem::composite<GraphicsInterface>
+   {
+   public:
+      // Creates graphics object with specified device context.
+      ///Graphics(DeviceContext *dc);
+      // Graphics class destructor.
+      ~Graphics() override;
+
+
+      void initialize_graphics(DeviceContext *dc) override;
+
+      // Sets background colors mix mode.
+      void setBkMode(bool transparent) override;
+      // Sets background color.
+      void setBkColor(const ::color::color & color) override;
+
+      // Sets text color.
+      void setTextColor(const ::color::color & color) override;
+      // Sets current brush.
+      void setBrush(const Brush *brush) override;
+      // Sets current pen.
+      void setPen(const Pen *pen) override;
+
+      // Moves cursor to specified position.
+      void moveTo(int x, int y) override;
+      // Draws line from current position to specified line.
+      void lineTo(int x, int y) override;
+
+      // Draws filled rect.
+      void fillRect(int l, int t, int r, int b, const Brush *brush) override;
+      // Draws ellipse.
+      void ellipse(int l, int t, int r, int b) override;
+      // Draws rectance.
+      void rectangle(int l, int t, int r, int b) override;
+
+      // Draws bitmap.
+      void drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h) override;
+      // Draws text.
+      void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) override;
+
+      //protected:
+      //::pointer < DeviceContext > m_pdevicecontext;
    };
 
 

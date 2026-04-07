@@ -29,14 +29,14 @@
 namespace subsystem
 {
 
-   AutoImpersonator::AutoImpersonator(Impersonator *imp, LogWriter *log)
+   AutoImpersonator::AutoImpersonator(Impersonator *imp, LogWriter *plogwriter)
    : m_pimpersonator(imp),
-     m_log(log)
+     m_plogwriter(plogwriter)
    {
       try {
          m_pimpersonator->impersonateAsLoggedUser();
       } catch (::exception &e) {
-         m_log->error(e.get_message());
+         m_plogwriter->error(e.get_message());
       }
    }
 
@@ -45,7 +45,7 @@ namespace subsystem
       try {
          m_pimpersonator->revertToSelf();
       } catch (::exception &e) {
-         m_log->error(e.get_message());
+         m_plogwriter->error(e.get_message());
       }
    }
 } // namespace subsystem

@@ -23,6 +23,22 @@ namespace innate_subsystem
 
    }
 
+
+   ::innate_subsystem::resource_loader * subsystem::resource_loader()
+   {
+
+      if (!m_presourceloader)
+      {
+
+         m_presourceloader = ::subsystem::subsystem::resource_loader();
+
+      }
+
+      return m_presourceloader;
+
+   }
+
+
    //
    // ::subsystem::string_table * subsystem::string_table()
    // {

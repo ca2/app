@@ -28,59 +28,73 @@ namespace innate_subsystem
 {
 
 Control::Control()
-: m_hwnd(NULL)
+//: m_hwnd(NULL)
 {
 }
-
-Control::Control(HWND hwnd)
-: m_hwnd(hwnd)
-{
-}
+//
+// Control::Control(const ::operating_system::window & operatingsystemwindow)
+// : m_hwnd(hwnd)
+// {
+// }
 
 Control::~Control()
 {
 }
 
-void Control::setWindow(HWND hwnd)
+   void Control::initialize_control(const ::operating_system::window & operatingsystemwindow)
+//: m_hwnd(hwnd)
 {
+   m_pparticleThis->initialize_control(operatingsystemwindow);
+}
+
+void Control::setWindow(const ::operating_system::window & operatingsystemwindow)
+
+   {
+   m_pparticleThis->setWindow(operatingsystemwindow);
   // Save handle
-  m_hwnd = hwnd;
-  // Save pointer to default window proc
-  m_defWindowProc = (WNDPROC)GetWindowLongPtr(m_hwnd, GWLP_WNDPROC);
+  // m_hwnd = hwnd;
+  // // Save pointer to default window proc
+  // m_defWindowProc = (WNDPROC)GetWindowLongPtr(m_hwnd, GWLP_WNDPROC);
 }
 
 void Control::setEnabled(bool enabled)
-{
-  if (enabled) {
-    SendMessage(m_hwnd, WM_ENABLE, TRUE, NULL);
-    removeStyle(WS_DISABLED);
-  } else {
-    if (isStyleEnabled(WS_DISABLED)) {
-      return ;
-    } // if already disabled
-    SendMessage(m_hwnd, WM_ENABLE, FALSE, NULL);
-    addStyle(WS_DISABLED);
-  }
-  invalidate();
+
+   {
+   m_pparticleThis->setEnabled(enabled);
+  // if (enabled) {
+  //   SendMessage(m_hwnd, WM_ENABLE, TRUE, NULL);
+  //   removeStyle(WS_DISABLED);
+  // } else {
+  //   if (isStyleEnabled(WS_DISABLED)) {
+  //     return ;
+  //   } // if already disabled
+  //   SendMessage(m_hwnd, WM_ENABLE, FALSE, NULL);
+  //   addStyle(WS_DISABLED);
+  // }
+  // invalidate();
 }
 
-void Control::setText(const TCHAR *text)
+void Control::setText(const char *text)
 {
-  SetWindowText(m_hwnd, text);
+
+   m_pparticleThis->setText(text)
+  ///SetWindowText(m_hwnd, text);
 }
 
 void Control::setSignedInt(int value)
 {
-  StringStorage text;
-  text.format(_T("%d"), value);
-  setText(text.getString());
+   m_pparticleThis->setSignedInt(value);
+  // ::string text;
+  // text.format(_T("%d"), value);
+  // setText(text.getString());
 }
 
 void Control::setUnsignedInt(unsigned int value)
 {
-  StringStorage text;
-  text.format(_T("%u"), value);
-  setText(text.getString());
+   m_pparticleThis->setUnsignedInt(value);
+  //::string text;
+  //text.format(_T("%u"), value);
+  //setText(text.getString());
 }
 
 //
@@ -89,44 +103,54 @@ void Control::setUnsignedInt(unsigned int value)
 
 void Control::setTextVerticalAlignment(VerticalAlignment align)
 {
+   m_pparticleThis->setTextVerticalAlignment(align);
 }
 
 void Control::setFocus()
 {
-  ::SetFocus(m_hwnd);
+  //::SetFocus(m_hwnd);
+   m_pparticleThis->setFocus();
 }
 
 bool Control::hasFocus()
 {
-  return (::GetFocus() == m_hwnd) || (GetForegroundWindow() == m_hwnd);
+  ///return (::GetFocus() == m_hwnd) || (GetForegroundWindow() == m_hwnd);
+  return m_pparticleThis->hasFocus();
 }
 
 bool Control::setForeground()
 {
-  return SetForegroundWindow(getWindow()) != 0;
+  //return SetForegroundWindow(getWindow()) != 0;
+
+   return m_pparticleThis->setForeground();
 }
 
 void Control::setVisible(bool visible)
 {
-  ShowWindow(m_hwnd, visible ? SW_SHOW : SW_HIDE);
+  //ShowWindow(m_hwnd, visible ? SW_SHOW : SW_HIDE);
+   m_pparticleThis->setVisible(visible);
 }
 
 bool Control::isEnabled()
 {
-  return (!isStyleEnabled(WS_DISABLED));
+  ///return (!isStyleEnabled(WS_DISABLED));
+  return m_pparticleThis->isEnabled();
 }
 
 void Control::invalidate()
 {
-  InvalidateRect(m_hwnd, NULL, TRUE);
+  //InvalidateRect(m_hwnd, NULL, TRUE);
+   m_pparticleThis->invalidate();
 }
 
-void Control::getText(StringStorage *storage)
+::string Control::getText()
 {
-  int length = (int)SendMessage(m_hwnd, WM_GETTEXTLENGTH, 0, 0);
-  std::vector<TCHAR> buf(length + 1);
-  GetWindowText(m_hwnd, &buf.front(), length + 1);
-  storage->setString(&buf.front());
+  // int length = (int)SendMessage(m_hwnd, WM_GETTEXTLENGTH, 0, 0);
+  // std::vector<char> buf(length + 1);
+  // GetWindowText(m_hwnd, &buf.front(), length + 1);
+  // storage->setString(&buf.front());
+
+   return m_pparticleThis->getText();
 }
 
 //
@@ -135,85 +159,85 @@ void Control::getText(StringStorage *storage)
 
 VerticalAlignment Control::getTextVerticalAlignment()
 {
-  return Left;
+  return m_pparticleThis->getTextVerticalAlignment();
 }
 
-HWND Control::getWindow()
+::operating_system::window Control::operating_system_window()
 {
-  return m_hwnd;
+  return m_pparticleThis->operating_system_window();
 }
 
-void Control::setStyle(DWORD style)
-{
-  ::SetWindowLong(m_hwnd, GWL_STYLE, style);
-}
+// void Control::setStyle(DWORD style)
+// {
+//   ::SetWindowLong(m_hwnd, GWL_STYLE, style);
+// }
+//
+// DWORD Control::getStyle()
+// {
+//   return ::GetWindowLong(m_hwnd, GWL_STYLE);
+// }
+//
+// void Control::addStyle(DWORD styleFlag)
+// {
+//   DWORD flags = getStyle();
+//   flags |= styleFlag;
+//   setStyle(flags);
+// }
+//
+// void Control::removeStyle(DWORD styleFlag)
+// {
+//   DWORD flags = getStyle();
+//   flags &= ~styleFlag;
+//   setStyle(flags);
+// }
+//
+// bool Control::isStyleEnabled(DWORD styleFlag)
+// {
+//   DWORD flags = getStyle();
+//   return (flags & styleFlag) == styleFlag;
+// }
+//
+// void Control::setExStyle(DWORD style)
+// {
+//   SetWindowLong(m_hwnd, GWL_EXSTYLE, style);
+// }
+//
+// DWORD Control::getExStyle()
+// {
+//   return (DWORD)GetWindowLong(m_hwnd, GWL_EXSTYLE);
+// }
+//
+// void Control::addExStyle(DWORD styleFlag)
+// {
+//   DWORD flags = getExStyle();
+//   flags |= styleFlag;
+//   setExStyle(flags);
+// }
+//
+// void Control::removeExStyle(DWORD styleFlag)
+// {
+//   DWORD flags = getExStyle();
+//   flags &= ~styleFlag;
+//   setExStyle(flags);
+// }
+//
+// bool Control::isExStyleEnabled(DWORD styleFlag)
+// {
+//   DWORD flags = getExStyle();
+//   return (flags & styleFlag) == styleFlag;
+// }
 
-DWORD Control::getStyle()
-{
-  return ::GetWindowLong(m_hwnd, GWL_STYLE);
-}
-
-void Control::addStyle(DWORD styleFlag)
-{
-  DWORD flags = getStyle();
-  flags |= styleFlag;
-  setStyle(flags);
-}
-
-void Control::removeStyle(DWORD styleFlag)
-{
-  DWORD flags = getStyle();
-  flags &= ~styleFlag;
-  setStyle(flags);
-}
-
-bool Control::isStyleEnabled(DWORD styleFlag)
-{
-  DWORD flags = getStyle();
-  return (flags & styleFlag) == styleFlag;
-}
-
-void Control::setExStyle(DWORD style)
-{
-  SetWindowLong(m_hwnd, GWL_EXSTYLE, style);
-}
-
-DWORD Control::getExStyle()
-{
-  return (DWORD)GetWindowLong(m_hwnd, GWL_EXSTYLE);
-}
-
-void Control::addExStyle(DWORD styleFlag)
-{
-  DWORD flags = getExStyle();
-  flags |= styleFlag;
-  setExStyle(flags);
-}
-
-void Control::removeExStyle(DWORD styleFlag)
-{
-  DWORD flags = getExStyle();
-  flags &= ~styleFlag;
-  setExStyle(flags);
-}
-
-bool Control::isExStyleEnabled(DWORD styleFlag)
-{
-  DWORD flags = getExStyle();
-  return (flags & styleFlag) == styleFlag;
-}
-
-void Control::replaceWindowProc(WNDPROC wndProc)
-{
-  SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR)this);
-  SetWindowLongPtr(m_hwnd, GWLP_WNDPROC, (LONG_PTR)wndProc);
-}
+// void Control::replaceWindowProc(WNDPROC wndProc)
+// {
+//   SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR)this);
+//   SetWindowLongPtr(m_hwnd, GWLP_WNDPROC, (LONG_PTR)wndProc);
+// }
 
 
 void Control::postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam)
 {
 
-   m_pparticleThis->po
+   m_pparticleThis->postUserMessage(uMessage, wparam, lparam);
 
 }
 

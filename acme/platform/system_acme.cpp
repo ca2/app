@@ -272,7 +272,7 @@ namespace platform
    //
    //       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
    //
-   //       if (this->has_argument("--log"))
+   //       if (this->has_argument("--plogwriter"))
    //       {
    //
    //          informationf("selecting informational trace\n");

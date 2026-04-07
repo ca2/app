@@ -32,20 +32,39 @@ namespace subsystem
 {
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
-   class CLASS_DECL_ACME CommandLineArguments :
-      virtual public ::particle
+   class CLASS_DECL_ACME CommandLineArgumentsInterface :
+      virtual public ::subsystem::particle_interface
    {
    public:
 
       ::string_array m_straArguments;
 
+      //CommandLineArguments();
+      virtual ~CommandLineArgumentsInterface();
+
+      // Copies internal argument ::array_base to the out variable.
+      virtual ::string_array getArguments() const = 0;
+
+//   protected:
+
+   };
+
+   // This class produce initial parse of a command line.
+   // Each word or expression will be saved at self index.
+   class CLASS_DECL_ACME CommandLineArguments :
+      virtual public ::subsystem::composite<CommandLineArgumentsInterface>
+   {
+   public:
+
+      ///::string_array m_straArguments;
+
       CommandLineArguments();
       ~CommandLineArguments() override;
 
       // Copies internal argument ::array_base to the out variable.
-      ::string_array getArguments() const;
+      ::string_array getArguments() const override;
 
-//   protected:
+      //   protected:
 
    };
 

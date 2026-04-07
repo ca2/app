@@ -240,7 +240,7 @@ namespace platform
 
    //::xml::department                            &  xml(){}
    //class ::base64                          &  base64(){}
-   //class ::aura::log                            &  log(){}
+   //class ::aura::plogwriter                            &  plogwriter(){}
    //class ::machine_event_central                &  machine_event_central(){}
    //inline ::parallelization::threading           *  threading() { return m_pthreading{} }
 

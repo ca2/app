@@ -40,13 +40,13 @@ namespace subsystem
    virtual public ::subsystem::particle_interface
    {
    public:
-      //InputInjector(bool ctrlAltDelEnabled, LogWriter *log);
+      //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
 
       //InputInjector();
       virtual ~InputInjectorInterface() = 0;
 
 
-      virtual void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *log) = 0;
+      virtual void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *plogwriter) = 0;
 
       // Toggles off all modifiers including the Delete key.
       virtual void resetModifiers() = 0;
@@ -132,7 +132,7 @@ namespace subsystem
       // bool m_winIsPressed;
       // bool m_ctrlAltDelEnabled;
       //
-      // LogWriter *m_log;
+      // LogWriter *m_plogwriter;
    };
 
 
@@ -144,12 +144,12 @@ namespace subsystem
    virtual public ::subsystem::composite<InputInjectorInterface>
    {
    public:
-      //InputInjector(bool ctrlAltDelEnabled, LogWriter *log);
+      //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
       InputInjector();
       ~InputInjector() override;
 
 
-      void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *log) override;
+      void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *plogwriter) override;
 
       // Toggles off all modifiers including the Delete key.
       void resetModifiers() override;
@@ -235,7 +235,7 @@ namespace subsystem
       // bool m_winIsPressed;
       // bool m_ctrlAltDelEnabled;
       //
-      // LogWriter *m_log;
+      // LogWriter *m_plogwriter;
    };
 
 } // namespace subsystem

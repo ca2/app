@@ -38,12 +38,12 @@ void Graphics::setBkMode(bool transparent)
   SetBkMode(m_dc->m_dc, transparent ? TRANSPARENT : OPAQUE);
 }
 
-void Graphics::setTextColor(COLORREF color)
+void Graphics::setTextColor(const ::color::color & color)
 {
   SetTextColor(m_dc->m_dc, color);
 }
 
-void Graphics::setBkColor(COLORREF color)
+void Graphics::setBkColor(const ::color::color & color)
 {
   SetBkColor(m_dc->m_dc, color);
 }
@@ -103,7 +103,7 @@ void Graphics::drawBitmap(const Bitmap *bitmap, int x, int y, int w, int h)
   memDC.selectObject(oldBitmap);
 }
 
-void Graphics::drawText(const TCHAR *text, int cchText, ::int_rectangle &rect, unsigned int format)
+void Graphics::drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format)
 {
   DrawText(m_dc->m_dc, text, cchText, rect, format);
 }

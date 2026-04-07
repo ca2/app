@@ -24,7 +24,7 @@
 
 #include "SolidBrush.h"
 
-SolidBrush::SolidBrush(COLORREF color)
+SolidBrush::SolidBrush(const ::color::color & color)
 : Brush()
 {
   m_brush = CreateSolidBrush(color);

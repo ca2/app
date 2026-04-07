@@ -41,7 +41,7 @@ template < typename T > complex < T > pow(const complex < T > & base,const compl
    T modsqr = base.m_x * base.m_x + base.m_y + base.m_y;
    T arg = arg(base);
    T t = ::pow(modsqr,exp.m_x / 2.0) * ::exp(-exp.m_y *arg);
-   return complex < T >(t * cos(exp.m_x * arg + exp.m_y * ::log(modsqr) / 2.0),t * sin(exp.m_x * arg + exp.m_y * ::log(modsqr) / 2.0));
+   return complex < T >(t * cos(exp.m_x * arg + exp.m_y * ::plogwriter(modsqr) / 2.0),t * sin(exp.m_x * arg + exp.m_y * ::plogwriter(modsqr) / 2.0));
 
 }
 

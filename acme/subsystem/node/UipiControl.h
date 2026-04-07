@@ -32,7 +32,7 @@
 // class CLASS_DECL_REMOTING_COMMON UipiControl
 // {
 // public:
-//   UipiControl(LogWriter *log);
+//   UipiControl(LogWriter *plogwriter);
 //   ~UipiControl();
 //
 //   // This function allow to receive the scopedstrMessage from a lower integrity
@@ -44,7 +44,7 @@
 //   void allowMessage(UINT scopedstrMessage, HWND hwnd);
 //
 // private:
-//   LogWriter *m_log;
+//   LogWriter *m_plogwriter;
 // };
 //
 // //// __UIPICONTROL_H__

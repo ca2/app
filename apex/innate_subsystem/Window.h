@@ -69,7 +69,7 @@ namespace innate_subsystem
       virtual void hide() = 0;
       virtual void enableWindow(bool bEnable) = 0;
       virtual void updateWindow() = 0;
-      virtual bool setSize(int width, int height) = 0;
+      virtual bool setSize(const ::int_size & size) = 0;
       virtual bool setPosition(int xPos, int yPos) = 0;
       virtual void setWindowText(const ::scoped_string  & scopedstrText) = 0;
 
@@ -143,8 +143,8 @@ namespace innate_subsystem
 
    // protected:
    //    HWND m_hWnd;
-   //    StringStorage m_className;
-   //    StringStorage m_windowName;
+   //    ::string m_className;
+   //    ::string m_windowName;
    //    HICON m_hicon;
    //
    //    bool m_bWndCreated;
@@ -182,7 +182,7 @@ namespace innate_subsystem
       void hide() override;
       void enableWindow(bool bEnable) override;
       void updateWindow() override;
-      bool setSize(int width, int height) override;
+      bool setSize(const ::int_size & size) override;
       bool setPosition(int xPos, int yPos) override;
       void setWindowText(const ::scoped_string  & scopedstrText) override;
 
@@ -257,8 +257,8 @@ namespace innate_subsystem
 
    // protected:
    //    HWND m_hWnd;
-   //    StringStorage m_className;
-   //    StringStorage m_windowName;
+   //    ::string m_className;
+   //    ::string m_windowName;
    //    HICON m_hicon;
    //
    //    bool m_bWndCreated;

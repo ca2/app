@@ -90,18 +90,18 @@ namespace innate_subsystem
       m_icon = icon;
    }
 
-   void NotifyIcon::setText(const TCHAR *text)
+   void NotifyIcon::setText(const char *text)
    {
       m_nid.uFlags = NIF_TIP;
 
-      const size_t BUFFER_SIZE_TCHARS = sizeof(m_nid.szTip) / sizeof(TCHAR);
-      _tcsncpy_s(m_nid.szTip, BUFFER_SIZE_TCHARS, text, _TRUNCATE);
+      const size_t BUFFER_SIZE_charS = sizeof(m_nid.szTip) / sizeof(char);
+      _tcsncpy_s(m_nid.szTip, BUFFER_SIZE_charS, text, _TRUNCATE);
 
       Shell_NotifyIcon(NIM_MODIFY, &m_nid);
    }
 
    void
-   NotifyIcon::showBalloon(const TCHAR *message, const TCHAR *caption,
+   NotifyIcon::showBalloon(const char *message, const char *caption,
                          DWORD timeoutMillis)
    {
       m_nid.uFlags = NIF_INFO;

@@ -12,7 +12,7 @@ CLASS_DECL_ACME extern const char log2_LogTable256[256];
 inline unsigned int u32_log2(unsigned int v)
 {
 
-   //unsigned int v; // 32-bit word to find the log of
+   //unsigned int v; // 32-bit word to find the plogwriter of
    unsigned r;     // r will be lg(v)
    unsigned int t, tt; // temporaries
 

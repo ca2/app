@@ -11,7 +11,7 @@
 extern "C" {
 #endif
 
-   /*! Determine the \em MSB of a value in O(log log n).
+   /*! Determine the \em MSB of a value in O(plogwriter plogwriter n).
     * \return \em MSB.
     * \author Sean Eron Anderson
     */

@@ -28,7 +28,7 @@
 #include "TextBox.h"
 #include "BalloonTip.h"
 #include "StringFilter.h"
-#include "util/StringStorage.h"
+#include "util/::string.h"
 
 class FilteredTextBox : public TextBox
 {
@@ -37,21 +37,21 @@ public:
   ~FilteredTextBox();
 
   // Override Control::setWindow method
-  void setWindow(HWND hwnd);
-  void setText(TCHAR *text);
+  void setWindow(const ::operating_system::window & operatingsystemwindow);
+  void setText(char *text);
   void setErrorBalloonTip(BalloonTip *tip);
   void setStringFilter(StringFilter *filter);
   LRESULT makeCheck();
 
 protected:
-  virtual bool isStringValid(const TCHAR *string);
+  virtual bool isStringValid(const char *string);
   virtual LRESULT onKeyDown(::wparam code, ::lparam params);
 
-  static LRESULT CALLBACK windowProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+  static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
 
 protected:
   LONG_PTR m_oldWindowProc;
-  StringStorage m_text;
+  ::string m_text;
   BalloonTip *m_tip;
   StringFilter *m_filter;
 };

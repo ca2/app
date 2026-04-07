@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/CommandLineArguments.h"
 
 
 namespace subsystem
@@ -46,6 +46,9 @@ namespace subsystem
 
       ProcessCommandLineInterface();
       ~ProcessCommandLineInterface() override;
+
+
+      virtual void initialize_process_command_line() = 0;
 
       // returns the number of arguments in command line
       // for example, program: help

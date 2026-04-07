@@ -21,54 +21,96 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "Bitmap.h"
 
-Bitmap::Bitmap(int width, int height)
-: m_bitmap(NULL)
+namespace innate_subsystem
 {
-  // Prepare buffer
-  int bpp = 32;
-  size_t size = width * height * (bpp / 8);
-  std::vector<unsigned char> bits(size);
-  if (width != 0 && height != 0) {
-    memset(&bits.front(), 0, size);
-    // Create bitmap handle
-    m_bitmap = CreateBitmap(width, height, 1, bpp, &bits.front());
-  }
-}
+   // Bitmap::Bitmap(const ::int_size & size)
+   // : m_bitmap(NULL)
+   // {
+   //    // Prepare buffer
+   //    int bpp = 32;
+   //    size_t size = width * height * (bpp / 8);
+   //    std::vector<unsigned char> bits(size);
+   //    if (width != 0 && height != 0) {
+   //       memset(&bits.front(), 0, size);
+   //       // Create bitmap handle
+   //       m_bitmap = CreateBitmap(width, height, 1, bpp, &bits.front());
+   //    }
+   // }
+   //
+   // Bitmap::Bitmap(HDC dc, const ::int_size & size)
+   // {
+   //    m_bitmap = CreateCompatibleBitmap(dc, width, height);
+   // }
+   //
+   // Bitmap::Bitmap(HBITMAP bitmap)
+   // : m_bitmap(bitmap)
+   // {
+   // }
 
-Bitmap::Bitmap(HDC dc, int width, int height)
-{
-  m_bitmap = CreateCompatibleBitmap(dc, width, height);
-}
+   Bitmap::Bitmap()
+   {
 
-Bitmap::Bitmap(HBITMAP bitmap)
-: m_bitmap(bitmap)
-{
-}
 
-Bitmap::~Bitmap()
-{
-  if (m_bitmap != NULL) {
-    DeleteObject(m_bitmap);
-  }
-}
+   }
 
-int Bitmap::getWidth() const
-{
-  BITMAP bitmap;
-  if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {
-    return 0;
-  }
-  return bitmap.bmWidth;
-}
 
-int Bitmap::getHeight() const
-{
-  BITMAP bitmap;
-  if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {
-    return 0;
-  }
-  return bitmap.bmHeight;
-}
+   Bitmap::~Bitmap()
+   {
+      //if (m_bitmap != NULL) {
+      //    DeleteObject(m_bitmap);
+      // }
+   }
+
+
+   void Bitmap::initialize_bitmap(const ::int_size & size)
+///: m_bitmap(NULL)
+   {
+      m_pparticleThis->initialize_bitmap(size);
+      // // Prepare buffer
+      // int bpp = 32;
+      // size_t size = width * height * (bpp / 8);
+      // std::vector<unsigned char> bits(size);
+      // if (width != 0 && height != 0) {
+      //    memset(&bits.front(), 0, size);
+      //    // Create bitmap handle
+      //    m_bitmap = CreateBitmap(width, height, 1, bpp, &bits.front());
+      // }
+   }
+
+   void Bitmap::initialize_bitmap(DeviceContextInterface * pdevicecontext, const ::int_size & size)
+   {
+      //m_bitmap = CreateCompatibleBitmap(dc, width, height);
+      m_pparticleThis->initialize_bitmap(pdevicecontext, size);
+   }
+
+   void Bitmap::initialize_bitmap(BitmapInterface * pbitmap)
+   //: m_bitmap(bitmap)
+   {
+      m_pparticleThis->initialize_bitmap(pbitmap);
+
+   }
+
+   int Bitmap::getWidth() const
+   {
+      // BITMAP bitmap;
+      // if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {
+      //    return 0;
+      // }
+      // return bitmap.bmWidth;
+   }
+
+   int Bitmap::getHeight() const
+   {
+      BITMAP bitmap;
+      if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {
+         return 0;
+      }
+      return bitmap.bmHeight;
+   }
+
+} // namespace innate_subsystem
+
+

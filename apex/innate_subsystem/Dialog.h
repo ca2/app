@@ -27,7 +27,7 @@
 
 #include "acme/subsystem/_common_header.h"
 #include "apex/innate_subsystem/Control.h"
-//#include "util/StringStorage.h"
+//#include "util/::string.h"
 
 namespace innate_subsystem
 {
@@ -144,7 +144,7 @@ namespace innate_subsystem
       // Window message proccessing method
       //
 
-      //static INT_PTR CALLBACK dialogProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
 
       virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam);
    //private:
@@ -152,7 +152,7 @@ namespace innate_subsystem
 
    //protected:
 
-     // TCHAR *m_resourceName;        // Name of dialog resource
+     // char *m_resourceName;        // Name of dialog resource
       //DWORD m_resourceId;            // Id of dialog resouce
       //Control m_ctrlThis;           // This dialog control
       //Control *m_ctrlParent;        // Parent dialog or NULL if no parent

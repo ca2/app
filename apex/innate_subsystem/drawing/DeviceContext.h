@@ -32,7 +32,7 @@ namespace innate_subsystem
 {
 
 
-    class CLASS_DECL_ACME DeviceContextInterface :
+    class CLASS_DECL_APEX DeviceContextInterface :
       virtual public ::subsystem::particle_interface
    {
    public:
@@ -49,7 +49,7 @@ namespace innate_subsystem
 
        //private:
        // Initialize class from PaintWindow
-       virtual void initialize_device_context(class PaintWindow * pntWnd) = 0;
+       virtual void initialize_device_context(PaintWindowInterface * pntWnd) = 0;
        // Create device context linked to window DC.
        virtual void initialize_device_context(const ::operating_system::window & window) = 0;
        // Create device context complatible with other DC.
@@ -72,19 +72,19 @@ namespace innate_subsystem
    };
 
 
-        class CLASS_DECL_ACME DeviceContext :
-      virtual public ::subsystem::implementation < ::innate_subsystem::DeviceContextInterface >
+   class CLASS_DECL_APEX DeviceContext :
+      virtual public ::subsystem::composite < DeviceContextInterface >
    {
    public:
 
 
       // Destroys device context.
-           DeviceContext();
+      DeviceContext();
       ~DeviceContext() override;
 
       //private:
       // Initialize class from PaintWindow
-      void initialize_device_context(class PaintWindow * pntWnd) override;
+      void initialize_device_context(PaintWindowInterface * pntWnd) override;
       // Create device context linked to window DC.
       void initialize_device_context(const ::operating_system::window & window) override;
       // Create device context complatible with other DC.

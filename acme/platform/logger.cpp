@@ -5,20 +5,21 @@
 #include "logger.h"
 #include "acme/platform/system.h"
 
-
-void logger::initialize(::particle * pparticle)
+namespace platform
 {
+   void logger::initialize(::particle * pparticle)
+   {
 
-    ::object::initialize(pparticle);
+      ::object::initialize(pparticle);
 
-    if(m_etracelevelMinimum == e_trace_level_undefined)
-    {
+      if(m_etracelevelMinimum == e_trace_level_undefined)
+      {
 
-        m_etracelevelMinimum = system()->get_trace_level();
+         m_etracelevelMinimum = system()->get_trace_level();
 
-    }
+      }
 
-}
-
+   }
+} // namespace platform
 
 

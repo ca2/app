@@ -365,7 +365,7 @@ namespace platform
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if (this->has_argument("--log"))
+      if (this->has_argument("--plogwriter"))
       {
 
          informationf("selecting informational trace\n");
@@ -558,7 +558,7 @@ namespace platform
 
       ::task::on_initialize_particle();
 
-      //::output_debug_string("Going to create simple log\n");
+      //::output_debug_string("Going to create simple plogwriter\n");
 
       //m_plogger = create_newø < ::simple_log >();
 
@@ -568,9 +568,9 @@ namespace platform
 
       //constructø(m_pmutexTaskOn);
 
-      //::output_debug_string("output_debug_string : simple log created\n");
+      //::output_debug_string("output_debug_string : simple plogwriter created\n");
 
-      //information() << "information() << output_debug_string : simple log created";
+      //information() << "information() << output_debug_string : simple plogwriter created";
 
 #ifdef PARALLELIZATION_PTHREAD
 

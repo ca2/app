@@ -30,29 +30,29 @@
 namespace subsystem
  {
 //    AnonymousPipeFactory::AnonymousPipeFactory(unsigned int bufferSize,
-//                                               LogWriter *log)
+//                                               LogWriter *plogwriter)
 //    // : m_bufferSize(bufferSize),
-//    //   m_log(log)
+//    //   m_plogwriter(plogwriter)
 //    {
-//       initialize_anonymous_pipe_factory(bufferSize, log);
+//       initialize_anonymous_pipe_factory(bufferSize, plogwriter);
 //    }
 
    AnonymousPipeFactory::AnonymousPipeFactory()
    // : m_bufferSize(bufferSize),
-   //   m_log(log)
+   //   m_plogwriter(plogwriter)
    {
-      //initialize_anonymous_pipe_factory(bufferSize, log);
+      //initialize_anonymous_pipe_factory(bufferSize, plogwriter);
    }
    AnonymousPipeFactory::~AnonymousPipeFactory()
    {
    }
 //
 //    void AnonymousPipeFactory::initialize_anonymous_pipe_factory(unsigned int bufferSize,
-//                                            LogWriter *log)
+//                                            LogWriter *plogwriter)
 // //: m_bufferSize(bufferSize),
-//   //m_log(log)
+//   //m_plogwriter(plogwriter)
 //    {
-//       m_pparticleThis->initialize_anonymous_pipe_factory(bufferSize, log);
+//       m_pparticleThis->initialize_anonymous_pipe_factory(bufferSize, plogwriter);
 //    }
 //
 //    void AnonymousPipeFactory::generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
@@ -103,7 +103,7 @@ namespace subsystem
 //       //    }
 //       // }
 //       //
-//       // *firstSide = new AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_log);
-//       // *secondSide = new AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_log);
+//       // *firstSide = new AnonymousPipe(hFirstSideWrite, hFirstSideRead, m_bufferSize, m_plogwriter);
+//       // *secondSide = new AnonymousPipe(hSecondSideWrite, hSecondSideRead, m_bufferSize, m_plogwriter);
 //    }
 } // namespace subsystem

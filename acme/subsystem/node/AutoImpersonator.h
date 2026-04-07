@@ -36,11 +36,11 @@ namespace subsystem
    class CLASS_DECL_ACME AutoImpersonator
    {
    public:
-      AutoImpersonator(Impersonator *imp, LogWriter *log);
+      AutoImpersonator(Impersonator *imp, LogWriter *plogwriter);
       ~AutoImpersonator();
    //private:
       ::pointer < Impersonator >m_pimpersonator;
-      LogWriter *m_log;
+      LogWriter *m_plogwriter;
    };
 
 } //namespace subsystem

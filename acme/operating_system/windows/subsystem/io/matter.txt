@@ -1,2 +1,0 @@
-app/main
-remoting/io_lib

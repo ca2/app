@@ -2041,7 +2041,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
          //
          //    if (::setsid() < 0)
          //    {
-         //       // not fatal, but log it
+         //       // not fatal, but plogwriter it
          //       warning() << "setsid() failed: " << strerror(errno);
          //    }
          //

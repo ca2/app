@@ -942,7 +942,7 @@ g_bWindowingOutputDebugString = true;
       factory()->add_factory_item<task>();
 
 
-      factory()->add_factory_item<simple_log, ::logger>();
+      factory()->add_factory_item<simple_log, ::platform::logger>();
       //factory()->add_factory_item<property>();
 
 

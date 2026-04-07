@@ -24,12 +24,14 @@ namespace platform
    
    class platform;
 
+   class tracer;
+
 
 } // namespace platform
 class dispatch_arrayø;
 class dispatch_array2;
 
-class tracer;
+
 
 class extended_topic;
 
@@ -353,7 +355,7 @@ public:
    //virtual void trace_log_fatal() << const_char_pointer pszFormat, ...;
 
 
-   virtual class tracer * tracer() const;
+   virtual ::platform::tracer * tracer() const;
 
 
    virtual ::trace_statement trace_statement() const;

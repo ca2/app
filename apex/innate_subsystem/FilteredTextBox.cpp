@@ -36,7 +36,7 @@ namespace innate_subsystem
    {
    }
 
-   void FilteredTextBox::setWindow(HWND hwnd)
+   void FilteredTextBox::setWindow(const ::operating_system::window & operatingsystemwindow)
    {
       if (hwnd != NULL) {
          m_oldWindowProc = SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)&windowProc);
@@ -47,7 +47,7 @@ namespace innate_subsystem
       Control::setWindow(hwnd);
    }
 
-   void FilteredTextBox::setText(TCHAR *text)
+   void FilteredTextBox::setText(char *text)
    {
       m_text.setString(text);
       TextBox::setText(text);
@@ -65,7 +65,7 @@ namespace innate_subsystem
 
    LRESULT FilteredTextBox::makeCheck()
    {
-      StringStorage updatedText;
+      ::string updatedText;
       TextBox::getText(&updatedText);
       if (isStringValid(updatedText.getString())) {
          m_text = updatedText;
@@ -84,7 +84,7 @@ namespace innate_subsystem
       return 0;
    }
 
-   bool FilteredTextBox::isStringValid(const TCHAR *string)
+   bool FilteredTextBox::isStringValid(const char *string)
    {
       if (m_filter != NULL) {
          return m_filter->isStringCorrect(string);
@@ -102,7 +102,7 @@ namespace innate_subsystem
       return makeCheck();
    }
 
-   LRESULT FilteredTextBox::windowProc(HWND hwnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+   LRESULT FilteredTextBox::windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
    {
       FilteredTextBox *_this = (FilteredTextBox *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
       if (_this == NULL) {

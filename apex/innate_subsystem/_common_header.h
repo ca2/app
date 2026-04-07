@@ -1,8 +1,10 @@
 //
-// Created by camilo on 2026-04-07.
+// Created by camilo on 2026-04-07 18:36 <3ThomasBorregaardSørensen!!
 //
+#pragma once
 
-#ifndef MAIN__COMMON_HEADER_H
-#define MAIN__COMMON_HEADER_H
 
-#endif //MAIN__COMMON_HEADER_H
+#include "acme/subsystem/_common_header.h"
+
+
+

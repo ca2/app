@@ -13,6 +13,9 @@
 struct opaque_t {};
 
 
+CLASS_DECL_ACME bool best_effort_is_same_operating_system_window(::acme::windowing::window * pacmewindowingwindow, const ::lparam & lparam);
+
+
 namespace operating_system
 {
 
@@ -436,7 +439,7 @@ namespace operating_system
 
          }
 
-         return m_pacmewindowingwindow->operating_system_window() == lparam;
+         return ::best_effort_is_same_operating_system_window(m_pacmewindowingwindow, lparam);
 
       }
 

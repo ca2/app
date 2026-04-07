@@ -27,10 +27,12 @@
 
 //#include "acme/subsystem/node/PipeServer.h"
 
-#include "NamedPipe.h"
+//#include "NamedPipe.h"
 //#include "remoting/remoting_common/thread/LocalMutex.h"
-//#include "SecurityAttributes.h"
-#include "DynamicLibrary.h"
+
+//#include "DynamicLibrary.h"
+//#include "acme/_operating_system.h"
+#include "acme/subsystem/windows/node/security/SecurityAttributes.h"
 
 typedef BOOL(WINAPI* pGetNamedPipeClientProcessId)(HANDLE Pipe, PULONG ClientProcessId);
 

@@ -45,6 +45,8 @@ console session.
       //Impersonator(LogWriter *log);
 
 
+      //ImpersonatorInterface);
+
       virtual ~ImpersonatorInterface() = 0;
 
       virtual void initialize_impersonator(LogWriter * plogwriter) = 0;
@@ -122,5 +124,8 @@ console session.
 
       //LogWriter *m_log;
    };
+
+
+
 } // namespace subsystem
 

@@ -26,12 +26,13 @@
 
 
 //#include "remoting/remoting_common/util/winhdr.h"
-#include "acme/_operating_system.h"
+//#include "acme/_operating_system.h"
 
 //#include "remoting/remoting_common/thread/LocalMutex.h"
-#include "DynamicLibrary.h"
+//#include "acme/subsystem/windows/node/DynamicLibrary.h"
 //#include "acme/SystemException.h"
 //#include "log_writer/LogWriter.h"
+#include "acme/_operating_system.h"
 #include <WtsApi32.h>
 
 namespace windows

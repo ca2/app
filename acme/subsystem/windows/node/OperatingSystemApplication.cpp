@@ -47,9 +47,9 @@ namespace windows
       {
       }
 
-      void OperatingSystemApplication::initialize(::particle * pparticle)
+      void OperatingSystemApplication::initialize_operating_system_application(const ::scoped_string & scopedstrWindowClassName)
       {
-         ::particle::initialize(pparticle);
+         //::particle::initialize(pparticle);
 
          m_appInstance =(HINSTANCE)system()->m_hinstanceThis;
 

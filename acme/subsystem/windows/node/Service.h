@@ -44,7 +44,7 @@ namespace windows
        * @author enikey.
        */
       class CLASS_DECL_ACME Service :
-      virtual public ::subsystem::implementation<::subsystem::ServiceInterface>
+      virtual public ::subsystem::Service
       {
       public:
          /**

@@ -37,7 +37,7 @@ namespace subsystem
 {
 
 
-   class CLASS_DECL_ACME AnonymousPipe :
+   class CLASS_DECL_ACME AnonymousPipeInterface :
    virtual public Pipe,
    virtual public Channel
    {
@@ -47,10 +47,10 @@ namespace subsystem
       // @param hRead is a read handle getting by the CreatePipe()
       // function calling but is not the same as for hWrite.
       //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
-      AnonymousPipe();
-      virtual ~AnonymousPipe() = 0;
+      //AnonymousPipe();
+      virtual ~AnonymousPipeInterface() = 0;
 
-      virtual void initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log) = 0;
+      virtual void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log) = 0;
       /**
        * Closes transport.
        *
@@ -79,10 +79,10 @@ namespace subsystem
       virtual size_t available() = 0;
 
       // Returns pipe handle to write
-      virtual FileInterface * getWriteFile() const = 0;
+      virtual ::subsystem::FileInterface * getWriteFile() const = 0;
 
       // Returns pipe handle to read
-      virtual FileInterface * getReadFile() const = 0;
+      virtual ::subsystem::FileInterface * getReadFile() const = 0;
 
       // This function assigns the handles for another process.
       // @param hTargetProc is a handle to the other process.
@@ -98,7 +98,7 @@ namespace subsystem
       virtual void setTimeOut(unsigned int timeOut) = 0;
 
    //private:
-      virtual void checkPipeFile(FileInterface * pfile) = 0;
+      virtual void checkPipeFile(::subsystem::FileInterface * pfile) = 0;
 
       // HANDLE m_hWrite;
       // HANDLE m_hRead;
@@ -113,6 +113,81 @@ namespace subsystem
    };
 
 
+
+
+   class CLASS_DECL_ACME AnonymousPipe :
+   virtual public ::subsystem::composite < AnonymousPipeInterface >
+   {
+   public:
+      // @param hWrite is a write handle getting by the CreatePipe()
+      // function calling.
+      // @param hRead is a read handle getting by the CreatePipe()
+      // function calling but is not the same as for hWrite.
+      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *log);
+      AnonymousPipe();
+      ~AnonymousPipe() override;
+
+      void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter *log) override;
+      /**
+       * Closes transport.
+       *
+       * @throws ::remoting::Exception on fail.
+       */
+      void close() override;
+
+      /**
+       * Reads data from pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer to receive data.
+       * @param len count of bytes to read.
+       * @throws ::io_exception on io error.
+       */
+      size_t read(void *buffer, size_t len) override;
+
+      /**
+       * Writes data to pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer with data to write.
+       * @param len count of bytes to write.
+       * @throws ::io_exception on io error.
+       */
+      memsize defer_write(const void *buffer, memsize len) override;
+
+      size_t available() override;
+
+      // Returns pipe handle to write
+      ::subsystem::FileInterface * getWriteFile() const override;
+
+      // Returns pipe handle to read
+      ::subsystem::FileInterface * getReadFile() const override;
+
+      // This function assigns the handles for another process.
+      // @param hTargetProc is a handle to the other process.
+      // If neededToClose parameter set to true then after calling this function
+      // the destructor will try to close the assigned handles. If the handles
+      // assigned for another process then set neededToClose flag to false.
+      // If keepCloseRight is true then source process keeps the right to close
+      // the new handles.
+      // @throw ::remoting::Exception on a fail.
+      //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
+                            //bool keepCloseRight = false);
+
+      void setTimeOut(unsigned int timeOut) override;
+
+   //private:
+      void checkPipeFile(::subsystem::FileInterface * pfile) override;
+
+      // HANDLE m_hWrite;
+      // HANDLE m_hRead;
+      // bool m_neededToClose;
+      // unsigned int m_timeOut;
+      //
+      // LocalMutex m_hPipeMutex;
+      // WindowsEvent m_readEvent;
+      // WindowsEvent m_writeEvent;
+      //
+      // LogWriter *m_log;
+   };
 
 
    //// __ANONYMOUSPIPE_H__

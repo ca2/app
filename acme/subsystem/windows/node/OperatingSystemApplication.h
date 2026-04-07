@@ -26,11 +26,11 @@
 
 
 //#include "remoting/remoting_common/util/winhdr.h"
+#include "acme/prototype/collection/comparable_list.h"
+#include "acme/subsystem/node/OperatingSystemApplication.h"
 #include "acme/_operating_system.h"
 
 //#include "remoting/remoting_common/thread/LocalMutex.h"
-#include "acme/prototype/collection/comparable_list.h"
-#include "acme/subsystem/node/OperatingSystemApplication.h"
 //#include <list>
 
 namespace windows
@@ -42,7 +42,7 @@ namespace windows
        * Have hidden main window and main scopedstrMessage loop.
        */
       class CLASS_DECL_ACME OperatingSystemApplication :
-      virtual public ::subsystem::implementation<::subsystem::OperatingSystemApplicationInterface>
+      virtual public ::subsystem::OperatingSystemApplication
       {
       public:
 
@@ -60,7 +60,7 @@ namespace windows
           */
          ~OperatingSystemApplication() override;
 
-         void initialize(particle* pparticle) override;
+         virtual void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName);
 
          /**
           * Runs windows application.

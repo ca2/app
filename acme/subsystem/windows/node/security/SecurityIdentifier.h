@@ -26,10 +26,9 @@
 //#define _SECURITY_IDENTIFIER_H_
 #pragma once
 
-#include "acme/subsystem/node/security/SecurityIdentifier.h"
 
+#include "acme/subsystem/node/security/SecurityIdentifier.h"
 #include "acme/_operating_system.h"
-#include "subsystem/Impersonator.h"
 
 
 namespace windows
@@ -70,7 +69,7 @@ namespace windows
        * identify the trustee relative to the authority that issued the SID.
        */
       class SecurityIdentifier :
-virtual public ::subsystem::implementation<::subsystem::SecurityIdentifierInterface>
+virtual public ::subsystem::SecurityIdentifier
 
       {
       public:

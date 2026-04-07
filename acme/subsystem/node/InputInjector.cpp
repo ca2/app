@@ -34,7 +34,7 @@ namespace subsystem
 {
 
 
-   InputInjector::InputInjector(bool ctrlAltDelEnabled, LogWriter *log)
+   InputInjector::InputInjector()
    // : m_controlIsPressed(false),
    //   m_menuIsPressed(false),
    //   m_deleteIsPressed(false),
@@ -43,7 +43,7 @@ namespace subsystem
    //   m_ctrlAltDelEnabled(ctrlAltDelEnabled),
    //   m_log(log)
    {
-      m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, log);
+      //m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, log);
       // // FIXME: Better to call this function from an owner (Now, its
       // // possible only from trunk code because in the stable hive the owner is
       // // the deprecated KeyEvent class)
@@ -55,6 +55,29 @@ namespace subsystem
       //      e.get_message());
       // }
    }
+
+
+//    InputInjector::InputInjector(bool ctrlAltDelEnabled, LogWriter *log)
+// // : m_controlIsPressed(false),
+// //   m_menuIsPressed(false),
+// //   m_deleteIsPressed(false),
+// //   m_shiftIsPressed(false),
+// //   m_winIsPressed(false),
+// //   m_ctrlAltDelEnabled(ctrlAltDelEnabled),
+// //   m_log(log)
+// {
+//       m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, log);
+//       // // FIXME: Better to call this function from an owner (Now, its
+//       // // possible only from trunk code because in the stable hive the owner is
+//       // // the deprecated KeyEvent class)
+//       // try {
+//       //    resetModifiers();
+//       // }
+//       // catch (::exception &e) {
+//       //    m_log->error("InputInjector: error occurred while reseting modifiers: {}",
+//       //      e.get_message());
+//       // }
+// }
 
    InputInjector::~InputInjector()
    {

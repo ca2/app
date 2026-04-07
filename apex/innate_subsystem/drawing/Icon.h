@@ -59,7 +59,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX Icon :
-virtual public ::subsystem::composite<IconInterface>
+virtual public ::subsystem::composite<Icon
    {
    public:
       Icon();

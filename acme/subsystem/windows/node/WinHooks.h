@@ -23,10 +23,13 @@
 //
 
 #include "acme/subsystem/_common_header.h"
-#include "acme/subsystem/windows/node/HookEventListener.h"
+#include "acme/_operating_system.h"
+//#include "acme/subsystem/windows/node/HookEventListener.h"
 
 namespace windows
 {
+
+
    // Class for intercepting keyboard on low level.
    class CLASS_DECL_ACME WinHooks
    {

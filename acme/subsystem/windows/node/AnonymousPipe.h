@@ -39,7 +39,7 @@ namespace windows
    namespace subsystem
    {
       class CLASS_DECL_ACME AnonymousPipe :
-      virtual public ::subsystem::implementation<::subsystem::AnonymousPipeInterface>,
+      virtual public ::subsystem::implementation < ::subsystem::AnonymousPipeInterface >,
       virtual public Pipe
       {
       public:
@@ -47,22 +47,22 @@ namespace windows
          // function calling.
          // @param hRead is a read handle getting by the CreatePipe()
          // function calling but is not the same as for hWrite.
-         //  AnonymousPipe(::subsystem::FileInterface *pfileWrite, HANDLE hRead, unsigned int maxPortionSize, ::subsystem::LogWriter *log);
+         //  AnonymousPipe(::subsystem::File *pfileWrite, HANDLE hRead, unsigned int maxPortionSize, ::subsystem::LogWriter *log);
          AnonymousPipe();
          ~AnonymousPipe() override;
 
-         bool is_subsystem_implementation(void) const override
-         {
-
-            return ::subsystem::implementation<::subsystem::AnonymousPipeInterface>::is_subsystem_implementation();
-
-         }
-         bool is_subsystem_composite(void) const override
-         {
-
-            return ::subsystem::implementation<::subsystem::AnonymousPipeInterface>::is_subsystem_composite();
-
-         }
+         // bool is_subsystem_implementation(void) const override
+         // {
+         //
+         //    return ::subsystem::AnonymousPipe::is_subsystem_implementation();
+         //
+         // }
+         // bool is_subsystem_composite(void) const override
+         // {
+         //
+         //    return ::subsystem::AnonymousPipe::is_subsystem_composite();
+         //
+         // }
          void initialize_anonymous_pipe(::subsystem::FileInterface* pfileWrite, ::subsystem::FileInterface* pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter* log) override;
 
          /**

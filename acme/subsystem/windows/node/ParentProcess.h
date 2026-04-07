@@ -26,6 +26,7 @@
 
 
 #include "acme/subsystem/node/ParentProcess.h"
+#include "acme/_operating_system.h"
 #include <Tlhelp32.h>
 
 namespace windows
@@ -34,7 +35,7 @@ namespace windows
    {
       // Retrieves information of the parent process.
       class CLASS_DECL_ACME ParentProcess :
-      virtual public ::subsystem::implementation<::subsystem::ParentProcessInterface>
+      virtual public ::subsystem::ParentProcess
       {
       public:
 

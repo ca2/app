@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "NamedPipe.h"
+#include "acme/subsystem/windows/node/NamedPipe.h"
 //#include "log_writer/LogWriter.h"
 
 // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.

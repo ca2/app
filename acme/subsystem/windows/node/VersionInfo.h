@@ -26,6 +26,7 @@
 
 
 #include "acme/subsystem/_common_header.h"
+#include "acme/_operating_system.h"
 //#include "SystemException.h"
 
 namespace windows

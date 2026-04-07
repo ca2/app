@@ -30,11 +30,11 @@
 namespace subsystem
 {
 
-   class CLASS_DECL_ACME GuiThreadInterface : public ::subsystem::Thread
+   class CLASS_DECL_ACME GuiThread: public ::subsystem::Thread
    {
    public:
-      //GuiThread();
-      virtual ~GuiThreadInterface() = 0;
+      GuiThread();
+      ~GuiThread() override;
       //private:
       // Replacing the base function.
       //static DWORD WINAPI threadProc(LPVOID pThread);
@@ -44,21 +44,21 @@ namespace subsystem
       // Desktop for current thread.
       //HDESK m_hDesk;
    };
-   class CLASS_DECL_ACME GuiThread :
-   virtual public ::subsystem::composite< GuiThreadInterface>
-   {
-   public:
-      GuiThread();
-      ~GuiThread() override;
-   //private:
-      // Replacing the base function.
-      //static DWORD WINAPI threadProc(LPVOID pThread);
-
-      //void initByDerived() override;
-
-      // Desktop for current thread.
-      //HDESK m_hDesk;
-   };
+   // class CLASS_DECL_ACME GuiThread :
+   // virtual public ::subsystem::composite< GuiThread
+   // {
+   // public:
+   //    GuiThread();
+   //    ~GuiThread() override;
+   // //private:
+   //    // Replacing the base function.
+   //    //static DWORD WINAPI threadProc(LPVOID pThread);
+   //
+   //    //void initByDerived() override;
+   //
+   //    // Desktop for current thread.
+   //    //HDESK m_hDesk;
+   // };
 
    //// __GUITHREAD_H__
 } // namespace subsystem

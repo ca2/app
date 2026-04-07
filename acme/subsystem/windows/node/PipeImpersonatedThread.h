@@ -35,7 +35,7 @@ namespace subsystem
 {
    class CLASS_DECL_ACME PipeImpersonatedThread :
 
-      virtual public ::subsystem::implementation<::subsystem::PipeImpersonatedThreadInterface>
+      virtual public ::subsystem::PipeImpersonatedThread
    {
    public:
       //PipeImpersonatedThread(HANDLE pipeHandle);
@@ -43,7 +43,7 @@ namespace subsystem
       ~PipeImpersonatedThread() override;
 
 
-      void initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe) override;
+      void initialize_pipe_impersonated_thread(::subsystem::FileInterface* pfilePipe) override;
 
       void waitUntilImpersonated() override;
       bool getImpersonationSuccess() override;
@@ -53,7 +53,7 @@ namespace subsystem
       void execute() override;
       void onTerminate() override;
 
-      ::pointer < ::subsystem::FileInterface > m_pfilePipe;
+      ::pointer < ::subsystem::File > m_pfilePipe;
       bool m_success;
       ::string m_faultReason;
       WindowsEvent m_impersonationReadyEvent;

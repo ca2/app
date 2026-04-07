@@ -52,60 +52,60 @@ namespace subsystem
    //    return TRUE;
    // }
 
-   void Displays::update()
-   {
-      m_pparticleThis->update();
-      // if (!isAlreadyUpdated()) {
-      //    m_displayRects.clear();
-      //    m_xVirtualScreen = GetSystemMetrics(SM_XVIRTUALSCREEN);
-      //    m_yVirtualScreen = GetSystemMetrics(SM_YVIRTUALSCREEN);
-      //
-      //    // Enumerate only desktop's displays. Skip mirror driver desktops.
-      //    HDC hdc = GetDC(0);
-      //    EnumDisplayMonitors(hdc, 0, monitorEnumProc, (LPARAM)this);
-      //
-      //    m_latestUpdateTime.Now();
-      //    ReleaseDC(0, hdc);
-      // }
-   }
-
-   void Displays::getDisplayCoordinates(unsigned char displayNumber,
-                                               ::int_rectangle *prectangle)
-   {
-      m_pparticleThis->getDisplayCoordinates(displayNumber, prectangle);
-      // AutoLock al(&m_displayRectsMutex);
-      // update();
-      // displayNumber--;
-      // if (displayNumber < m_displayRects.size()) {
-      //    *prectangle = m_displayRects[displayNumber];
-      // } else {
-      //    ::null(*prectangle);
-      // }
-   }
-
-   ::array_base<::int_rectangle> Displays::getDisplaysCoords()
-   {
-      return m_pparticleThis->getDisplaysCoords();
-      // AutoLock al(&m_displayRectsMutex);
-      // update();
-      // return m_displayRects;
-   }
-
-   bool Displays::isAlreadyUpdated()
-   {
-      return m_pparticleThis->isAlreadyUpdated();
-      // if (m_latestUpdateTime.elapsed().m_iSecond > UPDATE_INTERVAL) {
-      //    return false;
-      // } else {
-      //    return true;
-      // }
-   }
-
-   ::array_base<::int_rectangle> Displays::getDisplays()
-   {
-      return m_pparticleThis->getDisplaysCoords();
-      // update();
-      // return m_displayRects;
-   }
+   // void Displays::update()
+   // {
+   //    m_pparticleThis->update();
+   //    // if (!isAlreadyUpdated()) {
+   //    //    m_displayRects.clear();
+   //    //    m_xVirtualScreen = GetSystemMetrics(SM_XVIRTUALSCREEN);
+   //    //    m_yVirtualScreen = GetSystemMetrics(SM_YVIRTUALSCREEN);
+   //    //
+   //    //    // Enumerate only desktop's displays. Skip mirror driver desktops.
+   //    //    HDC hdc = GetDC(0);
+   //    //    EnumDisplayMonitors(hdc, 0, monitorEnumProc, (LPARAM)this);
+   //    //
+   //    //    m_latestUpdateTime.Now();
+   //    //    ReleaseDC(0, hdc);
+   //    // }
+   // }
+   //
+   // void Displays::getDisplayCoordinates(unsigned char displayNumber,
+   //                                             ::int_rectangle *prectangle)
+   // {
+   //    m_pparticleThis->getDisplayCoordinates(displayNumber, prectangle);
+   //    // AutoLock al(&m_displayRectsMutex);
+   //    // update();
+   //    // displayNumber--;
+   //    // if (displayNumber < m_displayRects.size()) {
+   //    //    *prectangle = m_displayRects[displayNumber];
+   //    // } else {
+   //    //    ::null(*prectangle);
+   //    // }
+   // }
+   //
+   // ::array_base<::int_rectangle> Displays::getDisplaysCoords()
+   // {
+   //    return m_pparticleThis->getDisplaysCoords();
+   //    // AutoLock al(&m_displayRectsMutex);
+   //    // update();
+   //    // return m_displayRects;
+   // }
+   //
+   // bool Displays::isAlreadyUpdated()
+   // {
+   //    return m_pparticleThis->isAlreadyUpdated();
+   //    // if (m_latestUpdateTime.elapsed().m_iSecond > UPDATE_INTERVAL) {
+   //    //    return false;
+   //    // } else {
+   //    //    return true;
+   //    // }
+   // }
+   //
+   // ::array_base<::int_rectangle> Displays::getDisplays()
+   // {
+   //    return m_pparticleThis->getDisplaysCoords();
+   //    // update();
+   //    // return m_displayRects;
+   // }
 } // namespace subsystem
 

@@ -32,7 +32,7 @@ namespace subsystem
    {
       //resume();
 
-      m_pparticleThis->resume();
+      ///m_pparticleThis->resume();
    }
 
    ThreadCollector::~ThreadCollector()
@@ -45,59 +45,59 @@ namespace subsystem
       // destroyAllThreads();
    }
 
-   void ThreadCollector::execute()
-   {
-      m_pparticleThis->execute();
-      // while (!isTerminating()) {
-      //    deleteDeadThreads();
-      //    m_timer.waitForEvent(50);
-      // }
-   }
-
-   void ThreadCollector::addThread(ThreadInterface *pthreadinterface)
-   {
-      // critical_section_lock l(&m_lockObj);
-
-      // m_threads.add(thread);
-      m_pparticleThis->addThread(pthreadinterface);
-   }
-
-   void ThreadCollector::deleteDeadThreads()
-   {
-      m_pparticleThis->deleteDeadThreads();
-      // critical_section_lock l(&m_lockObj);
-      //
-      // ThreadList::iterator iter = m_threads.begin();
-      // while (iter != m_threads.end()) {
-      //    auto it= iter;
-      //    iter++;
-      //    Thread *thread = *it;
-      //    if (!thread->isActive()) {
-      //       delete thread;
-      //       m_threads.erase(it);
-      //    }
-      // }
-   }
-
-   void ThreadCollector::destroyAllThreads()
-   {
-      m_pparticleThis->destroyAllThreads();
-      // critical_section_lock l(&m_lockObj);
-      //
-      // ThreadList::iterator iter;
-      // for (iter = m_threads.begin(); iter != m_threads.end(); iter++) {
-      //    (*iter)->terminate();
-      // }
-      // for (iter = m_threads.begin(); iter != m_threads.end(); iter++) {
-      //    (*iter)->wait();
-      // }
-      //
-      // deleteDeadThreads();
-   }
-
-   const size_t ThreadCollector::Size()
-   {
-      //return m_threads.size();
-      return m_pparticleThis->Size();
-   }
+   // void ThreadCollector::execute()
+   // {
+   //    m_pparticleThis->execute();
+   //    // while (!isTerminating()) {
+   //    //    deleteDeadThreads();
+   //    //    m_timer.waitForEvent(50);
+   //    // }
+   // }
+   //
+   // void ThreadCollector::addThread(ThreadInterface *pthreadinterface)
+   // {
+   //    // critical_section_lock l(&m_lockObj);
+   //
+   //    // m_threads.add(thread);
+   //    m_pparticleThis->addThread(pthreadinterface);
+   // }
+   //
+   // void ThreadCollector::deleteDeadThreads()
+   // {
+   //    m_pparticleThis->deleteDeadThreads();
+   //    // critical_section_lock l(&m_lockObj);
+   //    //
+   //    // ThreadList::iterator iter = m_threads.begin();
+   //    // while (iter != m_threads.end()) {
+   //    //    auto it= iter;
+   //    //    iter++;
+   //    //    Thread *thread = *it;
+   //    //    if (!thread->isActive()) {
+   //    //       delete thread;
+   //    //       m_threads.erase(it);
+   //    //    }
+   //    // }
+   // }
+   //
+   // void ThreadCollector::destroyAllThreads()
+   // {
+   //    m_pparticleThis->destroyAllThreads();
+   //    // critical_section_lock l(&m_lockObj);
+   //    //
+   //    // ThreadList::iterator iter;
+   //    // for (iter = m_threads.begin(); iter != m_threads.end(); iter++) {
+   //    //    (*iter)->terminate();
+   //    // }
+   //    // for (iter = m_threads.begin(); iter != m_threads.end(); iter++) {
+   //    //    (*iter)->wait();
+   //    // }
+   //    //
+   //    // deleteDeadThreads();
+   // }
+   //
+   // const size_t ThreadCollector::Size()
+   // {
+   //    //return m_threads.size();
+   //    return m_pparticleThis->Size();
+   // }
 } // namespace subsystem

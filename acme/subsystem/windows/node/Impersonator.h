@@ -30,6 +30,9 @@
 //#include "log_writer/LogWriter.h"
 #include "acme/subsystem/node/Impersonator.h"
 #include "acme/subsystem/node/SystemException.h"
+#include "acme/_operating_system.h"
+
+
 
 namespace windows
 {
@@ -42,7 +45,7 @@ namespace windows
       @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
       */
       class CLASS_DECL_ACME Impersonator :
-      virtual public ::subsystem::implementation< ::subsystem::ImpersonatorInterface>
+      virtual public ::subsystem::Impersonator
       {
       public:
          //Impersonator(LogWriter *log);

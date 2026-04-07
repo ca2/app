@@ -21,9 +21,12 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#pragma once
+
 
 #include "acme/subsystem/node/ProcessHandle.h"
 #include "subsystem/node/security/SecurityIdentifier.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows
@@ -33,7 +36,7 @@ namespace windows
       // This class is a mere envelop for process handle that will automatically
       // closed at destructor calling.
       class CLASS_DECL_ACME ProcessHandle :
-      virtual public ::subsystem::implementation<::subsystem::ProcessHandleInterface>
+      virtual public ::subsystem::ProcessHandle
       {
       public:
          bool m_bOwned = false;

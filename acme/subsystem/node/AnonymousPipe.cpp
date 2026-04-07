@@ -28,15 +28,24 @@
 //#include "remoting/remoting_common/thread/AutoLock.h"
 namespace subsystem
 {
-   AnonymousPipe::AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+   AnonymousPipe::AnonymousPipe()
     //: Pipe(maxPortionSize)
    //   m_hWrite(hWrite),
    //   m_hRead(hRead),
    //   m_neededToClose(true),
    //   m_log(log)
    {
-      initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
+      //initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
    }
+   // AnonymousPipe::AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+   //  //: Pipe(maxPortionSize)
+   // //   m_hWrite(hWrite),
+   // //   m_hRead(hRead),
+   // //   m_neededToClose(true),
+   // //   m_log(log)
+   // {
+   //    initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
+   // }
 
    AnonymousPipe::~AnonymousPipe()
    {
@@ -49,7 +58,7 @@ namespace subsystem
    }
 
    //
-   void AnonymousPipe::initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+   void AnonymousPipe::initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
    // : Pipe(maxPortionSize),
    //   m_hWrite(hWrite),
    //   m_hRead(hRead),
@@ -58,6 +67,15 @@ namespace subsystem
    {
       m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
    }
+   // void AnonymousPipe::initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *log)
+   // // : Pipe(maxPortionSize),
+   // //   m_hWrite(hWrite),
+   // //   m_hRead(hRead),
+   // //   m_neededToClose(true),
+   // //   m_log(log)
+   // {
+   //    m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, log);
+   // }
 
    void AnonymousPipe::close()
    {
@@ -117,7 +135,7 @@ namespace subsystem
       // }
    }
 
-   void AnonymousPipe::checkPipeFile(FileInterface * pfile)
+   void AnonymousPipe::checkPipeFile(::subsystem::FileInterface * pfile)
    {
       m_pparticleThis->checkPipeFile(pfile);
       //if (handle == INVALID_HANDLE_VALUE) {
@@ -125,12 +143,12 @@ namespace subsystem
       //}
    }
 
-   FileInterface * AnonymousPipe::getWriteFile() const
+   ::subsystem::FileInterface * AnonymousPipe::getWriteFile() const
    {
       return m_pparticleThis->getWriteFile();
    }
 
-   FileInterface * AnonymousPipe::getReadFile() const
+   ::subsystem::FileInterface * AnonymousPipe::getReadFile() const
    {
       return m_pparticleThis->getReadFile();
    }

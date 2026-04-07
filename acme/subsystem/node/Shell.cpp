@@ -32,6 +32,15 @@ namespace subsystem
    {
    }
 
+
+   Shell::~Shell()
+   {
+
+
+   }
+
+
+
    void Shell::runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters)
    {
       m_pparticleThis->runAsAdmin(pathToFile, scopedstrParameters);

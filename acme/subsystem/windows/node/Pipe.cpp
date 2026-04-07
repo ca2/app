@@ -63,7 +63,7 @@ namespace windows
          return m_maxPortionSize;
       }
 
-      size_t Pipe::writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe)
+      size_t Pipe::writeByFile(const void *buffer, size_t len, ::subsystem::File * pfilePipe)
       {
 
          auto handlePipe = ::as_HANDLE(pfilePipe);
@@ -127,7 +127,7 @@ namespace windows
          return result;
       }
 
-      size_t Pipe::readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe)
+      size_t Pipe::readByFile(void *buffer, size_t len, ::subsystem::File * pfilePipe)
       {
          auto handlePipe = ::as_HANDLE(pfilePipe);
          DWORD result = 0;
@@ -188,7 +188,7 @@ namespace windows
          return result;
       }
 
-      void Pipe::checkPipeFile(::subsystem::FileInterface * pfilePipe)
+      void Pipe::checkPipeFile(::subsystem::File * pfilePipe)
       {
          auto handlePipe = ::as_HANDLE(pfilePipe);
          if (::is_set(pfilePipe) && handlePipe == INVALID_HANDLE_VALUE) {

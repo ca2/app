@@ -38,15 +38,15 @@ namespace subsystem
    // Collector threads.
    // ThreadCollector has it's own thread which deletes in infinity loop not
    // active threads.
-   class CLASS_DECL_ACME ThreadCollectorInterface :
+   class CLASS_DECL_ACME ThreadCollector :
       virtual public Thread
    {
    public:
-      //ThreadCollector();
-      virtual ~ThreadCollectorInterface() = 0;
+      ThreadCollector();
+      ~ThreadCollector() override;
 
       // Adds thread to a self ::list_base.
-      virtual void addThread(ThreadInterface *thread) = 0;
+      virtual void addThread(Thread *thread) = 0;
 
       // Forces terminates all threads, waits until they dies and than
       // delete them from memory and thread ::list_base.
@@ -67,37 +67,37 @@ namespace subsystem
    //    WindowsEvent m_timer;
    };
 
-   // Collector threads.
-   // ThreadCollector has it's own thread which deletes in infinity loop not
-   // active threads.
-   class CLASS_DECL_ACME ThreadCollector :
-      virtual public ::subsystem::composite<ThreadCollectorInterface>
-   {
-   public:
-      ThreadCollector();
-       ~ThreadCollector() override;
-
-      // Adds thread to a self ::list_base.
-      void addThread(ThreadInterface *thread) override;
-
-      // Forces terminates all threads, waits until they dies and than
-      // delete them from memory and thread ::list_base.
-      void destroyAllThreads() override;
-
-      const size_t Size() override;
-
-      //protected:
-      void execute() override;
-
-      // Deletes all dead threads from memory and removes them from self ::list_base.
-      void deleteDeadThreads() override;
-
-      // //protected:
-      //    ThreadList m_threads;
-      //    critical_section m_lockObj;
-      //
-      //    WindowsEvent m_timer;
-   };
+   // // Collector threads.
+   // // ThreadCollector has it's own thread which deletes in infinity loop not
+   // // active threads.
+   // class CLASS_DECL_ACME ThreadCollector :
+   //    virtual public ::subsystem::composite<ThreadCollector
+   // {
+   // public:
+   //    ThreadCollector();
+   //     ~ThreadCollector() override;
+   //
+   //    // Adds thread to a self ::list_base.
+   //    void addThread(ThreadInterface *thread) override;
+   //
+   //    // Forces terminates all threads, waits until they dies and than
+   //    // delete them from memory and thread ::list_base.
+   //    void destroyAllThreads() override;
+   //
+   //    const size_t Size() override;
+   //
+   //    //protected:
+   //    void execute() override;
+   //
+   //    // Deletes all dead threads from memory and removes them from self ::list_base.
+   //    void deleteDeadThreads() override;
+   //
+   //    // //protected:
+   //    //    ThreadList m_threads;
+   //    //    critical_section m_lockObj;
+   //    //
+   //    //    WindowsEvent m_timer;
+   // };
 
    //// __THREADCOLLECTOR_H__
 } // namespace subsystem

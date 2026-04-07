@@ -40,7 +40,8 @@ namespace subsystem
    public:
 
 
-      virtual ~PipeClientInterface() =0;
+      //PipeClient();
+      virtual ~PipeClientInterface() = 0;
 
       virtual ::pointer < NamedPipe  >connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) = 0;
 
@@ -59,6 +60,8 @@ namespace subsystem
    public:
 
       PipeClient();
+
+      ~PipeClient() override;
 
       ::pointer < NamedPipe  >connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) override;
 

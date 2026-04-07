@@ -21,16 +21,12 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
-//#define _SECURITY_DESCRIPTOR_H_
+
 
 #include "acme/subsystem/node/security/SecurityDescriptor.h"
-
 #include "acme/_operating_system.h"
 #include <AccCtrl.h>
-
-#include "subsystem/particle.h"
 
 
 namespace windows
@@ -41,7 +37,8 @@ namespace windows
        * Contains the security information associated with an object.
        */
       class SecurityDescriptor :
-      virtual public ::subsystem::implementation<::subsystem::SecurityDescriptorInterface>{
+      virtual public ::subsystem::SecurityDescriptor
+      {
       public:
          /**
           * Creates new security descriptor.

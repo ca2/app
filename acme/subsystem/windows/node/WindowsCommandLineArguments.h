@@ -26,6 +26,7 @@
 
 
 #include "acme/subsystem/CommandLineArguments.h"
+#include "acme/_operating_system.h"
 
 namespace windows
 {

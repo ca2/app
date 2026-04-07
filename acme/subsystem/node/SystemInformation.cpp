@@ -43,37 +43,37 @@ namespace subsystem
 
    }
 
-//
-//    void SystemInformation::getDesktopAllArea(int_rectangle & rectangle)
-//    {
-// //      GetClientRect(GetDesktopWindow(), rc);
-//       m_pparticleThis->getDesktopAllArea(rectangle);
-//    }
-//
-//    bool SystemInformation::getDesktopArea(int_rectangle & rectangle)
-//    {
-//   //    return !!SystemParametersInfo(SPI_GETWORKAREA, 0, rc, 0);
-//
-//       return m_pparticleThis->getDesktopArea(rectangle);
-//    }
-//
-//    // bool SystemInformation::isSupportStretchBlt(HDC hdc)
-//    // {
-//    //  //  int rasterCaps = GetDeviceCaps(hdc, RASTERCAPS);
-//    //    //return !!(rasterCaps & RC_STRETCHBLT);
-//    // }
-//    //
-//    // int SystemInformation::getBitsPixel(HDC hdc)
-//    // {
-//    //    //return GetDeviceCaps(hdc, BITSPIXEL);
-//    // }
-//
-//    int SystemInformation::getMonitorCount()
-//    {//return GetSystemMetrics(SM_CMONITORS);
-//
-//
-//       return m_pparticleThis->getMonitorCount();
-//    }
+
+   void SystemInformation::getDesktopAllArea(int_rectangle & rectangle)
+   {
+//      GetClientRect(GetDesktopWindow(), rc);
+      m_pparticleThis->getDesktopAllArea(rectangle);
+   }
+
+   bool SystemInformation::getDesktopArea(int_rectangle & rectangle)
+   {
+  //    return !!SystemParametersInfo(SPI_GETWORKAREA, 0, rc, 0);
+
+      return m_pparticleThis->getDesktopArea(rectangle);
+   }
+
+   // bool SystemInformation::isSupportStretchBlt(HDC hdc)
+   // {
+   //  //  int rasterCaps = GetDeviceCaps(hdc, RASTERCAPS);
+   //    //return !!(rasterCaps & RC_STRETCHBLT);
+   // }
+   //
+   // int SystemInformation::getBitsPixel(HDC hdc)
+   // {
+   //    //return GetDeviceCaps(hdc, BITSPIXEL);
+   // }
+
+   int SystemInformation::getMonitorCount()
+   {//return GetSystemMetrics(SM_CMONITORS);
+
+
+      return m_pparticleThis->getMonitorCount();
+   }
 
 } // namespace subsystem
 

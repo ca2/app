@@ -25,10 +25,11 @@
 #pragma once
 
 
+#include "acme/subsystem/_common_header.h"
 //#include "remoting/remoting_common/util/winhdr.h"
-#include "acme/_operating_system.h"
+//#include "acme/_operating_system.h"
 
-#include "subsystem/particle.h"
+//#include "subsystem/particle.h"
 
 //#include "../SystemException.h"
 
@@ -37,14 +38,14 @@ namespace subsystem
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
-   class CLASS_DECL_ACME Keyboard :
-   virtual public ::subsystem::particle
+   class CLASS_DECL_ACME KeyboardInterface :
+   virtual public ::subsystem::particle_interface
    {
    public:
 
 
-Keyboard();
-      ~Keyboard() override;
+      //Keyboard();
+      virtual ~KeyboardInterface() = 0;
       /**
        * Copied current keyboard state (256 virtual keys state) to state array.
        * @param state [out] array of 256 virtual key states.
@@ -68,39 +69,39 @@ Keyboard();
 
    };
 
-   // /**
-   //  * Wrapper on base WinAPI keyboard functions.
-   //  */
-   // class CLASS_DECL_ACME Keyboard :
-   // virtual public ::subsystem::composite <KeyboardInterface>
-   // {
-   // public:
-   //
-   //
-   //    Keyboard();
-   //    ~Keyboard() override;
-   //    /**
-   //     * Copied current keyboard state (256 virtual keys state) to state array.
-   //     * @param state [out] array of 256 virtual key states.
-   //     * @throws SystemException on error.
-   //     */
-   //    void getState(unsigned char state[256]) override;
-   //
-   //    /**
-   //     * Sets current keyboard state.
-   //     * @param state array of 256 virtual key states.
-   //     * @throws SystemException on error.
-   //     */
-   //    void setState(unsigned char state[256]) override;
-   //
-   //    /**
-   //     * Check if specified key is in pressed state.
-   //     * @param vkCode virtual code of key.
-   //     * @return true if key is pressed, false if released.
-   //     */
-   //    bool isKeyPressed(unsigned char vkCode) override;
-   //
-   // };
+   /**
+    * Wrapper on base WinAPI keyboard functions.
+    */
+   class CLASS_DECL_ACME Keyboard :
+   virtual public ::subsystem::composite <KeyboardInterface>
+   {
+   public:
+
+
+      Keyboard();
+      ~Keyboard() override;
+      /**
+       * Copied current keyboard state (256 virtual keys state) to state array.
+       * @param state [out] array of 256 virtual key states.
+       * @throws SystemException on error.
+       */
+      void getState(unsigned char state[256]) override;
+
+      /**
+       * Sets current keyboard state.
+       * @param state array of 256 virtual key states.
+       * @throws SystemException on error.
+       */
+      void setState(unsigned char state[256]) override;
+
+      /**
+       * Check if specified key is in pressed state.
+       * @param vkCode virtual code of key.
+       * @return true if key is pressed, false if released.
+       */
+      bool isKeyPressed(unsigned char vkCode) override;
+
+   };
 } // namespace subsystem
 
 

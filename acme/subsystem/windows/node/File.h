@@ -27,6 +27,7 @@
 
 //#include "remoting/remoting_common/region/::int_point.h"
 #include "acme/subsystem/node/File.h"
+#include "acme/_operating_system.h"
 
 namespace windows
 {
@@ -34,7 +35,7 @@ namespace windows
    {
 
       class CLASS_DECL_ACME File :
-         virtual public ::subsystem::composite<::subsystem::FileInterface>
+         virtual public ::subsystem::File
       {
       public:
          File();

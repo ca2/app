@@ -21,13 +21,14 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
+
+
 #include "acme/subsystem/particle.h"
 
 
 ////#include "remoting/remoting_common/util/winhdr.h"
-#include "acme/_operating_system.h"
+///#include "acme/_operating_system.h"
 
 
 //#include "SystemException.h"
@@ -46,6 +47,7 @@ namespace subsystem
 
 
 
+      //Shell();
       virtual ~ShellInterface() = 0;
       /**
        * Runs application as administrator and waits until execution finished.

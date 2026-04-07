@@ -43,7 +43,7 @@ namespace windows
          wait();
       }
 
-      void PipeImpersonatedThread::initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe)
+      void PipeImpersonatedThread::initialize_pipe_impersonated_thread(::subsystem::FileInterface* pfilePipe)
       {
          m_pfilePipe = pfilePipe;
            m_success = false;

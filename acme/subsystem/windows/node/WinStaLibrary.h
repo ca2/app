@@ -26,12 +26,11 @@
 
 
 #include "acme/subsystem/_common_header.h"
-
-#include "acme/subsystem/windows/node/DynamicLibrary.h"
-
+#include "acme/_operating_system.h"
 
 namespace windows
 {
+
    typedef BOOL (WINAPI* pWinStationConnectW)(HANDLE, ULONG, ULONG, PCWSTR, ULONG);
 
    class CLASS_DECL_ACME WinStaLibrary

@@ -26,6 +26,7 @@
 
 
 #include "acme/subsystem/node/ServiceControlManagerClient.h"
+#include "acme/_operating_system.h"
 //#include "acme/subsystem/_common_header.h"
 //#include "acme/subsystem/Exception.h"
 
@@ -82,7 +83,7 @@ namespace windows
        * of service.
        */
       class ServiceControlManagerClient :
-      virtual public ::subsystem::implementation<::subsystem::ServiceControlManagerClientInterface>
+      virtual public ::subsystem::ServiceControlManagerClient
       {
       public:
          /**

@@ -28,6 +28,7 @@
 #include "acme/subsystem/node/Screen.h"
 #include "acme/subsystem/framebuffer/PixelFormat.h"
 #include "acme/prototype/geometry2d/rectangle.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows

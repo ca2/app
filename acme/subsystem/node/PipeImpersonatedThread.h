@@ -30,16 +30,21 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_ACME PipeImpersonatedThread :
-   public Thread
+
+
+   class CLASS_DECL_ACME PipeImpersonatedThreadInterface :
+   //virtual public ::subsystem::particle<PipeImpersonatedThread>,
+         virtual public Thread
    {
    public:
       //PipeImpersonatedThread(HANDLE pipeHandle);
-      PipeImpersonatedThread();
-      ~PipeImpersonatedThread() override;
 
 
-      virtual void initialize_pipe_impersonated_thread(FileInterface * pfilePipe) = 0;
+      //PipeImpersonatedThread();
+      virtual ~PipeImpersonatedThreadInterface() = 0;
+
+
+      virtual void initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe) = 0;
 
       virtual void waitUntilImpersonated() = 0;
       virtual bool getImpersonationSuccess() = 0;
@@ -56,31 +61,31 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
-   // class CLASS_DECL_ACME PipeImpersonatedThread :
-   // virtual public ::subsystem::composite < PipeImpersonatedThreadInterface>
-   // {
-   // public:
-   //    PipeImpersonatedThread(FileInterface * pfilePipe);
-   //    PipeImpersonatedThread();
-   //     ~PipeImpersonatedThread() override;
-   //
-   //    void initialize_pipe_impersonated_thread(FileInterface * pfilePipe) override;
-   //
-   //    void waitUntilImpersonated() override;
-   //    bool getImpersonationSuccess() override;
-   //    ::string getFaultReason() override;
-   //
-   // //private:
-   //    void execute() override;
-   //    void onTerminate() override;
-   //
-   //    // HANDLE m_pipeHandle;
-   //    // bool m_success;
-   //    // ::string m_faultReason;
-   //    // WindowsEvent m_impersonationReadyEvent;
-   //    // WindowsEvent m_threadSleeper;
-   // };
-   //
+   class CLASS_DECL_ACME PipeImpersonatedThread :
+   virtual public ::subsystem::composite < PipeImpersonatedThreadInterface>
+   {
+   public:
+      //PipeImpersonatedThread(FileInterface * pfilePipe);
+      PipeImpersonatedThread();
+       ~PipeImpersonatedThread() override;
+
+      void initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe) override;
+
+      void waitUntilImpersonated() override;
+      bool getImpersonationSuccess() override;
+      ::string getFaultReason() override;
+
+   //private:
+      void execute() override;
+      void onTerminate() override;
+
+      // HANDLE m_pipeHandle;
+      // bool m_success;
+      // ::string m_faultReason;
+      // WindowsEvent m_impersonationReadyEvent;
+      // WindowsEvent m_threadSleeper;
+   };
+
    //// __PIPEIMPERSONATEDTHREAD_H__
 } // namespace subsystem
 

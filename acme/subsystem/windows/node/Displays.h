@@ -23,8 +23,11 @@
 //
 
 #pragma once
-#include "subsystem/particle.h"
 
+
+
+#include "acme/subsystem/_common_header.h"
+#include "acme/_operating_system.h"
 
 //#include "remoting/remoting_common/util/::earth::time.h"
 //#include <vector>
@@ -37,7 +40,7 @@ class CLASS_DECL_ACME DisplaysInterface :
    virtual public ::subsystem::particle_interface
 {
 public:
-  //WindowsDisplays();
+  //Displays();
   virtual ~DisplaysInterface() = 0;
 
   // If a display does not exist now the function return an empty rectangle.

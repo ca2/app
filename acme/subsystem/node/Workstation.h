@@ -38,13 +38,13 @@ namespace subsystem
    /**
     * Wrapper on WinAPI workstation functions.
     */
-   class CLASS_DECL_ACME Workstation :
-      virtual public ::subsystem::particle
+   class CLASS_DECL_ACME WorkstationInterface :
+      virtual public ::subsystem::particle_interface
    {
    public:
 
-      Workstation();
-      ~Workstation() override;
+      ///Workstation();
+      virtual ~WorkstationInterface() = 0;
 
       //virtual ~WorkstationInterface()=0;
       /**
@@ -61,26 +61,26 @@ namespace subsystem
    };
 
 
-   // /**
-   //  * Wrapper on WinAPI workstation functions.
-   //  */
-   // class CLASS_DECL_ACME Workstation :
-   //    virtual public ::subsystem::composite<WorkstationInterface>
-   // {
-   // public:
-   //
-   //    Workstation();
-   //    ~Workstation() override;
-   //    /**
-   //     * Locks workstation.
-   //     * @throws SystemException on fail.
-   //     */
-   //    void workstation_lock() override;
-   //    /**
-   //     * Logs off interactive user.
-   //     * @throws SystemException on fail.
-   //     * @remark caller must be run on interactive session.
-   //     */
-   //    void workstation_logOff() override;
-   // };
+   /**
+    * Wrapper on WinAPI workstation functions.
+    */
+   class CLASS_DECL_ACME Workstation :
+      virtual public ::subsystem::composite<WorkstationInterface >
+   {
+   public:
+
+      Workstation();
+      ~Workstation() override;
+      /**
+       * Locks workstation.
+       * @throws SystemException on fail.
+       */
+      void workstation_lock() override;
+      /**
+       * Logs off interactive user.
+       * @throws SystemException on fail.
+       * @remark caller must be run on interactive session.
+       */
+      void workstation_logOff() override;
+   };
 } // namespace  subsystem

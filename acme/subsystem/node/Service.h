@@ -46,18 +46,21 @@ namespace subsystem
    virtual public ::subsystem::particle_interface
    {
    public:
+
+
+      //static ServiceInterface *g_pservice;
       /**
        * Creates new Service class instance.
        * @remark pointer to global service (singleton) saves here.
        * @param name name of service.
        */
       //Service(const ::scoped_string & scopedstrName);
-
+//Service();
       /**
        * Deletes service instance.
        * @remark releases singleton pointer.
        */
-      virtual ~ServiceInterface() = 0;
+       virtual ~ServiceInterface() = 0;
 
       virtual void initialize_service(const ::scoped_string & scopedstrName) = 0;
 
@@ -133,18 +136,26 @@ namespace subsystem
    virtual public ::subsystem::composite< ServiceInterface>
    {
    public:
+
+
+      static Service *g_pservice;
+
       /**
        * Creates new Service class instance.
        * @remark pointer to global service (singleton) saves here.
        * @param name name of service.
        */
-      Service(const ::scoped_string & scopedstrName);
+      //Service(const ::scoped_string & scopedstrName);
+      Service();
 
       /**
        * Deletes service instance.
        * @remark releases singleton pointer.
        */
       ~Service() override;
+
+
+      void initialize_service(const ::scoped_string & scopedstr) override;
 
       /**
        * Starts service execution.
@@ -206,7 +217,9 @@ namespace subsystem
    //    /**
    //     * Service (global instance).
    //     */
-       static Service *g_service;
+
    };
+
+
 } // namespace subsystem
 

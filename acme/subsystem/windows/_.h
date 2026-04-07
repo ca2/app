@@ -16,6 +16,7 @@ namespace windows
    } // namespace subsystem
 
 
+   class WindowsCommandLineArguments;
 
 } // namespace windows
 

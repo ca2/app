@@ -26,13 +26,14 @@
 
 
 #include "acme/subsystem/node/SystemInformation.h"
+#include "acme/_operating_system.h"
 
 namespace windows
 {
    namespace subsystem
    {
       class CLASS_DECL_ACME SystemInformation :
-      virtual  public ::subsystem::composite<::subsystem::SystemInformationInterface>
+      virtual  public ::subsystem::SystemInformation
       {
       public:
 

@@ -43,7 +43,7 @@ namespace windows
        * @author yuri, enikey.
        */
       class CLASS_DECL_ACME GlobalMutex :
-         virtual public ::subsystem::implementation<::subsystem::GlobalMutex>
+         virtual public ::subsystem::GlobalMutex
       {
       public:
          /**

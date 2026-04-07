@@ -30,13 +30,13 @@
    {
       // This class is a mere envelop for process handle that will automatically
       // closed at destructor calling.
-      class CLASS_DECL_ACME ProcessHandle :
-      virtual public ::subsystem::particle
+      class CLASS_DECL_ACME ProcessHandleInterface :
+      virtual public ::subsystem::particle_interface
 
       {
       public:
-         ProcessHandle();
-         ~ProcessHandle() override;
+         //ProcessHandle();
+         virtual ~ProcessHandleInterface() =0 ;
 
          // @throws ::remoting::Exception on an error.
          virtual void openProcess(unsigned int dwDesiredAccess,
@@ -61,41 +61,41 @@
       };
 
 
-//       // This class is a mere envelop for process handle that will automatically
-//       // closed at destructor calling.
-//       class CLASS_DECL_ACME ProcessHandle :
-//       virtual public ::subsystem::composite<ProcessHandleInterface>
-//
-//       {
-//       public:
-//          ProcessHandle();
-//          ~ProcessHandle() override;
-//
-//          // @throws ::remoting::Exception on an error.
-//          void openProcess(unsigned int dwDesiredAccess,
-//                           bool bInheritHandle,
-//                           ::process_identifier processidentifier) override;
-//
-//          // Returns the handle of the openned process by openProcess() function.
-//          // If openProcess() function has not been called before then getHandle()
-//          // will return zero.
-// //         HANDLE getHandle() const;
-//
-//          /**
-//    * Returns SID of process owner.
-//    * @param processHandle handle of process.
-//    * @return SID of owner of specified process.
-//    * @throws SystemException if operation failed.
-//    * @fixme stub (returns invalid SID).
-//    */
-//          ::pointer < ::subsystem::SecurityIdentifier > getProcessOwner() override;
-//
-//
-//          // Returns process module path. Call the openProcess() function before.
-//          // @throws ::remoting::Exception on an error.
-//          ::string getProcessModulePath() override;
-//
-//          //private:
-//          //HANDLE m_hProcess;
-//       };
+      // This class is a mere envelop for process handle that will automatically
+      // closed at destructor calling.
+      class CLASS_DECL_ACME ProcessHandle :
+      virtual public ::subsystem::composite<ProcessHandleInterface>
+
+      {
+      public:
+         ProcessHandle();
+         ~ProcessHandle() override;
+
+         // @throws ::remoting::Exception on an error.
+         void openProcess(unsigned int dwDesiredAccess,
+                          bool bInheritHandle,
+                          ::process_identifier processidentifier) override;
+
+         // Returns the handle of the openned process by openProcess() function.
+         // If openProcess() function has not been called before then getHandle()
+         // will return zero.
+//         HANDLE getHandle() const;
+
+         /**
+   * Returns SID of process owner.
+   * @param processHandle handle of process.
+   * @return SID of owner of specified process.
+   * @throws SystemException if operation failed.
+   * @fixme stub (returns invalid SID).
+   */
+         ::pointer < ::subsystem::SecurityIdentifier > getProcessOwner() override;
+
+
+         // Returns process module path. Call the openProcess() function before.
+         // @throws ::remoting::Exception on an error.
+         ::string getProcessModulePath() override;
+
+         //private:
+         //HANDLE m_hProcess;
+      };
    } //namespace subsystem

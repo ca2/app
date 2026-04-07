@@ -25,8 +25,9 @@
 #pragma once
 
 
-#include "WindowsApplication.h"
-#include "SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
+#include "acme/subsystem/windows/node/OperatingSystemApplication.h"
+
 
 /**
  * Windows application that runs on WinSta0 and current active desktop.

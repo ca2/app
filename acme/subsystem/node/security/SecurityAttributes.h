@@ -38,7 +38,7 @@ namespace subsystem
    {
    public:
       //SecurityAttributes();
-      virtual ~SecurityAttributesInterface()=0;
+      virtual ~SecurityAttributesInterface() = 0;
 
       // Sets the security attributes to default values. After calling this
       // function the getSecurityAttributes() function will to return zero until

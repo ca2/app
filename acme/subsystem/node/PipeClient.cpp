@@ -33,6 +33,14 @@ namespace subsystem
    {
    }
 
+
+   PipeClient::~PipeClient()
+   {
+
+
+   }
+
+
    ::pointer < NamedPipe >PipeClient::connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize)
    {
       return m_pparticleThis->connect(scopedstrName, maxPortionSize);

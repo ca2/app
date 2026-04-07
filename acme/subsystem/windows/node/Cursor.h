@@ -26,31 +26,35 @@
 
 
 //#include "remoting/remoting_common/region/::int_point.h"
-#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/node/Cursor.h"
+#include "acme/_operating_system.h"
 
-namespace subsystem
+namespace windows
 {
-   class CLASS_DECL_ACME CursorInterface :
-   virtual public ::subsystem::particle_interface
+   namespace subsystem
    {
-   public:
-      //WinCursor();
-      virtual ~CursorInterface() = 0;
+      class CLASS_DECL_ACME Cursor :
+      virtual public ::subsystem::implementation<::subsystem::CursorInterface >
+      {
+      public:
+         Cursor();
+         ~Cursor() override;
 
-      virtual ::int_point getCursorPos() const = 0;
-   };
+         virtual ::int_point getCursorPos() const = 0;
+      };
 
-   class CLASS_DECL_ACME Cursor :
-   virtual public ::subsystem::composite<CursorInterface>
-   {
-   public:
-      Cursor();
-      ~Cursor() override;
+      // class CLASS_DECL_ACME Cursor :
+      // virtual public ::subsystem::composite<Cursor
+      // {
+      // public:
+      //    Cursor();
+      //    ~Cursor() override;
+      //
+      //    ::int_point getCursorPos() const override;
+      // };
 
-      ::int_point getCursorPos() const override;
-   };
-
-   //// __WINCURSOR_H__
-} // namespace subsystem
+      //// __WINCURSOR_H__
+   } // namespace subsystem
+} // namespace windows
 
 

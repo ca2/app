@@ -26,12 +26,12 @@
 
 
 #include "acme/subsystem/_common_header.h"
-#include "WindowsEvent.h"
+
 #include "acme/subsystem/io/Channel.h"
 ////#include "remoting/remoting_common/thread/LocalMutex.h"
 #include "acme/subsystem/node/NamedPipe.h"
 #include "acme/subsystem/windows/node/Pipe.h"
-
+#include "acme/subsystem/windows/node/WindowsEvent.h"
 
 namespace windows
 {
@@ -43,7 +43,7 @@ namespace windows
        * @author yuri, enikey.
        */
       class CLASS_DECL_ACME NamedPipe :
-         virtual public ::subsystem::implementation<::subsystem::NamedPipeInterface>,
+         virtual public ::subsystem::NamedPipe,
          virtual public Pipe
 
       {
@@ -61,18 +61,18 @@ namespace windows
 
          void initialize_named_pipe(::subsystem::FileInterface* pfilePipe, unsigned int maxPortionSize, bool asServer) override;
 
-         bool is_subsystem_implementation(void) const override
-         {
-
-            return ::subsystem::implementation<::subsystem::NamedPipeInterface>::is_subsystem_implementation();
-
-         }
-         bool is_subsystem_composite(void) const override
-         {
-
-            return ::subsystem::implementation<::subsystem::NamedPipeInterface>::is_subsystem_composite();
-
-         }
+         // bool is_subsystem_implementation(void) const override
+         // {
+         //
+         //    return ::subsystem::NamedPipe::is_subsystem_implementation();
+         //
+         // }
+         // bool is_subsystem_composite(void) const override
+         // {
+         //
+         //    return ::subsystem::NamedPipe::is_subsystem_composite();
+         //
+         // }
 
          unsigned int getMaxPortionSize() override
          {
@@ -113,7 +113,7 @@ namespace windows
       //private:
          void checkPipeFile() override;
 
-         ::pointer < ::subsystem::FileInterface > m_pfilePipe;
+         ::pointer < ::subsystem::File > m_pfilePipe;
          critical_section m_criticalsectionPipe;
          ::string m_pipeName;
 

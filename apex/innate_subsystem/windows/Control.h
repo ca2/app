@@ -44,7 +44,7 @@ namespace windows
       //
 
       class Control :
-         virtual public ::subsystem::implementation<::innate_subsystem::ControlInterface>
+         virtual public ::subsystem::implementation<::innate_subsystem::Control
       {
       public:
 

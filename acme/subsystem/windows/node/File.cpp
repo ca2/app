@@ -63,7 +63,7 @@ namespace windows
 } // namespace windows
 
 
-CLASS_DECL_ACME HANDLE as_HANDLE(::subsystem::FileInterface * pfile)
+CLASS_DECL_ACME HANDLE as_HANDLE(::subsystem::File * pfile)
 {
 
    ::cast < ::windows::subsystem::File > pwindowssubsystemfile = pfile;

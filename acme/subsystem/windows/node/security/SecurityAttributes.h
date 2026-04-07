@@ -21,24 +21,21 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
 
 
 #include "acme/subsystem/node/security/SecurityAttributes.h"
+#include "acme/_operating_system.h"
 #include "acme/subsystem/windows/node/security/SecurityIdentifier.h"
 #include "acme/subsystem/windows/node/security/SecurityDescriptor.h"
-#include "acme/_operating_system.h"
 
-
-//#include <vector>
 
 namespace windows
 {
    namespace subsystem
    {
       class CLASS_DECL_ACME SecurityAttributes :
-      virtual  public ::subsystem::implementation<::subsystem::SecurityAttributesInterface>
+      virtual  public ::subsystem::SecurityAttributes
       {
       public:
          SecurityAttributes();

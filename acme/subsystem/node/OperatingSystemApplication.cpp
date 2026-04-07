@@ -42,7 +42,7 @@ namespace subsystem
    {
    }
 
-   //
+
    //    OperatingSystemApplication::OperatingSystemApplication(::hinstance appInstance,
    //                                        const ::scoped_string & scopedstrwindowClassName)
    // : m_appInstance(appInstance),

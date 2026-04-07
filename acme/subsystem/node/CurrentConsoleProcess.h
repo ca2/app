@@ -46,7 +46,7 @@ namespace subsystem
  *
  * @fixme rename it.
  */
-   class CLASS_DECL_ACME CurrentConsoleProcessInterface :
+   class CLASS_DECL_ACME CurrentConsoleProcess :
       virtual public Process
    {
    public:
@@ -56,10 +56,11 @@ namespace subsystem
        * See description of Process constructor.
        */
       //CurrentConsoleProcess(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
+      CurrentConsoleProcess();
       /**
        * Destoys instance of class.
        */
-      virtual ~CurrentConsoleProcessInterface() = 0;
+      ~CurrentConsoleProcess() override;
 
 
       virtual void initialize_current_console_process(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) = 0;
@@ -79,50 +80,50 @@ namespace subsystem
    //    bool m_connectRdpSession;
    };
 
-   /**
-    * Enables you to start and stop processes in interactive console session.
-    *
-    * Solves problem of starting interactive processes from service.
-    *
-    * @note that created process will have same access rights as caller (parent process).
-    *
-    * @remark this class is needed for executing TightVNC Server system applications
-    * like Desktop Server, Query Application, so it can do "XP Trick"
-    * (force changing current session to session0 and lock workstation after) on WinXP to
-    * avoid 233 'Pipe not connected error' error in CreateProcessAsUser WinAPI function
-    * (It's unfixed Microsoft bug on Windows XP).
-    *
-    * @fixme rename it.
-    */
-   class CLASS_DECL_ACME CurrentConsoleProcess :
-   virtual public ::subsystem::composite< CurrentConsoleProcessInterface >
-   {
-   public:
-      /**
-       * Inherited from superclass (Process class).
-       *
-       * See description of Process constructor.
-       */
-      CurrentConsoleProcess(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
-      /**
-       * Destoys instance of class.
-       */
-      ~CurrentConsoleProcess() override;
-
-      void initialize_current_console_process(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) override;
-
-      /**
-       * Starts process in interactive console session.
-       * @throws SystemException on fail.
-       * @remark can use "XP Trick" to avoid error 233 bug on Windows XP,
-       * read more at remark to CurrentConsoleProcess class.
-       * @remark to detect WinXP bug it uses loop, so before XP trick will be tried,
-       * it will try to start process for some times.
-       */
-      void start() override;
-
-   // private:
-   //    LogWriter *m_log;
-   //    bool m_connectRdpSession;
-   };
+   // /**
+   //  * Enables you to start and stop processes in interactive console session.
+   //  *
+   //  * Solves problem of starting interactive processes from service.
+   //  *
+   //  * @note that created process will have same access rights as caller (parent process).
+   //  *
+   //  * @remark this class is needed for executing TightVNC Server system applications
+   //  * like Desktop Server, Query Application, so it can do "XP Trick"
+   //  * (force changing current session to session0 and lock workstation after) on WinXP to
+   //  * avoid 233 'Pipe not connected error' error in CreateProcessAsUser WinAPI function
+   //  * (It's unfixed Microsoft bug on Windows XP).
+   //  *
+   //  * @fixme rename it.
+   //  */
+   // class CLASS_DECL_ACME CurrentConsoleProcess :
+   // virtual public ::subsystem::composite< CurrentConsoleProcessInterface >
+   // {
+   // public:
+   //    /**
+   //     * Inherited from superclass (Process class).
+   //     *
+   //     * See description of Process constructor.
+   //     */
+   //    CurrentConsoleProcess(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
+   //    /**
+   //     * Destoys instance of class.
+   //     */
+   //    ~CurrentConsoleProcess() override;
+   //
+   //    void initialize_current_console_process(LogWriter *log, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) override;
+   //
+   //    /**
+   //     * Starts process in interactive console session.
+   //     * @throws SystemException on fail.
+   //     * @remark can use "XP Trick" to avoid error 233 bug on Windows XP,
+   //     * read more at remark to CurrentConsoleProcess class.
+   //     * @remark to detect WinXP bug it uses loop, so before XP trick will be tried,
+   //     * it will try to start process for some times.
+   //     */
+   //    void start() override;
+   //
+   // // private:
+   // //    LogWriter *m_log;
+   // //    bool m_connectRdpSession;
+   // };
 } // namespace subsystem

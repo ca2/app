@@ -38,7 +38,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX ImageList :
-   virtual public ::subsystem::composite<ImageListInterface>
+   virtual public ::subsystem::composite<ImageList
    {
    public:
 

@@ -52,7 +52,7 @@ namespace innate_subsystem
    };
 
    class NotifyIconWindow :
-      virtual public ::subsystem::composite<NotifyIconWindowInterface>
+      virtual public ::subsystem::composite<NotifyIconWindow
    {
    public:
 

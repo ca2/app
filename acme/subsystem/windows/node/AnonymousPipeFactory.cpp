@@ -61,9 +61,9 @@ namespace windows
       //
       //    m_plogwriter =  plogwriter;
       // }
-      void AnonymousPipeFactory::generatePipes(::pointer < ::subsystem::AnonymousPipeInterface > &firstSide,
+      void AnonymousPipeFactory::generatePipes(::pointer < ::subsystem::AnonymousPipe > &firstSide,
                                                bool firstSideIsInheritable,
-                                               ::pointer < ::subsystem::AnonymousPipeInterface>&secondSide,
+                                               ::pointer < ::subsystem::AnonymousPipe >&secondSide,
                                                bool secondSideIsInheritable)
       {
          ::pointer < ::windows::subsystem::File > pfileFirstSideWrite;

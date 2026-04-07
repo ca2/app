@@ -27,6 +27,7 @@
 
 //#include "acme/subsystem/_common_header.h"
 #include "acme/subsystem/node/PipeClient.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows
@@ -37,7 +38,7 @@ namespace windows
        * Pipe client factory.
        */
       class CLASS_DECL_ACME PipeClient :
-      virtual  public ::subsystem::implementation< ::subsystem::PipeClientInterface>
+      virtual  public ::subsystem::PipeClient
       {
       public:
          ::pointer< ::subsystem::NamedPipe > connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) override;

@@ -27,7 +27,6 @@
 
 //#include "acme/subsystem/_common_header.h"
 #include "acme/subsystem/node/Process.h"
-#include "acme/_operating_system.h"
 #include "acme/subsystem/windows/node/ProcessHandle.h"
 
 //#include "SystemException.h"
@@ -40,7 +39,7 @@ namespace  windows
        * Enables you to start and stop local processes.
        */
       class CLASS_DECL_ACME Process :
-      virtual public ::subsystem::implementation<::subsystem::ProcessInterface>
+      virtual public ::subsystem::Process
       {
       public:
          /**
@@ -71,7 +70,7 @@ namespace  windows
          void setArguments(const ::scoped_string & scopedstrArgs) override;
 
          // Sets standard in/out/error handles for the child process.
-         void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) override;
+         void setStandardIoHandles(::subsystem::File * stdIn, ::subsystem::File * stdOut, ::subsystem::File * stdErr) override;
 
          // If handlesIsInerited is true the handles of the parent process can
          // be used by the child process.
@@ -108,7 +107,7 @@ namespace  windows
          /**
           * Returns the process handle if process already run and zero otherwise.
           */
-         ::subsystem::ProcessHandleInterface * getProcessHandle() override;
+         ::subsystem::ProcessHandle * getProcessHandle() override;
 
       //protected:
          /**

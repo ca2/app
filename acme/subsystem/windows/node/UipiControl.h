@@ -26,6 +26,7 @@
 
 
 #include "acme/subsystem/_common_header.h"
+#include "acme/_operating_system.h"
 //#include "log_writer/LogWriter.h"
 
 namespace windows

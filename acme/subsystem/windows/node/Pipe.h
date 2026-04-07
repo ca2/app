@@ -26,8 +26,8 @@
 
 
 #include "acme/subsystem/_common_header.h"
-#include "WindowsEvent.h"
 #include "acme/subsystem/node/Pipe.h"
+#include "acme/subsystem/windows/node/WindowsEvent.h"
 //#include "remoting/remoting_common/thread/LocalMutex.h"
 
 namespace windows
@@ -37,7 +37,7 @@ namespace windows
       // This class is not an interface but is a class that contain common
       // methods/source codes for derived classes to work with pipe handles.
       class CLASS_DECL_ACME Pipe :
-      virtual public ::subsystem::implementation<::subsystem::PipeInterface>
+      virtual public ::subsystem::Pipe
       {
       public:
          unsigned int getMaxPortionSize();
@@ -56,8 +56,8 @@ namespace windows
          // The pointer uses because the functions must have access to
          // the same variable as in a derived class to rich a thread safe
          // handle usage.
-         size_t readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe);
-         size_t writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe);
+         size_t readByFile(void *buffer, size_t len, ::subsystem::File * pfilePipe);
+         size_t writeByFile(const void *buffer, size_t len, ::subsystem::File * pfilePipe);
 
          // This mutex is to use for pipe handles that uses in the above functions.
          // The mutex protect collision accesses to handle fields of derived classes.
@@ -67,7 +67,7 @@ namespace windows
          WindowsEvent m_writeEvent;
 
       //private:
-         void checkPipeFile(::subsystem::FileInterface * pfilePipe);
+         void checkPipeFile(::subsystem::File * pfilePipe);
 
          unsigned long long m_totalWrote;
          unsigned long long m_totalRead;

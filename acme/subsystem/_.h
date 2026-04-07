@@ -30,7 +30,6 @@ namespace subsystem
 
    using LogWriter = ::particle;
 
-
    class File;
 
    class FileInterface;
@@ -40,6 +39,8 @@ namespace subsystem
    class SecurityAttributes;
 
    class SecurityDescriptor;
+
+   class ProcessHandle;
 
    class ProcessHandleInterface;
 

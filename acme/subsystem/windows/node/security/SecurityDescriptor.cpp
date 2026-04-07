@@ -23,7 +23,6 @@
 //
 #include "framework.h"
 #include "SecurityDescriptor.h"
-
 #include <AccCtrl.h>
 #include <Aclapi.h>
 #include <crtdbg.h>

@@ -26,6 +26,7 @@
 
 
 #include "acme/subsystem/node/DynamicLibrary.h"
+#include "acme/_operating_system.h"
 
 //#include "acme/subsystem/Exception.h"
 
@@ -37,7 +38,7 @@ namespace windows
       Dynamic library class.
       */
       class CLASS_DECL_ACME DynamicLibrary :
-      virtual public ::subsystem::implementation<::subsystem::DynamicLibraryInterface>
+      virtual public ::subsystem::DynamicLibrary
       {
       public:
          /**

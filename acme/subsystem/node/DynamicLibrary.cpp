@@ -29,10 +29,15 @@
 
 namespace subsystem
 {
-   DynamicLibrary::DynamicLibrary(const ::scoped_string & scopedstrFilename)
+   // DynamicLibrary::DynamicLibrary(const ::scoped_string & scopedstrFilename)
+   // //: m_module(0)
+   // {
+   //    init(scopedstrFilename);
+   // }
+   DynamicLibrary::DynamicLibrary()
    //: m_module(0)
    {
-      init(scopedstrFilename);
+      //init(scopedstrFilename);
    }
 
    // DynamicLibrary::DynamicLibrary()
@@ -47,28 +52,28 @@ namespace subsystem
       // }
    }
 
-   void DynamicLibrary::init(const ::scoped_string & scopedstrFilename)
-   {
-      m_pparticleThis->init(scopedstrFilename);
-      // m_module = LoadLibrary(::wstring(scopedstrFilename));
-      //
-      // if (m_module == 0) {
-      //    ::string errMsg;
-      //
-      //    errMsg.format("{} library not found", scopedstrFilename);
-      //
-      //    throw ::remoting::Exception(errMsg);
-      // }
-   }
+    void DynamicLibrary::init(const ::scoped_string & scopedstrFilename)
+    {
+       m_pparticleThis->init(scopedstrFilename);
+       // m_module = LoadLibrary(::wstring(scopedstrFilename));
+       //
+       // if (m_module == 0) {
+       //    ::string errMsg;
+       //
+       //    errMsg.format("{} library not found", scopedstrFilename);
+       //
+       //    throw ::remoting::Exception(errMsg);
+       // }
+    }
 
-   void * DynamicLibrary::getProcAddress(const char *procName)
-   {
+    void * DynamicLibrary::getProcAddress(const char *procName)
+    {
 
-      return m_pparticleThis->getProcAddress(procName);
-      //_ASSERT(m_module != 0);
+       return m_pparticleThis->getProcAddress(procName);
+       //_ASSERT(m_module != 0);
 
-      //return ::GetProcAddress(m_module, procName);
-   }
-} // namespace subsystem
+       //return ::GetProcAddress(m_module, procName);
+    }
+ } // namespace subsystem
 
 

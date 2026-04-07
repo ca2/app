@@ -120,7 +120,7 @@ namespace windows
          }
       }
 
-      ::subsystem::FileInterface * AnonymousPipe::getWriteFile() const
+      ::subsystem::FileInterface* AnonymousPipe::getWriteFile() const
       {
          return m_pfileWrite;
       }

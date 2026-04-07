@@ -31,7 +31,7 @@
 namespace innate_subsystem
 {
    class CLASS_DECL_ACME DeviceContext :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle<DeviceContext>
    {
    public:
       // Create device context linked to window DC.
@@ -39,7 +39,7 @@ namespace innate_subsystem
       // Create device context complatible with other DC.
       DeviceContext(DeviceContext* compatibleDevice);
       // Destroys device context.
-      virtual ~DeviceContext() = 0;
+      ~DeviceContext() override;
 
       //private:
       // Initialize class from PaintWindow

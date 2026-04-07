@@ -22,7 +22,6 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/_operating_system.h"
 #include "InputInjector.h"
 #include "Keyboard.h"
 //#include "remoting/remoting_common/win_system/Environment.h"

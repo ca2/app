@@ -33,7 +33,7 @@
 
 namespace subsystem
 {
-   Service *Service::g_service = 0;
+   Service *Service::g_pservice = 0;
 
    // void WINAPI Service::ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv)
    // {
@@ -108,16 +108,23 @@ namespace subsystem
    // }
 
 
-   Service::Service(const scoped_string& scopedstrName)
-   {
-
-   }
-
 
    Service::~Service()
    {
-      Service::g_service = 0;
+      Service::g_pservice = nullptr;
    }
+
+
+   void Service::initialize_service(const scoped_string& scopedstr)
+   {
+      m_pparticleThis->initialize_service(scopedstr);
+   }
+
+
+   // const scoped_string& scopedstrName)
+   // {
+   //
+   // }
 
    void Service::run()
    {

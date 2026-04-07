@@ -41,7 +41,7 @@ void CtrlAltDelSimulator::execute()
 {
   // Switch thread desktop to "Winlogon".
 
-   auto pdesktopselector = create_particle<::subsystem::DesktopSelector>();
+   auto pdesktopselector = createø<::subsystem::DesktopSelector>();
 
   if (DesktopSelector::selectDesktop(::string("Winlogon"))) {
     HWND hwndCtrlAltDel = FindWindow(L"SAS window class", L"SAS window");

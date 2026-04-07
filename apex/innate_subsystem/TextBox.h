@@ -38,7 +38,10 @@ namespace innate_subsystem
       virtual public Control
    {
    public:
-      virtual ~TextBoxInterface() = 0;
+
+
+      TextBox();
+      ~TextBox() override;
 
 
    ///public:
@@ -79,7 +82,7 @@ namespace innate_subsystem
 
 
    // class CLASS_DECL_APEX TextBox :
-   //    virtual public ::subsystem::composite<TextBoxInterface>,
+   //    virtual public ::subsystem::composite<TextBox,
    //    virtual public Control
    //  {
    //  public:

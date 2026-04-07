@@ -2675,10 +2675,6 @@ if (${WIN32})
        subsystem/windows/node/Process.h
        subsystem/windows/node/ProcessHandle.cpp
        subsystem/windows/node/ProcessHandle.h
-       subsystem/windows/node/Registry.cpp
-       subsystem/windows/node/Registry.h
-       subsystem/windows/node/RegistryKey.cpp
-       subsystem/windows/node/RegistryKey.h
        #       subsystem/windows/node/remoting_win_system.vcxproj
        #       subsystem/windows/node/remoting_win_system.vcxproj.filters
        #       subsystem/windows/node/remoting_win_system.vcxproj.user
@@ -2714,6 +2710,10 @@ if (${WIN32})
        subsystem/windows/node/WindowsEventEx.h
        subsystem/windows/node/WindowsProcessCommandLine.cpp
        subsystem/windows/node/WindowsProcessCommandLine.h
+       subsystem/windows/node/WindowsRegistry.cpp
+       subsystem/windows/node/WindowsRegistry.h
+       subsystem/windows/node/WindowsRegistryKey.cpp
+       subsystem/windows/node/WindowsRegistryKey.h
        subsystem/windows/node/WinHandles.cpp
        subsystem/windows/node/WinHandles.h
        subsystem/windows/node/WinHooks.cpp
@@ -3587,7 +3587,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   subsystem/particle.cpp)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

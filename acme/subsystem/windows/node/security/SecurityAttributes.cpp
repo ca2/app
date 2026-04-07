@@ -22,7 +22,6 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "acme/_operating_system.h"
 #include "SecurityAttributes.h"
 
 
@@ -39,55 +38,55 @@ namespace subsystem
    {
    }
 
-   void SecurityAttributes::setDefaultAttributes()
-   {
-      m_pparticleThis->setDefaultAttributes();
-      //m_isDefaultAttributes = true;
-   }
-
-   void SecurityAttributes::shareToAllUsers()
-   {
-
-      m_pparticleThis->shareToAllUsers();
-      // SecurityIdentifier localUsers("S-1-1-0");
-      //
-      // EXPLICIT_ACCESS explisitAccess;
-      // ZeroMemory(&explisitAccess, sizeof(EXPLICIT_ACCESS));
-      //
-      // // All access for local users.
-      // explisitAccess.grfAccessPermissions = GENERIC_ALL;
-      // explisitAccess.grfAccessMode = SET_ACCESS;
-      // explisitAccess.grfInheritance = SUB_CONTAINERS_AND_OBJECTS_INHERIT;
-      // explisitAccess.Trustee.TrusteeForm = TRUSTEE_IS_SID;
-      // explisitAccess.Trustee.TrusteeType = TRUSTEE_IS_WELL_KNOWN_GROUP;
-      // explisitAccess.Trustee.ptstrName  = (LPTSTR)localUsers.getSid();
-      //
-      // try {
-      //    m_sd.setRulesAsDacl(1, &explisitAccess);
-      // } catch (...) {
-      //    m_isDefaultAttributes = true;
-      // }
-      //
-      // m_securityAttributes.lpSecurityDescriptor = m_sd.getSD();
-      //
-      // m_isDefaultAttributes = false;
-   }
-   //
-   // SECURITY_ATTRIBUTES *SecurityAttributes::getSecurityAttributes()
+   // void SecurityAttributes::setDefaultAttributes()
    // {
-   //    if (m_isDefaultAttributes) {
-   //       return 0;
-   //    } else {
-   //       return &m_securityAttributes;
-   //    }
+   //    m_pparticleThis->setDefaultAttributes();
+   //    //m_isDefaultAttributes = true;
    // }
-
-   void SecurityAttributes::setInheritable()
-   {
-      m_pparticleThis->setInheritable();
-      // m_isDefaultAttributes = false;
-      // m_securityAttributes.bInheritHandle = TRUE;
-   }
+   //
+   // void SecurityAttributes::shareToAllUsers()
+   // {
+   //
+   //    m_pparticleThis->shareToAllUsers();
+   //    // SecurityIdentifier localUsers("S-1-1-0");
+   //    //
+   //    // EXPLICIT_ACCESS explisitAccess;
+   //    // ZeroMemory(&explisitAccess, sizeof(EXPLICIT_ACCESS));
+   //    //
+   //    // // All access for local users.
+   //    // explisitAccess.grfAccessPermissions = GENERIC_ALL;
+   //    // explisitAccess.grfAccessMode = SET_ACCESS;
+   //    // explisitAccess.grfInheritance = SUB_CONTAINERS_AND_OBJECTS_INHERIT;
+   //    // explisitAccess.Trustee.TrusteeForm = TRUSTEE_IS_SID;
+   //    // explisitAccess.Trustee.TrusteeType = TRUSTEE_IS_WELL_KNOWN_GROUP;
+   //    // explisitAccess.Trustee.ptstrName  = (LPTSTR)localUsers.getSid();
+   //    //
+   //    // try {
+   //    //    m_sd.setRulesAsDacl(1, &explisitAccess);
+   //    // } catch (...) {
+   //    //    m_isDefaultAttributes = true;
+   //    // }
+   //    //
+   //    // m_securityAttributes.lpSecurityDescriptor = m_sd.getSD();
+   //    //
+   //    // m_isDefaultAttributes = false;
+   // }
+   // //
+   // // SECURITY_ATTRIBUTES *SecurityAttributes::getSecurityAttributes()
+   // // {
+   // //    if (m_isDefaultAttributes) {
+   // //       return 0;
+   // //    } else {
+   // //       return &m_securityAttributes;
+   // //    }
+   // // }
+   //
+   // void SecurityAttributes::setInheritable()
+   // {
+   //    m_pparticleThis->setInheritable();
+   //    // m_isDefaultAttributes = false;
+   //    // m_securityAttributes.bInheritHandle = TRUE;
+   // }
 } // namespace subsystem
 
 

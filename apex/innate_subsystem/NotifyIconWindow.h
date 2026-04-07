@@ -32,13 +32,13 @@
 
 namespace innate_subsystem
 {
-   class NotifyIconWindowInterface :
-   virtual public ::subsystem::particle_interface
+   class NotifyIconWindow :
+   virtual public ::subsystem::particle
    {
    public:
 
-      //NotifyIconWindow();
-      virtual ~NotifyIconWindowInterface() = 0;
+      NotifyIconWindow();
+      ~NotifyIconWindow() override;
 
       virtual ::operating_system::window getWindow() = 0;
 
@@ -50,24 +50,24 @@ namespace innate_subsystem
 
       //friend class NotifyIcon;
    };
-
-   class NotifyIconWindow :
-      virtual public ::subsystem::composite<NotifyIconWindowInterface>
-   {
-   public:
-
-      NotifyIconWindow();
-       ~NotifyIconWindow() override;
-
-      ::operating_system::window getWindow() override;
-
-      void setWindowProcHolder(WindowProcHolder *wph) override;
-
-      //protected:
-      //  HWND m_window;
-      //WindowProcHolder *m_wph;
-
-      //friend class NotifyIcon;
-   };
+   //
+   // class NotifyIconWindow :
+   //    virtual public ::subsystem::composite<NotifyIconWindow
+   // {
+   // public:
+   //
+   //    NotifyIconWindow();
+   //     ~NotifyIconWindow() override;
+   //
+   //    ::operating_system::window getWindow() override;
+   //
+   //    void setWindowProcHolder(WindowProcHolder *wph) override;
+   //
+   //    //protected:
+   //    //  HWND m_window;
+   //    //WindowProcHolder *m_wph;
+   //
+   //    //friend class NotifyIcon;
+   // };
 
 } // namespace innate_subsystem

@@ -174,10 +174,6 @@ list(APPEND apex_source
    #innate_subsystem/gui.vcxproj.filters
    innate_subsystem/BalloonTip.cpp
    innate_subsystem/BalloonTip.h
-   innate_subsystem/BaseDialog.cpp
-   innate_subsystem/BaseDialog.h
-   innate_subsystem/BaseWindow.cpp
-   innate_subsystem/BaseWindow.h
    innate_subsystem/CheckBox.cpp
    innate_subsystem/CheckBox.h
    innate_subsystem/ComboBox.cpp
@@ -186,6 +182,8 @@ list(APPEND apex_source
    innate_subsystem/CommonControlsEx.h
    innate_subsystem/Control.cpp
    innate_subsystem/Control.h
+   innate_subsystem/Dialog.cpp
+   innate_subsystem/Dialog.h
    innate_subsystem/FilteredTextBox.cpp
    innate_subsystem/FilteredTextBox.h
    innate_subsystem/ImagedButton.cpp
@@ -230,6 +228,8 @@ list(APPEND apex_source
    innate_subsystem/Tooltip.h
    innate_subsystem/Trackbar.cpp
    innate_subsystem/Trackbar.h
+   innate_subsystem/Window.cpp
+   innate_subsystem/Window.h
    innate_subsystem/WindowFinder.cpp
    innate_subsystem/WindowFinder.h
    innate_subsystem/WindowMessageHandler.h
@@ -804,10 +804,6 @@ if (WIN32)
       innate_subsystem/windows/drawing/BitmapGraphics.cpp
       innate_subsystem/windows/BalloonTip.cpp
       innate_subsystem/windows/BalloonTip.h
-      innate_subsystem/windows/BaseDialog.cpp
-      innate_subsystem/windows/BaseDialog.h
-      innate_subsystem/windows/BaseWindow.cpp
-      innate_subsystem/windows/BaseWindow.h
       innate_subsystem/windows/CheckBox.cpp
       innate_subsystem/windows/CheckBox.h
       innate_subsystem/windows/ComboBox.cpp
@@ -816,6 +812,8 @@ if (WIN32)
       innate_subsystem/windows/CommonControlsEx.h
       innate_subsystem/windows/Control.cpp
       innate_subsystem/windows/Control.h
+      innate_subsystem/windows/Dialog.cpp
+      innate_subsystem/windows/Dialog.h
       innate_subsystem/windows/DibFrameBuffer.cpp
       innate_subsystem/windows/DibFrameBuffer.h
       innate_subsystem/windows/FilteredTextBox.cpp
@@ -869,6 +867,8 @@ if (WIN32)
       innate_subsystem/windows/Tooltip.h
       innate_subsystem/windows/Trackbar.cpp
       innate_subsystem/windows/Trackbar.h
+      innate_subsystem/windows/Window.cpp
+      innate_subsystem/windows/Window.h
       innate_subsystem/windows/WindowFinder.cpp
       innate_subsystem/windows/WindowFinder.h
       innate_subsystem/windows/WindowMessageHandler.h
@@ -1628,9 +1628,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source}
-   innate_subsystem/ImageList.h
-   innate_subsystem/ImageList.cpp)
+add_library(${PROJECT_NAME} SHARED ${apex_source})
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 

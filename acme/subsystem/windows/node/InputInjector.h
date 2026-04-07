@@ -27,9 +27,10 @@
 
 #include "acme/subsystem/_common_header.h"
 //#include "log_writer/LogWriter.h"
-#include "SystemException.h"
+#include "acme/subsystem/node/SystemException.h"
 #include "acme/subsystem/io/InputStream.h"
 #include "acme/subsystem/node/InputInjector.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows
@@ -41,7 +42,7 @@ namespace windows
        * (mouse, keyboard etc) and get information about input device states.
        */
       class CLASS_DECL_ACME InputInjector :
-            virtual public ::subsystem::implementation<::subsystem::InputInjectorInterface>
+            virtual public ::subsystem::InputInjector
       {
       public:
 

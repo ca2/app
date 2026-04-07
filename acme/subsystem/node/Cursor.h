@@ -35,8 +35,8 @@ class CLASS_DECL_ACME CursorInterface :
    virtual public ::subsystem::particle_interface
 {
 public:
-  //Cursor();
-  virtual ~CursorInterface() = 0;
+ //Cursor();
+   virtual ~CursorInterface() = 0;
 
   virtual ::int_point getCursorPos() const = 0;
 

@@ -32,12 +32,12 @@
 
 namespace  subsystem
 {
-   class CLASS_DECL_ACME Displays :
-   virtual public ::subsystem::particle
+   class CLASS_DECL_ACME DisplaysInterface :
+   virtual public ::subsystem::particle_interface
    {
    public:
-      Displays();
-      ~Displays() override;
+      //Displays();
+      virtual ~DisplaysInterface() =0;
 
       // If a display does not exist now the function return an empty rectangle.
       virtual void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) = 0;
@@ -69,42 +69,42 @@ namespace  subsystem
       // class ::time m_latestUpdateTime;
    };
 
-//    class CLASS_DECL_ACME Displays:
-// virtual public ::subsystem::composite<DisplaysInterface>
-//    {
-//    public:
-//       Displays();
-//        ~Displays() override;
-//
-//       // If a display does not exist now the function return an empty rectangle.
-//       void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) override;
-//
-//       ::array_base<::int_rectangle> getDisplaysCoords() override;
-//
-//       // Returns a ::array_base that contain dispalys coordinates at the current time.
-//       ::array_base<::int_rectangle> getDisplays() override;
-//
-//    //private:
-//       // Updates internal information to a current state.
-//       void update() override;
-//
-//       // static BOOL CALLBACK monitorEnumProc(HMONITOR hMonitor,
-//       //                                      HDC hdcMonitor,
-//       //                                      LPRECT lprcMonitor,
-//       //                                      LPARAM dwData);
-//
-//       // Returns true if the update() function has been called lately.
-//       bool isAlreadyUpdated() override;
-//
-//       // int m_xVirtualScreen;
-//       // int m_yVirtualScreen;
-//       //
-//       // ::array_base<::int_rectangle> m_displayRects;
-//       // LocalMutex m_displayRectsMutex;
-//       //
-//       // static const unsigned int UPDATE_INTERVAL = 3000;
-//       // class ::time m_latestUpdateTime;
-//    };
+   class CLASS_DECL_ACME Displays:
+virtual public ::subsystem::composite<DisplaysInterface>
+   {
+   public:
+      Displays();
+       ~Displays() override;
+
+      // If a display does not exist now the function return an empty rectangle.
+      void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) override;
+
+      ::array_base<::int_rectangle> getDisplaysCoords() override;
+
+      // Returns a ::array_base that contain dispalys coordinates at the current time.
+      ::array_base<::int_rectangle> getDisplays() override;
+
+   //private:
+      // Updates internal information to a current state.
+      void update() override;
+
+      // static BOOL CALLBACK monitorEnumProc(HMONITOR hMonitor,
+      //                                      HDC hdcMonitor,
+      //                                      LPRECT lprcMonitor,
+      //                                      LPARAM dwData);
+
+      // Returns true if the update() function has been called lately.
+      bool isAlreadyUpdated() override;
+
+      // int m_xVirtualScreen;
+      // int m_yVirtualScreen;
+      //
+      // ::array_base<::int_rectangle> m_displayRects;
+      // LocalMutex m_displayRectsMutex;
+      //
+      // static const unsigned int UPDATE_INTERVAL = 3000;
+      // class ::time m_latestUpdateTime;
+   };
 
    //// __WINDOWSDISPLAYS_H__
 } // namespace  subsystem

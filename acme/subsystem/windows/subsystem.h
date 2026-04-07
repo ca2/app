@@ -8,6 +8,7 @@
 
 
 #include "acme/subsystem/subsystem.h"
+#include "acme/_operating_system.h"
 
 
 namespace windows

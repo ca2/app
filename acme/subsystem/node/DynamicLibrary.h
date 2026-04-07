@@ -45,7 +45,7 @@ namespace subsystem
       @throws ::remoting::Exception on error.
       */
       //DynamicLibraryInterface(const ::scoped_string & scopedstrFilename);
-      //DynamicLibraryInterface();
+      //DynamicLibrary();
       virtual ~DynamicLibraryInterface() = 0;
 
 
@@ -80,8 +80,8 @@ Dynamic library class.
       @param filename path to library file.
       @throws ::remoting::Exception on error.
       */
-      DynamicLibrary(const ::scoped_string & scopedstrFilename);
-      //DynamicLibrary();
+      //DynamicLibrary(const ::scoped_string & scopedstrFilename);
+      DynamicLibrary();
       ~DynamicLibrary() override;
 
 
@@ -101,6 +101,9 @@ Dynamic library class.
    // protected:
    //    HMODULE m_module;
    };
+
+
+
 } // namespace subsystem
 
 

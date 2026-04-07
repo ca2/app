@@ -33,18 +33,19 @@ namespace subsystem
 {
    // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
    // This is similar to anonymous pipe generation.
-   class CLASS_DECL_ACME EmulatedAnonymousPipeFactory :
-   virtual public ::subsystem::particle
+   class CLASS_DECL_ACME EmulatedAnonymousPipeFactoryInterface :
+   virtual public ::subsystem::particle_interface
    {
    public:
       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
-      EmulatedAnonymousPipeFactory();
-      virtual ~EmulatedAnonymousPipeFactory() = 0;
+      //EmulatedAnonymousPipeFactory();
+      virtual ~EmulatedAnonymousPipeFactoryInterface() = 0 ;
 
       virtual void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) = 0;
 
-      virtual void generatePipes(NamedPipe **serverPipe, bool serverInheritable,
-                         NamedPipe **clientPipe, bool clientInheritable) = 0;
+      virtual void generatePipes(
+         ::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
+         ::pointer < NamedPipeInterface > & clientPipe, bool clientInheritable) = 0;
 
       //private:
       virtual ::string getUniqPipeName() = 0;
@@ -53,29 +54,30 @@ namespace subsystem
       // unsigned int m_bufferSize;
    };
 
-   // class CLASS_DECL_ACME EmulatedAnonymousPipeFactory :
-   // virtual public ::subsystem::composite< EmulatedAnonymousPipeFactoryInterface>
-   // {
-   // public:
-   //
-   //
-   //    EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
-   //     ~EmulatedAnonymousPipeFactory() override;
-   //
-   //
-   //    void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) override;
-   //
-   //    void generatePipes(NamedPipe **serverPipe, bool serverInheritable,
-   //                       NamedPipe **clientPipe, bool clientInheritable) override;
-   //
-   //    //private:
-   //    ::string getUniqPipeName() override;
-   //
-   //    //LogWriter *m_log;
-   //    //unsigned int m_bufferSize;
-   // };
-   //
-   //// __EMULATEDANONYMOUSPIPEFACTORY_H__
+    class CLASS_DECL_ACME EmulatedAnonymousPipeFactory :
+    virtual public ::subsystem::composite< EmulatedAnonymousPipeFactoryInterface >
+    {
+    public:
+
+
+       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *log);
+       EmulatedAnonymousPipeFactory();
+        ~EmulatedAnonymousPipeFactory() override;
+
+
+       void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *log) override;
+
+       void generatePipes(::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
+                          ::pointer < NamedPipeInterface > & clientPipe, bool clientInheritable) override;
+
+       //private:
+       ::string getUniqPipeName() override;
+
+       //LogWriter *m_log;
+       //unsigned int m_bufferSize;
+    };
+
+   // __EMULATEDANONYMOUSPIPEFACTORY_H__
 } // namespace subsystem
 
 

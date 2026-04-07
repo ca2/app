@@ -44,8 +44,8 @@ namespace innate_subsystem
    // Base class to control windows control
    //
 
-   class ControlInterface :
-      virtual public ::innate_subsystem::WindowInterface
+   class Control :
+      virtual public ::innate_subsystem::Window
    {
    public:
 
@@ -53,9 +53,9 @@ namespace innate_subsystem
       //::pointer < Control > m_psubsystemcontrolThis;
 
 
-      //Control();
+      Control();
       //Control(HWND hwnd);
-      virtual ~ControlInterface() = 0;
+      ~Control() override;
 
       //
       // Sets HWND associated with this control
@@ -219,186 +219,186 @@ namespace innate_subsystem
       virtual void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) = 0;
    };
 
+   // //
+   // // Base class to control windows control
+   // //
    //
-   // Base class to control windows control
+   // class Control :
+   //    virtual public ::subsystem::composite < ControlInterface >,
+   //    virtual public Window
+   // {
+   // public:
    //
-
-   class Control :
-      virtual public ::subsystem::composite < ControlInterface >,
-      virtual public Window
-   {
-   public:
-
-
-      //::pointer < Control > m_psubsystemcontrolThis;
-
-
-      Control();
-      //Control(HWND hwnd);
-      ~Control() override;
-
-
-      bool is_subsystem_implementation() const  override {return false;}
-      bool is_subsystem_composite() const  override {return true;}
-      //
-      // Sets HWND associated with this control
-      //
-
-       void initialize_control(const ::operating_system::window & window) override;
-
-       void setWindow(const ::operating_system::window & window) override;
-
-      //
-      // Changes enable state of this control
-      //
-
-       void setEnabled(bool enabled) override;
-
-      //
-      // Sets text associated with window
-      //
-
-       void setText(const char *text) override;
-       void setSignedInt(int value) override;
-       void setUnsignedInt(unsigned int value) override;
-
-      //
-      // Sets text vertical alignment
-      //
-
-       void setTextVerticalAlignment(VerticalAlignment align) override;
-
-      //
-      // Sets input focus to this control
-      //
-
-       void setFocus() override;
-
-      //
-      // Return true if window has input focus
-      //
-
-       bool hasFocus() override;
-
-      //
-      // Puts this control foreground and activates it
-      //
-
-       bool setForeground() override;
-
-      //
-      // Changes visible state of this control
-      //
-
-       void setVisible(bool visible) override;
-
-      //
-      // Checks if this control is active (not disabled)
-      //
-
-       bool isEnabled() override;
-
-      //
-      // Invalidates control
-      //
-
-       void invalidate() override;
-
-      //
-      // Gets text associated with window
-      //
-
-       ::string getText() override;
-
-      //
-      // Returns text vertical alignment
-      //
-
-       VerticalAlignment getTextVerticalAlignment() override;
-
-      //
-      // Gets HWND associated with this control
-      //
-
-       ::operating_system::window getWindow() override;
-
-      void operator= (const ::operating_system::window& window)
-      {
-         setWindow(window);
-      };
-
-   //protected:
-
-      //
-      // Sets windows style for this control
-      //
-
-       //void setStyle(unsigned int styleFlags) override;
-
-      //
-      // Gets windows style for this control
-      //
-
-       //unsigned int getStyle() override;
-
-      //
-      // Adds style to this control
-      //
-
-       //void addStyle(unsigned int styleFlag) override;
-
-      //
-      // Removes style from this control
-      //
-
-       //void removeStyle(unsigned int styleFlag) override;
-
-      //
-      // Returns true if styleFlags parameter is in
-      // this control's style
-      //
-
-       ///bool isStyleEnabled(unsigned int styleFlags) override;
-
-      //
-      // Private methods for manipulation window extended styles
-      //
-
-       // void setExStyle(unsigned int style) override;
-       // void addExStyle(unsigned int styleFlag) override;
-       // void removeExStyle(unsigned int styleFlag) override;
-       //
-       // unsigned int getExStyle() override;
-       // bool isExStyleEnabled(unsigned int styleFlag) override;
-
-      //
-      // Replaces default window proc with wndProc.
-      //
-      // This method must be called by child classes if needs to
-      // override default window behavour.
-      //
-
-      //void replaceWindowProc(WNDPROC wndProc);
-
-
-      void subclassWindow() override;
-
-   // protected:
    //
+   //    //::pointer < Control > m_psubsystemcontrolThis;
+   //
+   //
+   //    Control();
+   //    //Control(HWND hwnd);
+   //    ~Control() override;
+   //
+   //
+   //    bool is_subsystem_implementation() const  override {return false;}
+   //    bool is_subsystem_composite() const  override {return true;}
    //    //
-   //    // Handle of window
+   //    // Sets HWND associated with this control
    //    //
    //
-   //    HWND m_hwnd;
+   //     void initialize_control(const ::operating_system::window & window) override;
+   //
+   //     void setWindow(const ::operating_system::window & window) override;
    //
    //    //
-   //    // Pointer to default window procedure
+   //    // Changes enable state of this control
    //    //
    //
-   //    WNDPROC m_defWindowProc;
-
-      void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) override;
-   };
+   //     void setEnabled(bool enabled) override;
+   //
+   //    //
+   //    // Sets text associated with window
+   //    //
+   //
+   //     void setText(const char *text) override;
+   //     void setSignedInt(int value) override;
+   //     void setUnsignedInt(unsigned int value) override;
+   //
+   //    //
+   //    // Sets text vertical alignment
+   //    //
+   //
+   //     void setTextVerticalAlignment(VerticalAlignment align) override;
+   //
+   //    //
+   //    // Sets input focus to this control
+   //    //
+   //
+   //     void setFocus() override;
+   //
+   //    //
+   //    // Return true if window has input focus
+   //    //
+   //
+   //     bool hasFocus() override;
+   //
+   //    //
+   //    // Puts this control foreground and activates it
+   //    //
+   //
+   //     bool setForeground() override;
+   //
+   //    //
+   //    // Changes visible state of this control
+   //    //
+   //
+   //     void setVisible(bool visible) override;
+   //
+   //    //
+   //    // Checks if this control is active (not disabled)
+   //    //
+   //
+   //     bool isEnabled() override;
+   //
+   //    //
+   //    // Invalidates control
+   //    //
+   //
+   //     void invalidate() override;
+   //
+   //    //
+   //    // Gets text associated with window
+   //    //
+   //
+   //     ::string getText() override;
+   //
+   //    //
+   //    // Returns text vertical alignment
+   //    //
+   //
+   //     VerticalAlignment getTextVerticalAlignment() override;
+   //
+   //    //
+   //    // Gets HWND associated with this control
+   //    //
+   //
+   //     ::operating_system::window getWindow() override;
+   //
+   //    void operator= (const ::operating_system::window& window)
+   //    {
+   //       setWindow(window);
+   //    };
+   //
+   // //protected:
+   //
+   //    //
+   //    // Sets windows style for this control
+   //    //
+   //
+   //     //void setStyle(unsigned int styleFlags) override;
+   //
+   //    //
+   //    // Gets windows style for this control
+   //    //
+   //
+   //     //unsigned int getStyle() override;
+   //
+   //    //
+   //    // Adds style to this control
+   //    //
+   //
+   //     //void addStyle(unsigned int styleFlag) override;
+   //
+   //    //
+   //    // Removes style from this control
+   //    //
+   //
+   //     //void removeStyle(unsigned int styleFlag) override;
+   //
+   //    //
+   //    // Returns true if styleFlags parameter is in
+   //    // this control's style
+   //    //
+   //
+   //     ///bool isStyleEnabled(unsigned int styleFlags) override;
+   //
+   //    //
+   //    // Private methods for manipulation window extended styles
+   //    //
+   //
+   //     // void setExStyle(unsigned int style) override;
+   //     // void addExStyle(unsigned int styleFlag) override;
+   //     // void removeExStyle(unsigned int styleFlag) override;
+   //     //
+   //     // unsigned int getExStyle() override;
+   //     // bool isExStyleEnabled(unsigned int styleFlag) override;
+   //
+   //    //
+   //    // Replaces default window proc with wndProc.
+   //    //
+   //    // This method must be called by child classes if needs to
+   //    // override default window behavour.
+   //    //
+   //
+   //    //void replaceWindowProc(WNDPROC wndProc);
+   //
+   //
+   //    void subclassWindow() override;
+   //
+   // // protected:
+   // //
+   // //    //
+   // //    // Handle of window
+   // //    //
+   // //
+   // //    HWND m_hwnd;
+   // //
+   // //    //
+   // //    // Pointer to default window procedure
+   // //    //
+   // //
+   // //    WNDPROC m_defWindowProc;
+   //
+   //    void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) override;
+   // };
 
 //#endif
 } // namespace subsystem

@@ -35,15 +35,15 @@
       Cursor::~Cursor()
       {
       }
-
-      ::int_point Cursor::getCursorPos() const
-      {
-         return m_pparticleThis->getCursorPos();
-         // POINT curPoint;
-         // GetCursorPos(&curPoint);
-         // // Correcting point to frame buffer coordinates
-         // curPoint.x -= GetSystemMetrics(SM_XVIRTUALSCREEN);
-         // curPoint.y -= GetSystemMetrics(SM_YVIRTUALSCREEN);
-         // return ::int_point(curPoint.x, curPoint.y);
-      }
+      //
+      // ::int_point Cursor::getCursorPos() const
+      // {
+      //    return m_pparticleThis->getCursorPos();
+      //    // POINT curPoint;
+      //    // GetCursorPos(&curPoint);
+      //    // // Correcting point to frame buffer coordinates
+      //    // curPoint.x -= GetSystemMetrics(SM_XVIRTUALSCREEN);
+      //    // curPoint.y -= GetSystemMetrics(SM_YVIRTUALSCREEN);
+      //    // return ::int_point(curPoint.x, curPoint.y);
+      // }
    } // namespace subsystem

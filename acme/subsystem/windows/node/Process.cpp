@@ -77,7 +77,7 @@ namespace windows
          m_args= scopedstrArgs;
       }
 
-      void Process::setStandardIoHandles(::subsystem::FileInterface * pfileStdIn, ::subsystem::FileInterface * pfileStdOut, ::subsystem::FileInterface * pfileStdErr)
+      void Process::setStandardIoHandles(::subsystem::File * pfileStdIn, ::subsystem::File * pfileStdOut, ::subsystem::File * pfileStdErr)
       {
          m_stdIn = pfileStdIn;
          m_stdOut = pfileStdOut;
@@ -153,7 +153,7 @@ namespace windows
          return dwExitCode;
       }
 
-      ::subsystem::ProcessHandleInterface * Process::getProcessHandle()
+      ::subsystem::ProcessHandle * Process::getProcessHandle()
       {
          return m_pprocesshandle;
       }
@@ -173,9 +173,9 @@ namespace windows
 
       void Process::cleanup()
       {
-         if (m_hProcess) {
-            CloseHandle(m_hProcess);
-            m_hProcess = 0;
+         if (m_pprocesshandle->m_hProcess) {
+            CloseHandle(m_pprocesshandle->m_hProcess);
+            m_pprocesshandle->m_hProcess = 0;
          }
          if (m_hThread) {
             CloseHandle(m_hThread);

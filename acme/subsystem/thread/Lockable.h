@@ -28,37 +28,14 @@
 namespace subsystem
 {
 
- //   /**
- // * Synchronized (thread-safe) object that can be locked and unlocked.
- // */
- //   class CLASS_DECL_ACME LockableInterface :
- //      virtual public ::subsystem::particle
- //   {
- //   public:
- //      virtual ~LockableInterface() = 0
- //
- //      /**
- //       * Locks object.
- //       */
- //      virtual ::e_status lock() = 0;
- //
- //      /**
- //       * Unlocks object.
- //       */
- //      virtual void unlock() =0;
- //   };
-
-
    /**
-    * Synchronized (thread-safe) object that can be locked and unlocked.
-    */
-   class CLASS_DECL_ACME Lockable :
-      virtual public ::subsystem::particle
+ * Synchronized (thread-safe) object that can be locked and unlocked.
+ */
+   class CLASS_DECL_ACME LockableInterface :
+      virtual public ::subsystem::particle_interface
    {
    public:
-
-      Lockable();
-      ~Lockable() override;
+      virtual ~LockableInterface() = 0;
 
       /**
        * Locks object.
@@ -68,8 +45,31 @@ namespace subsystem
       /**
        * Unlocks object.
        */
-      virtual void unlock() override = 0;
+      virtual void unlock() =0;
    };
+
+   //
+   // /**
+   //  * Synchronized (thread-safe) object that can be locked and unlocked.
+   //  */
+   // class CLASS_DECL_ACME Lockable :
+   //    virtual public ::subsystem::composite<LockableInterface>
+   // {
+   // public:
+   //
+   //    //Lockable();
+   //    virtual ~Lockable() = 0;
+   //
+   //    /**
+   //     * Locks object.
+   //     */
+   //    virtual ::e_status lock() = 0;
+   //
+   //    /**
+   //     * Unlocks object.
+   //     */
+   //    virtual void unlock() override = 0;
+   // };
 
    //// __LOCKABLE_H__
 } // namespace subsystem

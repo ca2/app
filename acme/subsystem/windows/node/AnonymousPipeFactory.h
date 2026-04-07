@@ -26,6 +26,8 @@
 
 
 #include "acme/subsystem/node/AnonymousPipeFactory.h"
+#include "acme/_operating_system.h"
+
 //#include "log_writer/LogWriter.h"
 namespace windows
 {
@@ -55,9 +57,9 @@ namespace windows
          // @throw ::remoting::Exception if an error occured.
          // After use the firstSide and secondSide object the caller must
          // destroy it by delete operator.
-         void generatePipes(::pointer < ::subsystem::AnonymousPipeInterface >& firstSide,
+         void generatePipes(::pointer < ::subsystem::AnonymousPipe >& firstSide,
                             bool firstSideIsInheritable,
-                            ::pointer < ::subsystem::AnonymousPipeInterface > &secondSide,
+                            ::pointer < ::subsystem::AnonymousPipe > &secondSide,
                             bool secondSideIsInheritable);
 
       //private:

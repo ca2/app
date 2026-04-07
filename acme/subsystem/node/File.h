@@ -8,25 +8,25 @@
 namespace subsystem
 {
 
-   class CLASS_DECL_ACME File :
-      virtual public ::subsystem::particle
+   class CLASS_DECL_ACME FileInterface :
+      virtual public ::subsystem::particle_interface
    {
    public:
 
-      File();
-      ~File() override;
+      //File();
+      virtual ~FileInterface() =0 ;
 
    };
 
 
-   // class CLASS_DECL_ACME File :
-   // virtual public ::subsystem::composite<FileInterface>
-   // {
-   // public:
-   //    File();
-   //    ~File() override;
-   //
-   // };
+   class CLASS_DECL_ACME File :
+   virtual public ::subsystem::composite<FileInterface >
+   {
+   public:
+      File();
+      ~File() override;
+
+   };
 
 //// __WINCURSOR_H__
 ///

@@ -41,7 +41,7 @@ namespace subsystem
  *
  * @author yuri, enikey.
  */
-   class CLASS_DECL_ACME NamedPipe :
+   class CLASS_DECL_ACME NamedPipeInterface :
       virtual public Channel,
       virtual public Pipe
    {
@@ -50,14 +50,14 @@ namespace subsystem
        * Creates pipe transport.
        */
       //NamedPipeInterface(HANDLE hPipe, unsigned int maxPortionSize, bool asServer);
-      NamedPipe();
+      //NamedPipe();
       /**
        * Destroys instance.
        */
-      ~NamedPipe() override;
+      virtual ~NamedPipeInterface() =0;
 
 
-      virtual void initialize_named_pipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) = 0;
+      virtual void initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) = 0;
 
       /**
        * Closes transport.
@@ -86,7 +86,7 @@ namespace subsystem
 
       virtual size_t available() = 0 ; //{ return 0; };
 
-      virtual FileInterface * getFile() const = 0;
+      virtual ::subsystem::FileInterface * getFile() const = 0;
 
       //private:
       virtual void checkPipeFile() = 0;
@@ -101,68 +101,68 @@ namespace subsystem
    };
 
 
-   // /**
-   //  * NamedPipe transport.
-   //  *
-   //  * @author yuri, enikey.
-   //  */
-   // class CLASS_DECL_ACME NamedPipe :
-   //    virtual public ::subsystem::composite< NamedPipeInterface>
-   // {
-   // public:
-   //    /**
-   //     * Creates pipe transport.
-   //     */
-   //    NamedPipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer);
-   //    NamedPipe();
-   //    /**
-   //     * Destroys instance.
-   //     */
-   //    ~NamedPipe() override;
-   //
-   //
-   //    void initialize_named_pipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) override;
-   //
-   //    /**
-   //     * Closes transport.
-   //     *
-   //     * @throws ::remoting::Exception on fail.
-   //     */
-   //    void close() override;
-   //
-   //    /**
-   //     * Reads data from pipe.
-   //     * Implemented from Channel interface.
-   //     * @param buffer buffer to receive data.
-   //     * @param len count of bytes to read.
-   //     * @throws ::io_exception on io error.
-   //     */
-   //    size_t read(void *buffer, size_t len) override;
-   //
-   //    /**
-   //     * Writes data to pipe.
-   //     * Implemented from Channel interface.
-   //     * @param buffer buffer with data to write.
-   //     * @param len count of bytes to write.
-   //     * @throws ::io_exception on io error.
-   //     */
-   //    memsize defer_write(const void *buffer, memsize len) override;
-   //
-   //    size_t available() override { return 0; };
-   //
-   //    //virtual HANDLE getHandle() const;
-   //
-   // //private:
-   //    void checkPipeFile() override;
-   //
-   //    // HANDLE m_hPipe;
-   //    // LocalMutex m_hPipeMutex;
-   //    // ::string m_pipeName;
-   //    //
-   //    // WindowsEvent m_readEvent;
-   //    // WindowsEvent m_writeEvent;
-   //    // bool m_asServer;
-   // };
+   /**
+    * NamedPipe transport.
+    *
+    * @author yuri, enikey.
+    */
+   class CLASS_DECL_ACME NamedPipe :
+      virtual public ::subsystem::composite< NamedPipeInterface>
+   {
+   public:
+      /**
+       * Creates pipe transport.
+       */
+      NamedPipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer);
+      NamedPipe();
+      /**
+       * Destroys instance.
+       */
+      ~NamedPipe() override;
+
+
+      void initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) override;
+
+      /**
+       * Closes transport.
+       *
+       * @throws ::remoting::Exception on fail.
+       */
+      void close() override;
+
+      /**
+       * Reads data from pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer to receive data.
+       * @param len count of bytes to read.
+       * @throws ::io_exception on io error.
+       */
+      size_t read(void *buffer, size_t len) override;
+
+      /**
+       * Writes data to pipe.
+       * Implemented from Channel interface.
+       * @param buffer buffer with data to write.
+       * @param len count of bytes to write.
+       * @throws ::io_exception on io error.
+       */
+      memsize defer_write(const void *buffer, memsize len) override;
+
+      size_t available() override { return 0; };
+
+      //virtual HANDLE getHandle() const;
+
+   //private:
+      void checkPipeFile() override;
+
+      // HANDLE m_hPipe;
+      // LocalMutex m_hPipeMutex;
+      // ::string m_pipeName;
+      //
+      // WindowsEvent m_readEvent;
+      // WindowsEvent m_writeEvent;
+      // bool m_asServer;
+   };
 
    //// __NAMEDPIPE_H__
 } // namespace subsystem

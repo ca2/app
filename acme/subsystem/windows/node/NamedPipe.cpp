@@ -36,7 +36,7 @@ namespace windows
 {
    namespace subsystem
    {
-//      NamedPipe::NamedPipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer):
+//      NamedPipe::NamedPipe(::subsystem::File * pfilePipe, unsigned int maxPortionSize, bool asServer):
   //      m_asServer(false)
 
       NamedPipe::NamedPipe():

@@ -167,63 +167,63 @@ VerticalAlignment Control::getTextVerticalAlignment()
   return m_pparticleThis->operating_system_window();
 }
 
-// void Control::setStyle(DWORD style)
+// void Control::setStyle(unsigned int style)
 // {
 //   ::SetWindowLong(m_hwnd, GWL_STYLE, style);
 // }
 //
-// DWORD Control::getStyle()
+// unsigned int Control::getStyle()
 // {
 //   return ::GetWindowLong(m_hwnd, GWL_STYLE);
 // }
 //
-// void Control::addStyle(DWORD styleFlag)
+// void Control::addStyle(unsigned int styleFlag)
 // {
-//   DWORD flags = getStyle();
+//   unsigned int flags = getStyle();
 //   flags |= styleFlag;
 //   setStyle(flags);
 // }
 //
-// void Control::removeStyle(DWORD styleFlag)
+// void Control::removeStyle(unsigned int styleFlag)
 // {
-//   DWORD flags = getStyle();
+//   unsigned int flags = getStyle();
 //   flags &= ~styleFlag;
 //   setStyle(flags);
 // }
 //
-// bool Control::isStyleEnabled(DWORD styleFlag)
+// bool Control::isStyleEnabled(unsigned int styleFlag)
 // {
-//   DWORD flags = getStyle();
+//   unsigned int flags = getStyle();
 //   return (flags & styleFlag) == styleFlag;
 // }
 //
-// void Control::setExStyle(DWORD style)
+// void Control::setExStyle(unsigned int style)
 // {
 //   SetWindowLong(m_hwnd, GWL_EXSTYLE, style);
 // }
 //
-// DWORD Control::getExStyle()
+// unsigned int Control::getExStyle()
 // {
-//   return (DWORD)GetWindowLong(m_hwnd, GWL_EXSTYLE);
+//   return (unsigned int)GetWindowLong(m_hwnd, GWL_EXSTYLE);
 // }
 //
-// void Control::addExStyle(DWORD styleFlag)
+// void Control::addExStyle(unsigned int styleFlag)
 // {
-//   DWORD flags = getExStyle();
+//   unsigned int flags = getExStyle();
 //   flags |= styleFlag;
 //   setExStyle(flags);
 // }
 //
-// void Control::removeExStyle(DWORD styleFlag)
+// void Control::removeExStyle(unsigned int styleFlag)
 // {
-//   DWORD flags = getExStyle();
+//   unsigned int flags = getExStyle();
 //   flags &= ~styleFlag;
 //   setExStyle(flags);
 // }
 //
-// bool Control::isExStyleEnabled(DWORD styleFlag)
+// bool Control::isExStyleEnabled(unsigned int styleFlag)
 // {
-//   DWORD flags = getExStyle();
+//   unsigned int flags = getExStyle();
 //   return (flags & styleFlag) == styleFlag;
 // }
 

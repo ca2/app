@@ -87,6 +87,7 @@ namespace innate_subsystem
       // Creates graphics object with specified device context.
       ///Graphics(DeviceContext *dc);
       // Graphics class destructor.
+      Graphics();
       ~Graphics() override;
 
 

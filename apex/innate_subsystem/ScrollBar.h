@@ -34,47 +34,92 @@
 
 namespace innate_subsystem
 {
-   class ScrollBar :
+   class CLASS_DECL_APEX ScrollBarInterface :
    virtual public Window
    {
    public:
-      ScrollBar();
+      
+      
+      // static const int SCROLL_STEP = 5;
+      // //HWND m_hwnd;
+      // int m_vPos, m_hPos;
+      // int m_vMin, m_vMax;
+      // int m_hMin, m_hMax;
+      // int m_vStep;
+      // int m_hStep;
+      // bool m_isVirtualScroll;
+      // bool m_isVert;
+      // bool m_isHorz;
+      // bool m_isVVert;
+      // bool m_isVHorz;
 
-      //void setWindow(const ::operating_system::window & operatingsystemwindow);
-      bool showVertScroll(bool show);
-      bool showHorzScroll(bool show);
-      void setHorzRange(int imin, int imax, int istep);
-      void setVertRange(int imin, int imax, int istep);
-      void setVertPos(int iPos);
-      void setHorzPos(int iPos);
-      void moveUpVert(int iPercent = 0);
-      void moveDownVert(int iPercent = 0);
-      void moveLeftHorz(int iPercent = 0);
-      void moveRightHorz(int inPercent = 0);
-      int getVertPos();
-      int getHorzPos();
-      int getVerticalSize();
-      int getHorizontalSize();
+      virtual ~ScrollBarInterface() = 0;
 
-      static const int SCROLL_STEP = 5;
+      //void setWindow(const ::operating_system::window & operatingsystemwindow)= 0;
+      virtual bool showVertScroll(bool show)= 0;
+      virtual bool showHorzScroll(bool show)= 0;
+      virtual void setHorzRange(int imin, int imax, int istep)= 0;
+      virtual void setVertRange(int imin, int imax, int istep)= 0;
+      virtual void setVertPos(int iPos)= 0;
+      virtual void setHorzPos(int iPos)= 0;
+      virtual void moveUpVert(int iPercent = 0)= 0;
+      virtual void moveDownVert(int iPercent = 0)= 0;
+      virtual void moveLeftHorz(int iPercent = 0)= 0;
+      virtual void moveRightHorz(int inPercent = 0)= 0;
+      virtual int getVertPos()= 0;
+      virtual int getHorzPos()= 0;
+      virtual int getVerticalSize()= 0;
+      virtual int getHorizontalSize()= 0;
+
    ///protected:
-      void enableVirtualScroll();
-      void disableVirtualScroll();
-      bool _showVertScroll(bool show);
-      bool _showHorzScroll(bool show);
-
-      //HWND m_hwnd;
-      int m_vPos, m_hPos;
-      int m_vMin, m_vMax;
-      int m_hMin, m_hMax;
-      int m_vStep;
-      int m_hStep;
-      bool m_isVirtualScroll;
-      bool m_isVert;
-      bool m_isHorz;
-      bool m_isVVert;
-      bool m_isVHorz;
+      virtual void enableVirtualScroll()= 0;
+      virtual void disableVirtualScroll()= 0;
+      virtual bool _showVertScroll(bool show)= 0;
+      virtual bool _showHorzScroll(bool show)= 0;
    };
 
+   class CLASS_DECL_APEX ScrollBar :
+virtual public ::subsystem::composite<ScrollBarInterface>
+   {
+   public:
+      
+      
+      // static const int SCROLL_STEP = 5;
+      // //HWND m_hwnd;
+      // int m_vPos, m_hPos;
+      // int m_vMin, m_vMax;
+      // int m_hMin, m_hMax;
+      // int m_vStep;
+      // int m_hStep;
+      // bool m_isVirtualScroll;
+      // bool m_isVert;
+      // bool m_isHorz;
+      // bool m_isVVert;
+      // bool m_isVHorz;
+ScrollBar();
+      ~ScrollBar() override;
+
+      //void setWindow(const ::operating_system::window & operatingsystemwindow)override;
+      bool showVertScroll(bool show)override;
+      bool showHorzScroll(bool show)override;
+      void setHorzRange(int imin, int imax, int istep)override;
+      void setVertRange(int imin, int imax, int istep)override;
+      void setVertPos(int iPos)override;
+      void setHorzPos(int iPos)override;
+      void moveUpVert(int iPercent = 0)override;
+      void moveDownVert(int iPercent = 0)override;
+      void moveLeftHorz(int iPercent = 0)override;
+      void moveRightHorz(int inPercent = 0)override;
+      int getVertPos()override;
+      int getHorzPos()override;
+      int getVerticalSize()override;
+      int getHorizontalSize()override;
+
+      ///protected:
+      void enableVirtualScroll()override;
+      void disableVirtualScroll()override;
+      bool _showVertScroll(bool show)override;
+      bool _showHorzScroll(bool show)override;
+   };
 
 } // namespace innate_subsystem

@@ -34,11 +34,11 @@ namespace innate_subsystem
 {
 public:
   //ListBox();
-  virtual ~ListBox() = 0;
+  virtual ~ListBoxInterface() = 0;
 //public:
   virtual void addString(const char *str) = 0;
   virtual void addString(const char *str, void *tag) = 0;
-  virtual void getItemText(int index, ::string *storage) = 0;
+  virtual ::string getItemText(int index) = 0;
   virtual void setItemText(int index, const char *str) = 0;
   virtual void insertString(int index, const char *str) = 0;
   virtual void insertString(int index, const char *str, ::lparam data) = 0;
@@ -58,12 +58,12 @@ public:
       class CLASS_DECL_APEX ListBox : virtual public ::subsystem::composite<ListBoxInterface >
 {
          public:
-  //ListBox();
+  ListBox();
   ~ListBox() override;
 //public:
    void addString(const char *str) override;
    void addString(const char *str, void *tag) override;
-   void getItemText(int index, ::string *storage) override;
+   ::string getItemText(int index) override;
    void setItemText(int index, const char *str) override;
    void insertString(int index, const char *str) override;
    void insertString(int index, const char *str, ::lparam data) override;

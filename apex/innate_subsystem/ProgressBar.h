@@ -25,18 +25,28 @@
 #pragma once
 //#define _PROGRESS_BAR_H_
 
-#include "Control.h"
+#include "apex/innate_subsystem/Control.h"
 
 namespace innate_subsystem
 {
-    class ProgressBar : public Control
+    class CLASS_DECL_APEX ProgressBarInterface : public Control
+    {
+    public:
+        //ProgressBar();
+        virtual ~ProgressBarInterface() = 0;
+
+        virtual void setRange(unsigned short min, unsigned short max) = 0;
+        virtual void setPos(unsigned short pos) = 0;
+    };
+    class CLASS_DECL_APEX ProgressBar :
+   virtual public ::subsystem::composite < ProgressBarInterface >
     {
     public:
         ProgressBar();
-        ~ProgressBar();
+        ~ProgressBar() override;
 
-        void setRange(unsigned short min, unsigned short max);
-        void setPos(unsigned short pos);
+        void setRange(unsigned short min, unsigned short max) override;
+        void setPos(unsigned short pos) override;
     };
 } // namespace innate_subsystem
 

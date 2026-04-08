@@ -26,6 +26,7 @@
 
 
 #include "acme/subsystem/resource_loader.h"
+#include "drawing/Icon.h"
 
 //#include "winhdr.h"
 
@@ -58,14 +59,16 @@ namespace innate_subsystem
        * @param iconName icon name.
        * @return icon handle of 0 if cannot load icon.
        */
-      ::pointer < ::innate_ui::icon >  loadStandartIcon(const char *iconName);
+      ::pointer < IconInterface >  loadStandartIcon(const char *iconName);
 
       /**
        * Loads icon from resources.
        * @param iconName icon name.
        * @return icon handle of 0 if cannot load icon.
        */
-      virtual ::pointer < innate_ui::icon > loadIconByIntResource(int iId);
+      virtual ::pointer < IconInterface > loadIconByIntResource(int iId);
+
+      ::pointer < IconInterface > loadIcon(const char* iconName);
 
       // /**
       //  * Loads string from resources.
@@ -81,7 +84,7 @@ namespace innate_subsystem
        * @param [in] id identifier of accelerator in resource file.
        * @return handle of accelerator if it's loaded.
        */
-      //HACCEL loadAccelerator(UINT id);
+      //HACCEL loadAccelerator(unsigned int id);
 
       /**
        * Loads standart cursor.
@@ -94,8 +97,8 @@ namespace innate_subsystem
        * @param [in] id identifier of accelerator in resource file.
        * @return handle of cursor if it's loaded.
        */
-      //HCURSOR loadCursor(UINT id);
-      virtual ::pointer < innate_ui::icon > loadCursor(unsigned int id);
+      //HCURSOR loadCursor(unsigned int id);
+      virtual ::pointer < IconInterface > loadCursor(unsigned int id);
 
    //protected:
       /**

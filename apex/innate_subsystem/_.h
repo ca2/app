@@ -19,6 +19,8 @@ namespace innate_subsystem
    class BrushInterface;
    class Pen;
    class PenInterface;
+   class Icon;
+   class IconInterface;
 
 
 
@@ -41,6 +43,8 @@ namespace innate_subsystem
    class Dialog;
    class DialogInterface;
 
+   class StringFilter;
+
    class PaintWindow;
    class PaintWindowInterface;
 
@@ -52,6 +56,9 @@ namespace innate_subsystem
     class ComboBox;
     class ComboBoxInterface;
 
+   class Tooltip;
+   class TooltipInterface;
+
    class SystemMetrics;
    class SystemMetricsInterface;
 
@@ -62,6 +69,55 @@ namespace innate_subsystem
       e_system_command_close =       0xF060,
    };
 
+
+   enum enum_style : unsigned long long
+   {
+
+      e_style_child =            0x40000000L, // #define WS_CHILD
+      e_style_visible =          0x10000000L, // #define WS_VISIBLE
+      e_style_flat_toolbar =     0x0800,      // #define TBSTYLE_FLAT
+
+   };
+
+
+   struct toolbar_button_t
+   {
+      int iBitmap;
+      int idCommand;
+      unsigned char fsState;
+      unsigned char fsStyle;
+// #ifdef _WIN64
+//       BYTE bReserved[6];          // padding for alignment
+// #elif defined(_WIN32)
+//       BYTE bReserved[2];          // padding for alignment
+// #endif
+      ::uptr  dwData;
+      ::iptr iString;
+   };
+
+
+   enum enum_toolbar_item_state
+   {
+
+      e_toolbar_item_state_none     = 0,
+// #define TBSTATE_CHECKED         0x01
+// #define TBSTATE_PRESSED         0x02
+// #define TBSTATE_ENABLED         0x04
+
+      e_toolbar_item_state_checked  = 1,
+      e_toolbar_item_state_pressed  = 2,
+      e_toolbar_item_state_enabled  = 4,
+
+   };
+
+
+   enum enum_toolbar_item_style
+   {
+//#define TBSTYLE_BUTTON          0x0000  // obsolete; use BTNS_BUTTON instead
+
+      e_toolbar_item_style_button = 0,
+
+   };
 
 } // namespace innate_subsystem
 

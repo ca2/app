@@ -23,6 +23,8 @@
 //
 #include "framework.h"
 #include "ImagedButton.h"
+
+#include "drawing/DeviceContext.h"
 //#include "util/UnicodeStringStorage.h"
 //#include <crtdbg.h>
 
@@ -59,7 +61,7 @@ namespace innate_subsystem
    //    // Prepare draw... paint button background
    //
    //    if (m_isUsingTheme) {
-   //       DWORD state = (isPressed) ? PBS_PRESSED : PBS_NORMAL;
+   //       unsigned int state = (isPressed) ? PBS_PRESSED : PBS_NORMAL;
    //       if (state == PBS_NORMAL) {
    //          if (isFocused) {
    //             state = PBS_DEFAULTED;
@@ -129,7 +131,7 @@ namespace innate_subsystem
    //       if (m_isUsingTheme) {
    //          UnicodeStringStorage uniTitle(&title);
    //
-   //          DWORD state = PBS_NORMAL;
+   //          unsigned int state = PBS_NORMAL;
    //
    //          if (isDisabled) {
    //             state = PBS_DISABLED;
@@ -185,79 +187,83 @@ namespace innate_subsystem
       // }
    }
 
-   void ImagedButton::setIcon(HICON *icon, const ::int_size & size)
+   void ImagedButton::setIcon( IconInterface * picon, const ::int_size & size)
    {
-      m_icon = icon;
-      m_iconWidth = width;
-      m_iconHeight = height;
+      m_pparticleThis->setIcon(picon, size);
+      // m_icon = icon;
+      // m_iconWidth = width;
+      // m_iconHeight = height;
    }
 
-   void ImagedButton::calcRect(RECT* buttonRect, bool isButtonPressed,
-                               DWORD textWidth, DWORD textHeight,
-                               DWORD imageWidth, DWORD imageHeight,
-                               ::int_rectangle &textRect, RECT* imageRect)
+   void ImagedButton::calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
+                               unsigned int textWidth, unsigned int textHeight,
+                               unsigned int imageWidth, unsigned int imageHeight,
+                               ::int_rectangle &textRect, ::int_rectangle & imageRect)
    {
-      CopyRect(imageRect, buttonRect);
-      CopyRect(textRect, buttonRect);
 
-      if (m_icon != NULL) {
-         long buttonWidth = buttonRect->right - buttonRect->left;
-         long buttonHeight = -buttonRect->top + buttonRect->bottom;
-
-         // Center image horizontally
-         imageRect->left += ((buttonWidth - (long)imageWidth) / 2);
-         // Center image vertically
-         imageRect->top += (((buttonHeight) - (long)imageHeight) / 2) - textHeight;
-
-         DWORD margin = 10;
-         textRect->top += (textHeight + margin) * 2;
-      }
-
-      // If button is pressed then press image also
-      if (isButtonPressed && !m_isUsingTheme) {
-         OffsetRect(imageRect, 1, 1);
-      }
+      m_pparticleThis->calcRect(buttonRect, isButtonPressed,textWidth, textHeight,
+         imageWidth, imageHeight, textRect, imageRect);
+      // CopyRect(imageRect, buttonRect);
+      // CopyRect(textRect, buttonRect);
+      //
+      // if (m_icon != NULL) {
+      //    long buttonWidth = buttonRect->right - buttonRect->left;
+      //    long buttonHeight = -buttonRect->top + buttonRect->bottom;
+      //
+      //    // Center image horizontally
+      //    imageRect->left += ((buttonWidth - (long)imageWidth) / 2);
+      //    // Center image vertically
+      //    imageRect->top += (((buttonHeight) - (long)imageHeight) / 2) - textHeight;
+      //
+      //    unsigned int margin = 10;
+      //    textRect->top += (textHeight + margin) * 2;
+      // }
+      //
+      // // If button is pressed then press image also
+      // if (isButtonPressed && !m_isUsingTheme) {
+      //    OffsetRect(imageRect, 1, 1);
+      // }
    }
 
-   void ImagedButton::drawIcon(HDC* dc, RECT* imageRect, bool isPressed, bool isDisabled)
-   {
-      DrawState(*dc, NULL, NULL, (::lparam)*m_icon, 0,
-                imageRect->left, imageRect->top,
-                (imageRect->right - imageRect->left),
-                (imageRect->bottom - imageRect->top),
-                (isDisabled ? DSS_DISABLED : DSS_NORMAL) | DST_ICON);
-   } // End of drawIcon
+   // void ImagedButton::drawIcon(DeviceContextInterface* pdevicecontext, ::int_rectangle & imageRect, bool isPressed, bool isDisabled)
+   // {
+   //    // DrawState(*dc, NULL, NULL, (::lparam)*m_icon, 0,
+   //    //           imageRect->left, imageRect->top,
+   //    //           (imageRect->right - imageRect->left),
+   //    //           (imageRect->bottom - imageRect->top),
+   //    //           (isDisabled ? DSS_DISABLED : DSS_NORMAL) | DST_ICON);
+   // } // End of drawIcon
 
-   LRESULT CALLBACK ImagedButton::wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam)
-   {
-      ImagedButton *_this = (ImagedButton *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
-
-      switch (message) {
-         case WM_LBUTTONDBLCLK:
-            PostMessage(hWnd, WM_LBUTTONDOWN, ::wparam, ::lparam);
-            break;
-         case WM_MOUSEMOVE:
-            if (!_this->m_mouseOver) {
-               _this->m_mouseOver = true;
-
-               TRACKMOUSEEVENT evt;
-
-               evt.cbSize = sizeof(evt);
-               evt.dwFlags = TME_LEAVE;
-               evt.dwHoverTime = HOVER_DEFAULT;
-               evt.hwndTrack = hWnd;
-
-               _this->invalidate();
-
-               TrackMouseEvent(&evt);
-            }
-            break;
-         case WM_MOUSELEAVE:
-            _this->m_mouseOver = false;
-            _this->invalidate();
-            break;
-      } // switch
-      // Any messages we don't process must be passed onto the original window function
-      return CallWindowProc((WNDPROC)_this->m_defWindowProc, hWnd, message, ::wparam, ::lparam);
-   }
+   // LRESULT CALLBACK ImagedButton::wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam)
+   // {
+   //    ImagedButton *_this = (ImagedButton *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
+   //
+   //    switch (message) {
+   //       case WM_LBUTTONDBLCLK:
+   //          PostMessage(hWnd, WM_LBUTTONDOWN, ::wparam, ::lparam);
+   //          break;
+   //       case WM_MOUSEMOVE:
+   //          if (!_this->m_mouseOver) {
+   //             _this->m_mouseOver = true;
+   //
+   //             TRACKMOUSEEVENT evt;
+   //
+   //             evt.cbSize = sizeof(evt);
+   //             evt.dwFlags = TME_LEAVE;
+   //             evt.dwHoverTime = HOVER_DEFAULT;
+   //             evt.hwndTrack = hWnd;
+   //
+   //             _this->invalidate();
+   //
+   //             TrackMouseEvent(&evt);
+   //          }
+   //          break;
+   //       case WM_MOUSELEAVE:
+   //          _this->m_mouseOver = false;
+   //          _this->invalidate();
+   //          break;
+   //    } // switch
+   //    // Any messages we don't process must be passed onto the original window function
+   //    return CallWindowProc((WNDPROC)_this->m_defWindowProc, hWnd, message, ::wparam, ::lparam);
+   // }
 } // namespace innate_subsystem

@@ -153,7 +153,7 @@ namespace innate_subsystem
    //protected:
 
      // char *m_resourceName;        // Name of dialog resource
-      //DWORD m_resourceId;            // Id of dialog resouce
+      //unsigned int m_resourceId;            // Id of dialog resouce
       //Control m_ctrlThis;           // This dialog control
       //Control *m_ctrlParent;        // Parent dialog or NULL if no parent
 

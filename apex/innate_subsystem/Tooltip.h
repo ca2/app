@@ -36,26 +36,47 @@ namespace innate_subsystem
 {
 
 
-    class Tooltip :
-    virtual public ::particle
+    class CLASS_DECL_APEX TooltipInterface :
+    virtual public ::subsystem::particle_interface
     {
     public:
-        Tooltip();
-        ~Tooltip() override;
+        //Tooltip();
+        virtual ~TooltipInterface() = 0;
 
-        virtual void showTooltip(Control *control);
+        virtual void showTooltip(Control *control)= 0;
 
-        virtual void setText(const char *text);
-        virtual void setTitle(const char *caption);
+        virtual void setText(const char *text)= 0;
+        virtual void setTitle(const char *caption)= 0;
 
-        virtual ::string getText() const;
-        virtual ::string getTitle() const;
+        virtual ::string getText() const= 0;
+        virtual ::string getTitle() const= 0;
 
-        virtual void setIconType(int iconType);
-        virtual int getIconType() const;
+        virtual void setIconType(int iconType)= 0;
+        virtual int getIconType() const = 0;
     };
 
     //#endif
+   
+   
+   class CLASS_DECL_APEX Tooltip :
+   virtual public ::subsystem::composite<TooltipInterface>
+   {
+   public:
+      Tooltip();
+      ~Tooltip() override;
+
+      void showTooltip(Control *control) override;
+
+      void setText(const char *text) override;
+      void setTitle(const char *caption) override;
+
+      ::string getText() const override;
+      ::string getTitle() const override;
+
+      void setIconType(int iconType) override;
+      int getIconType() const override;
+   };
+
 
 }// namespace innate_subsystem
 

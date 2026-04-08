@@ -307,26 +307,26 @@ namespace innate_subsystem
       }
    }
 
-   void ListView::setExStyle(DWORD style)
+   void ListView::setExStyle(unsigned int style)
    {
       ::SendMessage(m_hwnd, LVM_SETEXTENDEDLISTVIEWSTYLE, 0, (::lparam)style);
    }
 
-   DWORD ListView::getExStyle()
+   unsigned int ListView::getExStyle()
    {
       return ListView_GetExtendedListViewStyle(m_hwnd);
    }
 
-   void ListView::addExStyle(DWORD styleFlag)
+   void ListView::addExStyle(unsigned int styleFlag)
    {
-      DWORD flags = getExStyle();
+      unsigned int flags = getExStyle();
       flags |= styleFlag;
       setExStyle(flags);
    }
 
-   void ListView::removeExStyle(DWORD styleFlag)
+   void ListView::removeExStyle(unsigned int styleFlag)
    {
-      DWORD flags = getExStyle();
+      unsigned int flags = getExStyle();
       flags &= ~styleFlag;
       setExStyle(flags);
    }

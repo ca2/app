@@ -122,7 +122,7 @@ namespace innate_subsystem
       virtual void postMessage(unsigned int Msg, ::wparam wparam = 0, ::lparam lparam = 0) = 0;
 
       virtual void getClientRect(::int_rectangle &rc) = 0;
-      virtual void getBorderSize(int *width, int *height) = 0;
+      virtual ::int_size getBorderSize() = 0;
 
       virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
 
@@ -135,11 +135,11 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-   //    virtual bool onCommand(::wparam wparam, ::lparam lparam);
-   //    virtual bool onNotify(int idCtrl, LPNMHDR pnmh);
-   //    virtual bool onSysCommand(::wparam wparam, ::lparam lparam);
-   //    virtual bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam);
-   //    virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, POINT position);
+   virtual bool onCommand(::wparam wparam, ::lparam lparam) = 0;
+   //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
+   virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
+   virtual bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+   virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) = 0;
 
    // protected:
    //    HWND m_hWnd;
@@ -236,7 +236,7 @@ namespace innate_subsystem
       void postMessage(unsigned int Msg, ::wparam wparam =0, ::lparam lparam =0) override;
 
       void getClientRect(::int_rectangle &rc) override;
-      void getBorderSize(int *width, int *height) override;
+      ::int_size getBorderSize() override;
 
       bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;
 
@@ -249,11 +249,11 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-   //    bool onCommand(::wparam wparam, ::lparam lparam);
-   //    bool onNotify(int idCtrl, LPNMHDR pnmh);
-   //    bool onSysCommand(::wparam wparam, ::lparam lparam);
-   //    bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam);
-   //    bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, POINT position);
+       bool onCommand(::wparam wparam, ::lparam lparam) override;
+   //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
+       bool onSysCommand(::wparam wparam, ::lparam lparam) override;
+       bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override;
+       bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override;
 
    // protected:
    //    HWND m_hWnd;

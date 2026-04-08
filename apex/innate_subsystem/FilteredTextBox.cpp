@@ -27,9 +27,9 @@
 namespace innate_subsystem
 {
    FilteredTextBox::FilteredTextBox()
-   : m_oldWindowProc(NULL), m_tip(NULL)
+   //: m_oldWindowProc(NULL), m_tip(NULL)
    {
-      m_text.setString(_T(""));
+   //   m_text.setString(_T(""));
    }
 
    FilteredTextBox::~FilteredTextBox()
@@ -38,58 +38,70 @@ namespace innate_subsystem
 
    void FilteredTextBox::setWindow(const ::operating_system::window & operatingsystemwindow)
    {
-      if (hwnd != NULL) {
-         m_oldWindowProc = SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)&windowProc);
-         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)this);
-      } else {
-         m_oldWindowProc = NULL;
-      }
-      Control::setWindow(hwnd);
+      m_pparticleThis->setWindow(operatingsystemwindow);
+      // if (hwnd != NULL) {
+      //    m_oldWindowProc = SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)&windowProc);
+      //    SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)this);
+      // } else {
+      //    m_oldWindowProc = NULL;
+      // }
+      // Control::setWindow(hwnd);
    }
 
    void FilteredTextBox::setText(char *text)
    {
-      m_text.setString(text);
-      TextBox::setText(text);
+      // m_text.setString(text);
+      // TextBox::setText(text);
+
+      m_pparticleThis->setText(text);
    }
 
-   void FilteredTextBox::setErrorBalloonTip(BalloonTip *tip)
+   // void FilteredTextBox::setErrorBalloonTip(BalloonTip *tip)
+   // {
+   //    m_tip = tip;
+   // }
+   void FilteredTextBox::setErrorToolTip(TooltipInterface *tip)
    {
-      m_tip = tip;
+      //m_tip = tip;
+      m_pparticleThis->setErrorToolTip(tip);
    }
 
    void FilteredTextBox::setStringFilter(StringFilter *filter)
    {
-      m_filter = filter;
+      //m_filter = filter;
+      m_pparticleThis->setStringFilter(filter);
    }
 
-   LRESULT FilteredTextBox::makeCheck()
+   ::lresult FilteredTextBox::makeCheck()
    {
-      ::string updatedText;
-      TextBox::getText(&updatedText);
-      if (isStringValid(updatedText.getString())) {
-         m_text = updatedText;
-      } else {
-         if (m_tip != NULL) {
-            showBalloonTip(m_tip);
-            TextBox::setText(m_text.getString());
-            TextBox::selectText(m_text.getLength(), m_text.getLength());
-         } else {
-            //
-            // TODO: Play annoying sound this
-            //
-         }
-         return -1;
-      }
-      return 0;
+      // ::string updatedText;
+      // TextBox::getText(&updatedText);
+      // if (isStringValid(updatedText.getString())) {
+      //    m_text = updatedText;
+      // } else {
+      //    if (m_tip != NULL) {
+      //       showBalloonTip(m_tip);
+      //       TextBox::setText(m_text.getString());
+      //       TextBox::selectText(m_text.getLength(), m_text.getLength());
+      //    } else {
+      //       //
+      //       // TODO: Play annoying sound this
+      //       //
+      //    }
+      //    return -1;
+      // }
+      // return 0;
+
+      return m_pparticleThis->makeCheck();
    }
 
    bool FilteredTextBox::isStringValid(const char *string)
    {
-      if (m_filter != NULL) {
-         return m_filter->isStringCorrect(string);
-      }
-      return true;
+      // if (m_filter != NULL) {
+      //    return m_filter->isStringCorrect(string);
+      // }
+      //return true;
+      return m_pparticleThis->isStringValid(string);
    }
 
    //
@@ -97,24 +109,24 @@ namespace innate_subsystem
    //      other value - otherwise
    //
 
-   LRESULT  FilteredTextBox::onKeyDown(::wparam code, ::lparam params)
-   {
-      return makeCheck();
-   }
-
-   LRESULT FilteredTextBox::windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
-   {
-      FilteredTextBox *_this = (FilteredTextBox *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-      if (_this == NULL) {
-         return FALSE;
-      }
-      switch (uMsg) {
-         case WM_CHAR:
-            LRESULT result = CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, ::wparam, ::lparam);
-            return _this->onKeyDown(::wparam, ::lparam);
-      }
-      return CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, ::wparam, ::lparam);
-   }
+   // LRESULT  FilteredTextBox::onKeyDown(::wparam code, ::lparam params)
+   // {
+   //    return makeCheck();
+   // }
+   //
+   // LRESULT FilteredTextBox::windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+   // {
+   //    FilteredTextBox *_this = (FilteredTextBox *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+   //    if (_this == NULL) {
+   //       return FALSE;
+   //    }
+   //    switch (uMsg) {
+   //       case WM_CHAR:
+   //          LRESULT result = CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, ::wparam, ::lparam);
+   //          return _this->onKeyDown(::wparam, ::lparam);
+   //    }
+   //    return CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, ::wparam, ::lparam);
+   // }
 } // namespace innate_subsystem
 
 

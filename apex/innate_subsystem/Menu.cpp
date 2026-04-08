@@ -257,7 +257,7 @@ namespace innate_subsystem
       //    return false;
       // }
       // unsigned int command = bEnable ? MF_CHECKED : MF_UNCHECKED;
-      // DWORD res = CheckMenuItem(m_menu, pos, MF_BYPOSITION | command);
+      // unsigned int res = CheckMenuItem(m_menu, pos, MF_BYPOSITION | command);
       // return (res == -1) ? false : true;
 
       return m_pparticleThis->checkedMenuItem(uID, bEnable);

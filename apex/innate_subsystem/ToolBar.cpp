@@ -46,7 +46,7 @@ namespace innate_subsystem
       }
    }
 
-   bool ToolBar::create(int _tbID, HWND _parentHwnd, DWORD dwStyle)
+   bool ToolBar::create(int _tbID, HWND _parentHwnd, unsigned int dwStyle)
    {
       dwStyle |= WS_CHILD;
 
@@ -73,7 +73,7 @@ namespace innate_subsystem
       m_autoButtons[iButton] = style;
    }
 
-   void ToolBar::loadToolBarfromRes(DWORD id)
+   void ToolBar::loadToolBarfromRes(unsigned int id)
    {
       BITMAP bmp;
 
@@ -87,7 +87,7 @@ namespace innate_subsystem
       DeleteObject(hbmp);
    }
 
-   void ToolBar::setButtonsRange(DWORD id)
+   void ToolBar::setButtonsRange(unsigned int id)
    {
       m_initialStr = id;
    }

@@ -41,10 +41,10 @@ namespace innate_subsystem
       // with specified size.
       //BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size);
       // Destroys bitmap and graphics object.
-      virtual ~BitmapGraphics() = 0;
+      virtual ~BitmapGraphicsInterface() = 0;
 
 
-      void initialize_bitmap_graphics(DeviceContextInterface * pdevicecontextCompatible, const ::int_size & size) = 0;
+      virtual void initialize_bitmap_graphics(DeviceContextInterface * pdevicecontextCompatible, const ::int_size & size) = 0;
 
       // Returns target bitmap that we paint.
       virtual BitmapInterface *getBitmap() = 0;

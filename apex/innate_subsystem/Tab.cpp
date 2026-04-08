@@ -27,21 +27,34 @@
 namespace innate_subsystem
 {
    Tab::Tab()
-   : m_dialog(NULL)
+   //: m_dialog(NULL)
    {
-      m_caption.setString(_T(""));
+     // m_caption.setString(_T(""));
    }
 
-   Tab::Tab(BaseDialog *dialog, const char *caption)
-   : m_dialog(dialog)
+   Tab::~Tab()
    {
-      m_caption.setString(caption);
+
+
+   }
+   // Tab::Tab(BaseDialog *dialog, const char *caption)
+   // : m_dialog(dialog)
+   // {
+   //    m_caption.setString(caption);
+   // }
+   //
+   void Tab::initialize_tab(Dialog *dialog, const char *caption)
+//: m_dialog(dialog)
+   {
+      m_pparticleThis->initialize_tab(dialog, caption);
+  ///    m_caption.setString(caption);
    }
 
    void Tab::setVisible(bool visible)
    {
-      if (m_dialog != NULL) {
-         m_dialog->getControl()->setVisible(visible);
-      }
+      m_pparticleThis->setVisible(visible);
+      // if (m_dialog != NULL) {
+      //    m_dialog->getControl()->setVisible(visible);
+      // }
    }
 } // namespace innate_subsystem

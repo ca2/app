@@ -36,7 +36,7 @@ Dialog::Dialog()
 {
 }
 
-Dialog::Dialog(DWORD resourceId)
+Dialog::Dialog(unsigned int resourceId)
 : m_ctrlParent(NULL), m_resourceName(0), m_resourceId(resourceId), m_hicon(0)
 {
 }
@@ -58,7 +58,7 @@ Dialog::~Dialog()
 }
 
 
-   void Dialog::initialize_dialog(DWORD resourceId)
+   void Dialog::initialize_dialog(unsigned int resourceId)
 ///: m_ctrlParent(NULL), m_resourceName(0), m_resourceId(resourceId), m_hicon(0)
 {
    m_pparticleThis
@@ -80,7 +80,7 @@ void Dialog::setResourceName(const char *resourceName)
   m_resourceName = _tcsdup(resourceName);
 }
 
-void Dialog::setResourceId(DWORD id)
+void Dialog::setResourceId(unsigned int id)
 {
   m_resourceId = id;
 }
@@ -234,7 +234,7 @@ char *Dialog::getResouceName()
   return m_resourceName;
 }
 
-void Dialog::setControlById(Control &control, DWORD id) 
+void Dialog::setControlById(Control &control, unsigned int id)
 {
   control = GetDlgItem(m_ctrlThis.getWindow(), id);
 }
@@ -246,7 +246,7 @@ void Dialog::updateIcon()
   }
 }
 
-void Dialog::loadIcon(DWORD id)
+void Dialog::loadIcon(unsigned int id)
 {
   if (m_hicon) {
     DeleteObject(m_hicon);

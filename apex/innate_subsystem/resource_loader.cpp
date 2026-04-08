@@ -27,7 +27,7 @@
 
 // #include aaa_<crtdbg.h>
 
-namespace subsystem
+namespace innate_subsystem
 {
 
    //resource_loader::resource_loader(HINSTANCE appInst)
@@ -38,63 +38,67 @@ namespace subsystem
    resource_loader::~resource_loader()
    {}//h
 
-   //HICON resource_loader::loadStandartIcon(const char* iconName)
-   //{
-   //   return LoadIcon(NULL, iconName);
-   //}
-
-   //HICON resource_loader::loadIcon(const char* iconName)
-   //{
-   //   return LoadIcon(m_appInstance, iconName);
-   //}
-
-   bool resource_loader::loadString(unsigned int id, ::string & str)
+   ::pointer < IconInterface > resource_loader::loadStandartIcon(const char* iconName)
    {
-      //_ASSERT(string != 0);
-      str = "(Undef)";
-
-      //
-      // Format of string table:
-      // Strings are stored in groups of 16 strings.
-      // Group format is:
-      // | length  |     string     | length  | string  | ...
-      // | 2 bytes | len * 2 bytes  | 2 bytes | len * 2 | ...
-      // Strings stored in the UTF16-encoding.
-      // 
-
-
-      //// Id of string-group, based from 0.
-      //int resId = (id / 16) + 1;
-      //HRSRC resHnd = FindResource(m_appInstance,
-      //   MAKEINTRESOURCE(resId),
-      //   RT_STRING);
-      //if (resHnd != 0) {
-      //   HGLOBAL hGlobal = LoadResource(m_appInstance, resHnd);
-      //   LPVOID lockRes = LockResource(hGlobal);
-
-      //   WCHAR* lpStr = reinterpret_cast<WCHAR*>(lockRes);
-      //   for (UINT i = 0; i < (id % 16); i++) {
-      //      lpStr += 1 + static_cast<UINT16>(lpStr[0]);
-      //   }
-
-      //   UINT16 strLen = static_cast<UINT16>(lpStr[0]);
-
-      //   std::vector<WCHAR> strBuff;
-      //   strBuff.resize(strLen + 1);
-      //   memcpy(&strBuff.front(), lpStr + 1, strLen * sizeof(WCHAR));
-      //   strBuff[strLen] = L'\0';
-
-      //   UnlockResource(lockRes);
-      //   FreeResource(hGlobal);
-
-      //   UnicodeStringStorage unicodeString;
-      //   unicodeString.setString(&strBuff.front());
-      //   unicodeString.toStringStorage(string);
-      //}
-      return true;
+      //return LoadIcon(NULL, iconName);
+      throw ::interface_only();
+      return nullptr;
    }
 
-   //HACCEL resource_loader::loadAccelerator(UINT id)
+   ::pointer < IconInterface > resource_loader::loadIcon(const char* iconName)
+   {
+      //return LoadIcon(m_appInstance, iconName);
+      throw ::interface_only();
+      return nullptr;
+   }
+
+   // bool resource_loader::loadString(unsigned int id, ::string & str)
+   // {
+   //    //_ASSERT(string != 0);
+   //    str = "(Undef)";
+   //
+   //    //
+   //    // Format of string table:
+   //    // Strings are stored in groups of 16 strings.
+   //    // Group format is:
+   //    // | length  |     string     | length  | string  | ...
+   //    // | 2 bytes | len * 2 bytes  | 2 bytes | len * 2 | ...
+   //    // Strings stored in the UTF16-encoding.
+   //    //
+   //
+   //
+   //    //// Id of string-group, based from 0.
+   //    //int resId = (id / 16) + 1;
+   //    //HRSRC resHnd = FindResource(m_appInstance,
+   //    //   MAKEINTRESOURCE(resId),
+   //    //   RT_STRING);
+   //    //if (resHnd != 0) {
+   //    //   HGLOBAL hGlobal = LoadResource(m_appInstance, resHnd);
+   //    //   LPVOID lockRes = LockResource(hGlobal);
+   //
+   //    //   WCHAR* lpStr = reinterpret_cast<WCHAR*>(lockRes);
+   //    //   for (unsigned int i = 0; i < (id % 16); i++) {
+   //    //      lpStr += 1 + static_cast<UINT16>(lpStr[0]);
+   //    //   }
+   //
+   //    //   UINT16 strLen = static_cast<UINT16>(lpStr[0]);
+   //
+   //    //   std::vector<WCHAR> strBuff;
+   //    //   strBuff.resize(strLen + 1);
+   //    //   memcpy(&strBuff.front(), lpStr + 1, strLen * sizeof(WCHAR));
+   //    //   strBuff[strLen] = L'\0';
+   //
+   //    //   UnlockResource(lockRes);
+   //    //   FreeResource(hGlobal);
+   //
+   //    //   UnicodeStringStorage unicodeString;
+   //    //   unicodeString.setString(&strBuff.front());
+   //    //   unicodeString.toStringStorage(string);
+   //    //}
+   //    return true;
+   // }
+   //
+   //HACCEL resource_loader::loadAccelerator(unsigned int id)
    //{
    //   return LoadAccelerators(m_appInstance,
    //      MAKEINTRESOURCE(id));
@@ -105,13 +109,15 @@ namespace subsystem
    //   return LoadCursor(0, id);
    //}
 
-   //HCURSOR resource_loader::loadCursor(UINT id)
-   //{
-   //   return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
-   //}
+   ::pointer <IconInterface> resource_loader::loadCursor(unsigned int id)
+   {
+      //return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
+      throw ::interface_only();
+      return nullptr;
+   }
 
 
-} // namespace subsystem
+} // namespace innate_subsystem
 
 
 

@@ -22,38 +22,74 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _FILTERED_TEXT_BOX_H_
-#define _FILTERED_TEXT_BOX_H_
+#pragma once
+// #ifndef _FILTERED_TEXT_BOX_H_
+// #define _FILTERED_TEXT_BOX_H_
 
-#include "TextBox.h"
-#include "BalloonTip.h"
-#include "StringFilter.h"
-#include "util/::string.h"
+#include "apex/innate_subsystem/TextBox.h"
+//#include "BalloonTip.h"
+#include "apex/innate_subsystem/StringFilter.h"
+//#include "util/::string.h"
 
-class FilteredTextBox : public TextBox
+namespace innate_subsystem
 {
-public:
-  FilteredTextBox();
-  ~FilteredTextBox();
+   class CLASS_DECL_APEX FilteredTextBoxInterface :
+   virtual public TextBox
+   {
+   public:
+      //FilteredTextBox();
+      virtual ~FilteredTextBoxInterface() = 0;
 
-  // Override Control::setWindow method
-  void setWindow(const ::operating_system::window & operatingsystemwindow);
-  void setText(char *text);
-  void setErrorBalloonTip(BalloonTip *tip);
-  void setStringFilter(StringFilter *filter);
-  LRESULT makeCheck();
+      // Override Control::setWindow method
+      virtual void setWindow(const ::operating_system::window & operatingsystemwindow) = 0;
+      virtual void setText(char *text) = 0;
+      //virtual void setErrorBalloonTip(BalloonTip *tip) = 0;
+      virtual void setErrorToolTip(TooltipInterface *tip) = 0;
+      virtual void setStringFilter(StringFilter *filter) = 0;
+      virtual ::lresult makeCheck() = 0;
 
-protected:
-  virtual bool isStringValid(const char *string);
-  virtual LRESULT onKeyDown(::wparam code, ::lparam params);
+   // protected:
+       virtual bool isStringValid(const char *string) = 0;
+   //    virtual LRESULT onKeyDown(::wparam code, ::lparam params);
+   //
+   //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+   //
+   // protected:
+   //    LONG_PTR m_oldWindowProc;
+   //    ::string m_text;
+   //    BalloonTip *m_tip;
+   //    StringFilter *m_filter;
+   };
 
-  static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+   class CLASS_DECL_APEX FilteredTextBox :
+      virtual public ::subsystem::composite<FilteredTextBoxInterface>
+   {
+   public:
+      FilteredTextBox();
+      virtual ~FilteredTextBox() = 0;
 
-protected:
-  LONG_PTR m_oldWindowProc;
-  ::string m_text;
-  BalloonTip *m_tip;
-  StringFilter *m_filter;
-};
+      // Override Control::setWindow method
+      void setWindow(const ::operating_system::window & operatingsystemwindow) override;
+      void setText(char *text) override;
+      //void setErrorBalloonTip(BalloonTip *tip) override;
+      void setErrorToolTip(TooltipInterface *tip) override;
+      void setStringFilter(StringFilter *filter) override;
+      ::lresult makeCheck() override;
 
-#endif
+      // protected:
+      bool isStringValid(const char *string) override;
+      //    virtual LRESULT onKeyDown(::wparam code, ::lparam params);
+      //
+      //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+      //
+      // protected:
+      //    LONG_PTR m_oldWindowProc;
+      //    ::string m_text;
+      //    BalloonTip *m_tip;
+      //    StringFilter *m_filter;
+   };
+
+   //#endif
+} // namespace innate_subsystem
+
+

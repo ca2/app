@@ -26,47 +26,113 @@
 
 
 //#include "apex/innate_subsystem/Dialog.h"
-#include "apex/innate_subsystem/Control.h"
+#include "apex/innate_subsystem/_common_header.h"
 //#include "util/::string.h"
 
 namespace innate_subsystem
 {
-    class Tab
+    class CLASS_DECL_APEX TabInterface :
+   virtual public ::subsystem::particle_interface
     {
     public:
-        Tab();
-        Tab(BaseDialog *dialog, const char *caption);
+        //Tab();
+
+       virtual ~TabInterface() =0;
+        //Tab(BaseDialog *dialog, const char *caption);
 
         //
         // Access methods to protected members
         //
 
-        void setCaption(const char *caption) { m_caption.setString(caption); }
+       virtual void initialize_tab(Dialog *dialog, const char *caption) = 0;
 
-        const char *getCaption() {
-            return m_caption.getString();
-        }
+        //void setCaption(const char *caption) = 0; { m_caption->setString(caption); }
 
-        void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
-        BaseDialog *getDialog() { return m_dialog; }
+       virtual void setCaption(const char *caption) = 0;
+
+        // const char *getCaption() {
+        //     return m_caption.getString();
+        // }
+
+       virtual const char *getCaption() = 0;
+
+        //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
+        //BaseDialog *getDialog() { return m_dialog; }
+       virtual void setDialog(DialogInterface *dialog) = 0;
+       virtual DialogInterface *getDialog() = 0;
 
         //
         // Method return true if tab has dialog
         //
 
-        bool isOk() { return m_dialog != NULL; }
+        // virtual bool isOk() { return m_dialog != NULL; }
+       virtual bool isOk() = 0;
 
         //
         // Changes visible state of dialog donates by this tab
         //
 
-        void setVisible(bool visible);
+        virtual void setVisible(bool visible) = 0;
 
-    protected:
-
-        BaseDialog *m_dialog;
-        ::string m_caption;
+    // protected:
+    //
+    //     BaseDialog *m_dialog;
+    //     ::string m_caption;
     };
+   
+   
+   
+   class CLASS_DECL_APEX Tab :
+      virtual public ::subsystem::composite <TabInterface>
+   {
+   public:
+
+
+      Tab();
+
+      ~Tab() override;
+      //Tab(BaseDialog *dialog, const char *caption);
+
+      //
+      // Access methods to protected members
+      //
+
+      void initialize_tab(Dialog *dialog, const char *caption) override;
+
+      //void setCaption(const char *caption) override; { m_caption->setString(caption); }
+
+      void setCaption(const char *caption) override;
+
+      // const char *getCaption() {
+      //     return m_caption.getString();
+      // }
+
+      const char *getCaption() override;
+
+      //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
+      //BaseDialog *getDialog() { return m_dialog; }
+      void setDialog(DialogInterface *dialog) override;
+      DialogInterface *getDialog() override;
+
+      //
+      // Method return true if tab has dialog
+      //
+
+      // bool isOk() { return m_dialog != NULL; }
+      bool isOk() override;
+
+      //
+      // Changes visible state of dialog donates by this tab
+      //
+
+      void setVisible(bool visible) override;
+
+      // protected:
+      //
+      //     BaseDialog *m_dialog;
+      //     ::string m_caption;
+   };
+
 
     //#endif
 } // namespace innate_subsystem

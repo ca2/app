@@ -41,8 +41,8 @@ namespace innate_subsystem
 
       //HMENU getMenu();
       virtual void setMenu(MenuInterface * pmenu) = 0;
-      virtual bool getWindowMenu(WindowInterface * pwindowinterface) = 0;
-      virtual void getSystemMenu(WindowInterface hwnd) = 0;
+      virtual bool getWindowMenu(WindowInterface * pwindow) = 0;
+      virtual void getSystemMenu(WindowInterface * pwindow) = 0;
       virtual void create() = 0;
       virtual bool loadMenu(const char * lpMenuName) = 0;
       virtual void createPopupMenu() = 0;

@@ -22,15 +22,18 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _STRING_FILTER_H_
-#define _STRING_FILTER_H_
+#pragma once
 
-#include <tchar.h>
+//#include <tchar.h>
 
-class StringFilter
+namespace innate_subsystem
 {
-public:
-  virtual bool isStringCorrect(const char *string);
-};
+   class StringFilter
+   {
+   public:
+      virtual bool isStringCorrect(const char *string);
+   };
+} // namespace innate_subsystem
 
-#endif
+
+//#endif

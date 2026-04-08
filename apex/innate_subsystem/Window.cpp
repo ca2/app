@@ -22,10 +22,10 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "util/CommonHeader.h"
+//#include "util/CommonHeader.h"
 #include "Window.h"
 
-#include "acme/operating_system/windows/_.h"
+//#include "acme/operating_system/windows/_.h"
 
 
 namespace innate_subsystem
@@ -49,12 +49,13 @@ namespace innate_subsystem
 
    void Window::setClass(const ::scoped_string & scopedstrClassName)
    {
-      m_pparticleThis->setClass(className);
+      m_pparticleThis->setClass(scopedstrClassName);
       //m_className = *className;
    }
 
-   bool Window::createWindow(const scoped_string & scopedstrWindowName, DWORD style, const ::operating_system::window & operatingsystemwindowParent,
-                                 int xPos, int yPos, const ::int_size & size)
+   bool Window::createWindow(const scoped_string & scopedstrWindowName, unsigned int style,
+      const ::operating_system::window & operatingsystemwindowParent,
+                                 int xPos, int yPos, int width, int height)
    {
 
            return m_pparticleThis->createWindow(scopedstrWindowName,style, operatingsystemwindowParent, xPos, yPos, width, height);
@@ -80,7 +81,7 @@ namespace innate_subsystem
       // return true;
    }
 
-   void Window::loadIcon(DWORD id)
+   void Window::loadIcon(unsigned int id)
    {
 
       m_pparticleThis ->loadIcon(id);
@@ -132,7 +133,7 @@ namespace innate_subsystem
       // _ASSERT(m_hWnd != 0);
       // return !!SetWindowPos(m_hWnd, 0, 0, 0, width, height,
       //                       SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE);
-      return m_pparticleThis->setSize(width, height);
+      return m_pparticleThis->setSize(size);
    }
 
    bool Window::setPosition(int xPos, int yPos)
@@ -148,104 +149,118 @@ namespace innate_subsystem
       // _ASSERT(m_hWnd != 0);
       // SetParent(m_hWnd, hwnd);
 
-      m_pparticleThis->setParent(hwnd);
+      m_pparticleThis->setParent(operatingsystemwindow);
    }
 
 
    ::operating_system::window Window::dialog_item_operating_system_window(int iDlgItem)
    {
 
-      auto hwndDlgItem = ::GetDlgItem(m_hWnd, iDlgItem);
-
-      auto operatingsystemwindow = as_operating_system_window(hwndDlgItem);
-
-      return operatingsystemwindow;
+      return m_pparticleThis->dialog_item_operating_system_window(iDlgItem);
+      // auto hwndDlgItem = ::GetDlgItem(m_hWnd, iDlgItem);
+      //
+      // auto operatingsystemwindow = as_operating_system_window(hwndDlgItem);
+      //
+      // return operatingsystemwindow;
 
    }
 
-   void Window::setClassStyle(DWORD style)
+   void Window::setClassStyle(unsigned int style)
    {
-      _ASSERT(m_hWnd != 0);
-      SetClassLong(m_hWnd, GCL_STYLE, style);
+      // _ASSERT(m_hWnd != 0);
+      // SetClassLong(m_hWnd, GCL_STYLE, style);
+      m_pparticleThis->setClassStyle(style);
    }
 
-   void Window::setClassCursor(HCURSOR hcursor)
-   {
-      _ASSERT(m_hWnd != 0);
-      SetClassLongPtr(m_hWnd, GCLP_HCURSOR, reinterpret_cast<LONG_PTR>(hcursor));
-   }
+   // void Window::setClassCursor(HCURSOR hcursor)
+   // {
+   //    // _ASSERT(m_hWnd != 0);
+   //    // SetClassLongPtr(m_hWnd, GCLP_HCURSOR, reinterpret_cast<LONG_PTR>(hcursor));
+   //
+   //    m_pparticleThis->setClassCursor(hcursor);
+   // }
+   //
+   // void Window::setClassBackground(HBRUSH hbrush)
+   // {
+   //    //_ASSERT(m_hWnd != 0);
+   //    //SetClassLongPtr(m_hWnd, GCLP_HBRBACKGROUND, reinterpret_cast<LONG_PTR>(hbrush));
+   //    m_pparticleThis->setClassCursor(hcursor);
+   // }
 
-   void Window::setClassBackground(HBRUSH hbrush)
-   {
-      _ASSERT(m_hWnd != 0);
-      SetClassLongPtr(m_hWnd, GCLP_HBRBACKGROUND, reinterpret_cast<LONG_PTR>(hbrush));
-   }
-
-   void Window::setClassMenu(LONG menu)
-   {
-      _ASSERT(m_hWnd != 0);
-      SetClassLongPtr(m_hWnd, GCLP_MENUNAME, menu);
-   }
+   // void Window::setClassMenu(long long menu)
+   // {
+   //    // _ASSERT(m_hWnd != 0);
+   //    // SetClassLongPtr(m_hWnd, GCLP_MENUNAME, menu);
+   // }
 
 
    bool Window::we_want_WM_KEYDOWN_when_enter_is_pressed() const
    {
 
-      m_pparticleThis->we
+      return m_pparticleThis->we_want_WM_KEYDOWN_when_enter_is_pressed();
 
    }
 
-   LONG Window::getStyle()
+   long long Window::getStyle()
    {
-      _ASSERT(m_hWnd != 0);
-      return GetWindowLong(m_hWnd, GWL_STYLE);
+      // _ASSERT(m_hWnd != 0);
+      // return GetWindowLong(m_hWnd, GWL_STYLE);
+      return m_pparticleThis->getStyle();
    }
 
-   void Window::setStyle(DWORD style)
+   void Window::setStyle(unsigned int style)
    {
-      _ASSERT(m_hWnd != 0);
-      SetWindowLong(m_hWnd, GWL_STYLE, style);
+      //_ASSERT(m_hWnd != 0);
+      //SetWindowLong(m_hWnd, GWL_STYLE, style);
+      m_pparticleThis->setStyle(style);
    }
 
-   LONG Window::getExStyle()
+   long long Window::getExStyle()
    {
-      _ASSERT(m_hWnd != 0);
-      return GetWindowLong(m_hWnd, GWL_EXSTYLE);
+      //_ASSERT(m_hWnd != 0);
+      //return GetWindowLong(m_hWnd, GWL_EXSTYLE);
+      return m_pparticleThis->getExStyle();
    }
 
-   void Window::setExStyle(DWORD exstyle)
+   void Window::setExStyle(unsigned int exstyle)
    {
-      _ASSERT(m_hWnd != 0);
-      SetWindowLong(m_hWnd, GWL_EXSTYLE, exstyle);
+      //_ASSERT(m_hWnd != 0);
+      //SetWindowLong(m_hWnd, GWL_EXSTYLE, exstyle);
+      m_pparticleThis->setExStyle(exstyle);
    }
 
    void Window::updateWindow()
    {
-      _ASSERT(m_hWnd != 0);
-      UpdateWindow(m_hWnd);
+      //_ASSERT(m_hWnd != 0);
+      //UpdateWindow(m_hWnd);
+      m_pparticleThis->updateWindow();
    }
 
-   void Window::setTimer(unsigned int_PTR ident, unsigned int time)
+   void Window::setTimer(::uptr u, unsigned int time)
    {
-      _ASSERT(m_hWnd != 0);
-      SetTimer(m_hWnd, ident, time, 0);
+      //_ASSERT(m_hWnd != 0);
+      //SetTimer(m_hWnd, ident, time, 0);
+
+      m_pparticleThis->setTimer(u, time);
    }
 
-   void Window::killTimer(unsigned int_PTR ident)
+   void Window::killTimer(::uptr u)
    {
-      _ASSERT(m_hWnd != 0);
-      KillTimer(m_hWnd, ident);
+      // _ASSERT(m_hWnd != 0);
+      // KillTimer(m_hWnd, ident);
+
+      m_pparticleThis->killTimer(u);
    }
 
    bool Window::onCommand(::wparam wparam, ::lparam lparam)
    {
-      return false;
+      return m_pparticleThis->onCommand(wparam, lparam);
    }
 
-   bool Window::onNotify(int idCtrl, LPNMHDR pnmh)
-   {
-      return false;
-   }
+   // bool Window::onNotify(int idCtrl, LPNMHDR pnmh)
+   // {
+   //    return false;
+   // }
 
    bool Window::onSysCommand(::wparam wparam, ::lparam lparam)
    {
@@ -257,128 +272,138 @@ namespace innate_subsystem
       return false;
    }
 
-   bool Window::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
+   // bool Window::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
+   // {
+   //    switch (message) {
+   //       case WM_COMMAND:
+   //          return onCommand(::wparam, ::lparam);
+   //       case WM_NOTIFY:
+   //          return onNotify((int)::wparam, (LPNMHDR)::lparam);
+   //       case WM_SYSCOMMAND:
+   //          return onSysCommand(::wparam, ::lparam);
+   //       case WM_LBUTTONDOWN:
+   //       case WM_LBUTTONUP:
+   //       case WM_MBUTTONDOWN:
+   //       case WM_MBUTTONUP:
+   //       case WM_RBUTTONDOWN:
+   //       case WM_RBUTTONUP:
+   //       case WM_MOUSEWHEEL:
+   //       case WM_MOUSEMOVE:
+   //       {
+   //          unsigned char mouseButtons = 0;
+   //
+   //          mouseButtons |= LOWORD(::wparam) & MK_RBUTTON ? MOUSE_RDOWN : 0;
+   //          mouseButtons |= LOWORD(::wparam) & MK_MBUTTON ? MOUSE_MDOWN : 0;
+   //          mouseButtons |= LOWORD(::wparam) & MK_LBUTTON ? MOUSE_LDOWN : 0;
+   //
+   //          // Translate position from ::lparam to POINT.
+   //          POINTS points = MAKEPOINTS(::lparam);
+   //          POINT point;
+   //          point.x = points.x;
+   //          point.y = points.y;
+   //
+   //          unsigned short wheelSpeed = 0;
+   //          if (message == WM_MOUSEWHEEL) {
+   //             // Get speed wheel and set mouse button.
+   //             signed short wheelSignedSpeed = static_cast<signed short>(HIWORD(::wparam));
+   //             if (wheelSignedSpeed < 0) {
+   //                mouseButtons |= MOUSE_WDOWN;
+   //                wheelSpeed = - wheelSignedSpeed / WHEEL_DELTA;
+   //             } else {
+   //                mouseButtons |= MOUSE_WUP;
+   //                wheelSpeed = wheelSignedSpeed / WHEEL_DELTA;
+   //             }
+   //
+   //             // In some cases wheelSignedSpeed can be smaller than the WHEEL_DELTA,
+   //             // then wheelSpeed set to 1, but not 0.
+   //             if (wheelSpeed == 0) {
+   //                wheelSpeed = 1;
+   //             }
+   //
+   //             // If windows-message is WHEEL, then need to translate screen coordinate to client.
+   //             if (!ScreenToClient(getHWnd(), &point)) {
+   //                point.x = -1;
+   //                point.y = -1;
+   //             }
+   //          }
+   //
+   //          // Notify window about mouse-event.
+   //          return onMouse(mouseButtons, static_cast<unsigned short>(wheelSpeed), point);
+   //       }
+   //    }
+   //    return onMessage(message, ::wparam, ::lparam);
+   // }
+
+   void Window::set_operating_system_window(const ::operating_system::window & operatingsystemwindow)
    {
-      switch (message) {
-         case WM_COMMAND:
-            return onCommand(::wparam, ::lparam);
-         case WM_NOTIFY:
-            return onNotify((int)::wparam, (LPNMHDR)::lparam);
-         case WM_SYSCOMMAND:
-            return onSysCommand(::wparam, ::lparam);
-         case WM_LBUTTONDOWN:
-         case WM_LBUTTONUP:
-         case WM_MBUTTONDOWN:
-         case WM_MBUTTONUP:
-         case WM_RBUTTONDOWN:
-         case WM_RBUTTONUP:
-         case WM_MOUSEWHEEL:
-         case WM_MOUSEMOVE:
-         {
-            unsigned char mouseButtons = 0;
-
-            mouseButtons |= LOWORD(::wparam) & MK_RBUTTON ? MOUSE_RDOWN : 0;
-            mouseButtons |= LOWORD(::wparam) & MK_MBUTTON ? MOUSE_MDOWN : 0;
-            mouseButtons |= LOWORD(::wparam) & MK_LBUTTON ? MOUSE_LDOWN : 0;
-
-            // Translate position from ::lparam to POINT.
-            POINTS points = MAKEPOINTS(::lparam);
-            POINT point;
-            point.x = points.x;
-            point.y = points.y;
-
-            unsigned short wheelSpeed = 0;
-            if (message == WM_MOUSEWHEEL) {
-               // Get speed wheel and set mouse button.
-               signed short wheelSignedSpeed = static_cast<signed short>(HIWORD(::wparam));
-               if (wheelSignedSpeed < 0) {
-                  mouseButtons |= MOUSE_WDOWN;
-                  wheelSpeed = - wheelSignedSpeed / WHEEL_DELTA;
-               } else {
-                  mouseButtons |= MOUSE_WUP;
-                  wheelSpeed = wheelSignedSpeed / WHEEL_DELTA;
-               }
-
-               // In some cases wheelSignedSpeed can be smaller than the WHEEL_DELTA,
-               // then wheelSpeed set to 1, but not 0.
-               if (wheelSpeed == 0) {
-                  wheelSpeed = 1;
-               }
-
-               // If windows-message is WHEEL, then need to translate screen coordinate to client.
-               if (!ScreenToClient(getHWnd(), &point)) {
-                  point.x = -1;
-                  point.y = -1;
-               }
-            }
-
-            // Notify window about mouse-event.
-            return onMouse(mouseButtons, static_cast<unsigned short>(wheelSpeed), point);
-         }
-      }
-      return onMessage(message, ::wparam, ::lparam);
+      //m_hWnd = hwnd;
+      m_pparticleThis->set_operating_system_window(operatingsystemwindow);
    }
 
-   void Window::setHWnd(const ::operating_system::window & operatingsystemwindow)
+   ::operating_system::window Window::operating_system_window() const
    {
-      m_hWnd = hwnd;
+      return m_pparticleThis->operating_system_window();
    }
 
-   HWND Window::getHWnd() const
+   void Window::setWindowText(const ::scoped_string & scopedstr)
    {
-      return m_hWnd;
-   }
-
-   void Window::setWindowText(const ::string *text)
-   {
-      _ASSERT(m_hWnd != 0);
-      SetWindowText(m_hWnd, text->getString());
+      // _ASSERT(m_hWnd != 0);
+      // SetWindowText(m_hWnd, text->getString());
+      m_pparticleThis->setWindowText(scopedstr);
    }
 
    void Window::redraw(const ::int_rectangle &rcArea)
    {
-      _ASSERT(m_hWnd != 0);
-
-      if (rcArea == 0) {
-         InvalidateRect(m_hWnd, NULL, TRUE);
-      } else {
-         InvalidateRect(m_hWnd, rcArea, FALSE);
-      }
+      m_pparticleThis->redraw(rcArea);
+      // _ASSERT(m_hWnd != 0);
+      //
+      // if (rcArea == 0) {
+      //    InvalidateRect(m_hWnd, NULL, TRUE);
+      // } else {
+      //    InvalidateRect(m_hWnd, rcArea, FALSE);
+      // }
    }
 
-   bool Window::onMouse(unsigned char msg, unsigned short wspeed, POINT pt)
+   bool Window::onMouse(unsigned char msg, unsigned short wspeed, const ::int_point & point)
    {
+
+      m_pparticleThis->onMouse(msg, wspeed, point);
       return false;
    }
 
    void Window::setForegroundWindow()
    {
-      _ASSERT(m_hWnd != 0);
-
-      SetForegroundWindow(m_hWnd);
+      // _ASSERT(m_hWnd != 0);
+      //
+      // SetForegroundWindow(m_hWnd);
+      m_pparticleThis->setForegroundWindow();
    }
 
    void Window::postMessage(unsigned int Msg, ::wparam wparam, ::lparam lparam)
    {
-      _ASSERT(m_hWnd != 0);
-
-      PostMessage(m_hWnd, Msg, ::wparam, ::lparam);
+      // _ASSERT(m_hWnd != 0);
+      //
+      // PostMessage(m_hWnd, Msg, ::wparam, ::lparam);
+      m_pparticleThis->postMessage(Msg, wparam, lparam);
    }
 
    void Window::getClientRect(::int_rectangle &rc)
    {
-      _ASSERT(m_hWnd != 0 && rc);
-
-      GetClientRect(m_hWnd, rc);
+      // _ASSERT(m_hWnd != 0 && rc);
+      //
+      // GetClientRect(m_hWnd, rc);
+      m_pparticleThis->getClientRect(rc);
    }
 
-   void Window::getBorderSize(int *width, int *height)
+   ::int_size Window::getBorderSize()
    {
-      _ASSERT(m_hWnd != 0);
+      // _ASSERT(m_hWnd != 0);
+      //
+      // *width = 2 * GetSystemMetrics(SM_CXSIZEFRAME);
+      // *height = GetSystemMetrics(SM_CYSIZE) +
+      //           2 * GetSystemMetrics(SM_CYSIZEFRAME);
 
-      *width = 2 * GetSystemMetrics(SM_CXSIZEFRAME);
-      *height = GetSystemMetrics(SM_CYSIZE) +
-                2 * GetSystemMetrics(SM_CYSIZEFRAME);
+      return m_pparticleThis->getBorderSize();
    }
 } // namespace innate_subsystem
 

@@ -51,8 +51,8 @@ namespace innate_subsystem
 
         virtual void setWindow(const ::operating_system::window & window) =0;
 
-        //virtual void setIcon(HICON *icon, const ::int_size & size);
-        virtual void setIcon(::innate_ui::icon * picon, const ::int_size & size) = 0;
+        //virtual void setIcon(::pointer < IconInterface > &icon, const ::int_size & size);
+        virtual void setIcon(IconInterface * picon, const ::int_size & size) = 0;
 
     //private:
 
@@ -69,10 +69,10 @@ namespace innate_subsystem
         // OUT imageRect - output image rectangle
         //
 
-        //virtual void calcRect(RECT* buttonRect, bool isButtonPressed,
-        //              DWORD textWidth, DWORD textHeight,
-        //              DWORD imageWidth, DWORD imageHeight,
-        //              ::int_rectangle &textRect, RECT* imageRect);
+        virtual void calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
+                      unsigned int textWidth, unsigned int textHeight,
+                      unsigned int imageWidth, unsigned int imageHeight,
+                      ::int_rectangle &textRect, ::int_rectangle & imageRect) = 0;
 
         //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
     //protected:
@@ -84,7 +84,7 @@ namespace innate_subsystem
         // Icon to display
         //
 
-        //HICON *m_icon;
+        //::pointer < IconInterface > &m_icon;
 
         //int m_iconWidth;
         //int m_iconHeight;
@@ -110,8 +110,8 @@ namespace innate_subsystem
 
       virtual void setWindow(const ::operating_system::window & window);
 
-      //virtual void setIcon(HICON *icon, const ::int_size & size);
-      virtual void setIcon(::innate_ui::icon * picon, const ::int_size & size);
+      //virtual void setIcon(::pointer < IconInterface > &icon, const ::int_size & size);
+      virtual void setIcon(IconInterface * picon, const ::int_size & size);
 
       //private:
 
@@ -128,10 +128,10 @@ namespace innate_subsystem
       // OUT imageRect - output image rectangle
       //
 
-      //virtual void calcRect(RECT* buttonRect, bool isButtonPressed,
-      //              DWORD textWidth, DWORD textHeight,
-      //              DWORD imageWidth, DWORD imageHeight,
-      //              ::int_rectangle &textRect, RECT* imageRect);
+      virtual void calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
+                    unsigned int textWidth, unsigned int textHeight,
+                    unsigned int imageWidth, unsigned int imageHeight,
+                    ::int_rectangle &textRect, ::int_rectangle & imageRect) override;
 
       //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
       //protected:
@@ -143,7 +143,7 @@ namespace innate_subsystem
       // Icon to display
       //
 
-      //HICON *m_icon;
+      //::pointer < IconInterface > &m_icon;
 
       //int m_iconWidth;
       //int m_iconHeight;

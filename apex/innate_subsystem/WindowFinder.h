@@ -22,25 +22,26 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef __WINDOWFINDER_H__
-#define __WINDOWFINDER_H__
+#pragma once
+// #ifndef __WINDOWFINDER_H__
+// #define __WINDOWFINDER_H__
 
-#include "util/CommonHeader.h"
-#include <vector>
-#include "util/StringVector.h"
-
-class WindowFinder
-{
-public:
-  static std::vector<HWND> findWindowsByClass(StringVector classNames);
-
-  // Find first of windows that name contain the string.
-  // It is not case sensitive.
-  static HWND findFirstWindowByName(const ::string windowName);
-
-protected:
-  static bool CALLBACK findWindowsByClassFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
-  static bool CALLBACK findWindowsByNameFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
-};
-
-#endif // __WINDOWFINDER_H__
+// #include "util/CommonHeader.h"
+// #include <vector>
+// #include "util/StringVector.h"
+//
+// class WindowFinder
+// {
+// public:
+//   static std::vector<HWND> findWindowsByClass(StringVector classNames);
+//
+//   // Find first of windows that name contain the string.
+//   // It is not case sensitive.
+//   static HWND findFirstWindowByName(const ::string windowName);
+//
+// protected:
+//   static bool CALLBACK findWindowsByClassFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
+//   static bool CALLBACK findWindowsByNameFunc(const ::operating_system::window & operatingsystemwindow, ::lparam lparam);
+// };
+//
+// #endif // __WINDOWFINDER_H__

@@ -26,37 +26,62 @@
 
 namespace innate_subsystem
 {
+   // BitmapGraphics::BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size)
+   // : Graphics(complatibleDC), m_isPainting(false)
+   // {
+   //   m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
+   //   m_dc = new DeviceContext(complatibleDC);
+   // }
 
-BitmapGraphics::BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size)
-: Graphics(complatibleDC), m_isPainting(false)
+
+   BitmapGraphics::BitmapGraphics()
+//: Graphics(complatibleDC), m_isPainting(false)
 {
-  m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
-  m_dc = new DeviceContext(complatibleDC);
+      //m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
+      //m_dc = new DeviceContext(complatibleDC);
 }
 
-BitmapGraphics::~BitmapGraphics()
+
+   BitmapGraphics::~BitmapGraphics()
+   {
+      //delete m_bitmap;
+      //delete m_dc;
+   }
+
+   void BitmapGraphics::initialize_bitmap_graphics(DeviceContextInterface *pdevicecontextCompatible, const ::int_size & size)
+//: Graphics(complatibleDC), m_isPainting(false)
 {
-  delete m_bitmap;
-  delete m_dc;
+      m_pparticleThis->initialize_bitmap_graphics(pdevicecontextCompatible, size);
+      // }
+      //    m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
+      //    m_dc = new DeviceContext(complatibleDC);
 }
 
-Bitmap *BitmapGraphics::getBitmap()
-{
-  return m_bitmap;
-}
 
-void BitmapGraphics::beginPaint()
-{
-  _ASSERT(!m_isPainting);
+   BitmapInterface *BitmapGraphics::getBitmap()
+   {
+      //return m_bitmap;
 
-  m_isPainting = true;
-  m_oldBitmap = m_dc->selectObject(m_bitmap->m_bitmap);
-}
+      return m_pparticleThis->getBitmap();
+   }
 
-void BitmapGraphics::endPaint()
-{
-  _ASSERT(m_isPainting);
+   void BitmapGraphics::beginPaint()
+   {
+      m_pparticleThis->beginPaint();
+      //}
+      // _ASSERT(!m_isPainting);
+      //
+      // m_isPainting = true;
+      // m_oldBitmap = m_dc->selectObject(m_bitmap->m_bitmap);
+   }
 
-  m_isPainting = false;
-  m_dc->selectObject(m_oldBitmap);
-}
+   void BitmapGraphics::endPaint()
+   {
+      m_pparticleThis->endPaint();
+      //}
+      //  _ASSERT(m_isPainting);
+      //
+      // m_isPainting = false;
+      // m_dc->se
+   }
+} // namespace innate_subsystem

@@ -49,7 +49,7 @@ namespace innate_subsystem
    //    fromBitmap(bitmap, mask);
    // }
    //
-   // Icon::Icon(DWORD icon)
+   // Icon::Icon(unsigned int icon)
    // : m_hasOwnIcon(false)
    // {
    //    HINSTANCE hInstance = GetModuleHandle(NULL);
@@ -73,7 +73,7 @@ namespace innate_subsystem
    void Icon::initialize_icon(BitmapInterface *pbitmap)
    //: m_hasOwnIcon(true), m_icon(NULL)
    {
-      m_pparticleThis->initialize_icon(pbitmap)
+      m_pparticleThis->initialize_icon(pbitmap);
       //Bitmap mask(bitmap->getWidth(), bitmap->getHeight());
       //fromBitmap(bitmap, &mask);
    }

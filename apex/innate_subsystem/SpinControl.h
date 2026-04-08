@@ -31,16 +31,16 @@
 namespace innate_subsystem
 {
 
-class SpinControl : public Control
+class CLASS_DECL_APEX SpinControlInterface : public Control
 {
 public:
-  SpinControl();
-  ~SpinControl();
+  //SpinControl();
+  virtual ~SpinControlInterface() = 0;
 
-  void setBuddy(Control *buddyControl);
-  void setRange(short lower, short upper);
-  void setRange32(int lower, int upper);
-  void setAccel(unsigned int nSec, unsigned int nInc);
+  virtual void setBuddy(ControlInterface *buddyControl)= 0;
+  virtual void setRange(short lower, short upper)= 0;
+  virtual void setRange32(int lower, int upper)= 0;
+  virtual void setAccel(unsigned int nSec, unsigned int nInc)= 0;
 
   //
   // Auto acceleration methods
@@ -50,11 +50,11 @@ public:
   // Handler, call it on UDN_DELTAPOS notification
   //
 
-  //void autoAccelerationHandler(LPNMUPDOWN message);
-  void enableAutoAcceleration(bool enabled);
-  void setAutoAccelerationParams(const int_array & limitters,
+  //void autoAccelerationHandler(LPNMUPDOWN message)= 0;
+  virtual void enableAutoAcceleration(bool enabled)= 0;
+  virtual void setAutoAccelerationParams(const int_array & limitters,
                                  const int_array & deltas,
-                                 int maxDelta);
+                                 int maxDelta)= 0;
 // protected:
 //   Control *m_buddy;
 //
@@ -68,6 +68,43 @@ public:
 //   int m_maxDelta;
 };
 
+   class CLASS_DECL_APEX SpinControl :
+   public ::subsystem::composite < SpinControlInterface>
+   {
+   public:
+      SpinControl();
+      ~SpinControl() override;
+
+      void setBuddy(ControlInterface *buddyControl)override;
+      void setRange(short lower, short upper)override;
+      void setRange32(int lower, int upper)override;
+      void setAccel(unsigned int nSec, unsigned int nInc)override;
+
+      //
+      // Auto acceleration methods
+      //
+
+      //
+      // Handler, call it on UDN_DELTAPOS notification
+      //
+
+      //void autoAccelerationHandler(LPNMUPDOWN message)override;
+      void enableAutoAcceleration(bool enabled)override;
+      void setAutoAccelerationParams(const int_array & limitters,
+                                     const int_array & deltas,
+                                     int maxDelta)override;
+      // protected:
+      //   Control *m_buddy;
+      //
+      //   //
+      //   // Members needed for auto acceleration
+      //   //
+      //
+      //   bool m_isAutoAccelerationEnabled;
+      //   std::vector<int> m_limitters;
+      //   std::vector<int> m_deltas;
+      //   int m_maxDelta;
+   };
 } // namespace innate_subsystem
 
 //#endif

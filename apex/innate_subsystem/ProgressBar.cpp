@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "ProgressBar.h"
 
-#include <commctrl.h>
+//#include <commctrl.h>
 
 namespace innate_subsystem
 {
@@ -36,14 +36,14 @@ namespace innate_subsystem
    {
    }
 
-   void ProgressBar::setRange(WORD min, WORD max)
+   void ProgressBar::setRange(unsigned short min, unsigned short max)
    {
-      SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKE::lparam(min, max));
+      //SendMessage(m_hwnd, PBM_SETRANGE, 0, MAKE::lparam(min, max));
    }
 
-   void ProgressBar::setPos(WORD pos)
+   void ProgressBar::setPos(unsigned short pos)
    {
-      SendMessage(m_hwnd, PBM_SETPOS, (::wparam)pos, 0);
+      //SendMessage(m_hwnd, PBM_SETPOS, (::wparam)pos, 0);
    }
 } // namespace innate_subsystem
 

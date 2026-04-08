@@ -50,7 +50,7 @@ namespace innate_subsystem
       void setIcon(Icon *icon);
       void setText(const char *text);
 
-      void showBalloon(const char *message, const char *caption, DWORD timeoutMillis);
+      void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis);
 
       void show();
       void hide();

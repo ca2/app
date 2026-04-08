@@ -44,7 +44,7 @@ namespace sockets
    \ingroup basic */
    class CLASS_DECL_APEX base_socket_handler:
       virtual public ::object,
-      virtual public ::tracer
+      virtual public ::platform::tracer
    {
    public:
 
@@ -85,7 +85,7 @@ namespace sockets
 
 
 
-      class ::tracer * tracer() const override;
+      ::platform::tracer * tracer() const override;
 
 
       ::string trace_prefix() const override;

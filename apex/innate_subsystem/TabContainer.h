@@ -22,14 +22,19 @@
 //-------------------------------------------------------------------------
 //
 
-#ifndef _TAB_CONTAINER_H_
-#define _TAB_CONTAINER_H_
+#pragma once
 
-#include "Tab.h"
-#include <vector>
+#include "apex/innate_subsystem/Tab.h"
+//#include <vector>
 
-using namespace std;
+//using namespace std;
 
-typedef vector<Tab *> TabContainer;
+///typedef vector<Tab *> TabContainer;
+///
+///
+namespace innate_subsystem
+{
+   using TabContainer = ::pointer_array <TabInterface>;
+}
 
-#endif
+//#endif

@@ -736,7 +736,7 @@ namespace apex
       if (m_bInitialized)
       {
 
-         ::log::destroy();
+         ::platform::log::destroy();
 
 //         m_pfile.release();
 

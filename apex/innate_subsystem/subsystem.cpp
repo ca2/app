@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "subsystem.h"
+#include "SystemMetrics.h"
 
 
 namespace innate_subsystem

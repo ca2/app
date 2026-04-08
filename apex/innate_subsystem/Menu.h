@@ -32,7 +32,7 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_ACME MenuInterface :
+   class CLASS_DECL_APEX MenuInterface :
       virtual public ::subsystem::particle_interface
    {
    public:
@@ -83,7 +83,7 @@ namespace innate_subsystem
       //   bool m_bCreated;
    };
    
-class CLASS_DECL_ACME Menu :
+class CLASS_DECL_APEX Menu :
       virtual public ::subsystem::composite< MenuInterface>
    {
    public:

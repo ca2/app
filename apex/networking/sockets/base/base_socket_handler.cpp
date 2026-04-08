@@ -82,10 +82,10 @@ namespace sockets
    }
 
 
-   ::tracer * base_socket_handler::tracer() const
+   ::platform::tracer * base_socket_handler::tracer() const
    {
 
-      return (::tracer *) (const ::tracer *) this;
+      return (::platform::tracer *) (const ::platform::tracer *) this;
 
    }
 

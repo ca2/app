@@ -71,13 +71,13 @@ namespace innate_subsystem
       // Text selection
       //
 
-      virtual void selectText(size_t startPos, size_t endPos) = 0;
+      virtual void selectText(character_count startPos, character_count endPos) = 0;
 
       //
       // Tooltip methods
       //
 
-      virtual void showBalloonTip(Tooltip *tip) = 0;
+      virtual void showBalloonTip(TooltipInterface *ptooltip) = 0;
    };
 
 
@@ -114,13 +114,13 @@ namespace innate_subsystem
         // Text selection
         //
 
-        virtual void selectText(size_t startPos, size_t endPos);
+        virtual void selectText(character_count startPos, character_count endPos);
 
         //
         // Tooltip methods
         //
 
-        virtual void showBalloonTip(Tooltip *tip);
+        virtual void showBalloonTip(TooltipInterface *ptooltip);
     };
 
 

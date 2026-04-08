@@ -19,7 +19,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX log :
-      virtual public ::log
+      virtual public ::platform::log
    {
    public:
 
@@ -27,7 +27,7 @@ namespace apex
 
 
       bool                                m_bTrace;
-      ::pointer<::trace>               m_ptrace;
+      ::pointer<::platform::trace>        m_ptrace;
       ::pointer < ::mutex >                             m_pmutexTrace;
       string_array_base                        m_straSeparator;
 //      FILE *                              m_pfile;
@@ -41,7 +41,7 @@ namespace apex
 
 
       log();
-      virtual ~log();
+      ~log() override;
 
 
       void load_flags(const ::property_set & set);

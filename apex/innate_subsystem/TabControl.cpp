@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "TabControl.h"
 #include "util/CommonHeader.h"
-#include <commctrl.h>
+//#include <CommCtrl.h>
 
 namespace innate_subsystem
 {

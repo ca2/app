@@ -25,6 +25,7 @@
 #pragma once
 //#define _BASE_DIALOG_H_
 
+#include "acme/filesystem/file/string_buffer.h"
 #include "acme/subsystem/_common_header.h"
 #include "apex/innate_subsystem/Control.h"
 //#include "util/::string.h"
@@ -33,51 +34,51 @@ namespace innate_subsystem
 {
 
 
-   class Dialog :
+   class CLASS_DECL_APEX DialogInterface :
       virtual public Control
    {
    public:
 
 
-      Dialog();
-      Dialog(unsigned int resourceId);
-      Dialog(const char *resourceName);
-      ~Dialog() override;
+      // Dialog();
+      // Dialog(unsigned int resourceId);
+      // Dialog(const char *resourceName);
+      virtual ~DialogInterface() = 0;
 //   public:
 
-      virtual void initialize_base_dialog(unsigned int resourceId);
-      virtual void initialize_base_dialog(const char *resourceName);
+      virtual void initialize_dialog(unsigned int resourceId) = 0;
+      virtual void initialize_dialog(const char *resourceName) = 0;
 
       // Method creates non modal window but not shows it
-      virtual void create();
+      virtual void create() = 0;
 
       //
       // Methods creates windows and show it in nonmodal/modal mode
       //
 
-      virtual void show();
-      virtual int showModal();
+      virtual void show() = 0;
+      virtual int showModal() = 0;
 
       // Returns true if dialog is already created.
-      virtual bool isCreated();
+      virtual bool isCreated() = 0;
 
       // Method hides window
-      virtual void hide();
+      virtual void hide() = 0;
       // Method closes dialog
-      virtual void closeDialog(int code);
+      virtual void closeDialog(int code) = 0;
       // Method sets parent window
-      virtual void setParent(Control *ctrlParent);
+      virtual void setParent(ControlInterface *ctrlParent) = 0;
       // Set resource name for dialog
-      virtual void setResourceName(const char *resourceName);
+      virtual void setResourceName(const char *resourceName) = 0;
       // Set resource id for dialog.
-      virtual void setResourceId(unsigned int id);
+      virtual void setResourceId(unsigned int id) = 0;
       // Return
-      virtual Control *getControl() { return this; }
+      virtual ControlInterface *getControl() = 0;
       // Setup control by ID
-      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id);
+      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) = 0;
       // Icon manipulation
-      virtual void loadIcon(unsigned int id);
-      virtual void updateIcon();
+      virtual void loadIcon(unsigned int id) = 0;
+      virtual void updateIcon() = 0;
 
 
       template < typename WIDGET_TYPE >
@@ -111,14 +112,14 @@ namespace innate_subsystem
 
 
       // Puts this control foreground and activates it
-      virtual bool setForeground();
+      virtual bool setForeground() = 0;
 
    //protected:
       /**
        * Sets default push button for dialog.
        * @pararm buttonId new default push button id.
        */
-      virtual void setDefaultPushButton(unsigned int buttonId);
+      virtual void setDefaultPushButton(unsigned int buttonId) = 0;
 
    //protected:
 
@@ -126,29 +127,160 @@ namespace innate_subsystem
       // This methods must be overrided by child classes.
       //
 
-      virtual bool onInitDialog();
-      virtual bool onNotify(unsigned int controlID, ::lparam data);
-      virtual bool onCommand(unsigned int controlID, unsigned int notificationID);
-      virtual bool onClose();
-      virtual bool onDestroy();
+      virtual bool onInitDialog() = 0;
+      virtual bool onNotify(unsigned int controlID, ::lparam data) = 0;
+      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
+      virtual bool onClose() = 0;
+      virtual bool onDestroy() = 0;
 
       //
       // This methods can be overrided by child classes.
       //
 //#ifdef WINDOWS
-  //    virtual bool onDrawItem(::wparam controlID, LPDRAWITEMSTRUCT dis);
+      virtual bool onDrawItem(::wparam controlID, draw_item_t * pdrawitem) = 0;
 //#endif
-      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam) = 0;
 
       //
       // Window message proccessing method
       //
 
-      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam) = 0;
 
-      virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam);
+      virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
    //private:
-     virtual char *getResouceName();
+     virtual char *getResouceName() = 0;
+
+   //protected:
+
+     // char *m_resourceName;        // Name of dialog resource
+      //unsigned int m_resourceId;            // Id of dialog resouce
+      //Control m_ctrlThis;           // This dialog control
+      //Control *m_ctrlParent;        // Parent dialog or NULL if no parent
+
+      //bool m_isModal;
+      //bool m_isCreated;
+
+      //HICON m_hicon;
+   };
+
+
+   class CLASS_DECL_APEX Dialog :
+      virtual public ::subsystem::composite<DialogInterface>
+   {
+   public:
+
+
+      Dialog();
+      // Dialog(unsigned int resourceId);
+      // Dialog(const char *resourceName);
+      ~Dialog() override;
+//   public:
+
+      virtual void initialize_dialog(unsigned int resourceId) override;
+      virtual void initialize_dialog(const char *resourceName) override;
+
+      // Method creates non modal window but not shows it
+      virtual void create() override;
+
+      //
+      // Methods creates windows and show it in nonmodal/modal mode
+      //
+
+      virtual void show() override;
+      virtual int showModal() override;
+
+      // Returns true if dialog is already created.
+      virtual bool isCreated() override;
+
+      // Method hides window
+      virtual void hide() override;
+      // Method closes dialog
+      virtual void closeDialog(int code) override;
+      // Method sets parent window
+      virtual void setParent(ControlInterface *ctrlParent) override;
+      // Set resource name for dialog
+      virtual void setResourceName(const char *resourceName) override;
+      // Set resource id for dialog.
+      virtual void setResourceId(unsigned int id) override;
+      // Return
+      virtual ControlInterface *getControl() override;
+      // Setup control by ID
+      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) override;
+      // Icon manipulation
+      virtual void loadIcon(unsigned int id) override;
+      virtual void updateIcon() override;
+
+
+      // template < typename WIDGET_TYPE >
+      // ::pointer < WIDGET_TYPE > & dialog_item(::pointer < WIDGET_TYPE > & pwidget, int iDlgItem)
+      // {
+      //
+      //    constructø(pwidget);
+      //
+      //    auto operatingsystemwindow = dialog_item_operating_system_window(iDlgItem);
+      //
+      //    pwidget->set_operating_system_window(operatingsystemwindow);
+      //
+      //    return pwidget;
+      //
+      //
+      // }
+      //
+      // template < typename WIDGET_TYPE  = ::innate_subsystem::Control>
+      // ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
+      // {
+      //
+      //    ::pointer < WIDGET_TYPE> pwidget;
+      //
+      //    dialog_item(pwidget, iDlgItem);
+      //
+      //    return pwidget;
+      //
+      //
+      // }
+
+
+
+      // Puts this control foreground and activates it
+      virtual bool setForeground() override;
+
+   //protected:
+      /**
+       * Sets default push button for dialog.
+       * @pararm buttonId new default push button id.
+       */
+      virtual void setDefaultPushButton(unsigned int buttonId) override;
+
+   //protected:
+
+      //
+      // This methods must be overrided by child classes.
+      //
+
+      virtual bool onInitDialog() override;
+      virtual bool onNotify(unsigned int controlID, ::lparam data) override;
+      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) override;
+      virtual bool onClose() override;
+      virtual bool onDestroy() override;
+
+      //
+      // This methods can be overrided by child classes.
+      //
+//#ifdef WINDOWS
+      virtual bool onDrawItem(::wparam controlID, draw_item_t * pdrawitem) override;
+//#endif
+      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam) override;
+
+      //
+      // Window message proccessing method
+      //
+
+      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam) override;
+
+      virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam) override;
+   //private:
+     virtual char *getResouceName() override;
 
    //protected:
 

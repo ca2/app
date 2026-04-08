@@ -35,6 +35,7 @@
 namespace platform
 {
 
+   class trace;
 
    class CLASS_DECL_ACME log :
       virtual public ::platform::logger

@@ -53,6 +53,11 @@ namespace innate_subsystem
     class Tab;
     class TabInterface;
 
+   using TabContainer = ::pointer_array <TabInterface>;
+
+   class TabControl;
+   class TabControlInterface;
+
     class ComboBox;
     class ComboBoxInterface;
 
@@ -87,9 +92,9 @@ namespace innate_subsystem
       unsigned char fsState;
       unsigned char fsStyle;
 // #ifdef _WIN64
-//       BYTE bReserved[6];          // padding for alignment
+//       unsigned char bReserved[6];          // padding for alignment
 // #elif defined(_WIN32)
-//       BYTE bReserved[2];          // padding for alignment
+//       unsigned char bReserved[2];          // padding for alignment
 // #endif
       ::uptr  dwData;
       ::iptr iString;
@@ -118,6 +123,8 @@ namespace innate_subsystem
       e_toolbar_item_style_button = 0,
 
    };
+
+   struct draw_item_t;
 
 } // namespace innate_subsystem
 

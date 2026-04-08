@@ -21,48 +21,87 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+#pragma once
 
-#ifndef _TAB_CONTROL_H_
-#define _TAB_CONTROL_H_
 
-#include "Control.h"
-#include "Tab.h"
-#include "TabContainer.h"
+#include "apex/innate_subsystem/Control.h"
+//#include "apex/innate_subsystem/Tab.h"
+//#include "apex/innate_subsystem/TabContainer.h"
 
-using namespace std;
+//using namespace std;
 
-class TabControl : public Control
+namespace innate_subsystem
 {
-public:
-  TabControl();
-  ~TabControl();
+   class CLASS_DECL_APEX TabControlInterface : public Control
+   {
+   public:
 
-  //
-  // Tab access members
-  //
+       //TabContainer m_tabContainer;
+      //TabControl();
+      virtual ~TabControlInterface() = 0;
 
-  TabContainer &getTabs() { return m_tabContainer; }
-  Tab *getTab(int index);
-  void addTab(BaseDialog *dialog, const char *caption);
-  void showTab(int index);
-  void showTab(const BaseDialog *dialog);
-  void deleteAllTabs();
-  void removeTab(int index);
+      //
+      // Tab access members
+      //
 
-  //
-  // Return selected tab number
-  //
+      virtual TabContainer &getTabs() = 0;
+      virtual TabInterface *getTab(int index)= 0;
+      virtual void addTab(DialogInterface *pdialog, const char *caption)= 0;
+      virtual void showTab(int index)= 0;
+      virtual void showTab(DialogInterface *pdialog)= 0;
+      virtual void deleteAllTabs()= 0;
+virtual       void removeTab(int index)= 0;
 
-  int getSelectedTabIndex();
+      //
+      // Return selected tab number
+      //
 
-  //
-  // Tab work rect methods
-  //
+virtual       int getSelectedTabIndex()= 0;
 
-  void adjustRect(::int_rectangle &rect);
+      //
+      // Tab work rect methods
+      //
 
-protected:
-  TabContainer m_tabContainer;
-};
+      virtual void adjustRect(::int_rectangle &rect)= 0;
 
-#endif
+   //protected:
+
+   };
+
+
+   class CLASS_DECL_APEX TabControl : public ::subsystem::composite <TabControlInterface >
+   {
+   public:
+      TabControl();
+       ~TabControl() override;
+
+      //
+      // Tab access members
+      //
+
+      TabContainer &getTabs() override;
+      TabInterface *getTab(int index)override;
+      void addTab(DialogInterface *dialog, const char *caption)override;
+      void showTab(int index)override;
+      void showTab(DialogInterface *pdialog)override;
+      void deleteAllTabs()override;
+      void removeTab(int index)override;
+
+      //
+      // Return selected tab number
+      //
+
+      int getSelectedTabIndex()override;
+
+      //
+      // Tab work rect methods
+      //
+
+      void adjustRect(::int_rectangle &rect)override;
+
+   //protected:
+//      TabContainer m_tabContainer;
+   };
+
+
+} //

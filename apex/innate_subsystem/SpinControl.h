@@ -26,7 +26,7 @@
 //#define _SPIN_CONTROL_H_
 
 #include "apex/innate_subsystem/Control.h"
-//#include <commctrl.h>
+////#include <CommCtrl.h>
 
 namespace innate_subsystem
 {

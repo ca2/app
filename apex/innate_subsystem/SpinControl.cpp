@@ -23,7 +23,7 @@
 //
 #include "framework.h"
 #include "SpinControl.h"
-//#include <CommCtrl.h>
+////#include <CommCtrl.h>
 //#include "util/StringParser.h"
 
 namespace innate_subsystem

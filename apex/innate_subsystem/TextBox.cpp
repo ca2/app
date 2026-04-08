@@ -26,33 +26,49 @@
 
 namespace innate_subsystem
 {
+
+   TextBox::TextBox()
+   {
+
+
+   }
+
+
    TextBox::~TextBox()
    {
    }
 
    void TextBox::setCaretPos(int h, int v)
    {
-      SendMessage(m_hwnd, EM_LINESCROLL, h, v);
+      m_pparticleThis->setCaretPos(h, v);
+      //SendMessage(m_hwnd, EM_LINESCROLL, h, v);
    }
 
-   size_t TextBox::getTextLengthLimit()
+   character_count TextBox::getTextLengthLimit()
    {
-      return SendMessage(m_hwnd, EM_GETLIMITTEXT, 0, 0);
+      //return SendMessage(m_hwnd, EM_GETLIMITTEXT, 0, 0);
+
+      return m_pparticleThis->getTextLengthLimit();
+
    }
 
-   void TextBox::setTextLengthLimit(size_t n)
+   void TextBox::setTextLengthLimit(character_count n)
    {
-      SendMessage(m_hwnd, EM_SETLIMITTEXT, n, 0);
+      //SendMessage(m_hwnd, EM_SETLIMITTEXT, n, 0);
+      m_pparticleThis->setTextLengthLimit(n);
    }
 
    int TextBox::getCurrentLineIndex()
    {
-      return (int)SendMessage(m_hwnd, EM_LINEINDEX, -1, 0);
+      //return (int)SendMessage(m_hwnd, EM_LINEINDEX, -1, 0);
+      return m_pparticleThis->getCurrentLineIndex();
    }
 
    int TextBox::getLineCount()
    {
-      return (int)SendMessage(m_hwnd, EM_GETLINECOUNT, 0, 0);
+      //return (int)SendMessage(m_hwnd, EM_GETLINECOUNT, 0, 0);
+
+      return m_pparticleThis->getLineCount();
    }
 
    //
@@ -61,16 +77,19 @@ namespace innate_subsystem
 
    int TextBox::getCaretPos()
    {
-      return 0;
+      //return 0;
+      return m_pparticleThis->getCaretPos();
    }
 
-   void TextBox::selectText(size_t startPos, size_t endPos)
+   void TextBox::selectText(character_count startPos, character_count endPos)
    {
-      SendMessage(getWindow(), EM_SETSEL, startPos, endPos);
+      //SendMessage(getWindow(), EM_SETSEL, startPos, endPos);
+      m_pparticleThis->selectText(startPos, endPos);
    }
 
-   void TextBox::showBalloonTip(Tooltip *tip)
+   void TextBox::showBalloonTip(TooltipInterface *ptooltip)
    {
-      tip->showTooltip(this);
+      ///tip->showTooltip(this);
+      m_pparticleThis->showBalloonTip(ptooltip);
    }
 } // namespace innate_subsystem

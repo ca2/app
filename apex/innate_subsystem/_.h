@@ -21,7 +21,12 @@ namespace innate_subsystem
    class PenInterface;
    class Icon;
    class IconInterface;
+   class Cursor;
+   class CursorInterface;
+   class Menu;
+   class MenuInterface;
 
+   class GraphicsObject;
 
 
     enum enum_id
@@ -98,6 +103,7 @@ namespace innate_subsystem
 // #endif
       ::uptr  dwData;
       ::iptr iString;
+
    };
 
 

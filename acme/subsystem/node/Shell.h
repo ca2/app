@@ -41,7 +41,7 @@ namespace subsystem
     * @author enikey.
     */
    class CLASS_DECL_ACME ShellInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<ShellInterface>
    {
    public:
 

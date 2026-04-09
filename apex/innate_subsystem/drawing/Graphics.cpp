@@ -40,6 +40,14 @@ namespace innate_subsystem
    {
    }
 
+
+   DeviceContextInterface * Graphics::device_context()
+   {
+
+      return m_pparticleThis->device_context();
+
+   }
+
    void Graphics::initialize_graphics(DeviceContextInterface *pdevicecontext)
 //: m_dc(dc)
    {
@@ -64,14 +72,14 @@ namespace innate_subsystem
       m_pparticleThis->setBkColor(color);
    }
 
-   void Graphics::setBrush(const BrushInterface *pbrush)
+   void Graphics::setBrush(BrushInterface *pbrush)
    {
       // HGDIOBJ object = (brush != 0) ? brush->m_brush : 0;
       // m_dc->selectObject(object);
       m_pparticleThis->setBrush(pbrush);
    }
 
-   void Graphics::setPen(const PenInterface *ppen)
+   void Graphics::setPen(PenInterface *ppen)
    {
       // HGDIOBJ object = (pen != 0) ? pen->m_pen : 0;
       // m_dc->selectObject(object);
@@ -90,7 +98,7 @@ namespace innate_subsystem
       m_pparticleThis->lineTo(x, y);
    }
 
-   void Graphics::fillRect(int l, int t, int r, int b, const BrushInterface *pbrush)
+   void Graphics::fillRect(int l, int t, int r, int b, BrushInterface *pbrush)
    {
       //    RECT rect;
       //
@@ -117,7 +125,7 @@ namespace innate_subsystem
    }
 
 
-   void Graphics::drawBitmap(const BitmapInterface *pbitmap, int x, int y, int w, int h)
+   void Graphics::drawBitmap(BitmapInterface *pbitmap, int x, int y, int w, int h)
    {
 
       m_pparticleThis->drawBitmap(pbitmap, x, y, w, h);

@@ -1545,7 +1545,9 @@ list(TRANSFORM static_library_references PREPEND static_)
 
 
 add_library(${PROJECT_NAME} SHARED ${apex_source}
-   innate_subsystem/_common_header.h)
+   innate_subsystem/_common_header.h
+   innate_subsystem/drawing/GraphicsObject.h
+   innate_subsystem/drawing/GraphicsObject.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 

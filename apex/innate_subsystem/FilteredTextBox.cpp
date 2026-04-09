@@ -56,15 +56,15 @@ namespace innate_subsystem
       m_pparticleThis->setText(text);
    }
 
-   // void FilteredTextBox::setErrorBalloonTip(BalloonTip *tip)
+    void FilteredTextBox::setErrorBalloonTip(TooltipInterface *tip)
+    {
+       m_pparticleThis->setErrorBalloonTip(tip);
+    }
+   // void FilteredTextBox::setErrorToolTip(TooltipInterface *tip)
    // {
-   //    m_tip = tip;
+   //    //m_tip = tip;
+   //    m_pparticleThis->setErrorToolTip(tip);
    // }
-   void FilteredTextBox::setErrorToolTip(TooltipInterface *tip)
-   {
-      //m_tip = tip;
-      m_pparticleThis->setErrorToolTip(tip);
-   }
 
    void FilteredTextBox::setStringFilter(StringFilter *filter)
    {

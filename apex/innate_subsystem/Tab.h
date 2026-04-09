@@ -32,7 +32,7 @@
 namespace innate_subsystem
 {
     class CLASS_DECL_APEX TabInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<TabInterface>
     {
     public:
         //Tab();
@@ -44,7 +44,7 @@ namespace innate_subsystem
         // Access methods to protected members
         //
 
-       virtual void initialize_tab(Dialog *dialog, const char *caption) = 0;
+       virtual void initialize_tab(DialogInterface *dialog, const char *caption) = 0;
 
         //void setCaption(const char *caption) = 0; { m_caption->setString(caption); }
 
@@ -97,7 +97,7 @@ namespace innate_subsystem
       // Access methods to protected members
       //
 
-      void initialize_tab(Dialog *dialog, const char *caption) override;
+      void initialize_tab(DialogInterface *dialog, const char *caption) override;
 
       //void setCaption(const char *caption) override; { m_caption->setString(caption); }
 

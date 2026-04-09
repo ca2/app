@@ -37,7 +37,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_APEX TooltipInterface :
-    virtual public ::subsystem::particle_interface
+    virtual public ::subsystem::particle_interface<TooltipInterface>
     {
     public:
         //Tooltip();

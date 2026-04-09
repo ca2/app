@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_APEX DeviceContextInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<DeviceContextInterface>
    {
    public:
       // Create device context linked to window DC.
@@ -46,6 +46,9 @@ namespace innate_subsystem
       //private:
       // Initialize class from PaintWindow
       //DeviceContext(class PaintWindow * pntWnd);
+
+
+       virtual void destroyDeviceContext() = 0;
 
        //private:
        // Initialize class from PaintWindow
@@ -61,6 +64,8 @@ namespace innate_subsystem
       //protected:
       // Selects an object into this device context.
       //HGDIOBJ _selectObject(HGDIOBJ object);
+
+       virtual ::pointer < GraphicsObject > selectObject(GraphicsObject * pgraphicsobject) = 0;
 
       // protected:
       //   HDC m_dc;
@@ -89,6 +94,9 @@ namespace innate_subsystem
       void initialize_device_context(const ::operating_system::window & window) override;
       // Create device context complatible with other DC.
       void initialize_device_context(DeviceContextInterface* compatibleDevice) override;
+
+
+      void destroyDeviceContext() override;
 
       //friend class PaintWindow;
 

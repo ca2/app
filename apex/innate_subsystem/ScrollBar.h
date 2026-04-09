@@ -35,6 +35,7 @@
 namespace innate_subsystem
 {
    class CLASS_DECL_APEX ScrollBarInterface :
+   virtual public ::subsystem::particle_interface<ScrollBarInterface>,
    virtual public Window
    {
    public:

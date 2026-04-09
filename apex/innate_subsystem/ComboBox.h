@@ -34,6 +34,7 @@ namespace innate_subsystem
 
 
     class CLASS_DECL_APEX ComboBoxInterface :
+   virtual public ::subsystem::particle_interface<ComboBoxInterface>,
          virtual public Control
     {
     public:
@@ -55,16 +56,16 @@ namespace innate_subsystem
         virtual void insertItem(int index, const char *text, void *tag) = 0;
 
         // Returns count of combo box items
-        virtual int getItemsCount() const = 0;
+        virtual int getItemsCount() = 0;
 
         // Sets user data (tag) associated with combo box item with specified index
         virtual void setItemData(int index, void *tag) = 0;
 
         // Returns user data associated with combo box item with specified index
-        virtual void *getItemData(int index) const = 0;
+        virtual void *getItemData(int index) = 0;
 
         // Sets text associated with combo box item with specified index
-        virtual ::string getItemText(int index) const = 0;
+        virtual ::string getItemText(int index) = 0;
 
         // Returns current selected item index
         virtual int getSelectedItemIndex() = 0;
@@ -103,16 +104,16 @@ namespace innate_subsystem
       void insertItem(int index, const char *text, void *tag) override;
 
       // Returns count of combo box items
-      int getItemsCount() const override;
+      int getItemsCount() override;
 
       // Sets user data (tag) associated with combo box item with specified index
       void setItemData(int index, void *tag) override;
 
       // Returns user data associated with combo box item with specified index
-      void *getItemData(int index) const override;
+      void *getItemData(int index) override;
 
       // Sets text associated with combo box item with specified index
-      ::string getItemText(int index) const override;
+      ::string getItemText(int index) override;
 
       // Returns current selected item index
       int getSelectedItemIndex() override;

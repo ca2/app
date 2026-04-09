@@ -124,6 +124,7 @@ namespace windows
       //HWND m_hwnd;
       HMENU m_hmenuSystem;
       int m_iDebugAtom = 0;
+      WNDPROC        m_wndprocDefault;
 
       window();
       ~window() override;
@@ -134,14 +135,17 @@ namespace windows
       virtual void _defer_show_system_menu(::user::mouse * ppmouse);
 
 
-      virtual HWND _HWND() const;
+      virtual void * _HWND() const;
+      virtual void * _WNDPROC_default() const;
 
+      static LRESULT CALLBACK s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+      static HINSTANCE s_window_procedure_hinstance();
 
    };
 
 
-   CLASS_DECL_ACME LRESULT CALLBACK window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-   CLASS_DECL_ACME HINSTANCE get_window_procedure_hinstance();
+   //CLASS_DECL_ACME LRESULT CALLBACK window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 
 
 } // namespace windows

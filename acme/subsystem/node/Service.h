@@ -45,7 +45,7 @@ namespace subsystem
     * @author enikey.
     */
    class CLASS_DECL_ACME ServiceInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<ServiceInterface>
    {
    public:
 

@@ -34,7 +34,7 @@ namespace subsystem
 
    // This class get info for a windows desktop.
    class CLASS_DECL_ACME ScreenInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<ScreenInterface>
    {
    public:
       //Screen();

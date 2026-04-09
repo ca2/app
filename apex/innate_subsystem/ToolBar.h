@@ -35,7 +35,7 @@
 namespace innate_subsystem
 {
    class CLASS_DECL_APEX ToolBarInterface :
-      virtual  public ::subsystem::particle_interface
+      virtual  public ::subsystem::particle_interface<ToolBarInterface>
    {
    public:
       //ToolBar();

@@ -292,11 +292,11 @@ bool Dialog::onInitDialog()
    return m_pparticleThis->onInitDialog();
 }
 
-bool Dialog::onNotify(unsigned int controlID, ::lparam data)
-{
-  //return FALSE;
-   return m_pparticleThis->onNotify(controlID, data);
-}
+// bool Dialog::onNotify(unsigned int controlID, ::lparam data)
+// {
+//   //return FALSE;
+//    return m_pparticleThis->onNotify(controlID, data);
+// }
 
 bool Dialog::onCommand(unsigned int controlID, unsigned int notificationID)
 {

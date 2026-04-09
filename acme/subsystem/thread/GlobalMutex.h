@@ -27,6 +27,7 @@
 
 #include "acme/subsystem/_common_header.h"
 #include "acme/subsystem/Exception.h"
+#include "acme/subsystem/node/ProcessCommandLine.h"
 #include "acme/subsystem/thread/Lockable.h"
 
 
@@ -65,6 +66,7 @@ namespace subsystem
     * @author yuri, enikey.
     */
    class CLASS_DECL_ACME GlobalMutexInterface :
+   virtual public ::subsystem::particle_interface<GlobalMutexInterface>,
       virtual public LockableInterface
    {
    public:

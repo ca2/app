@@ -33,6 +33,7 @@
 namespace innate_subsystem
 {
     class CLASS_DECL_APEX TrackbarInterface :
+   virtual public ::subsystem::particle_interface<TrackbarInterface>,
          virtual public ::innate_subsystem::Control
     {
     public:

@@ -41,7 +41,8 @@ namespace subsystem
  *
  * @author yuri, enikey.
  */
-   class CLASS_DECL_ACME NamedPipeInterface :
+   class NamedPipeInterface :
+   virtual public ::subsystem::particle_interface<NamedPipeInterface>,
       virtual public Channel,
       virtual public Pipe
    {
@@ -54,7 +55,7 @@ namespace subsystem
       /**
        * Destroys instance.
        */
-      virtual ~NamedPipeInterface() =0;
+      //virtual ~NamedPipeInterface() =0;
 
 
       virtual void initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) = 0;

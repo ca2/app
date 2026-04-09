@@ -48,7 +48,9 @@ namespace innate_subsystem
    // that view data as report.
    //
 
-   class CLASS_DECL_APEX ListViewInterface : public Control
+   class CLASS_DECL_APEX ListViewInterface :
+   virtual public ::subsystem::particle_interface<ListViewInterface>,
+   public Control
    {
    public:
 
@@ -186,7 +188,7 @@ namespace innate_subsystem
       //
       // For example, you need to call this method, if user changed parameters of sorting.
       //
-      virtual void sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare)= 0;
+      virtual void set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare)= 0;
 
       //
       // This method sort list of item by column m_sortColumIndex.
@@ -194,6 +196,14 @@ namespace innate_subsystem
       // For example, you need to call this method after add new element.
       //
       virtual void sort()= 0;
+
+
+      virtual ::lparam lparam_sort() = 0;
+
+
+      /// onAction
+      /// at Windows double click/enter key
+      virtual void onAction() = 0;
 
    // private:
    //    // Kind of sorting: ascending or descending
@@ -356,7 +366,7 @@ namespace innate_subsystem
       //
       // For example, you need to call this method, if user changed parameters of sorting.
       //
-      void sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare)override;
+      void set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare)override;
 
       //
       // This method sort list of item by column m_sortColumIndex.
@@ -364,6 +374,16 @@ namespace innate_subsystem
       // For example, you need to call this method after add new element.
       //
       void sort()override;
+
+
+
+      // overridables
+      void onAction() override;
+
+      //virtual bool _onNotifyReflect(::wparam wparam, ::lparam lparam);
+
+
+      ::lparam lparam_sort() override;
 
    // private:
    //    // Kind of sorting: ascending or descending

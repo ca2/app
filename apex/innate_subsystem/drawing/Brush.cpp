@@ -36,12 +36,18 @@ namespace innate_subsystem
      // release();
    }
 
+   void * Brush::_HGDIOBJ()
+   {
+
+      return m_pparticleThis->_HGDIOBJ();
+
+   }
 
    //void
 
-   void Brush::on_release()
+   void Brush::destroyGraphicsObject()
    {
-      m_pparticleThis->on_release();
+      m_pparticleThis->destroyGraphicsObject();
       // if (m_brush != 0) {
       //    DeleteObject(m_brush);
       //    m_brush = 0;

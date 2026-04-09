@@ -36,14 +36,14 @@ namespace subsystem
     * Wrapper of WinAPI methods that can inject input events into system
     * (mouse, keyboard etc) and get information about input device states.
     */
-   class CLASS_DECL_ACME InputInjectorInterface :
-   virtual public ::subsystem::particle_interface
+   class InputInjectorInterface :
+   virtual public ::subsystem::particle_interface<InputInjectorInterface>
    {
    public:
       //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
 
       //InputInjector();
-      virtual ~InputInjectorInterface() = 0;
+      //virtual ~InputInjectorInterface() = 0;
 
 
       virtual void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *plogwriter) = 0;

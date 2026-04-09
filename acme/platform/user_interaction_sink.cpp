@@ -17,7 +17,7 @@ m_operatingsystemwindow(operatingsystemwindow)
 
 }
 
- ::operating_system::window user_interaction_sink::best_effort_operating_system_window()
+ ::operating_system::window user_interaction_sink::best_effort_operating_system_window() const
 {
 
 

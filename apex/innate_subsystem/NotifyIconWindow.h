@@ -25,6 +25,7 @@
 #pragma once
 
 
+#include "apex/innate_subsystem/Window.h"
 #include "acme/subsystem/_common_header.h"
 
 
@@ -32,13 +33,16 @@
 
 namespace innate_subsystem
 {
-   class NotifyIconWindow :
-   virtual public ::subsystem::particle
+
+
+   class CLASS_DECL_APEX NotifyIconWindowInterface :
+   virtual public ::subsystem::particle_interface<NotifyIconWindowInterface>,
+   virtual public Window
    {
    public:
 
-      NotifyIconWindow();
-      ~NotifyIconWindow() override;
+      //NotifyIconWindow();
+      virtual ~NotifyIconWindowInterface() = 0;
 
       virtual ::operating_system::window getWindow() = 0;
 
@@ -50,24 +54,27 @@ namespace innate_subsystem
 
       //friend class NotifyIcon;
    };
-   //
-   // class NotifyIconWindow :
-   //    virtual public ::subsystem::composite<NotifyIconWindow
-   // {
-   // public:
-   //
-   //    NotifyIconWindow();
-   //     ~NotifyIconWindow() override;
-   //
-   //    ::operating_system::window getWindow() override;
-   //
-   //    void setWindowProcHolder(WindowProcHolder *wph) override;
-   //
-   //    //protected:
-   //    //  HWND m_window;
-   //    //WindowProcHolder *m_wph;
-   //
-   //    //friend class NotifyIcon;
-   // };
+
+
+   class CLASS_DECL_APEX NotifyIconWindow :
+      virtual public ::subsystem::composite<NotifyIconWindowInterface >
+   {
+   public:
+
+
+      NotifyIconWindow();
+      ~NotifyIconWindow() override;
+
+      ::operating_system::window getWindow() override;
+
+      void setWindowProcHolder(WindowProcHolder *wph) override;
+
+      //protected:
+      //  HWND m_window;
+      //WindowProcHolder *m_wph;
+
+      //friend class NotifyIcon;
+   };
+
 
 } // namespace innate_subsystem

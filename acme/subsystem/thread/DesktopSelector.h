@@ -46,7 +46,7 @@ namespace subsystem
     };
 
    class CLASS_DECL_ACME DesktopSelectorInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<DesktopSelectorInterface>
    {
    public:
       

@@ -32,7 +32,7 @@ namespace subsystem
 
 
    class CLASS_DECL_ACME SystemInformationInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<SystemInformationInterface>
    {
    public:
 

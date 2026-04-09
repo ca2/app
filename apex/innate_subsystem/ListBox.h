@@ -29,7 +29,8 @@
 namespace innate_subsystem
 {
 
-   class CLASS_DECL_APEX ListBoxInterface : 
+   class CLASS_DECL_APEX ListBoxInterface :
+   virtual public ::subsystem::particle_interface<ListBoxInterface>,
    virtual public Control
 {
 public:

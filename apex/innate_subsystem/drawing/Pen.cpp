@@ -42,6 +42,13 @@ Pen::~Pen()
 {
   //DeleteObject(m_pen);
 }
+
+   void * Pen::_HGDIOBJ()
+   {
+      return m_pparticleThis->_HGDIOBJ();
+   }
+
+
    void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
    ///: m_pen(NULL)
 {

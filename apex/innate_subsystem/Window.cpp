@@ -53,9 +53,18 @@ namespace innate_subsystem
       //m_className = *className;
    }
 
+
+   WindowInterface *Window::get_window_implementation()
+   {
+
+      return m_pparticleThis->get_window_implementation();
+
+   }
+
+
    bool Window::createWindow(const scoped_string & scopedstrWindowName, unsigned int style,
-      const ::operating_system::window & operatingsystemwindowParent,
-                                 int xPos, int yPos, int width, int height)
+                             const ::operating_system::window & operatingsystemwindowParent,
+                             int xPos, int yPos, int width, int height)
    {
 
            return m_pparticleThis->createWindow(scopedstrWindowName,style, operatingsystemwindowParent, xPos, yPos, width, height);
@@ -102,6 +111,11 @@ namespace innate_subsystem
       m_pparticleThis ->enableWindow(bEnable);
       // _ASSERT(m_hWnd != 0);
       // EnableWindow(m_hWnd, bEnable);
+   }
+
+   void Window::setEnabled(bool bEnable)
+   {
+      m_pparticleThis ->setEnabled(bEnable);
    }
 
    bool Window::destroyWindow()
@@ -334,15 +348,42 @@ namespace innate_subsystem
    //    return onMessage(message, ::wparam, ::lparam);
    // }
 
-   void Window::set_operating_system_window(const ::operating_system::window & operatingsystemwindow)
+
+   void *Window::_HWND() const
    {
-      //m_hWnd = hwnd;
-      m_pparticleThis->set_operating_system_window(operatingsystemwindow);
+
+      return m_pparticleThis->_HWND();
+
    }
+
+
+   void Window::_setHWND(void *p)
+   {
+
+      m_pparticleThis->_setHWND(p);
+
+   }
+
+
+   void * Window::_WNDPROC_default() const
+   {
+
+      return m_pparticleThis->_WNDPROC_default();
+
+   }
+
 
    ::operating_system::window Window::operating_system_window() const
    {
       return m_pparticleThis->operating_system_window();
+   }
+
+
+
+   void Window::set_operating_system_window(const ::operating_system::window & operatingsystemwindow)
+   {
+      //m_hWnd = hwnd;
+      m_pparticleThis->set_operating_system_window(operatingsystemwindow);
    }
 
    void Window::setWindowText(const ::scoped_string & scopedstr)

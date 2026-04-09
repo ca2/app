@@ -24,20 +24,24 @@
 
 #pragma once
 #include "acme/subsystem/particle.h"
-
+#include "GraphicsObject.h"
 
 namespace innate_subsystem
 {
 
-   class CLASS_DECL_ACME BrushInterface :
-   virtual public ::subsystem::particle_interface
+   class CLASS_DECL_APEX BrushInterface :
+   virtual public ::subsystem::particle_interface<BrushInterface>,
+   virtual public GraphicsObject
    {
    public:
       //Brush();
       virtual ~BrushInterface() = 0;
 
    //protected:
-      virtual void on_release() = 0;
+      //virtual void on_release() = 0;
+
+
+      //virtual void destroyObject() = 0;
 
    // protected:
    //    HBRUSH m_brush;
@@ -46,16 +50,20 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_ACME Brush :
+   class CLASS_DECL_APEX Brush :
       virtual public ::subsystem::composite<BrushInterface >
    {
    public:
       Brush();
       ~Brush() override;
 
-      //protected:
-      void on_release() override;
+      void * _HGDIOBJ() override;
 
+      //protected:
+      //void on_release() override;
+
+
+      void destroyGraphicsObject() override;
       // protected:
       //    HBRUSH m_brush;
       //

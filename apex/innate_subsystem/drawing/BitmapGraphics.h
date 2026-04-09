@@ -34,6 +34,7 @@ namespace innate_subsystem
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
    class CLASS_DECL_APEX BitmapGraphicsInterface :
+   virtual public ::subsystem::particle_interface<BitmapGraphicsInterface>,
    virtual public Graphics
    {
    public:

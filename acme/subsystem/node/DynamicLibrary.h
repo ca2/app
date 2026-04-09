@@ -35,7 +35,7 @@ namespace subsystem
    Dynamic library class.
    */
    class CLASS_DECL_ACME DynamicLibraryInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<DynamicLibraryInterface>
 
    {
    public:
@@ -46,7 +46,7 @@ namespace subsystem
       */
       //DynamicLibraryInterface(const ::scoped_string & scopedstrFilename);
       //DynamicLibrary();
-      virtual ~DynamicLibraryInterface() = 0;
+      //virtual ~DynamicLibraryInterface() = 0;
 
 
       virtual void initialize_dynamic_library(const ::scoped_string & scopedstrFilename) = 0;

@@ -35,7 +35,7 @@ namespace subsystem
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
    class CLASS_DECL_ACME PipeInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<PipeInterface>
    {
    public:
 
@@ -55,8 +55,8 @@ namespace subsystem
       // The pointer uses because the functions must have access to
       // the same variable as in a derived class to rich a thread safe
       // handle usage.
-      //size_t readByHandle(void *buffer, size_t len, HANDLE pipeHandle);
-      //size_t writeByHandle(const void *buffer, size_t len, HANDLE pipeHandle);
+      virtual size_t readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) = 0;
+      virtual size_t writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) = 0;
 
       // This mutex is to use for pipe handles that uses in the above functions.
       // The mutex protect collision accesses to handle fields of derived classes.
@@ -66,7 +66,7 @@ namespace subsystem
       //WindowsEvent m_writeEvent;
 
       //private:
-      // void checkPipeHandle(HANDLE pipeHandle);
+      virtual void checkPipeFile(::subsystem::FileInterface * pfilePipe) = 0;
       //
       // unsigned long long m_totalWrote;
       // unsigned long long m_totalRead;
@@ -84,7 +84,7 @@ namespace subsystem
    public:
 
       //protected:
-      Pipe(unsigned int maxPortionSize);
+      //Pipe(unsigned int maxPortionSize);
       Pipe();
       ~Pipe() override;
 
@@ -101,8 +101,8 @@ namespace subsystem
       // The pointer uses because the functions must have access to
       // the same variable as in a derived class to rich a thread safe
       // handle usage.
-      //size_t readByHandle(void *buffer, size_t len, HANDLE pipeHandle);
-      //size_t writeByHandle(const void *buffer, size_t len, HANDLE pipeHandle);
+      size_t readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) override;
+      size_t writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) override;
 
       // This mutex is to use for pipe handles that uses in the above functions.
       // The mutex protect collision accesses to handle fields of derived classes.
@@ -112,7 +112,7 @@ namespace subsystem
       //WindowsEvent m_writeEvent;
 
       //private:
-      //void checkPipeHandle(HANDLE pipeHandle);
+      void checkPipeFile(::subsystem::FileInterface * pfilePipe) override;
 
       //unsigned long long m_totalWrote;
       //unsigned long long m_totalRead;

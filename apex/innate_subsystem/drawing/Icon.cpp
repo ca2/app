@@ -86,10 +86,10 @@ namespace innate_subsystem
    }
 
 
-   // HICON Icon::getHICON()
-   // {
-   //    return m_icon;
-   // }
+   void * Icon::_HICON()
+   {
+       return m_pparticleThis->_HICON();
+   }
 
    void Icon::fromBitmap(BitmapInterface *bitmap, BitmapInterface *mask)
    {

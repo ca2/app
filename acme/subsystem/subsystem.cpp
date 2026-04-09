@@ -127,4 +127,25 @@ namespace subsystem
    }
 
 
+   bool subsystem::EncryptData(const ::string& input, ::memory & output)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
+
+   bool subsystem::DecryptData(const memory & input, ::string& output)
+   {
+
+      throw ::interface_only();
+
+      return false;
+
+   }
+
+
+
 }//namespace subsystem

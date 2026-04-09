@@ -82,7 +82,7 @@ namespace subsystem
     * of service.
     */
    class CLASS_DECL_ACME ServiceControlManagerClientInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<ServiceControlManagerClientInterface>
    {
    public:
       /**

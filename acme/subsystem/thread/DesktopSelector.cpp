@@ -40,123 +40,123 @@ namespace subsystem
 
 
    }
-//
-//
-//    desk_t DesktopSelector::getInputDesktop()
-//    {
-//       return m_pparticleThis->getInputDesktop();
-//       //return {};
-//       // return OpenInputDesktop(0, TRUE,
-//       //                         DESKTOP_CREATEMENU |
-//       //                         DESKTOP_CREATEWINDOW |
-//       //                         DESKTOP_ENUMERATE |
-//       //                         DESKTOP_HOOKCONTROL |
-//       //                         DESKTOP_WRITEOBJECTS |
-//       //                         DESKTOP_READOBJECTS |
-//       //                         DESKTOP_SWITCHDESKTOP |
-//       //                         GENERIC_WRITE);
-//    }
-//
-//    desk_t DesktopSelector::getDesktop(const ::scoped_string & scopedstrName)
-//    {
-//       return m_pparticleThis->getDesktop(scopedstrName);
-//       // return OpenDesktop(::wstring(scopedstrName), 0, TRUE,
-//       //                    DESKTOP_CREATEMENU |
-//       //                    DESKTOP_CREATEWINDOW |
-//       //                    DESKTOP_ENUMERATE |
-//       //                    DESKTOP_HOOKCONTROL |
-//       //                    DESKTOP_WRITEOBJECTS |
-//       //                    DESKTOP_READOBJECTS |
-//       //                    DESKTOP_SWITCHDESKTOP |
-//       //                    GENERIC_WRITE);
-//       //throw ::interface_only();
-//       //return {};
-//
-//    }
-//
-//    bool DesktopSelector::closeDesktop(desk_t hdesk)
-//    {
-//       return m_pparticleThis->closeDesktop(hdesk);
-//       //return CloseDesktop(hdesk) != 0;
-//       //throw ::interface_only();
-//       //return false;
-//
-//    }
-//
-//    bool DesktopSelector::setDesktopToCurrentThread(desk_t newDesktop)
-//    {
-//       return m_pparticleThis->setDesktopToCurrentThread(newDesktop);
-//       ////return SetThreadDesktop(newDesktop) != 0;
-//       //throw ::interface_only();
-//       //return false;
-//
-//    }
-//
-//    bool DesktopSelector::selectDesktop(const ::scoped_string & name)
-//    {
-//       return m_pparticleThis->selectDesktop(name);
-//       // HDESK desktop;
-//       // if (name.is_empty()) {
-//       //    desktop = getDesktop(name);
-//       // } else {
-//       //    desktop = getInputDesktop();
-//       // }
-//       //
-//       // bool result = setDesktopToCurrentThread(desktop) != 0;
-//       // closeDesktop(desktop);
-//       //
-// //      return result;
-//
-//       //throw ::interface_only();
-//       //return false;
-//
-//
-//    }
-//
-//
-//    ::string DesktopSelector::getDesktopName(desk_t desktop)
-//    {
-//
-//       return m_pparticleThis->getDesktopName(desktop);
-//       //  desktopName-= "";
-//
-//       // DWORD nameLength = 0;
-//       // // Do not check returned value because the function will return FALSE always.
-//       // GetUserObjectInformation(desktop, UOI_NAME, 0, 0, &nameLength);
-//       //
-//       // if (nameLength != 0) {
-//       //    ::array_base<TCHAR> name(nameLength);
-//       //    bool result = !!GetUserObjectInformation(desktop,
-//       //                                             UOI_NAME,
-//       //                                             &name[0],
-//       //                                             nameLength,
-//       //                                             0);
-//       //    if (result) {
-//       //       return name.data();
-//       //       //return true;
-//       //    }
-//       // }
-//       // throw ::exception(error_io);
-//       //return false;
-//    }
-//
-//    ::string DesktopSelector::getCurrentDesktopName()
-//    {
-//
-//       return m_pparticleThis->getCurrentDesktopName();
-//       // HDESK inputDesktop = getInputDesktop();
-//       // auto str = getDesktopName(inputDesktop);
-//       // closeDesktop(inputDesktop);
-//       // return str;
-//       //throw ::interface_only();
-//       //return {};
-//    }
-//
-//    ::string DesktopSelector::getThreadDesktopName()
-//    {
-//       return m_pparticleThis->getThreadDesktopName();
-//       //return getDesktopName(GetThreadDesktop(GetCurrentThreadId()));
-//       //throw ::interface_only();
-//       //return {};
-//    }
+
+
+   desk_t DesktopSelector::getInputDesktop()
+   {
+      return m_pparticleThis->getInputDesktop();
+      //return {};
+      // return OpenInputDesktop(0, TRUE,
+      //                         DESKTOP_CREATEMENU |
+      //                         DESKTOP_CREATEWINDOW |
+      //                         DESKTOP_ENUMERATE |
+      //                         DESKTOP_HOOKCONTROL |
+      //                         DESKTOP_WRITEOBJECTS |
+      //                         DESKTOP_READOBJECTS |
+      //                         DESKTOP_SWITCHDESKTOP |
+      //                         GENERIC_WRITE);
+   }
+
+   desk_t DesktopSelector::getDesktop(const ::scoped_string & scopedstrName)
+   {
+      return m_pparticleThis->getDesktop(scopedstrName);
+      // return OpenDesktop(::wstring(scopedstrName), 0, TRUE,
+      //                    DESKTOP_CREATEMENU |
+      //                    DESKTOP_CREATEWINDOW |
+      //                    DESKTOP_ENUMERATE |
+      //                    DESKTOP_HOOKCONTROL |
+      //                    DESKTOP_WRITEOBJECTS |
+      //                    DESKTOP_READOBJECTS |
+      //                    DESKTOP_SWITCHDESKTOP |
+      //                    GENERIC_WRITE);
+      //throw ::interface_only();
+      //return {};
+
+   }
+
+   bool DesktopSelector::closeDesktop(desk_t hdesk)
+   {
+      return m_pparticleThis->closeDesktop(hdesk);
+      //return CloseDesktop(hdesk) != 0;
+      //throw ::interface_only();
+      //return false;
+
+   }
+
+   bool DesktopSelector::setDesktopToCurrentThread(desk_t newDesktop)
+   {
+      return m_pparticleThis->setDesktopToCurrentThread(newDesktop);
+      ////return SetThreadDesktop(newDesktop) != 0;
+      //throw ::interface_only();
+      //return false;
+
+   }
+
+   bool DesktopSelector::selectDesktop(const ::scoped_string & name)
+   {
+      return m_pparticleThis->selectDesktop(name);
+      // HDESK desktop;
+      // if (name.is_empty()) {
+      //    desktop = getDesktop(name);
+      // } else {
+      //    desktop = getInputDesktop();
+      // }
+      //
+      // bool result = setDesktopToCurrentThread(desktop) != 0;
+      // closeDesktop(desktop);
+      //
+//      return result;
+
+      //throw ::interface_only();
+      //return false;
+
+
+   }
+
+
+   ::string DesktopSelector::getDesktopName(desk_t desktop)
+   {
+
+      return m_pparticleThis->getDesktopName(desktop);
+      //  desktopName-= "";
+
+      // DWORD nameLength = 0;
+      // // Do not check returned value because the function will return FALSE always.
+      // GetUserObjectInformation(desktop, UOI_NAME, 0, 0, &nameLength);
+      //
+      // if (nameLength != 0) {
+      //    ::array_base<TCHAR> name(nameLength);
+      //    bool result = !!GetUserObjectInformation(desktop,
+      //                                             UOI_NAME,
+      //                                             &name[0],
+      //                                             nameLength,
+      //                                             0);
+      //    if (result) {
+      //       return name.data();
+      //       //return true;
+      //    }
+      // }
+      // throw ::exception(error_io);
+      //return false;
+   }
+
+   ::string DesktopSelector::getCurrentDesktopName()
+   {
+
+      return m_pparticleThis->getCurrentDesktopName();
+      // HDESK inputDesktop = getInputDesktop();
+      // auto str = getDesktopName(inputDesktop);
+      // closeDesktop(inputDesktop);
+      // return str;
+      //throw ::interface_only();
+      //return {};
+   }
+
+   ::string DesktopSelector::getThreadDesktopName()
+   {
+      return m_pparticleThis->getThreadDesktopName();
+      //return getDesktopName(GetThreadDesktop(GetCurrentThreadId()));
+      //throw ::interface_only();
+      //return {};
+   }
 } // namespace subsystem

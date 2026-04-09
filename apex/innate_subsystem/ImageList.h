@@ -18,7 +18,7 @@ namespace innate_subsystem
    }
 
    class CLASS_DECL_APEX ImageListInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<ImageListInterface>
    {
    public:
 
@@ -33,7 +33,7 @@ namespace innate_subsystem
 
       virtual void destroyImageList() = 0;
 
-      virtual void addIcon(::innate_ui::icon * pinnateuiicon) = 0;
+      virtual void addIcon(IconInterface * picon) = 0;
 
 
 
@@ -56,7 +56,7 @@ namespace innate_subsystem
 
       void destroyImageList() override;
 
-      virtual void addIcon(::innate_ui::icon * pinnateuiicon) override;
+      virtual void addIcon(IconInterface * picon) override;
 
 
    };

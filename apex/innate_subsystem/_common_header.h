@@ -10,6 +10,8 @@
 
 namespace innate_subsystem
 {
+
+   class DeviceContextInterface;
    struct draw_item_t {
       unsigned int        CtlType;
       unsigned int        CtlID;
@@ -22,5 +24,43 @@ namespace innate_subsystem
       ::uptr   itemData;
    };
 
+
+   enum enum_control
+   {
+
+      e_control_none,
+      e_control_list_view,
+
+   };
+
+
+   class CLASS_DECL_APEX notification_handler :
+      virtual public ::particle
+   {
+   public:
+
+
+      virtual bool _001OnAction();
+      virtual bool _001OnKeyDownNotification(::user::enum_key ekey);
+      virtual bool _001OnColumnClick(int iColumn);
+      virtual bool _001OnSelectionChange();
+
+
+
+      virtual bool _002OnAction(int iControl);
+      virtual bool _002OnKeyDownNotification(int iControl, ::user::enum_key ekey);
+      virtual bool _002OnColumnClick(int iControl, int iColumn);
+      virtual bool _002OnSelectionChange(int iControl);
+
+   };
+
+   template < typename PARTICLE_INTERFACE >
+   class window_composite :
+   virtual public ::subsystem::composite < PARTICLE_INTERFACE >,
+   virtual public notification_handler
+   {
+      public:
+
+   };
 
 } // namespace innate_subsystem

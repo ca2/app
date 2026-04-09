@@ -72,7 +72,7 @@ enum Authority {
  * identify the trustee relative to the authority that issued the SID.
  */
 class CLASS_DECL_ACME SecurityIdentifierInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface <SecurityIdentifierInterface>
 {
 public:
   /**

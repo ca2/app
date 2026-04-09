@@ -33,7 +33,7 @@ namespace subsystem
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
    class CLASS_DECL_ACME AnonymousPipeFactoryInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<AnonymousPipeFactoryInterface>
    {
    public:
       //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);

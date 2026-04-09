@@ -40,7 +40,7 @@ namespace subsystem
     * Have hidden main window and main scopedstrMessage loop.
     */
    class CLASS_DECL_ACME OperatingSystemApplicationInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<OperatingSystemApplicationInterface>
    {
    public:
 

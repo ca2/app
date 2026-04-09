@@ -2643,30 +2643,6 @@ if (${WIN32})
        #operating_system/windows/subsystem/thread/_____release.xcconfig
        #operating_system/windows/subsystem/thread/aaa_framework.cpp
        #operating_system/windows/subsystem/thread/aaa_framework.h
-       #subsystem/thread/aaa_ZombieKiller.cpp
-       #subsystem/thread/aaa_ZombieKiller.h
-       subsystem/thread/AutoLock.cpp
-       subsystem/thread/AutoLock.h
-       #subsystem/thread/CMakeLists.txt
-       subsystem/thread/DesktopSelector.cpp
-       subsystem/thread/DesktopSelector.h
-       subsystem/thread/GlobalMutex.cpp
-       subsystem/thread/GlobalMutex.h
-       subsystem/thread/GuiThread.cpp
-       subsystem/thread/GuiThread.h
-       subsystem/thread/LocalMutex.cpp
-       subsystem/thread/LocalMutex.h
-       subsystem/thread/Lockable.h
-       #subsystem/thread/matter.txt
-       #subsystem/thread/remoting_thread.vcxproj
-       #subsystem/thread/remoting_thread.vcxproj.filters
-       #subsystem/thread/remoting_thread.vcxproj.user
-       subsystem/thread/resource.h
-       subsystem/thread/Thread.cpp
-       subsystem/thread/Thread.h
-       subsystem/thread/thread.vcproj
-       subsystem/thread/ThreadCollector.cpp
-       subsystem/thread/ThreadCollector.h
 
     )
 else ()

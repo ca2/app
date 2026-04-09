@@ -25,8 +25,7 @@
 //#ifndef _BASE_WINDOW_H_
 //#define _BASE_WINDOW_H_
 
-//#include "util/CommonHeader.h"
-
+#include "apex/innate_subsystem/_common_header.h"
 #define WINDOW_WIDTH_USE_DEFAULT       ((int)0x80000000)
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/subsystem/particle.h"
@@ -35,8 +34,12 @@
 namespace innate_subsystem
 {
 
+
+
+
    class CLASS_DECL_APEX WindowInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<WindowInterface>,
+      virtual public notification_handler
    {
    public:
 
@@ -46,8 +49,14 @@ namespace innate_subsystem
 
       // getWindow()
       // Get a handle of the window
+      virtual void * _HWND() const = 0;
+      virtual void _setHWND(void *) = 0;
+      virtual void * _WNDPROC_default() const = 0;
       virtual ::operating_system::window operating_system_window() const = 0;
       virtual void set_operating_system_window(const ::operating_system::window & operatingsystemwindow) = 0;
+
+
+      virtual WindowInterface * get_window_implementation() = 0;
 
       // createWindow()
       // Create window with windowName and setted style
@@ -68,10 +77,54 @@ namespace innate_subsystem
       virtual void show() = 0;
       virtual void hide() = 0;
       virtual void enableWindow(bool bEnable) = 0;
+      virtual void setEnabled(bool bEnable) = 0;
       virtual void updateWindow() = 0;
       virtual bool setSize(const ::int_size & size) = 0;
       virtual bool setPosition(int xPos, int yPos) = 0;
       virtual void setWindowText(const ::scoped_string  & scopedstrText) = 0;
+
+      //
+      // Sets input focus to this control
+      //
+
+      virtual void setFocus() = 0;
+
+      //
+      // Return true if window has input focus
+      //
+
+      virtual bool hasFocus() = 0;
+
+      //
+      // Puts this control foreground and activates it
+      //
+
+      virtual bool setForeground() = 0;
+
+      //
+      // Changes visible state of this control
+      //
+
+      virtual void setVisible(bool visible) = 0;
+
+      //
+      // Checks if this control is active (not disabled)
+      //
+
+      virtual bool isEnabled() = 0;
+
+      //
+      // Invalidates control
+      //
+
+      virtual void invalidate() = 0;
+
+      //
+      // Gets text associated with window
+      //
+
+      virtual ::string getText() = 0;
+
 
       // loadIcon()
       // Set the icon of application where id can be from resource or handle HICON
@@ -87,9 +140,9 @@ namespace innate_subsystem
 
       // for changing registered class parameters of created window
       virtual void setClassStyle(unsigned int style) = 0;
-      virtual void setClassCursor(::innate_subsystem::Cursor * pcursor) = 0;
-      virtual void setClassBackground(::innate_subsystem::Brush * pbrush) = 0;
-      virtual void setClassMenu(long long menu) = 0;
+      virtual void setClassCursor(::innate_subsystem::CursorInterface * pcursor) = 0;
+      virtual void setClassBackground(::innate_subsystem::BrushInterface * pbrush) = 0;
+      virtual void setClassMenu(::innate_subsystem::MenuInterface * pmenu) = 0;
 
       // for changing or get style and exstyle of window
       virtual long long getStyle() = 0;
@@ -124,7 +177,7 @@ namespace innate_subsystem
       virtual void getClientRect(::int_rectangle &rc) = 0;
       virtual ::int_size getBorderSize() = 0;
 
-      virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+      //virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
 
       static const int MOUSE_LDOWN  = 1;
       static const int MOUSE_MDOWN  = 2;
@@ -140,6 +193,10 @@ namespace innate_subsystem
    virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) = 0;
+
+
+
+
 
    // protected:
    //    HWND m_hWnd;
@@ -162,9 +219,13 @@ namespace innate_subsystem
 
       // getWindow()
       // Get a handle of the window
+      void * _HWND() const override;
+      void _setHWND(void *) override;
+      void * _WNDPROC_default() const override;
       ::operating_system::window operating_system_window() const override;
       void set_operating_system_window(const ::operating_system::window & operatingsystemwindow) override;
 
+      WindowInterface*get_window_implementation() override;
       // createWindow()
       // Create window with windowName and setted style
       // other parameters can by changed
@@ -181,10 +242,53 @@ namespace innate_subsystem
       void show() override;
       void hide() override;
       void enableWindow(bool bEnable) override;
+      void setEnabled(bool bEnable) override;
       void updateWindow() override;
       bool setSize(const ::int_size & size) override;
       bool setPosition(int xPos, int yPos) override;
       void setWindowText(const ::scoped_string  & scopedstrText) override;
+
+      //
+      // Sets input focus to this control
+      //
+
+      void setFocus() override;
+
+      //
+      // Return true if window has input focus
+      //
+
+      bool hasFocus() override;
+
+      //
+      // Puts this control foreground and activates it
+      //
+
+      bool setForeground() override;
+
+      //
+      // Changes visible state of this control
+      //
+
+      void setVisible(bool visible) override;
+
+      //
+      // Checks if this control is active (not disabled)
+      //
+
+      bool isEnabled() override;
+
+      //
+      // Invalidates control
+      //
+
+      void invalidate() override;
+
+      //
+      // Gets text associated with window
+      //
+
+      ::string getText() override;
 
       // loadIcon()
       // Set the icon of application where id can be from resource or handle HICON
@@ -200,9 +304,9 @@ namespace innate_subsystem
 
       // for changing registered class parameters of created window
       void setClassStyle(unsigned int style) override;
-      void setClassCursor(::innate_subsystem::Cursor * pcursor) override;
-      void setClassBackground(::innate_subsystem::Brush * pbrush) override;
-      void setClassMenu(long long menu) override;
+      void setClassCursor(::innate_subsystem::CursorInterface * pcursor) override;
+      void setClassBackground(::innate_subsystem::BrushInterface * pbrush) override;
+      void setClassMenu(::innate_subsystem::MenuInterface * pmenu) override;
 
 
       bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override;
@@ -238,7 +342,7 @@ namespace innate_subsystem
       void getClientRect(::int_rectangle &rc) override;
       ::int_size getBorderSize() override;
 
-      bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;
+      //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;
 
       static const int MOUSE_LDOWN  = 1;
       static const int MOUSE_MDOWN  = 2;

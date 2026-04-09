@@ -8,7 +8,7 @@ namespace innate_subsystem
 {
 
     class CLASS_DECL_APEX SystemMetricsInterface :
-        virtual public ::subsystem::particle_interface
+        virtual public ::subsystem::particle_interface<SystemMetricsInterface>
     {
     public:
         virtual ~SystemMetricsInterface() = 0;

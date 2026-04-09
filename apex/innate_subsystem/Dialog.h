@@ -35,6 +35,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX DialogInterface :
+   virtual public ::subsystem::particle_interface<DialogInterface>,
       virtual public Control
    {
    public:
@@ -128,10 +129,14 @@ namespace innate_subsystem
       //
 
       virtual bool onInitDialog() = 0;
-      virtual bool onNotify(unsigned int controlID, ::lparam data) = 0;
+      //virtual bool onNotify(unsigned int controlID, ::lparam data) = 0;
       virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
       virtual bool onClose() = 0;
       virtual bool onDestroy() = 0;
+
+      //virtual bool setChildDoubleClick(unsigned int controlID, const ::function < bool() > & callback);
+      //virtual bool setChildListViewKeyDown(unsigned int controlID, const ::function < bool(int) > & callback);
+      //virtual bool setChildListViewKeyDown(unsigned int controlID, const ::function < bool(int) > & callback);
 
       //
       // This methods can be overrided by child classes.
@@ -166,7 +171,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX Dialog :
-      virtual public ::subsystem::composite<DialogInterface>
+      virtual public window_composite<DialogInterface>
    {
    public:
 
@@ -259,7 +264,7 @@ namespace innate_subsystem
       //
 
       virtual bool onInitDialog() override;
-      virtual bool onNotify(unsigned int controlID, ::lparam data) override;
+      //virtual bool onNotify(unsigned int controlID, ::lparam data) override;
       virtual bool onCommand(unsigned int controlID, unsigned int notificationID) override;
       virtual bool onClose() override;
       virtual bool onDestroy() override;

@@ -44,10 +44,10 @@ namespace innate_subsystem
    }
 
 
-   void ImageList::addIcon(innate_ui::icon* pinnateuiicon)
+   void ImageList::addIcon(IconInterface * picon)
    {
 
-      m_pparticleThis->addIcon(pinnateuiicon);
+      m_pparticleThis->addIcon(picon);
 
    }
 

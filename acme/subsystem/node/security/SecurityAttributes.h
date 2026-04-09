@@ -34,7 +34,7 @@
 namespace subsystem
 {
    class CLASS_DECL_ACME SecurityAttributesInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<SecurityAttributesInterface>
    {
    public:
       //SecurityAttributes();

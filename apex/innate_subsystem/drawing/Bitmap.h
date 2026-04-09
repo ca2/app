@@ -23,13 +23,19 @@
 //
 
 #pragma once
+
+
 #include "acme/subsystem/particle.h"
+#include "apex/innate_subsystem/drawing/GraphicsObject.h"
 
 
 namespace innate_subsystem
 {
+
+
    class CLASS_DECL_APEX BitmapInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<BitmapInterface>,
+   virtual public GraphicsObject
    {
    public:
       // // Creates empty bitmap with specified size.
@@ -50,6 +56,9 @@ namespace innate_subsystem
 
       // Returns bitmap width.
       virtual ::int_size getSize() const = 0;
+
+
+      //virtual void destroyObject() = 0;
       // Returns bitmap height.
       //virtual int getHeight() const = 0;
    // protected:
@@ -75,6 +84,9 @@ namespace innate_subsystem
       // Destroys bitmap object.
       ~Bitmap() override;
 
+
+      void * _HGDIOBJ() override;
+
       // Creates empty bitmap with specified size.
       void initialize_bitmap(const ::int_size & size) override;
       // Creates compatible with dc bitmap with specified size.
@@ -84,6 +96,9 @@ namespace innate_subsystem
 
       // Returns bitmap width.
       ::int_size getSize() const override;
+
+
+      void destroyGraphicsObject() override;
       // Returns bitmap height.
       //int getHeight() const override;
       // protected:

@@ -43,7 +43,7 @@ namespace innate_subsystem
    //    m_caption.setString(caption);
    // }
    //
-   void Tab::initialize_tab(Dialog *dialog, const char *caption)
+   void Tab::initialize_tab(DialogInterface *dialog, const char *caption)
 //: m_dialog(dialog)
    {
       m_pparticleThis->initialize_tab(dialog, caption);

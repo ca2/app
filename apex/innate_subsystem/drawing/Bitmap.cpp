@@ -65,6 +65,14 @@ namespace innate_subsystem
    }
 
 
+   void * Bitmap::_HGDIOBJ()
+   {
+
+      return m_pparticleThis->_HGDIOBJ();
+
+   }
+
+
    void Bitmap::initialize_bitmap(const ::int_size & size)
 ///: m_bitmap(NULL)
    {
@@ -103,6 +111,15 @@ namespace innate_subsystem
 
       return m_pparticleThis->getSize();
    }
+
+
+   void Bitmap::destroyGraphicsObject()
+   {
+
+      m_pparticleThis->destroyGraphicsObject();
+
+   }
+
 
    // int Bitmap::getHeight() const
    // {

@@ -34,7 +34,7 @@ namespace subsystem
     * Contains information about executable file version info.
     */
    class CLASS_DECL_ACME VersionInfoInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<VersionInfoInterface>
    {
    public:
       /**

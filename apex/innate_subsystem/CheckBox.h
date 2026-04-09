@@ -33,6 +33,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX CheckBoxInterface :
+   virtual public ::subsystem::particle_interface<CheckBoxInterface>,
       virtual public Control
    {
    public:

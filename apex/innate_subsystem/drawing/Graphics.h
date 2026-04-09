@@ -35,13 +35,16 @@
 namespace innate_subsystem
 {
    class CLASS_DECL_APEX GraphicsInterface :
-   virtual public subsystem::particle_interface
+   virtual public subsystem::particle_interface<GraphicsInterface>
    {
    public:
       // Creates graphics object with specified device context.
       ///Graphics(DeviceContext *dc);
       // Graphics class destructor.
       virtual ~GraphicsInterface() = 0;
+
+
+      virtual DeviceContextInterface * device_context() = 0;
 
 
       virtual void initialize_graphics(DeviceContextInterface *dc) = 0;
@@ -54,9 +57,9 @@ namespace innate_subsystem
       // Sets text color.
       virtual void setTextColor(const ::color::color & color) = 0;
       // Sets current brush.
-      virtual void setBrush(const BrushInterface *brush) = 0;
+      virtual void setBrush(BrushInterface *brush) = 0;
       // Sets current pen.
-      virtual void setPen(const PenInterface *pen) = 0;
+      virtual void setPen(PenInterface *pen) = 0;
 
       // Moves cursor to specified position.
       virtual void moveTo(int x, int y) = 0;
@@ -64,14 +67,14 @@ namespace innate_subsystem
       virtual void lineTo(int x, int y) = 0;
 
       // Draws filled rect.
-      virtual void fillRect(int l, int t, int r, int b, const BrushInterface*brush) = 0;
+      virtual void fillRect(int l, int t, int r, int b, BrushInterface*brush) = 0;
       // Draws ellipse.
       virtual void ellipse(int l, int t, int r, int b) = 0;
       // Draws rectance.
       virtual void rectangle(int l, int t, int r, int b) = 0;
 
       // Draws bitmap.
-      virtual void drawBitmap(const BitmapInterface *bitmap, int x, int y, int w, int h) = 0;
+      virtual void drawBitmap(BitmapInterface *bitmap, int x, int y, int w, int h) = 0;
       // Draws text.
       virtual void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) = 0;
 
@@ -90,6 +93,8 @@ namespace innate_subsystem
       Graphics();
       ~Graphics() override;
 
+      DeviceContextInterface * device_context() override;
+
 
       void initialize_graphics(DeviceContextInterface *dc) override;
 
@@ -101,9 +106,9 @@ namespace innate_subsystem
       // Sets text color.
       void setTextColor(const ::color::color & color) override;
       // Sets current brush.
-      void setBrush(const BrushInterface *brush) override;
+      void setBrush(BrushInterface *brush) override;
       // Sets current pen.
-      void setPen(const PenInterface *pen) override;
+      void setPen(PenInterface *pen) override;
 
       // Moves cursor to specified position.
       void moveTo(int x, int y) override;
@@ -111,14 +116,14 @@ namespace innate_subsystem
       void lineTo(int x, int y) override;
 
       // Draws filled rect.
-      void fillRect(int l, int t, int r, int b, const BrushInterface *brush) override;
+      void fillRect(int l, int t, int r, int b, BrushInterface *brush) override;
       // Draws ellipse.
       void ellipse(int l, int t, int r, int b) override;
       // Draws rectance.
       void rectangle(int l, int t, int r, int b) override;
 
       // Draws bitmap.
-      void drawBitmap(const BitmapInterface *bitmap, int x, int y, int w, int h) override;
+      void drawBitmap(BitmapInterface *bitmap, int x, int y, int w, int h) override;
       // Draws text.
       void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) override;
 

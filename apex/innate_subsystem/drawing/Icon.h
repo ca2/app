@@ -31,8 +31,8 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX IconInterface :
-   virtual public ::subsystem::particle_interface
+   class IconInterface :
+   virtual public ::subsystem::particle_interface<IconInterface>
    {
    public:
       // Icon();
@@ -40,14 +40,14 @@ namespace innate_subsystem
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
       // Icon(unsigned int icon);
-      virtual ~IconInterface() = 0;
+      //virtual ~IconInterface() = 0;
 
       virtual void initialize_icon(IconInterface * picon) = 0;
       virtual void initialize_icon(BitmapInterface *bitmap) = 0;
       virtual void initialize_icon(BitmapInterface *bitmap, BitmapInterface *mask) = 0;
       virtual void initialize_icon(unsigned int icon) = 0;
 
-      //HICON getHICON();
+      virtual void * _HICON() = 0;
 
    //protected:
       virtual void fromBitmap(BitmapInterface *bitmap, BitmapInterface *mask) = 0;
@@ -74,7 +74,7 @@ virtual public ::subsystem::composite<IconInterface>
       virtual void initialize_icon(BitmapInterface *bitmap, BitmapInterface *mask) override;
       virtual void initialize_icon(unsigned int icon) override;
 
-      //HICON getHICON();
+      void * _HICON() override;
 
       //protected:
       void fromBitmap(BitmapInterface *bitmap, BitmapInterface *mask) override;

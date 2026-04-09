@@ -44,17 +44,18 @@ namespace innate_subsystem
 
    
 
-   // MenuInterface * Menu::getMenu()
-   // {
-   //    return m_menu;
-   // }
-   //
-   void Menu::setMenu(MenuInterface * pmenu)
+    void * Menu::_HMENU()
+    {
+       //return m_menu;
+      return m_pparticleThis->_HMENU();
+    }
+
+   void Menu::_setHMENU(void * pHMENU)
    {
       // _ASSERT(m_menu == 0);
       //
       //m_menu = hmenu;
-      m_pparticleThis->setMenu(pmenu);
+      m_pparticleThis->_setHMENU(pHMENU);
    }
 
    bool Menu::getWindowMenu(WindowInterface * pwindow)

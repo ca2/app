@@ -21,64 +21,69 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "NotifyIconWindow.h"
 
 namespace innate_subsystem
 {
+
+
    NotifyIconWindow::NotifyIconWindow()
-   : m_wph(0)
+   //: m_wph(0)
    {
+      // //
+      // // Register window class
+      // //
       //
-      // Register window class
+      // WNDCLASS wc;
       //
-
-      WNDCLASS wc;
-
-      wc.style = 0;
-      wc.lpfnWndProc = WindowProcHolder::defWindowProc;
-      wc.cbClsExtra = 0;
-      wc.cbWndExtra = 0;
-      wc.hInstance = GetModuleHandle(0);
-      wc.hIcon = NULL;
-      wc.hCursor = NULL;
-      wc.hbrBackground = NULL;
-      wc.lpszMenuName = NULL;
-      wc.lpszClassName = _T("NotifyIconWindowClass");
-
-      ATOM atom = RegisterClass(&wc);
-
+      // wc.style = 0;
+      // wc.lpfnWndProc = WindowProcHolder::defWindowProc;
+      // wc.cbClsExtra = 0;
+      // wc.cbWndExtra = 0;
+      // wc.hInstance = GetModuleHandle(0);
+      // wc.hIcon = NULL;
+      // wc.hCursor = NULL;
+      // wc.hbrBackground = NULL;
+      // wc.lpszMenuName = NULL;
+      // wc.lpszClassName = _T("NotifyIconWindowClass");
       //
-      // Create window
+      // ATOM atom = RegisterClass(&wc);
       //
-
-      m_window = CreateWindow((LPCTSTR)atom,
-                              (LPCTSTR)_T("NotifyIconWindowTitle"),
-                              WS_OVERLAPPED,
-                              CW_USEDEFAULT, CW_USEDEFAULT,
-                              CW_USEDEFAULT, CW_USEDEFAULT,
-                              NULL, NULL, GetModuleHandle(0), NULL);
-
-      SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
+      // //
+      // // Create window
+      // //
+      //
+      // m_window = CreateWindow((LPCTSTR)atom,
+      //                         (LPCTSTR)_T("NotifyIconWindowTitle"),
+      //                         WS_OVERLAPPED,
+      //                         CW_USEDEFAULT, CW_USEDEFAULT,
+      //                         CW_USEDEFAULT, CW_USEDEFAULT,
+      //                         NULL, NULL, GetModuleHandle(0), NULL);
+      //
+      // SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
    }
 
    NotifyIconWindow::~NotifyIconWindow()
    {
-      setWindowProcHolder(NULL);
+      //setWindowProcHolder(NULL);
 
       //DestroyWindow(m_window);
    }
 
-   HWND NotifyIconWindow::getWindow()
+   ::operating_system::window NotifyIconWindow::getWindow()
    {
-      return m_window;
+      //return m_window;
+      return m_pparticleThis->getWindow();
    }
 
    void NotifyIconWindow::setWindowProcHolder(WindowProcHolder *wph)
    {
-      m_wph = wph;
+      //m_wph = wph;
 
-      SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
+      //SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
+
+      m_pparticleThis->setWindowProcHolder(wph);
    }
 } // namespace innate_subsystem
 

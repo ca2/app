@@ -31,12 +31,12 @@
 namespace subsystem
 {
 
-class CLASS_DECL_ACME CursorInterface :
-   virtual public ::subsystem::particle_interface
+class CursorInterface :
+   virtual public ::subsystem::particle_interface<CursorInterface>
 {
 public:
  //Cursor();
-   virtual ~CursorInterface() = 0;
+   //virtual ~CursorInterface() = 0;
 
   virtual ::int_point getCursorPos() const = 0;
 

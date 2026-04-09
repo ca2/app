@@ -31,14 +31,14 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_ACME ClipboardInterface :
-   virtual public ::subsystem::particle_interface
+   class ClipboardInterface :
+   virtual public ::subsystem::particle_interface<ClipboardInterface>
    {
    public:
 
       //ClipboardInterface(HWND hwnd);
       //Clipboard();
-      virtual ~ClipboardInterface()  = 0;
+      //virtual ~ClipboardInterface()  = 0;
 
 
       virtual void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) = 0;

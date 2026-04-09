@@ -33,14 +33,16 @@
 namespace innate_subsystem
 {
    class CLASS_DECL_APEX MenuInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<MenuInterface>
    {
    public:
       //Menu();
       virtual ~MenuInterface() = 0;
 
-      //HMENU getMenu();
-      virtual void setMenu(MenuInterface * pmenu) = 0;
+
+
+      virtual void * _HMENU() = 0;
+      virtual void _setHMENU(void * pHMENU) = 0;
       virtual bool getWindowMenu(WindowInterface * pwindow) = 0;
       virtual void getSystemMenu(WindowInterface * pwindow) = 0;
       virtual void create() = 0;
@@ -67,10 +69,10 @@ namespace innate_subsystem
 
       virtual bool setDefaultItem(unsigned int uID) = 0;
 
-      void operator= (MenuInterface * pmenu)
-      {
-         setMenu(pmenu);
-      }
+      // void operator= (MenuInterface * pmenu)
+      // {
+      //    setMenu(pmenu);
+      // }
 
       // ///sprivate:
       //   virtual bool _appendMenu(unsigned int uFlags, ::uptr uIDNewItem, const char* lpNewItem) = 0;
@@ -90,8 +92,11 @@ class CLASS_DECL_APEX Menu :
       Menu();
       ~Menu() override;
 
+
+      void * _HMENU() override;
+
       //HMENU getMenu();
-      void setMenu(MenuInterface * phmenu) override;
+      void _setHMENU(void * pHMENU) override;
       bool getWindowMenu(WindowInterface * pwindow) override;
       void getSystemMenu(WindowInterface * pwindow) override;
       void create() override;
@@ -118,10 +123,10 @@ class CLASS_DECL_APEX Menu :
 
       bool setDefaultItem(unsigned int uID) override;
 
-      void operator= (MenuInterface * pmenu)
-      {
-         setMenu(pmenu);
-      }
+      // void operator= (MenuInterface * pmenu)
+      // {
+      //    setMenu(pmenu);
+      // }
 
       // ///sprivate:
       //   bool _appendMenu(unsigned int uFlags, ::uptr uIDNewItem, const char* lpNewItem) override;

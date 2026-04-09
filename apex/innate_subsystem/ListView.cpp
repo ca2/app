@@ -98,11 +98,13 @@ namespace innate_subsystem
       // item.tag = lvI.::lparam;
       //
       // return item;
+      return m_pparticleThis->getItem(index);
    }
 
    void ListView::addItem(int index, const char *caption)
    {
       // addItem(index, caption, NULL);
+      m_pparticleThis->addItem(index, caption);
    }
 
    void ListView::addItem(int index, const char *caption, ::lparam tag)
@@ -123,6 +125,7 @@ namespace innate_subsystem
       // //
       //
       // ListView_InsertItem(m_hwnd, &lvI);
+      m_pparticleThis->addItem(index, caption, tag);
    }
 
    void ListView::addItem(int index, const char *caption, ::lparam tag, int imageIndex)
@@ -144,16 +147,19 @@ namespace innate_subsystem
       // //
       //
       // ListView_InsertItem(m_hwnd, &lvI);
+      m_pparticleThis->addItem(index, caption, tag, imageIndex);
    }
 
    void ListView::removeItem(int i)
    {
       // ListView_DeleteItem(getWindow(), i);
+      m_pparticleThis->removeItem(i);
    }
 
    void ListView::clear()
    {
       // ListView_DeleteAllItems(m_hwnd);
+      m_pparticleThis->clear();
    }
 
    void ListView::setSubItemText(int index, int subIndex, const char *caption)
@@ -173,6 +179,7 @@ namespace innate_subsystem
       // //
       //
       // SendMessage(m_hwnd, LVM_SETITEM, 0, (::lparam)&lvI);
+      m_pparticleThis->setSubItemText(index, subIndex, caption);
    }
 
    void ListView::setItemData(int index, ::lparam tag)
@@ -193,11 +200,13 @@ namespace innate_subsystem
       // //
       //
       // SendMessage(m_hwnd, LVM_SETITEM, 0, (::lparam)&lvI);
+      m_pparticleThis->setItemData(index, tag);
    }
 
    ::lparam ListView::getItemData(int index)
    {
       // return getItem(index).tag;
+      return m_pparticleThis->getItemData(index);
    }
 
    ListViewItem ListView::getSelectedItem()
@@ -211,12 +220,14 @@ namespace innate_subsystem
       //    item = getItem(index);
       // }
       // return item;
+      return m_pparticleThis->getSelectedItem();
    }
 
    int ListView::getSelectedIndex()
    {
       // int iSelect = ListView_GetNextItem(m_hwnd, -1, LVNI_SELECTED);
       // return iSelect;
+      return m_pparticleThis->getSelectedIndex();
    }
 
    void ListView::selectItem(int index)
@@ -227,6 +238,7 @@ namespace innate_subsystem
       // ListView_SetItemState(m_hwnd, itemIndex, LVIS_SELECTED, LVIS_SELECTED);
       // ListView_SetItemState(m_hwnd, itemIndex, LVIS_FOCUSED, LVIS_FOCUSED);
       // setFocus();
+      m_pparticleThis->selectItem(index);
    }
 
    void ListView::setFullRowSelectStyle(bool fullRowSelect)
@@ -236,6 +248,7 @@ namespace innate_subsystem
       // } else {
       //    removeExStyle(LVS_EX_FULLROWSELECT);
       // }
+      m_pparticleThis->setFullRowSelectStyle(fullRowSelect);
    }
 
    void ListView::allowMultiSelection(bool allow)
@@ -245,11 +258,14 @@ namespace innate_subsystem
       // } else {
       //    addStyle(LVS_SINGLESEL);
       // }
+      m_pparticleThis->allowMultiSelection(allow);
    }
 
    unsigned int ListView::getSelectedItemsCount()
    {
       // return ListView_GetSelectedCount(m_hwnd);
+      return m_pparticleThis->getSelectedItemsCount();
+
    }
 
    void ListView::getSelectedItemsIndexes(int *indexes)
@@ -259,9 +275,10 @@ namespace innate_subsystem
       //    i = ListView_GetNextItem(m_hwnd, i, LVNI_SELECTED);
       //    indexes[j] = i;
       // }
+      m_pparticleThis->getSelectedItemsIndexes(indexes);
    }
 
-   void ListView::sort(int columnIndex, const ::function < int(::lparam, ::lparam) > &  compareItem)
+   void ListView::set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > &  compareItem)
    {
       // // Update parameters of sorting.
       // int oldSortColumnIndex = m_sortColumnIndex;
@@ -297,7 +314,9 @@ namespace innate_subsystem
       // }
       // // Sort list of item.
       // sort();
+      m_pparticleThis->set_sort(columnIndex, compareItem);
    }
+
 
    void ListView::sort()
    {
@@ -311,7 +330,25 @@ namespace innate_subsystem
       //    }
       //    ListView_SortItems(m_hwnd, m_compareItem, sortColumnIndex);
       // }
+      m_pparticleThis->sort();
    }
+
+
+   void ListView::onAction()
+   {
+
+      debug() << "innate_subsystem::ListView::onAction";
+
+   }
+
+
+   lparam ListView::lparam_sort()
+   {
+
+      return m_pparticleThis->lparam_sort();
+
+   }
+
 
    void ListView::setListViewExtendedStyle(unsigned int style)
    {
@@ -340,5 +377,8 @@ namespace innate_subsystem
       // setExStyle(flags);
       m_pparticleThis->removeExStyle(styleFlag);
    }
+
+
+
 } // namespace innate_subsystem
 

@@ -85,6 +85,15 @@ namespace innate_subsystem
       //m_dc = pntWnd->getHDCPaint();
    }
 
+
+   void DeviceContext::destroyDeviceContext()
+   {
+
+      m_pparticleThis->destroyDeviceContext();
+
+   }
+
+
    // HGDIOBJ DeviceContext::selectObject(HGDIOBJ object)
    // {
    //    return SelectObject(m_dc, object);

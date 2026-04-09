@@ -36,28 +36,62 @@ namespace innate_subsystem
 {
 
    // FIXME: Add documentation to class.
-   class NotifyIcon : public NotifyIconWindow
+   class CLASS_DECL_APEX NotifyIconInterface :
+      virtual public ::subsystem::particle_interface<NotifyIconInterface>,
+   virtual public NotifyIconWindow
    {
    public:
-      NotifyIcon();
-      virtual ~NotifyIcon();
+      
+      
+      //NotifyIcon();
+      virtual ~NotifyIconInterface() = 0;
 
-      void initialize_notify_icon(bool showAfterCreation = true);
+      virtual void initialize_notify_icon(bool showAfterCreation = true) = 0;
 
-      const Icon *getIcon() const;
-      bool isVisible() const;
+      virtual IconInterface *getIcon() = 0;
+      virtual bool isVisible() const = 0;
 
-      void setIcon(Icon *icon);
-      void setText(const char *text);
+      virtual void setIcon(IconInterface *icon) = 0;
+      virtual void setText(const char *text) = 0;
 
-      void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis);
+      virtual void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) = 0;
 
-      void show();
-      void hide();
+      virtual void show() = 0;
+      virtual void hide() = 0;
 
 //   protected:
   //    NOTIFYICONDATA m_nid;
     //  Icon *m_icon;
+      //bool m_visible;
+   };
+
+
+   // FIXME: Add documentation to class.
+   class CLASS_DECL_APEX NotifyIcon :
+      virtual public ::subsystem::composite<NotifyIconInterface>
+   {
+   public:
+
+
+      NotifyIcon();
+      ~NotifyIcon() override;
+
+      void initialize_notify_icon(bool showAfterCreation = true) override;
+
+      IconInterface *getIcon() override;
+      bool isVisible() const override;
+
+      void setIcon(IconInterface *icon) override;
+      void setText(const char *text) override;
+
+      void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) override;
+
+      void show() override;
+      void hide() override;
+
+      //   protected:
+      //    NOTIFYICONDATA m_nid;
+      //  Icon *m_icon;
       //bool m_visible;
    };
 

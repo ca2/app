@@ -63,7 +63,7 @@ namespace innate_subsystem
       m_pparticleThis->insertItem(index, text, tag);
    }
 
-   int ComboBox::getItemsCount() const
+   int ComboBox::getItemsCount()
    {
       //return ComboBox_GetCount(m_hwnd);
       return m_pparticleThis->getItemsCount();
@@ -75,13 +75,13 @@ namespace innate_subsystem
       m_pparticleThis->setItemData(index, tag);
    }
 
-   void *ComboBox::getItemData(int index) const
+   void *ComboBox::getItemData(int index)
    {
       //return (void *)ComboBox_GetItemData(m_hwnd, index);
       return m_pparticleThis->getItemData(index);
    }
 
-   ::string  ComboBox::getItemText(int index) const
+   ::string  ComboBox::getItemText(int index)
    {
       // size_t length = ComboBox_GetLBTextLen(m_hwnd, index);
       // std::vector<char> buf(length + 1);

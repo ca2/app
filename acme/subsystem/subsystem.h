@@ -53,6 +53,10 @@ namespace subsystem
          unsigned int uType);
 
 
+      virtual bool EncryptData(const ::string& input, ::memory & output);
+      virtual bool DecryptData(const memory & input, ::string& output);
+
+
    };
 
 

@@ -41,13 +41,13 @@ namespace subsystem
    console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
-   class CLASS_DECL_ACME ImpersonatorInterface :
-   virtual public ::subsystem::particle_interface
+   class ImpersonatorInterface :
+   virtual public ::subsystem::particle_interface<ImpersonatorInterface>
    {
    public:
       //Impersonator(LogWriter *plogwriter);
       ///Impersonator();
-      virtual ~ImpersonatorInterface() = 0 ;
+      //virtual ~ImpersonatorInterface() = 0 ;
 
 
       virtual void initialize_impersonator(LogWriter *plogwriter) = 0;

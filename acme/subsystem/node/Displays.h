@@ -33,7 +33,7 @@
 namespace  subsystem
 {
    class CLASS_DECL_ACME DisplaysInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<DisplaysInterface>
    {
    public:
       //Displays();

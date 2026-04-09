@@ -27,6 +27,25 @@
 namespace innate_subsystem
 {
 
+   void ControlInterface::setVisible(bool visible)
+   {
+
+      if (visible)
+      {
+
+         show();
+
+      }
+      else
+      {
+
+         hide();
+
+      }
+      //ShowWindow(m_hwnd, visible ? SW_SHOW : SW_HIDE);
+   }
+
+
 Control::Control()
 //: m_hwnd(NULL)
 {
@@ -57,22 +76,23 @@ void Control::setWindow(const ::operating_system::window & operatingsystemwindow
   // m_defWindowProc = (WNDPROC)GetWindowLongPtr(m_hwnd, GWLP_WNDPROC);
 }
 
-void Control::setEnabled(bool enabled)
 
-   {
-   m_pparticleThis->setEnabled(enabled);
-  // if (enabled) {
-  //   SendMessage(m_hwnd, WM_ENABLE, TRUE, NULL);
-  //   removeStyle(WS_DISABLED);
-  // } else {
-  //   if (isStyleEnabled(WS_DISABLED)) {
-  //     return ;
-  //   } // if already disabled
-  //   SendMessage(m_hwnd, WM_ENABLE, FALSE, NULL);
-  //   addStyle(WS_DISABLED);
-  // }
-  // invalidate();
-}
+//    void Control::setEnabled(bool enabled)
+//    {
+//
+//       m_pparticleThis->setEnabled(enabled);
+//   // if (enabled) {
+//   //   SendMessage(m_hwnd, WM_ENABLE, TRUE, NULL);
+//   //   removeStyle(WS_DISABLED);
+//   // } else {
+//   //   if (isStyleEnabled(WS_DISABLED)) {
+//   //     return ;
+//   //   } // if already disabled
+//   //   SendMessage(m_hwnd, WM_ENABLE, FALSE, NULL);
+//   //   addStyle(WS_DISABLED);
+//   // }
+//   // invalidate();
+// }
 
 void Control::setText(const char *text)
 {

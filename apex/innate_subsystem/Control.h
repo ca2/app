@@ -45,7 +45,8 @@ namespace innate_subsystem
    //
 
    class ControlInterface :
-      virtual public ::innate_subsystem::Window
+   virtual public ::subsystem::particle_interface<ControlInterface>,
+      virtual public Window
    {
    public:
 
@@ -73,7 +74,7 @@ namespace innate_subsystem
       // Changes enable state of this control
       //
 
-      virtual void setEnabled(bool enabled) = 0;
+      //virtual void setEnabled(bool enabled) = 0;
 
       //
       // Sets text associated with window
@@ -111,7 +112,7 @@ namespace innate_subsystem
       // Changes visible state of this control
       //
 
-      virtual void setVisible(bool visible) = 0;
+      virtual void setVisible(bool bVisible = true);
 
       //
       // Checks if this control is active (not disabled)
@@ -251,7 +252,7 @@ namespace innate_subsystem
       // Changes enable state of this control
       //
 
-       void setEnabled(bool enabled) override;
+       //void setEnabled(bool enabled) override;
 
       //
       // Sets text associated with window

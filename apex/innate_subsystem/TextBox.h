@@ -35,6 +35,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX TextBoxInterface :
+   virtual public ::subsystem::particle_interface<TextBoxInterface>,
       virtual public Control
    {
    public:

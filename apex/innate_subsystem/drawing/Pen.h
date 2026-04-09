@@ -24,7 +24,7 @@
 
 #pragma once
 #include "acme/subsystem/particle.h"
-
+#include "GraphicsObject.h"
 
 //#include "util/CommonHeader.h"
 
@@ -39,7 +39,8 @@ namespace innate_subsystem
    };
 
       class CLASS_DECL_APEX PenInterface :
-   virtual public ::subsystem::particle_interface
+         virtual public ::subsystem::particle_interface<PenInterface>,
+         virtual public GraphicsObject
       {
       public:
 
@@ -51,6 +52,7 @@ namespace innate_subsystem
 
          virtual void initialize_pen(enum_pen epen, int width, const ::color::color & color) = 0;
 
+         //virtual void destroyGObject() = 0;
       // protected:
       //    HPEN m_pen;
       //
@@ -69,7 +71,11 @@ virtual public ::subsystem::composite<PenInterface>
       ~Pen() override;
 
 
+      void * _HGDIOBJ() override;
+
       void initialize_pen(enum_pen epen, int width, const ::color::color & color) override;
+
+      void destroyGraphicsObject() override;
 
       // protected:
       //    HPEN m_pen;

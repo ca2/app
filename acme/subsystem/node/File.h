@@ -9,12 +9,12 @@ namespace subsystem
 {
 
    class CLASS_DECL_ACME FileInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<FileInterface>
    {
    public:
 
       //File();
-      virtual ~FileInterface() =0 ;
+      //virtual ~FileInterface() =0 ;
 
    };
 
@@ -28,6 +28,7 @@ namespace subsystem
 
    };
 
-//// __WINCURSOR_H__
-///
 } // namespace subsystem
+
+
+

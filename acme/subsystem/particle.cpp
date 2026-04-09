@@ -8,13 +8,14 @@
 namespace subsystem
 {
 
-   particle_interface::particle_interface(enum_particle eparticle):
+
+   particle_base::particle_base(enum_particle eparticle):
            m_eparticle(eparticle)
    {
 
    }
 
-   particle_interface::~particle_interface()
+   particle_base::~particle_base()
    {}
 
 

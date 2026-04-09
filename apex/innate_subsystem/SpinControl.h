@@ -31,7 +31,9 @@
 namespace innate_subsystem
 {
 
-class CLASS_DECL_APEX SpinControlInterface : public Control
+class CLASS_DECL_APEX SpinControlInterface :
+   virtual public ::subsystem::particle_interface<SpinControlInterface>,
+   public Control
 {
 public:
   //SpinControl();
@@ -69,7 +71,7 @@ public:
 };
 
    class CLASS_DECL_APEX SpinControl :
-   public ::subsystem::composite < SpinControlInterface>
+   virtual public ::subsystem::composite < SpinControlInterface>
    {
    public:
       SpinControl();

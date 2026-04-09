@@ -34,6 +34,7 @@
 namespace innate_subsystem
 {
    class CLASS_DECL_APEX FilteredTextBoxInterface :
+   virtual public ::subsystem::particle_interface<FilteredTextBoxInterface>,
    virtual public TextBox
    {
    public:
@@ -43,14 +44,14 @@ namespace innate_subsystem
       // Override Control::setWindow method
       virtual void setWindow(const ::operating_system::window & operatingsystemwindow) = 0;
       virtual void setText(char *text) = 0;
-      //virtual void setErrorBalloonTip(BalloonTip *tip) = 0;
-      virtual void setErrorToolTip(TooltipInterface *tip) = 0;
+      virtual void setErrorBalloonTip(TooltipInterface *tip) = 0;
+      //virtual void setErrorToolTip(TooltipInterface *tip) = 0;
       virtual void setStringFilter(StringFilter *filter) = 0;
       virtual ::lresult makeCheck() = 0;
 
    // protected:
        virtual bool isStringValid(const char *string) = 0;
-   //    virtual LRESULT onKeyDown(::wparam code, ::lparam params);
+       virtual ::lresult onKeyDown(::wparam code, ::lparam params);
    //
    //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
    //
@@ -71,8 +72,8 @@ namespace innate_subsystem
       // Override Control::setWindow method
       void setWindow(const ::operating_system::window & operatingsystemwindow) override;
       void setText(char *text) override;
-      //void setErrorBalloonTip(BalloonTip *tip) override;
-      void setErrorToolTip(TooltipInterface *tip) override;
+      void setErrorBalloonTip(TooltipInterface *tip) override;
+      //void setErrorToolTip(TooltipInterface *tip) override;
       void setStringFilter(StringFilter *filter) override;
       ::lresult makeCheck() override;
 

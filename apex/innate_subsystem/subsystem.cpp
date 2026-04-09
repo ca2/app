@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "subsystem.h"
 #include "SystemMetrics.h"
+#include "resource_loader.h"
+#include "acme/constant/user_key.h"
 
 
 namespace innate_subsystem
@@ -120,6 +122,15 @@ namespace innate_subsystem
       }
 
       return m_psystemmetrics;
+
+   }
+
+   ::user::enum_key subsystem::virtual_key_code_to_user_key(int iVirtualKeyCode)
+   {
+
+      throw ::interface_only();
+
+      return ::user::e_key_none;
 
    }
 

@@ -33,7 +33,7 @@ namespace subsystem
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
    class CLASS_DECL_ACME ProcessHandleInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<ProcessHandleInterface>
 
    {
    public:

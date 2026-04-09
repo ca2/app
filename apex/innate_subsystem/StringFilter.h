@@ -28,7 +28,8 @@
 
 namespace innate_subsystem
 {
-   class StringFilter
+   class StringFilter :
+   virtual public ::particle
    {
    public:
       virtual bool isStringCorrect(const char *string);

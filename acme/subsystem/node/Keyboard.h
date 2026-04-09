@@ -38,14 +38,14 @@ namespace subsystem
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
-   class CLASS_DECL_ACME KeyboardInterface :
-   virtual public ::subsystem::particle_interface
+   class KeyboardInterface :
+   virtual public ::subsystem::particle_interface<KeyboardInterface>
    {
    public:
 
 
       //Keyboard();
-      virtual ~KeyboardInterface() = 0;
+      //virtual ~KeyboardInterface() = 0;
       /**
        * Copied current keyboard state (256 virtual keys state) to state array.
        * @param state [out] array of 256 virtual key states.

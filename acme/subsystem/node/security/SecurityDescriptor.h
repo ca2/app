@@ -35,7 +35,7 @@ namespace subsystem
     * Contains the security information associated with an object.
     */
    class CLASS_DECL_ACME SecurityDescriptorInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public ::subsystem::particle_interface<SecurityDescriptorInterface>
    {
    public:
       /**

@@ -115,7 +115,7 @@ namespace windows
 
                RECT r;
 
-               auto hwnd = _HWND();
+               auto hwnd = (HWND) _HWND();
 
                GetWindowRect(hwnd, &r);
 
@@ -134,7 +134,7 @@ namespace windows
 
             {
 
-               auto hwnd = _HWND();
+               auto hwnd = (HWND) _HWND();
 
                POINT pointCursor{};
                RECT r{};
@@ -163,7 +163,7 @@ namespace windows
 
                //GetWindowRect(m_hwnd, &r);
                m_bMovingNow = true;
-               auto hwnd = _HWND();
+               auto hwnd =(HWND) _HWND();
 
 
                SetWindowPos(hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
@@ -256,7 +256,7 @@ namespace windows
 
       }
 
-      auto hwnd = _HWND();
+      auto hwnd = (HWND) _HWND();
 
       hmenuSystem = hmenu;
 
@@ -386,7 +386,7 @@ namespace windows
       {
          m_dVelocity = 0.;
 
-         auto hwnd = _HWND();
+         auto hwnd = (HWND) _HWND();
 
          ::SetCapture(hwnd);
          POINT pointCursor{};
@@ -406,7 +406,7 @@ namespace windows
       else if (wmId == SC_CLOSE)
       {
 
-         auto hwnd = _HWND();
+         auto hwnd = (HWND) _HWND();
 
          SendMessage(hwnd, WM_SYSCOMMAND, SC_CLOSE, 0);
          lresult = 0;
@@ -422,7 +422,7 @@ namespace windows
    void window::_defer_show_system_menu(::user::mouse * pmouse)
    {
 
-      auto hwnd = _HWND();
+      auto hwnd = (HWND) _HWND();
 
       auto hmenu = GetSystemMenu(hwnd, true);
       m_hmenuSystem = GetSystemMenu(hwnd, false);
@@ -438,7 +438,7 @@ namespace windows
    }
 
 
-   HWND window::_HWND() const
+   void * window::_HWND() const
    {
 
       auto hwnd = m_windowswindow.as_HWND();

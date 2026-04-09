@@ -42,7 +42,7 @@ namespace innate_subsystem
 
       virtual ::innate_subsystem::SystemMetricsInterface * metrics();
 
-
+      virtual ::user::enum_key virtual_key_code_to_user_key(int iVirtualKeyCode);
 
    };
 

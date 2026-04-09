@@ -78,6 +78,10 @@ using get_word_function = ::function < const_string_range < ITERATOR_TYPE >(cons
 
 
 template < typename ITERATOR_TYPE >
+class auto_string_buffer;
+
+
+template < typename ITERATOR_TYPE >
 class string_base :
    public ::const_string_range < ITERATOR_TYPE >
  //  , public ::string_natural_pointer < ITERATOR_TYPE >
@@ -1486,6 +1490,9 @@ public:
    // }
 
 
+   inline auto_string_buffer<ITERATOR_TYPE> auto_release_buffer(character_count characterCount = -1);
+
+
    template < bool t_bPreserve = false>
    inline CHARACTER * get_buffer(character_count characterCount = -1)
    {
@@ -2569,6 +2576,51 @@ public:
 };
 
 
+template < typename ITERATOR_TYPE >
+class auto_string_buffer
+{
+public:
+
+
+   using STRING = string_base < ITERATOR_TYPE >;
+
+   using CHARACTER = typename STRING::CHARACTER;
+
+   STRING * m_pstring;
+
+   CHARACTER * m_pbuffer;
+
+   auto_string_buffer(STRING * pstring, character_count charactercount = -1):
+      m_pstring(pstring)
+   {
+
+      m_pbuffer = m_pstring->get_buffer(charactercount);
+
+   }
+
+   ~auto_string_buffer()
+   {
+
+      m_pstring->release_buffer();
+
+   }
+
+   operator CHARACTER *() {return m_pbuffer;}
+
+
+};
+
+
+
+template < typename ITERATOR_TYPE >
+inline auto_string_buffer<ITERATOR_TYPE> string_base < ITERATOR_TYPE >::auto_release_buffer(character_count characterCount)
+{
+
+   return {this, characterCount};
+}
+
+
+
 // For MSVC, but not for GCC?
 //inline ::string operator + (const ::scoped_string & scopedstrA, const ::scoped_string & scopedstrB)
 //{
@@ -3363,3 +3415,23 @@ struct std::formatter<CHARACTER_RANGE>
       );
    }
 };
+
+
+// template < typename ITERATOR_TYPE >
+// auto_string_buffer<ITERATOR_TYPE>::auto_string_buffer(::string_base < ITERATOR_TYPE > * pstring, character_count charactercount):
+//    m_pstring(pstring)
+// {
+//    m_pbuffer= m_pstring->get_buffer(charactercount);
+//
+// }
+//
+// template < typename ITERATOR_TYPE >
+// auto_string_buffer<ITERATOR_TYPE>::~auto_string_buffer()
+// {
+//
+//    m_pstring->release_buffer();
+//
+//    //m_pbuffer= pstringbase->get_buffer(charactercount);
+//
+// }
+//

@@ -52,6 +52,10 @@ namespace subsystem
 
    class PixelFormat;
 
+   class Screen;
+
+   class ScreenInterface;
+
 } // namespace subsystem
 
 

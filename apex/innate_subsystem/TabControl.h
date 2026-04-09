@@ -32,7 +32,9 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX TabControlInterface : public Control
+   class CLASS_DECL_APEX TabControlInterface :
+   virtual public ::subsystem::particle_interface<TabControlInterface>,
+   public Control
    {
    public:
 
@@ -45,10 +47,11 @@ namespace innate_subsystem
       //
 
       virtual TabContainer &getTabs() = 0;
+      virtual int getTabCount() ;
       virtual TabInterface *getTab(int index)= 0;
       virtual void addTab(DialogInterface *pdialog, const char *caption)= 0;
-      virtual void showTab(int index)= 0;
-      virtual void showTab(DialogInterface *pdialog)= 0;
+      virtual void showTab(int index);
+      virtual void showTab(DialogInterface *pdialog);
       virtual void deleteAllTabs()= 0;
 virtual       void removeTab(int index)= 0;
 
@@ -83,7 +86,7 @@ virtual       int getSelectedTabIndex()= 0;
       TabInterface *getTab(int index)override;
       void addTab(DialogInterface *dialog, const char *caption)override;
       void showTab(int index)override;
-      void showTab(DialogInterface *pdialog)override;
+      //void showTab(DialogInterface *pdialog)override;
       void deleteAllTabs()override;
       void removeTab(int index)override;
 

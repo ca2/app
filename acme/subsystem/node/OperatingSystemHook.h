@@ -32,7 +32,7 @@ namespace subsystem
 
    // Class for intercepting keyboard on low level.
    class CLASS_DECL_ACME OperatingSystemHookInterface :
-   virtual public ::subsystem::particle_interface,
+   virtual public ::subsystem::particle_interface<OperatingSystemHookInterface>,
    virtual public ::subsystem::OperatingSystemHookListener
    {
    public:

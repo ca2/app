@@ -25,6 +25,7 @@
 #pragma once
 
 
+#include "acme/filesystem/file/string_buffer.h"
 #include "acme/subsystem/io/Channel.h"
 #include "acme/subsystem/node/Pipe.h"
 #include "acme/subsystem/_common_header.h"
@@ -38,6 +39,7 @@ namespace subsystem
 
 
    class CLASS_DECL_ACME AnonymousPipeInterface :
+   virtual public ::subsystem::particle_interface<AnonymousPipeInterface>,
    virtual public Pipe,
    virtual public Channel
    {

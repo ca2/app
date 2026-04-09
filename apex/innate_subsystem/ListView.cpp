@@ -268,14 +268,14 @@ namespace innate_subsystem
 
    }
 
-   void ListView::getSelectedItemsIndexes(int *indexes)
+   ::int_array ListView::getSelectedItemsIndexes()
    {
       // int i = -1;
       // for (unsigned int j = 0; j < getSelectedItemsCount(); j++) {
       //    i = ListView_GetNextItem(m_hwnd, i, LVNI_SELECTED);
       //    indexes[j] = i;
       // }
-      m_pparticleThis->getSelectedItemsIndexes(indexes);
+      return m_pparticleThis->getSelectedItemsIndexes();
    }
 
    void ListView::set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > &  compareItem)

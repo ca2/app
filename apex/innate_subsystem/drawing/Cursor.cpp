@@ -24,97 +24,99 @@
 // Adapted by camilo on beginning of 2026-April <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "Icon.h"
+#include "Cursor.h"
 #include "DeviceContext.h"
 #include "Bitmap.h"
 
-namespace innate_subsystem_win32
+namespace innate_subsystem
 {
-   Icon::Icon()
-   : m_bHasOwnIcon(true), m_hicon(NULL)
+    
+   Cursor::Cursor()
+   : m_bHasOwnIcon(true), m_hcursor(NULL)
    {
    }
 
-//    Icon::Icon(HICON icon)
-// : m_bHasOwnIcon(true), m_hicon(icon)
+//    Cursor::Cursor(HICON icon)
+// : m_bHasOwnIcon(true), m_hcursor(icon)
 //    {
 //    }
 //
-//    Icon::Icon(Bitmap *bitmap)
-//    : m_bHasOwnIcon(true), m_hicon(NULL)
+//    Cursor::Cursor(Bitmap *bitmap)
+//    : m_bHasOwnIcon(true), m_hcursor(NULL)
 //    {
 //       Bitmap mask(bitmap->getWidth(), bitmap->getHeight());
 //       fromBitmap(bitmap, &mask);
 //    }
 //
-//    Icon::Icon(Bitmap *bitmap, Bitmap *mask)
-//    : m_bHasOwnIcon(true), m_hicon(NULL)
+//    Cursor::Cursor(Bitmap *bitmap, Bitmap *mask)
+//    : m_bHasOwnIcon(true), m_hcursor(NULL)
 //    {
 //       fromBitmap(bitmap, mask);
 //    }
 //
-//    Icon::Icon(DWORD icon)
+//    Cursor::Cursor(DWORD icon)
 //    : m_bHasOwnIcon(false)
 //    {
 //       HINSTANCE hInstance = GetModuleHandle(NULL);
-//       m_hicon = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
+//       m_hcursor = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
 //    }
 //
 
 
-   Icon::~Icon()
+   Cursor::~Cursor()
    {
       if (m_bHasOwnIcon) {
-         DestroyIcon(m_hicon);
+         DestroyIcon(m_hcursor);
       }
    }
 
 
-   void Icon::initialize_icon(::innate_subsystem::IconInterface * picon)
+   void Cursor::initialize_icon(::innate_subsystem::IconInterface * picon)
 
    {
       m_bHasOwnIcon = true;
-      ::cast < ::innate_subsystem_win32::Icon > piconWin32 = ::subsystem::get_implementation(picon);
-      m_hicon = piconWin32->m_hicon;
+      ::cast < ::innate_subsystem_win32::Cursor > piconWin32 = ::subsystem::get_implementation(picon);
+      m_hcursor = piconWin32->m_hcursor;
    }
 
-   void Icon::initialize_icon(innate_subsystem::BitmapInterface *pbitmap)
+   void Cursor::initialize_icon(innate_subsystem::BitmapInterface *pbitmap)
 
    {
       m_bHasOwnIcon = true;
 
-      m_hicon = nullptr;
+      m_hcursor = nullptr;
 
       Bitmap mask;
       mask.initialize_bitmap(pbitmap->getSize());
       fromBitmap(pbitmap, &mask);
    }
 
-   void Icon::initialize_icon(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask)
+   void Cursor::initialize_icon(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask)
    //:
    {
       m_bHasOwnIcon = true;
-      m_hicon = nullptr;
+      m_hcursor = nullptr;
       fromBitmap(bitmap, mask);
    }
 
-   void Icon::initialize_icon(unsigned int icon)
+   void Cursor::initialize_icon(unsigned int icon)
    {
       m_bHasOwnIcon = false;
       HINSTANCE hInstance = GetModuleHandle(NULL);
-      m_hicon = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
+      m_hcursor = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
    }
 
 
 
-   // HICON Icon::getHICON()
+   // HICON Cursor::getHICON()
    // {
-   //    return m_hicon;
+   //    return m_hcursor;
    // }
 
-   void Icon::fromBitmap(::innate_subsystem::BitmapInterface *pbitmap, ::innate_subsystem::BitmapInterface *pbitmapMask)
+   void Cursor::fromBitmap(::innate_subsystem::BitmapInterface *pbitmap, ::innate_subsystem::BitmapInterface *pbitmapMask)
    {
-      ICONINFO ii;
+       /*
+      CURS ii;
 
       memset(&ii, 0, sizeof(ICONINFO));
 
@@ -123,8 +125,9 @@ namespace innate_subsystem_win32
 
       ii.hbmColor = (pbitmapWin32 != 0) ? pbitmapWin32->m_hbitmap : 0;
       ii.hbmMask = (pbitmapMaskWin32 != 0) ? pbitmapMaskWin32->m_hbitmap : 0;
+*/
+      m_hcursor = CreateIconIndirect(&ii);
 
-      m_hicon = CreateIconIndirect(&ii);
    }
 } // namespace innate_subsystem_win32
 

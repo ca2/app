@@ -169,7 +169,8 @@ namespace innate_subsystem
       // Sets selected list view index to output indexes array
       //
 
-      virtual void getSelectedItemsIndexes(int *indexes)= 0;
+      //virtual void getSelectedItemsIndexes(int *indexes)= 0;
+       virtual ::int_array getSelectedItemsIndexes() = 0;
 
    //protected:
 
@@ -347,7 +348,7 @@ namespace innate_subsystem
       // Sets selected list view index to output indexes array
       //
 
-      void getSelectedItemsIndexes(int *indexes)override;
+      ::int_array getSelectedItemsIndexes()override;
 
    //protected:
 

@@ -31,7 +31,7 @@
 
 namespace innate_subsystem
 {
-   class IconInterface :
+   class CLASS_DECL_APEX IconInterface :
    virtual public ::subsystem::particle_interface<IconInterface>
    {
    public:

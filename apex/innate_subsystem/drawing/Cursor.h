@@ -8,29 +8,63 @@
 #include "subsystem_win32/_common_header.h"
 
 
-namespace innate_subsystem_win32
+namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM_WIN32 Cursor :
-      virtual public ::subsystem::implementation<::innate_subsystem::IconInterface>
+   class CLASS_DECL_APEX CursorInterface :
+      virtual public ::subsystem::particle_interface<::innate_subsystem::CursorInterface>
    {
    public:
 
-      Icon();
+      CursorInterface();
       // Icon(HICON icon);
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
       // Icon(DWORD icon);
-      ~Icon() override;
+      virtual ~CursorInterface() = 0;
+
+      virtual void * _HCURSOR() = 0;
+      virtual void _setHCURSOR(void * p) = 0;
+
+      virtual void initialize_cursor(::innate_subsystem::CursorInterface * picon) = 0;
+      virtual void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap) = 0;
+      virtual void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) = 0;
+      virtual void initialize_cursor(unsigned int uCursor) = 0;
+
+      //void initi(HICON icon);
+      //Icon(Bitmap *bitmap);
+      //Icon(Bitmap *bitmap, Bitmap *mask);
+      //Icon(DWORD icon);
+
+   //protected:
+      virtual void fromBitmap(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) = 0;
+
+   // protected:
+//      HCURSOR m_hcursor;
+  //    bool m_bHasOwnCursor;
+   };
+    
+    
+   class CLASS_DECL_APEX Cursor :
+      virtual public ::subsystem::composite<::innate_subsystem::CursorInterface>
+   {
+   public:
+
+      Cursor();
+      // Icon(HICON icon);
+      // Icon(Bitmap *bitmap);
+      // Icon(Bitmap *bitmap, Bitmap *mask);
+      // Icon(DWORD icon);
+      ~Cursor() override;
 
       void * _HCURSOR() override;
       void _setHCURSOR(void * p) override;
 
-      virtual void initialize_icon(::innate_subsystem::CursorInterface * picon) override;
-      virtual void initialize_icon(::innate_subsystem::BitmapInterface *bitmap) override;
-      virtual void initialize_icon(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
-      virtual void initialize_icon(unsigned int icon) override;
+      void initialize_cursor(::innate_subsystem::CursorInterface * picon) override;
+      void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap) override;
+      void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
+      void initialize_cursor(unsigned int uCursor) override;
 
       //void initi(HICON icon);
       //Icon(Bitmap *bitmap);
@@ -41,11 +75,12 @@ namespace innate_subsystem_win32
       void fromBitmap(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
 
    // protected:
-      HCURSOR m_hcursor;
-      bool m_bHasOwnCursor;
+//      HCURSOR m_hcursor;
+  //    bool m_bHasOwnCursor;
    };
 
 
-} // namespace innate_subsystem_win32
+
+} // namespace innate_subsystem
 
 

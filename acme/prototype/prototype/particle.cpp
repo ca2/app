@@ -2593,7 +2593,7 @@ void particle::main_post(const ::procedure& procedure)
 //}
 
 //
-//CLASS_DECL_ACME class tracer * tracer()
+//CLASS_DECL_ACME ::platform::tracer * tracer()
 //{
 //
 //   auto ptask = get_task();

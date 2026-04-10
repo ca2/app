@@ -493,17 +493,14 @@
     <Filter Include="Source Files\subsystem\thread">
       <UniqueIdentifier>{8056a99e-6bcc-4568-9574-169b6a4add6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\subsystem\windows">
-      <UniqueIdentifier>{fd41fa92-61ae-4778-a9b7-2e43d01e843d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\subsystem\windows\thread">
-      <UniqueIdentifier>{da2d8052-1bca-44ff-939f-30260510af60}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\subsystem\node">
       <UniqueIdentifier>{35d05032-5083-4253-9468-2a930acbac9a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\subsystem\node">
       <UniqueIdentifier>{0e86ddb9-c5d4-4bd4-b487-9e31d9495d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\subsystem\thread">
+      <UniqueIdentifier>{6ed15f74-469c-4a67-9aa6-3d7bac2cd580}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -4410,9 +4407,6 @@
     <ClInclude Include="subsystem\Exception.h">
       <Filter>Header Files\subsystem</Filter>
     </ClInclude>
-    <ClInclude Include="subsystem\Impersonator.h">
-      <Filter>Header Files\subsystem</Filter>
-    </ClInclude>
     <ClInclude Include="subsystem\Inflater.h">
       <Filter>Header Files\subsystem</Filter>
     </ClInclude>
@@ -4574,6 +4568,39 @@
     </ClInclude>
     <ClInclude Include="subsystem\node\WTS.h">
       <Filter>Header Files\subsystem\node</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\_.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\AutoLock.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\DesktopSelector.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\GlobalMutex.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\GuiThread.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\LocalMutex.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\Lockable.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\resource.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\Thread.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\thread\ThreadCollector.h">
+      <Filter>Header Files\subsystem\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\registry.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -6488,34 +6515,10 @@
     <ClCompile Include="subsystem\thread\ThreadCollector.cpp">
       <Filter>Source Files\subsystem\thread</Filter>
     </ClCompile>
-    <ClCompile Include="subsystem\windows\thread\AutoLock.cpp">
-      <Filter>Source Files\subsystem\windows\thread</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\windows\thread\DesktopSelector.cpp">
-      <Filter>Source Files\subsystem\windows\thread</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\windows\thread\GlobalMutex.cpp">
-      <Filter>Source Files\subsystem\windows\thread</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\windows\thread\GuiThread.cpp">
-      <Filter>Source Files\subsystem\windows\thread</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\windows\thread\LocalMutex.cpp">
-      <Filter>Source Files\subsystem\windows\thread</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\windows\thread\Thread.cpp">
-      <Filter>Source Files\subsystem\windows\thread</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\windows\thread\ThreadCollector.cpp">
-      <Filter>Source Files\subsystem\windows\thread</Filter>
-    </ClCompile>
     <ClCompile Include="subsystem\CommandLineArguments.cpp">
       <Filter>Source Files\subsystem</Filter>
     </ClCompile>
     <ClCompile Include="subsystem\Exception.cpp">
-      <Filter>Source Files\subsystem</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\Impersonator.cpp">
       <Filter>Source Files\subsystem</Filter>
     </ClCompile>
     <ClCompile Include="subsystem\Inflater.cpp">
@@ -6588,9 +6591,6 @@
       <Filter>Source Files\subsystem\node</Filter>
     </ClCompile>
     <ClCompile Include="subsystem\node\LocalOperatingSystemApplication.cpp">
-      <Filter>Source Files\subsystem\node</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem\node\LocalWindowsApplication.cpp">
       <Filter>Source Files\subsystem\node</Filter>
     </ClCompile>
     <ClCompile Include="subsystem\node\NamedPipe.cpp">
@@ -6673,6 +6673,12 @@
     </ClCompile>
     <ClCompile Include="subsystem\node\WTS.cpp">
       <Filter>Source Files\subsystem\node</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\user_interaction_sink.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\registry.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

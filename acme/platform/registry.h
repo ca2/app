@@ -11,7 +11,7 @@
 #include "acme/subsystem/particle.h"
 
 
-namespace subsystem
+namespace platform
 {
 
 
@@ -22,25 +22,15 @@ namespace subsystem
       Types
       -------------------------------------------------------------------------- */
 
-   enum enum_registry {
+   enum enum_registry 
+   {
       e_registry_none   = 0,
       e_registry_string     = 1,
       e_registry_dword = 2,
       e_registry_qword = 3,
       e_registry_binary = 4
-  };
+   };
 
-  //  typedef enum RegXStatus {
-  //     REGX_OK = 0,
-  //     REGX_ERR_INVALID_ARG = -1,
-  //     REGX_ERR_NOT_FOUND   = -2,
-  //     REGX_ERR_EXISTS      = -3,
-  //     REGX_ERR_IO          = -4,
-  //     REGX_ERR_NOMEM       = -5,
-  //     REGX_ERR_TYPE        = -6,
-  //     REGX_ERR_BUFFER      = -7
-  // } RegXStatus;
-  //
    /* --------------------------------------------------------------------------
       Root key strings
       -------------------------------------------------------------------------- */
@@ -52,7 +42,7 @@ namespace subsystem
 
 
 
-   class CLASS_DECL_ACME registry :
+   class registry :
       virtual public ::particle
    {
    public:
@@ -60,22 +50,22 @@ namespace subsystem
       ::file::path   m_path;
 
 
-      virtual void open_from_file(const ::file::path & path);
+      virtual void open_from_file(const ::file::path & path) = 0;
 
-      virtual void flush();
+      virtual void flush() = 0;
 
-      virtual void close();
+      virtual void close() = 0;
 
-      virtual ::pointer < registry_key_interface > open_key(const ::file::path & path);
+      virtual ::pointer < registry_key_interface > open_key(const ::file::path & path) = 0;
 
-      virtual ::pointer < registry_key_interface > create_key(const ::file::path & path);
+      virtual ::pointer < registry_key_interface > create_key(const ::file::path & path) = 0;
 
-      virtual bool delete_key(const ::file::path & path);
+      virtual void delete_key(const ::file::path & path) = 0;
 
 
    };
 
-   class CLASS_DECL_ACME registry_key :
+   class CLASS_DECL_ACME registry_key_interface :
       virtual public ::particle
    {
    public:
@@ -86,16 +76,50 @@ namespace subsystem
 
       virtual void close() =0;
 
-      virtual void set_string(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPayload) = 0;
-      virtual void set_dword(const ::scoped_string & scopedstr, unsigned int value) = 0;
-      virtual void set_qword(const ::scoped_string & scopedstr, unsigned long long value) = 0;
-      virtual void set_binary(const ::scoped_string & scopedstr, const ::block & block) = 0;
 
-      ::string get_string(const ::scoped_string & scopedstr);
+      virtual void set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) = 0;
+      virtual void set_dword(const ::scoped_string &scopedstrName, unsigned int value) = 0;
+      virtual void set_qword(const ::scoped_string &scopedstrName, unsigned long long value) = 0;
+      virtual void set_binary(const ::scoped_string &scopedstrName, const ::block &block) = 0;
 
-      unsigned int get_dword(const ::scoped_string & scopedstr);
 
-      unsigned long long get_qword(const ::scoped_string & scopedstr);
+      virtual ::e_status _get_string(const ::scoped_string &scopedstrName, ::string &str) = 0;
+      virtual ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u) = 0;
+      virtual ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long & ull) = 0;
+      virtual ::e_status _get_binary(const ::scoped_string &scopedstrName, ::memory & memory) = 0;
+
+
+      virtual void erase_payload(const ::scoped_string &scopedstrName) = 0;
+      virtual bool has_payload(const ::scoped_string &scopedstrName) = 0;
+      virtual enum_registry payload_type(const ::scoped_string &scopedstrName) = 0;
+
+
+      ::string get_string(const ::scoped_string &scopedstrName)
+      {
+         ::string str;
+         auto estatus = _get_string(scopedstrName, str);
+         if (!estatus)
+            throw estatus;
+         return ::transfer(str);
+      }
+
+      inline unsigned int long get_dword(const ::scoped_string &scopedstrName)
+      {
+         unsigned int u = 0;
+         auto estatus = _get_qword(scopedstrName, u);
+         if (!estatus)
+            throw estatus;
+         return u;
+      }
+
+      inline unsigned long long get_qword(const ::scoped_string &scopedstrName)
+      {
+         unsigned long long ull = 0;
+         auto estatus = _get_qword(scopedstrName, ull);
+         if (!estatus)
+            throw estatus;
+         return ull;
+      }
 
       /*
           Gets a binary value.
@@ -106,15 +130,48 @@ namespace subsystem
               void *buf = malloc(size);
               RegXGetBinary(key, "Blob", buf, &size);
       */
-      virtual ::memory get_binary(const ::scoped_string & scopedstr) = 0;
-
-      virtual void erase_payload(const ::scoped_string & scopedstr) = 0;
-      virtual bool has_payload(const ::scoped_string & scopedstr) = 0;
-      virtual enum_registry payload_type(const ::scoped_string & scopedstr) = 0;
+      inline ::memory get_binary(const ::scoped_string &scopedstrName)
+      {
+         ::memory memory;
+         auto estatus = _get_binary(scopedstrName, memory);
+         if (!estatus)
+            throw estatus;
+         return ::transfer(memory);
+      }
 
    };
 
-// /* --------------------------------------------------------------------------
+
+   class CLASS_DECL_ACME registry_key : 
+      virtual public registry_key_interface
+   {
+   public:
+
+      ::pointer<registry_key_interface> m_pregistrykey;
+
+      registry_key();
+      ~registry_key() override;
+
+      void close() override;
+
+      void set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) override;
+      void set_dword(const ::scoped_string &scopedstrName, unsigned int value) override;
+      void set_qword(const ::scoped_string &scopedstrName, unsigned long long value) override;
+      void set_binary(const ::scoped_string &scopedstrName, const ::block &block) override;
+
+      ::e_status _get_string(const ::scoped_string &scopedstrName, ::string &str) override;
+      ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u) override;
+      ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull) override;
+      ::e_status _get_binary(const ::scoped_string &scopedstrName, ::memory &memory) override;
+
+
+      void erase_payload(const ::scoped_string &scopedstrName) override;
+      bool has_payload(const ::scoped_string &scopedstrName) override;
+      enum_registry payload_type(const ::scoped_string &scopedstrName) override;
+
+   };
+
+   // /* --------------------------------------------------------------------------
 //    Opaque handles
 //    -------------------------------------------------------------------------- */
 //
@@ -234,9 +291,10 @@ namespace subsystem
    Error strings
    -------------------------------------------------------------------------- */
 
-const char *RegXStrError(int status);
+   //const char * registry_error(int status);
 
-} // namespace subsystem
+
+} // namespace platform
 
 
 

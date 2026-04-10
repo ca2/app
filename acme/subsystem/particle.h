@@ -10,7 +10,7 @@ namespace subsystem
 
    struct interface_t{};
 
-   CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory);
+   //CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory);
 
 
    enum enum_particle

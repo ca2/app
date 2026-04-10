@@ -225,14 +225,17 @@ namespace platform
    }
 
 
-
-
-   class tracer * fallback_tracer()
+   ::platform::tracer * fallback_tracer()
    {
 
-      static class tracer s_tracerFallback;
+      static ::platform::tracer s_tracerFallback;
 
       return &s_tracerFallback;
 
    }
+
+
 } // namespace platform
+
+
+

@@ -21,12 +21,11 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
 
 
 #include "acme/subsystem/thread/Thread.h"
-//#include "win-system/WindowsEvent.h"
+
 
 namespace subsystem
 {
@@ -86,6 +85,8 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
-   //// __PIPEIMPERSONATEDTHREAD_H__
+   
 } // namespace subsystem
+
+
 

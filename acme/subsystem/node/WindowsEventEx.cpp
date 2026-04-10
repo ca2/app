@@ -48,6 +48,6 @@
 //       errorCode != ERROR_NO_SECURITY_ON_OBJECT) {
 //     ::string errMess;
 //     errMess.formatf("Cannot SetSecurityInfo with error = {}", (int)errorCode);
-//     throw ::remoting::Exception(errMess);
+//     throw ::subsystem::Exception(errMess);
 //   }
 // }

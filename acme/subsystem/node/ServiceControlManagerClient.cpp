@@ -31,7 +31,7 @@
 namespace subsystem
 {
    ServiceControlManagerClientException::ServiceControlManagerClientException(int iServiceControlManagerErrorCode)
-   : SystemException("[::remoting::Exception description is not avaliable]")
+   : SystemException("[::subsystem::Exception description is not avaliable]")
    {
       switch (iServiceControlManagerErrorCode) {
          case ERROR_ALREADY_STOPPED:

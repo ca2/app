@@ -25,12 +25,12 @@
 // #include "acme/exception/io.h"
 //
 // io_exception::io_exception()
-// : ::remoting::Exception()
+// : ::subsystem::Exception()
 // {
 // }
 //
 // io_exception::io_exception(const ::scoped_string & scopedstrMessage)
-// : ::remoting::Exception(scopedstrMessage)
+// : ::subsystem::Exception(scopedstrMessage)
 // {
 // }
 //

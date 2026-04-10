@@ -7,14 +7,8 @@
 //
 #include "framework.h"
 #include "registry.h"
+#include "acme/filesystem/filesystem/file_context.h"
 
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <sstream>
 
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
@@ -22,15 +16,133 @@
 
 //using namespace rapidjson;
 
-namespace subsystem
+namespace platform
 {
-   class CLASS_DECL_ACME registry_key_implementation :
-   virtual public registry_key
+
+   static bool ensure_object(::rapidjson::Value &v, ::rapidjson::Document::AllocatorType &a)
+   {
+      if (!v.IsObject())
+      {
+         v.SetObject();
+      }
+      return true;
+   }
+
+   static void set_type_and_data(::rapidjson::Value &entry, const char *type, ::rapidjson::Value &data,
+                                 ::rapidjson::Document::AllocatorType &alloc)
+   {
+      entry.SetObject();
+
+      ::rapidjson::Value t(type, alloc);
+      entry.AddMember("type", t, alloc);
+      entry.AddMember("data", data, alloc);
+   }
+
+
+         void registry_key::close() override;
+
+   void registry_key::set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) override;
+   void registry_key::set_dword(const ::scoped_string &scopedstrName, unsigned int value) override;
+   void registry_key::set_qword(const ::scoped_string &scopedstrName, unsigned long long value) override;
+   void registry_key::set_binary(const ::scoped_string &scopedstrName, const ::block &block) override;
+
+   ::e_status registry_key::_get_string(const ::scoped_string &scopedstrName, ::string &str) override;
+   ::e_status registry_key::_get_dword(const ::scoped_string &scopedstrName, unsigned int &u) override;
+   ::e_status registry_key::_get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull) override;
+   ::e_status registry_key::_get_binary(const ::scoped_string &scopedstrName, ::memory &memory) override;
+
+
+   void registry_key::erase_payload(const ::scoped_string &scopedstrName) override;
+   bool registry_key::has_payload(const ::scoped_string &scopedstrName) override;
+   enum_registry registry_key::payload_type(const ::scoped_string &scopedstrName) override;
+   
+
+   class CLASS_DECL_ACME registry_implementation :
+      virtual public registry
    {
    public:
+
+      ::file::path m_pathFileSystem;
       ::rapidjson::Document m_rapidjsondocument;
 
+      registry_implementation();
+      ~registry_implementation();
+
+      void open_from_file(const ::file::path &path) override;
+
+      void flush() override;
+
+      void close() override;
+
+      ::pointer<registry_key_interface> open_key(const ::file::path &path) override;
+
+      ::pointer<registry_key_interface> create_key(const ::file::path &path) override;
+
+      void delete_key(const ::file::path &path) override;
+
+
+
+
+      ::rapidjson::Value *_get_key_node(const ::file::path & path, bool create);
+
+   
    };
+
+
+   registry_implementation::registry_implementation()
+   {
+
+
+   }
+
+
+   registry_implementation::~registry_implementation()
+   {
+
+
+   }
+
+   
+   struct CLASS_DECL_ACME registry_key_implementation : 
+      virtual public registry_key
+   {
+   public:
+      
+      
+      ::pointer<registry_implementation> m_pregistry;
+      ::file::path m_path;
+
+
+      registry_key_implementation();
+      ~registry_key_implementation();
+
+
+
+      
+      //bool ensure_object(::rapidjson::Value &v, ::rapidjson::Document::AllocatorType &a);
+      virtual ::rapidjson::Value * _get_payloads(bool create);
+      virtual ::rapidjson::Value * _get_payload_entry(const ::scoped_string &scopedstrName, bool create);
+
+      ::e_status _get_string(const ::scoped_string &scopedstrName, string &str);
+      ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u);
+      ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long &ll);
+      ::e_status _get_binary(const ::scoped_string &scopedstrName, memory &memory);
+      ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string & scopedstr);
+      ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int value);
+      ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long value);
+      ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block & block);
+
+   };
+
+
+   registry_key_implementation::registry_key_implementation()
+   {
+
+   }
+   registry_key_implementation::~registry_key_implementation()
+   {
+
+   }
 
    // struct RegX {
    //     std::string filename;
@@ -38,43 +150,49 @@ namespace subsystem
    // };
    //
    // struct registry_key {
-   //     RegX *owner;
+   //     RegX *m_pregistry;
    //     std::string path;
    // };
 
-   /* ============================================================================
-      Helpers
-      ============================================================================ */
+   ///* ============================================================================
+   //   Helpers
+   //   ============================================================================ */
 
-   static std::vector<std::string> split_path(const char *path) {
-      std::vector<std::string> parts;
-      if (!path) return parts;
+   //static std::vector<std::string> split_path(const ::file::path & path)
+   //{
+   //   std::vector<std::string> parts;
+   //   if (!path) return parts;
 
-      std::string cur;
-      for (const char *p = path; *p; ++p) {
-         if (*p == '\\' || *p == '/') {
-            if (!cur.empty()) {
-               parts.push_back(cur);
-               cur.clear();
-            }
-         } else {
-            cur.push_back(*p);
-         }
-      }
-      if (!cur.empty()) parts.push_back(cur);
-      return parts;
-   }
+   //   std::string cur;
+   //   for (const char *p = path; *p; ++p) {
+   //      if (*p == '\\' || *p == '/') {
+   //         if (!cur.empty()) {
+   //            parts.push_back(cur);
+   //            cur.clear();
+   //         }
+   //      } else {
+   //         cur.push_back(*p);
+   //      }
+   //   }
+   //   if (!cur.empty()) parts.push_back(cur);
+   //   return parts;
+   //}
 
-   static std::string bin_to_hex(const unsigned char *data, size_t size) {
+   static ::string bin_to_hex(const unsigned char *data, memsize size) 
+   {
       static const char *hex = "0123456789ABCDEF";
-      std::string out;
-      out.reserve(size * 2);
-      for (size_t i = 0; i < size; ++i) {
+      ::string out;
+      auto p = out.get_buffer(size * 2);
+      for (size_t i = 0; i < size; ++i)
+      {
          unsigned char b = data[i];
-         out.push_back(hex[(b >> 4) & 0xF]);
-         out.push_back(hex[b & 0xF]);
+         *p = hex[(b >> 4) & 0xF];
+         p++;
+         *p = hex[b & 0xF];
+         p++;
       }
-      return out;
+      out.release_buffer(size * 2);
+      return ::transfer(out);
    }
 
    static int hex_val(char c) {
@@ -84,43 +202,41 @@ namespace subsystem
       return -1;
    }
 
-   static int hex_to_bin(const char *hex, unsigned char *buf, size_t *inout_len) {
-      if (!hex || !inout_len) return REGX_ERR_INVALID_ARG;
+   static ::e_status hex_to_bin(const char *hex, memory & memory) {
+      if (!hex) return error_bad_argument;
       size_t n = std::strlen(hex);
-      if (n % 2 != 0) return REGX_ERR_IO;
+      if (n % 2 != 0) return error_io;
 
       size_t needed = n / 2;
-      if (!buf || *inout_len < needed) {
-         *inout_len = needed;
-         return REGX_ERR_BUFFER;
-      }
+
+      memory.set_size(needed);
+
+      auto buf = memory.data();
 
       for (size_t i = 0; i < needed; ++i) {
          int hi = hex_val(hex[i * 2]);
          int lo = hex_val(hex[i * 2 + 1]);
-         if (hi < 0 || lo < 0) return REGX_ERR_IO;
-         buf[i] = (unsigned char)((hi << 4) | lo);
+         if (hi < 0 || lo < 0) return error_io;
+         *buf = (unsigned char)((hi << 4) | lo);
+         buf++;
       }
 
-      *inout_len = needed;
-      return REGX_OK;
+      return ::success;
+      
    }
 
-   static bool ensure_object(Value &v, Document::AllocatorType &a) {
-      if (!v.IsObject()) {
-         v.SetObject();
-      }
-      return true;
-   }
+   
 
-   static Value *get_key_node(RegX *reg, const char *path, bool create) {
-      if (!reg || !path) return nullptr;
 
-      auto parts = split_path(path);
-      if (parts.empty()) return nullptr;
+   ::rapidjson::Value *registry_implementation::_get_key_node(const ::file::path & path, bool create)
+   {
+      if (!path) return nullptr;
 
-      Value *cur = &reg->doc;
-      auto &alloc = reg->doc.GetAllocator();
+      auto parts = path.parts();
+      if (parts.is_empty()) return nullptr;
+
+      ::rapidjson::Value *cur = &m_rapidjsondocument;
+      auto &alloc = m_rapidjsondocument.GetAllocator();
 
       for (const auto &part : parts) {
          ensure_object(*cur, alloc);
@@ -128,12 +244,12 @@ namespace subsystem
          if (!cur->HasMember(part.c_str())) {
             if (!create) return nullptr;
 
-            Value k(part.c_str(), alloc);
-            Value obj(kObjectType);
+            ::rapidjson::Value k(part.c_str(), alloc);
+            ::rapidjson::Value obj(::rapidjson::kObjectType);
             cur->AddMember(k, obj, alloc);
          }
 
-         Value &next = (*cur)[part.c_str()];
+         ::rapidjson::Value &next = (*cur)[part.c_str()];
          if (!next.IsObject()) {
             if (!create) return nullptr;
             next.SetObject();
@@ -143,25 +259,32 @@ namespace subsystem
       }
 
       return cur;
+
    }
 
-   static Value *get_values_object(registry_key *key, bool create) {
-      if (!key || !key->owner) return nullptr;
 
-      Value *node = get_key_node(key->owner, key->path.c_str(), create);
+   ::rapidjson::Value *registry_key_implementation::_get_payloads(bool create)
+   {
+
+      
+      if (::is_null(this) || ::is_null(m_pregistry)) return nullptr;
+
+      ::rapidjson::Value *node = m_pregistry->_get_key_node(m_path.c_str(), create);
       if (!node) return nullptr;
 
-      auto &alloc = key->owner->doc.GetAllocator();
+      auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
 
-      if (!node->HasMember("__values__")) {
+      if (!node->HasMember("__values__"))
+      {
          if (!create) return nullptr;
-         Value k("__values__", alloc);
-         Value obj(kObjectType);
+         ::rapidjson::Value k("__values__", alloc);
+         ::rapidjson::Value obj(::rapidjson::kObjectType);
          node->AddMember(k, obj, alloc);
       }
 
-      Value &vals = (*node)["__values__"];
-      if (!vals.IsObject()) {
+      ::rapidjson::Value &vals = (*node)["__values__"];
+      if (!vals.IsObject()) 
+      {
          if (!create) return nullptr;
          vals.SetObject();
       }
@@ -169,21 +292,25 @@ namespace subsystem
       return &vals;
    }
 
-   static Value *get_value_entry(registry_key *key, const char *name, bool create) {
-      if (!key || !name) return nullptr;
-      Value *vals = get_values_object(key, create);
+   ::rapidjson::Value *registry_key_implementation::_get_payload_entry(const ::scoped_string & scopedstrName, bool create) 
+   {
+
+      if (::is_null(this) || scopedstrName.is_empty()) return nullptr;
+      ::rapidjson::Value *vals = _get_values_object(create);
       if (!vals) return nullptr;
 
-      auto &alloc = key->owner->doc.GetAllocator();
+      auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
 
-      if (!vals->HasMember(name)) {
+      ::string strName(scopedstrName);
+
+      if (!vals->HasMember(strName)) {
          if (!create) return nullptr;
-         Value k(name, alloc);
-         Value obj(kObjectType);
+         ::rapidjson::Value k(strName, alloc);
+         ::rapidjson::Value obj(::rapidjson::kObjectType);
          vals->AddMember(k, obj, alloc);
       }
 
-      Value &entry = (*vals)[name];
+      ::rapidjson::Value &entry = (*vals)[strName.c_str()];
       if (!entry.IsObject()) {
          if (!create) return nullptr;
          entry.SetObject();
@@ -192,248 +319,311 @@ namespace subsystem
       return &entry;
    }
 
-   static void set_type_and_data(Value &entry, const char *type, Value &data, Document::AllocatorType &alloc) {
-      entry.SetObject();
-
-      Value t(type, alloc);
-      entry.AddMember("type", t, alloc);
-      entry.AddMember("data", data, alloc);
-   }
-
+   
    /* ============================================================================
       Lifecycle
       ============================================================================ */
 
-   int RegXOpen(const char *filename, RegX **out_reg) {
-      if (!filename || !out_reg) return REGX_ERR_INVALID_ARG;
+   void registry_implementation::open_from_file(const ::file::path &path) 
+   {
+      if (path.is_empty())
+      {
 
-      RegX *reg = new (std::nothrow) RegX();
-      if (!reg) return REGX_ERR_NOMEM;
-
-      reg->filename = filename;
-      reg->doc.SetObject();
-
-      std::ifstream ifs(filename, std::ios::binary);
-      if (ifs.good()) {
-         std::stringstream ss;
-         ss << ifs.rdbuf();
-         std::string content = ss.str();
-
-         if (!content.empty()) {
-            reg->doc.Parse(content.c_str());
-            if (reg->doc.HasParseError() || !reg->doc.IsObject()) {
-               reg->doc.SetObject();
-            }
-         }
+         throw ::exception(error_bad_argument);
       }
 
-      *out_reg = reg;
-      return REGX_OK;
+      ////RegX *reg = new (std::nothrow) RegX();
+      auto reg = this;
+      //if (!reg) throw ::exception(error_no_memory);
+
+      reg->m_pathFileSystem = path;
+      m_rapidjsondocument.SetObject();
+
+      auto content = file()->as_string(path);
+
+      //std::ifstream ifs(filename, std::ios::binary);
+      //if (ifs.good()) {
+      //   std::stringstream ss;
+      //   ss << ifs.rdbuf();
+      //   std::string content = ss.str();
+
+         if (content.has_character()) 
+         {
+            m_rapidjsondocument.Parse(content.c_str());
+            if (m_rapidjsondocument.HasParseError() || !m_rapidjsondocument.IsObject()) {
+               m_rapidjsondocument.SetObject();
+            }
+         }
+      //}
+
+      //*out_reg = reg;
+      //return ::success;
    }
 
-   int RegXFlush(RegX *reg) {
-      if (!reg) return REGX_ERR_INVALID_ARG;
 
-      StringBuffer buffer;
-      PrettyWriter<StringBuffer> writer(buffer);
-      reg->doc.Accept(writer);
 
-      std::ofstream ofs(reg->filename, std::ios::binary | std::ios::trunc);
-      if (!ofs.good()) return REGX_ERR_IO;
+   void registry_implementation::flush()
+   {
+      if (::is_null(this))
+      {
 
-      ofs.write(buffer.GetString(), (std::streamsize)buffer.GetSize());
-      if (!ofs.good()) return REGX_ERR_IO;
+         throw ::exception(error_bad_argument);
+      }
 
-      return REGX_OK;
+      ::rapidjson::StringBuffer buffer;
+      ::rapidjson::PrettyWriter<::rapidjson::StringBuffer> writer(buffer);
+      m_rapidjsondocument.Accept(writer);
+
+      file()->put_memory(m_pathFileSystem, {buffer.GetString(), buffer.GetSize()});
+
    }
 
-   void RegXClose(RegX *reg) {
-      if (!reg) return;
-      RegXFlush(reg);
-      delete reg;
+   void registry_implementation::close()
+   {
+      flush();
+      //if (!reg) return;
+      //RegXFlush(reg);
+      //delete reg;
    }
 
    /* ============================================================================
       Key operations
       ============================================================================ */
 
-   int RegXOpenKey(RegX *reg, const char *path, registry_key **out_key) {
-      if (!reg || !path || !out_key) return REGX_ERR_INVALID_ARG;
+   ::pointer<registry_key_interface>registry_implementation::open_key(const ::file::path &path)
+   {
+      if (::is_null(this) || path.is_empty()) throw ::exception(error_bad_argument);
 
-      Value *node = get_key_node(reg, path, false);
-      if (!node) return REGX_ERR_NOT_FOUND;
+      auto pnode = _get_key_node(path, false);
+      if (!pnode) throw ::exception(error_not_found);
 
-      registry_key *key = new (std::nothrow) registry_key();
-      if (!key) return REGX_ERR_NOMEM;
+      auto pkey = create_newø<registry_key_implementation>();
+      if (!pkey) throw ::exception(error_no_memory);
 
-      key->owner = reg;
-      key->path = path;
-      *out_key = key;
-      return REGX_OK;
+      pkey->m_pregistry = this;
+      pkey->m_path = path;
+      //*out_key = key;
+      //return ::success;
+      return pkey;
    }
 
-   int RegXCreateKey(RegX *reg, const char *path, registry_key **out_key) {
-      if (!reg || !path) return REGX_ERR_INVALID_ARG;
+   
+   ::pointer<registry_key_interface> registry_implementation::create_key(const ::file::path &path)
+   {
+      if (::is_null(this) || path.is_empty()) throw ::exception(error_bad_argument);
 
-      Value *node = get_key_node(reg, path, true);
-      if (!node) return REGX_ERR_IO;
+      rapidjson::Value *pnode = _get_key_node(path, true);
+      if (!pnode) throw ::exception(error_io);
 
-      if (out_key) {
-         registry_key *key = new (std::nothrow) registry_key();
-         if (!key) return REGX_ERR_NOMEM;
-         key->owner = reg;
-         key->path = path;
-         *out_key = key;
-      }
-
-      return REGX_OK;
+      auto pkey = create_newø<registry_key_implementation>();
+      if (!pkey)
+         throw ::exception(error_no_memory);
+      pkey->m_pregistry = this;
+      pkey->m_path = path;
+      return pkey;
    }
 
-   int RegXDeleteKey(RegX *reg, const char *path) {
-      if (!reg || !path) return REGX_ERR_INVALID_ARG;
 
-      auto parts = split_path(path);
-      if (parts.empty()) return REGX_ERR_INVALID_ARG;
-      if (parts.size() == 1) return REGX_ERR_IO; /* don't delete top root directly */
+   void registry_implementation::delete_key(const ::file::path &path) 
+   {
+      if (::is_null(this) || path.is_empty())
+         throw ::exception(error_bad_argument);
 
-      Value *cur = &reg->doc;
+      auto parts = path.parts();
+      if (parts.is_empty()) throw ::exception(error_bad_argument);
+      if (parts.size() == 1) throw ::exception(error_io); /* don't delete top root directly */
+
+      rapidjson::Value *cur = &m_rapidjsondocument;
       for (size_t i = 0; i + 1 < parts.size(); ++i) {
          if (!cur->IsObject() || !cur->HasMember(parts[i].c_str())) {
-            return REGX_ERR_NOT_FOUND;
+            throw ::exception(error_not_found);
          }
          cur = &(*cur)[parts[i].c_str()];
       }
 
-      if (!cur->IsObject() || !cur->HasMember(parts.back().c_str())) {
-         return REGX_ERR_NOT_FOUND;
+      if (!cur->IsObject() || !cur->HasMember(parts.last().c_str())) {
+         throw ::exception(error_not_found);
       }
 
-      cur->RemoveMember(parts.back().c_str());
-      return REGX_OK;
+      cur->RemoveMember(parts.last().c_str());
+      
    }
 
    /* ============================================================================
       Set values
       ============================================================================ */
 
-   int RegXSetString(registry_key *key, const char *name, const char *value) {
-      if (!key || !name || !value) return REGX_ERR_INVALID_ARG;
+   ::e_status registry_key_implementation::_set_string(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstr)
+   {
+      auto key = this;
+      if (!key || scopedstrName.is_empty()) return error_bad_argument;
 
-      Value *entry = get_value_entry(key, name, true);
-      if (!entry) return REGX_ERR_IO;
+      auto pentry = _get_payload_entry(scopedstrName, true);
+      if (!pentry) return error_io;
 
-      auto &alloc = key->owner->doc.GetAllocator();
-      Value data(value, alloc);
-      set_type_and_data(*entry, "sz", data, alloc);
-      return REGX_OK;
+      auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
+      ::rapidjson::Value data(::string(scopedstr), alloc);
+      set_type_and_data(*pentry, "sz", data, alloc);
+      return ::success;
    }
 
-   int RegXSetDword(registry_key *key, const char *name, uint32_t value) {
-      if (!key || !name) return REGX_ERR_INVALID_ARG;
 
-      Value *entry = get_value_entry(key, name, true);
-      if (!entry) return REGX_ERR_IO;
+   ::e_status registry_key_implementation::_set_dword(const ::scoped_string & scopedstrName, unsigned int u)
+   {
+      if (::is_null(this) || scopedstrName.is_empty()) return error_bad_argument;
 
-      auto &alloc = key->owner->doc.GetAllocator();
-      Value data(value);
-      set_type_and_data(*entry, "dword", data, alloc);
-      return REGX_OK;
+      auto pentry = _get_payload_entry(scopedstrName, true);
+      if (!pentry) return error_io;
+
+      auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
+      ::rapidjson::Value data(u);
+      set_type_and_data(*pentry, "dword", data, alloc);
+      return ::success;
    }
 
-   int RegXSetBinary(registry_key *key, const char *name, const void *data, size_t size) {
-      if (!key || !name || (!data && size != 0)) return REGX_ERR_INVALID_ARG;
 
-      Value *entry = get_value_entry(key, name, true);
-      if (!entry) return REGX_ERR_IO;
+   ::e_status registry_key_implementation::_set_qword(const ::scoped_string &scopedstrName, unsigned long long ull)
+   {
+      if (::is_null(this) || scopedstrName.is_empty())
+         return error_bad_argument;
 
-      std::string hex = bin_to_hex((const unsigned char *)data, size);
-      auto &alloc = key->owner->doc.GetAllocator();
-      Value val(hex.c_str(), alloc);
-      set_type_and_data(*entry, "binary", val, alloc);
-      return REGX_OK;
+      auto pentry = _get_payload_entry(scopedstrName, true);
+      if (!pentry)
+         return error_io;
+
+      auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
+      ::rapidjson::Value data(ull);
+      set_type_and_data(*pentry, "dword", data, alloc);
+      return ::success;
+   }
+
+
+   ::e_status registry_key_implementation::_set_binary(const ::scoped_string &scopedstrName, const ::block &block) 
+   {
+      if (::is_null(this) || scopedstrName.is_empty() || (!block.data()&& block.size() != 0)) return error_bad_argument;
+
+      auto pentry = _get_payload_entry(scopedstrName, true);
+      if (!pentry) return error_io;
+
+      auto hex = bin_to_hex((const unsigned char *)block.data(), block.size());
+      auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
+      ::rapidjson::Value val(hex.c_str(), alloc);
+      set_type_and_data(*pentry, "binary", val, alloc);
+      return ::success;
    }
 
    /* ============================================================================
       Get values
       ============================================================================ */
 
-   int RegXGetString(registry_key *key, const char *name, char *buf, size_t *inout_len) {
-      if (!key || !name || !inout_len) return REGX_ERR_INVALID_ARG;
+   ::e_status registry_key_implementation::_get_string(const ::scoped_string & scopedstrName, string & str) 
+   {
+      if (::is_null(this) || scopedstrName.is_empty())
+         return error_bad_argument;
 
-      Value *entry = get_value_entry(key, name, false);
-      if (!entry) return REGX_ERR_NOT_FOUND;
+      auto pentry = _get_payload_entry(scopedstrName, false);
+      if (!pentry)
+         return error_not_found;
 
-      if (!entry->HasMember("type") || !entry->HasMember("data")) return REGX_ERR_TYPE;
-      if (!(*entry)["type"].IsString() || std::strcmp((*entry)["type"].GetString(), "sz") != 0) return REGX_ERR_TYPE;
-      if (!(*entry)["data"].IsString()) return REGX_ERR_TYPE;
+      if (!pentry->HasMember("type") || !pentry->HasMember("data"))
+         return error_wrong_type;
+      if (!(*pentry)["type"].IsString() || std::strcmp((*pentry)["type"].GetString(), "sz") != 0)
+         return error_wrong_type;
+      if (!(*pentry)["data"].IsString())
+         return error_wrong_type;
 
-      const char *s = (*entry)["data"].GetString();
-      size_t needed = std::strlen(s) + 1;
+      str = (*pentry)["data"].GetString();
 
-      if (!buf || *inout_len < needed) {
-         *inout_len = needed;
-         return REGX_ERR_BUFFER;
-      }
+      return ::success;
 
-      std::memcpy(buf, s, needed);
-      *inout_len = needed;
-      return REGX_OK;
    }
 
-   int RegXGetDword(registry_key *key, const char *name, uint32_t *out_value) {
-      if (!key || !name || !out_value) return REGX_ERR_INVALID_ARG;
+   ::e_status registry_key_implementation::_get_dword(const ::scoped_string & scopedstrName, unsigned int &u)
+   {
+      if (::is_null(this) || scopedstrName.is_empty())
+         return error_bad_argument;
 
-      Value *entry = get_value_entry(key, name, false);
-      if (!entry) return REGX_ERR_NOT_FOUND;
 
-      if (!entry->HasMember("type") || !entry->HasMember("data")) return REGX_ERR_TYPE;
-      if (!(*entry)["type"].IsString() || std::strcmp((*entry)["type"].GetString(), "dword") != 0) return REGX_ERR_TYPE;
-      if (!(*entry)["data"].IsUint()) return REGX_ERR_TYPE;
+      auto pentry = _get_payload_entry(scopedstrName, false);
+      if (!pentry) return error_not_found;
 
-      *out_value = (*entry)["data"].GetUint();
-      return REGX_OK;
+      if (!pentry->HasMember("type") || !pentry->HasMember("data")) return error_wrong_type;
+      if (!(*pentry)["type"].IsString() || std::strcmp((*pentry)["type"].GetString(), "dword") != 0) return error_wrong_type;
+      if (!(*pentry)["data"].IsUint()) return error_wrong_type;
+
+      u = (*pentry)["data"].GetUint();
+      return ::success;
    }
 
-   int RegXGetBinary(registry_key *key, const char *name, void *buf, size_t *inout_len) {
-      if (!key || !name || !inout_len) return REGX_ERR_INVALID_ARG;
 
-      Value *entry = get_value_entry(key, name, false);
-      if (!entry) return REGX_ERR_NOT_FOUND;
+      ::e_status registry_key_implementation::_get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull)
+   {
+      if (::is_null(this) || scopedstrName.is_empty())
+         return error_bad_argument;
 
-      if (!entry->HasMember("type") || !entry->HasMember("data")) return REGX_ERR_TYPE;
-      if (!(*entry)["type"].IsString() || std::strcmp((*entry)["type"].GetString(), "binary") != 0) return REGX_ERR_TYPE;
-      if (!(*entry)["data"].IsString()) return REGX_ERR_TYPE;
 
-      return hex_to_bin((*entry)["data"].GetString(), (unsigned char *)buf, inout_len);
+      auto pentry = _get_payload_entry(scopedstrName, false);
+      if (!pentry)
+         return error_not_found;
+
+      if (!pentry->HasMember("type") || !pentry->HasMember("data"))
+         return error_wrong_type;
+      if (!(*pentry)["type"].IsString() || std::strcmp((*pentry)["type"].GetString(), "qword") != 0)
+         return error_wrong_type;
+      if (!(*pentry)["data"].IsUint())
+         return error_wrong_type;
+
+      ull = (*pentry)["data"].GetUint64();
+      return ::success;
+   }
+
+
+   ::e_status registry_key_implementation::_get_binary(const ::scoped_string &scopedstrName, memory & memory)
+   {
+      if (::is_null(this) || scopedstrName.is_empty())
+         return error_bad_argument;
+
+      auto pentry = _get_payload_entry(scopedstrName, false);
+      if (!pentry)
+         return error_not_found;
+
+      if (!pentry->HasMember("type") || !pentry->HasMember("data")) return error_not_found;
+      if (!(*pentry)["type"].IsString() || std::strcmp((*pentry)["type"].GetString(), "binary") != 0) return error_not_found;
+      if (!(*pentry)["data"].IsString()) return error_not_found;
+
+      return hex_to_bin((*pentry)["data"].GetString(), memory);
+
    }
 
    /* ============================================================================
       Misc
       ============================================================================ */
 
-   int RegXDeleteValue(registry_key *key, const char *name) {
-      if (!key || !name) return REGX_ERR_INVALID_ARG;
+   ::e_status registry_key_implementation::delete_value(const ::scoped_string &scopedstrName)
+   {
+      if (::is_null(this) || scopedstrName.is_empty())
+         return error_bad_argument;
 
-      Value *vals = get_values_object(key, false);
-      if (!vals) return REGX_ERR_NOT_FOUND;
+      auto vals = _get_payload_values(key, false);
+      if (!vals) return error_not_found;
 
-      if (!vals->HasMember(name)) return REGX_ERR_NOT_FOUND;
+      if (!vals->HasMember(name)) return error_not_found;
       vals->RemoveMember(name);
-      return REGX_OK;
+      return ::success;
    }
 
-   int RegXValueExists(registry_key *key, const char *name) {
+   int RegXValueExists(registry_key *key, const ::scoped_string & scopedstrName) {
       if (!key || !name) return 0;
       Value *vals = get_values_object(key, false);
       if (!vals) return 0;
       return vals->HasMember(name) ? 1 : 0;
    }
 
-   int RegXGetValueType(registry_key *key, const char *name, RegXType *out_type) {
-      if (!key || !name || !out_type) return REGX_ERR_INVALID_ARG;
+   int registry_key::get_XGetValueType(registry_key *key, const ::scoped_string & scopedstrName, RegXType *out_type) {
+      if (!key || !name || !out_type) throw ::exception(error_bad_argument;
 
       Value *entry = get_value_entry(key, name, false);
-      if (!entry) return REGX_ERR_NOT_FOUND;
+      if (!entry) throw ::exception(error_not_found;
       if (!entry->HasMember("type") || !(*entry)["type"].IsString()) return REGX_ERR_TYPE;
 
       const char *t = (*entry)["type"].GetString();
@@ -442,21 +632,37 @@ namespace subsystem
       else if (std::strcmp(t, "binary") == 0) *out_type = REGX_BINARY;
       else *out_type = REGX_NONE;
 
-      return REGX_OK;
+      return ::success;
    }
 
-   const char *RegXStrError(int status) {
-      switch (status) {
-         case REGX_OK: return "ok";
-         case REGX_ERR_INVALID_ARG: return "invalid argument";
-         case REGX_ERR_NOT_FOUND: return "not found";
-         case REGX_ERR_EXISTS: return "already exists";
-         case REGX_ERR_IO: return "i/o error";
-         case REGX_ERR_NOMEM: return "out of memory";
-         case REGX_ERR_TYPE: return "type mismatch";
-         case REGX_ERR_BUFFER: return "buffer too small";
-         default: return "unknown error";
-      }
+   //const char *RegXStrError(int status) {
+   //   switch (status) {
+   //      case ::success: return "ok";
+   //      case error_bad_argument: return "invalid argument";
+   //      case error_not_found: return "not found";
+   //      case REGX_ERR_EXISTS: return "already exists";
+   //      case error_io: return "i/o error";
+   //      case REGX_ERR_NOMEM: return "out of memory";
+   //      case REGX_ERR_TYPE: return "type mismatch";
+   //      case error_insufficient_buffer: return "buffer too small";
+   //      default: return "unknown error";
+   //   }
+   //}
+
+
+   registry_key::registry_key()
+   {
+
+      ::system()->m_papplication->construct_newø(m_pregistrykey);
+
    }
+
+
+   registry_key::~registry_key()
+   {
+
+
+   }
+
 } // namespace subsystem
 

@@ -69,7 +69,7 @@ namespace subsystem
       //       DWORD errCode = GetLastError();
       //       ::string errMess;
       //       errMess.formatf("DisconnectNamedPipe failed, error code = %u", errCode);
-      //       throw ::remoting::Exception(errMess);
+      //       throw ::subsystem::Exception(errMess);
       //    }
       // }
       //

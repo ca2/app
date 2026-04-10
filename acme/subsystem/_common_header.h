@@ -34,7 +34,7 @@
 // "Visual C++ departs from the ANSI Standard in its implementation
 // of exception specifications" (c) MSDN.
 //
-// For more info read topic "::remoting::Exception Specifications" on MSDN.
+// For more info read topic "::subsystem::Exception Specifications" on MSDN.
 //
 
 //#ifdef WIN32

@@ -25,7 +25,7 @@
 #define BOX_HOVER 2
 
 //template < prototype_rectangle RECTANGLE >
-//class tracer & operator << (class tracer&  tracer, const RECTANGLE& r)
+//::platform::tracer & operator << (::platform::tracer&  tracer, const RECTANGLE& r)
 //{
 //
 //   return tracer << r.left << ","<<r.top << ","<<r.right<< "," << r.bottom;

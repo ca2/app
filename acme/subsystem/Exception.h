@@ -33,7 +33,7 @@ namespace subsystem
    // #include "::string.h"
 
    /**
-    * Common ::remoting::Exception class.
+    * Common ::subsystem::Exception class.
     */
    class CLASS_DECL_ACME Exception : virtual public ::exception
 

@@ -68,7 +68,7 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 
-CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory);
+//CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory);
 
 //#elif defined(UNIVERSAL_WINDOWS)
 //
@@ -5473,7 +5473,11 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!m_psubsystem)
       {
 
-         ::subsystem_factory(this->factory());
+         ::string strToolkit = get_acme_windowing_toolkit_id();
+
+         auto pfactorySubsystem = this->factory("subsystem", strToolkit);
+
+         pfactorySubsystem->merge_to_global_factory();
 
          constructø(m_psubsystem);
 

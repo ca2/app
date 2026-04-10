@@ -24,17 +24,17 @@
 
 #pragma once
 
-
-#include "acme/subsystem/_common_header.h"
-
-// Class that startup at constructor and cleanup at destructor Windows Sockets subsystem.
-class CLASS_DECL_REMOTING_COMMON WsaStartup
-{
-public:
-  WsaStartup(BYTE minorVer, BYTE majorVer);
-  virtual ~WsaStartup();
-
-private:
-};
-
-//// __WSASTARTUP_H__
+//
+//#include "acme/subsystem/_common_header.h"
+//
+//// Class that startup at constructor and cleanup at destructor Windows Sockets subsystem.
+//class CLASS_DECL_REMOTING_COMMON WsaStartup
+//{
+//public:
+//  WsaStartup(BYTE minorVer, BYTE majorVer);
+//  virtual ~WsaStartup();
+//
+//private:
+//};
+//
+////// __WSASTARTUP_H__

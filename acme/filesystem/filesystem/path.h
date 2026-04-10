@@ -651,6 +651,7 @@ namespace file
       path & operator -= (int i);
       //using path_meta::operator -=;
 
+      ::string_array_base parts() const;
 
       //inline path operator | (enum_flag e) const { path path(*this); path |= e; return path; }
 
@@ -832,8 +833,5 @@ template < prototype_character CHARACTER >
    return ::file::path(range) / ::file::path(atom.as_string());
 
 }
-
-
-
 
 

@@ -30,7 +30,7 @@
 // class CLASS_DECL_REMOTING_COMMON SharedMemory
 // {
 // public:
-//   // @throw ::remoting::Exception
+//   // @throw ::subsystem::Exception
 //   SharedMemory(const ::scoped_string & scopedstrName, size_t size);
 //   virtual ~SharedMemory();
 //

@@ -39,7 +39,7 @@ console session.
 @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
 */
    class CLASS_DECL_ACME ImpersonatorInterface :
-      virtual public ::subsystem::particle_interface
+      virtual public ::subsystem::particle_interface<ImpersonatorInterface>
    {
    public:
       //Impersonator(LogWriter *plogwriter);

@@ -56,7 +56,7 @@ namespace subsystem
       /**
        * Closes transport.
        *
-       * @throws ::remoting::Exception on fail.
+       * @throws ::subsystem::Exception on fail.
        */
       virtual void close() = 0;
 
@@ -93,7 +93,7 @@ namespace subsystem
       // assigned for another process then set neededToClose flag to false.
       // If keepCloseRight is true then source process keeps the right to close
       // the new handles.
-      // @throw ::remoting::Exception on a fail.
+      // @throw ::subsystem::Exception on a fail.
       //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
                             //bool keepCloseRight = false);
 
@@ -133,7 +133,7 @@ namespace subsystem
       /**
        * Closes transport.
        *
-       * @throws ::remoting::Exception on fail.
+       * @throws ::subsystem::Exception on fail.
        */
       void close() override;
 
@@ -170,7 +170,7 @@ namespace subsystem
       // assigned for another process then set neededToClose flag to false.
       // If keepCloseRight is true then source process keeps the right to close
       // the new handles.
-      // @throw ::remoting::Exception on a fail.
+      // @throw ::subsystem::Exception on a fail.
       //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
                             //bool keepCloseRight = false);
 

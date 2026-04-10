@@ -21,14 +21,15 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
 
 
 #include "RegistryKey.h"
 
+
 namespace subsystem
 {
+
 
    // enum enum_windows_registry
    // {
@@ -42,28 +43,30 @@ namespace subsystem
    // };
 
 
-class CLASS_DECL_ACME Registry :
-   virtual public ::particle
-{
-public:
-
-      ::pointer < ::subsystem::registry > m_pregistryCurrentUser;
-      ::pointer < ::subsystem::registry > m_pregistryLocalMachine;
+   class CLASS_DECL_ACME Registry :
+      virtual public ::particle
+   {
+   public:
 
 
-   //private:
-   Registry();
-   ~Registry() override;
+      ::pointer<::platform::registry> m_pregistryCurrentUser;
+      ::pointer<::platform::registry> m_pregistryLocalMachine;
+
+
+      //private:
+      Registry();
+      ~Registry() override;
+
 
       //public:
-      virtual ::subsystem::registry * getCurrentUserKey();
-      virtual ::subsystem::registry * getLocalMachineKey();
+      virtual ::platform::registry * getCurrentUserKey();
+      virtual ::platform::registry *getLocalMachineKey();
 
 
-};
+   };
+
 
 } // namespace subsystem
-
 
 
 

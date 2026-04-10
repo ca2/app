@@ -32,7 +32,7 @@
 //
 //#include "acme/subsystem/Exception.h"
 //
-//class ::io_exception : public ::remoting::Exception
+//class ::io_exception : public ::subsystem::Exception
 //{
 //public:
 //  ::io_exception();

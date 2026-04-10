@@ -22,9 +22,8 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-//#include "acme/_operating_system.h"
 #include "PipeImpersonatedThread.h"
-//#include "Environment.h"
+
 
 namespace subsystem
 {

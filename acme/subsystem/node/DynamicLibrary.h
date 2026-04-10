@@ -42,7 +42,7 @@ namespace subsystem
       /**
       Load dynamic library with specified filename.
       @param filename path to library file.
-      @throws ::remoting::Exception on error.
+      @throws ::subsystem::Exception on error.
       */
       //DynamicLibraryInterface(const ::scoped_string & scopedstrFilename);
       //DynamicLibrary();
@@ -78,7 +78,7 @@ Dynamic library class.
       /**
       Load dynamic library with specified filename.
       @param filename path to library file.
-      @throws ::remoting::Exception on error.
+      @throws ::subsystem::Exception on error.
       */
       //DynamicLibrary(const ::scoped_string & scopedstrFilename);
       DynamicLibrary();

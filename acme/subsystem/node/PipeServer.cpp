@@ -74,7 +74,7 @@
 //   if (m_serverPipe == INVALID_HANDLE_VALUE) {
 //     ::string errMess;
 //     errMess.formatf("CreateNamedPipe failed, error code = {}", GetLastError());
-//     throw ::remoting::Exception(errMess);
+//     throw ::subsystem::Exception(errMess);
 //   }
 // }
 //
@@ -94,7 +94,7 @@
 //     int errCode = GetLastError();
 //     ::string errMess;
 //     errMess.formatf("ConnectNamedPipe failed, error code = {}", errCode);
-//     throw ::remoting::Exception(errMess);
+//     throw ::subsystem::Exception(errMess);
 //   } else {
 //     int errCode = GetLastError();
 //     switch(errCode) {
@@ -108,18 +108,18 @@
 //         ::string errMess;
 //         errMess.formatf("GetOverlappedResult() failed after the "
 //                        "ConnectNamedPipe() call, error code = {}", errCode);
-//         throw ::remoting::Exception(errMess);
+//         throw ::subsystem::Exception(errMess);
 //       }
 //       break;
 //     default:
 //       ::string errMess;
 //       errMess.formatf("ConnectNamedPipe failed, error code = {}", errCode);
-//       throw ::remoting::Exception(errMess);
+//       throw ::subsystem::Exception(errMess);
 //     }
 //   }
 //
 //   if (!checkOtherSideBinaryName(m_serverPipe)) {
-//     throw ::remoting::Exception("Pipe client process filename differs from current process");
+//     throw ::subsystem::Exception("Pipe client process filename differs from current process");
 //   }
 //
 //   // delete is inside ~NamedPipeTransport()
@@ -139,7 +139,7 @@
 //       int errCode = GetLastError();
 //       ::string errMess;
 //       errMess.formatf("DisconnectNamedPipe failed, error code = {}", errCode);
-//       throw ::remoting::Exception(errMess);
+//       throw ::subsystem::Exception(errMess);
 //     }
 //   }*/
 //   m_winEvent.notify();

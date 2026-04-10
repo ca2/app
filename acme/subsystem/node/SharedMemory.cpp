@@ -77,7 +77,7 @@
 //          int errCode = GetLastError();
 //          ::string errMess;
 //          errMess.formatf("Cannot create file mapping with error = {}", errCode);
-//          throw ::remoting::Exception(errMess);
+//          throw ::subsystem::Exception(errMess);
 //       }
 //       // The first process to attach initializes memory
 //       bool needToInit = GetLastError() != ERROR_ALREADY_EXISTS;
@@ -101,7 +101,7 @@
 //          int errCode = GetLastError();
 //          ::string errMess;
 //          errMess.formatf("Cannot ::map view of file with error = {}", errCode);
-//          throw ::remoting::Exception(errMess);
+//          throw ::subsystem::Exception(errMess);
 //       }
 //    }
 //
@@ -116,7 +116,7 @@
 //       if (errorCode != ERROR_SUCCESS) {
 //          ::string errMess;
 //          errMess.formatf("Cannot SetSecurityInfo with error = {}", (int)errorCode);
-//          throw ::remoting::Exception(errMess);
+//          throw ::subsystem::Exception(errMess);
 //       }
 //    }
 // } // namespace subsystem

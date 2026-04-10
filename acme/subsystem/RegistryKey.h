@@ -21,136 +21,141 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
 
 
 #include "acme/platform/registry.h"
 
+
 namespace subsystem
 {
 
-class CLASS_DECL_ACME RegistryKey :
-   virtual public ::particle
-{
-public:
-   RegistryKey(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true);//, SECURITY_ATTRIBUTES *sa = 0);
-   RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true); //, SECURITY_ATTRIBUTES *sa = 0);
-   RegistryKey(::subsystem::registry_key * rootKey);
-   // Default contructor for a defer initialization.
-   RegistryKey();
+
+   class CLASS_DECL_ACME RegistryKey :
+      virtual public ::particle
+   {
+   public:
+      RegistryKey(::platform::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true);//, SECURITY_ATTRIBUTES *sa = 0);
+      RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true); //, SECURITY_ATTRIBUTES *sa = 0);
+      RegistryKey(::platform::registry_key * rootKey);
+      // Default contructor for a defer initialization.
+      RegistryKey();
    
-//public:
+   //public:
    
-   ~RegistryKey() override;
+      ~RegistryKey() override;
    
    
-   // Defer initialization. Can be used only when it has been
-   // created by the default constructor.
-   void open(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry,
-             bool createIfNotExists = true); //,
-             //SECURITY_ATTRIBUTES *sa = 0);
+      // Defer initialization. Can be used only when it has been
+      // created by the default constructor.
+      void open(::platform::registry_key * rootKey, const ::scoped_string & scopedstrEntry,
+                bool createIfNotExists = true); //,
+                //SECURITY_ATTRIBUTES *sa = 0);
    
-   // Defer initialization. Can be used only when it has been
-   // created by the default constructor.
-   void open(RegistryKey *rootKey,
-             const ::scoped_string & scopedstrEntry,
-             bool createIfNotExists = true); //,
-             //SECURITY_ATTRIBUTES *sa = 0);
+      // Defer initialization. Can be used only when it has been
+      // created by the default constructor.
+      void open(RegistryKey *rootKey,
+                const ::scoped_string & scopedstrEntry,
+                bool createIfNotExists = true); //,
+                //SECURITY_ATTRIBUTES *sa = 0);
    
-   //
-   // Returns WinAPI ::subsystem::registry * handle.
-   //
-   ::subsystem::registry_key * get_registry_key() const;
+      //
+      // Returns WinAPI ::platform::registry * handle.
+      //
+      ::platform::registry_key * get_registry_key() const;
    
-   // Creates subkey.
-   //
-   // Returns true in two cases:
-   // 1) subkey exists;
-   // 2) subkey didn't exists, and subkey was succerfully created
-   //    by method call.
-   //
-   bool createSubKey(const ::scoped_string & scopedstrSubkey);
-   // Deletes subkey from this registry entry.
-   bool deleteSubKey(const ::scoped_string & scopedstrSubkey);
-   // Deletes subkey tree from this registry entry
-   bool deleteSubKeyTree(const ::scoped_string & scopedstrSubkey);
-   // Deletes value from this registry entry.
-   bool deleteValue(const ::scoped_string & scopedstrName);
+      // Creates subkey.
+      //
+      // Returns true in two cases:
+      // 1) subkey exists;
+      // 2) subkey didn't exists, and subkey was succerfully created
+      //    by method call.
+      //
+      bool createSubKey(const ::scoped_string & scopedstrSubkey);
+      // Deletes subkey from this registry entry.
+      bool deleteSubKey(const ::scoped_string & scopedstrSubkey);
+      // Deletes subkey tree from this registry entry
+      bool deleteSubKeyTree(const ::scoped_string & scopedstrSubkey);
+      // Deletes value from this registry entry.
+      bool deleteValue(const ::scoped_string & scopedstrName);
    
-   //
-   // Set value methods
-   //
+      //
+      // Set value methods
+      //
    
-   bool setValueAsInt32(const ::scoped_string & scopedstrName, int value);
-   bool setValueAsInt64(const ::scoped_string & scopedstrName, long value);
-   bool setValueAsString(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrPayload);
-   bool setValueAsBinary(const ::scoped_string & scopedstrName, const void *value,
-                         size_t sizeInBytes);
+      bool setValueAsInt32(const ::scoped_string & scopedstrName, int value);
+      bool setValueAsInt64(const ::scoped_string & scopedstrName, long long value);
+      bool setValueAsString(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrPayload);
+      bool setValueAsBinary(const ::scoped_string & scopedstrName, const void *value,
+                            size_t sizeInBytes);
    
-   //
-   // Get value methods
-   //
+      //
+      // Get value methods
+      //
    
-   bool getValueAsInt32(const ::scoped_string & scopedstrName, int *out);
-   bool getValueAsInt64(const ::scoped_string & scopedstrName, long *out);
-   bool getValueAsString(const ::scoped_string & scopedstrName, ::string & out);
-   bool getValueAsBinary(const ::scoped_string & scopedstrName, void *value, size_t *sizeInBytes);
+      bool getValueAsInt32(const ::scoped_string & scopedstrName, int *out);
+      bool getValueAsInt64(const ::scoped_string & scopedstrName, long long *out);
+      bool getValueAsString(const ::scoped_string & scopedstrName, ::string & out);
+      bool getValueAsBinary(const ::scoped_string & scopedstrName, void *value, size_t *sizeInBytes);
    
-   //
-   // Sets subkey names ::list_base to subKeyNames array.
-   // Remark: if subKeyNames is NULL then count of subkeys
-   // is sets to count output var.
-   //
-   // Parameters:
-   // [out, optional] subKeyNames - output array to place subkey names,
-   // can be NULL.
-   // [out, optional] count - output value to place subkey count,
-   // can be NULL.
-   //
+      //
+      // Sets subkey names ::list_base to subKeyNames array.
+      // Remark: if subKeyNames is NULL then count of subkeys
+      // is sets to count output var.
+      //
+      // Parameters:
+      // [out, optional] subKeyNames - output array to place subkey names,
+      // can be NULL.
+      // [out, optional] count - output value to place subkey count,
+      // can be NULL.
+      //
    
-   bool getSubKeyNames(::string_array & straKeyNames);
+      bool getSubKeyNames(::string_array & straKeyNames);
    
-   // Returns true if key is valid and opened.
-   bool isOpened();
-   // Closes registry entry if it's opened.
-   void close();
+      // Returns true if key is valid and opened.
+      bool isOpened();
+      // Closes registry entry if it's opened.
+      void close();
    
-//private:
+   //private:
    
-   // Helper method to avoid code duplicate in class constructor.
-   void initialize(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists); //, SECURITY_ATTRIBUTES *sa);
+      // Helper method to avoid code duplicate in class constructor.
+      void initialize(::platform::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists); //, SECURITY_ATTRIBUTES *sa);
    
-   // Sets subkey name to name output variable not depending
-   // on output buffer size, cause buffer allocates inside method.
-   //
-   // Returns return value of RegEnumKey if it's
-   // not equal to ERROR_MORE_DATA.
-   unsigned int enumKey(unsigned int i, ::string & name);
+      // Sets subkey name to name output variable not depending
+      // on output buffer size, cause buffer allocates inside method.
+      //
+      // Returns return value of RegEnumKey if it's
+      // not equal to ERROR_MORE_DATA.
+      unsigned int enumKey(unsigned int i, ::string & name);
    
-   /**
-    * Opens subkey or creates it if it's does not exists.
-    * @param [in] key root key.
-    * @param [in] subkey subkey name (can include more than one subkey).
-    * @param [out] openedKey created or opened key.
-    * @param [in] createIfNotExists flag determinates to create key if it does not exists.
-    * @param [in, opt] sa security attributes.
-    * @return true if operation successfull executed, false otherwise.
-    */
-   virtual bool tryOpenSubKey(::subsystem::registry_key * key, const ::scoped_string & scopedstrSubkey,
-                             pointer < ::subsystem::registry_key > & openedKey, bool createIfNotExists);
-   //,                             SECURITY_ATTRIBUTES *sa);
+      /**
+       * Opens subkey or creates it if it's does not exists.
+       * @param [in] key root key.
+       * @param [in] subkey subkey name (can include more than one subkey).
+       * @param [out] openedKey created or opened key.
+       * @param [in] createIfNotExists flag determinates to create key if it does not exists.
+       * @param [in, opt] sa security attributes.
+       * @return true if operation successfull executed, false otherwise.
+       */
+      virtual bool tryOpenSubKey(::platform::registry_key * key, const ::scoped_string & scopedstrSubkey,
+                                pointer < ::platform::registry_key > & openedKey, bool createIfNotExists);
+      //,                             SECURITY_ATTRIBUTES *sa);
    
-//protected:
-   // Registry entry associated with this class instance.
-   ::pointer < ::subsystem::registry_key > m_pregistrykey;
-   // Root registry key (local machine, current user, etc).
-   ::pointer < ::subsystem::registry_key > m_pregistrykeyRoot;
-   // Registry entry name.
-   ::string m_entry;
+   //protected:
+      // Registry entry associated with this class instance.
+      ::pointer < ::platform::registry_key > m_pregistrykey;
+      // Root registry key (local machine, current user, etc).
+      ::pointer < ::platform::registry_key > m_pregistrykeyRoot;
+      // Registry entry name.
+      ::string m_entry;
    
-   //friend class Registry;
-};
+      //friend class Registry;
+
+   };
 
 
 } // namespace subsystem
+
+
+

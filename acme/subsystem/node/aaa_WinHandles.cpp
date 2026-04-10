@@ -45,7 +45,7 @@ HANDLE WinHandles::assignHandleFor(HANDLE hSource, HANDLE hTargetProc,
                       options) == 0) {
     ::string errText;
     errText = windows::last_error_message(windows::last_error());
-    throw ::remoting::Exception(errText);
+    throw ::subsystem::Exception(errText);
   }
   // Try keep of the close rights.
   if (keepCloseRight) {
@@ -53,7 +53,7 @@ HANDLE WinHandles::assignHandleFor(HANDLE hSource, HANDLE hTargetProc,
                         DUPLICATE_CLOSE_SOURCE) == 0) {
       ::string errText;
        errText = windows::last_error_message(windows::last_error());
-      throw ::remoting::Exception(errText);
+      throw ::subsystem::Exception(errText);
     }
   }
   return hDest;
@@ -66,7 +66,7 @@ HANDLE WinHandles::assignHandleFor(HANDLE hSource,
 {
   HANDLE processHandle = OpenProcess(PROCESS_DUP_HANDLE, FALSE, procId);
   if (processHandle == 0) {
-    throw ::remoting::Exception("Couldn't open process to assign a handle");
+    throw ::subsystem::Exception("Couldn't open process to assign a handle");
   }
   HANDLE dstHandle;
   try {

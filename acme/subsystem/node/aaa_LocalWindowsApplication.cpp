@@ -23,8 +23,8 @@
 //
 #include "framework.h"
 //#include "acme/_operating_system.h"
-#include "LocalWindowsApplication.h"
-
+#include "LocalOperatingSystemApplication.h"
+#include "acme/subsystem/node/SystemException.h"
 //#include "remoting/remoting_common/util/winhdr.h"
 #include "acme/_operating_system.h"
 
@@ -32,7 +32,7 @@
 
 namespace subsystem
 {
-   LocalOperatingSystemApplication::LocalWindowsApplication(HINSTANCE hInstance,
+   LocalOperatingSystemApplication::LocalOperatingSystemApplication(HINSTANCE hInstance,
                                                     const ::scoped_string & scopedstrwindowClassName)
     : WindowsApplication(hInstance, scopedstrwindowClassName)
    {
@@ -55,7 +55,7 @@ namespace subsystem
       DesktopSelector::selectDesktop();
    }
 
-   LocalWindowsApplication::~LocalWindowsApplication()
+   LocalOperatingSystemApplication::~LocalOperatingSystemApplication()
    {
    }
 } // namespace subsystem

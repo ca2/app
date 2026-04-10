@@ -15,6 +15,9 @@ namespace subsystem
 {
 
 
+   ::subsystem::subsystem *subsystem::s_p = nullptr;
+
+
    subsystem::subsystem()
    {
 

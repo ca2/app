@@ -42,7 +42,9 @@ namespace subsystem
 
         void setUnpackedSize(size_t size);
 
-        void inflate() throw(ZLibException);
+        //void inflate() throw(ZLibException);
+
+        void inflate();
 
     //protected:
         z_stream m_zlibStream;

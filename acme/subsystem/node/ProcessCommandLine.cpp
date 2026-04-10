@@ -102,7 +102,7 @@ namespace subsystem
 
    bool ProcessCommandLineInterface::findOptionValue(const ::scoped_string & scopedstrOptionName, ::string &  strOut)
    {
-      for (size_t i = 0; i < getOptionsCount(); i++) {
+      for (::collection::index i = 0; i < getOptionsCount(); i++) {
          if (m_strParams[i].m_element2 == scopedstrOptionName) {
             strOut = m_strParams[i].m_element2;
 

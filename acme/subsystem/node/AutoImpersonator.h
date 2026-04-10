@@ -32,7 +32,7 @@ namespace subsystem
 {
    // This class automaticly impesonates at the constructor and
    // revertes at the destructor.
-   // This class doesn't throw ::remoting::Exception.
+   // This class doesn't throw ::subsystem::Exception.
    class CLASS_DECL_ACME AutoImpersonator
    {
    public:

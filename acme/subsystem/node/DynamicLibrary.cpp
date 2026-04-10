@@ -62,7 +62,7 @@ namespace subsystem
        //
        //    errMsg.format("{} library not found", scopedstrFilename);
        //
-       //    throw ::remoting::Exception(errMsg);
+       //    throw ::subsystem::Exception(errMsg);
        // }
     }
 

@@ -239,7 +239,7 @@
 //     DynamicLibrary sasLib("sas.dll");
 //     SendSas sendSas = (SendSas)sasLib.getProcAddress("SendSAS");
 //     if (sendSas == 0) {
-//       throw ::remoting::Exception("The SendSAS function has not been found");
+//       throw ::subsystem::Exception("The SendSAS function has not been found");
 //     }
 //     sendSas(FALSE); // Try only under service
 //   } catch (::exception &e) {
@@ -255,7 +255,7 @@
 //     DwmIsCompositionEnabled dwmIsEnabled =
 //       (DwmIsCompositionEnabled)dwmLib.getProcAddress("DwmIsCompositionEnabled");
 //     if (dwmIsEnabled == 0) {
-//       throw ::remoting::Exception("The DwmIsCompositionEnabled() has not been found in the Dwmapi.dll");
+//       throw ::subsystem::Exception("The DwmIsCompositionEnabled() has not been found in the Dwmapi.dll");
 //     }
 //     BOOL result = FALSE;
 //     HRESULT dwmIsEnabledResult = dwmIsEnabled(&result);
@@ -263,7 +263,7 @@
 //       ::string errMess;
 //       errMess.formatf("The DwmIsCompositionEnabled() error code is {}",
 //                      (int)dwmIsEnabledResult);
-//       throw ::remoting::Exception("");
+//       throw ::subsystem::Exception("");
 //     }
 //     return result != FALSE;
 //   } catch (::exception &e) {

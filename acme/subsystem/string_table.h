@@ -41,7 +41,7 @@ namespace subsystem
    {
    public:
 
-      ::iptr_map<::string> m_mapString;
+      ::map<unsigned int, ::string> m_mapString;
 
       /**
        * Returns string with specified id from resources.
@@ -52,7 +52,7 @@ namespace subsystem
        * (or assertion check will fail), cause this method used it.
        * @fixme stub.
        */
-      virtual ::string getString(::iptr i);
+      virtual ::string getString(unsigned int u);
 
       //private:
       string_table();

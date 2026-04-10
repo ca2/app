@@ -36,7 +36,7 @@
 //          int errCode = GetLastError();
 //          ::string errMess;
 //          errMess.formatf("Cannot create windows event with error = {}", errCode);
-//          throw ::remoting::Exception(errMess);
+//          throw ::subsystem::Exception(errMess);
 //       }
 //    }
 //

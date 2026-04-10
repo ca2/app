@@ -107,7 +107,7 @@ namespace subsystem
       //    ::string errMess;
       //    errMess.formatf("AnonymousPipe::close() funciton has failed ({} {})",
       //                   wrErrText, rdErrText);
-      //    throw ::remoting::Exception(errMess);
+      //    throw ::subsystem::Exception(errMess);
       // }
    }
 
@@ -164,7 +164,7 @@ namespace subsystem
    //       errText = windows::last_error_message("Cannot dupplicate write"
    //                              " handle for the anonymous pipe", ::windows::last_error());
    //
-   //       throw ::remoting::Exception(errText);
+   //       throw ::subsystem::Exception(errText);
    //                        }
    //    m_hWrite = hWrite;
    //    if (DuplicateHandle(hSrcProc, m_hRead, hTargetProc, &hRead, 0, FALSE,
@@ -173,7 +173,7 @@ namespace subsystem
    //       errText = windows::last_error_message("Cannot dupplicate read"
    //                              " handle for the anonymous pipe",
    //                              ::windows::last_error());
-   //       throw ::remoting::Exception(errText);
+   //       throw ::subsystem::Exception(errText);
    //                        }
    //    m_hRead = hRead;
    //    // Try keep of the close rights.
@@ -184,7 +184,7 @@ namespace subsystem
    //          errText = ::windows::last_error_message("Cannot keep the right to close of the write"
    //                                 " handle of the anonymous pipe",
    //                                 ::windows::last_error());
-   //          throw ::remoting::Exception(errText);
+   //          throw ::subsystem::Exception(errText);
    //                           }
    //       if (DuplicateHandle(hTargetProc, m_hRead, 0, 0, 0, FALSE,
    //                           DUPLICATE_CLOSE_SOURCE) == 0) {
@@ -192,7 +192,7 @@ namespace subsystem
    //          errText = ::windows::last_error_message("Cannot keep the right to close of the read"
    //                                 " handle of the anonymous pipe",
    //                                 ::windows::last_error());
-   //          throw ::remoting::Exception(errText);
+   //          throw ::subsystem::Exception(errText);
    //                           }
    //       // Now the current process can close the handles.
    //    }

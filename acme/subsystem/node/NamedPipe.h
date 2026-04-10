@@ -63,7 +63,7 @@ namespace subsystem
       /**
        * Closes transport.
        *
-       * @throws ::remoting::Exception on fail.
+       * @throws ::subsystem::Exception on fail.
        */
       virtual void close() = 0;
 
@@ -127,7 +127,7 @@ namespace subsystem
       /**
        * Closes transport.
        *
-       * @throws ::remoting::Exception on fail.
+       * @throws ::subsystem::Exception on fail.
        */
       void close() override;
 

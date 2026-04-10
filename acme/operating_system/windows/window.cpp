@@ -28,6 +28,15 @@ namespace windows
 
    }
 
+
+   void* window::_WNDPROC_default() const
+   {
+
+      return m_wndprocDefault;
+
+   }
+
+
    bool window::on_window_procedure(LRESULT & lresult, UINT message, WPARAM wparam, LPARAM lparam)
    {
 

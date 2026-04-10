@@ -50,7 +50,7 @@ namespace subsystem
 
    class ProcessCommandLineInterface;
 
-   class PixelFormat;
+   struct PixelFormat;
 
    class Screen;
 

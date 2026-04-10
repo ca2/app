@@ -49,7 +49,7 @@ namespace subsystem
    //
    //   try {
    //     g_service->onStart();
-   //   } catch (::remoting::Exception &) {
+   //   } catch (::subsystem::Exception &) {
    //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
    //     // TODO: Report to ServiceControlManageranager about critical error.
    //   }
@@ -58,7 +58,7 @@ namespace subsystem
    //
    //   try {
    //     g_service->main();
-   //   } catch (::remoting::Exception &) {
+   //   } catch (::subsystem::Exception &) {
    //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
    //     // TODO: Report to ServiceControlManageranager about critical error.
    //   }

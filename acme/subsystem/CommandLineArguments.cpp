@@ -36,10 +36,11 @@ namespace subsystem
    {
    }
 
-   ::string_array CommandLineArguments::getArguments() const
+   ::string_array_base CommandLineArguments::getArguments() const
    {
 
-      return m_straArguments;
+      //return m_straArguments;
+      return m_pparticleThis->getArguments();
 
    }
 

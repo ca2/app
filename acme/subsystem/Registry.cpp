@@ -28,16 +28,25 @@
 
 namespace subsystem
 {
+   
+   
    Registry::Registry()
    {
+   
+   
    }
+
 
    Registry::~Registry()
    {
+
+
    }
 
-   ::subsystem::registry * Registry::getCurrentUserKey()
+
+   ::platform::registry * Registry::getCurrentUserKey()
    {
+
       if (!m_pregistryCurrentUser)
       {
 
@@ -46,12 +55,15 @@ namespace subsystem
          m_pregistryCurrentUser->open_from_file(REGX_HKCU);
 
       }
+
       return m_pregistryCurrentUser;
       //return HKEY_CURRENT_USER;
    }
 
-   ::subsystem::registry * Registry::getLocalMachineKey()
+
+   ::platform::registry * Registry::getLocalMachineKey()
    {
+
       if (!m_pregistryLocalMachine)
       {
 

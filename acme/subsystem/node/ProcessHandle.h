@@ -40,7 +40,7 @@ namespace subsystem
       //ProcessHandle();
       virtual ~ProcessHandleInterface() =0 ;
 
-      // @throws ::remoting::Exception on an error.
+      // @throws ::subsystem::Exception on an error.
       virtual void openProcess(unsigned int dwDesiredAccess,
                        bool bInheritHandle,
                        ::process_identifier processidentifier) = 0;
@@ -53,7 +53,7 @@ namespace subsystem
       //HANDLE getHandle() const;
 
       // Returns process module path. Call the openProcess() function before.
-      // @throws ::remoting::Exception on an error.
+      // @throws ::subsystem::Exception on an error.
       virtual ::string getProcessModulePath() = 0;
 
 
@@ -73,7 +73,7 @@ namespace subsystem
       ProcessHandle();
       ~ProcessHandle() override;
 
-      // @throws ::remoting::Exception on an error.
+      // @throws ::subsystem::Exception on an error.
       void openProcess(unsigned int dwDesiredAccess,
                        bool bInheritHandle,
                        ::process_identifier processidentifier) override;
@@ -94,7 +94,7 @@ namespace subsystem
 
 
       // Returns process module path. Call the openProcess() function before.
-      // @throws ::remoting::Exception on an error.
+      // @throws ::subsystem::Exception on an error.
       ::string getProcessModulePath() override;
 
       //private:

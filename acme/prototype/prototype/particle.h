@@ -28,12 +28,16 @@ namespace platform
 
 
 } // namespace platform
+
+
 class dispatch_arrayø;
+
+
 class dispatch_array2;
 
 
-
 class extended_topic;
+
 
 class trace_statement;
 
@@ -41,7 +45,7 @@ class trace_statement;
 //CLASS_DECL_ACME ::factory::factory * get_system_factory();
 
 
-//CLASS_DECL_ACME class tracer * tracer();
+//CLASS_DECL_ACME ::platform::tracer * tracer();
 
 
 

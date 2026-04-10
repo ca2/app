@@ -217,28 +217,6 @@ CLASS_DECL_ACME ::file::path_array_base & ascendants_path(::file::path_array_bas
 }
 
 
-CLASS_DECL_ACME ::string_array_base & ascendants_name(::string_array_base & stra, const ::file::path & pathParam)
-{
-
-   if(pathParam.has_character())
-   {
-
-      auto path = pathParam;
-
-      do
-      {
-
-         stra.add(path.name());
-
-         path = path.folder();
-
-      } while (path.has_character());
-
-   }
-
-   return stra;
-
-}
 
 
 CLASS_DECL_ACME::file::path_array_base ascendants_path(const ::file::path& pathBase)

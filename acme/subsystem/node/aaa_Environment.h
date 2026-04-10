@@ -70,7 +70,7 @@
 //       // pId - the process id that be tested
 //       // return true if tested process has the same path as current process
 //       // else return false
-//       // throw ::remoting::Exception an error.
+//       // throw ::subsystem::Exception an error.
 //       virtual bool isItTheSamePathAsCurrent(unsigned int pId);
 //
 //       // Sets full path to folder (without last directory separator character)

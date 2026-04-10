@@ -80,7 +80,7 @@ namespace subsystem
        * @param interSession if set, then mutex can be accessed from separate sessions, if not,
        * then every session will create it's own mutex.
        * @remark if name is 0, then mutex will be unnamed.
-       * @throws ::remoting::Exception when cannot create mutex or when throwIfExist flag is set
+       * @throws ::subsystem::Exception when cannot create mutex or when throwIfExist flag is set
        * and mutex already exist.
        */
       //GlobalMutexInterface(const ::scoped_string & scopedstrName = 0, bool interSession = false, bool throwIfExist = false);

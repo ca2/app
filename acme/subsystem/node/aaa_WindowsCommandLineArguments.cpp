@@ -38,7 +38,7 @@ WinCommandLineArgs::WinCommandLineArgs(const ::scoped_string & scopedstrCmdLineI
     int nArgs;
     LPWSTR *argList = CommandLineToArgvW(uniCmdLine, &nArgs);
     if(argList == 0) {
-      throw ::remoting::Exception("Invalid command line");
+      throw ::subsystem::Exception("Invalid command line");
     }
     for(int i = 0; i < nArgs; i++) {
       ::wstring uniArg(argList[i]);

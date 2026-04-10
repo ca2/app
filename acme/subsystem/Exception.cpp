@@ -57,7 +57,7 @@ namespace subsystem
 
    }
 
-   ///::string ::remoting::Exception::get_message() const { return m_message; }
+   ///::string ::subsystem::Exception::get_message() const { return m_message; }
 
 
 } // namespace subsystem

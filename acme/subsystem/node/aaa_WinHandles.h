@@ -39,7 +39,7 @@ public:
   // @param If the keepCloseRight argument set to true then after handle
   // been returned it can be closed by current process.
   // @return The function returns the handle that assigned for another process
-  // @throws ::remoting::Exception on a fail.
+  // @throws ::subsystem::Exception on a fail.
   static HANDLE assignHandleFor(HANDLE hSource,
                                 HANDLE hTargetProc,
                                 bool neededToCloseSource,
@@ -53,7 +53,7 @@ public:
   // @param If the keepCloseRight argument set to true then after handle
   // been returned it can be closed by current process.
   // @return The function returns the handle that assigned for another process
-  // @throws ::remoting::Exception on a fail.
+  // @throws ::subsystem::Exception on a fail.
   static HANDLE assignHandleFor(HANDLE hSource,
                                 unsigned int procId,
                                 bool neededToCloseSource,

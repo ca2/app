@@ -32,23 +32,30 @@ namespace subsystem
 
    string_table::string_table() {}
 
-   ::string string_table::getString(::iptr i)
+   
+   ::string string_table::getString(unsigned int u)
    {
 
       ::string str;
 
-      auto p = m_mapString.find(i);
+      auto p = m_mapString.find(u);
 
       if (!p)
       {
-         p = m_mapString.get(i);
-         if (!::main_subsystem()->resource_loader()->loadString(i, p->element2()))
+
+         p = m_mapString.get(u);
+
+         if (!::main_subsystem()->resource_loader()->loadString(u, p->element2()))
          {
+
             p->element2() = "Requested string from StringTable cannot be received";
+
          }
+
       }
 
       return p->element2();
+
    }
 
 

@@ -46,8 +46,8 @@ namespace subsystem
 
       /**
        * Closes channel and break all blocking operation that executed at the moment of close() call.
-       * @throw ::remoting::Exception on error.
-       * @fixme why ::remoting::Exception, but not ::io_exception?
+       * @throw ::subsystem::Exception on error.
+       * @fixme why ::subsystem::Exception, but not ::io_exception?
        */
       virtual void close()= 0;
    };

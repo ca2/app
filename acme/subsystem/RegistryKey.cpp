@@ -28,15 +28,20 @@
 //#include "aura/message/user.h"
 //// #include aaa_<vector>
 
+
 namespace subsystem
 {
+
    
-   RegistryKey::RegistryKey(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry,
+   RegistryKey::RegistryKey(::platform::registry_key * rootKey, const ::scoped_string & scopedstrEntry,
                             //bool createIfNotExists, SECURITY_ATTRIBUTES *sa)
                             bool createIfNotExists)
    {
+      
       initialize(rootKey, scopedstrEntry, createIfNotExists);
+
    }
+
 
    RegistryKey::RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry,
                             //bool createIfNotExists, SECURITY_ATTRIBUTES *sa)
@@ -45,7 +50,7 @@ namespace subsystem
       initialize(rootKey->m_pregistrykey, scopedstrEntry, createIfNotExists);
    }
 
-   RegistryKey::RegistryKey(::subsystem::registry_key * rootKey)
+   RegistryKey::RegistryKey(::platform::registry_key * rootKey)
    : m_pregistrykey(rootKey), m_pregistrykeyRoot(rootKey)
    {
       m_entry= "";
@@ -60,7 +65,7 @@ namespace subsystem
       close();
    }
 
-   void RegistryKey::open(::subsystem::registry_key * rootKey,
+   void RegistryKey::open(::platform::registry_key * rootKey,
                           const ::scoped_string & scopedstrEntry,
                           bool createIfNotExists)//                          SECURITY_ATTRIBUTES *sa)
    {
@@ -74,7 +79,7 @@ namespace subsystem
       initialize(rootKey->m_pregistrykey, scopedstrEntry, createIfNotExists);
    }
 
-   ::subsystem::registry_key * RegistryKey::get_registry_key() const
+   ::platform::registry_key * RegistryKey::get_registry_key() const
    {
       return m_pregistrykey;
    }
@@ -171,7 +176,7 @@ namespace subsystem
       return true;
    }
 
-   bool RegistryKey::setValueAsInt64(const ::scoped_string & scopedstrName, long value)
+   bool RegistryKey::setValueAsInt64(const ::scoped_string & scopedstrName, long long value)
    {
       if (!isOpened()) {
          return false;
@@ -223,7 +228,7 @@ namespace subsystem
       return true;
    }
 
-   bool RegistryKey::getValueAsInt64(const ::scoped_string & scopedstrName, long *out)
+   bool RegistryKey::getValueAsInt64(const ::scoped_string & scopedstrName, long long *out)
    {
       if (!isOpened()) {
          return false;
@@ -338,7 +343,7 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
       }
    }
 
-   void RegistryKey::initialize(::subsystem::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists) //, SECURITY_ATTRIBUTES *sa)
+   void RegistryKey::initialize(::platform::registry_key * rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists) //, SECURITY_ATTRIBUTES *sa)
    {
       m_pregistrykey = rootKey;
       m_pregistrykeyRoot = rootKey;
@@ -380,8 +385,8 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
       return 0;
    }
 
-   bool RegistryKey::tryOpenSubKey(::subsystem::registry_key * key, const ::scoped_string & scopedstrSubkey,
-      ::pointer < ::subsystem::registry_key > &openedKey, bool createIfNotExists) //, SECURITY_ATTRIBUTES *sa)
+   bool RegistryKey::tryOpenSubKey(::platform::registry_key * key, const ::scoped_string & scopedstrSubkey,
+      ::pointer < ::platform::registry_key > &openedKey, bool createIfNotExists) //, SECURITY_ATTRIBUTES *sa)
    {
       // if (RegOpenKey(key,::wstring(scopedstrSubkey), openedKey) != ERROR_SUCCESS) {
       //    if (createIfNotExists) {
@@ -405,7 +410,10 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
       // } // if cannot open key
 
       return true;
+
    }
+
+
 } // namespace subsystem
 
 

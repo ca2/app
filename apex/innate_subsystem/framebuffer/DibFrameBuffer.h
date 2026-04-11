@@ -25,20 +25,22 @@
 #pragma once
 
 //#include "remoting/remoting_common/rfb/FrameBuffer.h"
-#include "acme/subsystem/framebuffer/FrameBuffer.h"
-#include "acme/subsystem/framebuffer/DibSection.h"
+#include "apex/innate_subsystem/framebuffer/FrameBuffer.h"
+#include "apex/innate_subsystem/framebuffer/DibSection.h"
+//#include "apex/innate_subsystem/drawing/BitmapGraphics.h"
 
-namespace subsystem
+
+namespace innate_subsystem
 {
    // This class is a wrapper for a FramBuffer and a DIB section.
    // It changes DIB section proerties by oneself according to FrameBuffer
    // properties (such as width, height and PixelFormat)
-   class CLASS_DECL_ACME DibFrameBuffer :
+   class CLASS_DECL_APEX DibFrameBuffer :
    virtual public FrameBuffer
    {
    public:
       DibFrameBuffer();
-      virtual ~DibFrameBuffer();
+      ~DibFrameBuffer() override;
 
       virtual void setColor(unsigned char reg, unsigned char green, unsigned char blue);
       virtual void fillRect(const ::int_rectangle &dstRect, unsigned int color);
@@ -71,7 +73,7 @@ namespace subsystem
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
-      //void setTargetDC(HDC targetDC);
+      void setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext);
 
       virtual unsigned char getBitsPerPixel() const;
 
@@ -139,4 +141,4 @@ namespace subsystem
    };
 
 
-} // namespace subsystem
+} // namespace innate_subsystem

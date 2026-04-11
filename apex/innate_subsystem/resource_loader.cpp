@@ -98,18 +98,21 @@ namespace innate_subsystem
    //    return true;
    // }
    //
-   //HACCEL resource_loader::loadAccelerator(unsigned int id)
-   //{
+   void * resource_loader::loadAccelerator(unsigned int id)
+   {
    //   return LoadAccelerators(m_appInstance,
    //      MAKEINTRESOURCE(id));
-   //}
+      throw ::interface_only();
+      return nullptr;
+
+   }
 
    //HCURSOR resource_loader::loadStandardCursor(const char* id)
    //{
    //   return LoadCursor(0, id);
    //}
 
-   ::pointer <IconInterface> resource_loader::loadCursor(unsigned int id)
+   ::pointer <CursorInterface> resource_loader::loadCursor(unsigned int id)
    {
       //return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
       throw ::interface_only();

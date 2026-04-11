@@ -62,29 +62,35 @@ namespace innate_subsystem
 
       // Sets text color.
       virtual void setTextColor(const ::color::color & color) = 0;
+
+      virtual void setTextRenderingHintClearType() = 0;
+
       // Sets current brush.
       virtual void setBrush(BrushInterface *brush) = 0;
       // Sets current pen.
       virtual void setPen(PenInterface *pen) = 0;
+      // Sets current font.
+      virtual void setFont(FontInterface *font) = 0;
 
       // Moves cursor to specified position.
-      virtual void moveTo(int x, int y) = 0;
+      virtual void moveTo(const ::int_point & point) = 0;
       // Draws line from current position to specified line.
-      virtual void lineTo(int x, int y) = 0;
+      virtual void lineTo(const ::int_point & point) = 0;
 
       // Draws filled rect.
-      virtual void fillRect(int l, int t, int r, int b, BrushInterface*brush) = 0;
+      //virtual void fillRect(int l, int t, int r, int b, BrushInterface*pbrush) = 0;
+      virtual void fillRect(const ::int_rectangle & rectangle, BrushInterface * pbrush) = 0;
       virtual void fillRect(const ::int_rectangle & rectangle, const ::color::color & color) = 0;
       // Draws ellipse.
-      virtual void ellipse(int l, int t, int r, int b) = 0;
+      virtual void ellipse(const ::int_rectangle & rectangle) = 0;
       // Draws rectance.
-      virtual void rectangle(int l, int t, int r, int b) = 0;
+      virtual void rectangle(const ::int_rectangle & rectangle) = 0;
 
       // Draws bitmap.
-      virtual void drawBitmap(BitmapInterface *bitmap, int x, int y, int w, int h) = 0;
-      virtual void drawBitmap(BitmapInterface *bitmap, int x, int y, int srcx, int srcy, int srcW, int srcH) = 0;
+      virtual void drawBitmap(BitmapInterface *bitmap, const ::int_rectangle & rectangle) = 0;
+      virtual void drawBitmap(BitmapInterface *bitmap, const ::int_point & point, const ::int_rectangle & rectangleSrc) = 0;
       // Draws text.
-      virtual void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) = 0;
+      virtual void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format = 0, enum_align ealign = e_align_top_left) = 0;
 
    //protected:
      //::pointer < DeviceContext > m_pdevicecontext;
@@ -120,29 +126,35 @@ namespace innate_subsystem
 
       // Sets text color.
       void setTextColor(const ::color::color & color) override;
+
+      void setTextRenderingHintClearType() override;
+
       // Sets current brush.
       void setBrush(BrushInterface *brush) override;
       // Sets current pen.
       void setPen(PenInterface *pen) override;
+      // Sets current font.
+      void setFont(FontInterface *font) override;
 
       // Moves cursor to specified position.
-      void moveTo(int x, int y) override;
+      void moveTo(const ::int_point & point) override;
       // Draws line from current position to specified line.
-      void lineTo(int x, int y) override;
+      void lineTo(const ::int_point & point) override;
 
       // Draws filled rect.
-      void fillRect(int l, int t, int r, int b, BrushInterface *brush) override;
+      //void fillRect(int l, int t, int r, int b, BrushInterface *pbrush) override;
+      void fillRect(const ::int_rectangle & rectangle, BrushInterface * pbrush) override;
       void fillRect(const ::int_rectangle & rectangle, const ::color::color & color) override;
       // Draws ellipse.
-      void ellipse(int l, int t, int r, int b) override;
+      void ellipse(const ::int_rectangle & rectangle) override;
       // Draws rectance.
-      void rectangle(int l, int t, int r, int b) override;
+      void rectangle(const ::int_rectangle & rectangle) override;
 
       // Draws bitmap.
-      void drawBitmap(BitmapInterface *bitmap, int x, int y, int w, int h) override;
-      void drawBitmap(BitmapInterface *bitmap, int x, int y, int srcx, int srcy, int srcW, int srcH) override;
+      void drawBitmap(BitmapInterface *bitmap, const ::int_rectangle & rectangle) override;
+      void drawBitmap(BitmapInterface *bitmap, const ::int_point & point, const ::int_rectangle & rectangleSrc) override;
       // Draws text.
-      void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) override;
+      void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format = 0, enum_align ealign = e_align_top_left) override;
 
       //protected:
       //::pointer < DeviceContext > m_pdevicecontext;

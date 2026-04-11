@@ -54,6 +54,13 @@
       // }
    }
 
+      ::pointer < ::subsystem::SecurityIdentifier > ProcessHandle::getProcessOwner()
+      {
+
+         return m_pparticleThis->getProcessOwner();
+
+      }
+
    // HANDLE ProcessHandle::getHandle() const
    // {
    //    return m_hProcess;

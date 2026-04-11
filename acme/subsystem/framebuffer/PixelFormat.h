@@ -24,7 +24,7 @@
 
 #pragma once
 
-namespace subsystem
+namespace innate_subsystem
 {
 
 
@@ -52,6 +52,6 @@ struct CLASS_DECL_ACME PixelFormat
 
 //// __PIXELFORMAT_H__
 ///
-} // namespace subsystem
+} // namespace innate_subsystem
 
 

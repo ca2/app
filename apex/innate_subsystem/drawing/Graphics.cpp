@@ -86,6 +86,14 @@ namespace innate_subsystem
       m_pparticleThis->setTextColor(color);
    }
 
+
+   void Graphics::setTextRenderingHintClearType()
+   {
+
+      m_pparticleThis->setTextRenderingHintClearType();
+
+   }
+
    void Graphics::setBkColor(const ::color::color & color)
    {
       //SetBkColor(m_dc->m_dc, color);
@@ -106,19 +114,25 @@ namespace innate_subsystem
       m_pparticleThis->setPen(ppen);
    }
 
-   void Graphics::moveTo(int x, int y)
+   void Graphics::setFont(FontInterface *pfont)
+   {
+      // HGDIOBJ object = (pen != 0) ? pen->m_pen : 0;
+      // m_dc->selectObject(object);
+      m_pparticleThis->setFont(pfont);
+   }
+   void Graphics::moveTo(const ::int_point & point)
    {
       //MoveToEx(m_dc->m_dc, x, y, NULL);
-      m_pparticleThis->moveTo(x, y);
+      m_pparticleThis->moveTo(point);
    }
 
-   void Graphics::lineTo(int x, int y)
+   void Graphics::lineTo(const ::int_point & point)
    {
       //LineTo(m_dc->m_dc, x, y);
-      m_pparticleThis->lineTo(x, y);
+      m_pparticleThis->lineTo(point);
    }
 
-   void Graphics::fillRect(int l, int t, int r, int b, BrushInterface *pbrush)
+   void Graphics::fillRect(const ::int_rectangle & rectangle, BrushInterface *pbrush)
    {
       //    RECT rect;
       //
@@ -129,7 +143,7 @@ namespace innate_subsystem
       //
       //    FillRect(m_dc->m_dc, &rect, brush->m_brush);
       // }
-      m_pparticleThis->fillRect(l, t, r, b, pbrush);
+      m_pparticleThis->fillRect(rectangle, pbrush);
    }
 
    void Graphics::fillRect(const ::int_rectangle & rectangle, const ::color::color & color)
@@ -139,23 +153,23 @@ namespace innate_subsystem
 
    }
 
-   void Graphics::ellipse(int l, int t, int r, int b)
+   void Graphics::ellipse(const ::int_rectangle & rectangle)
    {
       //Ellipse(m_dc->m_dc, l, t, r, b);
-      m_pparticleThis->ellipse(l, t, r, b);
+      m_pparticleThis->ellipse(rectangle);
    }
 
-   void Graphics::rectangle(int l, int t, int r, int b)
+   void Graphics::rectangle(const ::int_rectangle & rectangle)
    {
 
-      m_pparticleThis->rectangle(l, t, r, b);
+      m_pparticleThis->rectangle(rectangle);
    }
 
 
-   void Graphics::drawBitmap(BitmapInterface *pbitmap, int x, int y, int w, int h)
+   void Graphics::drawBitmap(BitmapInterface *pbitmap, const ::int_rectangle & rectangle)
    {
 
-      m_pparticleThis->drawBitmap(pbitmap, x, y, w, h);
+      m_pparticleThis->drawBitmap(pbitmap, rectangle);
       // DeviceContext memDC(m_dc);
       //
       // HGDIOBJ oldBitmap = memDC.selectObject(bitmap->m_bitmap);
@@ -165,17 +179,17 @@ namespace innate_subsystem
       // memDC.selectObject(oldBitmap);
    }
 
-   void Graphics::drawBitmap(BitmapInterface *pbitmap, int x, int y, int srcx, int srcy, int srcW, int srcH)
+   void Graphics::drawBitmap(BitmapInterface *pbitmap, const ::int_point & point, const ::int_rectangle & rectangle)
    {
 
-      m_pparticleThis->drawBitmap(pbitmap, x, y, srcx, srcy, srcW, srcH);
+      m_pparticleThis->drawBitmap(pbitmap, point, rectangle);
 
    }
 
 
-   void Graphics::drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format)
+   void Graphics::drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format, enum_align ealign)
    {
-      m_pparticleThis->drawText(text, cchText, rect, format);
+      m_pparticleThis->drawText(text, cchText, rect, format, ealign);
    }
 } // namespace innate_subsystem
 

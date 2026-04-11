@@ -50,8 +50,6 @@ namespace subsystem
 
    class ProcessCommandLineInterface;
 
-   struct PixelFormat;
-
    class Screen;
 
    class ScreenInterface;
@@ -70,6 +68,15 @@ namespace subsystem
 
 } // namespace subsystem
 
+
+namespace innate_subsystem
+{
+
+
+   struct PixelFormat;
+
+
+} // namespace innate_subsystem
 
 
 #include "acme/subsystem/io/_.h"

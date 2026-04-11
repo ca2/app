@@ -31,13 +31,13 @@ namespace subsystem
 {
 
 
-   class CLASS_DECL_ACME SystemInformationInterface :
+   class SystemInformationInterface :
    virtual public ::subsystem::particle_interface<SystemInformationInterface>
    {
    public:
 
       //SystemInformation();
-      virtual ~SystemInformationInterface() =0 ;
+      //virtual ~SystemInformationInterface() =0 ;
 
 
       // get rectangle of all desktop area

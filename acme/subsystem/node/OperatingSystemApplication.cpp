@@ -65,36 +65,65 @@ namespace subsystem
       // }
    }
 
-   int OperatingSystemApplication::processMessages()
-   {
-
-      return m_pparticleThis->processMessages();
-      //   MSG msg;
-      //   BOOL ret;
-      //   while ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
-      //     if (ret < 0) {
-      //       return 1;
-      //     }
-      //     if (!processDialogMessage(&msg)) {
-      //       TranslateMessage(&msg);
-      //       DispatchMessage(&msg);
-      //     }
-      //   }
-      //
-      //   return (int)msg.wParam;
-   }
+   // int OperatingSystemApplication::processMessages()
+   // {
+   //
+   //    return m_pparticleThis->processMessages();
+   //    //   MSG msg;
+   //    //   BOOL ret;
+   //    //   while ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
+   //    //     if (ret < 0) {
+   //    //       return 1;
+   //    //     }
+   //    //     if (!processDialogMessage(&msg)) {
+   //    //       TranslateMessage(&msg);
+   //    //       DispatchMessage(&msg);
+   //    //     }
+   //    //   }
+   //    //
+   //    //   return (int)msg.wParam;
+   // }
 
    // void OperatingSystemApplication::createWindow(const ::scoped_string & scopedstrClassName)
    // {
-   //   // m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
-   //   //                             0, 0,
-   //   //                             0, 0, 0, 0,
-   //   //                             HWND_MESSAGE, 0,
-   //   //                             m_appInstance,
-   //   //                             0);
+   // //   // m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
+   // //   //                             0, 0,
+   // //   //                             0, 0, 0, 0,
+   // //   //                             HWND_MESSAGE, 0,
+   // //   //                             m_appInstance,
+   // //   //                             0);
    //
-   //    m_pparticleThis->createWindow(scopedstrClssName);
+   //    m_pparticleThis->createWindow(scopedstrClassName);
    // }
+
+
+   void OperatingSystemApplication::createApplicationMainTask()
+   {
+      //   // m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
+      //   //                             0, 0,
+      //   //                             0, 0, 0, 0,
+      //   //                             HWND_MESSAGE, 0,
+      //   //                             m_appInstance,
+      //   //                             0);
+
+      m_pparticleThis->createApplicationMainTask();
+   }
+
+
+
+   void OperatingSystemApplication::postMainThreadMessage(int iMainThreadMessage)
+   {
+      //   // m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
+      //   //                             0, 0,
+      //   //                             0, 0, 0, 0,
+      //   //                             HWND_MESSAGE, 0,
+      //   //                             m_appInstance,
+      //   //                             0);
+
+      m_pparticleThis->postMainThreadMessage(iMainThreadMessage);
+   }
+
+
 
    // void OperatingSystemApplication::registerWindowClass(WNDCLASS *wndClass)
    // {
@@ -161,5 +190,14 @@ namespace subsystem
    //   }
    //   return DefWindowProc(hWnd, msg, wparam, lparam);
    // }
+
+    int Oper
+
+
+   void OperatingSystemApplication::onMainThreadMessage(int iMainThreadMessage)
+   {
+
+
+   }
 } // namespace subsystem
 

@@ -17,41 +17,53 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// with this program; if not, write to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
+// From Pen.cpp by camilo on 2026-04-11 04:21 <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "PixelFormat.h"
+#include "Font.h"
 
-// #include aaa_<string.h>
+//#include <crtdbg.h>
 
 namespace innate_subsystem
 {
-   PixelFormat::PixelFormat()
+
+//Pen::Pen(int type, int width, const ::color::color & color)
+   Font::Font()
+//: m_pen(NULL)
+{
+  // m_pen = CreatePen(type, width, color);
+  //
+  // _ASSERT(m_pen != NULL);
+}
+
+Font::~Font()
+{
+  //DeleteObject(m_pen);
+}
+
+   // void * Pen::_HGDIOBJ()
+   // {
+   //    return m_pparticleThis->_HGDIOBJ();
+   // }
+
+
+   void Font::initialize_font(const char *pszFamily, int iPixelHeight, int iFontWeight, bool bItalic)
    {
-      memset(this, 0, sizeof(PixelFormat));
+
+      m_pparticleThis->initialize_font(pszFamily, iPixelHeight, iFontWeight, bItalic);
    }
 
-   void PixelFormat::initBigEndianByNative()
-   {
-      union {
-         char test;
-         int i;
-      } testBigEndian;
-      testBigEndian.i = 1;
-      bigEndian = (testBigEndian.test == 0);
-   }
 
-   bool PixelFormat::operator ==(const PixelFormat & pf) const {
-      return bitsPerPixel == pf.bitsPerPixel &&
-             colorDepth   == pf.colorDepth &&
-             redMax       == pf.redMax &&
-             greenMax     == pf.greenMax &&
-             blueMax      == pf.blueMax &&
-             redShift     == pf.redShift &&
-             greenShift   == pf.greenShift &&
-             blueShift    == pf.blueShift &&
-             bigEndian    == pf.bigEndian;
-   }
-} // namespace innate_subsystem
+//    ///: m_pen(NULL)
+// {
+//
+//    m_pparticleThis->initialize_pen(epen, width, color);
+// }
+//    // m_pen = CreatePen(type, width, color);
+//    //
+//    // _ASSERT(m_pen != NULL);
+
+}

@@ -20,7 +20,7 @@ namespace subsystem
    {
    public:
 
-
+::hinstance                                        m_hinstanceResource = nullptr;
       static ::subsystem::subsystem *            s_p;
       ::pointer < ::subsystem::StringParser >     m_pstringparser;
       ::pointer < ::subsystem::string_table >     m_pstringtable;

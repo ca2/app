@@ -26,7 +26,7 @@
 #include "acme/subsystem/node/SystemException.h"
 #include "acme/prototype/geometry2d/size.h"
 
-namespace  subsystem
+namespace  innate_subsystem
 {
    DibFrameBuffer::DibFrameBuffer()
    //: m_pdibsection(0)
@@ -99,27 +99,27 @@ namespace  subsystem
 
    bool DibFrameBuffer::setDimension(const ::int_size &newDim)
    {
-      throw Exception("Wrong: You shouln't use the DibFrameBuffer::clone() function.");
+      throw ::subsystem::Exception("Wrong: You shouln't use the DibFrameBuffer::clone() function.");
    }
 
    bool DibFrameBuffer::setDimension(const ::int_rectangle &rect)
    {
-      throw Exception("Wrong: You shouln't use the DibFrameBuffer::clone() function.");
+      throw ::subsystem::Exception("Wrong: You shouln't use the DibFrameBuffer::clone() function.");
    }
 
    void DibFrameBuffer::setEmptyDimension(const ::int_rectangle &dimByRect)
    {
-      throw Exception("This function is deprecated");
+      throw ::subsystem::Exception("This function is deprecated");
    }
 
-   void DibFrameBuffer::setEmptyPixelFmt(const ::subsystem::PixelFormat &pf)
+   void DibFrameBuffer::setEmptyPixelFmt(const ::innate_subsystem::PixelFormat &pf)
    {
-      throw Exception("This function is deprecated");
+      throw ::subsystem::Exception("This function is deprecated");
    }
 
-   void DibFrameBuffer::setPropertiesWithoutResize(const ::int_size &newDim, const ::subsystem::PixelFormat &pf)
+   void DibFrameBuffer::setPropertiesWithoutResize(const ::int_size &newDim, const ::innate_subsystem::PixelFormat &pf)
    {
-      throw Exception("Wrong: You shouln't use the DibFrameBuffer::setPropertiesWithoutResize() function.");
+      throw ::subsystem::Exception("Wrong: You shouln't use the DibFrameBuffer::setPropertiesWithoutResize() function.");
    }
 
    inline ::int_size DibFrameBuffer::getDimension() const
@@ -127,9 +127,9 @@ namespace  subsystem
       return m_fb.getDimension();
    }
 
-   bool DibFrameBuffer::setPixelFormat(const ::subsystem::PixelFormat &pixelFormat)
+   bool DibFrameBuffer::setPixelFormat(const ::innate_subsystem::PixelFormat &pixelFormat)
    {
-      throw Exception("Wrong: You shouln't use the DibFrameBuffer::setPixelFormat() function.");
+      throw ::subsystem::Exception("Wrong: You shouln't use the DibFrameBuffer::setPixelFormat() function.");
    }
 
    inline PixelFormat DibFrameBuffer::getPixelFormat() const
@@ -137,14 +137,14 @@ namespace  subsystem
       return m_fb.getPixelFormat();
    }
 
-   bool DibFrameBuffer::setProperties(const ::int_size &newDim, const ::subsystem::PixelFormat &pixelFormat)
+   bool DibFrameBuffer::setProperties(const ::int_size &newDim, const ::innate_subsystem::PixelFormat &pixelFormat)
    {
-      throw Exception("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function.");
+      throw ::subsystem::Exception("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function.");
    }
 
-   bool DibFrameBuffer::setProperties(const ::int_rectangle &dimByRect, const ::subsystem::PixelFormat &pixelFormat)
+   bool DibFrameBuffer::setProperties(const ::int_rectangle &dimByRect, const ::innate_subsystem::PixelFormat &pixelFormat)
    {
-      throw Exception("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function.");
+      throw ::subsystem::Exception("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function.");
    }
 
    unsigned char DibFrameBuffer::getBitsPerPixel() const
@@ -159,7 +159,7 @@ namespace  subsystem
 
    void DibFrameBuffer::setBuffer(void *newBuffer)
    {
-      throw Exception("Wrong: You shouln't use the DibFrameBuffer::setBuffer() function.");
+      throw ::subsystem::Exception("Wrong: You shouln't use the DibFrameBuffer::setBuffer() function.");
    }
 
    inline void *DibFrameBuffer::getBuffer() const
@@ -207,7 +207,7 @@ namespace  subsystem
    }
 
    void DibFrameBuffer::setProperties(const ::int_size &newDim,
-                                      const ::subsystem::PixelFormat &pixelFormat,
+                                      const ::innate_subsystem::PixelFormat &pixelFormat,
                                       const ::operating_system::window & operatingsystemwindowCompatible)
    {
       m_fb.setPropertiesWithoutResize(newDim, pixelFormat);
@@ -216,7 +216,7 @@ namespace  subsystem
    }
 
    void *DibFrameBuffer::updateDibSection(const ::int_size &newDim,
-                                         const ::subsystem::PixelFormat &pixelFormat,
+                                         const ::innate_subsystem::PixelFormat &pixelFormat,
                                          const ::operating_system::window & operatingsystemwindowCompatible)
    {
       releaseDibSection();
@@ -242,6 +242,6 @@ namespace  subsystem
          throw ::subsystem::Exception("Can't set target DC because it is not initialized a DIB section yet");
       }
    }
-} // namespace  subsystem
+} // namespace  innate_subsystem
 
 

@@ -17,6 +17,8 @@ namespace innate_subsystem
    class BitmapInterface;
    class Brush;
    class BrushInterface;
+   class Font;
+   class FontInterface;
    class Pen;
    class PenInterface;
    class Icon;
@@ -131,6 +133,7 @@ namespace innate_subsystem
    };
 
    struct draw_item_t;
+
 
 } // namespace innate_subsystem
 

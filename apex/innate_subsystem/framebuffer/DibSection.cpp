@@ -27,7 +27,7 @@
 #include "acme/subsystem/node/SystemException.h"
 
 
-namespace subsystem
+namespace innate_subsystem
 {
    DibSection::DibSection()
    // : m_isOwnTargetDC(false),
@@ -47,7 +47,7 @@ namespace subsystem
       //    throw;
       // }
    }
-   // DibSection::DibSection(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible)
+   // DibSection::DibSection(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible)
    // // : m_isOwnTargetDC(false),
    // //   m_targetDC(0),
    // //   m_memDC(0),
@@ -74,7 +74,7 @@ namespace subsystem
    }
 
 //
-//    void DibSection::initialize_dib_section(const ::subsystem::PixelFormat& pf, const int_size& dim, const operating_system::window& operatingsystemwindowCompatible)
+//    void DibSection::initialize_dib_section(const ::innate_subsystem::PixelFormat& pf, const int_size& dim, const operating_system::window& operatingsystemwindowCompatible)
 //    {
 //
 //       m_pparticleThis->initialize_dib_section(pf, dim, operatingsystemwindowCompatible);
@@ -255,5 +255,5 @@ namespace subsystem
 //       //    m_targetDC = 0;
 //       // }
 //    }
-} // namespace subsystem
+} // namespace innate_subsystem
 

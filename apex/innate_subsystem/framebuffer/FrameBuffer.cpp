@@ -26,7 +26,7 @@
 // #include aaa_<string.h>
 
 
-namespace subsystem
+namespace innate_subsystem
 {
    FrameBuffer::FrameBuffer(void)
    : m_buffer(0)
@@ -538,5 +538,5 @@ namespace subsystem
       }
       return true;
    }
-} // namespace subsystem
+} // namespace innate_subsystem
 

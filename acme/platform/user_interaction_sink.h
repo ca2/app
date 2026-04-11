@@ -18,6 +18,7 @@ public:
    ::operating_system::window m_operatingsystemwindow;
 
 
+   user_interaction_sink();
    user_interaction_sink(const ::operating_system::window & operatingsystemwindow);
 
    virtual ::operating_system::window best_effort_operating_system_window() const;

@@ -9,6 +9,14 @@
 
 #define return_if_setø(a) if(a.is_set()) return a
 
+user_interaction_sink::user_interaction_sink()
+{
+
+   initialize(::system()->m_papplication);
+
+}
+
+
 user_interaction_sink::user_interaction_sink(const ::operating_system::window & operatingsystemwindow):
 m_operatingsystemwindow(operatingsystemwindow)
 {

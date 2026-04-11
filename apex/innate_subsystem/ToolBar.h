@@ -34,6 +34,10 @@
 ///
 namespace innate_subsystem
 {
+
+          static const int TB_Style_sep = 0;
+      static const int TB_Style_gap = 1;
+
    class CLASS_DECL_APEX ToolbarInterface :
       virtual  public ::subsystem::particle_interface<ToolbarInterface>
    {
@@ -41,8 +45,6 @@ namespace innate_subsystem
       //Toolbar();
       virtual ~ToolbarInterface() = 0;
 
-      static const int TB_Style_sep = 0;
-      static const int TB_Style_gap = 1;
 
       /////////////////////////////////////////////////////////
       // Auto mode procedures
@@ -58,6 +60,9 @@ namespace innate_subsystem
       // id is a number of bitmap. It means that buttons are
       // square(for example 16x16).
       virtual void loadToolbarfromRes(unsigned int id) = 0;
+
+
+       virtual void loadToolbarFromMatter(const ::file::path & pathMatter) = 0;
 
       // setButtonsRange()
       // If we want to catch the message from toolbar that some buttons
@@ -180,6 +185,9 @@ namespace innate_subsystem
       // id is a number of bitmap. It means that buttons are
       // square(for example 16x16).
       void loadToolbarfromRes(unsigned int id) override;
+
+
+    void loadToolbarFromMatter(const ::file::path & pathMatter) override;
 
       // setButtonsRange()
       // If we want to catch the message from toolbar that some buttons

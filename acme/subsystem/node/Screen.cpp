@@ -48,7 +48,7 @@ namespace subsystem
       m_pparticleThis->update();
    }
 
-   ::subsystem::PixelFormat Screen::getPixelFormat()
+   ::innate_subsystem::PixelFormat Screen::getPixelFormat()
    {
       //return m_pixelFormat;
       return m_pparticleThis->getPixelFormat();

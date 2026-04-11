@@ -74,14 +74,16 @@ namespace subsystem
     }
 
 
-   // ServiceControlManagerClient::ServiceControlManagerClient(DWORD desiredAccess)
-   // {
+    void ServiceControlManagerClient::initialize_service_control_manager_client(unsigned int desiredAccess)
+    {
+
+      m_pparticleThis->initialize_service_control_manager_client(desiredAccess);
    //    m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
    //
    //    if (m_managerHandle == NULL) {
    //       throw SystemException();
    //    }
-   // }
+    }
 
    void ServiceControlManagerClient::installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
                                   const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies)

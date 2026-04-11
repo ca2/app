@@ -1,4 +1,4 @@
-// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -21,37 +21,31 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "PixelFormat.h"
+#pragma once
 
-// #include aaa_<string.h>
+
+#include "acme/subsystem/framebuffer/PixelFormat.h"
+
 
 namespace innate_subsystem
 {
-   PixelFormat::PixelFormat()
+   class CLASS_DECL_ACME StandardPixelFormatFactory
    {
-      memset(this, 0, sizeof(PixelFormat));
-   }
+   public:
+      // specifies 16777216 colors, 8bit per Red, 8bit per Green, 8bit per Blue
+      static ::innate_subsystem::PixelFormat create32bppPixelFormat();
 
-   void PixelFormat::initBigEndianByNative()
-   {
-      union {
-         char test;
-         int i;
-      } testBigEndian;
-      testBigEndian.i = 1;
-      bigEndian = (testBigEndian.test == 0);
-   }
+      // specifies 65536 colors, 5bit per Red, 6bit per Green, 5bit per Blue
+      static ::innate_subsystem::PixelFormat create16bppPixelFormat();
 
-   bool PixelFormat::operator ==(const PixelFormat & pf) const {
-      return bitsPerPixel == pf.bitsPerPixel &&
-             colorDepth   == pf.colorDepth &&
-             redMax       == pf.redMax &&
-             greenMax     == pf.greenMax &&
-             blueMax      == pf.blueMax &&
-             redShift     == pf.redShift &&
-             greenShift   == pf.greenShift &&
-             blueShift    == pf.blueShift &&
-             bigEndian    == pf.bigEndian;
-   }
+      // specifies 256 colors, 2bit per Blue, 3bit per Green & Red
+      static ::innate_subsystem::PixelFormat create8bppPixelFormat();
+
+      // specifies 64 colors, 2bit per Red, Green & Blue
+      static ::innate_subsystem::PixelFormat create6bppPixelFormat();
+
+      // specifies 8 colors, 1bit per Red, Green & Blue
+      static ::innate_subsystem::PixelFormat create3bppPixelFormat();
+   };
 } // namespace innate_subsystem
+

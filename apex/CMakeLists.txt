@@ -163,13 +163,22 @@ list(APPEND apex_source
    innate_subsystem/drawing/DeviceContext.h
    innate_subsystem/drawing/Graphics.cpp
    innate_subsystem/drawing/Graphics.h
+   innate_subsystem/drawing/GraphicsObject.h
+   innate_subsystem/drawing/GraphicsObject.cpp
    innate_subsystem/drawing/Icon.cpp
    innate_subsystem/drawing/Icon.h
    innate_subsystem/drawing/Pen.cpp
    innate_subsystem/drawing/Pen.h
    innate_subsystem/drawing/SolidBrush.cpp
    innate_subsystem/drawing/SolidBrush.h
+   innate_subsystem/framebuffer/DibFrameBuffer.cpp
+   innate_subsystem/framebuffer/DibFrameBuffer.h
+   innate_subsystem/framebuffer/DibSection.cpp
+   innate_subsystem/framebuffer/DibSection.h
+   innate_subsystem/framebuffer/FrameBuffer.cpp
+   innate_subsystem/framebuffer/FrameBuffer.h
    innate_subsystem/_.h
+   innate_subsystem/_common_header.h
    #innate_subsystem/gui.vcxproj
    #innate_subsystem/gui.vcxproj.filters
    innate_subsystem/BalloonTip.cpp
@@ -1544,10 +1553,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${apex_source}
-   innate_subsystem/_common_header.h
-   innate_subsystem/drawing/GraphicsObject.h
-   innate_subsystem/drawing/GraphicsObject.cpp)
+add_library(${PROJECT_NAME} SHARED ${apex_source})
 add_library(static_${PROJECT_NAME} STATIC ${apex_source})
 
 

@@ -1319,14 +1319,10 @@ list(APPEND library_source
         regular_expression/regular_expression.h
         regular_expression/result.cpp
         regular_expression/result.h
-   subsystem/framebuffer/DibFrameBuffer.cpp
-   subsystem/framebuffer/DibFrameBuffer.h
-   subsystem/framebuffer/DibSection.cpp
-   subsystem/framebuffer/DibSection.h
-   subsystem/framebuffer/FrameBuffer.cpp
-   subsystem/framebuffer/FrameBuffer.h
    subsystem/framebuffer/PixelFormat.cpp
    subsystem/framebuffer/PixelFormat.h
+   subsystem/framebuffer/StandardPixelFormatFactory.cpp
+   subsystem/framebuffer/StandardPixelFormatFactory.h
    subsystem/io/_.cpp
    subsystem/io/_.h
    #subsystem/io/_____debug.xcconfig

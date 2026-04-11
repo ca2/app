@@ -473,6 +473,18 @@ namespace innate_subsystem
       return m_pparticleThis->isEnabled();
    }
 
+   bool Window::isWindow()
+   {
+      ///return (!isStyleEnabled(WS_DISABLED));
+      return m_pparticleThis->isWindow();
+   }
+
+   bool Window::isVisible()
+   {
+      ///return (!isStyleEnabled(WS_DISABLED));
+      return m_pparticleThis->isVisible();
+   }
+
    bool Window::isIconic()
    {
       ///return (!isStyleEnabled(WS_DISABLED));
@@ -520,12 +532,12 @@ namespace innate_subsystem
       m_pparticleThis->postMessage(Msg, wparam, lparam);
    }
 
-   void Window::getClientRect(::int_rectangle &rc)
+   ::int_rectangle Window::getClientRect()
    {
       // _ASSERT(m_hWnd != 0 && rc);
       //
       // GetClientRect(m_hWnd, rc);
-      m_pparticleThis->getClientRect(rc);
+      return m_pparticleThis->getClientRect();
    }
 
    ::int_size Window::getBorderSize()

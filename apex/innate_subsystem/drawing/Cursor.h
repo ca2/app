@@ -30,7 +30,7 @@ namespace innate_subsystem
       virtual void initialize_cursor(::innate_subsystem::CursorInterface * picon) = 0;
       virtual void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap) = 0;
       virtual void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) = 0;
-      virtual void initialize_cursor(unsigned int uCursor) = 0;
+      virtual void initialize_with_system_cursor(enum_cursor ecursor) = 0;
 
       //void initi(HICON icon);
       //Icon(Bitmap *bitmap);
@@ -64,7 +64,7 @@ namespace innate_subsystem
       void initialize_cursor(::innate_subsystem::CursorInterface * picon) override;
       void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap) override;
       void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
-      void initialize_cursor(unsigned int uCursor) override;
+      void initialize_with_system_cursor(::enum_cursor ecursor) override;
 
       //void initi(HICON icon);
       //Icon(Bitmap *bitmap);

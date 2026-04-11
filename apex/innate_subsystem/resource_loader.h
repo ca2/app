@@ -59,7 +59,7 @@ namespace innate_subsystem
        * @param iconName icon name.
        * @return icon handle of 0 if cannot load icon.
        */
-      ::pointer < IconInterface >  loadStandartIcon(const char *iconName);
+      virtual ::pointer < IconInterface >  loadStandartIcon(const char *iconName);
 
       /**
        * Loads icon from resources.
@@ -68,7 +68,7 @@ namespace innate_subsystem
        */
       virtual ::pointer < IconInterface > loadIconByIntResource(int iId);
 
-      ::pointer < IconInterface > loadIcon(const char* iconName);
+      virtual ::pointer < IconInterface > loadIcon(const char* iconName);
 
       // /**
       //  * Loads string from resources.
@@ -85,6 +85,7 @@ namespace innate_subsystem
        * @return handle of accelerator if it's loaded.
        */
       //HACCEL loadAccelerator(unsigned int id);
+      virtual void * loadAccelerator(unsigned int id);
 
       /**
        * Loads standart cursor.
@@ -98,7 +99,7 @@ namespace innate_subsystem
        * @return handle of cursor if it's loaded.
        */
       //HCURSOR loadCursor(unsigned int id);
-      virtual ::pointer < IconInterface > loadCursor(unsigned int id);
+      virtual ::pointer < CursorInterface > loadCursor(unsigned int id);
 
    //protected:
       /**

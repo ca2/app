@@ -44,7 +44,7 @@ namespace subsystem
 
       // Returns a PixelFormat that was at latest call of the
       // update() function.
-      virtual ::subsystem::PixelFormat getPixelFormat() = 0;
+      virtual ::innate_subsystem::PixelFormat getPixelFormat() = 0;
 
       // Returns a desktop dimension that was at latest call of the
       // update() function.
@@ -106,7 +106,7 @@ namespace subsystem
 
       // Returns a PixelFormat that was at latest call of the
       // update() function.
-      ::subsystem::PixelFormat getPixelFormat() override;
+      ::innate_subsystem::PixelFormat getPixelFormat() override;
 
       // Returns a desktop dimension that was at latest call of the
       // update() function.

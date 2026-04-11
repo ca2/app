@@ -87,6 +87,29 @@ namespace subsystem
       // }
    }
 
+
+      void InputInjector::initialize_input_injector(bool ctrlAltDelEnabled, ::subsystem::LogWriter *plogwriter)
+   // : m_controlIsPressed(false),
+   //   m_menuIsPressed(false),
+   //   m_deleteIsPressed(false),
+   //   m_shiftIsPressed(false),
+   //   m_winIsPressed(false),
+   //   m_ctrlAltDelEnabled(ctrlAltDelEnabled),
+   //   m_plogwriter(plogwriter)
+   {
+         m_pparticleThis->initialize_input_injector(ctrlAltDelEnabled, plogwriter);
+         // // FIXME: Better to call this function from an owner (Now, its
+         // // possible only from trunk code because in the stable hive the owner is
+         // // the deprecated KeyEvent class)
+         // try {
+         //    resetModifiers();
+         // }
+         // catch (::exception &e) {
+         //    m_plogwriter->error("InputInjector: error occurred while reseting modifiers: {}",
+         //      e.get_message());
+         // }
+   }
+
    void InputInjector::injectKeyPress(unsigned char vkCode)
    {
       //injectKeyEvent(vkCode, false);

@@ -34,12 +34,12 @@
 
 //#include "acme/subsystem/Screen.h"
 
-namespace subsystem
+namespace innate_subsystem
 {
 
 
       // This clas is a primitive wrapper to a DIB section.
-   class CLASS_DECL_ACME  DibSectionInterface :
+   class CLASS_DECL_APEX  DibSectionInterface :
       virtual public ::subsystem::particle_interface<DibSectionInterface>
    {
    public:
@@ -54,7 +54,7 @@ namespace subsystem
       virtual ~DibSectionInterface() = 0 ;
 
 
-      virtual void initialize_dib_section(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindow = {}) = 0;
+      virtual void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindow = {}) = 0;
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
@@ -129,12 +129,12 @@ namespace subsystem
       // In default the created DC will used as a target DC for the blitting operations.
       // It may be changed many times later. Note that changed DC must be compatible with
       // the DIB section.
-      //DibSection(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {});
+      //DibSection(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {});
       DibSection();
       ~DibSection() override;
 
 
-      void initialize_dib_section(const ::subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {}) override;
+      void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {}) override;
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
@@ -180,7 +180,7 @@ namespace subsystem
       void blitFromDibSection(const ::int_rectangle &  rect, unsigned int flags) override;
       void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & dstRect, unsigned int flags);
 
-      //void setupBMIStruct(BITMAPINFO *pBmi, const ::subsystem::PixelFormat & pf, const ::int_size & dim);
+      //void setupBMIStruct(BITMAPINFO *pBmi, const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim);
 
       //
       // bool m_isOwnTargetDC;
@@ -198,4 +198,4 @@ namespace subsystem
    };
 
    //// __DIBSECTION_H__
-} // namespace subsystem
+} // namespace innate_subsystem

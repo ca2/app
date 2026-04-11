@@ -152,7 +152,49 @@ namespace windows
    }
 
 
+    CLASS_DECL_ACME TCHAR * get_system_cursor(enum_cursor ecursor)
+    {
+
+       switch (ecursor)
+       {
+       case e_cursor_arrow:
+          return IDC_ARROW;
+       case e_cursor_text_select:
+          return IDC_IBEAM;
+       case e_cursor_hand:
+          return IDC_HAND;
+       case e_cursor_move:
+          return IDC_SIZEALL;
+       case e_cursor_size_bottom_right:
+          return IDC_SIZENWSE;
+       case e_cursor_size_top_left:
+          return IDC_SIZENWSE;
+       case e_cursor_size_bottom_left:
+          return IDC_SIZENESW;
+       case e_cursor_size_top_right:
+          return IDC_SIZENESW;
+       case e_cursor_size_left:
+          return IDC_SIZEWE;
+       case e_cursor_size_right:
+          return IDC_SIZEWE;
+       case e_cursor_size_top:
+          return IDC_SIZENS;
+       case e_cursor_size_bottom:
+          return IDC_SIZENS;
+       case e_cursor_wait:
+          return IDC_WAIT;
+       case e_cursor_wait_arrow:
+          return IDC_WAIT;
+       default:
+          return IDC_ARROW;
+       }
+
+    }
+
+
 } // namespace windows
+
+
 
 
 

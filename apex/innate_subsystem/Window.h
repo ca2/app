@@ -133,6 +133,12 @@ namespace innate_subsystem
       virtual bool isEnabled() = 0;
 
 
+      virtual bool isWindow() = 0;
+
+
+      virtual bool isVisible() = 0;
+
+
       virtual bool isIconic() = 0;
 
       //
@@ -196,7 +202,7 @@ namespace innate_subsystem
       // post message to this window
       virtual void postMessage(unsigned int Msg, ::wparam wparam = 0, ::lparam lparam = 0) = 0;
 
-      virtual void getClientRect(::int_rectangle &rc) = 0;
+      virtual ::int_rectangle getClientRect() = 0;
       virtual ::int_size getBorderSize() = 0;
 
 
@@ -313,6 +319,9 @@ namespace innate_subsystem
 
       bool isEnabled() override;
 
+      bool isWindow() override;
+
+      bool isVisible() override;
 
       bool isIconic() override;
 
@@ -377,7 +386,7 @@ namespace innate_subsystem
       // post message to this window
       void postMessage(unsigned int Msg, ::wparam wparam =0, ::lparam lparam =0) override;
 
-      void getClientRect(::int_rectangle &rc) override;
+      ::int_rectangle getClientRect() override;
       ::int_size getBorderSize() override;
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;

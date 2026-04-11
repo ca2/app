@@ -95,14 +95,18 @@ namespace subsystem
 
       //protected:
       // Creates a window to receive messages.
-      //virtual void createWindow(const ::scoped_string & scopedstrClassName);
+      //virtual void createWindow(const ::scoped_string & scopedstrClassName) = 0;
+      virtual void createApplicationMainTask() = 0;
+
+
+      virtual void postMainThreadMessage(int iMainThreadMessage) = 0;
 
       // Fills the wndClass argument and registers new class name in the Windows.
       //virtual void registerWindowClass(WNDCLASS *wndClass);
 
       // Runs main messages process cycle. The run() function returns
       // value returned by this function.
-      virtual int processMessages() = 0;
+      //virtual int processMessages() = 0;
 
       /**
        * Windows prodecure for main application window.
@@ -122,6 +126,14 @@ namespace subsystem
       //private:
       //static LocalMutex m_MDLMutex; // Modeless dialog ::list_base mutex.
       //static ::comparable_list_base<HWND> m_modelessDialogList;
+
+
+       virtual int getExitCode() = 0;
+
+
+      virtual void onMainThreadMessage(int iMainThreadMessage) = 0;
+
+
    };
 
     /**
@@ -151,6 +163,7 @@ namespace subsystem
 
 
       //virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
+       void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) override;
 
       /**
        * Runs windows application.
@@ -184,14 +197,17 @@ namespace subsystem
 
       //protected:
       // Creates a window to receive messages.
-      //virtual void createWindow(const ::scoped_string & scopedstrClassName);
+      //void createWindow(const ::scoped_string & scopedstrClassName) override;
+      void createApplicationMainTask() override;
+
+      void postMainThreadMessage(int iMainThreadMessage) override;
 
       // Fills the wndClass argument and registers new class name in the Windows.
       //virtual void registerWindowClass(WNDCLASS *wndClass);
 
       // Runs main messages process cycle. The run() function returns
       // value returned by this function.
-      int processMessages() override;
+      //int processMessages() override;
 
       /**
        * Windows prodecure for main application window.
@@ -211,6 +227,11 @@ namespace subsystem
       //private:
       //static LocalMutex m_MDLMutex; // Modeless dialog ::list_base mutex.
       //static ::comparable_list_base<HWND> m_modelessDialogList;
+
+      int getExitCode() override;
+
+      void onMainThreadMessage(int iMainThreadMessage) override;
+
    };
 
 

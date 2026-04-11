@@ -17,46 +17,37 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, write to the Free Software Foundation, Inc.,
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "Pen.h"
 
-//#include <crtdbg.h>
+#pragma once
 
-namespace innate_subsystem
+
+#include "acme/subsystem/_common_header.h"
+#include "acme/subsystem/Exception.h"
+#include "remoting_common/remoting.h"
+
+namespace subsystem
 {
-
-//Pen::Pen(int type, int width, const ::color::color & color)
-   Pen::Pen()
-//: m_pen(NULL)
-{
-  // m_pen = CreatePen(type, width, color);
-  //
-  // _ASSERT(m_pen != NULL);
-}
-
-Pen::~Pen()
-{
-  //DeleteObject(m_pen);
-}
-
-   // void * Pen::_HGDIOBJ()
-   // {
-   //    return m_pparticleThis->_HGDIOBJ();
-   // }
-
-
-   void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
-   ///: m_pen(NULL)
-{
-
-   m_pparticleThis->initialize_pen(epen, width, color);
-}
-   // m_pen = CreatePen(type, width, color);
    //
-   // _ASSERT(m_pen != NULL);
+   // Class that startup and cleanup Windows Sockets subsystem.
+   //
+   class CLASS_DECL_REMOTING_COMMON SocketStartup
+   {
+   public:
+      // Initializes Windows sockets subsystem.
+      // Throws exception if winsock already initialized or
+      // if was error during winsock startup.
+      static void startup(unsigned char loVer, unsigned char hiVer);
 
-}
+      //  Deinitializes Windows sockets subsystem.
+      // Throws exception if winsock does not initialized or
+      // if was error during winsock cleanup.
+      static void cleanup();
+
+   protected:
+      static bool m_isStarted;
+   };
+} // namespace subsystem

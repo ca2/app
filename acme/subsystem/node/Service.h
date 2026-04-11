@@ -44,7 +44,7 @@ namespace subsystem
     * @remark service is singleton (you can have only one service instance).
     * @author enikey.
     */
-   class CLASS_DECL_ACME ServiceInterface :
+   class ServiceInterface :
    virtual public ::subsystem::particle_interface<ServiceInterface>
    {
    public:
@@ -62,7 +62,7 @@ namespace subsystem
        * Deletes service instance.
        * @remark releases singleton pointer.
        */
-       virtual ~ServiceInterface() = 0;
+       //virtual ~ServiceInterface() = 0;
 
       virtual void initialize_service(const ::scoped_string & scopedstrName) = 0;
 

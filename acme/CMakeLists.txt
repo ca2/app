@@ -709,6 +709,8 @@ list(APPEND library_source
         platform/reference_referer.h
         platform/referencing_debugging.cpp
         platform/referencing_debugging.h
+   platform/registry.cpp
+   platform/registry.h
    platform/remoting.cpp
    platform/remoting.h
         platform/system.cpp
@@ -1562,6 +1564,8 @@ list(APPEND library_source
    subsystem/RegistryKey.cpp
    subsystem/RegistryKey.h
    #subsystem/resource.h
+   subsystem/resource_loader.cpp
+   subsystem/resource_loader.h
    #subsystem/SCMClient.cpp
    #subsystem/SCMClient.h
    #subsystem/Screen.cpp
@@ -2523,7 +2527,7 @@ if (${WIN32})
 
     list(APPEND library_source
 
-            #      operating_system/windows/console.cpp
+
             #      operating_system/windows/_factory.cpp
             #      operating_system/windows/file.cpp
             #      operating_system/windows/file_find.cpp
@@ -2579,6 +2583,7 @@ if (${WIN32})
             #operating_system/windows/calculate_etoolkit.cpp
             operating_system/windows/calculate_ewindowing.cpp
             operating_system/windows/callstack.cpp
+       operating_system/windows/console.cpp
        operating_system/windows/device_context.cpp
        operating_system/windows/device_context.h
             operating_system/windows/file1.cpp

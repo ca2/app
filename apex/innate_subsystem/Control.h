@@ -90,23 +90,23 @@ namespace innate_subsystem
 
       virtual void setTextVerticalAlignment(VerticalAlignment align) = 0;
 
+      // //
+      // // Sets input focus to this control
+      // //
       //
-      // Sets input focus to this control
+      // virtual void setFocus() = 0;
       //
-
-      virtual void setFocus() = 0;
-
+      // //
+      // // Return true if window has input focus
+      // //
       //
-      // Return true if window has input focus
+      // virtual bool hasFocus() = 0;
       //
-
-      virtual bool hasFocus() = 0;
-
+      // //
+      // // Puts this control foreground and activates it
+      // //
       //
-      // Puts this control foreground and activates it
-      //
-
-      virtual bool setForeground() = 0;
+      // virtual bool setForeground() = 0;
 
       //
       // Changes visible state of this control
@@ -114,17 +114,17 @@ namespace innate_subsystem
 
       virtual void setVisible(bool bVisible = true);
 
+      // //
+      // // Checks if this control is active (not disabled)
+      // //
       //
-      // Checks if this control is active (not disabled)
+      // virtual bool isEnabled() = 0;
       //
-
-      virtual bool isEnabled() = 0;
-
+      // //
+      // // Invalidates control
+      // //
       //
-      // Invalidates control
-      //
-
-      virtual void invalidate() = 0;
+      // virtual void invalidate() = 0;
 
       //
       // Gets text associated with window
@@ -268,41 +268,41 @@ namespace innate_subsystem
 
        void setTextVerticalAlignment(VerticalAlignment align) override;
 
+      // //
+      // // Sets input focus to this control
+      // //
       //
-      // Sets input focus to this control
+      //  void setFocus() override;
       //
-
-       void setFocus() override;
-
+      // //
+      // // Return true if window has input focus
+      // //
       //
-      // Return true if window has input focus
+      //  bool hasFocus() override;
       //
-
-       bool hasFocus() override;
-
+      // //
+      // // Puts this control foreground and activates it
+      // //
       //
-      // Puts this control foreground and activates it
+      //  bool setForeground() override;
       //
-
-       bool setForeground() override;
-
       //
       // Changes visible state of this control
       //
 
        void setVisible(bool visible) override;
-
       //
-      // Checks if this control is active (not disabled)
+      // //
+      // // Checks if this control is active (not disabled)
+      // //
       //
-
-       bool isEnabled() override;
-
+      //  bool isEnabled() override;
       //
-      // Invalidates control
+      // //
+      // // Invalidates control
+      // //
       //
-
-       void invalidate() override;
+      //  void invalidate() override;
 
       //
       // Gets text associated with window

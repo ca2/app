@@ -34,14 +34,14 @@ namespace subsystem
    /**
     * Pipe client factory.
     */
-   class CLASS_DECL_ACME PipeClientInterface :
+   class PipeClientInterface :
    virtual public ::subsystem::particle_interface<PipeClientInterface>
    {
    public:
 
 
       //PipeClient();
-      virtual ~PipeClientInterface() = 0;
+      //virtual ~PipeClientInterface() = 0;
 
       virtual ::pointer < NamedPipe  >connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) = 0;
 

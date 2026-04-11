@@ -65,7 +65,7 @@ namespace subsystem
     *
     * @author yuri, enikey.
     */
-   class CLASS_DECL_ACME GlobalMutexInterface :
+   class GlobalMutexInterface :
    virtual public ::subsystem::particle_interface<GlobalMutexInterface>,
       virtual public LockableInterface
    {
@@ -88,7 +88,7 @@ namespace subsystem
       /**
        * Deletes global mutex.
        */
-      virtual ~GlobalMutexInterface() = 0;
+//      virtual ~GlobalMutexInterface() = 0;
 
 
       virtual void initialize_global_mutex(const ::scoped_string & scopedstrName = 0, bool interSession = false, bool throwIfExist = false) = 0;

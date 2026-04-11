@@ -1,4 +1,4 @@
-// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2008,2009,2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -17,46 +17,18 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, write to the Free Software Foundation, Inc.,
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "Pen.h"
-
-//#include <crtdbg.h>
-
-namespace innate_subsystem
-{
-
-//Pen::Pen(int type, int width, const ::color::color & color)
-   Pen::Pen()
-//: m_pen(NULL)
-{
-  // m_pen = CreatePen(type, width, color);
-  //
-  // _ASSERT(m_pen != NULL);
-}
-
-Pen::~Pen()
-{
-  //DeleteObject(m_pen);
-}
-
-   // void * Pen::_HGDIOBJ()
-   // {
-   //    return m_pparticleThis->_HGDIOBJ();
-   // }
+//
+// #ifndef	SOCKDEFS_H
+// //#define SOCKDEFS_H
+#pragma once
 
 
-   void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
-   ///: m_pen(NULL)
-{
+#include "acme/subsystem/_common_header.h"
 
-   m_pparticleThis->initialize_pen(epen, width, color);
-}
-   // m_pen = CreatePen(type, width, color);
-   //
-   // _ASSERT(m_pen != NULL);
+#define socklen_t int
 
-}
+

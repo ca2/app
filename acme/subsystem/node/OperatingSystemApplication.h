@@ -39,7 +39,7 @@ namespace subsystem
     * Base Windows Application class.
     * Have hidden main window and main scopedstrMessage loop.
     */
-   class CLASS_DECL_ACME OperatingSystemApplicationInterface :
+   class OperatingSystemApplicationInterface :
       virtual public ::subsystem::particle_interface<OperatingSystemApplicationInterface>
    {
    public:
@@ -58,7 +58,7 @@ namespace subsystem
        * @remark it does not shutdown application if it's executing it
        * separate thread.
        */
-      virtual ~OperatingSystemApplicationInterface() = 0;
+      //virtual ~OperatingSystemApplicationInterface() = 0;
 
 
       virtual void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) = 0;

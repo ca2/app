@@ -26,8 +26,6 @@
 
 
 #include "acme/subsystem/_common_header.h"
-#include "acme/subsystem/_common_header.h"
-#include "openssl/pemerr.h"
 
 
 namespace subsystem
@@ -45,14 +43,14 @@ namespace subsystem
 
     };
 
-   class CLASS_DECL_ACME DesktopSelectorInterface :
+   class DesktopSelectorInterface :
       virtual public ::subsystem::particle_interface<DesktopSelectorInterface>
    {
    public:
       
 
       //DesktopSelector();
-      virtual ~DesktopSelectorInterface() =0 ;
+      //virtual ~DesktopSelectorInterface() =0 ;
       // This funtion gets a handle to a desktop that receive user inputs.
       // @return If success the function returns a handle to the desktop.
       // On fail the function returns zero.
@@ -183,7 +181,7 @@ namespace subsystem
        ::string getDesktopName(desk_t desktop) override;
 
 
-   } override;
+   };
 
 
 } // namespace subsystem

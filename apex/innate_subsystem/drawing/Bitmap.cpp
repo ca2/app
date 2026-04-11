@@ -65,12 +65,12 @@ namespace innate_subsystem
    }
 
 
-   void * Bitmap::_HGDIOBJ()
-   {
-
-      return m_pparticleThis->_HGDIOBJ();
-
-   }
+   // void * Bitmap::_HGDIOBJ()
+   // {
+   //
+   //    return m_pparticleThis->_HGDIOBJ();
+   //
+   // }
 
 
    void Bitmap::initialize_bitmap(const ::int_size & size)

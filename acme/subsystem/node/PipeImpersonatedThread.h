@@ -31,7 +31,7 @@ namespace subsystem
 {
 
 
-   class CLASS_DECL_ACME PipeImpersonatedThreadInterface :
+   class PipeImpersonatedThreadInterface :
    virtual public ::subsystem::particle_interface<PipeImpersonatedThreadInterface>,
          virtual public Thread
    {
@@ -40,7 +40,7 @@ namespace subsystem
 
 
       //PipeImpersonatedThread();
-      virtual ~PipeImpersonatedThreadInterface() = 0;
+      //virtual ~PipeImpersonatedThreadInterface() = 0;
 
 
       virtual void initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe) = 0;

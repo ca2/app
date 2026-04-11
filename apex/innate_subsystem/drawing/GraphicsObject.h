@@ -13,9 +13,9 @@ namespace innate_subsystem
    public:
 
 
-      virtual void * _HGDIOBJ();
+      //virtual void * _HGDIOBJ();
 
-      virtual bool is_temporary_graphics_object() const;
+      //virtual bool is_temporary_graphics_object() const;
 
 
       virtual void destroyGraphicsObject();

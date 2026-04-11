@@ -21,51 +21,41 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "acme/_operating_system.h"
-#include "Keyboard.h"
 
+//#ifndef SOCKET_EXCEPTION_H
+#pragma once
+//#define SOCKET_EXCEPTION_H
+
+#include "acme/subsystem/Exception.h"
+
+#include "sockdefs.h"
 
 namespace subsystem
 {
-
-   Keyboard::Keyboard()
+   class CLASS_DECL_REMOTING_COMMON SocketException : public ::subsystem::Exception
    {
+   public:
+      // Creates socket exception object with error value eq to current value
+      // of WSAGetLastError().
+      // Error string generates automaticly;
+      SocketException();
+      // Creates socket exception object with specified error numner.
+      // Error string generates automaticly;
+      SocketException(int error);
+      // Creates socket exception object with specified scopedstrMessage.
+      // Error number is sets to zero.
+      SocketException(const ::scoped_string & scopedstrMessage);
+      // Destructor.
+      virtual ~SocketException();
 
+      // Returns error number.
+      int errno();
 
+      //protected:
+      // Sets m_errno and generates error description string.
+      void setErrno(int error);
 
-   }
-
-
-   Keyboard::~Keyboard()
-   {
-
-
-   }
-
-
-   void Keyboard::getState(unsigned char state[256])
-   {
-      m_pparticleThis->getState(state);
-      // if (!GetKeyboardState(state)) {
-      //    throw SystemException();
-      // }
-   }
-
-   void Keyboard::setState(unsigned char state[256])
-   {
-      //if (!SetKeyboardState(state)) {
-        // throw SystemException();
-      //}
-      m_pparticleThis->setState(state);
-   }
-
-   bool Keyboard::isKeyPressed(unsigned char vkCode)
-   {
-      //return (GetAsyncKeyState(vkCode) & 0x8000) != 0;
-
-      return m_pparticleThis->isKeyPressed(vkCode);
-   }
-
-
-} //namespace subsystem
+      //protected:
+      int m_errno;
+   };
+} // namespace subsystem

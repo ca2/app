@@ -34,6 +34,8 @@
 
 namespace innate_subsystem
 {
+
+    const int SCROLL_STEP = 5;
    class CLASS_DECL_APEX ScrollBarInterface :
    virtual public ::subsystem::particle_interface<ScrollBarInterface>,
    virtual public Window

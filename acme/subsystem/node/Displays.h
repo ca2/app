@@ -32,12 +32,12 @@
 
 namespace  subsystem
 {
-   class CLASS_DECL_ACME DisplaysInterface :
+   class DisplaysInterface :
    virtual public ::subsystem::particle_interface<DisplaysInterface>
    {
    public:
       //Displays();
-      virtual ~DisplaysInterface() =0;
+      //virtual ~DisplaysInterface() =0;
 
       // If a display does not exist now the function return an empty rectangle.
       virtual void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) = 0;

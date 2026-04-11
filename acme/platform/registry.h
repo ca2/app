@@ -49,18 +49,14 @@ namespace platform
 
       ::file::path   m_path;
 
+      static ::pointer < registry > create_from_file(const ::file::path & pathRegistry);
 
       virtual void open_from_file(const ::file::path & path) = 0;
-
       virtual void flush() = 0;
-
       virtual void close() = 0;
-
       virtual ::pointer < registry_key_interface > open_key(const ::file::path & path) = 0;
-
       virtual ::pointer < registry_key_interface > create_key(const ::file::path & path) = 0;
-
-      virtual void delete_key(const ::file::path & path) = 0;
+      virtual void erase_key(const ::file::path & path) = 0;
 
 
    };
@@ -77,10 +73,10 @@ namespace platform
       virtual void close() =0;
 
 
-      virtual void set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) = 0;
-      virtual void set_dword(const ::scoped_string &scopedstrName, unsigned int value) = 0;
-      virtual void set_qword(const ::scoped_string &scopedstrName, unsigned long long value) = 0;
-      virtual void set_binary(const ::scoped_string &scopedstrName, const ::block &block) = 0;
+      virtual ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) = 0;
+      virtual ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int u) = 0;
+      virtual ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long ull) = 0;
+      virtual ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block &block) = 0;
 
 
       virtual ::e_status _get_string(const ::scoped_string &scopedstrName, ::string &str) = 0;
@@ -89,9 +85,47 @@ namespace platform
       virtual ::e_status _get_binary(const ::scoped_string &scopedstrName, ::memory & memory) = 0;
 
 
-      virtual void erase_payload(const ::scoped_string &scopedstrName) = 0;
-      virtual bool has_payload(const ::scoped_string &scopedstrName) = 0;
-      virtual enum_registry payload_type(const ::scoped_string &scopedstrName) = 0;
+      virtual ::e_status _erase_payload(const ::scoped_string &scopedstrName) = 0;
+      virtual ::e_status _has_payload(const ::scoped_string &scopedstrName, bool & bExists) = 0;
+      virtual ::e_status _payload_type(const ::scoped_string &scopedstrName, enum_registry & eregistry) = 0;
+
+      
+      inline void set_string(const ::scoped_string &scopedstrName, const ::scoped_string & scopedstr)
+      {
+         auto estatus = _set_string(scopedstrName, scopedstr);
+         if (!estatus)
+            throw ::exception(estatus);
+      }
+
+      inline void set_dword(const ::scoped_string &scopedstrName, unsigned int u)
+      {
+         auto estatus = _set_dword(scopedstrName, u);
+         if (!estatus)
+            throw ::exception(estatus);
+      }
+
+      inline void set_qword(const ::scoped_string &scopedstrName, unsigned long long ull)
+      {
+         auto estatus = _set_qword(scopedstrName, ull);
+         if (!estatus)
+            throw ::exception(estatus);
+      }
+
+      /*
+          Gets a binary value.
+
+          Usage pattern:
+              size_t size = 0;
+              RegXGetBinary(key, "Blob", NULL, &size);
+              void *buf = malloc(size);
+              RegXGetBinary(key, "Blob", buf, &size);
+      */
+      inline void set_binary(const ::scoped_string &scopedstrName, const ::block &block)
+      {
+         auto estatus = _set_binary(scopedstrName, block);
+         if (!estatus)
+            throw ::exception(estatus);
+      }
 
 
       ::string get_string(const ::scoped_string &scopedstrName)
@@ -99,16 +133,16 @@ namespace platform
          ::string str;
          auto estatus = _get_string(scopedstrName, str);
          if (!estatus)
-            throw estatus;
+            throw ::exception(estatus);
          return ::transfer(str);
       }
 
       inline unsigned int long get_dword(const ::scoped_string &scopedstrName)
       {
          unsigned int u = 0;
-         auto estatus = _get_qword(scopedstrName, u);
+         auto estatus = _get_dword(scopedstrName, u);
          if (!estatus)
-            throw estatus;
+            throw ::exception(estatus);
          return u;
       }
 
@@ -117,7 +151,7 @@ namespace platform
          unsigned long long ull = 0;
          auto estatus = _get_qword(scopedstrName, ull);
          if (!estatus)
-            throw estatus;
+            throw ::exception(estatus);
          return ull;
       }
 
@@ -135,8 +169,34 @@ namespace platform
          ::memory memory;
          auto estatus = _get_binary(scopedstrName, memory);
          if (!estatus)
-            throw estatus;
+            throw ::exception(estatus);
          return ::transfer(memory);
+      }
+
+      inline void erase_payload(const ::scoped_string &scopedstrName)
+      {
+         auto estatus = _erase_payload(scopedstrName);
+         if (!estatus)
+            throw ::exception(estatus);
+      }
+
+
+      inline bool has_payload(const ::scoped_string &scopedstrName)
+      {
+         bool bExists = false;
+         auto estatus = _has_payload(scopedstrName, bExists);
+         if (!estatus)
+            throw estatus;
+         return bExists;
+      }
+
+      inline enum_registry payload_type(const ::scoped_string &scopedstrName)
+      {
+         enum_registry eregistry = e_registry_none;
+         auto estatus = _payload_type(scopedstrName, eregistry);
+         if (!estatus)
+            throw estatus;
+         return eregistry;
       }
 
    };
@@ -154,10 +214,10 @@ namespace platform
 
       void close() override;
 
-      void set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) override;
-      void set_dword(const ::scoped_string &scopedstrName, unsigned int value) override;
-      void set_qword(const ::scoped_string &scopedstrName, unsigned long long value) override;
-      void set_binary(const ::scoped_string &scopedstrName, const ::block &block) override;
+      ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) override;
+      ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int u) override;
+      ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long ull) override;
+      ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block &block) override;
 
       ::e_status _get_string(const ::scoped_string &scopedstrName, ::string &str) override;
       ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u) override;
@@ -165,9 +225,9 @@ namespace platform
       ::e_status _get_binary(const ::scoped_string &scopedstrName, ::memory &memory) override;
 
 
-      void erase_payload(const ::scoped_string &scopedstrName) override;
-      bool has_payload(const ::scoped_string &scopedstrName) override;
-      enum_registry payload_type(const ::scoped_string &scopedstrName) override;
+      ::e_status _erase_payload(const ::scoped_string &scopedstrName) override;
+      ::e_status _has_payload(const ::scoped_string &scopedstrName, bool & bExists) override;
+      ::e_status _payload_type(const ::scoped_string &scopedstrName, enum_registry & eregistry) override;
 
    };
 

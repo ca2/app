@@ -187,6 +187,33 @@ namespace file
    }
 
 
+   ::string_array_base path::parts() const
+   {
+
+      auto path = *this;
+
+      if (path.is_empty())
+      {
+
+         return {};
+      }
+
+      ::string_array_base stra;
+
+      do
+      {
+
+         stra.add(path.name());
+
+         path = path.folder();
+
+      }
+      while (path.has_character());
+
+      return ::transfer(stra);
+
+   }
+
 
 } // namespace file
 

@@ -1,4 +1,4 @@
-// Copyright (C) 2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2008,2009,2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -21,37 +21,44 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "CommandLineArguments.h"
+
+//#ifndef SOCKET_STREAM_H
+#pragma once
+//#define SOCKET_STREAM_H
+
+#include "acme/subsystem/io/Channel.h"
+
+#include "remoting/remoting_common/network/socket/SocketAddressIPv4.h"
+//#include "remoting/remoting_common/network/socket/SocketIPv4.h"
+#include "remoting/remoting_common/network/socket/SocketAddressIPv4.h"
+
+#include "acme/exception/io.h"
 
 namespace subsystem
 {
-
-
-   CommandLineArguments::CommandLineArguments()
+   class CLASS_DECL_REMOTING_COMMON SocketStream : public Channel
    {
-   }
+   public:
+      SocketStream(SocketIPv4 *);
+      virtual ~SocketStream();
 
-   CommandLineArguments::~CommandLineArguments()
-   {
-   }
+      //
+      // Inherited from Channel.
+      //
 
+      virtual size_t read(void *, size_t);
 
-   void CommandLineArguments::initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat)
-   {
+      virtual memsize defer_write(const void *, memsize);
 
-      m_pparticleThis->initialize_command_line_arguments(scopedstrCommandLineInOperatingSystemFormat);
+      // Closes connection and break all blocked operation.
+      // @throw ::subsystem::Exception on error.
+      virtual void close();
 
-   }
+      virtual size_t available();
 
-   ::string_array_base CommandLineArguments::getArguments() const
-   {
+   protected:
+      SocketIPv4 *m_socket;
 
-      //return m_straArguments;
-      return m_pparticleThis->getArguments();
-
-   }
-
+      friend class SocketIPv4;
+   };
 } // namespace subsystem
-
-

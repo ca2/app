@@ -54,11 +54,31 @@ namespace innate_subsystem
       m_pparticleThis->initialize_graphics(pdevicecontext);
    }
 
+   void Graphics::initialize_graphics(BitmapInterface *pbitmap)
+   {
+      m_pparticleThis->initialize_graphics(pbitmap);
+   }
+
    void Graphics::setBkMode(bool transparent)
    {
       //SetBkMode(m_dc->m_dc, transparent ? TRANSPARENT : OPAQUE);
       m_pparticleThis->setBkMode(transparent);
    }
+
+   void Graphics::setBlendModeOn(bool bSet)
+   {
+
+      m_pparticleThis->setBlendModeOn(bSet);
+
+   }
+
+   void Graphics::setAntiAliasOn(bool bOn)
+   {
+
+      m_pparticleThis->setAntiAliasOn(bOn);
+
+   }
+
 
    void Graphics::setTextColor(const ::color::color & color)
    {
@@ -112,6 +132,13 @@ namespace innate_subsystem
       m_pparticleThis->fillRect(l, t, r, b, pbrush);
    }
 
+   void Graphics::fillRect(const ::int_rectangle & rectangle, const ::color::color & color)
+   {
+
+      m_pparticleThis->fillRect(rectangle, color);
+
+   }
+
    void Graphics::ellipse(int l, int t, int r, int b)
    {
       //Ellipse(m_dc->m_dc, l, t, r, b);
@@ -137,6 +164,14 @@ namespace innate_subsystem
       //
       // memDC.selectObject(oldBitmap);
    }
+
+   void Graphics::drawBitmap(BitmapInterface *pbitmap, int x, int y, int srcx, int srcy, int srcW, int srcH)
+   {
+
+      m_pparticleThis->drawBitmap(pbitmap, x, y, srcx, srcy, srcW, srcH);
+
+   }
+
 
    void Graphics::drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format)
    {

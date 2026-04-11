@@ -29,15 +29,15 @@ namespace innate_subsystem
    class GraphicsObject;
 
 
-    enum enum_id
+    enum enum_control_id
     {
-        IDOK = 1, // is one of the standard IDs, others include:
-        IDCANCEL = 2,
-        IDABORT = 3,
-        IDRETRY = 4,
-        IDIGNORE = 5,
-        IDYES = 6,
-        IDNO = 7,
+        e_control_id_ok = 1, // IDOK// is one of the standard IDs, others include:
+        e_control_id_cancel = 2, // IDCANCEL
+        e_control_id_abort = 3, // IDABORT
+        e_control_id_retry = 4, // IDRETRY
+        e_control_id_ignore = 5, // IDIGNORE
+        e_control_id_yes = 6, // IDYES
+        e_control_id_no = 7, // IDNO
     };
 
 

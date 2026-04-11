@@ -22,12 +22,12 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "ToolBar.h"
+#include "Toolbar.h"
 //#include <CommCtrl.h>
 
 namespace innate_subsystem
 {
-   ToolBar::ToolBar()
+   Toolbar::Toolbar()
    {
       // INITCOMMONCONTROLSEX initCtrlEx;
       //
@@ -39,21 +39,21 @@ namespace innate_subsystem
       // m_initialStr = -1;
    }
 
-   ToolBar::~ToolBar()
+   Toolbar::~Toolbar()
    {
       // if (m_hWndToolbar) {
       //    DestroyWindow(m_hWndToolbar);
       // }
    }
 
-   bool ToolBar::create(int _tbID, const ::operating_system::window & operatingsystemwindowParent, unsigned int dwStyle)
+   bool Toolbar::create(int _tbID, const ::operating_system::window & operatingsystemwindowParent, unsigned int dwStyle)
    {
 
       return m_pparticleThis->create(_tbID, operatingsystemwindowParent, dwStyle);
       // dwStyle |= WS_CHILD;
       //
       // _ASSERT(m_hWndToolbar == 0);
-      // // Create the ToolBar window
+      // // Create the Toolbar window
       // m_hWndToolbar = CreateWindowEx(0, TOOLBARCLASSNAME, 0, dwStyle,
       //                                0, 0, 0, 0,
       //                                _parentHwnd,
@@ -70,13 +70,13 @@ namespace innate_subsystem
       // return !!m_hWndToolbar;
    }
 
-   void ToolBar::setViewAutoButtons(int iButton, int style)
+   void Toolbar::setViewAutoButtons(int iButton, int style)
    {
       //m_autoButtons[iButton] = style;
       return m_pparticleThis->setViewAutoButtons(iButton, style);
    }
 
-   void ToolBar::loadToolBarfromRes(unsigned int id)
+   void Toolbar::loadToolbarfromRes(unsigned int id)
    {
       // BITMAP bmp;
       //
@@ -88,18 +88,18 @@ namespace innate_subsystem
       // m_numberTB = m_width / m_height;
       // m_id = id;
       // DeleteObject(hbmp);
-      m_pparticleThis->loadToolBarfromRes(id);
+      m_pparticleThis->loadToolbarfromRes(id);
    }
 
-   void ToolBar::setButtonsRange(unsigned int id)
+   void Toolbar::setButtonsRange(unsigned int id)
    {
       //m_initialStr = id;
       m_pparticleThis->setButtonsRange(id);
    }
 
-   void ToolBar::attachToolBar(const ::operating_system::window & operatingsystemwindow)
+   void Toolbar::attachToolbar(const ::operating_system::window & operatingsystemwindow)
    {
-      m_pparticleThis->attachToolBar(operatingsystemwindow);
+      m_pparticleThis->attachToolbar(operatingsystemwindow);
       // std::vector<TBBUTTON> tbuttons;
       //
       // for (int i=0; i < m_numberTB; i++) {
@@ -141,7 +141,7 @@ namespace innate_subsystem
       // SendMessage(m_hWndToolbar, TB_SETINDENT, 4, 0);
    }
 
-   bool ToolBar::enableButton(int idButton, bool enable)
+   bool Toolbar::enableButton(int idButton, bool enable)
    {
       // LRESULT result = SendMessage(m_hWndToolbar, TB_ENABLEBUTTON,
       //                              idButton, MAKELONG(enable, 0));
@@ -149,7 +149,7 @@ namespace innate_subsystem
       return m_pparticleThis->enableButton(idButton, enable);
    }
 
-   bool ToolBar::pressButton(int idButton, bool press)
+   bool Toolbar::pressButton(int idButton, bool press)
    {
       // LRESULT result = SendMessage(m_hWndToolbar, TB_PRESSBUTTON,
       //                              idButton, MAKELONG(press, 0));
@@ -157,7 +157,7 @@ namespace innate_subsystem
       return m_pparticleThis->pressButton(idButton, press);
    }
 
-   bool ToolBar::getButtonRect(int nIndex, ::int_rectangle & buttonRect)
+   bool Toolbar::getButtonRect(int nIndex, ::int_rectangle & buttonRect)
    {
       // LRESULT result = SendMessage(m_hWndToolbar, TB_GETITEMRECT,
       //                              nIndex, (::lparam)buttonRect);
@@ -166,7 +166,7 @@ namespace innate_subsystem
       return m_pparticleThis->getButtonRect(nIndex, buttonRect);
    }
 
-   bool ToolBar::setButtonsSize(const ::int_size & size)
+   bool Toolbar::setButtonsSize(const ::int_size & size)
    {
       // LRESULT result = SendMessage(m_hWndToolbar, TB_SETBUTTONSIZE,
       //                              0, MAKELONG(width, height));
@@ -178,7 +178,7 @@ namespace innate_subsystem
       return m_pparticleThis->setButtonsSize(size);
    }
 
-   void ToolBar::autoSize()
+   void Toolbar::autoSize()
    {
       // LRESULT style = SendMessage(m_hWndToolbar, TB_GETSTYLE,  0, 0);
       // if (style & CCS_NORESIZE) {
@@ -197,19 +197,19 @@ namespace innate_subsystem
       m_pparticleThis->autoSize();
    }
 
-   int ToolBar::getButtonsHeight()
+   int Toolbar::getButtonsHeight()
    {
       // return HIWORD(SendMessage(m_hWndToolbar, TB_GETBUTTONSIZE, 0, 0));
       return m_pparticleThis->getButtonsHeight();
    }
 
-   int ToolBar::getButtonsWidth()
+   int Toolbar::getButtonsWidth()
    {
       // return LOWORD(SendMessage(m_hWndToolbar, TB_GETBUTTONSIZE, 0, 0));
       return m_pparticleThis->getButtonsWidth();
    }
 
-   int ToolBar::getHeight()
+   int Toolbar::getHeight()
    {
       // RECT r;
       // GetWindowRect(m_hWndToolbar, &r);
@@ -217,7 +217,7 @@ namespace innate_subsystem
       return m_pparticleThis->getHeight();
    }
 
-   int ToolBar::getTotalWidth()
+   int Toolbar::getTotalWidth()
    {
       // SIZE size;
       // SendMessage(m_hWndToolbar, TB_GETMAXSIZE, 0, reinterpret_cast<::lparam>(&size));
@@ -225,20 +225,20 @@ namespace innate_subsystem
       return m_pparticleThis->getTotalWidth();
    }
 
-   void ToolBar::show()
+   void Toolbar::show()
    {
       // ShowWindow(m_hWndToolbar, SW_SHOW);
 
       return m_pparticleThis->show();
    }
 
-   void ToolBar::hide()
+   void Toolbar::hide()
    {
       // ShowWindow(m_hWndToolbar, SW_HIDE);
       return m_pparticleThis->hide();
    }
 
-   bool ToolBar::isVisible()
+   bool Toolbar::isVisible()
    {
       // LRESULT style = GetWindowLong(m_hWndToolbar, GWL_STYLE);
       // return !!(style & WS_VISIBLE);
@@ -246,7 +246,7 @@ namespace innate_subsystem
       return m_pparticleThis->isVisible();
    }
 
-   bool ToolBar::checkButton(int idButton, bool check)
+   bool Toolbar::checkButton(int idButton, bool check)
    {
       // LRESULT result = SendMessage(m_hWndToolbar, TB_CHECKBUTTON,
       //         idButton, MAKELONG(check, 0));
@@ -254,7 +254,7 @@ namespace innate_subsystem
       return m_pparticleThis->checkButton(idButton, check);
    }
 
-   ::lresult ToolBar::getState(int idButton)
+   ::lresult Toolbar::getState(int idButton)
    {
       // LRESULT result = SendMessage(m_hWndToolbar, TB_GETSTATE,
       //                  idButton, 0);
@@ -262,7 +262,7 @@ namespace innate_subsystem
       return m_pparticleThis->getState(idButton);
    }
 
-   ::lresult ToolBar::addBitmap(int nButtons, unsigned int bitmapID)
+   ::lresult Toolbar::addBitmap(int nButtons, unsigned int bitmapID)
    {
       // TBADDBITMAP resBitmap;
       //
@@ -273,7 +273,7 @@ namespace innate_subsystem
       return m_pparticleThis->addBitmap(nButtons, bitmapID);
    }
 
-   ::lresult ToolBar::addSystemBitmap(unsigned int stdBitmapID)
+   ::lresult Toolbar::addSystemBitmap(unsigned int stdBitmapID)
    {
       // TBADDBITMAP resBitmap;
       //
@@ -283,7 +283,7 @@ namespace innate_subsystem
       return m_pparticleThis->addSystemBitmap(stdBitmapID);
    }
 
-   bool ToolBar::addButton(int iBitmap, int idCommand, unsigned char state, unsigned char style, unsigned int dwData, int iString)
+   bool Toolbar::addButton(int iBitmap, int idCommand, unsigned char state, unsigned char style, unsigned int dwData, int iString)
    {
       // TBBUTTON tbb;
       //
@@ -302,7 +302,7 @@ namespace innate_subsystem
       return m_pparticleThis->addButton(iBitmap, idCommand, state, style, dwData, iString);
    }
 
-   bool ToolBar::addNButton(int nButtons, toolbar_button_t * ptoolbarbutton)
+   bool Toolbar::addNButton(int nButtons, toolbar_button_t * ptoolbarbutton)
    {
       // LRESULT result = SendMessage(m_hWndToolbar, TB_ADDBUTTONS, nButtons, reinterpret_cast<::lparam>(tbb));
       // if (result) {

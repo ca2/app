@@ -27,23 +27,23 @@
 namespace innate_subsystem
 {
 
-   void ControlInterface::setVisible(bool visible)
-   {
-
-      if (visible)
-      {
-
-         show();
-
-      }
-      else
-      {
-
-         hide();
-
-      }
-      //ShowWindow(m_hwnd, visible ? SW_SHOW : SW_HIDE);
-   }
+   // void ControlInterface::setVisible(bool visible)
+   // {
+   //
+   //    if (visible)
+   //    {
+   //
+   //       show();
+   //
+   //    }
+   //    else
+   //    {
+   //
+   //       hide();
+   //
+   //    }
+   //    //ShowWindow(m_hwnd, visible ? SW_SHOW : SW_HIDE);
+   // }
 
 
 Control::Control()
@@ -126,24 +126,24 @@ void Control::setTextVerticalAlignment(VerticalAlignment align)
    m_pparticleThis->setTextVerticalAlignment(align);
 }
 
-void Control::setFocus()
-{
-  //::SetFocus(m_hwnd);
-   m_pparticleThis->setFocus();
-}
-
-bool Control::hasFocus()
-{
-  ///return (::GetFocus() == m_hwnd) || (GetForegroundWindow() == m_hwnd);
-  return m_pparticleThis->hasFocus();
-}
-
-bool Control::setForeground()
-{
-  //return SetForegroundWindow(getWindow()) != 0;
-
-   return m_pparticleThis->setForeground();
-}
+// void Control::setFocus()
+// {
+//   //::SetFocus(m_hwnd);
+//    m_pparticleThis->setFocus();
+// }
+//
+// bool Control::hasFocus()
+// {
+//   ///return (::GetFocus() == m_hwnd) || (GetForegroundWindow() == m_hwnd);
+//   return m_pparticleThis->hasFocus();
+// }
+//
+// bool Control::setForeground()
+// {
+//   //return SetForegroundWindow(getWindow()) != 0;
+//
+//    return m_pparticleThis->setForeground();
+// }
 
 void Control::setVisible(bool visible)
 {
@@ -151,17 +151,17 @@ void Control::setVisible(bool visible)
    m_pparticleThis->setVisible(visible);
 }
 
-bool Control::isEnabled()
-{
-  ///return (!isStyleEnabled(WS_DISABLED));
-  return m_pparticleThis->isEnabled();
-}
-
-void Control::invalidate()
-{
-  //InvalidateRect(m_hwnd, NULL, TRUE);
-   m_pparticleThis->invalidate();
-}
+// bool Control::isEnabled()
+// {
+//   ///return (!isStyleEnabled(WS_DISABLED));
+//   return m_pparticleThis->isEnabled();
+// }
+//
+// void Control::invalidate()
+// {
+//   //InvalidateRect(m_hwnd, NULL, TRUE);
+//    m_pparticleThis->invalidate();
+// }
 
 ::string Control::getText()
 {

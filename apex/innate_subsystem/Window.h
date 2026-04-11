@@ -35,6 +35,16 @@ namespace innate_subsystem
 {
 
 
+   enum enum_mouse
+   {
+
+      e_mouse_left         = 1,
+      e_mouse_middle       = 2,
+      e_mouse_right        = 4,
+      e_mouse_wheel_up     = 8,
+      e_mouse_wheel_down   = 16,
+
+   };
 
 
    class CLASS_DECL_APEX WindowInterface :
@@ -66,12 +76,21 @@ namespace innate_subsystem
                         int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) = 0;
       virtual bool destroyWindow() = 0;
 
+      virtual void setClipboardViewerInterest() = 0;
+      virtual bool onDrawClipboard() = 0;
       // setClass()
       // Set a class name only to the new window created by createWindow
       virtual void setClass(const ::scoped_string  & scopedstrWindowClassName) = 0;
 
       // We want WM_KEYDOWN scopedstrMessage when enter is pressed
       virtual bool we_want_WM_KEYDOWN_when_enter_is_pressed() const {return false;}
+
+
+      virtual void setShowCursor(bool bShowCursor) = 0;
+      virtual bool shouldShowCursor() = 0;
+
+      virtual void setDoubleBuffering(bool bDoubleBuffering) = 0;
+      virtual bool isDoubleBuffering() = 0;
 
       // basic window manipulation procedures
       virtual void show() = 0;
@@ -101,17 +120,20 @@ namespace innate_subsystem
 
       virtual bool setForeground() = 0;
 
+      // //
+      // // Changes visible state of this control
+      // //
       //
-      // Changes visible state of this control
-      //
-
-      virtual void setVisible(bool visible) = 0;
+      // virtual void setVisible(bool visible) = 0;
 
       //
       // Checks if this control is active (not disabled)
       //
 
       virtual bool isEnabled() = 0;
+
+
+      virtual bool isIconic() = 0;
 
       //
       // Invalidates control
@@ -177,13 +199,9 @@ namespace innate_subsystem
       virtual void getClientRect(::int_rectangle &rc) = 0;
       virtual ::int_size getBorderSize() = 0;
 
-      //virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
 
-      static const int MOUSE_LDOWN  = 1;
-      static const int MOUSE_MDOWN  = 2;
-      static const int MOUSE_RDOWN  = 4;
-      static const int MOUSE_WUP    = 8;
-      static const int MOUSE_WDOWN  = 16;
+
+
 
    // private:
    //    // This function may be implement in child class.
@@ -195,8 +213,11 @@ namespace innate_subsystem
    virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) = 0;
 
 
+   virtual bool onCreate(void * pCreateStruct) = 0;
 
+   virtual bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
 
+      virtual void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) = 0;
 
    // protected:
    //    HWND m_hWnd;
@@ -234,9 +255,20 @@ namespace innate_subsystem
                         int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) override;
       bool destroyWindow() override;
 
+      void setClipboardViewerInterest() override;
+      bool onDrawClipboard() override;
+
       // setClass()
       // Set a class name only to the new window created by createWindow
       void setClass(const ::scoped_string  & scopedstrWindowClassName) override;
+
+
+      void setShowCursor(bool bShowCursor) override;
+      bool shouldShowCursor() override;
+
+      virtual void setDoubleBuffering(bool bDoubleBuffering) override;
+      virtual bool isDoubleBuffering() override;
+
 
       // basic window manipulation procedures
       void show() override;
@@ -247,6 +279,9 @@ namespace innate_subsystem
       bool setSize(const ::int_size & size) override;
       bool setPosition(int xPos, int yPos) override;
       void setWindowText(const ::scoped_string  & scopedstrText) override;
+
+
+
 
       //
       // Sets input focus to this control
@@ -266,17 +301,20 @@ namespace innate_subsystem
 
       bool setForeground() override;
 
+      // //
+      // // Changes visible state of this control
+      // //
       //
-      // Changes visible state of this control
-      //
-
-      void setVisible(bool visible) override;
+      // void setVisible(bool visible) override;
 
       //
       // Checks if this control is active (not disabled)
       //
 
       bool isEnabled() override;
+
+
+      bool isIconic() override;
 
       //
       // Invalidates control
@@ -344,11 +382,11 @@ namespace innate_subsystem
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;
 
-      static const int MOUSE_LDOWN  = 1;
-      static const int MOUSE_MDOWN  = 2;
-      static const int MOUSE_RDOWN  = 4;
-      static const int MOUSE_WUP    = 8;
-      static const int MOUSE_WDOWN  = 16;
+      // static const int MOUSE_LDOWN  = 1;
+      // static const int MOUSE_MDOWN  = 2;
+      // static const int MOUSE_RDOWN  = 4;
+      // static const int MOUSE_WUP    = 8;
+      // static const int MOUSE_WDOWN  = 16;
 
    // private:
    //    // This function may be implement in child class.
@@ -358,6 +396,13 @@ namespace innate_subsystem
        bool onSysCommand(::wparam wparam, ::lparam lparam) override;
        bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override;
        bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override;
+
+      bool onCreate(void * pCreateStruct) override;
+
+      bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) override;
+
+
+      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override;
 
    // protected:
    //    HWND m_hWnd;

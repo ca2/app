@@ -30,6 +30,7 @@
 
 namespace subsystem
 {
+
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
    class CommandLineArgumentsInterface :
@@ -41,6 +42,8 @@ namespace subsystem
 
       //CommandLineArguments();
       //virtual ~CommandLineArgumentsInterface() = 0;
+
+      virtual void initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat) = 0;
 
       // Copies internal argument ::array_base to the out variable.
       virtual ::string_array_base getArguments() const = 0;
@@ -60,6 +63,9 @@ namespace subsystem
 
       CommandLineArguments();
       ~CommandLineArguments() override;
+
+
+      void initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat) override;
 
       // Copies internal argument ::array_base to the out variable.
       ::string_array_base getArguments() const override;

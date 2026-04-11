@@ -40,7 +40,7 @@ namespace subsystem
     *
     * @author enikey.
     */
-   class CLASS_DECL_ACME ShellInterface :
+   class ShellInterface :
    virtual public ::subsystem::particle_interface<ShellInterface>
    {
    public:
@@ -48,7 +48,7 @@ namespace subsystem
 
 
       //Shell();
-      virtual ~ShellInterface() = 0;
+      //virtual ~ShellInterface() = 0;
       /**
        * Runs application as administrator and waits until execution finished.
        * @param pathToFile path to executable.

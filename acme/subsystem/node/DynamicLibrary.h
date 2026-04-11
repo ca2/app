@@ -34,7 +34,7 @@ namespace subsystem
    /**
    Dynamic library class.
    */
-   class CLASS_DECL_ACME DynamicLibraryInterface :
+   class DynamicLibraryInterface :
       virtual public ::subsystem::particle_interface<DynamicLibraryInterface>
 
    {

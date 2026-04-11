@@ -32,13 +32,13 @@ namespace subsystem
 {
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
-   class CLASS_DECL_ACME ProcessHandleInterface :
+   class ProcessHandleInterface :
    virtual public ::subsystem::particle_interface<ProcessHandleInterface>
 
    {
    public:
       //ProcessHandle();
-      virtual ~ProcessHandleInterface() =0 ;
+      //virtual ~ProcessHandleInterface() =0 ;
 
       // @throws ::subsystem::Exception on an error.
       virtual void openProcess(unsigned int dwDesiredAccess,

@@ -141,6 +141,33 @@ namespace subsystem
       //   throw SystemException();
       // }
    }
+
+
+   /**
+ * Called from service control manager when service needs to start.
+ */
+   void Service::onStart()
+   {
+
+
+   }
+   /**
+    * Service main.
+    */
+   void Service::main()
+   {
+
+
+   }
+   /**
+    * Called from service control manager when service needs to stop/
+    */
+   void Service::onStop()
+   {
+
+
+   }
+
 } // namespace subsystem
 
 

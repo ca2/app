@@ -33,7 +33,7 @@ namespace subsystem
    /**
     * Contains information about executable file version info.
     */
-   class CLASS_DECL_ACME VersionInfoInterface :
+   class VersionInfoInterface :
       virtual public ::subsystem::particle_interface<VersionInfoInterface>
    {
    public:
@@ -43,7 +43,7 @@ namespace subsystem
        * @throws SystemException on fail.
        */
       //VersionInfo(const ::file::path & pathToFile);
-      virtual ~VersionInfoInterface() = 0;
+      //virtual ~VersionInfoInterface() = 0;
 
 
       virtual void initialize_version_info(const ::file::path & pathToFile) = 0;

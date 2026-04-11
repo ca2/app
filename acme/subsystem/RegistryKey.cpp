@@ -102,7 +102,7 @@ namespace subsystem
 
       try
       {
-         m_pregistrykey->m_pregistry->delete_key( scopedstrSubkey);
+         m_pregistrykey->m_pregistry->erase_key( scopedstrSubkey);
       }
       catch (...)
       {

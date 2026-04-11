@@ -71,7 +71,7 @@ virtual public ::subsystem::composite<PenInterface>
       ~Pen() override;
 
 
-      void * _HGDIOBJ() override;
+      //void * _HGDIOBJ() override;
 
       void initialize_pen(enum_pen epen, int width, const ::color::color & color) override;
 

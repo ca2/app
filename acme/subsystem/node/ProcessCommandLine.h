@@ -32,44 +32,41 @@ namespace subsystem
 {
 
    // This class is an interface for a primitive command line parser
-   class CLASS_DECL_ACME ProcessCommandLineInterface :
+   class ProcessCommandLineInterface :
       virtual public ::subsystem::particle_interface<ProcessCommandLineInterface>
    {
    public:
 
       //protected:
-      ::pointer < CommandLineArgumentsInterface > m_pwindowscommandlinearguments;
-
-      ::string_array m_strParam;
-      ::array_base<::pair<::string, ::string>> m_strParams;
+      //::pointer < CommandLineArgumentsInterface > m_pwindowscommandlinearguments;
 
 
-      ProcessCommandLineInterface();
-      ~ProcessCommandLineInterface() override;
+      //ProcessCommandLineInterface();
+      //virtual ~ProcessCommandLineInterface()  = 0;
 
 
       virtual void initialize_process_command_line() = 0;
 
       // returns the number of arguments in command line
       // for example, program: help
-      virtual ::collection::count getArgumentsCount();
+      virtual ::collection::count getArgumentsCount() = 0;
 
       // returns the number of options in command line
       // for example, -V=123456
-      virtual ::collection::count getOptionsCount();
+      virtual ::collection::count getOptionsCount() = 0;
 
       // returns the value of parameter by valName
-      virtual bool findOptionValue(const ::scoped_string & scopedstrOptionName, ::string & strOut);
+      virtual bool findOptionValue(const ::scoped_string & scopedstrOptionName, ::string & strOut) = 0;
 
       // returns the argument value with index
-      virtual bool getArgument(::collection::index index, ::string & strOut);
+      virtual bool getArgument(::collection::index index, ::string & strOut) = 0;
 
       // returns the option value with index
-      virtual bool getOption(::collection::index index, ::string & strOut);
+      virtual bool getOption(::collection::index index, ::string & strOut) = 0;
 
 
       //private:
-      virtual void optionParser(::string & out);
+      virtual void optionParser(::string & out) = 0;
 
    };
 

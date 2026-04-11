@@ -1,4 +1,4 @@
-// Copyright (C) 2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2008,2009,2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -22,36 +22,55 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "CommandLineArguments.h"
+// #include aaa_<stdlib.h>
+#include "SocketStream.h"
+
+#include "../socket/sockdefs.h"
+
+//#include aaa_<crtdbg.h>
+
 
 namespace subsystem
 {
+   SocketStream::SocketStream(SocketIPv4 *sock)
+   : m_socket(sock)
+   {
+      _ASSERT(m_socket != NULL);
+   }
 
-
-   CommandLineArguments::CommandLineArguments()
+   SocketStream::~SocketStream()
    {
    }
 
-   CommandLineArguments::~CommandLineArguments()
+   size_t SocketStream::read(void *buf, size_t wanted)
    {
+      if ((int)wanted < 0) {
+         throw ::io_exception(error_io, "Wanted size too big.");
+      }
+
+      return (size_t)m_socket->recv((char *)buf, (int)wanted);
    }
 
-
-   void CommandLineArguments::initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat)
+   memsize SocketStream::defer_write(const void *buf, memsize size)
    {
+      if ((int)size < 0) {
+         throw ::io_exception(error_io, _T("Size of buffer is too big."));
+      }
 
-      m_pparticleThis->initialize_command_line_arguments(scopedstrCommandLineInOperatingSystemFormat);
+      return (size_t)m_socket->send((char *)buf, (int)size);
 
    }
 
-   ::string_array_base CommandLineArguments::getArguments() const
+   void SocketStream::close()
    {
-
-      //return m_straArguments;
-      return m_pparticleThis->getArguments();
-
+      try {
+         m_socket->shutdown(SD_BOTH);
+      } catch (...) {
+      }
+      m_socket->close();
    }
 
+   size_t SocketStream::available() {
+      return m_socket->available();
+   }
 } // namespace subsystem
-
-

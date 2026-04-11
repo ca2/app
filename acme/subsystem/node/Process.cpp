@@ -80,12 +80,13 @@ namespace subsystem
        //m_args= scopedstrArgs;
     }
 
-    // void Process::setStandardIoHandles(HANDLE stdIn, HANDLE stdOut, HANDLE stdErr)
-    // {
-    //    m_stdIn = stdIn;
-    //    m_stdOut = stdOut;
-    //    m_stdErr = stdErr;
-    // }
+    void Process::setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr)
+    {
+      m_pparticleThis->setStandardIoHandles(stdIn, stdOut, stdErr);
+       //m_stdIn = stdIn;
+       //m_stdOut = stdOut;
+       //m_stdErr = stdErr;
+    }
 
     void Process::setHandleInheritances(bool handlesIsInerited)
     {

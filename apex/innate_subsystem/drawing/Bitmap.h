@@ -85,7 +85,7 @@ namespace innate_subsystem
       ~Bitmap() override;
 
 
-      void * _HGDIOBJ() override;
+      //void * _HGDIOBJ() override;
 
       // Creates empty bitmap with specified size.
       void initialize_bitmap(const ::int_size & size) override;

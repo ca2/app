@@ -81,7 +81,7 @@ namespace subsystem
     * Gives access to install, remove, start, stop services and queries status
     * of service.
     */
-   class CLASS_DECL_ACME ServiceControlManagerClientInterface :
+   class ServiceControlManagerClientInterface :
    virtual public ::subsystem::particle_interface<ServiceControlManagerClientInterface>
    {
    public:
@@ -97,7 +97,7 @@ namespace subsystem
       /**
        * Destructor, closes ServiceControlManagerClient.
        */
-      virtual ~ServiceControlManagerClientInterface() = 0;
+      //virtual ~ServiceControlManagerClientInterface() = 0;
 
 
       virtual void initialize_service_control_manager_client(unsigned int desiredAccess = 0) = 0;

@@ -57,7 +57,7 @@ namespace innate_subsystem
       Brush();
       ~Brush() override;
 
-      void * _HGDIOBJ() override;
+      //void * _HGDIOBJ() override;
 
       //protected:
       //void on_release() override;

@@ -25,6 +25,8 @@
 #include "acme/_operating_system.h"
 #include "Registry.h"
 
+#include "filesystem/filesystem/directory_context.h"
+
 
 namespace subsystem
 {
@@ -50,9 +52,9 @@ namespace subsystem
       if (!m_pregistryCurrentUser)
       {
 
-         construct_newø(m_pregistryCurrentUser);
+         auto pathRegistryCurrentUser = directory()->config() / REGX_HKCU;
 
-         m_pregistryCurrentUser->open_from_file(REGX_HKCU);
+         m_pregistryCurrentUser = ::platform::registry::create_from_file(pathRegistryCurrentUser);
 
       }
 
@@ -67,9 +69,9 @@ namespace subsystem
       if (!m_pregistryLocalMachine)
       {
 
-         construct_newø(m_pregistryLocalMachine);
+         auto pathRegistryLocalMachine = directory()->config() / REGX_HKLM;
 
-         m_pregistryLocalMachine->open_from_file(REGX_HKLM);
+         m_pregistryCurrentUser = ::platform::registry::create_from_file(pathRegistryLocalMachine);
 
       }
       return m_pregistryLocalMachine;

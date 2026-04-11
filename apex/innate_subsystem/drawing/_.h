@@ -17,6 +17,8 @@ namespace innate_subsystem
 
    class Graphics;
 
+   class GraphicsInterface;
+
    class Icon;
 
    class Pen;

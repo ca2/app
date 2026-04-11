@@ -38,13 +38,13 @@ namespace subsystem
    /**
     * Wrapper on WinAPI workstation functions.
     */
-   class CLASS_DECL_ACME WorkstationInterface :
+   class WorkstationInterface :
       virtual public ::subsystem::particle_interface<WorkstationInterface>
    {
    public:
 
       ///Workstation();
-      virtual ~WorkstationInterface() = 0;
+      //virtual ~WorkstationInterface() = 0;
 
       //virtual ~WorkstationInterface()=0;
       /**

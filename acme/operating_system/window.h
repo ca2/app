@@ -449,10 +449,10 @@ namespace operating_system
       template < typename WINDOW >
          requires (!::is_same < WINDOW_TYPE, window_opaque_t >
       && ::is_same < WINDOW, window >)
-      ::operating_system::window & operator = (const WINDOW & window)
+      a_window & operator = (const WINDOW & window)
       {
 
-         this->m_pacmewindowingwindow = window.m_pacmewindowingwindow;
+         this->m_pacmewindowingwindow = window._get_acme_windowing_window();
          this->m_eoperatingsystem = window.m_eoperatingsystem;
          BASE_TYPE::operator = (window.m_window);
 

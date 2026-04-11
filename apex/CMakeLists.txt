@@ -226,8 +226,8 @@ list(APPEND apex_source
    innate_subsystem/TabControl.h
    innate_subsystem/TextBox.cpp
    innate_subsystem/TextBox.h
-   innate_subsystem/ToolBar.cpp
-   innate_subsystem/ToolBar.h
+   innate_subsystem/Toolbar.cpp
+   innate_subsystem/Toolbar.h
    innate_subsystem/Tooltip.cpp
    innate_subsystem/Tooltip.h
    innate_subsystem/Trackbar.cpp

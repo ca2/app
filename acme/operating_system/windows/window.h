@@ -21,6 +21,8 @@ namespace operating_system
 
       void Null() { m_hwndWindowsWindow = nullptr; }
 
+      bool is_null() const { return !m_hwndWindowsWindow; }
+
    };
 
 
@@ -129,9 +131,10 @@ namespace windows
       window();
       ~window() override;
 
-      virtual bool on_window_procedure(LRESULT & lresult, UINT message, WPARAM wparam, LPARAM lparam);
-      virtual bool _on_default_system_menu_init_menu(LRESULT & lresult,  WPARAM wparam);
-      virtual bool _on_default_system_menu_command(LRESULT & lresult, WPARAM wparam, LPARAM lparam);
+      //virtual bool on_window_procedure(LRESULT & lresult, UINT message, WPARAM wparam, LPARAM lparam);
+      virtual bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+      virtual bool _on_default_system_menu_init_menu(::lresult & lresult,  ::wparam wparam);
+      virtual bool _on_default_system_menu_command(::lresult & lresult, ::wparam wparam, ::lparam lparam);
       virtual void _defer_show_system_menu(::user::mouse * ppmouse);
 
 

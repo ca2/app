@@ -36,12 +36,12 @@ namespace innate_subsystem
      // release();
    }
 
-   void * Brush::_HGDIOBJ()
-   {
-
-      return m_pparticleThis->_HGDIOBJ();
-
-   }
+   // void * Brush::_HGDIOBJ()
+   // {
+   //
+   //    return m_pparticleThis->_HGDIOBJ();
+   //
+   // }
 
    //void
 

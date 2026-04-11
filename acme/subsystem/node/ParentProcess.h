@@ -31,12 +31,12 @@
 namespace subsystem
 {
    // Retrieves information of the parent process.
-   class CLASS_DECL_ACME ParentProcessInterface :
+   class ParentProcessInterface :
    virtual public ::subsystem::particle_interface<ParentProcessInterface>
    {
    public:
       //ParentProcess();
-      virtual ~ParentProcessInterface() = 0;
+      //virtual ~ParentProcessInterface() = 0;
 
       // Returns true if the parent process is alive.
       virtual bool isAlive() = 0;

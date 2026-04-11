@@ -37,7 +37,7 @@ namespace windows
    }
 
 
-   bool window::on_window_procedure(LRESULT & lresult, UINT message, WPARAM wparam, LPARAM lparam)
+   bool window::on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam)
    {
 
       if (m_iDebugAtom == 123)
@@ -251,10 +251,11 @@ namespace windows
 
    }
 
-   bool window::_on_default_system_menu_init_menu(LRESULT & lresult, WPARAM wparam)
+
+   bool window::_on_default_system_menu_init_menu(::lresult & lresult, ::wparam wparam)
    {
 
-      auto hmenu = (HMENU)wparam;
+      auto hmenu = wparam.scast<HMENU>();
 
       auto hmenuSystem = m_hmenuSystem;
 
@@ -374,7 +375,7 @@ namespace windows
    }
    
 
-   bool window::_on_default_system_menu_command(LRESULT & lresult,WPARAM wparam, LPARAM lparam)
+   bool window::_on_default_system_menu_command(::lresult & lresult, ::wparam wparam, ::lparam lparam)
    {
 
       int wmId = LOWORD(wparam);

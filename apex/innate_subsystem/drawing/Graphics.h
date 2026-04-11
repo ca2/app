@@ -48,9 +48,15 @@ namespace innate_subsystem
 
 
       virtual void initialize_graphics(DeviceContextInterface *dc) = 0;
+      virtual void initialize_graphics(BitmapInterface *pbitmap) = 0;
 
       // Sets background colors mix mode.
       virtual void setBkMode(bool transparent) = 0;
+
+      virtual void setBlendModeOn(bool bSet) = 0;
+
+      virtual void setAntiAliasOn(bool bOn) = 0;
+
       // Sets background color.
       virtual void setBkColor(const ::color::color & color) = 0;
 
@@ -68,6 +74,7 @@ namespace innate_subsystem
 
       // Draws filled rect.
       virtual void fillRect(int l, int t, int r, int b, BrushInterface*brush) = 0;
+      virtual void fillRect(const ::int_rectangle & rectangle, const ::color::color & color) = 0;
       // Draws ellipse.
       virtual void ellipse(int l, int t, int r, int b) = 0;
       // Draws rectance.
@@ -75,6 +82,7 @@ namespace innate_subsystem
 
       // Draws bitmap.
       virtual void drawBitmap(BitmapInterface *bitmap, int x, int y, int w, int h) = 0;
+      virtual void drawBitmap(BitmapInterface *bitmap, int x, int y, int srcx, int srcy, int srcW, int srcH) = 0;
       // Draws text.
       virtual void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) = 0;
 
@@ -97,9 +105,16 @@ namespace innate_subsystem
 
 
       void initialize_graphics(DeviceContextInterface *dc) override;
+      void initialize_graphics(BitmapInterface *pbitmap) override;
 
       // Sets background colors mix mode.
       void setBkMode(bool transparent) override;
+
+
+      void setBlendModeOn(bool bSet) override;
+
+      void setAntiAliasOn(bool bOn) override;
+
       // Sets background color.
       void setBkColor(const ::color::color & color) override;
 
@@ -117,6 +132,7 @@ namespace innate_subsystem
 
       // Draws filled rect.
       void fillRect(int l, int t, int r, int b, BrushInterface *brush) override;
+      void fillRect(const ::int_rectangle & rectangle, const ::color::color & color) override;
       // Draws ellipse.
       void ellipse(int l, int t, int r, int b) override;
       // Draws rectance.
@@ -124,6 +140,7 @@ namespace innate_subsystem
 
       // Draws bitmap.
       void drawBitmap(BitmapInterface *bitmap, int x, int y, int w, int h) override;
+      void drawBitmap(BitmapInterface *bitmap, int x, int y, int srcx, int srcy, int srcW, int srcH) override;
       // Draws text.
       void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format) override;
 

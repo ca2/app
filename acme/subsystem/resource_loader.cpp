@@ -94,6 +94,23 @@ namespace subsystem
       return true;
    }
 
+   ::string resource_loader::loadString(unsigned int id)
+   {
+
+      ::string str;
+
+      if (!loadString(id, str))
+      {
+
+         error("subsystem::resource_loader::loadString failed for id {}", id);
+
+      }
+
+      return str;
+
+   }
+
+
    //HACCEL resource_loader::loadAccelerator(UINT id)
    //{
    //   return LoadAccelerators(m_appInstance,

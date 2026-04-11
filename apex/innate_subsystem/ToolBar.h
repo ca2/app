@@ -34,15 +34,15 @@
 ///
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX ToolBarInterface :
-      virtual  public ::subsystem::particle_interface<ToolBarInterface>
+   class CLASS_DECL_APEX ToolbarInterface :
+      virtual  public ::subsystem::particle_interface<ToolbarInterface>
    {
    public:
-      //ToolBar();
-      virtual ~ToolBarInterface() = 0;
+      //Toolbar();
+      virtual ~ToolbarInterface() = 0;
 
-      // static const int TB_Style_sep = 0;
-      // static const int TB_Style_gap = 1;
+      static const int TB_Style_sep = 0;
+      static const int TB_Style_gap = 1;
 
       /////////////////////////////////////////////////////////
       // Auto mode procedures
@@ -53,11 +53,11 @@ namespace innate_subsystem
       // bitmap and making gaps or separators.
       virtual void setViewAutoButtons(int iButton, int style) = 0;
 
-      // loadToolBarfromRes()
+      // loadToolbarfromRes()
       // This procedure will load a toolbar image from resource
       // id is a number of bitmap. It means that buttons are
       // square(for example 16x16).
-      virtual void loadToolBarfromRes(unsigned int id) = 0;
+      virtual void loadToolbarfromRes(unsigned int id) = 0;
 
       // setButtonsRange()
       // If we want to catch the message from toolbar that some buttons
@@ -65,10 +65,10 @@ namespace innate_subsystem
       // first item, and next is id+1 and so on.
       virtual void setButtonsRange(unsigned int id) = 0;
 
-      // attachToolBar()
+      // attachToolbar()
       // This one will create and attach toolbar window to
       // which handle is passed in hwnd. Only for toolbar from bitmap.
-      virtual void attachToolBar(const ::operating_system::window & operatingsystemwindow) = 0;
+      virtual void attachToolbar(const ::operating_system::window & operatingsystemwindow) = 0;
 
       /////////////////////////////////////////////////////////
       // Manual mode procedures
@@ -154,12 +154,14 @@ namespace innate_subsystem
    };
 
    
-      class CLASS_DECL_APEX ToolBar :
-      virtual  public ::subsystem::composite<ToolBarInterface>
+   class CLASS_DECL_APEX Toolbar :
+      virtual  public ::subsystem::composite<ToolbarInterface>
    {
    public:
-      ToolBar();
-      ~ToolBar() override;
+
+
+      Toolbar();
+      ~Toolbar() override;
 
       // static const int TB_Style_sep override;
       // static const int TB_Style_gap = 1;
@@ -173,11 +175,11 @@ namespace innate_subsystem
       // bitmap and making gaps or separators.
       void setViewAutoButtons(int iButton, int style) override;
 
-      // loadToolBarfromRes()
+      // loadToolbarfromRes()
       // This procedure will load a toolbar image from resource
       // id is a number of bitmap. It means that buttons are
       // square(for example 16x16).
-      void loadToolBarfromRes(unsigned int id) override;
+      void loadToolbarfromRes(unsigned int id) override;
 
       // setButtonsRange()
       // If we want to catch the message from toolbar that some buttons
@@ -185,10 +187,10 @@ namespace innate_subsystem
       // first item, and next is id+1 and so on.
       void setButtonsRange(unsigned int id) override;
 
-      // attachToolBar()
+      // attachToolbar()
       // This one will create and attach toolbar window to
       // which handle is passed in hwnd. Only for toolbar from bitmap.
-      void attachToolBar(const ::operating_system::window & operatingsystemwindow) override;
+      void attachToolbar(const ::operating_system::window & operatingsystemwindow) override;
 
       /////////////////////////////////////////////////////////
       // Manual mode procedures

@@ -39,22 +39,104 @@ namespace platform
    }
 
 
-         void registry_key::close() override;
+   void registry_key::close()
+   {
+      
+      m_pregistrykey->close();
+      
+   }
 
-   void registry_key::set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) override;
-   void registry_key::set_dword(const ::scoped_string &scopedstrName, unsigned int value) override;
-   void registry_key::set_qword(const ::scoped_string &scopedstrName, unsigned long long value) override;
-   void registry_key::set_binary(const ::scoped_string &scopedstrName, const ::block &block) override;
+   
+   ::e_status registry_key::_set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr)
+   {
+      
+      return m_pregistrykey->_set_string(scopedstrName, scopedstr);
+      
+   }
 
-   ::e_status registry_key::_get_string(const ::scoped_string &scopedstrName, ::string &str) override;
-   ::e_status registry_key::_get_dword(const ::scoped_string &scopedstrName, unsigned int &u) override;
-   ::e_status registry_key::_get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull) override;
-   ::e_status registry_key::_get_binary(const ::scoped_string &scopedstrName, ::memory &memory) override;
+   
+   ::e_status registry_key::_set_dword(const ::scoped_string &scopedstrName, unsigned int u)
+   {
+      
+      return m_pregistrykey->_set_dword(scopedstrName, u);
+      
+   }
+
+   
+   ::e_status registry_key::_set_qword(const ::scoped_string &scopedstrName, unsigned long long ull)
+   {
+      
+      return m_pregistrykey->_set_qword(scopedstrName, ull);
+      
+   }
+
+   
+   ::e_status registry_key::_set_binary(const ::scoped_string &scopedstrName, const ::block &block)
+   {
+      
+      return m_pregistrykey->_set_binary(scopedstrName, block);
+      
+   }
+
+   
+
+   ::e_status registry_key::_get_string(const ::scoped_string &scopedstrName, ::string &str)
+   {
+      
+      return m_pregistrykey->_get_string(scopedstrName, str);
+      
+   }
+
+   
+   ::e_status registry_key::_get_dword(const ::scoped_string &scopedstrName, unsigned int &u)
+   {
+      
+      return m_pregistrykey->_get_dword(scopedstrName, u);
+      
+   }
+
+   
+   ::e_status registry_key::_get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull)
+   {
+      
+      return m_pregistrykey->_get_qword(scopedstrName, ull);
+      
+   }
+
+   
+   ::e_status registry_key::_get_binary(const ::scoped_string &scopedstrName, ::memory &memory)
+   {
+      
+      return m_pregistrykey->_get_binary(scopedstrName, memory);
+      
+   }
+
+   
 
 
-   void registry_key::erase_payload(const ::scoped_string &scopedstrName) override;
-   bool registry_key::has_payload(const ::scoped_string &scopedstrName) override;
-   enum_registry registry_key::payload_type(const ::scoped_string &scopedstrName) override;
+   ::e_status registry_key::_erase_payload(const ::scoped_string &scopedstrName)
+   {
+      
+      return m_pregistrykey->_erase_payload(scopedstrName);
+      
+   }
+
+   
+   ::e_status registry_key::_has_payload(const ::scoped_string &scopedstrName, bool & bOk)
+   {
+      
+      return m_pregistrykey->_has_payload(scopedstrName, bOk);
+      
+   }
+
+   
+   ::e_status registry_key::_payload_type(const ::scoped_string &scopedstrName, enum_registry & eregistry)
+   {
+      
+      return m_pregistrykey->_payload_type(scopedstrName, eregistry);
+      
+   }
+
    
 
    class CLASS_DECL_ACME registry_implementation :
@@ -68,19 +150,12 @@ namespace platform
       registry_implementation();
       ~registry_implementation();
 
-      void open_from_file(const ::file::path &path) override;
-
+      void open_from_file(const ::file::path &path)override;
       void flush() override;
-
       void close() override;
-
       ::pointer<registry_key_interface> open_key(const ::file::path &path) override;
-
       ::pointer<registry_key_interface> create_key(const ::file::path &path) override;
-
-      void delete_key(const ::file::path &path) override;
-
-
+      void erase_key(const ::file::path &path) override;
 
 
       ::rapidjson::Value *_get_key_node(const ::file::path & path, bool create);
@@ -114,7 +189,7 @@ namespace platform
 
 
       registry_key_implementation();
-      ~registry_key_implementation();
+      ~registry_key_implementation() override;
 
 
 
@@ -123,14 +198,21 @@ namespace platform
       virtual ::rapidjson::Value * _get_payloads(bool create);
       virtual ::rapidjson::Value * _get_payload_entry(const ::scoped_string &scopedstrName, bool create);
 
-      ::e_status _get_string(const ::scoped_string &scopedstrName, string &str);
-      ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u);
-      ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long &ll);
-      ::e_status _get_binary(const ::scoped_string &scopedstrName, memory &memory);
-      ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string & scopedstr);
-      ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int value);
-      ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long value);
-      ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block & block);
+      ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string & scopedstr) override;
+      ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int value) override;
+      ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long value) override;
+      ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block & block) override;
+
+
+      ::e_status _get_string(const ::scoped_string &scopedstrName, string &str) override;
+      ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u) override;
+      ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long &ll) override;
+      ::e_status _get_binary(const ::scoped_string &scopedstrName, memory &memory) override;
+
+      ::e_status _erase_payload(const ::scoped_string &scopedstrName) override;
+      ::e_status _has_payload(const ::scoped_string &scopedstrName, bool & bExists) override;
+      ::e_status _payload_type(const ::scoped_string &scopedstrName, enum_registry & eregistry) override;
+
 
    };
 
@@ -296,21 +378,21 @@ namespace platform
    {
 
       if (::is_null(this) || scopedstrName.is_empty()) return nullptr;
-      ::rapidjson::Value *vals = _get_values_object(create);
-      if (!vals) return nullptr;
+      auto ppayloads = _get_payloads(create);
+      if (!ppayloads) return nullptr;
 
       auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
 
       ::string strName(scopedstrName);
 
-      if (!vals->HasMember(strName)) {
+      if (!ppayloads->HasMember(strName)) {
          if (!create) return nullptr;
          ::rapidjson::Value k(strName, alloc);
          ::rapidjson::Value obj(::rapidjson::kObjectType);
-         vals->AddMember(k, obj, alloc);
+         ppayloads->AddMember(k, obj, alloc);
       }
 
-      ::rapidjson::Value &entry = (*vals)[strName.c_str()];
+      auto &entry = (*ppayloads)[strName.c_str()];
       if (!entry.IsObject()) {
          if (!create) return nullptr;
          entry.SetObject();
@@ -424,7 +506,7 @@ namespace platform
    }
 
 
-   void registry_implementation::delete_key(const ::file::path &path) 
+   void registry_implementation::erase_key(const ::file::path &path)
    {
       if (::is_null(this) || path.is_empty())
          throw ::exception(error_bad_argument);
@@ -599,38 +681,45 @@ namespace platform
       Misc
       ============================================================================ */
 
-   ::e_status registry_key_implementation::delete_value(const ::scoped_string &scopedstrName)
+   ::e_status registry_key_implementation::_erase_payload(const ::scoped_string &scopedstrName)
    {
       if (::is_null(this) || scopedstrName.is_empty())
          return error_bad_argument;
 
-      auto vals = _get_payload_values(key, false);
-      if (!vals) return error_not_found;
+      auto ppayloads = _get_payloads(false);
+      if (!ppayloads) return error_not_found;
 
-      if (!vals->HasMember(name)) return error_not_found;
-      vals->RemoveMember(name);
+      if (!ppayloads->HasMember(scopedstrName)) return error_not_found;
+      ppayloads->RemoveMember(scopedstrName);
       return ::success;
    }
 
-   int RegXValueExists(registry_key *key, const ::scoped_string & scopedstrName) {
-      if (!key || !name) return 0;
-      Value *vals = get_values_object(key, false);
-      if (!vals) return 0;
-      return vals->HasMember(name) ? 1 : 0;
+
+   ::e_status registry_key_implementation::_has_payload(const ::scoped_string & scopedstrName, bool & bExists)
+   {
+      if (::is_null(this) || scopedstrName.is_empty()) return error_bad_argument;
+      auto ppayloads = _get_payloads(false);
+      if (!ppayloads) return error_not_found;
+      bExists = ppayloads->HasMember(scopedstrName) ? true : false;
+      return ::success;
    }
 
-   int registry_key::get_XGetValueType(registry_key *key, const ::scoped_string & scopedstrName, RegXType *out_type) {
-      if (!key || !name || !out_type) throw ::exception(error_bad_argument;
 
-      Value *entry = get_value_entry(key, name, false);
-      if (!entry) throw ::exception(error_not_found;
-      if (!entry->HasMember("type") || !(*entry)["type"].IsString()) return REGX_ERR_TYPE;
+   ::e_status registry_key_implementation::_payload_type(const ::scoped_string & scopedstrName, enum_registry & eregistry)
+   {
+      if (::is_null(this) || scopedstrName.is_empty())
+         return error_bad_argument;
 
-      const char *t = (*entry)["type"].GetString();
-      if (std::strcmp(t, "sz") == 0) *out_type = REGX_SZ;
-      else if (std::strcmp(t, "dword") == 0) *out_type = REGX_DWORD;
-      else if (std::strcmp(t, "binary") == 0) *out_type = REGX_BINARY;
-      else *out_type = REGX_NONE;
+      auto pentry = _get_payload_entry(scopedstrName, false);
+      if (!pentry) return error_not_found;
+      if (!pentry->HasMember("type") || !(*pentry)["type"].IsString()) return error_wrong_type;
+
+      const char *t = (*pentry)["type"].GetString();
+      if (std::strcmp(t, "sz") == 0) eregistry = e_registry_string;
+      else if (std::strcmp(t, "dword") == 0) eregistry = e_registry_dword;
+      else if (std::strcmp(t, "qword") == 0) eregistry = e_registry_qword;
+      else if (std::strcmp(t, "binary") == 0) eregistry = e_registry_binary;
+      else eregistry = e_registry_none;
 
       return ::success;
    }
@@ -653,7 +742,7 @@ namespace platform
    registry_key::registry_key()
    {
 
-      ::system()->m_papplication->construct_newø(m_pregistrykey);
+      m_pregistrykey = ::system()->m_papplication->create_newø < registry_key_implementation >();
 
    }
 
@@ -661,6 +750,18 @@ namespace platform
    registry_key::~registry_key()
    {
 
+
+   }
+
+
+   pointer<registry> registry::create_from_file(const file::path &pathRegistry)
+   {
+
+      auto pregistryImplementation = ::system()->m_papplication->create_newø<registry_implementation>();
+
+      pregistryImplementation->open_from_file(pathRegistry);
+
+      return pregistryImplementation;
 
    }
 

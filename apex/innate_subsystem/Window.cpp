@@ -47,6 +47,23 @@ namespace innate_subsystem
       // }
    }
 
+
+   void Window::setClipboardViewerInterest()
+   {
+
+      m_pparticleThis->setClipboardViewerInterest();
+
+   }
+
+
+   bool Window::onDrawClipboard()
+   {
+
+      return false;
+
+   }
+
+
    void Window::setClass(const ::scoped_string & scopedstrClassName)
    {
       m_pparticleThis->setClass(scopedstrClassName);
@@ -126,6 +143,38 @@ namespace innate_subsystem
       //    return true;
       // }
       //return false;
+   }
+
+
+   void Window::setShowCursor(bool bShowCursor)
+   {
+
+      m_pparticleThis->setShowCursor(bShowCursor);
+
+   }
+
+
+   bool Window::shouldShowCursor()
+   {
+
+      return m_pparticleThis->shouldShowCursor();
+
+   }
+
+
+   void Window::setDoubleBuffering(bool bDoubleBuffering)
+   {
+
+      m_pparticleThis->setDoubleBuffering(bDoubleBuffering);
+
+   }
+
+
+   bool Window::isDoubleBuffering()
+   {
+
+      return m_pparticleThis->isDoubleBuffering();
+
    }
 
    void Window::show()
@@ -393,6 +442,49 @@ namespace innate_subsystem
       m_pparticleThis->setWindowText(scopedstr);
    }
 
+   void Window::setFocus()
+   {
+      //::SetFocus(m_hwnd);
+      m_pparticleThis->setFocus();
+   }
+
+   bool Window::hasFocus()
+   {
+      ///return (::GetFocus() == m_hwnd) || (GetForegroundWindow() == m_hwnd);
+      return m_pparticleThis->hasFocus();
+   }
+
+   bool Window::setForeground()
+   {
+      //return SetForegroundWindow(getWindow()) != 0;
+
+      return m_pparticleThis->setForeground();
+   }
+
+   // void Window::setVisible(bool visible)
+   // {
+   //    //ShowWindow(m_hwnd, visible ? SW_SHOW : SW_HIDE);
+   //    m_pparticleThis->setVisible(visible);
+   // }
+
+   bool Window::isEnabled()
+   {
+      ///return (!isStyleEnabled(WS_DISABLED));
+      return m_pparticleThis->isEnabled();
+   }
+
+   bool Window::isIconic()
+   {
+      ///return (!isStyleEnabled(WS_DISABLED));
+      return m_pparticleThis->isEnabled();
+   }
+
+   void Window::invalidate()
+   {
+      //InvalidateRect(m_hwnd, NULL, TRUE);
+      m_pparticleThis->invalidate();
+   }
+
    void Window::redraw(const ::int_rectangle &rcArea)
    {
       m_pparticleThis->redraw(rcArea);
@@ -446,6 +538,31 @@ namespace innate_subsystem
 
       return m_pparticleThis->getBorderSize();
    }
+
+
+   bool Window::onCreate(void * pCreateStruct)
+   {
+
+      return false;
+
+   }
+
+
+   bool Window::on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam)
+   {
+
+      return false;
+
+   }
+
+
+   void Window::onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle)
+   {
+
+
+   }
+   
+
 } // namespace innate_subsystem
 
 

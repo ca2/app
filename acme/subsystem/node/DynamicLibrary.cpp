@@ -52,6 +52,12 @@ namespace subsystem
       // }
    }
 
+   void DynamicLibrary::initialize_dynamic_library(const ::scoped_string & scopedstrFilename)
+   //: m_module(0)
+   {
+      m_pparticleThis->initialize_dynamic_library(scopedstrFilename);
+   }
+
     void DynamicLibrary::init(const ::scoped_string & scopedstrFilename)
     {
        m_pparticleThis->init(scopedstrFilename);

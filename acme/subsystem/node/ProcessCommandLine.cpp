@@ -29,108 +29,108 @@
 namespace subsystem
 {
    
-   ProcessCommandLineInterface::ProcessCommandLineInterface()
-   {
-      // ::string_array out;
-      //
-      // construct_newø(m_pwindowscommandlinearguments);
-      // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
-      //
-      // out = m_pwindowscommandlinearguments->getArguments();
-      // for (size_t i = 0; i < out.size(); i++) {
-      //    if (out[i][0] != _T('-')) {
-      //       m_strParam.add(out[i]);
-      //    } else {
-      //       optionParser(out[i]);
-      //    }
-      // }
-   }
+   // ProcessCommandLineInterface::ProcessCommandLineInterface()
+   // {
+   //    // ::string_array out;
+   //    //
+   //    // construct_newø(m_pwindowscommandlinearguments);
+   //    // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
+   //    //
+   //    // out = m_pwindowscommandlinearguments->getArguments();
+   //    // for (size_t i = 0; i < out.size(); i++) {
+   //    //    if (out[i][0] != _T('-')) {
+   //    //       m_strParam.add(out[i]);
+   //    //    } else {
+   //    //       optionParser(out[i]);
+   //    //    }
+   //    // }
+   // }
 
 
+   //
+   // ProcessCommandLineInterface::~ProcessCommandLineInterface()
+   //    {
+   //       //if (m_wcla) {
+   //       // delete m_wcla;
+   //       //}
+   //    }
+   //
+   // void ProcessCommandLineInterface::initialize_process_command_line()
+   // {
+   //    // ::string_array out;
+   //    //
+   //    // construct_newø(m_pwindowscommandlinearguments);
+   //    // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
+   //    //
+   //    // out = m_pwindowscommandlinearguments->getArguments();
+   //    // for (size_t i = 0; i < out.size(); i++) {
+   //    //    if (out[i][0] != _T('-')) {
+   //    //       m_strParam.add(out[i]);
+   //    //    } else {
+   //    //       optionParser(out[i]);
+   //    //    }
+   //    // }
+   // }
 
-   ProcessCommandLineInterface::~ProcessCommandLineInterface()
-      {
-         //if (m_wcla) {
-         // delete m_wcla;
-         //}
-      }
 
-   void ProcessCommandLineInterface::initialize_process_command_line()
-   {
-      // ::string_array out;
-      //
-      // construct_newø(m_pwindowscommandlinearguments);
-      // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
-      //
-      // out = m_pwindowscommandlinearguments->getArguments();
-      // for (size_t i = 0; i < out.size(); i++) {
-      //    if (out[i][0] != _T('-')) {
-      //       m_strParam.add(out[i]);
-      //    } else {
-      //       optionParser(out[i]);
-      //    }
-      // }
-   }
-
-
-   void ProcessCommandLineInterface::optionParser(::string & out)
-   {
-      ::pair<::string, ::string> strPair;
-
-      out.erase((character_count)0, (character_count)1);
-      auto ipos = out.find_first_character('=');
-      if (::is_null(ipos)) {
-         strPair.m_element1 = *out;
-         strPair.m_element2= "";
-      } else {
-         strPair.m_element1 = out.substr(0, ipos);
-         strPair.m_element2 = out.substr(ipos + 1);
-      }
-      strPair.m_element1.make_lower();
-      m_strParams.add(strPair);
-   }
-
-   ::collection::count ProcessCommandLineInterface::getArgumentsCount()
-   {
-      return m_strParam.size();
-   }
-
-   ::collection::count ProcessCommandLineInterface::getOptionsCount()
-   {
-      return m_strParams.size();
-   }
-
-   bool ProcessCommandLineInterface::findOptionValue(const ::scoped_string & scopedstrOptionName, ::string &  strOut)
-   {
-      for (::collection::index i = 0; i < getOptionsCount(); i++) {
-         if (m_strParams[i].m_element2 == scopedstrOptionName) {
-            strOut = m_strParams[i].m_element2;
-
-            return true;
-         }
-      }
-      return false;
-   }
-
-   bool ProcessCommandLineInterface::getArgument(::collection::index index, ::string &  strOut)
-   {
-      if (index < getArgumentsCount()) {
-         strOut = m_strParam[index];
-
-         return true;
-      }
-      return false;
-   }
-
-   bool ProcessCommandLineInterface::getOption(::collection::index index, ::string &  strOut)
-   {
-      if (index < getOptionsCount()) {
-         strOut = m_strParams[index].m_element1;
-
-         return true;
-      }
-      return false;
-   }
+   // void ProcessCommandLineInterface::optionParser(::string & out)
+   // {
+   //    ::pair<::string, ::string> strPair;
+   //
+   //    out.erase((character_count)0, (character_count)1);
+   //    auto ipos = out.find_first_character('=');
+   //    if (::is_null(ipos)) {
+   //       strPair.m_element1 = *out;
+   //       strPair.m_element2= "";
+   //    } else {
+   //       strPair.m_element1 = out.substr(0, ipos);
+   //       strPair.m_element2 = out.substr(ipos + 1);
+   //    }
+   //    strPair.m_element1.make_lower();
+   //    m_strParams.add(strPair);
+   // }
+   //
+   // ::collection::count ProcessCommandLineInterface::getArgumentsCount()
+   // {
+   //    return m_strParam.size();
+   // }
+   //
+   // ::collection::count ProcessCommandLineInterface::getOptionsCount()
+   // {
+   //    return m_strParams.size();
+   // }
+   //
+   // bool ProcessCommandLineInterface::findOptionValue(const ::scoped_string & scopedstrOptionName, ::string &  strOut)
+   // {
+   //    for (::collection::index i = 0; i < getOptionsCount(); i++) {
+   //       if (m_strParams[i].m_element2 == scopedstrOptionName) {
+   //          strOut = m_strParams[i].m_element2;
+   //
+   //          return true;
+   //       }
+   //    }
+   //    return false;
+   // }
+   //
+   // bool ProcessCommandLineInterface::getArgument(::collection::index index, ::string &  strOut)
+   // {
+   //    if (index < getArgumentsCount()) {
+   //       strOut = m_strParam[index];
+   //
+   //       return true;
+   //    }
+   //    return false;
+   // }
+   //
+   // bool ProcessCommandLineInterface::getOption(::collection::index index, ::string &  strOut)
+   // {
+   //    if (index < getOptionsCount()) {
+   //       strOut = m_strParams[index].m_element1;
+   //
+   //       return true;
+   //    }
+   //    return false;
+   // }
 
    ProcessCommandLine::ProcessCommandLine()
    {

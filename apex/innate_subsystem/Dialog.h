@@ -97,6 +97,21 @@ namespace innate_subsystem
 
       }
 
+      template < typename WIDGET_TYPE >
+      ::subsystem::composite  < WIDGET_TYPE > & dialog_item(::subsystem::composite  < WIDGET_TYPE > & widget, int iDlgItem)
+      {
+
+         //constructø(pwidget);
+
+         auto operatingsystemwindow = dialog_item_operating_system_window(iDlgItem);
+
+         widget.set_operating_system_window(operatingsystemwindow);
+
+         return widget;
+
+
+      }
+
       template < typename WIDGET_TYPE  = ::innate_subsystem::Control>
       ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
       {

@@ -39,7 +39,7 @@ namespace subsystem
       /**
     * Enables you to start and stop local processes.
     */
-   class CLASS_DECL_ACME ProcessInterface :
+   class ProcessInterface :
    virtual public ::subsystem::particle_interface<ProcessInterface>
    {
    public:
@@ -54,7 +54,7 @@ namespace subsystem
        * Destroys Process instance.
        * Running process will not be interrupted.
        */
-      virtual ~ProcessInterface() = 0;
+      //virtual ~ProcessInterface() = 0;
 
 
       virtual void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) = 0;
@@ -71,7 +71,7 @@ namespace subsystem
       virtual void setArguments(const ::scoped_string & scopedstrArgs) = 0;
 
       // Sets standard in/out/error handles for the child process.
-      virtual void setStandardIoHandles(::subsystem::File * stdIn, ::subsystem::File * stdOut, ::subsystem::File * stdErr) = 0;
+      virtual void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) = 0;
 
       // If handlesIsInerited is true the handles of the parent process can
       // be used by the child process.
@@ -182,7 +182,7 @@ namespace subsystem
       void setArguments(const ::scoped_string & scopedstrArgs) override;
 
       // Sets standard in/out/error handles for the child process.
-      void setStandardIoHandles(::subsystem::File * stdIn, ::subsystem::File * stdOut, ::subsystem::File * stdErr) override;
+      void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) override;
 
       // If handlesIsInerited is true the handles of the parent process can
       // be used by the child process.

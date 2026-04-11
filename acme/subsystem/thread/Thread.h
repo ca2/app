@@ -53,7 +53,7 @@ namespace subsystem
     * @fixme some methods seems to be not thread-safe (that uses m_active member).
     * @fixme member of HDESK type in THREAD class???
     */
-   class CLASS_DECL_ACME ThreadInterface :
+   class ThreadInterface :
       virtual public ::subsystem::particle_interface<ThreadInterface>
    {
    public:
@@ -70,7 +70,7 @@ namespace subsystem
        * Deletes thread.
        * @remark does not stops thread execution if it's still running.
        */
-      virtual ~ThreadInterface() = 0;
+      //virtual ~ThreadInterface() = 0;
       /**
        * Waits until thread stops.
        * @return false on error.

@@ -17,46 +17,53 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, write to the Free Software Foundation, Inc.,
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "Pen.h"
+#include "SocketException.h"
 
-//#include <crtdbg.h>
-
-namespace innate_subsystem
+namespace subsystem
 {
+   SocketException::SocketException()
+   : ::subsystem::Exception()
+   {
+      setErrno(WSAGetLastError());
+   }
 
-//Pen::Pen(int type, int width, const ::color::color & color)
-   Pen::Pen()
-//: m_pen(NULL)
-{
-  // m_pen = CreatePen(type, width, color);
-  //
-  // _ASSERT(m_pen != NULL);
-}
+   SocketException::SocketException(int error)
+   : ::subsystem::Exception()
+   {
+      setErrno(error);
+   }
 
-Pen::~Pen()
-{
-  //DeleteObject(m_pen);
-}
+   SocketException::SocketException(const ::scoped_string & scopedstrMessage)
+   : ::subsystem::Exception(scopedstrMessage), m_errno(0)
+   {
+   }
 
-   // void * Pen::_HGDIOBJ()
-   // {
-   //    return m_pparticleThis->_HGDIOBJ();
-   // }
+   SocketException::~SocketException()
+   {
+   }
 
 
-   void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
-   ///: m_pen(NULL)
-{
+   void SocketException::setErrno(int error)
+   {
 
-   m_pparticleThis->initialize_pen(epen, width, color);
-}
-   // m_pen = CreatePen(type, width, color);
-   //
-   // _ASSERT(m_pen != NULL);
+      m_errno = error;
 
-}
+      TCHAR buffer[1024];
+
+      FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
+                    NULL, m_errno,
+                    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+                    (LPTSTR)&buffer[0],
+                    sizeof(buffer), NULL);
+
+      m_strMessage= &buffer[0];
+
+   }
+} // namespace subsystem
+
+

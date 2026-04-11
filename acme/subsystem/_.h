@@ -56,6 +56,18 @@ namespace subsystem
 
    class ScreenInterface;
 
+   class SocketIPv4;
+
+   class SocketIPv4Interface;
+
+   class SocketAddressIPv4;
+
+   class SocketAddressIPv4Interface;
+
+   class SocketStream;
+
+   class SocketStreamInterface;
+
 } // namespace subsystem
 
 

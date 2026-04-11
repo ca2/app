@@ -17,46 +17,43 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, write to the Free Software Foundation, Inc.,
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "Pen.h"
+#include "WindowsSocket.h"
 
-//#include <crtdbg.h>
 
-namespace innate_subsystem
+namespace subsystem
 {
+   bool SocketStartup::m_isStarted = false;
 
-//Pen::Pen(int type, int width, const ::color::color & color)
-   Pen::Pen()
-//: m_pen(NULL)
-{
-  // m_pen = CreatePen(type, width, color);
-  //
-  // _ASSERT(m_pen != NULL);
-}
+   void SocketStartup::startup(unsigned char loVer, unsigned char hiVer)
+   {
+      if (m_isStarted) {
+         throw ::subsystem::Exception("WindowsSocket already initialized.");
+      }
 
-Pen::~Pen()
-{
-  //DeleteObject(m_pen);
-}
+      WSAData wsaData;
 
-   // void * Pen::_HGDIOBJ()
-   // {
-   //    return m_pparticleThis->_HGDIOBJ();
-   // }
+      if (WSAStartup(MAKEWORD(loVer, hiVer), &wsaData) != 0) {
+         throw ::subsystem::Exception("Failed to initialize WindowsSocket.");
+      }
 
+      m_isStarted = true;
+   }
 
-   void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
-   ///: m_pen(NULL)
-{
+   void SocketStartup::cleanup()
+   {
+      if (!m_isStarted) {
+         throw ::subsystem::Exception("WindowsSocket don't initialized.");
+      }
 
-   m_pparticleThis->initialize_pen(epen, width, color);
-}
-   // m_pen = CreatePen(type, width, color);
-   //
-   // _ASSERT(m_pen != NULL);
+      m_isStarted = false;
 
-}
+      if (WSACleanup() == SOCKET_ERROR) {
+         throw ::subsystem::Exception("Failed to deinitialize WindowsSocket.");
+      }
+   }
+} // namespace subsystem

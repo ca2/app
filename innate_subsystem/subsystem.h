@@ -15,7 +15,7 @@ namespace subsystem_apex
 {
 
 
-   class CLASS_DECL_APEX subsystem :
+   class CLASS_DECL_INNATE_SUBSYSTEM subsystem :
       virtual public ::subsystem::subsystem
    {
    public:

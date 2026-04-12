@@ -2,9 +2,9 @@
 // Created by camilo on 2026-04-06 10:54 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-#include "subsystem.h"
-#include "SystemMetrics.h"
-#include "resource_loader.h"
+#include "gui/subsystem.h"
+#include "gui/SystemMetrics.h"
+#include "gui/resource_loader.h"
 #include "acme/constant/user_key.h"
 
 

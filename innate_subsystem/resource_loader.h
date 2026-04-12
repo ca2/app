@@ -39,7 +39,7 @@ namespace subsystem_apex
     * Singleton without support of "lazy" initialization.
     */
    //class ResourceLoader : public Singleton<ResourceLoader>
-   class CLASS_DECL_APEX resource_loader :
+   class CLASS_DECL_INNATE_SUBSYSTEM resource_loader :
       virtual public ::subsystem::resource_loader
    {
    public:

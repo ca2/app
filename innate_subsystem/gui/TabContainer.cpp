@@ -25,10 +25,10 @@
 #include "TabContainer.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

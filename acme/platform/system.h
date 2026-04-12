@@ -60,6 +60,7 @@ namespace platform
       ::pointer < ::particle >               m_pparticleHttpTextSynchronization;
       ::string_map_base < ::string_to_string_base >    m_mapText;
       ::pointer < ::platform::application >  m_papplicationMain;
+      //::pointer<::particle>                  m_pparticleSubsystem;
 
       system();
       ~system() override;
@@ -203,8 +204,6 @@ namespace platform
       ::acme::windowing::windowing * acme_windowing() override;
       ::windowing::windowing * windowing() override;
 
-      ::subsystem::subsystem * subsystem() override;
-
       ::component * component(const ::scoped_string & scopedstrComponent)override;
 
       //::string_table* string_table() override;
@@ -229,6 +228,8 @@ namespace platform
       virtual ::write_text::write_text * write_text() override;
 
       //virtual ::windowing::windowing_base * windowing_base();
+
+      virtual ::platform::subsystem *subsystem() override;
 
       //virtual ::http_system * http_system();
 

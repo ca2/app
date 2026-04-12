@@ -6,7 +6,7 @@
 #include "StringParser.h"
 #include "string_table.h"
 #include "resource_loader.h"
-#include "platform/registry.h"
+#include "acme/platform/registry.h"
 #include "node/Shell.h"
 #include "node/PipeClient.h"
 #include "Registry.h"

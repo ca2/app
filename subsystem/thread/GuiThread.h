@@ -30,7 +30,7 @@
 namespace subsystem
 {
 
-   class CLASS_DECL_ACME GuiThread: public ::subsystem::Thread
+   class CLASS_DECL_SUBSYSTEM GuiThread: public ::subsystem::Thread
    {
    public:
       GuiThread();
@@ -44,7 +44,7 @@ namespace subsystem
       // Desktop for current thread.
       //HDESK m_hDesk;
    };
-   // class CLASS_DECL_ACME GuiThread :
+   // class CLASS_DECL_SUBSYSTEM GuiThread :
    // virtual public ::subsystem::composite< GuiThread
    // {
    // public:

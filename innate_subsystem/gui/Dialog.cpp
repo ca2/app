@@ -30,7 +30,7 @@
 // #include <crtdbg.h>
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 Dialog::Dialog()
@@ -325,4 +325,4 @@ bool Dialog::onClose()
 //
 // }
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

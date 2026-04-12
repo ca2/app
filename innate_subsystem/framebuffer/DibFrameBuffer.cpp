@@ -26,7 +26,7 @@
 #include "subsystem/node/SystemException.h"
 #include "acme/prototype/geometry2d/size.h"
 
-namespace  subsystem_apex
+namespace  innate_subsystem
 {
    DibFrameBuffer::DibFrameBuffer()
    //: m_pdibsection(0)
@@ -112,12 +112,12 @@ namespace  subsystem_apex
       throw ::subsystem::Exception("This function is deprecated");
    }
 
-   void DibFrameBuffer::setEmptyPixelFmt(const ::subsystem_apex::PixelFormat &pf)
+   void DibFrameBuffer::setEmptyPixelFmt(const ::innate_subsystem::PixelFormat &pf)
    {
       throw ::subsystem::Exception("This function is deprecated");
    }
 
-   void DibFrameBuffer::setPropertiesWithoutResize(const ::int_size &newDim, const ::subsystem_apex::PixelFormat &pf)
+   void DibFrameBuffer::setPropertiesWithoutResize(const ::int_size &newDim, const ::innate_subsystem::PixelFormat &pf)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use the DibFrameBuffer::setPropertiesWithoutResize() function.");
    }
@@ -127,7 +127,7 @@ namespace  subsystem_apex
       return m_fb.getDimension();
    }
 
-   bool DibFrameBuffer::setPixelFormat(const ::subsystem_apex::PixelFormat &pixelFormat)
+   bool DibFrameBuffer::setPixelFormat(const ::innate_subsystem::PixelFormat &pixelFormat)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use the DibFrameBuffer::setPixelFormat() function.");
    }
@@ -137,12 +137,12 @@ namespace  subsystem_apex
       return m_fb.getPixelFormat();
    }
 
-   bool DibFrameBuffer::setProperties(const ::int_size &newDim, const ::subsystem_apex::PixelFormat &pixelFormat)
+   bool DibFrameBuffer::setProperties(const ::int_size &newDim, const ::innate_subsystem::PixelFormat &pixelFormat)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function.");
    }
 
-   bool DibFrameBuffer::setProperties(const ::int_rectangle &dimByRect, const ::subsystem_apex::PixelFormat &pixelFormat)
+   bool DibFrameBuffer::setProperties(const ::int_rectangle &dimByRect, const ::innate_subsystem::PixelFormat &pixelFormat)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use this variant of the DibFrameBuffer::setProperties() function.");
    }
@@ -207,7 +207,7 @@ namespace  subsystem_apex
    }
 
    void DibFrameBuffer::setProperties(const ::int_size &newDim,
-                                      const ::subsystem_apex::PixelFormat &pixelFormat,
+                                      const ::innate_subsystem::PixelFormat &pixelFormat,
                                       const ::operating_system::window & operatingsystemwindowCompatible)
    {
       m_fb.setPropertiesWithoutResize(newDim, pixelFormat);
@@ -216,7 +216,7 @@ namespace  subsystem_apex
    }
 
    void *DibFrameBuffer::updateDibSection(const ::int_size &newDim,
-                                         const ::subsystem_apex::PixelFormat &pixelFormat,
+                                         const ::innate_subsystem::PixelFormat &pixelFormat,
                                          const ::operating_system::window & operatingsystemwindowCompatible)
    {
       releaseDibSection();
@@ -242,6 +242,6 @@ namespace  subsystem_apex
          throw ::subsystem::Exception("Can't set target DC because it is not initialized a DIB section yet");
       }
    }
-} // namespace  subsystem_apex
+} // namespace  innate_subsystem
 
 

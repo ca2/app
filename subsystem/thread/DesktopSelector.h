@@ -121,7 +121,7 @@ namespace subsystem
 
 
 
-   class CLASS_DECL_ACME DesktopSelector :
+   class CLASS_DECL_SUBSYSTEM DesktopSelector :
        public ::subsystem::composite< DesktopSelectorInterface >
    {
    public:

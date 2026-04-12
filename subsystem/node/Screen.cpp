@@ -48,7 +48,7 @@ namespace subsystem
       m_pparticleThis->update();
    }
 
-   ::subsystem_apex::PixelFormat Screen::getPixelFormat()
+   ::innate_subsystem::PixelFormat Screen::getPixelFormat()
    {
       //return m_pixelFormat;
       return m_pparticleThis->getPixelFormat();

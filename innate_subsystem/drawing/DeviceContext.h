@@ -28,7 +28,7 @@
 //#include "util/CommonHeader.h"
 //#include "gui/PaintWindow.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -77,7 +77,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX DeviceContext :
+   class CLASS_DECL_INNATE_SUBSYSTEM DeviceContext :
       virtual public ::subsystem::composite < DeviceContextInterface >
    {
    public:
@@ -114,4 +114,4 @@ namespace subsystem_apex
    };
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

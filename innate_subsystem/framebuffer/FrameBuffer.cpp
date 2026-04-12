@@ -26,7 +26,7 @@
 // #include aaa_<string.h>
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    FrameBuffer::FrameBuffer(void)
    : m_buffer(0)
@@ -538,5 +538,5 @@ namespace subsystem_apex
       }
       return true;
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

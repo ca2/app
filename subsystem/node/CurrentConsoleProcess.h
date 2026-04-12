@@ -46,7 +46,7 @@ namespace subsystem
  *
  * @fixme rename it.
  */
-   class CLASS_DECL_ACME CurrentConsoleProcess :
+   class CLASS_DECL_SUBSYSTEM CurrentConsoleProcess :
       virtual public Process
    {
    public:
@@ -95,7 +95,7 @@ namespace subsystem
    //  *
    //  * @fixme rename it.
    //  */
-   // class CLASS_DECL_ACME CurrentConsoleProcess :
+   // class CLASS_DECL_SUBSYSTEM CurrentConsoleProcess :
    // virtual public ::subsystem::composite< CurrentConsoleProcessInterface >
    // {
    // public:

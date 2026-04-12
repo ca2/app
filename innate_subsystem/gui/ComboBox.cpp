@@ -26,7 +26,7 @@
 
 //#include <Windowsx.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    ComboBox::ComboBox()
    {
@@ -113,4 +113,4 @@ namespace subsystem_apex
       //ComboBox_ResetContent(m_hwnd);
       m_pparticleThis->removeAllItems();
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

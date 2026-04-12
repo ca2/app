@@ -26,7 +26,7 @@
 
 #include "innate_subsystem/drawing/Brush.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    class SolidBrushInterface :
    virtual public ::subsystem::particle_interface<SolidBrushInterface>,
@@ -41,7 +41,7 @@ namespace subsystem_apex
       virtual void initialize_solid_brush(const ::color::color & color) = 0;
    };
 
-   class CLASS_DECL_APEX SolidBrush :
+   class CLASS_DECL_INNATE_SUBSYSTEM SolidBrush :
    virtual public ::subsystem::composite < SolidBrushInterface >
    {
    public:
@@ -54,4 +54,4 @@ namespace subsystem_apex
 
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

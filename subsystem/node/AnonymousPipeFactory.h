@@ -66,7 +66,7 @@ namespace subsystem
 
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
-   class CLASS_DECL_ACME AnonymousPipeFactory :
+   class CLASS_DECL_SUBSYSTEM AnonymousPipeFactory :
    virtual public ::subsystem::composite< AnonymousPipeFactoryInterface >
    {
    public:

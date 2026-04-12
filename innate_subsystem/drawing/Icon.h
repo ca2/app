@@ -29,7 +29,7 @@
 
 #include "innate_subsystem/drawing/Bitmap.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    class IconInterface :
    virtual public ::subsystem::particle_interface<IconInterface>
@@ -58,7 +58,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX Icon :
+   class CLASS_DECL_INNATE_SUBSYSTEM Icon :
 virtual public ::subsystem::composite<IconInterface>
    {
    public:
@@ -83,6 +83,6 @@ virtual public ::subsystem::composite<IconInterface>
       //    HICON m_icon;
       //    bool m_hasOwnIcon;
    };
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

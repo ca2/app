@@ -65,7 +65,7 @@ namespace subsystem
    //     */
       //SecurityDescriptor m_sd;
    };
-   class CLASS_DECL_ACME SecurityAttributes :
+   class CLASS_DECL_SUBSYSTEM SecurityAttributes :
    virtual public ::subsystem::composite<SecurityAttributesInterface>
    {
    public:

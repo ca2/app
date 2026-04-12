@@ -15,7 +15,7 @@ namespace subsystem
 {
 
 
-   class CLASS_DECL_ACME subsystem :
+   class CLASS_DECL_SUBSYSTEM subsystem :
       virtual public ::particle
    {
    public:
@@ -67,7 +67,7 @@ namespace subsystem
 
       virtual int get_last_socket_error();
       virtual ::string get_socket_error_message_text(int iError);
-      ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port);
+      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port);
 
    };
 

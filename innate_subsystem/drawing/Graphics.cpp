@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Graphics.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    // Graphics::Graphics(DeviceContext *dc)
    // : m_dc(dc)
@@ -191,6 +191,6 @@ namespace subsystem_apex
    {
       m_pparticleThis->drawText(text, cchText, rect, format, ealign);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

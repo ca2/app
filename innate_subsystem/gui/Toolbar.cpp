@@ -25,7 +25,7 @@
 #include "Toolbar.h"
 //#include <CommCtrl.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Toolbar::Toolbar()
    {
@@ -312,4 +312,4 @@ namespace subsystem_apex
 
       return m_pparticleThis->addNButton(nButtons, ptoolbarbutton);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

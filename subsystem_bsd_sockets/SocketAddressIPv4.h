@@ -42,7 +42,7 @@ namespace subsystem_bsd_sockets
 
 
 
-   class CLASS_DECL_SUBSYSTEM_WIN32 SocketAddressIPv4 :
+   class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS SocketAddressIPv4 :
    virtual public ::subsystem::implementation<::subsystem::SocketAddressIPv4Interface>
    {
    public:
@@ -55,10 +55,16 @@ namespace subsystem_bsd_sockets
       // SocketAddressIPv4(const SocketAddressIPv4 &socketAddressIPv4);
       // SocketAddressIPv4 &operator=(const SocketAddressIPv4 &socketAddressIPv4);
 
+      SocketAddressIPv4();
+      ~SocketAddressIPv4() override;
+
       void initialize_socket_address_ipv4() override;
       void _initialize_socket_address_ipv4(struct sockaddr_in);
       void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) override;
-      void initialize_socket_address_ipv4(const SocketAddressIPv4 &socketAddressIPv4) override;
+      void initialize_socket_address_ipv4(const SocketAddressIPv4Interface &socketAddressIPv4) override;
+
+
+      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) = 0;
 
       virtual socklen_t _getAddrLen() const;
       virtual struct sockaddr_in _getSockAddr() const;

@@ -27,7 +27,7 @@
 //#include <shellapi.h>
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 //    NotifyIcon::NotifyIcon(bool showAfterCreation)
 //    : NotifyIconWindow(), m_icon(0), m_visible(showAfterCreation)
@@ -144,4 +144,4 @@ NotifyIcon::~NotifyIcon()
       // Shell_NotifyIcon(NIM_MODIFY, &m_nid);
    m_pparticleThis->showBalloon(message, caption, timeoutMillis);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

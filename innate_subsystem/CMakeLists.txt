@@ -1,18 +1,116 @@
 cmake_minimum_required(VERSION 3.16)
-project(subsystem CXX)
+project(innate_subsystem CXX)
 
 
 list(APPEND library_source
+   drawing/_.h
+   drawing/Bitmap.cpp
+   drawing/Bitmap.h
+   drawing/BitmapGraphics.cpp
+   drawing/BitmapGraphics.h
+   drawing/Brush.cpp
+   drawing/Brush.h
+   drawing/DeviceContext.cpp
+   drawing/DeviceContext.h
+   drawing/Graphics.cpp
+   drawing/Graphics.h
+   drawing/GraphicsObject.h
+   drawing/GraphicsObject.cpp
+   drawing/Icon.cpp
+   drawing/Icon.h
+   drawing/Pen.cpp
+   drawing/Pen.h
+   drawing/SolidBrush.cpp
+   drawing/SolidBrush.h
+   framebuffer/DibFrameBuffer.cpp
+   framebuffer/DibFrameBuffer.h
+   framebuffer/DibSection.cpp
+   framebuffer/DibSection.h
+   framebuffer/FrameBuffer.cpp
+   framebuffer/FrameBuffer.h
+   
+   #gui.vcproj
+   #gui.vcxproj.user   gui/BalloonTip.cpp
+   gui/BalloonTip.h
+   gui/CheckBox.cpp
+   gui/CheckBox.h
+   gui/ComboBox.cpp
+   gui/ComboBox.h
+   gui/CommonControlsEx.cpp
+   gui/CommonControlsEx.h
+   gui/Control.cpp
+   gui/Control.h
+   #gui/Cursor.cpp
+   #gui/Cursor.h
+   gui/Dialog.cpp
+   gui/Dialog.h
+   gui/FilteredTextBox.cpp
+   gui/FilteredTextBox.h
+   gui/ImagedButton.cpp
+   gui/ImagedButton.h
+   gui/ImageList.cpp
+   gui/ImageList.h
+   gui/ListBox.cpp
+   gui/ListBox.h
+   gui/ListView.cpp
+   gui/ListView.h
+   gui/Menu.cpp
+   gui/Menu.h
+   gui/MessageWindow.cpp
+   gui/MessageWindow.h
+   gui/notification_handler.cpp
+   gui/notification_handler.h
+   gui/NotifyIcon.cpp
+   gui/NotifyIcon.h
+   gui/NotifyIconWindow.cpp
+   gui/NotifyIconWindow.h
+   gui/PaintWindow.cpp
+   gui/PaintWindow.h
+   gui/ProgressBar.cpp
+   gui/ProgressBar.h
+   #gui/resource_loader.cpp
+   #gui/resource_loader.h
+   gui/ScrollBar.cpp
+   gui/ScrollBar.h
+   gui/SpinControl.cpp
+   gui/SpinControl.h
+   gui/StringFilter.cpp
+   gui/StringFilter.h
+   #gui/subsystem.cpp
+   #gui/subsystem.h
+   gui/SystemMetrics.cpp
+   gui/SystemMetrics.h
+   gui/Tab.cpp
+   gui/Tab.h
+   gui/TabContainer.cpp
+   gui/TabContainer.h
+   gui/TabControl.cpp
+   gui/TabControl.h
+   gui/TextBox.cpp
+   gui/TextBox.h
+   gui/Toolbar.cpp
+   gui/Toolbar.h
+   gui/Tooltip.cpp
+   gui/Tooltip.h
+   gui/Trackbar.cpp
+   gui/Trackbar.h
+   gui/Window.cpp
+   gui/Window.h
+   gui/WindowFinder.cpp
+   gui/WindowFinder.h
+   gui/WindowMessageHandler.h
+   gui/WindowProcHolder.cpp
+   gui/WindowProcHolder.h
    _.cpp
    _.h
    ##_library.h
-   _factory.h
-   application.cpp
-   application.h
+   #_factory.h
+   #application.cpp
+   #application.h
    framework.cpp
    framework.h
-   main_window.cpp
-   main_window.h)
+   subsystem.cpp
+   subsystem.h)
 
 
 list(APPEND library_references

@@ -30,7 +30,7 @@
 #include "innate_subsystem/Control.h"
 //#include "ThemeLib.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
     //
     // Owner draw button, that displays button with image and text.
@@ -95,7 +95,7 @@ namespace subsystem_apex
     };
 
 
-   class CLASS_DECL_APEX ImagedButton :
+   class CLASS_DECL_INNATE_SUBSYSTEM ImagedButton :
 
    virtual public ::subsystem::composite<ImagedButtonInterface>
    {
@@ -155,6 +155,6 @@ namespace subsystem_apex
 
 
 //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

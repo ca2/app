@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "ScrollBar.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    ScrollBar::ScrollBar()
    // : m_hwnd(0),
@@ -304,5 +304,5 @@ namespace subsystem_apex
       //return GetSystemMetrics(SM_CXHSCROLL);
       return m_pparticleThis->getHorizontalSize();
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

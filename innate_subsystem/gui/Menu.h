@@ -30,7 +30,7 @@
 //#include <crtdbg.h>
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    class MenuInterface :
       virtual public ::subsystem::particle_interface<MenuInterface>
@@ -85,7 +85,7 @@ namespace subsystem_apex
       //   bool m_bCreated;
    };
    
-class CLASS_DECL_APEX Menu :
+class CLASS_DECL_INNATE_SUBSYSTEM Menu :
       virtual public ::subsystem::composite< MenuInterface>
    {
    public:
@@ -141,6 +141,6 @@ class CLASS_DECL_APEX Menu :
    
       
    
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

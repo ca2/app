@@ -34,7 +34,7 @@ namespace subsystem
     * Data input stream class (decorator pattern).
     * Allows to read typed data from input stream.
     */
-   class CLASS_DECL_ACME DataInputStream : public InputStream
+   class CLASS_DECL_SUBSYSTEM DataInputStream : public InputStream
    {
    public:
       /**

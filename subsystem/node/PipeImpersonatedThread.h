@@ -60,7 +60,7 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
-   class CLASS_DECL_ACME PipeImpersonatedThread :
+   class CLASS_DECL_SUBSYSTEM PipeImpersonatedThread :
    virtual public ::subsystem::composite < PipeImpersonatedThreadInterface>
    {
    public:

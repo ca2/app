@@ -22,8 +22,10 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "_subsystem_sockets_bsd/sockdefs.h"
-#include "_subsystem_sockets_bsd/SocketAddressIPv4.h"
+#include "sockdefs.h"
+#include "SocketAddressIPv4.h"
+
+#include "subsystem.h"
 #include "subsystem/socket/SocketException.h"
 //#include "remoting/remoting_common/util/::string.h"
 
@@ -31,7 +33,8 @@
 
 namespace subsystem_bsd_sockets
 {
-   critical_section SocketAddressIPv4::s_resolveMutex;
+
+   //critical_section SocketAddressIPv4::s_resolveMutex;
 
    void getLocalIPAddrString(char *buffer, int buflen)
    {
@@ -62,55 +65,59 @@ namespace subsystem_bsd_sockets
    }
 
    SocketAddressIPv4::SocketAddressIPv4()
-   : m_wsaStartup(1, 2)
+   //: m_wsaStartup(1, 2)
    {
       m_addr.s_addr = INADDR_ANY;
       m_port = 0;
    };
 
-   SocketAddressIPv4::SocketAddressIPv4(struct sockaddr_in addr)
-   : m_wsaStartup(1, 2)
+   void SocketAddressIPv4::_initialize_socket_address_ipv4(struct sockaddr_in addr)
+   //: m_wsaStartup(1, 2)
    {
       m_addr.s_addr = INADDR_ANY;
       m_port = 0;
 
       if (addr.sin_family != AF_INET) {
-         throw SocketException("The specified m_addr is not AF_INET family m_addr!");
+         throw ::subsystem::SocketException("The specified m_addr is not AF_INET family m_addr!");
       }
 
       m_addr.s_addr = ntohl(addr.sin_addr.s_addr);
       m_port = ntohs(addr.sin_port);
    };
 
-   SocketAddressIPv4::SocketAddressIPv4(const ::scoped_string & scopedstrHost, unsigned short port)
-   : m_wsaStartup(1, 2)
+   void SocketAddressIPv4::initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port)
    {
-      SocketAddressIPv4 sa = SocketAddressIPv4::resolve(scopedstrHost, port);
 
-      this->m_addr = sa.m_addr;
-      this->m_port = sa.m_port;
+      auto psocketaddress = bsd_sockets_subsystem()->resolve_ip4_address(scopedstrHost, port);
+
+      auto  psocketaddressBsd = psocketaddress->impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+      this->m_addr = psocketaddressBsd->m_addr;
+      this->m_port = psocketaddressBsd->m_port;
    };
 
-   SocketAddressIPv4::SocketAddressIPv4(const SocketAddressIPv4 &socketAddressIPv4)
-   : m_wsaStartup(1, 2) {
-      m_addr = socketAddressIPv4.m_addr;
-      m_port = socketAddressIPv4.m_port;
+   void SocketAddressIPv4::initialize_socket_address_ipv4(const ::subsystem::SocketAddressIPv4Interface & socketAddressIPv4)
+   {
+      auto  psocketaddressBsd = socketAddressIPv4.impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+      m_addr = psocketaddressBsd->m_addr;
+      m_port = psocketaddressBsd->m_port;
    }
 
-   SocketAddressIPv4& SocketAddressIPv4::operator=(const SocketAddressIPv4 &socketAddressIPv4) {
+   void SocketAddressIPv4::assign(const ::subsystem::SocketAddressIPv4Interface  &socketAddressIPv4)
+   {
       if (this != &socketAddressIPv4) {
-         this->m_addr = socketAddressIPv4.m_addr;
-         this->m_port = socketAddressIPv4.m_port;
+         auto  psocketaddressBsd = socketAddressIPv4.impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+         m_addr = psocketaddressBsd->m_addr;
+         m_port = psocketaddressBsd->m_port;
       }
-      return *this;
+
    }
 
-   socklen_t SocketAddressIPv4::getAddrLen() const
+   socklen_t SocketAddressIPv4::_getAddrLen() const
    {
       return sizeof(struct sockaddr_in);
    };
 
-   struct sockaddr_in SocketAddressIPv4::getSockAddr() const
+   struct sockaddr_in SocketAddressIPv4::_getSockAddr() const
    {
       struct sockaddr_in saddr;
 
@@ -140,28 +147,29 @@ namespace subsystem_bsd_sockets
       return m_port;
    }
 
-   SocketAddressIPv4 SocketAddressIPv4::resolve(const ::scoped_string & scopedstrHost, unsigned short m_port)
+   ::pointer < ::subsystem::SocketAddressIPv4Interface > subsystem::resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port)
    {
-      SocketAddressIPv4 resolvedAddress;
+      auto presolvedAddress = createø<::subsystem_bsd_sockets::SocketAddressIPv4>();
 
       ::string hostStorage(scopedstrHost);
 
       {
-         critical_section_lock l(&s_resolveMutex);
+         critical_section_lock l(&s_criticalsectionResolveIp4);
 
          ::string hostAnsi(hostStorage);
 
          hostent *hent = gethostbyname(hostAnsi);
          if (hent == 0) {
-            throw SocketException();
+            throw ::subsystem::SocketException();
          }
 
-         resolvedAddress.m_addr.S_un.S_addr = ntohl(*(u_long *)hent->h_addr_list[0]);
+         presolvedAddress->m_addr.S_un.S_addr = ntohl(*(u_long *)hent->h_addr_list[0]);
       }
 
-      resolvedAddress.m_port = m_port;
+      presolvedAddress->m_port = port;
 
-      return resolvedAddress;
+      return presolvedAddress;
+
    }
 
 

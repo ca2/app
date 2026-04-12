@@ -32,7 +32,7 @@
 ///typedef vector<Tab *> TabContainer;
 ///
 ///
-namespace subsystem_apex
+namespace innate_subsystem
 {
    using TabContainer = ::pointer_array <TabInterface>;
 }

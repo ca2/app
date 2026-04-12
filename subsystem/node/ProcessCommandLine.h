@@ -71,7 +71,7 @@ namespace subsystem
    };
 
       // This class is an interface for a primitive command line parser
-   class CLASS_DECL_ACME ProcessCommandLine :
+   class CLASS_DECL_SUBSYSTEM ProcessCommandLine :
       virtual public ::subsystem::composite < ProcessCommandLineInterface >
    {
    public:

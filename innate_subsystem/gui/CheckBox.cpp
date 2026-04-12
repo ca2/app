@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "CheckBox.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    CheckBox::CheckBox()
@@ -51,4 +51,4 @@ namespace subsystem_apex
       m_pparticleThis->setChecked(bChecked);
       //SendMessage(m_hwnd, BM_SETCHECK, (checked) ? 1 : 0, NULL);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

@@ -30,12 +30,12 @@
 //#include "innate_subsystem/drawing/BitmapGraphics.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    // This class is a wrapper for a FramBuffer and a DIB section.
    // It changes DIB section proerties by oneself according to FrameBuffer
    // properties (such as width, height and PixelFormat)
-   class CLASS_DECL_APEX DibFrameBuffer :
+   class CLASS_DECL_INNATE_SUBSYSTEM DibFrameBuffer :
    virtual public FrameBuffer
    {
    public:
@@ -73,7 +73,7 @@ namespace subsystem_apex
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
-      void setTargetDeviceContext(::subsystem_apex::DeviceContextInterface * pdevicecontext);
+      void setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext);
 
       virtual unsigned char getBitsPerPixel() const;
 
@@ -141,4 +141,4 @@ namespace subsystem_apex
    };
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

@@ -32,11 +32,11 @@
 // #include "innate_subsystem/drawing/Brush.h"
 // #include "innate_subsystem/drawing/Pen.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX GraphicsInterface :
+   class CLASS_DECL_INNATE_SUBSYSTEM GraphicsInterface :
    virtual public ::subsystem::particle_interface<GraphicsInterface>
    {
    public:
@@ -99,7 +99,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX Graphics :
+   class CLASS_DECL_INNATE_SUBSYSTEM Graphics :
       virtual public ::subsystem::composite<GraphicsInterface>
    {
    public:
@@ -163,4 +163,4 @@ namespace subsystem_apex
    };
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

@@ -30,7 +30,7 @@
 #include "innate_subsystem/Tooltip.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -82,7 +82,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX TextBox :
+   class CLASS_DECL_INNATE_SUBSYSTEM TextBox :
       virtual public ::subsystem::composite<TextBoxInterface >
     {
     public:
@@ -125,7 +125,7 @@ namespace subsystem_apex
     };
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 

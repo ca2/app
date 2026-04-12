@@ -6,10 +6,10 @@
 #include "acme/_.h"
 
 
-#if defined(_subsystem_acme_project)
-#define CLASS_DECL_SUBSYSTEM_ACME  CLASS_DECL_EXPORT
+#if defined(_subsystem_project)
+#define CLASS_DECL_SUBSYSTEM  CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_SUBSYSTEM_ACME  CLASS_DECL_IMPORT
+#define CLASS_DECL_SUBSYSTEM  CLASS_DECL_IMPORT
 #endif
 
 
@@ -93,14 +93,14 @@ namespace subsystem
 } // namespace subsystem
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
    struct PixelFormat;
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 #include "subsystem/io/_.h"

@@ -38,7 +38,7 @@ Class for impersonating current process as user that logged on current
 console session.
 @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
 */
-   class CLASS_DECL_ACME ImpersonatorInterface :
+   class CLASS_DECL_SUBSYSTEM ImpersonatorInterface :
       virtual public ::subsystem::particle_interface<ImpersonatorInterface>
    {
    public:
@@ -85,7 +85,7 @@ console session.
    console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
-   class CLASS_DECL_ACME Impersonator :
+   class CLASS_DECL_SUBSYSTEM Impersonator :
    virtual public ::subsystem::composite<ImpersonatorInterface>
    {
    public:

@@ -10,7 +10,7 @@
 #include "innate_subsystem/notification_handler.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    class DeviceContextInterface;
@@ -46,4 +46,4 @@ namespace subsystem_apex
 
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

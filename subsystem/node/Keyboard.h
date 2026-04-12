@@ -72,7 +72,7 @@ namespace subsystem
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
-   class CLASS_DECL_ACME Keyboard :
+   class CLASS_DECL_SUBSYSTEM Keyboard :
    virtual public ::subsystem::composite <KeyboardInterface>
    {
    public:

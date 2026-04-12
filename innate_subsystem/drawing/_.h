@@ -4,7 +4,7 @@
 #pragma once
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    class Bitmap;

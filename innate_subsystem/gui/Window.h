@@ -31,7 +31,7 @@
 #include "subsystem/particle.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -175,9 +175,9 @@ namespace subsystem_apex
 
       // for changing registered class parameters of created window
       virtual void setClassStyle(unsigned int style) = 0;
-      virtual void setClassCursor(::subsystem_apex::CursorInterface * pcursor) = 0;
-      virtual void setClassBackground(::subsystem_apex::BrushInterface * pbrush) = 0;
-      virtual void setClassMenu(::subsystem_apex::MenuInterface * pmenu) = 0;
+      virtual void setClassCursor(::innate_subsystem::CursorInterface * pcursor) = 0;
+      virtual void setClassBackground(::innate_subsystem::BrushInterface * pbrush) = 0;
+      virtual void setClassMenu(::innate_subsystem::MenuInterface * pmenu) = 0;
 
       // for changing or get style and exstyle of window
       virtual long long getStyle() = 0;
@@ -241,7 +241,7 @@ namespace subsystem_apex
 
    virtual bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
 
-      virtual void onDraw(::subsystem_apex::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) = 0;
+      virtual void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) = 0;
 
       virtual void onBeforeFullScreen(bool bRestore) = 0;
       virtual void onAfterFullScreen(bool bRestore) = 0;
@@ -260,7 +260,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX Window :
+   class CLASS_DECL_INNATE_SUBSYSTEM Window :
       virtual public ::subsystem::composite<WindowInterface>
    {
    public:
@@ -381,9 +381,9 @@ namespace subsystem_apex
 
       // for changing registered class parameters of created window
       void setClassStyle(unsigned int style) override;
-      void setClassCursor(::subsystem_apex::CursorInterface * pcursor) override;
-      void setClassBackground(::subsystem_apex::BrushInterface * pbrush) override;
-      void setClassMenu(::subsystem_apex::MenuInterface * pmenu) override;
+      void setClassCursor(::innate_subsystem::CursorInterface * pcursor) override;
+      void setClassBackground(::innate_subsystem::BrushInterface * pbrush) override;
+      void setClassMenu(::innate_subsystem::MenuInterface * pmenu) override;
 
 
       bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override;
@@ -456,7 +456,7 @@ namespace subsystem_apex
       bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) override;
 
 
-      void onDraw(::subsystem_apex::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override;
+      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override;
 
 
       void onBeforeFullScreen(bool bRestore) override;
@@ -476,4 +476,4 @@ namespace subsystem_apex
    //    bool m_bWndCreated;
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

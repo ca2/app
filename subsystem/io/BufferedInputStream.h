@@ -7,7 +7,7 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_ACME BufferedInputStream : public InputStream
+   class CLASS_DECL_SUBSYSTEM BufferedInputStream : public InputStream
    {
    public:
 

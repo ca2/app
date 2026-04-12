@@ -28,7 +28,7 @@
 //#include "util/UnicodeStringStorage.h"
 //#include <crtdbg.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    ImagedButton::ImagedButton()
    // : m_mouseOver(false),
@@ -266,4 +266,4 @@ namespace subsystem_apex
    //    // Any messages we don't process must be passed onto the original window function
    //    return CallWindowProc((WNDPROC)_this->m_defWindowProc, hWnd, message, ::wparam, ::lparam);
    // }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

@@ -38,7 +38,7 @@ namespace subsystem
 {
 
 
-   class CLASS_DECL_ACME SocketStream : public Channel
+   class CLASS_DECL_SUBSYSTEM SocketStream : public Channel
    {
    public:
 

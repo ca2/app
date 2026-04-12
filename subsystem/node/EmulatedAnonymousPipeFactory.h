@@ -55,7 +55,7 @@ namespace subsystem
       // unsigned int m_bufferSize;
    };
 
-    class CLASS_DECL_ACME EmulatedAnonymousPipeFactory :
+    class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactory :
     virtual public ::subsystem::composite< EmulatedAnonymousPipeFactoryInterface >
     {
     public:

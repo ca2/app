@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Icon.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Icon::Icon()
    //: m_hasOwnIcon(true), m_icon(NULL)
@@ -104,4 +104,4 @@ namespace subsystem_apex
       //
       // m_icon = CreateIconIndirect(&ii);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

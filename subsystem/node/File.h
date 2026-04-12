@@ -8,7 +8,7 @@
 namespace subsystem
 {
 
-   class CLASS_DECL_ACME FileInterface :
+   class CLASS_DECL_SUBSYSTEM FileInterface :
       virtual public ::subsystem::particle_interface<FileInterface>
    {
    public:
@@ -21,7 +21,7 @@ namespace subsystem
    };
 
 
-   class CLASS_DECL_ACME File :
+   class CLASS_DECL_SUBSYSTEM File :
    virtual public ::subsystem::composite<FileInterface >
    {
    public:

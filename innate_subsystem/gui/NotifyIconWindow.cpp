@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "NotifyIconWindow.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -85,6 +85,6 @@ namespace subsystem_apex
 
       m_pparticleThis->setWindowProcHolder(wph);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

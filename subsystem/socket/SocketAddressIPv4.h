@@ -35,10 +35,10 @@
 
 namespace subsystem
 {
-   // FIXME: Deprecated method, only for testing of old code.
-   void getLocalIPAddrString(char *buffer, int buflen);
+   // // FIXME: Deprecated method, only for testing of old code.
+   // void getLocalIPAddrString(char *buffer, int buflen);
 
-   class CLASS_DECL_ACME SocketAddressIPv4Interface :
+   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Interface :
    virtual public ::subsystem::particle_interface<SocketAddressIPv4Interface>
    {
    public:
@@ -49,20 +49,20 @@ namespace subsystem
       virtual void initialize_socket_address_ipv4() = 0;
       //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
       virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) = 0;
-      virtual void initialize_socket_address_ipv4(const SocketAddressIPv4 &socketAddressIPv4) = 0;
+      virtual void initialize_socket_address_ipv4(const SocketAddressIPv4Interface &socketAddressIPv4) = 0;
 
 
-      virtual void assign(const SocketAddressIPv4 &socketAddressIPv4) = 0;
+      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) = 0;
 
 
       ///socklen_t getAddrLen() const = 0;
       //struct sockaddr_in getSockAddr() const = 0;
 
       // Converts socket address to it's string value (ip address as string).
-      ::string toString() const;
+      virtual ::string toString() const = 0;
 
       // Returns socket port number
-      unsigned short getPort() const;
+      virtual unsigned short getPort() const = 0;
 
 
    // //protected:
@@ -72,4 +72,45 @@ namespace subsystem
 
 
    };
+
+
+
+   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4 :
+   virtual public ::subsystem::composite<SocketAddressIPv4Interface>
+   {
+   public:
+
+
+
+      SocketAddressIPv4();
+      virtual ~SocketAddressIPv4() override;
+
+
+      virtual void initialize_socket_address_ipv4() override;
+      //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
+      virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) override;
+      virtual void initialize_socket_address_ipv4(const SocketAddressIPv4Interface &socketAddressIPv4) override;
+
+
+      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) override;
+
+
+      ///socklen_t getAddrLen() const = 0;
+      //struct sockaddr_in getSockAddr() const = 0;
+
+      // Converts socket address to it's string value (ip address as string).
+      virtual ::string toString() const override;
+
+      // Returns socket port number
+      virtual unsigned short getPort() const override;
+
+
+      // //protected:
+      //    //WsaStartup m_wsaStartup;
+      //    unsigned short m_port;
+      //    struct in_addr m_addr;
+
+
+   };
+
 } // namespace subsystem

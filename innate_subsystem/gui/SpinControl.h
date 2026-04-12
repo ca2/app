@@ -28,7 +28,7 @@
 #include "innate_subsystem/Control.h"
 ////#include <CommCtrl.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 class SpinControlInterface :
@@ -70,7 +70,7 @@ public:
 //   int m_maxDelta;
 };
 
-   class CLASS_DECL_APEX SpinControl :
+   class CLASS_DECL_INNATE_SUBSYSTEM SpinControl :
    virtual public ::subsystem::composite < SpinControlInterface>
    {
    public:
@@ -107,7 +107,7 @@ public:
       //   std::vector<int> m_deltas;
       //   int m_maxDelta;
    };
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 //#endif
 

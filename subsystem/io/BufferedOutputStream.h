@@ -35,7 +35,7 @@ namespace subsystem
     * Adds bufferization feature to output stream.
     * @remark size of buffer now is fixed and equals to 1400 bytes.
     */
-   class CLASS_DECL_ACME BufferedOutputStream : public OutputStream
+   class CLASS_DECL_SUBSYSTEM BufferedOutputStream : public OutputStream
    {
    public:
       /**

@@ -88,7 +88,7 @@ namespace subsystem
    /**
  * Contains the security information associated with an object.
  */
-   class CLASS_DECL_ACME SecurityDescriptor :
+   class CLASS_DECL_SUBSYSTEM SecurityDescriptor :
    virtual public ::subsystem::composite<SecurityDescriptorInterface>
    {
    public:

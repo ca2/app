@@ -52,7 +52,7 @@ namespace subsystem
    // /**
    //  * Synchronized (thread-safe) object that can be locked and unlocked.
    //  */
-   // class CLASS_DECL_ACME Lockable :
+   // class CLASS_DECL_SUBSYSTEM Lockable :
    //    virtual public ::subsystem::composite<LockableInterface>
    // {
    // public:

@@ -32,7 +32,7 @@ namespace subsystem
    /**
     * Input stream interface (abstract class).
     */
-   class CLASS_DECL_ACME InputStream
+   class CLASS_DECL_SUBSYSTEM InputStream
    {
    public:
       virtual ~InputStream();

@@ -30,7 +30,7 @@
 namespace subsystem
 {
    // Abstract class for next using in WinHooks class and as a base class in others.
-   class CLASS_DECL_ACME OperatingSystemHookListener :
+   class CLASS_DECL_SUBSYSTEM OperatingSystemHookListener :
    virtual public ::particle
    {
    public:

@@ -27,25 +27,25 @@
 #include "subsystem/framebuffer/PixelFormat.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
-   class CLASS_DECL_ACME StandardPixelFormatFactory
+   class CLASS_DECL_SUBSYSTEM StandardPixelFormatFactory
    {
    public:
       // specifies 16777216 colors, 8bit per Red, 8bit per Green, 8bit per Blue
-      static ::subsystem_apex::PixelFormat create32bppPixelFormat();
+      static ::innate_subsystem::PixelFormat create32bppPixelFormat();
 
       // specifies 65536 colors, 5bit per Red, 6bit per Green, 5bit per Blue
-      static ::subsystem_apex::PixelFormat create16bppPixelFormat();
+      static ::innate_subsystem::PixelFormat create16bppPixelFormat();
 
       // specifies 256 colors, 2bit per Blue, 3bit per Green & Red
-      static ::subsystem_apex::PixelFormat create8bppPixelFormat();
+      static ::innate_subsystem::PixelFormat create8bppPixelFormat();
 
       // specifies 64 colors, 2bit per Red, Green & Blue
-      static ::subsystem_apex::PixelFormat create6bppPixelFormat();
+      static ::innate_subsystem::PixelFormat create6bppPixelFormat();
 
       // specifies 8 colors, 1bit per Red, Green & Blue
-      static ::subsystem_apex::PixelFormat create3bppPixelFormat();
+      static ::innate_subsystem::PixelFormat create3bppPixelFormat();
    };
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

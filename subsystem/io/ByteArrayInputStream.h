@@ -33,7 +33,7 @@ namespace subsystem
    /**
     * Input stream for reading data from memory.
     */
-   class CLASS_DECL_ACME ByteArrayInputStream : public InputStream
+   class CLASS_DECL_SUBSYSTEM ByteArrayInputStream : public InputStream
    {
    public:
       /**

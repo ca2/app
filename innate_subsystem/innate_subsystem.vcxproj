@@ -391,7 +391,7 @@
     <ClInclude Include="_common_header.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\subsystem_acme\subsystem_acme.vcxproj">
+    <ProjectReference Include="..\subsystem\subsystem.vcxproj">
       <Project>{8cc36574-7cff-438f-ae5c-51fd5c6b2823}</Project>
     </ProjectReference>
   </ItemGroup>

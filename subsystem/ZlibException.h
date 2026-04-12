@@ -29,7 +29,7 @@
 
 namespace subsystem
 {
-    class CLASS_DECL_ACME  ZLibException : public ::subsystem::Exception
+    class CLASS_DECL_SUBSYSTEM  ZLibException : public ::subsystem::Exception
     {
     public:
         ZLibException(const ::scoped_string & scopedstrMessage);

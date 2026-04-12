@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Bitmap.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    // Bitmap::Bitmap(const ::int_size & size)
    // : m_bitmap(NULL)
@@ -130,6 +130,6 @@ namespace subsystem_apex
    //    return bitmap.bmHeight;
    // }
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

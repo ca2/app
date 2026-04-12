@@ -64,7 +64,7 @@ namespace subsystem
    /**
  * Contains information about executable file version info.
  */
-   class CLASS_DECL_ACME VersionInfo :
+   class CLASS_DECL_SUBSYSTEM VersionInfo :
       virtual public ::subsystem::composite<VersionInfoInterface>
    {
    public:

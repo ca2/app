@@ -5,7 +5,7 @@
 #include "subsystem/particle.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    namespace image_list
@@ -37,7 +37,7 @@ namespace subsystem_apex
 
 
 
-   class CLASS_DECL_APEX ImageList :
+   class CLASS_DECL_INNATE_SUBSYSTEM ImageList :
    virtual public ::subsystem::composite<ImageList
    {
    public:
@@ -53,4 +53,4 @@ namespace subsystem_apex
 
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

@@ -29,7 +29,7 @@
 #include "innate_subsystem/drawing/GraphicsObject.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -70,7 +70,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX Bitmap :
+   class CLASS_DECL_INNATE_SUBSYSTEM Bitmap :
       virtual public ::subsystem::composite < BitmapInterface >
    {
    public:
@@ -110,6 +110,6 @@ namespace subsystem_apex
    };
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

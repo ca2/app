@@ -5,15 +5,25 @@ project(subsystem_bsd_sockets CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   ##_library.h
-   _factory.h
-   application.cpp
-   application.h
+   _factory.cpp
    framework.cpp
    framework.h
-   main_window.cpp
-   main_window.h)
+   SocketAddressIPv4.cpp
+   SocketAddressIPv4.h
+   SocketIPv4.cpp
+   SocketIPv4.h
+   subsystem.cpp
+   subsystem.h
+)
 
+
+if (${WIN32})
+
+
+   list(APPEND library_source
+      windows/subsystem.cpp)
+
+endif()
 
 list(APPEND library_references
    acme
@@ -95,7 +105,7 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
-add_subdirectory(__implement)
+#add_subdirectory(__implement)
 
 
 

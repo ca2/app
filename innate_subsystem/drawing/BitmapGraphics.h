@@ -28,7 +28,7 @@
 #include "innate_subsystem/drawing/Bitmap.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    //
    // Object that creates bitmap with specified size and allow to
@@ -64,7 +64,7 @@ namespace subsystem_apex
    //
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
-   class CLASS_DECL_APEX BitmapGraphics :
+   class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphics :
    virtual public ::subsystem::composite<BitmapGraphicsInterface>
    {
    public:
@@ -93,4 +93,4 @@ namespace subsystem_apex
 
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

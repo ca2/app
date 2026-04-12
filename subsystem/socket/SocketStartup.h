@@ -34,7 +34,7 @@ namespace subsystem
    //
    // Class that startup and cleanup Windows Sockets subsystem.
    //
-   class CLASS_DECL_ACME SocketStartup
+   class CLASS_DECL_SUBSYSTEM SocketStartup
    {
    public:
       // Initializes Windows sockets subsystem.

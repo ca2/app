@@ -30,7 +30,7 @@
 #include "innate_subsystem/Control.h"
 //#include "util/::string.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -76,7 +76,7 @@ namespace subsystem_apex
       // Return
       virtual ControlInterface *getControl() = 0;
       // Setup control by ID
-      virtual void subclassControlById(::subsystem_apex::ControlInterface * pcontrol, unsigned int id) = 0;
+      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) = 0;
       // Icon manipulation
       virtual void loadIcon(unsigned int id) = 0;
       virtual void updateIcon() = 0;
@@ -112,7 +112,7 @@ namespace subsystem_apex
 
       }
 
-      template < typename WIDGET_TYPE  = ::subsystem_apex::Control>
+      template < typename WIDGET_TYPE  = ::innate_subsystem::Control>
       ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
       {
 
@@ -185,7 +185,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX Dialog :
+   class CLASS_DECL_INNATE_SUBSYSTEM Dialog :
       virtual public window_composite<DialogInterface>
    {
    public:
@@ -226,7 +226,7 @@ namespace subsystem_apex
       // Return
       virtual ControlInterface *getControl() override;
       // Setup control by ID
-      virtual void subclassControlById(::subsystem_apex::ControlInterface * pcontrol, unsigned int id) override;
+      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) override;
       // Icon manipulation
       virtual void loadIcon(unsigned int id) override;
       virtual void updateIcon() override;
@@ -247,7 +247,7 @@ namespace subsystem_apex
       //
       // }
       //
-      // template < typename WIDGET_TYPE  = ::subsystem_apex::Control>
+      // template < typename WIDGET_TYPE  = ::innate_subsystem::Control>
       // ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
       // {
       //
@@ -316,4 +316,4 @@ namespace subsystem_apex
    };
 
    //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem

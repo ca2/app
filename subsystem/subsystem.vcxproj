@@ -2344,6 +2344,8 @@
   <ItemGroup>
     <ClCompile Include="CommandLineArguments.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="framebuffer\PixelFormat.cpp" />
+    <ClCompile Include="framebuffer\StandardPixelFormatFactory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">Create</PrecompiledHeader>
@@ -2425,6 +2427,11 @@
     <ClCompile Include="Registry.cpp" />
     <ClCompile Include="RegistryKey.cpp" />
     <ClCompile Include="resource_loader.cpp" />
+    <ClCompile Include="socket\SocketAddressIPv4.cpp" />
+    <ClCompile Include="socket\SocketException.cpp" />
+    <ClCompile Include="socket\SocketIPv4.cpp" />
+    <ClCompile Include="socket\SocketStartup.cpp" />
+    <ClCompile Include="socket\SocketStream.cpp" />
     <ClCompile Include="StringParser.cpp" />
     <ClCompile Include="string_table.cpp" />
     <ClCompile Include="subsystem.cpp" />
@@ -2438,6 +2445,8 @@
     <ClCompile Include="ZLibBase.cpp" />
     <ClCompile Include="ZlibException.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClInclude Include="framebuffer\PixelFormat.h" />
+    <ClInclude Include="framebuffer\StandardPixelFormatFactory.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="node\AnonymousPipe.h" />
     <ClInclude Include="node\AnonymousPipeFactory.h" />
@@ -2482,6 +2491,12 @@
     <ClInclude Include="node\Workstation.h" />
     <ClInclude Include="node\WsaStartup.h" />
     <ClInclude Include="node\WTS.h" />
+    <ClInclude Include="socket\sockdefs.h" />
+    <ClInclude Include="socket\SocketAddressIPv4.h" />
+    <ClInclude Include="socket\SocketException.h" />
+    <ClInclude Include="socket\SocketIPv4.h" />
+    <ClInclude Include="socket\SocketStartup.h" />
+    <ClInclude Include="socket\SocketStream.h" />
     <ClInclude Include="subsystem.h" />
     <ClInclude Include="thread\aaa_framework.h" />
     <ClInclude Include="thread\aaa_ZombieKiller.h" />

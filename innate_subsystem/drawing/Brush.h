@@ -26,7 +26,7 @@
 #include "subsystem/particle.h"
 #include "GraphicsObject.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    class BrushInterface :
@@ -50,7 +50,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX Brush :
+   class CLASS_DECL_INNATE_SUBSYSTEM Brush :
       virtual public ::subsystem::composite<BrushInterface >
    {
    public:
@@ -70,4 +70,4 @@ namespace subsystem_apex
       //    friend class Graphics;
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

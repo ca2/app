@@ -32,9 +32,9 @@
 
 // FIXME: Move implementation to the .cpp file.
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
-   class CLASS_DECL_APEX FrameBuffer :
+   class CLASS_DECL_INNATE_SUBSYSTEM FrameBuffer :
    virtual public ::particle
    {
    public:
@@ -99,18 +99,18 @@ namespace subsystem_apex
       virtual void setEmptyDimension(const ::int_rectangle &  dimByRect);
 
       // Sets pixel format to the frame buffer without buffer resizing
-      virtual void setEmptyPixelFmt(const ::subsystem_apex::PixelFormat & pf);
+      virtual void setEmptyPixelFmt(const ::innate_subsystem::PixelFormat & pf);
 
-      virtual void setPropertiesWithoutResize(const ::int_size & newDim, const ::subsystem_apex::PixelFormat & pf);
+      virtual void setPropertiesWithoutResize(const ::int_size & newDim, const ::innate_subsystem::PixelFormat & pf);
 
       virtual inline ::int_size getDimension() const { return m_dimension; }
 
-      virtual bool setPixelFormat(const ::subsystem_apex::PixelFormat & pixelFormat);
-      virtual inline ::subsystem_apex::PixelFormat getPixelFormat() const { return m_pixelFormat; }
+      virtual bool setPixelFormat(const ::innate_subsystem::PixelFormat & pixelFormat);
+      virtual inline ::innate_subsystem::PixelFormat getPixelFormat() const { return m_pixelFormat; }
 
       // This function set both PixelFormat and ::int_size
-      virtual bool setProperties(const ::int_size & newDim, const ::subsystem_apex::PixelFormat & pixelFormat);
-      virtual bool setProperties(const ::int_rectangle &  dimByRect, const ::subsystem_apex::PixelFormat & pixelFormat);
+      virtual bool setProperties(const ::int_size & newDim, const ::innate_subsystem::PixelFormat & pixelFormat);
+      virtual bool setProperties(const ::int_rectangle &  dimByRect, const ::innate_subsystem::PixelFormat & pixelFormat);
 
       // Return the number of bits occupied by one pixel (can be 8, 16 or 32).
       virtual unsigned char getBitsPerPixel() const;
@@ -163,7 +163,7 @@ namespace subsystem_apex
 
       ::int_size m_dimension;
 
-      ::subsystem_apex::PixelFormat m_pixelFormat;
+      ::innate_subsystem::PixelFormat m_pixelFormat;
       void *m_buffer;
 
    };

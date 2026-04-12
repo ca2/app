@@ -28,7 +28,7 @@
 
 //#include "util/CommonHeader.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    enum enum_pen
@@ -60,7 +60,7 @@ namespace subsystem_apex
       };
 
 
-   class CLASS_DECL_APEX Pen :
+   class CLASS_DECL_INNATE_SUBSYSTEM Pen :
 virtual public ::subsystem::composite<PenInterface>
    {
    public:
@@ -85,6 +85,6 @@ virtual public ::subsystem::composite<PenInterface>
 
 
 //#endi
-//   } // namespace subsystem_apex
-} // namespace subsystem_apex
+//   } // namespace innate_subsystem
+} // namespace innate_subsystem
 

@@ -54,7 +54,7 @@ namespace subsystem
 
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
-   class CLASS_DECL_ACME CommandLineArguments :
+   class CLASS_DECL_SUBSYSTEM CommandLineArguments :
       virtual public ::subsystem::composite<CommandLineArgumentsInterface>
    {
    public:

@@ -29,7 +29,7 @@
 //
 // namespace subsystem
 // {
-//    class CLASS_DECL_ACME WindowsEvent
+//    class CLASS_DECL_SUBSYSTEM WindowsEvent
 //    {
 //    public:
 //       WindowsEvent(const ::scoped_string & scopedstrName = 0);

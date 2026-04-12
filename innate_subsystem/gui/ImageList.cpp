@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "ImageList.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    ImageList::ImageList()
@@ -51,4 +51,4 @@ namespace subsystem_apex
 
    }
 
-}// namespace subsystem_apex
+}// namespace innate_subsystem

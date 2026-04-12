@@ -44,7 +44,7 @@ public:
 };
 
 
-   class CLASS_DECL_ACME Cursor :
+   class CLASS_DECL_SUBSYSTEM Cursor :
    virtual public ::subsystem::composite<CursorInterface>
    {
    public:

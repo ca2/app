@@ -64,7 +64,7 @@ namespace subsystem
    /**
     * Wrapper on WinAPI workstation functions.
     */
-   class CLASS_DECL_ACME Workstation :
+   class CLASS_DECL_SUBSYSTEM Workstation :
       virtual public ::subsystem::composite<WorkstationInterface >
    {
    public:

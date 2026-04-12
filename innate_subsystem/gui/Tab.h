@@ -29,7 +29,7 @@
 #include "innate_subsystem/_common_header.h"
 //#include "util/::string.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
     class TabInterface :
    virtual public ::subsystem::particle_interface<TabInterface>
@@ -82,7 +82,7 @@ namespace subsystem_apex
    
    
    
-   class CLASS_DECL_APEX Tab :
+   class CLASS_DECL_INNATE_SUBSYSTEM Tab :
       virtual public ::subsystem::composite <TabInterface>
    {
    public:
@@ -135,6 +135,6 @@ namespace subsystem_apex
 
 
     //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

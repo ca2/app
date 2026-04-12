@@ -34,7 +34,7 @@ namespace subsystem
     * Windows application that runs on WinSta0 and current active desktop.
     * @fixme move functionality to WindowsApplication class.
     */
-   class CLASS_DECL_ACME LocalOperatingSystemApplication :
+   class CLASS_DECL_SUBSYSTEM LocalOperatingSystemApplication :
       virtual public OperatingSystemApplication
    {
    public:
@@ -54,7 +54,7 @@ namespace subsystem
  // * Windows application that runs on WinSta0 and current active desktop.
  // * @fixme move functionality to WindowsApplication class.
  // */
- //   class CLASS_DECL_ACME LocalOperatingSystemApplication :
+ //   class CLASS_DECL_SUBSYSTEM LocalOperatingSystemApplication :
  //   virtual public ::subsystem::composite < LocalOperatingSystemApplicationInterface >
  //   {
  //   public:

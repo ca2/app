@@ -27,7 +27,7 @@
 
 // #include aaa_<crtdbg.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    //resource_loader::resource_loader(HINSTANCE appInst)
@@ -128,7 +128,7 @@ namespace subsystem_apex
    }
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 

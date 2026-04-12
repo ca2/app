@@ -27,7 +27,7 @@
 
 #include "innate_subsystem/Control.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
     class ProgressBarInterface :
    virtual public ::subsystem::particle_interface<ProgressBarInterface>,
@@ -40,7 +40,7 @@ namespace subsystem_apex
         virtual void setRange(unsigned short min, unsigned short max) = 0;
         virtual void setPos(unsigned short pos) = 0;
     };
-    class CLASS_DECL_APEX ProgressBar :
+    class CLASS_DECL_INNATE_SUBSYSTEM ProgressBar :
    virtual public ::subsystem::composite < ProgressBarInterface >
     {
     public:
@@ -50,6 +50,6 @@ namespace subsystem_apex
         void setRange(unsigned short min, unsigned short max) override;
         void setPos(unsigned short pos) override;
     };
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 //#endif

@@ -24,8 +24,7 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "Registry.h"
-
-#include "filesystem/filesystem/directory_context.h"
+#include "acme/filesystem/filesystem/directory_context.h"
 
 
 namespace subsystem

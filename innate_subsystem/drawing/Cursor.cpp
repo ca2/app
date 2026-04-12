@@ -28,7 +28,7 @@
 #include "DeviceContext.h"
 #include "Bitmap.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
     
    Cursor::Cursor()
@@ -71,15 +71,15 @@ namespace subsystem_apex
    }
 
 
-   void Cursor::initialize_icon(::subsystem_apex::IconInterface * picon)
+   void Cursor::initialize_icon(::innate_subsystem::IconInterface * picon)
 
    {
       m_bHasOwnIcon = true;
-      ::cast < ::innate_subsystem_win32::Cursor > piconWin32 = ::subsystem::get_implementation(picon);
+      ::cast < ::innate_subsystem_windows::Cursor > piconWin32 = ::subsystem::get_implementation(picon);
       m_hcursor = piconWin32->m_hcursor;
    }
 
-   void Cursor::initialize_icon(subsystem_apex::BitmapInterface *pbitmap)
+   void Cursor::initialize_icon(innate_subsystem::BitmapInterface *pbitmap)
 
    {
       m_bHasOwnIcon = true;
@@ -91,7 +91,7 @@ namespace subsystem_apex
       fromBitmap(pbitmap, &mask);
    }
 
-   void Cursor::initialize_icon(::subsystem_apex::BitmapInterface *bitmap, ::subsystem_apex::BitmapInterface *mask)
+   void Cursor::initialize_icon(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask)
    //:
    {
       m_bHasOwnIcon = true;
@@ -113,15 +113,15 @@ namespace subsystem_apex
    //    return m_hcursor;
    // }
 
-   void Cursor::fromBitmap(::subsystem_apex::BitmapInterface *pbitmap, ::subsystem_apex::BitmapInterface *pbitmapMask)
+   void Cursor::fromBitmap(::innate_subsystem::BitmapInterface *pbitmap, ::innate_subsystem::BitmapInterface *pbitmapMask)
    {
        /*
       CURS ii;
 
       memset(&ii, 0, sizeof(ICONINFO));
 
-      auto pbitmapWin32 = pbitmap->impl<innate_subsystem_win32::Bitmap>();
-      auto pbitmapMaskWin32 = pbitmapMask->impl<innate_subsystem_win32::Bitmap>();
+      auto pbitmapWin32 = pbitmap->impl<innate_subsystem_windows::Bitmap>();
+      auto pbitmapMaskWin32 = pbitmapMask->impl<innate_subsystem_windows::Bitmap>();
 
       ii.hbmColor = (pbitmapWin32 != 0) ? pbitmapWin32->m_hbitmap : 0;
       ii.hbmMask = (pbitmapMaskWin32 != 0) ? pbitmapMaskWin32->m_hbitmap : 0;
@@ -129,5 +129,5 @@ namespace subsystem_apex
       m_hcursor = CreateIconIndirect(&ii);
 
    }
-} // namespace innate_subsystem_win32
+} // namespace innate_subsystem_windows
 

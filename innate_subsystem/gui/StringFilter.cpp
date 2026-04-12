@@ -24,10 +24,10 @@
 #include "framework.h"
 #include "StringFilter.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    bool StringFilter::isStringCorrect(const char *string)
    {
       return true;
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

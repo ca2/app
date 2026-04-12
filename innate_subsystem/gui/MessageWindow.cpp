@@ -26,7 +26,7 @@
 //
 // #define DEFAULT_WINDOW_CLASS_NAME "WindowClass"
 //
-// namespace subsystem_apex
+// namespace innate_subsystem
 // {
 //    MessageWindow::MessageWindow(const HINSTANCE hinst,
 //                                 const char *windowClassName,
@@ -123,5 +123,5 @@
 //
 //       return RegisterClass(&wcWindowClass);
 //    }
-// } // namespace subsystem_apex
+// } // namespace innate_subsystem
 //

@@ -66,7 +66,7 @@ namespace subsystem
       // HWND m_hwnd;
    };
 
-   class CLASS_DECL_ACME Clipboard :
+   class CLASS_DECL_SUBSYSTEM Clipboard :
    virtual public ::subsystem::composite< ClipboardInterface>
    {
    public:

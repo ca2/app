@@ -26,7 +26,7 @@
 
 // #include aaa_<string.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    PixelFormat::PixelFormat()
    {
@@ -54,4 +54,4 @@ namespace subsystem_apex
              blueShift    == pf.blueShift &&
              bigEndian    == pf.bigEndian;
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

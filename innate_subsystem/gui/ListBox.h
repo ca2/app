@@ -26,7 +26,7 @@
 #include "innate_subsystem/Control.h"
 //#include "util/::string.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    class ListBoxInterface :
@@ -56,7 +56,7 @@ public:
 };
 
 
-      class CLASS_DECL_APEX ListBox : virtual public ::subsystem::composite<ListBoxInterface >
+      class CLASS_DECL_INNATE_SUBSYSTEM ListBox : virtual public ::subsystem::composite<ListBoxInterface >
 {
          public:
   ListBox();
@@ -80,6 +80,6 @@ public:
    void clear() override;
 };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

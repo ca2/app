@@ -11,7 +11,7 @@
 #include "subsystem/subsystem.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -21,16 +21,16 @@ namespace subsystem_apex
    public:
 
 
-      static ::subsystem_apex::subsystem *            s_p;
+      static ::innate_subsystem::subsystem *            s_p;
 
-      ::pointer < ::subsystem_apex::resource_loader > m_presourceloader;
-      ::pointer < ::subsystem_apex::SystemMetricsInterface > m_psystemmetrics;
+      ::pointer < ::innate_subsystem::resource_loader > m_presourceloader;
+      ::pointer < ::innate_subsystem::SystemMetricsInterface > m_psystemmetrics;
 
       subsystem();
       ~subsystem() override;
 
 
-      ::subsystem_apex::resource_loader* resource_loader();
+      ::innate_subsystem::resource_loader* resource_loader();
 
 
       int message_box(
@@ -40,7 +40,7 @@ namespace subsystem_apex
          unsigned int uType) override;
 
 
-      virtual ::subsystem_apex::SystemMetricsInterface * metrics();
+      virtual ::innate_subsystem::SystemMetricsInterface * metrics();
 
       virtual ::user::enum_key virtual_key_code_to_user_key(int iVirtualKeyCode);
 
@@ -48,21 +48,21 @@ namespace subsystem_apex
 
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 
-inline ::subsystem_apex::subsystem * main_innate_subsystem()
+inline ::innate_subsystem::subsystem * main_innate_subsystem()
 {
 
-   if (!::subsystem_apex::subsystem::s_p)
+   if (!::innate_subsystem::subsystem::s_p)
    {
 
       system()->subsystem();
 
    }
 
-   return ::subsystem_apex::subsystem::s_p;
+   return ::innate_subsystem::subsystem::s_p;
 
 }
 

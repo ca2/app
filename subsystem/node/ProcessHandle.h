@@ -65,7 +65,7 @@ namespace subsystem
 
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
-   class CLASS_DECL_ACME ProcessHandle :
+   class CLASS_DECL_SUBSYSTEM ProcessHandle :
    virtual public ::subsystem::composite<ProcessHandleInterface>
 
    {

@@ -5,15 +5,15 @@
 
 
 #include "innate_subsystem/drawing/Cursor.h"
-#include "subsystem_win32/_common_header.h"
+#include "subsystem_windows/_common_header.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
    class CursorInterface :
-      virtual public ::subsystem::particle_interface<::subsystem_apex::CursorInterface>
+      virtual public ::subsystem::particle_interface<::innate_subsystem::CursorInterface>
    {
    public:
 
@@ -27,9 +27,9 @@ namespace subsystem_apex
       virtual void * _HCURSOR() = 0;
       virtual void _setHCURSOR(void * p) = 0;
 
-      virtual void initialize_cursor(::subsystem_apex::CursorInterface * picon) = 0;
-      virtual void initialize_cursor(::subsystem_apex::BitmapInterface *bitmap) = 0;
-      virtual void initialize_cursor(::subsystem_apex::BitmapInterface *bitmap, ::subsystem_apex::BitmapInterface *mask) = 0;
+      virtual void initialize_cursor(::innate_subsystem::CursorInterface * picon) = 0;
+      virtual void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap) = 0;
+      virtual void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) = 0;
       virtual void initialize_with_system_cursor(enum_cursor ecursor) = 0;
 
       //void initi(HICON icon);
@@ -38,7 +38,7 @@ namespace subsystem_apex
       //Icon(DWORD icon);
 
    //protected:
-      virtual void fromBitmap(::subsystem_apex::BitmapInterface *bitmap, ::subsystem_apex::BitmapInterface *mask) = 0;
+      virtual void fromBitmap(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) = 0;
 
    // protected:
 //      HCURSOR m_hcursor;
@@ -46,8 +46,8 @@ namespace subsystem_apex
    };
     
     
-   class CLASS_DECL_APEX Cursor :
-      virtual public ::subsystem::composite<::subsystem_apex::CursorInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM Cursor :
+      virtual public ::subsystem::composite<::innate_subsystem::CursorInterface>
    {
    public:
 
@@ -61,9 +61,9 @@ namespace subsystem_apex
       void * _HCURSOR() override;
       void _setHCURSOR(void * p) override;
 
-      void initialize_cursor(::subsystem_apex::CursorInterface * picon) override;
-      void initialize_cursor(::subsystem_apex::BitmapInterface *bitmap) override;
-      void initialize_cursor(::subsystem_apex::BitmapInterface *bitmap, ::subsystem_apex::BitmapInterface *mask) override;
+      void initialize_cursor(::innate_subsystem::CursorInterface * picon) override;
+      void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap) override;
+      void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
       void initialize_with_system_cursor(::enum_cursor ecursor) override;
 
       //void initi(HICON icon);
@@ -72,7 +72,7 @@ namespace subsystem_apex
       //Icon(DWORD icon);
 
    //protected:
-      void fromBitmap(::subsystem_apex::BitmapInterface *bitmap, ::subsystem_apex::BitmapInterface *mask) override;
+      void fromBitmap(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
 
    // protected:
 //      HCURSOR m_hcursor;
@@ -81,6 +81,6 @@ namespace subsystem_apex
 
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

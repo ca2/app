@@ -4,10 +4,10 @@
 #pragma once
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
-   class CLASS_DECL_APEX GraphicsObject :
+   class CLASS_DECL_INNATE_SUBSYSTEM GraphicsObject :
       virtual public ::particle
    {
    public:
@@ -24,4 +24,4 @@ namespace subsystem_apex
    };
 
 
-}//namespace subsystem_apex
+}//namespace innate_subsystem

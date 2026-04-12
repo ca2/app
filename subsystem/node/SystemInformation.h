@@ -60,7 +60,7 @@ namespace subsystem
       virtual int getMonitorCount() = 0;
    };
 
-   class CLASS_DECL_ACME SystemInformation :
+   class CLASS_DECL_SUBSYSTEM SystemInformation :
    virtual public ::subsystem::composite<SystemInformationInterface>
    {
    public:

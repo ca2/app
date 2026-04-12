@@ -40,7 +40,7 @@
 //  * @author yuri, enikey.
 //  * @fixme not thread-safe, undone, strange code inside.
 //  */
-// class CLASS_DECL_ACME PipeServer
+// class CLASS_DECL_SUBSYSTEM PipeServer
 // {
 // public:
 //   /**

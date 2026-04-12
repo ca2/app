@@ -13,6 +13,7 @@
 #include "hyperlink.h"
 #include "session.h"
 #include "simple_log.h"
+#include "subsystem.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"
@@ -45,7 +46,6 @@
 #include "acme/regular_expression/context.h"
 //#include "acme/prototype/prototype/payload.h"
 //#include "acme/prototype/string/hex.h"
-#include "subsystem/subsystem.h"
 #include "acme/user/micro/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
@@ -5467,7 +5467,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::subsystem::subsystem * system::subsystem()
+   ::platform::subsystem * system::subsystem()
    {
 
       if (!m_psubsystem)

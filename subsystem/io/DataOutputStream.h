@@ -34,7 +34,7 @@ namespace subsystem
     * Data output stream (decorator pattern).
     * Adds feature to write typezied data to output stream.
     */
-   class CLASS_DECL_ACME DataOutputStream : public ::file::file
+   class CLASS_DECL_SUBSYSTEM DataOutputStream : public ::file::file
    {
    public:
       /**

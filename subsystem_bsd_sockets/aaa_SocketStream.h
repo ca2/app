@@ -35,7 +35,7 @@
 #include "acme/exception/io.h"
 
 
-namespace subsystem_win32
+namespace subsystem_windows
 {
    class CLASS_DECL_REMOTING_COMMON SocketStream : public Channel
    {
@@ -62,6 +62,6 @@ namespace subsystem_win32
 
       friend class SocketIPv4;
    };
-} // namespace subsystem_win32
+} // namespace subsystem_windows
 
 

@@ -71,7 +71,7 @@ namespace subsystem
    /**
 Dynamic library class.
 */
-   class CLASS_DECL_ACME DynamicLibrary :
+   class CLASS_DECL_SUBSYSTEM DynamicLibrary :
    virtual public ::subsystem::composite< DynamicLibraryInterface>
    {
    public:

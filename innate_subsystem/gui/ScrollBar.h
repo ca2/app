@@ -32,7 +32,7 @@
 
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
     const int SCROLL_STEP = 5;
@@ -81,7 +81,7 @@ namespace subsystem_apex
       virtual bool _showHorzScroll(bool show)= 0;
    };
 
-   class CLASS_DECL_APEX ScrollBar :
+   class CLASS_DECL_INNATE_SUBSYSTEM ScrollBar :
 virtual public ::subsystem::composite<ScrollBarInterface>
    {
    public:
@@ -125,4 +125,4 @@ ScrollBar();
       bool _showHorzScroll(bool show)override;
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

@@ -34,7 +34,7 @@
 namespace subsystem
 {
 
-   // class CLASS_DECL_ACME GlobalMutexInterface :
+   // class CLASS_DECL_SUBSYSTEM GlobalMutexInterface :
    //    virtual public LockableInterface
    // {
    // public:
@@ -111,7 +111,7 @@ namespace subsystem
    };
 
 
-   class CLASS_DECL_ACME GlobalMutex :
+   class CLASS_DECL_SUBSYSTEM GlobalMutex :
       virtual public ::subsystem::composite < GlobalMutexInterface >
    {
    public:

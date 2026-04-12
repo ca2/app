@@ -20,16 +20,6 @@
 #include "acme/prototype/prototype/factory.h"
 
 
-namespace subsystem
-{
-
-   
-   class subsystem;
-
-
-} // namespace subsystem
-
-
 namespace platform
 {
 
@@ -110,7 +100,7 @@ namespace platform
       ::pointer < ::platform::system_factory >        m_psystemfactory;
       // END FROM ::main (Now main2)
 
-      ::pointer < ::subsystem::subsystem > m_psubsystem;
+      ::pointer < ::platform::subsystem >             m_psubsystem;
       //::pointer < ::subsystem::string_table > m_pstringtable;
       //::pointer < ::subsystem::resource_loader > m_presourceloader;
       //::pointer<::platform::application>     application();
@@ -297,7 +287,7 @@ namespace platform
       virtual ::acme::windowing::windowing * acme_windowing();
       virtual ::windowing::windowing * windowing();
 
-      virtual ::subsystem::subsystem * subsystem();
+      virtual ::platform::subsystem * subsystem();
 //         virtual ::subsystem::resource_loader* resource_loader();
 
 

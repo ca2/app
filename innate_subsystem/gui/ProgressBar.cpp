@@ -26,7 +26,7 @@
 
 ////#include <CommCtrl.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    ProgressBar::ProgressBar()
    {
@@ -45,5 +45,5 @@ namespace subsystem_apex
    {
       //SendMessage(m_hwnd, PBM_SETPOS, (::wparam)pos, 0);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

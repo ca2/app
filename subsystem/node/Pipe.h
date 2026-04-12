@@ -78,7 +78,7 @@ namespace subsystem
 
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
-   class CLASS_DECL_ACME Pipe :
+   class CLASS_DECL_SUBSYSTEM Pipe :
       virtual public ::subsystem::composite< PipeInterface>
    {
    public:

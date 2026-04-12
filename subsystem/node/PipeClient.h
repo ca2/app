@@ -54,7 +54,7 @@ namespace subsystem
    /**
  * Pipe client factory.
  */
-   class CLASS_DECL_ACME PipeClient :
+   class CLASS_DECL_SUBSYSTEM PipeClient :
    virtual public ::subsystem::composite<PipeClientInterface>
    {
    public:

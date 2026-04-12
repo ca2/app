@@ -28,7 +28,7 @@
 #include "innate_subsystem/Window.h"
 //#include "drawing/DeviceContext.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    class PaintWindowInterface:
    virtual public ::subsystem::particle_interface<PaintWindowInterface>,
@@ -58,7 +58,7 @@ namespace subsystem_apex
    };
 
 
-       class CLASS_DECL_APEX PaintWindow:
+       class CLASS_DECL_INNATE_SUBSYSTEM PaintWindow:
    virtual public ::subsystem::composite<PaintWindowInterface >
    {
    public:
@@ -84,5 +84,5 @@ namespace subsystem_apex
 
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

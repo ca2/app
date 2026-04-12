@@ -32,7 +32,7 @@
 
 ///#include "util/CommonHeader.h"
 ///
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
           static const int TB_Style_sep = 0;
@@ -159,7 +159,7 @@ namespace subsystem_apex
    };
 
    
-   class CLASS_DECL_APEX Toolbar :
+   class CLASS_DECL_INNATE_SUBSYSTEM Toolbar :
       virtual  public ::subsystem::composite<ToolbarInterface>
    {
    public:
@@ -283,4 +283,4 @@ namespace subsystem_apex
    //    std::map<int, int> m_autoButtons;
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

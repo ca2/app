@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Brush.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Brush::Brush()
    //: m_brush(0)
@@ -53,6 +53,6 @@ namespace subsystem_apex
       //    m_brush = 0;
       // }
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

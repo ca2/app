@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "SolidBrush.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    // SolidBrush::SolidBrush(const ::color::color & color)
    // : Brush()
@@ -51,4 +51,4 @@ namespace subsystem_apex
    //}
      // m_brush = CreateSolidBrush(color);
    }
-} // namesapce subsystem_apex;
+} // namesapce innate_subsystem;

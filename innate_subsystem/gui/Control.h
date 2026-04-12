@@ -30,7 +30,7 @@
 //#include "acme/_operating_system.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    enum VerticalAlignment
    {

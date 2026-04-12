@@ -24,7 +24,7 @@
 #include "framework.h"
 // #include "WindowFinder.h"
 //
-// namespace subsystem_apex
+// namespace innate_subsystem
 // {
 //    struct WindowsParam
 //    {
@@ -109,5 +109,5 @@
 //          return 0;
 //       }
 //    }
-// } // namespace subsystem_apex
+// } // namespace innate_subsystem
 //

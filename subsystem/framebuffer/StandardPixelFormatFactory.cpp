@@ -25,11 +25,11 @@
 #include "StandardPixelFormatFactory.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
-   ::subsystem_apex::PixelFormat StandardPixelFormatFactory::create32bppPixelFormat()
+   ::innate_subsystem::PixelFormat StandardPixelFormatFactory::create32bppPixelFormat()
    {
-      ::subsystem_apex::PixelFormat pixelFormat;
+      ::innate_subsystem::PixelFormat pixelFormat;
       pixelFormat.initBigEndianByNative();
       pixelFormat.bitsPerPixel = 32;
       pixelFormat.blueMax = 255;
@@ -42,9 +42,9 @@ namespace subsystem_apex
       return pixelFormat;
    }
 
-   ::subsystem_apex::PixelFormat StandardPixelFormatFactory::create16bppPixelFormat()
+   ::innate_subsystem::PixelFormat StandardPixelFormatFactory::create16bppPixelFormat()
    {
-      ::subsystem_apex::PixelFormat pixelFormat;
+      ::innate_subsystem::PixelFormat pixelFormat;
       pixelFormat.initBigEndianByNative();
       pixelFormat.bitsPerPixel = 16;
       pixelFormat.blueMax = 31;
@@ -57,9 +57,9 @@ namespace subsystem_apex
       return pixelFormat;
    }
 
-   ::subsystem_apex::PixelFormat StandardPixelFormatFactory::create8bppPixelFormat()
+   ::innate_subsystem::PixelFormat StandardPixelFormatFactory::create8bppPixelFormat()
    {
-      ::subsystem_apex::PixelFormat pixelFormat;
+      ::innate_subsystem::PixelFormat pixelFormat;
       pixelFormat.initBigEndianByNative();
       pixelFormat.bitsPerPixel = 8;
       pixelFormat.redMax = 7;
@@ -72,9 +72,9 @@ namespace subsystem_apex
       return pixelFormat;
    }
 
-   ::subsystem_apex::PixelFormat StandardPixelFormatFactory::create6bppPixelFormat()
+   ::innate_subsystem::PixelFormat StandardPixelFormatFactory::create6bppPixelFormat()
    {
-      ::subsystem_apex::PixelFormat pixelFormat;
+      ::innate_subsystem::PixelFormat pixelFormat;
       pixelFormat.initBigEndianByNative();
       pixelFormat.bitsPerPixel = 8;
       pixelFormat.blueMax = 3;
@@ -87,9 +87,9 @@ namespace subsystem_apex
       return pixelFormat;
    }
 
-   ::subsystem_apex::PixelFormat StandardPixelFormatFactory::create3bppPixelFormat()
+   ::innate_subsystem::PixelFormat StandardPixelFormatFactory::create3bppPixelFormat()
    {
-      ::subsystem_apex::PixelFormat pixelFormat;
+      ::innate_subsystem::PixelFormat pixelFormat;
       pixelFormat.initBigEndianByNative();
       pixelFormat.bitsPerPixel = 8;
       pixelFormat.blueMax = 1;
@@ -101,4 +101,4 @@ namespace subsystem_apex
       pixelFormat.colorDepth = 3;
       return pixelFormat;
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

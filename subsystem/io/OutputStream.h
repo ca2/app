@@ -33,7 +33,7 @@ namespace subsystem
    /**
     * Output stream interface (abstract class).
     */
-   class CLASS_DECL_ACME OutputStream :
+   class CLASS_DECL_SUBSYSTEM OutputStream :
       virtual public ::file::writable
    {
    public:

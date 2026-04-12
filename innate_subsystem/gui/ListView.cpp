@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "ListView.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    ListView::ListView() //:
      //m_sortAscending(false)
@@ -337,7 +337,7 @@ namespace subsystem_apex
    void ListView::onAction()
    {
 
-      debug() << "subsystem_apex::ListView::onAction";
+      debug() << "innate_subsystem::ListView::onAction";
 
    }
 
@@ -380,5 +380,5 @@ namespace subsystem_apex
 
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

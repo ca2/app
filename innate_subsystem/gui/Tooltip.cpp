@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Tooltip.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Tooltip::Tooltip()
    {
@@ -65,4 +65,4 @@ namespace subsystem_apex
    {
       return m_pparticleThis->getIconType();
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

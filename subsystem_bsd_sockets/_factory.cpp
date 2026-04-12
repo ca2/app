@@ -19,5 +19,5 @@ CLASS_DECL_EXPORT void subsystem_bsd_sockets_factory(::factory::factory * pfacto
 }
 
 
-//} // namespace subsystem_win32
+//} // namespace subsystem_windows
 

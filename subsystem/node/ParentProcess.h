@@ -55,7 +55,7 @@ namespace subsystem
    };
 
    // Retrieves information of the parent process.
-   class CLASS_DECL_ACME ParentProcess :
+   class CLASS_DECL_SUBSYSTEM ParentProcess :
    virtual public ::subsystem::composite<ParentProcessInterface>
    {
    public:

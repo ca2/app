@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "TextBox.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    TextBox::TextBox()
@@ -92,4 +92,4 @@ namespace subsystem_apex
       ///tip->showTooltip(this);
       m_pparticleThis->showBalloonTip(ptooltip);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

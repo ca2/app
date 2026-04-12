@@ -66,14 +66,19 @@ namespace subsystem_bsd_sockets
 
    void SocketIPv4::connect(const ::scoped_string & scopedstrHost, unsigned short port)
    {
-      ::subsystem::SocketAddressIPv4 address(scopedstrHost, port);
+      ::subsystem::SocketAddressIPv4 address;
+
+      address.initialize_socket_address_ipv4(scopedstrHost, port);
 
       connect(address);
    }
 
    void SocketIPv4::connect(const ::subsystem::SocketAddressIPv4 &addr)
    {
-      struct sockaddr_in targetSockAddr = addr.getSockAddr();
+
+      auto  psocketaddressBsd = addr.impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+
+      struct sockaddr_in targetSockAddr = psocketaddressBsd->getSockAddr();
 
       if (::connect(m_socket, (const sockaddr *)&targetSockAddr, addr.getAddrLen()) == SOCKET_ERROR) {
          throw ::subsystem::SocketException();

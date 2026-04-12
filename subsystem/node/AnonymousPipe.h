@@ -117,7 +117,7 @@ namespace subsystem
 
 
 
-   class CLASS_DECL_ACME AnonymousPipe :
+   class CLASS_DECL_SUBSYSTEM AnonymousPipe :
    virtual public ::subsystem::composite < AnonymousPipeInterface >
    {
    public:

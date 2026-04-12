@@ -28,7 +28,7 @@
 //#include "WindowMessageHandler.h"
 
 //
-// namespace subsystem_apex
+// namespace innate_subsystem
 // {
 //
 // class MessageWindow

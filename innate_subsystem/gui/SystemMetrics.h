@@ -4,7 +4,7 @@
 
 #include "subsystem/_common_header.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
     class SystemMetricsInterface :
@@ -21,7 +21,7 @@ namespace subsystem_apex
 
 
 
-    class CLASS_DECL_APEX SystemMetrics :
+    class CLASS_DECL_INNATE_SUBSYSTEM SystemMetrics :
         virtual public ::subsystem::composite <SystemMetricsInterface>
     {
     public:
@@ -36,4 +36,4 @@ namespace subsystem_apex
     };
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

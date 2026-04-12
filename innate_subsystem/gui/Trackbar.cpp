@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Trackbar.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Trackbar::Trackbar()
    {
@@ -53,6 +53,6 @@ namespace subsystem_apex
 
       return m_pparticleThis->getPos();
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

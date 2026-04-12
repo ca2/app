@@ -147,7 +147,7 @@ namespace subsystem
    /**
     * Enables you to start and stop local processes.
     */
-   class CLASS_DECL_ACME Process :
+   class CLASS_DECL_SUBSYSTEM Process :
    virtual public ::subsystem::composite<ProcessInterface>
    {
    public:

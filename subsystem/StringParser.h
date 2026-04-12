@@ -32,7 +32,7 @@
 namespace subsystem
 {
 
-   class CLASS_DECL_ACME StringParser :
+   class CLASS_DECL_SUBSYSTEM StringParser :
       virtual public ::particle
    {
    public:

@@ -28,7 +28,7 @@
 #include "innate_subsystem/Control.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -47,7 +47,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX CheckBox :
+   class CLASS_DECL_INNATE_SUBSYSTEM CheckBox :
    virtual public ::subsystem::composite<CheckBoxInterface>
    {
    public:
@@ -63,5 +63,5 @@ namespace subsystem_apex
 
 
     //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

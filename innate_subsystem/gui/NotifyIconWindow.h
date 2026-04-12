@@ -31,7 +31,7 @@
 
 #include "innate_subsystem/WindowProcHolder.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -56,7 +56,7 @@ namespace subsystem_apex
    };
 
 
-   class CLASS_DECL_APEX NotifyIconWindow :
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindow :
       virtual public ::subsystem::composite<NotifyIconWindowInterface >
    {
    public:
@@ -77,4 +77,4 @@ namespace subsystem_apex
    };
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

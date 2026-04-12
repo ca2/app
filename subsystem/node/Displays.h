@@ -69,7 +69,7 @@ namespace  subsystem
       // class ::time m_latestUpdateTime;
    };
 
-   class CLASS_DECL_ACME Displays:
+   class CLASS_DECL_SUBSYSTEM Displays:
 virtual public ::subsystem::composite<DisplaysInterface>
    {
    public:

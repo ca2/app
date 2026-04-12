@@ -26,7 +26,7 @@
 ////#include <CommCtrl.h>
 //#include "util/StringParser.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    SpinControl::SpinControl()
    // : m_buddy(NULL),
@@ -130,6 +130,6 @@ namespace subsystem_apex
       // m_deltas = *deltas;
       // m_maxDelta = maxDelta;
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

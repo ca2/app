@@ -43,7 +43,7 @@ namespace subsystem
    // };
 
 
-   class CLASS_DECL_ACME Registry :
+   class CLASS_DECL_SUBSYSTEM Registry :
       virtual public ::particle
    {
    public:

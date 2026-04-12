@@ -32,7 +32,7 @@
 
 //#include <shellapi.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    // FIXME: Add documentation to class.
@@ -67,7 +67,7 @@ namespace subsystem_apex
 
 
    // FIXME: Add documentation to class.
-   class CLASS_DECL_APEX NotifyIcon :
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIcon :
       virtual public ::subsystem::composite<NotifyIconInterface>
    {
    public:
@@ -96,7 +96,7 @@ namespace subsystem_apex
    };
 
 
-}// namespace subsystem_apex
+}// namespace innate_subsystem
 
 //#endif
 

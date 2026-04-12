@@ -31,7 +31,7 @@
 //#include "winhdr.h"
 
 //#include "Singleton.h"
-namespace subsystem_apex
+namespace innate_subsystem
 {
    /**
     * Loader of resources from resource files linked with application.
@@ -109,7 +109,7 @@ namespace subsystem_apex
    };
 
    //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 

@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Menu.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Menu::Menu()
    // : m_menu(0),
@@ -296,6 +296,6 @@ namespace subsystem_apex
 
       return m_pparticleThis->setDefaultItem(uID);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

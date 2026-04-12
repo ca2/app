@@ -4,17 +4,17 @@
 #pragma once
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX notification_handler :
+   class CLASS_DECL_INNATE_SUBSYSTEM notification_handler :
       virtual public ::particle
    {
    public:
 
 
-      virtual ::subsystem_apex::WindowInterface * get_window_implementation() = 0;
+      virtual ::innate_subsystem::WindowInterface * get_window_implementation() = 0;
 
       virtual bool _001OnAction();
       virtual bool _001OnKeyDownNotification(::user::enum_key ekey);
@@ -30,7 +30,7 @@ namespace subsystem_apex
 
    };
 
-} // subsystem_apex
+} // innate_subsystem
 
 
 

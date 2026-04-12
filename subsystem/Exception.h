@@ -35,7 +35,7 @@ namespace subsystem
    /**
     * Common ::subsystem::Exception class.
     */
-   class CLASS_DECL_ACME Exception : virtual public ::exception
+   class CLASS_DECL_SUBSYSTEM Exception : virtual public ::exception
 
    {
    public:

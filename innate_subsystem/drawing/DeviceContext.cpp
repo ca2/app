@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "DeviceContext.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    // DeviceContext::DeviceContext(HWND window)
    // : m_hasOwnDC(false), m_wnd(window)
@@ -98,5 +98,5 @@ namespace subsystem_apex
    // {
    //    return SelectObject(m_dc, object);
    // }
-}  // namespace subsystem_apex
+}  // namespace innate_subsystem
 

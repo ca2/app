@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "BitmapGraphics.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    // BitmapGraphics::BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size)
    // : Graphics(complatibleDC), m_isPainting(false)
@@ -84,4 +84,4 @@ namespace subsystem_apex
       // m_isPainting = false;
       // m_dc->se
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

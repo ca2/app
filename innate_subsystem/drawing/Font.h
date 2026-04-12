@@ -28,7 +28,7 @@
 
 //#include "util/CommonHeader.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -55,7 +55,7 @@ namespace subsystem_apex
       };
 
 
-   class CLASS_DECL_APEX Font :
+   class CLASS_DECL_INNATE_SUBSYSTEM Font :
 virtual public ::subsystem::composite<FontInterface>
    {
    public:
@@ -80,6 +80,6 @@ virtual public ::subsystem::composite<FontInterface>
 
 
 //#endi
-//   } // namespace subsystem_apex
-} // namespace subsystem_apex
+//   } // namespace innate_subsystem
+} // namespace innate_subsystem
 

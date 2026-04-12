@@ -1,14 +1,15 @@
 //
 // Created by camilo on 2026-04-06 06:16 <3ThomasBorregaardSørensen!!
 //
-// From subsystem_win32/_.h by camilo on 2026-04-12 06:32 <3ThomasBorregaardSørensen!!
+// From subsystem_windows/_.h by camilo on 2026-04-12 06:32 <3ThomasBorregaardSørensen!!
 //
 //
 
 #pragma once
 
 
-#include "acme/_.h"
+
+#include "subsystem/_.h"
 
 
 
@@ -36,6 +37,8 @@ namespace subsystem_bsd_sockets
    class SocketIPv4;
 
    class SocketIPv4Interface;
+
+   class subsystem;
 
 
 } // namespace subsystem_bsd_sockets

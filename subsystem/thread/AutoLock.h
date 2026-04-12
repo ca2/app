@@ -31,7 +31,7 @@ namespace subsystem
 {
 
 
-class CLASS_DECL_ACME AutoLock
+class CLASS_DECL_SUBSYSTEM AutoLock
 {
 public:
   critical_section_lock(lockable *locker);

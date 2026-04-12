@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Control.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    // void ControlInterface::setVisible(bool visible)
@@ -263,4 +263,4 @@ void Control::postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam l
 
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

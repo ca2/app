@@ -107,7 +107,7 @@ namespace subsystem
     *
     * @author yuri, enikey.
     */
-   class CLASS_DECL_ACME NamedPipe :
+   class CLASS_DECL_SUBSYSTEM NamedPipe :
       virtual public ::subsystem::composite< NamedPipeInterface>
    {
    public:

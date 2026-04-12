@@ -32,7 +32,7 @@ namespace subsystem
    /**
     * Output stream to write data to memory.
     */
-   class CLASS_DECL_ACME ByteArrayOutputStream : public OutputStream
+   class CLASS_DECL_SUBSYSTEM ByteArrayOutputStream : public OutputStream
    {
    public:
       static const size_t DEFAULT_INNER_BUFFER_CAPACITY = 1024;

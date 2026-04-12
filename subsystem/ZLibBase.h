@@ -30,7 +30,7 @@
 
 namespace subsystem
 {
-    class CLASS_DECL_ACME ZLibBase
+    class CLASS_DECL_SUBSYSTEM ZLibBase
     {
     public:
         ZLibBase();

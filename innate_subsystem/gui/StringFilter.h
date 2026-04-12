@@ -26,7 +26,7 @@
 
 //#include <tchar.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    class StringFilter :
    virtual public ::particle
@@ -34,7 +34,7 @@ namespace subsystem_apex
    public:
       virtual bool isStringCorrect(const char *string);
    };
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 //#endif

@@ -27,7 +27,7 @@
 //#include "util/CommonHeader.h"
 
 //
-// namespace subsystem_apex
+// namespace innate_subsystem
 // {
 //    CommonControlsEx::CommonControlsEx()
 //    {
@@ -52,4 +52,4 @@
 //       //    throw Exception(_T("Cannot initialize common controls ex."));
 //       // }
 //    }
-// } // namespace subsystem_apex
+// } // namespace innate_subsystem

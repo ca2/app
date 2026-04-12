@@ -69,7 +69,7 @@ namespace subsystem
        * @param addr address to connect.
        * @throws SocketException on fail.
        */
-      virtual void connect(const SocketAddressIPv4 &addr) = 0;
+      virtual void connect(const ::subsystem::SocketAddressIPv4Interface * paddress) = 0;
       /**
        * Closes socket.
        * @throws SocketException on fail.
@@ -92,7 +92,7 @@ namespace subsystem
        * Binds socket to socket address.
        * @throws SocketException on fail.
        */
-      virtual void bind(const SocketAddressIPv4 &addr) = 0;
+      virtual void bind(const ::subsystem::SocketAddressIPv4Interface * paddress) = 0;
       /**
        * Checks if this socket is bound and used for server needs.
        * @return true if socket used as server and successfully bounded, false otherwise.
@@ -140,13 +140,13 @@ namespace subsystem
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      virtual bool getLocalAddr(SocketAddressIPv4 *addr) = 0;
+      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() = 0;
       /**
        * Returns peer address.
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      virtual bool getPeerAddr(SocketAddressIPv4 *addr) = 0;
+      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr(SocketAddressIPv4 *addr) = 0;
 
       /* Auxiliary */
       virtual void setSocketOptions(int level, int name, void *value, socklen_t len) = 0;
@@ -194,7 +194,7 @@ namespace subsystem
     *
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
-   class CLASS_DECL_ACME SocketIPv4 :
+   class CLASS_DECL_SUBSYSTEM SocketIPv4 :
       virtual public ::subsystem::composite<SocketIPv4Interface >
    {
    public:
@@ -219,7 +219,7 @@ namespace subsystem
        * @param addr address to connect.
        * @throws SocketException on fail.
        */
-      void connect(const SocketAddressIPv4 &addr)  override;
+      void connect(::subsystem::SocketAddressIPv4Interface * paddress)  override;
       /**
        * Closes socket.
        * @throws SocketException on fail.
@@ -242,7 +242,7 @@ namespace subsystem
        * Binds socket to socket address.
        * @throws SocketException on fail.
        */
-      void bind(const SocketAddressIPv4 &addr) override;
+      void bind(::subsystem::SocketAddressIPv4Interface * paddress) override;
       /**
        * Checks if this socket is bound and used for server needs.
        * @return true if socket used as server and successfully bounded, false otherwise.
@@ -260,7 +260,7 @@ namespace subsystem
        * @throws SocketException on fail.
        * @return newly allocated socket that contain incoming connections.
        */
-      ::pointer < SocketIPv4Interface > accept() override;
+      ::pointer < ::subsystem::SocketIPv4Interface > accept() override;
 
       /**
        * Sends data to socket.
@@ -290,13 +290,13 @@ namespace subsystem
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      bool getLocalAddr(SocketAddressIPv4 *addr) override;
+      ::pointer < ::subsystem::SocketIPv4Interface > getLocalAddr() override;
       /**
        * Returns peer address.
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      bool getPeerAddr(SocketAddressIPv4 *addr) override;
+      ::pointer < ::subsystem::SocketIPv4Interface > getPeerAddr() override;
 
       /* Auxiliary */
       void setSocketOptions(int level, int name, void *value, socklen_t len) override;

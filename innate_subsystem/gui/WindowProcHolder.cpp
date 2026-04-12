@@ -24,7 +24,7 @@
 #include "framework.h"
 // #include "WindowProcHolder.h"
 //
-// namespace subsystem_apex
+// namespace innate_subsystem
 // {
 //    WindowProcHolder::WindowProcHolder()
 //    {
@@ -52,4 +52,4 @@
 //
 //       return r;
 //    }
-// } // namespace subsystem_apex
+// } // namespace innate_subsystem

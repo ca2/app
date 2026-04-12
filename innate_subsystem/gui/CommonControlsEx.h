@@ -23,7 +23,7 @@
 //
 #pragma once
 
-// namespace subsystem_apex
+// namespace innate_subsystem
 // {
 //    class CommonControlsEx
 //    {
@@ -33,7 +33,7 @@
 //
 //       static void init();
 //    };
-// } //namespace subsystem_apex
+// } //namespace innate_subsystem
 //
 //
 //

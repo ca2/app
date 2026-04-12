@@ -10,7 +10,7 @@ namespace subsystem
 
    struct interface_t{};
 
-   //CLASS_DECL_ACME void subsystem_factory(::factory::factory * pfactory);
+   //CLASS_DECL_SUBSYSTEM void subsystem_factory(::factory::factory * pfactory);
 
 
    enum enum_particle
@@ -50,7 +50,7 @@ namespace subsystem
    PARTICLE_INTERFACE * get_implementation(const ::subsystem::implementation< PARTICLE_INTERFACE > * pimplementation);
 
 
-   class CLASS_DECL_ACME particle_base :
+   class CLASS_DECL_SUBSYSTEM particle_base :
       virtual public ::particle
    {
    public:
@@ -75,7 +75,7 @@ namespace subsystem
 
 
       template < typename IMPL >
-      IMPL * impl()
+      IMPL * impl() const
       {
          ::cast < IMPL > pimp = ::subsystem::get_implementation(this);
 
@@ -156,15 +156,17 @@ namespace subsystem
 
 
    template < typename PARTICLE_INTERFACE, typename TYPE >
-   PARTICLE_INTERFACE * _get_implementation(const TYPE * pinterface)
+   PARTICLE_INTERFACE * _get_implementation(const TYPE * pinterfaceConst)
    {
 
-      if (::is_null(pinterface))
+      if (::is_null(pinterfaceConst))
       {
 
          return nullptr;
 
       }
+
+      auto pinterface = (TYPE *) pinterfaceConst;
 
       ::cast < implementation < PARTICLE_INTERFACE > > pimplementation = pinterface;
 

@@ -64,6 +64,9 @@ namespace platform
    class string_table;
 
 
+   class subsystem;
+
+
 } // namespace platform
 
 

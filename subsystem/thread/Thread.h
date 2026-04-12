@@ -176,7 +176,7 @@ namespace subsystem
     * @fixme some methods seems to be not thread-safe (that uses m_active member).
     * @fixme member of HDESK type in THREAD class???
     */
-   class CLASS_DECL_ACME Thread :
+   class CLASS_DECL_SUBSYSTEM Thread :
       virtual public ::subsystem::composite < ThreadInterface >
    {
    public:

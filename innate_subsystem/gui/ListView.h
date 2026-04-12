@@ -35,7 +35,7 @@
 // TODO: Maybe use class for this?
 //
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    typedef struct
    {
@@ -228,7 +228,7 @@ namespace subsystem_apex
    // that view data as report.
    //
 
-   class CLASS_DECL_APEX ListView :
+   class CLASS_DECL_INNATE_SUBSYSTEM ListView :
    virtual public ::subsystem::composite<ListViewInterface>
    {
    public:
@@ -402,7 +402,7 @@ namespace subsystem_apex
    //    PFNLVCOMPARE m_compareItem;
    };
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 

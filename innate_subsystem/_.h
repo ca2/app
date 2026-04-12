@@ -9,17 +9,17 @@
 #include "apex/_.h"
 
 
-#if defined(_subsystem_apex_project)
-#define CLASS_DECL_SUBSYSTEM_APEX CLASS_DECL_EXPORT
+#if defined(_innate_subsystem_project)
+#define CLASS_DECL_INNATE_SUBSYSTEM CLASS_DECL_EXPORT
 #else
-#define CLASS_DECL_SUBSYSTEM_APEX CLASS_DECL_IMPORT
+#define CLASS_DECL_INNATE_SUBSYSTEM CLASS_DECL_IMPORT
 #endif
 
 
 
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -150,7 +150,7 @@ namespace subsystem_apex
    struct draw_item_t;
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 

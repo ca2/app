@@ -35,7 +35,7 @@ namespace subsystem
     * Singleton without support of "lazy" initialization.
     */
    //class ResourceLoader : public Singleton<ResourceLoader>
-   class CLASS_DECL_ACME resource_loader :
+   class CLASS_DECL_SUBSYSTEM resource_loader :
       virtual public ::particle
    {
    public:

@@ -29,7 +29,7 @@
 #include "innate_subsystem/Control.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -82,7 +82,7 @@ namespace subsystem_apex
 
     };
 
-   class CLASS_DECL_APEX ComboBox :
+   class CLASS_DECL_INNATE_SUBSYSTEM ComboBox :
      virtual public ::subsystem::composite<ComboBoxInterface>
    {
    public:
@@ -131,7 +131,7 @@ namespace subsystem_apex
    };
 
     //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 

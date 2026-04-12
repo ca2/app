@@ -4,11 +4,11 @@
 #include "framework.h"
 #include "gui/subsystem.h"
 #include "gui/SystemMetrics.h"
-#include "gui/resource_loader.h"
+#include "resource_loader.h"
 #include "acme/constant/user_key.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -27,7 +27,7 @@ namespace subsystem_apex
    }
 
 
-   // ::subsystem_apex::resource_loader * subsystem::resource_loader()
+   // ::innate_subsystem::resource_loader * subsystem::resource_loader()
    // {
    //
    //    if (!m_presourceloader)
@@ -59,7 +59,7 @@ namespace subsystem_apex
    //
    //
    //
-   ::subsystem_apex::resource_loader * subsystem::resource_loader()
+   ::innate_subsystem::resource_loader * subsystem::resource_loader()
    {
 
 
@@ -84,7 +84,7 @@ namespace subsystem_apex
 
       throw ::interface_only();
 
-      return ::subsystem_apex::e_control_id_cancel;
+      return ::innate_subsystem::e_control_id_cancel;
 
    }
 
@@ -126,7 +126,7 @@ namespace subsystem_apex
    //
    // }
 
-   ::subsystem_apex::SystemMetricsInterface * subsystem::metrics()
+   ::innate_subsystem::SystemMetricsInterface * subsystem::metrics()
    {
 
       if (!m_psystemmetrics)

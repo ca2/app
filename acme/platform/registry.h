@@ -8,9 +8,6 @@
 #pragma once
 
 
-#include "subsystem/particle.h"
-
-
 namespace platform
 {
 

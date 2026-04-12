@@ -27,7 +27,7 @@
 //#include "util/CommonHeader.h"
 //#include <CommCtrl.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -159,6 +159,6 @@ namespace subsystem_apex
       // TabCtrl_AdjustRect(m_hwnd, FALSE, rect);
       m_pparticleThis->adjustRect(rect);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

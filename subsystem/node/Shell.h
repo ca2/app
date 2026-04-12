@@ -81,7 +81,7 @@ namespace subsystem
  *
  * @author enikey.
  */
-   class CLASS_DECL_ACME Shell :
+   class CLASS_DECL_SUBSYSTEM Shell :
    virtual public ::subsystem::composite<ShellInterface>
    {
    public:

@@ -142,7 +142,7 @@ public:
   * variable number of subauthority or relative identifier (RID) values that uniquely
   * identify the trustee relative to the authority that issued the SID.
   */
- class CLASS_DECL_ACME SecurityIdentifier :
+ class CLASS_DECL_SUBSYSTEM SecurityIdentifier :
     virtual public ::subsystem::composite<SecurityIdentifierInterface>
  {
  public:

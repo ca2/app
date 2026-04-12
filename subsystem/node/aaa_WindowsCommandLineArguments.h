@@ -29,7 +29,7 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_ACME WinCommandLineArgs : public CommandLineArguments
+   class CLASS_DECL_SUBSYSTEM WinCommandLineArgs : public CommandLineArguments
    {
    public:
       WinCommandLineArgs(const ::scoped_string & scopedstrCmdLineInWinFormat);

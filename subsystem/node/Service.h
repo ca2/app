@@ -134,7 +134,7 @@ namespace subsystem
     * @remark service is singleton (you can have only one service instance).
     * @author enikey.
     */
-   class CLASS_DECL_ACME Service :
+   class CLASS_DECL_SUBSYSTEM Service :
    virtual public ::subsystem::composite< ServiceInterface>
    {
    public:

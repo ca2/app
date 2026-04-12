@@ -26,7 +26,7 @@
 
 //#include <crtdbg.h>
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 //Pen::Pen(int type, int width, const ::color::color & color)

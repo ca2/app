@@ -31,7 +31,7 @@
 #include "innate_subsystem/StringFilter.h"
 //#include "util/::string.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    class FilteredTextBoxInterface :
    virtual public ::subsystem::particle_interface<FilteredTextBoxInterface>,
@@ -62,7 +62,7 @@ namespace subsystem_apex
    //    StringFilter *m_filter;
    };
 
-   class CLASS_DECL_APEX FilteredTextBox :
+   class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBox :
       virtual public ::subsystem::composite<FilteredTextBoxInterface>
    {
    public:
@@ -91,6 +91,6 @@ namespace subsystem_apex
    };
 
    //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

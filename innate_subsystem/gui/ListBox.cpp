@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "ListBox.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    ListBox::ListBox()
    {
@@ -162,5 +162,5 @@ namespace subsystem_apex
       ///SendMessage(m_hwnd, LB_SETCURSEL, index, NULL);
       m_pparticleThis->setSelectedIndex(index);
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

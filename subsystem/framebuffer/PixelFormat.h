@@ -24,11 +24,11 @@
 
 #pragma once
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
-struct CLASS_DECL_ACME PixelFormat
+struct CLASS_DECL_SUBSYSTEM PixelFormat
 {
   PixelFormat();
   // Initializes the bigEndian field by native machine value.
@@ -52,6 +52,6 @@ struct CLASS_DECL_ACME PixelFormat
 
 //// __PIXELFORMAT_H__
 ///
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

@@ -3,7 +3,7 @@
 #include "SystemMetrics.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
     SystemMetrics::SystemMetrics()
@@ -28,4 +28,4 @@ namespace subsystem_apex
 
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem

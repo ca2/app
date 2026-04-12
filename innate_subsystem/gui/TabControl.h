@@ -30,7 +30,7 @@
 
 //using namespace std;
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    class TabControlInterface :
    virtual public ::subsystem::particle_interface<TabControlInterface>,
@@ -72,7 +72,7 @@ virtual       int getSelectedTabIndex()= 0;
    };
 
 
-   class CLASS_DECL_APEX TabControl : public ::subsystem::composite <TabControlInterface >
+   class CLASS_DECL_INNATE_SUBSYSTEM TabControl : public ::subsystem::composite <TabControlInterface >
    {
    public:
       TabControl();

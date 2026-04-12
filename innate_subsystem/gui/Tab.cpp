@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Tab.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Tab::Tab()
    //: m_dialog(NULL)
@@ -109,4 +109,4 @@ namespace subsystem_apex
       //    m_dialog->getControl()->setVisible(visible);
       // }
    }
-} // namespace subsystem_apex
+} // namespace innate_subsystem

@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "FilteredTextBox.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    FilteredTextBox::FilteredTextBox()
    //: m_oldWindowProc(NULL), m_tip(NULL)
@@ -127,7 +127,7 @@ namespace subsystem_apex
    //    }
    //    return CallWindowProc((WNDPROC)_this->m_oldWindowProc, hwnd, uMsg, ::wparam, ::lparam);
    // }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 
 

@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "PaintWindow.h"
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    PaintWindow::PaintWindow()
 //    : m_bIsDraw(false)
@@ -67,5 +67,5 @@ namespace subsystem_apex
    //    // }
    //    // return BaseWindow::wndProc(message, ::wparam, ::lparam);
    // }
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

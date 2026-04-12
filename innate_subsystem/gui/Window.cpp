@@ -28,7 +28,7 @@
 //#include "acme/operating_system/windows/_.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
    Window::Window()
    // : m_hWnd(0),
@@ -665,7 +665,7 @@ namespace subsystem_apex
    }
 
 
-   void Window::onDraw(::subsystem_apex::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle)
+   void Window::onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle)
    {
 
 
@@ -724,6 +724,6 @@ namespace subsystem_apex
    }
 
 
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 
 

@@ -38,7 +38,7 @@ namespace subsystem
    // Collector threads.
    // ThreadCollector has it's own thread which deletes in infinity loop not
    // active threads.
-   class CLASS_DECL_ACME ThreadCollector :
+   class CLASS_DECL_SUBSYSTEM ThreadCollector :
       virtual public Thread
    {
    public:
@@ -70,7 +70,7 @@ namespace subsystem
    // // Collector threads.
    // // ThreadCollector has it's own thread which deletes in infinity loop not
    // // active threads.
-   // class CLASS_DECL_ACME ThreadCollector :
+   // class CLASS_DECL_SUBSYSTEM ThreadCollector :
    //    virtual public ::subsystem::composite<ThreadCollector
    // {
    // public:

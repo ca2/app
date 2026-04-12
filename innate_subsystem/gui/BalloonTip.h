@@ -29,7 +29,7 @@
 // //#include "util/CommonHeader.h"
 // ////#include <CommCtrl.h>
 //
-// namespace subsystem_apex
+// namespace innate_subsystem
 // {
 //
 // /**
@@ -61,6 +61,6 @@
 // ///#endif
 // ///
 // ///
-// } //  namespace subsystem_apex
+// } //  namespace innate_subsystem
 //
 //

@@ -30,11 +30,11 @@
 #include "innate_subsystem/Control.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
     class TrackbarInterface :
    virtual public ::subsystem::particle_interface<TrackbarInterface>,
-         virtual public ::subsystem_apex::Control
+         virtual public ::innate_subsystem::Control
     {
     public:
 
@@ -51,7 +51,7 @@ namespace subsystem_apex
         virtual long getPos() = 0;
     };
 
-   class CLASS_DECL_APEX Trackbar :
+   class CLASS_DECL_INNATE_SUBSYSTEM Trackbar :
       virtual public ::subsystem::composite < TrackbarInterface  >
    {
    public:
@@ -69,5 +69,5 @@ namespace subsystem_apex
    };
 
     //#endif
-} // namespace subsystem_apex
+} // namespace innate_subsystem
 

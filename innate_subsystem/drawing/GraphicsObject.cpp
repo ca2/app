@@ -5,7 +5,7 @@
 #include "GraphicsObject.h"
 
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
    // void * GraphicsObject::_HGDIOBJ()

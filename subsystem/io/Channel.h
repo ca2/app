@@ -36,7 +36,7 @@ namespace subsystem
     * Channel interface (abstract class) that joins together
     * InputStream and OutputStream).
     */
-   class CLASS_DECL_ACME Channel : public InputStream, public OutputStream
+   class CLASS_DECL_SUBSYSTEM Channel : public InputStream, public OutputStream
    {
    public:
       /**

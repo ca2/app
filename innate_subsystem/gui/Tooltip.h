@@ -32,7 +32,7 @@
 // Abstract tooltip class
 //
 
-namespace subsystem_apex
+namespace innate_subsystem
 {
 
 
@@ -58,7 +58,7 @@ namespace subsystem_apex
     //#endif
    
    
-   class CLASS_DECL_APEX Tooltip :
+   class CLASS_DECL_INNATE_SUBSYSTEM Tooltip :
    virtual public ::subsystem::composite<TooltipInterface>
    {
    public:
@@ -78,7 +78,7 @@ namespace subsystem_apex
    };
 
 
-}// namespace subsystem_apex
+}// namespace innate_subsystem
 
 
 

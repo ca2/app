@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "registry.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/platform/application.h"
 
 
 #include <rapidjson/document.h>

@@ -140,7 +140,7 @@ namespace subsystem
     * Wrapper of WinAPI methods that can inject input events into system
     * (mouse, keyboard etc) and get information about input device states.
     */
-   class CLASS_DECL_ACME InputInjector :
+   class CLASS_DECL_SUBSYSTEM InputInjector :
    virtual public ::subsystem::composite<InputInjectorInterface>
    {
    public:

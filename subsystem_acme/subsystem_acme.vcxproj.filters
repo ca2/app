@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node">
+      <UniqueIdentifier>{419b735d-9eb1-4a46-ab8a-0f41dd2c70ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread">
+      <UniqueIdentifier>{59747031-8563-4523-833f-b4fb649cf486}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\thread">
+      <UniqueIdentifier>{ac6002c2-f75f-443c-9262-026ef019b4e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node">
+      <UniqueIdentifier>{e159e837-61b8-40cc-ace1-2d7de7cf3971}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\_.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\aaa_framework.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\aaa_ZombieKiller.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\AutoLock.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\DesktopSelector.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\GlobalMutex.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\GuiThread.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\LocalMutex.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Lockable.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\resource.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\Thread.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\ThreadCollector.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="node\AnonymousPipe.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\AnonymousPipeFactory.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\ApplicationCrashEvents.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\AutoImpersonator.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Clipboard.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\CurrentConsoleProcess.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Cursor.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Displays.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\DynamicLibrary.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\EmulatedAnonymousPipeFactory.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\File.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Impersonator.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\InputInjector.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Keyboard.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\LocalOperatingSystemApplication.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\NamedPipe.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\OperatingSystemApplication.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\OperatingSystemHook.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\OperatingSystemHookListener.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\ParentProcess.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Pipe.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\PipeClient.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\PipeImpersonatedThread.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\PipeServer.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Process.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\ProcessCommandLine.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\ProcessHandle.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\resource.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Screen.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Service.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\ServiceControlManagerClient.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\SharedMemory.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Shell.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\SystemException.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\SystemInformation.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\UipiControl.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\VersionInfo.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\WindowsEvent.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\WindowsEventEx.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\WinStaLibrary.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\Workstation.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\WsaStartup.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="node\WTS.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandLineArguments.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Inflater.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="particle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Registry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistryKey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="string_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StringParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZLibBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZlibException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="node\AnonymousPipe.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\AnonymousPipeFactory.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\AutoImpersonator.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Clipboard.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\CurrentConsoleProcess.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Cursor.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Displays.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\DynamicLibrary.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\EmulatedAnonymousPipeFactory.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\File.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Impersonator.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\InputInjector.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Keyboard.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\LocalOperatingSystemApplication.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\NamedPipe.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\OperatingSystemApplication.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\OperatingSystemHook.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\OperatingSystemHookListener.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\ParentProcess.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Pipe.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\PipeClient.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\PipeImpersonatedThread.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\PipeServer.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Process.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\ProcessCommandLine.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\ProcessHandle.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Screen.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Service.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\ServiceControlManagerClient.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\SharedMemory.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Shell.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\SystemException.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\SystemInformation.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\UipiControl.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\VersionInfo.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\WindowsEvent.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\WindowsEventEx.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\WinStaLibrary.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Workstation.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\WsaStartup.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="node\WTS.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\AutoLock.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\DesktopSelector.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\GlobalMutex.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\GuiThread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\LocalMutex.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\Thread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\ThreadCollector.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

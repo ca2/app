@@ -32,39 +32,36 @@ namespace acme
 //#define FALSE 0
 //#endif
 
-BOOL WritePrivateProfileString(
+bool WritePrivateProfileString(
                                 const char *lpAppName,
                                 const char *lpKeyName,
                                 const char *lpString,
                                 const char *lpFileName
                                 );
 
-DWORD GetPrivateProfileString(
+unsigned int GetPrivateProfileString(
                                const char *lpAppName,
                                const char *lpKeyName,
                                const char *lpDefault,
-                               char *lpReturnedString,
-                               DWORD nSize,
+                               char *lpReturnedString, unsigned int nSize,
                                const char *lpFileName
                                );
 
-UINT GetPrivateProfileInt(
+unsigned int GetPrivateProfileInt(
                            const char *lpAppName,
                            const char *lpKeyName,
                            int nDefault,
                            const char *lpFileName
                            );
 
-DWORD GetPrivateProfileSection(
+unsigned int GetPrivateProfileSection(
                                 const char *lpAppName,
-                                char *lpReturnedString,
-                                DWORD nSize,
+                                char *lpReturnedString, unsigned int nSize,
                                 const char *lpFileName
                                 );
 
-DWORD GetPrivateProfileSectionNames(
-                                     char *lpszReturnBuffer,
-                                     DWORD nSize,
+unsigned int GetPrivateProfileSectionNames(
+                                     char *lpszReturnBuffer, unsigned int nSize,
                                      const char *lpFileName
                                      );
 //

@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "acme/subsystem/particle.h"
+#include "subsystem_acme/particle.h"
 
 
 namespace platform

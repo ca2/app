@@ -1,0 +1,133 @@
+// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// All rights reserved.
+//
+//-------------------------------------------------------------------------
+// This file is part of the TightVNC software.  Please visit our Web site:
+//
+//                       http://www.tightvnc.com/
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//-------------------------------------------------------------------------
+//
+// Adapted by camilo on beginning of 2026-April <3ThomasBorregaardSorensen!!
+//
+#include "framework.h"
+#include "Cursor.h"
+#include "DeviceContext.h"
+#include "Bitmap.h"
+
+namespace subsystem_apex
+{
+    
+   Cursor::Cursor()
+   : m_bHasOwnIcon(true), m_hcursor(NULL)
+   {
+   }
+
+//    Cursor::Cursor(HICON icon)
+// : m_bHasOwnIcon(true), m_hcursor(icon)
+//    {
+//    }
+//
+//    Cursor::Cursor(Bitmap *bitmap)
+//    : m_bHasOwnIcon(true), m_hcursor(NULL)
+//    {
+//       Bitmap mask(bitmap->getWidth(), bitmap->getHeight());
+//       fromBitmap(bitmap, &mask);
+//    }
+//
+//    Cursor::Cursor(Bitmap *bitmap, Bitmap *mask)
+//    : m_bHasOwnIcon(true), m_hcursor(NULL)
+//    {
+//       fromBitmap(bitmap, mask);
+//    }
+//
+//    Cursor::Cursor(DWORD icon)
+//    : m_bHasOwnIcon(false)
+//    {
+//       HINSTANCE hInstance = GetModuleHandle(NULL);
+//       m_hcursor = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
+//    }
+//
+
+
+   Cursor::~Cursor()
+   {
+      if (m_bHasOwnIcon) {
+         DestroyIcon(m_hcursor);
+      }
+   }
+
+
+   void Cursor::initialize_icon(::subsystem_apex::IconInterface * picon)
+
+   {
+      m_bHasOwnIcon = true;
+      ::cast < ::innate_subsystem_win32::Cursor > piconWin32 = ::subsystem::get_implementation(picon);
+      m_hcursor = piconWin32->m_hcursor;
+   }
+
+   void Cursor::initialize_icon(subsystem_apex::BitmapInterface *pbitmap)
+
+   {
+      m_bHasOwnIcon = true;
+
+      m_hcursor = nullptr;
+
+      Bitmap mask;
+      mask.initialize_bitmap(pbitmap->getSize());
+      fromBitmap(pbitmap, &mask);
+   }
+
+   void Cursor::initialize_icon(::subsystem_apex::BitmapInterface *bitmap, ::subsystem_apex::BitmapInterface *mask)
+   //:
+   {
+      m_bHasOwnIcon = true;
+      m_hcursor = nullptr;
+      fromBitmap(bitmap, mask);
+   }
+
+   void Cursor::initialize_icon(unsigned int icon)
+   {
+      m_bHasOwnIcon = false;
+      HINSTANCE hInstance = GetModuleHandle(NULL);
+      m_hcursor = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
+   }
+
+
+
+   // HICON Cursor::getHICON()
+   // {
+   //    return m_hcursor;
+   // }
+
+   void Cursor::fromBitmap(::subsystem_apex::BitmapInterface *pbitmap, ::subsystem_apex::BitmapInterface *pbitmapMask)
+   {
+       /*
+      CURS ii;
+
+      memset(&ii, 0, sizeof(ICONINFO));
+
+      auto pbitmapWin32 = pbitmap->impl<innate_subsystem_win32::Bitmap>();
+      auto pbitmapMaskWin32 = pbitmapMask->impl<innate_subsystem_win32::Bitmap>();
+
+      ii.hbmColor = (pbitmapWin32 != 0) ? pbitmapWin32->m_hbitmap : 0;
+      ii.hbmMask = (pbitmapMaskWin32 != 0) ? pbitmapMaskWin32->m_hbitmap : 0;
+*/
+      m_hcursor = CreateIconIndirect(&ii);
+
+   }
+} // namespace innate_subsystem_win32
+

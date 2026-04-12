@@ -502,6 +502,9 @@
     <Filter Include="Header Files\subsystem\thread">
       <UniqueIdentifier>{6ed15f74-469c-4a67-9aa6-3d7bac2cd580}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\subsystem\io">
+      <UniqueIdentifier>{ea2e2cd4-3dfe-4b97-937d-a8e56c6bf041}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -6679,6 +6682,42 @@
     </ClCompile>
     <ClCompile Include="platform\registry.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\_.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\BufferedInputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\BufferedOutputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\ByteArrayInputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\ByteArrayOutputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\Channel.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\DataCopy.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\DataInputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\DataOutputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\InputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\io_exception.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem\io\OutputStream.cpp">
+      <Filter>Header Files\subsystem\io</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

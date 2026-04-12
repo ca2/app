@@ -20,6 +20,16 @@
 #include "acme/prototype/prototype/factory.h"
 
 
+namespace subsystem
+{
+
+   
+   class subsystem;
+
+
+} // namespace subsystem
+
+
 namespace platform
 {
 

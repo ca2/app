@@ -11,7 +11,7 @@ add_subdirectory(aura)
 if(${LINUX} OR ${__BSD__})
     add_subdirectory(nano_idn_libidn)
 endif()
-
+add_subdirectory(subsystem_bsd_sockets)
 
 add_subdirectory(networking_bsd)
 add_subdirectory(crypto_openssl)

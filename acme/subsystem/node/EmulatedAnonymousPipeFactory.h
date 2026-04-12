@@ -25,8 +25,9 @@
 #pragma once
 
 
-#include "acme/subsystem/node/NamedPipe.h"
-#include "subsystem/subsystem.h"
+#include "acme/subsystem/_common_header.h"
+///#include "acme/subsystem/node/EmulatedAnonymousPipeFactory.h.h"
+//#include "subsystem/subsystem.h"
 //#include "log_writer/LogWriter.h"
 
 namespace subsystem

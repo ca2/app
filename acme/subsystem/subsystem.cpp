@@ -8,8 +8,12 @@
 #include "resource_loader.h"
 #include "platform/registry.h"
 #include "node/Shell.h"
+#include "node/PipeClient.h"
 #include "Registry.h"
+#include "thread/DesktopSelector.h"
 #include "acme/exception/interface_only.h"
+#include "node/SystemInformation.h"
+
 
 namespace subsystem
 {
@@ -108,6 +112,55 @@ namespace subsystem
       return m_pshell;
 
    }
+
+
+   ::subsystem::SystemInformationInterface *subsystem::system_information()
+   {
+
+      if (!m_psysteminformation   )
+      {
+
+
+         constructø(m_psysteminformation);
+
+      }
+
+      return m_psysteminformation;
+
+   }
+
+
+   ::subsystem::DesktopSelectorInterface *subsystem::desktop_selector()
+   {
+
+      if (!m_pdesktopselector   )
+      {
+
+
+         constructø(m_pdesktopselector);
+
+      }
+
+      return m_pdesktopselector;
+
+   }
+
+
+   ::subsystem::PipeClientInterface *subsystem::pipe_client()
+   {
+
+      if (!m_ppipeclient   )
+      {
+
+
+         constructø(m_ppipeclient);
+
+      }
+
+      return m_ppipeclient;
+
+   }
+
 
    ::pointer < ::subsystem::SecurityIdentifier > subsystem::createSidFromString(const ::scoped_string & scopedstr)
    {

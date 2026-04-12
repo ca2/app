@@ -38,7 +38,7 @@ namespace innate_subsystem
    resource_loader::~resource_loader()
    {}//h
 
-   ::pointer < IconInterface > resource_loader::loadStandartIcon(const char* iconName)
+   ::pointer < IconInterface > resource_loader::loadStandardIcon(enum_cursor ecursor)
    {
       //return LoadIcon(NULL, iconName);
       throw ::interface_only();

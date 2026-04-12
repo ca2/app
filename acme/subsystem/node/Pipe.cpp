@@ -54,6 +54,16 @@ namespace subsystem
    {
    }
 
+
+   void Pipe::initialize_pipe(unsigned int maxPortionSize)
+   {
+
+
+      m_pparticleThis->initialize_pipe(maxPortionSize);
+
+   }
+
+
    unsigned int Pipe::getMaxPortionSize()
    {
       //return m_maxPortionSize;
@@ -187,6 +197,43 @@ namespace subsystem
    //       throw ::io_exception(error_io, "Invalid pipe handle");
    //    }
    // }
+
+
+
+
+   // The pointer uses because the functions must have access to
+   // the same variable as in a derived class to rich a thread safe
+   // handle usage.
+   size_t Pipe::readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe)
+   {
+
+
+      return m_pparticleThis->readByFile(buffer, len, pfilePipe);
+
+
+   }
+   size_t Pipe::writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe)
+   {
+
+      return m_pparticleThis->writeByFile(buffer, len, pfilePipe);
+
+   }
+
+   // This mutex is to use for pipe handles that uses in the above functions.
+   // The mutex protect collision accesses to handle fields of derived classes.
+   //LocalMutex m_hPipeMutex;
+
+   //WindowsEvent m_readEvent;
+   //WindowsEvent m_writeEvent;
+
+   //private:
+   void Pipe::checkPipeFile(::subsystem::FileInterface * pfilePipe)
+   {
+
+      m_pparticleThis->checkPipeFile(pfilePipe);
+
+   }
+
 } // namespace subsystem
 
 

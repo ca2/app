@@ -119,7 +119,7 @@ namespace innate_subsystem
 
 
    // This clas is a primitive wrapper to a DIB section.
-   class CLASS_DECL_ACME DibSection :
+   class CLASS_DECL_APEX DibSection :
    virtual public ::subsystem::composite < DibSectionInterface >
    {
    public:

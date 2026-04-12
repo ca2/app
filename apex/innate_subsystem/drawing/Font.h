@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
 
-      class CLASS_DECL_APEX FontInterface :
+      class FontInterface :
          virtual public ::subsystem::particle_interface<FontInterface>,
          virtual public GraphicsObject
       {
@@ -42,7 +42,7 @@ namespace innate_subsystem
       //public:
          //Pen(int type, int width, const ::color::color & color);
          //Pen();
-          virtual ~FontInterface() = 0;
+          //virtual ~FontInterface() = 0;
 
 
          virtual void initialize_font(const char * pszFamily, int iPixelHeight, int iFontWeight = 400, bool bItalic = false) = 0;

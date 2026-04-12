@@ -231,16 +231,16 @@ CLASS_DECL_ACME::file::path_array_base ascendants_path(const ::file::path& pathB
 }
 
 
-CLASS_DECL_ACME::string_array_base ascendants_name(const ::file::path& pathBase)
-{
-
-   ::string_array_base stra;
-
-   ascendants_name(stra, pathBase);
-
-   return ::transfer(stra);
-
-}
+// CLASS_DECL_ACME::string_array_base ascendants_name(const ::file::path& pathBase)
+// {
+//
+//    ::string_array_base stra;
+//
+//    ascendants_name(stra, pathBase);
+//
+//    return ::transfer(stra);
+//
+// }
 
 
 

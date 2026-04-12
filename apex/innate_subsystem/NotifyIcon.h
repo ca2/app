@@ -36,7 +36,7 @@ namespace innate_subsystem
 {
 
    // FIXME: Add documentation to class.
-   class CLASS_DECL_APEX NotifyIconInterface :
+   class NotifyIconInterface :
       virtual public ::subsystem::particle_interface<NotifyIconInterface>,
    virtual public NotifyIconWindow
    {
@@ -44,7 +44,7 @@ namespace innate_subsystem
       
       
       //NotifyIcon();
-      virtual ~NotifyIconInterface() = 0;
+      //virtual ~NotifyIconInterface() = 0;
 
       virtual void initialize_notify_icon(bool showAfterCreation = true) = 0;
 

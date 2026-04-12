@@ -33,7 +33,7 @@ namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX BitmapInterface :
+   class BitmapInterface :
    virtual public ::subsystem::particle_interface<BitmapInterface>,
    virtual public GraphicsObject
    {
@@ -45,7 +45,7 @@ namespace innate_subsystem
       // // Creates bitmap from HBITMAP object.
       // Bitmap(Bitmap * pbitmap);
       // Destroys bitmap object.
-      virtual ~BitmapInterface() =0;
+      //virtual ~BitmapInterface() =0;
 
       // Creates empty bitmap with specified size.
       virtual void initialize_bitmap(const ::int_size & size) = 0;

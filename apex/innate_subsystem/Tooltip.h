@@ -36,14 +36,14 @@ namespace innate_subsystem
 {
 
 
-    class CLASS_DECL_APEX TooltipInterface :
+    class TooltipInterface :
     virtual public ::subsystem::particle_interface<TooltipInterface>
     {
     public:
         //Tooltip();
-        virtual ~TooltipInterface() = 0;
-
-        virtual void showTooltip(Control *control)= 0;
+  //      virtual ~TooltipInterface() = 0;
+//
+        virtual void showTooltip(ControlInterface *control)= 0;
 
         virtual void setText(const char *text)= 0;
         virtual void setTitle(const char *caption)= 0;
@@ -65,7 +65,7 @@ namespace innate_subsystem
       Tooltip();
       ~Tooltip() override;
 
-      void showTooltip(Control *control) override;
+      void showTooltip(ControlInterface *control) override;
 
       void setText(const char *text) override;
       void setTitle(const char *caption) override;

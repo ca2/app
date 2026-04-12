@@ -38,12 +38,12 @@ namespace innate_subsystem
           static const int TB_Style_sep = 0;
       static const int TB_Style_gap = 1;
 
-   class CLASS_DECL_APEX ToolbarInterface :
+   class ToolbarInterface :
       virtual  public ::subsystem::particle_interface<ToolbarInterface>
    {
    public:
       //Toolbar();
-      virtual ~ToolbarInterface() = 0;
+      //virtual ~ToolbarInterface() = 0;
 
 
       /////////////////////////////////////////////////////////

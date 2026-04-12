@@ -47,6 +47,14 @@ namespace subsystem
       // }
    }
 
+
+   void Clipboard::initialize_clipboard(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      return m_pparticleThis->initialize_clipboard(operatingsystemwindow);
+
+   }
+
    void Clipboard::setHWnd(const ::operating_system::window & operatingsystemwindow)
    {
       //m_hwnd = hwnd;

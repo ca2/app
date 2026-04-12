@@ -57,6 +57,15 @@ namespace subsystem
       // impersonateAsUser(token);
    }
 
+
+   void Impersonator::initialize_impersonator(LogWriter *plogwriter)
+   {
+
+      return m_pparticleThis->initialize_impersonator(plogwriter);
+
+   }
+
+
    // void Impersonator::impersonateAsUser(HANDLE token)
    // {
    //   if (m_token != INVALID_HANDLE_VALUE) {

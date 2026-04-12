@@ -32,7 +32,9 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_REMOTING_COMMON SocketException : public ::subsystem::Exception
+
+
+   class CLASS_DECL_ACME SocketException : public ::subsystem::Exception
    {
    public:
       // Creates socket exception object with error value eq to current value

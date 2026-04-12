@@ -34,6 +34,14 @@ namespace subsystem
 
    //::comparable_list_base<HWND> OperatingSystemApplication::m_modelessDialogList;
 
+
+   //    OperatingSystemApplication::OperatingSystemApplication(::hinstance appInstance,
+   //                                        const ::scoped_string & scopedstrwindowClassName)
+   // : m_appInstance(appInstance),
+   //   m_mainWindow(0),
+   //   m_wstrWindowClassName(scopedstrwindowClassName)
+   // {
+   // }
    OperatingSystemApplication::OperatingSystemApplication()
    {
    }
@@ -43,13 +51,13 @@ namespace subsystem
    }
 
 
-   //    OperatingSystemApplication::OperatingSystemApplication(::hinstance appInstance,
-   //                                        const ::scoped_string & scopedstrwindowClassName)
+   void OperatingSystemApplication::initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName)
    // : m_appInstance(appInstance),
    //   m_mainWindow(0),
    //   m_wstrWindowClassName(scopedstrwindowClassName)
-   // {
-   // }
+   {
+      m_pparticleThis->initialize_operating_system_application(scopedstrwindowClassName);
+   }
 
    void OperatingSystemApplication::run()
    {
@@ -191,7 +199,12 @@ namespace subsystem
    //   return DefWindowProc(hWnd, msg, wparam, lparam);
    // }
 
-    int Oper
+    int OperatingSystemApplication::getExitCode()
+   {
+
+      return m_pparticleThis->getExitCode();
+
+   }
 
 
    void OperatingSystemApplication::onMainThreadMessage(int iMainThreadMessage)

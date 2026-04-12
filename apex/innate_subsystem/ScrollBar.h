@@ -36,7 +36,7 @@ namespace innate_subsystem
 {
 
     const int SCROLL_STEP = 5;
-   class CLASS_DECL_APEX ScrollBarInterface :
+   class ScrollBarInterface :
    virtual public ::subsystem::particle_interface<ScrollBarInterface>,
    virtual public Window
    {
@@ -56,7 +56,7 @@ namespace innate_subsystem
       // bool m_isVVert;
       // bool m_isVHorz;
 
-      virtual ~ScrollBarInterface() = 0;
+      //virtual ~ScrollBarInterface() = 0;
 
       //void setWindow(const ::operating_system::window & operatingsystemwindow)= 0;
       virtual bool showVertScroll(bool show)= 0;

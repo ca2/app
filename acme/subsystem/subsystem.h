@@ -27,6 +27,9 @@ namespace subsystem
       ::pointer < ::subsystem::resource_loader >     m_presourceloader;
       ::pointer < ::subsystem::Registry >     m_pregistry;
       ::pointer < ::subsystem::Shell >     m_pshell;
+      ::pointer < ::subsystem::SystemInformationInterface > m_psysteminformation;
+      ::pointer < ::subsystem::DesktopSelectorInterface > m_pdesktopselector;
+      ::pointer < ::subsystem::PipeClientInterface > m_ppipeclient;
 
       subsystem();
       ~subsystem() override;
@@ -36,6 +39,9 @@ namespace subsystem
       virtual ::subsystem::string_table * string_table();
       virtual ::subsystem::Registry* registry();
       virtual ::subsystem::Shell* shell();
+      virtual ::subsystem::SystemInformationInterface * system_information();
+      virtual ::subsystem::DesktopSelectorInterface * desktop_selector();
+      virtual ::subsystem::PipeClientInterface * pipe_client();
       ::subsystem::resource_loader* resource_loader();
 
       /**

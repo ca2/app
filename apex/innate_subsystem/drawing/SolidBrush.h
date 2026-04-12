@@ -28,7 +28,7 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX SolidBrushInterface :
+   class SolidBrushInterface :
    virtual public ::subsystem::particle_interface<SolidBrushInterface>,
       virtual public Brush
    {
@@ -36,7 +36,7 @@ namespace innate_subsystem
 
       //SolidBrush();
       //SolidBrush(const ::color::color & color);
-      virtual ~SolidBrushInterface() = 0;
+      //virtual ~SolidBrushInterface() = 0;
 
       virtual void initialize_solid_brush(const ::color::color & color) = 0;
    };

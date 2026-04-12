@@ -36,13 +36,13 @@ namespace innate_subsystem
     // Owner draw button, that displays button with image and text.
     //
 
-    class CLASS_DECL_APEX ImagedButtonInterface :
+    class ImagedButtonInterface :
    virtual public ::subsystem::particle_interface<ImagedButtonInterface>,
    public Control
     {
     public:
        /// ImagedButton();
-        virtual ~ImagedButtonInterface() = 0;
+        //virtual ~ImagedButtonInterface() = 0;
 
         //
         // Draws this ownder-draw button.

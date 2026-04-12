@@ -153,6 +153,15 @@ namespace subsystem
       return m_pparticleThis->getReadFile();
    }
 
+
+   size_t AnonymousPipe::available()
+   {
+
+      return m_pparticleThis->available();
+
+   }
+
+
    // void AnonymousPipe::assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
    //                                      bool keepCloseRight)
    // {

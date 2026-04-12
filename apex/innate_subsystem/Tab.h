@@ -31,13 +31,13 @@
 
 namespace innate_subsystem
 {
-    class CLASS_DECL_APEX TabInterface :
+    class TabInterface :
    virtual public ::subsystem::particle_interface<TabInterface>
     {
     public:
         //Tab();
 
-       virtual ~TabInterface() =0;
+       //virtual ~TabInterface() =0;
         //Tab(BaseDialog *dialog, const char *caption);
 
         //

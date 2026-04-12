@@ -31,13 +31,13 @@
 namespace innate_subsystem
 {
 
-class CLASS_DECL_APEX SpinControlInterface :
+class SpinControlInterface :
    virtual public ::subsystem::particle_interface<SpinControlInterface>,
    public Control
 {
 public:
   //SpinControl();
-  virtual ~SpinControlInterface() = 0;
+  //virtual ~SpinControlInterface() = 0;
 
   virtual void setBuddy(ControlInterface *buddyControl)= 0;
   virtual void setRange(short lower, short upper)= 0;

@@ -41,11 +41,13 @@ namespace subsystem
    }
 
 
-   // void PipeImpersonatedThread::initialize_PipeImpersonatedThread(HANDLE pipeHandle)
-   // {
-   //
-   //
-   // }
+   void PipeImpersonatedThread::initialize_pipe_impersonated_thread(::subsystem::FileInterface *pfilePipe)
+   {
+
+      m_pparticleThis->initialize_pipe_impersonated_thread(pfilePipe);
+
+
+   }
     void PipeImpersonatedThread::onTerminate()
     {
        //m_threadSleeper.notify();

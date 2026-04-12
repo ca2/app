@@ -59,7 +59,7 @@ namespace innate_subsystem
        * @param iconName icon name.
        * @return icon handle of 0 if cannot load icon.
        */
-      virtual ::pointer < IconInterface >  loadStandartIcon(const char *iconName);
+      virtual ::pointer < IconInterface >  loadStandardIcon(enum_cursor ecursor);
 
       /**
        * Loads icon from resources.
@@ -92,7 +92,7 @@ namespace innate_subsystem
        * @param [in] id identifier of accelerator in resource file.
        * @return handle of cursor if it's loaded.
        */
-      //HCURSOR loadStandardCursor(const char *id);
+      virtual ::pointer < CursorInterface > loadStandardCursor(enum_cursor ecursor);
       /**
        * Loads cursor from resources.
        * @param [in] id identifier of accelerator in resource file.

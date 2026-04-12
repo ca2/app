@@ -47,7 +47,7 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_APEX WindowInterface :
+   class WindowInterface :
       virtual public ::subsystem::particle_interface<WindowInterface>,
       virtual public notification_handler
    {
@@ -55,7 +55,7 @@ namespace innate_subsystem
 
 
       //Window();
-      virtual  ~WindowInterface() = 0;
+      //virtual  ~WindowInterface() = 0;
 
       // getWindow()
       // Get a handle of the window
@@ -99,7 +99,8 @@ namespace innate_subsystem
       virtual void setEnabled(bool bEnable) = 0;
       virtual void updateWindow() = 0;
       virtual bool setSize(const ::int_size & size) = 0;
-      virtual bool setPosition(int xPos, int yPos) = 0;
+      virtual bool setPosition(const ::int_point & point) = 0;
+      virtual bool setPlacement(const ::int_rectangle & rectangle) = 0;
       virtual void setWindowText(const ::scoped_string  & scopedstrText) = 0;
 
       //
@@ -140,6 +141,12 @@ namespace innate_subsystem
 
 
       virtual bool isIconic() = 0;
+
+
+      virtual bool isMinimized() = 0;
+
+
+      virtual bool isFullScreen() = 0;
 
       //
       // Invalidates control
@@ -203,10 +210,21 @@ namespace innate_subsystem
       virtual void postMessage(unsigned int Msg, ::wparam wparam = 0, ::lparam lparam = 0) = 0;
 
       virtual ::int_rectangle getClientRect() = 0;
+      virtual ::int_rectangle getFullScreenRect() = 0;
       virtual ::int_size getBorderSize() = 0;
+      virtual ::int_rectangle getScreenWorkArea() = 0;
 
 
+      //virtual void setSizeFullScreenWindow() = 0;
+      //virtual void doRestoreFromFullScreen() = 0;
+      virtual void minimizeWindow() = 0;
+      virtual void restoreWindow() = 0;
 
+
+      virtual void doFullScreen() = 0;
+      virtual void doUnFullScreen() = 0;
+
+      virtual void adjustWindowSize() = 0;
 
 
    // private:
@@ -225,6 +243,13 @@ namespace innate_subsystem
 
       virtual void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) = 0;
 
+      virtual void onBeforeFullScreen(bool bRestore) = 0;
+      virtual void onAfterFullScreen(bool bRestore) = 0;
+      virtual void onBeforeUnFullScreen(bool bMinimizing) = 0;
+      virtual void onAfterUnFullScreen(bool bMinimizing) = 0;
+      virtual bool onGetTooltip(int iControl, ::string & strTooltip) = 0;
+      virtual bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) = 0;
+      virtual void onAdjustWindowSize() = 0;
    // protected:
    //    HWND m_hWnd;
    //    ::string m_className;
@@ -283,7 +308,8 @@ namespace innate_subsystem
       void setEnabled(bool bEnable) override;
       void updateWindow() override;
       bool setSize(const ::int_size & size) override;
-      bool setPosition(int xPos, int yPos) override;
+      bool setPosition(const ::int_point & point) override;
+      bool setPlacement(const ::int_rectangle & rectangle) override;
       void setWindowText(const ::scoped_string  & scopedstrText) override;
 
 
@@ -324,6 +350,10 @@ namespace innate_subsystem
       bool isVisible() override;
 
       bool isIconic() override;
+
+      bool isMinimized() override;
+
+      bool isFullScreen() override;
 
       //
       // Invalidates control
@@ -387,7 +417,22 @@ namespace innate_subsystem
       void postMessage(unsigned int Msg, ::wparam wparam =0, ::lparam lparam =0) override;
 
       ::int_rectangle getClientRect() override;
+      ::int_rectangle getFullScreenRect() override;
       ::int_size getBorderSize() override;
+      ::int_rectangle getScreenWorkArea() override;
+
+      //void setSizeFullScreenWindow() override;
+      //void doRestoreFromFullScreen() override;
+      void minimizeWindow() override;
+      void restoreWindow() override;
+
+
+      void doFullScreen() override;
+      void doUnFullScreen() override;
+
+
+      void adjustWindowSize() override;
+
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;
 
@@ -412,6 +457,15 @@ namespace innate_subsystem
 
 
       void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override;
+
+
+      void onBeforeFullScreen(bool bRestore) override;
+      void onAfterFullScreen(bool bRestore) override;
+      void onBeforeUnFullScreen(bool bMinimizing) override;
+      void onAfterUnFullScreen(bool bMinimizing) override;
+      bool onGetTooltip(int iControl, ::string & strTooltip) override;
+      bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) override;
+      void onAdjustWindowSize() override;
 
    // protected:
    //    HWND m_hWnd;

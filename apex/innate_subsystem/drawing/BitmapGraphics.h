@@ -33,7 +33,7 @@ namespace innate_subsystem
    //
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
-   class CLASS_DECL_APEX BitmapGraphicsInterface :
+   class BitmapGraphicsInterface :
    virtual public ::subsystem::particle_interface<BitmapGraphicsInterface>,
    virtual public Graphics
    {
@@ -42,7 +42,7 @@ namespace innate_subsystem
       // with specified size.
       //BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size);
       // Destroys bitmap and graphics object.
-      virtual ~BitmapGraphicsInterface() = 0;
+      //virtual ~BitmapGraphicsInterface() = 0;
 
 
       virtual void initialize_bitmap_graphics(DeviceContextInterface * pdevicecontextCompatible, const ::int_size & size) = 0;

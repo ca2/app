@@ -34,7 +34,7 @@ namespace subsystem
    /**
     * Contains the security information associated with an object.
     */
-   class CLASS_DECL_ACME SecurityDescriptorInterface :
+   class SecurityDescriptorInterface :
    virtual public ::subsystem::particle_interface<SecurityDescriptorInterface>
    {
    public:
@@ -45,7 +45,7 @@ namespace subsystem
        * and all control flags set to FALSE (NULL). Thus, except for its revision level, it is empty
        */
       //SecurityDescriptor();
-      virtual ~SecurityDescriptorInterface() = 0;
+      //virtual ~SecurityDescriptorInterface() = 0;
 
       /**
        * Sets rules list for security descriptor.

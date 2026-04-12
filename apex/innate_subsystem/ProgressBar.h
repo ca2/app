@@ -29,13 +29,13 @@
 
 namespace innate_subsystem
 {
-    class CLASS_DECL_APEX ProgressBarInterface :
+    class ProgressBarInterface :
    virtual public ::subsystem::particle_interface<ProgressBarInterface>,
    public Control
     {
     public:
         //ProgressBar();
-        virtual ~ProgressBarInterface() = 0;
+        //virtual ~ProgressBarInterface() = 0;
 
         virtual void setRange(unsigned short min, unsigned short max) = 0;
         virtual void setPos(unsigned short pos) = 0;

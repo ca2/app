@@ -32,7 +32,7 @@ namespace innate_subsystem
 {
 
 
-    class CLASS_DECL_APEX DeviceContextInterface :
+    class DeviceContextInterface :
       virtual public ::subsystem::particle_interface<DeviceContextInterface>
    {
    public:
@@ -41,7 +41,7 @@ namespace innate_subsystem
       // Create device context complatible with other DC.
       //DeviceContext(DeviceContext* compatibleDevice);
       // Destroys device context.
-      virtual ~DeviceContextInterface() = 0;
+      //virtual ~DeviceContextInterface() = 0;
 
       //private:
       // Initialize class from PaintWindow

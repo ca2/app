@@ -34,7 +34,7 @@ namespace subsystem
 {
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
-   class CLASS_DECL_ACME PipeInterface :
+   class PipeInterface :
    virtual public ::subsystem::particle_interface<PipeInterface>
    {
    public:
@@ -42,12 +42,12 @@ namespace subsystem
       //protected:
       //Pipe(unsigned int maxPortionSize);
       //Pipe();
-      virtual ~PipeInterface() = 0 ;
+      //virtual ~PipeInterface() = 0 ;
 
 
-      virtual unsigned int getMaxPortionSize();
+      virtual unsigned int getMaxPortionSize() = 0;
 
-      virtual void initialize_pipe(unsigned int maxPortionSize);
+      virtual void initialize_pipe(unsigned int maxPortionSize) = 0;
 
       // This read and write functions is common way to read and write
       // by pipe handles asynchronously.

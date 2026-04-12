@@ -48,7 +48,7 @@ namespace innate_subsystem
    // that view data as report.
    //
 
-   class CLASS_DECL_APEX ListViewInterface :
+   class ListViewInterface :
    virtual public ::subsystem::particle_interface<ListViewInterface>,
    public Control
    {
@@ -59,7 +59,7 @@ namespace innate_subsystem
 
 
 
-      ~ListViewInterface()= 0;
+      //virtual ~ListViewInterface()= 0;
 
       //
       // Adds new column to list view

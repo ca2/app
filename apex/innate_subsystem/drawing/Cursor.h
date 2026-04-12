@@ -12,17 +12,17 @@ namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX CursorInterface :
+   class CursorInterface :
       virtual public ::subsystem::particle_interface<::innate_subsystem::CursorInterface>
    {
    public:
 
-      CursorInterface();
+      //CursorInterface();
       // Icon(HICON icon);
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
       // Icon(DWORD icon);
-      virtual ~CursorInterface() = 0;
+      //virtual ~CursorInterface() = 0;
 
       virtual void * _HCURSOR() = 0;
       virtual void _setHCURSOR(void * p) = 0;

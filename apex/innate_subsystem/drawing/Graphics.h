@@ -34,8 +34,10 @@
 
 namespace innate_subsystem
 {
+
+
    class CLASS_DECL_APEX GraphicsInterface :
-   virtual public subsystem::particle_interface<GraphicsInterface>
+   virtual public ::subsystem::particle_interface<GraphicsInterface>
    {
    public:
       // Creates graphics object with specified device context.
@@ -98,7 +100,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_APEX Graphics :
-      virtual public subsystem::composite<GraphicsInterface>
+      virtual public ::subsystem::composite<GraphicsInterface>
    {
    public:
       // Creates graphics object with specified device context.

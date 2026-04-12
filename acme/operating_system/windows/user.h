@@ -8,6 +8,8 @@ namespace windows
 
    CLASS_DECL_ACME ::user::enum_key virtual_key_code_to_user_key(int iVirtualKey);
 
+   CLASS_DECL_ACME const wchar_t * get_system_cursor(enum_cursor ecursor);
+
 
 } // namespace windows
 

@@ -33,13 +33,13 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX FilteredTextBoxInterface :
+   class FilteredTextBoxInterface :
    virtual public ::subsystem::particle_interface<FilteredTextBoxInterface>,
    virtual public TextBox
    {
    public:
       //FilteredTextBox();
-      virtual ~FilteredTextBoxInterface() = 0;
+      //virtual ~FilteredTextBoxInterface() = 0;
 
       // Override Control::setWindow method
       virtual void setWindow(const ::operating_system::window & operatingsystemwindow) = 0;

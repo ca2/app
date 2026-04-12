@@ -38,7 +38,7 @@ namespace subsystem
 {
 
 
-   class CLASS_DECL_ACME AnonymousPipeInterface :
+   class AnonymousPipeInterface :
    virtual public ::subsystem::particle_interface<AnonymousPipeInterface>,
    virtual public Pipe,
    virtual public Channel
@@ -50,7 +50,7 @@ namespace subsystem
       // function calling but is not the same as for hWrite.
       //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *plogwriter);
       //AnonymousPipe();
-      virtual ~AnonymousPipeInterface() = 0;
+      ///virtual ~AnonymousPipeInterface() = 0;
 
       virtual void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter) = 0;
       /**

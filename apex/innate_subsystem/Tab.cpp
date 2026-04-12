@@ -50,6 +50,58 @@ namespace innate_subsystem
   ///    m_caption.setString(caption);
    }
 
+   //void setCaption(const char *caption) override; { m_caption->setString(caption); }
+
+   void Tab::setCaption(const char *caption)
+   {
+
+      m_pparticleThis->setCaption(caption);
+
+   }
+
+   // const char *getCaption() {
+   //     return m_caption.getString();
+   // }
+
+   const char *Tab::getCaption()
+   {
+
+      return m_pparticleThis->getCaption();
+
+   }
+
+
+
+   //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
+   //BaseDialog *getDialog() { return m_dialog; }
+   void Tab::setDialog(DialogInterface *dialog)
+   {
+
+      m_pparticleThis->setDialog(dialog);
+
+   }
+
+
+   DialogInterface *Tab::getDialog()
+   {
+
+      return m_pparticleThis->getDialog();
+
+   }
+
+   //
+   // Method return true if tab has dialog
+   //
+
+   // bool isOk() { return m_dialog != NULL; }
+   bool Tab::isOk()
+   {
+
+
+      return m_pparticleThis->isOk();
+
+   }
+
    void Tab::setVisible(bool visible)
    {
       m_pparticleThis->setVisible(visible);

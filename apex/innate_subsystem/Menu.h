@@ -32,12 +32,12 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX MenuInterface :
+   class MenuInterface :
       virtual public ::subsystem::particle_interface<MenuInterface>
    {
    public:
       //Menu();
-      virtual ~MenuInterface() = 0;
+      //virtual ~MenuInterface() = 0;
 
 
 

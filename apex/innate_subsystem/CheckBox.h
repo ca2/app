@@ -32,14 +32,14 @@ namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX CheckBoxInterface :
+   class CheckBoxInterface :
    virtual public ::subsystem::particle_interface<CheckBoxInterface>,
       virtual public Control
    {
    public:
 
 
-      virtual ~CheckBoxInterface() = 0;
+      //virtual ~CheckBoxInterface() = 0;
 
       virtual bool isChecked() = 0;
       virtual void setChecked(bool checked) = 0;

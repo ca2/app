@@ -35,14 +35,14 @@ namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX NotifyIconWindowInterface :
+   class NotifyIconWindowInterface :
    virtual public ::subsystem::particle_interface<NotifyIconWindowInterface>,
    virtual public Window
    {
    public:
 
       //NotifyIconWindow();
-      virtual ~NotifyIconWindowInterface() = 0;
+      //virtual ~NotifyIconWindowInterface() = 0;
 
       virtual ::operating_system::window getWindow() = 0;
 

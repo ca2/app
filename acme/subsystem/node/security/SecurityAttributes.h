@@ -33,12 +33,12 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_ACME SecurityAttributesInterface :
+   class SecurityAttributesInterface :
    virtual public ::subsystem::particle_interface<SecurityAttributesInterface>
    {
    public:
       //SecurityAttributes();
-      virtual ~SecurityAttributesInterface() = 0;
+      //virtual ~SecurityAttributesInterface() = 0;
 
       // Sets the security attributes to default values. After calling this
       // function the getSecurityAttributes() function will to return zero until

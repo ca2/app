@@ -33,7 +33,7 @@ namespace innate_subsystem
 {
 
 
-    class CLASS_DECL_APEX ComboBoxInterface :
+    class ComboBoxInterface :
    virtual public ::subsystem::particle_interface<ComboBoxInterface>,
          virtual public Control
     {
@@ -41,7 +41,7 @@ namespace innate_subsystem
 
 
         //ComboBox();
-        virtual ~ComboBoxInterface() = 0;
+        //virtual ~ComboBoxInterface() = 0;
 
         // Adds new item to the end of combo box items list.
         virtual int addItem(const char *text) = 0;

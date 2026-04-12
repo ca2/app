@@ -29,13 +29,13 @@
 namespace innate_subsystem
 {
 
-   class CLASS_DECL_APEX ListBoxInterface :
+   class ListBoxInterface :
    virtual public ::subsystem::particle_interface<ListBoxInterface>,
    virtual public Control
 {
 public:
   //ListBox();
-  virtual ~ListBoxInterface() = 0;
+  //virtual ~ListBoxInterface() = 0;
 //public:
   virtual void addString(const char *str) = 0;
   virtual void addString(const char *str, void *tag) = 0;

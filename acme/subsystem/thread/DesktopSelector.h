@@ -41,6 +41,13 @@ namespace subsystem
 
         };
 
+       desk_t(::uptr uptr)
+       {
+
+          m_u = uptr;
+
+       }
+
     };
 
    class DesktopSelectorInterface :

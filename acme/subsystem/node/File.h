@@ -16,6 +16,8 @@ namespace subsystem
       //File();
       //virtual ~FileInterface() =0 ;
 
+      virtual void * _HANDLE() = 0;
+
    };
 
 
@@ -25,6 +27,8 @@ namespace subsystem
    public:
       File();
       ~File() override;
+
+      void * _HANDLE() override;
 
    };
 

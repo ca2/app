@@ -32,14 +32,14 @@
 
 namespace innate_subsystem
 {
-    class CLASS_DECL_APEX TrackbarInterface :
+    class TrackbarInterface :
    virtual public ::subsystem::particle_interface<TrackbarInterface>,
          virtual public ::innate_subsystem::Control
     {
     public:
 
         //Trackbar();
-        virtual ~TrackbarInterface() = 0;
+        //virtual ~TrackbarInterface() = 0;
 
         // Sets the range of minimum and maximum logical positions for the slider.
         virtual void setRange(long min, long max) = 0;

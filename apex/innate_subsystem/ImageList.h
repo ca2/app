@@ -17,7 +17,7 @@ namespace innate_subsystem
       };
    }
 
-   class CLASS_DECL_APEX ImageListInterface :
+   class ImageListInterface :
    virtual public ::subsystem::particle_interface<ImageListInterface>
    {
    public:
@@ -25,7 +25,7 @@ namespace innate_subsystem
 
 
 
-      virtual ~ImageListInterface() = 0;
+      //virtual ~ImageListInterface() = 0;
 
       virtual void initializeImageList() = 0;
 

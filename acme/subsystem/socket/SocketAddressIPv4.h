@@ -38,7 +38,7 @@ namespace subsystem
    // FIXME: Deprecated method, only for testing of old code.
    void getLocalIPAddrString(char *buffer, int buflen);
 
-   class CLASS_DECL_REMOTING_COMMON SocketAddressIPv4 :
+   class CLASS_DECL_ACME SocketAddressIPv4 :
    virtual public ::particle
    {
    public:

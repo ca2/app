@@ -29,13 +29,13 @@
 namespace innate_subsystem
 {
 
-   class CLASS_DECL_APEX BrushInterface :
+   class BrushInterface :
    virtual public ::subsystem::particle_interface<BrushInterface>,
    virtual public GraphicsObject
    {
    public:
       //Brush();
-      virtual ~BrushInterface() = 0;
+      //virtual ~BrushInterface() = 0;
 
    //protected:
       //virtual void on_release() = 0;

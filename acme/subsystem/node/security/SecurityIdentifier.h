@@ -71,7 +71,7 @@ enum Authority {
  * variable number of subauthority or relative identifier (RID) values that uniquely
  * identify the trustee relative to the authority that issued the SID.
  */
-class CLASS_DECL_ACME SecurityIdentifierInterface :
+class SecurityIdentifierInterface :
    virtual public ::subsystem::particle_interface <SecurityIdentifierInterface>
 {
 public:
@@ -89,7 +89,7 @@ public:
   /**
    * Destructor.
    */
-  virtual ~SecurityIdentifierInterface() = 0;
+  //virtual ~SecurityIdentifierInterface() = 0;
 
    virtual void initialize_security_identifier(const ::scoped_string & scopedstr) = 0;
 
@@ -113,7 +113,7 @@ public:
    * @return created SID.
    * @throws SystemException on fail.
    */
-  //virtual SecurityIdentifier *createSidFromString(const char *sidString)=0;
+  //virtual ::pointer < SecurityIdentifier > createSidFromString();
 
   /**
    * Returns pointer to WinAPI SID structure.
@@ -155,7 +155,8 @@ public:
     * Creates security identifier by a string.
     * @throws SystemException if copy failed.
     */
-   SecurityIdentifier(const scoped_string & scopedstr);
+   //SecurityIdentifier(const scoped_string & scopedstr);
+    SecurityIdentifier();
 
    /**
     * Destructor.
@@ -184,7 +185,7 @@ public:
     * @return created SID.
     * @throws SystemException on fail.
     */
-   //SecurityIdentifier *createSidFromString(const char *sidString) override;
+   //::pointer SecurityIdentifier *createSidFromString(const char *sidString) override;
  //
    /**
     * Returns pointer to WinAPI SID structure.

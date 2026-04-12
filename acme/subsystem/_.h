@@ -66,6 +66,22 @@ namespace subsystem
 
    class SocketStreamInterface;
 
+   class SystemInformation;
+
+   class SystemInformationInterface;
+
+   class DesktopSelector;
+
+   class DesktopSelectorInterface;
+
+   class NamedPipe;
+
+   class NamedPipeInterface;
+
+   class PipeClient;
+
+   class PipeClientInterface;
+
 } // namespace subsystem
 
 

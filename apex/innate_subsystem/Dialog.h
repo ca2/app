@@ -34,7 +34,7 @@ namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_APEX DialogInterface :
+   class DialogInterface :
    virtual public ::subsystem::particle_interface<DialogInterface>,
       virtual public Control
    {
@@ -44,7 +44,7 @@ namespace innate_subsystem
       // Dialog();
       // Dialog(unsigned int resourceId);
       // Dialog(const char *resourceName);
-      virtual ~DialogInterface() = 0;
+      //virtual ~DialogInterface() = 0;
 //   public:
 
       virtual void initialize_dialog(unsigned int resourceId) = 0;

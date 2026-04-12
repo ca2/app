@@ -56,7 +56,7 @@ namespace innate_subsystem
 
       //ControlInterface();
       //Control(const ::operating_system::window & operatingsystemwindow);
-      virtual ~ControlInterface() = 0;
+      //virtual ~ControlInterface() = 0;
 
       //
       // Sets HWND associated with this control

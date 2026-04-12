@@ -30,13 +30,13 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX PaintWindowInterface:
+   class PaintWindowInterface:
    virtual public ::subsystem::particle_interface<PaintWindowInterface>,
    virtual public Window
    {
    public:
       //PaintWindow();
-      virtual ~PaintWindowInterface() = 0;
+      //virtual ~PaintWindowInterface() = 0;
 
    //private:
       virtual ::pointer < DeviceContextInterface > getPaintDeviceContext() = 0;

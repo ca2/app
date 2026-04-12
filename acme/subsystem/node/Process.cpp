@@ -68,6 +68,24 @@ namespace subsystem
       // }
    }
 
+
+    void Process::initialize_process(const ::file::path & path, const ::scoped_string & scopedstrArgs)
+   // // : m_hProcess(0),
+   // //   m_hThread(0),
+   // //   m_handlesIsInherited(false),
+   // //   m_hStopWait(0),
+   // //   m_stdIn(0),
+   // //   m_stdOut(0),
+   // //   m_stdErr(0)
+    {
+       m_pparticleThis->initialize_process(path, scopedstrArgs);
+   //    // setFilename(path);
+   //    // setArguments(scopedstrArgs);
+   //    //
+   //    // m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
+   }
+
+
     void Process::setFilename(const ::scoped_string & scopedstrPath)
     {
        m_pparticleThis->setFilename(scopedstrPath);

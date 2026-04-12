@@ -42,7 +42,7 @@ namespace subsystem
       virtual bool isAlive() = 0;
 
       //private:
-      virtual void init();
+      virtual void init() = 0;
       // Returns true and fills the *pe argument if a process entry has been found.
       //bool getProcessEntry(PROCESSENTRY32 *peOut, DWORD Pid,
       //HANDLE hSnapshot);

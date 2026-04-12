@@ -44,7 +44,7 @@ namespace subsystem
     *
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
-   class CLASS_DECL_REMOTING_COMMON SocketIPv4Interface :
+   class SocketIPv4Interface :
       virtual public ::subsystem::particle_interface<SocketIPv4Interface >
    {
    public:
@@ -55,7 +55,7 @@ namespace subsystem
       /**
        * Deletes and closes socket.
        */
-      virtual ~SocketIPv4Interface() = 0;
+      //virtual ~SocketIPv4Interface() = 0;
 
       /**
        * Connects to remote host.
@@ -110,7 +110,7 @@ namespace subsystem
        * @throws SocketException on fail.
        * @return newly allocated socket that contain incoming connections.
        */
-      virtual SocketIPv4 *accept() = 0;
+      virtual ::pointer < SocketIPv4Interface > accept() = 0;
 
       /**
        * Sends data to socket.
@@ -194,7 +194,7 @@ namespace subsystem
     *
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
-   class CLASS_DECL_REMOTING_COMMON SocketIPv4 :
+   class CLASS_DECL_ACME SocketIPv4 :
       virtual public ::subsystem::composite<SocketIPv4Interface >
    {
    public:
@@ -260,7 +260,7 @@ namespace subsystem
        * @throws SocketException on fail.
        * @return newly allocated socket that contain incoming connections.
        */
-      SocketIPv4 *accept() override;
+      ::pointer < SocketIPv4Interface > accept() override;
 
       /**
        * Sends data to socket.
@@ -336,4 +336,5 @@ namespace subsystem
    //    //  */
    //    // bool m_isBound;
    };
+
 } // namespace subsystem

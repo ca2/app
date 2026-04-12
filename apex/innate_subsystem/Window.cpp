@@ -199,13 +199,22 @@ namespace innate_subsystem
       return m_pparticleThis->setSize(size);
    }
 
-   bool Window::setPosition(int xPos, int yPos)
+   bool Window::setPosition(const ::int_point & point)
    {
       // _ASSERT(m_hWnd != 0);
       // return !!SetWindowPos(m_hWnd, 0, xPos, yPos, 0, 0,
       //                       SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
-      return m_pparticleThis->setPosition(xPos, yPos);
+      return m_pparticleThis->setPosition(point);
    }
+
+   bool Window::setPlacement(const ::int_rectangle & rectangle)
+   {
+      // _ASSERT(m_hWnd != 0);
+      // return !!SetWindowPos(m_hWnd, 0, xPos, yPos, 0, 0,
+      //                       SWP_NOSIZE | SWP_NOZORDER | SWP_NOACTIVATE);
+      return m_pparticleThis->setPlacement(rectangle);
+   }
+
 
    void Window::setParent(const ::operating_system::window & operatingsystemwindow)
    {
@@ -491,6 +500,18 @@ namespace innate_subsystem
       return m_pparticleThis->isEnabled();
    }
 
+   bool Window::isMinimized()
+   {
+      ///return (!isStyleEnabled(WS_DISABLED));
+      return m_pparticleThis->isMinimized();
+   }
+
+   bool Window::isFullScreen()
+   {
+      ///return (!isStyleEnabled(WS_DISABLED));
+      return m_pparticleThis->isFullScreen();
+   }
+
    void Window::invalidate()
    {
       //InvalidateRect(m_hwnd, NULL, TRUE);
@@ -540,6 +561,15 @@ namespace innate_subsystem
       return m_pparticleThis->getClientRect();
    }
 
+   ::int_rectangle Window::getFullScreenRect()
+   {
+      // _ASSERT(m_hWnd != 0 && rc);
+      //
+      // GetClientRect(m_hWnd, rc);
+      return m_pparticleThis->getFullScreenRect();
+   }
+
+
    ::int_size Window::getBorderSize()
    {
       // _ASSERT(m_hWnd != 0);
@@ -549,6 +579,73 @@ namespace innate_subsystem
       //           2 * GetSystemMetrics(SM_CYSIZEFRAME);
 
       return m_pparticleThis->getBorderSize();
+   }
+
+
+   int_rectangle Window::getScreenWorkArea()
+   {
+
+      return m_pparticleThis->getScreenWorkArea();
+
+   }
+
+
+   /*
+
+   void Window::setSizeFullScreenWindow()
+   {
+
+      m_pparticleThis->setSizeFullScreenWindow();
+
+   }
+
+
+   void Window::doRestoreFromFullScreen()
+   {
+
+      m_pparticleThis->doRestoreFromFullScreen();
+
+   }
+
+*/
+
+   void Window::minimizeWindow()
+   {
+
+      m_pparticleThis->minimizeWindow();
+
+   }
+
+
+   void Window::restoreWindow()
+   {
+
+      m_pparticleThis->restoreWindow();
+
+   }
+
+
+   void Window::doFullScreen()
+   {
+
+      m_pparticleThis->doFullScreen();
+
+   }
+
+
+   void Window::doUnFullScreen()
+   {
+
+      m_pparticleThis->doUnFullScreen();
+
+   }
+
+
+   void Window::adjustWindowSize()
+   {
+
+      m_pparticleThis->adjustWindowSize();
+
    }
 
 
@@ -573,7 +670,59 @@ namespace innate_subsystem
 
 
    }
-   
+
+
+   void Window::onBeforeFullScreen(bool bRestore)
+   {
+
+
+   }
+
+
+   void Window::onAfterFullScreen(bool bRestore)
+   {
+
+
+
+   }
+
+
+   void Window::onBeforeUnFullScreen(bool bMinimizing)
+   {
+
+
+   }
+
+
+   void Window::onAfterUnFullScreen(bool bMinimizing)
+   {
+
+
+   }
+
+
+   bool Window::onGetTooltip(int iControl, string &strTooltip)
+   {
+
+      return false;
+
+   }
+
+
+   bool Window::onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize)
+   {
+
+      return false;
+
+   }
+
+
+   void Window::onAdjustWindowSize()
+   {
+
+
+   }
+
 
 } // namespace innate_subsystem
 

@@ -572,7 +572,7 @@ namespace windows
    
    }
 
-   CLASS_DECL_ACME HINSTANCE get_window_procedure_hinstance()
+   HINSTANCE window::s_window_procedure_hinstance()
    {
 
       if (g_hinstanceWindowProcedureModule)

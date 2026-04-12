@@ -14,5 +14,12 @@
       {
       }
 
+      void * File::_HANDLE()
+      {
+
+         return m_pparticleThis->_HANDLE();
+
+      }
+
 
    } // namespace subsystem

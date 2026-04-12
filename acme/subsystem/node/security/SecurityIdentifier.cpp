@@ -21,92 +21,114 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
+#include "framework.h"
 #include "SecurityIdentifier.h"
 
 // // #include aaa_<Sddl.h>
 // // #include aaa_<crtdbg.h>
 // // #include aaa_<winnt.h>
 
-// SecurityIdentifier::SecurityIdentifier(SID *sid)
-// {
-  // m_sid = (SID *)LocalAlloc(LPTR, SECURITY_MAX_SID_SIZE);
+namespace subsystem
+{
+   // SecurityIdentifier::SecurityIdentifier(SID *sid)
+   // {
+   //    m_sid = (SID *)LocalAlloc(LPTR, SECURITY_MAX_SID_SIZE);
+   //
+   //    memset(m_sid, 0, SECURITY_MAX_SID_SIZE);
+   //
+   //    if (!CopySid(SECURITY_MAX_SID_SIZE, m_sid, sid)) {
+   //       throw SystemException();
+   //    }
+   // }
+   //
+   // SecurityIdentifier::SecurityIdentifier(const TCHAR *sidString)
+   // : m_sid(0)
+   // {
+   //    getSidByString(sidString, (PSID *)&m_sid);
+   // }
 
-  // memset(m_sid, 0, SECURITY_MAX_SID_SIZE);
 
-  // if (!CopySid(SECURITY_MAX_SID_SIZE, m_sid, sid)) {
-    // throw SystemException();
-  // }
-// }
+   SecurityIdentifier::SecurityIdentifier()
+   {
 
-// SecurityIdentifier::SecurityIdentifier(const TCHAR *sidString)
-// : m_sid(0)
-// {
-  // getSidByString(sidString, (PSID *)&m_sid);
-// }
 
-// SecurityIdentifier::~SecurityIdentifier()
-// {
-  // LocalFree(m_sid);
-// }
+   }
 
-// bool SecurityIdentifier::isValid()
-// {
-  // return IsValidSid(m_sid) == TRUE;
-// }
+   SecurityIdentifier::~SecurityIdentifier()
+   {
+      ///LocalFree(m_sid);
+   }
 
-// void SecurityIdentifier::toString(StringStorage *sidString)
-// {
-  // TCHAR *localAllocatedSidString;
 
-  // if (ConvertSidToStringSid(m_sid, &localAllocatedSidString) == FALSE) {
-    // throw SystemException();
-  // }
+   void SecurityIdentifier::initialize_security_identifier(const ::scoped_string & scopedstr)
+   {
 
-  // sidString->setString(localAllocatedSidString);
+      m_pparticleThis->initialize_security_identifier(scopedstr);
 
-  // LocalFree(localAllocatedSidString);
-// }
+   }
+   bool SecurityIdentifier::isValid()
+   {
+      //return IsValidSid(m_sid) == TRUE;
+      return m_pparticleThis->isValid();
+   }
 
-// // FIXME: refactor this method.
-// SecurityIdentifier *SecurityIdentifier::getProcessOwner(HANDLE processHandle)
-// {
-  // HANDLE procToken;
-
-  // if (OpenProcessToken(processHandle, TOKEN_QUERY, &procToken)) {
-    // try {
-      // char buffer[1024];
-      // DWORD retLen = 0;
-      // if (!GetTokenInformation(procToken, TokenUser, &buffer, sizeof(buffer), &retLen)) {
-        // throw SystemException();
+   void SecurityIdentifier::toString(::string & str)
+   {
+      m_pparticleThis->toString(str);
+      // TCHAR *localAllocatedSidString;
+      //
+      // if (ConvertSidToStringSid(m_sid, &localAllocatedSidString) == FALSE) {
+      //    throw SystemException();
       // }
-      // CloseHandle(procToken);
-      // return new SecurityIdentifier((SID *)((TOKEN_USER *)buffer)->User.Sid);
-    // } catch (...) {
-      // CloseHandle(procToken);
-      // throw;
-    // }
-    // CloseHandle(procToken);
-  // } else {
-    // throw SystemException();
-  // }
-// }
+      //
+      // sidString->setString(localAllocatedSidString);
+      //
+      // LocalFree(localAllocatedSidString);
+   }
 
-// SecurityIdentifier *SecurityIdentifier::createSidFromString(const TCHAR *sidString)
-// {
-  // return new SecurityIdentifier(sidString);
-// }
+   // // FIXME: refactor this method.
+   // SecurityIdentifier *SecurityIdentifier::getProcessOwner(HANDLE processHandle)
+   // {
+   //    HANDLE procToken;
+   //
+   //    if (OpenProcessToken(processHandle, TOKEN_QUERY, &procToken)) {
+   //       try {
+   //          char buffer[1024];
+   //          DWORD retLen = 0;
+   //          if (!GetTokenInformation(procToken, TokenUser, &buffer, sizeof(buffer), &retLen)) {
+   //             throw SystemException();
+   //          }
+   //          CloseHandle(procToken);
+   //          return new SecurityIdentifier((SID *)((TOKEN_USER *)buffer)->User.Sid);
+   //       } catch (...) {
+   //          CloseHandle(procToken);
+   //          throw;
+   //       }
+   //       CloseHandle(procToken);
+   //    } else {
+   //       throw SystemException();
+   //    }
+   // }
 
-// SID *SecurityIdentifier::getSid() const
-// {
-  // return m_sid;
-// }
+   // SecurityIdentifier *SecurityIdentifier::createSidFromString(const TCHAR *sidString)
+   // {
+   //    return new SecurityIdentifier(sidString);
+   // }
+   //
+   // SID *SecurityIdentifier::getSid() const
+   // {
+   //    return m_sid;
+   // }
+   //
+   // void SecurityIdentifier::getSidByString(const TCHAR *sidString, PSID *sid)
+   // {
+   //    if (ConvertStringSidToSid(sidString, sid) == FALSE) {
+   //       throw SystemException();
+   //    }
+   //
+   //    _ASSERT(IsValidSid(*sid));
+   // }
+   //
 
-// void SecurityIdentifier::getSidByString(const TCHAR *sidString, PSID *sid)
-// {
-  // if (ConvertStringSidToSid(sidString, sid) == FALSE) {
-    // throw SystemException();
-  // }
+} // namespace subsystem
 
-  // _ASSERT(IsValidSid(*sid));
-// }

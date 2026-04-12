@@ -32,7 +32,7 @@
 
 namespace innate_subsystem
 {
-   class CLASS_DECL_APEX TabControlInterface :
+   class TabControlInterface :
    virtual public ::subsystem::particle_interface<TabControlInterface>,
    public Control
    {
@@ -40,7 +40,7 @@ namespace innate_subsystem
 
        //TabContainer m_tabContainer;
       //TabControl();
-      virtual ~TabControlInterface() = 0;
+      //virtual ~TabControlInterface() = 0;
 
       //
       // Tab access members

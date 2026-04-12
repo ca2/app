@@ -23,11 +23,11 @@
 //
 #include "framework.h"
 // #include aaa_<stdlib.h>
-#include "subsystem_acme/socket/SocketAddressIPv4.h"
+#include "subsystem/socket/SocketAddressIPv4.h"
 //#include "SocketAddressIPv4.h"
 #include "SocketIPv4.h"
 
-//#include "subsystem_acme/thread/critical_section.h"
+//#include "subsystem/thread/critical_section.h"
 
 //#include aaa_<crtdbg.h>
 

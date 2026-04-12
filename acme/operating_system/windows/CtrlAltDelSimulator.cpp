@@ -26,7 +26,7 @@
 //#include "framework.h"
 //#include "acme/_operating_system.h"
 //#include "CtrlAltDelSimulator.h"
-//#include "subsystem_acme/thread/DesktopSelector.h"
+//#include "subsystem/thread/DesktopSelector.h"
 //
 //CtrlAltDelSimulator::CtrlAltDelSimulator()
 //{

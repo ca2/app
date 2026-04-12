@@ -24,10 +24,10 @@
 #include "framework.h"
 #include "_subsystem_sockets_bsd/sockdefs.h"
 #include "_subsystem_sockets_bsd/SocketAddressIPv4.h"
-#include "subsystem_acme/socket/SocketException.h"
+#include "subsystem/socket/SocketException.h"
 //#include "remoting/remoting_common/util/::string.h"
 
-//#include "subsystem_acme/thread/critical_section.h"
+//#include "subsystem/thread/critical_section.h"
 
 namespace subsystem_bsd_sockets
 {

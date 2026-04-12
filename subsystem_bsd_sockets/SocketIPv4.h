@@ -28,18 +28,18 @@
 
 #include "sockdefs.h"
 
-#include "subsystem_acme/socket/SocketIPv4.h"
-#include "subsystem_acme/socket/SocketAddressIPv4.h"
-#include "subsystem_acme/socket/SocketException.h"
+#include "subsystem/socket/SocketIPv4.h"
+#include "subsystem/socket/SocketAddressIPv4.h"
+#include "subsystem/socket/SocketException.h"
 
-#include "subsystem_acme/io/Channel.h"
+#include "subsystem/io/Channel.h"
 #include "acme/exception/io.h"
 ///#include "remoting/remoting_common/win_system/WsaStartup.h"
 
 
 namespace subsystem_bsd_sockets
 {
-   //#include "subsystem_acme/thread/critical_section.h"
+   //#include "subsystem/thread/critical_section.h"
 
    /**
     * IPv4 Socket class.

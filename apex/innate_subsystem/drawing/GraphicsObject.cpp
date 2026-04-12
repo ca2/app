@@ -23,5 +23,9 @@ namespace innate_subsystem
    //
    // }
 
+   void GraphicsObject::destroyGraphicsObject()
+   {
+
+   }
 
 }

@@ -52,6 +52,12 @@ namespace innate_subsystem
       return nullptr;
    }
 
+   ::pointer < IconInterface > resource_loader::loadIconByIntResource(int iIconResourceId)
+   {
+      //return LoadIcon(m_appInstance, iconName);
+      throw ::interface_only();
+      return nullptr;
+   }
    // bool resource_loader::loadString(unsigned int id, ::string & str)
    // {
    //    //_ASSERT(string != 0);
@@ -107,10 +113,12 @@ namespace innate_subsystem
 
    }
 
-   //HCURSOR resource_loader::loadStandardCursor(const char* id)
-   //{
-   //   return LoadCursor(0, id);
-   //}
+   ::pointer <CursorInterface>  resource_loader::loadStandardCursor(enum enum_cursor)
+   {
+      //return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
+      throw ::interface_only();
+      return nullptr;
+   }
 
    ::pointer <CursorInterface> resource_loader::loadCursor(unsigned int id)
    {

@@ -7,6 +7,8 @@
 #include "acme/subsystem/_common_header.h"
 
 
+#include "apex/innate_subsystem/notification_handler.h"
+
 
 namespace innate_subsystem
 {
@@ -34,27 +36,6 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_APEX notification_handler :
-      virtual public ::particle
-   {
-   public:
-
-
-      virtual ::innate_subsystem::WindowInterface * get_window_implementation() = 0;
-
-      virtual bool _001OnAction();
-      virtual bool _001OnKeyDownNotification(::user::enum_key ekey);
-      virtual bool _001OnColumnClick(int iColumn);
-      virtual bool _001OnSelectionChange();
-
-
-
-      virtual bool _002OnAction(int iControl);
-      virtual bool _002OnKeyDownNotification(int iControl, ::user::enum_key ekey);
-      virtual bool _002OnColumnClick(int iControl, int iColumn);
-      virtual bool _002OnSelectionChange(int iControl);
-
-   };
 
    template < typename PARTICLE_INTERFACE >
    class window_composite :

@@ -40,6 +40,12 @@ namespace innate_subsystem
    {
    }
 
+   ScrollBar::~ScrollBar()
+   {
+
+
+   }
+
    void ScrollBar::enableVirtualScroll()
    {
       // if (m_isVert) {

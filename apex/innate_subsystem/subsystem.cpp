@@ -27,20 +27,20 @@ namespace innate_subsystem
    }
 
 
-   ::innate_subsystem::resource_loader * subsystem::resource_loader()
-   {
-
-      if (!m_presourceloader)
-      {
-
-         m_presourceloader = ::subsystem::subsystem::resource_loader();
-
-      }
-
-      return m_presourceloader;
-
-   }
-
+   // ::innate_subsystem::resource_loader * subsystem::resource_loader()
+   // {
+   //
+   //    if (!m_presourceloader)
+   //    {
+   //
+   //       m_presourceloader = ::subsystem::subsystem::resource_loader();
+   //
+   //    }
+   //
+   //    return m_presourceloader;
+   //
+   // }
+   //
 
    //
    // ::subsystem::string_table * subsystem::string_table()
@@ -59,20 +59,35 @@ namespace innate_subsystem
    //
    //
    //
-   // ::subsystem::resource_loader * subsystem::resource_loader()
-   // {
-   //
-   //    if (!m_presourceloader)
-   //    {
-   //
-   //       constructø(m_presourceloader);
-   //
-   //    }
-   //
-   //    return m_presourceloader;
-   //
-   // }
-   //
+   ::innate_subsystem::resource_loader * subsystem::resource_loader()
+   {
+
+
+      if (!m_presourceloader)
+      {
+         m_presourceloader = ::subsystem::subsystem::resource_loader();
+      }
+
+      return m_presourceloader;
+
+   }
+
+
+
+
+   int subsystem::message_box(
+      const ::user_interaction_sink & userinteractionsink,
+      const ::scoped_string & scopedstrMessage,
+      const ::scoped_string & scopedstrCaption,
+      unsigned int uType)
+   {
+
+      throw ::interface_only();
+
+      return ::innate_subsystem::e_control_id_cancel;
+
+   }
+
    //
    //
    // ::subsystem::Registry * subsystem::registry()

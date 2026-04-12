@@ -207,6 +207,8 @@ list(APPEND apex_source
    innate_subsystem/Menu.h
    innate_subsystem/MessageWindow.cpp
    innate_subsystem/MessageWindow.h
+   innate_subsystem/notification_handler.cpp
+   innate_subsystem/notification_handler.h
    innate_subsystem/NotifyIcon.cpp
    innate_subsystem/NotifyIcon.h
    innate_subsystem/NotifyIconWindow.cpp

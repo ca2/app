@@ -1467,6 +1467,17 @@ list(APPEND library_source
    #subsystem/node/WsaStartup.h
    #subsystem/node/WTS.cpp
    #subsystem/node/WTS.h
+   subsystem/socket/sockdefs.h
+   subsystem/socket/SocketAddressIPv4.cpp
+   subsystem/socket/SocketAddressIPv4.h
+   subsystem/socket/SocketException.cpp
+   subsystem/socket/SocketException.h
+   subsystem/socket/SocketIPv4.cpp
+   subsystem/socket/SocketIPv4.h
+   subsystem/socket/SocketStartup.cpp
+   subsystem/socket/SocketStartup.h
+   subsystem/socket/SocketStream.cpp
+   subsystem/socket/SocketStartup.h
    subsystem/thread/_.cpp
    subsystem/thread/_.h
    #subsystem/thread/_____debug.xcconfig

@@ -579,13 +579,14 @@ list(APPEND library_source
         platform/component.h
         platform/component_implementation.cpp
         platform/component_implementation.h
-
         #platform/acme_main_struct.cpp
         #platform/acme_main_struct.h
         #platform/apex_main_data.cpp
         #platform/apex_main_data.h
         #platform/apex_main_struct.cpp
         #platform/apex_main_struct.h
+   platform/ini.cpp
+   platform/ini.h
    platform/registry.cpp
    platform/registry.h
         platform/system_acme.h

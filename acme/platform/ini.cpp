@@ -7,7 +7,7 @@
 //
 #include "framework.h"
 #include "ini.h"
-#include "winprofile_compat_v2.h"
+//#include "winprofile_compat_v2.h"
 
 //#ifndef _WIN32
 
@@ -15,6 +15,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#ifndef FALSE
+#define FALSE 0
+
+#endif
+
+
+#ifndef TRUE
+#define TRUE 1
+
+#endif
 
 /* ============================================================
    Config
@@ -28,12 +38,15 @@
    Helpers
    ============================================================ */
 
+namespace acme
+{
+
 static char *wp_strdup(const char *s) {
     size_t n;
     char *p;
     if (!s) return NULL;
     n = strlen(s);
-    p = (char *)malloc(n + 1);
+    p = (char *)::malloc(n + 1);
     if (!p) return NULL;
     memcpy(p, s, n + 1);
     return p;
@@ -510,17 +523,17 @@ static WpLocation wp_find_section_and_key(
    Win32-style multi-string helpers
    ============================================================ */
 
-static DWORD wp_copy_cstr(char *dst, DWORD nSize, const char *src) {
+static unsigned int wp_copy_cstr(char *dst, unsigned int nSize, const char *src) {
     size_t len;
     if (!dst || nSize == 0) return 0;
     if (!src) src = "";
     strncpy(dst, src, nSize - 1);
     dst[nSize - 1] = '\0';
     len = strlen(dst);
-    return (DWORD)len;
+    return (unsigned int)len;
 }
 
-static DWORD wp_multisz_append(char *dst, DWORD nSize, DWORD used, const char *s) {
+static unsigned int wp_multisz_append(char *dst, unsigned int nSize, unsigned int used, const char *s) {
     size_t len;
     if (!dst || nSize == 0) return 0;
     if (!s) s = "";
@@ -543,7 +556,7 @@ static DWORD wp_multisz_append(char *dst, DWORD nSize, DWORD used, const char *s
    Public API
    ============================================================ */
 
-BOOL WritePrivateProfileStringA(
+int WritePrivateProfileStringA(
     const char *lpAppName,
     const char *lpKeyName,
     const char *lpString,
@@ -652,12 +665,12 @@ BOOL WritePrivateProfileStringA(
     return TRUE;
 }
 
-DWORD GetPrivateProfileStringA(
+unsigned int GetPrivateProfileStringA(
     const char *lpAppName,
     const char *lpKeyName,
     const char *lpDefault,
     char *lpReturnedString,
-    DWORD nSize,
+    unsigned int nSize,
     const char *lpFileName
 ) {
     WpLines lines;
@@ -665,7 +678,7 @@ DWORD GetPrivateProfileStringA(
     int in_target = 0;
     char sec[WP_MAX_NAME];
     char key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
-    DWORD used = 0;
+    unsigned int used = 0;
 
     if (!lpReturnedString || nSize == 0) return 0;
     lpReturnedString[0] = '\0';
@@ -755,7 +768,7 @@ DWORD GetPrivateProfileStringA(
     return wp_copy_cstr(lpReturnedString, nSize, lpDefault ? lpDefault : "");
 }
 
-UINT GetPrivateProfileIntA(
+unsigned int GetPrivateProfileIntA(
     const char *lpAppName,
     const char *lpKeyName,
     int nDefault,
@@ -765,18 +778,18 @@ UINT GetPrivateProfileIntA(
     char *endptr;
     long v;
 
-    GetPrivateProfileStringA(lpAppName, lpKeyName, "", buf, (DWORD)sizeof(buf), lpFileName);
-    if (buf[0] == '\0') return (UINT)nDefault;
+    GetPrivateProfileStringA(lpAppName, lpKeyName, "", buf, (unsigned int)sizeof(buf), lpFileName);
+    if (buf[0] == '\0') return (unsigned int)nDefault;
 
     v = strtol(buf, &endptr, 0);
-    if (endptr == buf) return (UINT)nDefault;
-    return (UINT)v;
+    if (endptr == buf) return (unsigned int)nDefault;
+    return (unsigned int)v;
 }
 
-DWORD GetPrivateProfileSectionA(
+unsigned int GetPrivateProfileSectionA(
     const char *lpAppName,
     char *lpReturnedString,
-    DWORD nSize,
+    unsigned int nSize,
     const char *lpFileName
 ) {
     WpLines lines;
@@ -785,7 +798,7 @@ DWORD GetPrivateProfileSectionA(
     char sec[WP_MAX_NAME];
     char key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
     char kv[WP_MAX_LINE];
-    DWORD used = 0;
+    unsigned int used = 0;
 
     if (!lpReturnedString || nSize == 0) return 0;
     lpReturnedString[0] = '\0';
@@ -836,12 +849,15 @@ DWORD GetPrivateProfileSectionA(
     return used ? (used - 1) : 0;
 }
 
-DWORD GetPrivateProfileSectionNamesA(
+unsigned int GetPrivateProfileSectionNamesA(
     char *lpszReturnBuffer,
-    DWORD nSize,
+    unsigned int nSize,
     const char *lpFileName
 ) {
     return GetPrivateProfileStringA(NULL, NULL, "", lpszReturnBuffer, nSize, lpFileName);
 }
 
-#endif /* !_WIN32 */
+
+
+} // namespace acme
+//#endif /* !_WIN32 */

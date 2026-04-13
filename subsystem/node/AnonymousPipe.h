@@ -26,7 +26,7 @@
 
 
 #include "acme/filesystem/file/string_buffer.h"
-#include "input_output/Channel.h"
+#include "acme/input_output/Channel.h"
 #include "subsystem/node/Pipe.h"
 #include "subsystem/_common_header.h"
 

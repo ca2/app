@@ -30,7 +30,7 @@
 
 namespace subsystem
 {
-    class Inflater : public ZLibBase
+    class CLASS_DECL_SUBSYSTEM Inflater : public ZLibBase
     {
     public:
         Inflater();

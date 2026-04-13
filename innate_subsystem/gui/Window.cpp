@@ -783,6 +783,12 @@ namespace innate_subsystem
 
    }
 
+   void Window::onSize()
+   {
+
+
+   }
+
 
 } // namespace innate_subsystem
 

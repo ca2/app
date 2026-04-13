@@ -250,6 +250,7 @@ namespace innate_subsystem
       virtual bool onGetTooltip(int iControl, ::string & strTooltip) = 0;
       virtual bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) = 0;
       virtual void onAdjustWindowSize() = 0;
+      virtual void onSize() = 0;
    // protected:
    //    HWND m_hWnd;
    //    ::string m_className;
@@ -466,6 +467,7 @@ namespace innate_subsystem
       bool onGetTooltip(int iControl, ::string & strTooltip) override;
       bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) override;
       void onAdjustWindowSize() override;
+      void onSize() override;
 
    // protected:
    //    HWND m_hWnd;

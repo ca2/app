@@ -236,6 +236,12 @@
     <ClInclude Include="framebuffer\PixelFormat.h">
       <Filter>Header Files\framebuffer</Filter>
     </ClInclude>
+    <ClInclude Include="Deflater.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="particle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -444,6 +450,9 @@
     </ClCompile>
     <ClCompile Include="framebuffer\StandardPixelFormatFactory.cpp">
       <Filter>Source Files\framebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Deflater.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

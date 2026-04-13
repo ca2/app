@@ -53,13 +53,13 @@
     <PlatformToolset>v141_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
@@ -75,13 +75,13 @@
     <PlatformToolset>v141_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
@@ -123,14 +123,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNoUnicode|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugNoUnicode|Win32'">$(SolutionDir)$(Configuration)\$(ProjectName)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNoUnicode|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
@@ -147,7 +139,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -166,7 +158,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -182,7 +174,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>.;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -202,7 +194,7 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>.;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -292,6 +284,9 @@
     <ClCompile Include="drawing\Pen.cpp" />
     <ClCompile Include="drawing\SolidBrush.cpp" />
     <ClCompile Include="drawing\Icon.cpp" />
+    <ClCompile Include="framebuffer\DibFrameBuffer.cpp" />
+    <ClCompile Include="framebuffer\DibSection.cpp" />
+    <ClCompile Include="framebuffer\FrameBuffer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugNoUnicode|Win32'">Create</PrecompiledHeader>
@@ -307,7 +302,6 @@
     <ClCompile Include="gui\ComboBox.cpp" />
     <ClCompile Include="gui\CommonControlsEx.cpp" />
     <ClCompile Include="gui\Control.cpp" />
-    <ClCompile Include="gui\Cursor.cpp" />
     <ClCompile Include="gui\Dialog.cpp" />
     <ClCompile Include="gui\FilteredTextBox.cpp" />
     <ClCompile Include="gui\ImagedButton.cpp" />
@@ -321,11 +315,9 @@
     <ClCompile Include="gui\NotifyIconWindow.cpp" />
     <ClCompile Include="gui\PaintWindow.cpp" />
     <ClCompile Include="gui\ProgressBar.cpp" />
-    <ClCompile Include="gui\resource_loader.cpp" />
     <ClCompile Include="gui\ScrollBar.cpp" />
     <ClCompile Include="gui\SpinControl.cpp" />
     <ClCompile Include="gui\StringFilter.cpp" />
-    <ClCompile Include="gui\subsystem.cpp" />
     <ClCompile Include="gui\SystemMetrics.cpp" />
     <ClCompile Include="gui\Tab.cpp" />
     <ClCompile Include="gui\TabContainer.cpp" />
@@ -337,6 +329,8 @@
     <ClCompile Include="gui\Window.cpp" />
     <ClCompile Include="gui\WindowFinder.cpp" />
     <ClCompile Include="gui\WindowProcHolder.cpp" />
+    <ClCompile Include="resource_loader.cpp" />
+    <ClCompile Include="subsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawing\Bitmap.h" />
@@ -354,7 +348,6 @@
     <ClInclude Include="gui\ComboBox.h" />
     <ClInclude Include="gui\CommonControlsEx.h" />
     <ClInclude Include="gui\Control.h" />
-    <ClInclude Include="gui\Cursor.h" />
     <ClInclude Include="gui\Dialog.h" />
     <ClInclude Include="gui\FilteredTextBox.h" />
     <ClInclude Include="gui\ImagedButton.h" />
@@ -387,10 +380,15 @@
     <ClInclude Include="gui\WindowProcHolder.h" />
     <ClInclude Include="drawing\Pen.h" />
     <ClInclude Include="drawing\SolidBrush.h" />
+    <ClInclude Include="resource_loader.h" />
+    <ClInclude Include="subsystem.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_common_header.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acme\acme.vcxproj">
+      <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\subsystem\subsystem.vcxproj">
       <Project>{8cc36574-7cff-438f-ae5c-51fd5c6b2823}</Project>
     </ProjectReference>

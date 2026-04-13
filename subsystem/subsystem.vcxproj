@@ -2343,6 +2343,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CommandLineArguments.cpp" />
+    <ClCompile Include="Deflater.cpp" />
     <ClCompile Include="Exception.cpp" />
     <ClCompile Include="framebuffer\PixelFormat.cpp" />
     <ClCompile Include="framebuffer\StandardPixelFormatFactory.cpp" />
@@ -2445,6 +2446,7 @@
     <ClCompile Include="ZLibBase.cpp" />
     <ClCompile Include="ZlibException.cpp" />
     <ClCompile Include="_.cpp" />
+    <ClInclude Include="Deflater.h" />
     <ClInclude Include="framebuffer\PixelFormat.h" />
     <ClInclude Include="framebuffer\StandardPixelFormatFactory.h" />
     <ClInclude Include="framework.h" />
@@ -2491,6 +2493,7 @@
     <ClInclude Include="node\Workstation.h" />
     <ClInclude Include="node\WsaStartup.h" />
     <ClInclude Include="node\WTS.h" />
+    <ClInclude Include="particle.h" />
     <ClInclude Include="socket\sockdefs.h" />
     <ClInclude Include="socket\SocketAddressIPv4.h" />
     <ClInclude Include="socket\SocketException.h" />

@@ -57,7 +57,13 @@ Font::~Font()
    }
 
 
-//    ///: m_pen(NULL)
+      void Font::destroyGraphicsObject()
+   {
+
+      m_pparticleThis->destroyGraphicsObject();
+   }
+
+   //    ///: m_pen(NULL)
 // {
 //
 //    m_pparticleThis->initialize_pen(epen, width, color);

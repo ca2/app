@@ -25,6 +25,9 @@
     <Filter Include="Source Files\gui">
       <UniqueIdentifier>{64fd3296-a206-4ba2-97e7-f63fc01cdea6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\framebuffer">
+      <UniqueIdentifier>{c33eaa5a-468d-4243-b9e1-bff08adcf1ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="drawing\Brush.cpp">
@@ -75,9 +78,6 @@
     <ClCompile Include="gui\Control.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="gui\Cursor.cpp">
-      <Filter>Source Files\gui</Filter>
-    </ClCompile>
     <ClCompile Include="gui\Dialog.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
@@ -117,9 +117,6 @@
     <ClCompile Include="gui\ProgressBar.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
-    <ClCompile Include="gui\resource_loader.cpp">
-      <Filter>Source Files\gui</Filter>
-    </ClCompile>
     <ClCompile Include="gui\ScrollBar.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
@@ -127,9 +124,6 @@
       <Filter>Source Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="gui\StringFilter.cpp">
-      <Filter>Source Files\gui</Filter>
-    </ClCompile>
-    <ClCompile Include="gui\subsystem.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
     <ClCompile Include="gui\SystemMetrics.cpp">
@@ -167,6 +161,21 @@
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resource_loader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subsystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer\DibFrameBuffer.cpp">
+      <Filter>Source Files\framebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer\DibSection.cpp">
+      <Filter>Source Files\framebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer\FrameBuffer.cpp">
+      <Filter>Source Files\framebuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,9 +228,6 @@
       <Filter>Header Files\gui</Filter>
     </ClInclude>
     <ClInclude Include="gui\Control.h">
-      <Filter>Header Files\gui</Filter>
-    </ClInclude>
-    <ClInclude Include="gui\Cursor.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
     <ClInclude Include="gui\Dialog.h">
@@ -318,6 +324,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_common_header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -37,13 +37,13 @@ namespace subsystem
    {
    public:
 
-      ::pointer_array < ::subsystem::OperatingSystemHookListener > m_listenera;
+      //::pointer_array < ::subsystem::OperatingSystemHookListener > m_listenera;
 
-      OperatingSystemHookInterface();
-      virtual ~OperatingSystemHookInterface();
+      //OperatingSystemHookInterface();
+      //virtual ~OperatingSystemHookInterface() = 0;
 
 
-      bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam) override;
+      virtual bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam)  = 0;
 
    //    // Hook procedure.
    //    static LRESULT CALLBACK lowLevelKeyboardHook(int nCode,
@@ -51,10 +51,10 @@ namespace subsystem
    //                                                 LPARAM lParam);
    //
    //    // Registration of keyboard hook.
-   virtual void registerKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener);
+   virtual void registerKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener) = 0;
    //
    //    // Unregistration of keyboard hook.
-   virtual void unregisterKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener);
+   virtual void unregisterKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener) = 0;
 
       virtual void startKeyboardHook() = 0;
       virtual void stopKeyboardHook() = 0;
@@ -90,6 +90,17 @@ namespace subsystem
       //
       //    // Unregistration of keyboard hook.
       void stopKeyboardHook() override;
+
+
+         void registerKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener) override;
+      //
+      //    // Unregistration of keyboard hook.
+      void unregisterKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener) override;
+
+
+         bool operating_system_hook_on_keyboard_message(::lresult &lresult, ::user::enum_message emessage, int iVkCode,
+                                                     ::lparam lparam) override;
+
       //
       // private:
       //    // Hook object.

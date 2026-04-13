@@ -484,6 +484,9 @@
     <Filter Include="Header Files\operating_system\windows_common\com">
       <UniqueIdentifier>{332cfa00-9ef2-4b2f-a3d5-4b3e67962ee1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\input_output">
+      <UniqueIdentifier>{9c7ab59e-d7cb-4289-82af-0c1a0213e0e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -6279,6 +6282,45 @@
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\subsystem.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\_.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\BufferedInputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\BufferedOutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\ByteArrayInputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\ByteArrayOutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\Channel.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\DataCopy.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\DataInputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\DataOutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\InputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\io_exception.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="input_output\OutputStream.cpp">
+      <Filter>Source Files\input_output</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\ini.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

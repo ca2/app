@@ -10,6 +10,8 @@ list(APPEND library_source
    drawing/BitmapGraphics.h
    drawing/Brush.cpp
    drawing/Brush.h
+   drawing/Cursor.cpp
+   drawing/Cursor.h
    drawing/DeviceContext.cpp
    drawing/DeviceContext.h
    drawing/Graphics.cpp

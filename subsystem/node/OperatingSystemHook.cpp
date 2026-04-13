@@ -33,80 +33,80 @@ namespace subsystem
    //HookEventListener *WinHooks::s_eventListener = 0;
 
 
-   OperatingSystemHookInterface::OperatingSystemHookInterface()
-   {
+   //OperatingSystemHookInterface::OperatingSystemHookInterface()
+   //{
 
-   }
-
-
-   OperatingSystemHookInterface::~OperatingSystemHookInterface()
-   {
-      //unregisterKeyboardHook(0);
-   }
+   //}
 
 
-   bool OperatingSystemHookInterface::operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam)
-   {
-
-      for (auto plistener : m_listenera)
-      {
-
-         if (plistener->operating_system_hook_on_keyboard_message(lresult, emessage, iVkCode, lparam))
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-   }
-
-   //    // Registration of keyboard hook.
-   void OperatingSystemHookInterface::registerKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener)
-   {
-
-      if (::is_null(phooklistener))
-      {
-
-         throw ::exception(error_bad_argument);
-
-      }
-
-      if (m_listenera.is_empty())
-      {
-
-         startKeyboardHook();
-
-      }
-
-      m_listenera.add_unique(phooklistener);
-
-   }
-   //
-   //    // Unregistration of keyboard hook.
-   void OperatingSystemHookInterface::unregisterKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener)
-   {
-
-      if (::is_null(phooklistener))
-      {
-
-         throw ::exception(error_bad_argument);
-
-      }
+   //OperatingSystemHookInterface::~OperatingSystemHookInterface()
+   //{
+   //   //unregisterKeyboardHook(0);
+   //}
 
 
-      m_listenera.add_unique(phooklistener);
+   //bool OperatingSystemHookInterface::operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode, ::lparam lparam)
+   //{
 
-      if (m_listenera.is_empty())
-      {
+   //   for (auto plistener : m_listenera)
+   //   {
 
-         stopKeyboardHook();
+   //      if (plistener->operating_system_hook_on_keyboard_message(lresult, emessage, iVkCode, lparam))
+   //      {
 
-      }
+   //         return true;
 
-   }
+   //      }
+
+   //   }
+
+   //   return false;
+   //}
+
+   ////    // Registration of keyboard hook.
+   //void OperatingSystemHookInterface::registerKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener)
+   //{
+
+   //   if (::is_null(phooklistener))
+   //   {
+
+   //      throw ::exception(error_bad_argument);
+
+   //   }
+
+   //   if (m_listenera.is_empty())
+   //   {
+
+   //      startKeyboardHook();
+
+   //   }
+
+   //   m_listenera.add_unique(phooklistener);
+
+   //}
+   ////
+   ////    // Unregistration of keyboard hook.
+   //void OperatingSystemHookInterface::unregisterKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener)
+   //{
+
+   //   if (::is_null(phooklistener))
+   //   {
+
+   //      throw ::exception(error_bad_argument);
+
+   //   }
+
+
+   //   m_listenera.add_unique(phooklistener);
+
+   //   if (m_listenera.is_empty())
+   //   {
+
+   //      stopKeyboardHook();
+
+   //   }
+
+   //}
 
 
    OperatingSystemHook::OperatingSystemHook()
@@ -136,6 +136,20 @@ namespace subsystem
 
    }
 
+   void OperatingSystemHook::registerKeyboardHook(::subsystem::OperatingSystemHookListener* phooklistener)
+   {
+
+      m_pparticleThis->registerKeyboardHook(phooklistener);
+
+            }
+   //
+   //    // Unregistration of keyboard hook.
+            void OperatingSystemHook::unregisterKeyboardHook(
+               ::subsystem::OperatingSystemHookListener *phooklistener)
+            {
+
+               m_pparticleThis->unregisterKeyboardHook(phooklistener);
+            }
 
    // }
    // LRESULT CALLBACK WinHooks::lowLevelKeyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
@@ -171,4 +185,13 @@ namespace subsystem
    //   s_hooks = 0;
    //   s_eventListener = 0;
    // }
+
+   bool OperatingSystemHook::operating_system_hook_on_keyboard_message(::lresult& lresult, ::user::enum_message emessage,
+      int iVkCode, ::lparam lparam)
+   {
+
+      return false;
+
+   }
+
 } // nanamespace subsystem

@@ -32,13 +32,22 @@
 #include "SocketAddressIPv4.h"
 #include "SocketException.h"
 
-#include "subsystem/io/Channel.h"
+#include "input_output/Channel.h"
 #include "acme/exception/io.h"
 ///#include "remoting/remoting_common/win_system/WsaStartup.h"
 //#include "subsystem/thread/critical_section.h"
 
 namespace subsystem
 {
+
+   enum enum_socket_shutdown
+   {
+
+      e_socket_shutdown_receive = 0,
+      e_socket_shutdown_send = 1,
+      e_socket_shutdown_both = 2,
+
+   };
    /**
     * IPv4 Socket class.
     *
@@ -69,7 +78,7 @@ namespace subsystem
        * @param addr address to connect.
        * @throws SocketException on fail.
        */
-      virtual void connect(const ::subsystem::SocketAddressIPv4Interface * paddress) = 0;
+      virtual void connect(::subsystem::SocketAddressIPv4Interface * paddress) = 0;
       /**
        * Closes socket.
        * @throws SocketException on fail.
@@ -80,7 +89,7 @@ namespace subsystem
        * @param how how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
        * @throws SocketException on fail.
        */
-      virtual void shutdown(int how) = 0;
+      virtual void shutdown(enum_socket_shutdown esocketshutdown) = 0;
       /**
        * Binds socket to specified address.
        * @param bindHost host to bind.
@@ -92,7 +101,7 @@ namespace subsystem
        * Binds socket to socket address.
        * @throws SocketException on fail.
        */
-      virtual void bind(const ::subsystem::SocketAddressIPv4Interface * paddress) = 0;
+      virtual void bind(::subsystem::SocketAddressIPv4Interface * paddress) = 0;
       /**
        * Checks if this socket is bound and used for server needs.
        * @return true if socket used as server and successfully bounded, false otherwise.
@@ -146,11 +155,11 @@ namespace subsystem
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr(SocketAddressIPv4 *addr) = 0;
+      virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() = 0;
 
       /* Auxiliary */
-      virtual void setSocketOptions(int level, int name, void *value, socklen_t len) = 0;
-      virtual void getSocketOptions(int level, int name, void *value, socklen_t *len) = 0;
+      virtual void setSocketOptions(int level, int name, void *value, int len) = 0;
+      virtual void getSocketOptions(int level, int name, void *value, int *len) = 0;
 
       /* Socket options */
       virtual void enableNaggleAlgorithm(bool enabled) = 0;
@@ -230,7 +239,7 @@ namespace subsystem
        * @param how how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
        * @throws SocketException on fail.
        */
-      void shutdown(int how)  override;
+      void shutdown(enum_socket_shutdown esocketshutdown)  override;
       /**
        * Binds socket to specified address.
        * @param bindHost host to bind.
@@ -290,17 +299,17 @@ namespace subsystem
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      ::pointer < ::subsystem::SocketIPv4Interface > getLocalAddr() override;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() override;
       /**
        * Returns peer address.
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      ::pointer < ::subsystem::SocketIPv4Interface > getPeerAddr() override;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override;
 
       /* Auxiliary */
-      void setSocketOptions(int level, int name, void *value, socklen_t len) override;
-      void getSocketOptions(int level, int name, void *value, socklen_t *len) override;
+      void setSocketOptions(int level, int name, void *value, int len) override;
+      void getSocketOptions(int level, int name, void *value, int *len) override;
 
       /* Socket options */
       void enableNaggleAlgorithm(bool enabled) override;

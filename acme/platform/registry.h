@@ -39,7 +39,7 @@ namespace platform
 
 
 
-   class registry :
+   class CLASS_DECL_ACME registry :
       virtual public ::particle
    {
    public:

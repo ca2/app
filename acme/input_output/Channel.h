@@ -25,18 +25,18 @@
 #pragma once
 
 
-#include "subsystem/Exception.h"
+//#include "subsystem/Exception.h"
 
-#include "subsystem/io/InputStream.h"
-#include "subsystem/io/OutputStream.h"
+#include "input_output/InputStream.h"
+#include "input_output/OutputStream.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Channel interface (abstract class) that joins together
     * InputStream and OutputStream).
     */
-   class CLASS_DECL_SUBSYSTEM Channel : public InputStream, public OutputStream
+   class CLASS_DECL_ACME Channel : public InputStream, public OutputStream
    {
    public:
       /**
@@ -51,4 +51,4 @@ namespace subsystem
        */
       virtual void close()= 0;
    };
-} //namespace subsystem
+//} //namespace subsystem

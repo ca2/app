@@ -109,15 +109,16 @@ list(APPEND library_source
    #application.h
    framework.cpp
    framework.h
+   resource_loader.cpp
+   resource_loader.h
    subsystem.cpp
    subsystem.h)
 
 
 list(APPEND library_references
    acme
+   subsystem
    apex
-   aqua
-   aura
 )
 
 

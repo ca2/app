@@ -5,8 +5,8 @@
 // #include aaa_<sstream>
 // #include aaa_<algorithm>
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    BufferedInputStream::BufferedInputStream(InputStream *input)
    : m_have(0),
      INITIAL_BUFFER_SIZE(100000),
@@ -71,4 +71,4 @@ namespace subsystem
       }
       return copied;
    }
-} // namespace subsystem
+//} // namespace subsystem

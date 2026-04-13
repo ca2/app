@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "DataCopy.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    DataCopy::DataCopy() {}
 
    size_t DataCopy::write(const void* buffer, size_t len)
@@ -30,4 +30,4 @@ namespace subsystem
    {
       return m_memory.size();
    }
-}//namespace subsystem
+//}//namespace subsystem

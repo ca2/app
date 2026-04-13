@@ -32,15 +32,27 @@
 
 namespace subsystem
 {
-   SocketStream::SocketStream(SocketIPv4 *sock)
-   : m_psocket(sock)
-   {
-      _ASSERT(m_psocket != NULL);
-   }
+    SocketStream::SocketStream(::subsystem::SocketIPv4Interface *psocket)
+    : m_psocket(psocket)
+    {
+       _ASSERT(m_psocket != NULL);
+    }
+
+   // SocketStream::SocketStream()
+   // {
+   // }
 
    SocketStream::~SocketStream()
    {
    }
+
+   // void SocketStream::initialize_socket_stream(::subsystem::SocketIPv4Interface *sock)
+   //
+   // {
+   //    m_psocket = sock;
+   //    _ASSERT(m_psocket != NULL);
+   // }
+
 
    size_t SocketStream::read(void *buf, size_t wanted)
    {
@@ -54,7 +66,7 @@ namespace subsystem
    memsize SocketStream::defer_write(const void *buf, memsize size)
    {
       if ((int)size < 0) {
-         throw ::io_exception(error_io, _T("Size of buffer is too big."));
+         throw ::io_exception(error_io, "Size of buffer is too big.");
       }
 
       return (size_t)m_psocket->send((char *)buf, (int)size);
@@ -64,7 +76,7 @@ namespace subsystem
    void SocketStream::close()
    {
       try {
-         m_psocket->shutdown(SD_BOTH);
+         m_psocket->shutdown(e_socket_shutdown_both);
       } catch (...) {
       }
       m_psocket->close();

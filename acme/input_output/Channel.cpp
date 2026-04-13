@@ -25,9 +25,9 @@
 #include "Channel.h"
 
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    Channel::~Channel()
    {
    }
-}//namespace subsystem
+//}//namespace subsystem

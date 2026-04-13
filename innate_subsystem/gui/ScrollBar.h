@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "innate_subsystem/Window.h"
+#include "innate_subsystem/gui/Window.h"
 // ScrollBar class
 // This class doesn't create any window, it only show/hide that is already
 // contained in existed window.

@@ -26,7 +26,7 @@
 
 
 //#include "remoting/remoting_common/util/winhdr.h"
-#include "acme/_operating_system.h"
+//#include "acme/_operating_system.h"
 
 ////#include "remoting/remoting_common/thread/LocalMutex.h"
 #include "acme/prototype/collection/comparable_list.h"
@@ -60,8 +60,9 @@ namespace subsystem
        */
       //virtual ~OperatingSystemApplicationInterface() = 0;
 
+      virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
 
-      virtual void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) = 0;
+      //virtual void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) = 0;
 
       /**
        * Runs windows application.
@@ -162,8 +163,8 @@ namespace subsystem
       ~OperatingSystemApplication() override;
 
 
-      //virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
-       void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) override;
+      void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) override;
+      //void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) override;
 
       /**
        * Runs windows application.

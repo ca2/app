@@ -27,12 +27,12 @@
 
 #include "acme/exception/io.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Input stream interface (abstract class).
     */
-   class CLASS_DECL_SUBSYSTEM InputStream :
+   class CLASS_DECL_ACME InputStream :
    virtual public ::particle
    {
    public:
@@ -49,4 +49,4 @@ namespace subsystem
       virtual size_t read(void *buffer, size_t len) = 0;
       virtual size_t available() = 0;
    };
-} // namespace subsystem
+//} // namespace subsystem

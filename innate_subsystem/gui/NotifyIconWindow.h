@@ -25,11 +25,11 @@
 #pragma once
 
 
-#include "innate_subsystem/Window.h"
+#include "innate_subsystem/gui/Window.h"
 #include "subsystem/_common_header.h"
 
 
-#include "innate_subsystem/WindowProcHolder.h"
+#include "innate_subsystem/gui/WindowProcHolder.h"
 
 namespace innate_subsystem
 {

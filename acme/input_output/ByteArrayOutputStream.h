@@ -25,14 +25,14 @@
 #pragma once
 
 
-#include "subsystem/io/OutputStream.h"
+#include "input_output/OutputStream.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Output stream to write data to memory.
     */
-   class CLASS_DECL_SUBSYSTEM ByteArrayOutputStream : public OutputStream
+   class CLASS_DECL_ACME ByteArrayOutputStream : public OutputStream
    {
    public:
       static const size_t DEFAULT_INNER_BUFFER_CAPACITY = 1024;
@@ -78,4 +78,4 @@ namespace subsystem
       size_t m_size;
       size_t m_max;
    };
-}//namespace subsystem
+//}//namespace subsystem

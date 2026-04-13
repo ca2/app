@@ -25,7 +25,7 @@
 #pragma once
 
 
-//#include "innate_subsystem/Dialog.h"
+//#include "innate_subsystem/gui/Dialog.h"
 #include "innate_subsystem/_common_header.h"
 //#include "util/::string.h"
 

@@ -25,7 +25,7 @@
 #pragma once
 
 //nclude "acme/subsystem/_common_header.h"
-#include "innate_subsystem/Window.h"
+#include "innate_subsystem/gui/Window.h"
 //#include "subsystem/::string.h"
 //#include "acme/_operating_system.h"
 
@@ -112,7 +112,7 @@ namespace innate_subsystem
       // Changes visible state of this control
       //
 
-      virtual void setVisible(bool bVisible = true);
+      virtual void setVisible(bool bVisible = true) = 0;
 
       // //
       // // Checks if this control is active (not disabled)
@@ -224,7 +224,7 @@ namespace innate_subsystem
    // Base class to control windows control
    //
 
-   class Control :
+   class CLASS_DECL_INNATE_SUBSYSTEM Control :
       virtual public ::subsystem::composite < ControlInterface >
    {
    public:

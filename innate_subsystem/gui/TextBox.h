@@ -26,8 +26,8 @@
 //#define __TEXTBOX_H_
 
 #include "subsystem/particle.h"
-#include "innate_subsystem/Control.h"
-#include "innate_subsystem/Tooltip.h"
+#include "innate_subsystem/gui/Control.h"
+#include "innate_subsystem/gui/Tooltip.h"
 
 
 namespace innate_subsystem

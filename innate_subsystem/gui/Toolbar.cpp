@@ -91,6 +91,24 @@ namespace innate_subsystem
       m_pparticleThis->loadToolbarfromRes(id);
    }
 
+
+   void Toolbar::loadToolbarFromMatter(const file::path &pathMatter)
+   {
+
+      // BITMAP bmp;
+      //
+      // HBITMAP hbmp = LoadBitmap(GetModuleHandle(NULL),
+      //                           MAKEINTRESOURCE(id));
+      // GetObject(hbmp, sizeof(BITMAP), &bmp);
+      // m_width = bmp.bmWidth;
+      // m_height = bmp.bmHeight;
+      // m_numberTB = m_width / m_height;
+      // m_id = id;
+      // DeleteObject(hbmp);
+      m_pparticleThis->loadToolbarFromMatter(pathMatter);
+   }
+
+
    void Toolbar::setButtonsRange(unsigned int id)
    {
       //m_initialStr = id;

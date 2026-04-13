@@ -26,8 +26,8 @@
 #include "acme/exception/io.h"
 // #include aaa_<algorithm>
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    ByteArrayInputStream::ByteArrayInputStream(const char *buffer, size_t bufferSize)
    : m_buffer(buffer), m_bufferSize(bufferSize), m_left(bufferSize)
    {
@@ -64,4 +64,4 @@ namespace subsystem
    size_t ByteArrayInputStream::available() {
       return m_left;
    }
-}//namespace subsystem
+//}//namespace subsystem

@@ -24,8 +24,8 @@
 #include "framework.h"
 #include "BufferedOutputStream.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    BufferedOutputStream::BufferedOutputStream(OutputStream *output)
    : m_dataLength(0)
    {
@@ -64,4 +64,4 @@ namespace subsystem
 
       m_dataLength = 0;
    }
-}//namespace subsystem
+//}//namespace subsystem

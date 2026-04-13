@@ -23,7 +23,7 @@
 //
 #include "framework.h"
 // #include aaa_<stdlib.h>
-#include "subsystem/socket/SocketAddressIPv4.h"
+#include "SocketAddressIPv4.h"
 //#include "SocketAddressIPv4.h"
 #include "SocketIPv4.h"
 
@@ -55,13 +55,9 @@ namespace subsystem_bsd_sockets
 
       critical_section_lock l(&m_mutex);
 
-      if (m_peerAddr) {
-         delete m_peerAddr;
-      }
+      m_peerAddr.release();
+      m_localAddr.release();
 
-      if (m_localAddr) {
-         delete m_localAddr;
-      }
    }
 
    void SocketIPv4::connect(const ::scoped_string & scopedstrHost, unsigned short port)
@@ -70,17 +66,18 @@ namespace subsystem_bsd_sockets
 
       address.initialize_socket_address_ipv4(scopedstrHost, port);
 
-      connect(address);
+      connect(&address);
    }
 
-   void SocketIPv4::connect(const ::subsystem::SocketAddressIPv4 &addr)
+
+   void SocketIPv4::connect(::subsystem::SocketAddressIPv4Interface * paddress)
    {
 
-      auto  psocketaddressBsd = addr.impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+      auto  psocketaddressBsd = paddress->impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
 
-      struct sockaddr_in targetSockAddr = psocketaddressBsd->getSockAddr();
+      struct sockaddr_in targetSockAddr = psocketaddressBsd->_getSockAddr();
 
-      if (::connect(m_socket, (const sockaddr *)&targetSockAddr, addr.getAddrLen()) == SOCKET_ERROR) {
+      if (::connect(m_socket, (const sockaddr *)&targetSockAddr, psocketaddressBsd->_getAddrLen()) == SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
 
@@ -90,11 +87,16 @@ namespace subsystem_bsd_sockets
          delete m_peerAddr;
       }
 
+      auto paddressPeer = create_newø < ::subsystem_bsd_sockets::SocketAddressIPv4 >();
 
-      m_peerAddr= allocateø ::subsystem::SocketAddressIPv4(*(struct sockaddr_in *)&targetSockAddr);
+      paddressPeer->_initialize_socket_address_ipv4(targetSockAddr);
+
+      m_peerAddr= paddressPeer;
 
       m_isBound = false;
+
    }
+
 
    int SocketIPv4::available()
    {
@@ -110,38 +112,52 @@ namespace subsystem_bsd_sockets
       m_isClosed = true;
    }
 
-   void SocketIPv4::shutdown(int how)
+   void SocketIPv4::shutdown(::subsystem::enum_socket_shutdown esocketshutdown)
    {
-      if (::shutdown(m_socket, how) == SOCKET_ERROR) {
+      if (::shutdown(m_socket, (int) esocketshutdown) == SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
    }
 
    void SocketIPv4::bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort)
    {
-      ::subsystem::SocketAddressIPv4 address(scopedstrBindHost, bindPort);
+
+      ::subsystem::SocketAddressIPv4 address;
+
+      address.initialize_socket_address_ipv4(scopedstrBindHost, bindPort);
 
       bind(address);
+
    }
 
-   void SocketIPv4::bind(const ::subsystem::SocketAddressIPv4 &addr)
-   {
-      struct sockaddr_in bindSockaddr = addr.getSockAddr();
 
-      if (::bind(m_socket, (const sockaddr *)&bindSockaddr, addr.getAddrLen()) == SOCKET_ERROR) {
+   void SocketIPv4::bind(::subsystem::SocketAddressIPv4Interface * paddress)
+   {
+
+      auto paddressBsd = paddress->impl < ::subsystem_bsd_sockets::SocketAddressIPv4 >();
+
+      struct sockaddr_in bindSockaddr = paddressBsd->_getSockAddr();
+
+      if (::bind(m_socket, (const sockaddr *)&bindSockaddr, paddressBsd->_getAddrLen()) == SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
 
       critical_section_lock l(&m_mutex);
 
-      if (m_localAddr) {
-         delete m_localAddr;
-      }
+      // if (m_localAddr) {
+      //    delete m_localAddr;
+      // }
 
-      m_localAddr = allocateø ::subsystem::SocketAddressIPv4(*(struct sockaddr_in*)&bindSockaddr);
+      auto paddressBsdLocal = create_newø <::subsystem_bsd_sockets::SocketAddressIPv4 >();
+
+      paddressBsdLocal->_initialize_socket_address_ipv4(bindSockaddr);
+
+      m_localAddr = paddressBsdLocal;
 
       m_isBound = true;
+
    }
+
 
    bool SocketIPv4::isBound()
    {
@@ -157,7 +173,7 @@ namespace subsystem_bsd_sockets
       }
    }
 
-   ::pointer < subsystem::SocketIPv4Interface > SocketIPv4::accept()
+   ::pointer < ::subsystem::SocketIPv4Interface > SocketIPv4::accept()
    {
       struct sockaddr_in addr;
 
@@ -198,11 +214,15 @@ namespace subsystem_bsd_sockets
       struct sockaddr_in addr;
       socklen_t addrlen = sizeof(struct sockaddr_in);
       if (getsockname(socket, (struct sockaddr *)&addr, &addrlen) == 0) {
-         m_localAddr = allocateø ::subsystem::SocketAddressIPv4(addr);
+         auto paddressLocal = create_newø<::subsystem_bsd_sockets::SocketAddressIPv4>();
+         paddressLocal->_initialize_socket_address_ipv4(addr);
+         m_localAddr = paddressLocal;
       }
 
       if (getpeername(socket, (struct sockaddr *)&addr, &addrlen) == 0) {
-         m_peerAddr = allocateø ::subsystem:: SocketAddressIPv4(addr);
+         auto paddressPeer = create_newø<::subsystem_bsd_sockets::SocketAddressIPv4>();
+         paddressPeer->_initialize_socket_address_ipv4(addr);
+         m_peerAddr = paddressPeer;
       }
    }
 
@@ -274,30 +294,30 @@ namespace subsystem_bsd_sockets
       return result;
    }
 
-   bool SocketIPv4::getLocalAddr(::subsystem::SocketAddressIPv4 *addr)
+   ::pointer < ::subsystem::SocketAddressIPv4Interface> SocketIPv4::getLocalAddr()
    {
       critical_section_lock l(&m_mutex);
 
-      if (m_localAddr == 0) {
-         return false;
-      }
+      // if (m_localAddr == 0) {
+      //    return false;
+      // }
+      //
+      // *addr = *m_localAddr;
 
-      *addr = *m_localAddr;
-
-      return true;
+      return m_localAddr;
    }
 
-   bool SocketIPv4::getPeerAddr(::subsystem::SocketAddressIPv4 *addr)
+   ::pointer < ::subsystem::SocketAddressIPv4Interface> SocketIPv4::getPeerAddr()
    {
       critical_section_lock l(&m_mutex);
 
-      if (m_peerAddr == 0) {
-         return false;
-      }
+      // if (m_peerAddr == 0) {
+      //    return false;
+      // }
+      //
+      // *addr = *m_peerAddr;
 
-      *addr = *m_peerAddr;
-
-      return true;
+      return m_peerAddr;
    }
 
    /* Auxiliary */

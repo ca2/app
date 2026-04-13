@@ -36,10 +36,10 @@ namespace subsystem
    {
    public:
 
-      RegistryKey(::platform::registry_key_interface *rootKey); //, SECURITY_ATTRIBUTES *sa = 0);
+      RegistryKey(::platform::registry_key_interface *rootKey, ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr); //, SECURITY_ATTRIBUTES *sa = 0);
       RegistryKey(::platform::registry_key_interface *rootKey, const ::scoped_string &scopedstrEntry,
-                  bool createIfNotExists = true); //, SECURITY_ATTRIBUTES *sa = 0);
-      RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true); //, SECURITY_ATTRIBUTES *sa = 0);
+                  bool createIfNotExists = true, ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr); //, SECURITY_ATTRIBUTES *sa = 0);
+      RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry, bool createIfNotExists = true, ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr); //, SECURITY_ATTRIBUTES *sa = 0);
       // Default contructor for a defer initialization.
       RegistryKey();
    
@@ -51,14 +51,14 @@ namespace subsystem
       // Defer initialization. Can be used only when it has been
       // created by the default constructor.
       void open(::platform::registry_key * rootKey, const ::scoped_string & scopedstrEntry,
-                bool createIfNotExists = true); //,
+                bool createIfNotExists = true, ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr); //,
                 //SECURITY_ATTRIBUTES *sa = 0);
    
       // Defer initialization. Can be used only when it has been
       // created by the default constructor.
       void open(RegistryKey *rootKey,
                 const ::scoped_string & scopedstrEntry,
-                bool createIfNotExists = true); //,
+                bool createIfNotExists = true, ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr); //,
                 //SECURITY_ATTRIBUTES *sa = 0);
    
       //
@@ -124,7 +124,7 @@ namespace subsystem
 
       // Helper method to avoid code duplicate in class constructor.
       void initialize(::platform::registry_key_interface *rootKey, const ::scoped_string &scopedstrEntry,
-                      bool createIfNotExists); //, SECURITY_ATTRIBUTES *sa);
+                      bool createIfNotExists, ::subsystem::SecurityAttributesInterface * psecurityattributes); //, SECURITY_ATTRIBUTES *sa);
    
       // Sets subkey name to name output variable not depending
       // on output buffer size, cause buffer allocates inside method.
@@ -143,7 +143,8 @@ namespace subsystem
        * @return true if operation successfull executed, false otherwise.
        */
       virtual bool tryOpenSubKey(::platform::registry_key_interface *key, const ::scoped_string &scopedstrSubkey,
-                                 pointer<::platform::registry_key_interface> &openedKey, bool createIfNotExists);
+                                 pointer<::platform::registry_key_interface> &openedKey, bool createIfNotExists,
+                                 ::subsystem::SecurityAttributesInterface * psecurityattributes);
       //,                             SECURITY_ATTRIBUTES *sa);
    
    //protected:

@@ -36,14 +36,14 @@ namespace innate_subsystem
 {
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM GraphicsInterface :
+   class GraphicsInterface :
    virtual public ::subsystem::particle_interface<GraphicsInterface>
    {
    public:
       // Creates graphics object with specified device context.
       ///Graphics(DeviceContext *dc);
       // Graphics class destructor.
-      virtual ~GraphicsInterface() = 0;
+      //virtual ~GraphicsInterface() = 0;
 
 
       virtual DeviceContextInterface * device_context() = 0;

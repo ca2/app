@@ -51,12 +51,12 @@ namespace subsystem
    }
 
 
-   void OperatingSystemApplication::initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName)
+   void OperatingSystemApplication::initialize_operating_system_application(::hinstance hinstance,  const ::scoped_string & scopedstrwindowClassName)
    // : m_appInstance(appInstance),
    //   m_mainWindow(0),
    //   m_wstrWindowClassName(scopedstrwindowClassName)
    {
-      m_pparticleThis->initialize_operating_system_application(scopedstrwindowClassName);
+      m_pparticleThis->initialize_operating_system_application(hinstance, scopedstrwindowClassName);
    }
 
    void OperatingSystemApplication::run()

@@ -69,7 +69,20 @@ namespace subsystem_bsd_sockets
    {
       m_addr.s_addr = INADDR_ANY;
       m_port = 0;
-   };
+   }
+
+   SocketAddressIPv4::~SocketAddressIPv4()
+   {
+
+   }
+
+
+
+   void SocketAddressIPv4::initialize_socket_address_ipv4()
+   {
+      m_addr.s_addr = INADDR_ANY;
+      m_port = 0;
+   }
 
    void SocketAddressIPv4::_initialize_socket_address_ipv4(struct sockaddr_in addr)
    //: m_wsaStartup(1, 2)
@@ -83,7 +96,7 @@ namespace subsystem_bsd_sockets
 
       m_addr.s_addr = ntohl(addr.sin_addr.s_addr);
       m_port = ntohs(addr.sin_port);
-   };
+   }
 
    void SocketAddressIPv4::initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port)
    {

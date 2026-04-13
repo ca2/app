@@ -33,7 +33,7 @@ namespace subsystem
 {
 
 
-   RegistryKey::RegistryKey(::platform::registry_key_interface *rootKey) : 
+   RegistryKey::RegistryKey(::platform::registry_key_interface *rootKey, ::subsystem::SecurityAttributesInterface * psecurityattributes) :
       m_pregistrykey(rootKey),
       m_pregistrykeyRoot(rootKey)
    {
@@ -42,19 +42,19 @@ namespace subsystem
    
    RegistryKey::RegistryKey(::platform::registry_key_interface *rootKey, const ::scoped_string &scopedstrEntry,
                             //bool createIfNotExists, SECURITY_ATTRIBUTES *sa)
-                            bool createIfNotExists)
+                            bool createIfNotExists, ::subsystem::SecurityAttributesInterface * psecurityattributes)
    {
       
-      initialize(rootKey, scopedstrEntry, createIfNotExists);
+      initialize(rootKey, scopedstrEntry, createIfNotExists, psecurityattributes);
 
    }
 
 
    RegistryKey::RegistryKey(RegistryKey *rootKey, const ::scoped_string & scopedstrEntry,
                             //bool createIfNotExists, SECURITY_ATTRIBUTES *sa)
-                            bool createIfNotExists)
+                            bool createIfNotExists, ::subsystem::SecurityAttributesInterface * psecurityattributes)
    {
-      initialize(rootKey->m_pregistrykey, scopedstrEntry, createIfNotExists);
+      initialize(rootKey->m_pregistrykey, scopedstrEntry, createIfNotExists, psecurityattributes);
    }
 
    RegistryKey::RegistryKey()
@@ -68,16 +68,16 @@ namespace subsystem
 
    void RegistryKey::open(::platform::registry_key * rootKey,
                           const ::scoped_string & scopedstrEntry,
-                          bool createIfNotExists)//                          SECURITY_ATTRIBUTES *sa)
+                          bool createIfNotExists, ::subsystem::SecurityAttributesInterface * psecurityattributes)//                          SECURITY_ATTRIBUTES *sa)
    {
-      initialize(rootKey, scopedstrEntry, createIfNotExists);
+      initialize(rootKey, scopedstrEntry, createIfNotExists, psecurityattributes);
    }
 
    void RegistryKey::open(RegistryKey *rootKey,
                           const ::scoped_string & scopedstrEntry,
-                          bool createIfNotExists)//                          SECURITY_ATTRIBUTES *sa)
+                          bool createIfNotExists, ::subsystem::SecurityAttributesInterface * psecurityattributes)//                          SECURITY_ATTRIBUTES *sa)
    {
-      initialize(rootKey->m_pregistrykey, scopedstrEntry, createIfNotExists);
+      initialize(rootKey->m_pregistrykey, scopedstrEntry, createIfNotExists, psecurityattributes);
    }
 
    ::platform::registry_key_interface *RegistryKey::get_registry_key() const
@@ -346,7 +346,7 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
 
 
    void RegistryKey::initialize(::platform::registry_key_interface *rootKey, const ::scoped_string &scopedstrEntry,
-                                bool createIfNotExists) //, SECURITY_ATTRIBUTES *sa)
+                                bool createIfNotExists, ::subsystem::SecurityAttributesInterface * psecurityattributes) //, SECURITY_ATTRIBUTES *sa)
    {
       m_pregistrykey = rootKey;
       m_pregistrykeyRoot = rootKey;
@@ -357,7 +357,7 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
       //   m_entry.appendString("\\");
       // }
 
-      tryOpenSubKey(m_pregistrykeyRoot, m_entry, m_pregistrykey, createIfNotExists);//, sa);
+      tryOpenSubKey(m_pregistrykeyRoot, m_entry, m_pregistrykey, createIfNotExists, psecurityattributes);//, sa);
    }
 
    unsigned int RegistryKey::enumKey(unsigned int i, ::string & name)
@@ -390,7 +390,7 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
 
    bool RegistryKey::tryOpenSubKey(::platform::registry_key_interface *key, const ::scoped_string &scopedstrSubkey,
                                    ::pointer<::platform::registry_key_interface> &openedKey,
-                                   bool createIfNotExists) //, SECURITY_ATTRIBUTES *sa)
+                                   bool createIfNotExists, ::subsystem::SecurityAttributesInterface * psecurityattributes) //, SECURITY_ATTRIBUTES *sa)
    {
       // if (RegOpenKey(key,::wstring(scopedstrSubkey), openedKey) != ERROR_SUCCESS) {
       //    if (createIfNotExists) {

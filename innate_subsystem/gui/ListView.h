@@ -27,7 +27,7 @@
 
 #include "subsystem/_common_header.h"
 ////#include <CommCtrl.h>
-#include "innate_subsystem/Control.h"
+#include "innate_subsystem/gui/Control.h"
 
 
 

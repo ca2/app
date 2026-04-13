@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "innate_subsystem/Window.h"
+#include "innate_subsystem/gui/Window.h"
 //#include "drawing/DeviceContext.h"
 
 namespace innate_subsystem

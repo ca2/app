@@ -72,8 +72,6 @@ namespace subsystem
 
    class SocketStream;
 
-   class SocketStreamInterface;
-
    class SystemInformation;
 
    class SystemInformationInterface;
@@ -103,7 +101,7 @@ namespace innate_subsystem
 } // namespace innate_subsystem
 
 
-#include "subsystem/io/_.h"
+#include "input_output/_.h"
 #include "subsystem/thread/_.h"
 
 

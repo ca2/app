@@ -317,6 +317,41 @@ list(APPEND library_source
         integrate/qt/image.h
         #include/_.cpp
         #include/path.h        #prototype/collection/comparable_array.cpp
+   #input_output/_.cpp
+   #input_output/_.h
+   #input_output/_____debug.xcconfig
+   #input_output/_____release.xcconfig
+   #input_output/aaa_framework.cpp
+   #input_output/aaa_framework.h
+   #input_output/aaa_io_exception.h
+  input_output/BufferedInputStream.cpp
+  input_output/BufferedInputStream.h
+  input_output/BufferedOutputStream.cpp
+  input_output/BufferedOutputStream.h
+  input_output/ByteArrayInputStream.cpp
+  input_output/ByteArrayInputStream.h
+  input_output/ByteArrayOutputStream.cpp
+  input_output/ByteArrayOutputStream.h
+  input_output/Channel.cpp
+  input_output/Channel.h
+   #input_output/CMakeLists.txt
+  input_output/DataCopy.cpp
+  input_output/DataCopy.h
+  input_output/DataInputStream.cpp
+  input_output/DataInputStream.h
+  input_output/DataOutputStream.cpp
+  input_output/DataOutputStream.h
+  input_output/InputStream.cpp
+  input_output/InputStream.h
+  input_output/io_exception.cpp
+   #input_output/io_lib.vcproj
+   #input_output/matter.txt
+  input_output/OutputStream.cpp
+  input_output/OutputStream.h
+   #input_output/remoting_io.vcxproj
+   #input_output/remoting_io.vcxproj.filters
+   #input_output/remoting_io.vcxproj.user
+  input_output/resource.h
         #memory/alloc.cpp
         memory/_.cpp
         memory/allocate_processor_cache_oriented.cpp
@@ -551,6 +586,8 @@ list(APPEND library_source
         #platform/apex_main_data.h
         #platform/apex_main_struct.cpp
         #platform/apex_main_struct.h
+   platform/registry.cpp
+   platform/registry.h
         platform/system_acme.h
         platform/system_apex.h
         platform/system_aqua.h

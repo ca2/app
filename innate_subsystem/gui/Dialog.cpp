@@ -91,6 +91,15 @@ void Dialog::setResourceId(unsigned int id)
    m_pparticleThis->setResourceId(id);
 }
 
+
+ControlInterface *Dialog::getControl()
+{
+
+   return m_pparticleThis->getControl();
+
+}
+
+
 void Dialog::setDefaultPushButton(unsigned int buttonId)
 {
   //SendMessage(m_ctrlThis.getWindow(), DM_SETDEFID, buttonId, 0);

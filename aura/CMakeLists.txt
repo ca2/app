@@ -449,6 +449,8 @@ list(APPEND library_source
         #user/user/message_window_listener.h
         #user/user/mouse.cpp
         #user/user/mouse.h
+   user/user/notification_listener.cpp
+   user/user/notification_listener.h
         user/user/notify_icon.cpp
         user/user/notify_icon.h
         user/user/notify_icon_listener.cpp

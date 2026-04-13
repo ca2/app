@@ -29,8 +29,8 @@
 
 #define GETBYTE(x, n) (((x) >> ((n) * 8)) & 0xFF)
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    DataOutputStream::DataOutputStream(::file::writable * pwritable)
    : m_outStream(pwritable)
    {
@@ -142,4 +142,4 @@ namespace subsystem
    {
       m_outStream->flush();
    }
-} // namespace subsystem
+//} // namespace subsystem

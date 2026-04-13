@@ -59,4 +59,12 @@ Pen::~Pen()
    //
    // _ASSERT(m_pen != NULL);
 
+
+   void Pen::destroyGraphicsObject()
+   {
+
+      m_pparticleThis->destroyGraphicsObject();
+
+   }
+
 }

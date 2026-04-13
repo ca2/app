@@ -24,9 +24,9 @@
 #include "framework.h"
 #include "InputStream.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    InputStream::~InputStream()
    {
    }
-} // namespace subsystem
+//} // namespace subsystem

@@ -25,15 +25,15 @@
 #pragma once
 
 
-#include "subsystem/io/InputStream.h"
+#include "input_output/InputStream.h"
 #include "acme/exception/io.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Input stream for reading data from memory.
     */
-   class CLASS_DECL_SUBSYSTEM ByteArrayInputStream : public InputStream
+   class CLASS_DECL_ACME ByteArrayInputStream : public InputStream
    {
    public:
       /**
@@ -59,4 +59,4 @@ namespace subsystem
       size_t m_bufferSize;
       size_t m_left;
    };
-} // namespace subsystem
+//} // namespace subsystem

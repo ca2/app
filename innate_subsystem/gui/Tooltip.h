@@ -26,7 +26,7 @@
 //#define _TOOLTIP_H_
 
 //#include "util/CommonHeader.h"
-#include "innate_subsystem/Control.h"
+#include "innate_subsystem/gui/Control.h"
 
 //
 // Abstract tooltip class

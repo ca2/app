@@ -25,7 +25,7 @@
 #pragma once
 //#define _PROGRESS_BAR_H_
 
-#include "innate_subsystem/Control.h"
+#include "innate_subsystem/gui/Control.h"
 
 namespace innate_subsystem
 {

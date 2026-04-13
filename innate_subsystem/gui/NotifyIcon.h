@@ -26,7 +26,7 @@
 
 #include "subsystem/_common_header.h"
 
-#include "innate_subsystem/NotifyIconWindow.h"
+#include "innate_subsystem/gui/NotifyIconWindow.h"
 
 #include "innate_subsystem/drawing/Icon.h"
 

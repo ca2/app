@@ -32,7 +32,7 @@
 #include "subsystem/socket/SocketAddressIPv4.h"
 #include "subsystem/socket/SocketException.h"
 
-#include "subsystem/io/Channel.h"
+#include "input_output/Channel.h"
 #include "acme/exception/io.h"
 ///#include "remoting/remoting_common/win_system/WsaStartup.h"
 
@@ -71,7 +71,7 @@ namespace subsystem_bsd_sockets
        * @param addr address to connect.
        * @throws SocketException on fail.
        */
-      void connect(const ::subsystem::SocketAddressIPv4 &addr) override;
+      void connect(::subsystem::SocketAddressIPv4Interface * paddress) override;
       /**
        * Closes socket.
        * @throws SocketException on fail.
@@ -82,7 +82,7 @@ namespace subsystem_bsd_sockets
        * @param how how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
        * @throws SocketException on fail.
        */
-      void shutdown(int how) override;
+      void shutdown(::subsystem::enum_socket_shutdown esocketshutdown) override;
       /**
        * Binds socket to specified address.
        * @param bindHost host to bind.
@@ -94,7 +94,7 @@ namespace subsystem_bsd_sockets
        * Binds socket to socket address.
        * @throws SocketException on fail.
        */
-      void bind(const ::subsystem::SocketAddressIPv4 &addr) override;
+      void bind(::subsystem::SocketAddressIPv4Interface * paddress) override;
       /**
        * Checks if this socket is bound and used for server needs.
        * @return true if socket used as server and successfully bounded, false otherwise.
@@ -142,13 +142,13 @@ namespace subsystem_bsd_sockets
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      bool getLocalAddr(::subsystem::SocketAddressIPv4 *addr) override;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() override;
       /**
        * Returns peer address.
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      bool getPeerAddr(::subsystem::SocketAddressIPv4 *addr) override;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override;
 
       /* Auxiliary */
       void setSocketOptions(int level, int name, void *value, socklen_t len) override;

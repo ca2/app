@@ -187,6 +187,15 @@ VerticalAlignment Control::getTextVerticalAlignment()
   return m_pparticleThis->operating_system_window();
 }
 
+
+void Control::subclassWindow()
+{
+
+   m_pparticleThis->subclassWindow();
+
+}
+
+
 // void Control::setStyle(unsigned int style)
 // {
 //   ::SetWindowLong(m_hwnd, GWL_STYLE, style);

@@ -27,7 +27,7 @@
 
 #pragma once
 
-#include "innate_subsystem/Control.h"
+#include "innate_subsystem/gui/Control.h"
 //#include "ThemeLib.h"
 
 namespace innate_subsystem

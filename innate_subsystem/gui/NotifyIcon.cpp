@@ -96,10 +96,13 @@ NotifyIcon::~NotifyIcon()
    m_pparticleThis->hide();
    }
 
-   // const Icon *NotifyIcon::getIcon() const
-   // {
-   //    return m_icon;
-   // }
+
+   IconInterface *NotifyIcon::getIcon()
+   {
+
+   return m_pparticleThis->getIcon();
+
+    }
 
    bool NotifyIcon::isVisible() const
    {

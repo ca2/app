@@ -6,9 +6,9 @@
 
 
 #include "remoting/remoting_common/util/inttypes.h"
-namespace subsystem
-{
-   class CLASS_DECL_SUBSYSTEM DataCopy : public InputStream, public OutputStream
+//namespace subsystem
+//{
+   class CLASS_DECL_ACME DataCopy : public InputStream, public OutputStream
    {
    public:
 
@@ -24,4 +24,4 @@ namespace subsystem
 
 
    };
-}//namespace subsystem
+//}//namespace subsystem

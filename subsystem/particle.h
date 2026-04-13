@@ -114,6 +114,9 @@ namespace subsystem
       }
 
 
+      operator PARTICLE_INTERFACE *() {return m_pparticleThis;}
+      operator PARTICLE_INTERFACE *() const {return m_pparticleThis.m_p;}
+
 
    };
 

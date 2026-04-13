@@ -26,7 +26,7 @@
 #pragma once
 //#define SOCKET_STREAM_H
 
-#include "subsystem/io/Channel.h"
+#include "input_output/Channel.h"
 
 //#include "subsystem/socket/SocketAddressIPv4.h"
 //#include "remoting/remoting_common/network/socket/SocketIPv4.h"
@@ -45,11 +45,15 @@ namespace subsystem
 
 
       SocketStream(SocketIPv4Interface * psocket);
+      SocketStream();
       virtual ~SocketStream();
 
       //
       // Inherited from Channel.
       //
+
+
+      //virtual void initialize_socket_stream(SocketIPv4Interface * psocket);
 
       virtual size_t read(void *, size_t);
 

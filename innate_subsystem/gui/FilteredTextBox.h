@@ -26,9 +26,9 @@
 // #ifndef _FILTERED_TEXT_BOX_H_
 // #define _FILTERED_TEXT_BOX_H_
 
-#include "innate_subsystem/TextBox.h"
+#include "innate_subsystem/gui/TextBox.h"
 //#include "BalloonTip.h"
-#include "innate_subsystem/StringFilter.h"
+#include "innate_subsystem/gui/StringFilter.h"
 //#include "util/::string.h"
 
 namespace innate_subsystem
@@ -51,7 +51,7 @@ namespace innate_subsystem
 
    // protected:
        virtual bool isStringValid(const char *string) = 0;
-       virtual ::lresult onKeyDown(::wparam code, ::lparam params);
+       virtual ::lresult onKeyDown(::wparam code, ::lparam params) = 0;
    //
    //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
    //

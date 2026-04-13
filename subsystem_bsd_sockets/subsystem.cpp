@@ -8,10 +8,17 @@
 namespace subsystem_bsd_sockets
 {
 
+
+   ::subsystem_bsd_sockets::subsystem *            subsystem::s_p = nullptr;
+
+   critical_section subsystem::s_criticalsectionResolveIp4;
+
+
+
    subsystem::subsystem()
    {
 
-
+s_p = nullptr;
 
    }
 

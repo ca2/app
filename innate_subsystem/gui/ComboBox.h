@@ -26,7 +26,7 @@
 //#define _COMBOBOX_H_
 
 //#include "acCommonHeader.h"
-#include "innate_subsystem/Control.h"
+#include "innate_subsystem/gui/Control.h"
 
 
 namespace innate_subsystem

@@ -25,7 +25,7 @@
 #pragma once
 
 
-// #include "innate_subsystem/Tooltip.h"
+// #include "innate_subsystem/gui/Tooltip.h"
 // //#include "util/CommonHeader.h"
 // ////#include <CommCtrl.h>
 //

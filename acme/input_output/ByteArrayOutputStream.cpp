@@ -27,8 +27,8 @@
 // #include aaa_<string.h>
 
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    ByteArrayOutputStream::ByteArrayOutputStream(size_t max)
    : m_size(0), m_max(max), m_ownMemory(true)
    {
@@ -90,4 +90,4 @@ namespace subsystem
    {
       return m_buffer;
    }
-}//namespace subsystem
+//}//namespace subsystem

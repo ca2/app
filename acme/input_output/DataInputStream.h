@@ -26,15 +26,15 @@
 
 
 #include "remoting/remoting_common/util/inttypes.h"
-#include "subsystem/io/InputStream.h"
+#include "input_output/InputStream.h"
 #include "acme/exception/io.h"
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Data input stream class (decorator pattern).
     * Allows to read typed data from input stream.
     */
-   class CLASS_DECL_SUBSYSTEM DataInputStream : public InputStream
+   class CLASS_DECL_ACME DataInputStream : public InputStream
    {
    public:
       /**
@@ -76,4 +76,4 @@ namespace subsystem
    protected:
       InputStream *m_inputStream;
    };
-} // namespace subsystem
+//} // namespace subsystem

@@ -24,9 +24,9 @@
 #pragma once
 
 
-#include "innate_subsystem/Control.h"
-//#include "innate_subsystem/Tab.h"
-//#include "innate_subsystem/TabContainer.h"
+#include "innate_subsystem/gui/Control.h"
+//#include "innate_subsystem/gui/Tab.h"
+//#include "innate_subsystem/gui/TabContainer.h"
 
 //using namespace std;
 
@@ -50,8 +50,8 @@ namespace innate_subsystem
       virtual int getTabCount() ;
       virtual TabInterface *getTab(int index)= 0;
       virtual void addTab(DialogInterface *pdialog, const char *caption)= 0;
-      virtual void showTab(int index);
-      virtual void showTab(DialogInterface *pdialog);
+      virtual void showTab(int index) = 0;
+      virtual void showTab(DialogInterface *pdialog) = 0;
       virtual void deleteAllTabs()= 0;
 virtual       void removeTab(int index)= 0;
 

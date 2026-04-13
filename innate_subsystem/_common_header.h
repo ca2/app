@@ -7,7 +7,7 @@
 #include "subsystem/_common_header.h"
 
 
-#include "innate_subsystem/notification_handler.h"
+#include "innate_subsystem/gui/notification_handler.h"
 
 
 namespace innate_subsystem

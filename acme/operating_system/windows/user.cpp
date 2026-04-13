@@ -152,7 +152,7 @@ namespace windows
    }
 
 
-    CLASS_DECL_ACME TCHAR * get_system_cursor(enum_cursor ecursor)
+    CLASS_DECL_ACME const wchar_t * get_system_cursor(enum_cursor ecursor)
     {
 
        switch (ecursor)

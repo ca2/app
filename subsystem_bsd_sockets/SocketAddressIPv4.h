@@ -41,7 +41,6 @@ namespace subsystem_bsd_sockets
    void getLocalIPAddrString(char *buffer, int buflen);
 
 
-
    class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS SocketAddressIPv4 :
    virtual public ::subsystem::implementation<::subsystem::SocketAddressIPv4Interface>
    {
@@ -64,7 +63,7 @@ namespace subsystem_bsd_sockets
       void initialize_socket_address_ipv4(const SocketAddressIPv4Interface &socketAddressIPv4) override;
 
 
-      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) = 0;
+      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) override;
 
       virtual socklen_t _getAddrLen() const;
       virtual struct sockaddr_in _getSockAddr() const;

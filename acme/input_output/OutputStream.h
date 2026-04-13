@@ -28,12 +28,12 @@
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/streamable.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Output stream interface (abstract class).
     */
-   class CLASS_DECL_SUBSYSTEM OutputStream :
+   class CLASS_DECL_ACME OutputStream :
       virtual public ::file::writable
    {
    public:
@@ -60,4 +60,4 @@ namespace subsystem
 
 
    };
-} // namespace subsystem
+//} // namespace subsystem

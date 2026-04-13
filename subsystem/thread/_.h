@@ -19,7 +19,8 @@ namespace subsystem
 
    class Thread;
    class AutoLock;
-   class Lockable;
-
 
 }
+
+
+#include "AutoLock.h"

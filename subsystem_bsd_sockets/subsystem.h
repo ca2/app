@@ -7,8 +7,8 @@
 #pragma once
 
 
+#include "subsystem/subsystem.h"
 #include "subsystem_bsd_sockets/_common_header.h"
-
 
 
 namespace subsystem_bsd_sockets
@@ -29,7 +29,7 @@ namespace subsystem_bsd_sockets
       subsystem();
       ~subsystem() override;
 
-     
+
       int get_last_socket_error() override;
 
       ::string get_socket_error_message_text(int iError) override;

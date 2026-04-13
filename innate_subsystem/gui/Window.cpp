@@ -244,26 +244,27 @@ namespace innate_subsystem
       m_pparticleThis->setClassStyle(style);
    }
 
-   // void Window::setClassCursor(HCURSOR hcursor)
-   // {
-   //    // _ASSERT(m_hWnd != 0);
-   //    // SetClassLongPtr(m_hWnd, GCLP_HCURSOR, reinterpret_cast<LONG_PTR>(hcursor));
-   //
-   //    m_pparticleThis->setClassCursor(hcursor);
-   // }
-   //
-   // void Window::setClassBackground(HBRUSH hbrush)
-   // {
-   //    //_ASSERT(m_hWnd != 0);
-   //    //SetClassLongPtr(m_hWnd, GCLP_HBRBACKGROUND, reinterpret_cast<LONG_PTR>(hbrush));
-   //    m_pparticleThis->setClassCursor(hcursor);
-   // }
+   void Window::setClassCursor(::innate_subsystem::CursorInterface * pcursor)
+   {
+      // _ASSERT(m_hWnd != 0);
+      // SetClassLongPtr(m_hWnd, GCLP_HCURSOR, reinterpret_cast<LONG_PTR>(hcursor));
 
-   // void Window::setClassMenu(long long menu)
-   // {
-   //    // _ASSERT(m_hWnd != 0);
-   //    // SetClassLongPtr(m_hWnd, GCLP_MENUNAME, menu);
-   // }
+      m_pparticleThis->setClassCursor(pcursor);
+   }
+
+   void Window::setClassBackground(::innate_subsystem::BrushInterface * pbrush)
+   {
+      //_ASSERT(m_hWnd != 0);
+      //SetClassLongPtr(m_hWnd, GCLP_HBRBACKGROUND, reinterpret_cast<LONG_PTR>(hbrush));
+      m_pparticleThis->setClassBackground(pbrush);
+   }
+
+   void Window::setClassMenu(::innate_subsystem::MenuInterface * pmenu)
+   {
+      m_pparticleThis->setClassMenu(pmenu);
+      // _ASSERT(m_hWnd != 0);
+      // SetClassLongPtr(m_hWnd, GCLP_MENUNAME, menu);
+   }
 
 
    bool Window::we_want_WM_KEYDOWN_when_enter_is_pressed() const
@@ -287,6 +288,31 @@ namespace innate_subsystem
       m_pparticleThis->setStyle(style);
    }
 
+
+   bool Window::isStyleEnabled(unsigned int styleFlags)
+   {
+
+      return m_pparticleThis->isStyleEnabled(styleFlags);
+
+   }
+
+
+   void Window::removeStyle(unsigned int styleFlag)
+   {
+
+      m_pparticleThis->removeStyle(styleFlag);
+
+   }
+
+
+   void Window::addStyle(unsigned int styleFlag)
+   {
+
+      m_pparticleThis->addStyle(styleFlag);
+
+   }
+
+
    long long Window::getExStyle()
    {
       //_ASSERT(m_hWnd != 0);
@@ -300,6 +326,31 @@ namespace innate_subsystem
       //SetWindowLong(m_hWnd, GWL_EXSTYLE, exstyle);
       m_pparticleThis->setExStyle(exstyle);
    }
+
+
+   bool Window::isExStyleEnabled(unsigned int styleFlag)
+   {
+
+      return m_pparticleThis->isExStyleEnabled(styleFlag);
+
+   }
+
+
+   void Window::removeExStyle(unsigned int styleFlag)
+   {
+
+      m_pparticleThis->removeExStyle(styleFlag);
+
+   }
+
+
+   void Window::addExStyle(unsigned int styleFlag)
+   {
+
+      m_pparticleThis->addExStyle(styleFlag);
+
+   }
+
 
    void Window::updateWindow()
    {
@@ -517,6 +568,15 @@ namespace innate_subsystem
       //InvalidateRect(m_hwnd, NULL, TRUE);
       m_pparticleThis->invalidate();
    }
+
+
+   string Window::getText()
+   {
+
+      return m_pparticleThis->getText();
+
+   }
+
 
    void Window::redraw(const ::int_rectangle &rcArea)
    {

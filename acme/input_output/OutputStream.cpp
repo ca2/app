@@ -25,8 +25,8 @@
 #include "OutputStream.h"
 
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    OutputStream::~OutputStream()
    {
    }
@@ -34,4 +34,4 @@ namespace subsystem
    void OutputStream::flush()
    {
    }
-} // namespace subsystem
+//} // namespace subsystem

@@ -26,15 +26,15 @@
 
 
 #include "remoting/remoting_common/util/inttypes.h"
-#include "subsystem/io/OutputStream.h"
+#include "input_output/OutputStream.h"
 #include "acme/exception/io.h"
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Data output stream (decorator pattern).
     * Adds feature to write typezied data to output stream.
     */
-   class CLASS_DECL_SUBSYSTEM DataOutputStream : public ::file::file
+   class CLASS_DECL_ACME DataOutputStream : public ::file::file
    {
    public:
       /**
@@ -80,4 +80,4 @@ namespace subsystem
       //protected:
       ::file::writable *m_outStream;
    };
-} // namespace subsystem
+//} // namespace subsystem

@@ -86,6 +86,11 @@ namespace innate_subsystem
    }
 
 
+   void Icon::initialize_icon(unsigned int icon)
+   {
+      m_pparticleThis->initialize_icon(icon);
+   }
+
    void * Icon::_HICON()
    {
        return m_pparticleThis->_HICON();

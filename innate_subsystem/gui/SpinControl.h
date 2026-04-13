@@ -25,7 +25,8 @@
 #pragma once
 //#define _SPIN_CONTROL_H_
 
-#include "innate_subsystem/Control.h"
+#include "innate_subsystem/gui/Control.h"
+//#include "innate_subsystem_windows/_common_header.h"
 ////#include <CommCtrl.h>
 
 namespace innate_subsystem

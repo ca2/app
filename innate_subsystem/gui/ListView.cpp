@@ -101,6 +101,15 @@ namespace innate_subsystem
       return m_pparticleThis->getItem(index);
    }
 
+
+   int ListView::getCount()
+   {
+
+      return m_pparticleThis->getCount();
+
+   }
+
+
    void ListView::addItem(int index, const char *caption)
    {
       // addItem(index, caption, NULL);

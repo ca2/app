@@ -7,37 +7,37 @@ list(APPEND library_source
    framebuffer/PixelFormat.h
    framebuffer/StandardPixelFormatFactory.cpp
    framebuffer/StandardPixelFormatFactory.h
-   io/_.cpp
-   io/_.h
-   #io/_____debug.xcconfig
-   #io/_____release.xcconfig
-   #io/aaa_framework.cpp
-   #io/aaa_framework.h
-   #io/aaa_io_exception.h
-   io/BufferedInputStream.cpp
-   io/BufferedInputStream.h
-   io/BufferedOutputStream.cpp
-   io/BufferedOutputStream.h
-   io/ByteArrayInputStream.cpp
-   io/ByteArrayInputStream.h
-   io/ByteArrayOutputStream.cpp
-   io/ByteArrayOutputStream.h
-   io/Channel.cpp
-   io/Channel.h
-   #io/CMakeLists.txt
-   io/DataCopy.cpp
-   io/DataCopy.h
-   io/DataInputStream.cpp
-   io/DataInputStream.h
-   io/DataOutputStream.cpp
-   io/DataOutputStream.h
-   io/InputStream.cpp
-   io/InputStream.h
-   io/io_exception.cpp
-   #io/io_lib.vcproj
-   #io/matter.txt
-   io/OutputStream.cpp
-   io/OutputStream.h
+#   io/_.cpp
+#   io/_.h
+#   #io/_____debug.xcconfig
+#   #io/_____release.xcconfig
+#   #io/aaa_framework.cpp
+#   #io/aaa_framework.h
+#   #io/aaa_io_exception.h
+#   io/BufferedInputStream.cpp
+#   io/BufferedInputStream.h
+#   io/BufferedOutputStream.cpp
+#   io/BufferedOutputStream.h
+#   io/ByteArrayInputStream.cpp
+#   io/ByteArrayInputStream.h
+#   io/ByteArrayOutputStream.cpp
+#   io/ByteArrayOutputStream.h
+#   io/Channel.cpp
+#   io/Channel.h
+#   #io/CMakeLists.txt
+#   io/DataCopy.cpp
+#   io/DataCopy.h
+#   io/DataInputStream.cpp
+#   io/DataInputStream.h
+#   io/DataOutputStream.cpp
+#   io/DataOutputStream.h
+#   io/InputStream.cpp
+#   io/InputStream.h
+#   io/io_exception.cpp
+#   #io/io_lib.vcproj
+#   #io/matter.txt
+#   io/OutputStream.cpp
+#   io/OutputStream.h
    node/OperatingSystemHookListener.cpp
    node/security/SecurityDescriptor.cpp
    node/security/SecurityDescriptor.h
@@ -370,7 +370,7 @@ if(${WIN32})
    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${global_library_references} zlib)
 
 
 elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})

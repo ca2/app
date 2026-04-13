@@ -39,7 +39,7 @@ namespace innate_subsystem
 
 
       // This clas is a primitive wrapper to a DIB section.
-   class CLASS_DECL_INNATE_SUBSYSTEM  DibSectionInterface :
+   class  DibSectionInterface :
       virtual public ::subsystem::particle_interface<DibSectionInterface>
    {
    public:
@@ -51,7 +51,7 @@ namespace innate_subsystem
       // the DIB section.
       //DibSection(const PixelFormat & pf, const ::int_size & dim, HWND compatibleWin = 0);
       //DibSection();
-      virtual ~DibSectionInterface() = 0 ;
+      //virtual ~DibSectionInterface() = 0 ;
 
 
       virtual void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindow = {}) = 0;

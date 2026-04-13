@@ -28,8 +28,8 @@
 
 #define SETBYTE(y, n) (((y) & 0xFF) << ((n) * 8))
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    DataInputStream::DataInputStream(InputStream* inputStream)
       : m_inputStream(inputStream)
    {
@@ -159,4 +159,4 @@ namespace subsystem
       return utf8String;
 
    }
-} // namespace subsystem
+//} // namespace subsystem

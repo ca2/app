@@ -25,24 +25,57 @@
 #pragma once
 
 
-#include "lockable.h"
-
-namespace subsystem
-{
-
-
-class CLASS_DECL_SUBSYSTEM AutoLock
+class LockableBase
 {
 public:
-  critical_section_lock(lockable *locker);
-  virtual ~critical_section_lock();
 
-//protected:
-  lockable *m_locker;
+   virtual void lock() = 0;
+   virtual void unlock() = 0;
+
 };
 
-//// __AUTOLOCK_H__
-///
-} // namespace subsystem
+   template < typename LOCKABLE >
+class AutoLock
+{
+public:
+  AutoLock(LOCKABLE * plockable):
+      m_plockable(plockable)
+  {
+
+     m_plockable->lock();
+  }
+  ~AutoLock()
+  {
+
+     m_plockable->unlock();
+
+  }
+
+//protected:
+  LOCKABLE  *m_plockable;
+};
 
 
+
+template < typename LOCKABLE >
+class Lockable :
+public LOCKABLE,
+virtual public LockableBase
+{
+public:
+
+   void lock() override
+   {
+
+      LOCKABLE::lock();
+   }
+
+   void unlock() override
+   {
+
+      LOCKABLE::unlock();
+
+   }
+
+
+};

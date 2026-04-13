@@ -2,12 +2,12 @@
 #pragma once
 //#define BUFFEREDINPUTSTREAM_H
 
-#include "subsystem/io/DataInputStream.h"
+#include "input_output/DataInputStream.h"
 //// #include aaa_<vector>
 
-namespace subsystem
-{
-   class CLASS_DECL_SUBSYSTEM BufferedInputStream : public InputStream
+//namespace subsystem
+//{
+   class CLASS_DECL_ACME BufferedInputStream : public InputStream
    {
    public:
 
@@ -34,4 +34,4 @@ namespace subsystem
    };
 
    //// BUFFEREDINPUTSTREAM_H
-}//namespace subsystem
+//}//namespace subsystem

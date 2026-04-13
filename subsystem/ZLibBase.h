@@ -30,7 +30,8 @@
 
 namespace subsystem
 {
-    class CLASS_DECL_SUBSYSTEM ZLibBase
+    class CLASS_DECL_SUBSYSTEM ZLibBase :
+   virtual public ::particle
     {
     public:
         ZLibBase();

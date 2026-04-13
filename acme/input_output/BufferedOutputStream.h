@@ -25,17 +25,17 @@
 #pragma once
 
 
-#include "subsystem/io/OutputStream.h"
-#include "subsystem/io/DataOutputStream.h"
+#include "input_output/OutputStream.h"
+#include "input_output/DataOutputStream.h"
 
-namespace subsystem
-{
+//namespace subsystem
+//{
    /**
     * Buffered output stream class (decorator pattern).
     * Adds bufferization feature to output stream.
     * @remark size of buffer now is fixed and equals to 1400 bytes.
     */
-   class CLASS_DECL_SUBSYSTEM BufferedOutputStream : public OutputStream
+   class CLASS_DECL_ACME BufferedOutputStream : public OutputStream
    {
    public:
       /**
@@ -69,5 +69,5 @@ namespace subsystem
       size_t m_dataLength;
    };
 
-} // namespace subsystem
+//} // namespace subsystem
 

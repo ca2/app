@@ -32,7 +32,8 @@ namespace subsystem
    /**
     * Input stream interface (abstract class).
     */
-   class CLASS_DECL_SUBSYSTEM InputStream
+   class CLASS_DECL_SUBSYSTEM InputStream :
+   virtual public ::particle
    {
    public:
       virtual ~InputStream();

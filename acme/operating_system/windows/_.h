@@ -95,6 +95,9 @@ namespace windows
    CLASS_DECL_ACME ::string get_window_text_timeout(HWND hwnd, const class time & timeSendMessageMax = 1_s);
    CLASS_DECL_ACME HWND child_at(HWND hwnd, iptr i);
 
+   CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
+
+
 
 } // namespace windows
 
@@ -113,7 +116,7 @@ inline ::int_point lparam_as_point(LPARAM lparam)
 
 
 
-CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
+
 
 
 

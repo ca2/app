@@ -25,23 +25,32 @@ CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 }
 
 
-CLASS_DECL_ACME HMODULE GetModuleFromFunction(void* pFunc);;
+CLASS_DECL_ACME HMODULE GetModuleFromFunction(void* pFunc);
 
-CLASS_DECL_ACME hinstance hinstance_from_function(void * pVoid)
+
+namespace windows
 {
 
-   HMODULE hmodule = GetModuleFromFunction(pVoid);
 
-   HINSTANCE hInstance  = (HINSTANCE) hmodule;
+   CLASS_DECL_ACME hinstance hinstance_from_function(void *pVoid)
+   {
 
-   ::hinstance hinstance;
+      HMODULE hmodule = ::GetModuleFromFunction(pVoid);
 
-   hinstance = hInstance;
+      HINSTANCE hInstance = (HINSTANCE)hmodule;
 
-   return hinstance;
+      ::hinstance hinstance;
+
+      hinstance = hInstance;
+
+      return hinstance;
+
+   }
 
 
-}
+} // namespace windows
+
+
 
 ::file::path dir_ca2_module()
 {

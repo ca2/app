@@ -69,6 +69,8 @@ namespace innate_subsystem
 
       virtual bool setDefaultItem(unsigned int uID) = 0;
 
+      virtual void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const ::function< void(int) > & onCommand) = 0;
+
       // void operator= (MenuInterface * pmenu)
       // {
       //    setMenu(pmenu);
@@ -122,6 +124,9 @@ class CLASS_DECL_INNATE_SUBSYSTEM Menu :
       int findMenuItem(unsigned int uID) override;
 
       bool setDefaultItem(unsigned int uID) override;
+
+
+   void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(int)> &onCommand) override;
 
       // void operator= (MenuInterface * pmenu)
       // {

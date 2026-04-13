@@ -29,7 +29,7 @@
 #include "subsystem/_common_header.h"
 
 
-#include "innate_subsystem/gui/WindowProcHolder.h"
+//#include "innate_subsystem/gui/WindowProcHolder.h"
 
 namespace innate_subsystem
 {
@@ -44,15 +44,22 @@ namespace innate_subsystem
       //NotifyIconWindow();
       //virtual ~NotifyIconWindowInterface() = 0;
 
-      virtual ::operating_system::window getWindow() = 0;
+      //virtual ::operating_system::window getWindow() = 0;
 
-      virtual void setWindowProcHolder(WindowProcHolder *wph) = 0;
+      //virtual void setWindowProcHolder(WindowProcHolder *wph) = 0;
 
       //protected:
       //  HWND m_window;
       //WindowProcHolder *m_wph;
 
       //friend class NotifyIcon;
+
+      virtual void onNotifyIconRightButtonUp() = 0;
+      virtual void onNotifyIconLeftButtonDown() = 0;
+      virtual void onTaskBarCreated() = 0;
+
+
+
    };
 
 
@@ -65,13 +72,18 @@ namespace innate_subsystem
       NotifyIconWindow();
       ~NotifyIconWindow() override;
 
-      ::operating_system::window getWindow() override;
+      //::operating_system::window getWindow() override;
 
-      void setWindowProcHolder(WindowProcHolder *wph) override;
+      //void setWindowProcHolder(WindowProcHolder *wph) override;
 
       //protected:
       //  HWND m_window;
       //WindowProcHolder *m_wph;
+
+      virtual void onNotifyIconRightButtonUp() override;
+      virtual void onNotifyIconLeftButtonDown() override;
+      virtual void onTaskBarCreated() override;
+
 
       //friend class NotifyIcon;
    };

@@ -296,6 +296,14 @@ namespace innate_subsystem
 
       return m_pparticleThis->setDefaultItem(uID);
    }
+
+
+   void Menu::trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(int)> &onCommand)
+   {
+      m_pparticleThis->trackPopupMenuOnCursorPosition(pwindowNotify, onCommand);
+
+   }
+
 } // namespace innate_subsystem
 
 

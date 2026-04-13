@@ -92,12 +92,12 @@ void Dialog::setResourceId(unsigned int id)
 }
 
 
-ControlInterface *Dialog::getControl()
-{
-
-   return m_pparticleThis->getControl();
-
-}
+// ControlInterface *Dialog::getControl()
+// {
+//
+//    return m_pparticleThis->getControl();
+//
+// }
 
 
 void Dialog::setDefaultPushButton(unsigned int buttonId)
@@ -106,11 +106,11 @@ void Dialog::setDefaultPushButton(unsigned int buttonId)
    m_pparticleThis->setDefaultPushButton(buttonId);
 }
 
-void Dialog::setParent(ControlInterface *ctrlParent)
-{
-  //m_ctrlParent = ctrlParent;
-   m_pparticleThis->setParent(ctrlParent);
-}
+// void Dialog::setParent(ControlInterface *ctrlParent)
+// {
+//   //m_ctrlParent = ctrlParent;
+//    m_pparticleThis->setParent(ctrlParent);
+// }
 
 void Dialog::show()
 {

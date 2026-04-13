@@ -113,7 +113,7 @@ inline ::int_point lparam_as_point(LPARAM lparam)
 
 
 
-CLASS_DECL_ACME HINSTANCE hinstance_from_function(void *pFunc);
+CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
 
 
 

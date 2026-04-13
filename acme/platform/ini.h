@@ -32,7 +32,7 @@ namespace acme
 //#define FALSE 0
 //#endif
 
-CLASS_DECL_ACME bool WritePrivateProfileString(
+CLASS_DECL_ACME int WritePrivateProfileString(
                                 const char *lpAppName,
                                 const char *lpKeyName,
                                 const char *lpString,

@@ -216,12 +216,11 @@ namespace innate_subsystem
    }
 
 
-   void Window::setParent(const ::operating_system::window & operatingsystemwindow)
+   void Window::setParent(::innate_subsystem::WindowInterface * pwindowParent)
    {
       // _ASSERT(m_hWnd != 0);
       // SetParent(m_hWnd, hwnd);
-
-      m_pparticleThis->setParent(operatingsystemwindow);
+      m_pparticleThis->setParent(pwindowParent);
    }
 
 

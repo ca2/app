@@ -70,21 +70,78 @@ namespace innate_subsystem
 
       //DestroyWindow(m_window);
    }
+   //
+   // ::operating_system::window NotifyIconWindow::getWindow()
+   // {
+   //    //return m_window;
+   //    return m_pparticleThis->getWindow();
+   // // }
+   //
+   //
+   // bool NotifyIconWindow::on_window_procedure(lresult &lresult, unsigned int message, wparam wparam, lparam lparam)
+   // {
+   //
+   //    // Make sure to reset it back to false before leaving this function for any
+   //    // reason (check all return statements, exceptions should not happen here).
+   //    //m_inWindowProc = true;
+   //
+   //    switch (message) {
+   //       case WM_USER + 1:
+   //          switch (lparam.m_lparam) {
+   //          case ::user::e_message_right_button_up:
+   //                onNotifyIconRightButtonUp();
+   //                break;
+   //          case ::user::e_message_left_button_down:
+   //                onNotifyIconLeftButtonDown();
+   //                break;
+   //          } // switch (lParam)
+   //          break;
+   //       default:
+   //          if (message == WM_USER_TASKBAR) {
+   //             onTaskBarCreate();
+   //    }
+   //
+   //    return 0;
+   // }
 
-   ::operating_system::window NotifyIconWindow::getWindow()
+
+   void NotifyIconWindow::onNotifyIconRightButtonUp()
    {
-      //return m_window;
-      return m_pparticleThis->getWindow();
+
+
+
    }
 
-   void NotifyIconWindow::setWindowProcHolder(WindowProcHolder *wph)
+
+
+   void NotifyIconWindow::onNotifyIconLeftButtonDown()
    {
-      //m_wph = wph;
 
-      //SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
 
-      m_pparticleThis->setWindowProcHolder(wph);
+
    }
+
+
+
+   void NotifyIconWindow::onTaskBarCreated()
+   {
+
+
+
+   }
+
+
+
+
+
+   // void NotifyIconWindow::setWindowProcHolder(WindowProcHolder *wph)
+   // {
+   //    //m_wph = wph;
+   //
+   //    //SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
+   //
+   //    m_pparticleThis->setWindowProcHolder(wph);
+   // }
 } // namespace innate_subsystem
 
 

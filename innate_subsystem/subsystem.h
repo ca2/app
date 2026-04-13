@@ -26,6 +26,8 @@ namespace innate_subsystem
       ::pointer < ::innate_subsystem::resource_loader > m_presourceloader;
       ::pointer < ::innate_subsystem::SystemMetricsInterface > m_psystemmetrics;
 
+      ::map_base < ::operating_system::window, ::pointer < ::innate_subsystem::WindowInterface > > m_mapWindow;
+
       subsystem();
       ~subsystem() override;
 
@@ -43,6 +45,11 @@ namespace innate_subsystem
       virtual ::innate_subsystem::SystemMetricsInterface * metrics();
 
       virtual ::user::enum_key virtual_key_code_to_user_key(int iVirtualKeyCode);
+
+
+      virtual ::pointer < ::innate_subsystem::WindowInterface > getWindow(const ::operating_system::window & window);
+      virtual void setWindow(const ::operating_system::window & window, ::innate_subsystem::WindowInterface * pwindow);
+
 
    };
 

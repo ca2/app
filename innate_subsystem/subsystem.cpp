@@ -6,16 +6,18 @@
 #include "gui/SystemMetrics.h"
 #include "resource_loader.h"
 #include "acme/constant/user_key.h"
+#include "gui/Window.h"
 
 
 namespace innate_subsystem
 {
 
+   ::innate_subsystem::subsystem * subsystem::s_p = nullptr;
 
    subsystem::subsystem()
    {
 
-
+s_p = this;
 
    }
 
@@ -149,4 +151,19 @@ namespace innate_subsystem
 
    }
 
-}//namespace subsystem
+
+   ::pointer < ::innate_subsystem::WindowInterface > subsystem::getWindow(const ::operating_system::window & window)
+   {
+
+      return m_mapWindow[window];
+
+   }
+
+   void subsystem::setWindow(const ::operating_system::window & window, ::innate_subsystem::WindowInterface * pwindow)
+   {
+
+      m_mapWindow[window] = pwindow;
+
+   }
+
+}//namespace innate_subsystem

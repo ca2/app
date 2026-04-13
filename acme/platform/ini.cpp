@@ -556,7 +556,7 @@ static unsigned int wp_multisz_append(char *dst, unsigned int nSize, unsigned in
    Public API
    ============================================================ */
 
-int WritePrivateProfileStringA(
+int WritePrivateProfileString(
     const char *lpAppName,
     const char *lpKeyName,
     const char *lpString,
@@ -665,7 +665,7 @@ int WritePrivateProfileStringA(
     return TRUE;
 }
 
-unsigned int GetPrivateProfileStringA(
+unsigned int GetPrivateProfileString(
     const char *lpAppName,
     const char *lpKeyName,
     const char *lpDefault,
@@ -768,7 +768,7 @@ unsigned int GetPrivateProfileStringA(
     return wp_copy_cstr(lpReturnedString, nSize, lpDefault ? lpDefault : "");
 }
 
-unsigned int GetPrivateProfileIntA(
+unsigned int GetPrivateProfileInt(
     const char *lpAppName,
     const char *lpKeyName,
     int nDefault,
@@ -778,7 +778,7 @@ unsigned int GetPrivateProfileIntA(
     char *endptr;
     long v;
 
-    GetPrivateProfileStringA(lpAppName, lpKeyName, "", buf, (unsigned int)sizeof(buf), lpFileName);
+    GetPrivateProfileString(lpAppName, lpKeyName, "", buf, (unsigned int)sizeof(buf), lpFileName);
     if (buf[0] == '\0') return (unsigned int)nDefault;
 
     v = strtol(buf, &endptr, 0);
@@ -786,7 +786,7 @@ unsigned int GetPrivateProfileIntA(
     return (unsigned int)v;
 }
 
-unsigned int GetPrivateProfileSectionA(
+unsigned int GetPrivateProfileSection(
     const char *lpAppName,
     char *lpReturnedString,
     unsigned int nSize,
@@ -849,12 +849,12 @@ unsigned int GetPrivateProfileSectionA(
     return used ? (used - 1) : 0;
 }
 
-unsigned int GetPrivateProfileSectionNamesA(
+unsigned int GetPrivateProfileSectionNames(
     char *lpszReturnBuffer,
     unsigned int nSize,
     const char *lpFileName
 ) {
-    return GetPrivateProfileStringA(NULL, NULL, "", lpszReturnBuffer, nSize, lpFileName);
+    return GetPrivateProfileString(NULL, NULL, "", lpszReturnBuffer, nSize, lpFileName);
 }
 
 

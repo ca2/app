@@ -68,13 +68,13 @@ namespace innate_subsystem
       // Method closes dialog
       virtual void closeDialog(int code) = 0;
       // Method sets parent window
-      virtual void setParent(ControlInterface *ctrlParent) = 0;
+      //virtual void setParent(ControlInterface *ctrlParent) = 0;
       // Set resource name for dialog
       virtual void setResourceName(const char *resourceName) = 0;
       // Set resource id for dialog.
       virtual void setResourceId(unsigned int id) = 0;
       // Return
-      virtual ControlInterface *getControl() = 0;
+      //virtual ControlInterface *getControl() = 0;
       // Setup control by ID
       virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) = 0;
       // Icon manipulation
@@ -218,13 +218,13 @@ namespace innate_subsystem
       // Method closes dialog
       virtual void closeDialog(int code) override;
       // Method sets parent window
-      virtual void setParent(ControlInterface *ctrlParent) override;
+      //virtual void setParent(ControlInterface *ctrlParent) override;
       // Set resource name for dialog
       virtual void setResourceName(const char *resourceName) override;
       // Set resource id for dialog.
       virtual void setResourceId(unsigned int id) override;
       // Return
-      virtual ControlInterface *getControl() override;
+      //virtual ControlInterface *getControl() override;
       // Setup control by ID
       virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) override;
       // Icon manipulation

@@ -23,23 +23,23 @@
 //
 
 #pragma once
-
-#include "acme/_operating_system.h"
-
-class WindowProcHolder
-{
-public:
-  WindowProcHolder();
-  virtual ~WindowProcHolder();
-
-protected:
-  virtual LRESULT windowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam, bool *useDefWindowProc) = 0;
-
-  static LRESULT CALLBACK defWindowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
-
-  friend class NotifyIconWindow;
-};
-
-
-
-
+//
+// #include "acme/_operating_system.h"
+//
+// class WindowProcHolder
+// {
+// public:
+//   WindowProcHolder();
+//   virtual ~WindowProcHolder();
+//
+// protected:
+//   virtual LRESULT windowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam, bool *useDefWindowProc) = 0;
+//
+//   static LRESULT CALLBACK defWindowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+//
+//   friend class NotifyIconWindow;
+// };
+//
+//
+//
+//

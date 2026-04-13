@@ -75,7 +75,7 @@ namespace windows
    }
 
 
-   ::user::enum_key virtual_key_code_to_user_key(int iVirtualKey)
+   CLASS_DECL_ACME ::user::enum_key virtual_key_code_to_user_key(int iVirtualKey)
    {
 
       char ch;
@@ -217,3 +217,4 @@ CLASS_DECL_ACME HWND acme_get_main_hwnd()
    return s_hwndMain;
 
 }
+

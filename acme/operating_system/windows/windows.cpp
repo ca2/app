@@ -25,6 +25,23 @@ CLASS_DECL_ACME ::uptr duplicate_handle(const ::uptr & u)
 }
 
 
+CLASS_DECL_ACME HMODULE GetModuleFromFunction(void* pFunc);;
+
+CLASS_DECL_ACME hinstance hinstance_from_function(void * pVoid)
+{
+
+   HMODULE hmodule = GetModuleFromFunction(pVoid);
+
+   HINSTANCE hInstance  = (HINSTANCE) hmodule;
+
+   ::hinstance hinstance;
+
+   hinstance = hInstance;
+
+   return hinstance;
+
+
+}
 
 ::file::path dir_ca2_module()
 {
@@ -714,13 +731,13 @@ CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
 }
 
 
-CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
-{
-
-   return (HINSTANCE) GetModuleFromFunction(pFunc);
-
-}
-
+// CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
+// {
+//
+//    return (HINSTANCE) GetModuleFromFunction(pFunc);
+//
+// }
+//
 
 
 

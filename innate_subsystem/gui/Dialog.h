@@ -76,7 +76,7 @@ namespace innate_subsystem
       // Return
       //virtual ControlInterface *getControl() = 0;
       // Setup control by ID
-      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) = 0;
+      //virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) = 0;
       // Icon manipulation
       virtual void loadIcon(unsigned int id) = 0;
       virtual void updateIcon() = 0;
@@ -226,7 +226,7 @@ namespace innate_subsystem
       // Return
       //virtual ControlInterface *getControl() override;
       // Setup control by ID
-      virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) override;
+      //virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) override;
       // Icon manipulation
       virtual void loadIcon(unsigned int id) override;
       virtual void updateIcon() override;

@@ -38,11 +38,12 @@ namespace  innate_subsystem
       releaseDibSection();
    }
 
-   // void DibFrameBuffer::setTargetDC(HDC targetDC)
-   // {
-   //    checkDibValid();
-   //    m_pdibsection->setTargetDC(targetDC);
-   // }
+   void DibFrameBuffer::setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext)
+   {
+      checkDibValid();
+      m_pdibsection->setTargetDeviceContext(pdevicecontext);
+      //m_pdibsection->setTargetDC(targetDC);
+   }
 
    bool DibFrameBuffer::assignProperties(const FrameBuffer *srcFrameBuffer)
    {

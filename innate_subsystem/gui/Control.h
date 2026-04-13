@@ -66,7 +66,7 @@ namespace innate_subsystem
 
 
 
-      virtual void initialize_control(const ::operating_system::window & window) = 0;
+      //virtual void initialize_control(const ::operating_system::window & window) = 0;
 
       virtual void setWindow(const ::operating_system::window & window) = 0;
 
@@ -217,7 +217,7 @@ namespace innate_subsystem
    //    //
    //
    //    WNDPROC m_defWindowProc;
-      virtual void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) = 0;
+      //virtual void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) = 0;
    };
 
    //
@@ -244,7 +244,7 @@ namespace innate_subsystem
       // Sets HWND associated with this control
       //
 
-       void initialize_control(const ::operating_system::window & window) override;
+       //void initialize_control(const ::operating_system::window & window) override;
 
        void setWindow(const ::operating_system::window & window) override;
 
@@ -397,7 +397,7 @@ namespace innate_subsystem
    //
    //    WNDPROC m_defWindowProc;
 
-      void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) override;
+      //void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) override;
    };
 
 //#endif

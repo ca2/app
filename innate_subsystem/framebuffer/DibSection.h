@@ -58,7 +58,7 @@ namespace innate_subsystem
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
-      //void setTargetDC(HDC targetDC);
+      virtual void setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext) = 0;
 
       virtual void *getBuffer() = 0;
 
@@ -138,7 +138,7 @@ namespace innate_subsystem
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
-      //void setTargetDC(HDC targetDC);
+      void setTargetDeviceContext(innate_subsystem::DeviceContextInterface * pdevicecontext) override;
 
       void *getBuffer() override;
 

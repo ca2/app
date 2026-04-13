@@ -24,6 +24,8 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "DibSection.h"
+
+#include "drawing/DeviceContext.h"
 #include "subsystem/node/SystemException.h"
 
 
@@ -81,14 +83,15 @@ namespace innate_subsystem
 
     }
 
-//
-//    // void DibSection::setTargetDC(HDC targetDC)
-//    // {
-//    //    releaseTargetDC();
-//    //    m_isOwnTargetDC = false;
-//    //    m_targetDC = targetDC;
-//    // }
-//
+
+    void DibSection::setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext)
+    {
+      m_pparticleThis->setTargetDeviceContext(pdevicecontext);
+       // releaseTargetDC();
+       // m_isOwnTargetDC = false;
+       // m_targetDC = targetDC;
+    }
+
    void *DibSection::getBuffer()
    {
 //      return m_buffer;

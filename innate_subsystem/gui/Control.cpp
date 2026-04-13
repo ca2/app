@@ -60,11 +60,11 @@ Control::~Control()
 {
 }
 
-   void Control::initialize_control(const ::operating_system::window & operatingsystemwindow)
-//: m_hwnd(hwnd)
-{
-   m_pparticleThis->initialize_control(operatingsystemwindow);
-}
+//    void Control::initialize_control(const ::operating_system::window & operatingsystemwindow)
+// //: m_hwnd(hwnd)
+// {
+//    m_pparticleThis->initialize_control(operatingsystemwindow);
+// }
 
 void Control::setWindow(const ::operating_system::window & operatingsystemwindow)
 
@@ -263,12 +263,12 @@ void Control::subclassWindow()
 // }
 
 
-void Control::postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam)
-{
-
-   m_pparticleThis->postUserMessage(uMessage, wparam, lparam);
-
-}
+// void Control::postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam)
+// {
+//
+//    m_pparticleThis->postUserMessage(uMessage, wparam, lparam);
+//
+// }
 
 
 

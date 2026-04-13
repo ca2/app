@@ -236,6 +236,31 @@ namespace innate_subsystem
 
    }
 
+
+   void Window::subclassControlById(WindowInterface * pwindowControl, unsigned int id)
+   {
+
+      m_pparticleThis->subclassControlById(pwindowControl, id);
+
+   }
+
+
+   void Window::subclassWindow(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      m_pparticleThis->subclassWindow(operatingsystemwindow);
+
+   }
+
+
+   void Window::unsubclassWindow()
+   {
+
+      m_pparticleThis->unsubclassWindow();
+
+   }
+
+
    void Window::setClassStyle(unsigned int style)
    {
       // _ASSERT(m_hWnd != 0);

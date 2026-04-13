@@ -264,11 +264,11 @@ char *Dialog::getResouceName()
    return m_pparticleThis->getResouceName();
 }
 
-void Dialog::subclassControlById(ControlInterface * pcontrol, unsigned int id)
-{
-  // control = GetDlgItem(m_ctrlThis.getWindow(), id);
-   m_pparticleThis->subclassControlById(pcontrol, id);
-}
+// void Dialog::subclassControlById(ControlInterface * pcontrol, unsigned int id)
+// {
+//   // control = GetDlgItem(m_ctrlThis.getWindow(), id);
+//    m_pparticleThis->subclassControlById(pcontrol, id);
+// }
 
 void Dialog::updateIcon()
 {

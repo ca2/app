@@ -47,7 +47,7 @@ namespace innate_subsystem
       //
 
       virtual TabContainer &getTabs() = 0;
-      virtual int getTabCount() ;
+      virtual int getTabCount() = 0;
       virtual TabInterface *getTab(int index)= 0;
       virtual void addTab(DialogInterface *pdialog, const char *caption)= 0;
       virtual void showTab(int index) = 0;

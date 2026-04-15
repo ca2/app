@@ -88,7 +88,7 @@ namespace subsystem
    {
    public:
 
-       implement_compositeø(Shell)
+       implement_compositeø(Shell, shell)
 
 
 

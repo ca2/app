@@ -28,190 +28,198 @@
 
 namespace subsystem
 {
-   Process::Process()
-   // : m_hProcess(0),
-   //   m_hThread(0),
-   //   m_handlesIsInherited(false),
-   //   m_hStopWait(0),
-   //   m_stdIn(0),
-   //   m_stdOut(0),
-   //   m_stdErr(0)
-   {
-      //m_pparticleThis->initialize_process(path, scopedstrArgs);
-      // setFilename(path);
-      // setArguments(scopedstrArgs);
-      //
-      // m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
-   }
-   // Process::Process(const ::file::path & path, const ::scoped_string & scopedstrArgs)
-   // // : m_hProcess(0),
-   // //   m_hThread(0),
-   // //   m_handlesIsInherited(false),
-   // //   m_hStopWait(0),
-   // //   m_stdIn(0),
-   // //   m_stdOut(0),
-   // //   m_stdErr(0)
-   // {
-   //    m_pparticleThis->initialize_process(path, scopedstrArgs);
-   //    // setFilename(path);
-   //    // setArguments(scopedstrArgs);
-   //    //
-   //    // m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
-   // }
+   
+   
+   
+ //  
+ //  Process::Process()
+ //  // : m_hProcess(0),
+ //  //   m_hThread(0),
+ //  //   m_handlesIsInherited(false),
+ //  //   m_hStopWait(0),
+ //  //   m_stdIn(0),
+ //  //   m_stdOut(0),
+ //  //   m_stdErr(0)
+ //  {
+ //     //m_pparticleThis->initialize_process(path, scopedstrArgs);
+ //     // setFilename(path);
+ //     // setArguments(scopedstrArgs);
+ //     //
+ //     // m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
+ //  }
+ //  // Process::Process(const ::file::path & path, const ::scoped_string & scopedstrArgs)
+ //  // // : m_hProcess(0),
+ //  // //   m_hThread(0),
+ //  // //   m_handlesIsInherited(false),
+ //  // //   m_hStopWait(0),
+ //  // //   m_stdIn(0),
+ //  // //   m_stdOut(0),
+ //  // //   m_stdErr(0)
+ //  // {
+ //  //    m_pparticleThis->initialize_process(path, scopedstrArgs);
+ //  //    // setFilename(path);
+ //  //    // setArguments(scopedstrArgs);
+ //  //    //
+ //  //    // m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
+ //  // }
 
-   Process::~Process()
-   {
-      // cleanup();
-      //
-      // if (m_hStopWait) {
-      //    CloseHandle(m_hStopWait);
-      // }
-   }
-
-
-    void Process::initialize_process(const ::file::path & path, const ::scoped_string & scopedstrArgs)
-   // // : m_hProcess(0),
-   // //   m_hThread(0),
-   // //   m_handlesIsInherited(false),
-   // //   m_hStopWait(0),
-   // //   m_stdIn(0),
-   // //   m_stdOut(0),
-   // //   m_stdErr(0)
-    {
-       m_pparticleThis->initialize_process(path, scopedstrArgs);
-   //    // setFilename(path);
-   //    // setArguments(scopedstrArgs);
-   //    //
-   //    // m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
-   }
+ //  Process::~Process()
+ //  {
+ //     // cleanup();
+ //     //
+ //     // if (m_hStopWait) {
+ //     //    CloseHandle(m_hStopWait);
+ //     // }
+ //  }
 
 
-    void Process::setFilename(const ::scoped_string & scopedstrPath)
-    {
-       m_pparticleThis->setFilename(scopedstrPath);
-       //m_path= scopedstrPath;
-    }
+ //   void Process::initialize_process(const ::file::path & path, const ::scoped_string & scopedstrArgs)
+ //  // // : m_hProcess(0),
+ //  // //   m_hThread(0),
+ //  // //   m_handlesIsInherited(false),
+ //  // //   m_hStopWait(0),
+ //  // //   m_stdIn(0),
+ //  // //   m_stdOut(0),
+ //  // //   m_stdErr(0)
+ //   {
+ //      m_pparticleThis->initialize_process(path, scopedstrArgs);
+ //  //    // setFilename(path);
+ //  //    // setArguments(scopedstrArgs);
+ //  //    //
+ //  //    // m_hStopWait = CreateEvent(0, FALSE, FALSE, 0);
+ //  }
 
-    void Process::setArguments(const ::scoped_string & scopedstrArgs)
-    {
-       m_pparticleThis->setArguments(scopedstrArgs);
-       //m_args= scopedstrArgs;
-    }
 
-    void Process::setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr)
-    {
-      m_pparticleThis->setStandardIoHandles(stdIn, stdOut, stdErr);
-       //m_stdIn = stdIn;
-       //m_stdOut = stdOut;
-       //m_stdErr = stdErr;
-    }
+ //   void Process::setFilename(const ::scoped_string & scopedstrPath)
+ //   {
+ //      m_pparticleThis->setFilename(scopedstrPath);
+ //      //m_path= scopedstrPath;
+ //   }
 
-    void Process::setHandleInheritances(bool handlesIsInerited)
-    {
-       //m_handlesIsInherited = handlesIsInerited;
-       m_pparticleThis->setHandleInheritances(handlesIsInerited);
-    }
+ //   void Process::setArguments(const ::scoped_string & scopedstrArgs)
+ //   {
+ //      m_pparticleThis->setArguments(scopedstrArgs);
+ //      //m_args= scopedstrArgs;
+ //   }
 
-    // void Process::getStartupInfo(STARTUPINFO *sti)
-    // {
-    //    ZeroMemory(sti, sizeof(STARTUPINFO));
-    //    sti->cb = sizeof(STARTUPINFO);
-    //    sti->hStdError = m_stdErr;
-    //    sti->hStdInput = m_stdIn;
-    //    sti->hStdOutput = m_stdOut;
-    //    if (sti->hStdError != 0 || sti->hStdInput != 0 || sti->hStdOutput != 0) {
-    //       sti->dwFlags |= STARTF_USESTDHANDLES;
-    //    }
-    // }
+ //   void Process::setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr)
+ //   {
+ //     m_pparticleThis->setStandardIoHandles(stdIn, stdOut, stdErr);
+ //      //m_stdIn = stdIn;
+ //      //m_stdOut = stdOut;
+ //      //m_stdErr = stdErr;
+ //   }
 
-    void Process::start()
-    {
+ //   void Process::setHandleInheritances(bool handlesIsInerited)
+ //   {
+ //      //m_handlesIsInherited = handlesIsInerited;
+ //      m_pparticleThis->setHandleInheritances(handlesIsInerited);
+ //   }
 
-       m_pparticleThis->start();
-       // cleanup();
-       //
-       // STARTUPINFO sti;
-       // getStartupInfo(&sti);
-       // PROCESS_INFORMATION pi;
-       //
-       // ::string commandLine = getCommandLineString();
-       //
-       // _ASSERT(!commandLine.is_empty());
-       // if (CreateProcess(NULL, (LPTSTR) ::wstring(commandLine).c_str(),
-       //                   NULL, NULL, m_handlesIsInherited, NULL, NULL, NULL,
-       //                   &sti, &pi) == 0) {
-       //    throw SystemException();
-       //                   }
-       //
-       // m_hThread = pi.hThread;
-       // m_hProcess = pi.hProcess;
-    }
+ //   // void Process::getStartupInfo(STARTUPINFO *sti)
+ //   // {
+ //   //    ZeroMemory(sti, sizeof(STARTUPINFO));
+ //   //    sti->cb = sizeof(STARTUPINFO);
+ //   //    sti->hStdError = m_stdErr;
+ //   //    sti->hStdInput = m_stdIn;
+ //   //    sti->hStdOutput = m_stdOut;
+ //   //    if (sti->hStdError != 0 || sti->hStdInput != 0 || sti->hStdOutput != 0) {
+ //   //       sti->dwFlags |= STARTF_USESTDHANDLES;
+ //   //    }
+ //   // }
 
-    void Process::kill()
-    {
-       //if (TerminateProcess(m_hProcess, 0) == 0) {
- //         throw SystemException();
-   //    }
+ //   void Process::start()
+ //   {
 
-          m_pparticleThis->kill();
-    }
+ //      m_pparticleThis->start();
+ //      // cleanup();
+ //      //
+ //      // STARTUPINFO sti;
+ //      // getStartupInfo(&sti);
+ //      // PROCESS_INFORMATION pi;
+ //      //
+ //      // ::string commandLine = getCommandLineString();
+ //      //
+ //      // _ASSERT(!commandLine.is_empty());
+ //      // if (CreateProcess(NULL, (LPTSTR) ::wstring(commandLine).c_str(),
+ //      //                   NULL, NULL, m_handlesIsInherited, NULL, NULL, NULL,
+ //      //                   &sti, &pi) == 0) {
+ //      //    throw SystemException();
+ //      //                   }
+ //      //
+ //      // m_hThread = pi.hThread;
+ //      // m_hProcess = pi.hProcess;
+ //   }
 
-    void Process::waitForExit()
-    {
+ //   void Process::kill()
+ //   {
+ //      //if (TerminateProcess(m_hProcess, 0) == 0) {
+ ////         throw SystemException();
+ //  //    }
 
-       m_pparticleThis->waitForExit();
-       //HANDLE handleArray[2] = { m_hProcess, m_hStopWait };
+ //         m_pparticleThis->kill();
+ //   }
 
-       //WaitForMultipleObjects(2, handleArray, FALSE, INFINITE);
-    }
+ //   void Process::waitForExit()
+ //   {
 
-    void Process::stopWait()
-    {
-       m_pparticleThis->stopWait();
-       //SetEvent(m_hStopWait);
-    }
+ //      m_pparticleThis->waitForExit();
+ //      //HANDLE handleArray[2] = { m_hProcess, m_hStopWait };
 
-    unsigned int Process::getExitCode()   {
+ //      //WaitForMultipleObjects(2, handleArray, FALSE, INFINITE);
+ //   }
 
-       return m_pparticleThis->getExitCode();
-       // DWORD exitCode;
-       //
-       // if (GetExitCodeProcess(m_hProcess, &exitCode) == 0) {
-       //    throw SystemException();
-       // }
-       //
-       // return exitCode;
-    }
+ //   void Process::stopWait()
+ //   {
+ //      m_pparticleThis->stopWait();
+ //      //SetEvent(m_hStopWait);
+ //   }
 
-    ProcessHandleInterface * Process::getProcessHandle()
-     {
-        return m_pparticleThis->getProcessHandle();
-     }
+ //   unsigned int Process::getExitCode()   {
 
-    ::string Process::getCommandLineString()
-    {
-       return m_pparticleThis->getCommandLineString();
-       // ::string result;
-       //
-       // if (m_args.is_empty()) {
-       //    return m_path;
-       // }
-       //
-       // result.formatf("{} {}", m_path, m_args);
-       //
-       // return result;
-    }
+ //      return m_pparticleThis->getExitCode();
+ //      // DWORD exitCode;
+ //      //
+ //      // if (GetExitCodeProcess(m_hProcess, &exitCode) == 0) {
+ //      //    throw SystemException();
+ //      // }
+ //      //
+ //      // return exitCode;
+ //   }
 
-    void Process::cleanup()
-    {
-       m_pparticleThis->cleanup();
-       // if (m_hProcess) {
-       //    CloseHandle(m_hProcess);
-       //    m_hProcess = 0;
-       // }
-       // if (m_hThread) {
-       //    CloseHandle(m_hThread);
-       //    m_hThread = 0;
-       // }
-   }
+ //   ProcessHandleInterface * Process::getProcessHandle()
+ //    {
+ //       return m_pparticleThis->getProcessHandle();
+ //    }
+
+ //   ::string Process::getCommandLineString()
+ //   {
+ //      return m_pparticleThis->getCommandLineString();
+ //      // ::string result;
+ //      //
+ //      // if (m_args.is_empty()) {
+ //      //    return m_path;
+ //      // }
+ //      //
+ //      // result.formatf("{} {}", m_path, m_args);
+ //      //
+ //      // return result;
+ //   }
+
+ //   void Process::cleanup()
+ //   {
+ //      m_pparticleThis->cleanup();
+ //      // if (m_hProcess) {
+ //      //    CloseHandle(m_hProcess);
+ //      //    m_hProcess = 0;
+ //      // }
+ //      // if (m_hThread) {
+ //      //    CloseHandle(m_hThread);
+ //      //    m_hThread = 0;
+ //      // }
+ //  }
+
+
+
+
 } // namespace subsystem

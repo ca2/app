@@ -21,41 +21,65 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
 
 
 //#include "remoting/remoting_common/region/::int_point.h"
 #include "subsystem/_common_header.h"
 
+
 namespace subsystem
 {
 
-class CursorInterface :
-   virtual public particle_interface<CursorInterface>
-{
-public:
- //Cursor();
-   //virtual ~CursorInterface() = 0;
 
-  virtual ::int_point getCursorPos() const = 0;
-
-
-};
-
-
-   class CLASS_DECL_SUBSYSTEM Cursor :
-   virtual public composite<CursorInterface>
+   class CursorSlice :
+      virtual public ::particle_base
    {
    public:
-      Cursor();
-      ~Cursor() override;
+
+      //Cursor();
+      //virtual ~CursorInterface() = 0;
+
+      virtual ::int_point getCursorPos() const = 0;
+
+
+   };
+
+
+   using CursorInterface = particle_interface<CursorSlice>;
+
+
+   class CLASS_DECL_SUBSYSTEM CursorComposite :
+   virtual public composite<CursorSlice>
+   {
+   public:
+
+
+      implement_compositeø(Cursor, cursor)
+
+
+      //Cursor();
+      //~Cursor() override;
+
 
       ::int_point getCursorPos() const override;
 
 
    };
 
-//// __WINCURSOR_H__
-///
+
+   class CLASS_DECL_SUBSYSTEM Cursor : 
+      virtual public aggregate<CursorComposite>
+   {
+   public:
+
+      
+      implement_baseø(Cursor);
+
+
+   };
+
+
 } // namespace subsystem
+
+

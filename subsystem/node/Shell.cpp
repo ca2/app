@@ -28,53 +28,59 @@
 
 namespace subsystem
 {
-   Shell::Shell()
-   {
-   }
+   
+   
+   //
+   //Shell::Shell()
+   //{
+   //}
 
 
-   Shell::~Shell()
-   {
+   //Shell::~Shell()
+   //{
 
 
-   }
+   //}
 
 
 
-   void Shell::runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters)
-   {
-      m_pparticleThis->runAsAdmin(pathToFile, scopedstrParameters);
-      // SHELLEXECUTEINFO sei;
-      //
-      // ZeroMemory(&sei, sizeof(sei));
-      //
-      // ::wstring wstrPath(pathToFile.windows_path());
-      // ::wstring wstrArgs(scopedstrParameters);
-      //
-      // sei.cbSize = sizeof(SHELLEXECUTEINFOW);
-      // sei.hwnd = 0;
-      // sei.fMask = SEE_MASK_FLAG_NO_UI | SEE_MASK_NOCLOSEPROCESS;
-      // sei.lpVerb = L"runas";
-      // sei.lpFile = wstrPath;
-      // sei.lpParameters = wstrArgs;
-      // sei.nShow = SW_SHOWNORMAL;
-      //
-      // if (ShellExecuteEx(&sei) == FALSE) {
-      //    throw SystemException();
-      // }
-      //
-      // WaitForSingleObject(sei.hProcess, INFINITE);
-      //
-      // CloseHandle(sei.hProcess);
-   }
+   //void Shell::runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters)
+   //{
+   //   m_pparticleThis->runAsAdmin(pathToFile, scopedstrParameters);
+   //   // SHELLEXECUTEINFO sei;
+   //   //
+   //   // ZeroMemory(&sei, sizeof(sei));
+   //   //
+   //   // ::wstring wstrPath(pathToFile.windows_path());
+   //   // ::wstring wstrArgs(scopedstrParameters);
+   //   //
+   //   // sei.cbSize = sizeof(SHELLEXECUTEINFOW);
+   //   // sei.hwnd = 0;
+   //   // sei.fMask = SEE_MASK_FLAG_NO_UI | SEE_MASK_NOCLOSEPROCESS;
+   //   // sei.lpVerb = L"runas";
+   //   // sei.lpFile = wstrPath;
+   //   // sei.lpParameters = wstrArgs;
+   //   // sei.nShow = SW_SHOWNORMAL;
+   //   //
+   //   // if (ShellExecuteEx(&sei) == FALSE) {
+   //   //    throw SystemException();
+   //   // }
+   //   //
+   //   // WaitForSingleObject(sei.hProcess, INFINITE);
+   //   //
+   //   // CloseHandle(sei.hProcess);
+   //}
 
-   void Shell::open(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrworkDirectory)
-   {
-      m_pparticleThis->open(scopedstrFile, scopedstrParameters, scopedstrworkDirectory);
-      // int ret = (int)ShellExecute(0, L"open", ::wstring(scopedstrFile), ::wstring(scopedstrParameters), ::wstring(scopedstrworkDirectory), SW_SHOW);
-      //
-      // if (ret <= 32) {
-      //    throw SystemException(ret);
-      // }
-   }
+   //void Shell::open(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParameters, const ::scoped_string & scopedstrworkDirectory)
+   //{
+   //   m_pparticleThis->open(scopedstrFile, scopedstrParameters, scopedstrworkDirectory);
+   //   // int ret = (int)ShellExecute(0, L"open", ::wstring(scopedstrFile), ::wstring(scopedstrParameters), ::wstring(scopedstrworkDirectory), SW_SHOW);
+   //   //
+   //   // if (ret <= 32) {
+   //   //    throw SystemException(ret);
+   //   // }
+   //}
+
+
+
 } // namespace subsystem

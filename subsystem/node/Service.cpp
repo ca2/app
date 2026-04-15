@@ -33,140 +33,146 @@
 
 namespace subsystem
 {
-   Service *Service::g_pservice = 0;
+   
+   
+ //  
+ //  Service *Service::g_pservice = 0;
 
-   // void WINAPI Service::ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv)
-   // {
-   //   g_service->m_statusHandle = RegisterServiceCtrlHandler(::wstring(g_service->m_name),
-   //                                                          &Service::ServiceControlHandler);
-   //
-   //   if (!g_service->m_statusHandle) {
-   //     throw SystemException();
-   //   }
-   //
-   //   g_service->m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
-   //   g_service->m_status.dwServiceSpecificExitCode = 0;
-   //
-   //   try {
-   //     g_service->onStart();
-   //   } catch (::subsystem::Exception &) {
-   //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-   //     // TODO: Report to ServiceControlManageranager about critical error.
-   //   }
-   //
-   //   g_service->reportStatus(SERVICE_RUNNING, NO_ERROR, 0);
-   //
-   //   try {
-   //     g_service->main();
-   //   } catch (::subsystem::Exception &) {
-   //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-   //     // TODO: Report to ServiceControlManageranager about critical error.
-   //   }
-   //
-   //   g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
-   // }
-   //
-   // void WINAPI Service::ServiceControlHandler(DWORD dwCtrlCode)
-   // {
-   //   if (dwCtrlCode == SERVICE_CONTROL_STOP) {
-   //     Service::g_service->reportStatus(SERVICE_STOP_PENDING, NO_ERROR, 0);
-   //
-   //     Service::g_service->onStop();
-   //   }
-   // }
+ //  // void WINAPI Service::ServiceMain(DWORD dwArgc, LPTSTR *lpszArgv)
+ //  // {
+ //  //   g_service->m_statusHandle = RegisterServiceCtrlHandler(::wstring(g_service->m_name),
+ //  //                                                          &Service::ServiceControlHandler);
+ //  //
+ //  //   if (!g_service->m_statusHandle) {
+ //  //     throw SystemException();
+ //  //   }
+ //  //
+ //  //   g_service->m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
+ //  //   g_service->m_status.dwServiceSpecificExitCode = 0;
+ //  //
+ //  //   try {
+ //  //     g_service->onStart();
+ //  //   } catch (::subsystem::Exception &) {
+ //  //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
+ //  //     // TODO: Report to ServiceControlManageranager about critical error.
+ //  //   }
+ //  //
+ //  //   g_service->reportStatus(SERVICE_RUNNING, NO_ERROR, 0);
+ //  //
+ //  //   try {
+ //  //     g_service->main();
+ //  //   } catch (::subsystem::Exception &) {
+ //  //     g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
+ //  //     // TODO: Report to ServiceControlManageranager about critical error.
+ //  //   }
+ //  //
+ //  //   g_service->reportStatus(SERVICE_STOPPED, NO_ERROR, 0);
+ //  // }
+ //  //
+ //  // void WINAPI Service::ServiceControlHandler(DWORD dwCtrlCode)
+ //  // {
+ //  //   if (dwCtrlCode == SERVICE_CONTROL_STOP) {
+ //  //     Service::g_service->reportStatus(SERVICE_STOP_PENDING, NO_ERROR, 0);
+ //  //
+ //  //     Service::g_service->onStop();
+ //  //   }
+ //  // }
 
-   bool Service::reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode, unsigned int dwWaitHint)
-   {
-      return m_pparticleThis->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);
-      // }
-      //   if (dwCurrentState == SERVICE_START_PENDING) {
-      //     m_status.dwControlsAccepted = 0;
-      //   } else {
-      //     m_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;
-      //   }
-      //
-      //   m_status.dwCurrentState = dwCurrentState;
-      //   m_status.dwWin32ExitCode = dwWin32ExitCode;
-      //   m_status.dwWaitHint = dwWaitHint;
-      //
-      //   if ((dwCurrentState == SERVICE_RUNNING) || (dwCurrentState == SERVICE_STOPPED)) {
-      //     m_status.dwCheckPoint = 0;
-      //   } else {
-      //     m_status.dwCheckPoint++;
-      //   }
-      //
-      //   return SetServiceStatus(m_statusHandle, &m_status) == TRUE;
-   }
+ //  bool Service::reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode, unsigned int dwWaitHint)
+ //  {
+ //     return m_pparticleThis->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);
+ //     // }
+ //     //   if (dwCurrentState == SERVICE_START_PENDING) {
+ //     //     m_status.dwControlsAccepted = 0;
+ //     //   } else {
+ //     //     m_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;
+ //     //   }
+ //     //
+ //     //   m_status.dwCurrentState = dwCurrentState;
+ //     //   m_status.dwWin32ExitCode = dwWin32ExitCode;
+ //     //   m_status.dwWaitHint = dwWaitHint;
+ //     //
+ //     //   if ((dwCurrentState == SERVICE_RUNNING) || (dwCurrentState == SERVICE_STOPPED)) {
+ //     //     m_status.dwCheckPoint = 0;
+ //     //   } else {
+ //     //     m_status.dwCheckPoint++;
+ //     //   }
+ //     //
+ //     //   return SetServiceStatus(m_statusHandle, &m_status) == TRUE;
+ //  }
 
-   // Service::Service(const ::scoped_string & scopedstrName)
-   // {
-   //   _ASSERT(Service::g_service == NULL);
-   //
-   //   Service::g_service = this;
-   //
-   //   m_name= scopedstrName;
-   // }
-
-
-
-   Service::~Service()
-   {
-      Service::g_pservice = nullptr;
-   }
+ //  // Service::Service(const ::scoped_string & scopedstrName)
+ //  // {
+ //  //   _ASSERT(Service::g_service == NULL);
+ //  //
+ //  //   Service::g_service = this;
+ //  //
+ //  //   m_name= scopedstrName;
+ //  // }
 
 
-   void Service::initialize_service(const scoped_string& scopedstr)
-   {
-      m_pparticleThis->initialize_service(scopedstr);
-   }
+
+ //  Service::~Service()
+ //  {
+ //     Service::g_pservice = nullptr;
+ //  }
 
 
-   // const scoped_string& scopedstrName)
-   // {
-   //
-   // }
-
-   void Service::run()
-   {
-
-      m_pparticleThis->run();
-      //}
-      // TCHAR name[1024];
-      //
-      // _tcscpy_s(name, 1024, ::wstring(m_name));
-      //
-      // SERVICE_TABLE_ENTRY dispatchTable[] =  {{name, (LPSERVICE_MAIN_FUNCTION)ServiceMain }, { NULL, NULL }};
-      //
-      // if (!StartServiceCtrlDispatcher(dispatchTable)) {
-      //   throw SystemException();
-      // }
-   }
+ //  void Service::initialize_service(const scoped_string& scopedstr)
+ //  {
+ //     m_pparticleThis->initialize_service(scopedstr);
+ //  }
 
 
-   /**
- * Called from service control manager when service needs to start.
- */
-   void Service::onStart()
-   {
+ //  // const scoped_string& scopedstrName)
+ //  // {
+ //  //
+ //  // }
+
+ //  void Service::run()
+ //  {
+
+ //     m_pparticleThis->run();
+ //     //}
+ //     // TCHAR name[1024];
+ //     //
+ //     // _tcscpy_s(name, 1024, ::wstring(m_name));
+ //     //
+ //     // SERVICE_TABLE_ENTRY dispatchTable[] =  {{name, (LPSERVICE_MAIN_FUNCTION)ServiceMain }, { NULL, NULL }};
+ //     //
+ //     // if (!StartServiceCtrlDispatcher(dispatchTable)) {
+ //     //   throw SystemException();
+ //     // }
+ //  }
 
 
-   }
-   /**
-    * Service main.
-    */
-   void Service::main()
-   {
+ //  /**
+ //* Called from service control manager when service needs to start.
+ //*/
+ //  void Service::onStart()
+ //  {
 
 
-   }
-   /**
-    * Called from service control manager when service needs to stop/
-    */
-   void Service::onStop()
-   {
+ //  }
+ //  /**
+ //   * Service main.
+ //   */
+ //  void Service::main()
+ //  {
 
 
-   }
+ //  }
+ //  /**
+ //   * Called from service control manager when service needs to stop/
+ //   */
+ //  void Service::onStop()
+ //  {
+
+
+ //  }
+
+
+
 
 } // namespace subsystem
 

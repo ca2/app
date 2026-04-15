@@ -39,7 +39,7 @@ namespace subsystem
       /**
     * Enables you to start and stop local processes.
     */
-   class ProcessInterfaceSlice :
+   class ProcessSlice :
       virtual public ::particle_base
    {
    public:

@@ -109,89 +109,93 @@ namespace subsystem
    //}
 
 
-   OperatingSystemHook::OperatingSystemHook()
-   {
+   //OperatingSystemHook::OperatingSystemHook()
+   //{
 
-   }
-
-
-   OperatingSystemHook::~OperatingSystemHook()
-   {
-      //unregisterKeyboardHook(0);
-   }
+   //}
 
 
-   void OperatingSystemHook::startKeyboardHook()
-   {
-
-      m_pparticleThis->startKeyboardHook();
-
-   }
+   //OperatingSystemHook::~OperatingSystemHook()
+   //{
+   //   //unregisterKeyboardHook(0);
+   //}
 
 
-   void OperatingSystemHook::stopKeyboardHook()
-   {
+   //void OperatingSystemHook::startKeyboardHook()
+   //{
 
-      m_pparticleThis->stopKeyboardHook();
+   //   m_pparticleThis->startKeyboardHook();
 
-   }
+   //}
 
-   void OperatingSystemHook::registerKeyboardHook(::subsystem::OperatingSystemHookListener* phooklistener)
-   {
 
-      m_pparticleThis->registerKeyboardHook(phooklistener);
+   //void OperatingSystemHook::stopKeyboardHook()
+   //{
 
-            }
-   //
-   //    // Unregistration of keyboard hook.
-            void OperatingSystemHook::unregisterKeyboardHook(
-               ::subsystem::OperatingSystemHookListener *phooklistener)
-            {
+   //   m_pparticleThis->stopKeyboardHook();
 
-               m_pparticleThis->unregisterKeyboardHook(phooklistener);
-            }
+   //}
 
-   // }
-   // LRESULT CALLBACK WinHooks::lowLevelKeyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
-   // {
-   //   if (nCode < 0) {
-   //     return CallNextHookEx(s_hooks, nCode, wParam, lParam);
-   //   }
-   //   if (s_eventListener->onHookProc(nCode, wParam, lParam)) {
-   //     // Processing is successful. Don't pass it to the next hook procedure.
-   //     return true;
-   //   } else {
-   //     // Calling the CallNextHookEx function to chain to the next hook procedure.
-   //     return CallNextHookEx(s_hooks, nCode, wParam, lParam);
-   //   }
-   // }
-   //
-   // void WinHooks::registerKeyboardHook(HookEventListener *hookEventListener)
-   // {
-   //   unregisterKeyboardHook(0);
-   //   s_eventListener = hookEventListener;
-   //   HINSTANCE hinst = GetModuleHandle(0);
-   //   s_hooks = SetWindowsHookEx(WH_KEYBOARD_LL, lowLevelKeyboardHook, hinst, 0);
-   //   if (s_hooks == NULL) {
-   //     throw SystemException("Unnable to set hooks");
-   //   }
-   // }
-   //
-   // void WinHooks::unregisterKeyboardHook(HookEventListener *hookEventListener)
-   // {
-   //   if (s_hooks != 0) {
-   //     UnhookWindowsHookEx(s_hooks);
-   //   }
-   //   s_hooks = 0;
-   //   s_eventListener = 0;
-   // }
+   //void OperatingSystemHook::registerKeyboardHook(::subsystem::OperatingSystemHookListener* phooklistener)
+   //{
 
-   bool OperatingSystemHook::operating_system_hook_on_keyboard_message(::lresult& lresult, ::user::enum_message emessage,
-      int iVkCode, ::lparam lparam)
-   {
+   //   m_pparticleThis->registerKeyboardHook(phooklistener);
 
-      return false;
+   //         }
+   ////
+   ////    // Unregistration of keyboard hook.
+   //         void OperatingSystemHook::unregisterKeyboardHook(
+   //            ::subsystem::OperatingSystemHookListener *phooklistener)
+   //         {
 
-   }
+   //            m_pparticleThis->unregisterKeyboardHook(phooklistener);
+   //         }
+
+   //// }
+   //// LRESULT CALLBACK WinHooks::lowLevelKeyboardHook(int nCode, WPARAM wParam, LPARAM lParam)
+   //// {
+   ////   if (nCode < 0) {
+   ////     return CallNextHookEx(s_hooks, nCode, wParam, lParam);
+   ////   }
+   ////   if (s_eventListener->onHookProc(nCode, wParam, lParam)) {
+   ////     // Processing is successful. Don't pass it to the next hook procedure.
+   ////     return true;
+   ////   } else {
+   ////     // Calling the CallNextHookEx function to chain to the next hook procedure.
+   ////     return CallNextHookEx(s_hooks, nCode, wParam, lParam);
+   ////   }
+   //// }
+   ////
+   //// void WinHooks::registerKeyboardHook(HookEventListener *hookEventListener)
+   //// {
+   ////   unregisterKeyboardHook(0);
+   ////   s_eventListener = hookEventListener;
+   ////   HINSTANCE hinst = GetModuleHandle(0);
+   ////   s_hooks = SetWindowsHookEx(WH_KEYBOARD_LL, lowLevelKeyboardHook, hinst, 0);
+   ////   if (s_hooks == NULL) {
+   ////     throw SystemException("Unnable to set hooks");
+   ////   }
+   //// }
+   ////
+   //// void WinHooks::unregisterKeyboardHook(HookEventListener *hookEventListener)
+   //// {
+   ////   if (s_hooks != 0) {
+   ////     UnhookWindowsHookEx(s_hooks);
+   ////   }
+   ////   s_hooks = 0;
+   ////   s_eventListener = 0;
+   //// }
+
+   //bool OperatingSystemHook::operating_system_hook_on_keyboard_message(::lresult& lresult, ::user::enum_message emessage,
+   //   int iVkCode, ::lparam lparam)
+   //{
+
+   //   return false;
+
+   //}
+
 
 } // nanamespace subsystem
+
+
+

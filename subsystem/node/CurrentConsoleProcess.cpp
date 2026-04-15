@@ -33,78 +33,81 @@
 
 namespace subsystem
 {
-   CurrentConsoleProcess::CurrentConsoleProcess()
-   {
 
-   //   initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
-   }
-   // CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
+
+   //CurrentConsoleProcess::CurrentConsoleProcess()
+   //{
+
+   ////   initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
+   //}
+   //// CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
+   //// {
+   ////
+   ////    initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
+   //// }
+   ////
+   //CurrentConsoleProcess::~CurrentConsoleProcess()
+   //{
+   //}
+   //// CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
+   //// : Process(scopedstrPath, scopedstrArgs),
+   ////   m_plogwriter(plogwriter),
+   ////   m_connectRdpSession(connectRdpSession)
+   //// {
+   //// }
+
+   // void CurrentConsoleProcess::start()
    // {
-   //
-   //    initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
+
+   //    m_pparticleThis->start();
+
+   //    // cleanup();
+   //    //
+   //    // m_plogwriter->information("Try to start \"{} {}\" process",
+   //    //   m_path,
+   //    //   m_args);
+   //    //
+   //    // DWORD uiAccess  = 1; // Nonzero enables UI control
+   //    // PROCESS_INFORMATION pi;
+   //    // STARTUPINFO sti;
+   //    // getStartupInfo(&sti);
+   //    //
+   //    // m_plogwriter->debug("sti: cb = {}, hStdError = %p, hStdInput = %p,"
+   //    //            " hStdOutput = %p, dwFlags = %u",
+   //    //            (unsigned int)sti.cb,
+   //    //            (void *)sti.hStdError,
+   //    //            (void *)sti.hStdInput,
+   //    //            (void *)sti.hStdOutput,
+   //    //            (unsigned int)sti.dwFlags);
+   //    //
+   //    // try {
+   //    //    HANDLE userToken = WTS::duplicateCurrentProcessUserToken(m_connectRdpSession, m_plogwriter);
+   //    //
+   //    //    ::string commandLine = getCommandLineString();
+   //    //
+   //    //    m_plogwriter->debug("Try CreateProcessAsUser({} 0, {}, 0, 0, {}, NORMAL_PRIORITY_CLASS, 0, 0,"
+   //    //               " sti, pi)",
+   //    //               (void *)userToken, commandLine,
+   //    //               (int)m_handlesIsInherited);
+   //    //    if (CreateProcessAsUser(userToken, 0, (LPTSTR)::wstring(commandLine).c_str(),
+   //    //      0, 0, m_handlesIsInherited, NORMAL_PRIORITY_CLASS, 0, 0, &sti,
+   //    //      &pi) == 0) {
+   //    //       throw SystemException();
+   //    //      }
+   //    //    m_plogwriter->information("Created \"{}\" process", commandLine);
+   //    //    //
+   //    //    // FIXME: Leak.
+   //    //    //
+   //    //    CloseHandle(userToken);
+   //    // } catch (SystemException &sysEx) {
+   //    //    m_plogwriter->error("Failed to start process with {} error", sysEx.getErrorCode());
+   //    //    throw;
+   //    // }
+   //    //
+   //    // m_hThread = pi.hThread;
+   //    // m_hProcess = pi.hProcess;
    // }
-   //
-   CurrentConsoleProcess::~CurrentConsoleProcess()
-   {
-   }
-   // CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
-   // : Process(scopedstrPath, scopedstrArgs),
-   //   m_plogwriter(plogwriter),
-   //   m_connectRdpSession(connectRdpSession)
-   // {
-   // }
 
-    void CurrentConsoleProcess::start()
-    {
-
-       m_pparticleThis->start();
-
-       // cleanup();
-       //
-       // m_plogwriter->information("Try to start \"{} {}\" process",
-       //   m_path,
-       //   m_args);
-       //
-       // DWORD uiAccess  = 1; // Nonzero enables UI control
-       // PROCESS_INFORMATION pi;
-       // STARTUPINFO sti;
-       // getStartupInfo(&sti);
-       //
-       // m_plogwriter->debug("sti: cb = {}, hStdError = %p, hStdInput = %p,"
-       //            " hStdOutput = %p, dwFlags = %u",
-       //            (unsigned int)sti.cb,
-       //            (void *)sti.hStdError,
-       //            (void *)sti.hStdInput,
-       //            (void *)sti.hStdOutput,
-       //            (unsigned int)sti.dwFlags);
-       //
-       // try {
-       //    HANDLE userToken = WTS::duplicateCurrentProcessUserToken(m_connectRdpSession, m_plogwriter);
-       //
-       //    ::string commandLine = getCommandLineString();
-       //
-       //    m_plogwriter->debug("Try CreateProcessAsUser({} 0, {}, 0, 0, {}, NORMAL_PRIORITY_CLASS, 0, 0,"
-       //               " sti, pi)",
-       //               (void *)userToken, commandLine,
-       //               (int)m_handlesIsInherited);
-       //    if (CreateProcessAsUser(userToken, 0, (LPTSTR)::wstring(commandLine).c_str(),
-       //      0, 0, m_handlesIsInherited, NORMAL_PRIORITY_CLASS, 0, 0, &sti,
-       //      &pi) == 0) {
-       //       throw SystemException();
-       //      }
-       //    m_plogwriter->information("Created \"{}\" process", commandLine);
-       //    //
-       //    // FIXME: Leak.
-       //    //
-       //    CloseHandle(userToken);
-       // } catch (SystemException &sysEx) {
-       //    m_plogwriter->error("Failed to start process with {} error", sysEx.getErrorCode());
-       //    throw;
-       // }
-       //
-       // m_hThread = pi.hThread;
-       // m_hProcess = pi.hProcess;
-    }
 
 } // namespace subsystem
 

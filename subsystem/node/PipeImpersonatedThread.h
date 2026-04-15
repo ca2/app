@@ -96,8 +96,8 @@ namespace subsystem
 
 
 
-   class CLASS_DECL_SUBSYSTEM AnonymousPipe :
-      virtual public aggregate < PipeImpersonatedThread, Thread >
+   class CLASS_DECL_SUBSYSTEM PipeImpersonatedThread
+       : virtual public aggregate<PipeImpersonatedThreadComposite, Thread>
    {
    public:
 

@@ -31,70 +31,77 @@
 
 namespace subsystem
 {
-   EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory()
-   //: m_bufferSize(bufferSize),
-     //m_plogwriter(plogwriter)
-   {
-      //initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
-   }
-   // EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter)
-   // //: m_bufferSize(bufferSize),
-   //   //m_plogwriter(plogwriter)
-   // {
-   //    initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
-   // }
-
-   EmulatedAnonymousPipeFactory::~EmulatedAnonymousPipeFactory()
-   {
-   }
-
-   void EmulatedAnonymousPipeFactory::initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter)
-//: m_bufferSize(bufferSize),
-  //m_plogwriter(plogwriter)
-{
-      m_pparticleThis->initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
-}
 
 
-   void EmulatedAnonymousPipeFactory::generatePipes(::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
-                                                    ::pointer < NamedPipeInterface > & clientPipe, bool clientInheritable)
-   {
-      m_pparticleThis->generatePipes(serverPipe, serverInheritable, clientPipe, clientInheritable);
-      // SecurityAttributes secAttr;
-      // secAttr.setInheritable();
-      //
-      // ::string randomName;
-      // randomName = getUniqPipeName();
-      // PipeServer pipeServer(randomName, m_bufferSize, 0, 1000);
-      // *clientPipe = PipeClient::connect(randomName, m_bufferSize);
-      // *serverPipe = pipeServer.accept();
-      //
-      // HANDLE hThisSideWrite = (*serverPipe)->getHandle();
-      // HANDLE hOtherSideRead = (*clientPipe)->getHandle();
-      //
-      // const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for named pipe";
-      // if (!serverInheritable) {
-      //    if (SetHandleInformation(hThisSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
-      //       SystemException(errMess);
-      //    }
-      // }
-      // if (!clientInheritable) {
-      //    if (SetHandleInformation(hOtherSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
-      //       SystemException(errMess);
-      //    }
-      // }
-   }
+//
+//   EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory()
+//   //: m_bufferSize(bufferSize),
+//     //m_plogwriter(plogwriter)
+//   {
+//      //initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
+//   }
+//   // EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter)
+//   // //: m_bufferSize(bufferSize),
+//   //   //m_plogwriter(plogwriter)
+//   // {
+//   //    initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
+//   // }
+//
+//   EmulatedAnonymousPipeFactory::~EmulatedAnonymousPipeFactory()
+//   {
+//   }
+//
+//   void EmulatedAnonymousPipeFactory::initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter)
+////: m_bufferSize(bufferSize),
+//  //m_plogwriter(plogwriter)
+//{
+//      m_pparticleThis->initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
+//}
+//
+//
+//   void EmulatedAnonymousPipeFactory::generatePipes(::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
+//                                                    ::pointer < NamedPipeInterface > & clientPipe, bool clientInheritable)
+//   {
+//      m_pparticleThis->generatePipes(serverPipe, serverInheritable, clientPipe, clientInheritable);
+//      // SecurityAttributes secAttr;
+//      // secAttr.setInheritable();
+//      //
+//      // ::string randomName;
+//      // randomName = getUniqPipeName();
+//      // PipeServer pipeServer(randomName, m_bufferSize, 0, 1000);
+//      // *clientPipe = PipeClient::connect(randomName, m_bufferSize);
+//      // *serverPipe = pipeServer.accept();
+//      //
+//      // HANDLE hThisSideWrite = (*serverPipe)->getHandle();
+//      // HANDLE hOtherSideRead = (*clientPipe)->getHandle();
+//      //
+//      // const ::scoped_string & scopedstrErrMess = "Cannot disable inheritance for named pipe";
+//      // if (!serverInheritable) {
+//      //    if (SetHandleInformation(hThisSideWrite, HANDLE_FLAG_INHERIT, 0) == 0) {
+//      //       SystemException(errMess);
+//      //    }
+//      // }
+//      // if (!clientInheritable) {
+//      //    if (SetHandleInformation(hOtherSideRead, HANDLE_FLAG_INHERIT, 0) == 0) {
+//      //       SystemException(errMess);
+//      //    }
+//      // }
+//   }
+//
+//   ::string EmulatedAnonymousPipeFactory::getUniqPipeName()
+//   {
+//      return m_pparticleThis->getUniqPipeName();
+//      // ::string result;
+//      // srand((unsigned)::time(0));
+//      // for (int i = 0; i < 20; i++) {
+//      //    result += (char) ('a' + rand() % ('z' - 'a'));
+//      // }
+//      // return result;
+//   }
 
-   ::string EmulatedAnonymousPipeFactory::getUniqPipeName()
-   {
-      return m_pparticleThis->getUniqPipeName();
-      // ::string result;
-      // srand((unsigned)::time(0));
-      // for (int i = 0; i < 20; i++) {
-      //    result += (char) ('a' + rand() % ('z' - 'a'));
-      // }
-      // return result;
-   }
+
+
+
 } // namespace subsystem
 
 

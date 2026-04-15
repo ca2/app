@@ -72,7 +72,8 @@ namespace subsystem
 
    };
 
-    auto ProcessCommandLineInterface = particle_interface<ProcessCommandLineSlice>;
+   
+   using ProcessCommandLineInterface = particle_interface<ProcessCommandLineSlice>;
 
       // This class is an interface for a primitive command line parser
    class CLASS_DECL_SUBSYSTEM ProcessCommandLineComposite :
@@ -80,7 +81,7 @@ namespace subsystem
    {
    public:
 
-       implement_compositeø(ServiceControlManagerClient)
+       implement_compositeø(ProcessCommandLine, processcommandline)
 
 
       //ProcessCommandLine();

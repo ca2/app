@@ -38,8 +38,8 @@ namespace subsystem
    // // FIXME: Deprecated method, only for testing of old code.
    // void getLocalIPAddrString(char *buffer, int buflen);
 
-   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Interface :
-   virtual public particle_interface<SocketAddressIPv4Interface>
+   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Slice :
+   virtual public ::particle_base
    {
    public:
 
@@ -74,16 +74,21 @@ namespace subsystem
    };
 
 
+   using SocketAddressIPv4Interface = particle_interface<SocketAddressIPv4Slice>;
 
-   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4 :
-   virtual public composite<SocketAddressIPv4Interface>
+
+   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Composite :
+   virtual public composite<SocketAddressIPv4Slice>
    {
    public:
 
 
+      implement_compositeø(SocketAddressIPv4, socketaddressipv4)
 
-      SocketAddressIPv4();
-      virtual ~SocketAddressIPv4() override;
+
+
+      //SocketAddressIPv4();
+      //virtual ~SocketAddressIPv4() override;
 
 
       virtual void initialize_socket_address_ipv4() override;
@@ -114,17 +119,16 @@ namespace subsystem
    };
 
 
-
-
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4 : 
+       virtual public aggregate<SocketAddressIPv4Composite>
     {
     public:
 
-        implement_baseø(File);
+        
+       implement_baseø(SocketAddressIPv4);
+
 
     };
-
 
 
 

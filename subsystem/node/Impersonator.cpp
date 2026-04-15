@@ -31,102 +31,105 @@
 
 namespace subsystem
 {
-   Impersonator::Impersonator()
-   // : m_token(INVALID_HANDLE_VALUE),
-   //   m_dupToken(INVALID_HANDLE_VALUE),
-   //   m_plogwriter(plogwriter)
-   {
-   }
-
-   Impersonator::~Impersonator()
-   {
-   }
-
-   //    Impersonator::Impersonator(LogWriter *plogwriter)
-   // : m_token(INVALID_HANDLE_VALUE),
-   //   m_dupToken(INVALID_HANDLE_VALUE),
-   //   m_plogwriter(plogwriter)
-   // {
-   // }
-
-   void Impersonator::impersonateAsLoggedUser()
-   {
-      m_pparticleThis->impersonateAsLoggedUser();
-      //
-      // HANDLE token = WTS::queryConsoleUserToken(m_plogwriter);
-      // impersonateAsUser(token);
-   }
 
 
-   void Impersonator::initialize_impersonator(LogWriter *plogwriter)
-   {
 
-      return m_pparticleThis->initialize_impersonator(plogwriter);
+   //Impersonator::Impersonator()
+   //// : m_token(INVALID_HANDLE_VALUE),
+   ////   m_dupToken(INVALID_HANDLE_VALUE),
+   ////   m_plogwriter(plogwriter)
+   //{
+   //}
 
-   }
+   //Impersonator::~Impersonator()
+   //{
+   //}
 
+   ////    Impersonator::Impersonator(LogWriter *plogwriter)
+   //// : m_token(INVALID_HANDLE_VALUE),
+   ////   m_dupToken(INVALID_HANDLE_VALUE),
+   ////   m_plogwriter(plogwriter)
+   //// {
+   //// }
 
-   // void Impersonator::impersonateAsUser(HANDLE token)
-   // {
-   //   if (m_token != INVALID_HANDLE_VALUE) {
-   //     CloseHandle(m_token);
-   //   }
-   //   m_token = token;
-   //
-   //   ::string name = WTS::getTokenUserName(m_token);
-   //   m_plogwriter->debug("impersonate as user: {}", name);
-   //
-   //   if ((!DuplicateToken(m_token, SecurityImpersonation, &m_dupToken))) {
-   //     throw SystemException("could not DuplicateToken");
-   //   }
-   //   if (!ImpersonateLoggedOnUser(m_dupToken)) {
-   //     throw SystemException("could not ImpersonateLoggedOnUser");
-   //   }
-   //
-   // }
-
-   void Impersonator::impersonateAsCurrentProcessUser(bool rdpEnabled)
-   {
-      m_pparticleThis->impersonateAsCurrentProcessUser(rdpEnabled);
-      //}
-      // HANDLE token = WTS::duplicateCurrentProcessUserToken(rdpEnabled, m_plogwriter);
-      // impersonateAsUser(token);
-   }
+   //void Impersonator::impersonateAsLoggedUser()
+   //{
+   //   m_pparticleThis->impersonateAsLoggedUser();
+   //   //
+   //   // HANDLE token = WTS::queryConsoleUserToken(m_plogwriter);
+   //   // impersonateAsUser(token);
+   //}
 
 
-   void Impersonator::revertToSelf()
-   {
-      m_pparticleThis->revertToSelf();
-      // }
-      //   if (m_dupToken != INVALID_HANDLE_VALUE) {
-      //     CloseHandle(m_dupToken);
-      //   }
-      //
-      //   if (m_token != INVALID_HANDLE_VALUE) {
-      //     CloseHandle(m_token);
-      //   }
-      //
-      //   m_dupToken = INVALID_HANDLE_VALUE;
-      //   m_token = INVALID_HANDLE_VALUE;
-      //
-      //   if (!RevertToSelf()) {
-      //     throw SystemException("could not RevertToSelf");
-      //   }
-   }
+   //void Impersonator::initialize_impersonator(LogWriter *plogwriter)
+   //{
 
-   bool Impersonator::sessionIsLocked(bool rdpEnabled)
-   {
-      return m_pparticleThis->sessionIsLocked(rdpEnabled);
-      //}
-      // DWORD id = 0;
-      // if (rdpEnabled) {
-      //   id = WTS::getRdpSessionId(m_plogwriter);
-      // }
-      // if (id == 0) {
-      //   id = WTS::getActiveConsoleSessionId(m_plogwriter);
-      // }
-      // return WTS::sessionIsLocked(id, m_plogwriter);
-   }
+   //   return m_pparticleThis->initialize_impersonator(plogwriter);
+
+   //}
+
+
+   //// void Impersonator::impersonateAsUser(HANDLE token)
+   //// {
+   ////   if (m_token != INVALID_HANDLE_VALUE) {
+   ////     CloseHandle(m_token);
+   ////   }
+   ////   m_token = token;
+   ////
+   ////   ::string name = WTS::getTokenUserName(m_token);
+   ////   m_plogwriter->debug("impersonate as user: {}", name);
+   ////
+   ////   if ((!DuplicateToken(m_token, SecurityImpersonation, &m_dupToken))) {
+   ////     throw SystemException("could not DuplicateToken");
+   ////   }
+   ////   if (!ImpersonateLoggedOnUser(m_dupToken)) {
+   ////     throw SystemException("could not ImpersonateLoggedOnUser");
+   ////   }
+   ////
+   //// }
+
+   //void Impersonator::impersonateAsCurrentProcessUser(bool rdpEnabled)
+   //{
+   //   m_pparticleThis->impersonateAsCurrentProcessUser(rdpEnabled);
+   //   //}
+   //   // HANDLE token = WTS::duplicateCurrentProcessUserToken(rdpEnabled, m_plogwriter);
+   //   // impersonateAsUser(token);
+   //}
+
+
+   //void Impersonator::revertToSelf()
+   //{
+   //   m_pparticleThis->revertToSelf();
+   //   // }
+   //   //   if (m_dupToken != INVALID_HANDLE_VALUE) {
+   //   //     CloseHandle(m_dupToken);
+   //   //   }
+   //   //
+   //   //   if (m_token != INVALID_HANDLE_VALUE) {
+   //   //     CloseHandle(m_token);
+   //   //   }
+   //   //
+   //   //   m_dupToken = INVALID_HANDLE_VALUE;
+   //   //   m_token = INVALID_HANDLE_VALUE;
+   //   //
+   //   //   if (!RevertToSelf()) {
+   //   //     throw SystemException("could not RevertToSelf");
+   //   //   }
+   //}
+
+   //bool Impersonator::sessionIsLocked(bool rdpEnabled)
+   //{
+   //   return m_pparticleThis->sessionIsLocked(rdpEnabled);
+   //   //}
+   //   // DWORD id = 0;
+   //   // if (rdpEnabled) {
+   //   //   id = WTS::getRdpSessionId(m_plogwriter);
+   //   // }
+   //   // if (id == 0) {
+   //   //   id = WTS::getActiveConsoleSessionId(m_plogwriter);
+   //   // }
+   //   // return WTS::sessionIsLocked(id, m_plogwriter);
+   //}
 
 
 

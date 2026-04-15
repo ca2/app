@@ -104,7 +104,7 @@ namespace subsystem
    {
    public:
 
-       implement_compositeø(Screen)
+       implement_compositeø(Screen, screen)
 
 
       void update() override;

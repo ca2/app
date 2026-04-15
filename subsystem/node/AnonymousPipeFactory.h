@@ -112,7 +112,7 @@ namespace subsystem
    {
    public:
 
-      implement_baseø(AnonymousPipeFactory, Pipe);
+      implement_baseø(AnonymousPipeFactory);
 
    };
 

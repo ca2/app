@@ -63,7 +63,7 @@ namespace subsystem
    };
 
 
-    auto VersionInfoInterface= particle_interface<VersionInfoSlice>;
+    using VersionInfoInterface= particle_interface<VersionInfoSlice>;
 
    /**
  * Contains information about executable file version info.

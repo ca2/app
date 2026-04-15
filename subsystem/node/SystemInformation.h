@@ -62,7 +62,7 @@ namespace subsystem
    };
 
 
-    auto SystemInformationInterface = particle_interface<SystemInformationSlice>;
+    using SystemInformationInterface = particle_interface<SystemInformationSlice>;
 
 
    class CLASS_DECL_SUBSYSTEM SystemInformationComposite :
@@ -70,7 +70,7 @@ namespace subsystem
    {
    public:
 
-       implement_compositeø(SystemInformation)
+       implement_compositeø(SystemInformation, systeminformation)
 
 
 

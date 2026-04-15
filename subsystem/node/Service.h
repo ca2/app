@@ -131,7 +131,7 @@ namespace subsystem
    };
 
 
-    using ServiceInterface = particle_interface<ServiceInterface>;
+    using ServiceInterface = particle_interface<ServiceSlice>;
 
    /**
     * Win32 service class (abstract).
@@ -144,12 +144,9 @@ namespace subsystem
    {
    public:
 
-       implement_compositeø(Service)
+       implement_compositeø(Service, service)
 
-
-
-
-      static Service *g_pservice;
+      //static ServiceComp *g_pservice;
 
       /**
        * Creates new Service class instance.
@@ -157,13 +154,13 @@ namespace subsystem
        * @param name name of service.
        */
       //Service(const ::scoped_string & scopedstrName);
-      Service();
+      //Service();
 
       /**
        * Deletes service instance.
        * @remark releases singleton pointer.
        */
-      ~Service() override;
+      //~Service() override;
 
 
       void initialize_service(const ::scoped_string & scopedstr) override;
@@ -240,8 +237,6 @@ namespace subsystem
         implement_baseø(Service);
 
     };
-
-
 
 
 } // namespace subsystem

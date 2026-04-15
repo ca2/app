@@ -28,29 +28,29 @@ namespace subsystem
 {
 
 
-   CommandLineArguments::CommandLineArguments()
-   {
-   }
+   //CommandLineArguments::CommandLineArguments()
+   //{
+   //}
 
-   CommandLineArguments::~CommandLineArguments()
-   {
-   }
+   //CommandLineArguments::~CommandLineArguments()
+   //{
+   //}
 
 
-   void CommandLineArguments::initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat)
-   {
+   //void CommandLineArguments::initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat)
+   //{
 
-      m_pparticleThis->initialize_command_line_arguments(scopedstrCommandLineInOperatingSystemFormat);
+   //   m_pparticleThis->initialize_command_line_arguments(scopedstrCommandLineInOperatingSystemFormat);
 
-   }
+   //}
 
-   ::string_array_base CommandLineArguments::getArguments() const
-   {
+   //::string_array_base CommandLineArguments::getArguments() const
+   //{
 
-      //return m_straArguments;
-      return m_pparticleThis->getArguments();
+   //   //return m_straArguments;
+   //   return m_pparticleThis->getArguments();
 
-   }
+   //}
 
 } // namespace subsystem
 

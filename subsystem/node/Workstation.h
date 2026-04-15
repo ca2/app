@@ -62,7 +62,7 @@ namespace subsystem
    };
 
 
-    auto WorkstationInterface= particle_interface<WorkstationSlice>;
+    using WorkstationInterface= particle_interface<WorkstationSlice>;
 
    /**
     * Wrapper on WinAPI workstation functions.
@@ -100,6 +100,7 @@ namespace subsystem
     };
 
 
-
-
 } // namespace  subsystem
+
+
+

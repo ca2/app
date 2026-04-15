@@ -63,7 +63,8 @@ namespace subsystem
    {
    public:
 
-       implement_compositeø(PipeClient)
+       
+      implement_compositeø(PipeClient, pipeclient)
 
       //PipeClient();
 

@@ -271,7 +271,7 @@ namespace innate_subsystem
    {
    public:
 
-      implement_compositeø(Window, particle_base, window)
+      implement_compositeø(Window, window)
 
       // Window();
       //

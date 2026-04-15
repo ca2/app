@@ -156,7 +156,7 @@ namespace subsystem
    //    SC_HANDLE m_managerHandle;
    };
 
-auto ServiceControlManagerClientInterface =particle_interface<ServiceControlManagerClientSlice>;
+using ServiceControlManagerClientInterface =particle_interface<ServiceControlManagerClientSlice>;
 
    /**
  * Service client manager client.
@@ -169,7 +169,7 @@ auto ServiceControlManagerClientInterface =particle_interface<ServiceControlMana
    {
    public:
 
-       implement_compositeø(ServiceControlManagerClient)
+       implement_compositeø(ServiceControlManagerClient, servicecontrolmanagerclient)
 
 
 

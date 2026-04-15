@@ -29,57 +29,62 @@
 
 namespace subsystem
 {
-   // DynamicLibrary::DynamicLibrary(const ::scoped_string & scopedstrFilename)
-   // //: m_module(0)
+   
+   
+   //// DynamicLibrary::DynamicLibrary(const ::scoped_string & scopedstrFilename)
+   //// //: m_module(0)
+   //// {
+   ////    init(scopedstrFilename);
+   //// }
+   //DynamicLibrary::DynamicLibrary()
+   ////: m_module(0)
+   //{
+   //   //init(scopedstrFilename);
+   //}
+
+   //// DynamicLibrary::DynamicLibrary()
+   //// //: m_module(0)
+   //// {
+   //// }
+
+   //DynamicLibrary::~DynamicLibrary()
+   //{
+   //   // if (m_module != 0) {
+   //   //    FreeLibrary(m_module);
+   //   // }
+   //}
+
+   //void DynamicLibrary::initialize_dynamic_library(const ::scoped_string & scopedstrFilename)
+   ////: m_module(0)
+   //{
+   //   m_pparticleThis->initialize_dynamic_library(scopedstrFilename);
+   //}
+
+   // void DynamicLibrary::init(const ::scoped_string & scopedstrFilename)
    // {
-   //    init(scopedstrFilename);
+   //    m_pparticleThis->init(scopedstrFilename);
+   //    // m_module = LoadLibrary(::wstring(scopedstrFilename));
+   //    //
+   //    // if (m_module == 0) {
+   //    //    ::string errMsg;
+   //    //
+   //    //    errMsg.format("{} library not found", scopedstrFilename);
+   //    //
+   //    //    throw ::subsystem::Exception(errMsg);
+   //    // }
    // }
-   DynamicLibrary::DynamicLibrary()
-   //: m_module(0)
-   {
-      //init(scopedstrFilename);
-   }
 
-   // DynamicLibrary::DynamicLibrary()
-   // //: m_module(0)
+   // void * DynamicLibrary::getProcAddress(const char *procName)
    // {
+
+   //    return m_pparticleThis->getProcAddress(procName);
+   //    //_ASSERT(m_module != 0);
+
+   //    //return ::GetProcAddress(m_module, procName);
    // }
 
-   DynamicLibrary::~DynamicLibrary()
-   {
-      // if (m_module != 0) {
-      //    FreeLibrary(m_module);
-      // }
-   }
 
-   void DynamicLibrary::initialize_dynamic_library(const ::scoped_string & scopedstrFilename)
-   //: m_module(0)
-   {
-      m_pparticleThis->initialize_dynamic_library(scopedstrFilename);
-   }
 
-    void DynamicLibrary::init(const ::scoped_string & scopedstrFilename)
-    {
-       m_pparticleThis->init(scopedstrFilename);
-       // m_module = LoadLibrary(::wstring(scopedstrFilename));
-       //
-       // if (m_module == 0) {
-       //    ::string errMsg;
-       //
-       //    errMsg.format("{} library not found", scopedstrFilename);
-       //
-       //    throw ::subsystem::Exception(errMsg);
-       // }
-    }
-
-    void * DynamicLibrary::getProcAddress(const char *procName)
-    {
-
-       return m_pparticleThis->getProcAddress(procName);
-       //_ASSERT(m_module != 0);
-
-       //return ::GetProcAddress(m_module, procName);
-    }
  } // namespace subsystem
 
 

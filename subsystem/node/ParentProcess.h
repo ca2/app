@@ -64,7 +64,7 @@ namespace subsystem
    {
    public:
 
-       implement_compositeø(ParentProcess);
+       implement_compositeø(ParentProcess, parentprocess);
 
       //ParentProcess();
        //~ParentProcess() override;

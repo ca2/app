@@ -31,14 +31,16 @@
 
 namespace subsystem
 {
+   
    /**
    Dynamic library class.
    */
-   class DynamicLibraryInterface :
-      virtual public particle_interface<DynamicLibraryInterface>
-
+   class DynamicLibrarySlice :
+      virtual public ::particle_base
    {
    public:
+
+
       /**
       Load dynamic library with specified filename.
       @param filename path to library file.
@@ -68,21 +70,28 @@ namespace subsystem
    };
 
 
+   using DynamicLibraryInterface = particle_interface<DynamicLibrarySlice>;
+
+
    /**
 Dynamic library class.
 */
-   class CLASS_DECL_SUBSYSTEM DynamicLibrary :
-   virtual public composite< DynamicLibraryInterface>
+   class CLASS_DECL_SUBSYSTEM DynamicLibraryComposite :
+   virtual public composite< DynamicLibrarySlice>
    {
    public:
+
+
+      implement_compositeø(DynamicLibrary, dynamiclibrary)
+
       /**
       Load dynamic library with specified filename.
       @param filename path to library file.
       @throws ::subsystem::Exception on error.
       */
       //DynamicLibrary(const ::scoped_string & scopedstrFilename);
-      DynamicLibrary();
-      ~DynamicLibrary() override;
+      //DynamicLibrary();
+      //~DynamicLibrary() override;
 
 
       void initialize_dynamic_library(const ::scoped_string & scopedstrFilename) override;
@@ -100,6 +109,18 @@ Dynamic library class.
 
    // protected:
    //    HMODULE m_module;
+   };
+
+
+   class CLASS_DECL_SUBSYSTEM DynamicLibrary : 
+      virtual public aggregate<DynamicLibraryComposite>
+   {
+   public:
+
+
+      implement_baseø(DynamicLibrary);
+
+
    };
 
 

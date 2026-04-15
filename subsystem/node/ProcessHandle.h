@@ -63,7 +63,7 @@ namespace subsystem
       //HANDLE m_hProcess;
    };
 
-auto ProcessHandleInterface = particle_interface<ProcessHandleSlice>;
+using ProcessHandleInterface = particle_interface<ProcessHandleSlice>;
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
    class CLASS_DECL_SUBSYSTEM ProcessHandleComposite :
@@ -71,7 +71,7 @@ auto ProcessHandleInterface = particle_interface<ProcessHandleSlice>;
    {
    public:
 
-      implement_compositeø(ProcessHandle)
+      implement_compositeø(ProcessHandle, processhandle)
 
 
 

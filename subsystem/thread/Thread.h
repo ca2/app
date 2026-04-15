@@ -53,8 +53,8 @@ namespace subsystem
     * @fixme some methods seems to be not thread-safe (that uses m_active member).
     * @fixme member of HDESK type in THREAD class???
     */
-   class ThreadInterface :
-      virtual public particle_interface<ThreadInterface>
+   class ThreadSlice :
+      virtual public ::particle_base
    {
    public:
 
@@ -169,6 +169,8 @@ namespace subsystem
    };
 
 
+   using ThreadInterface = particle_interface<ThreadSlice>;
+
    /**
     * Thread class.
     *
@@ -176,10 +178,13 @@ namespace subsystem
     * @fixme some methods seems to be not thread-safe (that uses m_active member).
     * @fixme member of HDESK type in THREAD class???
     */
-   class CLASS_DECL_SUBSYSTEM Thread :
+   class CLASS_DECL_SUBSYSTEM ThreadComposite :
       virtual public composite < ThreadInterface >
    {
    public:
+
+
+      implement_compositeø(Thread, thread)
 
 
       //::pointer < Thread > m_pthreadThis;
@@ -188,12 +193,12 @@ namespace subsystem
        * Creates new thread.
        * @remark thread is suspended by default.
        */
-      Thread();
+      //Thread();
       /**
        * Deletes thread.
        * @remark does not stops thread execution if it's still running.
        */
-      ~Thread() override;
+      //~Thread() override;
 
       /**
        * Waits until thread stops.
@@ -293,12 +298,12 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM Thread :
+    virtual public aggregate< ThreadComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(Thread);
 
     };
 

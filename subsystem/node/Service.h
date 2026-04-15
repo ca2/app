@@ -44,10 +44,11 @@ namespace subsystem
     * @remark service is singleton (you can have only one service instance).
     * @author enikey.
     */
-   class ServiceInterface :
-   virtual public particle_interface<ServiceInterface>
+   class ServiceSlice :
+      virtual public ::particle_base
    {
    public:
+
 
 
       //static ServiceInterface *g_pservice;
@@ -128,16 +129,24 @@ namespace subsystem
    //     */
    //    static Service *g_service;
    };
+
+
+    using ServiceInterface = particle_interface<ServiceInterface>;
+
    /**
     * Win32 service class (abstract).
     * @usage create service subclass, instanize subclass and call run() method.
     * @remark service is singleton (you can have only one service instance).
     * @author enikey.
     */
-   class CLASS_DECL_SUBSYSTEM Service :
-   virtual public composite< ServiceInterface>
+   class CLASS_DECL_SUBSYSTEM ServiceComposite :
+   virtual public composite< ServiceSlice >
    {
    public:
+
+       implement_compositeø(Service)
+
+
 
 
       static Service *g_pservice;
@@ -221,6 +230,18 @@ namespace subsystem
    //     */
 
    };
+
+
+    class CLASS_DECL_SUBSYSTEM Service :
+    virtual public aggregate< ServiceComposite >
+    {
+    public:
+
+        implement_baseø(Service);
+
+    };
+
+
 
 
 } // namespace subsystem

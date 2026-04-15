@@ -94,14 +94,18 @@ namespace subsystem
    virtual public composite<SecurityDescriptorSlice>
    {
    public:
+
+
+       implement_compositeø(SecurityDescriptor, securitydescriptor)
+
       /**
        * Creates new security descriptor.
        * @remark created security descriptor have no system access control list (SACL),
        * no discretionary access control list (DACL), no owner, no primary group,
        * and all control flags set to FALSE (NULL). Thus, except for its revision level, it is empty
        */
-        SecurityDescriptor();
-       ~SecurityDescriptor() override;
+        //SecurityDescriptor();
+       //~SecurityDescriptor() override;
 
       /**
        * Sets rules list for security descriptor.
@@ -149,4 +153,9 @@ namespace subsystem
         implement_baseø(SecurityDescriptor);
 
     };
+
+
 } // namespace subsystem
+
+
+

@@ -32,8 +32,8 @@ namespace subsystem
 {
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
-   class AnonymousPipeFactoryInterface :
-   virtual public particle_interface<AnonymousPipeFactoryInterface>
+   class AnonymousPipeFactorySlice :
+   virtual public ::particle_base
    {
    public:
       //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
@@ -64,15 +64,23 @@ namespace subsystem
    };
 
 
+   using AnonymousPipeFactoryInterface = particle_interface<AnonymousPipeFactorySlice>;
+
+
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
-   class CLASS_DECL_SUBSYSTEM AnonymousPipeFactory :
-   virtual public composite< AnonymousPipeFactoryInterface >
+   class CLASS_DECL_SUBSYSTEM AnonymousPipeFactoryComposite :
+   virtual public composite< AnonymousPipeFactorySlice >
    {
    public:
+
+      
+      implement_compositeø(AnonymousPipeFactory, anonymouspipefactory)
+
+
       //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
-      AnonymousPipeFactory();
-      ~AnonymousPipeFactory() override;
+      //AnonymousPipeFactory();
+      //~AnonymousPipeFactory() override;
 
 
       void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) override;
@@ -98,7 +106,17 @@ namespace subsystem
    //    unsigned int m_bufferSize;
    };
 
-   //// __ANONYMOUSPIPEFACTORY_H__
+
+   class CLASS_DECL_SUBSYSTEM AnonymousPipeFactory :
+      virtual public aggregate < AnonymousPipeFactoryComposite >
+   {
+   public:
+
+      implement_baseø(AnonymousPipeFactory, Pipe);
+
+   };
+
+
 } // namespace subsystem
 
 

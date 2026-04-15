@@ -39,10 +39,12 @@ namespace subsystem
       /**
     * Enables you to start and stop local processes.
     */
-   class ProcessInterface :
-   virtual public particle_interface<ProcessInterface>
+   class ProcessInterfaceSlice :
+      virtual public ::particle_base
    {
    public:
+
+
       /**
        * Creates new Process class instance.
        * @param path full path to file.
@@ -144,13 +146,18 @@ namespace subsystem
    };
 
 
+    using ProcessInterface = particle_interface<ProcessSlice>;
+
    /**
     * Enables you to start and stop local processes.
     */
-   class CLASS_DECL_SUBSYSTEM Process :
-   virtual public composite<ProcessInterface>
+   class CLASS_DECL_SUBSYSTEM ProcessComposite :
+   virtual public composite<ProcessSlice>
    {
    public:
+
+
+       implement_compositeø(Process, process )
       /**
        * Creates new Process class instance.
        * @param path full path to file.
@@ -158,13 +165,13 @@ namespace subsystem
        */
       //Process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {});
 
-      Process();
+      //Process();
 
       /**
        * Destroys Process instance.
        * Running process will not be interrupted.
        */
-      ~Process() override;
+      //~Process() override;
 
 
       void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) override;
@@ -254,7 +261,17 @@ namespace subsystem
       // bool m_handlesIsInherited;
    };
 
-   //// __PROCESSMANAGER_H__
+
+    class CLASS_DECL_SUBSYSTEM Process :
+    virtual public aggregate< ProcessComposite >
+    {
+    public:
+
+        implement_baseø(Process);
+
+    };
+
+
 } // namespace subsystem
 
 

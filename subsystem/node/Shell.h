@@ -40,10 +40,11 @@ namespace subsystem
     *
     * @author enikey.
     */
-   class ShellInterface :
-   virtual public particle_interface<ShellInterface>
+   class ShellSlice :
+      virtual public ::particle_base
    {
    public:
+
 
 
 
@@ -74,21 +75,26 @@ namespace subsystem
 
    };
 
-
+auto ShellInterface = particle_interface<ShellSlice>;
 
    /**
  * Wrapper over WinAPI shell functions.
  *
  * @author enikey.
  */
-   class CLASS_DECL_SUBSYSTEM Shell :
-   virtual public composite<ShellInterface>
+   class CLASS_DECL_SUBSYSTEM ShellComposite :
+   virtual public composite<ShellSlice >
    {
    public:
 
-      Shell();
+       implement_compositeø(Shell)
 
-      ~Shell() override;
+
+
+
+      //Shell();
+
+      //~Shell() override;
       /**
        * Runs application as administrator and waits until execution finished.
        * @param pathToFile path to executable.
@@ -113,6 +119,18 @@ namespace subsystem
        */
 
    };
+
+
+    class CLASS_DECL_SUBSYSTEM Shell :
+    virtual public aggregate< ShellComposite >
+    {
+    public:
+
+        implement_baseø(Shell);
+
+    };
+
+
 
 } // namespace subsystem
 

@@ -39,10 +39,11 @@ namespace subsystem
     * Base Windows Application class.
     * Have hidden main window and main scopedstrMessage loop.
     */
-   class OperatingSystemApplicationInterface :
-      virtual public particle_interface<OperatingSystemApplicationInterface>
+   class OperatingSystemApplicationSlice :
+      virtual public ::particle_base
    {
    public:
+
 
       //int m_iExitCode = 0;
       /**
@@ -139,14 +140,19 @@ namespace subsystem
 
    };
 
+    auto OperatingSystemApplicationInterface = particle_interface<OperatingSystemApplicationSlice>;
+
     /**
     * Base Windows Application class.
     * Have hidden main window and main scopedstrMessage loop.
     */
-   class CLASS_DECL_SUBSYSTEM OperatingSystemApplication :
-      virtual public composite < OperatingSystemApplicationInterface >
+   class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationComposite :
+      virtual public composite < OperatingSystemApplicationSlice >
    {
    public:
+
+
+       implement_compositeø(OperatingSystemApplication, operatingsystemapplication);
 
       //int m_iExitCode = 0;
       /**
@@ -241,8 +247,16 @@ namespace subsystem
    };
 
 
+    class CLASS_DECL_SUBSYSTEM OperatingSystemApplication :
+    virtual public aggregate< OperatingSystemApplicationComposite >
+    {
+    public:
 
-   //// __WINDOWSAPPLICATION_H__
+        implement_baseø(OperatingSystemApplication);
+
+    };
+
+
 } // namespace subsystem
 
 

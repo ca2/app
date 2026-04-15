@@ -63,11 +63,11 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM PipeImpersonatedThreadComposite :
-      virtual public composite < PipeImpersonatedThreadInterface>
+      virtual public composite < PipeImpersonatedThreadSlice>
    {
    public:
 
-      implement_compositeø(PipeImpersonatedThread, Thread, pipeimpersonatedthread)
+      implement_compositeø(PipeImpersonatedThread, pipeimpersonatedthread)
 
       //PipeImpersonatedThread(FileInterface * pfilePipe);
       //PipeImpersonatedThreadComposite();
@@ -94,14 +94,18 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
-   class CLASS_DECL_SUBSYSTEM PipeImpersonatedThread :
-      virtual public PipeImpersonatedThreadComposite,
-      virtual public Thread
-   {
 
+
+   class CLASS_DECL_SUBSYSTEM AnonymousPipe :
+      virtual public aggregate < PipeImpersonatedThread, Thread >
+   {
+   public:
+
+      implement_aggregateø(PipeImpersonatedThread, Thread);
 
    };
-   
+
+
 } // namespace subsystem
 
 

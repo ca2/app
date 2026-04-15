@@ -117,11 +117,11 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM AnonymousPipeComposite :
-   virtual public composite < AnonymousPipeInterface, PipeInterface >
+   virtual public composite < AnonymousPipeSlice >
    {
    public:
 
-      implement_compositeø(AnonymousPipe, Pipe, anonymouspipe)
+      implement_compositeø(AnonymousPipe, anonymouspipe)
 
       // @param hWrite is a write handle getting by the CreatePipe()
       // function calling.
@@ -202,7 +202,6 @@ namespace subsystem
       implement_aggregateø(AnonymousPipe, Pipe);
 
    };
-
 
 
 } // namespace subsystem

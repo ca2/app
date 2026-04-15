@@ -346,4 +346,19 @@ namespace subsystem
    //    // bool m_isBound;
    };
 
+
+
+
+    class CLASS_DECL_SUBSYSTEM File :
+    virtual public aggregate< FileComposite >
+    {
+    public:
+
+        implement_baseø(File);
+
+    };
+
+
+
+
 } // namespace subsystem

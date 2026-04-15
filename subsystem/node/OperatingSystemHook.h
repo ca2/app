@@ -31,9 +31,8 @@ namespace subsystem
 
 
    // Class for intercepting keyboard on low level.
-   class CLASS_DECL_SUBSYSTEM OperatingSystemHookInterface :
-   virtual public particle_interface<OperatingSystemHookInterface>,
-   virtual public ::subsystem::OperatingSystemHookListener
+   class CLASS_DECL_SUBSYSTEM OperatingSystemHookSlice :
+    virtual public ::subsystem::OperatingSystemHookListener
    {
    public:
 
@@ -67,16 +66,21 @@ namespace subsystem
    //    static HookEventListener *s_eventListener;
    };
 
+using OperatingSystemHookInterface = particle_interface<OperatingSystemHookSlice>;
+
 
    // Class for intercepting keyboard on low level.
-   class CLASS_DECL_SUBSYSTEM OperatingSystemHook :
-   virtual public composite< OperatingSystemHookInterface >
+   class CLASS_DECL_SUBSYSTEM OperatingSystemHookComposite :
+   virtual public composite< OperatingSystemHookSlice >
    {
    public:
 
+
+       implement_compositeø(OperatingSystemHook, operatingsystemhook);
+
       //WinHooks();
-      OperatingSystemHook();
-      ~OperatingSystemHook() override;
+      //OperatingSystemHook();
+      //~OperatingSystemHook() override;
 
       //bool operating_system_hook_on_keyboard_message(::lresult & lresult, ::user::enum_message emessage, int iVkCode) override;
 
@@ -109,5 +113,19 @@ namespace subsystem
       //    // Handler to the processing hooks function.
       //    static HookEventListener *s_eventListener;
    };
+
+
+
+    class CLASS_DECL_SUBSYSTEM OperatingSystemHook :
+    virtual public aggregate< OperatingSystemHookComposite >
+    {
+    public:
+
+        implement_baseø(OperatingSystemHook);
+
+    };
+
+
+
 } // namespace subsystem
 

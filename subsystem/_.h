@@ -14,6 +14,40 @@
 
 
 
+//namespace subsystem
+//{
+
+   struct interface_t
+   {
+   };
+
+   // CLASS_DECL_SUBSYSTEM void subsystem_factory(::factory::factory * pfactory);
+
+
+   enum enum_particle
+   {
+
+      e_particle_none,
+      e_particle_interface,
+      e_particle_implementation,
+
+   };
+
+   class particle_base;
+
+   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
+   class particle_interface;
+
+   template<typename PARTICLE_INTERFACE>
+   class composite;
+   //template<typename PARTICLE_INTERFACE>
+   //class composite;
+   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
+   class aggregate;
+
+   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
+   class implementation;
+
 namespace subsystem
 {
 
@@ -34,59 +68,85 @@ namespace subsystem
 
    class File;
 
-   class FileInterface;
+    class FileSlice;
+
+   using FileInterface = particle_interface <FileSlice>;
 
    class SecurityIdentifier;
 
-   class SecurityIdentifierInterface;
+    class SecurityIdentifierSlice;
+
+   using SecurityIdentifierInterface = particle_interface <SecurityIdentifierSlice>;
 
    class SecurityAttributes;
 
-   class SecurityAttributesInterface;
+    class SecurityAttributesSlice;
+
+   using SecurityAttributesInterface = particle_interface <SecurityAttributesSlice>;
 
    class SecurityDescriptor;
 
-   class SecurityDescriptorInterface;
+    class SecurityDescriptorSlice;
+
+   using SecurityDescriptorInterface = particle_interface <SecurityDescriptorSlice>;
 
    class StringParser;
 
    class ProcessHandle;
 
-   class ProcessHandleInterface;
+    class ProcessHandleSlice;
+
+   using ProcessHandleInterface = particle_interface <ProcessHandleSlice>;
 
    class ProcessCommandLine;
 
-   class ProcessCommandLineInterface;
+    class ProcessCommandLineSlice;
+
+   using ProcessCommandLineInterface = particle_interface <ProcessCommandLineSlice>;
 
    class Screen;
 
-   class ScreenInterface;
+    class ScreenSlice;
+
+   using ScreenInterface = particle_interface <ScreenSlice>;
 
    class SocketIPv4;
 
-   class SocketIPv4Interface;
+    class SocketIPv4Slice;
+
+   using SocketIPv4Interface = particle_interface <SocketIPv4Slice>;
 
    class SocketAddressIPv4;
 
-   class SocketAddressIPv4Interface;
+    class SocketAddressIPv4Slice;
+
+   using SocketAddressIPv4Interface = particle_interface <SocketAddressIPv4Slice>;
 
    class SocketStream;
 
    class SystemInformation;
 
-   class SystemInformationInterface;
+    class SystemInformationSlice;
+
+   using SystemInformationInterface = particle_interface <SystemInformationSlice>;
 
    class DesktopSelector;
 
-   class DesktopSelectorInterface;
+    class DesktopSelectorSlice;
+
+   using DesktopSelectorInterface = particle_interface <DesktopSelectorSlice>;
 
    class NamedPipe;
+
+    class NamedPipeSlice;
 
    //class NamedPipeInterface;
 
    class PipeClient;
 
-   class PipeClientInterface;
+    class PipeClientSlice;
+
+   using PipeClientInterface = particle_interface <PipeClientSlice>;
 
 } // namespace subsystem
 

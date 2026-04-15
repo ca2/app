@@ -32,10 +32,12 @@ namespace subsystem
 {
 
    // This class is an interface for a primitive command line parser
-   class ProcessCommandLineInterface :
-      virtual public particle_interface<ProcessCommandLineInterface>
+   class ProcessCommandLineSlice :
+      virtual public ::particle_base
    {
    public:
+
+
 
       //protected:
       //::pointer < CommandLineArgumentsInterface > m_pwindowscommandlinearguments;
@@ -70,14 +72,19 @@ namespace subsystem
 
    };
 
+    auto ProcessCommandLineInterface = particle_interface<ProcessCommandLineSlice>;
+
       // This class is an interface for a primitive command line parser
-   class CLASS_DECL_SUBSYSTEM ProcessCommandLine :
-      virtual public composite < ProcessCommandLineInterface >
+   class CLASS_DECL_SUBSYSTEM ProcessCommandLineComposite :
+      virtual public composite < ProcessCommandLineSlice >
    {
    public:
 
-      ProcessCommandLine();
-      ~ProcessCommandLine() override;
+       implement_compositeø(ServiceControlManagerClient)
+
+
+      //ProcessCommandLine();
+      //~ProcessCommandLine() override;
 
       // returns the number of arguments in command line
       // for example, program: help
@@ -101,6 +108,18 @@ namespace subsystem
       void optionParser(::string & out) override;
 
    };
+
+
+    class CLASS_DECL_SUBSYSTEM ProcessCommandLine :
+    virtual public aggregate< ProcessCommandLineComposite >
+    {
+    public:
+
+        implement_baseø(ProcessCommandLine);
+
+    };
+
+
 
 } // namespace subsystem
 

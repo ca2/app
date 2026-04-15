@@ -32,11 +32,12 @@ namespace subsystem
 {
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
-   class ProcessHandleInterface :
-   virtual public particle_interface<ProcessHandleInterface>
-
+   class ProcessHandleSlice :
+      virtual public ::particle_base
    {
    public:
+
+
       //ProcessHandle();
       //virtual ~ProcessHandleInterface() =0 ;
 
@@ -62,16 +63,17 @@ namespace subsystem
       //HANDLE m_hProcess;
    };
 
-
+auto ProcessHandleInterface = particle_interface<ProcessHandleSlice>;
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
-   class CLASS_DECL_SUBSYSTEM ProcessHandle :
-   virtual public composite<ProcessHandleInterface>
-
+   class CLASS_DECL_SUBSYSTEM ProcessHandleComposite :
+   virtual public composite<ProcessHandleSlice >
    {
    public:
-      ProcessHandle();
-      ~ProcessHandle() override;
+
+      implement_compositeø(ProcessHandle)
+
+
 
       // @throws ::subsystem::Exception on an error.
       void openProcess(unsigned int dwDesiredAccess,
@@ -100,4 +102,17 @@ namespace subsystem
       //private:
       //HANDLE m_hProcess;
    };
+
+
+    class CLASS_DECL_SUBSYSTEM ProcessHandle :
+    virtual public aggregate< ProcessHandleComposite >
+    {
+    public:
+
+        implement_baseø(ProcessHandle);
+
+    };
+
+
+
 } //namespace subsystem

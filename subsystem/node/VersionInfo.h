@@ -33,10 +33,12 @@ namespace subsystem
    /**
     * Contains information about executable file version info.
     */
-   class VersionInfoInterface :
-      virtual public particle_interface<VersionInfoInterface>
+   class VersionInfoSlice :
+      virtual public ::particle_base
    {
    public:
+
+
       /**
        * Creates version info of specified file.
        * @param pathToFile path to executable file to get version info from.
@@ -61,21 +63,29 @@ namespace subsystem
    };
 
 
+    auto VersionInfoInterface= particle_interface<VersionInfoSlice>;
+
    /**
  * Contains information about executable file version info.
  */
-   class CLASS_DECL_SUBSYSTEM VersionInfo :
-      virtual public composite<VersionInfoInterface>
+   class CLASS_DECL_SUBSYSTEM VersionInfoComposite :
+      virtual public composite<VersionInfoSlice >
    {
    public:
+
+       implement_compositeø(VersionInfo)
+
+
+
+
       /**
        * Creates version info of specified file.
        * @param pathToFile path to executable file to get version info from.
        * @throws SystemException on fail.
        */
       //VersionInfo(const ::file::path & pathToFile);
-      VersionInfo();
-      ~VersionInfo() override;
+      //VersionInfo();
+      //~VersionInfo() override;
 
 
       void initialize_version_info(const ::file::path & pathToFile) override;
@@ -91,6 +101,18 @@ namespace subsystem
        */
       // ::string m_productVersionString;
    };
+
+
+    class CLASS_DECL_SUBSYSTEM VersionInfo :
+    virtual public aggregate< VersionInfoComposite >
+    {
+    public:
+
+        implement_baseø(VersionInfo);
+
+    };
+
+
 
 
 } // namespace subsystem

@@ -130,6 +130,16 @@ namespace subsystem
    };
 
 
+    class CLASS_DECL_SUBSYSTEM Impersonator :
+    virtual public aggregate< ImpersonatorComposite >
+    {
+    public:
+
+        implement_baseø(Impersonator);
+
+    };
+
+
 } // namespace subsystem
 
 

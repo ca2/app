@@ -133,7 +133,7 @@ public:
   //SID *m_sid;
 };
 
-    using SecurityIdentifierInterface = particle_interface <SecurityIdentifierSlice>;
+
 
  //#endif
 
@@ -148,6 +148,10 @@ public:
     virtual public composite<SecurityIdentifierSlice>
  {
  public:
+
+
+     implement_compositeø(SecurityIdentifier, securityidentifier)
+
    /**
     * Creates security identifier from WinAPI SID struct.
     * @throws SystemException if copy failed.
@@ -158,7 +162,7 @@ public:
     * @throws SystemException if copy failed.
     */
    //SecurityIdentifier(const scoped_string & scopedstr);
-    SecurityIdentifier();
+    //SecurityIdentifier();
 
    /**
     * Destructor.

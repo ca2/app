@@ -31,10 +31,14 @@
 
 namespace subsystem
 {
-   class ClipboardInterface :
-   virtual public particle_interface<ClipboardInterface>
-   {
-   public:
+
+
+   class ClipboardSlice :
+    virtual public ::particle_base
+    {
+       public:
+
+
 
       //ClipboardInterface(HWND hwnd);
       //Clipboard();
@@ -66,14 +70,18 @@ namespace subsystem
       // HWND m_hwnd;
    };
 
-   class CLASS_DECL_SUBSYSTEM Clipboard :
-   virtual public composite< ClipboardInterface>
+    using ClipboardInterface = particle_interface < ClipboardSlice >;
+
+   class CLASS_DECL_SUBSYSTEM ClipboardComposite :
+   virtual public composite< ClipboardSlice>
    {
    public:
 
+
+       implement_compositeø(Clipboard, clipboard)
       //Clipboard(const ::operating_system::window & operatingsystemwindow);
-      Clipboard();
-       ~Clipboard() override;
+      //Clipboard();
+       //~Clipboard() override;
 
 
       void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) override;
@@ -100,6 +108,20 @@ namespace subsystem
       // HANDLE m_hndClipboard;
       // HWND m_hwnd;
    };
+
+
+
+   class CLASS_DECL_SUBSYSTEM Clipboard :
+      virtual public aggregate < ClipboardComposite >
+   {
+   public:
+
+      implement_baseø(Clipboard);
+
+   };
+
+
+
 } // namespace subsystem
 
 

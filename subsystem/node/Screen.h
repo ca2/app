@@ -33,10 +33,12 @@ namespace subsystem
 {
 
    // This class get info for a windows desktop.
-   class ScreenInterface :
-      virtual public particle_interface<ScreenInterface>
+   class ScreenSlice :
+      virtual public ::particle_base
    {
    public:
+
+
       //Screen();
       //virtual ~ScreenInterface() = 0;
 
@@ -94,13 +96,16 @@ namespace subsystem
    };
 
 
+    using ScreenInterface = particle_interface<ScreenSlice>;
+
    // This class get info for a windows desktop.
-   class CLASS_DECL_SUBSYSTEM Screen :
-      virtual public composite<ScreenInterface>
+   class CLASS_DECL_SUBSYSTEM ScreenComposite :
+      virtual public composite<ScreenSlice >
    {
    public:
-      Screen();
-      ~Screen() override;
+
+       implement_compositeø(Screen)
+
 
       void update() override;
 
@@ -155,5 +160,17 @@ namespace subsystem
       // ::int_rectangle m_virtDesktopRect;
    };
 
-   //// __SCREEN_H__
+
+
+    class CLASS_DECL_SUBSYSTEM Screen :
+    virtual public aggregate< ScreenComposite >
+    {
+    public:
+
+        implement_baseø(Screen);
+
+    };
+
+
+
 } // namespace  subsystem

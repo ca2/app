@@ -5,39 +5,6 @@
 #include "subsystem/subsystem.h"
 
 
-//namespace subsystem
-//{
-
-   struct interface_t
-   {
-   };
-
-   // CLASS_DECL_SUBSYSTEM void subsystem_factory(::factory::factory * pfactory);
-
-
-   enum enum_particle
-   {
-
-      e_particle_none,
-      e_particle_interface,
-      e_particle_implementation,
-
-   };
-
-   class particle_base;
-
-   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
-   class particle_interface;
-
-   template<typename PARTICLE_INTERFACE>
-   class composite;
-   //template<typename PARTICLE_INTERFACE>
-   //class composite;
-   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
-   class aggregate;
-
-   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
-   class implementation;
 
    template<typename PARTICLE_INTERFACE, typename BASE>
    PARTICLE_INTERFACE *get_implementation(const particle_interface<PARTICLE_INTERFACE, BASE> *pinterface);
@@ -137,7 +104,7 @@
    };
 
 
-   #define implement_compositeø(Name, Base, name) \
+   #define implement_compositeø(Name, name) \
    ::pointer<Name##Interface> m_p##name; \
    operator Name##Interface *() { return m_p##name; } \
    operator Name##Interface *() const { return m_p##name; } \
@@ -164,12 +131,7 @@
 //::main_subsystem()->constructø(m_p##name); \
 
 
-   #define implement_baseø(Name) \
-   Name() \
-   { \
-      auto pinterfaceImplementation = ::main_subsystem()->createø<Name##Interface>(); \
-      this->set##Name##Composite(pinterfaceImplementation); \
-   }
+
 
 
    template < typename PARTICLE_INTERFACE >
@@ -233,58 +195,58 @@
 
 
 
-   template<typename PARTICLE_INTERFACE>
-   class composite<PARTICLE_INTERFACE, ::particle_base > :
-      virtual public PARTICLE_INTERFACE
-   {
-   public:
+   //template<typename PARTICLE_INTERFACE>
+   //class composite<PARTICLE_INTERFACE, ::particle_base > :
+   //   virtual public PARTICLE_INTERFACE
+   //{
+   //public:
 
 
-      ::pointer<PARTICLE_INTERFACE> m_pparticleThis;
+   //   ::pointer<PARTICLE_INTERFACE> m_pparticleThis;
 
-      composite();
+   //   composite();
 
-      ~composite() override {}
+   //   ~composite() override {}
 
-      template<typename IMPL>
-      IMPL *impl()
-      {
-         ::cast<IMPL> pimp = get_implementation(this);
+   //   template<typename IMPL>
+   //   IMPL *impl()
+   //   {
+   //      ::cast<IMPL> pimp = get_implementation(this);
 
-         return pimp;
-      }
-
-
-      
-      operator PARTICLE_INTERFACE *() { return m_pparticleThis; }
-      operator PARTICLE_INTERFACE *() const { return m_pparticleThis; }
+   //      return pimp;
+   //   }
 
 
-      // particle_base *get_base_composite() override
-      //{
-      //
-      //    using BASE1 = typename PARTICLE_INTERFACE::BASE_TYPE;
+   //   
+   //   operator PARTICLE_INTERFACE *() { return m_pparticleThis; }
+   //   operator PARTICLE_INTERFACE *() const { return m_pparticleThis; }
 
-      //   using INTERFACE1 = typename BASE1::INTERFACE_TYPE;
 
-      //   if constexpr (std::is_base_of_v<composite<INTERFACE1>, PARTICLE_INTERFACE>)
-      //   {
+   //   // particle_base *get_base_composite() override
+   //   //{
+   //   //
+   //   //    using BASE1 = typename PARTICLE_INTERFACE::BASE_TYPE;
 
-      //      auto p = dynamic_cast<composite<INTERFACE1> *>(this);
+   //   //   using INTERFACE1 = typename BASE1::INTERFACE_TYPE;
 
-      //      if (p)
-      //      {
+   //   //   if constexpr (std::is_base_of_v<composite<INTERFACE1>, PARTICLE_INTERFACE>)
+   //   //   {
 
-      //         return p->m_pparticleThis;
+   //   //      auto p = dynamic_cast<composite<INTERFACE1> *>(this);
 
-      //      }
+   //   //      if (p)
+   //   //      {
 
-      //   }
+   //   //         return p->m_pparticleThis;
 
-      //   return m_pparticleThis;
-      //
-      //}
-   };
+   //   //      }
+
+   //   //   }
+
+   //   //   return m_pparticleThis;
+   //   //
+   //   //}
+   //};
 
 
    //template<typename PARTICLE_INTERFACE, typename BASE>
@@ -438,11 +400,17 @@
 #define implement_aggregateø(Name, Base) \
 Name() \
 { \
-auto pinterfaceImplementation = ::main_subsystem()->createø<Name##Interface>(); \
-this->set##Name##Composite(pinterfaceImplementation); \
-this->set##Base##Composite(pinterfaceImplementation); \
+   auto pinterfaceImplementation = ::main_subsystem()->createø<Name##Interface>(); \
+   this->set##Name##Composite(pinterfaceImplementation); \
+   this->set##Base##Composite(pinterfaceImplementation); \
 }
 
+#define implement_baseø(Name)                                                                                       \
+Name()                                                                                                           \
+{                                                                                                                \
+   auto pinterfaceImplementation = ::main_subsystem()->createø<Name##Interface>();                               \
+   this->set##Name##Composite(pinterfaceImplementation);                                                         \
+}
 
    template < typename COMPOSITE, typename BASE_AGGREGATE >
    class aggregate :
@@ -452,6 +420,15 @@ this->set##Base##Composite(pinterfaceImplementation); \
    public:
 
    };
+
+
+   template<typename COMPOSITE >
+   class aggregate< COMPOSITE, ::particle_base > :
+      virtual public COMPOSITE
+   {
+   public:
+   };
+
 
 
    template < typename PARTICLE_INTERFACE, typename TYPE >
@@ -561,29 +538,29 @@ this->set##Base##Composite(pinterfaceImplementation); \
    //}
 
 
-   template<typename PARTICLE_INTERFACE>
-   composite<PARTICLE_INTERFACE>::composite()
-   {
+   //template<typename PARTICLE_INTERFACE>
+   //composite<PARTICLE_INTERFACE>::composite()
+   //{
 
-      // auto pbase = this->get_base_composite();
+   //   // auto pbase = this->get_base_composite();
 
-      // if (pbase)
-      //{
+   //   // if (pbase)
+   //   //{
 
-      //   m_pparticleThis = pbase;
+   //   //   m_pparticleThis = pbase;
 
-      //}
+   //   //}
 
-      // if (!m_pparticleThis)
-      {
+   //   // if (!m_pparticleThis)
+   //   {
 
-         ::main_subsystem()->constructø(m_pparticleThis);
-      }
+   //      ::main_subsystem()->constructø(m_pparticleThis);
+   //   }
 
-      auto pimpl = impl<implementation<PARTICLE_INTERFACE>>();
+   //   auto pimpl = impl<implementation<PARTICLE_INTERFACE>>();
 
-      pimpl->m_pcomposite = this;
-   }
+   //   pimpl->m_pcomposite = this;
+   //}
 
 
 

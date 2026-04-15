@@ -13,6 +13,8 @@ namespace subsystem
    {
    public:
 
+
+
       //File();
       //virtual ~FileInterface() =0 ;
 
@@ -27,22 +29,25 @@ namespace subsystem
    virtual public composite<FileSlice >
    {
    public:
-      File();
-      ~File() override;
 
-      void * _HANDLE() override;
+        implement_compositeø(File, file)
+      //File();
+      //~File() override;
+
+      void * _HANDLE() override {return m_pfile->_HANDLE();}
 
    };
+
 
     class CLASS_DECL_SUBSYSTEM File :
     virtual public aggregate< FileComposite >
     {
-
-        public:
+    public:
 
         implement_baseø(File);
 
     };
+
 
 } // namespace subsystem
 

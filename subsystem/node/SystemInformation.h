@@ -31,10 +31,11 @@ namespace subsystem
 {
 
 
-   class SystemInformationInterface :
-   virtual public particle_interface<SystemInformationInterface>
+   class SystemInformationSlice :
+      virtual public ::particle_base
    {
    public:
+
 
       //SystemInformation();
       //virtual ~SystemInformationInterface() =0 ;
@@ -60,14 +61,24 @@ namespace subsystem
       virtual int getMonitorCount() = 0;
    };
 
-   class CLASS_DECL_SUBSYSTEM SystemInformation :
-   virtual public composite<SystemInformationInterface>
+
+    auto SystemInformationInterface = particle_interface<SystemInformationSlice>;
+
+
+   class CLASS_DECL_SUBSYSTEM SystemInformationComposite :
+   virtual public composite<SystemInformationSlice >
    {
    public:
 
-      SystemInformation();
+       implement_compositeø(SystemInformation)
 
-      ~SystemInformation() override;
+
+
+
+
+      //SystemInformation();
+
+      //~SystemInformation() override;
 
       // get rectangle of all desktop area
       void getDesktopAllArea(int_rectangle & rectangle) override;
@@ -88,6 +99,18 @@ namespace subsystem
       // into video card
       int getMonitorCount() override;
    };
+
+
+    class CLASS_DECL_SUBSYSTEM SystemInformation :
+    virtual public aggregate< SystemInformationComposite >
+    {
+    public:
+
+        implement_baseø(SystemInformation);
+
+    };
+
+
 
 } // namespace subsystem
 

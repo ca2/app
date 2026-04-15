@@ -292,7 +292,17 @@ namespace subsystem
       //volatile bool m_terminated;
    };
 
-   //// __THREAD_H__
+
+    class CLASS_DECL_SUBSYSTEM File :
+    virtual public aggregate< FileComposite >
+    {
+    public:
+
+        implement_baseø(File);
+
+    };
+
+
 
 
 } // namespace subsystem

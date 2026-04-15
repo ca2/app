@@ -75,16 +75,21 @@ namespace subsystem
        int m_iServiceControlManagerErrorCode;
    };
 
+
+
+
    /**
     * Service client manager client.
     *
     * Gives access to install, remove, start, stop services and queries status
     * of service.
     */
-   class ServiceControlManagerClientInterface :
-   virtual public particle_interface<ServiceControlManagerClientInterface>
+   class ServiceControlManagerClientSlice :
+      virtual public ::particle_base
    {
    public:
+
+
       /**
        * Creates new ServiceControlManagerClient.
        * @param desiredAccess desired acess (see OpenServiceControlManageranager WinAPI function description
@@ -151,7 +156,7 @@ namespace subsystem
    //    SC_HANDLE m_managerHandle;
    };
 
-
+auto ServiceControlManagerClientInterface =particle_interface<ServiceControlManagerClientSlice>;
 
    /**
  * Service client manager client.
@@ -159,10 +164,16 @@ namespace subsystem
  * Gives access to install, remove, start, stop services and queries status
  * of service.
  */
-   class CLASS_DECL_SUBSYSTEM ServiceControlManagerClient :
-   virtual public composite<ServiceControlManagerClientInterface>
+   class CLASS_DECL_SUBSYSTEM ServiceControlManagerClientComposite :
+   virtual public composite<ServiceControlManagerClientSlice >
    {
    public:
+
+       implement_compositeø(ServiceControlManagerClient)
+
+
+
+
       /**
        * Creates new ServiceControlManagerClient.
        * @param desiredAccess desired acess (see OpenServiceControlManageranager WinAPI function description
@@ -171,11 +182,11 @@ namespace subsystem
        */
       //ServiceControlManagerClient(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS);
       //ServiceControlManagerClient(unsigned int desiredAccess = 0);
-      ServiceControlManagerClient();
+      //ServiceControlManagerClient();
       /**
        * Destructor, closes ServiceControlManagerClient.
        */
-      ~ServiceControlManagerClient() override;
+      //~ServiceControlManagerClient() override;
 
 
       //void initialize_service_control_manager_client(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS) override;
@@ -228,6 +239,18 @@ namespace subsystem
    //    /** Service client manager handle. */
    //    SC_HANDLE m_managerHandle;
    };
+
+
+
+    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClient :
+    virtual public aggregate< ServiceControlManagerClientComposite >
+    {
+    public:
+
+        implement_baseø(ServiceControlManagerClient);
+
+    };
+
 
 
 } // namespace subsystem

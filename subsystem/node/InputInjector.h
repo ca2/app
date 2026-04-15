@@ -36,10 +36,12 @@ namespace subsystem
     * Wrapper of WinAPI methods that can inject input events into system
     * (mouse, keyboard etc) and get information about input device states.
     */
-   class InputInjectorInterface :
-   virtual public particle_interface<InputInjectorInterface>
+   class InputInjectorSlice :
+      virtual public ::particle_base
    {
    public:
+
+
       //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
 
       //InputInjector();
@@ -135,18 +137,22 @@ namespace subsystem
       // LogWriter *m_plogwriter;
    };
 
-
+using InputInjectorInterface = particle_interface<InputInjectorSlice>;
       /**
     * Wrapper of WinAPI methods that can inject input events into system
     * (mouse, keyboard etc) and get information about input device states.
     */
-   class CLASS_DECL_SUBSYSTEM InputInjector :
-   virtual public composite<InputInjectorInterface>
+   class CLASS_DECL_SUBSYSTEM InputInjectorComposite :
+   virtual public composite<InputInjectorSlice>
    {
    public:
+
+
+       implement_compositeø(InputInjector, inputinjector )
+
       //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
-      InputInjector();
-      ~InputInjector() override;
+      //InputInjector();
+      //~InputInjector() override;
 
 
       void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *plogwriter) override;
@@ -237,6 +243,17 @@ namespace subsystem
       //
       // LogWriter *m_plogwriter;
    };
+
+
+    class CLASS_DECL_SUBSYSTEM InputInjector :
+    virtual public aggregate< InputInjectorComposite >
+    {
+    public:
+
+        implement_baseø(InputInjector);
+
+    };
+
 
 } // namespace subsystem
 

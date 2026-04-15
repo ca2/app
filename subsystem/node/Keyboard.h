@@ -38,10 +38,12 @@ namespace subsystem
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
-   class KeyboardInterface :
-   virtual public particle_interface<KeyboardInterface>
+   class KeyboardSlice :
+      virtual public ::particle_base
    {
    public:
+
+
 
 
       //Keyboard();
@@ -69,17 +71,22 @@ namespace subsystem
 
    };
 
+
+    using KeyboardInterface = particle_interface<KeyboardSlice>;
+
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
-   class CLASS_DECL_SUBSYSTEM Keyboard :
-   virtual public composite <KeyboardInterface>
+   class CLASS_DECL_SUBSYSTEM KeyboardComposite :
+   virtual public composite <KeyboardSlice>
    {
    public:
 
 
-      Keyboard();
-      ~Keyboard() override;
+       implement_compositeø(Keyboard, keyboard )
+
+      //Keyboard();
+      //~Keyboard() override;
       /**
        * Copied current keyboard state (256 virtual keys state) to state array.
        * @param state [out] array of 256 virtual key states.
@@ -102,6 +109,22 @@ namespace subsystem
       bool isKeyPressed(unsigned char vkCode) override;
 
    };
+
+
+
+    class CLASS_DECL_SUBSYSTEM Keyboard :
+    virtual public aggregate< KeyboardComposite >
+    {
+    public:
+
+        implement_baseø(Keyboard);
+
+    };
+
+
+
+
+
 } // namespace subsystem
 
 

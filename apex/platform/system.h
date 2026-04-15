@@ -120,6 +120,7 @@ namespace apex
 
       void do_operating_ambient_factory() override;
 
+      ::string get_subsystem_library_component_name() override;
 
       //virtual void __task_init() override;
 

@@ -121,7 +121,7 @@ namespace platform
       string                              m_strProgName;
       string                           m_strStandalone;
       //int                              m_iExitCode = 0;
-      bool                             m_bApplicationFirstRequest;
+      //bool                             m_bApplicationFirstRequest;
       
       //::pointer < ::request >                         m_prequest;
 
@@ -575,6 +575,8 @@ namespace platform
 
       virtual void on_error_icloud_not_available(::particle* pparticle = nullptr, long long hi = 0, void* p = nullptr) override;
 
+
+      virtual void on_application_system_start();
 
       //virtual void application_main(::platform::system * psystem);
 

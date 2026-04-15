@@ -221,7 +221,21 @@ namespace subsystem
       if (!isOpened()) {
          return false;
       }
-*out = m_pregistrykey->get_dword(scopedstrName);
+      unsigned int u;
+      auto estatus = m_pregistrykey->_get_dword(scopedstrName, u);
+
+      if (estatus == error_not_found)
+      {
+
+         return false;
+
+      }
+      else if (!estatus)
+      {
+
+         throw ::exception(estatus);
+
+      }
       // DWORD type = REG_DWORD;
       // DWORD size = 4;
       //

@@ -38,9 +38,7 @@ namespace subsystem
 {
 
 
-   class AnonymousPipeInterface :
-   virtual public ::subsystem::particle_interface<AnonymousPipeInterface>,
-   virtual public Pipe,
+   class AnonymousPipeSlice :
    virtual public Channel
    {
    public:
@@ -114,20 +112,24 @@ namespace subsystem
       // LogWriter *m_plogwriter;
    };
 
+    using AnonymousPipeInterface = particle_interface<AnonymousPipeSlice, PipeInterface>;
 
 
 
-   class CLASS_DECL_SUBSYSTEM AnonymousPipe :
-   virtual public ::subsystem::composite < AnonymousPipeInterface >
+   class CLASS_DECL_SUBSYSTEM AnonymousPipeComposite :
+   virtual public composite < AnonymousPipeInterface, PipeInterface >
    {
    public:
+
+      implement_compositeø(AnonymousPipe, Pipe, anonymouspipe)
+
       // @param hWrite is a write handle getting by the CreatePipe()
       // function calling.
       // @param hRead is a read handle getting by the CreatePipe()
       // function calling but is not the same as for hWrite.
       //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *plogwriter);
-      AnonymousPipe();
-      ~AnonymousPipe() override;
+      //AnonymousPipe();
+      //~AnonymousPipe() override;
 
       void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter *plogwriter) override;
       /**
@@ -135,7 +137,7 @@ namespace subsystem
        *
        * @throws ::subsystem::Exception on fail.
        */
-      void close() override;
+      void close() override {m_panonymouspipe->close();}
 
       /**
        * Reads data from pipe.
@@ -177,7 +179,7 @@ namespace subsystem
       void setTimeOut(unsigned int timeOut) override;
 
    //private:
-      void checkPipeFile(::subsystem::FileInterface * pfile) override;
+      //void checkPipeFile(::subsystem::FileInterface * pfile) override;
 
       // HANDLE m_hWrite;
       // HANDLE m_hRead;
@@ -192,7 +194,17 @@ namespace subsystem
    };
 
 
-   //// __ANONYMOUSPIPE_H__
+   class CLASS_DECL_SUBSYSTEM AnonymousPipe :
+      virtual public aggregate < AnonymousPipeComposite, Pipe >
+   {
+   public:
+
+      implement_aggregateø(AnonymousPipe, Pipe);
+
+   };
+
+
+
 } // namespace subsystem
 
 

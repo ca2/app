@@ -71,7 +71,7 @@ namespace subsystem
    // // ThreadCollector has it's own thread which deletes in infinity loop not
    // // active threads.
    // class CLASS_DECL_SUBSYSTEM ThreadCollector :
-   //    virtual public ::subsystem::composite<ThreadCollector
+   //    virtual public composite<ThreadCollector
    // {
    // public:
    //    ThreadCollector();

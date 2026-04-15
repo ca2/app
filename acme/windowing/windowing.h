@@ -193,7 +193,7 @@ namespace acme
 
          virtual void windowing_application_on_system_start();
 
-         virtual void windowing_application_on_start();
+         //virtual void windowing_application_on_start();
 
          void run() override;
 

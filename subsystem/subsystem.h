@@ -7,6 +7,7 @@
 #pragma once
 
 
+#include "acme/platform/subsystem.h"
 #include "acme/platform/user_interaction_sink.h"
 #include "subsystem/StringParser.h"
 
@@ -16,7 +17,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM subsystem :
-      virtual public ::particle
+      virtual public ::platform::subsystem
    {
    public:
 

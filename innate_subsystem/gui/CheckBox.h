@@ -32,9 +32,8 @@ namespace innate_subsystem
 {
 
 
-   class CheckBoxInterface :
-   virtual public ::subsystem::particle_interface<CheckBoxInterface>,
-      virtual public Control
+   class CheckBoxSlice :
+      virtual public ::particle_base
    {
    public:
 
@@ -46,22 +45,37 @@ namespace innate_subsystem
 
    };
 
+   using CheckBoxInterface = ::particle_interface<CheckBoxSlice, ControlInterface>;
 
-   class CLASS_DECL_INNATE_SUBSYSTEM CheckBox :
-   virtual public ::subsystem::composite<CheckBoxInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM CheckBoxComposite :
+      virtual public composite<CheckBoxSlice, Control>
+   {
+   public:
+
+      implement_compositeø(CheckBox, Control, checkbox)
+
+      //CheckBoxComposite();
+      //~CheckBoxComposite();
+
+      bool isChecked() { return m_pcheckbox->isChecked(); }
+      void setChecked(bool checked) { m_pcheckbox->setChecked(checked); }
+
+   };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM CheckBox : 
+      virtual public CheckBoxComposite,
+      virtual public Control
    {
    public:
 
 
-      CheckBox();
-      ~CheckBox() override;
+      //CheckBox();
+      //~CheckBox();
 
-      bool isChecked() override;
-      void setChecked(bool checked) override;
-
+      //bool isChecked();
+      //void setChecked(bool checked);
    };
 
-
-    //#endif
+   
 } // namespace innate_subsystem
 

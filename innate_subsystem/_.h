@@ -17,6 +17,7 @@
 
 
 
+#include "subsystem/particle.h"
 
 
 namespace innate_subsystem
@@ -59,7 +60,8 @@ namespace innate_subsystem
 
 
    class Window;
-   class WindowInterface;
+   class WindowSlice;
+   using WindowInterface = particle_interface<WindowSlice>;
    class Control;
    class ControlInterface;
    class Dialog;

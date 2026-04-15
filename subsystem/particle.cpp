@@ -5,10 +5,6 @@
 #include "subsystem/particle.h"
 
 
-namespace subsystem
-{
-
-
    particle_base::particle_base(enum_particle eparticle):
            m_eparticle(eparticle)
    {
@@ -17,11 +13,5 @@ namespace subsystem
 
    particle_base::~particle_base()
    {}
-
-
-
-} // namespace subsystem
-
-
 
 

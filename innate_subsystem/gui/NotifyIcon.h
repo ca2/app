@@ -36,9 +36,8 @@ namespace innate_subsystem
 {
 
    // FIXME: Add documentation to class.
-   class NotifyIconInterface :
-      virtual public ::subsystem::particle_interface<NotifyIconInterface>,
-   virtual public NotifyIconWindow
+   class NotifyIconSlice
+       : virtual public ::particle_base
    {
    public:
       
@@ -65,29 +64,32 @@ namespace innate_subsystem
       //bool m_visible;
    };
 
+   using NotifyIconInterface = particle_interface<NotifyIconSlice, NotifyIconWindowInterface>;
 
    // FIXME: Add documentation to class.
-   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIcon :
-      virtual public ::subsystem::composite<NotifyIconInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconComposite :
+      virtual public composite<NotifyIconSlice, NotifyIconWindow>
    {
    public:
 
 
-      NotifyIcon();
-      ~NotifyIcon() override;
+      implement_compositeø(NotifyIcon, NotifyIconWindow, notifyicon)
 
-      void initialize_notify_icon(bool showAfterCreation = true) override;
+      //NotifyIcon();
+      //~NotifyIcon() override;
 
-      IconInterface *getIcon() override;
-      bool isVisible() const override;
+      void initialize_notify_icon(bool showAfterCreation = true) override { m_pnotifyicon->initialize_notify_icon(showAfterCreation); }
 
-      void setIcon(IconInterface *icon) override;
-      void setText(const char *text) override;
+      IconInterface *getIcon() override { return m_pnotifyicon->getIcon(); }
+      bool isVisible() const override { return m_pnotifyicon->isVisible(); }
 
-      void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) override;
+      void setIcon(IconInterface *icon) override { m_pnotifyicon->setIcon(icon); }
+      void setText(const char *text) override { m_pnotifyicon->setText(text); }
 
-      void show() override;
-      void hide() override;
+      void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) override { m_pnotifyicon->showBalloon(message, caption, timeoutMillis); }
+
+      void show() override { m_pnotifyicon->show(); }
+      void hide() override { m_pnotifyicon->hide(); }
 
       //   protected:
       //    NOTIFYICONDATA m_nid;
@@ -95,7 +97,12 @@ namespace innate_subsystem
       //bool m_visible;
    };
 
-
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIcon :
+      virtual public NotifyIconComposite,
+   virtual public NotifyIconWindow
+   {
+   public:
+   };
 }// namespace innate_subsystem
 
 //#endif

@@ -27,6 +27,7 @@
 //#include "subsystem/particle.h"
 
 
+#include "Control.h"
 #include "innate_subsystem/_common_header.h"
 
 
@@ -38,8 +39,8 @@ namespace innate_subsystem
           static const int TB_Style_sep = 0;
       static const int TB_Style_gap = 1;
 
-   class ToolbarInterface :
-      virtual  public ::subsystem::particle_interface<ToolbarInterface>
+   class ToolbarSlice :
+      virtual  public ::particle_base
    {
    public:
       //Toolbar();
@@ -158,15 +159,18 @@ namespace innate_subsystem
    //    std::map<int, int> m_autoButtons;
    };
 
+   using ToolbarInterface = particle_interface<ToolbarSlice, ControlInterface>;
    
-   class CLASS_DECL_INNATE_SUBSYSTEM Toolbar :
-      virtual  public ::subsystem::composite<ToolbarInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM ToolbarComposite :
+      virtual  public composite<ToolbarSlice, ControlInterface>
    {
    public:
 
 
-      Toolbar();
-      ~Toolbar() override;
+      implement_compositeø(Toolbar, particle_base, toolbar)
+
+      //Toolbar();
+      //~Toolbar() override;
 
       // static const int TB_Style_sep override;
       // static const int TB_Style_gap = 1;
@@ -178,27 +182,27 @@ namespace innate_subsystem
       // setViewAutoButtons()
       // It used only for auto buttons creation from
       // bitmap and making gaps or separators.
-      void setViewAutoButtons(int iButton, int style) override;
+      void setViewAutoButtons(int iButton, int style) override { m_ptoolbar->setViewAutoButtons(iButton, style); }
 
       // loadToolbarfromRes()
       // This procedure will load a toolbar image from resource
       // id is a number of bitmap. It means that buttons are
       // square(for example 16x16).
-      void loadToolbarfromRes(unsigned int id) override;
+      void loadToolbarfromRes(unsigned int id) override { m_ptoolbar->loadToolbarfromRes(id); }
 
 
-    void loadToolbarFromMatter(const ::file::path & pathMatter) override;
+    void loadToolbarFromMatter(const ::file::path & pathMatter) override { m_ptoolbar->loadToolbarFromMatter(pathMatter); }
 
       // setButtonsRange()
       // If we want to catch the message from toolbar that some buttons
       // are pressed then we must set a range for message, we pass only
       // first item, and next is id+1 and so on.
-      void setButtonsRange(unsigned int id) override;
+      void setButtonsRange(unsigned int id) override { m_ptoolbar->setButtonsRange(id); }
 
       // attachToolbar()
       // This one will create and attach toolbar window to
       // which handle is passed in hwnd. Only for toolbar from bitmap.
-      void attachToolbar(const ::operating_system::window & operatingsystemwindow) override;
+      void attachToolbar(const ::operating_system::window & operatingsystemwindow) override { m_ptoolbar->attachToolbar(operatingsystemwindow); }
 
       /////////////////////////////////////////////////////////
       // Manual mode procedures
@@ -208,70 +212,70 @@ namespace innate_subsystem
       // the toolbar control and button styles. It returns true if successful,
       // or false otherwise.
       bool create(int tbID, const ::operating_system::window & operatingsystemwindowParent,
-           unsigned int dwStyle = e_style_child | e_style_visible | e_style_flat_toolbar) override;
+           unsigned int dwStyle = e_style_child | e_style_visible | e_style_flat_toolbar) override { return m_ptoolbar->create(tbID, operatingsystemwindowParent, dwStyle); }
 
       // addBitmap() adds one or more images from resources to
       // the list of button images available for a toolbar.
       // Returns the index of the first new image if successful,
       // or -1 otherwise.
-      ::lresult addBitmap(int nButtons, unsigned int bitmapID) override;
+      ::lresult addBitmap(int nButtons, unsigned int bitmapID) override { return m_ptoolbar->addBitmap(nButtons, bitmapID); }
 
       // addSystemBitmap() adds the system-defined button bitmaps to the list
       // of the toolbar button specifying by stdBitmapID. Returns the index of
       // the first new image if successful, or -1 otherwise.
-      ::lresult addSystemBitmap(unsigned int stdBitmapID) override;
+      ::lresult addSystemBitmap(unsigned int stdBitmapID) override { return m_ptoolbar->addSystemBitmap(stdBitmapID); }
 
       // addNButton() adds nButtons buttons to a toolbar.
-      bool addNButton(int nButtons, toolbar_button_t * ptoolbarbutton) override;
+      bool addNButton(int nButtons, toolbar_button_t * ptoolbarbutton) override { return m_ptoolbar->addNButton(nButtons, ptoolbarbutton); }
 
       // addButton() adds one button.
       bool addButton(int iBitmap, int idCommand, unsigned char state = e_toolbar_item_state_enabled,
-                     unsigned char style= e_toolbar_item_style_button,  unsigned int dwData=0, int iString=0) override;
+                     unsigned char style= e_toolbar_item_style_button,  unsigned int dwData=0, int iString=0) override { return m_ptoolbar->addButton(iBitmap, idCommand, state, style, dwData, iString); }
 
       // checkButton() checks or unchecks a given button in a toolbar control.
-      bool checkButton(int idButton, bool check) override;
+      bool checkButton(int idButton, bool check) override { return m_ptoolbar->checkButton(idButton, check); }
 
       // enableButton() enables or disables the specified button
       // in the toolbar.
-      bool enableButton(int idButton, bool enable) override;
+      bool enableButton(int idButton, bool enable) override { return m_ptoolbar->enableButton(idButton, enable); }
 
       // pressButton() presses or releases the specified button in the toolbar.
-      bool pressButton(int idButton, bool press) override;
+      bool pressButton(int idButton, bool press) override { return m_ptoolbar->pressButton(idButton, press); }
 
       // getButtonRect() gets the bounding rectangle of a button in a toolbar.
-      bool getButtonRect(int nIndex, ::int_rectangle & buttonRect) override;
+      bool getButtonRect(int nIndex, ::int_rectangle & buttonRect) override { return m_ptoolbar->getButtonRect(nIndex, buttonRect); }
 
       // setButtonSize() sets the size of the buttons to be added to a toolbar.
       // Button size must be largen the button bitmap.
-      bool setButtonsSize(const ::int_size & size) override;
+      bool setButtonsSize(const ::int_size & size) override { return m_ptoolbar->setButtonsSize(size); }
 
       // autoSize() resizes the toolbar window.
-      void autoSize() override;
+      void autoSize() override { m_ptoolbar->autoSize(); }
 
       // getButtonsHeight() retrieves the height of the toolbar buttons.
-      int getButtonsHeight() override;
+      int getButtonsHeight() override { return m_ptoolbar->getButtonsHeight(); }
 
       // getButtonsWidth() retrieves the width of the toolbar buttons.
-      int getButtonsWidth() override;
+      int getButtonsWidth() override { return m_ptoolbar->getButtonsWidth(); }
 
       // isVisible() check the toolbar window on visible.
-      bool isVisible() override;
+      bool isVisible() override { return m_ptoolbar->isVisible(); }
 
       // hide() hides the toolbar window.
-      void hide() override;
+      void hide() override { m_ptoolbar->hide(); }
 
       // show() displays the toolbar window.
-      void show() override;
+      void show() override { m_ptoolbar->show(); }
 
       // getTotalWidth() returns the total size of all buttons and
       // separators in the toolbar.
-      int getTotalWidth() override;
+      int getTotalWidth() override { return m_ptoolbar->getTotalWidth(); }
 
       // getHeight() returns the toolbar window height.
-      int getHeight() override;
+      int getHeight() override { return m_ptoolbar->getHeight(); }
 
       // getState() gets button state
-      ::lresult getState(int idButton) override;
+      ::lresult getState(int idButton) override { return m_ptoolbar->getState(idButton); }
 
    // private:
    //    int m_initialStr;
@@ -281,6 +285,15 @@ namespace innate_subsystem
    //    HWND m_hWndToolbar;
    //
    //    std::map<int, int> m_autoButtons;
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Toolbar :
+   virtual  public ToolbarComposite,
+   virtual public Control
+   {
+   public:
+
    };
 
 } // namespace innate_subsystem

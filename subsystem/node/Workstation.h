@@ -39,7 +39,7 @@ namespace subsystem
     * Wrapper on WinAPI workstation functions.
     */
    class WorkstationInterface :
-      virtual public ::subsystem::particle_interface<WorkstationInterface>
+      virtual public particle_interface<WorkstationInterface>
    {
    public:
 
@@ -65,7 +65,7 @@ namespace subsystem
     * Wrapper on WinAPI workstation functions.
     */
    class CLASS_DECL_SUBSYSTEM Workstation :
-      virtual public ::subsystem::composite<WorkstationInterface >
+      virtual public composite<WorkstationInterface >
    {
    public:
 

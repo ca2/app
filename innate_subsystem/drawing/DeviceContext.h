@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
     class DeviceContextInterface :
-      virtual public ::subsystem::particle_interface<DeviceContextInterface>
+      virtual public particle_interface<DeviceContextInterface>
    {
    public:
       // Create device context linked to window DC.
@@ -78,7 +78,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM DeviceContext :
-      virtual public ::subsystem::composite < DeviceContextInterface >
+      virtual public composite < DeviceContextInterface >
    {
    public:
 

@@ -35,9 +35,7 @@ namespace innate_subsystem
 {
 
 
-   class NotifyIconWindowInterface :
-   virtual public ::subsystem::particle_interface<NotifyIconWindowInterface>,
-   virtual public Window
+   class NotifyIconWindowSlice : virtual public ::particle_base
    {
    public:
 
@@ -63,14 +61,18 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindow :
-      virtual public ::subsystem::composite<NotifyIconWindowInterface >
+   using NotifyIconWindowInterface = particle_interface<NotifyIconWindowSlice, WindowInterface>;
+
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindowComposite :
+      virtual public composite<NotifyIconWindowSlice, WindowInterface >
    {
    public:
 
 
-      NotifyIconWindow();
-      ~NotifyIconWindow() override;
+      implement_compositeø(NotifyIconWindow, Window, notifyiconwindow)
+
+      //NotifyIconWindow();
+      //~NotifyIconWindow() override;
 
       //::operating_system::window getWindow() override;
 
@@ -80,13 +82,25 @@ namespace innate_subsystem
       //  HWND m_window;
       //WindowProcHolder *m_wph;
 
-      virtual void onNotifyIconRightButtonUp() override;
-      virtual void onNotifyIconLeftButtonDown() override;
-      virtual void onTaskBarCreated() override;
+      virtual void onNotifyIconRightButtonUp() override { m_pnotifyiconwindow->onNotifyIconRightButtonUp(); }
+      virtual void onNotifyIconLeftButtonDown() override { m_pnotifyiconwindow->onNotifyIconLeftButtonDown(); }
+      virtual void onTaskBarCreated() override { m_pnotifyiconwindow->onTaskBarCreated(); }
 
 
       //friend class NotifyIcon;
    };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindow :
+   virtual public NotifyIconWindowComposite,
+   virtual public Window
+   {
+   public:
+
+
+
+   };
+
 
 
 } // namespace innate_subsystem

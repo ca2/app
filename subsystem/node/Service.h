@@ -45,7 +45,7 @@ namespace subsystem
     * @author enikey.
     */
    class ServiceInterface :
-   virtual public ::subsystem::particle_interface<ServiceInterface>
+   virtual public particle_interface<ServiceInterface>
    {
    public:
 
@@ -135,7 +135,7 @@ namespace subsystem
     * @author enikey.
     */
    class CLASS_DECL_SUBSYSTEM Service :
-   virtual public ::subsystem::composite< ServiceInterface>
+   virtual public composite< ServiceInterface>
    {
    public:
 

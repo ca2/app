@@ -33,9 +33,8 @@ namespace innate_subsystem
    //
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
-   class BitmapGraphicsInterface :
-   virtual public ::subsystem::particle_interface<BitmapGraphicsInterface>,
-   virtual public Graphics
+   class BitmapGraphicsSlice :
+   virtual public ::particle_base
    {
    public:
       // Creates BitmapGraphics object with bitmap complatible with specified dc and
@@ -59,22 +58,25 @@ namespace innate_subsystem
       // HGDIOBJ m_oldBitmap;
    };
 
+    using BitmapGraphicsInterface = particle_interface<BitmapGraphicsSlice, Graphics>;
 
 
    //
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
-   class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphics :
-   virtual public ::subsystem::composite<BitmapGraphicsInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphicsComposite :
+    virtual public composite<BitmapGraphicsSlice>
    {
    public:
+
+       implement_compositeø(BitmapGraphics, Graphics, bitmapgraphics)
       // Creates BitmapGraphics object with bitmap complatible with specified dc and
       // with specified size.
       //BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size);
 
-      BitmapGraphics();
+      //BitmapGraphics();
       // Destroys bitmap and graphics object.
-      ~BitmapGraphics() override;
+      //~BitmapGraphics() override;
 
       void initialize_bitmap_graphics(DeviceContextInterface *complatibleDC, const ::int_size & size) override;
 
@@ -91,6 +93,14 @@ namespace innate_subsystem
    };
 
 
+   class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphics :
+    virtual public BitmapGraphicsComposite,
+    virtual public Graphics
+   {
+
+
+
+   };
 
 
 } // namespace innate_subsystem

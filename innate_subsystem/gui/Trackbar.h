@@ -32,9 +32,8 @@
 
 namespace innate_subsystem
 {
-    class TrackbarInterface :
-   virtual public ::subsystem::particle_interface<TrackbarInterface>,
-         virtual public ::innate_subsystem::Control
+    class TrackbarSlice :
+   virtual public ::particle_base
     {
     public:
 
@@ -51,23 +50,41 @@ namespace innate_subsystem
         virtual long getPos() = 0;
     };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Trackbar :
-      virtual public ::subsystem::composite < TrackbarInterface  >
+
+   using TrackbarInterface = particle_interface<TrackbarSlice, ControlInterface>;
+
+   class CLASS_DECL_INNATE_SUBSYSTEM TrackbarComposite :
+      virtual public composite < TrackbarSlice, Control  >
    {
    public:
-      Trackbar();
-      ~Trackbar() override;
+
+
+      implement_compositeø(Trackbar, Control, trackbar)
+
+      //Trackbar();
+      //~Trackbar() override;
 
       // Sets the range of minimum and maximum logical positions for the slider.
-      void setRange(long min, long max) override;
+      void setRange(long min, long max) override { m_ptrackbar->setRange(min, max); }
 
       // Sets the current logical position of the slider.
-      void setPos(long pos) override;
+      void setPos(long pos) override { m_ptrackbar->setPos(pos); }
 
       // Returns the current logical position of the slider.
-      long getPos() override;
+      long getPos() override { return m_ptrackbar->getPos(); }
    };
 
-    //#endif
+   class CLASS_DECL_INNATE_SUBSYSTEM Trackbar :
+      virtual public TrackbarComposite,
+      virtual public Control
+   {
+   public:
+
+
+
+
+   };
+
+
 } // namespace innate_subsystem
 

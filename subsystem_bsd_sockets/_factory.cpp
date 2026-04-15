@@ -7,7 +7,7 @@
 #include "SocketIPv4.h"
 
 
-CLASS_DECL_EXPORT void subsystem_bsd_sockets_factory(::factory::factory * pfactory)
+IMPLEMENT_FACTORY(subsystem_bsd_sockets)
 {
 
    pfactory->add_factory_item<::subsystem_bsd_sockets::subsystem, ::subsystem::subsystem>();

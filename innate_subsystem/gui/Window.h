@@ -47,8 +47,7 @@ namespace innate_subsystem
    };
 
 
-   class WindowInterface :
-      virtual public ::subsystem::particle_interface<WindowInterface>,
+   class WindowSlice :
       virtual public notification_handler
    {
    public:
@@ -266,57 +265,84 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Window :
-      virtual public ::subsystem::composite<WindowInterface>
+
+   class CLASS_DECL_INNATE_SUBSYSTEM WindowComposite :
+      virtual public composite<WindowSlice>
    {
    public:
 
-      Window();
+      implement_compositeø(Window, particle_base, window)
 
-       ~Window() override;
+      // Window();
+      //
+      //  ~Window() override;
 
       // getWindow()
       // Get a handle of the window
-      void * _HWND() const override;
-      void _setHWND(void *) override;
-      void * _WNDPROC_default() const override;
-      ::operating_system::window operating_system_window() const override;
-      void set_operating_system_window(const ::operating_system::window & operatingsystemwindow) override;
+      void * _HWND() const override {return m_pwindow->_HWND();}
+      void _setHWND(void *p) override{return m_pwindow->_setHWND(p);}
+      void * _WNDPROC_default() const override{return m_pwindow->_WNDPROC_default();}
+      ::operating_system::window operating_system_window() const override {return m_pwindow->operating_system_window();}
+      void set_operating_system_window(const ::operating_system::window & operatingsystemwindow) override
+      {
 
-      WindowInterface*get_window_implementation() override;
+         m_pwindow->set_operating_system_window(operatingsystemwindow);
+      }
+
+      WindowInterface*get_window_implementation() override {return m_pwindow->get_window_implementation();}
       // createWindow()
       // Create window with windowName and setted style
       // other parameters can by changed
       bool createWindow(const ::scoped_string & scopedstrWindowName, unsigned int style, const ::operating_system::window & operatingsystemwindowParent = {},
                         int xPos = WINDOW_WIDTH_USE_DEFAULT, int yPos = WINDOW_WIDTH_USE_DEFAULT,
-                        int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) override;
-      bool destroyWindow() override;
+                        int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) override
+      {
+         return m_pwindow->createWindow(scopedstrWindowName, style, operatingsystemwindowParent, xPos, yPos, width, height);
 
-      void setClipboardViewerInterest() override;
-      bool onDrawClipboard() override;
+      }
+      bool destroyWindow() override
+      {
+
+         return m_pwindow->destroyWindow();
+      }
+
+      void setClipboardViewerInterest() override
+      {
+
+         m_pwindow->setClipboardViewerInterest();
+      }
+      bool onDrawClipboard() override
+      {
+
+         return m_pwindow->onDrawClipboard();
+      }
 
       // setClass()
       // Set a class name only to the new window created by createWindow
-      void setClass(const ::scoped_string  & scopedstrWindowClassName) override;
+      void setClass(const ::scoped_string  & scopedstrWindowClassName) override
+      {
+
+         m_pwindow->setClass(scopedstrWindowClassName);
+      }
 
 
-      void setShowCursor(bool bShowCursor) override;
-      bool shouldShowCursor() override;
+      void setShowCursor(bool bShowCursor) override { m_pwindow->setShowCursor(bShowCursor); }
+      bool shouldShowCursor() override { return m_pwindow->shouldShowCursor(); }
 
-      virtual void setDoubleBuffering(bool bDoubleBuffering) override;
-      virtual bool isDoubleBuffering() override;
+      virtual void setDoubleBuffering(bool bDoubleBuffering) override { m_pwindow->setDoubleBuffering(bDoubleBuffering); }
+      virtual bool isDoubleBuffering() override { return m_pwindow->isDoubleBuffering(); }
 
 
       // basic window manipulation procedures
-      void show() override;
-      void hide() override;
-      void enableWindow(bool bEnable) override;
-      void setEnabled(bool bEnable) override;
-      void updateWindow() override;
-      bool setSize(const ::int_size & size) override;
-      bool setPosition(const ::int_point & point) override;
-      bool setPlacement(const ::int_rectangle & rectangle) override;
-      void setWindowText(const ::scoped_string  & scopedstrText) override;
+      void show() override { m_pwindow->show(); }
+      void hide() override { m_pwindow->hide(); }
+      void enableWindow(bool bEnable) override { m_pwindow->enableWindow(bEnable); }
+      void setEnabled(bool bEnable) override { m_pwindow->setEnabled(bEnable); }
+      void updateWindow() override { m_pwindow->updateWindow(); }
+      bool setSize(const ::int_size & size) override { return m_pwindow->setSize(size); }
+      bool setPosition(const ::int_point & point) override { return m_pwindow->setPosition(point); }
+      bool setPlacement(const ::int_rectangle & rectangle) override { return m_pwindow->setPlacement(rectangle); }
+      void setWindowText(const ::scoped_string  & scopedstrText) override { m_pwindow->setWindowText(scopedstrText); }
 
 
 
@@ -325,19 +351,19 @@ namespace innate_subsystem
       // Sets input focus to this control
       //
 
-      void setFocus() override;
+      void setFocus() override { m_pwindow->setFocus(); }
 
       //
       // Return true if window has input focus
       //
 
-      bool hasFocus() override;
+      bool hasFocus() override { return m_pwindow->hasFocus(); }
 
       //
       // Puts this control foreground and activates it
       //
 
-      bool setForeground() override;
+      bool setForeground() override { return m_pwindow->setForeground(); }
 
       // //
       // // Changes visible state of this control
@@ -349,97 +375,97 @@ namespace innate_subsystem
       // Checks if this control is active (not disabled)
       //
 
-      bool isEnabled() override;
+      bool isEnabled() override { return m_pwindow->isEnabled(); }
 
-      bool isWindow() override;
+      bool isWindow() override { return m_pwindow->isWindow(); }
 
-      bool isVisible() override;
+      bool isVisible() override { return m_pwindow->isVisible(); }
 
-      bool isIconic() override;
+      bool isIconic() override { return m_pwindow->isIconic(); }
 
-      bool isMinimized() override;
+      bool isMinimized() override { return m_pwindow->isMinimized(); }
 
-      bool isFullScreen() override;
+      bool isFullScreen() override { return m_pwindow->isFullScreen(); }
 
       //
       // Invalidates control
       //
 
-      void invalidate() override;
+      void invalidate() override { m_pwindow->invalidate(); }
 
       //
       // Gets text associated with window
       //
 
-      ::string getText() override;
+      ::string getText() override { return m_pwindow->getText(); }
 
       // loadIcon()
       // Set the icon of application where id can be from resource or handle HICON
-      void loadIcon(unsigned int id) override;
+      void loadIcon(unsigned int id) override { m_pwindow->loadIcon(id); }
 
       // setParent()
       // Making child window by changing parent of the window
-      void setParent(::innate_subsystem::WindowInterface * pwindowParent) override;
+      void setParent(::innate_subsystem::WindowInterface * pwindowParent) override { m_pwindow->setParent(pwindowParent); }
 
 
-      ::operating_system::window dialog_item_operating_system_window(int iDlgItem) override;
-      void subclassControlById(WindowInterface * pwindowControl, unsigned int id) override;
-      void subclassWindow(const ::operating_system::window & operatingsystemwindow)override;
-      void unsubclassWindow() override;
+      ::operating_system::window dialog_item_operating_system_window(int iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
+      void subclassControlById(WindowInterface * pwindowControl, unsigned int id) override { m_pwindow->subclassControlById(pwindowControl, id); }
+      void subclassWindow(const ::operating_system::window & operatingsystemwindow)override { m_pwindow->subclassWindow(operatingsystemwindow); }
+      void unsubclassWindow() override { m_pwindow->unsubclassWindow(); }
 
       // for changing registered class parameters of created window
-      void setClassStyle(unsigned int style) override;
-      void setClassCursor(::innate_subsystem::CursorInterface * pcursor) override;
-      void setClassBackground(::innate_subsystem::BrushInterface * pbrush) override;
-      void setClassMenu(::innate_subsystem::MenuInterface * pmenu) override;
+      void setClassStyle(unsigned int style) override { m_pwindow->setClassStyle(style); }
+      void setClassCursor(::innate_subsystem::CursorInterface * pcursor) override { m_pwindow->setClassCursor(pcursor); }
+      void setClassBackground(::innate_subsystem::BrushInterface * pbrush) override { m_pwindow->setClassBackground(pbrush); }
+      void setClassMenu(::innate_subsystem::MenuInterface * pmenu) override { m_pwindow->setClassMenu(pmenu); }
 
 
-      bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override;
+      bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override { return m_pwindow->we_want_WM_KEYDOWN_when_enter_is_pressed(); }
 
       // for changing or get style and exstyle of window
-      long long getStyle() override;
-      void setStyle(unsigned int style) override;
-      void addStyle(unsigned int styleFlag) override;
-      void removeStyle(unsigned int styleFlag) override;
-      bool isStyleEnabled(unsigned int styleFlags) override;
+      long long getStyle() override { return m_pwindow->getStyle(); }
+      void setStyle(unsigned int style) override { m_pwindow->setStyle(style); }
+      void addStyle(unsigned int styleFlag) override { m_pwindow->addStyle(styleFlag); }
+      void removeStyle(unsigned int styleFlag) override { m_pwindow->removeStyle(styleFlag); }
+      bool isStyleEnabled(unsigned int styleFlags) override { return m_pwindow->isStyleEnabled(styleFlags); }
 
 
-      long long getExStyle() override;
-      void setExStyle(unsigned int exstyle) override;
-      void addExStyle(unsigned int styleFlag) override;
-      void removeExStyle(unsigned int styleFlag) override;
-      bool isExStyleEnabled(unsigned int styleFlag) override;
+      long long getExStyle() override { return m_pwindow->getExStyle(); }
+      void setExStyle(unsigned int exstyle) override { m_pwindow->setExStyle(exstyle); }
+      void addExStyle(unsigned int styleFlag) override { m_pwindow->addExStyle(styleFlag); }
+      void removeExStyle(unsigned int styleFlag) override { m_pwindow->removeExStyle(styleFlag); }
+      bool isExStyleEnabled(unsigned int styleFlag) override { return m_pwindow->isExStyleEnabled(styleFlag); }
 
       // full redraw of window area
-      void redraw(const ::int_rectangle &rcArea ={}) override;
+      void redraw(const ::int_rectangle &rcArea ={}) override { m_pwindow->redraw(rcArea); }
 
       // set or kill timer, with identifactor ident
       // and time in milliseconds
-      void setTimer(::uptr ident, unsigned int time) override;
-      void killTimer(::uptr ident) override;
+      void setTimer(::uptr ident, unsigned int time) override { m_pwindow->setTimer(ident, time); }
+      void killTimer(::uptr ident) override { m_pwindow->killTimer(ident); }
 
       // set foreground window
-      void setForegroundWindow() override;
+      void setForegroundWindow() override { m_pwindow->setForegroundWindow(); }
 
       // post message to this window
-      void postMessage(unsigned int Msg, ::wparam wparam =0, ::lparam lparam =0) override;
+      void postMessage(unsigned int Msg, ::wparam wparam =0, ::lparam lparam =0) override { m_pwindow->postMessage(Msg, wparam, lparam); }
 
-      ::int_rectangle getClientRect() override;
-      ::int_rectangle getFullScreenRect() override;
-      ::int_size getBorderSize() override;
-      ::int_rectangle getScreenWorkArea() override;
+      ::int_rectangle getClientRect() override { return m_pwindow->getClientRect(); }
+      ::int_rectangle getFullScreenRect() override { return m_pwindow->getFullScreenRect(); }
+      ::int_size getBorderSize() override { return m_pwindow->getBorderSize(); }
+      ::int_rectangle getScreenWorkArea() override { return m_pwindow->getScreenWorkArea(); }
 
       //void setSizeFullScreenWindow() override;
       //void doRestoreFromFullScreen() override;
-      void minimizeWindow() override;
-      void restoreWindow() override;
+      void minimizeWindow() override { m_pwindow->minimizeWindow(); }
+      void restoreWindow() override { m_pwindow->restoreWindow(); }
 
 
-      void doFullScreen() override;
-      void doUnFullScreen() override;
+      void doFullScreen() override { m_pwindow->doFullScreen(); }
+      void doUnFullScreen() override { m_pwindow->doUnFullScreen(); }
 
 
-      void adjustWindowSize() override;
+      void adjustWindowSize() override { m_pwindow->adjustWindowSize(); }
 
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;
@@ -453,28 +479,28 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-       bool onCommand(::wparam wparam, ::lparam lparam) override;
+       bool onCommand(::wparam wparam, ::lparam lparam) override { return m_pwindow->onCommand(wparam, lparam); }
    //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
-       bool onSysCommand(::wparam wparam, ::lparam lparam) override;
-       bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override;
-       bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override;
+       bool onSysCommand(::wparam wparam, ::lparam lparam) override { return m_pwindow->onSysCommand(wparam, lparam); }
+       bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override { return m_pwindow->onMessage(message, wparam, lparam); }
+       bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override { return m_pwindow->onMouse(mouseButtons, wheelSpeed, position); }
 
-      bool onCreate(void * pCreateStruct) override;
+      bool onCreate(void * pCreateStruct) override { return m_pwindow->onCreate(pCreateStruct); }
 
-      bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) override;
-
-
-      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override;
+      bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) override { return m_pwindow->on_window_procedure(lresult, message, wparam, lparam); }
 
 
-      void onBeforeFullScreen(bool bRestore) override;
-      void onAfterFullScreen(bool bRestore) override;
-      void onBeforeUnFullScreen(bool bMinimizing) override;
-      void onAfterUnFullScreen(bool bMinimizing) override;
-      bool onGetTooltip(int iControl, ::string & strTooltip) override;
-      bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) override;
-      void onAdjustWindowSize() override;
-      void onSize() override;
+      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override { m_pwindow->onDraw(pgraphics, rectangle); }
+
+
+      void onBeforeFullScreen(bool bRestore) override { m_pwindow->onBeforeFullScreen(bRestore); }
+      void onAfterFullScreen(bool bRestore) override { m_pwindow->onAfterFullScreen(bRestore); }
+      void onBeforeUnFullScreen(bool bMinimizing) override { m_pwindow->onBeforeUnFullScreen(bMinimizing); }
+      void onAfterUnFullScreen(bool bMinimizing) override { m_pwindow->onAfterUnFullScreen(bMinimizing); }
+      bool onGetTooltip(int iControl, ::string & strTooltip) override { return m_pwindow->onGetTooltip(iControl, strTooltip); }
+      bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) override { return m_pwindow->onCalculateDefaultSize(rectangleDefaultSize); }
+      void onAdjustWindowSize() override { m_pwindow->onAdjustWindowSize(); }
+      void onSize() override { m_pwindow->onSize(); }
 
    // protected:
    //    HWND m_hWnd;
@@ -484,5 +510,15 @@ namespace innate_subsystem
    //
    //    bool m_bWndCreated;
    };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Window :
+   virtual public WindowComposite
+   {
+   public:
+
+
+   };
+
+
 
 } // namespace innate_subsystem

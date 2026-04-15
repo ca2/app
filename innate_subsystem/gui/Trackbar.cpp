@@ -26,33 +26,34 @@
 
 namespace innate_subsystem
 {
-   Trackbar::Trackbar()
-   {
-   }
-
-   Trackbar::~Trackbar()
-   {
-   }
-
-   void Trackbar::setRange(long min, long max)
-   {
-      //SendMessage(m_hwnd, TBM_SETRANGEMIN, FALSE, min);
-      //SendMessage(m_hwnd, TBM_SETRANGEMAX, TRUE, max);
-      m_pparticleThis->setRange(min, max);
-   }
-
-   void Trackbar::setPos(long pos)
-   {
-      //SendMessage(m_hwnd, TBM_SETPOS, TRUE, pos);
-      m_pparticleThis->setPos(pos);
-   }
-
-   long Trackbar::getPos()
-   {
-      //return (long)SendMessage(m_hwnd, TBM_GETPOS, 0, 0);
-
-      return m_pparticleThis->getPos();
-   }
+//    Trackbar::Trackbar()
+//    {
+//    }
+//
+//    Trackbar::~Trackbar()
+//    {
+//    }
+//
+//    /*void Trackbar::setRange(long min, long max)
+//    {
+//       //SendMessage(m_hwnd, TBM_SETRANGEMIN, FALSE, min);
+//       //SendMessage(m_hwnd, TBM_SETRANGEMAX, TRUE, max);
+//       m_pparticleThis->setRange(min, max);
+//    }
+//
+//    void Trackbar::setPos(long pos)
+//    {
+//       //SendMessage(m_hwnd, TBM_SETPOS, TRUE, pos);
+//       m_pparticleThis->setPos(pos);
+//    }
+//
+//    long Trackbar::getPos()
+//    {
+//       //return (long)SendMessage(m_hwnd, TBM_GETPOS, 0, 0);
+//
+//       return m_pparticleThis->getPos();
+//    }
+//    */
 } // namespace innate_subsystem
 
 

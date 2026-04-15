@@ -104,6 +104,8 @@ namespace platform
       virtual void process_machine_event_data(machine_event_data * pdata) override;
 
 
+      virtual ::string get_subsystem_library_component_name();
+
       virtual ::string get_operating_ambient();
 
       virtual ::string get_user_toolkit_id();
@@ -113,6 +115,8 @@ namespace platform
       virtual ::string get_innate_ui_toolkit_id();
 
       virtual ::string get_acme_windowing_toolkit_id();
+
+      virtual ::string get_subsystem_toolkit_id();
 
       void do_operating_ambient_factory() override;
 
@@ -372,6 +376,11 @@ namespace platform
 
 
       //virtual void defer_post_initial_request() override;
+
+
+      void defer_start_system() override;
+
+
 
       void post_application_start() override;
       void defer_post_application_start_file_open_request() override;

@@ -941,6 +941,14 @@ pdirectorysystem->create("/ca2core");
    }
 
 
+   ::string system::get_subsystem_library_component_name()
+   {
+
+      return "innate_subsystem";
+
+   }
+
+
    void system::init1()
    {
 

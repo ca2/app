@@ -39,7 +39,7 @@ console session.
 @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
 */
    class CLASS_DECL_SUBSYSTEM ImpersonatorInterface :
-      virtual public ::subsystem::particle_interface<ImpersonatorInterface>
+      virtual public particle_interface<ImpersonatorInterface>
    {
    public:
       //Impersonator(LogWriter *plogwriter);
@@ -86,7 +86,7 @@ console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
    class CLASS_DECL_SUBSYSTEM Impersonator :
-   virtual public ::subsystem::composite<ImpersonatorInterface>
+   virtual public composite<ImpersonatorInterface>
    {
    public:
       //Impersonator(LogWriter *plogwriter);

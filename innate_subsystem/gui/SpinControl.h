@@ -32,9 +32,8 @@
 namespace innate_subsystem
 {
 
-class SpinControlInterface :
-   virtual public ::subsystem::particle_interface<SpinControlInterface>,
-   public Control
+class SpinControlSlice :
+   virtual public ::particle_base
 {
 public:
   //SpinControl();
@@ -71,17 +70,24 @@ public:
 //   int m_maxDelta;
 };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM SpinControl :
-   virtual public ::subsystem::composite < SpinControlInterface>
+   using SpinControlInterface = particle_interface<SpinControlSlice, ControlInterface>;
+
+   class CLASS_DECL_INNATE_SUBSYSTEM SpinControlComposite :
+   virtual public composite < SpinControlSlice, Control>
    {
    public:
-      SpinControl();
-      ~SpinControl() override;
 
-      void setBuddy(ControlInterface *buddyControl)override;
-      void setRange(short lower, short upper)override;
-      void setRange32(int lower, int upper)override;
-      void setAccel(unsigned int nSec, unsigned int nInc)override;
+
+      implement_compositeø(SpinControl, Control, spincontrol)
+
+
+      //SpinControl();
+      //~SpinControl() ;
+
+      void setBuddy(ControlInterface *buddyControl) { m_pspincontrol->setBuddy(buddyControl); }
+      void setRange(short lower, short upper) { m_pspincontrol->setRange(lower, upper); }
+      void setRange32(int lower, int upper) { m_pspincontrol->setRange32(lower, upper); }
+      void setAccel(unsigned int nSec, unsigned int nInc) { m_pspincontrol->setAccel(nSec, nInc); }
 
       //
       // Auto acceleration methods
@@ -91,11 +97,11 @@ public:
       // Handler, call it on UDN_DELTAPOS notification
       //
 
-      //void autoAccelerationHandler(LPNMUPDOWN message)override;
-      void enableAutoAcceleration(bool enabled)override;
+      //void autoAccelerationHandler(LPNMUPDOWN message);
+      void enableAutoAcceleration(bool enabled) { m_pspincontrol->enableAutoAcceleration(enabled); }
       void setAutoAccelerationParams(const int_array & limitters,
                                      const int_array & deltas,
-                                     int maxDelta)override;
+                                     int maxDelta) { m_pspincontrol->setAutoAccelerationParams(limitters, deltas, maxDelta); }
       // protected:
       //   Control *m_buddy;
       //
@@ -108,6 +114,21 @@ public:
       //   std::vector<int> m_deltas;
       //   int m_maxDelta;
    };
+
+
+    class CLASS_DECL_INNATE_SUBSYSTEM SpinControl :
+    virtual public SpinControlComposite,
+    virtual public Control
+   {
+   public:
+
+
+
+
+
+   };
+
+
 } // namespace innate_subsystem
 
 //#endif

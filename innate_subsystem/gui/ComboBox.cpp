@@ -28,89 +28,89 @@
 
 namespace innate_subsystem
 {
-   ComboBox::ComboBox()
-   {
-   }
+   //ComboBox::ComboBox()
+   //{
+   //}
 
-   ComboBox::~ComboBox()
-   {
-   }
+   //ComboBox::~ComboBox()
+   //{
+   //}
 
-   int ComboBox::addItem(const char *text)
-   {
-      //return ComboBox_AddString(m_hwnd, text);
-      return m_pparticleThis->addItem(text);
-   }
+   //int ComboBox::addItem(const char *text)
+   //{
+   //   //return ComboBox_AddString(m_hwnd, text);
+   //   return m_pparticleThis->addItem(text);
+   //}
 
-   int ComboBox::addItem(const char *text, void *tag)
-   {
-      // int index = addItem(text);
-      // setItemData(index, tag);
-      // return index;
-      return m_pparticleThis->addItem(text, tag);
-   }
+   //int ComboBox::addItem(const char *text, void *tag)
+   //{
+   //   // int index = addItem(text);
+   //   // setItemData(index, tag);
+   //   // return index;
+   //   return m_pparticleThis->addItem(text, tag);
+   //}
 
-   void ComboBox::insertItem(int index, const char *text)
-   {
-      //ComboBox_InsertString(m_hwnd, index, text);
-      m_pparticleThis->insertItem(index, text);
-   }
+   //void ComboBox::insertItem(int index, const char *text)
+   //{
+   //   //ComboBox_InsertString(m_hwnd, index, text);
+   //   m_pparticleThis->insertItem(index, text);
+   //}
 
-   void ComboBox::insertItem(int index, const char *text, void *tag)
-   {
-      // insertItem(index, text);
-      //setItemData(index, tag);
-      m_pparticleThis->insertItem(index, text, tag);
-   }
+   //void ComboBox::insertItem(int index, const char *text, void *tag)
+   //{
+   //   // insertItem(index, text);
+   //   //setItemData(index, tag);
+   //   m_pparticleThis->insertItem(index, text, tag);
+   //}
 
-   int ComboBox::getItemsCount()
-   {
-      //return ComboBox_GetCount(m_hwnd);
-      return m_pparticleThis->getItemsCount();
-   }
+   //int ComboBox::getItemsCount()
+   //{
+   //   //return ComboBox_GetCount(m_hwnd);
+   //   return m_pparticleThis->getItemsCount();
+   //}
 
-   void ComboBox::setItemData(int index, void *tag)
-   {
-      //ComboBox_SetItemData(m_hwnd, index, (::lparam)tag);
-      m_pparticleThis->setItemData(index, tag);
-   }
+   //void ComboBox::setItemData(int index, void *tag)
+   //{
+   //   //ComboBox_SetItemData(m_hwnd, index, (::lparam)tag);
+   //   m_pparticleThis->setItemData(index, tag);
+   //}
 
-   void *ComboBox::getItemData(int index)
-   {
-      //return (void *)ComboBox_GetItemData(m_hwnd, index);
-      return m_pparticleThis->getItemData(index);
-   }
+   //void *ComboBox::getItemData(int index)
+   //{
+   //   //return (void *)ComboBox_GetItemData(m_hwnd, index);
+   //   return m_pparticleThis->getItemData(index);
+   //}
 
-   ::string  ComboBox::getItemText(int index)
-   {
-      // size_t length = ComboBox_GetLBTextLen(m_hwnd, index);
-      // std::vector<char> buf(length + 1);
-      // ComboBox_GetLBText(m_hwnd, index, &buf.front());
-      // storage->setString(&buf.front());
-      return m_pparticleThis->getItemText(index);
-   }
+   //::string  ComboBox::getItemText(int index)
+   //{
+   //   // size_t length = ComboBox_GetLBTextLen(m_hwnd, index);
+   //   // std::vector<char> buf(length + 1);
+   //   // ComboBox_GetLBText(m_hwnd, index, &buf.front());
+   //   // storage->setString(&buf.front());
+   //   return m_pparticleThis->getItemText(index);
+   //}
 
-   int ComboBox::getSelectedItemIndex()
-   {
-      //return ComboBox_GetCurSel(m_hwnd);
-      return m_pparticleThis->getSelectedItemIndex();
-   }
+   //int ComboBox::getSelectedItemIndex()
+   //{
+   //   //return ComboBox_GetCurSel(m_hwnd);
+   //   return m_pparticleThis->getSelectedItemIndex();
+   //}
 
-   void ComboBox::setSelectedItem(int index)
-   {
-      //ComboBox_SetCurSel(m_hwnd, index);
-      m_pparticleThis->setSelectedItem(index);
-   }
+   //void ComboBox::setSelectedItem(int index)
+   //{
+   //   //ComboBox_SetCurSel(m_hwnd, index);
+   //   m_pparticleThis->setSelectedItem(index);
+   //}
 
-   void ComboBox::deleteItem(int index)
-   {
-      //ComboBox_DeleteString(m_hwnd, index);
-      m_pparticleThis->deleteItem(index);
-   }
+   //void ComboBox::deleteItem(int index)
+   //{
+   //   //ComboBox_DeleteString(m_hwnd, index);
+   //   m_pparticleThis->deleteItem(index);
+   //}
 
-   void ComboBox::removeAllItems()
-   {
-      //ComboBox_ResetContent(m_hwnd);
-      m_pparticleThis->removeAllItems();
-   }
+   //void ComboBox::removeAllItems()
+   //{
+   //   //ComboBox_ResetContent(m_hwnd);
+   //   m_pparticleThis->removeAllItems();
+   //}
 } // namespace innate_subsystem

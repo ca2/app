@@ -39,7 +39,7 @@ namespace subsystem
     * Wrapper on base WinAPI keyboard functions.
     */
    class KeyboardInterface :
-   virtual public ::subsystem::particle_interface<KeyboardInterface>
+   virtual public particle_interface<KeyboardInterface>
    {
    public:
 
@@ -73,7 +73,7 @@ namespace subsystem
     * Wrapper on base WinAPI keyboard functions.
     */
    class CLASS_DECL_SUBSYSTEM Keyboard :
-   virtual public ::subsystem::composite <KeyboardInterface>
+   virtual public composite <KeyboardInterface>
    {
    public:
 

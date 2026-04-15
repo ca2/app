@@ -34,76 +34,82 @@
 
 namespace subsystem
 {
-   // NamedPipe::NamedPipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer)
-   // {
-   //    initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
-   // }
-   NamedPipe::NamedPipe()
-   {
-       //initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
-    }
-
-   NamedPipe::~NamedPipe(void)
-   {
-      // try {
-      //    close();
-      // } catch (...) {
-      // }
-   }
-
-
-   void NamedPipe::initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer)
-//: Pipe(maxPortionSize),
-  //m_hPipe(hPipe),
-  //m_asServer(asServer)
-   {
-      m_pparticleThis->initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
-   }
-
-   void NamedPipe::close()
-   {
-      m_pparticleThis->close();
-      // AutoLock al(&m_hPipeMutex);
-      // if (m_asServer) {
-      //    if (DisconnectNamedPipe(m_hPipe) == 0) {
-      //       DWORD errCode = GetLastError();
-      //       ::string errMess;
-      //       errMess.formatf("DisconnectNamedPipe failed, error code = %u", errCode);
-      //       throw ::subsystem::Exception(errMess);
-      //    }
-      // }
-      //
-      // if (m_hPipe != INVALID_HANDLE_VALUE) {
-      //    CloseHandle(m_hPipe);
-      //    m_hPipe = INVALID_HANDLE_VALUE;
-      // }
-      // // Unblock a blocked operation
-      // m_readEvent.notify();
-      // m_writeEvent.notify();
-   }
-
-   memsize NamedPipe::defer_write(const void *buffer, memsize len)
-   {
-      //return writeByHandle(buffer, len, m_hPipe);
-      return m_pparticleThis->defer_write(buffer, len);
-   }
-
-   size_t NamedPipe::read(void *buffer, size_t len)
-   {
-      //return readByHandle(buffer, len, m_hPipe);
-      return m_pparticleThis->read(buffer, len);
-   }
-
-   // HANDLE NamedPipe::getHandle() const
-   // {
-   //    return m_hPipe;
-   // }
-
-   void NamedPipe::checkPipeFile()
-   {
-      //if (m_hPipe == INVALID_HANDLE_VALUE) {
-        // throw ::io_exception(error_io, "Invalid pipe handle");
-      //}
-      m_pparticleThis->checkPipeFile();
-   }
+//   // NamedPipe::NamedPipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer)
+//   // {
+//   //    initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
+//   // }
+//   NamedPipe::NamedPipe()
+//   {
+//       //initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
+//    }
+//
+//   NamedPipe::~NamedPipe(void)
+//   {
+//      // try {
+//      //    close();
+//      // } catch (...) {
+//      // }
+//   }
+//
+//
+//   void NamedPipe::initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer)
+////: Pipe(maxPortionSize),
+//  //m_hPipe(hPipe),
+//  //m_asServer(asServer)
+//   {
+//      m_pparticleThis->initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
+//   }
+//
+//   void NamedPipe::close()
+//   {
+//      m_pparticleThis->close();
+//      // AutoLock al(&m_hPipeMutex);
+//      // if (m_asServer) {
+//      //    if (DisconnectNamedPipe(m_hPipe) == 0) {
+//      //       DWORD errCode = GetLastError();
+//      //       ::string errMess;
+//      //       errMess.formatf("DisconnectNamedPipe failed, error code = %u", errCode);
+//      //       throw ::subsystem::Exception(errMess);
+//      //    }
+//      // }
+//      //
+//      // if (m_hPipe != INVALID_HANDLE_VALUE) {
+//      //    CloseHandle(m_hPipe);
+//      //    m_hPipe = INVALID_HANDLE_VALUE;
+//      // }
+//      // // Unblock a blocked operation
+//      // m_readEvent.notify();
+//      // m_writeEvent.notify();
+//   }
+//
+//   memsize NamedPipe::defer_write(const void *buffer, memsize len)
+//   {
+//      //return writeByHandle(buffer, len, m_hPipe);
+//      return m_pparticleThis->defer_write(buffer, len);
+//   }
+//
+//
+//   size_t NamedPipe::available()
+//      {
+//      return m_pparticleThis->available();
+//   }
+//
+//   size_t NamedPipe::read(void *buffer, size_t len)
+//   {
+//      //return readByHandle(buffer, len, m_hPipe);
+//      return m_pparticleThis->read(buffer, len);
+//   }
+//
+//   // HANDLE NamedPipe::getHandle() const
+//   // {
+//   //    return m_hPipe;
+//   // }
+//
+//   void NamedPipe::checkPipeFile()
+//   {
+//      //if (m_hPipe == INVALID_HANDLE_VALUE) {
+//        // throw ::io_exception(error_io, "Invalid pipe handle");
+//      //}
+//      m_pparticleThis->checkPipeFile();
+//   }
 } //namespace subsystem

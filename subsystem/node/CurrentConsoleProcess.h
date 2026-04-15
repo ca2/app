@@ -96,7 +96,7 @@ namespace subsystem
    //  * @fixme rename it.
    //  */
    // class CLASS_DECL_SUBSYSTEM CurrentConsoleProcess :
-   // virtual public ::subsystem::composite< CurrentConsoleProcessInterface >
+   // virtual public composite< CurrentConsoleProcessInterface >
    // {
    // public:
    //    /**

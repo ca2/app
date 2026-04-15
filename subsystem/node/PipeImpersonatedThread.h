@@ -31,9 +31,8 @@ namespace subsystem
 {
 
 
-   class PipeImpersonatedThreadInterface :
-   virtual public ::subsystem::particle_interface<PipeImpersonatedThreadInterface>,
-         virtual public Thread
+   class PipeImpersonatedThreadSlice :
+   virtual public ::particle_base
    {
    public:
       //PipeImpersonatedThread(HANDLE pipeHandle);
@@ -60,23 +59,33 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
-   class CLASS_DECL_SUBSYSTEM PipeImpersonatedThread :
-   virtual public ::subsystem::composite < PipeImpersonatedThreadInterface>
+    using PipeImpersonatedThreadInterface = particle_interface<PipeImpersonatedThreadSlice, ThreadInterface>;
+
+
+   class CLASS_DECL_SUBSYSTEM PipeImpersonatedThreadComposite :
+      virtual public composite < PipeImpersonatedThreadInterface>
    {
    public:
+
+      implement_compositeø(PipeImpersonatedThread, Thread, pipeimpersonatedthread)
+
       //PipeImpersonatedThread(FileInterface * pfilePipe);
-      PipeImpersonatedThread();
-       ~PipeImpersonatedThread() override;
+      //PipeImpersonatedThreadComposite();
+       //~PipeImpersonatedThreadComposite() override;
 
-      void initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe) override;
+      void initialize_pipe_impersonated_thread(::subsystem::FileInterface * pfilePipe) override
+      {
 
-      void waitUntilImpersonated() override;
-      bool getImpersonationSuccess() override;
-      ::string getFaultReason() override;
+         m_ppipeimpersonatedthread->initialize_pipe_impersonated_thread(pfilePipe);
+      }
+
+      void waitUntilImpersonated() override {m_ppipeimpersonatedthread->waitUntilImpersonated();}
+      bool getImpersonationSuccess() override { return m_ppipeimpersonatedthread->getImpersonationSuccess(); }
+      ::string getFaultReason() override {return m_ppipeimpersonatedthread->getFaultReason();}
 
    //private:
-      void execute() override;
-      void onTerminate() override;
+      //void execute() override;
+      //void onTerminate() override;
 
       // HANDLE m_pipeHandle;
       // bool m_success;
@@ -85,6 +94,13 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
+   class CLASS_DECL_SUBSYSTEM PipeImpersonatedThread :
+      virtual public PipeImpersonatedThreadComposite,
+      virtual public Thread
+   {
+
+
+   };
    
 } // namespace subsystem
 

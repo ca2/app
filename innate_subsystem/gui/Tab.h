@@ -32,7 +32,7 @@
 namespace innate_subsystem
 {
     class TabInterface :
-   virtual public ::subsystem::particle_interface<TabInterface>
+   virtual public particle_interface<TabInterface>
     {
     public:
         //Tab();
@@ -83,7 +83,7 @@ namespace innate_subsystem
    
    
    class CLASS_DECL_INNATE_SUBSYSTEM Tab :
-      virtual public ::subsystem::composite <TabInterface>
+      virtual public composite <TabInterface>
    {
    public:
 

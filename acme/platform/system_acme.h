@@ -109,8 +109,14 @@ namespace platform
 
       //::pointer<main_hold_base>                                             m_pmainholdbase;
       //::pointer<system_impl> *                                              m_psystemimpl;
+#if defined(WINDOWS)
+      hinstance m_hinstanceMain = nullptr;
+#endif 
+
+
 #if !defined(WINDOWS)
       ::pointer<::exception_translator>                                       m_pexceptiontranslator;
+      
 #endif
       ::pointer<::factory::factory>                                           m_pfactoryFolder;
 
@@ -439,6 +445,9 @@ namespace platform
 
 
       virtual ::request * application_start_file_open_request();
+
+
+      virtual void defer_start_system();
 
 
       virtual void post_application_start();

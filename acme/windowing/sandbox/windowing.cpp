@@ -243,7 +243,8 @@ void windowing::_will_finish_launching()
 //
 //   ::acme::windowing::windowing::_will_finish_launching();
    
-   system()->post_application_start();
+   throw "post_application_start";
+   //system()->post_application_start();
    
 }
 

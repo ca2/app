@@ -82,7 +82,7 @@ namespace operating_system
       windows_window & operator=(HWND hwnd)
       {
 
-         if (::is_null(hwnd) || hwnd == INVALID_HANDLE_VALUE)
+         if (hwnd == nullptr || hwnd == INVALID_HANDLE_VALUE)
          {
 
             this->Null();

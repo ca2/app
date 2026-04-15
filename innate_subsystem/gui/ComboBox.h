@@ -33,9 +33,8 @@ namespace innate_subsystem
 {
 
 
-    class ComboBoxInterface :
-   virtual public ::subsystem::particle_interface<ComboBoxInterface>,
-         virtual public Control
+    class ComboBoxSlice :
+      virtual public ::particle_base
     {
     public:
 
@@ -82,50 +81,104 @@ namespace innate_subsystem
 
     };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ComboBox :
-     virtual public ::subsystem::composite<ComboBoxInterface>
+
+   using ComboBoxInterface = ::particle_interface<ComboBoxSlice, ControlInterface>;
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ComboBoxComposite :
+     virtual public composite<ComboBoxSlice, Control>
    {
    public:
 
+      implement_compositeø(ComboBox, Control, combobox)
 
-      ComboBox();
-      ~ComboBox() override;
-
-      // Adds new item to the end of combo box items list.
-      int addItem(const char *text) override;
+      //ComboBox();
+      //~ComboBox();
 
       // Adds new item to the end of combo box items list.
-      int addItem(const char *text, void *tag) override;
+         int addItem(const char *text) override
+      {
+         return m_pcombobox->addItem(text);
+      }
+
+      // Adds new item to the end of combo box items list.
+      int addItem(const char* text, void* tag) override
+      {
+
+         return m_pcombobox->addItem(text, tag);
+      }
 
       // Inserts new item to the specified position
-      void insertItem(int index, const char *text) override;
+      void insertItem(int index, const char* text) override 
+      { return m_pcombobox->insertItem(index, text);
+
+      }
 
       // Inserts new item to the specified position
-      void insertItem(int index, const char *text, void *tag) override;
+      void insertItem(int index, const char* text, void* tag) { return m_pcombobox->insertItem(index, text, tag);
+
+      }
 
       // Returns count of combo box items
-      int getItemsCount() override;
+      int getItemsCount()
+      {
+
+         return m_pcombobox->getItemsCount();
+      }
 
       // Sets user data (tag) associated with combo box item with specified index
-      void setItemData(int index, void *tag) override;
+      void setItemData(int index, void* tag) { m_pcombobox->setItemData(index, tag);
+
+      }
 
       // Returns user data associated with combo box item with specified index
-      void *getItemData(int index) override;
+      void* getItemData(int index) { return m_pcombobox->getItemData(index);
+
+      }
 
       // Sets text associated with combo box item with specified index
-      ::string getItemText(int index) override;
+      ::string getItemText(int index)
+      {
+
+         return m_pcombobox->getItemText(index);
+      }
 
       // Returns current selected item index
-      int getSelectedItemIndex() override;
+      int getSelectedItemIndex()
+      {
+
+         return m_pcombobox->getSelectedItemIndex();
+      }
 
       // Selects item with specified index
-      void setSelectedItem(int index) override;
+      void setSelectedItem(int index) { m_pcombobox->setSelectedItem(index);
+      }
 
       // Deletes item from specified location
-      void deleteItem(int index) override;
+      void deleteItem(int index)
+      {
+
+         m_pcombobox->deleteItem(index);
+      }
 
       // Removes all combo box items
-      void removeAllItems() override;
+      void removeAllItems()
+      {
+
+         m_pcombobox->removeAllItems();
+
+      }
+
+
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ComboBox :
+      virtual public ComboBoxComposite,
+      virtual public Control
+   {
+   public:
+
 
 
    };

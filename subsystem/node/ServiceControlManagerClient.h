@@ -82,7 +82,7 @@ namespace subsystem
     * of service.
     */
    class ServiceControlManagerClientInterface :
-   virtual public ::subsystem::particle_interface<ServiceControlManagerClientInterface>
+   virtual public particle_interface<ServiceControlManagerClientInterface>
    {
    public:
       /**
@@ -160,7 +160,7 @@ namespace subsystem
  * of service.
  */
    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClient :
-   virtual public ::subsystem::composite<ServiceControlManagerClientInterface>
+   virtual public composite<ServiceControlManagerClientInterface>
    {
    public:
       /**

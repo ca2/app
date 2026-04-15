@@ -34,9 +34,8 @@ namespace innate_subsystem
 {
 
 
-   class DialogInterface :
-   virtual public ::subsystem::particle_interface<DialogInterface>,
-      virtual public Control
+   class DialogSlice :
+      virtual public ::particle_base
    {
    public:
 
@@ -80,50 +79,6 @@ namespace innate_subsystem
       // Icon manipulation
       virtual void loadIcon(unsigned int id) = 0;
       virtual void updateIcon() = 0;
-
-
-      template < typename WIDGET_TYPE >
-      ::pointer < WIDGET_TYPE > & dialog_item(::pointer < WIDGET_TYPE > & pwidget, int iDlgItem)
-      {
-
-         constructø(pwidget);
-
-         auto operatingsystemwindow = dialog_item_operating_system_window(iDlgItem);
-
-         pwidget->set_operating_system_window(operatingsystemwindow);
-
-         return pwidget;
-
-
-      }
-
-      template < typename WIDGET_TYPE >
-      ::subsystem::composite  < WIDGET_TYPE > & dialog_item(::subsystem::composite  < WIDGET_TYPE > & widget, int iDlgItem)
-      {
-
-         //constructø(pwidget);
-
-         auto operatingsystemwindow = dialog_item_operating_system_window(iDlgItem);
-
-         widget.set_operating_system_window(operatingsystemwindow);
-
-         return widget;
-
-
-      }
-
-      template < typename WIDGET_TYPE  = ::innate_subsystem::Control>
-      ::pointer < WIDGET_TYPE > dialog_item(int iDlgItem)
-      {
-
-         ::pointer < WIDGET_TYPE> pwidget;
-
-         dialog_item(pwidget, iDlgItem);
-
-         return pwidget;
-
-
-      }
 
 
 
@@ -185,52 +140,80 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Dialog :
-      virtual public window_composite<DialogInterface>
+   using DialogInterface = ::particle_interface<DialogSlice, ControlInterface>;
+
+   class CLASS_DECL_INNATE_SUBSYSTEM DialogComposite :
+      virtual public window_composite<DialogSlice, Control>
    {
    public:
 
+      implement_compositeø(Dialog, Control, dialog)
 
-      Dialog();
-      // Dialog(unsigned int resourceId);
-      // Dialog(const char *resourceName);
-      ~Dialog() override;
-//   public:
+//       DialogComposite();
+//       // Dialog(unsigned int resourceId);
+//       // Dialog(const char *resourceName);
+//       ~DialogComposite();
+// //   public:
 
-      virtual void initialize_dialog(unsigned int resourceId) override;
-      virtual void initialize_dialog(const char *resourceName) override;
+      virtual void initialize_dialog(unsigned int resourceId) { m_pdialog->initialize_dialog(resourceId); }
+      virtual void initialize_dialog(const char *resourceName) { m_pdialog->initialize_dialog(resourceName); }
 
       // Method creates non modal window but not shows it
-      virtual void create() override;
+      virtual void create() { m_pdialog->create(); }
 
       //
       // Methods creates windows and show it in nonmodal/modal mode
       //
 
-      virtual void show() override;
-      virtual int showModal() override;
+      virtual void show() { m_pdialog->show(); }
+      virtual int showModal() { return m_pdialog->showModal(); }
 
       // Returns true if dialog is already created.
-      virtual bool isCreated() override;
+      virtual bool isCreated() { return m_pdialog->isCreated(); }
 
       // Method hides window
-      virtual void hide() override;
+      virtual void hide() { m_pdialog->hide(); }
       // Method closes dialog
-      virtual void closeDialog(int code) override;
+      virtual void closeDialog(int code) { m_pdialog->closeDialog(code); }
       // Method sets parent window
-      //virtual void setParent(ControlInterface *ctrlParent) override;
+      //virtual void setParent(ControlInterface *ctrlParent);
       // Set resource name for dialog
-      virtual void setResourceName(const char *resourceName) override;
+      virtual void setResourceName(const char *resourceName) { m_pdialog->setResourceName(resourceName); }
       // Set resource id for dialog.
-      virtual void setResourceId(unsigned int id) override;
+      virtual void setResourceId(unsigned int id) { m_pdialog->setResourceId(id); }
       // Return
-      //virtual ControlInterface *getControl() override;
+      //virtual ControlInterface *getControl();
       // Setup control by ID
-      //virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) override;
+      //virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id);
       // Icon manipulation
-      virtual void loadIcon(unsigned int id) override;
-      virtual void updateIcon() override;
+      virtual void loadIcon(unsigned int id) { m_pdialog->loadIcon(id); }
+      virtual void updateIcon() { m_pdialog->updateIcon(); }
 
+      //template<typename WIDGET_TYPE>
+      //::pointer<WIDGET_TYPE> &dialog_item(::pointer<WIDGET_TYPE> &pwidget, int iDlgItem)
+      //{
+
+      //   return m_pdialog->dialog_item(pwidget, iDlgItem);
+
+      //}
+
+      //template<typename WIDGET_TYPE>
+      //composite<WIDGET_TYPE> &dialog_item(composite<WIDGET_TYPE> &widget, int iDlgItem)
+      //{
+
+      //   // constructø(pwidget);
+
+      //   return m_pdialog->dialog_item(widget, iDlgItem);
+
+      //}
+
+      //template<typename WIDGET_TYPE = ::innate_subsystem::Control>
+      //::pointer<WIDGET_TYPE> dialog_item(int iDlgItem)
+      //{
+
+      //   return m_pdialog->dialog_item<WIDGET_TYPE>(iDlgItem);
+
+      //}
 
       // template < typename WIDGET_TYPE >
       // ::pointer < WIDGET_TYPE > & dialog_item(::pointer < WIDGET_TYPE > & pwidget, int iDlgItem)
@@ -263,14 +246,14 @@ namespace innate_subsystem
 
 
       // Puts this control foreground and activates it
-      virtual bool setForeground() override;
+      virtual bool setForeground() { return m_pdialog->setForeground(); }
 
    //protected:
       /**
        * Sets default push button for dialog.
        * @pararm buttonId new default push button id.
        */
-      virtual void setDefaultPushButton(unsigned int buttonId) override;
+      virtual void setDefaultPushButton(unsigned int buttonId) { m_pdialog->setDefaultPushButton(buttonId); }
 
    //protected:
 
@@ -278,29 +261,29 @@ namespace innate_subsystem
       // This methods must be overrided by child classes.
       //
 
-      virtual bool onInitDialog() override;
-      //virtual bool onNotify(unsigned int controlID, ::lparam data) override;
-      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) override;
-      virtual bool onClose() override;
-      virtual bool onDestroy() override;
+      virtual bool onInitDialog() { return m_pdialog->onInitDialog(); }
+      //virtual bool onNotify(unsigned int controlID, ::lparam data);
+      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) { return m_pdialog->onCommand(controlID, notificationID); }
+      virtual bool onClose() { return m_pdialog->onClose(); }
+      virtual bool onDestroy() { return m_pdialog->onDestroy(); }
 
       //
       // This methods can be overrided by child classes.
       //
 //#ifdef WINDOWS
-      virtual bool onDrawItem(::wparam controlID, draw_item_t * pdrawitem) override;
+      virtual bool onDrawItem(::wparam controlID, draw_item_t * pdrawitem) { return m_pdialog->onDrawItem(controlID, pdrawitem); }
 //#endif
-      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam) override;
+      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam) { m_pdialog->onMessageReceived(uMsg, wparam, lparam); }
 
       //
       // Window message proccessing method
       //
 
-      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam) override;
+      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
 
-      virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam) override;
+      virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam) { return m_pdialog->dialog_procedure(iptrResult, message, wparam, lparam); }
    //private:
-     virtual char *getResouceName() override;
+      virtual char *getResouceName() { return m_pdialog->getResouceName(); }
 
    //protected:
 
@@ -314,6 +297,54 @@ namespace innate_subsystem
 
       //HICON m_hicon;
    };
+
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Dialog : virtual public DialogComposite,
+                                              virtual public Control
+   {
+   public:
+
+
+      template<typename WIDGET_TYPE>
+      ::pointer<WIDGET_TYPE> &dialog_item(::pointer<WIDGET_TYPE> &pwidget, int iDlgItem)
+      {
+
+         constructø(pwidget);
+
+         auto operatingsystemwindow = m_pwindow->dialog_item_operating_system_window(iDlgItem);
+
+         pwidget->set_operating_system_window(operatingsystemwindow);
+
+         return pwidget;
+      }
+
+      template<typename WIDGET_TYPE>
+      composite<WIDGET_TYPE> &dialog_item(composite<WIDGET_TYPE> &widget, int iDlgItem)
+      {
+
+         // constructø(pwidget);
+
+         auto operatingsystemwindow = m_pwindow->dialog_item_operating_system_window(iDlgItem);
+
+         widget.set_operating_system_window(operatingsystemwindow);
+
+         return widget;
+      }
+
+      template<typename WIDGET_TYPE = ::innate_subsystem::Control>
+      ::pointer<WIDGET_TYPE> dialog_item(int iDlgItem)
+      {
+
+         ::pointer<WIDGET_TYPE> pwidget;
+
+         dialog_item(pwidget, iDlgItem);
+
+         return pwidget;
+      }
+
+   };
+
 
    //#endif
 } // namespace innate_subsystem

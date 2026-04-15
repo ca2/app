@@ -36,8 +36,8 @@ namespace innate_subsystem
 {
 
 
-    class TooltipInterface :
-    virtual public ::subsystem::particle_interface<TooltipInterface>
+    class TooltipSlice :
+    virtual public ::particle_base
     {
     public:
         //Tooltip();
@@ -56,10 +56,10 @@ namespace innate_subsystem
     };
 
     //#endif
-   
+   using TooltipInterface = particle_interface<TooltipSlice, WindowInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM Tooltip :
-   virtual public ::subsystem::composite<TooltipInterface>
+   virtual public composite<TooltipSlice, WindowInterface>
    {
    public:
       Tooltip();

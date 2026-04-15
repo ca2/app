@@ -41,8 +41,8 @@ namespace subsystem
    console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
-   class ImpersonatorInterface :
-   virtual public ::subsystem::particle_interface<ImpersonatorInterface>
+   class ImpersonatorSlice :
+   virtual public ::particle_base
    {
    public:
       //Impersonator(LogWriter *plogwriter);
@@ -82,15 +82,18 @@ namespace subsystem
    };
 
 
+    using ImpersonatorInterface = particle_interface<ImpersonatorSlice>;
    /**
    Class for impersonating current process as user that logged on current
    console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
-   class CLASS_DECL_SUBSYSTEM Impersonator :
-   virtual public ::subsystem::composite<ImpersonatorInterface>
+   class CLASS_DECL_SUBSYSTEM ImpersonatorComposite :
+   virtual public composite<ImpersonatorSlice>
    {
    public:
+
+       implement_compositeø(Impersonator, impersonator)
 
       Impersonator();
       ~Impersonator() override;

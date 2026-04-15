@@ -88,7 +88,7 @@ namespace platform
 
       m_pfilesystemoptions = allocateø::filesystem::file_system_options();
 
-      m_bApplicationFirstRequest = true;
+      //m_bApplicationFirstRequest = true;
 
 
       _001TestSlashedPath();
@@ -464,6 +464,14 @@ void application::start_application()
          ::user::e_message_box_ok | ::user::e_message_box_icon_exclamation);
 
       send(pmessageboxpayload);
+
+   }
+
+
+   void application::on_application_system_start()
+   {
+
+
 
    }
 

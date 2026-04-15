@@ -82,7 +82,7 @@ namespace subsystem
 
    class NamedPipe;
 
-   class NamedPipeInterface;
+   //class NamedPipeInterface;
 
    class PipeClient;
 

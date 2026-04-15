@@ -277,4 +277,9 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="networking_bsd.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

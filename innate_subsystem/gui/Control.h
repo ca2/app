@@ -44,9 +44,8 @@ namespace innate_subsystem
    // Base class to control windows control
    //
 
-   class ControlInterface :
-   virtual public ::subsystem::particle_interface<ControlInterface>,
-      virtual public Window
+   class ControlSlice :
+      virtual public ::particle_base
    {
    public:
 
@@ -68,7 +67,7 @@ namespace innate_subsystem
 
       //virtual void initialize_control(const ::operating_system::window & window) = 0;
 
-      virtual void setWindow(const ::operating_system::window & window) = 0;
+      //virtual void setWindow(const ::operating_system::window & window) = 0;
 
       //
       // Changes enable state of this control
@@ -130,7 +129,7 @@ namespace innate_subsystem
       // Gets text associated with window
       //
 
-      virtual ::string getText() = 0;
+      //virtual ::string getText() = 0;
 
       //
       // Returns text vertical alignment
@@ -142,12 +141,12 @@ namespace innate_subsystem
       // Gets HWND associated with this control
       //
 
-      virtual ::operating_system::window operating_system_window() = 0;
+//      virtual ::operating_system::window operating_system_window() = 0;
 
-      void operator= (const ::operating_system::window& window)
-      {
-         setWindow(window);
-      };
+      //void operator= (const ::operating_system::window& window)
+      //{
+      //   setWindow(window);
+      //};
 
    //protected:
 
@@ -202,7 +201,7 @@ namespace innate_subsystem
 
       //void replaceWindowProc(WNDPROC wndProc);
 
-      virtual void subclassWindow() = 0;
+      //virtual void subclassWindow() = 0;
 
    // protected:
    //
@@ -220,22 +219,27 @@ namespace innate_subsystem
       //virtual void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) = 0;
    };
 
+
+
+   using ControlInterface = ::particle_interface<ControlSlice, WindowInterface>;
+
    //
    // Base class to control windows control
    //
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Control :
-      virtual public ::subsystem::composite < ControlInterface >
+   class CLASS_DECL_INNATE_SUBSYSTEM ControlComposite :
+      virtual public composite < ControlSlice, Window >
    {
    public:
 
+      implement_compositeø(Control, Window, control)
 
-      //::pointer < Control > m_psubsystemcontrolThis;
+      ////::pointer < Control > m_psubsystemcontrolThis;
 
 
-      Control();
-      //Control(const ::operating_system::window & operatingsystemwindow);
-      ~Control() override;
+      //ControlComposite();
+      ////Control(const ::operating_system::window & operatingsystemwindow);
+      //~ControlComposite();
 
 
       //bool is_subsystem_implementation() const  override {return false;}
@@ -244,88 +248,88 @@ namespace innate_subsystem
       // Sets HWND associated with this control
       //
 
-       //void initialize_control(const ::operating_system::window & window) override;
+       //void initialize_control(const ::operating_system::window & window);
 
-       void setWindow(const ::operating_system::window & window) override;
+       //void setWindow(const ::operating_system::window & window);
 
       //
       // Changes enable state of this control
       //
 
-       //void setEnabled(bool enabled) override;
+       //void setEnabled(bool enabled);
 
       //
       // Sets text associated with window
       //
 
-       void setText(const char *text) override;
-       void setSignedInt(int value) override;
-       void setUnsignedInt(unsigned int value) override;
+       void setText(const char *text) { m_pcontrol->setText(text); }
+       void setSignedInt(int value) { m_pcontrol->setSignedInt(value); }
+       void setUnsignedInt(unsigned int value) { m_pcontrol->setUnsignedInt(value); }
 
       //
       // Sets text vertical alignment
       //
 
-       void setTextVerticalAlignment(VerticalAlignment align) override;
+       void setTextVerticalAlignment(VerticalAlignment align) { m_pcontrol->setTextVerticalAlignment(align); }
 
       // //
       // // Sets input focus to this control
       // //
       //
-      //  void setFocus() override;
+      //  void setFocus();
       //
       // //
       // // Return true if window has input focus
       // //
       //
-      //  bool hasFocus() override;
+      //  bool hasFocus();
       //
       // //
       // // Puts this control foreground and activates it
       // //
       //
-      //  bool setForeground() override;
+      //  bool setForeground();
       //
       //
       // Changes visible state of this control
       //
 
-       void setVisible(bool visible) override;
+       void setVisible(bool visible) { m_pcontrol->setVisible(visible); }
       //
       // //
       // // Checks if this control is active (not disabled)
       // //
       //
-      //  bool isEnabled() override;
+      //  bool isEnabled();
       //
       // //
       // // Invalidates control
       // //
       //
-      //  void invalidate() override;
+      //  void invalidate();
 
       //
       // Gets text associated with window
       //
 
-       ::string getText() override;
+       //::string getText();
 
       //
       // Returns text vertical alignment
       //
 
-       VerticalAlignment getTextVerticalAlignment() override;
+       VerticalAlignment getTextVerticalAlignment() { return m_pcontrol->getTextVerticalAlignment(); }
 
       //
       // Gets HWND associated with this control
       //
 
-       ::operating_system::window operating_system_window() override;
+       //::operating_system::window operating_system_window();
 
-      void operator= (const ::operating_system::window& window)
-      {
-         setWindow(window);
-      };
+      //void operator= (const ::operating_system::window& window)
+      //{
+      //   setWindow(window);
+      //};
 
    //protected:
 
@@ -333,43 +337,43 @@ namespace innate_subsystem
       // Sets windows style for this control
       //
 
-       //void setStyle(unsigned int styleFlags) override;
+       //void setStyle(unsigned int styleFlags);
 
       //
       // Gets windows style for this control
       //
 
-       //unsigned int getStyle() override;
+       //unsigned int getStyle();
 
       //
       // Adds style to this control
       //
 
-       //void addStyle(unsigned int styleFlag) override;
+       //void addStyle(unsigned int styleFlag);
 
       //
       // Removes style from this control
       //
 
-       //void removeStyle(unsigned int styleFlag) override;
+       //void removeStyle(unsigned int styleFlag);
 
       //
       // Returns true if styleFlags parameter is in
       // this control's style
       //
 
-       ///bool isStyleEnabled(unsigned int styleFlags) override;
+       ///bool isStyleEnabled(unsigned int styleFlags);
 
       //
       // Private methods for manipulation window extended styles
       //
 
-       // void setExStyle(unsigned int style) override;
-       // void addExStyle(unsigned int styleFlag) override;
-       // void removeExStyle(unsigned int styleFlag) override;
+       // void setExStyle(unsigned int style);
+       // void addExStyle(unsigned int styleFlag);
+       // void removeExStyle(unsigned int styleFlag);
        //
-       // unsigned int getExStyle() override;
-       // bool isExStyleEnabled(unsigned int styleFlag) override;
+       // unsigned int getExStyle();
+       // bool isExStyleEnabled(unsigned int styleFlag);
 
       //
       // Replaces default window proc with wndProc.
@@ -381,7 +385,7 @@ namespace innate_subsystem
       //void replaceWindowProc(WNDPROC wndProc);
 
 
-      void subclassWindow() override;
+      //void subclassWindow();
 
    // protected:
    //
@@ -397,10 +401,24 @@ namespace innate_subsystem
    //
    //    WNDPROC m_defWindowProc;
 
-      //void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) override;
+      //void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam);
    };
 
-//#endif
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Control :
+      virtual public ControlComposite,
+      virtual public Window
+   {
+   public:
+
+
+
+
+
+
+   };
+
 } // namespace subsystem
 
 

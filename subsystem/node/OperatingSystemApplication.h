@@ -40,7 +40,7 @@ namespace subsystem
     * Have hidden main window and main scopedstrMessage loop.
     */
    class OperatingSystemApplicationInterface :
-      virtual public ::subsystem::particle_interface<OperatingSystemApplicationInterface>
+      virtual public particle_interface<OperatingSystemApplicationInterface>
    {
    public:
 
@@ -60,7 +60,9 @@ namespace subsystem
        */
       //virtual ~OperatingSystemApplicationInterface() = 0;
 
-      virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
+      //virtual void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) = 0;
+
+      virtual void initialize_operating_system_application() = 0;
 
       //virtual void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) = 0;
 
@@ -100,7 +102,7 @@ namespace subsystem
       virtual void createApplicationMainTask() = 0;
 
 
-      virtual void postMainThreadMessage(int iMainThreadMessage) = 0;
+      //virtual void postMainThreadMessage(int iMainThreadMessage) = 0;
 
       // Fills the wndClass argument and registers new class name in the Windows.
       //virtual void registerWindowClass(WNDCLASS *wndClass);
@@ -132,7 +134,7 @@ namespace subsystem
        virtual int getExitCode() = 0;
 
 
-      virtual void onMainThreadMessage(int iMainThreadMessage) = 0;
+      virtual void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
 
 
    };
@@ -142,7 +144,7 @@ namespace subsystem
     * Have hidden main window and main scopedstrMessage loop.
     */
    class CLASS_DECL_SUBSYSTEM OperatingSystemApplication :
-      virtual public ::subsystem::composite < OperatingSystemApplicationInterface >
+      virtual public composite < OperatingSystemApplicationInterface >
    {
    public:
 
@@ -163,7 +165,10 @@ namespace subsystem
       ~OperatingSystemApplication() override;
 
 
-      void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) override;
+      void initialize_operating_system_application() override;
+      //void initialize_operating_system_application(
+//                                                   const ::scoped_string &scopedstrwindowClassName) override;
+      //void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) override;
       //void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) override;
 
       /**
@@ -201,7 +206,7 @@ namespace subsystem
       //void createWindow(const ::scoped_string & scopedstrClassName) override;
       void createApplicationMainTask() override;
 
-      void postMainThreadMessage(int iMainThreadMessage) override;
+      //void postMainThreadMessage(int iMainThreadMessage) override;
 
       // Fills the wndClass argument and registers new class name in the Windows.
       //virtual void registerWindowClass(WNDCLASS *wndClass);
@@ -231,7 +236,7 @@ namespace subsystem
 
       int getExitCode() override;
 
-      void onMainThreadMessage(int iMainThreadMessage) override;
+      void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override;
 
    };
 

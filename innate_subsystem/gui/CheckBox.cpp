@@ -24,31 +24,36 @@
 #include "framework.h"
 #include "CheckBox.h"
 
+
 namespace innate_subsystem
 {
 
-   CheckBox::CheckBox()
-   {
-
-   }
-
-
-
-   CheckBox::~CheckBox()
-   {
-
-   }
-
-
-   bool CheckBox::isChecked()
+   // CheckBoxComposite::CheckBoxComposite()
+   // {
+   //
+   // }
+   //
+   //
+   //
+   // CheckBoxComposite::~CheckBoxComposite()
+   // {
+   //
+   // }
+   //
+   //
+   /*
+   bool CheckBoxComposite::isChecked()
    {
       return m_pparticleThis->isChecked();
       //return (SendMessage(m_hwnd, BM_GETCHECK, NULL, NULL) != 0);
    }
 
-   void CheckBox::setChecked(bool bChecked)
+   void CheckBoxComposite::setChecked(bool bChecked)
    {
       m_pparticleThis->setChecked(bChecked);
       //SendMessage(m_hwnd, BM_SETCHECK, (checked) ? 1 : 0, NULL);
    }
+   */
+
+
 } // namespace innate_subsystem

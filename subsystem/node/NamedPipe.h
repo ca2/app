@@ -41,10 +41,8 @@ namespace subsystem
  *
  * @author yuri, enikey.
  */
-   class NamedPipeInterface :
-   virtual public ::subsystem::particle_interface<NamedPipeInterface>,
-      virtual public Channel,
-      virtual public Pipe
+   class NamedPipeSlice :
+      virtual public ::particle_base
    {
    public:
       /**
@@ -101,35 +99,44 @@ namespace subsystem
       // bool m_asServer;
    };
 
+    using NamedPipeInterface = particle_interface<NamedPipeSlice, PipeInterface>;
 
    /**
     * NamedPipe transport.
     *
     * @author yuri, enikey.
     */
-   class CLASS_DECL_SUBSYSTEM NamedPipe :
-      virtual public ::subsystem::composite< NamedPipeInterface>
+   class CLASS_DECL_SUBSYSTEM NamedPipeComposite :
+      virtual public composite< NamedPipeSlice >
    {
    public:
+
+
+      implement_compositeø(NamedPipe, Pipe, namedpipe)
+
       /**
        * Creates pipe transport.
        */
-      NamedPipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer);
-      NamedPipe();
+      //NamedPipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer);
+      //NamedPipe();
       /**
        * Destroys instance.
        */
-      ~NamedPipe() override;
+      //~NamedPipe();
 
 
-      void initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) override;
+         void initialize_named_pipe(::subsystem::FileInterface* pfilePipe, unsigned int maxPortionSize, bool asServer)
+      {
+
+         m_pnamedpipe->initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
+      }
 
       /**
        * Closes transport.
        *
        * @throws ::subsystem::Exception on fail.
        */
-      void close() override;
+      void close() {  m_pnamedpipe->close();  }
 
       /**
        * Reads data from pipe.
@@ -138,7 +145,7 @@ namespace subsystem
        * @param len count of bytes to read.
        * @throws ::io_exception on io error.
        */
-      size_t read(void *buffer, size_t len) override;
+      size_t read(void *buffer, size_t len) { return m_pnamedpipe->read(buffer, len); }
 
       /**
        * Writes data to pipe.
@@ -147,14 +154,14 @@ namespace subsystem
        * @param len count of bytes to write.
        * @throws ::io_exception on io error.
        */
-      memsize defer_write(const void *buffer, memsize len) override;
+      memsize defer_write(const void *buffer, memsize len) { return m_pnamedpipe->defer_write(buffer, len); }
 
-      size_t available() override { return 0; };
+      size_t available() { return m_pnamedpipe->available(); }
 
       //virtual HANDLE getHandle() const;
 
    //private:
-      void checkPipeFile() override;
+      //void checkPipeFile() { return m_pnamedpipe->checkPipeFile(); }
 
       // HANDLE m_hPipe;
       // LocalMutex m_hPipeMutex;
@@ -164,6 +171,19 @@ namespace subsystem
       // WindowsEvent m_writeEvent;
       // bool m_asServer;
    };
+
+
+   class CLASS_DECL_SUBSYSTEM NamedPipe :
+      virtual public NamedPipeComposite,
+      virtual public Pipe
+   {
+   public:
+
+
+   };
+
+
+   //implement_compositeø(NamedPipe, Pipe, namedpipe)
 
    //// __NAMEDPIPE_H__
 } // namespace subsystem

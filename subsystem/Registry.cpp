@@ -51,7 +51,7 @@ namespace subsystem
       if (!m_pregistry)
       {
 
-         auto pathRegistry = directory()->config() / "registry.network_payload";
+         auto pathRegistry = directory()->appdata() / "registry.network_payload";
 
          m_pregistry = ::platform::registry::create_from_file(pathRegistry);
 

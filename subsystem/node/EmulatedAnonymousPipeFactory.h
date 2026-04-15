@@ -26,6 +26,7 @@
 
 
 #include "subsystem/_common_header.h"
+#include "subsystem/node/NamedPipe.h"
 ///#include "subsystem/node/EmulatedAnonymousPipeFactory.h.h"
 //#include "subsystem/subsystem.h"
 //#include "log_writer/LogWriter.h"
@@ -35,7 +36,7 @@ namespace subsystem
    // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
    // This is similar to anonymous pipe generation.
    class EmulatedAnonymousPipeFactoryInterface :
-   virtual public ::subsystem::particle_interface<EmulatedAnonymousPipeFactoryInterface>
+   virtual public particle_interface<EmulatedAnonymousPipeFactoryInterface>
    {
    public:
       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
@@ -56,7 +57,7 @@ namespace subsystem
    };
 
     class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactory :
-    virtual public ::subsystem::composite< EmulatedAnonymousPipeFactoryInterface >
+    virtual public composite< EmulatedAnonymousPipeFactoryInterface >
     {
     public:
 

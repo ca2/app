@@ -930,29 +930,449 @@ namespace apex
    //}
 
 
+   void application::on_application_system_start()
+   {
+
+
+      if (m_eexclusiveinstance != e_exclusive_instance_none)
+      {
+
+         m_bInterprocessCommunication = true;
+      }
+
+      defer_interprocess_communication();
+
+      //      if (m_bInterprocessCommunication)
+      //      {
+      //
+      //         __raw_construct_new(m_pinterprocesscommunication);
+      //
+      //         //m_pinterprocesscommunication->m_p=
+      //         create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
+      //
+      //         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
+      //
+      //      }
+
+      system()->application_start_file_open_request();
+
+      information() << "apex::application::init_application .1";
+
+      bool bHandled = false;
+
+      if (!::system()->is_sandboxed())
+      {
+
+         if (!check_exclusive(bHandled))
+         {
+
+            if (!bHandled && (!has_property("install") && !has_property("uninstall")))
+            {
+
+               class time timeTimeout;
+
+               // #ifdef _DEBUG
+               //
+               //           timeTimeout = minutes(5);
+               //
+               // #else //__DEBUG
+
+               timeTimeout = 5_s;
+
+               // #endif //!__DEBUG
+
+               string strMessage;
+
+               strMessage = "Another instance of \"" + m_strAppName +
+                            "\" is already running (and some exclusivity policy is active).";
+
+               //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80
+               //          style=\"display:block;\"><br/><br/>";
+
+               // message_box(strMessage, m_strAppName, timeTimeout, ::user::e_message_box_icon_asterisk);
+
+               // message_box(strMessage, m_strAppName, ::user::e_message_box_icon_asterisk);
+
+               informationf(strMessage);
+
+               information() << "apex::application::init_application exit";
+
+               exit_exception exitexception(error_exit_system, this, strMessage);
+
+               exitexception.m_strTitle = "Another instance of the application is running.";
+
+               exitexception.m_econsequenceUserDefault = ::e_consequence_workaroundable;
+
+               throw exitexception;
+            }
+         }
+      }
+
+      information() << "apex::application::init_application .2";
+
+      if (m_pinterprocesscommunication)
+      {
+
+         auto pathModule = file()->module();
+
+         auto processId = node()->current_process_identifier();
+
+         m_pinterprocesscommunication->on_new_instance(pathModule, processId);
+      }
+
+      // xxdebug_box("check_exclusive ok", "check_exclusive ok", ::user::e_message_box_icon_information);
+
+      // if (m_bInitializeDataCentral)
+      //{
+
+
+      //   ::file::path pathDatabase;
+
+      //   ::file::path pathFolder = directory()->appdata();
+
+      //   if (is_system())
+      //   {
+
+      //      pathDatabase = pathFolder / "system.sqlite";
+
+      //   }
+      //   else if (is_session())
+      //   {
+
+      //      pathDatabase = pathFolder / "session.sqlite";
+
+      //   }
+      //   else
+      //   {
+
+      //      pathDatabase = pathFolder / "app.sqlite";
+
+      //   }
+
+      //   //throw ::exception(todo("database"));
+
+      //   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+
+      //   //if (!estatus)
+      //   //{
+
+      //   //   m_result.add(estatus);
+
+      //   //   return false;
+
+      //   //}
+
+      //   //set_data_server(m_psimpledb);
+
+      //}
+
+      // m_bAxisInitializeInstanceResult = true;
+
+      information() << "axis::application::init_instance success";
+
+      // auto estatus =
+      create_impact_system();
+
+      // if (failed(estatus))
+      //{
+      //
+      // return false;
+      //
+      // }
+
+      if (!is_system() && !is_session())
+      {
+
+         if (m_pdataserver)
+         {
+
+            string str;
+            // if system locale has changed (compared to last recorded one by apex)
+            // use the system locale
+            if (datastream()->get({"system_locale", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  if (str != get_locale())
+                  {
+
+                     try
+                     {
+
+                        datastream()->set({"system_locale", true}, get_locale());
+
+                        datastream()->set({"locale", true}, get_locale());
+                     }
+                     catch (...)
+                     {
+                     }
+                  }
+               }
+            }
+            else
+            {
+
+               datastream()->set({"system_locale", true}, get_locale());
+            }
+
+            if (payload("locale").get_count() > 0)
+            {
+
+               str = payload("locale").as_string()[0];
+
+               datastream()->set({"system_locale", true}, str);
+
+               datastream()->set({"locale", true}, str);
+
+               set_locale(str, ::e_source_database);
+            }
+            else if (payload("lang").get_count() > 0)
+            {
+
+               str = payload("lang").as_string_array()[0];
+
+               datastream()->set({"system_locale", true}, str);
+
+               datastream()->set({"locale", true}, str);
+
+               set_locale(str, ::e_source_database);
+            }
+            else if (datastream()->get({"locale", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  set_locale(str, ::e_source_database);
+               }
+            }
+            // if system schema has changed (compared to last recorded one by apex)
+            // use the system schema
+            if (datastream()->get({"system_schema", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  if (str != get_schema())
+                  {
+
+                     try
+                     {
+
+                        datastream()->set({"system_schema", true}, get_schema());
+
+                        datastream()->set({"schema", true}, get_schema());
+                     }
+                     catch (...)
+                     {
+                     }
+                  }
+               }
+            }
+            else
+            {
+
+               datastream()->set({"system_schema", true}, get_schema());
+            }
+
+            if (payload("schema").get_count() > 0)
+            {
+
+               str = payload("schema").as_string_array()[0];
+
+               datastream()->set({"system_schema", true}, str);
+
+               datastream()->set({"schema", true}, str);
+
+               set_schema(str, ::e_source_database);
+            }
+            else if (datastream()->get({"schema", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  set_schema(str, ::e_source_database);
+               }
+            }
+         }
+
+         // data_pulse_change({ "ca2.savings", true }, nullptr);
+
+         auto psystem = system();
+
+         psystem->appa_load_string_table();
+      }
+      if (!is_system() && !is_session())
+      {
+
+         if (m_pdataserver)
+         {
+            string str;
+            // if system locale has changed (compared to last recorded one by apex)
+            // use the system locale
+            if (datastream()->get({"system_locale", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  if (str != get_locale())
+                  {
+
+                     try
+                     {
+
+                        datastream()->set({"system_locale", true}, get_locale());
+
+                        datastream()->set({"locale", true}, get_locale());
+                     }
+                     catch (...)
+                     {
+                     }
+                  }
+               }
+            }
+            else
+            {
+
+               datastream()->set({"system_locale", true}, get_locale());
+            }
+
+            if (payload("locale").get_count() > 0)
+            {
+
+               str = payload("locale").as_string_array()[0];
+
+               datastream()->set({"system_locale", true}, str);
+
+               datastream()->set({"locale", true}, str);
+
+               set_locale(str, ::e_source_database);
+            }
+            else if (payload("lang").get_count() > 0)
+            {
+
+               str = payload("lang").as_string_array()[0];
+
+               datastream()->set({"system_locale", true}, str);
+
+               datastream()->set({"locale", true}, str);
+
+               set_locale(str, ::e_source_database);
+            }
+            else if (datastream()->get({"locale", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  set_locale(str, ::e_source_database);
+               }
+            }
+            // if system schema has changed (compared to last recorded one by apex)
+            // use the system schema
+            if (datastream()->get({"system_schema", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  if (str != get_schema())
+                  {
+
+                     try
+                     {
+
+                        datastream()->set({"system_schema", true}, get_schema());
+
+                        datastream()->set({"schema", true}, get_schema());
+                     }
+                     catch (...)
+                     {
+                     }
+                  }
+               }
+            }
+            else
+            {
+
+               datastream()->set({"system_schema", true}, get_schema());
+            }
+
+            if (payload("schema").get_count() > 0)
+            {
+
+               str = payload("schema").as_string_array()[0];
+
+               datastream()->set({"system_schema", true}, str);
+
+               datastream()->set({"schema", true}, str);
+
+               set_schema(str, ::e_source_database);
+            }
+            else if (datastream()->get({"schema", true}, str))
+            {
+
+               if (str.has_character())
+               {
+
+                  set_schema(str, ::e_source_database);
+               }
+            }
+
+            // data_pulse_change({ "ca2.savings", true }, nullptr);
+
+            auto psystem = system();
+
+            psystem->appa_load_string_table();
+         }
+      }
+      // return true;
+
+      // node()->on_start_application(this);
+
+      on_start_application();
+
+   }
+
+
    void application::request(::request * prequest)
    {
 
       m_prequestHandler = prequest;
 
-      if (m_bApplicationFirstRequest)
+      if (prequest->m_ecommand == e_command_system_start)
       {
 
-         m_bApplicationFirstRequest = false;
+         on_application_system_start();
 
-         //init_instance();
-
-         //if (!init_instance())
-         //{
-         //
-         ////return false;
-         //
-         //} 	apex.dll!thread::on_request_message(request * prequest) Line 4721	C++
-
-
-         //on_update_matter_locator();
+         return;
 
       }
+
+      //if (m_bApplicationFirstRequest)
+      //{
+
+      //   m_bApplicationFirstRequest = false;
+
+
+      //   //init_instance();
+
+      //   //if (!init_instance())
+      //   //{
+      //   //
+      //   ////return false;
+      //   //
+      //   //} 	apex.dll!thread::on_request_message(request * prequest) Line 4721	C++
+
+
+      //   //on_update_matter_locator();
+
+      //}
 
 //      prequest->m_countStack++;
 //
@@ -1973,452 +2393,6 @@ namespace apex
    {
 
       ::platform::application::init_instance();
-
-      if (m_eexclusiveinstance != e_exclusive_instance_none)
-      {
-
-         m_bInterprocessCommunication = true;
-
-      }
-
-      defer_interprocess_communication();
-
-//      if (m_bInterprocessCommunication)
-//      {
-//
-//         __raw_construct_new(m_pinterprocesscommunication);
-//
-//         //m_pinterprocesscommunication->m_p= create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
-//
-//         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
-//
-//      }
-
-      information() << "apex::application::init_application .1";
-
-      bool bHandled = false;
-
-      if (!::system()->is_sandboxed())
-      {
-
-         if (!check_exclusive(system()->application_start_file_open_request(), bHandled))
-         {
-
-            if (!bHandled &&
-                (!has_property("install")
-                 && !has_property("uninstall")))
-            {
-
-               class time timeTimeout;
-
-               //#ifdef _DEBUG
-               //
-               //          timeTimeout = minutes(5);
-               //
-               //#else //__DEBUG
-
-               timeTimeout = 5_s;
-
-               //#endif //!__DEBUG
-
-               string strMessage;
-
-               strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
-
-               //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
-
-               //message_box(strMessage, m_strAppName, timeTimeout, ::user::e_message_box_icon_asterisk);
-
-               //message_box(strMessage, m_strAppName, ::user::e_message_box_icon_asterisk);
-
-               informationf(strMessage);
-
-               information() << "apex::application::init_application exit";
-
-               exit_exception exitexception(error_exit_system, this, strMessage);
-
-               exitexception.m_strTitle = "Another instance of the application is running.";
-
-               exitexception.m_econsequenceUserDefault = ::e_consequence_workaroundable;
-
-               throw exitexception;
-
-            }
-
-         }
-
-      }
-
-      information() << "apex::application::init_application .2";
-
-      if (m_pinterprocesscommunication)
-      {
-
-         auto pathModule = file()->module();
-
-         auto processId = node()->current_process_identifier();
-
-         m_pinterprocesscommunication->on_new_instance(pathModule, processId);
-
-      }
-
-      //xxdebug_box("check_exclusive ok", "check_exclusive ok", ::user::e_message_box_icon_information);
-
-      //if (m_bInitializeDataCentral)
-      //{
-
-
-      //   ::file::path pathDatabase;
-
-      //   ::file::path pathFolder = directory()->appdata();
-
-      //   if (is_system())
-      //   {
-
-      //      pathDatabase = pathFolder / "system.sqlite";
-
-      //   }
-      //   else if (is_session())
-      //   {
-
-      //      pathDatabase = pathFolder / "session.sqlite";
-
-      //   }
-      //   else
-      //   {
-
-      //      pathDatabase = pathFolder / "app.sqlite";
-
-      //   }
-
-      //   //throw ::exception(todo("database"));
-
-      //   //auto estatus = m_psimpledb->initialize_simpledb_server(this, pathDatabase);
-
-      //   //if (!estatus)
-      //   //{
-
-      //   //   m_result.add(estatus);
-
-      //   //   return false;
-
-      //   //}
-
-      //   //set_data_server(m_psimpledb);
-
-      //}
-
-      //m_bAxisInitializeInstanceResult = true;
-
-      information() << "axis::application::init_instance success";
-
-      //auto estatus =
-      create_impact_system();
-
-      //if (failed(estatus))
-      //{
-      //
-      //return false;
-      //
-      //}
-
-      if (!is_system() && !is_session())
-      {
-
-         if (m_pdataserver)
-         {
-
-            string str;
-            // if system locale has changed (compared to last recorded one by apex)
-            // use the system locale
-            if (datastream()->get({ "system_locale", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  if (str != get_locale())
-                  {
-
-                     try
-                     {
-
-                        datastream()->set({ "system_locale", true }, get_locale());
-
-                        datastream()->set({ "locale", true }, get_locale());
-
-                     }
-                     catch (...)
-                     {
-
-                     }
-
-                  }
-
-               }
-
-            }
-            else
-            {
-
-               datastream()->set({ "system_locale", true }, get_locale());
-
-            }
-
-            if (payload("locale").get_count() > 0)
-            {
-
-               str = payload("locale").as_string()[0];
-
-               datastream()->set({ "system_locale", true }, str);
-
-               datastream()->set({ "locale", true }, str);
-
-               set_locale(str, ::e_source_database);
-
-            }
-            else if (payload("lang").get_count() > 0)
-            {
-
-               str = payload("lang").as_string_array()[0];
-
-               datastream()->set({ "system_locale", true }, str);
-
-               datastream()->set({ "locale", true }, str);
-
-               set_locale(str, ::e_source_database);
-
-            }
-            else if (datastream()->get({ "locale", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  set_locale(str, ::e_source_database);
-
-               }
-
-            }
-            // if system schema has changed (compared to last recorded one by apex)
-            // use the system schema
-            if (datastream()->get({ "system_schema", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  if (str != get_schema())
-                  {
-
-                     try
-                     {
-
-                        datastream()->set({ "system_schema", true }, get_schema());
-
-                        datastream()->set({ "schema", true }, get_schema());
-
-                     }
-                     catch (...)
-                     {
-
-                     }
-
-                  }
-
-               }
-
-            }
-            else
-            {
-
-               datastream()->set({ "system_schema", true }, get_schema());
-
-            }
-
-            if (payload("schema").get_count() > 0)
-            {
-
-               str = payload("schema").as_string_array()[0];
-
-               datastream()->set({ "system_schema", true }, str);
-
-               datastream()->set({ "schema", true }, str);
-
-               set_schema(str, ::e_source_database);
-
-            }
-            else if (datastream()->get({ "schema", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  set_schema(str, ::e_source_database);
-
-               }
-
-            }
-
-         }
-
-         //data_pulse_change({ "ca2.savings", true }, nullptr);
-
-         auto psystem = system();
-
-         psystem->appa_load_string_table();
-
-      }
-      if (!is_system() && !is_session())
-      {
-
-         if (m_pdataserver)
-         {
-            string str;
-            // if system locale has changed (compared to last recorded one by apex)
-            // use the system locale
-            if (datastream()->get({ "system_locale", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  if (str != get_locale())
-                  {
-
-                     try
-                     {
-
-                        datastream()->set({ "system_locale", true }, get_locale());
-
-                        datastream()->set({ "locale", true }, get_locale());
-
-                     }
-                     catch (...)
-                     {
-
-                     }
-
-                  }
-
-               }
-
-            }
-            else
-            {
-
-               datastream()->set({ "system_locale", true }, get_locale());
-
-            }
-
-            if (payload("locale").get_count() > 0)
-            {
-
-               str = payload("locale").as_string_array()[0];
-
-               datastream()->set({ "system_locale", true }, str);
-
-               datastream()->set({ "locale", true }, str);
-
-               set_locale(str, ::e_source_database);
-
-            }
-            else if (payload("lang").get_count() > 0)
-            {
-
-               str = payload("lang").as_string_array()[0];
-
-               datastream()->set({ "system_locale", true }, str);
-
-               datastream()->set({ "locale", true }, str);
-
-               set_locale(str, ::e_source_database);
-
-            }
-            else if (datastream()->get({ "locale", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  set_locale(str, ::e_source_database);
-
-               }
-
-            }
-            // if system schema has changed (compared to last recorded one by apex)
-            // use the system schema
-            if (datastream()->get({ "system_schema", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  if (str != get_schema())
-                  {
-
-                     try
-                     {
-
-                        datastream()->set({ "system_schema", true }, get_schema());
-
-                        datastream()->set({ "schema", true }, get_schema());
-
-                     }
-                     catch (...)
-                     {
-
-                     }
-
-                  }
-
-               }
-
-            }
-            else
-            {
-
-               datastream()->set({ "system_schema", true }, get_schema());
-
-            }
-
-            if (payload("schema").get_count() > 0)
-            {
-
-               str = payload("schema").as_string_array()[0];
-
-               datastream()->set({ "system_schema", true }, str);
-
-               datastream()->set({ "schema", true }, str);
-
-               set_schema(str, ::e_source_database);
-
-            }
-            else if (datastream()->get({ "schema", true }, str))
-            {
-
-               if (str.has_character())
-               {
-
-                  set_schema(str, ::e_source_database);
-
-               }
-
-            }
-
-            //data_pulse_change({ "ca2.savings", true }, nullptr);
-
-            auto psystem = system();
-
-            psystem->appa_load_string_table();
-
-         }
-      }
-      //return true;
-
-      //node()->on_start_application(this);
-
-      on_start_application();
 
    }
 
@@ -3832,7 +3806,7 @@ namespace apex
    //}
 
 
-   bool application::check_exclusive(::request * prequest, bool & bHandled)
+   bool application::check_exclusive(bool & bHandled)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -3910,8 +3884,11 @@ namespace apex
             
             try
             {
+
+               auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
                
-               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global, "");
+               on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global,
+                                              "");
                
             }
             catch (...)
@@ -3938,6 +3915,8 @@ namespace apex
             try
             {
 
+               auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
+
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
 
             }
@@ -3961,6 +3940,8 @@ namespace apex
          {
             
             information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
+
+            auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
             
             on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
             
@@ -3983,6 +3964,8 @@ namespace apex
 
                // Should in some way activate the other instance
                information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this ___new instance.";
+
+               auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
 
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)

@@ -34,9 +34,8 @@ namespace innate_subsystem
 {
 
 
-   class TextBoxInterface :
-   virtual public ::subsystem::particle_interface<TextBoxInterface>,
-      virtual public Control
+   class TextBoxSlice :
+   virtual public ::particle_base
    {
    public:
 
@@ -81,48 +80,61 @@ namespace innate_subsystem
       virtual void showBalloonTip(TooltipInterface *ptooltip) = 0;
    };
 
+   using TextBoxInterface = particle_interface<TextBoxSlice, ControlInterface>;
 
-   class CLASS_DECL_INNATE_SUBSYSTEM TextBox :
-      virtual public ::subsystem::composite<TextBoxInterface >
+   class CLASS_DECL_INNATE_SUBSYSTEM TextBoxComposite :
+      virtual public composite<TextBoxSlice, Control>
     {
     public:
-      TextBox();
-        ~TextBox() override;
+
+      implement_compositeø(TextBox, Control, textbox)
+      
+       //TextBox();
+        //~TextBox();
     //public:
 
         //
         // Text limit
         //
 
-        virtual character_count getTextLengthLimit() override;
-        virtual void setTextLengthLimit(character_count limit) override;
+        virtual character_count getTextLengthLimit() { return m_ptextbox->getTextLengthLimit(); }
+        virtual void setTextLengthLimit(character_count limit) { m_ptextbox->setTextLengthLimit(limit); }
 
         //
         // Methods for multiline textboxes
         //
 
-        virtual int getCurrentLineIndex() override;
-        virtual int getLineCount() override;
+        virtual int getCurrentLineIndex() { return m_ptextbox->getCurrentLineIndex(); }
+        virtual int getLineCount() { return m_ptextbox->getLineCount(); }
 
         //
         // Get / set caret position
         //
 
-        virtual int getCaretPos();
-        virtual void setCaretPos(int h, int v);
+        virtual int getCaretPos() { return m_ptextbox->getCaretPos(); }
+        virtual void setCaretPos(int h, int v) { m_ptextbox->setCaretPos(h, v); }
 
         //
         // Text selection
         //
 
-        virtual void selectText(character_count startPos, character_count endPos);
+        virtual void selectText(character_count startPos, character_count endPos) { m_ptextbox->selectText(startPos, endPos); }
 
         //
         // Tooltip methods
         //
 
-        virtual void showBalloonTip(TooltipInterface *ptooltip);
+        virtual void showBalloonTip(TooltipInterface *ptooltip) { m_ptextbox->showBalloonTip(ptooltip); }
     };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM TextBox :
+   virtual public TextBoxComposite,
+   virtual public Control
+   {
+   public:
+
+
+   };
 
 
 } // namespace innate_subsystem

@@ -48,9 +48,7 @@ namespace innate_subsystem
    // that view data as report.
    //
 
-   class ListViewInterface :
-   virtual public ::subsystem::particle_interface<ListViewInterface>,
-   public Control
+   class ListViewSlice : virtual public ::particle_base
    {
    public:
 
@@ -222,141 +220,141 @@ namespace innate_subsystem
    //    PFNLVCOMPARE m_compareItem;
    };
 
-   
+   using ListViewInterface = particle_interface<ListViewSlice, ControlInterface>;
       //
    // ListView class can be used only for listviews
    // that view data as report.
    //
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ListView :
-   virtual public ::subsystem::composite<ListViewInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM ListViewComposite :
+   virtual public composite<ListViewSlice, Control>
    {
    public:
 
-
+      implement_compositeø(ListView, Control, listview)
       //typedef int (ListView:: *PFUNCTION_list_data_compare)(::lparam lparamData1, ::lparam lparamData2, void * pCompare);
 
-      ListView();
-
-      ~ListView()override;
+      // ListView();
+      //
+      // ~ListView();
 
       //
       // Adds new column to list view
       //
 
-      void addColumn(int index, const char *caption, int width, int fmt)override;
-      void addColumn(int index, const char *caption, int width)override;
+      void addColumn(int index, const char *caption, int width, int fmt) { m_plistview->addColumn(index, caption, width, fmt); }
+      void addColumn(int index, const char *caption, int width) { m_plistview->addColumn(index, caption, width); }
 
       //
       // Returns list view item structure with specified index
       //
 
-      ListViewItem getItem(int index)override;
+      ListViewItem getItem(int index) { return m_plistview->getItem(index); }
 
       //
       // Returns list view items count
       //
 
-      int getCount()override;
+      int getCount() { return m_plistview->getCount(); }
 
       //
       // Inserts new item to list view with specified index and caption
       //
 
-      void addItem(int index, const char *caption)override;
+      void addItem(int index, const char *caption) { m_plistview->addItem(index, caption); }
 
       //
       // Inserts new item to list view with specified index, caption
       // and user data(tag)
       //
 
-      void addItem(int index, const char *caption, ::lparam tag)override;
+      void addItem(int index, const char *caption, ::lparam tag) { m_plistview->addItem(index, caption, tag); }
 
       //
       // Inserts new item to list view
       //
 
-      void addItem(int index, const char *caption, ::lparam tag, int imageIndex)override;
+      void addItem(int index, const char *caption, ::lparam tag, int imageIndex) { m_plistview->addItem(index, caption, tag, imageIndex); }
 
       //
       // Removes item with specified index from list view
       //
 
-      void removeItem(int i)override;
+      void removeItem(int i) { m_plistview->removeItem(i); }
 
       //
       // Removes all list view items from list view
       //
 
-      void clear()override;
+      void clear() { m_plistview->clear(); }
 
       //
       // Changes text of list view item subitem
       //
 
-      void setSubItemText(int index, int subIndex, const char *caption)override;
+      void setSubItemText(int index, int subIndex, const char *caption) { m_plistview->setSubItemText(index, subIndex, caption); }
 
       //
       // Changes user data (tag) of list view item with specified index
       //
 
-      void setItemData(int index, ::lparam tag)override;
+      void setItemData(int index, ::lparam tag) { m_plistview->setItemData(index, tag); }
 
       //
       // Returns user data of list view item with specified index
       //
 
-      ::lparam getItemData(int index)override;
+      ::lparam getItemData(int index) { return m_plistview->getItemData(index); }
 
       //
       // Returns first selected list view item
       //
 
-      ListViewItem getSelectedItem()override;
+      ListViewItem getSelectedItem() { return m_plistview->getSelectedItem(); }
 
       //
       // Returns index of first selected list view item
       //
 
-      int getSelectedIndex()override;
+      int getSelectedIndex() { return m_plistview->getSelectedIndex(); }
 
       //
       // Selectes list view item with specified index
       //
 
-      void selectItem(int index)override;
+      void selectItem(int index) { m_plistview->selectItem(index); }
 
       //
       // Changes full row select style of list view
       //
 
-      void setFullRowSelectStyle(bool fullRowSelect)override;
+      void setFullRowSelectStyle(bool fullRowSelect) { m_plistview->setFullRowSelectStyle(fullRowSelect); }
 
       //
       // Enabled or disables multi selection on list view
       //
 
-      void allowMultiSelection(bool allow)override;
+      void allowMultiSelection(bool allow) { m_plistview->allowMultiSelection(allow); }
 
       //
       // Returns count of selected items in list view
       //
 
-      unsigned int getSelectedItemsCount()override;
+      unsigned int getSelectedItemsCount() { return m_plistview->getSelectedItemsCount(); }
 
       //
       // Sets selected list view index to output indexes array
       //
 
-      ::int_array getSelectedItemsIndexes()override;
+      ::int_array getSelectedItemsIndexes() { return m_plistview->getSelectedItemsIndexes(); }
 
    //protected:
 
-       void setListViewExtendedStyle(unsigned int style)override;
-       unsigned int getListViewExtendedStyle()override;
+       void setListViewExtendedStyle(unsigned int style) { m_plistview->setListViewExtendedStyle(style); }
+       unsigned int getListViewExtendedStyle() { return m_plistview->getListViewExtendedStyle(); }
 
-       void addListViewExtendedStyle(unsigned int style)override;
-       void removeListViewExtendedStyle(unsigned int style)override;
+       void addListViewExtendedStyle(unsigned int style) { m_plistview->addListViewExtendedStyle(style); }
+       void removeListViewExtendedStyle(unsigned int style) { m_plistview->removeListViewExtendedStyle(style); }
 
       //
       // This method sort list of item by column "columnIndex".
@@ -367,24 +365,24 @@ namespace innate_subsystem
       //
       // For example, you need to call this method, if user changed parameters of sorting.
       //
-      void set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare)override;
+      void set_sort(int columnIndex, const ::function < int(::lparam, ::lparam) > & compare) { m_plistview->set_sort(columnIndex, compare); }
 
       //
       // This method sort list of item by column m_sortColumIndex.
       // After add and removing elements, list may be not sorted.
       // For example, you need to call this method after add new element.
       //
-      void sort()override;
+      void sort() { m_plistview->sort(); }
 
 
 
       // overridables
-      void onAction() override;
+      void onAction() { m_plistview->onAction(); }
 
       //virtual bool _onNotifyReflect(::wparam wparam, ::lparam lparam);
 
 
-      ::lparam lparam_sort() override;
+      ::lparam lparam_sort() { return m_plistview->lparam_sort(); }
 
    // private:
    //    // Kind of sorting: ascending or descending
@@ -400,6 +398,14 @@ namespace innate_subsystem
    //    // This pointer to compareFunction. By default is 0.
    //    //
    //    PFNLVCOMPARE m_compareItem;
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ListView :
+      virtual public ListViewComposite,
+      virtual public Control
+   {
+
    };
 
 } // namespace innate_subsystem

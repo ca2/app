@@ -28,9 +28,9 @@
 
 namespace innate_subsystem
 {
-   class SolidBrushInterface :
-   virtual public ::subsystem::particle_interface<SolidBrushInterface>,
-      virtual public Brush
+
+   class SolidBrushSlice :
+      virtual public ::particle_base
    {
    public:
 
@@ -41,8 +41,11 @@ namespace innate_subsystem
       virtual void initialize_solid_brush(const ::color::color & color) = 0;
    };
 
+
+   using SolidBrushInterface = particle_interface<SolidBrushSlice, BrushInterface>;
+
    class CLASS_DECL_INNATE_SUBSYSTEM SolidBrush :
-   virtual public ::subsystem::composite < SolidBrushInterface >
+   virtual public composite < SolidBrushInterface >
    {
    public:
 

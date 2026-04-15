@@ -32,8 +32,8 @@
 
 namespace  subsystem
 {
-   class DisplaysInterface :
-   virtual public ::subsystem::particle_interface<DisplaysInterface>
+   class DisplaysSlice :
+   virtual public ::particle_base
    {
    public:
       //Displays();
@@ -69,8 +69,10 @@ namespace  subsystem
       // class ::time m_latestUpdateTime;
    };
 
+   using DisplaysInterface = particle_interface<DisplaysSlice>;
+
    class CLASS_DECL_SUBSYSTEM Displays:
-virtual public ::subsystem::composite<DisplaysInterface>
+virtual public composite<DisplaysSlice>
    {
    public:
       Displays();

@@ -45,7 +45,7 @@ namespace subsystem
       //HDESK m_hDesk;
    };
    // class CLASS_DECL_SUBSYSTEM GuiThread :
-   // virtual public ::subsystem::composite< GuiThread
+   // virtual public composite< GuiThread
    // {
    // public:
    //    GuiThread();

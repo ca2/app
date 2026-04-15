@@ -32,7 +32,7 @@ namespace subsystem
 {
    // Retrieves information of the parent process.
    class ParentProcessInterface :
-   virtual public ::subsystem::particle_interface<ParentProcessInterface>
+   virtual public particle_interface<ParentProcessInterface>
    {
    public:
       //ParentProcess();
@@ -56,7 +56,7 @@ namespace subsystem
 
    // Retrieves information of the parent process.
    class CLASS_DECL_SUBSYSTEM ParentProcess :
-   virtual public ::subsystem::composite<ParentProcessInterface>
+   virtual public composite<ParentProcessInterface>
    {
    public:
       ParentProcess();

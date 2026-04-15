@@ -71,8 +71,8 @@ enum Authority {
  * variable number of subauthority or relative identifier (RID) values that uniquely
  * identify the trustee relative to the authority that issued the SID.
  */
-class SecurityIdentifierInterface :
-   virtual public ::subsystem::particle_interface <SecurityIdentifierInterface>
+class SecurityIdentifierSlice :
+   virtual public ::particle_base
 {
 public:
   /**
@@ -133,6 +133,8 @@ public:
   //SID *m_sid;
 };
 
+    using SecurityIdentifierInterface = particle_interface <SecurityIdentifierSlice>;
+
  //#endif
 
     /**
@@ -142,8 +144,8 @@ public:
   * variable number of subauthority or relative identifier (RID) values that uniquely
   * identify the trustee relative to the authority that issued the SID.
   */
- class CLASS_DECL_SUBSYSTEM SecurityIdentifier :
-    virtual public ::subsystem::composite<SecurityIdentifierInterface>
+ class CLASS_DECL_SUBSYSTEM SecurityIdentifierComposite :
+    virtual public composite<SecurityIdentifierSlice>
  {
  public:
    /**
@@ -205,4 +207,17 @@ public:
    //SID *m_sid;
 };
 
+    class SecurityIdentifier :
+    virtual public aggregate < SecurityIdentifierComposite >
+    {
+    public:
+
+        implement_baseø(SecurityIdentifier);
+
+    };
+
+
 } // namespace subsystem
+
+
+

@@ -34,7 +34,7 @@
 namespace subsystem
 {
    class SecurityAttributesInterface :
-   virtual public ::subsystem::particle_interface<SecurityAttributesInterface>
+   virtual public particle_interface<SecurityAttributesInterface>
    {
    public:
       //SecurityAttributes();
@@ -66,7 +66,7 @@ namespace subsystem
       //SecurityDescriptor m_sd;
    };
    class CLASS_DECL_SUBSYSTEM SecurityAttributes :
-   virtual public ::subsystem::composite<SecurityAttributesInterface>
+   virtual public composite<SecurityAttributesInterface>
    {
    public:
       SecurityAttributes();

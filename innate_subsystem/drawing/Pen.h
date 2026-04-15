@@ -39,7 +39,7 @@ namespace innate_subsystem
    };
 
       class PenInterface :
-         virtual public ::subsystem::particle_interface<PenInterface>,
+         virtual public particle_interface<PenInterface>,
          virtual public GraphicsObject
       {
       public:
@@ -61,7 +61,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Pen :
-virtual public ::subsystem::composite<PenInterface>
+virtual public composite<PenInterface>
    {
    public:
 

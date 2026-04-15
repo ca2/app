@@ -34,54 +34,57 @@ namespace innate_subsystem
    // }
 
 
-   BitmapGraphics::BitmapGraphics()
-//: Graphics(complatibleDC), m_isPainting(false)
-{
-      //m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
-      //m_dc = new DeviceContext(complatibleDC);
-}
+//    BitmapGraphics::BitmapGraphics()
+// //: Graphics(complatibleDC), m_isPainting(false)
+// {
+//       //m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
+//       //m_dc = new DeviceContext(complatibleDC);
+// }
+//
+//
+//    BitmapGraphics::~BitmapGraphics()
+//    {
+//       //delete m_bitmap;
+//       //delete m_dc;
+//    }
+//
+//    void BitmapGraphics::initialize_bitmap_graphics(DeviceContextInterface *pdevicecontextCompatible, const ::int_size & size)
+// //: Graphics(complatibleDC), m_isPainting(false)
+// {
+//       m_pparticleThis->initialize_bitmap_graphics(pdevicecontextCompatible, size);
+//       // }
+//       //    m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
+//       //    m_dc = new DeviceContext(complatibleDC);
+// }
+//
+//
+//    BitmapInterface *BitmapGraphics::getBitmap()
+//    {
+//       //return m_bitmap;
+//
+//       return m_pparticleThis->getBitmap();
+//    }
+//
+//    void BitmapGraphics::beginPaint()
+//    {
+//       m_pparticleThis->beginPaint();
+//       //}
+//       // _ASSERT(!m_isPainting);
+//       //
+//       // m_isPainting = true;
+//       // m_oldBitmap = m_dc->selectObject(m_bitmap->m_bitmap);
+//    }
+//
+//    void BitmapGraphics::endPaint()
+//    {
+//       m_pparticleThis->endPaint();
+//       //}
+//       //  _ASSERT(m_isPainting);
+//       //
+//       // m_isPainting = false;
+//       // m_dc->se
+//    }
 
 
-   BitmapGraphics::~BitmapGraphics()
-   {
-      //delete m_bitmap;
-      //delete m_dc;
-   }
 
-   void BitmapGraphics::initialize_bitmap_graphics(DeviceContextInterface *pdevicecontextCompatible, const ::int_size & size)
-//: Graphics(complatibleDC), m_isPainting(false)
-{
-      m_pparticleThis->initialize_bitmap_graphics(pdevicecontextCompatible, size);
-      // }
-      //    m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
-      //    m_dc = new DeviceContext(complatibleDC);
-}
-
-
-   BitmapInterface *BitmapGraphics::getBitmap()
-   {
-      //return m_bitmap;
-
-      return m_pparticleThis->getBitmap();
-   }
-
-   void BitmapGraphics::beginPaint()
-   {
-      m_pparticleThis->beginPaint();
-      //}
-      // _ASSERT(!m_isPainting);
-      //
-      // m_isPainting = true;
-      // m_oldBitmap = m_dc->selectObject(m_bitmap->m_bitmap);
-   }
-
-   void BitmapGraphics::endPaint()
-   {
-      m_pparticleThis->endPaint();
-      //}
-      //  _ASSERT(m_isPainting);
-      //
-      // m_isPainting = false;
-      // m_dc->se
-   }
 } // namespace innate_subsystem

@@ -29,10 +29,8 @@
 namespace innate_subsystem
 {
 
-   class ListBoxInterface :
-   virtual public ::subsystem::particle_interface<ListBoxInterface>,
-   virtual public Control
-{
+   class ListBoxSlice : virtual public ::particle_base
+   {
 public:
   //ListBox();
   //virtual ~ListBoxInterface() = 0;
@@ -55,29 +53,34 @@ public:
   virtual void clear() = 0;
 };
 
+   using ListBoxInterface = particle_interface<ListBoxSlice, ControlInterface>;
 
-      class CLASS_DECL_INNATE_SUBSYSTEM ListBox : virtual public ::subsystem::composite<ListBoxInterface >
+      class CLASS_DECL_INNATE_SUBSYSTEM ListBoxComposite :
+      virtual public composite<ListBoxSlice >
 {
+         
+         implement_compositeø(ListBox, Control, listbox)
+         
          public:
-  ListBox();
-  ~ListBox() override;
+  //ListBox();
+  //~ListBox() override;
 //public:
-   void addString(const char *str) override;
-   void addString(const char *str, void *tag) override;
-   ::string getItemText(int index) override;
-   void setItemText(int index, const char *str) override;
-   void insertString(int index, const char *str) override;
-   void insertString(int index, const char *str, ::lparam data) override;
-   void appendString(const char *str, ::lparam data) override;
-   void setItemData(int index, ::lparam data) override;
-   void removeString(int index) override;
-   int getSelectedIndex() override;
-   int getTopIndex() override;
-   void setTopIndex(int index) override;
-   void setSelectedIndex(int index) override;
-   ::lparam getItemData(int index) override;
-   int getCount() override;
-   void clear() override;
+   void addString(const char *str) override { m_plistbox->addString(str); }
+   void addString(const char *str, void *tag) override { m_plistbox->addString(str, tag); }
+   ::string getItemText(int index) override { return m_plistbox->getItemText(index); }
+   void setItemText(int index, const char *str) override { m_plistbox->setItemText(index, str); }
+   void insertString(int index, const char *str) override { m_plistbox->insertString(index, str); }
+   void insertString(int index, const char *str, ::lparam data) override { m_plistbox->insertString(index, str, data); }
+   void appendString(const char *str, ::lparam data) override { m_plistbox->appendString(str, data); }
+   void setItemData(int index, ::lparam data) override { m_plistbox->setItemData(index, data); }
+   void removeString(int index) override { m_plistbox->removeString(index); }
+   int getSelectedIndex() override { return m_plistbox->getSelectedIndex(); }
+   int getTopIndex() override { return m_plistbox->getTopIndex(); }
+   void setTopIndex(int index) override { m_plistbox->setTopIndex(index); }
+   void setSelectedIndex(int index) override { m_plistbox->setSelectedIndex(index); }
+   ::lparam getItemData(int index) override { return m_plistbox->getItemData(index); }
+   int getCount() override { return m_plistbox->getCount(); }
+   void clear() override { m_plistbox->clear(); }
 };
 
 } // namespace innate_subsystem

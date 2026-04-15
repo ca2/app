@@ -34,7 +34,7 @@ namespace innate_subsystem
 
 
       class FontInterface :
-         virtual public ::subsystem::particle_interface<FontInterface>,
+         virtual public particle_interface<FontInterface>,
          virtual public GraphicsObject
       {
       public:
@@ -56,7 +56,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Font :
-virtual public ::subsystem::composite<FontInterface>
+virtual public composite<FontInterface>
    {
    public:
 

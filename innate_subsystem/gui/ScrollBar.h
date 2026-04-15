@@ -36,9 +36,8 @@ namespace innate_subsystem
 {
 
     const int SCROLL_STEP = 5;
-   class ScrollBarInterface :
-   virtual public ::subsystem::particle_interface<ScrollBarInterface>,
-   virtual public Window
+   class ScrollBarSlice :
+   virtual public ::particle_base
    {
    public:
       
@@ -81,10 +80,15 @@ namespace innate_subsystem
       virtual bool _showHorzScroll(bool show)= 0;
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ScrollBar :
-virtual public ::subsystem::composite<ScrollBarInterface>
+   using ScrollBarInterface = particle_interface<ScrollBarSlice, WindowInterface>;
+   
+   class CLASS_DECL_INNATE_SUBSYSTEM ScrollBarComposite :
+      virtual public composite<ScrollBarSlice, Window>
    {
    public:
+
+
+      implement_compositeø(ScrollBar, Window, scrollbar)
       
       
       // static const int SCROLL_STEP = 5;
@@ -99,30 +103,40 @@ virtual public ::subsystem::composite<ScrollBarInterface>
       // bool m_isHorz;
       // bool m_isVVert;
       // bool m_isVHorz;
-ScrollBar();
-      ~ScrollBar() override;
+//ScrollBar();
+  ///    ~ScrollBar();
 
-      //void setWindow(const ::operating_system::window & operatingsystemwindow)override;
-      bool showVertScroll(bool show)override;
-      bool showHorzScroll(bool show)override;
-      void setHorzRange(int imin, int imax, int istep)override;
-      void setVertRange(int imin, int imax, int istep)override;
-      void setVertPos(int iPos)override;
-      void setHorzPos(int iPos)override;
-      void moveUpVert(int iPercent = 0)override;
-      void moveDownVert(int iPercent = 0)override;
-      void moveLeftHorz(int iPercent = 0)override;
-      void moveRightHorz(int inPercent = 0)override;
-      int getVertPos()override;
-      int getHorzPos()override;
-      int getVerticalSize()override;
-      int getHorizontalSize()override;
+      //void setWindow(const ::operating_system::window & operatingsystemwindow);
+      bool showVertScroll(bool show) { return m_pscrollbar->showVertScroll(show); }
+      bool showHorzScroll(bool show) { return m_pscrollbar->showHorzScroll(show); }
+      void setHorzRange(int imin, int imax, int istep) { m_pscrollbar->setHorzRange(imin, imax, istep); }
+      void setVertRange(int imin, int imax, int istep) { m_pscrollbar->setVertRange(imin, imax, istep); }
+      void setVertPos(int iPos) { m_pscrollbar->setVertPos(iPos); }
+      void setHorzPos(int iPos) { m_pscrollbar->setHorzPos(iPos); }
+      void moveUpVert(int iPercent = 0) { m_pscrollbar->moveUpVert(iPercent); }
+      void moveDownVert(int iPercent = 0) { m_pscrollbar->moveDownVert(iPercent); }
+      void moveLeftHorz(int iPercent = 0) { m_pscrollbar->moveLeftHorz(iPercent); }
+      void moveRightHorz(int inPercent = 0) { m_pscrollbar->moveRightHorz(inPercent); }
+      int getVertPos() { return m_pscrollbar->getVertPos(); }
+      int getHorzPos() { return m_pscrollbar->getHorzPos(); }
+      int getVerticalSize() { return m_pscrollbar->getVerticalSize(); }
+      int getHorizontalSize() { return m_pscrollbar->getHorizontalSize(); }
 
       ///protected:
-      void enableVirtualScroll()override;
-      void disableVirtualScroll()override;
-      bool _showVertScroll(bool show)override;
-      bool _showHorzScroll(bool show)override;
+      void enableVirtualScroll() { m_pscrollbar->enableVirtualScroll(); }
+      void disableVirtualScroll() { m_pscrollbar->disableVirtualScroll(); }
+      bool _showVertScroll(bool show) { return m_pscrollbar->_showVertScroll(show); }
+      bool _showHorzScroll(bool show) { return m_pscrollbar->_showHorzScroll(show); }
    };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ScrollBar :
+   virtual public ScrollBarComposite,
+   virtual public Window
+   {
+   public:
+
+
+   };
+
 
 } // namespace innate_subsystem

@@ -25,7 +25,7 @@ namespace subsystem
    subsystem::subsystem()
    {
 
-
+      s_p = this;
 
    }
 

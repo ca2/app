@@ -194,6 +194,8 @@ namespace apex
       ::pointer<::fs::folder_sync> fs_folder_sync(const ::scoped_string& scopedstr);
 
 
+      void on_application_system_start() override;
+
       //virtual void process_command_line(command_line* pcommandline);
 
 
@@ -758,7 +760,7 @@ namespace apex
       virtual string get_global_id_mutex_name() override;
 
 
-      virtual bool check_exclusive(::request* prequest, bool& bHandled) override;
+      virtual bool check_exclusive(bool& bHandled) override;
 
 
       virtual bool erase_exclusive(const ::scoped_string & scopedstrId) override;

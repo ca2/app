@@ -218,7 +218,7 @@ namespace platform
    };
 
 
-   registry_key_implementation::registry_key_implementation()
+   registry_key_implementation::registry_key_implementation() : registry_key(interface_t{})
    {
 
    }
@@ -422,7 +422,7 @@ namespace platform
       reg->m_pathFileSystem = path;
       m_rapidjsondocument.SetObject();
 
-      auto content = file()->as_string(path);
+      auto content = file()->safe_get_string(path);
 
       //std::ifstream ifs(filename, std::ios::binary);
       //if (ifs.good()) {
@@ -745,6 +745,13 @@ namespace platform
 
       m_pregistrykey = ::system()->m_papplication->create_newø < registry_key_implementation >();
 
+   }
+
+
+   registry_key::registry_key(interface_t)
+   {
+
+      
    }
 
 

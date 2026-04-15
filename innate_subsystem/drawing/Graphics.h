@@ -37,7 +37,7 @@ namespace innate_subsystem
 
 
    class GraphicsInterface :
-   virtual public ::subsystem::particle_interface<GraphicsInterface>
+   virtual public particle_interface<GraphicsInterface>
    {
    public:
       // Creates graphics object with specified device context.
@@ -100,7 +100,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Graphics :
-      virtual public ::subsystem::composite<GraphicsInterface>
+      virtual public composite<GraphicsInterface>
    {
    public:
       // Creates graphics object with specified device context.

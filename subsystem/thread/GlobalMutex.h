@@ -66,8 +66,8 @@ namespace subsystem
     * @author yuri, enikey.
     */
    class GlobalMutexInterface :
-   virtual public ::subsystem::particle_interface<GlobalMutexInterface>,
-      virtual public LockableInterface
+   virtual public particle_interface<GlobalMutexInterface >,
+    virtual public LockableInterface
    {
    public:
 
@@ -112,7 +112,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM GlobalMutex :
-      virtual public ::subsystem::composite < GlobalMutexInterface >
+      virtual public composite < GlobalMutexInterface >
    {
    public:
 

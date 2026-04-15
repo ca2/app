@@ -32,7 +32,7 @@
 namespace innate_subsystem
 {
    class IconInterface :
-   virtual public ::subsystem::particle_interface<IconInterface>
+   virtual public particle_interface<IconInterface>
    {
    public:
       // Icon();
@@ -59,7 +59,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Icon :
-virtual public ::subsystem::composite<IconInterface>
+virtual public composite<IconInterface>
    {
    public:
       Icon();

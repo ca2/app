@@ -37,7 +37,7 @@ namespace subsystem
     * (mouse, keyboard etc) and get information about input device states.
     */
    class InputInjectorInterface :
-   virtual public ::subsystem::particle_interface<InputInjectorInterface>
+   virtual public particle_interface<InputInjectorInterface>
    {
    public:
       //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
@@ -141,7 +141,7 @@ namespace subsystem
     * (mouse, keyboard etc) and get information about input device states.
     */
    class CLASS_DECL_SUBSYSTEM InputInjector :
-   virtual public ::subsystem::composite<InputInjectorInterface>
+   virtual public composite<InputInjectorInterface>
    {
    public:
       //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);

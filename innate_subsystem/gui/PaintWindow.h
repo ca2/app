@@ -30,9 +30,8 @@
 
 namespace innate_subsystem
 {
-   class PaintWindowInterface:
-   virtual public ::subsystem::particle_interface<PaintWindowInterface>,
-   virtual public Window
+   class PaintWindowSlice:
+   virtual public
    {
    public:
       //PaintWindow();
@@ -58,21 +57,25 @@ namespace innate_subsystem
    };
 
 
-       class CLASS_DECL_INNATE_SUBSYSTEM PaintWindow:
-   virtual public ::subsystem::composite<PaintWindowInterface >
+   using PaintWindowInterface = particle_interface<PaintWindowSlice, WindowInterface>;
+
+       class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowComposite:
+   virtual public composite<PaintWindowSlice, Window >
    {
    public:
-      PaintWindow();
-      ~PaintWindow() override;
+
+          implement_compositeø(PaintWindow, Window, paintwindow)
+      //PaintWindow();
+      //~PaintWindow();
 
    //private:
-      ::pointer < DeviceContextInterface > getPaintDeviceContext() override;
+      ::pointer < DeviceContextInterface > getPaintDeviceContext() { return m_ppaintwindow->getPaintDeviceContext(); }
 
       //friend class DeviceContext;
 
    //protected:
       //virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
-      void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) override;
+      void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) { m_ppaintwindow->onPaint(pdevicecontext, rectangle); }
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 

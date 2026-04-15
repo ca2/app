@@ -27,66 +27,71 @@
 
 namespace subsystem
 {
-   //PipeImpersonatedThread::PipeImpersonatedThread(HANDLE pipeHandle)
-   PipeImpersonatedThread::PipeImpersonatedThread()
-   // : m_pipeHandle(pipeHandle),
-   //   m_success(false)
-   {
-   }
-
-   PipeImpersonatedThread::~PipeImpersonatedThread()
-   {
-      // terminate();
-      // wait();
-   }
 
 
-   void PipeImpersonatedThread::initialize_pipe_impersonated_thread(::subsystem::FileInterface *pfilePipe)
-   {
+   // //PipeImpersonatedThreadComposite::PipeImpersonatedThreadComposite(HANDLE pipeHandle)
+   // PipeImpersonatedThreadComposite::PipeImpersonatedThreadComposite()
+   // // : m_pipeHandle(pipeHandle),
+   // //   m_success(false)
+   // {
+   // }
+   //
+   // PipeImpersonatedThreadComposite::~PipeImpersonatedThreadComposite()
+   // {
+   //    // terminate();
+   //    // wait();
+   // }
+   //
+   //
+   // void PipeImpersonatedThreadComposite::initialize_pipe_impersonated_thread(::subsystem::FileInterface *pfilePipe)
+   // {
+   //
+   //    m_pparticleThis->initialize_pipe_impersonated_thread(pfilePipe);
+   //
+   //
+   // }
+   //  void PipeImpersonatedThreadComposite::onTerminate()
+   //  {
+   //     //m_threadSleeper.notify();
+   //     m_pparticleThis->onTerminate();
+   //  }
+   //
+   //  void PipeImpersonatedThreadComposite::waitUntilImpersonated()
+   //  {
+   //     //m_impersonationReadyEvent.waitForEvent();
+   //     m_pparticleThis->waitUntilImpersonated();
+   //  }
+   //
+   //  bool PipeImpersonatedThreadComposite::getImpersonationSuccess()
+   //  {
+   //     //return m_success;
+   //     return m_pparticleThis->getImpersonationSuccess();
+   //  }
+   //
+   //  ::string PipeImpersonatedThreadComposite::getFaultReason()
+   //  {
+   //     //return m_faultReason;
+   //     return m_pparticleThis->getFaultReason();
+   //  }
+   //
+   //  void PipeImpersonatedThreadComposite::execute()
+   //  {
+   //     m_pparticleThis->execute();
+   //     // m_success = ImpersonateNamedPipeClient(m_pipeHandle) != 0;
+   //     // if (!m_success) {
+   //     //    // Store fault reason
+   //     //    m_faultReason = ::windows::last_error_message(::windows::last_error());
+   //     // }
+   //     // m_impersonationReadyEvent.notify();
+   //     //
+   //     // while (!isTerminating()) {
+   //     //    m_threadSleeper.waitForEvent();
+   //     // }
+   //     // RevertToSelf();
+   //  }
 
-      m_pparticleThis->initialize_pipe_impersonated_thread(pfilePipe);
 
 
-   }
-    void PipeImpersonatedThread::onTerminate()
-    {
-       //m_threadSleeper.notify();
-       m_pparticleThis->onTerminate();
-    }
-
-    void PipeImpersonatedThread::waitUntilImpersonated()
-    {
-       //m_impersonationReadyEvent.waitForEvent();
-       m_pparticleThis->waitUntilImpersonated();
-    }
-
-    bool PipeImpersonatedThread::getImpersonationSuccess()
-    {
-       //return m_success;
-       return m_pparticleThis->getImpersonationSuccess();
-    }
-
-    ::string PipeImpersonatedThread::getFaultReason()
-    {
-       //return m_faultReason;
-       return m_pparticleThis->getFaultReason();
-    }
-
-    void PipeImpersonatedThread::execute()
-    {
-       m_pparticleThis->execute();
-       // m_success = ImpersonateNamedPipeClient(m_pipeHandle) != 0;
-       // if (!m_success) {
-       //    // Store fault reason
-       //    m_faultReason = ::windows::last_error_message(::windows::last_error());
-       // }
-       // m_impersonationReadyEvent.notify();
-       //
-       // while (!isTerminating()) {
-       //    m_threadSleeper.waitForEvent();
-       // }
-       // RevertToSelf();
-    }
 } // namespace subsystem
 
 

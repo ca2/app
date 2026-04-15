@@ -3119,6 +3119,24 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
+   void system::defer_start_system()
+   {
+
+      auto prequest = create_newø<::request>();
+
+      prequest->m_ecommand = e_command_system_start;
+
+      ::string strAppId = m_papplication->m_strAppId;
+
+      prequest->m_strAppId = strAppId;
+      // prequest->m_bPreferSync = true;
+
+      post_request(prequest);
+
+   }
+
+
+
    void system::post_application_start()
    {
 
@@ -3266,114 +3284,120 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
          m_bPostedCommandLineFileOpen = true;
 
-         auto prequest = create_newø<::request>();
+         auto prequest = m_prequestApplicationStartFileOpen;
 
-         auto strCommandLine = this->command_line();
+         //auto prequest = create_newø<::request>();
 
-         strCommandLine.trim();
+         //auto strCommandLine = this->command_line();
 
-         prequest->m_strAppId = application()->m_strAppId;
+         //strCommandLine.trim();
 
-         ::string strApp;
+         //prequest->m_strAppId = application()->m_strAppId;
 
-         if (strCommandLine.has_character())
+         //::string strApp;
+
+         //if (strCommandLine.has_character())
+         //{
+
+         //   information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
+
+         //   prequest->m_strCommandLine = strCommandLine;
+
+         //   prequest->property_set()._008ParseCommandFork(
+         //      strCommandLine,
+         //      prequest->m_payloadFile,
+         //      strApp);
+
+         //}
+         //else
+         //{
+
+         //   strApp = this->m_args[0];
+
+         //   ::string_array straFiles;
+
+         //   for (int iArgument = 1; iArgument < this->m_argc;)
+         //   {
+
+         //      auto iArgumentBefore = iArgument;
+
+         //      if (node()->defer_consume_main_arguments(
+         //         this->m_argc,
+         //         this->m_args,
+         //         iArgument)
+         //         && iArgument > iArgumentBefore)
+         //      {
+
+         //         continue;
+
+         //      }
+
+         //      if (application()->defer_consume_main_arguments(
+         //         this->m_argc,
+         //         this->m_args,
+         //         iArgument)
+         //         && iArgument > iArgumentBefore)
+         //      {
+
+         //         continue;
+
+         //      }
+
+         //      ::string strArgument = this->m_args[iArgument];
+
+         //      if (strArgument.begins("-"))
+         //      {
+
+         //         prequest->property_set()._008AddArgument(strArgument);
+
+         //      }
+         //      else
+         //      {
+
+         //         straFiles.add(strArgument);
+
+         //      }
+
+         //      iArgument++;
+
+         //   }
+
+         //   if (straFiles.has_elements())
+         //   {
+
+         //      if (straFiles.size() == 1)
+         //      {
+
+         //         prequest->m_payloadFile = straFiles[0];
+
+         //      }
+         //      else
+         //      {
+
+         //         prequest->m_payloadFile.string_array_reference() = straFiles;
+
+         //      }
+
+         //   }
+
+         //}
+
+         if (prequest)
          {
 
-            information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
-
-            prequest->m_strCommandLine = strCommandLine;
-
-            prequest->property_set()._008ParseCommandFork(
-               strCommandLine,
-               prequest->m_payloadFile,
-               strApp);
-
-         }
-         else
-         {
-
-            strApp = this->m_args[0];
-
-            ::string_array straFiles;
-
-            for (int iArgument = 1; iArgument < this->m_argc;)
+            if (!prequest->m_payloadFile.is_empty())
             {
 
-               auto iArgumentBefore = iArgument;
+               prequest->m_ecommand = e_command_file_open;
 
-               if (node()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
-               {
+               //payload("command_line_arg0") = strApp;
 
-                  continue;
+               application()->property_set().merge(prequest->property_set());
 
-               }
+               /// prequest->m_bPreferSync = true;
 
-               if (application()->defer_consume_main_arguments(
-                  this->m_argc,
-                  this->m_args,
-                  iArgument)
-                  && iArgument > iArgumentBefore)
-               {
-
-                  continue;
-
-               }
-
-               ::string strArgument = this->m_args[iArgument];
-
-               if (strArgument.begins("-"))
-               {
-
-                  prequest->property_set()._008AddArgument(strArgument);
-
-               }
-               else
-               {
-
-                  straFiles.add(strArgument);
-
-               }
-
-               iArgument++;
-
+               post_request(prequest);
             }
-
-            if (straFiles.has_elements())
-            {
-
-               if (straFiles.size() == 1)
-               {
-
-                  prequest->m_payloadFile = straFiles[0];
-
-               }
-               else
-               {
-
-                  prequest->m_payloadFile.string_array_reference() = straFiles;
-
-               }
-
-            }
-
-         }
-
-         if (!prequest->m_payloadFile.is_empty())
-         {
-
-            prequest->m_ecommand = e_command_file_open;
-
-            payload("command_line_arg0") = strApp;
-
-            application()->property_set().merge(prequest->property_set());
-
-            ///prequest->m_bPreferSync = true;
-
-            post_request(prequest);
 
          }
 
@@ -5259,6 +5283,14 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   ::string system::get_subsystem_library_component_name()
+   {
+
+      return "subsystem";
+
+   }
+
+
    ::string system::get_operating_ambient()
    {
 
@@ -5441,6 +5473,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
+   string system::get_subsystem_toolkit_id()
+   {
+
+      ::string strToolkitId = get_operating_ambient();
+
+      ::string strAcmeWindowingToolkitId = strToolkitId;
+
+      return strAcmeWindowingToolkitId;
+   }
+
+
+
    void system::do_graphics_and_windowing_factory()
    {
 
@@ -5473,9 +5517,11 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       if (!m_psubsystem)
       {
 
-         ::string strToolkit = get_acme_windowing_toolkit_id();
+         ::string strToolkit = get_subsystem_toolkit_id();
 
-         auto pfactorySubsystem = this->factory("subsystem", strToolkit);
+         auto strLibraryComponentName = get_subsystem_library_component_name();
+
+         auto pfactorySubsystem = this->factory(strLibraryComponentName, strToolkit);
 
          pfactorySubsystem->merge_to_global_factory();
 

@@ -26,46 +26,46 @@
 
 namespace innate_subsystem
 {
-   PaintWindow::PaintWindow()
-//    : m_bIsDraw(false)
-   {
-   }
-
-   PaintWindow::~PaintWindow()
-   {
-   }
-
-   ::pointer < DeviceContextInterface > PaintWindow::getPaintDeviceContext()
-   {
-
-       return m_pparticleThis->getPaintDeviceContext();
-      //if (!m_bIsDraw) {
-        // return 0;
-      //}
-      //return m_hdc;
-   }
-
-   //void PaintWindow::onPaint(DeviceContextInterface *dc, PAINTSTRUCT *paintStruct)
-    void PaintWindow::onPaint(DeviceContextInterface *pdevicecontext,const ::int_rectangle & rectangle)
-    {
-
-       m_pparticleThis->onPaint(pdevicecontext, rectangle);
-
-   }
-
-   // bool PaintWindow::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
-   // {
-   //     return m_pparticleThis->wndProc(message, wparam, lparam);
-   //    // if (message == WM_PAINT) {
-   //    //    m_hdc = BeginPaint(m_hWnd, &m_paintStruct);
-   //    //    m_bIsDraw = true;
-   //    //    DeviceContext dc(this);
-   //    //    onPaint(&dc, &m_paintStruct);
-   //    //    EndPaint(m_hWnd, &m_paintStruct);
-   //    //    m_bIsDraw = false;
-   //    //    return true;
-   //    // }
-   //    // return BaseWindow::wndProc(message, ::wparam, ::lparam);
-   // }
+//    PaintWindow::PaintWindow()
+// //    : m_bIsDraw(false)
+//    {
+//    }
+//
+//    PaintWindow::~PaintWindow()
+//    {
+//    }
+//
+//    /*::pointer < DeviceContextInterface > PaintWindow::getPaintDeviceContext()
+//    {
+//
+//        return m_pparticleThis->getPaintDeviceContext();
+//       //if (!m_bIsDraw) {
+//         // return 0;
+//       //}
+//       //return m_hdc;
+//    }
+//
+//    //void PaintWindow::onPaint(DeviceContextInterface *dc, PAINTSTRUCT *paintStruct)
+//     void PaintWindow::onPaint(DeviceContextInterface *pdevicecontext,const ::int_rectangle & rectangle)
+//     {
+//
+//        m_pparticleThis->onPaint(pdevicecontext, rectangle);
+//
+//    }
+//
+//    // bool PaintWindow::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
+//    // {
+//    //     return m_pparticleThis->wndProc(message, wparam, lparam);
+//    //    // if (message == WM_PAINT) {
+//    //    //    m_hdc = BeginPaint(m_hWnd, &m_paintStruct);
+//    //    //    m_bIsDraw = true;
+//    //    //    DeviceContext dc(this);
+//    //    //    onPaint(&dc, &m_paintStruct);
+//    //    //    EndPaint(m_hWnd, &m_paintStruct);
+//    //    //    m_bIsDraw = false;
+//    //    //    return true;
+//    //    // }
+//    //    // return BaseWindow::wndProc(message, ::wparam, ::lparam);
+//    // }*/
 } // namespace innate_subsystem
 

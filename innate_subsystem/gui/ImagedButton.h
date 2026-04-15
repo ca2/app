@@ -36,9 +36,7 @@ namespace innate_subsystem
     // Owner draw button, that displays button with image and text.
     //
 
-    class ImagedButtonInterface :
-   virtual public ::subsystem::particle_interface<ImagedButtonInterface>,
-   public Control
+    class ImagedButtonSlice : virtual public ::particle_base
     {
     public:
        /// ImagedButton();
@@ -95,13 +93,18 @@ namespace innate_subsystem
     };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ImagedButton :
+   using ImagedButtonInterface = particle_interface<ImagedButtonSlice, ControlInterface>;
 
-   virtual public ::subsystem::composite<ImagedButtonInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM ImagedButtonComposite :
+
+   virtual public composite<ImagedButtonSlice, Control>
    {
    public:
-      ImagedButton();
-      ~ImagedButton() override;
+
+      implement_compositeø(ImagedButton, Control, imagedbutton)
+
+      //ImagedButton();
+      //~ImagedButton() override;
 
       //
       // Draws this ownder-draw button.
@@ -110,10 +113,10 @@ namespace innate_subsystem
 
       //virtual void drawItem(LPDRAWITEMSTRUCT dis);
 
-      virtual void setWindow(const ::operating_system::window & window);
+      virtual void setWindow(const ::operating_system::window & window) { m_pimagedbutton->setWindow(window); }
 
       //virtual void setIcon(::pointer < IconInterface > &icon, const ::int_size & size);
-      virtual void setIcon(IconInterface * picon, const ::int_size & size);
+      virtual void setIcon(IconInterface * picon, const ::int_size & size) { m_pimagedbutton->setIcon(picon, size); }
 
       //private:
 
@@ -133,7 +136,7 @@ namespace innate_subsystem
       virtual void calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
                     unsigned int textWidth, unsigned int textHeight,
                     unsigned int imageWidth, unsigned int imageHeight,
-                    ::int_rectangle &textRect, ::int_rectangle & imageRect) override;
+                    ::int_rectangle &textRect, ::int_rectangle & imageRect) override { m_pimagedbutton->calcRect(buttonRect, isButtonPressed, textWidth, textHeight, imageWidth, imageHeight, textRect, imageRect); }
 
       //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
       //protected:

@@ -32,9 +32,8 @@
 
 namespace innate_subsystem
 {
-   class TabControlInterface :
-   virtual public ::subsystem::particle_interface<TabControlInterface>,
-   public Control
+   class TabControSlice :
+   virtual public ::particle_base
    {
    public:
 
@@ -72,39 +71,53 @@ virtual       int getSelectedTabIndex()= 0;
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM TabControl : public ::subsystem::composite <TabControlInterface >
+   using TabControlInterface = particle_interface<TabControlSlice, ControlInterface>;
+
+   class CLASS_DECL_INNATE_SUBSYSTEM TabControlComposite :
+   virtual public composite <TabControlSlice, Control >
    {
    public:
-      TabControl();
-       ~TabControl() override;
+
+
+      implement_compositeø(TabControl, Control, tabcontrol)
+
+
+      //TabControl();
+       //~TabControl() override;
 
       //
       // Tab access members
       //
 
-      TabContainer &getTabs() override;
-      TabInterface *getTab(int index)override;
-      void addTab(DialogInterface *dialog, const char *caption)override;
-      void showTab(int index)override;
+      TabContainer &getTabs() override { return m_ptabcontrol->getTabs(); }
+      TabInterface *getTab(int index)override { return m_ptabcontrol->getTab(index); }
+      void addTab(DialogInterface *dialog, const char *caption)override { m_ptabcontrol->addTab(dialog, caption); }
+      void showTab(int index)override { m_ptabcontrol->showTab(index); }
       //void showTab(DialogInterface *pdialog)override;
-      void deleteAllTabs()override;
-      void removeTab(int index)override;
+      void deleteAllTabs()override { m_ptabcontrol->deleteAllTabs(); }
+      void removeTab(int index)override { m_ptabcontrol->removeTab(index); }
 
       //
       // Return selected tab number
       //
 
-      int getSelectedTabIndex()override;
+      int getSelectedTabIndex()override { return m_ptabcontrol->getSelectedTabIndex(); }
 
       //
       // Tab work rect methods
       //
 
-      void adjustRect(::int_rectangle &rect)override;
+      void adjustRect(::int_rectangle &rect)override { m_ptabcontrol->adjustRect(rect); }
 
    //protected:
 //      TabContainer m_tabContainer;
    };
 
+   class CLASS_DECL_INNATE_SUBSYSTEM TabControl :
+   virtual public TabControlComposite,
+   virtual public Control
+   {
+   public:
+   };
 
 } //

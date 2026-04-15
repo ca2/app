@@ -30,7 +30,7 @@ namespace innate_subsystem
 {
 
    class BrushInterface :
-   virtual public ::subsystem::particle_interface<BrushInterface>,
+   virtual public particle_interface<BrushInterface>,
    virtual public GraphicsObject
    {
    public:
@@ -51,7 +51,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Brush :
-      virtual public ::subsystem::composite<BrushInterface >
+      virtual public composite<BrushInterface >
    {
    public:
       Brush();

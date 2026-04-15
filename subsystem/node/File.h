@@ -8,8 +8,8 @@
 namespace subsystem
 {
 
-   class CLASS_DECL_SUBSYSTEM FileInterface :
-      virtual public ::subsystem::particle_interface<FileInterface>
+   class CLASS_DECL_SUBSYSTEM FileSlice :
+      virtual public ::particle_base
    {
    public:
 
@@ -20,9 +20,11 @@ namespace subsystem
 
    };
 
+    using FileInterface = particle_interface<FileSlice>
 
-   class CLASS_DECL_SUBSYSTEM File :
-   virtual public ::subsystem::composite<FileInterface >
+
+   class CLASS_DECL_SUBSYSTEM FileComposite :
+   virtual public composite<FileSlice >
    {
    public:
       File();
@@ -31,6 +33,16 @@ namespace subsystem
       void * _HANDLE() override;
 
    };
+
+    class CLASS_DECL_SUBSYSTEM File :
+    virtual public aggregate< FileComposite >
+    {
+
+        public:
+
+        implement_baseø(File);
+
+    };
 
 } // namespace subsystem
 

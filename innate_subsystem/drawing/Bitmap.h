@@ -34,7 +34,7 @@ namespace innate_subsystem
 
 
    class BitmapInterface :
-   virtual public ::subsystem::particle_interface<BitmapInterface>,
+   virtual public particle_interface<BitmapInterface>,
    virtual public GraphicsObject
    {
    public:
@@ -71,7 +71,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Bitmap :
-      virtual public ::subsystem::composite < BitmapInterface >
+      virtual public composite < BitmapInterface >
    {
    public:
       // // Creates empty bitmap with specified size.

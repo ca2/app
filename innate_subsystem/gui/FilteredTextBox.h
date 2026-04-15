@@ -33,9 +33,8 @@
 
 namespace innate_subsystem
 {
-   class FilteredTextBoxInterface :
-   virtual public ::subsystem::particle_interface<FilteredTextBoxInterface>,
-   virtual public TextBox
+   class FilteredTextBoxSlice :
+   virtual public ::particle_base
    {
    public:
       //FilteredTextBox();
@@ -62,23 +61,28 @@ namespace innate_subsystem
    //    StringFilter *m_filter;
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBox :
-      virtual public ::subsystem::composite<FilteredTextBoxInterface>
+   using FilteredTextBoxInterface = ::particle_interface<FilteredTextBoxSlice, TextBoxInterface>;
+
+   class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBoxComposite :
+      virtual public composite<FilteredTextBoxSlice, TextBox>
    {
    public:
-      FilteredTextBox();
-      virtual ~FilteredTextBox() = 0;
+
+      implement_compositeø(FilteredTextBox, TextBox, filteredtextbox)
+
+      // FilteredTextBox();
+      // virtual ~FilteredTextBox() = 0;
 
       // Override Control::setWindow method
-      void setWindow(const ::operating_system::window & operatingsystemwindow) override;
-      void setText(char *text) override;
-      void setErrorBalloonTip(TooltipInterface *tip) override;
+      void setWindow(const ::operating_system::window & operatingsystemwindow) override { m_pfilteredtextbox->setWindow(operatingsystemwindow); }
+      void setText(char *text) override { m_pfilteredtextbox->setText(text); }
+      void setErrorBalloonTip(TooltipInterface *tip) override { m_pfilteredtextbox->setErrorBalloonTip(tip); }
       //void setErrorToolTip(TooltipInterface *tip) override;
-      void setStringFilter(StringFilter *filter) override;
-      ::lresult makeCheck() override;
+      void setStringFilter(StringFilter *filter) override { m_pfilteredtextbox->setStringFilter(filter); }
+      ::lresult makeCheck() override { return m_pfilteredtextbox->makeCheck(); }
 
       // protected:
-      bool isStringValid(const char *string) override;
+      bool isStringValid(const char *string) override { return m_pfilteredtextbox->isStringValid(string); }
       //    virtual LRESULT onKeyDown(::wparam code, ::lparam params);
       //
       //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
@@ -88,6 +92,13 @@ namespace innate_subsystem
       //    ::string m_text;
       //    BalloonTip *m_tip;
       //    StringFilter *m_filter;
+   };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBox :
+   virtual public FilteredTextBoxComposite,
+   virtual public TextBox
+   {
+   public:
    };
 
    //#endif

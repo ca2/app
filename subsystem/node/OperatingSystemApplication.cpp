@@ -51,12 +51,15 @@ namespace subsystem
    }
 
 
-   void OperatingSystemApplication::initialize_operating_system_application(::hinstance hinstance,  const ::scoped_string & scopedstrwindowClassName)
+   //void OperatingSystemApplication::initialize_operating_system_application(::hinstance hinstance,  const ::scoped_string & scopedstrwindowClassName)
    // : m_appInstance(appInstance),
    //   m_mainWindow(0),
    //   m_wstrWindowClassName(scopedstrwindowClassName)
+   void
+   OperatingSystemApplication::initialize_operating_system_application()
    {
-      m_pparticleThis->initialize_operating_system_application(hinstance, scopedstrwindowClassName);
+      //m_pparticleThis->initialize_operating_system_application(hinstance, scopedstrwindowClassName);
+      m_pparticleThis->initialize_operating_system_application();
    }
 
    void OperatingSystemApplication::run()
@@ -119,17 +122,17 @@ namespace subsystem
 
 
 
-   void OperatingSystemApplication::postMainThreadMessage(int iMainThreadMessage)
-   {
-      //   // m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
-      //   //                             0, 0,
-      //   //                             0, 0, 0, 0,
-      //   //                             HWND_MESSAGE, 0,
-      //   //                             m_appInstance,
-      //   //                             0);
+   //void OperatingSystemApplication::postMainThreadMessage(int iMainThreadMessage)
+   //{
+   //   //   // m_mainWindow = CreateWindow(::wstring(scopedstrClassName),
+   //   //   //                             0, 0,
+   //   //   //                             0, 0, 0, 0,
+   //   //   //                             HWND_MESSAGE, 0,
+   //   //   //                             m_appInstance,
+   //   //   //                             0);
 
-      m_pparticleThis->postMainThreadMessage(iMainThreadMessage);
-   }
+   //   m_pparticleThis->postMainThreadMessage(iMainThreadMessage);
+   //}
 
 
 
@@ -207,7 +210,7 @@ namespace subsystem
    }
 
 
-   void OperatingSystemApplication::onMainThreadMessage(int iMainThreadMessage)
+   void OperatingSystemApplication::onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam)
    {
 
 

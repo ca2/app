@@ -32,7 +32,7 @@ namespace subsystem
  * Synchronized (thread-safe) object that can be locked and unlocked.
  */
    class LockableInterface :
-      virtual public ::subsystem::particle_interface<LockableInterface>
+      virtual public particle_interface<LockableInterface>
    {
    public:
       //virtual ~LockableInterface() = 0;
@@ -53,7 +53,7 @@ namespace subsystem
    //  * Synchronized (thread-safe) object that can be locked and unlocked.
    //  */
    // class CLASS_DECL_SUBSYSTEM Lockable :
-   //    virtual public ::subsystem::composite<LockableInterface>
+   //    virtual public composite<LockableInterface>
    // {
    // public:
    //

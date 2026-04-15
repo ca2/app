@@ -54,7 +54,7 @@ namespace subsystem
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
    class SocketIPv4Interface :
-      virtual public ::subsystem::particle_interface<SocketIPv4Interface >
+      virtual public particle_interface<SocketIPv4Interface >
    {
    public:
       /**
@@ -204,7 +204,7 @@ namespace subsystem
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
    class CLASS_DECL_SUBSYSTEM SocketIPv4 :
-      virtual public ::subsystem::composite<SocketIPv4Interface >
+      virtual public composite<SocketIPv4Interface >
    {
    public:
       /**

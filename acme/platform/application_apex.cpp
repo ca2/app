@@ -838,7 +838,7 @@ namespace platform
    }
 
 
-   bool apex_application_layer::check_exclusive(::request* prequest, bool& bHandled)
+   bool apex_application_layer::check_exclusive(bool& bHandled)
    {
       return false;
    }

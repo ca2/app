@@ -42,7 +42,7 @@ namespace subsystem_bsd_sockets
 
 
    class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS SocketAddressIPv4 :
-   virtual public ::subsystem::implementation<::subsystem::SocketAddressIPv4Interface>
+   virtual public implementation<::subsystem::SocketAddressIPv4Interface>
    {
    public:
 

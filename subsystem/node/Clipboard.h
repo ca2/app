@@ -32,7 +32,7 @@
 namespace subsystem
 {
    class ClipboardInterface :
-   virtual public ::subsystem::particle_interface<ClipboardInterface>
+   virtual public particle_interface<ClipboardInterface>
    {
    public:
 
@@ -67,7 +67,7 @@ namespace subsystem
    };
 
    class CLASS_DECL_SUBSYSTEM Clipboard :
-   virtual public ::subsystem::composite< ClipboardInterface>
+   virtual public composite< ClipboardInterface>
    {
    public:
 

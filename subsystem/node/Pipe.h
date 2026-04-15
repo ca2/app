@@ -34,8 +34,8 @@ namespace subsystem
 {
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
-   class PipeInterface :
-   virtual public ::subsystem::particle_interface<PipeInterface>
+   class PipeSlice :
+   virtual public ::particle_base
    {
    public:
 
@@ -73,20 +73,24 @@ namespace subsystem
       // unsigned int m_maxPortionSize;
    };
 
-
+   using PipeInterface = particle_interface<PipeSlice>
 
 
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
-   class CLASS_DECL_SUBSYSTEM Pipe :
-      virtual public ::subsystem::composite< PipeInterface>
+   class CLASS_DECL_SUBSYSTEM PipeComposite :
+      virtual public composite< PipeSlice>
    {
    public:
 
+
+      implement_compositeø(Pipe, ::particle_base, pipe)
+
+
       //protected:
       //Pipe(unsigned int maxPortionSize);
-      Pipe();
-      ~Pipe() override;
+      //Pipe();
+      //~Pipe() override;
 
       void initialize_pipe(unsigned int maxPortionSize) override;
 
@@ -118,6 +122,16 @@ namespace subsystem
       //unsigned long long m_totalRead;
       //unsigned int m_maxPortionSize;
    };
+
+   class CLASS_DECL_SUBSYSTEM Pipe :
+   virtual public aggregate< PipeComposite>
+   {
+   public:
+
+      implement_baseø(Pipe)
+
+   };
+
 
    //// __PIPE_H__
 } // namespace subsystem

@@ -28,110 +28,111 @@ namespace innate_subsystem
 {
 
 
-   NotifyIconWindow::NotifyIconWindow()
-   //: m_wph(0)
-   {
-      // //
-      // // Register window class
-      // //
-      //
-      // WNDCLASS wc;
-      //
-      // wc.style = 0;
-      // wc.lpfnWndProc = WindowProcHolder::defWindowProc;
-      // wc.cbClsExtra = 0;
-      // wc.cbWndExtra = 0;
-      // wc.hInstance = GetModuleHandle(0);
-      // wc.hIcon = NULL;
-      // wc.hCursor = NULL;
-      // wc.hbrBackground = NULL;
-      // wc.lpszMenuName = NULL;
-      // wc.lpszClassName = _T("NotifyIconWindowClass");
-      //
-      // ATOM atom = RegisterClass(&wc);
-      //
-      // //
-      // // Create window
-      // //
-      //
-      // m_window = CreateWindow((LPCTSTR)atom,
-      //                         (LPCTSTR)_T("NotifyIconWindowTitle"),
-      //                         WS_OVERLAPPED,
-      //                         CW_USEDEFAULT, CW_USEDEFAULT,
-      //                         CW_USEDEFAULT, CW_USEDEFAULT,
-      //                         NULL, NULL, GetModuleHandle(0), NULL);
-      //
-      // SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
-   }
-
-   NotifyIconWindow::~NotifyIconWindow()
-   {
-      //setWindowProcHolder(NULL);
-
-      //DestroyWindow(m_window);
-   }
-   //
-   // ::operating_system::window NotifyIconWindow::getWindow()
-   // {
-   //    //return m_window;
-   //    return m_pparticleThis->getWindow();
-   // // }
-   //
-   //
-   // bool NotifyIconWindow::on_window_procedure(lresult &lresult, unsigned int message, wparam wparam, lparam lparam)
-   // {
-   //
-   //    // Make sure to reset it back to false before leaving this function for any
-   //    // reason (check all return statements, exceptions should not happen here).
-   //    //m_inWindowProc = true;
-   //
-   //    switch (message) {
-   //       case WM_USER + 1:
-   //          switch (lparam.m_lparam) {
-   //          case ::user::e_message_right_button_up:
-   //                onNotifyIconRightButtonUp();
-   //                break;
-   //          case ::user::e_message_left_button_down:
-   //                onNotifyIconLeftButtonDown();
-   //                break;
-   //          } // switch (lParam)
-   //          break;
-   //       default:
-   //          if (message == WM_USER_TASKBAR) {
-   //             onTaskBarCreate();
-   //    }
-   //
-   //    return 0;
-   // }
-
-
-   void NotifyIconWindow::onNotifyIconRightButtonUp()
-   {
-
-
-
-   }
-
-
-
-   void NotifyIconWindow::onNotifyIconLeftButtonDown()
-   {
-
-
-
-   }
-
-
-
-   void NotifyIconWindow::onTaskBarCreated()
-   {
-
-
-
-   }
-
-
-
+//    NotifyIconWindow::NotifyIconWindow()
+//    //: m_wph(0)
+//    {
+//       // //
+//       // // Register window class
+//       // //
+//       //
+//       // WNDCLASS wc;
+//       //
+//       // wc.style = 0;
+//       // wc.lpfnWndProc = WindowProcHolder::defWindowProc;
+//       // wc.cbClsExtra = 0;
+//       // wc.cbWndExtra = 0;
+//       // wc.hInstance = GetModuleHandle(0);
+//       // wc.hIcon = NULL;
+//       // wc.hCursor = NULL;
+//       // wc.hbrBackground = NULL;
+//       // wc.lpszMenuName = NULL;
+//       // wc.lpszClassName = _T("NotifyIconWindowClass");
+//       //
+//       // ATOM atom = RegisterClass(&wc);
+//       //
+//       // //
+//       // // Create window
+//       // //
+//       //
+//       // m_window = CreateWindow((LPCTSTR)atom,
+//       //                         (LPCTSTR)_T("NotifyIconWindowTitle"),
+//       //                         WS_OVERLAPPED,
+//       //                         CW_USEDEFAULT, CW_USEDEFAULT,
+//       //                         CW_USEDEFAULT, CW_USEDEFAULT,
+//       //                         NULL, NULL, GetModuleHandle(0), NULL);
+//       //
+//       // SetWindowLongPtr(m_window, GWLP_USERDATA, (LONG_PTR)m_wph);
+//    }
+//
+//    NotifyIconWindow::~NotifyIconWindow()
+//    {
+//       //setWindowProcHolder(NULL);
+//
+//       //DestroyWindow(m_window);
+//    }
+//    //
+//    // ::operating_system::window NotifyIconWindow::getWindow()
+//    // {
+//    //    //return m_window;
+//    //    return m_pparticleThis->getWindow();
+//    // // }
+//    //
+//    //
+//    // bool NotifyIconWindow::on_window_procedure(lresult &lresult, unsigned int message, wparam wparam, lparam lparam)
+//    // {
+//    //
+//    //    // Make sure to reset it back to false before leaving this function for any
+//    //    // reason (check all return statements, exceptions should not happen here).
+//    //    //m_inWindowProc = true;
+//    //
+//    //    switch (message) {
+//    //       case WM_USER + 1:
+//    //          switch (lparam.m_lparam) {
+//    //          case ::user::e_message_right_button_up:
+//    //                onNotifyIconRightButtonUp();
+//    //                break;
+//    //          case ::user::e_message_left_button_down:
+//    //                onNotifyIconLeftButtonDown();
+//    //                break;
+//    //          } // switch (lParam)
+//    //          break;
+//    //       default:
+//    //          if (message == WM_USER_TASKBAR) {
+//    //             onTaskBarCreate();
+//    //    }
+//    //
+//    //    return 0;
+//    // }
+//
+//
+//    /*void NotifyIconWindow::onNotifyIconRightButtonUp()
+//    {
+//
+//
+//
+//    }
+//
+//
+//
+//    void NotifyIconWindow::onNotifyIconLeftButtonDown()
+//    {
+//
+//
+//
+//    }
+//
+//
+//
+//    void NotifyIconWindow::onTaskBarCreated()
+//    {
+//
+//
+//
+//    }
+//    */
+//
+//
+//
 
 
    // void NotifyIconWindow::setWindowProcHolder(WindowProcHolder *wph)

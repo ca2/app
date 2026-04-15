@@ -18,7 +18,7 @@ namespace innate_subsystem
    }
 
    class ImageListInterface :
-   virtual public ::subsystem::particle_interface
+   virtual public particle_interface
    {
    public:
 
@@ -38,7 +38,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ImageList :
-   virtual public ::subsystem::composite<ImageList
+   virtual public composite<ImageList
    {
    public:
 

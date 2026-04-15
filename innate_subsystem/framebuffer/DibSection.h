@@ -40,7 +40,7 @@ namespace innate_subsystem
 
       // This clas is a primitive wrapper to a DIB section.
    class  DibSectionInterface :
-      virtual public ::subsystem::particle_interface<DibSectionInterface>
+      virtual public particle_interface<DibSectionInterface>
    {
    public:
       // Note that if the compatibleWin doesn't specify or is zero the class will create an
@@ -120,7 +120,7 @@ namespace innate_subsystem
 
    // This clas is a primitive wrapper to a DIB section.
    class CLASS_DECL_INNATE_SUBSYSTEM DibSection :
-   virtual public ::subsystem::composite < DibSectionInterface >
+   virtual public composite < DibSectionInterface >
    {
    public:
       // Note that if the compatibleWin doesn't specify or is zero the class will create an
@@ -138,7 +138,7 @@ namespace innate_subsystem
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
-      void setTargetDeviceContext(innate_subsystem::DeviceContextInterface * pdevicecontext) override;
+      void setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext) override;
 
       void *getBuffer() override;
 

@@ -41,7 +41,7 @@ namespace subsystem
     * @author enikey.
     */
    class ShellInterface :
-   virtual public ::subsystem::particle_interface<ShellInterface>
+   virtual public particle_interface<ShellInterface>
    {
    public:
 
@@ -82,7 +82,7 @@ namespace subsystem
  * @author enikey.
  */
    class CLASS_DECL_SUBSYSTEM Shell :
-   virtual public ::subsystem::composite<ShellInterface>
+   virtual public composite<ShellInterface>
    {
    public:
 

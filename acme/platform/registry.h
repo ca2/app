@@ -198,7 +198,9 @@ namespace platform
 
    };
 
-
+   struct interface_t
+   {
+   };
    class CLASS_DECL_ACME registry_key : 
       virtual public registry_key_interface
    {
@@ -207,6 +209,7 @@ namespace platform
       ::pointer<registry_key_interface> m_pregistrykey;
 
       registry_key();
+      registry_key(interface_t);
       ~registry_key() override;
 
       void close() override;

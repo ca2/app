@@ -28,108 +28,109 @@
 
 namespace innate_subsystem
 {
-   SpinControl::SpinControl()
-   // : m_buddy(NULL),
-   //   m_isAutoAccelerationEnabled(false), m_maxDelta(0)
-   {
-   }
-
-   SpinControl::~SpinControl()
-   {
-   }
-
-   void SpinControl::setBuddy(ControlInterface *buddyControl)
-   {
-      // SendMessage(m_hwnd, UDM_SETBUDDY, (::wparam)buddyControl->getWindow(), NULL);
-      // m_buddy = buddyControl;
-      m_pparticleThis->setBuddy(buddyControl);
-   }
-
-   void SpinControl::setRange(short lower, short upper)
-   {
-      //SendMessage(m_hwnd, UDM_SETRANGE, NULL, (::lparam)MAKELONG(upper, lower));
-      m_pparticleThis->setRange(lower, upper);
-   }
-
-   void SpinControl::setRange32(int lower, int upper)
-   {
-      //SendMessage(m_hwnd, UDM_SETRANGE32, lower, upper);
-      m_pparticleThis->setRange32(lower, upper);
-   }
-
-   void SpinControl::setAccel(unsigned int nSec, unsigned int nInc)
-   {
-
-      m_pparticleThis->setAccel(nSec, nInc);
-      // UDACCEL accel = {0};
-      // accel.nSec = nSec;
-      // accel.nInc = nInc;
-      //
-      // SendMessage(m_hwnd, UDM_SETACCEL, 1, (::lparam)&accel);
-   }
-
-   // void SpinControl::autoAccelerationHandler(LPNMUPDOWN message)
-   // {
-   //    m_pparticleThis->aut
-   //    // if (m_limitters.size() == 0 ||
-   //    //     m_buddy == NULL || !m_isAutoAccelerationEnabled) {
-   //    //    return;
-   //    //     }
-   //    //
-   //    // int currentValue;
-   //    // int delta = m_maxDelta;
-   //    //
-   //    // // Get buddy textbox value
-   //    // ::string storage;
-   //    // m_buddy->getText(&storage);
-   //    // if (!StringParser::parseInt(storage.getString(), &currentValue)) {
-   //    //    return;
-   //    // }
-   //    //
-   //    // size_t size = min(m_limitters.size(), m_deltas.size());
-   //    //
-   //    // if (message->iDelta < 0) {
-   //    //    for (size_t i = 0; i < size; i++) {
-   //    //       if (currentValue <= m_limitters[i]) {
-   //    //          delta = m_deltas[i];
-   //    //          break;
-   //    //       } // if
-   //    //    } // for
-   //    //    delta = -delta;
-   //    // } // if
-   //    //
-   //    // if (message->iDelta > 0) {
-   //    //    for (size_t i = 0; i < size; i++) {
-   //    //       if (currentValue < m_limitters[i]) {
-   //    //          delta = m_deltas[i];
-   //    //          break;
-   //    //       } // if
-   //    //    } // for
-   //    // } // if
-   //    //
-   //    // int mod = (currentValue + delta) % delta;
-   //    // if (mod != 0) {
-   //    //    delta -= mod;
-   //    // }
-   //    //
-   //    // message->iDelta = delta;
-   // }
-
-   void SpinControl::enableAutoAcceleration(bool enabled)
-   {
-      //m_isAutoAccelerationEnabled = enabled;
-      m_pparticleThis->enableAutoAcceleration(enabled);
-   }
-
-   void SpinControl::setAutoAccelerationParams(const int_array & limitters,
-                                               const int_array & deltas,
-                                               int maxDelta)
-   {
-      m_pparticleThis->setAutoAccelerationParams(limitters, deltas, maxDelta);
-      // m_limitters = *limitters;
-      // m_deltas = *deltas;
-      // m_maxDelta = maxDelta;
-   }
+//    SpinControl::SpinControl()
+//    // : m_buddy(NULL),
+//    //   m_isAutoAccelerationEnabled(false), m_maxDelta(0)
+//    {
+//    }
+//
+//    SpinControl::~SpinControl()
+//    {
+//    }
+//
+//    /*void SpinControl::setBuddy(ControlInterface *buddyControl)
+//    {
+//       // SendMessage(m_hwnd, UDM_SETBUDDY, (::wparam)buddyControl->getWindow(), NULL);
+//       // m_buddy = buddyControl;
+//       m_pparticleThis->setBuddy(buddyControl);
+//    }
+//
+//    void SpinControl::setRange(short lower, short upper)
+//    {
+//       //SendMessage(m_hwnd, UDM_SETRANGE, NULL, (::lparam)MAKELONG(upper, lower));
+//       m_pparticleThis->setRange(lower, upper);
+//    }
+//
+//    void SpinControl::setRange32(int lower, int upper)
+//    {
+//       //SendMessage(m_hwnd, UDM_SETRANGE32, lower, upper);
+//       m_pparticleThis->setRange32(lower, upper);
+//    }
+//
+//    void SpinControl::setAccel(unsigned int nSec, unsigned int nInc)
+//    {
+//
+//       m_pparticleThis->setAccel(nSec, nInc);
+//       // UDACCEL accel = {0};
+//       // accel.nSec = nSec;
+//       // accel.nInc = nInc;
+//       //
+//       // SendMessage(m_hwnd, UDM_SETACCEL, 1, (::lparam)&accel);
+//    }
+//
+//    // void SpinControl::autoAccelerationHandler(LPNMUPDOWN message)
+//    // {
+//    //    m_pparticleThis->aut
+//    //    // if (m_limitters.size() == 0 ||
+//    //    //     m_buddy == NULL || !m_isAutoAccelerationEnabled) {
+//    //    //    return;
+//    //    //     }
+//    //    //
+//    //    // int currentValue;
+//    //    // int delta = m_maxDelta;
+//    //    //
+//    //    // // Get buddy textbox value
+//    //    // ::string storage;
+//    //    // m_buddy->getText(&storage);
+//    //    // if (!StringParser::parseInt(storage.getString(), &currentValue)) {
+//    //    //    return;
+//    //    // }
+//    //    //
+//    //    // size_t size = min(m_limitters.size(), m_deltas.size());
+//    //    //
+//    //    // if (message->iDelta < 0) {
+//    //    //    for (size_t i = 0; i < size; i++) {
+//    //    //       if (currentValue <= m_limitters[i]) {
+//    //    //          delta = m_deltas[i];
+//    //    //          break;
+//    //    //       } // if
+//    //    //    } // for
+//    //    //    delta = -delta;
+//    //    // } // if
+//    //    //
+//    //    // if (message->iDelta > 0) {
+//    //    //    for (size_t i = 0; i < size; i++) {
+//    //    //       if (currentValue < m_limitters[i]) {
+//    //    //          delta = m_deltas[i];
+//    //    //          break;
+//    //    //       } // if
+//    //    //    } // for
+//    //    // } // if
+//    //    //
+//    //    // int mod = (currentValue + delta) % delta;
+//    //    // if (mod != 0) {
+//    //    //    delta -= mod;
+//    //    // }
+//    //    //
+//    //    // message->iDelta = delta;
+//    // }
+//
+//    void SpinControl::enableAutoAcceleration(bool enabled)
+//    {
+//       //m_isAutoAccelerationEnabled = enabled;
+//       m_pparticleThis->enableAutoAcceleration(enabled);
+//    }
+//
+//    void SpinControl::setAutoAccelerationParams(const int_array & limitters,
+//                                                const int_array & deltas,
+//                                                int maxDelta)
+//    {
+//       m_pparticleThis->setAutoAccelerationParams(limitters, deltas, maxDelta);
+//       // m_limitters = *limitters;
+//       // m_deltas = *deltas;
+//       // m_maxDelta = maxDelta;
+//    }
+//    */
 } // namespace innate_subsystem
 
 

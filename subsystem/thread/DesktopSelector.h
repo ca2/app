@@ -51,7 +51,7 @@ namespace subsystem
     };
 
    class DesktopSelectorInterface :
-      virtual public ::subsystem::particle_interface<DesktopSelectorInterface>
+      virtual public particle_interface<DesktopSelectorInterface>
    {
    public:
       
@@ -122,7 +122,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM DesktopSelector :
-       public ::subsystem::composite< DesktopSelectorInterface >
+       public composite< DesktopSelectorInterface >
    {
    public:
 

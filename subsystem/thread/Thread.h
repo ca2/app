@@ -54,7 +54,7 @@ namespace subsystem
     * @fixme member of HDESK type in THREAD class???
     */
    class ThreadInterface :
-      virtual public ::subsystem::particle_interface<ThreadInterface>
+      virtual public particle_interface<ThreadInterface>
    {
    public:
 
@@ -177,7 +177,7 @@ namespace subsystem
     * @fixme member of HDESK type in THREAD class???
     */
    class CLASS_DECL_SUBSYSTEM Thread :
-      virtual public ::subsystem::composite < ThreadInterface >
+      virtual public composite < ThreadInterface >
    {
    public:
 

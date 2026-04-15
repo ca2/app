@@ -23,6 +23,8 @@
 //
 
 #pragma once
+//#include <winrt/impl/Windows.Foundation.0.h>
+
 #include "subsystem/particle.h"
 
 
@@ -33,7 +35,7 @@
 namespace innate_subsystem
 {
    class MenuInterface :
-      virtual public ::subsystem::particle_interface<MenuInterface>
+      virtual public particle_interface<MenuInterface>
    {
    public:
       //Menu();
@@ -87,46 +89,48 @@ namespace innate_subsystem
       //   bool m_bCreated;
    };
    
-class CLASS_DECL_INNATE_SUBSYSTEM Menu :
-      virtual public ::subsystem::composite< MenuInterface>
+class CLASS_DECL_INNATE_SUBSYSTEM MenuComposite :
+      virtual public composite< MenuInterface>
    {
    public:
-      Menu();
-      ~Menu() override;
 
+   implement_compositeø(Menu, particle_base, menu)
 
-      void * _HMENU() override;
+      //Menu();
+      //~Menu() override;
+
+      void * _HMENU() override { return m_pmenu->_HMENU(); }
 
       //HMENU getMenu();
-      void _setHMENU(void * pHMENU) override;
-      bool getWindowMenu(WindowInterface * pwindow) override;
-      void getSystemMenu(WindowInterface * pwindow) override;
-      void create() override;
-      bool loadMenu(const char * lpMenuName) override;
-      void createPopupMenu() override;
-      bool getSubMenu(int nPos, MenuInterface *menu) override;
-      void termMenu() override;
+      void _setHMENU(void * pHMENU) override { m_pmenu->_setHMENU(pHMENU); }
+      bool getWindowMenu(WindowInterface * pwindow) override { return m_pmenu->getWindowMenu(pwindow); }
+      void getSystemMenu(WindowInterface * pwindow) override { m_pmenu->getSystemMenu(pwindow); }
+      void create() override { m_pmenu->create(); }
+      bool loadMenu(const char * lpMenuName) override { return m_pmenu->loadMenu(lpMenuName); }
+      void createPopupMenu() override { m_pmenu->createPopupMenu(); }
+      bool getSubMenu(int nPos, MenuInterface *menu) override { return m_pmenu->getSubMenu(nPos, menu); }
+      void termMenu() override { m_pmenu->termMenu(); }
 
-      int getMenuItemCount() override;
-      bool appendMenu(const ::scoped_string & scopedstr, unsigned int uID) override;
-      bool appendSeparator() override;
-      bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) override;
+      int getMenuItemCount() override { return m_pmenu->getMenuItemCount(); }
+      bool appendMenu(const ::scoped_string & scopedstr, unsigned int uID) override { return m_pmenu->appendMenu(scopedstr, uID); }
+      bool appendSeparator() override { return m_pmenu->appendSeparator(); }
+      bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) override { return m_pmenu->appendSubMenu(scopedstr, pMenu); }
 
-      bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override;
-      bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override;
-      bool insertSeparator(unsigned int uItem) override;
-      bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, MenuInterface *pMenu) override;
+      bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override { return m_pmenu->insertMenuItem(uItem, scopedstr, uID); }
+      bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override { return m_pmenu->insertCheckMenuItem(uItem, scopedstr, uID); }
+      bool insertSeparator(unsigned int uItem) override { return m_pmenu->insertSeparator(uItem); }
+      bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, MenuInterface *pMenu) override { return m_pmenu->insertSubMenu(uItem, scopedstr, pMenu); }
 
-      bool enableMenuItem(unsigned int uID, unsigned int uEnable) override;
-      bool checkedMenuItem(unsigned int uID, bool bEnable) override;
-      bool deleteMenu(unsigned int uPosition) override;
+      bool enableMenuItem(unsigned int uID, unsigned int uEnable) override { return m_pmenu->enableMenuItem(uID, uEnable); }
+      bool checkedMenuItem(unsigned int uID, bool bEnable) override { return m_pmenu->checkedMenuItem(uID, bEnable); }
+      bool deleteMenu(unsigned int uPosition) override { return m_pmenu->deleteMenu(uPosition); }
 
-      int findMenuItem(unsigned int uID) override;
+      int findMenuItem(unsigned int uID) override { return m_pmenu->findMenuItem(uID); }
 
-      bool setDefaultItem(unsigned int uID) override;
+      bool setDefaultItem(unsigned int uID) override { return m_pmenu->setDefaultItem(uID); }
 
 
-   void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(int)> &onCommand) override;
+   void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(int)> &onCommand) override { m_pmenu->trackPopupMenuOnCursorPosition(pwindowNotify, onCommand); }
 
       // void operator= (MenuInterface * pmenu)
       // {
@@ -144,7 +148,14 @@ class CLASS_DECL_INNATE_SUBSYSTEM Menu :
       //   bool m_bCreated;
    };
    
-      
+   class CLASS_DECL_INNATE_SUBSYSTEM Menu :
+         virtual public MenuComposite
+   {
+   public:
+
+
+   };
+
    
 } // namespace innate_subsystem
 

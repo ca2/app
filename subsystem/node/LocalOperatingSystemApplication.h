@@ -55,7 +55,7 @@ namespace subsystem
  // * @fixme move functionality to WindowsApplication class.
  // */
  //   class CLASS_DECL_SUBSYSTEM LocalOperatingSystemApplication :
- //   virtual public ::subsystem::composite < LocalOperatingSystemApplicationInterface >
+ //   virtual public composite < LocalOperatingSystemApplicationInterface >
  //   {
  //   public:
  //      /**

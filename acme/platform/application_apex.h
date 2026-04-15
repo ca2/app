@@ -874,7 +874,7 @@ namespace platform
       virtual string get_global_id_mutex_name();
 
 
-      virtual bool check_exclusive(::request* prequest, bool& bHandled);
+      virtual bool check_exclusive(bool& bHandled);
 
 
       virtual bool erase_exclusive(const ::scoped_string & scopedstrId);

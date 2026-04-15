@@ -140,7 +140,7 @@ namespace subsystem
 
    };
 
-    auto OperatingSystemApplicationInterface = particle_interface<OperatingSystemApplicationSlice>;
+    using OperatingSystemApplicationInterface = particle_interface<OperatingSystemApplicationSlice>;
 
     /**
     * Base Windows Application class.
@@ -162,13 +162,13 @@ namespace subsystem
 
       //OperatingSystemApplicationInterface(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName);
 
-      OperatingSystemApplication();
+      //OperatingSystemApplication();
       /**
        * Destroys WindowsApplication instance.
        * @remark it does not shutdown application if it's executing it
        * separate thread.
        */
-      ~OperatingSystemApplication() override;
+      //~OperatingSystemApplication() override;
 
 
       void initialize_operating_system_application() override;

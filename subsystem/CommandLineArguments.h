@@ -33,8 +33,8 @@ namespace subsystem
 
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
-   class CommandLineArgumentsInterface :
-      virtual public particle_interface<CommandLineArgumentsInterface>
+   class CommandLineArgumentsSlice :
+      virtual public ::particle_base
    {
    public:
 
@@ -52,17 +52,22 @@ namespace subsystem
 
    };
 
+
+   using CommandLineArgumentsInterface = particle_interface<CommandLineArgumentsSlice>;
+
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
-   class CLASS_DECL_SUBSYSTEM CommandLineArguments :
-      virtual public composite<CommandLineArgumentsInterface>
+   class CLASS_DECL_SUBSYSTEM CommandLineArgumentsComposite :
+      virtual public composite<CommandLineArgumentsSlice>
    {
    public:
 
+      implement_compositeø(CommandLineArguments, commandlinearguments)
+
       ///::string_array m_straArguments;
 
-      CommandLineArguments();
-      ~CommandLineArguments() override;
+      //CommandLineArguments();
+      //~CommandLineArguments() override;
 
 
       void initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat) override;
@@ -74,6 +79,6 @@ namespace subsystem
 
    };
 
-   //// __COMMANDLINEARGS_H__
+   
 } // namespace subsystem
 

@@ -112,7 +112,7 @@ namespace subsystem
    public:
 
 
-      implement_compositeø(NamedPipe, Pipe, namedpipe)
+      implement_compositeø(NamedPipe, namedpipe)
 
       /**
        * Creates pipe transport.

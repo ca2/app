@@ -22,7 +22,7 @@ namespace subsystem
 
    };
 
-    using FileInterface = particle_interface<FileSlice>
+    using FileInterface = particle_interface<FileSlice>;
 
 
    class CLASS_DECL_SUBSYSTEM FileComposite :

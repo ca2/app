@@ -95,8 +95,8 @@ namespace subsystem
 
        implement_compositeø(Impersonator, impersonator)
 
-      Impersonator();
-      ~Impersonator() override;
+      //Impersonator();
+      //~Impersonator() override;
 
       void initialize_impersonator(LogWriter *plogwriter) override;
 

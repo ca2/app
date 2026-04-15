@@ -30,52 +30,57 @@
 
 namespace subsystem
 {
-   SecurityDescriptor::SecurityDescriptor()
-   {
-     //InitializeSecurityDescriptor(&m_sd, SECURITY_DESCRIPTOR_REVISION);
-   }
 
-   SecurityDescriptor::~SecurityDescriptor()
-   {
-   }
-
-   // void SecurityDescriptor::setRulesAsDacl(size_t count,
-   //                                         EXPLICIT_ACCESS *rules)
+   //
+   // SecurityDescriptor::SecurityDescriptor()
    // {
-   //   PACL acl = 0;
-
-   //   ULONG constrCount = (ULONG)count;
-   //   _ASSERT(constrCount == count);
-   //   DWORD ret = SetEntriesInAcl(constrCount, rules, NULL, &acl);
-
-   //   if (ret != ERROR_SUCCESS) {
-   //     throw SystemException(ret);
-   //   }
-
-   //   setUserDacl(acl);
+   //   //InitializeSecurityDescriptor(&m_sd, SECURITY_DESCRIPTOR_REVISION);
    // }
-
-   // void SecurityDescriptor::setUserDacl(ACL *acl)
+   //
+   // SecurityDescriptor::~SecurityDescriptor()
    // {
-   //   if (SetSecurityDescriptorDacl(&m_sd, TRUE, acl,  FALSE) == FALSE) {
-   //     throw SystemException();
-   //   }
    // }
-
-   void SecurityDescriptor::clearOwner()
-   {
-      m_pparticleThis->clearOwner();
-    // SetSecurityDescriptorOwner(&m_sd, 0, TRUE);
-   }
-
-   bool SecurityDescriptor::isValid()
-   {
-     //return IsValidSecurityDescriptor(&m_sd) == TRUE;
-      return m_pparticleThis->isValid();
-   }
-
-   // SECURITY_DESCRIPTOR *SecurityDescriptor::getSD()
+   //
+   // // void SecurityDescriptor::setRulesAsDacl(size_t count,
+   // //                                         EXPLICIT_ACCESS *rules)
+   // // {
+   // //   PACL acl = 0;
+   //
+   // //   ULONG constrCount = (ULONG)count;
+   // //   _ASSERT(constrCount == count);
+   // //   DWORD ret = SetEntriesInAcl(constrCount, rules, NULL, &acl);
+   //
+   // //   if (ret != ERROR_SUCCESS) {
+   // //     throw SystemException(ret);
+   // //   }
+   //
+   // //   setUserDacl(acl);
+   // // }
+   //
+   // // void SecurityDescriptor::setUserDacl(ACL *acl)
+   // // {
+   // //   if (SetSecurityDescriptorDacl(&m_sd, TRUE, acl,  FALSE) == FALSE) {
+   // //     throw SystemException();
+   // //   }
+   // // }
+   //
+   // void SecurityDescriptor::clearOwner()
    // {
-   //   return &m_sd;
+   //    m_pparticleThis->clearOwner();
+   //  // SetSecurityDescriptorOwner(&m_sd, 0, TRUE);
    // }
+   //
+   // bool SecurityDescriptor::isValid()
+   // {
+   //   //return IsValidSecurityDescriptor(&m_sd) == TRUE;
+   //    return m_pparticleThis->isValid();
+   // }
+   //
+   // // SECURITY_DESCRIPTOR *SecurityDescriptor::getSD()
+   // // {
+   // //   return &m_sd;
+   // // }
+   //
+   //
+
 } // namespace subsystem

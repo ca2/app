@@ -73,7 +73,7 @@ namespace subsystem
       // unsigned int m_maxPortionSize;
    };
 
-   using PipeInterface = particle_interface<PipeSlice>
+   using PipeInterface = particle_interface<PipeSlice>;
 
 
    // This class is not an interface but is a class that contain common
@@ -84,7 +84,7 @@ namespace subsystem
    public:
 
 
-      implement_compositeø(Pipe, ::particle_base, pipe)
+      implement_compositeø(Pipe, pipe)
 
 
       //protected:

@@ -167,7 +167,7 @@ public:
    /**
     * Destructor.
     */
-   ~SecurityIdentifier() override;
+   //~SecurityIdentifier() override;
 
     void initialize_security_identifier(const ::scoped_string & scopedstr) override;
 

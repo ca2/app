@@ -50,8 +50,8 @@ namespace subsystem
 
     };
 
-   class DesktopSelectorInterface :
-      virtual public particle_interface<DesktopSelectorInterface>
+   class DesktopSelectorSlice :
+      virtual public ::particle_base
    {
    public:
       
@@ -119,16 +119,17 @@ namespace subsystem
 
    };
 
+using DesktopSelectorInterface = particle_interface<DesktopSelectorSlice>;
 
-
-   class CLASS_DECL_SUBSYSTEM DesktopSelector :
-       public composite< DesktopSelectorInterface >
+   class CLASS_DECL_SUBSYSTEM DesktopSelectorComposite :
+       public composite< DesktopSelectorSlice >
    {
    public:
 
+      implement_compositeø(DesktopSelector, desktopselector)
 
-      DesktopSelector();
-      ~DesktopSelector()  override;
+      //DesktopSelector();
+      //~DesktopSelector()  override;
       // This funtion gets a handle to a desktop that receive user inputs.
       // @return If success the function returns a handle to the desktop.
       // On fail the function returns zero.
@@ -192,12 +193,12 @@ namespace subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM DesktopSelector :
+    virtual public aggregate< DesktopSelectorComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(DesktopSelector);
 
     };
 

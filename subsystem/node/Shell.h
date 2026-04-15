@@ -75,7 +75,8 @@ namespace subsystem
 
    };
 
-auto ShellInterface = particle_interface<ShellSlice>;
+   
+   using ShellInterface = particle_interface<ShellSlice>;
 
    /**
  * Wrapper over WinAPI shell functions.

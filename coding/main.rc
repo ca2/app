@@ -99,7 +99,7 @@ END
 // ZIP
 //
 
-IDR_MATTER              ZIP                     "../_matter.zip"
+IDR_MATTER              ZIP                     "_matter.zip"
 
 
 /////////////////////////////////////////////////////////////////////////////

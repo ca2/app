@@ -30,7 +30,6 @@ namespace innate_subsystem
 {
 
    class BrushInterface :
-   virtual public particle_interface<BrushInterface>,
    virtual public GraphicsObject
    {
    public:
@@ -50,12 +49,16 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Brush :
+   class CLASS_DECL_INNATE_SUBSYSTEM BrushComposite :
       virtual public composite<BrushInterface >
    {
    public:
-      Brush();
-      ~Brush() override;
+
+
+      implement_compositeø(Brush, brush)
+
+      //Brush();
+      //~Brush() override;
 
       //void * _HGDIOBJ() override;
 
@@ -73,12 +76,12 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM Brush :
+    virtual public aggregate< BrushComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(Brush);
 
     };
 

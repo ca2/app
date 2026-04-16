@@ -37,7 +37,7 @@ namespace subsystem
 //   //    // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
 //   //    //
 //   //    // out = m_pwindowscommandlinearguments->getArguments();
-//   //    // for (size_t i = 0; i < out.size(); i++) {
+//   //    // for (memsize i = 0; i < out.size(); i++) {
 //   //    //    if (out[i][0] != _T('-')) {
 //   //    //       m_strParam.add(out[i]);
 //   //    //    } else {
@@ -63,7 +63,7 @@ namespace subsystem
 //   //    // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
 //   //    //
 //   //    // out = m_pwindowscommandlinearguments->getArguments();
-//   //    // for (size_t i = 0; i < out.size(); i++) {
+//   //    // for (memsize i = 0; i < out.size(); i++) {
 //   //    //    if (out[i][0] != _T('-')) {
 //   //    //       m_strParam.add(out[i]);
 //   //    //    } else {
@@ -140,7 +140,7 @@ namespace subsystem
 //      // m_pwindowscommandlinearguments->initialize_windows_command_line_arguments(GetCommandLine());
 //      //
 //      // out = m_pwindowscommandlinearguments->getArguments();
-//      // for (size_t i = 0; i < out.size(); i++) {
+//      // for (memsize i = 0; i < out.size(); i++) {
 //      //    if (out[i][0] != _T('-')) {
 //      //       m_strParam.add(out[i]);
 //      //    } else {
@@ -193,7 +193,7 @@ namespace subsystem
 //   {
 //
 //      return m_pparticleThis->findOptionValue(scopedstrOptionName, strOut);
-//      // for (size_t i = 0; i < getOptionsCount(); i++) {
+//      // for (memsize i = 0; i < getOptionsCount(); i++) {
 //      //    if (m_strParams[i].m_element2 == valName) {
 //      //       strOut = m_strParams[i].m_element2;
 //      //

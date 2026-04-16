@@ -33,7 +33,7 @@ namespace subsystem
 {
 
    // This class get info for a windows desktop.
-   class ScreenSlice :
+   class ScreenInterface :
       virtual public ::particle_base
    {
    public:
@@ -82,7 +82,7 @@ namespace subsystem
       // Windows contain both visible and invisible pseudo-monitors
       // that are associated with mirroring drivers.
       // The function returns only visible monitor count.
-      virtual size_t getVisibleMonitorCount() = 0;
+      virtual int getVisibleMonitorCount() = 0;
 
       //private:
       // void fillPixelFormat(const BMI *bmi);
@@ -96,11 +96,11 @@ namespace subsystem
    };
 
 
-    using ScreenInterface = particle_interface<ScreenSlice>;
+    //using ScreenInterface = particle_interface<ScreenInterface>;
 
    // This class get info for a windows desktop.
    class CLASS_DECL_SUBSYSTEM ScreenComposite :
-      virtual public composite<ScreenSlice >
+      virtual public composite<ScreenInterface >
    {
    public:
 
@@ -147,7 +147,7 @@ namespace subsystem
       // Windows contain both visible and invisible pseudo-monitors
       // that are associated with mirroring drivers.
       // The function returns only visible monitor count.
-      size_t getVisibleMonitorCount() override;
+      int getVisibleMonitorCount() override;
 
    //private:
       //void fillPixelFormat(const BMI *bmi);

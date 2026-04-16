@@ -31,7 +31,7 @@ namespace subsystem
 {
 
 
-   class SystemInformationSlice :
+   class SystemInformationInterface :
       virtual public ::particle_base
    {
    public:
@@ -62,11 +62,11 @@ namespace subsystem
    };
 
 
-    using SystemInformationInterface = particle_interface<SystemInformationSlice>;
+    //using SystemInformationInterface = particle_interface<SystemInformationInterface>;
 
 
    class CLASS_DECL_SUBSYSTEM SystemInformationComposite :
-   virtual public composite<SystemInformationSlice >
+   virtual public composite<SystemInformationInterface >
    {
    public:
 
@@ -81,11 +81,21 @@ namespace subsystem
       //~SystemInformation() override;
 
       // get rectangle of all desktop area
-      void getDesktopAllArea(int_rectangle & rectangle) override;
+          void getDesktopAllArea(int_rectangle& rectangle) override
+       {
+
+          m_psysteminformation->getDesktopAllArea(rectangle);
+
+       }
 
       // get rectangle of user desktop area
       // without button 'Start' (only primary monitor).
-      bool getDesktopArea(int_rectangle & rectangle) override;
+       bool getDesktopArea(int_rectangle& rectangle) override
+       {
+
+          return m_psysteminformation->getDesktopArea(rectangle);
+
+      }
 
       // // return true if StretchBlt is used
       // // in provided device
@@ -97,7 +107,14 @@ namespace subsystem
 
       // get the number of monitors that plugged
       // into video card
-      int getMonitorCount() override;
+       int getMonitorCount() override
+       {
+
+          return m_psysteminformation->getMonitorCount();
+
+
+
+      }
    };
 
 

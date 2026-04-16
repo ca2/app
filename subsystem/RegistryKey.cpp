@@ -124,7 +124,7 @@ namespace subsystem
       // // Subkey
       // RegistryKey key(this,scopedstrSubkey);
       //
-      // size_t subkeys2Count = 0;
+      // memsize subkeys2Count = 0;
       // ::string_array subkeys2Names;
       //
       // //
@@ -137,7 +137,7 @@ namespace subsystem
       //    //key.getSubKeyNames(&subkeys2Names[0], NULL);
       //
       //    // Enumerate subkeys
-      //    for (size_t i = 0; i < subkeys2Names.size(); i++) {
+      //    for (memsize i = 0; i < subkeys2Names.size(); i++) {
       //       if (!key.deleteSubKeyTree(subkeys2Names[i])) {
       //          retVal = false;
       //       }
@@ -197,14 +197,14 @@ namespace subsystem
 
       m_pregistrykey->set_string(scopedstrName, scopedstrPayload);
 
-      // size_t origSize = (_tcslen(wstrPayload) + 1) * sizeof(TCHAR);
+      // memsize origSize = (_tcslen(wstrPayload) + 1) * sizeof(TCHAR);
       // DWORD size = (DWORD)origSize;
       // _ASSERT(size == origSize);
       // return RegSetValueEx(m_key, ::wstring(scopedstrName), 0, REG_SZ, (BYTE *)wstrPayload.c_str(), size) == ERROR_SUCCESS;
       return true;
    }
 
-   bool RegistryKey::setValueAsBinary(const ::scoped_string & scopedstrName, const void *value, size_t sizeInBytes)
+   bool RegistryKey::setValueAsBinary(const ::scoped_string & scopedstrName, const void *value, memsize sizeInBytes)
    {
       if (!isOpened()) {
          return false;
@@ -285,7 +285,7 @@ out = m_pregistrykey->get_string(scopedstrName);
       return true;
    }
 
-   bool RegistryKey::getValueAsBinary(const ::scoped_string & scopedstrName, void *value, size_t *sizeInBytes)
+   bool RegistryKey::getValueAsBinary(const ::scoped_string & scopedstrName, void *value, memsize *sizeInBytes)
    {
       if (!isOpened()) {
          return false;
@@ -303,7 +303,7 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
       // if (RegQueryValueEx(m_key,wstring( scopedstrName), 0, &type, (LPBYTE)value, &size) != ERROR_SUCCESS) {
       //    return false;
       // }
-      // *sizeInBytes = (size_t)size;
+      // *sizeInBytes = (memsize)size;
       return true;
    }
 
@@ -334,7 +334,7 @@ auto memory =m_pregistrykey->get_binary(scopedstrName);
       // } // while
       //
       // //if (count != NULL) {
-      // //*count = (size_t)i;
+      // //*count = (memsize)i;
       // //}
       //
       // return ret == ERROR_NO_MORE_ITEMS;

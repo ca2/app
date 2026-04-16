@@ -6,26 +6,28 @@
 namespace innate_subsystem
 {
 
-    SystemMetrics::SystemMetrics()
-    {
 
-
-
-    }
-
-
-    SystemMetrics::~SystemMetrics()
-    {
-
-
-    }
-
-    ::int_size SystemMetrics::get_small_icon_size_in_pixels()
-    {
-
-        return m_pparticleThis->get_small_icon_size_in_pixels();
-    }
-
+    //
+    // SystemMetrics::SystemMetrics()
+    // {
+    //
+    //
+    //
+    // }
+    //
+    //
+    // SystemMetrics::~SystemMetrics()
+    // {
+    //
+    //
+    // }
+    //
+    // ::int_size SystemMetrics::get_small_icon_size_in_pixels()
+    // {
+    //
+    //     return m_pparticleThis->get_small_icon_size_in_pixels();
+    // }
+    //
 
 
 } // namespace innate_subsystem

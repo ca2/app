@@ -95,7 +95,7 @@ namespace subsystem
    //    // deleteDeadThreads();
    // }
    //
-   // const size_t ThreadCollector::Size()
+   // const memsize ThreadCollector::Size()
    // {
    //    //return m_threads.size();
    //    return m_pparticleThis->Size();

@@ -18,7 +18,7 @@ namespace innate_subsystem
    }
 
    class ImageListInterface :
-   virtual public particle_interface<ImageListInterface>
+   virtual public ::particle_base
    {
    public:
 
@@ -41,14 +41,17 @@ namespace innate_subsystem
 
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ImageList :
+   class CLASS_DECL_INNATE_SUBSYSTEM ImageListComposite :
    virtual public composite<ImageListInterface>
    {
    public:
 
-      ImageList();
 
-       ~ImageList()override;
+      implement_compositeø(ImageList, imagelist)
+
+      //ImageList();
+
+       //~ImageList()override;
 
       void initializeImageList() override;
 
@@ -60,5 +63,16 @@ namespace innate_subsystem
 
 
    };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ImageList :
+virtual public aggregate<ImageListComposite>
+   {
+   public:
+
+      implement_baseø(ImageList)
+
+   };
+
 
 } // namespace innate_subsystem

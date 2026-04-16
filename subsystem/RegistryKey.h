@@ -89,7 +89,7 @@ namespace subsystem
       bool setValueAsInt64(const ::scoped_string & scopedstrName, long long value);
       bool setValueAsString(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrPayload);
       bool setValueAsBinary(const ::scoped_string & scopedstrName, const void *value,
-                            size_t sizeInBytes);
+                            memsize sizeInBytes);
    
       //
       // Get value methods
@@ -98,7 +98,7 @@ namespace subsystem
       bool getValueAsInt32(const ::scoped_string & scopedstrName, int *out);
       bool getValueAsInt64(const ::scoped_string & scopedstrName, long long *out);
       bool getValueAsString(const ::scoped_string & scopedstrName, ::string & out);
-      bool getValueAsBinary(const ::scoped_string & scopedstrName, void *value, size_t *sizeInBytes);
+      bool getValueAsBinary(const ::scoped_string & scopedstrName, void *value, memsize *sizeInBytes);
    
       //
       // Sets subkey names ::list_base to subKeyNames array.

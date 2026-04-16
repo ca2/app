@@ -41,7 +41,7 @@ namespace subsystem
    // {
    // }
    //
-   // // void SecurityDescriptor::setRulesAsDacl(size_t count,
+   // // void SecurityDescriptor::setRulesAsDacl(memsize count,
    // //                                         EXPLICIT_ACCESS *rules)
    // // {
    // //   PACL acl = 0;

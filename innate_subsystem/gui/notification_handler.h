@@ -9,7 +9,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM notification_handler :
-      virtual public ::particle
+      virtual public ::particle_base
    {
    public:
 

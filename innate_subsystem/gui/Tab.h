@@ -25,14 +25,14 @@
 #pragma once
 
 
-//#include "innate_subsystem/gui/Dialog.h"
+#include "innate_subsystem/gui/Dialog.h"
 #include "innate_subsystem/_common_header.h"
 //#include "util/::string.h"
 
 namespace innate_subsystem
 {
     class TabInterface :
-   virtual public particle_interface<TabInterface>
+   virtual public ::particle_base
     {
     public:
         //Tab();
@@ -82,15 +82,17 @@ namespace innate_subsystem
    
    
    
-   class CLASS_DECL_INNATE_SUBSYSTEM Tab :
+   class CLASS_DECL_INNATE_SUBSYSTEM TabComposite :
       virtual public composite <TabInterface>
    {
    public:
 
 
-      Tab();
+      implement_compositeø(Tab, tab);
 
-      ~Tab() override;
+      //Tab();
+
+      //~Tab() override;
       //Tab(BaseDialog *dialog, const char *caption);
 
       //
@@ -134,7 +136,16 @@ namespace innate_subsystem
    };
 
 
-    //#endif
+   class CLASS_DECL_INNATE_SUBSYSTEM Tab :
+   virtual public aggregate <TabComposite, Control>
+   {
+   public:
+
+      implement_aggregateø(Tab, Control)
+
+   };
+
+
 } // namespace innate_subsystem
 
 

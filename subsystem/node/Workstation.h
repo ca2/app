@@ -38,7 +38,7 @@ namespace subsystem
    /**
     * Wrapper on WinAPI workstation functions.
     */
-   class WorkstationSlice :
+   class WorkstationInterface :
       virtual public ::particle_base
    {
    public:
@@ -62,17 +62,17 @@ namespace subsystem
    };
 
 
-    using WorkstationInterface= particle_interface<WorkstationSlice>;
+    //using WorkstationInterface= particle_interface<WorkstationInterface>;
 
    /**
     * Wrapper on WinAPI workstation functions.
     */
    class CLASS_DECL_SUBSYSTEM WorkstationComposite :
-      virtual public composite<WorkstationSlice >
+      virtual public composite<WorkstationInterface >
    {
    public:
 
-       implement_compositeø(Workstation)
+       implement_compositeø(Workstation, workstation)
       //Workstation();
       //~Workstation() override;
       /**

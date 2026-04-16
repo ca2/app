@@ -29,7 +29,7 @@
 
 //namespace subsystem
 //{
-   ByteArrayOutputStream::ByteArrayOutputStream(size_t max)
+   ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
    : m_size(0), m_max(max), m_ownMemory(true)
    {
       m_buffer = new char[m_max];
@@ -58,7 +58,7 @@
       bool allocateNewBuffer = (m_size + len) > m_max;
 
       if (allocateNewBuffer && m_ownMemory) {
-         size_t reserve = DEFAULT_INNER_BUFFER_CAPACITY;
+         memsize reserve = DEFAULT_INNER_BUFFER_CAPACITY;
          // Create new buffer with some reserve
          char *newBuffer = new char[m_size + len + reserve];
          // Copy old buffer content to new
@@ -81,7 +81,7 @@
       return len;
    }
 
-   size_t ByteArrayOutputStream::size() const
+   memsize ByteArrayOutputStream::size() const
    {
       return m_size;
    }

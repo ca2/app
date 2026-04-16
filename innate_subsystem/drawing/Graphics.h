@@ -37,7 +37,7 @@ namespace innate_subsystem
 
 
    class GraphicsInterface :
-   virtual public particle_interface<GraphicsInterface>
+   virtual public ::particle_base
    {
    public:
       // Creates graphics object with specified device context.
@@ -99,15 +99,18 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Graphics :
+   class CLASS_DECL_INNATE_SUBSYSTEM GraphicsComposite :
       virtual public composite<GraphicsInterface>
    {
    public:
+
+      implement_compositeø(Graphics, graphics)
+
       // Creates graphics object with specified device context.
       ///Graphics(DeviceContext *dc);
       // Graphics class destructor.
-      Graphics();
-      ~Graphics() override;
+      //Graphics();
+      //~Graphics() override;
 
       DeviceContextInterface * device_context() override;
 
@@ -164,12 +167,12 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM Graphics :
+    virtual public aggregate< GraphicsComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(Graphics);
 
     };
 

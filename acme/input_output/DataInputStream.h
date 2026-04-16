@@ -48,9 +48,9 @@
        * Inherited from superclass.
        * Delegates execution of method to real input stream.
        */
-      virtual size_t read(void *buffer, size_t len);
+      virtual memsize read(void *buffer, memsize len);
 
-      virtual size_t available();
+      virtual memsize available();
 
       /**
        * Reads exactly specified count of bytes from input stream.
@@ -59,7 +59,7 @@
        * @throws ::io_exception on error.
        * @fixme really it can throw any kind of exception.
        */
-      void readFully(void *buffer, size_t len);
+      void readFully(void *buffer, memsize len);
 
       unsigned char readUInt8();
       unsigned short readUInt16();

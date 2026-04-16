@@ -60,10 +60,10 @@ namespace subsystem_bsd_sockets
       void initialize_socket_address_ipv4() override;
       void _initialize_socket_address_ipv4(struct sockaddr_in);
       void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) override;
-      void initialize_socket_address_ipv4(const SocketAddressIPv4Interface &socketAddressIPv4) override;
+      void initialize_socket_address_ipv4(::subsystem::SocketAddressIPv4Interface * psocketAddressIPv4) override;
 
 
-      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) override;
+      virtual void assign(::subsystem::SocketAddressIPv4Interface * psocketAddressIPv4) override;
 
       virtual socklen_t _getAddrLen() const;
       virtual struct sockaddr_in _getSockAddr() const;

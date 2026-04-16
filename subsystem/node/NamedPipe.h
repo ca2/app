@@ -41,7 +41,7 @@ namespace subsystem
  *
  * @author yuri, enikey.
  */
-   class NamedPipeSlice :
+   class NamedPipeInterface :
       virtual public ::particle_base
    {
    public:
@@ -72,7 +72,7 @@ namespace subsystem
        * @param len count of bytes to read.
        * @throws ::io_exception on io error.
        */
-      virtual size_t read(void *buffer, size_t len) = 0;
+      virtual memsize read(void *buffer, memsize len) = 0;
 
       /**
        * Writes data to pipe.
@@ -83,7 +83,7 @@ namespace subsystem
        */
       virtual memsize defer_write(const void *buffer, memsize len) = 0;
 
-      virtual size_t available() = 0 ; //{ return 0; };
+      virtual memsize available() = 0 ; //{ return 0; };
 
       virtual ::subsystem::FileInterface * getFile() const = 0;
 
@@ -99,7 +99,7 @@ namespace subsystem
       // bool m_asServer;
    };
 
-    using NamedPipeInterface = particle_interface<NamedPipeSlice, PipeInterface>;
+    //using NamedPipeInterface = particle_interface<NamedPipeInterface, PipeInterface>;
 
    /**
     * NamedPipe transport.
@@ -107,7 +107,7 @@ namespace subsystem
     * @author yuri, enikey.
     */
    class CLASS_DECL_SUBSYSTEM NamedPipeComposite :
-      virtual public composite< NamedPipeSlice >
+      virtual public composite< NamedPipeInterface >
    {
    public:
 
@@ -145,7 +145,7 @@ namespace subsystem
        * @param len count of bytes to read.
        * @throws ::io_exception on io error.
        */
-      size_t read(void *buffer, size_t len) { return m_pnamedpipe->read(buffer, len); }
+      memsize read(void *buffer, memsize len) { return m_pnamedpipe->read(buffer, len); }
 
       /**
        * Writes data to pipe.
@@ -156,7 +156,7 @@ namespace subsystem
        */
       memsize defer_write(const void *buffer, memsize len) { return m_pnamedpipe->defer_write(buffer, len); }
 
-      size_t available() { return m_pnamedpipe->available(); }
+      memsize available() { return m_pnamedpipe->available(); }
 
       //virtual HANDLE getHandle() const;
 
@@ -174,8 +174,7 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM NamedPipe :
-      virtual public NamedPipeComposite,
-      virtual public Pipe
+      virtual public aggregate<NamedPipeComposite, Pipe >
    {
    public:
 

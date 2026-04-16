@@ -15,9 +15,9 @@
 
       DataCopy();
 
-      size_t read(void* buffer, size_t len);
-      size_t write(const void* buffer, size_t len);
-      size_t available();
+      memsize read(void* buffer, memsize len);
+      memsize write(const void* buffer, memsize len);
+      memsize available();
 
 
       ::memory m_memory;

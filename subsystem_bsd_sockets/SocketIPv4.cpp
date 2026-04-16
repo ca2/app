@@ -66,7 +66,7 @@ namespace subsystem_bsd_sockets
 
       address.initialize_socket_address_ipv4(scopedstrHost, port);
 
-      connect(&address);
+      connect(address);
    }
 
 

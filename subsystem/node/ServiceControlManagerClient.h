@@ -84,7 +84,7 @@ namespace subsystem
     * Gives access to install, remove, start, stop services and queries status
     * of service.
     */
-   class ServiceControlManagerClientSlice :
+   class ServiceControlManagerClientInterface :
       virtual public ::particle_base
    {
    public:
@@ -156,7 +156,7 @@ namespace subsystem
    //    SC_HANDLE m_managerHandle;
    };
 
-using ServiceControlManagerClientInterface =particle_interface<ServiceControlManagerClientSlice>;
+//using ServiceControlManagerClientInterface =particle_interface<ServiceControlManagerClientInterface>;
 
    /**
  * Service client manager client.
@@ -165,7 +165,7 @@ using ServiceControlManagerClientInterface =particle_interface<ServiceControlMan
  * of service.
  */
    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClientComposite :
-   virtual public composite<ServiceControlManagerClientSlice >
+   virtual public composite<ServiceControlManagerClientInterface >
    {
    public:
 

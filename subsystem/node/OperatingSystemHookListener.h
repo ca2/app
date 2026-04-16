@@ -31,7 +31,7 @@ namespace subsystem
 {
    // Abstract class for next using in WinHooks class and as a base class in others.
    class CLASS_DECL_SUBSYSTEM OperatingSystemHookListener :
-   virtual public ::particle
+   virtual public ::particle_base
    {
    public:
       //virtual bool on_keyboard_message(::lresult & lresult, ::user::enum_message emssage, ::wparam wparam);

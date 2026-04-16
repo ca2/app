@@ -39,7 +39,6 @@ namespace innate_subsystem
    };
 
       class PenInterface :
-         virtual public particle_interface<PenInterface>,
          virtual public GraphicsObject
       {
       public:
@@ -60,15 +59,18 @@ namespace innate_subsystem
       };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Pen :
+   class CLASS_DECL_INNATE_SUBSYSTEM PenComposite :
 virtual public composite<PenInterface>
    {
    public:
 
+
+      implement_compositeø(Pen, pen)
+
       //public:
       //Pen(int type, int width, const ::color::color & color);
-      Pen();
-      ~Pen() override;
+      //Pen();
+      //~Pen() override;
 
 
       //void * _HGDIOBJ() override;
@@ -85,12 +87,12 @@ virtual public composite<PenInterface>
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM Pen :
+    virtual public aggregate< PenComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(Pen);
 
     };
 

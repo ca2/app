@@ -29,7 +29,7 @@
 //
 // namespace subsystem
 // {
-//    SharedMemory::SharedMemory(const ::scoped_string & scopedstrName, size_t size)
+//    SharedMemory::SharedMemory(const ::scoped_string & scopedstrName, memsize size)
 //    : m_hToMap(0),
 //      m_memory(0)
 //    {
@@ -62,7 +62,7 @@
 //       }
 //    }
 //
-//    bool SharedMemory::createFile(const ::scoped_string & scopedstrName, size_t size)
+//    bool SharedMemory::createFile(const ::scoped_string & scopedstrName, memsize size)
 //    {
 //       DWORD lowSize = size & 0xffffffff;
 //       DWORD highSize = (DWORD64)size >> 32 & 0xffffffff;

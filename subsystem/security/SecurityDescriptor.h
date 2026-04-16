@@ -53,7 +53,7 @@ public:
    * @param rules rules array.
    * @throws SystemException on fail.
    */
-  void setRulesAsDacl(size_t count,
+  void setRulesAsDacl(memsize count,
                       EXPLICIT_ACCESS *rules);
 
   /**

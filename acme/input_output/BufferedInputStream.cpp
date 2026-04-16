@@ -21,12 +21,12 @@
       delete m_input;
    }
 
-   size_t BufferedInputStream::available() {
+   memsize BufferedInputStream::available() {
       return m_have;
    }
 
 
-   size_t BufferedInputStream::read(void *buffer, size_t len) {
+   memsize BufferedInputStream::read(void *buffer, memsize len) {
       char *buf = (char *)buffer;
 
       if (m_have == 0) {
@@ -40,14 +40,14 @@
          return len;
       }
       memcpy(buf, &m_buffer[m_pos], m_have);
-      size_t copied = m_have;
+      memsize copied = m_have;
       m_pos = 0;
       if (m_buffer.size() > INITIAL_BUFFER_SIZE) {
          m_buffer.resize(INITIAL_BUFFER_SIZE);
       }
       // FIXME: available() sometimes does not work for POCO
       // Websocket (always for secure connection).
-      size_t need = m_input->available();
+      memsize need = m_input->available();
       if (need > INITIAL_BUFFER_SIZE) {
          m_buffer.resize(::minimum(need, MAX_BUFFER_SIZE));
       }
@@ -61,7 +61,7 @@
          m_buffer.resize(MAX_BUFFER_SIZE);
          m_have = m_input->read(&m_buffer[0], m_buffer.size());
       }
-      size_t remain = ::minimum(m_have, len - copied);
+      memsize remain = ::minimum(m_have, len - copied);
       memcpy(&buf[copied], &m_buffer[0], remain);
       copied += remain;
       m_have -= remain;

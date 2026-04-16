@@ -47,7 +47,7 @@ namespace innate_subsystem
    };
 
 
-   class WindowSlice :
+   class WindowInterface :
       virtual public notification_handler
    {
    public:
@@ -172,7 +172,7 @@ namespace innate_subsystem
       virtual ::operating_system::window dialog_item_operating_system_window(int iDlgItem) = 0;
 
 
-      virtual void subclassControlById(WindowInterface * pwindowControl, unsigned int id) = 0;
+      virtual void subclassControlById(::particle_base * pWindowControl, unsigned int id) = 0;
       virtual void subclassWindow(const ::operating_system::window & operatingsystemwindow) = 0;
       virtual void unsubclassWindow() = 0;
 
@@ -267,7 +267,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM WindowComposite :
-      virtual public composite<WindowSlice>
+      virtual public composite<WindowInterface>
    {
    public:
 
@@ -409,7 +409,7 @@ namespace innate_subsystem
 
 
       ::operating_system::window dialog_item_operating_system_window(int iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
-      void subclassControlById(WindowInterface * pwindowControl, unsigned int id) override { m_pwindow->subclassControlById(pwindowControl, id); }
+      void subclassControlById(::particle_base * pWindowControl, unsigned int id) override { m_pwindow->subclassControlById(pWindowControl, id); }
       void subclassWindow(const ::operating_system::window & operatingsystemwindow)override { m_pwindow->subclassWindow(operatingsystemwindow); }
       void unsubclassWindow() override { m_pwindow->unsubclassWindow(); }
 

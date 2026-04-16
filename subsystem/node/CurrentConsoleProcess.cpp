@@ -35,26 +35,26 @@ namespace subsystem
 {
 
 
-   //CurrentConsoleProcess::CurrentConsoleProcess()
-   //{
+   CurrentConsoleProcess::CurrentConsoleProcess()
+   {
 
-   ////   initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
-   //}
-   //// CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
-   //// {
-   ////
-   ////    initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
-   //// }
-   ////
-   //CurrentConsoleProcess::~CurrentConsoleProcess()
-   //{
-   //}
-   //// CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
-   //// : Process(scopedstrPath, scopedstrArgs),
-   ////   m_plogwriter(plogwriter),
-   ////   m_connectRdpSession(connectRdpSession)
-   //// {
-   //// }
+   //   initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
+   }
+   // CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
+   // {
+   //
+   //    initialize_current_console_process(plogwriter,connectRdpSession, scopedstrPath, scopedstrArgs);
+   // }
+   //
+   CurrentConsoleProcess::~CurrentConsoleProcess()
+   {
+   }
+   // CurrentConsoleProcess::CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrArgs)
+   // : Process(scopedstrPath, scopedstrArgs),
+   //   m_plogwriter(plogwriter),
+   //   m_connectRdpSession(connectRdpSession)
+   // {
+   // }
 
    // void CurrentConsoleProcess::start()
    // {

@@ -32,7 +32,7 @@
 
 namespace innate_subsystem
 {
-    class TrackbarSlice :
+    class TrackbarInterface :
    virtual public ::particle_base
     {
     public:
@@ -51,15 +51,15 @@ namespace innate_subsystem
     };
 
 
-   using TrackbarInterface = particle_interface<TrackbarSlice, ControlInterface>;
+   //using TrackbarInterface = particle_interface<TrackbarInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM TrackbarComposite :
-      virtual public composite < TrackbarSlice, Control  >
+      virtual public composite < TrackbarInterface  >
    {
    public:
 
 
-      implement_compositeø(Trackbar, Control, trackbar)
+      implement_compositeø(Trackbar, trackbar)
 
       //Trackbar();
       //~Trackbar() override;
@@ -75,8 +75,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM Trackbar :
-      virtual public TrackbarComposite,
-      virtual public Control
+      virtual public aggregate< TrackbarComposite, Control >
    {
    public:
 

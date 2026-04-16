@@ -39,7 +39,7 @@ namespace subsystem
     * Base Windows Application class.
     * Have hidden main window and main scopedstrMessage loop.
     */
-   class OperatingSystemApplicationSlice :
+   class OperatingSystemApplicationInterface :
       virtual public ::particle_base
    {
    public:
@@ -140,14 +140,14 @@ namespace subsystem
 
    };
 
-    using OperatingSystemApplicationInterface = particle_interface<OperatingSystemApplicationSlice>;
+    //using OperatingSystemApplicationInterface = particle_interface<OperatingSystemApplicationInterface>;
 
     /**
     * Base Windows Application class.
     * Have hidden main window and main scopedstrMessage loop.
     */
    class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationComposite :
-      virtual public composite < OperatingSystemApplicationSlice >
+      virtual public composite < OperatingSystemApplicationInterface >
    {
    public:
 
@@ -171,7 +171,11 @@ namespace subsystem
       //~OperatingSystemApplication() override;
 
 
-      void initialize_operating_system_application() override;
+      void initialize_operating_system_application() override
+      {
+
+          m_pop
+      }
       //void initialize_operating_system_application(
 //                                                   const ::scoped_string &scopedstrwindowClassName) override;
       //void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) override;

@@ -26,33 +26,33 @@
 
 namespace innate_subsystem
 {
-   Brush::Brush()
-   //: m_brush(0)
-   {
-   }
-
-   Brush::~Brush()
-   {
-     // release();
-   }
-
-   // void * Brush::_HGDIOBJ()
+   // Brush::Brush()
+   // //: m_brush(0)
    // {
-   //
-   //    return m_pparticleThis->_HGDIOBJ();
-   //
    // }
-
-   //void
-
-   void Brush::destroyGraphicsObject()
-   {
-      m_pparticleThis->destroyGraphicsObject();
-      // if (m_brush != 0) {
-      //    DeleteObject(m_brush);
-      //    m_brush = 0;
-      // }
-   }
+   //
+   // Brush::~Brush()
+   // {
+   //   // release();
+   // }
+   //
+   // // void * Brush::_HGDIOBJ()
+   // // {
+   // //
+   // //    return m_pparticleThis->_HGDIOBJ();
+   // //
+   // // }
+   //
+   // //void
+   //
+   // void Brush::destroyGraphicsObject()
+   // {
+   //    m_pparticleThis->destroyGraphicsObject();
+   //    // if (m_brush != 0) {
+   //    //    DeleteObject(m_brush);
+   //    //    m_brush = 0;
+   //    // }
+   // }
 } // namespace innate_subsystem
 
 

@@ -32,7 +32,8 @@
 namespace innate_subsystem
 {
    class IconInterface :
-   virtual public particle_interface<IconInterface>
+   //virtual public particle_interface<IconInterface>
+   virtual public ::particle_base
    {
    public:
       // Icon();
@@ -58,16 +59,20 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Icon :
+   class CLASS_DECL_INNATE_SUBSYSTEM IconComposite :
 virtual public composite<IconInterface>
    {
    public:
-      Icon();
+
+
+      implement_compositeø(Icon, icon)
+
+      //Icon();
       // Icon(Icon * picon);
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
       // Icon(unsigned int icon);
-      ~Icon() override;
+      //~Icon() override;
 
       virtual void initialize_icon(IconInterface * picon) override;
       virtual void initialize_icon(BitmapInterface *bitmap) override;
@@ -86,12 +91,12 @@ virtual public composite<IconInterface>
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM Icon :
+    virtual public aggregate< IconComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(Icon);
 
     };
 

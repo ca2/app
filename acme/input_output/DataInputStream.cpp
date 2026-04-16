@@ -41,26 +41,26 @@
    }
 
 
-   size_t DataInputStream::available()
+   memsize DataInputStream::available()
    {
       return m_inputStream->available();
    }
 
 
-   size_t DataInputStream::read(void* buffer, size_t len)
+   memsize DataInputStream::read(void* buffer, memsize len)
    {
       return m_inputStream->read(buffer, len);
    }
 
 
-   void DataInputStream::readFully(void* buffer, size_t len)
+   void DataInputStream::readFully(void* buffer, memsize len)
    {
       char* typedBuffer = (char *)buffer;
-      size_t totalRead = 0;
-      size_t left = len;
+      memsize totalRead = 0;
+      memsize left = len;
       while (totalRead < len)
       {
-         size_t read = m_inputStream->read(typedBuffer + totalRead, left);
+         memsize read = m_inputStream->read(typedBuffer + totalRead, left);
          left -= read;
          totalRead += read;
       }

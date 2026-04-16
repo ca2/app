@@ -31,7 +31,7 @@ namespace subsystem
 
 
    // Class for intercepting keyboard on low level.
-   class CLASS_DECL_SUBSYSTEM OperatingSystemHookSlice :
+   class CLASS_DECL_SUBSYSTEM OperatingSystemHookInterface :
     virtual public ::subsystem::OperatingSystemHookListener
    {
    public:
@@ -66,12 +66,12 @@ namespace subsystem
    //    static HookEventListener *s_eventListener;
    };
 
-using OperatingSystemHookInterface = particle_interface<OperatingSystemHookSlice>;
+//using OperatingSystemHookInterface = particle_interface<OperatingSystemHookInterface>;
 
 
    // Class for intercepting keyboard on low level.
    class CLASS_DECL_SUBSYSTEM OperatingSystemHookComposite :
-   virtual public composite< OperatingSystemHookSlice >
+   virtual public composite< OperatingSystemHookInterface >
    {
    public:
 

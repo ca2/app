@@ -36,20 +36,20 @@ public:
 
   // returns the number of arguments in command line
   // for example, program: help
-  size_t getArgumentsCount();
+  memsize getArgumentsCount();
 
   // returns the number of options in command line
   // for example, -V=123456
-  size_t getOptionsCount();
+  memsize getOptionsCount();
 
   // returns the value of parameter by valName
   bool findOptionValue(const ::string valName, ::string &  strOut);
 
   // returns the argument value with index
-  bool getArgument(size_t index, ::string &  strOut);
+  bool getArgument(memsize index, ::string &  strOut);
 
   // returns the option value with index
-  bool getOption(size_t index, ::string &  strOut);
+  bool getOption(memsize index, ::string &  strOut);
 
 //protected:
   WinCommandLineArgs *m_wcla;

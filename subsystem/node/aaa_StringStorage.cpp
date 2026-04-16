@@ -56,12 +56,12 @@ void StringStorage::setString(const TCHAR *string)
     string = _T("");
   }
 
-  size_t length = _tcslen(string);
+  memsize length = _tcslen(string);
   resizeBuffer(length + 1);
   memcpy(&m_buffer.front(), string, getSize());
 }
 
-void StringStorage::resizeBuffer(size_t newSize)
+void StringStorage::resizeBuffer(memsize newSize)
 {
   m_buffer.resize(newSize);
 
@@ -75,12 +75,12 @@ const TCHAR *StringStorage::getString() const
   return &m_buffer.front();
 }
 
-size_t StringStorage::getLength() const
+memsize StringStorage::getLength() const
 {
   return m_buffer.size() - 1;
 }
 
-size_t StringStorage::getSize() const
+memsize StringStorage::getSize() const
 {
   return m_buffer.size() * sizeof(TCHAR);
 }
@@ -109,8 +109,8 @@ bool StringStorage::beginsWith(TCHAR prefix) const
 }
 
 void StringStorage::getSubstring(StringStorage *substr,
-                                 size_t startIndex,
-                                 size_t endIndex) const
+                                 memsize startIndex,
+                                 memsize endIndex) const
 {
   endIndex++; // to simplify calculations
   startIndex = std::min(startIndex, getLength());
@@ -119,7 +119,7 @@ void StringStorage::getSubstring(StringStorage *substr,
     endIndex = startIndex;
   }
 
-  size_t length = endIndex - startIndex;
+  memsize length = endIndex - startIndex;
   _ASSERT(length <= getLength());
 
   std::vector<TCHAR> autoBuffer(length + 1);
@@ -177,7 +177,7 @@ bool StringStorage::isEqualTo(const TCHAR *other) const
   return _tcscmp(getString(), other) == 0;
 }
 
-bool StringStorage::split(const TCHAR *delimiters, StringStorage *stringArray, size_t *arrayLength) const
+bool StringStorage::split(const TCHAR *delimiters, StringStorage *stringArray, memsize *arrayLength) const
 {
   // Special case for empty string.
   if (this->getLength() == 0) {
@@ -187,9 +187,9 @@ bool StringStorage::split(const TCHAR *delimiters, StringStorage *stringArray, s
 
   StringStorage copy(this->getString());
 
-  size_t chunksCount = 0;
+  memsize chunksCount = 0;
 
-  size_t index = 0;
+  memsize index = 0;
 
   do {
     StringStorage chunk(_T(""));
@@ -200,7 +200,7 @@ bool StringStorage::split(const TCHAR *delimiters, StringStorage *stringArray, s
     // Case when no delimitter found.
     //
 
-    if ((index == (size_t)-1) && (chunksCount == 0)) {
+    if ((index == (memsize)-1) && (chunksCount == 0)) {
       if (arrayLength != 0) {
         if (stringArray != 0) {
           if (*arrayLength < 1) {
@@ -239,36 +239,36 @@ bool StringStorage::split(const TCHAR *delimiters, StringStorage *stringArray, s
   return true;
 }
 
-size_t StringStorage::findChar(const TCHAR c)
+memsize StringStorage::findChar(const TCHAR c)
 {
-  size_t length = getLength();
-  for (size_t i = 0; i < length; i++) {
+  memsize length = getLength();
+  for (memsize i = 0; i < length; i++) {
     if (m_buffer[i] == c) {
       return i;
     }
   }
-  return (size_t)-1;
+  return (memsize)-1;
 }
 
-size_t StringStorage::findLast(const TCHAR c)
+memsize StringStorage::findLast(const TCHAR c)
 {
-  for (size_t i = getLength() - 1; i + 1 != 0; i--) {
+  for (memsize i = getLength() - 1; i + 1 != 0; i--) {
     if (m_buffer[i] == c) {
       return i;
     }
   }
-  return (size_t)-1;
+  return (memsize)-1;
 }
 
-void StringStorage::removeChars(const TCHAR badCharacters[], size_t count)
+void StringStorage::removeChars(const TCHAR badCharacters[], memsize count)
 {
-  size_t j = 0;
-  size_t length = getLength();
+  memsize j = 0;
+  memsize length = getLength();
 
-  for (size_t i = 0; i < length; i++) {
+  for (memsize i = 0; i < length; i++) {
     TCHAR each = m_buffer[i];
     bool badCharacter = false;
-    for (size_t k = 0; k < count; k++) {
+    for (memsize k = 0; k < count; k++) {
       if (each == badCharacters[k]) {
         badCharacter = true;
         break;
@@ -283,7 +283,7 @@ void StringStorage::removeChars(const TCHAR badCharacters[], size_t count)
   m_buffer.resize(j + 1);
 }
 
-void StringStorage::remove(size_t startIndex, size_t count)
+void StringStorage::remove(memsize startIndex, memsize count)
 {
   bool isFailed = startIndex + count > getLength();
   _ASSERT(!isFailed);
@@ -292,12 +292,12 @@ void StringStorage::remove(size_t startIndex, size_t count)
   }
   BufferType newBuffer = m_buffer;
 
-  size_t copyCount = getSize() - (startIndex + count) * sizeof(TCHAR);
+  memsize copyCount = getSize() - (startIndex + count) * sizeof(TCHAR);
   memcpy(&newBuffer[startIndex], &newBuffer[startIndex + count], copyCount);
   setString(&newBuffer.front());
 }
 
-void StringStorage::truncate(size_t count)
+void StringStorage::truncate(memsize count)
 {
   count = std::min(getLength(), count);
 
@@ -310,24 +310,24 @@ TCHAR *StringStorage::find(const TCHAR *substr)
 }
 
 // FIXME: Use C functions.
-size_t StringStorage::findOneOf(const TCHAR *string)
+memsize StringStorage::findOneOf(const TCHAR *string)
 {
-  size_t length = getLength();
-  size_t argLength = _tcslen(string);
-  for (size_t i = 0; i < length; i++) {
-    for (size_t j = 0; j < argLength; j++) {
+  memsize length = getLength();
+  memsize argLength = _tcslen(string);
+  for (memsize i = 0; i < length; i++) {
+    for (memsize j = 0; j < argLength; j++) {
       if (m_buffer[i] == string[j]) {
         return i;
       }
     }
   }
-  return (size_t)-1;
+  return (memsize)-1;
 }
 
 void StringStorage::toLowerCase()
 {
-  size_t length = getLength();
-  for (size_t i = 0; i < length; i++) {
+  memsize length = getLength();
+  for (memsize i = 0; i < length; i++) {
     if (_istalpha(m_buffer[i]) != 0) {
       m_buffer[i] = _totlower(m_buffer[i]);
     }
@@ -376,8 +376,8 @@ void StringStorage::operator += (const TCHAR* str)
 
 void StringStorage::replaceChar(TCHAR oldChar, TCHAR newChar)
 {
-  size_t length = getLength();
-  for (size_t i = 0; i < length; i++) {
+  memsize length = getLength();
+  for (memsize i = 0; i < length; i++) {
     if (m_buffer[i] == oldChar) {
       m_buffer[i] = newChar;
     }

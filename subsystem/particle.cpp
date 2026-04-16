@@ -15,3 +15,9 @@
    {}
 
 
+::particle_base * particle_base::get_implementation()
+   {
+
+      return this;
+
+   }

@@ -66,7 +66,7 @@
 
       char m_buffer[100000];
 
-      size_t m_dataLength;
+      memsize m_dataLength;
    };
 
 //} // namespace subsystem

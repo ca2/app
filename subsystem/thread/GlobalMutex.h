@@ -66,7 +66,6 @@ namespace subsystem
     * @author yuri, enikey.
     */
    class GlobalMutexInterface :
-   virtual public particle_interface<GlobalMutexInterface >,
     virtual public LockableInterface
    {
    public:
@@ -111,19 +110,26 @@ namespace subsystem
    };
 
 
-   class CLASS_DECL_SUBSYSTEM GlobalMutex :
+   //using GlobalMutexInterface = particle_interface<GlobalMutexInterface>;
+
+
+   class CLASS_DECL_SUBSYSTEM GlobalMutexComposite :
       virtual public composite < GlobalMutexInterface >
    {
    public:
 
+
+      implement_compositeø(GlobalMutex, globalmutex)
+
+
       //GlobalMutex(const ::scoped_string & scopedstrName = 0, bool interSession = false, bool throwIfExist = false);
-      GlobalMutex();
+      //GlobalMutex();
       // {
       //
       //    m_pparticleThis->initialize_global_mutex(scopedstrName, interSession, throwIfExist);
       //
       // }
-      ~GlobalMutex() override;
+      //~GlobalMutex() override;
 
 
       void initialize_global_mutex(const ::scoped_string & scopedstrName = {}, bool interSession = false, bool throwIfExist = false) override;
@@ -142,12 +148,12 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM GlobalMutex :
+    virtual public aggregate< GlobalMutexComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(GlobalMutex);
 
     };
 

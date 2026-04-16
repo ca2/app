@@ -34,7 +34,7 @@ namespace subsystem
 {
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
-   class PipeSlice :
+   class PipeInterface :
    virtual public ::particle_base
    {
    public:
@@ -55,8 +55,8 @@ namespace subsystem
       // The pointer uses because the functions must have access to
       // the same variable as in a derived class to rich a thread safe
       // handle usage.
-      virtual size_t readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) = 0;
-      virtual size_t writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) = 0;
+      virtual memsize readByFile(void *buffer, memsize len, ::subsystem::FileInterface * pfilePipe) = 0;
+      virtual memsize writeByFile(const void *buffer, memsize len, ::subsystem::FileInterface * pfilePipe) = 0;
 
       // This mutex is to use for pipe handles that uses in the above functions.
       // The mutex protect collision accesses to handle fields of derived classes.
@@ -73,13 +73,13 @@ namespace subsystem
       // unsigned int m_maxPortionSize;
    };
 
-   using PipeInterface = particle_interface<PipeSlice>;
+   ///using PipeInterface = particle_interface<PipeInterface>;
 
 
    // This class is not an interface but is a class that contain common
    // methods/source codes for derived classes to work with pipe handles.
    class CLASS_DECL_SUBSYSTEM PipeComposite :
-      virtual public composite< PipeSlice>
+      virtual public composite< PipeInterface>
    {
    public:
 
@@ -92,10 +92,20 @@ namespace subsystem
       //Pipe();
       //~Pipe() override;
 
-      void initialize_pipe(unsigned int maxPortionSize) override;
+         void initialize_pipe(unsigned int maxPortionSize) override
+      {
+
+         m_ppipe->initialize_pipe(maxPortionSize);
+
+      }
 
 
-      unsigned int getMaxPortionSize() override;
+      unsigned int getMaxPortionSize() override
+      {
+
+         return m_ppipe->getMaxPortionSize();
+
+      }
 
 
 
@@ -105,8 +115,18 @@ namespace subsystem
       // The pointer uses because the functions must have access to
       // the same variable as in a derived class to rich a thread safe
       // handle usage.
-      size_t readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) override;
-      size_t writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe) override;
+      memsize readByFile(void* buffer, memsize len, ::subsystem::FileInterface* pfilePipe) override
+      {
+
+         return m_ppipe->readByFile(buffer, len, pfilePipe);
+
+      }
+      memsize writeByFile(const void* buffer, memsize len, ::subsystem::FileInterface* pfilePipe) override
+      {
+
+         return m_ppipe->writeByFile(buffer, len, pfilePipe);
+
+      }
 
       // This mutex is to use for pipe handles that uses in the above functions.
       // The mutex protect collision accesses to handle fields of derived classes.
@@ -116,7 +136,12 @@ namespace subsystem
       //WindowsEvent m_writeEvent;
 
       //private:
-      void checkPipeFile(::subsystem::FileInterface * pfilePipe) override;
+      void checkPipeFile(::subsystem::FileInterface* pfilePipe) override
+      {
+
+         return m_ppipe->checkPipeFile(pfilePipe);
+
+      }
 
       //unsigned long long m_totalWrote;
       //unsigned long long m_totalRead;

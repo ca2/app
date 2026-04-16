@@ -52,7 +52,7 @@ namespace subsystem
       // delete them from memory and thread ::list_base.
       virtual void destroyAllThreads() = 0;
 
-      virtual const size_t Size() = 0;
+      virtual const memsize Size() = 0;
 
    //protected:
       virtual void execute() = 0;
@@ -84,7 +84,7 @@ namespace subsystem
    //    // delete them from memory and thread ::list_base.
    //    void destroyAllThreads() override;
    //
-   //    const size_t Size() override;
+   //    const memsize Size() override;
    //
    //    //protected:
    //    void execute() override;

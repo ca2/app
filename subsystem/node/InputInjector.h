@@ -36,7 +36,7 @@ namespace subsystem
     * Wrapper of WinAPI methods that can inject input events into system
     * (mouse, keyboard etc) and get information about input device states.
     */
-   class InputInjectorSlice :
+   class InputInjectorInterface :
       virtual public ::particle_base
    {
    public:
@@ -137,42 +137,47 @@ namespace subsystem
       // LogWriter *m_plogwriter;
    };
 
-using InputInjectorInterface = particle_interface<InputInjectorSlice>;
+//using InputInjectorInterface = particle_interface<InputInjectorInterface>;
       /**
     * Wrapper of WinAPI methods that can inject input events into system
     * (mouse, keyboard etc) and get information about input device states.
     */
    class CLASS_DECL_SUBSYSTEM InputInjectorComposite :
-   virtual public composite<InputInjectorSlice>
+   virtual public composite<InputInjectorInterface>
    {
    public:
 
 
-       implement_compositeø(InputInjector, inputinjector )
+       implement_compositeø(InputInjector, inputinjector)
 
-      //InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
-      //InputInjector();
-      //~InputInjector() override;
+         // InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
+         // InputInjector();
+         //~InputInjector() override;
 
 
-      void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *plogwriter) override;
+         void initialize_input_injector(bool ctrlAltDelEnabled, LogWriter *plogwriter) override
+       {
+
+          m_pinputinjector->initialize_input_injector(ctrlAltDelEnabled, plogwriter);
+
+       }
 
       // Toggles off all modifiers including the Delete key.
-      void resetModifiers() override;
+      void resetModifiers() override{m_pinputinjector->resetModifiers();}
 
       /**
        * Syntezises key pressed event.
        * @param vkCode virtual code of key.
        * @throws SystemException on fail.
        */
-      void injectKeyPress(unsigned char vkCode) override;
+      void injectKeyPress(unsigned char vkCode) override{m_pinputinjector->injectKeyPress(vkCode);}
 
       /**
        * Syntezises key released event.
        * @param vkCode virtual code of key.
        * @throws SystemException on fail.
        */
-      void injectKeyRelease(unsigned char vkCode) override;
+      void injectKeyRelease(unsigned char vkCode) override{m_pinputinjector->injectKeyRelease(vkCode);}
 
       /**
        * Syntezises key event (press or release).
@@ -180,7 +185,10 @@ using InputInjectorInterface = particle_interface<InputInjectorSlice>;
        * @param release if true then sybtezises release event, otherwise, press.
        * @throws SystemException on fail.
        */
-      void injectKeyEvent(unsigned char vkCode, bool release, bool extended = false) override;
+      void injectKeyEvent(unsigned char vkCode, bool release, bool extended = false) override
+       {
+          m_pinputinjector->injectKeyEvent(vkCode, release, extended);
+       }
 
       /**
        * Syntezises char press or release event.
@@ -191,11 +199,14 @@ using InputInjectorInterface = particle_interface<InputInjectorSlice>;
        * not for extended and auxilary keys like LEFT, RIGHT, INSERT etc.
        * @throws SystemException on fail.
        */
-      void injectCharEvent(int ch, bool release) override;
+      void injectCharEvent(int ch, bool release) override
+       {
+          m_pinputinjector->injectCharEvent(ch, release);
+       }
 
    //private:
       // Return true if CapsLock toggled on.
-      bool capsToggled() override;
+      bool capsToggled() override{return m_pinputinjector->capsToggled();}
 
       // Returns true if the vkCode value is a dead key in keyboardLayout layout.
       //bool isDeadKey(SHORT scanResult, HKL keyboardLayout);
@@ -218,7 +229,10 @@ using InputInjectorInterface = particle_interface<InputInjectorSlice>;
       //bool isResistantToCaps(BYTE virtKey, HKL keyboardLayout);
 
       // Returns true if the ch symbol is a ascii symbol.
-      bool isAscii(int ch)  override;
+      bool isAscii(int ch)  override
+       {
+          return m_pinputinjector->isAscii(ch);
+       }
 
       // Returns current kbd layout of an active window.
       // Throws ::subsystem::Exception on an error.

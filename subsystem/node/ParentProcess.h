@@ -31,7 +31,7 @@
 namespace subsystem
 {
    // Retrieves information of the parent process.
-   class ParentProcessSlice :
+   class ParentProcessInterface :
       virtual public ::particle_base
    {
    public:
@@ -56,11 +56,11 @@ namespace subsystem
 
    };
 
-    using ParentProcessInterface = particle_interface<ParentProcessSlice>;
+    //using ParentProcessInterface = particle_interface<ParentProcessInterface>;
 
    // Retrieves information of the parent process.
    class CLASS_DECL_SUBSYSTEM ParentProcessComposite :
-   virtual public composite<ParentProcessSlice>
+   virtual public composite<ParentProcessInterface>
    {
    public:
 

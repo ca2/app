@@ -34,7 +34,7 @@ namespace subsystem
    /**
     * Contains the security information associated with an object.
     */
-   class SecurityDescriptorSlice :
+   class SecurityDescriptorInterface :
         virtual public ::particle_base
    {
    public:
@@ -55,7 +55,7 @@ namespace subsystem
        * @param rules rules array.
        * @throws SystemException on fail.
        */
-      //void setRulesAsDacl(size_t count,
+      //void setRulesAsDacl(memsize count,
         //                  EXPLICIT_ACCESS *rules) throw(SystemException);
 
       /**
@@ -85,13 +85,13 @@ namespace subsystem
    //    SECURITY_DESCRIPTOR m_sd;
    };
 
-    using SecurityDescriptorInterface = particle_interface<SecurityDescriptorSlice>;
+    //using SecurityDescriptorInterface = particle_interface<SecurityDescriptorInterface>;
 
    /**
  * Contains the security information associated with an object.
  */
    class CLASS_DECL_SUBSYSTEM SecurityDescriptorComposite :
-   virtual public composite<SecurityDescriptorSlice>
+   virtual public composite<SecurityDescriptorInterface>
    {
    public:
 
@@ -115,7 +115,7 @@ namespace subsystem
        * @param rules rules array.
        * @throws SystemException on fail.
        */
-      //void setRulesAsDacl(size_t count,
+      //void setRulesAsDacl(memsize count,
       //                  EXPLICIT_ACCESS *rules) throw(SystemException);
 
       /**
@@ -129,12 +129,13 @@ namespace subsystem
       /**
       Marks the security descriptor as having no owner.
       */
-      void clearOwner() override;
+      void clearOwner() override{m_psecuritydescriptor->clearOwner();}
+
 
       /**
        * Determines whether the components of a security descriptor are valid.
        */
-      bool isValid() override;
+      bool isValid() override {return m_psecuritydescriptor->isValid();}
 
       /**
        Returns pointer to WinAPI security descriptor.

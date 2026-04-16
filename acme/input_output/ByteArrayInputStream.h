@@ -41,7 +41,7 @@
        * @param buffer source buffer.
        * @param bufferSize count of bytes in memory buffer.
        */
-      ByteArrayInputStream(const char *buffer, size_t bufferSize);
+      ByteArrayInputStream(const char *buffer, memsize bufferSize);
       virtual ~ByteArrayInputStream();
 
       /**
@@ -50,13 +50,13 @@
        * @param len count of bytes to write.
        * @throws ::io_exception when no data left in memory buffer.
        */
-      virtual size_t read(void *buffer, size_t len);
+      virtual memsize read(void *buffer, memsize len);
 
-      virtual size_t available();
+      virtual memsize available();
 
    protected:
       const char *m_buffer;
-      size_t m_bufferSize;
-      size_t m_left;
+      memsize m_bufferSize;
+      memsize m_left;
    };
 //} // namespace subsystem

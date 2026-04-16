@@ -36,7 +36,7 @@ namespace innate_subsystem
 {
 
    // FIXME: Add documentation to class.
-   class NotifyIconSlice
+   class NotifyIconInterface
        : virtual public ::particle_base
    {
    public:
@@ -64,16 +64,16 @@ namespace innate_subsystem
       //bool m_visible;
    };
 
-   using NotifyIconInterface = particle_interface<NotifyIconSlice, NotifyIconWindowInterface>;
+   //using NotifyIconInterface = particle_interface<NotifyIconInterface, NotifyIconWindowInterface>;
 
    // FIXME: Add documentation to class.
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconComposite :
-      virtual public composite<NotifyIconSlice, NotifyIconWindow>
+      virtual public composite<NotifyIconInterface>
    {
    public:
 
 
-      implement_compositeø(NotifyIcon, NotifyIconWindow, notifyicon)
+      implement_compositeø(NotifyIcon, notifyicon)
 
       //NotifyIcon();
       //~NotifyIcon() override;
@@ -98,10 +98,12 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIcon :
-      virtual public NotifyIconComposite,
-   virtual public NotifyIconWindow
+      virtual public aggregate< NotifyIconComposite, NotifyIconWindow >
    {
    public:
+
+      implement_aggregateø(NotifyIcon, NotifyIconWindow)
+
    };
 }// namespace innate_subsystem
 

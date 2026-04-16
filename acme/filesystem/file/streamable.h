@@ -3,6 +3,7 @@
 
 
 #include "translatable.h"
+#include "acme/input_output/OutputStream.h"
 
 
 namespace file
@@ -32,7 +33,8 @@ namespace file
 
 
    class CLASS_DECL_ACME writable :
-      virtual public translatable
+      virtual public translatable,
+      virtual public OutputStream
    {
    public:
 

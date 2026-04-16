@@ -34,7 +34,7 @@
     * Output stream interface (abstract class).
     */
    class CLASS_DECL_ACME OutputStream :
-      virtual public ::file::writable
+      virtual public ::particle
    {
    public:
 

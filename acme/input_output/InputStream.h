@@ -46,7 +46,7 @@
        * @throws any exception on fail(type of exception depends on
        * implementation of input stream).
        */
-      virtual size_t read(void *buffer, size_t len) = 0;
-      virtual size_t available() = 0;
+      virtual memsize read(void *buffer, memsize len) = 0;
+      virtual memsize available() = 0;
    };
 //} // namespace subsystem

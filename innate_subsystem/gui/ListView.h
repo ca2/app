@@ -48,7 +48,7 @@ namespace innate_subsystem
    // that view data as report.
    //
 
-   class ListViewSlice : virtual public ::particle_base
+   class ListViewInterface : virtual public ::particle_base
    {
    public:
 
@@ -220,18 +220,18 @@ namespace innate_subsystem
    //    PFNLVCOMPARE m_compareItem;
    };
 
-   using ListViewInterface = particle_interface<ListViewSlice, ControlInterface>;
+   //using ListViewInterface = particle_interface<ListViewInterface, ControlInterface>;
       //
    // ListView class can be used only for listviews
    // that view data as report.
    //
 
    class CLASS_DECL_INNATE_SUBSYSTEM ListViewComposite :
-   virtual public composite<ListViewSlice, Control>
+   virtual public composite<ListViewInterface>
    {
    public:
 
-      implement_compositeø(ListView, Control, listview)
+      implement_compositeø(ListView, listview)
       //typedef int (ListView:: *PFUNCTION_list_data_compare)(::lparam lparamData1, ::lparam lparamData2, void * pCompare);
 
       // ListView();
@@ -402,8 +402,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ListView :
-      virtual public ListViewComposite,
-      virtual public Control
+      virtual public aggregate< ListViewComposite, Control >
    {
 
    };

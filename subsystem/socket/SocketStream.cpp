@@ -54,13 +54,13 @@ namespace subsystem
    // }
 
 
-   size_t SocketStream::read(void *buf, size_t wanted)
+   memsize SocketStream::read(void *buf, memsize wanted)
    {
       if ((int)wanted < 0) {
          throw ::io_exception(error_io, "Wanted size too big.");
       }
 
-      return (size_t)m_psocket->recv((char *)buf, (int)wanted);
+      return (memsize)m_psocket->recv((char *)buf, (int)wanted);
    }
 
    memsize SocketStream::defer_write(const void *buf, memsize size)
@@ -69,7 +69,7 @@ namespace subsystem
          throw ::io_exception(error_io, "Size of buffer is too big.");
       }
 
-      return (size_t)m_psocket->send((char *)buf, (int)size);
+      return (memsize)m_psocket->send((char *)buf, (int)size);
 
    }
 
@@ -82,7 +82,7 @@ namespace subsystem
       m_psocket->close();
    }
 
-   size_t SocketStream::available() {
+   memsize SocketStream::available() {
       return m_psocket->available();
    }
 } // namespace subsystem

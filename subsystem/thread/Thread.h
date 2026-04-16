@@ -53,7 +53,7 @@ namespace subsystem
     * @fixme some methods seems to be not thread-safe (that uses m_active member).
     * @fixme member of HDESK type in THREAD class???
     */
-   class ThreadSlice :
+   class ThreadInterface :
       virtual public ::particle_base
    {
    public:
@@ -169,7 +169,7 @@ namespace subsystem
    };
 
 
-   using ThreadInterface = particle_interface<ThreadSlice>;
+   //using ThreadInterface = particle_interface<ThreadInterface>;
 
    /**
     * Thread class.
@@ -204,69 +204,126 @@ namespace subsystem
        * Waits until thread stops.
        * @return false on error.
        */
-      ::e_status wait() override;
+      ::e_status wait() override
+      {
+
+          return m_pthread->wait();
+      }
       /**
        * Suspends thread execution.
        * @return false on error.
        */
-      bool suspend() override;
+      bool suspend() override
+      {
+
+          return m_pthread->suspend();
+
+      }
       /**
        * Resume thread execution.
        * @return false on error.
        */
-      bool resume() override;
+      bool resume() override
+      {
+
+          return m_pthread->resume();
+
+      }
       /**
        * Terminates thread execution.
        * @remark thread-safe.
        */
-      void terminate() override;
+      void terminate() override
+      {
+
+          m_pthread->terminate();
+
+      }
 
       /**
        * Checks if thread is not dead.
        * @return true if thread is not dead (still running or suspended).
        */
-      bool isActive() const override;
+      bool isActive() const override
+      {
+
+          return m_pthread->isActive();
+
+      }
 
       /**
        * Returns thread id.
        */
-      ::itask getThreadId() const override;
+      ::itask getThreadId() const override
+      {
+
+          return m_pthread->getThreadId();
+
+      }
 
       /**
        * Sets thread priority.
        * @param value thread priority.
        */
-      bool setPriority(THREAD_PRIORITY value) override;
+      bool setPriority(THREAD_PRIORITY value) override
+      {
+
+          return m_pthread->setPriority(value);
+
+      }
 
       /**
        * Suspends the execution of the current thread until the time-out interval elapses.
        * @param millis time to sleep.
        */
-      void sleep(const class ::time & time) override;
+      void sleep(const class ::time & time) override
+      {
+
+          m_pthread->sleep(time);
+
+      }
 
       /**
        * Yield execution to the next ready thread.
        */
-      void yield() override;
+      void yield() override
+      {
+
+          m_pthread->yield();
+
+      }
 
    //protected:
       /**
        * Returns true if terminate() method was called.
        * @remark thread-safe.
        */
-      bool isTerminating() override;
+      bool isTerminating() override
+      {
+
+          return m_pthread->isTerminating();
+
+      }
 
       /**
        * Slot of terminate() signal.
        * Method called from terminate() method.
        * Can be overrided by subclasses to gracefully shutdown thread.
        */
-      void onTerminate() override;
+      void onTerminate() override
+      {
+
+
+      }
 
       /**
        * Thread's runnable body.
        */
-      void execute() override;
+      void execute() override
+      {
+
+
+      }
 
    //private:
       /**
@@ -276,7 +333,11 @@ namespace subsystem
 
       // This function calling before call a derived execute() function to
       // perform any additional action.
-      void initByDerived() override;
+      void initByDerived() override
+      {
+
+
+      }
 
    //private:
       /**

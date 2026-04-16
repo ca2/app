@@ -39,7 +39,7 @@ namespace subsystem
       /**
     * Enables you to start and stop local processes.
     */
-   class ProcessSlice :
+   class ProcessInterface :
       virtual public ::particle_base
    {
    public:
@@ -146,13 +146,13 @@ namespace subsystem
    };
 
 
-    using ProcessInterface = particle_interface<ProcessSlice>;
+    //using ProcessInterface = particle_interface<ProcessInterface>;
 
    /**
     * Enables you to start and stop local processes.
     */
    class CLASS_DECL_SUBSYSTEM ProcessComposite :
-   virtual public composite<ProcessSlice>
+   virtual public composite<ProcessInterface>
    {
    public:
 
@@ -174,66 +174,127 @@ namespace subsystem
       //~Process() override;
 
 
-      void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) override;
+          void initialize_process(const ::file::path& path = {}, const ::scoped_string& scopedstrArgs = {}) override
+       {
+
+          m_pprocess->initialize_process(path, scopedstrArgs);
+
+       }
+
 
       /**
        * Sets executable filename for process.
        * @param path.
        */
-      void setFilename(const ::scoped_string & scopedstrPath) override;
+       void setFilename(const ::scoped_string& scopedstrPath) override
+       {
+
+          m_pprocess->setFilename(scopedstrPath);
+
+      }
 
       /**
        * Sets arguments for process.
        * @param args.
        */
-      void setArguments(const ::scoped_string & scopedstrArgs) override;
+       void setArguments(const ::scoped_string& scopedstrArgs) override
+       {
+
+          m_pprocess->setArguments(scopedstrArgs);
+
+      }
 
       // Sets standard in/out/error handles for the child process.
-      void setStandardIoHandles(::subsystem::FileInterface * stdIn, ::subsystem::FileInterface * stdOut, ::subsystem::FileInterface * stdErr) override;
+       void setStandardIoHandles(::subsystem::FileInterface* stdIn, ::subsystem::FileInterface* stdOut, ::subsystem::FileInterface* stdErr) override
+       {
+
+          m_pprocess->setStandardIoHandles(stdIn, stdOut, stdErr);
+
+      }
 
       // If handlesIsInerited is true the handles of the parent process can
       // be used by the child process.
-      void setHandleInheritances(bool handlesIsInerited) override;
+       void setHandleInheritances(bool handlesIsInerited) override
+       {
+
+          m_pprocess->setHandleInheritances(handlesIsInerited);
+
+      }
 
       /**
        * Starts execution of process.
        * @throws SystemException on error.
        */
-      void start() override;
+       void start() override
+       {
+
+          m_pprocess->start();
+
+      }
 
       /**
        * Terminates running process.
        * @throws SystemException on fail.
        */
-      void kill() override;
+       void kill() override
+       {
+
+          m_pprocess->kill();
+
+      }
 
       /**
        * Blocks the current thread of execution until the process has exited.
        */
-      void waitForExit() override;
+       void waitForExit() override
+       {
+
+          m_pprocess->waitForExit();
+
+      }
 
       /**
        * Breaks awaiting caused by waitForExit call.
        */
-      void stopWait() override;
+      void stopWait() override
+      {
+
+         m_pprocess->stopWait();
+
+      }
 
       /**
        * Returns exit code of terminated process.
        * @throws SystemException on fail.
        */
-      unsigned int getExitCode() override;
+      unsigned int getExitCode() override
+      {
+
+         return m_pprocess->getExitCode();
+
+      }
 
       /**
        * Returns the process handle if process already run and zero otherwise.
        */
-      ProcessHandleInterface * getProcessHandle() override;
+      ProcessHandleInterface* getProcessHandle() override
+      {
+
+         return m_pprocess->getProcessHandle();
+
+      }
 
    //protected:
       /**
        * Returns command line string for process execution.
        * Used to avoid code duplicates.
        */
-      ::string getCommandLineString() override;
+      ::string getCommandLineString() override
+      {
+
+         return m_pprocess->getCommandLineString();
+
+      }
 
       // Fills the STARTUPINFO structure.
       // Before to use the STARTUPINFO structure in this class a function
@@ -243,7 +304,12 @@ namespace subsystem
       /**
        * Closes WinAPI handles if their are open.
        */
-      void cleanup() override;
+      void cleanup() override
+      {
+
+         return m_pprocess->cleanup();
+
+      }
 
       // ::string m_path;
       // ::string m_args;

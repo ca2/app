@@ -32,7 +32,7 @@ namespace subsystem
 {
 
 
-   class CursorSlice :
+   class CursorInterface :
       virtual public ::particle_base
    {
    public:
@@ -46,11 +46,11 @@ namespace subsystem
    };
 
 
-   using CursorInterface = particle_interface<CursorSlice>;
+   //using CursorInterface = particle_interface<CursorInterface>;
 
 
    class CLASS_DECL_SUBSYSTEM CursorComposite :
-   virtual public composite<CursorSlice>
+   virtual public composite<CursorInterface>
    {
    public:
 
@@ -62,7 +62,7 @@ namespace subsystem
       //~Cursor() override;
 
 
-      ::int_point getCursorPos() const override;
+      ::int_point getCursorPos() const override {return m_pcursor->getCursorPos();}
 
 
    };

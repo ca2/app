@@ -32,7 +32,7 @@
 
 namespace innate_subsystem
 {
-   class TabControSlice :
+   class TabControlInterface :
    virtual public ::particle_base
    {
    public:
@@ -71,15 +71,15 @@ virtual       int getSelectedTabIndex()= 0;
    };
 
 
-   using TabControlInterface = particle_interface<TabControlSlice, ControlInterface>;
+   //using TabControlInterface = particle_interface<TabControlInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM TabControlComposite :
-   virtual public composite <TabControlSlice, Control >
+   virtual public composite <TabControlInterface >
    {
    public:
 
 
-      implement_compositeø(TabControl, Control, tabcontrol)
+      implement_compositeø(TabControl, tabcontrol)
 
 
       //TabControl();
@@ -114,8 +114,7 @@ virtual       int getSelectedTabIndex()= 0;
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM TabControl :
-   virtual public TabControlComposite,
-   virtual public Control
+   virtual public aggregate < TabControlComposite, Control >
    {
    public:
    };

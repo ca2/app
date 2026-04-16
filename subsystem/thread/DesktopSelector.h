@@ -50,7 +50,7 @@ namespace subsystem
 
     };
 
-   class DesktopSelectorSlice :
+   class DesktopSelectorInterface :
       virtual public ::particle_base
    {
    public:
@@ -119,10 +119,10 @@ namespace subsystem
 
    };
 
-using DesktopSelectorInterface = particle_interface<DesktopSelectorSlice>;
+//using DesktopSelectorInterface = particle_interface<DesktopSelectorInterface>;
 
    class CLASS_DECL_SUBSYSTEM DesktopSelectorComposite :
-       public composite< DesktopSelectorSlice >
+       public composite< DesktopSelectorInterface >
    {
    public:
 
@@ -135,7 +135,12 @@ using DesktopSelectorInterface = particle_interface<DesktopSelectorSlice>;
       // On fail the function returns zero.
       // @remark After use the returned handle must be called the
       // DesktopSelector::closeDesktop() function.
-       desk_t getInputDesktop() override;
+         desk_t getInputDesktop() override
+      {
+
+         return m_pdesktopselector->getInputDesktop();
+
+      }
 
       // This funtion gets a handle to a named desktop by the name.
       // @param: name - pointer to a ::string object that contain a valid
@@ -144,17 +149,32 @@ using DesktopSelectorInterface = particle_interface<DesktopSelectorSlice>;
       // that receives user inputs. On fail the function returns zero.
       // @remark After use the returned handle must be called the
       // DesktopSelector::closeDesktop() function.
-       desk_t getDesktop(const ::scoped_string& name) override;
+      desk_t getDesktop(const ::scoped_string& name) override
+      {
+
+         return m_pdesktopselector->getDesktop(name);
+
+       }
 
       // This function closes a handle to a desktop.
       // @param hdesk is a handle to a desktop that will be closed.
       // @return If success the function return true else false.
-       bool closeDesktop(desk_t hdesk) override;
+      bool closeDesktop(desk_t hdesk) override
+      {
+
+         return m_pdesktopselector->closeDesktop(hdesk);
+
+      }
 
       // This function sets a desktop to a thread from that it was called.
       // @param newDesktop - is a handle to a desktop.
       // @return If success the function return true else false.
-       bool setDesktopToCurrentThread(desk_t newDesktop) override;
+      bool setDesktopToCurrentThread(desk_t newDesktop) override
+      {
+
+         return m_pdesktopselector->setDesktopToCurrentThread(newDesktop);
+
+      }
 
       // This function select a desktop that assigned by name or not to a current
       // thread from that it was called.
@@ -162,21 +182,36 @@ using DesktopSelectorInterface = particle_interface<DesktopSelectorSlice>;
       // desktop name such as "Winlogon" that will be assigned to the thread. If
       // name is null the input desktop will be assigned.
       // @return If success the function return true else false.
-       bool selectDesktop(const ::scoped_string& name = nullptr) override;
+      bool selectDesktop(const ::scoped_string& name = nullptr) override
+      {
+
+         return m_pdesktopselector->selectDesktop(name);
+
+       }
 
       // @param desktopName - is a pointer to a ::string object that will be
       // used to store the desktop name. If function has failed then the desktopName
       // object will not change. If the function succeeds, the name of a current
       // input desktop stores in the desktopName object.
       // @return If success the function return true else false.
-       ::string getCurrentDesktopName() override;
+      ::string getCurrentDesktopName() override
+      {
+
+         return m_pdesktopselector->getCurrentDesktopName();
+
+       }
 
       // @param desktopName - is a pointer to a ::string object that will be
       // used to store the desktop name. If function has failed then the desktopName
       // object will not change. If the function succeeds, the desktop name of the
       // current thread stores in the desktopName object.
       // @return If success the function return true else false.
-       ::string getThreadDesktopName() override;
+      ::string getThreadDesktopName() override
+      {
+
+         return m_pdesktopselector->getThreadDesktopName();
+
+       }
 
       //private:
         // This function gets desktop name by a handle to a desktop.
@@ -186,7 +221,12 @@ using DesktopSelectorInterface = particle_interface<DesktopSelectorSlice>;
         // stores in the desktopName object.
         // @return If success the function return true else false.
         //static bool getDesktopName(HDESK desktop, ::string & desktopName) override;
-       ::string getDesktopName(desk_t desktop) override;
+      ::string getDesktopName(desk_t desktop) override
+      {
+
+         return m_pdesktopselector->getDesktopName(desktop);
+
+       }
 
 
    };

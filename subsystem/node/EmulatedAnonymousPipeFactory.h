@@ -35,7 +35,7 @@ namespace subsystem
 {
    // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
    // This is similar to anonymous pipe generation.
-   class EmulatedAnonymousPipeFactorySlice :
+   class EmulatedAnonymousPipeFactoryInterface :
    virtual public ::particle_base 
    {
    public:
@@ -57,11 +57,11 @@ namespace subsystem
    };
 
 
-   using EmulatedAnonymousPipeFactoryInterface = ::particle_interface<EmulatedAnonymousPipeFactorySlice>;
+   //using EmulatedAnonymousPipeFactoryInterface = ::particle_interface<EmulatedAnonymousPipeFactoryInterface>;
 
 
    class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactoryComposite :
-    virtual public composite< EmulatedAnonymousPipeFactorySlice >
+    virtual public composite< EmulatedAnonymousPipeFactoryInterface >
     {
     public:
 
@@ -74,13 +74,28 @@ namespace subsystem
         //~EmulatedAnonymousPipeFactory() override;
 
 
-       void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) override;
+          void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter* plogwriter) override
+       {
 
-       void generatePipes(::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
-                          ::pointer < NamedPipeInterface > & clientPipe, bool clientInheritable) override;
+          m_pemulatedanonymousepipefactory->initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
+
+       }
+
+       void generatePipes(::pointer < NamedPipeInterface >& serverPipe, bool serverInheritable,
+          ::pointer < NamedPipeInterface >& clientPipe, bool clientInheritable) override
+       {
+
+          m_pemulatedanonymousepipefactory->generatePipes(serverPipe, serverInheritable, clientPipe, clientInheritable);
+
+       }
 
        //private:
-       ::string getUniqPipeName() override;
+       ::string getUniqPipeName() override
+       {
+
+          return m_pemulatedanonymousepipefactory->getUniqPipeName();
+
+       }
 
        //LogWriter *m_plogwriter;
        //unsigned int m_bufferSize;

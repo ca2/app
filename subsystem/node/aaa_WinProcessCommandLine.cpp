@@ -31,7 +31,7 @@ WinProcessCommandLine::WinProcessCommandLine()
 
   m_wcla = new WinCommandLineArgs(GetCommandLine());
   m_wcla->getArgVector(&out);
-  for (size_t i = 0; i < out.size(); i++) {
+  for (memsize i = 0; i < out.size(); i++) {
     if (out[i][0] != _T('-')) {
       m_strParam.add(out[i]);
     } else {
@@ -57,19 +57,19 @@ void WinProcessCommandLine::optionParser(::string & out)
   m_strParams.add(strPair);
 }
 
-size_t WinProcessCommandLine::getArgumentsCount()
+memsize WinProcessCommandLine::getArgumentsCount()
 {
   return m_strParam.size();
 }
 
-size_t WinProcessCommandLine::getOptionsCount()
+memsize WinProcessCommandLine::getOptionsCount()
 {
   return m_strParams.size();
 }
 
 bool WinProcessCommandLine::findOptionValue(const ::string valName, ::string &  strOut)
 {
-  for (size_t i = 0; i < getOptionsCount(); i++) {
+  for (memsize i = 0; i < getOptionsCount(); i++) {
     if (m_strParams[i].m_element2 == valName) {
       strOut = m_strParams[i].m_element2;
 
@@ -79,7 +79,7 @@ bool WinProcessCommandLine::findOptionValue(const ::string valName, ::string &  
   return false;
 }
 
-bool WinProcessCommandLine::getArgument(size_t index, ::string &  strOut)
+bool WinProcessCommandLine::getArgument(memsize index, ::string &  strOut)
 {
   if (index < getArgumentsCount()) {
     strOut = m_strParam[index];
@@ -89,7 +89,7 @@ bool WinProcessCommandLine::getArgument(size_t index, ::string &  strOut)
   return false;
 }
 
-bool WinProcessCommandLine::getOption(size_t index, ::string &  strOut)
+bool WinProcessCommandLine::getOption(memsize index, ::string &  strOut)
 {
   if (index < getOptionsCount()) {
     strOut = m_strParams[index].m_element1;

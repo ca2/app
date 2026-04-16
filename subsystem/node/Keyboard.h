@@ -38,7 +38,7 @@ namespace subsystem
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
-   class KeyboardSlice :
+   class KeyboardInterface :
       virtual public ::particle_base
    {
    public:
@@ -72,13 +72,13 @@ namespace subsystem
    };
 
 
-    using KeyboardInterface = particle_interface<KeyboardSlice>;
+    //using KeyboardInterface = particle_interface<KeyboardInterface>;
 
    /**
     * Wrapper on base WinAPI keyboard functions.
     */
    class CLASS_DECL_SUBSYSTEM KeyboardComposite :
-   virtual public composite <KeyboardSlice>
+   virtual public composite <KeyboardInterface>
    {
    public:
 
@@ -92,21 +92,30 @@ namespace subsystem
        * @param state [out] array of 256 virtual key states.
        * @throws SystemException on error.
        */
-      void getState(unsigned char state[256]) override;
+      void getState(unsigned char state[256]) override
+       {
+          m_pkeyboard->getState(state);
+       }
 
       /**
        * Sets current keyboard state.
        * @param state array of 256 virtual key states.
        * @throws SystemException on error.
        */
-      void setState(unsigned char state[256]) override;
+      void setState(unsigned char state[256]) override
+       {
+          m_pkeyboard->setState(state);
+       }
 
       /**
        * Check if specified key is in pressed state.
        * @param vkCode virtual code of key.
        * @return true if key is pressed, false if released.
        */
-      bool isKeyPressed(unsigned char vkCode) override;
+      bool isKeyPressed(unsigned char vkCode) override
+       {
+          return m_pkeyboard->isKeyPressed(vkCode);
+       }
 
    };
 

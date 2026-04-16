@@ -13,7 +13,7 @@ namespace innate_subsystem
 
 
    class CursorInterface :
-      virtual public particle_interface<::innate_subsystem::CursorInterface>
+      virtual public ::particle_base
    {
    public:
 
@@ -46,17 +46,19 @@ namespace innate_subsystem
    };
     
     
-   class CLASS_DECL_INNATE_SUBSYSTEM Cursor :
+   class CLASS_DECL_INNATE_SUBSYSTEM CursorComposite :
       virtual public composite<::innate_subsystem::CursorInterface>
    {
    public:
 
-      Cursor();
+      implement_compositeø(Cursor, cursor)
+
+      //Cursor();
       // Icon(HICON icon);
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
       // Icon(DWORD icon);
-      ~Cursor() override;
+      //~Cursor() override;
 
       void * _HCURSOR() override;
       void _setHCURSOR(void * p) override;
@@ -81,12 +83,12 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM Cursor :
+    virtual public aggregate< CursorComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(Cursor);
 
     };
 

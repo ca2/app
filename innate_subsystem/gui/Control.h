@@ -44,7 +44,7 @@ namespace innate_subsystem
    // Base class to control windows control
    //
 
-   class ControlSlice :
+   class ControlInterface :
       virtual public ::particle_base
    {
    public:
@@ -221,18 +221,18 @@ namespace innate_subsystem
 
 
 
-   using ControlInterface = ::particle_interface<ControlSlice, WindowInterface>;
+   //using ControlInterface = ::particle_interface<ControlInterface, WindowInterface>;
 
    //
    // Base class to control windows control
    //
 
    class CLASS_DECL_INNATE_SUBSYSTEM ControlComposite :
-      virtual public composite < ControlSlice, Window >
+      virtual public composite < ControlInterface >
    {
    public:
 
-      implement_compositeø(Control, Window, control)
+      implement_compositeø(Control, control)
 
       ////::pointer < Control > m_psubsystemcontrolThis;
 
@@ -407,15 +407,11 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Control :
-      virtual public ControlComposite,
-      virtual public Window
+      virtual public aggregate<ControlComposite, Window>
    {
    public:
 
-
-
-
-
+      implement_aggregateø(Control, Window)
 
    };
 

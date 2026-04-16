@@ -48,14 +48,14 @@ namespace subsystem
       inflateEnd(&m_zlibStream);
    }
 
-   void Inflater::setUnpackedSize(size_t size)
+   void Inflater::setUnpackedSize(memsize size)
    {
       m_unpackedSize = size;
    }
 
    void Inflater::inflate()
    {
-      size_t avaliableOutput = m_unpackedSize + m_unpackedSize / 100 + 1024;
+      memsize avaliableOutput = m_unpackedSize + m_unpackedSize / 100 + 1024;
       unsigned long prevTotalOut = m_zlibStream.total_out;
 
       // Check to overflow.

@@ -143,10 +143,10 @@
 //     return false;
 //   }
 //
-//   size_t lastPos = out->findLast(_T('\\'));
+//   memsize lastPos = out->findLast(_T('\\'));
 //
-//   if (lastPos != (size_t)-1) {
-//     out->getSubstring(out, 0, ::maximum(lastPos - 1, (size_t) 0));
+//   if (lastPos != (memsize)-1) {
+//     out->getSubstring(out, 0, ::maximum(lastPos - 1, (memsize) 0));
 //   }
 //
 //   return true;

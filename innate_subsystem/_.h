@@ -28,21 +28,29 @@ namespace innate_subsystem
 
 
    class DeviceContext;
-   class DeviceContextInterface;
+    class DeviceContextInterface;
+   //using DeviceContextInterface = particle_interface<DeviceContextInterface>;
    class Bitmap;
-   class BitmapInterface;
+    class BitmapInterface;
+   //using BitmapInterface = particle_interface<BitmapContextInterface>;
    class Brush;
-   class BrushInterface;
+    class BrushInterface;
+   //using BrushInterface = particle_interface<BrushContextInterface>;
    class Font;
-   class FontInterface;
+    class FontInterface;
+   //using FontInterface = particle_interface<FontContextInterface>;
    class Pen;
-   class PenInterface;
+    class PenInterface;
+   //using PenInterface = particle_interface<PenContextInterface>;
    class Icon;
-   class IconInterface;
+    class IconInterface;
+   //using IconInterface = particle_interface<IconContextInterface>;
    class Cursor;
-   class CursorInterface;
+    class CursorInterface;
+   //using CursorInterface = particle_interface<CursorContextInterface>;
    class Menu;
-   class MenuInterface;
+    class MenuInterface;
+   //using MenuInterface = particle_interface<MenuContextInterface>;
 
    class GraphicsObject;
 
@@ -60,8 +68,8 @@ namespace innate_subsystem
 
 
    class Window;
-   class WindowSlice;
-   using WindowInterface = particle_interface<WindowSlice>;
+   class WindowInterface;
+   ///using WindowInterface = particle_interface<WindowInterface>;
    class Control;
    class ControlInterface;
    class Dialog;

@@ -44,7 +44,7 @@ namespace subsystem
     * @remark service is singleton (you can have only one service instance).
     * @author enikey.
     */
-   class ServiceSlice :
+   class ServiceInterface :
       virtual public ::particle_base
    {
    public:
@@ -131,7 +131,7 @@ namespace subsystem
    };
 
 
-    using ServiceInterface = particle_interface<ServiceSlice>;
+    //using ServiceInterface = particle_interface<ServiceInterface>;
 
    /**
     * Win32 service class (abstract).
@@ -140,7 +140,7 @@ namespace subsystem
     * @author enikey.
     */
    class CLASS_DECL_SUBSYSTEM ServiceComposite :
-   virtual public composite< ServiceSlice >
+   virtual public composite< ServiceInterface >
    {
    public:
 

@@ -70,7 +70,7 @@ namespace subsystem
 //       return m_pparticleThis->getMaxPortionSize();
 //    }
 //
-//    // size_t Pipe::writeByHandle(const void *buffer, size_t len, HANDLE pipeHandle)
+//    // memsize Pipe::writeByHandle(const void *buffer, memsize len, HANDLE pipeHandle)
 //    // {
 //    //    DWORD result;
 //    //    OVERLAPPED overlapped;
@@ -131,7 +131,7 @@ namespace subsystem
 //    //    return result;
 //    // }
 //    //
-//    // size_t Pipe::readByHandle(void *buffer, size_t len, HANDLE pipeHandle)
+//    // memsize Pipe::readByHandle(void *buffer, memsize len, HANDLE pipeHandle)
 //    // {
 //    //    DWORD result = 0;
 //    //    OVERLAPPED overlapped;
@@ -204,7 +204,7 @@ namespace subsystem
 //    // The pointer uses because the functions must have access to
 //    // the same variable as in a derived class to rich a thread safe
 //    // handle usage.
-//    size_t Pipe::readByFile(void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe)
+//    memsize Pipe::readByFile(void *buffer, memsize len, ::subsystem::FileInterface * pfilePipe)
 //    {
 //
 //
@@ -212,7 +212,7 @@ namespace subsystem
 //
 //
 //    }
-//    size_t Pipe::writeByFile(const void *buffer, size_t len, ::subsystem::FileInterface * pfilePipe)
+//    memsize Pipe::writeByFile(const void *buffer, memsize len, ::subsystem::FileInterface * pfilePipe)
 //    {
 //
 //       return m_pparticleThis->writeByFile(buffer, len, pfilePipe);

@@ -63,10 +63,10 @@
 //   const TCHAR *getString() const;
 //
 //     // Returns length of string (in characters, not including terminating null character).
-//   size_t getLength() const;
+//   memsize getLength() const;
 //
 //   // Returns size of string in bytes, including terminating null character.
-//   size_t getSize() const;
+//   memsize getSize() const;
 //
 //   // Checks if string is empty.
 //   // @return true if string is empty.
@@ -93,8 +93,8 @@
 //    * the same object as the source.
 //    */
 //   // Returns a new string that is a getSubstring of this string
-//   void getSubstring(StringStorage *substr, size_t startIndex,
-//                     size_t endIndex) const;
+//   void getSubstring(StringStorage *substr, memsize startIndex,
+//                     memsize endIndex) const;
 //
 //   /**
 //    * Adds string to the end of this string.
@@ -142,7 +142,7 @@
 //   // output. Can be used if stringArray == NULL combination to get substrings count.
 //   //
 //
-//   bool split(const TCHAR *delimiters, StringStorage *stringArray, size_t *arrayLength) const;
+//   bool split(const TCHAR *delimiters, StringStorage *stringArray, memsize *arrayLength) const;
 //
 //   //
 //   // Return a pointer to the first occurrence of a search substr in the
@@ -156,39 +156,39 @@
 //   // -1 otherwise.
 //   //
 //
-//   size_t findChar(const TCHAR c);
+//   memsize findChar(const TCHAR c);
 //
 //   //
 //   // Returns first position of any character that string argument have.
 //   //
 //
-//   size_t findOneOf(const TCHAR *string);
+//   memsize findOneOf(const TCHAR *string);
 //
 //   /**
 //    * Finds last position of specified character in this string.
 //    * @param c character to find.
 //    * @return last position of character in this string or -1 if not found.
 //    */
-//   size_t findLast(const TCHAR c);
+//   memsize findLast(const TCHAR c);
 //
 //   /**
 //    * Removes characters from string.
 //    * @param badCharacters array of characters to remove from string.
 //    * @param count count of characters in badCharacters array.
 //    */
-//   void removeChars(const TCHAR badCharacters[], size_t count);
+//   void removeChars(const TCHAR badCharacters[], memsize count);
 //
 //   // Removes count characters from the specified start index.
 //   // Throws Exception if startIndex + count > length in the release
 //   // configuration and throws an ASSERTION FAILED message in the debug
 //   // configuration.
-//   void remove(size_t startIndex, size_t count);
+//   void remove(memsize startIndex, memsize count);
 //
 //   /**
 //    * Truncates string.
 //    * @param count count of characters to remove from the end of string.
 //    */
-//   void truncate(size_t count);
+//   void truncate(memsize count);
 //
 //   //
 //   // Converts string notated by this container to lower case
@@ -227,7 +227,7 @@
 //   typedef std::vector<TCHAR> BufferType;
 //   BufferType m_buffer;
 //
-//   void resizeBuffer(size_t newSize);
+//   void resizeBuffer(memsize newSize);
 //
 //   // This simplify to read the buffer string
 // #ifdef _DEBUG

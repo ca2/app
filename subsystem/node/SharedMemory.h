@@ -31,14 +31,14 @@
 // {
 // public:
 //   // @throw ::subsystem::Exception
-//   SharedMemory(const ::scoped_string & scopedstrName, size_t size);
+//   SharedMemory(const ::scoped_string & scopedstrName, memsize size);
 //   virtual ~SharedMemory();
 //
 //   void *getMemPointer() { return m_memory; }
 //
 // protected:
 //   // Return true if need to init
-//   bool createFile(const ::scoped_string & scopedstrName, size_t size);
+//   bool createFile(const ::scoped_string & scopedstrName, memsize size);
 //   void mapViewOfFile();
 //   void setAllAccess(HANDLE objHandle);
 //

@@ -28,7 +28,7 @@
 
 //namespace subsystem
 //{
-   ByteArrayInputStream::ByteArrayInputStream(const char *buffer, size_t bufferSize)
+   ByteArrayInputStream::ByteArrayInputStream(const char *buffer, memsize bufferSize)
    : m_buffer(buffer), m_bufferSize(bufferSize), m_left(bufferSize)
    {
    }
@@ -37,7 +37,7 @@
    {
    }
 
-   size_t ByteArrayInputStream::read(void *buffer, size_t len)
+   memsize ByteArrayInputStream::read(void *buffer, memsize len)
    {
       if (m_left == 0) {
          throw ::io_exception(error_io, "End of stream reached");
@@ -50,9 +50,9 @@
       char *out = (char *)buffer;
       char *in = (char *)m_buffer;
 
-      size_t bytesToCopy = ::minimum(m_left, len);
-      size_t outOffset = 0;
-      size_t inOffset = m_bufferSize - m_left;
+      memsize bytesToCopy = ::minimum(m_left, len);
+      memsize outOffset = 0;
+      memsize inOffset = m_bufferSize - m_left;
 
       memcpy(out + outOffset, in + inOffset, bytesToCopy);
 
@@ -61,7 +61,7 @@
       return bytesToCopy;
    }
 
-   size_t ByteArrayInputStream::available() {
+   memsize ByteArrayInputStream::available() {
       return m_left;
    }
 //}//namespace subsystem

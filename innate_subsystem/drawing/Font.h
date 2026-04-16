@@ -34,7 +34,7 @@ namespace innate_subsystem
 
 
       class FontInterface :
-         virtual public particle_interface<FontInterface>,
+         //virtual public particle_interface<FontInterface>,
          virtual public GraphicsObject
       {
       public:
@@ -55,15 +55,17 @@ namespace innate_subsystem
       };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Font :
+   class CLASS_DECL_INNATE_SUBSYSTEM FontComposite :
 virtual public composite<FontInterface>
    {
    public:
 
+      implement_compositeø(Font, font)
+
       //public:
       //Pen(int type, int width, const ::color::color & color);
-      Font();
-      ~Font() override;
+      //Font();
+      //~Font() override;
 
 
       //void * _HGDIOBJ() override;
@@ -80,12 +82,12 @@ virtual public composite<FontInterface>
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM Font :
+    virtual public aggregate< FontComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(Font);
 
     };
 

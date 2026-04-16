@@ -29,42 +29,46 @@
 namespace innate_subsystem
 {
 
-//Pen::Pen(int type, int width, const ::color::color & color)
-   Pen::Pen()
-//: m_pen(NULL)
-{
-  // m_pen = CreatePen(type, width, color);
-  //
-  // _ASSERT(m_pen != NULL);
-}
-
-Pen::~Pen()
-{
-  //DeleteObject(m_pen);
-}
-
-   // void * Pen::_HGDIOBJ()
-   // {
-   //    return m_pparticleThis->_HGDIOBJ();
-   // }
-
-
-   void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
-   ///: m_pen(NULL)
-{
-
-   m_pparticleThis->initialize_pen(epen, width, color);
-}
-   // m_pen = CreatePen(type, width, color);
-   //
-   // _ASSERT(m_pen != NULL);
-
-
-   void Pen::destroyGraphicsObject()
-   {
-
-      m_pparticleThis->destroyGraphicsObject();
-
-   }
+//
+//
+// //Pen::Pen(int type, int width, const ::color::color & color)
+//    Pen::Pen()
+// //: m_pen(NULL)
+// {
+//   // m_pen = CreatePen(type, width, color);
+//   //
+//   // _ASSERT(m_pen != NULL);
+// }
+//
+// Pen::~Pen()
+// {
+//   //DeleteObject(m_pen);
+// }
+//
+//    // void * Pen::_HGDIOBJ()
+//    // {
+//    //    return m_pparticleThis->_HGDIOBJ();
+//    // }
+//
+//
+//    void Pen::initialize_pen(enum_pen epen, int width, const ::color::color & color)
+//    ///: m_pen(NULL)
+// {
+//
+//    m_pparticleThis->initialize_pen(epen, width, color);
+// }
+//    // m_pen = CreatePen(type, width, color);
+//    //
+//    // _ASSERT(m_pen != NULL);
+//
+//
+//    void Pen::destroyGraphicsObject()
+//    {
+//
+//       m_pparticleThis->destroyGraphicsObject();
+//
+//    }
+//
+//
 
 }

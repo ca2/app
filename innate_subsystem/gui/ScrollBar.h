@@ -36,7 +36,7 @@ namespace innate_subsystem
 {
 
     const int SCROLL_STEP = 5;
-   class ScrollBarSlice :
+   class ScrollBarInterface :
    virtual public ::particle_base
    {
    public:
@@ -80,15 +80,15 @@ namespace innate_subsystem
       virtual bool _showHorzScroll(bool show)= 0;
    };
 
-   using ScrollBarInterface = particle_interface<ScrollBarSlice, WindowInterface>;
+   //using ScrollBarInterface = particle_interface<ScrollBarInterface, WindowInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM ScrollBarComposite :
-      virtual public composite<ScrollBarSlice, Window>
+      virtual public composite<ScrollBarInterface>
    {
    public:
 
 
-      implement_compositeø(ScrollBar, Window, scrollbar)
+      implement_compositeø(ScrollBar, scrollbar)
       
       
       // static const int SCROLL_STEP = 5;
@@ -130,11 +130,12 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ScrollBar :
-   virtual public ScrollBarComposite,
-   virtual public Window
+   virtual public aggregate< ScrollBarComposite, Window >
+
    {
    public:
 
+      implement_aggregateø(ScrollBar, Window)
 
    };
 

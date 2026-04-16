@@ -26,43 +26,49 @@
 
 namespace innate_subsystem
 {
-   Tooltip::Tooltip()
-   {
-   }
 
-   Tooltip::~Tooltip()
-   {
-   }
 
-   void Tooltip::showTooltip(ControlInterface *control)
-   {
-      m_pparticleThis->showTooltip(control);
-   }
+   //
+   // Tooltip::Tooltip()
+   // {
+   // }
+   //
+   // Tooltip::~Tooltip()
+   // {
+   // }
+   //
+   // void Tooltip::showTooltip(ControlInterface *control)
+   // {
+   //    m_pparticleThis->showTooltip(control);
+   // }
+   //
+   // void Tooltip::setText(const char *text)
+   // {
+   //    m_pparticleThis->setText(text);
+   // }
+   // void Tooltip::setTitle(const char *caption)
+   // {
+   //    m_pparticleThis->setTitle(caption);
+   // }
+   //
+   // ::string Tooltip::getText() const
+   // {
+   //    return m_pparticleThis->getText();
+   // }
+   // ::string Tooltip::getTitle() const
+   // {
+   //    return m_pparticleThis->getTitle();
+   // }
+   //
+   // void Tooltip::setIconType(int iconType)
+   // {
+   //    m_pparticleThis->setIconType(iconType);
+   // }
+   // int Tooltip::getIconType() const
+   // {
+   //    return m_pparticleThis->getIconType();
+   // }
+   //
 
-   void Tooltip::setText(const char *text)
-   {
-      m_pparticleThis->setText(text);
-   }
-   void Tooltip::setTitle(const char *caption)
-   {
-      m_pparticleThis->setTitle(caption);
-   }
 
-   ::string Tooltip::getText() const
-   {
-      return m_pparticleThis->getText();
-   }
-   ::string Tooltip::getTitle() const
-   {
-      return m_pparticleThis->getTitle();
-   }
-
-   void Tooltip::setIconType(int iconType)
-   {
-      m_pparticleThis->setIconType(iconType);
-   }
-   int Tooltip::getIconType() const
-   {
-      return m_pparticleThis->getIconType();
-   }
 } // namespace innate_subsystem

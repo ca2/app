@@ -32,11 +32,11 @@ namespace subsystem_bsd_sockets
 
    class SocketAddressIPv4;
 
-   class SocketAddressIPv4Interface;
+   //class SocketAddressIPv4Interface;
 
    class SocketIPv4;
 
-   class SocketIPv4Interface;
+   //class SocketIPv4Interface;
 
    class subsystem;
 

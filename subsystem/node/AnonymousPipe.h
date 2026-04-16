@@ -38,8 +38,9 @@ namespace subsystem
 {
 
 
-   class AnonymousPipeSlice :
-   virtual public Channel
+   class AnonymousPipeInterface :
+   virtual public Channel,
+   virtual public ::particle_base
    {
    public:
       // @param hWrite is a write handle getting by the CreatePipe()
@@ -65,7 +66,7 @@ namespace subsystem
        * @param len count of bytes to read.
        * @throws ::io_exception on io error.
        */
-      virtual size_t read(void *buffer, size_t len) = 0;
+      virtual memsize read(void *buffer, memsize len) = 0;
 
       /**
        * Writes data to pipe.
@@ -76,7 +77,7 @@ namespace subsystem
        */
       virtual memsize defer_write(const void *buffer, memsize len) = 0;
 
-      virtual size_t available() = 0;
+      virtual memsize available() = 0;
 
       // Returns pipe handle to write
       virtual ::subsystem::FileInterface * getWriteFile() const = 0;
@@ -112,12 +113,12 @@ namespace subsystem
       // LogWriter *m_plogwriter;
    };
 
-    using AnonymousPipeInterface = particle_interface<AnonymousPipeSlice, PipeInterface>;
+    //using AnonymousPipeInterface = particle_interface<AnonymousPipeInterface, PipeInterface>;
 
 
 
    class CLASS_DECL_SUBSYSTEM AnonymousPipeComposite :
-   virtual public composite < AnonymousPipeSlice >
+   virtual public composite < AnonymousPipeInterface >
    {
    public:
 
@@ -131,7 +132,12 @@ namespace subsystem
       //AnonymousPipe();
       //~AnonymousPipe() override;
 
-      void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter *plogwriter) override;
+      void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter *plogwriter) override
+      {
+
+         m_panonymouspipe->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
+
+      }
       /**
        * Closes transport.
        *
@@ -146,7 +152,7 @@ namespace subsystem
        * @param len count of bytes to read.
        * @throws ::io_exception on io error.
        */
-      size_t read(void *buffer, size_t len) override;
+      memsize read(void *buffer, memsize len) override {return m_panonymouspipe->read(buffer, len);}
 
       /**
        * Writes data to pipe.
@@ -155,15 +161,20 @@ namespace subsystem
        * @param len count of bytes to write.
        * @throws ::io_exception on io error.
        */
-      memsize defer_write(const void *buffer, memsize len) override;
+      memsize defer_write(const void *buffer, memsize len) override{return m_panonymouspipe->defer_write(buffer, len);}
 
-      size_t available() override;
+      memsize available() override
+      {
+         
+         return m_panonymouspipe->available();
+      
+      }
 
       // Returns pipe handle to write
-      ::subsystem::FileInterface * getWriteFile() const override;
+      ::subsystem::FileInterface * getWriteFile() const override {return m_panonymouspipe->getWriteFile();}
 
       // Returns pipe handle to read
-      ::subsystem::FileInterface * getReadFile() const override;
+      ::subsystem::FileInterface * getReadFile() const override {return m_panonymouspipe->getReadFile();}
 
       // This function assigns the handles for another process.
       // @param hTargetProc is a handle to the other process.
@@ -176,7 +187,7 @@ namespace subsystem
       //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
                             //bool keepCloseRight = false);
 
-      void setTimeOut(unsigned int timeOut) override;
+      void setTimeOut(unsigned int timeOut) override{return m_panonymouspipe->setTimeOut(timeOut);}
 
    //private:
       //void checkPipeFile(::subsystem::FileInterface * pfile) override;

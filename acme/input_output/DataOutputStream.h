@@ -34,14 +34,15 @@
     * Data output stream (decorator pattern).
     * Adds feature to write typezied data to output stream.
     */
-   class CLASS_DECL_ACME DataOutputStream : public ::file::file
+   class CLASS_DECL_ACME DataOutputStream : 
+      virtual public OutputStream
    {
    public:
       /**
        * Creates new data output stream.
        * @param outputStream real output stream.
        */
-      DataOutputStream(::file::writable *outputStream);
+      DataOutputStream(OutputStream *outputStream);
       virtual ~DataOutputStream();
 
       /**
@@ -49,7 +50,7 @@
        * @remark just delegates call to real output stream.
        */
       memsize defer_write(const void *buffer, memsize len) override;
-      void write(const void *buffer, memsize len) override;
+      virtual void write(const void *buffer, memsize len);
 
       /**
        * Writes exacly specified count of bytes to stream.
@@ -59,7 +60,7 @@
        * @fixme really it can throw any kind of exception (depends on implementation
        * of output stream passed to costructor of DataOutputStream).
        */
-      ///void writeFully(const void *buffer, size_t len);
+      ///void writeFully(const void *buffer, memsize len);
 
       void writeUInt8(unsigned char x);
       void writeUInt16(unsigned short x);
@@ -78,6 +79,6 @@
        */
       virtual void flush();
       //protected:
-      ::file::writable *m_outStream;
+      OutputStream *m_outStream;
    };
 //} // namespace subsystem

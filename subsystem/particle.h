@@ -6,14 +6,14 @@
 
 
 
-   template<typename PARTICLE_INTERFACE, typename BASE>
-   PARTICLE_INTERFACE *get_implementation(const particle_interface<PARTICLE_INTERFACE, BASE> *pinterface);
+   //template<typename PARTICLE_INTERFACE, typename BASE>
+   //PARTICLE_INTERFACE *get_implementation(const particle_interface<PARTICLE_INTERFACE, BASE> *pinterface);
 
    template<typename PARTICLE_INTERFACE, typename TYPE>
    PARTICLE_INTERFACE *_get_implementation(const TYPE *pinterface);
 
-   template<typename PARTICLE_INTERFACE, typename BASE>
-   PARTICLE_INTERFACE *get_implementation(const particle_interface<PARTICLE_INTERFACE, BASE> *pinterface);
+   //template<typename PARTICLE_INTERFACE, typename BASE>
+   //PARTICLE_INTERFACE *get_implementation(const particle_interface<PARTICLE_INTERFACE, BASE> *pinterface);
 
    template<typename PARTICLE_INTERFACE>
    PARTICLE_INTERFACE *get_implementation(const composite<PARTICLE_INTERFACE> *pcomposite);
@@ -34,6 +34,11 @@
       particle_base(enum_particle eparticle = e_particle_interface);
       ~particle_base() override;
 
+      virtual ::particle_base * get_implementation();
+
+      template<typename IMPL>
+      IMPL *impl();
+
       //virtual void set_composite
       // virtual particle_base* get_base_composite()
       //{
@@ -44,47 +49,47 @@
    };
 
 
-   template<typename PARTICLE_SLICE, typename BASE_PARTICLE_INTERFACE>
-   class particle_interface:
-      virtual public PARTICLE_SLICE,
-      virtual public BASE_PARTICLE_INTERFACE
-   {
-   public:
+   //template<typename PARTICLE_SLICE, typename BASE_PARTICLE_INTERFACE>
+   //class particle_interface:
+   //   virtual public PARTICLE_SLICE,
+   //   virtual public BASE_PARTICLE_INTERFACE
+   //{
+   //public:
 
-      using class_type = interface_t;
-      using BASE_TYPE = BASE_PARTICLE_INTERFACE;
-      using INTERFACE_TYPE = PARTICLE_SLICE;
-      using BASE_INTERFACE_TYPE = typename BASE_TYPE::INTERFACE_TYPE;
+   //   using class_type = interface_t;
+   //   using BASE_TYPE = BASE_PARTICLE_INTERFACE;
+   //   using INTERFACE_TYPE = PARTICLE_SLICE;
+   //   using BASE_INTERFACE_TYPE = typename BASE_TYPE::INTERFACE_TYPE;
 
-      template<typename IMPL>
-      IMPL *impl() const
-      {
-         ::cast<IMPL> pimp = get_implementation(this);
+   //   template<typename IMPL>
+   //   IMPL *impl() const
+   //   {
+   //      ::cast<IMPL> pimp = get_implementation(this);
 
-         return pimp;
-      }
-   };
+   //      return pimp;
+   //   }
+   //};
 
 
-   template<typename PARTICLE_SLICE >
-   class particle_interface <PARTICLE_SLICE>:
-      virtual public PARTICLE_SLICE
-   {
-   public:
+   //template<typename PARTICLE_SLICE >
+   //class particle_interface <PARTICLE_SLICE>:
+   //   virtual public PARTICLE_SLICE
+   //{
+   //public:
 
-      using class_type = interface_t;
-      using BASE_TYPE = ::particle_base;
-      using INTERFACE_TYPE = PARTICLE_SLICE;
-      using BASE_INTERFACE_TYPE = typename BASE_TYPE::INTERFACE_TYPE;
+   //   using class_type = interface_t;
+   //   using BASE_TYPE = ::particle_base;
+   //   using INTERFACE_TYPE = PARTICLE_SLICE;
+   //   using BASE_INTERFACE_TYPE = typename BASE_TYPE::INTERFACE_TYPE;
 
-      template<typename IMPL>
-      IMPL *impl() const
-      {
-         ::cast<IMPL> pimp = get_implementation(this);
+   //   template<typename IMPL>
+   //   IMPL *impl() const
+   //   {
+   //      ::cast<IMPL> pimp = get_implementation(this);
 
-         return pimp;
-      }
-   };
+   //      return pimp;
+   //   }
+   //};
 
 
    template < typename PARTICLE_SLICE >
@@ -108,6 +113,7 @@
    ::pointer<Name##Interface> m_p##name; \
    operator Name##Interface *() { return m_p##name; } \
    operator Name##Interface *() const { return m_p##name; } \
+   ::particle_base * get_implementation() {return m_p##name.m_p;} \
    void set##Name##Composite(Name##Interface * pinterfaceImplementation) \
    { \
       m_p##name = pinterfaceImplementation; \
@@ -338,7 +344,7 @@
 
       using BASE_TYPE1 = BASE;
 
-
+      ::pointer < composite < PARTICLE_SLICE > > m_pcomposite;
 
       implementation()
       {
@@ -398,14 +404,19 @@
 
 
 #define implement_aggregateø(Name, Base) \
+operator Name##Interface *() { return Name##Composite::operator Name##Interface *(); } \
+operator Name##Interface *() const { return Name##Composite::operator Name##Interface *(); } \
 Name() \
 { \
    auto pinterfaceImplementation = ::main_subsystem()->createø<Name##Interface>(); \
    this->set##Name##Composite(pinterfaceImplementation); \
-   this->set##Base##Composite(pinterfaceImplementation); \
-}
+   ::cast<Base##Interface> pbase = pinterfaceImplementation; \
+   this->set##Base##Composite(pbase);                                    \
+      }
 
 #define implement_baseø(Name)                                                                                       \
+operator Name##Interface *() { return Name##Composite::operator Name##Interface *(); } \
+operator Name##Interface *() const { return Name##Composite::operator Name##Interface *(); } \
 Name()                                                                                                           \
 {                                                                                                                \
    auto pinterfaceImplementation = ::main_subsystem()->createø<Name##Interface>();                               \
@@ -418,6 +429,12 @@ Name()                                                                          
       virtual public BASE_AGGREGATE
    {
    public:
+
+
+      ::particle_base * get_implementation() override
+      {
+         return COMPOSITE::get_implementation();
+      }
 
    };
 
@@ -458,7 +475,7 @@ Name()                                                                          
       if (pcomposite)
       {
 
-         auto pcomposed = pcomposite->m_pparticleThis.m_p;
+         auto pcomposed = pcomposite->get_implementation();
 
          if (::is_null(pcomposed))
          {
@@ -484,13 +501,13 @@ Name()                                                                          
    }
 
 
-   template < typename PARTICLE_INTERFACE >
-   PARTICLE_INTERFACE * get_implementation(const particle_interface< PARTICLE_INTERFACE > * pinterface)
-   {
+   //template < typename PARTICLE_INTERFACE >
+   //PARTICLE_INTERFACE * get_implementation(const particle_interface< PARTICLE_INTERFACE > * pinterface)
+   //{
 
-      return _get_implementation<PARTICLE_INTERFACE>(pinterface);
+   //   return _get_implementation<PARTICLE_INTERFACE>(pinterface);
 
-   }
+   //}
 
 
    template < typename PARTICLE_INTERFACE, typename BASE >
@@ -561,6 +578,17 @@ Name()                                                                          
 
    //   pimpl->m_pcomposite = this;
    //}
+
+
+template<typename IMPL>
+IMPL *particle_base::impl()
+   {
+
+      ::cast<IMPL> pimp = ::_get_implementation<IMPL>(get_implementation());
+
+      return pimp;
+
+   }
 
 
 

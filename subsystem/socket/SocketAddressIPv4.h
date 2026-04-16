@@ -38,7 +38,7 @@ namespace subsystem
    // // FIXME: Deprecated method, only for testing of old code.
    // void getLocalIPAddrString(char *buffer, int buflen);
 
-   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Slice :
+   class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Interface :
    virtual public ::particle_base
    {
    public:
@@ -49,10 +49,10 @@ namespace subsystem
       virtual void initialize_socket_address_ipv4() = 0;
       //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
       virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) = 0;
-      virtual void initialize_socket_address_ipv4(const SocketAddressIPv4Interface &socketAddressIPv4) = 0;
+      virtual void initialize_socket_address_ipv4(SocketAddressIPv4Interface * psocketAddressIPv4) = 0;
 
 
-      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) = 0;
+      virtual void assign(SocketAddressIPv4Interface * psocketAddressIPv4) = 0;
 
 
       ///socklen_t getAddrLen() const = 0;
@@ -74,11 +74,11 @@ namespace subsystem
    };
 
 
-   using SocketAddressIPv4Interface = particle_interface<SocketAddressIPv4Slice>;
+   //using SocketAddressIPv4Interface = particle_interface<SocketAddressIPv4Interface>;
 
 
    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Composite :
-   virtual public composite<SocketAddressIPv4Slice>
+   virtual public composite<SocketAddressIPv4Interface>
    {
    public:
 
@@ -94,10 +94,10 @@ namespace subsystem
       virtual void initialize_socket_address_ipv4() override;
       //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
       virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) override;
-      virtual void initialize_socket_address_ipv4(const SocketAddressIPv4Interface &socketAddressIPv4) override;
+      virtual void initialize_socket_address_ipv4(SocketAddressIPv4Interface * psocketAddressIPv4) override;
 
 
-      virtual void assign(const SocketAddressIPv4Interface &socketAddressIPv4) override;
+      virtual void assign(SocketAddressIPv4Interface * psocketAddressIPv4) override;
 
 
       ///socklen_t getAddrLen() const = 0;

@@ -34,7 +34,7 @@ namespace innate_subsystem
 {
 
 
-   class TextBoxSlice :
+   class TextBoxInterface :
    virtual public ::particle_base
    {
    public:
@@ -80,14 +80,14 @@ namespace innate_subsystem
       virtual void showBalloonTip(TooltipInterface *ptooltip) = 0;
    };
 
-   using TextBoxInterface = particle_interface<TextBoxSlice, ControlInterface>;
+   //using TextBoxInterface = particle_interface<TextBoxInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM TextBoxComposite :
-      virtual public composite<TextBoxSlice, Control>
+      virtual public composite<TextBoxInterface>
     {
     public:
 
-      implement_compositeø(TextBox, Control, textbox)
+      implement_compositeø(TextBox, textbox)
       
        //TextBox();
         //~TextBox();
@@ -128,11 +128,11 @@ namespace innate_subsystem
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM TextBox :
-   virtual public TextBoxComposite,
-   virtual public Control
+   virtual public aggregate< TextBoxComposite, Control >
    {
    public:
 
+      implement_aggregateø(TextBox, Control)
 
    };
 

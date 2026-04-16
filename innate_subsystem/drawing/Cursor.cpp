@@ -30,119 +30,124 @@
 
 namespace innate_subsystem
 {
-    
-   Cursor::Cursor()
-   //: m_bHasOwnCursor(true), m_hcursor(NULL)
-   {
-   }
 
-//    Cursor::Cursor(HICON icon)
-// : m_bHasOwnIcon(true), m_hcursor(icon)
+
+//
+//    Cursor::Cursor()
+//    //: m_bHasOwnCursor(true), m_hcursor(NULL)
 //    {
 //    }
 //
-//    Cursor::Cursor(Bitmap *bitmap)
-//    : m_bHasOwnIcon(true), m_hcursor(NULL)
+// //    Cursor::Cursor(HICON icon)
+// // : m_bHasOwnIcon(true), m_hcursor(icon)
+// //    {
+// //    }
+// //
+// //    Cursor::Cursor(Bitmap *bitmap)
+// //    : m_bHasOwnIcon(true), m_hcursor(NULL)
+// //    {
+// //       Bitmap mask(bitmap->getWidth(), bitmap->getHeight());
+// //       fromBitmap(bitmap, &mask);
+// //    }
+// //
+// //    Cursor::Cursor(Bitmap *bitmap, Bitmap *mask)
+// //    : m_bHasOwnIcon(true), m_hcursor(NULL)
+// //    {
+// //       fromBitmap(bitmap, mask);
+// //    }
+// //
+// //    Cursor::Cursor(DWORD icon)
+// //    : m_bHasOwnIcon(false)
+// //    {
+// //       HINSTANCE hInstance = GetModuleHandle(NULL);
+// //       m_hcursor = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
+// //    }
+// //
+//
+//
+//    Cursor::~Cursor()
 //    {
-//       Bitmap mask(bitmap->getWidth(), bitmap->getHeight());
-//       fromBitmap(bitmap, &mask);
+//       //if (m_bHasOwnIcon) {
+//       //   DestroyIcon(m_hcursor);
+//       //}
 //    }
 //
-//    Cursor::Cursor(Bitmap *bitmap, Bitmap *mask)
-//    : m_bHasOwnIcon(true), m_hcursor(NULL)
+//
+//    void Cursor::initialize_cursor(::innate_subsystem::CursorInterface * pcursor)
+//
 //    {
-//       fromBitmap(bitmap, mask);
+//
+//       m_pparticleThis->initialize_cursor(pcursor);
+//       //m_bHasOwnIcon = true;
+//       //::cast < ::innate_subsystem_windows::Cursor > piconWin32 = ::subsystem::get_implementation(picon);
+//       //m_hcursor = piconWin32->m_hcursor;
 //    }
 //
-//    Cursor::Cursor(DWORD icon)
-//    : m_bHasOwnIcon(false)
+//    void Cursor::initialize_cursor(innate_subsystem::BitmapInterface *pbitmap)
+//
 //    {
-//       HINSTANCE hInstance = GetModuleHandle(NULL);
-//       m_hcursor = LoadIcon(hInstance, MAKEINTRESOURCE(icon));
+//
+//       m_pparticleThis->initialize_cursor(pbitmap);
+//       //m_bHasOwnIcon = true;
+//
+//       //m_hcursor = nullptr;
+//
+//       //Bitmap mask;
+//       //mask.initialize_bitmap(pbitmap->getSize());
+//       //fromBitmap(pbitmap, &mask);
 //    }
 //
+//    void Cursor::initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask)
+//    //:
+//    {
+//
+//       m_pparticleThis->initialize_cursor(bitmap, mask);
+//       //m_bHasOwnIcon = true;
+//       //m_hcursor = nullptr;
+//       //fromBitmap(bitmap, mask);
+//    }
+//
+//
+//    void Cursor::initialize_with_system_cursor(::enum_cursor ecursor)
+//    {
+//       m_pparticleThis->initialize_with_system_cursor(ecursor);
+//    }
+//
+//
+//    //void Cursor::initialize_cursor(unsigned int icon) {
+//    //   m_pparticleThis->initialize_cursor(icon);
+//    //}
+//
+//
+//
+//     void * Cursor::_HCURSOR()
+//     {
+//
+//        return m_pparticleThis->_HCURSOR();
+//     }
+//
+//         void Cursor::_setHCURSOR(void * pHCURSOR) { m_pparticleThis->_setHCURSOR(pHCURSOR); }
+//
+//    void Cursor::fromBitmap(::innate_subsystem::BitmapInterface *pbitmap, ::innate_subsystem::BitmapInterface *pbitmapMask)
+//    {
+//
+//       m_pparticleThis->fromBitmap(pbitmap, pbitmapMask);
+//        /*
+//       CURS ii;
+//
+//       memset(&ii, 0, sizeof(ICONINFO));
+//
+//       auto pbitmapWin32 = pbitmap->impl<innate_subsystem_windows::Bitmap>();
+//       auto pbitmapMaskWin32 = pbitmapMask->impl<innate_subsystem_windows::Bitmap>();
+//
+//       ii.hbmColor = (pbitmapWin32 != 0) ? pbitmapWin32->m_hbitmap : 0;
+//       ii.hbmMask = (pbitmapMaskWin32 != 0) ? pbitmapMaskWin32->m_hbitmap : 0;
+// */
+//       //m_hcursor = CreateIconIndirect(&ii);
+//
+//    }
+//
+//
 
-
-   Cursor::~Cursor()
-   {
-      //if (m_bHasOwnIcon) {
-      //   DestroyIcon(m_hcursor);
-      //}
-   }
-
-
-   void Cursor::initialize_cursor(::innate_subsystem::CursorInterface * pcursor)
-
-   {
-
-      m_pparticleThis->initialize_cursor(pcursor);
-      //m_bHasOwnIcon = true;
-      //::cast < ::innate_subsystem_windows::Cursor > piconWin32 = ::subsystem::get_implementation(picon);
-      //m_hcursor = piconWin32->m_hcursor;
-   }
-
-   void Cursor::initialize_cursor(innate_subsystem::BitmapInterface *pbitmap)
-
-   {
-
-      m_pparticleThis->initialize_cursor(pbitmap);
-      //m_bHasOwnIcon = true;
-
-      //m_hcursor = nullptr;
-
-      //Bitmap mask;
-      //mask.initialize_bitmap(pbitmap->getSize());
-      //fromBitmap(pbitmap, &mask);
-   }
-
-   void Cursor::initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask)
-   //:
-   {
-
-      m_pparticleThis->initialize_cursor(bitmap, mask);
-      //m_bHasOwnIcon = true;
-      //m_hcursor = nullptr;
-      //fromBitmap(bitmap, mask);
-   }
-
-
-   void Cursor::initialize_with_system_cursor(::enum_cursor ecursor)
-   {
-      m_pparticleThis->initialize_with_system_cursor(ecursor);
-   }
-
-
-   //void Cursor::initialize_cursor(unsigned int icon) {
-   //   m_pparticleThis->initialize_cursor(icon);
-   //}
-
-
-
-    void * Cursor::_HCURSOR()
-    { 
-       
-       return m_pparticleThis->_HCURSOR();
-    }
-
-        void Cursor::_setHCURSOR(void * pHCURSOR) { m_pparticleThis->_setHCURSOR(pHCURSOR); }
-
-   void Cursor::fromBitmap(::innate_subsystem::BitmapInterface *pbitmap, ::innate_subsystem::BitmapInterface *pbitmapMask)
-   {
-
-      m_pparticleThis->fromBitmap(pbitmap, pbitmapMask);
-       /*
-      CURS ii;
-
-      memset(&ii, 0, sizeof(ICONINFO));
-
-      auto pbitmapWin32 = pbitmap->impl<innate_subsystem_windows::Bitmap>();
-      auto pbitmapMaskWin32 = pbitmapMask->impl<innate_subsystem_windows::Bitmap>();
-
-      ii.hbmColor = (pbitmapWin32 != 0) ? pbitmapWin32->m_hbitmap : 0;
-      ii.hbmMask = (pbitmapMaskWin32 != 0) ? pbitmapMaskWin32->m_hbitmap : 0;
-*/
-      //m_hcursor = CreateIconIndirect(&ii);
-
-   }
 } // namespace innate_subsystem_windows
 

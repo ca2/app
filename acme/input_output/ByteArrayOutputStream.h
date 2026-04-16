@@ -35,13 +35,13 @@
    class CLASS_DECL_ACME ByteArrayOutputStream : public OutputStream
    {
    public:
-      static const size_t DEFAULT_INNER_BUFFER_CAPACITY = 1024;
+      static const memsize DEFAULT_INNER_BUFFER_CAPACITY = 1024;
    public:
       /**
        * Creates new memory output stream with inner memory buffer.
        * @param max capacity of buffer (in bytes).
        */
-      ByteArrayOutputStream(size_t max);
+      ByteArrayOutputStream(memsize max);
       /**
        * Creates new memory output stream  with inner memory buffer with default capacity.
        */
@@ -65,7 +65,7 @@
       /**
        * Returns size of written data.
        */
-      size_t size() const;
+      memsize size() const;
 
       /**
        * Returns written data.
@@ -75,7 +75,7 @@
    protected:
       bool m_ownMemory;
       char *m_buffer;
-      size_t m_size;
-      size_t m_max;
+      memsize m_size;
+      memsize m_max;
    };
 //}//namespace subsystem

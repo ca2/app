@@ -54,7 +54,7 @@ namespace subsystem
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
    class SocketIPv4Interface :
-      virtual public particle_interface<SocketIPv4Interface >
+      virtual public ::particle_base
    {
    public:
       /**
@@ -197,24 +197,28 @@ namespace subsystem
    };
 
 
-
+   //using SocketIPv4Interface = particle_interface<SocketIPv4Interface>;
+///
       /**
     * IPv4 Socket class.
     *
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
-   class CLASS_DECL_SUBSYSTEM SocketIPv4 :
+   class CLASS_DECL_SUBSYSTEM SocketIPv4Composite :
       virtual public composite<SocketIPv4Interface >
    {
    public:
+
+      implement_compositeø(SocketIPv4, socketipv4)
+
       /**
        * Creates new socket.
        */
-      SocketIPv4();
+      //SocketIPv4();
       /**
        * Deletes and closes socket.
        */
-      virtual ~SocketIPv4() override;
+      //virtual ~SocketIPv4() override;
 
       /**
        * Connects to remote host.
@@ -349,12 +353,11 @@ namespace subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM SocketIPv4 : virtual public aggregate<SocketIPv4Composite>
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(SocketIPv4);
 
     };
 

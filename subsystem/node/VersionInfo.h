@@ -33,7 +33,7 @@ namespace subsystem
    /**
     * Contains information about executable file version info.
     */
-   class VersionInfoSlice :
+   class VersionInfoInterface :
       virtual public ::particle_base
    {
    public:
@@ -63,13 +63,13 @@ namespace subsystem
    };
 
 
-    using VersionInfoInterface= particle_interface<VersionInfoSlice>;
+    //using VersionInfoInterface= particle_interface<VersionInfoInterface>;
 
    /**
  * Contains information about executable file version info.
  */
    class CLASS_DECL_SUBSYSTEM VersionInfoComposite :
-      virtual public composite<VersionInfoSlice >
+      virtual public composite<VersionInfoInterface >
    {
    public:
 

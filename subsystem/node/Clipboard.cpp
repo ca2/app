@@ -130,9 +130,9 @@ namespace subsystem
    //    return m_pparticleThis->addCR(scopedstr);
    //    // ::string chars(scopedstr);
    //    // ::string newChars;
-   //    // size_t countLF = 0;
+   //    // memsize countLF = 0;
    //    // auto p = newChars.get_buffer(chars.length() * 2 + 1);
-   //    // for (size_t i = 0; i < chars.size(); i++)
+   //    // for (memsize i = 0; i < chars.size(); i++)
    //    // {
    //    //    // if is first byte or previous byte not CR, then add CR
    //    //    if ((i == 0 || chars[i-1] != CR) && chars[i] == LF)
@@ -155,10 +155,10 @@ namespace subsystem
    //
    //    // ::string chars(scopedstr);
    //    // ::string newChars;
-   //    // size_t countLF = 0;
+   //    // memsize countLF = 0;
    //    // auto p = newChars.get_buffer(chars.length() + 1);
-   //    // size_t j = 0;
-   //    // for (size_t i = 0; i < chars.size(); i++)
+   //    // memsize j = 0;
+   //    // for (memsize i = 0; i < chars.size(); i++)
    //    // {
    //    //    if (chars[i] != CR || i + 1 == chars.size() || chars[i+1] != LF)
    //    //    {

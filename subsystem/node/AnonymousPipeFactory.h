@@ -32,7 +32,7 @@ namespace subsystem
 {
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
-   class AnonymousPipeFactorySlice :
+   class AnonymousPipeFactoryInterface :
    virtual public ::particle_base
    {
    public:
@@ -64,13 +64,13 @@ namespace subsystem
    };
 
 
-   using AnonymousPipeFactoryInterface = particle_interface<AnonymousPipeFactorySlice>;
+   ///using AnonymousPipeFactoryInterface = particle_interface<AnonymousPipeFactoryInterface>;
 
 
    // The AnonymousPipeFactory class generates the ::pair of the AnonymousPipe
    // objects that connected to each other.
    class CLASS_DECL_SUBSYSTEM AnonymousPipeFactoryComposite :
-   virtual public composite< AnonymousPipeFactorySlice >
+   virtual public composite< AnonymousPipeFactoryInterface >
    {
    public:
 
@@ -83,7 +83,12 @@ namespace subsystem
       //~AnonymousPipeFactory() override;
 
 
-      void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) override;
+      void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) override
+      {
+
+         m_panonymouspipefactory->initialize_anonymous_pipe_factory(bufferSize, plogwriter);
+
+      }
 
       // This function generates the ::pair of the AnonymousPipe
       // objects that connected to each other.
@@ -99,7 +104,12 @@ namespace subsystem
       void generatePipes(::pointer < AnonymousPipeInterface > &firstSide,
                          bool firstSideIsInheritable,
                          ::pointer < AnonymousPipeInterface > & secondSide,
-                         bool secondSideIsInheritable) override;
+                         bool secondSideIsInheritable) override
+      {
+
+         m_panonymouspipefactory->generatePipes(firstSide, firstSideIsInheritable, secondSide, secondSideIsInheritable);
+
+      }
 
    // private:
    //    LogWriter *m_plogwriter;

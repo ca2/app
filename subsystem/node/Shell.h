@@ -40,7 +40,7 @@ namespace subsystem
     *
     * @author enikey.
     */
-   class ShellSlice :
+   class ShellInterface :
       virtual public ::particle_base
    {
    public:
@@ -76,7 +76,7 @@ namespace subsystem
    };
 
    
-   using ShellInterface = particle_interface<ShellSlice>;
+   //using ShellInterface = particle_interface<ShellInterface>;
 
    /**
  * Wrapper over WinAPI shell functions.
@@ -84,7 +84,7 @@ namespace subsystem
  * @author enikey.
  */
    class CLASS_DECL_SUBSYSTEM ShellComposite :
-   virtual public composite<ShellSlice >
+   virtual public composite<ShellInterface >
    {
    public:
 
@@ -102,7 +102,12 @@ namespace subsystem
        * @param parameters execute parameters.
        * @throws SystemException on fail.
        */
-       void runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters) override;
+          void runAsAdmin(const ::file::path& pathToFile, const ::scoped_string& scopedstrParameters) override
+       {
+
+          m_pshell->runAsAdmin(pathToFile, scopedstrParameters);
+
+       }
 
       /**
        * Opens file with default action specified in Windows.
@@ -111,9 +116,14 @@ namespace subsystem
        * @param workDirectory working directory.
        * @throws SystemException on fail.
        */
-      void open(const ::scoped_string & scopedstrFile,
-                       const ::scoped_string & scopedstrParameters,
-                       const ::scoped_string & scopedstrworkDirectory) override;
+       void open(const ::scoped_string& scopedstrFile,
+          const ::scoped_string& scopedstrParameters,
+          const ::scoped_string& scopedstrworkDirectory) override
+       {
+
+          m_pshell->open(scopedstrFile, scopedstrParameters, scopedstrworkDirectory);
+
+      }
       //private:
       /**
        * Don't allow instanizing of class.

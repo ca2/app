@@ -34,7 +34,7 @@ namespace subsystem
    /**
     * Pipe client factory.
     */
-   class PipeClientSlice :
+   class PipeClientInterface :
       virtual public ::particle_base
    {
    public:
@@ -53,13 +53,13 @@ namespace subsystem
    };
 
 
-    using PipeClientInterface = particle_interface<PipeClientSlice>;
+    //using PipeClientInterface = particle_interface<PipeClientInterface>;
 
    /**
  * Pipe client factory.
  */
    class CLASS_DECL_SUBSYSTEM PipeClientComposite :
-   virtual public composite<PipeClientSlice>
+   virtual public composite<PipeClientInterface>
    {
    public:
 
@@ -70,7 +70,12 @@ namespace subsystem
 
       //~PipeClient() override;
 
-      ::pointer < NamedPipe  >connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) override;
+         ::pointer < NamedPipe  >connect(const ::scoped_string& scopedstrName, unsigned int maxPortionSize) override
+      {
+
+         return m_ppipeclient->connect(scopedstrName, maxPortionSize);
+
+      }
 
    // private:
    //    PipeClient();

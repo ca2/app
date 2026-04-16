@@ -33,7 +33,7 @@ namespace subsystem
 {
 
 
-   class ClipboardSlice :
+   class ClipboardInterface :
     virtual public ::particle_base
     {
        public:
@@ -70,10 +70,10 @@ namespace subsystem
       // HWND m_hwnd;
    };
 
-    using ClipboardInterface = particle_interface < ClipboardSlice >;
+    //using ClipboardInterface = particle_interface < ClipboardInterface >;
 
    class CLASS_DECL_SUBSYSTEM ClipboardComposite :
-   virtual public composite< ClipboardSlice>
+   virtual public composite< ClipboardInterface>
    {
    public:
 
@@ -84,15 +84,34 @@ namespace subsystem
        //~Clipboard() override;
 
 
-      void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) override;
+      void initialize_clipboard(const ::operating_system::window & operatingsystemwindow) override
+       {
+          m_pclipboard->initialize_clipboard(operatingsystemwindow);
 
-      void setHWnd(const ::operating_system::window & operatingsystemwindow) override;
+       }
+
+      void setHWnd(const ::operating_system::window & operatingsystemwindow) override
+       {
+
+          m_pclipboard->setHWnd(operatingsystemwindow);
+
+       }
 
       // get string from windows clipboard
-      bool getString(::string & str) override;
+      bool getString(::string & str) override
+       {
+
+          return m_pclipboard->getString(str);
+
+       }
 
       // update windows clipboard
-      bool setString(const ::scoped_string & scopedstr) override;
+      bool setString(const ::scoped_string & scopedstr) override
+       {
+
+          return m_pclipboard->setString(scopedstr);
+
+       }
 
       // //protected:
       // static const char CR = '\r';
@@ -100,10 +119,20 @@ namespace subsystem
 
       //protected:
       // function removed CR before LF
-      ::string removeCR(const ::scoped_string & scopedstr)override;
+      ::string removeCR(const ::scoped_string & scopedstr)override
+       {
+
+          return m_pclipboard->removeCR(scopedstr);
+
+       }
 
       // function replaced LF to CR+LF. If before LF already is CR, this not added second
-      ::string addCR(const ::scoped_string & scopedstr) override;
+      ::string addCR(const ::scoped_string & scopedstr) override
+       {
+
+          return m_pclipboard->addCR(scopedstr);
+
+       }
 
       // HANDLE m_hndClipboard;
       // HWND m_hwnd;

@@ -26,29 +26,34 @@
 
 namespace innate_subsystem
 {
-   // SolidBrush::SolidBrush(const ::color::color & color)
-   // : Brush()
-   // {
-   //    m_brush = CreateSolidBrush(color);
-   // }
-
-   SolidBrush::SolidBrush()
-   {
 
 
-   }
+//    // SolidBrush::SolidBrush(const ::color::color & color)
+//    // : Brush()
+//    // {
+//    //    m_brush = CreateSolidBrush(color);
+//    // }
+//
+//    SolidBrush::SolidBrush()
+//    {
+//
+//
+//    }
+//
+//
+//    SolidBrush::~SolidBrush()
+//    {
+//    }
+//
+//
+//    void SolidBrush::initialize_solid_brush(const ::color::color & color)
+// //: Brush()
+// {
+//       m_pparticleThis->initialize_solid_brush(color);
+//    //}
+//      // m_brush = CreateSolidBrush(color);
+//    }
+//
+//
 
-
-   SolidBrush::~SolidBrush()
-   {
-   }
-
-
-   void SolidBrush::initialize_solid_brush(const ::color::color & color)
-//: Brush()
-{
-      m_pparticleThis->initialize_solid_brush(color);
-   //}
-     // m_brush = CreateSolidBrush(color);
-   }
 } // namesapce innate_subsystem;

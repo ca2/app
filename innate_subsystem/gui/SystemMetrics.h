@@ -8,7 +8,7 @@ namespace innate_subsystem
 {
 
     class SystemMetricsInterface :
-        virtual public particle_interface<SystemMetricsInterface>
+        virtual public ::particle_base
     {
     public:
         //virtual ~SystemMetricsInterface() = 0;
@@ -21,13 +21,18 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_INNATE_SUBSYSTEM SystemMetrics :
+    class CLASS_DECL_INNATE_SUBSYSTEM SystemMetricsComposite :
         virtual public composite <SystemMetricsInterface>
     {
     public:
 
-        SystemMetrics();
-        ~SystemMetrics() override;
+
+       implement_compositeø(SystemMetrics, systemmetrics)
+
+
+
+        //SystemMetrics();
+        //~SystemMetrics() override;
 
 
         ::int_size get_small_icon_size_in_pixels() override;
@@ -35,5 +40,16 @@ namespace innate_subsystem
 
     };
 
+
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM SystemMetrics:
+       virtual public aggregate <SystemMetricsComposite>
+   {
+   public:
+
+      implement_baseø(SystemMetrics);
+
+   };
 
 } // namespace innate_subsystem

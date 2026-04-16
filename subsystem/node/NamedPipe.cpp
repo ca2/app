@@ -89,12 +89,12 @@ namespace subsystem
 //   }
 //
 //
-//   size_t NamedPipe::available()
+//   memsize NamedPipe::available()
 //      {
 //      return m_pparticleThis->available();
 //   }
 //
-//   size_t NamedPipe::read(void *buffer, size_t len)
+//   memsize NamedPipe::read(void *buffer, memsize len)
 //   {
 //      //return readByHandle(buffer, len, m_hPipe);
 //      return m_pparticleThis->read(buffer, len);

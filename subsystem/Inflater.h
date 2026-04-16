@@ -40,7 +40,7 @@ namespace subsystem
         // FIXME: Debug method.
         //
 
-        void setUnpackedSize(size_t size);
+        void setUnpackedSize(memsize size);
 
         //void inflate() throw(ZLibException);
 
@@ -53,7 +53,7 @@ namespace subsystem
         // FIXME: Debug member
         //
 
-        size_t m_unpackedSize;
+        memsize m_unpackedSize;
     };
 
 //#endif

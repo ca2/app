@@ -36,7 +36,7 @@ namespace innate_subsystem
 {
 
 
-    class TooltipSlice :
+    class TooltipInterface :
     virtual public ::particle_base
     {
     public:
@@ -56,14 +56,17 @@ namespace innate_subsystem
     };
 
     //#endif
-   using TooltipInterface = particle_interface<TooltipSlice, WindowInterface>;
+   //using TooltipInterface = particle_interface<TooltipInterface, WindowInterface>;
    
-   class CLASS_DECL_INNATE_SUBSYSTEM Tooltip :
-   virtual public composite<TooltipSlice, WindowInterface>
+   class CLASS_DECL_INNATE_SUBSYSTEM TooltipComposite :
+   virtual public composite<TooltipInterface>
    {
    public:
-      Tooltip();
-      ~Tooltip() override;
+
+      implement_compositeø(Tooltip, Control)
+
+      //Tooltip();
+      //~Tooltip() override;
 
       void showTooltip(ControlInterface *control) override;
 
@@ -75,6 +78,16 @@ namespace innate_subsystem
 
       void setIconType(int iconType) override;
       int getIconType() const override;
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Tooltip :
+   virtual public aggregate <TooltipComposite, Control>
+   {
+   public:
+
+      implement_aggregateø(Tooltip, Control)
+
    };
 
 

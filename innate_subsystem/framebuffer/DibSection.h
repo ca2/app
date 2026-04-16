@@ -40,7 +40,7 @@ namespace innate_subsystem
 
       // This clas is a primitive wrapper to a DIB section.
    class  DibSectionInterface :
-      virtual public particle_interface<DibSectionInterface>
+      virtual public ::particle_base
    {
    public:
       // Note that if the compatibleWin doesn't specify or is zero the class will create an
@@ -119,10 +119,14 @@ namespace innate_subsystem
 
 
    // This clas is a primitive wrapper to a DIB section.
-   class CLASS_DECL_INNATE_SUBSYSTEM DibSection :
+   class CLASS_DECL_INNATE_SUBSYSTEM DibSectionComposite :
    virtual public composite < DibSectionInterface >
    {
    public:
+
+
+      implement_compositeø(DibSection, dibsection)
+
       // Note that if the compatibleWin doesn't specify or is zero the class will create an
       // DC for the entire screen. In this case an this object owner must provide
       // destructor calling from the same thread that called the constructor.
@@ -130,8 +134,8 @@ namespace innate_subsystem
       // It may be changed many times later. Note that changed DC must be compatible with
       // the DIB section.
       //DibSection(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {});
-      DibSection();
-      ~DibSection() override;
+      //DibSection();
+      //~DibSection() override;
 
 
       void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {}) override;
@@ -197,5 +201,16 @@ namespace innate_subsystem
       // Screen m_screen;
    };
 
-   //// __DIBSECTION_H__
+   // This clas is a primitive wrapper to a DIB section.
+   class CLASS_DECL_INNATE_SUBSYSTEM DibSection :
+   virtual public composite < DibSectionComposite >
+   {
+   public:
+
+      implement_baseø(DibSection)
+
+   };
+
+
+
 } // namespace innate_subsystem

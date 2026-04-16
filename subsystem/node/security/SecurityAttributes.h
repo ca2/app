@@ -33,8 +33,9 @@
 
 namespace subsystem
 {
+
    class SecurityAttributesInterface :
-   virtual public particle_interface<SecurityAttributesInterface>
+   virtual public ::particle_base
    {
    public:
       //SecurityAttributes();
@@ -65,27 +66,50 @@ namespace subsystem
    //     */
       //SecurityDescriptor m_sd;
    };
-   class CLASS_DECL_SUBSYSTEM SecurityAttributes :
+
+   //using SecurityAttributesInterface = particle_interface<SecurityAttributesInterface>;
+
+   class CLASS_DECL_SUBSYSTEM SecurityAttributesComposite :
    virtual public composite<SecurityAttributesInterface>
    {
    public:
-      SecurityAttributes();
-      ~SecurityAttributes() override;
+
+      implement_compositeø(SecurityAttributes, securityattributes)
+
+      //SecurityAttributes();
+      //~SecurityAttributes() override;
 
       // Sets the security attributes to default values. After calling this
       // function the getSecurityAttributes() function will to return zero until
       // attributes was changed by another functions.
-      void setDefaultAttributes() override;
+      void setDefaultAttributes() override
+      {
+
+         m_psecurityattributes->setDefaultAttributes();
+
+      }
+
+
 
       // Sets security attributes that allow all access to all.
-      void shareToAllUsers() override;
+      void shareToAllUsers() override
+      {
+
+         m_psecurityattributes->shareToAllUsers();
+
+      }
 
       // If immediately before was called the setDefaultAttributes() function
       // returns zero otherwise returns pointer to SECURITY_ATTRIBUTES structure.
       //SECURITY_ATTRIBUTES *getSecurityAttributes();
 
       // Set inheritable flag of the SECURITY_ATTRIBUTES structure to true
-      void setInheritable() override;
+      void setInheritable() override
+      {
+
+         m_psecurityattributes->setInheritable();
+
+      }
 
       // private:
       //    SECURITY_ATTRIBUTES m_securityAttributes;

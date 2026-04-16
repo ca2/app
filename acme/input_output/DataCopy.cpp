@@ -5,18 +5,18 @@
 //{
    DataCopy::DataCopy() {}
 
-   size_t DataCopy::write(const void* buffer, size_t len)
+   memsize DataCopy::write(const void* buffer, memsize len)
    {
       m_memory.append(buffer, len);
       return len;
    }
 
-   size_t DataCopy::read(void* buffer, size_t len)
+   memsize DataCopy::read(void* buffer, memsize len)
    {
       auto read = minimum(len, m_memory.size());
       m_memory.copy_to(buffer, read);
       m_memory.delete_begin(read);
-      // size_t have = buf.size();
+      // memsize have = buf.size();
       // if (have < len) {
       //   len = have;
       // }
@@ -26,7 +26,7 @@
       return read;
    }
 
-   size_t DataCopy::available()
+   memsize DataCopy::available()
    {
       return m_memory.size();
    }

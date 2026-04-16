@@ -33,7 +33,7 @@ WinCommandLineArgs::WinCommandLineArgs(const ::scoped_string & scopedstrCmdLineI
 {
    ::string strstorage(scopedstrCmdLineInWinFormat);
   ::wstring uniCmdLine(strstorage);
-  size_t cmdLen = uniCmdLine.length();
+  memsize cmdLen = uniCmdLine.length();
   if (cmdLen > 0) {
     int nArgs;
     LPWSTR *argList = CommandLineToArgvW(uniCmdLine, &nArgs);

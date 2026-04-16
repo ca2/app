@@ -71,7 +71,7 @@ enum Authority {
  * variable number of subauthority or relative identifier (RID) values that uniquely
  * identify the trustee relative to the authority that issued the SID.
  */
-class SecurityIdentifierSlice :
+class SecurityIdentifierInterface :
    virtual public ::particle_base
 {
 public:
@@ -145,7 +145,7 @@ public:
   * identify the trustee relative to the authority that issued the SID.
   */
  class CLASS_DECL_SUBSYSTEM SecurityIdentifierComposite :
-    virtual public composite<SecurityIdentifierSlice>
+    virtual public composite<SecurityIdentifierInterface>
  {
  public:
 
@@ -169,22 +169,36 @@ public:
     */
    //~SecurityIdentifier() override;
 
-    void initialize_security_identifier(const ::scoped_string & scopedstr) override;
+    void initialize_security_identifier(const ::scoped_string & scopedstr) override
+     {
+
+        m_psecurityidentifier->initialize_security_identifier(scopedstr);
+
+     }
 
    /**
     * Validates a security identifier (SID) by verifying that the revision number is within a known range,
     * and that the number of subauthorities is less than the maximum.
     * @return true if the SID structure is valid, false otherwise.
     */
-   bool isValid() override;
+   bool isValid() override
+ {
+
+    return m_psecurityidentifier->isValid();
+
+ }
 
    /**
     * Converts a security identifier (SID) to a string.
     * @param sidString string storage where result will be stored.
     * @throws SystemException if error occurs.
     */
-   void toString(::string & str) override;
+   void toString(::string & str) override
+ {
 
+    m_psecurityidentifier->toString(str);
+
+ }
 
    /**
     * Creates SID from sid string.

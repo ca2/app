@@ -114,7 +114,7 @@ namespace subsystem
 //       // }
 //    }
 //
-//    size_t AnonymousPipe::read(void *buffer, size_t len)
+//    memsize AnonymousPipe::read(void *buffer, memsize len)
 //    {
 //       return m_pparticleThis->read(buffer, len);
 //       // try {
@@ -157,7 +157,7 @@ namespace subsystem
 //    }
 //
 //
-//    size_t AnonymousPipe::available()
+//    memsize AnonymousPipe::available()
 //    {
 //
 //       return m_pparticleThis->available();

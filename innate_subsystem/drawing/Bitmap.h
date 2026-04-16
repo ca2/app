@@ -34,7 +34,6 @@ namespace innate_subsystem
 
 
    class BitmapInterface :
-   virtual public particle_interface<BitmapInterface>,
    virtual public GraphicsObject
    {
    public:

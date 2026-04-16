@@ -108,17 +108,18 @@ namespace subsystem_bsd_sockets
       this->m_port = psocketaddressBsd->m_port;
    };
 
-   void SocketAddressIPv4::initialize_socket_address_ipv4(const ::subsystem::SocketAddressIPv4Interface & socketAddressIPv4)
+   void SocketAddressIPv4::initialize_socket_address_ipv4(::subsystem::SocketAddressIPv4Interface * psocketAddressIPv4)
    {
-      auto  psocketaddressBsd = socketAddressIPv4.impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+      auto  psocketaddressBsd = psocketAddressIPv4->impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
       m_addr = psocketaddressBsd->m_addr;
       m_port = psocketaddressBsd->m_port;
    }
 
-   void SocketAddressIPv4::assign(const ::subsystem::SocketAddressIPv4Interface  &socketAddressIPv4)
+   void SocketAddressIPv4::assign(::subsystem::SocketAddressIPv4Interface * psocketAddressIPv4)
    {
-      if (this != &socketAddressIPv4) {
-         auto  psocketaddressBsd = socketAddressIPv4.impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+      auto  psocketaddressBsd = psocketAddressIPv4->impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
+      if (this != psocketaddressBsd)
+      {
          m_addr = psocketaddressBsd->m_addr;
          m_port = psocketaddressBsd->m_port;
       }

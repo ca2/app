@@ -32,7 +32,7 @@
 
 namespace  subsystem
 {
-   class DisplaysSlice :
+   class DisplaysInterface :
    virtual public ::particle_base
    {
    public:
@@ -69,26 +69,48 @@ namespace  subsystem
       // class ::time m_latestUpdateTime;
    };
 
-   using DisplaysInterface = particle_interface<DisplaysSlice>;
+   //using DisplaysInterface = particle_interface<DisplaysInterface>;
 
-   class CLASS_DECL_SUBSYSTEM Displays:
-virtual public composite<DisplaysSlice>
+   class CLASS_DECL_SUBSYSTEM DisplaysComposite:
+virtual public composite<DisplaysInterface>
    {
    public:
-      Displays();
-       ~Displays() override;
+
+
+      implement_compositeø(Displays, displays)
+
+
+      //Displays();
+       //~Displays() override;
 
       // If a display does not exist now the function return an empty rectangle.
-      void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) override;
+      void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) override
+      {
 
-      ::array_base<::int_rectangle> getDisplaysCoords() override;
+         m_pdisplays->getDisplayCoordinates(displayNumber, rect);
+
+      }
+
+      ::array_base<::int_rectangle> getDisplaysCoords() override
+      {
+
+         return m_pdisplays->getDisplaysCoords();
+      }
 
       // Returns a ::array_base that contain dispalys coordinates at the current time.
-      ::array_base<::int_rectangle> getDisplays() override;
+      ::array_base<::int_rectangle> getDisplays() override
+      {
+
+         return m_pdisplays->getDisplays();
+      }
 
    //private:
       // Updates internal information to a current state.
-      void update() override;
+      void update() override
+      {
+
+         return m_pdisplays->update();
+      }
 
       // static BOOL CALLBACK monitorEnumProc(HMONITOR hMonitor,
       //                                      HDC hdcMonitor,
@@ -96,7 +118,12 @@ virtual public composite<DisplaysSlice>
       //                                      LPARAM dwData);
 
       // Returns true if the update() function has been called lately.
-      bool isAlreadyUpdated() override;
+      bool isAlreadyUpdated() override
+      {
+
+         return m_pdisplays->isAlreadyUpdated();
+
+      }
 
       // int m_xVirtualScreen;
       // int m_yVirtualScreen;

@@ -35,7 +35,7 @@ namespace subsystem
    {
    }
 
-   void ZLibBase::setInput(const char *input, size_t size)
+   void ZLibBase::setInput(const char *input, memsize size)
    {
       m_input = input;
       m_inputSize = size;

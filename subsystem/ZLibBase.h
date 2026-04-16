@@ -37,14 +37,14 @@ namespace subsystem
         ZLibBase();
         virtual ~ZLibBase();
 
-        void setInput(const char *input, size_t size);
+        void setInput(const char *input, memsize size);
 
         const char *getOutput() const;
         unsigned long getOutputSize() const;
 
         //protected:
         const char *m_input;
-        size_t m_inputSize;
+        memsize m_inputSize;
 
         ::memory m_output;
 

@@ -31,7 +31,7 @@ namespace subsystem
 {
 
 
-   class PipeImpersonatedThreadSlice :
+   class PipeImpersonatedThreadInterface :
    virtual public ::particle_base
    {
    public:
@@ -59,11 +59,11 @@ namespace subsystem
       // WindowsEvent m_threadSleeper;
    };
 
-    using PipeImpersonatedThreadInterface = particle_interface<PipeImpersonatedThreadSlice, ThreadInterface>;
+    //using PipeImpersonatedThreadInterface = particle_interface<PipeImpersonatedThreadInterface, ThreadInterface>;
 
 
    class CLASS_DECL_SUBSYSTEM PipeImpersonatedThreadComposite :
-      virtual public composite < PipeImpersonatedThreadSlice>
+      virtual public composite < PipeImpersonatedThreadInterface>
    {
    public:
 
@@ -84,8 +84,8 @@ namespace subsystem
       ::string getFaultReason() override {return m_ppipeimpersonatedthread->getFaultReason();}
 
    //private:
-      //void execute() override;
-      //void onTerminate() override;
+      void execute() override{}
+      void onTerminate() override{}
 
       // HANDLE m_pipeHandle;
       // bool m_success;

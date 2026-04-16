@@ -30,8 +30,10 @@
 
 namespace innate_subsystem
 {
-   class PaintWindowSlice:
-   virtual public
+
+
+   class PaintWindowInterface:
+   virtual public ::particle_base
    {
    public:
       //PaintWindow();
@@ -57,14 +59,14 @@ namespace innate_subsystem
    };
 
 
-   using PaintWindowInterface = particle_interface<PaintWindowSlice, WindowInterface>;
+   //using PaintWindowInterface = particle_interface<PaintWindowInterface, WindowInterface>;
 
        class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowComposite:
-   virtual public composite<PaintWindowSlice, Window >
+   virtual public composite<PaintWindowInterface >
    {
    public:
 
-          implement_compositeø(PaintWindow, Window, paintwindow)
+          implement_compositeø(PaintWindow, paintwindow)
       //PaintWindow();
       //~PaintWindow();
 
@@ -84,6 +86,15 @@ namespace innate_subsystem
       //::int_rectangle m_rectangle;
       //::pointer < DeviceContext > m_pdevicecontext;
       //HDC m_hdc;
+
+   };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM PaintWindow:
+virtual public aggregate<PaintWindowComposite, Window >
+   {
+   public:
+
+      implement_aggregateø(PaintWindow, Window)
 
    };
 

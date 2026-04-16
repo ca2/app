@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
     class DeviceContextInterface :
-      virtual public particle_interface<DeviceContextInterface>
+      virtual public ::particle_base
    {
    public:
       // Create device context linked to window DC.
@@ -77,15 +77,19 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM DeviceContext :
+   //using DeviceContextInterface = particle_interface<DeviceContextInterface>;
+
+   class CLASS_DECL_INNATE_SUBSYSTEM DeviceContextComposite :
       virtual public composite < DeviceContextInterface >
    {
    public:
 
 
+      implement_compositeø(DeviceContext, devicecontext)
+
       // Destroys device context.
-      DeviceContext();
-      ~DeviceContext() override;
+      //DeviceContext();
+      //~DeviceContext() override;
 
       //private:
       // Initialize class from PaintWindow
@@ -115,12 +119,12 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM File :
-    virtual public aggregate< FileComposite >
+    class CLASS_DECL_SUBSYSTEM DeviceContext :
+    virtual public aggregate< DeviceContextComposite >
     {
     public:
 
-        implement_baseø(File);
+        implement_baseø(DeviceContext);
 
     };
 

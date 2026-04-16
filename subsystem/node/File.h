@@ -8,7 +8,7 @@
 namespace subsystem
 {
 
-   class CLASS_DECL_SUBSYSTEM FileSlice :
+   class CLASS_DECL_SUBSYSTEM FileInterface :
       virtual public ::particle_base
    {
    public:
@@ -22,11 +22,11 @@ namespace subsystem
 
    };
 
-    using FileInterface = particle_interface<FileSlice>;
+    //using FileInterface = particle_interface<FileInterface>;
 
 
    class CLASS_DECL_SUBSYSTEM FileComposite :
-   virtual public composite<FileSlice >
+   virtual public composite<FileInterface >
    {
    public:
 

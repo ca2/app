@@ -39,7 +39,7 @@ namespace innate_subsystem
           static const int TB_Style_sep = 0;
       static const int TB_Style_gap = 1;
 
-   class ToolbarSlice :
+   class ToolbarInterface :
       virtual  public ::particle_base
    {
    public:
@@ -159,15 +159,15 @@ namespace innate_subsystem
    //    std::map<int, int> m_autoButtons;
    };
 
-   using ToolbarInterface = particle_interface<ToolbarSlice, ControlInterface>;
+   //using ToolbarInterface = particle_interface<ToolbarInterface, ControlInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM ToolbarComposite :
-      virtual  public composite<ToolbarSlice, ControlInterface>
+      virtual  public composite<ToolbarInterface>
    {
    public:
 
 
-      implement_compositeø(Toolbar, particle_base, toolbar)
+      implement_compositeø(Toolbar, toolbar)
 
       //Toolbar();
       //~Toolbar() override;
@@ -289,8 +289,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Toolbar :
-   virtual  public ToolbarComposite,
-   virtual public Control
+   virtual  public aggregate< ToolbarComposite, Control >
    {
    public:
 

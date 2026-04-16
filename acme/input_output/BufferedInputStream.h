@@ -15,21 +15,21 @@
 
       virtual ~BufferedInputStream();
 
-      virtual size_t read(void *buffer, size_t len);
+      virtual memsize read(void *buffer, memsize len);
 
-      size_t available();
+      memsize available();
 
    protected:
 
-      const size_t MAX_BUFFER_SIZE;
-      const size_t INITIAL_BUFFER_SIZE;
+      const memsize MAX_BUFFER_SIZE;
+      const memsize INITIAL_BUFFER_SIZE;
 
       DataInputStream *m_input;
 
       ::array_base<char> m_buffer;
 
-      size_t m_have;
-      size_t m_pos;
+      memsize m_have;
+      memsize m_pos;
 
    };
 

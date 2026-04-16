@@ -31,8 +31,8 @@
 
 //namespace subsystem
 //{
-   DataOutputStream::DataOutputStream(::file::writable * pwritable)
-   : m_outStream(pwritable)
+   DataOutputStream::DataOutputStream(OutputStream * poutput)
+   : m_outStream(poutput)
    {
    }
 
@@ -48,10 +48,10 @@
    void DataOutputStream::write(const void *buffer, memsize len)
    {
       char *typedBuffer = (char *)buffer;
-      size_t totalWritten = 0;
-      size_t left = len;
+      memsize totalWritten = 0;
+      memsize left = len;
       while (totalWritten < len) {
-         size_t written = m_outStream->defer_write(typedBuffer + totalWritten, left);
+         memsize written = m_outStream->defer_write(typedBuffer + totalWritten, left);
          left -= written;
          totalWritten += written;
       }
@@ -122,7 +122,7 @@
 
    void DataOutputStream::writeUTF8(const scoped_ansi_string &str)
    {
-      //size_t sizeInBytes = 0;
+      //memsize sizeInBytes = 0;
 
       // to UTF8 string convertion
       //Utf8StringStorage utf8String(&StringStorage(string));

@@ -166,11 +166,11 @@ namespace subsystem
    //   m_pparticleThis->fillScreenRect();
    //}
 
-   //size_t Screen::getVisibleMonitorCount()
+   //memsize Screen::getVisibleMonitorCount()
    //{
    //   // int monitorCount = GetSystemMetrics(SM_CMONITORS);
    //   // // Why check for the result? Skip it.
-   //   // return (size_t)monitorCount;
+   //   // return (memsize)monitorCount;
    //   return m_pparticleThis->getVisibleMonitorCount();
    //}
 

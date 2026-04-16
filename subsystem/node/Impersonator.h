@@ -41,7 +41,7 @@ namespace subsystem
    console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
-   class ImpersonatorSlice :
+   class ImpersonatorInterface :
    virtual public ::particle_base
    {
    public:
@@ -82,14 +82,14 @@ namespace subsystem
    };
 
 
-    using ImpersonatorInterface = particle_interface<ImpersonatorSlice>;
+    //using ImpersonatorInterface = particle_interface<ImpersonatorInterface>;
    /**
    Class for impersonating current process as user that logged on current
    console session.
    @remark: can work only in XP and later cause it uses WTSQueryUserToken function.
    */
    class CLASS_DECL_SUBSYSTEM ImpersonatorComposite :
-   virtual public composite<ImpersonatorSlice>
+   virtual public composite<ImpersonatorInterface>
    {
    public:
 
@@ -98,27 +98,52 @@ namespace subsystem
       //Impersonator();
       //~Impersonator() override;
 
-      void initialize_impersonator(LogWriter *plogwriter) override;
+          void initialize_impersonator(LogWriter* plogwriter) override
+       {
+
+          return m_pimpersonator->initialize_impersonator(plogwriter);
+
+       }
 
       /**
       Impersonates calling process as user that logged on current console session.
       @throws SystemException if impersonation fails.
       */
-      void impersonateAsLoggedUser() override;
+       void impersonateAsLoggedUser() override
+       {
+
+          m_pimpersonator->impersonateAsLoggedUser();
+
+      }
 
       /**
       Impersonates calling process as user with given token.
       @throws SystemException if impersonation fails.
       */
-      void impersonateAsCurrentProcessUser(bool rdpEnabled) override;
+       void impersonateAsCurrentProcessUser(bool rdpEnabled) override
+       {
+
+          m_pimpersonator->impersonateAsCurrentProcessUser(rdpEnabled);
+
+      }
 
       /**
       Cancels effect of impersonateAsLoggedUser method call.
       @throws SystemException on fail.
       */
-      void revertToSelf() override;
+       void revertToSelf() override
+       {
 
-      bool sessionIsLocked(bool rdpEnabled) override;
+          m_pimpersonator->revertToSelf();
+
+      }
+
+       bool sessionIsLocked(bool rdpEnabled) override
+       {
+
+          return m_pimpersonator->sessionIsLocked(rdpEnabled);
+
+      }
 
    //protected:
       //void impersonateAsUser(HANDLE token);

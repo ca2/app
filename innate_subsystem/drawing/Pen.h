@@ -60,12 +60,12 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM PenComposite :
-virtual public composite<PenInterface>
+virtual public Composite<PenInterface>
    {
    public:
 
 
-      implement_compositeø(Pen, pen)
+      ImplementCompositeø(Pen, pen)
 
       //public:
       //Pen(int type, int width, const ::color::color & color);
@@ -75,9 +75,17 @@ virtual public composite<PenInterface>
 
       //void * _HGDIOBJ() override;
 
-      void initialize_pen(enum_pen epen, int width, const ::color::color & color) override;
+         void initialize_pen(enum_pen epen, int width, const ::color::color& color) override
+      {
 
-      void destroyGraphicsObject() override;
+         m_ppen->initialize_pen(epen, width, color);
+      }
+
+      void destroyGraphicsObject() override
+      {
+
+         m_ppen->destroyGraphicsObject();
+      }
 
       // protected:
       //    HPEN m_pen;
@@ -87,15 +95,23 @@ virtual public composite<PenInterface>
 
 
 
-    class CLASS_DECL_SUBSYSTEM Pen :
-    virtual public aggregate< PenComposite >
+    class CLASS_DECL_INNATE_SUBSYSTEM PenAggregate :
+    virtual public Aggregate< PenComposite >
     {
     public:
 
-        implement_baseø(Pen);
+        ImplementBaseø(Pen);
 
     };
 
+   class CLASS_DECL_INNATE_SUBSYSTEM Pen :
+   virtual public Object< PenAggregate >
+   {
+   public:
+
+      ImplementObjectø(Pen)
+
+   };
 
 
 } // namespace innate_subsystem

@@ -32,7 +32,7 @@
 namespace innate_subsystem
 {
     class TabInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
     {
     public:
         //Tab();
@@ -83,12 +83,12 @@ namespace innate_subsystem
    
    
    class CLASS_DECL_INNATE_SUBSYSTEM TabComposite :
-      virtual public composite <TabInterface>
+      virtual public Composite <TabInterface>
    {
    public:
 
 
-      implement_compositeø(Tab, tab);
+      ImplementCompositeø(Tab, tab);
 
       //Tab();
 
@@ -99,35 +99,46 @@ namespace innate_subsystem
       // Access methods to protected members
       //
 
-      void initialize_tab(DialogInterface *dialog, const char *caption) override;
+      void initialize_tab(DialogInterface* dialog, const char* caption) override
+      {
+
+         m_ptab->initialize_tab(dialog, caption);
+      }
 
       //void setCaption(const char *caption) override; { m_caption->setString(caption); }
 
-      void setCaption(const char *caption) override;
+      void setCaption(const char* caption) override { m_ptab->setCaption(caption);
+      }
 
       // const char *getCaption() {
       //     return m_caption.getString();
       // }
 
-      const char *getCaption() override;
+      const char* getCaption() override { return m_ptab->getCaption();
+      }
 
       //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
       //BaseDialog *getDialog() { return m_dialog; }
-      void setDialog(DialogInterface *dialog) override;
-      DialogInterface *getDialog() override;
+      void setDialog(DialogInterface* dialog) override { m_ptab->setDialog(dialog);
+      }
+      DialogInterface* getDialog() override { return m_ptab->getDialog();
+      }
 
       //
       // Method return true if tab has dialog
       //
 
       // bool isOk() { return m_dialog != NULL; }
-      bool isOk() override;
+      bool isOk() override
+      { return m_ptab->isOk();
+      }
 
       //
       // Changes visible state of dialog donates by this tab
       //
 
-      void setVisible(bool visible) override;
+      void setVisible(bool visible) override { m_ptab->setVisible(visible);
+      }
 
       // protected:
       //
@@ -136,12 +147,21 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Tab :
-   virtual public aggregate <TabComposite, Control>
+   class CLASS_DECL_INNATE_SUBSYSTEM TabAggregate :
+   virtual public Aggregate <TabComposite, Control>
    {
    public:
 
-      implement_aggregateø(Tab, Control)
+      ImplementAggregateø(Tab, Control)
+
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Tab :
+virtual public Object<TabAggregate>
+   {
+   public:
+
 
    };
 

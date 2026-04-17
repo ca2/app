@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
     class DeviceContextInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
       // Create device context linked to window DC.
@@ -80,12 +80,12 @@ namespace innate_subsystem
    //using DeviceContextInterface = particle_interface<DeviceContextInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM DeviceContextComposite :
-      virtual public composite < DeviceContextInterface >
+      virtual public Composite < DeviceContextInterface >
    {
    public:
 
 
-      implement_compositeø(DeviceContext, devicecontext)
+      ImplementCompositeø(DeviceContext, devicecontext)
 
       // Destroys device context.
       //DeviceContext();
@@ -93,14 +93,26 @@ namespace innate_subsystem
 
       //private:
       // Initialize class from PaintWindow
-      void initialize_device_context(PaintWindowInterface * pntWnd) override;
+         void initialize_device_context(PaintWindowInterface* pntWnd) override
+      {
+
+         m_pdevicecontext->initialize_device_context(pntWnd);
+      }
       // Create device context linked to window DC.
-      void initialize_device_context(const ::operating_system::window & window) override;
+      void initialize_device_context(const ::operating_system::window& window) override
+      {
+         m_pdevicecontext->initialize_device_context(window);
+      }
       // Create device context complatible with other DC.
-      void initialize_device_context(DeviceContextInterface* compatibleDevice) override;
+      void initialize_device_context(DeviceContextInterface* compatibleDevice) override
+      {
+         m_pdevicecontext->initialize_device_context(compatibleDevice);
+      }
 
 
-      void destroyDeviceContext() override;
+      void destroyDeviceContext() override { m_pdevicecontext->destroyDeviceContext();
+
+      }
 
       //friend class PaintWindow;
 
@@ -119,15 +131,21 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM DeviceContext :
-    virtual public aggregate< DeviceContextComposite >
+    class CLASS_DECL_SUBSYSTEM DeviceContextAggregate :
+    virtual public Aggregate< DeviceContextComposite >
     {
     public:
 
-        implement_baseø(DeviceContext);
+        ImplementBaseø(DeviceContext);
 
     };
 
+   class CLASS_DECL_SUBSYSTEM DeviceContext :
+   virtual public Object< DeviceContextAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace innate_subsystem

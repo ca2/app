@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "subsystem/resource_loader.h"
+#include "subsystem/ResourceLoader.h"
 #include "drawing/Icon.h"
 
 //#include "winhdr.h"

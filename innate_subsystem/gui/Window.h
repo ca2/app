@@ -172,7 +172,7 @@ namespace innate_subsystem
       virtual ::operating_system::window dialog_item_operating_system_window(int iDlgItem) = 0;
 
 
-      virtual void subclassControlById(::particle_base * pWindowControl, unsigned int id) = 0;
+      virtual void subclassControlById(::Particle * pWindowControl, unsigned int id) = 0;
       virtual void subclassWindow(const ::operating_system::window & operatingsystemwindow) = 0;
       virtual void unsubclassWindow() = 0;
 
@@ -234,7 +234,7 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-   virtual bool onCommand(::wparam wparam, ::lparam lparam) = 0;
+      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
    //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
    virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
@@ -264,14 +264,19 @@ namespace innate_subsystem
    //    bool m_bWndCreated;
    };
 
-
-
-   class CLASS_DECL_INNATE_SUBSYSTEM WindowComposite :
-      virtual public composite<WindowInterface>
+      class CLASS_DECL_INNATE_SUBSYSTEM WindowCallback : virtual public Callback<WindowInterface>
    {
    public:
 
-      implement_compositeø(Window, window)
+      ImplementCallbackø(Window, window)
+   };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM WindowComposite :
+      virtual public Composite<WindowInterface>
+   {
+   public:
+
+      ImplementCompositeWithCallbackø(Window, window)
 
       // Window();
       //
@@ -409,7 +414,7 @@ namespace innate_subsystem
 
 
       ::operating_system::window dialog_item_operating_system_window(int iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
-      void subclassControlById(::particle_base * pWindowControl, unsigned int id) override { m_pwindow->subclassControlById(pWindowControl, id); }
+      void subclassControlById(::Particle * pWindowControl, unsigned int id) override { m_pwindow->subclassControlById(pWindowControl, id); }
       void subclassWindow(const ::operating_system::window & operatingsystemwindow)override { m_pwindow->subclassWindow(operatingsystemwindow); }
       void unsubclassWindow() override { m_pwindow->unsubclassWindow(); }
 
@@ -479,11 +484,11 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-       bool onCommand(::wparam wparam, ::lparam lparam) override { return m_pwindow->onCommand(wparam, lparam); }
+      bool onCommand(unsigned int controlID, unsigned int notificationID) override { return false; }
    //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
-       bool onSysCommand(::wparam wparam, ::lparam lparam) override { return m_pwindow->onSysCommand(wparam, lparam); }
-       bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override { return m_pwindow->onMessage(message, wparam, lparam); }
-       bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override { return m_pwindow->onMouse(mouseButtons, wheelSpeed, position); }
+      bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
+      bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override { return false; }
+      bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override { return m_pwindow->onMouse(mouseButtons, wheelSpeed, position); }
 
       bool onCreate(void * pCreateStruct) override { return m_pwindow->onCreate(pCreateStruct); }
 
@@ -511,14 +516,23 @@ namespace innate_subsystem
    //    bool m_bWndCreated;
    };
 
+   class CLASS_DECL_INNATE_SUBSYSTEM WindowAggregate :
+   virtual public Aggregate < WindowComposite >
+   {
+   public:
+
+      ImplementBaseø(Window)
+
+   };
+
+
    class CLASS_DECL_INNATE_SUBSYSTEM Window :
-   virtual public WindowComposite
+virtual public Object<WindowAggregate>
    {
    public:
 
 
    };
-
 
 
 } // namespace innate_subsystem

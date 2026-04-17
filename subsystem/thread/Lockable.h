@@ -32,7 +32,7 @@ namespace subsystem
  * Synchronized (thread-safe) object that can be locked and unlocked.
  */
    class LockableInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
       //virtual public particle_interface<LockableInterface>
    {
    public:

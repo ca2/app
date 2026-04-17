@@ -30,7 +30,7 @@ namespace innate_subsystem
 {
 
    class SolidBrushInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -45,11 +45,11 @@ namespace innate_subsystem
    //using SolidBrushInterface = particle_interface<SolidBrushInterface, BrushInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM SolidBrushComposite :
-   virtual public composite < SolidBrushInterface >
+   virtual public Composite < SolidBrushInterface >
    {
    public:
 
-      implement_compositeø(SolidBrush, solidbrush)
+      ImplementCompositeø(SolidBrush, solidbrush)
 
       //SolidBrush();
       //SolidBrush(const ::color::color & color);
@@ -65,18 +65,34 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM SolidBrush :
-      virtual public aggregate < SolidBrushComposite, Brush >
+   class CLASS_DECL_INNATE_SUBSYSTEM SolidBrushAggregate :
+      virtual public Aggregate < SolidBrushComposite, BrushAggregate >
    {
    public:
 
-      implement_aggregateø(SolidBrush, Brush);
+      ImplementAggregateø(SolidBrush, Brush);
 
    //SolidBrush();
    //SolidBrush(const ::color::color & color);
    //~SolidBrush() override;
 
    //void initialize_solid_brush(const ::color::color & color) override;
+
+
+   };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM SolidBrush :
+   virtual public Object < SolidBrushAggregate >
+   {
+   public:
+
+      ImplementObjectø(SolidBrush);
+
+      //SolidBrush();
+      //SolidBrush(const ::color::color & color);
+      //~SolidBrush() override;
+
+      //void initialize_solid_brush(const ::color::color & color) override;
 
 
    };

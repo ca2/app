@@ -22,7 +22,7 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "resource_loader.h"
+#include "ResourceLoader.h"
 //#include "util/UnicodeStringStorage.h"
 
 // #include aaa_<crtdbg.h>

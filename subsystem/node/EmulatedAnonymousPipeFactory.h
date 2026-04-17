@@ -36,7 +36,7 @@ namespace subsystem
    // The EmulatedAnonymousPipeFactory class generates a chanel based on named pipe.
    // This is similar to anonymous pipe generation.
    class EmulatedAnonymousPipeFactoryInterface :
-   virtual public ::particle_base 
+   virtual public ::Particle 
    {
    public:
       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
@@ -61,12 +61,12 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactoryComposite :
-    virtual public composite< EmulatedAnonymousPipeFactoryInterface >
+    virtual public Composite< EmulatedAnonymousPipeFactoryInterface >
     {
     public:
 
 
-       implement_compositeø(EmulatedAnonymousPipeFactory, emulatedanonymousepipefactory)
+       ImplementCompositeø(EmulatedAnonymousPipeFactory, emulatedanonymousepipefactory)
 
 
        //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
@@ -101,13 +101,20 @@ namespace subsystem
        //unsigned int m_bufferSize;
     };
 
-       class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactory
-        : virtual public aggregate<EmulatedAnonymousPipeFactoryComposite>
+       class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactoryAggregate
+        : virtual public Aggregate<EmulatedAnonymousPipeFactoryComposite>
     {
     public:
 
-       implement_baseø(EmulatedAnonymousPipeFactory);
+       ImplementBaseø(EmulatedAnonymousPipeFactory);
     };
+
+   class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactory :
+ virtual public Object < EmulatedAnonymousPipeFactoryAggregate >
+   {
+   public:
+
+   };
 
 
 

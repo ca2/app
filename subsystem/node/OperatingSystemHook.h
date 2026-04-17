@@ -71,12 +71,12 @@ namespace subsystem
 
    // Class for intercepting keyboard on low level.
    class CLASS_DECL_SUBSYSTEM OperatingSystemHookComposite :
-   virtual public composite< OperatingSystemHookInterface >
+   virtual public Composite< OperatingSystemHookInterface >
    {
    public:
 
 
-       implement_compositeø(OperatingSystemHook, operatingsystemhook);
+       ImplementCompositeø(OperatingSystemHook, operatingsystemhook);
 
       //WinHooks();
       //OperatingSystemHook();
@@ -90,20 +90,44 @@ namespace subsystem
       //                                                 LPARAM lParam);
       //
       //    // Registration of keyboard hook.
-      void startKeyboardHook() override;
+       void startKeyboardHook() override
+       {
+
+          m_poperatingsystemhook->startKeyboardHook();
+      }
       //
       //    // Unregistration of keyboard hook.
-      void stopKeyboardHook() override;
+       void stopKeyboardHook() override
+       {
+
+          m_poperatingsystemhook->stopKeyboardHook();
+
+      }
 
 
-         void registerKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener) override;
+       void registerKeyboardHook(::subsystem::OperatingSystemHookListener* phooklistener) override
+       {
+
+          m_poperatingsystemhook->registerKeyboardHook(phooklistener);
+
+         }
       //
       //    // Unregistration of keyboard hook.
-      void unregisterKeyboardHook(::subsystem::OperatingSystemHookListener *phooklistener) override;
+       void unregisterKeyboardHook(::subsystem::OperatingSystemHookListener* phooklistener) override
+       {
+
+          m_poperatingsystemhook->unregisterKeyboardHook(phooklistener);
+
+      }
 
 
-         bool operating_system_hook_on_keyboard_message(::lresult &lresult, ::user::enum_message emessage, int iVkCode,
-                                                     ::lparam lparam) override;
+       bool operating_system_hook_on_keyboard_message(::lresult& lresult, ::user::enum_message emessage, int iVkCode,
+          ::lparam lparam) override
+       {
+
+
+          return false;
+         }
 
       //
       // private:
@@ -116,15 +140,21 @@ namespace subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM OperatingSystemHook :
-    virtual public aggregate< OperatingSystemHookComposite >
+    class CLASS_DECL_SUBSYSTEM OperatingSystemHookAggregate :
+    virtual public Aggregate< OperatingSystemHookComposite >
     {
     public:
 
-        implement_baseø(OperatingSystemHook);
+        ImplementBaseø(OperatingSystemHook);
 
     };
 
+   class CLASS_DECL_SUBSYSTEM OperatingSystemHook :
+    virtual public Object < OperatingSystemHookAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace subsystem

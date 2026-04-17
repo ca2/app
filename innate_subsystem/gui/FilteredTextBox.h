@@ -34,7 +34,7 @@
 namespace innate_subsystem
 {
    class FilteredTextBoxInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
       //FilteredTextBox();
@@ -64,11 +64,11 @@ namespace innate_subsystem
    //using FilteredTextBoxInterface = ::particle_interface<FilteredTextBoxInterface, TextBoxInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBoxComposite :
-      virtual public composite<FilteredTextBoxInterface>
+      virtual public Composite<FilteredTextBoxInterface>
    {
    public:
 
-      implement_compositeø(FilteredTextBox, filteredtextbox)
+      ImplementCompositeø(FilteredTextBox, filteredtextbox)
 
       // FilteredTextBox();
       // virtual ~FilteredTextBox() = 0;
@@ -94,16 +94,25 @@ namespace innate_subsystem
       //    StringFilter *m_filter;
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBox :
-   virtual public aggregate< FilteredTextBoxComposite, TextBox >
+   class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBoxAggregate :
+   virtual public Aggregate< FilteredTextBoxComposite, TextBox >
    {
    public:
 
-      implement_aggregateø(FilteredTextBox, TextBox)
+      ImplementAggregateø(FilteredTextBox, TextBox)
 
    };
 
-   //#endif
+
+   class CLASS_DECL_INNATE_SUBSYSTEM FilteredTextBox :
+virtual public Object<FilteredTextBoxAggregate>
+   {
+   public:
+
+
+   };
+
+
 } // namespace innate_subsystem
 
 

@@ -37,7 +37,7 @@ namespace subsystem
     * (mouse, keyboard etc) and get information about input device states.
     */
    class InputInjectorInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -143,12 +143,12 @@ namespace subsystem
     * (mouse, keyboard etc) and get information about input device states.
     */
    class CLASS_DECL_SUBSYSTEM InputInjectorComposite :
-   virtual public composite<InputInjectorInterface>
+   virtual public Composite<InputInjectorInterface>
    {
    public:
 
 
-       implement_compositeø(InputInjector, inputinjector)
+       ImplementCompositeø(InputInjector, inputinjector)
 
          // InputInjector(bool ctrlAltDelEnabled, LogWriter *plogwriter);
          // InputInjector();
@@ -259,14 +259,22 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM InputInjector :
-    virtual public aggregate< InputInjectorComposite >
+    class CLASS_DECL_SUBSYSTEM InputInjectorAggregate :
+    virtual public Aggregate< InputInjectorComposite >
     {
     public:
 
-        implement_baseø(InputInjector);
+        ImplementBaseø(InputInjector);
 
     };
+
+
+   class CLASS_DECL_SUBSYSTEM InputInjector :
+ virtual public Object < InputInjectorAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace subsystem

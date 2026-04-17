@@ -39,7 +39,7 @@ namespace subsystem
    // void getLocalIPAddrString(char *buffer, int buflen);
 
    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Interface :
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
 
@@ -78,12 +78,12 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Composite :
-   virtual public composite<SocketAddressIPv4Interface>
+   virtual public Composite<SocketAddressIPv4Interface>
    {
    public:
 
 
-      implement_compositeø(SocketAddressIPv4, socketaddressipv4)
+      ImplementCompositeø(SocketAddressIPv4, socketaddressipv4)
 
 
 
@@ -91,23 +91,52 @@ namespace subsystem
       //virtual ~SocketAddressIPv4() override;
 
 
-      virtual void initialize_socket_address_ipv4() override;
+         virtual void initialize_socket_address_ipv4() override
+      {
+
+         m_psocketaddressipv4->initialize_socket_address_ipv4();
+
+      }
       //virtual void initialize_socket_address_ipv4(struct sockaddr_in) = 0;
-      virtual void initialize_socket_address_ipv4(const ::scoped_string & scopedstrHost, unsigned short port) override;
-      virtual void initialize_socket_address_ipv4(SocketAddressIPv4Interface * psocketAddressIPv4) override;
+      virtual void initialize_socket_address_ipv4(const ::scoped_string& scopedstrHost, unsigned short port) override
+      {
+
+         m_psocketaddressipv4->initialize_socket_address_ipv4(scopedstrHost, port);
+      }
+      virtual void initialize_socket_address_ipv4(SocketAddressIPv4Interface* psocketAddressIPv4) override
+      {
+
+         m_psocketaddressipv4->initialize_socket_address_ipv4(psocketAddressIPv4);
+
+      }
 
 
-      virtual void assign(SocketAddressIPv4Interface * psocketAddressIPv4) override;
+      virtual void assign(SocketAddressIPv4Interface* psocketAddressIPv4) override
+      {
+
+         m_psocketaddressipv4->assign(psocketAddressIPv4);
+
+      }
 
 
       ///socklen_t getAddrLen() const = 0;
       //struct sockaddr_in getSockAddr() const = 0;
 
       // Converts socket address to it's string value (ip address as string).
-      virtual ::string toString() const override;
+      virtual ::string toString() const override
+      {
+
+         return m_psocketaddressipv4->toString();
+
+      }
 
       // Returns socket port number
-      virtual unsigned short getPort() const override;
+      virtual unsigned short getPort() const override
+      {
+
+         return m_psocketaddressipv4->getPort();
+
+      }
 
 
       // //protected:
@@ -119,13 +148,24 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4 : 
-       virtual public aggregate<SocketAddressIPv4Composite>
+    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4Aggregate : 
+       virtual public Aggregate<SocketAddressIPv4Composite>
     {
     public:
 
         
-       implement_baseø(SocketAddressIPv4);
+       ImplementBaseø(SocketAddressIPv4);
+
+
+    };
+
+
+    class CLASS_DECL_SUBSYSTEM SocketAddressIPv4 : 
+       virtual public Object<SocketAddressIPv4Aggregate>
+    {
+    public:
+
+      ImplementObjectø(SocketAddressIPv4)
 
 
     };

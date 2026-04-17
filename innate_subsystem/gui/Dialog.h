@@ -35,7 +35,7 @@ namespace innate_subsystem
 
 
    class DialogInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -56,7 +56,7 @@ namespace innate_subsystem
       // Methods creates windows and show it in nonmodal/modal mode
       //
 
-      virtual void show() = 0;
+      //virtual void show() = 0;
       virtual int showModal() = 0;
 
       // Returns true if dialog is already created.
@@ -77,7 +77,7 @@ namespace innate_subsystem
       // Setup control by ID
       //virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) = 0;
       // Icon manipulation
-      virtual void loadIcon(unsigned int id) = 0;
+      //virtual void loadIcon(unsigned int id) = 0;
       virtual void updateIcon() = 0;
 
 
@@ -140,6 +140,14 @@ namespace innate_subsystem
    };
 
 
+   class CLASS_DECL_INNATE_SUBSYSTEM DialogCallback : virtual public Callback<DialogInterface>
+   {
+   public:
+
+      ImplementCallbackø(Dialog, dialog)
+   };
+
+
 //   using DialogInterface = ::particle_interface<DialogInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM DialogComposite :
@@ -147,7 +155,7 @@ namespace innate_subsystem
    {
    public:
 
-      implement_compositeø(Dialog, dialog)
+      ImplementCompositeWithCallbackø(Dialog, dialog)
 
 //       DialogComposite();
 //       // Dialog(unsigned int resourceId);
@@ -165,7 +173,7 @@ namespace innate_subsystem
       // Methods creates windows and show it in nonmodal/modal mode
       //
 
-      void show() override { m_pdialog->show(); }
+      //void show() override { m_pdialog->show(); }
       int showModal() override { return m_pdialog->showModal(); }
 
       // Returns true if dialog is already created.
@@ -186,7 +194,7 @@ namespace innate_subsystem
       // Setup control by ID
       //void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id);
       // Icon manipulation
-      void loadIcon(unsigned int id) override { m_pdialog->loadIcon(id); }
+      //void loadIcon(unsigned int id) override { m_pdialog->loadIcon(id); }
       void updateIcon() override { m_pdialog->updateIcon(); }
 
       //template<typename WIDGET_TYPE>
@@ -300,12 +308,12 @@ namespace innate_subsystem
 
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Dialog :
-   virtual public aggregate < DialogComposite, Control >
+   class CLASS_DECL_INNATE_SUBSYSTEM DialogAggregate :
+   virtual public Aggregate < DialogComposite, ControlAggregate >
    {
    public:
 
-      implement_aggregateø(Dialog, Control)
+      ImplementAggregateø(Dialog, Control)
 
       template<typename WIDGET_TYPE>
       ::pointer<WIDGET_TYPE> &dialog_item(::pointer<WIDGET_TYPE> &pwidget, int iDlgItem)
@@ -334,7 +342,7 @@ namespace innate_subsystem
       // }
 
       template < typename COMPOSITE, typename BASE_AGGREGATE >
-      aggregate<COMPOSITE, BASE_AGGREGATE> &dialog_item(aggregate<COMPOSITE, BASE_AGGREGATE> &widget, int iDlgItem)
+      Aggregate<COMPOSITE, BASE_AGGREGATE> &dialog_item(Aggregate<COMPOSITE, BASE_AGGREGATE> &widget, int iDlgItem)
       {
 
          // constructø(pwidget);
@@ -360,5 +368,26 @@ namespace innate_subsystem
    };
 
 
-   //#endif
+   class CLASS_DECL_INNATE_SUBSYSTEM Dialog :
+      virtual public Object<DialogAggregate>
+   {
+   public:
+
+      ImplementObjectø(Dialog);
+
+   };
+
+
+   // class CLASS_DECL_INNATE_SUBSYSTEM DialogImplementation1 :
+   // virtual public Implementation1<DialogInterface>
+   // {
+   // public:
+   //
+   //    ImplementImplementation1ø(Dialog);
+   //
+   // };
+
+
+
+
 } // namespace innate_subsystem

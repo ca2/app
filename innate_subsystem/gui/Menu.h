@@ -36,7 +36,7 @@ namespace innate_subsystem
 {
 
    class MenuInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
       //Menu();
@@ -89,11 +89,11 @@ namespace innate_subsystem
    };
    
    class CLASS_DECL_INNATE_SUBSYSTEM MenuComposite :
-      virtual public composite< MenuInterface>
+      virtual public Composite< MenuInterface>
    {
    public:
 
-      implement_compositeø(Menu, menu)
+      ImplementCompositeø(Menu, menu)
 
       //Menu();
       //~Menu() override;
@@ -147,12 +147,22 @@ namespace innate_subsystem
       //   bool m_bCreated;
    };
    
-   class CLASS_DECL_INNATE_SUBSYSTEM Menu :
-         virtual public aggregate<MenuComposite>
+   class CLASS_DECL_INNATE_SUBSYSTEM MenuAggregate :
+         virtual public Aggregate<MenuComposite>
    {
    public:
 
-      implement_baseø(Menu)
+      ImplementBaseø(Menu)
+
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Menu :
+virtual public Object<MenuAggregate>
+   {
+   public:
+
+      ImplementObjectø(Menu)
 
    };
 

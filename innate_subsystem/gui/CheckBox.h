@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
    class CheckBoxInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -48,27 +48,28 @@ namespace innate_subsystem
    //using CheckBoxInterface = ::particle_interface<CheckBoxInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM CheckBoxComposite :
-      virtual public composite<CheckBoxInterface>
+      virtual public Composite<CheckBoxInterface>
    {
    public:
 
-      implement_compositeø(CheckBox, checkbox)
+      ImplementCompositeø(CheckBox, checkbox)
 
       //CheckBoxComposite();
       //~CheckBoxComposite();
 
-      bool isChecked() { return m_pcheckbox->isChecked(); }
-      void setChecked(bool checked) { m_pcheckbox->setChecked(checked); }
+      bool isChecked() override { return m_pcheckbox->isChecked(); }
+      void setChecked(bool checked) override { m_pcheckbox->setChecked(checked); }
 
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM CheckBox : 
-      virtual public aggregate< CheckBoxComposite, Control>
+   
+   class CLASS_DECL_INNATE_SUBSYSTEM CheckBoxAggregate : 
+      virtual public Aggregate< CheckBoxComposite, ControlAggregate>
 
    {
    public:
 
-      implement_aggregateø(CheckBox, Control)
+      ImplementAggregateø(CheckBox, Control)
 
       //CheckBox();
       //~CheckBox();
@@ -76,6 +77,23 @@ namespace innate_subsystem
       //bool isChecked();
       //void setChecked(bool checked);
    };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM CheckBox : 
+      virtual public Object<CheckBoxAggregate>
+
+   {
+   public:
+
+      ImplementObjectø(CheckBox)
+
+      // CheckBox();
+      //~CheckBox();
+
+      // bool isChecked();
+      // void setChecked(bool checked);
+   };
+
+   
 
    
 } // namespace innate_subsystem

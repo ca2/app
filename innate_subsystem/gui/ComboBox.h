@@ -34,7 +34,7 @@ namespace innate_subsystem
 
 
     class ComboBoxInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
     {
     public:
 
@@ -86,11 +86,11 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ComboBoxComposite :
-     virtual public composite<ComboBoxInterface>
+     virtual public Composite<ComboBoxInterface>
    {
    public:
 
-      implement_compositeø(ComboBox, combobox)
+      ImplementCompositeø(ComboBox, combobox)
 
       //ComboBox();
       //~ComboBox();
@@ -173,12 +173,21 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ComboBox :
-      virtual public aggregate<ComboBoxComposite, Control>
+   class CLASS_DECL_INNATE_SUBSYSTEM ComboBoxAggregate :
+      virtual public Aggregate<ComboBoxComposite, ControlAggregate>
    {
    public:
 
-      implement_aggregateø(ComboBox, Control)
+      ImplementAggregateø(ComboBox, Control)
+
+   };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ComboBox :
+   virtual public Object<ComboBoxAggregate>
+   {
+   public:
+
+      ImplementObjectø(ComboBox)
 
    };
 

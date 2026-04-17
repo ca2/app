@@ -63,6 +63,7 @@ namespace subsystem
       //public:
       virtual ::subsystem::RegistryKey * getCurrentUserKey();
       virtual ::subsystem::RegistryKey * getLocalMachineKey();
+      virtual ::pointer < ::subsystem::RegistryKey > openKey(const ::scoped_string & scopedstrPath);
 
 
    };

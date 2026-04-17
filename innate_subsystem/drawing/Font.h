@@ -56,11 +56,11 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM FontComposite :
-virtual public composite<FontInterface>
+virtual public Composite<FontInterface>
    {
    public:
 
-      implement_compositeø(Font, font)
+      ImplementCompositeø(Font, font)
 
       //public:
       //Pen(int type, int width, const ::color::color & color);
@@ -70,9 +70,13 @@ virtual public composite<FontInterface>
 
       //void * _HGDIOBJ() override;
 
-      void initialize_font(const char * pszFamily, int iPixelHeight, int iFontWeight = 400, bool bItalic = false) override;
+         void initialize_font(const char* pszFamily, int iPixelHeight, int iFontWeight = 400, bool bItalic = false) override
+      {
+         m_pfont->initialize_font(pszFamily, iPixelHeight, iFontWeight, bItalic);
+      }
 
-      void destroyGraphicsObject() override;
+      void destroyGraphicsObject() override { m_pfont->destroyGraphicsObject();
+      }
 
       // protected:
       //    HPEN m_pen;
@@ -82,14 +86,22 @@ virtual public composite<FontInterface>
 
 
 
-    class CLASS_DECL_SUBSYSTEM Font :
-    virtual public aggregate< FontComposite >
+    class CLASS_DECL_SUBSYSTEM FontAggregate :
+    virtual public Aggregate< FontComposite >
     {
     public:
 
-        implement_baseø(Font);
+        ImplementBaseø(Font);
 
     };
+
+
+   class CLASS_DECL_SUBSYSTEM Font :
+      virtual public Object< FontAggregate >
+   {
+   public:
+
+   };
 
 
 

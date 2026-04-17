@@ -45,7 +45,7 @@ namespace innate_subsystem
    //
 
    class ControlInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -228,11 +228,11 @@ namespace innate_subsystem
    //
 
    class CLASS_DECL_INNATE_SUBSYSTEM ControlComposite :
-      virtual public composite < ControlInterface >
+      virtual public Composite < ControlInterface >
    {
    public:
 
-      implement_compositeø(Control, control)
+      ImplementCompositeø(Control, control)
 
       ////::pointer < Control > m_psubsystemcontrolThis;
 
@@ -406,14 +406,25 @@ namespace innate_subsystem
 
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Control :
-      virtual public aggregate<ControlComposite, Window>
+   class CLASS_DECL_INNATE_SUBSYSTEM ControlAggregate :
+      virtual public Aggregate<ControlComposite, WindowAggregate>
    {
    public:
 
-      implement_aggregateø(Control, Window)
+      ImplementAggregateø(Control, Window)
 
    };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Control :
+      virtual public Object<ControlAggregate>
+   {
+   public:
+
+      ImplementObjectø(Control)
+
+   };
+
 
 } // namespace subsystem
 

@@ -114,12 +114,12 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM GlobalMutexComposite :
-      virtual public composite < GlobalMutexInterface >
+      virtual public Composite < GlobalMutexInterface >
    {
    public:
 
 
-      implement_compositeø(GlobalMutex, globalmutex)
+      ImplementCompositeø(GlobalMutex, globalmutex)
 
 
       //GlobalMutex(const ::scoped_string & scopedstrName = 0, bool interSession = false, bool throwIfExist = false);
@@ -132,31 +132,54 @@ namespace subsystem
       //~GlobalMutex() override;
 
 
-      void initialize_global_mutex(const ::scoped_string & scopedstrName = {}, bool interSession = false, bool throwIfExist = false) override;
+         void initialize_global_mutex(const ::scoped_string& scopedstrName = {}, bool interSession = false, bool throwIfExist = false) override
+      {
+
+         m_pglobalmutex->initialize_global_mutex(scopedstrName, interSession, throwIfExist);
+
+      }
 
 
       /**
        * Inherited from lockable.
        */
-      ::e_status lock() override;
+      ::e_status lock() override
+      {
+
+         return m_pglobalmutex->lock();
+
+      }
 
       /**
        * Inherited from lockable.
        */
-      void unlock() override;
+      void unlock() override
+      {
+
+         m_pglobalmutex->unlock();
+
+      }
 
    };
 
 
-    class CLASS_DECL_SUBSYSTEM GlobalMutex :
-    virtual public aggregate< GlobalMutexComposite >
+    class CLASS_DECL_SUBSYSTEM GlobalMutexAggregate :
+    virtual public Aggregate< GlobalMutexComposite >
     {
     public:
 
-        implement_baseø(GlobalMutex);
+        ImplementBaseø(GlobalMutex);
 
     };
 
+
+   class CLASS_DECL_SUBSYSTEM GlobalMutex :
+   virtual public Object< GlobalMutexAggregate >
+   {
+   public:
+
+
+   };
 
 
 } // namespace subsystem

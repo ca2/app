@@ -30,7 +30,7 @@
 namespace innate_subsystem
 {
     class ProgressBarInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
     {
     public:
         //ProgressBar();
@@ -43,11 +43,11 @@ namespace innate_subsystem
    //using ProgressBarInterface = particle_interface<ProgressBarInterface, ControlInterface>;
 
     class CLASS_DECL_INNATE_SUBSYSTEM ProgressBarComposite :
-   virtual public composite < ProgressBarInterface >
+   virtual public Composite < ProgressBarInterface >
     {
     public:
 
-       implement_compositeø(ProgressBar, progressbar)
+       ImplementCompositeø(ProgressBar, progressbar)
 
 
         //ProgressBar();
@@ -57,13 +57,22 @@ namespace innate_subsystem
         void setPos(unsigned short pos){m_pprogressbar->setPos(pos);}
     };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ProgressBar :
-      virtual public aggregate< ProgressBarComposite, Control >
+   class CLASS_DECL_INNATE_SUBSYSTEM ProgressBarAggregate :
+      virtual public Aggregate< ProgressBarComposite, Control >
 
    {
    public:
 
-      implement_aggregateø(ProgressBar, Control)
+      ImplementAggregateø(ProgressBar, Control)
+
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ProgressBar :
+virtual public Object<ProgressBarAggregate>
+   {
+   public:
+
 
    };
 

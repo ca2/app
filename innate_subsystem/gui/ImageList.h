@@ -18,7 +18,7 @@ namespace innate_subsystem
    }
 
    class ImageListInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
 
@@ -42,35 +42,54 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ImageListComposite :
-   virtual public composite<ImageListInterface>
+   virtual public Composite<ImageListInterface>
    {
    public:
 
 
-      implement_compositeø(ImageList, imagelist)
+      ImplementCompositeø(ImageList, imagelist)
 
       //ImageList();
 
        //~ImageList()override;
 
-      void initializeImageList() override;
+         void initializeImageList() override
+      {
 
-      void createImageList(const ::int_size & size, int flags, int iInitialSize = 1, int iGrow = 1) override;
+         m_pimagelist->initializeImageList();
+      }
 
-      void destroyImageList() override;
+      void createImageList(const ::int_size& size, int flags, int iInitialSize = 1, int iGrow = 1) override
+      {
+         m_pimagelist->createImageList(size, flags, iInitialSize, iGrow);
+      }
 
-      virtual void addIcon(IconInterface * picon) override;
+      void destroyImageList() override { m_pimagelist->destroyImageList();
+      }
+
+      void addIcon(IconInterface* picon) override
+      { m_pimagelist->addIcon(picon);
+      }
 
 
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ImageList :
-virtual public aggregate<ImageListComposite>
+   class CLASS_DECL_INNATE_SUBSYSTEM ImageListAggregate :
+virtual public Aggregate<ImageListComposite>
    {
    public:
 
-      implement_baseø(ImageList)
+      ImplementBaseø(ImageList)
+
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ImageList :
+virtual public Object<ImageListAggregate>
+   {
+   public:
+
 
    };
 

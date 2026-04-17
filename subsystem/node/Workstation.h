@@ -39,7 +39,7 @@ namespace subsystem
     * Wrapper on WinAPI workstation functions.
     */
    class WorkstationInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -68,36 +68,54 @@ namespace subsystem
     * Wrapper on WinAPI workstation functions.
     */
    class CLASS_DECL_SUBSYSTEM WorkstationComposite :
-      virtual public composite<WorkstationInterface >
+      virtual public Composite<WorkstationInterface >
    {
    public:
 
-       implement_compositeø(Workstation, workstation)
+       ImplementCompositeø(Workstation, workstation)
       //Workstation();
       //~Workstation() override;
       /**
        * Locks workstation.
        * @throws SystemException on fail.
        */
-      void workstation_lock() override;
+          void workstation_lock() override
+       {
+
+          m_pworkstation->workstation_lock();
+
+       }
       /**
        * Logs off interactive user.
        * @throws SystemException on fail.
        * @remark caller must be run on interactive session.
        */
-      void workstation_logOff() override;
+       void workstation_logOff() override
+       {
+
+          m_pworkstation->workstation_logOff();
+
+      }
    };
 
 
 
-    class CLASS_DECL_SUBSYSTEM Workstation :
-    virtual public aggregate< WorkstationComposite >
+    class CLASS_DECL_SUBSYSTEM WorkstationAggregate :
+    virtual public Aggregate< WorkstationComposite >
     {
     public:
 
-        implement_baseø(Workstation);
+        ImplementBaseø(Workstation);
 
     };
+
+
+   class CLASS_DECL_SUBSYSTEM Workstation :
+ virtual public Object < WorkstationAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace  subsystem

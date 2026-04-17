@@ -37,7 +37,7 @@ namespace innate_subsystem
 
    // FIXME: Add documentation to class.
    class NotifyIconInterface
-       : virtual public ::particle_base
+       : virtual public ::Particle
    {
    public:
       
@@ -48,15 +48,15 @@ namespace innate_subsystem
       virtual void initialize_notify_icon(bool showAfterCreation = true) = 0;
 
       virtual IconInterface *getIcon() = 0;
-      virtual bool isVisible() const = 0;
+      //virtual bool isVisible() const = 0;
 
       virtual void setIcon(IconInterface *icon) = 0;
       virtual void setText(const char *text) = 0;
 
       virtual void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) = 0;
 
-      virtual void show() = 0;
-      virtual void hide() = 0;
+      //virtual void show() = 0;
+      //virtual void hide() = 0;
 
 //   protected:
   //    NOTIFYICONDATA m_nid;
@@ -68,12 +68,12 @@ namespace innate_subsystem
 
    // FIXME: Add documentation to class.
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconComposite :
-      virtual public composite<NotifyIconInterface>
+      virtual public Composite<NotifyIconInterface>
    {
    public:
 
 
-      implement_compositeø(NotifyIcon, notifyicon)
+      ImplementCompositeø(NotifyIcon, notifyicon)
 
       //NotifyIcon();
       //~NotifyIcon() override;
@@ -81,15 +81,15 @@ namespace innate_subsystem
       void initialize_notify_icon(bool showAfterCreation = true) override { m_pnotifyicon->initialize_notify_icon(showAfterCreation); }
 
       IconInterface *getIcon() override { return m_pnotifyicon->getIcon(); }
-      bool isVisible() const override { return m_pnotifyicon->isVisible(); }
+      //bool isVisible() const override { return m_pnotifyicon->isVisible(); }
 
       void setIcon(IconInterface *icon) override { m_pnotifyicon->setIcon(icon); }
       void setText(const char *text) override { m_pnotifyicon->setText(text); }
 
       void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) override { m_pnotifyicon->showBalloon(message, caption, timeoutMillis); }
 
-      void show() override { m_pnotifyicon->show(); }
-      void hide() override { m_pnotifyicon->hide(); }
+      //void show() override { m_pnotifyicon->show(); }
+      //void hide() override { m_pnotifyicon->hide(); }
 
       //   protected:
       //    NOTIFYICONDATA m_nid;
@@ -97,14 +97,25 @@ namespace innate_subsystem
       //bool m_visible;
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIcon :
-      virtual public aggregate< NotifyIconComposite, NotifyIconWindow >
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconAggregate :
+      virtual public Aggregate< NotifyIconComposite, NotifyIconWindow >
    {
    public:
 
-      implement_aggregateø(NotifyIcon, NotifyIconWindow)
+      ImplementAggregateø(NotifyIcon, NotifyIconWindow)
 
    };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM NotifyIcon :
+      virtual public Object<NotifyIconAggregate>
+   {
+   public:
+
+      ImplementObjectø(NotifyIcon)
+
+   };
+
+
 }// namespace innate_subsystem
 
 //#endif

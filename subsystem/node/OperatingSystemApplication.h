@@ -40,7 +40,7 @@ namespace subsystem
     * Have hidden main window and main scopedstrMessage loop.
     */
    class OperatingSystemApplicationInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -65,6 +65,9 @@ namespace subsystem
 
       virtual void initialize_operating_system_application() = 0;
 
+
+
+      virtual void doDefaultMainLoop() = 0;
       //virtual void initialize_operating_system_application(const ::scoped_string & scopedstrwindowClassName) = 0;
 
       /**
@@ -134,9 +137,24 @@ namespace subsystem
 
        virtual int getExitCode() = 0;
 
-
+      /// <summary>
+      /// Callback Function
+      /// </summary>
+      /// <param name="message"></param>
+      /// <param name="wparam"></param>
+      /// <param name="lparam"></param>
       virtual void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
 
+
+   };
+
+
+   class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationCallback
+       : virtual public Callback<OperatingSystemApplicationInterface>
+   {
+   public:
+
+      ImplementCallbackø(OperatingSystemApplication, operatingsystemapplication);
 
    };
 
@@ -147,12 +165,12 @@ namespace subsystem
     * Have hidden main window and main scopedstrMessage loop.
     */
    class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationComposite :
-      virtual public composite < OperatingSystemApplicationInterface >
+      virtual public Composite < OperatingSystemApplicationInterface >
    {
    public:
 
 
-       implement_compositeø(OperatingSystemApplication, operatingsystemapplication);
+       ImplementCompositeWithCallbackø(OperatingSystemApplication, operatingsystemapplication);
 
       //int m_iExitCode = 0;
       /**
@@ -174,8 +192,14 @@ namespace subsystem
       void initialize_operating_system_application() override
       {
 
-          m_pop
+          m_poperatingsystemapplication->initialize_operating_system_application();
       }
+
+
+             void doDefaultMainLoop() { m_poperatingsystemapplication->doDefaultMainLoop(); }
+
+
+
       //void initialize_operating_system_application(
 //                                                   const ::scoped_string &scopedstrwindowClassName) override;
       //void initialize_operating_system_application(::hinstance hinstanceApp, const ::scoped_string & scopedstrwindowClassName) override;
@@ -186,35 +210,65 @@ namespace subsystem
        * @remark really it creates main window and starts windows scopedstrMessage loop.
        * @return application exit code.
        */
-      void run() override;
+      void run() override
+      {
+
+         m_poperatingsystemapplication->run();
+
+      }
 
       /**
        * Posts close and destroy scopedstrMessage to main window.
        */
-      void shutdown() override;
+      void shutdown() override
+      {
+
+         m_poperatingsystemapplication->shutdown();
+
+      }
 
       /**
        * Posts scopedstrMessage to main window.
        */
-      void postMessage(unsigned int uMessage, ::wparam wParam = 0, ::lparam lParam = 0) override;
+      void postMessage(unsigned int uMessage, ::wparam wParam = 0, ::lparam lParam = 0) override
+      {
+
+         m_poperatingsystemapplication->postMessage(uMessage, wParam, lParam);
+
+      }
 
       /**
        * Adds modeless dialog to application modeless dialog ::list_base to
        * enable switching between controls by pressing tab button.
        * @param dialogWindow HWND of modeless dialog.
        */
-      void addModelessDialog(const ::operating_system::window & operatingsystemwindow) override;
+      void addModelessDialog(const ::operating_system::window & operatingsystemwindow) override
+      {
+
+         m_poperatingsystemapplication->addModelessDialog(operatingsystemwindow);
+
+      }
 
       /**
        * Removes dialog from application modeless dialog ::list_base.
        * @param dialogWindow HWND of modeless dialog.
        */
-      void removeModelessDialog(const ::operating_system::window & operatingsystemwindow) override;
+      void removeModelessDialog(const ::operating_system::window & operatingsystemwindow) override
+      {
+
+         m_poperatingsystemapplication->removeModelessDialog(operatingsystemwindow);
+
+      }
 
       //protected:
       // Creates a window to receive messages.
       //void createWindow(const ::scoped_string & scopedstrClassName) override;
-      void createApplicationMainTask() override;
+      void createApplicationMainTask() override
+      {
+
+         m_poperatingsystemapplication->createApplicationMainTask();
+
+      }
 
       //void postMainThreadMessage(int iMainThreadMessage) override;
 
@@ -244,21 +298,41 @@ namespace subsystem
       //static LocalMutex m_MDLMutex; // Modeless dialog ::list_base mutex.
       //static ::comparable_list_base<HWND> m_modelessDialogList;
 
-      int getExitCode() override;
+      int getExitCode() override
+      {
 
-      void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override;
+         return m_poperatingsystemapplication->getExitCode();
+
+      }
+
+
+      void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override
+      {
+
+
+      }
 
    };
 
 
-    class CLASS_DECL_SUBSYSTEM OperatingSystemApplication :
-    virtual public aggregate< OperatingSystemApplicationComposite >
+    class CLASS_DECL_SUBSYSTEM OperatingSystemApplicationAggregate :
+    virtual public Aggregate< OperatingSystemApplicationComposite >
     {
     public:
 
-        implement_baseø(OperatingSystemApplication);
+        ImplementBaseø(OperatingSystemApplication);
 
     };
+
+
+   class CLASS_DECL_SUBSYSTEM OperatingSystemApplication :
+ virtual public Object < OperatingSystemApplicationAggregate >
+   {
+   public:
+
+      ImplementObjectø(OperatingSystemApplication)
+
+   };
 
 
 } // namespace subsystem

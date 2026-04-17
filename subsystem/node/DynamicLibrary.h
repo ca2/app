@@ -36,7 +36,7 @@ namespace subsystem
    Dynamic library class.
    */
    class DynamicLibraryInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -77,12 +77,12 @@ namespace subsystem
 Dynamic library class.
 */
    class CLASS_DECL_SUBSYSTEM DynamicLibraryComposite :
-   virtual public composite< DynamicLibraryInterface>
+   virtual public Composite< DynamicLibraryInterface>
    {
    public:
 
 
-      implement_compositeø(DynamicLibrary, dynamiclibrary)
+      ImplementCompositeø(DynamicLibrary, dynamiclibrary)
 
       /**
       Load dynamic library with specified filename.
@@ -127,17 +127,24 @@ Dynamic library class.
    };
 
 
-   class CLASS_DECL_SUBSYSTEM DynamicLibrary : 
-      virtual public aggregate<DynamicLibraryComposite>
+   class CLASS_DECL_SUBSYSTEM DynamicLibraryAggregate :
+      virtual public Aggregate<DynamicLibraryComposite>
    {
    public:
 
 
-      implement_baseø(DynamicLibrary);
+      ImplementBaseø(DynamicLibrary);
 
 
    };
 
+
+   class CLASS_DECL_SUBSYSTEM DynamicLibrary :
+ virtual public Object < DynamicLibraryAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace subsystem

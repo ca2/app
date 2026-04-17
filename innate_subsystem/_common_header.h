@@ -39,7 +39,7 @@ namespace innate_subsystem
 
    template < typename PARTICLE_INTERFACE >
    class window_composite :
-   virtual public composite < PARTICLE_INTERFACE >,
+   virtual public Composite < PARTICLE_INTERFACE >,
    virtual public notification_handler
    {
       public:

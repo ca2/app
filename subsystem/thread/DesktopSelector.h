@@ -51,7 +51,7 @@ namespace subsystem
     };
 
    class DesktopSelectorInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
       
@@ -122,11 +122,11 @@ namespace subsystem
 //using DesktopSelectorInterface = particle_interface<DesktopSelectorInterface>;
 
    class CLASS_DECL_SUBSYSTEM DesktopSelectorComposite :
-       public composite< DesktopSelectorInterface >
+       public Composite< DesktopSelectorInterface >
    {
    public:
 
-      implement_compositeø(DesktopSelector, desktopselector)
+      ImplementCompositeø(DesktopSelector, desktopselector)
 
       //DesktopSelector();
       //~DesktopSelector()  override;
@@ -233,15 +233,23 @@ namespace subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM DesktopSelector :
-    virtual public aggregate< DesktopSelectorComposite >
+    class CLASS_DECL_SUBSYSTEM DesktopSelectorAggregate :
+    virtual public Aggregate< DesktopSelectorComposite >
     {
     public:
 
-        implement_baseø(DesktopSelector);
+        ImplementBaseø(DesktopSelector);
 
     };
 
+
+   class CLASS_DECL_SUBSYSTEM DesktopSelector :
+   virtual public Object< DesktopSelectorAggregate >
+   {
+   public:
+
+
+   };
 
 
 } // namespace subsystem

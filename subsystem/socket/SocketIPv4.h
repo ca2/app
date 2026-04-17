@@ -54,7 +54,7 @@ namespace subsystem
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
    class SocketIPv4Interface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
       /**
@@ -205,11 +205,11 @@ namespace subsystem
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
    class CLASS_DECL_SUBSYSTEM SocketIPv4Composite :
-      virtual public composite<SocketIPv4Interface >
+      virtual public Composite<SocketIPv4Interface >
    {
    public:
 
-      implement_compositeø(SocketIPv4, socketipv4)
+      ImplementCompositeø(SocketIPv4, socketipv4)
 
       /**
        * Creates new socket.
@@ -226,54 +226,99 @@ namespace subsystem
        * @param port port to connect.
        * @throws SocketException on fail.
        */
-      void connect(const ::scoped_string & scopedstrHost, unsigned short port)  override;
+      void connect(const ::scoped_string & scopedstrHost, unsigned short port)  override
+      {
+
+         m_psocketipv4->connect(scopedstrHost, port);
+
+      }
       /**
        * Connects to remote host.
        * @param addr address to connect.
        * @throws SocketException on fail.
        */
-      void connect(::subsystem::SocketAddressIPv4Interface * paddress)  override;
+      void connect(::subsystem::SocketAddressIPv4Interface * paddress)  override
+      {
+
+         m_psocketipv4->connect(paddress);
+
+      }
       /**
        * Closes socket.
        * @throws SocketException on fail.
        */
-      void close()  override;
+      void close()  override
+      {
+
+         m_psocketipv4->close();
+
+      }
       /**
        * Shutdowns socket.
        * @param how how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
        * @throws SocketException on fail.
        */
-      void shutdown(enum_socket_shutdown esocketshutdown)  override;
+      void shutdown(enum_socket_shutdown esocketshutdown)  override
+      {
+
+         m_psocketipv4->shutdown(esocketshutdown);
+
+      }
       /**
        * Binds socket to specified address.
        * @param bindHost host to bind.
        * @param bindPort port to bind.
        * @throws SocketException on fail.
        */
-      void bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort) override;
+      void bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort) override
+      {
+
+         m_psocketipv4->bind(scopedstrBindHost, bindPort);
+
+      }
       /**
        * Binds socket to socket address.
        * @throws SocketException on fail.
        */
-      void bind(::subsystem::SocketAddressIPv4Interface * paddress) override;
+      void bind(::subsystem::SocketAddressIPv4Interface * paddress) override
+      {
+
+         m_psocketipv4->bind(paddress);
+
+      }
       /**
        * Checks if this socket is bound and used for server needs.
        * @return true if socket used as server and successfully bounded, false otherwise.
        */
-      bool isBound() override;
+      bool isBound() override
+      {
+
+         return m_psocketipv4->isBound();
+
+      }
       /**
        * Socket listen method.
        * @param backlog max count of connections in pool.
        * @throws SocketException on fail.
        */
-      void listen(int backlog) override;
+      void listen(int backlog) override
+      {
+
+         m_psocketipv4->listen(backlog);
+
+      }
 
       /**
        * Accepts incoming connection.
        * @throws SocketException on fail.
        * @return newly allocated socket that contain incoming connections.
        */
-      ::pointer < ::subsystem::SocketIPv4Interface > accept() override;
+      ::pointer < ::subsystem::SocketIPv4Interface > accept() override
+      {
+
+         return m_psocketipv4->accept();
+
+      }
 
       /**
        * Sends data to socket.
@@ -284,7 +329,12 @@ namespace subsystem
        * @return count to sent bytes.
        * @throw ::io_exception on error.
        */
-      int send(const char *data, int size, int flags = 0) override;
+      int send(const char *data, int size, int flags = 0) override
+      {
+
+         return m_psocketipv4->send(data, size, flags);
+
+      }
       /**
        * Receives data from socket.
        *
@@ -294,30 +344,70 @@ namespace subsystem
        * @return count of read bytes.
        * @throws ::io_exception on fail.
        */
-      int recv(char *buffer, int size, int flags = 0) override;
+      int recv(char *buffer, int size, int flags = 0) override
+      {
 
-      int available() override;
+         return m_psocketipv4->recv(buffer, size, flags);
+
+      }
+
+      int available() override
+      {
+
+         return m_psocketipv4->available();
+
+      }
 
       /**
        * Returns local address of socket (for listening socket).
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() override;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() override
+      {
+
+         return m_psocketipv4->getLocalAddr();
+
+      }
       /**
        * Returns peer address.
        * @param addr output parameter that will contain socket address.
        * @return true on success, false on fail.
        */
-      ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override
+      {
+
+         return m_psocketipv4->getPeerAddr();
+
+      }
 
       /* Auxiliary */
-      void setSocketOptions(int level, int name, void *value, int len) override;
-      void getSocketOptions(int level, int name, void *value, int *len) override;
+      void setSocketOptions(int level, int name, void *value, int len) override
+      {
+
+         m_psocketipv4->setSocketOptions(level, name, value, len);
+
+      }
+      void getSocketOptions(int level, int name, void *value, int *len) override
+      {
+
+         m_psocketipv4->getSocketOptions(level, name, value, len);
+
+      }
 
       /* Socket options */
-      void enableNaggleAlgorithm(bool enabled) override;
-      void setExclusiveAddrUse() override;
+      void enableNaggleAlgorithm(bool enabled) override
+      {
+
+         m_psocketipv4->enableNaggleAlgorithm(enabled);
+
+      }
+      void setExclusiveAddrUse() override
+      {
+
+         m_psocketipv4->setExclusiveAddrUse();
+
+      }
 
    // private:
    //    //WsaStartup m_wsaStartup;
@@ -353,15 +443,23 @@ namespace subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM SocketIPv4 : virtual public aggregate<SocketIPv4Composite>
+    class CLASS_DECL_SUBSYSTEM SocketIPv4Aggregate :
+   virtual public Aggregate<SocketIPv4Composite>
     {
     public:
 
-        implement_baseø(SocketIPv4);
+        ImplementBaseø(SocketIPv4);
 
     };
 
 
+   class CLASS_DECL_SUBSYSTEM SocketIPv4 :
+      virtual public Object<SocketIPv4Aggregate>
+   {
+   public:
+
+
+   };
 
 
 } // namespace subsystem

@@ -37,7 +37,7 @@ namespace innate_subsystem
 
 
    class GraphicsInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
       // Creates graphics object with specified device context.
@@ -100,11 +100,11 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM GraphicsComposite :
-      virtual public composite<GraphicsInterface>
+      virtual public Composite<GraphicsInterface>
    {
    public:
 
-      implement_compositeø(Graphics, graphics)
+      ImplementCompositeø(Graphics, graphics)
 
       // Creates graphics object with specified device context.
       ///Graphics(DeviceContext *dc);
@@ -112,54 +112,159 @@ namespace innate_subsystem
       //Graphics();
       //~Graphics() override;
 
-      DeviceContextInterface * device_context() override;
+         DeviceContextInterface* device_context() override
+      {
+
+         return m_pgraphics->device_context();
+
+      }
 
 
-      void initialize_graphics(DeviceContextInterface *dc) override;
-      void initialize_graphics(BitmapInterface *pbitmap) override;
+      void initialize_graphics(DeviceContextInterface* pdevicecontext) override
+      {
+
+         m_pgraphics->initialize_graphics(pdevicecontext);
+
+      }
+      void initialize_graphics(BitmapInterface* pbitmap) override
+      {
+
+         m_pgraphics->initialize_graphics(pbitmap);
+
+      }
 
       // Sets background colors mix mode.
-      void setBkMode(bool transparent) override;
+      void setBkMode(bool transparent) override
+      {
+
+         m_pgraphics->setBkMode(transparent);
+
+      }
 
 
-      void setBlendModeOn(bool bSet) override;
+      void setBlendModeOn(bool bSet) override
+      {
 
-      void setAntiAliasOn(bool bOn) override;
+         m_pgraphics->setBlendModeOn(bSet);
+
+      }
+
+      void setAntiAliasOn(bool bOn) override
+      {
+
+         m_pgraphics->setAntiAliasOn(bOn);
+
+      }
 
       // Sets background color.
-      void setBkColor(const ::color::color & color) override;
+      void setBkColor(const ::color::color& color) override
+      {
+
+         m_pgraphics->setBkColor(color);
+
+      }
 
       // Sets text color.
-      void setTextColor(const ::color::color & color) override;
+      void setTextColor(const ::color::color& color) override
+      {
 
-      void setTextRenderingHintClearType() override;
+         m_pgraphics->setTextColor(color);
+
+      }
+
+      void setTextRenderingHintClearType() override
+      {
+
+         m_pgraphics->setTextRenderingHintClearType();
+
+      }
 
       // Sets current brush.
-      void setBrush(BrushInterface *brush) override;
+      void setBrush(BrushInterface* brush) override
+      {
+
+         m_pgraphics->setBrush(brush);
+
+      }
       // Sets current pen.
-      void setPen(PenInterface *pen) override;
+      void setPen(PenInterface* pen) override
+      {
+
+         m_pgraphics->setPen(pen);
+
+      }
       // Sets current font.
-      void setFont(FontInterface *font) override;
+      void setFont(FontInterface* font) override
+      {
+
+         m_pgraphics->setFont(font);
+
+      }
 
       // Moves cursor to specified position.
-      void moveTo(const ::int_point & point) override;
+      void moveTo(const ::int_point& point) override
+      {
+
+         m_pgraphics->moveTo(point);
+
+      }
       // Draws line from current position to specified line.
-      void lineTo(const ::int_point & point) override;
+      void lineTo(const ::int_point& point) override
+      {
+
+         m_pgraphics->lineTo(point);
+
+      }
 
       // Draws filled rect.
       //void fillRect(int l, int t, int r, int b, BrushInterface *pbrush) override;
-      void fillRect(const ::int_rectangle & rectangle, BrushInterface * pbrush) override;
-      void fillRect(const ::int_rectangle & rectangle, const ::color::color & color) override;
+      void fillRect(const ::int_rectangle& rectangle, BrushInterface* pbrush) override
+      {
+
+         m_pgraphics->fillRect(rectangle, pbrush);
+
+      }
+      void fillRect(const ::int_rectangle& rectangle, const ::color::color& color) override
+      {
+
+         m_pgraphics->fillRect(rectangle, color);
+
+      }
       // Draws ellipse.
-      void ellipse(const ::int_rectangle & rectangle) override;
+      void ellipse(const ::int_rectangle& rectangle) override
+      {
+
+         m_pgraphics->ellipse(rectangle);
+
+      }
       // Draws rectance.
-      void rectangle(const ::int_rectangle & rectangle) override;
+      void rectangle(const ::int_rectangle& rectangle) override
+      {
+
+         m_pgraphics->rectangle(rectangle);
+
+      }
 
       // Draws bitmap.
-      void drawBitmap(BitmapInterface *bitmap, const ::int_rectangle & rectangle) override;
-      void drawBitmap(BitmapInterface *bitmap, const ::int_point & point, const ::int_rectangle & rectangleSrc) override;
+      void drawBitmap(BitmapInterface* bitmap, const ::int_rectangle& rectangle) override
+      {
+
+         m_pgraphics->drawBitmap(bitmap, rectangle);
+
+      }
+      void drawBitmap(BitmapInterface* bitmap, const ::int_point& point, const ::int_rectangle& rectangleSrc) override
+      {
+
+         m_pgraphics->drawBitmap(bitmap, point, rectangleSrc);
+
+      }
       // Draws text.
-      void drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format = 0, enum_align ealign = e_align_top_left) override;
+      void drawText(const char* text, int cchText, ::int_rectangle& rect, unsigned int format = 0, enum_align ealign = e_align_top_left) override
+      {
+
+         m_pgraphics->drawText(text, cchText, rect, format, ealign);
+
+      }
 
       //protected:
       //::pointer < DeviceContext > m_pdevicecontext;
@@ -167,15 +272,22 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM Graphics :
-    virtual public aggregate< GraphicsComposite >
+    class CLASS_DECL_INNATE_SUBSYSTEM GraphicsAggregate :
+    virtual public Aggregate< GraphicsComposite >
     {
     public:
 
-        implement_baseø(Graphics);
+        ImplementBaseø(Graphics);
 
     };
 
+   class CLASS_DECL_INNATE_SUBSYSTEM Graphics :
+   virtual public Object< GraphicsAggregate >
+   {
+   public:
+
+
+   };
 
 
 } // namespace innate_subsystem

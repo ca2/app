@@ -34,7 +34,7 @@ namespace subsystem
 
    // This class get info for a windows desktop.
    class ScreenInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -100,30 +100,49 @@ namespace subsystem
 
    // This class get info for a windows desktop.
    class CLASS_DECL_SUBSYSTEM ScreenComposite :
-      virtual public composite<ScreenInterface >
+      virtual public Composite<ScreenInterface >
    {
    public:
 
-       implement_compositeø(Screen, screen)
+       ImplementCompositeø(Screen, screen)
 
 
-      void update() override;
+          void update() override
+       {
+
+          m_pscreen->update();
+       }
 
       // Returns a PixelFormat that was at latest call of the
       // update() function.
-      ::innate_subsystem::PixelFormat getPixelFormat() override;
+       ::innate_subsystem::PixelFormat getPixelFormat() override
+       {
+
+          return m_pscreen->getPixelFormat();
+
+      }
 
       // Returns a desktop dimension that was at latest call of the
       // update() function.
       // Desktop dimension is a dimension of windows virtual desktop including
       // all monitors.
-      ::int_size getDesktopDimension() override;
+       ::int_size getDesktopDimension() override
+       {
+
+          return m_pscreen->getDesktopDimension();
+
+      }
 
       // Returns a rectangle that was at latest call of the
       // update() function.
       // The rectangle is a rectangle of windows virtual desktop including
       // all monitors (coordinates can be negative).
-      ::int_rectangle getDesktopRect() override;
+       ::int_rectangle getDesktopRect() override
+       {
+
+          return m_pscreen->getDesktopRect();
+
+      }
 
       // // This structure can be used by user code.
       // struct BMI
@@ -147,14 +166,29 @@ namespace subsystem
       // Windows contain both visible and invisible pseudo-monitors
       // that are associated with mirroring drivers.
       // The function returns only visible monitor count.
-      int getVisibleMonitorCount() override;
+       int getVisibleMonitorCount() override
+       {
+
+          return m_pscreen->getVisibleMonitorCount();
+
+      }
 
    //private:
       //void fillPixelFormat(const BMI *bmi);
       // Find position of first true bit
-      int findFirstBit(const unsigned int bits) override;
+       int findFirstBit(const unsigned int bits) override
+       {
 
-      void fillScreenRect() override;
+          return m_pscreen->findFirstBit(bits);
+
+      }
+
+       void fillScreenRect() override
+       {
+
+          m_pscreen->fillScreenRect();
+
+      }
 
       // PixelFormat m_pixelFormat;
       // ::int_rectangle m_virtDesktopRect;
@@ -162,15 +196,21 @@ namespace subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM Screen :
-    virtual public aggregate< ScreenComposite >
+    class CLASS_DECL_SUBSYSTEM ScreenAggregate :
+    virtual public Aggregate< ScreenComposite >
     {
     public:
 
-        implement_baseø(Screen);
+        ImplementBaseø(Screen);
 
     };
 
+   class CLASS_DECL_SUBSYSTEM Screen :
+    virtual public Object <ScreenAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace  subsystem

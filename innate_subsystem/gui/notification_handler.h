@@ -9,7 +9,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM notification_handler :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -29,6 +29,8 @@ namespace innate_subsystem
       virtual bool _002OnSelectionChange(int iControl);
 
    };
+
+
 
 } // innate_subsystem
 

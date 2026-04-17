@@ -32,26 +32,26 @@ namespace subsystem
 {
    
    
-   //ServiceControlManagerClientException::ServiceControlManagerClientException(int iServiceControlManagerErrorCode)
-   //: SystemException("[::subsystem::Exception description is not avaliable]")
-   //{
-   //   switch (iServiceControlManagerErrorCode) {
-   //      case ERROR_ALREADY_STOPPED:
-   //      case ERROR_STOP_TIMEOUT:
-   //      case ERROR_ALREADY_RUNNING:
-   //      case ERROR_START_TIMEOUT:
-   //         break;
-   //      default:
-   //         _ASSERT(false);
-   //   };
+   ServiceControlManagerClientException::ServiceControlManagerClientException(int iServiceControlManagerErrorCode)
+   : SystemException("[::subsystem::Exception description is not avaliable]")
+   {
+      switch (iServiceControlManagerErrorCode) {
+         case ERROR_ALREADY_STOPPED:
+         case ERROR_STOP_TIMEOUT:
+         case ERROR_ALREADY_RUNNING:
+         case ERROR_START_TIMEOUT:
+            break;
+         default:
+            _ASSERT(false);
+      };
 
-   //   m_iServiceControlManagerErrorCode = iServiceControlManagerErrorCode;
-   //}
+      m_iServiceControlManagerErrorCode = iServiceControlManagerErrorCode;
+   }
 
-   //int ServiceControlManagerClientException::getServiceControlManagerErrorCode() const
-   //{
-   //   return m_iServiceControlManagerErrorCode;
-   //}
+   int ServiceControlManagerClientException::getServiceControlManagerErrorCode() const
+   {
+      return m_iServiceControlManagerErrorCode;
+   }
 
    //ServiceControlManagerClient::ServiceControlManagerClient()
    //{

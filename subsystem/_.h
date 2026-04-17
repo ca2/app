@@ -33,20 +33,20 @@
 
    };
 
-   class particle_base;
+   class Particle;
 
 //   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
 //   class particle_interface;
 
    template<typename PARTICLE_INTERFACE>
-   class composite;
+   class Composite;
    //template<typename PARTICLE_INTERFACE>
    //class composite;
-   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
-   class aggregate;
+   template<typename PARTICLE_INTERFACE, typename BASE = Particle>
+   class Aggregate;
 
-   template<typename PARTICLE_INTERFACE, typename BASE = particle_base>
-   class implementation;
+   template<typename PARTICLE_INTERFACE, typename BASE = Particle>
+   class Implementation;
 
 namespace subsystem
 {

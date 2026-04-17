@@ -33,7 +33,7 @@
 namespace  subsystem
 {
    class DisplaysInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
       //Displays();
@@ -72,12 +72,12 @@ namespace  subsystem
    //using DisplaysInterface = particle_interface<DisplaysInterface>;
 
    class CLASS_DECL_SUBSYSTEM DisplaysComposite:
-virtual public composite<DisplaysInterface>
+virtual public Composite<DisplaysInterface>
    {
    public:
 
 
-      implement_compositeø(Displays, displays)
+      ImplementCompositeø(Displays, displays)
 
 
       //Displays();
@@ -135,5 +135,21 @@ virtual public composite<DisplaysInterface>
       // class ::time m_latestUpdateTime;
    };
 
-   //// __WINDOWSDISPLAYS_H__
+
+   class CLASS_DECL_SUBSYSTEM DisplaysAggregate :
+ virtual public Aggregate < DisplaysComposite >
+   {
+   public:
+
+   };
+
+   class CLASS_DECL_SUBSYSTEM Displays :
+ virtual public Object < DisplaysAggregate >
+   {
+   public:
+
+   };
+
+
+
 } // namespace  subsystem

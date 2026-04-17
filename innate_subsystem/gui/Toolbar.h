@@ -40,7 +40,7 @@ namespace innate_subsystem
       static const int TB_Style_gap = 1;
 
    class ToolbarInterface :
-      virtual  public ::particle_base
+      virtual  public ::Particle
    {
    public:
       //Toolbar();
@@ -131,13 +131,13 @@ namespace innate_subsystem
       virtual int getButtonsWidth() = 0;
 
       // isVisible() check the toolbar window on visible.
-      virtual bool isVisible() = 0;
+      //virtual bool isVisible() = 0;
 
       // hide() hides the toolbar window.
-      virtual void hide() = 0;
+      //virtual void hide() = 0;
 
       // show() displays the toolbar window.
-      virtual void show() = 0;
+      //virtual void show() = 0;
 
       // getTotalWidth() returns the total size of all buttons and
       // separators in the toolbar.
@@ -162,12 +162,12 @@ namespace innate_subsystem
    //using ToolbarInterface = particle_interface<ToolbarInterface, ControlInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM ToolbarComposite :
-      virtual  public composite<ToolbarInterface>
+      virtual  public Composite<ToolbarInterface>
    {
    public:
 
 
-      implement_compositeø(Toolbar, toolbar)
+      ImplementCompositeø(Toolbar, toolbar)
 
       //Toolbar();
       //~Toolbar() override;
@@ -259,13 +259,13 @@ namespace innate_subsystem
       int getButtonsWidth() override { return m_ptoolbar->getButtonsWidth(); }
 
       // isVisible() check the toolbar window on visible.
-      bool isVisible() override { return m_ptoolbar->isVisible(); }
+      //bool isVisible() override { return m_ptoolbar->isVisible(); }
 
       // hide() hides the toolbar window.
-      void hide() override { m_ptoolbar->hide(); }
+      //void hide() override { m_ptoolbar->hide(); }
 
       // show() displays the toolbar window.
-      void show() override { m_ptoolbar->show(); }
+      //void show() override { m_ptoolbar->show(); }
 
       // getTotalWidth() returns the total size of all buttons and
       // separators in the toolbar.
@@ -288,11 +288,21 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Toolbar :
-   virtual  public aggregate< ToolbarComposite, Control >
+   class CLASS_DECL_INNATE_SUBSYSTEM ToolbarAggregate :
+   virtual  public Aggregate< ToolbarComposite, Control >
    {
    public:
 
    };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM Toolbar :
+virtual public Object<ToolbarAggregate>
+   {
+   public:
+
+
+   };
+
 
 } // namespace innate_subsystem

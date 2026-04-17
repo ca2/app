@@ -50,12 +50,12 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM BrushComposite :
-      virtual public composite<BrushInterface >
+      virtual public Composite<BrushInterface >
    {
    public:
 
 
-      implement_compositeø(Brush, brush)
+      ImplementCompositeø(Brush, brush)
 
       //Brush();
       //~Brush() override;
@@ -66,7 +66,12 @@ namespace innate_subsystem
       //void on_release() override;
 
 
-      void destroyGraphicsObject() override;
+         void destroyGraphicsObject() override
+      {
+
+         m_pbrush->destroyGraphicsObject();
+
+      }
       // protected:
       //    HBRUSH m_brush;
       //
@@ -76,15 +81,22 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM Brush :
-    virtual public aggregate< BrushComposite >
+    class CLASS_DECL_INNATE_SUBSYSTEM BrushAggregate :
+    virtual public Aggregate< BrushComposite >
     {
     public:
 
-        implement_baseø(Brush);
+        ImplementBaseø(Brush);
 
     };
 
+   class CLASS_DECL_INNATE_SUBSYSTEM Brush :
+       virtual public Object< BrushAggregate >
+   {
+   public:
+
+
+   };
 
 
 

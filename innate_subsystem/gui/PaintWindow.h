@@ -33,7 +33,7 @@ namespace innate_subsystem
 
 
    class PaintWindowInterface:
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
       //PaintWindow();
@@ -57,16 +57,21 @@ namespace innate_subsystem
       //HDC m_hdc;
 
    };
+   class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowCallback : virtual public Callback<PaintWindowInterface>
+   {
+   public:
 
+      ImplementCallbackø(PaintWindow, paintwindow)
+   };
 
    //using PaintWindowInterface = particle_interface<PaintWindowInterface, WindowInterface>;
 
        class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowComposite:
-   virtual public composite<PaintWindowInterface >
+   virtual public Composite<PaintWindowInterface >
    {
    public:
 
-          implement_compositeø(PaintWindow, paintwindow)
+          ImplementCompositeWithCallbackø(PaintWindow, paintwindow)
       //PaintWindow();
       //~PaintWindow();
 
@@ -89,14 +94,24 @@ namespace innate_subsystem
 
    };
 
-   class CLASS_DECL_INNATE_SUBSYSTEM PaintWindow:
-virtual public aggregate<PaintWindowComposite, Window >
+   class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowAggregate:
+virtual public Aggregate<PaintWindowComposite, Window >
    {
    public:
 
-      implement_aggregateø(PaintWindow, Window)
+      ImplementAggregateø(PaintWindow, Window)
 
    };
+
+   class CLASS_DECL_INNATE_SUBSYSTEM PaintWindow :
+virtual public Object<PaintWindowAggregate>
+   {
+   public:
+
+      ImplementObjectø(PaintWindow)
+
+   };
+
 
 } // namespace innate_subsystem
 

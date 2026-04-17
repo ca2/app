@@ -68,9 +68,7 @@ namespace subsystem
       if (!m_pregistrykeyCurrentUser)
       {
 
-         auto pregistrykeyCurrentUser = this->registry()->create_key(REGX_HKCU);
-
-         m_pregistrykeyCurrentUser = allocateø ::subsystem::RegistryKey(pregistrykeyCurrentUser);
+         m_pregistrykeyCurrentUser = openKey(REGX_HKCU);
 
       }
 
@@ -85,15 +83,24 @@ namespace subsystem
       if (!m_pregistrykeyLocalMachine)
       {
 
-         auto pregistrykeyLocalMachine = this->registry()->create_key(REGX_HKLM);
-
-         m_pregistrykeyLocalMachine = allocateø ::subsystem::RegistryKey(pregistrykeyLocalMachine);
+         m_pregistrykeyLocalMachine = openKey(REGX_HKLM);
 
       }
       return m_pregistrykeyLocalMachine;
       //return HKEY_LOCAL_MACHINE;
    }
 
+
+   ::pointer<::subsystem::RegistryKey>  Registry::openKey(const ::scoped_string& scopedstrPath)
+   {
+
+      auto pregistrykey = this->registry()->create_key(scopedstrPath);
+
+      auto pRegistryKey = allocateø ::subsystem::RegistryKey(pregistrykey);
+
+      return pRegistryKey;
+
+   }
 
 } // namespace subsystem
 

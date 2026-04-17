@@ -22,9 +22,9 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "string_table.h"
+#include "StringTable.h"
 #include "subsystem.h"
-#include "resource_loader.h"
+#include "ResourceLoader.h"
 
 namespace subsystem
 {

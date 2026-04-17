@@ -28,6 +28,9 @@
     <Filter Include="Source Files\framebuffer">
       <UniqueIdentifier>{c33eaa5a-468d-4243-b9e1-bff08adcf1ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\framebuffer">
+      <UniqueIdentifier>{b306975d-55de-41a2-b0a6-6484ff649cae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="drawing\Brush.cpp">
@@ -331,6 +334,15 @@
     </ClInclude>
     <ClInclude Include="resource_loader.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framebuffer\FrameBuffer.h">
+      <Filter>Header Files\framebuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="framebuffer\DibSection.h">
+      <Filter>Header Files\framebuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="framebuffer\DibFrameBuffer.h">
+      <Filter>Header Files\framebuffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

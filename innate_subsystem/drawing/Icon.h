@@ -33,7 +33,7 @@ namespace innate_subsystem
 {
    class IconInterface :
    //virtual public particle_interface<IconInterface>
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
       // Icon();
@@ -60,12 +60,12 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM IconComposite :
-virtual public composite<IconInterface>
+virtual public Composite<IconInterface>
    {
    public:
 
 
-      implement_compositeø(Icon, icon)
+      ImplementCompositeø(Icon, icon)
 
       //Icon();
       // Icon(Icon * picon);
@@ -74,15 +74,29 @@ virtual public composite<IconInterface>
       // Icon(unsigned int icon);
       //~Icon() override;
 
-      virtual void initialize_icon(IconInterface * picon) override;
-      virtual void initialize_icon(BitmapInterface *bitmap) override;
-      virtual void initialize_icon(BitmapInterface *bitmap, BitmapInterface *mask) override;
-      virtual void initialize_icon(unsigned int icon) override;
+      void initialize_icon(IconInterface* picon) override
+      {
+         m_picon->initialize_icon(picon);
+      }
+      void initialize_icon(BitmapInterface* bitmap) override { m_picon->initialize_icon(bitmap);
+      }
+      void initialize_icon(BitmapInterface* bitmap, BitmapInterface* mask) override
+      {
+         m_picon->initialize_icon(bitmap, mask);
+      }
+      void initialize_icon(unsigned int icon) override { m_picon->initialize_icon(icon);
+      }
 
-      void * _HICON() override;
+      void* _HICON() override { return m_picon->_HICON();
+
+      }
 
       //protected:
-      void fromBitmap(BitmapInterface *bitmap, BitmapInterface *mask) override;
+      void fromBitmap(BitmapInterface* bitmap, BitmapInterface* mask) override
+      {
+
+        m_picon->fromBitmap(bitmap, mask);
+      }
 
       // protected:
       //    HICON m_icon;
@@ -91,15 +105,23 @@ virtual public composite<IconInterface>
 
 
 
-    class CLASS_DECL_SUBSYSTEM Icon :
-    virtual public aggregate< IconComposite >
+    class CLASS_DECL_INNATE_SUBSYSTEM IconAggregate :
+    virtual public Aggregate< IconComposite >
     {
     public:
 
-        implement_baseø(Icon);
+        ImplementBaseø(Icon);
 
     };
 
+   class CLASS_DECL_INNATE_SUBSYSTEM Icon :
+   virtual public Object< IconAggregate >
+   {
+   public:
+
+      ImplementObjectø(Icon)
+
+   };
 
 
 

@@ -45,7 +45,7 @@ namespace subsystem
     * @author enikey.
     */
    class ServiceInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -129,7 +129,11 @@ namespace subsystem
    //     */
    //    static Service *g_service;
    };
-
+   class CLASS_DECL_SUBSYSTEM ServiceCallback : virtual public Callback<ServiceInterface>
+   {
+   public:
+      ImplementCallbackø(Service, service)
+   };
 
     //using ServiceInterface = particle_interface<ServiceInterface>;
 
@@ -140,11 +144,11 @@ namespace subsystem
     * @author enikey.
     */
    class CLASS_DECL_SUBSYSTEM ServiceComposite :
-   virtual public composite< ServiceInterface >
+   virtual public Composite< ServiceInterface >
    {
    public:
 
-       implement_compositeø(Service, service)
+       ImplementCompositeWithCallbackø(Service, service)
 
       //static ServiceComp *g_pservice;
 
@@ -163,26 +167,46 @@ namespace subsystem
       //~Service() override;
 
 
-      void initialize_service(const ::scoped_string & scopedstr) override;
+          void initialize_service(const ::scoped_string& scopedstr) override
+       {
+
+          m_pservice->initialize_service(scopedstr);
+       }
 
       /**
        * Starts service execution.
        */
-      void run() override;
+       void run() override
+       {
+
+          m_pservice->run();
+      }
 
    //protected:
       /**
        * Called from service control manager when service needs to start.
        */
-      void onStart() override;
+       void onStart() override
+       {
+
+          m_pservice->onStart();
+      }
       /**
        * Service main.
        */
-      void main()override;
+       void main()override
+       {
+
+          m_pservice->main();
+      }
       /**
        * Called from service control manager when service needs to stop/
        */
-      void onStop() override;
+       void onStop() override
+       {
+
+          m_pservice->onStop();
+      }
 
       /**
        * Win32 API service main function.
@@ -199,8 +223,12 @@ namespace subsystem
       /**
        * @fixme add comment to it.
        */
-      bool reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode,
-                        unsigned int dwWaitHint) override;
+       bool reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode,
+          unsigned int dwWaitHint) override
+       {
+
+          return m_pservice->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);
+      }
 
    // protected:
    //    /**
@@ -229,14 +257,23 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM Service :
-    virtual public aggregate< ServiceComposite >
+    class CLASS_DECL_SUBSYSTEM ServiceAggregate :
+    virtual public Aggregate< ServiceComposite >
     {
     public:
 
-        implement_baseø(Service);
+        ImplementBaseø(Service);
 
     };
+
+
+   class CLASS_DECL_SUBSYSTEM Service :
+ virtual public Object < ServiceAggregate >
+   {
+   public:
+
+   };
+
 
 
 } // namespace subsystem

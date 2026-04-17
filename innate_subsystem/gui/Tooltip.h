@@ -37,7 +37,7 @@ namespace innate_subsystem
 
 
     class TooltipInterface :
-    virtual public ::particle_base
+    virtual public ::Particle
     {
     public:
         //Tooltip();
@@ -59,34 +59,52 @@ namespace innate_subsystem
    //using TooltipInterface = particle_interface<TooltipInterface, WindowInterface>;
    
    class CLASS_DECL_INNATE_SUBSYSTEM TooltipComposite :
-   virtual public composite<TooltipInterface>
+   virtual public Composite<TooltipInterface>
    {
    public:
 
-      implement_compositeø(Tooltip, Control)
+      ImplementCompositeø(Tooltip, tooltip)
 
       //Tooltip();
       //~Tooltip() override;
 
-      void showTooltip(ControlInterface *control) override;
+         void showTooltip(ControlInterface* control) override
+      {
+         m_ptooltip->showTooltip(control);
+      }
 
-      void setText(const char *text) override;
-      void setTitle(const char *caption) override;
+      void setText(const char* text) override { m_ptooltip->setText(text);
+      }
+      void setTitle(const char *caption) override { m_ptooltip->setTitle(caption); }
 
-      ::string getText() const override;
-      ::string getTitle() const override;
+      ::string getText() const override { return m_ptooltip->getText();
+      }
+      ::string getTitle() const override
+      { return m_ptooltip->getTitle();
+      }
 
-      void setIconType(int iconType) override;
-      int getIconType() const override;
+      void setIconType(int iconType) override { m_ptooltip->setIconType(iconType);
+      }
+      int getIconType() const override { return m_ptooltip->getIconType();
+      }
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM TooltipAggregate :
+   virtual public Aggregate <TooltipComposite, Control>
+   {
+   public:
+
+      ImplementAggregateø(Tooltip, Control)
+
    };
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Tooltip :
-   virtual public aggregate <TooltipComposite, Control>
+virtual public Object<TooltipAggregate>
    {
    public:
 
-      implement_aggregateø(Tooltip, Control)
 
    };
 

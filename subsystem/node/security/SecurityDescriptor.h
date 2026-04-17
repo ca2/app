@@ -35,7 +35,7 @@ namespace subsystem
     * Contains the security information associated with an object.
     */
    class SecurityDescriptorInterface :
-        virtual public ::particle_base
+        virtual public ::Particle
    {
    public:
       /**
@@ -91,12 +91,12 @@ namespace subsystem
  * Contains the security information associated with an object.
  */
    class CLASS_DECL_SUBSYSTEM SecurityDescriptorComposite :
-   virtual public composite<SecurityDescriptorInterface>
+   virtual public Composite<SecurityDescriptorInterface>
    {
    public:
 
 
-       implement_compositeø(SecurityDescriptor, securitydescriptor)
+       ImplementCompositeø(SecurityDescriptor, securitydescriptor)
 
       /**
        * Creates new security descriptor.
@@ -146,14 +146,23 @@ namespace subsystem
       //    SECURITY_DESCRIPTOR m_sd;
    };
 
-    class SecurityDescriptor :
-    virtual public aggregate < SecurityDescriptorComposite >
+    class CLASS_DECL_SUBSYSTEM SecurityDescriptorAggregate :
+    virtual public Aggregate < SecurityDescriptorComposite >
     {
     public:
 
-        implement_baseø(SecurityDescriptor);
+        ImplementBaseø(SecurityDescriptor);
 
     };
+
+
+   class CLASS_DECL_SUBSYSTEM SecurityDescriptor :
+    virtual public Object < SecurityDescriptorAggregate >
+   {
+   public:
+
+   };
+
 
 
 } // namespace subsystem

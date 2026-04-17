@@ -72,7 +72,7 @@ enum Authority {
  * identify the trustee relative to the authority that issued the SID.
  */
 class SecurityIdentifierInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
 {
 public:
   /**
@@ -145,12 +145,12 @@ public:
   * identify the trustee relative to the authority that issued the SID.
   */
  class CLASS_DECL_SUBSYSTEM SecurityIdentifierComposite :
-    virtual public composite<SecurityIdentifierInterface>
+    virtual public Composite<SecurityIdentifierInterface>
  {
  public:
 
 
-     implement_compositeø(SecurityIdentifier, securityidentifier)
+     ImplementCompositeø(SecurityIdentifier, securityidentifier)
 
    /**
     * Creates security identifier from WinAPI SID struct.
@@ -225,14 +225,22 @@ public:
    //SID *m_sid;
 };
 
-    class SecurityIdentifier :
-    virtual public aggregate < SecurityIdentifierComposite >
+    class CLASS_DECL_SUBSYSTEM SecurityIdentifierAggregate :
+    virtual public Aggregate < SecurityIdentifierComposite >
     {
     public:
 
-        implement_baseø(SecurityIdentifier);
+        ImplementBaseø(SecurityIdentifier);
 
     };
+
+   class CLASS_DECL_SUBSYSTEM SecurityIdentifier:
+    virtual public Object < SecurityIdentifierAggregate >
+   {
+   public:
+
+   };
+
 
 
 } // namespace subsystem

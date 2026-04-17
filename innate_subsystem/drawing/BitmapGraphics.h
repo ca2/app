@@ -34,7 +34,7 @@ namespace innate_subsystem
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
    class BitmapGraphicsInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
       // Creates BitmapGraphics object with bitmap complatible with specified dc and
@@ -65,11 +65,11 @@ namespace innate_subsystem
    // Object that creates bitmap with specified size and allow to
    // draw into in through Graphics class methods.
    class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphicsComposite :
-    virtual public composite<BitmapGraphicsInterface>
+    virtual public Composite<BitmapGraphicsInterface>
    {
    public:
 
-       implement_compositeø(BitmapGraphics, bitmapgraphics)
+       ImplementCompositeø(BitmapGraphics, bitmapgraphics)
       // Creates BitmapGraphics object with bitmap complatible with specified dc and
       // with specified size.
       //BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size);
@@ -78,13 +78,30 @@ namespace innate_subsystem
       // Destroys bitmap and graphics object.
       //~BitmapGraphics() override;
 
-      void initialize_bitmap_graphics(DeviceContextInterface *complatibleDC, const ::int_size & size) override;
+          void initialize_bitmap_graphics(DeviceContextInterface* complatibleDC, const ::int_size& size) override
+       {
+
+          m_pbitmapgraphics->initialize_bitmap_graphics(complatibleDC, size);
+       }
 
       // Returns target bitmap that we paint.
-      BitmapInterface *getBitmap() override;
+       BitmapInterface* getBitmap() override
+       {
 
-      void beginPaint() override;
-      void endPaint() override;
+          return m_pbitmapgraphics->getBitmap();
+      }
+
+       void beginPaint() override
+       {
+
+          m_pbitmapgraphics->beginPaint();
+      }
+       void endPaint() override
+       {
+
+          m_pbitmapgraphics->endPaint();
+
+      }
 
       //protected:
       // bool m_isPainting;
@@ -93,13 +110,22 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphics :
-    virtual public aggregate<BitmapGraphicsComposite, Graphics>
+   class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphicsAggregate :
+    virtual public Aggregate<BitmapGraphicsComposite, Graphics>
    {
    public:
 
 
-      implement_aggregateø(BitmapGraphics, Graphics)
+      ImplementAggregateø(BitmapGraphics, Graphics)
+
+
+   };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM BitmapGraphics :
+    virtual public Object<BitmapGraphicsAggregate>
+   {
+   public:
 
 
    };

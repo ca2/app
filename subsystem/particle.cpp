@@ -5,17 +5,17 @@
 #include "subsystem/particle.h"
 
 
-   particle_base::particle_base(enum_particle eparticle):
+   Particle::Particle(enum_particle eparticle):
            m_eparticle(eparticle)
    {
 
    }
 
-   particle_base::~particle_base()
+   Particle::~Particle()
    {}
 
 
-::particle_base * particle_base::get_implementation()
+::Particle * Particle::get_implementation()
    {
 
       return this;

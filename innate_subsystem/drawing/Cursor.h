@@ -13,7 +13,7 @@ namespace innate_subsystem
 
 
    class CursorInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -47,11 +47,11 @@ namespace innate_subsystem
     
     
    class CLASS_DECL_INNATE_SUBSYSTEM CursorComposite :
-      virtual public composite<::innate_subsystem::CursorInterface>
+      virtual public Composite<::innate_subsystem::CursorInterface>
    {
    public:
 
-      implement_compositeø(Cursor, cursor)
+      ImplementCompositeø(Cursor, cursor)
 
       //Cursor();
       // Icon(HICON icon);
@@ -60,13 +60,33 @@ namespace innate_subsystem
       // Icon(DWORD icon);
       //~Cursor() override;
 
-      void * _HCURSOR() override;
-      void _setHCURSOR(void * p) override;
+         void* _HCURSOR() override
+      {
 
-      void initialize_cursor(::innate_subsystem::CursorInterface * picon) override;
-      void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap) override;
-      void initialize_cursor(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
-      void initialize_with_system_cursor(::enum_cursor ecursor) override;
+         return m_pcursor->_HCURSOR();
+      }
+      void _setHCURSOR(void* p) override
+      {
+
+         m_pcursor->_setHCURSOR(p);
+      }
+
+      void initialize_cursor(::innate_subsystem::CursorInterface* picon) override
+      {
+         m_pcursor->initialize_cursor(picon);
+      }
+      void initialize_cursor(::innate_subsystem::BitmapInterface* bitmap) override
+      {
+         m_pcursor->initialize_cursor(bitmap);
+      }
+      void initialize_cursor(::innate_subsystem::BitmapInterface* bitmap, ::innate_subsystem::BitmapInterface* mask) override
+      {
+         m_pcursor->initialize_cursor(bitmap, mask);
+      }
+      void initialize_with_system_cursor(::enum_cursor ecursor) override
+      {
+         m_pcursor->initialize_with_system_cursor(ecursor);
+      }
 
       //void initi(HICON icon);
       //Icon(Bitmap *bitmap);
@@ -74,7 +94,10 @@ namespace innate_subsystem
       //Icon(DWORD icon);
 
    //protected:
-      void fromBitmap(::innate_subsystem::BitmapInterface *bitmap, ::innate_subsystem::BitmapInterface *mask) override;
+      void fromBitmap(::innate_subsystem::BitmapInterface* bitmap, ::innate_subsystem::BitmapInterface* mask) override
+      {
+         m_pcursor->fromBitmap(bitmap, mask);
+      }
 
    // protected:
 //      HCURSOR m_hcursor;
@@ -83,16 +106,23 @@ namespace innate_subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM Cursor :
-    virtual public aggregate< CursorComposite >
+    class CLASS_DECL_SUBSYSTEM CursorAggregate :
+    virtual public Aggregate< CursorComposite >
     {
     public:
 
-        implement_baseø(Cursor);
+        ImplementBaseø(Cursor);
 
     };
 
 
+   class CLASS_DECL_SUBSYSTEM Cursor :
+   virtual public Object< CursorAggregate >
+   {
+   public:
+
+
+   };
 
 
 } // namespace innate_subsystem

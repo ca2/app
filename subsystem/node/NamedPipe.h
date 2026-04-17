@@ -42,7 +42,7 @@ namespace subsystem
  * @author yuri, enikey.
  */
    class NamedPipeInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
       /**
@@ -107,12 +107,12 @@ namespace subsystem
     * @author yuri, enikey.
     */
    class CLASS_DECL_SUBSYSTEM NamedPipeComposite :
-      virtual public composite< NamedPipeInterface >
+      virtual public Composite< NamedPipeInterface >
    {
    public:
 
 
-      implement_compositeø(NamedPipe, namedpipe)
+      ImplementCompositeø(NamedPipe, namedpipe)
 
       /**
        * Creates pipe transport.
@@ -173,8 +173,8 @@ namespace subsystem
    };
 
 
-   class CLASS_DECL_SUBSYSTEM NamedPipe :
-      virtual public aggregate<NamedPipeComposite, Pipe >
+   class CLASS_DECL_SUBSYSTEM NamedPipeAggregate :
+      virtual public Aggregate<NamedPipeComposite, PipeAggregate >
    {
    public:
 
@@ -182,9 +182,15 @@ namespace subsystem
    };
 
 
-   //implement_compositeø(NamedPipe, Pipe, namedpipe)
+   class CLASS_DECL_SUBSYSTEM NamedPipe :
+    virtual public Object < NamedPipeAggregate >
+   {
+   public:
 
-   //// __NAMEDPIPE_H__
+   };
+
+
+
 } // namespace subsystem
 
 

@@ -236,8 +236,8 @@ list(APPEND library_source
    #ParentProcess.cpp
    #ParentProcess.h
 
-   particle.cpp
-   particle.h
+   Particle.cpp
+   Particle.h
    #Pipe.cpp
    #Pipe.h
    #PipeClient.cpp
@@ -255,8 +255,8 @@ list(APPEND library_source
    RegistryKey.cpp
    RegistryKey.h
    #resource.h
-   resource_loader.cpp
-   resource_loader.h
+   ResourceLoader.cpp
+   ResourceLoader.h
    #SCMClient.cpp
    #SCMClient.h
    #Screen.cpp
@@ -272,8 +272,8 @@ list(APPEND library_source
    #Shell.cpp
    #Shell.h
    Singleton.h
-   string_table.cpp
-   string_table.h
+   StringTable.cpp
+   StringTable.h
    StringParser.cpp
    StringParser.h
    #StringStorage.cpp

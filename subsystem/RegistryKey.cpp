@@ -262,7 +262,21 @@ namespace subsystem
       if (!isOpened()) {
          return false;
       }
-out = m_pregistrykey->get_string(scopedstrName);
+      auto estatus = m_pregistrykey->_get_string(scopedstrName, out);
+
+      if (estatus == error_not_found)
+      {
+
+         return false;
+
+      }
+      else
+      {
+
+         throw ::exception(estatus);
+
+      }
+      //out = 
       // DWORD type = REG_SZ;
       // DWORD size;
       //

@@ -32,7 +32,7 @@ namespace subsystem
 
 
    class SystemInformationInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -66,11 +66,11 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM SystemInformationComposite :
-   virtual public composite<SystemInformationInterface >
+   virtual public Composite<SystemInformationInterface >
    {
    public:
 
-       implement_compositeø(SystemInformation, systeminformation)
+       ImplementCompositeø(SystemInformation, systeminformation)
 
 
 
@@ -118,15 +118,21 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM SystemInformation :
-    virtual public aggregate< SystemInformationComposite >
+    class CLASS_DECL_SUBSYSTEM SystemInformationAggregate :
+    virtual public Aggregate< SystemInformationComposite >
     {
     public:
 
-        implement_baseø(SystemInformation);
+        ImplementBaseø(SystemInformation);
 
     };
 
+   class CLASS_DECL_SUBSYSTEM SystemInformation :
+    virtual public Object < SystemInformationAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace subsystem

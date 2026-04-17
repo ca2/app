@@ -35,7 +35,7 @@ namespace subsystem
 {
 
    class SecurityAttributesInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
    {
    public:
       //SecurityAttributes();
@@ -70,11 +70,11 @@ namespace subsystem
    //using SecurityAttributesInterface = particle_interface<SecurityAttributesInterface>;
 
    class CLASS_DECL_SUBSYSTEM SecurityAttributesComposite :
-   virtual public composite<SecurityAttributesInterface>
+   virtual public Composite<SecurityAttributesInterface>
    {
    public:
 
-      implement_compositeø(SecurityAttributes, securityattributes)
+      ImplementCompositeø(SecurityAttributes, securityattributes)
 
       //SecurityAttributes();
       //~SecurityAttributes() override;
@@ -122,7 +122,22 @@ namespace subsystem
       //SecurityDescriptor m_sd;
    };
 
-   //// __SECURITYATTRIBUTES_H__
+
+   class CLASS_DECL_SUBSYSTEM SecurityAttributesAggregate :
+    virtual public Aggregate < SecurityAttributesComposite >
+   {
+   public:
+
+   };
+
+
+   class CLASS_DECL_SUBSYSTEM SecurityAttributes :
+      virtual public Object < SecurityAttributesAggregate >
+   {
+   public:
+
+   };
+
 } // namespace subsystem
 
 

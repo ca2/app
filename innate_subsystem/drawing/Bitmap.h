@@ -69,35 +69,63 @@ namespace innate_subsystem
    };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM Bitmap :
-      virtual public composite < BitmapInterface >
+   class CLASS_DECL_INNATE_SUBSYSTEM BitmapComposite :
+      virtual public Composite < BitmapInterface >
    {
    public:
+
+
+      ImplementCompositeø(Bitmap, bitmap)
+
+
       // // Creates empty bitmap with specified size.
       // Bitmap(const ::int_size & size);
       // // Creates compatible with dc bitmap with specified size.
       // Bitmap(DeviceContext * pdevicecontext, const ::int_size & size);
       // // Creates bitmap from HBITMAP object.
       // Bitmap(Bitmap * pbitmap);
-      Bitmap();
+      //Bitmap();
       // Destroys bitmap object.
-      ~Bitmap() override;
+      //~Bitmap() override;
 
 
       //void * _HGDIOBJ() override;
 
       // Creates empty bitmap with specified size.
-      void initialize_bitmap(const ::int_size & size) override;
+         void initialize_bitmap(const ::int_size& size) override
+      {
+
+         m_pbitmap->initialize_bitmap(size);
+      }
       // Creates compatible with dc bitmap with specified size.
-      void initialize_bitmap(DeviceContextInterface * pdevicecontext, const ::int_size & size) override;
+      void initialize_bitmap(DeviceContextInterface* pdevicecontext, const ::int_size& size) override
+      {
+
+         m_pbitmap->initialize_bitmap(pdevicecontext, size);
+      }
       // Creates bitmap from HBITMAP object.
-      void initialize_bitmap(BitmapInterface * pbitmap) override;
+      void initialize_bitmap(BitmapInterface* pbitmap) override
+      {
+
+         m_pbitmap->initialize_bitmap(pbitmap);
+
+      }
 
       // Returns bitmap width.
-      ::int_size getSize() const override;
+      ::int_size getSize() const override
+      {
+
+         return m_pbitmap->getSize();
+
+      }
 
 
-      void destroyGraphicsObject() override;
+      void destroyGraphicsObject() override
+      {
+
+         m_pbitmap->destroyGraphicsObject();
+
+      }
       // Returns bitmap height.
       //int getHeight() const override;
       // protected:
@@ -106,6 +134,24 @@ namespace innate_subsystem
       //    friend class Icon;
       //    friend class Graphics;
       //    friend class BitmapGraphics;
+   };
+
+
+   
+    class CLASS_DECL_SUBSYSTEM BitmapAggregate :
+       virtual public Aggregate<BitmapComposite>
+   {
+   public:
+
+      ImplementBaseø(Bitmap);
+   };
+
+   class CLASS_DECL_SUBSYSTEM Bitmap :
+          virtual public Object<BitmapAggregate>
+   {
+   public:
+
+
    };
 
 

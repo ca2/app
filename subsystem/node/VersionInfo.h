@@ -34,7 +34,7 @@ namespace subsystem
     * Contains information about executable file version info.
     */
    class VersionInfoInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -69,11 +69,11 @@ namespace subsystem
  * Contains information about executable file version info.
  */
    class CLASS_DECL_SUBSYSTEM VersionInfoComposite :
-      virtual public composite<VersionInfoInterface >
+      virtual public Composite<VersionInfoInterface >
    {
    public:
 
-       implement_compositeø(VersionInfo)
+       ImplementCompositeø(VersionInfo, versioninfo)
 
 
 
@@ -88,12 +88,20 @@ namespace subsystem
       //~VersionInfo() override;
 
 
-      void initialize_version_info(const ::file::path & pathToFile) override;
+          void initialize_version_info(const ::file::path& pathToFile) override
+       {
+
+          m_pversioninfo->initialize_version_info(pathToFile);
+       }
       /**
        * Returns product version info string.
        * @return product version info string.
        */
-      ::string getProductVersionString() const override;
+       ::string getProductVersionString() const override
+       {
+
+          return m_pversioninfo->getProductVersionString();
+      }
 
       //private:
       /**
@@ -103,16 +111,22 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM VersionInfo :
-    virtual public aggregate< VersionInfoComposite >
+    class CLASS_DECL_SUBSYSTEM VersionInfoAggregate :
+    virtual public Aggregate< VersionInfoComposite >
     {
     public:
 
-        implement_baseø(VersionInfo);
+        ImplementBaseø(VersionInfo);
 
     };
 
 
+   class CLASS_DECL_SUBSYSTEM VersionInfo :
+    virtual public Object < VersionInfoAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace subsystem

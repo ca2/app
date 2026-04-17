@@ -60,13 +60,16 @@ namespace subsystem_bsd_sockets
 
    }
 
+   
    void SocketIPv4::connect(const ::scoped_string & scopedstrHost, unsigned short port)
    {
+      
       ::subsystem::SocketAddressIPv4 address;
 
       address.initialize_socket_address_ipv4(scopedstrHost, port);
 
       connect(address);
+
    }
 
 

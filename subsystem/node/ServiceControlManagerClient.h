@@ -85,7 +85,7 @@ namespace subsystem
     * of service.
     */
    class ServiceControlManagerClientInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -165,11 +165,11 @@ namespace subsystem
  * of service.
  */
    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClientComposite :
-   virtual public composite<ServiceControlManagerClientInterface >
+   virtual public Composite<ServiceControlManagerClientInterface >
    {
    public:
 
-       implement_compositeø(ServiceControlManagerClient, servicecontrolmanagerclient)
+       ImplementCompositeø(ServiceControlManagerClient, servicecontrolmanagerclient)
 
 
 
@@ -190,7 +190,11 @@ namespace subsystem
 
 
       //void initialize_service_control_manager_client(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS) override;
-      void initialize_service_control_manager_client(unsigned int desiredAccess = 0) override;
+          void initialize_service_control_manager_client(unsigned int desiredAccess = 0) override
+       {
+
+          m_pservicecontrolmanagerclient->initialize_service_control_manager_client(desiredAccess);
+       }
       /**
        * Registers new service in system.
        * @param name name of service.
@@ -199,14 +203,25 @@ namespace subsystem
        * @param dependencies [optional] service dependencies.
        * @throws SystemException on fail.
        */
-      void installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
-                          const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies = "") override;
+       void installService(const ::scoped_string& scopedstrName, const ::scoped_string& scopedstrNameToDisplay,
+          const ::scoped_string& scopedstrBinPath, const ::scoped_string& scopedstrDependencies = "") override
+       {
+
+          m_pservicecontrolmanagerclient->installService(scopedstrName, scopedstrNameToDisplay, scopedstrBinPath,
+                                                         scopedstrDependencies);
+
+      }
       /**
        * Unregisters existing service from services.
        * @param name name of service to unregister.
        * @throws SystemException on fail.
        */
-      void removeService(const ::scoped_string & scopedstrName) override;
+       void removeService(const ::scoped_string& scopedstrName) override
+       {
+
+          m_pservicecontrolmanagerclient->removeService(scopedstrName);
+
+      }
       /**
        * Starts existing service.
        * @param name name of service to start.
@@ -215,7 +230,11 @@ namespace subsystem
        * @throws SystemException, ServiceControlManagerClientException on fail.
        */
       void startService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
-    ;
+      {
+
+         m_pservicecontrolmanagerclient->startService(scopedstrName, waitCompletion);
+
+      }
       /**
        * Stops running service execution.
        * @param name name of service to stop.
@@ -223,8 +242,13 @@ namespace subsystem
        *   SERVICE_STOPPED.
        * @throws SystemException, ServiceControlManagerClientException on fail.
        */
-      void stopService(const ::scoped_string & scopedstrName, bool waitCompletion = false) override
-    ;
+      void stopService(const ::scoped_string& scopedstrName, bool waitCompletion = false) override
+      {
+
+         m_pservicecontrolmanagerclient->stopService(scopedstrName, waitCompletion);
+
+      }
+    
 
    // private:
    //    /**
@@ -242,14 +266,20 @@ namespace subsystem
 
 
 
-    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClient :
-    virtual public aggregate< ServiceControlManagerClientComposite >
+    class CLASS_DECL_SUBSYSTEM ServiceControlManagerClientAggregate :
+    virtual public Aggregate< ServiceControlManagerClientComposite >
     {
     public:
 
-        implement_baseø(ServiceControlManagerClient);
+        ImplementBaseø(ServiceControlManagerClient);
 
     };
+   class CLASS_DECL_SUBSYSTEM ServiceControlManagerClient :
+    virtual public Object < ServiceControlManagerClientAggregate >
+   {
+   public:
+
+   };
 
 
 

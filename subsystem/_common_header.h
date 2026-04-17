@@ -47,7 +47,7 @@
 
 ////#include "::string.h"
 #include "acme/parallelization/critical_section.h"
-#include "subsystem/particle.h"
-#include "subsystem/string_table.h"
+#include "subsystem/Particle.h"
+#include "subsystem/StringTable.h"
 
 //// __COMMONHEADER_H__

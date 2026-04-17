@@ -32,7 +32,7 @@ namespace subsystem
 {
    // Retrieves information of the parent process.
    class ParentProcessInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -60,20 +60,29 @@ namespace subsystem
 
    // Retrieves information of the parent process.
    class CLASS_DECL_SUBSYSTEM ParentProcessComposite :
-   virtual public composite<ParentProcessInterface>
+   virtual public Composite<ParentProcessInterface>
    {
    public:
 
-       implement_compositeø(ParentProcess, parentprocess);
+       ImplementCompositeø(ParentProcess, parentprocess);
 
       //ParentProcess();
        //~ParentProcess() override;
 
       // Returns true if the parent process is alive.
-      bool isAlive() override;
+       bool isAlive() override
+       {
+
+          return m_pparentprocess->isAlive();
+      }
 
       //private:
-      void init() override;
+       void init() override
+       {
+
+
+          m_pparentprocess->init();
+      }
       // Returns true and fills the *pe argument if a process entry has been found.
       //bool getProcessEntry(PROCESSENTRY32 *peOut, DWORD Pid,
       //HANDLE hSnapshot);
@@ -86,14 +95,23 @@ namespace subsystem
    };
 
 
-   class CLASS_DECL_SUBSYSTEM ParentProcess :
-      virtual public aggregate < ParentProcessComposite >
+   class CLASS_DECL_SUBSYSTEM ParentProcessAggregate :
+      virtual public Aggregate < ParentProcessComposite >
    {
    public:
 
-      implement_baseø(ParentProcess);
+      ImplementBaseø(ParentProcess);
 
    };
+
+
+   class CLASS_DECL_SUBSYSTEM ParentProcess :
+ virtual public Object < ParentProcessAggregate >
+   {
+   public:
+
+   };
+
 
 
 }//namespace subsystem

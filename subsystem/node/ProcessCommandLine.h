@@ -33,7 +33,7 @@ namespace subsystem
 
    // This class is an interface for a primitive command line parser
    class ProcessCommandLineInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -77,11 +77,11 @@ namespace subsystem
 
       // This class is an interface for a primitive command line parser
    class CLASS_DECL_SUBSYSTEM ProcessCommandLineComposite :
-      virtual public composite < ProcessCommandLineInterface >
+      virtual public Composite < ProcessCommandLineInterface >
    {
    public:
 
-       implement_compositeø(ProcessCommandLine, processcommandline)
+       ImplementCompositeø(ProcessCommandLine, processcommandline)
 
 
       //ProcessCommandLine();
@@ -89,37 +89,68 @@ namespace subsystem
 
       // returns the number of arguments in command line
       // for example, program: help
-      ::collection::count getArgumentsCount() override;
+          ::collection::count getArgumentsCount() override
+       {
+          return m_pprocesscommandline->getArgumentsCount();
+
+       }
 
       // returns the number of options in command line
       // for example, -V=123456
-      ::collection::count getOptionsCount() override;
+       ::collection::count getOptionsCount() override
+       {
+
+          return m_pprocesscommandline->getOptionsCount();
+      }
 
       // returns the value of parameter by valName
-      bool findOptionValue(const ::scoped_string & scopedstrOptionName, ::string & strOut) override;
+       bool findOptionValue(const ::scoped_string& scopedstrOptionName, ::string& strOut) override
+       {
+
+          return m_pprocesscommandline->findOptionValue(scopedstrOptionName, strOut);
+      }
 
       // returns the argument value with index
-      bool getArgument(::collection::index index, ::string & strOut) override;
+       bool getArgument(::collection::index index, ::string& strOut) override
+       {
+
+          return m_pprocesscommandline->getArgument(index, strOut);
+      }
 
       // returns the option value with index
-      bool getOption(::collection::index index, ::string & strOut) override;
+       bool getOption(::collection::index index, ::string& strOut) override
+       {
+
+          return m_pprocesscommandline->getOption(index, strOut);
+      }
 
 
       //private:
-      void optionParser(::string & out) override;
+       void optionParser(::string& out) override
+       {
+
+          return m_pprocesscommandline->optionParser(out);
+      }
 
    };
 
 
-    class CLASS_DECL_SUBSYSTEM ProcessCommandLine :
-    virtual public aggregate< ProcessCommandLineComposite >
+    class CLASS_DECL_SUBSYSTEM ProcessCommandLineAggregate :
+    virtual public Aggregate< ProcessCommandLineComposite >
     {
     public:
 
-        implement_baseø(ProcessCommandLine);
+        ImplementBaseø(ProcessCommandLine);
 
     };
 
+
+   class CLASS_DECL_SUBSYSTEM ProcessCommandLine :
+ virtual public Object < ProcessCommandLineAggregate >
+   {
+   public:
+
+   };
 
 
 } // namespace subsystem

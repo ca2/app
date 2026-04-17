@@ -33,7 +33,7 @@ namespace subsystem
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
    class ProcessHandleInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -67,18 +67,23 @@ namespace subsystem
    // This class is a mere envelop for process handle that will automatically
    // closed at destructor calling.
    class CLASS_DECL_SUBSYSTEM ProcessHandleComposite :
-   virtual public composite<ProcessHandleInterface >
+   virtual public Composite<ProcessHandleInterface >
    {
    public:
 
-      implement_compositeø(ProcessHandle, processhandle)
+      ImplementCompositeø(ProcessHandle, processhandle)
 
 
 
       // @throws ::subsystem::Exception on an error.
-      void openProcess(unsigned int dwDesiredAccess,
-                       bool bInheritHandle,
-                       ::process_identifier processidentifier) override;
+         void openProcess(unsigned int dwDesiredAccess,
+            bool bInheritHandle,
+            ::process_identifier processidentifier) override
+      {
+
+         m_pprocesshandle->openProcess(dwDesiredAccess, bInheritHandle, processidentifier);
+
+      }
 
       // Returns the handle of the openned process by openProcess() function.
       // If openProcess() function has not been called before then getHandle()
@@ -92,27 +97,43 @@ namespace subsystem
 * @throws SystemException if operation failed.
 * @fixme stub (returns invalid SID).
 */
-      ::pointer < ::subsystem::SecurityIdentifier > getProcessOwner() override;
+      ::pointer < ::subsystem::SecurityIdentifier > getProcessOwner() override
+      {
+
+         return m_pprocesshandle->getProcessOwner();
+
+      }
 
 
       // Returns process module path. Call the openProcess() function before.
       // @throws ::subsystem::Exception on an error.
-      ::string getProcessModulePath() override;
+      ::string getProcessModulePath() override
+      {
+
+         return m_pprocesshandle->getProcessModulePath();
+
+      }
 
       //private:
       //HANDLE m_hProcess;
    };
 
 
-    class CLASS_DECL_SUBSYSTEM ProcessHandle :
-    virtual public aggregate< ProcessHandleComposite >
+    class CLASS_DECL_SUBSYSTEM ProcessHandleAggregate :
+    virtual public Aggregate< ProcessHandleComposite >
     {
     public:
 
-        implement_baseø(ProcessHandle);
+        ImplementBaseø(ProcessHandle);
 
     };
 
 
+   class CLASS_DECL_SUBSYSTEM ProcessHandle :
+    virtual public Object < ProcessHandleAggregate >
+   {
+   public:
+
+   };
 
 } //namespace subsystem

@@ -47,7 +47,7 @@ namespace subsystem_bsd_sockets
     * @fixme refactor this class to avoid usage of SocketAddressIPv4 class.
     */
    class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS SocketIPv4 :
-   virtual public implementation<::subsystem::SocketIPv4Interface>
+   virtual public Implementation<::subsystem::SocketIPv4Interface>
    {
    public:
       /**

@@ -33,7 +33,7 @@ namespace innate_subsystem
 {
 
 class SpinControlInterface :
-   virtual public ::particle_base
+   virtual public ::Particle
 {
 public:
   //SpinControl();
@@ -73,12 +73,12 @@ public:
    //using SpinControlInterface = particle_interface<SpinControlInterface, ControlInterface>;
 
    class CLASS_DECL_INNATE_SUBSYSTEM SpinControlComposite :
-   virtual public composite < SpinControlInterface>
+   virtual public Composite < SpinControlInterface>
    {
    public:
 
 
-      implement_compositeø(SpinControl,  spincontrol)
+      ImplementCompositeø(SpinControl,  spincontrol)
 
 
       //SpinControl();
@@ -116,17 +116,27 @@ public:
    };
 
 
-    class CLASS_DECL_INNATE_SUBSYSTEM SpinControl :
-    virtual public aggregate< SpinControlComposite, Control >
+    class CLASS_DECL_INNATE_SUBSYSTEM SpinControlAggregate :
+    virtual public Aggregate< SpinControlComposite, Control >
 
    {
    public:
 
 
-implement_aggregateø(SpinControl, Control)
+      ImplementAggregateø(SpinControl, Control)
 
 
    };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM  SpinControl:
+virtual public Object<SpinControlAggregate>
+   {
+   public:
+
+
+   };
+
 
 
 } // namespace innate_subsystem

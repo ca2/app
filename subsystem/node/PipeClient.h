@@ -35,7 +35,7 @@ namespace subsystem
     * Pipe client factory.
     */
    class PipeClientInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -59,12 +59,12 @@ namespace subsystem
  * Pipe client factory.
  */
    class CLASS_DECL_SUBSYSTEM PipeClientComposite :
-   virtual public composite<PipeClientInterface>
+   virtual public Composite<PipeClientInterface>
    {
    public:
 
        
-      implement_compositeø(PipeClient, pipeclient)
+      ImplementCompositeø(PipeClient, pipeclient)
 
       //PipeClient();
 
@@ -83,14 +83,23 @@ namespace subsystem
    //    unsigned int m_maxPortionSize;
    };
 
-    class CLASS_DECL_SUBSYSTEM PipeClient :
-    virtual public aggregate< PipeClientComposite >
+    class CLASS_DECL_SUBSYSTEM PipeClientAggregate :
+    virtual public Aggregate< PipeClientComposite >
     {
     public:
 
-        implement_baseø(PipeClient);
+        ImplementBaseø(PipeClient);
 
     };
+
+
+   class CLASS_DECL_SUBSYSTEM PipeClient :
+ virtual public Object < PipeClientAggregate >
+   {
+   public:
+
+   };
+
 
 
 } //namespace subsystem

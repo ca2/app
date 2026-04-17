@@ -54,7 +54,7 @@ namespace subsystem
     * @fixme member of HDESK type in THREAD class???
     */
    class ThreadInterface :
-      virtual public ::particle_base
+      virtual public ::Particle
    {
    public:
 
@@ -169,6 +169,13 @@ namespace subsystem
    };
 
 
+      class CLASS_DECL_SUBSYSTEM ThreadCallback : virtual public Callback<ThreadInterface>
+   {
+   public:
+
+
+      ImplementCallbackø(Thread, thread)
+   };
    //using ThreadInterface = particle_interface<ThreadInterface>;
 
    /**
@@ -179,12 +186,12 @@ namespace subsystem
     * @fixme member of HDESK type in THREAD class???
     */
    class CLASS_DECL_SUBSYSTEM ThreadComposite :
-      virtual public composite < ThreadInterface >
+      virtual public Composite < ThreadInterface >
    {
    public:
 
 
-      implement_compositeø(Thread, thread)
+      ImplementCompositeWithCallbackø(Thread, thread)
 
 
       //::pointer < Thread > m_pthreadThis;
@@ -359,15 +366,21 @@ namespace subsystem
    };
 
 
-    class CLASS_DECL_SUBSYSTEM Thread :
-    virtual public aggregate< ThreadComposite >
+    class CLASS_DECL_SUBSYSTEM ThreadAggregate :
+    virtual public Aggregate< ThreadComposite >
     {
     public:
 
-        implement_baseø(Thread);
+        ImplementBaseø(Thread);
 
     };
 
+   class CLASS_DECL_SUBSYSTEM Thread :
+   virtual public Object< ThreadAggregate >
+   {
+   public:
+
+   };
 
 
 

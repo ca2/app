@@ -34,7 +34,7 @@ namespace subsystem
 
 
    class ClipboardInterface :
-    virtual public ::particle_base
+    virtual public ::Particle
     {
        public:
 
@@ -73,12 +73,12 @@ namespace subsystem
     //using ClipboardInterface = particle_interface < ClipboardInterface >;
 
    class CLASS_DECL_SUBSYSTEM ClipboardComposite :
-   virtual public composite< ClipboardInterface>
+   virtual public Composite< ClipboardInterface>
    {
    public:
 
 
-       implement_compositeø(Clipboard, clipboard)
+       ImplementCompositeø(Clipboard, clipboard)
       //Clipboard(const ::operating_system::window & operatingsystemwindow);
       //Clipboard();
        //~Clipboard() override;
@@ -140,12 +140,22 @@ namespace subsystem
 
 
 
-   class CLASS_DECL_SUBSYSTEM Clipboard :
-      virtual public aggregate < ClipboardComposite >
+   class CLASS_DECL_SUBSYSTEM ClipboardAggregate :
+      virtual public Aggregate < ClipboardComposite >
    {
    public:
 
-      implement_baseø(Clipboard);
+      ImplementBaseø(Clipboard);
+
+   };
+
+
+   class CLASS_DECL_SUBSYSTEM Clipboard :
+ virtual public Object < ClipboardAggregate >
+   {
+   public:
+
+      ImplementObjectø(Clipboard)
 
    };
 

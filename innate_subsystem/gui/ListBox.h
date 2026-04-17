@@ -29,7 +29,7 @@
 namespace innate_subsystem
 {
 
-   class ListBoxInterface : virtual public ::particle_base
+   class ListBoxInterface : virtual public ::Particle
    {
 public:
   //ListBox();
@@ -56,11 +56,11 @@ public:
    //using ListBoxInterface = particle_interface<ListBoxInterface, ControlInterface>;
 
       class CLASS_DECL_INNATE_SUBSYSTEM ListBoxComposite :
-      virtual public composite<ListBoxInterface >
+      virtual public Composite<ListBoxInterface >
 {
       public:
 
-         implement_compositeø(ListBox, listbox)
+         ImplementCompositeø(ListBox, listbox)
          
          public:
   //ListBox();
@@ -85,14 +85,24 @@ public:
 };
 
 
-   class CLASS_DECL_INNATE_SUBSYSTEM ListBox :
-  virtual public aggregate<ListBoxComposite , Control>
+   class CLASS_DECL_INNATE_SUBSYSTEM ListBoxAggregate :
+  virtual public Aggregate<ListBoxComposite , Control>
    {
    public:
 
 
-      implement_aggregateø(ListBox, Control)
+      ImplementAggregateø(ListBox, Control)
    };
+
+
+   class CLASS_DECL_INNATE_SUBSYSTEM ListBox :
+virtual public Object<ListBoxAggregate>
+   {
+   public:
+
+
+   };
+
 
 } // namespace innate_subsystem
 

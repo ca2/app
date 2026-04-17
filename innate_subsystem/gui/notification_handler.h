@@ -14,7 +14,7 @@ namespace innate_subsystem
    public:
 
 
-      virtual ::innate_subsystem::WindowInterface * get_window_implementation() = 0;
+      virtual ::innate_subsystem::WindowInterface * get_window_implementation();
 
       virtual bool _001OnAction();
       virtual bool _001OnKeyDownNotification(::user::enum_key ekey);

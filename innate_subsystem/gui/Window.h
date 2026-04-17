@@ -47,6 +47,15 @@ namespace innate_subsystem
    };
 
 
+   enum enum_window_class
+   {
+
+      e_window_class_none = 0,
+      e_window_class_viewer = 1,
+
+   };
+
+
    class WindowInterface :
       virtual public notification_handler
    {
@@ -79,7 +88,9 @@ namespace innate_subsystem
       virtual bool onDrawClipboard() = 0;
       // setClass()
       // Set a class name only to the new window created by createWindow
-      virtual void setClass(const ::scoped_string  & scopedstrWindowClassName) = 0;
+      //virtual void setClass(const ::scoped_string  & scopedstrWindowClassName) = 0;
+
+      virtual void setClass(enum_window_class ewindowclass) = 0;
 
       // We want WM_KEYDOWN scopedstrMessage when enter is pressed
       virtual bool we_want_WM_KEYDOWN_when_enter_is_pressed() const {return false;}
@@ -324,10 +335,12 @@ namespace innate_subsystem
 
       // setClass()
       // Set a class name only to the new window created by createWindow
-      void setClass(const ::scoped_string  & scopedstrWindowClassName) override
+      //void setClass(const ::scoped_string  & scopedstrWindowClassName) override
+      void setClass(enum_window_class ewindowclass)
       {
 
-         m_pwindow->setClass(scopedstrWindowClassName);
+         m_pwindow->setClass(ewindowclass);
+         //m_pwindow->setClass(scopedstrWindowClassName);
       }
 
 
@@ -490,22 +503,25 @@ namespace innate_subsystem
       bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override { return false; }
       bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override { return m_pwindow->onMouse(mouseButtons, wheelSpeed, position); }
 
-      bool onCreate(void * pCreateStruct) override { return m_pwindow->onCreate(pCreateStruct); }
+      bool onCreate(void * pCreateStruct) override { return false; }
 
-      bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) override { return m_pwindow->on_window_procedure(lresult, message, wparam, lparam); }
+      bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) override 
+      { 
+      return false;
+      }
 
 
-      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override { m_pwindow->onDraw(pgraphics, rectangle); }
+      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override {  }
 
 
-      void onBeforeFullScreen(bool bRestore) override { m_pwindow->onBeforeFullScreen(bRestore); }
-      void onAfterFullScreen(bool bRestore) override { m_pwindow->onAfterFullScreen(bRestore); }
-      void onBeforeUnFullScreen(bool bMinimizing) override { m_pwindow->onBeforeUnFullScreen(bMinimizing); }
-      void onAfterUnFullScreen(bool bMinimizing) override { m_pwindow->onAfterUnFullScreen(bMinimizing); }
-      bool onGetTooltip(int iControl, ::string & strTooltip) override { return m_pwindow->onGetTooltip(iControl, strTooltip); }
-      bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) override { return m_pwindow->onCalculateDefaultSize(rectangleDefaultSize); }
-      void onAdjustWindowSize() override { m_pwindow->onAdjustWindowSize(); }
-      void onSize() override { m_pwindow->onSize(); }
+      void onBeforeFullScreen(bool bRestore) override {  }
+      void onAfterFullScreen(bool bRestore) override {  }
+      void onBeforeUnFullScreen(bool bMinimizing) override {  }
+      void onAfterUnFullScreen(bool bMinimizing) override {  }
+      bool onGetTooltip(int iControl, ::string & strTooltip) override { return false; }
+      bool onCalculateDefaultSize(::int_rectangle &rectangleDefaultSize) override { return false; }
+      void onAdjustWindowSize() override { }
+      void onSize() override {  }
 
    // protected:
    //    HWND m_hWnd;

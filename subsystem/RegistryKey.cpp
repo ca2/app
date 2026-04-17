@@ -270,7 +270,7 @@ namespace subsystem
          return false;
 
       }
-      else
+      else if (!estatus)
       {
 
          throw ::exception(estatus);

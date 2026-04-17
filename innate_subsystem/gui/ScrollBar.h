@@ -130,7 +130,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ScrollBarAggregate :
-   virtual public Aggregate< ScrollBarComposite, Window >
+   virtual public Aggregate< ScrollBarComposite, WindowAggregate >
 
    {
    public:
@@ -145,6 +145,7 @@ virtual public Object<ScrollBarAggregate>
    {
    public:
 
+      ImplementObjectø(ScrollBar)
 
    };
 

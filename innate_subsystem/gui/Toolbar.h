@@ -301,6 +301,7 @@ virtual public Object<ToolbarAggregate>
    {
    public:
 
+      ImplementObjectø(Toolbar)
 
    };
 

@@ -163,7 +163,9 @@ namespace subsystem_bsd_sockets
 
    ::pointer < ::subsystem::SocketAddressIPv4Interface > subsystem::resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port)
    {
-      auto presolvedAddress = createø<::subsystem_bsd_sockets::SocketAddressIPv4>();
+      auto presolvedAddress = createø<::subsystem::SocketAddressIPv4Interface>();
+
+      auto paddressResolved = presolvedAddress->impl<::subsystem_bsd_sockets::SocketAddressIPv4>();
 
       ::string hostStorage(scopedstrHost);
 
@@ -177,10 +179,10 @@ namespace subsystem_bsd_sockets
             throw ::subsystem::SocketException();
          }
 
-         presolvedAddress->m_addr.S_un.S_addr = ntohl(*(u_long *)hent->h_addr_list[0]);
+         paddressResolved->m_addr.S_un.S_addr = ntohl(*(u_long *)hent->h_addr_list[0]);
       }
 
-      presolvedAddress->m_port = port;
+      paddressResolved->m_port = port;
 
       return presolvedAddress;
 

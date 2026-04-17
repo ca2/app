@@ -18,7 +18,7 @@ namespace subsystem_bsd_sockets
    subsystem::subsystem()
    {
 
-s_p = nullptr;
+s_p = this;
 
    }
 

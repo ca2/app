@@ -121,6 +121,7 @@ namespace innate_subsystem
    {
    public:
 
+      ImplementObjectø(Cursor)
 
    };
 

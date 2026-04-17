@@ -380,6 +380,9 @@ namespace subsystem
    {
    public:
 
+
+      ImplementObjectø(Thread)
+
    };
 
 

@@ -3,10 +3,21 @@
 //
 #include "framework.h"
 #include "notification_handler.h"
+#include "Window.h"
 
 
 namespace innate_subsystem
 {
+   
+   
+   ::innate_subsystem::WindowInterface* notification_handler::get_window_implementation()
+   {
+
+      auto pwindow = this->impl<WindowInterface>();
+
+      return pwindow;
+
+   }
 
 
    bool notification_handler::_001OnAction()

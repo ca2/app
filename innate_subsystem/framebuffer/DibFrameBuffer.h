@@ -137,7 +137,7 @@ namespace innate_subsystem
       void checkDibValid();
 
       FrameBuffer m_fb;
-      ::pointer < DibSection > m_pdibsection;
+      ::pointer < DibSectionInterface > m_pdibsection;
    };
 
 

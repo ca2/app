@@ -250,6 +250,8 @@ namespace innate_subsystem
    {
    public:
 
+       ImplementObjectø(DibSection)
+
    };
 
 

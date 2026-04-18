@@ -4386,6 +4386,9 @@
     <ClInclude Include="platform\subsystem.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="platform\wparam.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6321,6 +6324,9 @@
       <Filter>Source Files\input_output</Filter>
     </ClCompile>
     <ClCompile Include="platform\ini.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\wparam.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>

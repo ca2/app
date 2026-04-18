@@ -133,6 +133,7 @@
 //#include "acme/parallelization/critical_section.h"
 #include "acme/platform/display.h"
 #include "acme/platform/lparam.h"
+#include "acme/platform/wparam.h"
 #include "acme/prototype/comparison/compare.h"
 //#include "acme/prototype/prototype/e_status.h"
 #include "acme/prototype/logic/boolean.h"

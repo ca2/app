@@ -15,12 +15,13 @@ public:
 
    constexpr lparam(nullptr_t = nullptr) { m_lparam = 0; }
 
-   template < prototype_integral INTEGRAL >
-   constexpr lparam(INTEGRAL i) { m_lparam = (iptr)i; }
+   template < prototype_integral_number INTEGRAL_NUMBER >
+   constexpr lparam(INTEGRAL_NUMBER i) { m_lparam = (iptr)i; }
    template < prototype_size SIZE >
    constexpr lparam(const SIZE & size):lparam((int)size.cx, (int) size.cy) {}
    template < prototype_point POINT >
    constexpr lparam(const POINT & point);
+   constexpr lparam(const wparam &wparam);
    lparam(int x, int y) { m_lparam = make_unsigned_int(x, y); }
 
 
@@ -119,7 +120,7 @@ public:
    constexpr short x() const
    {
 
-      return ::lparam_int_x(m_lparam);
+      return ::iptr_int_x(m_lparam);
 
    }
 
@@ -127,9 +128,12 @@ public:
    constexpr short y() const
    {
 
-      return ::lparam_int_y(m_lparam);
+      return ::iptr_int_y(m_lparam);
 
    }
+
+   constexpr short hiword() const { return __hiword(m_lparam); }
+   constexpr short loword() const { return __loword(m_lparam); }
 
    constexpr ::int_point point() const;
 

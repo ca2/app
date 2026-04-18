@@ -58,6 +58,7 @@ public:
    inline pointer();
    inline pointer(no_initialize_t){}
    inline pointer( nullptr_t);
+   inline pointer(wparam& wparam);
    inline pointer(lparam& lparam);
 
    template < typename ...Args >

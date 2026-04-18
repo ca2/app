@@ -9794,10 +9794,10 @@ if(get_parent())
       if (m_pappearance)
       {
 
-         if (pmessage->m_wparam.m_number != 0)
+         if (pmessage->m_wparam.m_wparam != 0)
          {
 
-            m_pappearance->on_character((int)pmessage->m_wparam.m_number);
+            m_pappearance->on_character((int)pmessage->m_wparam.m_wparam);
 
          }
 
@@ -18874,9 +18874,7 @@ if(get_parent())
       case ::user::e_message_prototype_non_client_hit_test:
       {
          _NEW_MESSAGE(::message::nc_hit_test);
-         pmessage->m_point.x = lparam_int_x(lparam);
-
-         pmessage->m_point.y = lparam_int_y(lparam);
+         pmessage->m_point = lparam.point();
       }
       break;
       case ::user::e_message_prototype_move:
@@ -18938,7 +18936,7 @@ if(get_parent())
       case ::user::e_message_prototype_mouse:
       {
          _NEW_MESSAGE(::message::mouse);
-         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_number;
+         pmessage->m_ebuttonstate = (::user::enum_button_state)wparam.m_wparam;
 
          //         if ((pmessage->m_ebuttonstate & I32_MINIMUM) == (I32_MINIMUM))
          //         {
@@ -18994,7 +18992,7 @@ if(get_parent())
 
          pmessage->m_nType = static_cast <unsigned int> (wparam);
 
-         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
+         pmessage->m_size = ::int_size(iptr_int_x(lparam), iptr_int_y(lparam));
       }
       break;
       case ::user::e_message_prototype_activate:

@@ -1155,6 +1155,7 @@ class object;
 //class dump_context;
 class __id;
 class string_exchange;
+class wparam;
 class lparam;
 class time;
 class timer_callback;

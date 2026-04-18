@@ -1395,6 +1395,49 @@ inline pointer < T >::pointer(lparam & lparam)
 }
 
 
+#include "acme/platform/wparam.h"
+
+
+template<class T>
+inline pointer<T>::pointer(wparam & wparam)
+{
+
+   m_psubparticle = (::subparticle *)(::iptr)wparam.m_wparam;
+
+   m_p = dynamic_cast<T *>(m_psubparticle);
+
+#if REFERENCING_DEBUGGING
+
+   m_preferer = m_psubparticle->m_prefererTransfer2;
+
+   m_psubparticle->m_prefererTransfer2 = nullptr;
+
+#endif
+
+   if (::is_null(m_p) && ::is_set(m_psubparticle))
+   {
+
+#if REFERENCING_DEBUGGING
+
+      if (::is_set(m_preferer))
+      {
+
+         ::allocator::add_releaser(m_preferer);
+
+         m_preferer = nullptr;
+      }
+
+#endif
+
+      ::release(m_psubparticle);
+
+   }
+
+   wparam.m_wparam = 0;
+
+}
+
+
 template < class c_derived >
 inline long long increment_reference_count(c_derived * pca)
 {

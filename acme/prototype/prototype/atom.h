@@ -19,7 +19,9 @@ enum enum_id : ::uptr;
 //class atom_space;
 
 
+class wparam;
 class lparam;
+
 
 namespace platform { class type; }
 

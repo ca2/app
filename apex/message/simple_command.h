@@ -16,9 +16,9 @@ namespace message
 
       simple_command();
 
-      void set(enum_simple_command esimplecommand) { m_wparam.m_number = esimplecommand; }
+      void set(enum_simple_command esimplecommand) { m_wparam = esimplecommand; }
 
-      inline enum_simple_command command() { return (enum_simple_command) m_wparam.m_number; }
+      inline enum_simple_command command() { return m_wparam.raw_cast<enum_simple_command>(); }
 
 
    };

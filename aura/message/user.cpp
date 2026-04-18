@@ -676,7 +676,7 @@ namespace message
    int_point mouse_wheel::GetPoint()
    {
 
-      return int_point(lparam_int_x(m_lparam), lparam_int_y(m_lparam));
+      return int_point(iptr_int_x(m_lparam), iptr_int_y(m_lparam));
 
    }
 

@@ -465,7 +465,6 @@ template < typename T >
 class c_number;
 
 
-using wparam = c_number<iptr>;
 
 
 template < typename T >

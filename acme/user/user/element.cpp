@@ -3909,7 +3909,7 @@ namespace user
    void element::post_simple_command(const enum_simple_command & ecommand, const ::lparam & lparam)
    {
 
-      post_message(::user::e_message_simple_command, (wparam)ecommand, lparam);
+      post_message(::user::e_message_simple_command, ecommand, lparam);
 
       //return true;
 

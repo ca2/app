@@ -2547,6 +2547,7 @@
     <ClCompile Include="platform\remoting.cpp" />
     <ClCompile Include="platform\subsystem.cpp" />
     <ClCompile Include="platform\user_interaction_sink.cpp" />
+    <ClCompile Include="platform\wparam.cpp" />
     <ClCompile Include="user\simple\dialog_box_line.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
@@ -2597,6 +2598,7 @@
     <ClInclude Include="platform\remoting.h" />
     <ClInclude Include="platform\string_table.h" />
     <ClInclude Include="platform\subsystem.h" />
+    <ClInclude Include="platform\wparam.h" />
     <ClInclude Include="prototype\collection\array_map.h" />
     <ClInclude Include="prototype\collection\base_array.h" />
     <ClInclude Include="prototype\collection\block_array.h" />

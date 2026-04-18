@@ -92,7 +92,7 @@ namespace windows
    ::operating_system::window windowing::operating_system_window(const ::wparam &wparam)
    {
 
-      ::operating_system::windows_window windowswindow((HWND) wparam.m_number);
+      ::operating_system::windows_window windowswindow(wparam.raw_cast<HWND>());
 
       return windowswindow.as_operating_system_window();
    
@@ -102,7 +102,7 @@ namespace windows
    ::operating_system::window windowing::operating_system_window(const ::lparam &lparam)
    {
 
-      ::operating_system::windows_window windowswindow((HWND)lparam.m_lparam);
+      ::operating_system::windows_window windowswindow(lparam.raw_cast<HWND>());
 
       return windowswindow.as_operating_system_window();
 

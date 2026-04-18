@@ -255,7 +255,7 @@ namespace windows
    bool window::_on_default_system_menu_init_menu(::lresult & lresult, ::wparam wparam)
    {
 
-      auto hmenu = wparam.scast<HMENU>();
+      auto hmenu = wparam.raw_cast<HMENU>();
 
       auto hmenuSystem = m_hmenuSystem;
 

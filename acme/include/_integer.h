@@ -30,8 +30,8 @@ constexpr unsigned int lower_unsigned_int(unsigned long long u) { return (unsign
 constexpr unsigned int upper_unsigned_int(unsigned long long u) { return (unsigned int)((u >> 32) & 0xffffffff); }
 
 
-constexpr int lparam_int_x(::iptr i) { return (int)(short)lower_unsigned_short(i); }
-constexpr int lparam_int_y(::iptr i) { return (int)(short)upper_unsigned_short(i); }
+constexpr int iptr_int_x(::iptr i) { return (int)(short)lower_unsigned_short(i); }
+constexpr int iptr_int_y(::iptr i) { return (int)(short)upper_unsigned_short(i); }
 constexpr int u32_x(::uptr u) { return (int)(short)lower_unsigned_short(u); }
 constexpr int u32_y(::uptr u) { return (int)(short)upper_unsigned_short(u); }
 constexpr int u64_x(unsigned long long u) { return (int)lower_unsigned_int(u); }

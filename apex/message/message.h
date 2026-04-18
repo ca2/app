@@ -71,9 +71,9 @@ namespace message
       // ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
-      unsigned int GetNotifyCode() const { return __hiword(m_wparam.m_number); }
+      unsigned int GetNotifyCode() const { return m_wparam.hiword(); }
 
-      unsigned int GetId() const { return __loword(m_wparam.m_number); }
+      unsigned int GetId() const { return m_wparam.loword(); }
 
       //oswindow get_oswindow() const { return m_pacmewindowingwindow; }
 

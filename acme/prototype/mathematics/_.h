@@ -637,12 +637,18 @@ inline TYPE range_rate(TYPE iMin, TYPE iMax, double dRate)
 
 
 
-template < prototype_integral INTEGRAL >
-inline short  __loword(INTEGRAL i) {return i & 0xffff; }
+template < prototype_integral_number INTEGRAL_NUMBER >
+constexpr short __loword(INTEGRAL_NUMBER i)
+{
+   return i & 0xffff;
+}
 
 
-template < prototype_integral INTEGRAL >
-inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
+template<prototype_integral_number INTEGRAL_NUMBER>
+constexpr short __hiword(INTEGRAL_NUMBER i)
+{
+   return (i >> 16) & 0xffff;
+}
 
 
 //inline long long as_long_long(const_char_pointer psz, int iBase = 10)

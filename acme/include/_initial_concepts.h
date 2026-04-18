@@ -542,6 +542,10 @@ template < typename T >
 concept character_range_not_string_neither_scoped_string = prototype_character_range<T> && !prototype_string<T> && !prototype_scoped_string<T>;
 
 
+template<typename NUMBER>
+concept prototype_integral_number =
+   prototype_integral<NUMBER> || 
+   prototype_enum<NUMBER>;
 
 
 template < typename NUMBER >

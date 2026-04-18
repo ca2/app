@@ -4525,6 +4525,20 @@ bool thread::process_message()
 
          copy(msg, message);
 
+         auto haccel = (HACCEL ) m_pAcceleratorTable;
+
+         if (haccel) 
+         {
+         
+             if (TranslateAccelerator(GetActiveWindow(), haccel, &msg)) 
+             {
+                
+                 return true;
+         
+             }
+         
+         }
+
          ::TranslateMessage(&msg);
 
          ::DispatchMessage(&msg);

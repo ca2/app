@@ -286,6 +286,7 @@ namespace innate_subsystem
    {
    public:
 
+       ImplementObjectø(Graphics)
 
    };
 

@@ -7,6 +7,7 @@
 #include "resource_loader.h"
 #include "acme/constant/user_key.h"
 #include "gui/Window.h"
+#include "gui/KeyboardLayout.h"
 
 
 namespace innate_subsystem
@@ -74,6 +75,18 @@ s_p = this;
 
    }
 
+   
+    ::innate_subsystem::KeyboardLayoutInterface *subsystem::keyboard_layout()
+   {
+
+      if (!m_pkeyboardlayout)
+      {
+
+         constructø(m_pkeyboardlayout);
+      }
+
+      return m_pkeyboardlayout;
+   }
 
 
 

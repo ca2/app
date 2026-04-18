@@ -231,8 +231,8 @@ namespace  innate_subsystem
    void DibFrameBuffer::releaseDibSection()
    {
       if (m_pdibsection) {
-         delete m_pdibsection;
-         m_pdibsection = 0;
+         //delete m_pdibsection;
+         m_pdibsection.release();
          m_fb.setBuffer(0);
       }
    }

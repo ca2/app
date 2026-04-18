@@ -306,6 +306,7 @@
     <ClCompile Include="gui\FilteredTextBox.cpp" />
     <ClCompile Include="gui\ImagedButton.cpp" />
     <ClCompile Include="gui\ImageList.cpp" />
+    <ClCompile Include="gui\KeyboardLayout.cpp" />
     <ClCompile Include="gui\ListBox.cpp" />
     <ClCompile Include="gui\ListView.cpp" />
     <ClCompile Include="gui\Menu.cpp" />
@@ -313,7 +314,6 @@
     <ClCompile Include="gui\notification_handler.cpp" />
     <ClCompile Include="gui\NotifyIcon.cpp" />
     <ClCompile Include="gui\NotifyIconWindow.cpp" />
-    <ClCompile Include="gui\PaintWindow.cpp" />
     <ClCompile Include="gui\ProgressBar.cpp" />
     <ClCompile Include="gui\ScrollBar.cpp" />
     <ClCompile Include="gui\SpinControl.cpp" />
@@ -355,6 +355,7 @@
     <ClInclude Include="gui\FilteredTextBox.h" />
     <ClInclude Include="gui\ImagedButton.h" />
     <ClInclude Include="gui\ImageList.h" />
+    <ClInclude Include="gui\KeyboardLayout.h" />
     <ClInclude Include="gui\ListBox.h" />
     <ClInclude Include="gui\ListView.h" />
     <ClInclude Include="gui\Menu.h" />
@@ -362,7 +363,6 @@
     <ClInclude Include="gui\notification_handler.h" />
     <ClInclude Include="gui\NotifyIcon.h" />
     <ClInclude Include="gui\NotifyIconWindow.h" />
-    <ClInclude Include="gui\PaintWindow.h" />
     <ClInclude Include="gui\ProgressBar.h" />
     <ClInclude Include="gui\resource_loader.h" />
     <ClInclude Include="gui\ScrollBar.h" />

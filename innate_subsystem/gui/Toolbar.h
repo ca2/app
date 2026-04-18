@@ -289,9 +289,11 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM ToolbarAggregate :
-   virtual  public Aggregate< ToolbarComposite, Control >
+   virtual  public Aggregate< ToolbarComposite, ControlAggregate >
    {
    public:
+
+       ImplementAggregateø(Toolbar, Control)
 
    };
 

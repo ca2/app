@@ -154,6 +154,8 @@ namespace subsystem
    {
    public:
 
+       ImplementObjectø(OperatingSystemHook)
+
    };
 
 

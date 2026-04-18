@@ -82,7 +82,7 @@ namespace innate_subsystem
 
    //protected:
       //virtual void onPaint(DeviceContext *dc, PAINTSTRUCT *paintStruct);
-      void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) { m_ppaintwindow->onPaint(pdevicecontext, rectangle); }
+      void onPaint(DeviceContextInterface *pdevicecontext, const ::int_rectangle & rectangle) {  }
 
       //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam);
 
@@ -95,7 +95,7 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM PaintWindowAggregate:
-virtual public Aggregate<PaintWindowComposite, Window >
+virtual public Aggregate<PaintWindowComposite, WindowAggregate >
    {
    public:
 

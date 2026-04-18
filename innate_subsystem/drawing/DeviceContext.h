@@ -52,7 +52,7 @@ namespace innate_subsystem
 
        //private:
        // Initialize class from PaintWindow
-       virtual void initialize_device_context(PaintWindowInterface * pntWnd) = 0;
+       //virtual void initialize_device_context(PaintWindowInterface * pntWnd) = 0;
        // Create device context linked to window DC.
        virtual void initialize_device_context(const ::operating_system::window & window) = 0;
        // Create device context complatible with other DC.
@@ -60,6 +60,8 @@ namespace innate_subsystem
 
 
       //friend class PaintWindow;
+
+       virtual void _attachHDC(void *pHDC) = 0;
 
       //protected:
       // Selects an object into this device context.
@@ -93,11 +95,11 @@ namespace innate_subsystem
 
       //private:
       // Initialize class from PaintWindow
-         void initialize_device_context(PaintWindowInterface* pntWnd) override
-      {
+      //   void initialize_device_context(PaintWindowInterface* pntWnd) override
+      //{
 
-         m_pdevicecontext->initialize_device_context(pntWnd);
-      }
+      //   m_pdevicecontext->initialize_device_context(pntWnd);
+      //}
       // Create device context linked to window DC.
       void initialize_device_context(const ::operating_system::window& window) override
       {
@@ -108,7 +110,9 @@ namespace innate_subsystem
       {
          m_pdevicecontext->initialize_device_context(compatibleDevice);
       }
+      void _attachHDC(void* pHDC) override { m_pdevicecontext->_attachHDC(pHDC);
 
+       }
 
       void destroyDeviceContext() override { m_pdevicecontext->destroyDeviceContext();
 

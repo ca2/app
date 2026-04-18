@@ -236,6 +236,7 @@ namespace subsystem
          throw ::exception(estatus);
 
       }
+      *out = u;
       // DWORD type = REG_DWORD;
       // DWORD size = 4;
       //

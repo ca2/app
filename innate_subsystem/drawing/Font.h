@@ -101,6 +101,8 @@ virtual public Composite<FontInterface>
    {
    public:
 
+       ImplementObjectø(Font)
+
    };
 
 

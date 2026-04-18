@@ -52,8 +52,10 @@ public:
    ::pointer<message_queue>                           m_pmessagequeue;
    bool                                               m_bClosedMessageQueue;
    ::pointer < ::request >                            m_prequest2;
-
-
+#ifdef WINDOWS
+   void *m_pAcceleratorTable = nullptr;
+#endif
+   
    MESSAGE                                            m_message;
    bool                                               m_bLastingThread;
    //bool                                               m_bMessageThread;

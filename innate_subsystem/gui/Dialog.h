@@ -100,7 +100,7 @@ namespace innate_subsystem
 
       virtual bool onInitDialog() = 0;
       //virtual bool onNotify(unsigned int controlID, ::lparam data) = 0;
-      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
+      virtual bool onCommand(unsigned int controlID, bool bAccelerator, unsigned int notificationID) = 0;
       virtual bool onClose() = 0;
       virtual bool onDestroy() = 0;
 
@@ -271,7 +271,10 @@ namespace innate_subsystem
 
       bool onInitDialog() override { return m_pdialog->onInitDialog(); }
       //bool onNotify(unsigned int controlID, ::lparam data);
-      bool onCommand(unsigned int controlID, unsigned int notificationID) override { return m_pdialog->onCommand(controlID, notificationID); }
+      bool onCommand(unsigned int controlID, bool bAccelerator, unsigned int notificationID) override
+      {
+         return m_pdialog->onCommand(controlID, bAccelerator, notificationID);
+      }
       bool onClose() override { return m_pdialog->onClose(); }
       bool onDestroy() override { return m_pdialog->onDestroy(); }
 

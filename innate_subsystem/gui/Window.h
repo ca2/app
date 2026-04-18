@@ -85,6 +85,7 @@ namespace innate_subsystem
       virtual bool destroyWindow() = 0;
 
       virtual void setClipboardViewerInterest() = 0;
+      virtual void setOnDrawInterest() = 0;
       virtual bool onDrawClipboard() = 0;
       // setClass()
       // Set a class name only to the new window created by createWindow
@@ -96,8 +97,8 @@ namespace innate_subsystem
       virtual bool we_want_WM_KEYDOWN_when_enter_is_pressed() const {return false;}
 
 
-      virtual void setShowCursor(bool bShowCursor) = 0;
-      virtual bool shouldShowCursor() = 0;
+      virtual void setCursor(enum_cursor ecursor) = 0;
+      virtual enum_cursor getCursor() = 0;
 
       virtual void setDoubleBuffering(bool bDoubleBuffering) = 0;
       virtual bool isDoubleBuffering() = 0;
@@ -245,10 +246,13 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
+      virtual bool onCommand(unsigned int controlID, bool bAccelerator, unsigned int notificationID) = 0;
    //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
    virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+   virtual bool onMouseEx(unsigned int uMessage, int iButtonMask, unsigned short wheelSpeed, const ::int_point &point,
+                          bool &bDoDefaultProcessing) = 0;
+
    virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) = 0;
 
 
@@ -327,6 +331,7 @@ namespace innate_subsystem
 
          m_pwindow->setClipboardViewerInterest();
       }
+      void setOnDrawInterest() override { m_pwindow->setOnDrawInterest(); }
       bool onDrawClipboard() override
       {
 
@@ -344,8 +349,8 @@ namespace innate_subsystem
       }
 
 
-      void setShowCursor(bool bShowCursor) override { m_pwindow->setShowCursor(bShowCursor); }
-      bool shouldShowCursor() override { return m_pwindow->shouldShowCursor(); }
+      void setCursor(enum_cursor ecursor) override { m_pwindow->setCursor(ecursor); }
+      enum_cursor getCursor() override { return m_pwindow->getCursor(); }
 
       virtual void setDoubleBuffering(bool bDoubleBuffering) override { m_pwindow->setDoubleBuffering(bDoubleBuffering); }
       virtual bool isDoubleBuffering() override { return m_pwindow->isDoubleBuffering(); }
@@ -438,7 +443,7 @@ namespace innate_subsystem
       void setClassMenu(::innate_subsystem::MenuInterface * pmenu) override { m_pwindow->setClassMenu(pmenu); }
 
 
-      bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override { return m_pwindow->we_want_WM_KEYDOWN_when_enter_is_pressed(); }
+      bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override { return false; }
 
       // for changing or get style and exstyle of window
       long long getStyle() override { return m_pwindow->getStyle(); }
@@ -497,11 +502,22 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-      bool onCommand(unsigned int controlID, unsigned int notificationID) override { return false; }
+      bool onCommand(unsigned int controlID, bool bAccelerator, unsigned int notificationID) override { return false; }
    //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
       bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
       bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override { return false; }
-      bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) override { return m_pwindow->onMouse(mouseButtons, wheelSpeed, position); }
+      bool onMouseEx(unsigned int uMessage, int iButtonMask, unsigned short wheelSpeed,
+          const ::int_point& point, bool & bDoDefaultProcessing) override
+
+      {
+          return false;
+
+      }
+
+      bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point &position) override
+      {
+         return false;
+      }
 
       bool onCreate(void * pCreateStruct) override { return false; }
 
@@ -547,6 +563,7 @@ virtual public Object<WindowAggregate>
    {
    public:
 
+       ImplementObjectø(Window)
 
    };
 

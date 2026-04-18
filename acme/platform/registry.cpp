@@ -29,15 +29,6 @@ namespace platform
       return true;
    }
 
-   static void set_type_and_data(::rapidjson::Value &entry, const char *type, ::rapidjson::Value &data,
-                                 ::rapidjson::Document::AllocatorType &alloc)
-   {
-      entry.SetObject();
-
-      ::rapidjson::Value t(type, alloc);
-      entry.AddMember("type", t, alloc);
-      entry.AddMember("data", data, alloc);
-   }
 
 
    void registry_key::close()
@@ -215,6 +206,11 @@ namespace platform
       ::e_status _payload_type(const ::scoped_string &scopedstrName, enum_registry & eregistry) override;
 
 
+
+      void set_type_and_data(::rapidjson::Value &entry, const char *type, ::rapidjson::Value &data,
+                             ::rapidjson::Document::AllocatorType &alloc);
+
+
    };
 
 
@@ -226,6 +222,23 @@ namespace platform
    {
 
    }
+
+      void registry_key_implementation::set_type_and_data(::rapidjson::Value &entry, const char *type,
+                                                       ::rapidjson::Value &data,
+                                                       ::rapidjson::Document::AllocatorType &alloc)
+   {
+
+          {
+      entry.SetObject();
+
+      ::rapidjson::Value t(type, alloc);
+      entry.AddMember("type", t, alloc);
+      entry.AddMember("data", data, alloc);
+   }
+
+      m_pregistry->flush();
+   }
+
 
    // struct RegX {
    //     std::string filename;

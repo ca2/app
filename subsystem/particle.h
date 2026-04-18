@@ -588,8 +588,8 @@ Name##Composite::set##Name##Implementation(pimpl);                              
    }
 
 
-   template < typename PARTICLE_INTERFACE >
-   PARTICLE_INTERFACE * get_implementation(const Implementation< PARTICLE_INTERFACE > * pimplementation)
+   template < typename PARTICLE_INTERFACE, typename BASE >
+   PARTICLE_INTERFACE * get_implementation(const Implementation< PARTICLE_INTERFACE, BASE > * pimplementation)
    {
 
       return _get_implementation<PARTICLE_INTERFACE>(pimplementation);

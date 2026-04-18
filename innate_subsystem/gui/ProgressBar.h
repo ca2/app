@@ -58,7 +58,7 @@ namespace innate_subsystem
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ProgressBarAggregate :
-      virtual public Aggregate< ProgressBarComposite, Control >
+      virtual public Aggregate< ProgressBarComposite, ControlAggregate >
 
    {
    public:
@@ -73,6 +73,7 @@ virtual public Object<ProgressBarAggregate>
    {
    public:
 
+       ImplementObjectø(ProgressBar)
 
    };
 

@@ -128,7 +128,7 @@ namespace innate_subsystem
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM TextBoxAggregate :
-   virtual public Aggregate< TextBoxComposite, Control >
+   virtual public Aggregate< TextBoxComposite, ControlAggregate >
    {
    public:
 
@@ -142,6 +142,7 @@ virtual public Object<TextBoxAggregate>
    {
    public:
 
+       ImplementObjectø(TextBox)
 
    };
 

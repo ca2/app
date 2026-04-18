@@ -25,6 +25,7 @@ namespace innate_subsystem
 
       ::pointer < ::innate_subsystem::resource_loader > m_presourceloader;
       ::pointer < ::innate_subsystem::SystemMetricsInterface > m_psystemmetrics;
+      ::pointer<::innate_subsystem::KeyboardLayoutInterface> m_pkeyboardlayout;
 
       ::map_base < ::operating_system::window, ::pointer < ::innate_subsystem::WindowInterface > > m_mapWindow;
 
@@ -33,6 +34,8 @@ namespace innate_subsystem
 
 
       ::innate_subsystem::resource_loader* resource_loader();
+
+      ::innate_subsystem::KeyboardLayoutInterface *keyboard_layout();
 
 
       int message_box(

@@ -100,6 +100,10 @@ namespace innate_subsystem
    class SystemMetricsInterface;
 
 
+   class KeyboardLayout;
+   class KeyboardLayoutInterface;
+
+
    enum enum_system_command
    {
       e_system_command_none = 0,

@@ -224,6 +224,7 @@ namespace innate_subsystem
 
       // post message to this window
       virtual void postMessage(unsigned int Msg, ::wparam wparam = 0, ::lparam lparam = 0) = 0;
+      virtual void post(const ::procedure &procedure) = 0;
 
       virtual ::int_rectangle getClientRect() = 0;
       virtual ::int_rectangle getFullScreenRect() = 0;
@@ -472,6 +473,7 @@ namespace innate_subsystem
 
       // post message to this window
       void postMessage(unsigned int Msg, ::wparam wparam =0, ::lparam lparam =0) override { m_pwindow->postMessage(Msg, wparam, lparam); }
+      void post(const ::procedure &procedure) override { m_pwindow->post(procedure); }
 
       ::int_rectangle getClientRect() override { return m_pwindow->getClientRect(); }
       ::int_rectangle getFullScreenRect() override { return m_pwindow->getFullScreenRect(); }

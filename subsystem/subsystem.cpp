@@ -7,6 +7,7 @@
 #include "StringTable.h"
 #include "ResourceLoader.h"
 #include "acme/platform/registry.h"
+#include "node/OperatingSystem.h"
 #include "node/Shell.h"
 #include "node/PipeClient.h"
 #include "Registry.h"
@@ -52,7 +53,7 @@ namespace subsystem
    }
 
 
-   ::subsystem::StringTable * subsystem::StringTable()
+   ::subsystem::StringTable & subsystem::StringTable()
    {
 
       if (!m_pstringtable)
@@ -62,7 +63,7 @@ namespace subsystem
 
       }
 
-      return m_pstringtable;
+      return *m_pstringtable;
 
    }
 
@@ -82,6 +83,19 @@ namespace subsystem
 
    }
 
+
+   ::subsystem::OperatingSystem& subsystem::OperatingSystem()
+   {
+
+            if (!m_poperatingsystem)
+      {
+
+         constructø(m_poperatingsystem);
+      }
+
+      return *m_poperatingsystem;
+
+   }
 
 
    ::subsystem::Registry * subsystem::registry()

@@ -23,7 +23,7 @@ namespace innate_subsystem
 
       static ::innate_subsystem::subsystem *            s_p;
 
-      ::pointer < ::innate_subsystem::resource_loader > m_presourceloader;
+      ::pointer < ::innate_subsystem::ResourceLoader > m_presourceloader;
       ::pointer < ::innate_subsystem::SystemMetricsInterface > m_psystemmetrics;
       ::pointer<::innate_subsystem::KeyboardLayoutInterface> m_pkeyboardlayout;
 
@@ -33,7 +33,7 @@ namespace innate_subsystem
       ~subsystem() override;
 
 
-      ::innate_subsystem::resource_loader* ResourceLoader();
+      ::innate_subsystem::ResourceLoader *ResourceLoader();
 
       ::innate_subsystem::KeyboardLayoutInterface *keyboard_layout();
 
@@ -62,7 +62,7 @@ namespace innate_subsystem
 
 
 
-inline ::innate_subsystem::subsystem * main_innate_subsystem()
+inline ::innate_subsystem::subsystem & MainInnateSubsystem()
 {
 
    if (!::innate_subsystem::subsystem::s_p)
@@ -72,7 +72,7 @@ inline ::innate_subsystem::subsystem * main_innate_subsystem()
 
    }
 
-   return ::innate_subsystem::subsystem::s_p;
+   return * ::innate_subsystem::subsystem::s_p;
 
 }
 

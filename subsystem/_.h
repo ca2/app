@@ -152,6 +152,8 @@ namespace subsystem
 
     class CommandLineArguments;
 
+    class OperatingSystem;
+
 } // namespace subsystem
 
 

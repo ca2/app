@@ -110,7 +110,7 @@
        virtual bool isAeroOn(LogWriter *log) = 0;
 
     //private:
-       virtual void init() = 0;
+       //virtual void init() = 0;
        // Operation system version info.
        //OSVERSIONINFO m_osVerInfo;
     };

@@ -62,7 +62,7 @@ s_p = this;
    //
    //
    //
-   ::innate_subsystem::resource_loader * subsystem::ResourceLoader()
+   ::innate_subsystem::ResourceLoader *subsystem::ResourceLoader()
    {
 
 

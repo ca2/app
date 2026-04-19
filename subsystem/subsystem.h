@@ -32,6 +32,7 @@ namespace subsystem
       ::pointer < ::subsystem::SystemInformationInterface > m_psysteminformation;
       ::pointer < ::subsystem::DesktopSelectorInterface > m_pdesktopselector;
       ::pointer < ::subsystem::PipeClientInterface > m_ppipeclient;
+      ::pointer<::subsystem::OperatingSystem> m_poperatingsystem;
 
 
       subsystem();
@@ -39,13 +40,14 @@ namespace subsystem
 
 
       virtual ::subsystem::StringParser * string_parser();
-      virtual ::subsystem::StringTable * StringTable();
+      virtual ::subsystem::StringTable & StringTable();
       virtual ::subsystem::Registry* registry();
       virtual ::subsystem::Shell* shell();
       virtual ::subsystem::SystemInformationInterface * system_information();
       virtual ::subsystem::DesktopSelectorInterface * desktop_selector();
       virtual ::subsystem::PipeClientInterface * pipe_client();
       ::subsystem::ResourceLoader * ResourceLoader();
+      ::subsystem::OperatingSystem & OperatingSystem();
 
 
 

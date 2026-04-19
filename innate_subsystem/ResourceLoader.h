@@ -39,8 +39,8 @@ namespace innate_subsystem
     * Singleton without support of "lazy" initialization.
     */
    //class ResourceLoader : public Singleton<ResourceLoader>
-   class CLASS_DECL_INNATE_SUBSYSTEM resource_loader :
-      virtual public ::subsystem::resource_loader
+   class CLASS_DECL_INNATE_SUBSYSTEM ResourceLoader :
+      virtual public ::subsystem::ResourceLoader
    {
    public:
       /**
@@ -48,11 +48,11 @@ namespace innate_subsystem
        * @param appInst windwos application instance.
        */
       //resource_loader(HINSTANCE appInst);
-      resource_loader();
+      ResourceLoader();
       /**
        * Frees resource loader singleton.
        */
-      ~resource_loader() override;
+      ~ResourceLoader() override;
 
       /**
        * Loads standart icon from resources.

@@ -162,7 +162,7 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="resource_loader.cpp">
+    <ClCompile Include="ResourceLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="subsystem.cpp">
@@ -329,7 +329,7 @@
     <ClInclude Include="subsystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource_loader.h">
+    <ClInclude Include="ResourceLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framebuffer\FrameBuffer.h">

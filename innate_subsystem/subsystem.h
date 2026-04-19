@@ -33,7 +33,7 @@ namespace innate_subsystem
       ~subsystem() override;
 
 
-      ::innate_subsystem::resource_loader* resource_loader();
+      ::innate_subsystem::resource_loader* ResourceLoader();
 
       ::innate_subsystem::KeyboardLayoutInterface *keyboard_layout();
 
@@ -68,7 +68,7 @@ inline ::innate_subsystem::subsystem * main_innate_subsystem()
    if (!::innate_subsystem::subsystem::s_p)
    {
 
-      system()->subsystem();
+      system()->MainSubsystem();
 
    }
 

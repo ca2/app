@@ -160,7 +160,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
 
 //auto pimpl = impl<implementation<Name##Interface>>();
 //if(pimpl) pimpl->m_pcomposite = this;
-//::MainSubsystem()->constructø(m_p##name); \
+//::MainSubsystem().constructø(m_p##name); \
 
 
 
@@ -440,7 +440,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
 // using MAIN_AGGREGATE_INTERFACE_TYPE = typename Aggregate<Name##Composite, Base##Aggregate>::MAIN_AGGREGATE_INTERFACE_TYPE; \
 // Name##Aggregate() \
 // { \
-//    auto pinterfaceImplementation = ::MainSubsystem()->createø<Name##Interface>(); \
+//    auto pinterfaceImplementation = ::MainSubsystem().createø<Name##Interface>(); \
 //    this->set##Name##Composite(pinterfaceImplementation); \
 //    ::cast<Base##Interface> pbase = pinterfaceImplementation; \
 //    this->set##Base##Composite(pbase);                                    \
@@ -467,7 +467,7 @@ virtual void set##Name##Implementation(MAIN_AGGREGATE_INTERFACE_TYPE * pimpl)   
 // using MAIN_AGGREGATE_INTERFACE_TYPE = typename Aggregate<Name##Composite>::MAIN_AGGREGATE_INTERFACE_TYPE; \
 // Name##Aggregate()                                                                                                         \
 // {                                                                                                                \
-//    auto pinterfaceImplementation = ::MainSubsystem()->createø<Name##Interface>();                               \
+//    auto pinterfaceImplementation = ::MainSubsystem().createø<Name##Interface>();                               \
 //    this->set##Name##Composite(pinterfaceImplementation);                                                         \
 // }
 
@@ -613,7 +613,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
    //   //if (!m_pparticleThis)
    //   {
 
-   //      ::MainSubsystem()->constructø(m_pparticleThis);
+   //      ::MainSubsystem().constructø(m_pparticleThis);
 
    //   }
 
@@ -640,7 +640,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
    //   // if (!m_pparticleThis)
    //   {
 
-   //      ::MainSubsystem()->constructø(m_pparticleThis);
+   //      ::MainSubsystem().constructø(m_pparticleThis);
    //   }
 
    //   auto pimpl = impl<implementation<PARTICLE_INTERFACE>>();
@@ -664,7 +664,7 @@ IMPL *Particle::impl()
 using MAIN_AGGREGATE_INTERFACE_TYPE = typename Name##Aggregate::MAIN_AGGREGATE_INTERFACE_TYPE;                       \
 Name()                                                                                                         \
 {                                                                                                                \
-auto pinterfaceImplementation = ::MainSubsystem()->createø<Name##Interface>();                               \
+auto pinterfaceImplementation = ::MainSubsystem().createø<Name##Interface>();                               \
 this->set##Name##Implementation(pinterfaceImplementation);                                                         \
 }                                                                                                    \
 operator MAIN_AGGREGATE_INTERFACE_TYPE *() { return this->impl<MAIN_AGGREGATE_INTERFACE_TYPE>(); }

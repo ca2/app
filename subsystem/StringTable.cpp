@@ -45,7 +45,7 @@ namespace subsystem
 
          p = m_mapString.get(u);
 
-         if (!::MainSubsystem()->ResourceLoader()->loadString(u, p->element2()))
+         if (!::MainSubsystem().ResourceLoader()->loadString(u, p->element2()))
          {
 
             p->element2() = "Requested string from StringTable cannot be received";

@@ -24,7 +24,7 @@ namespace innate_subsystem
 {
 
 
-   class resource_loader;
+   class ResourceLoader;
 
 
    class DeviceContext;

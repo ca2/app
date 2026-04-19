@@ -329,7 +329,7 @@
     <ClCompile Include="gui\Window.cpp" />
     <ClCompile Include="gui\WindowFinder.cpp" />
     <ClCompile Include="gui\WindowProcHolder.cpp" />
-    <ClCompile Include="resource_loader.cpp" />
+    <ClCompile Include="ResourceLoader.cpp" />
     <ClCompile Include="subsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -383,7 +383,7 @@
     <ClInclude Include="gui\WindowProcHolder.h" />
     <ClInclude Include="drawing\Pen.h" />
     <ClInclude Include="drawing\SolidBrush.h" />
-    <ClInclude Include="resource_loader.h" />
+    <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="subsystem.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_common_header.h" />

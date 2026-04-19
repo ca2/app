@@ -43,7 +43,7 @@ namespace subsystem
       if (!p)
       {
          p = m_mapString.get(i);
-         p->element2() = ::MainSubsystem()->ResourceLoader()->loadString(i);
+         p->element2() = ::MainSubsystem().ResourceLoader()->loadString(i);
       }
 
       return p->element2();

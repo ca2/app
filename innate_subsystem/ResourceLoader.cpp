@@ -22,7 +22,7 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "resource_loader.h"
+#include "ResourceLoader.h"
 //#include "util/UnicodeStringStorage.h"
 
 // #include aaa_<crtdbg.h>
@@ -30,35 +30,35 @@
 namespace innate_subsystem
 {
 
-   //resource_loader::resource_loader(HINSTANCE appInst)
-   resource_loader::resource_loader()
+   //ResourceLoader::ResourceLoader(HINSTANCE appInst)
+   ResourceLoader::ResourceLoader()
       //: m_appInstance(appInst)
    {}
 
-   resource_loader::~resource_loader()
+   ResourceLoader::~ResourceLoader()
    {}//h
 
-   ::pointer < IconInterface > resource_loader::loadStandardIcon(enum_cursor ecursor)
+   ::pointer < IconInterface > ResourceLoader::loadStandardIcon(enum_cursor ecursor)
    {
       //return LoadIcon(NULL, iconName);
       throw ::interface_only();
       return nullptr;
    }
 
-   ::pointer < IconInterface > resource_loader::loadIcon(const char* iconName)
+   ::pointer < IconInterface > ResourceLoader::loadIcon(const char* iconName)
    {
       //return LoadIcon(m_appInstance, iconName);
       throw ::interface_only();
       return nullptr;
    }
 
-   ::pointer < IconInterface > resource_loader::loadIconByIntResource(int iIconResourceId)
+   ::pointer < IconInterface > ResourceLoader::loadIconByIntResource(int iIconResourceId)
    {
       //return LoadIcon(m_appInstance, iconName);
       throw ::interface_only();
       return nullptr;
    }
-   // bool resource_loader::loadString(unsigned int id, ::string & str)
+   // bool ResourceLoader::loadString(unsigned int id, ::string & str)
    // {
    //    //_ASSERT(string != 0);
    //    str = "(Undef)";
@@ -104,7 +104,7 @@ namespace innate_subsystem
    //    return true;
    // }
    //
-   void * resource_loader::loadAccelerator(unsigned int id)
+   void * ResourceLoader::loadAccelerator(unsigned int id)
    {
    //   return LoadAccelerators(m_appInstance,
    //      MAKEINTRESOURCE(id));
@@ -113,14 +113,14 @@ namespace innate_subsystem
 
    }
 
-   ::pointer <CursorInterface>  resource_loader::loadStandardCursor(enum enum_cursor)
+   ::pointer <CursorInterface>  ResourceLoader::loadStandardCursor(enum enum_cursor)
    {
       //return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
       throw ::interface_only();
       return nullptr;
    }
 
-   ::pointer <CursorInterface> resource_loader::loadCursor(unsigned int id)
+   ::pointer <CursorInterface> ResourceLoader::loadCursor(unsigned int id)
    {
       //return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
       throw ::interface_only();

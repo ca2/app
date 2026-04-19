@@ -88,7 +88,7 @@ namespace subsystem
 
 
 
-inline ::subsystem::subsystem * MainSubsystem()
+inline ::subsystem::subsystem & MainSubsystem()
 {
 
    if (!::subsystem::subsystem::s_p)
@@ -98,7 +98,7 @@ inline ::subsystem::subsystem * MainSubsystem()
 
    }
 
-   return ::subsystem::subsystem::s_p;
+   return *::subsystem::subsystem::s_p;
 
 }
 

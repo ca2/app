@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "subsystem.h"
 #include "gui/SystemMetrics.h"
-#include "resource_loader.h"
+#include "ResourceLoader.h"
 #include "acme/constant/user_key.h"
 #include "gui/Window.h"
 #include "gui/KeyboardLayout.h"
@@ -62,13 +62,13 @@ s_p = this;
    //
    //
    //
-   ::innate_subsystem::resource_loader * subsystem::resource_loader()
+   ::innate_subsystem::resource_loader * subsystem::ResourceLoader()
    {
 
 
       if (!m_presourceloader)
       {
-         m_presourceloader = ::subsystem::subsystem::resource_loader();
+         m_presourceloader = ::subsystem::subsystem::ResourceLoader();
       }
 
       return m_presourceloader;

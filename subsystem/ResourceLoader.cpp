@@ -30,25 +30,25 @@
 namespace subsystem
 {
 
-   //resource_loader::resource_loader(HINSTANCE appInst)
-   resource_loader::resource_loader()
+   //ResourceLoader::ResourceLoader(HINSTANCE appInst)
+   ResourceLoader::ResourceLoader()
       //: m_appInstance(appInst)
    {}
 
-   resource_loader::~resource_loader()
+   ResourceLoader::~ResourceLoader()
    {}//h
 
-   //HICON resource_loader::loadStandartIcon(const char* iconName)
+   //HICON ResourceLoader::loadStandartIcon(const char* iconName)
    //{
    //   return LoadIcon(NULL, iconName);
    //}
 
-   //HICON resource_loader::loadIcon(const char* iconName)
+   //HICON ResourceLoader::loadIcon(const char* iconName)
    //{
    //   return LoadIcon(m_appInstance, iconName);
    //}
 
-   bool resource_loader::loadString(unsigned int id, ::string & str)
+   bool ResourceLoader::loadString(unsigned int id, ::string & str)
    {
       //_ASSERT(string != 0);
       str = "(Undef)";
@@ -94,7 +94,7 @@ namespace subsystem
       return true;
    }
 
-   ::string resource_loader::loadString(unsigned int id)
+   ::string ResourceLoader::loadString(unsigned int id)
    {
 
       ::string str;
@@ -102,7 +102,7 @@ namespace subsystem
       if (!loadString(id, str))
       {
 
-         error("subsystem::resource_loader::loadString failed for id {}", id);
+         error("subsystem::ResourceLoader::loadString failed for id {}", id);
 
       }
 
@@ -111,18 +111,18 @@ namespace subsystem
    }
 
 
-   //HACCEL resource_loader::loadAccelerator(UINT id)
+   //HACCEL ResourceLoader::loadAccelerator(UINT id)
    //{
    //   return LoadAccelerators(m_appInstance,
    //      MAKEINTRESOURCE(id));
    //}
 
-   //HCURSOR resource_loader::loadStandardCursor(const char* id)
+   //HCURSOR ResourceLoader::loadStandardCursor(const char* id)
    //{
    //   return LoadCursor(0, id);
    //}
 
-   //HCURSOR resource_loader::loadCursor(UINT id)
+   //HCURSOR ResourceLoader::loadCursor(UINT id)
    //{
    //   return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
    //}

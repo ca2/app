@@ -12,15 +12,15 @@
    {
    public:
 
+      ::memory m_memory;
+
+
 
       DataCopy();
 
-      memsize read(void* buffer, memsize len);
-      memsize write(const void* buffer, memsize len);
-      memsize available();
-
-
-      ::memory m_memory;
+      memsize read(void* buffer, memsize len) override;
+      memsize defer_write(const void* buffer, memsize len) override;
+      memsize available() override;
 
 
    };

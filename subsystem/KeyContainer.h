@@ -1,4 +1,4 @@
-// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -17,35 +17,35 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// with this program; if not, write to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "string_table.h"
-#include "resource_loader.h"
-#include "subsystem/subsystem.h"
+#pragma once
+
+
+#include "subsystem/_common_header.h"
 
 
 namespace subsystem
 {
-   //::iptr_map<::string> StringTable::s_mapString;
 
-   string_table::string_table() {}
 
-   ::string string_table::getString(::iptr i)
+   class CLASS_DECL_SUBSYSTEM KeyContainer
    {
+   public:
+      
 
-      ::string str;
+      ::string m_strKey;
+      bool m_bIsArgument;
+      ::string m_strArgument;
 
-      auto p = m_mapString.find(i);
 
-      if (!p)
-      {
-         p = m_mapString.get(i);
-         p->element2() = ::MainSubsystem()->ResourceLoader()->loadString(i);
-      }
 
-      return p->element2();
-   }
+      KeyContainer();
+
+
+   };
+
+
 } // namespace subsystem

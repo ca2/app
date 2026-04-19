@@ -5,7 +5,7 @@
 //{
    DataCopy::DataCopy() {}
 
-   memsize DataCopy::write(const void* buffer, memsize len)
+   memsize DataCopy::defer_write(const void* buffer, memsize len)
    {
       m_memory.append(buffer, len);
       return len;

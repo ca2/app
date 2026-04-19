@@ -29,7 +29,7 @@ namespace subsystem
    SocketException::SocketException()
    : ::subsystem::Exception()
    {
-      setErrorCode(main_subsystem()->get_last_socket_error());
+      setErrorCode(MainSubsystem()->get_last_socket_error());
    }
 
    SocketException::SocketException(int iErrorCode)
@@ -60,7 +60,7 @@ namespace subsystem
       //               MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
       //               (LPTSTR)&buffer[0],
       //               sizeof(buffer), NULL);
-      m_strMessage = main_subsystem()->get_socket_error_message_text(m_iErrorCode);
+      m_strMessage = MainSubsystem()->get_socket_error_message_text(m_iErrorCode);
       //m_strMessage= &buffer[0];
 
    }

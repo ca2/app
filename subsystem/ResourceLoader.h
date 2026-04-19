@@ -35,7 +35,7 @@ namespace subsystem
     * Singleton without support of "lazy" initialization.
     */
    //class ResourceLoader : public Singleton<ResourceLoader>
-   class CLASS_DECL_SUBSYSTEM resource_loader :
+   class CLASS_DECL_SUBSYSTEM ResourceLoader :
       virtual public ::particle
    {
    public:
@@ -44,11 +44,11 @@ namespace subsystem
        * @param appInst windwos application instance.
        */
       //resource_loader(HINSTANCE appInst);
-      resource_loader();
+      ResourceLoader();
       /**
        * Frees resource loader singleton.
        */
-      ~resource_loader() override;
+      ~ResourceLoader() override;
 
       /**
        * Loads standart icon from resources.

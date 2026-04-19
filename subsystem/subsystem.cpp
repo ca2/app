@@ -52,7 +52,7 @@ namespace subsystem
    }
 
 
-   ::subsystem::string_table * subsystem::string_table()
+   ::subsystem::StringTable * subsystem::StringTable()
    {
 
       if (!m_pstringtable)
@@ -68,7 +68,7 @@ namespace subsystem
 
 
 
-   ::subsystem::resource_loader * subsystem::resource_loader()
+   ::subsystem::ResourceLoader * subsystem::ResourceLoader()
    {
 
       if (!m_presourceloader)
@@ -161,6 +161,12 @@ namespace subsystem
 
    }
 
+   void subsystem::initializeCommandLineArguments(CommandLineArguments* pcommandlinearguments)
+   {
+
+      throw ::interface_only();
+
+   }
 
    ::pointer < ::subsystem::SecurityIdentifier > subsystem::createSidFromString(const ::scoped_string & scopedstr)
    {
@@ -223,6 +229,45 @@ namespace subsystem
    {
 
       return {};
+
+   }
+
+
+   unsigned int subsystem::internet_address4(const ::scoped_string& scopedstr)
+   {
+
+      throw ::interface_only();
+
+      return 0;
+
+   }
+
+
+   ::string subsystem::internet_address4_as_string(unsigned int u)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   unsigned int subsystem::host_to_network_long(unsigned int u)
+   {
+
+      throw ::interface_only();
+
+      return 0;
+   }
+
+   
+   unsigned int subsystem::network_to_host_long(unsigned int u)
+   {
+
+      throw ::interface_only();
+
+      return 0;
 
    }
 

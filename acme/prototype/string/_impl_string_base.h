@@ -2334,7 +2334,7 @@ bool const_string_range < ITERATOR_TYPE >::unicode_case_insensitive_contains(con
 
 
 template < typename ITERATOR_TYPE >
-string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(character_count iIndex, character_count count)
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::index_erase(character_count iIndex, character_count count)
 {
 
    character_count nLength = this->size();

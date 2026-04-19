@@ -1,4 +1,4 @@
-// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -21,31 +21,36 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "string_table.h"
-#include "resource_loader.h"
-#include "subsystem/subsystem.h"
+
+#pragma once
 
 
-namespace subsystem
+#include "subsystem/CommandLineArguments.h"
+#include "subsystem_windows/_common_header.h"
+
+namespace subsystem_windows
 {
-   //::iptr_map<::string> StringTable::s_mapString;
 
-   string_table::string_table() {}
 
-   ::string string_table::getString(::iptr i)
+   class CLASS_DECL_SUBSYSTEM_WINDOWS CommandLineArguments :
+   virtual public ::Implementation<::subsystem::CommandLineArgumentsInterface >
    {
+   public:
 
-      ::string str;
+      ::string_array_base m_straArguments;
 
-      auto p = m_mapString.find(i);
+      //WindowsCommandLineArguments(const ::scoped_string & scopedstrCmdLineInWinFormat);
 
-      if (!p)
-      {
-         p = m_mapString.get(i);
-         p->element2() = ::MainSubsystem()->ResourceLoader()->loadString(i);
-      }
+      CommandLineArguments();
+      ~CommandLineArguments() override;
 
-      return p->element2();
-   }
-} // namespace subsystem
+      void initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat) override;
+
+      virtual void _parse_windows_command_line_arguments(const ::scoped_string & scopedstrCommandLineInWindowsFormat);
+
+      ::string_array_base getArguments() const override;
+
+   };
+
+   //// __WINCOMMANDLINEARGS_H__
+} // namespace subsystem_windows

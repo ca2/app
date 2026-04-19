@@ -25,8 +25,8 @@ namespace subsystem
       ::hinstance                                        m_hinstanceResource = nullptr;
       static ::subsystem::subsystem *            s_p;
       ::pointer < ::subsystem::StringParser >     m_pstringparser;
-      ::pointer < ::subsystem::string_table >     m_pstringtable;
-      ::pointer < ::subsystem::resource_loader >     m_presourceloader;
+      ::pointer < ::subsystem::StringTable >     m_pstringtable;
+      ::pointer < ::subsystem::ResourceLoader >     m_presourceloader;
       ::pointer < ::subsystem::Registry >     m_pregistry;
       ::pointer < ::subsystem::Shell >     m_pshell;
       ::pointer < ::subsystem::SystemInformationInterface > m_psysteminformation;
@@ -39,13 +39,17 @@ namespace subsystem
 
 
       virtual ::subsystem::StringParser * string_parser();
-      virtual ::subsystem::string_table * string_table();
+      virtual ::subsystem::StringTable * StringTable();
       virtual ::subsystem::Registry* registry();
       virtual ::subsystem::Shell* shell();
       virtual ::subsystem::SystemInformationInterface * system_information();
       virtual ::subsystem::DesktopSelectorInterface * desktop_selector();
       virtual ::subsystem::PipeClientInterface * pipe_client();
-      ::subsystem::resource_loader* resource_loader();
+      ::subsystem::ResourceLoader * ResourceLoader();
+
+
+
+      virtual void initializeCommandLineArguments(CommandLineArguments *pcommandlinearguments);
 
       /**
        * Creates SID from sid string.
@@ -70,6 +74,12 @@ namespace subsystem
       virtual ::string get_socket_error_message_text(int iError);
       virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port);
 
+
+      virtual unsigned int internet_address4(const ::scoped_string &scopedstr);
+      virtual ::string internet_address4_as_string(unsigned int u);
+      virtual unsigned int host_to_network_long(unsigned int u);
+      virtual unsigned int network_to_host_long(unsigned int u);
+
    };
 
 
@@ -78,13 +88,13 @@ namespace subsystem
 
 
 
-inline ::subsystem::subsystem * main_subsystem()
+inline ::subsystem::subsystem * MainSubsystem()
 {
 
    if (!::subsystem::subsystem::s_p)
    {
 
-      system()->subsystem();
+      system()->MainSubsystem();
 
    }
 

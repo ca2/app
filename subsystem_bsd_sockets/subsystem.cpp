@@ -29,6 +29,47 @@ s_p = this;
 
    }
 
+
+   unsigned int subsystem::internet_address4(const ::scoped_string &scopedstr)
+   {
+
+#ifdef WINDOWS
+
+      return inet_addr(::string(scopedstr));
+
+#else
+
+      return inet_addr(::string(scopedstr));
+
+#endif
+
+   }
+
+
+      ::string subsystem::internet_address4_as_string(unsigned int u)
+   {
+
+      throw ::interface_only();
+
+      return {};
+   }
+
+
+   unsigned int subsystem::host_to_network_long(unsigned int u)
+   {
+
+      return htonl(u);
+
+   }
+
+
+   unsigned int subsystem::network_to_host_long(unsigned int u)
+   {
+
+      return ntohl(u);
+
+   }
+
     
 }//namespace subsystem_bsd_sockets
 

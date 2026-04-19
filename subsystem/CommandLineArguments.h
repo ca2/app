@@ -17,78 +17,41 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// with this program; if not, write to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-
 #pragma once
 
 
 #include "subsystem/_common_header.h"
 //// #include aaa_<vector>
+#include "subsystem/CommandLineArguments.h"
+// #include "KeyContainer.h"
+// #include "util/CommonHeader.h"
 
 namespace subsystem
 {
 
-   // This class produce initial parse of a command line.
-   // Each word or expression will be saved at self index.
-   class CommandLineArgumentsInterface :
-      virtual public ::Particle
-   {
-   public:
-
-      //::string_array m_straArguments;
-
-      //CommandLineArguments();
-      //virtual ~CommandLineArgumentsInterface() = 0;
-
-      virtual void initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat) = 0;
-
-      // Copies internal argument ::array_base to the out variable.
-      virtual ::string_array_base getArguments() const = 0;
-
-//   protected:
-
-   };
-
-
-   //using CommandLineArgumentsInterface = particle_interface<CommandLineArgumentsInterface>;
+   // #include <vector>
 
    // This class produce initial parse of a command line.
    // Each word or expression will be saved at self index.
-   class CLASS_DECL_SUBSYSTEM CommandLineArgumentsComposite :
-      virtual public Composite<CommandLineArgumentsInterface>
+   class CLASS_DECL_SUBSYSTEM CommandLineArguments :
+      virtual public ::particle
    {
    public:
 
-      ImplementCompositeø(CommandLineArguments, commandlinearguments)
+       ::string_array_base m_args;
 
-      ///::string_array m_straArguments;
+      CommandLineArguments();
+      ~CommandLineArguments() override;
 
-      //CommandLineArguments();
-      //~CommandLineArguments() override;
+      // Copies internal argument vector to the out variable.
+      ::string_array_base getArgs() const;
 
-
-         void initialize_command_line_arguments(const ::scoped_string& scopedstrCommandLineInOperatingSystemFormat) override
-      {
-
-         m_pcommandlinearguments->initialize_command_line_arguments(scopedstrCommandLineInOperatingSystemFormat);
-
-      }
-
-      // Copies internal argument ::array_base to the out variable.
-      ::string_array_base getArguments() const override
-      {
-
-         return m_pcommandlinearguments->getArguments();
-
-      }
-
-      //   protected:
-
+   //protected:
+     
    };
 
-   
 } // namespace subsystem
-

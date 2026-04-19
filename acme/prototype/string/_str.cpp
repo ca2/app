@@ -4035,7 +4035,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
    }
 
-   str.erase(iLimit + 1);
+   str.index_erase(iLimit + 1);
 
 }
 

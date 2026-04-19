@@ -30,10 +30,10 @@ namespace subsystem
 {
    //::iptr_map<::string> StringTable::s_mapString;
 
-   string_table::string_table() {}
+   StringTable::StringTable() {}
 
    
-   ::string string_table::getString(unsigned int u)
+   ::string StringTable::getString(unsigned int u)
    {
 
       ::string str;
@@ -45,7 +45,7 @@ namespace subsystem
 
          p = m_mapString.get(u);
 
-         if (!::main_subsystem()->resource_loader()->loadString(u, p->element2()))
+         if (!::MainSubsystem()->ResourceLoader()->loadString(u, p->element2()))
          {
 
             p->element2() = "Requested string from StringTable cannot be received";

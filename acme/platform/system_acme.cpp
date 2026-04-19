@@ -4086,7 +4086,7 @@ return nullptr;
 
    }
 
-   ::platform::subsystem * acme_system_layer::subsystem()
+   ::platform::subsystem * acme_system_layer::MainSubsystem()
    {
 
       return nullptr;

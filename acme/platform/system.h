@@ -233,7 +233,7 @@ namespace platform
 
       //virtual ::windowing::windowing_base * windowing_base();
 
-      virtual ::platform::subsystem *subsystem() override;
+      virtual ::platform::subsystem *MainSubsystem() override;
 
       //virtual ::http_system * http_system();
 

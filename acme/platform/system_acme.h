@@ -293,7 +293,7 @@ namespace platform
       virtual ::acme::windowing::windowing * acme_windowing();
       virtual ::windowing::windowing * windowing();
 
-      virtual ::platform::subsystem * subsystem();
+      virtual ::platform::subsystem * MainSubsystem();
 //         virtual ::subsystem::resource_loader* resource_loader();
 
 

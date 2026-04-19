@@ -71,7 +71,7 @@
       int readInt32();
       long long readInt64();
 
-      ::string read_utf8_string();
+      ::string readUtf8();
 
    protected:
       InputStream *m_inputStream;

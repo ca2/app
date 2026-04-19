@@ -56,9 +56,9 @@ namespace subsystem
 
    class RegistryKey;
 
-   class string_table;
+   class StringTable;
 
-   class resource_loader;
+   class ResourceLoader;
 
    class subsystem;
 
@@ -69,6 +69,8 @@ namespace subsystem
    class File;
 
     class FileInterface;
+
+    class Node;
 
    //using FileInterface = particle_interface <FileInterface>;
 
@@ -147,6 +149,8 @@ namespace subsystem
     class PipeClientInterface;
 
    //using PipeClientInterface = particle_interface <PipeClientInterface>;
+
+    class CommandLineArguments;
 
 } // namespace subsystem
 

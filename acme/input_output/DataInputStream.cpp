@@ -142,7 +142,7 @@
    }
 
 
-   ::string DataInputStream::read_utf8_string()
+   ::string DataInputStream::readUtf8()
    {
       //::string strStorage;
       unsigned int sizeInBytes = readUInt32();

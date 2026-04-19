@@ -17,41 +17,26 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, w_rite to the Free Software Foundation, Inc.,
+// with this program; if not, write to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
 #include "CommandLineArguments.h"
 
+
 namespace subsystem
 {
 
+   CommandLineArguments::CommandLineArguments() {}
 
-   //CommandLineArguments::CommandLineArguments()
-   //{
-   //}
+   CommandLineArguments::~CommandLineArguments() {}
 
-   //CommandLineArguments::~CommandLineArguments()
-   //{
-   //}
+   ::string_array_base CommandLineArguments::getArgs() const
+   { 
+      return m_args; 
+   }
 
-
-   //void CommandLineArguments::initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat)
-   //{
-
-   //   m_pparticleThis->initialize_command_line_arguments(scopedstrCommandLineInOperatingSystemFormat);
-
-   //}
-
-   //::string_array_base CommandLineArguments::getArguments() const
-   //{
-
-   //   //return m_straArguments;
-   //   return m_pparticleThis->getArguments();
-
-   //}
 
 } // namespace subsystem
-
-
+ 

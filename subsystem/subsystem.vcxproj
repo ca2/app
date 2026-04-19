@@ -2342,6 +2342,7 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CommandLine.cpp" />
     <ClCompile Include="CommandLineArguments.cpp" />
     <ClCompile Include="Deflater.cpp" />
     <ClCompile Include="Exception.cpp" />
@@ -2383,6 +2384,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseDebug|ARM64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Inflater.cpp" />
+    <ClCompile Include="KeyContainer.cpp" />
     <ClCompile Include="node\AnonymousPipe.cpp" />
     <ClCompile Include="node\AnonymousPipeFactory.cpp" />
     <ClCompile Include="node\AutoImpersonator.cpp" />
@@ -2398,6 +2400,7 @@
     <ClCompile Include="node\Keyboard.cpp" />
     <ClCompile Include="node\LocalOperatingSystemApplication.cpp" />
     <ClCompile Include="node\NamedPipe.cpp" />
+    <ClCompile Include="node\OperatingSystem.cpp" />
     <ClCompile Include="node\OperatingSystemApplication.cpp" />
     <ClCompile Include="node\OperatingSystemHook.cpp" />
     <ClCompile Include="node\OperatingSystemHookListener.cpp" />
@@ -2447,6 +2450,7 @@
     <ClCompile Include="ZlibException.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="aaa_Impersonator.h" />
+    <ClInclude Include="CommandLine.h" />
     <ClInclude Include="CommandLineArguments.h" />
     <ClInclude Include="Deflater.h" />
     <ClInclude Include="Exception.h" />
@@ -2454,6 +2458,7 @@
     <ClInclude Include="framebuffer\StandardPixelFormatFactory.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Inflater.h" />
+    <ClInclude Include="KeyContainer.h" />
     <ClInclude Include="node\AnonymousPipe.h" />
     <ClInclude Include="node\AnonymousPipeFactory.h" />
     <ClInclude Include="node\ApplicationCrashEvents.h" />
@@ -2470,6 +2475,7 @@
     <ClInclude Include="node\Keyboard.h" />
     <ClInclude Include="node\LocalOperatingSystemApplication.h" />
     <ClInclude Include="node\NamedPipe.h" />
+    <ClInclude Include="node\OperatingSystem.h" />
     <ClInclude Include="node\OperatingSystemApplication.h" />
     <ClInclude Include="node\OperatingSystemHook.h" />
     <ClInclude Include="node\OperatingSystemHookListener.h" />

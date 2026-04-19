@@ -1,4 +1,4 @@
-// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -22,30 +22,36 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "string_table.h"
-#include "resource_loader.h"
-#include "subsystem/subsystem.h"
-
+#include "CommandLineArguments.h"
 
 namespace subsystem
 {
-   //::iptr_map<::string> StringTable::s_mapString;
 
-   string_table::string_table() {}
 
-   ::string string_table::getString(::iptr i)
-   {
+   //CommandLineArguments::CommandLineArguments()
+   //{
+   //}
 
-      ::string str;
+   //CommandLineArguments::~CommandLineArguments()
+   //{
+   //}
 
-      auto p = m_mapString.find(i);
 
-      if (!p)
-      {
-         p = m_mapString.get(i);
-         p->element2() = ::MainSubsystem()->ResourceLoader()->loadString(i);
-      }
+   //void CommandLineArguments::initialize_command_line_arguments(const ::scoped_string & scopedstrCommandLineInOperatingSystemFormat)
+   //{
 
-      return p->element2();
-   }
+   //   m_pparticleThis->initialize_command_line_arguments(scopedstrCommandLineInOperatingSystemFormat);
+
+   //}
+
+   //::string_array_base CommandLineArguments::getArguments() const
+   //{
+
+   //   //return m_straArguments;
+   //   return m_pparticleThis->getArguments();
+
+   //}
+
 } // namespace subsystem
+
+

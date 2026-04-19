@@ -36,7 +36,7 @@ namespace subsystem
    /**
     * Helper class with only static methods to get strings from resources.
     */
-   class CLASS_DECL_SUBSYSTEM string_table :
+   class CLASS_DECL_SUBSYSTEM StringTable :
    virtual public ::particle
    {
    public:
@@ -55,7 +55,7 @@ namespace subsystem
       virtual ::string getString(unsigned int u);
 
       //private:
-      string_table();
+      StringTable();
 
       //static ::map<UINT, ::string> _cache;
 

@@ -5511,7 +5511,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::platform::subsystem * system::subsystem()
+   ::platform::subsystem * system::MainSubsystem()
    {
 
       if (!m_psubsystem)

@@ -31,7 +31,7 @@
 #include "subsystem/_common_header.h"
 
 //#include "acme/remoting_common/win_system/WindowsEvent.h"
-//#include "remoting/remoting_common/thread/LocalMutex.h"
+//#include "remoting/remoting/thread/LocalMutex.h"
 //#include "log_writer/LogWriter.h"
 
 namespace subsystem
@@ -190,7 +190,13 @@ namespace subsystem
       void setTimeOut(unsigned int timeOut) override{return m_panonymouspipe->setTimeOut(timeOut);}
 
    //private:
-      //void checkPipeFile(::subsystem::FileInterface * pfile) override;
+      void checkPipeFile(::subsystem::FileInterface* pfile) override
+      {
+
+         m_panonymouspipe->checkPipeFile(pfile);
+
+
+      }
 
       // HANDLE m_hWrite;
       // HANDLE m_hRead;
@@ -220,6 +226,8 @@ namespace subsystem
     virtual public Object < AnonymousPipeAggregate >
    {
    public:
+
+      ImplementObjectø(AnonymousPipe)
 
    };
 

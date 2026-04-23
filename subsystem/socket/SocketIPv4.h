@@ -34,7 +34,7 @@
 
 #include "acme/input_output/Channel.h"
 #include "acme/exception/io.h"
-///#include "remoting/remoting_common/win_system/WsaStartup.h"
+///#include "remoting/remoting/win_system/WsaStartup.h"
 //#include "subsystem/thread/critical_section.h"
 
 namespace subsystem
@@ -160,6 +160,9 @@ namespace subsystem
       /* Auxiliary */
       virtual void setSocketOptions(int level, int name, void *value, int len) = 0;
       virtual void getSocketOptions(int level, int name, void *value, int *len) = 0;
+
+      virtual void setRcvTimeO(const class ::time &timeTimeout) = 0;
+      virtual void setSndTimeO(const class ::time &timeTimeout) = 0;
 
       /* Socket options */
       virtual void enableNaggleAlgorithm(bool enabled) = 0;
@@ -394,6 +397,10 @@ namespace subsystem
          m_psocketipv4->getSocketOptions(level, name, value, len);
 
       }
+
+      void setRcvTimeO(const class ::time &timeTimeout) override { m_psocketipv4->setRcvTimeO(timeTimeout); }
+      void setSndTimeO(const class ::time &timeTimeout) override { m_psocketipv4->setSndTimeO(timeTimeout); }
+
 
       /* Socket options */
       void enableNaggleAlgorithm(bool enabled) override

@@ -24,8 +24,8 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "AnonymousPipe.h"
-//#include "remoting/remoting_common/win_system/Environment.h"
-//#include "remoting/remoting_common/thread/AutoLock.h"
+//#include "remoting/remoting/win_system/Environment.h"
+//#include "remoting/remoting/thread/AutoLock.h"
 namespace subsystem
 {
 

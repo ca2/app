@@ -338,6 +338,27 @@ namespace subsystem_bsd_sockets
       }
    }
 
+   
+   void SocketIPv4::setRcvTimeO(const class ::time& timeTimeout)
+   {
+
+      auto timeout = (int) timeTimeout.integral_millisecond();
+
+      setSocketOptions(SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
+
+   }
+
+
+   void SocketIPv4::setSndTimeO(const class ::time& timeTimeout)
+   {
+
+      auto timeout = (int)timeTimeout.integral_millisecond();
+
+      setSocketOptions(SOL_SOCKET, SO_SNDTIMEO, (char *)&timeout, sizeof(timeout));
+
+   }
+
+
    void SocketIPv4::enableNaggleAlgorithm(bool enabled)
    {
       bool disabled = enabled ? 0 : 1;

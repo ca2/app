@@ -25,10 +25,10 @@
 //#include "acme/_operating_system.h"
 #include "LocalOperatingSystemApplication.h"
 
-////#include "remoting/remoting_common/util/winhdr.h"
+////#include "subsystem/winhdr.h"
 #include "acme/_operating_system.h"
 
-//#include "remoting/remoting_common/thread/DesktopSelector.h"
+//#include "remoting/remoting/thread/DesktopSelector.h"
 
 namespace subsystem
 {

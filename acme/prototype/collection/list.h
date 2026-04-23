@@ -352,7 +352,7 @@ public:
 
    //inline iterator get_start() const { return m_begin; }
 
-   void erase(iterator iterator);
+   iterator erase(iterator iterator);
 
    void erase_defer_next(iterator & iterator);
 
@@ -1600,14 +1600,18 @@ void list_base<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 
 
 template<class TYPE, class ARG_TYPE>
-void list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
+typename list_base<TYPE, ARG_TYPE>::iterator list_base<TYPE, ARG_TYPE>::erase(iterator pErase)
 {
 
    ASSERT_OK(this);
 
    auto p = detach(pErase);
 
+   auto pRet = p.next();
+
    delete p.get();
+
+   return pRet;
 
 }
 

@@ -34,7 +34,7 @@ namespace subsystem
 {
 
 
-   typedef enum UseArgument
+   enum UseArgument
    {
       NO_ARG,
       NEEDS_ARG

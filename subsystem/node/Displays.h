@@ -26,9 +26,9 @@
 //#include "subsystem/particle.h"
 #include "subsystem/_common_header.h"
 
-//#include "remoting/remoting_common/util/::earth::time.h"
+//#include "subsystem/::earth::time.h"
 //// #include aaa_<vector>
-//#include "remoting/remoting_common/thread/LocalMutex.h"
+//#include "remoting/remoting/thread/LocalMutex.h"
 
 namespace  subsystem
 {

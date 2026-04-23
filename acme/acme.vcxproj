@@ -2583,6 +2583,7 @@
     <ClInclude Include="operating_system\environment.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
+    <ClInclude Include="operating_system\windows\time.h" />
     <ClInclude Include="operating_system\windows_common\com\bstring.h" />
     <ClInclude Include="operating_system\windows_common\com\comptr.h" />
     <ClInclude Include="operating_system\windows_common\com\comptr_array.h" />

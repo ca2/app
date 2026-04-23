@@ -52,6 +52,8 @@ list(APPEND library_source
    gui/ImagedButton.h
    gui/ImageList.cpp
    gui/ImageList.h
+   gui/KeyboardLayout.cpp
+   gui/KeyboardLayout.h
    gui/ListBox.cpp
    gui/ListBox.h
    gui/ListView.cpp
@@ -66,8 +68,8 @@ list(APPEND library_source
    gui/NotifyIcon.h
    gui/NotifyIconWindow.cpp
    gui/NotifyIconWindow.h
-   gui/PaintWindow.cpp
-   gui/PaintWindow.h
+   #gui/PaintWindow.cpp
+   #gui/PaintWindow.h
    gui/ProgressBar.cpp
    gui/ProgressBar.h
    #gui/resource_loader.cpp
@@ -100,7 +102,7 @@ list(APPEND library_source
    gui/Window.h
    gui/WindowFinder.cpp
    gui/WindowFinder.h
-   gui/WindowMessageHandler.h
+   #gui/WindowMessageHandler.h
    gui/WindowProcHolder.cpp
    gui/WindowProcHolder.h
    _.cpp
@@ -111,8 +113,8 @@ list(APPEND library_source
    #application.h
    framework.cpp
    framework.h
-   resource_loader.cpp
-   resource_loader.h
+   ResourceLoader.cpp
+   ResourceLoader.h
    subsystem.cpp
    subsystem.h)
 

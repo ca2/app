@@ -40,6 +40,14 @@ namespace subsystem_bsd_sockets
 
    class subsystem;
 
+#ifdef WINDOWS
+
+
+   class WindowsSockets;
+
+
+#endif
+
 
 } // namespace subsystem_bsd_sockets
 

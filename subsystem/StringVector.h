@@ -25,31 +25,12 @@
 #pragma once
 
 
-#include "subsystem/_common_header.h"
-#include "subsystem/Exception.h"
-
-namespace subsystem_bsd_sockets
-{
-   //
-   // Class that startup and cleanup Windows Sockets subsystem.
-   //
-   class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS WindowsSockets :
-   virtual public ::particle
-   {
-   public:
-      // Initializes Windows sockets subsystem.
-      // Throws exception if winsock already initialized or
-      // if was error during winsock startup.
-      void startup(unsigned char loVer, unsigned char hiVer);
-
-      //  Deinitializes Windows sockets subsystem.
-      // Throws exception if winsock does not initialized or
-      // if was error during winsock cleanup.
-      void cleanup();
-
-   protected:
-      bool m_isStarted;
-   };
+//#include aaa_<vector>
 
 
-} // namespace subsystem_bsd_sockets
+
+//////#include "subsystem/::string.h"
+
+//ypedef ::string_array ::string_array;
+
+

@@ -30,7 +30,7 @@
 #include "subsystem/_common_header.h"
 //#include "subsystem/thread/critical_section.h"
 #include "sockdefs.h"
-//#include "remoting/remoting_common/win_system/WsaStartup.h"
+//#include "remoting/remoting/win_system/WsaStartup.h"
 
 
 namespace subsystem_bsd_sockets

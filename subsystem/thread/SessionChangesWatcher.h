@@ -21,39 +21,36 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "WindowsSocket.h"
+
+#pragma once
 
 
-namespace subsystem_bsd_sockets
+//#include "subsystem/thread/GuiThread.h"
+////#include "subsystem/AnEventListener.h"
+//#include "log_writer/LogWriter.h"
+
+namespace subsystem
 {
-   bool WindowsSocket::m_isStarted = false;
-
-   void WindowsSocket::startup(unsigned char loVer, unsigned char hiVer)
+   class SessionChangesWatcher : virtual public ::particle
    {
-      if (m_isStarted) {
-         throw ::subsystem::Exception("WindowsSocket already initialized.");
-      }
+   public:
 
-      WSAData wsaData;
+      SessionChangesWatcher();
+      ~SessionChangesWatcher() override;
 
-      if (WSAStartup(MAKEWORD(loVer, hiVer), &wsaData) != 0) {
-         throw ::subsystem::Exception("Failed to initialize WindowsSocket.");
-      }
+           // SessionChangesWatcher(AnEventListener *extSessionChangesListener, ::subsystem::LogWriter *log);
+      virtual void start_SessionChangesWatcher(const ::procedure &procedureSessionChanged, ::subsystem::LogWriter *log) = 0;
+   //   virtual ~SessionChangesWatcher();
 
-      m_isStarted = true;
-   }
+   //protected:
+   //   virtual void execute();
 
-   void WindowsSocket::cleanup()
-   {
-      if (!m_isStarted) {
-         throw ::subsystem::Exception("WindowsSocket don't initialized.");
-      }
+   //   DWORD m_baseSessionId;
+   //   /// AnEventListener *m_extSessionChangesListener;
 
-      m_isStarted = false;
+   //   ::procedure m_procedureSessionChanged;
 
-      if (WSACleanup() == SOCKET_ERROR) {
-         throw ::subsystem::Exception("Failed to deinitialize WindowsSocket.");
-      }
-   }
-} // namespace subsystem_bsd_sockets
+   //   ::subsystem::LogWriter *m_plogwriter;
+   };
+
+} // namespace subsystem

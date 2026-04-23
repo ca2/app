@@ -13,6 +13,7 @@
 
 #include "acme/_operating_system.h"
 #include "acme/operating_system/shared_posix/time1.h"
+#include "acme/operating_system/windows/time.h"
 
 
 //#include <time.h>
@@ -880,32 +881,10 @@ return str;
 //}
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
 
-CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
-{
 
-   SYSTEMTIME st = {};
-
-   struct tm ttm;
-
-   struct tm * ptm;
-
-   ptm = tm_struct(&ttm, time);
-
-   st.wDay = ptm->tm_mday;
-   st.wDayOfWeek = ptm->tm_wday;
-   st.wHour = ptm->tm_hour;
-   st.wMilliseconds = 0;
-   st.wMinute = ptm->tm_min;
-   st.wMonth = ptm->tm_mon + 1;
-   st.wSecond = ptm->tm_sec;
-   st.wYear = 1900 + ptm->tm_year;
-
-   return st;
-
-}
 
 
 //file_time __file_time(const ::earth::time & time)
@@ -939,32 +918,32 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::earth::time & time)
 //}
 
 
-CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
-{
-
-   SYSTEMTIME systemtime = __SYSTEMTIME(time);
-
-   if (!SystemTimeToFileTime(&systemtime, &filetime))
-   {
-
-#ifdef WINDOWS
-
-      DWORD dwLastError = ::GetLastError();
-
-#endif
-
-      //TRACELASTERROR();
-
-      ::memory_set(&filetime, 0, sizeof(filetime));
-
-   }
-
-   return filetime;
-
-}
-
-
-#endif
+//CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
+//{
+//
+//   SYSTEMTIME systemtime = as_SYSTEMTIME(time);
+//
+//   if (!SystemTimeToFileTime(&systemtime, &filetime))
+//   {
+//
+//#ifdef WINDOWS
+//
+//      DWORD dwLastError = ::GetLastError();
+//
+//#endif
+//
+//      //TRACELASTERROR();
+//
+//      ::memory_set(&filetime, 0, sizeof(filetime));
+//
+//   }
+//
+//   return filetime;
+//
+//}
+//
+//
+//#endif
 
 
 

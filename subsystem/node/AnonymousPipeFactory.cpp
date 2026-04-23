@@ -24,7 +24,7 @@
 #include "framework.h"
 //#include "acme/_operating_system.h"
 #include "AnonymousPipeFactory.h"
-//#include "remoting/remoting_common/win_system/SecurityAttributes.h"
+//#include "remoting/remoting/win_system/SecurityAttributes.h"
 
 
 namespace subsystem

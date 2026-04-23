@@ -24,7 +24,7 @@
 
 #pragma once
 
-//#include "remoting/remoting_common/rfb/FrameBuffer.h"
+//#include "remoting/remoting/rfb/FrameBuffer.h"
 #include "innate_subsystem/framebuffer/FrameBuffer.h"
 #include "innate_subsystem/framebuffer/DibSection.h"
 //#include "innate_subsystem/drawing/BitmapGraphics.h"

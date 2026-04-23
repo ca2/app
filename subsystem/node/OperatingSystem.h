@@ -25,7 +25,7 @@
  #pragma once
 
 
- //////#include "remoting/remoting_common/util/::string.h"
+ //////#include "subsystem/::string.h"
  //#include "log_writer/LogWriter.h"
 
  // #include aaa_<winnt.h>
@@ -82,6 +82,8 @@
        // Returns user name of the current desktop
        //virtual bool getCurrentUserName(::string & out, LogWriter *log);
        virtual ::string getCurrentUserName() = 0;
+
+       virtual bool isUserAnAdmin() = 0;
 
       // Fills "out" by computer name string.
       // Returns true if success.

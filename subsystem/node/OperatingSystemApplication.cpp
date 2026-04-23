@@ -26,7 +26,7 @@
 #include "OperatingSystemApplication.h"
 
 #include "subsystem/_common_header.h"
-////#include "remoting/remoting_common/thread/AutoLock.h"
+////#include "remoting/remoting/thread/AutoLock.h"
 
 namespace subsystem
 {

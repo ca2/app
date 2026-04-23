@@ -23,8 +23,8 @@
 //
 #include "framework.h"
 #include "DataOutputStream.h"
-//////#include "remoting/remoting_common/util/::string.h"
-////#include "remoting/remoting_common/util/::string.h"
+//////#include "subsystem/::string.h"
+////#include "subsystem/::string.h"
 //// #include aaa_<vector>
 
 #define GETBYTE(x, n) (((x) >> ((n) * 8)) & 0xFF)

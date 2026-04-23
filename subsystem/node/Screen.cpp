@@ -25,7 +25,7 @@
 //#include "acme/_operating_system.h"
 #include "Screen.h"
 #include "subsystem/Exception.h"
-//#include "remoting/remoting_common/win_system/Environment.h"
+//#include "remoting/remoting/win_system/Environment.h"
 
 namespace subsystem
 {

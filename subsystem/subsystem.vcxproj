@@ -2389,6 +2389,7 @@
     <ClCompile Include="node\AnonymousPipeFactory.cpp" />
     <ClCompile Include="node\AutoImpersonator.cpp" />
     <ClCompile Include="node\Clipboard.cpp" />
+    <ClCompile Include="node\ClipboardListener.cpp" />
     <ClCompile Include="node\CurrentConsoleProcess.cpp" />
     <ClCompile Include="node\Cursor.cpp" />
     <ClCompile Include="node\Displays.cpp" />
@@ -2444,6 +2445,7 @@
     <ClCompile Include="thread\GlobalMutex.cpp" />
     <ClCompile Include="thread\GuiThread.cpp" />
     <ClCompile Include="thread\LocalMutex.cpp" />
+    <ClCompile Include="thread\SessionChangesWatcher.cpp" />
     <ClCompile Include="thread\Thread.cpp" />
     <ClCompile Include="thread\ThreadCollector.cpp" />
     <ClCompile Include="ZLibBase.cpp" />
@@ -2464,6 +2466,7 @@
     <ClInclude Include="node\ApplicationCrashEvents.h" />
     <ClInclude Include="node\AutoImpersonator.h" />
     <ClInclude Include="node\Clipboard.h" />
+    <ClInclude Include="node\ClipboardListener.h" />
     <ClInclude Include="node\CurrentConsoleProcess.h" />
     <ClInclude Include="node\Cursor.h" />
     <ClInclude Include="node\Displays.h" />
@@ -2527,6 +2530,7 @@
     <ClInclude Include="thread\LocalMutex.h" />
     <ClInclude Include="thread\Lockable.h" />
     <ClInclude Include="thread\resource.h" />
+    <ClInclude Include="thread\SessionChangesWatcher.h" />
     <ClInclude Include="thread\Thread.h" />
     <ClInclude Include="thread\ThreadCollector.h" />
     <ClInclude Include="thread\_.h" />

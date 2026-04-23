@@ -80,6 +80,8 @@ list(APPEND library_source
    node/matter.txt
    node/NamedPipe.cpp
    node/NamedPipe.h
+   node/OperatingSystem.cpp
+   node/OperatingSystem.h
    node/OperatingSystemApplication.cpp
    node/OperatingSystemApplication.h
    node/OperatingSystemHook.cpp
@@ -158,6 +160,8 @@ list(APPEND library_source
    socket/SocketException.h
    socket/SocketIPv4.cpp
    socket/SocketIPv4.h
+   socket/Sockets.cpp
+   socket/Sockets.h
    socket/SocketStartup.cpp
    socket/SocketStartup.h
    socket/SocketStream.cpp
@@ -192,6 +196,8 @@ list(APPEND library_source
    thread/thread.vcproj
    thread/ThreadCollector.cpp
    thread/ThreadCollector.h
+   thread/ZombieKiller.cpp
+   thread/ZombieKiller.h
    _.cpp
    _.h
    #   _____debug.xcconfig
@@ -228,11 +234,15 @@ list(APPEND library_source
    #InputInjector.h
    #Keyboard.cpp
    #Keyboard.h
+   Keymap.cpp
+   Keymap.h
+
    #LocalWindowsApplication.cpp
    #LocalWindowsApplication.h
    #matter.txt
    #NamedPipe.cpp
    #NamedPipe.h
+
    #ParentProcess.cpp
    #ParentProcess.h
 

@@ -27,7 +27,7 @@
 
 #include "subsystem.h"
 #include "subsystem/socket/SocketException.h"
-//#include "remoting/remoting_common/util/::string.h"
+//#include "subsystem/::string.h"
 
 //#include "subsystem/thread/critical_section.h"
 
@@ -36,33 +36,6 @@ namespace subsystem_bsd_sockets
 
    //critical_section SocketAddressIPv4::s_resolveMutex;
 
-   void getLocalIPAddrString(char *buffer, int buflen)
-   {
-      char namebuf[256];
-
-      if (gethostname(namebuf, 256) != 0) {
-         strncpy(buffer, "Host name unavailable", buflen);
-         return;
-      };
-
-      HOSTENT *ph = gethostbyname(namebuf);
-      if (!ph) {
-         strncpy(buffer, "IP address unavailable", buflen);
-         return;
-      };
-
-      *buffer = '\0';
-      char digtxt[5];
-      for (int i = 0; ph->h_addr_list[i]; i++) {
-         for (int j = 0; j < ph->h_length; j++) {
-            sprintf(digtxt, "{}.", (unsigned char) ph->h_addr_list[i][j]);
-            strncat(buffer, digtxt, (buflen-1)-strlen(buffer));
-         }
-         buffer[strlen(buffer)-1] = '\0';
-         if (ph->h_addr_list[i+1] != 0)
-            strncat(buffer, ", ", (buflen-1)-strlen(buffer));
-      }
-   }
 
    SocketAddressIPv4::SocketAddressIPv4()
    //: m_wsaStartup(1, 2)

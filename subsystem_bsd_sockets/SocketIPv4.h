@@ -34,7 +34,7 @@
 
 #include "acme/input_output/Channel.h"
 #include "acme/exception/io.h"
-///#include "remoting/remoting_common/win_system/WsaStartup.h"
+///#include "remoting/remoting/win_system/WsaStartup.h"
 
 
 namespace subsystem_bsd_sockets
@@ -153,6 +153,9 @@ namespace subsystem_bsd_sockets
       /* Auxiliary */
       void setSocketOptions(int level, int name, void *value, socklen_t len) override;
       void getSocketOptions(int level, int name, void *value, socklen_t *len) override;
+
+      void setRcvTimeO(const class ::time &timeTimeout) override;
+      void setSndTimeO(const class ::time &timeTimeout) override;
 
       /* Socket options */
       void enableNaggleAlgorithm(bool enabled) override;

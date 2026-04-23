@@ -1,4 +1,4 @@
-// Copyright (C) 2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -17,19 +17,49 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License along
-// with this program; if not, write to the Free Software Foundation, Inc.,
+// with this program; if not, w_rite to the Free Software Foundation, Inc.,
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
 
-#ifndef __WINDOWMESSAGEHANDLER_H__
-#define __WINDOWMESSAGEHANDLER_H__
+#pragma once
 
-class WindowMessageHandler
+
+#include "Command.h"
+#include "acme/prototype/collection/list.h"
+
+//#include aaa_<list>
+
+/**
+ * Command that executes sequence of commands.
+ */
+class MacroCommand : public Command
 {
 public:
-  // This function must return true if a message has been processed.
-  virtual bool processMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+  /**
+   * Creates macro command with empty command ::list_base.
+   */
+  MacroCommand();
+  /**
+   * Destructor, does nothing.
+   */
+  virtual ~MacroCommand();
+  /**
+   * Executes macro command (sequence of commands that pushed to macro by
+   * calling of addCommand() method).
+   */
+  virtual void execute();
+
+  /**
+   * Adds command to the end of ::list_base of commands to execute.
+   */
+  void addCommand(Command *command);
+
+private:
+  /**
+   * List of commands to execute.
+   */
+  ::list_base<Command *> m_commandList;
 };
 
-#endif // __WINDOWMESSAGEHANDLER_H__
+

@@ -24,7 +24,7 @@
 #include "framework.h"
 //#include "acme/_operating_system.h"
 #include "Displays.h"
-//#include "remoting/remoting_common/thread/AutoLock.h"
+//#include "remoting/remoting/thread/AutoLock.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 
 

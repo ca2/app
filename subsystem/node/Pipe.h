@@ -28,7 +28,7 @@
 #include "subsystem/_common_header.h"
 //#include "win-system/WindowsEvent.h"
 #include "acme/input_output/Channel.h"
-////#include "remoting/remoting_common/thread/LocalMutex.h"
+////#include "remoting/remoting/thread/LocalMutex.h"
 
 namespace subsystem
 {
@@ -45,9 +45,11 @@ namespace subsystem
       //virtual ~PipeInterface() = 0 ;
 
 
+      virtual void initialize_pipe(unsigned int maxPortionSize) = 0;
+
       virtual unsigned int getMaxPortionSize() = 0;
 
-      virtual void initialize_pipe(unsigned int maxPortionSize) = 0;
+      //virtual void *_HANDLE() = 0;
 
       // This read and write functions is common way to read and write
       // by pipe handles asynchronously.
@@ -107,7 +109,12 @@ namespace subsystem
 
       }
 
-
+      // void* _HANDLE() override
+      // {
+      //
+      //    return m_ppipe->_HANDLE();
+      //
+      // }
 
       // This read and write functions is common way to read and write
       // by pipe handles asynchronously.

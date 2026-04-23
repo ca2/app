@@ -27,13 +27,13 @@
 
 
 #include "subsystem/_common_header.h"
-//#include "remoting/remoting_common/util/winhdr.h"
+//#include "subsystem/winhdr.h"
 //#include "acme/_operating_system.h"
 
-//////#include "remoting/remoting_common/util/::string.h"
+//////#include "subsystem/::string.h"
 //#include "subsystem/Exception.h"
 //#include "subsystem/particle.h"
-//#include "remoting/remoting_common/thread/Thread.h"
+//#include "remoting/remoting/thread/Thread.h"
 
 namespace subsystem
 {

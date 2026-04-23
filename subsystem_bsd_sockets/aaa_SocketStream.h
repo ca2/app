@@ -29,8 +29,8 @@
 #include "acme/input_output/Channel.h"
 
 #include "subsystem/socket/SocketAddressIPv4.h"
-//#include "remoting/remoting_common/network/socket/SocketIPv4.h"
-//#include "remoting/remoting_common/network/socket/SocketAddressIPv4.h"
+//#include "remoting/remoting/network/socket/SocketIPv4.h"
+//#include "remoting/remoting/network/socket/SocketAddressIPv4.h"
 
 #include "acme/exception/io.h"
 

@@ -9,6 +9,7 @@
 #include "acme/_operating_system.h"
 #include "acme/operating_system/shared_posix/time1.h"
 #include "acme/operating_system/time.h"
+#include "acme/operating_system/windows/time.h"
 #include <time.h>
 
 

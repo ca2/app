@@ -24,7 +24,7 @@
 #pragma once
 
 
-//#include "remoting/remoting_common/region/::int_point.h"
+//#include "remoting/remoting/region/::int_point.h"
 #include "subsystem/_common_header.h"
 
 

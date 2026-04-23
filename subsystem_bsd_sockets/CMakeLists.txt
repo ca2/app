@@ -12,8 +12,11 @@ list(APPEND library_source
    SocketAddressIPv4.h
    SocketIPv4.cpp
    SocketIPv4.h
+   Sockets.cpp
+   Sockets.h
    subsystem.cpp
    subsystem.h
+
 )
 
 
@@ -21,7 +24,8 @@ if (${WIN32})
 
 
    list(APPEND library_source
-      windows/subsystem.cpp)
+      windows/subsystem.cpp
+   windows/Sockets.cpp)
 
 endif()
 

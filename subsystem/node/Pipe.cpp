@@ -26,7 +26,7 @@
 #include "Pipe.h"
 #include "subsystem/Exception.h"
 // #include aaa_<crtdbg.h>
-//#include "remoting/remoting_common/win_system/Environment.h"
+//#include "remoting/remoting/win_system/Environment.h"
 //#include "subsystem/thread/AutoLock.h"
 
 namespace subsystem

@@ -10,6 +10,9 @@
 #include "acme/prototype/prototype/memory.h"
 
 #include "acme/_operating_system.h"
+#ifdef WINDOWS
+#include "acme/operating_system/windows/time.h"
+#endif
 
 //#ifdef POSIX_PLATFORM
 

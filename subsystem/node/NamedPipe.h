@@ -28,7 +28,7 @@
 #include "subsystem/_common_header.h"
 //#include "win-system/WindowsEvent.h"
 #include "acme/input_output/Channel.h"
-////#include "remoting/remoting_common/thread/LocalMutex.h"
+////#include "remoting/remoting/thread/LocalMutex.h"
 #include "subsystem/node/Pipe.h"
 
 
@@ -159,6 +159,8 @@ namespace subsystem
       memsize available() { return m_pnamedpipe->available(); }
 
       //virtual HANDLE getHandle() const;
+
+      ::subsystem::FileInterface * getFile() const override {return m_pnamedpipe->getFile();}
 
    //private:
       //void checkPipeFile() { return m_pnamedpipe->checkPipeFile(); }

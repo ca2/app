@@ -126,6 +126,8 @@ namespace subsystem
 
    class SocketStream;
 
+   class Sockets;
+
    class SystemInformation;
 
     class SystemInformationInterface;
@@ -153,6 +155,18 @@ namespace subsystem
     class CommandLineArguments;
 
     class OperatingSystem;
+
+    class SessionChangesWatcher;
+
+    class Workstation;
+
+    class WorkstationInterface;
+
+    class Clipboard2;
+
+    class ClipboardListener;
+
+   class ZombieKiller;
 
 } // namespace subsystem
 

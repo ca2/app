@@ -29,29 +29,50 @@ namespace subsystem
       ::pointer < ::subsystem::ResourceLoader >     m_presourceloader;
       ::pointer < ::subsystem::Registry >     m_pregistry;
       ::pointer < ::subsystem::Shell >     m_pshell;
+      ::pointer<::subsystem::WorkstationInterface> m_pworkstation;
       ::pointer < ::subsystem::SystemInformationInterface > m_psysteminformation;
       ::pointer < ::subsystem::DesktopSelectorInterface > m_pdesktopselector;
       ::pointer < ::subsystem::PipeClientInterface > m_ppipeclient;
       ::pointer<::subsystem::OperatingSystem> m_poperatingsystem;
+      ::pointer<::subsystem::SessionChangesWatcher> m_psessionchangeswatcher;
+      ::pointer<::subsystem::ZombieKiller> m_pzombiekiller;
 
 
       subsystem();
       ~subsystem() override;
 
 
-      virtual ::subsystem::StringParser * string_parser();
+      virtual ::subsystem::StringParser & StringParser();
       virtual ::subsystem::StringTable & StringTable();
-      virtual ::subsystem::Registry* registry();
-      virtual ::subsystem::Shell* shell();
-      virtual ::subsystem::SystemInformationInterface * system_information();
-      virtual ::subsystem::DesktopSelectorInterface * desktop_selector();
-      virtual ::subsystem::PipeClientInterface * pipe_client();
+      virtual ::subsystem::Registry & Registry();
+      virtual ::subsystem::Shell & Shell();
+      virtual ::subsystem::WorkstationInterface & Workstation();
+      virtual ::subsystem::SystemInformationInterface & SystemInformation();
+      virtual ::subsystem::DesktopSelectorInterface & DesktopSelector();
+      virtual ::subsystem::PipeClientInterface & PipeClient();
       ::subsystem::ResourceLoader * ResourceLoader();
       ::subsystem::OperatingSystem & OperatingSystem();
+      ::subsystem::ZombieKiller & ZombieKiller();
+      ::subsystem::Sockets & Sockets();
 
 
+      //virtual void initializeCurrentProcessCommandLineArguments(
+        // CommandLineArguments *pcommandlinearguments);
 
-      virtual void initializeCommandLineArguments(CommandLineArguments *pcommandlinearguments);
+      //virtual void initializeCommandLineArguments(
+        // CommandLineArguments *pcommandlinearguments, const ::scoped_string &scopedstrCommandLine);
+
+
+      virtual void startSockets();
+      virtual void cleanupSockets();
+
+      virtual memsize getCurrentMemoryUsage();
+
+      virtual pointer<CommandLineArguments> getCurrentProcessCommandLineArguments();
+
+      virtual pointer<CommandLineArguments> getCommandLineArguments(const ::scoped_string &scopedstrCommandLine);
+
+      virtual pointer<::subsystem::FileInterface> fileFrom_HANDLE(void *pHANDLE);
 
       /**
        * Creates SID from sid string.
@@ -81,6 +102,18 @@ namespace subsystem
       virtual ::string internet_address4_as_string(unsigned int u);
       virtual unsigned int host_to_network_long(unsigned int u);
       virtual unsigned int network_to_host_long(unsigned int u);
+
+      virtual void start_SessionChangesWatcher(const ::procedure &procedureSessionChanged,
+                                               ::subsystem::LogWriter *plogwriter);
+
+
+      virtual ::string toString(const ::earth::time &time);
+
+
+
+      // Should deprecate this function?!?!?
+      virtual ::string getLocalIpAddressString();
+
 
    };
 

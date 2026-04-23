@@ -293,6 +293,12 @@
     <ClInclude Include="node\OperatingSystem.h">
       <Filter>Header Files\node</Filter>
     </ClInclude>
+    <ClInclude Include="thread\SessionChangesWatcher.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="node\ClipboardListener.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -512,6 +518,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="node\OperatingSystem.cpp">
+      <Filter>Source Files\node</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\SessionChangesWatcher.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="node\ClipboardListener.cpp">
       <Filter>Source Files\node</Filter>
     </ClCompile>
   </ItemGroup>

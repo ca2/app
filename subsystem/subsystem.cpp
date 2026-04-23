@@ -5,6 +5,7 @@
 #include "subsystem.h"
 #include "StringParser.h"
 #include "StringTable.h"
+#include "node/Workstation.h"
 #include "ResourceLoader.h"
 #include "acme/platform/registry.h"
 #include "node/OperatingSystem.h"
@@ -12,8 +13,11 @@
 #include "node/PipeClient.h"
 #include "Registry.h"
 #include "thread/DesktopSelector.h"
+#include "thread/SessionChangesWatcher.h"
 #include "acme/exception/interface_only.h"
 #include "node/SystemInformation.h"
+#include "thread/ZombieKiller.h"
+#include "CommandLineArguments.h"
 
 
 namespace subsystem
@@ -38,7 +42,7 @@ namespace subsystem
    }
 
 
-   ::subsystem::StringParser * subsystem::string_parser()
+   ::subsystem::StringParser & subsystem::StringParser()
    {
 
       if (!m_pstringparser)
@@ -48,7 +52,7 @@ namespace subsystem
 
       }
 
-      return m_pstringparser;
+      return *m_pstringparser;
 
    }
 
@@ -98,7 +102,7 @@ namespace subsystem
    }
 
 
-   ::subsystem::Registry * subsystem::registry()
+   ::subsystem::Registry & subsystem::Registry()
    {
 
       if (!m_pregistry)
@@ -108,12 +112,12 @@ namespace subsystem
 
       }
 
-      return m_pregistry;
+      return *m_pregistry;
 
    }
 
 
-   ::subsystem::Shell * subsystem::shell()
+   ::subsystem::Shell & subsystem::Shell()
    {
 
       if (!m_pshell)
@@ -123,12 +127,28 @@ namespace subsystem
 
       }
 
-      return m_pshell;
+      return *m_pshell;
 
    }
 
 
-   ::subsystem::SystemInformationInterface *subsystem::system_information()
+   ::subsystem::WorkstationInterface & subsystem::Workstation()
+   {
+
+      if (!m_pworkstation)
+      {
+
+
+         constructø(m_pworkstation);
+      }
+
+      return *m_pworkstation;
+   }
+
+
+
+
+   ::subsystem::SystemInformationInterface & subsystem::SystemInformation()
    {
 
       if (!m_psysteminformation   )
@@ -139,12 +159,12 @@ namespace subsystem
 
       }
 
-      return m_psysteminformation;
+      return *m_psysteminformation;
 
    }
 
 
-   ::subsystem::DesktopSelectorInterface *subsystem::desktop_selector()
+   ::subsystem::DesktopSelectorInterface & subsystem::DesktopSelector()
    {
 
       if (!m_pdesktopselector   )
@@ -155,12 +175,12 @@ namespace subsystem
 
       }
 
-      return m_pdesktopselector;
+      return *m_pdesktopselector;
 
    }
 
 
-   ::subsystem::PipeClientInterface *subsystem::pipe_client()
+   ::subsystem::PipeClientInterface & subsystem::PipeClient()
    {
 
       if (!m_ppipeclient   )
@@ -171,16 +191,83 @@ namespace subsystem
 
       }
 
-      return m_ppipeclient;
+      return *m_ppipeclient;
 
    }
 
-   void subsystem::initializeCommandLineArguments(CommandLineArguments* pcommandlinearguments)
+   //void subsystem::initializeCommandLineArguments(CommandLineArguments* pcommandlinearguments,
+   //                                               const ::scoped_string &scopedstrCommandLine)
+   //{
+
+   //   throw ::interface_only();
+
+   //}
+
+
+   void subsystem::startSockets()
+   {
+
+
+   }
+
+
+   void subsystem::cleanupSockets()
+   {
+
+
+
+   }
+
+   
+   memsize subsystem::getCurrentMemoryUsage()
    {
 
       throw ::interface_only();
 
+      return 0;
+
    }
+
+
+   pointer<CommandLineArguments> subsystem::getCurrentProcessCommandLineArguments()
+   {
+
+      throw ::interface_only();
+
+      return {};
+      // auto pcommandlinearguments = create_newø<CommandLineArguments>();
+
+      // pcommandlinearguments->ini, scopedstrCommandLine);
+
+      // return pcommandlinearguments;
+   }
+
+
+   pointer<CommandLineArguments> subsystem::getCommandLineArguments(const ::scoped_string &scopedstrCommandLine)
+   {
+
+      throw ::interface_only();
+
+      return {};
+      //auto pcommandlinearguments = create_newø<CommandLineArguments>();
+
+      //pcommandlinearguments->ini, scopedstrCommandLine);
+
+      //return pcommandlinearguments;
+
+   }
+
+   
+   pointer<::subsystem::FileInterface> subsystem::fileFrom_HANDLE(void* pHANDLE)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+
+   }
+
 
    ::pointer < ::subsystem::SecurityIdentifier > subsystem::createSidFromString(const ::scoped_string & scopedstr)
    {
@@ -285,5 +372,57 @@ namespace subsystem
 
    }
 
+   void subsystem::start_SessionChangesWatcher(const ::procedure& procedureSessionChanged,
+                                               ::subsystem::LogWriter *plogwriter)
+   {
+
+      if (m_psessionchangeswatcher)
+      {
+
+         throw "Currently only one is supported?!?!?";
+
+      }
+
+      constructø(m_psessionchangeswatcher);
+
+      m_psessionchangeswatcher->start_SessionChangesWatcher(procedureSessionChanged, plogwriter);
+
+   }
+
+   
+   ::string subsystem::toString(const ::earth::time& time)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
+   string subsystem::getLocalIpAddressString()
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+
+   }
+
+
+   ZombieKiller & subsystem::ZombieKiller()
+   {
+
+      if (!m_pzombiekiller)
+      {
+
+         constructø(m_pzombiekiller);
+
+      }
+
+      return *m_pzombiekiller;
+
+   }
 
 }//namespace subsystem

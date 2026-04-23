@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "DataInputStream.h"
 //// #include aaa_<vector>
-////#include "remoting/remoting_common/util/::string.h"
+////#include "subsystem/::string.h"
 
 #define SETBYTE(y, n) (((y) & 0xFF) << ((n) * 8))
 

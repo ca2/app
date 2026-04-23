@@ -26,7 +26,7 @@
 //#include "acme/_operating_system.h"
 #include "ServiceControlManagerClient.h"
 
-//#include "remoting/remoting_common/thread/Thread.h"
+//#include "remoting/remoting/thread/Thread.h"
 
 namespace subsystem
 {

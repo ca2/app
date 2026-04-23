@@ -25,10 +25,10 @@
 #pragma once
 
 
-//#include "remoting/remoting_common/util/winhdr.h"
+//#include "subsystem/winhdr.h"
 //#include "acme/_operating_system.h"
 
-////#include "remoting/remoting_common/thread/LocalMutex.h"
+////#include "remoting/remoting/thread/LocalMutex.h"
 #include "acme/prototype/collection/comparable_list.h"
 #include "subsystem/particle.h"
 //// #include aaa_<list>
@@ -136,6 +136,9 @@ namespace subsystem
 
 
        virtual int getExitCode() = 0;
+
+
+      virtual void setExitCode(int iExitCode) = 0;
 
       /// <summary>
       /// Callback Function
@@ -305,6 +308,12 @@ namespace subsystem
 
       }
 
+      void setExitCode(int iExitCode) override
+      {
+
+         m_poperatingsystemapplication->setExitCode(iExitCode);
+
+      }
 
       void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override
       {

@@ -314,9 +314,6 @@
     <ClInclude Include="gui\WindowFinder.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
-    <ClInclude Include="gui\WindowMessageHandler.h">
-      <Filter>Header Files\gui</Filter>
-    </ClInclude>
     <ClInclude Include="gui\WindowProcHolder.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>

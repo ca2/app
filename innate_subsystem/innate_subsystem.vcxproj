@@ -379,7 +379,6 @@
     <ClInclude Include="gui\Trackbar.h" />
     <ClInclude Include="gui\Window.h" />
     <ClInclude Include="gui\WindowFinder.h" />
-    <ClInclude Include="gui\WindowMessageHandler.h" />
     <ClInclude Include="gui\WindowProcHolder.h" />
     <ClInclude Include="drawing\Pen.h" />
     <ClInclude Include="drawing\SolidBrush.h" />

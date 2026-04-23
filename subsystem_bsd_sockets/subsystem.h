@@ -41,7 +41,14 @@ namespace subsystem_bsd_sockets
       unsigned int host_to_network_long(unsigned int u) override;
       unsigned int network_to_host_long(unsigned int u) override;
 
+      virtual memsize getCurrentMemoryUsage();
 
+
+      void startSockets() override;
+
+      void cleanupSockets() override;
+
+      ::string getLocalIpAddressString() override;
 
 
 

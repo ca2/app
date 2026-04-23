@@ -24,32 +24,36 @@
 #include "framework.h"
 #include "WindowsSocket.h"
 
-bool WindowsSocket::m_isStarted = false;
 
-void WindowsSocket::startup(unsigned char loVer, unsigned char hiVer)
+namespace subsystem_bsd_sockets
 {
-  if (m_isStarted) {
-    throw ::subsystem::Exception("WindowsSocket already initialized.");
-  }
+   bool WindowsSocket::m_isStarted = false;
 
-  WSAData wsaData;
+   void WindowsSocket::startup(unsigned char loVer, unsigned char hiVer)
+   {
+      if (m_isStarted) {
+         throw ::subsystem::Exception("WindowsSocket already initialized.");
+      }
 
-  if (WSAStartup(MAKEWORD(loVer, hiVer), &wsaData) != 0) {
-    throw ::subsystem::Exception("Failed to initialize WindowsSocket.");
-  }
+      WSAData wsaData;
 
-  m_isStarted = true;
-}
+      if (WSAStartup(MAKEWORD(loVer, hiVer), &wsaData) != 0) {
+         throw ::subsystem::Exception("Failed to initialize WindowsSocket.");
+      }
 
-void WindowsSocket::cleanup()
-{
-  if (!m_isStarted) {
-    throw ::subsystem::Exception("WindowsSocket don't initialized.");
-  }
+      m_isStarted = true;
+   }
 
-  m_isStarted = false;
+   void WindowsSocket::cleanup()
+   {
+      if (!m_isStarted) {
+         throw ::subsystem::Exception("WindowsSocket don't initialized.");
+      }
 
-  if (WSACleanup() == SOCKET_ERROR) {
-    throw ::subsystem::Exception("Failed to deinitialize WindowsSocket.");
-  }
-}
+      m_isStarted = false;
+
+      if (WSACleanup() == SOCKET_ERROR) {
+         throw ::subsystem::Exception("Failed to deinitialize WindowsSocket.");
+      }
+   }
+} // namespace subsystem_bsd_sockets

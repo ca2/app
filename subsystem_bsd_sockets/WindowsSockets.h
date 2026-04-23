@@ -28,24 +28,28 @@
 #include "subsystem/_common_header.h"
 #include "subsystem/Exception.h"
 
-//
-// Class that startup and cleanup Windows Sockets subsystem.
-//
-class CLASS_DECL_REMOTING_COMMON WindowsSocket
+namespace subsystem_bsd_sockets
 {
-public:
-  // Initializes Windows sockets subsystem.
-  // Throws exception if winsock already initialized or
-  // if was error during winsock startup.
-  static void startup(unsigned char loVer, unsigned char hiVer);
+   //
+   // Class that startup and cleanup Windows Sockets subsystem.
+   //
+   class CLASS_DECL_SUBSYSTEM_BSD_SOCKETS WindowsSockets :
+   virtual public ::particle
+   {
+   public:
+      // Initializes Windows sockets subsystem.
+      // Throws exception if winsock already initialized or
+      // if was error during winsock startup.
+      void startup(unsigned char loVer, unsigned char hiVer);
 
-  //  Deinitializes Windows sockets subsystem.
-  // Throws exception if winsock does not initialized or
-  // if was error during winsock cleanup.
-  static void cleanup();
+      //  Deinitializes Windows sockets subsystem.
+      // Throws exception if winsock does not initialized or
+      // if was error during winsock cleanup.
+      void cleanup();
 
-protected:
-  static bool m_isStarted;
-};
+   protected:
+      bool m_isStarted;
+   };
 
 
+} // namespace subsystem_bsd_sockets

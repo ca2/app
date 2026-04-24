@@ -29,11 +29,11 @@
 //
 // namespace subsystem
 // {
-//    class CLASS_DECL_SUBSYSTEM WindowsEvent
+//    class CLASS_DECL_SUBSYSTEM ::happening
 //    {
 //    public:
-//       WindowsEvent(const ::scoped_string & scopedstrName = 0);
-//       virtual ~WindowsEvent();
+//       ::happening(const ::scoped_string & scopedstrName = 0);
+//       virtual ~::happening();
 //
 //       void notify();
 //       void waitForEvent(DWORD milliseconds = INFINITE);

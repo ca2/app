@@ -101,7 +101,7 @@ namespace subsystem
       /**
        * Returns thread id.
        */
-      virtual ::itask getThreadId() const = 0;
+      virtual ::iptr getThreadId() const = 0;
 
       /**
        * Sets thread priority.
@@ -261,7 +261,7 @@ namespace subsystem
       /**
        * Returns thread id.
        */
-      ::itask getThreadId() const override
+      ::iptr getThreadId() const override
       {
 
           return m_pthread->getThreadId();

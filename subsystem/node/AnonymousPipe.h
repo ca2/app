@@ -30,7 +30,7 @@
 #include "subsystem/node/Pipe.h"
 #include "subsystem/_common_header.h"
 
-//#include "acme/remoting_common/win_system/WindowsEvent.h"
+//#include "acme/remoting_common/win_system/::happening.h"
 //#include "remoting/remoting/thread/LocalMutex.h"
 //#include "log_writer/LogWriter.h"
 
@@ -107,8 +107,8 @@ namespace subsystem
       // unsigned int m_timeOut;
       //
       // LocalMutex m_hPipeMutex;
-      // WindowsEvent m_readEvent;
-      // WindowsEvent m_writeEvent;
+      // ::happening m_readEvent;
+      // ::happening m_writeEvent;
       //
       // LogWriter *m_plogwriter;
    };
@@ -204,8 +204,8 @@ namespace subsystem
       // unsigned int m_timeOut;
       //
       // LocalMutex m_hPipeMutex;
-      // WindowsEvent m_readEvent;
-      // WindowsEvent m_writeEvent;
+      // ::happening m_readEvent;
+      // ::happening m_writeEvent;
       //
       // LogWriter *m_plogwriter;
    };

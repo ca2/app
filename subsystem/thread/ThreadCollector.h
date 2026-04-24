@@ -27,7 +27,7 @@
 
 #include "subsystem/thread/Thread.h"
 //#include "critical_section.h"
-//#include "subsystem/thread/WindowsEvent.h"
+//#include "subsystem/thread/::happening.h"
 //// #include aaa_<list>
 
 #include "acme/prototype/collection/list.h"
@@ -64,7 +64,7 @@ namespace subsystem
    //    ThreadList m_threads;
    //    critical_section m_lockObj;
    //
-   //    WindowsEvent m_timer;
+   //    ::happening m_timer;
    };
 
    // // Collector threads.
@@ -96,7 +96,7 @@ namespace subsystem
    //    //    ThreadList m_threads;
    //    //    critical_section m_lockObj;
    //    //
-   //    //    WindowsEvent m_timer;
+   //    //    ::happening m_timer;
    // };
 
    //// __THREADCOLLECTOR_H__

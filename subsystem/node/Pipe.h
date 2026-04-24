@@ -26,7 +26,7 @@
 
 
 #include "subsystem/_common_header.h"
-//#include "win-system/WindowsEvent.h"
+//#include "win-system/::happening.h"
 #include "acme/input_output/Channel.h"
 ////#include "remoting/remoting/thread/LocalMutex.h"
 
@@ -64,8 +64,8 @@ namespace subsystem
       // The mutex protect collision accesses to handle fields of derived classes.
       //LocalMutex m_hPipeMutex;
 
-      //WindowsEvent m_readEvent;
-      //WindowsEvent m_writeEvent;
+      //::happening m_readEvent;
+      //::happening m_writeEvent;
 
       //private:
       virtual void checkPipeFile(::subsystem::FileInterface * pfilePipe) = 0;
@@ -139,8 +139,8 @@ namespace subsystem
       // The mutex protect collision accesses to handle fields of derived classes.
       //LocalMutex m_hPipeMutex;
 
-      //WindowsEvent m_readEvent;
-      //WindowsEvent m_writeEvent;
+      //::happening m_readEvent;
+      //::happening m_writeEvent;
 
       //private:
       void checkPipeFile(::subsystem::FileInterface* pfilePipe) override

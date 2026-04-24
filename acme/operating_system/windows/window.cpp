@@ -458,6 +458,61 @@ namespace windows
    }
 
 
+   bool window::is_window_class_registered(const char *pszWindowClassName)
+   {
+      auto hinstance = (HINSTANCE) hinstance_from_function(s_window_procedure);
+      WNDCLASSEXW wndclassexw{};
+      ::wstring wstrWindowClassName(pszWindowClassName);
+      if (GetClassInfoExW(hinstance, wstrWindowClassName, &wndclassexw))
+      {
+         return true;
+      } else
+         {
+         return false;
+      }
+   }
+
+
+   bool window::_register_window_class(WNDCLASSEX & wndclassex, const char *pszWindowClassName)
+   {
+
+      ::wstring wstrWindowClassName;
+
+      wstrWindowClassName = pszWindowClassName;
+
+      auto hinstance = (HINSTANCE) hinstance_from_function(s_window_procedure);
+
+      //WNDCLASS wcWindowClass = {0};
+      wndclassex.lpfnWndProc = s_window_procedure;
+      //wcWindowClass.style = NULL;
+      wndclassex.hInstance = hinstance;
+      wndclassex.lpszClassName = wstrWindowClassName;
+
+      auto atom = ::RegisterClassExW(&wndclassex);
+
+      if (!atom)
+      {
+
+         return false;
+      }
+
+      return true;
+   }
+
+
+   bool window::register_window_class(const char *pszWindowClassName, int iWindowClassStyle, void * pHCURSOR, void * pHBRUSH_Background)
+   {
+
+      WNDCLASSEXW wndclassexw{};
+      wndclassexw.style = iWindowClassStyle;
+      wndclassexw.hCursor = (HCURSOR) pHCURSOR;
+      wndclassexw.hbrBackground = (HBRUSH)pHBRUSH_Background;
+
+      return _register_window_class(wndclassexw, pszWindowClassName);
+
+   }
+
+
    // Step 4: the Window Procedure
    LRESULT CALLBACK window::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {

@@ -105,6 +105,7 @@ namespace operating_system
 
 } // namespace operating_system
 
+#define WIN32_COLOR_WINDOW 5 // WinUser.h (windows.h) COLOR_WINDOW
 
 namespace windows
 {
@@ -137,6 +138,9 @@ namespace windows
       virtual bool _on_default_system_menu_command(::lresult & lresult, ::wparam wparam, ::lparam lparam);
       virtual void _defer_show_system_menu(::user::mouse * ppmouse);
 
+      virtual bool is_window_class_registered(const char * pszWindowClassName);
+      virtual bool register_window_class(const char * pszWindowClassName, int iWindowClassStyle = 0, void * pHCURSOR = nullptr, void * pHBRUSH_Background = (void *) (HBRUSH)WIN32_COLOR_WINDOW);
+      virtual bool _register_window_class(WNDCLASSEXW &wndclassexw, const char * pszWindowClassName);
 
       virtual void * _HWND() const;
       virtual void * _WNDPROC_default() const;

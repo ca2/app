@@ -111,7 +111,7 @@ namespace subsystem
 
    //private:
    //   ::string m_pipeName;
-   //   WindowsEvent m_winEvent;
+   //   ::happening m_winEvent;
    //   DWORD m_milliseconds;
    //   SecurityAttributes *m_secAttr;
    //   HANDLE m_serverPipe;

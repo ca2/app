@@ -251,6 +251,8 @@ list(APPEND library_source
    #platform/WinCommandLineArgs.h
    #platform/WinCursor.cpp
    #platform/WinCursor.h
+   platform/WindowMessageHandler.cpp
+   platform/WindowMessageHandler.h
    #platform/WindowsApplication.cpp
    #platform/WindowsApplication.h
    #platform/WindowsDisplays.cpp

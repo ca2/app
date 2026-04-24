@@ -55,8 +55,8 @@ namespace subsystem
       // HANDLE m_pipeHandle;
       // bool m_success;
       // ::string m_faultReason;
-      // WindowsEvent m_impersonationReadyEvent;
-      // WindowsEvent m_threadSleeper;
+      // ::happening m_impersonationReadyEvent;
+      // ::happening m_threadSleeper;
    };
 
     //using PipeImpersonatedThreadInterface = particle_interface<PipeImpersonatedThreadInterface, ThreadInterface>;
@@ -90,8 +90,8 @@ namespace subsystem
       // HANDLE m_pipeHandle;
       // bool m_success;
       // ::string m_faultReason;
-      // WindowsEvent m_impersonationReadyEvent;
-      // WindowsEvent m_threadSleeper;
+      // ::happening m_impersonationReadyEvent;
+      // ::happening m_threadSleeper;
    };
 
 

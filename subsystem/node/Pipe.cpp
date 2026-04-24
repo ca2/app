@@ -223,8 +223,8 @@ namespace subsystem
 //    // The mutex protect collision accesses to handle fields of derived classes.
 //    //LocalMutex m_hPipeMutex;
 //
-//    //WindowsEvent m_readEvent;
-//    //WindowsEvent m_writeEvent;
+//    //::happening m_readEvent;
+//    //::happening m_writeEvent;
 //
 //    //private:
 //    void Pipe::checkPipeFile(::subsystem::FileInterface * pfilePipe)

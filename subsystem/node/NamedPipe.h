@@ -26,7 +26,7 @@
 
 
 #include "subsystem/_common_header.h"
-//#include "win-system/WindowsEvent.h"
+//#include "win-system/::happening.h"
 #include "acme/input_output/Channel.h"
 ////#include "remoting/remoting/thread/LocalMutex.h"
 #include "subsystem/node/Pipe.h"
@@ -94,8 +94,8 @@ namespace subsystem
       // LocalMutex m_hPipeMutex;
       // ::string m_pipeName;
       //
-      // WindowsEvent m_readEvent;
-      // WindowsEvent m_writeEvent;
+      // ::happening m_readEvent;
+      // ::happening m_writeEvent;
       // bool m_asServer;
    };
 
@@ -169,8 +169,8 @@ namespace subsystem
       // LocalMutex m_hPipeMutex;
       // ::string m_pipeName;
       //
-      // WindowsEvent m_readEvent;
-      // WindowsEvent m_writeEvent;
+      // ::happening m_readEvent;
+      // ::happening m_writeEvent;
       // bool m_asServer;
    };
 

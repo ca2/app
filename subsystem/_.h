@@ -48,6 +48,18 @@
    template<typename PARTICLE_INTERFACE, typename BASE = Particle>
    class Implementation;
 
+
+// node
+namespace subsystem
+{
+
+
+   class DynamicLibrary;
+   class DynamicLibraryInterface;
+
+}
+
+
 namespace subsystem
 {
 
@@ -183,5 +195,18 @@ namespace innate_subsystem
 
 //#include "acme/input_output/_.h"
 #include "subsystem/thread/_.h"
+
+
+
+#ifdef WINDOWS
+
+namespace subsystem_windows
+{
+   class MessageWindow;
+}
+
+
+#endif
+
 
 

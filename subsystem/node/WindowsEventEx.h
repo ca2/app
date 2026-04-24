@@ -25,9 +25,9 @@
 #pragma once
 
 
-// #include "win-system/WindowsEvent.h"
+// #include "win-system/::happening.h"
 //
-// class CLASS_DECL_REMOTING_COMMON WindowsEventEx : public WindowsEvent
+// class CLASS_DECL_REMOTING_COMMON WindowsEventEx : public ::happening
 // {
 // public:
 //   WindowsEventEx(const ::scoped_string & scopedstrName = 0);

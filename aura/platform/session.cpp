@@ -2055,7 +2055,7 @@ return m_psavings;
 
          }
 
-         m_puser.defer_destroy();
+         m_puser.defer_destroy_and_release();
 
       }
 

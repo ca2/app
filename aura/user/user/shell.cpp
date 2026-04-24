@@ -2184,14 +2184,14 @@ namespace user
       {
          for(auto &pimagelist : m_pimagelist.payloads())
          {
-            pimagelist.defer_destroy();
+            pimagelist.defer_destroy_and_release();
          }
       }
       if(m_pimagelistHover.size()>0)
       {
          for(auto &pimagelist : m_pimagelistHover.payloads())
          {
-            pimagelist.defer_destroy();
+            pimagelist.defer_destroy_and_release();
          }
       }
       m_pimagelist.clear();

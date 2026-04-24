@@ -272,13 +272,13 @@ namespace simpledb
 
       }
 
-      m_pdatabaseLocal.defer_destroy();
+      m_pdatabaseLocal.defer_destroy_and_release();
 
-      m_pstorage.defer_destroy();
+      m_pstorage.defer_destroy_and_release();
 
-      m_pdatabaseUser.defer_destroy();
+      m_pdatabaseUser.defer_destroy_and_release();
 
-      m_psimpledb.defer_destroy();
+      m_psimpledb.defer_destroy_and_release();
 
       //auto estatus = 
       

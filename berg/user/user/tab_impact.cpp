@@ -1134,7 +1134,7 @@ namespace user
             
             pmenu->m_menua.erase_all();
             
-            pmenu->m_pmenuitem.defer_destroy();
+            pmenu->m_pmenuitem.defer_destroy_and_release();
             
             pmenu->destroy_children();
 

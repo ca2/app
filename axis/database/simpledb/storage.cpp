@@ -50,12 +50,12 @@ namespace simpledb
 
       }
 
-      m_pthread.defer_destroy();
+      m_pthread.defer_destroy_and_release();
 
-      m_pthreadlocal.defer_destroy();
+      m_pthreadlocal.defer_destroy_and_release();
 
-      m_phttpsession.defer_destroy();
-      m_phandler.defer_destroy();
+      m_phttpsession.defer_destroy_and_release();
+      m_phandler.defer_destroy_and_release();
 
       m_pserver.release();
 

@@ -726,7 +726,7 @@ namespace axis
    void application::process_term()
    {
 
-      m_psimpledb.defer_destroy();
+      m_psimpledb.defer_destroy_and_release();
 
       ::aura::application::process_term();
 

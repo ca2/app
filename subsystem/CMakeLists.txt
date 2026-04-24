@@ -316,7 +316,9 @@ list(APPEND library_source
    #thread/remoting_thread.vcxproj
    #thread/remoting_thread.vcxproj.filters
    #thread/remoting_thread.vcxproj.user
-   thread/resource.h
+   #thread/resource.h
+   thread/SessionChangesWatcher.cpp
+   thread/SessionChangesWatcher.h
    thread/Thread.cpp
    thread/Thread.h
    thread/thread.vcproj

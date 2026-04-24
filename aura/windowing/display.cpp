@@ -672,7 +672,7 @@ namespace windowing
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      auto & pmonitor = m_monitora.ø(iMonitor);
+      auto & pmonitor = m_monitora.atø(iMonitor);
 
       if(!pmonitor)
       {

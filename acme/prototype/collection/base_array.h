@@ -951,7 +951,7 @@ public:
 
    inline void set_at_grow(::collection::index nIndex, ARG_TYPE newElement);
    inline TYPE & element_at_grow(::collection::index nIndex);
-   inline TYPE & ø(::collection::index nIndex) { return this->element_at_grow(nIndex); }
+   inline TYPE & atø(::collection::index nIndex) { return this->element_at_grow(nIndex); }
 
    inline void set_each(ARG_TYPE element, ::collection::index iStart = 0, ::collection::count c = -1);
 

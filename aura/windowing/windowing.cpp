@@ -139,9 +139,9 @@ namespace windowing
    void windowing::destroy()
    {
 
-      m_pcursormanager.defer_destroy();
+      m_pcursormanager.defer_destroy_and_release();
 
-      m_pkeyboard.defer_destroy();
+      m_pkeyboard.defer_destroy_and_release();
 
       m_pacmewindowingwindowMouseCapture.release();
 

@@ -122,7 +122,7 @@ namespace user
    void tab::destroy()
    {
 
-      m_pdata.defer_destroy();
+      m_pdata.defer_destroy_and_release();
 
       m_pitemClick.release();
 

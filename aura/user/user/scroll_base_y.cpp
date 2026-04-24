@@ -40,8 +40,8 @@ namespace user
    void scroll_base_y::destroy()
    {
 
-      m_pscrollbarY.defer_destroy();
-      m_pscrolllayoutY.defer_destroy();
+      m_pscrollbarY.defer_destroy_and_release();
+      m_pscrolllayoutY.defer_destroy_and_release();
       ::user::interaction::destroy();
 
    }

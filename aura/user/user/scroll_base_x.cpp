@@ -39,8 +39,8 @@ namespace user
    void scroll_base_x::destroy()
    {
 
-      m_pscrollbarX.defer_destroy();
-      m_pscrolllayoutX.defer_destroy();
+      m_pscrollbarX.defer_destroy_and_release();
+      m_pscrolllayoutX.defer_destroy_and_release();
       ::user::interaction::destroy();
 
    }

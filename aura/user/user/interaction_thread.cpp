@@ -1006,7 +1006,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      m_pwindow.defer_destroy();
+      m_pwindow.defer_destroy_and_release();
 
       //if (m_pwindow)
       {

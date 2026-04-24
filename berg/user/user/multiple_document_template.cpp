@@ -54,7 +54,7 @@ namespace user
          try
          {
 
-            pdocument.defer_destroy();
+            pdocument.defer_destroy_and_release();
 
          }
          catch (...)

@@ -7208,9 +7208,9 @@ if(!m_pimaging)
    void system::TermSystem()
    {
 
-      m_pdraw2d.defer_destroy();
+      m_pdraw2d.defer_destroy_and_release();
 
-      m_phardwaredevices.defer_destroy();
+      m_phardwaredevices.defer_destroy_and_release();
 
       ::aqua::system::TermSystem();
 

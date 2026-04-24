@@ -2987,12 +2987,12 @@ namespace experience
    void frame_window::destroy()
    {
 
-      m_pmovemanager.defer_destroy();
-      m_psizemanager.defer_destroy();
-      m_pdockmanager.defer_destroy();
-      m_pmenumanager.defer_destroy();
+      m_pmovemanager.defer_destroy_and_release();
+      m_psizemanager.defer_destroy_and_release();
+      m_pdockmanager.defer_destroy_and_release();
+      m_pmenumanager.defer_destroy_and_release();
 
-      m_pframe.defer_destroy();
+      m_pframe.defer_destroy_and_release();
 
 
       ::user::frame_window::destroy();

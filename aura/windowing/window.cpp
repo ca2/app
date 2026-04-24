@@ -5639,7 +5639,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       }
 
-      m_pgraphicsgraphics.defer_destroy();
+      m_pgraphicsgraphics.defer_destroy_and_release();
 
       __UNREFERENCED_PARAMETER(pmessage);
 

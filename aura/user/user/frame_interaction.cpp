@@ -306,15 +306,15 @@ namespace user
       //if (m_pshapeaClip) m_pshapeaClip->destroy();
       if (m_pdrawcontext) m_pdrawcontext->destroy();
 
-      m_puserstyleFrameInteraction.defer_destroy();
+      m_puserstyleFrameInteraction.defer_destroy_and_release();
 
-      m_pdrawicon.defer_destroy();
+      m_pdrawicon.defer_destroy_and_release();
       //}
-      m_pusersystem.defer_destroy();
+      m_pusersystem.defer_destroy_and_release();
       //      if (m_playout) m_playout->destroy();
-      m_pgraphicscalla.defer_destroy();
-      m_puserinteractionCustomWindowProc.defer_destroy();
-      m_puiLabel.defer_destroy();
+      m_pgraphicscalla.defer_destroy_and_release();
+      m_puserinteractionCustomWindowProc.defer_destroy_and_release();
+      m_puiLabel.defer_destroy_and_release();
       //if (m_puseritema) m_puseritema->destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
@@ -345,8 +345,8 @@ namespace user
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
       // tasks should not be destroyed in destroy
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
-      m_ptooltip.defer_destroy();
-      m_pmenuitem.defer_destroy();
+      m_ptooltip.defer_destroy_and_release();
+      m_pmenuitem.defer_destroy_and_release();
       m_menua.destroy();
 
       // ownership
@@ -373,7 +373,7 @@ namespace user
 
       //m_pacmew
 
-      m_pinteractionScaler.defer_destroy();
+      m_pinteractionScaler.defer_destroy_and_release();
 
       {
 

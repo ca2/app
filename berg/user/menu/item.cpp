@@ -57,7 +57,7 @@ namespace menu
    void item::destroy()
    {
 
-      m_pmenuitema.defer_destroy();
+      m_pmenuitema.defer_destroy_and_release();
       m_pmenuitemParent.release();
       m_puserinteraction.release();
       m_pmenu.release();

@@ -934,7 +934,7 @@ namespace user
          try
          {
 
-            pimpactsystem.defer_destroy();
+            pimpactsystem.defer_destroy_and_release();
 
          }
          catch (...)

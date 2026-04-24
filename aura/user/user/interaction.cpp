@@ -12595,19 +12595,19 @@ if(get_parent())
       //if(m_pinteractiondraw2d)
       //{
       //if (m_pshapeaClip) m_pshapeaClip->destroy();
-      m_pdrawcontext.defer_destroy();
+      m_pdrawcontext.defer_destroy_and_release();
 
       m_pmatterCommandHandler.release();
       //}
-      m_pusersystem.defer_destroy();
+      m_pusersystem.defer_destroy_and_release();
       //      if (m_playout) m_playout->destroy();
-      m_pgraphicscalla.defer_destroy();
-      m_puserinteractionCustomWindowProc.defer_destroy();
-      m_puiLabel.defer_destroy();
+      m_pgraphicscalla.defer_destroy_and_release();
+      m_puserinteractionCustomWindowProc.defer_destroy_and_release();
+      m_puiLabel.defer_destroy_and_release();
       //if (m_puseritema) m_puseritema->destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
-      m_palphasource.defer_destroy();
+      m_palphasource.defer_destroy_and_release();
       //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
       //if (window()) window()->destroy();
       //if (windowing_window()) windowing_window()->destroy();
@@ -12624,8 +12624,8 @@ if(get_parent())
       //user_thread() && user_thread()->destroy();
       // tasks should not be destroyed in destroy
       //user_thread() && user_thread()->destroy();
-      m_ptooltip.defer_destroy();
-      m_pmenuitem.defer_destroy();
+      m_ptooltip.defer_destroy_and_release();
+      m_pmenuitem.defer_destroy_and_release();
       m_menua.clear();
 
       // ownership
@@ -12648,7 +12648,7 @@ if(get_parent())
       //window().release();
       ///windowing_window().release();
 
-      m_pinteractionScaler.defer_destroy();
+      m_pinteractionScaler.defer_destroy_and_release();
 
       {
 

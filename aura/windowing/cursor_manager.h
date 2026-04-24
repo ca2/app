@@ -17,8 +17,8 @@ namespace windowing
    public:
 
 
-      ::pointer < ::windowing::windowing >      m_pwindowing;
-      map_base < enum_cursor, ::pointer<cursor >>    m_cursormap;
+      ::pointer < ::windowing::windowing >            m_pwindowing;
+      map_to_pointer_base < enum_cursor, cursor >     m_cursormap;
 
 
       cursor_manager();

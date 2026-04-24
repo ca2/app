@@ -619,7 +619,7 @@ namespace user
    void user::destroy()
    {
 
-      m_puserstyle.defer_destroy();
+      m_puserstyle.defer_destroy_and_release();
 
       for (auto & pstyle : m_mapUserStyle.payloads())
       {
@@ -627,7 +627,7 @@ namespace user
          try
          {
 
-            pstyle.defer_destroy();
+            pstyle.defer_destroy_and_release();
 
          }
          catch (...)

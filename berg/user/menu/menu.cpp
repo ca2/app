@@ -277,7 +277,7 @@ namespace user
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 
-               m_pmenuitem.defer_destroy();
+               m_pmenuitem.defer_destroy_and_release();
 
             }
 
@@ -294,7 +294,7 @@ namespace user
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 
-               m_pmenuitem.defer_destroy();
+               m_pmenuitem.defer_destroy_and_release();
 
             }
 
@@ -310,7 +310,7 @@ namespace user
             if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
             {
 
-               m_pmenuitem.defer_destroy();
+               m_pmenuitem.defer_destroy_and_release();
 
             }
 

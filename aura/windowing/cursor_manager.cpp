@@ -72,14 +72,14 @@ namespace windowing
    void cursor_manager::destroy()
    {
 
-      for (auto & pcursor : m_cursormap.payloads())
-      {
+      // for (auto & pcursor : m_cursormap.payloads())
+      // {
+      //
+      //    pcursor.defer_destroy();
+      //
+      // }
 
-         pcursor.defer_destroy();
-
-      }
-
-      m_cursormap.clear();
+      m_cursormap.defer_destroy_and_release();
 
       m_pwindowing.release();
 

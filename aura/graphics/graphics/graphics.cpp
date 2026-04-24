@@ -74,7 +74,7 @@ namespace graphics
 
       m_pmutex.release();
 
-      m_pimage2.defer_destroy();
+      m_pimage2.defer_destroy_and_release();
 
       m_pgraphicsBufferItem.release();
 
@@ -151,25 +151,27 @@ namespace graphics
    void graphics::destroy_buffer()
    {
 
-      for (auto & i : m_bufferitema)
-      {
 
-         try
-         {
-
-            i.defer_destroy();
-
-         }
-         catch (...)
-         {
-
-
-         }
-
-      }
-
-
-      m_bufferitema.clear();
+      m_bufferitema.defer_destroy_and_release();
+      // for (auto & i : m_bufferitema)
+      // {
+      //
+      //    try
+      //    {
+      //
+      //       i.defer_destroy();
+      //
+      //    }
+      //    catch (...)
+      //    {
+      //
+      //
+      //    }
+      //
+      // }
+      //
+      //
+      // m_bufferitema.clear();
 
 
    }

@@ -3206,7 +3206,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   prototype/collection/pointer_container.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

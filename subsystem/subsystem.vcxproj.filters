@@ -362,6 +362,9 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="node\Clipboard2.h">
+      <Filter>Header Files\node</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -633,6 +636,9 @@
     </ClCompile>
     <ClCompile Include="platform\ZlibException.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="node\Clipboard2.cpp">
+      <Filter>Source Files\node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

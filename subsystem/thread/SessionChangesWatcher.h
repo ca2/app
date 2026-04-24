@@ -31,7 +31,7 @@
 
 namespace subsystem
 {
-   class SessionChangesWatcher : virtual public ::particle
+   class CLASS_DECL_SUBSYSTEM SessionChangesWatcher : virtual public ::particle
    {
    public:
 

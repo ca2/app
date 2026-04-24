@@ -338,6 +338,7 @@ template < typename TYPE1, typename TYPE2, enum_allocate t_eallocate = e_allocat
 using map_base2 = pair_map_base < PAIR, t_eallocate >;
 
 
+
 template<typename MAP_BASE>
 class map_particle;
 

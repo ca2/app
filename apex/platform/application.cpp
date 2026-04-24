@@ -7459,10 +7459,10 @@ namespace apex
 
 
 
-   //const char application::gen_FileSection[] = "Recent File List";
-   //const char application::gen_FileEntry[] = "File%d";
-   //const char application::gen_ThumbnailSection[] = "Settings";
-   //const char application::gen_ThumbnailEntry[] = "ThumbnailPages";
+   //::string_literal application::gen_FileSection = "Recent File List";
+   //::string_literal application::gen_FileEntry = "File%d";
+   //::string_literal application::gen_ThumbnailSection = "Settings";
+   //::string_literal application::gen_ThumbnailEntry = "ThumbnailPages";
 
 
    //application::application()

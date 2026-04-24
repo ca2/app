@@ -87,7 +87,7 @@ namespace aura
    void context::destroy()
    {
 
-      m_pimagecontext.defer_destroy();
+      m_pimagecontext.defer_destroy_and_release();
 
       ::platform::context::destroy();
 

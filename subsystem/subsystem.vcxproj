@@ -2383,6 +2383,7 @@
     <ClCompile Include="node\AnonymousPipeFactory.cpp" />
     <ClCompile Include="node\AutoImpersonator.cpp" />
     <ClCompile Include="node\Clipboard.cpp" />
+    <ClCompile Include="node\Clipboard2.cpp" />
     <ClCompile Include="node\ClipboardListener.cpp" />
     <ClCompile Include="node\CurrentConsoleProcess.cpp" />
     <ClCompile Include="node\Cursor.cpp" />
@@ -2474,6 +2475,7 @@
     <ClInclude Include="node\ApplicationCrashEvents.h" />
     <ClInclude Include="node\AutoImpersonator.h" />
     <ClInclude Include="node\Clipboard.h" />
+    <ClInclude Include="node\Clipboard2.h" />
     <ClInclude Include="node\ClipboardListener.h" />
     <ClInclude Include="node\CurrentConsoleProcess.h" />
     <ClInclude Include="node\Cursor.h" />

@@ -26,7 +26,7 @@ namespace user
    void text_composition_composite::destroy()
    {
       
-      m_ptextcompositionclient.defer_destroy();
+      m_ptextcompositionclient.defer_destroy_and_release();
       
       text_composition_client_base::destroy();
 

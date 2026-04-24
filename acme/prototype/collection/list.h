@@ -44,6 +44,8 @@ public:
 
    using ITEM = typename NODE::ITEM;
 
+   using BASE_PAYLOAD = ITEM;
+
    using ARG_ITEM = ARG_TYPE;
 
    using this_iterator = typename RANGE::this_iterator;

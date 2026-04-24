@@ -597,8 +597,8 @@ void image::destroy()
    pixmap::unmap();
    clear_flag(e_flag_success);
    clear_flag(e_flag_failure);
-   m_pgraphics.defer_destroy();
-   m_pbitmap.defer_destroy();
+   m_pgraphics.defer_destroy_and_release();
+   m_pbitmap.defer_destroy_and_release();
    //return ::success;
 
 }

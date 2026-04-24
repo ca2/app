@@ -42,28 +42,28 @@ void __get_module_short_file_name(hinstance hInst, string& strShortName);
 namespace user
 {
 
-   const char document_manager::gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
-   const char document_manager::gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
-   const char document_manager::gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-   const char document_manager::gen_DefaultIconFmt[] = "%s\\DefaultIcon";
-   const char document_manager::gen_ShellNewFmt[] = "%s\\ShellNew";
+   ::string_literal document_manager::gen_ShellOpenFmt = "%s\\shell\\open\\%s";
+   ::string_literal document_manager::gen_ShellPrintFmt = "%s\\shell\\print\\%s";
+   ::string_literal document_manager::gen_ShellPrintToFmt = "%s\\shell\\printto\\%s";
+   ::string_literal document_manager::gen_DefaultIconFmt = "%s\\DefaultIcon";
+   ::string_literal document_manager::gen_ShellNewFmt = "%s\\ShellNew";
 
 #define DEFAULT_ICON_INDEX 0
 
-   const char document_manager::gen_IconIndexFmt[] = ",%d";
-   const char document_manager::gen_Command[] = "command";
-   const char document_manager::gen_OpenArg[] = " \"%1\"";
-   const char document_manager::gen_PrintArg[] = " /int_point \"%1\"";
-   const char document_manager::gen_PrintToArg[] = " /int_point \"%1\" \"%2\" \"%3\" \"%4\"";
-   const char document_manager::gen_DDEArg[] = " /dde";
+   ::string_literal document_manager::gen_IconIndexFmt = ",%d";
+   ::string_literal document_manager::gen_Command = "command";
+   ::string_literal document_manager::gen_OpenArg = " \"%1\"";
+   ::string_literal document_manager::gen_PrintArg = " /int_point \"%1\"";
+   ::string_literal document_manager::gen_PrintToArg = " /int_point \"%1\" \"%2\" \"%3\" \"%4\"";
+   ::string_literal document_manager::gen_DDEArg = " /dde";
 
-   const char document_manager::gen_DDEExec[] = "ddeexec";
-   const char document_manager::gen_DDEOpen[] = "[open(\"%1\")]";
-   const char document_manager::gen_DDEPrint[] = "[print(\"%1\")]";
-   const char document_manager::gen_DDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
+   ::string_literal document_manager::gen_DDEExec = "ddeexec";
+   ::string_literal document_manager::gen_DDEOpen = "[open(\"%1\")]";
+   ::string_literal document_manager::gen_DDEPrint = "[print(\"%1\")]";
+   ::string_literal document_manager::gen_DDEPrintTo = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
 
-   const char document_manager::gen_ShellNewValueName[] = "NullFile";
-   const char document_manager::gen_ShellNewValue[] = "";
+   ::string_literal document_manager::gen_ShellNewValueName = "NullFile";
+   ::string_literal document_manager::gen_ShellNewValue = "";
 
 
    document_manager::document_manager()

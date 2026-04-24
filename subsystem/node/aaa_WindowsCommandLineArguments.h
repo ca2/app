@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "subsystem/CommandLineArguments.h"
+#include "subsystem/platform/CommandLineArguments.h"
 
 namespace subsystem
 {

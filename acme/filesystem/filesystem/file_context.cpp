@@ -3099,7 +3099,7 @@ void file_context::term_system()
 void file_context::destroy()
 {
 
-   m_pfolderResource.defer_destroy();
+   m_pfolderResource.defer_destroy_and_release();
 
    file_context_interface::destroy();
 

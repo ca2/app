@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "string_table.h"
 #include "resource_loader.h"
-#include "subsystem/subsystem.h"
+#include "subsystem/platform/subsystem.h"
 
 
 namespace subsystem

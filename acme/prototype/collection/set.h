@@ -24,6 +24,7 @@ public:
    using ARG_KEY = typename BASE_NODE::ARG_KEY;
    using PAYLOAD = typename BASE_NODE::PAYLOAD;
    using ARG_PAYLOAD = typename BASE_NODE::ARG_PAYLOAD;
+   using BASE_PAYLOAD = typename BASE_NODE::PAYLOAD;
 
    using CONST_ARG_KEY = const non_const<typename BASE_NODE::ARG_KEY>;
 

@@ -81,12 +81,11 @@ namespace platform
    void context::destroy()
    {
 
-      m_ptexttranslator.defer_destroy();
-      m_pimagecontext.defer_destroy();
-      m_pdirectorycontext.defer_destroy();
-      m_pfilecontext.defer_destroy();
-      m_phttp.defer_destroy();
-
+      m_ptexttranslator.defer_destroy_and_release();
+      m_pimagecontext.defer_destroy_and_release();
+      m_pdirectorycontext.defer_destroy_and_release();
+      m_pfilecontext.defer_destroy_and_release();
+      m_phttp.defer_destroy_and_release();
 
       ::task::destroy();
 

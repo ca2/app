@@ -1195,17 +1195,20 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
       </ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="SocketAddressIPv4.cpp" />
-    <ClCompile Include="SocketIPv4.cpp" />
-    <ClCompile Include="subsystem.cpp" />
-    <ClCompile Include="windows\subsystem.cpp" />
+    <ClCompile Include="operating_system\windows\Sockets.cpp" />
+    <ClCompile Include="operating_system\windows\subsystem.cpp" />
+    <ClCompile Include="platform\subsystem.cpp" />
+    <ClCompile Include="socket\SocketAddressIPv4.cpp" />
+    <ClCompile Include="socket\SocketIPv4.cpp" />
+    <ClCompile Include="socket\Sockets.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SocketAddressIPv4.h" />
-    <ClInclude Include="SocketIPv4.h" />
-    <ClInclude Include="subsystem.h" />
+    <ClInclude Include="platform\subsystem.h" />
+    <ClInclude Include="socket\SocketAddressIPv4.h" />
+    <ClInclude Include="socket\SocketIPv4.h" />
+    <ClInclude Include="socket\Sockets.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_common_header.h" />

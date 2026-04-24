@@ -23,7 +23,7 @@
 //
 #include "framework.h"
 #include "Sockets.h"
-#include "subsystem/Exception.h"
+#include "subsystem/platform/Exception.h"
 
 
 namespace subsystem
@@ -40,7 +40,7 @@ namespace subsystem
       if (m_bIsStarted)
       {
 
-            cleanup();
+            cleanupSockets();
       }
 
 
@@ -48,7 +48,7 @@ namespace subsystem
 
 
 
-   void Sockets::startup(int loVer, int hiVer)
+   void Sockets::startSockets(int loVer, int hiVer)
    {
       if (m_bIsStarted) {
          throw ::subsystem::Exception("Sockets already initialized.");
@@ -58,7 +58,7 @@ namespace subsystem
 
       try
       {
-         _startup(loVer, hiVer);
+         _startSockets(loVer, hiVer);
       }
       catch (...)
       {
@@ -69,14 +69,14 @@ namespace subsystem
 
    }
 
-   void Sockets::_startup(int loVer, int hiVer)
+   void Sockets::_startSockets(int loVer, int hiVer)
    {
 
 
       
    }
 
-   void Sockets::cleanup()
+   void Sockets::cleanupSockets()
    {
       if (!m_bIsStarted) {
          throw ::subsystem::Exception("Sockets don't initialized.");
@@ -84,7 +84,7 @@ namespace subsystem
 
       m_bIsStarted = false;
 
-      _cleanup();
+      _cleanupSockets();
 
       // if (WSACleanup() == SOCKET_ERROR) {
       //    throw ::subsystem::Exception("Failed to deinitialize Sockets.");
@@ -92,7 +92,7 @@ namespace subsystem
    }
 
 
-   void Sockets::_cleanup()
+   void Sockets::_cleanupSockets()
    {
 
 

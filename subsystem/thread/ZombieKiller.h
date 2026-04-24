@@ -28,7 +28,7 @@
 #include "Thread.h"
 //#include "critical_section.h"
 
-#include "subsystem/Singleton.h"
+#include "subsystem/platform/Singleton.h"
 
 //// #include aaa_<list>
 

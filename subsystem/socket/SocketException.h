@@ -26,7 +26,7 @@
 #pragma once
 //#define SOCKET_EXCEPTION_H
 
-#include "subsystem/Exception.h"
+#include "subsystem/platform/Exception.h"
 
 #include "sockdefs.h"
 

@@ -512,7 +512,7 @@ namespace data
       if (m_ptreeitema2)
       {
 
-         m_ptreeitema2.defer_destroy();
+         m_ptreeitema2.defer_destroy_and_release();
 
       }
 

@@ -28,7 +28,7 @@
 #include "subsystem/_common_header.h"
 #include "subsystem/node/NamedPipe.h"
 ///#include "subsystem/node/EmulatedAnonymousPipeFactory.h.h"
-//#include "subsystem/subsystem.h"
+//#include "subsystem/platform/subsystem.h"
 //#include "log_writer/LogWriter.h"
 
 namespace subsystem

@@ -25,7 +25,7 @@
 #pragma once
 
 
-#include "subsystem/particle.h"
+#include "subsystem/platform/particle.h"
 #include "innate_subsystem/drawing/GraphicsObject.h"
 
 

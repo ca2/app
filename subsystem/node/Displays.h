@@ -23,10 +23,10 @@
 //
 
 #pragma once
-//#include "subsystem/particle.h"
+//#include "subsystem/platform/particle.h"
 #include "subsystem/_common_header.h"
 
-//#include "subsystem/::earth::time.h"
+//#include "subsystem/platform/::earth::time.h"
 //// #include aaa_<vector>
 //#include "remoting/remoting/thread/LocalMutex.h"
 

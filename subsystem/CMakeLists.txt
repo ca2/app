@@ -153,6 +153,132 @@ list(APPEND library_source
    #node/WsaStartup.h
    #node/WTS.cpp
    #node/WTS.h
+   #   _____debug.xcconfig
+   #   _____release.xcconfig
+   #   aaa_Environment.cpp
+   #   aaa_Environment.h
+   #   aaa_framework.cpp
+   #   aaa_framework.h
+   #   aaa_StringStorage.h
+   #platform/AnonymousPipe.cpp
+   #platform/AnonymousPipe.h
+   #platform/AnonymousPipeFactory.cpp
+   #platform/AnonymousPipeFactory.h
+   #platform/ApplicationCrashEvents.h
+   #platform/AutoImpersonator.cpp
+   #platform/AutoImpersonator.h
+   platform/CommandLineArguments.cpp
+   platform/CommandLineArguments.h
+   #platform/CurrentConsoleProcess.cpp
+   #platform/CurrentConsoleProcess.h
+   #platform/DynamicLibrary.cpp
+   #platform/DynamicLibrary.h
+   #platform/EmulatedAnonymousPipeFactory.cpp
+   #platform/EmulatedAnonymousPipeFactory.h
+   platform/Exception.cpp
+   platform/Exception.h
+   #platform/HookEventListener.h
+   #platform/Impersonator.cpp
+   #platform/Impersonator.h
+   platform/Inflater.cpp
+   platform/Inflater.h
+   #platform/InputInjector.cpp
+   #platform/InputInjector.h
+   #platform/Keyboard.cpp
+   #platform/Keyboard.h
+   platform/Keymap.cpp
+   platform/Keymap.h
+   #platform/LocalWindowsApplication.cpp
+   #platform/LocalWindowsApplication.h
+   #platform/matter.txt
+   #platform/NamedPipe.cpp
+   #platform/NamedPipe.h
+   #platform/ParentProcess.cpp
+   #platform/ParentProcess.h
+   platform/Particle.cpp
+   platform/Particle.h
+   #platform/Pipe.cpp
+   #platform/Pipe.h
+   #platform/PipeClient.cpp
+   #platform/PipeClient.h
+   #platform/PipeImpersonatedThread.cpp
+   #platform/PipeImpersonatedThread.h
+   #platform/PipeServer.cpp
+   #platform/PipeServer.h
+   #platform/Process.cpp
+   #platform/Process.h
+   #platform/ProcessHandle.cpp
+   #platform/ProcessHandle.h
+   platform/Registry.cpp
+   platform/Registry.h
+   platform/RegistryKey.cpp
+   platform/RegistryKey.h
+   #platform/resource.h
+   platform/ResourceLoader.cpp
+   platform/ResourceLoader.h
+   #platform/SCMClient.cpp
+   #platform/SCMClient.h
+   #platform/Screen.cpp
+   #platform/Screen.h
+   #platform/SecurityAttributes.cpp
+   #platform/SecurityAttributes.h
+   #platform/SecurityDescriptor.cpp
+   #platform/SecurityIdentifier.cpp
+   #platform/Service.cpp
+   #platform/Service.h
+   #platform/SharedMemory.cpp
+   #platform/SharedMemory.h
+   #platform/Shell.cpp
+   #platform/Shell.h
+   platform/Singleton.h
+   platform/StringTable.cpp
+   platform/StringTable.h
+   platform/StringParser.cpp
+   platform/StringParser.h
+   #platform/StringStorage.cpp
+   platform/subsystem.h
+   platform/subsystem.cpp
+   #platform/SystemInformation.cpp
+   #platform/SystemInformation.h
+   #platform/UipiControl.cpp
+   #platform/UipiControl.h
+   #platform/VersionInfo.cpp
+   #platform/VersionInfo.h
+   #platform/win_system.vcproj
+   #platform/WinClipboard.cpp
+   #platform/WinClipboard.h
+   #platform/WinCommandLineArgs.cpp
+   #platform/WinCommandLineArgs.h
+   #platform/WinCursor.cpp
+   #platform/WinCursor.h
+   #platform/WindowsApplication.cpp
+   #platform/WindowsApplication.h
+   #platform/WindowsDisplays.cpp
+   #platform/WindowsDisplays.h
+   #platform/WindowsEvent.cpp
+   #platform/WindowsEvent.h
+   #platform/WindowsEventEx.cpp
+   #platform/WindowsEventEx.h
+   #platform/WinHandles.cpp
+   #platform/WinHandles.h
+   #platform/WinHooks.cpp
+   #platform/WinHooks.h
+   #platform/WinProcessCommandLine.cpp
+   #platform/WinProcessCommandLine.h
+   #platform/WinStaLibrary.cpp
+   #platform/WinStaLibrary.h
+   #platform/WinTimeMillis.cpp
+   #platform/WinTimeMillis.h
+   #platform/Workstation.cpp
+   #platform/Workstation.h
+   #platform/WsaStartup.cpp
+   #platform/WsaStartup.h
+   #platform/WTS.cpp
+   #platform/WTS.h
+   platform/ZLibBase.cpp
+   platform/ZLibBase.h
+   platform/ZlibException.cpp
+   platform/ZlibException.h
    socket/sockdefs.h
    socket/SocketAddressIPv4.cpp
    socket/SocketAddressIPv4.h
@@ -200,136 +326,9 @@ list(APPEND library_source
    thread/ZombieKiller.h
    _.cpp
    _.h
-   #   _____debug.xcconfig
-   #   _____release.xcconfig
    _common_header.h
-   #   aaa_Environment.cpp
-   #   aaa_Environment.h
-   #   aaa_framework.cpp
-   #   aaa_framework.h
-   #   aaa_StringStorage.h
-   #AnonymousPipe.cpp
-   #AnonymousPipe.h
-   #AnonymousPipeFactory.cpp
-   #AnonymousPipeFactory.h
-   #ApplicationCrashEvents.h
-   #AutoImpersonator.cpp
-   #AutoImpersonator.h
-   CommandLineArguments.cpp
-   CommandLineArguments.h
-   #CurrentConsoleProcess.cpp
-   #CurrentConsoleProcess.h
-   #DynamicLibrary.cpp
-   #DynamicLibrary.h
-   #EmulatedAnonymousPipeFactory.cpp
-   #EmulatedAnonymousPipeFactory.h
-   Exception.cpp
-   Exception.h
-   #HookEventListener.h
-   #Impersonator.cpp
-   #Impersonator.h
-   Inflater.cpp
-   Inflater.h
-   #InputInjector.cpp
-   #InputInjector.h
-   #Keyboard.cpp
-   #Keyboard.h
-   Keymap.cpp
-   Keymap.h
-
-   #LocalWindowsApplication.cpp
-   #LocalWindowsApplication.h
-   #matter.txt
-   #NamedPipe.cpp
-   #NamedPipe.h
-
-   #ParentProcess.cpp
-   #ParentProcess.h
-
-   Particle.cpp
-   Particle.h
-   #Pipe.cpp
-   #Pipe.h
-   #PipeClient.cpp
-   #PipeClient.h
-   #PipeImpersonatedThread.cpp
-   #PipeImpersonatedThread.h
-   #PipeServer.cpp
-   #PipeServer.h
-   #Process.cpp
-   #Process.h
-   #ProcessHandle.cpp
-   #ProcessHandle.h
-   Registry.cpp
-   Registry.h
-   RegistryKey.cpp
-   RegistryKey.h
-   #resource.h
-   ResourceLoader.cpp
-   ResourceLoader.h
-   #SCMClient.cpp
-   #SCMClient.h
-   #Screen.cpp
-   #Screen.h
-   #SecurityAttributes.cpp
-   #SecurityAttributes.h
-   #SecurityDescriptor.cpp
-   #SecurityIdentifier.cpp
-   #Service.cpp
-   #Service.h
-   #SharedMemory.cpp
-   #SharedMemory.h
-   #Shell.cpp
-   #Shell.h
-   Singleton.h
-   StringTable.cpp
-   StringTable.h
-   StringParser.cpp
-   StringParser.h
-   #StringStorage.cpp
-   subsystem.h
-   subsystem.cpp
-   #SystemInformation.cpp
-   #SystemInformation.h
-   #UipiControl.cpp
-   #UipiControl.h
-   #VersionInfo.cpp
-   #VersionInfo.h
-   #win_system.vcproj
-   #WinClipboard.cpp
-   #WinClipboard.h
-   #WinCommandLineArgs.cpp
-   #WinCommandLineArgs.h
-   #WinCursor.cpp
-   #WinCursor.h
-   #WindowsApplication.cpp
-   #WindowsApplication.h
-   #WindowsDisplays.cpp
-   #WindowsDisplays.h
-   #WindowsEvent.cpp
-   #WindowsEvent.h
-   #WindowsEventEx.cpp
-   #WindowsEventEx.h
-   #WinHandles.cpp
-   #WinHandles.h
-   #WinHooks.cpp
-   #WinHooks.h
-   #WinProcessCommandLine.cpp
-   #WinProcessCommandLine.h
-   #WinStaLibrary.cpp
-   #WinStaLibrary.h
-   #WinTimeMillis.cpp
-   #WinTimeMillis.h
-   #Workstation.cpp
-   #Workstation.h
-   #WsaStartup.cpp
-   #WsaStartup.h
-   #WTS.cpp
-   #WTS.h
-   ZLibBase.cpp
-   ZLibBase.h
-   ZlibException.cpp
-   ZlibException.h
+   framework.cpp
+   framework.h
    )
 
 

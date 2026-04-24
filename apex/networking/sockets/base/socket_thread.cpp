@@ -248,7 +248,7 @@ namespace sockets
    void socket_thread::destroy()
    {
 
-      m_psockethandler.defer_destroy();
+      m_psockethandler.defer_destroy_and_release();
 
       m_pfactorySocketHandler.release();
 

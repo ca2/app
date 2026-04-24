@@ -4975,7 +4975,7 @@ namespace apex
 
       m_sessionmap.clear();
 
-      m_pfilewatcher.defer_destroy();
+      m_pfilewatcher.defer_destroy_and_release();
 
       //m_mapLibrary4.clear();
 

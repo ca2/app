@@ -31,6 +31,12 @@
     <Filter Include="Header Files\framebuffer">
       <UniqueIdentifier>{b306975d-55de-41a2-b0a6-6484ff649cae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{c3104476-ffa7-4ed7-b79b-36ca69a048e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\platform">
+      <UniqueIdentifier>{b189aa31-b886-426d-84dd-e295cd129423}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="drawing\Brush.cpp">
@@ -162,12 +168,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="subsystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="framebuffer\DibFrameBuffer.cpp">
       <Filter>Source Files\framebuffer</Filter>
     </ClCompile>
@@ -179,6 +179,12 @@
     </ClCompile>
     <ClCompile Include="gui\KeyboardLayout.cpp">
       <Filter>Source Files\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\ResourceLoader.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\subsystem.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,12 +329,6 @@
     <ClInclude Include="_common_header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="subsystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="framebuffer\FrameBuffer.h">
       <Filter>Header Files\framebuffer</Filter>
     </ClInclude>
@@ -340,6 +340,12 @@
     </ClInclude>
     <ClInclude Include="gui\KeyboardLayout.h">
       <Filter>Header Files\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\ResourceLoader.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\subsystem.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -279,7 +279,7 @@ namespace platform
       static const char *hex = "0123456789ABCDEF";
       ::string out;
       auto p = out.get_buffer(size * 2);
-      for (size_t i = 0; i < size; ++i)
+      for (character_count i = 0; i < size; ++i)
       {
          unsigned char b = data[i];
          *p = hex[(b >> 4) & 0xF];
@@ -530,7 +530,7 @@ namespace platform
       if (parts.size() == 1) throw ::exception(error_io); /* don't delete top root directly */
 
       rapidjson::Value *cur = &m_rapidjsondocument;
-      for (size_t i = 0; i + 1 < parts.size(); ++i) {
+      for (::collection::index i = 0; i + 1 < parts.size(); ++i) {
          if (!cur->IsObject() || !cur->HasMember(parts[i].c_str())) {
             throw ::exception(error_not_found);
          }

@@ -173,7 +173,7 @@ namespace platform
 
       }
 
-      m_ptaskmessagequeue.defer_destroy();
+      m_ptaskmessagequeue.defer_destroy_and_release();
 
    }
 

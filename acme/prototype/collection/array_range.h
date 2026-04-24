@@ -20,7 +20,7 @@ public:
    using RAW_BASE_ARRAY = array_range;
    using BASE_RAW_RANGE = ::range<TYPE *>;
    using BASE_TYPE = TYPE;
-
+   using BASE_PAYLOAD = TYPE;
 
    using BASE_RANGE::BASE_RANGE;
 
@@ -67,6 +67,9 @@ public:
    TYPE &operator[](::collection::index i) { return this->m_begin[i]; }
    const TYPE &operator[](::collection::index i) const { return this->m_begin[i]; }
 
+
+   auto &payloads() { return *this; }
+   auto &payloads() const { return *this; }
 
 };
 //

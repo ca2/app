@@ -25,7 +25,7 @@
 #pragma once
 //#define __TEXTBOX_H_
 
-#include "subsystem/particle.h"
+#include "subsystem/platform/particle.h"
 #include "innate_subsystem/gui/Control.h"
 #include "innate_subsystem/gui/Tooltip.h"
 

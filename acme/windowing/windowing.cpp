@@ -396,7 +396,7 @@ namespace acme
       void windowing::destroy()
       {
 
-         m_pacmedisplay.defer_destroy();
+         m_pacmedisplay.defer_destroy_and_release();
 
          //m_windowmap.clear();
 

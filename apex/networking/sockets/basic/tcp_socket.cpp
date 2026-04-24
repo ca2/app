@@ -2979,7 +2979,7 @@ return true;
    void tcp_socket::destroy()
    {
 
-      m_ptcpsocketImpl.defer_destroy();
+      m_ptcpsocketImpl.defer_destroy_and_release();
 
       ::sockets::stream_socket::destroy();
 

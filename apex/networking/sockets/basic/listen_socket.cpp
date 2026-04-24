@@ -478,7 +478,7 @@ namespace sockets
    void listen_socket::destroy()
    {
 
-      m_plistensocketImpl.defer_destroy();
+      m_plistensocketImpl.defer_destroy_and_release();
 
       m_pfactory.release();
 

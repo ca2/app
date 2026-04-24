@@ -2,10 +2,10 @@
 // Created by camilo on 2026-04-04.
 //
 #include "framework.h"
-#include "subsystem.h"
-#include "SocketAddressIPv4.h"
-#include "SocketIPv4.h"
-#include "Sockets.h"
+#include "platform/subsystem.h"
+#include "socket/SocketAddressIPv4.h"
+#include "socket/SocketIPv4.h"
+#include "socket/Sockets.h"
 
 
 IMPLEMENT_FACTORY(subsystem_bsd_sockets)

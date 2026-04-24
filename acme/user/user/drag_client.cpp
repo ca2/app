@@ -32,19 +32,7 @@ namespace user
 
       ::user::acme_container::destroy();
 
-      for (auto & pair : m_mapDrag)
-      {
-
-         if (::is_set(pair.payload()))
-         {
-
-            pair.payload().defer_destroy();
-
-         }
-
-      }
-
-      m_mapDrag.clear();
+      m_mapDrag.defer_destroy_and_release();
 
       m_pdragCurrent.release();
 

@@ -26,7 +26,7 @@
 
 
 #include "subsystem/_common_header.h"
-#include "subsystem/Exception.h"
+#include "subsystem/platform/Exception.h"
 #include "subsystem/node/ProcessCommandLine.h"
 #include "subsystem/thread/Lockable.h"
 

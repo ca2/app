@@ -24,7 +24,7 @@
 #include "framework.h"
 // #include "acme/_operating_system.h"
 // #include "../WindowsEventEx.h"
-// #include "subsystem/Exception.h"
+// #include "subsystem/platform/Exception.h"
 // // #include aaa_<Aclapi.h>
 //
 // WindowsEventEx::WindowsEventEx(const ::scoped_string & scopedstrName)

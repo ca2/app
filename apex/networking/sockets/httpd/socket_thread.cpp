@@ -44,7 +44,7 @@ namespace httpd
    void socket_thread::destroy()
    {
 
-      m_psocket.defer_destroy();
+      m_psocket.defer_destroy_and_release();
 
       ::sockets::socket_thread::destroy();
 

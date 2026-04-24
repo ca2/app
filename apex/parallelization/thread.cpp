@@ -1972,7 +1972,7 @@ void thread::destroy()
 
    m_prequest2.release();
 
-   m_pmessagequeue.defer_destroy();
+   m_pmessagequeue.defer_destroy_and_release();
 
    ::manager::destroy();
 

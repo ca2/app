@@ -3,20 +3,19 @@ project(subsystem_bsd_sockets CXX)
 
 
 list(APPEND library_source
+   platform/subsystem.cpp
+   platform/subsystem.h
+   socket/SocketAddressIPv4.cpp
+   socket/SocketAddressIPv4.h
+   socket/SocketIPv4.cpp
+   socket/SocketIPv4.h
+   socket/Sockets.cpp
+   socket/Sockets.h
    _.cpp
    _.h
    _factory.cpp
    framework.cpp
    framework.h
-   SocketAddressIPv4.cpp
-   SocketAddressIPv4.h
-   SocketIPv4.cpp
-   SocketIPv4.h
-   Sockets.cpp
-   Sockets.h
-   subsystem.cpp
-   subsystem.h
-
 )
 
 
@@ -24,8 +23,9 @@ if (${WIN32})
 
 
    list(APPEND library_source
-      windows/subsystem.cpp
-   windows/Sockets.cpp)
+      operating_system/windows/subsystem.cpp
+      operating_system/windows/Sockets.cpp
+   )
 
 endif()
 

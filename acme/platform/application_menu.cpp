@@ -276,7 +276,7 @@ application_menu * application_menu::add_separator()
    void application_menu::destroy()
    {
 
-      for (auto & pmenu : *this)
+  /*    for (auto & pmenu : *this)
       {
 
          try
@@ -293,9 +293,12 @@ application_menu * application_menu::add_separator()
 
       }
 
-      ::pointer_array < application_menu >::clear();
+      ::pointer_array < application_menu >::clear();*/
 
-      ::pointer_array < application_menu >::base_destroy();
+      this->defer_destroy_and_release();
+
+      //::defer_destroy_and_release_each_payload_in_container_and_then_clear_it((::pointer_array<
+        // application_menu> & )*this);
 
    }
 //} // namespace apex

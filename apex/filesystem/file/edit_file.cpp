@@ -509,7 +509,7 @@ namespace file
    void edit_file::destroy()
    {
 
-      m_pgroupitem.defer_destroy();
+      m_pgroupitem.defer_destroy_and_release();
       //m_ptreeitemIteration.release();
       m_ptreeitem.release();
       m_ptreeitemFlush.release();

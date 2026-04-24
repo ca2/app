@@ -2913,7 +2913,7 @@ CLASS_DECL_ACME void log_const_ansi_range_literal(int n);
 
 
 template < typename ITERATOR_TYPE >
-class string_literal :
+class string_literal_base :
    public const_string_range < ITERATOR_TYPE >
 {
 public:
@@ -2922,7 +2922,7 @@ public:
    using BASE_RANGE = const_string_range < ITERATOR_TYPE >;
 
 
-   constexpr string_literal(ITERATOR_TYPE s, std::size_t n) :
+   constexpr string_literal_base(ITERATOR_TYPE s, std::size_t n) :
    BASE_RANGE(no_initialize_t{})
    {
 
@@ -2933,8 +2933,8 @@ public:
 
    }
 
-   constexpr string_literal(ITERATOR_TYPE s) :
-      string_literal(s, string_safe_length(s))
+   constexpr string_literal_base(ITERATOR_TYPE s) :
+      string_literal_base(s, string_safe_length(s))
    {
 
    }
@@ -2943,7 +2943,11 @@ public:
 };
 
 
-constexpr string_literal < const_char_pointer >operator ""_ansi(const_char_pointer s, std::size_t n)
+using string_literal = string_literal_base < const_char_pointer >;
+using wstring_literal = string_literal_base < const ::wide_character * >;
+
+
+constexpr string_literal_base < const_char_pointer >operator ""_ansi(const_char_pointer s, std::size_t n)
 {
 
    return { s, n };
@@ -2951,7 +2955,7 @@ constexpr string_literal < const_char_pointer >operator ""_ansi(const_char_point
 }
 
 
-constexpr string_literal < const ::wd16_character * > operator ""_wd16(const ::wd16_character * s, std::size_t n)
+constexpr string_literal_base < const ::wd16_character * > operator ""_wd16(const ::wd16_character * s, std::size_t n)
 {
 
    return { s, n };
@@ -2959,7 +2963,7 @@ constexpr string_literal < const ::wd16_character * > operator ""_wd16(const ::w
 }
 
 
-constexpr string_literal < const ::wd32_character* > operator ""_wd32(const ::wd32_character * s, std::size_t n)
+constexpr string_literal_base < const ::wd32_character* > operator ""_wd32(const ::wd32_character * s, std::size_t n)
 {
 
    return { s, n };

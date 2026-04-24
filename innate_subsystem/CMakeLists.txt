@@ -105,18 +105,18 @@ list(APPEND library_source
    #gui/WindowMessageHandler.h
    gui/WindowProcHolder.cpp
    gui/WindowProcHolder.h
+   #platform/application.cpp
+   #platform/application.h
+   platform/ResourceLoader.cpp
+   platform/ResourceLoader.h
+   platform/subsystem.cpp
+   platform/subsystem.h
    _.cpp
    _.h
    ##_library.h
    #_factory.h
-   #application.cpp
-   #application.h
    framework.cpp
-   framework.h
-   ResourceLoader.cpp
-   ResourceLoader.h
-   subsystem.cpp
-   subsystem.h)
+   framework.h)
 
 
 list(APPEND library_references

@@ -23,7 +23,7 @@
 //
 // From Pen.h by camilo on 2026-04-11 04:18 <3ThomasBorregaardSørensen!!
 #pragma once
-#include "subsystem/particle.h"
+#include "subsystem/platform/particle.h"
 #include "GraphicsObject.h"
 
 //#include "util/CommonHeader.h"

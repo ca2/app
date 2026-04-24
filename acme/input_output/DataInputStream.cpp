@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "DataInputStream.h"
 //// #include aaa_<vector>
-////#include "subsystem/::string.h"
+////#include "subsystem/platform/::string.h"
 
 #define SETBYTE(y, n) (((y) & 0xFF) << ((n) * 8))
 

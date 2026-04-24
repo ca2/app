@@ -5,7 +5,7 @@
 #include "OutputStream.h"
 
 
-/////#include "subsystem/inttypes.h"
+/////#include "subsystem/platform/inttypes.h"
 //namespace subsystem
 //{
    class CLASS_DECL_ACME DataCopy : public InputStream, public OutputStream

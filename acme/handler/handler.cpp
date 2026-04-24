@@ -69,14 +69,7 @@ namespace handler
 
       m_requestaPosted.clear();
 
-      for (auto & r : m_requestaHistory)
-      {
-
-         r.defer_destroy();
-
-      }
-
-      m_requestaHistory.clear();
+      m_requestaHistory.defer_destroy_and_release();
 
       ::matter::destroy();
 

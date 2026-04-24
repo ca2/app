@@ -8,6 +8,9 @@
 //#include "comparable_array.h"
 
 
+
+
+
 template < class T, typename ARG_T, typename ARRAY_BASE >
 class pointer_array_base :
    public pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >
@@ -996,20 +999,6 @@ public:
       return *this;
 
    }
-
-
-   void base_destroy()
-   {
-
-      for (auto& p : *this)
-      {
-
-         p.defer_destroy();
-
-      }
-
-   }
-
 
 };
 

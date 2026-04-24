@@ -25,7 +25,7 @@
 //#include "acme/_operating_system.h"
 #include "LocalOperatingSystemApplication.h"
 
-////#include "subsystem/winhdr.h"
+////#include "subsystem/platform/winhdr.h"
 #include "acme/_operating_system.h"
 
 //#include "remoting/remoting/thread/DesktopSelector.h"

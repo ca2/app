@@ -23,11 +23,9 @@
 //
 #include "framework.h"
 #include "ZombieKiller.h"
-#include "subsystem_windows/thread/ZombieKiller.h"
-//#include "critical_section_lock.h"
 
 
-namespace subsystem_windows
+namespace subsystem
 {
    ZombieKiller::ZombieKiller()
    {
@@ -47,7 +45,7 @@ namespace subsystem_windows
    void ZombieKiller::start()
    {
 
-      fork([this]()
+      m_papplication->fork([this]()
       {
 
          run();
@@ -59,7 +57,8 @@ namespace subsystem_windows
 
    void ZombieKiller::run()
    {
-      while (!isTerminating()) {
+      while (task_get_run())
+      {
          deleteDeadZombies();
          preempt(50_ms);
       }
@@ -91,17 +90,19 @@ namespace subsystem_windows
 
    void ZombieKiller::killAllZombies()
    {
+
       critical_section_lock l(&m_lockObj);
 
-      ThreadList::iterator iter;
-      for (iter = m_zombies.begin(); iter != m_zombies.end(); iter++) {
-         (*iter)->terminate();
+      for (auto pthread  : m_zombies)
+      {
+         pthread->terminate();
       }
-      for (iter = m_zombies.begin(); iter != m_zombies.end(); iter++) {
-         (*iter)->wait();
+      for (auto pthread : m_zombies)
+      {
+         pthread->wait();
       }
 
       deleteDeadZombies();
    }
 
-}  // namespace subsystem_windows
+}  // namespace subsystem

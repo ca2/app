@@ -236,7 +236,7 @@ m_strNameId(pszNameId)
 
 }
 
-inline type_custom_id::type_custom_id(const ::string_literal < const_char_pointer >& strliteralNameId) :
+inline type_custom_id::type_custom_id(const ::string_literal& strliteralNameId) :
    m_strNameId(strliteralNameId)
 {
 

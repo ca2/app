@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "Thread.h"
 //#include "critical_section_lock.h"
-#include "subsystem/Exception.h"
+#include "subsystem/platform/Exception.h"
 
 
 namespace subsystem

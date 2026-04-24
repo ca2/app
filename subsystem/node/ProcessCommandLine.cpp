@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "subsystem/_common_header.h"
 #include "ProcessCommandLine.h"
-#include "subsystem/CommandLineArguments.h"
+#include "subsystem/platform/CommandLineArguments.h"
 
 namespace subsystem
 {

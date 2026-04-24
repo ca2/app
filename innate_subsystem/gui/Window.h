@@ -28,7 +28,7 @@
 #include "innate_subsystem/_common_header.h"
 #define WINDOW_WIDTH_USE_DEFAULT       ((int)0x80000000)
 #include "acme/prototype/geometry2d/rectangle.h"
-#include "subsystem/particle.h"
+#include "subsystem/platform/particle.h"
 
 
 namespace innate_subsystem

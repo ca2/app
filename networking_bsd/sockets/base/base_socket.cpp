@@ -223,7 +223,7 @@ namespace sockets_bsd
    void base_socket::destroy()
    {
 
-      m_psslcontext.defer_destroy();
+      m_psslcontext.defer_destroy_and_release();
 
       m_psockethandler.release();
 

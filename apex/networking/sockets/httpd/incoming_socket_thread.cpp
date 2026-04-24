@@ -235,11 +235,11 @@ namespace httpd
    void incoming_socket_thread::destroy()
    {
 
-      m_psockethandlerIncoming.defer_destroy();
+      m_psockethandlerIncoming.defer_destroy_and_release();
 
-      m_pincomingsocket.defer_destroy();
+      m_pincomingsocket.defer_destroy_and_release();
 
-      m_pfactoryIncomingSocket.defer_destroy();
+      m_pfactoryIncomingSocket.defer_destroy_and_release();
 
       ::thread::destroy();
 

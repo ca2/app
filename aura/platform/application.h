@@ -989,10 +989,10 @@ void initialize_context() override;
       // registered with the doc manager.
       //virtual ::collection::count get_open_document_count();
 
-      //static const char gen_FileSection[];
-      //static const char gen_FileEntry[];
-      //static const char gen_ThumbnailSection[];
-      //static const char gen_ThumbnailEntry[];
+      //static ::string_literal gen_FileSection;
+      //static ::string_literal gen_FileEntry;
+      //static ::string_literal gen_ThumbnailSection;
+      //static ::string_literal gen_ThumbnailEntry;
 
 
 

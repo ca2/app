@@ -687,7 +687,7 @@ void sequence::destroy()
 {
 
    
-   subparticle_array::base_destroy();
+   this->defer_destroy_and_release();
    
    
 //   task_context<sequence>::destroy();

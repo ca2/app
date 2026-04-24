@@ -26,7 +26,7 @@
 
 //nclude "acme/subsystem/_common_header.h"
 #include "innate_subsystem/gui/Window.h"
-//#include "subsystem/::string.h"
+//#include "subsystem/platform/::string.h"
 //#include "acme/_operating_system.h"
 
 

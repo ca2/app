@@ -25,7 +25,7 @@
  #pragma once
 
 
- //////#include "subsystem/::string.h"
+ //////#include "subsystem/platform/::string.h"
  //#include "log_writer/LogWriter.h"
 
  // #include aaa_<winnt.h>

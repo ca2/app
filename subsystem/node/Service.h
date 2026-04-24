@@ -27,16 +27,34 @@
 
 
 #include "subsystem/_common_header.h"
-//#include "subsystem/winhdr.h"
+//#include "subsystem/platform/winhdr.h"
 //#include "acme/_operating_system.h"
 
-//////#include "subsystem/::string.h"
-//#include "subsystem/Exception.h"
-//#include "subsystem/particle.h"
+//////#include "subsystem/platform/::string.h"
+//#include "subsystem/platform/Exception.h"
+//#include "subsystem/platform/particle.h"
 //#include "remoting/remoting/thread/Thread.h"
 
 namespace subsystem
 {
+
+
+   class Task : virtual public ::Particle
+   {
+   public:
+
+
+      virtual void _start() = 0;
+      virtual void task_start() = 0;
+      virtual void maintain_task_running_wait_stop_task_signal_and_stop() = 0;
+      //virtual void _maintain_task_running() = 0;
+      virtual void signal_task_stop() = 0;
+      //virtual void task_stop() = 0;
+      virtual void _stop() = 0;
+
+
+   };
+
 
       /**
     * Win32 service class (abstract).
@@ -45,7 +63,7 @@ namespace subsystem
     * @author enikey.
     */
    class ServiceInterface :
-      virtual public ::Particle
+      virtual public Task
    {
    public:
 
@@ -72,19 +90,19 @@ namespace subsystem
        */
       virtual void run() = 0;
 
-   //protected:
-      /**
-       * Called from service control manager when service needs to start.
-       */
-      virtual void onStart() = 0;
-      /**
-       * Service main.
-       */
-      virtual void main() = 0;
-      /**
-       * Called from service control manager when service needs to stop/
-       */
-      virtual void onStop() = 0;
+   ////protected:
+   //   /**
+   //    * Called from service control manager when service needs to start.
+   //    */
+   //   virtual void onStart() = 0;
+   //   /**
+   //    * Service main.
+   //    */
+   //   virtual void main() = 0;
+   //   /**
+   //    * Called from service control manager when service needs to stop/
+   //    */
+   //   virtual void onStop() = 0;
 
       /**
        * Win32 API service main function.
@@ -179,34 +197,42 @@ namespace subsystem
        void run() override
        {
 
-          m_pservice->run();
+          
       }
 
    //protected:
       /**
        * Called from service control manager when service needs to start.
        */
-       void onStart() override
+       void task_start() override
        {
 
-          m_pservice->onStart();
-      }
+          m_pservice->task_start();
+       }
       /**
        * Service main.
        */
-       void main()override
+       void maintain_task_running_wait_stop_task_signal_and_stop()override
        {
 
-          m_pservice->main();
+          m_pservice->maintain_task_running_wait_stop_task_signal_and_stop();
       }
-      /**
+
+
+              /**
        * Called from service control manager when service needs to stop/
        */
-       void onStop() override
-       {
+      void signal_task_stop() override { m_pservice->signal_task_stop(); }
 
-          m_pservice->onStop();
-      }
+       
+      // /**
+      // * Called from service control manager when service needs to stop/
+      // */
+      // void task_stop() override
+      // {
+
+      //    m_pservice->task_stop();
+      //}
 
       /**
        * Win32 API service main function.

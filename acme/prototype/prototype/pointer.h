@@ -481,7 +481,7 @@ public:
 
    //}
 
-   inline bool defer_destroy();
+   inline bool defer_destroy_and_release();
 
    inline long long release();
 

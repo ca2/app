@@ -85,14 +85,7 @@ namespace file
    void watcher::destroy()
    {
 
-      for (auto& item : m_watchset)
-      {
-
-         item.element().defer_destroy();
-
-      }
-
-      m_watchset.clear();
+      m_watchset.defer_destroy_and_release();
 
       ::task::destroy();
 

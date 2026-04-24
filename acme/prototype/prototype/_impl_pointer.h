@@ -2327,7 +2327,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 
 
 template < typename T >
-inline bool pointer < T > ::defer_destroy()
+inline bool pointer < T > ::defer_destroy_and_release()
 {
 
    if (!this->is_set())

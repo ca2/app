@@ -26,8 +26,8 @@
 
 
 #include "subsystem/_common_header.h"
-//#include "subsystem/Exception.h"
-//#include "subsystem/subsystem.h"
+//#include "subsystem/platform/Exception.h"
+//#include "subsystem/platform/subsystem.h"
 
 #include "subsystem/node/SystemException.h"
 

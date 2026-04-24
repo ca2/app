@@ -24,7 +24,7 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "PipeClient.h"
-#include "subsystem/Exception.h"
+#include "subsystem/platform/Exception.h"
 
 
 namespace subsystem

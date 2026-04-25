@@ -28,15 +28,15 @@ namespace user
 
 #define DEFAULT_ICON_INDEX 0
 
-      static  const char gen_IconIndexFmt[];
-      static  const char gen_Command[];
-      static  const char gen_OpenArg[];
-      static  const char gen_PrintArg[];
-      static  const char gen_PrintToArg[];
-      static  const char gen_DDEArg[];
+      static ::string_literal gen_IconIndexFmt;
+      static ::string_literal gen_Command;
+      static ::string_literal gen_OpenArg;
+      static ::string_literal gen_PrintArg;
+      static ::string_literal gen_PrintToArg;
+      static ::string_literal gen_DDEArg;
 
-      static  const char gen_DDEExec[];
-      static  const char gen_DDEOpen[];
+      static ::string_literal gen_DDEExec;
+      static ::string_literal gen_DDEOpen;
 
       static ::string_literal gen_DDEPrint;
       static ::string_literal gen_DDEPrintTo;

@@ -1015,7 +1015,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       //m_iCurrentFrame3 = (m_iCurrentFrame3 + 1) % iFrameCount;
 
-      auto& pframestorage = m_framestoragea.ø(m_iCurrentFrame3);
+      auto& pframestorage = m_framestoragea.atø(m_iCurrentFrame3);
 
       if (!pframestorage)
       {
@@ -1030,7 +1030,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       pframestorage->m_iBufferOffset = 0;
 
-      auto& pframeephemeral = m_frameephemerala.ø(m_iCurrentFrame3);
+      auto& pframeephemeral = m_frameephemerala.atø(m_iCurrentFrame3);
 
       constructø(pframeephemeral);
 
@@ -1509,7 +1509,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    frame_storage* device::current_frame_storage()
    {
 
-      return m_framestoragea.ø(m_iCurrentFrame3);
+      return m_framestoragea.atø(m_iCurrentFrame3);
 
    }
 
@@ -1517,7 +1517,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
    ::gpu::frame_ephemeral* device::current_frame_ephemeral()
    {
 
-      return m_frameephemerala.ø(m_iCurrentFrame3);
+      return m_frameephemerala.atø(m_iCurrentFrame3);
 
    }
 

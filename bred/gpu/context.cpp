@@ -2247,7 +2247,7 @@ namespace gpu
                               }
                            }
 
-                           if (defer_constructø(m_gpusemaphoreaMergeLayersReady.ø(iFrameIndex)))
+                           if (defer_constructø(m_gpusemaphoreaMergeLayersReady.atø(iFrameIndex)))
                            {
 
                               m_gpusemaphoreaMergeLayersReady[iFrameIndex]->initialize_gpu_semaphore(this);
@@ -2305,7 +2305,7 @@ namespace gpu
                            pgpurenderer->getCurrentCommandBuffer2(::gpu::current_frame());
 
                         pcommandbuffer->begin_command_buffer(false);
-                        if (defer_constructø(m_gpusemaphoreaPresentReady.ø(iFrameIndex)))
+                        if (defer_constructø(m_gpusemaphoreaPresentReady.atø(iFrameIndex)))
                         {
 
                            m_gpusemaphoreaPresentReady[iFrameIndex]->initialize_gpu_semaphore(this);
@@ -2323,7 +2323,7 @@ namespace gpu
 
                            pcommandbuffer->m_semaphoreaWait.append_unique(semaphoreaMergeLayersReady);
                         }
-                        pcommandbuffer->m_semaphoreaSignal.add_unique(m_gpusemaphoreaPresentReady.ø(iFrameIndex));
+                        pcommandbuffer->m_semaphoreaSignal.add_unique(m_gpusemaphoreaPresentReady.atø(iFrameIndex));
 
                         // pswapchain->m_pwindowSwapChain->_main_send([pswapchain, ptextureBackBuffer]()
                         //  system()->acme_windowing()

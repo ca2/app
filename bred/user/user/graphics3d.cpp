@@ -424,7 +424,7 @@ namespace user
 
          strText.formatf("øçåJErDgTBS__!!; %d", m_iFrameCounter);
 
-         stra.ø(0) = strText;
+         stra.atø(0) = strText;
 
          auto size = pgraphics->get_text_extent(strText);
 
@@ -434,13 +434,13 @@ namespace user
 
          strFps.format("FPS {:.1f}", m_fpscounter.getAverageFps());
 
-         stra.ø(1) = strFps;
+         stra.atø(1) = strFps;
 
          ::string strFrameTime;
 
          strFrameTime.format("Frame Time: {:.1f}ms", m_fpscounter.getAverageFrameTime());
 
-         stra.ø(2) = strFrameTime;
+         stra.atø(2) = strFrameTime;
 
          //bool bFixedPosition = true;
 

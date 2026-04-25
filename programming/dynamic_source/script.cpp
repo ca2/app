@@ -96,7 +96,7 @@ namespace dynamic_source
 
       //m_pmanager.release();
 
-      m_pfileError.defer_destroy();
+      m_pfileError.defer_destroy_and_release();
 
       m_textstreamError.m_pfile.release();
 

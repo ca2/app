@@ -65,7 +65,7 @@ namespace gpu
 
       }
 
-      auto& pbuffer = m_buffera.ø(m_iBuffer);
+      auto& pbuffer = m_buffera.atø(m_iBuffer);
 
       if (!pbuffer)
       {

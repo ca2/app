@@ -58,7 +58,7 @@ namespace dynamic_source
       for (auto& pscript : m_mapScript.payloads())
       {
 
-         pscript.defer_destroy();
+         pscript.defer_destroy_and_release();
 
       }
 

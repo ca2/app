@@ -5,48 +5,15 @@
 #include "acme/prototype/collection/pointer_container.h"
 
 
-template<prototype_pointer_container POINTER_CONTAINER >
-class ø <POINTER_CONTAINER> : 
-   virtual public POINTER_CONTAINER
-{
-public:
-
-
-   using BASE_CONTAINER = POINTER_CONTAINER;
-
-
-   using BASE_CONTAINER::BASE_CONTAINER;
-   using BASE_CONTAINER::operator=;
-
-
-   void _defer_destroy_and_release()
-   { 
-      
-      ::defer_destroy_and_release_each_pointer_payload_in_container(*this); 
-   
-   }
-
-
-   void defer_destroy_and_release()
-   {
-      
-      ::defer_destroy_and_release_each_payload_pointer_in_container_and_then_clear_it(*this); 
-   
-   }
-
-
-};
-
-
 template < typename POINTER_ARRAY_PROCESS, typename TYPE >
-class pointer_array_process : virtual public ø<POINTER_ARRAY_PROCESS>
+class pointer_array_process : virtual public POINTER_ARRAY_PROCESS
 {
 public:
 
    using POINTER_ARRAY_PROCESS_BASE_TYPE = typename POINTER_ARRAY_PROCESS::BASE_TYPE;
 
    //using POINTER_ARRAY_PROCESS::POINTER_ARRAY_PROCESS;
-   using BASE_ARRAY = ø < POINTER_ARRAY_PROCESS >;
+   using BASE_ARRAY = POINTER_ARRAY_PROCESS;
 
    //using ref_iterator = typename POINTER_ARRAY_PROCESS::ref_iterator;
    //using const_ref_iterator = typename POINTER_ARRAY_PROCESS::const_ref_iterator;

@@ -13,11 +13,11 @@
 
 template < class T, typename ARG_T, typename ARRAY_BASE >
 class pointer_array_base :
-   public pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >
+   public ø < pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T > >
 {
 public:
 
-   using BASE_ARRAY = pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T >;
+   using BASE_ARRAY = ø < pointer_array_process < comparable_array_base < ::pointer < T >, ARG_T, comparable_eq_array_base <  ::pointer < T >, ARG_T, ARRAY_BASE > > , T > >;
    using MAIN_TYPE = T;
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;

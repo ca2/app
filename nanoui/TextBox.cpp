@@ -933,7 +933,7 @@ namespace nanoui
 
                      m_iSelectionStart--;
 
-                     m_strValueEdit.erase(m_iSelectionStart, 1);
+                     m_strValueEdit.index_erase(m_iSelectionStart, 1);
 
                      m_iSelectionEnd = m_iSelectionStart;
 
@@ -951,7 +951,7 @@ namespace nanoui
                   if (m_iSelectionStart < m_strValueEdit.length())
                   {
 
-                     m_strValueEdit.erase(m_iSelectionStart, 1);
+                     m_strValueEdit.index_erase(m_iSelectionStart, 1);
 
                   }
 
@@ -1153,7 +1153,7 @@ namespace nanoui
 
       }
 
-      m_strValueEdit.erase(begin, end - begin);
+      m_strValueEdit.index_erase(begin, end - begin);
 
       m_iSelectionStart = begin;
 

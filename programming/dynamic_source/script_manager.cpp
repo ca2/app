@@ -228,9 +228,9 @@ namespace dynamic_source
    void script_manager::destroy()
    {
 
-      m_pcache.defer_destroy();
+      m_pcache.defer_destroy_and_release();
 
-      m_pcompiler.defer_destroy();
+      m_pcompiler.defer_destroy_and_release();
 
       ::channel::destroy();
 

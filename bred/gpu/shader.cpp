@@ -127,7 +127,7 @@ namespace gpu
 
       }
 
-      auto &pbindingset = binding_set_array()->ø(iSet);
+      auto &pbindingset = binding_set_array()->atø(iSet);
 
       if (::is_set(pgpubindingset))
       {
@@ -141,7 +141,7 @@ namespace gpu
 
          constructø(pbindingset);
 
-         auto & pbindingslotset = binding_slot_set_array()->ø(iSet);
+         auto & pbindingslotset = binding_slot_set_array()->atø(iSet);
 
          if (defer_constructø(pbindingslotset))
          {
@@ -184,7 +184,7 @@ namespace gpu
 
       ASSERT(::is_set(pbindingslotset));
 
-      auto &bindingslot = pbindingslotset->ø(iSlot);
+      auto &bindingslot = pbindingslotset->atø(iSlot);
 
       if (::is_null(bindingslot.m_pbinding))
       {
@@ -220,7 +220,7 @@ namespace gpu
 
       }
 
-      auto &pbindingslotset = binding_slot_set_array()->ø(iSet);
+      auto &pbindingslotset = binding_slot_set_array()->atø(iSet);
 
       if (!pbindingslotset)
       {

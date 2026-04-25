@@ -724,8 +724,8 @@ namespace gpu
 
             m_pbindingslotsetSingular->m_pbindingset = pbindingset;
 
-            m_pbindingslotsetSingular->ø(0).m_pbinding = pbindingset->first();
-            m_pbindingslotsetSingular->ø(0).m_ptexture = this;
+            m_pbindingslotsetSingular->atø(0).m_pbinding = pbindingset->first();
+            m_pbindingslotsetSingular->atø(0).m_ptexture = this;
          }
 
          return m_pbindingslotsetSingular;

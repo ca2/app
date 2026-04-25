@@ -218,7 +218,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    }
 
-   information() << "simple_menu_bar::pre_translate_message messageID="<<(int) pusermessage->m_eusermessage<<" wParam="<<pusermessage->m_wparam.m_number<<" lParam=" << pusermessage->m_lparam.m_lparam;
+   information() << "simple_menu_bar::pre_translate_message messageID="<<(int) pusermessage->m_eusermessage<<" wParam="<<pusermessage->m_wparam.m_wparam<<" lParam=" << pusermessage->m_lparam.m_lparam;
 
    return simple_toolbar::pre_translate_message(pmessage);
 

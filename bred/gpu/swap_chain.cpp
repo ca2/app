@@ -258,7 +258,7 @@ swap_chain::frame_sync &swap_chain::frame(::collection::index iFrameIndex)
       throw ::exception(error_failed, "invalid frame index!");
    }
 
-   auto &framesync = m_framesynca.ø(iFrameIndex);
+   auto &framesync = m_framesynca.atø(iFrameIndex);
 
    if (!framesync.m_pgpufenceInFlight)
    {

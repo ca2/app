@@ -48,7 +48,7 @@ namespace gpu
    ::gpu::binding *binding_set::binding(int iSlot)
    {
 
-      auto &pbinding = this->ø(iSlot);
+      auto &pbinding = this->atø(iSlot);
 
       if (!pbinding)
       {
@@ -159,7 +159,7 @@ namespace gpu
    ::gpu::binding_slot *binding_slot_set::binding_slot(int iSlot)
    {
 
-      auto &bindingslot = this->ø(iSlot);
+      auto &bindingslot = this->atø(iSlot);
 
       bindingslot.m_iSlot = iSlot;
 

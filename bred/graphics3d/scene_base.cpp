@@ -286,13 +286,13 @@ namespace graphics3d
       auto rot = setObject.get("rotation", ::float_array_base{0.f, 0.f});
       auto scl = setObject.get("scale", ::float_array_base{1.f, 1.f, 1.f});
 
-      pscenerenderable->m_sequence3Translation = {pos.ø(0), pos.ø(1), pos.ø(2)};
-      pscenerenderable->m_matrixRotation = ::graphics3d::floating_rotation(::degrees(rot.ø(0)), ::degrees(rot.ø(1))).as_rotation_matrix();
-      pscenerenderable->m_sequence3Scaling = {scl.ø(0), scl.ø(1), scl.ø(2)};
+      pscenerenderable->m_sequence3Translation = {pos.atø(0), pos.atø(1), pos.atø(2)};
+      pscenerenderable->m_matrixRotation = ::graphics3d::floating_rotation(::degrees(rot.atø(0)), ::degrees(rot.atø(1))).as_rotation_matrix();
+      pscenerenderable->m_sequence3Scaling = {scl.atø(0), scl.atø(1), scl.atø(2)};
 
-      //transform.m_sequence3Position = {pos.ø(0), pos.ø(1), pos.ø(2)};
-      //transform.m_rotation = {::degrees(rot.ø(0)), ::degrees(rot.ø(1)};
-      //transform.m_sequence3Scale = {scl.ø(0), scl.ø(1), scl.ø(2)};
+      //transform.m_sequence3Position = {pos.atø(0), pos.atø(1), pos.atø(2)};
+      //transform.m_rotation = {::degrees(rot.atø(0)), ::degrees(rot.atø(1)};
+      //transform.m_sequence3Scale = {scl.atø(0), scl.atø(1), scl.atø(2)};
 
       informationf("Loaded GameObject '%s' - Pos: (%0.2f, %0.2f, %0.2f), Rot: (%0.2f, %0.2f, %0.2f), Scale: (%0.2f, "
                    "%0.2f, %0.2f)",

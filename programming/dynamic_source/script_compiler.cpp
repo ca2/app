@@ -113,14 +113,7 @@ namespace dynamic_source
    void script_compiler::destroy()
    {
 
-      for (auto& plibrary : m_mapLib.payloads())
-      {
-
-         plibrary.defer_destroy();
-
-      }
-
-      m_mapLib.clear();
+      m_mapLib.defer_destroy_and_release();
 
       ::programming::compiler::destroy();
 

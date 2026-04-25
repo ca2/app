@@ -95,3 +95,30 @@ using map_to_pointer = map_particle < map_to_pointer_base < TYPE1, TYPE2, PAIR, 
 
 
 
+
+
+
+template<prototype_pointer_container POINTER_CONTAINER>
+class ø<POINTER_CONTAINER> : virtual public POINTER_CONTAINER
+{
+public:
+
+
+   using BASE_CONTAINER = POINTER_CONTAINER;
+
+
+   using BASE_CONTAINER::BASE_CONTAINER;
+   using BASE_CONTAINER::operator=;
+
+
+   void _defer_destroy_and_release() { ::defer_destroy_and_release_each_pointer_payload_in_container(*this); }
+
+
+   void defer_destroy_and_release()
+   {
+
+      ::defer_destroy_and_release_each_payload_pointer_in_container_and_then_clear_it(*this);
+   }
+};
+
+

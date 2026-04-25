@@ -172,8 +172,11 @@ namespace platform
    // void init_instance() override{}
 
 
-   void apex_application_layer::defer_interprocess_communication()
-   {
+   ::interprocess::communication *apex_application_layer::interprocess_communication()
+   { 
+      
+      return nullptr;
+
    }
 
 

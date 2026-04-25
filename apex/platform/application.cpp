@@ -933,15 +933,6 @@ namespace apex
    void application::on_application_system_start()
    {
 
-
-      if (m_eexclusiveinstance != e_exclusive_instance_none)
-      {
-
-         m_bInterprocessCommunication = true;
-      }
-
-      defer_interprocess_communication();
-
       //      if (m_bInterprocessCommunication)
       //      {
       //
@@ -1010,14 +1001,20 @@ namespace apex
 
       information() << "apex::application::init_application .2";
 
-      if (m_pinterprocesscommunication)
+      if (m_bInterprocessCommunication)
       {
 
-         auto pathModule = file()->module();
+         if (m_pinterprocesscommunication2)
+         {
 
-         auto processId = node()->current_process_identifier();
+            auto pathModule = file()->module();
 
-         m_pinterprocesscommunication->on_new_instance(pathModule, processId);
+            auto processId = node()->current_process_identifier();
+
+            m_pinterprocesscommunication2->on_new_instance(pathModule, processId);
+
+         }
+
       }
 
       // xxdebug_box("check_exclusive ok", "check_exclusive ok", ::user::e_message_box_icon_information);
@@ -2397,23 +2394,26 @@ namespace apex
    }
 
 
-   void application::defer_interprocess_communication()
+   ::interprocess::communication * application::interprocess_communication()
    {
 
-
-      if (m_bInterprocessCommunication)
+      if (!m_bInterprocessCommunication)
       {
 
-         if(__defer_raw_construct_new(m_pinterprocesscommunication))
-         {
-
-            //m_pinterprocesscommunication->m_p= create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
-
-            m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
-
-         }
+         return nullptr;
 
       }
+
+      if(__defer_raw_construct_new(m_pinterprocesscommunication2))
+      {
+
+         //m_pinterprocesscommunication->m_p= create_interprocess_communication(REFERENCING_DEBUGGING_COMMA_THIS_NOTE("::application::init_instance"));
+
+         m_pinterprocesscommunication2->initialize_interprocess_communication(this, m_strAppId);
+
+      }
+
+      return m_pinterprocesscommunication2;
 
    }
 
@@ -3583,16 +3583,20 @@ namespace apex
 
    }
 
+
    void application::init3()
    {
 
-      string strFolder = m_strAppName;
+      ::platform::application::init3();
 
-      strFolder.replace_with("_", ".");
-      strFolder.replace_with("-", "::");
-      strFolder.replace_with("_", ":");
+      if (m_eexclusiveinstance != e_exclusive_instance_none)
+      {
 
-      m_strRelativeFolder = strFolder;
+         m_bInterprocessCommunication = true;
+
+      }
+
+      interprocess_communication();
 
       //if (!impl_init3())
       //{
@@ -3666,7 +3670,7 @@ namespace apex
          try
          {
 
-            m_pinterprocesscommunication.release();
+            m_pinterprocesscommunication2.release();
 
          }
          catch (...)
@@ -4255,50 +4259,45 @@ namespace apex
 
          //auto psystem = system();
 
-         if (m_pinterprocesscommunication)
-         {
-
-            auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_local_instance");
-
-            (*pcall)["module"] = file()->module();
-
-            (*pcall)["pid"] = node()->current_process_identifier();
-
-            if (::is_set(prequest))
+            if (m_pinterprocesscommunication2)
             {
 
-               (*pcall)["command_line"] = prequest->m_strCommandLine;
+               auto pcall = m_pinterprocesscommunication2->create_call("application", "on_additional_local_instance");
 
-            }
+               (*pcall)["module"] = file()->module();
 
-            //string strId;
+               (*pcall)["pid"] = node()->current_process_identifier();
 
-            //pcall->add_parameter(strId);
-
-            pcall->send_call();
-
-            for (auto & pair : pcall->m_mapTask)
-            {
-
-               auto & pinterprocesstask = pair.element2();
-
-               if (bContinue && pinterprocesstask->m_tristateContinue.is_set())
+               if (::is_set(prequest))
                {
 
-                  bContinue = pinterprocesstask->m_tristateContinue.is_set_true();
-
+                  (*pcall)["command_line"] = prequest->m_strCommandLine;
                }
 
-               if (!bHandled && pinterprocesstask->m_tristateHandled.is_set())
+               // string strId;
+
+               // pcall->add_parameter(strId);
+
+               pcall->send_call();
+
+               for (auto &pair: pcall->m_mapTask)
                {
 
-                  bHandled = pinterprocesstask->m_tristateHandled.is_set_true();
+                  auto &pinterprocesstask = pair.element2();
 
+                  if (bContinue && pinterprocesstask->m_tristateContinue.is_set())
+                  {
+
+                     bContinue = pinterprocesstask->m_tristateContinue.is_set_true();
+                  }
+
+                  if (!bHandled && pinterprocesstask->m_tristateHandled.is_set())
+                  {
+
+                     bHandled = pinterprocesstask->m_tristateHandled.is_set_true();
+                  }
                }
-
             }
-
-         }
 
       }
       catch (...)
@@ -4319,10 +4318,10 @@ namespace apex
       try
       {
 
-         if (m_pinterprocesscommunication)
+         if (m_pinterprocesscommunication2)
          {
 
-            auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_local_instance");
+            auto pcall = m_pinterprocesscommunication2->create_call("application", "on_additional_local_instance");
 
             (*pcall)["module"] = file()->module();
 
@@ -4374,10 +4373,10 @@ namespace apex
 
          //auto psystem = system();
 
-         if (m_pinterprocesscommunication)
+         if (m_pinterprocesscommunication2)
          {
 
-            auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_globalinstance");
+            auto pcall = m_pinterprocesscommunication2->create_call("application", "on_additional_globalinstance");
 
             (*pcall)["module"] = file()->module();
 
@@ -6649,7 +6648,7 @@ namespace apex
 
       }
 
-      auto pinterprocesscommunication = m_pinterprocesscommunication;
+      auto pinterprocesscommunication = m_pinterprocesscommunication2;
 
       if (::is_null(pinterprocesscommunication))
       {
@@ -10335,10 +10334,10 @@ namespace apex
          
       }
 
-      if (m_pinterprocesscommunication)
+      if (m_pinterprocesscommunication2)
       {
 
-         m_pinterprocesscommunication->m_ptarget->_handle_uri(scopedstrUri);
+         m_pinterprocesscommunication2->m_ptarget->_handle_uri(scopedstrUri);
 
       }
       else

@@ -2628,13 +2628,15 @@ retry_license:
    void application::init3()
    {
 
-      string strFolder = m_strAppName;
+      //string strFolder = m_strAppName;
 
-      strFolder.replace_with("_", ".");
-      strFolder.replace_with("-", "::");
-      strFolder.replace_with("_", ":");
+      //strFolder.replace_with("_", ".");
+      //strFolder.replace_with("-", "::");
+      //strFolder.replace_with("_", ":");
 
-      m_strRelativeFolder = strFolder;
+      //m_strRelativeFolder = strFolder;
+
+      ::aqua::application::init3();
 
       //if (!impl_init3())
       //{

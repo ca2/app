@@ -285,7 +285,7 @@ namespace apex
       void init_instance() override;
 
 
-      virtual void defer_interprocess_communication() override;
+      ::interprocess::communication * interprocess_communication() override;
 
 
       virtual void run() override;

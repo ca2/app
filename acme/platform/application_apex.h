@@ -402,7 +402,7 @@ namespace platform
       // void init_instance() override;
 
 
-      virtual void defer_interprocess_communication();
+      virtual ::interprocess::communication * interprocess_communication();
 
 
       // virtual void run() override;

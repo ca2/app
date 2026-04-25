@@ -273,7 +273,7 @@ namespace platform
 
       bool m_bEnableAutoStartOption;
       bool m_bInterprocessCommunication;
-      ::pointer<::interprocess::communication> m_pinterprocesscommunication;
+      ::pointer<::interprocess::communication> m_pinterprocesscommunication2;
       ::pointer<::interprocess::handler> m_pinterprocesshandler;
       //::pointer<service>                         m_pservice;
 

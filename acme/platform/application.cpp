@@ -999,6 +999,13 @@ void application::start_application()
    void application::init3()
    {
 
+      string strFolder = m_strAppName;
+
+      strFolder.replace_with("_", ".");
+      strFolder.replace_with("-", "::");
+      strFolder.replace_with("_", ":");
+
+      m_strRelativeFolder = strFolder;
 
    }
 

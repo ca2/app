@@ -34,7 +34,7 @@
       Particle(enum_particle eparticle = e_particle_interface);
       ~Particle() override;
 
-      virtual ::Particle * get_implementation();
+      virtual ::Particle * _get_implementation();
 
       template<typename IMPL>
       IMPL *impl();
@@ -118,7 +118,8 @@
 
    #define ImplementCompositeø(Name, name) \
    ::pointer<Name##Interface> m_p##name; \
-   ::Particle * get_implementation() {return m_p##name.m_p;} \
+   ::Particle * _get_implementation() {return m_p##name.m_p;} \
+   Name##Interface * get_implementation() {return m_p##name.m_p;} \
    virtual void set##Name##Implementation(Name##Interface * pinterfaceImplementation) \
    { \
       m_p##name = pinterfaceImplementation; \
@@ -494,9 +495,9 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
       using MAIN_AGGREGATE_INTERFACE_TYPE = typename COMPOSITE::INTERFACE_TYPE;
 
-      ::Particle * get_implementation() override
+      ::Particle * _get_implementation() override
       {
-         return COMPOSITE::get_implementation();
+         return COMPOSITE::_get_implementation();
       }
 
 
@@ -544,7 +545,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
       if (pcomposite)
       {
 
-         auto pcomposed = pcomposite->get_implementation();
+         auto pcomposed = pcomposite->_get_implementation();
 
          if (::is_null(pcomposed))
          {
@@ -653,7 +654,7 @@ template<typename IMPL>
 IMPL *Particle::impl()
    {
 
-      ::cast<IMPL> pimp = ::_get_implementation<IMPL>(get_implementation());
+      ::cast<IMPL> pimp = ::_get_implementation<IMPL>(_get_implementation());
 
       return pimp;
 

@@ -27,23 +27,31 @@
 
 //#include "::earth::time.h"
 
-// This class help to measure time intervals. On a time interval elapse the
-// timer only change self state. It doesn't call a callback function.
-class DemandTimer
+namespace subsystem
 {
-public:
-  DemandTimer(unsigned long long intervalMillis);
-  ~DemandTimer();
+   // This class help to measure time intervals. On a time interval elapse the
+   // timer only change self state. It doesn't call a callback function.
+   class DemandTimer
+   {
+   public:
 
-  // Starts the timer from the now time.
-  void reset();
+      DemandTimer(const class ::time & time);
+      ~DemandTimer();
 
-  // Returns true if timer time is elapsed.
-  bool isElapsed();
+      // Starts the timer from the now time.
+      void reset();
 
-private:
-  unsigned long long m_intervalMillis;
-  class ::time m_timeStart;
-};
+      // Returns true if timer time is elapsed.
+      bool isElapsed();
 
-//// __DEMANDTIMER_H__
+      class ::time m_timeTimer;
+      class ::time m_timeStart;
+
+
+   };
+
+
+} // namespace subsystem
+
+
+

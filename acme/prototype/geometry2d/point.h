@@ -449,3 +449,73 @@ constexpr ::int_point lparam::point() const
 
 
 
+
+
+
+template <prototype_number NUMBER>
+struct std::formatter<point_type<NUMBER>>
+{
+   bool m_bIncludeParenthesis = false;
+   bool m_bIncludeNames = false;
+
+
+   constexpr bool check_option(auto &it, const auto & end)
+   {
+
+      if (it != end)
+      {
+
+         if (*it == 'p')
+         {
+            m_bIncludeParenthesis = true;
+            it++;
+            return true;
+         }
+         else if (*it == 'n')
+         {
+            m_bIncludeNames = true;
+            it++;
+            return true;
+         }
+         else if (*it != '}')
+         {
+
+            throw std::format_error("Invalid format specifier for Point.");
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+
+   // Parses the format specifier
+   constexpr auto parse(std::format_parse_context& ctx) {
+      auto it = ctx.begin(), end = ctx.end();
+      while (check_option(it, end));
+      return it;
+   }
+
+   // Formats the Point based on the flag set in parse()
+   auto format(const point_type<NUMBER> & point, std::format_context& ctx) const {
+      if (m_bIncludeNames)
+      {
+         if (m_bIncludeParenthesis) {
+            return std::format_to(ctx.out(), "(x:{}, y:{})", point.x, point.y);
+         } else {
+            return std::format_to(ctx.out(), "x:{}, y:{}", point.x, point.y);
+         }
+      }
+      else
+      {
+         if (m_bIncludeParenthesis) {
+            return std::format_to(ctx.out(), "({}, {})", point.x, point.y);
+         } else {
+            return std::format_to(ctx.out(), "{}, {}", point.x, point.y);
+         }
+      }
+   }
+};

@@ -15,7 +15,7 @@
    {}
 
 
-::Particle * Particle::get_implementation()
+::Particle * Particle::_get_implementation()
    {
 
       return this;

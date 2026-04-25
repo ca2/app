@@ -34,7 +34,7 @@
 //    : m_hwnd(0),
 //      m_hinst(hinst),
 //      m_windowClassName(0),
-//      m_messageHandler(messageHandler)
+//      m_pwindowmessagehandler(messageHandler)
 //    {
 //       if (windowClassName != 0) {
 //          m_windowClassName = _tcsdup(windowClassName);
@@ -57,7 +57,7 @@
 //    bool MessageWindow::createWindow(WindowMessageHandler *messageHandler)
 //    {
 //       if (messageHandler != 0) {
-//          m_messageHandler = messageHandler;
+//          m_pwindowmessagehandler = messageHandler;
 //       }
 //
 //       if (regClass(m_hinst, m_windowClassName) == 0) {
@@ -96,8 +96,8 @@
 //       }
 //       if (_this != NULL) {
 //          bool result;
-//          if (_this->m_messageHandler != 0) {
-//             result = _this->m_messageHandler->processMessage(message,
+//          if (_this->m_pwindowmessagehandler != 0) {
+//             result = _this->m_pwindowmessagehandler->processMessage(message,
 //                                                              ::wparam,
 //                                                              ::lparam);
 //          } else {

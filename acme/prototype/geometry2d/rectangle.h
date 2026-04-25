@@ -154,6 +154,8 @@ public:
    inline bool is_set() const  { return !is_empty(); }
    inline bool is_empty() const  { return ::is_empty(*this); }
    inline bool is_null() const  { return ::is_null(*this); }
+   inline bool is_null_or_positive () const {return this->width() >= 0 && this->height() >= 0;}
+   inline bool is_ok() const  { return is_null_or_positive(); }
    inline bool has_area() const { return !is_empty(); }
    template < prototype_point POINT >
    inline bool contains(const POINT & point) const  { return ::contains(*this, point.x, point.y); }
@@ -615,6 +617,14 @@ public:
    {
 
       return ::is_equal(*this, rectangle);
+
+   }
+
+   template < prototype_integral INTEGRAL >
+   constexpr bool operator <(INTEGRAL i) const
+   {
+
+      return i == 0 ? !this->is_null_or_positive() : this->area() < i;
 
    }
 //   bool operator!=(const rectangle_type & rectangle) const  { return !operator ==(rectangle); }

@@ -2450,6 +2450,7 @@
     <ClCompile Include="platform\subsystem.cpp" />
     <ClCompile Include="platform\Unicode.cpp" />
     <ClCompile Include="platform\VncPassCrypt.cpp" />
+    <ClCompile Include="platform\WindowMessageHandler.cpp" />
     <ClCompile Include="platform\ZLibBase.cpp" />
     <ClCompile Include="platform\ZlibException.cpp" />
     <ClCompile Include="socket\SocketAddressIPv4.cpp" />
@@ -2548,6 +2549,7 @@
     <ClInclude Include="platform\subsystem.h" />
     <ClInclude Include="platform\Unicode.h" />
     <ClInclude Include="platform\VncPassCrypt.h" />
+    <ClInclude Include="platform\WindowMessageHandler.h" />
     <ClInclude Include="platform\winhdr.h" />
     <ClInclude Include="platform\ZLibBase.h" />
     <ClInclude Include="platform\ZlibException.h" />

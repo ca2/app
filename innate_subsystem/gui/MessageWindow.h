@@ -51,7 +51,7 @@
 //   virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) { return true; }
 //
 //   HWND m_hwnd;
-//   WindowMessageHandler *m_messageHandler;
+//   WindowMessageHandler *m_pwindowmessagehandler;
 //
 //   HINSTANCE m_hinst;
 //   char *m_windowClassName;

@@ -567,8 +567,8 @@ template < typename POINT >
 concept function_point = requires(POINT point)
 {
    { point.semantic_t() } ->::std::convertible_to<point2_t>;
-   { point.x }->prototype_number;
-   { point.y }->prototype_number;
+   { point.x() }->prototype_number;
+   { point.y() }->prototype_number;
 };
 
 template < typename POINT >

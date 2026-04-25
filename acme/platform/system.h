@@ -235,6 +235,8 @@ namespace platform
 
       virtual ::platform::subsystem *MainSubsystem() override;
 
+      virtual ::platform::ProfileLogger &ProfileLogger() override;
+
       //virtual ::http_system * http_system();
 
       virtual string get_system_platform() override;

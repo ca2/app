@@ -1,4 +1,4 @@
-// Copyright (C) 2011,2012 GlavSoft LLC.
+// Copyright (C) 2009,2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -21,25 +21,37 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //-------------------------------------------------------------------------
 //
-#include "framework.h"
-#include "DemandTimer.h"
 
+//#ifndef _GETCPUTIME_H_
+//#define _GETCPUTIME_H_
+#pragma once
 
-namespace subsystem
-{
+// returns current process time of work in seconds
+double getCPUTime();
 
-   DemandTimer::DemandTimer(const class ::time & time) : m_timeTimer(time) { reset(); }
+// returns kernel time of work in seconds
+double getKernelTime();
 
-   DemandTimer::~DemandTimer() {}
+// returns current processor tick number
+inline unsigned long long rdtsc() {
+  unsigned int lo, hi;
+#ifdef __GNUC__   
+  asm  volatile ("rdtsc\n" : "=a" (lo), "=d" (hi));
+#elif _MSC_VER
+#ifdef _M_IX86
+  __asm
+  {
+    rdtsc
+    mov DWORD PTR [lo], eax
+    mov DWORD PTR [hi], edx
+  }
+#else
+  return 0;
+#endif
+#else
+  #error "Unsupported compiler"
+#endif
+  return ((unsigned long long)hi << 32) | lo;
+}
 
-   // Starts the timer from the now time.
-   void DemandTimer::reset() { m_timeStart.Now(); }
-
-   // Returns true if timer time is elapsed.
-   bool DemandTimer::isElapsed() { return m_timeStart.elapsed() >= m_timeTimer; }
-
-
-} // namespace subsystem
-
-
-
+//#endif _GETCPUTIME_H_

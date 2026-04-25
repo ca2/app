@@ -2538,8 +2538,10 @@
     <ClCompile Include="input_output\_.cpp" />
     <ClCompile Include="operating_system\dos_time.cpp" />
     <ClCompile Include="operating_system\environment.cpp" />
+    <ClCompile Include="operating_system\GetCPUtime.cpp" />
     <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
+    <ClCompile Include="operating_system\windows\ProfileLogger.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="platform\ini.cpp" />
@@ -2581,6 +2583,7 @@
     <ClInclude Include="operating_system\cpu_features.h" />
     <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\environment.h" />
+    <ClInclude Include="operating_system\GetCPUtime.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
     <ClInclude Include="operating_system\windows\time.h" />
@@ -2595,6 +2598,7 @@
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
     <ClInclude Include="platform\http.h" />
+    <ClInclude Include="platform\ProfileLogger.h" />
     <ClInclude Include="platform\registry.h" />
     <ClInclude Include="platform\remoting.h" />
     <ClInclude Include="platform\string_table.h" />

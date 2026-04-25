@@ -180,6 +180,8 @@ namespace subsystem
 
    class ZombieKiller;
 
+   class WindowMessageHandler;
+
 } // namespace subsystem
 
 
@@ -203,6 +205,7 @@ namespace innate_subsystem
 namespace subsystem_windows
 {
    class MessageWindow;
+   
 }
 
 

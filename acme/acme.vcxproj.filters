@@ -4392,6 +4392,12 @@
     <ClInclude Include="operating_system\windows\time.h">
       <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
+    <ClInclude Include="platform\ProfileLogger.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\GetCPUtime.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6331,6 +6337,12 @@
     </ClCompile>
     <ClCompile Include="platform\wparam.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\ProfileLogger.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\GetCPUtime.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

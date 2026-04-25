@@ -169,6 +169,10 @@ public:
 
    inline ::particle * trace_this() const { return (::particle *) this; }
 
+   virtual enum_trace_level main_trace_level() const;
+
+   inline bool is_debug_trace_level() const {return this->main_trace_level() >= e_trace_level_debug;}
+
    virtual ::particle * get_context_particle();
 
    inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization.m_p : nullptr; }

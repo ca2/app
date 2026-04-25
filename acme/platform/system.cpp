@@ -39,6 +39,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
 #include "acme/platform/node.h"
+#include "acme/platform/ProfileLogger.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/mathematics/mathematics.h"
 #include "acme/prototype/prototype/prototype.h"
@@ -5530,6 +5531,21 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       }
 
       return m_psubsystem;
+
+   }
+
+
+   ::platform::ProfileLogger& system::ProfileLogger()
+   {
+
+      if (!m_pprofilelogger)
+      {
+
+         construct_newø(m_pprofilelogger);
+
+      }
+
+      return *m_pprofilelogger;
 
    }
 

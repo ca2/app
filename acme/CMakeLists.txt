@@ -722,6 +722,8 @@ list(APPEND library_source
         platform/procedure.cpp
         platform/procedure.h
         platform/profiler.cpp
+        platform/ProfileLogger.cpp
+        platform/ProfileLogger.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h
@@ -1905,6 +1907,8 @@ list(APPEND library_source
         operating_system/exit_status.cpp
         operating_system/exit_status.h
         operating_system/file.h
+        operating_system/GetCPUtime.cpp
+        operating_system/GetCPUtime.h
         operating_system/graphics.h
         operating_system/memory.cpp
    operating_system/networking.cpp

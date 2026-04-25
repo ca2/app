@@ -182,6 +182,10 @@ namespace subsystem
 
    class WindowMessageHandler;
 
+   class Process;
+
+   class CurrentConsoleProcess;
+
 } // namespace subsystem
 
 

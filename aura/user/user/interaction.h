@@ -2194,7 +2194,7 @@ namespace user
 
       virtual bool calculate_window_rectangle_in_main_monitor(::int_rectangle & rectangle, const ::double_rectangle & rectangleOptionalRateOrSize);
 
-      virtual ::collection::index calculate_broad_and_compact_restore(::int_rectangle * prectWorkspace = nullptr, const ::int_size & sizeMin = {}, const ::int_rectangle& rectangleHint = {
+      virtual ::collection::index calculate_broad_and_compact_restore(::int_rectangle * rectangleWorkspace = nullptr, const ::int_size & sizeMin = {}, const ::int_rectangle& rectangleHint = {
          });
 
        //virtual void reset_window_state();

@@ -40,7 +40,7 @@ namespace user
       //m_ekeyboard = ::graphics3d::e_keyboard_updateMovement;
       ////m_bAbsoluteMousePosition = false;
       //m_bShouldClose = false;
-      m_bFrameBufferResized = false;
+      m_bFramebufferResized = false;
 
    }
 
@@ -620,7 +620,7 @@ namespace user
    bool graphics3d::wasWindowResized()
    {
 
-      return m_bFrameBufferResized;
+      return m_bFramebufferResized;
 
 
    }
@@ -629,7 +629,7 @@ namespace user
    void graphics3d::resetWindowResizedFlag()
    {
 
-      m_bFrameBufferResized = false;
+      m_bFramebufferResized = false;
 
    }
 

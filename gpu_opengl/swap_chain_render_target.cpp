@@ -186,8 +186,8 @@
 //		//   vkFreeMemory(m_pgpucontext->logicalDevice(), depthImageMemorys[i], nullptr);
 //		//}
 //
-//		//for (auto framebuffer : m_vkswapchainFramebuffers) {
-//		//   vkDestroyFramebuffer(m_pgpucontext->logicalDevice(), framebuffer, nullptr);
+//		//for (auto pframebuffer : m_vkswapchainFramebuffers) {
+//		//   vkDestroyFramebuffer(m_pgpucontext->logicalDevice(), pframebuffer, nullptr);
 //		//}
 //
 //		//vkDestroyRenderPass(m_pgpucontext->logicalDevice(), m_vkrendertargetview, nullptr);
@@ -585,7 +585,7 @@
 //		//      &framebufferInfo,
 //		//      nullptr,
 //		//      &swapChainFramebuffers[i]) != VK_SUCCESS) {
-//		//      throw ::exception(error_failed,"failed to create framebuffer!");
+//		//      throw ::exception(error_failed,"failed to create pframebuffer!");
 //		//   }
 //		//}
 //	}

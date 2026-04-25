@@ -2342,8 +2342,8 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="framebuffer\PixelFormat.cpp" />
-    <ClCompile Include="framebuffer\StandardPixelFormatFactory.cpp" />
+    <ClCompile Include="pframebuffer\PixelFormat.cpp" />
+    <ClCompile Include="pframebuffer\StandardPixelFormatFactory.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">Create</PrecompiledHeader>
@@ -2468,8 +2468,8 @@
     <ClCompile Include="thread\Thread.cpp" />
     <ClCompile Include="thread\ThreadCollector.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClInclude Include="framebuffer\PixelFormat.h" />
-    <ClInclude Include="framebuffer\StandardPixelFormatFactory.h" />
+    <ClInclude Include="pframebuffer\PixelFormat.h" />
+    <ClInclude Include="pframebuffer\StandardPixelFormatFactory.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="node\AnonymousPipe.h" />
     <ClInclude Include="node\AnonymousPipeFactory.h" />

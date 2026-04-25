@@ -3642,15 +3642,15 @@ void main() {
 
       //////if()
 
-      //////GLuint framebuffer;
-      //////glGenFramebuffers(1, &framebuffer);
+      //////GLuint pframebuffer;
+      //////glGenFramebuffers(1, &pframebuffer);
       //////::opengl::check_error("glGenFramebuffers");
-      //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+      //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pframebuffer);
       //////::opengl::check_error("glBindFramebuffer");
 
       //////auto gluTextureID = ptextureDst->m_gluTextureID;
 
-      //////// Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+      //////// Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
       //////glFramebufferTexture2D(
       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
       //////   gluTextureID,
@@ -3659,7 +3659,7 @@ void main() {
 
       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
       //////   printf("Framebuffer not complete!\n");
-      //////   glDeleteFramebuffers(1, &framebuffer);
+      //////   glDeleteFramebuffers(1, &pframebuffer);
       //////   return;
       //////}
 
@@ -3685,10 +3685,10 @@ void main() {
 
       ////}
 
-      ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+      ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
       ////::opengl::check_error("glBindFramebuffer");
 
-      ////glDeleteFramebuffers(1, &framebuffer);
+      ////glDeleteFramebuffers(1, &pframebuffer);
       ////::opengl::check_error("glDeleteFramebuffers");
 
 

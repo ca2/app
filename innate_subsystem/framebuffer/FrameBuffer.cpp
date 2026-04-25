@@ -22,54 +22,54 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "FrameBuffer.h"
+#include "Framebuffer.h"
 // #include aaa_<string.h>
 
 
 namespace innate_subsystem
 {
-   FrameBuffer::FrameBuffer(void)
+   Framebuffer::Framebuffer(void)
    : m_buffer(0)
    {
-      memset(&m_pixelFormat, 0, sizeof(m_pixelFormat));
+      memset(&m_pixelformat, 0, sizeof(m_pixelformat));
    }
 
-   FrameBuffer::~FrameBuffer(void)
+   Framebuffer::~Framebuffer(void)
    {
       if (m_buffer != 0) {
          delete []m_buffer;
       }
    }
 
-   bool FrameBuffer::assignProperties(const FrameBuffer *srcFrameBuffer)
+   bool Framebuffer::assignProperties(const Framebuffer * pframebufferSource)
    {
-      setProperties(srcFrameBuffer->getDimension(),
-                    srcFrameBuffer->getPixelFormat());
+      setProperties(pframebufferSource->getDimension(),
+                    pframebufferSource->getPixelFormat());
       return resizeBuffer();
    }
 
-   bool FrameBuffer::clone(const FrameBuffer *srcFrameBuffer)
+   bool Framebuffer::clone(const Framebuffer * pframebufferSource)
    {
-      if (!assignProperties(srcFrameBuffer)) {
+      if (!assignProperties(pframebufferSource)) {
          return false;
       }
 
       ::int_rectangle fbRect(m_dimension);
-      copyFrom(fbRect, srcFrameBuffer, fbRect.left, fbRect.top);
+      copyFrom(fbRect, pframebufferSource, fbRect.left, fbRect.top);
 
       return true;
    }
 
-   void FrameBuffer::setColor(unsigned char red, unsigned char green, unsigned char blue)
+   void Framebuffer::setColor(unsigned char red, unsigned char green, unsigned char blue)
    {
       size_t sizeInPixels = m_dimension.area();
-      int pixelSize = m_pixelFormat.bitsPerPixel / 8;
-      unsigned int redPix = (red * m_pixelFormat.redMax / 255) <<
-                      m_pixelFormat.redShift;
-      unsigned int greenPix = (green * m_pixelFormat.greenMax / 255) <<
-                        m_pixelFormat.greenShift;
-      unsigned int bluePix = (blue * m_pixelFormat.blueMax / 255) <<
-                       m_pixelFormat.blueShift;
+      int pixelSize = m_pixelformat.bitsPerPixel / 8;
+      unsigned int redPix = (red * m_pixelformat.redMax / 255) <<
+                      m_pixelformat.redShift;
+      unsigned int greenPix = (green * m_pixelformat.greenMax / 255) <<
+                        m_pixelformat.greenShift;
+      unsigned int bluePix = (blue * m_pixelformat.blueMax / 255) <<
+                       m_pixelformat.blueShift;
       unsigned int color = redPix | greenPix | bluePix;
 
       unsigned char *endPixPtr = (unsigned char *)m_buffer + getBufferSize();
@@ -79,9 +79,9 @@ namespace innate_subsystem
       }
    }
 
-   void FrameBuffer::fillRect(const ::int_rectangle & dstRect, unsigned int color)
+   void Framebuffer::fillRect(const ::int_rectangle & rectangleTarget, unsigned int color)
    {
-      ::int_rectangle clipRect = ::int_rectangle(m_dimension).intersection(dstRect);
+      ::int_rectangle clipRect = ::int_rectangle(m_dimension).intersection(rectangleTarget);
 
       int pixelSize = getBytesPerPixel();
       size_t sizeLineFb = getBytesPerRow();
@@ -101,94 +101,94 @@ namespace innate_subsystem
          memcpy(dstLinePtr, srcLinePtr, sizeLineRect);
    }
 
-   bool FrameBuffer::isEqualTo(const FrameBuffer *frameBuffer)
+   bool Framebuffer::isEqualTo(const Framebuffer * pframebuffer)
    {
-      return m_dimension == frameBuffer->getDimension() &&
-             m_pixelFormat == frameBuffer->getPixelFormat();
+      return m_dimension == pframebuffer->getDimension() &&
+             m_pixelformat == pframebuffer->getPixelFormat();
    }
 
-   void FrameBuffer::clipRect(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+   void Framebuffer::clipRect(const ::int_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
                               const int srcX, const int srcY,
-                              ::int_rectangle *dstClippedRect, ::int_rectangle *srcClippedRect)
+                              ::int_rectangle & rectangleTargetClipped, ::int_rectangle & rectangleSourceClipped)
    {
-      ::int_rectangle srcBufferRect(srcFrameBuffer -> getDimension());
-      clipRect(dstRect, srcBufferRect, srcX, srcY, dstClippedRect, srcClippedRect);
+      ::int_rectangle srcBufferRect(pframebufferSource->getDimension());
+      clipRect(rectangleTarget, srcBufferRect, srcX, srcY, rectangleTargetClipped, rectangleSourceClipped);
    }
 
-   void FrameBuffer::clipRect(const ::int_rectangle & dstRect, const ::int_rectangle & srcBufferRect,
+   void Framebuffer::clipRect(const ::int_rectangle & rectangleTarget, const ::int_rectangle & srcBufferRect,
                               const int srcX, const int srcY,
-                              ::int_rectangle *dstClippedRect, ::int_rectangle *srcClippedRect)
+                              ::int_rectangle & rectangleTargetClipped, ::int_rectangle & rectangleSourceClipped)
    {
       ::int_rectangle dstBufferRect(m_dimension);
 
       // Building srcRect
-      ::int_rectangle srcRect(srcX, srcY, srcX + dstRect.width(), srcY + dstRect.height());
+      ::int_rectangle srcRect(srcX, srcY, srcX + rectangleTarget.width(), srcY + rectangleTarget.height());
 
-      // Finding common area between the dstRect, srcRect and the FrameBuffers
-      ::int_rectangle dstRectFB = dstBufferRect.intersection(dstRect);
+      // Finding common area between the rectangleTarget, srcRect and the Framebuffers
+      ::int_rectangle dstRectFB = dstBufferRect.intersection(rectangleTarget);
       ::int_rectangle srcRectFB = srcBufferRect.intersection(srcRect);
 
       // Finding common area between the dstRectFB and the srcRectFB
       ::int_rectangle dstCommonArea(dstRectFB);
       ::int_rectangle srcCommonArea(srcRectFB);
       // Move to common place (left = 0, top = 0)
-      dstCommonArea.offset(-dstRect.left, -dstRect.top);
+      dstCommonArea.offset(-rectangleTarget.left, -rectangleTarget.top);
       srcCommonArea.offset(-srcRect.left, -srcRect.top);
 
       ::int_rectangle commonRect(dstCommonArea.intersection(srcCommonArea));
 
       // Moving commonRect to destination coordinates and source
-      dstClippedRect->set(commonRect);
-      dstClippedRect->offset(dstRect.left, dstRect.top);
+      rectangleTargetClipped.set(commonRect);
+      rectangleTargetClipped.offset(rectangleTarget.left, rectangleTarget.top);
 
-      srcClippedRect->set(commonRect);
-      srcClippedRect->offset(srcRect.left, srcRect.top);
+      rectangleSourceClipped.set(commonRect);
+      rectangleSourceClipped.offset(srcRect.left, srcRect.top);
    }
 
-   bool FrameBuffer::overlay(const ::int_rectangle & dstRect,
-                             const FrameBuffer *srcFrameBuffer,
+   bool Framebuffer::overlay(const ::int_rectangle & rectangleTarget,
+                             const Framebuffer * pframebufferSource,
                              int srcX, int srcY,
                              const char *andMask)
    {
-      if (m_pixelFormat != srcFrameBuffer->getPixelFormat()) {
+      if (m_pixelformat != pframebufferSource->getPixelFormat()) {
          return false;
       }
-      if (m_pixelFormat.bitsPerPixel == 32) {
-         return overlayT<unsigned int>(dstRect, srcFrameBuffer, srcX, srcY, andMask);
-      } else if (m_pixelFormat.bitsPerPixel == 16) {
-         return overlayT<unsigned short>(dstRect, srcFrameBuffer, srcX, srcY, andMask);
-      } else if (m_pixelFormat.bitsPerPixel == 8) {
-         return overlayT<unsigned char>(dstRect, srcFrameBuffer, srcX, srcY, andMask);
+      if (m_pixelformat.bitsPerPixel == 32) {
+         return overlayT<unsigned int>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
+      } else if (m_pixelformat.bitsPerPixel == 16) {
+         return overlayT<unsigned short>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
+      } else if (m_pixelformat.bitsPerPixel == 8) {
+         return overlayT<unsigned char>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
       } else {
          _ASSERT(false);
       }
       return false;
    }
 
-   template<class PIXEL_T> bool FrameBuffer::overlayT(const ::int_rectangle & dstRect,
-                                                      const FrameBuffer *srcFrameBuffer,
+   template<class PIXEL_T> bool Framebuffer::overlayT(const ::int_rectangle & rectangleTarget,
+                                                      const Framebuffer * pframebufferSource,
                                                       int srcX, int srcY,
                                                       const char *andMask)
    {
-      ::int_rectangle srcClippedRect, dstClippedRect;
+      ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
-      clipRect(dstRect, srcFrameBuffer, srcX, srcY, &dstClippedRect, &srcClippedRect);
-      if (dstClippedRect.area() <= 0 || srcClippedRect.area() <= 0) {
+      clipRect(rectangleTarget, pframebufferSource, srcX, srcY, rectangleTargetClipped, rectangleSourceClipped);
+      if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
       }
 
       PIXEL_T *dstPixels = (PIXEL_T *)getBuffer();
-      PIXEL_T *srcPixels = (PIXEL_T *)srcFrameBuffer->getBuffer();
-      int srcWidth = srcFrameBuffer->getDimension().cx;
+      PIXEL_T *srcPixels = (PIXEL_T *)pframebufferSource->getBuffer();
+      int srcWidth = pframebufferSource->getDimension().cx;
       int dstWidth = getDimension().cx;
       size_t bytesPerRow = (srcWidth + 7) / 8;
-      for (int iRow = srcClippedRect.top; iRow < srcClippedRect.bottom; iRow++) {
-         for (int iCol = srcClippedRect.left; iCol < srcClippedRect.right; iCol++) {
+      for (int iRow = rectangleSourceClipped.top; iRow < rectangleSourceClipped.bottom; iRow++) {
+         for (int iCol = rectangleSourceClipped.left; iCol < rectangleSourceClipped.right; iCol++) {
             unsigned char curByte = andMask[iRow * bytesPerRow + iCol / 8];
             bool andBit = (curByte & 128 >> iCol % 8) != 0;
             if (andBit) {
-               int iDstRow = dstClippedRect.top + iRow - srcY - srcClippedRect.top;
-               int iDstCol = dstClippedRect.left + iCol - srcX - srcClippedRect.left;
+               int iDstRow = rectangleTargetClipped.top + iRow - srcY - rectangleSourceClipped.top;
+               int iDstCol = rectangleTargetClipped.left + iCol - srcX - rectangleSourceClipped.left;
                dstPixels[iDstRow * dstWidth + iDstCol] = srcPixels[iRow * srcWidth + iCol];
             }
          }
@@ -196,35 +196,35 @@ namespace innate_subsystem
       return true;
    }
 
-   bool FrameBuffer::copyFrom(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+   bool Framebuffer::copyFrom(const ::int_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
                               int srcX, int srcY)
    {
-      if (m_pixelFormat != srcFrameBuffer->getPixelFormat()) {
+      if (m_pixelformat != pframebufferSource->getPixelFormat()) {
          return false;
       }
 
-      ::int_rectangle srcClippedRect, dstClippedRect;
+      ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
-      clipRect(dstRect, srcFrameBuffer, srcX, srcY, &dstClippedRect, &srcClippedRect);
-      if (dstClippedRect.area() <= 0 || srcClippedRect.area() <= 0) {
+      clipRect(rectangleTarget, pframebufferSource, srcX, srcY, rectangleTargetClipped, rectangleSourceClipped);
+      if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
       }
 
       // Shortcuts
-      int pixelSize = m_pixelFormat.bitsPerPixel / 8;
+      int pixelSize = m_pixelformat.bitsPerPixel / 8;
       int dstStrideBytes = m_dimension.cx * pixelSize;
-      int srcStrideBytes = srcFrameBuffer->getDimension().cx * pixelSize;
+      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
-      int resultHeight = dstClippedRect.height();
-      int resultWidthBytes = dstClippedRect.width() * pixelSize;
+      int resultHeight = rectangleTargetClipped.height();
+      int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
 
       unsigned char *pdst = (unsigned char *)m_buffer
-                    + dstClippedRect.top * dstStrideBytes
-                    + pixelSize * dstClippedRect.left;
+                    + rectangleTargetClipped.top * dstStrideBytes
+                    + pixelSize * rectangleTargetClipped.left;
 
-      unsigned char *psrc = (unsigned char *)srcFrameBuffer->getBuffer()
-                    + srcClippedRect.top * srcStrideBytes
-                    + pixelSize * srcClippedRect.left;
+      unsigned char *psrc = (unsigned char *)pframebufferSource->getBuffer()
+                    + rectangleSourceClipped.top * srcStrideBytes
+                    + pixelSize * rectangleSourceClipped.left;
 
       for (int i = 0; i < resultHeight; i++, pdst += dstStrideBytes, psrc += srcStrideBytes) {
          memcpy(pdst, psrc, resultWidthBytes);
@@ -233,50 +233,50 @@ namespace innate_subsystem
       return true;
    }
 
-   bool FrameBuffer::copyFrom(const FrameBuffer *srcFrameBuffer,
+   bool Framebuffer::copyFrom(const Framebuffer * pframebufferSource,
                               int srcX, int srcY)
    {
-      return copyFrom(m_dimension, srcFrameBuffer, srcX, srcY);
+      return copyFrom(m_dimension, pframebufferSource, srcX, srcY);
    }
 
-   bool FrameBuffer::copyFromRotated90(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+   bool Framebuffer::copyFromRotated90(const ::int_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
                                        int srcX, int srcY)
    {
-      if (m_pixelFormat.bitsPerPixel != 32 || m_pixelFormat != srcFrameBuffer->getPixelFormat())
+      if (m_pixelformat.bitsPerPixel != 32 || m_pixelformat != pframebufferSource->getPixelFormat())
       {
          return false;
       }
 
       // Shortcuts
-      int pixelSize = m_pixelFormat.bitsPerPixel / 8;
+      int pixelSize = m_pixelformat.bitsPerPixel / 8;
       int dstStrideBytesByX = m_dimension.cx * pixelSize;
-      int srcStrideBytes = srcFrameBuffer->getDimension().cx * pixelSize;
+      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
-      ::int_rectangle srcClippedRect, dstClippedRect;
+      ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
-      ::int_size srcBuffTransposedDim = srcFrameBuffer->getDimension().transposed();
+      ::int_size srcBuffTransposedDim = pframebufferSource->getDimension().transposed();
       ::int_rectangle srcBuffTransposedRect = srcBuffTransposedDim;
-      ::int_rectangle srcRotatedCoordinates(srcX, srcY, srcX + dstRect.height(), srcY + dstRect.width());
-      srcRotatedCoordinates.rotateOn90InsideDimension(srcFrameBuffer->getDimension().cy);
+      ::int_rectangle srcRotatedCoordinates(srcX, srcY, srcX + rectangleTarget.height(), srcY + rectangleTarget.width());
+      srcRotatedCoordinates.rotateOn90InsideDimension(pframebufferSource->getDimension().cy);
       int srcXinDstRotation = srcRotatedCoordinates.left;
       int srcYinDstRotation = srcRotatedCoordinates.top;
-      clipRect(dstRect, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, &dstClippedRect, &srcClippedRect);
-      if (dstClippedRect.area() <= 0 || srcClippedRect.area() <= 0) {
+      clipRect(rectangleTarget, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, rectangleTargetClipped, rectangleSourceClipped);
+      if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
       }
       // Rotate source rect back in source rotation.
-      srcClippedRect.rotateOn270InsideDimension(srcBuffTransposedDim.cx);
+      rectangleSourceClipped.rotateOn270InsideDimension(srcBuffTransposedDim.cx);
 
-      int resultHeight = srcClippedRect.height();
-      int resultWidth = srcClippedRect.width();
+      int resultHeight = rectangleSourceClipped.height();
+      int resultWidth = rectangleSourceClipped.width();
 
       unsigned char *pBaseDst = (unsigned char *)m_buffer
-                        + dstClippedRect.top * dstStrideBytesByX
-                        + pixelSize * (dstClippedRect.right - 1);
+                        + rectangleTargetClipped.top * dstStrideBytesByX
+                        + pixelSize * (rectangleTargetClipped.right - 1);
 
-      unsigned char *pBaseSrc = (unsigned char *)srcFrameBuffer->getBuffer()
-                        + srcClippedRect.top * srcStrideBytes
-                        + pixelSize * srcClippedRect.left;
+      unsigned char *pBaseSrc = (unsigned char *)pframebufferSource->getBuffer()
+                        + rectangleSourceClipped.top * srcStrideBytes
+                        + pixelSize * rectangleSourceClipped.left;
 
       for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= pixelSize, pBaseSrc += srcStrideBytes) {
          unsigned int *pSrc = (unsigned int *)pBaseSrc;
@@ -289,46 +289,46 @@ namespace innate_subsystem
       return true;
    }
 
-   bool FrameBuffer::copyFromRotated180(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+   bool Framebuffer::copyFromRotated180(const ::int_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
                                        int srcX, int srcY)
    {
-      if (m_pixelFormat.bitsPerPixel != 32 || m_pixelFormat != srcFrameBuffer->getPixelFormat())
+      if (m_pixelformat.bitsPerPixel != 32 || m_pixelformat != pframebufferSource->getPixelFormat())
       {
          return false;
       }
 
       // Shortcuts
-      int pixelSize = m_pixelFormat.bitsPerPixel / 8;
+      int pixelSize = m_pixelformat.bitsPerPixel / 8;
       int dstStrideBytesByX = m_dimension.cx * pixelSize;
-      int srcStrideBytes = srcFrameBuffer->getDimension().cx * pixelSize;
+      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
-      ::int_rectangle srcClippedRect, dstClippedRect;
+      ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
-      ::int_size srcBuffTransposedDim = srcFrameBuffer->getDimension();
+      ::int_size srcBuffTransposedDim = pframebufferSource->getDimension();
       ::int_rectangle srcBuffTransposedRect = srcBuffTransposedDim;
-      ::int_rectangle srcRotatedCoordinates(srcX, srcY, srcX + dstRect.width(), srcY + dstRect.height());
-      srcRotatedCoordinates.rotateOn180InsideDimension(srcFrameBuffer->getDimension().cx,
-                                                       srcFrameBuffer->getDimension().cy);
+      ::int_rectangle srcRotatedCoordinates(srcX, srcY, srcX + rectangleTarget.width(), srcY + rectangleTarget.height());
+      srcRotatedCoordinates.rotateOn180InsideDimension(pframebufferSource->getDimension().cx,
+                                                       pframebufferSource->getDimension().cy);
       int srcXinDstRotation = srcRotatedCoordinates.left;
       int srcYinDstRotation = srcRotatedCoordinates.top;
-      clipRect(dstRect, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, &dstClippedRect, &srcClippedRect);
-      if (dstClippedRect.area() <= 0 || srcClippedRect.area() <= 0) {
+      clipRect(rectangleTarget, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, rectangleTargetClipped, rectangleSourceClipped);
+      if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
       }
       // Rotate source rect back in source rotation.
-      srcClippedRect.rotateOn180InsideDimension(srcFrameBuffer->getDimension().cx,
-                                                srcFrameBuffer->getDimension().cy);
+      rectangleSourceClipped.rotateOn180InsideDimension(pframebufferSource->getDimension().cx,
+                                                pframebufferSource->getDimension().cy);
 
-      int resultHeight = srcClippedRect.height();
-      int resultWidth = srcClippedRect.width();
+      int resultHeight = rectangleSourceClipped.height();
+      int resultWidth = rectangleSourceClipped.width();
 
       unsigned char *pBaseDst = (unsigned char *)m_buffer
-        + (dstClippedRect.bottom - 1) * dstStrideBytesByX
-        + pixelSize * (dstClippedRect.right - 1);
+        + (rectangleTargetClipped.bottom - 1) * dstStrideBytesByX
+        + pixelSize * (rectangleTargetClipped.right - 1);
 
-      unsigned char *pBaseSrc = (unsigned char *)srcFrameBuffer->getBuffer()
-        + srcClippedRect.top * srcStrideBytes
-        + pixelSize * srcClippedRect.left;
+      unsigned char *pBaseSrc = (unsigned char *)pframebufferSource->getBuffer()
+        + rectangleSourceClipped.top * srcStrideBytes
+        + pixelSize * rectangleSourceClipped.left;
 
       for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= dstStrideBytesByX , pBaseSrc += srcStrideBytes) {
          unsigned int *pSrc = (unsigned int *)pBaseSrc;
@@ -341,44 +341,44 @@ namespace innate_subsystem
       return true;
    }
 
-   bool FrameBuffer::copyFromRotated270(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+   bool Framebuffer::copyFromRotated270(const ::int_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
                                        int srcX, int srcY)
    {
-      if (m_pixelFormat.bitsPerPixel != 32 || m_pixelFormat != srcFrameBuffer->getPixelFormat())
+      if (m_pixelformat.bitsPerPixel != 32 || m_pixelformat != pframebufferSource->getPixelFormat())
       {
          return false;
       }
 
       // Shortcuts
-      int pixelSize = m_pixelFormat.bitsPerPixel / 8;
+      int pixelSize = m_pixelformat.bitsPerPixel / 8;
       int dstStrideBytesByX = m_dimension.cx * pixelSize;
-      int srcStrideBytes = srcFrameBuffer->getDimension().cx * pixelSize;
+      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
-      ::int_rectangle srcClippedRect, dstClippedRect;
+      ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
-      ::int_size srcBuffTransposedDim = srcFrameBuffer->getDimension().transposed();
+      ::int_size srcBuffTransposedDim = pframebufferSource->getDimension().transposed();
       ::int_rectangle srcBuffTransposedRect = srcBuffTransposedDim;
-      ::int_rectangle srcRotatedCoordinates(srcX, srcY, srcX + dstRect.height(), srcY + dstRect.width());
-      srcRotatedCoordinates.rotateOn270InsideDimension(srcFrameBuffer->getDimension().cx);
+      ::int_rectangle srcRotatedCoordinates(srcX, srcY, srcX + rectangleTarget.height(), srcY + rectangleTarget.width());
+      srcRotatedCoordinates.rotateOn270InsideDimension(pframebufferSource->getDimension().cx);
       int srcXinDstRotation = srcRotatedCoordinates.left;
       int srcYinDstRotation = srcRotatedCoordinates.top;
-      clipRect(dstRect, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, &dstClippedRect, &srcClippedRect);
-      if (dstClippedRect.area() <= 0 || srcClippedRect.area() <= 0) {
+      clipRect(rectangleTarget, srcBuffTransposedRect, srcXinDstRotation, srcYinDstRotation, rectangleTargetClipped, rectangleSourceClipped);
+      if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
       }
       // Rotate source rect back in source rotation.
-      srcClippedRect.rotateOn90InsideDimension(srcBuffTransposedDim.cy);
+      rectangleSourceClipped.rotateOn90InsideDimension(srcBuffTransposedDim.cy);
 
-      int resultHeight = srcClippedRect.height();
-      int resultWidth = srcClippedRect.width();
+      int resultHeight = rectangleSourceClipped.height();
+      int resultWidth = rectangleSourceClipped.width();
 
       unsigned char *pBaseDst = (unsigned char *)m_buffer
-        + (dstClippedRect.bottom - 1) * dstStrideBytesByX
-        + pixelSize * dstClippedRect.left;
+        + (rectangleTargetClipped.bottom - 1) * dstStrideBytesByX
+        + pixelSize * rectangleTargetClipped.left;
 
-      unsigned char *pBaseSrc = (unsigned char *)srcFrameBuffer->getBuffer()
-        + srcClippedRect.top * srcStrideBytes
-        + pixelSize * srcClippedRect.left;
+      unsigned char *pBaseSrc = (unsigned char *)pframebufferSource->getBuffer()
+        + rectangleSourceClipped.top * srcStrideBytes
+        + pixelSize * rectangleSourceClipped.left;
 
       for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst += pixelSize, pBaseSrc += srcStrideBytes) {
          unsigned int *pSrc = (unsigned int *)pBaseSrc;
@@ -391,36 +391,36 @@ namespace innate_subsystem
       return true;
    }
 
-   bool FrameBuffer::cmpFrom(const ::int_rectangle & dstRect, const FrameBuffer *srcFrameBuffer,
+   bool Framebuffer::cmpFrom(const ::int_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
                              const int srcX, const int srcY)
    {
-      if (m_pixelFormat != srcFrameBuffer->getPixelFormat())
+      if (m_pixelformat != pframebufferSource->getPixelFormat())
       {
          return false;
       }
 
-      ::int_rectangle srcClippedRect, dstClippedRect;
+      ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
-      clipRect(dstRect, srcFrameBuffer, srcX, srcY, &dstClippedRect, &srcClippedRect);
-      if (dstClippedRect.area() <= 0 || srcClippedRect.area() <= 0) {
+      clipRect(rectangleTarget, pframebufferSource, srcX, srcY, rectangleTargetClipped, rectangleSourceClipped);
+      if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return true;
       }
 
       // Shortcuts
-      int pixelSize = m_pixelFormat.bitsPerPixel / 8;
+      int pixelSize = m_pixelformat.bitsPerPixel / 8;
       int dstStrideBytes = m_dimension.cx * pixelSize;
-      int srcStrideBytes = srcFrameBuffer->getDimension().cx * pixelSize;
+      int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
-      int resultHeight = dstClippedRect.height();
-      int resultWidthBytes = dstClippedRect.width() * pixelSize;
+      int resultHeight = rectangleTargetClipped.height();
+      int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
 
       unsigned char *pdst = (unsigned char *)m_buffer
-                    + dstClippedRect.top * dstStrideBytes
-                    + pixelSize * dstClippedRect.left;
+                    + rectangleTargetClipped.top * dstStrideBytes
+                    + pixelSize * rectangleTargetClipped.left;
 
-      unsigned char *psrc = (unsigned char *)srcFrameBuffer->getBuffer()
-                    + srcClippedRect.top * srcStrideBytes
-                    + pixelSize * srcClippedRect.left;
+      unsigned char *psrc = (unsigned char *)pframebufferSource->getBuffer()
+                    + rectangleSourceClipped.top * srcStrideBytes
+                    + pixelSize * rectangleSourceClipped.left;
 
       for (int i = 0; i < resultHeight; i++, pdst += dstStrideBytes, psrc += srcStrideBytes) {
          if (memcmp(pdst, psrc, resultWidthBytes) != 0) {
@@ -431,30 +431,30 @@ namespace innate_subsystem
       return true;
    }
 
-   void FrameBuffer::move(const ::int_rectangle & dstRect, const int srcX, const int srcY)
+   void Framebuffer::move(const ::int_rectangle & rectangleTarget, const int srcX, const int srcY)
    {
-      ::int_rectangle srcClippedRect, dstClippedRect;
+      ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
 
-      clipRect(dstRect, this, srcX, srcY, &dstClippedRect, &srcClippedRect);
-      if (dstClippedRect.area() <= 0 || srcClippedRect.area() <= 0) {
+      clipRect(rectangleTarget, this, srcX, srcY, rectangleTargetClipped, rectangleSourceClipped);
+      if (rectangleTargetClipped.area() <= 0 || rectangleSourceClipped.area() <= 0) {
          return;
       }
 
       // Data copy
-      int pixelSize = m_pixelFormat.bitsPerPixel / 8;
+      int pixelSize = m_pixelformat.bitsPerPixel / 8;
       int strideBytes = m_dimension.cx * pixelSize;
 
-      int resultHeight = dstClippedRect.height();
-      int resultWidthBytes = dstClippedRect.width() * pixelSize;
+      int resultHeight = rectangleTargetClipped.height();
+      int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
 
       unsigned char *pdst, *psrc;
 
-      if (srcY > dstRect.top) {
+      if (srcY > rectangleTarget.top) {
          // Pointers set to first string of the rectanles
-         pdst = (unsigned char *)m_buffer + dstClippedRect.top * strideBytes
-                + pixelSize * dstClippedRect.left;
-         psrc = (unsigned char *)m_buffer + srcClippedRect.top * strideBytes
-                + pixelSize * srcClippedRect.left;
+         pdst = (unsigned char *)m_buffer + rectangleTargetClipped.top * strideBytes
+                + pixelSize * rectangleTargetClipped.left;
+         psrc = (unsigned char *)m_buffer + rectangleSourceClipped.top * strideBytes
+                + pixelSize * rectangleSourceClipped.left;
 
          for (int i = 0; i < resultHeight; i++, pdst += strideBytes, psrc += strideBytes) {
             memcpy(pdst, psrc, resultWidthBytes);
@@ -462,10 +462,10 @@ namespace innate_subsystem
 
       } else {
          // Pointers set to last string of the rectanles
-         pdst = (unsigned char *)m_buffer + (dstClippedRect.bottom - 1) * strideBytes
-                + pixelSize * dstClippedRect.left;
-         psrc = (unsigned char *)m_buffer + (srcClippedRect.bottom - 1) * strideBytes
-                + pixelSize * srcClippedRect.left;
+         pdst = (unsigned char *)m_buffer + (rectangleTargetClipped.bottom - 1) * strideBytes
+                + pixelSize * rectangleTargetClipped.left;
+         psrc = (unsigned char *)m_buffer + (rectangleSourceClipped.bottom - 1) * strideBytes
+                + pixelSize * rectangleSourceClipped.left;
 
          for (int i = resultHeight - 1; i >= 0; i--, pdst -= strideBytes, psrc -= strideBytes) {
             memmove(pdst, psrc, resultWidthBytes);
@@ -473,62 +473,62 @@ namespace innate_subsystem
       }
    }
 
-   bool FrameBuffer::setPixelFormat(const PixelFormat & pixelFormat)
+   bool Framebuffer::setPixelFormat(const PixelFormat & pixelFormat)
    {
-      m_pixelFormat = pixelFormat;
+      m_pixelformat = pixelFormat;
       return resizeBuffer();
    }
 
-   bool FrameBuffer::setDimension(const ::int_size & newDim)
+   bool Framebuffer::setDimension(const ::int_size & newDim)
    {
       m_dimension = newDim;
       return resizeBuffer();
    }
 
-   void FrameBuffer::setEmptyDimension(const ::int_rectangle & dimByRect)
+   void Framebuffer::setEmptyDimension(const ::int_rectangle & dimByRect)
    {
       m_dimension = dimByRect.size();
    }
 
-   void FrameBuffer::setEmptyPixelFmt(const PixelFormat & pf)
+   void Framebuffer::setEmptyPixelFmt(const PixelFormat & pf)
    {
-      m_pixelFormat = pf;
+      m_pixelformat = pf;
    }
 
-   void FrameBuffer::setPropertiesWithoutResize(const ::int_size & newDim, const PixelFormat & pf)
+   void Framebuffer::setPropertiesWithoutResize(const ::int_size & newDim, const PixelFormat & pf)
    {
       m_dimension = newDim;
-      m_pixelFormat = pf;
+      m_pixelformat = pf;
    }
 
-   bool FrameBuffer::setProperties(const ::int_size & newDim,
+   bool Framebuffer::setProperties(const ::int_size & newDim,
                                    const PixelFormat & pixelFormat)
    {
-      m_pixelFormat = pixelFormat;
+      m_pixelformat = pixelFormat;
       m_dimension = newDim;
       return resizeBuffer();
    }
 
-   bool FrameBuffer::setProperties(const ::int_rectangle & dimByRect,
+   bool Framebuffer::setProperties(const ::int_rectangle & dimByRect,
                                    const PixelFormat & pixelFormat)
    {
-      m_pixelFormat = pixelFormat;
+      m_pixelformat = pixelFormat;
       m_dimension = dimByRect.size();
       return resizeBuffer();
    }
 
-   unsigned char FrameBuffer::getBitsPerPixel() const
+   unsigned char Framebuffer::getBitsPerPixel() const
    {
-      _ASSERT((unsigned char)m_pixelFormat.bitsPerPixel == m_pixelFormat.bitsPerPixel);
-      return (unsigned char)m_pixelFormat.bitsPerPixel;
+      _ASSERT((unsigned char)m_pixelformat.bitsPerPixel == m_pixelformat.bitsPerPixel);
+      return (unsigned char)m_pixelformat.bitsPerPixel;
    }
 
-   int FrameBuffer::getBufferSize() const
+   int Framebuffer::getBufferSize() const
    {
-      return (int)((unsigned long long)m_dimension.area() * m_pixelFormat.bitsPerPixel / 8);
+      return (int)((unsigned long long)m_dimension.area() * m_pixelformat.bitsPerPixel / 8);
    }
 
-   bool FrameBuffer::resizeBuffer()
+   bool Framebuffer::resizeBuffer()
    {
       if (m_buffer != 0) {
          delete []m_buffer;

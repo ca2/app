@@ -48,6 +48,25 @@ namespace windows
    }
 
 
+   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::int_rectangle & rectangle)
+   {
+
+      RECT _winRectø{};
+
+      if (!::GetWindowRect(::as_HWND(operatingsystemwindow), &_winRectø))
+      {
+
+         return false;
+
+      }
+
+      rectangle = _winRectø;
+
+      return true;
+
+   }
+
+
 } // namespace windows
 
 

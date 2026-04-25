@@ -40,7 +40,7 @@ namespace image
       const ::int_size & size() const { return m_size; }
 
       ::int_rectangle rectangle(const ::int_point & point = {}) { return ::int_rectangle(point, m_size); }
-      const ::int_rectangle rectangle(const ::int_point & point = {}) const { return ::int_rectangle(point, m_size); }
+      const ::int_rectangle & rectangle(const ::int_point & point = {}) const { return ::int_rectangle(point, m_size); }
 
       virtual ::image::image_pointer calc_current_frame(image_dynamic & dynamic);
       virtual void update(::image::image *pimageHost, const ::image::image_drawing & imagedrawing);

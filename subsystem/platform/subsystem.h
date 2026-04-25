@@ -57,6 +57,13 @@ namespace subsystem
       ::subsystem::Sockets & Sockets();
 
 
+      virtual ::pointer < ::subsystem::CurrentConsoleProcess> createCurrentConsoleProcess(
+         ::subsystem::LogWriter *log,
+         bool connectRdpSession,
+         const ::scoped_string & scopedstrPath = {},
+         const ::scoped_string & scopedstrArgs = {});
+
+
       //virtual void initializeCurrentProcessCommandLineArguments(
         // CommandLineArguments *pcommandlinearguments);
 
@@ -114,6 +121,14 @@ namespace subsystem
 
       // Should deprecate this function?!?!?
       virtual ::string getLocalIpAddressString();
+
+
+
+      virtual int get_LOADER_CLOSE_CODE();
+      virtual int get_SPEC_IPC_CODE();
+      // RegisterWindowMessage("TVN.HOOK.LOADER.CLOSE.CODE");
+      // const unsigned int HookDefinitions::SPEC_IPC_CODE =
+      // RegisterWindowMessage("TVN.HOOK.MESSAGE.CODE");
 
 
    };

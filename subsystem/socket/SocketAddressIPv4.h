@@ -65,6 +65,8 @@ namespace subsystem
       virtual unsigned short getPort() const = 0;
 
 
+      virtual bool isLoopbackAddress() const = 0;
+
    // //protected:
    //    //WsaStartup m_wsaStartup;
    //    unsigned short m_port;
@@ -123,7 +125,7 @@ namespace subsystem
       //struct sockaddr_in getSockAddr() const = 0;
 
       // Converts socket address to it's string value (ip address as string).
-      virtual ::string toString() const override
+      ::string toString() const override
       {
 
          return m_psocketaddressipv4->toString();
@@ -131,7 +133,7 @@ namespace subsystem
       }
 
       // Returns socket port number
-      virtual unsigned short getPort() const override
+      unsigned short getPort() const override
       {
 
          return m_psocketaddressipv4->getPort();
@@ -139,6 +141,12 @@ namespace subsystem
       }
 
 
+      bool isLoopbackAddress() const override
+      {
+
+         return m_psocketaddressipv4->isLoopbackAddress();
+
+      }
       // //protected:
       //    //WsaStartup m_wsaStartup;
       //    unsigned short m_port;

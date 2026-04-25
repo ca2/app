@@ -80,9 +80,9 @@ namespace gpu_gpu
    context::context()
    {
 
-      //m_gluLayerFrameBuffer = 0;
+      //m_gluLayerFramebuffer = 0;
       //m_globalUBO = 0;
-      //m_gluLayFrameBufferRenderer = 0;
+      //m_gluLayFramebufferRenderer = 0;
 
       //m_fboID = 0;
       //m_texID = 0;
@@ -542,7 +542,7 @@ namespace gpu_gpu
 //       if (size.area() > 0)
 //       {
 //
-//          m_pframebuffer->create(size, m_bDepthBuffer);
+//          m_pframebuffer.create(size, m_bDepthBuffer);
 //
 //       }
 //
@@ -577,7 +577,7 @@ namespace gpu_gpu
 //       //   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 //       //   glBindTexture(GL_TEXTURE_2D, 0);
 //
-//       //   // attach it to currently bound framebuffer object
+//       //   // attach it to currently bound pframebuffer object
 //       //   glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texID, 0);
 //
 //       //}
@@ -1425,15 +1425,15 @@ namespace gpu_gpu
 //
 //       //////if()
 //
-//       //////GLuint framebuffer;
-//       //////glGenFramebuffers(1, &framebuffer);
+//       //////GLuint pframebuffer;
+//       //////glGenFramebuffers(1, &pframebuffer);
 //       //////::opengl::check_error("glGenFramebuffers");
-//       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+//       //////glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pframebuffer);
 //       //////::opengl::check_error("glBindFramebuffer");
 //
 //       //////auto gluTextureID = ptextureDst->m_gluTextureID;
 //
-//       //////// Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+//       //////// Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
 //       //////glFramebufferTexture2D(
 //       //////   GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
 //       //////   gluTextureID,
@@ -1442,7 +1442,7 @@ namespace gpu_gpu
 //
 //       //////if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 //       //////   printf("Framebuffer not complete!\n");
-//       //////   glDeleteFramebuffers(1, &framebuffer);
+//       //////   glDeleteFramebuffers(1, &pframebuffer);
 //       //////   return;
 //       //////}
 //
@@ -1468,10 +1468,10 @@ namespace gpu_gpu
 //
 //       ////}
 //
-//       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+//       ////glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
 //       ////::opengl::check_error("glBindFramebuffer");
 //
-//       ////glDeleteFramebuffers(1, &framebuffer);
+//       ////glDeleteFramebuffers(1, &pframebuffer);
 //       ////::opengl::check_error("glDeleteFramebuffers");
 //
 //
@@ -1511,24 +1511,24 @@ namespace gpu_gpu
 //    //   glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fbo);
 //    //   ::opengl::check_error("");
 //
-//    //   if (m_gluLayerFrameBuffer &&
-//    //      m_gluLayerFrameBuffer == fbo)
+//    //   if (m_gluLayerFramebuffer &&
+//    //      m_gluLayerFramebuffer == fbo)
 //    //   {
 //
 //    //      return; // already bound
 //
 //    //   }
 //
-//    //   if (!m_gluLayerFrameBuffer)
+//    //   if (!m_gluLayerFramebuffer)
 //    //   {
 //
 //    //      GLuint fboSrc, fboDst;
-//    //      glGenFramebuffers(1, &m_gluLayerFrameBuffer);
+//    //      glGenFramebuffers(1, &m_gluLayerFramebuffer);
 //    //      ::opengl::check_error("");
 //
 //    //   }
 //
-//    //   glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFrameBuffer);
+//    //   glBindFramebuffer(GL_FRAMEBUFFER, m_gluLayerFramebuffer);
 //    //   ::opengl::check_error("");
 //
 //    //   ::cast < texture > ptexture = m_pgpurenderer->m_pgpurendertarget->current_texture();
@@ -1578,11 +1578,11 @@ namespace gpu_gpu
 //       ::cast<::gpu_opengl::texture> ptexture = ptextureParam;
 //
 //
-//       GLuint framebuffer;
-//       glGenFramebuffers(1, &framebuffer);
-//       glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer);
+//       GLuint pframebuffer;
+//       glGenFramebuffers(1, &pframebuffer);
+//       glBindFramebuffer(GL_READ_FRAMEBUFFER, pframebuffer);
 //
-//       // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+//       // Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
 //       glFramebufferTexture2D(
 //          GL_READ_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
 //          ptexture->m_gluTextureID,
@@ -1591,14 +1591,14 @@ namespace gpu_gpu
 //       if (glCheckFramebufferStatus(GL_READ_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 //       {
 //          printf("Framebuffer not complete!\n");
-//          glDeleteFramebuffers(1, &framebuffer);
+//          glDeleteFramebuffers(1, &pframebuffer);
 //          return;
 //       }
 //
 //
 //       //glReadBuffer(GL_COLOR_ATTACHMENT0);
 //
-//       // Bind default framebuffer as draw target
+//       // Bind default pframebuffer as draw target
 //       glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 //
 //
@@ -1618,15 +1618,15 @@ namespace gpu_gpu
 //          );
 //
 //
-//       // Blit from source to default framebuffer
+//       // Blit from source to default pframebuffer
 //       glBlitFramebuffer(
 //          0, 0, ptexture->size().cx, ptexture->size().cy, // src rect
 //          0, 0, m_rectangle.width(), m_rectangle.height(), // dst rect
 //          GL_COLOR_BUFFER_BIT, GL_NEAREST);
 //
-//       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+//       glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
 //
-//       glDeleteFramebuffers(1, &framebuffer);
+//       glDeleteFramebuffers(1, &pframebuffer);
 //
 // #ifdef SHOW_DEBUG_DRAWING
 //       {
@@ -2517,13 +2517,13 @@ namespace gpu_gpu
 //    //   if (m_pframebuffer)
 //    //   {
 //
-//    //      m_pframebuffer->bind();
+//    //      m_pframebuffer.bind();
 //
 //    //   }
 //    //   else if(m_eoutput == ::gpu::e_output_swap_chain)
 //    //   {
 //    //
-//    //      // If using swap chain, no need to bind framebuffer
+//    //      // If using swap chain, no need to bind pframebuffer
 //
 //    //      GLint drawFboId = 0, readFboId = 0;
 //
@@ -2680,7 +2680,7 @@ namespace gpu_gpu
 //             #version 330 core
 //
 //                in floating_sequence4 fragColor;      // Input from the vertex shader (location = 0)
-//             out floating_sequence4 outColor;      // Output to framebuffer (location = 0)
+//             out floating_sequence4 outColor;      // Output to pframebuffer (location = 0)
 //
 //             void main() {
 //                outColor = fragColor;
@@ -3063,7 +3063,7 @@ m_pibldiffuseirradiancemap->initialize_diffuse_irradiance_map(m_pgpurenderer, m_
 
       }
 
-      return piblspecularmap->m_pbrdfconvolutionframebuffer->m_ptexture;
+      return piblspecularmap->m_pbrdfconvolutionframebuffer.m_ptexture;
    }
 
 

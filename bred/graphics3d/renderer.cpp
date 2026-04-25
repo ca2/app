@@ -263,7 +263,7 @@
 //    //    // VkRenderPassBeginInfo renderPassInfo{};
 //    //    // renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
 //    //    // renderPassInfo.renderPass = m_swapchain->getRenderPass();
-//    //    // renderPassInfo.framebuffer = m_swapchain->getFrameBuffer(m_currentImageIndex);
+//    //    // renderPassInfo.pframebuffer = m_swapchain->getFramebuffer(m_currentImageIndex);
 //    //    //
 //    //    // renderPassInfo.renderArea.offset = { 0, 0 };
 //    //    // renderPassInfo.renderArea.extent = m_swapchain->getSwapChainExtent();

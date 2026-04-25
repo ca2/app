@@ -589,7 +589,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\DibFrameBuffer.cpp"
+				RelativePath=".\DibFramebuffer.cpp"
 				>
 			</File>
 			<File
@@ -747,7 +747,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\DibFrameBuffer.h"
+				RelativePath=".\DibFramebuffer.h"
 				>
 			</File>
 			<File

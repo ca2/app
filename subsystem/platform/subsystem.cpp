@@ -19,6 +19,7 @@
 #include "thread/ZombieKiller.h"
 #include "socket/Sockets.h"
 #include "CommandLineArguments.h"
+#include "node/CurrentConsoleProcess.h"
 
 
 namespace subsystem
@@ -204,6 +205,22 @@ namespace subsystem
    //   throw ::interface_only();
 
    //}
+
+   ::pointer < ::subsystem::CurrentConsoleProcess> subsystem::createCurrentConsoleProcess(
+   ::subsystem::LogWriter *plogwriter,
+   bool bConnectRdpSession,
+   const ::scoped_string & scopedstrPath,
+   const ::scoped_string & scopedstrArgs)
+   {
+
+      auto pcurrentconsoleprocess = createø<::subsystem::CurrentConsoleProcess>();
+
+      pcurrentconsoleprocess->initialize_current_console_process(plogwriter, bConnectRdpSession, scopedstrPath, scopedstrArgs);
+
+      return pcurrentconsoleprocess;
+
+   }
+
 
 
    void subsystem::startSockets()
@@ -427,6 +444,31 @@ namespace subsystem
 
 
    }
+
+
+   int subsystem::get_LOADER_CLOSE_CODE()
+   {
+
+      throw ::interface_only();
+
+      return -1;
+
+   }
+
+
+   int subsystem::get_SPEC_IPC_CODE()
+   {
+
+      throw ::interface_only();
+
+      return -1;
+
+   }
+
+
+   // RegisterWindowMessage("TVN.HOOK.LOADER.CLOSE.CODE");
+   // const unsigned int HookDefinitions::SPEC_IPC_CODE =
+   // RegisterWindowMessage("TVN.HOOK.MESSAGE.CODE");
 
 
    ZombieKiller & subsystem::ZombieKiller()

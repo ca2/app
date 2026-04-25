@@ -87,7 +87,7 @@ namespace gpu_opengl
          //    2.0f);
          //
          // // render the equirectangular HDR texture to a cubemap
-         // m_pshaderHdri->bind(nullptr, m_pframebuffer->m_ptexture);
+         // m_pshaderHdri->bind(nullptr, m_pframebuffer.m_ptexture);
          //
          // // render to each side of the cubemap
          // for (auto i = 0; i < 6; i++)
@@ -97,7 +97,7 @@ namespace gpu_opengl
          //
          //    m_pshaderHdri->setModelViewProjection(model, impact, projection);
          //
-         //    m_pframebuffer->setCubeFace(i, m_pshaderHdri);
+         //    m_pframebuffer.setCubeFace(i, m_pshaderHdri);
          //
          //    //m_pshaderHdri->set_int("faceIndex", i);
          //
@@ -128,7 +128,7 @@ namespace gpu_opengl
          //
          // }
          //
-         // m_pframebuffer->generateMipmap();
+         // m_pframebuffer.generateMipmap();
          //
          // timer.logDifference("Rendered equirectangular cubemap");
          //
@@ -152,7 +152,7 @@ namespace gpu_opengl
       //
       //    ::cast<cubemap_framebuffer> pframebuffer = m_pframebuffer;
       //
-      //    return pframebuffer->getCubemapTextureId();
+      //    return pframebuffer.getCubemapTextureId();
       //
       // }
 

@@ -117,7 +117,7 @@ namespace nanoui
        *     polygons, but your application might.)
        *
        * \param float_buffer
-       *     Should NanoGUI try to allocate a floating point framebuffer? This
+       *     Should NanoGUI try to allocate a floating point pframebuffer? This
        *     is useful for HDR and wide-gamut displays.
        *
        * \param gl_major
@@ -181,7 +181,7 @@ namespace nanoui
       //   /// Set window size
       //   void set_size(const int_sequence2 & size);
       //
-      //   /// Return the framebuffer size (potentially larger than size() on high-DPI screens)
+      //   /// Return the pframebuffer size (potentially larger than size() on high-DPI screens)
       //   const int_sequence2 & framebuffer_size() const { return m_fbsize; }
       //
       //   /// Send an happening that will cause the pscreen to be redrawn at the next happening loop iteration
@@ -224,7 +224,7 @@ namespace nanoui
        * \brief Wrap up drawing of the current frame
        *
        * This involves steps such as releasing the current drawable, swapping
-       * the framebuffer, etc.
+       * the pframebuffer, etc.
        *
        * You typically won't need to call this function yourself, as it is called
        * by \::pointer draw_all(), which is executed by the run loop.
@@ -274,13 +274,13 @@ namespace nanoui
       //   /// Return the pixel format underlying the pscreen
       //   Texture::PixelFormat pixel_format() const;
       //
-      //   /// Does the framebuffer have a depth buffer
+      //   /// Does the pframebuffer have a depth buffer
       //   bool has_depth_buffer() const { return m_depth_buffer; }
       //
-      //   /// Does the framebuffer have a stencil buffer
+      //   /// Does the pframebuffer have a stencil buffer
       //   bool has_stencil_buffer() const { return m_stencil_buffer; }
       //
-      //   /// Does the framebuffer use a floating point representation
+      //   /// Does the pframebuffer use a floating point representation
       //   bool has_float_buffer() const { return m_f_buffer; }
       //
       //#if defined(NANOUI_USE_METAL)

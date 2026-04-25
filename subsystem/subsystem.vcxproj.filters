@@ -30,10 +30,10 @@
     <Filter Include="Header Files\socket">
       <UniqueIdentifier>{79db9357-aa68-4c65-8f1c-bcc1e072e48f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\framebuffer">
+    <Filter Include="Header Files\pframebuffer">
       <UniqueIdentifier>{d0f69938-de24-43fb-8b8e-7df5b165f27a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\framebuffer">
+    <Filter Include="Source Files\pframebuffer">
       <UniqueIdentifier>{4706bc42-2157-4159-b54d-47c689846869}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\platform">
@@ -233,11 +233,11 @@
     <ClInclude Include="socket\sockdefs.h">
       <Filter>Header Files\socket</Filter>
     </ClInclude>
-    <ClInclude Include="framebuffer\StandardPixelFormatFactory.h">
-      <Filter>Header Files\framebuffer</Filter>
+    <ClInclude Include="pframebuffer\StandardPixelFormatFactory.h">
+      <Filter>Header Files\pframebuffer</Filter>
     </ClInclude>
-    <ClInclude Include="framebuffer\PixelFormat.h">
-      <Filter>Header Files\framebuffer</Filter>
+    <ClInclude Include="pframebuffer\PixelFormat.h">
+      <Filter>Header Files\pframebuffer</Filter>
     </ClInclude>
     <ClInclude Include="_common_header.h">
       <Filter>Header Files</Filter>
@@ -535,11 +535,11 @@
     <ClCompile Include="socket\SocketStream.cpp">
       <Filter>Source Files\socket</Filter>
     </ClCompile>
-    <ClCompile Include="framebuffer\PixelFormat.cpp">
-      <Filter>Source Files\framebuffer</Filter>
+    <ClCompile Include="pframebuffer\PixelFormat.cpp">
+      <Filter>Source Files\pframebuffer</Filter>
     </ClCompile>
-    <ClCompile Include="framebuffer\StandardPixelFormatFactory.cpp">
-      <Filter>Source Files\framebuffer</Filter>
+    <ClCompile Include="pframebuffer\StandardPixelFormatFactory.cpp">
+      <Filter>Source Files\pframebuffer</Filter>
     </ClCompile>
     <ClCompile Include="node\OperatingSystem.cpp">
       <Filter>Source Files\node</Filter>

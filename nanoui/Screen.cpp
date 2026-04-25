@@ -232,7 +232,7 @@ namespace nanoui
    //#if defined(GLFW_FLOATBUFFER)
    //         glfwWindowHint(GLFW_FLOATBUFFER, GL_FALSE);
    //#endif
-   //         fprintf(stderr, "Could not allocate floating point framebuffer, retrying without..\n");
+   //         fprintf(stderr, "Could not allocate floating point pframebuffer, retrying without..\n");
    //      }
    //      else {
    //         break;
@@ -273,7 +273,7 @@ namespace nanoui
    //      GLboolean float_mode;
    //      CHK(glGetBooleanv(GL_RGBA_FLOAT_MODE, &float_mode));
    //      if (!float_mode) {
-   //         fprintf(stderr, "Could not allocate floating point framebuffer.\n");
+   //         fprintf(stderr, "Could not allocate floating point pframebuffer->\n");
    //         m_f_buffer = false;
    //      }
    //   }
@@ -374,7 +374,7 @@ namespace nanoui
    //      }
    //   );
    //
-   //   /* React to framebuffer size happenings -- includes window
+   //   /* React to pframebuffer size happenings -- includes window
    //      size happenings and also catches things like dragging
    //      a window from a Retina-capable pscreen to a normal
    //      pscreen on Mac OS X */

@@ -1186,7 +1186,7 @@ namespace gpu_opengl
 ////
 ////                     ::cast < context > pcontext = prenderer->m_pgpucontext;
 ////
-////                     GLuint tex = pcontext->m_pframebuffer->m_tex;
+////                     GLuint tex = pcontext->m_pframebuffer.m_tex;
 ////
 ////                     glBindTexture(GL_TEXTURE_2D, tex);
 ////
@@ -1248,16 +1248,16 @@ namespace gpu_opengl
    //   //if (player->texture())
    //   //{
 
-   //   //   if (!m_iFrameBufferRenderer)
+   //   //   if (!m_iFramebufferRenderer)
    //   //   {
 
    //   //      GLuint fboSrc, fboDst;
-   //   //      glGenFramebuffers(1, &m_iFrameBufferRenderer);
+   //   //      glGenFramebuffers(1, &m_iFramebufferRenderer);
    //   //      ::opengl::check_error("");
 
    //   //   }
 
-   //   //   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFrameBufferRenderer);
+   //   //   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_iFramebufferRenderer);
    //   //   ::opengl::check_error("");
 
    //      ::cast < texture > ptexture = player->m_pgpurenderer->m_pgpurendertarget->current_texture();
@@ -1416,7 +1416,7 @@ namespace gpu_opengl
    //      //glUseProgram(blendShader);
    //      m_pshaderBlend->bind(nullptr);
    //      glActiveTexture(GL_TEXTURE0);
-   //      auto texture = pcontextSource->m_pframebuffer->m_tex;
+   //      auto texture = pcontextSource->m_pframebuffer.m_tex;
    //      glBindTexture(GL_TEXTURE_2D, texture);
    //      //glUniform1i(glGetUniformLocation(blendShader, "tex"), 0);
    //      ::cast < gpu_opengl::shader > pshader = m_pshaderBlend;
@@ -1444,11 +1444,11 @@ namespace gpu_opengl
    //    ::cast < texture > ptexture = ptextureParam;
    //
    //
-   //    GLuint framebuffer;
-   //    glGenFramebuffers(1, &framebuffer);
-   //    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+   //    GLuint pframebuffer;
+   //    glGenFramebuffers(1, &pframebuffer);
+   //    glBindFramebuffer(GL_FRAMEBUFFER, pframebuffer);
    //
-   //    // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+   //    // Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
    //    glFramebufferTexture2D(
    //       GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
    //       ptexture->m_gluTextureID,
@@ -1456,7 +1456,7 @@ namespace gpu_opengl
    //
    //    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
    //       printf("Framebuffer not complete!\n");
-   //       glDeleteFramebuffers(1, &framebuffer);
+   //       glDeleteFramebuffers(1, &pframebuffer);
    //       return;
    //    }
    //
@@ -1469,9 +1469,9 @@ namespace gpu_opengl
    //    glClearColor(0, 0, 0, 0); // Transparent
    //    glClear(GL_COLOR_BUFFER_BIT);
    //
-   //    glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+   //    glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
    //
-   //    glDeleteFramebuffers(1, &framebuffer);
+   //    glDeleteFramebuffers(1, &pframebuffer);
    //
    // }
 
@@ -1628,11 +1628,11 @@ namespace gpu_opengl
 //      ::cast < texture > ptextureDst = ptextureTarget;
 //      ::cast < texture > ptextureSrc = ptextureSource;
 //
-//      GLuint framebuffer;
-//      glGenFramebuffers(1, &framebuffer);
-//      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+//      GLuint pframebuffer;
+//      glGenFramebuffers(1, &pframebuffer);
+//      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pframebuffer);
 //
-//      // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+//      // Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
 //      glFramebufferTexture2D(
 //         GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
 //         ptextureDst->m_gluTextureID,
@@ -1640,7 +1640,7 @@ namespace gpu_opengl
 //
 //      if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
 //         printf("Framebuffer not complete!\n");
-//         glDeleteFramebuffers(1, &framebuffer);
+//         glDeleteFramebuffers(1, &pframebuffer);
 //         return;
 //      }
 //
@@ -1761,9 +1761,9 @@ namespace gpu_opengl
 //
 //#endif
 //
-//      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+//      glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
 //
-//      glDeleteFramebuffers(1, &framebuffer);
+//      glDeleteFramebuffers(1, &pframebuffer);
 //
 //   }
 
@@ -1833,11 +1833,11 @@ namespace gpu_opengl
 
    //   }
 
-   //   GLuint framebuffer;
-   //   glGenFramebuffers(1, &framebuffer);
-   //   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+   //   GLuint pframebuffer;
+   //   glGenFramebuffers(1, &pframebuffer);
+   //   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, pframebuffer);
 
-   //   // Bind the destination texture (textures[textureSrc]) as the framebuffer color attachment
+   //   // Bind the destination texture (textures[textureSrc]) as the pframebuffer color attachment
    //   glFramebufferTexture2D(
    //      GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
    //      ptextureDst->m_gluTextureID,
@@ -1845,7 +1845,7 @@ namespace gpu_opengl
 
    //   if (glCheckFramebufferStatus(GL_DRAW_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
    //      printf("Framebuffer not complete!\n");
-   //      glDeleteFramebuffers(1, &framebuffer);
+   //      glDeleteFramebuffers(1, &pframebuffer);
    //      return;
    //   }
 
@@ -1959,9 +1959,9 @@ namespace gpu_opengl
 
    //   }
 
-   //   glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default framebuffer
+   //   glBindFramebuffer(GL_FRAMEBUFFER, 0); // Return to default pframebuffer
 
-   //   glDeleteFramebuffers(1, &framebuffer);
+   //   glDeleteFramebuffers(1, &pframebuffer);
 
 
    //}

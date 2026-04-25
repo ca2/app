@@ -93,8 +93,7 @@ namespace subsystem
       // If keepCloseRight is true then source process keeps the right to close
       // the new handles.
       // @throw ::subsystem::Exception on a fail.
-      //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
-                            //bool keepCloseRight = false);
+      virtual void assignHandlesFor(::subsystem::ProcessHandleInterface * pprocesshandle, bool neededToClose, bool keepCloseRight = false) = 0;
 
       virtual void setTimeOut(unsigned int timeOut) = 0;
 
@@ -186,6 +185,12 @@ namespace subsystem
       // @throw ::subsystem::Exception on a fail.
       //void assignHandlesFor(HANDLE hTargetProc, bool neededToClose,
                             //bool keepCloseRight = false);
+
+      void assignHandlesFor(::subsystem::ProcessHandleInterface * pprocesshandle, bool neededToClose, bool keepCloseRight = false) override
+      {
+
+      m_panonymouspipe->assignHandlesFor(pprocesshandle, neededToClose, keepCloseRight);
+      }
 
       void setTimeOut(unsigned int timeOut) override{return m_panonymouspipe->setTimeOut(timeOut);}
 

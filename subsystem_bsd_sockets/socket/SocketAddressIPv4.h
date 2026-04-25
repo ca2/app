@@ -74,6 +74,8 @@ namespace subsystem_bsd_sockets
       // Returns socket port number
       unsigned short getPort() const override;
 
+      bool isLoopbackAddress() const override;
+
       /// SocketAddressIPv4 resolve(const ::scoped_string & scopedstrHost, unsigned short port);
 
    //protected:

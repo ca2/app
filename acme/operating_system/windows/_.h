@@ -97,7 +97,7 @@ namespace windows
 
    CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
 
-
+   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::int_rectangle & rectangle);
 
 } // namespace windows
 

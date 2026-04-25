@@ -91,7 +91,7 @@ namespace subsystem
 
       virtual void fillScreenRect() = 0;
 
-      //PixelFormat m_pixelFormat;
+      //PixelFormat m_pixelformat;
       //::int_rectangle m_virtDesktopRect;
    };
 
@@ -190,7 +190,7 @@ namespace subsystem
 
       }
 
-      // PixelFormat m_pixelFormat;
+      // PixelFormat m_pixelformat;
       // ::int_rectangle m_virtDesktopRect;
    };
 

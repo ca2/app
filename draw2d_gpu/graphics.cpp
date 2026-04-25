@@ -101,7 +101,7 @@ void main() {
             #version 330 core
 
                in vec4 fragColor;      // Input from the vertex shader (location = 0)
-            out vec4 outColor;      // Output to framebuffer (location = 0)
+            out vec4 outColor;      // Output to pframebuffer (location = 0)
 
             void main() {
                outColor = fragColor;
@@ -2323,7 +2323,7 @@ void main() {
    //      //if(pgraphicsSrc == nullptr)
    //      //   return false;
    //
-   //      //plusplus::rectF dstRect((plusplus::REAL) xDst, (plusplus::REAL) yDst, (plusplus::REAL) nDstWidth, (plusplus::REAL) nDstHeight);
+   //      //plusplus::rectF rectangleTarget((plusplus::REAL) xDst, (plusplus::REAL) yDst, (plusplus::REAL) nDstWidth, (plusplus::REAL) nDstHeight);
    //
    //      //plusplus::rectF srcRect((plusplus::REAL) xSrc, (plusplus::REAL) ySrc, (plusplus::REAL) nSrcWidth, (plusplus::REAL) nSrcHeight);
    //
@@ -2332,7 +2332,7 @@ void main() {
    //
    //      //try
    //      //{
-   //      //   return m_pgraphics->DrawImage((plusplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(),  dstRect, srcRect, plusplus::UnitPixel) == plusplus::Status::Ok;
+   //      //   return m_pgraphics->DrawImage((plusplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(),  rectangleTarget, srcRect, plusplus::UnitPixel) == plusplus::Status::Ok;
    //      //}
    //      //catch(...)
    //      //{
@@ -3449,7 +3449,7 @@ void main() {
 ////
 ////      attributes.SetColorMatrix(&matrix, plusplus::ColorMatrixFlagsDefault, plusplus::ColorAdjustTypeBitmap);
 ////
-////      plusplus::rectF dstRect((plusplus::REAL) xDest, (plusplus::REAL) yDest, (plusplus::REAL) nDestWidth, (plusplus::REAL) nDestHeight);
+////      plusplus::rectF rectangleTarget((plusplus::REAL) xDest, (plusplus::REAL) yDest, (plusplus::REAL) nDestWidth, (plusplus::REAL) nDestHeight);
 ////
 ////      if(pgraphicsSrc == nullptr)
 ////         return false;
@@ -3472,7 +3472,7 @@ void main() {
 ////      if(pbitmap != nullptr)
 ////      {
 ////
-////         m_pgraphics->DrawImage(pbitmap,dstRect,(plusplus::REAL) xSrc,(plusplus::REAL) ySrc,(plusplus::REAL) nSrcWidth,(plusplus::REAL) nSrcHeight,plusplus::UnitPixel,&attributes);
+////         m_pgraphics->DrawImage(pbitmap,rectangleTarget,(plusplus::REAL) xSrc,(plusplus::REAL) ySrc,(plusplus::REAL) nSrcWidth,(plusplus::REAL) nSrcHeight,plusplus::UnitPixel,&attributes);
 ////
 ////      }
 ////

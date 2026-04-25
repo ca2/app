@@ -378,7 +378,7 @@ namespace nano2d
 //// control the rendering on Hi-DPI devices.
 //// For example, GLFW returns two dimension for an opened window: window size and
 //// frame buffer size. In that case you would set windowWidth/Height to the window size
-//// devicePixelRatio to: frameBufferWidth / windowWidth.
+//// devicePixelRatio to: framebufferWidth / windowWidth.
 //		void begin_frame(float windowWidth, float windowHeight, float devicePixelRatio);
 //
 //		// Cancels drawing the current frame.

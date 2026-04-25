@@ -262,7 +262,7 @@
 		9AA5E5C016F7C61B005C45CE /* ImfEnvmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2C216E7F600008420D3 /* ImfEnvmap.cpp */; };
 		9AA5E5C116F7C61B005C45CE /* ImfEnvmapAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2C416E7F600008420D3 /* ImfEnvmapAttribute.cpp */; };
 		9AA5E5C216F7C61B005C45CE /* ImfFloatAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2C616E7F600008420D3 /* ImfFloatAttribute.cpp */; };
-		9AA5E5C316F7C61B005C45CE /* ImfFrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2C816E7F600008420D3 /* ImfFrameBuffer.cpp */; };
+		9AA5E5C316F7C61B005C45CE /* ImfFramebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2C816E7F600008420D3 /* ImfFramebuffer.cpp */; };
 		9AA5E5C416F7C61B005C45CE /* ImfFramesPerSecond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2CA16E7F600008420D3 /* ImfFramesPerSecond.cpp */; };
 		9AA5E5C516F7C61B005C45CE /* ImfFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2CC16E7F600008420D3 /* ImfFramework.cpp */; };
 		9AA5E5C616F7C61B005C45CE /* ImfHeader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2CE16E7F600008420D3 /* ImfHeader.cpp */; };
@@ -442,7 +442,7 @@
 		9AA5E67616F7C61B005C45CE /* ImfEnvmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2C316E7F600008420D3 /* ImfEnvmap.h */; };
 		9AA5E67716F7C61B005C45CE /* ImfEnvmapAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2C516E7F600008420D3 /* ImfEnvmapAttribute.h */; };
 		9AA5E67816F7C61B005C45CE /* ImfFloatAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2C716E7F600008420D3 /* ImfFloatAttribute.h */; };
-		9AA5E67916F7C61B005C45CE /* ImfFrameBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2C916E7F600008420D3 /* ImfFrameBuffer.h */; };
+		9AA5E67916F7C61B005C45CE /* ImfFramebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2C916E7F600008420D3 /* ImfFramebuffer.h */; };
 		9AA5E67A16F7C61B005C45CE /* ImfFramesPerSecond.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2CB16E7F600008420D3 /* ImfFramesPerSecond.h */; };
 		9AA5E67B16F7C61B005C45CE /* ImfFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2CD16E7F600008420D3 /* ImfFramework.h */; };
 		9AA5E67C16F7C61B005C45CE /* ImfHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2CF16E7F600008420D3 /* ImfHeader.h */; };
@@ -961,8 +961,8 @@
 		9A86C2C516E7F600008420D3 /* ImfEnvmapAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfEnvmapAttribute.h; sourceTree = "<group>"; };
 		9A86C2C616E7F600008420D3 /* ImfFloatAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfFloatAttribute.cpp; sourceTree = "<group>"; };
 		9A86C2C716E7F600008420D3 /* ImfFloatAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfFloatAttribute.h; sourceTree = "<group>"; };
-		9A86C2C816E7F600008420D3 /* ImfFrameBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfFrameBuffer.cpp; sourceTree = "<group>"; };
-		9A86C2C916E7F600008420D3 /* ImfFrameBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfFrameBuffer.h; sourceTree = "<group>"; };
+		9A86C2C816E7F600008420D3 /* ImfFramebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfFramebuffer.cpp; sourceTree = "<group>"; };
+		9A86C2C916E7F600008420D3 /* ImfFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfFramebuffer.h; sourceTree = "<group>"; };
 		9A86C2CA16E7F600008420D3 /* ImfFramesPerSecond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfFramesPerSecond.cpp; sourceTree = "<group>"; };
 		9A86C2CB16E7F600008420D3 /* ImfFramesPerSecond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfFramesPerSecond.h; sourceTree = "<group>"; };
 		9A86C2CC16E7F600008420D3 /* ImfFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfFramework.cpp; sourceTree = "<group>"; };
@@ -1664,8 +1664,8 @@
 				9A86C2C516E7F600008420D3 /* ImfEnvmapAttribute.h */,
 				9A86C2C616E7F600008420D3 /* ImfFloatAttribute.cpp */,
 				9A86C2C716E7F600008420D3 /* ImfFloatAttribute.h */,
-				9A86C2C816E7F600008420D3 /* ImfFrameBuffer.cpp */,
-				9A86C2C916E7F600008420D3 /* ImfFrameBuffer.h */,
+				9A86C2C816E7F600008420D3 /* ImfFramebuffer.cpp */,
+				9A86C2C916E7F600008420D3 /* ImfFramebuffer.h */,
 				9A86C2CA16E7F600008420D3 /* ImfFramesPerSecond.cpp */,
 				9A86C2CB16E7F600008420D3 /* ImfFramesPerSecond.h */,
 				9A86C2CC16E7F600008420D3 /* ImfFramework.cpp */,
@@ -1961,7 +1961,7 @@
 				9AA5E67616F7C61B005C45CE /* ImfEnvmap.h in Headers */,
 				9AA5E67716F7C61B005C45CE /* ImfEnvmapAttribute.h in Headers */,
 				9AA5E67816F7C61B005C45CE /* ImfFloatAttribute.h in Headers */,
-				9AA5E67916F7C61B005C45CE /* ImfFrameBuffer.h in Headers */,
+				9AA5E67916F7C61B005C45CE /* ImfFramebuffer.h in Headers */,
 				9AA5E67A16F7C61B005C45CE /* ImfFramesPerSecond.h in Headers */,
 				9AA5E67B16F7C61B005C45CE /* ImfFramework.h in Headers */,
 				9AA5E67C16F7C61B005C45CE /* ImfHeader.h in Headers */,
@@ -2393,7 +2393,7 @@
 				9AA5E5C016F7C61B005C45CE /* ImfEnvmap.cpp in Sources */,
 				9AA5E5C116F7C61B005C45CE /* ImfEnvmapAttribute.cpp in Sources */,
 				9AA5E5C216F7C61B005C45CE /* ImfFloatAttribute.cpp in Sources */,
-				9AA5E5C316F7C61B005C45CE /* ImfFrameBuffer.cpp in Sources */,
+				9AA5E5C316F7C61B005C45CE /* ImfFramebuffer.cpp in Sources */,
 				9AA5E5C416F7C61B005C45CE /* ImfFramesPerSecond.cpp in Sources */,
 				9AA5E5C516F7C61B005C45CE /* ImfFramework.cpp in Sources */,
 				9AA5E5C616F7C61B005C45CE /* ImfHeader.cpp in Sources */,

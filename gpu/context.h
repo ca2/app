@@ -42,7 +42,7 @@ namespace gpu_gpu
       //
       // memory                           m_memorySwap;
       //
-      // GLuint                           m_gluLayerFrameBuffer;
+      // GLuint                           m_gluLayerFramebuffer;
       //
 
       context();

@@ -43,7 +43,7 @@ namespace gpu
 
 
          /**
-          * Activate this framebuffer for drawing.
+          * Activate this pframebuffer for drawing.
           */
          virtual void bind();
 

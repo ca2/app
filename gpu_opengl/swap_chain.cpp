@@ -265,7 +265,7 @@ FragColor = texture(uTexture, TexCoord);
           //   informationf("GL VERSION: %s\n", glGetString(GL_VERSION));
           //}
 
-          //// 2. Which framebuffer are we clearing?
+          //// 2. Which pframebuffer are we clearing?
           //GLint fb = -1;
           //glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &fb);
           //informationf("DRAW FB = %d\n", fb);

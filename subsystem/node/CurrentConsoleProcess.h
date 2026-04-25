@@ -46,8 +46,8 @@ namespace subsystem
  *
  * @fixme rename it.
  */
-   class CLASS_DECL_SUBSYSTEM CurrentConsoleProcess :
-      virtual public Process
+   class CLASS_DECL_SUBSYSTEM CurrentConsoleProcessInterface :
+      virtual public ::Particle
    {
    public:
       /**
@@ -56,11 +56,11 @@ namespace subsystem
        * See description of Process constructor.
        */
       //CurrentConsoleProcess(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0);
-      CurrentConsoleProcess();
+      //CurrentConsoleProcess();
       /**
        * Destoys instance of class.
        */
-      ~CurrentConsoleProcess() override;
+      //~CurrentConsoleProcess() override;
 
 
       virtual void initialize_current_console_process(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) = 0;
@@ -126,4 +126,57 @@ namespace subsystem
    // //    LogWriter *m_plogwriter;
    // //    bool m_connectRdpSession;
    // };
+
+         //
+   // Base class to control windows control
+   //
+
+
+
+
+   //using ControlInterface = ::particle_interface<ControlInterface, WindowInterface>;
+
+   //
+   // Base class to control windows control
+   //
+
+   class CLASS_DECL_SUBSYSTEM CurrentConsoleProcessComposite :
+      virtual public Composite < CurrentConsoleProcessInterface >
+   {
+   public:
+
+      ImplementCompositeø(CurrentConsoleProcess, currentconsoleprocess)
+
+      void initialize_current_console_process(LogWriter *plogwriter, bool connectRdpSession, const ::scoped_string & scopedstrPath = 0, const ::scoped_string & scopedstrArgs = 0) override
+      {
+
+         m_pcurrentconsoleprocess->initialize_current_console_process(plogwriter, connectRdpSession, scopedstrPath, scopedstrArgs);
+
+      }
+
+   };
+
+
+
+   class CLASS_DECL_SUBSYSTEM CurrentConsoleProcessAggregate :
+      virtual public Aggregate<CurrentConsoleProcessComposite, ProcessAggregate>
+   {
+   public:
+
+      ImplementAggregateø(CurrentConsoleProcess, Process)
+
+   };
+
+
+   class CLASS_DECL_SUBSYSTEM CurrentConsoleProcess :
+      virtual public Object<CurrentConsoleProcessAggregate>
+   {
+   public:
+
+      ImplementObjectø(CurrentConsoleProcess)
+
+   };
+
+
+
 } // namespace subsystem

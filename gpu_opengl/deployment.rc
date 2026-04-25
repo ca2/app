@@ -25,8 +25,8 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_DEFAULT
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2026,0416,0100,32
- PRODUCTVERSION 2026,0416,0100,32
+ FILEVERSION 2026,0425,0249,54
+ PRODUCTVERSION 2026,0425,0249,54
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -43,9 +43,9 @@ BEGIN
         BEGIN
 			VALUE "CompanyName", "app"
 			VALUE "FileDescription", "app_gpu_opengl"
-            VALUE "FileVersion", "2026.0416.0100.32"
-            VALUE "LegalCopyright", "Copyright (C) 2026-04-16-01-00-32"
-            VALUE "ProductVersion", "2026.0416.0100.32"
+            VALUE "FileVersion", "2026.0425.0249.54"
+            VALUE "LegalCopyright", "Copyright (C) 2026-04-25-02-49-54"
+            VALUE "ProductVersion", "2026.0425.0249.54"
         END
     END
     BLOCK "VarFileInfo"

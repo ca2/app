@@ -513,6 +513,68 @@ namespace windows
    }
 
 
+   ::operating_system::window window::_create_window_ex(
+      unsigned int dwExStyle,
+      const ::scoped_string & scopedstrWindowClassName,
+      const ::scoped_string & scopedstrWindowName,
+      unsigned int dwStyle,
+      const ::int_origin_size & originsize,
+      const ::operating_system::window & operatingsystemwindowParent,
+      void * pHMENU,
+      ::hinstance hinstance,
+      void * pLPARAM)
+   {
+
+      ::wstring wstrWindowClassName(scopedstrWindowClassName);
+
+      ::wstring wstrWindowName(scopedstrWindowName);
+
+      HWND hwndParent = ::as_HWND(operatingsystemwindowParent);
+
+      HWND hwnd = ::CreateWindowExW(
+         dwExStyle,
+         wstrWindowClassName,
+         wstrWindowName,
+         dwStyle,
+         originsize.origin.x,
+         originsize.origin.y,
+         originsize.size.cx,
+         originsize.size.cy,
+         hwndParent,
+         (HMENU)pHMENU,
+         (HINSTANCE) hinstance,
+         pLPARAM);
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+
+   void window::create_window_ex(
+      unsigned int dwExStyle,
+      const ::scoped_string & scopedstrWindowClassName,
+      const ::scoped_string & scopedstrWindowName,
+      unsigned int dwStyle,
+      const ::int_origin_size & originsize,
+      const ::operating_system::window & operatingsystemwindowParent ,
+      void * pHMENU )
+   {
+
+      _create_window_ex(
+         dwExStyle,
+         scopedstrWindowClassName,
+         scopedstrWindowName,
+         dwStyle,
+         originsize,
+         operatingsystemwindowParent,
+         pHMENU,
+         ::windows::hinstance_from_function(s_window_procedure),
+         (void*) (::windows::window *) this);
+
+   }
+
    // Step 4: the Window Procedure
    LRESULT CALLBACK window::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
@@ -689,4 +751,44 @@ CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd)
 }
 
 
+CLASS_DECL_ACME ::operating_system::window as_operating_system_window(::uptr u)
+{
+
+   if (u == 0)
+   {
+
+      return {};
+
+   }
+
+   auto hwnd = (HWND)u;
+
+   auto operatingsystemwindow =  ::as_operating_system_window(hwnd);
+
+   return operatingsystemwindow;
+
+}
+
+
+CLASS_DECL_ACME ::uptr operating_system_window_as_uptr(const ::operating_system::window & operatingsystemwindow)
+{
+
+   if (operatingsystemwindow.m_eoperatingsystem == e_operating_system_none)
+   {
+
+      return 0;
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingsystem == e_operating_system_windows)
+   {
+
+
+      return (::uptr) ::as_HWND(operatingsystemwindow);
+
+   }
+
+   return 0;
+
+}
 

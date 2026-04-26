@@ -47,14 +47,14 @@ ByteArrayInputStream::ByteArrayInputStream(::particle * pparticle, const ::block
    {
    }
 
-   void ByteArrayInputStream::initialize_byte_array_input_stream(::particle * pparticle, const ::block & block)
+   void ByteArrayInputStream::_initialize_byte_array_input_stream(::particle * pparticle, const ::block & block)
 {
 
-   initialize_byte_array_input_stream(pparticle, block.data(), block.size());
+   _initialize_byte_array_input_stream(pparticle, block.data(), block.size());
 
 }
 
-   void ByteArrayInputStream::initialize_byte_array_input_stream(::particle * pparticle, const void *buffer, memsize bufferSize)
+   void ByteArrayInputStream::_initialize_byte_array_input_stream(::particle * pparticle, const void *buffer, memsize bufferSize)
    {
 initialize(pparticle);
       m_buffer = (const char *) buffer;

@@ -44,7 +44,7 @@ namespace subsystem
     * active zombie threads.
     * @remark ZombieKiller is singleton without "lazy" initialization.
     */
-   class ZombieKiller :
+   class CLASS_DECL_SUBSYSTEM ZombieKiller :
    virtual public ::particle
    {
    public:

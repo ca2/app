@@ -16,7 +16,7 @@
 #include "acme/prototype/string/scoped_string_base.h"
 //#include "acme/prototype/prototype/signal.h"
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
-
+#include "acme/platform/auto_pointer.h"
 
 namespace platform
 {
@@ -827,6 +827,24 @@ public:
 
    template < typename TYPE >
    inline void __call__raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION);
+
+   // template < typename T, typename ...Args >
+   // inline void __call__forward_construct(::pointer < T > &p, Args &&... args);
+
+   template < typename T, typename ...Args >
+   inline void __call__raw_construct_new(::pointer < T > &p, Args &&... args)
+   {
+
+      p = ::transfer(allocateø T(::std::forward<Args>(args)...));
+
+   }
+   template < typename T, typename ...Args >
+   inline void __call__raw_construct_new(::auto_pointer < T > &p, Args &&... args)
+   {
+
+      p = new T(::std::forward<Args>(args)...);
+
+   }
 
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE> __raw_create(::factory::factory * pfactory = nullptr);

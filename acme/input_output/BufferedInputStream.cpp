@@ -15,6 +15,12 @@
    {
 //      m_input = new DataInputStream(input);
    }
+BufferedInputStream::BufferedInputStream(InputStream * pinputstream, memsize iInitialBufferSize, memsize iMaximumBufferSize)
+: BufferedInputStream()
+   {
+      _initialize_buffered_input_stream(pinputstream, iInitialBufferSize, iMaximumBufferSize);
+      //      m_input = new DataInputStream(input);
+   }
 
 // BufferedInputStream::BufferedInputStream()
 //    : m_have(0),
@@ -31,8 +37,10 @@
    }
 
 
-void BufferedInputStream::initialize_buffered_input_stream(InputStream * pinputstream, memsize iInitialBufferSize, memsize iMaximumBufferSize)
+void BufferedInputStream::_initialize_buffered_input_stream(InputStream * pinputstream, memsize iInitialBufferSize, memsize iMaximumBufferSize)
    {
+
+      initialize(pinputstream);
 
       if (iInitialBufferSize > 0)
       {
@@ -50,9 +58,9 @@ void BufferedInputStream::initialize_buffered_input_stream(InputStream * pinputs
 
       m_buffer.set_size(m_iInitialBufferSize);
 
-      ::system()->construct_newø(m_pdatainputstream);
+      raw_construct_newø(m_pdatainputstream, pinputstream);
 
-      m_pdatainputstream->initialize_data_input_stream(pinputstream);
+      //m_pdatainputstream->initialize_data_input_stream(pinputstream);
 
 
    }

@@ -32,19 +32,32 @@
 
 namespace subsystem
 {
-    SocketStream::SocketStream(::subsystem::SocketIPv4Interface *psocket)
-    : m_psocket(psocket)
+
+
+
+
+    SocketStream::SocketStream()
     {
-       _ASSERT(m_psocket != NULL);
     }
 
-   // SocketStream::SocketStream()
-   // {
-   // }
+   SocketStream::SocketStream(::subsystem::SocketIPv4Interface *psocket)
+    {
+       _initialize_socket_stream(psocket);
+    }
+
 
    SocketStream::~SocketStream()
    {
    }
+
+
+   void SocketStream::_initialize_socket_stream(::subsystem::SocketIPv4Interface *psocket)
+   {
+       initialize(psocket);
+      m_psocket = psocket;
+      _ASSERT(m_psocket != NULL);
+   }
+
 
    // void SocketStream::initialize_socket_stream(::subsystem::SocketIPv4Interface *sock)
    //

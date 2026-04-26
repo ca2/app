@@ -106,6 +106,7 @@ namespace operating_system
 } // namespace operating_system
 
 #define WIN32_COLOR_WINDOW 5 // WinUser.h (windows.h) COLOR_WINDOW
+#define WIN32_CW_USEDEFAULT ((int)0x80000000) // WinUser.h (windows.h) CW_USEDEFAULT
 
 namespace windows
 {
@@ -141,6 +142,67 @@ namespace windows
       virtual bool is_window_class_registered(const char * pszWindowClassName);
       virtual bool register_window_class(const char * pszWindowClassName, int iWindowClassStyle = 0, void * pHCURSOR = nullptr, void * pHBRUSH_Background = (void *) (HBRUSH)WIN32_COLOR_WINDOW);
       virtual bool _register_window_class(WNDCLASSEXW &wndclassexw, const char * pszWindowClassName);
+
+
+      virtual ::operating_system::window _create_window_ex(
+         unsigned int dwExStyle,
+         const ::scoped_string & scopedstrWindowClassName,
+         const ::scoped_string & scopedstrWindowName,
+         unsigned int dwStyle,
+         const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+         const ::operating_system::window & operatingsystemwindowParent = nullptr,
+         void * pHMENU = nullptr,
+         ::hinstance hinstance = nullptr,
+         void * pLPARAM = nullptr);
+
+      inline ::operating_system::window _create_window(
+         const ::scoped_string & scopedstrWindowClassName,
+         const ::scoped_string & scopedstrWindowName,
+         unsigned int dwStyle,
+         const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+         const ::operating_system::window & operatingsystemwindowParent = nullptr,
+         void * pHMENU = nullptr,
+         ::hinstance hinstance = nullptr,
+         void * pLPARAM = nullptr)
+      {
+         return _create_window_ex(
+            0,
+            scopedstrWindowClassName,
+            scopedstrWindowName,
+            dwStyle,
+            originsize,
+            operatingsystemwindowParent,
+            pHMENU,
+            hinstance,
+            pLPARAM);
+      }
+
+      virtual void create_window_ex(
+         unsigned int dwExStyle,
+         const ::scoped_string & scopedstrWindowClassName,
+         const ::scoped_string & scopedstrWindowName,
+         unsigned int dwStyle,
+         const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+         const ::operating_system::window & operatingsystemwindowParent = nullptr,
+         void * pHMENU = nullptr);
+
+      inline void create_window(
+              const ::scoped_string & scopedstrWindowClassName,
+              const ::scoped_string & scopedstrWindowName,
+              unsigned int dwStyle,
+              const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
+              const ::operating_system::window & operatingsystemwindowParent = nullptr,
+              void * pHMENU = nullptr)
+      {
+         create_window_ex(
+            0,
+            scopedstrWindowClassName,
+            scopedstrWindowName,
+            dwStyle,
+            originsize,
+            operatingsystemwindowParent,
+            pHMENU);
+      }
 
       virtual void * _HWND() const;
       virtual void * _WNDPROC_default() const;

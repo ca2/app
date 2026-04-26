@@ -43,10 +43,11 @@
        * @param output real output stream.
        */
       BufferedOutputStream();
+      BufferedOutputStream(OutputStream *poutputstream, memsize iBufferSize = -1);
       ~BufferedOutputStream() override;
 
 
-      virtual void initialize_buffered_output_stream(OutputStream *poutputstream, memsize iBufferSize = -1);
+      virtual void _initialize_buffered_output_stream(OutputStream *poutputstream, memsize iBufferSize = -1);
 
       /**
        * Writes data to output stream (with buffering).

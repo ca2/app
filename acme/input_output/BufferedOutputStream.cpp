@@ -38,6 +38,12 @@
     //m_output = new DataOutputStream(output);
  }
 
+BufferedOutputStream::BufferedOutputStream(OutputStream *poutputstream, memsize iBufferSize)
+: BufferedOutputStream()
+ {
+    _initialize_buffered_output_stream(poutputstream, iBufferSize);
+    //m_output = new DataOutputStream(output);
+ }
    BufferedOutputStream::~BufferedOutputStream()
    {
       try {
@@ -49,9 +55,10 @@
    }
 
 
-void BufferedOutputStream::initialize_buffered_output_stream(OutputStream *poutputstream, memsize iBufferSize)
+void BufferedOutputStream::_initialize_buffered_output_stream(OutputStream *poutputstream, memsize iBufferSize)
 
 {
+    initialize(poutputstream);
       m_dataLength = 0;
 
     if (iBufferSize <= 0)
@@ -61,9 +68,9 @@ void BufferedOutputStream::initialize_buffered_output_stream(OutputStream *poutp
     }
     m_memoryBuffer.set_size(iBufferSize);
 
-      ::system()->construct_newø(m_pdataoutputstream);
+    raw_construct_newø(m_pdataoutputstream, poutputstream);
 
-    m_pdataoutputstream->initialize_data_output_stream(poutputstream);
+    //m_pdataoutputstream->initialize_data_output_stream(poutputstream);
 
 }
 

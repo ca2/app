@@ -20,6 +20,29 @@ struct api_change_t{};
 #define API_CHANGED_ARGUMENT api_change_t{}
 
 template < prototype_number NUMBER >
+class origin_size
+{
+public:
+
+   point_type<NUMBER>   origin;
+   size_type<NUMBER>    size;
+
+   origin_size(){}
+   origin_size(NUMBER x, NUMBER y, NUMBER w, NUMBER h): origin(x, y),size(w, h){}
+   origin_size(const point_type<NUMBER> & point, const size_type<NUMBER> & size):origin(point),size(size){}
+   origin_size(const origin_size & originsize):origin(originsize.origin),size(originsize.size){}
+
+
+   auto top_left() const {return origin;}
+   auto width() const {return size.cx;}
+   auto height() const {return size.cy;}
+
+};
+
+using int_origin_size = origin_size<int>;
+
+
+template < prototype_number NUMBER >
 class rectangle_type :
    public sequence_type < NUMBER, 4 >
 
@@ -125,6 +148,18 @@ public:
 
    }
 
+   template < prototype_number NUMBER2 >
+   rectangle_type(const origin_size<NUMBER2> & originsize)
+   {
+
+      this->left = (UNIT_TYPE) originsize.origin.x;
+      this->top = (UNIT_TYPE) originsize.origin.y;
+      this->right = (UNIT_TYPE) (originsize.origin.x + originsize.size.cx);
+      this->bottom = (UNIT_TYPE) (originsize.origin.y + originsize.size.cy);
+
+      //return *this;
+
+   }
 
 //   constexpr const UNIT_TYPE & x() const {return this->x;}
 //   UNIT_TYPE & x() {return this->x;}

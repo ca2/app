@@ -145,3 +145,4 @@ CLASS_DECL_ACME bool best_effort_is_same_operating_system_window(::acme::windowi
    return pacmewindowingwindow->operating_system_window() == lparam;
 
 }
+

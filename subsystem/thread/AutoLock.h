@@ -38,19 +38,48 @@ public:
 class AutoLock
 {
 public:
+      bool m_bLocked;
   AutoLock(LOCKABLE * plockable):
-      m_plockable(plockable)
+      m_plockable(plockable),
+      m_bLocked(false)
+  {
+lock();
+     //m_plockable->lock();
+  }
+      AutoLock(const ::pointer < LOCKABLE > & plockable):
+          AutoLock(plockable.m_p)
   {
 
-     m_plockable->lock();
+     //m_plockable->lock();
   }
-  ~AutoLock()
+      ~AutoLock()
   {
 
-     m_plockable->unlock();
+     unlock();
 
   }
+void lock()
+  {
 
+     if (!m_bLocked)
+     {
+
+        m_bLocked=true;
+        m_plockable->lock();
+     }
+  }
+      void unlock()
+  {
+
+     if (m_bLocked)
+     {
+
+        m_bLocked = false;
+        m_plockable->unlock();
+
+     }
+
+  }
 //protected:
   LOCKABLE  *m_plockable;
 };

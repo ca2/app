@@ -2541,10 +2541,10 @@
     <ClCompile Include="operating_system\GetCPUtime.cpp" />
     <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
-    <ClCompile Include="operating_system\windows\ProfileLogger.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="platform\ini.cpp" />
+    <ClCompile Include="platform\ProfileLogger.cpp" />
     <ClCompile Include="platform\registry.cpp" />
     <ClCompile Include="platform\remoting.cpp" />
     <ClCompile Include="platform\subsystem.cpp" />

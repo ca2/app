@@ -25,17 +25,17 @@
     <Filter Include="Source Files\gui">
       <UniqueIdentifier>{64fd3296-a206-4ba2-97e7-f63fc01cdea6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\pframebuffer">
-      <UniqueIdentifier>{c33eaa5a-468d-4243-b9e1-bff08adcf1ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\pframebuffer">
-      <UniqueIdentifier>{b306975d-55de-41a2-b0a6-6484ff649cae}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{c3104476-ffa7-4ed7-b79b-36ca69a048e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{b189aa31-b886-426d-84dd-e295cd129423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\framebuffer">
+      <UniqueIdentifier>{c33eaa5a-468d-4243-b9e1-bff08adcf1ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\framebuffer">
+      <UniqueIdentifier>{b306975d-55de-41a2-b0a6-6484ff649cae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,15 +168,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pframebuffer\DibFramebuffer.cpp">
-      <Filter>Source Files\pframebuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="pframebuffer\DibSection.cpp">
-      <Filter>Source Files\pframebuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="pframebuffer\Framebuffer.cpp">
-      <Filter>Source Files\pframebuffer</Filter>
-    </ClCompile>
     <ClCompile Include="gui\KeyboardLayout.cpp">
       <Filter>Source Files\gui</Filter>
     </ClCompile>
@@ -185,6 +176,15 @@
     </ClCompile>
     <ClCompile Include="platform\subsystem.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer\FrameBuffer.cpp">
+      <Filter>Source Files\framebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer\DibSection.cpp">
+      <Filter>Source Files\framebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="framebuffer\DibFrameBuffer.cpp">
+      <Filter>Source Files\framebuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,15 +329,6 @@
     <ClInclude Include="_common_header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pframebuffer\Framebuffer.h">
-      <Filter>Header Files\pframebuffer</Filter>
-    </ClInclude>
-    <ClInclude Include="pframebuffer\DibSection.h">
-      <Filter>Header Files\pframebuffer</Filter>
-    </ClInclude>
-    <ClInclude Include="pframebuffer\DibFramebuffer.h">
-      <Filter>Header Files\pframebuffer</Filter>
-    </ClInclude>
     <ClInclude Include="gui\KeyboardLayout.h">
       <Filter>Header Files\gui</Filter>
     </ClInclude>
@@ -346,6 +337,15 @@
     </ClInclude>
     <ClInclude Include="platform\subsystem.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="framebuffer\FrameBuffer.h">
+      <Filter>Header Files\framebuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="framebuffer\DibSection.h">
+      <Filter>Header Files\framebuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="framebuffer\DibFrameBuffer.h">
+      <Filter>Header Files\framebuffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

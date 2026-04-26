@@ -42,8 +42,11 @@
        * Creates new buffered output stream.
        * @param output real output stream.
        */
-      BufferedOutputStream(OutputStream *output);
-      virtual ~BufferedOutputStream();
+      BufferedOutputStream();
+      ~BufferedOutputStream() override;
+
+
+      virtual void initialize_buffered_output_stream(OutputStream *poutputstream, memsize iBufferSize = -1);
 
       /**
        * Writes data to output stream (with buffering).
@@ -62,11 +65,14 @@
       void flush();
 
       //protected:
-      DataOutputStream *m_output;
+      ::pointer < DataOutputStream > m_pdataoutputstream;
 
-      char m_buffer[100000];
+
+      //char m_buffer[100000];
+      ::memory m_memoryBuffer;
 
       memsize m_dataLength;
+
    };
 
 //} // namespace subsystem

@@ -26,11 +26,17 @@
 
 //namespace subsystem
 //{
-   BufferedOutputStream::BufferedOutputStream(OutputStream *output)
-   : m_dataLength(0)
-   {
-      m_output = new DataOutputStream(output);
-   }
+   // BufferedOutputStream::BufferedOutputStream(OutputStream *output)
+   // : m_dataLength(0)
+   // {
+   //    m_output = new DataOutputStream(output);
+   // }
+
+ BufferedOutputStream::BufferedOutputStream()
+ : m_dataLength(0)
+ {
+    //m_output = new DataOutputStream(output);
+ }
 
    BufferedOutputStream::~BufferedOutputStream()
    {
@@ -39,17 +45,36 @@
       } catch (...) {
       } // try / catch.
 
-      delete m_output;
+      //delete m_output;
    }
+
+
+void BufferedOutputStream::initialize_buffered_output_stream(OutputStream *poutputstream, memsize iBufferSize)
+
+{
+      m_dataLength = 0;
+
+    if (iBufferSize <= 0)
+    {
+       iBufferSize = 100000;
+
+    }
+    m_memoryBuffer.set_size(iBufferSize);
+
+      ::system()->construct_newø(m_pdataoutputstream);
+
+    m_pdataoutputstream->initialize_data_output_stream(poutputstream);
+
+}
 
    memsize BufferedOutputStream::defer_write(const void *buffer, memsize len)
    {
-      if (m_dataLength + len >= sizeof(m_buffer)) {
+      if (m_dataLength + len >= m_memoryBuffer.size()) {
          flush();
 
-         m_output->write(buffer, len);
+         m_pdataoutputstream->write(buffer, len);
       } else {
-         memcpy(&m_buffer[m_dataLength], buffer, len);
+         memcpy(&m_memoryBuffer.data()[m_dataLength], buffer, len);
 
          m_dataLength += len;
       }
@@ -60,7 +85,7 @@
 
    void BufferedOutputStream::flush()
    {
-      m_output->write(&m_buffer[0], m_dataLength);
+      m_pdataoutputstream->write(&m_memoryBuffer.data()[0], m_dataLength);
 
       m_dataLength = 0;
    }

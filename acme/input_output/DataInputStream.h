@@ -37,12 +37,22 @@
    class CLASS_DECL_ACME DataInputStream : public InputStream
    {
    public:
+
+      //protected:
+      ::pointer < InputStream > m_pinputstream;
+
       /**
        * Creates new DataInputStream.
        * @param inputStream input stream that will be used to read data.
        */
+      //DataInputStream(InputStream *inputStream);
+      DataInputStream();
       DataInputStream(InputStream *inputStream);
       virtual ~DataInputStream();
+
+
+      virtual void _initialize_data_input_stream(InputStream *inputStream);
+
 
       /**
        * Inherited from superclass.
@@ -73,7 +83,5 @@
 
       ::string readUtf8();
 
-   protected:
-      InputStream *m_inputStream;
    };
 //} // namespace subsystem

@@ -7,29 +7,37 @@
 
 //namespace subsystem
 //{
-   class CLASS_DECL_ACME BufferedInputStream : public InputStream
+   class CLASS_DECL_ACME BufferedInputStream :
+         virtual public InputStream
    {
    public:
 
-      BufferedInputStream(InputStream *input);
 
-      virtual ~BufferedInputStream();
+      //   protected:
+
+      memsize m_iMaximumBufferSize;
+      memsize m_iInitialBufferSize;
+
+      ::pointer < DataInputStream > m_pdatainputstream;
+
+      //::array_base<char> m_buffer;
+      ::memory m_buffer;
+
+      memsize m_have;
+      memsize m_pos;
+
+
+      BufferedInputStream();
+      ~BufferedInputStream() override;
+
+
+      virtual void initialize_buffered_input_stream(InputStream *input, memsize iInitialBufferSize = -1, memsize iMaximumBufferSize = -1);
+
 
       virtual memsize read(void *buffer, memsize len);
 
       memsize available();
 
-   protected:
-
-      const memsize MAX_BUFFER_SIZE;
-      const memsize INITIAL_BUFFER_SIZE;
-
-      DataInputStream *m_input;
-
-      ::array_base<char> m_buffer;
-
-      memsize m_have;
-      memsize m_pos;
 
    };
 

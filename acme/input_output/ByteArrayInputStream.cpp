@@ -28,14 +28,41 @@
 
 //namespace subsystem
 //{
-   ByteArrayInputStream::ByteArrayInputStream(const char *buffer, memsize bufferSize)
-   : m_buffer(buffer), m_bufferSize(bufferSize), m_left(bufferSize)
+   //ByteArrayInputStream::ByteArrayInputStream(const char *buffer, memsize bufferSize)
+   // : m_buffer(buffer), m_bufferSize(bufferSize), m_left(bufferSize)
+   // {
+   // }
+
+
+ByteArrayInputStream::ByteArrayInputStream()
+: m_buffer(nullptr), m_bufferSize(0), m_left(0)
    {
    }
-
+ByteArrayInputStream::ByteArrayInputStream(::particle * pparticle, const ::block & block)
+: ByteArrayInputStream()
+{
+   _initialize_byte_array_input_stream(pparticle, block);
+}
    ByteArrayInputStream::~ByteArrayInputStream()
    {
    }
+
+   void ByteArrayInputStream::initialize_byte_array_input_stream(::particle * pparticle, const ::block & block)
+{
+
+   initialize_byte_array_input_stream(pparticle, block.data(), block.size());
+
+}
+
+   void ByteArrayInputStream::initialize_byte_array_input_stream(::particle * pparticle, const void *buffer, memsize bufferSize)
+   {
+initialize(pparticle);
+      m_buffer = (const char *) buffer;
+      m_bufferSize = bufferSize;
+      m_left = bufferSize;
+
+   }
+
 
    memsize ByteArrayInputStream::read(void *buffer, memsize len)
    {

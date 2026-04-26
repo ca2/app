@@ -284,9 +284,9 @@
     <ClCompile Include="drawing\Pen.cpp" />
     <ClCompile Include="drawing\SolidBrush.cpp" />
     <ClCompile Include="drawing\Icon.cpp" />
-    <ClCompile Include="pframebuffer\DibFramebuffer.cpp" />
-    <ClCompile Include="pframebuffer\DibSection.cpp" />
-    <ClCompile Include="pframebuffer\Framebuffer.cpp" />
+    <ClCompile Include="framebuffer\DibFrameBuffer.cpp" />
+    <ClCompile Include="framebuffer\DibSection.cpp" />
+    <ClCompile Include="framebuffer\FrameBuffer.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='DebugNoUnicode|Win32'">Create</PrecompiledHeader>
@@ -343,9 +343,9 @@
     <ClInclude Include="drawing\_.h" />
     <ClInclude Include="drawing\Graphics.h" />
     <ClInclude Include="drawing\Icon.h" />
-    <ClInclude Include="pframebuffer\DibFramebuffer.h" />
-    <ClInclude Include="pframebuffer\DibSection.h" />
-    <ClInclude Include="pframebuffer\Framebuffer.h" />
+    <ClInclude Include="framebuffer\DibFrameBuffer.h" />
+    <ClInclude Include="framebuffer\DibSection.h" />
+    <ClInclude Include="framebuffer\FrameBuffer.h" />
     <ClInclude Include="gui\BalloonTip.h" />
     <ClInclude Include="gui\CheckBox.h" />
     <ClInclude Include="gui\ComboBox.h" />

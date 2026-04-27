@@ -167,7 +167,7 @@ CLASS_DECL_ACME itask as_itask(htask htask)
 CLASS_DECL_ACME void TRACELASTERROR()
 {
 
-   auto dwLastError = ::GetLastError();
+   auto lasterror = ::windows::get_last_error();
 
    if (!dwLastError)
    {
@@ -176,7 +176,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 
    }
 
-   string strErrorMessage = ::windows::last_error_message(dwLastError);
+   string strErrorMessage = ::windows::last_error_message(lasterror);
 
    string strError;
 

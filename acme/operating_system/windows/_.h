@@ -2,6 +2,8 @@
 
 
 #include "_c.h"
+#include "acme/parallelization/types.h"
+
 
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
@@ -66,6 +68,8 @@ CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array
 
 
 #include "acme/operating_system/message.h"
+#include "acme/operating_system/windows_common/last_error.h"
+#include "acme/operating_system/windows_common/last_error_exception.h"
 
 CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd);
 CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window & operatingsystemwindow);
@@ -116,7 +120,17 @@ namespace windows
 
    CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::int_rectangle & rectangle);
 
+   CLASS_DECL_ACME ::int_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow);
+
    CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand);
+
+   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, int iGetWindowLong);
+
+   CLASS_DECL_ACME ::itask get_window_thread_id(const ::operating_system::window & operatingsystemwindow);
+
+   CLASS_DECL_ACME ::itask get_window_thread_process_id(const ::operating_system::window & operatingsystemwindow, ::process_identifier & processidentifier);
+
+   CLASS_DECL_ACME ::process_identifier get_window_process_id(const ::operating_system::window & operatingsystemwindow);
 
    CLASS_DECL_ACME ::operating_system::window get_foreground_window();
 

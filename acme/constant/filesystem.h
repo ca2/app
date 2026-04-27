@@ -16,34 +16,38 @@ namespace file
 {
 
 
-   enum enum_open
+   enum enum_open : ::uptr
    {
 
-      e_open_none = 0,
-      e_open_read = (int)0x000001,
-      e_open_write = (int)0x000002,
-      e_open_read_write = (int)0x000003,
-      e_open_share_compat = (int)0x000000,
-      e_open_share_exclusive = (int)0x000010,
-      e_open_share_deny_write = (int)0x000020,
-      e_open_share_deny_read = (int)0x000030,
-      e_open_share_deny_none = (int)0x000040,
+      e_open_none = 0ull,
+      e_open_read = 0x000001ull,
+      e_open_write = 0x000002ull,
+      e_open_read_write = 0x000003ull,
+      e_open_share_compat = 0x000000ull,
+      e_open_share_exclusive = 0x000010ull,
+      e_open_share_deny_write = 0x000020ull,
+      e_open_share_deny_read = 0x000030ull,
+      e_open_share_deny_none = 0x000040ull,
       e_open_share_mask = e_open_share_deny_none | e_open_share_deny_read | e_open_share_deny_write | e_open_share_exclusive,
-      e_open_no_inherit = (int)0x000080,
-      e_open_create = (int)0x001000,
-      e_open_no_truncate = (int)0x002000,
-      e_open_text = (int)0x004000, // type_text and type_binary are used in
-      e_open_binary = (int)0x008000, // derived classes only
-      e_open_defer_create_directory = (int)0x010000,
-      e_open_update_unknown_length_supported = (int)0x020000,
-      e_open_truncate = (int)0x040000,
-      e_open_no_callstack = (int)0x080000,
-      e_open_no_cache = (int)0x100000,
-      e_open_no_share_violation_wait = (int)0x200000,
-      e_open_no_follow_uniform_resource_locator = (int)0x400000,
-      e_open_no_exception_on_open = (int)0x10000000,
-      e_open_file = (int)0x20000000,
-      e_open_no_exception_if_not_found = (int)0x40000000,
+      e_open_no_inherit = 0x000080ull,
+      e_open_create = 0x001000ull,
+      e_open_no_truncate = 0x002000ull,
+      e_open_text = 0x004000ull, // type_text and type_binary are used in
+      e_open_binary = 0x008000ull, // derived classes only
+      e_open_defer_create_directory = 0x010000ull,
+      e_open_update_unknown_length_supported = 0x020000ull,
+      e_open_truncate = 0x040000ull,
+      e_open_no_callstack = 0x080000ull,
+      e_open_no_cache = 0x100000ull,
+      e_open_no_share_violation_wait = 0x200000ull,
+      e_open_no_follow_uniform_resource_locator = 0x400000ull,
+      e_open_no_exception_on_open = 0x10000000ull,
+      e_open_file = 0x20000000ull,
+      e_open_no_exception_if_not_found = 0x40000000ull,
+      _e_open_delete = 0x80000000ull,
+      _e_open_stat = 0x100000000ull,
+      _e_open_set_stat = 0x200000000ull,
+      _e_open_create_directory = 0x400000000ull,
 
 
    };

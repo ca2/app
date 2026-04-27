@@ -67,6 +67,23 @@ namespace windows
    }
 
 
+   CLASS_DECL_ACME ::int_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      ::int_rectangle rectangle;
+
+      if (!get_window_rect(operatingsystemwindow, rectangle))
+      {
+
+         throw_last_error_exception("GetWindowRect failed");
+
+      }
+
+      return rectangle;
+
+   }
+
+
    CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand)
    {
 
@@ -79,6 +96,75 @@ namespace windows
       return operatingsystemwindow;
 
    }
+
+
+   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, int iGetWindowLong)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      ::iptr i = ::GetWindowLongPtrW(hwnd, iGetWindowLong);
+
+      return i;
+
+   }
+
+
+   CLASS_DECL_ACME ::itask get_window_thread_id(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, nullptr);
+
+      return dwThreadID;
+
+   }
+
+
+   CLASS_DECL_ACME ::itask get_window_thread_process_id(const ::operating_system::window & operatingsystemwindow, ::process_identifier & processidentifier)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwProcessID = 0;
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, &dwProcessID);
+
+      if (dwThreadID)
+      {
+
+         processidentifier = dwProcessID;
+
+      }
+
+      return dwThreadID;
+
+   }
+
+
+   CLASS_DECL_ACME ::process_identifier get_window_thread_process_id(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwProcessID = 0;
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, &dwProcessID);
+
+      ::process_identifier processidentifier{};
+
+      if (dwThreadID)
+      {
+
+         processidentifier = dwProcessID;
+
+      }
+
+      return processidentifier;
+
+   }
+
 
    CLASS_DECL_ACME ::operating_system::window get_foreground_window()
    {

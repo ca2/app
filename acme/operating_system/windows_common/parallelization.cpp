@@ -433,11 +433,11 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
    else
    {
 
-      auto dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
-      auto errorcode = ::windows::last_error_error_code(dwLastError);
+      auto errorcode = ::windows::last_error_error_code(lasterror);
 
       throw ::exception(estatus, { errorcode }, "WaitForSingleObjectEx WAIT_FAILED");
 

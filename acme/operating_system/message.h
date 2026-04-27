@@ -6,6 +6,8 @@
 #include "acme/prototype/prototype/atom.h"
 #include "acme/prototype/geometry2d/point.h"
 #include "acme/operating_system/window.h"
+#include "acme/constant/user_message.h"
+
 
 struct MESSAGE
 {

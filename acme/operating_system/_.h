@@ -55,12 +55,10 @@ namespace operating_system
 #if defined(WIN32)
 
 
-namespace windows
-{
+#include "acme/operating_system/windows_common/last_error.h"
 
-   CLASS_DECL_ACME unsigned int last_error();
 
-} // namespace windows
+#include "acme/operating_system/windows_common/last_error_exception.h"
 
 
 #endif

@@ -8,9 +8,9 @@
 #include "_c.h"
 
 
-CLASS_DECL_ACME void throw_last_error(DWORD dwLastError);
+CLASS_DECL_ACME void throw_last_error_exception(DWORD dwLastError);
 
-CLASS_DECL_ACME void throw_last_error();
+CLASS_DECL_ACME void throw_last_error_exception();
 
 CLASS_DECL_ACME::e_status windows_wait_result_to_status(int iResult);
 

@@ -455,8 +455,8 @@ constexpr ::int_point lparam::point() const
 template <prototype_number NUMBER>
 struct std::formatter<point_type<NUMBER>>
 {
-   bool m_bIncludeParenthesis = false;
-   bool m_bIncludeNames = false;
+   bool m_bIncludeParenthesis = false; // p
+   bool m_bIncludeNames = false; // n
 
 
    constexpr bool check_option(auto &it, const auto & end)
@@ -519,3 +519,6 @@ struct std::formatter<point_type<NUMBER>>
       }
    }
 };
+
+
+

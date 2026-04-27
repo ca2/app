@@ -76,7 +76,7 @@ inline FILETIME & as_FILETIME(const ::earth::time &time)
 
 #ifdef WINDOWS
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
 #endif
 

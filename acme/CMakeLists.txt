@@ -806,6 +806,7 @@ list(APPEND library_source
         prototype/collection/map_test_51778915.cpp
         #prototype/collection/numeric_array.cpp
         #prototype/collection/point_array.cpp
+   prototype/collection/pointer_container.h
         prototype/collection/procedure_array.cpp
         prototype/collection/procedure_array.h
         prototype/collection/property_set.cpp
@@ -2491,6 +2492,7 @@ if (${WIN32} OR ${UWP})
             #operating_system/windows_common/idn.cpp
             operating_system/windows_common/heap_allocator.cpp
             operating_system/windows_common/heap_allocator.h
+            operating_system/windows_common/last_error.cpp
             operating_system/windows_common/last_error.h
             operating_system/windows_common/last_error_exception.cpp
             operating_system/windows_common/last_error_exception.h
@@ -3210,8 +3212,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   prototype/collection/pointer_container.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

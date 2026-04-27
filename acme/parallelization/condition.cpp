@@ -234,16 +234,16 @@ bool condition::pulse_happening()
       ::windows::wait(timeWait)))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      if (dwLastError == ERROR_TIMEOUT)
+      if (lasterror == ERROR_TIMEOUT)
       {
 
          return error_wait_timeout;
 
       }
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       return error_failed;
 

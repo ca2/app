@@ -70,6 +70,23 @@ CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array
 CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd);
 CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window & operatingsystemwindow);
 
+/*
+ * GetWindow() Constants
+ */
+#define WIN32_GW_HWNDFIRST        0
+#define WIN32_GW_HWNDLAST         1
+#define WIN32_GW_HWNDNEXT         2
+#define WIN32_GW_HWNDPREV         3
+#define WIN32_GW_OWNER            4
+#define WIN32_GW_CHILD            5
+#if(WINVER <= 0x0400)
+#define WIN32_GW_MAX              5
+#else
+#define WIN32_GW_ENABLEDPOPUP     6
+#define WIN32_GW_MAX              6
+#endif
+
+
 inline void copy(MESSAGE & message, const MSG & msg)
 {
 
@@ -98,6 +115,17 @@ namespace windows
    CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
 
    CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::int_rectangle & rectangle);
+
+   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand);
+
+   CLASS_DECL_ACME ::operating_system::window get_foreground_window();
+
+   CLASS_DECL_ACME ::comparable_array_base<::operating_system::window> findWindowsByClass(const ::string_array_base & straClassNames);
+
+   // Find first of windows that name contain the string.
+   // It is not case sensitive.
+   CLASS_DECL_ACME ::operating_system::window findFirstWindowByName(const ::scoped_string & scopedstrWindowName);
+
 
 } // namespace windows
 

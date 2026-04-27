@@ -56,7 +56,9 @@ list(APPEND library_source
    node/AutoImpersonator.h
    node/Clipboard.cpp
    node/Clipboard.h
-   node/CMakeLists.txt
+   #node/CMakeLists.txt
+   node/CrashHook.cpp
+   node/CrashHook.h
    node/CurrentConsoleProcess.cpp
    node/CurrentConsoleProcess.h
    node/Cursor.cpp
@@ -171,6 +173,10 @@ list(APPEND library_source
    platform/CommandLineArguments.h
    #platform/CurrentConsoleProcess.cpp
    #platform/CurrentConsoleProcess.h
+   platform/Deflater.cpp
+   platform/Deflater.h
+   platform/DemandTimer.cpp
+   platform/DemandTimer.h
    #platform/DynamicLibrary.cpp
    #platform/DynamicLibrary.h
    #platform/EmulatedAnonymousPipeFactory.cpp

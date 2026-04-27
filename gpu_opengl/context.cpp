@@ -520,7 +520,7 @@ namespace gpu_opengl
       if (size.area() > 0)
       {
 
-         m_pframebuffer.create(size, m_bDepthBuffer);
+         m_pframebuffer->create(size, m_bDepthBuffer);
 
       }
 
@@ -2536,7 +2536,7 @@ namespace gpu_opengl
    //   if (m_pframebuffer)
    //   {
 
-   //      m_pframebuffer.bind();
+   //      m_pframebuffer->bind();
 
    //   }
    //   else if(m_eoutput == ::gpu::e_output_swap_chain)
@@ -2616,7 +2616,7 @@ namespace gpu_opengl
 
 #endif
 
-      m_pframebuffer.release();
+      m_pframebuffer->release();
 
       //::e_status estatus = ::success;
 

@@ -81,7 +81,7 @@
 
        // Returns user name of the current desktop
        //virtual bool getCurrentUserName(::string & out, LogWriter *log);
-       virtual ::string getCurrentUserName() = 0;
+       virtual bool getCurrentUserName(::string & strUsername, ::subsystem::LogWriter * plogwriter) = 0;
 
        virtual bool isUserAnAdmin() = 0;
 

@@ -67,6 +67,125 @@ namespace windows
    }
 
 
+   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand)
+   {
+
+      auto hwndCmd = ::as_HWND(operatingsystemwindowCommand);
+
+      auto hwnd = ::GetWindow(hwndCmd, iGetWindowCommand);
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+   CLASS_DECL_ACME ::operating_system::window get_foreground_window()
+   {
+
+      auto hwnd = ::GetForegroundWindow();
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+   //protected:
+
+   static BOOL CALLBACK findWindowsByClassFunc(HWND hwnd, LPARAM lparam);
+   static BOOL CALLBACK findWindowsByNameFunc(HWND hwnd, LPARAM lparam);
+
+
+      struct WindowsParam
+   {
+      ::comparable_array_base<::operating_system::window> *hwndVector;
+      const ::string_array_base *classNames;
+   };
+
+   BOOL CALLBACK findWindowsByClassFunc(HWND hwnd, LPARAM lparam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         WindowsParam *windowsParam = (WindowsParam *)lparam;
+         //::sStringVector::iterator classNameIter;
+
+         const size_t maxTcharCount = 256;
+         TCHAR winName[maxTcharCount];
+         if (GetClassName(hwnd, winName, maxTcharCount) != 0) {
+            ::string nextWinName(winName);
+
+            if (nextWinName.has_character() && hwnd != 0)
+               {
+               for (auto & str : *windowsParam->classNames)
+               {
+                  if (str == nextWinName)
+                  {
+                     windowsParam->hwndVector->add(::as_operating_system_window(hwnd));
+                  }
+               }
+
+            }
+
+            // Recursion
+            EnumChildWindows(hwnd, findWindowsByClassFunc, (::lparam) windowsParam);
+         }
+      }
+      return TRUE;
+   }
+
+   ::comparable_array_base<::operating_system::window> findWindowsByClass(const ::string_array_base & straClassNames)
+   {
+      ::comparable_array_base<::operating_system::window> hwnda;
+      if (straClassNames.empty()) {
+         return hwnda;
+      }
+      WindowsParam windowsParam;
+      windowsParam.classNames = &straClassNames;
+      windowsParam.hwndVector = &hwnda;
+      EnumWindows(findWindowsByClassFunc, (LPARAM)&windowsParam);
+      return hwnda;
+   }
+
+   BOOL CALLBACK findWindowsByNameFunc(HWND hwnd, LPARAM lparam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         const size_t maxTcharCount = 256;
+         TCHAR nameChars[maxTcharCount];
+         if (GetWindowText(hwnd, nameChars, maxTcharCount) != 0) {
+            ::string winName(nameChars);
+            winName.make_lower();
+
+            if (winName.has_character() && hwnd != 0) {
+               WindowsParam *winParams = (WindowsParam *)lparam;
+               auto substr = winParams->classNames->first();
+               if (winName.contains( substr)) {
+                  winParams->hwndVector->add(::as_operating_system_window(hwnd));
+                  return FALSE;
+               }
+            }
+         }
+      }
+      return TRUE;
+   }
+
+   ::operating_system::window findFirstWindowByName(const ::scoped_string & scopedstrWindowNamePart)
+   {
+      ::comparable_array_base<::operating_system::window> hwnda;
+      ::string_array_base winNameVector;
+      winNameVector.add(scopedstrWindowNamePart);
+      winNameVector[0].make_lower();
+      WindowsParam winParams = { &hwnda, &winNameVector };
+
+      EnumWindows(findWindowsByNameFunc, (::lparam)&winParams);
+      if (hwnda.has_element()) {
+         return hwnda.first();
+      } else {
+         return 0;
+      }
+   }
+
+
+
 } // namespace windows
 
 

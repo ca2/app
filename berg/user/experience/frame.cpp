@@ -1655,7 +1655,7 @@ namespace experience
          || is_zoomed(edisplay) || is_full_screen(edisplay))
       {
 
-         rectangleMargin.Null();
+         rectangleMargin.clear();
 
       }
       else if (is_docking_appearance(edisplay))

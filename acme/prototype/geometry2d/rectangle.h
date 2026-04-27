@@ -426,7 +426,7 @@ public:
       return *this;
    }
 
-   rectangle_type & Null()  { return ::null(*this); }
+   rectangle_type & clear()  { return ::clear(*this); }
 
    bool is_equal(const rectangle_type & rectangle) const
    {

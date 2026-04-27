@@ -27,10 +27,12 @@
 
 #include "subsystem/_common_header.h"
 
-class CLASS_DECL_REMOTING_COMMON ApplicationCrashEvents
+namespace subsystem
 {
-public:
-  virtual void onCrash(const ::scoped_string & dumpPath) = 0;
-};
-
-//// __APPLICATIONCRASHEVENTS_H__
+   class CLASS_DECL_REMOTING ApplicationCrashEvents :
+   virtual public ::particle
+   {
+   public:
+      virtual void onCrash(const ::scoped_string & dumpPath) = 0;
+   };
+} // namespace subsystem

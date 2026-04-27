@@ -1186,7 +1186,7 @@ namespace gpu_opengl
 ////
 ////                     ::cast < context > pcontext = prenderer->m_pgpucontext;
 ////
-////                     GLuint tex = pcontext->m_pframebuffer.m_tex;
+////                     GLuint tex = pcontext->m_pframebuffer->m_tex;
 ////
 ////                     glBindTexture(GL_TEXTURE_2D, tex);
 ////
@@ -1416,7 +1416,7 @@ namespace gpu_opengl
    //      //glUseProgram(blendShader);
    //      m_pshaderBlend->bind(nullptr);
    //      glActiveTexture(GL_TEXTURE0);
-   //      auto texture = pcontextSource->m_pframebuffer.m_tex;
+   //      auto texture = pcontextSource->m_pframebuffer->m_tex;
    //      glBindTexture(GL_TEXTURE_2D, texture);
    //      //glUniform1i(glGetUniformLocation(blendShader, "tex"), 0);
    //      ::cast < gpu_opengl::shader > pshader = m_pshaderBlend;

@@ -1,4 +1,4 @@
-// Copyright (C) 2011,2012 GlavSoft LLC.
+// Copyright (C) 2010,2011,2012 GlavSoft LLC.
 // All rights reserved.
 //
 //-------------------------------------------------------------------------
@@ -25,33 +25,39 @@
 #pragma once
 
 
-//#include "::earth::time.h"
+#include "subsystem/_common_header.h"
+//#include "subsystem/platform/Singleton.h"
+//#include "subsystem/thread/critical_section.h"
+#include "subsystem/node/ApplicationCrashEvents.h"
 
 namespace subsystem
 {
-   // This class help to measure time intervals. On a time interval elapse the
-   // timer only change self state. It doesn't call a callback function.
-   class CLASS_DECL_SUBSYSTEM DemandTimer
-   {
-   public:
 
-      DemandTimer(const class ::time & time);
-      ~DemandTimer();
+class CrashHook : 
+virtual public ::particle
+{
+public:
+  CrashHook(ApplicationCrashEvents *notifier);
+  virtual ~CrashHook();
 
-      // Starts the timer from the now time.
-      void reset();
+  // Call this function to enables GUI on application crash.
+  void setGuiEnabled();
 
-      // Returns true if timer time is elapsed.
-      bool isElapsed();
-
-      class ::time m_timeTimer;
-      class ::time m_timeStart;
-
-
-   };
+  // Call this function to set the HKLM registry root to write an auxiliary
+  // information. Default value is HKEY_CURRENT_USER.
+  void setHklmRoot();
+//
+// //private:
+//   static LONG WINAPI topLevelExceptionFilter(_EXCEPTION_POINTERS *pExceptionInfo);
+//
+//   static bool m_guiEnabled;
+//   static ::subsystem::registry m_rootHkey;
+//   static critical_section m_guiEnabledMutex;
+//
+//   static ApplicationCrashEvents *m_notifier;
+};
 
 
 } // namespace subsystem
-
 
 

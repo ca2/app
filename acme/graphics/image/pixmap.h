@@ -80,7 +80,7 @@ struct pixmap
 
       m_iScan = iScan;
 
-      m_point.Null();
+      m_point.clear();
 
       map();
 

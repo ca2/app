@@ -40,7 +40,7 @@ namespace  subsystem
       //virtual ~DisplaysInterface() =0;
 
       // If a display does not exist now the function return an empty rectangle.
-      virtual void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) = 0;
+      virtual void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle & rectangle) = 0;
 
       virtual ::int_rectangle_array_base getDisplaysCoords() = 0;
 
@@ -84,10 +84,10 @@ virtual public Composite<DisplaysInterface>
        //~Displays() override;
 
       // If a display does not exist now the function return an empty rectangle.
-      void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) override
+      void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle & rectangle) override
       {
 
-         m_pdisplays->getDisplayCoordinates(displayNumber, rect);
+         m_pdisplays->getDisplayCoordinates(displayNumber, rectangle);
 
       }
 

@@ -166,7 +166,7 @@ public:
    unsigned long long as_unsigned_long_long() const noexcept { return as_unsigned_long_long(this->x, this->y); }
    //::lparam lparam() const noexcept { return { this->x, this->y }; }
 
-   point_type& Null() { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE) 0;  return *this; }
+   point_type& clear() { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE) 0;  return *this; }
 
 
    point_type & offset(UNIT_TYPE xOffset, UNIT_TYPE yOffset) noexcept { this->x += xOffset; this->y += yOffset; return *this; }

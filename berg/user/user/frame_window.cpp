@@ -78,7 +78,7 @@ namespace user
 #endif
 
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectangleBorder.Null();
+      m_rectangleBorder.clear();
 
       m_bHelpMode = 0;    // not in Shift+F1 help mode
       m_dwPromptContext = 0;
@@ -2624,7 +2624,7 @@ namespace user
             if (!m_rectangleBorder.is_null())
             {
                // releasing all border space -- recalc needed
-               m_rectangleBorder.Null();
+               m_rectangleBorder.clear();
                return true;
             }
             // original int_rectangle is is_empty & pRectBorder is nullptr, no recalc needed
@@ -2881,7 +2881,7 @@ namespace user
 
       m_cModalStack = 0;              // initialize modality support
       m_nIdleFlags = 0;               // no idle work at start
-      m_rectangleBorder.Null();
+      m_rectangleBorder.clear();
       m_dwPromptContext = 0;
 
       m_pNextFrameWnd = nullptr;         // not in list_base yet

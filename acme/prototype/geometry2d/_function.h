@@ -810,7 +810,7 @@ bool intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_
    //if (::is_set(rectangle))
    //{
 
-      null(rectangle);
+      clear(rectangle);
 
    //}
 
@@ -952,7 +952,7 @@ bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect
    else
    {
 
-      null(rectangle);
+      clear(rectangle);
 
       return false;
 
@@ -1055,7 +1055,7 @@ RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size
 
 
 template < prototype_rectangle RECTANGLE_TYPE >
-RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
+RECTANGLE_TYPE & clear(RECTANGLE_TYPE & rectangle)
 {
 
    return ::assign(rectangle, 0, 0, 0, 0);

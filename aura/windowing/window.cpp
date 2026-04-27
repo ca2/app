@@ -11950,7 +11950,7 @@ slGraphics.unlock();
                   if (pgraphics->m_pimage)
                   {
 
-                     pgraphics->m_pimage->m_rectangleTag.Null();
+                     pgraphics->m_pimage->m_rectangleTag.clear();
 
                      //sizeDrawn = pgraphics->m_pimage->m_size;
 

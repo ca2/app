@@ -93,6 +93,8 @@ virtual public LockableBase
 {
 public:
 
+   using LOCKABLE::LOCKABLE;
+
    void lock() override
    {
 
@@ -105,6 +107,19 @@ public:
       LOCKABLE::unlock();
 
    }
+
+
+};
+
+
+class lockable_critical_section :
+virtual public Lockable<critical_section>
+{
+public:
+
+   using BASE = Lockable<critical_section>;
+
+   using BASE::BASE;
 
 
 };

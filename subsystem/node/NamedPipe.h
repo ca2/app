@@ -42,6 +42,7 @@ namespace subsystem
  * @author yuri, enikey.
  */
    class NamedPipeInterface :
+      virtual public ::Channel,
       virtual public ::Particle
    {
    public:

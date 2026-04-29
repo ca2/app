@@ -143,7 +143,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::process_identifier get_window_thread_process_id(const ::operating_system::window & operatingsystemwindow)
+   CLASS_DECL_ACME ::process_identifier get_window_process_id(const ::operating_system::window & operatingsystemwindow)
    {
 
       auto hwnd = ::as_HWND(operatingsystemwindow);
@@ -963,6 +963,18 @@ CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
 
 }
 
+CLASS_DECL_ACME void copy(MESSAGE& message, const MSG& msg)
+{
+
+   message.m_operatingsystemwindow = ::as_operating_system_window(msg.hwnd);
+   message.m_eusermessage = (::user::enum_message)msg.message;
+   message.m_wparam = msg.wParam;
+   message.m_lparam = msg.lParam;
+   message.m_point.x = msg.pt.x;
+   message.m_point.y = msg.pt.y;
+   message.m_time = (unsigned long long) msg.time;
+
+}
 
 // CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
 // {

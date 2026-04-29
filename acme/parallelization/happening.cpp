@@ -869,7 +869,7 @@ bool happening::_wait (const class time & timeWait)
 
 #ifdef WINDOWS
 
-   auto dwWait = ::windows::wait(timeWait);
+   auto dwWait = ::windows::wait_millis(timeWait);
 
    DWORD dwResult = ::WaitForSingleObjectEx(m_handle, dwWait, false);
 

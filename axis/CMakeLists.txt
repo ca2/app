@@ -3,6 +3,12 @@ project(axis CXX)
 
 
 list(APPEND library_source
+   accessibility/accessibility.cpp
+   accessibility/accessibility.h
+   accessibility/application.cpp
+   accessibility/application.h
+   accessibility/main_window.cpp
+   accessibility/main_window.h
    account/_.h
    #account/_account.h
    #account/account.cpp
@@ -399,7 +405,8 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   accessibility/_.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

@@ -56,6 +56,10 @@ list(APPEND library_source
    node/AutoImpersonator.h
    node/Clipboard.cpp
    node/Clipboard.h
+   node/Clipboard2.cpp
+   node/Clipboard2.h
+   node/ClipboardListener.cpp
+   node/ClipboardListener.h
    #node/CMakeLists.txt
    node/CrashHook.cpp
    node/CrashHook.h
@@ -169,6 +173,8 @@ list(APPEND library_source
    #platform/ApplicationCrashEvents.h
    #platform/AutoImpersonator.cpp
    #platform/AutoImpersonator.h
+   platform/BrokenHandleException.cpp
+   platform/BrokenHandleException.h
    platform/CommandLineArguments.cpp
    platform/CommandLineArguments.h
    #platform/CurrentConsoleProcess.cpp
@@ -177,6 +183,8 @@ list(APPEND library_source
    platform/Deflater.h
    platform/DemandTimer.cpp
    platform/DemandTimer.h
+   platform/DesCrypt.cpp
+   platform/DesCrypt.h
    #platform/DynamicLibrary.cpp
    #platform/DynamicLibrary.h
    #platform/EmulatedAnonymousPipeFactory.cpp
@@ -197,6 +205,8 @@ list(APPEND library_source
    #platform/LocalWindowsApplication.cpp
    #platform/LocalWindowsApplication.h
    #platform/matter.txt
+   platform/MD5.cpp
+   platform/MD5.h
    #platform/NamedPipe.cpp
    #platform/NamedPipe.h
    #platform/ParentProcess.cpp
@@ -250,6 +260,8 @@ list(APPEND library_source
    #platform/UipiControl.h
    #platform/VersionInfo.cpp
    #platform/VersionInfo.h
+   platform/VncPassCrypt.cpp
+   platform/VncPassCrypt.h
    #platform/win_system.vcproj
    #platform/WinClipboard.cpp
    #platform/WinClipboard.h

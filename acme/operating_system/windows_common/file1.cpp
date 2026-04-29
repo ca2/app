@@ -39,7 +39,7 @@ namespace windows
    // }
 
 
-   CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path)
+   CLASS_DECL_ACME unsigned int _get_file_attributes(const ::file::path & path)
    {
 
       ::windows_path windowspath = path.windows_path();
@@ -64,7 +64,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
+   CLASS_DECL_ACME unsigned int get_file_attributes(const ::file::path & path)
    {
 
       auto attributes = _get_file_attributes(path);
@@ -81,13 +81,13 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME int_bool is_win32_accessible(DWORD dwFileAttributes, DWORD dwLastError)
+   CLASS_DECL_ACME int_bool is_win32_accessible(unsigned int uFileAttributes, const last_error & lasterror)
    {
 
-      if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+      if (uFileAttributes == INVALID_FILE_ATTRIBUTES)
       {
 
-         if (dwLastError == ERROR_PATH_NOT_FOUND)
+         if (lasterror == ERROR_PATH_NOT_FOUND)
          {
 
             // Path would be accessible...
@@ -97,7 +97,7 @@ namespace windows
             return true;
 
          }
-         else if (dwLastError == ERROR_FILE_NOT_FOUND)
+         else if (lasterror == ERROR_FILE_NOT_FOUND)
          {
 
             // Path would be accessible...
@@ -118,42 +118,43 @@ namespace windows
 
       }
 
-
    }
 
    
    CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path)
    {
    
-     auto dwFileAttributes = ::windows::_get_file_attributes(path);
+     auto uFileAttributes = ::windows::_get_file_attributes(path);
 
-     if(dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+     if(uFileAttributes == INVALID_FILE_ATTRIBUTES)
      {
 
          auto lasterror = ::windows::get_last_error();
 
-         return is_win32_accessible(dwFileAttributes, dwLastError);
+         return is_win32_accessible(uFileAttributes, lasterror);
 
      }
      else
      {
 
-      return true;
+         return true;
 
      }
 
    }
 
 
-   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes)
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, unsigned int uFileAttributes)
    {
 
       ::windows_path windowspath = path.windows_path();
 
-      if (::SetFileAttributesW(windowspath.extended_path(), dwAttributes))
+      if (!::SetFileAttributesW(windowspath.extended_path(), uFileAttributes))
       {
 
-         ::windows::throw_file_last_error_exception(path, ::file::_e_open_set_stat, 0, "::windows::set_file_attributes: Failed to SetFileAttributesW");
+         auto lasterror = ::windows::get_last_error();
+
+         ::windows::throw_file_last_error_exception(path, ::file::_e_open_set_stat, lasterror, "::windows::set_file_attributes: Failed to SetFileAttributesW");
 
       }
 

@@ -98,6 +98,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(PipeClient)
+
    };
 
 

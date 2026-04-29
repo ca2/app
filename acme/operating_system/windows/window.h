@@ -177,7 +177,7 @@ namespace windows
             pLPARAM);
       }
 
-      virtual void create_window_ex(
+      virtual void createWindowEx(
          unsigned int dwExStyle,
          const ::scoped_string & scopedstrWindowClassName,
          const ::scoped_string & scopedstrWindowName,
@@ -186,7 +186,7 @@ namespace windows
          const ::operating_system::window & operatingsystemwindowParent = nullptr,
          void * pHMENU = nullptr);
 
-      inline void create_window(
+      inline void createWindow(
               const ::scoped_string & scopedstrWindowClassName,
               const ::scoped_string & scopedstrWindowName,
               unsigned int dwStyle,
@@ -194,7 +194,7 @@ namespace windows
               const ::operating_system::window & operatingsystemwindowParent = nullptr,
               void * pHMENU = nullptr)
       {
-         create_window_ex(
+         createWindowEx(
             0,
             scopedstrWindowClassName,
             scopedstrWindowName,
@@ -209,6 +209,8 @@ namespace windows
 
       static LRESULT CALLBACK s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
       static HINSTANCE s_window_procedure_hinstance();
+
+      virtual void postMessage(::user::enum_message emessage, ::wparam wparam = 0, ::lparam lparam = 0);
 
    };
 

@@ -55,7 +55,7 @@ namespace innate_subsystem
       // coordinates of pframebufferSource
       virtual bool copyFrom(const ::int_rectangle &  rectangleTarget, const Framebuffer * pframebufferSource,
                     int srcX, int srcY);
-      // The same as above but destination rect is m_dimension
+      // The same as above but destination rect is m_size
       virtual bool copyFrom(const Framebuffer * pframebufferSource,
                     int srcX, int srcY);
 
@@ -103,10 +103,10 @@ namespace innate_subsystem
 
       virtual void setPropertiesWithoutResize(const ::int_size & newDim, const ::innate_subsystem::PixelFormat & pf);
 
-      virtual inline ::int_size getDimension() const { return m_dimension; }
+      virtual ::int_size getDimension() const { return m_size; }
 
       virtual bool setPixelFormat(const ::innate_subsystem::PixelFormat & pixelFormat);
-      virtual inline ::innate_subsystem::PixelFormat getPixelFormat() const { return m_pixelformat; }
+      virtual ::innate_subsystem::PixelFormat getPixelFormat() const { return m_pixelformat; }
 
       // This function set both PixelFormat and ::int_size
       virtual bool setProperties(const ::int_size & newDim, const ::innate_subsystem::PixelFormat & pixelFormat);
@@ -119,7 +119,7 @@ namespace innate_subsystem
       //virtual unsigned char getBytesPerPixel() const;
 
       virtual void setBuffer(void *newBuffer) { m_buffer = newBuffer; }
-      virtual inline void *getBuffer() const { return m_buffer; }
+      virtual void *getBuffer() const { return m_buffer; }
 
       // Return a pointer to the pixel data specified by the coordinates of that
       // pixel. getBufferPtr(0, 0) should be equivalent to getBuffer(). This
@@ -137,14 +137,14 @@ namespace innate_subsystem
       void* getBufferPtr(int x, int y) const
       {
          char* ptr = (char*)m_buffer;
-         ptr += (y * m_dimension.cx + x) * getBytesPerPixel();
+         ptr += (y * m_size.cx + x) * getBytesPerPixel();
 
          return (void*)ptr;
       }
 
 
       virtual inline int getBufferSize() const;
-      virtual inline int getBytesPerRow() const { return m_dimension.cx *
+      virtual inline int getBytesPerRow() const { return m_size.cx *
                                                  m_pixelformat.bitsPerPixel / 8; }
 
       //protected:
@@ -161,7 +161,7 @@ namespace innate_subsystem
                                             int srcX, int srcY,
                                             const char *andMask);
 
-      ::int_size m_dimension;
+      ::int_size m_size;
 
       ::innate_subsystem::PixelFormat m_pixelformat;
       void *m_buffer;

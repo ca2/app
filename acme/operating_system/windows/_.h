@@ -5,22 +5,25 @@
 #include "acme/parallelization/types.h"
 
 
-#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
-#include "acme/_operating_system.h"
-#include <windowsx.h>
+#include "acme/operating_system/window.h"
+
+
+// #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
+// #include "acme/_operating_system.h"
+// #include <windowsx.h>
 
 //#include <Tlhelp32.h>
+
 
 namespace windows
 {
 
 
    CLASS_DECL_ACME int message_box(
-      HWND hwnd,
+      const ::operating_system::window & operatingsystemwindow,
       const ::scoped_string & scopedstrMessage,
       const ::scoped_string & scopedstrCaption,
-      UINT uType);
-
+      unsigned int uType);
 
 
 } // namespace windows
@@ -45,7 +48,7 @@ namespace windows
 CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 
 
-CLASS_DECL_ACME bool process_modules(string_array_base & stra, unsigned int processID);
+CLASS_DECL_ACME bool process_modules(string_array_base & stra, const ::process_identifier & processidentifier);
 
 
 CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array_base & straNew, const ::scoped_string & scopedstrExceptDir);
@@ -68,11 +71,11 @@ CLASS_DECL_ACME bool load_modules_diff(string_array_base & straOld, string_array
 
 
 #include "acme/operating_system/message.h"
-#include "acme/operating_system/windows_common/last_error.h"
-#include "acme/operating_system/windows_common/last_error_exception.h"
 
-CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd);
-CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window & operatingsystemwindow);
+
+// CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd);
+// CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window & operatingsystemwindow);
+
 
 /*
  * GetWindow() Constants
@@ -91,30 +94,12 @@ CLASS_DECL_ACME HWND as_HWND(const ::operating_system::window & operatingsystemw
 #endif
 
 
-inline void copy(MESSAGE & message, const MSG & msg)
-{
-
-   message.m_operatingsystemwindow = ::as_operating_system_window(msg.hwnd);
-   message.m_eusermessage = (::user::enum_message)msg.message;
-   message.m_wparam = msg.wParam;
-   message.m_lparam = msg.lParam;
-   message.m_point.x = msg.pt.x;
-   message.m_point.y = msg.pt.y;
-   message.m_time = msg.time;
-
-
-}
-
-
-CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message);
-
-
 namespace windows
 {
 
- 
-   CLASS_DECL_ACME ::string get_window_text_timeout(HWND hwnd, const class time & timeSendMessageMax = 1_s);
-   CLASS_DECL_ACME HWND child_at(HWND hwnd, iptr i);
+   CLASS_DECL_ACME ::string get_window_text_timeout(const ::operating_system::window & operatingsystemwindow, const class time & timeSendMessageMax = 1_s);
+   
+   CLASS_DECL_ACME const ::operating_system::window & child_at(const ::operating_system::window & operatingsystemwindow, iptr i);
 
    CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
 
@@ -142,27 +127,6 @@ namespace windows
 
 
 } // namespace windows
-
-
-inline int width(RECT & r) { return r.right - r.left; }
-
-inline int height(RECT & r) { return r.bottom - r.top; }
-
-
-inline ::int_point lparam_as_point(LPARAM lparam)
-{
-
-   return ::int_point(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-
-}
-
-
-
-
-
-
-
-inline HANDLE as_HANDLE(const htask &htask) { return (HANDLE)htask.m_h; }
 
 
 

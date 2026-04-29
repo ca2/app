@@ -169,7 +169,7 @@ CLASS_DECL_ACME void TRACELASTERROR()
 
    auto lasterror = ::windows::get_last_error();
 
-   if (!dwLastError)
+   if (lasterror == 0)
    {
 
       return;
@@ -261,10 +261,10 @@ namespace windows
    // }
 
 
-   CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError)
+   CLASS_DECL_ACME error_code last_error_error_code(const last_error & lasterror)
    {
 
-      return { e_error_code_type_last_error, dwLastError };
+      return { e_error_code_type_last_error, lasterror.m_uLastError };
 
    }
 
@@ -272,7 +272,7 @@ namespace windows
    CLASS_DECL_ACME error_code last_error_error_code()
    {
 
-      return last_error_error_code(::GetLastError());
+      return last_error_error_code(get_last_error());
 
    }
 

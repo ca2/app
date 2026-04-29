@@ -231,7 +231,7 @@ bool condition::pulse_happening()
    if (!SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION &)m_criticalsection,
-      ::windows::wait(timeWait)))
+      ::windows::wait_millis(timeWait)))
    {
 
       auto lasterror = ::windows::get_last_error();

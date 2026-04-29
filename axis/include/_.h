@@ -30,6 +30,8 @@ namespace axis
 } // namespace axis
 
 
+#include "axis/accessibility/_.h"
+
 #include "axis/account/_.h"
 
 #include "axis/networking/_.h"

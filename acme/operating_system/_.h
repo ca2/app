@@ -6,12 +6,17 @@
 CLASS_DECL_ACME void flush_stdin();
 
 
-namespace operating_system
+namespace accessibility
 {
-
 
    class application;
    class main_window;
+
+}
+
+namespace operating_system
+{
+
 
    class a_system_menu;
    class a_system_menu_item;

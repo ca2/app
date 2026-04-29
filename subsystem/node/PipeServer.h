@@ -66,7 +66,8 @@ namespace subsystem
       ~PipeServer();
 
 
-      virtual void initialize_pipe_server(const ::scoped_string &scopedstrName, unsigned int bufferSize, SecurityAttributes *secAttr = 0,
+      virtual void initialize_pipe_server(const ::scoped_string &scopedstrName, unsigned int bufferSize,
+         ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr,
                  DWORD milliseconds = INFINITE);
 
       /**

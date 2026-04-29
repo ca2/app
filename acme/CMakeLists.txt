@@ -490,9 +490,8 @@ list(APPEND library_source
         #operating_system/ansi/memory.cpp
         operating_system/ansi/process.cpp
         #operating_system/ansi/user.cpp
-        operating_system/application.cpp
-        operating_system/application.h
-
+        #operating_system/application.cpp
+        #operating_system/application.h
         operating_system/argcargv.cpp
         operating_system/a_system_menu.cpp
         operating_system/a_system_menu.h
@@ -506,8 +505,8 @@ list(APPEND library_source
         operating_system/dynamic_library.h
         operating_system/file.cpp
         #operating_system/http.cpp
-        operating_system/main_window.cpp
-        operating_system/main_window.h
+        #operating_system/main_window.cpp
+        #operating_system/main_window.h
         operating_system/message.cpp
         operating_system/message.h
         operating_system/message_box.cpp
@@ -1286,6 +1285,8 @@ list(APPEND library_source
         prototype/string/string.cpp
         prototype/string/string.h
         prototype/string/string_ansi.cpp
+        prototype/string/string_base.cpp
+        prototype/string/string_base.h
         #prototype/string/string_buffer.h
         prototype/string/string_inst.h
         prototype/string/string_wide.cpp

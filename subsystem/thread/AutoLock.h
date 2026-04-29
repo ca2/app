@@ -25,11 +25,12 @@
 #pragma once
 
 
-class LockableBase
+class LockableBase :
+virtual public ::particle
 {
 public:
 
-   virtual void lock() = 0;
+   virtual ::e_status lock() = 0;
    virtual void unlock() = 0;
 
 };
@@ -95,10 +96,11 @@ public:
 
    using LOCKABLE::LOCKABLE;
 
-   void lock() override
+   ::e_status lock() override
    {
 
       LOCKABLE::lock();
+      return ::success;
    }
 
    void unlock() override

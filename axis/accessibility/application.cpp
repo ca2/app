@@ -6,7 +6,7 @@
 #include "acme/platform/node.h"
 
 
-namespace operating_system
+namespace accessibility
 {
 
 
@@ -115,7 +115,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    }
 
 
-} // namespace operating_system
+} // namespace accessibility
 
 
 

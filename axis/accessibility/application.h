@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace operating_system
+namespace accessibility
 {
 
    
@@ -49,7 +49,7 @@ namespace operating_system
    };
 
 
-} // namespace operating_system
+} // namespace accessibility
 
 
 

@@ -210,6 +210,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(Screen)
+
    };
 
 

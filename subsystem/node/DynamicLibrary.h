@@ -140,9 +140,11 @@ Dynamic library class.
 
 
    class CLASS_DECL_SUBSYSTEM DynamicLibrary :
- virtual public Object < DynamicLibraryAggregate >
+      virtual public Object < DynamicLibraryAggregate >
    {
    public:
+
+      ImplementObjectø(DynamicLibrary)
 
    };
 

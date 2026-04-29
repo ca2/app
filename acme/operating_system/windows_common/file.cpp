@@ -86,13 +86,13 @@ namespace windows
 
          auto strLastErrorMessage = ::windows::last_error_message(lasterror);
 
-         if (dwLastError == ERROR_FILE_NOT_FOUND)
+         if (lasterror == ERROR_FILE_NOT_FOUND)
          {
             
             //warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
 
          }
-         else if (dwLastError == ERROR_PATH_NOT_FOUND)
+         else if (lasterror == ERROR_PATH_NOT_FOUND)
          {
 
             //warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
@@ -106,7 +106,7 @@ namespace windows
                "dwCreationDisposition=%u dwFlagsAndAttributes=%u "
                "hTemplateFile=0x%llx \"%s\"",
                wstrPath.c_str(),
-               dwLastError,
+               lasterror.m_uLastError,
                dwDesiredAccess,
                dwShareMode,
                (::uptr)lpSecurityAttributes,

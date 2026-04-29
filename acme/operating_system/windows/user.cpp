@@ -14,7 +14,7 @@ namespace windows
       DWORD_PTR dw = 0;
 
       //if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, 100, &dw))
-      if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait(timeSendMessageMax), &dw))
+      if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait_millis(timeSendMessageMax), &dw))
       {
 
          return "";
@@ -32,7 +32,7 @@ namespace windows
 
       auto pwsz = wstr.get_buffer(dw);
 
-      if (!SendMessageTimeoutW(hwnd, WM_GETTEXT, dw + 1, (LPARAM)pwsz, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait(timeSendMessageMax), &dw))
+      if (!SendMessageTimeoutW(hwnd, WM_GETTEXT, dw + 1, (LPARAM)pwsz, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait_millis(timeSendMessageMax), &dw))
       {
 
          return "";

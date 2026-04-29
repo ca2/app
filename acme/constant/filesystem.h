@@ -48,6 +48,7 @@ namespace file
       _e_open_stat = 0x100000000ull,
       _e_open_set_stat = 0x200000000ull,
       _e_open_create_directory = 0x400000000ull,
+      _e_open_set_current_directory = 0x800000000ull,
 
 
    };

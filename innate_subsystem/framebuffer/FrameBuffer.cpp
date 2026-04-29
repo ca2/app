@@ -54,7 +54,7 @@ namespace innate_subsystem
          return false;
       }
 
-      ::int_rectangle fbRect(m_dimension);
+      ::int_rectangle fbRect(m_size);
       copyFrom(fbRect, pframebufferSource, fbRect.left, fbRect.top);
 
       return true;
@@ -62,7 +62,7 @@ namespace innate_subsystem
 
    void Framebuffer::setColor(unsigned char red, unsigned char green, unsigned char blue)
    {
-      size_t sizeInPixels = m_dimension.area();
+      size_t sizeInPixels = m_size.area();
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
       unsigned int redPix = (red * m_pixelformat.redMax / 255) <<
                       m_pixelformat.redShift;
@@ -81,7 +81,7 @@ namespace innate_subsystem
 
    void Framebuffer::fillRect(const ::int_rectangle & rectangleTarget, unsigned int color)
    {
-      ::int_rectangle clipRect = ::int_rectangle(m_dimension).intersection(rectangleTarget);
+      ::int_rectangle clipRect = ::int_rectangle(m_size).intersection(rectangleTarget);
 
       int pixelSize = getBytesPerPixel();
       size_t sizeLineFb = getBytesPerRow();
@@ -103,7 +103,7 @@ namespace innate_subsystem
 
    bool Framebuffer::isEqualTo(const Framebuffer * pframebuffer)
    {
-      return m_dimension == pframebuffer->getDimension() &&
+      return m_size == pframebuffer->getDimension() &&
              m_pixelformat == pframebuffer->getPixelFormat();
    }
 
@@ -119,7 +119,7 @@ namespace innate_subsystem
                               const int srcX, const int srcY,
                               ::int_rectangle & rectangleTargetClipped, ::int_rectangle & rectangleSourceClipped)
    {
-      ::int_rectangle dstBufferRect(m_dimension);
+      ::int_rectangle dstBufferRect(m_size);
 
       // Building srcRect
       ::int_rectangle srcRect(srcX, srcY, srcX + rectangleTarget.width(), srcY + rectangleTarget.height());
@@ -212,7 +212,7 @@ namespace innate_subsystem
 
       // Shortcuts
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytes = m_dimension.cx * pixelSize;
+      int dstStrideBytes = m_size.cx * pixelSize;
       int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       int resultHeight = rectangleTargetClipped.height();
@@ -236,7 +236,7 @@ namespace innate_subsystem
    bool Framebuffer::copyFrom(const Framebuffer * pframebufferSource,
                               int srcX, int srcY)
    {
-      return copyFrom(m_dimension, pframebufferSource, srcX, srcY);
+      return copyFrom(m_size, pframebufferSource, srcX, srcY);
    }
 
    bool Framebuffer::copyFromRotated90(const ::int_rectangle & rectangleTarget, const Framebuffer * pframebufferSource,
@@ -249,7 +249,7 @@ namespace innate_subsystem
 
       // Shortcuts
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytesByX = m_dimension.cx * pixelSize;
+      int dstStrideBytesByX = m_size.cx * pixelSize;
       int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
@@ -299,7 +299,7 @@ namespace innate_subsystem
 
       // Shortcuts
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytesByX = m_dimension.cx * pixelSize;
+      int dstStrideBytesByX = m_size.cx * pixelSize;
       int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
@@ -351,7 +351,7 @@ namespace innate_subsystem
 
       // Shortcuts
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytesByX = m_dimension.cx * pixelSize;
+      int dstStrideBytesByX = m_size.cx * pixelSize;
       int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       ::int_rectangle rectangleSourceClipped, rectangleTargetClipped;
@@ -408,7 +408,7 @@ namespace innate_subsystem
 
       // Shortcuts
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int dstStrideBytes = m_dimension.cx * pixelSize;
+      int dstStrideBytes = m_size.cx * pixelSize;
       int srcStrideBytes = pframebufferSource->getDimension().cx * pixelSize;
 
       int resultHeight = rectangleTargetClipped.height();
@@ -442,7 +442,7 @@ namespace innate_subsystem
 
       // Data copy
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
-      int strideBytes = m_dimension.cx * pixelSize;
+      int strideBytes = m_size.cx * pixelSize;
 
       int resultHeight = rectangleTargetClipped.height();
       int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
@@ -481,13 +481,13 @@ namespace innate_subsystem
 
    bool Framebuffer::setDimension(const ::int_size & newDim)
    {
-      m_dimension = newDim;
+      m_size = newDim;
       return resizeBuffer();
    }
 
    void Framebuffer::setEmptyDimension(const ::int_rectangle & dimByRect)
    {
-      m_dimension = dimByRect.size();
+      m_size = dimByRect.size();
    }
 
    void Framebuffer::setEmptyPixelFmt(const PixelFormat & pf)
@@ -497,7 +497,7 @@ namespace innate_subsystem
 
    void Framebuffer::setPropertiesWithoutResize(const ::int_size & newDim, const PixelFormat & pf)
    {
-      m_dimension = newDim;
+      m_size = newDim;
       m_pixelformat = pf;
    }
 
@@ -505,7 +505,7 @@ namespace innate_subsystem
                                    const PixelFormat & pixelFormat)
    {
       m_pixelformat = pixelFormat;
-      m_dimension = newDim;
+      m_size = newDim;
       return resizeBuffer();
    }
 
@@ -513,7 +513,7 @@ namespace innate_subsystem
                                    const PixelFormat & pixelFormat)
    {
       m_pixelformat = pixelFormat;
-      m_dimension = dimByRect.size();
+      m_size = dimByRect.size();
       return resizeBuffer();
    }
 
@@ -525,7 +525,7 @@ namespace innate_subsystem
 
    int Framebuffer::getBufferSize() const
    {
-      return (int)((unsigned long long)m_dimension.area() * m_pixelformat.bitsPerPixel / 8);
+      return (int)((unsigned long long)m_size.area() * m_pixelformat.bitsPerPixel / 8);
    }
 
    bool Framebuffer::resizeBuffer()

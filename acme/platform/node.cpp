@@ -19,7 +19,7 @@
 #include "acme/handler/request.h"
 #include "acme/memory/counter.h"
 #include "acme/platform/exclusive.h"
-#include "acme/operating_system/application.h"
+//#include "acme/operating_system/application.h"
 #include "acme/operating_system/summary.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
@@ -3515,52 +3515,52 @@ bool node::_is_smart_git_installed()
    //}
 
 
-   ::pointer < ::operating_system::application > node::module_path_application(const ::scoped_string & scopestr)
-   {
-
-      throw ::interface_only();
-
-      return nullptr;
-
-   }
-
-   
-   ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
-   {
-      
-      auto papplication = createø < ::operating_system::application >();
-      
-      papplication->open_by_process_identifier(processidentifier);
-      
-      return papplication;
-      
-   }
-
-
-   ::pointer < ::operating_system::application > node::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
-   {
-
-      auto processidentifiera = processes_identifiers();
-
-      for (auto & processidentifier : processidentifiera)
-      {
-
-         auto papplication = createø < ::operating_system::application >();
-
-         papplication->open_by_process_identifier(processidentifier);
-
-         if (function(papplication))
-         {
-
-            return papplication;
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
+   // ::pointer < ::operating_system::application > node::module_path_application(const ::scoped_string & scopestr)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    return nullptr;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::operating_system::application > node::process_identifier_application(::process_identifier processidentifier)
+   // {
+   //
+   //    auto papplication = createø < ::operating_system::application >();
+   //
+   //    papplication->open_by_process_identifier(processidentifier);
+   //
+   //    return papplication;
+   //
+   // }
+   //
+   //
+   // ::pointer < ::operating_system::application > node::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
+   // {
+   //
+   //    auto processidentifiera = processes_identifiers();
+   //
+   //    for (auto & processidentifier : processidentifiera)
+   //    {
+   //
+   //       auto papplication = createø < ::operating_system::application >();
+   //
+   //       papplication->open_by_process_identifier(processidentifier);
+   //
+   //       if (function(papplication))
+   //       {
+   //
+   //          return papplication;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return nullptr;
+   //
+   // }
 
 
    ::string node::get_character_set_default_sample_text(enum_character_set echaracterset)

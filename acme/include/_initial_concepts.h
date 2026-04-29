@@ -331,6 +331,24 @@ struct std::formatter<::character_range<ITERATOR_TYPE>>;
 
 
 
+template <typename T>
+concept prototype_character_pointer =
+    std::is_pointer<T>::value &&
+    requires {
+   typename non_const<non_pointer<T>>;
+    } &&
+    (
+        std::same_as<non_const<non_pointer<T>>, char> ||
+        std::same_as<non_const<non_pointer<T>>, wchar_t> ||
+        std::same_as<non_const<non_pointer<T>>, char8_t> ||
+        std::same_as<non_const<non_pointer<T>>, char16_t> ||
+        std::same_as<non_const<non_pointer<T>>, char32_t>
+    );
+
+template < typename STDSTRING >
+concept prototype_std_string = (::std::is_base_of_v<::std::string, STDSTRING > || ::std::is_base_of_v<::std::wstring, STDSTRING >);
+
+
 template < typename CHARACTER_RANGE >
 concept prototype_character_range =
 (::std::is_base_of_v < ::character_range< const typename CHARACTER_RANGE::CHARACTER* >, CHARACTER_RANGE >

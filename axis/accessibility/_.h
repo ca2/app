@@ -1,8 +1,19 @@
 //
-// Created by camilo on 2026-04-27.
+// Created by camilo on 2026-04-27 19:02 <3ThomasBorregaardSørensen!! Mummi!! bilbo!!
 //
+#pragma once
 
-#ifndef MAIN___H
-#define MAIN___H
 
-#endif //MAIN___H
+
+namespace accessibility
+{
+
+   class accessibility;
+   class application;
+   class main_windows;
+
+} // namespace accessibility
+
+
+
+

@@ -32,61 +32,64 @@ documentation and/or software.
 
 #pragma once
 
-
-//#include "subsystem/platform/inttypes.h"
-
-class MD5
+namespace subsystem
 {
-public:
-  MD5();
-  void update(const unsigned char *buf, unsigned int length);
-  void update(const char *buf, unsigned int length);
-  MD5& finalize();
+   //#include "subsystem/platform/inttypes.h"
 
-  /**
-   * Returns 16 byte MD5 hash.
-   */
-  unsigned char *getHash();
+   class CLASS_DECL_SUBSYSTEM MD5
+   {
+   public:
+      MD5();
+      void update(const unsigned char *buf, unsigned int length);
+      void update(const char *buf, unsigned int length);
+      MD5& finalize();
 
-private:
-  static const int BLOCKSIZE = 64;
+      /**
+       * Returns 16 byte MD5 hash.
+       */
+      unsigned char *getHash();
 
-  static void decode(unsigned int output[], const unsigned char input[], unsigned int len);
-  static void encode(unsigned char output[], const unsigned int input[], unsigned int len);
+   private:
+      static const int BLOCKSIZE = 64;
 
-  void init();
+      static void decode(unsigned int output[], const unsigned char input[], unsigned int len);
+      static void encode(unsigned char output[], const unsigned int input[], unsigned int len);
 
-  void transform(const unsigned char block[BLOCKSIZE]);
+      void init();
 
-private:
+      void transform(const unsigned char block[BLOCKSIZE]);
 
-  //
-  // low level logic operations
-  //
+   private:
 
-  static unsigned int F(unsigned int x, unsigned int y, unsigned int z);
-  static unsigned int G(unsigned int x, unsigned int y, unsigned int z);
-  static unsigned int H(unsigned int x, unsigned int y, unsigned int z);
-  static unsigned int I(unsigned int x, unsigned int y, unsigned int z);
+      //
+      // low level logic operations
+      //
 
-  static unsigned int rotateLeft(unsigned int x, int n);
+      static unsigned int F(unsigned int x, unsigned int y, unsigned int z);
+      static unsigned int G(unsigned int x, unsigned int y, unsigned int z);
+      static unsigned int H(unsigned int x, unsigned int y, unsigned int z);
+      static unsigned int I(unsigned int x, unsigned int y, unsigned int z);
 
-  static void FF(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
-  static void GG(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
-  static void HH(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
-  static void II(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
+      static unsigned int rotateLeft(unsigned int x, int n);
 
-private:
-  // if finalized.
-  bool m_finalized;
-  // bytes that didn't fit in last 64 byte chunk.
-  unsigned char m_buffer[BLOCKSIZE];
-  // 64bit counter for number of bits (lo, hi).
-  unsigned int m_count[2];
-  // m_digest so far.
-  unsigned int m_state[4];
-  // the result.
-  unsigned char m_digest[16];
-};
+      static void FF(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
+      static void GG(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
+      static void HH(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
+      static void II(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
+
+   private:
+      // if finalized.
+      bool m_finalized;
+      // bytes that didn't fit in last 64 byte chunk.
+      unsigned char m_buffer[BLOCKSIZE];
+      // 64bit counter for number of bits (lo, hi).
+      unsigned int m_count[2];
+      // m_digest so far.
+      unsigned int m_state[4];
+      // the result.
+      unsigned char m_digest[16];
+   };
+
+} // namespace subsystem
 
 

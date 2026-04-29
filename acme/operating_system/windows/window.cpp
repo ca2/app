@@ -552,7 +552,7 @@ namespace windows
    }
 
 
-   void window::create_window_ex(
+   void window::createWindowEx(
       unsigned int dwExStyle,
       const ::scoped_string & scopedstrWindowClassName,
       const ::scoped_string & scopedstrWindowName,
@@ -712,7 +712,20 @@ namespace windows
 
    }
 
+   void window::postMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   {
 
+      auto hwnd = m_windowswindow.as_HWND();
+
+      auto message = (unsigned int) emessage;
+
+      auto wParam = wparam.m_wparam;
+
+      auto lParam = lparam.m_lparam;
+
+      ::PostMessage(hwnd, message, wParam, lParam);
+
+   }
 
 } // namespace windows
 

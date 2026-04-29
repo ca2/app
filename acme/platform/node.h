@@ -675,11 +675,11 @@ namespace platform
 
       //virtual void module_path_main_window_post_close(const ::scoped_string & scopestr);
 
-      ::pointer < ::operating_system::application > module_path_application(const ::scoped_string & scopestr) override;
-
-      ::pointer < ::operating_system::application > process_identifier_application(::process_identifier processidentifier) override;
-
-      ::pointer < ::operating_system::application > application_predicate(const ::function < bool(::operating_system::application * papplication) > & function) override;
+      // ::pointer < ::operating_system::application > module_path_application(const ::scoped_string & scopestr) override;
+      //
+      // ::pointer < ::operating_system::application > process_identifier_application(::process_identifier processidentifier) override;
+      //
+      // ::pointer < ::operating_system::application > application_predicate(const ::function < bool(::operating_system::application * papplication) > & function) override;
 
 
       ::string get_character_set_default_sample_text(enum_character_set echaracterset) override;

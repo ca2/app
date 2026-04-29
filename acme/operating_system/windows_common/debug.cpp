@@ -59,10 +59,10 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME string last_error_message(const ::scoped_string & scopedstrErrorMessage, unsigned int uError)
+   CLASS_DECL_ACME string last_error_message(const ::scoped_string & scopedstrErrorMessage, const last_error & lasterror)
    {
 
-      ::string strSystemError = last_error_message(uError);
+      ::string strSystemError = last_error_message(lasterror);
 
       string strMessage;
 
@@ -73,11 +73,11 @@ namespace windows
    }
 
 
-   ::enum_status _last_error_status(DWORD dwError)
+   ::enum_status _last_error_status(unsigned int uLastError)
    {
 
       // NT Error codes
-      switch (dwError)
+      switch (uLastError)
       {
       case NO_ERROR:
          return ::success;
@@ -244,31 +244,33 @@ namespace windows
    }
 
 
-   ::enum_status _failed_last_error_status(DWORD dwLastError)
+   ::enum_status _failed_last_error_status(unsigned int uLastError)
    {
 
-      if (dwLastError == 0)
+      if (uLastError == 0)
       {
 
          return error_some_error_has_occurred;
 
       }
 
-      return _last_error_status(dwLastError);
+      return _last_error_status(uLastError);
 
    }
 
 
-   CLASS_DECL_ACME unsigned int last_error()
+   // CLASS_DECL_ACME unsigned int last_error()
+   // {
+   //
+   //    return ::GetLastError();
+   //
+   // }
+
+
+   [[ noreturn ]] void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, const last_error & lasterrorParameter)
    {
 
-      return ::GetLastError();
-
-   }
-
-
-   [[ noreturn ]] void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, const last_error & lasterror)
-   {
+      auto lasterror = lasterrorParameter;
 
       if (lasterror == 0)
       {
@@ -286,8 +288,10 @@ namespace windows
    }
 
 
-   [[ noreturn ]] CLASS_DECL_ACME void throw_file_last_error_exception(const ::file::path & path, ::file::e_open eopen, const last_error & lasterror, const ::scoped_string & scopedstrErrorMessage)
+   [[ noreturn ]] CLASS_DECL_ACME void throw_file_last_error_exception(const ::file::path & path, ::file::e_open eopen, const last_error & lasterrorParameter, const ::scoped_string & scopedstrErrorMessage)
    {
+
+      auto lasterror = lasterrorParameter;
 
       if (lasterror == 0)
       {

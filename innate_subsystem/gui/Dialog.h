@@ -372,7 +372,7 @@ namespace innate_subsystem
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM Dialog :
-      virtual public Object<DialogAggregate>
+      virtual public WindowObject<DialogAggregate>
    {
    public:
 

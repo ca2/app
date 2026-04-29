@@ -90,10 +90,11 @@ virtual       int getSelectedTabIndex()= 0;
       //
 
       TabContainer &getTabs() override { return m_ptabcontrol->getTabs(); }
+      virtual int getTabCount() {return m_ptabcontrol->getTabCount();};
       TabInterface *getTab(int index)override { return m_ptabcontrol->getTab(index); }
       void addTab(DialogInterface *dialog, const char *caption)override { m_ptabcontrol->addTab(dialog, caption); }
       void showTab(int index)override { m_ptabcontrol->showTab(index); }
-      //void showTab(DialogInterface *pdialog)override;
+      void showTab(DialogInterface *pdialog) { m_ptabcontrol->showTab(pdialog); }
       void deleteAllTabs()override { m_ptabcontrol->deleteAllTabs(); }
       void removeTab(int index)override { m_ptabcontrol->removeTab(index); }
 
@@ -113,17 +114,23 @@ virtual       int getSelectedTabIndex()= 0;
 //      TabContainer m_tabContainer;
    };
 
+
+
    class CLASS_DECL_INNATE_SUBSYSTEM TabControlAggregate :
-   virtual public Aggregate < TabControlComposite, Control >
+      virtual public Aggregate < TabControlComposite, ControlAggregate >
    {
    public:
+
+      ImplementAggregateø(TabControl, Control)
+
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM  TabControl:
-virtual public Object<TabControlAggregate>
+      virtual public Object<TabControlAggregate>
    {
    public:
 
+      ImplementObjectø(TabControl)
 
    };
 

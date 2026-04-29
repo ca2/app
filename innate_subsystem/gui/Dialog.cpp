@@ -102,7 +102,7 @@ namespace innate_subsystem
 //
 // void Dialog::setDefaultPushButton(unsigned int buttonId)
 // {
-//   //SendMessage(m_ctrlThis.getWindow(), DM_SETDEFID, buttonId, 0);
+//   //SendMessage(this->getWindow(), DM_SETDEFID, buttonId, 0);
 //    m_pparticleThis->setDefaultPushButton(buttonId);
 // }
 //
@@ -114,17 +114,17 @@ namespace innate_subsystem
 //
 // void Dialog::show()
 // {
-//   // if (m_ctrlThis.getWindow() == NULL) {
+//   // if (this->getWindow() == NULL) {
 //   //   create();
 //   // } else {
-//   //   m_ctrlThis.setForeground();
+//   //   this->setForeground();
 //   // }
 //   m_pparticleThis->show();
 // }
 //
 // void Dialog::hide()
 // {
-//   //m_ctrlThis.setVisible(false);
+//   //this->setVisible(false);
 //
 //    m_pparticleThis->hide();
 // }
@@ -133,12 +133,12 @@ namespace innate_subsystem
 // {
 //   // // Destroy dialog
 //   // if (!m_isModal) {
-//   //   DestroyWindow(m_ctrlThis.getWindow());
+//   //   DestroyWindow(this->getWindow());
 //   // } else {
-//   //   EndDialog(m_ctrlThis.getWindow(), code);
+//   //   EndDialog(this->getWindow(), code);
 //   // }
 //   // // We have no valid hwnd, so forse set hwnd to NULL
-//   // m_ctrlThis.setWindow(NULL);
+//   // this->setWindow(NULL);
 //
 //    m_pparticleThis->closeDialog(code);
 // }
@@ -163,15 +163,15 @@ namespace innate_subsystem
 // int Dialog::showModal()
 // {
 //   // int result = 0;
-//   // if (m_ctrlThis.getWindow() == NULL) {
+//   // if (this->getWindow() == NULL) {
 //   //   m_isModal = true;
 //   //   HWND parentWindow = (m_ctrlParent != NULL) ? m_ctrlParent->getWindow() : NULL;
 //   //   result = (int)DialogBoxParam(GetModuleHandle(NULL),
 //   //                                getResouceName(),
 //   //                                parentWindow, dialogProc, (::lparam)this);
 //   // } else {
-//   //   m_ctrlThis.setVisible(true);
-//   //   m_ctrlThis.setForeground();
+//   //   this->setVisible(true);
+//   //   this->setForeground();
 //   // }
 //   //
 //   // //
@@ -187,13 +187,13 @@ namespace innate_subsystem
 //
 // bool Dialog::isCreated()
 // {
-//   // bool isInit = m_ctrlThis.getWindow() != 0;
+//   // bool isInit = this->getWindow() != 0;
 //   //
 //   // if (!isInit) {
 //   //   return false;
 //   // }
 //   //
-//   // return !!IsWindow(m_ctrlThis.getWindow());
+//   // return !!IsWindow(this->getWindow());
 //
 //    return m_pparticleThis->isCreated();
 // }
@@ -220,7 +220,7 @@ namespace innate_subsystem
 //   // if (uMsg == WM_INITDIALOG) {
 //   //   _this = (Dialog *)::lparam;
 //   //   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)_this);
-//   //   _this->m_ctrlThis.setWindow(hwnd);
+//   //   _this->this->setWindow(hwnd);
 //   //   _this->updateIcon();
 //   // } else {
 //   //   _this = (Dialog *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
@@ -266,14 +266,14 @@ namespace innate_subsystem
 //
 // // void Dialog::subclassControlById(ControlInterface * pcontrol, unsigned int id)
 // // {
-// //   // control = GetDlgItem(m_ctrlThis.getWindow(), id);
+// //   // control = GetDlgItem(this->getWindow(), id);
 // //    m_pparticleThis->subclassControlById(pcontrol, id);
 // // }
 //
 // void Dialog::updateIcon()
 // {
 //   // if (m_hicon) {
-//   //   SetClassLongPtr(m_ctrlThis.getWindow(), GCLP_HICON, (LONG_PTR)m_hicon);
+//   //   SetClassLongPtr(this->getWindow(), GCLP_HICON, (LONG_PTR)m_hicon);
 //   // }
 //    m_pparticleThis->updateIcon();
 // }
@@ -289,7 +289,7 @@ namespace innate_subsystem
 //
 // bool Dialog::setForeground()
 // {
-//   //return m_ctrlThis.setForeground();
+//   //return this->setForeground();
 //
 //    return m_pparticleThis->setForeground();
 // }

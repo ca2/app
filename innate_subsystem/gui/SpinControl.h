@@ -53,6 +53,7 @@ public:
   //
 
   //void autoAccelerationHandler(LPNMUPDOWN message)= 0;
+    virtual void autoAccelerationHandler(int iPos, int iDelta)= 0;
   virtual void enableAutoAcceleration(bool enabled)= 0;
   virtual void setAutoAccelerationParams(const int_array & limitters,
                                  const int_array & deltas,
@@ -98,6 +99,7 @@ public:
       //
 
       //void autoAccelerationHandler(LPNMUPDOWN message);
+       void autoAccelerationHandler(int iPos, int iDelta){ m_pspincontrol->autoAccelerationHandler(iPos, iDelta); }
       void enableAutoAcceleration(bool enabled) { m_pspincontrol->enableAutoAcceleration(enabled); }
       void setAutoAccelerationParams(const int_array & limitters,
                                      const int_array & deltas,

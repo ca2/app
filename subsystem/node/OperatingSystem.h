@@ -111,6 +111,10 @@
        // Returns true if the Aero is On.
        virtual bool isAeroOn(LogWriter *log) = 0;
 
+       virtual bool file_canRead(const ::file::path & path) = 0;
+       virtual bool file_canWrite(const ::file::path & path) = 0;
+       virtual bool file_createNewFile(const ::file::path & path) = 0;
+
     //private:
        //virtual void init() = 0;
        // Operation system version info.

@@ -54,6 +54,8 @@ namespace innate_subsystem
       virtual void deleteAllTabs()= 0;
 virtual       void removeTab(int index)= 0;
 
+
+      virtual void moveWindowToTabControl(::innate_subsystem::WindowInterface * pwindow) = 0;
       //
       // Return selected tab number
       //
@@ -97,6 +99,9 @@ virtual       int getSelectedTabIndex()= 0;
       void showTab(DialogInterface *pdialog) { m_ptabcontrol->showTab(pdialog); }
       void deleteAllTabs()override { m_ptabcontrol->deleteAllTabs(); }
       void removeTab(int index)override { m_ptabcontrol->removeTab(index); }
+
+
+      void moveWindowToTabControl(::innate_subsystem::WindowInterface * pwindow) override {m_ptabcontrol->moveWindowToTabControl(pwindow);}
 
       //
       // Return selected tab number

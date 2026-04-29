@@ -45,7 +45,27 @@ namespace innate_subsystem
 
    }
 
+   bool notification_handler::_001OnTabChanged()
+   {
 
+      return false;
+
+   }
+
+   bool notification_handler::_001OnTabChanging(bool & bOk)
+   {
+
+      return false;
+
+   }
+
+
+   bool notification_handler::_001OnUpDown(int iPos, int iDelta)
+   {
+
+      return false;
+
+   }
 
    bool notification_handler::_002OnAction(int iControl)
    {
@@ -78,6 +98,26 @@ namespace innate_subsystem
 
    }
 
+   bool notification_handler::_002OnTabChanged(int iControl)
+   {
 
+      return false;
+
+   }
+
+   bool notification_handler::_002OnTabChanging(int iControl, bool & bOk)
+   {
+
+      return false;
+
+   }
+
+
+   bool notification_handler::_002OnUpDown(int iControl, int iPos, int iDelta)
+   {
+
+      return false;
+
+   }
 
 } // innate_subsystem

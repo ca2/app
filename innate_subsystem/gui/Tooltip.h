@@ -36,6 +36,15 @@ namespace innate_subsystem
 {
 
 
+   enum enum_tooltip_icon
+   {
+
+      e_tooltip_icon_none,
+      e_tooltip_icon_warning,
+
+   };
+
+
     class TooltipInterface :
     virtual public ::Particle
     {
@@ -45,14 +54,14 @@ namespace innate_subsystem
 //
         virtual void showTooltip(ControlInterface *control)= 0;
 
-        virtual void setText(const char *text)= 0;
+        //virtual void setText(const char *text)= 0;
         virtual void setTitle(const char *caption)= 0;
 
-        virtual ::string getText() const= 0;
+        //virtual ::string getText() const= 0;
         virtual ::string getTitle() const= 0;
 
-        virtual void setIconType(int iconType)= 0;
-        virtual int getIconType() const = 0;
+        virtual void setIconType(enum_tooltip_icon etooltipicon)= 0;
+        virtual enum_tooltip_icon getIconType() const = 0;
     };
 
     //#endif
@@ -73,25 +82,25 @@ namespace innate_subsystem
          m_ptooltip->showTooltip(control);
       }
 
-      void setText(const char* text) override { m_ptooltip->setText(text);
-      }
+      //void setText(const char* text) override { m_ptooltip->setText(text);
+      //}
       void setTitle(const char *caption) override { m_ptooltip->setTitle(caption); }
 
-      ::string getText() const override { return m_ptooltip->getText();
-      }
+      //::string getText() const override { return m_ptooltip->getText();
+      //}
       ::string getTitle() const override
       { return m_ptooltip->getTitle();
       }
 
-      void setIconType(int iconType) override { m_ptooltip->setIconType(iconType);
+      void setIconType(enum_tooltip_icon etooltipicon) override { m_ptooltip->setIconType(etooltipicon);
       }
-      int getIconType() const override { return m_ptooltip->getIconType();
+      enum_tooltip_icon getIconType() const override { return m_ptooltip->getIconType();
       }
    };
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM TooltipAggregate :
-   virtual public Aggregate <TooltipComposite, Control>
+   virtual public Aggregate <TooltipComposite, ControlAggregate>
    {
    public:
 
@@ -105,6 +114,7 @@ virtual public Object<TooltipAggregate>
    {
    public:
 
+      ImplementObjectø(Tooltip)
 
    };
 

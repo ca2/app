@@ -115,6 +115,10 @@
        virtual bool file_canWrite(const ::file::path & path) = 0;
        virtual bool file_createNewFile(const ::file::path & path) = 0;
 
+       virtual ::memory getSharedMemorySnapshot(const ::scoped_string &scopedstrShareMemoryName, memsize size, const class ::time & timeWaitMax) = 0;
+
+       virtual unsigned int getActiveConsoleSessionId(::subsystem::LogWriter * plogwriter) = 0;
+       virtual void duplicatePipeClientToken(::subsystem::FileInterface * pfile) = 0;
     //private:
        //virtual void init() = 0;
        // Operation system version info.

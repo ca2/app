@@ -36,23 +36,30 @@ namespace subsystem
       ::string_array_base argContainer;
       ::string_array_base::iterator argIter;
       argContainer = cmdArgs->getArgs();
-
-      bool result = true;
-      for (argIter = argContainer.begin(); argIter != argContainer.end() && result; argIter++)
+int iSize = argContainer.size();
+      if (iSize <=1)
       {
-         auto pstringKey = &(*argIter);
-         if (!_removeKeyPrefix(pstringKey))
-         {
-            result = false;
-            break;
-         }
+         return true;
 
-         pstringKey->make_lower();
+      }
+      bool result = true;
+      for (argIter = argContainer.begin()+1; argIter != argContainer.end() && result; argIter++)
+      {
+         auto strKey = *argIter;
+         // if (!_removeKeyPrefix(&strKey))
+         // {
+         //    result = false;
+         //    break;
+         // }
+
+         strKey.make_lower();
 
          result = false;
          for (int i = 0; i < formatSize; i++)
          {
-            if (_matchKey(format[i].keyName, pstringKey))
+            auto keyName = format[i].keyName;
+
+            if (keyName == strKey)
             {
                KeyContainer keyContainer;
                result = true;
@@ -115,24 +122,24 @@ namespace subsystem
       return true;
    }
 
-   bool CommandLine::_matchKey(const char * pszKeyTemplate, string *key)
-   {
-      return *key == (++pszKeyTemplate);
-   }
+   // bool CommandLine::_matchKey(const char * pszKeyTemplate, string *key)
+   // {
+   //    return *key == (++pszKeyTemplate);
+   // }
 
 
-   bool CommandLine::_removeKeyPrefix(string *key)
-   {
-      try
-      {
-         key->erase(0, 1);
-         return true;
-      }
-      catch (...)
-      {
-         return false;
-      }
-   }
+   // bool CommandLine::_removeKeyPrefix(string *key)
+   // {
+   //    try
+   //    {
+   //       key->erase(0, 1);
+   //       return true;
+   //    }
+   //    catch (...)
+   //    {
+   //       return false;
+   //    }
+   // }
 
 
 } // namespace subsystem

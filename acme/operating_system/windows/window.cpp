@@ -20,6 +20,7 @@ namespace windows
       //m_hwnd = nullptr;
       m_hmenuSystem = nullptr;
       m_bDefaultSystemMenu = true;
+      m_wndprocDefault = nullptr;
    }
 
 
@@ -33,6 +34,29 @@ namespace windows
    {
 
       return m_wndprocDefault;
+
+   }
+
+   bool window::call_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam)
+   {
+
+      if (on_window_procedure(lresult, message, wparam, lparam))
+      {
+
+         return true;
+
+      }
+
+      if (m_wndprocDefault)
+      {
+
+         lresult =  ::CallWindowProcW(m_wndprocDefault, m_windowswindow.as_HWND(), message, wparam.m_wparam, lparam.m_lparam );
+
+         return true;
+
+      }
+
+      return false;
 
    }
 
@@ -593,6 +617,12 @@ namespace windows
          ::information() << "::windows::window_procedure WM_USER + 123";
 
       }
+      else if (msg == (WM_APP + 123))
+      {
+
+         ::information() << "::windows::window_procedure WM_APP + 123";
+
+      }
       else if (msg == (WM_APP + 876))
       {
 
@@ -661,7 +691,7 @@ namespace windows
 
       LRESULT lresult = 0;
 
-      if (pwindow->on_window_procedure(lresult, msg, wParam, lParam))
+      if (pwindow->call_window_procedure(lresult, msg, wParam, lParam))
       {
 
          return lresult;

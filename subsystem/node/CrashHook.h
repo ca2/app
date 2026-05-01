@@ -33,7 +33,7 @@
 namespace subsystem
 {
 
-class CrashHook : 
+class CLASS_DECL_SUBSYSTEM CrashHook :
 virtual public ::particle
 {
 public:
@@ -50,11 +50,11 @@ public:
 // //private:
 //   static LONG WINAPI topLevelExceptionFilter(_EXCEPTION_POINTERS *pExceptionInfo);
 //
-//   static bool m_guiEnabled;
-//   static ::subsystem::registry m_rootHkey;
-//   static critical_section m_guiEnabledMutex;
-//
-//   static ApplicationCrashEvents *m_notifier;
+   static bool m_guiEnabled;
+   static ::pointer < ::subsystem::RegistryKey > m_prootHkey;
+   static critical_section m_guiEnabledMutex;
+
+   static ApplicationCrashEvents *m_notifier;
 };
 
 

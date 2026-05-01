@@ -81,8 +81,8 @@ namespace subsystem
       bool getOption(int index, ::string *key, ::string *arg = nullptr) const;
 
    //protected:
-      bool _matchKey(const char * pszKeyTemplate, ::string *key);
-      bool _removeKeyPrefix(::string *key);
+      //bool _matchKey(const char * pszKeyTemplate, ::string *key);
+      //bool _removeKeyPrefix(::string *key);
 
       ::array_base<KeyContainer> m_foundKeys;
    };

@@ -29,7 +29,7 @@
 
 namespace subsystem
 {
-   class CLASS_DECL_REMOTING ApplicationCrashEvents :
+   class ApplicationCrashEvents :
    virtual public ::particle
    {
    public:

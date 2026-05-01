@@ -83,7 +83,7 @@ list(APPEND library_source
    node/Keyboard.h
    node/LocalOperatingSystemApplication.cpp
    node/LocalOperatingSystemApplication.h
-   node/matter.txt
+   #node/matter.txt
    node/NamedPipe.cpp
    node/NamedPipe.h
    node/OperatingSystem.cpp
@@ -109,10 +109,10 @@ list(APPEND library_source
    node/ProcessCommandLine.h
    node/ProcessHandle.cpp
    node/ProcessHandle.h
-   node/remoting_win_system.vcxproj
-   node/remoting_win_system.vcxproj.filters
-   node/remoting_win_system.vcxproj.user
-   node/resource.h
+   #node/remoting_win_system.vcxproj
+   #node/remoting_win_system.vcxproj.filters
+   #node/remoting_win_system.vcxproj.user
+   #node/resource.h
    node/Screen.cpp
    node/Screen.h
    #node/SecurityDescriptor.cpp
@@ -175,8 +175,16 @@ list(APPEND library_source
    #platform/AutoImpersonator.h
    platform/BrokenHandleException.cpp
    platform/BrokenHandleException.h
+   platform/Command.cpp
+   platform/Command.h
+   platform/CommandLine.cpp
+   platform/CommandLine.h
    platform/CommandLineArguments.cpp
    platform/CommandLineArguments.h
+   platform/CommandLineFormatException.cpp
+   platform/CommandLineFormatException.h
+   platform/CommandLineFormatHelp.cpp
+   platform/CommandLineFormatHelp.h
    #platform/CurrentConsoleProcess.cpp
    #platform/CurrentConsoleProcess.h
    platform/Deflater.cpp
@@ -191,6 +199,8 @@ list(APPEND library_source
    #platform/EmulatedAnonymousPipeFactory.h
    platform/Exception.cpp
    platform/Exception.h
+   platform/GetCPUtime.cpp
+   platform/GetCPUtime.h
    #platform/HookEventListener.h
    #platform/Impersonator.cpp
    #platform/Impersonator.h
@@ -200,13 +210,20 @@ list(APPEND library_source
    #platform/InputInjector.h
    #platform/Keyboard.cpp
    #platform/Keyboard.h
+   platform/KeyContainer.cpp
+   platform/KeyContainer.h
    platform/Keymap.cpp
    platform/Keymap.h
+   platform/ListenerContainer.h
    #platform/LocalWindowsApplication.cpp
    #platform/LocalWindowsApplication.h
    #platform/matter.txt
+   platform/MacroCommand.cpp
+   platform/MacroCommand.h
    platform/MD5.cpp
    platform/MD5.h
+   platform/MemUsage.cpp
+   platform/MemUsage.h
    #platform/NamedPipe.cpp
    #platform/NamedPipe.h
    #platform/ParentProcess.cpp
@@ -247,15 +264,18 @@ list(APPEND library_source
    #platform/Shell.cpp
    #platform/Shell.h
    platform/Singleton.h
-   platform/StringTable.cpp
-   platform/StringTable.h
    platform/StringParser.cpp
    platform/StringParser.h
    #platform/StringStorage.cpp
-   platform/subsystem.h
+   platform/StringTable.cpp
+   platform/StringTable.h
+   platform/StringVector.h
    platform/subsystem.cpp
+   platform/subsystem.h
    #platform/SystemInformation.cpp
    #platform/SystemInformation.h
+   platform/Unicode.cpp
+   platform/Unicode.h
    #platform/UipiControl.cpp
    #platform/UipiControl.h
    #platform/VersionInfo.cpp

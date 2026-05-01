@@ -62,8 +62,23 @@ namespace innate_subsystem
 
    void Framebuffer::setColor(unsigned char red, unsigned char green, unsigned char blue)
    {
+      if (!m_buffer)
+      {
+         return;
+
+      }
       size_t sizeInPixels = m_size.area();
+      if (!sizeInPixels)
+      {
+         return;
+
+      }
       int pixelSize = m_pixelformat.bitsPerPixel / 8;
+      if (!pixelSize)
+      {
+         return;
+
+      }
       unsigned int redPix = (red * m_pixelformat.redMax / 255) <<
                       m_pixelformat.redShift;
       unsigned int greenPix = (green * m_pixelformat.greenMax / 255) <<

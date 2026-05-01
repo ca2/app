@@ -24,24 +24,29 @@
 #include "framework.h"
 #include "MacroCommand.h"
 
-MacroCommand::MacroCommand()
-{
-}
 
-MacroCommand::~MacroCommand()
+namespace subsystem
 {
-}
+   MacroCommand::MacroCommand()
+   {
+   }
 
-void MacroCommand::execute()
-{
-  for (::list_base<Command *>::iterator it = m_commandList.begin();
-    it != m_commandList.end();
-    it++) {
-    (*it)->execute();
-  }
-}
+   MacroCommand::~MacroCommand()
+   {
+   }
 
-void MacroCommand::addCommand(Command *command)
-{
-  m_commandList.add(command);
-}
+   void MacroCommand::execute()
+   {
+      for (auto & pcommand : m_listCommand)
+      {
+         pcommand->execute();
+      }
+   }
+
+   void MacroCommand::addCommand(Command *command)
+   {
+      m_listCommand.add(command);
+   }
+} // namespace subsystem
+
+

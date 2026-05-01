@@ -169,6 +169,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(Pipe)
+
    };
 
 

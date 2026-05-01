@@ -111,6 +111,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(PipeImpersonatedThread)
+
    };
 
 

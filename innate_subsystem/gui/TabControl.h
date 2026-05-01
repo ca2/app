@@ -48,9 +48,9 @@ namespace innate_subsystem
       virtual TabContainer &getTabs() = 0;
       virtual int getTabCount() = 0;
       virtual TabInterface *getTab(int index)= 0;
-      virtual void addTab(DialogInterface *pdialog, const char *caption)= 0;
+      virtual void addTab(WindowInterface *pwindow, const char *caption)= 0;
       virtual void showTab(int index) = 0;
-      virtual void showTab(DialogInterface *pdialog) = 0;
+      virtual void showTab(WindowInterface *pwindow) = 0;
       virtual void deleteAllTabs()= 0;
 virtual       void removeTab(int index)= 0;
 
@@ -94,9 +94,9 @@ virtual       int getSelectedTabIndex()= 0;
       TabContainer &getTabs() override { return m_ptabcontrol->getTabs(); }
       virtual int getTabCount() {return m_ptabcontrol->getTabCount();};
       TabInterface *getTab(int index)override { return m_ptabcontrol->getTab(index); }
-      void addTab(DialogInterface *dialog, const char *caption)override { m_ptabcontrol->addTab(dialog, caption); }
+      void addTab(WindowInterface *pwindow, const char *caption)override { m_ptabcontrol->addTab(pwindow, caption); }
       void showTab(int index)override { m_ptabcontrol->showTab(index); }
-      void showTab(DialogInterface *pdialog) { m_ptabcontrol->showTab(pdialog); }
+      void showTab(WindowInterface *pwindow) { m_ptabcontrol->showTab(pwindow); }
       void deleteAllTabs()override { m_ptabcontrol->deleteAllTabs(); }
       void removeTab(int index)override { m_ptabcontrol->removeTab(index); }
 

@@ -788,6 +788,8 @@ list(APPEND library_source
         platform/url_context.cpp
         platform/url_context.h
         platform/version.cpp
+   platform/wparam.cpp
+   platform/wparam.h
         prototype/collection/__payload_array.cpp
         prototype/collection/_generic_array.h
 

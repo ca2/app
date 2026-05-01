@@ -421,6 +421,7 @@ virtual public Object<ListViewAggregate>
    {
    public:
 
+      ImplementObjectø(ListView)
 
    };
 

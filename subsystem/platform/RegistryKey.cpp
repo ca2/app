@@ -305,7 +305,21 @@ namespace subsystem
       if (!isOpened()) {
          return false;
       }
-auto memory =m_pregistrykey->get_binary(scopedstrName);
+      ::memory memory;
+      auto estatus =m_pregistrykey->_get_binary(scopedstrName, memory);
+
+      if (estatus == error_not_found)
+      {
+
+         return false;
+
+      }
+      else if (!estatus)
+      {
+
+         throw ::exception(estatus);
+
+      }
 
 
       auto s = minimum(memory.size(), *sizeInBytes);

@@ -212,7 +212,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
       IMPL * impl()
       {
 
-         ::cast < IMPL > pimp = get_implementation(this);
+         ::cast < IMPL > pimp = ::_get_implementation1(this);
 
          return pimp;
 

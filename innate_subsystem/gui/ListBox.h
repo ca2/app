@@ -100,6 +100,7 @@ virtual public Object<ListBoxAggregate>
    {
    public:
 
+      ImplementObjectø(ListBox)
 
    };
 

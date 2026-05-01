@@ -904,7 +904,7 @@ bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const 
    //if (::is_set(rectangle))
    //{
 
-      null(rectangle);
+      ::clear(rectangle);
 
    //}
 
@@ -1361,7 +1361,7 @@ inline void collapse_rect(RECT1& rectangle, const RECT2& r)
       if (::width(rectangle) == 0 || height(rectangle) == 0)
       {
 
-         ::null(rectangle);
+         ::clear(rectangle);
 
       }
 

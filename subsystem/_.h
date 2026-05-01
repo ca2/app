@@ -186,6 +186,8 @@ namespace subsystem
 
    class CurrentConsoleProcess;
 
+   class OperatingSystemApplicationInterface;
+
 } // namespace subsystem
 
 

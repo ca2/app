@@ -25,14 +25,15 @@
 namespace subsystem
 {
 
+   static ::subsystem::subsystem *            g_p = nullptr;
 
-   ::subsystem::subsystem *subsystem::s_p = nullptr;
+   //::subsystem::subsystem *subsystem::s_p = nullptr;
 
 
    subsystem::subsystem()
    {
 
-      s_p = this;
+      g_p = this;
 
    }
 
@@ -65,7 +66,7 @@ namespace subsystem
       if (!m_pstringtable)
       {
 
-         constructø(m_pstringtable);
+         construct_newø(m_pstringtable);
 
       }
 
@@ -502,3 +503,20 @@ namespace subsystem
 
 
 }//namespace subsystem
+
+
+CLASS_DECL_SUBSYSTEM ::subsystem::subsystem & MainSubsystem()
+{
+
+   if (!::subsystem::g_p)
+   {
+
+      system()->MainSubsystem();
+
+   }
+
+   return *::subsystem::g_p;
+
+}
+
+

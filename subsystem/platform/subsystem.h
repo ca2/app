@@ -22,8 +22,8 @@ namespace subsystem
    public:
 
 
+      ::pointer < ::subsystem::OperatingSystemApplicationInterface > m_papplicationSubsystem;
       ::hinstance                                        m_hinstanceResource = nullptr;
-      static ::subsystem::subsystem *            s_p;
       ::pointer < ::subsystem::StringParser >     m_pstringparser;
       ::pointer < ::subsystem::StringTable >     m_pstringtable;
       ::pointer < ::subsystem::ResourceLoader >     m_presourceloader;
@@ -139,17 +139,4 @@ namespace subsystem
 
 
 
-inline ::subsystem::subsystem & MainSubsystem()
-{
-
-   if (!::subsystem::subsystem::s_p)
-   {
-
-      system()->MainSubsystem();
-
-   }
-
-   return *::subsystem::subsystem::s_p;
-
-}
-
+CLASS_DECL_SUBSYSTEM ::subsystem::subsystem & MainSubsystem();

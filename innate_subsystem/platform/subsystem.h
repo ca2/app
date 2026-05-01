@@ -45,6 +45,8 @@ namespace innate_subsystem
          unsigned int uType) override;
 
 
+      virtual void initializeInnateSubsystemControls();
+
       virtual ::innate_subsystem::SystemMetricsInterface * metrics();
 
       virtual ::user::enum_key virtual_key_code_to_user_key(int iVirtualKeyCode);
@@ -62,7 +64,7 @@ namespace innate_subsystem
 
 
 
-inline ::innate_subsystem::subsystem & MainInnateSubsystem()
+inline ::innate_subsystem::subsystem & InnateSubsystem()
 {
 
    if (!::innate_subsystem::subsystem::s_p)

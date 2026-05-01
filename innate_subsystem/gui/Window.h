@@ -179,6 +179,7 @@ namespace innate_subsystem
       // setParent()
       // Making child window by changing parent of the window
       virtual void setParent(::innate_subsystem::WindowInterface * pwindowParent) = 0;
+      virtual ::innate_subsystem::WindowInterface * getParent() = 0;
 
 
       virtual ::operating_system::window dialog_item_operating_system_window(int iDlgItem) = 0;
@@ -247,7 +248,7 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-      virtual bool onCommand(unsigned int controlID, bool bAccelerator, unsigned int notificationID) = 0;
+      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
    //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
    virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
@@ -311,6 +312,8 @@ namespace innate_subsystem
       }
 
       WindowInterface*get_window_implementation() override {return m_pwindow->get_window_implementation();}
+
+
       // createWindow()
       // Create window with windowName and setted style
       // other parameters can by changed
@@ -430,6 +433,7 @@ namespace innate_subsystem
       // setParent()
       // Making child window by changing parent of the window
       void setParent(::innate_subsystem::WindowInterface * pwindowParent) override { m_pwindow->setParent(pwindowParent); }
+      ::innate_subsystem::WindowInterface*getParent() override {return m_pwindow->getParent();}
 
 
       ::operating_system::window dialog_item_operating_system_window(int iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
@@ -504,7 +508,7 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-      bool onCommand(unsigned int controlID, bool bAccelerator, unsigned int notificationID) override { return false; }
+      bool onCommand(unsigned int controlID, unsigned int notificationID) override { return false; }
    //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
       bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
       bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override { return false; }

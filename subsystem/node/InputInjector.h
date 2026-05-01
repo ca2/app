@@ -274,6 +274,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(InputInjector)
+
    };
 
 

@@ -131,7 +131,7 @@ virtual       int getSelectedTabIndex()= 0;
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM  TabControl:
-      virtual public Object<TabControlAggregate>
+      virtual public WindowObject<TabControlAggregate>
    {
    public:
 

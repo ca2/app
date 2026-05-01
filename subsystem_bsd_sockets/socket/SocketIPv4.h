@@ -183,8 +183,8 @@ namespace subsystem_bsd_sockets
       SOCKET m_socket;
       bool m_isClosed;
 
-      ::pointer < ::subsystem::SocketAddressIPv4 >m_localAddr;
-      ::pointer < ::subsystem::SocketAddressIPv4 > m_peerAddr;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface >m_localAddr;
+      ::pointer < ::subsystem::SocketAddressIPv4Interface > m_peerAddr;
 
       /**
        * Flag determinating if socket is server or client socket.

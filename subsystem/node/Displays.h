@@ -141,12 +141,16 @@ virtual public Composite<DisplaysInterface>
    {
    public:
 
+      ImplementBaseø(Displays)
+
    };
 
    class CLASS_DECL_SUBSYSTEM Displays :
  virtual public Object < DisplaysAggregate >
    {
    public:
+
+      ImplementObjectø(Displays)
 
    };
 

@@ -173,7 +173,11 @@ namespace platform
       inline void erase_payload(const ::scoped_string &scopedstrName)
       {
          auto estatus = _erase_payload(scopedstrName);
-         if (!estatus)
+         if (estatus == error_not_found)
+         {
+
+         }
+         else if (!estatus)
             throw ::exception(estatus);
       }
 

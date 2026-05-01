@@ -195,3 +195,14 @@ CLASS_DECL_ACME ::platform::ProfileLogger &ProfileLogger()
    return *::platform::g_pprofilerlogger;
 
 }
+
+
+CLASS_DECL_ACME void deferProfileLogger()
+{
+
+   if (!::platform::g_pprofilerlogger)
+   {
+      ::platform::g_pprofilerlogger = new platform::ProfileLogger;
+   }
+
+}

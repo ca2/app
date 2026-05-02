@@ -123,7 +123,7 @@ public:
 	
 	bool operator !() const { return is_null(); }
 
-	operator ::iptr() const { return (::iptr)m_i; }
+	operator ::iptr() const { return *(::iptr*)&m_i; }
 	
 };
 

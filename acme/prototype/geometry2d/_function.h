@@ -1,5 +1,7 @@
 // Created by camilo on 2022-11-08 16:01 <3ThomasBorregaardSorensen!!
 #pragma once
+template < prototype_rectangle RECTANGLE_TYPE >
+RECTANGLE_TYPE & clear(RECTANGLE_TYPE & rectangle);
 
 
 //template < prototype_rectangle RECTANGLE_TYPE >

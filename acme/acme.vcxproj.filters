@@ -2958,12 +2958,6 @@
     <ClInclude Include="operating_system\summary.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\application.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\main_window.h">
-      <Filter>Header Files\operating_system</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\_.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
@@ -4398,6 +4392,9 @@
     <ClInclude Include="operating_system\GetCPUtime.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\windows_common\last_error.h">
+      <Filter>Header Files\operating_system\windows_common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5375,12 +5372,6 @@
     <ClCompile Include="operating_system\summary.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\application.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\main_window.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows_common\process.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
@@ -6343,6 +6334,12 @@
     </ClCompile>
     <ClCompile Include="platform\ProfileLogger.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\string\string_base.cpp">
+      <Filter>Source Files\prototype\string</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\last_error.cpp">
+      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

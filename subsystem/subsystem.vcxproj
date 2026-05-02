@@ -2385,6 +2385,7 @@
     <ClCompile Include="node\Clipboard.cpp" />
     <ClCompile Include="node\Clipboard2.cpp" />
     <ClCompile Include="node\ClipboardListener.cpp" />
+    <ClCompile Include="node\CrashHook.cpp" />
     <ClCompile Include="node\CurrentConsoleProcess.cpp" />
     <ClCompile Include="node\Cursor.cpp" />
     <ClCompile Include="node\Displays.cpp" />
@@ -2467,6 +2468,7 @@
     <ClCompile Include="thread\SessionChangesWatcher.cpp" />
     <ClCompile Include="thread\Thread.cpp" />
     <ClCompile Include="thread\ThreadCollector.cpp" />
+    <ClCompile Include="thread\ZombieKiller.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="framebuffer\PixelFormat.h" />
     <ClInclude Include="framebuffer\StandardPixelFormatFactory.h" />
@@ -2573,6 +2575,7 @@
     <ClInclude Include="thread\SessionChangesWatcher.h" />
     <ClInclude Include="thread\Thread.h" />
     <ClInclude Include="thread\ThreadCollector.h" />
+    <ClInclude Include="thread\ZombieKiller.h" />
     <ClInclude Include="thread\_.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_common_header.h" />

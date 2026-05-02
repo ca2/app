@@ -2542,6 +2542,7 @@
     <ClCompile Include="operating_system\windows\console.cpp" />
     <ClCompile Include="operating_system\windows\CtrlAltDelSimulator.cpp" />
     <ClCompile Include="operating_system\windows_common\cpu_features.cpp" />
+    <ClCompile Include="operating_system\windows_common\last_error.cpp" />
     <ClCompile Include="operating_system\windows_common\task.cpp" />
     <ClCompile Include="platform\ini.cpp" />
     <ClCompile Include="platform\ProfileLogger.cpp" />
@@ -2550,6 +2551,7 @@
     <ClCompile Include="platform\subsystem.cpp" />
     <ClCompile Include="platform\user_interaction_sink.cpp" />
     <ClCompile Include="platform\wparam.cpp" />
+    <ClCompile Include="prototype\string\string_base.cpp" />
     <ClCompile Include="user\simple\dialog_box_line.cpp" />
     <ClCompile Include="_information_n.cpp" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
@@ -2594,6 +2596,7 @@
     <ClInclude Include="operating_system\windows_common\com\hresult_exception.h" />
     <ClInclude Include="operating_system\windows_common\com\prop_variant.h" />
     <ClInclude Include="operating_system\windows_common\com\variant.h" />
+    <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
@@ -3811,7 +3814,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ASanDbgWithInlOpt|ARM64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="operating_system\application.cpp" />
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\a_system_menu.cpp" />
     <ClCompile Include="operating_system\bidirectional_pipe.cpp" />
@@ -3825,7 +3827,6 @@
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
-    <ClCompile Include="operating_system\main_window.cpp" />
     <ClCompile Include="operating_system\memory.cpp" />
     <ClCompile Include="operating_system\message.cpp" />
     <ClCompile Include="operating_system\message_box.cpp" />
@@ -3850,9 +3851,7 @@
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\dynamic_library.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
-    <ClInclude Include="operating_system\application.h" />
     <ClInclude Include="operating_system\dos\dostime.h" />
-    <ClInclude Include="operating_system\main_window.h" />
     <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
     <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />

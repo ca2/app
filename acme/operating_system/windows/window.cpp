@@ -605,6 +605,15 @@ namespace windows
 
       ::windows::window * pwindow = nullptr;
 
+      ::lresult lresult = 0;
+
+      if (::windows::pre_process_window_procedure(lresult, hwnd, msg, wParam, lParam))
+      {
+
+         return lresult;
+
+      }
+
       if (msg == (WM_WINDOWPOSCHANGING))
       {
 
@@ -621,37 +630,6 @@ namespace windows
       {
 
          ::information() << "::windows::window_procedure WM_APP + 123";
-
-      }
-      else if (msg == (WM_APP + 876))
-      {
-
-         ::warning() << "WM_APP + 876  At thread " << ::GetCurrentThreadId();
-
-         if (wParam == 0)
-         {
-
-            ::warning() << "WM_APP + 876 wParam is Zero At thread " << ::GetCurrentThreadId();
-
-            ::lparam lparam(lParam);
-
-            ::procedure procedure(lparam);
-
-            try
-            {
-
-               procedure();
-
-            }
-            catch (...)
-            {
-
-
-            }
-
-            return 0;
-
-         }
 
       }
 
@@ -688,8 +666,6 @@ namespace windows
          return lresult;
 
       }
-
-      LRESULT lresult = 0;
 
       if (pwindow->call_window_procedure(lresult, msg, wParam, lParam))
       {
@@ -834,4 +810,55 @@ CLASS_DECL_ACME ::uptr operating_system_window_as_uptr(const ::operating_system:
    return 0;
 
 }
+
+
+namespace windows
+{
+
+
+   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, HWND hwnd, unsigned int message,
+      ::wparam wparam, ::lparam lparam)
+   {
+
+      if (message == (WM_APP + 876))
+      {
+
+         ::warning() << "WM_APP + 876  At thread " << ::GetCurrentThreadId();
+
+         if (wparam == 0)
+         {
+
+            ::warning() << "WM_APP + 876 wParam is Zero At thread " << ::GetCurrentThreadId();
+
+            ::procedure procedure(lparam);
+
+            try
+            {
+
+               procedure();
+
+            }
+            catch (...)
+            {
+
+            }
+
+            lresult = 0;
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+
+} // namespace windows
+ 
+
+
 

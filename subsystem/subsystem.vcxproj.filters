@@ -368,6 +368,9 @@
     <ClInclude Include="framebuffer\PixelFormat.h">
       <Filter>Header Files\framebuffer</Filter>
     </ClInclude>
+    <ClInclude Include="thread\ZombieKiller.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -645,6 +648,12 @@
     </ClCompile>
     <ClCompile Include="framebuffer\StandardPixelFormatFactory.cpp">
       <Filter>Source Files\framebuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\ZombieKiller.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="node\CrashHook.cpp">
+      <Filter>Source Files\node</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

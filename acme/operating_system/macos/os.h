@@ -24,13 +24,13 @@
 #define MAXIMUM_WAIT_OBJECTS      64
 
 
-oswindow get_capture();
-oswindow set_mouse_capture(oswindow window);
+::operating_system::window get_capture();
+::operating_system::window set_mouse_capture(const ::operating_system::window & operatingsystemwindow);
 int_bool release_mouse_capture();
-oswindow set_keyboard_focus(oswindow window);
-oswindow get_keyboard_focus();
-oswindow get_active_window();
-oswindow set_active_window(oswindow window);
+::operating_system::window set_keyboard_focus(const ::operating_system::window & operatingsystemwindow);
+::operating_system::window get_keyboard_focus();
+::operating_system::window get_active_window();
+::operating_system::window set_active_window(const ::operating_system::window & operatingsystemwindow);
 
 
 ::int_rectangle get_main_screen_rectangle();
@@ -47,10 +47,10 @@ int GetWorkspaceRect(::int_rectangle * prectangle, int iMonitor);
 int GetWorkspaceCount();
 
 
-int_bool set_foreground_window(oswindow window);
-int_bool BringWindowToTop(oswindow window);
+int_bool set_foreground_window(const ::operating_system::window & operatingsystemwindow);
+int_bool BringWindowToTop(const ::operating_system::window & operatingsystemwindow);
 
-void ns_redraw_window(oswindow window);
+void ns_redraw_window(const ::operating_system::window & operatingsystemwindow);
 
 
 

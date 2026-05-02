@@ -56,10 +56,10 @@ namespace file
       //   }
       //}
       
-      virtual ::memsize defer_write(const void * p, ::memsize s);
+      ::memsize defer_write(const void * p, ::memsize s) override;
 
       inline ::memsize defer_write(const ::block & block) { return defer_write(block.data(), block.size()); }
-      virtual void flush();
+      void flush() override;
 
    };
 

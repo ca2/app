@@ -4395,6 +4395,9 @@
     <ClInclude Include="operating_system\windows_common\last_error.h">
       <Filter>Header Files\operating_system\windows_common</Filter>
     </ClInclude>
+    <ClInclude Include="platform\guid.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

@@ -19,7 +19,7 @@ namespace accessibility
       ~main_window() override;
 
 
-      virtual void from_application(::operating_system::application * papplication);
+      virtual void from_application(::accessibility::application * papplication);
 
       virtual bool is_window();
 

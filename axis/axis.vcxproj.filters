@@ -193,6 +193,12 @@
     <Filter Include="Header Files\networking\bsd\smtp">
       <UniqueIdentifier>{cc630e4d-14fc-4689-aa8c-47dcccd1684d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\accessibility">
+      <UniqueIdentifier>{d06d6bcb-e1b2-4309-bc76-55f5cb2c81fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\accessibility">
+      <UniqueIdentifier>{30b2cfc3-fa66-48a3-8db5-1e6c33d2874f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -768,6 +774,18 @@
     <ClInclude Include="networking\sockets\bsd\smtp\smtp_socket.h">
       <Filter>Header Files\networking\bsd\smtp</Filter>
     </ClInclude>
+    <ClInclude Include="accessibility\application.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\accessibility.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\_.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\main_window.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -1087,6 +1105,15 @@
     </ClCompile>
     <ClCompile Include="graphics\graphics\color_selector.cpp">
       <Filter>Source Files\graphics\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\accessibility.cpp">
+      <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\application.cpp">
+      <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\main_window.cpp">
+      <Filter>Source Files\accessibility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

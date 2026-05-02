@@ -22,7 +22,7 @@ namespace accessibility
    }
 
 
-   void main_window::from_application(::operating_system::application * papplication)
+   void main_window::from_application(::accessibility::application *papplication)
    {
 
       throw interface_only();

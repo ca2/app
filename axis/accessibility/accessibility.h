@@ -20,13 +20,14 @@ namespace accessibility
       virtual ::pointer < ::accessibility::application > process_identifier_application(::process_identifier processidentifier);
 
 
-      virtual ::pointer<::operating_system::application> module_path_application(const ::scoped_string& scopestr);
+      virtual ::pointer<::accessibility::application> module_path_application(const ::scoped_string &scopestr);
 
 
       //virtual ::pointer<::operating_system::application> process_identifier_application(::process_identifier processidentifier);
 
 
-      virtual ::pointer<::operating_system::application> application_predicate(const ::function<bool(::operating_system::application* papplication)>& function);
+      virtual ::pointer<::accessibility::application>
+      application_predicate(const ::function<bool(::accessibility::application *papplication)> &function);
 
 
    };

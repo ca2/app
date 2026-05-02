@@ -102,7 +102,7 @@ namespace windows
 
    CLASS_DECL_ACME ::string get_window_text_timeout(const ::operating_system::window & operatingsystemwindow, const class time & timeSendMessageMax = 1_s);
    
-   CLASS_DECL_ACME const ::operating_system::window & child_at(const ::operating_system::window & operatingsystemwindow, iptr i);
+   CLASS_DECL_ACME ::operating_system::window child_at(const ::operating_system::window & operatingsystemwindow, iptr i);
 
    CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
 

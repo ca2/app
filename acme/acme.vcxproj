@@ -2600,6 +2600,7 @@
     <ClInclude Include="operating_system\windows_common\networking.h" />
     <ClInclude Include="parallelization\_platform.h" />
     <ClInclude Include="platform\acme_message.h" />
+    <ClInclude Include="platform\guid.h" />
     <ClInclude Include="platform\http.h" />
     <ClInclude Include="platform\ProfileLogger.h" />
     <ClInclude Include="platform\registry.h" />

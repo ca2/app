@@ -5,6 +5,7 @@
 #include "accessibility.h"
 #include "application.h"
 #include "acme/platform/application.h"
+#include "acme/platform/node.h"
 
 
 namespace accessibility
@@ -36,7 +37,7 @@ namespace accessibility
    }
 
 
-   ::pointer < ::accessibility::application > accessibility::module_path_application(const ::scoped_string & scopestr)
+   ::pointer < ::accessibility::application > accessibility::module_path_application(const ::scoped_string & scopedstr)
    {
 
       auto papplication = createø < ::accessibility::application >();
@@ -48,7 +49,8 @@ namespace accessibility
    }
 
 
-   ::pointer < ::operating_system::application > accessibility::application_predicate(const ::function < bool(::operating_system::application * papplication) > & function)
+   ::pointer<::accessibility::application>
+   accessibility::application_predicate(const ::function<bool(::accessibility::application *papplication)> &function)
    {
 
       auto processidentifiera = node()->processes_identifiers();
@@ -75,26 +77,27 @@ namespace accessibility
 
 
 
-   ::pointer<::operating_system::application> accessibility:: module_path_application(const ::scoped_string& scopestr)
-   {
+   //::pointer<::accessibility::application> accessibility::module_path_application(const ::scoped_string &scopestr)
+   //{
 
-      return{};
+   //   return{};
 
-   }
-
-
-   ::pointer<::operating_system::application>  accessibility::process_identifier_application(
-      ::process_identifier processidentifier)
-   {
-      return{};
-   }
+   //}
 
 
-   ::pointer<::operating_system::application> accessibility:: application_predicate(
-     const ::function<bool(::operating_system::application* papplication)>& function)
-   {
-      return{};
-   }
+   //::pointer<::accessibility::application>
+   //accessibility::process_identifier_application(
+   //   ::process_identifier processidentifier)
+   //{
+   //   return{};
+   //}
+
+
+   //::pointer<::accessibility::application>
+   //accessibility::application_predicate(const ::function<bool(::accessibility::application *papplication)> &function)
+   //{
+   //   return{};
+   //}
 
 
 

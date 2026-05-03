@@ -620,13 +620,13 @@ char szUrl[4096];
 if (m_pszBranch)
 {
 
-sprintf(szUrl, "https://%s.ca2.store/%s/%s/%s/%s.zip", m_pszDistro, m_pszBranch, m_pszVersion, pszRoot, pszName);
+sprintf(szUrl, "https://%s.ca2.site/%s/%s/%s/%s.zip", m_pszDistro, m_pszBranch, m_pszVersion, pszRoot, pszName);
 
 }
 else
 {
 
-sprintf(szUrl, "https://%s.ca2.store/%s/%s/%s.zip", m_pszDistro, m_pszVersion, pszRoot, pszName);
+sprintf(szUrl, "https://%s.ca2.site/%s/%s/%s.zip", m_pszDistro, m_pszVersion, pszRoot, pszName);
 
 }
 

@@ -936,7 +936,7 @@ namespace coding
 
       ::string strName = "storage-" + scopedstrOs + ".zip";
 
-      auto pathUrl = "https://" + scopedstrOs + ".ca2.store/storage-" + scopedstrOs + ".zip";
+      auto pathUrl = "https://" + scopedstrOs + ".ca2.site/storage-" + scopedstrOs + ".zip";
 
       m_path = download_to_operating_system(pathUrl, strName);
 

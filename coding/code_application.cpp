@@ -1672,7 +1672,7 @@ namespace coding
 
       auto psummary = node()->operating_system_summary();
 
-      strUrl.format("https://linux.ca2.store/application_build_helper_{}",
+      strUrl.format("https://linux.ca2.site/application_build_helper_{}",
                             psummary->m_strSystemArchitecture);
 
       // if (psummary->m_strSystem.case_insensitive_equals("ubuntu"))
@@ -1681,21 +1681,21 @@ namespace coding
       //    if(psummary->m_strSystemBranch.case_insensitive_equals("kde"))
       //    {
       //
-      //       strUrl.formatf("https://kubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://kubuntu.ca2.site/%s/application_build_helper",
       //                      psummary->m_strSystemRelease.c_str());
       //
       //    }
       //    else if(psummary->m_strSystemBranch.case_insensitive_equals("xfce"))
       //    {
       //
-      //       strUrl.formatf("https://xubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://xubuntu.ca2.site/%s/application_build_helper",
       //                      psummary->m_strSystemRelease.c_str());
       //
       //    }
       //    else
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      psummary->m_strSystemRelease.c_str());
       //
       //    }
@@ -1707,21 +1707,21 @@ namespace coding
       //    if(psummary->m_strSystemRelease.case_insensitive_equals("20"))
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      "20.04");
       //
       //    }
       //    else if(psummary->m_strSystemBranch.case_insensitive_equals("xfce"))
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      "22.04");
       //
       //    }
       //    else
       //    {
       //
-      //       strUrl.formatf("https://ubuntu.ca2.store/%s/application_build_helper",
+      //       strUrl.formatf("https://ubuntu.ca2.site/%s/application_build_helper",
       //                      "24.04");
       //
       //    }
@@ -1730,7 +1730,7 @@ namespace coding
       // else if (psummary->m_strSystemBranch.has_character())
       // {
       //
-      //    strUrl.formatf("https://%s.ca2.store/%s/%s/application_build_helper",
+      //    strUrl.formatf("https://%s.ca2.site/%s/%s/application_build_helper",
       //       psummary->m_strSystem.c_str(),
       //       psummary->m_strSystemBranch.c_str(),
       //       psummary->m_strSystemRelease.c_str());
@@ -1739,7 +1739,7 @@ namespace coding
       // else
       // {
       //
-      //    strUrl.formatf("https://%s.ca2.store/%s/application_build_helper",
+      //    strUrl.formatf("https://%s.ca2.site/%s/application_build_helper",
       //       psummary->m_strSystem.c_str(),
       //       psummary->m_strSystemRelease.c_str());
       //
@@ -1747,14 +1747,14 @@ namespace coding
 
 #elif defined(WINDOWS_DESKTOP)
 
-      strUrl = "https://windows.ca2.store/application_build_helper.exe";
+      strUrl = "https://windows.ca2.site/application_build_helper.exe";
 
 #elif defined(FREEBSD)
 
 
       auto psummary = node()->operating_system_summary();
 
-      strUrl.formatf("https://freebsd.ca2.store/%s/application_build_helper",
+      strUrl.formatf("https://freebsd.ca2.site/%s/application_build_helper",
                      psummary->m_strSystemRelease.c_str());
 
 
@@ -1762,7 +1762,7 @@ namespace coding
 #elif defined(MACOS)
       
       
-      strUrl = "https://macos.ca2.store/application_build_helper";
+      strUrl = "https://macos.ca2.site/application_build_helper";
 
 #endif
       ::file::path pathUrl = strUrl;

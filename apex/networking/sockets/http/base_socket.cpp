@@ -493,7 +493,7 @@ namespace sockets
          straAllowedOrigin.add("ca2.site");
          straAllowedOrigin.add("ca2.site");
          straAllowedOrigin.add("ca2.site");
-         straAllowedOrigin.add("ca2.store");
+         straAllowedOrigin.add("ca2.site");
 
          bool bAllowedOrigin = false;
 

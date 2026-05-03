@@ -642,7 +642,7 @@ namespace launch
       if (m_strBranch.has_character())
       {
 
-         strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s/%s.zip",
+         strUrl.formatf("https://%s.ca2.site/%s/%s/%s/%s/%s.zip",
          m_strSystem.c_str(),
          m_strBranch.c_str(),
          m_strRelease.c_str(),
@@ -654,7 +654,7 @@ namespace launch
       else
       {
 
-         strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",
+         strUrl.formatf("https://%s.ca2.site/%s/%s/%s/%s.zip",
          m_strSystem.c_str(),
          m_strRelease.c_str(),
          m_strArchitecture.c_str(),

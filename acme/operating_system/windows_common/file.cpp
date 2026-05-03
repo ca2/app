@@ -58,7 +58,7 @@ namespace windows
       if (m_u == (::uptr)INVALID_HANDLE_VALUE)
       {
 
-         auto dwLastError = ::GetLastError();
+         auto lasterror = ::windows::get_last_error();
 
          debugf("safe_create_file : CreateFileW failed %S %u dwDesiredAccess=%u dwShareMode=%u", m_windowspath.extended_path().c_str(), dwLastError, dwDesiredAccess, dwShareMode);
 
@@ -82,17 +82,17 @@ namespace windows
       if (m_u == (::uptr)INVALID_HANDLE_VALUE)
       {
 
-         auto dwLastError = ::GetLastError();
+         auto lasterror = ::windows::get_last_error();
 
-         auto strLastErrorMessage = ::windows::last_error_message(dwLastError);
+         auto strLastErrorMessage = ::windows::last_error_message(lasterror);
 
-         if (dwLastError == ERROR_FILE_NOT_FOUND)
+         if (lasterror == ERROR_FILE_NOT_FOUND)
          {
             
             //warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
 
          }
-         else if (dwLastError == ERROR_PATH_NOT_FOUND)
+         else if (lasterror == ERROR_PATH_NOT_FOUND)
          {
 
             //warningf("safe_create_file : CreateFileW failed \"%s\".", strLastErrorMessage.c_str());
@@ -106,7 +106,7 @@ namespace windows
                "dwCreationDisposition=%u dwFlagsAndAttributes=%u "
                "hTemplateFile=0x%llx \"%s\"",
                wstrPath.c_str(),
-               dwLastError,
+               lasterror.m_uLastError,
                dwDesiredAccess,
                dwShareMode,
                (::uptr)lpSecurityAttributes,
@@ -520,7 +520,7 @@ namespace windows
    [[ noreturn ]] void file::throw_last_error_exception(const ::scoped_string & scopedstrMessage, DWORD lasterror) const
    {
 
-      ::throw_last_error_exception(m_path, m_eopen, lasterror, scopedstrMessage);
+      ::windows::throw_file_last_error_exception(m_path, m_eopen, lasterror, scopedstrMessage);
 
       //if (!lasterror)
       //{

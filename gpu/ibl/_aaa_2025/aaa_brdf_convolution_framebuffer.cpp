@@ -61,7 +61,7 @@ namespace gpu
          m_ptexture->initialize_texture(pgpurenderer, textureattributes, textureflags);
          //on_initialize_BrdfConvolutionFramebuffer();
 
-         // framebuffer
+         // pframebuffer
          // glGenFramebuffers(1, &framebufferId);
          // glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
          //

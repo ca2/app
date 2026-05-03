@@ -367,9 +367,9 @@ void get_file_time_set(const ::file::path & path, file_time & file_timeCreation,
       nullptr))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      throw_last_error_exception(path, ::file::e_open_read, dwLastError, "get_file_time_set safe_create_file failed");
+      ::windows::throw_file_last_error_exception(path, ::file::e_open_read, lasterror, "get_file_time_set safe_create_file failed");
 
    }
 
@@ -386,9 +386,9 @@ CLASS_DECL_ACME void set_modified_file_time(const ::file::path & path, const fil
    if (!file.safe_create_file(path, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, nullptr))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      throw_last_error_exception(path, ::file::e_open_write, dwLastError, "set_modified_file_time safe_create_file failed");
+      ::windows::throw_file_last_error_exception(path, ::file::e_open_write, lasterror, "set_modified_file_time safe_create_file failed");
 
    }
 

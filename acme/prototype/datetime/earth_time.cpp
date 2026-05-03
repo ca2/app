@@ -903,7 +903,7 @@ return str;
 //
 //#ifdef WINDOWS
 //
-//      DWORD dwLastError = ::GetLastError();
+//      auto lasterror = ::windows::get_last_error();
 //
 //#endif
 //
@@ -928,7 +928,7 @@ return str;
 //
 //#ifdef WINDOWS
 //
-//      DWORD dwLastError = ::GetLastError();
+//      auto lasterror = ::windows::get_last_error();
 //
 //#endif
 //

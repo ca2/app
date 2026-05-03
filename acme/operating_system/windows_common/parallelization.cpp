@@ -296,6 +296,14 @@ void task_set_name(const ::scoped_string & scopedstrThreadName)
 
    }
 
+   auto ptask 
+      = ::get_task();
+
+   if (::is_set(ptask))
+      {
+      ptask->m_strTaskName = scopedstrThreadName;
+      }  
+
    /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), scopedstrThreadName);
 
 }
@@ -412,7 +420,7 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
 
 #endif
 
-   DWORD dwWait = ::windows::wait(timeWait);
+   DWORD dwWait = ::windows::wait_millis(timeWait);
 
    DWORD dwResult = ::WaitForSingleObjectEx(handle, dwWait, false);
 
@@ -433,11 +441,11 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
    else
    {
 
-      auto dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
-      auto errorcode = ::windows::last_error_error_code(dwLastError);
+      auto errorcode = ::windows::last_error_error_code(lasterror);
 
       throw ::exception(estatus, { errorcode }, "WaitForSingleObjectEx WAIT_FAILED");
 

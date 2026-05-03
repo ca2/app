@@ -84,7 +84,7 @@ namespace innate_subsystem
       // (that has been used to create the compatible DIB section).
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & dstRect) = 0;
+      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget) = 0;
 
    //private:
       // Opens a new DIB section.
@@ -98,7 +98,7 @@ namespace innate_subsystem
 
       // This function throwing an exception on a failure.
       virtual void blitFromDibSection(const ::int_rectangle &  rect, unsigned int flags) = 0;
-      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & dstRect, unsigned int flags) = 0;
+      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget, unsigned int flags) = 0;
 
       //void setupBMIStruct(BITMAPINFO *pBmi, const PixelFormat & pf, const ::int_size & dim);
 
@@ -188,9 +188,9 @@ namespace innate_subsystem
       // (that has been used to create the compatible DIB section).
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& dstRect) override
+      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget) override
       {
-         m_pdibsection->stretchFromDibSection(srcRect, dstRect);
+         m_pdibsection->stretchFromDibSection(srcRect, rectangleTarget);
       }
 
    //private:
@@ -213,9 +213,9 @@ namespace innate_subsystem
       {
          m_pdibsection->blitFromDibSection(rect, flags);
       }
-      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& dstRect, unsigned int flags)
+      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget, unsigned int flags)
       {
-         m_pdibsection->stretchFromDibSection(srcRect, dstRect, flags);
+         m_pdibsection->stretchFromDibSection(srcRect, rectangleTarget, flags);
       }
 
       //void setupBMIStruct(BITMAPINFO *pBmi, const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim);

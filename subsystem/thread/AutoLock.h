@@ -25,11 +25,12 @@
 #pragma once
 
 
-class LockableBase
+class LockableBase :
+virtual public ::particle
 {
 public:
 
-   virtual void lock() = 0;
+   virtual ::e_status lock() = 0;
    virtual void unlock() = 0;
 
 };
@@ -38,19 +39,48 @@ public:
 class AutoLock
 {
 public:
+      bool m_bLocked;
   AutoLock(LOCKABLE * plockable):
-      m_plockable(plockable)
+      m_plockable(plockable),
+      m_bLocked(false)
+  {
+lock();
+     //m_plockable->lock();
+  }
+      AutoLock(const ::pointer < LOCKABLE > & plockable):
+          AutoLock(plockable.m_p)
   {
 
-     m_plockable->lock();
+     //m_plockable->lock();
   }
-  ~AutoLock()
+      ~AutoLock()
   {
 
-     m_plockable->unlock();
+     unlock();
 
   }
+void lock()
+  {
 
+     if (!m_bLocked)
+     {
+
+        m_bLocked=true;
+        m_plockable->lock();
+     }
+  }
+      void unlock()
+  {
+
+     if (m_bLocked)
+     {
+
+        m_bLocked = false;
+        m_plockable->unlock();
+
+     }
+
+  }
 //protected:
   LOCKABLE  *m_plockable;
 };
@@ -64,10 +94,13 @@ virtual public LockableBase
 {
 public:
 
-   void lock() override
+   using LOCKABLE::LOCKABLE;
+
+   ::e_status lock() override
    {
 
       LOCKABLE::lock();
+      return ::success;
    }
 
    void unlock() override
@@ -76,6 +109,19 @@ public:
       LOCKABLE::unlock();
 
    }
+
+
+};
+
+
+class lockable_critical_section :
+virtual public Lockable<critical_section>
+{
+public:
+
+   using BASE = Lockable<critical_section>;
+
+   using BASE::BASE;
 
 
 };

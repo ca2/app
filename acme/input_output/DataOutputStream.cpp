@@ -31,18 +31,36 @@
 
 //namespace subsystem
 //{
-   DataOutputStream::DataOutputStream(OutputStream * poutput)
-   : m_outStream(poutput)
-   {
-   }
+   // DataOutputStream::DataOutputStream(OutputStream * poutput)
+   // : m_outStream(poutput)
+   // {
+   // }
+DataOutputStream::DataOutputStream()
+{
+
+
+}
+DataOutputStream::DataOutputStream(OutputStream * poutputstream)
+{
+_initialize_data_output_stream(poutputstream);
+
+}
 
    DataOutputStream::~DataOutputStream()
    {
    }
 
+
+   void DataOutputStream::_initialize_data_output_stream(OutputStream * poutputstream)
+   {
+initialize(poutputstream);
+      m_poutputstream = poutputstream;
+
+   }
+
    memsize DataOutputStream::defer_write(const void *buffer, memsize len)
    {
-      return m_outStream->defer_write(buffer, len);
+      return m_poutputstream->defer_write(buffer, len);
    }
 
    void DataOutputStream::write(const void *buffer, memsize len)
@@ -51,7 +69,7 @@
       memsize totalWritten = 0;
       memsize left = len;
       while (totalWritten < len) {
-         memsize written = m_outStream->defer_write(typedBuffer + totalWritten, left);
+         memsize written = m_poutputstream->defer_write(typedBuffer + totalWritten, left);
          left -= written;
          totalWritten += written;
       }
@@ -140,6 +158,6 @@
 
    void DataOutputStream::flush()
    {
-      m_outStream->flush();
+      m_poutputstream->flush();
    }
 //} // namespace subsystem

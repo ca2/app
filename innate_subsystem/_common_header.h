@@ -32,6 +32,7 @@ namespace innate_subsystem
 
       e_control_none,
       e_control_list_view,
+      e_control_tab,
 
    };
 

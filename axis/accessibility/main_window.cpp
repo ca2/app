@@ -4,7 +4,7 @@
 #include "acme/exception/interface_only.h"
 
 
-namespace operating_system
+namespace accessibility
 {
 
 
@@ -22,7 +22,7 @@ namespace operating_system
    }
 
 
-   void main_window::from_application(::operating_system::application * papplication)
+   void main_window::from_application(::accessibility::application *papplication)
    {
 
       throw interface_only();
@@ -80,7 +80,7 @@ namespace operating_system
    }
 
 
-} // namespace operating_system
+} // namespace accessibility
 
 
 

@@ -4093,6 +4093,14 @@ return nullptr;
 
    }
 
+   ::platform::ProfileLogger& acme_system_layer::ProfileLogger()
+   {
+
+      return *((::platform::ProfileLogger *)nullptr);
+
+   }
+   
+
    // ::string_table* acme_system_layer::string_table()
    // {
    //

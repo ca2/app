@@ -40,7 +40,7 @@ public:
 
          //void on_initialize_BrdfConvolutionFramebuffer() override;
          /**
-          * Activate this framebuffer for drawing.
+          * Activate this pframebuffer for drawing.
           */
          void bind() override;
 

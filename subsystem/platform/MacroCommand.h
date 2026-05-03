@@ -30,36 +30,41 @@
 
 //#include aaa_<list>
 
-/**
- * Command that executes sequence of commands.
- */
-class MacroCommand : public Command
+namespace subsystem
 {
-public:
-  /**
-   * Creates macro command with empty command ::list_base.
-   */
-  MacroCommand();
-  /**
-   * Destructor, does nothing.
-   */
-  virtual ~MacroCommand();
-  /**
-   * Executes macro command (sequence of commands that pushed to macro by
-   * calling of addCommand() method).
-   */
-  virtual void execute();
+   /**
+    * Command that executes sequence of commands.
+    */
+   class CLASS_DECL_SUBSYSTEM MacroCommand : public ::subsystem::Command
+   {
+   public:
+      /**
+       * Creates macro command with empty command ::list_base.
+       */
+      MacroCommand();
+      /**
+       * Destructor, does nothing.
+       */
+      ~MacroCommand() override;
+      /**
+       * Executes macro command (sequence of commands that pushed to macro by
+       * calling of addCommand() method).
+       */
+      virtual void execute();
 
-  /**
-   * Adds command to the end of ::list_base of commands to execute.
-   */
-  void addCommand(Command *command);
+      /**
+       * Adds command to the end of ::list_base of commands to execute.
+       */
+      void addCommand(::subsystem::Command *command);
 
-private:
-  /**
-   * List of commands to execute.
-   */
-  ::list_base<Command *> m_commandList;
-};
+   private:
+      /**
+       * List of commands to execute.
+       */
+      ø<::list_base<::pointer < Command >>> m_listCommand;
+   };
+
+
+} // namespace subsystem
 
 

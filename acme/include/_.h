@@ -81,6 +81,7 @@
 #include "acme/filesystem/_.h"
 #include "acme/graphics/_.h"
 #include "acme/handler/_.h"
+#include "acme/input_output/_.h"
 #include "acme/memory/_.h"
 #include "acme/nano/_.h"
 #include "acme/parallelization/_.h"

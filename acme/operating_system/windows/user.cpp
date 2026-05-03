@@ -8,13 +8,15 @@
 namespace windows
 {
 
-   ::string get_window_text_timeout(HWND hwnd, const class time & timeSendMessageMax)
+   ::string get_window_text_timeout(const ::operating_system::window & operatingsystemwindow, const class time & timeSendMessageMax)
    {
 
       DWORD_PTR dw = 0;
 
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
       //if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, 100, &dw))
-      if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait(timeSendMessageMax), &dw))
+      if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait_millis(timeSendMessageMax), &dw))
       {
 
          return "";
@@ -32,7 +34,7 @@ namespace windows
 
       auto pwsz = wstr.get_buffer(dw);
 
-      if (!SendMessageTimeoutW(hwnd, WM_GETTEXT, dw + 1, (LPARAM)pwsz, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait(timeSendMessageMax), &dw))
+      if (!SendMessageTimeoutW(hwnd, WM_GETTEXT, dw + 1, (LPARAM)pwsz, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, ::windows::wait_millis(timeSendMessageMax), &dw))
       {
 
          return "";
@@ -56,8 +58,10 @@ namespace windows
    }
 
    
-   HWND child_at(HWND hwnd, iptr i)
+   ::operating_system::window child_at(const ::operating_system::window &operatingsystemwindow, iptr i)
    {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
 
       auto hwndChild = ::GetWindow(hwnd, GW_CHILD);
 
@@ -70,7 +74,7 @@ namespace windows
 
       }
 
-      return hwndChild;
+      return ::as_operating_system_window(hwndChild);
 
    }
 

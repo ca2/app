@@ -9,7 +9,7 @@ namespace subsystem
 {
 
 
-   class WindowMessageHandler :
+   class CLASS_DECL_SUBSYSTEM WindowMessageHandler :
    virtual public ::particle
    {
    public:

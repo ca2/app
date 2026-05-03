@@ -16,7 +16,7 @@
 //		//m_dCursorY = 0.;
 //		//m_bFirstMouse = true;
 //		//m_bLastMouse = false;
-//		//m_bFrameBufferResized = false;
+//		//m_bFramebufferResized = false;
 //	}
 //
 //	container::~container() {
@@ -91,7 +91,7 @@
 //	bool container::wasWindowResized()
 //	{
 //		
-//		return m_bFrameBufferResized; 
+//		return m_bFramebufferResized;
 //	
 //	
 //	}
@@ -100,7 +100,7 @@
 //	void container::resetWindowResizedFlag()
 //	{
 //		
-//		m_bFrameBufferResized = false; 
+//		m_bFramebufferResized = false;
 //	
 //	}
 //

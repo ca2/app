@@ -327,14 +327,14 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
    // convert system time to local file time
    FILETIME localTime;
 
-   DWORD dwLastError = ::GetLastError();
+   auto lasterror = ::windows::get_last_error();
 
    if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       throw ::exception(estatus);
 
@@ -344,9 +344,9 @@ void datetime_to_filetime(::file_time * pfiletime, const ::earth::time & time)
    if (!LocalFileTimeToFileTime(&localTime, (FILETIME *)pfiletime))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       throw ::exception(estatus);
 

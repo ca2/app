@@ -15,9 +15,34 @@
    {}
 
 
-::Particle * Particle::_get_implementation()
+   ::Particle * Particle::_get_implementation()
    {
 
       return this;
+
+   }
+
+
+   Particle *Particle::_get_callback()
+   {
+
+      return this;
+
+   }
+
+
+
+   ::Particle * Particle::_get_implementation1()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::Particle *Particle::_get_callback1()
+   {
+
+      return nullptr;
 
    }

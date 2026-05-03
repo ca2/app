@@ -181,7 +181,7 @@ namespace gpu_opengl
       //
       //    ::cast <cubemap_framebuffer > pframebuffer = m_pframebufferDiffuseIrradiance;
       //
-      //    return pframebuffer->getCubemapTextureId();
+      //    return pframebuffer.getCubemapTextureId();
       //
       // }
 

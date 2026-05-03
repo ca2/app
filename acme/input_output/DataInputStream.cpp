@@ -30,26 +30,43 @@
 
 //namespace subsystem
 //{
-   DataInputStream::DataInputStream(InputStream* inputStream)
-      : m_inputStream(inputStream)
+   // DataInputStream::DataInputStream(InputStream* inputStream)
+   //    : m_inputStream(inputStream)
+   // {
+   // }
+
+DataInputStream::DataInputStream()
+{
+
+
+}
+DataInputStream::DataInputStream(InputStream* pinputstream)
+{
+
+_initialize_data_input_stream(pinputstream);
+}
+
+DataInputStream::~DataInputStream()
    {
    }
 
 
-   DataInputStream::~DataInputStream()
+   void DataInputStream::_initialize_data_input_stream(InputStream* pinputstream)
    {
+   initialize(pinputstream);
+      m_pinputstream = pinputstream;
    }
 
 
    memsize DataInputStream::available()
    {
-      return m_inputStream->available();
+      return m_pinputstream->available();
    }
 
 
    memsize DataInputStream::read(void* buffer, memsize len)
    {
-      return m_inputStream->read(buffer, len);
+      return m_pinputstream->read(buffer, len);
    }
 
 
@@ -60,7 +77,7 @@
       memsize left = len;
       while (totalRead < len)
       {
-         memsize read = m_inputStream->read(typedBuffer + totalRead, left);
+         memsize read = m_pinputstream->read(typedBuffer + totalRead, left);
          left -= read;
          totalRead += read;
       }

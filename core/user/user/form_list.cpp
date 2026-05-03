@@ -1611,7 +1611,7 @@ namespace user
       if (pinteraction == nullptr)
       {
 
-         ::null(rectangle);
+         ::clear(rectangle);
 
          return;
 

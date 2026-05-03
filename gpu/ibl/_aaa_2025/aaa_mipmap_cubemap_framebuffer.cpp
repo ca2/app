@@ -66,7 +66,7 @@ namespace gpu
          //;
          //on_initialize_mipmap_cubemap_framebuffer();
 
-         // // framebuffer
+         // // pframebuffer
          // glGenFramebuffers(1, &framebufferId);
          // glBindFramebuffer(GL_FRAMEBUFFER, framebufferId);
          //

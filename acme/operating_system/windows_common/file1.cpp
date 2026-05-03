@@ -39,7 +39,7 @@ namespace windows
    // }
 
 
-   CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path)
+   CLASS_DECL_ACME unsigned int _get_file_attributes(const ::file::path & path)
    {
 
       ::windows_path windowspath = path.windows_path();
@@ -47,7 +47,7 @@ namespace windows
       if (windowspath.size() < MAX_PATH - 10)
       {
 
-         auto dwLastError = ::GetLastError();
+         auto lasterror = ::windows::get_last_error();
 
          return ::GetFileAttributesW(windowspath);
 
@@ -57,14 +57,14 @@ namespace windows
 
       auto attributes = ::GetFileAttributesW(wstrExtendedPath);
 
-      auto dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
       return attributes;
 
    }
 
 
-   CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path)
+   CLASS_DECL_ACME unsigned int get_file_attributes(const ::file::path & path)
    {
 
       auto attributes = _get_file_attributes(path);
@@ -81,13 +81,13 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME int_bool is_win32_accessible(DWORD dwFileAttributes, DWORD dwLastError)
+   CLASS_DECL_ACME int_bool is_win32_accessible(unsigned int uFileAttributes, const last_error & lasterror)
    {
 
-      if (dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+      if (uFileAttributes == INVALID_FILE_ATTRIBUTES)
       {
 
-         if (dwLastError == ERROR_PATH_NOT_FOUND)
+         if (lasterror == ERROR_PATH_NOT_FOUND)
          {
 
             // Path would be accessible...
@@ -97,7 +97,7 @@ namespace windows
             return true;
 
          }
-         else if (dwLastError == ERROR_FILE_NOT_FOUND)
+         else if (lasterror == ERROR_FILE_NOT_FOUND)
          {
 
             // Path would be accessible...
@@ -118,42 +118,43 @@ namespace windows
 
       }
 
-
    }
 
    
    CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path)
    {
    
-     auto dwFileAttributes = ::windows::_get_file_attributes(path);
+     auto uFileAttributes = ::windows::_get_file_attributes(path);
 
-     if(dwFileAttributes == INVALID_FILE_ATTRIBUTES)
+     if(uFileAttributes == INVALID_FILE_ATTRIBUTES)
      {
 
-         auto dwLastError = ::GetLastError();
+         auto lasterror = ::windows::get_last_error();
 
-         return is_win32_accessible(dwFileAttributes, dwLastError);
+         return is_win32_accessible(uFileAttributes, lasterror);
 
      }
      else
      {
 
-      return true;
+         return true;
 
      }
 
    }
 
 
-   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes)
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, unsigned int uFileAttributes)
    {
 
       ::windows_path windowspath = path.windows_path();
 
-      if (::SetFileAttributesW(windowspath.extended_path(), dwAttributes))
+      if (!::SetFileAttributesW(windowspath.extended_path(), uFileAttributes))
       {
 
-         throw_last_error_exception();
+         auto lasterror = ::windows::get_last_error();
+
+         ::windows::throw_file_last_error_exception(path, ::file::_e_open_set_stat, lasterror, "::windows::set_file_attributes: Failed to SetFileAttributesW");
 
       }
 
@@ -171,7 +172,7 @@ void delete_file(const ::file::path & path)
    if (!::DeleteFileW(windowspath.extended_path()))
    {
 
-      throw_last_error_exception();
+      ::windows::throw_file_last_error_exception(path, ::file::_e_open_delete, 0, "delete_file: Failed to DeleteFileW");
 
    }
 
@@ -230,7 +231,7 @@ CLASS_DECL_ACME::file::enum_type get_file_system_item_type(const ::file::path & 
 
       }
 
-      throw_last_error_exception(nullptr, lasterror);
+      ::windows::throw_file_last_error_exception(path, ::file::_e_open_stat, lasterror, "get_file_system_item_type: Failed to GetFileAttributesW");
 
       return ::file::e_type_doesnt_exist;
 
@@ -246,8 +247,6 @@ CLASS_DECL_ACME::file::enum_type get_file_system_item_type(const ::file::path & 
    return ::file::e_type_existent_file;
 
 }
-
-
 
 
 bool safe_file_exists(const ::file::path & path)
@@ -291,7 +290,7 @@ bool file_exists(const ::file::path & path)
 
       }
 
-      throw_last_error_exception(nullptr, lasterror);
+      ::windows::throw_file_last_error_exception(path, ::file::_e_open_stat, lasterror, "file_exists: Failed to GetFileAttributesW");
 
       return false;
 
@@ -350,7 +349,7 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      throw_last_error_exception(nullptr, lasterror);
+      ::windows::throw_file_last_error_exception(path, ::file::_e_open_stat, lasterror, "is_directory: Failed to GetFileAttributesW");
 
       return false;
 
@@ -409,7 +408,7 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      throw_last_error_exception(nullptr, lasterror);
+      ::windows::throw_file_last_error_exception(path, ::file::_e_open_stat, lasterror, "file_type: Failed to GetFileAttributesW");
 
       return ::file::e_type_doesnt_exist;
 
@@ -448,7 +447,7 @@ void create_directory(const ::file::path & path)
 
       strDetails.formatf("Failed to create directory (2) \"%s\"", windowspath.path().c_str());
 
-      throw_last_error_exception(strDetails, lasterror);
+      ::windows::throw_file_last_error_exception(path, ::file::_e_open_create_directory, lasterror, strDetails);
 
       //if (::windows::alternate_path(windowspath))
       //{

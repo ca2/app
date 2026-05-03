@@ -1499,7 +1499,7 @@ unsigned int WinGetFileAttributes(const unichar* psz)
    if (!::GetFileAttributesExW(scopedstr, GetFileExInfoStandard, &data))
    {
       
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
       return INVALID_FILE_ATTRIBUTES;
 

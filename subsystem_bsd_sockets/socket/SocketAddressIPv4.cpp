@@ -133,6 +133,17 @@ namespace subsystem_bsd_sockets
       return m_port;
    }
 
+
+   bool SocketAddressIPv4::isLoopbackAddress() const
+   {
+
+      bool isLoopback = (unsigned long)m_addr.S_un.S_addr == 16777343;
+
+      return isLoopback;
+
+   }
+
+
    ::pointer < ::subsystem::SocketAddressIPv4Interface > subsystem::resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port)
    {
       auto presolvedAddress = createø<::subsystem::SocketAddressIPv4Interface>();

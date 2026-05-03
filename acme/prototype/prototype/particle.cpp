@@ -122,6 +122,14 @@ void particle::initialize(::particle* pparticle)
 }
 
 
+enum_trace_level particle::main_trace_level() const
+{
+
+   return ::system()->get_trace_level();
+
+}
+
+
 void particle::set_synchronization(::particle* pparticleSynchronization)
 {
 

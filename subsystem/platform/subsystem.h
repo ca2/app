@@ -22,8 +22,8 @@ namespace subsystem
    public:
 
 
+      ::pointer < ::subsystem::OperatingSystemApplicationInterface > m_papplicationSubsystem;
       ::hinstance                                        m_hinstanceResource = nullptr;
-      static ::subsystem::subsystem *            s_p;
       ::pointer < ::subsystem::StringParser >     m_pstringparser;
       ::pointer < ::subsystem::StringTable >     m_pstringtable;
       ::pointer < ::subsystem::ResourceLoader >     m_presourceloader;
@@ -55,6 +55,13 @@ namespace subsystem
       ::subsystem::OperatingSystem & OperatingSystem();
       ::subsystem::ZombieKiller & ZombieKiller();
       ::subsystem::Sockets & Sockets();
+
+
+      virtual ::pointer < ::subsystem::CurrentConsoleProcess> createCurrentConsoleProcess(
+         ::subsystem::LogWriter *log,
+         bool connectRdpSession,
+         const ::scoped_string & scopedstrPath = {},
+         const ::scoped_string & scopedstrArgs = {});
 
 
       //virtual void initializeCurrentProcessCommandLineArguments(
@@ -116,6 +123,14 @@ namespace subsystem
       virtual ::string getLocalIpAddressString();
 
 
+
+      virtual int get_LOADER_CLOSE_CODE();
+      virtual int get_SPEC_IPC_CODE();
+      // RegisterWindowMessage("TVN.HOOK.LOADER.CLOSE.CODE");
+      // const unsigned int HookDefinitions::SPEC_IPC_CODE =
+      // RegisterWindowMessage("TVN.HOOK.MESSAGE.CODE");
+
+
    };
 
 
@@ -124,17 +139,4 @@ namespace subsystem
 
 
 
-inline ::subsystem::subsystem & MainSubsystem()
-{
-
-   if (!::subsystem::subsystem::s_p)
-   {
-
-      system()->MainSubsystem();
-
-   }
-
-   return *::subsystem::subsystem::s_p;
-
-}
-
+CLASS_DECL_SUBSYSTEM ::subsystem::subsystem & MainSubsystem();

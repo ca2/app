@@ -44,9 +44,14 @@ namespace subsystem
 
 
 
-      SocketStream(SocketIPv4Interface * psocket);
+      //SocketStream(SocketIPv4Interface * psocket);
+      //SocketStream();
       SocketStream();
-      virtual ~SocketStream();
+      SocketStream(SocketIPv4Interface * psocket);
+      ~SocketStream() override;
+
+
+      virtual void _initialize_socket_stream(SocketIPv4Interface * psocket);
 
       //
       // Inherited from Channel.

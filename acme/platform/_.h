@@ -67,6 +67,9 @@ namespace platform
    class subsystem;
 
 
+   class ProfileLogger;
+
+
 } // namespace platform
 
 
@@ -104,6 +107,9 @@ class message_sink;
 
 template < typename APPLICATION = ::platform::application >
 inline APPLICATION* main_application();
+
+
+
 
 
 

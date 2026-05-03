@@ -215,7 +215,7 @@ void synchronization_array::erase(::collection::index index)
    if (uWakeMask)
    {
 
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((unsigned int)uCount, m_hsynchronizationa.get_data(), ::windows::wait(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((unsigned int)uCount, m_hsynchronizationa.get_data(), ::windows::wait_millis(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
@@ -226,7 +226,7 @@ void synchronization_array::erase(::collection::index index)
 
       auto psynca = m_hsynchronizationa.get_data();
 
-      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, ::windows::wait(timeWait));
+      windowsWaitResult = ::WaitForMultipleObjects(uCount, psynca, bWaitForAll, ::windows::wait_millis(timeWait));
 
    }
 

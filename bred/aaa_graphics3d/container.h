@@ -55,7 +55,7 @@ namespace graphics3d
 		bool		m_bShouldClose;
 		int		m_iWidth;
 		int		m_iHeight;
-		bool		m_bFrameBufferResized;
+		bool		m_bFramebufferResized;
 
 		
 		container();

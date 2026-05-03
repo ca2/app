@@ -884,13 +884,13 @@ void texture::_defer_bind_to_render_target(base_context_handle::object & object)
 
    }
 
-int g_iGpuOpenGlFrameBufferObject = 0;
+int g_iGpuOpenGlFramebufferObject = 0;
    GLuint texture::frame_buffer_object()
    {
-      g_iGpuOpenGlFrameBufferObject++;
+      g_iGpuOpenGlFramebufferObject++;
       auto & object = context_handle_object();
    
-      auto & gluFrameBufferObject = object.m_handle;
+      auto & gluFramebufferObject = object.m_handle;
    
       if(!object.m_bCreated)
       {
@@ -945,7 +945,7 @@ int g_iGpuOpenGlFrameBufferObject = 0;
          
       }
    
-      return gluFrameBufferObject;
+      return gluFramebufferObject;
 
    }
 

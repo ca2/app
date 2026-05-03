@@ -166,7 +166,7 @@ public:
    unsigned long long as_unsigned_long_long() const noexcept { return as_unsigned_long_long(this->x, this->y); }
    //::lparam lparam() const noexcept { return { this->x, this->y }; }
 
-   point_type& Null() { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE) 0;  return *this; }
+   point_type& clear() { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE) 0;  return *this; }
 
 
    point_type & offset(UNIT_TYPE xOffset, UNIT_TYPE yOffset) noexcept { this->x += xOffset; this->y += yOffset; return *this; }
@@ -455,8 +455,8 @@ constexpr ::int_point lparam::point() const
 template <prototype_number NUMBER>
 struct std::formatter<point_type<NUMBER>>
 {
-   bool m_bIncludeParenthesis = false;
-   bool m_bIncludeNames = false;
+   bool m_bIncludeParenthesis = false; // p
+   bool m_bIncludeNames = false; // n
 
 
    constexpr bool check_option(auto &it, const auto & end)
@@ -519,3 +519,6 @@ struct std::formatter<point_type<NUMBER>>
       }
    }
 };
+
+
+

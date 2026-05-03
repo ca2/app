@@ -152,7 +152,7 @@ namespace gpu_opengl
       //
       //    ::cast<cubemap_framebuffer> pframebuffer = m_pframebuffer;
       //
-      //    return pframebuffer->getCubemapTextureId();
+      //    return pframebuffer.getCubemapTextureId();
       //
       // }
 

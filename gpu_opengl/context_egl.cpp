@@ -1081,10 +1081,10 @@ namespace gpu_opengl
       eglQuerySurface(egldisplay, m_eglsurface, EGL_HEIGHT, &height);
       debug("EGL surface created: {}x{}", width, height);
 
-      // Check what framebuffer is currently bound
+      // Check what pframebuffer is currently bound
       GLint currentFB = 0;
       glGetIntegerv(GL_FRAMEBUFFER_BINDING, &currentFB);
-      debug("Current framebuffer bound: {}", currentFB);
+      debug("Current pframebuffer bound: {}", currentFB);
 
       // Read a pixel from the center to see what's actually there
       GLubyte pixel[4];

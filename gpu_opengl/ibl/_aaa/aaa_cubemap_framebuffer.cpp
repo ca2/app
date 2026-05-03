@@ -38,7 +38,7 @@ namespace gpu_opengl
 
          ::cast < gpu_opengl::texture>ptexture = m_ptexture;
 
-         // framebuffer
+         // pframebuffer
          glGenFramebuffers(1, &ptexture->m_gluFbo);
          ::opengl::ensure_non_null_handle(ptexture->m_gluFbo, "glGenFramebuffers(1, ...)")
          ::opengl::check_error("");

@@ -17,37 +17,47 @@
 #include "acme/operating_system/time.h"
 
 
+#include "acme/operating_system/windows_common/last_error.h"
+
+
 #include "_string.h"
 
 
-using dword_array_base = ::numeric_array_base < DWORD >;
+//using dword_array_base = ::numeric_array_base < DWORD >;
 
-using dword_array = ::array_particle < ::dword_array_base >;
-
-
-
-#ifdef MEMDLEAK
+//using dword_array = ::array_particle < ::dword_array_base >;
 
 
-//CLASS_DECL_ACME string get_mem_info_report1();
-//CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
-#ifdef WINDOWS
-CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
-#endif
 
-
-#endif
+// #ifdef MEMDLEAK
+//
+//
+// //CLASS_DECL_ACME string get_mem_info_report1();
+// //CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
+// #ifdef WINDOWS
+// CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
+// #endif
+//
+//
+// #endif
 
 
 namespace windows
 {
 
-   constexpr DWORD wait(const class time& time)
+   constexpr unsigned int wait_millis(const class time& time)
    {
+
+      if (time.is_infinite())
+      {
+
+         return INFINITE;
+
+      }
 
       auto i = time.integral_millisecond();
 
-      return i > ((decltype(i))INFINITE) ? INFINITE : (DWORD) i;
+      return i > 0xFFFFFFFEu ? 0xFFFFFFFEu : (DWORD) i;
 
    }
 
@@ -74,20 +84,25 @@ namespace windows
 CLASS_DECL_ACME void TRACELASTERROR();
 
 
+#include "acme/operating_system/windows_common/last_error.h"
+#include "acme/operating_system/windows_common/last_error_exception.h"
+
+
+
 namespace windows
 {
 
 
-   CLASS_DECL_ACME::enum_status _last_error_status(DWORD dwLastError);
-   inline ::e_status last_error_status(DWORD dwLastError) { return _last_error_status(dwLastError); }
+   CLASS_DECL_ACME::enum_status _last_error_status(unsigned int uLastError);
+   inline ::e_status last_error_status(const last_error & lasterror) { return _last_error_status(lasterror.m_uLastError); }
    
    
-   CLASS_DECL_ACME::enum_status _failed_last_error_status(DWORD dwLastError);
-   inline ::e_status failed_last_error_status(DWORD dwLastError) { return _failed_last_error_status(dwLastError); }
+   CLASS_DECL_ACME::enum_status _failed_last_error_status(unsigned int uLastError);
+   inline ::e_status failed_last_error_status(const last_error & lasterror) { return _failed_last_error_status(lasterror.m_uLastError); }
 
 
-   CLASS_DECL_ACME::enum_status _hresult_status(HRESULT hresult);
-   inline ::e_status hresult_status(HRESULT hresult) { return _hresult_status(hresult); }
+   //CLASS_DECL_ACME::enum_status _hresult_status(HRESULT hresult);
+   //inline ::e_status hresult_status(HRESULT hresult) { return _hresult_status(hresult); }
 
 
    CLASS_DECL_ACME void * get_library_symbol_address(const ::file::path & pathLibrary, const ::scoped_string & scopedstrSymbolName);
@@ -112,27 +127,27 @@ namespace windows
 
    CLASS_DECL_ACME ::e_status wait_result_status(int iResult, int nCount);
 
-   CLASS_DECL_ACME DWORD _get_file_attributes(const ::file::path & path);
+   CLASS_DECL_ACME unsigned int _get_file_attributes(const ::file::path & path);
 
-   CLASS_DECL_ACME DWORD get_file_attributes(const ::file::path & path);
+   CLASS_DECL_ACME unsigned int get_file_attributes(const ::file::path & path);
 
-   CLASS_DECL_ACME int_bool is_win32_accessible(DWORD dwFileAttributes, DWORD dwLastError);
+   CLASS_DECL_ACME int_bool is_win32_accessible(unsigned int uFileAttributes, const last_error & lasterror);
 
    CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path);
 
-   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, DWORD dwAttributes);
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, unsigned int uFileAttributes);
 
 
-   CLASS_DECL_ACME error_code last_error_error_code(DWORD dwLastError);
+   CLASS_DECL_ACME error_code last_error_error_code(const last_error & lasterror);
 
 
    CLASS_DECL_ACME error_code last_error_error_code();
 
 
-   CLASS_DECL_ACME void throw_last_error(DWORD dwLastError);
+   //CLASS_DECL_ACME void throw_last_error_exception(const ::last_error & lasterror);
 
 
-   CLASS_DECL_ACME void throw_last_error();
+   //CLASS_DECL_ACME void throw_last_error_exception();
 
 
 } // namespace windows
@@ -162,9 +177,6 @@ namespace windows
 //
 
 
-[[ noreturn ]] CLASS_DECL_ACME void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage = nullptr, DWORD dwLastError = 0);
-[[ noreturn ]] CLASS_DECL_ACME void throw_last_error_exception(const ::file::path & path, ::file::e_open eopen, DWORD lasterror = 0, const ::scoped_string & scopedstrErrorMessage = nullptr);
-
 
 #include "acme/operating_system/windows_common/handle.h"
 #include "acme/operating_system/windows_common/file.h"
@@ -174,8 +186,8 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME void enum_processes(dword_array_base & dwaProcesses);
-   CLASS_DECL_ACME dword_array_base enum_processes();
+   [[ noreturn ]] CLASS_DECL_ACME void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, const last_error & lasterror = {});
+   [[ noreturn ]] CLASS_DECL_ACME void throw_file_last_error_exception(const ::file::path & path, ::file::e_open eopen, const last_error & lasterror = {}, const ::scoped_string & scopedstrErrorMessage = nullptr);
 
 
 } // namespace windows

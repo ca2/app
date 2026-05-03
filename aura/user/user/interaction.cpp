@@ -22094,7 +22094,7 @@ if(get_parent())
 
 
    ::collection::index
-      interaction::calculate_broad_and_compact_restore(::int_rectangle * prectWorkspace, const ::int_size & sizeMinParam,
+      interaction::calculate_broad_and_compact_restore(::int_rectangle * prectangleWorkspace, const ::int_size & sizeMinParam,
                                                        const ::int_rectangle & rectangleHintParam)
    {
 
@@ -22183,12 +22183,12 @@ if(get_parent())
 
          debug() << "calculate_broad_and_compact_restore restore compact : " << m_rectangleRestoreCompact;
 
-         if (::is_set(prectWorkspace))
+         if (::is_set(prectangleWorkspace))
          {
 
-            *prectWorkspace = rectangleWorkspace;
+            *prectangleWorkspace = rectangleWorkspace;
 
-            debug() << "calculate_broad_and_compact_restore worspace : " << rectangleWorkspace;
+            debug() << "calculate_broad_and_compact_restore worspace : " << *prectangleWorkspace;
 
          }
 

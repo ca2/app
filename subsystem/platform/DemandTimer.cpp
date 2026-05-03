@@ -24,24 +24,22 @@
 #include "framework.h"
 #include "DemandTimer.h"
 
-DemandTimer::DemandTimer(unsigned long long intervalMillis)
-: m_intervalMillis(intervalMillis)
-{
-  reset();
-}
 
-DemandTimer::~DemandTimer()
+namespace subsystem
 {
-}
 
-// Starts the timer from the now time.
-void DemandTimer::reset()
-{
-  m_timeStart.Now();
-}
+   DemandTimer::DemandTimer(const class ::time & time) : m_timeTimer(time) { reset(); }
 
-// Returns true if timer time is elapsed.
-bool DemandTimer::isElapsed()
-{
-  return m_timeStart.elapsed().integral_millisecond() >= m_intervalMillis;
-}
+   DemandTimer::~DemandTimer() {}
+
+   // Starts the timer from the now time.
+   void DemandTimer::reset() { m_timeStart.Now(); }
+
+   // Returns true if timer time is elapsed.
+   bool DemandTimer::isElapsed() { return m_timeStart.elapsed() >= m_timeTimer; }
+
+
+} // namespace subsystem
+
+
+

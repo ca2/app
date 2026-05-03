@@ -70,7 +70,8 @@ namespace user
       e_message_non_client_left_button_up = 0x00A2,
       e_message_command = 0x0111,
       e_message_timer = 0x0113,
-      e_message_initialize_menu_popup = 0x0117,
+      e_message_initialize_menu = 0x0116, // WM_INITMENU
+      e_message_initialize_menu_popup = 0x0117, // WM_INITMENUPOPUP
 
 
       e_message_mouse_first = 512,

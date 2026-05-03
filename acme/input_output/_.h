@@ -14,8 +14,8 @@
 
 
 
-namespace subsystem
-{
+//namespace subsystem
+//{
 
    class BufferedInputStream;
    class BufferedOutputStream;
@@ -31,4 +31,6 @@ namespace subsystem
    class InputStream;
    class OutputStream;
 
-}
+class Channel;
+
+//}

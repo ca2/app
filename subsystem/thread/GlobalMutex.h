@@ -178,6 +178,7 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(GlobalMutex)
 
    };
 

@@ -118,11 +118,11 @@ namespace innate_subsystem
 //        m_pparticleThis->blitFromDibSection(rect);
 //     }
 //
-//     void DibSection::stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & dstRect)
+//     void DibSection::stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget)
 //     {
-//        //stretchFromDibSection(srcRect, dstRect, SRCCOPY);
+//        //stretchFromDibSection(srcRect, rectangleTarget, SRCCOPY);
 //
-//        m_pparticleThis->stretchFromDibSection(srcRect, dstRect);
+//        m_pparticleThis->stretchFromDibSection(srcRect, rectangleTarget);
 //     }
 //
 //     void DibSection::blitToDibSection(const ::int_rectangle &  rect, unsigned int flags)
@@ -145,13 +145,13 @@ namespace innate_subsystem
 //        //            }
 //     }
 //
-//     void DibSection::stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & dstRect, unsigned int flags)
+//     void DibSection::stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget, unsigned int flags)
 //     {
-//        m_pparticleThis->stretchFromDibSection(srcRect, dstRect, flags);
+//        m_pparticleThis->stretchFromDibSection(srcRect, rectangleTarget, flags);
 //        //    SetStretchBltMode(m_targetDC, HALFTONE);
 //        //    if (StretchBlt(m_targetDC, srcRect.left + m_srcOffsetX, srcRect.top + m_srcOffsetY,
 //        //                   srcRect.width(), srcRect.height(),
-//        //                   m_memDC, dstRect.left, dstRect.top, dstRect.width(), dstRect.height(),
+//        //                   m_memDC, rectangleTarget.left, rectangleTarget.top, rectangleTarget.width(), rectangleTarget.height(),
 //        //                   flags) == 0) {
 //        //       throw ::subsystem::Exception("Can't strech blit from DIB section.");
 //        //                   }

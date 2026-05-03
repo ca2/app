@@ -20,6 +20,29 @@ struct api_change_t{};
 #define API_CHANGED_ARGUMENT api_change_t{}
 
 template < prototype_number NUMBER >
+class origin_size
+{
+public:
+
+   point_type<NUMBER>   origin;
+   size_type<NUMBER>    size;
+
+   origin_size(){}
+   origin_size(NUMBER x, NUMBER y, NUMBER w, NUMBER h): origin(x, y),size(w, h){}
+   origin_size(const point_type<NUMBER> & point, const size_type<NUMBER> & size):origin(point),size(size){}
+   origin_size(const origin_size & originsize):origin(originsize.origin),size(originsize.size){}
+
+
+   auto top_left() const {return origin;}
+   auto width() const {return size.cx;}
+   auto height() const {return size.cy;}
+
+};
+
+using int_origin_size = origin_size<int>;
+
+
+template < prototype_number NUMBER >
 class rectangle_type :
    public sequence_type < NUMBER, 4 >
 
@@ -125,6 +148,18 @@ public:
 
    }
 
+   template < prototype_number NUMBER2 >
+   rectangle_type(const origin_size<NUMBER2> & originsize)
+   {
+
+      this->left = (UNIT_TYPE) originsize.origin.x;
+      this->top = (UNIT_TYPE) originsize.origin.y;
+      this->right = (UNIT_TYPE) (originsize.origin.x + originsize.size.cx);
+      this->bottom = (UNIT_TYPE) (originsize.origin.y + originsize.size.cy);
+
+      //return *this;
+
+   }
 
 //   constexpr const UNIT_TYPE & x() const {return this->x;}
 //   UNIT_TYPE & x() {return this->x;}
@@ -391,7 +426,7 @@ public:
       return *this;
    }
 
-   rectangle_type & Null()  { return ::null(*this); }
+   rectangle_type & clear()  { return ::clear(*this); }
 
    bool is_equal(const rectangle_type & rectangle) const
    {
@@ -1753,3 +1788,78 @@ inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
 //   );
 //}
 //
+
+
+
+
+
+template <prototype_number NUMBER>
+struct std::formatter<rectangle_type<NUMBER>>
+{
+   bool m_bIncludeParenthesis = false; // p
+   bool m_bIncludeDimensions = false; // d instead of l: t: r: b: --> l: t: w: h:
+
+
+   constexpr bool check_option(auto &it, const auto & end)
+   {
+
+      if (it != end)
+      {
+
+         if (*it == 'p')
+         {
+            m_bIncludeParenthesis = true;
+            it++;
+            return true;
+         }
+         else if (*it == 'd')
+         {
+            m_bIncludeDimensions = true;
+            it++;
+            return true;
+         }
+         else if (*it != '}')
+         {
+
+            throw std::format_error("Invalid format specifier for Rectangle.");
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+
+   // Parses the format specifier
+   constexpr auto parse(std::format_parse_context& ctx) {
+      auto it = ctx.begin(), end = ctx.end();
+      while (check_option(it, end));
+      return it;
+   }
+
+   // Formats the Point based on the flag set in parse()
+   auto format(const rectangle_type<NUMBER> & rectangle, std::format_context& ctx) const {
+      if (m_bIncludeDimensions)
+      {
+         if (m_bIncludeParenthesis) {
+            return std::format_to(ctx.out(), "(x:{}, y:{}, w:{}, h:{})", rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
+         } else {
+            return std::format_to(ctx.out(), "x:{}, y:{}, w:{}, h:{}", rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
+         }
+      }
+      else
+      {
+         if (m_bIncludeParenthesis) {
+            return std::format_to(ctx.out(), "(l:{}, t:{}, r:{}, b:{})", rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
+         } else {
+            return std::format_to(ctx.out(), "(l:{}, t:{}, r:{}, b:{})", rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
+         }
+      }
+   }
+};
+
+
+

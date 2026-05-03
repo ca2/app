@@ -80,6 +80,7 @@ namespace axis
       ::pointer<::account::user_set>              userset() override;
 
 
+      ::accessibility::accessibility *accessibility() override;
       //virtual ::pointer<regex>create_regular_expression(const ::scoped_string & scopedstrStyle, const ::scoped_string & scopedstr) override;
       //virtual ::pointer<regex_context>create_regular_expression_context(const ::scoped_string & scopedstrStyle, int iCount) override;
 
@@ -115,6 +116,8 @@ namespace axis
       // void assert_ok() const override;
       //void dump(dump_context& action_context) const override;
 
+      // virtual ::pointer<::accessibility::application>
+      //application_predicate(const ::function<bool(::accessibility::application *papplication)> &function);
 
 
  

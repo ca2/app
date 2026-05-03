@@ -92,17 +92,20 @@ namespace innate_subsystem
       //  HWND m_window;
       //WindowProcHolder *m_wph;
 
-      virtual void onNotifyIconRightButtonUp() override { m_pnotifyiconwindow->onNotifyIconRightButtonUp(); }
-      virtual void onNotifyIconLeftButtonDown() override { m_pnotifyiconwindow->onNotifyIconLeftButtonDown(); }
-      virtual void onTaskBarCreated() override { m_pnotifyiconwindow->onTaskBarCreated(); }
+      // virtual void onNotifyIconRightButtonUp() override { m_pnotifyiconwindow->onNotifyIconRightButtonUp(); }
+      // virtual void onNotifyIconLeftButtonDown() override { m_pnotifyiconwindow->onNotifyIconLeftButtonDown(); }
+      // virtual void onTaskBarCreated() override { m_pnotifyiconwindow->onTaskBarCreated(); }
 
+      virtual void onNotifyIconRightButtonUp() override {  }
+      virtual void onNotifyIconLeftButtonDown() override {  }
+      virtual void onTaskBarCreated() override {  }
 
       //friend class NotifyIcon;
    };
 
 
    class CLASS_DECL_INNATE_SUBSYSTEM NotifyIconWindowAggregate :
-   virtual public Aggregate < NotifyIconWindowComposite, Window >
+   virtual public Aggregate < NotifyIconWindowComposite, WindowAggregate >
    {
    public:
 

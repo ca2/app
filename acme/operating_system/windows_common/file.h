@@ -3,6 +3,7 @@
 
 
 #include "acme/operating_system/windows_common/handle.h"
+#include "acme/filesystem/filesystem/windows_path.h"
 
 
 namespace windows

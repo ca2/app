@@ -39,7 +39,7 @@ namespace gpu_opengl
 
       memory                           m_memorySwap;
 
-      GLuint                           m_gluLayerFrameBuffer;
+      GLuint                           m_gluLayerFramebuffer;
 
 
       context();

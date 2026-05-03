@@ -33,7 +33,7 @@ namespace gpu_opengl
       if (sizeNew.is_empty())
       {
 
-         throw ::exception(::error_bad_argument, "framebuffer");
+         throw ::exception(::error_bad_argument, "pframebuffer");
 
       }
 

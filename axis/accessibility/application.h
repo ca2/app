@@ -2,14 +2,14 @@
 #pragma once
 
 
-namespace operating_system
+namespace accessibility
 {
 
    
    class main_window;
 
 
-   class CLASS_DECL_ACME application :
+   class CLASS_DECL_AXIS application :
       virtual public ::particle
    {
    public:
@@ -49,7 +49,7 @@ namespace operating_system
    };
 
 
-} // namespace operating_system
+} // namespace accessibility
 
 
 

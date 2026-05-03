@@ -66,7 +66,8 @@ namespace subsystem
       ~PipeServer();
 
 
-      virtual void initialize_pipe_server(const ::scoped_string &scopedstrName, unsigned int bufferSize, SecurityAttributes *secAttr = 0,
+      virtual void initialize_pipe_server(const ::scoped_string &scopedstrName, unsigned int bufferSize,
+         ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr,
                  DWORD milliseconds = INFINITE);
 
       /**
@@ -77,7 +78,7 @@ namespace subsystem
        *
        * @fixme stub.
        */
-      virtual NamedPipe *accept();
+      virtual ::pointer < NamedPipeInterface>accept();
 
       /**
        * Closes pipe server.
@@ -102,7 +103,7 @@ namespace subsystem
 
       // loads GetNamedPipeClientProcessId (Vista or later) from kernel32
       //static void initialize();
-      virtual void initialize();
+      virtual void initialize_pipe_server();
       //static volatile bool m_initialized;
 
    //private:

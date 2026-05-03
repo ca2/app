@@ -40,12 +40,12 @@ namespace  subsystem
       //virtual ~DisplaysInterface() =0;
 
       // If a display does not exist now the function return an empty rectangle.
-      virtual void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) = 0;
+      virtual void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle & rectangle) = 0;
 
-      virtual ::array_base<::int_rectangle> getDisplaysCoords() = 0;
+      virtual ::int_rectangle_array_base getDisplaysCoords() = 0;
 
       // Returns a ::array_base that contain dispalys coordinates at the current time.
-      virtual ::array_base<::int_rectangle> getDisplays() = 0;
+      virtual ::int_rectangle_array_base getDisplays() = 0;
 
    //private:
       // Updates internal information to a current state.
@@ -62,7 +62,7 @@ namespace  subsystem
       // int m_xVirtualScreen;
       // int m_yVirtualScreen;
       //
-      // ::array_base<::int_rectangle> m_displayRects;
+      // ::int_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;
       //
       // static const unsigned int UPDATE_INTERVAL = 3000;
@@ -84,21 +84,21 @@ virtual public Composite<DisplaysInterface>
        //~Displays() override;
 
       // If a display does not exist now the function return an empty rectangle.
-      void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle *rect) override
+      void getDisplayCoordinates(unsigned char displayNumber, ::int_rectangle & rectangle) override
       {
 
-         m_pdisplays->getDisplayCoordinates(displayNumber, rect);
+         m_pdisplays->getDisplayCoordinates(displayNumber, rectangle);
 
       }
 
-      ::array_base<::int_rectangle> getDisplaysCoords() override
+      ::int_rectangle_array_base getDisplaysCoords() override
       {
 
          return m_pdisplays->getDisplaysCoords();
       }
 
       // Returns a ::array_base that contain dispalys coordinates at the current time.
-      ::array_base<::int_rectangle> getDisplays() override
+      ::int_rectangle_array_base getDisplays() override
       {
 
          return m_pdisplays->getDisplays();
@@ -128,7 +128,7 @@ virtual public Composite<DisplaysInterface>
       // int m_xVirtualScreen;
       // int m_yVirtualScreen;
       //
-      // ::array_base<::int_rectangle> m_displayRects;
+      // ::int_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;
       //
       // static const unsigned int UPDATE_INTERVAL = 3000;
@@ -141,12 +141,16 @@ virtual public Composite<DisplaysInterface>
    {
    public:
 
+      ImplementBaseø(Displays)
+
    };
 
    class CLASS_DECL_SUBSYSTEM Displays :
  virtual public Object < DisplaysAggregate >
    {
    public:
+
+      ImplementObjectø(Displays)
 
    };
 

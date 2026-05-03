@@ -11,7 +11,8 @@
 #include "axis/account/user_set.h"
 #include "axis/database/database/field.h"
 #include "axis/user/user/user.h"
-
+#include "acme/platform/node.h"
+#include "axis/accessibility/accessibility.h"
 
 //void axis_factory(::factory::factory * pfactory);
 
@@ -600,6 +601,48 @@ namespace axis
 //
 //   }
 
+
+   //::pointer<::accessibility::application>
+   //system::application_predicate(const ::function<bool(::accessibility::application *papplication)> &function)
+   //{
+
+   //   auto processidentifiera = node()->processes_identifiers();
+
+   //   for (auto &processidentifier: processidentifiera)
+   //   {
+
+   //      auto papplication = createø<::accessibility::application>();
+
+   //      papplication->open_by_process_identifier(processidentifier);
+
+   //      if (function(papplication))
+   //      {
+
+   //         return papplication;
+   //      }
+   //   }
+
+   //   return nullptr;
+   //}
+
+
+         ::accessibility::accessibility *system::accessibility() 
+         {
+
+            if (!m_paccessibility)
+            {
+
+               auto pfactoryAccessibility = factory("accessibility", OPERATING_SYSTEM_NAME);
+
+               pfactoryAccessibility->merge_to_global_factory();
+
+               constructø(m_paccessibility);
+
+            }
+            
+            return m_paccessibility; 
+         
+         }
 
 
 

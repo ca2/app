@@ -171,6 +171,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(Impersonator)
+
    };
 
 

@@ -24,14 +24,21 @@
 
 #pragma once
 
-
-class Command
+namespace subsystem
 {
+
+class CLASS_DECL_SUBSYSTEM Command :
+virtual public ::particle
+   {
 public:
   Command();
-  virtual ~Command();
+  ~Command() override;
 
-  virtual void execute() = 0;
+  virtual void execute();
 };
+
+
+
+} // namespace subsystem
 
 

@@ -298,6 +298,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(Service)
+
    };
 
 

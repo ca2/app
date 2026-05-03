@@ -180,6 +180,14 @@ namespace subsystem
 
    class ZombieKiller;
 
+   class WindowMessageHandler;
+
+   class Process;
+
+   class CurrentConsoleProcess;
+
+   class OperatingSystemApplicationInterface;
+
 } // namespace subsystem
 
 
@@ -203,6 +211,7 @@ namespace innate_subsystem
 namespace subsystem_windows
 {
    class MessageWindow;
+   
 }
 
 

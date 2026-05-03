@@ -405,9 +405,9 @@ namespace gpu_opengl
       if (!::SwapBuffers(m_hdc))
       {
 
-         auto dwLastError = ::GetLastError();
+         auto lasterror = ::windows::get_last_error();
 
-         auto strMessage = ::windows::last_error_message(dwLastError);
+         auto strMessage = ::windows::last_error_message(lasterror);
 
          ::error(strMessage);
 

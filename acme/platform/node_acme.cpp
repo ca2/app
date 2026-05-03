@@ -1189,24 +1189,24 @@ namespace platform
    //void acme_node_layer::module_path_main_window_post_close(const ::scoped_string & scopestr){}
 
 
-   ::pointer<::operating_system::application> acme_node_layer:: module_path_application(const ::scoped_string& scopestr)
-   {
-      return{};
-   }
-
-
-   ::pointer<::operating_system::application>  acme_node_layer::process_identifier_application(
-      ::process_identifier processidentifier)
-   {
-      return{};
-   }
-
-
-    ::pointer<::operating_system::application> acme_node_layer:: application_predicate(
-      const ::function<bool(::operating_system::application* papplication)>& function)
-   {
-      return{};
-   }
+   // ::pointer<::operating_system::application> acme_node_layer:: module_path_application(const ::scoped_string& scopestr)
+   // {
+   //    return{};
+   // }
+   //
+   //
+   // ::pointer<::operating_system::application>  acme_node_layer::process_identifier_application(
+   //    ::process_identifier processidentifier)
+   // {
+   //    return{};
+   // }
+   //
+   //
+   //  ::pointer<::operating_system::application> acme_node_layer:: application_predicate(
+   //    const ::function<bool(::operating_system::application* papplication)>& function)
+   // {
+   //    return{};
+   // }
 
 
     ::string  acme_node_layer::get_character_set_default_sample_text(enum_character_set echaracterset)

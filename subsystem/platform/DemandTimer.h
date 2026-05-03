@@ -31,7 +31,7 @@ namespace subsystem
 {
    // This class help to measure time intervals. On a time interval elapse the
    // timer only change self state. It doesn't call a callback function.
-   class DemandTimer
+   class CLASS_DECL_SUBSYSTEM DemandTimer
    {
    public:
 

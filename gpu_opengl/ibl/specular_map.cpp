@@ -207,7 +207,7 @@ namespace gpu_opengl
       //
       //    ::cast <gpu_opengl::ibl::aaa_mipmap_cubemap_framebuffer> pframebuffer = m_pframebufferPrefilteredEnvMap;
       //
-      //    return pframebuffer->getCubemapTextureId();
+      //    return pframebuffer.getCubemapTextureId();
       //
       // }
 
@@ -226,7 +226,7 @@ namespace gpu_opengl
          // auto pfullscreenquad = createø<::gpu::full_screen_quad>();
          //
          // pfullscreenquad->initialize_full_screen_quad(m_pgpucontext);
-         // //m_pbrdfconvolutionframebuffer->bind();
+         // //m_pbrdfconvolutionframebuffer.bind();
          //
          // //     auto pskybox = m_pscene->current_skybox();
          //
@@ -234,8 +234,8 @@ namespace gpu_opengl
          //
          // //auto ptexture = pskybox->m_ptexture;
          //
-         // //m_pshaderBrdfConvolution->bind(m_pbrdfconvolutionframebuffer->m_ptexture, ptexture);
-         // m_pshaderBrdfConvolution->bind(nullptr, m_pbrdfconvolutionframebuffer->m_ptexture);
+         // //m_pshaderBrdfConvolution->bind(m_pbrdfconvolutionframebuffer.m_ptexture, ptexture);
+         // m_pshaderBrdfConvolution->bind(nullptr, m_pbrdfconvolutionframebuffer.m_ptexture);
          // //m_pshaderPrefilteredEnvMap->set_int("environmentCubemap", 0);
          //
          // glViewport(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
@@ -269,7 +269,7 @@ namespace gpu_opengl
       //
       //    ::cast <::gpu_opengl::ibl::brdf_convolution_framebuffer> pframebuffer = m_pbrdfconvolutionframebuffer;
       //
-      //    return pframebuffer->getColorTextureId();
+      //    return pframebuffer.getColorTextureId();
       //
       // }
 

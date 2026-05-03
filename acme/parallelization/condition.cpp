@@ -231,19 +231,19 @@ bool condition::pulse_happening()
    if (!SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION &)m_criticalsection,
-      ::windows::wait(timeWait)))
+      ::windows::wait_millis(timeWait)))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      if (dwLastError == ERROR_TIMEOUT)
+      if (lasterror == ERROR_TIMEOUT)
       {
 
          return error_wait_timeout;
 
       }
 
-      auto estatus = ::windows::last_error_status(dwLastError);
+      auto estatus = ::windows::last_error_status(lasterror);
 
       return error_failed;
 

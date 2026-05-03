@@ -29,46 +29,108 @@
 
 //namespace subsystem
 //{
-   ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
-   : m_size(0), m_max(max), m_ownMemory(true)
-   {
-      m_buffer = new char[m_max];
-   }
 
-   ByteArrayOutputStream::ByteArrayOutputStream()
-   : m_size(0), m_buffer(0), m_max(DEFAULT_INNER_BUFFER_CAPACITY), m_ownMemory(true)
+// ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
+// : m_size(0), m_max(max), m_ownMemory(true)
+// {
+//    m_buffer = new char[m_max];
+// }
+//
+//    ByteArrayOutputStream::ByteArrayOutputStream(memsize max)
+//    : m_size(0), m_max(max), m_ownMemory(true)
+//    {
+//       m_buffer = new char[m_max];
+//    }
+   //
+   // ByteArrayOutputStream::ByteArrayOutputStream()
+   // : m_size(0), m_buffer(0), m_max(DEFAULT_INNER_BUFFER_CAPACITY), m_ownMemory(true)
+   // {
+   //    m_buffer = new char[m_max];
+   // }
+ByteArrayOutputStream::ByteArrayOutputStream()
+: m_size(0), m_buffer(0), m_max(0), m_bOwnMemory(false)
    {
-      m_buffer = new char[m_max];
+      //m_buffer = nu
    }
+ByteArrayOutputStream::ByteArrayOutputStream(::particle * pparticle, memsize max)
+: ByteArrayOutputStream()
+{
+   _initialize_byte_array_output_stream(pparticle, max);
+   //m_buffer = nu
+}
+ByteArrayOutputStream::ByteArrayOutputStream(::particle * pparticle, void *alienMemory, memsize size)
+: ByteArrayOutputStream()
+{
+   _initialize_byte_array_output_stream(pparticle, alienMemory, size);
+   //m_buffer = nu
+}
 
-   ByteArrayOutputStream::ByteArrayOutputStream(void *alienMemory)
-   : m_size(0), m_buffer((char *)alienMemory), m_max(0xFFFFFF), m_ownMemory(false)
-   {
+   // ByteArrayOutputStream::ByteArrayOutputStream(void *alienMemory)
+   // : m_size(0), m_buffer((char *)alienMemory), m_max(0xFFFFFF), m_ownMemory(false)
+   // {
+   // }
+ByteArrayOutputStream::~ByteArrayOutputStream()
+{
+   if ((m_buffer != 0) && (m_bOwnMemory)) {
+      delete[] m_buffer;
    }
+}
 
-   ByteArrayOutputStream::~ByteArrayOutputStream()
-   {
-      if ((m_buffer != 0) && (m_ownMemory)) {
-         delete[] m_buffer;
+void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pparticle, memsize max)
+
+{
+initialize(pparticle);
+      if (max < 0)
+      {
+
+         max = DEFAULT_INNER_BUFFER_CAPACITY;
       }
-   }
+   m_size = 0;
+   m_max = max;
+   m_bOwnMemory = true;
+   m_buffer = new char[m_max];
+}
+
+
+void ByteArrayOutputStream::_initialize_byte_array_output_stream(::particle * pparticle, void *alienMemory, memsize size)
+{
+   initialize(pparticle);
+   m_size = 0;
+   m_max = size;
+   m_bOwnMemory = false;
+   m_buffer = (char*) alienMemory;
+
+}
+
+
+
 
    memsize ByteArrayOutputStream::defer_write(const void *buffer, memsize len)
    {
       bool allocateNewBuffer = (m_size + len) > m_max;
 
-      if (allocateNewBuffer && m_ownMemory) {
-         memsize reserve = DEFAULT_INNER_BUFFER_CAPACITY;
-         // Create new buffer with some reserve
-         char *newBuffer = new char[m_size + len + reserve];
-         // Copy old buffer content to new
-         memcpy(newBuffer, m_buffer, m_size);
-         // Cleanup
-         delete[] m_buffer;
-         // Set new buffer
-         m_buffer = newBuffer;
-         // Set new max buffer size
-         m_max = m_size + len + reserve;
+      if (allocateNewBuffer)
+         {
+         if (m_bOwnMemory)
+         {
+            memsize reserve = DEFAULT_INNER_BUFFER_CAPACITY;
+            // Create new buffer with some reserve
+            char *newBuffer = new char[m_size + len + reserve];
+            // Copy old buffer content to new
+            memcpy(newBuffer, m_buffer, m_size);
+            // Cleanup
+            delete[] m_buffer;
+            // Set new buffer
+            m_buffer = newBuffer;
+            // Set new max buffer size
+            m_max = m_size + len + reserve;
+         }
+         else
+         {
+
+            throw ::exception(error_would_reach_buffer_limit);
+
+         }
       }
 
       //

@@ -41,7 +41,7 @@ namespace user
       //bool		m_bShouldClose;
       int		m_iWidth;
       int		m_iHeight;
-      bool		m_bFrameBufferResized;
+      bool		m_bFramebufferResized;
 
 
 

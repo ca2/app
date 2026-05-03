@@ -196,4 +196,9 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="nano_archive_libarchive.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

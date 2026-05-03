@@ -33,7 +33,7 @@
 #include "acme/prototype/collection/list.h"
 namespace subsystem
 {
-   typedef ::list_base<Thread *> ThreadList;
+   //typedef ::list_base<Thread *> ThreadList;
 
    // Collector threads.
    // ThreadCollector has it's own thread which deletes in infinity loop not
@@ -46,7 +46,7 @@ namespace subsystem
       ~ThreadCollector() override;
 
       // Adds thread to a self ::list_base.
-      virtual void addThread(Thread *thread) = 0;
+      virtual void addThread(ThreadInterface *thread) = 0;
 
       // Forces terminates all threads, waits until they dies and than
       // delete them from memory and thread ::list_base.

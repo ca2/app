@@ -6,16 +6,26 @@
 #include "acme/_operating_system.h"
 
 
-class CLASS_DECL_ACME last_error_exception :
-   public ::exception
+namespace windows
 {
-public:
 
 
-   last_error_exception(DWORD dwLastError, const ::scoped_string & scopedstrMessage = nullptr, const ::scoped_string & scopedstrDetails = nullptr);
+   class last_error;
 
 
-};
+   class CLASS_DECL_ACME last_error_exception :
+      public ::exception
+   {
+   public:
+
+
+      last_error_exception(const last_error & lasterror, const ::scoped_string & scopedstrMessage = {}, const ::scoped_string & scopedstrDetails = {});
+
+
+   };
+
+
+} // namespace windows
 
 
 

@@ -36,7 +36,7 @@
 //      //swap_chain_render_target(const swap_chain_render_target&) = delete;
 //      //swap_chain_render_target& operator=(const swap_chain_render_target&) = delete;
 //
-//      //VkFramebuffer getFrameBuffer(int index) { return swapChainFramebuffers[index]; }
+//      //VkFramebuffer getFramebuffer(int index) { return swapChainFramebuffers[index]; }
 //      //VkRenderPass getRenderPass() { return m_vkrendertargetview; }
 //      //VkImageView getImageView(int index) { return swapChainImageViews[index]; }
 //      //size_t imageCount() { return swapChainImages.size(); }

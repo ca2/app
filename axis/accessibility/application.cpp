@@ -6,7 +6,7 @@
 #include "acme/platform/node.h"
 
 
-namespace operating_system
+namespace accessibility
 {
 
 
@@ -56,7 +56,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    void application::post_close()
    {
 
-      auto pmainwindow = createø < ::operating_system::main_window >();
+      auto pmainwindow = createø < ::accessibility::main_window >();
 
       pmainwindow->from_application(this);
 
@@ -68,7 +68,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    void application::post_exit()
    {
 
-      auto pmainwindow = createø < ::operating_system::main_window >();
+      auto pmainwindow = createø < ::accessibility::main_window >();
 
       pmainwindow->from_application(this);
 
@@ -115,7 +115,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    }
 
 
-} // namespace operating_system
+} // namespace accessibility
 
 
 

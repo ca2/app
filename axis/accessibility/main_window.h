@@ -2,14 +2,14 @@
 #pragma once
 
 
-namespace operating_system
+namespace accessibility
 {
 
 
    class application;
 
 
-   class CLASS_DECL_ACME main_window :
+   class CLASS_DECL_AXIS main_window :
       virtual public ::particle
    {
    public:
@@ -19,7 +19,7 @@ namespace operating_system
       ~main_window() override;
 
 
-      virtual void from_application(::operating_system::application * papplication);
+      virtual void from_application(::accessibility::application * papplication);
 
       virtual bool is_window();
 
@@ -36,7 +36,7 @@ namespace operating_system
    };
 
 
-} // namespace operating_system
+} // namespace accessibility
 
 
 

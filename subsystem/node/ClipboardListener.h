@@ -30,7 +30,7 @@
 namespace subsystem
 {
 
-   class ClipboardListener :
+   class CLASS_DECL_SUBSYSTEM ClipboardListener :
    virtual public ::particle
    {
    public:

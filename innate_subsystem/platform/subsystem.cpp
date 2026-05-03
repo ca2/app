@@ -141,6 +141,12 @@ s_p = this;
    //
    // }
 
+   void subsystem::initializeInnateSubsystemControls()
+   {
+
+
+   }
+
    ::innate_subsystem::SystemMetricsInterface * subsystem::metrics()
    {
 

@@ -80,10 +80,10 @@ public:
    //using BASE_ARRAY = comparable_raw_array < TYPE, TYPE, ::typed::nodef < TYPE >, ::heap::typed_memory < TYPE, ::heap::e_memory_array >, t_etypeContainer >;
 
 
-   ::collection::index find_first_maximum_value();
-   TYPE & get_maximum_value();
-   ::collection::index find_first_minimum_value();
-   TYPE & get_minimum_value();
+   ::collection::index find_first_maximum_value() const;
+   const TYPE & get_maximum_value() const;
+   ::collection::index find_first_minimum_value() const;
+   const TYPE & get_minimum_value() const;
 
 
    template < prototype_integral INTEGRAL >
@@ -109,7 +109,7 @@ public:
    TYPE pop_max();
    TYPE pop_max_last_add_up(TYPE tLastAddUp);
 
-   TYPE get_sum(::collection::index first = 0, ::collection::count in_count_out_last = -1)
+   TYPE get_sum(::collection::index first = 0, ::collection::count in_count_out_last = -1) const
    {
 
       this->prepare_first_in_count_last_out(first, in_count_out_last);
@@ -661,7 +661,7 @@ const TYPE & tMax)
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_maximum_value()
+::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_maximum_value() const
 {
 
    TYPE tMax = this->element_at(0);
@@ -688,15 +688,15 @@ template < typename TYPE, ::enum_type t_etypeContainer >
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-TYPE & numeric_array_base < TYPE, t_etypeContainer >::
-get_maximum_value()
+const TYPE & numeric_array_base < TYPE, t_etypeContainer >::
+get_maximum_value() const
 {
    ASSERT(this->get_size() > 0);
    return this->element_at(find_first_maximum_value());
 }
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_minimum_value()
+::collection::index numeric_array_base < TYPE, t_etypeContainer >::find_first_minimum_value() const
 {
 
    TYPE tMin = this->element_at(0);
@@ -723,8 +723,8 @@ template < typename TYPE, ::enum_type t_etypeContainer >
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-TYPE & numeric_array_base < TYPE, t_etypeContainer >::
-get_minimum_value()
+const TYPE & numeric_array_base < TYPE, t_etypeContainer >::
+get_minimum_value() const
 {
    ASSERT(this->get_size() > 0);
    return this->element_at(find_first_minimum_value());

@@ -20,6 +20,7 @@ namespace windows
       //m_hwnd = nullptr;
       m_hmenuSystem = nullptr;
       m_bDefaultSystemMenu = true;
+      m_wndprocDefault = nullptr;
    }
 
 
@@ -33,6 +34,29 @@ namespace windows
    {
 
       return m_wndprocDefault;
+
+   }
+
+   bool window::call_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam)
+   {
+
+      if (on_window_procedure(lresult, message, wparam, lparam))
+      {
+
+         return true;
+
+      }
+
+      if (m_wndprocDefault)
+      {
+
+         lresult =  ::CallWindowProcW(m_wndprocDefault, m_windowswindow.as_HWND(), message, wparam.m_wparam, lparam.m_lparam );
+
+         return true;
+
+      }
+
+      return false;
 
    }
 
@@ -221,7 +245,7 @@ namespace windows
       if (m_bDefaultSystemMenu)
       {
 
-         if (message == WM_INITMENU)
+         if (message == ::user::e_message_initialize_menu)
          {
 
             if (_on_default_system_menu_init_menu(lresult, wparam))
@@ -513,11 +537,82 @@ namespace windows
    }
 
 
+   ::operating_system::window window::_create_window_ex(
+      unsigned int dwExStyle,
+      const ::scoped_string & scopedstrWindowClassName,
+      const ::scoped_string & scopedstrWindowName,
+      unsigned int dwStyle,
+      const ::int_origin_size & originsize,
+      const ::operating_system::window & operatingsystemwindowParent,
+      void * pHMENU,
+      ::hinstance hinstance,
+      void * pLPARAM)
+   {
+
+      ::wstring wstrWindowClassName(scopedstrWindowClassName);
+
+      ::wstring wstrWindowName(scopedstrWindowName);
+
+      HWND hwndParent = ::as_HWND(operatingsystemwindowParent);
+
+      HWND hwnd = ::CreateWindowExW(
+         dwExStyle,
+         wstrWindowClassName,
+         wstrWindowName,
+         dwStyle,
+         originsize.origin.x,
+         originsize.origin.y,
+         originsize.size.cx,
+         originsize.size.cy,
+         hwndParent,
+         (HMENU)pHMENU,
+         (HINSTANCE) hinstance,
+         pLPARAM);
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+
+   void window::createWindowEx(
+      unsigned int dwExStyle,
+      const ::scoped_string & scopedstrWindowClassName,
+      const ::scoped_string & scopedstrWindowName,
+      unsigned int dwStyle,
+      const ::int_origin_size & originsize,
+      const ::operating_system::window & operatingsystemwindowParent ,
+      void * pHMENU )
+   {
+
+      _create_window_ex(
+         dwExStyle,
+         scopedstrWindowClassName,
+         scopedstrWindowName,
+         dwStyle,
+         originsize,
+         operatingsystemwindowParent,
+         pHMENU,
+         ::windows::hinstance_from_function(s_window_procedure),
+         (void*) (::windows::window *) this);
+
+   }
+
    // Step 4: the Window Procedure
    LRESULT CALLBACK window::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
 
       ::windows::window * pwindow = nullptr;
+
+      ::lresult lresult = 0;
+
+      if (::windows::pre_process_window_procedure(lresult, hwnd, msg, wParam, lParam))
+      {
+
+         return lresult;
+
+      }
 
       if (msg == (WM_WINDOWPOSCHANGING))
       {
@@ -531,35 +626,10 @@ namespace windows
          ::information() << "::windows::window_procedure WM_USER + 123";
 
       }
-      else if (msg == (WM_APP + 876))
+      else if (msg == (WM_APP + 123))
       {
 
-         ::warning() << "WM_APP + 876  At thread " << ::GetCurrentThreadId();
-
-         if (wParam == 0)
-         {
-
-            ::warning() << "WM_APP + 876 wParam is Zero At thread " << ::GetCurrentThreadId();
-
-            ::lparam lparam(lParam);
-
-            ::procedure procedure(lparam);
-
-            try
-            {
-
-               procedure();
-
-            }
-            catch (...)
-            {
-
-
-            }
-
-            return 0;
-
-         }
+         ::information() << "::windows::window_procedure WM_APP + 123";
 
       }
 
@@ -597,9 +667,7 @@ namespace windows
 
       }
 
-      LRESULT lresult = 0;
-
-      if (pwindow->on_window_procedure(lresult, msg, wParam, lParam))
+      if (pwindow->call_window_procedure(lresult, msg, wParam, lParam))
       {
 
          return lresult;
@@ -650,7 +718,20 @@ namespace windows
 
    }
 
+   void window::postMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam)
+   {
 
+      auto hwnd = m_windowswindow.as_HWND();
+
+      auto message = (unsigned int) emessage;
+
+      auto wParam = wparam.m_wparam;
+
+      auto lParam = lparam.m_lparam;
+
+      ::PostMessage(hwnd, message, wParam, lParam);
+
+   }
 
 } // namespace windows
 
@@ -687,6 +768,97 @@ CLASS_DECL_ACME ::operating_system::window as_operating_system_window(HWND hwnd)
    return window.as_operating_system_window();
 
 }
+
+
+CLASS_DECL_ACME ::operating_system::window as_operating_system_window(::uptr u)
+{
+
+   if (u == 0)
+   {
+
+      return {};
+
+   }
+
+   auto hwnd = (HWND)u;
+
+   auto operatingsystemwindow =  ::as_operating_system_window(hwnd);
+
+   return operatingsystemwindow;
+
+}
+
+
+CLASS_DECL_ACME ::uptr operating_system_window_as_uptr(const ::operating_system::window & operatingsystemwindow)
+{
+
+   if (operatingsystemwindow.m_eoperatingsystem == e_operating_system_none)
+   {
+
+      return 0;
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingsystem == e_operating_system_windows)
+   {
+
+
+      return (::uptr) ::as_HWND(operatingsystemwindow);
+
+   }
+
+   return 0;
+
+}
+
+
+namespace windows
+{
+
+
+   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, HWND hwnd, unsigned int message,
+      ::wparam wparam, ::lparam lparam)
+   {
+
+      if (message == (WM_APP + 876))
+      {
+
+         ::warning() << "WM_APP + 876  At thread " << ::GetCurrentThreadId();
+
+         if (wparam == 0)
+         {
+
+            ::warning() << "WM_APP + 876 wParam is Zero At thread " << ::GetCurrentThreadId();
+
+            ::procedure procedure(lparam);
+
+            try
+            {
+
+               procedure();
+
+            }
+            catch (...)
+            {
+
+            }
+
+            lresult = 0;
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+
+} // namespace windows
+ 
 
 
 

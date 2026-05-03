@@ -37,23 +37,38 @@
    public:
       static const memsize DEFAULT_INNER_BUFFER_CAPACITY = 1024;
    public:
+
+      bool m_bOwnMemory;
+      char *m_buffer;
+      ::memory m_memory;
+      memsize m_size;
+      memsize m_max;
+
+
       /**
        * Creates new memory output stream with inner memory buffer.
        * @param max capacity of buffer (in bytes).
        */
-      ByteArrayOutputStream(memsize max);
+      //ByteArrayOutputStream(memsize max);
       /**
        * Creates new memory output stream  with inner memory buffer with default capacity.
        */
       ByteArrayOutputStream();
+      ByteArrayOutputStream(::particle * pparticle, memsize max);
+      ByteArrayOutputStream(::particle * pparticle, void *alienMemory, memsize max);
       /**
        * Creates memory output stream for writting into alien (but
        * owned by ByteArrayOutputStream class) memory.
        * @fixme stub.
        */
-      ByteArrayOutputStream(void *alienMemory);
+      //ByteArrayOutputStream(void *alienMemory);
 
-      virtual ~ByteArrayOutputStream();
+      ~ByteArrayOutputStream() override;
+
+
+      virtual void _initialize_byte_array_output_stream(::particle * pparticle, memsize max = -1);
+
+      virtual void _initialize_byte_array_output_stream(::particle * pparticle, void *alienMemory, memsize size);
 
       /**
        * Writes data to memory.
@@ -72,10 +87,6 @@
        */
       const char *toByteArray() const;
 
-   protected:
-      bool m_ownMemory;
-      char *m_buffer;
-      memsize m_size;
-      memsize m_max;
+   //protected:
    };
 //}//namespace subsystem

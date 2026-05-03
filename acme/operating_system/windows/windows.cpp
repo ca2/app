@@ -48,6 +48,230 @@ namespace windows
    }
 
 
+   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::int_rectangle & rectangle)
+   {
+
+      RECT _winRectø{};
+
+      if (!::GetWindowRect(::as_HWND(operatingsystemwindow), &_winRectø))
+      {
+
+         return false;
+
+      }
+
+      rectangle = _winRectø;
+
+      return true;
+
+   }
+
+
+   CLASS_DECL_ACME ::int_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      ::int_rectangle rectangle;
+
+      if (!get_window_rect(operatingsystemwindow, rectangle))
+      {
+
+         throw_last_error_exception("GetWindowRect failed");
+
+      }
+
+      return rectangle;
+
+   }
+
+
+   CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand)
+   {
+
+      auto hwndCmd = ::as_HWND(operatingsystemwindowCommand);
+
+      auto hwnd = ::GetWindow(hwndCmd, iGetWindowCommand);
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+
+   CLASS_DECL_ACME ::iptr get_window_long(const ::operating_system::window & operatingsystemwindow, int iGetWindowLong)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      ::iptr i = ::GetWindowLongPtrW(hwnd, iGetWindowLong);
+
+      return i;
+
+   }
+
+
+   CLASS_DECL_ACME ::itask get_window_thread_id(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, nullptr);
+
+      return dwThreadID;
+
+   }
+
+
+   CLASS_DECL_ACME ::itask get_window_thread_process_id(const ::operating_system::window & operatingsystemwindow, ::process_identifier & processidentifier)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwProcessID = 0;
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, &dwProcessID);
+
+      if (dwThreadID)
+      {
+
+         processidentifier = dwProcessID;
+
+      }
+
+      return dwThreadID;
+
+   }
+
+
+   CLASS_DECL_ACME ::process_identifier get_window_process_id(const ::operating_system::window & operatingsystemwindow)
+   {
+
+      auto hwnd = ::as_HWND(operatingsystemwindow);
+
+      DWORD dwProcessID = 0;
+
+      DWORD dwThreadID = ::GetWindowThreadProcessId(hwnd, &dwProcessID);
+
+      ::process_identifier processidentifier{};
+
+      if (dwThreadID)
+      {
+
+         processidentifier = dwProcessID;
+
+      }
+
+      return processidentifier;
+
+   }
+
+
+   CLASS_DECL_ACME ::operating_system::window get_foreground_window()
+   {
+
+      auto hwnd = ::GetForegroundWindow();
+
+      auto operatingsystemwindow = ::as_operating_system_window(hwnd);
+
+      return operatingsystemwindow;
+
+   }
+
+   //protected:
+
+   static BOOL CALLBACK findWindowsByClassFunc(HWND hwnd, LPARAM lparam);
+   static BOOL CALLBACK findWindowsByNameFunc(HWND hwnd, LPARAM lparam);
+
+
+      struct WindowsParam
+   {
+      ::comparable_array_base<::operating_system::window> *hwndVector;
+      const ::string_array_base *classNames;
+   };
+
+   BOOL CALLBACK findWindowsByClassFunc(HWND hwnd, LPARAM lparam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         WindowsParam *windowsParam = (WindowsParam *)lparam;
+         //::sStringVector::iterator classNameIter;
+
+         const size_t maxTcharCount = 256;
+         TCHAR winName[maxTcharCount];
+         if (GetClassName(hwnd, winName, maxTcharCount) != 0) {
+            ::string nextWinName(winName);
+
+            if (nextWinName.has_character() && hwnd != 0)
+               {
+               for (auto & str : *windowsParam->classNames)
+               {
+                  if (str == nextWinName)
+                  {
+                     windowsParam->hwndVector->add(::as_operating_system_window(hwnd));
+                  }
+               }
+
+            }
+
+            // Recursion
+            EnumChildWindows(hwnd, findWindowsByClassFunc, (::lparam) windowsParam);
+         }
+      }
+      return TRUE;
+   }
+
+   ::comparable_array_base<::operating_system::window> findWindowsByClass(const ::string_array_base & straClassNames)
+   {
+      ::comparable_array_base<::operating_system::window> hwnda;
+      if (straClassNames.empty()) {
+         return hwnda;
+      }
+      WindowsParam windowsParam;
+      windowsParam.classNames = &straClassNames;
+      windowsParam.hwndVector = &hwnda;
+      EnumWindows(findWindowsByClassFunc, (LPARAM)&windowsParam);
+      return hwnda;
+   }
+
+   BOOL CALLBACK findWindowsByNameFunc(HWND hwnd, LPARAM lparam)
+   {
+      if (IsWindowVisible(hwnd) != 0) {
+         const size_t maxTcharCount = 256;
+         TCHAR nameChars[maxTcharCount];
+         if (GetWindowText(hwnd, nameChars, maxTcharCount) != 0) {
+            ::string winName(nameChars);
+            winName.make_lower();
+
+            if (winName.has_character() && hwnd != 0) {
+               WindowsParam *winParams = (WindowsParam *)lparam;
+               auto substr = winParams->classNames->first();
+               if (winName.contains( substr)) {
+                  winParams->hwndVector->add(::as_operating_system_window(hwnd));
+                  return FALSE;
+               }
+            }
+         }
+      }
+      return TRUE;
+   }
+
+   ::operating_system::window findFirstWindowByName(const ::scoped_string & scopedstrWindowNamePart)
+   {
+      ::comparable_array_base<::operating_system::window> hwnda;
+      ::string_array_base winNameVector;
+      winNameVector.add(scopedstrWindowNamePart);
+      winNameVector[0].make_lower();
+      WindowsParam winParams = { &hwnda, &winNameVector };
+
+      EnumWindows(findWindowsByNameFunc, (::lparam)&winParams);
+      if (hwnda.has_element()) {
+         return hwnda.first();
+      } else {
+         return 0;
+      }
+   }
+
+
+
 } // namespace windows
 
 
@@ -739,6 +963,18 @@ CLASS_DECL_ACME void copy(MSG& msg, const MESSAGE& message)
 
 }
 
+CLASS_DECL_ACME void copy(MESSAGE& message, const MSG& msg)
+{
+
+   message.m_operatingsystemwindow = ::as_operating_system_window(msg.hwnd);
+   message.m_eusermessage = (::user::enum_message)msg.message;
+   message.m_wparam = msg.wParam;
+   message.m_lparam = msg.lParam;
+   message.m_point.x = msg.pt.x;
+   message.m_point.y = msg.pt.y;
+   message.m_time = (unsigned long long) msg.time;
+
+}
 
 // CLASS_DECL_ACME HINSTANCE hinstance_from_function(void * pFunc)
 // {

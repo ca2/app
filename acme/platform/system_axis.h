@@ -3,6 +3,11 @@
 //
 #pragma once
 
+namespace accessibility
+{
+   class accessibility;
+} // namespace accessibility
+
 
 namespace platform
 {
@@ -27,7 +32,7 @@ namespace platform
 
       ::pointer<::factory::factory>                          m_pfactoryRegularExpressionPcre;
 
-
+      ::pointer<::accessibility::accessibility> m_paccessibility;
 
 
    };
@@ -53,6 +58,9 @@ namespace platform
 
       virtual void defer_create_html();
 
+
+      virtual ::accessibility::accessibility * accessibility();
+      
 
 
    };

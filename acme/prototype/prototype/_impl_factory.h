@@ -380,6 +380,61 @@ inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factor
 }
 
 
+// template < typename T, typename ...Args >
+// inline void particle::__call__forward_construct(::pointer < T > &p, Args &&... args)
+// {
+//
+//
+// //   if (::is_null(pfactory))
+//   // {
+//
+//      auto  pfactory = this->factory();
+//
+//    //}
+//
+//    auto pfactoryitem = pfactory->get_factory_item< T >();
+//
+//    if (!pfactoryitem)
+//    {
+//
+//       string strMessage;
+//
+//       strMessage.formatf("matter::constructø has failed to find factory_item for type \"%s\"", ::platform::type(::type<T>()).c_str());
+//
+//       throw_exception(::error_not_implemented, strMessage);
+//
+//    }
+//
+//    auto pparticleNew = pfactoryitem->__call__create_particle();
+//
+//    if (!pparticleNew)
+//    {
+//
+//       string strMessage;
+//
+//       strMessage.formatf("matter::constructø no memory to allocate implementation of type \"%s\"", ::platform::type(::type<TYPE>()).c_str());
+//
+//       throw_exception(::error_no_memory, strMessage);
+//
+//    }
+//
+//    p = ::transfer(pparticleNew);
+//
+//    if (!p)
+//    {
+//
+//       string strMessage;
+//
+//       strMessage.formatf("matter::constructø object(%s) is not of type \"%s\"", ::platform::type(typeid(*pparticleNew)).c_str(), ::platform::type(::type<TYPE>()).c_str());
+//
+//       throw_exception(::error_wrong_type, strMessage);
+//
+//    }
+//
+// }
+
+
+
 template < typename BASE_TYPE >
 inline ::pointer<BASE_TYPE> particle::__raw_create(::factory::factory* pfactory)
 {

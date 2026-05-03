@@ -145,7 +145,11 @@ public:
       this->construct_from_string(str);
    
    }
-   
+
+
+   template < prototype_std_string STDSTRING >
+   string_base(const STDSTRING & stdstring) : string_base(stdstring.c_str(), stdstring.length()) {}
+
    
    //template < character_count n >
    //string_base(const CHARACTER (&s)[n]) :
@@ -2452,6 +2456,12 @@ public:
 
    string_base & formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
+   string_base & format_arguments(const scoped_string & scopedstrFormat, std::format_args args)
+      requires(::is_same<CHARACTER, ansi_character>);
+
+   string_base & format_arguments(const scoped_wstring & scopedstrFormat, std::wformat_args args)
+      requires(::is_same<CHARACTER, wide_character>);
+
    string_base & append_formatf(const CHARACTER * pszFormat, ...);
 
    string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
@@ -2491,7 +2501,15 @@ public:
 
    }
 
-   
+
+   template<typename... Args>
+   string_base & runtime_format(const scoped_string & scopedstrFormat, Args&&... args)
+   requires(::is_same<CHARACTER, ansi_character>);
+
+   template<typename... Args>
+   string_base & runtime_format(const scoped_wstring & scopedstrFormat, Args&&... args)
+   requires(::is_same<CHARACTER, wide_character>);
+
 //#endif
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
@@ -3435,3 +3453,10 @@ struct std::formatter<CHARACTER_RANGE>
 //
 // }
 //
+
+
+CLASS_DECL_ACME string format_arguments(const scoped_string & scopedstrFormat, std::format_args args);
+CLASS_DECL_ACME wstring wformat_arguments(const scoped_wstring & scopedstrFormat, std::wformat_args args);
+
+
+

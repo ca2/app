@@ -126,6 +126,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(VersionInfo)
+
    };
 
 

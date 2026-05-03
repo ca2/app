@@ -12,14 +12,14 @@ namespace windows
    CLASS_DECL_ACME string last_error_message()
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
-      return ::windows::last_error_message(dwLastError);
+      return ::windows::last_error_message(lasterror);
 
    }
 
 
-   CLASS_DECL_ACME string last_error_message(unsigned int uError)
+   CLASS_DECL_ACME string last_error_message(const last_error & lasterror)
    {
 
       wstring wstrMessage;
@@ -31,7 +31,7 @@ namespace windows
          auto dwSize = FormatMessageW(
             FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ALLOCATE_BUFFER,
             nullptr,
-            uError,
+            lasterror.m_uLastError,
             0,
             (LPWSTR)&lpBuffer,
             256,
@@ -59,10 +59,10 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME string last_error_message(const ::scoped_string & scopedstrErrorMessage, unsigned int uError)
+   CLASS_DECL_ACME string last_error_message(const ::scoped_string & scopedstrErrorMessage, const last_error & lasterror)
    {
 
-      ::string strSystemError = last_error_message(uError);
+      ::string strSystemError = last_error_message(lasterror);
 
       string strMessage;
 
@@ -73,11 +73,11 @@ namespace windows
    }
 
 
-   ::enum_status _last_error_status(DWORD dwError)
+   ::enum_status _last_error_status(unsigned int uLastError)
    {
 
       // NT Error codes
-      switch (dwError)
+      switch (uLastError)
       {
       case NO_ERROR:
          return ::success;
@@ -244,25 +244,67 @@ namespace windows
    }
 
 
-   ::enum_status _failed_last_error_status(DWORD dwLastError)
+   ::enum_status _failed_last_error_status(unsigned int uLastError)
    {
 
-      if (dwLastError == 0)
+      if (uLastError == 0)
       {
 
          return error_some_error_has_occurred;
 
       }
 
-      return _last_error_status(dwLastError);
+      return _last_error_status(uLastError);
 
    }
 
 
-   CLASS_DECL_ACME unsigned int last_error()
+   // CLASS_DECL_ACME unsigned int last_error()
+   // {
+   //
+   //    return ::GetLastError();
+   //
+   // }
+
+
+   [[ noreturn ]] void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, const last_error & lasterrorParameter)
    {
 
-      return ::GetLastError();
+      auto lasterror = lasterrorParameter;
+
+      if (lasterror == 0)
+      {
+
+         lasterror = get_last_error();
+
+      }
+
+      auto estatus = ::windows::last_error_status(lasterror);
+
+      auto errorcode = ::windows::last_error_error_code(lasterror);
+
+      throw ::exception(estatus, { errorcode }, scopedstrErrorMessage);
+
+   }
+
+
+   [[ noreturn ]] CLASS_DECL_ACME void throw_file_last_error_exception(const ::file::path & path, ::file::e_open eopen, const last_error & lasterrorParameter, const ::scoped_string & scopedstrErrorMessage)
+   {
+
+      auto lasterror = lasterrorParameter;
+
+      if (lasterror == 0)
+      {
+
+         lasterror = get_last_error();
+
+      }
+
+      auto estatus = ::windows::last_error_status(lasterror);
+
+      auto errorcode = ::windows::last_error_error_code(lasterror);
+
+      throw ::file::exception(estatus, errorcode, path, eopen, scopedstrErrorMessage);
 
    }
 
@@ -270,49 +312,6 @@ namespace windows
 } // namespace windows
 
 
-
-
-
-
-
-
-
-void throw_last_error_exception(const ::scoped_string & scopedstrErrorMessage, DWORD dwLastError)
-{
-
-   if (dwLastError == 0)
-   {
-
-      dwLastError = ::GetLastError();
-
-   }
-
-   auto estatus = ::windows::last_error_status(dwLastError);
-
-   auto errorcode = ::windows::last_error_error_code(dwLastError);
-
-   throw ::exception(estatus, { errorcode }, scopedstrErrorMessage);
-
-}
-
-
-[[ noreturn ]] CLASS_DECL_ACME void throw_last_error_exception(const ::file::path & path, ::file::e_open eopen, DWORD lasterror, const ::scoped_string & scopedstrErrorMessage)
-{
-
-   if (!lasterror)
-   {
-
-      lasterror = ::GetLastError();
-
-   }
-
-   auto estatus = ::windows::last_error_status(lasterror);
-
-   auto errorcode = ::windows::last_error_error_code(lasterror);
-
-   throw ::file::exception(estatus, errorcode, path, eopen, scopedstrErrorMessage);
-
-}
 
 
 

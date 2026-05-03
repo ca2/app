@@ -8,6 +8,7 @@
 #pragma once
 
 
+#include "string_base.h"
 #include "acme/prototype/string/_impl_string_base_allocation.h"
 
 
@@ -3970,6 +3971,62 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::formatf_arguments
    return *this;
 
 }
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format_arguments(const scoped_string & scopedstrFormat, std::format_args args)
+      requires(::is_same<CHARACTER, ansi_character>)
+{
+   return this->operator=(::format_arguments(scopedstrFormat, args));
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::format_arguments(const scoped_wstring & scopedstrFormat, std::wformat_args args)
+
+requires(::is_same<CHARACTER, wide_character>)
+{
+   return this->operator=(::wformat_arguments(scopedstrFormat, args));
+}
+
+
+template < typename ITERATOR_TYPE >
+template<typename... Args>
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::runtime_format(const scoped_string & scopedstrFormat, Args&&... args)
+requires(::is_same<CHARACTER, ansi_character>)
+{
+
+   auto tuple = std::forward_as_tuple(std::forward<Args>(args)...);
+
+   auto str = std::apply([&](auto&... unpacked) {
+       return ::format_arguments(scopedstrFormat, std::make_format_args(unpacked...));
+   }, tuple);
+
+   return this->operator=(::transfer(str));
+
+}
+
+
+
+
+
+template < typename ITERATOR_TYPE >
+template<typename... Args>
+string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::runtime_format(const scoped_wstring & scopedstrFormat, Args&&... args)
+requires(::is_same<CHARACTER, wide_character>)
+{
+
+   auto tuple = std::forward_as_tuple(std::forward<Args>(args)...);
+
+   auto wstr = std::apply([&](auto&... unpacked) {
+       return ::wformat_arguments(scopedstrFormat, std::make_format_args(unpacked...));
+   }, tuple);
+
+   return this->operator=(::transfer(wstr));
+
+}
+
+
 
 
 template < typename ITERATOR_TYPE >

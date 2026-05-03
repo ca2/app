@@ -64,7 +64,7 @@ namespace platform
       ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
-
+      ::pointer<ProfileLogger>                        m_pprofilelogger;
       bool                                            m_bOperatingAmbientFactory;
       bool                                            m_bGraphicsAndWindowingFactory;
 
@@ -295,7 +295,7 @@ namespace platform
 
       virtual ::platform::subsystem * MainSubsystem();
 //         virtual ::subsystem::resource_loader* resource_loader();
-
+      virtual ::platform::ProfileLogger &ProfileLogger();
 
       virtual ::component * component(const ::scoped_string & scopedstrComponent);
       virtual ::string component_path(const ::scoped_string & scopedstrComponent);

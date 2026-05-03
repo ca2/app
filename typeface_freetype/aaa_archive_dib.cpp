@@ -2542,7 +2542,7 @@ namespace typeface_freetype
 ////#endif
 //      ::double_rectangle rectangle(rectangleWindow);
 //
-//      // Copy the contents of the framebuffer - which in our case is our pbuffer -
+//      // Copy the contents of the pframebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
 //      // to invert the pbuffer's pixel data since OpenGL by default orients the
 //      // bitmap image bottom up. Our Windows DIB wrapper expects images to be

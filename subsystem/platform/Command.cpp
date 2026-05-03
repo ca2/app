@@ -24,10 +24,22 @@
 #include "framework.h"
 #include "Command.h"
 
-Command::Command()
-{
-}
 
-Command::~Command()
+namespace subsystem
 {
-}
+   Command::Command()
+   {
+   }
+
+   Command::~Command()
+   {
+   }
+
+
+   void Command::execute()
+   {
+
+
+
+   }
+} // namespace subsystem

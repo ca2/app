@@ -38,12 +38,21 @@
       virtual public OutputStream
    {
    public:
+
+
+      //protected:
+      ::pointer < OutputStream  > m_poutputstream;
+
       /**
        * Creates new data output stream.
        * @param outputStream real output stream.
        */
-      DataOutputStream(OutputStream *outputStream);
-      virtual ~DataOutputStream();
+      DataOutputStream();
+      DataOutputStream(OutputStream * poutputstream);
+      ~DataOutputStream() override;
+
+
+      virtual void _initialize_data_output_stream(OutputStream * poutputstream);
 
       /**
        * Inherited from superclass.
@@ -78,7 +87,6 @@
        * Flushes inner output stream.
        */
       virtual void flush();
-      //protected:
-      OutputStream *m_outStream;
+
    };
 //} // namespace subsystem

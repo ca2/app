@@ -490,9 +490,8 @@ list(APPEND library_source
         #operating_system/ansi/memory.cpp
         operating_system/ansi/process.cpp
         #operating_system/ansi/user.cpp
-        operating_system/application.cpp
-        operating_system/application.h
-
+        #operating_system/application.cpp
+        #operating_system/application.h
         operating_system/argcargv.cpp
         operating_system/a_system_menu.cpp
         operating_system/a_system_menu.h
@@ -506,8 +505,8 @@ list(APPEND library_source
         operating_system/dynamic_library.h
         operating_system/file.cpp
         #operating_system/http.cpp
-        operating_system/main_window.cpp
-        operating_system/main_window.h
+        #operating_system/main_window.cpp
+        #operating_system/main_window.h
         operating_system/message.cpp
         operating_system/message.h
         operating_system/message_box.cpp
@@ -722,6 +721,8 @@ list(APPEND library_source
         platform/procedure.cpp
         platform/procedure.h
         platform/profiler.cpp
+        platform/ProfileLogger.cpp
+        platform/ProfileLogger.h
         platform/serial.cpp
         platform/session.cpp
         platform/session.h
@@ -787,6 +788,8 @@ list(APPEND library_source
         platform/url_context.cpp
         platform/url_context.h
         platform/version.cpp
+   platform/wparam.cpp
+   platform/wparam.h
         prototype/collection/__payload_array.cpp
         prototype/collection/_generic_array.h
 
@@ -804,6 +807,7 @@ list(APPEND library_source
         prototype/collection/map_test_51778915.cpp
         #prototype/collection/numeric_array.cpp
         #prototype/collection/point_array.cpp
+   prototype/collection/pointer_container.h
         prototype/collection/procedure_array.cpp
         prototype/collection/procedure_array.h
         prototype/collection/property_set.cpp
@@ -1283,6 +1287,8 @@ list(APPEND library_source
         prototype/string/string.cpp
         prototype/string/string.h
         prototype/string/string_ansi.cpp
+        prototype/string/string_base.cpp
+        prototype/string/string_base.h
         #prototype/string/string_buffer.h
         prototype/string/string_inst.h
         prototype/string/string_wide.cpp
@@ -1905,6 +1911,8 @@ list(APPEND library_source
         operating_system/exit_status.cpp
         operating_system/exit_status.h
         operating_system/file.h
+        operating_system/GetCPUtime.cpp
+        operating_system/GetCPUtime.h
         operating_system/graphics.h
         operating_system/memory.cpp
    operating_system/networking.cpp
@@ -2487,6 +2495,7 @@ if (${WIN32} OR ${UWP})
             #operating_system/windows_common/idn.cpp
             operating_system/windows_common/heap_allocator.cpp
             operating_system/windows_common/heap_allocator.h
+            operating_system/windows_common/last_error.cpp
             operating_system/windows_common/last_error.h
             operating_system/windows_common/last_error_exception.cpp
             operating_system/windows_common/last_error_exception.h
@@ -3206,8 +3215,7 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   prototype/collection/pointer_container.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

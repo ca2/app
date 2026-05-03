@@ -41,7 +41,12 @@ namespace platform
 
           }
 
+      ::accessibility::accessibility * axis_system_layer::accessibility()
+      {
 
+         return nullptr;
+
+      }
 
 } // namespace platform
 

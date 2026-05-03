@@ -44,7 +44,7 @@ namespace innate_subsystem
         // Access methods to protected members
         //
 
-       virtual void initialize_tab(DialogInterface *dialog, const char *caption) = 0;
+       virtual void initialize_tab(WindowInterface *dialog, const char *caption) = 0;
 
         //void setCaption(const char *caption) = 0; { m_caption->setString(caption); }
 
@@ -58,8 +58,8 @@ namespace innate_subsystem
 
         //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
         //BaseDialog *getDialog() { return m_dialog; }
-       virtual void setDialog(DialogInterface *dialog) = 0;
-       virtual DialogInterface *getDialog() = 0;
+       virtual void setWindow(WindowInterface *dialog) = 0;
+       virtual WindowInterface *getWindow() = 0;
 
         //
         // Method return true if tab has dialog
@@ -99,10 +99,10 @@ namespace innate_subsystem
       // Access methods to protected members
       //
 
-      void initialize_tab(DialogInterface* dialog, const char* caption) override
+      void initialize_tab(WindowInterface * pwindow, const char* caption) override
       {
 
-         m_ptab->initialize_tab(dialog, caption);
+         m_ptab->initialize_tab(pwindow, caption);
       }
 
       //void setCaption(const char *caption) override; { m_caption->setString(caption); }
@@ -119,9 +119,9 @@ namespace innate_subsystem
 
       //void setDialog(BaseDialog *dialog) { m_dialog = dialog; }
       //BaseDialog *getDialog() { return m_dialog; }
-      void setDialog(DialogInterface* dialog) override { m_ptab->setDialog(dialog);
+      void setWindow(WindowInterface* dialog) override { m_ptab->setWindow(dialog);
       }
-      DialogInterface* getDialog() override { return m_ptab->getDialog();
+      WindowInterface* getWindow() override { return m_ptab->getWindow();
       }
 
       //
@@ -162,6 +162,7 @@ virtual public Object<TabAggregate>
    {
    public:
 
+      ImplementObjectø(Tab)
 
    };
 

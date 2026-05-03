@@ -36,13 +36,26 @@
    class CLASS_DECL_ACME ByteArrayInputStream : public InputStream
    {
    public:
+
+   //protected:
+      const char *m_buffer;
+      memsize m_bufferSize;
+      memsize m_left;
+
       /**
        * Creates new input stream for reading data from memory.
        * @param buffer source buffer.
        * @param bufferSize count of bytes in memory buffer.
        */
-      ByteArrayInputStream(const char *buffer, memsize bufferSize);
-      virtual ~ByteArrayInputStream();
+      //ByteArrayInputStream(const char *buffer, memsize bufferSize);
+      ByteArrayInputStream();
+      ByteArrayInputStream(::particle * pparticle, const ::block & block);
+      ~ByteArrayInputStream() override;
+
+
+      virtual void _initialize_byte_array_input_stream(::particle * pparticle, const ::block & block);
+      virtual void _initialize_byte_array_input_stream(::particle * pparticle, const void *buffer, memsize bufferSize);
+
 
       /**
        * Reads data from memory.
@@ -54,9 +67,5 @@
 
       virtual memsize available();
 
-   protected:
-      const char *m_buffer;
-      memsize m_bufferSize;
-      memsize m_left;
    };
 //} // namespace subsystem

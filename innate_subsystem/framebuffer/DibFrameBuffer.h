@@ -24,8 +24,8 @@
 
 #pragma once
 
-//#include "remoting/remoting/rfb/FrameBuffer.h"
-#include "innate_subsystem/framebuffer/FrameBuffer.h"
+//#include "remoting/remoting/rfb/Framebuffer.h"
+#include "innate_subsystem/framebuffer/Framebuffer.h"
 #include "innate_subsystem/framebuffer/DibSection.h"
 //#include "innate_subsystem/drawing/BitmapGraphics.h"
 
@@ -33,35 +33,35 @@
 namespace innate_subsystem
 {
    // This class is a wrapper for a FramBuffer and a DIB section.
-   // It changes DIB section proerties by oneself according to FrameBuffer
+   // It changes DIB section proerties by oneself according to Framebuffer
    // properties (such as width, height and PixelFormat)
-   class CLASS_DECL_INNATE_SUBSYSTEM DibFrameBuffer :
-   virtual public FrameBuffer
+   class CLASS_DECL_INNATE_SUBSYSTEM DibFramebuffer :
+   virtual public Framebuffer
    {
    public:
-      DibFrameBuffer();
-      ~DibFrameBuffer() override;
+      DibFramebuffer();
+      ~DibFramebuffer() override;
 
       virtual void setColor(unsigned char reg, unsigned char green, unsigned char blue);
-      virtual void fillRect(const ::int_rectangle &dstRect, unsigned int color);
+      virtual void fillRect(const ::int_rectangle &rectangleTarget, unsigned int color);
 
-      virtual bool isEqualTo(const FrameBuffer *frameBuffer);
+      virtual bool isEqualTo(const Framebuffer * pframebuffer);
 
-      virtual bool copyFrom(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual bool copyFrom(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
                             int srcX, int srcY);
-      virtual bool copyFrom(const FrameBuffer *srcFrameBuffer,
+      virtual bool copyFrom(const Framebuffer * pframebufferSource,
                             int srcX, int srcY);
-      virtual bool overlay(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual bool overlay(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
                            int srcX, int srcY, const char *andMask);
-      virtual void move(const ::int_rectangle &dstRect, const int srcX, const int srcY);
-      virtual bool cmpFrom(const ::int_rectangle &dstRect, const FrameBuffer *srcFrameBuffer,
+      virtual void move(const ::int_rectangle &rectangleTarget, const int srcX, const int srcY);
+      virtual bool cmpFrom(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
                            const int srcX, const int srcY);
 
       virtual inline ::int_size getDimension() const;
 
       virtual inline PixelFormat getPixelFormat() const;
 
-      // This function must uses instead of function that can change the FrameBuffer properties
+      // This function must uses instead of function that can change the Framebuffer properties
       // compatibleWindow - is hwnd of a window that will be used to create a compatible DC for
       // the DIB section. Also, a DC of this window will be used as default for the
       // blitting operations. The window or DC for blitting operations can be changed many times during
@@ -108,14 +108,14 @@ namespace innate_subsystem
       // (that has been used to create the compatible DIB section).
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      void stretchFromDibSection(const ::int_rectangle &srcRect, const ::int_rectangle &dstRect);
+      void stretchFromDibSection(const ::int_rectangle &srcRect, const ::int_rectangle &rectangleTarget);
 
    private:
       // This section to reduce access to some function that have been inherited from the
-      // FrameBuffer class and can't to be use in here. Also, if user code will to try
+      // Framebuffer class and can't to be use in here. Also, if user code will to try
       // use this functions from a base class its will throw Exception.
-      virtual bool assignProperties(const FrameBuffer *srcFrameBuffer);
-      virtual bool clone(const FrameBuffer *srcFrameBuffer);
+      virtual bool assignProperties(const Framebuffer * pframebufferSource);
+      virtual bool clone(const Framebuffer * pframebufferSource);
       virtual bool setDimension(const ::int_size &newDim);
       virtual bool setDimension(const ::int_rectangle &rect);
       virtual void setEmptyDimension(const ::int_rectangle &dimByRect);
@@ -127,7 +127,7 @@ namespace innate_subsystem
       virtual void setBuffer(void *newBuffer);
 
    private:
-      // This function updates a DIB section in accord with the FrameBuffer
+      // This function updates a DIB section in accord with the Framebuffer
       void *updateDibSection(const ::int_size &newDim,
         const PixelFormat &pixelFormat,
         const ::operating_system::window & windowCompatible);
@@ -136,7 +136,7 @@ namespace innate_subsystem
       // This function generates an Exception if DIB section is not initialized yet.
       void checkDibValid();
 
-      FrameBuffer m_fb;
+      Framebuffer m_fb;
       ::pointer < DibSectionInterface > m_pdibsection;
    };
 

@@ -347,7 +347,7 @@ void call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam
    if (!::ShellExecuteExW(&infoa))
    {
 
-      DWORD dwLastError = ::GetLastError();
+      auto lasterror = ::windows::get_last_error();
 
       return -1;
 

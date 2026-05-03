@@ -1310,21 +1310,28 @@ bool object::has_child_task() const
 void object::set_child_tasks_to_finish()
 {
 
-   if (::is_null(m_pparticleaChildrenTask))
-   {
+   //if (::is_null(m_pparticleaChildrenTask))
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
-   if (has_flag(e_flag_checking_children_task))
-   {
+   //if (has_flag(e_flag_checking_children_task))
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
    _synchronous_lock lock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
+
+    if (::is_null(m_pparticleaChildrenTask))
+   {
+
+      return;
+
+   }
 
    if (has_flag(e_flag_checking_children_task))
    {

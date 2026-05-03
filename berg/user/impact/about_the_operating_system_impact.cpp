@@ -38,6 +38,8 @@ namespace berg
       m_bDefaultClickHandling = true;
 
       m_bEmptyAreaIsClientArea = true;
+
+      m_bExtendOnParent = true;
    }
 
 

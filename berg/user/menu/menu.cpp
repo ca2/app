@@ -576,7 +576,8 @@ namespace user
 
       //}
 
-      m_bNeedPerformLayout = true;
+      //m_bNeedPerformLayout = true;
+      set_need_perform_layout();
 
    }
 

@@ -161,10 +161,10 @@ namespace user
          {
 
             
-            m_puserinteraction->user_thread()->post([this]()
+            m_puserinteraction->user_thread()->send([this]()
                                                      {
                
-               branch();
+               branch_synchronously();
                
             });
             
@@ -1157,6 +1157,11 @@ namespace user
 
          information() << "user::list_box graphics_thread_iteration user::list_box";
 
+      }
+      else if (::platform::type(m_puserinteraction) == "user::menu")
+      {
+
+         information() << "user::menu graphics_thread_iteration user::menu";
       }
 #ifdef MORE_LOG
       else

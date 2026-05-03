@@ -1,4 +1,5 @@
-LIBRARY "wallpaper_tranform_system_summary"
+;JegElskerDigThomasBorregaardSørensencamiloMummiBilbo!! 2026-05-02 21:44:49
+LIBRARY "wallpaper_transform_system_summary"
 
 EXPORTS
 wallpaper_transform_system_summary_factory

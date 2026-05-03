@@ -296,6 +296,14 @@ void task_set_name(const ::scoped_string & scopedstrThreadName)
 
    }
 
+   auto ptask 
+      = ::get_task();
+
+   if (::is_set(ptask))
+      {
+      ptask->m_strTaskName = scopedstrThreadName;
+      }  
+
    /*return*/ task_set_name((htask)(::uptr) ::GetCurrentThread(), scopedstrThreadName);
 
 }

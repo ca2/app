@@ -1116,4 +1116,9 @@
       <Filter>Source Files\accessibility</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="axis.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

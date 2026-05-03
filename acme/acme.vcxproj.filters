@@ -6391,6 +6391,9 @@
     <None Include="inline\application\main_executable.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="acme.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

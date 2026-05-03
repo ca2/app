@@ -245,7 +245,7 @@ namespace windows
       if (m_bDefaultSystemMenu)
       {
 
-         if (message == WM_INITMENU)
+         if (message == ::user::e_message_initialize_menu)
          {
 
             if (_on_default_system_menu_init_menu(lresult, wparam))

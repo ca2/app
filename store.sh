@@ -80,19 +80,19 @@ echo "Detected platform : $platform"
 
 if [ "$platform" = 'freebsd' ]; then
 
-   url="https://freebsd.ca2.store/store_$(uname -m)"
+   url="https://freebsd.ca2.site/store_$(uname -m)"
 
 elif [ "$platform" = 'linux' ]; then
 
-   url="https://linux.ca2.store/store_$(uname -m)"
+   url="https://linux.ca2.site/store_$(uname -m)"
 
 elif [ "$platform" = 'netbsd' ]; then
 
-   url="https://netbsd.ca2.store/store_$(uname -m)"
+   url="https://netbsd.ca2.site/store_$(uname -m)"
 
 elif [ "$platform" = 'openbsd' ]; then
 
-   url="https://openbsd.ca2.store/store_$(uname -m)"
+   url="https://openbsd.ca2.site/store_$(uname -m)"
 
 else
 

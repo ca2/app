@@ -5298,7 +5298,7 @@ namespace apex
 
       }
 
-      strUrl.format("https://ca2.store/image/operating-system/{}/{}.png", size.cx, strSystem);
+      strUrl.format("https://ca2.site/image/operating-system/{}/{}.png", size.cx, strSystem);
 
 
       return strUrl;
@@ -5317,7 +5317,7 @@ namespace apex
 
       strAmbient = psummary->m_strAmbient;
 
-      strUrl.format("https://ca2.store/image/operating-ambient/{}/{}.png", size.cx, strAmbient);
+      strUrl.format("https://ca2.site/image/operating-ambient/{}/{}.png", size.cx, strAmbient);
 
       return strUrl;
 

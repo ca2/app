@@ -108,7 +108,18 @@ namespace coding
    string application::__jetbrains_clion_download_url()
    {
 
-      auto pathUrl = fetch_download_link("linux/clion");
+      //# Step 1: Get JetBrains product metadata (official API)
+      ::file::path pathMetadataUrl = "https://data.services.jetbrains.com/products/releases?code=CL&latest=true&type=release";
+
+      auto strNetworkPayload = http()->get(pathMetadataUrl);
+
+      print_line(pathMetadataUrl + " returned " + strNetworkPayload);
+
+      ::property_set set;
+
+      set.parse_network_payload(strNetworkPayload);
+
+      ::file::path pathUrl = set["CL"].at(0)["downloads"]["linux"]["link"];
 
       print_line("JetBrains CLion download url : " + pathUrl);
 
@@ -125,6 +136,8 @@ namespace coding
       ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
 
       ::property_set set;
+
+      get_http_user_agent(set);
 
       print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
 

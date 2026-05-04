@@ -1402,6 +1402,7 @@ namespace coding
 
    }
 
+
    string application::__visual_studio_code_download_url()
    {
 
@@ -1418,17 +1419,46 @@ namespace coding
       else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
       {
 
-         ::string strRedirectingUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
-
-         ::property_set set;
-
-         pathUrl = http()->get_effective_url(strRedirectingUrl, set).as_string();
+         pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64";
 
       }
 
       return pathUrl;
 
    }
+
+
+   ::string application::get_http_user_agent()
+   {
+
+      ::string strUserAgent;
+
+#if defined(WINDOWS)
+      strUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0";
+#elif defined(MACOS)
+      strUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15.7; rv:140.0) Gecko/20100101 Firefox/140.0.";
+#elif defined(ANDROID)
+      strUserAgent = "Mozilla/5.0 (Android 16; Mobile; rv:150.0) Gecko/150.0 Firefox/150.0";
+#else
+      strUserAgent= "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0";
+#endif
+
+      return strUserAgent;
+
+   }
+
+
+   void application::get_http_user_agent(::property_set & set)
+   {
+
+      ::string strUserAgent;
+
+      strUserAgent = get_http_user_agent();
+
+      set["in_headers"]["user-agent"] = strUserAgent;
+
+   }
+
 
 
    void application::__download_visual_studio_code()
@@ -1440,13 +1470,21 @@ namespace coding
 
       ::property_set set1;
 
+      get_http_user_agent(set1);
+
       print_line("Going to calculate effective url...");
 
-      ::file::path pathSource = http()->get_effective_url(pathSource1, set1).as_string();
+      ::string strEffectiveUrl =  http()->get_effective_url(pathSource1, set1).as_string();
+
+      strEffectiveUrl.trim();
+
+      ::file::path pathSource = strEffectiveUrl;
 
       ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
 
       ::property_set set;
+
+      get_http_user_agent(set);
 
       print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
 
@@ -1826,6 +1864,8 @@ namespace coding
       set["disable_ca2_sessid"] = true;
 
       set["raw_http"] = true;
+
+      get_http_user_agent(set);
 
       ::string strUrl;
 

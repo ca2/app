@@ -1652,6 +1652,8 @@ int fgetch(FILE * pfile)
 }
 
 
+
+
 int current_getch()
 {
 
@@ -1709,3 +1711,52 @@ void defer_close_raw_stdin()
 
 
 
+int current_getch_utf8(::string & strChar)
+{
+
+   strChar.empty();
+
+   int first = current_getch(); // your existing function
+
+   if (first == EOF)
+   {
+      return EOF;
+   }
+
+   unsigned char c = (unsigned char) first;
+
+   // 1-byte ASCII
+   if ((c & 0x80) == 0)
+   {
+      strChar += (char)c;
+      return 1;
+   }
+
+   // Determine UTF-8 sequence length
+   int extra = 0;
+
+   if ((c & 0xE0) == 0xC0) extra = 1;        // 2 bytes
+   else if ((c & 0xF0) == 0xE0) extra = 2;   // 3 bytes
+   else if ((c & 0xF8) == 0xF0) extra = 3;   // 4 bytes
+   else
+   {
+      throw ::exception(error_failed, "Invalid UTF-8 start byte");
+   }
+
+   strChar += (char)c;
+
+   for (int i = 0; i < extra; i++)
+   {
+      int next = current_getch();
+
+      if (next == EOF)
+      {
+         throw ::exception(error_failed, "Unexpected EOF in UTF-8 sequence");
+      }
+
+      strChar += (char)next;
+   }
+
+   return 1;
+
+}

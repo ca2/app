@@ -1255,11 +1255,52 @@ namespace coding
 
       pathCodeOperatingSystemToolBin = pathCodeOperatingSystemTool / "bin";
 
-      ::string strGitRepository = "https://github.com/ca2/tool-linux";
+      ::string strGitRepository = "git@github.com:ca2/tool-linux";
 
       ::string strCommandLine;
 
-      strCommandLine.format("git clone {} \"{}\"", strGitRepository, pathCodeOperatingSystemTool);
+      strCommandLine.format("git clone --recurse-submodules {} \"{}\"", strGitRepository, pathCodeOperatingSystemTool);
+
+      print_line(strCommandLine);
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      int iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
+
+
+   void application::__clone_lemon()
+   {
+
+      ::file::path pathCodeOperatingSystem;
+
+      pathCodeOperatingSystem = directory()->home() / "code/operating_system";
+
+      ::file::path pathCodeOperatingSystemTool;
+
+      pathCodeOperatingSystemTool = pathCodeOperatingSystem / "lemon";
+
+      ::file::path pathCodeOperatingSystemToolBin;
+
+      pathCodeOperatingSystemToolBin = pathCodeOperatingSystemTool / "bin";
+
+      ::string strGitRepository = "git@github.com:"+git_user_github_account()+"/" OPERATING_SYSTEM_NAME "-lemon";
+
+      ::string strCommandLine;
+
+      strCommandLine.format("git clone --recurse-submodules {} \"{}\"", strGitRepository, pathCodeOperatingSystemTool);
 
       print_line(strCommandLine);
 
@@ -1898,7 +1939,9 @@ namespace coding
 #else
          return directory_system()->home() / "code" / "simple";
 #endif
-      default:
+         case e_repository_lemon:
+            return directory_system()->home() / "code/operating_system/lemon";
+         default:
          throw ::exception(error_failed);
 
       }
@@ -1917,7 +1960,9 @@ namespace coding
          return "ca2/tool-" OPERATING_SYSTEM_NAME;
       case e_repository_simple:
          return "ca2/" OPERATING_SYSTEM_NAME "-simple-" OPERATING_SYSTEM_WORKSPACE_DEFAULT_NAME;
-      default:
+      case e_repository_lemon:
+         return git_user_github_account() + "/lemon-" OPERATING_SYSTEM_NAME;
+         default:
          throw ::exception(error_failed);
       }
 
@@ -2650,6 +2695,133 @@ namespace coding
 
    }
 
+
+   ::string application::git_global_config(const ::scoped_string &scopedstr)
+   {
+
+      ::string strCommand;
+
+      strCommand.format("git config --global {}", scopedstr);
+
+      ::string strError;
+
+      int iExitCode = -1;
+
+      ::string strConfig = node()->get_posix_shell_command_output(
+         strCommand,
+         e_posix_shell_system_default,
+         &strError,
+         &iExitCode);
+
+      if (iExitCode != 0)
+      {
+
+         strConfig.empty();
+
+//         throw ::exception(error_failed, strError);
+
+      }
+
+      strConfig.trim();
+
+      return strConfig;
+
+   }
+
+
+   void application::git_set_global_config(const ::scoped_string &scopedstr, const ::scoped_string &scopedstrSetting)
+   {
+
+      ::string strCommand;
+
+      strCommand.format("git config --global {} \"{}\"", scopedstr, scopedstrSetting);
+
+      ::string strError;
+
+      int iExitCode = -1;
+
+      ::string strOutput = node()->get_posix_shell_command_output(
+         strCommand,
+         e_posix_shell_system_default,
+         &strError,
+         &iExitCode);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed, strError);
+
+      }
+
+      print_line(strOutput);
+
+   }
+
+
+   bool application::git_has_global_config(const ::scoped_string &scopedstr)
+   {
+
+      ::string strConfig = git_global_config(scopedstr);
+
+      bool bHasConfig = strConfig.has_character();
+
+      return bHasConfig;
+
+   }
+
+
+   ::string application::git_user_github_account(const ::scoped_string &scopedstrPrompt)
+   {
+      throw interface_only();
+
+      return {};
+   }
+
+   //    auto strUserGithubAccountName = _git_user_github_account();
+   //
+   //    if (strUserGithubAccountName.has_character())
+   //    {
+   //
+   //       return strUserGithubAccountName;
+   //
+   //    }
+   //
+   //    if (scopedstrPrompt.is_empty())
+   //    {
+   //       preempt_message("Your Github Account User Name is not set. Do you want to set it type? (Y/n)");
+   //    }
+   //    else
+   //    {
+   //
+   //       preempt_message(scopedstrPrompt);
+   //
+   //    }
+   //
+   //    if (yes_no)
+   //
+   // }
+   //
+   //
+   // ::string application::_git_user_github_account()
+   // {
+   //
+   //    ::file::path pathGitHubAccount = directory_system()->home() / ".config/.github_account";
+   //
+   //    ::string strUserGithubAccountName = file()->as_string(pathGitHubAccount);
+   //
+   //    return strUserGithubAccountName;
+   //
+   // }
+   //
+   //
+   // void application::_git_user_github_account(const ::scoped_string & scopedstrUserGithubAccountName)
+   // {
+   //
+   //    ::file::path pathGitHubAccount = directory_system()->home() / ".config/.github_account";
+   //
+   //    file()->put_text(pathGitHubAccount, scopedstrUserGithubAccountName);
+   //
+   // }
 
 
 // void application::defer_task_groups(::coding::integration* pintegration)

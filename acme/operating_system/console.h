@@ -84,7 +84,7 @@ namespace console
       virtual int get_thoughtful_character();
       virtual enum_response yes_no(const char * pszPrompt);
       virtual enum_response yes_no_default_yes(const char * pszPrompt);
-
+      virtual ::string prompt_line(const char * pszPrompt);
 
 
    };

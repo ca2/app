@@ -18,6 +18,7 @@ namespace coding
       e_repository_none,
       e_repository_tool_os,
       e_repository_simple,
+      e_repository_lemon,
 
    };
 

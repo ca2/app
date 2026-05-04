@@ -254,6 +254,13 @@ class ::time      m_timeFoldersSetupDetected;
 
       void create_install(::coding::enum_install einstall);
 
+      virtual ::string git_global_config(const ::scoped_string &scopedstr);
+      virtual void git_set_global_config(const ::scoped_string &scopedstr, const ::scoped_string &scopedstrSetting);
+      virtual bool git_has_global_config(const ::scoped_string &scopedstr);
+
+
+      virtual ::string git_user_github_account(const ::scoped_string &scopedstrPrompt = {});
+      virtual void __clone_lemon();
 
       virtual ::file::path bash_path(const ::file::path& path);
 
@@ -265,6 +272,7 @@ class ::time      m_timeFoldersSetupDetected;
 
       virtual bool __is_repository_installed(::coding::enum_repository einstall);
       virtual bool __is_storage_os_installed(const ::scoped_string& scopedstrOs);
+
 
 
       virtual ::file::path _get_repository_path(const ::scoped_string & scopedstr);

@@ -6,6 +6,8 @@
 
 int current_getch();
 
+int current_getch_utf8(::string & strChar);
+
 namespace console
 {
 
@@ -172,6 +174,80 @@ namespace console
    //
    //
    // }
+
+   ::string console::prompt_line(const char * pszPrompt)
+   {
+
+      if (pszPrompt && *pszPrompt)
+      {
+
+         print_out(pszPrompt);
+
+      }
+
+      ::string strLine;
+
+      int iRet;
+
+      while (true)
+      {
+
+         ::string strChar;
+
+         iRet = ::current_getch_utf8(strChar);
+
+         if (iRet == EOF)
+         {
+
+            throw "cancel";
+
+         }
+         else if (strChar == "\n")
+         {
+
+            break;
+
+         }
+         else if (strChar == "\r")
+         {
+
+            // ignore carriage return (for safety)
+            continue;
+
+         }
+         else if (strChar[0] == 127 || strChar == "\b")
+         {
+
+            // handle backspace
+            if (strLine.has_character())
+            {
+
+               strLine.truncate(utf8_dec(strLine.begin(), strLine.end()));
+
+               // erase character visually
+               printf("\b \b");
+
+            }
+
+         }
+         else
+         {
+
+            strLine += strChar;
+
+            // echo character
+            printf("%s", strChar.c_str());
+
+         }
+
+      }
+
+      // move to next line after Enter
+      putchar('\n');
+
+      return strLine;
+
+   }
 
 
 } // namespace console

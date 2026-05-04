@@ -14,7 +14,14 @@ endif()
 
 
 list(APPEND library_source
-        #compress/zip/api.cpp
+   accessibility/accessibility.cpp
+   accessibility/accessibility.h
+   accessibility/application.cpp
+   accessibility/application.h
+   accessibility/main_window.cpp
+   accessibility/main_window.h
+
+   #compress/zip/api.cpp
         #compress/zip/file.cpp
         #compress/zip/in_file.cpp
         #compress/zip/ioapi.cpp
@@ -1911,8 +1918,8 @@ list(APPEND library_source
         operating_system/exit_status.cpp
         operating_system/exit_status.h
         operating_system/file.h
-        operating_system/GetCPUtime.cpp
-        operating_system/GetCPUtime.h
+        operating_system/GetCPUTime.cpp
+        operating_system/GetCPUTime.h
         operating_system/graphics.h
         operating_system/memory.cpp
    operating_system/networking.cpp
@@ -3215,7 +3222,8 @@ if (${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/linux/_linux.h)
 
 
 add_library(static_${PROJECT_NAME} STATIC ${library_source}

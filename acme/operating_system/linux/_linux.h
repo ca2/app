@@ -1,8 +1,6 @@
 //
-// Created by camilo on 5/3/26.
+// Created by camilo on 2026-05-03 12:05 <3ThomasBorregaardSørensen!! Mummi!! Bilbo!!
 //
+#pragma once
 
-#ifndef LINUX_CONSOLE_BUILD_TOOLS__LINUX_H
-#define LINUX_CONSOLE_BUILD_TOOLS__LINUX_H
 
-#endif //LINUX_CONSOLE_BUILD_TOOLS__LINUX_H

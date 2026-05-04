@@ -49,4 +49,7 @@ CLASS_DECL_ACME int_bool SystemTimeToFileTime(const SYSTEMTIME * psystemtime, FI
 CLASS_DECL_ACME void GetSystemTime(SYSTEMTIME * psystemtime);
 
 
+CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft );
+
+
 

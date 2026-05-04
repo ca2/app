@@ -7,7 +7,7 @@
 namespace accessibility
 {
 
-   class CLASS_DECL_AXIS accessibility :
+   class CLASS_DECL_ACME accessibility :
    virtual public ::particle
    {
    public:

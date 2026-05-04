@@ -15,8 +15,9 @@
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/operating_system/application.h"
-#include "acme/operating_system/main_window.h"
+#include "acme/accessibility/accessibility.h"
+#include "acme/accessibility/application.h"
+#include "acme/accessibility/main_window.h"
 #include "acme/operating_system/process.h"
 #include "acme/filesystem/filesystem/directory_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -1522,12 +1523,12 @@ namespace coding
                if (pida.has_element())
                {
 
-                  auto papp = node()->process_identifier_application(pida.first());
+                  auto papp = ::system()->accessibility()->process_identifier_application(pida.first());
 
                   if (papp)
                   {
 
-                     auto pmainwindow = createø < ::operating_system::main_window>();
+                     auto pmainwindow = createø < ::accessibility::main_window>();
 
                      pmainwindow->from_application(papp);
 

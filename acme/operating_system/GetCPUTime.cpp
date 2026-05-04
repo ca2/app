@@ -14,7 +14,7 @@
 // #include aaa_<sys/resource.h>
 // #include aaa_<sys/times.h>
 //#include aaa_<time.h>
-#include "GetCPUtime.h"
+#include "GetCPUTime.h"
 
 #else
 #error "Unable to define getCPUTime( ) for an unknown OS."

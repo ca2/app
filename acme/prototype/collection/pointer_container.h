@@ -99,7 +99,8 @@ using map_to_pointer = map_particle < map_to_pointer_base < TYPE1, TYPE2, PAIR, 
 
 
 template<prototype_pointer_container POINTER_CONTAINER>
-class ø<POINTER_CONTAINER> : virtual public POINTER_CONTAINER
+class ø<POINTER_CONTAINER> :
+   public POINTER_CONTAINER
 {
 public:
 

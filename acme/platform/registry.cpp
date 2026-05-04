@@ -588,7 +588,7 @@ namespace platform
          return error_io;
 
       auto &alloc = m_pregistry->m_rapidjsondocument.GetAllocator();
-      ::rapidjson::Value data(ull);
+      ::rapidjson::Value data((uint64_t) ull);
       set_type_and_data(*pentry, "dword", data, alloc);
       return ::success;
    }
@@ -777,6 +777,10 @@ namespace platform
 
    pointer<registry> registry::create_from_file(const file::path &pathRegistry)
    {
+
+      auto p = ::system();
+
+      REFDBG_THIS(p);
 
       auto pregistryImplementation = ::system()->m_papplication->create_newø<registry_implementation>();
 

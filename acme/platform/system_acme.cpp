@@ -4397,6 +4397,12 @@ return nullptr;
 
 
    //}
+   ::accessibility::accessibility * acme_system_layer::accessibility()
+   {
+
+      return nullptr;
+
+   }
 
    
    void acme_system_layer::defer_start_system() 

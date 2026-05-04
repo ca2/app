@@ -9,7 +9,7 @@ namespace accessibility
    class application;
 
 
-   class CLASS_DECL_AXIS main_window :
+   class CLASS_DECL_ACME main_window :
       virtual public ::particle
    {
    public:

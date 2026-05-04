@@ -3,12 +3,6 @@ project(axis CXX)
 
 
 list(APPEND library_source
-   accessibility/accessibility.cpp
-   accessibility/accessibility.h
-   accessibility/application.cpp
-   accessibility/application.h
-   accessibility/main_window.cpp
-   accessibility/main_window.h
    account/_.h
    #account/_account.h
    #account/account.cpp

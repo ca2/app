@@ -18,6 +18,11 @@
 #include "acme/parallelization/_types.h"
 #include "acme/prototype/collection/map.h"
 #include "acme/prototype/prototype/factory.h"
+namespace accessibility
+{
+   class accessibility;
+} // namespace accessibility
+
 
 
 namespace platform
@@ -106,6 +111,7 @@ namespace platform
       //::pointer<::platform::application>     application();
       // ::pointer<::platform::application>     application();
 
+      ::pointer<::accessibility::accessibility> m_paccessibility;
 
       //::pointer<main_hold_base>                                             m_pmainholdbase;
       //::pointer<system_impl> *                                              m_psystemimpl;
@@ -316,6 +322,8 @@ namespace platform
 
       virtual ::draw2d::draw2d * draw2d();
       virtual ::write_text::write_text * write_text();
+         virtual ::accessibility::accessibility * accessibility();
+
 
       //virtual ::windowing::windowing_base * windowing_base();
 

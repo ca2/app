@@ -6,7 +6,7 @@
 
 
 template < typename POINTER_ARRAY_PROCESS, typename TYPE >
-class pointer_array_process : virtual public POINTER_ARRAY_PROCESS
+class pointer_array_process : public POINTER_ARRAY_PROCESS
 {
 public:
 
@@ -24,7 +24,7 @@ public:
 
 
    // pointer_array_process() { }
-   // pointer_array_process(const pointer_array_process & array) : BASE_ARRAY(array) { }
+   pointer_array_process(const pointer_array_process & array) : BASE_ARRAY(array) { }
    // pointer_array_process(pointer_array_process && array) noexcept : BASE_ARRAY(::transfer(array)) { }
 
    //inline auto ptra(::collection::index iStart = 0, ::collection::index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }

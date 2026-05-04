@@ -1099,7 +1099,7 @@ namespace coding
 
       auto bFirstFolderSetupDetection = m_bFirstFolderSetupDetection;
 
-      m_bApplicationFirstRequest = false;
+      //m_bApplicationFirstRequest = false;
 
       auto path1 = directory_system()->home() / ".ssh/id_auth";
 
@@ -1499,6 +1499,29 @@ namespace coding
 
    }
 
+   void application::install_from_running_command_line_as_root(const ::scoped_string & scopedstrCommandLine)
+   {
+
+      auto strCommandLine = "sudo bash -c \"" + scopedstrCommandLine + "\"";
+
+      strCommandLine.find_replace("!", "\\!");
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      int iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+   }
 
 
 
@@ -1534,6 +1557,263 @@ namespace coding
 
 
    }
+
+
+
+   bool application::__does_mkcred_seem_installed()
+   {
+
+      auto pathMkcredSeemsInstalled = directory_system()->home() /".mkcred";
+
+      bool bInstalled = file()->exists(pathMkcredSeemsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+   void application::__install_mkcred()
+   {
+
+      __download_mkcred();
+
+      install_from_running_command_line_as_root(m_pathMkcredInstaller);
+
+      auto pathMkcredSeemsInstalled = directory_system()->home() /".mkcred";
+
+      file()->put_text(pathMkcredSeemsInstalled, "");
+
+
+   }
+
+
+   void application::__download_mkcred()
+   {
+
+      ::file::path pathSource = __mkcred_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathMkcredInstaller = pathTarget;
+
+   }
+
+
+   string application::__mkcred_download_url()
+   {
+
+      ::file::path pathUrl;
+
+      pathUrl = "https://posix.ca2.site/mkcred";
+
+      return pathUrl;
+
+   }
+
+   
+   bool application::__does_fsc_seem_installed()
+   {
+
+      auto pathFscSeemsInstalled = directory_system()->home() /".fsc";
+
+      bool bInstalled = file()->exists(pathFscSeemsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+   void application::__install_fsc()
+   {
+
+      __download_fsc();
+
+      install_from_running_command_line_as_root(m_pathFscInstaller);
+
+      ::system("ln -s /c/Dropbox " + (directory_system()->home()/"dropbox"));
+      ::system("ln -s ~/dropbox/store " + (directory_system()->home()/"store"));
+
+      auto pathFscSeemsInstalled = directory_system()->home() /".fsc";
+
+      file()->put_text(pathFscSeemsInstalled, "");
+
+
+   }
+
+
+   void application::__download_fsc()
+   {
+
+      ::file::path pathSource = __fsc_download_url();
+
+      ::file::path pathTarget = directory()->home() / "Downloads/Code!!" / pathSource.name();
+
+      ::property_set set;
+
+      print_line("Downloading \"" + pathSource+"\" to \""+pathTarget + "\".");
+
+      http()->download(pathTarget, pathSource, set);
+
+      m_pathFscInstaller = pathTarget;
+
+   }
+
+
+   string application::__fsc_download_url()
+   {
+
+      ::file::path pathUrl;
+
+      pathUrl = "https://posix.ca2.site/install_fsc";
+
+      return pathUrl;
+
+   }
+
+
+   bool application::__does_user_fonts_seem_installed()
+   {
+
+      auto pathUserFontsInstalled = directory_system()->home() /".config/.user_fonts";
+
+      bool bInstalled = file()->exists(pathUserFontsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+   ::file::path application::__get_user_fonts_target_folder_path()
+   {
+      ::file::path pathFolder = "/usr/share/fonts/_fonts";
+
+      auto psummary = node()->operating_system_summary();
+
+      if (psummary->m_strSystem == "ubuntu")
+      {
+         if (psummary->m_strSystemBranch == "xfce")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else if (psummary->m_strSystemBranch == "kde")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else
+         {
+            if (atoi(psummary->m_strSystemRelease) >= 24)
+            {
+               pathFolder = "/usr/share/fonts/truetype/_fonts";
+            }
+            else
+            {
+               pathFolder = "/usr/share/fonts/truetype/_fonts";
+            }
+         }
+      }
+      else if (psummary->m_strSystem == "linuxmint")
+      {
+         pathFolder = "/usr/share/fonts/truetype/_fonts";
+      }
+      else if (psummary->m_strSystem == "debian")
+      {
+         if (psummary->m_strSystemBranch == "xfce")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else if (psummary->m_strSystemBranch == "kde")
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+         else
+         {
+            pathFolder = "/usr/share/fonts/truetype/_fonts";
+         }
+      }
+      else if (psummary->m_strSystem == "fedora")
+      {
+         if (psummary->m_strSystemBranch == "xfce")
+         {
+            pathFolder = "/usr/share/fonts/_fonts";
+         }
+         else if (psummary->m_strSystemBranch == "kde")
+         {
+            pathFolder = "/usr/share/fonts/_fonts";
+         }
+         else
+         {
+            //if (atoi(psummary->m_strDistroRelease) >= 24)
+            //{
+            //  return {"ubuntug4deps"};
+            //}
+            //else
+            //{
+            pathFolder = "/usr/share/fonts/_fonts";
+            //}
+         }
+
+
+      }
+
+      return pathFolder;
+
+
+   }
+
+
+   void application::__install_user_fonts()
+   {
+
+      ::file::path pathFolder = __get_user_fonts_target_folder_path();
+
+      ::string strCommand;
+
+      strCommand.format("sudo mkdir \"{}\"; cp \"/c/Dropbox/box/_fonts/*.ttf\" \"{}\"", pathFolder, pathFolder);
+
+      install_from_running_command_line_as_root(strCommand);
+
+      ::system("fc-cache -v");
+
+      auto pathUserFontsInstalled = directory_system()->home() /".config/.user_fonts";
+
+      file()->put_text(pathUserFontsInstalled, "");
+
+
+   }
+
+
+
+   bool application::__does_ssh_keys_seem_installed()
+   {
+
+      auto pathIdAuthInstalled = directory_system()->home() /".ssh/id_auth";
+
+      bool bInstalled1 = file()->exists(pathIdAuthInstalled);
+
+      auto pathIdSignInstalled = directory_system()->home() /".ssh/id_sign";
+
+      bool bInstalled2 = file()->exists(pathIdSignInstalled);
+
+      return bInstalled1 && bInstalled2;
+
+   }
+
+
+   void application::__install_ssh_keys()
+   {
+
+      ::system("cp ~/dropbox/box/.ssh/* ~/.ssh/");
+      ::system("chmod 600 ~/.ssh/id_auth");
+      ::system("chmod 600 ~/.ssh/id_sign");
+
+   }
+
 
 
    string application::fetch_download_link(const ::scoped_string & scopedstrId)

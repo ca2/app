@@ -76,6 +76,11 @@ class ::time      m_timeFoldersSetupDetected;
       bool                       m_bInstallDepsCalculated = false;
       bool                       m_bAllInstallDepsInstalled = false;
 
+
+      ::file::path m_pathMkcredInstaller;
+      ::file::path m_pathFscInstaller;
+      ::file::path m_pathUserFontsInstaller;
+
       application();
       ~application() override;
 
@@ -152,6 +157,7 @@ class ::time      m_timeFoldersSetupDetected;
 #endif
 
       virtual void install_from_operating_system_package_file(const ::file::path & pathPackageFile);
+      virtual void install_from_running_command_line_as_root(const ::scoped_string & scopedstrCommandLine);
       virtual void __install_browser();
       virtual void __download_google_chrome();
       virtual ::string __google_chrome_download_url();
@@ -217,6 +223,24 @@ class ::time      m_timeFoldersSetupDetected;
 
 #endif
 
+
+      virtual bool __does_mkcred_seem_installed();
+      virtual void __install_mkcred();
+      virtual void __download_mkcred();
+      virtual ::string __mkcred_download_url();
+
+      
+      virtual bool __does_fsc_seem_installed();
+      virtual void __install_fsc();
+      virtual void __download_fsc();
+      virtual ::string __fsc_download_url();
+
+      virtual ::file::path __get_user_fonts_target_folder_path();
+      virtual bool __does_user_fonts_seem_installed();
+      virtual void __install_user_fonts();
+
+      virtual bool __does_ssh_keys_seem_installed();
+      virtual void __install_ssh_keys();
 
       virtual ::string install_name(::coding::enum_install einstall);
       virtual ::string install_title(::coding::enum_install einstall);

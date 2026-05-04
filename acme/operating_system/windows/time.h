@@ -64,7 +64,7 @@ inline SYSTEMTIME as_SYSTEMTIME(const ::earth::time &time)
 }
 
 
-inline FILETIME & as_FILETIME(const ::earth::time &time)
+inline FILETIME as_FILETIME(const ::earth::time &time)
 {
 
    FILETIME filetime{};

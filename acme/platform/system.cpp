@@ -5637,6 +5637,25 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
    //}
 
+   ::accessibility::accessibility *system::accessibility()
+   {
+
+      if (!m_paccessibility)
+      {
+
+         auto pfactoryAccessibility = factory("accessibility", OPERATING_SYSTEM_NAME);
+
+         pfactoryAccessibility->merge_to_global_factory();
+
+         constructø(m_paccessibility);
+
+      }
+
+      return m_paccessibility;
+
+   }
+
+
 
 } // namespace acme
 

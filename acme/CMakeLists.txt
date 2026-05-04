@@ -14,6 +14,8 @@ endif()
 
 
 list(APPEND library_source
+
+   accessibility/_.h
    accessibility/accessibility.cpp
    accessibility/accessibility.h
    accessibility/application.cpp

@@ -1443,6 +1443,7 @@ namespace platform
 //
 //
 
+      ::accessibility::accessibility *accessibility() override;
 
 
    };

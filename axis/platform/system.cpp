@@ -12,7 +12,7 @@
 #include "axis/database/database/field.h"
 #include "axis/user/user/user.h"
 #include "acme/platform/node.h"
-#include "axis/accessibility/accessibility.h"
+//#include "axis/accessibility/accessibility.h"
 
 //void axis_factory(::factory::factory * pfactory);
 
@@ -626,23 +626,6 @@ namespace axis
    //}
 
 
-         ::accessibility::accessibility *system::accessibility() 
-         {
-
-            if (!m_paccessibility)
-            {
-
-               auto pfactoryAccessibility = factory("accessibility", OPERATING_SYSTEM_NAME);
-
-               pfactoryAccessibility->merge_to_global_factory();
-
-               constructø(m_paccessibility);
-
-            }
-            
-            return m_paccessibility; 
-         
-         }
 
 
 

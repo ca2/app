@@ -75,6 +75,7 @@
 #include "acme/include/_inline_functions.h"
 #include "acme/include/_template_inline_functions.h"
 
+#include "acme/accessibility/_.h"
 #include "acme/crypto/_.h"
 #include "acme/exception/_.h"
 #include "acme/filesystem/_.h"

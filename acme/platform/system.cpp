@@ -14,6 +14,7 @@
 #include "session.h"
 #include "simple_log.h"
 #include "subsystem.h"
+#include "acme/accessibility/accessibility.h"
 #include "acme/compress/compress.h"
 #include "acme/compress/uncompress.h"
 #include "acme/constant/id.h"

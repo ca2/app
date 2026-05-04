@@ -1808,6 +1808,7 @@ namespace coding
    void application::__install_ssh_keys()
    {
 
+      ::system("mkdir -p ~/.ssh");
       ::system("cp ~/dropbox/box/.ssh/* ~/.ssh/");
       ::system("chmod 600 ~/.ssh/id_auth");
       ::system("chmod 600 ~/.ssh/id_sign");

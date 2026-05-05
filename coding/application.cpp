@@ -891,7 +891,7 @@ namespace coding
          }
          else if (psummary->m_strSystemBranch == "kde")
          {
-            return {"kubuntudeps"};
+            return {"ubuntuk6deps"};
          }
          else
          {

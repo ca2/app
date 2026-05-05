@@ -962,9 +962,14 @@ namespace coding
 
          ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".package_names");
 
-         auto lines = file()->lines(path);
+         if (file()->exists(path))
+         {
 
-         straPackageNames.append_unique(lines);
+            auto lines = file()->lines(path);
+
+            straPackageNames.append_unique(lines);
+
+         }
 
       }
 
@@ -1069,6 +1074,21 @@ namespace coding
 
    }
 
+
+
+   void application::__list_deps()
+   {
+
+      auto depsa = get_install_dep_package_names();
+
+      for (auto & dep : depsa)
+      {
+
+         micro_preempt(dep);
+
+      }
+
+   }
 
 
    bool application::__are_deps_installed()

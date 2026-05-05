@@ -179,6 +179,7 @@ class ::time      m_timeFoldersSetupDetected;
       virtual ::string_array get_install_dep_install_group_names();
       virtual bool are_all_operating_system_packages_and_install_groups_installed();
       virtual void __install_deps();
+      virtual void __list_deps();
          virtual bool __are_folders_setup();
 #if JETBRAINS_CLION
          //bool defer_install_smart_git(int iTry);

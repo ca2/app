@@ -956,6 +956,15 @@ namespace coding
 
       auto depsa = get_install_dep_script_names();
 
+      if (depsa.is_empty())
+      {
+
+         print_line("get_install_dep_script_names returned empty list");
+
+         return {};
+
+      }
+
       ::string_array straPackageNames;
 
       for (auto& deps : depsa)

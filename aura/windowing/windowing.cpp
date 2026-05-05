@@ -10,6 +10,7 @@
 #include "aura/platform/application.h"
 //#include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
+#include "aura/hardware/devices.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
 #include "aura/platform/node.h"
@@ -1073,6 +1074,14 @@ namespace windowing
    //    return nullptr;
    //
    // }
+
+
+   void windowing::on_activate()
+   {
+   
+      ::acme::windowing::windowing::on_activate();
+   
+   }
 
 
 } // namespace windowing

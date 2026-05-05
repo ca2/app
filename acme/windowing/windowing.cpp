@@ -517,6 +517,64 @@ namespace acme
       {
 
 
+         fetch_system_background_color();
+
+         // if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         // estatus =
+
+         // constructø(m_pdisplay);
+
+         // if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         // estatus =
+
+         // m_pdisplay->initialize_display(this);
+
+         // if (!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         // bool bCreateSessionWindow = initialize_system_interaction();
+         //
+         // if (!bCreateSessionWindow)
+         // {
+         //
+         //    warning() << "Could not create session window";
+         //
+         // }
+
+         // #if 000
+
+         // initialize_system_interaction();
+
+
+         // #endif
+
+         // return estatus;
+
+         if (!system()->m_bSystemLoadedFromALibrary)
+         {
+
+            system()->defer_start_system();
+            // system()->post_application_start();
+            //   system()->defer_post_application_start_file_open_request();
+            //  system()->post_application_started();
+         }
+
       }
 
 

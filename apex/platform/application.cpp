@@ -1420,15 +1420,10 @@ namespace apex
       else
       {
          
-         
-         
-
-
          try
          {
 
             ::platform::application::request(prequest);
-            
 
          }
          // catch (not_installed * pexception)

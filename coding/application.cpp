@@ -878,8 +878,9 @@ namespace coding
    }
 
 
-      ::string_array application::get_install_dep_script_names()
+   ::string_array application::get_install_dep_script_names()
    {
+
       auto psummary = node()->operating_system_summary();
 
       if (psummary->m_strSystem == "ubuntu")
@@ -964,6 +965,15 @@ namespace coding
 
          if (file()->exists(path))
          {
+
+            ::string strArgument1 = ::system()->get_argument1(0);
+
+            if (strArgument1 == "--list-deps")
+            {
+
+               print_line(" - Found \"" + path + "\"");
+
+            }
 
             auto lines = file()->lines(path);
 

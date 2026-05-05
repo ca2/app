@@ -989,6 +989,12 @@ namespace coding
             straPackageNames.append_unique(lines);
 
          }
+         else
+         {
+
+            print_line("File not found : \"" + path + "\".");
+
+         }
 
       }
 

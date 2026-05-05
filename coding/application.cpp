@@ -1940,6 +1940,313 @@ namespace coding
    }
 
 
+   void application::defer_ssh_agent()
+   {
+
+      if (!__is_user_git_email_ssh_agent_running())
+      {
+
+         micro_preempt("ssh-agent isn't running with user's git email address");
+
+         if (__start_ssh_agent())
+         {
+
+            preempt_message("ssh-agent successfully started!");
+
+         }
+         else
+         {
+
+            preempt_message("Failed to start ssh-agent");
+
+            throw ::exception(error_failed);
+
+         }
+      }
+      else
+      {
+
+         preempt_message("ssh-agent already running");
+
+      }
+
+   }
+
+
+   bool application::__is_user_git_email_ssh_agent_running()
+   {
+
+      ::string strCommand;
+
+      strCommand = "ssh-add -l";
+
+      ::string strError;
+
+      int iExitCode = -1;
+
+      micro_preempt("Checking if ssh-agent is running with user's git email address");
+
+      micro_preempt("Running>" + strCommand);
+
+      ::string strOutput = node()->get_posix_shell_command_output(
+         strCommand,
+         e_posix_shell_system_default,
+         &strError,
+         &iExitCode);
+
+      if (iExitCode != 0)
+      {
+
+         strOutput.clear();
+
+         //         throw ::exception(error_failed, strError);
+
+      }
+
+      micro_preempt("Output: " + strOutput);
+      micro_preempt("Error: " + strError);
+      micro_preempt("Exit Code: " + ::as_string(iExitCode));
+
+      ::string strUserGitEmail = git_global_config("user.email");
+
+      micro_preempt("User git email address: \"" + strUserGitEmail + "\"");
+
+      if (!strOutput.contains(strUserGitEmail))
+      {
+
+         micro_preempt("No ssh agent is running with user git email address \"" + strUserGitEmail + "\"");
+
+         return false;
+
+      }
+
+      micro_preempt("Found ssh agent running with user git email address \"" + strUserGitEmail + "\"");
+
+      return true;
+
+   }
+
+
+   void application::_defer_parse_simple_shell_script_assignment(::string & strLeft, ::string & strRight, const ::scoped_string & scopedstrStatement)
+   {
+
+      ::string str(scopedstrStatement);
+
+      strLeft = str.get_word("=");
+
+      strLeft.trim();
+
+      strRight = str.get_word(";");
+
+      strRight.trim();
+
+   }
+
+   void application::_037_parse_and_setenv_from_ssh_agent_output(::string & strSshAuthSock, ::string & strSshAgentPid, const ::scoped_string & scopedstrOutput)
+   {
+
+      strSshAuthSock.clear();
+
+      strSshAgentPid.clear();
+
+      ::string_array_base straLines;
+
+      straLines.add_lines(scopedstrOutput);
+
+      for (auto & strLine : straLines)
+      {
+         ::string strLeft;
+         ::string strRight;
+
+         _defer_parse_simple_shell_script_assignment(strLeft, strRight, strLine);
+
+         if (strLeft == "SSH_AUTH_SOCK")
+         {
+
+            strSshAuthSock = strRight;
+
+            micro_preempt("Found SSH_AUTH_SOCK as \"" + strSshAuthSock + "\"");
+            micro_preempt("Going to set SSH_AUTH_SOCK as \"" + strSshAuthSock + "\" in current process");
+            setenv("SSH_AUTH_SOCK", strSshAuthSock, 1);
+
+         }
+         else if (strLeft == "SSH_AGENT_PID")
+         {
+
+            strSshAgentPid = strRight;
+
+            micro_preempt("Found SSH_AGENT_PID as \"" + strSshAgentPid + "\"");
+            micro_preempt("Going to set SSH_AGENT_PID as \"" + strSshAgentPid + "\" in current process");
+            setenv("SSH_AGENT_PID", strSshAgentPid, 1);
+
+
+
+         }
+
+         if (strSshAuthSock.has_character() && strSshAgentPid.has_character())
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+
+   bool application::__is_ssh_agent_ambient_set()
+   {
+
+      ::string strSshAuthSock = node()->get_environment_variable("SSH_AUTH_SOCK");
+
+      if (strSshAuthSock.is_empty())
+      {
+
+         return false;
+
+      }
+
+      micro_preempt("SSH_AUTH_SOCK is set in current process as \"" + strSshAuthSock + "\"");
+
+      ::string strSshAgentPid = node()->get_environment_variable("SSH_AGENT_PID");
+
+      if (strSshAgentPid.is_empty())
+      {
+
+         return false;
+
+      }
+
+      micro_preempt("SSH_AGENT_PID is set in current process as \"" + strSshAgentPid + "\"");
+
+      return true;
+
+   }
+
+   void application::_check_ssh_agent_ambient_set()
+   {
+      micro_preempt("Checking that ssh agent ambient is set");
+
+
+      if (__is_ssh_agent_ambient_set())
+      {
+
+         micro_preempt("Looks like ssh agent ambient is set");
+
+      }
+      else
+      {
+
+         micro_preempt("It seems ssh agent ambient isn't set");
+
+      }
+
+   }
+
+   bool application::__start_ssh_agent()
+   {
+
+      ::string strCommand1;
+
+      strCommand1 = "ssh-agent -s";
+
+      micro_preempt("Going to start ssh-agent");
+
+      micro_preempt("Running>" + strCommand1);
+
+      ::string strError1;
+
+      int iExitCode1 = -1;
+
+      ::string strOutput1 = node()->get_posix_shell_command_output(
+         strCommand1,
+         e_posix_shell_system_default,
+         &strError1,
+         &iExitCode1);
+
+      micro_preempt("\n");
+      micro_preempt("Output: \n" + strOutput1);
+      micro_preempt("\n");
+      micro_preempt("\n");
+      micro_preempt("Error: " + strError1);
+      micro_preempt("Exit Code: " + ::as_string(iExitCode1));
+
+
+
+      if (iExitCode1 != 0)
+      {
+
+         micro_preempt("It seems that ssh-agent failed to start");
+
+         throw ::exception(error_failed);
+
+      }
+
+      ::string strSshAuthSock;
+      ::string strSshAgentPid;
+
+      _037_parse_and_setenv_from_ssh_agent_output(strSshAuthSock, strSshAgentPid, strOutput1);
+
+      _check_ssh_agent_ambient_set();
+
+      micro_preempt("Looks like ssh-agent started successfully");
+
+      ::string strCommand2;
+
+      strCommand2 = "ssh-add ~/.ssh/id_auth";
+
+      micro_preempt("Going to add user key to ssh-agent");
+
+      micro_preempt("Running>" + strCommand2);
+
+      ::string strError2;
+
+      int iExitCode2 = -1;
+
+      ::string strOutput2 = node()->get_posix_shell_command_output(
+         strCommand2,
+         e_posix_shell_system_default,
+         &strError2,
+         &iExitCode2);
+
+      if (iExitCode2 != 0)
+      {
+
+         strOutput2.clear();
+
+         //         throw ::exception(error_failed, strError);
+
+      }
+
+      ::string strConcatenatedOutput2(strOutput2);
+      strConcatenatedOutput2 += "\n";
+      strConcatenatedOutput2 += strError2;
+
+      micro_preempt("Output: " + strOutput2);
+      micro_preempt("Error: " + strError2);
+      micro_preempt("Exit Code: " + ::as_string(iExitCode2));
+
+      ::string strUserGitEmail = git_global_config("user.email");
+
+      micro_preempt("User git email address: \"" + strUserGitEmail + "\"");
+
+      if (!strConcatenatedOutput2.contains(strUserGitEmail))
+      {
+
+         micro_preempt("ssh-agent didn't start with user git email address \"" + strUserGitEmail + "\"");
+
+         return false;
+
+      }
+
+      micro_preempt("Looks like ssh-agent is running with user git email address \"" + strUserGitEmail + "\"");
+
+      return true;
+
+   }
+
+
 
    string application::fetch_download_link(const ::scoped_string & scopedstrId)
    {

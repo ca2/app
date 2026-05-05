@@ -93,4 +93,8 @@ namespace console
 } // namespace console
 
 
+CLASS_DECL_ACME int current_getch();
+CLASS_DECL_ACME int current_getch_utf8(::string &strChar);
+
+
 

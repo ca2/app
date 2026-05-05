@@ -5,6 +5,8 @@
 
 int current_getch();
 
+int current_getch_utf8(::string &strChar);
+
 namespace console
 {
 

@@ -1122,10 +1122,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="accessibility\accessibility.h" />
-    <ClInclude Include="accessibility\application.h" />
-    <ClInclude Include="accessibility\main_window.h" />
-    <ClInclude Include="accessibility\_.h" />
     <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h" />
     <ClInclude Include="account\aaa_want_to_remove_account_authorization_task.h" />
     <ClInclude Include="account\aaa_want_to_remove_account_object.h" />
@@ -1319,9 +1315,6 @@
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="accessibility\accessibility.cpp" />
-    <ClCompile Include="accessibility\application.cpp" />
-    <ClCompile Include="accessibility\main_window.cpp" />
     <ClCompile Include="account\authenticator.cpp" />
     <ClCompile Include="account\contact_list.cpp" />
     <ClCompile Include="account\credentials.cpp" />

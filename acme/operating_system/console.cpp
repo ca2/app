@@ -13,6 +13,9 @@ int getche();
 #endif
 
 
+
+
+
 namespace console
 {
 
@@ -97,6 +100,74 @@ namespace console
       return {};
       
    }
+
+   
+
+   ::string console::prompt_line(const char *pszPrompt)
+   {
+
+      if (pszPrompt && *pszPrompt)
+      {
+
+         print_out(pszPrompt);
+      }
+
+      ::string strLine;
+
+      int iRet;
+
+      while (true)
+      {
+
+         ::string strChar;
+
+         iRet = ::current_getch_utf8(strChar);
+
+         if (iRet == EOF)
+         {
+
+            throw "cancel";
+         }
+         else if (strChar == "\n")
+         {
+
+            break;
+         }
+         else if (strChar == "\r")
+         {
+
+            // ignore carriage return (for safety)
+            continue;
+         }
+         else if (strChar[0] == 127 || strChar == "\b")
+         {
+
+            // handle backspace
+            if (strLine.has_character())
+            {
+
+               strLine.truncate(utf8_dec(strLine.begin(), strLine.end()));
+
+               // erase character visually
+               printf("\b \b");
+            }
+         }
+         else
+         {
+
+            strLine += strChar;
+
+            // echo character
+            printf("%s", strChar.c_str());
+         }
+      }
+
+      // move to next line after Enter
+      putchar('\n');
+
+      return strLine;
+   }
+
 
 
 } // namespace console
@@ -252,6 +323,8 @@ int getche()
 }
 
 
+
+
 #endif // defined(HAVE_TERMIOS_H) && HAVE_TERMIOS_Hc
 
 
@@ -303,3 +376,57 @@ std_out_buffer::~std_out_buffer()
 //#endif
 //
 //}
+
+
+CLASS_DECL_ACME int current_getch_utf8(::string & strChar)
+{
+
+   strChar.empty();
+
+   int first = current_getch(); // your existing function
+
+   if (first == EOF)
+   {
+      return EOF;
+   }
+
+   unsigned char c = (unsigned char) first;
+
+   // 1-byte ASCII
+   if ((c & 0x80) == 0)
+   {
+      strChar += (char)c;
+      return 1;
+   }
+
+   // Determine UTF-8 sequence length
+   int extra = 0;
+
+   if ((c & 0xE0) == 0xC0) extra = 1;        // 2 bytes
+   else if ((c & 0xF0) == 0xE0) extra = 2;   // 3 bytes
+   else if ((c & 0xF8) == 0xF0) extra = 3;   // 4 bytes
+   else
+   {
+      throw ::exception(error_failed, "Invalid UTF-8 start byte");
+   }
+
+   strChar += (char)c;
+
+   for (int i = 0; i < extra; i++)
+   {
+      int next = current_getch();
+
+      if (next == EOF)
+      {
+         throw ::exception(error_failed, "Unexpected EOF in UTF-8 sequence");
+      }
+
+      strChar += (char)next;
+   }
+
+   return 1;
+
+}
+
+
+

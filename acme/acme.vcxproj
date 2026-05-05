@@ -2425,6 +2425,9 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="accessibility\accessibility.cpp" />
+    <ClCompile Include="accessibility\application.cpp" />
+    <ClCompile Include="accessibility\main_window.cpp" />
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\is_dir.cpp" />
     <ClCompile Include="compress\not_dir.cpp" />
@@ -2588,6 +2591,10 @@
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\system.h" />
     <ClInclude Include="..\..\..\operating_system\operating_system-windows\operating_system\types.h" />
     <ClInclude Include="aaa_id.h" />
+    <ClInclude Include="accessibility\accessibility.h" />
+    <ClInclude Include="accessibility\application.h" />
+    <ClInclude Include="accessibility\main_window.h" />
+    <ClInclude Include="accessibility\_.h" />
     <ClInclude Include="acme.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="array2d.h" />

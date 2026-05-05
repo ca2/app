@@ -487,6 +487,12 @@
     <Filter Include="Source Files\input_output">
       <UniqueIdentifier>{9c7ab59e-d7cb-4289-82af-0c1a0213e0e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\accessibility">
+      <UniqueIdentifier>{46a38eb2-5f35-4d23-b061-7806461d162e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\accessibility">
+      <UniqueIdentifier>{c19d2c2e-4a8c-4525-9286-3505d1607ff1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -4398,6 +4404,18 @@
     <ClInclude Include="platform\guid.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="accessibility\main_window.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\application.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\accessibility.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
+    <ClInclude Include="accessibility\_.h">
+      <Filter>Header Files\accessibility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -6343,6 +6361,15 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\last_error.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\accessibility.cpp">
+      <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\application.cpp">
+      <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="accessibility\main_window.cpp">
+      <Filter>Source Files\accessibility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

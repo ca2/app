@@ -67,11 +67,13 @@ enum enum_canonical
 
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word_separated_by_spaces(const scoped_string_base < ITERATOR_TYPE > & str, ITERATOR_TYPE * ppfound = nullptr);
+inline const_string_range < ITERATOR_TYPE > string_get_word_separated_by_spaces(const scoped_string_base < ITERATOR_TYPE > & scopedstr, ITERATOR_TYPE * ppnext = nullptr);
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(const scoped_string_base < ITERATOR_TYPE > & str, const scoped_string_base < ITERATOR_TYPE > & strSeparatorList, ITERATOR_TYPE * ppfound = nullptr);
+inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & strSeparatorList, ITERATOR_TYPE * ppnext = nullptr);
 
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_get_word_with_separator_list_and_go_next(string_base < ITERATOR_TYPE > & str, const scoped_string_base < ITERATOR_TYPE > & strSeparatorList);
 
 template < typename ITERATOR_TYPE >
 using get_word_function = ::function < const_string_range < ITERATOR_TYPE >(const scoped_string_base < ITERATOR_TYPE > &, ITERATOR_TYPE *) >;
@@ -2205,10 +2207,10 @@ public:
    }
 
 
-   string_base get_word(const SCOPED_STRING& sSep, ITERATOR_TYPE * ppend = nullptr) const
+   string_base get_word(const SCOPED_STRING& sSep)
    {
 
-      return ::string_get_word_with_separator_list((const SCOPED_STRING &)*this, sSep, ppend);
+      return ::string_get_word_with_separator_list_and_go_next(*this, sSep);
 
    }
 
@@ -3085,7 +3087,7 @@ inline const_string_range < ITERATOR_TYPE > string_get_word_separated_by_spaces(
 
 
 template < typename ITERATOR_TYPE >
-inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * pfound)
+inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(const scoped_string_base < ITERATOR_TYPE > & scopedstr, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList, ITERATOR_TYPE * pnext)
 {
 
    auto end = scopedstr.find_first_character_in(scopedstrSeparatorList);
@@ -3114,10 +3116,10 @@ inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(
       
    }
 
-   if(::is_set(pfound))
+   if(::is_set(pnext))
    {
 
-      *pfound = find;
+      *pnext = find;
       
    }
 
@@ -3125,6 +3127,25 @@ inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(
 
 }
 
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > string_get_word_with_separator_list_and_go_next(string_base < ITERATOR_TYPE > & str, const scoped_string_base < ITERATOR_TYPE > & scopedstrSeparatorList)
+{
+
+   ITERATOR_TYPE pnext = nullptr;
+
+   string_base < ITERATOR_TYPE > rangeWord = string_get_word_with_separator_list((const scoped_string_base<ITERATOR_TYPE> &) str, scopedstrSeparatorList, &pnext);
+
+   if (::is_set(pnext))
+   {
+
+      str = pnext;
+
+   }
+
+   return rangeWord;
+
+}
 
 
 template<typename ITERATOR_TYPE>

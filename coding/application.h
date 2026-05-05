@@ -247,6 +247,15 @@ class ::time      m_timeFoldersSetupDetected;
       virtual bool __does_ssh_keys_seem_installed();
       virtual void __install_ssh_keys();
 
+      virtual void defer_ssh_agent();
+      virtual bool __is_user_git_email_ssh_agent_running();
+      virtual bool __start_ssh_agent();
+
+      virtual void _defer_parse_simple_shell_script_assignment(::string & strLeft, ::string & strRight, const ::scoped_string & scopedstrStatement);
+      virtual void _037_parse_and_setenv_from_ssh_agent_output(::string & strSshAuthSock, ::string & strSshAuthPid, const ::scoped_string & scopedstrOutput);
+      virtual void _check_ssh_agent_ambient_set();
+      virtual bool __is_ssh_agent_ambient_set();
+
       virtual ::string install_name(::coding::enum_install einstall);
       virtual ::string install_title(::coding::enum_install einstall);
       virtual ::string install_remark(::coding::enum_install einstall);

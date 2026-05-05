@@ -2198,10 +2198,10 @@ public:
    }
 
 
-   constexpr bool starts_with_word(const SCOPED_STRING& range, const ::get_word_function < ITERATOR_TYPE > & getwordfunction) const
+   constexpr bool starts_with_word(const SCOPED_STRING& range, const ::get_word_function < ITERATOR_TYPE > & functionGetWord) const
    {
 
-      return getwordfunction(*this, nullptr).order(range) == 0;
+      return functionGetWord(*this, nullptr).order(range) == 0;
 
 
    }
@@ -2215,10 +2215,28 @@ public:
    }
 
 
-   constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING& range, const get_word_function < ITERATOR_TYPE > & getwordfunction) const
+   const_string_range < ITERATOR_TYPE > _peek_word(const SCOPED_STRING &sSep, ITERATOR_TYPE * ppnext = nullptr) const
    {
 
-      return get_word(*this).case_insensitive_order(range) == 0;
+      
+      return ::string_get_word_with_separator_list((const SCOPED_STRING &) *this, sSep, ppnext);
+
+   }
+
+
+   string_base peek_word(const SCOPED_STRING &sSep, ITERATOR_TYPE *ppnext = nullptr) const
+   {
+
+      return this->_peek_word(sSep, ppnext);
+
+   }
+
+
+   constexpr bool case_insensitive_starts_with_word(const SCOPED_STRING &range,
+                                                    const get_word_function<ITERATOR_TYPE> &functionGetWord) const
+   {
+
+      return functionGetWord(*this, nullptr).case_insensitive_order(range) == 0;
 
    }
 

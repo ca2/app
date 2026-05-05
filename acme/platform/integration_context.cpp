@@ -25,11 +25,11 @@
 
 
 #include "acme/_operating_system.h"
-#ifdef STATIC_CUBE
-#define LIBARCHIVE_STATIC
-#endif
-#include <archive.h>
-#include <archive_entry.h>
+//#ifdef STATIC_CUBE
+//#define LIBARCHIVE_STATIC
+//#endif
+//#include <archive.h>
+//#include <archive_entry.h>
 
 
 namespace integration

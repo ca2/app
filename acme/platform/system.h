@@ -384,9 +384,12 @@ namespace platform
 
 
 
-      void post_application_start() override;
-      void defer_post_application_start_file_open_request() override;
-      void post_application_started() override;
+      //void post_application_start() override;
+
+
+
+      //void defer_post_application_start_file_open_request() override;
+      //void post_application_started() override;
 
 
 

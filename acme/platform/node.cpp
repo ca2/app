@@ -18,6 +18,7 @@
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/handler/request.h"
 #include "acme/memory/counter.h"
+#include "acme/operating_system/cpu_features.h"
 #include "acme/platform/exclusive.h"
 //#include "acme/operating_system/application.h"
 #include "acme/operating_system/summary.h"
@@ -5175,6 +5176,15 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
 #endif
 
+      auto strMachineArchitecture = ::operating_system::machine_architecture();
+
+      if (strMachineArchitecture.has_character())
+      {
+
+         strMachineArchitecture = "Machine Architecture: " + strMachineArchitecture;
+
+      }
+
       auto memsizeApplicationMemoryUsage = get_current_memory_usage();
 
       ::string strApplicationMemoryUsage;
@@ -5205,6 +5215,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
       stra.add(strMoreOperatingSystemVersionInformation);
       stra.add("<br />");
       stra.add(strDesktopAmbient);
+      stra.add(strMachineArchitecture);
       stra.add(strDisplayResolution);
       stra.add(strApplicationMemoryUsage);
 

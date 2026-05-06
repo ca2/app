@@ -1342,14 +1342,14 @@ namespace apex
 
       m_prequestHandler = prequest;
 
-      if (prequest->m_ecommand == e_command_system_start)
-      {
-
-         on_application_system_start();
-
-         return;
-
-      }
+      // if (prequest->m_ecommand == e_command_system_start)
+      // {
+      //
+      //    on_application_system_start();
+      //
+      //    return;
+      //
+      // }
 
       //if (m_bApplicationFirstRequest)
       //{

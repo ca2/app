@@ -380,7 +380,7 @@ namespace platform
       //virtual void defer_post_initial_request() override;
 
 
-      void defer_start_system() override;
+      //void defer_start_system() override;
 
 
 

@@ -1033,14 +1033,14 @@ enum enum_command
 
    e_command_file_nothing = -1,
    e_command_none = 0,
-   e_command_default,
-   e_command_system_start,
+   e_command_default = 1,
+   //e_command_system_start = 2,
    // please try to avoid "advanced" or "automatic" startup.
    // just bring the main window of the application to hold
    // the calling toolkit/system, or some background window
    // that will wait for late request for a new document or
    // some other file request.
-   e_command_application_start,
+   e_command_application_start = 3,
    e_command_application_started,
    e_command_file_new,
    e_command_file_open,

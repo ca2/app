@@ -566,14 +566,14 @@ namespace acme
 
          // return estatus;
 
-         if (!system()->m_bSystemLoadedFromALibrary)
-         {
-
-            system()->defer_start_system();
-            // system()->post_application_start();
-            //   system()->defer_post_application_start_file_open_request();
-            //  system()->post_application_started();
-         }
+         // if (!system()->m_bSystemLoadedFromALibrary)
+         // {
+         //
+         //    system()->defer_start_system();
+         //    // system()->post_application_start();
+         //    //   system()->defer_post_application_start_file_open_request();
+         //    //  system()->post_application_started();
+         // }
 
       }
 

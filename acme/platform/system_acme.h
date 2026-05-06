@@ -455,7 +455,7 @@ namespace platform
       virtual ::request * application_start_file_open_request();
 
 
-      virtual void defer_start_system();
+      //virtual void defer_start_system();
 
 
       virtual void post_application_start();

@@ -37,7 +37,9 @@ namespace acme
 
       guid(const string & str) noexcept;
       bool operator == (const guid & guid) const noexcept
-          return Data1 == guid.Data1
+      {
+
+         return Data1 == guid.Data1
                && Data2 == guid.Data2
                && Data3 == guid.Data3
                && Data4[0] == guid.Data4[0]
@@ -48,7 +50,7 @@ namespace acme
                && Data4[5] == guid.Data4[5]
                && Data4[6] == guid.Data4[6] 
          && Data4[7] == guid.Data4[7];
-      {
+
       }
     //  bool operator != (const guid & guid) const noexcept;
       string to_string() const

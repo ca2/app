@@ -4405,11 +4405,11 @@ return nullptr;
    }
 
    
-   void acme_system_layer::defer_start_system() 
-   {
-
-
-   }
+   // void acme_system_layer::defer_start_system()
+   // {
+   //
+   //
+   // }
 
 
    void acme_system_layer::post_application_start()

@@ -3121,21 +3121,21 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   void system::defer_start_system()
-   {
-
-      auto prequest = create_newø<::request>();
-
-      prequest->m_ecommand = e_command_system_start;
-
-      ::string strAppId = m_papplication->m_strAppId;
-
-      prequest->m_strAppId = strAppId;
-      // prequest->m_bPreferSync = true;
-
-      post_request(prequest);
-
-   }
+   // void system::defer_start_system()
+   // {
+   //
+   //    auto prequest = create_newø<::request>();
+   //
+   //    prequest->m_ecommand = e_command_system_start;
+   //
+   //    ::string strAppId = m_papplication->m_strAppId;
+   //
+   //    prequest->m_strAppId = strAppId;
+   //    // prequest->m_bPreferSync = true;
+   //
+   //    post_request(prequest);
+   //
+   // }
 
 
 

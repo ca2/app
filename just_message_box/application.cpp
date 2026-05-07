@@ -22,7 +22,7 @@ namespace app_just_message_box
    void application::on_request(::request * prequest)
    {
 
-      if (prequest->m_ecommand == ::e_command_application_start)
+      if (prequest->m_ecommand == ::e_command_default_start)
       {
 
          show_message_box();

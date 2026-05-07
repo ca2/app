@@ -187,6 +187,9 @@ namespace platform
       //virtual void element_quit_post_quit();
 
 
+      virtual void on_prepare_application(::platform::application * papplication);
+
+
       virtual string audio_get_default_implementation_name();
 
 

@@ -1020,6 +1020,9 @@ namespace apex
 
       }
 
+
+      ::platform::application::on_prepare_application();
+
       // xxdebug_box("check_exclusive ok", "check_exclusive ok", ::user::e_message_box_icon_information);
 
       // if (m_bInitializeDataCentral)

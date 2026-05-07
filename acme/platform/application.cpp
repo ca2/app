@@ -1388,6 +1388,8 @@ namespace platform
    {
 
 
+      node()->on_prepare_application(this);
+
 
    }
          

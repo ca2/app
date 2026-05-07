@@ -134,6 +134,11 @@ namespace platform
    }
 
    //void acme_node_layer::element_quit_post_quit(){}
+   void acme_node_layer::on_prepare_application(::platform::application * papplication)
+   {
+
+
+   }
 
 
    ::string acme_node_layer::audio_get_default_implementation_name()

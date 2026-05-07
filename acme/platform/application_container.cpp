@@ -425,7 +425,7 @@ namespace platform
 
       //papplication->start_application(prequest);
       
-      papplication->start_application();
+      //papplication->start_application();
 
       return papplication;
 

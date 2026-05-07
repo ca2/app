@@ -133,8 +133,11 @@ namespace platform
 
 
       //virtual void start_application(::request* prequest);
-      
-      virtual void start_application();
+
+
+      /// This function is called after an application
+      /// finishes starting with no file open requests.
+      //virtual void on_application_default_start();
 
       //virtual void on_initialize_application();
 

@@ -88,7 +88,7 @@ namespace platform
 
 
    //void acme_application_layer::start_application(::request* prequest)
-void acme_application_layer::start_application()
+   void acme_application_layer::on_application_default_start()
    {
    }
 

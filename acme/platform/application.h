@@ -613,7 +613,7 @@ namespace platform
 
       //virtual void start_application(::request* prequest) override;
 
-      virtual void start_application() override;
+      //void on_application_default_start() override;
 
       //virtual void on_initialize_application();
 

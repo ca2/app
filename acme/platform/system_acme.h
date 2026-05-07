@@ -54,8 +54,6 @@ namespace platform
 
       ::map_base < ::task_index, ::thread_storage >  m_mapThreadStorage;
 
-      bool m_bApplicationStartFileOpenRequest = false;
-      ::pointer<::request> m_prequestApplicationStartFileOpen;
       ::critical_section                              m_criticalsectionThreadStorage;
 
       ::pointer < ::task_message_queue >              m_ptaskmessagequeue;
@@ -127,7 +125,6 @@ namespace platform
       ::pointer<::factory::factory>                                           m_pfactoryFolder;
 
       //      bool                                                                    m_bPostedInitialRequest;
-      bool                                                                    m_bPostedCommandLineFileOpen;
 
 
       ::pointer<::apex::system>                                               m_psystemParent;
@@ -384,6 +381,7 @@ namespace platform
 
       virtual unsigned int crc32(unsigned int uCrc, const ::block & block);
 
+      virtual void prepare_application();
 
       virtual void create_session(::collection::index iEdge = 0);
 
@@ -452,15 +450,15 @@ namespace platform
       virtual void on_start_system();
 
 
-      virtual ::request * application_start_file_open_request();
+      //virtual ::request * application_start_file_open_request();
 
 
       //virtual void defer_start_system();
 
 
-      virtual void post_application_start();
-      virtual void defer_post_application_start_file_open_request();
-      virtual void post_application_started();
+      //virtual void post_application_start();
+      //virtual void defer_post_application_start_file_open_request();
+      //virtual void post_application_started();
 
 
       virtual void canonical_system_main();

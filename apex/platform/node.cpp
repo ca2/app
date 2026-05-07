@@ -526,11 +526,11 @@ namespace apex
 //   }
 
 
-   void node::on_start_application(::apex::application *papplication)
-   {
+   //void node::on_start_application(::apex::application *papplication)
+   //{
 
 
-   }
+   //}
 
 
    void node::on_create_app_shortcut(::platform::application * papplication)

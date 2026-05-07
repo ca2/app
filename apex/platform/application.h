@@ -194,7 +194,12 @@ namespace apex
       ::pointer<::fs::folder_sync> fs_folder_sync(const ::scoped_string& scopedstr);
 
 
-      void on_application_system_start() override;
+      // void on_application_system_start() override;
+      void on_prepare_application() override;
+
+
+      //       virtual bool on_start_application() override;
+      void on_after_prepare_application() override;
 
       //virtual void process_command_line(command_line* pcommandline);
 
@@ -827,7 +832,6 @@ namespace apex
       virtual bool platform_open_by_file_extension(::collection::index iEdge, ::request* prequest) override;
 
 
-      virtual bool on_start_application() override;
 
 
       //#if !defined(LINUX)

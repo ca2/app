@@ -90,6 +90,8 @@ namespace platform
 
       //m_bApplicationFirstRequest = true;
 
+      m_bPostedCommandLineFileOpen = false;
+
 
       _001TestSlashedPath();
 
@@ -468,12 +470,12 @@ void application::start_application()
    }
 
 
-   void application::on_application_system_start()
-   {
+   //void application::on_application_system_start()
+   //{
 
 
 
-   }
+   //}
 
 
    int application::application_main()
@@ -846,6 +848,298 @@ void application::start_application()
    }
 
 
+   ::request *application::application_start_file_open_request()
+   {
+
+      if (m_bApplicationStartFileOpenRequest)
+      {
+
+         return m_prequestApplicationStartFileOpen;
+      }
+
+      m_bApplicationStartFileOpenRequest = true;
+
+      auto psystem = system();
+
+      auto papplication = psystem;
+
+      auto strCommandLineSystemNative = psystem->m_strCommandLineSystemNative;
+
+      strCommandLineSystemNative.trim();
+
+      ::payload payloadFile;
+
+      ::string strAppId = m_strAppId;
+
+      ::string strApp;
+
+      ::property_set setRequest;
+
+      if (strCommandLineSystemNative.has_character())
+      {
+
+         information() << "system::defer_post_initial_request ***strCommandLineSystemNative*** : ***"
+                       << strCommandLineSystemNative << "***";
+
+         setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
+      }
+      else if (psystem->m_argc > 0 && psystem->m_args)
+      {
+
+         strApp = psystem->m_args[0];
+
+         ::string_array_base straFiles;
+
+         for (int iArgument = 1; iArgument < psystem->m_argc;)
+         {
+
+            auto iArgumentBefore = iArgument;
+
+            if (node()->defer_consume_main_arguments(psystem->m_argc, psystem->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            if (papplication->defer_consume_main_arguments(psystem->m_argc, psystem->m_args, iArgument) &&
+                iArgument > iArgumentBefore)
+            {
+
+               continue;
+            }
+
+            ::string strArgument = psystem->m_args[iArgument];
+
+            if (strArgument.begins("-"))
+            {
+
+               setRequest._008AddArgument(strArgument);
+            }
+            else
+            {
+
+               straFiles.add(strArgument);
+            }
+
+            iArgument++;
+         }
+
+         if (straFiles.has_elements())
+         {
+
+            if (straFiles.size() == 1)
+            {
+
+               payloadFile = straFiles[0];
+            }
+            else
+            {
+
+               payloadFile.string_array_reference() = straFiles;
+            }
+         }
+      }
+
+      if (!payloadFile.is_empty())
+      {
+
+         auto prequest = create_newø<::request>();
+
+         prequest->m_ecommand = e_command_file_open;
+
+         prequest->m_strAppId = strAppId;
+
+         prequest->property_set().merge(setRequest);
+
+         prequest->m_payloadFile = payloadFile;
+
+         payload("command_line_arg0") = strApp;
+
+         ///papplication->property_set().merge(prequest->property_set());
+
+         prequest->m_bPreferSync = true;
+
+         // call_request(prequest);
+
+         m_prequestApplicationStartFileOpen = prequest;
+
+      }
+
+      return m_prequestApplicationStartFileOpen;
+
+   }
+
+
+   void application::process_command_line_options()
+   {
+
+      if (!m_bPostedCommandLineFileOpen)
+      {
+
+         m_bPostedCommandLineFileOpen = true;
+
+         auto prequest = application_start_file_open_request();
+
+         if (prequest)
+         {
+
+            if (!prequest->m_payloadFile.is_empty())
+            {
+
+               prequest->m_ecommand = e_command_file_open;
+
+               property_set().merge(prequest->property_set());
+
+               post_request(prequest);
+
+            }
+
+         }
+         else
+         {
+
+            auto prequestDefaultStart = create_newø<::request>();
+
+            prequestDefaultStart->m_ecommand = e_command_default_start;
+
+            post_request(prequestDefaultStart);
+
+         }
+
+      }
+
+   }
+
+
+
+   //   void application::process_command_line_options_2025()
+   //{
+
+   //   if (!m_bPostedCommandLineFileOpen)
+   //   {
+
+   //      m_bPostedCommandLineFileOpen = true;
+
+   //      auto prequest = application_start_file_open_request();
+
+   //      // auto prequest = m_prequestApplicationStartFileOpen;
+
+   //      // auto prequest = create_newø<::request>();
+
+   //      // auto strCommandLine = this->command_line();
+
+   //      // strCommandLine.trim();
+
+   //      // prequest->m_strAppId = application()->m_strAppId;
+
+   //      //::string strApp;
+
+   //      // if (strCommandLine.has_character())
+   //      //{
+
+   //      //   information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine <<
+   //      //   "***";
+
+   //      //   prequest->m_strCommandLine = strCommandLine;
+
+   //      //   prequest->property_set()._008ParseCommandFork(
+   //      //      strCommandLine,
+   //      //      prequest->m_payloadFile,
+   //      //      strApp);
+
+   //      //}
+   //      // else
+   //      //{
+
+   //      //   strApp = this->m_args[0];
+
+   //      //   ::string_array straFiles;
+
+   //      //   for (int iArgument = 1; iArgument < this->m_argc;)
+   //      //   {
+
+   //      //      auto iArgumentBefore = iArgument;
+
+   //      //      if (node()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
+
+   //      //         continue;
+
+   //      //      }
+
+   //      //      if (application()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
+
+   //      //         continue;
+
+   //      //      }
+
+   //      //      ::string strArgument = this->m_args[iArgument];
+
+   //      //      if (strArgument.begins("-"))
+   //      //      {
+
+   //      //         prequest->property_set()._008AddArgument(strArgument);
+
+   //      //      }
+   //      //      else
+   //      //      {
+
+   //      //         straFiles.add(strArgument);
+
+   //      //      }
+
+   //      //      iArgument++;
+
+   //      //   }
+
+   //      //   if (straFiles.has_elements())
+   //      //   {
+
+   //      //      if (straFiles.size() == 1)
+   //      //      {
+
+   //      //         prequest->m_payloadFile = straFiles[0];
+
+   //      //      }
+   //      //      else
+   //      //      {
+
+   //      //         prequest->m_payloadFile.string_array_reference() = straFiles;
+
+   //      //      }
+
+   //      //   }
+
+   //      //}
+
+   //      if (prequest)
+   //      {
+
+   //         if (!prequest->m_payloadFile.is_empty())
+   //         {
+
+   //            prequest->m_ecommand = e_command_file_open;
+
+   //            property_set().merge(prequest->property_set());
+
+   //            post_request(prequest);
+   //         }
+   //      }
+   //   }
+   //}
+
+
+
    ::string application::application_title()
    {
 
@@ -1055,6 +1349,55 @@ void application::start_application()
       }
 
    }
+
+
+   void application::prepare_application()
+   {
+
+      if (!is_task_set2())
+      {
+
+         branch_synchronously();
+
+      }
+
+      bool bOk = false;
+
+      send([this, &bOk]()
+      {
+      
+         on_prepare_application();
+
+         on_after_prepare_application();
+
+         bOk = true;
+
+      });
+
+      if (!bOk)
+      {
+         
+         throw ::exception(error_failed);
+
+      }
+
+   }
+   
+   
+   void application::on_prepare_application()
+   {
+
+
+
+   }
+         
+   
+   void application::on_after_prepare_application()
+   {
+
+
+   }
+
 
 
    void application::application_menu_update()

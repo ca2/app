@@ -4264,6 +4264,13 @@ return nullptr;
    }
 
 
+   void acme_system_layer::prepare_application()
+   {
+
+
+   }
+
+
    ::pointer<::platform::session> acme_system_layer::on_create_session(::collection::index iEdge)
    {
       return {};
@@ -4383,12 +4390,12 @@ return nullptr;
    {
    }
 
-   ::request * acme_system_layer::application_start_file_open_request()
-   {
+   //::request * acme_system_layer::application_start_file_open_request()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //void acme_system_layer::defer_start_application()
@@ -4412,25 +4419,25 @@ return nullptr;
    // }
 
 
-   void acme_system_layer::post_application_start()
-   {
+   //void acme_system_layer::post_application_start()
+   //{
 
 
-   }
+   //}
 
 
-   void acme_system_layer::defer_post_application_start_file_open_request()
-   {
+   //void acme_system_layer::defer_post_application_start_file_open_request()
+   //{
 
 
-   }
+   //}
 
 
-   void acme_system_layer::post_application_started()
-   {
+   //void acme_system_layer::post_application_started()
+   //{
 
 
-   }
+   //}
 
 
    void acme_system_layer::canonical_system_main()

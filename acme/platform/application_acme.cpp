@@ -19,6 +19,27 @@ namespace platform
    }
 
 
+   void acme_application_layer::prepare_application()
+   {
+
+
+   }
+
+
+   void acme_application_layer::on_prepare_application()
+   {
+
+
+   }
+      
+   
+   void acme_application_layer::on_after_prepare_application()
+   {
+
+
+   }
+
+
    //void acme_application_layer::initialize_application(::platform::platform * pplatform){}
 
    void acme_application_layer::initialize_application()
@@ -359,6 +380,13 @@ void acme_application_layer::start_application()
 
    void acme_application_layer::process_term()
    {
+   }
+
+
+   void acme_application_layer::process_command_line_options()
+   {
+
+
    }
 
 

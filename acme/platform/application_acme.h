@@ -95,6 +95,11 @@ namespace platform
       virtual ::release_time_for_project release_time();
 
 
+
+      virtual void prepare_application();
+      virtual void on_prepare_application();
+      virtual void on_after_prepare_application();
+
       //virtual void initialize_application(::platform::platform * pplatform);
 
       virtual void initialize_application();
@@ -258,6 +263,13 @@ namespace platform
 
       virtual void process_init();
       virtual void process_term();
+
+
+      /// command line options may include file open requests
+      /// so here either files maybe requested to be opened by the
+      /// application or otherwise, the application will be requested
+      /// to do a default start.
+      virtual void process_command_line_options();
 
       //virtual void pre_run();
       //virtual void application_pre_run();

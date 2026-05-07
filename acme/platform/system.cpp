@@ -507,6 +507,39 @@ namespace platform
    }
 
 
+   void system::prepare_application()
+   {
+
+      if (!is_task_set2())
+      {
+         
+         branch_synchronously();
+
+      }
+
+      auto psession = session();
+
+      if (psession == nullptr)
+      {
+
+         return;
+
+      }
+
+      auto papplication = psession->get_application(
+         m_papplication->m_strAppId, true, nullptr);
+
+      if (!papplication)
+      {
+
+         throw ::exception(error_failed, "failed to get application to be prepared");
+
+      }
+
+      papplication->prepare_application();
+
+   }
+
 
    ::task_message_queue* system::task_message_queue()
    {
@@ -635,8 +668,6 @@ namespace platform
       //____creatable(task);
 
       //m_bPostedInitialRequest = false;
-
-      m_bPostedCommandLineFileOpen = false;
 
       //m_bOnInitializeWindowObject = false;
 
@@ -2156,123 +2187,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   ::request * system::application_start_file_open_request()
-   {
-
-      if (m_bApplicationStartFileOpenRequest)
-      {
-
-         return m_prequestApplicationStartFileOpen;
-
-      }
-
-      m_bApplicationStartFileOpenRequest = true;
-
-      auto strCommandLineSystemNative = this->m_strCommandLineSystemNative;
-
-      strCommandLineSystemNative.trim();
-
-      ::payload payloadFile;
-
-      ::string strAppId = application()->m_strAppId;
-
-      ::string strApp;
-
-      ::property_set setRequest;
-
-      if (strCommandLineSystemNative.has_character())
-      {
-
-         information() << "system::defer_post_initial_request ***strCommandLineSystemNative*** : ***" << strCommandLineSystemNative << "***";
-
-         setRequest._008ParseCommandFork(strCommandLineSystemNative, payloadFile, strApp);
-      }
-      else if (this->m_argc > 0 && this->m_args)
-      {
-
-         strApp = this->m_args[0];
-
-         ::string_array_base straFiles;
-
-         for (int iArgument = 1; iArgument < this->m_argc;)
-         {
-
-            auto iArgumentBefore = iArgument;
-
-            if (node()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
-                iArgument > iArgumentBefore)
-            {
-
-               continue;
-            }
-
-            if (application()->defer_consume_main_arguments(this->m_argc, this->m_args, iArgument) &&
-                iArgument > iArgumentBefore)
-            {
-
-               continue;
-            }
-
-            ::string strArgument = this->m_args[iArgument];
-
-            if (strArgument.begins("-"))
-            {
-
-               setRequest._008AddArgument(strArgument);
-            }
-            else
-            {
-
-               straFiles.add(strArgument);
-            }
-
-            iArgument++;
-         }
-
-         if (straFiles.has_elements())
-         {
-
-            if (straFiles.size() == 1)
-            {
-
-               payloadFile = straFiles[0];
-            }
-            else
-            {
-
-               payloadFile.string_array_reference() = straFiles;
-            }
-         }
-      }
-
-      if (!payloadFile.is_empty())
-      {
-
-         auto prequest = create_newø<::request>();
-
-         prequest->m_ecommand = e_command_file_open;
-
-         prequest->m_strAppId = strAppId;
-
-         prequest->property_set().merge(setRequest);
-
-         prequest->m_payloadFile = payloadFile;
-
-         payload("command_line_arg0") = strApp;
-
-         application()->property_set().merge(prequest->property_set());
-
-         prequest->m_bPreferSync = true;
-
-         //call_request(prequest);
-
-         m_prequestApplicationStartFileOpen = prequest;
-
-      }
-
-      return m_prequestApplicationStartFileOpen;
-
-   }
+   
 
 
    ::nano::nano* system::nano()
@@ -3139,21 +3054,21 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 
 
 
-   void system::post_application_start()
-   {
+   //void system::post_application_start()
+   //{
 
-      auto prequest = create_newø<::request>();
+   //   auto prequest = create_newø<::request>();
 
-      prequest->m_ecommand = e_command_application_start;
+   //   prequest->m_ecommand = e_command_application_start;
 
-      ::string strAppId = m_papplication->m_strAppId;
+   //   ::string strAppId = m_papplication->m_strAppId;
 
-      prequest->m_strAppId = strAppId;
-      //prequest->m_bPreferSync = true;
+   //   prequest->m_strAppId = strAppId;
+   //   //prequest->m_bPreferSync = true;
 
-      post_request(prequest);
+   //   post_request(prequest);
 
-   }
+   //}
 
 
    //void system::defer_post_initial_request()
@@ -3278,148 +3193,148 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    //}
 
 
-   void system::defer_post_application_start_file_open_request()
-   {
+   //void system::defer_post_application_start_file_open_request()
+   //{
 
-      if (!m_bPostedCommandLineFileOpen)
-      {
+   //   if (!m_bPostedCommandLineFileOpen)
+   //   {
 
-         m_bPostedCommandLineFileOpen = true;
+   //      m_bPostedCommandLineFileOpen = true;
 
-         auto prequest = m_prequestApplicationStartFileOpen;
+   //      auto prequest = m_prequestApplicationStartFileOpen;
 
-         //auto prequest = create_newø<::request>();
+   //      //auto prequest = create_newø<::request>();
 
-         //auto strCommandLine = this->command_line();
+   //      //auto strCommandLine = this->command_line();
 
-         //strCommandLine.trim();
+   //      //strCommandLine.trim();
 
-         //prequest->m_strAppId = application()->m_strAppId;
+   //      //prequest->m_strAppId = application()->m_strAppId;
 
-         //::string strApp;
+   //      //::string strApp;
 
-         //if (strCommandLine.has_character())
-         //{
+   //      //if (strCommandLine.has_character())
+   //      //{
 
-         //   information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
+   //      //   information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
 
-         //   prequest->m_strCommandLine = strCommandLine;
+   //      //   prequest->m_strCommandLine = strCommandLine;
 
-         //   prequest->property_set()._008ParseCommandFork(
-         //      strCommandLine,
-         //      prequest->m_payloadFile,
-         //      strApp);
+   //      //   prequest->property_set()._008ParseCommandFork(
+   //      //      strCommandLine,
+   //      //      prequest->m_payloadFile,
+   //      //      strApp);
 
-         //}
-         //else
-         //{
+   //      //}
+   //      //else
+   //      //{
 
-         //   strApp = this->m_args[0];
+   //      //   strApp = this->m_args[0];
 
-         //   ::string_array straFiles;
+   //      //   ::string_array straFiles;
 
-         //   for (int iArgument = 1; iArgument < this->m_argc;)
-         //   {
+   //      //   for (int iArgument = 1; iArgument < this->m_argc;)
+   //      //   {
 
-         //      auto iArgumentBefore = iArgument;
+   //      //      auto iArgumentBefore = iArgument;
 
-         //      if (node()->defer_consume_main_arguments(
-         //         this->m_argc,
-         //         this->m_args,
-         //         iArgument)
-         //         && iArgument > iArgumentBefore)
-         //      {
+   //      //      if (node()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
 
-         //         continue;
+   //      //         continue;
 
-         //      }
+   //      //      }
 
-         //      if (application()->defer_consume_main_arguments(
-         //         this->m_argc,
-         //         this->m_args,
-         //         iArgument)
-         //         && iArgument > iArgumentBefore)
-         //      {
+   //      //      if (application()->defer_consume_main_arguments(
+   //      //         this->m_argc,
+   //      //         this->m_args,
+   //      //         iArgument)
+   //      //         && iArgument > iArgumentBefore)
+   //      //      {
 
-         //         continue;
+   //      //         continue;
 
-         //      }
+   //      //      }
 
-         //      ::string strArgument = this->m_args[iArgument];
+   //      //      ::string strArgument = this->m_args[iArgument];
 
-         //      if (strArgument.begins("-"))
-         //      {
+   //      //      if (strArgument.begins("-"))
+   //      //      {
 
-         //         prequest->property_set()._008AddArgument(strArgument);
+   //      //         prequest->property_set()._008AddArgument(strArgument);
 
-         //      }
-         //      else
-         //      {
+   //      //      }
+   //      //      else
+   //      //      {
 
-         //         straFiles.add(strArgument);
+   //      //         straFiles.add(strArgument);
 
-         //      }
+   //      //      }
 
-         //      iArgument++;
+   //      //      iArgument++;
 
-         //   }
+   //      //   }
 
-         //   if (straFiles.has_elements())
-         //   {
+   //      //   if (straFiles.has_elements())
+   //      //   {
 
-         //      if (straFiles.size() == 1)
-         //      {
+   //      //      if (straFiles.size() == 1)
+   //      //      {
 
-         //         prequest->m_payloadFile = straFiles[0];
+   //      //         prequest->m_payloadFile = straFiles[0];
 
-         //      }
-         //      else
-         //      {
+   //      //      }
+   //      //      else
+   //      //      {
 
-         //         prequest->m_payloadFile.string_array_reference() = straFiles;
+   //      //         prequest->m_payloadFile.string_array_reference() = straFiles;
 
-         //      }
+   //      //      }
 
-         //   }
+   //      //   }
 
-         //}
+   //      //}
 
-         if (prequest)
-         {
+   //      if (prequest)
+   //      {
 
-            if (!prequest->m_payloadFile.is_empty())
-            {
+   //         if (!prequest->m_payloadFile.is_empty())
+   //         {
 
-               prequest->m_ecommand = e_command_file_open;
+   //            prequest->m_ecommand = e_command_file_open;
 
-               //payload("command_line_arg0") = strApp;
+   //            //payload("command_line_arg0") = strApp;
 
-               application()->property_set().merge(prequest->property_set());
+   //            application()->property_set().merge(prequest->property_set());
 
-               /// prequest->m_bPreferSync = true;
+   //            /// prequest->m_bPreferSync = true;
 
-               post_request(prequest);
-            }
+   //            post_request(prequest);
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void system::post_application_started()
-   {
+   //void system::post_application_started()
+   //{
 
-      auto prequest = create_newø<::request>();
-      
-      prequest->m_ecommand = e_command_application_started;
-      prequest->m_strAppId = m_papplication->m_strAppId;
-      //prequest->m_bPreferSync = true;
+   //   auto prequest = create_newø<::request>();
+   //   
+   //   prequest->m_ecommand = e_command_application_started;
+   //   prequest->m_strAppId = m_papplication->m_strAppId;
+   //   //prequest->m_bPreferSync = true;
 
-      post_request(prequest);
+   //   post_request(prequest);
 
-   }
+   //}
 
 
    void system::canonical_system_main()

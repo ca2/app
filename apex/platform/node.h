@@ -122,7 +122,7 @@ namespace apex
       virtual void get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory) override;
 
 
-      virtual void on_start_application(::apex::application * papplication) override;
+      //virtual void on_start_application(::apex::application * papplication) override;
 
 
       //DECLARE_MESSAGE_HANDLER(on_message_clear_application_data);

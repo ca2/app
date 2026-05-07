@@ -930,7 +930,8 @@ namespace apex
    //}
 
 
-   void application::on_application_system_start()
+   //void application::on_application_system_start()
+   void application::on_prepare_application()
    {
 
       //      if (m_bInterprocessCommunication)
@@ -945,7 +946,9 @@ namespace apex
       //
       //      }
 
-      system()->application_start_file_open_request();
+      //system()->application_start_file_open_request();
+
+      application_start_file_open_request();
 
       information() << "apex::application::init_application .1";
 
@@ -3884,7 +3887,7 @@ namespace apex
             try
             {
 
-               auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
+               auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
                
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global,
                                               "");
@@ -3914,7 +3917,7 @@ namespace apex
             try
             {
 
-               auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
+               auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
 
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_global_id, get_global_mutex_id());
 
@@ -3940,7 +3943,7 @@ namespace apex
             
             information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this ___new instance.";
 
-            auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
+            auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
             
             on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
             
@@ -3964,7 +3967,7 @@ namespace apex
                // Should in some way activate the other instance
                information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this ___new instance.";
 
-               auto prequest = ::transfer(::system()->m_prequestApplicationStartFileOpen);
+               auto prequest = ::transfer(m_prequestApplicationStartFileOpen);
 
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
@@ -5609,7 +5612,8 @@ namespace apex
    //}
 
 
-   bool application::on_start_application()
+   //bool application::on_start_application()
+   void application::on_after_prepare_application()
    {
 
       string strAppId = m_strAppId;
@@ -5636,7 +5640,7 @@ namespace apex
 
       system()->m_pnode->set_last_run_application_path(strAppId);
 
-      node()->on_start_application(this);
+      //node()->on_start_application(this);
 
 //      if (!os_on_start_application())
 //      {
@@ -5676,7 +5680,7 @@ namespace apex
 
       }
 
-      return true;
+      //return true;
 
    }
 

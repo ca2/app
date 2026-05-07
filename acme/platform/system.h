@@ -143,6 +143,8 @@ namespace platform
 
 #endif
 
+      
+      void prepare_application() override;
 
       virtual void create_task_message_queue();
       virtual void destroy_task_message_queue();
@@ -373,7 +375,7 @@ namespace platform
       virtual void init_system() override;
       virtual void term_system() override;
 
-      ::request *application_start_file_open_request() override;
+      //::request *application_start_file_open_request() override;
        //virtual void on_start_system() override;
 
 
@@ -386,9 +388,8 @@ namespace platform
 
       //void post_application_start() override;
 
-
-
       //void defer_post_application_start_file_open_request() override;
+
       //void post_application_started() override;
 
 

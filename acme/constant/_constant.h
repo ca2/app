@@ -1048,6 +1048,7 @@ enum enum_command
    //it should not be a command here (used in a request).
    //e_command_application_start = 3,
    //e_command_application_started,
+   e_command_default_start,
    e_command_file_new,
    e_command_file_open,
    e_command_file_print,

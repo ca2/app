@@ -149,9 +149,9 @@ namespace platform
    }
 
 
-   void apex_node_layer::on_start_application(::apex::application* papplication)
-   {
-   }
+   //void apex_node_layer::on_start_application(::apex::application* papplication)
+   //{
+   //}
 
 
    //DECLARE_MESSAGE_HANDLER(on_message_clear_application_data){}

@@ -223,6 +223,12 @@ namespace platform
 
       void* m_pnativeapp;
 
+
+      bool m_bPostedCommandLineFileOpen;
+      bool m_bApplicationStartFileOpenRequest = false;
+      ::pointer<::request> m_prequestApplicationStartFileOpen;
+
+
       ::string m_strNetworkingApplicationHostname;
       //class application_impl *                     m_pappimpl;
 
@@ -363,6 +369,9 @@ namespace platform
 
 
       ::pointer<::aqua::game>                      m_paquagame;
+
+
+
       //::pointer<::networking::application>         m_p_networkingapplication;
 
 
@@ -576,7 +585,9 @@ namespace platform
       virtual void on_error_icloud_not_available(::particle* pparticle = nullptr, long long hi = 0, void* p = nullptr) override;
 
 
-      virtual void on_application_system_start();
+      virtual void prepare_application() override;
+      virtual void on_prepare_application() override;
+      virtual void on_after_prepare_application() override;
 
       //virtual void application_main(::platform::system * psystem);
 
@@ -688,6 +699,10 @@ namespace platform
 
       void init_task() override;
       void term_task() override;
+
+
+      virtual ::request * application_start_file_open_request();
+      void process_command_line_options() override;
 
 
       virtual void user_confirm_close_application();

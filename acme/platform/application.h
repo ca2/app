@@ -806,6 +806,10 @@ namespace platform
       virtual void set_application_file_setting_by_operating_system(const ::scoped_string &scopedstrFileName,
                                                 const ::scoped_string &scopedstr);
 
+      virtual ::string get_http_user_agent();
+      virtual void get_http_user_agent(::property_set & set);
+
+
    };
 
 

@@ -1514,39 +1514,39 @@ namespace coding
    }
 
 
-   ::string application::get_http_user_agent()
-   {
-
-      ::string strUserAgent;
-
-#if defined(WINDOWS)
-      strUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0";
-#elif defined(MACOS)
-      strUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15.7; rv:140.0) Gecko/20100101 Firefox/140.0.";
-#elif defined(ANDROID)
-      strUserAgent = "Mozilla/5.0 (Android 16; Mobile; rv:150.0) Gecko/150.0 Firefox/150.0";
-#else
-      strUserAgent= "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0";
-#endif
-
-      return strUserAgent;
-
-   }
-
-
-   void application::get_http_user_agent(::property_set & set)
-   {
-
-      ::string strUserAgent;
-
-      strUserAgent = get_http_user_agent();
-
-      set["in_headers"]["user-agent"] = strUserAgent;
-
-   }
-
-
-
+//    ::string application::get_http_user_agent()
+//    {
+//
+//       ::string strUserAgent;
+//
+// #if defined(WINDOWS)
+//       strUserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0";
+// #elif defined(MACOS)
+//       strUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15.7; rv:140.0) Gecko/20100101 Firefox/140.0.";
+// #elif defined(ANDROID)
+//       strUserAgent = "Mozilla/5.0 (Android 16; Mobile; rv:150.0) Gecko/150.0 Firefox/150.0";
+// #else
+//       strUserAgent= "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0";
+// #endif
+//
+//       return strUserAgent;
+//
+//    }
+//
+//
+//    void application::get_http_user_agent(::property_set & set)
+//    {
+//
+//       ::string strUserAgent;
+//
+//       strUserAgent = get_http_user_agent();
+//
+//       set["in_headers"]["user-agent"] = strUserAgent;
+//
+//    }
+//
+//
+//
    void application::__download_visual_studio_code()
    {
 

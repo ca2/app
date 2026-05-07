@@ -403,6 +403,10 @@ namespace launch
    void application::run()
    {
 
+      print_line("Starting app/launch for \"" + m_strLaunchAppId + "\".");
+
+      print_line("Build time: " __DATE__ " " __TIME__);
+
       print_line("Calculating Download URL...");
 
       parse_app_root_and_app_name();
@@ -423,6 +427,8 @@ namespace launch
       printf_line("Checking if version exists at server... (%s)", strDownloadUrl.c_str());
 
       ::property_set setCheckUrlOkDownload;
+
+      get_http_user_agent(setCheckUrlOkDownload);
 
       if (!nano()->http()->check_url_ok(strDownloadUrl, setCheckUrlOkDownload))
       {
@@ -539,6 +545,8 @@ namespace launch
       auto pathZipName = m_pathBinaryFolder / strZipName;
 
       ::property_set set;
+
+      get_http_user_agent(set);
 
       nano()->http()->download(pathZipName,strDownloadUrl, set );
       // if (!strcasecmp(m_pszDistro, "freebsd")) {

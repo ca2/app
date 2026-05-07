@@ -112,8 +112,8 @@ class ::time      m_timeFoldersSetupDetected;
       virtual void term_application() override;
 
 
-      virtual ::string get_http_user_agent();
-      virtual void get_http_user_agent(::property_set & set);
+      //virtual ::string get_http_user_agent();
+      //virtual void get_http_user_agent(::property_set & set);
 
 
       virtual void on_request(::request * prequest) override;

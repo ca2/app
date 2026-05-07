@@ -442,6 +442,8 @@ elseif (${LINUX} OR ${__BSD__} OR ${ANDROID})
 
 
    if (${HAS_SYSTEM_UNAC})
+
+      message(STATUS "axis has_system_unac is set")
       pkg_check_modules(${PROJECT_NAME}_PKGCONFIG unac)
    endif ()
    #endif()

@@ -283,42 +283,42 @@ namespace platform
 
 
    //void application::start_application(::request* prequest)
-void application::start_application()
-   {
-
-
-      //bool application::start_application(::request * prequest)
-      //{
-   branch_synchronously();
-      
-//      if(prequest && prequest->m_bPreferSync)
-//      {
-//         
-//         branch_synchronously();
-//         
-//         request(prequest);
-//         
-//      }
-//      else
-//      {
-//         
-//         branch();
-//         
-//         if (::is_set(prequest))
-//         {
-//            
-//            post_request(prequest);
-//            
-//         }
-//         
-//      }
+// void application::start_application()
+//    {
 //
-//      //return true;
 //
-//      //   ;;;
-//      //}
-
-   }
+//       //bool application::start_application(::request * prequest)
+//       //{
+//    branch_synchronously();
+//
+// //      if(prequest && prequest->m_bPreferSync)
+// //      {
+// //
+// //         branch_synchronously();
+// //
+// //         request(prequest);
+// //
+// //      }
+// //      else
+// //      {
+// //
+// //         branch();
+// //
+// //         if (::is_set(prequest))
+// //         {
+// //
+// //            post_request(prequest);
+// //
+// //         }
+// //
+// //      }
+// //
+// //      //return true;
+// //
+// //      //   ;;;
+// //      //}
+//
+//    }
 
 
    ::application_menu * application::application_menu()

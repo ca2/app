@@ -35,8 +35,19 @@ double getKernelTime();
 // returns current processor tick number
 inline unsigned long long rdtsc() {
   unsigned int lo, hi;
-#ifdef __GNUC__   
+#ifdef __GNUC__
+
+#if defined(__aarch64__)
+
+  uint64_t val;
+  asm volatile("mrs %0, cntvct_el0" : "=r"(val));
+  return val;
+
+#else
   asm  volatile ("rdtsc\n" : "=a" (lo), "=d" (hi));
+
+#endif
+
 #elif _MSC_VER
 #ifdef _M_IX86
   __asm

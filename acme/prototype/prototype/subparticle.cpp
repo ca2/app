@@ -378,7 +378,12 @@ void subparticle::destroy_os_data()
 void subparticle::delete_this()
 {
 
-   delete this;
+   if (has_flag(e_flag_heap_allocated))
+   {
+
+      delete this;
+
+   }
 
 }
 

@@ -8,7 +8,8 @@
 #include "acme/user/user/interaction.h"
 #include "acme/windowing/window.h"
 #include "acme/_operating_system.h"
-
+#include "acme/operating_system/windows/windows.h"
+#include "acme/platform/user_interaction_sink.h"
 
 
 namespace windows
@@ -179,6 +180,33 @@ HWND get_main_hwnd()
 
 
 }
+
+
+
+
+CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
+   const ::user_interaction_sink& userinteractionsink,
+   const ::scoped_string& scopedstrMessage,
+   const ::scoped_string& scopedstrCaption,
+   const ::user::e_message_box& emessagebox)
+{
+
+   unsigned int uType = 0;
+   
+   uType = ::windows::message_box_to_windows_message_box(emessagebox);
+
+   auto operatingsystemwindow = userinteractionsink.best_effort_operating_system_window();
+
+   auto hwnd = ::as_HWND(operatingsystemwindow);
+
+   auto iResult = ::MessageBox(hwnd, ::wstring(scopedstrMessage), ::wstring(scopedstrCaption), uType);
+
+   auto edialogresult = ::windows::windows_message_box_result_to_dialog_result(iResult);
+
+   return edialogresult;
+
+}
+
 
 
 

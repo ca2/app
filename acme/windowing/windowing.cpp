@@ -15,16 +15,17 @@
 #include "window.h"
 #include "windowing.h"
 //#include "windowing_gtk4/windowing.h"
-
 #include "acme/constant/id.h"
+#include "acme/constant/windowing2.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
+#include "acme/handler/request.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/node.h"
+#include "acme/platform/application.h"
 #include "acme/platform/department.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/constant/windowing2.h"
 
 
 namespace acme
@@ -41,6 +42,7 @@ namespace acme
          m_bKeepRunningPostedProcedures = true;
          m_ewindowing = ::windowing::e_windowing_none;
          m_ewindowingbias = ::windowing::e_bias_unknown;
+         m_bApplicationActivated = false;
 
       }
 
@@ -513,6 +515,27 @@ namespace acme
       }
 
 
+      void windowing::hook_operating_ambient_theme_change_callbacks()
+      {
+
+
+      }
+
+
+      void windowing::on_hold_operating_ambient_application()
+      {
+
+
+      }
+
+
+      void windowing::on_unhold_operating_ambient_application()
+      {
+
+
+      }
+
+
       void windowing::on_activate()
       {
 
@@ -574,6 +597,34 @@ namespace acme
          //    //   system()->defer_post_application_start_file_open_request();
          //    //  system()->post_application_started();
          // }
+
+         if (!m_bIsOperatingAmbientApplicationHeld)
+         {
+
+            on_hold_operating_ambient_application();
+
+            m_bIsOperatingAmbientApplicationHeld = true;
+
+            //g_application_hold(G_APPLICATION(m_pgtkapplication));
+
+         }
+
+         if (!m_bApplicationActivated)
+         {
+
+            m_bApplicationActivated = true;
+
+            hook_operating_ambient_theme_change_callbacks();
+
+            fetch_dark_mode();
+
+            auto prequestDefaultStart = create_newø<::request>();
+
+            prequestDefaultStart->m_ecommand = e_command_default_start;
+
+            m_papplication->post_request(prequestDefaultStart);
+
+         }
 
       }
 
@@ -1020,6 +1071,33 @@ namespace acme
       {
 
          return (float)(fPoints * (get_default_screen_dpi() / 72.0));
+
+      }
+
+
+      void windowing::on_application_activate()
+      {
+
+         ::information() << "::acme::windowing::windowing::on_application_activate";
+
+         if (m_callbackOnApplicationActivate)
+         {
+
+            m_callbackOnApplicationActivate();
+
+            return;
+
+         }
+
+         //system()->defer_post_initial_request();
+
+         //system()->post_aaa_application_start();
+         //system()->defer_post_aaa_application_start_file_open_request();
+         //system()->post_aaa_application_started();
+
+         //windowing_application_on_start();
+
+         on_activate();
 
       }
 

@@ -50,6 +50,14 @@ namespace acme
 
          ::windowing::enum_bias                             m_ewindowingbias;
 
+
+         ::procedure                                        m_callbackOnApplicationActivate;
+
+         bool                                               m_bApplicationActivated;
+         bool                                               m_bIsOperatingAmbientApplicationHeld;
+
+
+
          windowing();
          ~windowing() override;
 
@@ -248,6 +256,17 @@ namespace acme
          //virtual string get_wallpaper(::collection::index iScreen, ::acme::windowing::display * pwindowingdisplay);
          virtual double get_default_screen_dpi();
          virtual float default_screen_points_to_pixels(float fPoints);
+
+
+
+         virtual void hook_operating_ambient_theme_change_callbacks();
+
+
+         virtual void on_hold_operating_ambient_application();
+         virtual void on_unhold_operating_ambient_application();
+
+
+         virtual void on_application_activate();
 
 
       };

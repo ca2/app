@@ -279,6 +279,131 @@ bool fedora_is_package_installed(const ::scoped_string & scopedstrPackageName)
 }
 
 
+//
+// #include <cstdlib>
+// #include <cstdio>
+// #include <string>
+//
+// enum MsgBoxResult {
+//    e_dialog_result_ok,
+//    MSGBOX_CANCEL,
+//    e_dialog_result_yes,
+//    e_dialog_result_no,
+//    MSGBOX_ERROR
+// };
+
+CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
+   const ::user_interaction_sink& userinteractionsink,
+   const ::scoped_string& scopedstrMessage,
+   const ::scoped_string& scopedstrCaption,
+   const ::user::e_message_box& emessagebox)
+{
+
+   ::string strCommand;
+
+   ::string strTitle(scopedstrCaption);
+
+   ::string strMessage(scopedstrMessage);
+
+    int ret;
+
+    // -------------------------
+    // ZENITY
+    // -------------------------
+    if ((emessagebox & ::user::e_message_box_button_mask) == ::user::e_message_box_yes_no)
+    {
+        strCommand =
+            "zenity --question "
+            "--strTitle=\"" + strTitle +
+            "\" --text=\"" + strMessage + "\"";
+
+        ret = system(strCommand.c_str());
+
+        if (WIFEXITED(ret))
+        {
+            int code = WEXITSTATUS(ret);
+
+            if (code == 0)
+                return e_dialog_result_yes;
+
+            if (code == 1)
+                return e_dialog_result_no;
+        }
+    }
+   else //if ((emessagebox & ::user::e_message_box_button_mask) == ::user::e_message_box_ok)
+   {
+      strCommand =
+          "zenity --info "
+          "--title=\"" + strTitle +
+          "\" --text=\"" + strMessage + "\"";
+
+      ret = system(strCommand.c_str());
+
+      if (WIFEXITED(ret) && WEXITSTATUS(ret) == 0)
+         return e_dialog_result_ok;
+   }
+
+    // -------------------------
+    // KDIALOG
+    // -------------------------
+   if ((emessagebox & ::user::e_message_box_button_mask) == ::user::e_message_box_yes_no)
+    {
+        strCommand =
+            "kdialog --yesno \"" + strMessage +
+            "\" --strTitle \"" + strTitle + "\"";
+
+        ret = system(strCommand.c_str());
+
+        if (WIFEXITED(ret))
+        {
+            int code = WEXITSTATUS(ret);
+
+            if (code == 0)
+                return e_dialog_result_yes;
+
+            if (code == 1)
+                return e_dialog_result_no;
+        }
+    }
+   else //if (buttons == MSGBOX_BUTTON_OK)
+   {
+      strCommand =
+          "kdialog --msgbox \"" + strMessage +
+          "\" --strTitle \"" + strTitle + "\"";
+
+      ret = system(strCommand.c_str());
+
+      if (WIFEXITED(ret) && WEXITSTATUS(ret) == 0)
+         return e_dialog_result_ok;
+   }
+
+    // -------------------------
+    // TERMINAL FALLBACK
+    // -------------------------
+    printf("\n=== %s ===\n%s\n",
+           strTitle.c_str(),
+           strMessage.c_str());
+
+   if ((emessagebox & ::user::e_message_box_button_mask) == ::user::e_message_box_yes_no)
+    {
+        printf("[y/n]: ");
+
+        char c;
+        scanf(" %c", &c);
+
+        return (c == 'y' || c == 'Y')
+            ? e_dialog_result_yes
+            : e_dialog_result_no;
+    }
+   else  //if (buttons == MSGBOX_BUTTON_OK)
+   {
+      printf("[Press ENTER to continue]");
+      getchar();
+      return e_dialog_result_ok;
+   }
+}
+
+
 
 
 

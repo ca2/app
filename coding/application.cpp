@@ -31,6 +31,7 @@
 //#include "apex/filesystem/fs/folder_sync.h"
 //#include "berg/user/user/single_document_template.h"
 //#include "berg/user/simple/tab_document.h"
+#include "acme/operating_system/cpu_features.h"
 #include "dropbox/_.h"
 #include "dropbox/dropbox.h"
 
@@ -1496,16 +1497,42 @@ namespace coding
 
       auto psummary = node()->operating_system_summary();
 
+      ::string strArch = ::operating_system::machine_architecture();
+
       if (psummary->m_strSystemFamily.case_insensitive_contains("debian"))
       {
 
-         pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
+         if (strArch == "x86_64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64";
+         }
+         else if (strArch == "aarch64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-arm64";
+         }
+         else
+         {
+
+
+         }
 
       }
       else if (psummary->m_strSystem == "fedora" || psummary->m_strSystem == "opensuse")
       {
 
-         pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64";
+         if (strArch == "x86_64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64";
+         }
+         else if (strArch == "aarch64")
+         {
+            pathUrl = "https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-arm64";
+         }
+         else
+         {
+
+
+         }
 
       }
 

@@ -30,6 +30,7 @@
 #include "acme/nano/graphics/icon.h"
 #include "acme/windowing/windowing.h"
 #include "acme/constant/id.h"
+#include "operating_system/cpu_features.h"
 #include "user/simple/dialog_box_line.h"
 
 #ifdef WINDOWS_DESKTOP
@@ -3097,7 +3098,10 @@ namespace platform
 #elif defined(ANDROID)
       strUserAgent = "Mozilla/5.0 (Android 16; Mobile; rv:150.0) Gecko/150.0 Firefox/150.0";
 #else
-      strUserAgent= "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0";
+
+      auto strArch = ::operating_system::machine_architecture();
+
+      strUserAgent= "Mozilla/5.0 (X11; Linux "+strArch+"; rv:140.0) Gecko/20100101 Firefox/140.0";
 #endif
 
       return strUserAgent;

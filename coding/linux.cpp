@@ -9,6 +9,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/archive/archive.h"
+#include "acme/operating_system/cpu_features.h"
 #include "acme/platform/http.h"
 #include "acme/platform/node.h"
 
@@ -119,7 +120,22 @@ namespace coding
 
       set.parse_network_payload(strNetworkPayload);
 
-      ::file::path pathUrl = set["CL"].at(0)["downloads"]["linux"]["link"];
+      ::string strArch = ::operating_system::machine_architecture();
+
+      ::file::path pathUrl;
+
+      if (strArch == "aarch64")
+      {
+
+         pathUrl = set["CL"].at(0)["downloads"]["linuxARM64"]["link"];
+
+      }
+      else
+      {
+
+         pathUrl = set["CL"].at(0)["downloads"]["linux"]["link"];
+
+      }
 
       print_line("JetBrains CLion download url : " + pathUrl);
 

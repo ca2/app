@@ -65,6 +65,20 @@ bool debian_is_package_installed(const ::scoped_string & scopedstrPackageName);
 ::string debian_install_package_file_command_line(const ::file::path & pathPackageFile);
 ::string_array_base debian_run_operating_system_package_installation_update_command_line_array();
 
+
+bool fedora_is_package_installed(const ::scoped_string & scopedstrPackageName);
+::string_array_base fedora_not_installed_packages(const ::string_array_base & straPackageNames);
+::string fedora_install_packages_command_line(const ::string_array_base & straPackageNames);
+::string fedora_install_package_file_command_line(const ::file::path & pathPackageFile);
+::string_array_base fedora_run_operating_system_package_installation_update_command_line_array();
+
+
+bool opensuse_is_package_installed(const ::scoped_string & scopedstrPackageName);
+::string_array_base opensuse_not_installed_packages(const ::string_array_base & straPackageNames);
+::string opensuse_install_packages_command_line(const ::string_array_base & straPackageNames);
+::string opensuse_install_package_file_command_line(const ::file::path & pathPackageFile);
+::string_array_base opensuse_run_operating_system_package_installation_update_command_line_array();
+
 #endif
 
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
@@ -4614,6 +4628,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return debian_is_package_installed(scopedstrPackageName);
 
       }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return fedora_is_package_installed(scopedstrPackageName);
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return opensuse_is_package_installed(scopedstrPackageName);
+
+      }
 
 #endif
 
@@ -4635,6 +4661,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       {
 
          return ::transfer(debian_not_installed_packages(straPackageNames));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return ::transfer(fedora_not_installed_packages(straPackageNames));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return ::transfer(opensuse_not_installed_packages(straPackageNames));
 
       }
 
@@ -4660,6 +4698,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          return ::transfer(debian_install_packages_command_line(straPackageNames));
 
       }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return ::transfer(fedora_install_packages_command_line(straPackageNames));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return ::transfer(opensuse_install_packages_command_line(straPackageNames));
+
+      }
 
 #endif
 
@@ -4681,6 +4731,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       {
 
          return ::transfer(debian_install_package_file_command_line(pathPackageFile));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         return ::transfer(fedora_install_package_file_command_line(pathPackageFile));
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         return ::transfer(opensuse_install_package_file_command_line(pathPackageFile));
 
       }
 
@@ -4756,6 +4818,18 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
       {
 
          straCommandLine = debian_run_operating_system_package_installation_update_command_line_array();
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("fedora"))
+      {
+
+         straCommandLine = fedora_run_operating_system_package_installation_update_command_line_array();
+
+      }
+      else if (strSystemFamily.case_insensitive_equals("opensuse"))
+      {
+
+         straCommandLine = opensuse_run_operating_system_package_installation_update_command_line_array();
 
       }
 

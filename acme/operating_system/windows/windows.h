@@ -12,6 +12,15 @@ namespace windows
 
 
 
+   CLASS_DECL_ACME int message_box_to_windows_message_box(::user::enum_message_box emessagebox);
+   CLASS_DECL_ACME int message_box_to_windows_message_box_type(::user::enum_message_box emessagebox);
+   CLASS_DECL_ACME int message_box_to_windows_message_box_icon(::user::enum_message_box emessagebox);
+   CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(::user::enum_message_box emessagebox);
+ 
+
+   CLASS_DECL_ACME::enum_dialog_result windows_message_box_result_to_dialog_result(int iResult);
+
+
 
 } // namespace windows
 

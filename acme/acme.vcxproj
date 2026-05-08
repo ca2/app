@@ -2624,6 +2624,7 @@
     <ClInclude Include="operating_system\dos_time1.h" />
     <ClInclude Include="operating_system\environment.h" />
     <ClInclude Include="operating_system\GetCPUtime.h" />
+    <ClInclude Include="operating_system\message_box.h" />
     <ClInclude Include="operating_system\networking.h" />
     <ClInclude Include="operating_system\shared_posix\time1.h" />
     <ClInclude Include="operating_system\windows\time.h" />

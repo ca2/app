@@ -4416,6 +4416,9 @@
     <ClInclude Include="accessibility\_.h">
       <Filter>Header Files\accessibility</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\message_box.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

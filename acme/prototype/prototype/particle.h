@@ -18,6 +18,9 @@
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
 #include "acme/platform/auto_pointer.h"
 
+
+class user_interaction_sink;
+
 namespace platform
 {
 
@@ -578,6 +581,7 @@ public:
 
 
    [[nodiscard]] virtual bool should_run_async() const;
+
 
 
    [[nodiscard]] virtual ::pointer < ::message_box_payload > message_box(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::user::e_message_box & emessagebox = {}, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
@@ -1520,6 +1524,14 @@ inline continue_predicate_t as_continue_predicate(const ::function < bool() > & 
    return {&::function_continue_predicate, functionContinue.m_psubparticle};
 
 }
+
+
+CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
+   const ::user_interaction_sink& userinteractionsink,
+   const ::scoped_string& scopedstrMessage,
+   const ::scoped_string& scopedstrCaption,
+   const ::user::e_message_box& emessagebox);
+
 
 
 

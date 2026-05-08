@@ -62,14 +62,24 @@ file_time::file_time(const ::posix_time & time) :
 }
 
 
-file_time::file_time(const class ::time & time)
+file_time::file_time(const class ::time& time)
 {
 
-   auto centimicroseconds = time.m_iSecond * 10'000'000 + time.m_iNanosecond / 100;
+   const std::int64_t ticks100ns =
+      static_cast<std::int64_t>(time.m_iSecond) * 10'000'000ll +
+      static_cast<std::int64_t>(time.m_iNanosecond) / 100ll;
 
-   centimicroseconds += (EPOCH_DIFFERENCE_NANOS/100);
+   const std::int64_t filetimeTicks =
+      ticks100ns + static_cast<std::int64_t>(EPOCH_DIFFERENCE_100NS);
 
-   m_uFileTime = centimicroseconds;
+   if (filetimeTicks < 0)
+   {
+
+      throw std::out_of_range("time is before FILETIME epoch");
+
+   }
+
+   m_uFileTime = static_cast<std::uint64_t>(filetimeTicks);
 
 }
 

@@ -1594,7 +1594,7 @@ CLASS_DECL_ACME void set_modified_file_time(
    // Convert Windows FILETIME (100ns since 1601)
    const unsigned long long ft = filetimeModified.get_file_time();
 
-   if (ft < file_time::EPOCH_DIFFERENCE_NANOS)
+   if (ft < file_time::EPOCH_DIFFERENCE_100NS)
    {
       // Before Unix epoch
       times[1].tv_sec  = 0;
@@ -1603,7 +1603,7 @@ CLASS_DECL_ACME void set_modified_file_time(
    else
    {
       unsigned long long unix_100ns =
-         ft - file_time::EPOCH_DIFFERENCE_NANOS;
+         ft - file_time::EPOCH_DIFFERENCE_100NS;
 
       // 100ns → seconds + nanoseconds
       times[1].tv_sec =

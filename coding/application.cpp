@@ -1594,8 +1594,28 @@ namespace coding
          install_from_operating_system_package_file(m_pathVisualStudioCode);
 
       }
+      else if (psummary->m_strSystemFamily.case_insensitive_contains("fedora"))
+      {
+
+         __download_visual_studio_code();
+
+         install_from_operating_system_package_file(m_pathVisualStudioCode);
+
+      }
+      else if (psummary->m_strSystemFamily.case_insensitive_contains("opensuse"))
+      {
+
+         __download_visual_studio_code();
+
+         install_from_operating_system_package_file(m_pathVisualStudioCode);
+
+      }
       else
       {
+
+         print_line("Installation of Visual Studio not implemented for this distro family \"" +
+            psummary->m_strSystemFamily + "\" or distro \"" + psummary->m_strSystem + "\"");
+
       }
 
    }

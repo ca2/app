@@ -1262,9 +1262,13 @@ namespace coding
    bool application::__is_jetbrains_clion_installed()
    {
 
-      bool bInstalled = node()->_is_jetbrains_clion_installed();
+      bool bInstalled1 = node()->_is_jetbrains_clion_installed();
 
-      return bInstalled;
+      auto pathClion = directory_system()->home() / "application_opt/clion";
+
+      bool bInstalled2 = directory_system()->is(pathClion);
+
+      return bInstalled1 && bInstalled2;
 
    }
 

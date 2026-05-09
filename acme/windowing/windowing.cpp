@@ -400,6 +400,8 @@ namespace acme
 
          m_pacmedisplay.defer_destroy_and_release();
 
+         m_callbackOnApplicationActivate.release();
+
          //m_windowmap.clear();
 
          ::platform::department::destroy();

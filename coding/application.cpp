@@ -879,6 +879,33 @@ namespace coding
    }
 
 
+   ::string_array application::get_install_setup_script_names()
+   {
+
+      auto psummary = node()->operating_system_summary();
+
+      if (psummary->m_strSystem == "ubuntu")
+      {
+         return {"____install_setup_for_ubuntu"};
+      }
+      else if (psummary->m_strSystem == "linuxmint")
+      {
+         return {"____install_setup_for_linuxmint"};
+      }
+      else if (psummary->m_strSystem == "debian")
+      {
+         return {"____install_setup_for_debian"};
+      }
+      else if (psummary->m_strSystem == "fedora")
+      {
+         return {"____install_setup_for_fedora"};
+      }
+
+      return {};
+
+   }
+
+
    ::string_array application::get_install_dep_script_names()
    {
 
@@ -929,11 +956,11 @@ namespace coding
        {
            if (psummary->m_strSystemBranch == "xfce")
            {
-               return {"fedora_setup", "xfedoradeps"};
+               return {"fedorag3deps"};
            }
            else if (psummary->m_strSystemBranch == "kde")
            {
-               return {"fedora_setup", "kfedoradeps"};
+               return {"fedorak6deps"};
            }
            else
            {
@@ -943,7 +970,7 @@ namespace coding
                //}
                //else
                //{
-                   return {"fedora_setup", "fedoradeps"};
+                   return {"fedorag4deps"};
                //}
            }
        }
@@ -970,6 +997,13 @@ namespace coding
 
       for (auto& deps : depsa)
       {
+
+         if (deps.begins("____"))
+         {
+
+            continue;
+
+         }
 
          ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".package_names");
 
@@ -1013,6 +1047,13 @@ namespace coding
 
       for (auto& deps : depsa)
       {
+
+         if (deps.begins("____"))
+         {
+
+            continue;
+
+         }
 
          ::file::path path = directory_system()->home() / "code/operating_system/tool/install_deps" / (deps + ".install_group_names");
 
@@ -1087,6 +1128,33 @@ namespace coding
       }
 
       return m_bAllInstallDepsInstalled;
+
+   }
+
+
+   bool application::__has_install_setup_been_run()
+   {
+
+      auto pathInstallSetupSeemsInstalled = directory_system()->home() /".config/.____install_setup";
+
+      bool bInstalled = file()->exists(pathInstallSetupSeemsInstalled);
+
+      return bInstalled;
+
+   }
+
+
+
+   void application::__install_setup()
+   {
+
+      auto depsa = get_install_setup_script_names();
+
+      defer_run_installation_scripts(depsa);
+
+      auto pathInstallSetupSeemsInstalled = directory_system()->home() /".config/.____install_setup";
+
+      file()->put_text(pathInstallSetupSeemsInstalled, "");
 
    }
 
@@ -1652,6 +1720,51 @@ namespace coding
    {
 
       auto strCommandLine = system()->install_operating_system_package_file_command_line(pathPackageFile);
+
+      ::string_array_base straCommands;
+
+      straCommands.add(strCommandLine);
+
+      straCommands.add("exit");
+
+      int iExitCode = node()->pty2(straCommands);
+
+      if (iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+
+   }
+
+
+
+   void application::defer_run_installation_scripts(const ::string_array_base & straScripts)
+   {
+
+      for (auto & strScript : straScripts)
+      {
+
+         micro_preempt("Going to run script: " + strScript);
+
+         defer_run_installation_script(strScript);
+
+      }
+
+   }
+
+
+
+   void application::defer_run_installation_script(const ::scoped_string & scopedstrScript)
+   {
+
+      auto strCommandLine =directory_system()->home() / "code/operating_system/tool/bin" / scopedstrScript;
+
+      strCommandLine.find_replace("!", "\\!");
+
+      micro_preempt("Going to run script at: " + strCommandLine);
 
       ::string_array_base straCommands;
 

@@ -162,6 +162,8 @@ class ::time      m_timeFoldersSetupDetected;
 
       virtual void install_from_operating_system_package_file(const ::file::path & pathPackageFile);
       virtual void install_from_running_command_line_as_root(const ::scoped_string & scopedstrCommandLine);
+      virtual void defer_run_installation_scripts(const ::string_array_base & straScripts);
+      virtual void defer_run_installation_script(const ::scoped_string & scopedstrScript);
       virtual void __install_browser();
       virtual void __download_google_chrome();
       virtual ::string __google_chrome_download_url();
@@ -174,10 +176,14 @@ class ::time      m_timeFoldersSetupDetected;
       virtual bool __is_git_credential_manager_installed();
       virtual bool __is_shell_patched();
          virtual bool __are_deps_installed();
+      virtual ::string_array get_install_setup_script_names();
       virtual ::string_array get_install_dep_script_names();
       virtual ::string_array get_install_dep_package_names();
       virtual ::string_array get_install_dep_install_group_names();
       virtual bool are_all_operating_system_packages_and_install_groups_installed();
+
+      virtual bool __has_install_setup_been_run();
+      virtual void __install_setup();
       virtual void __install_deps();
       virtual void __list_deps();
          virtual bool __are_folders_setup();

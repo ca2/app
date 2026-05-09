@@ -247,7 +247,7 @@ bool fedora_is_package_installed(const ::scoped_string & scopedstrPackageName)
 
    ::string strCommandLine;
 
-   strCommandLine.format("sudo dnf -y install {}", strPackages);
+   strCommandLine.format("sudo dnf -y --best --allow-erasing install {}", strPackages);
 
    return strCommandLine;
 

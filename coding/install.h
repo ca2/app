@@ -186,6 +186,10 @@ namespace coding
               //const ::file::path & pathCloudFile, const ::scoped_string & scopedstrFileExtension, int iMinimumFileSize);
 
 #endif
+#ifdef FREEBSD
+      virtual void _install_pkg();
+      virtual void install_pkg();
+#endif
 
       //void wait_dropbox_up_and_running();
 

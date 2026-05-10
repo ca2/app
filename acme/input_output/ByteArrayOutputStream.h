@@ -75,7 +75,7 @@
        * @param buffer source buffer.
        * @param len count to bytes to write.
        */
-      virtual memsize defer_write(const void *buffer, memsize len);
+      memsize defer_write(const void *buffer, memsize len) override;
 
       /**
        * Returns size of written data.

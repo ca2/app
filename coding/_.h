@@ -27,7 +27,7 @@
 #define SMART_GIT 1
 #define INSTALL_GIT_ServiceControlManager 1
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 #define JETBRAINS_CLION 1
 #else
 #define JETBRAINS_CLION 0

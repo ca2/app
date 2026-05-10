@@ -86,7 +86,7 @@
       /**
        * Flushes inner output stream.
        */
-      virtual void flush();
+      void flush() override;
 
    };
 //} // namespace subsystem

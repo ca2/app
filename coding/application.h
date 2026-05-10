@@ -209,17 +209,18 @@ class ::time      m_timeFoldersSetupDetected;
       //virtual bool _is_graphical_ide_installed();
       virtual bool __is_graphical_ide_installed();
 
-
-#ifdef LINUX
+#ifdef JETBRAINS_CLION
 
       virtual void start_install_clion();
 
       virtual void __install_jetbrains_clion();
+#ifdef LINUX
+
       virtual void __download_jetbrains_clion();
       virtual ::string __jetbrains_clion_download_url();
 
       //virtual bool is_clion_installed();
-
+#endif
 #endif
 
 

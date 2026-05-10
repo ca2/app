@@ -1286,6 +1286,8 @@ namespace coding
 
          iFilesExtracted++;
 
+         return true;
+
       };
 
       file()->unzip_to_folder(m_papp->operating_system_folder(), m_path, callback);

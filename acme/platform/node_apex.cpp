@@ -47,7 +47,7 @@ namespace platform
    //      void apex_node_layer::set_main_menu(application_menu * pmenu, ::apex::application * papp){}
 
 
-   ::file::path apex_node_layer:: get_desktop_file_path(::apex::application* papp)
+   ::file::path apex_node_layer:: get_desktop_file_path(::platform::application* papplication)
    {
 
       return {};

@@ -62,13 +62,13 @@ namespace subsystem
       virtual void initialize_process(const ::file::path &path = {}, const ::scoped_string &scopedstrArgs = {}) = 0;
       /**
        * Sets executable filename for process.
-       * @param path.
+       * @param scopedstrPath file path of the executable
        */
       virtual void setFilename(const ::scoped_string & scopedstrPath) = 0;
 
       /**
        * Sets arguments for process.
-       * @param args.
+       * @param scopedstrArgs arguments passed to new process
        */
       virtual void setArguments(const ::scoped_string & scopedstrArgs) = 0;
 
@@ -184,7 +184,7 @@ namespace subsystem
 
       /**
        * Sets executable filename for process.
-       * @param path.
+       * @param scopedstrPath file path for executable.
        */
        void setFilename(const ::scoped_string& scopedstrPath) override
        {
@@ -195,7 +195,7 @@ namespace subsystem
 
       /**
        * Sets arguments for process.
-       * @param args.
+       * @param scopedstrArgs arguments for the new process.
        */
        void setArguments(const ::scoped_string& scopedstrArgs) override
        {

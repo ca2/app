@@ -43,11 +43,11 @@
       //protected:
       ::pointer < OutputStream  > m_poutputstream;
 
+      DataOutputStream();
       /**
        * Creates new data output stream.
-       * @param outputStream real output stream.
+       * @param poutputstream real output stream.
        */
-      DataOutputStream();
       DataOutputStream(OutputStream * poutputstream);
       ~DataOutputStream() override;
 
@@ -59,8 +59,6 @@
        * @remark just delegates call to real output stream.
        */
       memsize defer_write(const void *buffer, memsize len) override;
-      virtual void write(const void *buffer, memsize len);
-
       /**
        * Writes exacly specified count of bytes to stream.
        * @param buffer source buffer.
@@ -69,6 +67,8 @@
        * @fixme really it can throw any kind of exception (depends on implementation
        * of output stream passed to costructor of DataOutputStream).
        */
+      virtual void write(const void *buffer, memsize len);
+
       ///void writeFully(const void *buffer, memsize len);
 
       void writeUInt8(unsigned char x);

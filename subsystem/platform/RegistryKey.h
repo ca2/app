@@ -136,10 +136,10 @@ namespace subsystem
       /**
        * Opens subkey or creates it if it's does not exists.
        * @param [in] key root key.
-       * @param [in] subkey subkey name (can include more than one subkey).
+       * @param [in] scopedstrSubkey subkey name (can include more than one subkey).
        * @param [out] openedKey created or opened key.
        * @param [in] createIfNotExists flag determinates to create key if it does not exists.
-       * @param [in, opt] sa security attributes.
+       * @param [in] psecurityattributes  Optional security attributes.
        * @return true if operation successfull executed, false otherwise.
        */
       virtual bool tryOpenSubKey(::platform::registry_key_interface *key, const ::scoped_string &scopedstrSubkey,

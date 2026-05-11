@@ -32,38 +32,49 @@
 namespace subsystem
 {
    /**
-    * Windows exception.
+    * Operating System exception.
     *
-    * Solves problem with generating formatted scopedstrMessage strings width describes
+    * Solves problem with generating formatted message strings width describes
     * user code-space where error occured and windows specific information about WinAPI error.
     */
    class CLASS_DECL_SUBSYSTEM SystemException : public ::subsystem::Exception
    {
    public:
+      
+      //private:
+         /**
+          * Description of error from OS.
+          */
+         ::string m_strSystemMessage;
+         /**
+          * Windows error code.
+          */
+         //int m_errcode;
+         error_code m_errorcode;
       /**
-       * Creates exception with formatted scopedstrMessage from system
+       * Creates exception with formatted message from system
        * and error code which equals to GetLastError() value.
        */
       SystemException();
       /**
-       * Creates exception with formatted scopedstrMessage from system
+       * Creates exception with formatted message from system
        * and error code.
-       * @param errcode windows error code.
+       * @param errorcode windows error code.
        */
-      SystemException(int errcode);
+      SystemException(const ::error_code & errorcode);
       /**
-       * Creates exception with user scopedstrMessage + formatted scopedstrMessage from system
+       * Creates exception with user message + formatted message from system
        * and error code set to GetLastError() value.
-       * @param userMessage user scopedstrMessage.
+       * @param scopedstrUserMessage user message.
        */
       SystemException(const ::scoped_string & scopedstrUserMessage);
       /**
-       * Creates exception with user scopedstrMessage + formatted scopedstrMessage from system
+       * Creates exception with user message + formatted message from system
        * and specified error code.
-       * @param userMessage user scopedstrMessage.
-       * @param errcode windows error code.
+       * @param scopedstrUserMessage user message.
+       * @param errorcode error code.
        */
-      SystemException(const ::scoped_string & scopedstrUserMessage, int errcode);
+      SystemException(const ::scoped_string & scopedstrUserMessage, const ::error_code & errorcode);
       /**
        * Destructor, does nothing.
        */
@@ -72,28 +83,20 @@ namespace subsystem
        * Returns error code.
        * @return windows error code associated with this exception.
        */
-      int getErrorCode() const;
+      ::error_code getErrorCode() const;
       /**
        * Returns system error description.
        * @return system error description.
        */
       ::string getSystemErrorDescription() const;
-   private:
+   //private:
       /**
-       * Creates formatted scopedstrMessage for exception.
-       * @param userMessage user description about exception reason.
-       * @param errcode windows error code.
+       * Creates formatted message for exception.
+       * @param scopedstrUserMessage user description about exception reason.
+       * @param errorcode error code.
        * @fixme document all special cases.
        */
-      void createMessage(const ::scoped_string & scopedstrUserMessage, int errcode);
-   private:
-      /**
-       * Description of error from OS.
-       */
-      ::string m_systemMessage;
-      /**
-       * Windows error code.
-       */
-      int m_errcode;
+      void createMessage(const ::scoped_string & scopedstrUserMessage, const ::error_code & errorcode);
+
    };
 }//namespace subsystem

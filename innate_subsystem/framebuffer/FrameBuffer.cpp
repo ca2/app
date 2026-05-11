@@ -175,7 +175,7 @@ namespace innate_subsystem
       } else if (m_pixelformat.bitsPerPixel == 8) {
          return overlayT<unsigned char>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
       } else {
-         _ASSERT(false);
+         ASSERT(false);
       }
       return false;
    }
@@ -534,7 +534,7 @@ namespace innate_subsystem
 
    unsigned char Framebuffer::getBitsPerPixel() const
    {
-      _ASSERT((unsigned char)m_pixelformat.bitsPerPixel == m_pixelformat.bitsPerPixel);
+      ASSERT((unsigned char)m_pixelformat.bitsPerPixel == m_pixelformat.bitsPerPixel);
       return (unsigned char)m_pixelformat.bitsPerPixel;
    }
 

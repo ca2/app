@@ -45,7 +45,7 @@ namespace subsystem
 
       /**
        * Returns string with specified id from resources.
-       * @param id identifier of string in resource file.
+       * @param u identifier of string in resource file.
        * @return requested string or "Requested string from StringTable cannot be received" if not found.
        * @remark string table hashes loaded strings in private container.
        * @remark this method must be used after ResourceLoader is initialized

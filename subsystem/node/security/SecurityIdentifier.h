@@ -102,7 +102,7 @@ public:
 
   /**
    * Converts a security identifier (SID) to a string.
-   * @param sidString string storage where result will be stored.
+   * @param str string storage where result will be stored.
    * @throws SystemException if error occurs.
    */
   virtual void toString(::string & str) =0;
@@ -190,7 +190,7 @@ public:
 
    /**
     * Converts a security identifier (SID) to a string.
-    * @param sidString string storage where result will be stored.
+    * @param str string storage where result will be stored.
     * @throws SystemException if error occurs.
     */
    void toString(::string & str) override

@@ -53,21 +53,21 @@ namespace subsystem
       /**
        * Runs application as administrator and waits until execution finished.
        * @param pathToFile path to executable.
-       * @param parameters execute parameters.
+       * @param scopedstrParameters execute parameters.
        * @throws SystemException on fail.
        */
       virtual void runAsAdmin(const ::file::path & pathToFile, const ::scoped_string & scopedstrParameters) = 0;
 
       /**
        * Opens file with default action specified in Windows.
-       * @param file target file.
-       * @param parameters parameters.
-       * @param workDirectory working directory.
+       * @param scopedstrFile target file.
+       * @param scopedstrParameters parameters.
+       * @param scopedstrWorkDirectory working directory.
        * @throws SystemException on fail.
        */
       virtual void open(const ::scoped_string & scopedstrFile,
                        const ::scoped_string & scopedstrParameters,
-                       const ::scoped_string & scopedstrworkDirectory) = 0;
+                       const ::scoped_string & scopedstrWorkDirectory) = 0;
    //private:
       /**
        * Don't allow instanizing of class.
@@ -99,7 +99,7 @@ namespace subsystem
       /**
        * Runs application as administrator and waits until execution finished.
        * @param pathToFile path to executable.
-       * @param parameters execute parameters.
+       * @param scopedstrParameters execute parameters.
        * @throws SystemException on fail.
        */
           void runAsAdmin(const ::file::path& pathToFile, const ::scoped_string& scopedstrParameters) override
@@ -111,17 +111,17 @@ namespace subsystem
 
       /**
        * Opens file with default action specified in Windows.
-       * @param file target file.
-       * @param parameters parameters.
-       * @param workDirectory working directory.
+       * @param scopedstrFile target file.
+       * @param scopedstrParameters parameters.
+       * @param scopedstrWorkDirectory working directory.
        * @throws SystemException on fail.
        */
        void open(const ::scoped_string& scopedstrFile,
           const ::scoped_string& scopedstrParameters,
-          const ::scoped_string& scopedstrworkDirectory) override
+          const ::scoped_string& scopedstrWorkDirectory) override
        {
 
-          m_pshell->open(scopedstrFile, scopedstrParameters, scopedstrworkDirectory);
+          m_pshell->open(scopedstrFile, scopedstrParameters, scopedstrWorkDirectory);
 
       }
       //private:

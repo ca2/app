@@ -349,3 +349,19 @@ namespace windows
 //
 
 
+namespace operating_system
+{
+
+
+   CLASS_DECL_ACME ::error_code last_error_code()
+   {
+   
+      return { e_error_code_type_last_error, (long long) ::GetLastError() };
+   
+   }
+
+
+} // namespace operating_system
+
+
+

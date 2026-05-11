@@ -58,14 +58,14 @@ namespace subsystem
        * getOption().
        * @param format array of CommandLineFormat structures.
        * @param formatSize count of CommandLineFormat array elements.
-       * @param commandLine command line to proccess.
+       * @param cmdArgs command line to proccess.
        * @return true on successful parsing, false otherwise.
        */
       bool parse(const CommandLineFormat *format, int formatSize, const CommandLineArguments *cmdArgs);
 
       /**
        * Check if the option was actually specified in the command line.
-       * @param key zero-terminated TCHAR string containing the command line key.
+       * @param scopedstrKey zero-terminated TCHAR string containing the command line key.
        * @param arg output value for argument of key (optional).
        * @return true if option has been found, false otherwise.
        */

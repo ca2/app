@@ -5,7 +5,7 @@
 
 
 #include "innate_subsystem/drawing/Cursor.h"
-#include "subsystem_windows/_common_header.h"
+//#include "subsystem_windows/_common_header.h"
 
 
 namespace innate_subsystem

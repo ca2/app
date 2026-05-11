@@ -816,7 +816,7 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, HWND hwnd, unsigned int message,
+   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, const ::operating_system::widnow & operatingsystemwindow, unsigned int message,
       ::wparam wparam, ::lparam lparam)
    {
 

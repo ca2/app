@@ -85,10 +85,10 @@ public:
       //SpinControl();
       //~SpinControl() ;
 
-      void setBuddy(ControlInterface *buddyControl) { m_pspincontrol->setBuddy(buddyControl); }
-      void setRange(short lower, short upper) { m_pspincontrol->setRange(lower, upper); }
-      void setRange32(int lower, int upper) { m_pspincontrol->setRange32(lower, upper); }
-      void setAccel(unsigned int nSec, unsigned int nInc) { m_pspincontrol->setAccel(nSec, nInc); }
+      void setBuddy(ControlInterface *buddyControl)  override{ m_pspincontrol->setBuddy(buddyControl); }
+      void setRange(short lower, short upper)  override{ m_pspincontrol->setRange(lower, upper); }
+      void setRange32(int lower, int upper) override { m_pspincontrol->setRange32(lower, upper); }
+      void setAccel(unsigned int nSec, unsigned int nInc)  override{ m_pspincontrol->setAccel(nSec, nInc); }
 
       //
       // Auto acceleration methods
@@ -99,11 +99,11 @@ public:
       //
 
       //void autoAccelerationHandler(LPNMUPDOWN message);
-       void autoAccelerationHandler(int & iPos, int & iDelta){ m_pspincontrol->autoAccelerationHandler(iPos, iDelta); }
-      void enableAutoAcceleration(bool enabled) { m_pspincontrol->enableAutoAcceleration(enabled); }
+       void autoAccelerationHandler(int & iPos, int & iDelta) override{ m_pspincontrol->autoAccelerationHandler(iPos, iDelta); }
+      void enableAutoAcceleration(bool enabled)  override{ m_pspincontrol->enableAutoAcceleration(enabled); }
       void setAutoAccelerationParams(const int_array & limitters,
                                      const int_array & deltas,
-                                     int maxDelta) { m_pspincontrol->setAutoAccelerationParams(limitters, deltas, maxDelta); }
+                                     int maxDelta) override { m_pspincontrol->setAutoAccelerationParams(limitters, deltas, maxDelta); }
       // protected:
       //   Control *m_buddy;
       //

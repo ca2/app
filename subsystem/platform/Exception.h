@@ -45,7 +45,7 @@ namespace subsystem
       Exception();
       /**
        * Creates exception with specified description.
-       * @param format description string in printf-like notation.
+       * @param pszFormat description string in printf-like notation.
        */
       Exception(const_char_pointer pszFormat, ...);
       /**

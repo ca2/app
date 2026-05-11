@@ -22,7 +22,7 @@ namespace innate_subsystem
       memset(m_serverKeyState, 0, sizeof(m_serverKeyState));
    }
 
-   bool keyboard_state_t::isPressed(unsigned char virtKey) { return (m_serverKeyState[virtKey] & 128) != 0; }
+   bool keyboard_state_t::isPressed(::user::enum_key ekey) { return (m_serverKeyState[ekey] & 128) != 0; }
 
    // void clearKeyState();
    int keyboard_state_t::GettingCharFromCtrlSymbol(int ch)

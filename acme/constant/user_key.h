@@ -8,15 +8,97 @@ namespace user
 {
 
 
-   enum enum_key : long long
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   enum enum_key : int
    {
 
       e_key_none,
-
-
       e_key_refer_to_text_member,
-
-
       e_key_0,
       e_key_1,
       e_key_2,
@@ -53,9 +135,7 @@ namespace user
       e_key_x,
       e_key_y,
       e_key_z,
-      e_key_semicolon,
-//      e_key_semicolon2,
-//      e_key_semicolon3,
+      e_key_semicolon, //      e_key_semicolon2,//      e_key_semicolon3,
       e_key_comma,
       e_key_dot,
       e_key_back,
@@ -170,8 +250,7 @@ namespace user
       e_key_audiostop,
       e_key_audiorewind,
       e_key_ac_home,
-      e_key_ac_refresh,
-      //e_key_again,
+      e_key_ac_refresh,   //e_key_again,
       e_key_ac_search,
       e_key_stop,
       e_key_media_select,
@@ -188,33 +267,54 @@ namespace user
       e_key_help,
       e_key_calculator,
       e_key_undo,
+      e_key_left_shift,
+      e_key_right_shift,
+      e_key_shift,
+      e_key_left_control,
+      e_key_right_control,
+      e_key_control,
+      e_key_left_alt,
+      e_key_right_alt,
+      e_key_alt,
+      e_key_left_command,
+      e_key_right_command,
+      e_key_command,
+      e_key_system_left_command,
+      e_key_system_right_command,
+      e_key_system_command,
+      e_key_left_button,
+      e_key_right_button,
+      e_key_middle_button,  //e_key_with_no_modifier_mask = 0xffffffff,
+      e_key_execute,
+      e_key_clear,
+      e_key_select,
+      e_key_snapshot,
+      e_key_separator,
+      e_key_decimal,
+      e_key_numlock,
+      e_key_hangul,
+      e_key_count,
 
-
-
-
-      e_key_with_no_modifier_mask = 0xffffffff,
-
-
-      e_key_left_shift = 1LL << 32,
-      e_key_right_shift = 1LL << 33,
-      e_key_shift = e_key_left_shift | e_key_right_shift,
-      e_key_left_control = 1LL << 34,
-      e_key_right_control = 1LL << 35,
-      e_key_control = e_key_left_control | e_key_right_control,
-      e_key_left_alt = 1LL << 36,
-      e_key_right_alt = 1LL << 37,
-      e_key_alt = e_key_left_alt | e_key_right_alt,
-      e_key_left_command = 1LL << 38,
-      e_key_right_command = 1LL << 39,
-      e_key_command = e_key_left_command | e_key_right_command,
-      e_key_system_left_command = 1LL << 40,
-      e_key_system_right_command = 1LL << 41,
-      e_key_system_command = e_key_system_left_command | e_key_system_right_command,
-
-
-      e_key_left_button = 1LL << 48,
-      e_key_right_button = 1LL << 49,
-      e_key_middle_button = 1LL << 50,
+//      e_key_left_shift = 1LL << 32,
+//      e_key_right_shift = 1LL << 33,
+//      e_key_shift = e_key_left_shift | e_key_right_shift,
+//      e_key_left_control = 1LL << 34,
+//      e_key_right_control = 1LL << 35,
+//      e_key_control = e_key_left_control | e_key_right_control,
+//      e_key_left_alt = 1LL << 36,
+//      e_key_right_alt = 1LL << 37,
+//      e_key_alt = e_key_left_alt | e_key_right_alt,
+//      e_key_left_command = 1LL << 38,
+//      e_key_right_command = 1LL << 39,
+//      e_key_command = e_key_left_command | e_key_right_command,
+//      e_key_system_left_command = 1LL << 40,
+//      e_key_system_right_command = 1LL << 41,
+//      e_key_system_command = e_key_system_left_command | e_key_system_right_command,
+//
+//
+//      e_key_left_button = 1LL << 48,
+//      e_key_right_button = 1LL << 49,
+//      e_key_middle_button = 1LL << 50,
 
    };
 

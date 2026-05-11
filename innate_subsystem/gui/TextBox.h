@@ -97,34 +97,34 @@ namespace innate_subsystem
         // Text limit
         //
 
-        virtual character_count getTextLengthLimit() { return m_ptextbox->getTextLengthLimit(); }
-        virtual void setTextLengthLimit(character_count limit) { m_ptextbox->setTextLengthLimit(limit); }
+        virtual character_count getTextLengthLimit() override { return m_ptextbox->getTextLengthLimit(); }
+        virtual void setTextLengthLimit(character_count limit) override { m_ptextbox->setTextLengthLimit(limit); }
 
         //
         // Methods for multiline textboxes
         //
 
-        virtual int getCurrentLineIndex() { return m_ptextbox->getCurrentLineIndex(); }
-        virtual int getLineCount() { return m_ptextbox->getLineCount(); }
+        virtual int getCurrentLineIndex() override { return m_ptextbox->getCurrentLineIndex(); }
+        virtual int getLineCount()  override{ return m_ptextbox->getLineCount(); }
 
         //
         // Get / set caret position
         //
 
-        virtual int getCaretPos() { return m_ptextbox->getCaretPos(); }
-        virtual void setCaretPos(int h, int v) { m_ptextbox->setCaretPos(h, v); }
+        virtual int getCaretPos()  override{ return m_ptextbox->getCaretPos(); }
+        virtual void setCaretPos(int h, int v)  override{ m_ptextbox->setCaretPos(h, v); }
 
         //
         // Text selection
         //
 
-        virtual void selectText(character_count startPos, character_count endPos) { m_ptextbox->selectText(startPos, endPos); }
+        virtual void selectText(character_count startPos, character_count endPos) override { m_ptextbox->selectText(startPos, endPos); }
 
         //
         // Tooltip methods
         //
 
-        virtual void showBalloonTip(TooltipInterface *ptooltip) { m_ptextbox->showBalloonTip(ptooltip); }
+        virtual void showBalloonTip(TooltipInterface *ptooltip)  override{ m_ptextbox->showBalloonTip(ptooltip); }
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM TextBoxAggregate :

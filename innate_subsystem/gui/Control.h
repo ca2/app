@@ -262,15 +262,15 @@ namespace innate_subsystem
       // Sets text associated with window
       //
 
-       void setText(const char *text) { m_pcontrol->setText(text); }
-       void setSignedInt(int value) { m_pcontrol->setSignedInt(value); }
-       void setUnsignedInt(unsigned int value) { m_pcontrol->setUnsignedInt(value); }
+       void setText(const char *text) override { m_pcontrol->setText(text); }
+       void setSignedInt(int value) override { m_pcontrol->setSignedInt(value); }
+       void setUnsignedInt(unsigned int value) override { m_pcontrol->setUnsignedInt(value); }
 
       //
       // Sets text vertical alignment
       //
 
-       void setTextVerticalAlignment(VerticalAlignment align) { m_pcontrol->setTextVerticalAlignment(align); }
+       void setTextVerticalAlignment(VerticalAlignment align) override { m_pcontrol->setTextVerticalAlignment(align); }
 
       // //
       // // Sets input focus to this control
@@ -294,7 +294,7 @@ namespace innate_subsystem
       // Changes visible state of this control
       //
 
-       void setVisible(bool visible) { m_pcontrol->setVisible(visible); }
+       void setVisible(bool visible) override { m_pcontrol->setVisible(visible); }
       //
       // //
       // // Checks if this control is active (not disabled)
@@ -318,7 +318,7 @@ namespace innate_subsystem
       // Returns text vertical alignment
       //
 
-       VerticalAlignment getTextVerticalAlignment() { return m_pcontrol->getTextVerticalAlignment(); }
+       VerticalAlignment getTextVerticalAlignment() override { return m_pcontrol->getTextVerticalAlignment(); }
 
       //
       // Gets HWND associated with this control

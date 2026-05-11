@@ -38,11 +38,11 @@
    class CLASS_DECL_ACME BufferedOutputStream : public OutputStream
    {
    public:
+      BufferedOutputStream();
       /**
        * Creates new buffered output stream.
-       * @param output real output stream.
+       * @param poutputstream real output stream.
        */
-      BufferedOutputStream();
       BufferedOutputStream(OutputStream *poutputstream, memsize iBufferSize = -1);
       ~BufferedOutputStream() override;
 
@@ -56,14 +56,14 @@
        * @throw ::io_exception on error.
        * @fixme really it can throw any kind of exception.
        */
-      virtual memsize defer_write(const void *buffer, memsize len);
+      memsize defer_write(const void *buffer, memsize len) override;
 
       /**
        * Writes content of inner buffer to real output stream.
        * @throws ::io_exception on error.
        * @fixme really it can throw any kind of exception.
        */
-      void flush();
+      void flush() override;
 
       //protected:
       ::pointer < DataOutputStream > m_pdataoutputstream;

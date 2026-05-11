@@ -213,7 +213,7 @@ namespace innate_subsystem
       {
          m_pdibsection->blitFromDibSection(rect, flags);
       }
-      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget, unsigned int flags)
+      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget, unsigned int flags) override
       {
          m_pdibsection->stretchFromDibSection(srcRect, rectangleTarget, flags);
       }

@@ -113,10 +113,10 @@ namespace innate_subsystem
 
       //virtual void drawItem(LPDRAWITEMSTRUCT dis);
 
-      virtual void setWindow(const ::operating_system::window & window) { m_pimagedbutton->setWindow(window); }
+      void setWindow(const ::operating_system::window & window) override { m_pimagedbutton->setWindow(window); }
 
       //virtual void setIcon(::pointer < IconInterface > &icon, const ::int_size & size);
-      virtual void setIcon(IconInterface * picon, const ::int_size & size) { m_pimagedbutton->setIcon(picon, size); }
+      void setIcon(IconInterface * picon, const ::int_size & size) override { m_pimagedbutton->setIcon(picon, size); }
 
       //private:
 

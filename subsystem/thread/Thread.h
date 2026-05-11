@@ -111,7 +111,7 @@ namespace subsystem
 
       /**
        * Suspends the execution of the current thread until the time-out interval elapses.
-       * @param millis time to sleep.
+       * @param time time to sleep.
        */
       virtual void sleep(const class ::time & time) = 0;
 
@@ -281,7 +281,7 @@ namespace subsystem
 
       /**
        * Suspends the execution of the current thread until the time-out interval elapses.
-       * @param millis time to sleep.
+       * @param time time to sleep.
        */
       void sleep(const class ::time & time) override
       {

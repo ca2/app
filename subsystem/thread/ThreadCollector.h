@@ -55,7 +55,7 @@ namespace subsystem
       virtual const memsize Size() = 0;
 
    //protected:
-      virtual void execute() = 0;
+      void execute() override = 0;
 
       // Deletes all dead threads from memory and removes them from self ::list_base.
       virtual void deleteDeadThreads() = 0;

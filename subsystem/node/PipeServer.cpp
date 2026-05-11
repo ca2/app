@@ -96,7 +96,7 @@ namespace subsystem
 
    void PipeServer::initialize_pipe_server(const ::scoped_string & scopedstrName, unsigned int bufferSize,
                        ::subsystem::SecurityAttributesInterface *secAttr,
-                       DWORD milliseconds)
+                       const class ::time & time)
 // : m_milliseconds(milliseconds),
 //   m_secAttr(secAttr),
 //   m_serverPipe(INVALID_HANDLE_VALUE),
@@ -188,7 +188,7 @@ namespace subsystem
    {
    }
 
-   void PipeServer::waitForConnect(DWORD milliseconds)
+   void PipeServer::waitForConnect(const class ::time & time)
    {
    }
 
@@ -207,7 +207,7 @@ namespace subsystem
       // m_initialized = true;
    }
 
-   bool PipeServer::checkOtherSideBinaryName(HANDLE hPipe)
+   bool PipeServer::checkOtherSideBinaryName(::subsystem::FileInterface * pfilePipe)
    {
       // if (!m_initialized)
       //    return true;

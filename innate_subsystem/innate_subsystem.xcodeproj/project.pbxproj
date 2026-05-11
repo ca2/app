@@ -1,0 +1,938 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A1902932FB20BCF00A3C985 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A19028D2FB20BBF00A3C985 /* _.cpp */; };
+		9A1902942FB20BD700A3C985 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902922FB20BBF00A3C985 /* framework.cpp */; };
+		9A1902FE2FB20C0400A3C985 /* WindowFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902F52FB20C0400A3C985 /* WindowFinder.cpp */; };
+		9A1902FF2FB20C0400A3C985 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902A12FB20C0400A3C985 /* Font.cpp */; };
+		9A1903002FB20C0400A3C985 /* TabContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902E72FB20C0400A3C985 /* TabContainer.cpp */; };
+		9A1903012FB20C0400A3C985 /* BitmapGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902992FB20C0400A3C985 /* BitmapGraphics.cpp */; };
+		9A1903022FB20C0400A3C985 /* Tooltip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902EF2FB20C0400A3C985 /* Tooltip.cpp */; };
+		9A1903032FB20C0400A3C985 /* ProgressBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902DB2FB20C0400A3C985 /* ProgressBar.cpp */; };
+		9A1903042FB20C0400A3C985 /* ListBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902CD2FB20C0400A3C985 /* ListBox.cpp */; };
+		9A1903052FB20C0400A3C985 /* notification_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902D52FB20C0400A3C985 /* notification_handler.cpp */; };
+		9A1903062FB20C0400A3C985 /* Control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902C12FB20C0400A3C985 /* Control.cpp */; };
+		9A1903072FB20C0400A3C985 /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902F32FB20C0400A3C985 /* Window.cpp */; };
+		9A1903082FB20C0400A3C985 /* ScrollBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902DD2FB20C0400A3C985 /* ScrollBar.cpp */; };
+		9A1903092FB20C0400A3C985 /* ListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902CF2FB20C0400A3C985 /* ListView.cpp */; };
+		9A19030A2FB20C0400A3C985 /* DibSection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902B02FB20C0400A3C985 /* DibSection.cpp */; };
+		9A19030B2FB20C0400A3C985 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902D12FB20C0400A3C985 /* Menu.cpp */; };
+		9A19030C2FB20C0400A3C985 /* GraphicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902A52FB20C0400A3C985 /* GraphicsObject.cpp */; };
+		9A19030D2FB20C0400A3C985 /* ResourceLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902FA2FB20C0400A3C985 /* ResourceLoader.cpp */; };
+		9A19030E2FB20C0400A3C985 /* SolidBrush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902AB2FB20C0400A3C985 /* SolidBrush.cpp */; };
+		9A19030F2FB20C0400A3C985 /* MessageWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902D32FB20C0400A3C985 /* MessageWindow.cpp */; };
+		9A1903102FB20C0400A3C985 /* DibFrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902AE2FB20C0400A3C985 /* DibFrameBuffer.cpp */; };
+		9A1903112FB20C0400A3C985 /* CheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902BB2FB20C0400A3C985 /* CheckBox.cpp */; };
+		9A1903122FB20C0400A3C985 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902B22FB20C0400A3C985 /* FrameBuffer.cpp */; };
+		9A1903132FB20C0400A3C985 /* Brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A19029B2FB20C0400A3C985 /* Brush.cpp */; };
+		9A1903142FB20C0400A3C985 /* Toolbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902ED2FB20C0400A3C985 /* Toolbar.cpp */; };
+		9A1903152FB20C0400A3C985 /* BalloonTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902B92FB20C0400A3C985 /* BalloonTip.cpp */; };
+		9A1903162FB20C0400A3C985 /* ImagedButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902C72FB20C0400A3C985 /* ImagedButton.cpp */; };
+		9A1903172FB20C0400A3C985 /* WindowProcHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902F72FB20C0400A3C985 /* WindowProcHolder.cpp */; };
+		9A1903182FB20C0400A3C985 /* DeviceContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A19029F2FB20C0400A3C985 /* DeviceContext.cpp */; };
+		9A1903192FB20C0400A3C985 /* StringFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902E12FB20C0400A3C985 /* StringFilter.cpp */; };
+		9A19031A2FB20C0400A3C985 /* Dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902C32FB20C0400A3C985 /* Dialog.cpp */; };
+		9A19031B2FB20C0400A3C985 /* Trackbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902F12FB20C0400A3C985 /* Trackbar.cpp */; };
+		9A19031C2FB20C0400A3C985 /* NotifyIconWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902D92FB20C0400A3C985 /* NotifyIconWindow.cpp */; };
+		9A19031D2FB20C0400A3C985 /* KeyboardLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902CB2FB20C0400A3C985 /* KeyboardLayout.cpp */; };
+		9A19031E2FB20C0400A3C985 /* TabControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902E92FB20C0400A3C985 /* TabControl.cpp */; };
+		9A19031F2FB20C0400A3C985 /* Icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902A72FB20C0400A3C985 /* Icon.cpp */; };
+		9A1903202FB20C0400A3C985 /* Cursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A19029D2FB20C0400A3C985 /* Cursor.cpp */; };
+		9A1903212FB20C0400A3C985 /* Bitmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902972FB20C0400A3C985 /* Bitmap.cpp */; };
+		9A1903232FB20C0400A3C985 /* SpinControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902DF2FB20C0400A3C985 /* SpinControl.cpp */; };
+		9A1903242FB20C0400A3C985 /* subsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902FC2FB20C0400A3C985 /* subsystem.cpp */; };
+		9A1903252FB20C0400A3C985 /* SystemMetrics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902E32FB20C0400A3C985 /* SystemMetrics.cpp */; };
+		9A1903262FB20C0400A3C985 /* CommonControlsEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902BF2FB20C0400A3C985 /* CommonControlsEx.cpp */; };
+		9A1903272FB20C0400A3C985 /* Tab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902E52FB20C0400A3C985 /* Tab.cpp */; };
+		9A1903282FB20C0400A3C985 /* Pen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902A92FB20C0400A3C985 /* Pen.cpp */; };
+		9A1903292FB20C0400A3C985 /* TextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902EB2FB20C0400A3C985 /* TextBox.cpp */; };
+		9A19032A2FB20C0400A3C985 /* FilteredTextBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902C52FB20C0400A3C985 /* FilteredTextBox.cpp */; };
+		9A19032B2FB20C0400A3C985 /* Graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902A32FB20C0400A3C985 /* Graphics.cpp */; };
+		9A19032D2FB20C0400A3C985 /* NotifyIcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902D72FB20C0400A3C985 /* NotifyIcon.cpp */; };
+		9A19032E2FB20C0400A3C985 /* ComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902BD2FB20C0400A3C985 /* ComboBox.cpp */; };
+		9A19032F2FB20C0400A3C985 /* ImageList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902C92FB20C0400A3C985 /* ImageList.cpp */; };
+		9A1903302FB20C0400A3C985 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902952FB20C0400A3C985 /* _.h */; };
+		9A1903312FB20C0400A3C985 /* subsystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902FB2FB20C0400A3C985 /* subsystem.h */; };
+		9A1903322FB20C0400A3C985 /* ComboBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902BC2FB20C0400A3C985 /* ComboBox.h */; };
+		9A1903332FB20C0400A3C985 /* Icon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902A62FB20C0400A3C985 /* Icon.h */; };
+		9A1903342FB20C0400A3C985 /* FilteredTextBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902C42FB20C0400A3C985 /* FilteredTextBox.h */; };
+		9A1903352FB20C0400A3C985 /* Trackbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902F02FB20C0400A3C985 /* Trackbar.h */; };
+		9A1903362FB20C0400A3C985 /* BitmapGraphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902982FB20C0400A3C985 /* BitmapGraphics.h */; };
+		9A1903382FB20C0400A3C985 /* notification_handler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902D42FB20C0400A3C985 /* notification_handler.h */; };
+		9A1903392FB20C0400A3C985 /* WindowFinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902F42FB20C0400A3C985 /* WindowFinder.h */; };
+		9A19033A2FB20C0400A3C985 /* WindowProcHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902F62FB20C0400A3C985 /* WindowProcHolder.h */; };
+		9A19033B2FB20C0400A3C985 /* MessageWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902D22FB20C0400A3C985 /* MessageWindow.h */; };
+		9A19033C2FB20C0400A3C985 /* Pen.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902A82FB20C0400A3C985 /* Pen.h */; };
+		9A19033D2FB20C0400A3C985 /* ProgressBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902DA2FB20C0400A3C985 /* ProgressBar.h */; };
+		9A19033E2FB20C0400A3C985 /* TabContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902E62FB20C0400A3C985 /* TabContainer.h */; };
+		9A19033F2FB20C0400A3C985 /* KeyboardLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902CA2FB20C0400A3C985 /* KeyboardLayout.h */; };
+		9A1903402FB20C0400A3C985 /* Toolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902EC2FB20C0400A3C985 /* Toolbar.h */; };
+		9A1903412FB20C0400A3C985 /* BalloonTip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902B82FB20C0400A3C985 /* BalloonTip.h */; };
+		9A1903422FB20C0400A3C985 /* DeviceContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19029E2FB20C0400A3C985 /* DeviceContext.h */; };
+		9A1903432FB20C0400A3C985 /* TabControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902E82FB20C0400A3C985 /* TabControl.h */; };
+		9A1903442FB20C0400A3C985 /* SolidBrush.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902AA2FB20C0400A3C985 /* SolidBrush.h */; };
+		9A1903452FB20C0400A3C985 /* Menu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902D02FB20C0400A3C985 /* Menu.h */; };
+		9A1903462FB20C0400A3C985 /* Tab.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902E42FB20C0400A3C985 /* Tab.h */; };
+		9A1903472FB20C0400A3C985 /* ResourceLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902F92FB20C0400A3C985 /* ResourceLoader.h */; };
+		9A1903492FB20C0400A3C985 /* Tooltip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902EE2FB20C0400A3C985 /* Tooltip.h */; };
+		9A19034A2FB20C0400A3C985 /* ScrollBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902DC2FB20C0400A3C985 /* ScrollBar.h */; };
+		9A19034B2FB20C0400A3C985 /* Graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902A22FB20C0400A3C985 /* Graphics.h */; };
+		9A19034C2FB20C0400A3C985 /* SpinControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902DE2FB20C0400A3C985 /* SpinControl.h */; };
+		9A19034D2FB20C0400A3C985 /* Cursor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19029C2FB20C0400A3C985 /* Cursor.h */; };
+		9A19034E2FB20C0400A3C985 /* CheckBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902BA2FB20C0400A3C985 /* CheckBox.h */; };
+		9A19034F2FB20C0400A3C985 /* Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902F22FB20C0400A3C985 /* Window.h */; };
+		9A1903502FB20C0400A3C985 /* CommonControlsEx.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902BE2FB20C0400A3C985 /* CommonControlsEx.h */; };
+		9A1903512FB20C0400A3C985 /* NotifyIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902D62FB20C0400A3C985 /* NotifyIcon.h */; };
+		9A1903522FB20C0400A3C985 /* GraphicsObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902A42FB20C0400A3C985 /* GraphicsObject.h */; };
+		9A1903532FB20C0400A3C985 /* ImagedButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902C62FB20C0400A3C985 /* ImagedButton.h */; };
+		9A1903542FB20C0400A3C985 /* Font.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902A02FB20C0400A3C985 /* Font.h */; };
+		9A1903552FB20C0400A3C985 /* Dialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902C22FB20C0400A3C985 /* Dialog.h */; };
+		9A1903562FB20C0400A3C985 /* Control.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902C02FB20C0400A3C985 /* Control.h */; };
+		9A1903572FB20C0400A3C985 /* Brush.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19029A2FB20C0400A3C985 /* Brush.h */; };
+		9A1903582FB20C0400A3C985 /* StringFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902E02FB20C0400A3C985 /* StringFilter.h */; };
+		9A1903592FB20C0400A3C985 /* Bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902962FB20C0400A3C985 /* Bitmap.h */; };
+		9A19035A2FB20C0400A3C985 /* ListBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902CC2FB20C0400A3C985 /* ListBox.h */; };
+		9A19035B2FB20C0400A3C985 /* FrameBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902B12FB20C0400A3C985 /* FrameBuffer.h */; };
+		9A19035C2FB20C0400A3C985 /* DibSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902AF2FB20C0400A3C985 /* DibSection.h */; };
+		9A19035D2FB20C0400A3C985 /* NotifyIconWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902D82FB20C0400A3C985 /* NotifyIconWindow.h */; };
+		9A19035E2FB20C0400A3C985 /* DibFrameBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902AD2FB20C0400A3C985 /* DibFrameBuffer.h */; };
+		9A19035F2FB20C0400A3C985 /* ImageList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902C82FB20C0400A3C985 /* ImageList.h */; };
+		9A1903602FB20C0400A3C985 /* ListView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902CE2FB20C0400A3C985 /* ListView.h */; };
+		9A1903612FB20C0400A3C985 /* TextBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902EA2FB20C0400A3C985 /* TextBox.h */; };
+		9A1903622FB20C0400A3C985 /* SystemMetrics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902E22FB20C0400A3C985 /* SystemMetrics.h */; };
+		9A1903682FB20D1D00A3C985 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1903672FB20D1D00A3C985 /* libacme.dylib */; };
+		9A19036B2FB20D5600A3C985 /* libsubsystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1902872FB20B7200A3C985 /* libsubsystem.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A1902862FB20B7200A3C985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AD3F45E2FB2094800CB9A78 /* subsystem.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD3F2482FB205EB00CB9A78;
+			remoteInfo = subsystem;
+		};
+		9A1903692FB20D4D00A3C985 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AD3F45E2FB2094800CB9A78 /* subsystem.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AD3F2472FB205EB00CB9A78;
+			remoteInfo = subsystem;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9A19028C2FB20BBF00A3C985 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A19028D2FB20BBF00A3C985 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		9A19028E2FB20BBF00A3C985 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
+		9A19028F2FB20BBF00A3C985 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A1902902FB20BBF00A3C985 /* _common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _common_header.h; sourceTree = "<group>"; };
+		9A1902912FB20BBF00A3C985 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
+		9A1902922FB20BBF00A3C985 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
+		9A1902952FB20C0400A3C985 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9A1902962FB20C0400A3C985 /* Bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bitmap.h; sourceTree = "<group>"; };
+		9A1902972FB20C0400A3C985 /* Bitmap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bitmap.cpp; sourceTree = "<group>"; };
+		9A1902982FB20C0400A3C985 /* BitmapGraphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BitmapGraphics.h; sourceTree = "<group>"; };
+		9A1902992FB20C0400A3C985 /* BitmapGraphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BitmapGraphics.cpp; sourceTree = "<group>"; };
+		9A19029A2FB20C0400A3C985 /* Brush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Brush.h; sourceTree = "<group>"; };
+		9A19029B2FB20C0400A3C985 /* Brush.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Brush.cpp; sourceTree = "<group>"; };
+		9A19029C2FB20C0400A3C985 /* Cursor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cursor.h; sourceTree = "<group>"; };
+		9A19029D2FB20C0400A3C985 /* Cursor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Cursor.cpp; sourceTree = "<group>"; };
+		9A19029E2FB20C0400A3C985 /* DeviceContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceContext.h; sourceTree = "<group>"; };
+		9A19029F2FB20C0400A3C985 /* DeviceContext.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DeviceContext.cpp; sourceTree = "<group>"; };
+		9A1902A02FB20C0400A3C985 /* Font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		9A1902A12FB20C0400A3C985 /* Font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
+		9A1902A22FB20C0400A3C985 /* Graphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
+		9A1902A32FB20C0400A3C985 /* Graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Graphics.cpp; sourceTree = "<group>"; };
+		9A1902A42FB20C0400A3C985 /* GraphicsObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphicsObject.h; sourceTree = "<group>"; };
+		9A1902A52FB20C0400A3C985 /* GraphicsObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsObject.cpp; sourceTree = "<group>"; };
+		9A1902A62FB20C0400A3C985 /* Icon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Icon.h; sourceTree = "<group>"; };
+		9A1902A72FB20C0400A3C985 /* Icon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Icon.cpp; sourceTree = "<group>"; };
+		9A1902A82FB20C0400A3C985 /* Pen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pen.h; sourceTree = "<group>"; };
+		9A1902A92FB20C0400A3C985 /* Pen.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pen.cpp; sourceTree = "<group>"; };
+		9A1902AA2FB20C0400A3C985 /* SolidBrush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolidBrush.h; sourceTree = "<group>"; };
+		9A1902AB2FB20C0400A3C985 /* SolidBrush.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SolidBrush.cpp; sourceTree = "<group>"; };
+		9A1902AD2FB20C0400A3C985 /* DibFrameBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DibFrameBuffer.h; sourceTree = "<group>"; };
+		9A1902AE2FB20C0400A3C985 /* DibFrameBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DibFrameBuffer.cpp; sourceTree = "<group>"; };
+		9A1902AF2FB20C0400A3C985 /* DibSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DibSection.h; sourceTree = "<group>"; };
+		9A1902B02FB20C0400A3C985 /* DibSection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DibSection.cpp; sourceTree = "<group>"; };
+		9A1902B12FB20C0400A3C985 /* FrameBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
+		9A1902B22FB20C0400A3C985 /* FrameBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
+		9A1902B82FB20C0400A3C985 /* BalloonTip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalloonTip.h; sourceTree = "<group>"; };
+		9A1902B92FB20C0400A3C985 /* BalloonTip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonTip.cpp; sourceTree = "<group>"; };
+		9A1902BA2FB20C0400A3C985 /* CheckBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckBox.h; sourceTree = "<group>"; };
+		9A1902BB2FB20C0400A3C985 /* CheckBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckBox.cpp; sourceTree = "<group>"; };
+		9A1902BC2FB20C0400A3C985 /* ComboBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComboBox.h; sourceTree = "<group>"; };
+		9A1902BD2FB20C0400A3C985 /* ComboBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ComboBox.cpp; sourceTree = "<group>"; };
+		9A1902BE2FB20C0400A3C985 /* CommonControlsEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonControlsEx.h; sourceTree = "<group>"; };
+		9A1902BF2FB20C0400A3C985 /* CommonControlsEx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommonControlsEx.cpp; sourceTree = "<group>"; };
+		9A1902C02FB20C0400A3C985 /* Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Control.h; sourceTree = "<group>"; };
+		9A1902C12FB20C0400A3C985 /* Control.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Control.cpp; sourceTree = "<group>"; };
+		9A1902C22FB20C0400A3C985 /* Dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dialog.h; sourceTree = "<group>"; };
+		9A1902C32FB20C0400A3C985 /* Dialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Dialog.cpp; sourceTree = "<group>"; };
+		9A1902C42FB20C0400A3C985 /* FilteredTextBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilteredTextBox.h; sourceTree = "<group>"; };
+		9A1902C52FB20C0400A3C985 /* FilteredTextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FilteredTextBox.cpp; sourceTree = "<group>"; };
+		9A1902C62FB20C0400A3C985 /* ImagedButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagedButton.h; sourceTree = "<group>"; };
+		9A1902C72FB20C0400A3C985 /* ImagedButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImagedButton.cpp; sourceTree = "<group>"; };
+		9A1902C82FB20C0400A3C985 /* ImageList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageList.h; sourceTree = "<group>"; };
+		9A1902C92FB20C0400A3C985 /* ImageList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageList.cpp; sourceTree = "<group>"; };
+		9A1902CA2FB20C0400A3C985 /* KeyboardLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardLayout.h; sourceTree = "<group>"; };
+		9A1902CB2FB20C0400A3C985 /* KeyboardLayout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardLayout.cpp; sourceTree = "<group>"; };
+		9A1902CC2FB20C0400A3C985 /* ListBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListBox.h; sourceTree = "<group>"; };
+		9A1902CD2FB20C0400A3C985 /* ListBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ListBox.cpp; sourceTree = "<group>"; };
+		9A1902CE2FB20C0400A3C985 /* ListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListView.h; sourceTree = "<group>"; };
+		9A1902CF2FB20C0400A3C985 /* ListView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ListView.cpp; sourceTree = "<group>"; };
+		9A1902D02FB20C0400A3C985 /* Menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		9A1902D12FB20C0400A3C985 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		9A1902D22FB20C0400A3C985 /* MessageWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageWindow.h; sourceTree = "<group>"; };
+		9A1902D32FB20C0400A3C985 /* MessageWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MessageWindow.cpp; sourceTree = "<group>"; };
+		9A1902D42FB20C0400A3C985 /* notification_handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = notification_handler.h; sourceTree = "<group>"; };
+		9A1902D52FB20C0400A3C985 /* notification_handler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = notification_handler.cpp; sourceTree = "<group>"; };
+		9A1902D62FB20C0400A3C985 /* NotifyIcon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotifyIcon.h; sourceTree = "<group>"; };
+		9A1902D72FB20C0400A3C985 /* NotifyIcon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NotifyIcon.cpp; sourceTree = "<group>"; };
+		9A1902D82FB20C0400A3C985 /* NotifyIconWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotifyIconWindow.h; sourceTree = "<group>"; };
+		9A1902D92FB20C0400A3C985 /* NotifyIconWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NotifyIconWindow.cpp; sourceTree = "<group>"; };
+		9A1902DA2FB20C0400A3C985 /* ProgressBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressBar.h; sourceTree = "<group>"; };
+		9A1902DB2FB20C0400A3C985 /* ProgressBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProgressBar.cpp; sourceTree = "<group>"; };
+		9A1902DC2FB20C0400A3C985 /* ScrollBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollBar.h; sourceTree = "<group>"; };
+		9A1902DD2FB20C0400A3C985 /* ScrollBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollBar.cpp; sourceTree = "<group>"; };
+		9A1902DE2FB20C0400A3C985 /* SpinControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpinControl.h; sourceTree = "<group>"; };
+		9A1902DF2FB20C0400A3C985 /* SpinControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SpinControl.cpp; sourceTree = "<group>"; };
+		9A1902E02FB20C0400A3C985 /* StringFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringFilter.h; sourceTree = "<group>"; };
+		9A1902E12FB20C0400A3C985 /* StringFilter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringFilter.cpp; sourceTree = "<group>"; };
+		9A1902E22FB20C0400A3C985 /* SystemMetrics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemMetrics.h; sourceTree = "<group>"; };
+		9A1902E32FB20C0400A3C985 /* SystemMetrics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SystemMetrics.cpp; sourceTree = "<group>"; };
+		9A1902E42FB20C0400A3C985 /* Tab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tab.h; sourceTree = "<group>"; };
+		9A1902E52FB20C0400A3C985 /* Tab.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tab.cpp; sourceTree = "<group>"; };
+		9A1902E62FB20C0400A3C985 /* TabContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabContainer.h; sourceTree = "<group>"; };
+		9A1902E72FB20C0400A3C985 /* TabContainer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TabContainer.cpp; sourceTree = "<group>"; };
+		9A1902E82FB20C0400A3C985 /* TabControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabControl.h; sourceTree = "<group>"; };
+		9A1902E92FB20C0400A3C985 /* TabControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TabControl.cpp; sourceTree = "<group>"; };
+		9A1902EA2FB20C0400A3C985 /* TextBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextBox.h; sourceTree = "<group>"; };
+		9A1902EB2FB20C0400A3C985 /* TextBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextBox.cpp; sourceTree = "<group>"; };
+		9A1902EC2FB20C0400A3C985 /* Toolbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toolbar.h; sourceTree = "<group>"; };
+		9A1902ED2FB20C0400A3C985 /* Toolbar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Toolbar.cpp; sourceTree = "<group>"; };
+		9A1902EE2FB20C0400A3C985 /* Tooltip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tooltip.h; sourceTree = "<group>"; };
+		9A1902EF2FB20C0400A3C985 /* Tooltip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tooltip.cpp; sourceTree = "<group>"; };
+		9A1902F02FB20C0400A3C985 /* Trackbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trackbar.h; sourceTree = "<group>"; };
+		9A1902F12FB20C0400A3C985 /* Trackbar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Trackbar.cpp; sourceTree = "<group>"; };
+		9A1902F22FB20C0400A3C985 /* Window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Window.h; sourceTree = "<group>"; };
+		9A1902F32FB20C0400A3C985 /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
+		9A1902F42FB20C0400A3C985 /* WindowFinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowFinder.h; sourceTree = "<group>"; };
+		9A1902F52FB20C0400A3C985 /* WindowFinder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WindowFinder.cpp; sourceTree = "<group>"; };
+		9A1902F62FB20C0400A3C985 /* WindowProcHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowProcHolder.h; sourceTree = "<group>"; };
+		9A1902F72FB20C0400A3C985 /* WindowProcHolder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WindowProcHolder.cpp; sourceTree = "<group>"; };
+		9A1902F92FB20C0400A3C985 /* ResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResourceLoader.h; sourceTree = "<group>"; };
+		9A1902FA2FB20C0400A3C985 /* ResourceLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ResourceLoader.cpp; sourceTree = "<group>"; };
+		9A1902FB2FB20C0400A3C985 /* subsystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = subsystem.h; sourceTree = "<group>"; };
+		9A1902FC2FB20C0400A3C985 /* subsystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subsystem.cpp; sourceTree = "<group>"; };
+		9A1903672FB20D1D00A3C985 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD3F44C2FB2088800CB9A78 /* libinnate_subsystem.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libinnate_subsystem.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD3F45B2FB2093300CB9A78 /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = SOURCE_ROOT; };
+		9AD3F45E2FB2094800CB9A78 /* subsystem.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = subsystem.xcodeproj; path = ../subsystem/subsystem.xcodeproj; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9AD3F44A2FB2088800CB9A78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A19036B2FB20D5600A3C985 /* libsubsystem.dylib in Frameworks */,
+				9A1903682FB20D1D00A3C985 /* libacme.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A19027B2FB20B7100A3C985 /* innate_subsystem */ = {
+			isa = PBXGroup;
+			children = (
+				9A1902AC2FB20C0400A3C985 /* drawing */,
+				9A1902B32FB20C0400A3C985 /* framebuffer */,
+				9A1902F82FB20C0400A3C985 /* gui */,
+				9A1902FD2FB20C0400A3C985 /* platform */,
+				9A19028E2FB20BBF00A3C985 /* _____debug.xcconfig */,
+				9A19028F2FB20BBF00A3C985 /* _____release.xcconfig */,
+				9A19028C2FB20BBF00A3C985 /* _.h */,
+				9A19028D2FB20BBF00A3C985 /* _.cpp */,
+				9A1902902FB20BBF00A3C985 /* _common_header.h */,
+				9A1902912FB20BBF00A3C985 /* framework.h */,
+				9A1902922FB20BBF00A3C985 /* framework.cpp */,
+			);
+			name = innate_subsystem;
+			sourceTree = "<group>";
+		};
+		9A1902AC2FB20C0400A3C985 /* drawing */ = {
+			isa = PBXGroup;
+			children = (
+				9A1902952FB20C0400A3C985 /* _.h */,
+				9A1902962FB20C0400A3C985 /* Bitmap.h */,
+				9A1902972FB20C0400A3C985 /* Bitmap.cpp */,
+				9A1902982FB20C0400A3C985 /* BitmapGraphics.h */,
+				9A1902992FB20C0400A3C985 /* BitmapGraphics.cpp */,
+				9A19029A2FB20C0400A3C985 /* Brush.h */,
+				9A19029B2FB20C0400A3C985 /* Brush.cpp */,
+				9A19029C2FB20C0400A3C985 /* Cursor.h */,
+				9A19029D2FB20C0400A3C985 /* Cursor.cpp */,
+				9A19029E2FB20C0400A3C985 /* DeviceContext.h */,
+				9A19029F2FB20C0400A3C985 /* DeviceContext.cpp */,
+				9A1902A02FB20C0400A3C985 /* Font.h */,
+				9A1902A12FB20C0400A3C985 /* Font.cpp */,
+				9A1902A22FB20C0400A3C985 /* Graphics.h */,
+				9A1902A32FB20C0400A3C985 /* Graphics.cpp */,
+				9A1902A42FB20C0400A3C985 /* GraphicsObject.h */,
+				9A1902A52FB20C0400A3C985 /* GraphicsObject.cpp */,
+				9A1902A62FB20C0400A3C985 /* Icon.h */,
+				9A1902A72FB20C0400A3C985 /* Icon.cpp */,
+				9A1902A82FB20C0400A3C985 /* Pen.h */,
+				9A1902A92FB20C0400A3C985 /* Pen.cpp */,
+				9A1902AA2FB20C0400A3C985 /* SolidBrush.h */,
+				9A1902AB2FB20C0400A3C985 /* SolidBrush.cpp */,
+			);
+			path = drawing;
+			sourceTree = "<group>";
+		};
+		9A1902B32FB20C0400A3C985 /* framebuffer */ = {
+			isa = PBXGroup;
+			children = (
+				9A1902AD2FB20C0400A3C985 /* DibFrameBuffer.h */,
+				9A1902AE2FB20C0400A3C985 /* DibFrameBuffer.cpp */,
+				9A1902AF2FB20C0400A3C985 /* DibSection.h */,
+				9A1902B02FB20C0400A3C985 /* DibSection.cpp */,
+				9A1902B12FB20C0400A3C985 /* FrameBuffer.h */,
+				9A1902B22FB20C0400A3C985 /* FrameBuffer.cpp */,
+			);
+			path = framebuffer;
+			sourceTree = "<group>";
+		};
+		9A1902F82FB20C0400A3C985 /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				9A1902B82FB20C0400A3C985 /* BalloonTip.h */,
+				9A1902B92FB20C0400A3C985 /* BalloonTip.cpp */,
+				9A1902BA2FB20C0400A3C985 /* CheckBox.h */,
+				9A1902BB2FB20C0400A3C985 /* CheckBox.cpp */,
+				9A1902BC2FB20C0400A3C985 /* ComboBox.h */,
+				9A1902BD2FB20C0400A3C985 /* ComboBox.cpp */,
+				9A1902BE2FB20C0400A3C985 /* CommonControlsEx.h */,
+				9A1902BF2FB20C0400A3C985 /* CommonControlsEx.cpp */,
+				9A1902C02FB20C0400A3C985 /* Control.h */,
+				9A1902C12FB20C0400A3C985 /* Control.cpp */,
+				9A1902C22FB20C0400A3C985 /* Dialog.h */,
+				9A1902C32FB20C0400A3C985 /* Dialog.cpp */,
+				9A1902C42FB20C0400A3C985 /* FilteredTextBox.h */,
+				9A1902C52FB20C0400A3C985 /* FilteredTextBox.cpp */,
+				9A1902C62FB20C0400A3C985 /* ImagedButton.h */,
+				9A1902C72FB20C0400A3C985 /* ImagedButton.cpp */,
+				9A1902C82FB20C0400A3C985 /* ImageList.h */,
+				9A1902C92FB20C0400A3C985 /* ImageList.cpp */,
+				9A1902CA2FB20C0400A3C985 /* KeyboardLayout.h */,
+				9A1902CB2FB20C0400A3C985 /* KeyboardLayout.cpp */,
+				9A1902CC2FB20C0400A3C985 /* ListBox.h */,
+				9A1902CD2FB20C0400A3C985 /* ListBox.cpp */,
+				9A1902CE2FB20C0400A3C985 /* ListView.h */,
+				9A1902CF2FB20C0400A3C985 /* ListView.cpp */,
+				9A1902D02FB20C0400A3C985 /* Menu.h */,
+				9A1902D12FB20C0400A3C985 /* Menu.cpp */,
+				9A1902D22FB20C0400A3C985 /* MessageWindow.h */,
+				9A1902D32FB20C0400A3C985 /* MessageWindow.cpp */,
+				9A1902D42FB20C0400A3C985 /* notification_handler.h */,
+				9A1902D52FB20C0400A3C985 /* notification_handler.cpp */,
+				9A1902D62FB20C0400A3C985 /* NotifyIcon.h */,
+				9A1902D72FB20C0400A3C985 /* NotifyIcon.cpp */,
+				9A1902D82FB20C0400A3C985 /* NotifyIconWindow.h */,
+				9A1902D92FB20C0400A3C985 /* NotifyIconWindow.cpp */,
+				9A1902DA2FB20C0400A3C985 /* ProgressBar.h */,
+				9A1902DB2FB20C0400A3C985 /* ProgressBar.cpp */,
+				9A1902DC2FB20C0400A3C985 /* ScrollBar.h */,
+				9A1902DD2FB20C0400A3C985 /* ScrollBar.cpp */,
+				9A1902DE2FB20C0400A3C985 /* SpinControl.h */,
+				9A1902DF2FB20C0400A3C985 /* SpinControl.cpp */,
+				9A1902E02FB20C0400A3C985 /* StringFilter.h */,
+				9A1902E12FB20C0400A3C985 /* StringFilter.cpp */,
+				9A1902E22FB20C0400A3C985 /* SystemMetrics.h */,
+				9A1902E32FB20C0400A3C985 /* SystemMetrics.cpp */,
+				9A1902E42FB20C0400A3C985 /* Tab.h */,
+				9A1902E52FB20C0400A3C985 /* Tab.cpp */,
+				9A1902E62FB20C0400A3C985 /* TabContainer.h */,
+				9A1902E72FB20C0400A3C985 /* TabContainer.cpp */,
+				9A1902E82FB20C0400A3C985 /* TabControl.h */,
+				9A1902E92FB20C0400A3C985 /* TabControl.cpp */,
+				9A1902EA2FB20C0400A3C985 /* TextBox.h */,
+				9A1902EB2FB20C0400A3C985 /* TextBox.cpp */,
+				9A1902EC2FB20C0400A3C985 /* Toolbar.h */,
+				9A1902ED2FB20C0400A3C985 /* Toolbar.cpp */,
+				9A1902EE2FB20C0400A3C985 /* Tooltip.h */,
+				9A1902EF2FB20C0400A3C985 /* Tooltip.cpp */,
+				9A1902F02FB20C0400A3C985 /* Trackbar.h */,
+				9A1902F12FB20C0400A3C985 /* Trackbar.cpp */,
+				9A1902F22FB20C0400A3C985 /* Window.h */,
+				9A1902F32FB20C0400A3C985 /* Window.cpp */,
+				9A1902F42FB20C0400A3C985 /* WindowFinder.h */,
+				9A1902F52FB20C0400A3C985 /* WindowFinder.cpp */,
+				9A1902F62FB20C0400A3C985 /* WindowProcHolder.h */,
+				9A1902F72FB20C0400A3C985 /* WindowProcHolder.cpp */,
+			);
+			path = gui;
+			sourceTree = "<group>";
+		};
+		9A1902FD2FB20C0400A3C985 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				9A1902F92FB20C0400A3C985 /* ResourceLoader.h */,
+				9A1902FA2FB20C0400A3C985 /* ResourceLoader.cpp */,
+				9A1902FB2FB20C0400A3C985 /* subsystem.h */,
+				9A1902FC2FB20C0400A3C985 /* subsystem.cpp */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
+		9A1903662FB20D1D00A3C985 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A1903672FB20D1D00A3C985 /* libacme.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9AD3F4432FB2088800CB9A78 = {
+			isa = PBXGroup;
+			children = (
+				9AD3F45B2FB2093300CB9A78 /* apex.xcodeproj */,
+				9AD3F45E2FB2094800CB9A78 /* subsystem.xcodeproj */,
+				9A19027B2FB20B7100A3C985 /* innate_subsystem */,
+				9A1903662FB20D1D00A3C985 /* Frameworks */,
+				9AD3F44D2FB2088800CB9A78 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9AD3F44D2FB2088800CB9A78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AD3F44C2FB2088800CB9A78 /* libinnate_subsystem.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AE757CB2FB20A1C0003CDEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A1902872FB20B7200A3C985 /* libsubsystem.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AF43DE42FB209C00025D4B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9AD3F4482FB2088800CB9A78 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A1903302FB20C0400A3C985 /* _.h in Headers */,
+				9A1903312FB20C0400A3C985 /* subsystem.h in Headers */,
+				9A1903322FB20C0400A3C985 /* ComboBox.h in Headers */,
+				9A1903332FB20C0400A3C985 /* Icon.h in Headers */,
+				9A1903342FB20C0400A3C985 /* FilteredTextBox.h in Headers */,
+				9A1903352FB20C0400A3C985 /* Trackbar.h in Headers */,
+				9A1903362FB20C0400A3C985 /* BitmapGraphics.h in Headers */,
+				9A1903382FB20C0400A3C985 /* notification_handler.h in Headers */,
+				9A1903392FB20C0400A3C985 /* WindowFinder.h in Headers */,
+				9A19033A2FB20C0400A3C985 /* WindowProcHolder.h in Headers */,
+				9A19033B2FB20C0400A3C985 /* MessageWindow.h in Headers */,
+				9A19033C2FB20C0400A3C985 /* Pen.h in Headers */,
+				9A19033D2FB20C0400A3C985 /* ProgressBar.h in Headers */,
+				9A19033E2FB20C0400A3C985 /* TabContainer.h in Headers */,
+				9A19033F2FB20C0400A3C985 /* KeyboardLayout.h in Headers */,
+				9A1903402FB20C0400A3C985 /* Toolbar.h in Headers */,
+				9A1903412FB20C0400A3C985 /* BalloonTip.h in Headers */,
+				9A1903422FB20C0400A3C985 /* DeviceContext.h in Headers */,
+				9A1903432FB20C0400A3C985 /* TabControl.h in Headers */,
+				9A1903442FB20C0400A3C985 /* SolidBrush.h in Headers */,
+				9A1903452FB20C0400A3C985 /* Menu.h in Headers */,
+				9A1903462FB20C0400A3C985 /* Tab.h in Headers */,
+				9A1903472FB20C0400A3C985 /* ResourceLoader.h in Headers */,
+				9A1903492FB20C0400A3C985 /* Tooltip.h in Headers */,
+				9A19034A2FB20C0400A3C985 /* ScrollBar.h in Headers */,
+				9A19034B2FB20C0400A3C985 /* Graphics.h in Headers */,
+				9A19034C2FB20C0400A3C985 /* SpinControl.h in Headers */,
+				9A19034D2FB20C0400A3C985 /* Cursor.h in Headers */,
+				9A19034E2FB20C0400A3C985 /* CheckBox.h in Headers */,
+				9A19034F2FB20C0400A3C985 /* Window.h in Headers */,
+				9A1903502FB20C0400A3C985 /* CommonControlsEx.h in Headers */,
+				9A1903512FB20C0400A3C985 /* NotifyIcon.h in Headers */,
+				9A1903522FB20C0400A3C985 /* GraphicsObject.h in Headers */,
+				9A1903532FB20C0400A3C985 /* ImagedButton.h in Headers */,
+				9A1903542FB20C0400A3C985 /* Font.h in Headers */,
+				9A1903552FB20C0400A3C985 /* Dialog.h in Headers */,
+				9A1903562FB20C0400A3C985 /* Control.h in Headers */,
+				9A1903572FB20C0400A3C985 /* Brush.h in Headers */,
+				9A1903582FB20C0400A3C985 /* StringFilter.h in Headers */,
+				9A1903592FB20C0400A3C985 /* Bitmap.h in Headers */,
+				9A19035A2FB20C0400A3C985 /* ListBox.h in Headers */,
+				9A19035B2FB20C0400A3C985 /* FrameBuffer.h in Headers */,
+				9A19035C2FB20C0400A3C985 /* DibSection.h in Headers */,
+				9A19035D2FB20C0400A3C985 /* NotifyIconWindow.h in Headers */,
+				9A19035E2FB20C0400A3C985 /* DibFrameBuffer.h in Headers */,
+				9A19035F2FB20C0400A3C985 /* ImageList.h in Headers */,
+				9A1903602FB20C0400A3C985 /* ListView.h in Headers */,
+				9A1903612FB20C0400A3C985 /* TextBox.h in Headers */,
+				9A1903622FB20C0400A3C985 /* SystemMetrics.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9AD3F44B2FB2088800CB9A78 /* innate_subsystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AD3F4502FB2088800CB9A78 /* Build configuration list for PBXNativeTarget "innate_subsystem" */;
+			buildPhases = (
+				9AD3F4482FB2088800CB9A78 /* Headers */,
+				9AD3F4492FB2088800CB9A78 /* Sources */,
+				9AD3F44A2FB2088800CB9A78 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A19036A2FB20D4D00A3C985 /* PBXTargetDependency */,
+			);
+			name = innate_subsystem;
+			packageProductDependencies = (
+			);
+			productName = innate_subsystem;
+			productReference = 9AD3F44C2FB2088800CB9A78 /* libinnate_subsystem.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9AD3F4442FB2088800CB9A78 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					9AD3F44B2FB2088800CB9A78 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 9AD3F4472FB2088800CB9A78 /* Build configuration list for PBXProject "innate_subsystem" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9AD3F4432FB2088800CB9A78;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9AD3F44D2FB2088800CB9A78 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9AF43DE42FB209C00025D4B6 /* Products */;
+					ProjectRef = 9AD3F45B2FB2093300CB9A78 /* apex.xcodeproj */;
+				},
+				{
+					ProductGroup = 9AE757CB2FB20A1C0003CDEE /* Products */;
+					ProjectRef = 9AD3F45E2FB2094800CB9A78 /* subsystem.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				9AD3F44B2FB2088800CB9A78 /* innate_subsystem */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9A1902872FB20B7200A3C985 /* libsubsystem.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libsubsystem.dylib;
+			remoteRef = 9A1902862FB20B7200A3C985 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9AD3F4492FB2088800CB9A78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A1902942FB20BD700A3C985 /* framework.cpp in Sources */,
+				9A1902932FB20BCF00A3C985 /* _.cpp in Sources */,
+				9A1902FE2FB20C0400A3C985 /* WindowFinder.cpp in Sources */,
+				9A1902FF2FB20C0400A3C985 /* Font.cpp in Sources */,
+				9A1903002FB20C0400A3C985 /* TabContainer.cpp in Sources */,
+				9A1903012FB20C0400A3C985 /* BitmapGraphics.cpp in Sources */,
+				9A1903022FB20C0400A3C985 /* Tooltip.cpp in Sources */,
+				9A1903032FB20C0400A3C985 /* ProgressBar.cpp in Sources */,
+				9A1903042FB20C0400A3C985 /* ListBox.cpp in Sources */,
+				9A1903052FB20C0400A3C985 /* notification_handler.cpp in Sources */,
+				9A1903062FB20C0400A3C985 /* Control.cpp in Sources */,
+				9A1903072FB20C0400A3C985 /* Window.cpp in Sources */,
+				9A1903082FB20C0400A3C985 /* ScrollBar.cpp in Sources */,
+				9A1903092FB20C0400A3C985 /* ListView.cpp in Sources */,
+				9A19030A2FB20C0400A3C985 /* DibSection.cpp in Sources */,
+				9A19030B2FB20C0400A3C985 /* Menu.cpp in Sources */,
+				9A19030C2FB20C0400A3C985 /* GraphicsObject.cpp in Sources */,
+				9A19030D2FB20C0400A3C985 /* ResourceLoader.cpp in Sources */,
+				9A19030E2FB20C0400A3C985 /* SolidBrush.cpp in Sources */,
+				9A19030F2FB20C0400A3C985 /* MessageWindow.cpp in Sources */,
+				9A1903102FB20C0400A3C985 /* DibFrameBuffer.cpp in Sources */,
+				9A1903112FB20C0400A3C985 /* CheckBox.cpp in Sources */,
+				9A1903122FB20C0400A3C985 /* FrameBuffer.cpp in Sources */,
+				9A1903132FB20C0400A3C985 /* Brush.cpp in Sources */,
+				9A1903142FB20C0400A3C985 /* Toolbar.cpp in Sources */,
+				9A1903152FB20C0400A3C985 /* BalloonTip.cpp in Sources */,
+				9A1903162FB20C0400A3C985 /* ImagedButton.cpp in Sources */,
+				9A1903172FB20C0400A3C985 /* WindowProcHolder.cpp in Sources */,
+				9A1903182FB20C0400A3C985 /* DeviceContext.cpp in Sources */,
+				9A1903192FB20C0400A3C985 /* StringFilter.cpp in Sources */,
+				9A19031A2FB20C0400A3C985 /* Dialog.cpp in Sources */,
+				9A19031B2FB20C0400A3C985 /* Trackbar.cpp in Sources */,
+				9A19031C2FB20C0400A3C985 /* NotifyIconWindow.cpp in Sources */,
+				9A19031D2FB20C0400A3C985 /* KeyboardLayout.cpp in Sources */,
+				9A19031E2FB20C0400A3C985 /* TabControl.cpp in Sources */,
+				9A19031F2FB20C0400A3C985 /* Icon.cpp in Sources */,
+				9A1903202FB20C0400A3C985 /* Cursor.cpp in Sources */,
+				9A1903212FB20C0400A3C985 /* Bitmap.cpp in Sources */,
+				9A1903232FB20C0400A3C985 /* SpinControl.cpp in Sources */,
+				9A1903242FB20C0400A3C985 /* subsystem.cpp in Sources */,
+				9A1903252FB20C0400A3C985 /* SystemMetrics.cpp in Sources */,
+				9A1903262FB20C0400A3C985 /* CommonControlsEx.cpp in Sources */,
+				9A1903272FB20C0400A3C985 /* Tab.cpp in Sources */,
+				9A1903282FB20C0400A3C985 /* Pen.cpp in Sources */,
+				9A1903292FB20C0400A3C985 /* TextBox.cpp in Sources */,
+				9A19032A2FB20C0400A3C985 /* FilteredTextBox.cpp in Sources */,
+				9A19032B2FB20C0400A3C985 /* Graphics.cpp in Sources */,
+				9A19032D2FB20C0400A3C985 /* NotifyIcon.cpp in Sources */,
+				9A19032E2FB20C0400A3C985 /* ComboBox.cpp in Sources */,
+				9A19032F2FB20C0400A3C985 /* ImageList.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A19036A2FB20D4D00A3C985 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = subsystem;
+			targetProxy = 9A1903692FB20D4D00A3C985 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9AD3F44E2FB2088800CB9A78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A19028E2FB20BBF00A3C985 /* _____debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_CPP_STATIC_DESTRUCTORS = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = NO;
+				CLANG_WARN_ENUM_CONVERSION = NO;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = NO;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_PRAGMA_PACK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
+				);
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_REUSE_STRINGS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/port/_",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
+				USE_HEADERMAP = NO;
+				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = "";
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Debug;
+		};
+		9AD3F44F2FB2088800CB9A78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A19028F2FB20BBF00A3C985 /* _____release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_GCD = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_MEMORY_MANAGEMENT = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_CPP_STATIC_DESTRUCTORS = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_STATIC_ANALYZER_MODE = deep;
+				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = deep;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = NO;
+				CLANG_WARN_ENUM_CONVERSION = NO;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = NO;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_PRAGMA_PACK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = HS8735NRM5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/framework",
+				);
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = framework.h;
+				GCC_REUSE_STRINGS = YES;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_FUNCTION = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path",
+					"@loader_path",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/../operating_system/storage-$(PLATFORM_MODIFIER)/$(CONFIGURATION)/library",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration",
+					"$(WorkspaceDir)/port/include",
+					"$(WorkspaceDir)/source/app/include",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/operating_system",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/configuration_selection/$(CONFIGURATION)",
+					"$(WorkspaceDir)/port/_",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
+				USE_HEADERMAP = NO;
+				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = "";
+				WorkspaceDir = "$(SRCROOT)/../../..";
+			};
+			name = Release;
+		};
+		9AD3F4512FB2088800CB9A78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
+				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9AD3F4522FB2088800CB9A78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
+				PLATFORM_MODIFIER = macos;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9AD3F4472FB2088800CB9A78 /* Build configuration list for PBXProject "innate_subsystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AD3F44E2FB2088800CB9A78 /* Debug */,
+				9AD3F44F2FB2088800CB9A78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AD3F4502FB2088800CB9A78 /* Build configuration list for PBXNativeTarget "innate_subsystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AD3F4512FB2088800CB9A78 /* Debug */,
+				9AD3F4522FB2088800CB9A78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9AD3F4442FB2088800CB9A78 /* Project object */;
+}

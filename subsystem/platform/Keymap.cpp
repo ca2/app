@@ -23,7 +23,7 @@
 //
 #include "framework.h"
 #include "Keymap.h"
-
+#include "acme/constant/user_key.h"
 //#include "subsystem/platform/winhdr.h"
 #include "acme/_operating_system.h"
 //#include "acme/constant/user_key.h"
@@ -42,194 +42,195 @@ namespace subsystem
    // X11 Key sym to virtual key translation table entry.
    struct KS2VKEntry
    {
-      UINT32 keySym;
-      BYTE vkCode;
+      unsigned int keySym;
+      ::user::enum_key m_euserkey;
    };
 
    struct VK2KSEntry
    {
-      BYTE vkCode;
-      UINT32 keySym;
+      ::user::enum_key m_euserkey;
+      unsigned int keySym;
    };
 
    // Table for translating X11 keysyms to auxiliary windows virtual key codes.
    // FIXME: maybe place this into file as binary? such definitions make my eyes wet.
-   const KS2VKEntry SERVER_AUXILIARY_TRANSLATE_TABLE[] = {{XK_Shift_L, VK_LSHIFT},
-                                                          {XK_Shift_R, VK_RSHIFT},
-                                                          {XK_Shift_L, VK_SHIFT},
-                                                          {XK_Control_L, VK_LCONTROL},
-                                                          {XK_Control_R, VK_RCONTROL},
-                                                          {XK_Control_L, VK_CONTROL},
-                                                          {XK_Alt_L, VK_LMENU},
-                                                          {XK_Alt_R, VK_RMENU},
-                                                          {XK_Alt_L, VK_MENU},
-                                                          {XK_Left, VK_LEFT},
-                                                          {XK_Up, VK_UP},
-                                                          {XK_Right, VK_RIGHT},
-                                                          {XK_Down, VK_DOWN},
-                                                          {XK_Tab, VK_TAB},
-                                                          {XK_BackSpace, VK_BACK},
-                                                          {XK_Return, VK_RETURN},
-                                                          {XK_Execute, VK_EXECUTE},
-                                                          {XK_Pause, VK_PAUSE},
-                                                          {XK_Escape, VK_ESCAPE},
-                                                          {XK_Clear, VK_CLEAR},
-                                                          {XK_Delete, VK_DELETE},
-                                                          {XK_Home, VK_HOME},
-                                                          {XK_Page_Up, VK_PRIOR},
-                                                          {XK_Page_Down, VK_NEXT},
-                                                          {XK_End, VK_END},
-                                                          {XK_Select, VK_SELECT},
-                                                          {XK_Print, VK_SNAPSHOT},
-                                                          {XK_Insert, VK_INSERT},
-                                                          {XK_Help, VK_HELP},
-                                                          {XK_Break, VK_CANCEL},
+   const KS2VKEntry SERVER_AUXILIARY_TRANSLATE_TABLE[] = {{XK_Shift_L, ::user::e_key_left_shift},
+                                                          {XK_Shift_R, ::user::e_key_right_shift},
+                                                          {XK_Shift_L, ::user::e_key_shift},
+                                                          {XK_Control_L, ::user::e_key_left_control},
+                                                          {XK_Control_R, ::user::e_key_right_control},
+                                                          {XK_Control_L, ::user::e_key_control},
+                                                          {XK_Alt_L, ::user::e_key_left_alt},
+                                                          {XK_Alt_R, ::user::e_key_right_alt},
+                                                          {XK_Alt_L, ::user::e_key_alt},
+                                                          {XK_Left, ::user::e_key_left},
+                                                          {XK_Up, ::user::e_key_up},
+                                                          {XK_Right, ::user::e_key_right},
+                                                          {XK_Down, ::user::e_key_down},
+                                                          {XK_Tab, ::user::e_key_tab},
+                                                          {XK_BackSpace, ::user::e_key_back},
+                                                          {XK_Return, ::user::e_key_return},
+                                                          {XK_Execute, ::user::e_key_execute},
+                                                          {XK_Pause, ::user::e_key_pause},
+                                                          {XK_Escape, ::user::e_key_escape},
+                                                          {XK_Clear, ::user::e_key_clear},
+                                                          {XK_Delete, ::user::e_key_delete},
+                                                          {XK_Home, ::user::e_key_home},
+                                                          {XK_Page_Up, ::user::e_key_page_up},
+                                                          {XK_Page_Down, ::user::e_key_page_down},
+                                                          {XK_End, ::user::e_key_end},
+                                                          {XK_Select, ::user::e_key_select},
+                                                          {XK_Print, ::user::e_key_snapshot},
+                                                          {XK_Insert, ::user::e_key_insert},
+                                                          {XK_Help, ::user::e_key_help},
+                                                          {XK_Break, ::user::e_key_cancel},
 
-                                                          {XK_KP_Space, VK_SPACE},
-                                                          {XK_KP_Tab, VK_TAB},
-                                                          {XK_KP_Enter, VK_RETURN},
-                                                          {XK_KP_F1, VK_F1},
-                                                          {XK_KP_F2, VK_F2},
-                                                          {XK_KP_F3, VK_F3},
-                                                          {XK_KP_F4, VK_F4},
-                                                          {XK_KP_Home, VK_HOME},
-                                                          {XK_KP_Left, VK_LEFT},
-                                                          {XK_KP_Up, VK_UP},
-                                                          {XK_KP_Right, VK_RIGHT},
-                                                          {XK_KP_Down, VK_DOWN},
-                                                          {XK_KP_Page_Up, VK_PRIOR},
-                                                          {XK_KP_Page_Down, VK_NEXT},
-                                                          {XK_KP_End, VK_END},
-                                                          {XK_KP_Begin, VK_CLEAR},
-                                                          {XK_KP_Insert, VK_INSERT},
-                                                          {XK_KP_Delete, VK_DELETE},
-                                                          {XK_KP_Equal, 0xbb}, // FIXME: What is it?
-                                                          {XK_KP_Multiply, VK_MULTIPLY},
-                                                          {XK_KP_Add, VK_ADD},
-                                                          {XK_KP_Separator, VK_SEPARATOR},
-                                                          {XK_KP_Subtract, VK_SUBTRACT},
-                                                          {XK_KP_Decimal, VK_DECIMAL},
-                                                          {XK_KP_Divide, VK_DIVIDE},
-                                                          {XK_Num_Lock, VK_NUMLOCK},
+                                                          {XK_KP_Space, ::user::e_key_space},
+                                                          {XK_KP_Tab, ::user::e_key_tab},
+                                                          {XK_KP_Enter, ::user::e_key_return},
+                                                          {XK_KP_F1, ::user::e_key_f1},
+                                                          {XK_KP_F2, ::user::e_key_f2},
+                                                          {XK_KP_F3, ::user::e_key_f3},
+                                                          {XK_KP_F4, ::user::e_key_4},
+                                                          {XK_KP_Home, ::user::e_key_home},
+                                                          {XK_KP_Left, ::user::e_key_left},
+                                                          {XK_KP_Up, ::user::e_key_up},
+                                                          {XK_KP_Right, ::user::e_key_right},
+                                                          {XK_KP_Down, ::user::e_key_down},
+                                                          {XK_KP_Page_Up, ::user::e_key_page_up},
+                                                          {XK_KP_Page_Down, ::user::e_key_page_down},
+                                                          {XK_KP_End, ::user::e_key_end},
+                                                          {XK_KP_Begin, ::user::e_key_clear},
+                                                          {XK_KP_Insert, ::user::e_key_insert},
+                                                          {XK_KP_Delete, ::user::e_key_select},
+      //                                                    {XK_KP_Equal, 0xbb}, // FIXME: What //is it?
+      {XK_KP_Equal, ::user::e_key_equal}, // FIXME: What is it?
+      {XK_KP_Multiply, ::user::e_key_numpad_multiply},
+      {XK_KP_Add, ::user::e_key_numpad_plus   },
+                                                          {XK_KP_Separator, ::user::e_key_separator},
+                                                          {XK_KP_Subtract, ::user::e_key_numpad_minus},
+                                                          {XK_KP_Decimal, ::user::e_key_decimal},
+                                                          {XK_KP_Divide, ::user::e_key_numpad_divide},
+                                                          {XK_Num_Lock, ::user::e_key_numlock},
 
-                                                          {XK_KP_0, VK_NUMPAD0},
-                                                          {XK_KP_1, VK_NUMPAD1},
-                                                          {XK_KP_2, VK_NUMPAD2},
-                                                          {XK_KP_3, VK_NUMPAD3},
-                                                          {XK_KP_4, VK_NUMPAD4},
-                                                          {XK_KP_5, VK_NUMPAD5},
-                                                          {XK_KP_6, VK_NUMPAD6},
-                                                          {XK_KP_7, VK_NUMPAD7},
-                                                          {XK_KP_8, VK_NUMPAD8},
-                                                          {XK_KP_9, VK_NUMPAD9},
+                                                          {XK_KP_0, ::user::e_key_numpad_0},
+                                                          {XK_KP_1, ::user::e_key_numpad_1},
+                                                          {XK_KP_2, ::user::e_key_numpad_2},
+                                                          {XK_KP_3, ::user::e_key_numpad_3},
+                                                          {XK_KP_4, ::user::e_key_numpad_4},
+                                                          {XK_KP_5, ::user::e_key_numpad_5},
+                                                          {XK_KP_6, ::user::e_key_numpad_6},
+                                                          {XK_KP_7, ::user::e_key_numpad_7},
+                                                          {XK_KP_8, ::user::e_key_numpad_8},
+                                                          {XK_KP_9, ::user::e_key_numpad_9},
 
-                                                          {XK_F1, VK_F1},
-                                                          {XK_F2, VK_F2},
-                                                          {XK_F3, VK_F3},
-                                                          {XK_F4, VK_F4},
-                                                          {XK_F5, VK_F5},
-                                                          {XK_F6, VK_F6},
-                                                          {XK_F7, VK_F7},
-                                                          {XK_F8, VK_F8},
-                                                          {XK_F9, VK_F9},
-                                                          {XK_F10, VK_F10},
-                                                          {XK_F11, VK_F11},
-                                                          {XK_F12, VK_F12},
-                                                          {XK_F13, VK_F13},
-                                                          {XK_F14, VK_F14},
-                                                          {XK_F15, VK_F15},
-                                                          {XK_F16, VK_F16},
-                                                          {XK_F17, VK_F17},
-                                                          {XK_F18, VK_F18},
-                                                          {XK_F19, VK_F19},
-                                                          {XK_F20, VK_F20},
-                                                          {XK_F21, VK_F21},
-                                                          {XK_F22, VK_F22},
-                                                          {XK_F23, VK_F23},
-                                                          {XK_F24, VK_F24},
-                                                          {XK_Super_L, VK_LWIN},
-                                                          {XK_Super_R, VK_RWIN},
-                                                          {XK_Menu, VK_APPS},
-                                                          {XK_Hangul, VK_HANGUL}};
+                                                          {XK_F1, ::user::e_key_f1},
+                                                          {XK_F2, ::user::e_key_f2},
+                                                          {XK_F3, ::user::e_key_f3},
+                                                          {XK_F4, ::user::e_key_f4},
+                                                          {XK_F5, ::user::e_key_f5},
+                                                          {XK_F6, ::user::e_key_f6},
+                                                          {XK_F7, ::user::e_key_f7},
+                                                          {XK_F8, ::user::e_key_f8},
+                                                          {XK_F9, ::user::e_key_f9},
+                                                          {XK_F10, ::user::e_key_f10},
+                                                          {XK_F11, ::user::e_key_f11},
+                                                          {XK_F12, ::user::e_key_f12},
+                                                          {XK_F13, ::user::e_key_f13},
+                                                          {XK_F14, ::user::e_key_f14},
+                                                          {XK_F15, ::user::e_key_f15},
+                                                          {XK_F16, ::user::e_key_f16},
+                                                          {XK_F17, ::user::e_key_f17},
+                                                          {XK_F18, ::user::e_key_f18},
+                                                          {XK_F19, ::user::e_key_f19},
+                                                          {XK_F20, ::user::e_key_f20},
+                                                          {XK_F21, ::user::e_key_f21},
+                                                          {XK_F22, ::user::e_key_f22},
+                                                          {XK_F23, ::user::e_key_f23},
+                                                          {XK_F24, ::user::e_key_f24},
+                                                          {XK_Super_L, ::user::e_key_left_command},
+                                                          {XK_Super_R, ::user::e_key_right_command},
+                                                          {XK_Menu, ::user::e_key_application},
+                                                          {XK_Hangul, ::user::e_key_hangul}};
 
-   const VK2KSEntry VIEWER_AUXILIARY_TRANSLATE_TABLE[] = {{VK_LSHIFT, XK_Shift_L},
-                                                          {VK_RSHIFT, XK_Shift_R},
-                                                          {VK_SHIFT, XK_Shift_L},
-                                                          {VK_LCONTROL, XK_Control_L},
-                                                          {VK_RCONTROL, XK_Control_R},
-                                                          {VK_CONTROL, XK_Control_L},
-                                                          {VK_LMENU, XK_Alt_L},
-                                                          {VK_RMENU, XK_Alt_R},
-                                                          {VK_MENU, XK_Alt_L},
-                                                          {VK_LEFT, XK_Left},
-                                                          {VK_UP, XK_Up},
-                                                          {VK_RIGHT, XK_Right},
-                                                          {VK_DOWN, XK_Down},
-                                                          {VK_TAB, XK_Tab},
-                                                          {VK_BACK, XK_BackSpace},
-                                                          {VK_RETURN, XK_Return},
-                                                          {VK_EXECUTE, XK_Execute},
-                                                          {VK_PAUSE, XK_Pause},
-                                                          {VK_ESCAPE, XK_Escape},
-                                                          {VK_CLEAR, XK_Clear},
-                                                          {VK_DELETE, XK_Delete},
-                                                          {VK_HOME, XK_Home},
-                                                          {VK_PRIOR, XK_Page_Up},
-                                                          {VK_NEXT, XK_Page_Down},
-                                                          {VK_END, XK_End},
-                                                          {VK_SELECT, XK_Select},
-                                                          {VK_SNAPSHOT, XK_Print},
-                                                          {VK_INSERT, XK_Insert},
-                                                          {VK_HELP, XK_Help},
-                                                          {VK_CANCEL, XK_Break},
+   const VK2KSEntry VIEWER_AUXILIARY_TRANSLATE_TABLE[] = {{::user::e_key_left_shift, XK_Shift_L},
+                                                          {::user::e_key_right_shift, XK_Shift_R},
+                                                          {::user::e_key_shift, XK_Shift_L},
+                                                          {::user::e_key_left_control, XK_Control_L},
+                                                          {::user::e_key_right_control, XK_Control_R},
+                                                          {::user::e_key_control, XK_Control_L},
+                                                          {::user::e_key_left_alt, XK_Alt_L},
+                                                          {::user::e_key_right_alt, XK_Alt_R},
+                                                          {::user::e_key_right, XK_Alt_L},
+                                                          {::user::e_key_left, XK_Left},
+                                                          {::user::e_key_up, XK_Up},
+                                                          {::user::e_key_right, XK_Right},
+                                                          {::user::e_key_down, XK_Down},
+                                                          {::user::e_key_tab, XK_Tab},
+                                                          {::user::e_key_back, XK_BackSpace},
+                                                          {::user::e_key_return, XK_Return},
+                                                          {::user::e_key_execute, XK_Execute},
+                                                          {::user::e_key_pause, XK_Pause},
+                                                          {::user::e_key_escape, XK_Escape},
+                                                          {::user::e_key_clear, XK_Clear},
+                                                          {::user::e_key_delete, XK_Delete},
+                                                          {::user::e_key_home, XK_Home},
+                                                          {::user::e_key_page_up, XK_Page_Up},
+                                                          {::user::e_key_page_down, XK_Page_Down},
+                                                          {::user::e_key_end, XK_End},
+                                                          {::user::e_key_select, XK_Select},
+                                                          {::user::e_key_snapshot, XK_Print},
+                                                          {::user::e_key_insert, XK_Insert},
+                                                          {::user::e_key_help, XK_Help},
+                                                          {::user::e_key_cancel, XK_Break},
 
-                                                          {VK_MULTIPLY, XK_KP_Multiply},
-                                                          {VK_ADD, XK_KP_Add},
-                                                          {VK_SEPARATOR, XK_KP_Separator},
-                                                          {VK_SUBTRACT, XK_KP_Subtract},
-                                                          {VK_DECIMAL, XK_KP_Decimal},
-                                                          {VK_DIVIDE, XK_KP_Divide},
-                                                          {VK_NUMLOCK, XK_Num_Lock},
+                                                          {::user::e_key_numpad_multiply, XK_KP_Multiply},
+                                                          {::user::e_key_numpad_plus, XK_KP_Add},
+                                                          {::user::e_key_separator, XK_KP_Separator},
+                                                          {::user::e_key_numpad_minus, XK_KP_Subtract},
+                                                          {::user::e_key_decimal, XK_KP_Decimal},
+                                                          {::user::e_key_numpad_divide, XK_KP_Divide},
+                                                          {::user::e_key_numlock          , XK_Num_Lock},
 
-                                                          {VK_NUMPAD0, XK_KP_0},
-                                                          {VK_NUMPAD1, XK_KP_1},
-                                                          {VK_NUMPAD2, XK_KP_2},
-                                                          {VK_NUMPAD3, XK_KP_3},
-                                                          {VK_NUMPAD4, XK_KP_4},
-                                                          {VK_NUMPAD5, XK_KP_5},
-                                                          {VK_NUMPAD6, XK_KP_6},
-                                                          {VK_NUMPAD7, XK_KP_7},
-                                                          {VK_NUMPAD8, XK_KP_8},
-                                                          {VK_NUMPAD9, XK_KP_9},
+                                                          {::user::e_key_numpad_0, XK_KP_0},
+                                                          {::user::e_key_numpad_1, XK_KP_1},
+                                                          {::user::e_key_numpad_2, XK_KP_2},
+                                                          {::user::e_key_numpad_3, XK_KP_3},
+                                                          {::user::e_key_numpad_4, XK_KP_4},
+                                                          {::user::e_key_numpad_5, XK_KP_5},
+                                                          {::user::e_key_numpad_6, XK_KP_6},
+                                                          {::user::e_key_numpad_7, XK_KP_7},
+                                                          {::user::e_key_numpad_8, XK_KP_8},
+                                                          {::user::e_key_numpad_9, XK_KP_9},
 
-                                                          {VK_F1, XK_F1},
-                                                          {VK_F2, XK_F2},
-                                                          {VK_F3, XK_F3},
-                                                          {VK_F4, XK_F4},
-                                                          {VK_F5, XK_F5},
-                                                          {VK_F6, XK_F6},
-                                                          {VK_F7, XK_F7},
-                                                          {VK_F8, XK_F8},
-                                                          {VK_F9, XK_F9},
-                                                          {VK_F10, XK_F10},
-                                                          {VK_F11, XK_F11},
-                                                          {VK_F12, XK_F12},
-                                                          {VK_F13, XK_F13},
-                                                          {VK_F14, XK_F14},
-                                                          {VK_F15, XK_F15},
-                                                          {VK_F16, XK_F16},
-                                                          {VK_F17, XK_F17},
-                                                          {VK_F18, XK_F18},
-                                                          {VK_F19, XK_F19},
-                                                          {VK_F20, XK_F20},
-                                                          {VK_F21, XK_F21},
-                                                          {VK_F22, XK_F22},
-                                                          {VK_F23, XK_F23},
-                                                          {VK_F24, XK_F24},
-                                                          {VK_LWIN, XK_Super_L},
-                                                          {VK_RWIN, XK_Super_R},
-                                                          {VK_APPS, XK_Menu},
-                                                          {VK_HANGUL, XK_Hangul}};
+                                                          {::user::e_key_f1, XK_F1},
+                                                          {::user::e_key_f2, XK_F2},
+                                                          {::user::e_key_f3, XK_F3},
+                                                          {::user::e_key_f4, XK_F4},
+                                                          {::user::e_key_f5, XK_F5},
+                                                          {::user::e_key_f6, XK_F6},
+                                                          {::user::e_key_f7, XK_F7},
+                                                          {::user::e_key_f8, XK_F8},
+                                                          {::user::e_key_f9, XK_F9},
+                                                          {::user::e_key_f10, XK_F10},
+                                                          {::user::e_key_f11, XK_F11},
+                                                          {::user::e_key_f12, XK_F12},
+                                                          {::user::e_key_f13, XK_F13},
+                                                          {::user::e_key_f14, XK_F14},
+                                                          {::user::e_key_f15, XK_F15},
+                                                          {::user::e_key_f16, XK_F16},
+                                                          {::user::e_key_f17, XK_F17},
+                                                          {::user::e_key_f18, XK_F18},
+                                                          {::user::e_key_f19, XK_F19},
+                                                          {::user::e_key_f20, XK_F20},
+                                                          {::user::e_key_f21, XK_F21},
+                                                          {::user::e_key_f22, XK_F22},
+                                                          {::user::e_key_f23, XK_F23},
+                                                          {::user::e_key_f24, XK_F24},
+                                                          {::user::e_key_left_command, XK_Super_L},
+                                                          {::user::e_key_right_command, XK_Super_R},
+                                                          {::user::e_key_application, XK_Menu},
+                                                          {::user::e_key_hangul, XK_Hangul}};
 
    struct codepair
    {
@@ -1011,7 +1012,7 @@ namespace subsystem
       {0x20ac, 0x20ac}, /*                    EuroSign  EURO SIGN */
    };
 
-   const UINT32 EXTENDED_KEYS[] = {XK_Control_R, XK_Alt_R,
+   const unsigned int EXTENDED_KEYS[] = {XK_Control_R, XK_Alt_R,
 
                                    XK_KP_Enter,  XK_KP_Divide,
 
@@ -1052,11 +1053,11 @@ namespace subsystem
       return -1;
    }
 
-   bool Keymap::keySymToVirtualCode(UINT32 keySym, BYTE *vkCode, bool *extended)
+   bool Keymap::keySymToVirtualCode(unsigned int keySym, ::user::enum_key * peuserkey, bool *extended)
    {
       // Is extended key in the Windows?
       *extended = false;
-      for (size_t j = 0; j < sizeof(EXTENDED_KEYS) / sizeof(UINT32); j++)
+      for (size_t j = 0; j < sizeof(EXTENDED_KEYS) / sizeof(unsigned int); j++)
       {
          if (EXTENDED_KEYS[j] == keySym)
          {
@@ -1065,22 +1066,22 @@ namespace subsystem
          }
       }
 
-      for (UINT i = 0; i < sizeof(SERVER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
+      for (unsigned int i = 0; i < sizeof(SERVER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
       {
          if (SERVER_AUXILIARY_TRANSLATE_TABLE[i].keySym == keySym)
          {
-            *vkCode = SERVER_AUXILIARY_TRANSLATE_TABLE[i].vkCode;
+            *peuserkey = SERVER_AUXILIARY_TRANSLATE_TABLE[i].m_euserkey;
             return true;
          }
       }
       return false;
    }
 
-   bool Keymap::virtualCodeToKeySym(UINT32 *keySym, BYTE vkCode)
+   bool Keymap::virtualCodeToKeySym(unsigned int *keySym, ::user::enum_key euserkey)
    {
-      for (UINT i = 0; i < sizeof(VIEWER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
+      for (unsigned int i = 0; i < sizeof(VIEWER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
       {
-         if (VIEWER_AUXILIARY_TRANSLATE_TABLE[i].vkCode == vkCode)
+         if (VIEWER_AUXILIARY_TRANSLATE_TABLE[i].m_euserkey == euserkey)
          {
             *keySym = VIEWER_AUXILIARY_TRANSLATE_TABLE[i].keySym;
             return true;
@@ -1089,7 +1090,7 @@ namespace subsystem
       return false;
    }
 
-   bool Keymap::keySymToUnicodeChar(UINT32 keySym, int *ch)
+   bool Keymap::keySymToUnicodeChar(unsigned int keySym, int *ch)
    {
       // X sym as unicode with flag.
       // Note this method is valid only for
@@ -1104,7 +1105,7 @@ namespace subsystem
       // Latin-1 characters.
       if ((keySym >= 32 && keySym <= 126) || (keySym >= 160 && keySym <= 255))
       {
-         *ch = (WCHAR)keySym;
+         *ch = (int)keySym;
 
          return true;
       }
@@ -1116,7 +1117,7 @@ namespace subsystem
 
          if (res != -1)
          {
-            *ch = (WCHAR)res;
+            *ch = (int)res;
 
             return true;
          }

@@ -48,6 +48,8 @@
    template<typename PARTICLE_INTERFACE, typename BASE = Particle>
    class Implementation;
 
+   template<typename AGGREGATE>
+   class Object;
 
 // node
 namespace subsystem

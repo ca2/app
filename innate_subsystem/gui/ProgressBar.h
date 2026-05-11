@@ -53,8 +53,8 @@ namespace innate_subsystem
         //ProgressBar();
         //~ProgressBar();
 
-        void setRange(unsigned short min, unsigned short max) {m_pprogressbar->setRange(min, max);}
-        void setPos(unsigned short pos){m_pprogressbar->setPos(pos);}
+        void setRange(unsigned short min, unsigned short max) override {m_pprogressbar->setRange(min, max);}
+        void setPos(unsigned short pos) override{m_pprogressbar->setPos(pos);}
     };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ProgressBarAggregate :

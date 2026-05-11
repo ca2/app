@@ -51,7 +51,7 @@ namespace subsystem
       unsigned long prevTotalOut = m_zlibStream.total_out;
 
       unsigned int constrainedValue = (unsigned int)avaliableOutput;
-      _ASSERT(avaliableOutput == constrainedValue);
+      ASSERT(avaliableOutput == constrainedValue);
 
       m_output.set_size(avaliableOutput);
 

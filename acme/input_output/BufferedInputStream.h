@@ -35,9 +35,9 @@
       virtual void _initialize_buffered_input_stream(InputStream *input, memsize iInitialBufferSize = -1, memsize iMaximumBufferSize = -1);
 
 
-      virtual memsize read(void *buffer, memsize len);
+      virtual memsize read(void *buffer, memsize len) override;
 
-      memsize available();
+      memsize available() override;
 
 
    };

@@ -126,7 +126,7 @@ namespace subsystem
       //~NamedPipe();
 
 
-         void initialize_named_pipe(::subsystem::FileInterface* pfilePipe, unsigned int maxPortionSize, bool asServer)
+         void initialize_named_pipe(::subsystem::FileInterface* pfilePipe, unsigned int maxPortionSize, bool asServer) override
       {
 
          m_pnamedpipe->initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
@@ -137,7 +137,7 @@ namespace subsystem
        *
        * @throws ::subsystem::Exception on fail.
        */
-      void close() {  m_pnamedpipe->close();  }
+      void close()  override{  m_pnamedpipe->close();  }
 
       /**
        * Reads data from pipe.
@@ -146,7 +146,7 @@ namespace subsystem
        * @param len count of bytes to read.
        * @throws ::io_exception on io error.
        */
-      memsize read(void *buffer, memsize len) { return m_pnamedpipe->read(buffer, len); }
+      memsize read(void *buffer, memsize len) override { return m_pnamedpipe->read(buffer, len); }
 
       /**
        * Writes data to pipe.
@@ -155,9 +155,9 @@ namespace subsystem
        * @param len count of bytes to write.
        * @throws ::io_exception on io error.
        */
-      memsize defer_write(const void *buffer, memsize len) { return m_pnamedpipe->defer_write(buffer, len); }
+      memsize defer_write(const void *buffer, memsize len)  override{ return m_pnamedpipe->defer_write(buffer, len); }
 
-      memsize available() { return m_pnamedpipe->available(); }
+      memsize available() override { return m_pnamedpipe->available(); }
 
       //virtual HANDLE getHandle() const;
 
@@ -181,7 +181,8 @@ namespace subsystem
    {
    public:
 
-
+      ImplementAggregateø(NamedPipe, Pipe)
+      
    };
 
 
@@ -190,6 +191,8 @@ namespace subsystem
    {
    public:
 
+      ImplementObjectø(NamedPipe)
+      
    };
 
 

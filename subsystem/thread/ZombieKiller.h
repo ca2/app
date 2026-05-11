@@ -75,7 +75,7 @@ namespace subsystem
       /**
        * Inherited from Thread class.
        */
-      virtual void run();
+      void run() override;
 
       /**
        * Deletes all dead zombie threads from memory and removes them from zombies ::list_base.

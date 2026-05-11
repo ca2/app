@@ -42,7 +42,7 @@ namespace subsystem
          case ERROR_START_TIMEOUT:
             break;
          default:
-            _ASSERT(false);
+            ASSERT(false);
       };
 
       m_iServiceControlManagerErrorCode = iServiceControlManagerErrorCode;

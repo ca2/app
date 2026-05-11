@@ -30,104 +30,89 @@
 namespace subsystem
 {
    SystemException::SystemException()
-   : ::subsystem::Exception(), m_errcode(GetLastError())
+   : ::subsystem::Exception(),m_errorcode(::operating_system::last_error_code())
    {
-      createMessage(0, m_errcode);
+      createMessage(0, m_errorcode);
    }
 
-   SystemException::SystemException(int errcode)
-   : ::subsystem::Exception(), m_errcode(errcode)
+   SystemException::SystemException(const ::error_code & errorcode)
+   : ::subsystem::Exception(), m_errorcode(errorcode)
    {
-      createMessage(0, m_errcode);
+      createMessage(0, m_errorcode);
    }
 
    SystemException::SystemException(const ::scoped_string & scopedstrUserMessage)
-   : ::subsystem::Exception(), m_errcode(GetLastError())
+   : ::subsystem::Exception(), m_errorcode(::operating_system::last_error_code())
    {
-      createMessage(scopedstrUserMessage, m_errcode);
+      createMessage(scopedstrUserMessage, m_errorcode);
    }
 
-   SystemException::SystemException(const ::scoped_string & scopedstrUserMessage, int errcode)
-   : ::subsystem::Exception(), m_errcode(errcode)
+   SystemException::SystemException(const ::scoped_string & scopedstrUserMessage, const ::error_code & errorcode)
+   : ::subsystem::Exception(), m_errorcode(errorcode)
    {
-      createMessage(scopedstrUserMessage, m_errcode);
+      createMessage(scopedstrUserMessage, m_errorcode);
    }
 
    SystemException::~SystemException()
    {
    }
 
-   int SystemException::getErrorCode() const
+   ::error_code SystemException::getErrorCode() const
    {
-      return m_errcode;
+      return m_errorcode;
    }
 
    ::string SystemException::getSystemErrorDescription() const
    {
-      return m_systemMessage;
+      return m_strSystemMessage;
    }
 
-   void SystemException::createMessage(const ::scoped_string & scopedstrUserMessage, int errcode)
+   void SystemException::createMessage(const ::scoped_string & scopedstrUserMessage, const ::error_code & errorcode)
    {
 
       ::string strMessage(scopedstrUserMessage);
-      if (scopedstrUserMessage.is_empty()  && errcode == ERROR_SUCCESS) {
+      if (scopedstrUserMessage.is_empty()  && errorcode.is_clear()) {
          strMessage = "Thrown a system exception but the program"
                        " cannot identify the corresponding system error.";
       }
 
       // Get description of windows specific error.
 
-      bool formatMessageOk = true;
+      ::string strErrorMessage = errorcode.get_error_message();
 
-      TCHAR buffer[1024 * 10] = {0};
-
-      if (FormatMessage(
-        FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-        NULL,
-        errcode,
-        MAKELANGID(LANG_ENGLISH, SUBLANG_DEFAULT),
-        (LPTSTR)&buffer[0],
-        sizeof(buffer),
-        NULL) == 0) {
-         formatMessageOk = false;
-        }
-
-      ::string windowsErrorDescription(buffer);
+      bool formatMessageOk = strErrorMessage.has_character();
 
       // Remove bad characters.
 
-      const TCHAR badCharacters[] = { 10, 13, '\n', '\t', '\0' };
+      const char badCharacters[] = { 10, 13, '\n', '\t', '\0' };
 
-      windowsErrorDescription.erase_any_character_in(badCharacters);
+      strErrorMessage.erase_any_character_in(badCharacters);
 
-      if (windowsErrorDescription.ends(".")) {
-         windowsErrorDescription.rear_truncate(1);
-      }
+      strErrorMessage.ends_eat(".");
 
       // Create system error part of scopedstrMessage.
 
       if (formatMessageOk) {
-         m_systemMessage.format("{} (error code {})",
-           windowsErrorDescription,
-           errcode);
+         m_strSystemMessage.format("{} (error code {})",
+           strErrorMessage,
+           errorcode.m_iOsError);
       } else {
-         m_systemMessage.format("Error code {}", errcode);
+         m_strSystemMessage.format("Error code {}", errorcode.m_iOsError);
       }
 
       // Use user scopedstrMessage if specified.
 
-      if (errcode != 0) {
-         if (scopedstrUserMessage.is_empty()) {
-            m_strMessage = m_systemMessage;
+      if (m_errorcode.is_set()) {
+         if (strErrorMessage.is_empty()) {
+            m_strMessage = m_strSystemMessage;
          } else {
             m_strMessage.format("{} (system error: {})",
               scopedstrUserMessage,
-              m_systemMessage);
+              m_strSystemMessage);
          }
       } else {
          m_strMessage = scopedstrUserMessage;
-         m_systemMessage = scopedstrUserMessage;
+         m_strSystemMessage = scopedstrUserMessage;
       }
    }
 } // namespace subsystem

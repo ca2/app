@@ -345,7 +345,7 @@ namespace innate_subsystem
       // setClass()
       // Set a class name only to the new window created by createWindow
       //void setClass(const ::scoped_string  & scopedstrWindowClassName) override
-      void setClass(enum_window_class ewindowclass)
+      void setClass(enum_window_class ewindowclass) override
       {
 
          m_pwindow->setClass(ewindowclass);

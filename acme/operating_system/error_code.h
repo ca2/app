@@ -31,11 +31,23 @@ public:
    error_code(enum_error_code_type etype, long long iOsError) :m_etype(etype), m_iOsError(iOsError) {}
 
 
+   bool is_clear() const;
    //void get_message(::string & strMessage) const;
 
+   bool is_set() const;
+   
+   ::string get_error_message() const;
    
 };
 
+namespace operating_system
+{
+
+
+   CLASS_DECL_ACME ::error_code last_error_code();
+
+
+} // namespace operating_system
 
 //inline error_code errno_error_code(int iErrNo)
 //{

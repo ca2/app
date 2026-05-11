@@ -19,6 +19,12 @@ namespace user
       e_notification_combo_box_selection_change = 1, // _CBN_SELCHANGE
       e_notification_combo_box_lost_focus = 4, // _CBN_KILLFOCUS
 
+      
+      e_notification_edit_update = 4, // _EN_UPDATE
+      
+      
+      e_notification_list_box_selection_change = 1, // _LBN_SELCHANGE
+      e_notification_list_box_double_click = 2, // LBN_DBLCLK
 
    };
 

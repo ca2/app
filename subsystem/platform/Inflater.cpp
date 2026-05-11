@@ -60,9 +60,9 @@ namespace subsystem
 
       // Check to overflow.
       unsigned int constrainedValue = (unsigned int)avaliableOutput;
-      _ASSERT(avaliableOutput == constrainedValue);
+      ASSERT(avaliableOutput == constrainedValue);
       constrainedValue = (unsigned int)m_inputSize;
-      _ASSERT(m_inputSize == constrainedValue);
+      ASSERT(m_inputSize == constrainedValue);
 
       m_output.set_size(avaliableOutput);
 

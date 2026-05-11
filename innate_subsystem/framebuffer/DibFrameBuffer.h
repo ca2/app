@@ -42,24 +42,24 @@ namespace innate_subsystem
       DibFramebuffer();
       ~DibFramebuffer() override;
 
-      virtual void setColor(unsigned char reg, unsigned char green, unsigned char blue);
-      virtual void fillRect(const ::int_rectangle &rectangleTarget, unsigned int color);
+      virtual void setColor(unsigned char reg, unsigned char green, unsigned char blue) override;
+      virtual void fillRect(const ::int_rectangle &rectangleTarget, unsigned int color) override;
 
-      virtual bool isEqualTo(const Framebuffer * pframebuffer);
+      virtual bool isEqualTo(const Framebuffer * pframebuffer) override;
 
       virtual bool copyFrom(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                            int srcX, int srcY);
+                            int srcX, int srcY) override;
       virtual bool copyFrom(const Framebuffer * pframebufferSource,
-                            int srcX, int srcY);
+                            int srcX, int srcY) override;
       virtual bool overlay(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                           int srcX, int srcY, const char *andMask);
-      virtual void move(const ::int_rectangle &rectangleTarget, const int srcX, const int srcY);
+                           int srcX, int srcY, const char *andMask) override;
+      virtual void move(const ::int_rectangle &rectangleTarget, const int srcX, const int srcY) override;
       virtual bool cmpFrom(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
-                           const int srcX, const int srcY);
+                           const int srcX, const int srcY) override;
 
-      virtual inline ::int_size getDimension() const;
+      virtual ::int_size getDimension() const override;
 
-      virtual inline PixelFormat getPixelFormat() const;
+      virtual PixelFormat getPixelFormat() const override;
 
       // This function must uses instead of function that can change the Framebuffer properties
       // compatibleWindow - is hwnd of a window that will be used to create a compatible DC for
@@ -75,11 +75,11 @@ namespace innate_subsystem
       // got from a compatible window on object creation. This function can be call many times.
       void setTargetDeviceContext(::innate_subsystem::DeviceContextInterface * pdevicecontext);
 
-      virtual unsigned char getBitsPerPixel() const;
+      unsigned char getBitsPerPixel() const override;
 
       virtual unsigned char getBytesPerPixel() const;
 
-      virtual inline void *getBuffer() const;
+      void *getBuffer() const override;
 
       virtual void *getBufferPtr(int x, int y) const;
 
@@ -114,17 +114,17 @@ namespace innate_subsystem
       // This section to reduce access to some function that have been inherited from the
       // Framebuffer class and can't to be use in here. Also, if user code will to try
       // use this functions from a base class its will throw Exception.
-      virtual bool assignProperties(const Framebuffer * pframebufferSource);
-      virtual bool clone(const Framebuffer * pframebufferSource);
-      virtual bool setDimension(const ::int_size &newDim);
-      virtual bool setDimension(const ::int_rectangle &rect);
-      virtual void setEmptyDimension(const ::int_rectangle &dimByRect);
-      virtual bool setPixelFormat(const PixelFormat &pixelFormat);
-      virtual void setEmptyPixelFmt(const PixelFormat &pf);
-      virtual bool setProperties(const ::int_size &newDim, const PixelFormat &pixelFormat);
-      virtual bool setProperties(const ::int_rectangle &dimByRect, const PixelFormat &pixelFormat);
-      virtual void setPropertiesWithoutResize(const ::int_size &newDim, const PixelFormat &pf);
-      virtual void setBuffer(void *newBuffer);
+      virtual bool assignProperties(const Framebuffer * pframebufferSource) override;
+      virtual bool clone(const Framebuffer * pframebufferSource) override;
+      virtual bool setDimension(const ::int_size &newDim) override;
+      virtual bool setDimension(const ::int_rectangle &rect) override;
+      virtual void setEmptyDimension(const ::int_rectangle &dimByRect) override;
+      virtual bool setPixelFormat(const PixelFormat &pixelFormat) override;
+      virtual void setEmptyPixelFmt(const PixelFormat &pf) override;
+      virtual bool setProperties(const ::int_size &newDim, const PixelFormat &pixelFormat) override;
+      virtual bool setProperties(const ::int_rectangle &dimByRect, const PixelFormat &pixelFormat) override;
+      virtual void setPropertiesWithoutResize(const ::int_size &newDim, const PixelFormat &pf) override;
+      virtual void setBuffer(void *newBuffer) override;
 
    private:
       // This function updates a DIB section in accord with the Framebuffer

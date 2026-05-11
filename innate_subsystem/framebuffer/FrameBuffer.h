@@ -38,6 +38,14 @@ namespace innate_subsystem
    virtual public ::particle
    {
    public:
+      
+      ::int_size m_size;
+
+      ::innate_subsystem::PixelFormat m_pixelformat;
+      void *m_buffer;
+
+
+      
       //int m_iDivisor = 1;
       Framebuffer(void);
       ~Framebuffer(void) override;
@@ -160,11 +168,6 @@ namespace innate_subsystem
                                             const Framebuffer * pframebufferSource,
                                             int srcX, int srcY,
                                             const char *andMask);
-
-      ::int_size m_size;
-
-      ::innate_subsystem::PixelFormat m_pixelformat;
-      void *m_buffer;
 
    };
 

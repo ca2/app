@@ -115,54 +115,53 @@ namespace innate_subsystem
       }
 
       // Inserts new item to the specified position
-      void insertItem(int index, const char* text, void* tag) { return m_pcombobox->insertItem(index, text, tag);
+      void insertItem(int index, const char* text, void* tag)  override{ return m_pcombobox->insertItem(index, text, tag);
 
       }
 
       // Returns count of combo box items
-      int getItemsCount()
+      int getItemsCount() override
       {
 
          return m_pcombobox->getItemsCount();
       }
 
       // Sets user data (tag) associated with combo box item with specified index
-      void setItemData(int index, void* tag) { m_pcombobox->setItemData(index, tag);
+      void setItemData(int index, void* tag) override { m_pcombobox->setItemData(index, tag);
 
       }
 
       // Returns user data associated with combo box item with specified index
-      void* getItemData(int index) { return m_pcombobox->getItemData(index);
+      void* getItemData(int index) override { return m_pcombobox->getItemData(index);
 
       }
 
       // Sets text associated with combo box item with specified index
-      ::string getItemText(int index)
-      {
+      ::string getItemText(int index) override      {
 
          return m_pcombobox->getItemText(index);
       }
 
       // Returns current selected item index
-      int getSelectedItemIndex()
+      int getSelectedItemIndex() override
       {
 
          return m_pcombobox->getSelectedItemIndex();
       }
 
       // Selects item with specified index
-      void setSelectedItem(int index) { m_pcombobox->setSelectedItem(index);
+      void setSelectedItem(int index) override{ m_pcombobox->setSelectedItem(index);
       }
 
       // Deletes item from specified location
-      void deleteItem(int index)
+      void deleteItem(int index) override
       {
 
          m_pcombobox->deleteItem(index);
       }
 
       // Removes all combo box items
-      void removeAllItems()
+      void removeAllItems() override
       {
 
          m_pcombobox->removeAllItems();

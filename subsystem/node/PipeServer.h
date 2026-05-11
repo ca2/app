@@ -36,8 +36,9 @@
 namespace subsystem
 {
 
-   typedef BOOL(WINAPI *pGetNamedPipeClientProcessId)(HANDLE Pipe, PULONG ClientProcessId);
-
+//#ifdef WINDOWS
+  // typedef BOOL(WINAPI *pGetNamedPipeClientProcessId)(HANDLE Pipe, PULONG ClientProcessId);
+//#endif
    /**
     * Server fabric of pipes.
     *
@@ -68,7 +69,7 @@ namespace subsystem
 
       virtual void initialize_pipe_server(const ::scoped_string &scopedstrName, unsigned int bufferSize,
          ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr,
-                 DWORD milliseconds = INFINITE);
+                 const class ::time & time = ::time::infinity());
 
       /**
        * Waits until pipe client connects.
@@ -89,7 +90,7 @@ namespace subsystem
       /**
        * @deprecated.
        */
-      virtual void waitForConnect(DWORD milliseconds = INFINITE);
+      virtual void waitForConnect(const class ::time & time = time::infinity());
       /**
        * @deprecated.
        */
@@ -99,7 +100,7 @@ namespace subsystem
       virtual void createServerPipe();
 
       // returns True on every error
-      virtual bool checkOtherSideBinaryName(HANDLE hPipe);
+      virtual bool checkOtherSideBinaryName(::subsystem::FileInterface * pfilePipe);
 
       // loads GetNamedPipeClientProcessId (Vista or later) from kernel32
       //static void initialize();

@@ -92,11 +92,11 @@ virtual       int getSelectedTabIndex()= 0;
       //
 
       TabContainer &getTabs() override { return m_ptabcontrol->getTabs(); }
-      virtual int getTabCount() {return m_ptabcontrol->getTabCount();};
+      virtual int getTabCount() override {return m_ptabcontrol->getTabCount();};
       TabInterface *getTab(int index)override { return m_ptabcontrol->getTab(index); }
       void addTab(WindowInterface *pwindow, const char *caption)override { m_ptabcontrol->addTab(pwindow, caption); }
       void showTab(int index)override { m_ptabcontrol->showTab(index); }
-      void showTab(WindowInterface *pwindow) { m_ptabcontrol->showTab(pwindow); }
+      void showTab(WindowInterface *pwindow) override { m_ptabcontrol->showTab(pwindow); }
       void deleteAllTabs()override { m_ptabcontrol->deleteAllTabs(); }
       void removeTab(int index)override { m_ptabcontrol->removeTab(index); }
 

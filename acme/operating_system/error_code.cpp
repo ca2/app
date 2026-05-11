@@ -11,7 +11,9 @@
 #include "shared_posix/c_error_number.h"
 #include "debug.h"
 #include "_api.h"
-
+#ifdef WINDOWS
+#include "acme/operating_system/windows/windows.h"
+#endif
 
 error_code::error_code(const c_error_number & error_code) :
    m_etype(e_error_code_type_errno),
@@ -41,3 +43,73 @@ void get_message(::string & strMessage, const ::error_code & errorcode)
 }
 
 
+bool error_code::is_clear() const
+{
+   
+   
+   if(m_etype == e_error_code_type_none)
+   {
+      
+      return true;
+      
+   }
+   
+   if(m_iOsError == 0)
+   {
+      
+      return true;
+      
+   }
+   
+   
+   return false;
+   
+}
+
+
+bool error_code::is_set() const
+{
+
+   return !is_clear();
+   
+}
+
+
+
+::string error_code::get_error_message() const
+{
+   
+   ::string strErrorMessage;
+ 
+   if(m_etype == e_error_code_type_none)
+   {
+      
+      strErrorMessage.formatf("{%lld}", m_iOsError);
+      
+   }
+#ifdef WINDOWS
+   else if(m_etype == e_error_code_type_last_error)
+   {
+      
+      ::last_error lasterror((unsigned int) m_iOsError);
+      
+      strErrorMessage = ::windows::last_error_message(lasterror);
+      
+   }
+#endif
+   else if(m_etype == e_error_code_type_errno)
+   {
+      
+      strErrorMessage = strerror((int) m_iOsError);
+      
+   }
+   else
+   {
+      
+      strErrorMessage.format("(unknown error %lld)", m_iOsError);
+      
+   }
+
+   return strErrorMessage;
+   
+}

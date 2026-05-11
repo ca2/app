@@ -67,7 +67,7 @@ namespace subsystem
       /**
        * Loads string from resources.
        * @param [in] id identifier of string in resource file.
-       * @param [out] string storage for string from resources.
+       * @param [out] str storage for string from resources.
        * @return true if string is loaded, false otherwise.
        */
       virtual bool loadString(unsigned int id, ::string & str);

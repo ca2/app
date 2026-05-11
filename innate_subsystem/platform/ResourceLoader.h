@@ -56,14 +56,14 @@ namespace innate_subsystem
 
       /**
        * Loads standart icon from resources.
-       * @param iconName icon name.
+       * @param ecursor cursor type.
        * @return icon handle of 0 if cannot load icon.
        */
       virtual ::pointer < IconInterface >  loadStandardIcon(enum_cursor ecursor);
 
       /**
        * Loads icon from resources.
-       * @param iconName icon name.
+       * @param iId icon id.
        * @return icon handle of 0 if cannot load icon.
        */
       virtual ::pointer < IconInterface > loadIconByIntResource(int iId);

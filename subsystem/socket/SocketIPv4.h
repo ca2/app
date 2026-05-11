@@ -68,14 +68,14 @@ namespace subsystem
 
       /**
        * Connects to remote host.
-       * @param host host to connect.
+       * @param scopedstrHost host to connect.
        * @param port port to connect.
        * @throws SocketException on fail.
        */
       virtual void connect(const ::scoped_string & scopedstrHost, unsigned short port) = 0;
       /**
        * Connects to remote host.
-       * @param addr address to connect.
+       * @param paddress address to connect.
        * @throws SocketException on fail.
        */
       virtual void connect(::subsystem::SocketAddressIPv4Interface * paddress) = 0;
@@ -86,13 +86,13 @@ namespace subsystem
       virtual void close() = 0;
       /**
        * Shutdowns socket.
-       * @param how how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
+       * @param esocketshutdown how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
        * @throws SocketException on fail.
        */
       virtual void shutdown(enum_socket_shutdown esocketshutdown) = 0;
       /**
        * Binds socket to specified address.
-       * @param bindHost host to bind.
+       * @param scopedstrBindHost host to bind.
        * @param bindPort port to bind.
        * @throws SocketException on fail.
        */
@@ -126,7 +126,7 @@ namespace subsystem
        *
        * @param data buffer to send.
        * @param size bytes to send.
-       * @param [optional] flags socket flags.
+       * @param flags Optional socket flags.
        * @return count to sent bytes.
        * @throw ::io_exception on error.
        */
@@ -146,14 +146,12 @@ namespace subsystem
 
       /**
        * Returns local address of socket (for listening socket).
-       * @param addr output parameter that will contain socket address.
-       * @return true on success, false on fail.
+       * @return output parameter that will contain socket address or null on fail.
        */
       virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() = 0;
       /**
        * Returns peer address.
-       * @param addr output parameter that will contain socket address.
-       * @return true on success, false on fail.
+       * @return output parameter that will contain socket address or null on fail.
        */
       virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() = 0;
 
@@ -225,7 +223,7 @@ namespace subsystem
 
       /**
        * Connects to remote host.
-       * @param host host to connect.
+       * @param scopedstrHost host to connect.
        * @param port port to connect.
        * @throws SocketException on fail.
        */
@@ -237,7 +235,7 @@ namespace subsystem
       }
       /**
        * Connects to remote host.
-       * @param addr address to connect.
+       * @param paddress address to connect.
        * @throws SocketException on fail.
        */
       void connect(::subsystem::SocketAddressIPv4Interface * paddress)  override
@@ -258,7 +256,7 @@ namespace subsystem
       }
       /**
        * Shutdowns socket.
-       * @param how how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
+       * @param esocketshutdown how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
        * @throws SocketException on fail.
        */
       void shutdown(enum_socket_shutdown esocketshutdown)  override
@@ -269,7 +267,7 @@ namespace subsystem
       }
       /**
        * Binds socket to specified address.
-       * @param bindHost host to bind.
+       * @param scopedstrBindHost host to bind.
        * @param bindPort port to bind.
        * @throws SocketException on fail.
        */
@@ -328,7 +326,7 @@ namespace subsystem
        *
        * @param data buffer to send.
        * @param size bytes to send.
-       * @param [optional] flags socket flags.
+       * @param flags Optional socket flags.
        * @return count to sent bytes.
        * @throw ::io_exception on error.
        */
@@ -363,8 +361,7 @@ namespace subsystem
 
       /**
        * Returns local address of socket (for listening socket).
-       * @param addr output parameter that will contain socket address.
-       * @return true on success, false on fail.
+       * @return addr output parameter that will contain socket address, null on fail.
        */
       ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() override
       {
@@ -374,8 +371,7 @@ namespace subsystem
       }
       /**
        * Returns peer address.
-       * @param addr output parameter that will contain socket address.
-       * @return true on success, false on fail.
+       * @return addr output parameter that will contain socket address, null on fail.
        */
       ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override
       {

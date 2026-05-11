@@ -1122,7 +1122,7 @@ namespace user
 {
 
 
-   enum enum_key : long long;
+   enum enum_key : int;
 
 
 } // namespace user

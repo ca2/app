@@ -4,7 +4,9 @@
 // #ifndef _BASE_WINDOW_H_
 // #define _BASE_WINDOW_H_
 
+
 #include "innate_subsystem/_common_header.h"
+#include "acme/constant/user_key.h"
 
 namespace innate_subsystem
 {
@@ -15,12 +17,13 @@ namespace innate_subsystem
         
       // This state doesn't difference between left and right modifiers. It's
        // needed to ToUnicodeEx().
-       unsigned char m_viewerKeyState[256];
+       unsigned char m_viewerKeyState[::user::e_key_count];
 
        // This state does difference between left and right modifiers. It's
        // needed to know the server side state (e.g. to release or restore
        // modifiyers state outside from a real key event).
-       unsigned char m_serverKeyState[256];
+       //unsigned char m_serverKeyState[256];
+       unsigned char m_serverKeyState[::user::e_key_count];
        bool m_leftMetaIsPressed;
        bool m_rightMetaIsPressed;
 
@@ -32,7 +35,8 @@ namespace innate_subsystem
 
         void clearKeyState();
 
-       bool isPressed(unsigned char virtKey);
+       //bool isPressed(unsigned char virtKey);
+       bool isPressed(::user::enum_key euserkey);
 
              //void clearKeyState();
        int GettingCharFromCtrlSymbol(int ch);

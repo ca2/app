@@ -55,7 +55,7 @@ namespace subsystem
    {
        initialize(psocket);
       m_psocket = psocket;
-      _ASSERT(m_psocket != NULL);
+      ASSERT(m_psocket != NULL);
    }
 
 

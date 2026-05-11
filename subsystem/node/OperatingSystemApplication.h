@@ -73,7 +73,7 @@ namespace subsystem
       /**
        * Runs windows application.
        * @remark really it creates main window and starts windows scopedstrMessage loop.
-       * @return application exit code.
+       * return application exit code in member m_iExitCoe.
        */
       virtual void run() = 0;
 
@@ -90,13 +90,13 @@ namespace subsystem
       /**
        * Adds modeless dialog to application modeless dialog ::list_base to
        * enable switching between controls by pressing tab button.
-       * @param dialogWindow HWND of modeless dialog.
+       * @param operatingsystemwindow HWND of modeless dialog.
        */
       virtual void addModelessDialog(const ::operating_system::window & operatingsystemwindow) = 0;
 
       /**
        * Removes dialog from application modeless dialog ::list_base.
-       * @param dialogWindow HWND of modeless dialog.
+       * @param operatingsystemwindow HWND of modeless dialog.
        */
       virtual void removeModelessDialog(const ::operating_system::window & operatingsystemwindow) = 0;
 
@@ -211,7 +211,7 @@ namespace subsystem
       /**
        * Runs windows application.
        * @remark really it creates main window and starts windows scopedstrMessage loop.
-       * @return application exit code.
+       * return application exit code in m_iExitCode member.
        */
       void run() override
       {
@@ -243,7 +243,7 @@ namespace subsystem
       /**
        * Adds modeless dialog to application modeless dialog ::list_base to
        * enable switching between controls by pressing tab button.
-       * @param dialogWindow HWND of modeless dialog.
+       * @param operatingsystemwindow HWND of modeless dialog.
        */
       void addModelessDialog(const ::operating_system::window & operatingsystemwindow) override
       {
@@ -254,7 +254,7 @@ namespace subsystem
 
       /**
        * Removes dialog from application modeless dialog ::list_base.
-       * @param dialogWindow HWND of modeless dialog.
+       * @param operatingsystemwindow HWND of modeless dialog.
        */
       void removeModelessDialog(const ::operating_system::window & operatingsystemwindow) override
       {

@@ -63,11 +63,11 @@ namespace subsystem
    //
 
    unsigned int MD5::F(unsigned int x, unsigned int y, unsigned int z) {
-      return x & y | ~x & z;
+      return (x & y) | (~x & z);
    }
 
    unsigned int MD5::G(unsigned int x, unsigned int y, unsigned int z) {
-      return x & z | y & ~z;
+      return (x & z) | (y & ~z);
    }
 
    unsigned int MD5::H(unsigned int x, unsigned int y, unsigned int z) {

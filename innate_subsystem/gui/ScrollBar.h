@@ -107,26 +107,26 @@ namespace innate_subsystem
   ///    ~ScrollBar();
 
       //void setWindow(const ::operating_system::window & operatingsystemwindow);
-      bool showVertScroll(bool show) { return m_pscrollbar->showVertScroll(show); }
-      bool showHorzScroll(bool show) { return m_pscrollbar->showHorzScroll(show); }
-      void setHorzRange(int imin, int imax, int istep) { m_pscrollbar->setHorzRange(imin, imax, istep); }
-      void setVertRange(int imin, int imax, int istep) { m_pscrollbar->setVertRange(imin, imax, istep); }
-      void setVertPos(int iPos) { m_pscrollbar->setVertPos(iPos); }
-      void setHorzPos(int iPos) { m_pscrollbar->setHorzPos(iPos); }
-      void moveUpVert(int iPercent = 0) { m_pscrollbar->moveUpVert(iPercent); }
-      void moveDownVert(int iPercent = 0) { m_pscrollbar->moveDownVert(iPercent); }
-      void moveLeftHorz(int iPercent = 0) { m_pscrollbar->moveLeftHorz(iPercent); }
-      void moveRightHorz(int inPercent = 0) { m_pscrollbar->moveRightHorz(inPercent); }
-      int getVertPos() { return m_pscrollbar->getVertPos(); }
-      int getHorzPos() { return m_pscrollbar->getHorzPos(); }
-      int getVerticalSize() { return m_pscrollbar->getVerticalSize(); }
-      int getHorizontalSize() { return m_pscrollbar->getHorizontalSize(); }
+      bool showVertScroll(bool show)  override{ return m_pscrollbar->showVertScroll(show); }
+      bool showHorzScroll(bool show)  override{ return m_pscrollbar->showHorzScroll(show); }
+      void setHorzRange(int imin, int imax, int istep)  override{ m_pscrollbar->setHorzRange(imin, imax, istep); }
+      void setVertRange(int imin, int imax, int istep) override { m_pscrollbar->setVertRange(imin, imax, istep); }
+      void setVertPos(int iPos) override { m_pscrollbar->setVertPos(iPos); }
+      void setHorzPos(int iPos)  override{ m_pscrollbar->setHorzPos(iPos); }
+      void moveUpVert(int iPercent = 0) override { m_pscrollbar->moveUpVert(iPercent); }
+      void moveDownVert(int iPercent = 0) override { m_pscrollbar->moveDownVert(iPercent); }
+      void moveLeftHorz(int iPercent = 0)  override{ m_pscrollbar->moveLeftHorz(iPercent); }
+      void moveRightHorz(int inPercent = 0)  override{ m_pscrollbar->moveRightHorz(inPercent); }
+      int getVertPos() override { return m_pscrollbar->getVertPos(); }
+      int getHorzPos() override { return m_pscrollbar->getHorzPos(); }
+      int getVerticalSize() override { return m_pscrollbar->getVerticalSize(); }
+      int getHorizontalSize() override { return m_pscrollbar->getHorizontalSize(); }
 
       ///protected:
-      void enableVirtualScroll() { m_pscrollbar->enableVirtualScroll(); }
-      void disableVirtualScroll() { m_pscrollbar->disableVirtualScroll(); }
-      bool _showVertScroll(bool show) { return m_pscrollbar->_showVertScroll(show); }
-      bool _showHorzScroll(bool show) { return m_pscrollbar->_showHorzScroll(show); }
+      void enableVirtualScroll()  override{ m_pscrollbar->enableVirtualScroll(); }
+      void disableVirtualScroll() override{ m_pscrollbar->disableVirtualScroll(); }
+      bool _showVertScroll(bool show)  override{ return m_pscrollbar->_showVertScroll(show); }
+      bool _showHorzScroll(bool show) override { return m_pscrollbar->_showHorzScroll(show); }
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM ScrollBarAggregate :

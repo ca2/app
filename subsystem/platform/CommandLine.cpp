@@ -36,7 +36,7 @@ namespace subsystem
       ::string_array_base argContainer;
       ::string_array_base::iterator argIter;
       argContainer = cmdArgs->getArgs();
-int iSize = argContainer.size();
+auto iSize = argContainer.size();
       if (iSize <=1)
       {
          return true;

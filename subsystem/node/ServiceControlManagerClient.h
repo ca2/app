@@ -60,7 +60,7 @@ namespace subsystem
    public:
       /**
        * Creates new ServiceControlManagerClient exception.
-       * @param scmErrCode service client manager client own error code,
+       * @param iServiceControlManagerErrorCode service client manager client own error code,
        * see ServiceControlManagerClientException public constants for information.
        */
       ServiceControlManagerClientException(int iServiceControlManagerErrorCode);
@@ -109,23 +109,23 @@ namespace subsystem
 
       /**
        * Registers new service in system.
-       * @param name name of service.
-       * @param nameToDisplay name to display in services ::list_base.
-       * @param binPath full path to service binary.
-       * @param dependencies [optional] service dependencies.
+       * @param scopedstrName name of service.
+       * @param scopedstrNameToDisplay name to display in services ::list_base.
+       * @param scopedstrBinPath full path to service binary.
+       * @param scopedstrDependencies [optional] service dependencies.
        * @throws SystemException on fail.
        */
       virtual void installService(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrNameToDisplay,
                           const ::scoped_string & scopedstrBinPath, const ::scoped_string & scopedstrDependencies = "") = 0;
       /**
        * Unregisters existing service from services.
-       * @param name name of service to unregister.
+       * @param scopedstrName name of service to unregister.
        * @throws SystemException on fail.
        */
       virtual void removeService(const ::scoped_string & scopedstrName) = 0;
       /**
        * Starts existing service.
-       * @param name name of service to start.
+       * @param scopedstrName name of service to start.
        * @param waitCompletion if true, wait until the status becomes
        *   SERVICE_RUNNING.
        * @throws SystemException, ServiceControlManagerClientException on fail.
@@ -134,7 +134,7 @@ namespace subsystem
     ;
       /**
        * Stops running service execution.
-       * @param name name of service to stop.
+       * @param scopedstrName name of service to stop.
        * @param waitCompletion if true, wait until the status becomes
        *   SERVICE_STOPPED.
        * @throws SystemException, ServiceControlManagerClientException on fail.
@@ -197,10 +197,10 @@ namespace subsystem
        }
       /**
        * Registers new service in system.
-       * @param name name of service.
-       * @param nameToDisplay name to display in services ::list_base.
-       * @param binPath full path to service binary.
-       * @param dependencies [optional] service dependencies.
+       * @param scopedstrName name of service.
+       * @param scopedstrNameToDisplay name to display in services ::list_base.
+       * @param scopedstrBinPath full path to service binary.
+       * @param scopedstrDependencies [optional] service dependencies.
        * @throws SystemException on fail.
        */
        void installService(const ::scoped_string& scopedstrName, const ::scoped_string& scopedstrNameToDisplay,
@@ -213,7 +213,7 @@ namespace subsystem
       }
       /**
        * Unregisters existing service from services.
-       * @param name name of service to unregister.
+       * @param scopedstrName name of service to unregister.
        * @throws SystemException on fail.
        */
        void removeService(const ::scoped_string& scopedstrName) override
@@ -224,7 +224,7 @@ namespace subsystem
       }
       /**
        * Starts existing service.
-       * @param name name of service to start.
+       * @param scopedstrName name of service to start.
        * @param waitCompletion if true, wait until the status becomes
        *   SERVICE_RUNNING.
        * @throws SystemException, ServiceControlManagerClientException on fail.

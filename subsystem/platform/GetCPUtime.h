@@ -25,6 +25,9 @@
 //#ifndef _GETCPUTIME_H_
 //#define _GETCPUTIME_H_
 #pragma once
+#if defined(__APPLE__)
+    #include <TargetConditionals.h>
+#endif
 
 // returns current process time of work in seconds
 double getCPUTime();
@@ -35,7 +38,45 @@ double getKernelTime();
 // returns current processor tick number
 inline unsigned long long rdtsc() {
   unsigned int lo, hi;
-#ifdef __GNUC__   
+#if defined(__APPLE__)
+    
+    #if defined(__x86_64__) || defined(__i386__)
+
+        // Intel Mac: use rdtsc
+        //static inline uint64_t read_cycles()
+        //{
+            uint32_t lo, hi;
+
+            __asm__ volatile (
+                "rdtsc"
+                : "=a"(lo), "=d"(hi)
+            );
+
+            return ((uint64_t)hi << 32) | lo;
+        //}
+
+    #elif defined(__aarch64__) || defined(__arm64__)
+
+        // Apple Silicon: use virtual counter
+        //static inline uint64_t read_cycles()
+        //{
+            uint64_t value;
+
+            __asm__ volatile (
+                "mrs %0, cntvct_el0"
+                : "=r"(value)
+            );
+
+            return value;
+       // }
+
+#else
+
+    #error Unsupported macOS architecture
+
+#endif
+#else
+#ifdef __GNUC__
   asm  volatile ("rdtsc\n" : "=a" (lo), "=d" (hi));
 #elif _MSC_VER
 #ifdef _M_IX86
@@ -48,10 +89,13 @@ inline unsigned long long rdtsc() {
 #else
   return 0;
 #endif
+   return ((unsigned long long)hi << 32) | lo;
+ 
 #else
   #error "Unsupported compiler"
 #endif
-  return ((unsigned long long)hi << 32) | lo;
+#endif
+return 0;
 }
 
 //#endif _GETCPUTIME_H_

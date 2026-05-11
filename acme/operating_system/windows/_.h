@@ -25,7 +25,7 @@ namespace windows
       const ::scoped_string & scopedstrCaption,
       unsigned int uType);
 
-   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult &lresult, HWND hwnd, unsigned int message, ::wparam wparam,
+   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult &lresult, const ::operating_system::window & operatingsystemwindow, unsigned int message, ::wparam wparam,
                                                      ::lparam lparam);
 
 

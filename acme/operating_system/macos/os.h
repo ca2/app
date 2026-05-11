@@ -6,7 +6,7 @@
 #include <wchar.h>
 
 #include "cross_win_gdi.h"
-
+#include "acme/operating_system/window.h"
 
 #define _fileno   fileno
 #define _unlink   unlink

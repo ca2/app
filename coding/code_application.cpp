@@ -1759,7 +1759,7 @@ namespace coding
                      psummary->m_strSystemRelease.c_str());
 
 
-      ::file::path pathUrl = strUrl;
+      //::file::path pathUrl = strUrl;
 #elif defined(MACOS)
       
       

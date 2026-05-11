@@ -597,7 +597,7 @@ namespace coding
    bool application::__is_graphical_ide_installed()
    {
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(FREEBSD)
 
       return __is_jetbrains_clion_installed();
 

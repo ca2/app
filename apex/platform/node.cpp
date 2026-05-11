@@ -275,7 +275,7 @@ namespace apex
 //   }
 
 
-   ::file::path node::get_desktop_file_path(::apex::application * papp)
+   ::file::path node::get_desktop_file_path(::platform::application * papplication)
    {
 
       return "";

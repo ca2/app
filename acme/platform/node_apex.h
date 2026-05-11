@@ -53,7 +53,7 @@ namespace platform
 //      virtual void set_main_menu(application_menu * pmenu, ::apex::application * papp);
 
 
-      virtual ::file::path get_desktop_file_path(::apex::application * papp);
+      virtual ::file::path get_desktop_file_path(::platform::application * papplication);
 
 
       //virtual void defer_notify_startup_complete();

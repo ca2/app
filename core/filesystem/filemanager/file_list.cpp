@@ -215,7 +215,7 @@ namespace filemanager
 
             auto pointCursor = pcontextmenu->m_pointHost;
             
-            auto r = ::int_rectangle::square_with_center_and_apothem(point, 8);
+            auto r = ::i32_rectangle::square_with_center_and_apothem(point, 8);
 
 //            host_to_client()(point);
             
@@ -244,7 +244,7 @@ namespace filemanager
 
          auto pointCursor = pcontextmenu->m_pointHost;
 
-         auto r = ::int_rectangle::square_with_center_and_apothem(point, 8);
+         auto r = ::i32_rectangle::square_with_center_and_apothem(point, 8);
          
          auto pmenu = puser->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
          

@@ -73,13 +73,13 @@ namespace turboc
       if(id() == "turboc_top")
       {
 
-         m_ptoggleimpact = create_impact < toggle_impact >(NULL,::int_rectangle(),NULL,"turboc_toggle");
+         m_ptoggleimpact = create_impact < toggle_impact >(NULL,::i32_rectangle(),NULL,"turboc_toggle");
 
       }
       else
       {
 
-         m_ptoggleimpact = create_impact < toggle_impact >(NULL,::int_rectangle(),NULL,"switcher_toggle");
+         m_ptoggleimpact = create_impact < toggle_impact >(NULL,::i32_rectangle(),NULL,"switcher_toggle");
 
       }
 

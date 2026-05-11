@@ -469,7 +469,7 @@ namespace user
 
                               pimage->g()->set_text_color(argb(255, 0, 0, 0));
 
-                              pimage->g()->draw_text(str, ::int_rectangle(pimage->get_size()), e_align_bottom_left);
+                              pimage->g()->draw_text(str, ::i32_rectangle(pimage->get_size()), e_align_bottom_left);
 
                               return true;
 

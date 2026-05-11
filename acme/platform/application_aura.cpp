@@ -716,7 +716,7 @@ namespace platform
    //virtual ::atom translate_property_id(const ::atom & atom) override{}
    //virtual property fetch_property(const ::atom & atom) override{}
 
-   //void aura_application_layer::get_time(struct timeval *int_point) override{}
+   //void aura_application_layer::get_time(struct timeval *i32_point) override{}
    //
    // void aura_application_layer::close(::enum_exit eexit) override{}
 
@@ -998,7 +998,7 @@ namespace platform
    //
    // void on_prompt_write_file(::user::controller * pusercontroller) override{}
 
-   //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override{}
+   //::pointer < ::innate_ui::icon > innate_ui_icon(const ::i32_size & size) override{}
 
 
 }

@@ -212,7 +212,7 @@ namespace account
 
       ::simple_ui::draw draw;
 
-      ::int_rectangle r = this->rectangle();
+      ::i32_rectangle r = this->rectangle();
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 

@@ -20,7 +20,7 @@
 //}
 //
 
-//inline bool get_bounding_box(::int_rectangle & rectangleBounding, const lines & lines)
+//inline bool get_bounding_box(::i32_rectangle & rectangleBounding, const lines & lines)
 //{
 //
 //   ::get_bounding_box(rectangleBounding, lines.data(), lines.size());
@@ -51,7 +51,7 @@
 //}
 //
 //
-//inline bool get_bounding_box(::int_rectangle & rectangleBounding, const double_polygon & polygon)
+//inline bool get_bounding_box(::i32_rectangle & rectangleBounding, const double_polygon & polygon)
 //{
 //
 //   ::get_bounding_box(rectangleBounding, polygon.data(), polygon.size());

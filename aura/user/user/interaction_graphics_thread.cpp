@@ -1004,7 +1004,7 @@ namespace user
 //
 //                     m_synchronizationa.wait(timeToWaitForNextFrame - 1_ms);
 //
-//                     //printf("Actually waited %dms\n", (int) ::time.elapsed().m_i);
+//                     //printf("Actually waited %dms\n", (int) ::time.elapsed().m_i32);
 //
 //                  }
 //                  else
@@ -1081,7 +1081,7 @@ namespace user
 
                //auto elapsed = time.elapsed();
 
-               //printf("msToWaitForNextFrame Waited %d\n", elapsed.m_i);
+               //printf("msToWaitForNextFrame Waited %d\n", elapsed.m_i32);
 
             }
 
@@ -1172,7 +1172,7 @@ namespace user
       }
 #endif
 
-      ::i64 i1 = ::long_long_nanosecond();
+      ::i64 i1 = ::i64_nanosecond();
 
       //m_timeLastFrame = m_timeThisFrame;
 
@@ -1567,7 +1567,7 @@ namespace user
 //         //
 //         //         //bUpdateWindow = false;
 //         //
-//         //         ::i64 i1 = ::long_long_nanosecond();
+//         //         ::i64 i1 = ::i64_nanosecond();
 //         //
 //         //      //   bool bTransparentDraw;
 //         //
@@ -1620,7 +1620,7 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         ::i64 i2 = ::long_long_nanosecond();
+//         ::i64 i2 = ::i64_nanosecond();
 //
 //#if TIME_REPORTING
 //
@@ -1681,7 +1681,7 @@ namespace user
 ////
 ////         //bUpdateWindow = false;
 ////
-////         ::i64 i1 = ::long_long_nanosecond();
+////         ::i64 i1 = ::i64_nanosecond();
 ////
 ////      //   bool bTransparentDraw;
 ////
@@ -1734,7 +1734,7 @@ namespace user
 //
 //         m_timeOutOfDrawing = m_timeBeforeDrawing - m_timeAfterDrawing;
 //
-//         ::i64 i2 = ::long_long_nanosecond();
+//         ::i64 i2 = ::i64_nanosecond();
 //
 //#if TIME_REPORTING
 //

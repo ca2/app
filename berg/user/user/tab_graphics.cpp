@@ -50,7 +50,7 @@ namespace user
 
       //}
 
-      //int_point pointContextOffset = pgraphics->get_origin();
+      //i32_point pointContextOffset = pgraphics->get_origin();
 
       ::double_rectangle rClip;
 
@@ -101,12 +101,12 @@ namespace user
    void tab::_001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangle;
-      ::int_rectangle rectangleBorder;
-      ::int_rectangle rectangleText;
-      ::int_rectangle rectangleX;
-      ::int_rectangle rectangleIcon;
-      ::int_rectangle rectangleClose;
+      ::i32_rectangle rectangle;
+      ::i32_rectangle rectangleBorder;
+      ::i32_rectangle rectangleText;
+      ::i32_rectangle rectangleX;
+      ::i32_rectangle rectangleIcon;
+      ::i32_rectangle rectangleClose;
 
       get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
 
@@ -446,12 +446,12 @@ namespace user
    void tab::_001OnDrawStandard(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangle;
-      ::int_rectangle rectangleBorder;
-      ::int_rectangle rectangleText;
-      ::int_rectangle rectangleX;
-      ::int_rectangle rectangleIcon;
-      ::int_rectangle rectangleClose;
+      ::i32_rectangle rectangle;
+      ::i32_rectangle rectangleBorder;
+      ::i32_rectangle rectangleText;
+      ::i32_rectangle rectangleX;
+      ::i32_rectangle rectangleIcon;
+      ::i32_rectangle rectangleClose;
 
       auto pstyle = get_style(pgraphics);
 
@@ -902,7 +902,7 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         //::int_rectangle rectangleX;
+         //::i32_rectangle rectangleX;
 
          //this->rectangle(rectangleX);
 
@@ -926,7 +926,7 @@ namespace user
 
          pgraphics->set(get_font(pstyle, e_state_selected));
 
-         //         ::int_rectangle rectangleX;
+         //         ::i32_rectangle rectangleX;
 
          //         this->rectangle(rectangleX);
 
@@ -1024,7 +1024,7 @@ namespace user
          get_data()->m_rectangleTab.right = rectangleX.right;
          get_data()->m_rectangleTab.bottom = get_data()->m_rectangleTab.top + get_data()->m_iTabHeight;
 
-         ::int_rectangle & rectangleHosting = get_data()->m_rectangleHosting;
+         ::i32_rectangle & rectangleHosting = get_data()->m_rectangleHosting;
 
          rectangleHosting.left = get_data()->m_rectangleTab.left;
          rectangleHosting.top = m_bEffectiveVisibleControl ? get_data()->m_rectangleTab.bottom : rectangleX.top;

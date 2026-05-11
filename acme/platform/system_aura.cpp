@@ -102,7 +102,7 @@ namespace platform
    //virtual int install_progress_app_add_up(int iAddUp = 1) override{}
 
    //virtual ::install::canvas * install_create_canvas(){}
-   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle){}
+   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle){}
    //virtual int install_canvas_increment_mode(){}
 
    //::string aura_system_layer::install_get_platform() override{}
@@ -539,7 +539,7 @@ namespace platform
 
    //#ifndef UNIVERSAL_WINDOWS
 
-   //void aura_system_layer::get_time(timeval * int_point) override{}
+   //void aura_system_layer::get_time(timeval * i32_point) override{}
 
    //#endif
 
@@ -579,7 +579,7 @@ namespace platform
 
    //virtual bool initialize_native_window1(){}
 
-   //void aura_system_layer::* initialize_native_window2(const ::int_rectangle & rectangle){}
+   //void aura_system_layer::* initialize_native_window2(const ::i32_rectangle & rectangle){}
 
 
    //void aura_system_layer::on_os_text(e_os_text etext, string strText) override{}
@@ -709,7 +709,7 @@ namespace platform
 
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //      virtual bool window_rectangle(::int_rectangle* prectangle){}
+   //      virtual bool window_rectangle(::i32_rectangle* prectangle){}
    //
    //
    //#endif
@@ -728,7 +728,7 @@ namespace platform
 
    //      void aura_system_layer::add_impact_library(::acme::library* plibrary){}
 
-   //void aura_system_layer::get_cursor_position(::int_point * ppoint){}
+   //void aura_system_layer::get_cursor_position(::i32_point * ppoint){}
 
 
    //void aura_system_layer::do_request(::create* pcommand) override{}
@@ -794,17 +794,17 @@ namespace platform
 
 
    //virtual ::install::canvas * install_create_canvas() override{}
-   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle){}
+   //void aura_system_layer::install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle){}
    //virtual int install_canvas_increment_mode() override{}
 
 
    //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor){}
    //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma){}
-   //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override{}
+   //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle) override{}
 
    //virtual ::collection::count get_monitor_count() override{}
 
-   //bool get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle) override{}
+   //bool get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle* prectangle) override{}
 
 
    //virtual ::windowing::window * impl_from_handle(void * pdata) override{}

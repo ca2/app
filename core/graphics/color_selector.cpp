@@ -496,7 +496,7 @@ namespace core
       //void color_selector::on_message_create(::message::message * pmessage)
       //{
 
-      //   //m_pimageBeam->create_image(this, ::int_size(32, 32));
+      //   //m_pimageBeam->create_image(this, ::i32_size(32, 32));
 
       //   //m_pimageBeam->fill(0);
 
@@ -565,7 +565,7 @@ namespace core
       //}
 
 
-      bool color_selector::on_mouse_down(const ::int_point & point)
+      bool color_selector::on_mouse_down(const ::i32_point & point)
       {
          
          m_bLButtonPressedOnHue = false;
@@ -629,7 +629,7 @@ namespace core
       }
 
 
-      bool color_selector::on_mouse_up(const ::int_point & point)
+      bool color_selector::on_mouse_up(const ::i32_point & point)
       {
 
          if (!m_bLButtonPressedOnHue && !m_bLButtonPressedOnLuminance)
@@ -649,7 +649,7 @@ namespace core
 
       }
 
-      bool color_selector::on_mouse_motion(const ::int_point & point)
+      bool color_selector::on_mouse_motion(const ::i32_point & point)
       {
 
          if (!m_bLButtonPressedOnHue && !m_bLButtonPressedOnLuminance)
@@ -703,7 +703,7 @@ namespace core
          else if (m_bLButtonPressedOnLuminance)
          {
 
-            auto pointLuminance = point - ::int_size(m_rectangleColors.center().x, m_rectangleColors.top);
+            auto pointLuminance = point - ::i32_size(m_rectangleColors.center().x, m_rectangleColors.top);
 
             int y = minimum_maximum(point.y, 0, m_pimage->height());
 
@@ -735,7 +735,7 @@ namespace core
       }
 
 
-      bool color_selector::is_ok_target(const ::int_point & point)
+      bool color_selector::is_ok_target(const ::i32_point & point)
       {
 
          return m_strOk.has_character() && m_pfontOk && m_rectangleTarget.contains(point);
@@ -764,7 +764,7 @@ namespace core
       }
 
 
-      void color_selector::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & pointParam)
+      void color_selector::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & pointParam)
       {
 
          double_point point(pointParam);
@@ -838,7 +838,7 @@ namespace core
       }
 
 
-      void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int yParam)
+      void color_selector::draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, int yParam)
       {
 
          double y = yParam;
@@ -889,7 +889,7 @@ namespace core
       void color_selector::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         ::int_rectangle rC;
+         ::i32_rectangle rC;
 
          //rC = this->rectangle();
 
@@ -910,9 +910,9 @@ namespace core
 
          rTarget.set_size(m_pimage->get_size());
 
-         ::int_rectangle rSource = m_pimage->rectangle();
+         ::i32_rectangle rSource = m_pimage->rectangle();
 
-         ::int_rectangle rCursor;
+         ::i32_rectangle rCursor;
 
          {
 
@@ -926,7 +926,7 @@ namespace core
 
          }
 
-         ::int_point point;
+         ::i32_point point;
 
          if (m_bLButtonPressedOnHue)
          {
@@ -947,9 +947,9 @@ namespace core
 
          draw_beam(pgraphics, point);
 
-         ::int_rectangle rectangleLum1;
+         ::i32_rectangle rectangleLum1;
 
-         rectangleLum1.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1, 0);
+         rectangleLum1.top_left() = m_rectangleColors.top_left() + ::i32_size(m_pimage->width() - 1, 0);
 
          rectangleLum1.set_size(m_pimageLuminance->get_size());
 
@@ -969,7 +969,7 @@ namespace core
 
          }
 
-         rTarget.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+         rTarget.top_left() = m_rectangleColors.top_left() + ::i32_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
 
          rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 
@@ -1009,7 +1009,7 @@ namespace core
 
       //   auto pmouse = pmessage->m_union.m_pmouse;
 
-      //   ::int_point point = pmouse->m_pointHost;
+      //   ::i32_point point = pmouse->m_pointHost;
 
       //   host_to_client()(point);
 
@@ -1029,7 +1029,7 @@ namespace core
 
       //   auto pmouse = pmessage->m_union.m_pmouse;
 
-      //   ::int_point point = pmouse->m_pointHost;
+      //   ::i32_point point = pmouse->m_pointHost;
 
       //   host_to_client()(point);
 
@@ -1065,7 +1065,7 @@ namespace core
       //   if (m_bLButtonPressed)
       //   {
 
-      //      ::int_point point = pmouse->m_pointHost;
+      //      ::i32_point point = pmouse->m_pointHost;
 
       //      host_to_client()(point);
 
@@ -1099,7 +1099,7 @@ namespace core
       }
 
 
-      void color_selector::layout_color_selector(const ::int_rectangle & rectangle)
+      void color_selector::layout_color_selector(const ::i32_rectangle & rectangle)
       {
 
          //   ::user::impact::on_layout(pgraphics);
@@ -1115,7 +1115,7 @@ namespace core
 
          information() << "rectangle : " << rectangle;
 
-         ::int_rectangle rectangleColors;
+         ::i32_rectangle rectangleColors;
 
          rectangleColors = rectangle;
 
@@ -1135,7 +1135,7 @@ namespace core
 
          defer_constructø(m_pimage);
 
-         auto sizeImage = ::int_size(m_rectangleColors.width() / 2, m_rectangleColors.height());
+         auto sizeImage = ::i32_size(m_rectangleColors.width() / 2, m_rectangleColors.height());
 
          if (sizeImage.is_empty())
          {

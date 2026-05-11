@@ -24,7 +24,7 @@ namespace experience
       ~orto_button() override;
 
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

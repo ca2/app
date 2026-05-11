@@ -1055,18 +1055,18 @@ public:
 //      typedef const T & BASE_ARG_TYPE;
 //      typedef smart_pointer_array2 BASE_ARRAY;
 //
-//      ::collection::index            m_i;
+//      ::collection::index            m_i32;
 //      BASE_ARRAY *     m_parray;
 //
 //      ref_iterator()
 //      {
-//         m_i = 0;
+//         m_i32 = 0;
 //         m_parray = nullptr;
 //      }
 //
 //      ref_iterator(::collection::index i,BASE_ARRAY * parray)
 //      {
-//         m_i = i;
+//         m_i32 = i;
 //         m_parray = parray;
 //      }
 //
@@ -1080,7 +1080,7 @@ public:
 //      {
 //         if(this != &it)
 //         {
-//            m_i         = it.m_i;
+//            m_i32         = it.m_i32;
 //            m_parray    = it.m_parray;
 //         }
 //         return *this;
@@ -1092,11 +1092,11 @@ public:
 //            return true;
 //         if(m_parray != it.m_parray)
 //            return false;
-//         if(m_i >= m_parray->get_size() && it.m_i >= m_parray->get_size())
+//         if(m_i32 >= m_parray->get_size() && it.m_i32 >= m_parray->get_size())
 //            return true;
-//         if(m_i <= 0 && it.m_i <= 0)
+//         if(m_i32 <= 0 && it.m_i32 <= 0)
 //            return true;
-//         return m_i == it.m_i;
+//         return m_i32 == it.m_i32;
 //      }
 //
 //      bool operator != (const ref_iterator & it)
@@ -1120,45 +1120,45 @@ public:
 //
 //      ref_iterator & operator ++()
 //      {
-//         m_i++;
-//         if(m_i >= m_parray->get_size())
-//            m_i = m_parray->get_size();
+//         m_i32++;
+//         if(m_i32 >= m_parray->get_size())
+//            m_i32 = m_parray->get_size();
 //         return *this;
 //      }
 //
 //      ref_iterator & operator +(::collection::index i)
 //      {
-//         m_i += i;
-//         if(m_i >= m_parray->get_size())
-//            m_i = m_parray->get_size();
+//         m_i32 += i;
+//         if(m_i32 >= m_parray->get_size())
+//            m_i32 = m_parray->get_size();
 //         return *this;
 //      }
 //
 //      ref_iterator & operator --()
 //      {
-//         m_i--;
-//         if(m_i < 0)
-//            m_i = 0;
+//         m_i32--;
+//         if(m_i32 < 0)
+//            m_i32 = 0;
 //         return *this;
 //      }
 //
 //      ref_iterator mid(const ref_iterator & i) const
 //      {
-//         return ref_iterator((m_i + i.m_i + 1) / 2,m_parray);
+//         return ref_iterator((m_i32 + i.m_i32 + 1) / 2,m_parray);
 //      }
 //
 //      ref_iterator & operator -(::collection::count c)
 //      {
-//         m_i-=c;
-//         if(m_i < 0)
-//            m_i = 0;
+//         m_i32-=c;
+//         if(m_i32 < 0)
+//            m_i32 = 0;
 //         return *this;
 //      }
 //
 //      bool operator < (const ref_iterator & i) const
 //      {
 //
-//         return m_i < i.m_i;
+//         return m_i32 < i.m_i32;
 //
 //      }
 //
@@ -1170,12 +1170,12 @@ public:
 //
 //      T & operator * ()
 //      {
-//         return m_parray->at(m_i);
+//         return m_parray->at(m_i32);
 //      }
 //
 //      const T & operator * () const
 //      {
-//         return m_parray->at(m_i);
+//         return m_parray->at(m_i32);
 //      }
 //
 //

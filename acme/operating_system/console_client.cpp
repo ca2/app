@@ -97,7 +97,7 @@ namespace console
    }
 
 
-   ::int_rectangle console_client::get_position_rectangle(int y, int x)
+   ::i32_rectangle console_client::get_position_rectangle(int y, int x)
    {
     
       return get_console()->get_position_rectangle(y, x);

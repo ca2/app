@@ -84,7 +84,7 @@ namespace hex
    }
 
 
-   // sz buffer should have twice int_size of s (p)
+   // sz buffer should have twice i32_size of s (p)
    constexpr CLASS_DECL_ACME void lower_case_from(char * sz, const void * p, memsize s)
    {
        const unsigned char * pb = (const unsigned char *) p;
@@ -111,7 +111,7 @@ namespace hex
    }
 
 
-   // sz buffer should have twice int_size of s (p)
+   // sz buffer should have twice i32_size of s (p)
    inline string lower_case_from(const void * p, memsize s)
    {
       string str;

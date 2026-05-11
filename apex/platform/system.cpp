@@ -504,7 +504,7 @@ namespace apex
 //
 //#endif
 
-      m_nSafetyPoolSize = 512;        // default int_size
+      m_nSafetyPoolSize = 512;        // default i32_size
 
       //estatus =
       construct_newø(m_pgeometry);
@@ -545,7 +545,7 @@ namespace apex
 
       //add_factory_item < ::stdio_file, ::file::text_file >();
       //add_factory_item < ::stdio_file, ::file::file >();
-      factory()->add_factory_item < ::long_long_array >();
+      factory()->add_factory_item < ::i64_array >();
       factory()->add_factory_item < ::double_array >();
       factory()->add_factory_item < ::acme::library >();
 
@@ -557,7 +557,7 @@ namespace apex
       factory()->add_factory_item < ::i32_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
-      //factory()->add_factory_item < ::long_long_array_base >();
+      //factory()->add_factory_item < ::i64_array_base >();
       //factory()->add_factory_item < ::double_array >();
       //factory()->add_factory_item < ::acme::library >();
 
@@ -566,7 +566,7 @@ namespace apex
       //factory()->add_factory_item < string_array_base >();
       //factory()->add_factory_item < memory >();
       //factory()->add_factory_item < memory_file >();
-      //factory()->add_factory_item < ::int_array_base >();
+      //factory()->add_factory_item < ::i32_array_base >();
 
       ///estatus =
 
@@ -3176,7 +3176,7 @@ pdirectorysystem->create("/ca2core");
    // }
 
 // #ifndef APPLE_IOS
-//    void * system::initialize_native_window2(const ::int_rectangle & rectangle)
+//    void * system::initialize_native_window2(const ::i32_rectangle & rectangle)
 
 //    {
 
@@ -3218,12 +3218,12 @@ pdirectorysystem->create("/ca2core");
    //   }
    //
    //
-   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::int_rectangle * prectangle)
+   //   CLASS_DECL_APEX bool window_rectangle(::apex::system_window ^ pwindow, ::i32_rectangle * prectangle)
    //   {
    //
    //      ::double_rectangle rectangle;
    //
-   //      if (!window_rectangle(pwindow, (::double_rectangle*)int_rectangle))
+   //      if (!window_rectangle(pwindow, (::double_rectangle*)i32_rectangle))
    //      {
    //
    //         return false;
@@ -4752,7 +4752,7 @@ namespace apex
 #ifdef UNIVERSAL_WINDOWS
 
 
-   bool system::window_rectangle(::int_rectangle * prectangle)
+   bool system::window_rectangle(::i32_rectangle * prectangle)
    {
 
       if (::is_null(session()))
@@ -5237,7 +5237,7 @@ namespace apex
    }
 
 
-   ::pointer<::innate_ui::icon> system::operating_system_innate_ui_icon(const ::int_size &size)
+   ::pointer<::innate_ui::icon> system::operating_system_innate_ui_icon(const ::i32_size &size)
    {
 
       auto strUrl = operating_system_icon_url(size);
@@ -5249,7 +5249,7 @@ namespace apex
    }
 
 
-   ::pointer<::innate_ui::icon> system::operating_ambient_innate_ui_icon(const ::int_size &size)
+   ::pointer<::innate_ui::icon> system::operating_ambient_innate_ui_icon(const ::i32_size &size)
    {
 
       auto strUrl = operating_ambient_icon_url(size);
@@ -5261,7 +5261,7 @@ namespace apex
    }
 
 
-   ::string system::operating_system_icon_url(const ::int_size & size)
+   ::string system::operating_system_icon_url(const ::i32_size & size)
    {
 
       ::string strUrl;
@@ -5306,7 +5306,7 @@ namespace apex
    }
 
 
-   ::string system::operating_ambient_icon_url(const ::int_size & size)
+   ::string system::operating_ambient_icon_url(const ::i32_size & size)
    {
 
       ::string strUrl;

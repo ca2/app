@@ -476,7 +476,7 @@ namespace user
 
       auto timeStart = ::time::now();
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       ::pointer<tree>ptree = this;
 
@@ -594,7 +594,7 @@ namespace user
          //else
          //{
 
-         //   ::int_rectangle rectangleUnion;
+         //   ::i32_rectangle rectangleUnion;
 
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
          //   {
@@ -870,7 +870,7 @@ namespace user
    }
 
 
-   void tree::perform_right_click(uptr nFlags, const ::int_point & pointCursor)
+   void tree::perform_right_click(uptr nFlags, const ::i32_point & pointCursor)
    {
 
       //_001OnRightClick(nFlags, pointCursor);
@@ -956,7 +956,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item_base>tree::_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement)
+   ::pointer<::data::tree_item_base>tree::_001HitTest(const ::i32_point & point, ::user::enum_tree_element & eelement)
    {
 
       ::collection::index iy = point.y;
@@ -1097,7 +1097,7 @@ namespace user
 
 
    bool tree::_001GetItemElementRect(
-      ::int_rectangle * prectangle,
+      ::i32_rectangle * prectangle,
 
       ::user::tree_draw_item & drawitem,
       ::user::enum_tree_element eelement)
@@ -1484,7 +1484,7 @@ namespace user
    }
 
 
-   void tree::_001OnItemContextMenu(::data::tree_item_base * pitem, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
+   void tree::_001OnItemContextMenu(::data::tree_item_base * pitem, const ::action_context & context, ::user::tree * ptree, const ::i32_point & point)
    {
 
       if (context.contains(this))
@@ -1511,7 +1511,7 @@ namespace user
    }
 
 
-   void tree::update_tree_hover(int_point point)
+   void tree::update_tree_hover(i32_point point)
    {
 
       //host_to_client()(point);
@@ -1601,7 +1601,7 @@ namespace user
 
       }
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       rectangle = this->rectangle();
 

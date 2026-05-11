@@ -18,14 +18,14 @@ namespace simple_ui
       draw();
       virtual ~draw();
 
-      virtual void simple_ui_draw_auth_box(const ::int_rectangle & rectangle, ::draw2d::graphics_pointer& pgraphics);
-      virtual void simple_ui_draw_frame_window_rect(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
-      virtual void simple_ui_draw_dark_glass(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
-      virtual void simple_ui_draw_pestana(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
-      virtual void simple_ui_draw_fuzzy_color_spread(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
+      virtual void simple_ui_draw_auth_box(const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer& pgraphics);
+      virtual void simple_ui_draw_frame_window_rect(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
+      virtual void simple_ui_draw_dark_glass(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
+      virtual void simple_ui_draw_pestana(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
+      virtual void simple_ui_draw_fuzzy_color_spread(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
 
-      virtual void simple_ui_draw_back_01_old(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
-      virtual void simple_ui_draw_back_01_new(const ::int_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
+      virtual void simple_ui_draw_back_01_old(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
+      virtual void simple_ui_draw_back_01_new(const ::i32_rectangle& rectangle, ::draw2d::graphics_pointer& pgraphics);
 
 
    };

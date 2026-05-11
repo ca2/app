@@ -21,7 +21,7 @@ namespace image
       bool                                m_bDefaultCursor;
       ::image::image_pointer                     m_pimage;
       ::image::image_pointer                     m_pimageCursor;
-      ::int_size                          m_szHotspotOffset;
+      ::i32_size                          m_szHotspotOffset;
 
 
       ::pointer<::windowing::cursor>     m_pcursor;
@@ -51,11 +51,11 @@ namespace image
       ::draw2d::graphics * g(const ::double_size & sizeHint);
 
       
-      ::image::image_pointer image_source_image(const ::int_size & size) override;
+      ::image::image_pointer image_source_image(const ::i32_size & size) override;
 
-      ::int_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
+      ::i32_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
 
-      ::int_size image_source_size() const override;
+      ::i32_size image_source_size() const override;
 
 
    };

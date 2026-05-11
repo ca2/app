@@ -56,7 +56,7 @@ namespace gpu
       void on_set_gpu_context() override;
 
 
-      void on_gpu_context_placement_change(const ::int_rectangle &rectanglePlacement,
+      void on_gpu_context_placement_change(const ::i32_rectangle &rectanglePlacement,
                                            ::acme::windowing::window *pacmewindowingwindow) override;
 
       virtual ::pool <::gpu::model_buffer >& model_buffer_pool(::draw2d::enum_model epool);
@@ -158,8 +158,8 @@ namespace gpu
 
       //}
  
-      ///void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {}) override;
-      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
+      ///void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size = {}) override;
+      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size) override;
       virtual void defer_create_swap_chain(::user::interaction* puserinteraction);
 
 
@@ -188,7 +188,7 @@ namespace gpu
 
 
       virtual ::typeface::face* get_face(::write_text::font* pfont);
-      void defer_set_size(const ::int_size &size) override;
+      void defer_set_size(const ::i32_size &size) override;
 
    };
 

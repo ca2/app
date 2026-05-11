@@ -127,7 +127,7 @@ namespace user
       ::i64 iMax = m_scalar.maximum().get_long_long();
       ::i64 iVal = m_scalar.get().get_long_long();
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       for(::i64 i = iMin; i <= iMax; i++)
       {
          GetStepRect(&rectangle, i, iMin, iMax, rectangleX);
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(::int_rectangle * prectangle, ::i64 iStep, ::i64 iMin, ::i64 iMax, const ::int_rectangle & rectangleX)
+   void step_slider::GetStepHoverRect(::i32_rectangle * prectangle, ::i64 iStep, ::i64 iMin, ::i64 iMax, const ::i32_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -192,7 +192,7 @@ namespace user
    }
 
 
-   void step_slider::GetStepRect(::int_rectangle * prectangle, ::i64 iStep, ::i64 iMin, ::i64 iMax, const ::int_rectangle & rectangleX)
+   void step_slider::GetStepRect(::i32_rectangle * prectangle, ::i64 iStep, ::i64 iMin, ::i64 iMax, const ::i32_rectangle & rectangleX)
    {
 
       if((iMax - iMin) == 0)
@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   ::item_pointer step_slider::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer step_slider::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       auto rectangleX = this->rectangle();
@@ -246,7 +246,7 @@ namespace user
 //
 //      set_need_redraw();
 //
-//      ::int_rectangle rectangleX;
+//      ::i32_rectangle rectangleX;
 //
 //      this->rectangle(rectangleX);
 //

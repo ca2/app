@@ -82,7 +82,7 @@
 //   int i;
 //   rdpGdi* gdi;
 //   int ninvalid;
-//   ::int_rectangle updateRect;
+//   ::i32_rectangle updateRect;
 //   HGDI_RGN cinvalid;
 //   REGION16 invalidRegion;
 //   RECTANGLE_16 invalidRect;
@@ -175,7 +175,7 @@
 //BOOL af_hw_desktop_resize(wfContext* wfc)
 //{
 //	BOOL same;
-//	::int_rectangle int_rectangle;
+//	::i32_rectangle i32_rectangle;
 //	rdpSettings* settings;
 //
 //	settings = wfc->instance->settings;

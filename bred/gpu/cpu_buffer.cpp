@@ -34,7 +34,7 @@ namespace gpu
    }
 
 
-   void cpu_buffer::set_size(const ::int_size & size)
+   void cpu_buffer::set_size(const ::i32_size & size)
    {
 
       defer_construct_newø(m_pimagetarget);

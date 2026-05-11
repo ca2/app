@@ -33,11 +33,11 @@
 //    }
 
 //    bool load(const ::string & lpKey, ::i64 * lValue);
-//    bool load(const ::string & lpKey, ::int_rectangle * lpRect);
+//    bool load(const ::string & lpKey, ::i32_rectangle * lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool load(const ::string & lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool load(const ::string & lpKey, ::int_point * lpPoint);
+//    bool load(const ::string & lpKey, ::i32_point * lpPoint);
 
 //    // save Functions
 //    template < typename T >
@@ -49,11 +49,11 @@
 //    }
 
 //    bool save(const ::string & lpKey, ::i64 lValue);
-//    bool save(const ::string & lpKey, const ::int_rectangle * lpRect);
+//    bool save(const ::string & lpKey, const ::i32_rectangle * lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool save(const ::string & lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool save(const ::string & lpKey, ::int_point * lpPoint);
+//    bool save(const ::string & lpKey, ::i32_point * lpPoint);
 
 //    // Search Functions
 //    bool find(const ::string & lpKey);

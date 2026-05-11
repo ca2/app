@@ -51,7 +51,7 @@ namespace experience_tranquillum
 
       }
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = ::user::interaction::rectangle();
 
@@ -103,7 +103,7 @@ namespace experience_tranquillum
 
       }
 
-      ::int_rectangle rectangleEllipse(rectangleX);
+      ::i32_rectangle rectangleEllipse(rectangleX);
 
       //auto rW = window_rectangle();
 
@@ -144,7 +144,7 @@ namespace experience_tranquillum
 
          pgraphics->set(m_ppen);
 
-         ::int_rectangle rectangleIcon(rectangleEllipse);
+         ::i32_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -229,7 +229,7 @@ namespace experience_tranquillum
    }
 
 
-   ::item_pointer control_box_button::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer control_box_button::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       return ::experience::button::on_hit_test(point, ezorder);

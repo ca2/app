@@ -109,9 +109,9 @@ namespace innate_subsystem
       virtual void enableWindow(bool bEnable) = 0;
       virtual void setEnabled(bool bEnable) = 0;
       virtual void updateWindow() = 0;
-      virtual bool setSize(const ::int_size & size) = 0;
-      virtual bool setPosition(const ::int_point & point) = 0;
-      virtual bool setPlacement(const ::int_rectangle & rectangle) = 0;
+      virtual bool setSize(const ::i32_size & size) = 0;
+      virtual bool setPosition(const ::i32_point & point) = 0;
+      virtual bool setPlacement(const ::i32_rectangle & rectangle) = 0;
       virtual void setWindowText(const ::scoped_string  & scopedstrText) = 0;
 
       //
@@ -213,7 +213,7 @@ namespace innate_subsystem
 
 
       // full redraw of window area
-      virtual void redraw(const ::int_rectangle &rcArea = {}) = 0;
+      virtual void redraw(const ::i32_rectangle &rcArea = {}) = 0;
 
       // set or kill timer, with identifactor ident
       // and time in milliseconds
@@ -227,10 +227,10 @@ namespace innate_subsystem
       virtual void postMessage(::u32 Msg, ::wparam wparam = 0, ::lparam lparam = 0) = 0;
       virtual void post(const ::procedure &procedure) = 0;
 
-      virtual ::int_rectangle getClientRect() = 0;
-      virtual ::int_rectangle getFullScreenRect() = 0;
-      virtual ::int_size getBorderSize() = 0;
-      virtual ::int_rectangle getScreenWorkArea() = 0;
+      virtual ::i32_rectangle getClientRect() = 0;
+      virtual ::i32_rectangle getFullScreenRect() = 0;
+      virtual ::i32_size getBorderSize() = 0;
+      virtual ::i32_rectangle getScreenWorkArea() = 0;
 
 
       //virtual void setSizeFullScreenWindow() = 0;
@@ -252,24 +252,24 @@ namespace innate_subsystem
    //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
    virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) = 0;
-   virtual bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed, const ::int_point &point,
+   virtual bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed, const ::i32_point &point,
                           bool &bDoDefaultProcessing) = 0;
 
-   virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) = 0;
+   virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::i32_point & position) = 0;
 
 
    virtual bool onCreate(void * pCreateStruct) = 0;
 
    virtual bool on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam) = 0;
 
-      virtual void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) = 0;
+      virtual void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::i32_rectangle & rectangle) = 0;
 
       virtual void onBeforeFullScreen(bool bRestore) = 0;
       virtual void onAfterFullScreen(bool bRestore) = 0;
       virtual void onBeforeUnFullScreen(bool bMinimizing) = 0;
       virtual void onAfterUnFullScreen(bool bMinimizing) = 0;
       virtual bool onGetTooltip(int iControl, ::string & strTooltip) = 0;
-      virtual bool onCalculateDefaultSize(::int_rectangle & rectangleDefaultSize) = 0;
+      virtual bool onCalculateDefaultSize(::i32_rectangle & rectangleDefaultSize) = 0;
       virtual void onAdjustWindowSize() = 0;
       virtual void onSize() = 0;
    // protected:
@@ -366,9 +366,9 @@ namespace innate_subsystem
       void enableWindow(bool bEnable) override { m_pwindow->enableWindow(bEnable); }
       void setEnabled(bool bEnable) override { m_pwindow->setEnabled(bEnable); }
       void updateWindow() override { m_pwindow->updateWindow(); }
-      bool setSize(const ::int_size & size) override { return m_pwindow->setSize(size); }
-      bool setPosition(const ::int_point & point) override { return m_pwindow->setPosition(point); }
-      bool setPlacement(const ::int_rectangle & rectangle) override { return m_pwindow->setPlacement(rectangle); }
+      bool setSize(const ::i32_size & size) override { return m_pwindow->setSize(size); }
+      bool setPosition(const ::i32_point & point) override { return m_pwindow->setPosition(point); }
+      bool setPlacement(const ::i32_rectangle & rectangle) override { return m_pwindow->setPlacement(rectangle); }
       void setWindowText(const ::scoped_string  & scopedstrText) override { m_pwindow->setWindowText(scopedstrText); }
 
 
@@ -465,7 +465,7 @@ namespace innate_subsystem
       bool isExStyleEnabled(::u32 styleFlag) override { return m_pwindow->isExStyleEnabled(styleFlag); }
 
       // full redraw of window area
-      void redraw(const ::int_rectangle &rcArea ={}) override { m_pwindow->redraw(rcArea); }
+      void redraw(const ::i32_rectangle &rcArea ={}) override { m_pwindow->redraw(rcArea); }
 
       // set or kill timer, with identifactor ident
       // and time in milliseconds
@@ -479,10 +479,10 @@ namespace innate_subsystem
       void postMessage(::u32 Msg, ::wparam wparam =0, ::lparam lparam =0) override { m_pwindow->postMessage(Msg, wparam, lparam); }
       void post(const ::procedure &procedure) override { m_pwindow->post(procedure); }
 
-      ::int_rectangle getClientRect() override { return m_pwindow->getClientRect(); }
-      ::int_rectangle getFullScreenRect() override { return m_pwindow->getFullScreenRect(); }
-      ::int_size getBorderSize() override { return m_pwindow->getBorderSize(); }
-      ::int_rectangle getScreenWorkArea() override { return m_pwindow->getScreenWorkArea(); }
+      ::i32_rectangle getClientRect() override { return m_pwindow->getClientRect(); }
+      ::i32_rectangle getFullScreenRect() override { return m_pwindow->getFullScreenRect(); }
+      ::i32_size getBorderSize() override { return m_pwindow->getBorderSize(); }
+      ::i32_rectangle getScreenWorkArea() override { return m_pwindow->getScreenWorkArea(); }
 
       //void setSizeFullScreenWindow() override;
       //void doRestoreFromFullScreen() override;
@@ -513,14 +513,14 @@ namespace innate_subsystem
       bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
       bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) override { return false; }
       bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed,
-          const ::int_point& point, bool & bDoDefaultProcessing) override
+          const ::i32_point& point, bool & bDoDefaultProcessing) override
 
       {
           return false;
 
       }
 
-      bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point &position) override
+      bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::i32_point &position) override
       {
          return false;
       }
@@ -533,7 +533,7 @@ namespace innate_subsystem
       }
 
 
-      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) override {  }
+      void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::i32_rectangle & rectangle) override {  }
 
 
       void onBeforeFullScreen(bool bRestore) override {  }
@@ -541,7 +541,7 @@ namespace innate_subsystem
       void onBeforeUnFullScreen(bool bMinimizing) override {  }
       void onAfterUnFullScreen(bool bMinimizing) override {  }
       bool onGetTooltip(int iControl, ::string & strTooltip) override { return false; }
-      bool onCalculateDefaultSize(::int_rectangle &rectangleDefaultSize) override { return false; }
+      bool onCalculateDefaultSize(::i32_rectangle &rectangleDefaultSize) override { return false; }
       void onAdjustWindowSize() override { }
       void onSize() override {  }
 

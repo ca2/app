@@ -50,7 +50,7 @@ namespace sandbox_windowing
       void post_redraw(bool bAscendants = true) override;
 
       
-      //void this->rectangle(::int_rectangle* lprect) override;
+      //void this->rectangle(::i32_rectangle* lprect) override;
 
 
       void on_layout(::draw2d::graphics_pointer& pgraphics) override;
@@ -66,7 +66,7 @@ namespace sandbox_windowing
       
       
       ::string get_title() override;
-      ::int_rectangle get_rectangle() override;
+      ::i32_rectangle get_rectangle() override;
       
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;

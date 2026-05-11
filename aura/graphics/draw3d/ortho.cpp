@@ -17,7 +17,7 @@ namespace draw3d
 {
 
 
-   ::int_array_base ortho::draw_ortho_plain_wire_frame(::box_double * pbox,int iHint,int bA,bool bFirst)
+   ::i32_array_base ortho::draw_ortho_plain_wire_frame(::box_double * pbox,int iHint,int bA,bool bFirst)
    {
 
       double dA = bA / 255.0;
@@ -76,8 +76,8 @@ namespace draw3d
       }
 
 
-      ::int_array_base  point1;
-      ::int_array_base  point2;
+      ::i32_array_base  point1;
+      ::i32_array_base  point2;
 
 
 
@@ -125,7 +125,7 @@ namespace draw3d
 
       i = 0;
 
-      ::int_array_base ia;
+      ::i32_array_base ia;
 
       while(point1.get_count() > 0)
       {
@@ -160,13 +160,13 @@ namespace draw3d
             if(iHint == 0)
             {
 
-               colorA.set_hls((double) (::long_long_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+               colorA.set_hls((double) (::i64_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
 
             }
             else
             {
 
-               colorA.set_hls((double) (::long_long_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
+               colorA.set_hls((double) (::i64_millisecond() % period) / (double)period, 0.9 - r / 2.0, 1.0 - r);
 
             }
 
@@ -225,19 +225,19 @@ namespace draw3d
    }
 
 
-   ::int_array_base ortho::draw_ortho_plain_fill(::box_double * pbox,int iHint,int bA,bool bFirst,::image::image *pimage)
+   ::i32_array_base ortho::draw_ortho_plain_fill(::box_double * pbox,int iHint,int bA,bool bFirst,::image::image *pimage)
    {
 
       ::draw2d::bitmap bm;
 
-      ::int_point point2da[3];
+      ::i32_point point2da[3];
 
-      ::int_array_base ia;
+      ::i32_array_base ia;
 
       double dA = bA / 255.0;
 
       auto locationa = pbox->vertexes();
-      array < ::int_array_base > f = pbox->faces();
+      array < ::i32_array_base > f = pbox->faces();
 
       m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -285,7 +285,7 @@ namespace draw3d
 
       i = 0;
 
-      ::int_array_base iaf;
+      ::i32_array_base iaf;
 
       //throw ::exception(todo);
 
@@ -350,9 +350,9 @@ namespace draw3d
 //
 //            pimage->fill((int)(dA * (184.0 - r * 128.0)),colorA.red,colorA.green,colorA.blue);
 //
-//            point2da[0]=::int_point((int)locationa[f[iMax][0]].x,(int)locationa[f[iMax][0]].y);
-//            point2da[1]= ::int_point((int)locationa[f[iMax][1]].x,(int)locationa[f[iMax][1]].y);
-//            point2da[2]= ::int_point((int)locationa[f[iMax][2]].x,(int)locationa[f[iMax][2]].y);
+//            point2da[0]=::i32_point((int)locationa[f[iMax][0]].x,(int)locationa[f[iMax][0]].y);
+//            point2da[1]= ::i32_point((int)locationa[f[iMax][1]].x,(int)locationa[f[iMax][1]].y);
+//            point2da[2]= ::i32_point((int)locationa[f[iMax][2]].x,(int)locationa[f[iMax][2]].y);
 //
 //            throw ::exception(todo, "plgblt");
 //            //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);

@@ -638,7 +638,7 @@ namespace user
    }
 
 
-   void place_holder::get_child_rect(::int_rectangle & rectangle)
+   void place_holder::get_child_rect(::i32_rectangle & rectangle)
    {
 
       get_parent()->get_child_rect(rectangle);

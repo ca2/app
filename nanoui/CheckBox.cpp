@@ -28,7 +28,7 @@ namespace nanoui
    }
 
 
-   bool CheckBox::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool CheckBox::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
@@ -74,7 +74,7 @@ namespace nanoui
    }
 
 
-   int_size CheckBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size CheckBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize)
@@ -192,7 +192,7 @@ namespace nanoui
          
          pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_middle);
 
-         auto sizeIcon = ::int_size(m_size.cy, m_size.cy);
+         auto sizeIcon = ::i32_size(m_size.cy, m_size.cy);
 
          float_point pointText = m_pos + sizeIcon / 2.f;
          

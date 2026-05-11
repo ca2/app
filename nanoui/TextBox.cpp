@@ -91,10 +91,10 @@ namespace nanoui
    }
 
 
-   int_size TextBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size TextBox::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
-      int_size size(0, (int)(font_size() * 1.4f));
+      i32_size size(0, (int)(font_size() * 1.4f));
 
       pcontext->font_size(font_size());
       pcontext->font_face("sans");
@@ -377,7 +377,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_enter_event(p, enter, ekeyModifiers);
@@ -387,7 +387,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       if (emouse == ::user::e_mouse_left_button && down && !focused())
@@ -533,7 +533,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::mouse_motion_event(const int_point& p, const int_size& /* rel */, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool TextBox::mouse_motion_event(const i32_point& p, const i32_size& /* rel */, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       m_mouse_pos = p;
@@ -577,7 +577,7 @@ namespace nanoui
 
 
 
-   //bool TextBox::mouse_drag_event(const int_point& p, const int_size&/* rel */, const ::user::e_key& ekeyModifiers)
+   //bool TextBox::mouse_drag_event(const i32_point& p, const i32_size&/* rel */, const ::user::e_key& ekeyModifiers)
    //{
    // 
    // 
@@ -1302,7 +1302,7 @@ namespace nanoui
    }
 
 
-   TextBox::SpinArea TextBox::spin_area(const int_point& pos)
+   TextBox::SpinArea TextBox::spin_area(const i32_point& pos)
    {
 
       if (0 <= pos.x && pos.x < 14.f) { /* on scrolling arrows */

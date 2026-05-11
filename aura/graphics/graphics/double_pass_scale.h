@@ -16,7 +16,7 @@ typedef struct
 typedef struct
 {
    ContributionType *ContribRow; // Row (or column) of contribution weights
-   ::u32 WindowSize,              // Filter window int_size (of affecting source pixels)
+   ::u32 WindowSize,              // Filter window i32_size (of affecting source pixels)
         LineLength;              // Length of line (no. or rows / cols)
    double * matrix;
 } LineContribType;               // Contribution information for an entire line (row or column)
@@ -68,7 +68,7 @@ private:
    LineContribType *AllocContributions (   ::u32 uLineLength,
                                            ::u32 uWindowSize);
 
-   void FreeContributions (LineContribType * int_point);
+   void FreeContributions (LineContribType * i32_point);
 
    LineContribType *CalcContributions (    ::u32    uLineSize,
                                            ::u32    uSrcSize,
@@ -131,16 +131,16 @@ AllocContributions (::u32 uLineLength, ::u32 uWindowSize)
 template <class FilterClass>
 void
 C2PassScale<FilterClass>::
-FreeContributions (LineContribType * int_point)
+FreeContributions (LineContribType * i32_point)
 {
-   //for (::u32 u = 0; u < int_point->LineLength; u++)
+   //for (::u32 u = 0; u < i32_point->LineLength; u++)
    //{
    //   // Free contribs for every pixel
-   //   delete [] int_point->ContribRow[u].Weights;
+   //   delete [] i32_point->ContribRow[u].Weights;
    //}
-   delete int_point->matrix;
-   delete [] int_point->ContribRow;    // Free list_base of pixels contribs
-   delete int_point;                   // Free contribs header
+   delete i32_point->matrix;
+   delete [] i32_point->ContribRow;    // Free list_base of pixels contribs
+   delete i32_point;                   // Free contribs header
 }
 
 template <class FilterClass>
@@ -180,7 +180,7 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
       dWidth= dFilterWidth;
    }
 
-   // Window int_size is the number of sampled pixels
+   // Window i32_size is the number of sampled pixels
    int iWindowSize = 2 * (int)ceil(dWidth) + 1;
 
    // Allocate a ___new line contributions strucutre
@@ -221,7 +221,7 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
          // Normalize weight of neighbouring points
          for (int iSrc = iLeft; iSrc <= iRight; iSrc++)
          {
-            // Normalize int_point
+            // Normalize i32_point
             res->ContribRow[u].Weights[iSrc-iLeft] /= dTotalWeight;
          }
       }

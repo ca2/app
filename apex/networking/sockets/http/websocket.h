@@ -50,7 +50,7 @@ namespace sockets
       int         m_n0;
       memsize         m_header_size;
       memsize         m_iN;
-      int         m_i;
+      int         m_i32;
       unsigned char        m_maskingkey[4];
       int         m_iLastPos;
       ::pointer < ::mutex >       m_pmutexWebsocketWrite;

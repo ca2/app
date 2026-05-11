@@ -41,13 +41,13 @@ namespace gpu_opengl
 
       virtual void __create_egl_context(bool bForWindow);
       virtual void __create_egl_window_surface(::acme::windowing::window* pacmewindowingwindow);
-      virtual void __create_egl_pbuffer_surface(const ::int_size & size);
+      virtual void __create_egl_pbuffer_surface(const ::i32_size & size);
       virtual void __on_after_egl_context_and_surface_creation();
       //void _create_window_buffer() override;
-      //void _create_offscreen_window(const ::int_size &size) override;
+      //void _create_offscreen_window(const ::i32_size &size) override;
       void _create_window_context(::acme::windowing::window* pacmewindwoingwindow) override;
-      void _create_cpu_buffer(const ::int_size& size) override;
-      //void resize_offscreen_buffer(const ::int_size& size) override;
+      void _create_cpu_buffer(const ::i32_size& size) override;
+      //void resize_offscreen_buffer(const ::i32_size& size) override;
       void destroy_cpu_buffer() override;
 
       //void defer_make_current() override;

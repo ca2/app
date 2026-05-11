@@ -54,9 +54,9 @@ namespace write_text
             return -1;
          }
          iIndex = (iHiBound + iLoBound) / 2;
-         if(user == this->element_at(iIndex)->m_ui)
+         if(user == this->element_at(iIndex)->m_u32)
             break;
-         else if(user < this->element_at(iIndex)->m_ui)
+         else if(user < this->element_at(iIndex)->m_u32)
          {
             iHiBound = iIndex - 1;
             if(iHiBound < iLoBound)
@@ -64,7 +64,7 @@ namespace write_text
                return -1;
             }
          }
-         else if(user > this->element_at(iIndex)->m_ui)
+         else if(user > this->element_at(iIndex)->m_u32)
          {
             iLoBound = iIndex + 1;
             if(iLoBound > iHiBound)
@@ -81,7 +81,7 @@ namespace write_text
          iIndex--;
          if(iIndex < 0)
             break;
-         if(user != this->element_at(iIndex)->m_ui)
+         if(user != this->element_at(iIndex)->m_u32)
             break;
          iLastIndex = iIndex;
       }

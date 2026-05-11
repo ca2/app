@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//dump_context & operator<<(dump_context & dumpcontext,const ::int_size & size)
+//dump_context & operator<<(dump_context & dumpcontext,const ::i32_size & size)
 //{
 //   dumpcontext << "(" << size.cx << " x " << size.cy << ")";
 //   
@@ -9,13 +9,13 @@
 //   
 //}
 //
-//dump_context & operator<<(dump_context & dumpcontext,const ::int_point & point)
+//dump_context & operator<<(dump_context & dumpcontext,const ::i32_point & point)
 //{
 //   dumpcontext << "(" << point.x << ", " << point.y << ")";
 //   return dumpcontext;
 //}
 //
-//dump_context & operator<<(dump_context & dumpcontext,const ::int_rectangle & rectangle)
+//dump_context & operator<<(dump_context & dumpcontext,const ::i32_rectangle & rectangle)
 //{
 //   dumpcontext << "(L " << rectangle.left << ", T " << rectangle.top << ", R " <<
 //          rectangle.right << ", B " << rectangle.bottom << ")";

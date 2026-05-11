@@ -578,6 +578,18 @@
 		9A1904AE2FB2508D00A3C985 /* user_notification.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1904AD2FB2508D00A3C985 /* user_notification.h */; };
 		9A1904AF2FB2508D00A3C985 /* user_notification.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1904AD2FB2508D00A3C985 /* user_notification.h */; };
 		9A1904B02FB2508D00A3C985 /* user_notification.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1904AD2FB2508D00A3C985 /* user_notification.h */; };
+		9A1905E12FB271AF00A3C985 /* performance_counter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1905E02FB271A800A3C985 /* performance_counter.h */; };
+		9A1905E22FB271AF00A3C985 /* performance_counter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1905E02FB271A800A3C985 /* performance_counter.h */; };
+		9A1905E32FB271AF00A3C985 /* performance_counter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1905E02FB271A800A3C985 /* performance_counter.h */; };
+		9A1905E52FB2721E00A3C985 /* performance_counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1905E42FB2721B00A3C985 /* performance_counter.cpp */; };
+		9A1905E62FB2721E00A3C985 /* performance_counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1905E42FB2721B00A3C985 /* performance_counter.cpp */; };
+		9A1905E72FB2721E00A3C985 /* performance_counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1905E42FB2721B00A3C985 /* performance_counter.cpp */; };
+		9A1905E92FB2748E00A3C985 /* shared_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1905E82FB2748A00A3C985 /* shared_memory.h */; };
+		9A1905EA2FB2748E00A3C985 /* shared_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1905E82FB2748A00A3C985 /* shared_memory.h */; };
+		9A1905EB2FB2748E00A3C985 /* shared_memory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1905E82FB2748A00A3C985 /* shared_memory.h */; };
+		9A1905EE2FB2759A00A3C985 /* shared_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1905ED2FB2759400A3C985 /* shared_memory.cpp */; };
+		9A1905EF2FB2759A00A3C985 /* shared_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1905ED2FB2759400A3C985 /* shared_memory.cpp */; };
+		9A1905F02FB2759A00A3C985 /* shared_memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1905ED2FB2759400A3C985 /* shared_memory.cpp */; };
 		9A1CEC0029C7BBA500A32D62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1CEBFE29C7BBA500A32D62 /* file.cpp */; };
 		9A1FB4CF2870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
 		9A1FB4D02870DE460042849A /* _main_hold_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB4CD2870DE460042849A /* _main_hold_base.h */; };
@@ -5783,6 +5795,11 @@
 		9A1903A62FB231B000A3C985 /* windows_common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windows_common.cpp; sourceTree = "<group>"; };
 		9A1903A82FB2326100A3C985 /* posix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = posix.cpp; sourceTree = "<group>"; };
 		9A1904AD2FB2508D00A3C985 /* user_notification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = user_notification.h; sourceTree = "<group>"; };
+		9A1905E02FB271A800A3C985 /* performance_counter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = performance_counter.h; sourceTree = "<group>"; };
+		9A1905E42FB2721B00A3C985 /* performance_counter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = performance_counter.cpp; sourceTree = "<group>"; };
+		9A1905E82FB2748A00A3C985 /* shared_memory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shared_memory.h; sourceTree = "<group>"; };
+		9A1905EC2FB2750D00A3C985 /* shared_memory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shared_memory.cpp; sourceTree = "<group>"; };
+		9A1905ED2FB2759400A3C985 /* shared_memory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shared_memory.cpp; sourceTree = "<group>"; };
 		9A1CEBFE29C7BBA500A32D62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		9A1FB4CD2870DE460042849A /* _main_hold_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _main_hold_base.h; sourceTree = "<group>"; };
 		9A1FB4CE2870DE460042849A /* _main_hold_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main_hold_base.cpp; sourceTree = "<group>"; };
@@ -7932,6 +7949,7 @@
 				9A1903A02FB231B000A3C985 /* networking.cpp */,
 				9A1903A12FB231B000A3C985 /* parallelization.cpp */,
 				9A1903A22FB231B000A3C985 /* process.cpp */,
+				9A1905EC2FB2750D00A3C985 /* shared_memory.cpp */,
 				9A1903A32FB231B000A3C985 /* task.cpp */,
 				9A1903A42FB231B000A3C985 /* time.cpp */,
 				9A1903A52FB231B000A3C985 /* unicode.cpp */,
@@ -10105,6 +10123,8 @@
 				9AA8FAE327BA7296008FF9AA /* parallelization.cpp */,
 				9A523FE12CD43440006ED868 /* path.h */,
 				9A523FE22CD43440006ED868 /* path.cpp */,
+				9A1905E42FB2721B00A3C985 /* performance_counter.cpp */,
+				9A1905E02FB271A800A3C985 /* performance_counter.h */,
 				9A08441A29367B70009F7FF4 /* pipe.h */,
 				9A08441629367B6E009F7FF4 /* pipe.cpp */,
 				9AA8FBE627BA7297008FF9AA /* process.h */,
@@ -10113,6 +10133,7 @@
 				9A08441D29367B71009F7FF4 /* security_attributes.h */,
 				9A08441929367B6F009F7FF4 /* security_attributes.cpp */,
 				9AA8FAE227BA7296008FF9AA /* serial.h */,
+				9A1905E82FB2748A00A3C985 /* shared_memory.h */,
 				9A7992F82A53D9D300261F46 /* string.cpp */,
 				9A94FF4529E4BF2800C8C249 /* summary.h */,
 				9A94FF4429E4BF2800C8C249 /* summary.cpp */,
@@ -10185,6 +10206,7 @@
 				9AA8F98F27BA7295008FF9AA /* parallelization.cpp */,
 				9A1903A82FB2326100A3C985 /* posix.cpp */,
 				9AA8F98827BA7295008FF9AA /* process.cpp */,
+				9A1905ED2FB2759400A3C985 /* shared_memory.cpp */,
 			);
 			path = posix;
 			sourceTree = "<group>";
@@ -10608,6 +10630,7 @@
 				9AA8FDB927BA729B008FF9AA /* macos.h in Headers */,
 				9A08410A29348AAB009F7FF4 /* nanosecond.h in Headers */,
 				9A15A73A264B6F2D0080670E /* item.h in Headers */,
+				9A1905E12FB271AF00A3C985 /* performance_counter.h in Headers */,
 				9A08433729366748009F7FF4 /* _synchronization.h in Headers */,
 				9AA8FF2527BA729E008FF9AA /* aaa_2.h in Headers */,
 				9A0843C829366DA6009F7FF4 /* as_string.h in Headers */,
@@ -11003,6 +11026,7 @@
 				9A865FA7296616BA000C82F0 /* time_array.h in Headers */,
 				9A523FE32CD43440006ED868 /* path.h in Headers */,
 				9A523FE42CD43440006ED868 /* dynamic_library.h in Headers */,
+				9A1905E92FB2748E00A3C985 /* shared_memory.h in Headers */,
 				9A523FE52CD43440006ED868 /* errno.h in Headers */,
 				9A523FE62CD43440006ED868 /* environment.h in Headers */,
 				9A523FE72CD43440006ED868 /* console_message_box.h in Headers */,
@@ -11781,6 +11805,7 @@
 				9AC101062B6AC9BD0053DB45 /* aaa_raw_array_impl.h in Headers */,
 				9A7AF06B2B764E3D001F3D4D /* _.h in Headers */,
 				9AC101072B6AC9BD0053DB45 /* text_stream.h in Headers */,
+				9A1905E32FB271AF00A3C985 /* performance_counter.h in Headers */,
 				9AC101082B6AC9BD0053DB45 /* translator.h in Headers */,
 				9AC101092B6AC9BD0053DB45 /* macos.h in Headers */,
 				9AC1010A2B6AC9BD0053DB45 /* nanosecond.h in Headers */,
@@ -12589,6 +12614,7 @@
 				9AD6B9EB2BE84BB3005C6189 /* runtime_check.h in Headers */,
 				9A752AB22BEB7DAC00CFB049 /* quantum.h in Headers */,
 				9AC103B82B6AC9BD0053DB45 /* profiler.h in Headers */,
+				9A1905EB2FB2748E00A3C985 /* shared_memory.h in Headers */,
 				9AC103B92B6AC9BD0053DB45 /* memory_map.h in Headers */,
 				9AC103BA2B6AC9BD0053DB45 /* debug.h in Headers */,
 				9AC103BB2B6AC9BD0053DB45 /* geometry.h in Headers */,
@@ -13271,6 +13297,7 @@
 				9A750DA3282B367600C4861B /* user.h in Headers */,
 				9A5240662CD45461006ED868 /* sequence.h in Headers */,
 				9A5240682CD45461006ED868 /* aaa_step.h in Headers */,
+				9A1905E22FB271AF00A3C985 /* performance_counter.h in Headers */,
 				9A08419D2935C1FD009F7FF4 /* _template_forward_declaration.h in Headers */,
 				9AD68F83251A753A00C0EBD7 /* _setup.h in Headers */,
 				9A8660E42966A849000C82F0 /* _impl_payload.h in Headers */,
@@ -13652,6 +13679,7 @@
 				9A0841952935C1FD009F7FF4 /* _configuration.h in Headers */,
 				9A786209264B90B4003DF8A0 /* std_template.h in Headers */,
 				9A77243E2A2548D400B9A835 /* _operating_system.h in Headers */,
+				9A1905EA2FB2748E00A3C985 /* shared_memory.h in Headers */,
 				9AA8FE0027BA729C008FF9AA /* datetime_c.h in Headers */,
 				9AD69096251A753A00C0EBD7 /* parsing.h in Headers */,
 				9A7551292B214AE500FFB669 /* plex_heap_alloc_array.h in Headers */,
@@ -14540,6 +14568,7 @@
 				9A52422B2CD47440006ED868 /* action_context.cpp in Sources */,
 				9A52422C2CD47440006ED868 /* atom.cpp in Sources */,
 				9A52422D2CD47440006ED868 /* bit.cpp in Sources */,
+				9A1905E72FB2721E00A3C985 /* performance_counter.cpp in Sources */,
 				9A52422E2CD47440006ED868 /* block.cpp in Sources */,
 				9A52422F2CD47440006ED868 /* e_status.cpp in Sources */,
 				9A5242302CD47440006ED868 /* factory.cpp in Sources */,
@@ -14555,6 +14584,7 @@
 				9A52423A2CD47440006ED868 /* object.cpp in Sources */,
 				9A52423B2CD47440006ED868 /* paged_memory.cpp in Sources */,
 				9A52423C2CD47440006ED868 /* particle.cpp in Sources */,
+				9A1905EF2FB2759A00A3C985 /* shared_memory.cpp in Sources */,
 				9A52423D2CD47440006ED868 /* payload.cpp in Sources */,
 				9A52423E2CD47440006ED868 /* prototype.cpp in Sources */,
 				9A52423F2CD47440006ED868 /* property_object.cpp in Sources */,
@@ -15071,6 +15101,7 @@
 				9A97A7642CFBCDEB000A2F7C /* wait_for_end_of_sequence.cpp in Sources */,
 				9AC105932B6AC9BD0053DB45 /* _.cpp in Sources */,
 				9AC105942B6AC9BD0053DB45 /* mkint_c.cpp in Sources */,
+				9A1905F02FB2759A00A3C985 /* shared_memory.cpp in Sources */,
 				9AC105952B6AC9BD0053DB45 /* memory_file.cpp in Sources */,
 				9AC105962B6AC9BD0053DB45 /* reference_referer.cpp in Sources */,
 				9AC105972B6AC9BD0053DB45 /* datetime.cpp in Sources */,
@@ -15176,6 +15207,7 @@
 				9A9459A32F6C16E500AD9261 /* window.cpp in Sources */,
 				9AC105E62B6AC9BD0053DB45 /* item.cpp in Sources */,
 				9AC105E72B6AC9BD0053DB45 /* data.cpp in Sources */,
+				9A1905E52FB2721E00A3C985 /* performance_counter.cpp in Sources */,
 				9AC105E82B6AC9BD0053DB45 /* whole_word.cpp in Sources */,
 				9AC88AEA2B6B3D2A008F1C20 /* ios.cpp in Sources */,
 				9AC105E92B6AC9BD0053DB45 /* trace_category.cpp in Sources */,
@@ -15498,6 +15530,7 @@
 				9A786237264B90B5003DF8A0 /* value.cpp in Sources */,
 				9A754FAD2B212C3A00FFB669 /* mcrtdbg.cpp in Sources */,
 				9A98E29429A56539009BF01D /* request.cpp in Sources */,
+				9A1905E62FB2721E00A3C985 /* performance_counter.cpp in Sources */,
 				9A786257264B90B5003DF8A0 /* random_number_generator.cpp in Sources */,
 				9A15A6B5264B59EF0080670E /* critical_section.cpp in Sources */,
 				9A15A6A5264B59EF0080670E /* multiple_lock.cpp in Sources */,
@@ -15793,6 +15826,7 @@
 				9A523E592CD40FF9006ED868 /* windowing.cpp in Sources */,
 				9A523E5A2CD40FF9006ED868 /* _windowing.cpp in Sources */,
 				9A523E5B2CD40FF9006ED868 /* display.cpp in Sources */,
+				9A1905EE2FB2759A00A3C985 /* shared_memory.cpp in Sources */,
 				9A787CC8264C04CD003DF8A0 /* international_locale_schema.cpp in Sources */,
 				9A809D402A5FFF0F00FCA9FD /* earth_time_shift.cpp in Sources */,
 				9AD69255251A753A00C0EBD7 /* stringtow.cpp in Sources */,

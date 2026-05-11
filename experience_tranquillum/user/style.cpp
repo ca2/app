@@ -19,7 +19,7 @@
 #include "berg/user/user/split_layout.h"
 #include "berg/platform/session.h"
 //#include "core/user/userex/_userex.h"
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -845,7 +845,7 @@ namespace experience_tranquillum
 //
 //      }
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = pinteraction->rectangle();
 
@@ -953,7 +953,7 @@ namespace experience_tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
          rectangleX = ptab->rectangle(::user::e_layout_lading);
 
          ptab->get_data()->m_rectangleTab.left = rectangleX.left;
@@ -981,7 +981,7 @@ namespace experience_tranquillum
          int cy;
          pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
          rectangleX = ptab->rectangle(::user::e_layout_lading);
          int x = rectangleX.left;
 
@@ -1030,7 +1030,7 @@ namespace experience_tranquillum
 
             //            string str = pane.get_title();
 
-            //            ::int_size size;
+            //            ::i32_size size;
 
             ixAdd = 5;
 
@@ -1094,7 +1094,7 @@ namespace experience_tranquillum
          m_rectangleTab.height(),
          0);*/
 
-         int_rectangle& rectangleHosting = ptab->get_data()->m_rectangleHosting;
+         i32_rectangle& rectangleHosting = ptab->get_data()->m_rectangleHosting;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          // bool bTabbedClient = ptab->m_bEffectiveVisibleTabs;
@@ -1133,14 +1133,14 @@ namespace experience_tranquillum
 
       //return true;
 
-      ::int_rectangle rectangle;
-      ::int_rectangle rectangleBorder;
-      ::int_rectangle rectangleText;
-      ::int_rectangle rectangleX;
-      ::int_rectangle rectangleIcon;
-      ::int_rectangle rectangleClose;
+      ::i32_rectangle rectangle;
+      ::i32_rectangle rectangleBorder;
+      ::i32_rectangle rectangleText;
+      ::i32_rectangle rectangleX;
+      ::i32_rectangle rectangleIcon;
+      ::i32_rectangle rectangleClose;
 
-      ::int_rectangle r1;
+      ::i32_rectangle r1;
       r1 = ptab->rectangle();
 
       //if (!ptab->get_data()->m_bNoClient)
@@ -1156,7 +1156,7 @@ namespace experience_tranquillum
 
       //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_rectangle rcTab;
+      ::i32_rectangle rcTab;
 
       rcTab = ptab->get_data()->m_rectangleTab;
 
@@ -1166,14 +1166,14 @@ namespace experience_tranquillum
          pgraphics->fill_rectangle(rcTab, argb(255, 255, 255, 255));
 
       }
-      ::int_rectangle rcTape(rcTab);
+      ::i32_rectangle rcTape(rcTab);
 
       rcTape.top = rcTape.bottom - 8;
 
 
-      ::int_rectangle rcTabs(rcTab);
+      ::i32_rectangle rcTabs(rcTab);
 
-      ::int_rectangle rcClient;
+      ::i32_rectangle rcClient;
 
       rcClient = ptab->get_data()->m_rectangleHosting;
 
@@ -1296,7 +1296,7 @@ namespace experience_tranquillum
                if (ptab->get_data()->m_idaSel.contains(pane.id()))
                {
 
-                  ::int_rectangle rSel;
+                  ::i32_rectangle rSel;
 
                   rSel = rectangleX;
 
@@ -1440,7 +1440,7 @@ namespace experience_tranquillum
                if (ptab->get_data()->m_idaSel.contains(pane.id()))
                {
 
-                  ::int_rectangle rSel;
+                  ::i32_rectangle rSel;
 
                   rSel = rectangle;
 
@@ -1521,7 +1521,7 @@ namespace experience_tranquillum
 
             }
 
-            ::int_rectangle rVertLine;
+            ::i32_rectangle rVertLine;
 
             rVertLine = rectangle;
 
@@ -1594,7 +1594,7 @@ namespace experience_tranquillum
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::int_rectangle& rectangleParam, ::draw2d::brush_pointer& pbrushText, const ::user::e_state& estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer& pgraphics, const ::i32_rectangle& rectangleParam, ::draw2d::brush_pointer& pbrushText, const ::user::e_state& estate)
    {
 
       string_array_base& straTitle = pane.m_straTitle;
@@ -1610,22 +1610,22 @@ namespace experience_tranquillum
       else
       {
 
-         ::int_rectangle rectangleText(rectangleParam);
+         ::i32_rectangle rectangleText(rectangleParam);
 
          ::write_text::font_pointer pfont;
 
          pfont = pgraphics->get_current_font();
 
-         int_size sSep = ptab->get_data()->m_sizeSep;
+         i32_size sSep = ptab->get_data()->m_sizeSep;
 
          auto pstyle = ptab->get_style(pgraphics);
 
-         ::int_rectangle rectangleEmp;
+         ::i32_rectangle rectangleEmp;
 
          for (::collection::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
-            int_size s = pane.m_sizeaText[i];
+            i32_size s = pane.m_sizeaText[i];
             rectangleText.right = rectangleText.left + s.cx;
             pgraphics->_DrawText(str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
             rectangleText.left += s.cx;
@@ -1715,9 +1715,9 @@ namespace experience_tranquillum
 
       //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //   ::int_rectangle rectangleItem;
+      //   ::i32_rectangle rectangleItem;
 
-      //   ::int_rectangle rectangleImage;
+      //   ::i32_rectangle rectangleImage;
 
       //   pgraphics->set_font(ptoolbar);
 
@@ -1787,7 +1787,7 @@ namespace experience_tranquillum
 
       //   if ((nStyle & e_tool_item_style_separator) != 0)
       //   {
-      //      ::int_rectangle rectangleSeparator;
+      //      ::i32_rectangle rectangleSeparator;
       //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
       //      rectangleSeparator.right = rectangleSeparator.left + 2;
       //      rectangleSeparator.top = rectangleImage.top;
@@ -1843,7 +1843,7 @@ namespace experience_tranquillum
       //         else
       //         {
 
-      //            ::int_rectangle rectangleShadow;
+      //            ::i32_rectangle rectangleShadow;
 
       //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
 
@@ -1869,7 +1869,7 @@ namespace experience_tranquillum
       //            if (item.m_pimage->is_set())
       //            {
 
-      //               ::int_rectangle rectangle;
+      //               ::i32_rectangle rectangle;
 
       //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
@@ -1879,7 +1879,7 @@ namespace experience_tranquillum
       //            else if (uImage != 0xffffffffu)
       //            {
 
-      //               ::int_rectangle rectangle;
+      //               ::i32_rectangle rectangle;
 
       //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
 
@@ -1914,7 +1914,7 @@ namespace experience_tranquillum
       //         if (item.m_pimage->is_set())
       //         {
 
-      //            ::int_rectangle rectangle;
+      //            ::i32_rectangle rectangle;
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
@@ -1951,7 +1951,7 @@ namespace experience_tranquillum
       //         if (item.m_pimage->is_set())
       //         {
 
-      //            ::int_rectangle rectangle;
+      //            ::i32_rectangle rectangle;
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
@@ -1985,7 +1985,7 @@ namespace experience_tranquillum
 
       //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-      //      ::int_rectangle rectangleText;
+      //      ::i32_rectangle rectangleText;
 
       //      auto pbrushText = createø < ::draw2d::brush > ();
 
@@ -2021,9 +2021,9 @@ namespace experience_tranquillum
 
       //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      //   ::int_rectangle rectangleItem;
+      //   ::i32_rectangle rectangleItem;
 
-      //   ::int_rectangle rectangleImage;
+      //   ::i32_rectangle rectangleImage;
 
       //   ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
@@ -2093,7 +2093,7 @@ namespace experience_tranquillum
 
       //   if (item.id().case_insensitive_order("separator") == 0)
       //   {
-      //      /*::int_rectangle rectangleSeparator;
+      //      /*::i32_rectangle rectangleSeparator;
       //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
       //      rectangleSeparator.right = rectangleSeparator.left + 2;
       //      rectangleSeparator.top = rectangleImage.top;
@@ -2149,7 +2149,7 @@ namespace experience_tranquillum
       //         else
       //         {
 
-      //            ::int_rectangle rectangleShadow;
+      //            ::i32_rectangle rectangleShadow;
 
       //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
 
@@ -2173,7 +2173,7 @@ namespace experience_tranquillum
       //            if (item.m_pimage->is_set())
       //            {
 
-      //               ::int_rectangle rectangle;
+      //               ::i32_rectangle rectangle;
 
       //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
@@ -2183,7 +2183,7 @@ namespace experience_tranquillum
       //            else if (uImage != 0xffffffffu)
       //            {
 
-      //               ::int_rectangle rectangle;
+      //               ::i32_rectangle rectangle;
 
       //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
 
@@ -2218,7 +2218,7 @@ namespace experience_tranquillum
       //         if (item.m_pimage->is_set())
       //         {
 
-      //            ::int_rectangle rectangle;
+      //            ::i32_rectangle rectangle;
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
@@ -2278,7 +2278,7 @@ namespace experience_tranquillum
       //         if (item.m_pimage->is_set())
       //         {
 
-      //            ::int_rectangle rectangle;
+      //            ::i32_rectangle rectangle;
 
       //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
@@ -2312,7 +2312,7 @@ namespace experience_tranquillum
 
       //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-      //      ::int_rectangle rectangleText;
+      //      ::i32_rectangle rectangleText;
 
       //      auto pbrushText = createø < ::draw2d::brush > ();
 
@@ -2350,7 +2350,7 @@ namespace experience_tranquillum
    bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer& pgraphics, ::user::split_layout* psplitlayout)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = psplitlayout->rectangle();
 

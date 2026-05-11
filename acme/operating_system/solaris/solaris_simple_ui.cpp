@@ -45,7 +45,7 @@ namespace os
    }
 
 
-   bool simple_ui::create_window(const ::int_rectangle * lpcrect)
+   bool simple_ui::create_window(const ::i32_rectangle * lpcrect)
    {
 
       single_lock ml(&user_synchronization());
@@ -151,7 +151,7 @@ namespace os
       m_size.cy = height(lpcrect);
 
       m_rectangleWindow = *lpcrect;
-      m_rectangleWindow.deflate(1, 1); // make intentionally different from actual int_rectangle to trigger simple_ui on_move and on_size happenings
+      m_rectangleWindow.deflate(1, 1); // make intentionally different from actual i32_rectangle to trigger simple_ui on_move and on_size happenings
 
       m_window = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
@@ -185,7 +185,7 @@ namespace os
 
 
 
-   bool simple_ui::prepare_window(const ::int_rectangle * lpcrect)
+   bool simple_ui::prepare_window(const ::i32_rectangle * lpcrect)
    {
 
       single_lock ml(&user_synchronization());
@@ -498,13 +498,13 @@ namespace os
    }
 
 
-   void simple_ui::client_to_screen(::int_point * ppt)
+   void simple_ui::client_to_screen(::i32_point * ppt)
    {
       //::client_to_screen(m_window, ppt);
       ::user::interaction::client_to_screen(ppt);
    }
 
-   void simple_ui::screen_to_client(::int_point * ppt)
+   void simple_ui::screen_to_client(::i32_point * ppt)
    {
       //::screen_to_client(m_window, ppt);
       ::user::interaction::screen_to_client(ppt);
@@ -573,13 +573,13 @@ namespace os
 
 
 
-   void simple_ui::window_rectangle(::int_rectangle * prectangle)
+   void simple_ui::window_rectangle(::i32_rectangle * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
 
    }
-   void simple_ui::this->rectangle(::int_rectangle * prectangle)
+   void simple_ui::this->rectangle(::i32_rectangle * prectangle)
    {
 
       *prectangle = m_rectangleWindow;
@@ -595,7 +595,7 @@ namespace os
    void simple_ui::on_draw_framebuffer()
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       ::window_rectangle(m_window, rectangleWindow);
 
@@ -619,11 +619,11 @@ namespace os
 /*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::int_rectangle rectangleX = rectangleWindow;
+         ::i32_rectangle rectangleX = rectangleWindow;
 
          rectangleX -= rectangleWindow.top_left();
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          rectangle = rectangleWindow;
 

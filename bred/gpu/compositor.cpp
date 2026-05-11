@@ -53,7 +53,7 @@ namespace gpu
    }
 
 
-   void compositor::on_gpu_context_placement_change(const ::int_rectangle &rectanglePlacement,
+   void compositor::on_gpu_context_placement_change(const ::i32_rectangle &rectanglePlacement,
                                                     ::acme::windowing::window *pacmewindowingwindow)
    {
 

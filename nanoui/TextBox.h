@@ -68,10 +68,10 @@ namespace nanoui
       ::string                                        m_strPlaceHolder;
       ::character_count                                       m_iSelectionEnd;
       ::character_count                                       m_iSelectionStart;
-      int_point                                        m_mouse_pos;
+      i32_point                                        m_mouse_pos;
       //bool                                            m_bMouseDown;
-      int_point                                        m_pointMouseDown;
-      int_point                                        m_pointMouseDrag;
+      i32_point                                        m_pointMouseDown;
+      i32_point                                        m_pointMouseDrag;
       ::user::e_key                                   m_ekeyMouseDownModifier;
       float                                           m_fTextOffset;
       //class ::time m_timeLast;
@@ -126,9 +126,9 @@ namespace nanoui
       /// Sets the callback to execute when the value of this TextBox has changed.
       void set_callback(const ::function<bool(const ::scoped_string& str)>& callback) { m_callback = callback; }
 
-      bool mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
@@ -147,7 +147,7 @@ namespace nanoui
       bool end_in_place_edit() override;
 
 
-      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       void draw(::nano2d::context * pcontext) override;
    protected:
       bool check_format(const ::scoped_string& input, const ::scoped_string& format);
@@ -165,7 +165,7 @@ namespace nanoui
       /// The location (if any) for the spin area.
       enum class SpinArea { None, Top, Bottom };
       
-      SpinArea spin_area(const int_point & pos);
+      SpinArea spin_area(const i32_point & pos);
       
 
    };

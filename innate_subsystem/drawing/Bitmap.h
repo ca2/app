@@ -38,23 +38,23 @@ namespace innate_subsystem
    {
    public:
       // // Creates empty bitmap with specified size.
-      // Bitmap(const ::int_size & size);
+      // Bitmap(const ::i32_size & size);
       // // Creates compatible with dc bitmap with specified size.
-      // Bitmap(DeviceContext * pdevicecontext, const ::int_size & size);
+      // Bitmap(DeviceContext * pdevicecontext, const ::i32_size & size);
       // // Creates bitmap from HBITMAP object.
       // Bitmap(Bitmap * pbitmap);
       // Destroys bitmap object.
       //virtual ~BitmapInterface() =0;
 
       // Creates empty bitmap with specified size.
-      virtual void initialize_bitmap(const ::int_size & size) = 0;
+      virtual void initialize_bitmap(const ::i32_size & size) = 0;
       // Creates compatible with dc bitmap with specified size.
-      virtual void initialize_bitmap(DeviceContextInterface * pdevicecontext, const ::int_size & size) = 0;
+      virtual void initialize_bitmap(DeviceContextInterface * pdevicecontext, const ::i32_size & size) = 0;
       // Creates bitmap from HBITMAP object.
       virtual void initialize_bitmap(BitmapInterface * pbitmap) = 0;
 
       // Returns bitmap width.
-      virtual ::int_size getSize() const = 0;
+      virtual ::i32_size getSize() const = 0;
 
 
       //virtual void destroyObject() = 0;
@@ -79,9 +79,9 @@ namespace innate_subsystem
 
 
       // // Creates empty bitmap with specified size.
-      // Bitmap(const ::int_size & size);
+      // Bitmap(const ::i32_size & size);
       // // Creates compatible with dc bitmap with specified size.
-      // Bitmap(DeviceContext * pdevicecontext, const ::int_size & size);
+      // Bitmap(DeviceContext * pdevicecontext, const ::i32_size & size);
       // // Creates bitmap from HBITMAP object.
       // Bitmap(Bitmap * pbitmap);
       //Bitmap();
@@ -92,13 +92,13 @@ namespace innate_subsystem
       //void * _HGDIOBJ() override;
 
       // Creates empty bitmap with specified size.
-         void initialize_bitmap(const ::int_size& size) override
+         void initialize_bitmap(const ::i32_size& size) override
       {
 
          m_pbitmap->initialize_bitmap(size);
       }
       // Creates compatible with dc bitmap with specified size.
-      void initialize_bitmap(DeviceContextInterface* pdevicecontext, const ::int_size& size) override
+      void initialize_bitmap(DeviceContextInterface* pdevicecontext, const ::i32_size& size) override
       {
 
          m_pbitmap->initialize_bitmap(pdevicecontext, size);
@@ -112,7 +112,7 @@ namespace innate_subsystem
       }
 
       // Returns bitmap width.
-      ::int_size getSize() const override
+      ::i32_size getSize() const override
       {
 
          return m_pbitmap->getSize();

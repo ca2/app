@@ -38,7 +38,7 @@ namespace user
          double_rectangle                 m_rectangleBounding;
          double_polygon_base              m_polygon;
          double_polygon_base              m_polygonDrawing;
-         double_point_array_base          m_pointaCursor;
+         double_poi32_array_base          m_pointaCursor;
          double                           m_dZoom;
          double_point                     m_pointDrag2;
 
@@ -92,12 +92,12 @@ namespace user
 
 
       using ::user::drawable::parent_client_hit_test;
-      ::item_pointer parent_client_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer parent_client_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
 
-      ::item_pointer parent_client_on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer parent_client_on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
       //virtual int on_hit_test_cursor(double_point point);
-      //virtual int on_hit_test( int_point) const;
+      //virtual int on_hit_test( i32_point) const;
       virtual bool intersects_drawing(const double_polygon & int_polygon) const;
       virtual bool intersects_drawing(const ::double_rectangle & rectangle) const;
 
@@ -106,7 +106,7 @@ namespace user
       virtual ::draw2d::region_pointer get_region() const;
 
       virtual double_rectangle drawing_bounds() const;
-      virtual double_point_array_base & drawing_polygon() const;
+      virtual double_poi32_array_base & drawing_polygon() const;
 
       virtual void update_drawing_rect(::double_size sizePage, ::double_size sizeClient);
       virtual void update_screen_rect(::double_size sizePage, ::double_size sizeClient);
@@ -190,8 +190,8 @@ namespace user
       virtual ::double_size get_size();
       virtual ::double_size get_request_size();
 
-      virtual ::image::image_pointer defer_draw_drop_shadow_phase1(int_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow, ::image::image_pointer pimage);
-      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow);
+      virtual ::image::image_pointer defer_draw_drop_shadow_phase1(i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow, ::image::image_pointer pimage);
+      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow);
 
       virtual bool set_text_editable(bool bEditable = true);
 

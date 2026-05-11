@@ -9,7 +9,7 @@ void ___arrayStdSortTest();
 /*
 void _123abc_debug_gen_array_randomize(::particle * pparticle)
 {
-   ::int_array_base a;
+   ::i32_array_base a;
    a.add_unique(1);
    a.add_unique(2);
    App(papp).array().randomize(a);
@@ -69,7 +69,7 @@ void unit_test_quick_sort_iter()
 {
 
 
-   ::int_array_base ia;
+   ::i32_array_base ia;
 
    ia.add(3);
    ia.add(2);

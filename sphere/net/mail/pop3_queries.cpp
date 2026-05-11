@@ -244,10 +244,10 @@ char* buf;
       return(nullptr);
    }
    buf[r]='\0';
-	if(atom>0){/* +OK atom int_size */
+	if(atom>0){/* +OK atom i32_size */
 		return(buf); /* 512 bytes are enough as say RFC 1939 */
 	}
-	/* else : +OK X messages (YYY octets)\n atom int_size\n... */
+	/* else : +OK X messages (YYY octets)\n atom i32_size\n... */
 	if(pop3_error(buf)){
 #ifdef EBUG
 		fprintf(stderr,"%s",buf);

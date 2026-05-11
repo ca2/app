@@ -67,7 +67,7 @@ namespace draw3d
       //matrix & translate(double x, double y, e_mode emode = mode_append);
       //matrix & rotate(double dAngleRadians, e_mode emode = mode_append);
       //matrix & scale(double dRateX, double dRateY, e_mode emode = mode_append);
-      //matrix & scale(const ::int_point & point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
+      //matrix & scale(const ::i32_point & point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
 
 
       //matrix & prepend(const matrix & m);
@@ -100,7 +100,7 @@ namespace draw3d
       //virtual void SetElements(float * fa);
 
 
-      //void transform(int_point & point);
+      //void transform(i32_point & point);
 
       //void transform(double_point & point);
 
@@ -168,7 +168,7 @@ namespace draw3d
    //   //matrix & translate(double x, double y, e_mode emode = mode_append);
    //   //matrix & rotate(double dAngleRadians, e_mode emode = mode_append);
    //   //matrix & scale(double dRateX, double dRateY, e_mode emode = mode_append);
-   //   //matrix & scale(const ::int_point & point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
+   //   //matrix & scale(const ::i32_point & point, e_mode emode = mode_append) { return scale(point.x, point.y, emode); }
 
 
    //   //matrix & prepend(const matrix & m);
@@ -201,7 +201,7 @@ namespace draw3d
    //   //virtual void SetElements(float * fa);
 
 
-   //   //void transform(int_point & point);
+   //   //void transform(i32_point & point);
 
    //   //void transform(double_point & point);
 

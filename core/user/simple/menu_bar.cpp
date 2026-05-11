@@ -278,13 +278,13 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         ::u32 fwKeys = (::u32)pmsg->wParam; // key flags
 //
-//         auto point = ::int_point((::lparam) pmsg->lParam); // horizontal position of cursor
+//         auto point = ::i32_point((::lparam) pmsg->lParam); // horizontal position of cursor
 //
 //         //index yPos = HIWORD(pmsg->lParam);
 //
 //         informationf("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x, point.y);
 //
-//         //::int_point point(xPos, yPos);
+//         //::i32_point point(xPos, yPos);
 //
 //         screen_to_client()(point);
 //
@@ -302,7 +302,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //#endif
 
 
-bool simple_menu_bar::_track_popup_menu(const ::int_point & point)
+bool simple_menu_bar::_track_popup_menu(const ::i32_point & point)
 {
    //if (m_bTracking)
    //{
@@ -335,10 +335,10 @@ void simple_menu_bar::on_message_key_down(::message::message * pmessage)
 
 
 
-/*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, int_size & size)
+/*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, i32_size & size)
 {
-    ::int_rectangle rectangleItem;
-    ::int_rectangle rectangleSize(0, 0, 0, 0);
+    ::i32_rectangle rectangleItem;
+    ::i32_rectangle rectangleSize(0, 0, 0, 0);
 
     for(::collection::index i = 0; i < tbc.GetButtonCount(); i++)
     {
@@ -349,10 +349,10 @@ void simple_menu_bar::on_message_key_down(::message::message * pmessage)
     return ;
 }
 
-bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, int_size & size)
+bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, i32_size & size)
 {
-    ::int_rectangle rectangleItem;
-    ::int_rectangle rectangleSize(0, 0, 0, 0);
+    ::i32_rectangle rectangleItem;
+    ::i32_rectangle rectangleSize(0, 0, 0, 0);
 
     for(::collection::index i = 0; i < tbc.GetButtonCount(); i++)
     {
@@ -541,7 +541,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::index_item_rectangle(::collection::index iItem, ::int_rectangle * prectangle, enum_element eelement)
+/*bool simple_menu_bar::index_item_rectangle(::collection::index iItem, ::i32_rectangle * prectangle, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -605,7 +605,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-::collection::index simple_menu_bar::_001HitTest(const ::int_point *ppoint)
+::collection::index simple_menu_bar::_001HitTest(const ::i32_point *ppoint)
 
 {
    for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
@@ -627,7 +627,7 @@ bool simple_menu_bar::ReloadMenuBar()
    ::draw2d::memory_graphics pgraphics(this);;
    pgraphics->set(pdraw2d->fonts().GetMenuFont());
 
-   ::int_size size;
+   ::i32_size size;
    ::collection::index ix = ITEMCHECKEDPADLEFT;
    ::collection::index iy = 0;
    for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
@@ -719,7 +719,7 @@ bool simple_menu_bar::ReloadMenuBar()
 //   }
 //}
 
-/*int_size simple_menu_bar::CalcDynamicLayout(index nLength, ::u32 dwMode)
+/*i32_size simple_menu_bar::CalcDynamicLayout(index nLength, ::u32 dwMode)
 {
     if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -729,10 +729,10 @@ bool simple_menu_bar::ReloadMenuBar()
    return CalcLayout(dwMode, nLength);
 
 }
-int_size simple_menu_bar::CalcLayout(::u32 dwMode, ::collection::index nLength)
+i32_size simple_menu_bar::CalcLayout(::u32 dwMode, ::collection::index nLength)
 {
    _001Layout();
-   int_size sizeResult;
+   i32_size sizeResult;
    sizeResult.cx = 0;
    sizeResult.cy = 0;
 
@@ -745,7 +745,7 @@ int_size simple_menu_bar::CalcLayout(::u32 dwMode, ::collection::index nLength)
    return sizeResult;
 }
 
-int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
+i32_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
    ::u32 dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
@@ -756,8 +756,8 @@ int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
 /*void simple_menu_bar::_001DrawItem(::draw2d::graphics *graphics, ::collection::index iItem)
 {
-   ::int_rectangle rectangleItem;
-   ::int_rectangle rectangleText;
+   ::i32_rectangle rectangleItem;
+   ::i32_rectangle rectangleText;
 
    SimpleMenuBarButton & button = m_buttona[iItem];
 
@@ -786,7 +786,7 @@ int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
    if(eelement == element_item_hover)
    {
-      ::int_rectangle rectangleShadow;
+      ::i32_rectangle rectangleShadow;
       index_item_rectangle(iItem, rectangleShadow, e_element_item);
 
       ::draw2d::pen_pointer ppenShadow(get_app(), PS_SOLID, 1, rgb(127, 127, 127));
@@ -803,7 +803,7 @@ int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       pgraphics->set(ppenOld);
       pgraphics->set(pbrushOld);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       index_item_rectangle(iItem, rectangle, e_element_text);
       pgraphics->set_text_color(rgb(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
@@ -827,7 +827,7 @@ int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 //   m_bCheck = false;
 }*/
 
-/*void simple_menu_bar::_001Hover(const ::int_point & point)
+/*void simple_menu_bar::_001Hover(const ::i32_point & point)
 {
    _track_popup_menu(point);
    ::collection::index iHover = -1;
@@ -857,7 +857,7 @@ int_size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
 void simple_menu_bar::_001Hover()
 {
-   ::int_point point;
+   ::i32_point point;
    GetCursorPos(&point);
    screen_to_client()(point);
    _001Hover(point);

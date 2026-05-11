@@ -510,7 +510,7 @@ bool htask::operator==(const htask & htask) const
 bool itask::operator==(const itask & itask) const
 {
 
-   return m_i == itask.m_i;
+   return m_i32 == itask.m_i32;
 
 }
 
@@ -534,7 +534,7 @@ bool htask::is_null() const
 bool itask::is_null() const
 {
 
-   return !m_i;
+   return !m_i32;
 
 }
 

@@ -18,7 +18,7 @@ inline bool shape_contains(const ::lines_base < LINES_NUMBER > & lines, const ::
 //}
 //
 
-//inline bool shape_contains(const ::linesd* plines, const ::int_point& point)
+//inline bool shape_contains(const ::linesd* plines, const ::i32_point& point)
 //{
 //
 //   return false;
@@ -34,7 +34,7 @@ inline bool shape_contains(const ::lines_base < LINES_NUMBER > & lines, const ::
 //}
 
 
-//inline bool shape_contains(const ::int_polygon & polygon, const ::int_point & point)
+//inline bool shape_contains(const ::int_polygon & polygon, const ::i32_point & point)
 //{
 //
 //   return polygon.polygon_contains(point);
@@ -50,7 +50,7 @@ inline bool shape_contains(const ::lines_base < LINES_NUMBER > & lines, const ::
 //}
 //
 //
-//inline bool shape_contains(const ::double_polygon & polygon, const ::int_point& point)
+//inline bool shape_contains(const ::double_polygon & polygon, const ::i32_point& point)
 //{
 //
 //   return polygon.polygon_contains(point);

@@ -57,15 +57,15 @@ namespace user
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::interaction * pframe);
-      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics);
 
-      virtual ::int_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction);
+      virtual ::i32_rectangle simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction);
       virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics);
       virtual bool simple_ui_draw_border(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics);
       //virtual bool on_ui_event(enum_happening ehappening, e_object eobject, ::user::interaction * pinteraction) = 0;
       //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,tab * ptab) = 0;
       //virtual bool _001OnDrawMen::u32eraction(::draw2d::graphics_pointer & pgraphics, menu_interaction * ptab) = 0;
-      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle,::draw2d::brush_pointer & pbrushText) = 0;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle,::draw2d::brush_pointer & pbrushText) = 0;
 
       //virtual bool _001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab) = 0;
       //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) = 0;

@@ -564,7 +564,7 @@ namespace user
          else
          {
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             window_rectangle(rectangle);
 
@@ -586,7 +586,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement)
+      bool edit_impl::get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, enum_element eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -623,7 +623,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(::int_rectangle * prectangle, ::collection::index i)
+      bool edit_impl::get_item_rect(::i32_rectangle * prectangle, ::collection::index i)
 
       {
 
@@ -666,7 +666,7 @@ namespace user
 
 
 
-      ::item_pointer edit_impl::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+      ::item_pointer edit_impl::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
       {
 
          auto r = this->raw_rectangle();
@@ -743,7 +743,7 @@ namespace user
 
          //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         //::int_rectangle rectangleX;
+         //::i32_rectangle rectangleX;
 
          //if (pdrawcontext != nullptr)
          //{
@@ -875,7 +875,7 @@ namespace user
 
          //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
-         //::int_rectangle r(25, 25, 150, 150);
+         //::i32_rectangle r(25, 25, 150, 150);
 
          //pgraphics->fill_solid_rectangle(r, ::color::red);
 
@@ -909,7 +909,7 @@ namespace user
 
          ////pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
-         //::int_rectangle r(25, 25, 150, 150);
+         //::i32_rectangle r(25, 25, 150, 150);
 
          //pgraphics->fill_solid_rectangle(r, ::color::red);
 
@@ -1013,7 +1013,7 @@ namespace user
       }
 
 
-      bool edit_impl::_001IsPointInside(const ::int_point & pointParam)
+      bool edit_impl::_001IsPointInside(const ::i32_point & pointParam)
       {
 
          if (is_picture_enabled())
@@ -1023,7 +1023,7 @@ namespace user
 
             screen_to_client()(point);
 
-            ::int_rectangle rWindow;
+            ::i32_rectangle rWindow;
 
             window_rectangle(rWindow);
 
@@ -1043,7 +1043,7 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            return rectangleX.contains(::int_point(point));
+            return rectangleX.contains(::i32_point(point));
 
          }
 
@@ -1671,7 +1671,7 @@ namespace user
                //int x;
                //index iLine = SelToLineX(m_iSelEnd, x);
 
-               //::int_rectangle rectangleX;
+               //::i32_rectangle rectangleX;
 
                //GetFocusRect(rectangleX);
 
@@ -1705,7 +1705,7 @@ namespace user
 
                //index iLine = SelToLineX(m_iSelEnd, x);
 
-               //::int_rectangle rectangleX;
+               //::i32_rectangle rectangleX;
 
                //GetFocusRect(rectangleX);
 
@@ -2285,7 +2285,7 @@ namespace user
 
       //   prichtextdata->write(stream);
 
-      //   ::int_rectangle rectangleWindow;
+      //   ::i32_rectangle rectangleWindow;
 
       //   ((edit_impl *)this)->window_rectangle(rectangleWindow);
 
@@ -2310,7 +2310,7 @@ namespace user
 
       //   prichtextdata->read(stream);
 
-      //   ::int_rectangle rectangleWindow;
+      //   ::i32_rectangle rectangleWindow;
 
       //   stream >> rectangleWindow;
 
@@ -2325,7 +2325,7 @@ namespace user
       //}
 
 
-      void edit_impl::get_text_composition_area(::int_rectangle & r)
+      void edit_impl::get_text_composition_area(::i32_rectangle & r)
       {
 
       }

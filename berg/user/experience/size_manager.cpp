@@ -13,10 +13,10 @@
 #include "aura/message/user.h"
 
 
-CLASS_DECL_AURA ::int_point __get_top_right();
-CLASS_DECL_AURA void __set_top_right(const ::int_point & pointTopRight);
-CLASS_DECL_AURA ::int_point __get_bottom_right();
-CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight);
+CLASS_DECL_AURA ::i32_point __get_top_right();
+CLASS_DECL_AURA void __set_top_right(const ::i32_point & pointTopRight);
+CLASS_DECL_AURA ::i32_point __get_bottom_right();
+CLASS_DECL_AURA void __set_bottom_right(const ::i32_point & pointBottomRight);
 
 
 namespace experience
@@ -103,13 +103,13 @@ namespace experience
 
       m_pointCursorOrigin = pointCursor;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
       m_rectangleWindowOrigin = rectangleWindow;
 
-      ::int_rectangle rectangleEvent;
+      ::i32_rectangle rectangleEvent;
 
       m_pframewindow->window_rectangle(rectangleEvent);
 
@@ -470,7 +470,7 @@ namespace experience
    }
 
 
-   ::int_size size_manager::GetMinSize()
+   ::i32_size size_manager::GetMinSize()
    {
 
       return m_pframewindow->m_pframe->GetMinSize();
@@ -487,18 +487,18 @@ namespace experience
    //}
 
 
-   void size_manager::size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::int_point & point, bool bTracking)
+   void size_manager::size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::i32_point & point, bool bTracking)
    {
 
       //    bool bSize = true;
 //
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
-      ::int_rectangle rectangleMonitor;
+      ::i32_rectangle rectangleMonitor;
 
       pframewindow->best_monitor(&rectangleMonitor);
 
-      ::int_size sizeMin = GetMinSize();
+      ::i32_size sizeMin = GetMinSize();
 
       if (eframe == ::experience::e_frame_sizing_top_left)
       {
@@ -715,7 +715,7 @@ namespace experience
    }
 
 
-   void size_manager::move_window(::user::interaction * pframewindow, const ::int_rectangle & rectangle)
+   void size_manager::move_window(::user::interaction * pframewindow, const ::i32_rectangle & rectangle)
    {
 
       pframewindow->place(rectangle);
@@ -812,7 +812,7 @@ namespace experience
    }
 
 
-   enum_frame size_manager::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   enum_frame size_manager::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       auto eframe = m_pframewindow->experience_frame_hit_test(point, ::user::e_zorder_any);

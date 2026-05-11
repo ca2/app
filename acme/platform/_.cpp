@@ -44,7 +44,7 @@ namespace acme
             rString.empty();        // return is_empty string as well
             return false;
          }
-         pszFullString++;       // int_point past the separator
+         pszFullString++;       // i32_point past the separator
 
       }
 

@@ -173,7 +173,7 @@ void windowing::initialize(::particle * pparticle)
 }
 
 
-::particle * windowing::defer_initialize_host_window(const ::int_rectangle* lpcrect)
+::particle * windowing::defer_initialize_host_window(const ::i32_rectangle* lpcrect)
 {
    
    //      if (::is_set(m_phostinteraction))

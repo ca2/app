@@ -44,7 +44,7 @@ namespace gpu_opengl
 
    }
 
-   void context_win32::_create_cpu_buffer(const ::int_size &size)
+   void context_win32::_create_cpu_buffer(const ::i32_size &size)
    {
 
        if (!m_pgpudevice)
@@ -64,7 +64,7 @@ namespace gpu_opengl
 
 
 
-      //void device_win32::_create_device(const ::int_size &size)
+      //void device_win32::_create_device(const ::i32_size &size)
       //{
 
          if (m_hdc && m_hglrc)
@@ -286,7 +286,7 @@ namespace gpu_opengl
 
 //    //void context::_create_b
 //
-//   void context::_create_offscreen_window(const ::int_size &size)
+//   void context::_create_offscreen_window(const ::i32_size &size)
 //   {
 //
 ////#if defined(WINDOWS_DESKTOP)
@@ -481,7 +481,7 @@ namespace gpu_opengl
 
          ::GetClientRect(m_hwnd, &rectClient);
 
-       //  ::int_size sizeNew = { rectClient.right - rectClient.left,
+       //  ::i32_size sizeNew = { rectClient.right - rectClient.left,
        //rectClient.bottom - rectClient.top };
 
        //  if (m_size != sizeNew)

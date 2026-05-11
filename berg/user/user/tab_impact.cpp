@@ -585,7 +585,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      //::int_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
+      //::i32_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
 
       //::user::impact_data * pimpactdata = get_impact_data(atom, rectangleHosting);
 
@@ -1352,7 +1352,7 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_impact::create_impact(atom atom, const ::int_rectangle & rectangleCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_impact::create_impact(atom atom, const ::i32_rectangle & rectangleCreate, ::user::frame_window * pframewindow)
 
    //{
 
@@ -1549,7 +1549,7 @@ namespace user
 
       {
 
-         ::int_point pointOffset;
+         ::i32_point pointOffset;
 
          if (m_puserinteractionParent != nullptr)
          {
@@ -1746,9 +1746,9 @@ namespace user
       if (!ptabdata->m_bNoClient && m_pimpactdata)
       {
 
-         ::int_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
+         ::i32_rectangle rectangleHosting = ptabdata->m_rectangleHosting;
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          rectangleX = m_pimpactdata->m_pplaceholder->rectangle();
 

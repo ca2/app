@@ -25,8 +25,8 @@ public:
    operator unsigned short & () { return m_payload.unsigned_short_reference(); }
    operator int & () { return m_payload.int_reference(); }
    operator ::u32 & () { return m_payload.unsigned_int_reference(); }
-   operator ::i64 & () { return m_payload.long_long_reference(); }
-   operator ::u64 & () { return m_payload.unsigned_long_long_reference(); }
+   operator ::i64 & () { return m_payload.i64_reference(); }
+   operator ::u64 & () { return m_payload.u64_reference(); }
 
 
 #ifdef __APPLE__
@@ -54,8 +54,8 @@ public:
    //operator property & () { return m_payload.property_reference(); }
 
 
-   operator int_array_base & () { return m_payload.int_array_reference(); }
-   operator long_long_array_base & () { return m_payload.long_long_array_reference(); }
+   operator i32_array_base & () { return m_payload.i32_array_reference(); }
+   operator i64_array_base & () { return m_payload.i64_array_reference(); }
    operator string_array_base & () { return m_payload.string_array_reference(); }
    operator payload_array & () { return m_payload.payload_array_reference(); }
    operator ::property_set & () { return m_payload.property_set_reference(); }

@@ -249,7 +249,7 @@ namespace user
    //}
 
 
-   //::int_point font_list_impact::get_context_offset()
+   //::i32_point font_list_impact::get_context_offset()
    //{
 
    //   return ::user::list_impact::get_context_offset();

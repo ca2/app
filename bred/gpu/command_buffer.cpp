@@ -230,14 +230,14 @@ namespace gpu
    }
 
 
-   void command_buffer::set_viewport(const ::int_rectangle& rectangle)
+   void command_buffer::set_viewport(const ::i32_rectangle& rectangle)
    {
 
       m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_viewport(this, rectangle);
    }
 
 
-   void command_buffer::set_scissor(const ::int_rectangle& rectangle)
+   void command_buffer::set_scissor(const ::i32_rectangle& rectangle)
    {
 
       m_pgpurendertarget->m_pgpurenderer->m_pgpucontext->set_scissor(this, rectangle);

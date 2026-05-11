@@ -26,7 +26,7 @@ payload_array_base::payload_array_base(const string_array_base & stra)
    operator = (stra);
 }
 
-payload_array_base::payload_array_base(const ::int_array_base & ia)
+payload_array_base::payload_array_base(const ::i32_array_base & ia)
 {
    operator = (ia);
 }
@@ -515,7 +515,7 @@ payload_array_base & payload_array_base::operator = (const string_array_base & s
    return *this;
 }
 
-payload_array_base & payload_array_base::operator = (const ::int_array_base & inta)
+payload_array_base & payload_array_base::operator = (const ::i32_array_base & inta)
 {
    erase_all();
    for(int i = 0; i < inta.get_count(); i++)

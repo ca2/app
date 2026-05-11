@@ -442,7 +442,7 @@
 ////   string str;
 ////
 ////   // prefix a pointer with "$" and print in hex
-////   str.formatf("$%int_point", p);
+////   str.formatf("$%i32_point", p);
 ////
 ////   output_string(str);
 ////

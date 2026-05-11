@@ -219,7 +219,7 @@ void html_form::install_message_routing(::channel * pchannel)
 void html_form::GetClientBox(::float_rectangle & box)
 {
 
-   ::int_rectangle rectangleX;
+   ::i32_rectangle rectangleX;
 
    rectangleX = this->rectangle();
 
@@ -297,7 +297,7 @@ void html_form::on_message_left_button_down(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   ::int_point point;
+   ::i32_point point;
 
    point = pmouse->m_pointHost;
 
@@ -345,7 +345,7 @@ void html_form::on_message_mouse_move(::message::message * pmessage)
 
    track_mouse_hover();
 
-   ::int_point point(pmouse->m_pointHost);
+   ::i32_point point(pmouse->m_pointHost);
 
    host_to_client()(point);
 
@@ -426,7 +426,7 @@ void html_form::on_message_left_button_up(::message::message * pmessage)
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
-   ::int_point point(pmouse->m_pointHost);
+   ::i32_point point(pmouse->m_pointHost);
 
    host_to_client()(point);
 

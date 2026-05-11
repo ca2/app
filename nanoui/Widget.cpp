@@ -236,7 +236,7 @@ namespace nanoui
    }
 
 
-   void Widget::set_size(const int_size& size)
+   void Widget::set_size(const i32_size& size)
    {
 
       m_size = size;
@@ -261,7 +261,7 @@ namespace nanoui
    }
 
 
-   int_size Widget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size Widget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (m_playout)
@@ -359,7 +359,7 @@ namespace nanoui
    }
 
 
-   Widget* Widget::find_widget(const int_point& p)
+   Widget* Widget::find_widget(const i32_point& p)
    {
 
       //auto size = m_children.get_count();
@@ -413,7 +413,7 @@ namespace nanoui
    }
 
 
-   const Widget* Widget::find_widget(const int_point& p) const
+   const Widget* Widget::find_widget(const i32_point& p) const
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -435,7 +435,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -482,7 +482,7 @@ namespace nanoui
    }
 
 
-   bool Widget::mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       bool bHandled = false;
@@ -557,7 +557,7 @@ namespace nanoui
    }
 
 
-   bool Widget::scroll_event(const int_point& p, const float_size& rel)
+   bool Widget::scroll_event(const i32_point& p, const float_size& rel)
    {
 
       for (auto it = m_children.get_upper_bound(); it >= 0; it--)
@@ -596,7 +596,7 @@ namespace nanoui
    //}
 
 
-   bool Widget::mouse_enter_event(const int_point&, bool bEnter, const ::user::e_key& ekeyModifiers)
+   bool Widget::mouse_enter_event(const i32_point&, bool bEnter, const ::user::e_key& ekeyModifiers)
    {
 
       m_bMouseHover = bEnter;
@@ -1032,7 +1032,7 @@ namespace nanoui
 
             //}
 
-            //::int_rectangle rectangleThis;
+            //::i32_rectangle rectangleThis;
 
             //auto pscrollPanel = dynamic_cast <VScrollPanel*>(parent());
 
@@ -1075,9 +1075,9 @@ namespace nanoui
 
       }
 
-      ::int_rectangle rectangleThis;
+      ::i32_rectangle rectangleThis;
 
-      ::int_size offsetScroll;
+      ::i32_size offsetScroll;
 
       auto pparent = m_pwidgetParent;
 
@@ -1194,7 +1194,7 @@ namespace nanoui
    //}
 
 
-   int_point Widget::screen_position() const
+   i32_point Widget::screen_position() const
    {
 
       auto absolutePosition = absolute_position();
@@ -1210,7 +1210,7 @@ namespace nanoui
    }
 
 
-   int_size Widget::get_scroll_offset() const
+   i32_size Widget::get_scroll_offset() const
    {
 
       return {};
@@ -1218,7 +1218,7 @@ namespace nanoui
    }
 
 
-   int_size Widget::get_accumulated_scroll_offset() const
+   i32_size Widget::get_accumulated_scroll_offset() const
    {
 
       auto offsetScroll = get_scroll_offset();
@@ -1235,10 +1235,10 @@ namespace nanoui
    }
 
 
-   ::int_rectangle Widget::interaction_rectangle() const
+   ::i32_rectangle Widget::interaction_rectangle() const
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       auto absolutionPosition = absolute_position();
 
@@ -1252,7 +1252,7 @@ namespace nanoui
    }
 
 
-   void Widget::set_need_redraw(const ::int_rectangle& rectangle, function < void() > function)
+   void Widget::set_need_redraw(const ::i32_rectangle& rectangle, function < void() > function)
    {
 
       auto rectangleInteraction = rectangle;
@@ -1321,7 +1321,7 @@ namespace nanoui
    }
 
 
-   void Widget::fixed_placement(const ::int_rectangle& rectangle)
+   void Widget::fixed_placement(const ::i32_rectangle& rectangle)
    {
 
       set_position(rectangle.top_left());
@@ -1331,7 +1331,7 @@ namespace nanoui
    }
 
 
-   void Widget::expose_fixed_size(const ::int_rectangle& rectangle, bool bRedraw)
+   void Widget::expose_fixed_size(const ::i32_rectangle& rectangle, bool bRedraw)
    {
 
       auto positionOld = m_pos;
@@ -1417,7 +1417,7 @@ namespace nanoui
    }
 
 
-   bool Widget::contains(const int_point& p) const
+   bool Widget::contains(const i32_point& p) const
    {
 
       ::pointer < Button > pbutton = this;

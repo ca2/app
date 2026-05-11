@@ -392,7 +392,7 @@ namespace user
    }
 
 
-   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, ::int_size * psize)
+   void font_list::query_full_size(::draw2d::graphics_pointer & pgraphics, ::i32_size * psize)
    {
 
       *psize = m_pfontlist->m_size;
@@ -413,14 +413,14 @@ namespace user
 
       auto pitemCurrent = main_content().m_pitemCurrent;
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       ::collection::index iCurrent = ::item_index(pitemCurrent);
 
       if (m_pfontlist->get_box_rect(&rectangle, iCurrent) && rectangle.area() > 0)
       {
 
-         ::int_rectangle rectangleImpact;
+         ::i32_rectangle rectangleImpact;
 
          rectangleImpact = this->rectangle();
 
@@ -623,7 +623,7 @@ namespace user
    }
 
 
-   status < int_rectangle > font_list::item_rectangle(::item * pitem, ::user::enum_layout elayout)
+   status < i32_rectangle > font_list::item_rectangle(::item * pitem, ::user::enum_layout elayout)
    {
 
       return m_pfontlist->item_rectangle(pitem);
@@ -631,7 +631,7 @@ namespace user
    }
 
 
-   ::item_pointer font_list::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer font_list::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       return m_pfontlist->hit_test(point, ezorder);

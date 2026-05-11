@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
       double dRate = get_progress_rate();
@@ -21,14 +21,14 @@ namespace hotplugin
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
       int cx = rectangleWindow.right - rectangleWindow.left;
       int cy = rectangleWindow.bottom - rectangleWindow.top;
 
-      ::int_rectangle int_rectangle;
+      ::i32_rectangle i32_rectangle;
 
       rectangle.left = 0;
       rectangle.top = 0;
@@ -50,7 +50,7 @@ namespace hotplugin
       {
 
          unsigned char uchR, uchG, uchB;
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(255, uchR, uchG, uchB));
          r = int_rectangle_dimension(rectangle.left, rectangle.top, cx, cy);

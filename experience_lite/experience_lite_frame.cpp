@@ -28,13 +28,13 @@
                m_blur1(this)
             {
                m_colorActiveCaptionTextBk = 0;
-               m_rectangleControlBoxMarginNormal = ::int_rectangle();
+               m_rectangleControlBoxMarginNormal = ::i32_rectangle();
 
                m_rectangleMarginNormal.set(5, 5, 5, 5);
 
                m_colorCaptionText = argb(255, 255, 255, 255);
 
-               m_rectangleX = ::int_rectangle();
+               m_rectangleX = ::i32_rectangle();
 
                //               m_iMargin = 7;
 
@@ -47,7 +47,7 @@
             }
 
 
-            void frame::_001OnBeforeMove(const ::int_rectangle & rectangle)
+            void frame::_001OnBeforeMove(const ::i32_rectangle & rectangle)
             {
 
                update_window_region(rectangle);
@@ -55,7 +55,7 @@
             }
 
 
-            void frame::_001OnBeforeSize(const ::int_rectangle & rectangle)
+            void frame::_001OnBeforeSize(const ::i32_rectangle & rectangle)
             {
 
                __UNREFERENCED_PARAMETER(rectangle);
@@ -74,16 +74,16 @@
             }
 
 
-            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect)
+            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect)
             {
 
                auto pframewindow = m_pframewindow;
 
                //class imaging & imaging = psystem->imaging();
 
-               ::int_rectangle rectangleX(lprect);
+               ::i32_rectangle rectangleX(lprect);
 
-               ::int_rectangle rectangleInflate;
+               ::i32_rectangle rectangleInflate;
 
                if (rectangleX.area() <= 0)
                   return;
@@ -97,7 +97,7 @@
 
                //::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
 
-               ::int_rectangle rectangleScreen;
+               ::i32_rectangle rectangleScreen;
 
                pframewindow->best_monitor(rectangleScreen);
 
@@ -108,14 +108,14 @@
 /*               pimage1 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
 /*               pimage2 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
-               ::int_rectangle rectangleWindow = rectangleX;
+               ::i32_rectangle rectangleWindow = rectangleX;
                pframewindow->client_to_screen(rectangleWindow);
 /*               //pimage = create_image({rectangleX.width(),  rectangleX.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
                pimage2->get_graphics()->BitBlt(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, pgraphics, rectangleX.left - iInflate, rectangleX.top - iInflate);
                //bool b = ::BitBlt(dc2, 0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2, hdcScreen, rectangleX.left - iInflate, rectangleX.top - iInflate);
 
-               m_blur1.blur(pimage1, 2, ::int_rectangle(size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
+               m_blur1.blur(pimage1, 2, ::i32_rectangle(size(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
                //spgraphics->Draw3dRect(rectangleX, 127 << 24, 127 << 24);
                //rectangleX.deflate(1, 1);
@@ -157,7 +157,7 @@
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect, color32_t color32, unsigned char bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect, color32_t color32, unsigned char bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -233,7 +233,7 @@
                return (frame::enum_element) (*((int*)&eelement))++;
             }
 
-            bool frame::get_element_rectangle(::int_rectangle * lprect, enum_element eelement)
+            bool frame::get_element_rectangle(::i32_rectangle * lprect, enum_element eelement)
             {
                switch (eelement)
                {
@@ -270,9 +270,9 @@
 
             }
 
-            bool frame::hit_test(const ::int_point &point, enum_element &eelementParam)
+            bool frame::hit_test(const ::i32_point &point, enum_element &eelementParam)
             {
-               ::int_rectangle rectangle;
+               ::i32_rectangle rectangle;
                for (enum_element eelement = (enum_element)(::e_element_none + 1);
                      eelement < ElementEnd;
                      eelement++)
@@ -374,7 +374,7 @@
                auto pcontrolbox = get_control_box();
 
 
-               m_minSize = int_size(144, 48);
+               m_minSize = i32_size(144, 48);
                m_minSize.cy = 48;
                pcontrolbox->set_button_color_system_default_001();
                set_frame_color_system_default_001();
@@ -441,10 +441,10 @@
             }
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
             {
 
-               ::int_rectangle rectangle(rectangleParam);
+               ::i32_rectangle rectangle(rectangleParam);
                int x = rectangle.left;
                int y = rectangle.top;
                int cx = rectangle.width();
@@ -551,7 +551,7 @@
                if (pframewindow->layout().is_minimal())
                {
 
-                  ::int_rectangle rectangleIcon;
+                  ::i32_rectangle rectangleIcon;
 
                   if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
                   {
@@ -567,7 +567,7 @@
 
                   }
 
-                  ::int_rectangle rectangleGrip;
+                  ::i32_rectangle rectangleGrip;
 
                   if (get_element_rectangle(rectangleGrip, e_element_move_grip_minimal))
                   {
@@ -604,7 +604,7 @@
 
                   }
 
-                  ::int_rectangle rectangleIcon;
+                  ::i32_rectangle rectangleIcon;
 
                   auto pframewindow = m_pframewindow;
 
@@ -642,13 +642,13 @@
 
 }
 
-                  ::int_rectangle rectangle;
+                  ::i32_rectangle rectangle;
 
                   auto pframewindow = m_pframewindow;
 
                   pframewindow->window_rectangle(rectangle);
 
-                  int_rectangle -= rectangle.top_left();
+                  i32_rectangle -= rectangle.top_left();
 
                   if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
                   {
@@ -704,7 +704,7 @@
 
 
 
-            void frame::GetFrameRect(int_rectangle * prectangle)
+            void frame::GetFrameRect(i32_rectangle * prectangle)
             {
 
                m_pframewindow->GetWndDraw()->window_rectangle(prectangle);

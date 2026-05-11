@@ -17,7 +17,7 @@ namespace gpu
       ::pointer < ::gpu::renderer >        m_pgpurenderer;
       bool m_bRenderTargetFramebufferInitialized;
       //::pointer < renderer >        m_pgpurendererTarget;
-      //::int_rectangle m_rectangleTarget;
+      //::i32_rectangle m_rectangleTarget;
       ::pointer_array <::gpu::texture >    m_texturea;
       ::pointer_array <::gpu::texture >    m_textureaSource;
       ::pointer < ::gpu::frame > m_pgpuframe;

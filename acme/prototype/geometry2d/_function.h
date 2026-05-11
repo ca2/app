@@ -151,7 +151,7 @@ RECTANGLE_TYPE & clear(RECTANGLE_TYPE & rectangle);
 //template < prototype_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::i64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
@@ -235,7 +235,7 @@ RECTANGLE_TYPE & clear(RECTANGLE_TYPE & rectangle);
 //inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point);
 //
 //
-//CLASS_DECL_ACME double d_distance(const int_point& point1, const int_point& point2);
+//CLASS_DECL_ACME double d_distance(const i32_point& point1, const i32_point& point2);
 
 
 template < prototype_point POINT1, prototype_point POINT2 >
@@ -1023,7 +1023,7 @@ RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 //template < prototype_rectangle RECTANGLE,  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(RECTANGLE &r, L l, T t, W w, H h) { return set_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
-//inline auto _001SetRectDim(::long_long_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
+//inline auto _001SetRectDim(::i64_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
 //inline auto _001SetRectDim(::float_rectangle * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 //template <  typename L, typename T, typename W, typename H >
@@ -1388,8 +1388,8 @@ template < prototype_rectangle RECTANGLE >
 inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTANGLE::POINT_TYPE*)&rectangle.right; }
 
 
-//inline long_long_point& top_left(const long_long_rectangle& rectangle) { return *(long_long_point*)&rectangle; }
-//inline long_long_point& bottom_right(const long_long_rectangle& rectangle) { return *(long_long_point*)&rectangle.right; }
+//inline i64_point& top_left(const i64_rectangle& rectangle) { return *(i64_point*)&rectangle; }
+//inline i64_point& bottom_right(const i64_rectangle& rectangle) { return *(i64_point*)&rectangle.right; }
 
 
 //inline float_point& top_left(const float_rectangle& rectangle) { return *(float_point*)&rectangle; }
@@ -1400,16 +1400,16 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //inline double_point& bottom_right(const double_rectangle& rectangle) { return *(double_point*)&rectangle.right; }
 
 
-//inline int_point & top_left(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle; }
-//inline int_point & bottom_right(const ::int_rectangle &rectangle) { return *(int_point *)&rectangle.right; }
-//inline int_point & top_left(const ::int_rectangle &rectangle) { return top_left(&rectangle); }
-//inline int_point & bottom_right(const ::int_rectangle &rectangle) { return bottom_right(&rectangle); }
+//inline i32_point & top_left(const ::i32_rectangle &rectangle) { return *(i32_point *)&rectangle; }
+//inline i32_point & bottom_right(const ::i32_rectangle &rectangle) { return *(i32_point *)&rectangle.right; }
+//inline i32_point & top_left(const ::i32_rectangle &rectangle) { return top_left(&rectangle); }
+//inline i32_point & bottom_right(const ::i32_rectangle &rectangle) { return bottom_right(&rectangle); }
 
 
-//inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle; }
-//inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return *(long_long_point *)&rectangle.right; }
-//inline long_long_point & top_left(const ::long_long_rectangle & rectangle) { return top_left(&rectangle); }
-//inline long_long_point & bottom_right(const ::long_long_rectangle & rectangle) { return bottom_right(&rectangle); }
+//inline i64_point & top_left(const ::i64_rectangle & rectangle) { return *(i64_point *)&rectangle; }
+//inline i64_point & bottom_right(const ::i64_rectangle & rectangle) { return *(i64_point *)&rectangle.right; }
+//inline i64_point & top_left(const ::i64_rectangle & rectangle) { return top_left(&rectangle); }
+//inline i64_point & bottom_right(const ::i64_rectangle & rectangle) { return bottom_right(&rectangle); }
 
 
 //inline double_point & top_left(const ::double_rectangle & rectangle) { return *(double_point *)&rectangle; }
@@ -1421,7 +1421,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 
 
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
-//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)int_point) {}
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)i32_point) {}
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >

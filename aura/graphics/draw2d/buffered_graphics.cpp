@@ -19,10 +19,10 @@ namespace draw2d
    }
 
 
-   void buffered_graphics::Prepare(const int_rectangle & rectangleParam)
+   void buffered_graphics::Prepare(const i32_rectangle & rectangleParam)
    {
 
-      ::int_rectangle rectangle(rectangleParam);
+      ::i32_rectangle rectangle(rectangleParam);
 
       m_p->place_impact_area(rectangle);
 

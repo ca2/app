@@ -51,7 +51,7 @@ namespace micro
 
       wstring wstrText(m_strText);
 
-      int_rectangle rectangleText(m_rectangle);
+      i32_rectangle rectangleText(m_rectangle);
 
       rectangleText.inflate(1);
 

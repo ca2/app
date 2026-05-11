@@ -16,8 +16,8 @@ namespace user
    public:
 
 
-      ::int_point                            m_point2;
-      ::int_size                             m_size;
+      ::i32_point                            m_point2;
+      ::i32_size                             m_size;
       ::e_display                            m_edisplay;
       ::e_appearance                         m_eappearance;
       ::logic::boolean                       m_bImpactUpdateGoingOn;
@@ -28,7 +28,7 @@ namespace user
       visual_state() { }
 
 
-      void set_visual_state_origin(const ::int_point & point){m_point2= point;}
+      void set_visual_state_origin(const ::i32_point & point){m_point2= point;}
 
 
       ::e_display display() const { return m_edisplay; }
@@ -59,11 +59,11 @@ namespace user
 
       }
 
-      ::int_point origin() const { return m_point2; }
-      ::int_point & origin() { return m_point2; }
+      ::i32_point origin() const { return m_point2; }
+      ::i32_point & origin() { return m_point2; }
 
-      ::int_size size() const { return m_size; }
-      ::int_size & size() { return m_size; }
+      ::i32_size size() const { return m_size; }
+      ::i32_size & size() { return m_size; }
 
       //template < prototype_rectangle RECTANGLE >
       //visual_state & operator = (const RECTANGLE & rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
@@ -91,13 +91,13 @@ namespace user
       }
       //bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }
 
-      auto raw_rectangle() const { return ::int_rectangle(m_size); }
-      //void raw_rectangle(::int_rectangle & rect) const { rect = raw_rectangle(); }
+      auto raw_rectangle() const { return ::i32_rectangle(m_size); }
+      //void raw_rectangle(::i32_rectangle & rect) const { rect = raw_rectangle(); }
 
-      auto parent_raw_rectangle() const { return ::int_rectangle(m_point2, m_size); }
-      //void parent_raw_rectangle(::int_rectangle & rect) const { rect = parent_raw_rectangle(); }
+      auto parent_raw_rectangle() const { return ::i32_rectangle(m_point2, m_size); }
+      //void parent_raw_rectangle(::i32_rectangle & rect) const { rect = parent_raw_rectangle(); }
 
-      void bottom_right(const ::int_point & point) { m_size = point - m_point2; }
+      void bottom_right(const ::i32_point & point) { m_size = point - m_point2; }
 
 
    };

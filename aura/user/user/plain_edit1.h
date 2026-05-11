@@ -106,7 +106,7 @@ namespace user
 
       //   action_context    m_actioncontext;
 
-      //   ::int_point           m_point;
+      //   ::i32_point           m_point;
       //   ::collection::index           m_iSelEnd;
 
       //   call() {}
@@ -164,7 +164,7 @@ namespace user
       //{
       //public:
 
-      //   call_set_sel_end_on_point(int_point point)
+      //   call_set_sel_end_on_point(i32_point point)
       //   {
 
       //      m_ecall = e_call_set_sel_end;
@@ -204,7 +204,7 @@ namespace user
       // Potential - line count at client area as if it was fully filled
       ::collection::count                               m_iCurrentPagePotentialLineCount;
       bool                                m_bCustomFrameBefore;
-      ::int_rectangle                              m_FullScreenWindowRect;
+      ::i32_rectangle                              m_FullScreenWindowRect;
 
       string_to_string_base                    m_base64map;
 
@@ -219,7 +219,7 @@ namespace user
       character_count                             m_iNewFocusSelectAllColumn;
       class ::time                        m_timeLeftButtonDown;
       bool                                m_bRMouseDown;
-      int_point                           m_pointSelStart;
+      i32_point                           m_pointSelStart;
       class ::time                          m_timeCaretPeriod;
       string_array_base                        m_straLines;
       double                              m_dy;
@@ -234,10 +234,10 @@ namespace user
       bool                                m_bMultiLine;
       bool                                m_bSendEnterKey;
       bool                                m_bReadOnly;
-      int_point                               m_pointLastCursor;
+      i32_point                               m_pointLastCursor;
 
       // Used for whatever it can make faster for large files (scroll for example)
-      // keep each line int_size
+      // keep each line i32_size
       index_array                         m_iaLineLength;
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line flags
@@ -277,7 +277,7 @@ namespace user
       virtual bool is_new_focus_select_all() const;
 
 
-      void get_text_composition_area(::int_rectangle & r) override;
+      void get_text_composition_area(::i32_rectangle & r) override;
       void edit_on_text(const ::scoped_string & scopedstr) override;
       void edit_on_sel(character_count iSelBeg, character_count iSelEnd) override;
       void on_text_composition(const ::scoped_string & scopedstr) override;
@@ -428,13 +428,13 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteraction) override;
 
 
-      virtual character_count plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::int_point & point);
+      virtual character_count plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::i32_point & point);
       virtual character_count plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, int x, ::collection::index iLine);
 
       //colorertake5::file_type * colorer_select_type();
 
-      virtual void extend_selection_end(const ::int_point & pointHost);
-      virtual void _extend_selection_end(const ::int_point & pointHost);
+      virtual void extend_selection_end(const ::i32_point & pointHost);
+      virtual void _extend_selection_end(const ::i32_point & pointHost);
 
 
       virtual character_count get_text_length() override;
@@ -485,9 +485,9 @@ namespace user
       character_count plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn) override;
       character_count plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, int x) override;
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, character_count iSel) override;
-      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);
-      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, character_count iSel);
-      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, ::int_rectangle * lprect, ::collection::index iLine);
+      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, character_count iSel);
+      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, character_count iSel);
+      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle * lprect, ::collection::index iLine);
 
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 

@@ -121,7 +121,7 @@ namespace experience_anthill
 
       }
 
-      ::int_rectangle rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX = this->rectangle();
 
       if (rectangleX.is_empty())
       {

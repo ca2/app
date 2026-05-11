@@ -104,7 +104,7 @@ namespace user
    }
 
 
-   void scroll_base_x::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   void scroll_base_x::set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout)
    {
 
       auto iLayout = (int)elayout;
@@ -138,7 +138,7 @@ namespace user
 
             synthesize_scroll_state_x(m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch], ::user::e_layout_sketch);
 
-            ::int_rectangle rectangleNewPos;
+            ::i32_rectangle rectangleNewPos;
 
             auto pstyle = get_style();
 

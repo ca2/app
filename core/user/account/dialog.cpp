@@ -242,7 +242,7 @@ namespace account
    }
 
 
-   void dialog::do_modal(::int_rectangle rectangle)
+   void dialog::do_modal(::i32_rectangle rectangle)
    {
 
       m_iDelay = 0;
@@ -255,7 +255,7 @@ namespace account
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
-      ::int_rectangle rectangleDesktop;
+      ::i32_rectangle rectangleDesktop;
 
       if(puiParent != nullptr)
       {
@@ -280,7 +280,7 @@ namespace account
 
       }
 
-      ::int_rectangle rectangleLogin;
+      ::i32_rectangle rectangleLogin;
 
       int stdw = 800;
 
@@ -304,7 +304,7 @@ namespace account
 
       }
 
-      ::int_rectangle rectangleFontopus;
+      ::i32_rectangle rectangleFontopus;
 
       rectangleFontopus.left = rectangleDesktop.left + (rectangleDesktop.width() - w) / 2;
 
@@ -596,7 +596,7 @@ namespace account
 
             host_to_client()(pointNow);
 
-            ::int_point point;
+            ::i32_point point;
 
             point.x = pointNow.x - m_pointLButtonDownPos.x;
 

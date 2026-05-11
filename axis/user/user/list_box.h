@@ -22,7 +22,7 @@ namespace user
       ::pointer<combo_box>               m_pcombo;
       int                                 m_iScreenMargin;
       int                                 m_iPadding;
-      ::int_size                          m_sizeFull;
+      ::i32_size                          m_sizeFull;
       int                                 m_iMinListItemCount;
       class ::time                        m_timeShowDropDown;
       class ::time                        m_timeHideDropDown;
@@ -54,7 +54,7 @@ namespace user
 
       virtual void _001OnDrawComboList(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size * psize);
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size * psize);
 
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
@@ -91,7 +91,7 @@ namespace user
       void on_set_keyboard_focus() override;
       void on_kill_keyboard_focus() override;
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
 
       ::item_pointer current_item() override;
@@ -105,7 +105,7 @@ namespace user
       //bool has_pending_graphical_update() override;
 
 
-      void on_drop_down(const ::int_rectangle & rectangleWindow, const ::int_size & sizeFull);
+      void on_drop_down(const ::i32_rectangle & rectangleWindow, const ::i32_size & sizeFull);
 
 
       void _on_show_window() override;

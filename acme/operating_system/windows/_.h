@@ -106,9 +106,9 @@ namespace windows
 
    CLASS_DECL_ACME hinstance hinstance_from_function(void *pFunc);
 
-   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::int_rectangle & rectangle);
+   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::i32_rectangle & rectangle);
 
-   CLASS_DECL_ACME ::int_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow);
+   CLASS_DECL_ACME ::i32_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow);
 
    CLASS_DECL_ACME ::operating_system::window get_window(const ::operating_system::window & operatingsystemwindowCommand, int iGetWindowCommand);
 

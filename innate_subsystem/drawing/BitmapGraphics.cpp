@@ -26,7 +26,7 @@
 
 namespace innate_subsystem
 {
-   // BitmapGraphics::BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size)
+   // BitmapGraphics::BitmapGraphics(DeviceContext *complatibleDC, const ::i32_size & size)
    // : Graphics(complatibleDC), m_isPainting(false)
    // {
    //   m_bitmap = new Bitmap(complatibleDC->m_dc, width, height);
@@ -48,7 +48,7 @@ namespace innate_subsystem
 //       //delete m_dc;
 //    }
 //
-//    void BitmapGraphics::initialize_bitmap_graphics(DeviceContextInterface *pdevicecontextCompatible, const ::int_size & size)
+//    void BitmapGraphics::initialize_bitmap_graphics(DeviceContextInterface *pdevicecontextCompatible, const ::i32_size & size)
 // //: Graphics(complatibleDC), m_isPainting(false)
 // {
 //       m_pparticleThis->initialize_bitmap_graphics(pdevicecontextCompatible, size);

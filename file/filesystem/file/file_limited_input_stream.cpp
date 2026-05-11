@@ -16,7 +16,7 @@ namespace file
             throw ::exception(system_exception(E_FAIL));
       }
       memsize rem = _size - _virtPos;
-      if (rem < int_size)
+      if (rem < i32_size)
          size = (::u32)rem;
       ::u64 newPos = _startOffset + _virtPos;
       if (newPos != _physPos)
@@ -45,7 +45,7 @@ namespace file
    }
 
 
-   ::file::file * create_limited_istream(stream *inStream, ::u64 pos, ::u64 int_size)
+   ::file::file * create_limited_istream(stream *inStream, ::u64 pos, ::u64 i32_size)
    {
       
       limited_istream *streamSpec = ___new limited_istream();

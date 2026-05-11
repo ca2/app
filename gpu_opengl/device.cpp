@@ -418,7 +418,7 @@ namespace gpu_opengl
 //
 
 
-   //void device::create_offscreen_buffer(const ::int_size& size)
+   //void device::create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   auto pgpu = application()->get_gpu();
@@ -462,7 +462,7 @@ namespace gpu_opengl
    //}
 
 
-   //void device::_create_offscreen_buffer(const ::int_size& size)
+   //void device::_create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   return ::success_none;
@@ -470,7 +470,7 @@ namespace gpu_opengl
    //}
 
 
-   //void device::resize_offscreen_buffer(const ::int_size& size)
+   //void device::resize_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   return ::success_none;

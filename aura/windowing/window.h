@@ -34,9 +34,9 @@ namespace windowing
          int                                       m_iMouseMoveSkipCount;
          int                                       m_iMouseMoveSkipSquareDistance;
          class ::time                              m_timeMouseMoveSkip;
-         ::int_point                               m_pointMouseMoveSkip;
+         ::i32_point                               m_pointMouseMoveSkip;
          class ::time                              m_timeMouseMovePeriod;
-         ::int_point                               m_pointMouseMove;
+         ::i32_point                               m_pointMouseMove;
          class ::time                              m_timeMouseMove;
          class ::time                              m_timeMouseMoveIgnore;
          //bool                                      m_bMouseMovePending;
@@ -104,8 +104,8 @@ namespace windowing
       bool                                      m_bPadding2;
       bool                                      m_bPadding3;
 
-      ::int_rectangle                           m_rectangleWindowScreen;
-      ::int_rectangle                           m_rectangleXScreen;
+      ::i32_rectangle                           m_rectangleWindowScreen;
+      ::i32_rectangle                           m_rectangleXScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
@@ -116,16 +116,16 @@ namespace windowing
       ::frequency                               m_frequencyProdevianFramesPerSecond;
       ::frequency                               m_frequencyNominalFramesPerSecond;
       ::frequency                               m_frequencyOutputFramesPerSecond;
-      int_point                                 m_pointMouseMove;
+      i32_point                                 m_pointMouseMove;
       particle_array                            m_particleaRedraw;
 
       ::thread_pointer                          m_pthreadMouseLeave;
 
-      ::int_point                               m_pointInside;
+      ::i32_point                               m_pointInside;
       ::pointer<::user::element>               m_pelementSoftwareKeyboard;
 
-      int_point                                 m_point;
-      int_size                                  m_size;
+      i32_point                                 m_point;
+      i32_size                                  m_size;
 
       ::pointer<::graphics::graphics>           m_pgraphicsgraphics;
       ::pointer<::draw2d::graphics>             m_pdraw2dgraphics;
@@ -149,7 +149,7 @@ namespace windowing
       class ::time                              m_timeDeviceDrawEnd;
       class ::time                              m_timeLastDeviceDraw;
 
-      ::int_size                                m_sizeDrawnBuffer;
+      ::i32_size                                m_sizeDrawnBuffer;
 
       ::pointer < ::mutex >                     m_pmutexRedrawItem;
       ::pointer_array < ::user::redraw_item >   m_redrawitema;
@@ -160,7 +160,7 @@ namespace windowing
       bool                                      m_bDoingGraphics;
 
 
-      ::int_size                                m_sizeLastBuffer;
+      ::i32_size                                m_sizeLastBuffer;
 
       iptr_to_iptr                              m_iptrmap;
 
@@ -177,7 +177,7 @@ namespace windowing
       ::u32                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
-      ::int_rectangle                           m_rectangle;
+      ::i32_rectangle                           m_rectangle;
 
       ::pointer_array < ::user::notification_listener >               m_notificationlistenera;
 
@@ -292,7 +292,7 @@ namespace windowing
 
       void exit_iconify() override;
 
-      void full_screen(const::int_rectangle & rectangle = {}) override;
+      void full_screen(const::i32_rectangle & rectangle = {}) override;
 
       void exit_full_screen() override;
 
@@ -327,9 +327,9 @@ namespace windowing
       virtual bool _is_window_visible_unlocked();
       
 
-      bool client_to_screen(::int_point * ppoint) override;
+      bool client_to_screen(::i32_point * ppoint) override;
 
-      bool screen_to_client(::int_point * ppoint) override;
+      bool screen_to_client(::i32_point * ppoint) override;
 
 
       virtual bool on_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation & useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
@@ -339,7 +339,7 @@ namespace windowing
 
       virtual bool configure_window_unlocked();
       virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize);
-      virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize, const ::int_rectangle & rectangle);
+      virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize, const ::i32_rectangle & rectangle);
       virtual bool set_window_position_unlocked();
       virtual bool _set_window_position_unlocked(const class ::zorder& zorder, int x, int y, int cx, int cy, const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
       virtual void _set_window_position_unchanged();
@@ -362,8 +362,8 @@ namespace windowing
 
       virtual void present();
 
-      virtual void _on_configure_notify_unlocked(const ::int_rectangle & rectangle);
-      virtual void _on_reposition_notify_unlocked(const ::int_point & point);
+      virtual void _on_configure_notify_unlocked(const ::i32_rectangle & rectangle);
+      virtual void _on_reposition_notify_unlocked(const ::i32_point & point);
 
 
       virtual void win_update_graphics();
@@ -380,20 +380,20 @@ namespace windowing
       virtual ::u32 ArrangeIconicWindows();
 
       virtual void rects_from_os();
-      virtual bool window_rect_from_os(::int_rectangle * prectangle);
-      virtual bool client_rect_from_os(::int_rectangle * prectangle);
+      virtual bool window_rect_from_os(::i32_rectangle * prectangle);
+      virtual bool client_rect_from_os(::i32_rectangle * prectangle);
 
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = true);
-      virtual bool GetUpdateRect(::int_rectangle * prectangle, bool bErase = false);
+      virtual bool GetUpdateRect(::i32_rectangle * prectangle, bool bErase = false);
 
       virtual int GetUpdateRgn(::draw2d::region * pRgn, bool bErase = false);
       virtual void Invalidate(bool bErase = true);
-      virtual void InvalidateRect(const ::int_rectangle * rectangle, bool bErase = true);
+      virtual void InvalidateRect(const ::i32_rectangle * rectangle, bool bErase = true);
 
       virtual void InvalidateRgn(::draw2d::region * pRgn, bool bErase = true);
-      virtual void ValidateRect(const ::int_rectangle * int_rectangle);
+      virtual void ValidateRect(const ::i32_rectangle * i32_rectangle);
 
       virtual void ValidateRgn(::draw2d::region * pRgn);
 
@@ -404,7 +404,7 @@ namespace windowing
       virtual void UnlockWindowUpdate();
 
 
-      virtual bool RedrawWindow(const ::int_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
+      virtual bool RedrawWindow(const ::i32_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
       // Window State Functions
       virtual bool is_this_enabled();
@@ -432,8 +432,8 @@ namespace windowing
       virtual ::windowing::window * get_last_active_popup();
 
 
-      virtual int_point GetCaretPos();
-      virtual void SetCaretPos(const ::int_point & point);
+      virtual i32_point GetCaretPos();
+      virtual void SetCaretPos(const ::i32_point & point);
       virtual void HideCaret();
       virtual void ShowCaret();
 
@@ -451,9 +451,9 @@ namespace windowing
       virtual ::windowing::cursor * get_mouse_cursor();
 
 
-      //virtual ::int_point get_mouse_cursor_host_position();
+      //virtual ::i32_point get_mouse_cursor_host_position();
       
-      //virtual ::int_point get_mouse_cursor_absolute_position();
+      //virtual ::i32_point get_mouse_cursor_absolute_position();
 
 
       void set_tool_window(bool bSet) override;
@@ -465,7 +465,7 @@ namespace windowing
       void on_set_parent(::user::interaction * pinteraction);
 
 
-      virtual bool get_rect_normal(::int_rectangle * prectangle);
+      virtual bool get_rect_normal(::i32_rectangle * prectangle);
       virtual void _window_show_change_visibility(::e_display edisplay, const ::user::activation & useractivation);
 
 
@@ -562,8 +562,8 @@ namespace windowing
 
       bool is_satellite_window() override;
       bool is_windowing_popup() override;
-      ::int_point windowing_popup_origin() override;
-      ::int_size windowing_popup_size() override;
+      ::i32_point windowing_popup_origin() override;
+      ::i32_size windowing_popup_size() override;
       void _on_windowing_close_window() override;
       //::acme::windowing::window * owner_window() override;
       ::string get_window_text() override;
@@ -720,13 +720,13 @@ namespace windowing
       //virtual void track_mouse_hover() override;
       //virtual void track_mouse_leave() override;
 
-      //virtual void _on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild = ::user::e_layout_design, bool bMouseLeave = false);
+      //virtual void _on_mouse_move_step(const ::i32_point & pointCursor, ::user::enum_layout elayoutChild = ::user::e_layout_design, bool bMouseLeave = false);
 
 
       virtual void defer_check_mouse_leave(::user::enum_layout elayoutWindow, ::user::enum_layout elayoutChild);
 
 
-      //virtual void mouse_hover_step(const __status < ::int_point > & statusPointCursor);
+      //virtual void mouse_hover_step(const __status < ::i32_point > & statusPointCursor);
 
       virtual void add(::graphics::output_purpose * pgraphicaloutputpurpose);
       virtual void erase(::graphics::output_purpose * pgraphicaloutputpurpose);
@@ -766,8 +766,8 @@ namespace windowing
       //DECLARE_MESSAGE_HANDLER(_001OnApplyVisual);
 
 
-      //void on_configure(const ::int_rectangle & rectangle) override;
-      virtual void _on_configure(const ::int_rectangle & rectangle);
+      //void on_configure(const ::i32_rectangle & rectangle) override;
+      virtual void _on_configure(const ::i32_rectangle & rectangle);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_reposition);
@@ -805,7 +805,7 @@ namespace windowing
 
 
       // for child windows, views, panes etc
-      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, ::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction_base * puiParent, ::request * prequest = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction_base * puiParent, ::request * prequest = nullptr) override;
 
 
       // advanced creation (allows access to extended styles)
@@ -837,12 +837,12 @@ namespace windowing
       virtual void start_destroying_window();
       //virtual void destroy_window();
 
-      // special pre-creation and interaction_impl int_rectangle adjustment hooks
+      // special pre-creation and interaction_impl i32_rectangle adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      //virtual void CalcWindowRect(::int_rectangle * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      //virtual void CalcWindowRect(::i32_rectangle * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
       //inline ::windowing::window * window() const { return m_pwindow; }
       //inline ::windowing::windowing * windowing() const { return m_pwindowing; }
@@ -857,7 +857,7 @@ namespace windowing
 //
 //#endif   // WINVER >= 0x0500
 //
-      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {}) override;
+      lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::i32_point & point = {}) override;
 
       lresult send_message(::message::message * pmessage) override;
 
@@ -876,7 +876,7 @@ namespace windowing
 
       //virtual bool SendChildNotifyLastMsg(lresult* pResult = nullptr);
 
-      //virtual bool DragDetect(const ::int_point & point) const;
+      //virtual bool DragDetect(const ::i32_point & point) const;
 
 
 
@@ -891,7 +891,7 @@ namespace windowing
       //character_count get_window_text_length() override;
 
 
-      // Window int_size and position Functions
+      // Window i32_size and position Functions
       virtual bool window_is_iconic();
       virtual bool window_is_zoomed();
       //virtual int SetWindowRgn(HRGN hRgn,bool bRedraw);
@@ -910,9 +910,9 @@ namespace windowing
 //#endif
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::windowing::window * puserinteractionTo, ::int_point * pPoint, ::u32 nCount);
+      virtual void MapWindowPoints(::windowing::window * puserinteractionTo, ::i32_point * pPoint, ::u32 nCount);
 
-      virtual void MapWindowPoints(::windowing::window * puserinteractionTo, ::int_rectangle * prectangle);
+      virtual void MapWindowPoints(::windowing::window * puserinteractionTo, ::i32_rectangle * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
@@ -920,14 +920,14 @@ namespace windowing
 
       //void UpdateWindow() override;
       //void SetRedraw(bool bRedraw = true) override;
-      ////virtual bool GetUpdateRect(::int_rectangle * prectangle,bool bErase = false) override;
+      ////virtual bool GetUpdateRect(::i32_rectangle * prectangle,bool bErase = false) override;
 
       ////int GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false) override;
       //virtual void Invalidate(bool bErase = true) override;
-      //void InvalidateRect(const ::int_rectangle & rectangle,bool bErase = true) override;
+      //void InvalidateRect(const ::i32_rectangle & rectangle,bool bErase = true) override;
 
       //void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true) override;
-      //void ValidateRect(const ::int_rectangle & rectangle) override;
+      //void ValidateRect(const ::i32_rectangle & rectangle) override;
 
       //void ValidateRgn(::draw2d::region* pRgn) override;
       ////virtual bool display(::e_display edisplay) override;
@@ -947,11 +947,11 @@ namespace windowing
 
 //#ifdef WINDOWS
 //
-//      virtual bool RedrawWindow(const ::int_rectangle & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+//      virtual bool RedrawWindow(const ::i32_rectangle & rectangleUpdate = nullptr, ::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 //
 //#else
 
-      //void RedrawWindow(const ::int_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0) override;
+      //void RedrawWindow(const ::i32_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0) override;
 
       //#endif
 
@@ -967,13 +967,13 @@ namespace windowing
       //#endif
 
 
-            //virtual ::int_point get_cursor_position() const override;
+            //virtual ::i32_point get_cursor_position() const override;
 
       //void set_mouse_cursor(::windowing::cursor * pcursor) override;
 
       //virtual void set_cursor(enum_cursor ecursor) override;
 
-      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const int_rectangle & prc,::u32 uFlags);
+      //virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & prc,::u32 uFlags);
 
 
 //#if(WINVER >= 0x0500)
@@ -993,7 +993,7 @@ namespace windowing
 //#if(_WIN32_WINNT >= 0x0500)
 //
 //      virtual bool SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,::u32 dwFlags);
-//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::int_point *pptDst,::int_size *psize,::draw2d::graphics * pDCSrc,::int_point *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,::u32 dwFlags);
+//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst,::i32_point *pptDst,::i32_size *psize,::draw2d::graphics * pDCSrc,::i32_point *pptSrc,::color::color crKey,BLENDFUNCTION *pblend,::u32 dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 
@@ -1043,15 +1043,15 @@ namespace windowing
       //virtual int GetScrollPos(int nBar) const;
       //virtual void GetScrollRange(int nBar, int * pMinPos, int * lpMaxPos) const;
       //virtual void ScrollWindow(int xAmount,int yAmount,
-      //   const ::int_rectangle * rectangle = nullptr,
-      //   const ::int_rectangle * pClipRect = nullptr);
+      //   const ::i32_rectangle * rectangle = nullptr,
+      //   const ::i32_rectangle * pClipRect = nullptr);
 
       //virtual int SetScrollPos(int nBar,int nPos,bool bRedraw = true);
       //virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos, bool bRedraw = true);
       //virtual void ShowScrollBar(::u32 nBar,bool bShow = true);
       //virtual void EnableScrollBarCtrl(int nBar,bool bEnable = true);
 
-      //virtual int ScrollWindowEx(int Δx,int Δy, const ::int_rectangle * prectScroll, const ::int_rectangle * lprectClip, ::draw2d::region* prgnUpdate, ::int_rectangle * prectUpdate, ::u32 flags);
+      //virtual int ScrollWindowEx(int Δx,int Δy, const ::i32_rectangle * prectScroll, const ::i32_rectangle * lprectClip, ::draw2d::region* prgnUpdate, ::i32_rectangle * prectUpdate, ::u32 flags);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -1070,8 +1070,8 @@ namespace windowing
 //
 //#endif   // WINVER >= 0x0500
 
-      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point) override;
-      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point, ::u32 nFlags) override;
+      virtual ::user::interaction * ChildWindowFromPoint(const ::i32_point & point) override;
+      virtual ::user::interaction * ChildWindowFromPoint(const ::i32_point & point, ::u32 nFlags) override;
 
       //#ifdef WINDOWS_DESKTOP
         //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
@@ -1270,7 +1270,7 @@ namespace windowing
       //virtual void on_visual_applied();
 
       virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaHostNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
-      //virtual bool needs_to_draw(const ::int_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
+      //virtual bool needs_to_draw(const ::i32_rectangle& rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics);
       void post_redraw(bool bAscendants = true) override;
 
 
@@ -1290,9 +1290,9 @@ namespace windowing
       virtual ::i64 _001GetTopLeftWeightedOccludedOpaqueArea();
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
       virtual ::i64 _001GetTopLeftWeightedArea();
-      virtual ::i64 _001GetRectTopLeftWeightedArea(const ::int_rectangle & rect);
+      virtual ::i64 _001GetRectTopLeftWeightedArea(const ::i32_rectangle & rect);
 
-      virtual ::i64 opaque_area(const ::int_rectangle & rect);
+      virtual ::i64 opaque_area(const ::i32_rectangle & rect);
       virtual void approximate_occlusion_rects(int_rectangle_array_base & raTest);
 
       virtual ::i64 opaque_area();
@@ -1374,13 +1374,13 @@ namespace windowing
 
       //virtual void graphics_thread_update_screen();
 
-      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = nullptr, bool bStretch = true);
+      //virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom nIdLeftOver, ::u32 nFlag = reposDefault, ::i32_rectangle * prectParam = nullptr, const ::i32_rectangle & rectangleX = nullptr, bool bStretch = true);
 
       virtual void window_move(int x, int y);
 
 
-      virtual void on_configure(const ::int_rectangle & rectangle);
-      //\virtual void on_resize(const ::int_size & size);
+      virtual void on_configure(const ::i32_rectangle & rectangle);
+      //\virtual void on_resize(const ::i32_size & size);
 
 
 
@@ -1444,7 +1444,7 @@ namespace windowing
       //virtual bool _is_window();
 
 
-      //virtual ::lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::int_point & point = {});
+      //virtual ::lresult send_message(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, const ::i32_point & point = {});
 
       //virtual ::lresult send_message(::message::message * pmessage);
 
@@ -1481,8 +1481,8 @@ namespace windowing
       //virtual void set_mouse_cursor(::windowing::cursor * pcursor);
 
 
-      //virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point);
-      //virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point, ::u32 nFlags);
+      //virtual ::user::interaction * ChildWindowFromPoint(const ::i32_point & point);
+      //virtual ::user::interaction * ChildWindowFromPoint(const ::i32_point & point, ::u32 nFlags);
 
 
       //virtual ::user::interaction * GetLastActivePopup();
@@ -1560,15 +1560,15 @@ namespace windowing
       //virtual void set_need_redraw(const ::int_rectangle_array_base & rectangleaNeedRedraw = {}, function<void()> function = nullptr, bool bAscendants = true);
 
 
-      //virtual bool RedrawWindow(const ::int_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
+      //virtual bool RedrawWindow(const ::i32_rectangle & rectangleUpdate = {}, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
 
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
       //virtual void Invalidate(bool bErase = true);
-      //virtual void InvalidateRect(const ::int_rectangle& rectangle, bool bErase = true);
+      //virtual void InvalidateRect(const ::i32_rectangle& rectangle, bool bErase = true);
 
       //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
-      //virtual void ValidateRect(const ::int_rectangle& rectangle);
+      //virtual void ValidateRect(const ::i32_rectangle& rectangle);
 
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual void ShowOwnedPopups(bool bShow = true);
@@ -1597,8 +1597,8 @@ namespace windowing
 
       virtual void viewport_screen_to_client(::int_sequence2 & sequence) override;
       virtual void viewport_client_to_screen(::int_sequence2 & sequence) override;
-      virtual void viewport_client_to_screen(::int_rectangle & rectangle) override;
-      virtual void viewport_screen_to_client(::int_rectangle & rectangle) override;
+      virtual void viewport_client_to_screen(::i32_rectangle & rectangle) override;
+      virtual void viewport_screen_to_client(::i32_rectangle & rectangle) override;
 
 
       //virtual ::u32 GetStyle() const;
@@ -1658,7 +1658,7 @@ namespace windowing
       //virtual ::user::frame_interaction * EnsureParentFrame();
 
 
-      virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point = {}) override;
+      virtual lresult message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point = {}) override;
       virtual lresult message_call(::message::message * pmessage) override;
 
       virtual void send_message_to_descendants(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}, bool bDeep = true, bool bOnlyPerm = false) override;
@@ -1681,7 +1681,7 @@ namespace windowing
 
 
 
-      //virtual bool get_rect_normal(::int_rectangle * prectangle);
+      //virtual bool get_rect_normal(::i32_rectangle * prectangle);
 
 
       //virtual void set_timer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pdata = nullptr) override;
@@ -1750,8 +1750,8 @@ namespace windowing
 #endif
 
 
-      virtual void _raw_client_to_screen(::int_point & point);
-      virtual void _raw_screen_to_client(::int_point & point);
+      virtual void _raw_client_to_screen(::i32_point & point);
+      virtual void _raw_screen_to_client(::i32_point & point);
 
 
       //::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;
@@ -1765,7 +1765,7 @@ namespace windowing
 
       //virtual void set_opacity(double dOpacity);
 
-      virtual void _on_mouse_move_step(const ::int_point & pointCursor, bool bMouseLeave);
+      virtual void _on_mouse_move_step(const ::i32_point & pointCursor, bool bMouseLeave);
 
       ::windowing::window * windowing_window() override;
 

@@ -35,7 +35,7 @@ namespace gpu
       bool m_bHdr = false;
 
       //::pointer < ::gpu::render_target >  m_pgpurendertarget;
-      ::int_size m_sizeMip{-1, -1};
+      ::i32_size m_sizeMip{-1, -1};
       //bool                                m_bTransferDst;
       //bool                                m_bTransferSrc;
       //bool                                m_bCpuRead;
@@ -55,8 +55,8 @@ namespace gpu
       virtual void _create_texture(const texture_data & texturedata = {});
       virtual void _set_data(const texture_data &texturedata = {});
 
-      virtual ::int_rectangle rectangle() const;
-      virtual ::int_size size() const;
+      virtual ::i32_rectangle rectangle() const;
+      virtual ::i32_size size() const;
       virtual int width() const;
       virtual int height() const;
 
@@ -82,7 +82,7 @@ namespace gpu
       virtual void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block);
       virtual void initialize_with_image_data(
          ::gpu::context *pgpucontext, 
-         const ::int_rectangle &rectangleTarget,
+         const ::i32_rectangle &rectangleTarget,
          int numChannels,
          bool bSrgb,
          const void * pdata,
@@ -91,13 +91,13 @@ namespace gpu
          const texture_attributes & textureattributes,
          const texture_flags & textureflags = {},
          const texture_data & texturedata = {});
-//      virtual void initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::int_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
-      virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::int_rectangle& rectangleTarget);
+//      virtual void initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::i32_rectangle& rectangleTarget, int iMipCount = -1, bool bRenderTarget = true, bool bShaderResourceView = true);
+      virtual void initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_rectangle& rectangleTarget);
 
       virtual void initialize_texture_from_file_path(::gpu::context* pgpucontext, const ::file::path & path, bool bIsSrgb);
       virtual void initialize_texture_from_image(::gpu::context* pgpucontext, const ::pointer_array < ::image::image > & imagea, enum_texture etexture = e_texture_image);
 
-      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size & size);
+      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::i32_size & size);
 
       //virtual void merge_layers(::pointer_array < ::gpu::layer >* playera);
       //virtual void blend(::gpu::layer * player);
@@ -114,7 +114,7 @@ namespace gpu
       virtual texture* get_depth_texture();
 
       virtual ::string texture_type();
-      virtual void set_pixels(const ::int_rectangle& rectangle, const void* data);
+      virtual void set_pixels(const ::i32_rectangle& rectangle, const void* data);
 
       virtual bool is_in_shader_sampling_state();
 

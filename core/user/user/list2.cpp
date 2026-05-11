@@ -559,7 +559,7 @@ namespace user
 
    //   int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-   //   ::int_array_base iaRemove;
+   //   ::i32_array_base iaRemove;
    //   while(true)
    //   {
    //   iItem = m_buildhelper.m_iStep + m_buildhelper.m_iTopIndex;
@@ -614,7 +614,7 @@ namespace user
 
    //   int iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
-   //   ::int_array_base iaRemove;
+   //   ::i32_array_base iaRemove;
    //   auto pFind = 0;
    //   sqlite::CFieldValue fv;
    //   while(true)
@@ -767,7 +767,7 @@ namespace user
 
    //   ::pointer<::message::context_menu>pcontextmenu(pmessage);
 
-   //   ::int_point point = pcontextmenu->GetPoint();
+   //   ::i32_point point = pcontextmenu->GetPoint();
 
    //   screen_to_client()(point);
 

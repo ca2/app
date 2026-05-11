@@ -17,7 +17,7 @@ namespace user
 
 
       ::draw2d::graphics_pointer    m_pgraphics;
-      int_size                          m_size;
+      i32_size                          m_size;
 
 
    };

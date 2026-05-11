@@ -20,7 +20,7 @@
 //   }
 //
 //
-//   void pixmap::initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::int_size& m_size)
+//   void pixmap::initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::i32_size& m_size)
 //   {
 //
 //      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

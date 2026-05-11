@@ -1339,14 +1339,14 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (const ::int_rectangle & rectangle)
+   void file::write (const ::i32_rectangle & rectangle)
    {
       __UNREFERENCED_PARAMETER(pcrect);
 
       throw ::interface_only();
    }
 
-   void file::write (const int_size & & size)
+   void file::write (const i32_size & & size)
    {
       __UNREFERENCED_PARAMETER(size);
       throw ::interface_only();

@@ -92,7 +92,7 @@ namespace console
 
 
 
-   ::int_rectangle console::get_position_rectangle(int y, int x)
+   ::i32_rectangle console::get_position_rectangle(int y, int x)
    {
     
       throw ::interface_only();

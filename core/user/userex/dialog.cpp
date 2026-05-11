@@ -183,7 +183,7 @@ namespace userex
    void dialog::on_position_parent_frame()
    {
 
-      ::int_rectangle rectangleOpen;
+      ::i32_rectangle rectangleOpen;
 
       m_pframe->best_monitor(&rectangleOpen);
 

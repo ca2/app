@@ -34,8 +34,8 @@ namespace image
       ::pointer<::draw2d::graphics>             m_pgraphics;
       double                                    m_dSpeed;
       double                                    m_dIsotropicRate;
-      //::int_size                                m_sizeAlloc;
-      //int_point                                 m_point;
+      //::i32_size                                m_sizeAlloc;
+      //i32_point                                 m_point;
       double                                    m_dSizeScaler;
       //::draw2d::enum_alpha_mode               m_ealphamode;
       bool                                      m_bOwn;

@@ -141,8 +141,8 @@ auto m_timeRoll = ::time::now();
 
       }
 
-      m_pimageTime->from(int_point(xOffset, 0), m_pimagePost, ::int_point(), ::int_size(m_pimagePost->width() - xOffset, m_pimagePost->height()));
-      m_pimageTime->from(::int_point(), m_pimagePost, int_point(m_pimagePost->width() - xOffset, 0), int_size(xOffset, m_pimagePost->height()));
+      m_pimageTime->from(i32_point(xOffset, 0), m_pimagePost, ::i32_point(), ::i32_size(m_pimagePost->width() - xOffset, m_pimagePost->height()));
+      m_pimageTime->from(::i32_point(), m_pimagePost, i32_point(m_pimagePost->width() - xOffset, 0), i32_size(xOffset, m_pimagePost->height()));
 
       //m_pimagePost->from(m_pimageTime);
       _001OnPostProcess(m_pimageTime->get_graphics());
@@ -181,7 +181,7 @@ auto m_timeRoll = ::time::now();
       pdcParam->TextOutA(0, 0, as_string(m_dwaFrame.get_size()));*/
 
 
-      int_size s = m_pimageTime->get_size();
+      i32_size s = m_pimageTime->get_size();
 
       ::draw2d::graphics_pointer & pgraphics = m_pimageTime->get_graphics();
 
@@ -256,9 +256,9 @@ pdirectorysystem->system() / "obs.png");
 
          auto rectangleX = this->rectangle();
 
-         int_size s = rectangleX.size();
+         i32_size s = rectangleX.size();
 
-         int_size s2(s.cx / iMult, s.cy / iMult);
+         i32_size s2(s.cx / iMult, s.cy / iMult);
 
 /*         m_pimage1 = create_image(s2);
 

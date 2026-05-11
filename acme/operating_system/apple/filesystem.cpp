@@ -32,7 +32,7 @@ string get_exe_path()
    else
    {
 
-      //printf("buffer too small; need int_size %u\n", size);
+      //printf("buffer too small; need i32_size %u\n", size);
       
    }
 //                     strPath += ".app/Contents/MacOS/app";

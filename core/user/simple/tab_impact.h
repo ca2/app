@@ -27,7 +27,7 @@ public:
    void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   int_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
+   i32_rectangle rectangle(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
    void install_message_routing(::channel * pchannel) override;

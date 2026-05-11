@@ -91,7 +91,7 @@ paged_memory::~paged_memory()
 //unsigned char * paged_memory::detach()
 //{
 
-//   unsigned char * int_point          = storage_begin();
+//   unsigned char * i32_point          = storage_begin();
 
 //   if(m_iOffset > 0)
 //   {

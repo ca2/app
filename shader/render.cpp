@@ -332,7 +332,7 @@ namespace app_shader
             
             
          };
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
 
       //rectangle.left = rectangle.right - 48;
@@ -409,7 +409,7 @@ namespace app_shader
 
             auto size = pgraphicsLabel->get_text_extent(strLabel);
 
-            ::int_rectangle rect(::double_point(0, 0), size);
+            ::i32_rectangle rect(::double_point(0, 0), size);
 
             rect.inflate(4);
 
@@ -540,7 +540,7 @@ namespace app_shader
 
             auto size = pgraphicsError->get_text_extent(strError);
 
-            ::int_rectangle rect(::double_point( 0, 0 ), size);
+            ::i32_rectangle rect(::double_point( 0, 0 ), size);
 
             rect.move_to(10, 10);
             rect.inflate(4);
@@ -640,7 +640,7 @@ namespace app_shader
 
       //}
 
-      //int_rectangle rectangle;
+      //i32_rectangle rectangle;
 
       //int iSize = minimum(m_rectangle.width(), m_rectangle.height());
 
@@ -740,7 +740,7 @@ namespace app_shader
 
       //pgraphics->ellipse(rectangle);
 
-      //::int_rectangle rectangleText;
+      //::i32_rectangle rectangleText;
 
       //rectangleText.set_size(size);
 

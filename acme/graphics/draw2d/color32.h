@@ -19,7 +19,7 @@ struct color32_t
    union
    {
 
-      ::u32 m_ui;
+      ::u32 m_u32;
 
       struct
       {
@@ -69,7 +69,7 @@ public:
    union
    {
 
-      ::u32       m_ui;
+      ::u32       m_u32;
 
       struct
       {
@@ -84,7 +84,7 @@ public:
    };
 
 
-   inline bool operator == (const COLOR32 & color) const { return m_ui == color.m_ui; }
+   inline bool operator == (const COLOR32 & color) const { return m_u32 == color.m_u32; }
 
 
 };

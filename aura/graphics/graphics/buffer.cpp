@@ -82,7 +82,7 @@ namespace graphics
    }
 
 
-   ::int_size buffer::buffer_size()
+   ::i32_size buffer::buffer_size()
    {
 
       return m_pimageBuffer->get_size();

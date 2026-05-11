@@ -708,7 +708,7 @@ namespace sockets
 virtual      void SetSocks4Host(const ::scoped_string & scopedstr);
 ////#endif
 ////      /** Socks4 server port to use. */
-virtual      void SetSocks4Port(::networking::port_t int_point);
+virtual      void SetSocks4Port(::networking::port_t i32_point);
 ////      /** Provide a socks4 userid if required by the socks4 server. */
 virtual       void SetSocks4Userid(const string & x);
 ////      /** get the ip address/port of socks4 server to use.

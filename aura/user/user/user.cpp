@@ -975,7 +975,7 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, ::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
    //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
@@ -1265,7 +1265,7 @@ namespace aura
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
+   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle * prectangle)
 
    //{
 

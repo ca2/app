@@ -20,8 +20,8 @@ namespace datetime
       public:
 
 
-         int_point          m_point;
-         int_size           m_size;
+         i32_point          m_point;
+         i32_size           m_size;
          int32_t        m_iColWidth;
          int32_t        m_iLineHeight;
 

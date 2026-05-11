@@ -22,11 +22,11 @@ namespace user
       e_display                  m_edisplayLastNormal;
       e_display                  m_edisplay;
       e_appearance               m_eappearance;
-      int_rectangle              m_rectangleSnapped;
-      int_rectangle              m_rectangleNormal;
-      int_rectangle              m_rectangleBroad;
-      int_rectangle              m_rectangleCompact;
-      int_rectangle              m_rectangleWindow;
+      i32_rectangle              m_rectangleSnapped;
+      i32_rectangle              m_rectangleNormal;
+      i32_rectangle              m_rectangleBroad;
+      i32_rectangle              m_rectangleCompact;
+      i32_rectangle              m_rectangleWindow;
       int                        m_iControlBoxRightToLeft;
       ::collection::index                      m_iWorkspace;
 

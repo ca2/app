@@ -58,7 +58,7 @@ namespace image
 
       virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics);
 
-      virtual void set_size(const ::int_size & size);
+      virtual void set_size(const ::i32_size & size);
       
       virtual void set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride, bool bYSwap);
 

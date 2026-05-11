@@ -519,13 +519,13 @@ class numeric_array_base;
 
 using char_array_base = numeric_array_base < char >;
 using short_array_base = numeric_array_base < short >;
-using int_array_base = numeric_array_base < int >;
-using long_long_array_base = numeric_array_base < ::i64 >;
+using i32_array_base = numeric_array_base < int >;
+using i64_array_base = numeric_array_base < ::i64 >;
 
 using unsigned_char_array_base = numeric_array_base < unsigned char >;
 using unsigned_short_array_base = numeric_array_base < unsigned short >;
-using unsigned_int_array_base = numeric_array_base < ::u32 >;
-using unsigned_long_long_array_base = numeric_array_base < ::u64 >;
+using unsigned_i32_array_base = numeric_array_base < ::u32 >;
+using u64_array_base = numeric_array_base < ::u64 >;
 
 using float_array_base = numeric_array_base < float >;
 using double_array_base = numeric_array_base < double >;
@@ -534,13 +534,13 @@ using double_array_base = numeric_array_base < double >;
 
 using char_array = ::array_particle < char_array_base >;
 using short_array = ::array_particle < short_array_base >;
-using i32_array = ::array_particle < int_array_base >;
-using long_long_array = ::array_particle < long_long_array_base >;
+using i32_array = ::array_particle < i32_array_base >;
+using i64_array = ::array_particle < i64_array_base >;
 
 using unsigned_char_array = ::array_particle < unsigned_char_array_base >;
 using unsigned_short_array = ::array_particle < unsigned_short_array_base >;
-using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
-using unsigned_long_long_array = ::array_particle < unsigned_long_long_array_base >;
+using unsigned_int_array = ::array_particle < unsigned_i32_array_base >;
+using u64_array = ::array_particle < u64_array_base >;
 
 using float_array = ::array_particle < float_array_base >;
 using double_array = ::array_particle < double_array_base >;
@@ -553,32 +553,32 @@ using index_array = ::array_particle < index_array_base >;
 using count_array = ::array_particle < count_array_base >;
 
 
-using unsigned_int_array_base = numeric_array_base < ::u32 >;
+using unsigned_i32_array_base = numeric_array_base < ::u32 >;
 
-using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
+using unsigned_int_array = ::array_particle < unsigned_i32_array_base >;
 
 
 using unique_int_sort_array = unique_number_sort_array < int >;
-using unique_long_long_sort_array = unique_number_sort_array < ::i64 >;
+using unique_i64_sort_array = unique_number_sort_array < ::i64 >;
 
 
 #ifdef OS64BIT
 
 
-using iptr_array_base = long_long_array_base;
-using uptr_array_base = unsigned_long_long_array_base;
-using iptr_array = long_long_array_base;
-using uptr_array = unsigned_long_long_array;
+using iptr_array_base = i64_array_base;
+using uptr_array_base = u64_array_base;
+using iptr_array = i64_array_base;
+using uptr_array = u64_array;
 
-using unique_iptr_sort_array = unique_long_long_sort_array;
+using unique_iptr_sort_array = unique_i64_sort_array;
 
 
 #else
 
-using iptr_array_base = int_array_base;
-using uptr_array_base = unsigned_int_array_base;
+using iptr_array_base = i32_array_base;
+using uptr_array_base = unsigned_i32_array_base;
 
-using iptr_array = int_array_base;
+using iptr_array = i32_array_base;
 using uptr_array = unsigned_int_array;
 
 using unique_iptr_sort_array = unique_int_sort_array;
@@ -649,7 +649,7 @@ class spreadset;
 
 using int_spreadset = spreadset < int, int, unique_int_sort_array, unique_int_sort_array >;
 
-using i64_spreadset = spreadset < ::i64, ::i64, unique_long_long_sort_array, unique_long_long_sort_array >;
+using i64_spreadset = spreadset < ::i64, ::i64, unique_i64_sort_array, unique_i64_sort_array >;
 
 
 
@@ -1100,7 +1100,7 @@ using topic_pointer = ::pointer<topic>;
 using extended_topic_pointer = ::pointer<extended_topic>;
 
 
-using int_array_array_base = ::array_base<int_array_base>;
+using i32_array_array_base = ::array_base<i32_array_base>;
 using float_array_array_base = ::array_base<float_array_base>;
 using double_array_array_base = ::array_base<double_array_base>;
 

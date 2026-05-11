@@ -33,15 +33,15 @@ int_bool release_mouse_capture();
 ::operating_system::window set_active_window(const ::operating_system::window & operatingsystemwindow);
 
 
-::int_rectangle get_main_screen_rectangle();
+::i32_rectangle get_main_screen_rectangle();
 
 
-int GetScreenRect(::int_rectangle * prectangle, int iMonitor);
+int GetScreenRect(::i32_rectangle * prectangle, int iMonitor);
 
 
 int GetScreenCount();
 
-int GetWorkspaceRect(::int_rectangle * prectangle, int iMonitor);
+int GetWorkspaceRect(::i32_rectangle * prectangle, int iMonitor);
 
 
 int GetWorkspaceCount();

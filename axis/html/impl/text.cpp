@@ -612,7 +612,7 @@ namespace html
          ::draw2d::save_context savecontext(pgraphics);
 
 
-         //::int_rectangle rectangleWindow;
+         //::i32_rectangle rectangleWindow;
          //m_pcheckbox->window_rectangle(rectangleWindow);
          auto offsetcontext = pgraphics->offset_context();
 
@@ -644,7 +644,7 @@ namespace html
 
                pgraphics->set(pfont);
 
-               ::int_rectangle rectangleLine;
+               ::i32_rectangle rectangleLine;
 
                for (::collection::index i = 0; i < m_straLines.get_count(); i++)
                {
@@ -678,7 +678,7 @@ namespace html
          if(etag == tag_body)
          {
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             if(!pdata->m_pcoredata->m_bDrawFirstBody)
             {
@@ -1176,7 +1176,7 @@ namespace html
       character_count text::char_hit_test(::draw2d::graphics_pointer & pgraphics, int px, int py)
       {
 
-         ::int_rectangle rectangle(m_box);
+         ::i32_rectangle rectangle(m_box);
 
          pgraphics->set(m_pelemental->m_pdata->get_font(m_pelemental)->m_pfont);
 

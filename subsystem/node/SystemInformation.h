@@ -42,11 +42,11 @@ namespace subsystem
 
 
       // get rectangle of all desktop area
-      virtual void getDesktopAllArea(int_rectangle & rectangle) = 0;
+      virtual void getDesktopAllArea(i32_rectangle & rectangle) = 0;
 
       // get rectangle of user desktop area
       // without button 'Start' (only primary monitor).
-      virtual bool getDesktopArea(int_rectangle & rectangle) = 0;
+      virtual bool getDesktopArea(i32_rectangle & rectangle) = 0;
 
       // return true if StretchBlt is used
       // in provided device
@@ -81,7 +81,7 @@ namespace subsystem
       //~SystemInformation() override;
 
       // get rectangle of all desktop area
-          void getDesktopAllArea(int_rectangle& rectangle) override
+          void getDesktopAllArea(i32_rectangle& rectangle) override
        {
 
           m_psysteminformation->getDesktopAllArea(rectangle);
@@ -90,7 +90,7 @@ namespace subsystem
 
       // get rectangle of user desktop area
       // without button 'Start' (only primary monitor).
-       bool getDesktopArea(int_rectangle& rectangle) override
+       bool getDesktopArea(i32_rectangle& rectangle) override
        {
 
           return m_psysteminformation->getDesktopArea(rectangle);

@@ -27,7 +27,7 @@ namespace innate_ui
       void main_send(const ::procedure & procedure) override;
 
 
-      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::int_size & size);
+      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::i32_size & size);
 
 
    };

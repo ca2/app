@@ -58,13 +58,13 @@ namespace subsystem
    //   return m_pparticleThis->getPixelFormat();
    //}
 
-   //::int_size Screen::getDesktopDimension()
+   //::i32_size Screen::getDesktopDimension()
    //{
    //   //return m_virtDesktopRect.size();
    //   return m_pparticleThis->getDesktopDimension();
    //}
 
-   //::int_rectangle Screen::getDesktopRect()
+   //::i32_rectangle Screen::getDesktopRect()
    //{
    //   //return m_virtDesktopRect;
    //   return m_pparticleThis->getDesktopRect();

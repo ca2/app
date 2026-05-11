@@ -59,7 +59,7 @@ namespace user
       int                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;
-      //::int_rectangle                              m_rectangleHosting;
+      //::i32_rectangle                              m_rectangleHosting;
 
 
       tab();
@@ -145,7 +145,7 @@ namespace user
       virtual ::collection::count get_visible_tab_count();
 
 
-      void get_child_rect(::int_rectangle & rectangle) override;
+      void get_child_rect(::i32_rectangle & rectangle) override;
 
 
       virtual void _001OnRemoveTab(tab_pane * ptab);
@@ -161,11 +161,11 @@ namespace user
       virtual void _001OnTabClick(::collection::index iTab);
       virtual void _001OnTabClose(::collection::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
-      virtual enum_position DragHitTest(const ::int_point & point);
-      virtual void GetDragRect(::int_rectangle & rectangle, enum_position eposition);
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
+      virtual enum_position DragHitTest(const ::i32_point & point);
+      virtual void GetDragRect(::i32_rectangle & rectangle, enum_position eposition);
 
-      virtual bool get_element_rectangle(::collection::index iTab, ::int_rectangle & rectangle, enum_element eelement);
+      virtual bool get_element_rectangle(::collection::index iTab, ::i32_rectangle & rectangle, enum_element eelement);
 
 
       virtual void get_title(int iPane,string_array_base & stra);
@@ -176,9 +176,9 @@ namespace user
 
       virtual void layout_pane(::collection::index iPane, bool bDisplay = false);
 
-      virtual void GetTabClientRect(::int_rectangle & rectangle);
+      virtual void GetTabClientRect(::i32_rectangle & rectangle);
 
-      virtual void GetTabClientRect(::long_long_rectangle & rectangle);
+      virtual void GetTabClientRect(::i64_rectangle & rectangle);
 
       virtual bool add_tab(const ::scoped_string & scopedstrName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 
@@ -261,7 +261,7 @@ namespace user
 
       void on_timer(::timer * ptimer) override;
 
-      ::int_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+      ::i32_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 //     void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -270,7 +270,7 @@ namespace user
       virtual void _001OnTabLayout(::draw2d::graphics_pointer & pgraphics);
       
       
-      bool on_drag_start(::int_point & pointDrag, ::user::mouse * pmouse, ::item * pitem) override;
+      bool on_drag_start(::i32_point & pointDrag, ::user::mouse * pmouse, ::item * pitem) override;
 
 
       void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics) override;

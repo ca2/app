@@ -23,10 +23,10 @@
 //      ~pixmap() override;
 //
 //
-//      // virtual ::int_size size();
+//      // virtual ::i32_size size();
 //
 //
-//      void initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::int_size & size) override;
+//      void initialize_gpu_pixmap(::gpu::renderer* pgpurenderer, const ::i32_size & size) override;
 //
 //
 //      void set_pixels(const void* data, int w, int h) override;

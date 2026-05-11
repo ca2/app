@@ -4,9 +4,9 @@
 //inline time& time::operator = (const class ::nanosecond & nanosecond)
 //{
 //
-//   m_iSecond = nanosecond.m_i / 1'000'000'000;
+//   m_iSecond = nanosecond.m_i32 / 1'000'000'000;
 //
-//   m_iNanosecond = nanosecond.m_i % 1'000'000'000;
+//   m_iNanosecond = nanosecond.m_i32 % 1'000'000'000;
 //
 //   return *this;
 //
@@ -16,9 +16,9 @@
 //inline time& time::operator = (const class ::microsecond & microsecond)
 //{
 //
-//   m_secs = microsecond.m_i / 1'000'000;
+//   m_secs = microsecond.m_i32 / 1'000'000;
 //
-//   m_nanos = (microsecond.m_i % 1'000'000) * 1'000;
+//   m_nanos = (microsecond.m_i32 % 1'000'000) * 1'000;
 //
 //   return *this;
 //
@@ -28,9 +28,9 @@
 //inline time& time::operator = (const class ::time & class ::time)
 //{
 //
-//   m_secs = class ::time.m_i / 1'000;
+//   m_secs = class ::time.m_i32 / 1'000;
 //
-//   m_nanos = (class ::time.m_i % 1'000) * 1'000'000;
+//   m_nanos = (class ::time.m_i32 % 1'000) * 1'000'000;
 //
 //   return *this;
 //
@@ -54,7 +54,7 @@
 //inline nanosecond operator -(const ::nanosecond& nanosecond, const class time & time)
 //{
 //
-//   return nanosecond.m_i - class ::time.m_i * 1'000'000;
+//   return nanosecond.m_i32 - class ::time.m_i32 * 1'000'000;
 //
 //}
 //

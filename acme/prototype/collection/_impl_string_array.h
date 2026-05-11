@@ -467,7 +467,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::colle
 {
    // // ASSERT_OK(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
-   ASSERT(nCount > 0);     // zero or negative int_size not allowed
+   ASSERT(nCount > 0);     // zero or negative i32_size not allowed
 
    if (nIndex >= this->size())
    {
@@ -478,7 +478,7 @@ void string_base_array < Type, RawType, t_etypeContainer >::insert_empty(::colle
    {
       // inserting in the middle of the array
       ::collection::count nOldSize = (::collection::count)this->size();
-      this->set_size((::collection::count)(this->size() + nCount));  // grow it to ___new int_size
+      this->set_size((::collection::count)(this->size() + nCount));  // grow it to ___new i32_size
       // shift old data up to fill gap
       memory_transfer(&get_data()[nIndex + nCount], &get_data()[nIndex], (nOldSize - nIndex) * sizeof(Type));
 
@@ -2450,7 +2450,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator =(const long_long_array_base & ia)
+//string_base_array < Type, RawType, t_etypeContainer >  & string_base_array < Type, RawType, t_etypeContainer > ::operator =(const i64_array_base & ia)
 //{
 //
 //   this->_001CopyContainer(ia);

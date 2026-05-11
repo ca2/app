@@ -24,7 +24,7 @@
 //#endif
 //inline void __string_exchange(text_stream & s, float & f) { s.number_exchange(f); }
 //inline void __string_exchange(text_stream & s, double & d) { s.number_exchange(d); }
-//inline void __string_exchange(text_stream & s, ::earth::time & time) { s.number_exchange(time.m_i); }
+//inline void __string_exchange(text_stream & s, ::earth::time & time) { s.number_exchange(time.m_i32); }
 //inline void __string_exchange(text_stream & s, const ::scoped_string & scopedstr) { s.write_only(scopedstr); }
 //inline void __string_exchange(text_stream & s, char * psz) { s.string_exchange(scopedstr); }
 //inline void __string_exchange(text_stream & s, string & str) { s.string_exchange(str); }
@@ -35,7 +35,7 @@
 ////inline void __string_exchange(text_stream & s, matter & matter) { s.network_payload_exchange(matter); }
 //
 //
-////inline void __string_exchange(text_stream & s, ::int_rectangle & r) { s.network_payload_exchange(r); }
+////inline void __string_exchange(text_stream & s, ::i32_rectangle & r) { s.network_payload_exchange(r); }
 //template < typename TYPE >
 //inline void text_stream::network_payload_exchange(TYPE & t)
 //{

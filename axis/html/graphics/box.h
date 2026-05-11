@@ -44,14 +44,14 @@
 //      inline void set_cxy(::float_size sz);
 //      inline void set_cxy(::float_size sz);
 //      inline void set_pos_dim(float x, float y, float cx, float cy);
-//      inline ::int_rectangle * get(::int_rectangle * prectangle) const;
+//      inline ::i32_rectangle * get(::i32_rectangle * prectangle) const;
 //
 //      inline float get_cx() const;
 //      inline float get_cy() const;
 //      inline ::float_size get_cxy() const;
 //      inline float area() const;
 //
-//      inline ::float_rectangle & operator = (const ::int_rectangle & rectangle);
+//      inline ::float_rectangle & operator = (const ::i32_rectangle & rectangle);
 //
 //   };
 //
@@ -147,7 +147,7 @@
 //      set_xy((float) ::float_point.x, (float) ::float_point.y);
 //   }
 //
-//   inline ::int_rectangle * ::float_rectangle::get(::int_rectangle * prectangle) const
+//   inline ::i32_rectangle * ::float_rectangle::get(::i32_rectangle * prectangle) const
 //
 //   {
 //      prectangle->left      = (int) left;
@@ -238,7 +238,7 @@
 //
 //   }
 //
-//   inline ::float_rectangle & rectangle::operator = (const ::int_rectangle & rectangle)
+//   inline ::float_rectangle & rectangle::operator = (const ::i32_rectangle & rectangle)
 //   {
 //
 //      left     = (float) rectangle.left;

@@ -362,7 +362,7 @@ namespace user
    //}
 
 
-   //void text::get_text_composition_area(::int_rectangle& rectangle)
+   //void text::get_text_composition_area(::i32_rectangle& rectangle)
    //{
 
 

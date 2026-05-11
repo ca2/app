@@ -132,7 +132,7 @@ namespace user
    }
 
 
-   void box::_on_configure_notify_unlocked(const ::int_rectangle & rectangle)
+   void box::_on_configure_notify_unlocked(const ::i32_rectangle & rectangle)
    {
 
       ::user::interaction::_on_configure_notify_unlocked(rectangle);
@@ -775,7 +775,7 @@ namespace user
    }
 
 
-   ::int_rectangle box::get_window_normal_stored_rectangle()
+   ::i32_rectangle box::get_window_normal_stored_rectangle()
    {
 
       return m_windowdisplayandlayout.m_rectangleNormal;
@@ -783,7 +783,7 @@ namespace user
    }
 
 
-   ::int_rectangle box::get_window_broad_stored_rectangle()
+   ::i32_rectangle box::get_window_broad_stored_rectangle()
    {
 
       return m_windowdisplayandlayout.m_rectangleBroad;
@@ -791,7 +791,7 @@ namespace user
    }
 
 
-   ::int_rectangle box::get_window_compact_stored_rectangle()
+   ::i32_rectangle box::get_window_compact_stored_rectangle()
    {
 
       return m_windowdisplayandlayout.m_rectangleCompact;
@@ -799,7 +799,7 @@ namespace user
    }
 
 
-   void box::set_window_normal_stored_rectangle(const ::int_rectangle & rectangle)
+   void box::set_window_normal_stored_rectangle(const ::i32_rectangle & rectangle)
    {
 
       m_windowdisplayandlayout.m_rectangleNormal = rectangle;
@@ -965,11 +965,11 @@ namespace user
 
       string strDisplay;
 
-      //int_rectangle rectangleNormal;
+      //i32_rectangle rectangleNormal;
 
       //get_rect_normal(rectangleNormal);
 
-      ::int_rectangle rectangleMainMonitor;
+      ::i32_rectangle rectangleMainMonitor;
 
 
       auto pdisplay = windowing()->display();
@@ -1148,7 +1148,7 @@ namespace user
    }
 
 
-   //void box::set_restored_rectangle(const ::int_rectangle & rectangleRestored)
+   //void box::set_restored_rectangle(const ::i32_rectangle & rectangleRestored)
    //{
 
    //   m_windowdisplayandlayout.m_rectangleNormal = rectangleRestored;

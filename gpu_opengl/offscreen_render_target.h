@@ -25,13 +25,13 @@ namespace gpu_opengl
 		//static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
 		offscreen_render_target();
-		//offscreen_render_target(renderer* pgpurenderer, const ::int_size & size);
-		//offscreen_render_target(renderer * pgpurenderer, const ::int_size& size, ::pointer <render_target>previous);
+		//offscreen_render_target(renderer* pgpurenderer, const ::i32_size & size);
+		//offscreen_render_target(renderer * pgpurenderer, const ::i32_size& size, ::pointer <render_target>previous);
 		~offscreen_render_target();
 
 
 
-		void initialize_render_target(::gpu::renderer* pgpurenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous) override;
+		void initialize_render_target(::gpu::renderer* pgpurenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous) override;
 
 
 		//VkFramebuffer getFramebuffer(int index) { return swapChainFramebuffers[index]; }
@@ -69,7 +69,7 @@ namespace gpu_opengl
 		//HRESULT submitSamplingWork(const VkCommandBuffer buffer);
 
 
-		virtual void defer_resize(const ::int_size& size);
+		virtual void defer_resize(const ::i32_size& size);
 
 		//// Helper functions
 		//VkSurfaceFormatKHR chooseSwapSurfaceFormat(

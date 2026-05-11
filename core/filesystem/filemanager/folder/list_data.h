@@ -37,7 +37,7 @@ namespace filemanager
          virtual ::collection::count _001GetItemCount() override;
 
          virtual bool add_unique(const string_array_base & stra);
-         virtual bool add_unique(const string_array_base & stra, int_array_base & iaRecursive);
+         virtual bool add_unique(const string_array_base & stra, i32_array_base & iaRecursive);
          virtual bool erase(const string_array_base & stra);
 
          virtual void GetSel(::user::list * plist, string_array_base & stra);

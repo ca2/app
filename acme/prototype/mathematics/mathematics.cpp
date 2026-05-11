@@ -28,7 +28,7 @@ namespace mathematics
    {
 
 
-      int                              m_i;
+      int                              m_i32;
       int                              m_iRngReSeedCountDown;
       ::critical_section               m_criticalsection;
       random_number_generator          m_randomnumbergenerator;
@@ -754,7 +754,7 @@ namespace apex
       int CLASS_DECL_ACME time_seed()
       {
 
-         return (time(nullptr) % 5000 + (::long_long_millisecond() / 100) % 5000) % 1000;
+         return (time(nullptr) % 5000 + (::i64_millisecond() / 100) % 5000) % 1000;
 
       }
 

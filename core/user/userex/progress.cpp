@@ -279,7 +279,7 @@ namespace userex
       
                kill_timer(ptimer->m_uTimer);
       
-               ::int_rectangle rectangle;
+               ::i32_rectangle rectangle;
       
                auto pwindowing = windowing();
       
@@ -352,7 +352,7 @@ namespace userex
       int cxBorder = rectangleX.width() / 16;
       int h = rectangleX.height() / 4;
 
-      ::int_rectangle rectangleIndicator(rectangleX);
+      ::i32_rectangle rectangleIndicator(rectangleX);
 
       rectangleIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 

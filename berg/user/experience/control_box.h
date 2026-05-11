@@ -45,10 +45,10 @@ namespace experience
       class ::time                           m_timeShow;
       bool                                   m_bShowAttempt;
       bool                                   m_bDrag;
-      int_point                              m_pointDrag;
+      i32_point                              m_pointDrag;
       int                                    m_iDefaultButtonMargin;
       int                                    m_iDefaultButtonSize;
-      ::int_size                             m_sizeButtonDefault;
+      ::i32_size                             m_sizeButtonDefault;
       ::write_text::font_pointer             m_pfontMarlett;
 
       ::draw2d::brush_pointer                m_pbrushButtonBack;
@@ -88,7 +88,7 @@ namespace experience
       virtual void draw_display_normal_label(::draw2d::graphics_pointer & pgraphics);
 
 
-      void drag(const ::int_point & point);
+      void drag(const ::i32_point & point);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
@@ -108,9 +108,9 @@ namespace experience
 
       virtual void layout_control_box_buttons();
 
-      virtual ::int_size get_button_size(enum_button ebutton);
+      virtual ::i32_size get_button_size(enum_button ebutton);
 
-      virtual ::int_rectangle get_button_margin(enum_button ebutton);
+      virtual ::i32_rectangle get_button_margin(enum_button ebutton);
 
       virtual int calculate_button_size(::draw2d::graphics_pointer & pgraphics);
 
@@ -120,7 +120,7 @@ namespace experience
 
       int auto_hide_threshold_height() override;
 
-      virtual void _layout_button(enum_button ebutton, ::int_rectangle & rectangle);
+      virtual void _layout_button(enum_button ebutton, ::i32_rectangle & rectangle);
       virtual bool should_show_button(enum_button ebutton) const;
 
       virtual item * get_item(enum_button ebutton, bool bCreate = false);

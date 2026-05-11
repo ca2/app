@@ -391,7 +391,7 @@ namespace gpu_opengl
    }
 
 
-   void context_egl::__create_egl_pbuffer_surface(const ::int_size & size)
+   void context_egl::__create_egl_pbuffer_surface(const ::i32_size & size)
    {
 
       if (size.is_empty())
@@ -529,7 +529,7 @@ namespace gpu_opengl
    // }
 
 
-   void context_egl::_create_cpu_buffer(const ::int_size & size)
+   void context_egl::_create_cpu_buffer(const ::i32_size & size)
    {
 
       if (size.is_empty())
@@ -817,7 +817,7 @@ namespace gpu_opengl
    // }
 
 
-//   void context_egl::_create_offscreen_window(const int_size& size)
+//   void context_egl::_create_offscreen_window(const i32_size& size)
 //   {
 
 //      _create_egl_context(size);

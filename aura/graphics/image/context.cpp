@@ -152,7 +152,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::create_image(const ::int_size& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
+   ::image::image_pointer image_context::create_image(const ::i32_size& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
    {
 
       auto pimage = m_papplication->createø < ::image::image >();
@@ -180,7 +180,7 @@ namespace image
    }
 
 
-   ::image::pool_image image_context::pool_image(const ::int_size& size)
+   ::image::pool_image image_context::pool_image(const ::i32_size& size)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -211,7 +211,7 @@ namespace image
    }
 
 
-   ::image::image_pointer image_context::defer_stretch_image(::image::image * pimage, const ::int_size& size)
+   ::image::image_pointer image_context::defer_stretch_image(::image::image * pimage, const ::i32_size& size)
    {
 
       if (pimage->size() == size)

@@ -1285,7 +1285,7 @@ namespace http
 //
 //            }
 //
-//            informationf("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
+//            informationf("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i32);
 //
 //         }
 //         catch (...)
@@ -1476,7 +1476,7 @@ namespace http
 //
 //         //}
 //
-//         informationf("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
+//         informationf("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i32);
 //
 //         tick1 = payload("dw").time();
 //
@@ -1656,7 +1656,7 @@ namespace http
 //
 //         set["get_status"] = estatus;
 //
-//         informationf("Total time ::http::platform::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i);
+//         informationf("Total time ::http::platform::context::get(\"%s\") %d ms ", strUrl.left(minimum(255, strUrl.length())).c_str(), tick1.elapsed().integral_second().m_i32);
 //
 //      }
 //      catch (...)

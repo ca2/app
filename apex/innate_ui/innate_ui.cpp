@@ -79,7 +79,7 @@ namespace innate_ui
    }
 
 
-   ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::int_size & size)
+   ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::i32_size & size)
    {
 
       auto picon = createø < ::innate_ui::icon >();

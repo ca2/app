@@ -300,7 +300,7 @@ namespace user
 //
 //      }
 //
-//      ::int_rectangle rectangleMonitor;
+//      ::i32_rectangle rectangleMonitor;
 //
 //      
 //
@@ -331,7 +331,7 @@ namespace user
 //         iButton--;
 //      }
 //
-//      ::int_rectangle r;
+//      ::i32_rectangle r;
 //
 //      r.set_dim(0, 0, iWidth, 300);
 //
@@ -367,7 +367,7 @@ namespace user
 
       constructø(pgraphics);
 
-      auto sizeModernOnePixel = ::int_size{ 1920, 1080 };
+      auto sizeModernOnePixel = ::i32_size{ 1920, 1080 };
 
       pgraphics->create_memory_graphics(sizeModernOnePixel);
 
@@ -393,7 +393,7 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleMonitor;
+      ::i32_rectangle rectangleMonitor;
 
       system()->windowing()->display()->get_main_monitor(rectangleMonitor);
 
@@ -421,7 +421,7 @@ namespace user
 
       }
 
-      ::int_rectangle r;
+      ::i32_rectangle r;
 
       r.set_dimension(0, 0, iWidth, (int) (300 * screen_scaler()));
 

@@ -26,10 +26,10 @@ namespace user
 
 
       //using ::user::interaction::_001IsPointInside;
-      bool _001IsPointInside(interaction * pinteraction, const long_long_point & point) override;
-      void control_get_window_rect(interaction * pinteraction, ::int_rectangle & rectangle) override;
+      bool _001IsPointInside(interaction * pinteraction, const i64_point & point) override;
+      void control_get_window_rect(interaction * pinteraction, ::i32_rectangle & rectangle) override;
 
-      void control_get_client_rect(interaction * pinteraction, ::int_rectangle & rectangle) override;
+      void control_get_client_rect(interaction * pinteraction, ::i32_rectangle & rectangle) override;
 
       //using form_callback::update;
       //using form_control::update;

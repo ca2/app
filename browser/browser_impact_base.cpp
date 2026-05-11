@@ -160,8 +160,8 @@ auto m_timeRoll = ::time::now();
 
          }
 
-         m_pimageTime->from(int_point(xOffset, 0), m_pimagePost, ::int_point(), ::int_size(m_pimagePost->width() - xOffset, m_pimagePost->height()));
-         m_pimageTime->from(::int_point(), m_pimagePost, int_point(m_pimagePost->width() - xOffset, 0), ::int_size(xOffset, m_pimagePost->height()));
+         m_pimageTime->from(i32_point(xOffset, 0), m_pimagePost, ::i32_point(), ::i32_size(m_pimagePost->width() - xOffset, m_pimagePost->height()));
+         m_pimageTime->from(::i32_point(), m_pimagePost, i32_point(m_pimagePost->width() - xOffset, 0), ::i32_size(xOffset, m_pimagePost->height()));
 
          //m_pimagePost->from(m_pimageTime);
          _001OnPostProcess(m_pimageTime->get_graphics());
@@ -201,7 +201,7 @@ auto m_timeRoll = ::time::now();
          pdcParam->TextOutA(0, 0, as_string(m_dwaFrame.get_size()));*/
 
 
-         ::int_size size = m_pimageTime->get_size();
+         ::i32_size size = m_pimageTime->get_size();
 
          ::draw2d::graphics_pointer & pgraphics = m_pimageTime->get_graphics();
 
@@ -300,15 +300,15 @@ pdirectorysystem->system() / "obs.png");
 
          auto rectangleX = this->rectangle();
 
-         ::int_size size = rectangleX.size();
+         ::i32_size size = rectangleX.size();
 
-         ::int_size size2(size.cx / iMult, size.cy / iMult);
+         ::i32_size size2(size.cx / iMult, size.cy / iMult);
 
 /*         m_pimage1->create_image({this,  size2});
 
          m_pimage1->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx, size2->cy, pgraphics, 0, 0, int_size->cx, int_size->cy);
+         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx, size2->cy, pgraphics, 0, 0, i32_size->cx, i32_size->cy);
 
          //if (0)
          {
@@ -324,7 +324,7 @@ pdirectorysystem->system() / "obs.png");
             else
             {
 
-/*               m_pimage2->create_image({this,  int_size});
+/*               m_pimage2->create_image({this,  i32_size});
 
                m_pimage2->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 

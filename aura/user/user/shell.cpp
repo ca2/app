@@ -274,7 +274,7 @@ namespace user
    }
 
 
-   void shell::add_size_interest(::int_array_base iaSize)
+   void shell::add_size_interest(::i32_array_base iaSize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -293,7 +293,7 @@ namespace user
    }
 
 
-   void shell::set_size_interest(::int_array_base iaSize)
+   void shell::set_size_interest(::i32_array_base iaSize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1336,7 +1336,7 @@ namespace user
 
          ::image::image_pointer image16;
 
-         if(pimage1->get_size() == ::int_size(16, 16))
+         if(pimage1->get_size() == ::i32_size(16, 16))
          {
 
             image16 = pimage1;
@@ -1358,7 +1358,7 @@ namespace user
 
             ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
-            double_rectangle rectangle(::int_size(16, 16));
+            double_rectangle rectangle(::i32_size(16, 16));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1370,7 +1370,7 @@ namespace user
 
          ::image::image_pointer image48;
 
-         if(pimage->get_size() == ::int_size(48, 48))
+         if(pimage->get_size() == ::i32_size(48, 48))
          {
 
             image48 = pimage;
@@ -1392,7 +1392,7 @@ namespace user
 
             ::image::image_source imagesource(pimage, pimage->rectangle());
 
-            double_rectangle rectangle(::int_size(48, 48));
+            double_rectangle rectangle(::i32_size(48, 48));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1408,7 +1408,7 @@ namespace user
 
             ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
-            double_rectangle rectangle(::int_size(16, 16));
+            double_rectangle rectangle(::i32_size(16, 16));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1424,7 +1424,7 @@ namespace user
 
             ::image::image_source imagesource(image48, image48->rectangle());
 
-            double_rectangle rectangle(::int_size(48, 48));
+            double_rectangle rectangle(::i32_size(48, 48));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1440,7 +1440,7 @@ namespace user
 
             ::image::image_source imagesource(image16, image16->rectangle());
 
-            double_rectangle rectangle(::int_size(16, 16));
+            double_rectangle rectangle(::i32_size(16, 16));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1458,7 +1458,7 @@ namespace user
 
             ::image::image_source imagesource(image48, image48->rectangle());
 
-            double_rectangle rectangle(::int_size(48, 48));
+            double_rectangle rectangle(::i32_size(48, 48));
 
             ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -1933,7 +1933,7 @@ namespace user
 
          ::pointer<::image::image>pimage;
 
-         ::int_array_base iaSizeFallback;
+         ::i32_array_base iaSizeFallback;
 
          iaSizeFallback.add(1024);
          iaSizeFallback.add(512);
@@ -2074,7 +2074,7 @@ namespace user
 
    //      {
    //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
-   //         int_size s = m_pimagelist[iSize]->m_pimage->get_size();
+   //         i32_size s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, color32_byte_red(crBk), color32_byte_green(crBk), color32_byte_blue(crBk));

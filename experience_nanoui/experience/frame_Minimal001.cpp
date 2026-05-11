@@ -54,14 +54,14 @@ namespace experience_nanoui
 
 
 
-   ::experience::enum_frame frame_Minimal001::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::experience::enum_frame frame_Minimal001::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
       ::experience::enum_frame etest = ::experience::e_frame_client;
       {
          //      m_pframewindow->screen_to_client()(point);
          auto rectangleEvent = m_pframewindow->raw_rectangle();
-         ::int_rectangle rectangle;
-         ::int_point pointCenter = rectangleEvent.center();
+         ::i32_rectangle rectangle;
+         ::i32_point pointCenter = rectangleEvent.center();
          enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
          if(egrip & e_grip_top_left)
@@ -200,7 +200,7 @@ SizingNone:;
 
 
 
-   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleXParam, enum_border eside)
+   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_border eside)
    {
                
       auto rectangleX(rectangleXParam);
@@ -245,12 +245,12 @@ SizingNone:;
 
 //               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
 
-      //::int_rectangle rectangleA(rectangleX);
+      //::i32_rectangle rectangleA(rectangleX);
 
       if(pframewindow->is_translucid_user_style(m_pframewindow->m_estyle))
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
@@ -262,7 +262,7 @@ SizingNone:;
       /*else if(m_pframewindow->m_estyle == StyleLightBlue)
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
@@ -286,11 +286,11 @@ SizingNone:;
       else
       {
 
-         ::int_rectangle rectangleX(rectangleXParam);
+         ::i32_rectangle rectangleX(rectangleXParam);
 
          rectangleX.deflate(2, 2, 2, 2);
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetBorderRectangle(rectangleX, &rectangle, eside);
 
@@ -316,7 +316,7 @@ SizingNone:;
 
       string str;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       pframewindow->window_rectangle(rectangleWindow);
 
@@ -339,7 +339,7 @@ SizingNone:;
    }
 
 
-   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
    {
 
       auto pmovemanager = m_pframewindow->move_manager();
@@ -385,16 +385,16 @@ SizingNone:;
 
    }
 
-//   void frame_Minimal001::GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * lprect, enum_border eside)
+//   void frame_Minimal001::GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * lprect, enum_border eside)
 //   {
 //
-//      ::int_rectangle rectangleBig(rectangleX);
+//      ::i32_rectangle rectangleBig(rectangleX);
 //
-//      ::int_rectangle rectangleSmall;
+//      ::i32_rectangle rectangleSmall;
 //
 //      rectangleSmall = m_pframewindow->rectangle();
 //
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 //
 //      if(eside == e_border_top)
 //      {
@@ -436,30 +436,30 @@ SizingNone:;
    }
 
 
-   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_grip egrip)
+   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_grip egrip)
    {
 
       return;
 
-//               ::int_rectangle rectangleC(rectangleX);
+//               ::i32_rectangle rectangleC(rectangleX);
 //
-//               ::int_rectangle rectangleX(rectangleX);
+//               ::i32_rectangle rectangleX(rectangleX);
 //
 //               rectangleX.right--;
 //
 //               rectangleX.bottom--;
 //
-//               ::int_rectangle rectangleXB(rectangleX);
+//               ::i32_rectangle rectangleXB(rectangleX);
 //
-//               ::int_rectangle rectangleA;
+//               ::i32_rectangle rectangleA;
 //
-//               ::int_point pointA;
+//               ::i32_point pointA;
 //
-//               ::int_point pointB;
+//               ::i32_point pointB;
 //
-//               ::int_point pointC;
+//               ::i32_point pointC;
 //
-//               ::int_rectangle rectangle(rectangleX);
+//               ::i32_rectangle rectangle(rectangleX);
 //
 //               switch(egrip)
 //               {
@@ -486,7 +486,7 @@ SizingNone:;
 //
 //                                  pgraphics->set(m_ppenFace1);
 //
-//                                  // Most external int_rectangle
+//                                  // Most external i32_rectangle
 //
 //                                  rectangleA = rectangleX;
 //
@@ -499,7 +499,7 @@ SizingNone:;
 //                                  pgraphics->line_to(pointB);
 //                                  pgraphics->line_to(pointC);
 //
-//                                  // Midle int_rectangle
+//                                  // Midle i32_rectangle
 //
 //                                  rectangleA = rectangleX;
 //
@@ -631,7 +631,7 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenFace1);
 //
-//                                   // Most external int_rectangle
+//                                   // Most external i32_rectangle
 //
 //                                   rectangleA = rectangleX;
 //
@@ -642,7 +642,7 @@ SizingNone:;
 //                                   pgraphics->line_to(pointB);
 //
 //
-//                                   // Most internal int_rectangle
+//                                   // Most internal i32_rectangle
 //
 //                                   rectangleA.top += 4;
 //                                   rectangleA.left += 4;
@@ -655,7 +655,7 @@ SizingNone:;
 //                                   pgraphics->set_current_point(pointB);
 //                                   pgraphics->line_to(pointC);
 //
-//                                   // Midle int_rectangle
+//                                   // Midle i32_rectangle
 //
 //                                   rectangleA = rectangleX;
 //
@@ -794,7 +794,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenFace1);
 //
-//                                     // Most external int_rectangle 0
+//                                     // Most external i32_rectangle 0
 //
 //                                     rectangleA = rectangleX;
 //
@@ -804,7 +804,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //
-//                                     // Most internal int_rectangle 4
+//                                     // Most internal i32_rectangle 4
 //
 //                                     rectangleA.top += 4;
 //                                     rectangleA.left += 4;
@@ -817,7 +817,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointC);
 //
-//                                     // Midle int_rectangle 2
+//                                     // Midle i32_rectangle 2
 //
 //                                     rectangleA = rectangleX;
 //
@@ -953,7 +953,7 @@ SizingNone:;
 //
 //                                      rectangleA = rectangleX;
 //
-//                                      // Most internal int_rectangle
+//                                      // Most internal i32_rectangle
 //
 //                                      rectangleA.top += 4;
 //                                      rectangleA.left += 4;
@@ -969,7 +969,7 @@ SizingNone:;
 //                                      pgraphics->line_to(pointB);
 //                                      pgraphics->line_to(pointC);
 //
-//                                      // Midle int_rectangle
+//                                      // Midle i32_rectangle
 //
 //                                      rectangleA = rectangleX;
 //
@@ -1054,7 +1054,7 @@ SizingNone:;
 //                  break;
 //               case e_grip_top:
 //               {
-//                                    ::int_point pointCenter = rectangle.center();
+//                                    ::i32_point pointCenter = rectangle.center();
 //
 //                                    int iMod;
 //                                    if(rectangle.width() % 2 == 1)
@@ -1062,7 +1062,7 @@ SizingNone:;
 //                                    else
 //                                       iMod = 0;
 //
-//                                    ::int_rectangle rectangleB;
+//                                    ::i32_rectangle rectangleB;
 //
 //                                    rectangleB.top = rectangleC.top;
 //                                    rectangleB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
@@ -1074,9 +1074,9 @@ SizingNone:;
 //                  break;
 //               case e_grip_bottom:
 //               {
-//                                       ::int_point pointCenter = rectangle.center();
+//                                       ::i32_point pointCenter = rectangle.center();
 //
-//                                       ::int_rectangle rectangleB;
+//                                       ::i32_rectangle rectangleB;
 //
 //                                       int iMod;
 //                                       if(rectangle.width() % 2 == 1)
@@ -1094,7 +1094,7 @@ SizingNone:;
 //                  break;
 //               case e_grip_left:
 //               {
-//                                     ::int_point pointCenter = rectangle.center();
+//                                     ::i32_point pointCenter = rectangle.center();
 //
 //                                     int iMod;
 //                                     if(rectangle.height() % 2 == 1)
@@ -1103,7 +1103,7 @@ SizingNone:;
 //                                        iMod = 0;
 //
 //
-//                                     ::int_rectangle rectangleB;
+//                                     ::i32_rectangle rectangleB;
 //
 //                                     rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                     rectangleB.left = rectangleC.left;
@@ -1115,7 +1115,7 @@ SizingNone:;
 //                  break;
 //               case e_grip_right:
 //               {
-//                                      ::int_point pointCenter = rectangle.center();
+//                                      ::i32_point pointCenter = rectangle.center();
 //
 //                                      int iMod;
 //                                      if(rectangle.height() % 2 == 1)
@@ -1124,7 +1124,7 @@ SizingNone:;
 //                                         iMod = 0;
 //
 //
-//                                      ::int_rectangle rectangleB;
+//                                      ::i32_rectangle rectangleB;
 //
 //                                      rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                      rectangleB.right = rectangleC.right;
@@ -1141,12 +1141,12 @@ SizingNone:;
 
    }
 
-   void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
+   void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
    {
 
 
 
-      ::int_rectangle rectangle(rectangleParam);
+      ::i32_rectangle rectangle(rectangleParam);
 
       //rectangle.right++;
 
@@ -1182,7 +1182,7 @@ SizingNone:;
 
    }
 
-   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
    {
 
       auto psizenager = m_pframewindow->size_manager();
@@ -1251,15 +1251,15 @@ SizingNone:;
 //
 //
 //
-//   ::experience::enum_frame frame_Minimal001::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+//   ::experience::enum_frame frame_Minimal001::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
 //   {
 //      ::experience::enum_frame etest = ::experience::e_frame_client;
 //      {
 //               m_pframewindow->screen_to_client()(point);
-//         ::int_rectangle rectangleEvent;
+//         ::i32_rectangle rectangleEvent;
 //         m_pframewindow->window_rectangle(rectangleEvent);
-//         ::int_rectangle rectangle;
-//         ::int_point pointCenter = rectangleEvent.center();
+//         ::i32_rectangle rectangle;
+//         ::i32_point pointCenter = rectangleEvent.center();
 //         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 //
 //         if(egrip & e_grip_top_left)
@@ -1394,7 +1394,7 @@ SizingNone:;
 //      return ::experience::e_frame_client;
 //   }
 //
-//   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleXParam, enum_border eside)
+//   void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_border eside)
 //   {
 //               
 //      auto rectangleX(rectangleXParam);
@@ -1439,12 +1439,12 @@ SizingNone:;
 //
 //               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
 //
-//      ::int_rectangle rectangleA(rectangleX);
+//      ::i32_rectangle rectangleA(rectangleX);
 //
 //      if(pframewindow->is_translucid_user_style(m_pframewindow->m_estyle))
 //      {
 //
-//         ::int_rectangle rectangle;
+//         ::i32_rectangle rectangle;
 //
 //         GetBorderRectangle(rectangleX, &rectangle, eside);
 //
@@ -1456,7 +1456,7 @@ SizingNone:;
 //      /*else if(m_pframewindow->m_estyle == StyleLightBlue)
 //      {
 //
-//         ::int_rectangle rectangle;
+//         ::i32_rectangle rectangle;
 //
 //         GetBorderRectangle(rectangleX, &rectangle, eside);
 //
@@ -1480,11 +1480,11 @@ SizingNone:;
 //      else
 //      {
 //
-//         ::int_rectangle rectangleX(rectangleXParam);
+//         ::i32_rectangle rectangleX(rectangleXParam);
 //
 //         rectangleX.deflate(2, 2, 2, 2);
 //
-//         ::int_rectangle rectangle;
+//         ::i32_rectangle rectangle;
 //
 //         GetBorderRectangle(rectangleX, &rectangle, eside);
 //
@@ -1510,7 +1510,7 @@ SizingNone:;
 //
 //      string str;
 //
-//      ::int_rectangle rectangleWindow;
+//      ::i32_rectangle rectangleWindow;
 //
 //      pframewindow->window_rectangle(rectangleWindow);
 //
@@ -1533,7 +1533,7 @@ SizingNone:;
 //   }
 //
 //
-//   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+//   void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
 //   {
 //
 //      auto pmovemanager = m_pframewindow->move_manager();
@@ -1579,16 +1579,16 @@ SizingNone:;
 //
 //   }
 //
-//   void frame_Minimal001::GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * lprect, enum_border eside)
+//   void frame_Minimal001::GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * lprect, enum_border eside)
 //   {
 //
-//      ::int_rectangle rectangleBig(rectangleX);
+//      ::i32_rectangle rectangleBig(rectangleX);
 //
-//      ::int_rectangle rectangleSmall;
+//      ::i32_rectangle rectangleSmall;
 //
 //      get_window_client_rectangle(&rectangleSmall);
 //
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 //
 //      if(eside == e_border_top)
 //      {
@@ -1630,30 +1630,30 @@ SizingNone:;
 //   }
 //
 //
-//   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_grip egrip)
+//   void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_grip egrip)
 //   {
 //
 //      return;
 //
-//               ::int_rectangle rectangleC(rectangleX);
+//               ::i32_rectangle rectangleC(rectangleX);
 //
-//               ::int_rectangle rectangleX(rectangleX);
+//               ::i32_rectangle rectangleX(rectangleX);
 //
 //               rectangleX.right--;
 //
 //               rectangleX.bottom--;
 //
-//               ::int_rectangle rectangleXB(rectangleX);
+//               ::i32_rectangle rectangleXB(rectangleX);
 //
-//               ::int_rectangle rectangleA;
+//               ::i32_rectangle rectangleA;
 //
-//               ::int_point pointA;
+//               ::i32_point pointA;
 //
-//               ::int_point pointB;
+//               ::i32_point pointB;
 //
-//               ::int_point pointC;
+//               ::i32_point pointC;
 //
-//               ::int_rectangle rectangle(rectangleX);
+//               ::i32_rectangle rectangle(rectangleX);
 //
 //               switch(egrip)
 //               {
@@ -1680,7 +1680,7 @@ SizingNone:;
 //
 //                                  pgraphics->set(m_ppenFace1);
 //
-//                                   Most external int_rectangle
+//                                   Most external i32_rectangle
 //
 //                                  rectangleA = rectangleX;
 //
@@ -1693,7 +1693,7 @@ SizingNone:;
 //                                  pgraphics->line_to(pointB);
 //                                  pgraphics->line_to(pointC);
 //
-//                                   Midle int_rectangle
+//                                   Midle i32_rectangle
 //
 //                                  rectangleA = rectangleX;
 //
@@ -1825,7 +1825,7 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_ppenFace1);
 //
-//                                    Most external int_rectangle
+//                                    Most external i32_rectangle
 //
 //                                   rectangleA = rectangleX;
 //
@@ -1836,7 +1836,7 @@ SizingNone:;
 //                                   pgraphics->line_to(pointB);
 //
 //
-//                                    Most internal int_rectangle
+//                                    Most internal i32_rectangle
 //
 //                                   rectangleA.top += 4;
 //                                   rectangleA.left += 4;
@@ -1849,7 +1849,7 @@ SizingNone:;
 //                                   pgraphics->set_current_point(pointB);
 //                                   pgraphics->line_to(pointC);
 //
-//                                    Midle int_rectangle
+//                                    Midle i32_rectangle
 //
 //                                   rectangleA = rectangleX;
 //
@@ -1988,7 +1988,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_ppenFace1);
 //
-//                                      Most external int_rectangle 0
+//                                      Most external i32_rectangle 0
 //
 //                                     rectangleA = rectangleX;
 //
@@ -1998,7 +1998,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointA);
 //
-//                                      Most internal int_rectangle 4
+//                                      Most internal i32_rectangle 4
 //
 //                                     rectangleA.top += 4;
 //                                     rectangleA.left += 4;
@@ -2011,7 +2011,7 @@ SizingNone:;
 //                                     pgraphics->set_current_point(pointB);
 //                                     pgraphics->line_to(pointC);
 //
-//                                      Midle int_rectangle 2
+//                                      Midle i32_rectangle 2
 //
 //                                     rectangleA = rectangleX;
 //
@@ -2147,7 +2147,7 @@ SizingNone:;
 //
 //                                      rectangleA = rectangleX;
 //
-//                                       Most internal int_rectangle
+//                                       Most internal i32_rectangle
 //
 //                                      rectangleA.top += 4;
 //                                      rectangleA.left += 4;
@@ -2163,7 +2163,7 @@ SizingNone:;
 //                                      pgraphics->line_to(pointB);
 //                                      pgraphics->line_to(pointC);
 //
-//                                       Midle int_rectangle
+//                                       Midle i32_rectangle
 //
 //                                      rectangleA = rectangleX;
 //
@@ -2248,7 +2248,7 @@ SizingNone:;
 //                  break;
 //               case e_grip_top:
 //               {
-//                                    ::int_point pointCenter = rectangle.center();
+//                                    ::i32_point pointCenter = rectangle.center();
 //
 //                                    int iMod;
 //                                    if(rectangle.width() % 2 == 1)
@@ -2256,7 +2256,7 @@ SizingNone:;
 //                                    else
 //                                       iMod = 0;
 //
-//                                    ::int_rectangle rectangleB;
+//                                    ::i32_rectangle rectangleB;
 //
 //                                    rectangleB.top = rectangleC.top;
 //                                    rectangleB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
@@ -2268,9 +2268,9 @@ SizingNone:;
 //                  break;
 //               case e_grip_bottom:
 //               {
-//                                       ::int_point pointCenter = rectangle.center();
+//                                       ::i32_point pointCenter = rectangle.center();
 //
-//                                       ::int_rectangle rectangleB;
+//                                       ::i32_rectangle rectangleB;
 //
 //                                       int iMod;
 //                                       if(rectangle.width() % 2 == 1)
@@ -2288,7 +2288,7 @@ SizingNone:;
 //                  break;
 //               case e_grip_left:
 //               {
-//                                     ::int_point pointCenter = rectangle.center();
+//                                     ::i32_point pointCenter = rectangle.center();
 //
 //                                     int iMod;
 //                                     if(rectangle.height() % 2 == 1)
@@ -2297,7 +2297,7 @@ SizingNone:;
 //                                        iMod = 0;
 //
 //
-//                                     ::int_rectangle rectangleB;
+//                                     ::i32_rectangle rectangleB;
 //
 //                                     rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                     rectangleB.left = rectangleC.left;
@@ -2309,7 +2309,7 @@ SizingNone:;
 //                  break;
 //               case e_grip_right:
 //               {
-//                                      ::int_point pointCenter = rectangle.center();
+//                                      ::i32_point pointCenter = rectangle.center();
 //
 //                                      int iMod;
 //                                      if(rectangle.height() % 2 == 1)
@@ -2318,7 +2318,7 @@ SizingNone:;
 //                                         iMod = 0;
 //
 //
-//                                      ::int_rectangle rectangleB;
+//                                      ::i32_rectangle rectangleB;
 //
 //                                      rectangleB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                      rectangleB.right = rectangleC.right;
@@ -2335,12 +2335,12 @@ SizingNone:;
 //
 //   }
 //
-//   void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
+//   void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
 //   {
 //
 //
 //
-//      ::int_rectangle rectangle(rectangleParam);
+//      ::i32_rectangle rectangle(rectangleParam);
 //
 //      rectangle.right++;
 //
@@ -2376,7 +2376,7 @@ SizingNone:;
 //
 //   }
 //
-//   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+//   void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
 //   {
 //
 //      auto psizenager = m_pframewindow->size_manager();

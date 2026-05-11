@@ -669,10 +669,10 @@ namespace tsf
 
    //lresult edit_window::_OnSize(wparam wParam, lparam lParam)
    //{
-   //    //adjust the int_size and location of the status bar
+   //    //adjust the i32_size and location of the status bar
    //    //SendMessage(m_hwndStatus, ::user::e_message_size, wParam, lParam);
    //
-   //    ::int_rectangle    rc;
+   //    ::i32_rectangle    rc;
    //
    //    //GetWindowRect(m_hwndStatus, &rc);
    //    
@@ -853,7 +853,7 @@ namespace tsf
        //int     nParts[2];
        //HDC     hdc;
        //HFONT   hFont;
-       //::int_size    size;
+       //::i32_size    size;
        //TCHAR   szComposition[MAX_PATH];
 
        //hdc = GetDC(m_hwndStatus);

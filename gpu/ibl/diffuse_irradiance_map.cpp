@@ -86,7 +86,7 @@ namespace gpu
 
          constructø(m_ptextureDiffuseIrradianceCubemap);
 
-         ::gpu::texture_attributes textureattributes(::int_rectangle {
+         ::gpu::texture_attributes textureattributes(::i32_rectangle {
             API_CHANGED_ARGUMENT, m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
 
          textureattributes.set_cubemap();
@@ -100,7 +100,7 @@ namespace gpu
          m_ptextureDiffuseIrradianceCubemap->initialize_texture(m_pgpucontext, textureattributes, textureflags);
 
          //m_ptextureDiffuseIrradianceCubemap->initialize_mipmap_cubemap_texture(
-           // m_pgpucontext->m_pgpurenderer, ::int_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
+           // m_pgpucontext->m_pgpurenderer, ::i32_rectangle{ API_CHANGED_ARGUMENT,m_udiffuse_irradiance_mapWidth, m_udiffuse_irradiance_mapHeight});
 
          m_prenderableCube = m_pgpucontext->m_pengine->shape_factory()->create_cube_001(m_pgpucontext, 2.f);
 
@@ -156,7 +156,7 @@ namespace gpu
 
              pgpucommandbuffer->begin_render(m_pshaderDiffuseIrradiance, m_ptextureDiffuseIrradianceCubemap);
 
-             ::int_rectangle r(0, 0, iIrradianceMapWidth, iIrradianceMapHeight);
+             ::i32_rectangle r(0, 0, iIrradianceMapWidth, iIrradianceMapHeight);
 
              pgpucommandbuffer->set_viewport(r);
 

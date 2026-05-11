@@ -7,7 +7,7 @@
 
 
 
-//void image32_t::copy(const ::int_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(const ::i32_rectangle & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 //{
 //
 //   return copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
@@ -376,7 +376,7 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
 }
 
 //
-//void image32_t::copy(const ::int_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(const ::i32_size & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 //{
 //
 //   copy(size.cx, size.cy, iStrideDst, pimage32Src, iStrideSrc);
@@ -414,7 +414,7 @@ enum_rotate_flip exif_orientation_rotate_flip(int orientation)
 }
 
 
-//void image32_t::copy(const ::int_size & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+//void image32_t::copy(const ::i32_size & size, int iStrideDst, const ::pixmap * ppixmapSrc)
 //{
 //
 //   copy(size, iStrideDst, ppixmapSrc->image32(), ppixmapSrc->scan_size());
@@ -469,7 +469,7 @@ void image32_t::blend_rectangle(int x, int y, int w, int h, int s, const ::image
 }
 
 
-void image32_t::copy_3_channel_data(const int_size & size, int iTargetStride, const void * pdata, int iSourceStride)
+void image32_t::copy_3_channel_data(const i32_size & size, int iTargetStride, const void * pdata, int iSourceStride)
 {
 
    auto ptarget = (unsigned char *)this;
@@ -501,7 +501,7 @@ void image32_t::copy_3_channel_data(const int_size & size, int iTargetStride, co
 }
 
 
-void image32_t::copy_1_channel_data(const int_size &size, int stride, const void *pdata, int inputStride)
+void image32_t::copy_1_channel_data(const i32_size &size, int stride, const void *pdata, int inputStride)
 {
 
    auto ptarget = (const unsigned char *)this;
@@ -522,7 +522,7 @@ void image32_t::copy_1_channel_data(const int_size &size, int stride, const void
 }
 
 
-image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const int_size & size, int stride, const void *pdata, int channels, int inputStride)
+image32_t *image32_t::create_copy_of(::memory &memoryAllocation, const i32_size & size, int stride, const void *pdata, int channels, int inputStride)
 {
 
    if (stride <= 0)

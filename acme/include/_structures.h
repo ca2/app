@@ -26,7 +26,7 @@ struct raw_type_t {};
 struct int_sz
 {
 
-   int                m_i;
+   int                m_i32;
    const_char_pointer        m_psz;
 
 };

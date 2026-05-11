@@ -28,7 +28,7 @@ namespace gpu_opengl
 
       GLuint m_vaoQuadBlend2, m_vboQuadBlend2;
 
-      //::int_size m_sizeRenderer;
+      //::i32_size m_sizeRenderer;
 
 
 
@@ -36,7 +36,7 @@ namespace gpu_opengl
       ~renderer();
 
 
-      //void set_placement(const ::int_rectangle& rectanglePlacement);
+      //void set_placement(const ::i32_rectangle& rectanglePlacement);
 
       void on_context_resize() override;
 
@@ -92,7 +92,7 @@ namespace gpu_opengl
       //virtual void __blend(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource);
 
       //void defer_update_renderer() override;
-      //void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous) override;
+      //void on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::i32_size& size, ::gpu::render_target* previous) override;
 
       //::pointer < ::gpu::render_target > allocate_offscreen_render_target() override;
 

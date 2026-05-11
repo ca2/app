@@ -191,7 +191,7 @@ void simple_toolbar::on_message_left_button_double_click(::message::message * pm
 
 }
 
-int_size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
+i32_size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
 {
 
    ::u32 dwMode = bStretch ? LM_STRETCH : 0;
@@ -203,7 +203,7 @@ int_size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, 
 }
 
 
-int_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
+i32_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 {
 
    ASSERT_OK(this);
@@ -212,16 +212,16 @@ int_size simple_toolbar::CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics)
 
    ::collection::count nCount;
 
-   ::int_size sizeResult;
+   ::i32_size sizeResult;
 
    nCount = main_content().m_pitema->get_count();
 
    if (nCount > 0)
    {
 
-      ::int_rectangle statusrectangleItem;
+      ::i32_rectangle statusrectangleItem;
 
-      ::int_rectangle rectangleSize(0, 0, 0, 0);
+      ::i32_rectangle rectangleSize(0, 0, 0, 0);
 
       for (::collection::index i = 0; i < nCount; i++)
       {
@@ -338,7 +338,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //
 //   m_pimageDraft->get_graphics()->BitBlt(0, 0, 7, 7, pgraphics, 0, 0);
 //
-//   ::int_rectangle rectangleWindow;
+//   ::i32_rectangle rectangleWindow;
 //   window_rectangle(rectangleWindow);
 //   rectangleWindow.offset(-rectangleWindow.top_left());
 //   if (m_bTransparentBackground)
@@ -515,7 +515,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
 #define CX_OVERLAP 0
 
 
-int_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount)
+i32_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount)
 {
 
    ASSERT(nCount > 0);
@@ -526,23 +526,23 @@ int_size simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, ::coll
 
    int iImageSpacing = get_image_spacing();
 
-   ::int_rectangle rectangleBorder = get_bar_border();
+   ::i32_rectangle rectangleBorder = get_bar_border();
 
-   //int_size sPress = get_press_shift();
+   //i32_size sPress = get_press_shift();
 
    auto sSpacing = get_item_spacing();
 
    auto sSeparator = get_separator_size();
 
-   int_point cur(rectangleBorder.left, rectangleBorder.top);
+   i32_point cur(rectangleBorder.left, rectangleBorder.top);
 
-   ::int_size sizeResult(rectangleBorder.left, rectangleBorder.top);
+   ::i32_size sizeResult(rectangleBorder.left, rectangleBorder.top);
 
    ::collection::index buttonx, buttony;
 
    auto iC = minimum(nCount, main_content().m_pitema->get_size());
 
-   ::int_rectangle rectangleItemPad = get_item_pad();
+   ::i32_rectangle rectangleItemPad = get_item_pad();
 
    string str;
 
@@ -750,9 +750,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //::int_rectangle statusrectangleItem;
+   //::i32_rectangle statusrectangleItem;
 
-   //::int_rectangle rectangleImage;
+   //::i32_rectangle rectangleImage;
 
    pgraphics->set_font(this, ::e_element_none);
 
@@ -777,7 +777,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
    if (estyle & e_tool_item_style_separator)
    {
 
-      ::int_rectangle rectangleSeparator;
+      ::i32_rectangle rectangleSeparator;
 
       rectangleSeparator.left = (statusrectangleImage.left + statusrectangleImage.right) / 2 - 1;
 
@@ -1040,7 +1040,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-::status < ::int_rectangle > simple_toolbar::index_element_rectangle(::collection::index iItem, ::enum_element eelement, ::user::enum_state estate)
+::status < ::i32_rectangle > simple_toolbar::index_element_rectangle(::collection::index iItem, ::enum_element eelement, ::user::enum_state estate)
 {
 
    if (iItem < 0 || iItem >= main_content().m_pitema->get_size())
@@ -1050,11 +1050,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    }
 
-   ::int_rectangle rectangleItemPad = get_item_pad();
+   ::i32_rectangle rectangleItemPad = get_item_pad();
 
    int iImageSpacing = get_image_spacing();
 
-   ::status < ::int_rectangle > rectangle;
+   ::status < ::i32_rectangle > rectangle;
 
    auto ptoolitem = tool_item_at(iItem);
 
@@ -1131,7 +1131,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
       if(estate & ::user::e_state_pressed)
       {
          
-         ::int_size sPress = get_press_shift();
+         ::i32_size sPress = get_press_shift();
          
          rectangle.offset(sPress.cx, sPress.cy);
          
@@ -1146,7 +1146,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-void simple_toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
+void simple_toolbar::SetSizes(const ::i32_size & sizeButton, const ::i32_size & sizeImage)
 {
    ASSERT_OK(this);
 
@@ -1348,7 +1348,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
    
-   ::int_rectangle rectangleSize;
+   ::i32_rectangle rectangleSize;
    
    bool bFirstToolItemRectangle = true;
    
@@ -1395,7 +1395,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //   auto pmouse = pmessage->m_union.m_pmouse;
 //
-//   ::int_point point = pmouse->m_point;
+//   ::i32_point point = pmouse->m_point;
 //
 //   screen_to_client()(point);
 //
@@ -1474,7 +1474,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //      if (item && item == m_ptoolitemCurrent)
 //      {
 //
-//         m_ptoolitemCurrent = item; // update int_point and flags
+//         m_ptoolitemCurrent = item; // update i32_point and flags
 //
 //         on_click(m_ptoolitemCurrent);
 //
@@ -1518,7 +1518,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //}
 
 
-::item_pointer simple_toolbar::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+::item_pointer simple_toolbar::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
 {
 
    return ::user::toolbar::on_hit_test(point, ezorder);
@@ -1548,7 +1548,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    //}
 
-   //::int_rectangle rectangleWindow;
+   //::i32_rectangle rectangleWindow;
 
    //window_rectangle(rectangleWindow);
 
@@ -1574,7 +1574,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-//void simple_toolbar::_001Hover(const ::int_point & point, bool bRedraw)
+//void simple_toolbar::_001Hover(const ::i32_point & point, bool bRedraw)
 //{
 //
 //   auto itemHover = hit_test(pmouse);
@@ -1840,7 +1840,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
    ::pointer<::message::nc_calc_size>pnccalcsize(pmessage);
 
    // calculate border space (will add to top/bottom, subtract from right/bottom)
-   ::int_rectangle rectangle;
+   ::i32_rectangle rectangle;
 
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
@@ -1906,11 +1906,11 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
    auto sizeSpacing = get_item_spacing();
 
-   //int_size sPress = get_press_shift();
+   //i32_size sPress = get_press_shift();
 
-   ::int_rectangle rectangleItemPad = get_item_pad();
+   ::i32_rectangle rectangleItemPad = get_item_pad();
 
-   ::int_rectangle rectangleBorder = get_bar_border();
+   ::i32_rectangle rectangleBorder = get_bar_border();
 
    ::collection::index x = rectangleBorder.left;
 
@@ -2156,7 +2156,7 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
 
       }
 
-      const ::int_size & size = CalcSize(pgraphics, nCount);
+      const ::i32_size & size = CalcSize(pgraphics, nCount);
 
       WrapToolBar(pgraphics, nCount, size.cx);
 
@@ -2166,7 +2166,7 @@ void  simple_toolbar::SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::colle
    else
    {
 
-      ::int_size sizeMax, sizeMin, sizeMid;
+      ::i32_size sizeMax, sizeMin, sizeMid;
 
       // Wrap ToolBar vertically
       WrapToolBar(pgraphics, nCount, 0);
@@ -2226,11 +2226,11 @@ struct ___CONTROLPOS
 {
    ::collection::index nIndex;
    string strId;
-   ::int_rectangle rectangleOldPos;
+   ::i32_rectangle rectangleOldPos;
 };
 
 
-int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u32 dwMode, ::collection::index nLength)
+i32_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u32 dwMode, ::collection::index nLength)
 {
 
    //::pointer<::user::tab>ptab = get_typed_parent < ::user::tab >();
@@ -2241,7 +2241,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
    //   if (!ptab->m_bShowTabs)
    //   {
 
-   //      return int_size(0, 0);
+   //      return i32_size(0, 0);
 
    //   }
 
@@ -2252,7 +2252,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
    if (!is_window())
    {
 
-      return ::int_size(0, 0);
+      return ::i32_size(0, 0);
 
    }
 
@@ -2263,7 +2263,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
 
    }
 
-   ::int_size sizeResult(0, 0);
+   ::i32_size sizeResult(0, 0);
 
    auto count = tool_item_count();
 
@@ -2296,7 +2296,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
          else if (bDynamic && (nLength != -1))
          {
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             CalcInsideRect(pgraphics, rectangle, (dwMode & LM_HORZ) != 0);
 
@@ -2414,7 +2414,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
             //
             // GetButtonText(i, str);
             //
-            // ::int_size size;
+            // ::i32_size size;
             //
             // if(!str.is_empty())
             // {
@@ -2480,15 +2480,15 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
                if (pwindow != nullptr)
                {
 
-               ::int_rectangle rectangle;
+               ::i32_rectangle rectangle;
 
                pwindow->window_rectangle(&rectangle);
 
-               const ::int_point & point = rectangle.top_left() - pControl[i]->rectangleOldPos.top_left();
+               const ::i32_point & point = rectangle.top_left() - pControl[i]->rectangleOldPos.top_left();
 
                index_element_rectangle(pControl[i]->nIndex, &rectangle);
 
-               point = rectangle.top_left() + int_point;
+               point = rectangle.top_left() + i32_point;
 
                pwindow->set_window_position(0, point.x, point.y, 0, 0, SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOZORDER);
 
@@ -2511,7 +2511,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
    //BLOCK: Adjust Margins
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       CalcInsideRect(pgraphics, rectangle, (dwMode & LM_HORZ) != 0);
 
@@ -2519,7 +2519,7 @@ int_size simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u3
 
       sizeResult.cx -= rectangle.width();
 
-      const ::int_size & size = ::user::control_bar::CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
+      const ::i32_size & size = ::user::control_bar::CalcFixedLayout(pgraphics, (dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
 
       sizeResult.cx = maximum(sizeResult.cx, size.cx);
 
@@ -2557,7 +2557,7 @@ void simple_toolbar::OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle)
    // a dynamically resizeable toolbar can not have the CBRS_FLOAT_MULTI
    ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) && (m_dwDockStyle & CBRS_FLOAT_MULTI)));
 
-   // a toolbar can not be both dynamic and fixed in int_size
+   // a toolbar can not be both dynamic and fixed in i32_size
    ASSERT(!((dwNewStyle & CBRS_SIZE_FIXED) && (dwNewStyle & CBRS_SIZE_DYNAMIC)));
 
    // CBRS_SIZE_DYNAMIC can not be disabled once it has been enabled
@@ -2576,7 +2576,7 @@ void simple_toolbar::OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle)
 }
 
 
-int_size simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 dwMode)
+i32_size simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 dwMode)
 {
 
    if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -2633,7 +2633,7 @@ void simple_toolbar::RemoveAllTools()
 }
 
 
-int_rectangle simple_toolbar::get_item_pad()
+i32_rectangle simple_toolbar::get_item_pad()
 {
 
    auto rectangle = m_rectangleItemPad;
@@ -2671,7 +2671,7 @@ int_rectangle simple_toolbar::get_item_pad()
 }
 
 
-int_rectangle simple_toolbar::get_bar_border()
+i32_rectangle simple_toolbar::get_bar_border()
 {
 
    auto rectangle = m_rectangleBorder;
@@ -2743,7 +2743,7 @@ double simple_toolbar::get_pixel_font_size() const
 }
 
 
-int_size simple_toolbar::get_press_shift()
+i32_size simple_toolbar::get_press_shift()
 {
 
    return m_sizePress;
@@ -2751,10 +2751,10 @@ int_size simple_toolbar::get_press_shift()
 }
 
 
-int_size simple_toolbar::get_item_spacing()
+i32_size simple_toolbar::get_item_spacing()
 {
 
-   ::int_size s;
+   ::i32_size s;
 
    s = m_sizeSpacing;
 
@@ -2776,10 +2776,10 @@ int_size simple_toolbar::get_item_spacing()
 }
 
 
-int_size simple_toolbar::get_separator_size()
+i32_size simple_toolbar::get_separator_size()
 {
 
-   ::int_size s;
+   ::i32_size s;
 
    s = m_sizeSeparator;
 

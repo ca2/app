@@ -4,7 +4,7 @@
 // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
 // http://stackoverflow.com/users/346736/jbenet
 // https://stackoverflow.com/users/847987/charphacy
-// https://stackoverflow.com/users/1211018/int_point-marecki
+// https://stackoverflow.com/users/1211018/i32_point-marecki
 
 //#include <mach/clock.h>
 //#include <mach/mach.h>
@@ -39,7 +39,7 @@ void ns_Sleep(::u32 uiMillis);
 //CLASS_DECL_ACME void sleep(const class time & time)
 //{
 //
-//   usleep((::u32) ::time.m_i * 1000);
+//   usleep((::u32) ::time.m_i32 * 1000);
 //
 //}
 

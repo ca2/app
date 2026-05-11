@@ -1242,7 +1242,7 @@ namespace gpu_opengl
 
             switch (p->m_etype)
             {
-               case ::gpu::e_type_int:
+               case ::gpu::e_type_i32:
                   _set_int(strName, *(int *)(m_propertiesPushShared.data(true) + iLen));
                   break;
                case ::gpu::e_type_float:

@@ -114,9 +114,9 @@ public:
    xfplayer_impact_line_selection & operator =(xfplayer_impact_line_selection & selection);
 
 
-   bool OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point);
-   bool OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point);
-   bool OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point);
+   bool OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::i32_point & point);
+   bool OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::i32_point & point);
+   bool OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::i32_point & point);
    bool OnTimer(xfplayer_impact_line & viewline, ::u32 user);
 
 

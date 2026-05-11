@@ -12,20 +12,20 @@ class CLASS_DECL_ACME int_handle
 public:
 
 
-   int m_i;
+   int m_i32;
 
    int_handle(int i = -1)
    {
 
-      m_i = i;
+      m_i32 = i;
 
    }
 
    ~int_handle();
 
 
-   operator int() const {return m_i;}
-   operator int &() {return m_i;}
+   operator int() const {return m_i32;}
+   operator int &() {return m_i32;}
 
 
 };

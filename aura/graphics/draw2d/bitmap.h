@@ -17,7 +17,7 @@ namespace draw2d
    public:
 
 
-      ::int_size               m_size;
+      ::i32_size               m_size;
       int                  m_iStride;
 
 //#ifdef WINDOWS_DESKTOP
@@ -52,14 +52,14 @@ namespace draw2d
       }
 
 
-      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::int_size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, int stride);
+      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, int stride);
 
       //virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
 
       virtual void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
       virtual void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
 
-      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::int_size& size, void** ppcolorref, int* piScan);
+      virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, void** ppcolorref, int* piScan);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap* ppximap);
       virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
 
@@ -68,12 +68,12 @@ namespace draw2d
       virtual void attach(void * posdata);
       virtual void * detach();
 
-      //virtual ::int_size SetBitmapDimension(int nWidth, int nHeight);
-      //virtual ::int_size set_size(const ::int_size & size);
+      //virtual ::i32_size SetBitmapDimension(int nWidth, int nHeight);
+      //virtual ::i32_size set_size(const ::i32_size & size);
 
-      virtual ::int_size GetBitmapDimension() const;
-      virtual ::int_size get_size() const;
-      virtual ::int_size size() const;
+      virtual ::i32_size GetBitmapDimension() const;
+      virtual ::i32_size get_size() const;
+      virtual ::i32_size size() const;
 
       
       virtual ::u32 SetBitmapBits(::u32 dwCount, const void * pBits);

@@ -1436,7 +1436,7 @@ namespace aura
 //
 //
 
-//   string CLASS_DECL_AURA application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle, bool bInteractive)
+//   string CLASS_DECL_AURA application::get_cred(const ::scoped_string & scopedstrRequestUrl, const ::i32_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle, bool bInteractive)
 // {
 
 //  throw ::not_implemented();
@@ -6642,9 +6642,9 @@ namespace aura
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(scopedstrParam, "int_point") == 0)
+   if (lstrcmpA(scopedstrParam, "i32_point") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(scopedstrParam, "int_point") == 0)
+   else if (lstrcmpA(scopedstrParam, "i32_point") == 0)
    m_nShellCommand = FilePrint;
    else if (::__invariant_stricmp(scopedstrParam, "Register") == 0 ||
    ::__invariant_stricmp(scopedstrParam, "Regserver") == 0)
@@ -8955,7 +8955,7 @@ namespace aura
 
 
 
-   /*string application::get_cred(const ::scoped_string & scopedstrRequestUrlParam,const ::int_rectangle & rectangle,string & strUsername,string & strPassword,const ::scoped_string & scopedstrToken,const ::scoped_string & scopedstrTitle,bool bInteractive)
+   /*string application::get_cred(const ::scoped_string & scopedstrRequestUrlParam,const ::i32_rectangle & rectangle,string & strUsername,string & strPassword,const ::scoped_string & scopedstrToken,const ::scoped_string & scopedstrTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);
@@ -9302,7 +9302,7 @@ namespace aura
       if(emessage == ::e_message_on_size)
       {
 
-         int_size size;
+         i32_size size;
 
          ::input_byte2_stream stream(pmessage->m_memory);
 
@@ -9324,7 +9324,7 @@ namespace aura
 
                pmonitor->m_pdisplay = pdisplay;
 
-               ::int_rectangle r(::int_point(), size);
+               ::i32_rectangle r(::i32_point(), size);
 
                pmonitor->
                   m_rectangle = r;

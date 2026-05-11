@@ -192,7 +192,7 @@ namespace filemanager
       }
 
 
-      bool list_data::add_unique(const string_array_base & stra, int_array_base & baRecursive)
+      bool list_data::add_unique(const string_array_base & stra, i32_array_base & baRecursive)
       {
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -201,7 +201,7 @@ namespace filemanager
 
          datastream()->get(::atom(), straFolderPath);
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
@@ -269,7 +269,7 @@ namespace filemanager
 
          }
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          datastream()->get("recursive", iaRecursive);
 
@@ -338,7 +338,7 @@ namespace filemanager
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          try
          {
@@ -376,7 +376,7 @@ namespace filemanager
 
          synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-         int_array_base iaRecursive;
+         i32_array_base iaRecursive;
 
          try
          {

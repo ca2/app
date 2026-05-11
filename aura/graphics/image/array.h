@@ -25,7 +25,7 @@ namespace image
 
       virtual bool explode(::particle * pparticle, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
-      virtual bool explode(::particle * pparticle, const ::int_size & size, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
+      virtual bool explode(::particle * pparticle, const ::i32_size & size, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);
 
 
    };

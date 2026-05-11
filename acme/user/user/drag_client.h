@@ -41,14 +41,14 @@ namespace user
 
 
       virtual void drag_set_capture() = 0;
-      virtual bool on_drag_start(::int_point & point, ::user::mouse * pmouse, ::item * pitem) = 0;
-      virtual ::int_point drag_mouse_cursor_position(::item * pitem, const ::int_point & point) = 0;
+      virtual bool on_drag_start(::i32_point & point, ::user::mouse * pmouse, ::item * pitem) = 0;
+      virtual ::i32_point drag_mouse_cursor_position(::item * pitem, const ::i32_point & point) = 0;
       virtual bool drag_shift(::item * pitem, ::user::mouse * pmouse) = 0;
       virtual bool drag_hover(::item * pitem) = 0;
       virtual void drag_release_capture() = 0;
       virtual void drag_set_cursor(::item * pitem, ::user::mouse * pmouse) = 0;
 
-      virtual ::int_point drag_point(::item * pitem, ::user::mouse * pmouse);
+      virtual ::i32_point drag_point(::item * pitem, ::user::mouse * pmouse);
 
 
       //virtual ::user::item & user_item(const ::item * pitem) = 0;

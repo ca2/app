@@ -66,7 +66,7 @@ virtual       int getSelectedTabIndex()= 0;
       // Tab work rect methods
       //
 
-      virtual void adjustRect(::int_rectangle &rect)= 0;
+      virtual void adjustRect(::i32_rectangle &rect)= 0;
 
    //protected:
 
@@ -113,7 +113,7 @@ virtual       int getSelectedTabIndex()= 0;
       // Tab work rect methods
       //
 
-      void adjustRect(::int_rectangle &rect)override { m_ptabcontrol->adjustRect(rect); }
+      void adjustRect(::i32_rectangle &rect)override { m_ptabcontrol->adjustRect(rect); }
 
    //protected:
 //      TabContainer m_tabContainer;

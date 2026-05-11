@@ -87,9 +87,9 @@ namespace console
 //      // every 100 ms approximately
 //      else if(uEvent == 4033)
 //      {
-//   /*      ::int_rectangle rectangleWindow;
+//   /*      ::i32_rectangle rectangleWindow;
 //         window_rectangle(rectangleWindow);
-//         ::int_point point;
+//         ::i32_point point;
 //         point = psession->get_cursor_position();
 //         if(rectangleWindow.is_empty().contains(point) && !m_bTimerHide)
 //         {
@@ -101,7 +101,7 @@ namespace console
 //            m_bTimerHide = false;
 //            kill_timer(1001);
 //         }*/
-//         /*::int_point point;
+//         /*::i32_point point;
 //         if(m_bHoverMouse && ::get_tick() > m_timeLastHover + 300)
 //         {
 //            OnHoverAction();
@@ -272,9 +272,9 @@ namespace console
       /*if(m_pframewindow->move_manager()->IsMoving())
       {
          oswindow oswindowDesktop = ::get_desktop_window();
-         ::int_rectangle rectangleDesktop;
+         ::i32_rectangle rectangleDesktop;
          ::window_rectangle(oswindowDesktop, rectangleDesktop);
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
          window_rectangle(rectangleWindow);
          double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
          if(rectangleWindow.left < (rectangleDesktop.width() / 2))
@@ -337,7 +337,7 @@ namespace console
    void prompt_frame::ToFront()
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
       
@@ -496,9 +496,9 @@ namespace console
    bool prompt_frame::show_mini()
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
-      psystem->get_monitor_rectangle(0,int_rectangle);
+      psystem->get_monitor_rectangle(0,i32_rectangle);
 
       int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectangleMarginNormal.top;
 

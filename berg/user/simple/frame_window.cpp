@@ -1819,7 +1819,7 @@ void simple_frame_window::ActivateFrame(::e_display edisplay)
 }
 
 
-void simple_frame_window::GetBorderRectangle(::int_rectangle * prectangle)
+void simple_frame_window::GetBorderRectangle(::i32_rectangle * prectangle)
 {
 
    *prectangle = m_rectangleBorder;
@@ -1827,7 +1827,7 @@ void simple_frame_window::GetBorderRectangle(::int_rectangle * prectangle)
 }
 
 
-void simple_frame_window::SetBorderRect(const ::int_rectangle & rectangle)
+void simple_frame_window::SetBorderRect(const ::i32_rectangle & rectangle)
 {
 
    m_rectangleBorder = rectangle;
@@ -2248,7 +2248,7 @@ bool simple_frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, ::u
 //
 //   }
 
-//   ::int_rectangle rectangleFrame;
+//   ::i32_rectangle rectangleFrame;
 //
 //   ::pointer<::user::place_holder>pholder;
 //
@@ -2665,7 +2665,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 //   ::draw2d::save_context savecontext(pgraphicsParam);
 //
-//   int_point pointScroll = m_pointScroll;
+//   i32_point pointScroll = m_pointScroll;
 //
 //   if (!pointScroll.is_null())
 //   {
@@ -2741,7 +2741,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //   windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 //
-//   ::int_rectangle rectangleX;
+//   ::i32_rectangle rectangleX;
 //
 //   this->rectangle(rectangleX);
 //
@@ -3132,7 +3132,7 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-::int_rectangle simple_frame_window::rectangle(::user::enum_layout elayout)
+::i32_rectangle simple_frame_window::rectangle(::user::enum_layout elayout)
 {
 
    return ::experience::frame_window::rectangle(elayout);
@@ -3352,7 +3352,7 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, ::u32 dwExStyle, ::request * prequest)
+//bool simple_frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, ::u32 dwExStyle, ::request * prequest)
 //{
 //
 //   return ::user::frame_window::create_interaction(scopedstrClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
@@ -3651,11 +3651,11 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
          
-         auto squareHint = int_rectangle::square_with_center_and_apothem(pointCursor, 8);
+         auto squareHint = i32_rectangle::square_with_center_and_apothem(pointCursor, 8);
 
          pointCursor -= squareHint.top_left();
 
-         pointCursor += ::int_size(16, 16);
+         pointCursor += ::i32_size(16, 16);
 
          auto pmenu = m_pnotifyicon->menu();
 
@@ -3675,7 +3675,7 @@ void simple_frame_window::handle(::topic * ptopic, ::handler_context * phandlerc
 
          ptrackpopup->track([](){});
          
-//         puser->track_popup_menu(this, pmenu, 0, pointCursor, int_size(), m_pnotifyicon);
+//         puser->track_popup_menu(this, pmenu, 0, pointCursor, i32_size(), m_pnotifyicon);
 
       }
       else if (ptopic->id() == ::id_left_button_double_click)
@@ -4638,7 +4638,7 @@ void simple_frame_window::notification_area_action(const ::atom & atom, ::user::
 //}
 
 
-void simple_frame_window::_on_configure_notify_unlocked(const ::int_rectangle & rectangle)
+void simple_frame_window::_on_configure_notify_unlocked(const ::i32_rectangle & rectangle)
 {
 
    ::experience::frame_window::_on_configure_notify_unlocked(rectangle);

@@ -28,7 +28,7 @@ namespace user
 
 
       //using ::user::interaction::create_window;
-      //bool create_window(::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom);
+      //bool create_window(::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom);
       //bool create_child(::user::interaction * puserinteraction);
 
 
@@ -44,16 +44,16 @@ namespace user
 //
 //#endif
       int GetButtonCount();
-      bool GetItemRect(int nIndex, ::int_rectangle * prectangle);
+      bool GetItemRect(int nIndex, ::i32_rectangle * prectangle);
 
-      bool GetRect(int nID, ::int_rectangle * prectangle);
+      bool GetRect(int nID, ::i32_rectangle * prectangle);
 
       void SetButtonStructSize(int nSize);
       ::u32 get_button_size();
-      bool SetButtonSize(const ::int_size & size);
-      bool SetBitmapSize(const ::int_size & size);
+      bool SetButtonSize(const ::i32_size & size);
+      bool SetBitmapSize(const ::i32_size & size);
       ::pointer<::user::interaction> set_owner(::pointer<::user::interaction>window);
-      void SetRows(int nRows, bool bLarger, ::int_rectangle * prectangle);
+      void SetRows(int nRows, bool bLarger, ::i32_rectangle * prectangle);
 
       int GetRows();
       bool SetCmdID(int nIndex, ::u32 nID);
@@ -95,9 +95,9 @@ namespace user
 //      void GetInsertMark(TBINSERTMARK* ptbim);
 //      void SetInsertMark(TBINSERTMARK* ptbim);
 //#endif
-      bool GetMaxSize(::int_size * pSize);
+      bool GetMaxSize(::i32_size * pSize);
 //#ifdef WINDOWS_DESKTOP
-//      bool InsertMarkHitTest(::int_point * ppt, LPTBINSERTMARK ptbim);
+//      bool InsertMarkHitTest(::i32_point * ppt, LPTBINSERTMARK ptbim);
 //#endif
       ::u32 GetExtendedStyle();
       ::u32 SetExtendedStyle(::u32 dwExStyle);
@@ -139,7 +139,7 @@ namespace user
       bool MapAccelerator(char chAccel, ::u32* pIDBtn);
       bool MarkButton(int nID, bool fHighlight = true);
       bool MoveButton(::u32 nOldPos, ::u32 nNewPos);
-      int hit_test(::int_point * ppt);
+      int hit_test(::i32_point * ppt);
 
       void Customize();
       int AddStrings(const ::scoped_string & scopedstrStrings);

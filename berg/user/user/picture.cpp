@@ -150,7 +150,7 @@ namespace user
    }
 
 
-   ::item_pointer picture::parent_client_on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer picture::parent_client_on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       ASSERT(is_picture_enabled());
@@ -683,7 +683,7 @@ namespace user
    }
 
 
-   double_point_array_base & picture::drawing_polygon() const
+   double_poi32_array_base & picture::drawing_polygon() const
    {
 
       double_rectangle rectangle(0.0, 0.0, 0.0, 0.0);
@@ -847,7 +847,7 @@ namespace user
    //}
 
 
-   ::image::image_pointer picture::defer_draw_drop_shadow_phase1(int_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & pimageDropShadow, ::image::image_pointer pimage)
+   ::image::image_pointer picture::defer_draw_drop_shadow_phase1(i32_rectangle & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & pimageDropShadow, ::image::image_pointer pimage)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
@@ -857,7 +857,7 @@ namespace user
 
          int iBlur = (int) ceil(dBlur);
 
-         ::int_rectangle rectangleDib(pimage->get_size());
+         ::i32_rectangle rectangleDib(pimage->get_size());
 
          int iShift = iBlur * 2;
 
@@ -895,13 +895,13 @@ namespace user
    }
 
 
-   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const int_rectangle & rectangle, ::image::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
+   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const i32_rectangle & rectangle, ::image::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
       {
 
-         ::int_rectangle rectangleDropShadow(rectangle);
+         ::i32_rectangle rectangleDropShadow(rectangle);
 
          rectangleDropShadow.offset(m_ppictureimpl->m_iGlowDropShadowOffset, m_ppictureimpl->m_iGlowDropShadowOffset);
 
@@ -933,7 +933,7 @@ namespace user
    }
 
 
-   ::item_pointer picture::parent_client_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer picture::parent_client_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       //item.m_pointScreen = point;

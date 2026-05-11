@@ -17,7 +17,7 @@ struct MESSAGE
    ::user::enum_message          m_eusermessage = ::user::e_message_null;
    wparam                        m_wparam;
    lparam                        m_lparam;
-   ::int_point                   m_point;
+   ::i32_point                   m_point;
    ::u64            m_time = 0;
 
 

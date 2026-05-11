@@ -253,8 +253,8 @@ namespace sandbox_windowing
 //      //      {
 //
 //      //         // window managers generally "don't like" windows that starts "docked/snapped".
-//      //         // initial (XCreateWindow) int_size and position maybe not be honored.
-//      //         // so requesting the same change again in a effort to set the "docked/snapped" int_size and position.
+//      //         // initial (XCreateWindow) i32_size and position maybe not be honored.
+//      //         // so requesting the same change again in a effort to set the "docked/snapped" i32_size and position.
 //
 //      //         //set_window_position(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y,
 //      //         //                  pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
@@ -272,7 +272,7 @@ namespace sandbox_windowing
 //      //if(pshowwindow->m_bShow)
 //      {
 //
-//         //::int_rectangle rect32;
+//         //::i32_rectangle rect32;
 //
 //         //(::window_rectangle((oswindow) get_handle(), rect32))
 //         {
@@ -1150,7 +1150,7 @@ namespace sandbox_windowing
 //   }
 
 
-   //::int_point window::get_mouse_cursor_position()
+   //::i32_point window::get_mouse_cursor_position()
    //{
 
    //   return m_pointCursor;
@@ -1439,14 +1439,14 @@ namespace sandbox_windowing
    //   }
    //
    //
-   void window::full_screen(const ::int_rectangle& rectangle)
+   void window::full_screen(const ::i32_rectangle& rectangle)
    {
 
 
    }
 
    //
-   //      ::int_rectangle rBest;
+   //      ::i32_rectangle rBest;
    //
    //      int iMonitor = m_pdisplay->get_best_monitor(&rBest, rectangle);
    //
@@ -1478,7 +1478,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      ::int_rectangle rWindow;
+   //      ::i32_rectangle rWindow;
    //
    //      rWindow.left = attr.x;
    //      rWindow.top = attr.y;
@@ -1650,7 +1650,7 @@ namespace sandbox_windowing
    //   }
 
 
-   bool window::client_to_screen(::int_point* ppoint)
+   bool window::client_to_screen(::i32_point* ppoint)
    {
 
       return true;
@@ -1658,7 +1658,7 @@ namespace sandbox_windowing
    }
 
 
-   bool window::screen_to_client(::int_point* ppoint)
+   bool window::screen_to_client(::i32_point* ppoint)
    {
 
       return true;
@@ -1870,10 +1870,10 @@ namespace sandbox_windowing
    }
 
 
-   //   void oswindow_data::wm_full_screen(const ::int_rectangle & rectangle)
+   //   void oswindow_data::wm_full_screen(const ::i32_rectangle & rectangle)
    //   {
    //
-   //      ::int_rectangle rBest;
+   //      ::i32_rectangle rBest;
    //
    //      int iMonitor = best_xinerama_monitor(m_pwindow->m_puserinteraction, rectangle, rBest);
    //
@@ -1903,7 +1903,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      ::int_rectangle rWindow;
+   //      ::i32_rectangle rWindow;
    //
    //      rWindow.left      = attr.x;
    //      rWindow.top       = attr.y;
@@ -2519,7 +2519,7 @@ namespace sandbox_windowing
    //}
 
 
-   //bool window::x11_get_window_rect(::int_rectangle * prectangle)
+   //bool window::x11_get_window_rect(::i32_rectangle * prectangle)
    //{
 
    //   return ::x11_get_window_rect(Display(), Window(), prectangle);
@@ -2527,7 +2527,7 @@ namespace sandbox_windowing
    //}
 
 
-   //::e_status window::window_rectangle(::int_rectangle * prectangle)
+   //::e_status window::window_rectangle(::i32_rectangle * prectangle)
    //{
 
    //   return x11_get_window_rect(prectangle);
@@ -2535,7 +2535,7 @@ namespace sandbox_windowing
    //}
 
 
-   //bool window::x11_get_client_rect(::int_rectangle * prectangle)
+   //bool window::x11_get_client_rect(::i32_rectangle * prectangle)
    //{
 
    //   return ::x11_get_client_rect(Display(), Window(), prectangle);
@@ -2543,7 +2543,7 @@ namespace sandbox_windowing
    //}
 
 
-   //::e_status window::this->rectangle(::int_rectangle * prectangle)
+   //::e_status window::this->rectangle(::i32_rectangle * prectangle)
    //{
 
    //   return x11_get_client_rect(prectangle);
@@ -2588,7 +2588,7 @@ namespace sandbox_windowing
 //
 //      }
 //
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 //
 //      x11_get_window_rect(rectangle);
 //
@@ -2596,14 +2596,14 @@ namespace sandbox_windowing
 //
 //      //string strTopic = x11_get_name(x11_display(), Window());
 //
-//      ::int_rectangle rectangleTest;
+//      ::i32_rectangle rectangleTest;
 //
 //      for (iFind++; iFind < windowa.get_size(); iFind++)
 //      {
 //
 //         //string strItem = x11_get_name(x11_display(), windowa[iFind]);
 //
-//         ::int_rectangle rectangleHigher;
+//         ::i32_rectangle rectangleHigher;
 //
 //         if (::x11_get_window_rect(Display(), windowa[iFind], rectangleHigher))
 //         {
@@ -3372,7 +3372,7 @@ namespace sandbox_windowing
    //   }
 
    //// should be called in user_thread
-   //   int_bool window::x11_get_window_rect(::int_rectangle *prectangle)
+   //   int_bool window::x11_get_window_rect(::i32_rectangle *prectangle)
    //   {
    //
    //      XWindowAttributes attrs;
@@ -3413,7 +3413,7 @@ namespace sandbox_windowing
    //
    //   }
 
-   //   int_bool window::this->rectangle(::int_rectangle *prectangle)
+   //   int_bool window::this->rectangle(::i32_rectangle *prectangle)
    //   {
    //
    //      synchronous_lock synchronouslock(user_synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

@@ -34,7 +34,7 @@ namespace user
 //};
 //
 
-      ::int_size                    m_sizeFull;
+      ::i32_size                    m_sizeFull;
       //string                        m_strText;
       class ::time                      m_timeShowComboList;
       ::pointer<list_box>          m_plistbox;
@@ -91,9 +91,9 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
-      bool get_element_rectangle(::int_rectangle & prectangle, enum_element eelement) override;
+      bool get_element_rectangle(::i32_rectangle & prectangle, enum_element eelement) override;
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       virtual bool plain_edit_is_enabled() override;
 
@@ -188,7 +188,7 @@ namespace user
 
       int SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
-      void GetDroppedControlRect(::int_rectangle * prectangle);
+      void GetDroppedControlRect(::i32_rectangle * prectangle);
 
       bool GetDroppedState();
 

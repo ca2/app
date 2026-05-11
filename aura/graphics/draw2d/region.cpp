@@ -51,7 +51,7 @@ namespace draw2d
 
    }
 
-   //bool region::create_rectangle(const ::int_rectangle & rectangle)
+   //bool region::create_rectangle(const ::i32_rectangle & rectangle)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -74,7 +74,7 @@ namespace draw2d
    //}
 
 
-   //bool region::create_ellipse(const ::int_rectangle & rectangle)
+   //bool region::create_ellipse(const ::i32_rectangle & rectangle)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -132,7 +132,7 @@ namespace draw2d
    //}
 
 
-   //bool region::create_polygon(const ::int_point * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
+   //bool region::create_polygon(const ::i32_point * ppoints, int nCount, ::draw2d::enum_fill_mode efillmode)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -153,7 +153,7 @@ namespace draw2d
 
    //      auto& p = pitem->m_polygon[i];
 
-   //      p = (const ::int_point&)ppoints[i];
+   //      p = (const ::i32_point&)ppoints[i];
 
    //   }
 
@@ -210,7 +210,7 @@ namespace draw2d
    //}
 
 
-   //bool region::create_poly_polygon(const ::int_point * ppoints, const int * ppolycounts,int nCount,::draw2d::enum_fill_mode efillmode)
+   //bool region::create_poly_polygon(const ::i32_point * ppoints, const int * ppolycounts,int nCount,::draw2d::enum_fill_mode efillmode)
    //{
 
    //   if(m_eregion != e_region_none)
@@ -346,7 +346,7 @@ namespace draw2d
    }
 
 
-   bool region::get_bounding_box(::int_rectangle & rectangle, ::draw2d::graphics * pgraphics)
+   bool region::get_bounding_box(::i32_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       throw ::interface_only();
@@ -364,7 +364,7 @@ namespace draw2d
    }
 
 
-   bool region::translate(const ::int_point & point, ::draw2d::graphics * pgraphics)
+   bool region::translate(const ::i32_point & point, ::draw2d::graphics * pgraphics)
    {
 
       set_modified();
@@ -381,7 +381,7 @@ namespace draw2d
    }
 
 
-   bool region::contains(const ::int_point & point, ::draw2d::graphics * pgraphics)
+   bool region::contains(const ::i32_point & point, ::draw2d::graphics * pgraphics)
    {
 
       return contains(double_point(point));
@@ -389,7 +389,7 @@ namespace draw2d
    }
 
 
-   void region::expand_bounding_box(::int_rectangle & rectangle, ::draw2d::graphics * pgraphics)
+   void region::expand_bounding_box(::i32_rectangle & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       ::double_rectangle rectangleMaxBounding;
@@ -401,7 +401,7 @@ namespace draw2d
    }
 
 
-   //void region::expand_bounding_box(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::expand_bounding_box(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   ::double_rectangle rectangle;
@@ -414,7 +414,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_oval(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_oval(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   ::double_rectangle rectangle;
@@ -426,7 +426,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_polygon(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   ::double_rectangle rectangle;
@@ -438,7 +438,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_poly_polygon(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_poly_polygon(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   ::double_rectangle rectangle;
@@ -450,7 +450,7 @@ namespace draw2d
    //}
 
 
-   //void region::max_bounding_box_combine(::int_rectangle * prectangle, ::draw2d::graphics * pgraphics)
+   //void region::max_bounding_box_combine(::i32_rectangle * prectangle, ::draw2d::graphics * pgraphics)
    //{
 
    //   ::double_rectangle rectangle;
@@ -790,7 +790,7 @@ namespace draw2d
    //}
 
 
-   bool region::internal_contains(const ::int_point & point)
+   bool region::internal_contains(const ::i32_point & point)
    {
 
       return internal_contains(double_point(point));
@@ -798,7 +798,7 @@ namespace draw2d
    }
 
 
-   //bool region::internal_rectangle_contains(const ::int_point & point)
+   //bool region::internal_rectangle_contains(const ::i32_point & point)
    //{
 
    //   return internal_rectangle_contains(double_point(point));
@@ -806,7 +806,7 @@ namespace draw2d
    //}
 
 
-   //bool region::internal_oval_contains(const ::int_point & point)
+   //bool region::internal_oval_contains(const ::i32_point & point)
    //{
 
    //   return internal_oval_contains(double_point(point));
@@ -814,7 +814,7 @@ namespace draw2d
    //}
 
 
-   //bool region::internal_polygon_contains(const ::int_point & point)
+   //bool region::internal_polygon_contains(const ::i32_point & point)
    //{
 
    //   return internal_polygon_contains(double_point(point));
@@ -822,7 +822,7 @@ namespace draw2d
    //}
 
 
-   //bool region::internal_poly_polygon_contains(const ::int_point & point)
+   //bool region::internal_poly_polygon_contains(const ::i32_point & point)
    //{
 
    //   return internal_poly_polygon_contains(double_point(point));
@@ -830,7 +830,7 @@ namespace draw2d
    //}
 
 
-   //bool region::internal_combine_contains(const ::int_point & point)
+   //bool region::internal_combine_contains(const ::i32_point & point)
    //{
 
    //   return internal_combine_contains(double_point(point));

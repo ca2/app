@@ -489,10 +489,10 @@ bool db_long_set::find(const ::string & lpKey)
 }
 
 
-bool db_long_set::load(const ::string & lpKey, ::int_rectangle * lpRect)
+bool db_long_set::load(const ::string & lpKey, ::i32_rectangle * lpRect)
 {
 
-   ::int_rectangle rectangle;
+   ::i32_rectangle rectangle;
 
    string strKey = lpKey;
 
@@ -520,7 +520,7 @@ bool db_long_set::load(const ::string & lpKey, ::int_rectangle * lpRect)
 // 'false' if one or more save operations has failed.
 // 'true' otherwise
 
-bool db_long_set::save(const ::string & lpKey, const ::int_rectangle * lpRect)
+bool db_long_set::save(const ::string & lpKey, const ::i32_rectangle * lpRect)
 {
 
    string strKey = lpKey;
@@ -545,7 +545,7 @@ bool db_long_set::save(const ::string & lpKey, const ::int_rectangle * lpRect)
 bool db_long_set::MoveWindow_(const ::string & lpKey, ::windowing::window * pwindow)
 {
 
-   ::int_rectangle rectangle;
+   ::i32_rectangle rectangle;
 
    if(!load(lpKey, &rectangle))
       return false;
@@ -842,10 +842,10 @@ bool db_long_set::load(const ::string & lpKey, WINDOWPLACEMENT & wp)
 
 
 
-bool db_long_set::load(const ::string & lpKey, ::int_point * lpPoint)
+bool db_long_set::load(const ::string & lpKey, ::i32_point * lpPoint)
 {
 
-   ::int_point point;
+   ::i32_point point;
 
    string strKey = lpKey;
 
@@ -861,7 +861,7 @@ bool db_long_set::load(const ::string & lpKey, ::int_point * lpPoint)
 
 }
 
-bool db_long_set::save(const ::string & lpKey, ::int_point * lpPoint)
+bool db_long_set::save(const ::string & lpKey, ::i32_point * lpPoint)
 {
 
    string strKey = lpKey;

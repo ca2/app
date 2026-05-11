@@ -11,11 +11,11 @@ void image_impact_center_debug()
 
    float_size offset;
 
-   int_size size;
+   i32_size size;
 
    float pixel_ratio = 1.f;
 
-   int_size sizeImage;
+   i32_size sizeImage;
 
    float scale = 1.f;
 

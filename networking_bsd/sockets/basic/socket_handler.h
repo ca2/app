@@ -134,8 +134,8 @@ namespace sockets_bsd
       ::collection::count get_count() override;
 
       /** Override and return false to deny all incoming connections.
-      \lparam int_point listen_socket class pointer (use GetPort to identify which one) */
-      bool OkToAccept(::sockets::base_socket *int_point) override;
+      \lparam i32_point listen_socket class pointer (use GetPort to identify which one) */
+      bool OkToAccept(::sockets::base_socket *i32_point) override;
 
       ///** Called by base_socket when a base_socket changes state. */
       //socket_id_list& socket_id_list_get(enum_list elist) override;

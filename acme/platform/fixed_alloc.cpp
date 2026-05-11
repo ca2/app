@@ -68,7 +68,7 @@ fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocS
    m_pallocator(pallocator)
 {
 
-   m_i = 0;
+   m_i32 = 0;
    
    m_iShareCount = iShareCount;
    
@@ -151,7 +151,7 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 
    m_pallocator(pallocator)
 {
 
-   m_i = 0;
+   m_i32 = 0;
 
    int iShareCount = 0;
 

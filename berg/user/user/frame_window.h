@@ -43,7 +43,7 @@ namespace user
       int                                          m_iFrameData;
       ::atom                                       m_atomHelp;         // xxx mrs
       ::user::impact_system *                      m_pimpactsystem;
-      ::int_rectangle                              m_rectangleHosting;
+      ::i32_rectangle                              m_rectangleHosting;
 
       int                                          m_nWindow;  // general purpose interaction_impl number - display as ":n"
 //      // -1 => unknown, 0 => only interaction_impl viewing ::user::document
@@ -55,7 +55,7 @@ namespace user
       ::u32                                          m_dwPromptContext;    // current help prompt action_context for message box
       bool                                         m_bHelpMode;           // if true, then Shift+F1 help mode is active
       ::user::frame_window *                       m_pNextFrameWnd; // next frame_window in cast global list_base
-      ::int_rectangle                              m_rectangleBorder;         // for OLE border space negotiation
+      ::i32_rectangle                              m_rectangleBorder;         // for OLE border space negotiation
 
       int                                          m_nShowDelay;           // SW_ command for delay show/hide
 
@@ -134,8 +134,8 @@ namespace user
       virtual void OnInitialFrameUpdate(bool bMakeVisible);
 
 
-      virtual void SetBorderRect(const ::int_rectangle & rectangle);
-      virtual void GetBorderRectangle(::int_rectangle * prectangle);
+      virtual void SetBorderRect(const ::i32_rectangle & rectangle);
+      virtual void GetBorderRectangle(::i32_rectangle * prectangle);
 
       virtual bool _001IsFrameWnd();
 
@@ -163,7 +163,7 @@ namespace user
 
       bool LoadAccelTable(const ::scoped_string & scopedstrResourceName);
 
-      //virtual bool create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::int_rectangle & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::scoped_string & scopedstrMenuName = nullptr, ::u32 dwExStyle = 0, ::request * prequest = nullptr);
+      //virtual bool create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::scoped_string & scopedstrMenuName = nullptr, ::u32 dwExStyle = 0, ::request * prequest = nullptr);
 
       
       ::string calculate_data_key() override;
@@ -249,7 +249,7 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, ::int_rectangle * pRectBorder);
+      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, ::i32_rectangle * pRectBorder);
 
       virtual bool on_create_client(::user::system * pusersystem);
 
@@ -293,7 +293,7 @@ namespace user
 
       // implementation helpers for Shift+F1 help mode
       bool ProcessHelpMsg(MESSAGE & msg, ::u32 * pContext);
-      ::acme::windowing::window * SetHelpCapture(const ::int_point & point, bool * pbDescendant);
+      ::acme::windowing::window * SetHelpCapture(const ::i32_point & point, bool * pbDescendant);
 
       // frame_window list_base management
       void AddFrameWnd();
@@ -352,7 +352,7 @@ namespace user
       virtual bool has_command_handler(::message::command * pcommand) override;
 
 
-      ::int_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
+      ::i32_rectangle hosting_rectangle(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
    };

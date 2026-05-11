@@ -136,7 +136,7 @@
 		9AD3F3B72FB2078700CB9A78 /* Unicode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3962FB2078700CB9A78 /* Unicode.h */; };
 		9AD3F3B82FB2078700CB9A78 /* GetCPUtime.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3762FB2078700CB9A78 /* GetCPUtime.h */; };
 		9AD3F3B92FB2078700CB9A78 /* Registry.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3882FB2078700CB9A78 /* Registry.h */; };
-		9AD3F3BA2FB2078700CB9A78 /* ZlibException.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F39F2FB2078700CB9A78 /* ZlibException.h */; };
+		9AD3F3BA2FB2078700CB9A78 /* ZLibException.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F39F2FB2078700CB9A78 /* ZLibException.h */; };
 		9AD3F3BB2FB2078700CB9A78 /* Singleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F38E2FB2078700CB9A78 /* Singleton.h */; };
 		9AD3F3BC2FB2078700CB9A78 /* CommandLineFormatException.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3682FB2078700CB9A78 /* CommandLineFormatException.h */; };
 		9AD3F3BD2FB2078700CB9A78 /* VncPassCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3982FB2078700CB9A78 /* VncPassCrypt.h */; };
@@ -177,7 +177,7 @@
 		9AD3F3E22FB2078700CB9A78 /* Registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3892FB2078700CB9A78 /* Registry.cpp */; };
 		9AD3F3E32FB2078700CB9A78 /* CommandLineArguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3672FB2078700CB9A78 /* CommandLineArguments.cpp */; };
 		9AD3F3E52FB2078700CB9A78 /* WindowMessageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F39B2FB2078700CB9A78 /* WindowMessageHandler.cpp */; };
-		9AD3F3E62FB2078700CB9A78 /* ZlibException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3A02FB2078700CB9A78 /* ZlibException.cpp */; };
+		9AD3F3E62FB2078700CB9A78 /* ZLibException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3A02FB2078700CB9A78 /* ZLibException.cpp */; };
 		9AD3F3E72FB2078700CB9A78 /* Unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3972FB2078700CB9A78 /* Unicode.cpp */; };
 		9AD3F3E82FB2078700CB9A78 /* Inflater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3792FB2078700CB9A78 /* Inflater.cpp */; };
 		9AD3F41C2FB2079E00CB9A78 /* SocketException.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3EF2FB2079E00CB9A78 /* SocketException.h */; };
@@ -412,8 +412,8 @@
 		9AD3F39C2FB2078700CB9A78 /* winhdr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = winhdr.h; sourceTree = "<group>"; };
 		9AD3F39D2FB2078700CB9A78 /* ZLibBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLibBase.h; sourceTree = "<group>"; };
 		9AD3F39E2FB2078700CB9A78 /* ZLibBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ZLibBase.cpp; sourceTree = "<group>"; };
-		9AD3F39F2FB2078700CB9A78 /* ZlibException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZlibException.h; sourceTree = "<group>"; };
-		9AD3F3A02FB2078700CB9A78 /* ZlibException.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ZlibException.cpp; sourceTree = "<group>"; };
+		9AD3F39F2FB2078700CB9A78 /* ZLibException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLibException.h; sourceTree = "<group>"; };
+		9AD3F3A02FB2078700CB9A78 /* ZLibException.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ZLibException.cpp; sourceTree = "<group>"; };
 		9AD3F3E92FB2079E00CB9A78 /* SecurityDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityDescriptor.h; sourceTree = "<group>"; };
 		9AD3F3EA2FB2079E00CB9A78 /* SecurityIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecurityIdentifier.h; sourceTree = "<group>"; };
 		9AD3F3EC2FB2079E00CB9A78 /* sockdefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sockdefs.h; sourceTree = "<group>"; };
@@ -713,8 +713,8 @@
 				9AD3F39C2FB2078700CB9A78 /* winhdr.h */,
 				9AD3F39D2FB2078700CB9A78 /* ZLibBase.h */,
 				9AD3F39E2FB2078700CB9A78 /* ZLibBase.cpp */,
-				9AD3F39F2FB2078700CB9A78 /* ZlibException.h */,
-				9AD3F3A02FB2078700CB9A78 /* ZlibException.cpp */,
+				9AD3F39F2FB2078700CB9A78 /* ZLibException.h */,
+				9AD3F3A02FB2078700CB9A78 /* ZLibException.cpp */,
 			);
 			path = platform;
 			sourceTree = "<group>";
@@ -828,7 +828,7 @@
 				9AD3F3B72FB2078700CB9A78 /* Unicode.h in Headers */,
 				9AD3F3B82FB2078700CB9A78 /* GetCPUtime.h in Headers */,
 				9AD3F3B92FB2078700CB9A78 /* Registry.h in Headers */,
-				9AD3F3BA2FB2078700CB9A78 /* ZlibException.h in Headers */,
+				9AD3F3BA2FB2078700CB9A78 /* ZLibException.h in Headers */,
 				9AD3F3BB2FB2078700CB9A78 /* Singleton.h in Headers */,
 				9AD3F3BC2FB2078700CB9A78 /* CommandLineFormatException.h in Headers */,
 				9AD3F3BD2FB2078700CB9A78 /* VncPassCrypt.h in Headers */,
@@ -1069,7 +1069,7 @@
 				9AD3F3E22FB2078700CB9A78 /* Registry.cpp in Sources */,
 				9AD3F3E32FB2078700CB9A78 /* CommandLineArguments.cpp in Sources */,
 				9AD3F3E52FB2078700CB9A78 /* WindowMessageHandler.cpp in Sources */,
-				9AD3F3E62FB2078700CB9A78 /* ZlibException.cpp in Sources */,
+				9AD3F3E62FB2078700CB9A78 /* ZLibException.cpp in Sources */,
 				9AD3F3E72FB2078700CB9A78 /* Unicode.cpp in Sources */,
 				9AD3F3E82FB2078700CB9A78 /* Inflater.cpp in Sources */,
 				9AD3F3542FB2073600CB9A78 /* WindowsEvent.cpp in Sources */,

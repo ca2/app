@@ -53,8 +53,8 @@ namespace user
    ::string_literal document_manager::gen_IconIndexFmt = ",%d";
    ::string_literal document_manager::gen_Command = "command";
    ::string_literal document_manager::gen_OpenArg = " \"%1\"";
-   ::string_literal document_manager::gen_PrintArg = " /int_point \"%1\"";
-   ::string_literal document_manager::gen_PrintToArg = " /int_point \"%1\" \"%2\" \"%3\" \"%4\"";
+   ::string_literal document_manager::gen_PrintArg = " /i32_point \"%1\"";
+   ::string_literal document_manager::gen_PrintToArg = " /i32_point \"%1\" \"%2\" \"%3\" \"%4\"";
    ::string_literal document_manager::gen_DDEArg = " /dde";
 
    ::string_literal document_manager::gen_DDEExec = "ddeexec";
@@ -140,12 +140,12 @@ namespace user
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
 
-      // path\shell\print\command = path /int_point filename
+      // path\shell\print\command = path /i32_point filename
       strTemp.formatf(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
 
-      // path\shell\printto\command = path /int_point filename printer driver port
+      // path\shell\printto\command = path /i32_point filename printer driver port
       strTemp.formatf(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       __delete_reg_key(strTemp);
@@ -274,8 +274,8 @@ namespace user
       else
       {
       // path\shell\open\command = path filename
-      // path\shell\print\command = path /int_point filename
-      // path\shell\printto\command = path /int_point filename printer driver port
+      // path\shell\print\command = path /i32_point filename
+      // path\shell\printto\command = path /i32_point filename printer driver port
       strOpenCommandLine += gen_OpenArg;
       if (bCompat)
       {
@@ -292,13 +292,13 @@ namespace user
 
       if (bCompat)
       {
-      // path\shell\print\command = path /int_point filename
+      // path\shell\print\command = path /i32_point filename
       strTemp.formatf(gen_ShellPrintFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       if (!__set_reg_key(strTemp, strPrintCommandLine))
       continue;       // just skip it
 
-      // path\shell\printto\command = path /int_point filename printer driver port
+      // path\shell\printto\command = path /i32_point filename printer driver port
       strTemp.formatf(gen_ShellPrintToFmt, (const ::string &)strFileTypeId,
       (const ::string &)gen_Command);
       if (!__set_reg_key(strTemp, strPrintToCommandLine))

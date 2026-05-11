@@ -193,7 +193,7 @@ namespace image
       //}
 
 
-      virtual ::int_size get_image_drawer_size() const = 0;
+      virtual ::i32_size get_image_drawer_size() const = 0;
 
 
       virtual void draw(const ::image::image_drawing & imagedrawing);

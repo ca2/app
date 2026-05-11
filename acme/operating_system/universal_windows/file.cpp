@@ -502,7 +502,7 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)___new unsigned char[int_size];
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)___new unsigned char[i32_size];
 // //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
@@ -1215,7 +1215,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   {
 //      const_char_pointer src = (const_char_pointer )buffer;
 //      size_t startpos = 0,i = 0;
-//      for(i = 0; i < int_size*count; i++)
+//      for(i = 0; i < i32_size*count; i++)
 //      {
 //         if(src[i] != '\n')
 //            continue;
@@ -1251,7 +1251,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   }
 //   else
 //   {
-//      size_t s = int_size * count;
+//      size_t s = i32_size * count;
 //      const_char_pointer src = (const_char_pointer )buffer;
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
@@ -1625,7 +1625,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u3
 //
 //   TRUNCATE_EXISTING
 //   5
-//   Opens a file and truncates it so that its int_size is zero bytes, only if it exists.
+//   Opens a file and truncates it so that its i32_size is zero bytes, only if it exists.
 //   If the specified file does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
 //   The calling process must open the file with the GENERIC_WRITE bit set as part of the dwDesiredAccess parameter.
 //

@@ -117,7 +117,7 @@ namespace operating_system
 //       ::operating_system::windows_window m_windowswindow;
 //       double m_dVelocity;
 //       class ::time m_timeLastSizeMove;
-//       ::int_point m_pointSizeMoveStart;
+//       ::i32_point m_pointSizeMoveStart;
 //       bool m_bMovingNow;
 //       bool m_bDefaultSystemMenu;
 //       bool m_bSizeMoveMode;

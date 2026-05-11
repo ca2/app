@@ -146,7 +146,7 @@ namespace user
 
             pgraphics->set(ppen);
 
-            ::int_rectangle rectangleIcon(rectangleX);
+            ::i32_rectangle rectangleIcon(rectangleX);
 
             rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -249,7 +249,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::int_point point = pmouse->m_point;
+   //   ::i32_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -279,7 +279,7 @@ namespace user
 
    //   enum_element eelement;
 
-   //   ::int_point point = pmouse->m_point;
+   //   ::i32_point point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -313,7 +313,7 @@ namespace user
 
    //   //enum_element eelement;
 
-   //   //::int_point point = pmouse->m_point;
+   //   //::i32_point point = pmouse->m_point;
 
    //   //screen_to_client()(point);
 
@@ -440,12 +440,12 @@ namespace user
 
    //}
 
-   //::item_pointer still::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   //::item_pointer still::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    //{
 
    //   return control::hit_test(pmouse);
 
-   //   //::int_rectangle rectangleWindow;
+   //   //::i32_rectangle rectangleWindow;
    //   //window_rectangle(rectangleWindow);
    //   //if (rectangleWindow.contains(point))
    //   //{
@@ -509,7 +509,7 @@ namespace user
 
          auto size = pgraphics->get_text_extent(strWindowText);
 
-         ::int_rectangle rectangle(0, 0, 0, 0);
+         ::i32_rectangle rectangle(0, 0, 0, 0);
 
          rectangle.right = int(size.cx * 1.6);
          rectangle.bottom = int(size.cy * 1.4);
@@ -773,7 +773,7 @@ namespace user
 
          ::double_size sizeText = get_fitting_size(pgraphics);
 
-         //::int_rectangle rectangle;
+         //::i32_rectangle rectangle;
 
          //rectangle.left = (int)(rectangleX.left + (rectangleX.width() - sizeText.cx) / 2);
 
@@ -920,7 +920,7 @@ namespace user
 //
 //      rectangleX.top += 3;
 
-      //::int_rectangle rectangleText = m_rectangleText;
+      //::i32_rectangle rectangleText = m_rectangleText;
 
       auto rectangleText = this->rectangle();
 
@@ -929,7 +929,7 @@ namespace user
       if (m_pimage->is_ok())
       {
          
-         ::int_rectangle rectangleDib;
+         ::i32_rectangle rectangleDib;
 
          rectangleDib = rectangleText;
          rectangleDib.bottom = minimum(rectangleText.top + m_pimage->height(), rectangleText.bottom);
@@ -1113,7 +1113,7 @@ namespace user
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {
 
-         ::int_rectangle rectangleAspect;
+         ::i32_rectangle rectangleAspect;
 
          rectangleAspect.left = 0;
 
@@ -1272,7 +1272,7 @@ namespace user
    }
 
 
-   ::item_pointer still::on_hit_test(const ::int_point & point, e_zorder ezorder)
+   ::item_pointer still::on_hit_test(const ::i32_point & point, e_zorder ezorder)
    {
 
       ::collection::index iItem = -1;
@@ -1291,10 +1291,10 @@ namespace user
    }
 
 
-   void still::BaseToolTipGetRect(::int_rectangle & rectangle)
+   void still::BaseToolTipGetRect(::i32_rectangle & rectangle)
    {
 
-      // use window client int_rectangle as the tool int_rectangle
+      // use window client i32_rectangle as the tool i32_rectangle
       rectangle = this->rectangle();
 
    }

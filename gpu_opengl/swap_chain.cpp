@@ -504,7 +504,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 //      m_ptexturePresent = m_p
 //      ::gpu::texture_attributes textureattributes;
 //      
-//      textureattributes.m_rectangleTarget.top_left() = ::int_point();
+//      textureattributes.m_rectangleTarget.top_left() = ::i32_point();
 //      textureattributes.m_rectangleTarget.set_size(m_pgpucontext->m_pacmewindowingwindowWindowSurface->get_window_rectangle().size());
 //      
 //      m_ptexturePresent->initialize_texture(m_pgpucontext->m_pgpurenderer, textureattributes);
@@ -529,7 +529,7 @@ void swap_chain::on_gpu_context_render_frame(int w, int h)
 }
 
 
-void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
+void swap_chain::defer_update_swap_chain_textures(const ::i32_size & size)
 {
    
    if(::is_null(m_ptextureaSwapChain)
@@ -547,7 +547,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
 
       }
       
-//         textureattributes.m_rectangleTarget.top_left() = ::int_point();
+//         textureattributes.m_rectangleTarget.top_left() = ::i32_point();
 //         textureattributes.m_rectangleTarget.set_size(size);
       
       
@@ -604,7 +604,7 @@ void swap_chain::defer_update_swap_chain_textures(const ::int_size & size)
 ::gpu::shader * swap_chain::render_shader(int w, int h)
 {
    
-   ::int_size size(w, h);
+   ::i32_size size(w, h);
    
    if(m_pgpucontext->m_rectangle.size() != size
       || ::is_null(m_ptextureaSwapChain)

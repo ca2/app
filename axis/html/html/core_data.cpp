@@ -163,12 +163,12 @@ namespace html
          }
       }
       if (!pelement->m_pimpl->m_bHover
-         || !pelement->m_pstyle->get_text("font-int_size", "hover", this, pelement, font.m_strSize))
+         || !pelement->m_pstyle->get_text("font-i32_size", "hover", this, pelement, font.m_strSize))
       {
          if (!pelement->m_pimpl->has_link()
             || !pelement->m_pstyle->get_text("font-float_size", "link", this, pelement, font.m_strSize))
          {
-            pelement->m_pstyle->get_text("font-int_size", "", this, pelement, font.m_strSize);
+            pelement->m_pstyle->get_text("font-i32_size", "", this, pelement, font.m_strSize);
          }
       }
       if (!pelement->m_pimpl->m_bHover

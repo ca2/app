@@ -90,7 +90,7 @@ namespace graphics
 
 
       /// The preferred size of this ColorWheel.
-      //int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
+      //i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws the ColorWheel.
       virtual void on_draw(::draw2d::graphics * pgraphics);
@@ -99,9 +99,9 @@ namespace graphics
       //virtual void _on_draw(::nano2d::context  * pcontext);
 
       /// Handles mouse button click happenings for the ColorWheel.
-      virtual bool on_mouse_down(const int_point & p);
-      virtual bool on_mouse_up(const int_point & p);
-      virtual bool on_mouse_motion(const int_point & p);
+      virtual bool on_mouse_down(const i32_point & p);
+      virtual bool on_mouse_up(const i32_point & p);
+      virtual bool on_mouse_motion(const i32_point & p);
       /// Handles mouse drag happenings for the ColorWheel.
       //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
 
@@ -109,7 +109,7 @@ namespace graphics
       //color::color hue2rgb(float h) const;
 
       // Manipulates the positioning of the different regions of the ColorWheel.
-      enum_hit_test adjust_position_and_hit_test(const int_point & p);
+      enum_hit_test adjust_position_and_hit_test(const i32_point & p);
 
    };
 

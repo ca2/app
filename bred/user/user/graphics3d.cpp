@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   void graphics3d::on_mouse_move(const int_point & point)
+   void graphics3d::on_mouse_move(const i32_point & point)
    {
 
       auto pengine = m_pengine;
@@ -141,7 +141,7 @@ namespace user
    }
 
 
-   void graphics3d::defer_initialize_engine(const ::int_rectangle& rectanglePlacement)
+   void graphics3d::defer_initialize_engine(const ::i32_rectangle& rectanglePlacement)
    {
 
       if (!m_pengine)
@@ -379,7 +379,7 @@ namespace user
 
 #ifdef DEBUG_WORK
 
-         ::int_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
+         ::i32_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
 
          pgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
 
@@ -416,7 +416,7 @@ namespace user
 
          double y = 0.;
 
-         ::int_point point;
+         ::i32_point point;
 
          string strText;
 

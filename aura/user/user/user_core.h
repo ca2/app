@@ -50,7 +50,7 @@ namespace user
       //bool                                       m_bProgrammerMode;
 
       //bool                                       m_bSystemSynchronizedCursor;
-      //int_point                                      m_pointCursor;
+      //i32_point                                      m_pointCursor;
 
       //pointer_array < ::user::interaction >         m_uiptraToolWindow;
 

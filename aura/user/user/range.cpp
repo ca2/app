@@ -185,7 +185,7 @@ namespace user
 
    //   if(m_bHeaderCtrl)
    //   {
-   //      ::int_rectangle rectangleX;
+   //      ::i32_rectangle rectangleX;
 
    //      this->rectangle(&rectangleX);
 

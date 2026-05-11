@@ -10,171 +10,171 @@
 //inline int operator -(UniChar ush, ENUM e) { return ush - (int) e; }
 
 //template < prototype_integral INTEGRAL >
-//inline integral_nanosecond operator %(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i % integral)); }
+//inline integral_nanosecond operator %(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i32 % integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_nanosecond operator /(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i / integral)); }
+inline integral_nanosecond operator /(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i32 / integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_nanosecond operator *(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i * integral)); }
+inline integral_nanosecond operator *(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i32 * integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_nanosecond operator +(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i + integral)); }
+//inline integral_nanosecond operator +(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i32 + integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_nanosecond operator -(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i - integral)); }
+//inline integral_nanosecond operator -(const integral_nanosecond & time, INTEGRAL integral) { return integral_nanosecond((::i64)(time.m_i32 - integral)); }
 
 
 //template < prototype_integral INTEGRAL >
-//inline integral_microsecond operator %(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i % integral)); }
+//inline integral_microsecond operator %(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i32 % integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_microsecond operator /(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i / integral)); }
+inline integral_microsecond operator /(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i32 / integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_microsecond operator *(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i * integral)); }
+inline integral_microsecond operator *(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i32 * integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_microsecond operator +(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i + integral)); }
+//inline integral_microsecond operator +(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i32 + integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_microsecond operator -(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i - integral)); }
+//inline integral_microsecond operator -(const integral_microsecond & time, INTEGRAL integral) { return integral_microsecond((::i64)(time.m_i32 - integral)); }
 
 
 //template < prototype_integral INTEGRAL >
-//inline integral_millisecond operator %(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i % integral)); }
+//inline integral_millisecond operator %(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i32 % integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_millisecond operator /(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i / integral)); }
+inline integral_millisecond operator /(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i32 / integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_millisecond operator *(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i * integral)); }
+inline integral_millisecond operator *(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i32 * integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_millisecond operator +(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i + integral)); }
+//inline integral_millisecond operator +(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i32 + integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_millisecond operator -(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i - integral)); }
+//inline integral_millisecond operator -(const integral_millisecond & time, INTEGRAL integral) { return integral_millisecond((::i64)(time.m_i32 - integral)); }
 
 
 //template < prototype_integral INTEGRAL >
-//inline integral_second operator %(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i % integral)); }
+//inline integral_second operator %(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i32 % integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_second operator /(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i / integral)); }
+inline integral_second operator /(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i32 / integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_second operator *(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i * integral)); }
+inline integral_second operator *(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i32 * integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_second operator +(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i + integral)); }
+//inline integral_second operator +(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i32 + integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_second operator -(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i - integral)); }
+//inline integral_second operator -(const integral_second & time, INTEGRAL integral) { return integral_second((::i64)(time.m_i32 - integral)); }
 
 
 //template < prototype_integral INTEGRAL >
-//inline integral_minute operator %(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i % integral)); }
+//inline integral_minute operator %(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i32 % integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_minute operator /(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i / integral)); }
+inline integral_minute operator /(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i32 / integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_minute operator *(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i * integral)); }
+inline integral_minute operator *(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i32 * integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_minute operator +(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i + integral)); }
+//inline integral_minute operator +(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i32 + integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_minute operator -(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i - integral)); }
+//inline integral_minute operator -(const integral_minute & time, INTEGRAL integral) { return integral_minute((::i64)(time.m_i32 - integral)); }
 
 
 //template < prototype_integral INTEGRAL >
-//inline integral_hour operator %(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i % integral)); }
+//inline integral_hour operator %(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i32 % integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_hour operator /(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i / integral)); }
+inline integral_hour operator /(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i32 / integral)); }
 template < prototype_integral INTEGRAL >
-inline integral_hour operator *(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i * integral)); }
+inline integral_hour operator *(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i32 * integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_hour operator +(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i + integral)); }
+//inline integral_hour operator +(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i32 + integral)); }
 //template < prototype_integral INTEGRAL >
-//inline integral_hour operator -(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i - integral)); }
+//inline integral_hour operator -(const integral_hour & time, INTEGRAL integral) { return integral_hour((::i64)(time.m_i32 - integral)); }
 
 
 //template < prototype_integral INTEGRAL >
-//inline integral_day operator %(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i % integral); }
+//inline integral_day operator %(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i32 % integral); }
 template < prototype_integral INTEGRAL >
-inline integral_day operator /(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i / integral); }
+inline integral_day operator /(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i32 / integral); }
 template < prototype_integral INTEGRAL >
-inline integral_day operator *(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i * integral); }
+inline integral_day operator *(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i32 * integral); }
 //template < prototype_integral INTEGRAL >
-//inline integral_day operator +(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i + integral); }
+//inline integral_day operator +(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i32 + integral); }
 //template < prototype_integral INTEGRAL >
-//inline integral_day operator -(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i - integral); }
+//inline integral_day operator -(const integral_day & time, INTEGRAL integral) { return integral_day(time.m_i32 - integral); }
 
 
 //template < prototype_floating FLOATING >
-//inline integral_nanosecond operator %(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i % floating)); }
+//inline integral_nanosecond operator %(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i32 % floating)); }
 template < prototype_floating FLOATING >
-inline integral_nanosecond operator /(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i / floating)); }
+inline integral_nanosecond operator /(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i32 / floating)); }
 template < prototype_floating FLOATING >
-inline integral_nanosecond operator *(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i * floating)); }
+inline integral_nanosecond operator *(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i32 * floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_nanosecond operator +(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i + floating)); }
+//inline integral_nanosecond operator +(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i32 + floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_nanosecond operator -(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i - floating)); }
+//inline integral_nanosecond operator -(const integral_nanosecond & time, FLOATING floating) { return integral_nanosecond((::i64)(time.m_i32 - floating)); }
 
 
 //template < prototype_floating FLOATING >
-//inline integral_microsecond operator %(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i % floating)); }
+//inline integral_microsecond operator %(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i32 % floating)); }
 template < prototype_floating FLOATING >
-inline integral_microsecond operator /(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i / floating)); }
+inline integral_microsecond operator /(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i32 / floating)); }
 template < prototype_floating FLOATING >
-inline integral_microsecond operator *(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i * floating)); }
+inline integral_microsecond operator *(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i32 * floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_microsecond operator +(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i + floating)); }
+//inline integral_microsecond operator +(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i32 + floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_microsecond operator -(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i - floating)); }
+//inline integral_microsecond operator -(const integral_microsecond & time, FLOATING floating) { return integral_microsecond((::i64)(time.m_i32 - floating)); }
 
 
 //template < prototype_floating FLOATING >
-//inline integral_millisecond operator %(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i % floating)); }
+//inline integral_millisecond operator %(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i32 % floating)); }
 template < prototype_floating FLOATING >
-inline integral_millisecond operator /(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i / floating)); }
+inline integral_millisecond operator /(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i32 / floating)); }
 template < prototype_floating FLOATING >
-inline integral_millisecond operator *(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i * floating)); }
+inline integral_millisecond operator *(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i32 * floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_millisecond operator +(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i + floating)); }
+//inline integral_millisecond operator +(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i32 + floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_millisecond operator -(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i - floating)); }
+//inline integral_millisecond operator -(const integral_millisecond & time, FLOATING floating) { return integral_millisecond((::i64)(time.m_i32 - floating)); }
 
 
 //template < prototype_floating FLOATING >
-//inline integral_second operator %(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i % floating)); }
+//inline integral_second operator %(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i32 % floating)); }
 template < prototype_floating FLOATING >
-inline integral_second operator /(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i / floating)); }
+inline integral_second operator /(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i32 / floating)); }
 template < prototype_floating FLOATING >
-inline integral_second operator *(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i * floating)); }
+inline integral_second operator *(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i32 * floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_second operator +(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i + floating)); }
+//inline integral_second operator +(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i32 + floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_second operator -(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i - floating)); }
+//inline integral_second operator -(const integral_second & time, FLOATING floating) { return integral_second((::i64)(time.m_i32 - floating)); }
 
 
 //template < prototype_floating FLOATING >
-//inline integral_minute operator %(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i % floating)); }
+//inline integral_minute operator %(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i32 % floating)); }
 template < prototype_floating FLOATING >
-inline integral_minute operator /(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i / floating)); }
+inline integral_minute operator /(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i32 / floating)); }
 template < prototype_floating FLOATING >
-inline integral_minute operator *(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i * floating)); }
+inline integral_minute operator *(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i32 * floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_minute operator +(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i + floating)); }
+//inline integral_minute operator +(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i32 + floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_minute operator -(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i - floating)); }
+//inline integral_minute operator -(const integral_minute & time, FLOATING floating) { return integral_minute((::i64)(time.m_i32 - floating)); }
 
 
 //template < prototype_floating FLOATING >
-//inline integral_hour operator %(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i % floating)); }
+//inline integral_hour operator %(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i32 % floating)); }
 template < prototype_floating FLOATING >
-inline integral_hour operator /(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i / floating)); }
+inline integral_hour operator /(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i32 / floating)); }
 template < prototype_floating FLOATING >
-inline integral_hour operator *(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i * floating)); }
+inline integral_hour operator *(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i32 * floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_hour operator +(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i + floating)); }
+//inline integral_hour operator +(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i32 + floating)); }
 //template < prototype_floating FLOATING >
-//inline integral_hour operator -(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i - floating)); }
+//inline integral_hour operator -(const integral_hour & time, FLOATING floating) { return integral_hour((::i64)(time.m_i32 - floating)); }
 
 
 //template < prototype_floating FLOATING >
-//inline integral_day operator %(const integral_day & time, FLOATING floating) { return integral_day(time.m_i % floating); }
+//inline integral_day operator %(const integral_day & time, FLOATING floating) { return integral_day(time.m_i32 % floating); }
 template < prototype_floating FLOATING >
-inline integral_day operator /(const integral_day & time, FLOATING floating) { return integral_day(time.m_i / floating); }
+inline integral_day operator /(const integral_day & time, FLOATING floating) { return integral_day(time.m_i32 / floating); }
 template < prototype_floating FLOATING >
-inline integral_day operator *(const integral_day & time, FLOATING floating) { return integral_day(time.m_i * floating); }
+inline integral_day operator *(const integral_day & time, FLOATING floating) { return integral_day(time.m_i32 * floating); }
 //template < prototype_floating FLOATING >
-//inline integral_day operator +(const integral_day & time, FLOATING floating) { return integral_day(time.m_i + floating); }
+//inline integral_day operator +(const integral_day & time, FLOATING floating) { return integral_day(time.m_i32 + floating); }
 //template < prototype_floating FLOATING >
-//inline integral_day operator -(const integral_day & time, FLOATING floating) { return integral_day(time.m_i - floating); }
+//inline integral_day operator -(const integral_day & time, FLOATING floating) { return integral_day(time.m_i32 - floating); }
 
 
 //template < prototype_integral INTEGRAL >

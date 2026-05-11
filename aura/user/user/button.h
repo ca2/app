@@ -65,10 +65,10 @@ namespace user
       ::e_align                           m_ealignText;
       ::e_draw_text                       m_edrawtext;
       enum_style                          m_estyle;
-      //::int_rectangle                     m_rectangleText;
+      //::i32_rectangle                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
-      ::int_rectangle                     m_rectangleCheckBox;
+      ::i32_rectangle                     m_rectangleCheckBox;
       ::pointer < bitmap >                m_pbitmap;
       ::pointer < list_base >                  m_plist;
 
@@ -100,7 +100,7 @@ namespace user
       virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics, bool bDecoration);
       virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::int_rectangle & rectText);
+      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle & rectText);
 
       virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
 
@@ -122,7 +122,7 @@ namespace user
       //virtual bool is_pressed();
 
 
-      //virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      //virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       DECLARE_MESSAGE_HANDLER(on_message_key_up);
@@ -145,7 +145,7 @@ namespace user
       virtual void on_exit_button_style(enum_style estyle);
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(::int_rectangle & rectangle);
+      virtual void BaseToolTipGetRect(::i32_rectangle & rectangle);
 
       virtual int BaseToolTipGetIndex();
 

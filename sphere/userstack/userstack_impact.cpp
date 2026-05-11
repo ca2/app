@@ -174,7 +174,7 @@ namespace userstack
    void impact::on_message_context_menu(::message::message * pmessage)
    {
 //      ::pointer<::message::context_menu>pcontextmenu(pmessage);
-//      ::int_point point = pcontextmenu->GetPoint();
+//      ::i32_point point = pcontextmenu->GetPoint();
 
    }
 
@@ -237,10 +237,10 @@ namespace userstack
    }
 
 
-   void impact::GetAreaThumbRect(::int_rectangle * lprect, int iArea)
+   void impact::GetAreaThumbRect(::i32_rectangle * lprect, int iArea)
    {
       
-      ::int_rectangle rectangleX = this->rectangle();
+      ::i32_rectangle rectangleX = this->rectangle();
       
       if(iArea == m_iV)
       {
@@ -300,10 +300,10 @@ namespace userstack
    }
 
 
-   ::item_pointer impact::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer impact::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
       
-      ::int_rectangle rectangleArea;
+      ::i32_rectangle rectangleArea;
       
       GetAreaThumbRect(rectangleArea, m_iV);
 

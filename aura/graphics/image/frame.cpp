@@ -48,9 +48,9 @@ namespace image
    void image_frame::_001Process(::image::image *pimageCompose, ::image::image *pimageFrame, image_frame_array * pframea)
    {
 
-      ::int_point point = m_rectangle.top_left();
+      ::i32_point point = m_rectangle.top_left();
 
-      ::int_size size = m_rectangle.size();
+      ::i32_size size = m_rectangle.size();
 
       if (m_edisposal == ::draw2d::e_disposal_background
          || m_edisposal == ::draw2d::e_disposal_undefined
@@ -78,7 +78,7 @@ namespace image
 
          //}
 
-         //::int_rectangle rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
+         //::i32_rectangle rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
 
          //pimageCompose->g()->fill_rectangle(rectangle, crBack);
 

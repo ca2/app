@@ -36,7 +36,7 @@ namespace user
 
       virtual void calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight);
 
-      virtual void layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::int_rectangle * prectangle, const ::int_rectangle & lpcrectBound);
+      virtual void layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 

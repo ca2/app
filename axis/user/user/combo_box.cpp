@@ -197,7 +197,7 @@ namespace user
 
       //}
 
-      ::int_rectangle rectangleText;
+      ::i32_rectangle rectangleText;
 
       get_element_rectangle(rectangleText, e_element_text);
 
@@ -232,7 +232,7 @@ namespace user
    void combo_box::get_simple_drop_down_open_arrow_polygon(double_point_array& pointa)
    {
 
-      ::int_rectangle rectangleDropDown;
+      ::i32_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
@@ -240,7 +240,7 @@ namespace user
 
       int cy = cx * 2 / 3;
 
-      ::int_point pointCenter = rectangleDropDown.center();
+      ::i32_point pointCenter = rectangleDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
@@ -275,11 +275,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_rectangle rectangleDropDown;
+      ::i32_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      ::int_rectangle rectangleDropIn(rectangleDropDown);
+      ::i32_rectangle rectangleDropIn(rectangleDropDown);
 
       //::user::e_::color::color colorDropDown = color_button_background_disabled;
       ::color::color colorDropDown = ::color::gray;
@@ -530,7 +530,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool combo_box::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
 
    {
 
@@ -546,10 +546,10 @@ namespace user
    }
 
 
-   ::item_pointer combo_box::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
+   ::item_pointer combo_box::on_hit_test(const ::i32_point& point, ::user::e_zorder ezorder)
    {
 
-      ::int_rectangle rectangleElement;
+      ::i32_rectangle rectangleElement;
 
       if(get_element_rectangle(rectangleElement, e_element_drop_down))
       {
@@ -633,7 +633,7 @@ namespace user
       if (is_drop_down())
       {
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
@@ -926,7 +926,7 @@ namespace user
 
          m_plistbox->query_full_size(pgraphics, &m_sizeFull);
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
@@ -1485,7 +1485,7 @@ namespace user
    }
 
 
-   void combo_box::GetDroppedControlRect(::int_rectangle * prectangle)
+   void combo_box::GetDroppedControlRect(::i32_rectangle * prectangle)
    {
 
       //ASSERT(is_window());

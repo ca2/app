@@ -307,7 +307,7 @@ namespace user
       ::double_size edit::get_size()
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          window_rectangle(rectangle);
 
@@ -334,7 +334,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement)
+      bool edit::get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, enum_element eelement)
 
       {
 
@@ -372,7 +372,7 @@ namespace user
 
       }
 
-      bool edit::get_item_rect(::int_rectangle * prectangle, ::collection::index i)
+      bool edit::get_item_rect(::i32_rectangle * prectangle, ::collection::index i)
 
       {
 
@@ -396,7 +396,7 @@ namespace user
       }
 
 
-      ::item_pointer edit::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+      ::item_pointer edit::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
       {
 
          return ::user::interaction::on_hit_test(point, ezorder);
@@ -1139,7 +1139,7 @@ namespace user
 
          ::image::image_pointer imageDropShadow;
 
-         ::int_rectangle rDropShadow;
+         ::i32_rectangle rDropShadow;
 
          if (m_ppictureimpl != nullptr)
          {
@@ -1159,7 +1159,7 @@ namespace user
 
             pimage->create(m_ppictureimpl->m_rectangleDrawing.size());
 
-            ::int_size sz = m_ppictureimpl->m_rectangleDrawing.size();
+            ::i32_size sz = m_ppictureimpl->m_rectangleDrawing.size();
 
             auto offset = sz / 2;
 
@@ -1338,7 +1338,7 @@ namespace user
       }
 
 
-      bool edit::_001IsPointInside(const ::int_point & pointParam)
+      bool edit::_001IsPointInside(const ::i32_point & pointParam)
       {
 
          if (is_picture_enabled())
@@ -1348,7 +1348,7 @@ namespace user
 
             screen_to_client()(point);
 
-            ::int_rectangle rWindow;
+            ::i32_rectangle rWindow;
             
             window_rectangle(rWindow);
 
@@ -1368,7 +1368,7 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            return rectangleX.contains(::int_point(point));
+            return rectangleX.contains(::i32_point(point));
 
          }
 
@@ -1831,7 +1831,7 @@ namespace user
       //}
 
 
-      void edit::get_text_composition_area(::int_rectangle & r)
+      void edit::get_text_composition_area(::i32_rectangle & r)
       {
 
       }
@@ -2391,7 +2391,7 @@ namespace user
 
                //}
 
-               ::int_rectangle rectangle = pbox->m_rectangleBox;
+               ::i32_rectangle rectangle = pbox->m_rectangleBox;
 
 
                if (pformat->m_escript == e_script_subscript)

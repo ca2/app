@@ -58,7 +58,7 @@ namespace draw2d
    }
 
 
-   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, int_size & size)
+   //void graphics_extension::get_text_extent(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & scopedstr, i32_size & size)
    //{
 
    //   //synchronous_lock ml(&user_synchronization());

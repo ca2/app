@@ -22,7 +22,7 @@ namespace windowing
 
 
       enum_cursor                                  m_ecursor;
-      ::int_size                                   m_szHotspotOffset;
+      ::i32_size                                   m_szHotspotOffset;
       ::pointer<::image::cursor>                   m_pcursor;
       ::image::image_pointer                       m_pimage;
       ::file::path                                 m_path;

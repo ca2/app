@@ -1273,10 +1273,10 @@ namespace platform
       //      virtual void windowing_system_display_error_trap_pop_ignored(int i);
 
 
-      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle& rectangle);
+      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle& rectangle);
 
 
-      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle& rectangle);
+      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle& rectangle);
 
 
       virtual void realize(::particle_pointer pparticle);

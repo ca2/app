@@ -134,7 +134,7 @@ namespace draw2d_cairo
 //
 
 
-   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::int_size & size, void ** ppdata, int * pstride)
+   void bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size & size, void ** ppdata, int * pstride)
    {
 
       //try
@@ -495,23 +495,23 @@ namespace draw2d_cairo
    }
 
 
-   int_size bitmap::SetBitmapDimension(int nWidth, int nHeight)
+   i32_size bitmap::SetBitmapDimension(int nWidth, int nHeight)
    {
 
       throw ::interface_only();
 
-      return ::int_size(0, 0);
+      return ::i32_size(0, 0);
 
    }
 
 
-   int_size bitmap::GetBitmapDimension() const
+   i32_size bitmap::GetBitmapDimension() const
    {
 
       if(m_psurface == nullptr)
       {
 
-         return ::int_size(0, 0);
+         return ::i32_size(0, 0);
 
       }
 

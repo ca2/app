@@ -235,7 +235,7 @@ namespace account
 
       //::user::draw draw;
 
-      ::int_rectangle r = this->rectangle();
+      ::i32_rectangle r = this->rectangle();
 
       //draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
@@ -354,7 +354,7 @@ namespace account
 
          ::image::image_source imagesource(m_picon95);
 
-         double_rectangle rectangle(::int_point((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::int_size((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
+         double_rectangle rectangle(::i32_point((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::i32_size((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
 
          ::image::image_drawing_options imagedrawingoptions(rectangle);
 
@@ -477,7 +477,7 @@ namespace account
    //::u32 c_cdecl thread_proc_pre_login(void * p)
    //{
 
-   //   ::aura::application * papp = (::aura::application *) int_point;
+   //   ::aura::application * papp = (::aura::application *) i32_point;
 
    //   return 0;
 

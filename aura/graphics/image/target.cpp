@@ -57,7 +57,7 @@ namespace image
    }
 
 
-   void target::set_size(const ::int_size& size)
+   void target::set_size(const ::i32_size& size)
    {
 
       _synchronous_lock synchronouslock(m_pparticleSynchronization, DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -70,7 +70,7 @@ namespace image
    void target::set_image_pixels(const ::image32_t* pimage32, int w, int h, int stride, bool bYSwap)
    {
 
-      ::int_size s(w, h);
+      ::i32_size s(w, h);
 
       {
 

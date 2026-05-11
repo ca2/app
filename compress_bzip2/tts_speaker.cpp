@@ -30,13 +30,13 @@ HRESULT out_file(::memory_file * f, WAVEFORMATEX & fmt, IStream * pStream)
 {
 
    // Write the file headers
-   f->write("RIFF----WAVEfmt ", 16);     // (chunk int_size to be filled in later)
+   f->write("RIFF----WAVEfmt ", 16);     // (chunk i32_size to be filled in later)
    ::u32 dw = fmt.cbSize;
    f->write(&dw, sizeof(dw));
    f->write(&fmt, fmt.cbSize);
    // Write the data chunk header
    size_t data_chunk_pos = (size_t)f->get_position();
-   f->write("data----", 8);  // (chunk int_size to be filled in later)
+   f->write("data----", 8);  // (chunk i32_size to be filled in later)
 
 
 
@@ -64,7 +64,7 @@ HRESULT out_file(::memory_file * f, WAVEFORMATEX & fmt, IStream * pStream)
 
    size_t file_length = (size_t)f->get_size();
 
-   // Fix the data chunk header to contain the data int_size
+   // Fix the data chunk header to contain the data i32_size
    f->set_position(data_chunk_pos + 4);
    dw = (::u32)(file_length - data_chunk_pos + 8);
    f->write(&dw, sizeof(::u32));

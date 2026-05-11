@@ -1309,7 +1309,7 @@ string str::case_insensitive_replace_with(const ::scoped_string & scopedstrNew, 
 
    }
 
-   // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start int_point definitive false).
+   // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start i32_point definitive false).
    // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
 
    ::collection::index iLen = scopedstr.length() - iStart;
@@ -3357,7 +3357,7 @@ void str::increment_digit_letter(string & str)
 //
 //   /// \lparam[in] pcszPrefix Candidate prefix string.
 //
-//   /// \return True if \int_point pcsz is prefixed with \int_point pcszPrefix.
+//   /// \return True if \i32_point pcsz is prefixed with \i32_point pcszPrefix.
 //
 //   /// \note Case insensitive.
 //   ///

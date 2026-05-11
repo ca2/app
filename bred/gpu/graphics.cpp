@@ -198,7 +198,7 @@ namespace gpu
 
       }
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
       if (!m_puserinteractionDraw2dGraphics && m_papplication->m_gpu.m_bUseSwapChainWindow)
       {
@@ -280,7 +280,7 @@ namespace gpu
    }
 
 
-   void graphics::on_gpu_context_placement_change(const ::int_rectangle &rectangle,
+   void graphics::on_gpu_context_placement_change(const ::i32_rectangle &rectangle,
                                                   ::acme::windowing::window *pacmewindowingwindow)
    {
 
@@ -525,7 +525,7 @@ namespace gpu
    }
 
 
-   //void graphics::create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size)
+   //void graphics::create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size)
    //{
 
    //   create_memory_graphics(size);
@@ -533,7 +533,7 @@ namespace gpu
    //}
 
 
-   void graphics::create_for_window_draw2d(::user::interaction* puserinteraction, const ::int_size& size)
+   void graphics::create_for_window_draw2d(::user::interaction* puserinteraction, const ::i32_size& size)
    {
 
       m_puserinteractionDraw2dGraphics = puserinteraction;
@@ -912,7 +912,7 @@ namespace gpu
       //return{};
 
       //if(lpszString.is_empty())
-      //   return int_size(0, 0);
+      //   return i32_size(0, 0);
       set(m_pfont);
 
       ::pointer<::write_text::font>pfont = m_pfont;
@@ -1004,7 +1004,7 @@ namespace gpu
 
       pcontext->defer_end_upload_command_buffer();
 
-      return int_size(x, y);
+      return i32_size(x, y);
 
       //wstring wstr = lpszString;
 
@@ -1028,7 +1028,7 @@ namespace gpu
 
       //::pointer<font>pfont = m_pfont;
 
-      //::int_size s = { 0 };
+      //::i32_size s = { 0 };
 
       //::GetTextExtentPointW(pfont->m_hdcFont, wstr, wstr.get_length(), &s);
 
@@ -1222,7 +1222,7 @@ namespace gpu
       auto y = yParam;
 
 
-      ::int_point point(x, y);
+      ::i32_point point(x, y);
       int Δx = 0;
       //auto pcontext = gpu_context();
 
@@ -1434,7 +1434,7 @@ namespace gpu
 
 
 
-   void graphics::defer_set_size(const ::int_size &size) 
+   void graphics::defer_set_size(const ::i32_size &size) 
    {
    
    gpu_context()->m_rectangle.set_size(size);

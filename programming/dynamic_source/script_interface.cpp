@@ -412,7 +412,7 @@ namespace dynamic_source
       catch (...)
       {
 
-         // stop int_point
+         // stop i32_point
          bOk = false;
 
       }

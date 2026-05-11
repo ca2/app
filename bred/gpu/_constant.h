@@ -15,7 +15,7 @@ namespace gpu
    {
 
       e_type_none = 0,
-      e_type_int = 1,
+      e_type_i32 = 1,
       e_type_float = 2,
       e_type_seq2 = 3,
       e_type_seq3 = 4,

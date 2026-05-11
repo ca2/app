@@ -135,7 +135,7 @@ namespace gpu
    }
 
 
-   void renderer::on_resize(const ::int_size& size)
+   void renderer::on_resize(const ::i32_size& size)
    {
 
       if (size == m_sizeRenderer)
@@ -243,12 +243,12 @@ namespace gpu
    }
 
 
-   ::pointer < texture> renderer::create_image_texture(const ::int_size& size, bool bWithDepth)
+   ::pointer < texture> renderer::create_image_texture(const ::i32_size& size, bool bWithDepth)
    {
 
       auto ptexture = createø< texture>();
 
-      ::gpu::texture_attributes textureattributes(::int_rectangle{size});
+      ::gpu::texture_attributes textureattributes(::i32_rectangle{size});
 
       ::gpu::texture_flags textureflags;
 
@@ -320,7 +320,7 @@ namespace gpu
    //}
 
 
-   //void renderer::set_placement(const ::int_rectangle& rectanglePlacement)
+   //void renderer::set_placement(const ::i32_rectangle& rectanglePlacement)
    //{
 
    //   m_rectangle = rectanglePlacement;
@@ -1141,7 +1141,7 @@ namespace gpu
    }
 
 
-   //void renderer::on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::int_size& size, ::gpu::render_target* previous)
+   //void renderer::on_defer_update_renderer_allocate_render_target(::gpu::enum_output eoutput, const ::i32_size& size, ::gpu::render_target* previous)
    //{
 
    //   throw ::interface_only();
@@ -1283,7 +1283,7 @@ namespace gpu
 
    //   m_pgpurendertargetBackBuffer = poffscreenrenderpass;
 
-   //   ::int_size size = rectangle.size();
+   //   ::i32_size size = rectangle.size();
 
    //   m_pgpurendertargetBackBuffer->initialize_render_target(
    //      this, size, pgpurendertargetBackBufferOld);
@@ -1707,7 +1707,7 @@ namespace gpu
 
       //   ////VkImage vkimage = prenderer->m_pvkcrenderpass->m_images[prenderer->m_uCurrentSwapChainImage];
 
-      //   //::int_rectangle rectangle;
+      //   //::i32_rectangle rectangle;
 
       //   //if (!m_puserinteraction->host_rectangle().size().is_empty())
       //   //{

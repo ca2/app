@@ -12,7 +12,7 @@ inline status < ::color::color > __indexed_color(::u32 u32Index)
 
    ::color::color color;
 
-   color.m_ui = u32Index;
+   color.m_u32 = u32Index;
 
 	return status < ::color::color >(color, ::success_color_index);
 

@@ -282,7 +282,7 @@ namespace gpu_gpu
          ////   //}
          //}
 
-         ::int_rectangle rectangleTarget(0, 0, width, height);
+         ::i32_rectangle rectangleTarget(0, 0, width, height);
          ptexture->initialize_with_image_data(this, rectangleTarget, numChannels, bSrgb, data);
          //glGenTextures(1, &textureId);
          //glBindTexture(GL_TEXTURE_2D, textureId);

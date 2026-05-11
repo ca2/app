@@ -398,7 +398,7 @@ namespace ftp
                iState = 4;
                ftpFileStatus.m_strUID.assign_range(scopedstrLine(i, j - i));
                break;
-            case 4: // getting tentative int_size
+            case 4: // getting tentative i32_size
                if (!GetLong(scopedstrLine(i, j - i), lSize))
                {
                   lSize = -1;
@@ -406,7 +406,7 @@ namespace ftp
                }
                iState = 5;
                break;
-            case 5: // searching for month, otherwise getting tentative int_size
+            case 5: // searching for month, otherwise getting tentative i32_size
                lMonth = GetMonth(scopedstrLine(i, j - i));
                if (lMonth >= 0)
                   iState = 6;
@@ -416,7 +416,7 @@ namespace ftp
                      lSize = -1;
                }
                break;
-            case 6: // have int_size and month
+            case 6: // have i32_size and month
                GetLong(scopedstrLine(i, j - i), lMDay);
                iState = 7;
                break;

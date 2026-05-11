@@ -106,9 +106,9 @@ namespace experience_anthill
 
       }
 
-      ::int_rectangle rectangleEllipse(rectangleX);
+      ::i32_rectangle rectangleEllipse(rectangleX);
 
-      ::int_rectangle rW;
+      ::i32_rectangle rW;
 
       window_rectangle(rW);
 
@@ -149,7 +149,7 @@ namespace experience_anthill
 
          pgraphics->set(m_ppen);
 
-         ::int_rectangle rectangleIcon(rectangleEllipse);
+         ::i32_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -213,7 +213,7 @@ namespace experience_anthill
    }
 
 
-   ::item_pointer control_box_button::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer control_box_button::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

@@ -18,8 +18,8 @@ namespace menu
    track_popup::track_popup(::menu::menu * pmenu,
                             ::user::interaction * puserinteractionTarget,
                             ::channel * pchannelNotify,
-                            const ::int_point & pointCursorHint,
-                            const ::int_rectangle & rectangleScreenHint,
+                            const ::i32_point & pointCursorHint,
+                            const ::i32_rectangle & rectangleScreenHint,
                             ::menu::e_track_popup etrackpopup):
    m_pmenu(pmenu),
    m_puserinteractionTarget(puserinteractionTarget),

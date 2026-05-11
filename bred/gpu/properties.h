@@ -522,7 +522,7 @@ namespace gpu
 		properties_reference& operator=(const TYPE& i)requires
 			(::std::is_same_v<TYPE, int >)
 		{
-			if (m_pproperties->m_etype != ::gpu::e_type_int)
+			if (m_pproperties->m_etype != ::gpu::e_type_i32)
 			{
 
 				throw ::exception(error_bad_data_format);

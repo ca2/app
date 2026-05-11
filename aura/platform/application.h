@@ -879,7 +879,7 @@ void initialize_context() override;
       //virtual ::atom translate_property_id(const ::atom & atom) override;
       //virtual property fetch_property(const ::atom & atom) override;
 
-      //virtual void get_time(struct timeval *int_point) override;
+      //virtual void get_time(struct timeval *i32_point) override;
 
       void close(::enum_exit eexit) override;
 
@@ -1095,7 +1095,7 @@ void initialize_context() override;
 
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       
-      //::pointer < ::innate_ui::icon > innate_ui_icon(const ::int_size & size) override;
+      //::pointer < ::innate_ui::icon > innate_ui_icon(const ::i32_size & size) override;
 //      ::gpu::approach* get_gpu_approach() override;
 //      ::gpu::approach* gpu() override;
 //      void create_gpu() override;

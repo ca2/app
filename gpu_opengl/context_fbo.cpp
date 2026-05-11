@@ -76,7 +76,7 @@ void context_fbo::run()
    
 }
 
-   void context_fbo::_create_cpu_buffer(const ::int_size & sizeParam)
+   void context_fbo::_create_cpu_buffer(const ::i32_size & sizeParam)
    {
       
       
@@ -425,7 +425,7 @@ informationf(string(#x) + ": " + ::as_string(value) + "\n");     \
    }
 
 
-   void context_fbo::resize_cpu_buffer(const ::int_size& sizeParam)
+   void context_fbo::resize_cpu_buffer(const ::i32_size& sizeParam)
    {
       
       auto size = sizeParam;

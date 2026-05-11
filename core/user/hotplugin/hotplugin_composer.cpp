@@ -380,11 +380,11 @@ namespace hotplugin
 
          g->Attach((HDC)hdc);
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          m_paxishost->window_rectangle(rectangle);
 
-         m_paxishost->on_paint(g,int_rectangle);
+         m_paxishost->on_paint(g,i32_rectangle);
 
          g->Detach();
 

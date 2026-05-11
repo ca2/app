@@ -22,7 +22,7 @@ namespace user
    public:
 
       //memory m_memory;
-      //int m_i;
+      //int m_i32;
 
       int m_iFrameCounter = 0;
       ::write_text::font_pointer m_pfontThomasBS_;
@@ -51,14 +51,14 @@ namespace user
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpgpucontext) const override;
-      //::int_size size() override;
+      //::i32_size size() override;
 
       //virtual ::block global_ubo_block();
 
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual void on_mouse_move(const int_point& point);
+      virtual void on_mouse_move(const i32_point& point);
       virtual void on_mouse_out();
 
       virtual ::user::enum_key_state get_key_state(::user::e_key ekey) ;
@@ -110,7 +110,7 @@ namespace user
       //virtual bool is_absolute_mouse_position();
 
       //virtual bool shouldClose();
-      //virtual ::int_size size();
+      //virtual ::i32_size size();
       virtual bool wasWindowResized();
       virtual void resetWindowResizedFlag();
 //
@@ -119,7 +119,7 @@ namespace user
       //virtual void initWindow();
 
 
-      virtual void defer_initialize_engine(const ::int_rectangle & rectangle);
+      virtual void defer_initialize_engine(const ::i32_rectangle & rectangle);
 
       virtual ::pointer < ::prodevian::immersion > create_immersion();
 

@@ -70,7 +70,7 @@ namespace micro
 
       wstring wstrText(m_strText);
 
-      int_rectangle rectangleText(rectangle);
+      i32_rectangle rectangleText(rectangle);
       
       rectangleText.deflate(4);
 

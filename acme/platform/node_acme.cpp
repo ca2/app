@@ -1897,13 +1897,13 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //      void acme_node_layer::windowing_system_display_error_trap_pop_ignored(int i){}
 
 
-   bool acme_node_layer::_get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle& rectangle)
+   bool acme_node_layer::_get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle& rectangle)
    {
       return false;
    }
 
 
-   bool acme_node_layer::_get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle& rectangle)
+   bool acme_node_layer::_get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle& rectangle)
    {
       return false;
    }

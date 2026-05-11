@@ -41,7 +41,7 @@ namespace gpu_opengl
    }
 
 
-   void context_glx::_create_offscreen_buffer(const ::int_size & size)
+   void context_glx::_create_offscreen_buffer(const ::i32_size & size)
    {
 
       auto psystem = system();
@@ -223,7 +223,7 @@ namespace gpu_opengl
    }
 
 
-   void context_glx::resize_offscreen_buffer(const ::int_size& size)
+   void context_glx::resize_offscreen_buffer(const ::i32_size& size)
    {
 
       if(!m_pbuffer)

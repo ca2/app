@@ -158,14 +158,14 @@ CLASS_DECL_ACME char * wd32_to_ansi_dup(const ::wd32_character * input, characte
 
 
 /**
- * Encode a code int_point using UTF-8
+ * Encode a code i32_point using UTF-8
  *
  * @adaptor ca2
  * @authorr Ondrhej Hrusjka <ondra@ondrovo.com>
  * @license MIT
  *
  * @paramrr out - output buffer (minimum 5 characters), will be 0-terminated
- * @paramrr utf - code int_point 0-0x10FFFF
+ * @paramrr utf - code i32_point 0-0x10FFFF
  * @returnr number of bytes on success, 0 on failure (also produces U+FFFD, which uses 3 bytes)
  */
 inline character_count wd32_to_ansi_char_len(::wd32_character wch);

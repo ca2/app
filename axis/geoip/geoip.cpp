@@ -591,7 +591,7 @@ int _check_mtime(GeoIP *gi)
       }
       else if (gi->index_cache == nullptr)
       {
-         /* simply int_point to record in memory */
+         /* simply i32_point to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       }
       else
@@ -696,7 +696,7 @@ _GeoIP_addr_to_num_v6(const_char_pointer addr)
       }
       else if (gi->index_cache == nullptr)
       {
-         /* simply int_point to record in memory */
+         /* simply i32_point to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       }
       else

@@ -19,7 +19,7 @@
 #include "berg/user/user/user.h"
 #include "berg/platform/system.h"
 #include "aura/platform/node.h"
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -936,14 +936,14 @@ namespace experience_anthill
    bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
    {
 
-      ::int_rectangle rectangle;
-      ::int_rectangle rectangleBorder;
-      ::int_rectangle rectangleText;
-      ::int_rectangle rectangleX;
-      ::int_rectangle rectangleIcon;
-      ::int_rectangle rectangleClose;
+      ::i32_rectangle rectangle;
+      ::i32_rectangle rectangleBorder;
+      ::i32_rectangle rectangleText;
+      ::i32_rectangle rectangleX;
+      ::i32_rectangle rectangleIcon;
+      ::i32_rectangle rectangleClose;
 
-      ::int_rectangle r1 = ptab->rectangle();
+      ::i32_rectangle r1 = ptab->rectangle();
 
       ::double_rectangle r2;
 
@@ -965,13 +965,13 @@ namespace experience_anthill
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_rectangle rcTab;
+      ::i32_rectangle rcTab;
 
       rcTab = ptab->get_data()->m_rectangleTab;
 
-      ::int_rectangle rcTabs(rcTab);
+      ::i32_rectangle rcTabs(rcTab);
 
-      ::int_rectangle rcClient;
+      ::i32_rectangle rcClient;
 
       rcClient = ptab->get_data()->m_rectangleHosting;
 
@@ -1235,7 +1235,7 @@ namespace experience_anthill
 
                pgraphics->set(ppenBorder);
 
-               ::int_size sizeTopOffset(0, 2);
+               ::i32_size sizeTopOffset(0, 2);
 
                pgraphics->line(rectangleBorder.bottom_right(),rectangleBorder.top_right() + sizeTopOffset);
 
@@ -1412,7 +1412,7 @@ namespace experience_anthill
    }
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText, const ::user::e_state & estate)
    {
 
       auto pstyle = ptab->get_style(pgraphics);
@@ -1430,16 +1430,16 @@ namespace experience_anthill
       else
       {
 
-         ::int_rectangle rectangleText(rectangle);
+         ::i32_rectangle rectangleText(rectangle);
 
          ::write_text::font_pointer pfont;
          pfont = pgraphics->get_current_font();
-         int_size sSep = ptab->get_data()->m_sizeSep;
-         ::int_rectangle rectangleEmp;
+         i32_size sSep = ptab->get_data()->m_sizeSep;
+         ::i32_rectangle rectangleEmp;
          for (::collection::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
-            int_size s = pane.m_sizeaText[i];
+            i32_size s = pane.m_sizeaText[i];
             rectangleText.right = rectangleText.left + s.cx;
 
             if (estate & ::user::e_state_selected)
@@ -1637,7 +1637,7 @@ namespace experience_anthill
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::int_rectangle rectangleX = ptab->rectangle(::user::e_layout_lading);
+         ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_lading);
 
          ptab->get_data()->m_rectangleTab.left = rectangleX.left;
          ptab->get_data()->m_rectangleTab.top = rectangleX.top;
@@ -1668,7 +1668,7 @@ namespace experience_anthill
 
          pgraphics->set(ptab->get_font(pstyle, ::user::e_state_selected));
 
-         ::int_rectangle rectangleX = ptab->rectangle(::user::e_layout_lading);
+         ::i32_rectangle rectangleX = ptab->rectangle(::user::e_layout_lading);
 
          int x = rectangleX.left;
 
@@ -1716,7 +1716,7 @@ namespace experience_anthill
 
             //            string str = ppane->get_title();
 
-            //            int_size size;
+            //            i32_size size;
 
             ixAdd = 5;
 
@@ -1849,9 +1849,9 @@ namespace experience_anthill
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_rectangle rectangleItem;
+      ::i32_rectangle rectangleItem;
 
-      ::int_rectangle rectangleImage;
+      ::i32_rectangle rectangleImage;
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
@@ -1925,7 +1925,7 @@ namespace experience_anthill
 
       if ((estyle & e_tool_item_style_separator) != 0)
       {
-         ::int_rectangle rectangleSeparator;
+         ::i32_rectangle rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
          rectangleSeparator.right = rectangleSeparator.left + 2;
          rectangleSeparator.top = rectangleImage.top;
@@ -2128,7 +2128,7 @@ namespace experience_anthill
 
          pgraphics->set_font(ptoolbar, ::e_element_none);
 
-         ::status < ::int_rectangle > rectangleText;
+         ::status < ::i32_rectangle > rectangleText;
 
          auto pbrushText = createø < ::draw2d::brush >();
 
@@ -2167,9 +2167,9 @@ namespace experience_anthill
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_rectangle rectangleItem;
+      ::i32_rectangle rectangleItem;
 
-      ::int_rectangle rectangleImage;
+      ::i32_rectangle rectangleImage;
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
@@ -2193,7 +2193,7 @@ namespace experience_anthill
 
       if (ptoolitem->id().case_insensitive_order("separator") == 0)
       {
-         /*::int_rectangle rectangleSeparator;
+         /*::i32_rectangle rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
          rectangleSeparator.right = rectangleSeparator.left + 2;
          rectangleSeparator.top = rectangleImage.top;
@@ -2410,7 +2410,7 @@ namespace experience_anthill
 
          pgraphics->set_font(ptoolbar, ::e_element_none);
 
-         ::status < ::int_rectangle > rectangleText;
+         ::status < ::i32_rectangle > rectangleText;
 
          auto pbrushText = createø < ::draw2d::brush >();
 
@@ -2452,7 +2452,7 @@ namespace experience_anthill
    bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 
-      ::int_rectangle rectangleX = psplitlayout->rectangle();
+      ::i32_rectangle rectangleX = psplitlayout->rectangle();
 
       pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 

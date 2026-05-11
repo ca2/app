@@ -372,12 +372,12 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //      index       m_iIndex;
 //      index       m_iScan;
 //      ::collection::count     m_cCount;
-//      index       m_i;
+//      index       m_i32;
 //
 //      operator index()
 //      {
 //
-//         return m_i;
+//         return m_i32;
 //
 //      }
 //
@@ -399,7 +399,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //   virtual void run() override
 //   {
 //
-//      for (m_index.m_i = m_index.m_iIndex; m_index.m_i < m_index.m_cCount; m_index.m_i += m_index.m_iScan)
+//      for (m_index.m_i32 = m_index.m_iIndex; m_index.m_i32 < m_index.m_cCount; m_index.m_i32 += m_index.m_iScan)
 //      {
 //
 //         m_function(m_index);

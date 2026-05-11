@@ -60,7 +60,7 @@
 
 //      }
 
-//      if (!(int_point->*pfnOuput)(&os, &is))
+//      if (!(i32_point->*pfnOuput)(&os, &is))
 
 //      {
 
@@ -321,7 +321,7 @@
 
 //      }
 
-//      if (!(int_point->*pfnOuput)(os, is))
+//      if (!(i32_point->*pfnOuput)(os, is))
 
 //      {
 
@@ -361,7 +361,7 @@
 
 //      }
 
-//      if (!(int_point->*pfnOuput)(os, is))
+//      if (!(i32_point->*pfnOuput)(os, is))
 
 //      {
 
@@ -400,7 +400,7 @@
 
 //      }
 
-//      if (!(int_point->*pfnOuput)(os, is))
+//      if (!(i32_point->*pfnOuput)(os, is))
 
 //      {
 
@@ -512,9 +512,9 @@
 //inline ::file::path operator + (const ::scoped_string & scopedstr,const ::file::path & path) { return ::file::path(str + string(path)); }
 //inline ::file::path operator + (const ::scoped_string & scopedstr,const ::file::path & path) {  return ::file::path(scopedstr + string(path)); }
 // xxxabc inline ::file::path operator + (const ::payload & payload,const ::file::path & path) { return ::file::path(payload.get_string() + string(path)); }
-//inline ::file::path operator / (const ::scoped_string & scopedstr,const ::file::path & path) { ::file::path int_point(str);  return point / path; }
-//inline ::file::path operator / (const ::scoped_string & scopedstr,const ::file::path & path) { ::file::path int_point(scopedstr);  return point / path; }
-// xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path int_point(payload.get_file_path());  return point / path; }
+//inline ::file::path operator / (const ::scoped_string & scopedstr,const ::file::path & path) { ::file::path i32_point(str);  return point / path; }
+//inline ::file::path operator / (const ::scoped_string & scopedstr,const ::file::path & path) { ::file::path i32_point(scopedstr);  return point / path; }
+// xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path i32_point(payload.get_file_path());  return point / path; }
 
 
 

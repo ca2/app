@@ -82,9 +82,9 @@ namespace user
       status < ::color::color >                 m_colorText;
       status < ::color::color >                 m_colorTextBackground;
       status < ::color::color >                 m_colorSubItemBackground;
-      ::int_rectangle                           m_rectangleSubItem;
-      ::int_rectangle                           m_rectangleImage;
-      ::int_rectangle                           m_rectangleText;
+      ::i32_rectangle                           m_rectangleSubItem;
+      ::i32_rectangle                           m_rectangleImage;
+      ::i32_rectangle                           m_rectangleText;
 
       //index                               m_iSubItemRectItem;
       //index                               m_iSubItemRectSubItem;
@@ -161,10 +161,10 @@ namespace user
 
 
       class ::time                        m_timeLastDraw;
-      // ::int_rectangle                     m_rectangleGroup;
-      ::int_rectangle                     m_rectangleItem;
-      //::int_rectangle                     m_rectangleListItem;
-      int_rectangle *                     m_prectClient;
+      // ::i32_rectangle                     m_rectangleGroup;
+      ::i32_rectangle                     m_rectangleItem;
+      //::i32_rectangle                     m_rectangleListItem;
+      i32_rectangle *                     m_prectClient;
 
       status < ::color::color >           m_colorItemBackground;
 
@@ -251,12 +251,12 @@ namespace user
 
 
       class ::time                        m_nanoLastDraw;
-       ::int_rectangle                    m_rectangleGroup;
-      //::int_rectangle                   m_rectangleItem;
-      //::int_rectangle                   m_rectangleListItem;
-      ::int_rectangle                     m_rectangleImage;
-      ::int_rectangle                     m_rectangleText;
-      int_rectangle * m_prectClient;
+       ::i32_rectangle                    m_rectangleGroup;
+      //::i32_rectangle                   m_rectangleItem;
+      //::i32_rectangle                   m_rectangleListItem;
+      ::i32_rectangle                     m_rectangleImage;
+      ::i32_rectangle                     m_rectangleText;
+      i32_rectangle * m_prectClient;
 
       ::write_text::font * m_pfont;
       ::e_align                           m_ealign;

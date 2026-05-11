@@ -796,7 +796,7 @@ namespace html
          if (etag == tag_body)
          {
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
 
             if (!pdata->m_pcoredata->m_bDrawFirstBody)
             {

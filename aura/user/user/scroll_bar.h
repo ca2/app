@@ -19,7 +19,7 @@ namespace user
       //scroll_state                      m_scrollstatea[::user::e_layout_maximum_count];
       ::pointer < scroll_layout >         m_pscrolllayout;
       bool                                m_bTracking;
-      ::int_size                          m_sizeTrackOffset;
+      ::i32_size                          m_sizeTrackOffset;
       ::pointer < ::user::interaction >   m_puserinteractionScrollBase;
 
 
@@ -46,7 +46,7 @@ namespace user
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      //virtual ::status < ::int_rectangle > get_track_rectangle(::draw2d::graphics_pointer & pgraphics);
+      //virtual ::status < ::i32_rectangle > get_track_rectangle(::draw2d::graphics_pointer & pgraphics);
 
       
       virtual ::status < ::double_rectangle > get_track_rectangle(::user::enum_layout elayout);

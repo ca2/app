@@ -66,7 +66,7 @@ namespace opengl
 
       switch (etype)
       {
-      case ::gpu::e_type_int:
+      case ::gpu::e_type_i32:
          return GL_INT;
       case ::gpu::e_type_float:
          return GL_FLOAT;

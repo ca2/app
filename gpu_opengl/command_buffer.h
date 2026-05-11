@@ -19,9 +19,9 @@ namespace gpu_opengl
       ~command_buffer() override;
 
 
-      void set_viewport(const ::int_rectangle& rectangle) override;
+      void set_viewport(const ::i32_rectangle& rectangle) override;
 
-      void set_scissor(const ::int_rectangle& rectangle) override;
+      void set_scissor(const ::i32_rectangle& rectangle) override;
 
 
       void draw_int_a_count(int a) override;

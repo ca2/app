@@ -109,7 +109,7 @@ namespace user
 
    protected:
 
-      ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the int_size
+      ::int_map < ::image::image_list_pointer  >                          m_pimagelist; // int is the i32_size
       ::int_map < ::image::image_list_pointer  >                          m_pimagelistHover; // int is the size;
       map_base < ::pointer < ::user::interaction >, ::string_array_base >      m_mapInterest;
 
@@ -147,7 +147,7 @@ namespace user
    protected:
 
 
-      ::int_array_base                                          m_iaSize;
+      ::i32_array_base                                          m_iaSize;
 
 
    public:
@@ -199,8 +199,8 @@ namespace user
 
       virtual void on_update_sizes_interest();
 
-      void add_size_interest(::int_array_base iaSize);
-      void set_size_interest(::int_array_base iaSize);
+      void add_size_interest(::i32_array_base iaSize);
+      void set_size_interest(::i32_array_base iaSize);
 
       int _reserve_image(const image_key & key);
 

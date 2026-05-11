@@ -71,7 +71,7 @@ namespace gpu
       //struct sampler_and_texture
       //{
 
-      //   int m_i;
+      //   int m_i32;
       //};
       //::string_map_base<sampler_and_texture> m_mapSamplerAndTexture;
       bool                                m_bClearColor;

@@ -37,15 +37,15 @@ namespace gpu
       ::pointer<::gpu::graphics>                m_pgraphics;
       //::pointer<::gpu::context>             m_pgpucontextOutput;
       bool                                      m_bDisableDepthStencil = false;
-      ::int_size m_sizeRenderer;
+      ::i32_size m_sizeRenderer;
       ::pointer < command_buffer >              m_pcommandbufferLoadAssets;
       ::pointer < command_buffer >              m_pcommandbufferLoadAssets2;
 
       //::pointer<::gpu::approach>            m_papproach;
       //::image::image_pointer                m_pimageFromGpu;
       ///::pointer<::gpu::shader>              m_pshader;
-      //int_rectangle                         m_rectangle;
-      //int_size                              m_sizeHost;
+      //i32_rectangle                         m_rectangle;
+      //i32_size                              m_sizeHost;
       //string                              m_strFont1;
       //string_map_base < ::image::image_pointer >      m_pimagemap;
       //::image::image_pointer                     m_pimage1;
@@ -103,7 +103,7 @@ namespace gpu
       virtual void defer_initialize_render_target();
       virtual ::gpu::texture* current_render_target_texture(::gpu::frame* pgpuframe);
 
-      //virtual ::int_rectangle rectangle();
+      //virtual ::i32_rectangle rectangle();
       //virtual int height();
       virtual ::gpu::command_buffer* getCurrentCommandBuffer2(::gpu::frame* pgpuframe);
       virtual ::gpu::command_buffer* getLoadAssetsCommandBuffer();
@@ -111,7 +111,7 @@ namespace gpu
 
       virtual void initialize_gpu_renderer(::gpu::context * pgpucontext);
 
-      virtual void on_resize(const ::int_size& size);
+      virtual void on_resize(const ::i32_size& size);
 
       //virtual void initialize_render(::user::interaction * puserinteraction);
       ///// Initialization routines
@@ -143,7 +143,7 @@ namespace gpu
 
       //virtual void _001OnDrawArcs(::draw2d::graphics_pointer & pgraphics, bool bPath);
 
-      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, int_rectangle & r, double dStart, double dAngle, bool bPath);
+      //virtual void draw_arc(::draw2d::graphics_pointer & pgraphics, i32_rectangle & r, double dStart, double dAngle, bool bPath);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
@@ -156,7 +156,7 @@ namespace gpu
 
       //virtual void draw();
 
-      //virtual void set_placement(const ::int_rectangle & rectanglePlacement);
+      //virtual void set_placement(const ::i32_rectangle & rectanglePlacement);
 
       virtual void on_context_resize();
 
@@ -236,9 +236,9 @@ namespace gpu
       virtual void frame_prefix();
       virtual void frame_suffix();
 
-      //virtual void start_layer(const ::int_rectangle& rectangleTarget);
+      //virtual void start_layer(const ::i32_rectangle& rectangleTarget);
       virtual void start_layer();
-      //virtual void take_snapshot(layer * player, const ::int_rectangle& rectangleTarget);
+      //virtual void take_snapshot(layer * player, const ::i32_rectangle& rectangleTarget);
       virtual void end_layer();
       //virtual void merge_layers(::pointer_array < layer > * playera);
 
@@ -251,7 +251,7 @@ namespace gpu
       virtual void end_frame();
 
 
-      virtual ::pointer < ::gpu::texture > create_image_texture(const ::int_size& size, bool bWithDepth);
+      virtual ::pointer < ::gpu::texture > create_image_texture(const ::i32_size& size, bool bWithDepth);
       //virtual void take_snapshot(layer* player);
 
 

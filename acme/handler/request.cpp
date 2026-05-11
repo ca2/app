@@ -563,13 +563,13 @@ void request::ParseParamFlag(const ::scoped_string & scopedstrParam)
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (scopedstrParam.case_insensitive_order("int_point") == 0)
+   if (scopedstrParam.case_insensitive_order("i32_point") == 0)
    {
 
       m_ecommand = e_command_file_print_to;
 
    }
-   else if (scopedstrParam.case_insensitive_order("int_point") == 0)
+   else if (scopedstrParam.case_insensitive_order("i32_point") == 0)
    {
 
       m_ecommand = e_command_file_print;

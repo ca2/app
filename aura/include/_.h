@@ -215,7 +215,7 @@ namespace aura
 ////struct ::int_sz
 ////{
 ////
-////   int            m_i;
+////   int            m_i32;
 ////   const_char_pointer m_psz;
 ////
 ////};
@@ -1635,7 +1635,7 @@ namespace aura
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
 ////class size_type;
 ////
-////using size = size_type < ::int_size, ::int_point, ::int_rectangle >;
+////using size = size_type < ::i32_size, ::i32_point, ::i32_rectangle >;
 ////
 ////
 ////#include "aura/prototype/math/cast.h"

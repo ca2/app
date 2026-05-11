@@ -39,7 +39,7 @@ namespace nanoui
    }
 
 
-   int_size ImagePanel::grid_size() const
+   i32_size ImagePanel::grid_size() const
    {
       int n_cols = 1 + ::maximum(0,
          (int)((m_size.cx - 2 * m_iMargin - m_iThumbSize) /
@@ -49,12 +49,12 @@ namespace nanoui
    }
 
 
-   int ImagePanel::index_for_position(const int_point & p) const
+   int ImagePanel::index_for_position(const i32_point & p) const
    {
 
       //auto pointClient = p - m_pos;
 
-      auto pointClient = p - int_size(m_iMargin, m_iMargin);
+      auto pointClient = p - i32_size(m_iMargin, m_iMargin);
 
       float_point cursorrate = pointClient / (float)(m_iThumbSize + m_iSpacing);
 
@@ -65,7 +65,7 @@ namespace nanoui
          fmodf(cursorrate.y, 1.f) < icon_region;
 
 
-      ::int_point gridindex(cursorrate);
+      ::i32_point gridindex(cursorrate);
 
       auto gridsize = grid_size();
 
@@ -81,7 +81,7 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_motion_event(const int_point & p, const int_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
+   bool ImagePanel::mouse_motion_event(const i32_point & p, const i32_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
    {
 
       auto iIndex = index_for_position(p);
@@ -103,7 +103,7 @@ namespace nanoui
    }
 
 
-   bool ImagePanel::mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool ImagePanel::mouse_button_event(const i32_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
    {
 
       ::collection::index iIndex = index_for_position(p);
@@ -140,14 +140,14 @@ namespace nanoui
    }
 
 
-   int_size ImagePanel::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
+   i32_size ImagePanel::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
    {
 
       ((ImagePanel *)this)->_defer_load_image_directory(pcontext);
 
       auto gridsize = grid_size();
 
-      return int_size(
+      return i32_size(
          gridsize.cx * m_iThumbSize + (gridsize.cx - 1) * m_iSpacing + 2 * m_iMargin,
          gridsize.cy * m_iThumbSize + (gridsize.cy - 1) * m_iSpacing + 2 * m_iMargin
       );
@@ -174,25 +174,25 @@ namespace nanoui
       for (::collection::index iImageIndex = 0; iImageIndex < m_images.size(); ++iImageIndex)
       {
 
-         int_point gridindex((int)iImageIndex % gridsize.cx, (int)iImageIndex / gridsize.cx);
+         i32_point gridindex((int)iImageIndex % gridsize.cx, (int)iImageIndex / gridsize.cx);
 
-         int_point image_top_left =
+         i32_point image_top_left =
             m_pos
-            + ::int_size(m_iMargin, m_iMargin)
+            + ::i32_size(m_iMargin, m_iMargin)
             + gridindex * (m_iThumbSize + m_iSpacing);
 
          if (pvscrollpanel)
          {
 
-            ::int_rectangle rectangleViewableImagePanel(
+            ::i32_rectangle rectangleViewableImagePanel(
                pvscrollpanel->m_pos.x,
                pvscrollpanel->m_pos.y,
                pvscrollpanel->m_pos.x + pvscrollpanel->m_size.cx,
                pvscrollpanel->m_pos.y + pvscrollpanel->m_size.cy);
 
-            ::int_rectangle rectangleImageFinalPlacement(
+            ::i32_rectangle rectangleImageFinalPlacement(
                image_top_left,
-               ::int_size(m_iThumbSize, m_iThumbSize));
+               ::i32_size(m_iThumbSize, m_iThumbSize));
 
             rectangleImageFinalPlacement.offset_y((int)pvscrollpanel->get_scroll_offset().cy);
 

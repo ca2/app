@@ -133,7 +133,7 @@ namespace gpu
    void context::_create_window_buffer(::windowing::window *pwindow) {}
 
 
-   void context::create_cpu_buffer(const ::int_size &size)
+   void context::create_cpu_buffer(const ::i32_size &size)
    {
 
       if (size.is_empty())
@@ -191,13 +191,13 @@ namespace gpu
    }
 
 
-   void context::_create_cpu_buffer(const ::int_size &size) {}
+   void context::_create_cpu_buffer(const ::i32_size &size) {}
 
 
    void context::_defer_create_window_context(::acme::windowing::window *pwindow) {}
 
 
-   void context::resize_cpu_buffer(const ::int_size &size)
+   void context::resize_cpu_buffer(const ::i32_size &size)
    {
 
       send(
@@ -381,7 +381,7 @@ namespace gpu
 
       auto ptextureEmpty = createø<::gpu::texture>();
 
-      ::int_rectangle rectangleSize(API_CHANGED_ARGUMENT, 1, 1);
+      ::i32_rectangle rectangleSize(API_CHANGED_ARGUMENT, 1, 1);
 
       ::gpu::texture_attributes textureattributes(rectangleSize);
 
@@ -1091,7 +1091,7 @@ namespace gpu
 //    }
 
 
-   void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::int_rectangle & rectangle)
+   void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle)
    {
 
       pgpucommandbuffer->set_viewport(rectangle);
@@ -1099,7 +1099,7 @@ namespace gpu
    }
 
 
-   void context::set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle)
+   void context::set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle)
    {
 
       pgpucommandbuffer->set_scissor(rectangle);
@@ -1435,7 +1435,7 @@ namespace gpu
    }
 
 
-   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, const ::int_size& size)
+   void context::create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene& escene, const ::i32_size& size)
    {
 
       if (size.is_empty())
@@ -1465,7 +1465,7 @@ namespace gpu
    }
 
 
-   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::int_size& size)
+   void context::create_draw2d_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::i32_size& size)
    {
 
       if (::is_null(pgpudevice))
@@ -1532,7 +1532,7 @@ namespace gpu
    //}
 
 
-   //void context::create_draw2d_off_screen_context(::gpu::device* pgpudevice, const ::gpu::enum_output & eoutput, const::int_size& size)
+   //void context::create_draw2d_off_screen_context(::gpu::device* pgpudevice, const ::gpu::enum_output & eoutput, const::i32_size& size)
    //{
 
    //   m_etype = e_type_draw2d;
@@ -1572,7 +1572,7 @@ namespace gpu
    //}
 
 
-   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
+   void context::initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size& size)
    {
 
       if (size.is_empty())
@@ -1636,7 +1636,7 @@ namespace gpu
    }
 
 
-   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size& size)
+   void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size& size)
    {
 
       if (size.is_empty())
@@ -1670,7 +1670,7 @@ namespace gpu
       else
       {
 
-         auto r = ::int_rectangle(::int_point{}, size);
+         auto r = ::i32_rectangle(::i32_point{}, size);
          //
          //       ::gpu::rear_guard guard(this);
 
@@ -1829,7 +1829,7 @@ namespace gpu
    }
 
 
-   ::int_rectangle context::rectangle()
+   ::i32_rectangle context::rectangle()
    {
 
       return m_rectangle;
@@ -1837,7 +1837,7 @@ namespace gpu
    }
 
 
-   void context::set_placement(const ::int_rectangle& rectanglePlacement)
+   void context::set_placement(const ::i32_rectangle& rectanglePlacement)
    {
 
       m_rectangle = rectanglePlacement;
@@ -1847,7 +1847,7 @@ namespace gpu
    }
 
 
-   void context::on_resize(const ::int_size& size)
+   void context::on_resize(const ::i32_size& size)
    {
 
       m_rectangle.top_left() = { 0, 0 };
@@ -1928,7 +1928,7 @@ namespace gpu
    //}
 
 
-   ::pointer < ::gpu::pixmap > context::create_gpu_pixmap(const ::int_size& size)
+   ::pointer < ::gpu::pixmap > context::create_gpu_pixmap(const ::i32_size& size)
    {
 
       ::pointer < ::gpu::pixmap > ppixmap;
@@ -1939,7 +1939,7 @@ namespace gpu
 
          auto ptextureNewAtlas = createø<::gpu::texture >();
 
-         ::gpu::texture_attributes textureattributes(::int_rectangle{API_CHANGED_ARGUMENT, 4096, 4096}); 
+         ::gpu::texture_attributes textureattributes(::i32_rectangle{API_CHANGED_ARGUMENT, 4096, 4096}); 
 
          ::gpu::texture_flags textureflags;
 
@@ -2733,7 +2733,7 @@ namespace gpu
 
 
 
-   bool context::create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics* pgraphics, const ::int_size& size)
+   bool context::create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics* pgraphics, const ::i32_size& size)
    {
 
       return false;
@@ -4161,7 +4161,7 @@ return {};
       ASSERT(w1 == w2 && h1 == h2);
 
       auto pgputextureMetallicRoughness = createø<::gpu::texture>();
-      ::int_rectangle r(0, 0, w1, h1);
+      ::i32_rectangle r(0, 0, w1, h1);
       ::gpu::texture_attributes textureattributes(r);
       textureattributes.m_iBitsPerChannel = 8;
       textureattributes.m_iChannelCount = 1;
@@ -4211,7 +4211,7 @@ return {};
 
          m_pgpushaderRgbaFromB_G->set_int("mipLevel", iMip);
 
-         int_rectangle r;
+         i32_rectangle r;
          r.left = 0;
          r.top = 0;
          r.set_width(pgputextureMetallicRoughness->mip_width());
@@ -4244,7 +4244,7 @@ return {};
 
 
 BEGIN_GPU_PROPERTIES(rgba_from_b_g_push_constants)
-GPU_PROPERTY("mipLevel", ::gpu::e_type_int)
+GPU_PROPERTY("mipLevel", ::gpu::e_type_i32)
 END_GPU_PROPERTIES()
 
 

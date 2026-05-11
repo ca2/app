@@ -30,13 +30,13 @@ namespace user
       //void on_create_user_interaction() override;
       
       
-      void input_client_rectangle(::int_rectangle & rectangle, enum_layout elayout = e_layout_sketch) override;
+      void input_client_rectangle(::i32_rectangle & rectangle, enum_layout elayout = e_layout_sketch) override;
 
 
       void initial_frame_placement() override;
 
 
-      ::collection::index get_preferred_restore(::int_rectangle & rectanglePreferredRestore) override;
+      ::collection::index get_preferred_restore(::i32_rectangle & rectanglePreferredRestore) override;
 
 
       //virtual void create_main_window_asynchronously();

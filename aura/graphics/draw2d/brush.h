@@ -53,8 +53,8 @@ namespace draw2d
 
       virtual bool CreateSysColorBrush(int nIndex);
 
-      virtual bool CreateLinearGradientBrush(const int_point & point1, const int_point & point2, const ::color::color & color1, const ::color::color & color2);
-      virtual bool CreateRadialGradientBrush(const ::int_point & point,int_size s,const ::color::color & color1,const ::color::color & color2);
+      virtual bool CreateLinearGradientBrush(const i32_point & point1, const i32_point & point2, const ::color::color & color1, const ::color::color & color2);
+      virtual bool CreateRadialGradientBrush(const ::i32_point & point,i32_size s,const ::color::color & color1,const ::color::color & color2);
       virtual bool CreateLinearGradientBrush(double_point point1,double_point point2,const ::color::color & color1,const ::color::color & color2);
       virtual bool CreateRadialGradientBrush(double_point point,double_size s,const ::color::color & color1,const ::color::color & color2);
       virtual bool CreateBoxGradientBrush(double_point point, double_size s, double dRadius, const ::color::color & colorInner, const ::color::color & colorOuter);

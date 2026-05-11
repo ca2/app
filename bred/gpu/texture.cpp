@@ -68,7 +68,7 @@ namespace gpu
 
 
    void texture::initialize_with_image_data(::gpu::context * pgpucontext,
-                                              const ::int_rectangle & rectangleTarget,
+                                              const ::i32_rectangle & rectangleTarget,
                                      int numChannels, bool bSrgb, const void * pdata,
                                      enum_texture etexture)
    {
@@ -153,7 +153,7 @@ namespace gpu
    }
 
 
-   //void texture::initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::int_rectangle &rectangleTarget,
+   //void texture::initialize_mipmap_cubemap_texture(::gpu::context *pgpucontext, const ::i32_rectangle &rectangleTarget,
    //                                       int iMipCount, bool bRenderTarget, bool bShaderResource)
    //{
 
@@ -166,7 +166,7 @@ namespace gpu
    //}
 
 
-   void texture::initialize_depth_texture(::gpu::context* pgpucontext, const ::int_rectangle& rectangleTarget)
+   void texture::initialize_depth_texture(::gpu::context* pgpucontext, const ::i32_rectangle& rectangleTarget)
    {
 
       ::gpu::texture_attributes textureattributes(rectangleTarget, 16, 1, 0, 1, e_texture_depth);
@@ -195,7 +195,7 @@ namespace gpu
    }
 
 
-   ::int_rectangle texture::rectangle() const
+   ::i32_rectangle texture::rectangle() const
    {
 
       return m_textureattributes.m_rectangleTarget;
@@ -204,7 +204,7 @@ namespace gpu
 
 
 
-   ::int_size texture::size() const
+   ::i32_size texture::size() const
    {
 
       return m_textureattributes.m_rectangleTarget.size();
@@ -465,7 +465,7 @@ namespace gpu
    }
 
 
-   ::pointer < ::gpu::pixmap > texture::create_gpu_pixmap(const ::int_size& size)
+   ::pointer < ::gpu::pixmap > texture::create_gpu_pixmap(const ::i32_size& size)
    {
 
       if (m_iAtlasX >= m_textureattributes.m_rectangleTarget.width() ||
@@ -636,7 +636,7 @@ namespace gpu
    }
 
 
-   void texture::set_pixels(const ::int_rectangle& rectangle, const void* data)
+   void texture::set_pixels(const ::i32_rectangle& rectangle, const void* data)
    {
 
 

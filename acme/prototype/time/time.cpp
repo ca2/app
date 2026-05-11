@@ -11,7 +11,7 @@
 //time time::operator - (const class time & time) const
 //{
 //
-//   return ::time(m_i - time.m_i, m_i - time.m_i);
+//   return ::time(m_i32 - time.m_i32, m_i32 - time.m_i32);
 //
 //}
 //
@@ -19,7 +19,7 @@
 //time time::operator + (const class time & time) const
 //{
 //
-//   return ::time(m_i + time.m_i, m_i + time.m_i);
+//   return ::time(m_i32 + time.m_i32, m_i32 + time.m_i32);
 //
 //}
 
@@ -52,19 +52,19 @@
 //void time::sleep() const
 //{
 //
-//   if (m_secs.m_i >= 20)
+//   if (m_secs.m_i32 >= 20)
 //   {
 //
 //      ::preempt(m_secs);
 //
 //   }
-//   else if (m_secs.m_i > 0 || m_nanos.m_i > 20'000'000)
+//   else if (m_secs.m_i32 > 0 || m_nanos.m_i32 > 20'000'000)
 //   {
 //
 //      ::preempt(::time());
 //
 //   }
-//   else if (m_nanos.m_i > 20'000)
+//   else if (m_nanos.m_i32 > 20'000)
 //   {
 //
 //      ::preempt(microsecond());

@@ -495,7 +495,7 @@ namespace user
                else if (ptopic->user_interaction()->id() == "font_foreground")
                {
 
-                  ::int_point pointShowPopup(ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom());
+                  ::i32_point pointShowPopup(ptopic->user_interaction()->left(), ptopic->user_interaction()->bottom());
 
                   ptopic->user_interaction()->get_parent()->client_to_screen()(pointShowPopup);
 
@@ -841,7 +841,7 @@ namespace user
 
          m_pformat = pselection->get_selection_common_format();
 
-         ::int_rectangle rectangleOther;
+         ::i32_rectangle rectangleOther;
 
          puserinteraction->window_rectangle(rectangleOther);
 
@@ -853,13 +853,13 @@ namespace user
 
          add_handler(puserinteraction);
 
-         ::int_rectangle rectangle(rectangleOther.top_left() - ::int_size(0, 48), ::int_size(100, 100));
+         ::i32_rectangle rectangle(rectangleOther.top_left() - ::i32_size(0, 48), ::i32_size(100, 100));
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          window_rectangle(rectangleWindow);
 
-         ::int_rectangle rectangleRequest;
+         ::i32_rectangle rectangleRequest;
 
          rectangleRequest.left = rectangle.left - 32;
 

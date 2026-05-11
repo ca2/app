@@ -158,7 +158,7 @@ namespace user
       e_message_recalc_parent,
       // #define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
       //  wParam = ID of child interaction_impl
-      //  lParam = pRectNew (aaa_memory_new position/int_size)
+      //  lParam = pRectNew (aaa_memory_new position/i32_size)
       e_message_size_child,
       // #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
       e_message_kick_idle,

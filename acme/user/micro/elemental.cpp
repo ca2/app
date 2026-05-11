@@ -207,7 +207,7 @@ namespace micro
 
       }
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = get_client_rectangle();
 
@@ -1537,7 +1537,7 @@ namespace micro
           //}
 
 
-          //::int_point elemental::origin()
+          //::i32_point elemental::origin()
           //{
 
           //   throw ::exception(error_wrong_state);
@@ -1605,7 +1605,7 @@ namespace micro
    }
 
 
-   ::int_point elemental::origin()
+   ::i32_point elemental::origin()
    {
       auto r = get_window_rectangle();
 
@@ -1614,7 +1614,7 @@ namespace micro
    }
 
 
-   ::int_rectangle elemental::get_client_rectangle()
+   ::i32_rectangle elemental::get_client_rectangle()
    {
       auto r = get_rectangle();
 
@@ -1625,7 +1625,7 @@ namespace micro
    }
 
 
-   void elemental::set_rectangle(const ::int_rectangle & rectangle)
+   void elemental::set_rectangle(const ::i32_rectangle & rectangle)
    {
 
       m_rectangle = rectangle;
@@ -1696,7 +1696,7 @@ namespace micro
    }
 
 
-   //::int_point elemental::try_absolute_mouse_position(const ::int_point & point)
+   //::i32_point elemental::try_absolute_mouse_position(const ::i32_point & point)
    //{
 
    //   auto p = point;
@@ -1716,7 +1716,7 @@ namespace micro
    //}
 
 
-   //bool elemental::on_drag_start(::int_point & point, ::item * pitem)
+   //bool elemental::on_drag_start(::i32_point & point, ::item * pitem)
    //{
 
    //   if (pitem->m_item.m_eelement == e_element_client)
@@ -1742,7 +1742,7 @@ namespace micro
    //}
 
 
-   //::int_point elemental::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
+   //::i32_point elemental::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
    //{
 
    //   //auto p = try_absolute_mouse_position(point);
@@ -1873,7 +1873,7 @@ namespace micro
       //}
 
 
-   void elemental::set_position(const ::int_point & point)
+   void elemental::set_position(const ::i32_point & point)
    {
 
       acme_windowing_window()->set_position(point);
@@ -1991,14 +1991,14 @@ namespace micro
    }
 
 
-   //void elemental::get_client_rectangle(::int_rectangle & rectangle)
+   //void elemental::get_client_rectangle(::i32_rectangle & rectangle)
    //{
 
 
    //}
 
 
-   int_rectangle elemental::get_rectangle()
+   i32_rectangle elemental::get_rectangle()
    {
 
       return m_rectangle;

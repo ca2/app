@@ -248,13 +248,13 @@ void memory_file::write_from_hex(const ::block & block)
 }
 
 
-//void memory_file::Truncate(filesize int_size)
+//void memory_file::Truncate(filesize i32_size)
 //{
 //
-//   allocate((memsize)int_size);
+//   allocate((memsize)i32_size);
 //
-//   if (m_position > (memsize)int_size)
-//      m_position = (memsize)int_size;
+//   if (m_position > (memsize)i32_size)
+//      m_position = (memsize)i32_size;
 //
 //
 //}
@@ -456,10 +456,10 @@ void memory_file::clear()
 }
 
 
-void memory_file::set_size(filesize int_size)
+void memory_file::set_size(filesize i32_size)
 {
 
-   ::memory_container::set_size((memsize) int_size);
+   ::memory_container::set_size((memsize) i32_size);
 
    if (m_position > size())
    {

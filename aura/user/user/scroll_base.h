@@ -33,14 +33,14 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_create);
 
 
-      bool on_drag_start(::int_point & pointStart, ::user::mouse * pmouse, ::item * pitem) override;
+      bool on_drag_start(::i32_point & pointStart, ::user::mouse * pmouse, ::item * pitem) override;
       bool drag_shift(::item * pitem, ::user::mouse * pmouse) override;
 
       void sketch_to_lading() override;
       void lading_to_layout(bool & bUpdateBuffer, bool & bUpdateWindow) override;
       void layout_to_design() override;
 
-      void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      void set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
 
 
@@ -57,10 +57,10 @@ namespace user
       //void install_message_routing(::channel * pchannel) override;
       void set_context_offset(const ::double_point & pointOffset, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      virtual ::int_rectangle client2_rectangle(enum_layout elayout = e_layout_design) override;
+      virtual ::i32_rectangle client2_rectangle(enum_layout elayout = e_layout_design) override;
 
 
-      bool GetFocusRect(::int_rectangle & rectangle) override;
+      bool GetFocusRect(::i32_rectangle & rectangle) override;
 
 
       ::double_size get_total_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
@@ -77,9 +77,9 @@ namespace user
       bool scroll_bar_y_visible(enum_layout elayout = e_layout_design) override;
 
 
-      bool get_element_rectangle(::int_rectangle & rectangle, enum_element eelement) override;
+      bool get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement) override;
 
-      ::int_point drag_point(::item * pitem, ::user::mouse * pmouse) override;
+      ::i32_point drag_point(::item * pitem, ::user::mouse * pmouse) override;
 
    };
 

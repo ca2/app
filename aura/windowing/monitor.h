@@ -17,9 +17,9 @@ namespace windowing
 
 
       ::collection::index                                               m_iIndex;
-      ::int_rectangle                                       m_rectangle;
-      ::int_rectangle                                       m_rectangleWorkspace;
-      ::int_rectangle                                       m_rectangleFixedWorkspace;
+      ::i32_rectangle                                       m_rectangle;
+      ::i32_rectangle                                       m_rectangleWorkspace;
+      ::i32_rectangle                                       m_rectangleFixedWorkspace;
       ::pointer<::windowing::display>                       m_pdisplay;
 
 
@@ -34,13 +34,13 @@ namespace windowing
       virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
-      virtual ::int_rectangle monitor_rectangle();
-      virtual ::int_rectangle workspace_rectangle();
+      virtual ::i32_rectangle monitor_rectangle();
+      virtual ::i32_rectangle workspace_rectangle();
 
-      virtual ::int_rectangle _workspace_rectangle();
+      virtual ::i32_rectangle _workspace_rectangle();
 
 
-      virtual void set_workspace_rectangle(const ::int_rectangle & rectangle);
+      virtual void set_workspace_rectangle(const ::i32_rectangle & rectangle);
 
       virtual void set_workspace_rectangle_left(int left);
       virtual void set_workspace_rectangle_top(int top);

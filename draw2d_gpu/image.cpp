@@ -52,7 +52,7 @@ namespace draw2d_gpu
 
 
 
-   void image::create(const ::int_size& size, ::enum_flag eobjectCreate, int iGoodStride, bool bPreserve)
+   void image::create(const ::i32_size& size, ::enum_flag eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if (m_pbitmap.is_set()
@@ -230,7 +230,7 @@ namespace draw2d_gpu
    }
 
 
-   //bool image::to(::draw2d::graphics * pgraphics, const ::int_point& point, const ::int_size& size, const ::int_point& pointSrc)
+   //bool image::to(::draw2d::graphics * pgraphics, const ::i32_point& point, const ::i32_size& size, const ::i32_point& pointSrc)
    //{
 
    //   return pgraphics->draw(point, size, get_graphics(), point);
@@ -258,7 +258,7 @@ namespace draw2d_gpu
 
       //}
 
-      ::int_size size = pgraphics->m_pimage->get_size();
+      ::i32_size size = pgraphics->m_pimage->get_size();
 
       //if(!create(size))
       create(size);
@@ -279,13 +279,13 @@ namespace draw2d_gpu
    }
 
 
-   //bool image::from(int_point ptDest, ::draw2d::graphics * pgraphics, const ::int_point & point, ::int_size sz)
+   //bool image::from(i32_point ptDest, ::draw2d::graphics * pgraphics, const ::i32_point & point, ::i32_size sz)
    //{
 
    //   if (m_pgraphics.is_null())
    //      return false;
 
-   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, int_point) != false;
+   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, i32_point) != false;
 
    //}
 
@@ -336,7 +336,7 @@ namespace draw2d_gpu
          pcr[31] = color;
       }
 
-      for (i=0; i<int_size; i++ )
+      for (i=0; i<i32_size; i++ )
       {
          m_pcolorref[i]=color;
       }
@@ -349,7 +349,7 @@ namespace draw2d_gpu
       unsigned char * pbyte = (unsigned char *) m_pcolorref;
 
       int i;
-      for (i=0; i<int_size; i++ )
+      for (i=0; i<i32_size; i++ )
       {
          *pbyte++ = (unsigned char) R;
          *pbyte++ = (unsigned char) G;
@@ -514,7 +514,7 @@ namespace draw2d_gpu
    //{
    //   ::i64 size = area();
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
-   //   for ( int i=0; i<int_size; i++ )
+   //   for ( int i=0; i<i32_size; i++ )
    //   {
    //      lpb[0] = 255 - lpb[0];
    //      lpb[1] = 255 - lpb[1];
@@ -525,12 +525,12 @@ namespace draw2d_gpu
 
    //void image::color::e_channel_invert(color::color::color::rgba::echannel echannel)
    //{
-   //   ::i64 int_size   = area();
-   //   register ::i64 long_long_size = size / 64;
+   //   ::i64 i32_size   = area();
+   //   register ::i64 i64_size = size / 64;
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
    //   lpb += ((int)echannel) % 4;
    //   register ::i64 i = 0;
-   //   for(; i < long_long_size; i++)
+   //   for(; i < i64_size; i++)
    //   {
    //      lpb[4 *  0] = 255 - lpb[4 *  0];
    //      lpb[4 *  1] = 255 - lpb[4 *  1];
@@ -1343,7 +1343,7 @@ namespace draw2d_gpu
 
    //   int size=cx*cy;
 
-   //   for ( int i=0; i<int_size; i++ )
+   //   for ( int i=0; i<i32_size; i++ )
    //      if(m_pcolorref[i]== crFind)
    //         m_pcolorref[i] = crSet;
    //      else
@@ -1356,7 +1356,7 @@ namespace draw2d_gpu
    //   color32_t crFind = color.get_rgb();
    //   ::i64 size = area();
 
-   //   for ( int i=0; i<int_size; i++ )
+   //   for ( int i=0; i<i32_size; i++ )
    //      if((m_pcolorref[i] & 0x00ffffff) == crFind)
    //         ((LPBYTE)&m_pcolorref[i])[3] = 255;
    //      else
@@ -1954,7 +1954,7 @@ namespace draw2d_gpu
 
    //void image::rotate(
    //   image image,
-   //   const ::int_rectangle & rectangle,
+   //   const ::i32_rectangle & rectangle,
    //   double dAngle,
    //   double dScale)
    //{
@@ -1963,7 +1963,7 @@ namespace draw2d_gpu
 
 
 
-   //   ::int_rectangle rectangle(rectangle);
+   //   ::i32_rectangle rectangle(rectangle);
 
    //   int cx = rectangle.width();
    //   int cy = rectangle.height();
@@ -2104,7 +2104,7 @@ namespace draw2d_gpu
    //      pcr[31] = color;
    //   }
 
-   //   for (i=0; i<int_size; i++ )
+   //   for (i=0; i<i32_size; i++ )
    //   {
    //      m_pcolorref[i]=color;
    //   }
@@ -2170,7 +2170,7 @@ namespace draw2d_gpu
    //   }
    //}
 
-   //void image::create_frame(::int_size size, int iFrameCount)
+   //void image::create_frame(::i32_size size, int iFrameCount)
    //{
    //   int iSliceCount = (int) sqrt((double) iFrameCount);
    //   int iFrameWidth = size.cx / iSliceCount;
@@ -2510,7 +2510,7 @@ namespace draw2d_gpu
    //       pb[31 * 4] = (unsigned char) intensity;
    //    }
 
-   //    for (; i<int_size; i++ )
+   //    for (; i<i32_size; i++ )
    //    {
    //       *(((unsigned char * ) &m_pcolorref[i]) + offset) = (unsigned char) intensity;
    //    }
@@ -2555,7 +2555,7 @@ namespace draw2d_gpu
 //   {
 //
 //
-//      long_long_rectangle rectangleWindow;
+//      i64_rectangle rectangleWindow;
 //
 //      puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -2630,7 +2630,7 @@ namespace draw2d_gpu
 //////
 ////      }
 ////#endif
-//      ::int_rectangle rectangle(rectangleWindow);
+//      ::i32_rectangle rectangle(rectangleWindow);
 //
 //      // Copy the contents of the pframebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
@@ -2683,14 +2683,14 @@ namespace draw2d_gpu
 //
 //      m_pgraphics->attach((HDC) pusermessage->m_wparam);
 //
-//      ::int_rectangle rectx;
+//      ::i32_rectangle rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_pgraphics->get_current_bitmap();
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
 //      //      ::u32 dw = ::get_last_error();
-//      ::int_size size = pbitmap->get_size();
+//      ::i32_size size = pbitmap->get_size();
 //
 //      rectx.left = 0;
 //      rectx.top = 0;
@@ -2700,7 +2700,7 @@ namespace draw2d_gpu
 //      try
 //      {
 //
-//         ::int_rectangle rectangleWindow;
+//         ::i32_rectangle rectangleWindow;
 //
 //         puserinteraction->window_rectangle(rectangleWindow);
 //
@@ -2714,20 +2714,20 @@ namespace draw2d_gpu
 //         if(pgraphics->get_os_data() == nullptr)
 //            return false;
 //
-//         ::int_rectangle rectanglePaint;
-//         ::int_rectangle rectangleUpdate;
+//         ::i32_rectangle rectanglePaint;
+//         ::i32_rectangle rectangleUpdate;
 //         rectangleUpdate = rectangleWindow;
 //         rectanglePaint = rectangleWindow;
 //         rectanglePaint.offset(-rectanglePaint.top_left());
 //         m_pgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_pgraphics->SelectClipRgn(nullptr);
-//         m_pgraphics-> set_origin(::int_point());
+//         m_pgraphics-> set_origin(::i32_point());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
-//         m_pgraphics->set_origin(::int_point());
+//         m_pgraphics->set_origin(::i32_point());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_pgraphics->SelectClipRgn(nullptr);
-//         m_pgraphics->set_origin(::int_point());
+//         m_pgraphics->set_origin(::i32_point());
 //
 //         m_pgraphics->SelectClipRgn( nullptr);
 //         m_pgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,

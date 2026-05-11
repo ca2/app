@@ -47,10 +47,10 @@ namespace user
 
 
       //using ::user::interaction::_001IsPointInside;
-      virtual bool _001IsPointInside(::user::interaction * pinteraction, const long_long_point & point);
-      virtual void control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle);
+      virtual bool _001IsPointInside(::user::interaction * pinteraction, const i64_point & point);
+      virtual void control_get_window_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle);
 
-      virtual void control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle);
+      virtual void control_get_client_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle);
 
       
       ::user::form * get_form() override;
@@ -146,11 +146,11 @@ namespace user
 
       //virtual ::form_property_set * get_form_property_set() override;
 
-//      virtual bool _001IsPointInside(::user::interaction * pinteraction,long_long_point point);
+//      virtual bool _001IsPointInside(::user::interaction * pinteraction,i64_point point);
 
-      //    virtual void control_get_window_rect(::user::interaction * pinteraction,::int_rectangle * prectangle);
+      //    virtual void control_get_window_rect(::user::interaction * pinteraction,::i32_rectangle * prectangle);
 
-      //  virtual void control_get_client_rect(::user::interaction * pinteraction,::int_rectangle * prectangle);
+      //  virtual void control_get_client_rect(::user::interaction * pinteraction,::i32_rectangle * prectangle);
 
 
 

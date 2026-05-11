@@ -204,7 +204,7 @@ inline ::double_point as_double_point(const POLE & pole)
 
 
 template < prototype_pole POLE >
-inline ::int_point as_int_point(const POLE & pole)
+inline ::i32_point as_int_point(const POLE & pole)
 {
 
    return {(int)pole.x, (int) pole.y };
@@ -213,7 +213,7 @@ inline ::int_point as_int_point(const POLE & pole)
 
 
 using int_pole = ::pole_type < int >;
-using long_long_pole = ::pole_type < ::i64>;
+using i64_pole = ::pole_type < ::i64>;
 using float_pole = ::pole_type < float >;
 using double_pole = ::pole_type < double >;
 

@@ -47,8 +47,8 @@ public:
    //operator property ()const { return m_payload.property(); }
 
 
-   operator ::int_array_base ()const { return m_payload.as_int_array(); }
-   operator ::long_long_array_base ()const { return m_payload.as_long_long_array(); }
+   operator ::i32_array_base ()const { return m_payload.as_int_array(); }
+   operator ::i64_array_base ()const { return m_payload.as_i64_array(); }
    operator ::string_array_base ()const { return m_payload.as_string_array(); }
    operator ::payload_array() const { return m_payload.as_payload_array(); }
    operator ::property_set() const { return m_payload.as_property_set(); }

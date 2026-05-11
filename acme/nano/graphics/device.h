@@ -23,7 +23,7 @@ namespace nano
       public:
          
          
-         ::int_size     m_size;
+         ::i32_size     m_size;
 
 
          device();
@@ -36,9 +36,9 @@ namespace nano
 
          virtual void create(int cx, int cy);
 
-         virtual void resize(const ::int_size & size);
+         virtual void resize(const ::i32_size & size);
 
-         virtual void attach(void * posdata, const ::int_size & size);
+         virtual void attach(void * posdata, const ::i32_size & size);
 
 
          virtual void on_begin_draw();
@@ -47,17 +47,17 @@ namespace nano
 
 
          virtual void
-         draw_text123(const ::scoped_string & scopedstr, const ::int_rectangle & rectangleText, const ::e_align & ealign,
+         draw_text123(const ::scoped_string & scopedstr, const ::i32_rectangle & rectangleText, const ::e_align & ealign,
                       const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
                       ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont);
 
-         virtual void _draw_text(const ::scoped_string & scopedstr, const ::int_rectangle & rectangleText, const ::e_align & ealign,
+         virtual void _draw_text(const ::scoped_string & scopedstr, const ::i32_rectangle & rectangleText, const ::e_align & ealign,
                                  const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack,
                                  ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont);
 
-         virtual ::int_size get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont);
+         virtual ::i32_size get_text_extents(const ::scoped_string & scopedstr, ::nano::graphics::font * pnanofont);
 
-         virtual void rectangle(const ::int_rectangle & rectangle, ::nano::graphics::brush * pnanobrush,
+         virtual void rectangle(const ::i32_rectangle & rectangle, ::nano::graphics::brush * pnanobrush,
                                 ::nano::graphics::pen * pnanopen);
 
          virtual void draw(::nano::graphics::icon * picon, int x, int y, int cx, int cy);

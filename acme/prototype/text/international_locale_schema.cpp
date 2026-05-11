@@ -532,7 +532,7 @@ namespace text
       //   //      {
       //   //         if(ch2 == 't')
       //   //         {
-      //   //            // int_point
+      //   //            // i32_point
       //   //            defer_add_locale("br", idSchema);
       //   //            defer_add_locale("pt_br", idSchema);
       //   //            defer_add_locale("es", idSchema);

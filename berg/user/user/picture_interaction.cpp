@@ -17,7 +17,7 @@ namespace user
    }
 
 
-   ::item_pointer picture_interaction::parent_client_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer picture_interaction::parent_client_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       if (is_picture_enabled())
@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   ::item_pointer picture_interaction::parent_client_on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer picture_interaction::parent_client_on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       if (is_picture_enabled())

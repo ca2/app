@@ -466,7 +466,7 @@ namespace VistaTools
       ::SendMessage( hwndShell, uVEMsg, 0, 0 );
 
       ////////////////////////////////////////////////////////
-      // At this int_point our hook routine has been executed!
+      // At this i32_point our hook routine has been executed!
 
       if ( phProcess )
          *phProcess = hVE_Process;

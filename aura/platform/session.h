@@ -56,9 +56,9 @@ namespace aura
 #if defined(WINDOWS)
 
       ////#pragma message("at macos??")
-      //static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, ::int_rectangle* prcMonitor, lparam dwData);
+      //static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, ::i32_rectangle* prcMonitor, lparam dwData);
 
-      //void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, ::int_rectangle* prcMonitor);
+      //void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, ::i32_rectangle* prcMonitor);
 
 #if defined(WINDOWS_DESKTOP)
       
@@ -107,9 +107,9 @@ namespace aura
 
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
-      //virtual int_size get_window_minimum_size() override;
+      //virtual i32_size get_window_minimum_size() override;
 
-      //virtual void  get_cursor_position(::int_point * ppoint);
+      //virtual void  get_cursor_position(::i32_point * ppoint);
 
       bool on_get_task_name(string& strThreadName) override;
 
@@ -203,7 +203,7 @@ namespace aura
 
       virtual ::color::color get_default_color(::color::color colors) override;
 
-      //virtual ::int_size get_window_minimum_size();
+      //virtual ::i32_size get_window_minimum_size();
 
 //      virtual void frame_pre_translate_message(::message::message * pmessage) override;
 
@@ -253,12 +253,12 @@ namespace aura
       //virtual void translate_os_key_message(::user::key * pkey);
       //virtual bool on_create_frame_window();
 
-      //virtual void get_cursor_position(::int_point * ppoint) override;
-      //inline ::int_point get_cursor_position() {::int_point point; get_cursor_position(&point); return point;}
+      //virtual void get_cursor_position(::i32_point * ppoint) override;
+      //inline ::i32_point get_cursor_position() {::i32_point point; get_cursor_position(&point); return point;}
 
-      //virtual void set_cursor_pos(const ::int_point & point) override;
+      //virtual void set_cursor_pos(const ::i32_point & point) override;
 
-//      virtual ::collection::index get_main_monitor(::int_rectangle * prectangle = nullptr) override;
+//      virtual ::collection::index get_main_monitor(::i32_rectangle * prectangle = nullptr) override;
 
       //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 
@@ -268,7 +268,7 @@ namespace aura
       //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::aura::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction) override;
@@ -377,7 +377,7 @@ namespace aura
 
       virtual void     main() override;
 
-      ::particle * defer_initialize_host_window(const ::int_rectangle * lprect = nullptr) override;
+      ::particle * defer_initialize_host_window(const ::i32_rectangle * lprect = nullptr) override;
 
       //virtual ::user::interaction * get_host_user_interaction();
 

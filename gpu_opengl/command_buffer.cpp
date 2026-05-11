@@ -27,7 +27,7 @@ namespace gpu_opengl
    }
 
 
-   void command_buffer::set_viewport(const ::int_rectangle& rectangle)
+   void command_buffer::set_viewport(const ::i32_rectangle& rectangle)
    {
 
       glViewport(
@@ -40,7 +40,7 @@ namespace gpu_opengl
    }
 
 
-   void command_buffer::set_scissor(const ::int_rectangle& rectangle)
+   void command_buffer::set_scissor(const ::i32_rectangle& rectangle)
    {
 
       glEnable(GL_SCISSOR_TEST);

@@ -17,4 +17,4 @@ struct main_param
    
 };
 
-::u32 __run_system_main_param(struct main_param * int_point);
+::u32 __run_system_main_param(struct main_param * i32_point);

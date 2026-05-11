@@ -351,7 +351,7 @@ namespace user
    //}
 
 
-   ::item_pointer image_list::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer image_list::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       return ::user::scroll_base::on_hit_test(point, ezorder);
@@ -438,8 +438,8 @@ namespace user
 
          //::item itemText;
 
-         ::int_rectangle rectangleSel;
-         ::int_rectangle rectangleText;
+         ::i32_rectangle rectangleSel;
+         ::i32_rectangle rectangleText;
 
          //itemText = e_element_text;
 
@@ -482,7 +482,7 @@ namespace user
 
          }
 
-         ::int_rectangle rectangleForImage(rectangle1);
+         ::i32_rectangle rectangleForImage(rectangle1);
 
          if (m_bLabel)
          {
@@ -524,7 +524,7 @@ namespace user
                if (pimage->area() <= 0)
                {
 
-                  ::int_rectangle rectangleImage;
+                  ::i32_rectangle rectangleImage;
 
                   double dW = (double)rectangleForImage.width() / (double)pimageSrc->width();
 
@@ -534,7 +534,7 @@ namespace user
 
                   auto sizeSrc = pimageSrc->get_size();
 
-                  ::int_size szNew =  sizeSrc * dMin;
+                  ::i32_size szNew =  sizeSrc * dMin;
 
                   if (!szNew.is_empty())
                   {
@@ -559,7 +559,7 @@ namespace user
 
                }
 
-               ::int_rectangle rectangleImage;
+               ::i32_rectangle rectangleImage;
 
                rectangleImage.left = rectangleForImage.left + (rectangleForImage.width() - pimage->width()) / 2;
 
@@ -729,7 +729,7 @@ namespace user
 
       int y = top;
 
-      ::int_rectangle rectangleTotal;
+      ::i32_rectangle rectangleTotal;
 
       defer_construct_newø(main_content().m_pitema);
 

@@ -121,21 +121,21 @@ namespace user
       virtual int GetDividerWidth();
 
 
-      bool GetItemRect(::int_rectangle * prectangle, enum_element eelement, ::collection::index iItem);
+      bool GetItemRect(::i32_rectangle * prectangle, enum_element eelement, ::collection::index iItem);
 
 
-      bool GetItemRect(::int_rectangle * prectangle, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown,
+      bool GetItemRect(::i32_rectangle * prectangle, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown,
 
                        enum_element eelement,
                        ::collection::index iItem);
 
       bool hit_test(
-      const ::int_point & point,
+      const ::i32_point & point,
       enum_element & eelement,
       ::collection::index & iItem);
 
       bool hit_test(
-      const ::int_point & point,
+      const ::i32_point & point,
       enum_element eelementLButtonDown,
       ::collection::index iItemLButtonDown,
       enum_element & eelement,

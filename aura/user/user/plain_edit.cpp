@@ -1061,7 +1061,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-               ::int_point point((long)(left + x1), (long)y);
+               ::i32_point point((long)(left + x1), (long)y);
 
                client_to_screen()(point);
 
@@ -1083,7 +1083,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-               ::int_point point((long)(left + x1), (long)y);
+               ::i32_point point((long)(left + x1), (long)y);
 
                client_to_screen()(point);
 
@@ -1267,7 +1267,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::int_point point = pmouse->m_pointHost;
+      ::i32_point point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -1309,7 +1309,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::int_point point = pmouse->m_pointHost;
+      ::i32_point point = pmouse->m_pointHost;
 
       host_to_client()(point);
 
@@ -1390,7 +1390,7 @@ namespace user
 
             host_to_raw()(pointCursor);
 
-            ::int_rectangle rectangleRaw;
+            ::i32_rectangle rectangleRaw;
 
             rectangleRaw = raw_rectangle();
 
@@ -1590,7 +1590,7 @@ namespace user
    //}
 
 
-   void plain_edit::extend_selection_end(const ::int_point & pointHost)
+   void plain_edit::extend_selection_end(const ::i32_point & pointHost)
    {
 
       auto point = pointHost;
@@ -1609,7 +1609,7 @@ namespace user
    }
 
 
-   void plain_edit::_extend_selection_end(const ::int_point & pointHost)
+   void plain_edit::_extend_selection_end(const ::i32_point & pointHost)
    {
 
       auto point = pointHost;
@@ -1620,7 +1620,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
 
@@ -2392,7 +2392,7 @@ namespace user
       else
       {
 
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
 
          GetFocusRect(rectangleX);
 
@@ -2515,7 +2515,7 @@ namespace user
          if (session()->is_key_pressed(::user::e_key_left_button) && !is_new_focus_select_all())
          {
 
-            ::int_point pointHost = pmouse->m_pointHost;
+            ::i32_point pointHost = pmouse->m_pointHost;
 
             extend_selection_end(pointHost);
 
@@ -2563,7 +2563,7 @@ namespace user
 
          pmouse->previous();
 
-         ::int_point point = pmouse->m_pointHost;
+         ::i32_point point = pmouse->m_pointHost;
 
          host_to_client()(point);
 
@@ -2700,7 +2700,7 @@ namespace user
       //if (m_bLMouseDown && !m_bNewFocus)
       //{
 
-      //   ::int_point point = pmouse->m_pointHost;
+      //   ::i32_point point = pmouse->m_pointHost;
 
       //   host_to_client()(point);
 
@@ -2743,7 +2743,7 @@ namespace user
 
       //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      //::int_rectangle rectangleX;
+      //::i32_rectangle rectangleX;
 
       //GetFocusRect(rectangleX);
 
@@ -3084,7 +3084,7 @@ namespace user
 
       ////   m_sizeTotal.cy = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
 
-      ////   const ::int_size & sizePage;
+      ////   const ::i32_size & sizePage;
 
       ////   sizePage = rectangleX.size();
 
@@ -3172,7 +3172,7 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetFocusRect(rectangleX);
 
@@ -3487,7 +3487,7 @@ namespace user
       //
       //         const_char_pointer pszNext = pszStart;
       //
-      //         ::int_size sizeLast(0, 0);
+      //         ::i32_size sizeLast(0, 0);
       //
       //         auto & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
       //
@@ -3640,7 +3640,7 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetFocusRect(rectangleX);
 
@@ -3933,7 +3933,7 @@ namespace user
 
          const_char_pointer pszNext = pszStart;
 
-         ::int_size sizeLast(0, 0);
+         ::i32_size sizeLast(0, 0);
 
          auto & daExtent = m_daExtent[m_iCurrentPageLineStart + i];
 
@@ -4064,7 +4064,7 @@ namespace user
    //
    //      _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
-   //      ::int_rectangle rectangleX;
+   //      ::i32_rectangle rectangleX;
    //
    //      GetFocusRect(rectangleX);
    //
@@ -4363,7 +4363,7 @@ namespace user
    //
    //      ////   m_sizeTotal.cy = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
    //
-   //      ////   const ::int_size & sizePage;
+   //      ////   const ::i32_size & sizePage;
    //
    //      ////   sizePage = rectangleX.size();
    //
@@ -4388,7 +4388,7 @@ namespace user
    //
    //      //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    //
-   ////::int_rectangle rectangleX;
+   ////::i32_rectangle rectangleX;
    //
    ////GetFocusRect(rectangleX);
    //
@@ -4776,7 +4776,7 @@ namespace user
    //
    //      //   m_sizeTotal.cy = (((int)m_iaLineLength.get_count() + (m_bMultiLine ? maximum(5, m_iLineCount) : 0)) * m_iLineHeight);
    //
-   //      //   const ::int_size & sizePage;
+   //      //   const ::i32_size & sizePage;
    //
    //      //   sizePage = rectangleX.size();
    //
@@ -4850,7 +4850,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * lprect, character_count iSel)
+   bool plain_edit::plain_edit_caret_rect(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle * lprect, character_count iSel)
    {
 
       int x = 0;
@@ -4873,7 +4873,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * lprect, character_count iSel)
+   bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle * lprect, character_count iSel)
    {
 
       ::collection::index iLine = plain_edit_char_to_line(pgraphics, iSel);
@@ -4883,7 +4883,7 @@ namespace user
    }
 
 
-   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * lprect, ::collection::index iLine)
+   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle * lprect, ::collection::index iLine)
    {
 
       if (iLine < 0)
@@ -4965,7 +4965,7 @@ namespace user
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetFocusRect(rectangleX);
 
@@ -5138,7 +5138,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetFocusRect(rectangleX);
 
@@ -5210,12 +5210,12 @@ namespace user
    }
 
 
-   character_count plain_edit::plain_edit_char_hit_test(::draw2d::graphics_pointer & pgraphics, const ::int_point & pointParam)
+   character_count plain_edit::plain_edit_char_hit_test(::draw2d::graphics_pointer & pgraphics, const ::i32_point & pointParam)
    {
 
-      ::int_point point(pointParam);
+      ::i32_point point(pointParam);
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetFocusRect(rectangleX);
 
@@ -5315,7 +5315,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       GetFocusRect(rectangleX);
 
@@ -7950,7 +7950,7 @@ namespace user
 
                      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::int_rectangle rectangleX;
+                     ::i32_rectangle rectangleX;
 
                      GetFocusRect(rectangleX);
 
@@ -7996,7 +7996,7 @@ namespace user
 
                      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::int_rectangle rectangleX;
+                     ::i32_rectangle rectangleX;
 
                      GetFocusRect(rectangleX);
 
@@ -8705,7 +8705,7 @@ namespace user
    }
 
 
-   void plain_edit::get_text_composition_area(::int_rectangle & rectangle)
+   void plain_edit::get_text_composition_area(::i32_rectangle & rectangle)
    {
 
       character_count iBeg;
@@ -8726,7 +8726,7 @@ namespace user
 
       double y2 = y + m_dLineHeight;
 
-      ::int_point point((int)x, (int)y);
+      ::i32_point point((int)x, (int)y);
 
       rectangle = this->rectangle();
 
@@ -9437,7 +9437,7 @@ namespace user
    void plain_edit::plain_edit_one_line_up(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_point pointOffset = get_context_offset();
+      ::i32_point pointOffset = get_context_offset();
 
       set_context_offset_y(pointOffset.y - m_dLineHeight, ::user::e_layout_design);
 

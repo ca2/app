@@ -27,15 +27,15 @@ namespace image
    bool image_array::explode(::particle * pparticle, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
    {
 
-      return explode(pparticle, ::int_size(-1, -1), payloadFile, cols, rows, bCache, bCreateHelperMaps);
+      return explode(pparticle, ::i32_size(-1, -1), payloadFile, cols, rows, bCache, bCreateHelperMaps);
 
    }
 
 
-   bool image_array::explode(::particle * pparticle, const ::int_size & sizeParam, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+   bool image_array::explode(::particle * pparticle, const ::i32_size & sizeParam, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
    {
 
-      ::int_size size(sizeParam);
+      ::i32_size size(sizeParam);
 
       auto pimageSource = image()->get_image(payloadFile);
 
@@ -53,7 +53,7 @@ namespace image
 
       }
 
-      ::int_size sizeSource(pimageSource->width() / cols, pimageSource->height() / rows);
+      ::i32_size sizeSource(pimageSource->width() / cols, pimageSource->height() / rows);
 
       if (size.cx < 0)
       {

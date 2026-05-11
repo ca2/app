@@ -2186,7 +2186,7 @@ end_processing_adding:
                   else
                   {
 
-                     //informationf(" close(3) fd %d GetSocket() %d\n", socket, int_point -> GetSocket()));
+                     //informationf(" close(3) fd %d GetSocket() %d\n", socket, i32_point -> GetSocket()));
 
                      if (psocket && psocket->IsConnected() && ptcpsocket->GetOutputLength())
                      {
@@ -2214,7 +2214,7 @@ end_processing_adding:
 
                         ppoolsocket->SetCloseAndDelete(false); // added - erase from m_socketlistClose
 
-                        //int_point -> SetCloseAndDelete(false); // added - erase from m_socketlistClose
+                        //i32_point -> SetCloseAndDelete(false); // added - erase from m_socketlistClose
 
                      }
                      //else if (psocket.cast < http_session >() != nullptr && !psocket->Lost())
@@ -2487,7 +2487,7 @@ end_processing_adding:
 //
 //      m_resolve_q[pbasesocket] = true;
 //
-//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q int_size: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
+//      informationf(" *** Resolve '%s:%d' atom#%d  m_resolve_q i32_size: %d  base_socket: %p\n", host.c_str(), port, presolvsocket->GetId(), m_resolve_q.get_size(), pbasesocket));
 //
 //      return presolvsocket->GetId();
 //

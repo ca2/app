@@ -741,7 +741,7 @@
 //      }
 //
 //
-//      ::int_array_base ia;
+//      ::i32_array_base ia;
 //
 //      ia.set_size(bla.get_count());
 //

@@ -54,7 +54,7 @@ file_size_table::file_size_table(::particle * pparticle) :
                                                false );
          if ( bSetOk )
          {
-            // Make the security attributes int_point
+            // Make the security attributes i32_point
             // to the security descriptor
             MutexAttributes.lpSecurityDescriptor = &SD;*/
    //mutex() = ___new ::pointer < ::mutex > (false, "Global\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
@@ -95,7 +95,7 @@ void file_size_table::item::ls(::particle * pparticle, ::collection::index & iIt
    {
       string_array_base               straPath;
       string_array_base               straTitle;
-      long_long_array_base iaSize;
+      i64_array_base iaSize;
       bool_array baIsDir;
       if(path().is_empty())
       {
@@ -351,7 +351,7 @@ bool FileSystemSizeWnd::CreateClient()
    return m_p->create_message_queue("::draw2d::account::FileSystemSizeWnd::Client");
    /*  ::pointer<::user::interaction>puiMessage = nullptr;
       puiMessage = psystem->ui_from_handle(HWND_MESSAGE);
-      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, int_rectangle(0, 0, 0, 0), puiMessage, atom()) != false;*/
+      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, i32_rectangle(0, 0, 0, 0), puiMessage, atom()) != false;*/
 
 //#else
 
@@ -367,7 +367,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::int_rectangle(),psystem->ui_from_handle(HWND_MESSAGE),atom()))
+   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::i32_rectangle(),psystem->ui_from_handle(HWND_MESSAGE),atom()))
       return false;
    m_p->set_timer(100, 100, nullptr);
    return true;

@@ -286,7 +286,7 @@ namespace userex
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   const ::int_point & point = pmouse->m_point;
+   //   const ::i32_point & point = pmouse->m_point;
 
    //   screen_to_client()(point);
 
@@ -313,7 +313,7 @@ namespace userex
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   const ::int_point & point = pmouse->m_point;
+   //   const ::i32_point & point = pmouse->m_point;
 
    //   screen_to_client()(point);
 

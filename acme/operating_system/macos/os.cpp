@@ -23,11 +23,11 @@ CLASS_DECL_ACME bool _istlead(int ch)
 
 
 
-//int_bool GetCursorPos(::int_point * ppointCursor)
+//int_bool GetCursorPos(::i32_point * ppointCursor)
 //
 //{
 //
-//   HIPoint int_point;
+//   HIPoint i32_point;
 //
 //   HICoordinateSpace space = kHICoordSpaceScreenPixel;
 //

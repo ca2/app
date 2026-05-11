@@ -97,7 +97,7 @@ namespace image
       if (m_iSize > 0)
       {
 
-         m_pimage->create(::int_size(m_size.cx * m_iSize, m_size.cy));
+         m_pimage->create(::i32_size(m_size.cx * m_iSize, m_size.cy));
 
       }
 
@@ -486,7 +486,7 @@ namespace image
    //         m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
    //
    //         m_pimage->draw(
-   //            ::double_rectangle(::int_point(iItem * m_size.cx, 0),  m_size ),
+   //            ::double_rectangle(::i32_point(iItem * m_size.cx, 0),  m_size ),
    //            pimage);
    //
    //      });
@@ -685,7 +685,7 @@ namespace image
 
       int iAllocSize = _get_alloc_count() + iGrow;
 
-      m_pimage->preserve(::int_size(cx * iAllocSize, cy));
+      m_pimage->preserve(::i32_size(cx * iAllocSize, cy));
 
       return true;
 

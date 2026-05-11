@@ -17,7 +17,7 @@
 #if defined(LINUX) || defined(__ANDROID__) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pimage32,HANDLE hfile);
-void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,::i64 int_size);
+void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,bool bWrite,::i64 i32_size);
 #endif
 
 
@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
    //// ca.dll-absence-(ca.dll-delay-load)-safe
-   //void plugin::window_rectangle(::int_rectangle * prectangle)
+   //void plugin::window_rectangle(::i32_rectangle * prectangle)
 
    //{
 
@@ -166,7 +166,7 @@ namespace hotplugin
 
    //}
 
-   //void plugin::set_window_rect(const ::int_rectangle & rectangle)
+   //void plugin::set_window_rect(const ::i32_rectangle & rectangle)
    //{
 
    //   m_rectangle = *rectangle;
@@ -222,7 +222,7 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
    {
 
       on_bare_paint(pgraphics, rectangle);
@@ -309,14 +309,14 @@ namespace hotplugin
    /*double cos_prec_dup(double x,double prec)
    {
    double t , s ;
-   int int_point;
+   int i32_point;
    point = 0;
    s = 1.0;
    t = 1.0;
    while(fabs(t/s) > prec)
    {
-   int_point++;
-   t = (-t * x * x) / ((2 * int_point - 1) * (2 * int_point));
+   i32_point++;
+   t = (-t * x * x) / ((2 * i32_point - 1) * (2 * i32_point));
    s += t;
    }
    return s;
@@ -526,7 +526,7 @@ namespace hotplugin
    }
 
 
-   void plugin::on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangle)
+   void plugin::on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangle)
 
    {
 
@@ -613,14 +613,14 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
 
    {
 
       if(m_phost != nullptr && !m_phost->m_bShowProgress)
          return;
 
-      ::int_rectangle rectangleWindow(rectangleParam);
+      ::i32_rectangle rectangleWindow(rectangleParam);
 
       int cx = rectangleWindow.right - rectangleWindow.left;
 
@@ -638,7 +638,7 @@ namespace hotplugin
 
       int pcy = cy / iLineCount;
 
-      ::int_rectangle rectangleP;
+      ::i32_rectangle rectangleP;
 
       for(int iLine = 0; iLine < iLineCount; iLine++)
       {
@@ -750,10 +750,10 @@ namespace hotplugin
    }
 
 
-   void plugin::ensure_bitmap_data(const ::int_size & size, bool bCreate)
+   void plugin::ensure_bitmap_data(const ::i32_size & size, bool bCreate)
    {
 
-      if (!int_size)
+      if (!i32_size)
       {
 
          return;
@@ -761,7 +761,7 @@ namespace hotplugin
       }
 
       if(m_memorymapBitmap.get_data() == nullptr
-            || m_sizeBitmapData != int_size)
+            || m_sizeBitmapData != i32_size)
       {
 
          m_sizeBitmapData = size;
@@ -944,7 +944,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
    }
 
-   //bool plugin::client_to_screen(::int_point * ppt)
+   //bool plugin::client_to_screen(::i32_point * ppt)
    //{
 
    //   ::user::interaction::client_to_screen(ppt);
@@ -953,7 +953,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 
    //}
 
-   //bool plugin::screen_to_client(::int_point * ppt)
+   //bool plugin::screen_to_client(::i32_point * ppt)
    //{
 
    //   ::user::interaction::screen_to_client(ppt);
@@ -963,7 +963,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::window_rectangle(::long_long_rectangle * prectangle)
+   //bool plugin::window_rectangle(::i64_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -985,7 +985,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
    //}
 
 
-   //bool plugin::this->rectangle(::long_long_rectangle * prectangle)
+   //bool plugin::this->rectangle(::i64_rectangle * prectangle)
    //{
 
    //   if(m_phost == nullptr)

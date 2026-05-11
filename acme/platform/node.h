@@ -1004,8 +1004,8 @@ namespace platform
 
 
 
-      bool _get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle) override;
-      bool _get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle) override;
+      bool _get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle & rectangle) override;
+      bool _get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle & rectangle) override;
 
       void realize(::particle_pointer pparticle) override;
       virtual ::string dynamic_library_prefix();
@@ -1032,7 +1032,7 @@ namespace platform
 
       virtual ::string get_current_operating_system_name();
       virtual ::string get_more_operating_system_version_information();
-      virtual ::int_size get_main_monitor_size();
+      virtual ::i32_size get_main_monitor_size();
       virtual ::string_array_base get_operating_system_information_lines();
 
       virtual memsize get_current_memory_usage();

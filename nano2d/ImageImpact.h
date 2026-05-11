@@ -76,7 +76,7 @@ NAMESPACE_BEGIN(nanoui)
       // Widget implementation
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key & ekeyModifiers, const ::scoped_string & scopedstrText) override;
       bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
-      bool scroll_event(const int_point & p, const float_size & rel) override;
+      bool scroll_event(const i32_point & p, const float_size & rel) override;
       void draw(::nano2d::context  * pcontext) override;
       void draw_contents(::nano2d::context  * pcontext) override;
 

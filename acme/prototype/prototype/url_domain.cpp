@@ -820,7 +820,7 @@ bool CLASS_DECL_ACME server_is_top_domain(const_char_pointer pszTop1, character_
       {
          if(b2 == 't')
          {
-            // int_point
+            // i32_point
             if(alen == 3)
             {
                if(a1 == 'c' && a2 == 'o' && a3 == 'm')

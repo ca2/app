@@ -66,7 +66,7 @@ namespace install
 
       string               m_strLoginRequestingServer;
 
-      ::int_rectangle             m_rectangleSent;
+      ::i32_rectangle             m_rectangleSent;
       string_array_base              m_straLinesNativeLaunch;
 
       //bool                 m_bHasCred;
@@ -91,7 +91,7 @@ namespace install
 
       virtual bool plugin_initialize();
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect);
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect);
 
       virtual void on_prepare_memory();
 
@@ -101,7 +101,7 @@ namespace install
       
       virtual void message_handler(::user::message * pusermessage) override;
 
-      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle &lprect);
+      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle &lprect);
 
       virtual double extract_spa_progress_rate();
 
@@ -131,10 +131,10 @@ namespace install
       virtual string defer_get_plugin();
 
       using ::hotplugin::plugin::viewport_screen_to_client;
-      virtual void viewport_screen_to_client(::int_point * ppt);
+      virtual void viewport_screen_to_client(::i32_point * ppt);
       
       using ::hotplugin::plugin::viewport_client_to_screen;
-      virtual void viewport_client_to_screen(::int_point * ppt);
+      virtual void viewport_client_to_screen(::i32_point * ppt);
 
       virtual bool set_host(::hotplugin::host * phost);
 

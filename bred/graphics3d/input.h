@@ -100,11 +100,11 @@ namespace graphics3d
 
       virtual void mouseDrag(::floating_sequence2 Δ);
 
-      virtual void _001OnMouseMove(const ::int_point &point);
+      virtual void _001OnMouseMove(const ::i32_point &point);
       virtual void _001OnMouseOut();
       virtual void _001OnMouseDrag(::floating_sequence2 Δ);
       //virtual void mouseCallback(::floating_sequence2 delta);
-      //virtual void _001OnMouseMove(const ::int_point &point);
+      //virtual void _001OnMouseMove(const ::i32_point &point);
       //virtual void _001OnMouseOut();
 
 

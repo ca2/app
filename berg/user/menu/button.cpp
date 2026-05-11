@@ -163,16 +163,16 @@ namespace user
          ppen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(ppen);
          pgraphics->set(pbrush);
-         ::int_rectangle rectanglePopupArrow;
+         ::i32_rectangle rectanglePopupArrow;
          rectanglePopupArrow.left = rectangleX.right - 9;
          rectanglePopupArrow.right = rectangleX.right - 4;
          rectanglePopupArrow.top = ((rectangleX.top + rectangleX.bottom) / 2) - 4;
          rectanglePopupArrow.bottom = ((rectangleX.top + rectangleX.bottom) / 2) + 4;
          double_point_array pointa;
-         pointa.add(int_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
-         pointa.add(int_point(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
-         pointa.add(int_point(rectanglePopupArrow.left, rectanglePopupArrow.top));
-         pointa.add(int_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
+         pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
+         pointa.add(i32_point(rectanglePopupArrow.right, (rectanglePopupArrow.bottom + rectanglePopupArrow.top) / 2));
+         pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.top));
+         pointa.add(i32_point(rectanglePopupArrow.left, rectanglePopupArrow.bottom));
          pgraphics->polygon(pointa);
       }
 
@@ -283,8 +283,8 @@ namespace user
       if(uImage != 0xffffffffu)
       {
 
-         ::int_rectangle rectangleImage = m_rectangleCheckBox;
-         ::int_rectangle rectangleImageBorder = rectangleImage;
+         ::i32_rectangle rectangleImage = m_rectangleCheckBox;
+         ::i32_rectangle rectangleImageBorder = rectangleImage;
          rectangleImageBorder.inflate(2, 2);
          ::image::image_list::info ii;
          ::image::image_list_pointer  pimagelist;
@@ -323,7 +323,7 @@ namespace user
 
             pimagelist->get_image_info(uImage, &ii);
 
-            ::int_rectangle & rectangleImageInfo(ii.m_rectangle);
+            ::i32_rectangle & rectangleImageInfo(ii.m_rectangle);
             rectangleImage.offset(1, 1);
             rectangleImage.top = rectangleImage.bottom - rectangleImageInfo.height();
             rectangleImage.right = rectangleImage.left + rectangleImageInfo.width();

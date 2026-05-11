@@ -723,7 +723,7 @@ namespace gpu
    //void shader::setup_sampler_and_texture(const ::scoped_string& scopedstrName, int i)
    //{
    //   
-   //   m_mapSamplerAndTexture[scopedstrName].m_i = i;
+   //   m_mapSamplerAndTexture[scopedstrName].m_i32 = i;
 
    //}
 

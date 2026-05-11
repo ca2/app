@@ -28,11 +28,11 @@ namespace experience_anthill
 
 
       void on_draw_frame(::draw2d::graphics_pointer & pgraphics) override;
-      void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX);
-      void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_border eside);
-      //void GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * lprect, enum_border eside);
+      void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX);
+      void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside);
+      //void GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * lprect, enum_border eside);
 
-      //::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      //::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
       //color32_t get_border_main_body_color() override;
 
 

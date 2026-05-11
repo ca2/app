@@ -8,15 +8,15 @@ inline void * fixed_alloc_sync::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   int i = m_i;
+   int i = m_i32;
    if(i >= m_iShareCount)
    {
       i = 0;
-      m_i = 1;
+      m_i32 = 1;
    }
    else
    {
-      m_i++;
+      m_i32++;
    }
 
 
@@ -59,15 +59,15 @@ inline void * fixed_alloc::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   int i = m_i;
+   int i = m_i32;
    if(i >= m_iShareCount)
    {
       i = 0;
-      m_i = 1;
+      m_i32 = 1;
    }
    else
    {
-      m_i++;
+      m_i32++;
    }
 
 

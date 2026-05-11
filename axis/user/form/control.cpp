@@ -517,7 +517,7 @@ namespace user
 
             throw_todo();
 
-//            ::int_array_base ia;
+//            ::i32_array_base ia;
 //
 //            ::pointer<::database::client>pclient = pinteraction;
 //
@@ -636,7 +636,7 @@ namespace user
 
       ASSERT(pinteraction->m_eddx == e_control_ddx_dbflags);
 
-      ::int_array_base ia;
+      ::i32_array_base ia;
 
       try
       {
@@ -737,7 +737,7 @@ namespace user
 //
 //            //   }
 //            //   break;
-//            //   case ::e_type_int:
+//            //   case ::e_type_i32:
 //            //   {
 //
 //            //      string str;
@@ -1490,7 +1490,7 @@ namespace user
    //      if(pinteraction->m_eddx == e_control_ddx_dbflags)
    //      {
 
-   //         ::int_array_base ia;
+   //         ::i32_array_base ia;
 
    //         ::pointer<::database::client>pclient = pinteraction;
 
@@ -1587,7 +1587,7 @@ namespace user
    }
 
 
-   bool form_control::_001IsPointInside(::user::interaction * pinteraction, const long_long_point & point)
+   bool form_control::_001IsPointInside(::user::interaction * pinteraction, const i64_point & point)
    {
 
       if(pinteraction == nullptr)
@@ -1639,7 +1639,7 @@ namespace user
    //}
 
 
-   void form_control::control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
+   void form_control::control_get_window_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle)
    {
 
       pinteraction->window_rectangle(rectangle);
@@ -1647,7 +1647,7 @@ namespace user
    }
    
 
-   void form_control::control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
+   void form_control::control_get_client_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle)
    {
 
       rectangle = pinteraction->rectangle();

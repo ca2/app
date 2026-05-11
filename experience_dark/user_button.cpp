@@ -43,7 +43,7 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       ::user::interaction::this->rectangle(rectangleX);
 
@@ -95,9 +95,9 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleEllipse(rectangleX);
+      ::i32_rectangle rectangleEllipse(rectangleX);
 
-      ::int_rectangle rW;
+      ::i32_rectangle rW;
 
       window_rectangle(rW);
 
@@ -138,7 +138,7 @@ namespace user
 
          pgraphics->SelectObject(m_ppen);
 
-         ::int_rectangle rectangleIcon(rectangleEllipse);
+         ::i32_rectangle rectangleIcon(rectangleEllipse);
 
          rectangleIcon.deflate(rectangleIcon.width() / 4, rectangleIcon.height() / 4);
 
@@ -193,7 +193,7 @@ namespace user
    }
 
 
-   ::item_pointer button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer button::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

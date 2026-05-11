@@ -104,7 +104,7 @@ namespace gpu
          constructø(m_ptexturePrefilteredEnvMapCubemap);
 
          ::gpu::texture_attributes textureattributesPrefilteredEnvMap(
-            ::int_rectangle{API_CHANGED_ARGUMENT, m_uPrefilteredEnvMapWidth, m_uPrefilteredEnvMapHeight});
+            ::i32_rectangle{API_CHANGED_ARGUMENT, m_uPrefilteredEnvMapWidth, m_uPrefilteredEnvMapHeight});
 
          textureattributesPrefilteredEnvMap.set_cubemap_all_mips();
 
@@ -135,7 +135,7 @@ namespace gpu
 
          constructø(m_ptextureBrdfConvolutionMap);
 
-         ::gpu::texture_attributes textureattributesBrdfConvMap(int_rectangle{API_CHANGED_ARGUMENT, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight});
+         ::gpu::texture_attributes textureattributesBrdfConvMap(i32_rectangle{API_CHANGED_ARGUMENT, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight});
          textureattributesBrdfConvMap.m_iBitsPerChannel = 16;
          textureattributesBrdfConvMap.m_iChannelCount = 2;
          textureattributesBrdfConvMap.m_iFloat = 1;
@@ -213,7 +213,7 @@ namespace gpu
 
                pgpucommandbuffer->set_source(ptextureSource);
 
-               ::int_rectangle r(0, 0, mipWidth, mipHeight);
+               ::i32_rectangle r(0, 0, mipWidth, mipHeight);
 
                pgpucommandbuffer->set_viewport(r);
 
@@ -267,7 +267,7 @@ namespace gpu
          
          pcommandbuffer->begin_render(m_pshaderBrdfConvolution, m_ptextureBrdfConvolutionMap);
 
-         ::int_rectangle rectangleViewport;
+         ::i32_rectangle rectangleViewport;
 
          rectangleViewport.set(0, 0, m_uBrdfConvolutionMapWidth, m_uBrdfConvolutionMapHeight);
 
@@ -307,7 +307,7 @@ GPU_PROPERTY("mvp", ::gpu::e_type_mat4)
 //GPU_PROPERTY("view", ::gpu::e_type_mat4)
 //GPU_PROPERTY("projection", ::gpu::e_type_mat4)
 GPU_PROPERTY("roughness", ::gpu::e_type_float)
-GPU_PROPERTY("numSamples", ::gpu::e_type_int)
+GPU_PROPERTY("numSamples", ::gpu::e_type_i32)
 END_GPU_PROPERTIES()
 
 

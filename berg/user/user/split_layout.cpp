@@ -95,12 +95,12 @@ namespace user
 
       //}
 
-      //::int_rectangle rectangleX;
+      //::i32_rectangle rectangleX;
 
       //for (i = 0; i < get_pane_count(); i++)
       //{
 
-      //   int_rectangle & rectanglePane = m_panea[i]->m_rectangle;
+      //   i32_rectangle & rectanglePane = m_panea[i]->m_rectangle;
 
       //   pcomponent = m_panea.element_at(i);
 
@@ -269,7 +269,7 @@ namespace user
 
       }
 
-      ::int_rectangle splitRect;
+      ::i32_rectangle splitRect;
 
       CalcSplitBarRect(iIndex, splitRect);
 
@@ -503,7 +503,7 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleBar;
+      ::i32_rectangle rectangleBar;
 
       int i;
 
@@ -575,9 +575,9 @@ namespace user
 
          ppane = m_panea.element_at(i);
 
-         ::int_rectangle & rectanglePane = ppane->m_rectanglePane;
+         ::i32_rectangle & rectanglePane = ppane->m_rectanglePane;
 
-         ::int_rectangle & rectangleClient = ppane->m_rectangleHosting;
+         ::i32_rectangle & rectangleClient = ppane->m_rectangleHosting;
 
          CalcPaneRect(i, rectanglePane, e_layout_layout);
 
@@ -799,7 +799,7 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(::collection::index iPane, ::int_rectangle & rectangle, enum_layout elayout)
+   void split_layout::CalcPaneRect(::collection::index iPane, ::i32_rectangle & rectangle, enum_layout elayout)
    {
 
       int nMinPos = GetMinPos(iPane, elayout);
@@ -811,7 +811,7 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(int nMinPos, int nMaxPos, ::int_rectangle & rectangle, enum_layout elayout)
+   void split_layout::CalcPaneRect(int nMinPos, int nMaxPos, ::i32_rectangle & rectangle, enum_layout elayout)
    {
 
       rectangle = this->rectangle(elayout);
@@ -882,7 +882,7 @@ namespace user
    }
 
 
-   void split_layout::CalcSplitBarRect(::collection::index iIndex, ::int_rectangle & rectangle, enum_layout elayout)
+   void split_layout::CalcSplitBarRect(::collection::index iIndex, ::i32_rectangle & rectangle, enum_layout elayout)
    {
 
       ASSERT(iIndex >= 0);
@@ -1042,7 +1042,7 @@ namespace user
       else
       {
 
-         ::int_rectangle rectangleHosting;
+         ::i32_rectangle rectangleHosting;
 
          rectangleHosting = ppane->m_rectangleHosting;
 
@@ -1066,7 +1066,7 @@ namespace user
    }
 
 
-   void split_layout::SetPaneFixedSize(::collection::index iIndex, const ::int_size & size)
+   void split_layout::SetPaneFixedSize(::collection::index iIndex, const ::i32_size & size)
    {
 
       __UNREFERENCED_PARAMETER(iIndex);
@@ -1092,7 +1092,7 @@ namespace user
       else
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          CalcSplitBarRect(iPane - 1, rectangle, elayout);
 
@@ -1125,7 +1125,7 @@ namespace user
       else
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          CalcSplitBarRect(iPane, rectangle, elayout);
 
@@ -1162,7 +1162,7 @@ namespace user
 //      if(!m_bInitialized)
 //         return;
 //
-//      ::int_rectangle splitRect;
+//      ::i32_rectangle splitRect;
 //
 //      CalcSplitBarRect(iSplitBar, &splitRect);
 //
@@ -1270,7 +1270,7 @@ namespace user
 //   }
 
 
-   int_rectangle & split_layout::get_pane_rect(::collection::index iPane)
+   i32_rectangle & split_layout::get_pane_rect(::collection::index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1428,7 +1428,7 @@ namespace user
    }
 
    
-   //::int_rectangle split_layout::hosting_rectangle(::user::enum_layout elayout)
+   //::i32_rectangle split_layout::hosting_rectangle(::user::enum_layout elayout)
    //{
 
    //   return m_rectangleHosting;

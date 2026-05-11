@@ -1122,7 +1122,7 @@ class time operator * (INTEGRAL i, const class time & time)
 //
 //   class time time(*this);
 //
-//   return time.integral_nanosecond().m_i;
+//   return time.integral_nanosecond().m_i32;
 //
 //}
 

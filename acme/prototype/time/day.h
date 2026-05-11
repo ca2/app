@@ -20,7 +20,7 @@ public:
 
 
 
-   bool done() const { return integral_day().m_i >= 1; }
+   bool done() const { return integral_day().m_i32 >= 1; }
 
 
 };

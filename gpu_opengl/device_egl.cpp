@@ -309,7 +309,7 @@ namespace gpu_opengl
    }
 
 
-   void device_egl::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement)
+   void device_egl::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement)
    {
 
       ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
@@ -333,7 +333,7 @@ namespace gpu_opengl
 
    }
 
-   void device_egl::_defer_create_offscreen_window(const ::int_size& size)
+   void device_egl::_defer_create_offscreen_window(const ::i32_size& size)
    {
 
    }
@@ -399,7 +399,7 @@ namespace gpu_opengl
 
 
    //void device_egl::create_context()
-   void device_egl::_create_device(const ::int_size & size)
+   void device_egl::_create_device(const ::i32_size & size)
    {
 
       if (m_egldisplay != EGL_NO_DISPLAY)
@@ -2022,7 +2022,7 @@ namespace gpu_opengl
    }
 
 
-//   void device_egl::_create_offscreen_buffer(const ::int_size & size)
+//   void device_egl::_create_offscreen_buffer(const ::i32_size & size)
 //   {
 //
 //      auto psystem = system();
@@ -2166,7 +2166,7 @@ namespace gpu_opengl
 
 
 
-   // void device_egl::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement)
+   // void device_egl::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement)
    // {
    //
    //    auto psystem = system();
@@ -2334,7 +2334,7 @@ namespace gpu_opengl
    // }
 
 
-//    void device_egl::resize_offscreen_buffer(const ::int_size& size)
+//    void device_egl::resize_offscreen_buffer(const ::i32_size& size)
 //    {
 //
 //       //auto estatus =

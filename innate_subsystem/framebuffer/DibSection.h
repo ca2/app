@@ -49,12 +49,12 @@ namespace innate_subsystem
       // In default the created DC will used as a target DC for the blitting operations.
       // It may be changed many times later. Note that changed DC must be compatible with
       // the DIB section.
-      //DibSection(const PixelFormat & pf, const ::int_size & dim, HWND compatibleWin = 0);
+      //DibSection(const PixelFormat & pf, const ::i32_size & dim, HWND compatibleWin = 0);
       //DibSection();
       //virtual ~DibSectionInterface() = 0 ;
 
 
-      virtual void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindow = {}) = 0;
+      virtual void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::i32_size & dim, const ::operating_system::window & operatingsystemwindow = {}) = 0;
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
@@ -66,41 +66,41 @@ namespace innate_subsystem
       // DIB section) to the DIB section.
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      virtual void blitToDibSection(const ::int_rectangle &  rect) = 0;
+      virtual void blitToDibSection(const ::i32_rectangle &  rect) = 0;
 
       // This function copies a block of bits from a source DC (that has been used to create the
       // DIB section) to the DIB section.
       // Note that this function copies transparent windows too.
       // This function throwing an exception on a failure.
-      virtual void blitTransparentToDibSection(const ::int_rectangle &  rect) = 0;
+      virtual void blitTransparentToDibSection(const ::i32_rectangle &  rect) = 0;
 
       // This function copies a block of bits from the DIB section to the source DC
       // (that has been used to create the compatible DIB section).
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      virtual void blitFromDibSection(const ::int_rectangle &  rect) = 0;
+      virtual void blitFromDibSection(const ::i32_rectangle &  rect) = 0;
 
       // This function copies with strech a block of bits from the DIB section to the source DC
       // (that has been used to create the compatible DIB section).
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget) = 0;
+      virtual void stretchFromDibSection(const ::i32_rectangle &  srcRect,const ::i32_rectangle & rectangleTarget) = 0;
 
    //private:
       // Opens a new DIB section.
       // If targetDC == 0 the function will use a current desktop DC.
-      //virtual void openDIBSection(const PixelFormat & pf, const ::int_size & dim, HWND compatibleWin) = 0;
+      //virtual void openDIBSection(const PixelFormat & pf, const ::i32_size & dim, HWND compatibleWin) = 0;
       virtual void closeDIBSection() = 0;
       virtual void releaseTargetDC() = 0;
 
       // This function throwing an exception on a failure.
-      virtual void blitToDibSection(const ::int_rectangle &  rect, ::u32 flags) = 0;
+      virtual void blitToDibSection(const ::i32_rectangle &  rect, ::u32 flags) = 0;
 
       // This function throwing an exception on a failure.
-      virtual void blitFromDibSection(const ::int_rectangle &  rect, ::u32 flags) = 0;
-      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget, ::u32 flags) = 0;
+      virtual void blitFromDibSection(const ::i32_rectangle &  rect, ::u32 flags) = 0;
+      virtual void stretchFromDibSection(const ::i32_rectangle &  srcRect,const ::i32_rectangle & rectangleTarget, ::u32 flags) = 0;
 
-      //void setupBMIStruct(BITMAPINFO *pBmi, const PixelFormat & pf, const ::int_size & dim);
+      //void setupBMIStruct(BITMAPINFO *pBmi, const PixelFormat & pf, const ::i32_size & dim);
 
       // bool m_isOwnTargetDC;
       // HDC m_targetDC;
@@ -133,12 +133,12 @@ namespace innate_subsystem
       // In default the created DC will used as a target DC for the blitting operations.
       // It may be changed many times later. Note that changed DC must be compatible with
       // the DIB section.
-      //DibSection(const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {});
+      //DibSection(const ::innate_subsystem::PixelFormat & pf, const ::i32_size & dim, const ::operating_system::window & operatingsystemwindowCompatible = {});
       //DibSection();
       //~DibSection() override;
 
 
-         void initialize_dib_section(const ::innate_subsystem::PixelFormat& pf, const ::int_size& dim, const ::operating_system::window& operatingsystemwindowCompatible = {}) override
+         void initialize_dib_section(const ::innate_subsystem::PixelFormat& pf, const ::i32_size& dim, const ::operating_system::window& operatingsystemwindowCompatible = {}) override
       {
 
          m_pdibsection->initialize_dib_section(pf, dim, operatingsystemwindowCompatible);
@@ -161,7 +161,7 @@ namespace innate_subsystem
       // DIB section) to the DIB section.
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      void blitToDibSection(const ::int_rectangle& rect) override
+      void blitToDibSection(const ::i32_rectangle& rect) override
       {
 
          m_pdibsection->blitToDibSection(rect);
@@ -171,7 +171,7 @@ namespace innate_subsystem
       // DIB section) to the DIB section.
       // Note that this function copies transparent windows too.
       // This function throwing an exception on a failure.
-      void blitTransparentToDibSection(const ::int_rectangle& rect) override
+      void blitTransparentToDibSection(const ::i32_rectangle& rect) override
       {
          m_pdibsection->blitTransparentToDibSection(rect);
       }
@@ -180,7 +180,7 @@ namespace innate_subsystem
       // (that has been used to create the compatible DIB section).
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      void blitFromDibSection(const ::int_rectangle& rect) override
+      void blitFromDibSection(const ::i32_rectangle& rect) override
       { m_pdibsection->blitFromDibSection(rect);
       }
 
@@ -188,7 +188,7 @@ namespace innate_subsystem
       // (that has been used to create the compatible DIB section).
       // Note that this function does not copy any transparent windows.
       // This function throwing an exception on a failure.
-      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget) override
+      void stretchFromDibSection(const ::i32_rectangle& srcRect, const ::i32_rectangle& rectangleTarget) override
       {
          m_pdibsection->stretchFromDibSection(srcRect, rectangleTarget);
       }
@@ -196,29 +196,29 @@ namespace innate_subsystem
    //private:
       // Opens a new DIB section.
       // If targetDC == 0 the function will use a current desktop DC.
-      //void openDIBSection(const PixelFormat & pf, const ::int_size & dim, HWND compatibleWin);
+      //void openDIBSection(const PixelFormat & pf, const ::i32_size & dim, HWND compatibleWin);
       void closeDIBSection() override { m_pdibsection->closeDIBSection();
       }
       void releaseTargetDC() override { m_pdibsection->releaseTargetDC();
       }
 
       // This function throwing an exception on a failure.
-      void blitToDibSection(const ::int_rectangle& rect, ::u32 flags) override
+      void blitToDibSection(const ::i32_rectangle& rect, ::u32 flags) override
       {
          m_pdibsection->blitToDibSection(rect, flags);
       }
 
       // This function throwing an exception on a failure.
-      void blitFromDibSection(const ::int_rectangle& rect, ::u32 flags) override
+      void blitFromDibSection(const ::i32_rectangle& rect, ::u32 flags) override
       {
          m_pdibsection->blitFromDibSection(rect, flags);
       }
-      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget, ::u32 flags) override
+      void stretchFromDibSection(const ::i32_rectangle& srcRect, const ::i32_rectangle& rectangleTarget, ::u32 flags) override
       {
          m_pdibsection->stretchFromDibSection(srcRect, rectangleTarget, flags);
       }
 
-      //void setupBMIStruct(BITMAPINFO *pBmi, const ::innate_subsystem::PixelFormat & pf, const ::int_size & dim);
+      //void setupBMIStruct(BITMAPINFO *pBmi, const ::innate_subsystem::PixelFormat & pf, const ::i32_size & dim);
 
       //
       // bool m_isOwnTargetDC;

@@ -12,7 +12,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
       double dRate = get_progress_rate();
@@ -24,11 +24,11 @@ namespace hotplugin
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
       //  int cx = rectangleWindow.right - rectangleWindow.left;
       //int cy = rectangleWindow.bottom - rectangleWindow.top;
-      ::int_rectangle rectangle = lprect;
+      ::i32_rectangle rectangle = lprect;
 
 
 
@@ -65,7 +65,7 @@ namespace hotplugin
 
       }
 
-      ::int_rectangle rectangleBar(left,top,right,bottom);
+      ::i32_rectangle rectangleBar(left,top,right,bottom);
 
 
 
@@ -83,11 +83,11 @@ namespace hotplugin
       auto rectangleX = this->rectangle();
 
 
-      ::int_rectangle rectangleProgress(rectangleBar);
+      ::i32_rectangle rectangleProgress(rectangleBar);
 
       rectangleProgress.right = (int) (rectangleProgress.left + rectangleBar.width() * minimum(1.0, maximum(0.0, dRate)));
 
-      ::int_rectangle rectangleProgressComplement(rectangleBar);
+      ::i32_rectangle rectangleProgressComplement(rectangleBar);
 
       rectangleProgressComplement.left = rectangleProgress.right;
 

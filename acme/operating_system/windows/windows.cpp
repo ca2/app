@@ -48,7 +48,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::int_rectangle & rectangle)
+   CLASS_DECL_ACME bool get_window_rect(const ::operating_system::window & operatingsystemwindow, ::i32_rectangle & rectangle)
    {
 
       RECT _winRectø{};
@@ -67,10 +67,10 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME ::int_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow)
+   CLASS_DECL_ACME ::i32_rectangle get_window_rect(const ::operating_system::window & operatingsystemwindow)
    {
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       if (!get_window_rect(operatingsystemwindow, rectangle))
       {
@@ -795,7 +795,7 @@ namespace windows
 
       HWND hwndCapture = nullptr;
 
-      if (GetGUIThreadInfo((DWORD)itask.m_i, &info))
+      if (GetGUIThreadInfo((DWORD)itask.m_i32, &info))
       {
 
          hwndCapture = info.hwndCapture;
@@ -821,7 +821,7 @@ namespace windows
 
       info.cbSize = sizeof(GUITHREADINFO);
 
-      if (::GetGUIThreadInfo((DWORD)itask.m_i, &info))
+      if (::GetGUIThreadInfo((DWORD)itask.m_i32, &info))
       {
 
          if (info.hwndCapture == hwnd)
@@ -833,19 +833,19 @@ namespace windows
 
          DWORD currentThreadId = ::GetCurrentThreadId();
 
-         if ((DWORD)itask.m_i != currentThreadId)
+         if ((DWORD)itask.m_i32 != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, TRUE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, TRUE);
 
          }
 
          ::SetCapture(hwnd);
 
-         if ((DWORD)itask.m_i != currentThreadId)
+         if ((DWORD)itask.m_i32 != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, FALSE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, FALSE);
 
          }
 
@@ -878,7 +878,7 @@ namespace windows
 
       info.cbSize = sizeof(GUITHREADINFO);
 
-      if (::GetGUIThreadInfo((DWORD)itask.m_i, &info))
+      if (::GetGUIThreadInfo((DWORD)itask.m_i32, &info))
       {
 
          if (info.hwndCapture != hwnd)
@@ -890,19 +890,19 @@ namespace windows
 
          DWORD currentThreadId = ::GetCurrentThreadId();
 
-         if ((DWORD)itask.m_i != currentThreadId)
+         if ((DWORD)itask.m_i32 != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, TRUE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, TRUE);
 
          }
 
          ::ReleaseCapture();
 
-         if ((DWORD)itask.m_i != currentThreadId)
+         if ((DWORD)itask.m_i32 != currentThreadId)
          {
 
-            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i, FALSE);
+            ::AttachThreadInput(currentThreadId, (DWORD)itask.m_i32, FALSE);
 
          }
 
@@ -1136,3 +1136,31 @@ int message_box(
 
 
 } 
+
+namespace operating_system
+{
+
+::i32_rectangle get_console_rect()
+{
+   
+   auto hwnd = ::GetForegroundWindow();
+   
+   const WCHAR consoleClassName[] = L"ConsoleWindowClass";
+   
+   const character_count nameLength = sizeof(consoleClassName) / sizeof(WCHAR) + 1;
+   WCHAR className[nameLength];
+   GetClassNameW(hwnd, className, nameLength);
+   if (wcscmp(consoleClassName, className) == 0)
+   {
+      RECT rectangle;
+      GetWindowRect(hwnd, &rectangle);
+      rectangle = rectangle;
+   }
+   return rectangle;
+   
+   
+   
+}
+
+
+} // namespace operating_system

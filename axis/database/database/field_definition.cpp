@@ -34,7 +34,7 @@ namespace database
    //   throw ::exception(todo("xml"));
    //   //xml::node & node = const_cast < xml::node & > (nodeConst);
    //   //m_strName = node.attribute("name");
-   //   //if(!node.find_attribute("int_size", m_iSize))
+   //   //if(!node.find_attribute("i32_size", m_iSize))
    //   //   m_iSize = -1;
    //   //string strType;
    //   //if(node.find_attribute("type", strType))

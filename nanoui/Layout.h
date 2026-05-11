@@ -64,7 +64,7 @@ namespace nanoui
        *     The preferred size, accounting for things such as spacing, padding
        *     for icons, etc.
        */
-      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
+      virtual i32_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) = 0;
    };
 
    /**
@@ -87,7 +87,7 @@ namespace nanoui
       enum_alignment m_ealignment;
 
       /// The margin padding of this BoxLayout.
-      ::int_rectangle m_rectangleMargin;
+      ::i32_rectangle m_rectangleMargin;
 
       /// The spacing between widgets of this BoxLayout.
       int m_iSpacing;
@@ -108,7 +108,7 @@ namespace nanoui
        *     Extra spacing placed between widgets
        */
       BoxLayout(enum_orientation orientation, enum_alignment alignment,
-         ::int_rectangle margin, int spacing);
+         ::i32_rectangle margin, int spacing);
 
       /// The enum_orientation this BoxLayout is using.
       enum_orientation orientation() const { return m_eorientation; }
@@ -123,10 +123,10 @@ namespace nanoui
       void set_alignment(enum_alignment alignment) { m_ealignment = alignment; }
 
       /// The margin of this BoxLayout.
-      int_rectangle margin() const { return m_rectangleMargin; }
+      i32_rectangle margin() const { return m_rectangleMargin; }
 
       /// Sets the margin of this BoxLayout.
-      void set_margin(int_rectangle margin) { m_rectangleMargin = margin; }
+      void set_margin(i32_rectangle margin) { m_rectangleMargin = margin; }
 
       /// The spacing this BoxLayout is using to pad in between widgets.
       int spacing() const { return m_iSpacing; }
@@ -137,7 +137,7 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual i32_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
@@ -205,7 +205,7 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual i32_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
@@ -250,7 +250,7 @@ namespace nanoui
       /// The number of rows or columns before starting a ___new one, depending on the enum_orientation.
       int m_resolution;
       /// The spacing used for each dimension.
-      int_size m_sizeSpacing;
+      i32_size m_sizeSpacing;
       /// The margin around this GridLayout.
       int m_iMargin;
       /**
@@ -330,14 +330,14 @@ namespace nanoui
 
       /* Implementation of the layout interface */
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual i32_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
 
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array_base * grid, bool bRecalcTextSize) const;
+      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::i32_array_base * grid, bool bRecalcTextSize) const;
 
    };
 
@@ -413,10 +413,10 @@ namespace nanoui
 
 
       /// The columns of this AdvancedGridLayout.
-      ::int_array_base m_cols;
+      ::i32_array_base m_cols;
 
       /// The rows of this AdvancedGridLayout.
-      ::int_array_base m_rows;
+      ::i32_array_base m_rows;
 
       /// The stretch for each column of this AdvancedGridLayout.
       ::float_array m_col_stretch;
@@ -432,7 +432,7 @@ namespace nanoui
 
 
       /// Creates an AdvancedGridLayout with specified columns, rows, and margin.
-      AdvancedGridLayout(const ::int_array_base& cols = {}, const ::int_array_base& rows = {}, int margin = 0);
+      AdvancedGridLayout(const ::i32_array_base& cols = {}, const ::i32_array_base& rows = {}, int margin = 0);
 
       /// The margin of this AdvancedGridLayout.
       int margin() const { return m_iMargin; }
@@ -481,13 +481,13 @@ namespace nanoui
       /* Implementation of the layout interface */
 
       /// See \::pointer Layout::preferred_size.
-      virtual int_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
+      virtual i32_size preferred_size(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       /// See \::pointer Layout::perform_layout.
       virtual void perform_layout(::nano2d::context * pcontext, Widget* pwidget, bool bRecalcTextSize = true) override;
 
       // Compute the maximum row and column sizes
-      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::int_array_base* grid);
+      void compute_layout(::nano2d::context * pcontext, Widget* pwidget, ::i32_array_base* grid);
 
    };
 

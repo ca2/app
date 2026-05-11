@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText)
+   CLASS_DECL_BERG void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, const ::scoped_string & scopedstrEntryHallText)
    {
 
       int h = 33;
@@ -44,17 +44,17 @@ namespace hotplugin
 
       }
 
-      ::int_rectangle rectangleBar(left, top, right, bottom);
+      ::i32_rectangle rectangleBar(left, top, right, bottom);
 
       int w =300;
 
-      int v = (int) (::long_long_millisecond() / 2);
+      int v = (int) (::i64_millisecond() / 2);
 
       int x = v % rectangleBar.width();
 
-      ::int_rectangle rectangleBrick(left + x, rectangleBar.top, left + x + w, rectangleBar.bottom);
+      ::i32_rectangle rectangleBrick(left + x, rectangleBar.top, left + x + w, rectangleBar.bottom);
 
-      ::int_rectangle rectangleDraw;
+      ::i32_rectangle rectangleDraw;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

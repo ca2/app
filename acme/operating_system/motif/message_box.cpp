@@ -63,7 +63,7 @@ namespace motif
    {
       
       Position x, y;
-      ::int_size w, h;
+      ::i32_size w, h;
 
       XtVaGetValues(dialog,
                     XmNwidth, &w,
@@ -75,8 +75,8 @@ namespace motif
       if (h < 200)
          h = 200;
 
-      ::int_size wScreen = WidthOfScreen (XtScreen(dialog));
-      ::int_size hScreen = HeightOfScreen (XtScreen(dialog));
+      ::i32_size wScreen = WidthOfScreen (XtScreen(dialog));
+      ::i32_size hScreen = HeightOfScreen (XtScreen(dialog));
 
       x = (wScreen - w) / 2;
 

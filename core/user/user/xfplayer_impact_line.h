@@ -38,9 +38,9 @@ public:
    string                                          m_str;
    string                                          m_strPrefix;
    string                                          m_strRoot;
-   ::int_array_base                                       m_iaPosition;
+   ::i32_array_base                                       m_iaPosition;
 
-   ::int_rectangle                                 m_rectangle;
+   ::i32_rectangle                                 m_rectangle;
 
    int                              m_iIndent;
    bool                             m_bPendingLayoutUpdate;
@@ -59,7 +59,7 @@ public:
    ::write_text::font_pointer                    m_pfontLink;
    ::color::color                         m_cr;
    ::color::color                         m_colorOutline;
-   ::int_rectangle                           m_rectangleX;
+   ::i32_rectangle                           m_rectangleX;
    double                           m_fRateX;
    //LOGFONTW                          m_logfont;
 
@@ -79,7 +79,7 @@ public:
 
    double                           m_dXfplayerImpactLineBlend;
    int                              m_nFont;
-   ::int_rectangle                           m_rectangleInvalidate;
+   ::i32_rectangle                           m_rectangleInvalidate;
    int                              m_iAnimateType;
    double                           m_dAnimateProgress;
    double                           m_dAnimateProgressIncrement;
@@ -88,7 +88,7 @@ public:
    ::color::color                         m_colorForeground;
    ::draw2d::pen *                      m_ppenLyricLeft;
    ::draw2d::pen *                      m_ppenLyricRight;
-   ::int_size                             m_sizeLyricMargin;
+   ::i32_size                             m_sizeLyricMargin;
    ::color::color                         m_colorLyricLeft;
    ::color::color                         m_colorLyricRight;
 
@@ -100,15 +100,15 @@ public:
 
    void set_blend(double d);
    ::write_text::font * GetFont();
-   bool CalcChar(const ::int_point & point, character_count &iChar);
+   bool CalcChar(const ::i32_point & point, character_count &iChar);
    ::collection::index GetCharLink(character_count iChar);
    bool GetCharLink(string & str, character_count iChar);
    bool CharHasLink(character_count iChar);
-   user::enum_line_hit get_link(string & strUrl, const ::int_point & point);
+   user::enum_line_hit get_link(string & strUrl, const ::i32_point & point);
    ::collection::index GetLinkIndex(::collection::index iLine, character_count iChar);
    bool has_link();
    bool is_hover();
-   void update_hover(int_point & pointCursor);
+   void update_hover(i32_point & pointCursor);
    void PrepareURLLinks();
    void SetFont(::write_text::font * pfont);
 
@@ -116,9 +116,9 @@ public:
 //   void GetLogFont(LOGFONTW & lf);
 //#endif
 
-   user::enum_line_hit hit_test(const int_point &pointCursorParam, character_count &iChar);
+   user::enum_line_hit hit_test(const i32_point &pointCursorParam, character_count &iChar);
 
-   void CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
+   void CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
 
 
    void SetColors(::color32_t color32, ::color::color crOutline);
@@ -154,11 +154,11 @@ public:
    ::image::image_pointer & imageCache);
 
    bool IsVisible();
-   void Validate(const ::int_rectangle & rectangle = {});
-   void Invalidate(const ::int_rectangle & rectangle = {});
+   void Validate(const ::i32_rectangle & rectangle = {});
+   void Invalidate(const ::i32_rectangle & rectangle = {});
    //void AddVmsFont(::write_text::font * pfont);
    //int GetVmsFontCount();
-   void SetPlacement(const ::int_rectangle & rectangle);
+   void SetPlacement(const ::i32_rectangle & rectangle);
    int SetLyricColors(::color::color colorLeft, ::color::color colorRight);
    int SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight);
    void SetRenderCriticalSection(critical_section *pcs);
@@ -177,9 +177,9 @@ public:
 
    void Show(bool bShow = true);
    virtual xfplayer_impact_line & operator = (const xfplayer_impact_line & src);
-   void GetPlacement(::int_rectangle * prectangle);
+   void GetPlacement(::i32_rectangle * prectangle);
 
-   void SetPlaement(const ::int_rectangle & rectangle);
+   void SetPlaement(const ::i32_rectangle & rectangle);
    void SetAlign(int iAlign);
    static const int AlignLeft;
    static const int AlignRight;
@@ -188,16 +188,16 @@ public:
 
 
 
-   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::int_rectangle & rectangle);
+   bool PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::i32_rectangle & rectangle);
 
 
    void add_char(::wide_character wch, character_count &index);
 
    void add_char(::wide_character wch, character_count &index, ::write_text::font * pFont);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout);
 
-   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
+   bool _001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, int_rectangle_array_base & rectaModified, character_count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen);
 
 
    DECLARE_MESSAGE_HANDLER(OnMouseMove);

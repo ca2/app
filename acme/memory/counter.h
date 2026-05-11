@@ -22,7 +22,7 @@ namespace heap
       public:
 
          ::string m_strDebug;
-         ::i64    m_i = 0;
+         ::i64    m_i32 = 0;
 
 
       };
@@ -84,7 +84,7 @@ namespace heap
 
             auto & item = m_mapCounter[t];
 
-            return item.m_i;
+            return item.m_i32;
 
          }
 
@@ -104,7 +104,7 @@ namespace heap
 
             auto & item = m_mapCounter[t];
 
-            item.m_i++;
+            item.m_i32++;
 
          }
 

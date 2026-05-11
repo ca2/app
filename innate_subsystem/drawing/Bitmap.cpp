@@ -26,7 +26,7 @@
 
 namespace innate_subsystem
 {
-//    // Bitmap::Bitmap(const ::int_size & size)
+//    // Bitmap::Bitmap(const ::i32_size & size)
 //    // : m_bitmap(NULL)
 //    // {
 //    //    // Prepare buffer
@@ -40,7 +40,7 @@ namespace innate_subsystem
 //    //    }
 //    // }
 //    //
-//    // Bitmap::Bitmap(HDC dc, const ::int_size & size)
+//    // Bitmap::Bitmap(HDC dc, const ::i32_size & size)
 //    // {
 //    //    m_bitmap = CreateCompatibleBitmap(dc, width, height);
 //    // }
@@ -73,7 +73,7 @@ namespace innate_subsystem
 //    // }
 //
 //
-//    void Bitmap::initialize_bitmap(const ::int_size & size)
+//    void Bitmap::initialize_bitmap(const ::i32_size & size)
 // ///: m_bitmap(NULL)
 //    {
 //       m_pparticleThis->initialize_bitmap(size);
@@ -88,7 +88,7 @@ namespace innate_subsystem
 //       // }
 //    }
 //
-//    void Bitmap::initialize_bitmap(DeviceContextInterface * pdevicecontext, const ::int_size & size)
+//    void Bitmap::initialize_bitmap(DeviceContextInterface * pdevicecontext, const ::i32_size & size)
 //    {
 //       //m_bitmap = CreateCompatibleBitmap(dc, width, height);
 //       m_pparticleThis->initialize_bitmap(pdevicecontext, size);
@@ -101,7 +101,7 @@ namespace innate_subsystem
 //
 //    }
 //
-//    ::int_size Bitmap::getSize() const
+//    ::i32_size Bitmap::getSize() const
 //    {
 //       // BITMAP bitmap;
 //       // if (GetObject(m_bitmap, sizeof(BITMAP), &bitmap) == 0) {

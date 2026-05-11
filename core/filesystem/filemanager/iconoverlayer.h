@@ -25,7 +25,7 @@ namespace filemanager
       // give a chance to cache and optimize
       virtual void on_open_directory(const ::scoped_string & scopedstrPath) = 0;
 
-      virtual void overlay(const ::scoped_string & scopedstrPath, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle) = 0;
+      virtual void overlay(const ::scoped_string & scopedstrPath, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle) = 0;
 
    };
 

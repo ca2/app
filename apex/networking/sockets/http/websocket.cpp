@@ -967,7 +967,7 @@ namespace sockets
 
             }
 
-            m_i = 0;
+            m_i32 = 0;
 
             m_iN = -1;
 
@@ -975,7 +975,7 @@ namespace sockets
             {
 
                m_iN = m_n0;
-               m_i = 2;
+               m_i32 = 2;
 
             }
             else if (m_n0 == 126)
@@ -984,7 +984,7 @@ namespace sockets
                m_iN = 0;
                m_iN |= ((::u64)data[2]) << 8;
                m_iN |= ((::u64)data[3]) << 0;
-               m_i = 4;
+               m_i32 = 4;
 
             }
             else if (m_n0 == 127)
@@ -999,17 +999,17 @@ namespace sockets
                m_iN |= ((::u64)data[7]) << 16;
                m_iN |= ((::u64)data[8]) << 8;
                m_iN |= ((::u64)data[9]) << 0;
-               m_i = 10;
+               m_i32 = 10;
 
             }
 
             if (m_mask)
             {
 
-               m_maskingkey[0] = ((unsigned char)data[m_i + 0]);
-               m_maskingkey[1] = ((unsigned char)data[m_i + 1]);
-               m_maskingkey[2] = ((unsigned char)data[m_i + 2]);
-               m_maskingkey[3] = ((unsigned char)data[m_i + 3]);
+               m_maskingkey[0] = ((unsigned char)data[m_i32 + 0]);
+               m_maskingkey[1] = ((unsigned char)data[m_i32 + 1]);
+               m_maskingkey[2] = ((unsigned char)data[m_i32 + 2]);
+               m_maskingkey[3] = ((unsigned char)data[m_i32 + 3]);
 
             }
 
@@ -1089,8 +1089,8 @@ namespace sockets
                   for (memsize i = 0; i < m_iN; i++)
                   {
 
-                     //data[m_i + m_header_size] ^= m_maskingkey[m_i & 0x3];
-                     data[m_i + i + m_header_size] ^= m_maskingkey[(m_i + i) & 0x3];
+                     //data[m_i32 + m_header_size] ^= m_maskingkey[m_i32 & 0x3];
+                     data[m_i32 + i + m_header_size] ^= m_maskingkey[(m_i32 + i) & 0x3];
 
                   }
 

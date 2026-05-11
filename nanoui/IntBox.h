@@ -105,7 +105,7 @@ namespace nanoui
 
       int m_iIncrementStep;
 
-      virtual bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
+      virtual bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override
       {
 
          if ((m_bEditable || m_bSpinnable) && down)
@@ -305,7 +305,7 @@ namespace nanoui
 }
 
 
-virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
+virtual bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override
 {
 
    if (TextBox::mouse_motion_event(p, rel, bDown, ekeyModifiers))
@@ -338,7 +338,7 @@ virtual bool mouse_motion_event(const int_point& p, const int_size& rel, bool bD
 }
 
 
-virtual bool scroll_event(const int_point& p, const float_size& rel) override
+virtual bool scroll_event(const i32_point& p, const float_size& rel) override
 {
 
    if (Widget::scroll_event(p, rel))

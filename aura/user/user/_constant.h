@@ -166,7 +166,7 @@ enum
 // Frame interaction_impl styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
-#define FWS_SNAPTOBARS  0x00002000L // snap int_size to int_size of contained bars
+#define FWS_SNAPTOBARS  0x00002000L // snap i32_size to i32_size of contained bars
 
 
 

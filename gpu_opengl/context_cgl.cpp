@@ -67,7 +67,7 @@ namespace gpu_opengl
    }
 
 
-   void context_cgl::_create_cpu_buffer(const ::int_size & size)
+   void context_cgl::_create_cpu_buffer(const ::i32_size & size)
    {
 
       auto pgpuapproach = m_papplication->get_gpu_approach();
@@ -521,7 +521,7 @@ void context_cgl::_defer_update_render_frame_buffer_unlocked()
 void context_cgl::_create_window_context(::acme::windowing::window* pacmewindowingwindow)
 {
    
-   ::int_rectangle rectangle = pacmewindowingwindow->get_window_rectangle();
+   ::i32_rectangle rectangle = pacmewindowingwindow->get_window_rectangle();
    
    m_pacmewindowingwindowWindowSurface = pacmewindowingwindow;
    

@@ -74,7 +74,7 @@ namespace gpu_opengl
 
          }
 
-         int_array_base pixelAttribs;
+         i32_array_base pixelAttribs;
 
          pixelAttribs.append({WGL_DRAW_TO_WINDOW_ARB, GL_TRUE});
          pixelAttribs.append({WGL_SUPPORT_OPENGL_ARB, GL_TRUE});
@@ -245,7 +245,7 @@ namespace gpu_opengl
          }
 
 
-         int_array_base pixelAttribs;
+         i32_array_base pixelAttribs;
 
 
          pixelAttribs.append({WGL_DRAW_TO_WINDOW_ARB, GL_TRUE});

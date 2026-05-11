@@ -18,7 +18,7 @@ namespace user
 
       bool                             m_bLabel;
 
-      int                              m_i;
+      int                              m_i32;
       int                              m_iMin;
       int                              m_iMax;
       int                              m_iStep;

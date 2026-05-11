@@ -179,19 +179,19 @@ enum enum_type
    // integral
    //type_block = 1000,
    e_type_bool = 1024,
-   e_type_char,
-   e_type_unsigned_char,
-   e_type_short,
-   e_type_unsigned_short,
-   e_type_int,
-   e_type_unsigned_int,
+   e_type_i8,
+   e_type_u8,
+   e_type_i16,
+   e_type_u16,
+   e_type_i32,
+   e_type_u32,
    //e_type_long,
    //e_type_unsigned_long,
-   e_type_long_long,
-   e_type_unsigned_long_long,
+   e_type_i64,
+   e_type_u64,
 
 
-   // floating int_point
+   // floating i32_point
    e_type_float = 2048,
    e_type_double,
 
@@ -246,7 +246,7 @@ enum enum_type
    e_type_int_array,
    e_type_payload_array,
    e_type_property_set,
-   e_type_long_long_array,
+   e_type_i64_array,
    e_type_memory,
    e_type_path,
    e_type_float_array,
@@ -262,14 +262,14 @@ enum enum_type
    e_type_primitive_mask = 65535,
    e_type_pointer_of = 65536,
    e_type_pbool = e_type_bool | e_type_pointer_of,
-   e_type_punsigned_char = e_type_unsigned_char | e_type_pointer_of,
-   e_type_pchar = e_type_char | e_type_pointer_of,
-   e_type_punsigned_short = e_type_unsigned_short | e_type_pointer_of,
-   e_type_pshort = e_type_short | e_type_pointer_of,
-   e_type_punsigned_int = e_type_unsigned_int | e_type_pointer_of,
-   e_type_pint = e_type_int | e_type_pointer_of,
-   e_type_punsigned_long_long = e_type_unsigned_long_long | e_type_pointer_of,
-   e_type_plong_long = e_type_long_long | e_type_pointer_of,
+   e_type_punsigned_char = e_type_u8 | e_type_pointer_of,
+   e_type_pchar = e_type_i8 | e_type_pointer_of,
+   e_type_punsigned_short = e_type_u16 | e_type_pointer_of,
+   e_type_pshort = e_type_i16 | e_type_pointer_of,
+   e_type_pu32 = e_type_u32 | e_type_pointer_of,
+   e_type_pi32 = e_type_i32 | e_type_pointer_of,
+   e_type_pu64 = e_type_u64 | e_type_pointer_of,
+   e_type_pi64 = e_type_i64 | e_type_pointer_of,
    e_type_pfloat = e_type_float | e_type_pointer_of,
    e_type_pdouble= e_type_double | e_type_pointer_of,
 
@@ -283,14 +283,14 @@ constexpr bool is_number(enum_type etype)
 
    return
       etype == e_type_bool
-   || etype == e_type_unsigned_char
-   || etype == e_type_char
-   || etype ==  e_type_unsigned_short
-   || etype ==  e_type_short
-   || etype ==  e_type_unsigned_int
-   || etype ==  e_type_int
-   || etype ==  e_type_unsigned_long_long
-   || etype ==  e_type_long_long
+   || etype == e_type_u8
+   || etype == e_type_i8
+   || etype ==  e_type_u16
+   || etype ==  e_type_i16
+   || etype ==  e_type_u32
+   || etype ==  e_type_i32
+   || etype ==  e_type_u64
+   || etype ==  e_type_i64
    || etype == e_type_float
    || etype == e_type_double;
 

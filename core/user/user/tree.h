@@ -19,7 +19,7 @@ namespace user
    public:
 
 
-      //int_size                                m_sizeTotal;
+      //i32_size                                m_sizeTotal;
       ::e_align                                                m_ealignText;
       ::e_draw_text                                            m_edrawtext;
       ::pointer < ::user::tree_data_base >                     m_ptreedata;
@@ -31,11 +31,11 @@ namespace user
       ::collection::index                                      m_dwFirstVisibleItem;
       ::collection::index                                      m_iItemCount;
       ::u32                                             m_uiLButtonUpFlags;
-      int_point                                                m_pointLButtonUp;
+      i32_point                                                m_pointLButtonUp;
       ::pointer < ::data::tree_item_base >                     m_ptreeitemFirstVisible;
       ::collection::index                                      m_iFirstVisibleItemProperIndex;
       int                                                      m_iCurrentImpactWidth;
-      ::int_size                                               m_sizeItemMaximum;
+      ::i32_size                                               m_sizeItemMaximum;
       //::color::color                                         m_colorTextSelected;
       //::color::color                                         m_colorTextHighlight;
       //::color::color                                         m_colorTextSelectedHighlight;
@@ -109,20 +109,20 @@ namespace user
       void _001SetCollapseImageDark(const ::scoped_string & scopedstrMatter);
       void _001SetExpandImageDark(const ::scoped_string & scopedstrMatter);
       void update_tree_hover();
-      void update_tree_hover(int_point point);
+      void update_tree_hover(i32_point point);
       virtual void _001OnOpenItem(::data::tree_item_base * ptreeitem, const ::action_context & action_context);
-      virtual void _001OnItemContextMenu(::data::tree_item_base * ptreeitem, const ::action_context & action_context, ::user::tree * ptree, const ::int_point & point);
+      virtual void _001OnItemContextMenu(::data::tree_item_base * ptreeitem, const ::action_context & action_context, ::user::tree * ptree, const ::i32_point & point);
       void _001ExpandItem(::data::tree_item_base * ptreeitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001OnItemExpand(::data::tree_item_base * ptreeitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(::data::tree_item_base * ptreeitem, const ::action_context & action_context);
-      virtual bool _001GetItemElementRect(::int_rectangle * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
+      virtual bool _001GetItemElementRect(::i32_rectangle * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
       void install_message_routing(::channel * pchannel) override;
       virtual double _001GetItemHeight();
       virtual ::collection::index _001GetIndentation();
 
 
-      ::pointer<::data::tree_item_base>_001HitTest(const ::int_point & point, ::user::enum_tree_element & eelement);
+      ::pointer<::data::tree_item_base>_001HitTest(const ::i32_point & point, ::user::enum_tree_element & eelement);
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
@@ -130,7 +130,7 @@ namespace user
 
       virtual void perform_click();
 
-      virtual void perform_right_click(uptr uFlags, const ::int_point & point);
+      virtual void perform_right_click(uptr uFlags, const ::i32_point & point);
 
       virtual int get_wheel_scroll_delta() override;
 
@@ -240,7 +240,7 @@ namespace user
    }
 
    template < prototype_item ITEM >
-   void tree_data < ITEM >::_001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & context, ::user::tree * ptree, const ::int_point & point)
+   void tree_data < ITEM >::_001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & context, ::user::tree * ptree, const ::i32_point & point)
    {
 
       for (::collection::index i = 0; i < m_usertreea.get_count(); i++)

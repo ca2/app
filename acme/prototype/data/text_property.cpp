@@ -202,7 +202,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::get_text_composition_area(::int_rectangle& rectangle)
+   //   void text_property::get_text_composition_area(::i32_rectangle& rectangle)
    //   {
    //
    //
@@ -511,7 +511,7 @@ namespace data
       }
 
 
-      void text_property::get_text_composition_area(::int_rectangle& rectangle)
+      void text_property::get_text_composition_area(::i32_rectangle& rectangle)
       {
 
 
@@ -838,7 +838,7 @@ namespace data
    //}
 
 
-   //void text::get_text_composition_area(::int_rectangle& rectangle)
+   //void text::get_text_composition_area(::i32_rectangle& rectangle)
    //{
 
 

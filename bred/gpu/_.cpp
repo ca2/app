@@ -24,7 +24,7 @@ namespace gpu
 
       switch (e)
       {
-      case e_type_int:
+      case e_type_i32:
          return 1;
       case e_type_float:
          return 1;
@@ -52,8 +52,8 @@ namespace gpu
 
       switch (e)
       {
-         case e_type_int:
-            return e_type_int;
+         case e_type_i32:
+            return e_type_i32;
          case e_type_float:
             return e_type_float;
          case e_type_seq2:

@@ -155,7 +155,7 @@ void pixmap::y_swap_copy(const ::pixmap* ppixmapSrc)
 }
 
 
-void pixmap::copy(const ::int_size & size, const ::pixmap * ppixmapSrc)
+void pixmap::copy(const ::i32_size & size, const ::pixmap * ppixmapSrc)
 {
 
    m_pimage32->copy(size, scan_size(), ppixmapSrc);
@@ -163,7 +163,7 @@ void pixmap::copy(const ::int_size & size, const ::pixmap * ppixmapSrc)
 }
 
 
-void pixmap::y_swap_copy(const ::int_size& size, const ::pixmap* ppixmapSrc)
+void pixmap::y_swap_copy(const ::i32_size& size, const ::pixmap* ppixmapSrc)
 {
 
    m_pimage32->vertical_swap_copy(size, scan_size(), ppixmapSrc->data(), ppixmapSrc->m_iScan);
@@ -264,7 +264,7 @@ pixmap & pixmap::operator =(const pixmap & pixmap)
 
 
 
-bool pixmap::create(::memory& memory, const ::int_size& size, int stride)
+bool pixmap::create(::memory& memory, const ::i32_size& size, int stride)
 {
 
    if (stride < 0)

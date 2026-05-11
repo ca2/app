@@ -29,7 +29,7 @@ public:
 
 
    ::heap::allocator *              m_pallocator;
-   int                              m_nAllocSize;  // int_size of each block from Alloc
+   int                              m_nAllocSize;  // i32_size of each block from Alloc
    int                              m_nBlockSize;  // number of blocks to get at a time
    plex_heap *                      m_pBlocks;     // linked list_base of blocks (is nBlocks*nAllocSize)
    node*                            m_pnodeFree;   // first free node (nullptr if no free nodes)

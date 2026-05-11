@@ -37,7 +37,7 @@ namespace gpu_opengl
       ~swap_chain();
 
 
-///      void initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous) override;
+///      void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous) override;
 
 
    //   void endDraw(::draw2d_gpu::graphics* pgraphics, ::user::interaction* puserinteraction, ::gpu::renderer* pgpurendererSrc) override;
@@ -54,7 +54,7 @@ namespace gpu_opengl
       virtual ::pointer < ::gpu::shader > create_copy_texture_shader();
       virtual ::gpu::shader * present_shader();
       virtual ::gpu::shader * render_shader(int w, int h);
-      virtual void defer_update_swap_chain_textures(const ::int_size & size);
+      virtual void defer_update_swap_chain_textures(const ::i32_size & size);
 
       
    };

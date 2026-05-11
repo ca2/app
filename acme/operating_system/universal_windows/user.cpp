@@ -11,7 +11,7 @@
 CLASS_DECL_ACME int g_iMouse = -1;
 
 
-CLASS_DECL_ACME int_bool GetCursorPos(::int_point * lppoint);
+CLASS_DECL_ACME int_bool GetCursorPos(::i32_point * lppoint);
 
 
 

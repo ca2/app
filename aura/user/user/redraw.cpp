@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   void redraw::set_need_redraw(const ::int_rectangle & rectangle)
+   void redraw::set_need_redraw(const ::i32_rectangle & rectangle)
    {
 
       if (m_rectangleaNeedRedraw.has_element())
@@ -148,7 +148,7 @@ namespace user
    }
 
 
-   bool redraw::needs_to_draw(const ::int_rectangle & rectangle)
+   bool redraw::needs_to_draw(const ::i32_rectangle & rectangle)
    {
 
       bool bNeedsToDraw = false;

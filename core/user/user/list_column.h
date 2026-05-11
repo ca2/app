@@ -57,7 +57,7 @@ namespace user
       ::pointer<::user::interaction>        m_puserinteractionTemplate;
       ::pointer<::user::interaction_array>  m_puserinteractiona;
       ::image::icon_int_map                 m_mapIcon;
-      ::int_size                             m_sizeIcon;
+      ::i32_size                             m_sizeIcon;
       bool                                   m_bIcon;
       int                                  m_iPosition;
       int                                  m_iWidth;

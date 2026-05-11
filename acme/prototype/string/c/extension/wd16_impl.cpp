@@ -748,7 +748,7 @@ CLASS_DECL_ACME void wd16_from_u64_base(::wd16_character * sz, ::u64 u, int iBas
 }
 
 
-CLASS_DECL_ACME void wd16_from_long_long_base(::wd16_character * sz, ::i64 i, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd16_from_i64_base(::wd16_character * sz, ::i64 i, int iBase, enum_digit_case edigitcase)
 {
 
    wd16_character * pend = nullptr;

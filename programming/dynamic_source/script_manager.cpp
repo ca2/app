@@ -1579,14 +1579,14 @@ namespace dynamic_source
    }
 
 
-   int_size script_manager::get_image_size(const ::file::path& strFile)
+   i32_size script_manager::get_image_size(const ::file::path& strFile)
    {
 
       _single_lock synchronouslock(m_pmutexImageSize);
 
       synchronouslock._lock();
 
-      ::int_size size;
+      ::i32_size size;
 
       if (m_mapImageSize.find(strFile, size))
          return size;
@@ -1613,7 +1613,7 @@ namespace dynamic_source
    }
 
 
-   bool script_manager::extract_image_size(const ::file::path& strFile, ::int_size* psize)
+   bool script_manager::extract_image_size(const ::file::path& strFile, ::i32_size* psize)
    {
 
       // auto pcontext = get_context();
@@ -1675,7 +1675,7 @@ namespace dynamic_source
 
             if (buf[i + 1] == 0xC0)
             {
-               //0xFFC0 is the "Start of frame" marker which contains the file int_size
+               //0xFFC0 is the "Start of frame" marker which contains the file i32_size
                //The structure of the 0xFFC0 block is quite simple [0xFFC0][ushort length][uchar precision][ushort x][ushort y]
 
                if (pfile->read({ buf, 5 }) < 5)

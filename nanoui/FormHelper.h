@@ -136,8 +136,8 @@ NAMESPACE_END(detail)
       {
          ASSERT(m_pscreen);
          m_pwindow = ___new Window(m_pscreen, title);
-         int_array_base ia1{ 10, 0, 10, 0 };
-         int_array_base ia2;
+         i32_array_base ia1{ 10, 0, 10, 0 };
+         i32_array_base ia2;
          m_playout = ___new AdvancedGridLayout(ia1, ia2);
          m_playout->set_margin(10);
          m_playout->set_col_stretch(2, 1);
@@ -247,10 +247,10 @@ NAMESPACE_END(detail)
       }
 
       /// Specify a fixed size for newly added widgets
-      void set_fixed_size(const ::int_size & fw) { m_fixed_size = fw; }
+      void set_fixed_size(const ::i32_size & fw) { m_fixed_size = fw; }
 
       /// The current fixed size being used for newly added widgets.
-      ::int_size fixed_size() { return m_fixed_size; }
+      ::i32_size fixed_size() { return m_fixed_size; }
 
       /// The font name being used for group headers.
       ::string group_font_name() const { return m_group_font_name; }
@@ -296,7 +296,7 @@ NAMESPACE_END(detail)
       /// The label font name.
       ::string m_label_font_name = "sans";
       /// The fixed size for newly added widgets.
-      ::int_size m_fixed_size = int_size(0, 20);
+      ::i32_size m_fixed_size = i32_size(0, 20);
       /// The font size for group headers.
       int m_group_font_size = 20;
       /// The font size for labels.

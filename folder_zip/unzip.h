@@ -97,7 +97,7 @@ typedef struct unzip__global_info_s
 {
    uptr number_entry;         /* total number of entries in
                        the central dir on this disk */
-   uptr size_comment;         /* int_size of the global comment of the zipfile */
+   uptr size_comment;         /* i32_size of the global comment of the zipfile */
 } unzip__global_info;
 
 
@@ -110,8 +110,8 @@ typedef struct unzip__file_info_s
    uptr compression_method;   /* compression method              2 bytes */
    uptr dosDate;              /* last mod file date in Dos fmt   4 bytes */
    uptr crc;                  /* crc-32                          4 bytes */
-   uptr compressed_size;      /* compressed int_size                 4 bytes */
-   uptr uncompressed_size;    /* uncompressed int_size               4 bytes */
+   uptr compressed_size;      /* compressed i32_size                 4 bytes */
+   uptr uncompressed_size;    /* uncompressed i32_size               4 bytes */
    uptr size_filename;        /* filename length                 2 bytes */
    uptr size_file_extra;      /* extra field length              2 bytes */
    uptr size_file_comment;    /* file comment length             2 bytes */
@@ -174,7 +174,7 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_GetGlobalComment OF((unzip_File file,
       uptr uSizeBuf));
 /*
   get the global comment string of the ZipFile, in the szComment buffer.
-  uSizeBuf is the int_size of the szComment buffer.
+  uSizeBuf is the i32_size of the szComment buffer.
   return the number of unsigned char copied or an error code <0
 */
 
@@ -240,12 +240,12 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_GetCurrentFileInfo OF((unzip_File file,
   if pfile_info!=nullptr, the *pfile_info structure will contain somes info about
         the current file
   if szFileName!=nullptr, the filemane string will be copied in szFileName
-            (fileNameBufferSize is the int_size of the buffer)
+            (fileNameBufferSize is the i32_size of the buffer)
   if extraField!=nullptr, the extra field information will be copied in extraField
-            (extraFieldBufferSize is the int_size of the buffer).
+            (extraFieldBufferSize is the i32_size of the buffer).
             This is the Central-header version of the extra field
   if szComment!=nullptr, the comment string of the file will be copied in szComment
-            (commentBufferSize is the int_size of the buffer)
+            (commentBufferSize is the i32_size of the buffer)
 */
 
 /***************************************************************************/
@@ -307,7 +307,7 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_ReadCurrentFile OF((unzip_File file,
 /*
   read bytes from the current file (opened by unzip_OpenCurrentFile)
   buf contain buffer where data must be copied
-  len the int_size of buf.
+  len the i32_size of buf.
 
   return the number of unsigned char copied if somes bytes are copied
   return 0 if the end of file was reached
@@ -333,9 +333,9 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_GetLocalExtrafield OF((unzip_File file,
   This is the local-header version of the extra field (sometimes, there is
     more info in the local-header version than in the central-header)
 
-  if buf==nullptr, it return the int_size of the local extra field
+  if buf==nullptr, it return the i32_size of the local extra field
 
-  if buf!=nullptr, len is the int_size of the buffer, the extra header is copied in
+  if buf!=nullptr, len is the i32_size of the buffer, the extra header is copied in
     buf.
   the return value is the number of bytes copied in buf, or (if <0)
     the error code

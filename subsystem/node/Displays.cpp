@@ -45,7 +45,7 @@ namespace subsystem
 // //                                                LPARAM dwData)
 // // {
 // //   Displays *_this = (Displays *)dwData;
-// //   ::int_rectangle rect(lprcMonitor->left - _this->m_xVirtualScreen,
+// //   ::i32_rectangle rect(lprcMonitor->left - _this->m_xVirtualScreen,
 // //             lprcMonitor->top - _this->m_yVirtualScreen,
 // //             lprcMonitor->right - _this->m_xVirtualScreen,
 // //             lprcMonitor->bottom - _this->m_yVirtualScreen);
@@ -71,7 +71,7 @@ namespace subsystem
 // }
 //
 // void Displays::getDisplayCoordinates(unsigned char displayNumber,
-//                                             ::int_rectangle *prectangle)
+//                                             ::i32_rectangle *prectangle)
 // {
 //
 //    m_pparticleThis->getDisplayCoordinates(displayNumber, prectangle);

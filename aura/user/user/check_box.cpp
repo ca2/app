@@ -20,7 +20,7 @@
 #include "aura/message/user.h"
 
 
-void scroll_x(::int_rectangle & rectangleTarget, double dRateX, const ::int_rectangle & rectangle)
+void scroll_x(::i32_rectangle & rectangleTarget, double dRateX, const ::i32_rectangle & rectangle)
 {
 
    int w = ::width(rectangle);
@@ -176,7 +176,7 @@ namespace user
 
       KEEP(pgraphics->m_pdrawcontext, &drawcontext);
 
-      //::int_rectangle rectangleX;
+      //::i32_rectangle rectangleX;
 
       auto rectangleX = this->rectangle();
 
@@ -199,9 +199,9 @@ namespace user
 
       pgraphics->shift_impact_area(rectangleX);
 
-      ::int_rectangle rectangleCheckBox;
+      ::i32_rectangle rectangleCheckBox;
 
-      ::int_rectangle rectangleText;
+      ::i32_rectangle rectangleText;
 
       {
 
@@ -385,15 +385,15 @@ namespace user
 
       }
 
-      ::int_rectangle rectangle(1, 1, w-2, h-2);
+      ::i32_rectangle rectangle(1, 1, w-2, h-2);
 
-      ::int_rectangle rectangleEllipse(1, 1, h-2, h-2);
+      ::i32_rectangle rectangleEllipse(1, 1, h-2, h-2);
 
       //double dNow = ::get_millis();
 
       ::draw2d::path_pointer ppath(e_create, this);
 
-      ::int_rectangle rectangleL(1, 1, h-2, h-2);
+      ::i32_rectangle rectangleL(1, 1, h-2, h-2);
 
       auto rectangleR = int_rectangle_dimension(h-2, 1, h-2, h-2);
 
@@ -564,7 +564,7 @@ namespace user
 
       int iMinimumDimension = maximum(rectangleX.minimum_dimension() -1, 1);
 
-      ::int_rectangle rectangleCheckBox;
+      ::i32_rectangle rectangleCheckBox;
       rectangleCheckBox.left = 1;
       rectangleCheckBox.top = 1;
       rectangleCheckBox.right = iMinimumDimension + 1;

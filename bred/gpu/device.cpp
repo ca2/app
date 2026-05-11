@@ -76,7 +76,7 @@ namespace gpu
    }
 
 
-   void device::initialize_gpu_device_for_off_screen(::gpu::approach* pgpuapproach, const ::int_rectangle& rectanglePlacement)
+   void device::initialize_gpu_device_for_off_screen(::gpu::approach* pgpuapproach, const ::i32_rectangle& rectanglePlacement)
    {
 
       m_edevicetarget = e_device_target_off_screen;
@@ -201,7 +201,7 @@ namespace gpu
    }
 
 
-   //::pointer < ::gpu::context > device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
+   //::pointer < ::gpu::context > device::start_gpu_output_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
    //{
 
    //   auto pgpucontext = start_gpu_context(eoutput, nullptr,  size);
@@ -211,7 +211,7 @@ namespace gpu
    //}
 
 
-   //::pointer < ::gpu::context > device::start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_size& size)
+   //::pointer < ::gpu::context > device::start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_size& size)
    //{
 
    //   auto pgpucontext = start_gpu_context(
@@ -242,7 +242,7 @@ namespace gpu
    }
 
 
-   ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size)
+   ::pointer < ::gpu::context > device::create_gpu_context(const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::i32_size& size)
    {
 
       if (size.is_empty())
@@ -295,7 +295,7 @@ namespace gpu
    //}
 
 
-   ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size& size)
+   ::pointer < ::gpu::context > device::create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size& size)
    {
 
       //auto pgpucontext = createø<::gpu::context>();
@@ -574,7 +574,7 @@ namespace gpu
    //}
 
 
-   //void device::create_offscreen_buffer(const ::int_size& size)
+   //void device::create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   send([this, size]()
@@ -663,7 +663,7 @@ namespace gpu
    //}
 
 
-   //void device::_create_offscreen_buffer(const ::int_size& size)
+   //void device::_create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   //return ::success_none;
@@ -679,7 +679,7 @@ namespace gpu
    //}
 
 
-   //void device::resize_offscreen_buffer(const ::int_size& size)
+   //void device::resize_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   send([this, size]()
@@ -1202,7 +1202,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
 
 
-   //::int_size device::size()
+   //::i32_size device::size()
    //{
 
    //   return m_size;
@@ -1366,7 +1366,7 @@ void device::create_main_context(::acme::windowing::window * pacmewindowingwindo
 
       switch (etype)
       {
-      case e_type_int: return sizeof(int);
+      case e_type_i32: return sizeof(int);
       case e_type_float: return sizeof(float);
       case e_type_seq4: return sizeof(floating_sequence4);
       case e_type_mat4: return sizeof(floating_matrix4);

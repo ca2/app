@@ -12,7 +12,7 @@
   Deletes the specified pointer, if non-nullptr, and sets 
   it to nullptr after deletion.
  
-  @lparam ::int_point pointer to delete
+  @lparam ::i32_point pointer to delete
  
   @since Mar 08, 2004
   @author Gurmeet S. Kochar

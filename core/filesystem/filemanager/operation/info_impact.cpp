@@ -69,7 +69,7 @@ namespace filemanager
       int iLineCount = 23;
       double dBarHeight = (double)rectangleX.height() / (double)iLineCount;
       double dTop = 0.0;
-      ::int_rectangle rectangleProgress;
+      ::i32_rectangle rectangleProgress;
       rectangleProgress = rectangleX;
       //rectangleProgress.left += 23;
       //rectangleProgress.right -= 23;
@@ -78,7 +78,7 @@ namespace filemanager
       double dProgressL = 0.0;
       double dProgressU;
       double dProgressD = 1.0 / (double)iLineCount;
-      ::int_rectangle rectangleBar;
+      ::i32_rectangle rectangleBar;
       double dProgress;
       dProgress = get_document()->m_poperationthread->get_progress_rate();
       for(int iLine = 0; iLine < iLineCount; iLine++)

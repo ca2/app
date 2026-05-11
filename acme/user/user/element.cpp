@@ -315,7 +315,7 @@ namespace user
    //}
 
 
-   //bool element::Redraw(const ::int_rectangle & rectangle, ::draw2d::region * prgn)
+   //bool element::Redraw(const ::i32_rectangle & rectangle, ::draw2d::region * prgn)
    //{
 
    //   if (get_wnd() == nullptr)
@@ -343,7 +343,7 @@ namespace user
    //}
 
 
-   /*bool element::client_to_screen(::int_rectangle * prectangle)
+   /*bool element::client_to_screen(::i32_rectangle * prectangle)
    {
 
       ::offset_rect(prectangle, client_screen_top_left());
@@ -363,7 +363,7 @@ namespace user
    }
 */
 
-//bool element::client_to_screen(::int_point * ppoint)
+//bool element::client_to_screen(::i32_point * ppoint)
 //{
 
 //   ::offset_point(ppoint, client_screen_top_left());
@@ -383,17 +383,17 @@ namespace user
 //}
 
 
-//bool element::client_to_screen(::long_long_rectangle * prectangle)
+//bool element::client_to_screen(::i64_rectangle * prectangle)
 //{
 
-//   ::offset_rect(prectangle, long_long_point(client_screen_top_left()));
+//   ::offset_rect(prectangle, i64_point(client_screen_top_left()));
 
 //   return true;
 
 //}
 
 
-//bool element::client_to_screen(::long_long_point * ppoint)
+//bool element::client_to_screen(::i64_point * ppoint)
 //{
 
 //   ::offset_point(ppoint, client_screen_top_left());
@@ -403,7 +403,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(::int_rectangle * prectangle)
+//bool element::screen_to_client(::i32_rectangle * prectangle)
 //{
 
 //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -423,7 +423,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(::int_point * ppoint)
+//bool element::screen_to_client(::i32_point * ppoint)
 //{
 
 //   ::offset_point(ppoint, -client_screen_top_left());
@@ -443,7 +443,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(::long_long_rectangle * prectangle)
+//bool element::screen_to_client(::i64_rectangle * prectangle)
 //{
 
 //   ::offset_rect(prectangle, -client_screen_top_left());
@@ -453,7 +453,7 @@ namespace user
 //}
 
 
-//bool element::screen_to_client(::long_long_point * ppoint)
+//bool element::screen_to_client(::i64_point * ppoint)
 //{
 
 //   ::offset_point(ppoint, -client_screen_top_left());
@@ -463,7 +463,7 @@ namespace user
 //}
 
 
-//bool element::GetWindowPos(::int_rectangle * prectangle)
+//bool element::GetWindowPos(::i32_rectangle * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -473,7 +473,7 @@ namespace user
 //}
 
 
-//bool element::window_rectangle(::int_rectangle * prectangle)
+//bool element::window_rectangle(::i32_rectangle * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -491,7 +491,7 @@ namespace user
 //}
 
 
-//bool element::this->rectangle(::int_rectangle * prectangle)
+//bool element::this->rectangle(::i32_rectangle * prectangle)
 //{
 
 //   throw ::interface_only();
@@ -501,7 +501,7 @@ namespace user
 //}
 
 
-//bool element::this->rectangle(::long_long_rectangle * prectangle)
+//bool element::this->rectangle(::i64_rectangle * prectangle)
 
 //{
 
@@ -512,7 +512,7 @@ namespace user
 //}
 
 
-//bool element::window_rectangle(::long_long_rectangle * prectangle)
+//bool element::window_rectangle(::i64_rectangle * prectangle)
 
 //{
 
@@ -669,7 +669,7 @@ namespace user
 
 
 
-   //bool element::SetPlacement(const ::int_rectangle & rectangle,::u32 nFlags)
+   //bool element::SetPlacement(const ::i32_rectangle & rectangle,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -779,7 +779,7 @@ namespace user
    //      });
 
    //}
-   //bool element::place(const ::int_rectangle & rectangle)
+   //bool element::place(const ::i32_rectangle & rectangle)
    //{
 
    //   throw ::interface_only();
@@ -809,7 +809,7 @@ namespace user
    //}
 
 
-   //bool element::move_to(const ::int_point & point)
+   //bool element::move_to(const ::i32_point & point)
    //{
 
    //   throw ::interface_only();
@@ -829,7 +829,7 @@ namespace user
    //}
 
 
-   //bool element::set_size(const int_size & sz)
+   //bool element::set_size(const i32_size & sz)
    //{
 
    //   throw ::interface_only();
@@ -849,7 +849,7 @@ namespace user
    //}
 
 
-   //bool element::ResizeWindow(const int_size & sz,::u32 nFlags)
+   //bool element::ResizeWindow(const i32_size & sz,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -859,7 +859,7 @@ namespace user
    //}
 
 
-   //bool element::set_window_position(class zorder zorder, const ::int_rectangle & rectangle, ::u32 nFlags)
+   //bool element::set_window_position(class zorder zorder, const ::i32_rectangle & rectangle, ::u32 nFlags)
 
    //{
 
@@ -869,7 +869,7 @@ namespace user
 
    //}
 
-   //bool element::defer_set_window_pos(iptr z, const  const int_rectangle & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
+   //bool element::defer_set_window_pos(iptr z, const  const i32_rectangle & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of i32_rectangle(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();
@@ -879,7 +879,7 @@ namespace user
    //}
 
 
-   //bool element::defer_set_window_pos(iptr z,int x,int y,int cx,int cy,::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
+   //bool element::defer_set_window_pos(iptr z,int x,int y,int cx,int cy,::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of i32_rectangle(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();
@@ -937,7 +937,7 @@ namespace user
    //}
 
 
-   ::user::interaction * element::_001FromPoint(::int_point point, bool bTestedIfParentVisible)
+   ::user::interaction * element::_001FromPoint(::i32_point point, bool bTestedIfParentVisible)
    {
 
       throw ::interface_only();
@@ -947,7 +947,7 @@ namespace user
    }
 
 
-   bool element::_001IsPointInside(const ::int_point & point)
+   bool element::_001IsPointInside(const ::i32_point & point)
    {
 
       return false;
@@ -1018,7 +1018,7 @@ namespace user
    //}
 
 
-   lresult element::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult element::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point)
    {
 
       return message_call(eusermessage, wparam, lparam, point);
@@ -1034,7 +1034,7 @@ namespace user
    }
 
 
-   lresult element::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   lresult element::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point)
    {
 
       return 0;
@@ -1455,7 +1455,7 @@ namespace user
    //}
 
 
-   //bool element::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //bool element::RedrawWindow(const ::i32_rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   throw ::interface_only();
@@ -1465,7 +1465,7 @@ namespace user
    //}
 
 
-   ::user::interaction * element::ChildWindowFromPoint(const ::int_point & point)
+   ::user::interaction * element::ChildWindowFromPoint(const ::i32_point & point)
    {
 
       throw ::interface_only();
@@ -1473,7 +1473,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::ChildWindowFromPoint(const ::int_point & point, ::u32 nFlags)
+   ::user::interaction * element::ChildWindowFromPoint(const ::i32_point & point, ::u32 nFlags)
    {
 
       throw ::interface_only();
@@ -1617,35 +1617,35 @@ namespace user
    }
 
 
-   void element::set_rectangle(const ::int_rectangle & rectangle)
+   void element::set_rectangle(const ::i32_rectangle & rectangle)
    {
 
    }
 
 
 
-   void element::set_position(const ::int_point & point)
+   void element::set_position(const ::i32_point & point)
    {
 
 
    }
 
 
-   void element::set_size(const ::int_size & size)
+   void element::set_size(const ::i32_size & size)
    {
 
 
    }
 
 
-   void element::set_interaction_rectangle(const ::int_rectangle & rectangle)
+   void element::set_interaction_rectangle(const ::i32_rectangle & rectangle)
    {
 
 
    }
 
 
-   ::int_rectangle element::get_rectangle()
+   ::i32_rectangle element::get_rectangle()
    {
 
       return acme_user_interaction()->get_rectangle();
@@ -1653,7 +1653,7 @@ namespace user
    }
 
 
-   ::int_rectangle element::get_window_rectangle()
+   ::i32_rectangle element::get_window_rectangle()
    {
 
       return acme_windowing_window()->get_window_rectangle();
@@ -1864,7 +1864,7 @@ namespace user
    //}
 
 
-   //void element::CalcWindowRect(::int_rectangle * prectangle,::u32 nAdjustType)
+   //void element::CalcWindowRect(::i32_rectangle * prectangle,::u32 nAdjustType)
 
    //{
 
@@ -1873,7 +1873,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::int_rectangle * prectParam, const ::int_rectangle & rectangleX, bool bStretch)
+   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::i32_rectangle * prectParam, const ::i32_rectangle & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2013,7 +2013,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(::int_rectangle & rectangle)
+   void element::viewport_client_to_screen(::i32_rectangle & rectangle)
    {
 
       throw ::interface_only();
@@ -2021,7 +2021,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(::int_rectangle & rectangle)
+   void element::viewport_screen_to_client(::i32_rectangle & rectangle)
    {
 
       throw ::interface_only();
@@ -2197,7 +2197,7 @@ namespace user
    //}
 
 
-   //bool element::GetUpdateRect(::int_rectangle * prectangle, bool bErase)
+   //bool element::GetUpdateRect(::i32_rectangle * prectangle, bool bErase)
 
    //{
 
@@ -2218,7 +2218,7 @@ namespace user
    //}
 
 
-   //void element::InvalidateRect(const ::int_rectangle & rectangle,bool bErase)
+   //void element::InvalidateRect(const ::i32_rectangle & rectangle,bool bErase)
 
    //{
 
@@ -2235,7 +2235,7 @@ namespace user
    //}
 
 
-   //void element::ValidateRect(const ::int_rectangle & rectangle)
+   //void element::ValidateRect(const ::i32_rectangle & rectangle)
 
    //{
 
@@ -2561,7 +2561,7 @@ namespace user
    //}
 
 
-   //void element::design_window_full_screen(const ::int_rectangle & rectangleHint)
+   //void element::design_window_full_screen(const ::i32_rectangle & rectangleHint)
    //{
 
    //   throw ::interface_only();
@@ -2804,10 +2804,10 @@ namespace user
 
    //}
 
-   //::int_point element::get_cursor_position() const
+   //::i32_point element::get_cursor_position() const
    //{
 
-   //   return ::int_point();
+   //   return ::i32_point();
 
    //}
 
@@ -3031,7 +3031,7 @@ namespace user
    //}
 
 
-   bool element::GetFocusRect(::int_rectangle & rectangle)
+   bool element::GetFocusRect(::i32_rectangle & rectangle)
    {
 
       return false;
@@ -4109,7 +4109,7 @@ namespace user
 //   }
 
 
-   // bool element::call_message_handler(const ::atom & atom, const ::wparam & wparam, const ::lparam & lparam, const ::int_point & point, lresult * plresult)
+   // bool element::call_message_handler(const ::atom & atom, const ::wparam & wparam, const ::lparam & lparam, const ::i32_point & point, lresult * plresult)
    // {
 
    //    //auto pmessage = get_message(eusermessage, wparam, lparam);
@@ -4229,7 +4229,7 @@ namespace user
    //}
 
 
-//   bool element::SetPlacement(const ::int_rectangle & rectangle, ::u32 nFlags)
+//   bool element::SetPlacement(const ::i32_rectangle & rectangle, ::u32 nFlags)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(rectangle);
@@ -4844,30 +4844,30 @@ namespace user
    //}
 
 
-   void element::set_input_content_rect(const int_rectangle & rectangle)
+   void element::set_input_content_rect(const i32_rectangle & rectangle)
    {
 
    }
 
 
-   void element::set_input_selection_rect(const int_rectangle & rectangle)
+   void element::set_input_selection_rect(const i32_rectangle & rectangle)
    {
 
    }
 
 
-   int_rectangle element::get_input_content_rect()
+   i32_rectangle element::get_input_content_rect()
    {
 
-      return int_rectangle();
+      return i32_rectangle();
 
    }
 
 
-   int_rectangle element::get_input_selection_rect()
+   i32_rectangle element::get_input_selection_rect()
    {
 
-      return int_rectangle();
+      return i32_rectangle();
 
    }
 

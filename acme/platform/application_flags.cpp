@@ -1238,18 +1238,18 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////         sprintf(szTime, "%04d-%02d-%02d %02d:%02d:%02d", t.tm_year + 1900, t.tm_mon + 1, t.tm_mday, t.tm_hour, t.tm_min, t.tm_sec);
 ////
-////         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i);
+////         sprintf(szTimeMessage, "\n\n\n---------------------------------------------------------------------------------------------\n|\n|\n|  Just After First papp Request Completion %"  PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i32);
 ////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
 ////         ::time i::timesTotal = tickEnd - m_timeStart;
 ////
-////         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::timesTotal.m_i);
+////         sprintf(szTimeMessage, "\n|  Total Elapsed Time %" PRId64 " ms", i::timesTotal.m_i32);
 ////         ::information(szTimeMessage);
 ////         printf("%s", szTimeMessage);
 ////
-////         int i::times = i::timesTotal.m_i % 1000;
-////         int iSecondsTotal = (int)(i::timesTotal.m_i / 1000);
+////         int i::times = i::timesTotal.m_i32 % 1000;
+////         int iSecondsTotal = (int)(i::timesTotal.m_i32 / 1000);
 ////         int iSeconds = iSecondsTotal % 60;
 ////         int iMinutesTotal = iSecondsTotal / 60;
 ////         int iMinutes = iMinutesTotal % 60;
@@ -1338,7 +1338,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////            char szTimeMessage1[2048];
 ////
-////            sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i);
+////            sprintf(szTimeMessage1, " Just After First papp Request Completion %" PRId64 " ms", (m_timeAfterApplicationFirstRequest - m_timeStart).m_i32);
 ////
 ////            if (file_length_raw(szEllapsed) > 0)
 ////            {
@@ -1355,7 +1355,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 ////
 ////            char szTimeMessage2[2048];
 ////
-////            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_timeStart).m_i);
+////            sprintf(szTimeMessage2, " Total Elapsed Time " __prtick, (tickEnd - m_timeStart).m_i32);
 ////
 ////            file_add_contents_raw(szEllapsed, szUTCTime);
 ////

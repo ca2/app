@@ -25,7 +25,7 @@ namespace nanoui
    }
 
 
-   int_size Slider::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
+   i32_size Slider::preferred_size(::nano2d::context  *, bool bRecalcTextSize)
    {
 
       return { 70, 16 };
@@ -33,7 +33,7 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_motion_event(const int_point & p, const int_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_motion_event(const i32_point & p, const i32_size & /* rel */, bool bDown, const ::user::e_key & /* modifiers */)
    {
 
       if (!m_bEnabled || !bDown)
@@ -69,7 +69,7 @@ namespace nanoui
    }
 
 
-   bool Slider::mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
+   bool Slider::mouse_button_event(const i32_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
    {
 
       if (!m_bEnabled)

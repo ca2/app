@@ -29,17 +29,17 @@ namespace user
 
       index_array                         m_iaSel;
       //::item                            m_itemLButtonDown;
-      ::int_size                          m_size;
+      ::i32_size                          m_size;
       bool                                m_bMultiSel;
-      ::int_size                          m_sizeImage;
-      //::int_rectangle                   m_rectangleTotal;
+      ::i32_size                          m_sizeImage;
+      //::i32_rectangle                   m_rectangleTotal;
 
 
       image_list();
       ~image_list() override;
 
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       //virtual bool get_rect(::item & item) override;
 

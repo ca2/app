@@ -64,9 +64,9 @@ enum e_set_version
 //   virtual stream & read (::u64 & u) override;
 //   virtual stream & read (float & f) override;
 //   virtual stream & read (double & d) override;
-//   virtual stream & read(::int_point * ppoint) ;
-//   virtual stream & read(::int_size * psize) ;
-//   virtual stream & read (::int_rectangle * prectangle) ;
+//   virtual stream & read(::i32_point * ppoint) ;
+//   virtual stream & read(::i32_size * psize) ;
+//   virtual stream & read (::i32_rectangle * prectangle) ;
 //
 //   virtual stream & read (string & str) override;
 //
@@ -90,9 +90,9 @@ enum e_set_version
 //   virtual stream & write (::u64 u) override;
 //   virtual stream & write (float f) override;
 //   virtual stream & write (double d) override;
-//   virtual stream & write(const ::int_point * ppoint);
-//   virtual stream & write(const ::int_size & psize) ;
-//   virtual stream & write (const ::int_rectangle * prectangle) ;
+//   virtual stream & write(const ::i32_point * ppoint);
+//   virtual stream & write(const ::i32_size & psize) ;
+//   virtual stream & write (const ::i32_rectangle * prectangle) ;
 //   virtual stream & write (const ::scoped_string & scopedstr) override;
 //   virtual stream & write (const ::scoped_string & scopedstr) override;
 //

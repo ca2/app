@@ -101,7 +101,7 @@ namespace message
 
 
    // void message::set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * playeredUserPrimitive, ::user::enum_message
-   // eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point) void message::set(::acme::windowing::window * pacmewindowingwindow,
+   // eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point) void message::set(::acme::windowing::window * pacmewindowingwindow,
    // ::windowing::window* playeredUserPrimitive, ::user::enum_message eusermessage, ::wparam wparam, ::lparam
    // lparam)
    //{

@@ -247,7 +247,7 @@ void trim_right_001()
 void test_001()
 {
 
-   int_array_base a{ 1,1,2,3,5,8,13,21,34 };
+   i32_array_base a{ 1,1,2,3,5,8,13,21,34 };
 
    auto print_elem = [](auto const e) {::platform::get()->informationf(::as_string(e) + "\n"); };
 
@@ -356,7 +356,7 @@ namespace console_hello
 
       auto path1 = path.sibling(pathLast.name());
 
-      strMillis = ::as_string(::long_long_millisecond() % 1000);
+      strMillis = ::as_string(::i64_millisecond() % 1000);
 
       str1.formatf("this is a contatenation%s and format test%s ", str.c_str(), strD.c_str());
 

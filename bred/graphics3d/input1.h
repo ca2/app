@@ -69,7 +69,7 @@ namespace graphics3d
       void process_keyboard_input();
 
 
-      void _001OnMouseMove(const ::int_point & point);
+      void _001OnMouseMove(const ::i32_point & point);
       void _001OnMouseOut();
       void _001PrepareMouseInput();
       void process_mouse_input_updateLook();

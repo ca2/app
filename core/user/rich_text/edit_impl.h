@@ -55,11 +55,11 @@ namespace user
 
          //virtual ::pointer<span> add_end_of_line_span();
 
-         virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+         virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
-         virtual bool get_item_rect(::int_rectangle * prectangle, ::collection::index i) override;
+         virtual bool get_item_rect(::i32_rectangle * prectangle, ::collection::index i) override;
 
-         virtual bool get_element_rectangle(::int_rectangle * prectangle, ::collection::index i, enum_element eelement) override;
+         virtual bool get_element_rectangle(::i32_rectangle * prectangle, ::collection::index i, enum_element eelement) override;
 
          virtual ::double_size get_size() override;
 
@@ -67,7 +67,7 @@ namespace user
          // void dump(dump_context & dumpcontext) const override;
 
          bool _001GetItemText(string & str, ::collection::index iItem) override;
-         bool _001IsPointInside(const ::int_point & point) override;
+         bool _001IsPointInside(const ::i32_point & point) override;
          void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
@@ -170,7 +170,7 @@ namespace user
          void _001GetSelLineText(string & str) override;
 
 
-         void get_text_composition_area(::int_rectangle & r) override;
+         void get_text_composition_area(::i32_rectangle & r) override;
          void on_text_composition(const ::scoped_string & scopedstr) override;
          void on_text_composition_done() override;
          bool edit_undo() override;

@@ -87,7 +87,7 @@ namespace gpu
 
          initialize_render_target_image(ptexture);
 
-         //::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+         //::gpu::texture_attributes textureattributes(::i32_rectangle{m_size});
 
          //::gpu::texture_flags textureflags;
 
@@ -120,7 +120,7 @@ namespace gpu
    }
 
 
-   void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous)
+   void render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous)
    {
 
       set_fail_flag();
@@ -295,7 +295,7 @@ namespace gpu
    }
 
 
-   void render_target::on_resize(const ::int_size& size)
+   void render_target::on_resize(const ::i32_size& size)
    {
 
       if (m_size == size)
@@ -331,7 +331,7 @@ namespace gpu
    //      if (ptexture->size() != m_size && !m_size.is_empty())
    //      {
 
-   //         ::gpu::texture_attributes textureattributes(::int_rectangle{m_size});
+   //         ::gpu::texture_attributes textureattributes(::i32_rectangle{m_size});
 
    //         ::gpu::texture_flags textureflags;
 

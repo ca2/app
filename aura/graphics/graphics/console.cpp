@@ -134,7 +134,7 @@ namespace graphics
    }
 
 
-   console::console(::user::interaction * puserinteraction, ::int_size sizeTile) :
+   console::console(::user::interaction * puserinteraction, ::i32_size sizeTile) :
       m_puserinteraction(puserinteraction),
       m_sizeTile(sizeTile),
       ::console::console(this)
@@ -187,7 +187,7 @@ namespace graphics
 
       m_sizeWindow.cy = iHeight;
 
-      ::int_size sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
+      ::i32_size sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
 
       m_pimage = image()->create_image(sizeImage);
 
@@ -312,7 +312,7 @@ namespace graphics
    }
 
 
-   bool console::defer_write(char ch, const ::int_rectangle & r, int edoscolor)
+   bool console::defer_write(char ch, const ::i32_rectangle & r, int edoscolor)
    {
 
       return false;
@@ -357,10 +357,10 @@ namespace graphics
    }
 
 
-   ::int_rectangle console::_get_position_rectangle(int y, int x)
+   ::i32_rectangle console::_get_position_rectangle(int y, int x)
    {
    
-      ::int_rectangle r;
+      ::i32_rectangle r;
       
       
       r.left = x * m_sizeTile.cx;
@@ -376,10 +376,10 @@ namespace graphics
    }
 
 
-   ::int_rectangle console::get_position_rectangle(int y, int x)
+   ::i32_rectangle console::get_position_rectangle(int y, int x)
    {
 
-      ::int_rectangle r;
+      ::i32_rectangle r;
       
       r = _get_position_rectangle(y, x);
       
@@ -421,18 +421,18 @@ namespace graphics
             m_pimage->g()->set(ppen2);
 
             m_pimage->g()->line(
-               ::int_point(m_iBorder + x * m_sizeTile.cx,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
             m_pimage->g()->set(ppen1);
 
             m_pimage->g()->line(
-               ::int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -453,9 +453,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               int_point(m_iBorder + x * m_sizeTile.cx,
+               i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -476,9 +476,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               int_point(m_iBorder + x * m_sizeTile.cx,
+               i32_point(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -499,9 +499,9 @@ namespace graphics
             }
 
             m_pimage->g()->line(
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy),
-               int_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               i32_point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -810,7 +810,7 @@ namespace graphics
 
             m_pimage->g()->set_text_color(console_dos_color(edoscolor));
 
-           m_pimage->g()->draw_text(str, int_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
+           m_pimage->g()->draw_text(str, i32_rectangle(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_center);
 
          }

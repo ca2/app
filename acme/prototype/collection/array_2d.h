@@ -62,7 +62,7 @@ public:
 
    }
 
-   ::collection::count set_size(::int_size size)
+   ::collection::count set_size(::i32_size size)
    {
 
       return this->set_size(size.cx, size.cy);
@@ -70,7 +70,7 @@ public:
    }
 
 
-   ::int_size size() const
+   ::i32_size size() const
    {
 
       return { m_iWidth, BASE_ARRAY::size() / m_iWidth };
@@ -124,7 +124,7 @@ public:
 };
 
 
-using int_array_2d = ::array_2d < int, int >;
+using i32_array_2d = ::array_2d < int, int >;
 
 
 using float_array_2d = ::array_2d < float, float >;

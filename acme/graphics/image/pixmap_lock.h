@@ -8,14 +8,14 @@ public:
 
 
    pixmap * m_pbitmap;
-   ::int_rectangle      m_rectanglePrevious;
+   ::i32_rectangle      m_rectanglePrevious;
    bool        m_bMapped;
 
 
    pixmap_lock() { }
 
 
-   pixmap_lock(pixmap * pmap, int_rectangle rectangle) :
+   pixmap_lock(pixmap * pmap, i32_rectangle rectangle) :
       m_pbitmap(pmap)
    {
 
@@ -38,7 +38,7 @@ public:
 
    }
 
-   bool map_base(::int_rectangle rectangleMap)
+   bool map_base(::i32_rectangle rectangleMap)
    {
 
       if (m_bMapped)

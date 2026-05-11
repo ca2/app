@@ -58,9 +58,9 @@
       ~exception_translator() override;
 
 //#ifdef WINDOWS
-//      virtual void filter(::u32 uiCode, _EXCEPTION_POINTERS * int_point);
-//      //static void __cdecl filter2(::u32 uiCode, _EXCEPTION_POINTERS * int_point);
-//      //void filter( _EXCEPTION_POINTERS * int_point);
+//      virtual void filter(::u32 uiCode, _EXCEPTION_POINTERS * i32_point);
+//      //static void __cdecl filter2(::u32 uiCode, _EXCEPTION_POINTERS * i32_point);
+//      //void filter( _EXCEPTION_POINTERS * i32_point);
 //#endif
 
 

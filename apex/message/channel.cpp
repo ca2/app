@@ -474,7 +474,7 @@ void channel::_route_command_probe(::message::command * pcommand)
    pmessage->m_lparam = lparam;
 
 
-//::pointer<::message::message>channel::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+//::pointer<::message::message>channel::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point)
 ::pointer<::message::message>channel::get_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, ::user::enum_message_prototype eprototype)
 {
 

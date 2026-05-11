@@ -35,7 +35,7 @@ void Label::set_theme(const ::pointer < Theme > & theme) {
 }
 
 
-int_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
+i32_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize)
 {
    
    if (bRecalcTextSize)
@@ -56,13 +56,13 @@ int_size Label::preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSi
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
             m_ptextbox = pcontext->text_box_layout(m_strCaption, (float)m_fixed_size.cx);
             pcontext->text_box_bounds((float)m_pos.x, (float)m_pos.y, m_ptextbox, &bounds);
-            m_sizePreferred = int_size(m_fixed_size.cx, bounds.height());
+            m_sizePreferred = i32_size(m_fixed_size.cx, bounds.height());
          }
          else {
             m_ptextbox.release();
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_middle);
             float fSize = (float) pcontext->text_bounds(0.f, 0.f, m_strCaption, &bounds);
-            m_sizePreferred = int_size (
+            m_sizePreferred = i32_size (
                (int) ceilf(fSize +2.0f),
                (int) ceilf(bounds[3] - bounds[1])
             );

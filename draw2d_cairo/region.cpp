@@ -160,7 +160,7 @@ namespace draw2d_cairo
 
       }
 
-      m_rectangleBoundingBoxInternal = int_rectangle(0, 0, 0, 0);
+      m_rectangleBoundingBoxInternal = i32_rectangle(0, 0, 0, 0);
 
       expand_bounding_box(m_rectangleBoundingBoxInternal);
 
@@ -721,7 +721,7 @@ namespace draw2d_cairo
 
       }
 
-      m_rectangleBoundingBoxInternal = int_rectangle(0, 0, 0, 0);
+      m_rectangleBoundingBoxInternal = i32_rectangle(0, 0, 0, 0);
 
       expand_bounding_box(m_rectangleBoundingBoxInternal);
 

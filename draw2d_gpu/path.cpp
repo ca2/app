@@ -54,7 +54,7 @@ namespace draw2d_gpu
       else
       {
 
-         throw ::exception(error_failed, "path does not have last int_point");
+         throw ::exception(error_failed, "path does not have last i32_point");
 
       }
 
@@ -118,7 +118,7 @@ namespace draw2d_gpu
    bool path::internal_add_rect(int x,int y,int cx,int cy)
    {
 
-      //plusplus::int_rectangle int_rectangle(x,y,cx,cy);
+      //plusplus::i32_rectangle i32_rectangle(x,y,cx,cy);
 
       //bool bOk2 = m_ppath->AddRectangle(rectangle) == plusplus::Status::Ok;
 
@@ -195,7 +195,7 @@ namespace draw2d_gpu
 
 
 
-   bool path::internal_add_arc(const ::int_rectangle & rectangle, double iStart, double iAngle)
+   bool path::internal_add_arc(const ::i32_rectangle & rectangle, double iStart, double iAngle)
    {
 
       return true;

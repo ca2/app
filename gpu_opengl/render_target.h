@@ -22,7 +22,7 @@ namespace gpu_opengl
 
       //GLuint m_gluDepthStencilTex;
 
-      ::int_array_base imageAvailable;
+      ::i32_array_base imageAvailable;
 
       bool  m_bNeedRebuild;
 
@@ -30,7 +30,7 @@ namespace gpu_opengl
       ~render_target();
 
 
-      void initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous) override;
+      void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous) override;
 
       virtual void on_before_begin_render(::gpu::frame* pframe);
 

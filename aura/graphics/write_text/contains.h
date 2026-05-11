@@ -1,12 +1,12 @@
 #pragma once
 
 
-inline bool shape_contains(const ::write_text::text_out & textout, const ::int_point & point)
+inline bool shape_contains(const ::write_text::text_out & textout, const ::i32_point & point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::int_rectangle rectangleBounding;
+   ::i32_rectangle rectangleBounding;
 
    if (!::get_bounding_box(rectangleBounding, textout))
    {
@@ -39,12 +39,12 @@ inline bool shape_contains(const ::write_text::text_out & textout, const ::doubl
 }
 
 
-inline bool shape_contains(const ::write_text::draw_text & textout, const ::int_point& point)
+inline bool shape_contains(const ::write_text::draw_text & textout, const ::i32_point& point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::int_rectangle rectangleBounding;
+   ::i32_rectangle rectangleBounding;
 
    if (!::get_bounding_box(rectangleBounding, textout))
    {

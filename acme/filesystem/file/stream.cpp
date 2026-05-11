@@ -363,7 +363,7 @@ bool  stream_base::is_version(int i)
 //   else if (etype == ::atom::e_type_integer)
 //   {
 //
-//      write(atom.m_i);
+//      write(atom.m_i32);
 //
 //   }
 //
@@ -399,52 +399,52 @@ bool  stream_base::is_version(int i)
 //      write(*payload.m_pstr);
 //   }
 //   break;
-//   case e_type_char:
-//      *this << payload.m_ch;
+//   case e_type_i8:
+//      *this << payload.m_i8;
 //      break;
-//   case e_type_short:
-//      *this << payload.m_sh;
+//   case e_type_i16:
+//      *this << payload.m_i16;
 //      break;
-//   case e_type_unsigned_char:
-//      *this << payload.m_uch;
+//   case e_type_u8:
+//      *this << payload.m_u8;
 //      break;
-//   case e_type_unsigned_short:
-//      *this << payload.m_ush;
+//   case e_type_u16:
+//      *this << payload.m_u16;
 //      break;
-//   case e_type_int:
-//      *this << payload.m_i;
+//   case e_type_i32:
+//      *this << payload.m_i32;
 //      break;
-//   case e_type_long_long:
+//   case e_type_i64:
 //      *this << payload.m_hi;
 //      break;
-//   case e_type_unsigned_int:
-//      *this << payload.m_ui;
+//   case e_type_u32:
+//      *this << payload.m_u32;
 //      break;
-//   case e_type_unsigned_long_long:
+//   case e_type_u64:
 //      *this << payload.m_hn;
 //      break;
 //   case e_type_pchar:
-//      *this << *payload.m_pch;
+//      *this << *payload.m_pi8;
 //      break;
 //   case e_type_pshort:
-//      *this << *payload.m_psh;
+//      *this << *payload.m_pi16;
 //      break;
 //   case e_type_punsigned_char:
-//      *this << *payload.m_puch;
+//      *this << *payload.m_pu8;
 //      break;
 //   case e_type_punsigned_short:
-//      *this << *payload.m_push;
+//      *this << *payload.m_pu16;
 //      break;
-//   case e_type_pint:
-//      *this << *payload.m_pi;
+//   case e_type_pi32:
+//      *this << *payload.m_pi32;
 //      break;
-//   case e_type_plong_long:
+//   case e_type_pi64:
 //      *this << *payload.m_phi;
 //      break;
-//   case e_type_punsigned_int:
-//      *this << *payload.m_pui;
+//   case e_type_pu32:
+//      *this << *payload.m_pu32;
 //      break;
-//   case e_type_punsigned_long_long:
+//   case e_type_pu64:
 //      *this << *payload.m_pu64;
 //      break;
 //   case e_type_double:
@@ -794,7 +794,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-////void stream::read(::int_point & point)
+////void stream::read(::i32_point & point)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -802,7 +802,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::read(::int_size & size)
+////void stream::read(::i32_size & size)
 ////{
 ////
 ////   throw ::exception(error_io);
@@ -810,7 +810,7 @@ bool  stream_base::is_version(int i)
 ////}
 ////
 ////
-////void stream::read(::int_rectangle & rectangle)
+////void stream::read(::i32_rectangle & rectangle)
 ////{
 ////
 ////   throw ::exception(error_io);

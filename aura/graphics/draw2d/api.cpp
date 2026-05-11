@@ -28,7 +28,7 @@ namespace draw2d
       ::double_point *                    ppointOffset)
    {
 
-      ::int_rectangle clipRect;
+      ::i32_rectangle clipRect;
 
       auto offsetcontext = pgraphics->offset_context();
 
@@ -56,9 +56,9 @@ namespace draw2d
    ::double_point *               ppointOffset)
    {
 
-      ::int_rectangle clipRect;
+      ::i32_rectangle clipRect;
 
-      //int_size viewportExt = pgraphics->get_extents();
+      //i32_size viewportExt = pgraphics->get_extents();
       auto offsetcontext = pgraphics->offset_context();
 
       offsetcontext += *ppointOffset;
@@ -89,7 +89,7 @@ namespace draw2d
 
    {
 
-      ::int_rectangle clipRect;
+      ::i32_rectangle clipRect;
 
       auto offsetcontext = pgraphics->offset_context();
 
@@ -120,12 +120,12 @@ namespace draw2d
    int                              iOffset)
    {
 
-      ::int_rectangle clipRect;
+      ::i32_rectangle clipRect;
 
 
 
       //      int iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
-      //      int_point viewportOrg;
+      //      i32_point viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetContextOrgEx(pgraphics->m_hDC, &viewportOrg));
@@ -168,10 +168,10 @@ namespace draw2d
    ::color::color       crOutline,
    int            iLen)
    {
-      ::int_rectangle clipRect;
+      ::i32_rectangle clipRect;
 
       //      int iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
-      //      int_point viewportOrg;
+      //      i32_point viewportOrg;
       //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetContextOrgEx(pgraphics->m_hDC, &viewportOrg));

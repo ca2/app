@@ -33,7 +33,7 @@ namespace gpu
       ::pointer < ::pointer_array < ::gpu::texture > >    m_ptextureaDepth;
 
 
-      ::int_size m_size;
+      ::i32_size m_size;
 
 
       ::pointer < renderer >  m_pgpurenderer;
@@ -56,7 +56,7 @@ namespace gpu
       virtual ::gpu::texture *texture(::collection::index i);
       virtual ::gpu::texture *depth_texture(::collection::index i);
 
-      virtual void initialize_render_target(::gpu::renderer* prenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous);
+      virtual void initialize_render_target(::gpu::renderer* prenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous);
 
       virtual void restart_frame_counter();
 
@@ -70,7 +70,7 @@ namespace gpu
 
       virtual void on_init();
 
-      virtual void on_resize(const ::int_size & size);
+      virtual void on_resize(const ::i32_size & size);
 
       //virtual void create_images();
 

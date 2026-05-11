@@ -72,11 +72,11 @@ namespace acme
          data_struct data;
          data.mtype        = 15112000;
          data.request      = 0;
-         data.int_size         = ansi_length(scopedstrMessage);
-         if(data.int_size > 512)
+         data.i32_size         = ansi_length(scopedstrMessage);
+         if(data.i32_size > 512)
             return false;
 
-         /* The length is essentially the int_size of the structure minus sizeof(mtype) */
+         /* The length is essentially the i32_size of the structure minus sizeof(mtype) */
          int length = sizeof(data_struct) - sizeof(long);
 
          int result;
@@ -109,7 +109,7 @@ namespace acme
          data_struct data;
          data.mtype        = 15112000;
          data.request      = I32_MINIMUM;
-         data.int_size         = (int)ansi_length(scopedstrMessage);
+         data.i32_size         = (int)ansi_length(scopedstrMessage);
 
          ::collection::count cPos = 0;
 
@@ -129,7 +129,7 @@ namespace acme
             else
                data.size = (int)cSend;
 
-            /* The length is essentially the int_size of the structure minus sizeof(mtype) */
+            /* The length is essentially the i32_size of the structure minus sizeof(mtype) */
             int length = sizeof(data_struct) - sizeof(long);
 
             int result;
@@ -338,7 +338,7 @@ namespace acme
 
             data_struct data;
 
-            /* The length is essentially the int_size of the structure minus sizeof(mtype) */
+            /* The length is essentially the i32_size of the structure minus sizeof(mtype) */
             length = sizeof(data_struct) - sizeof(long);
 
             memory mem;
@@ -363,10 +363,10 @@ namespace acme
 
                }
 
-               mem.append(data.data,data.int_size);
+               mem.append(data.data,data.i32_size);
 
 
-               if(data.int_size < 512)
+               if(data.i32_size < 512)
                   break;
 
             }

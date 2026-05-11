@@ -47,9 +47,9 @@ namespace user
 
       void clear();
       void initialize_and_transfer(pointer_array < redraw_item > & redrawitema);
-      void set_need_redraw(const ::int_rectangle & rectangle);
+      void set_need_redraw(const ::i32_rectangle & rectangle);
       void set_need_redraw(const ::int_rectangle_array_base & rectanglea);
-      bool needs_to_draw(const ::int_rectangle & rectangle);
+      bool needs_to_draw(const ::i32_rectangle & rectangle);
       void apply_clip(shift_int ΔHostToClient);
 
 

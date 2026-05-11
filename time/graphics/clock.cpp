@@ -41,7 +41,7 @@ namespace datetime
 
          ::earth::time timeNow = ::earth::time::now() + m_timespan;
 
-         int_rectangle rectangle;
+         i32_rectangle rectangle;
          GetRect(&rectangle, e_element_clock);
          auto ppen = createø < ::draw2d::pen >();
 
@@ -49,7 +49,7 @@ namespace datetime
          pgraphics->set(ppen);
          pgraphics->draw_ellipse(rectangle);
 
-         int_point pointCenter(rectangle.center());
+         i32_point pointCenter(rectangle.center());
 
          auto ppenHour = createø < ::draw2d::pen >();
          auto ppenMinute = createø < ::draw2d::pen >();
@@ -64,8 +64,8 @@ namespace datetime
          for (int32_t i = 0; i < 60; i++)
          {
             double angle = π / 2.0 - i * π * 2.0 / (60.0);
-            int_point pointInt;
-            int_point pointExt((int)(cos(angle) * dRExt), (int)(-sin(angle) * dRExt));
+            i32_point pointInt;
+            i32_point pointExt((int)(cos(angle) * dRExt), (int)(-sin(angle) * dRExt));
             pointExt.offset(pointCenter);
             if (i % 5 == 0)
             {
@@ -95,14 +95,14 @@ namespace datetime
          //pgraphics->set_current_point(pointCenter);
          {
             double angle = π / 2.0 - timeNow.hour() * π * 2.0 / (12.0);
-            int_point pointHour((int)(cos(angle) * dRHour), (int)(-sin(angle) * dRHour));
+            i32_point pointHour((int)(cos(angle) * dRHour), (int)(-sin(angle) * dRHour));
             pointHour.offset(pointCenter);
             pgraphics->line(pointCenter, pointHour);
          }
          //pgraphics->set_current_point(pointCenter);
          {
             double angle = π / 2.0 - timeNow.minute() * π * 2.0 / (60.0);
-            int_point pointMinute((int)(cos(angle) * dRMinute), (int)(-sin(angle) * dRMinute));
+            i32_point pointMinute((int)(cos(angle) * dRMinute), (int)(-sin(angle) * dRMinute));
             pointMinute.offset(pointCenter);
             pgraphics->line(pointCenter, pointMinute);
          }
@@ -112,7 +112,7 @@ namespace datetime
          //pgraphics->set_current_point(pointCenter);
          {
             double angle = π / 2.0 - timeNow.second() * π * 2.0 / (60.0);
-            int_point pointSecond((int)(cos(angle) * dRSecond), (int)(-sin(angle) * dRSecond));
+            i32_point pointSecond((int)(cos(angle) * dRSecond), (int)(-sin(angle) * dRSecond));
             pointSecond.offset(pointCenter);
             pgraphics->line(pointCenter, pointSecond);
          }
@@ -123,7 +123,7 @@ namespace datetime
 
 
 
-      void graphics::GetRect(::int_rectangle * lprect, enum enum_element eelement)
+      void graphics::GetRect(::i32_rectangle * lprect, enum enum_element eelement)
       {
          if (eelement == e_element_clock)
          {
@@ -136,7 +136,7 @@ namespace datetime
 
 
 
-      void graphics::set_pos(int_point point, int_size sz)
+      void graphics::set_pos(i32_point point, i32_size sz)
       {
          m_point = point;
          m_size = sz;

@@ -219,15 +219,15 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    
 
-   int_size control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
+   i32_size control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
    {
-      ::int_size size;
+      ::i32_size size;
       size.cx = (bStretch && bHorz ? 32767 : 0);
       size.cy = (bStretch && !bHorz ? 32767 : 0);
       return size;
    }
 
-   int_size control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int, ::u32 nMode)
+   i32_size control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int, ::u32 nMode)
    {
       return CalcFixedLayout(pgraphics, (nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
@@ -536,7 +536,7 @@ namespace user
       // get interaction_impl DC that is clipped to the non-client area
       /* trans   CWindowDC spgraphics(this);
          auto rectangleX = this->rectangle();
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
          window_rectangle(rectangleWindow);
          screen_to_client(rectangleWindow);
          rectangleX.offset(-rectangleWindow.left, -rectangleWindow.top);
@@ -558,9 +558,9 @@ namespace user
    {
 
       // get interaction_impl DC that is clipped to the non-client area
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
       rectangleX = this->rectangle();
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
       window_rectangle(rectangleWindow);
       screen_to_client()(rectangleWindow);
       rectangleX.offset(-rectangleWindow.left, -rectangleWindow.top);
@@ -763,13 +763,13 @@ namespace user
       {
          
          // align the control bar
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          rectangle = playout->m_rectangle;
 
-         ::int_size sizeAvail = rectangle.size();  // maximum int_size available
+         ::i32_size sizeAvail = rectangle.size();  // maximum i32_size available
 
-         // get maximum requested int_size
+         // get maximum requested i32_size
          ::u32 dwMode = playout->m_bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
@@ -799,7 +799,7 @@ namespace user
 
          //pgraphics->m_puserinteraction = this;
 
-         ::int_size size = CalcDynamicLayout(pgraphics, -1, dwMode);
+         ::i32_size size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
          size.cx = minimum(size.cx, sizeAvail.cx);
          size.cy = minimum(size.cy, sizeAvail.cy);
@@ -861,7 +861,7 @@ namespace user
 
          rectangle.bottom = rectangle.top + size.cy;
 
-         // only resize the interaction_impl if doing on_layout and not just int_rectangle query
+         // only resize the interaction_impl if doing on_layout and not just i32_rectangle query
          //if (playout->hDWP != nullptr)
 
          //::user::__reposition_window(playout, this, &rectangle);
@@ -872,7 +872,7 @@ namespace user
 
          ASSERT(puiParent != nullptr);
 
-         ::int_rectangle rectangleOld;
+         ::i32_rectangle rectangleOld;
 
          window_rectangle(rectangleOld);
 
@@ -922,7 +922,7 @@ namespace user
       //ASSERT_OK(pgraphics);
 
       // paint inside client area
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       rectangle = this->rectangle();
 
@@ -933,7 +933,7 @@ namespace user
    }
 
 
-   void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::int_rectangle& rectangle)
+   void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle& rectangle)
    {
 
       ASSERT_OK(this);
@@ -946,7 +946,7 @@ namespace user
 
       // prepare for dark lines
       ASSERT(rectangle.top == 0 && rectangle.left == 0);
-      ::int_rectangle rect1, rect2;
+      ::i32_rectangle rect1, rect2;
       rect1 = rectangle;
       rect2 = rectangle;
       //   ::color::color clr = ::windows_definition::Data.bWin4 ? ::windows_definition::Data.clrBtnShadow : ::windows_definition::Data.clrWindowFrame;
@@ -1097,7 +1097,7 @@ namespace user
    }
 
 
-   void control_bar::DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle)
+   void control_bar::DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle)
    {
 
       // only draw the gripper if not floating and gripper is specified
@@ -1147,8 +1147,8 @@ namespace user
       }
    }
 
-   // input int_rectangle should be client int_rectangle int_size
-   void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::int_rectangle& rectangle, bool bHorz) const
+   // input i32_rectangle should be client i32_rectangle i32_size
+   void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::i32_rectangle& rectangle, bool bHorz) const
    {
       ASSERT_OK(this);
       ::u32 uStyle = m_dwStyle;
@@ -1246,7 +1246,7 @@ namespace user
    }
 
 
-   void control_bar::SetBorders(const ::int_rectangle & rectangle)
+   void control_bar::SetBorders(const ::i32_rectangle & rectangle)
    {
 
       SetBorders(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
@@ -1254,7 +1254,7 @@ namespace user
    }
 
 
-   ::int_rectangle control_bar::GetBorders()
+   ::i32_rectangle control_bar::GetBorders()
    {
 
       return m_rectangleBorder;

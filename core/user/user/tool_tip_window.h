@@ -65,11 +65,11 @@ namespace user
       int                        m_iEventTool;     // item selected
       int                        m_iTool;          // item where the tip will be showed
       ::write_text::font_pointer          m_pfont;           // tip string font
-      int_point                      m_pointOffset;       // tip int_point offset
-      ::int_size                     m_sizeArrow;      // arrow int_size
+      i32_point                      m_pointOffset;       // tip i32_point offset
+      ::i32_size                     m_sizeArrow;      // arrow i32_size
       bool                       m_bTipEnable;     // set if the tip is enabled
 
-      int_point                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
+      i32_point                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
       CToolMap                   m_toolmap;        // map_base of tool index to tool pointers
 
       tool_tip_window();
@@ -83,7 +83,7 @@ namespace user
       tool_tip_tool * GetTool(int iTool);
       bool GetToolText(int iTool, string & str);
       void AddTool(tool_tip_tool * ptool);
-      bool GetToolRect(int iTool, ::int_rectangle * prectangle);
+      bool GetToolRect(int iTool, ::i32_rectangle * prectangle);
 
       void update_drawing_objects();
       bool ShowTip();
@@ -91,7 +91,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       //virtual bool create(::user::interaction * puserinteraction, const atom & atom);
-      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::int_rectangle * prectangle, const ::int_rectangle & lprectToolScreen, const ::scoped_string & scopedstr);
+      bool CalcRect(::draw2d::graphics_pointer & pgraphics, ::i32_rectangle * prectangle, const ::i32_rectangle & lprectToolScreen, const ::scoped_string & scopedstr);
 
       void ShowTip(int iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);

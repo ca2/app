@@ -51,8 +51,8 @@ namespace innate_subsystem
 
         virtual void setWindow(const ::operating_system::window & window) =0;
 
-        //virtual void setIcon(::pointer < IconInterface > &icon, const ::int_size & size);
-        virtual void setIcon(IconInterface * picon, const ::int_size & size) = 0;
+        //virtual void setIcon(::pointer < IconInterface > &icon, const ::i32_size & size);
+        virtual void setIcon(IconInterface * picon, const ::i32_size & size) = 0;
 
     //private:
 
@@ -69,12 +69,12 @@ namespace innate_subsystem
         // OUT imageRect - output image rectangle
         //
 
-        virtual void calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
+        virtual void calcRect(::i32_rectangle & buttonRect, bool isButtonPressed,
                       ::u32 textWidth, ::u32 textHeight,
                       ::u32 imageWidth, ::u32 imageHeight,
-                      ::int_rectangle &textRect, ::int_rectangle & imageRect) = 0;
+                      ::i32_rectangle &textRect, ::i32_rectangle & imageRect) = 0;
 
-        //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
+        //virtual void drawIcon(DeviceContextInterface* dc, const ::i32_rectangle & imageRect, bool isPressed, bool isDisabled);
     //protected:
       //  bool m_isUsingTheme;
         //bool m_mouseOver;
@@ -115,8 +115,8 @@ namespace innate_subsystem
 
       void setWindow(const ::operating_system::window & window) override { m_pimagedbutton->setWindow(window); }
 
-      //virtual void setIcon(::pointer < IconInterface > &icon, const ::int_size & size);
-      void setIcon(IconInterface * picon, const ::int_size & size) override { m_pimagedbutton->setIcon(picon, size); }
+      //virtual void setIcon(::pointer < IconInterface > &icon, const ::i32_size & size);
+      void setIcon(IconInterface * picon, const ::i32_size & size) override { m_pimagedbutton->setIcon(picon, size); }
 
       //private:
 
@@ -133,12 +133,12 @@ namespace innate_subsystem
       // OUT imageRect - output image rectangle
       //
 
-      virtual void calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
+      virtual void calcRect(::i32_rectangle & buttonRect, bool isButtonPressed,
                     ::u32 textWidth, ::u32 textHeight,
                     ::u32 imageWidth, ::u32 imageHeight,
-                    ::int_rectangle &textRect, ::int_rectangle & imageRect) override { m_pimagedbutton->calcRect(buttonRect, isButtonPressed, textWidth, textHeight, imageWidth, imageHeight, textRect, imageRect); }
+                    ::i32_rectangle &textRect, ::i32_rectangle & imageRect) override { m_pimagedbutton->calcRect(buttonRect, isButtonPressed, textWidth, textHeight, imageWidth, imageHeight, textRect, imageRect); }
 
-      //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
+      //virtual void drawIcon(DeviceContextInterface* dc, const ::i32_rectangle & imageRect, bool isPressed, bool isDisabled);
       //protected:
       //  bool m_isUsingTheme;
       //bool m_mouseOver;

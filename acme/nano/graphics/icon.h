@@ -19,7 +19,7 @@ virtual public ::nano::graphics::object{
     icon();
     ~icon();
 
-   virtual ::int_size size() const;
+   virtual ::i32_size size() const;
 
    virtual void load_image_from_file(::file::file * pfile);
    virtual void load_image_file(const void *p, memsize size);

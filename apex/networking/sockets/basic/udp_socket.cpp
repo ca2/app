@@ -436,7 +436,7 @@ return -1;
 //            if (sa_len != sizeof(sa))
 //            {
 //
-//               warning() <<"recvfrom 0 unexpected address struct int_size";
+//               warning() <<"recvfrom 0 unexpected address struct i32_size";
 //
 //            }
 //            this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -516,7 +516,7 @@ return -1;
 //         if (sa_len != sizeof(sa))
 //         {
 //
-//            warning() <<"recvfrom 0 unexpected address struct int_size";
+//            warning() <<"recvfrom 0 unexpected address struct i32_size";
 //
 //         }
 //         this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);

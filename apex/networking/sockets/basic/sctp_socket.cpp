@@ -25,7 +25,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::Bind(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
+   int SctpSocket::Bind(const ::scoped_string & scopedstrAddress,::networking::port_t i32_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -68,7 +68,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::AddAddress(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
+   int SctpSocket::AddAddress(const ::scoped_string & scopedstrAddress,::networking::port_t i32_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -105,7 +105,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::RemoveAddress(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
+   int SctpSocket::RemoveAddress(const ::scoped_string & scopedstrAddress,::networking::port_t i32_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -142,7 +142,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::open(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
+   int SctpSocket::open(const ::scoped_string & scopedstrAddress,::networking::port_t i32_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -200,7 +200,7 @@ namespace sockets
 
 
 #ifndef SOLARIS
-   int SctpSocket::AddConnection(const ::scoped_string & scopedstrAddress,::networking::port_t int_point)
+   int SctpSocket::AddConnection(const ::scoped_string & scopedstrAddress,::networking::port_t i32_point)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -287,8 +287,8 @@ namespace sockets
          return -1;
       }
       socket *point = create();
-      int_point -> attach(n);
-      int_point -> SetDeleteByHandler();
+      i32_point -> attach(n);
+      i32_point -> SetDeleteByHandler();
       socket_handler()->add(point);
       return n;
    }
@@ -306,7 +306,7 @@ namespace sockets
          features of SCTP.  sd is the socket descriptor on which the message pointed to by msg of length len is received.
 
          If from is not nullptr, the source address of the message is filled in. The argument fromlen  is  a  value-result  parameter.
-         initialized  to  the  int_size  of the buffer associated with from , and modified on return to indicate the actual int_size of the
+         initialized  to  the  i32_size  of the buffer associated with from , and modified on return to indicate the actual i32_size of the
          address stored.
 
          sinfo is a pointer to a sctp_sndrcvinfo structure to be filled upon receipt of the message.  msg_flags is a pointer  to  a

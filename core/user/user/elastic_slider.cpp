@@ -82,7 +82,7 @@ namespace user
       
       auto pmouse = pmessage->m_union.m_pmouse;
       
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       
       GetSliderRect(rectangle);
       
@@ -134,7 +134,7 @@ namespace user
    }
 
 
-   void elastic_slider::CalcTension(int_point & point)
+   void elastic_slider::CalcTension(i32_point & point)
    {
       auto rectangleX = this->rectangle();
       if (rectangleX.width() == 0)
@@ -234,7 +234,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX, argb(bAlpha, 250, 255, 255));
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       
       GetSliderRect(rectangle);
 
@@ -262,7 +262,7 @@ namespace user
    }
 
 
-   void elastic_slider::GetSliderRect(::int_rectangle & rectangle)
+   void elastic_slider::GetSliderRect(::i32_rectangle & rectangle)
    {
 
       auto rectangleX = this->rectangle();

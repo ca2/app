@@ -153,7 +153,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getSelectedTabIndex();
 //    }
 //
-//    void TabControl::adjustRect(::int_rectangle &rect)
+//    void TabControl::adjustRect(::i32_rectangle &rect)
 //    {
 //       // GetClientRect(m_hwnd, rect);
 //       // TabCtrl_AdjustRect(m_hwnd, FALSE, rect);

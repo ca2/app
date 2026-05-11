@@ -213,7 +213,7 @@ namespace acme
 
 
 
-      //::int_rectangle window::get_window_rectangle()
+      //::i32_rectangle window::get_window_rectangle()
       //{
 
       //   return m_rectangle;
@@ -402,7 +402,7 @@ namespace acme
    }
    
    
-   void window::full_screen(const ::int_rectangle & rect)
+   void window::full_screen(const ::i32_rectangle & rect)
    {
       
       
@@ -444,7 +444,7 @@ namespace acme
 //   }
    //virtual iptr get_window_long_ptr(int nIndex);
    //virtual iptr set_window_long_ptr(int nIndex, iptr l);
-   bool window::client_to_screen(::int_point* ppoint)
+   bool window::client_to_screen(::i32_point* ppoint)
    {
       
       
@@ -452,7 +452,7 @@ namespace acme
       
    }
    
-   bool window::screen_to_client(::int_point* ppoint)
+   bool window::screen_to_client(::i32_point* ppoint)
    {
       
       return true;
@@ -668,7 +668,7 @@ namespace acme
       }
 
 
-      //::int_point window::try_absolute_mouse_position(const ::int_point & point)
+      //::i32_point window::try_absolute_mouse_position(const ::i32_point & point)
       //{
 
       //   return m_pacmeuserinteraction->try_absolute_mouse_position(point);
@@ -676,7 +676,7 @@ namespace acme
       //}
 
 
-      ::int_point window::origin()
+      ::i32_point window::origin()
       {
 
          return m_rectangle.origin();
@@ -688,7 +688,7 @@ namespace acme
 
 
 
-      //void window::set_position(const ::int_point & point)
+      //void window::set_position(const ::i32_point & point)
       //{
 
       //   m_pacmeuserinteraction->set_position(point);
@@ -704,7 +704,7 @@ namespace acme
       }
 
 
-      void window::set_interaction_rectangle(const ::int_rectangle & rectangle)
+      void window::set_interaction_rectangle(const ::i32_rectangle & rectangle)
       {
 
          m_rectangle = rectangle;
@@ -712,7 +712,7 @@ namespace acme
       }
 
 
-      ::int_rectangle window::get_rectangle()
+      ::i32_rectangle window::get_rectangle()
       {
 
          return m_rectangle;
@@ -720,10 +720,10 @@ namespace acme
       }
 
 
-      //::int_rectangle window::get_window_rectangle()
+      //::i32_rectangle window::get_window_rectangle()
       //{
 
-      //   //::int_rectangle rectangle;
+      //   //::i32_rectangle rectangle;
 
       //   //rectangle.left = 0;
       //   //rectangle.top = 0;
@@ -737,7 +737,7 @@ namespace acme
       //}
 
 
-      // ::int_rectangle window::get_window_rectangle()
+      // ::i32_rectangle window::get_window_rectangle()
       // {
       //
       //    return m_rectangle;
@@ -1261,7 +1261,7 @@ namespace acme
       }
 
 
-      ::int_point window::windowing_popup_origin()
+      ::i32_point window::windowing_popup_origin()
       {
 
          return {};
@@ -1269,7 +1269,7 @@ namespace acme
       }
 
 
-      ::int_size window::windowing_popup_size()
+      ::i32_size window::windowing_popup_size()
       {
 
          return {};
@@ -1491,7 +1491,7 @@ namespace acme
 
 
 
-      //::int_point window::try_absolute_mouse_position(const ::int_point & point)
+      //::i32_point window::try_absolute_mouse_position(const ::i32_point & point)
       //{
 
       //   //return window_interface::try_absolute_mouse_position(point);
@@ -1532,7 +1532,7 @@ namespace acme
       //}
 
 
-      // ::int_size window::get_main_screen_size()
+      // ::i32_size window::get_main_screen_size()
       // {
       //
       //    auto pdisplay = get_display();
@@ -1732,7 +1732,7 @@ namespace acme
       //
 
 
-      void window::set_interface_client_size(const ::int_size & sizeWindow) // set_size
+      void window::set_interface_client_size(const ::i32_size & sizeWindow) // set_size
       {
 
          m_sizeWindow = sizeWindow;
@@ -1740,7 +1740,7 @@ namespace acme
       }
 
 
-      void window::set_rectangle(const int_rectangle & rectangle)
+      void window::set_rectangle(const i32_rectangle & rectangle)
       {
 
          auto r = rectangle;
@@ -1755,7 +1755,7 @@ namespace acme
       }
 
 
-      void window::set_position(const int_point & point)
+      void window::set_position(const i32_point & point)
       {
 
          auto p = point;
@@ -1770,7 +1770,7 @@ namespace acme
       }
 
 
-      void window::set_size(const int_size & size)
+      void window::set_size(const i32_size & size)
       {
 
          auto s = size;
@@ -1786,7 +1786,7 @@ namespace acme
       }
 
 
-      void window::set_rectangle_unlocked(const int_rectangle & rectangle)
+      void window::set_rectangle_unlocked(const i32_rectangle & rectangle)
       {
 
          set_size_unlocked(rectangle.size());
@@ -1796,24 +1796,24 @@ namespace acme
       }
 
 
-      void window::set_position_unlocked(const int_point & point)
+      void window::set_position_unlocked(const i32_point & point)
       {
 
 
       }
 
 
-      void window::set_size_unlocked(const int_size & size)
+      void window::set_size_unlocked(const i32_size & size)
       {
 
 
       }
 
 
-      ::int_rectangle window::get_window_rectangle()
+      ::i32_rectangle window::get_window_rectangle()
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          main_send([this, &rectangle]()
          {
@@ -1827,7 +1827,7 @@ namespace acme
       }
 
 
-      ::int_rectangle window::get_window_rectangle_unlocked()
+      ::i32_rectangle window::get_window_rectangle_unlocked()
       {
 
          return {};

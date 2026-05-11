@@ -112,9 +112,9 @@ namespace graphics
 
          auto & pimage = pitem->m_pimage2;
 
-         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::int_size(0, 0);
+         auto sizeImage = pimage->is_ok() ? pimage->get_size() : ::i32_size(0, 0);
 
-         auto sizeReserved = ::int_size(1920, 1080);
+         auto sizeReserved = ::i32_size(1920, 1080);
 
          if (pitem->m_sizeBufferItemDraw.cx > sizeImage.cx)
          {

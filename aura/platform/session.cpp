@@ -1410,7 +1410,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 
 
 
-//   void session::get_cursor_position(::int_point * ppoint)
+//   void session::get_cursor_position(::i32_point * ppoint)
 //   {
 //
 //#if defined(WINDOWS_DESKTOP)
@@ -1418,7 +1418,7 @@ class ::fs::data * session::fs() { return m_pfsdata; }
 //      if (m_bSystemSynchronizedCursor)
 //      {
 //
-//         ::int_point int_point;
+//         ::i32_point i32_point;
 //
 //         ::get_cursor_position(&point);
 //
@@ -1505,7 +1505,7 @@ return m_psavings;
 
 
 
-   //index session::get_main_workspace(::int_rectangle * prectangle)
+   //index session::get_main_workspace(::i32_rectangle * prectangle)
    //{
 
    //   if (m_bSystemSynchronizedScreen)
@@ -1819,7 +1819,7 @@ return m_psavings;
    }
 
 
-::particle * session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
+::particle * session::defer_initialize_host_window(const ::i32_rectangle * lpcrect)
    {
 
    ::particle * pparticleAcmeWindowBridge = system()->windowing()->defer_initialize_host_window(lpcrect);
@@ -1866,7 +1866,7 @@ return m_psavings;
 //
 //      }
 //
-//      int_rectangle rectangleScreen(lpcrect);
+//      i32_rectangle rectangleScreen(lpcrect);
 //
 ////      if(::is_null(lprect))
 ////      {

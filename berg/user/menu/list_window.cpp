@@ -154,7 +154,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::int_rectangle * prectangle, const ::int_rectangle & rectangleBound)
+   void menu_list_window::layout_buttons(::menu::item * pitemParent, int iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & rectangleBound)
    {
 
       if (!m_bMenuOk)
@@ -249,7 +249,7 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
       
       ::string strType = ::platform::type(get_parent()).name();
 
@@ -258,7 +258,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      const ::int_size & size = pgraphics->get_text_extent("XXXMMMgggppp");
+      const ::i32_size & size = pgraphics->get_text_extent("XXXMMMgggppp");
 
       int iMaxHeight = size.cy;
 
@@ -274,7 +274,7 @@ namespace user
 
       m_size.cy = (int) (m_dHeaderHeight + pitem->get_separator_item_count() * 3 + pitem->get_full_height_item_count() * m_dItemHeight + 4);
 
-      ::int_rectangle rectangle(4, (int) m_dHeaderHeight + 4, m_size.cx - 8, 4);
+      ::i32_rectangle rectangle(4, (int) m_dHeaderHeight + 4, m_size.cx - 8, 4);
 
       string str;
 

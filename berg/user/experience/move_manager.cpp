@@ -82,7 +82,7 @@ namespace experience
 
       auto pointCursor = pmouse->m_pointAbsolute;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 

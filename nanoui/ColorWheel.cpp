@@ -32,7 +32,7 @@ namespace nanoui
    }
 
 
-   int_size ColorWheel::preferred_size(::nano2d::context *, bool bRecalcTextSize) 
+   i32_size ColorWheel::preferred_size(::nano2d::context *, bool bRecalcTextSize) 
    {
 
       return { 100, 100 };
@@ -172,7 +172,7 @@ namespace nanoui
    }
 
 
-   bool ColorWheel::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
       
       if (!m_bEnabled || emouse != ::user::e_mouse_left_button)
@@ -227,7 +227,7 @@ namespace nanoui
    }
 
 
-   bool ColorWheel::mouse_motion_event(const int_point& p, const int_size& shift, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool ColorWheel::mouse_motion_event(const i32_point& p, const i32_size& shift, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       //if (m_regionDrag)
@@ -251,7 +251,7 @@ namespace nanoui
    }
 
 
-   //ColorWheel::Region ColorWheel::adjust_position(const int_point& p)
+   //ColorWheel::Region ColorWheel::adjust_position(const i32_point& p)
    //{
 
    //   float x = (float) p.x;

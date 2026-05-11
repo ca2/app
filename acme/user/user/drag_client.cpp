@@ -155,7 +155,7 @@ namespace user
       if (pdrag)
       {
 
-         ::int_point pointDrag;
+         ::i32_point pointDrag;
          
          if (on_drag_start(pointDrag, pmouse, pitem))
          {
@@ -197,7 +197,7 @@ namespace user
             //auto integral_milliseconds = integral_millisecond(now_t{});
 
             //string str;
-            //str.formatf("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i);
+            //str.formatf("e_mouse_move=-=%lldms\n", integral_milliseconds.m_i32);
 
             //information(str);
 
@@ -313,7 +313,7 @@ namespace user
    }
 
 
-   //bool drag_client::on_drag(::user::drag * pdrag, const ::int_point & point)
+   //bool drag_client::on_drag(::user::drag * pdrag, const ::i32_point & point)
    //{
 
    //   return false;
@@ -321,7 +321,7 @@ namespace user
    //}
 
 
-   ::int_point drag_client::drag_point(::item * pitem, ::user::mouse * pmouse)
+   ::i32_point drag_client::drag_point(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto pdrag = drag(pitem);

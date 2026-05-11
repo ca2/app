@@ -56,7 +56,7 @@ void defer_term_ui();
 //CLASS_DECL_ACME bool is_verbose();
 
 
-int_bool point_is_window_origin(::int_point ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
+int_bool point_is_window_origin(::i32_point ptHitTest, ::windowing::window * pwindowExclude, int iMargin);
 
 #ifdef UNIVERSAL_WINDOWS
 
@@ -247,7 +247,7 @@ namespace apex
    //}
    
 
-   //index session::get_main_monitor(::int_rectangle* prectangle)
+   //index session::get_main_monitor(::i32_rectangle* prectangle)
    //{
 
    //   return -1;
@@ -263,7 +263,7 @@ namespace apex
    //}
 
    
-   //bool  session::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle)
+   //bool  session::get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -279,7 +279,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle* prectangle)
+   //bool  session::get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -287,7 +287,7 @@ namespace apex
    //}
 
 
-   //index session::get_main_workspace(::int_rectangle* prectangle)
+   //index session::get_main_workspace(::i32_rectangle* prectangle)
    //{
 
    //   return -1;
@@ -303,7 +303,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle)
+   //bool  session::get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -319,7 +319,7 @@ namespace apex
    //}
   
    //
-   //bool  session::get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle* prectangle)
+   //bool  session::get_desk_workspace_rect(::collection::index iWorkspace, ::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -343,7 +343,7 @@ namespace apex
    //}
 
 
-   //bool session::workspace_to_monitor(::int_rectangle* prectangle, ::collection::index iMonitor, ::collection::index iWorkspace)
+   //bool session::workspace_to_monitor(::i32_rectangle* prectangle, ::collection::index iMonitor, ::collection::index iWorkspace)
    //{
 
    //   return false;
@@ -351,7 +351,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_workspace(::int_rectangle* prectangle, ::collection::index iWorkspace, ::collection::index iMonitor)
+   //bool session::monitor_to_workspace(::i32_rectangle* prectangle, ::collection::index iWorkspace, ::collection::index iMonitor)
    //{
 
    //   return false;
@@ -359,7 +359,7 @@ namespace apex
    //}
 
 
-   //bool session::workspace_to_monitor(::int_rectangle* prectangle)
+   //bool session::workspace_to_monitor(::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -367,7 +367,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_workspace(::int_rectangle* prectangle)
+   //bool session::monitor_to_workspace(::i32_rectangle* prectangle)
    //{
 
    //   return false;
@@ -375,7 +375,7 @@ namespace apex
    //}
 
 
-   //void session::get_monitor(int_rectangle_array_base& rectaMonitor, int_rectangle_array_base& rectaIntersect, const ::int_rectangle& rectangle)
+   //void session::get_monitor(int_rectangle_array_base& rectaMonitor, int_rectangle_array_base& rectaIntersect, const ::i32_rectangle& rectangle)
    //{
 
 
@@ -405,10 +405,10 @@ namespace apex
 
 
 
-   //int_size session::get_window_minimum_size()
+   //i32_size session::get_window_minimum_size()
    //{
 
-   //   return int_size(300, 300);
+   //   return i32_size(300, 300);
 
    //}
 
@@ -1230,7 +1230,7 @@ ret:
    }
 
 
-::particle * session::defer_initialize_host_window(const ::int_rectangle * lpcrect)
+::particle * session::defer_initialize_host_window(const ::i32_rectangle * lpcrect)
    {
 
    return nullptr;
@@ -1895,7 +1895,7 @@ namespace apex
 //   }
 
 
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle& rectangle, ::draw2d::brush_pointer& pbrushText)
    //{
 
    //   string_array_base& straTitle = pane.m_straTitle;
@@ -1911,17 +1911,17 @@ namespace apex
    //   else
    //   {
 
-   //      ::int_rectangle rectangleText(rectangle);
+   //      ::i32_rectangle rectangleText(rectangle);
 
 
    //      ::write_text::font_pointer pfont;
    //      font = pgraphics->get_current_font();
-   //      int_size sSep = ptab->get_data()->m_sizeSep;
-   //      ::int_rectangle rectangleEmp;
+   //      i32_size sSep = ptab->get_data()->m_sizeSep;
+   //      ::i32_rectangle rectangleEmp;
    //      for (::collection::index i = 0; i < straTitle.get_size(); i++)
    //      {
    //         string str = straTitle[i];
-   //         int_size s = pane.m_sizeaText[i];
+   //         i32_size s = pane.m_sizeaText[i];
    //         rectangleText.right = rectangleText.left + s.cx;
    //         pgraphics->_DrawText(str, rectangleTexte_bottom_left, e_draw_text_no_prefix);
    //         rectangleText.left += s.cx;

@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME ::i64 long_long_nanosecond()
+CLASS_DECL_ACME ::i64 i64_nanosecond()
 {
 #ifdef RASPBERRYPIOS
 

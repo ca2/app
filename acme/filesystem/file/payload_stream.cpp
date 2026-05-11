@@ -120,13 +120,13 @@
 ////      m_var = d;
 ////
 ////   }
-////   void payload_stream::write(const int_rectangle & & rectangle)
+////   void payload_stream::write(const i32_rectangle & & rectangle)
 ////   {
 ////
 ////      oblt(rectangle);
 ////
 ////   }
-////   void payload_stream::write(::int_rectangle * pcrect)
+////   void payload_stream::write(::i32_rectangle * pcrect)
 //
 ////   {
 ////
@@ -134,7 +134,7 @@
 //
 ////
 ////   }
-////   void payload_stream::write(const int_size & & size)
+////   void payload_stream::write(const i32_size & & size)
 ////   {
 ////      oblt(size);
 ////
@@ -192,9 +192,9 @@
 ////#endif
 ////   void payload_stream::read(float & f);
 ////   void payload_stream::read(double & d);
-////   void payload_stream::read(::int_rectangle * prectangle);
+////   void payload_stream::read(::i32_rectangle * prectangle);
 //
-////   void payload_stream::read(const int_size & & size);
+////   void payload_stream::read(const i32_size & & size);
 ////   void payload_stream::read(atom & atom);
 ////   void payload_stream::read(::payload & payload);
 ////   void payload_stream::read(property & property);

@@ -55,10 +55,10 @@ namespace image
       string get_tray_icon_name();
 
 
-      ::int_size get_size();
+      ::i32_size get_size();
 
 
-      ::int_size get_smaller_size(const ::int_size & size);
+      ::i32_size get_smaller_size(const ::i32_size & size);
 
 
       virtual void on_update_icon();
@@ -67,18 +67,18 @@ namespace image
       inline ::double_size origin() const { return ::double_size(); }
 
 
-//      ::image::image_pointer get_image(const concrete < ::int_size > & size);
+//      ::image::image_pointer get_image(const concrete < ::i32_size > & size);
 
 
-      ::image::image_pointer image_source_image(const ::int_size& size) override;
+      ::image::image_pointer image_source_image(const ::i32_size& size) override;
 
 
-      // inline concrete < ::int_size > int_size(const ::double_size & sizeDst, const ::double_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->int_size(sizeDst, sizeSrc, eimageselection); }
+      // inline concrete < ::i32_size > i32_size(const ::double_size & sizeDst, const ::double_size & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->i32_size(sizeDst, sizeSrc, eimageselection); }
 
-      ::int_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
+      ::i32_size image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const override;
 
       
-      ::int_size image_source_size() const override;
+      ::i32_size image_source_size() const override;
 
          
    };

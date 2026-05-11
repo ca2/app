@@ -92,11 +92,11 @@ namespace draw2d
 //      virtual bool harc(const ::double_point & point, double w, const ::double_angle & angle);
 
 
-      //virtual bool add_lines(const ::int_point * ppoint, ::collection::count nCount);
+      //virtual bool add_lines(const ::i32_point * ppoint, ::collection::count nCount);
       virtual bool add_lines(const ::double_point * ppoint, ::collection::count nCount);
 
 
-      //virtual bool add_polygon(const ::int_point* ppoint, ::collection::count nCount);
+      //virtual bool add_polygon(const ::i32_point* ppoint, ::collection::count nCount);
       virtual bool add_polygon(const ::double_point * ppoint, ::collection::count nCount);
 
 
@@ -116,7 +116,7 @@ namespace draw2d
 
 
       virtual bool get_bounding_box(::double_rectangle & rectangle) const;
-      //virtual bool get_bounding_box(::int_rectangle * prectangle) const;
+      //virtual bool get_bounding_box(::i32_rectangle * prectangle) const;
 
 
 
@@ -125,11 +125,11 @@ namespace draw2d
       //
       // get_round_rect()
       //
-      // Purpose:     Defines a Rounded int_rectangle and places it in the GraphicsPath
+      // Purpose:     Defines a Rounded i32_rectangle and places it in the GraphicsPath
       //
       // Parameters:  pPath		- [out] pointer to GraphicsPath that will recieve the
       //									path data
-      //				int_rectangle			- [in]	Rect that defines the round int_rectangle boundaries
+      //				i32_rectangle			- [in]	Rect that defines the round i32_rectangle boundaries
       //				dia			- [in]	diameter of the rounded corners (2*radius)
       //
       // Returns:     None

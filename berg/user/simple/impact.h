@@ -18,7 +18,7 @@ public:
 
       string               m_strText;
       ::write_text::font_pointer    m_pfont;
-      int_point                m_point;
+      i32_point                m_point;
       ::color::color              m_color;
 
 

@@ -259,9 +259,9 @@ public:
 #endif
    binary_stream & operator <<(float f) { raw_write(f); return *this; }
    binary_stream & operator <<(double d) { raw_write(d); return *this; }
-   // void write(const ::int_point & point) { raw_write(point); }
-   // void write(const ::int_size & size) { raw_write(size); }
-   // void write(const ::int_rectangle &crect) { raw_write(crect); }
+   // void write(const ::i32_point & point) { raw_write(point); }
+   // void write(const ::i32_size & size) { raw_write(size); }
+   // void write(const ::i32_rectangle &crect) { raw_write(crect); }
    //binary_stream & operator <<(const ::scoped_string & scopedstr);
 #ifdef WINDOWS
    binary_stream & operator <<(const unichar * wch) {
@@ -316,9 +316,9 @@ public:
 //#endif
    //binary_stream & operator >>(float & f) { raw_read(f); return *this; }
    //binary_stream & operator >>(double & d) { raw_read(d); return *this; }
-   // void read(::int_point & point) { raw_read(point); }
-   //// void read(::int_size & size) { raw_read(size); }
-   //// void read(::int_rectangle & rectangle) { raw_read(rectangle); }
+   // void read(::i32_point & point) { raw_read(point); }
+   //// void read(::i32_size & size) { raw_read(size); }
+   //// void read(::i32_rectangle & rectangle) { raw_read(rectangle); }
    //binary_stream & operator >>(atom & atom);
    //binary_stream & operator >>(::payload & payload);
    // void read_var_type(enum_type & etype);

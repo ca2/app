@@ -63,8 +63,8 @@ namespace acme
          bool m_bMouseOn;
 
 
-         int_rectangle                             m_rectangle;
-         ::int_rectangle                           m_rectanglePointingTo;
+         i32_rectangle                             m_rectangle;
+         ::i32_rectangle                           m_rectanglePointingTo;
 
          //bool                                      m_bTopMost;
          // bool                                      m_bStartCentered;
@@ -81,11 +81,11 @@ namespace acme
          bool                                               m_bPerformingEntireResizingProcess;
          bool                                               m_bRepositioningWindowFromCenter;
          bool                                               m_bResizingWindowFromBottomRight;
-         //::int_point                                        m_pointDesignRequest;
-         //::int_size                                         m_sizeDesignRequest;
-         ::int_point                                        m_pointWindow;
-         ::int_size                                         m_sizeWindow;
-         ::int_point                                        m_pointCursor2;
+         //::i32_point                                        m_pointDesignRequest;
+         //::i32_size                                         m_sizeDesignRequest;
+         ::i32_point                                        m_pointWindow;
+         ::i32_size                                         m_sizeWindow;
+         ::i32_point                                        m_pointCursor2;
 
          ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
@@ -143,11 +143,11 @@ namespace acme
 
 
 
-         virtual ::int_point origin();
+         virtual ::i32_point origin();
 
-         void set_position(const ::int_point & point) override;
+         void set_position(const ::i32_point & point) override;
 
-         ::int_rectangle get_window_rectangle() override;
+         ::i32_rectangle get_window_rectangle() override;
 
          void on_create_window() override;
 
@@ -156,9 +156,9 @@ namespace acme
          void redraw() override;
 
 
-         void set_interaction_rectangle(const ::int_rectangle & rectangle) override;
+         void set_interaction_rectangle(const ::i32_rectangle & rectangle) override;
 
-         ::int_rectangle get_rectangle() override;
+         ::i32_rectangle get_rectangle() override;
 
 
          //void get_window_rectangle() override;
@@ -236,8 +236,8 @@ namespace acme
 
 
          virtual bool is_windowing_popup();
-         virtual ::int_point windowing_popup_origin();
-         virtual ::int_size windowing_popup_size();
+         virtual ::i32_point windowing_popup_origin();
+         virtual ::i32_size windowing_popup_size();
          virtual void _on_windowing_close_window();
          virtual bool is_satellite_window();
          ::acme::user::interaction * owner_interaction();
@@ -247,7 +247,7 @@ namespace acme
 
          virtual itask get_itask() const;
 
-         //virtual ::int_rectangle get_window_rectangle();
+         //virtual ::i32_rectangle get_window_rectangle();
 
          ///::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
 
@@ -348,12 +348,12 @@ namespace acme
 
          virtual bool is_active_window();
 
-         //virtual ::int_point try_absolute_mouse_position(const ::int_point & point);
+         //virtual ::i32_point try_absolute_mouse_position(const ::i32_point & point);
 
          
          virtual void exit_iconify();
          
-         virtual void full_screen(const ::int_rectangle & rect = {});
+         virtual void full_screen(const ::i32_rectangle & rect = {});
          
          virtual void exit_full_screen();
          
@@ -368,9 +368,9 @@ namespace acme
 //         virtual bool _configure_window_unlocked(const class ::zorder & zorder, const ::user::e_activation & useractivation, bool bNoZorder, ::e_display edisplay);
          //virtual iptr get_window_long_ptr(int nIndex);
          //virtual iptr set_window_long_ptr(int nIndex, iptr l);
-         virtual bool client_to_screen(::int_point* ppoint);
+         virtual bool client_to_screen(::i32_point* ppoint);
          
-         virtual bool screen_to_client(::int_point* ppoint);
+         virtual bool screen_to_client(::i32_point* ppoint);
          
          
          //virtual bool set_window_pos(class::zorder zorder, int x, int y, int cx, int cy,::u32 nFlags);
@@ -393,7 +393,7 @@ namespace acme
          //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
 
-         //virtual ::int_size get_main_screen_size();
+         //virtual ::i32_size get_main_screen_size();
 
 
          void _on_window_simple_action(const_char_pointer pszActionName, ::user::activation_token * puseractivationtoken) override;
@@ -411,21 +411,21 @@ namespace acme
 
 
 
-         virtual void set_interface_client_size(const ::int_size & sizeWindow);
+         virtual void set_interface_client_size(const ::i32_size & sizeWindow);
 
 
-         void set_rectangle(const int_rectangle & rectangle) override;
-         //void set_position(const int_point & point) override;
-         void set_size(const int_size & size) override;
+         void set_rectangle(const i32_rectangle & rectangle) override;
+         //void set_position(const i32_point & point) override;
+         void set_size(const i32_size & size) override;
 
 
-         //::int_rectangle get_window_rectangle() override;
-         virtual ::int_rectangle get_window_rectangle_unlocked();
+         //::i32_rectangle get_window_rectangle() override;
+         virtual ::i32_rectangle get_window_rectangle_unlocked();
 
 
-         virtual void set_rectangle_unlocked(const int_rectangle & rectangle);
-         virtual void set_position_unlocked(const int_point & point);
-         virtual void set_size_unlocked(const int_size & size);
+         virtual void set_rectangle_unlocked(const i32_rectangle & rectangle);
+         virtual void set_position_unlocked(const i32_point & point);
+         virtual void set_size_unlocked(const i32_size & size);
 
 
          virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem, ::user::activation_token * puseractivationtoken);

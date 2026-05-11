@@ -443,7 +443,7 @@ int RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
 {
    int bias;
 
-//xxx    informationf("(%point, %int_point)\n", LocalTime, SystemTime);
+//xxx    informationf("(%point, %i32_point)\n", LocalTime, SystemTime);
 
    bias = TIME_GetBias();
    SystemTime->QuadPart = LocalTime->QuadPart + bias * (::i64)TICKSPERSEC;
@@ -468,7 +468,7 @@ NTSTATUS RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
 {
    int bias;
 
-//xxx    informationf("(%point, %int_point)\n", SystemTime, LocalTime);
+//xxx    informationf("(%point, %i32_point)\n", SystemTime, LocalTime);
 
    bias = TIME_GetBias();
    LocalTime->QuadPart = SystemTime->QuadPart - bias * (::i64)TICKSPERSEC;

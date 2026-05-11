@@ -104,7 +104,7 @@ namespace user
    }
 
 
-   void scroll_base_y::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   void scroll_base_y::set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout)
    {
 
       auto iLayout = (int)elayout;
@@ -125,7 +125,7 @@ namespace user
    void scroll_base_y::layout_scroll_bar_y(::user::enum_layout elayout)
    {
 
-      ::int_rectangle rectangleX = raw_rectangle(elayout);
+      ::i32_rectangle rectangleX = raw_rectangle(elayout);
 
       //scroll_bar_get_client_rect(rectangleX);
 
@@ -141,7 +141,7 @@ namespace user
 
             synthesize_scroll_state_y(m_pscrolllayoutY->m_scrollstatea[elayout], elayout);
 
-            ::int_rectangle rectangleNewPos;
+            ::i32_rectangle rectangleNewPos;
 
             auto pstyle = get_style();
 
@@ -477,7 +477,7 @@ namespace user
    }
 
 
-   //bool scroll_base_y::validate_context_offset(int_point & point)
+   //bool scroll_base_y::validate_context_offset(i32_point & point)
    //{
 
    //   if (point.y < 0)

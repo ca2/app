@@ -50,14 +50,14 @@
 //
 //	//}
 //
-//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::int_size & size)
+//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::i32_size & size)
 //		: swap_chain_render_target(pgpurenderer, size, {})
 //	{
 //		//m_bNeedRebuild = false;
 //	   //init();
 //	}
 //
-//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::int_size & size, ::pointer<render_target> previous)
+//	swap_chain_render_target::swap_chain_render_target(renderer* pgpurenderer, const ::i32_size & size, ::pointer<render_target> previous)
 //		: render_target(pgpurenderer, size, previous)
 //	{
 //

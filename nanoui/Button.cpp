@@ -33,7 +33,7 @@ namespace nanoui
    }
 
 
-   int_size Button::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size Button::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (bRecalcTextSize || m_fTextWidth < 0.f || m_sizeImage.cx < 0.f || m_sizeImage.cy < 0.f)
@@ -62,12 +62,12 @@ namespace nanoui
 
       }
       
-      return ::int_size((int)(m_fTextWidth + m_sizeImage.cx) + 20, (int)(m_sizeImage.cy + 11));
+      return ::i32_size((int)(m_fTextWidth + m_sizeImage.cx) + 20, (int)(m_sizeImage.cy + 11));
       
    }
 
    //
-   //bool Button::mouse_enter_event(const int_point & p, bool enter, const ::user::e_key & ekeyModifiers)
+   //bool Button::mouse_enter_event(const i32_point & p, bool enter, const ::user::e_key & ekeyModifiers)
    //{
    //   
    //   Widget::mouse_enter_event(p, enter, ekeyModifiers);
@@ -77,7 +77,7 @@ namespace nanoui
    //}
 
 
-   bool Button::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_button_event(p, emouse, down, bDoubleClick, ekeyModifiers);
@@ -311,7 +311,7 @@ namespace nanoui
    }
 
 
-   bool Button::mouse_enter_event(const int_point& p, bool bEnter, const ::user::e_key& ekeyModifiers)
+   bool Button::mouse_enter_event(const i32_point& p, bool bEnter, const ::user::e_key& ekeyModifiers)
    {
 
       Widget::mouse_enter_event(p, bEnter, ekeyModifiers);

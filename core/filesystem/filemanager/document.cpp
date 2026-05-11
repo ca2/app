@@ -113,7 +113,7 @@ namespace filemanager
 
       //#ifdef WINDOWS_DESKTOP
       //      oswindow oswindowDesktop = ::get_desktop_window();
-      //      ::int_rectangle rectangleOpen;
+      //      ::i32_rectangle rectangleOpen;
       //      ::GetWindowRect(oswindowDesktop, rectangleOpen);
       //      int iWidth = rectangleOpen.width();
       //      int iHeight = rectangleOpen.width();

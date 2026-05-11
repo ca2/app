@@ -492,7 +492,7 @@ public:
 
    //string_base_array & operator =(const ::payload & payload);
    //   string_base_array & operator =(const string_base_array & stra);
-   //string_base_array & operator =(const long_long_array_base & ia);
+   //string_base_array & operator =(const i64_array_base & ia);
    //   string_base_array & operator =(const string_base_array & stra);
    //string_base_array & operator -=(const string_base_array & stra);
    //string_base_array & operator +=(const string_base_array & stra);

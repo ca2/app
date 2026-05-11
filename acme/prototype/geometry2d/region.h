@@ -22,7 +22,7 @@ namespace geometry2d
       //{
       //public:
 
-      //   virtual void translate(const ::int_point & point);
+      //   virtual void translate(const ::i32_point & point);
       //   virtual void expand_bounding_box(::double_rectangle & rectangle);
       //   virtual bool internal_contains(const ::double_point & p);
 
@@ -36,7 +36,7 @@ namespace geometry2d
 
       //   ::double_rectangle m_rectangle;
 
-      //   void translate(const ::int_point & point) override;
+      //   void translate(const ::i32_point & point) override;
       //   void expand_bounding_box(::double_rectangle & rectangle) override;
       //   bool internal_contains(const ::double_point & p) override;
 
@@ -50,7 +50,7 @@ namespace geometry2d
 
       //   ::double_rectangle m_rectangle;
 
-      //   void translate(const ::int_point & point) override;
+      //   void translate(const ::i32_point & point) override;
       //   void expand_bounding_box(::double_rectangle & rectangle) override;
       //   bool internal_contains(const ::double_point & p) override;
 
@@ -67,7 +67,7 @@ namespace geometry2d
       //   ::draw2d::enum_fill_mode            m_efillmode;
 
 
-      //   void translate(const ::int_point & point) override;
+      //   void translate(const ::i32_point & point) override;
       //   void expand_bounding_box(::double_rectangle & rectangle) override;
       //   bool internal_contains(const ::double_point & p) override;
 
@@ -83,7 +83,7 @@ namespace geometry2d
       //   pointer_array < ::double_polygon > m_polygona;
       //   ::draw2d::enum_fill_mode            m_efillmode;
 
-      //   void translate(const ::int_point & point) override;
+      //   void translate(const ::i32_point & point) override;
       //   void expand_bounding_box(::double_rectangle & rectangle) override;
       //   bool internal_contains(const ::double_point & p) override;
 
@@ -101,7 +101,7 @@ namespace geometry2d
       //   ::pointer<::geometry2d::region>     m_pregion2;
       //   ::draw2d::enum_combine              m_ecombine;
 
-      //   void translate(const ::int_point & point) override;
+      //   void translate(const ::i32_point & point) override;
       //   void expand_bounding_box(::double_rectangle & rectangle) override;
       //   bool internal_contains(const ::double_point & p) override;
 
@@ -120,7 +120,7 @@ namespace geometry2d
       //   ::double_size        m_sizeRadius;
 
 
-      //   void translate(const ::int_point & point) override;
+      //   void translate(const ::i32_point & point) override;
       //   void expand_bounding_box(::double_rectangle & rectangle) override;
       //   bool internal_contains(const ::double_point & p) override;
 
@@ -129,7 +129,7 @@ namespace geometry2d
 
       ::pointer<item>                    m_pitem;
 
-      ::int_point                        m_pointOffset;
+      ::i32_point                        m_pointOffset;
 
 
       region();
@@ -147,7 +147,7 @@ namespace geometry2d
 
       virtual bool create_ellipse(const ::double_ellipse & ellipse);
 
-      virtual bool create_polygon(const ::int_point * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
+      virtual bool create_polygon(const ::i32_point * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
       virtual bool create_polygon(const ::double_point * pPoints, int nCount, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
@@ -155,7 +155,7 @@ namespace geometry2d
 
       virtual bool create_poly_polygon(const ::double_point * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode);
 
-      virtual bool create_poly_polygon(const ::int_point * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode);
+      virtual bool create_poly_polygon(const ::i32_point * pPoints, const int * lpPolyCounts, int nCount, ::draw2d::enum_fill_mode efillmode);
 
       virtual bool create_poly_polygon(const double_poly_polygon & polygon, ::draw2d::enum_fill_mode efillmode = ::draw2d::e_fill_mode_winding);
 
@@ -166,7 +166,7 @@ namespace geometry2d
 
 
 
-      //virtual bool contains(const ::int_point & point);
+      //virtual bool contains(const ::i32_point & point);
       virtual bool contains(const ::double_point & point);
 
 
@@ -188,7 +188,7 @@ namespace geometry2d
 
  
 
-      //virtual void expand_bounding_box(::int_rectangle & rectangle);
+      //virtual void expand_bounding_box(::i32_rectangle & rectangle);
 
     
 

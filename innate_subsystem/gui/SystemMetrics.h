@@ -14,7 +14,7 @@ namespace innate_subsystem
         //virtual ~SystemMetricsInterface() = 0;
 
 
-    virtual ::int_size get_small_icon_size_in_pixels() = 0;
+    virtual ::i32_size get_small_icon_size_in_pixels() = 0;
 
 
     };
@@ -35,7 +35,7 @@ namespace innate_subsystem
         //~SystemMetrics() override;
 
 
-          ::int_size get_small_icon_size_in_pixels() override
+          ::i32_size get_small_icon_size_in_pixels() override
        {
           return m_psystemmetrics->get_small_icon_size_in_pixels();
        }

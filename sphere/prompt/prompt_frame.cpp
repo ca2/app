@@ -96,9 +96,9 @@ namespace prompt
       // every 100 ms approximately
       else if(uEvent == 4033)
       {
-         /*      ::int_rectangle rectangleWindow;
+         /*      ::i32_rectangle rectangleWindow;
                window_rectangle(rectangleWindow);
-               ::int_point point;
+               ::i32_point point;
                point = psession->get_cursor_position();
                if(rectangleWindow.is_empty().contains(point) && !m_bTimerHide)
                {
@@ -110,7 +110,7 @@ namespace prompt
                   m_bTimerHide = false;
                   kill_timer(1001);
                }*/
-         /*::int_point point;
+         /*::i32_point point;
          if(m_bHoverMouse && ::get_tick() > m_timeLastHover + 300)
          {
             OnHoverAction();
@@ -272,9 +272,9 @@ namespace prompt
       /*if(m_pframewindow->move_manager()->IsMoving())
       {
          oswindow oswindowDesktop = ::get_desktop_window();
-         ::int_rectangle rectangleDesktop;
+         ::i32_rectangle rectangleDesktop;
          ::window_rectangle(oswindowDesktop, rectangleDesktop);
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
          window_rectangle(rectangleWindow);
          double a = (double) rectangleDesktop.height() / (double) rectangleDesktop.width();
          if(rectangleWindow.left < (rectangleDesktop.width() / 2))
@@ -335,7 +335,7 @@ namespace prompt
    void frame::ToFront()
    {
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(rectangleWindow);
       

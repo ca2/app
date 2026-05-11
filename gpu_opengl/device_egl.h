@@ -35,14 +35,14 @@ namespace gpu_opengl
 
       ::pointer < ::gpu::context > allocate_context() override;
       //void create_context() override;
-      //void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size);
+      //void context::on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::i32_size& size);
       void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
-      void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement) override;
+      void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement) override;
 
 
-      //void _create_offscreen_buffer(const ::int_size& size) override;
-      virtual void _defer_create_offscreen_window(const ::int_size& size);
-      //void resize_offscreen_buffer(const ::int_size& size) override;
+      //void _create_offscreen_buffer(const ::i32_size& size) override;
+      virtual void _defer_create_offscreen_window(const ::i32_size& size);
+      //void resize_offscreen_buffer(const ::i32_size& size) override;
       //void destroy_offscreen_buffer() override;
 
       //void make_current() override;
@@ -50,7 +50,7 @@ namespace gpu_opengl
       //string get_shader_version_text() override;
 
       //void _translate_shader(string_array_base& stra) override;
-      virtual void _create_device(const ::int_size & size);
+      virtual void _create_device(const ::i32_size & size);
       //virtual void _opengl_lock();
       //virtual void _opengl_unlock();
 

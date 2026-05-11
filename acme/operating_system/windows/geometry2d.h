@@ -12,7 +12,7 @@ namespace windows
 {
 
 
-   inline ::RECT as_RECT(const ::int_rectangle & rectangle)
+   inline ::RECT as_RECT(const ::i32_rectangle & rectangle)
    {
 
       if (rectangle.is_empty())

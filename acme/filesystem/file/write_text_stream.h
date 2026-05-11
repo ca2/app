@@ -476,9 +476,9 @@ public:
    //   }
    //
 
-       // void write(const ::int_point & point) ;
-       // void write(const ::int_size & size) ;
-       // void write(const ::int_rectangle &rectangle) ;
+       // void write(const ::i32_point & point) ;
+       // void write(const ::i32_size & size) ;
+       // void write(const ::i32_rectangle &rectangle) ;
 
    write_text_stream & operator <<(const_char_pointer psz);
    //    {

@@ -92,7 +92,6 @@ namespace subsystem
 
       /**
 * Returns SID of process owner.
-* @param processHandle handle of process.
 * @return SID of owner of specified process.
 * @throws SystemException if operation failed.
 * @fixme stub (returns invalid SID).

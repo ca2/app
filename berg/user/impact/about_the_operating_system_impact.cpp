@@ -213,7 +213,7 @@ image()->load_image(strOperatingSystemImageUrl,
 
 #ifdef DEBUG_WORK
 
-      ::int_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
+      ::i32_rectangle rectangleDryProWithLove_Work(5, 5, 1915, 1075);
 
       pgraphics->fill_rectangle(rectangleDryProWithLove_Work, argb(255, 150, 200, 255));
 
@@ -276,7 +276,7 @@ image()->load_image(strOperatingSystemImageUrl,
 
       double y = 0.;
 
-      ::int_point point;
+      ::i32_point point;
 
       string strText;
 

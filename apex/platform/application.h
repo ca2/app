@@ -320,9 +320,9 @@ namespace apex
       void show_lines_box(const ::string_array_base & straLines, const ::string_array_base & straIconUrl, ::user::activation_token *puseractivationtoken) override;
 
 
-      ::pointer<::innate_ui::icon> innate_ui_icon(const ::int_size& size) override;
+      ::pointer<::innate_ui::icon> innate_ui_icon(const ::i32_size& size) override;
       ::pointer<::innate_ui::icon>
-      innate_ui_icon(const ::scoped_string &scopedstrIconUrl, const ::int_size &size) override;
+      innate_ui_icon(const ::scoped_string &scopedstrIconUrl, const ::i32_size &size) override;
 
 
       virtual void init_fs_set(::fs::set* pfsset) override;
@@ -1050,7 +1050,7 @@ namespace apex
       //virtual string sync_message_box(const ::scoped_string & scopedstrMatter,::property_set & propertyset) override;
 
 
-      //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point);
+      //virtual ::pointer<::user::interaction>uie_from_point(const ::i32_point& point);
 
       //virtual bool on_application_menu_action(const ::scoped_string & scopedstrCommand) override;
 

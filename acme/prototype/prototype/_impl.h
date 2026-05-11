@@ -1256,8 +1256,8 @@ void reference_count_debug_release(TYPE * & p)
 #endif
 
 
-//inline bool class ::time::done(const class time & time) const { return elapsed(class ::time).m_i >= 0; }
-//inline bool class ::time::done() const { return elapsed().m_i >= 0; }
+//inline bool class ::time::done(const class time & time) const { return elapsed(class ::time).m_i32 >= 0; }
+//inline bool class ::time::done() const { return elapsed().m_i32 >= 0; }
 
 
 

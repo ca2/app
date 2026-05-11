@@ -152,7 +152,7 @@ namespace sandbox_windowing
    void host_interaction::on_layout(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::int_rectangle r;
+      ::i32_rectangle r;
 
       r = this->rectangle();
 
@@ -227,7 +227,7 @@ void host_interaction::show()
 }
 
 
-::int_rectangle host_interaction::get_rectangle()
+::i32_rectangle host_interaction::get_rectangle()
 {
    
    return ::user::interaction::get_rectangle();

@@ -22,7 +22,7 @@ namespace draw2d_gpu
       virtual ~path();
 
 
-      virtual bool internal_add_arc(const ::int_rectangle & rectangle, double iStart, double iAngle);
+      virtual bool internal_add_arc(const ::i32_rectangle & rectangle, double iStart, double iAngle);
 
       virtual double_point internal_last_point();
 
@@ -52,7 +52,7 @@ namespace draw2d_gpu
 
       //virtual bool _set(::draw2d::graphics* pgraphics, const ::linesd& pline) override;
 
-      //virtual bool _set(::draw2d::graphics* pgraphics, const ::int_rectangle& prectangle) override;
+      //virtual bool _set(::draw2d::graphics* pgraphics, const ::i32_rectangle& prectangle) override;
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::double_rectangle& prectangle) override;
 

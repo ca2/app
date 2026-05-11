@@ -179,7 +179,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
 
       }
 
-      if (m_size == ::int_size(cx, cy) && m_iRadius == radius)
+      if (m_size == ::i32_size(cx, cy) && m_iRadius == radius)
       {
 
          return;
@@ -298,7 +298,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
    }
 
 
-   void fastblur::initialize(int_size sz,int iRadius)
+   void fastblur::initialize(i32_size sz,int iRadius)
    {
 
       return initialize(sz.cx,sz.cy,iRadius);
@@ -306,7 +306,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
    }
 
 
-   void fastblur::blur(::image::image *pimage, const ::int_rectangle & rectangle)
+   void fastblur::blur(::image::image *pimage, const ::i32_rectangle & rectangle)
    {
 
       pixmap_lock lock(pimage, rectangle);
@@ -359,7 +359,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
 
       ::u32 * pimage32 = (::u32 *) m_p->get_data();
 
-      unsigned char * int_point;
+      unsigned char * i32_point;
       vector4 * t = timage;
 
       int w = m_size.cx;
@@ -375,7 +375,7 @@ auto tickA0 = ::time::now();
             for(::collection::index x = 0; x < w; x++)
             {
                p = (unsigned char *)&pimage32[y * s + x];
-               t[y * w + x] = vector4(int_point[0],int_point[1],int_point[2],int_point[3]);
+               t[y * w + x] = vector4(i32_point[0],i32_point[1],i32_point[2],i32_point[3]);
             }
          }
 auto tickA1 = ::time::now();
@@ -439,10 +439,10 @@ auto tickC0 = ::time::now();
             {
                p = (unsigned char *)&pimage32[y * s + x];
                t = &timage[y * w + x];
-               int_point[0] = (unsigned char)t->w;
-               int_point[1] = (unsigned char)t->x;
-               int_point[2] = (unsigned char)t->y;
-               int_point[3] = (unsigned char)t->z;
+               i32_point[0] = (unsigned char)t->w;
+               i32_point[1] = (unsigned char)t->x;
+               i32_point[2] = (unsigned char)t->y;
+               i32_point[3] = (unsigned char)t->z;
             }
          }
 auto tickC1 = ::time::now();
@@ -1604,7 +1604,7 @@ auto tick2 = ::time::now();
             int wm = w - 1;
             int hm = h - 1;
             int div = radius + radius + 1;
-            int int_point;
+            int i32_point;
             int pbyte_1;
             int pbyte_2;
 
@@ -1623,10 +1623,10 @@ auto tick2 = ::time::now();
                for (i = -radius; i <= radius; i++)
                {
                   p = pimage32[yi + minimum(wm, maximum(i, 0))];
-                  asum += ((int_point & 0xff000000) >> 24);
-                  rsum += ((int_point & 0xff0000) >> 16);
-                  gsum += ((int_point & 0x00ff00) >> 8);
-                  bsum += (int_point & 0x0000ff);
+                  asum += ((i32_point & 0xff000000) >> 24);
+                  rsum += ((i32_point & 0xff0000) >> 16);
+                  gsum += ((i32_point & 0x00ff00) >> 8);
+                  bsum += (i32_point & 0x0000ff);
                }
                for (x = 0; x < w; x++)
                {

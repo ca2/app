@@ -125,7 +125,7 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      ::int_rectangle r = client2_rectangle();
+      ::i32_rectangle r = client2_rectangle();
 
       pgraphics->draw_rectangle(r);
 
@@ -194,7 +194,7 @@ namespace user
    }
 
 
-   bool multiple_option::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool multiple_option::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
 
    {
 
@@ -210,10 +210,10 @@ namespace user
    }
 
 
-   ::item_pointer multiple_option::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
+   ::item_pointer multiple_option::on_hit_test(const ::i32_point& point, ::user::e_zorder ezorder)
    {
 
-      //::int_rectangle rectangleElement;
+      //::i32_rectangle rectangleElement;
 
       return ::user::interaction::on_hit_test(point, ezorder);
 
@@ -299,7 +299,7 @@ namespace user
       //if (is_drop_down())
       //{
 
-      //   ::int_rectangle rectangleWindow;
+      //   ::i32_rectangle rectangleWindow;
 
       //   window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
@@ -555,7 +555,7 @@ namespace user
 
             SetFont(fontxyz);*/
 
-      ::int_rectangle r = client2_rectangle();
+      ::i32_rectangle r = client2_rectangle();
 
       pgraphics->draw_rectangle(r);
 
@@ -574,7 +574,7 @@ namespace user
       for (::collection::index i = 0; i < m_atomaOptions.size(); i++)
       {
 
-         ::int_rectangle rItem(r);
+         ::i32_rectangle rItem(r);
 
          rItem.left = x;
          rItem.right = rItem.left + iW;

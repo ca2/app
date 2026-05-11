@@ -22,7 +22,7 @@ namespace gpu_opengl
       //HDC                                 m_hdcGraphics;
       ::pointer < ::windowing::window >   m_pwindow;
       bool                                m_bAddSwapChainSupport;
-      ::int_rectangle                     m_rectangleWin32;
+      ::i32_rectangle                     m_rectangleWin32;
       
 
 
@@ -33,30 +33,30 @@ namespace gpu_opengl
       void create_main_context(::acme::windowing::window * pacmewindowingwindow) override;
 
       void initialize_gpu_device_for_swap_chain(::gpu::approach* papproach, ::windowing::window* pwindow) override;
-      void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement) override;
+      void initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement) override;
 
       virtual void destroy_device();
 
       virtual ::pointer < ::gpu::context > allocate_context(::particle* pparticle);
 
-      //virtual ::pointer < ::gpu::context > start_gpu_output_context(::particle* pparticle, const ::gpu::enum_output& eoutput, const ::int_rectangle& rectanglePlacement);
+      //virtual ::pointer < ::gpu::context > start_gpu_output_context(::particle* pparticle, const ::gpu::enum_output& eoutput, const ::i32_rectangle& rectanglePlacement);
 
-      //virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::image32_callback& callbackImage32CpuBuffer, const ::int_rectangle& rectanglePlacement);
+      //virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::image32_callback& callbackImage32CpuBuffer, const ::i32_rectangle& rectanglePlacement);
 
       //virtual ::pointer < ::gpu::context > start_swap_chain_context(::particle* pparticle, ::windowing::window* pwindow);
 
 
       //void on_create_context(const ::gpu::start_context_t& startcontext) override;
 
-      virtual void _defer_create_offscreen_window(const ::int_size& size);
+      virtual void _defer_create_offscreen_window(const ::i32_size& size);
 
       //void defer_create_window_context(::windowing::window* pwindow) override;
       //void _defer_create_window_context(::windowing::window* pwindow) override;
       //virtual void _create_window_context(::windowing::window* pwindow);
 
-      //virtual void _create_device(const ::int_size & size);
-      //void _create_offscreen_buffer(const ::int_size& size) override;
-      //void resize_offscreen_buffer(const ::int_size& size) override;
+      //virtual void _create_device(const ::i32_size & size);
+      //void _create_offscreen_buffer(const ::i32_size& size) override;
+      //void resize_offscreen_buffer(const ::i32_size& size) override;
       //void destroy_offscreen_buffer() override;
 
       //bool make_current(::gpu::context* pgpucontext) override;

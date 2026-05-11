@@ -5,7 +5,7 @@
 		// TEMPLATE CLASS _Bitset_base
 template<int>
 	struct _Bitset_base
-	{	// default matter int_size
+	{	// default matter i32_size
 	typedef ::u32 _Ty;
 	};
 
@@ -186,7 +186,7 @@ public:
 		if (_Str.size() < _Pos)
 			_Xran();	// _Pos off end
 		if (_Str.size() - _Pos < _Count)
-			_Count = _Str.size() - _Pos;	// trim _Count to int_size
+			_Count = _Str.size() - _Pos;	// trim _Count to i32_size
 		if (_Bits < _Count)
 			_Count = _Bits;	// trim _Count to length of bitset
 		_Tidy();
@@ -361,7 +361,7 @@ public:
 		}
 
 	size_t size() const
-		{	// return int_size of bitset
+		{	// return i32_size of bitset
 		return (_Bits);
 		}
 

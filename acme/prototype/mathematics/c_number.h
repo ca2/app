@@ -203,19 +203,19 @@ class time;
 //public:
 //
 //
-//   ::i64       m_i;
+//   ::i64       m_i32;
 //
 //
-//   class ::time() { m_i = 0; }
-//   class ::time(::i64 i) { m_i = i; }
+//   class ::time() { m_i32 = 0; }
+//   class ::time(::i64 i) { m_i32 = i; }
 //
 //
-//   class ::time & operator = (const second & second) { m_i = second.m_i * 1'000; return *this; }
-//   class ::time & operator = (const class time & time) { m_i = class ::time.m_i; return *this; }
+//   class ::time & operator = (const second & second) { m_i32 = second.m_i32 * 1'000; return *this; }
+//   class ::time & operator = (const class time & time) { m_i32 = class ::time.m_i32; return *this; }
 //   class ::time & operator = (const microsecond & microsecond);
 //   class ::time & operator = (const nanosecond & nanosecond);
 //   class ::time & operator = (const class time & time);
-//   class ::time & operator = (::i64 i) { m_i = i; return *this; }
+//   class ::time & operator = (::i64 i) { m_i32 = i; return *this; }
 //
 //
 //};

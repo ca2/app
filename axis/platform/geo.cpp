@@ -979,7 +979,7 @@ namespace geo
          return "cest";
 
       }
-      else if (scopedstrCountry == "int_point")
+      else if (scopedstrCountry == "i32_point")
       {
 
          return "west";

@@ -52,8 +52,8 @@ namespace draw2d_gpu
 //#endif
 
 
-      ::int_size               m_sizeOut;
-      ::int_size               m_sizeIn;
+      ::i32_size               m_sizeOut;
+      ::i32_size               m_sizeIn;
 
 
       bitmap();
@@ -88,7 +88,7 @@ namespace draw2d_gpu
       void CreateCompatibleBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
       void CreateDiscardableBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight);
       
-      void create_bitmap(::draw2d::graphics * pgraphics, const ::int_size& size, void** ppcolorref, int* piScan) override;
+      void create_bitmap(::draw2d::graphics * pgraphics, const ::i32_size& size, void** ppcolorref, int* piScan) override;
       void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void* pjBits, ::u32 iUsage) override;
 
 
@@ -97,8 +97,8 @@ namespace draw2d_gpu
 
       ::u32 SetBitmapBits(::u32 dwCount, const void * lpBits);
       // ::u32 GetBitmapBits(::u32 dwCount, LPVOID lpBits) const;
-      ::int_size SetBitmapDimension(int nWidth, int nHeight);
-      ::int_size GetBitmapDimension() const;
+      ::i32_size SetBitmapDimension(int nWidth, int nHeight);
+      ::i32_size GetBitmapDimension() const;
 
       // void dump(dump_context & dumpcontext) const override;
 

@@ -1351,8 +1351,8 @@ bool happening::is_signaled() const
 ////      {
 ////
 ////         timespec delay;
-////         delay.tv_sec = timeTimeout.m_i;
-////         delay.tv_nsec = timeTimeout.m_i;
+////         delay.tv_sec = timeTimeout.m_i32;
+////         delay.tv_nsec = timeTimeout.m_i32;
 ////         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay))
 ////            break;
 ////
@@ -1365,8 +1365,8 @@ bool happening::is_signaled() const
 ////   {
 ////
 ////      timespec delay;
-////      delay.tv_sec = timeTimeout.m_i;
-////      delay.tv_nsec = timeTimeout.m_i;
+////      delay.tv_sec = timeTimeout.m_i32;
+////      delay.tv_nsec = timeTimeout.m_i32;
 ////      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 ////
 ////      return is_locked();

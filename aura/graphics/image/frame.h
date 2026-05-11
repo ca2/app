@@ -15,7 +15,7 @@ namespace image
    public:
 
 
-      ::int_rectangle               m_rectangle;
+      ::i32_rectangle               m_rectangle;
       ::image::image_pointer               m_pimage;
       class ::time                    m_time;
       ::collection::index                         m_iFrame;

@@ -175,7 +175,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->pressButton(idButton, press);
 //    }
 //
-//    bool Toolbar::getButtonRect(int nIndex, ::int_rectangle & buttonRect)
+//    bool Toolbar::getButtonRect(int nIndex, ::i32_rectangle & buttonRect)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_GETITEMRECT,
 //       //                              nIndex, (::lparam)buttonRect);
@@ -184,7 +184,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getButtonRect(nIndex, buttonRect);
 //    }
 //
-//    bool Toolbar::setButtonsSize(const ::int_size & size)
+//    bool Toolbar::setButtonsSize(const ::i32_size & size)
 //    {
 //       // LRESULT result = SendMessage(m_hWndToolbar, TB_SETBUTTONSIZE,
 //       //                              0, MAKELONG(width, height));

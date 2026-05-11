@@ -150,7 +150,7 @@ namespace geometry2d
       ::draw2d::enum_item type() const override;
 
 
-      //void translate(const ::int_point & point) override;
+      //void translate(const ::i32_point & point) override;
       //void expand_bounding_box(::double_rectangle & rectangle) override;
       void translate(const ::double_point & point) override;
       bool contains(const ::double_point & p) override;

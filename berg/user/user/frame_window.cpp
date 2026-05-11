@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   void frame_window::GetBorderRectangle(::int_rectangle * prectangle)
+   void frame_window::GetBorderRectangle(::i32_rectangle * prectangle)
    {
 
       __UNREFERENCED_PARAMETER(prectangle);
@@ -121,7 +121,7 @@ namespace user
    }
 
 
-   void frame_window::SetBorderRect(const ::int_rectangle & rectangle)
+   void frame_window::SetBorderRect(const ::i32_rectangle & rectangle)
    {
 
       __UNREFERENCED_PARAMETER(rectangle);
@@ -546,7 +546,7 @@ namespace user
 
                   ::image::image_pointer pimage1;
 
-                  ::int_rectangle rectangle;
+                  ::i32_rectangle rectangle;
 
                   window_rectangle(rectangle);
 
@@ -951,7 +951,7 @@ namespace user
    }
 
 
-   //bool frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, ::u32 dwExStyle, ::request * prequest)
+   //bool frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::i32_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, ::u32 dwExStyle, ::request * prequest)
    //{
 
    //   __UNREFERENCED_PARAMETER(scopedstrMenuName);
@@ -1133,7 +1133,7 @@ namespace user
 
       //dwDefaultStyle &= ~WS_VISIBLE;
 
-      ::int_rectangle rectangleFrame;
+      ::i32_rectangle rectangleFrame;
 
       ::pointer<::user::place_holder>pholder;
 
@@ -1203,7 +1203,7 @@ namespace user
 
    }
 
-   //::int_rectangle rectangleFrame;
+   //::i32_rectangle rectangleFrame;
 
    //::pointer<::user::place_holder>pholder;
 
@@ -2575,7 +2575,7 @@ namespace user
       if(m_bSnapToBars)
       {
 
-         ::int_rectangle rectangle(0, 0, 32767, 32767);
+         ::i32_rectangle rectangle(0, 0, 32767, 32767);
 
          RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, &rectangle, rectangle, false);
 
@@ -2599,10 +2599,10 @@ namespace user
 
 
    // frame_window implementation of OLE border space negotiation
-   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, ::int_rectangle * pRectBorder)
+   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, ::i32_rectangle * pRectBorder)
    {
 
-      ::int_rectangle border, request;
+      ::i32_rectangle border, request;
 
       switch (nBorderCmd)
       {
@@ -2627,7 +2627,7 @@ namespace user
                m_rectangleBorder.clear();
                return true;
             }
-            // original int_rectangle is is_empty & pRectBorder is nullptr, no recalc needed
+            // original i32_rectangle is is_empty & pRectBorder is nullptr, no recalc needed
 
             return false;
 
@@ -3114,7 +3114,7 @@ namespace user
 
       //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
 
-//      ::int_rectangle rectangleX;
+//      ::i32_rectangle rectangleX;
 //
 //      this->rectangle(rectangleX);
 
@@ -3202,7 +3202,7 @@ namespace user
    }
 
 
-   ::int_rectangle frame_window::hosting_rectangle(::user::enum_layout elayout)
+   ::i32_rectangle frame_window::hosting_rectangle(::user::enum_layout elayout)
    {
       
       if(m_bWindowFrame)

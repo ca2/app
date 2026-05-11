@@ -366,7 +366,7 @@ namespace sockets_bsd
    if (strProtocol.length())
    {
    point = getprotobyname( strProtocol );
-   if (!int_point)
+   if (!i32_point)
    {
    fatal() <<"getprotobyname" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
    SetCloseAndDelete();
@@ -374,7 +374,7 @@ namespace sockets_bsd
    return INVALID_SOCKET;
    }
    }
-   int protno = int_point ? int_point -> p_proto : 0;
+   int protno = i32_point ? i32_point -> p_proto : 0;
 
    s = ::base_socket(af, iType, protno);
    if (s == INVALID_SOCKET)
@@ -547,7 +547,7 @@ namespace sockets_bsd
    if(m_addressRemote.m_p != nullptr)
    {
    struct sockaddr *point = *m_addressRemote;
-   struct sockaddr_in *sa = (struct sockaddr_in *)int_point;
+   struct sockaddr_in *sa = (struct sockaddr_in *)i32_point;
    ::memory_copy(&l, &sa -> sin_addr, sizeof(struct in_addr));
    }
    return l;

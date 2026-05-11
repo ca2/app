@@ -18,7 +18,7 @@
 //      ::comptr<ID3D11Texture2D> m_ptextureShared;
 //      //VkSwapchainKHR       m_vkswapchain;
 //      uint32_t             m_uCurrentSwapChainImage;
-//      //::int_size m_size;
+//      //::i32_size m_size;
 //
 //      ::comptr<ID3D11VertexShader> m_pvertexshaderFullscreen;
 //      ::comptr<ID3D11PixelShader> m_ppixelshaderFullscreen;
@@ -29,8 +29,8 @@
 //      static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 //
 //      //swap_chain_render_target();
-//      swap_chain_render_target(renderer* pgpurenderer, const ::int_size & size);
-//      swap_chain_render_target(renderer * pgpurenderer, const ::int_size& size, ::pointer <render_target>previous);
+//      swap_chain_render_target(renderer* pgpurenderer, const ::i32_size & size);
+//      swap_chain_render_target(renderer * pgpurenderer, const ::i32_size& size, ::pointer <render_target>previous);
 //      ~swap_chain_render_target();
 //
 //      //swap_chain_render_target(const swap_chain_render_target&) = delete;

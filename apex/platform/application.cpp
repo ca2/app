@@ -271,7 +271,7 @@ namespace apex
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::increment_reference_count(this);
 
-      srand((::u32)::long_long_nanosecond());
+      srand((::u32)::i64_nanosecond());
 
       m_bService = false;
 
@@ -1531,7 +1531,7 @@ namespace apex
    }
 
 
-   ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::int_size & size)
+   ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::i32_size & size)
    {
 
       auto pfile = file()->get_reader("matter://main/icon.png");
@@ -1542,7 +1542,7 @@ namespace apex
 
 
    ::pointer<::innate_ui::icon> application::innate_ui_icon(const ::scoped_string &scopedstrIconUrl,
-                                                            const ::int_size &size)
+                                                            const ::i32_size &size)
    {
 
       auto pfile = file()->get_reader(scopedstrIconUrl);
@@ -4169,7 +4169,7 @@ namespace apex
             ::property_set set;
 
             set["oh_my_god"].as_string_array().add(str1);
-            set["oh_my_god2"].int_array_reference() = ::int_array_base({ 1, 2, 3 });
+            set["oh_my_god2"].i32_array_reference() = ::i32_array_base({ 1, 2, 3 });
 
             int a1 = 1;
             int a2 = 2;
@@ -8203,9 +8203,9 @@ namespace apex
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(scopedstrParam, "int_point") == 0)
+   if (lstrcmpA(scopedstrParam, "i32_point") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(scopedstrParam, "int_point") == 0)
+   else if (lstrcmpA(scopedstrParam, "i32_point") == 0)
    m_nShellCommand = FilePrint;
    else if (::__invariant_stricmp(scopedstrParam, "Register") == 0 ||
    ::__invariant_stricmp(scopedstrParam, "Regserver") == 0)
@@ -9530,7 +9530,7 @@ namespace apex
    //}
 
 
-   //::pointer<::user::interaction>application::uie_from_point(const ::int_point& point)
+   //::pointer<::user::interaction>application::uie_from_point(const ::i32_point& point)
    //{
 
    //   user::interaction_pointer_array wnda = *m_puiptraFrame;

@@ -70,26 +70,26 @@ public:
       //type                                   m_type;
       bool                                   m_b;
       bool * m_pb;
-      char                                   m_ch;
-      unsigned char                          m_uch;
-      short                                  m_sh;
-      unsigned short                         m_ush;
-      int                                    m_i;
+      ::i8                                   m_i8;
+      ::u8                                   m_u8;
+      ::i16                                  m_i16;
+      ::u16                                  m_u16;
+      ::i32                                  m_i32;
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
       //long                                   m_l;
       //unsigned long                          m_ul;
 #endif
-      ::u32                           m_ui;
-      ::i64                           m_ll;
-      ::u64                           m_ull;
-      char *                                 m_pch;
-      unsigned char * m_puch;
-      short * m_psh;
-      unsigned short * m_push;
-      int * m_pi;
-      ::u32 * m_pui;
-      ::i64 * m_pll;
-      ::u64 * m_pull;
+      ::u32                           m_u32;
+      ::i64                           m_i64;
+      ::u64                           m_u64;
+      ::i8 *                                 m_pi8;
+      ::u8 * m_pu8;
+      ::i16 * m_pi16;
+      ::u16 * m_pu16;
+      ::i32 * m_pi32;
+      ::u32 * m_pu32;
+      ::i64 * m_pi64;
+      ::u64 * m_pu64;
       ::string * m_pstr;
       float                                  m_f;
       float * m_pf;
@@ -143,7 +143,7 @@ public:
       ::i32_array  * m_pia;
       ::payload_array  * m_ppayloada;
       ::property_set  * m_ppropertyset;
-      ::long_long_array * m_plonglonga;
+      ::i64_array * m_plonglonga;
       ::float_array * m_pfloata;
       ::double_array * m_pdoublea;
       ::memory * m_pmemory;
@@ -186,15 +186,15 @@ public:
       payload.m_payloadall = {};
    }
    template < bool_type BOOL > payload(BOOL b) : m_etype(e_type_bool) {m_b = b;}
-   template < same_as < char > CHAR > payload(CHAR c) : m_etype(e_type_char) {m_ch = c;}
-   //template < i8_type I8 > payload(I8 i) : m_etype(e_type_char) {m_ch = i;}
-   template < same_as < unsigned char > UNSIGNED_CHAR > payload(UNSIGNED_CHAR uch) : m_etype(e_type_unsigned_char) {m_uch = uch;}
-   template < same_as < short > SHORT > payload(SHORT sh) : m_etype(e_type_short) {m_sh = sh;}
-   template < same_as < unsigned short > UNSIGNED_SHORT > payload(UNSIGNED_SHORT ush) : m_etype(e_type_unsigned_short) {m_ush = ush;}
-   template < same_as < int > INT > payload(INT i) : m_etype(e_type_int) {m_i = i;}
-   template < same_as < ::u32 > UNSIGNED_INT > payload(UNSIGNED_INT ui) : m_etype(e_type_unsigned_int) {m_ui = ui;}
-   template < same_as < ::i64 > LONG_LONG > payload(LONG_LONG ll) : m_etype(e_type_long_long) {m_ll = ll;}
-   template < same_as < ::u64 > UNSIGNED_LONG_LONG > payload(UNSIGNED_LONG_LONG ull) : m_etype(e_type_unsigned_long_long) {m_ull = ull;}
+   template < same_as < char > CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
+   //template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_i8 = i;}
+   template < same_as < unsigned char > UNSIGNED_CHAR > payload(UNSIGNED_CHAR uch) : m_etype(e_type_u8) {m_u8 = uch;}
+   template < same_as < short > SHORT > payload(SHORT sh) : m_etype(e_type_i16) {m_i16 = sh;}
+   template < same_as < unsigned short > UNSIGNED_SHORT > payload(UNSIGNED_SHORT ush) : m_etype(e_type_u16) {m_u16 = ush;}
+   template < same_as < int > INT > payload(INT i) : m_etype(e_type_i32) {m_i32 = i;}
+   template < same_as < ::u32 > UNSIGNED_INT > payload(UNSIGNED_INT ui) : m_etype(e_type_u32) {m_u32 = ui;}
+   template < same_as < ::i64 > LONG_LONG > payload(LONG_LONG ll) : m_etype(e_type_i64) {m_i64 = ll;}
+   template < same_as < ::u64 > UNSIGNED_LONG_LONG > payload(UNSIGNED_LONG_LONG ull) : m_etype(e_type_u64) {m_u64 = ull;}
    template < same_as < float > FLOAT > payload(FLOAT f) : m_etype(e_type_float) {m_f = f;}
    template < same_as < double > DOUBLE > payload(DOUBLE d) : m_etype(e_type_double) {m_d = d;}
 #ifdef __APPLE__
@@ -231,8 +231,8 @@ public:
    payload(const ::subparticle & particle);
    payload(const ::file::path & path);
    payload(const ::string_array_base & stra);
-   payload(const ::int_array_base & ia);
-   payload(const ::long_long_array_base & lla);
+   payload(const ::i32_array_base & ia);
+   payload(const ::i64_array_base & lla);
    payload(const ::float_array_base & floata);
    payload(const ::double_array_base & doublea);
    payload(const ::payload_array & payloada);
@@ -520,8 +520,8 @@ public:
 
    ::memory as_memory() const;
    ::string_array_base as_string_array() const;
-   ::int_array_base as_int_array() const;
-   ::long_long_array_base as_long_long_array() const;
+   ::i32_array_base as_int_array() const;
+   ::i64_array_base as_i64_array() const;
    ::float_array_base as_float_array() const;
    ::double_array_base as_double_array() const;
    ::payload_array_base as_payload_array()  const;
@@ -677,8 +677,8 @@ public:
 
 
    ::string_array & string_array_reference();
-   ::i32_array & int_array_reference();
-   ::long_long_array & long_long_array_reference();
+   ::i32_array & i32_array_reference();
+   ::i64_array & i64_array_reference();
    ::float_array & float_array_reference();
    ::double_array & double_array_reference();
    ::payload_array & payload_array_reference();
@@ -694,8 +694,8 @@ public:
    ::color::hls & color_hls_reference();
 
    const ::string_array & string_array_reference() const;
-   const ::i32_array & int_array_reference() const;
-   const ::long_long_array & long_long_array_reference() const;
+   const ::i32_array & i32_array_reference() const;
+   const ::i64_array & i64_array_reference() const;
    const ::float_array & float_array_reference() const;
    const ::double_array & double_array_reference() const;
    const ::payload_array & payload_array_reference() const;
@@ -727,8 +727,8 @@ public:
    unsigned short & unsigned_short_reference();
    int & int_reference();
    ::u32 & unsigned_int_reference();
-   ::i64 & long_long_reference();
-   ::u64 & unsigned_long_long_reference();
+   ::i64 & i64_reference();
+   ::u64 & u64_reference();
    float & float_reference();
    double & double_reference();
 
@@ -740,7 +740,7 @@ public:
       if constexpr(sizeof(SIGNED) == 8)
       {
 
-         return (SIGNED&) this->long_long_reference();
+         return (SIGNED&) this->i64_reference();
 
       }
       else if constexpr(sizeof(SIGNED) == 4)
@@ -779,7 +779,7 @@ public:
       if constexpr(sizeof(UNSIGNED) == 8)
       {
 
-         return (UNSIGNED&) this->unsigned_long_long_reference();
+         return (UNSIGNED&) this->u64_reference();
 
       }
       else if constexpr(sizeof(UNSIGNED) == 4)
@@ -952,27 +952,27 @@ public:
 payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assign_primitive(m_## NUMBER_SHORT_NAME , e_type_## NUMBER_NAME, NUMBER_SHORT_NAME ); }
    DO_FOR_NUMBER_TYPES(NUMBER_TYPE_OPERATION)
 #undef NUMBER_TYPE_OPERATION
-   //payload & assign_char            (char              ch)   { return __assign_primitive( m_ch , e_type_char    , i ); }
-   //payload & assign_unsigned_char   (unsigned char    uch)   { return __assign_primitive(m_uch , e_type_unsigned_char    , u ); }
-   //payload & assign_short           (short             sh)   { return __assign_primitive( m_sh , e_type_short   , i ); }
-   //payload & assign_unsigned_short  (unsigned short   ush)   { return __assign_primitive(m_ush , e_type_unsigned_short   , u ); }
-   //payload & assign_int             (int                i)   { return __assign_primitive(  m_i , e_type_int   , i ); }
-   //payload & assign_unsigned_int    (::u32       u)   { return __assign_primitive( m_ui , e_type_unsigned_int   , u ); }
-   //payload & assign_long_long    (::i64      ll)   { return __assign_primitive( m_ll , e_type_long_long   , i ); }
-   //payload & assign_unsigned_long_long    (::u64      ull)   { return __assign_primitive( m_ull , e_type_unsigned_long_long   , u ); }
+   //payload & assign_char            (char              ch)   { return __assign_primitive( m_i8 , e_type_i8    , i ); }
+   //payload & assign_unsigned_char   (unsigned char    uch)   { return __assign_primitive(m_u8 , e_type_u8    , u ); }
+   //payload & assign_short           (short             sh)   { return __assign_primitive( m_i16 , e_type_i16   , i ); }
+   //payload & assign_unsigned_short  (unsigned short   ush)   { return __assign_primitive(m_u16 , e_type_u16   , u ); }
+   //payload & assign_int             (int                i)   { return __assign_primitive(  m_i32 , e_type_i32   , i ); }
+   //payload & assign_unsigned_int    (::u32       u)   { return __assign_primitive( m_u32 , e_type_u32   , u ); }
+   //payload & assign_long_long    (::i64      ll)   { return __assign_primitive( m_i64 , e_type_i64   , i ); }
+   //payload & assign_unsigned_long_long    (::u64      ull)   { return __assign_primitive( m_u64 , e_type_u64   , u ); }
    //payload & assign_float             (float              f)   { return __assign_primitive(  m_f , e_type_float   , f ); }
    //payload & assign_double             (double             d)   { return __assign_primitive(  m_d , e_type_double   , f ); }
 
 
    payload & assign_pbool  (bool  * pb)   { return __assign_primitive_pointer(m_pb     , e_type_pbool , pb); }
-   payload & assign_pi8    (char  * pi)   { return __assign_primitive_pointer(m_pch    , e_type_pchar   , pi); }
-   payload & assign_pu8    (unsigned char  * pu)   { return __assign_primitive_pointer(m_puch    , e_type_punsigned_char   , pu); }
-   payload & assign_pi16   (short * pi)   { return __assign_primitive_pointer(m_psh   , e_type_pshort  , pi); }
-   payload & assign_pu16   (unsigned short * pu)   { return __assign_primitive_pointer(m_push   , e_type_punsigned_short  , pu); }
-   payload & assign_pi32   (int * pi)   { return __assign_primitive_pointer(m_pi   , e_type_pint  , pi); }
-   payload & assign_pu32   (::u32 * pu)   { return __assign_primitive_pointer(m_pui   , e_type_punsigned_int  , pu); }
-   payload & assign_pi64   (::i64 * pll)   { return __assign_primitive_pointer(m_pll   , e_type_plong_long  , pll); }
-   payload & assign_pu64   (::u64 * pull)   { return __assign_primitive_pointer(m_pull   , e_type_punsigned_long_long  , pull); }
+   payload & assign_pi8    (char  * pi)   { return __assign_primitive_pointer(m_pi8    , e_type_pchar   , pi); }
+   payload & assign_pu8    (unsigned char  * pu)   { return __assign_primitive_pointer(m_pu8    , e_type_punsigned_char   , pu); }
+   payload & assign_pi16   (short * pi)   { return __assign_primitive_pointer(m_pi16   , e_type_pshort  , pi); }
+   payload & assign_pu16   (unsigned short * pu)   { return __assign_primitive_pointer(m_pu16   , e_type_punsigned_short  , pu); }
+   payload & assign_pi32   (int * pi)   { return __assign_primitive_pointer(m_pi32   , e_type_pi32  , pi); }
+   payload & assign_pu32   (::u32 * pu)   { return __assign_primitive_pointer(m_pu32   , e_type_pu32  , pu); }
+   payload & assign_pi64   (::i64 * pll)   { return __assign_primitive_pointer(m_pi64   , e_type_pi64  , pll); }
+   payload & assign_pu64   (::u64 * pull)   { return __assign_primitive_pointer(m_pu64   , e_type_pu64  , pull); }
    payload & assign_pf32   (float * pf)   { return __assign_primitive_pointer(m_pf   , e_type_pfloat  , pf); }
    payload & assign_pf64   (double * pf)   { return __assign_primitive_pointer(m_pd   , e_type_pdouble  , pf); }
 
@@ -992,49 +992,49 @@ protected:
       else if(get_type() == e_type_punsigned_char)
       {
 
-         *m_puch = (unsigned char) prototype;
+         *m_pu8 = (unsigned char) prototype;
 
       }
       else if(get_type() == e_type_pchar)
       {
 
-         *m_pch = (char) prototype;
+         *m_pi8 = (char) prototype;
 
       }
       else if(get_type() == e_type_punsigned_short)
       {
 
-         *m_push = (unsigned short) prototype;
+         *m_pu16 = (unsigned short) prototype;
 
       }
       else if(get_type() == e_type_pshort)
       {
 
-         *m_psh = (short) prototype;
+         *m_pi16 = (short) prototype;
 
       }
-      else if(get_type() == e_type_punsigned_int)
+      else if(get_type() == e_type_pu32)
       {
 
-         *m_pui = (::u32) prototype;
+         *m_pu32 = (::u32) prototype;
 
       }
-      else if(get_type() == e_type_pint)
+      else if(get_type() == e_type_pi32)
       {
 
-         *m_pi = (int) prototype;
+         *m_pi32 = (int) prototype;
 
       }
-      else if(get_type() == e_type_punsigned_long_long)
+      else if(get_type() == e_type_pu64)
       {
 
-         *m_pull = (::u64) prototype;
+         *m_pu64 = (::u64) prototype;
 
       }
-      else if(get_type() == e_type_plong_long)
+      else if(get_type() == e_type_pi64)
       {
 
-         *m_pll = (::i64) prototype;
+         *m_pi64 = (::i64) prototype;
 
       }
       else if(get_type() == e_type_pfloat)
@@ -1138,9 +1138,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    //}
    payload & operator = (const ::payload & payload);
-   payload & operator = (const ::int_array_base & ia);
+   payload & operator = (const ::i32_array_base & ia);
    payload & operator = (const ::string_array_base & stra);
-   payload & operator = (const ::long_long_array_base & longlonga);
+   payload & operator = (const ::i64_array_base & longlonga);
    payload & operator = (const ::float_array_base & floata);
    payload & operator = (const ::double_array_base & doublea);
    payload & operator = (const ::memory & memory);
@@ -1424,9 +1424,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //::property & get_property_index(::iptr i);
    //::property * find_property(const ::scoped_string & scopedstr) const;
    //::property & get_property(const ::scoped_string & scopedstr);
-   ::payload find_property(const ::atom & atom) const; // { return atom.is_text() ? find_property_text_key((const ::scoped_string &)atom.m_str) : find_property_index(atom.m_i); }
+   ::payload find_property(const ::atom & atom) const; // { return atom.is_text() ? find_property_text_key((const ::scoped_string &)atom.m_str) : find_property_index(atom.m_i32); }
    ::property * _find_property(const ::atom & atom) const;
-   ::property & get_property(const ::atom & atom); // { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i); }
+   ::property & get_property(const ::atom & atom); // { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i32); }
 
    ::payload find_property_by_text(const ::scoped_string & scopedstr) const; 
 
@@ -1628,9 +1628,9 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //inline payload::operator long &()
 //{
 //
-//   set_type(e_type_long_long);
+//   set_type(e_type_i64);
 //
-//   return (long &) m_ll;
+//   return (long &) m_i64;
 //
 //}
 //
@@ -1638,9 +1638,9 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //inline payload::operator unsigned long &()
 //{
 //
-//   set_type(e_type_unsigned_long_long);
+//   set_type(e_type_u64);
 //
-//   return (unsigned long &) m_ull;
+//   return (unsigned long &) m_u64;
 //
 //}
 //

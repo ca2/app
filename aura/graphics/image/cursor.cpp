@@ -98,7 +98,7 @@ namespace image
    }
 
 
-   ::image::image_pointer cursor::image_source_image(const ::int_size & size)
+   ::image::image_pointer cursor::image_source_image(const ::i32_size & size)
    {
       
       return m_pimage->get_image(size); 
@@ -106,7 +106,7 @@ namespace image
    }
 
 
-   ::int_size cursor::image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const
+   ::i32_size cursor::image_source_size(const ::double_size & sizeDst, enum_image_selection eimageselection) const
    { 
       
       return m_pimage->image_source_size(sizeDst, eimageselection); 
@@ -114,7 +114,7 @@ namespace image
    }
 
 
-   ::int_size cursor::image_source_size() const
+   ::i32_size cursor::image_source_size() const
    {
       
       return m_pimage->size(); 

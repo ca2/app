@@ -88,7 +88,7 @@ namespace user
    }
 
 
-   bool scroll_base::on_drag_start(::int_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
+   bool scroll_base::on_drag_start(::i32_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
 
       if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
@@ -105,7 +105,7 @@ namespace user
    }
 
 
-   //::int_point scroll_base::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
+   //::i32_point scroll_base::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
    //{
 
    //   auto p = windowing()->try_absolute_mouse_position(this, point);
@@ -125,7 +125,7 @@ namespace user
    }
 
    
-   ::int_point scroll_base::drag_point(::item * pitem, ::user::mouse * pmouse)
+   ::i32_point scroll_base::drag_point(::item * pitem, ::user::mouse * pmouse)
    {
 
       if (pitem->m_item.m_eelement == ::e_element_drag_scroll)
@@ -438,7 +438,7 @@ namespace user
    }
 
 
-   ::int_rectangle scroll_base::client2_rectangle(enum_layout elayout)
+   ::i32_rectangle scroll_base::client2_rectangle(enum_layout elayout)
    {
 
       auto rectangle = this->rectangle(elayout);
@@ -459,7 +459,7 @@ namespace user
    }
 
 
-   //bool scroll_base::this->rectangle(::int_rectangle * prectangle)
+   //bool scroll_base::this->rectangle(::i32_rectangle * prectangle)
    //{
 
    //   ::user::interaction::this->rectangle(prectangle);
@@ -473,7 +473,7 @@ namespace user
    //}
 
 
-   bool scroll_base::GetFocusRect(::int_rectangle & rectangle)
+   bool scroll_base::GetFocusRect(::i32_rectangle & rectangle)
    {
 
       rectangle.left = 0;
@@ -510,7 +510,7 @@ namespace user
    }
 
 
-   void scroll_base::set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout)
+   void scroll_base::set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout)
    {
 
       scroll_base_x::set_scroll_dimension(size, elayout);
@@ -543,7 +543,7 @@ namespace user
 
          auto rectangleX = this->rectangle();
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          rectangle.top = rectangleX.bottom;
          rectangle.left = rectangleX.right;
@@ -573,7 +573,7 @@ namespace user
    }
 
 
-   bool scroll_base::get_element_rectangle(::int_rectangle & rectangle, enum_element eelement)
+   bool scroll_base::get_element_rectangle(::i32_rectangle & rectangle, enum_element eelement)
    {
       
       if (eelement == e_element_drag_scroll)

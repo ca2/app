@@ -46,10 +46,10 @@ namespace nanoui
    }
 
 
-   int_size PopupButton::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size PopupButton::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
-      return Button::preferred_size(pcontext) + int_size(15, 0);
+      return Button::preferred_size(pcontext) + i32_size(15, 0);
 
    }
 

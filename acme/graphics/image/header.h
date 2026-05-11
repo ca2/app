@@ -19,7 +19,7 @@ struct image_header
 
    enum_image_type            m_etype;
    ::color::color             m_color;
-   ::int_size                 m_size;
+   ::i32_size                 m_size;
 
 
 #ifdef __cplusplus
@@ -61,7 +61,7 @@ struct image_header
    int width() const { return m_size.cx; }
    int height() const { return m_size.cy; }
    int area() const { return m_size.area(); }
-   ::int_size size() const { return m_size; }
+   ::i32_size size() const { return m_size; }
 
    void reset()
    {
@@ -82,7 +82,7 @@ struct image_header
       ::u32 u = (::u32)m_etype;
       if(m_etype == ::e_image_type_plain_color)
       {
-         u |= m_color.m_ui;
+         u |= m_color.m_u32;
       }
       u |= m_size.cx << 16;
       u |= m_size.cy << 24;

@@ -16,19 +16,19 @@ namespace user
 
       ::write_text::font_pointer          m_pfont;
       ::image::image_pointer                     m_pimage;          // not pressed default bitmap
-      //::int_rectangle                   m_rectangleMargin;
-      //::int_rectangle                   m_rectangleBorder;
-      //::int_rectangle                   m_rectanglePadding;
+      //::i32_rectangle                   m_rectangleMargin;
+      //::i32_rectangle                   m_rectangleBorder;
+      //::i32_rectangle                   m_rectanglePadding;
       ::e_align                           m_ealignText;
       enum_still                          m_estill;
-      //::int_rectangle                     m_rectangleText;
+      //::i32_rectangle                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::image::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;
       //::string                            m_strTextOutArray;
 
-      ::int_rectangle                     m_rectangleCheckBox;
+      ::i32_rectangle                     m_rectangleCheckBox;
       string                              m_strLink;
 
       still();
@@ -71,7 +71,7 @@ namespace user
 
       virtual void defer_update_text_out_array(::draw2d::graphics_pointer & pgraphics);
 
-      //virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      //virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
@@ -105,14 +105,14 @@ namespace user
 
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(::int_rectangle & rectangle);
+      virtual void BaseToolTipGetRect(::i32_rectangle & rectangle);
 
       virtual int BaseToolTipGetIndex();
 
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      ::item_pointer on_hit_test(const ::int_point & point, e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, e_zorder ezorder) override;
 
       void on_set_window_text() override;
       bool on_perform_layout(::draw2d::graphics_pointer & pgraphics) override;

@@ -42,7 +42,7 @@ namespace platform
       ::pointer<::operating_system::department>             m_poperatingsystem;
 
       ::pointer<::parallelization::threading>               m_pthreading;
-      size_t                                                m_nSafetyPoolSize; // ideal int_size
+      size_t                                                m_nSafetyPoolSize; // ideal i32_size
 
 
       ::pointer < ::input::input >                          m_pinput;
@@ -362,7 +362,7 @@ namespace platform
 
 #ifdef UNIVERSAL_WINDOWS
 
-      virtual bool window_rectangle(::int_rectangle* prectangle);
+      virtual bool window_rectangle(::i32_rectangle* prectangle);
 
 
 #endif

@@ -79,7 +79,7 @@ void window_xlib::destroy()
 }
 
 
-void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, const ::int_rectangle * lpcrect, int iStride)
+void window_xlib::update_window(oswindow window, color32_t * pOsBitmapData, const ::i32_rectangle * lpcrect, int iStride)
 {
 
    single_lock synchronouslock(&user_synchronization());

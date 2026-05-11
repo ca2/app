@@ -92,7 +92,7 @@ namespace write_text
 
       m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      m_pimage->g()->fill_rectangle(::int_rectangle(m_size), uBackgroundColor);
+      m_pimage->g()->fill_rectangle(::i32_rectangle(m_size), uBackgroundColor);
 
       m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

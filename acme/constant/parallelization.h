@@ -41,7 +41,7 @@ enum enum_parallelization
 
 
 
-enum enum_task_op :::i64
+enum enum_task_op : ::i64
 {
 
    e_task_op_none,

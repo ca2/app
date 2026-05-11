@@ -74,7 +74,7 @@ namespace gpu_opengl
       }
 
       // m_etexture = etype;
-      m_textureattributes.m_rectangleTarget = ::int_rectangle(::int_size(width, height));
+      m_textureattributes.m_rectangleTarget = ::i32_rectangle(::i32_size(width, height));
 
       m_textureflags.m_bWithDepth = false;
 
@@ -130,7 +130,7 @@ namespace gpu_opengl
    }
 
    
-   void texture::initialize_with_image_data(::gpu::context *pgpucontext, const ::int_rectangle &rectangleTarget,
+   void texture::initialize_with_image_data(::gpu::context *pgpucontext, const ::i32_rectangle &rectangleTarget,
                                             int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture)
    {
 
@@ -179,7 +179,7 @@ namespace gpu_opengl
 
    }
 
-   // void texture::initialize_image_texture(::gpu::context *pcontext, const ::int_rectangle &rectangleTarget,
+   // void texture::initialize_image_texture(::gpu::context *pcontext, const ::i32_rectangle &rectangleTarget,
    //                                        bool bWithDepth, const ::pointer_array<::image::image> * pimagea,
    //                                        enum_type etype)
    // {
@@ -304,7 +304,7 @@ namespace gpu_opengl
    //          //   //}
    //          //   //::opengl::check_error("");
    //
-   //          //   //int_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+   //          //   //i32_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
    //
    //          //   //glViewport(r.left, r.top, r.width(), r.height());
    //          //   //::opengl::check_error("");
@@ -334,9 +334,9 @@ namespace gpu_opengl
    //
    //          memory.set_size(imagea.first()->area() * 4);
    //
-   //          ::int_point point(0, 0);
+   //          ::i32_point point(0, 0);
    //
-   //          ::int_size size(imagea.first()->size());
+   //          ::i32_size size(imagea.first()->size());
    //
    //          int scan = size.width() * 4;
    //
@@ -404,7 +404,7 @@ namespace gpu_opengl
    // }
 
 
-   // void texture::blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget)
+   // void texture::blend(::gpu::texture* ptexture, const ::i32_rectangle& rectangleTarget)
    //{
 
    //   m_pgpucontext->blend(this, ptexture, rectangleTarget);
@@ -575,7 +575,7 @@ namespace gpu_opengl
          //   //}
          //   //::opengl::check_error("");
 
-         //   //int_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
+         //   //i32_rectangle r(pcontext->m_pgpucontext->m_rectangle.size());
 
          //   //glViewport(r.left, r.top, r.width(), r.height());
          //   //::opengl::check_error("");
@@ -604,9 +604,9 @@ namespace gpu_opengl
 
             memory.set_size(sizeCurrent.area() * 4);
 
-            //::int_point point(0, 0);
+            //::i32_point point(0, 0);
 
-            //::int_size size(pimagea->first()->size());
+            //::i32_size size(pimagea->first()->size());
          }
 
          int scan = sizeCurrent.width() * 4;
@@ -1002,7 +1002,7 @@ int g_iGpuOpenGlBindRenderTarget = 0;
    }
 
 
-   void texture::set_pixels(const ::int_rectangle &rectangle, const void *data)
+   void texture::set_pixels(const ::i32_rectangle &rectangle, const void *data)
    {
       
       if(::is_null(data))

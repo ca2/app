@@ -40,7 +40,7 @@ namespace experience
    void orto_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = ::user::interaction::rectangle();
 
@@ -117,7 +117,7 @@ namespace experience
 
          pgraphics->set(ppen);
 
-         ::int_rectangle rectangleIcon(rectangleX);
+         ::i32_rectangle rectangleIcon(rectangleX);
 
          rectangleIcon.deflate(rectangleIcon.width() / 6, rectangleIcon.height() / 6);
 
@@ -159,9 +159,9 @@ namespace experience
 
    //   if (wParam == ::user::e_message_mouse_move)
    //   {
-   //      ::int_point pointCursor = pmsg->pt;
+   //      ::i32_point pointCursor = pmsg->pt;
 
-   //      ::int_rectangle rectangleX;
+   //      ::i32_rectangle rectangleX;
    //      ::user::interaction::this->rectangle(rectangleX);
    //      ::user::interaction::client_to_screen(rectangleX);
 
@@ -194,7 +194,7 @@ namespace experience
       {
          /*if(m_bFocus)
          {
-         ::int_point pointCursor;
+         ::i32_point pointCursor;
          
 
          auto puser = user();
@@ -202,7 +202,7 @@ namespace experience
          auto pwindowing = system()->windowing();
 
          pointCursor = pwindowing->get_cursor_position();
-         ::int_rectangle rectangleX;
+         ::i32_rectangle rectangleX;
          ::user::interaction::this->rectangle(rectangleX);
          ::user::interaction::client_to_screen(rectangleX);
 
@@ -224,7 +224,7 @@ namespace experience
          //      ::pointer<::user::interaction>puserinteraction = ::user::interaction::get_parent();
 
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          rectangle = ::user::interaction::rectangle();
       }
 
@@ -235,7 +235,7 @@ namespace experience
    void orto_button::UpdateWndRgn()
    {
 
-      ::int_rectangle rectangleX;
+      ::i32_rectangle rectangleX;
 
       rectangleX = ::user::interaction::rectangle();
 
@@ -264,7 +264,7 @@ namespace experience
 
 
 
-   ::item_pointer orto_button::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer orto_button::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       if (m_pregion.is_null())

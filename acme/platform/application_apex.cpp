@@ -208,13 +208,13 @@ namespace platform
    }
 
 
-   ::pointer<::innate_ui::icon> apex_application_layer::innate_ui_icon(const ::int_size& size)
+   ::pointer<::innate_ui::icon> apex_application_layer::innate_ui_icon(const ::i32_size& size)
    {
       return {};
    }
 
    ::pointer<::innate_ui::icon> apex_application_layer::innate_ui_icon(const ::scoped_string &scopedstrIconUrl,
-                                                                       const ::int_size &size)
+                                                                       const ::i32_size &size)
    {
       return {};
    }
@@ -1209,7 +1209,7 @@ namespace platform
    //::string apex_application_layer::apex_application_layer::sync_message_box(const ::scoped_string & scopedstrMatter,::property_set & propertyset) override{}
 
 
-   //virtual ::pointer<::user::interaction>uie_from_point(const ::int_point& point){}
+   //virtual ::pointer<::user::interaction>uie_from_point(const ::i32_point& point){}
 
    //bool apex_application_layer::on_application_menu_action(const ::string apex_application_layer::& pszCommand) override{}
 

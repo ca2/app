@@ -12,22 +12,22 @@ namespace graphics
    public:
 
       ::image::image_pointer               m_pimage;
-      ::int_size                        m_sizeTile;
-      ::int_size                        m_sizeWindow;
+      ::i32_size                        m_sizeTile;
+      ::i32_size                        m_sizeWindow;
       int                           m_x;
       int                           m_y;
       int                           m_iColor;
       int                           m_iScreenColor;
       int                           m_iBorder;
       string_array_base                       m_stra;
-      array < ::int_array_base >           m_i2aColor;
+      array < ::i32_array_base >           m_i2aColor;
       int_map < ::draw2d::pen_pointer >  m_mappen2;
       int_map < ::draw2d::pen_pointer >  m_mappen1;
       int                           m_iLastPenColor;
       int                           m_iLastPen;
 
 
-      console::int_size sizeTile);
+      console::i32_size sizeTile);
 
       virtual ::draw2d::pen_pointer & get_pen2(int iColor);
       virtual ::draw2d::pen_pointer & get_pen1(int iColor);

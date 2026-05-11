@@ -39,12 +39,12 @@ namespace innate_subsystem
    public:
       // Creates BitmapGraphics object with bitmap complatible with specified dc and
       // with specified size.
-      //BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size);
+      //BitmapGraphics(DeviceContext *complatibleDC, const ::i32_size & size);
       // Destroys bitmap and graphics object.
       //virtual ~BitmapGraphicsInterface() = 0;
 
 
-      virtual void initialize_bitmap_graphics(DeviceContextInterface * pdevicecontextCompatible, const ::int_size & size) = 0;
+      virtual void initialize_bitmap_graphics(DeviceContextInterface * pdevicecontextCompatible, const ::i32_size & size) = 0;
 
       // Returns target bitmap that we paint.
       virtual BitmapInterface *getBitmap() = 0;
@@ -72,13 +72,13 @@ namespace innate_subsystem
        ImplementCompositeø(BitmapGraphics, bitmapgraphics)
       // Creates BitmapGraphics object with bitmap complatible with specified dc and
       // with specified size.
-      //BitmapGraphics(DeviceContext *complatibleDC, const ::int_size & size);
+      //BitmapGraphics(DeviceContext *complatibleDC, const ::i32_size & size);
 
       //BitmapGraphics();
       // Destroys bitmap and graphics object.
       //~BitmapGraphics() override;
 
-          void initialize_bitmap_graphics(DeviceContextInterface* complatibleDC, const ::int_size& size) override
+          void initialize_bitmap_graphics(DeviceContextInterface* complatibleDC, const ::i32_size& size) override
        {
 
           m_pbitmapgraphics->initialize_bitmap_graphics(complatibleDC, size);

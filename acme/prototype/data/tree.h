@@ -65,7 +65,7 @@ namespace data
       void _001OnItemExpand(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
       void _001OnItemCollapse(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
       void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & action_context) override;
-      void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context, ::user::element * ptree, const ::int_point & point) override;
+      void _001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & action_context, ::user::element * ptree, const ::i32_point & point) override;
       //virtual void _001OnOpenItem(::data::tree_item_base * ptreeitembase, const ::action_context & context) override;
 
       void erase(tree_item_ptr_array < ITEM > & itemptra);
@@ -932,7 +932,7 @@ return;
 
 
    template < prototype_item ITEM >
-   void tree <  ITEM >::_001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & context, ::user::element * ptree, const ::int_point & point)
+   void tree <  ITEM >::_001OnItemContextMenu(::data::tree_item_base * ptreeitembase, const ::action_context & context, ::user::element * ptree, const ::i32_point & point)
    {
 
 

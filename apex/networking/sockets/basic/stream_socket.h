@@ -86,7 +86,7 @@ namespace sockets
       virtual void clear_call_on_connect();
 
       /** Check call on connect flag.
-      \return true if OnConnect() should be called a.s.a.int_point */
+      \return true if OnConnect() should be called a.s.a.i32_point */
       virtual bool CallOnConnect();
 
       // e_list_retry

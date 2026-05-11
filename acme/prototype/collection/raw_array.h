@@ -506,7 +506,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //      throw ::exception(error_bad_argument);
 //
 //   if (nGrowBy >= 0)
-//      m_countAddUp = nGrowBy;  // set aaa_memory_new int_size
+//      m_countAddUp = nGrowBy;  // set aaa_memory_new i32_size
 //
 //   if (nNewSize == 0)
 //   {
@@ -617,7 +617,7 @@ inline ::collection::index raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etyp
 //
 //   if (m_nSize != m_countAllocation)
 //   {
-//      // shrink to desired int_size
+//      // shrink to desired i32_size
 //#ifdef SIZE_T_MAX
 //      ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
@@ -755,8 +755,8 @@ TYPE & raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert
 //{
 //   if(pos.m_parray == this)
 //   {
-//      this->erase_at(pos.m_i);
-//      return iterator(pos.m_i, this);
+//      this->erase_at(pos.m_i32);
+//      return iterator(pos.m_i32, this);
 //   }
 //   else
 //   {
@@ -769,11 +769,11 @@ TYPE & raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::insert
 //{
 //   if(begin.m_parray == this && last.m_parray == this)
 //   {
-//      if(begin.m_i >= 0 && begin.m_i < this->get_size())
+//      if(begin.m_i32 >= 0 && begin.m_i32 < this->get_size())
 //      {
-//         ::collection::count nCount = last.m_i - begin.m_i;
-//         erase_at(begin.m_i, nCount);
-//         return iterator(begin.m_i, this);
+//         ::collection::count nCount = last.m_i32 - begin.m_i32;
+//         erase_at(begin.m_i32, nCount);
+//         return iterator(begin.m_i32, this);
 //      }
 //      else
 //      {
@@ -1227,7 +1227,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////      throw ::exception(error_bad_argument);
 ////
 ////   if (nGrowBy >= 0)
-////      m_countAddUp = nGrowBy;  // set aaa_memory_new int_size
+////      m_countAddUp = nGrowBy;  // set aaa_memory_new i32_size
 ////
 ////   if (nNewSize == 0)
 ////   {
@@ -1338,7 +1338,7 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////
 ////   if (m_nSize != m_countAllocation)
 ////   {
-////      // shrink to desired int_size
+////      // shrink to desired i32_size
 ////#ifdef SIZE_T_MAX
 ////      ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 ////#endif
@@ -1474,8 +1474,8 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////{
 ////   if(pos.m_parray == this)
 ////   {
-////      this->erase_at(pos.m_i);
-////      return iterator(pos.m_i, this);
+////      this->erase_at(pos.m_i32);
+////      return iterator(pos.m_i32, this);
 ////   }
 ////   else
 ////   {
@@ -1488,11 +1488,11 @@ raw_array_base < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer > raw_array_base
 ////{
 ////   if(begin.m_parray == this && last.m_parray == this)
 ////   {
-////      if(begin.m_i >= 0 && begin.m_i < this->get_size())
+////      if(begin.m_i32 >= 0 && begin.m_i32 < this->get_size())
 ////      {
-////         ::collection::count nCount = last.m_i - begin.m_i;
-////         erase_at(begin.m_i, nCount);
-////         return iterator(begin.m_i, this);
+////         ::collection::count nCount = last.m_i32 - begin.m_i32;
+////         erase_at(begin.m_i32, nCount);
+////         return iterator(begin.m_i32, this);
 ////      }
 ////      else
 ////      {

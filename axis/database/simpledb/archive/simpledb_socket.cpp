@@ -151,7 +151,7 @@ namespace simpledb
 
    void socket::simple_file_server(const ::file::path & path, const ::scoped_string & scopedstrRelative)
    {
-      pointer_array < ::int_array_base > rangea;
+      pointer_array < ::i32_array_base > rangea;
       if(strlen(inheader("range")) > 0)
       {
          string_array_base straItem;
@@ -167,7 +167,7 @@ namespace simpledb
                straRange.explode("-", stra[i]);
                if(straRange.get_count() == 2)
                {
-                  rangea.add(___new ::int_array_base ());
+                  rangea.add(___new ::i32_array_base ());
                   rangea.last_pointer()->add(atoi(straRange[0]));
                   straRange[1].trim();
                   if(strlen(straRange[1]) == 0)
@@ -193,7 +193,7 @@ namespace simpledb
    }
 
 
-   bool socket::read_file(const ::file::path & lpcsz,pointer_array < ::int_array_base > * prangea, const ::scoped_string & scopedstrContentType)
+   bool socket::read_file(const ::file::path & lpcsz,pointer_array < ::i32_array_base > * prangea, const ::scoped_string & scopedstrContentType)
    {
       string strExtension = lpcsz.extension();
       string str = strExtension;

@@ -414,7 +414,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = ::as_string(::long_long_millisecond() % 1000);
+      strMillis = ::as_string(::i64_millisecond() % 1000);
 
       auto pszBufferMillis = strMillis.get_buffer(3);
 
@@ -2056,14 +2056,14 @@ namespace dynamic_source
       bool bInserted = false;
       bool bNewLine = true;
       bool bLow = false;
-      while (ch2.m_i < iLen)
+      while (ch2.m_i32 < iLen)
       {
          bInserted = false;
          //iNext2 = i2;
          //iNext3 = iNext2;
-         //ch2.next().m_i = ch2.m_iNext;
+         //ch2.next().m_i32 = ch2.m_iNext;
          //ch2.next().get();
-         if (string_begins(str.substr(ch2.m_i), "bk_filter_active1"))
+         if (string_begins(str.substr(ch2.m_i32), "bk_filter_active1"))
          {
             //debug_break();
          }
@@ -2152,7 +2152,7 @@ namespace dynamic_source
                bServer = false;
                add_var_id(strResult, iServer, straId);
                strResult += "]";
-               while (ch2.m_i < iLen)
+               while (ch2.m_i32 < iLen)
                {
                   if (ch2.is_ansi_space())
                      ch2++;
@@ -2300,7 +2300,7 @@ namespace dynamic_source
                }
                else
                {
-                  while (ch2.is_ansi_space() && ch2.m_i < iLen)
+                  while (ch2.is_ansi_space() && ch2.m_i32 < iLen)
                   {
                      ch2++;
                   }
@@ -2315,7 +2315,7 @@ namespace dynamic_source
                   else if (ch2 == '-' && ch2.next() == '>')
                   {
                      ch2.ansi_add(2);
-                     while (ch2.is_ansi_space() && ch2.m_i < iLen)
+                     while (ch2.is_ansi_space() && ch2.m_i32 < iLen)
                      {
                         ch2++;
                      }
@@ -2451,15 +2451,15 @@ namespace dynamic_source
          {
             iArroba = strResult.length();
          }
-         else if (ch2 == '_' && ch2.next() == '_' && is_id(&str[ch2.m_i], str.length() - ch2.m_i, "__ch", 4, iIdLen))
+         else if (ch2 == '_' && ch2.next() == '_' && is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "__ch", 4, iIdLen))
          {
             strResult += "'";
             bInVar = false;
             ch2.ansi_add(iIdLen);
-            while (ch2 != '(' && ch2.m_i < iLen)
+            while (ch2 != '(' && ch2.m_i32 < iLen)
                ch2++;
             ch2++;
-            while (ch2 != ')' && ch2.m_i < iLen)
+            while (ch2 != ')' && ch2.m_i32 < iLen)
             {
                strResult += ch2;
                ch2++;
@@ -2496,35 +2496,35 @@ namespace dynamic_source
                }
                else
                {
-                  if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_GET", 4, iIdLen))
+                  if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_GET", 4, iIdLen))
                   {
                      strResult += "geta()[";
                      bInVar = false;
                      bServer = true;
                      ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_POST", 5, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_POST", 5, iIdLen))
                   {
                      strResult += "posta()[";
                      bInVar = false;
                      bServer = true;
                      ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_REQUEST", 8, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_REQUEST", 8, iIdLen))
                   {
                      strResult += "requesta()[";
                      bInVar = false;
                      bServer = true;
                      ch2.ansi_add(iIdLen + 1);
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_SERVER", 7, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_SERVER", 7, iIdLen))
                   {
                      strResult += "inattra()[";
                      bInVar = false;
                      bServer = true;
                      ch2 += iIdLen + 1;
                   }
-                  else if (is_id(&str[ch2.m_i + 1], str.length() - ch2.m_i - 1, "_COOKIE", 7, iIdLen))
+                  else if (is_id(&str[ch2.m_i32 + 1], str.length() - ch2.m_i32 - 1, "_COOKIE", 7, iIdLen))
                   {
                      strResult += "cookies()[";
                      bInVar = false;
@@ -2584,7 +2584,7 @@ namespace dynamic_source
             {
                strResult += ch2;
                ch2++;
-               while (ch2.m_i < iLen)
+               while (ch2.m_i32 < iLen)
                {
                   //ch = str[i];
                   strResult += ch2;
@@ -2599,34 +2599,34 @@ namespace dynamic_source
          else
          {
          ch_else:
-            if (bScript && str[ch2.m_i - 1] != '_' && is_id(&str[ch2.m_i], str.length() - ch2.m_i, "return", 6, iIdLen) && next_nonspace(str.substr(ch2.m_i + iIdLen))[0] != ';')
+            if (bScript && str[ch2.m_i32 - 1] != '_' && is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "return", 6, iIdLen) && next_nonspace(str.substr(ch2.m_i32 + iIdLen))[0] != ';')
             {
                bInRet = true;
                strResult += "\r\n{\r\nm_varRet = ";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "include", 7, iIdLen))
+            else if (is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "include", 7, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "include";
                strSpec1Macro = "ds_include";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "print", 5, iIdLen))
+            else if (is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "print", 5, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "print";
                strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (is_id(&str[ch2.m_i], str.length() - ch2.m_i, "echo", 4, iIdLen))
+            else if (is_id(&str[ch2.m_i32], str.length() - ch2.m_i32, "echo", 4, iIdLen))
             {
                bInSpec1 = true;
                strSpec1 = "echo";
                strSpec1Macro = "";
                ch2.ansi_add(iIdLen - 1);
             }
-            else if (str.substr(ch2.m_i, 2) == "[]")
+            else if (str.substr(ch2.m_i32, 2) == "[]")
             {
                bInSpec2 = true;
                ch2.ansi_add(2 - 1);

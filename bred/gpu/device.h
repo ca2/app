@@ -58,10 +58,10 @@ namespace gpu
       ::pointer < ::gpu::context >           m_pgpucontextMain;
       ::pointer < ::gpu::context >           m_pgpucontextMainDraw2d;
       //::pointer < ::gpu::context >           m_pgpucontextMainWindow;
-      //::int_size                             m_sizeNew;
-      //::int_size                             m_size;
+      //::i32_size                             m_sizeNew;
+      //::i32_size                             m_size;
       //float                                  m_z;
-      //int_point                              m_pointTranslate;
+      //i32_point                              m_pointTranslate;
       //::pointer<::gpu::cpu_buffer>           m_pcpubuffer;
       //::pointer<::gpu::shader>               m_pshader;
       bool                                   m_bCreated;
@@ -74,7 +74,7 @@ namespace gpu
       //::image32_callback                     m_callbackImage32CpuBuffer;
 
       //::pointer < ::mutex >                  m_pmutexOffscreen;
-      //::int_size                             m_sizeOffscreen;
+      //::i32_size                             m_sizeOffscreen;
       //int                                    m_iScanOffscreen;
       //::memory                               m_memoryOffscreen;
       enum_device_target                        m_edevicetarget;
@@ -144,7 +144,7 @@ namespace gpu
 
 
       virtual void initialize_gpu_device_for_swap_chain(::gpu::approach * papproach, ::windowing::window * pwindow);
-      virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::int_rectangle & rectanglePlacement);
+      virtual void initialize_gpu_device_for_off_screen(::gpu::approach * papproach, const ::i32_rectangle & rectanglePlacement);
 
 
       virtual ::pointer < ::gpu::context > allocate_context();
@@ -152,17 +152,17 @@ namespace gpu
 
       virtual ::gpu::layer* get_previous_layer(::gpu::layer* player);
 
-//      virtual ::pointer < ::gpu::context > start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::int_size& size);
+//      virtual ::pointer < ::gpu::context > start_gpu_output_context(const ::gpu::enum_output & eoutput, const ::i32_size& size);
 
-      ///virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::int_rectangle& rectanglePlacement);
+      ///virtual ::pointer < ::gpu::context > start_cpu_buffer_context(::particle* pparticle, const ::function< void(::image::target* ptarget) >& callbackOnImagePixels, const ::i32_rectangle& rectanglePlacement);
 
       virtual ::pointer < ::gpu::context > create_window_context(::windowing::window* pwindow);
 
-      virtual ::pointer < ::gpu::context > create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::int_size & size);
+      virtual ::pointer < ::gpu::context > create_gpu_context(const ::gpu::enum_output& eoutput,  const ::gpu::enum_scene & escene, const ::i32_size & size);
 
-      virtual ::pointer < ::gpu::context > create_draw2d_context(const ::gpu::enum_output& eoutput, const ::int_size & size);
+      virtual ::pointer < ::gpu::context > create_draw2d_context(const ::gpu::enum_output& eoutput, const ::i32_size & size);
 
-      //virtual ::pointer < ::gpu::context > create_draw2d_off_screen_context(const ::int_size & size);
+      //virtual ::pointer < ::gpu::context > create_draw2d_off_screen_context(const ::i32_size & size);
 
       //virtual context* get_main_context();
 
@@ -176,7 +176,7 @@ namespace gpu
 
       //virtual ::gpu::renderer* get_renderer();
 
-      //virtual ::int_size size();
+      //virtual ::i32_size size();
 
 
       //virtual string _001GetIntroProjection();
@@ -204,13 +204,13 @@ namespace gpu
 
       //virtual void create_window_buffer(void* pHwnd);
       //virtual void _create_window_buffer(void* pHwnd);
-      //virtual void create_offscreen_buffer(const ::int_size& size);
-      //virtual void _create_offscreen_buffer(const ::int_size& size);
+      //virtual void create_offscreen_buffer(const ::i32_size& size);
+      //virtual void _create_offscreen_buffer(const ::i32_size& size);
 
       //virtual void defer_create_window_context(::windowing::window* pwindow);
       //virtual void _defer_create_window_context(::windowing::window* pwindow);
 
-      //virtual void resize_offscreen_buffer(const ::int_size& size);
+      //virtual void resize_offscreen_buffer(const ::i32_size& size);
       //virtual void destroy_offscreen_buffer();
 
       //virtual void prepare_for_gpu_read();
@@ -242,7 +242,7 @@ namespace gpu
 
 
       virtual void start_stacking_layers();
-      //virtual void layer_start(renderer * pgpurenderer, const ::int_rectangle & rectangleHost);
+      //virtual void layer_start(renderer * pgpurenderer, const ::i32_rectangle & rectangleHost);
       virtual layer * next_layer(renderer* pgpurenderer);
       virtual void layer_end();
       virtual layer* current_layer();

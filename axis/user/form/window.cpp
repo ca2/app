@@ -674,7 +674,7 @@ throw_todo();
 //            //      pinteraction->set_text(str, ::e_source_database);
 //            //   }
 //            //   break;
-//            //   case ::e_type_int:
+//            //   case ::e_type_i32:
 //            //   {
 //            //      string str;
 //            //      str.formatf("%d", payload.as_i32());
@@ -1350,7 +1350,7 @@ throw_todo();
    }
 
 
-   bool form_window::_001IsPointInside(::user::interaction * pinteraction, const long_long_point & point)
+   bool form_window::_001IsPointInside(::user::interaction * pinteraction, const i64_point & point)
    {
 
       if(pinteraction == nullptr)
@@ -1433,7 +1433,7 @@ throw_todo();
    //}
 
 
-   void form_window::control_get_window_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
+   void form_window::control_get_window_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle)
    {
 
       pinteraction->window_rectangle(rectangle);
@@ -1441,7 +1441,7 @@ throw_todo();
    }
 
 
-   void form_window::control_get_client_rect(::user::interaction * pinteraction, ::int_rectangle & rectangle)
+   void form_window::control_get_client_rect(::user::interaction * pinteraction, ::i32_rectangle & rectangle)
    {
 
       rectangle = pinteraction->rectangle();

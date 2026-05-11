@@ -24,8 +24,8 @@ namespace write_text
 
       ::image::image_pointer               m_pimage;
       ::write_text::font_pointer    m_pfont;
-      ::int_rectangle               m_rectangle;
-      int_size                      m_size;
+      ::i32_rectangle               m_rectangle;
+      i32_size                      m_size;
       bool                          m_bDarkMode;
 
 

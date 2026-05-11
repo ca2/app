@@ -90,15 +90,15 @@ namespace nanoui
       //void set_color(const color::color & color);
 
       /// The preferred size of this ColorWheel.
-      int_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
+      i32_size preferred_size(::nano2d::context  * pcontext, bool bRecalcTextSize = true) override;
 
       /// Draws the ColorWheel.
       void draw(::nano2d::context  * pcontext) override;
 
       /// Handles mouse button click happenings for the ColorWheel.
-      bool mouse_button_event(const int_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
+      bool mouse_button_event(const i32_point & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & ekeyModifiers) override;
 
-      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       /// Handles mouse drag happenings for the ColorWheel.
       //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
 
@@ -106,7 +106,7 @@ namespace nanoui
       // color::color hue2rgb(float h) const;
 
       // Manipulates the positioning of the different regions of the ColorWheel.
-      //Region adjust_position(const int_point & p);
+      //Region adjust_position(const i32_point & p);
 
       virtual void graphics_set_mouse_capture() override;
       virtual void graphics_release_mouse_capture() override;

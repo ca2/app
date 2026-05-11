@@ -65,9 +65,9 @@ namespace file
          return ReadBlock2();
        return *_buffer++;
      }
-     ::u32 ReadBytes(unsigned char *buf, ::u32 int_size)
+     ::u32 ReadBytes(unsigned char *buf, ::u32 i32_size)
      {
-       if ((::u32)(_bufferLimit - _buffer) >= int_size)
+       if ((::u32)(_bufferLimit - _buffer) >= i32_size)
        {
          for (::u32 i = 0; i < size; i++)
            buf[i] = _buffer[i];

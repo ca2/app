@@ -178,7 +178,7 @@ namespace user
    }
 
 
-   void main_window::input_client_rectangle(::int_rectangle & rectangle, enum_layout elayout)
+   void main_window::input_client_rectangle(::i32_rectangle & rectangle, enum_layout elayout)
    {
       
       rectangle = this->rectangle(elayout);
@@ -246,7 +246,7 @@ namespace user
    }
 
 
-   ::collection::index main_window::get_preferred_restore(::int_rectangle & rectanglePreferredRestore)
+   ::collection::index main_window::get_preferred_restore(::i32_rectangle & rectanglePreferredRestore)
    {
 
       //return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);
@@ -274,7 +274,7 @@ namespace user
 
       }
 
-      //::int_rectangle rectangleWindow;
+      //::i32_rectangle rectangleWindow;
 
       //bool bInitialFramePosition = _001FancyInitialFramePlacement(rectangleWindow, m_rectangleInitialRateOrSize);
 

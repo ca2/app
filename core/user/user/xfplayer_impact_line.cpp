@@ -113,7 +113,7 @@ xfplayer_impact_line::~xfplayer_impact_line()
 }
 
 
-bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::int_rectangle & rectangle)
+bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, int flags, const ::i32_rectangle & rectangle)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -189,7 +189,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, character_count & inde
 }
 
 
-void xfplayer_impact_line::GetPlacement(::int_rectangle * prectangle)
+void xfplayer_impact_line::GetPlacement(::i32_rectangle * prectangle)
 
 {
 
@@ -200,7 +200,7 @@ void xfplayer_impact_line::GetPlacement(::int_rectangle * prectangle)
 }
 
 
-bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, int_rectangle_array_base & rectaModified, bool bRecalcLayout)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -220,7 +220,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    //   pgraphics->SetBkMode(TRANSPARENT);
 
-   int_point iMargin;
+   i32_point iMargin;
    iMargin.x = 3;
    iMargin.y = 3;
 
@@ -240,7 +240,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    }
 
-   ::int_rectangle rectangleTextOut;
+   ::i32_rectangle rectangleTextOut;
 
    GetPlacement(&rectangleTextOut);
 
@@ -259,17 +259,17 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                break;
             if (iLink >= m_iaLinkStart.get_size())
             {
-               const ::int_size & size = pgraphics->get_text_extent(strFinal.left(iChar));
+               const ::i32_size & size = pgraphics->get_text_extent(strFinal.left(iChar));
                embossed_text_out(pgraphics, strFinal.substr(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, strFinal.length() - iChar, dBlend);
                break;
             }
             else if (m_iaLinkStart[iLink] > iChar)
             {
-               const ::int_size & size = pgraphics->get_text_extent(strFinal.left(iChar));
+               const ::i32_size & size = pgraphics->get_text_extent(strFinal.left(iChar));
                embossed_text_out(pgraphics, strFinal.substr(iChar), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkStart[iLink], dBlend);
             }
             pgraphics->set(m_pfontLink);
-            const ::int_size & size = pgraphics->get_text_extent(strFinal.left(m_iaLinkStart[iLink]));
+            const ::i32_size & size = pgraphics->get_text_extent(strFinal.left(m_iaLinkStart[iLink]));
 
             embossed_text_out(pgraphics, strFinal.substr(m_iaLinkStart[iLink]), rectangleTextOut.left + size.cx, rectangleTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1, dBlend);
             iChar = m_iaLinkEnd[iLink] + 1;
@@ -311,13 +311,13 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
             if (iStart < iEnd)
             {
                
-               ::int_rectangle rectanglePlacement;
+               ::i32_rectangle rectanglePlacement;
                
                GetPlacement(&rectanglePlacement);
                
-               ::int_rectangle rectangle = rectanglePlacement;
-               int_size size1 = pgraphics->get_text_extent(strFinal.left(iStart));
-               int_size size2 = pgraphics->get_text_extent(strFinal.left(iEnd + 1));
+               ::i32_rectangle rectangle = rectanglePlacement;
+               i32_size size1 = pgraphics->get_text_extent(strFinal.left(iStart));
+               i32_size size2 = pgraphics->get_text_extent(strFinal.left(iEnd + 1));
                rectangle.left = rectanglePlacement.left + size1.cx;
                rectangle.right = rectanglePlacement.left + size2.cx;
                ::image::image_pointer pimage;
@@ -328,8 +328,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                   pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
 
-                  //const ::int_point & point = pgraphics->get_origin();
-                  //pimage->from(nullptr, pgraphics, int_point + rectangle.top_left(), rectangle.size());
+                  //const ::i32_point & point = pgraphics->get_origin();
+                  //pimage->from(nullptr, pgraphics, i32_point + rectangle.top_left(), rectangle.size());
 
                   {
 
@@ -400,7 +400,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
       
       iLeftOffset = iLastLeftDiff - (int)m_dAnimateProgress;
       
-      ::int_rectangle rectangleTextOut;
+      ::i32_rectangle rectangleTextOut;
       
       GetPlacement(&rectangleTextOut);
       
@@ -441,7 +441,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
       if (rectaModified.has_element())
       {
-         ::int_rectangle baserect;
+         ::i32_rectangle baserect;
          prgn->get_bounding_box(baserect);
          rectaModified.add(baserect);
 
@@ -457,12 +457,12 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 }
 
 
-bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::int_rectangle & rectangle, int_rectangle_array_base & rectaModified, ::collection::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::i32_rectangle & rectangle, int_rectangle_array_base & rectaModified, ::collection::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
 
    GetPlacement(&rectanglePlacement);
 
@@ -470,7 +470,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
    //   pgraphics->SetBkMode(TRANSPARENT);
 
-   int_point iMargin;
+   i32_point iMargin;
    {
       iMargin.x = (int)(sppen->m_dWidth / 2.0);
       iMargin.y = (int)(sppen->m_dWidth / 2.0);
@@ -479,11 +479,11 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    if (!IsVisible())
    {
 
-      ::int_rectangle rectangle(m_rectangleInvalidate);
+      ::i32_rectangle rectangle(m_rectangleInvalidate);
 
       if (rectaModified.has_element())
       {
-         ::int_rectangle baserect(rectangle);
+         ::i32_rectangle baserect(rectangle);
          rectaModified.add(baserect);
       }
 
@@ -519,7 +519,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
       //pgraphics->set_text_color(crColor);
 
-      ::int_rectangle rectangleTextOut;
+      ::i32_rectangle rectangleTextOut;
       
       GetPlacement(&rectangleTextOut);
       
@@ -567,7 +567,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
       pgraphics->set(m_pfont);
       
-      ::int_rectangle rectangleTextOut;
+      ::i32_rectangle rectangleTextOut;
       
       GetPlacement(&rectangleTextOut);
       
@@ -640,7 +640,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 /*void xfplayer_impact_line::CalcCharsPositions(
 ::draw2d::graphics * pdcForeground,
    ref_array <  ::write_text::font > * pFonts,
-   const ::int_rectangle & rectangle)
+   const ::i32_rectangle & rectangle)
 {
    m_bCacheEmboss = false;
    //::write_text::font * pFont;
@@ -650,8 +650,8 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    if(pFonts->get_size() > 0)
    {
       int i, nFont, iFontFound, iMaxExtent, iLeft;
-      ::int_size size;
-      ::int_rectangle clientRect;
+      ::i32_size size;
+      ::i32_rectangle clientRect;
       nFont = 0;
       iFontFound = -1;
       for(nFont = 0; nFont < pFonts->get_size(); nFont++)
@@ -744,7 +744,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    else
    {
       int i; //, width;
-      ::int_size size;
+      ::i32_size size;
          m_iaPosition[0] = m_rectangle.left;
          for(i = 1; i <= m_str.length(); i++)
          {
@@ -769,7 +769,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 }*/
 
 
-void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
 
 {
 
@@ -788,11 +788,11 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
    
    ::double_size size;
    
-   ::int_rectangle rectangleX(rectangle);
+   ::i32_rectangle rectangleX(rectangle);
 
    m_rectangleX = rectangleX;
    
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
    
    GetPlacement(&rectanglePlacement);
 
@@ -976,7 +976,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
 /*void xfplayer_impact_line::CalcCharsPositions(
    ::draw2d::graphics *             pdcForeground,
    ::write_text::font *     pFont,
-   const int_rectangle &           int_rectangle)
+   const i32_rectangle &           i32_rectangle)
 
 {
    m_bCacheEmboss = false;
@@ -985,14 +985,14 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
     ::write_text::font * pfontOriginal = pdcForeground->get_current_font();
    pdcForeground->set(pFont->GetFont());
    int i, iLeft, iRight, iMaxExtent;
-   ::int_size size;
-   ::int_rectangle rectangleX(rectangle);
+   ::i32_size size;
+   ::i32_rectangle rectangleX(rectangle);
 
    m_rectangleX = rectangleX;
    ::write_text::font * pfont = pFont;
    ::draw2d::graphics_pointer & pgraphics = pdcForeground;
    ASSERT(pfont != nullptr);
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
    GetPlacement(rectanglePlacement);
    string strMain = m_str;
    GetTextExtentPoint32W(
@@ -1171,7 +1171,7 @@ void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics,
             if ((int)m_dAnimateProgress > maximum(m_iaPosition.element_at(m_str.length()) - m_iaPosition.element_at(0) + 100, m_rectangle.right - m_rectangle.left))
                m_dAnimateProgress = 0.0;
             
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
             
             GetPlacement(&rectangle);
             
@@ -1297,7 +1297,7 @@ int xfplayer_impact_line::SetLyricColors(::color::color colorLeft, ::color::colo
 }
 
 
-void xfplayer_impact_line::SetPlacement(const ::int_rectangle & rectangle)
+void xfplayer_impact_line::SetPlacement(const ::i32_rectangle & rectangle)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1319,16 +1319,16 @@ void xfplayer_impact_line::AddVmsFont(::write_text::font * pfont)
    m_fonts.add(pfont);
 }*/
 
-void xfplayer_impact_line::Invalidate(const int_rectangle & rectangleParam)
+void xfplayer_impact_line::Invalidate(const i32_rectangle & rectangleParam)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
 
    GetPlacement(&rectanglePlacement);
 
-   ::int_rectangle rectangleInvalidate;
+   ::i32_rectangle rectangleInvalidate;
 
    if (is_empty(rectangleParam))
    {
@@ -1350,16 +1350,16 @@ void xfplayer_impact_line::Invalidate(const int_rectangle & rectangleParam)
 }
 
 
-void xfplayer_impact_line::Validate(const int_rectangle & rectangleParam)
+void xfplayer_impact_line::Validate(const i32_rectangle & rectangleParam)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
 
    GetPlacement(&rectanglePlacement);
 
-   ::int_rectangle rectangleValidate;
+   ::i32_rectangle rectangleValidate;
 
    if (is_empty(rectangleParam))
    {
@@ -1468,7 +1468,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::int_point point;
+      ::i32_point point;
 
       point.x = (int) (iLeft - ((maximum(2.0, m_fRateX * 8.0)) / 2));
 
@@ -1495,7 +1495,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
          pgraphics->set(m_pfontPrefix);
 
-         ::int_size size;
+         ::i32_size size;
 
          size = pgraphics->get_text_extent(m_strPrefix);
 
@@ -1637,7 +1637,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
       pdcCache->set(m_pfontPrefix);
       
-      const ::int_size & size = pdcCache->get_text_extent(m_strPrefix);
+      const ::i32_size & size = pdcCache->get_text_extent(m_strPrefix);
       
       m_pgraphicsextension->text_out(pdcCache, (int)(int)((maximum(2.0, m_fRateX * 4.0)) / 2), (int)1 * (int)((maximum(2.0, m_fRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, s);
       
@@ -1727,7 +1727,7 @@ bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
    return true;
 }
 
-::user::enum_line_hit xfplayer_impact_line::get_link(string & strUrl, const ::int_point & pointCursor)
+::user::enum_line_hit xfplayer_impact_line::get_link(string & strUrl, const ::i32_point & pointCursor)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1757,16 +1757,16 @@ bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
    return -1;
 }
 
-::user::enum_line_hit xfplayer_impact_line::hit_test(const int_point &pointCursorParam, character_count &iChar)
+::user::enum_line_hit xfplayer_impact_line::hit_test(const i32_point &pointCursorParam, character_count &iChar)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
    bool bInside;
    
-   const ::int_point & pointCursor = pointCursorParam;
+   const ::i32_point & pointCursor = pointCursorParam;
    
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
    
    GetPlacement(&rectanglePlacement);
    
@@ -1814,12 +1814,12 @@ bool xfplayer_impact_line::GetCharLink(string & str, character_count iChar)
 }
 
 
-bool xfplayer_impact_line::CalcChar(const ::int_point & point, character_count &iChar)
+bool xfplayer_impact_line::CalcChar(const ::i32_point & point, character_count &iChar)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
    
    GetPlacement(&rectanglePlacement);
    
@@ -1897,7 +1897,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
       bool bInside;
       int iToken;
       int iChar;
-      ::int_rectangle rectanglePlacement;
+      ::i32_rectangle rectanglePlacement;
 
       GetPlacement(rectanglePlacement);
       bInside = rectanglePlacement.contains(point) != 0;
@@ -1953,7 +1953,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
       else
       {
          bool bInside;
-         ::int_rectangle rectanglePlacement;
+         ::i32_rectangle rectanglePlacement;
 
          GetPlacement(rectanglePlacement);
          bInside = rectanglePlacement.contains(point);
@@ -2114,7 +2114,7 @@ void xfplayer_impact_line::set_blend(double d)
 }
 
 
-void xfplayer_impact_line::update_hover(int_point &pointCursor)
+void xfplayer_impact_line::update_hover(i32_point &pointCursor)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -2133,7 +2133,7 @@ void xfplayer_impact_line::update_hover(int_point &pointCursor)
 
          m_iLinkHoverIndex = GetLinkIndex(iLine, iChar);
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetPlacement(&rectangle);
 
@@ -2150,7 +2150,7 @@ void xfplayer_impact_line::update_hover(int_point &pointCursor)
 
          m_iLinkHoverIndex = -1;
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetPlacement(&rectangle);
 

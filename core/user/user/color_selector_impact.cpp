@@ -102,7 +102,7 @@ namespace user
    void color_selector_impact::on_message_create(::message::message * pmessage)
    {
 
-      //m_pimageBeam->create_image(this, ::int_size(32, 32));
+      //m_pimageBeam->create_image(this, ::i32_size(32, 32));
 
       //m_pimageBeam->fill(0);
 
@@ -171,7 +171,7 @@ namespace user
    //}
 
 
-   //void color_selector_impact::on_mouse(const ::int_point & point)
+   //void color_selector_impact::on_mouse(const ::i32_point & point)
    //{
 
    //   if (point.y >= m_rectangleColors.bottom)
@@ -249,7 +249,7 @@ namespace user
    //   else if (point.x < m_rectangleColors.center().x + m_rectangleColors.width() / 8)
    //   {
 
-   //      auto pointLuminance = point - ::int_size(m_rectangleColors.center().x, m_rectangleColors.top);
+   //      auto pointLuminance = point - ::i32_size(m_rectangleColors.center().x, m_rectangleColors.top);
 
    //      m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
    //      
@@ -283,7 +283,7 @@ namespace user
    //}
 
 
-   //void color_selector_impact::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & pointParam)
+   //void color_selector_impact::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & pointParam)
    //{
 
    //   double_point point(pointParam);
@@ -357,7 +357,7 @@ namespace user
    //}
 
 
-   //void color_selector_impact::draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int yParam)
+   //void color_selector_impact::draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, int yParam)
    //{
 
    //   double y = yParam;
@@ -408,13 +408,13 @@ namespace user
    //void color_selector_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::int_rectangle rC;
+   //   ::i32_rectangle rC;
 
    //   rC = this->rectangle();
 
    //   pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   //   ::int_rectangle rTarget;
+   //   ::i32_rectangle rTarget;
 
    //   rTarget.top_left() = m_rectangleColors.top_left();
 
@@ -427,9 +427,9 @@ namespace user
 
    //   rTarget.set_size(m_pimage->get_size());
 
-   //   ::int_rectangle rSource = m_pimage->rectangle();
+   //   ::i32_rectangle rSource = m_pimage->rectangle();
 
-   //   ::int_rectangle rCursor;
+   //   ::i32_rectangle rCursor;
 
    //   {
 
@@ -443,7 +443,7 @@ namespace user
 
    //   }
 
-   //   ::int_point point;
+   //   ::i32_point point;
 
    //   if (m_bMouseColorBeam)
    //   {
@@ -462,9 +462,9 @@ namespace user
 
    //   draw_beam(pgraphics, point);
 
-   //   ::int_rectangle rectangleLum1;
+   //   ::i32_rectangle rectangleLum1;
 
-   //   rectangleLum1.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width()-1, 0);
+   //   rectangleLum1.top_left() = m_rectangleColors.top_left() + ::i32_size(m_pimage->width()-1, 0);
 
    //   rectangleLum1.set_size(m_pimageLuminance->get_size());
 
@@ -484,7 +484,7 @@ namespace user
 
    //   }
 
-   //   rTarget.top_left() = m_rectangleColors.top_left() + ::int_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+   //   rTarget.top_left() = m_rectangleColors.top_left() + ::i32_size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
 
    //   rTarget.set_size(m_rectangleColors.right - rTarget.left, m_pimage->height());
 
@@ -502,7 +502,7 @@ namespace user
    //   
    //   auto pmouse = pmessage->m_union.m_pmouse;
 
-   //   ::int_point point = pmouse->m_pointHost;
+   //   ::i32_point point = pmouse->m_pointHost;
 
    //   host_to_client()(point);
 
@@ -522,7 +522,7 @@ namespace user
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
    //   
-   //   ::int_point point = pmouse->m_pointHost;
+   //   ::i32_point point = pmouse->m_pointHost;
    //   
    //   host_to_client()(point);
 
@@ -558,7 +558,7 @@ namespace user
    //   if (m_bLButtonPressed)
    //   {
 
-   //      ::int_point point = pmouse->m_pointHost;
+   //      ::i32_point point = pmouse->m_pointHost;
 
    //      host_to_client()(point);
 
@@ -585,7 +585,7 @@ namespace user
 
    //   }
 
-   //   ::int_rectangle rectangleColors;
+   //   ::i32_rectangle rectangleColors;
 
    //   rectangleColors = this->rectangle();
 

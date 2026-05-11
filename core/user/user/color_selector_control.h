@@ -20,7 +20,7 @@ namespace user
 
       ::write_text::font_pointer m_pfont;
       //bool                             m_bMouseColorBeam;
-      //::int_point                      m_pointMouseColorBeam;
+      //::i32_point                      m_pointMouseColorBeam;
       //bool                             m_bCompact;
       //bool                             m_bLButtonPressed;
       ::user::plain_edit               m_editRed;
@@ -34,7 +34,7 @@ namespace user
 
       //::color::hls                            m_hls;
 
-      //::int_rectangle                           m_rectangleColors;
+      //::i32_rectangle                           m_rectangleColors;
       bool m_bMode0;
       bool m_bColorWheel;
 
@@ -71,8 +71,8 @@ namespace user
       //virtual void on_draw_mode_0(::draw2d::graphics_pointer & pgraphics);
       //virtual void on_draw_color_wheel(::draw2d::graphics_pointer & pgraphics);
 
-      //virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::int_point & point);
-      //virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleW, int y);
+      //virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point);
+      //virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleW, int y);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -83,7 +83,7 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual void on_mouse(const ::int_point & point);
+      //virtual void on_mouse(const ::i32_point & point);
       //virtual void rebuild_luminance();
 
       virtual ::color::hls get_color();

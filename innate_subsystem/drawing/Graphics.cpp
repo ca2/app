@@ -123,19 +123,19 @@ namespace innate_subsystem
 //       // m_dc->selectObject(object);
 //       m_pparticleThis->setFont(pfont);
 //    }
-//    void Graphics::moveTo(const ::int_point & point)
+//    void Graphics::moveTo(const ::i32_point & point)
 //    {
 //       //MoveToEx(m_dc->m_dc, x, y, NULL);
 //       m_pparticleThis->moveTo(point);
 //    }
 //
-//    void Graphics::lineTo(const ::int_point & point)
+//    void Graphics::lineTo(const ::i32_point & point)
 //    {
 //       //LineTo(m_dc->m_dc, x, y);
 //       m_pparticleThis->lineTo(point);
 //    }
 //
-//    void Graphics::fillRect(const ::int_rectangle & rectangle, BrushInterface *pbrush)
+//    void Graphics::fillRect(const ::i32_rectangle & rectangle, BrushInterface *pbrush)
 //    {
 //       //    RECT rect;
 //       //
@@ -149,27 +149,27 @@ namespace innate_subsystem
 //       m_pparticleThis->fillRect(rectangle, pbrush);
 //    }
 //
-//    void Graphics::fillRect(const ::int_rectangle & rectangle, const ::color::color & color)
+//    void Graphics::fillRect(const ::i32_rectangle & rectangle, const ::color::color & color)
 //    {
 //
 //       m_pparticleThis->fillRect(rectangle, color);
 //
 //    }
 //
-//    void Graphics::ellipse(const ::int_rectangle & rectangle)
+//    void Graphics::ellipse(const ::i32_rectangle & rectangle)
 //    {
 //       //Ellipse(m_dc->m_dc, l, t, r, b);
 //       m_pparticleThis->ellipse(rectangle);
 //    }
 //
-//    void Graphics::rectangle(const ::int_rectangle & rectangle)
+//    void Graphics::rectangle(const ::i32_rectangle & rectangle)
 //    {
 //
 //       m_pparticleThis->rectangle(rectangle);
 //    }
 //
 //
-//    void Graphics::drawBitmap(BitmapInterface *pbitmap, const ::int_rectangle & rectangle)
+//    void Graphics::drawBitmap(BitmapInterface *pbitmap, const ::i32_rectangle & rectangle)
 //    {
 //
 //       m_pparticleThis->drawBitmap(pbitmap, rectangle);
@@ -182,7 +182,7 @@ namespace innate_subsystem
 //       // memDC.selectObject(oldBitmap);
 //    }
 //
-//    void Graphics::drawBitmap(BitmapInterface *pbitmap, const ::int_point & point, const ::int_rectangle & rectangle)
+//    void Graphics::drawBitmap(BitmapInterface *pbitmap, const ::i32_point & point, const ::i32_rectangle & rectangle)
 //    {
 //
 //       m_pparticleThis->drawBitmap(pbitmap, point, rectangle);
@@ -190,7 +190,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    void Graphics::drawText(const char *text, int cchText, ::int_rectangle &rect, ::u32 format, enum_align ealign)
+//    void Graphics::drawText(const char *text, int cchText, ::i32_rectangle &rect, ::u32 format, enum_align ealign)
 //    {
 //       m_pparticleThis->drawText(text, cchText, rect, format, ealign);
 //    }

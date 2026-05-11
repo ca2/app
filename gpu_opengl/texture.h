@@ -35,13 +35,13 @@ namespace gpu_opengl
 
 
       void initialize_hdr_texture_on_memory(::gpu::context *pcontext, const ::block & block) override;
-      void initialize_with_image_data(::gpu::context *pcontext, const ::int_rectangle &rectangleTarget,
+      void initialize_with_image_data(::gpu::context *pcontext, const ::i32_rectangle &rectangleTarget,
                                       int numChannels, bool bSrgb, const void *pdata, ::gpu::enum_texture etexture) override;
       // void initialize_image_texture(::gpu::renderer* prenderer,
-      //    const ::int_rectangle & rectangleTarget, bool bWithDepth,
+      //    const ::i32_rectangle & rectangleTarget, bool bWithDepth,
       //    const ::pointer_array < ::image::image > *pimagea, enum_type etype) override;
 
-      //void blend(::gpu::texture* ptexture, const ::int_rectangle& rectangleTarget) override;
+      //void blend(::gpu::texture* ptexture, const ::i32_rectangle& rectangleTarget) override;
 
 
       void _create_texture(const ::gpu::texture_data & texturedata = {}) override;
@@ -58,7 +58,7 @@ namespace gpu_opengl
       void bind_render_target() override;
 
 
-      void set_pixels(const ::int_rectangle& rectangle, const void* data) override;
+      void set_pixels(const ::i32_rectangle& rectangle, const void* data) override;
 
       
       virtual GLuint frame_buffer_object();

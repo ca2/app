@@ -119,7 +119,7 @@ namespace data
       //virtual bool edit_undo();
 
 
-      //virtual void get_text_composition_area(::int_rectangle& rectangle);
+      //virtual void get_text_composition_area(::i32_rectangle& rectangle);
 
       ::comparable_array < ::data::text_will_change > & text_will_change();
       ::comparable_array < ::data::text_changed > & text_changed();
@@ -182,7 +182,7 @@ namespace data
             virtual bool edit_undo();
 
 
-            //virtual void get_text_composition_area(::int_rectangle& rectangle);
+            //virtual void get_text_composition_area(::i32_rectangle& rectangle);
       */
 
       ::string as_text() const;
@@ -316,7 +316,7 @@ namespace data
          }
 
 
-         void text::get_text_composition_area(::int_rectangle& rectangle)
+         void text::get_text_composition_area(::i32_rectangle& rectangle)
          {
 
 

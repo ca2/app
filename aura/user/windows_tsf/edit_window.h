@@ -151,9 +151,9 @@ namespace tsf
       STDMETHODIMP RetrieveRequestedAttrs(ULONG ulCount, TS_ATTRVAL * paAttrVals, ULONG * pcFetched);
       STDMETHODIMP GetEndACP(int * pacp);
       STDMETHODIMP get_active_impact(TsViewCookie * pvcView);
-      STDMETHODIMP GetACPFromPoint(TsViewCookie vcView, const ::int_point * pt, ::u32 dwFlags, int * pacp);
-      STDMETHODIMP GetTextExt(TsViewCookie vcView, int acpStart, int acpEnd, ::int_rectangle * prc, BOOL * pfClipped);
-      STDMETHODIMP GetScreenExt(TsViewCookie vcView, ::int_rectangle * prc);
+      STDMETHODIMP GetACPFromPoint(TsViewCookie vcView, const ::i32_point * pt, ::u32 dwFlags, int * pacp);
+      STDMETHODIMP GetTextExt(TsViewCookie vcView, int acpStart, int acpEnd, ::i32_rectangle * prc, BOOL * pfClipped);
+      STDMETHODIMP GetScreenExt(TsViewCookie vcView, ::i32_rectangle * prc);
       STDMETHODIMP GetWnd(TsViewCookie vcView, HWND * phwnd);
       STDMETHODIMP InsertTextAtSelection(::u32 dwFlags, const WCHAR * pchText, ULONG cch, int * pacpStart, int * pacpEnd, TS_TEXTCHANGE * pChange);
       STDMETHODIMP InsertEmbeddedAtSelection(::u32 dwFlags, IDataObject * pDataObject, int * pacpStart, int * pacpEnd, TS_TEXTCHANGE * pChange);

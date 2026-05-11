@@ -175,7 +175,7 @@ bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int 
 }
 
 
-bool ImageImpact::mouse_motion_event(const int_point & /* p */, const int_size & rel, bool bDown, const ::user::e_key & /* modifiers */)
+bool ImageImpact::mouse_motion_event(const i32_point & /* p */, const i32_size & rel, bool bDown, const ::user::e_key & /* modifiers */)
 {
 
    if (!m_bEnabled || !m_pimage || !bDown)
@@ -194,7 +194,7 @@ bool ImageImpact::mouse_motion_event(const int_point & /* p */, const int_size &
 }
 
 
-bool ImageImpact::scroll_event(const int_point & p, const float_size & rel) 
+bool ImageImpact::scroll_event(const i32_point & p, const float_size & rel) 
 {
 
    if (!m_bEnabled || !m_pimage)

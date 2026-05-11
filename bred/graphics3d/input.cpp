@@ -100,7 +100,7 @@ namespace graphics3d
 
 
 
-   void input::_001OnMouseMove(const ::int_point & point)
+   void input::_001OnMouseMove(const ::i32_point & point)
    {
 
       if (m_mousestate.m_buttons.left)

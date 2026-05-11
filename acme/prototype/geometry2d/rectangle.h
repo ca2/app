@@ -60,7 +60,7 @@ public:
    using UNIT_TYPE = NUMBER;
    using POINT_TYPE = point_type < NUMBER >;
    using SIZE_TYPE = size_type < NUMBER >;
-   //using POINT_ARRAY_TYPE = point_array_base < POINT_TYPE >;
+   //using POINT_ARRAY_TYPE = poi32_array_base < POINT_TYPE >;
 
    rectangle_type() { }
    rectangle_type(no_initialize_t) { }
@@ -1734,19 +1734,19 @@ inline void rectangle_type < NUMBER >::normalize()
 
 
 template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
-inline int_rectangle int_rectangle_dimension(X x, Y y, W w, H h)
+inline i32_rectangle int_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return int_rectangle(x, y, x + w, y + h);
+   return i32_rectangle(x, y, x + w, y + h);
 
 }
 
 
 template < prototype_number X, prototype_number Y, prototype_number W, prototype_number H >
-inline long_long_rectangle long_long_rectangle_dimension(X x, Y y, W w, H h)
+inline i64_rectangle i64_rectangle_dimension(X x, Y y, W w, H h)
 {
 
-   return long_long_rectangle(x, y, x + w, y + h);
+   return i64_rectangle(x, y, x + w, y + h);
 
 }
 
@@ -1769,13 +1769,13 @@ inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
 }
 
 //
-//CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
+//CLASS_DECL_ACME i32_rectangle & muldiv(i32_rectangle & rectangle, int numerator, int denominator);
+//CLASS_DECL_ACME i64_rectangle & muldiv(i64_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //
 //
-//CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
+//CLASS_DECL_ACME i32_rectangle & muldiv(i32_rectangle & rectangle, int numerator, int denominator);
+//CLASS_DECL_ACME i64_rectangle & muldiv(i64_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //template < prototype_integral NUMERATOR, prototype_integral DENOMINATOR >
 //rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const 

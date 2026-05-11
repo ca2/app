@@ -452,7 +452,7 @@ namespace xml
    char * document::patch_entity_ref(::ansi_range & rangeXml, int bUseExtEnt, ::platform::context * pacmecontext)
    {
 
-      // pszXml must be a valid portion of and int_point to an entity ref in:
+      // pszXml must be a valid portion of and i32_point to an entity ref in:
       // m_strData of this document
 
       const_char_pointer pszOldData = (const_char_pointer )m_memoryData.data();

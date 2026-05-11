@@ -142,8 +142,8 @@ namespace browser
 
       }
       ///
-      // Called to retrieve the impact int_rectangle which is relative to screen
-      // coordinates. Return true if the int_rectangle was provided.
+      // Called to retrieve the impact i32_rectangle which is relative to screen
+      // coordinates. Return true if the i32_rectangle was provided.
       ///
       /*--cef()--*/
       virtual bool GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rectangle) override;
@@ -177,7 +177,7 @@ namespace browser
 
       //The CefRenderHandler::GetImpactRect() method will be called to retrieve the desired impact rectangle.
       //The CefRenderHandler::OnPaint() method will be called to provide invalid regions and the updated pixel buffer.The cefclient application draws the buffer using OpenGL but your application can use whatever technique you prefer.
-      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetImpactRect() to retrieve the allocateø< int_size followed by a call to OnPaint >().
+      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetImpactRect() to retrieve the allocateø< i32_size followed by a call to OnPaint >().
       //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus happenings.
       //Call CefBrowserHost::CloseBrowser() to destroy browser.
       ::task_pointer m_pthreadBrowser;

@@ -29,11 +29,11 @@ namespace gpu
 //      //HGLRC                         m_hrc;
 //      //HDC                           m_hdc;
 //      //HWND                          m_hwnd;
-//      //::int_size                        m_sizeNew;
-//      //::int_size                        m_size;
+//      //::i32_size                        m_sizeNew;
+//      //::i32_size                        m_size;
 //      //HDC                           m_hdcGraphics;
 //      //float                         m_z;
-//      //int_point                         m_pointTranslate;
+//      //i32_point                         m_pointTranslate;
 //      //::pointer<::opengl::buffer>  m_pbuffer;
 //      //::pointer<::opengl::program> m_pprogram;
 //      //::u32                  VAO;
@@ -44,7 +44,7 @@ namespace gpu
 
       //::pointer < device >       m_pgpudevice;
 
-      //::int_rectangle            m_rectangleOffscreen;
+      //::i32_rectangle            m_rectangleOffscreen;
       ::map<::acme::windowing::window *, ::pointer<::gpu::device>> m_devicemap;
 
       bred_approach();

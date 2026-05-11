@@ -57,7 +57,7 @@ namespace draw2d
 
    //   { pgraphicssource->g(sizeHint) } -> ::std::convertible_to < ::draw2d::graphics * >;
    //   { pgraphicssource->origin() } -> ::std::convertible_to < ::double_size >;
-   //   { pgraphicssource->int_size(sizeHint) } -> ::std::convertible_to < ::double_size >;
+   //   { pgraphicssource->i32_size(sizeHint) } -> ::std::convertible_to < ::double_size >;
 
    //};
 
@@ -228,14 +228,14 @@ class graphics_context;
 
       bool _is_ok() const override;
 
-      ::image::image_pointer image_source_image(const ::int_size& sizeDst) override;
+      ::image::image_pointer image_source_image(const ::i32_size& sizeDst) override;
 
-      ::int_size image_source_size(const ::double_size& sizeDst, enum_image_selection eimageselection) const override;
+      ::i32_size image_source_size(const ::double_size& sizeDst, enum_image_selection eimageselection) const override;
 
-      ::int_size image_source_size() const override;
+      ::i32_size image_source_size() const override;
 
 
-      //virtual void start_gpu_layer(const ::int_rectangle & rectangleTarget);
+      //virtual void start_gpu_layer(const ::i32_rectangle & rectangleTarget);
 
       ::user::redraw* user_redraw();
       //#ifdef UNIVERSAL_WINDOWS
@@ -332,11 +332,11 @@ class graphics_context;
       virtual void create_information_context(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void* lpInitData);
 
       virtual void create_window_graphics(::windowing::window* pwindow);
-      virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::int_size& size = {});
-      virtual void create_memory_graphics(const ::int_size& sizeParameter);
-      virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size = {});
-      virtual void defer_set_size(const ::int_size& size = {});
-      virtual void _create_memory_graphics(const ::int_size& size = {});
+      virtual void create_offscreen_graphics_for_swap_chain_blitting(::user::interaction* puserinteraction, const ::i32_size& size = {});
+      virtual void create_memory_graphics(const ::i32_size& sizeParameter);
+      virtual void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size = {});
+      virtual void defer_set_size(const ::i32_size& size = {});
+      virtual void _create_memory_graphics(const ::i32_size& size = {});
       virtual void create_compatible_graphics(::draw2d::graphics* pgraphics);
       virtual void create_window_graphics(const ::operating_system::window & operatingsystemwindow);
 
@@ -347,7 +347,7 @@ class graphics_context;
 
       //virtual void set_hint_window_output();
 
-      virtual void defer_resize_memory_graphics(const ::int_size& size);
+      virtual void defer_resize_memory_graphics(const ::i32_size& size);
 
       virtual void on_begin_draw(::acme::windowing::window * pacmewindowingwindow, const ::double_size& sz);
       virtual void on_end_draw(::acme::windowing::window * pacmewindowingwindow);
@@ -362,7 +362,7 @@ class graphics_context;
       virtual ::u32 GetBoundsRect(::double_rectangle* rectdBounds, ::u32 flags);
 
 
-      virtual void resize(const ::int_size& sizeWindow);
+      virtual void resize(const ::i32_size& sizeWindow);
 
 
 
@@ -421,7 +421,7 @@ class graphics_context;
 
       virtual ::double_size get_size() const;
 
-      ::int_size get_image_drawer_size() const override;
+      ::i32_size get_image_drawer_size() const override;
 
 
 
@@ -774,9 +774,9 @@ class graphics_context;
       virtual void fill_inset_rectangle(const ::double_rectangle& rectangle, const ::color::color& color);
       virtual void fill_solid_rectangle(const ::double_rectangle& rectangle, const ::color::color& color);
 
-      virtual void color_blend_3dRect(const int_rectangle& rectangleParam, const ::color::color& colorTopLeft, const class ::opacity& opacityTopLeft, const ::color::color& color, const class ::opacity& opacityBottomRight);
+      virtual void color_blend_3dRect(const i32_rectangle& rectangleParam, const ::color::color& colorTopLeft, const class ::opacity& opacityTopLeft, const ::color::color& color, const class ::opacity& opacityBottomRight);
 
-      //virtual void color_blend(const ::int_rectangle& rectangle, const ::color::color& color, const ::opacity & opacity);
+      //virtual void color_blend(const ::i32_rectangle& rectangle, const ::color::color& color, const ::opacity & opacity);
 
 //      virtual void color_blend(image_list * pilBlend, image_list * pil, const ::color::color& color32, const ::opacity& opacity);
 
@@ -791,7 +791,7 @@ class graphics_context;
 //
 //         }
 //
-//         if (!color_blend(::int_rectangle(pimagesource->size()), color, opacity))
+//         if (!color_blend(::i32_rectangle(pimagesource->size()), color, opacity))
 //         {
 //
 //            return false;
@@ -804,7 +804,7 @@ class graphics_context;
 
 
 
-      //virtual void int_rectangle(const double_rectangle & double_rectangle);
+      //virtual void i32_rectangle(const double_rectangle & double_rectangle);
       //virtual void draw_rectangle(const double_rectangle & double_rectangle);
       //virtual void draw_rectangle(const double_rectangle & double_rectangle, ::draw2d::pen * ppen);
       //virtual void fill_rectangle(const double_rectangle & double_rectangle);
@@ -864,7 +864,7 @@ class graphics_context;
       //inline void alpha_blend(const SIZE & sizeDst, const ::image::image_drawing & imagedrawing, double dOpacity)
       //{
 
-      //   auto finalSrcSize = pimagesource->int_size(sizeDst, sizeSrc, eimageselection);
+      //   auto finalSrcSize = pimagesource->i32_size(sizeDst, sizeSrc, eimageselection);
 
       //   auto pimage = pimagesource->get_image(sizeSrc);
 
@@ -895,7 +895,7 @@ class graphics_context;
 
       //   auto sizeDst = rectangleTarget.size() - pointSrc;
 
-      //   return _alpha_blend(double_rectangle(rectangleTarget.top_left(), sizeDst), pgraphicssource, ::double_rectangle(pointSrc, pgraphicssource->int_size(sizeDst) - pointSrc), dOpacity);
+      //   return _alpha_blend(double_rectangle(rectangleTarget.top_left(), sizeDst), pgraphicssource, ::double_rectangle(pointSrc, pgraphicssource->i32_size(sizeDst) - pointSrc), dOpacity);
 
       //}
 
@@ -1338,11 +1338,11 @@ class graphics_context;
       //inline void fill_rect_dim(double x, double y, double cx, double cy, ::draw2d::brush * pbrush); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), pbrush); }
 
       //inline void polygon(int_point_array & pointa) { return polygon(pointa.data(), pointa.size()); }
-      inline void polygon(double_point_array_base &pointa) { return polygon(pointa.data(), pointa.size()); }
+      inline void polygon(double_poi32_array_base &pointa) { return polygon(pointa.data(), pointa.size()); }
       //inline void draw_polygon(int_point_array & pointa) { return draw_polygon(pointa.data(), pointa.size()); }
-      inline void draw_polygon(double_point_array_base &pointa) { return draw_polygon(pointa.data(), pointa.size()); }
+      inline void draw_polygon(double_poi32_array_base &pointa) { return draw_polygon(pointa.data(), pointa.size()); }
       //inline void fill_polygon(int_point_array & pointa) { return fill_polygon(pointa.data(), pointa.size()); }
-      inline void fill_polygon(double_point_array_base& pointa) { return fill_polygon(pointa.data(), pointa.size()); }
+      inline void fill_polygon(double_poi32_array_base& pointa) { return fill_polygon(pointa.data(), pointa.size()); }
 
       //inline void fill_solid_rect_dim(double x, double y, int cx, int cy, const ::color::color & color) { return fill_rectangle(double_rectangle_dimension(x, y, cx, cy), color); }
       //inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color::color & color); // { return fill_rectangle(rectdd_dim(x, y, cx, cy), color); }

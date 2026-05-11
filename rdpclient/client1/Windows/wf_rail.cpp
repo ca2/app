@@ -222,7 +222,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_WND_RECTS)
 	{
 		::u32 index;
-		RECTANGLE_16* int_rectangle;
+		RECTANGLE_16* i32_rectangle;
 
 		WLog_INFO(TAG, "\tnumWindowRects: %d", windowState->numWindowRects);
 
@@ -231,7 +231,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->windowRects[index];
 
 			WLog_INFO(TAG, "\twindowRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+				index, i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 		}
 	}
 
@@ -244,7 +244,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 	if (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_VISIBILITY)
 	{
 		::u32 index;
-		RECTANGLE_16* int_rectangle;
+		RECTANGLE_16* i32_rectangle;
 
 		WLog_INFO(TAG, "\tnumVisibilityRects: %d", windowState->numVisibilityRects);
 
@@ -253,7 +253,7 @@ void PrintRailWindowState(WINDOW_ORDER_INFO* orderInfo, WINDOW_STATE_ORDER* wind
 			rectangle = &windowState->visibilityRects[index];
 
 			WLog_INFO(TAG, "\tvisibilityRect[%d]: left: %d top: %d right: %d bottom: %d",
-				index, int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+				index, i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 		}
 	}
 
@@ -612,17 +612,17 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		::u32 index;
 //		HRGN hWndRect;
 //		HRGN hWndRects;
-//		RECTANGLE_16* int_rectangle;
+//		RECTANGLE_16* i32_rectangle;
 //
 //		if (windowState->numWindowRects > 0)
 //		{
 //			rectangle = &(windowState->windowRects[0]);
-//			hWndRects = CreateRectRgn(int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+//			hWndRects = CreateRectRgn(i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 //
 //			for (index = 1; index < windowState->numWindowRects; index++)
 //			{
 //				rectangle = &(windowState->windowRects[index]);
-//				hWndRect = CreateRectRgn(int_rectangle->left, int_rectangle->top, int_rectangle->right, int_rectangle->bottom);
+//				hWndRect = CreateRectRgn(i32_rectangle->left, i32_rectangle->top, i32_rectangle->right, i32_rectangle->bottom);
 //				CombineRgn(hWndRects, hWndRects, hWndRect, RGN_OR);
 //				DeleteObject(hWndRect);
 //			}
@@ -965,7 +965,7 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 {
 	int index;
 	int count;
-	::int_rectangle updateRect;
+	::i32_rectangle updateRect;
 	RECTANGLE_16 windowRect;
 	ULONG_PTR* pKeys = nullptr;
 	wfRailWindow* railWindow;

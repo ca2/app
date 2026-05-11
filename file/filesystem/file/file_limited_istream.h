@@ -28,8 +28,8 @@ namespace file
 
       }
 
-      //HRESULT InitAndSeek(::u64 startOffset, ::u64 int_size)
-      ::u64 InitAndSeek(::u64 startOffset, ::u64 int_size)
+      //HRESULT InitAndSeek(::u64 startOffset, ::u64 i32_size)
+      ::u64 InitAndSeek(::u64 startOffset, ::u64 i32_size)
       {
          _startOffset = startOffset;
          _physPos = startOffset;
@@ -43,7 +43,7 @@ namespace file
 
    };
 
-   ::file::file * create_limited_istream(stream *inStream, ::u64 pos, ::u64 int_size);
+   ::file::file * create_limited_istream(stream *inStream, ::u64 pos, ::u64 i32_size);
 
 
 } // namespace file

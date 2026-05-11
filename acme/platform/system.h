@@ -808,7 +808,7 @@ namespace platform
 //       //virtual int install_progress_app_add_up(int iAddUp = 1) override;
 //
 //       //virtual ::install::canvas * install_create_canvas();
-//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
+//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
 //       //virtual int install_canvas_increment_mode();
 //
 //       //virtual string install_get_platform() override;
@@ -1175,7 +1175,7 @@ namespace platform
 // //virtual string get_latest_build_number(const ::scoped_string & scopedstrConfiguration, const ::scoped_string & scopedstrAppId);
 // //#ifndef UNIVERSAL_WINDOWS
 //
-// //virtual void get_time(timeval * int_point) override;
+// //virtual void get_time(timeval * i32_point) override;
 //
 // //#endif
 //
@@ -1216,7 +1216,7 @@ namespace platform
 //
 //       //virtual bool initialize_native_window1();
 //
-//       //virtual void * initialize_native_window2(const ::int_rectangle & rectangle);
+//       //virtual void * initialize_native_window2(const ::i32_rectangle & rectangle);
 //
 //
 //       //virtual void on_os_text(e_os_text etext, const ::scoped_string & scopedstrText) override;
@@ -1340,7 +1340,7 @@ namespace platform
 //
 // //#ifdef UNIVERSAL_WINDOWS
 // //
-// //      virtual bool window_rectangle(::int_rectangle* prectangle);
+// //      virtual bool window_rectangle(::i32_rectangle* prectangle);
 // //
 // //
 // //#endif
@@ -1354,7 +1354,7 @@ namespace platform
 //
 //       //      virtual void add_impact_library(::acme::library* plibrary);
 //
-//             //virtual void get_cursor_position(::int_point * ppoint);
+//             //virtual void get_cursor_position(::i32_point * ppoint);
 //
 //
 //
@@ -1409,18 +1409,18 @@ namespace platform
 //
 //       //virtual ::pointer<::aura::session>on_create_session() override;
 //       //virtual ::install::canvas * install_create_canvas() override;
-//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
+//       //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
 //       //virtual int install_canvas_increment_mode() override;
 //
 //
 //
 //       //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor);
 //       //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-//       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override;
+//       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle) override;
 //
 //       //virtual ::collection::count get_monitor_count() override;
 //
-//       //bool get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle) override;
+//       //bool get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle* prectangle) override;
 //
 //
 //       //virtual ::windowing::window * impl_from_handle(void * pdata) override;

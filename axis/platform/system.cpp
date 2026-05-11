@@ -17,7 +17,7 @@
 //void axis_factory(::factory::factory * pfactory);
 
 
-//int get_main_screen_rectangle(::int_rectangle * lprect);
+//int get_main_screen_rectangle(::i32_rectangle * lprect);
 
 //
 //const_char_pointer g_pszMultimediaLibraryName = nullptr;

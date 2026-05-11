@@ -268,7 +268,7 @@ return g_pdraw2dcairo;
 //
 //   bool draw2d::embossed_text_out(
 //   ::draw2d::graphics_pointer & pgraphics,
-//   const ::int_rectangle & rectangle,
+//   const ::i32_rectangle & rectangle,
 //   string strText,
 //   ::image::fastblur & blur,
 //   ::image::image_pointer & imageBlur,

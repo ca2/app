@@ -18,12 +18,12 @@ namespace number
       union
       {
 
-         char        m_ch;
-         unsigned char        m_uch;
-         short       m_sh;
-         unsigned short       m_ush;
-         int       m_i;
-         ::u32       m_ui;
+         char        m_i8;
+         unsigned char        m_u8;
+         short       m_i16;
+         unsigned short       m_u16;
+         int       m_i32;
+         ::u32       m_u32;
          ::i64       m_hi;
          ::u64       m_hn;
 
@@ -35,12 +35,12 @@ namespace number
       enum_number    m_enumber;
 
       number(enum_number enumber = e_number_none) { m_hi = 0; m_enumber = enumber; }
-      number(char i) { m_ch = i; m_enumber = e_number_char; }
-      number(unsigned char u) { m_uch = u; m_enumber = e_number_unsigned_char; }
-      number(short i) { m_sh = i; m_enumber = e_number_short; }
-      number(unsigned short u) { m_ush = u; m_enumber = e_number_unsigned_short; }
-      number(int i) { m_i = i; m_enumber = e_number_int; }
-      number(::u32 u) { m_ui = u; m_enumber = e_number_unsigned_int; }
+      number(char i) { m_i8 = i; m_enumber = e_number_char; }
+      number(unsigned char u) { m_u8 = u; m_enumber = e_number_unsigned_char; }
+      number(short i) { m_i16 = i; m_enumber = e_number_short; }
+      number(unsigned short u) { m_u16 = u; m_enumber = e_number_unsigned_short; }
+      number(int i) { m_i32 = i; m_enumber = e_number_int; }
+      number(::u32 u) { m_u32 = u; m_enumber = e_number_unsigned_int; }
       number(::i64 i) { m_hi = i; m_enumber = e_number_long_long; }
       number(::u64 u) { m_hn = u; m_enumber = e_number_unsigned_long_long; }
       number(float f) { m_f = f; m_enumber = e_number_float; }
@@ -65,17 +65,17 @@ namespace number
             case e_number_none:
                return (T)0;
             case e_number_char:
-               return (T)m_ch;
+               return (T)m_i8;
             case e_number_unsigned_char:
-               return(T)m_uch;
+               return(T)m_u8;
             case e_number_short:
-               return(T)m_sh;
+               return(T)m_i16;
             case e_number_unsigned_short:
-               return (T)m_ush;
+               return (T)m_u16;
             case e_number_int:
-               return(T)m_i;
+               return(T)m_i32;
             case e_number_unsigned_int:
-               return (T)m_ui;
+               return (T)m_u32;
             case e_number_long_long:
                return(T)m_hi;
             case e_number_unsigned_long_long:
@@ -97,22 +97,22 @@ namespace number
             case e_number_none:
                break;
             case e_number_char:
-               m_ch = (char) t;
+               m_i8 = (char) t;
                break;
             case e_number_unsigned_char:
-               m_uch = (unsigned char) t;
+               m_u8 = (unsigned char) t;
                break;
             case e_number_short:
-               m_sh = (short) t;
+               m_i16 = (short) t;
                break;
             case e_number_unsigned_short:
-               m_ush = (unsigned short)t;
+               m_u16 = (unsigned short)t;
                break;
             case e_number_int:
-               m_i = (int)t;
+               m_i32 = (int)t;
                break;
             case e_number_unsigned_int:
-               m_ui = (::u32)t;
+               m_u32 = (::u32)t;
                break;
             case e_number_long_long:
                m_hi = (::i64)t;

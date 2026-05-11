@@ -208,8 +208,8 @@ namespace user
       auto pmessagename =
          tuple_array_find(
             g_iszaMessageName,
-            [iFind](auto ptuple) { return ptuple->m_i == iFind; }, // find_condition
-            [](auto ptuple) { return ptuple->m_i >= 0; } // continue condition
+            [iFind](auto ptuple) { return ptuple->m_i32 == iFind; }, // find_condition
+            [](auto ptuple) { return ptuple->m_i32 >= 0; } // continue condition
       );
 
       if (!pmessagename)

@@ -154,7 +154,7 @@ namespace user
    }
 
 
-   void menu::update_track_cursor(const ::int_point& pointCursorHint)
+   void menu::update_track_cursor(const ::i32_point& pointCursorHint)
    {
 
       if (pointCursorHint.is_all(I32_MINIMUM))
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   void menu::update_track_rectangle(const ::int_rectangle& rectangleScreenHint)
+   void menu::update_track_rectangle(const ::i32_rectangle& rectangleScreenHint)
    {
 
       if (rectangleScreenHint.is_all(I32_MINIMUM))
@@ -826,7 +826,7 @@ namespace user
    //void menu::layout_menu(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::int_point point = m_pointTrack;
+   //   ::i32_point point = m_pointTrack;
 
    //   if (get_parent() != nullptr)
    //   {
@@ -984,14 +984,14 @@ namespace user
 
    //   }
 
-   //   ::int_rectangle rectangleWindow;
+   //   ::i32_rectangle rectangleWindow;
 
    //   rectangleWindow.left = point.x;
    //   rectangleWindow.top = point.y;
    //   rectangleWindow.right = rectangleWindow.left + m_size.cx;
    //   rectangleWindow.bottom = rectangleWindow.top + m_size.cy;
 
-   //   ::int_rectangle rectangleMonitor;
+   //   ::i32_rectangle rectangleMonitor;
 
    //   auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleWindow);
    //      
@@ -1057,7 +1057,7 @@ namespace user
 
          //information() << "user::frame_window::_001OnNcDraw graphics offset (2) : " << pgraphics->get_origin();
 
-   //      ::int_rectangle rectangleX;
+   //      ::i32_rectangle rectangleX;
    //
    //      this->rectangle(rectangleX);
 
@@ -1235,7 +1235,7 @@ namespace user
       ////
       ////                           m_psubmenu->m_pmenuParent = this;
       ////
-      ////                           ::int_rectangle rectangle;
+      ////                           ::i32_rectangle rectangle;
       ////
       ////                           ptopic->user_interaction()->window_rectangle(rectangle);
       ////
@@ -1415,7 +1415,7 @@ namespace user
 
       m_pmenuSubMenu = pusermenu;
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       pmenuitem->m_puserinteraction->window_rectangle(rectangle);
 
@@ -1576,7 +1576,7 @@ namespace user
 
             //   m_psubmenu->initialize(this);
 
-            //   ::int_rectangle rectangle;
+            //   ::i32_rectangle rectangle;
 
             //   pmenuitema->find(m_atomTimerMenu)->m_puserinteraction->window_rectangle(rectangle);
 
@@ -1774,7 +1774,7 @@ namespace user
    }
 
 
-   int_size menu::get_window_minimum_size()
+   i32_size menu::get_window_minimum_size()
    {
 
       return m_sizeMinimum;
@@ -1809,7 +1809,7 @@ namespace user
       //else
       //{
 
-      //   ::int_rectangle * prectangle = (::int_rectangle *)pusermessage->m_lparam.m_lparam;
+      //   ::i32_rectangle * prectangle = (::i32_rectangle *)pusermessage->m_lparam.m_lparam;
 
       //   prectangle->left = m_pointTrack.x;
 
@@ -2131,9 +2131,9 @@ namespace user
 
       }
 
-      ::int_point pointCursorHint;
+      ::i32_point pointCursorHint;
 
-      ::int_rectangle rectangleScreenHint;
+      ::i32_rectangle rectangleScreenHint;
 
       if (get_parent() == nullptr)
       {
@@ -2240,7 +2240,7 @@ namespace user
 
       //calcsize.m_pgraphics = pgraphics;
 
-      ::int_size size;
+      ::i32_size size;
 
       if (m_bCloseButton)
       {
@@ -2383,7 +2383,7 @@ namespace user
 
       }
 
-      //::int_size sizeSeparator;
+      //::i32_size sizeSeparator;
 
       //for (int i = 0; i < pmenuitema->get_size(); i++)
       //{
@@ -2514,13 +2514,13 @@ namespace user
       if (get_parent() == nullptr)
       {
 
-         ::int_rectangle rectangleMonitor;
+         ::i32_rectangle rectangleMonitor;
 
          auto rectangleMonitorHint = rectangleScreenHint;
 
          auto iMonitor = get_best_monitor(&rectangleMonitor, rectangleMonitorHint);
 
-         ::int_rectangle rectangleWindow;
+         ::i32_rectangle rectangleWindow;
 
          rectangleWindow.left = pointCursorHint.x;
 

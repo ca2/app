@@ -39,8 +39,8 @@ namespace graphics3d
 
 		::std::chrono::high_resolution_clock::time_point	m_stdtimepoint;
 		bool	                                             m_bCreatedGlobalUbo;
-		::int_rectangle									         m_rectanglePlacementNew;
-		::int_rectangle									         m_rectanglePlacement;
+		::i32_rectangle									         m_rectanglePlacementNew;
+		::i32_rectangle									         m_rectanglePlacement;
 		bool													         m_bEngineOnFrameContextInitialization = false;
 
 		bool                                               m_bLoadedEngine = false;
@@ -63,7 +63,7 @@ namespace graphics3d
 
 		virtual ::gpu::enum_output get_engine_gpu_eoutput();
 
-		virtual void defer_start(::user::graphics3d * pusergraphics3d, const ::int_rectangle& rectangle);
+		virtual void defer_start(::user::graphics3d * pusergraphics3d, const ::i32_rectangle& rectangle);
 
 		virtual void on_begin_frame();
 		virtual void on_end_frame();
@@ -107,9 +107,9 @@ namespace graphics3d
 
 		virtual void _do_frame_step();
 		virtual void on_after_done_frame_step(::draw2d::graphics_pointer& pgraphics);
-      virtual void defer_update_engine(const ::int_rectangle &rectangle);
+      virtual void defer_update_engine(const ::i32_rectangle &rectangle);
 
-		virtual void on_layout(const ::int_rectangle & rectanglePlacement);
+		virtual void on_layout(const ::i32_rectangle & rectanglePlacement);
 
 		virtual void on_mouse_move(float x, float y);
 

@@ -96,14 +96,14 @@ namespace color
    1    set b [expr {  $h6 <= 1 ? -$h6
                                : $h6 <= 4 ? $h6-2
                                : 6-$h6}]
-       set rectangle [expr {$int_rectangle < 0.0 ? 0.0 : $int_rectangle > 1.0 ? 1.0 : double($int_rectangle)}]
+       set rectangle [expr {$i32_rectangle < 0.0 ? 0.0 : $i32_rectangle > 1.0 ? 1.0 : double($i32_rectangle)}]
        set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : double($g)}]
        set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : double($b)}]
 
-       set rectangle [expr {(($int_rectangle-1)*$s+1)*$l}]
+       set rectangle [expr {(($i32_rectangle-1)*$s+1)*$l}]
        set g [expr {(($g-1)*$s+1)*$l}]
        set b [expr {(($b-1)*$s+1)*$l}]
-       return [list_base $int_rectangle $g $b]
+       return [list_base $i32_rectangle $g $b]
    }
 
 
@@ -1249,7 +1249,7 @@ namespace color
                str.trim();
                ::payload a;
                a.as_string_array().explode(",", str);
-               auto & ia = a.int_array_reference();
+               auto & ia = a.i32_array_reference();
                if (ia.get_count() == 3)
                {
                   set(argb(255, ia[0], ia[1], ia[2]));

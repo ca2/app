@@ -25,7 +25,7 @@ namespace user
       ::draw2d::pen_pointer               m_ppen;
       string_map_base < ::image::image_pointer >      m_pimageMap;
       string_map_base < ::image::image_pointer >      m_pimageMapGray;
-      //::int_array_base                         m_iaPopup;
+      //::i32_array_base                         m_iaPopup;
       ::pointer < ::menu::item >             m_pmenuitem;
 
 
@@ -71,20 +71,20 @@ namespace user
       virtual ::user::item * layout_user_item_by_index(::collection::index iMenuItemIndex);
 
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
 
       bool on_click(::item * pitem, ::user::mouse * pmouse) override;
 
 
-      virtual void draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-      virtual void draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::int_point & point1, const ::int_point& point2);
-      virtual void draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-      virtual void draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-      virtual void draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-      virtual void draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-      virtual void draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
-      virtual void draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::int_point& point1, const ::int_point& point2);
+      virtual void draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::i32_point & point1, const ::i32_point& point2);
+      virtual void draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
+      virtual void draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::i32_point& point1, const ::i32_point& point2);
 
 
    };

@@ -677,7 +677,7 @@ namespace experience
    }
 
 
-   //void frame_window::GetRegionClientRectangle(::int_rectangle * prectangle)
+   //void frame_window::GetRegionClientRectangle(::i32_rectangle * prectangle)
    //{
 
    //   ASSERT(m_pframe != nullptr);
@@ -1300,7 +1300,7 @@ namespace experience
 
       ::user::main_window::on_perform_top_down_layout(pgraphics);
 
-      //::int_rectangle frame_window::rectangle(::user::enum_layout elayout)
+      //::i32_rectangle frame_window::rectangle(::user::enum_layout elayout)
       //{
 
          //information() << "experience::frame_experience::on_perform_top_down_layout (2)";
@@ -1468,7 +1468,7 @@ namespace experience
    }
 
 
-   ::int_rectangle frame_window::outer_frame()
+   ::i32_rectangle frame_window::outer_frame()
    {
 
       return m_pframe->outer_frame();
@@ -2139,7 +2139,7 @@ namespace experience
    }
 
 
-   void frame_window::OnNcCalcSize(::int_rectangle * prectangle)
+   void frame_window::OnNcCalcSize(::i32_rectangle * prectangle)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -2149,9 +2149,9 @@ namespace experience
    }
 
 
-   // int_point should be in screen coordinates
-   ::experience::enum_frame frame_window::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
-   //::item_pointer frame_window::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   // i32_point should be in screen coordinates
+   ::experience::enum_frame frame_window::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
+   //::item_pointer frame_window::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       ASSERT(m_pframe != nullptr);
@@ -2330,12 +2330,12 @@ namespace experience
 #define ZONEING_COMPARE ::comparison
 
 
-   ::collection::index frame_window::get_best_zoneing(::e_display & edisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangleRequest, bool bPreserveSize)
+   ::collection::index frame_window::get_best_zoneing(::e_display & edisplay, ::i32_rectangle * prectangle, const ::i32_rectangle & rectangleRequest, bool bPreserveSize)
    {
 
       //::i64 g_i_get_best_zoneing = 0;
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       if (rectangleRequest.is_set())
       {
@@ -2350,7 +2350,7 @@ namespace experience
 
       }
 
-      ::int_rectangle rectangleWorkspace;
+      ::i32_rectangle rectangleWorkspace;
 
       ::collection::index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
 
@@ -2384,7 +2384,7 @@ namespace experience
       if (iBestWorkspace >= 0)
       {
 
-         ::int_rectangle rectangleOld(rectangle);
+         ::i32_rectangle rectangleOld(rectangle);
 
          auto pwindowing = windowing();
 
@@ -2405,7 +2405,7 @@ namespace experience
 
       bool bCursorPosition = layout().is_moving();
 
-      ::int_point pointCursor(no_initialize_t{});
+      ::i32_point pointCursor(no_initialize_t{});
 
       if (bCursorPosition)
       {
@@ -2647,7 +2647,7 @@ namespace experience
    }
 
 
-   ::item_pointer frame_window::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer frame_window::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
 
       if (!m_pframe)
@@ -2707,7 +2707,7 @@ namespace experience
    //
    //         dock_manager()->on_message_left_button_down(pmouse);
    //
-   //         //::int_rectangle rectangleWindow;
+   //         //::i32_rectangle rectangleWindow;
    //
    //         //ptopic->user_interaction()->window_rectangle(rectangleWindow);
    //
@@ -2970,7 +2970,7 @@ namespace experience
    }
 
 
-   void frame_window::place_set_need_redraw(const ::int_rectangle & rectangleAfter, const ::int_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
+   void frame_window::place_set_need_redraw(const ::i32_rectangle & rectangleAfter, const ::i32_rectangle & rectangleBefore, ::draw2d::graphics * pgraphics)
    {
 
       if (::is_null(m_pframe))

@@ -24,7 +24,7 @@ inline char * ansi_concatenate_long_long(char * psz, ::i64 i, int iBase = 10, en
 
 
 
-inline void wide_from_long_long_base(::wide_character * sz, ::i64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
+inline void wide_from_i64_base(::wide_character * sz, ::i64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
 inline void wide_from_u64_base(::wide_character * sz, ::u64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
 
 
@@ -64,7 +64,7 @@ inline string ansi_string_from_i(int i, int iBase, enum_digit_case edigitcase)
 //inline ::wide_character * wide_concatenate_long_long(::wide_character * pwsz, ::i64 i)
 //{
 //#if defined(LINUX) || defined(__APPLE__) || defined(__ANDROID__) || defined(FREEBSD) || defined(OPENBSD)
-//   wide_from_long_long_base(wide_last_char(pwsz), i, 10);
+//   wide_from_i64_base(wide_last_char(pwsz), i, 10);
 //#else
 //   _long_longtow(i, wide_last_char(pwsz), 10);
 //#endif

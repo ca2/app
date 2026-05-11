@@ -77,7 +77,7 @@ namespace geo
 
       string_array_base                                       m_straCityLo;
       string_array_base                                       m_straCity;
-      long_long_array_base                                          m_iaIds;
+      i64_array_base                                          m_iaIds;
       double_array                                       m_daLon;
       double_array                                       m_daLat;
 

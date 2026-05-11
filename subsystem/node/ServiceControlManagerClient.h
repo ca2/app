@@ -237,7 +237,7 @@ namespace subsystem
       }
       /**
        * Stops running service execution.
-       * @param name name of service to stop.
+       * @param scopedstrName name of service to stop.
        * @param waitCompletion if true, wait until the status becomes
        *   SERVICE_STOPPED.
        * @throws SystemException, ServiceControlManagerClientException on fail.

@@ -201,7 +201,7 @@ namespace account
    }
 
 
-   string main_window::do_account(const ::int_rectangle & rectangleParam)
+   string main_window::do_account(const ::i32_rectangle & rectangleParam)
    {
 
       m_pcredentials->m_iPasswordOriginalLength = -1;
@@ -210,7 +210,7 @@ namespace account
 
       ::user::interaction * puiParent = psession->payload("plugin_parent").cast < ::user::interaction >();
 
-      ::int_rectangle rectangleDesktop;
+      ::i32_rectangle rectangleDesktop;
 
       if (puiParent != nullptr)
       {
@@ -235,9 +235,9 @@ namespace account
 
       }
 
-      ::int_rectangle rectangleFontopus;
+      ::i32_rectangle rectangleFontopus;
 
-      ::int_rectangle rectangleLogin;
+      ::i32_rectangle rectangleLogin;
 
       int stdw = 800;
 
@@ -322,7 +322,7 @@ namespace account
    }
 
 
-   string main_window::get_cred(const ::int_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle)
+   string main_window::get_cred(const ::i32_rectangle & rectangle, string & strUsername, string & strPassword, const ::scoped_string & scopedstrToken, const ::scoped_string & scopedstrTitle)
    {
 
       if (scopedstrTitle == "ca2")
@@ -380,7 +380,7 @@ namespace account
 
          keep < bool > keepLayout(&m_bFontopusSimpleUiLayout,true,false,true);
 
-         ::int_rectangle rectangleX1;
+         ::i32_rectangle rectangleX1;
 
          this->rectangle(rectangleX1);
 
@@ -389,7 +389,7 @@ namespace account
          if(get_parent() != nullptr)
          {
 
-            ::int_rectangle rectangleParent;
+            ::i32_rectangle rectangleParent;
 
             get_parent()->window_rectangle(rectangleParent);
 
@@ -406,7 +406,7 @@ namespace account
          if(rectangleX1.area() < 100 * 100 || bParentChange)
          {
 
-            ::int_rectangle rectangleDesktop;
+            ::i32_rectangle rectangleDesktop;
 
             if(get_parent() != nullptr)
             {
@@ -427,9 +427,9 @@ namespace account
 
             }
 
-            ::int_rectangle rectangleFontopus;
+            ::i32_rectangle rectangleFontopus;
 
-            ::int_rectangle rectangleLogin;
+            ::i32_rectangle rectangleLogin;
 
             int stdw = 800;
 

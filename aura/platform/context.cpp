@@ -1035,7 +1035,7 @@ namespace aura
    //}
 
 
-   //::image::image_pointer context::create_image(const ::int_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   //::image::image_pointer context::create_image(const ::i32_size & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    //{
 
    //   auto pimage = m_papplication->createø < ::image::image >();

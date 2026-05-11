@@ -1201,7 +1201,7 @@ return;
          puserinteraction->kill_timer(123);
 
          /*
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
          int iArrange = (int) lparam;
 
          if(_001IsItemVisible(iArrange))

@@ -793,9 +793,9 @@ namespace windowing
 
       //hook_window_create(puserinteraction);
 
-      //CGRect int_rectangle;
+      //CGRect i32_rectangle;
 
-      //      int_rectangle rectParam;
+      //      i32_rectangle rectParam;
 
       //      rectParam.left = m_pusersystem->m_createstruct.x;
       //      rectParam.top = pusersystem->m_createstruct.y;
@@ -1037,7 +1037,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
 
-   //   void window::set_cursor_position(const ::int_point & pointCursor)
+   //   void window::set_cursor_position(const ::i32_point & pointCursor)
    //   {
    //
    //      m_pointCursor = pointCursor;
@@ -1045,7 +1045,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   }
    //
    //
-   //   void window::get_cursor_position(::int_point * ppointCursor)
+   //   void window::get_cursor_position(::i32_point * ppointCursor)
    //   {
    //
    //      *ppointCursor = m_pointCursor;
@@ -1477,14 +1477,14 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    void window::on_window_configuration_change()
    {
 
-      auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+      auto r = ::i32_rectangle(m_pointWindow, m_sizeWindow);
 
       user_interaction()->_on_configure_notify_unlocked(r);
 
    }
 
 
-   void window::_on_configure_notify_unlocked(const ::int_rectangle& rectangle)
+   void window::_on_configure_notify_unlocked(const ::i32_rectangle& rectangle)
    {
 
       m_pointWindow = rectangle.top_left();
@@ -1503,7 +1503,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::_on_reposition_notify_unlocked(const ::int_point& point)
+   void window::_on_reposition_notify_unlocked(const ::i32_point& point)
    {
 
       m_pointWindow = point;
@@ -1523,7 +1523,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    void window::_on_reposition(int x, int y)
    {
 
-      //::int_point p(x, y);
+      //::i32_point p(x, y);
 
       //if (m_pointWindow != p)
       //{
@@ -1550,7 +1550,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
                // {
                //
-               //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+               //    auto r = ::i32_rectangle(m_pointWindow, m_sizeWindow);
                //
                //    _on_configure_notify_unlocked(r);
                //
@@ -1597,7 +1597,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       message_handler(psize);
 
-      // ::int_size s(cx, cy);
+      // ::i32_size s(cx, cy);
       //
       // informationf("::windowing_q6::window::_on_size(%d, %d)", cx, cy);
       // informationf("::windowing_q6::window::_on_size this->m_sizeWindow (%d, %d)", m_sizeWindow.cx, m_sizeWindow.cy);
@@ -1616,7 +1616,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //    //
       //    // // {
       //    // //
-      //    // //    auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+      //    // //    auto r = ::i32_rectangle(m_pointWindow, m_sizeWindow);
       //    // //
       //    // //    _on_configure_notify_unlocked(r);
       //    // //
@@ -1746,7 +1746,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::window_rect_from_os(::int_rectangle* prectangle)
+   bool window::window_rect_from_os(::i32_rectangle* prectangle)
    {
 
       return false;
@@ -1754,7 +1754,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::client_rect_from_os(::int_rectangle* prectangle)
+   bool window::client_rect_from_os(::i32_rectangle* prectangle)
    {
 
       return false;
@@ -1842,7 +1842,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::GetUpdateRect(::int_rectangle* prectangle, bool bErase)
+   bool window::GetUpdateRect(::i32_rectangle* prectangle, bool bErase)
    {
 
       throw ::interface_only();
@@ -1867,7 +1867,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::InvalidateRect(const ::int_rectangle* rectangle, bool bErase)
+   void window::InvalidateRect(const ::i32_rectangle* rectangle, bool bErase)
    {
 
 
@@ -1881,7 +1881,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::ValidateRect(const ::int_rectangle* prectangle)
+   void window::ValidateRect(const ::i32_rectangle* prectangle)
    {
 
 
@@ -1918,7 +1918,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //bool window::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //bool window::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   throw ::interface_only();
@@ -2129,7 +2129,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   int_point window::GetCaretPos()
+   i32_point window::GetCaretPos()
    {
 
       throw ::interface_only();
@@ -2139,7 +2139,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::SetCaretPos(const ::int_point& point)
+   void window::SetCaretPos(const ::i32_point& point)
    {
 
       throw ::interface_only();
@@ -2222,18 +2222,18 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //   ::int_point window::get_mouse_cursor_host_position()
+   //   ::i32_point window::get_mouse_cursor_host_position()
    //   {
    //
-   //      return ::int_point(0, 0);
+   //      return ::i32_point(0, 0);
    //
    //   }
    //
    //
-   //   ::int_point window::get_mouse_cursor_absolute_position()
+   //   ::i32_point window::get_mouse_cursor_absolute_position()
    //   {
    //
-   //      return ::int_point(0, 0);
+   //      return ::i32_point(0, 0);
    //
    //   }
 
@@ -2254,7 +2254,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::get_rect_normal(::int_rectangle* prectangle)
+   bool window::get_rect_normal(::i32_rectangle* prectangle)
    {
 
       throw ::interface_only();
@@ -2429,7 +2429,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   }
 
 
-   void window::full_screen(const ::int_rectangle& rectangle)
+   void window::full_screen(const ::i32_rectangle& rectangle)
    {
 
    }
@@ -2515,7 +2515,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::client_to_screen(::int_point* ppoint)
+   bool window::client_to_screen(::i32_point* ppoint)
    {
 
       return true;
@@ -2523,7 +2523,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::screen_to_client(::int_point* ppoint)
+   bool window::screen_to_client(::i32_point* ppoint)
    {
 
       return true;
@@ -2725,7 +2725,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   bool window::strict_set_window_position_unlocked(bool& bChangedPosition, bool& bChangedSize, const ::int_rectangle& rectangle)
+   bool window::strict_set_window_position_unlocked(bool& bChangedPosition, bool& bChangedSize, const ::i32_rectangle& rectangle)
    {
 
       auto pointOutput = rectangle.origin();
@@ -2757,12 +2757,12 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       if (bChangedPosition || bChangedSize)
       {
 
-         ::int_rectangle rectangleOutput(pointOutput, sizeOutput);
+         ::i32_rectangle rectangleOutput(pointOutput, sizeOutput);
 
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left << ", t:" << r.top
          //              << ", r:" << r.right << ", b:" << r.bottom << ", thrd:" << ::current_task_index();
 
-         static ::int_point s_pointInitialTopRight;
+         static ::i32_point s_pointInitialTopRight;
 
          if (s_pointInitialTopRight.is_null())
          {
@@ -2901,7 +2901,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
          debug() << "windowing::window::set_window_position_unlocked";
 
-         ::int_rectangle r(pointDesign, sizeOutput);
+         ::i32_rectangle r(pointDesign, sizeOutput);
 
          debug() << "bMove : " << bMove
             << ", bSize : " << bSize
@@ -2913,7 +2913,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
          //information() << "::windowing::window::_set_window_position_unlocked l:" << r.left << ", t:" << r.top
          //              << ", r:" << r.right << ", b:" << r.bottom << ", thrd:" << ::current_task_index();
 
-         static ::int_point s_pointInitialTopRight;
+         static ::i32_point s_pointInitialTopRight;
 
          if (s_pointInitialTopRight.is_null())
          {
@@ -3689,7 +3689,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   ::int_point window::windowing_popup_origin()
+   ::i32_point window::windowing_popup_origin()
    {
 
       auto p = user_interaction()->const_layout().sketch().origin();
@@ -3711,7 +3711,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   ::int_size window::windowing_popup_size()
+   ::i32_size window::windowing_popup_size()
    {
 
       auto s = user_interaction()->const_layout().sketch().size();
@@ -4095,8 +4095,8 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //   return false;
 //    //}
 //
-//    //void window::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::int_point * pptDst,::int_size * psize,
-//    //      ::draw2d::graphics * pDCSrc,::int_point * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,::u32 dwFlags)
+//    //void window::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::i32_point * pptDst,::i32_size * psize,
+//    //      ::draw2d::graphics * pDCSrc,::i32_point * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,::u32 dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pDCDst);
 //    //   __UNREFERENCED_PARAMETER(pptDst);
@@ -5042,7 +5042,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 #endif
       {
 
-         ::int_point pointInvalid; // For long future hope still : Invalid
+         ::i32_point pointInvalid; // For long future hope still : Invalid
 
          minimum(pointInvalid.x);
          minimum(pointInvalid.y);
@@ -5051,7 +5051,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
          //::pointer<::user::interaction>pinteraction;
 
-         //::int_rectangle rectangleUi;
+         //::i32_rectangle rectangleUi;
 
          //auto psession = session();
 
@@ -5430,7 +5430,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::_on_mouse_move_step(const ::int_point& pointCursor, bool bMouseLeave)
+   void window::_on_mouse_move_step(const ::i32_point& pointCursor, bool bMouseLeave)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -5478,7 +5478,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //   void window::mouse_hover_step(const __status < ::int_point > & statusPointCursor)
+   //   void window::mouse_hover_step(const __status < ::i32_point > & statusPointCursor)
    //   {
    //
    //      decltype(m_uiptraMouseHover) uia;
@@ -5551,7 +5551,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   // void window::_on_mouse_move_step(const ::int_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
+   // void window::_on_mouse_move_step(const ::i32_point & pointCursor, ::user::enum_layout elayoutChild, bool bMouseLeave)
    // {
 
 
@@ -6426,13 +6426,13 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //   if (m_bTranslateMouseMessageCursor && !pmouse->m_bTranslated)
       //   {
       //      pmouse->m_bTranslated = true;
-      //      ::int_rectangle rectWindow;
+      //      ::i32_rectangle rectWindow;
       //      //            if(m_bScreenRelativeMouseMessagePosition)
       //      //            {
       //      //
       //      //               INFO("Screen Relative Mouse Message Position");
       //      //
-      //      //               ::int_rectangle rectWindow32;
+      //      //               ::i32_rectangle rectWindow32;
       //      //
       //      //               ::window_rectangle((oswindow) get_handle(), &rectWindow32);
       //      //
@@ -6451,7 +6451,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       //      //if (pdisplay->get_monitor_count() > 0)
       //      //{
 
-      //      //   ::int_rectangle rcMonitor;
+      //      //   ::i32_rectangle rcMonitor;
 
       //      //   pdisplay->get_monitor_rectangle(0, rcMonitor);
 
@@ -7137,7 +7137,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::ScrollWindow(int xAmount,int yAmount, const ::int_rectangle * pcrect, const ::int_rectangle * pcrectClip)
+   //void window::ScrollWindow(int xAmount,int yAmount, const ::i32_rectangle * pcrect, const ::i32_rectangle * pcrectClip)
    //{
 
    //   __UNREFERENCED_PARAMETER(xAmount);
@@ -7150,7 +7150,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::CalcWindowRect(::int_rectangle * pClientRect,::u32 nAdjustType)
+   //void window::CalcWindowRect(::i32_rectangle * pClientRect,::u32 nAdjustType)
    //{
 
    //   __UNREFERENCED_PARAMETER(pClientRect);
@@ -7705,7 +7705,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point& point)
    {
 
       auto pmessage = user_interaction()->get_message(eusermessage, wparam, lparam);
@@ -7846,7 +7846,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //   }
 
 
-   //void window::DragDetect(const ::int_point & point) const
+   //void window::DragDetect(const ::i32_point & point) const
    //{
    //   __UNREFERENCED_PARAMETER(point);
    //   throw ::interface_only();
@@ -7954,7 +7954,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
    void
-      window::MapWindowPoints(::windowing::window* puserinteractionTo, ::int_point* pPoint, ::u32 nCount)
+      window::MapWindowPoints(::windowing::window* puserinteractionTo, ::i32_point* pPoint, ::u32 nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -7966,7 +7966,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::MapWindowPoints(::windowing::window* puserinteractionTo, ::int_rectangle* prectangle)
+   void window::MapWindowPoints(::windowing::window* puserinteractionTo, ::i32_rectangle* prectangle)
    {
       __UNREFERENCED_PARAMETER(puserinteractionTo);
       __UNREFERENCED_PARAMETER(prectangle);
@@ -7985,7 +7985,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   throw ::interface_only();
    //}
 
-   //void window::GetUpdateRect(::int_rectangle * prectangle,bool bErase)
+   //void window::GetUpdateRect(::i32_rectangle * prectangle,bool bErase)
 
    //{
    //   __UNREFERENCED_PARAMETER(prectangle);
@@ -8016,7 +8016,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::InvalidateRect(const ::int_rectangle & rectangle, bool bErase)
+   //void window::InvalidateRect(const ::i32_rectangle & rectangle, bool bErase)
    //{
 
    //   __UNREFERENCED_PARAMETER(rectangle);
@@ -8035,7 +8035,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::ValidateRect(const ::int_rectangle & rectangle)
+   //void window::ValidateRect(const ::i32_rectangle & rectangle)
    //{
 
    //   __UNREFERENCED_PARAMETER(rectangle);
@@ -8318,7 +8318,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //bool window::needs_to_draw(const ::int_rectangle & rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics)
+   //bool window::needs_to_draw(const ::i32_rectangle & rectangleHostNeedsToDraw, ::draw2d::graphics_pointer & pgraphics)
    //{
 
    //   synchronous_lock synchronouslock(synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -8408,7 +8408,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
    bool
-      window::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
+      window::RedrawWindow(const ::i32_rectangle& rectangleUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
    {
 
       user_interaction()->set_need_redraw();
@@ -8432,7 +8432,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //::int_point window::get_cursor_position() const
+   //::i32_point window::get_cursor_position() const
    //{
 
    //   auto psession = session();
@@ -8440,7 +8440,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   if (!psession)
    //   {
 
-   //      return ::int_point();
+   //      return ::i32_point();
 
    //   }
 
@@ -8506,7 +8506,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::DrawCaption(::draw2d::graphics_pointer & pgraphics,const int_rectangle & prc,::u32 uFlags)
+   //void window::DrawCaption(::draw2d::graphics_pointer & pgraphics,const i32_rectangle & prc,::u32 uFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -8723,9 +8723,9 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
    //int window::ScrollWindowEx(int Δx,int Δy,
-   //                                     const ::int_rectangle * prectScroll,
-   //                                       const ::int_rectangle * prectClip,
-   //                                     ::draw2d::region* prgnUpdate,::int_rectangle * pRectUpdate,::u32 flags)
+   //                                     const ::i32_rectangle * prectScroll,
+   //                                       const ::i32_rectangle * prectClip,
+   //                                     ::draw2d::region* prgnUpdate,::i32_rectangle * pRectUpdate,::u32 flags)
    //{
 
    //   __UNREFERENCED_PARAMETER(Δx);
@@ -8754,7 +8754,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   ::user::interaction* window::ChildWindowFromPoint(const ::int_point& point)
+   ::user::interaction* window::ChildWindowFromPoint(const ::i32_point& point)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -8766,7 +8766,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   ::user::interaction* window::ChildWindowFromPoint(const ::int_point& point, ::u32 nFlags)
+   ::user::interaction* window::ChildWindowFromPoint(const ::i32_point& point, ::u32 nFlags)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -13426,7 +13426,7 @@ slGraphics.unlock();
    //}
 
 
-   //CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::int_rectangle & rectangle)
+   //CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::i32_rectangle & rectangle)
    //{
 
    //   ASSERT(::is_set(pinteraction));
@@ -13435,7 +13435,7 @@ slGraphics.unlock();
 
    //   ASSERT(puiParent != nullptr);
 
-   //   ::int_rectangle rectangleOld;
+   //   ::i32_rectangle rectangleOld;
 
    //   pinteraction->window_rectangle(rectangleOld);
 
@@ -14919,7 +14919,7 @@ slGraphics.unlock();
    //         //}
    //         // END Commented on Windows
    //
-   //         ::int_point pointBottomRight = pointOutput + sizeOutput;
+   //         ::i32_point pointBottomRight = pointOutput + sizeOutput;
    //
    //         //informationf("SetWindowPos bottom_right " + as_string(pointBottomRight.x) + ", " + as_string(pointBottomRight.y) + "\n");
    //
@@ -15297,7 +15297,7 @@ slGraphics.unlock();
    //             && !user_interaction()->is_window_docking())
 
 
-   void window::on_configure(const ::int_rectangle& rectangle)
+   void window::on_configure(const ::i32_rectangle& rectangle)
    {
 
       if (!user_interaction()->is_window_repositioning()
@@ -15318,7 +15318,7 @@ slGraphics.unlock();
    }
 
 
-   void window::_on_configure(const ::int_rectangle& rectangle)
+   void window::_on_configure(const ::i32_rectangle& rectangle)
    {
 
       if (user_interaction()->const_layout().sketch().display() !=
@@ -15394,7 +15394,7 @@ slGraphics.unlock();
 
    }
 
-   //   void window::on_resize(const ::int_size & size)
+   //   void window::on_resize(const ::i32_size & size)
    //   {
    //
    //      if (user_interaction()->const_layout().sketch().display() != e_display_iconic)
@@ -15772,11 +15772,11 @@ slGraphics.unlock();
 
       non_top_most_upper_window_rects(recta);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       user_interaction()->window_rectangle(rectangle);
 
-      ::int_rectangle rTest;
+      ::i32_rectangle rTest;
 
       for (auto& rHigher : recta)
       {
@@ -15811,14 +15811,14 @@ slGraphics.unlock();
 
       }
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       user_interaction()->window_rectangle(rectangle);
 
       for (auto& rHigher : ra)
       {
 
-         ::int_rectangle rTest;
+         ::i32_rectangle rTest;
 
          if (rTest.intersect(rHigher, rectangle))
          {
@@ -15870,7 +15870,7 @@ slGraphics.unlock();
       }
 
       // Second Remove Partial Intersections which:
-      // Intersection area is less than third the area of the int_rectangle with bigger area.
+      // Intersection area is less than third the area of the i32_rectangle with bigger area.
 
    restartPartialIntersectionExclusionEx:
 
@@ -15925,7 +15925,7 @@ slGraphics.unlock();
    }
 
 
-   ::i64 window::opaque_area(const ::int_rectangle& rect)
+   ::i64 window::opaque_area(const ::i32_rectangle& rect)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -15936,7 +15936,7 @@ slGraphics.unlock();
 
       ::color::color colorTransparent(::color::transparent);
 
-      ::int_rectangle rectangle(rect);
+      ::i32_rectangle rectangle(rect);
 
       user_interaction()->screen_to_client()(rectangle);
 
@@ -15945,10 +15945,10 @@ slGraphics.unlock();
    }
 
 
-   ::i64 window::_001GetRectTopLeftWeightedArea(const ::int_rectangle& rect)
+   ::i64 window::_001GetRectTopLeftWeightedArea(const ::i32_rectangle& rect)
    {
 
-      ::int_rectangle rectangle(rect);
+      ::i32_rectangle rectangle(rect);
 
       user_interaction()->screen_to_client()(rectangle);
 
@@ -15968,7 +15968,7 @@ slGraphics.unlock();
 
       ::color::color colorTransparent(::color::transparent);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       user_interaction()->window_rectangle(rectangle);
 
@@ -15995,7 +15995,7 @@ slGraphics.unlock();
 
       ::color::color colorTransparent(::color::transparent);
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       user_interaction()->window_rectangle(rectangle);
 
@@ -16727,7 +16727,7 @@ slGraphics.unlock();
    //   }
 
 
-      //void window::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::int_rectangle * prectParam, const int_rectangle & rectangleX, bool bStretch)
+      //void window::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::i32_rectangle * prectParam, const i32_rectangle & rectangleX, bool bStretch)
       //{
 
       //   if (!_is_window())
@@ -16867,14 +16867,14 @@ slGraphics.unlock();
    }
 
 
-   //void window::on_configure(const ::int_rectangle & rectangle)
+   //void window::on_configure(const ::i32_rectangle & rectangle)
    //{
 
 
    //}
 
 
-   //   void window::on_resize(const ::int_size & size)
+   //   void window::on_resize(const ::i32_size & size)
    //   {
    //
    //
@@ -17029,7 +17029,7 @@ slGraphics.unlock();
    }
 
 
-   void window::viewport_client_to_screen(::int_rectangle& rectangle)
+   void window::viewport_client_to_screen(::i32_rectangle& rectangle)
    {
 
       viewport_client_to_screen(rectangle.top_left());
@@ -17039,11 +17039,11 @@ slGraphics.unlock();
    }
 
 
-   void window::viewport_screen_to_client(::int_rectangle& rectangle)
+   void window::viewport_screen_to_client(::i32_rectangle& rectangle)
    {
 
-      viewport_screen_to_client((::int_point&)rectangle.top_left());
-      viewport_screen_to_client((::int_point&)rectangle.bottom_right());
+      viewport_screen_to_client((::i32_point&)rectangle.top_left());
+      viewport_screen_to_client((::i32_point&)rectangle.bottom_right());
 
    }
 
@@ -17282,7 +17282,7 @@ slGraphics.unlock();
    //}
 
 
-   //lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point & point)
+   //lresult window::send_message(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point & point)
    //{
 
    //   return message_call(eusermessage, wparam, lparam, point);
@@ -17543,7 +17543,7 @@ slGraphics.unlock();
    //
    //         pmessage->m_nType = static_cast <::u32> (wparam);
    //
-   //         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
+   //         pmessage->m_size = ::i32_size(lparam_int_x(lparam), lparam_int_y(lparam));
    //      }
    //      break;
    //      case ::user::e_message_prototype_activate:
@@ -17695,7 +17695,7 @@ slGraphics.unlock();
 
          //}
 
-         //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point)
+         //::user::interaction * window::ChildWindowFromPoint(const ::i32_point & point)
          //{
 
          //   return nullptr;
@@ -17703,7 +17703,7 @@ slGraphics.unlock();
          //}
 
 
-         //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point, ::u32 nFlags)
+         //::user::interaction * window::ChildWindowFromPoint(const ::i32_point & point, ::u32 nFlags)
          //{
 
          //   return nullptr;
@@ -17932,7 +17932,7 @@ slGraphics.unlock();
    //}
 
 
-   //bool window::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   //bool window::RedrawWindow(const ::i32_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   if (!user_interaction())
@@ -18512,7 +18512,7 @@ slGraphics.unlock();
    }
 
 
-   lresult window::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::int_point& point)
+   lresult window::message_call(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam, const ::i32_point& point)
    {
 
       ::pointer<::message::message>pmessage;
@@ -18648,7 +18648,7 @@ slGraphics.unlock();
    //}
 
 
-   //bool window::get_rect_normal(::int_rectangle * prectangle)
+   //bool window::get_rect_normal(::i32_rectangle * prectangle)
    //{
 
    //   *prectangle = user_interaction()->screen_rectangle();
@@ -19458,7 +19458,7 @@ slGraphics.unlock();
       //}
 
 
-      //void window::InvalidateRect(::int_rectangle const &,bool)
+      //void window::InvalidateRect(::i32_rectangle const &,bool)
       //{
 
 
@@ -19472,7 +19472,7 @@ slGraphics.unlock();
       //}
 
 
-      //void window::ValidateRect(::int_rectangle const &)
+      //void window::ValidateRect(::i32_rectangle const &)
       //{
 
 
@@ -19593,14 +19593,14 @@ slGraphics.unlock();
 
    //}
 
-   void window::_raw_client_to_screen(::int_point& point)
+   void window::_raw_client_to_screen(::i32_point& point)
    {
 
       user_interaction()->client_to_screen(::user::e_layout_design)(point);
 
    }
 
-   void window::_raw_screen_to_client(::int_point& point)
+   void window::_raw_screen_to_client(::i32_point& point)
    {
 
       user_interaction()->screen_to_client(::user::e_layout_design)(point);
@@ -19743,7 +19743,7 @@ slGraphics.unlock();
    void window::_017_on_window_get_configuration()
    {
 
-      auto r = ::int_rectangle(m_pointWindow, m_sizeWindow);
+      auto r = ::i32_rectangle(m_pointWindow, m_sizeWindow);
 
       _on_configure_notify_unlocked(r);
 
@@ -19780,7 +19780,7 @@ slGraphics.unlock();
 
       auto puserinteraction = user_interaction();
 
-      ::int_size s(cx, cy);
+      ::i32_size s(cx, cy);
 
       if (m_sizeWindow != s)
       {
@@ -19804,7 +19804,7 @@ slGraphics.unlock();
 
       }
 
-      ::int_point p(x, y);
+      ::i32_point p(x, y);
 
       if (m_pointWindow != p)
       {

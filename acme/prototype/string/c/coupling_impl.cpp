@@ -349,7 +349,7 @@ CLASS_DECL_ACME character_count wide_cspn(const ::wide_character * psz1, const :
 
 #else
 
-#error "Not supported ::wide_character int_size"
+#error "Not supported ::wide_character i32_size"
 
 #endif
 

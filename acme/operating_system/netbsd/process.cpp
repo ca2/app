@@ -473,10 +473,10 @@
 //}
 //
 //
-//::int_array_base module_path_get_pid(const ::file::path & path)
+//::i32_array_base module_path_get_pid(const ::file::path & path)
 //{
 //
-//   ::int_array_base ia;
+//   ::i32_array_base ia;
 //
 //   ::file::path_array_base stra;
 //

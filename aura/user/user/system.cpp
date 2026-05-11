@@ -37,7 +37,7 @@ namespace user
    }
 
 
-   //system::system(::u32 uiExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::int_rectangle rectangle, ::request * prequest) :
+   //system::system(::u32 uiExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::i32_rectangle rectangle, ::request * prequest) :
    //system(rectangle)
    //{
 
@@ -51,8 +51,8 @@ namespace user
    //}
 
 
-   //system::system(const ::int_rectangle & rectangle, ::u32 uExStyle, ::u32 uStyle, ::request * prequest)
-   //system::system(const ::int_rectangle& rectangle, ::create* pcreate)
+   //system::system(const ::i32_rectangle & rectangle, ::u32 uExStyle, ::u32 uStyle, ::request * prequest)
+   //system::system(const ::i32_rectangle& rectangle, ::create* pcreate)
    system::system(::request * prequest)
    {
 
@@ -145,7 +145,7 @@ namespace user
    //}
 
 
-   //void system::set_rect(const ::int_rectangle & rectangle)
+   //void system::set_rect(const ::i32_rectangle & rectangle)
    //{
 
    //   m_createstruct.x = rectangle.left;
@@ -316,7 +316,7 @@ namespace user
    }
 
 
-   //void system::get_rect(::int_rectangle * lprect)
+   //void system::get_rect(::i32_rectangle * lprect)
    //{
 
    //   lprect->left = m_createstruct.x;

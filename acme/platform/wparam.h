@@ -146,7 +146,7 @@ public:
    constexpr short hiword() const { return __hiword(m_wparam); }
    constexpr short loword() const { return __loword(m_wparam); }
 
-   constexpr ::int_point point() const;
+   constexpr ::i32_point point() const;
 
 };
 

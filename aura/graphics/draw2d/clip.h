@@ -40,7 +40,7 @@ namespace draw2d
 
    };
 
-   using clip_rectangle = clip_item_base < ::int_rectangle, e_clip_item_rectangle >;
+   using clip_rectangle = clip_item_base < ::i32_rectangle, e_clip_item_rectangle >;
    using clip_ellipse = clip_item_base < ::double_ellipse, e_clip_item_ellipse >;
    using clip_polygon = clip_item_base < ::double_polygon, e_clip_item_polygon >;
 

@@ -291,7 +291,7 @@ namespace user
    ::user::item * menu_impact::layout_user_item_by_index(::collection::index iMenuItemIndex)
    {
 
-      //::status < ::int_rectangle > rectangleMenuItem;
+      //::status < ::i32_rectangle > rectangleMenuItem;
 
       int iHeight = (int) ( m_pfontTitle->m_fontsize.as_double() * 1.25 + 20);
 
@@ -369,12 +369,12 @@ namespace user
    }
 
 
-   ::item_pointer menu_impact::on_hit_test(const ::int_point &point, ::user::e_zorder ezorder)
+   ::item_pointer menu_impact::on_hit_test(const ::i32_point &point, ::user::e_zorder ezorder)
    {
 
       //index iPos = 0;
 
-      ::status < ::int_rectangle > statusrectangle;
+      ::status < ::i32_rectangle > statusrectangle;
 
       for (int i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
@@ -460,7 +460,7 @@ namespace user
 
       //construct_newø(m_pitema);
 
-//      ::int_rectangle rectangle;
+//      ::i32_rectangle rectangle;
 
       int_rectangle_array_base raMenu;
 
@@ -500,7 +500,7 @@ namespace user
 
          iPos++;
 
-         ::int_rectangle rectanglePopupTotal = puseritemPopup->m_rectangle2;
+         ::i32_rectangle rectanglePopupTotal = puseritemPopup->m_rectangle2;
 
          for (int j = 0; j < pmenuitemPopup->m_pmenuitema->get_count(); j++)
          {
@@ -611,7 +611,7 @@ namespace user
             if (pimage1->is_set())
             {
 
-               ::int_rectangle rectangleDib;
+               ::i32_rectangle rectangleDib;
 
                rectangleDib.left = puseritem->m_rectangle2.right - pimage1->width() - 10;
                rectangleDib.top = puseritem->m_rectangle2.top + (puseritem->m_rectangle2.height() - pimage1->height()) / 2;
@@ -747,7 +747,7 @@ namespace user
 
       int iPos = 0;
 
-      ::status < ::int_rectangle > statusrectangle;
+      ::status < ::i32_rectangle > statusrectangle;
 
       int iMenu;
 
@@ -840,7 +840,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->line(
@@ -854,7 +854,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::int_point& point1, const ::int_point& point2)
+   void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::i32_point& point1, const ::i32_point& point2)
    {
 
       pgraphics->line(
@@ -864,7 +864,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
@@ -883,7 +883,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->line(
@@ -897,7 +897,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -913,7 +913,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -955,7 +955,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle)
+   void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -997,7 +997,7 @@ namespace user
    }
 
 
-   void menu_impact::draw_item_separator(::draw2d::graphics_pointer& pgraphics, const ::int_point& point1, const ::int_point& point2)
+   void menu_impact::draw_item_separator(::draw2d::graphics_pointer& pgraphics, const ::i32_point& point1, const ::i32_point& point2)
    {
 
       pgraphics->line(point1, point2);

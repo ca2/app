@@ -12,7 +12,7 @@ namespace gpu
    public:
 
 
-      ::int_rectangle      m_rectangle;
+      ::i32_rectangle      m_rectangle;
       ::gpu::texture *     m_pgputexture;
 
 
@@ -20,10 +20,10 @@ namespace gpu
       ~pixmap() override;
 
 
-      virtual ::int_size size();
+      virtual ::i32_size size();
 
 
-      virtual void initialize_gpu_pixmap(::gpu::texture * pgputexture, const ::int_rectangle& rectangle);
+      virtual void initialize_gpu_pixmap(::gpu::texture * pgputexture, const ::i32_rectangle& rectangle);
       virtual void on_initialize_gpu_pixmap();
 
       virtual void set_pixels(const void* data);

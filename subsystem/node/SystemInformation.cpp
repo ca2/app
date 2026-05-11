@@ -46,13 +46,13 @@ namespace subsystem
 //   }
 //
 //
-//   void SystemInformation::getDesktopAllArea(int_rectangle & rectangle)
+//   void SystemInformation::getDesktopAllArea(i32_rectangle & rectangle)
 //   {
 ////      GetClientRect(GetDesktopWindow(), rc);
 //      m_pparticleThis->getDesktopAllArea(rectangle);
 //   }
 //
-//   bool SystemInformation::getDesktopArea(int_rectangle & rectangle)
+//   bool SystemInformation::getDesktopArea(i32_rectangle & rectangle)
 //   {
 //  //    return !!SystemParametersInfo(SPI_GETWORKAREA, 0, rc, 0);
 //

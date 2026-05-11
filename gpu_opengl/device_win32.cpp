@@ -93,7 +93,7 @@ namespace gpu_opengl
    }
 
 
-   void device_win32::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::int_rectangle& rectanglePlacement)
+   void device_win32::initialize_gpu_device_for_off_screen(::gpu::approach* papproach, const ::i32_rectangle& rectanglePlacement)
    {
 
       ::gpu::device::initialize_gpu_device_for_off_screen(papproach, rectanglePlacement);
@@ -109,7 +109,7 @@ namespace gpu_opengl
    }
 
 
-   void device_win32::_defer_create_offscreen_window(const ::int_size& size)
+   void device_win32::_defer_create_offscreen_window(const ::i32_size& size)
    {
 
       if (::is_set(m_pwindow))
@@ -179,7 +179,7 @@ namespace gpu_opengl
 //   extern PFNWGLCHOOSEPIXELFORMATARBPROC loaded_wglChoosePixelFormatARB;
 //
 //
-//   void device_win32::_create_device(const ::int_size& size)
+//   void device_win32::_create_device(const ::i32_size& size)
 //   {
 //
 //      if (m_hdc && m_hglrc)
@@ -362,7 +362,7 @@ namespace gpu_opengl
 ////    0
 ////};
 //
-//int_array_base pixelAttribs;
+//i32_array_base pixelAttribs;
 //
 //
 //pixelAttribs.append({ WGL_DRAW_TO_WINDOW_ARB, GL_TRUE });
@@ -639,7 +639,7 @@ namespace gpu_opengl
 
    //   ::GetClientRect(m_hwnd, &rectClient);
 
-   //   ::int_size sizeNew = { rectClient.right - rectClient.left,
+   //   ::i32_size sizeNew = { rectClient.right - rectClient.left,
    //rectClient.bottom - rectClient.top };
 
    //   if (m_size != sizeNew)
@@ -683,7 +683,7 @@ namespace gpu_opengl
    //}
 
 
-   //void device_win32::_create_offscreen_buffer(const ::int_size& size)
+   //void device_win32::_create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   _create_offscreen_window(size);
@@ -716,7 +716,7 @@ namespace gpu_opengl
    //}
 
 
-   //void device_win32::resize_offscreen_buffer(const ::int_size& sizeParam)
+   //void device_win32::resize_offscreen_buffer(const ::i32_size& sizeParam)
    //{
 
    //   if (m_papplication->m_bUseSwapChainWindow)

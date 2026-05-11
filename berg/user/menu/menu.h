@@ -19,7 +19,7 @@ namespace user
       
       ::pointer<::user::menu>                m_pmenuParent;
       ::pointer<::menu::item>                m_pmenuitem;
-      ::int_size                             m_sizeMinimum;
+      ::i32_size                             m_sizeMinimum;
       ::pointer<::menu::item>                m_pmenuitemShowSubMenu2;
       bool                                   m_bHideSubMenu2;
       ///::pointer<::user::interaction>        m_puserinteractionParent;
@@ -30,7 +30,7 @@ namespace user
 //      HMENU                                  m_hmenu;
 //#endif
       bool                                   m_bOwnItem;
-      ::int_size                             m_size;
+      ::i32_size                             m_size;
       double                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
@@ -41,18 +41,18 @@ namespace user
       ::u32                                    m_dwOut;
       ::pointer<menu>                        m_pmenuSubMenu;
       //atom                                 m_atomTimerMenu;
-      int_point                              m_pointTrack;
+      i32_point                              m_pointTrack;
       bool                                   m_bScreenHint;
-      int_rectangle                          m_rectangleScreenHint;
+      i32_rectangle                          m_rectangleScreenHint;
       //int                                  m_iFlags;
       ::menu::e_track_popup                  m_etrackpopup;
       bool                                   m_bCursorHint;
-      ::int_point                            m_pointCursorHint;
+      ::i32_point                            m_pointCursorHint;
       bool                                   m_bInline;
       bool                                   m_bMenuOk;
       ::pointer<::menu::item>                m_pmenuitemSub;
-      ::int_array_base                            m_iaColumnWidth;
-      ::int_array_base                            m_iaColumnHeight;
+      ::i32_array_base                            m_iaColumnWidth;
+      ::i32_array_base                            m_iaColumnHeight;
       bool                                   m_bCloseButton;
 
 
@@ -61,7 +61,7 @@ namespace user
       ~menu() override;
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
-      ::int_size get_window_minimum_size() override;
+      ::i32_size get_window_minimum_size() override;
 
       bool is_menu() const override;
 
@@ -94,8 +94,8 @@ namespace user
       virtual bool contains_menu_item(::menu::item * pitem, bool bRecursive = true) const;
 
       virtual void update_track_flags(const ::menu::e_track_popup & etrackpopup);
-      virtual void update_track_cursor(const ::int_point & pointCursorHint);
-      virtual void update_track_rectangle(const ::int_rectangle & rectangleScreenHint);
+      virtual void update_track_cursor(const ::i32_point & pointCursorHint);
+      virtual void update_track_rectangle(const ::i32_rectangle & rectangleScreenHint);
       virtual void track_hints(::menu::track_popup * ptrackpopup);
 
       virtual bool create_menu(::channel * pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
@@ -160,7 +160,7 @@ namespace user
       virtual void update_command(::menu::item * pitemParent);
 
       void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, int & iMaxWidth, int & iMaxHeight);
-      void layout_buttons(::menu::item * pitem, int iMaxWidth, ::int_rectangle * prectangle, const ::int_rectangle & lpcrectBound);
+      void layout_buttons(::menu::item * pitem, int iMaxWidth, ::i32_rectangle * prectangle, const ::i32_rectangle & lpcrectBound);
 
 
 

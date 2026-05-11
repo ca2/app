@@ -24,7 +24,7 @@ namespace gpu_gpu
       // ::pointer < ::gpu_opengl::frame_buffer >   m_pframebuffer;
       // ::pointer < ::gpu_opengl::shader >   m_pshaderCopy;
       // ::pointer < ::gpu_opengl::shader >   m_pshaderBlend3;
-      // ::int_size                    m_sizeHost;
+      // ::i32_size                    m_sizeHost;
       // ::pointer < ::gpu::model_buffer >      m_pmodelbufferDummy;
       // //bool m_bMesa;
       //
@@ -38,7 +38,7 @@ namespace gpu_gpu
       //
       // GLuint                           m_gluTextureBitmap1;
       // int                              m_iLastBitmap1Scan;
-      // ::int_size                       m_sizeBitmap1;
+      // ::i32_size                       m_sizeBitmap1;
       //
       // memory                           m_memorySwap;
       //
@@ -70,7 +70,7 @@ namespace gpu_gpu
 //       void _context_lock() override;
 //       void _context_unlock() override;
 //
-//       virtual void update_framebuffer(const ::int_size& size);
+//       virtual void update_framebuffer(const ::i32_size& size);
 //       //void gpu_debug_message(const ::scoped_string& scopedstrMessage) override;
 //       void start_debug_happening(const ::scoped_string& scopedstrMessage) override;
 //       ::memory rectangle_shader_vert() override;
@@ -83,10 +83,10 @@ namespace gpu_gpu
 //       void load_generic_texture(::pointer < ::gpu::texture > & ptexture, const file::path &path, int iAssimpTextureType) override;
 //
 //
-//       //virtual void create_offscreen_buffer(const ::int_size& size);
-//       //virtual void _create_offscreen_buffer(const ::int_size& size);
+//       //virtual void create_offscreen_buffer(const ::i32_size& size);
+//       //virtual void _create_offscreen_buffer(const ::i32_size& size);
 //
-//       //virtual void resize_offscreen_buffer(const ::int_size& size);
+//       //virtual void resize_offscreen_buffer(const ::i32_size& size);
 //       //virtual void destroy_offscreen_buffer();
 //
 //    /*   virtual void translate_shader(string & str);
@@ -101,19 +101,19 @@ namespace gpu_gpu
 //
 //
 //
-//       virtual void _create_offscreen_window(const ::int_size & size);
+//       virtual void _create_offscreen_window(const ::i32_size & size);
 //
 //       void copy(::gpu::texture* ptextureTarget, ::gpu::texture* ptextureSource) override;
 //
-//       void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::int_size& size) override;
+//       void on_create_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::windowing::window* pwindow, const ::i32_size& size) override;
 //
 //       void defer_create_window_context(::windowing::window * pwindow) override;
 //       void _defer_create_window_context(::windowing::window * pwindow) override;
 //       virtual void _create_window_context(::windowing::window * pwindow);
 //
 //       virtual void _create_window_buffer();
-//       void _create_cpu_buffer(const ::int_size& size) override;
-//       void resize_cpu_buffer(const ::int_size& size) override;
+//       void _create_cpu_buffer(const ::i32_size& size) override;
+//       void resize_cpu_buffer(const ::i32_size& size) override;
 //       void destroy_cpu_buffer() override;
 //
 //

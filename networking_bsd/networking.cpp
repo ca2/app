@@ -836,7 +836,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(allocateø< ::networking_bsd::ipv4_address(get_app >(), *int_point));
+            addr(allocateø< ::networking_bsd::ipv4_address(get_app >(), *i32_point));
             return addr;
          }
          break;
@@ -845,7 +845,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(allocateø< ::networking_bsd::ipv6_address(get_app >(), *int_point));
+            addr(allocateø< ::networking_bsd::ipv6_address(get_app >(), *i32_point));
             return addr;
          }
          break;
@@ -2358,7 +2358,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(allocateø< ::networking_bsd::ipv4_address(get_app >(), *int_point));
+            addr(allocateø< ::networking_bsd::ipv4_address(get_app >(), *i32_point));
             return addr;
          }
          break;
@@ -2367,7 +2367,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(allocateø< ::networking_bsd::ipv6_address(get_app >(), *int_point));
+            addr(allocateø< ::networking_bsd::ipv6_address(get_app >(), *i32_point));
             return addr;
          }
          break;

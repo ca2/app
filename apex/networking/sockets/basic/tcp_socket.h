@@ -174,8 +174,8 @@ namespace sockets
       tcp_socket();
       /** Constructor with custom values for i/o buffer.
       \lparam h base_socket_handler object
-      \lparam isize Input buffer int_size
-      \lparam osize Output buffer int_size */
+      \lparam isize Input buffer i32_size
+      \lparam osize Output buffer i32_size */
       //tcp_socket(memsize isize,memsize osize);
       ~tcp_socket() override;
 

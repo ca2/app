@@ -37,8 +37,8 @@ namespace xcb
             //bool                          m_bNcActive;
 
             manual_reset_happening              m_happeningEnd;
-            //int_rectangle                 m_rectangle;
-            //int_rectangle                 m_rectangleX;
+            //i32_rectangle                 m_rectangle;
+            //i32_rectangle                 m_rectangleX;
 
             //pointer_array < ::micro::child >   m_childa;
             //::atom                          m_atomLeftButtonDown;
@@ -117,13 +117,13 @@ namespace xcb
 
             //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-            void move_to(const ::int_point & point) override;
+            void move_to(const ::i32_point & point) override;
 
             void redraw() override;
 
-            void get_client_rectangle(::int_rectangle & rectangle) override;
+            void get_client_rectangle(::i32_rectangle & rectangle) override;
 
-            void get_window_rectangle(::int_rectangle & rectangle) override;
+            void get_window_rectangle(::i32_rectangle & rectangle) override;
 
             void set_mouse_capture() override;
 
@@ -134,7 +134,7 @@ namespace xcb
             virtual void _get_geometry(xcb_get_geometry_reply_t * pgeometry);
 
 
-            //::int_size get_main_screen_size() override;
+            //::i32_size get_main_screen_size() override;
 
 
          };

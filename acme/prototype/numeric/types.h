@@ -76,14 +76,14 @@ typedef u64 uptr;
 #endif
 
 #define DO_FOR_NUMBER_TYPES(DO) \
-DO(char, char, ch, CHAR); \
-DO(unsigned char, unsigned_char, uch, UNSIGNED_CHAR); \
-DO(short, short, sh, SHORT); \
-DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
-DO(int, int, i, INT); \
-DO(::u32, unsigned_int, ui, UNSIGNED_INT); \
-DO(::i64, long_long, ll, HUGE_INTEGER); \
-DO(::u64, unsigned_long_long, ull, HUGE_NATURAL); \
+DO(i8, i8, i8, CHAR); \
+DO(u8, u8, u8, UNSIGNED_CHAR); \
+DO(i16, i16, i16, SHORT); \
+DO(u16, u16, u16, UNSIGNED_SHORT); \
+DO(i32, i32, i32, INT); \
+DO(u32, u32, u32, UNSIGNED_INT); \
+DO(i64, i64, i64, HUGE_INTEGER); \
+DO(u64, u64, u64, HUGE_NATURAL); \
 DO(float, float, f, FLOAT); \
 DO(double, double, d, DOUBLE);
 

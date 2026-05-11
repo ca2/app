@@ -29,15 +29,15 @@ namespace experience_anthill
 
 
       void on_draw_frame(::draw2d::graphics_pointer & pgraphics) override;
-      void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight) override;
-      void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX);
-      void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_border eside);
-      //void GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * lprect, enum_border eside);
-      void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX);
-      void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_grip egrip);
-      void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle);
+      void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight) override;
+      void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX);
+      void draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside);
+      //void GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * lprect, enum_border eside);
+      void DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX);
+      void DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_grip egrip);
+      void DrawRectGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle);
 
-      //::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      //::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
 
    };

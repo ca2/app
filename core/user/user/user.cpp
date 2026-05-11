@@ -785,7 +785,7 @@ namespace core
    //}
 
 //
-//   int user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::int_point & point, ::pointer<::user::interaction>puie)
+//   int user::track_popup_menu(const ::scoped_string & scopedstrMatter, const ::i32_point & point, ::pointer<::user::interaction>puie)
 //   {
 //
 //      //__UNREFERENCED_PARAMETER(scopedstrMatter);

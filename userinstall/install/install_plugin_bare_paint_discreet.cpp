@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
       double dRate = get_progress_rate();
@@ -21,11 +21,11 @@ namespace hotplugin
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
       int cx = rectangleWindow.right - rectangleWindow.left;
       int cy = rectangleWindow.bottom - rectangleWindow.top;
-      ::int_rectangle int_rectangle;
+      ::i32_rectangle i32_rectangle;
       rectangle.left = 0;
       rectangle.top = 0;
       rectangle.bottom = cy;
@@ -115,7 +115,7 @@ auto m_timeSync = ::time::now();
 
       auto ppathClip1 = createø < ::draw2d::path >();
 
-      ::int_rectangle rectangleClip1;
+      ::i32_rectangle rectangleClip1;
 
       rectangleClip1.left = rectangle.left + iBorder1;
       rectangleClip1.top = rectangle.top + iBorder1;
@@ -157,7 +157,7 @@ auto m_timeSync = ::time::now();
 
       auto ppathClip = createø < ::draw2d::path >();
 
-      ::int_rectangle rectangleClip;
+      ::i32_rectangle rectangleClip;
 
       rectangleClip.left = rectangle.left + cx / iRate - iBorder;
       rectangleClip.top = rectangle.top + (cy - iBarHeight) / 2 - iBorder;
@@ -174,7 +174,7 @@ auto m_timeSync = ::time::now();
       //pgraphics->exclude_clip(pathClip);
 
 
-      ::int_point pa[4];
+      ::i32_point pa[4];
 
       //Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
       //graphics2.FillRectangle(pbr, rectangle.left , rectangle.top, rectangle.left + cx, rectangle.top + cy);
@@ -234,7 +234,7 @@ auto m_timeSync = ::time::now();
 
       pbrush->create_solid(argb(84, 90, 90, 80));
 
-      ::int_rectangle r1;
+      ::i32_rectangle r1;
 
       r1.left = rectangle.left + cx / iRate - 1;
       r1.top = rectangle.top + (cy - iBarHeight) / 2 - 1;
@@ -264,7 +264,7 @@ auto m_timeSync = ::time::now();
       delete pbr;
       }
       }*/
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));

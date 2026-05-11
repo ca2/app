@@ -187,7 +187,7 @@ namespace innate_subsystem
 //       // }
 //    }
 //
-//    void ImagedButton::setIcon( IconInterface * picon, const ::int_size & size)
+//    void ImagedButton::setIcon( IconInterface * picon, const ::i32_size & size)
 //    {
 //       m_pparticleThis->setIcon(picon, size);
 //       // m_icon = icon;
@@ -195,10 +195,10 @@ namespace innate_subsystem
 //       // m_iconHeight = height;
 //    }
 //
-//    void ImagedButton::calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
+//    void ImagedButton::calcRect(::i32_rectangle & buttonRect, bool isButtonPressed,
 //                                ::u32 textWidth, ::u32 textHeight,
 //                                ::u32 imageWidth, ::u32 imageHeight,
-//                                ::int_rectangle &textRect, ::int_rectangle & imageRect)
+//                                ::i32_rectangle &textRect, ::i32_rectangle & imageRect)
 //    {
 //
 //       m_pparticleThis->calcRect(buttonRect, isButtonPressed,textWidth, textHeight,
@@ -225,7 +225,7 @@ namespace innate_subsystem
 //       // }
 //    }
 //
-//    // void ImagedButton::drawIcon(DeviceContextInterface* pdevicecontext, ::int_rectangle & imageRect, bool isPressed, bool isDisabled)
+//    // void ImagedButton::drawIcon(DeviceContextInterface* pdevicecontext, ::i32_rectangle & imageRect, bool isPressed, bool isDisabled)
 //    // {
 //    //    // DrawState(*dc, NULL, NULL, (::lparam)*m_icon, 0,
 //    //    //           imageRect->left, imageRect->top,

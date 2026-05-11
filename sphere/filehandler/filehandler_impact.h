@@ -25,9 +25,9 @@ namespace filehandler
          string         m_strApp;
          ::collection::index        m_iIndex;
 
-         ::int_rectangle         m_rectangleItem;
-         ::int_rectangle         m_rectangleStatusImage;
-         ::int_rectangle         m_rectangleName;
+         ::i32_rectangle         m_rectangleItem;
+         ::i32_rectangle         m_rectangleStatusImage;
+         ::i32_rectangle         m_rectangleName;
 
          item(::particle * pparticle);
 
@@ -49,7 +49,7 @@ namespace filehandler
 
          void parse(::filehandler::handler * phandler, const ::scoped_string & scopedstrTopic);
 
-         void on_layout(const ::int_rectangle * lpcrect);
+         void on_layout(const ::i32_rectangle * lpcrect);
          void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics);
 
       };

@@ -14,14 +14,14 @@ namespace user
    public:
 
 
-      ::int_rectangle      m_rectangleMargin;
+      ::i32_rectangle      m_rectangleMargin;
 
 
       margin_base();
       virtual ~margin_base();
 
 
-      virtual void get_margin_rect(::int_rectangle * prectMargin) override;
+      virtual void get_margin_rect(::i32_rectangle * prectMargin) override;
 
 
 
@@ -51,7 +51,7 @@ namespace user
 
       }
 
-//      void screen_to_client(::int_rectangle * prectangle)
+//      void screen_to_client(::i32_rectangle * prectangle)
 
       //    {
 

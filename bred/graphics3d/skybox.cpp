@@ -181,7 +181,7 @@ namespace graphics3d
 
       //auto scanCubeMap = pimageCubeMap->m_iScan;
 
-      ::int_point point;
+      ::i32_point point;
 
       ::pointer_array < ::image::image > imagea;
 
@@ -204,7 +204,7 @@ namespace graphics3d
 
       defer_constructø(m_ptexture);
 
-      ::gpu::texture_attributes textureattributes(::int_rectangle{sizeItem},8, 4, 0,0, 
+      ::gpu::texture_attributes textureattributes(::i32_rectangle{sizeItem},8, 4, 0,0, 
          ::gpu::e_texture_cube_map,  6);
 
       ::gpu::texture_flags textureflags;

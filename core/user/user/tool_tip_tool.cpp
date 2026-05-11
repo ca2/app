@@ -46,7 +46,7 @@ namespace user
       return (this);
    }
 
-   void tool_tip_tool::BaseToolTipGetRect(::int_rectangle * prectangle)
+   void tool_tip_tool::BaseToolTipGetRect(::i32_rectangle * prectangle)
 
    {
       __UNREFERENCED_PARAMETER(prectangle);

@@ -84,11 +84,11 @@ public:
 //   size_type(const RECTANGLE & rectangle) noexcept { this->cx = (UNIT_TYPE)::width(rectangle); this->cy = (UNIT_TYPE)::height(rectangle); }
 //   template < prototype_size SIZE >
 //   size_type(const SIZE & size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const ::long_long_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   //size_type(const ::i64_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    //size_type(const ::float_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    //size_type(const ::double_size& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   //size_type(const ::int_size* psize) noexcept : size_type(*psize) {}
-   //size_type(const ::long_long_size* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::i32_size* psize) noexcept : size_type(*psize) {}
+   //size_type(const ::i64_size* psize) noexcept : size_type(*psize) {}
    //size_type(const ::float_size* psize) noexcept : size_type(*psize) {}
    //size_type(const ::double_size* psize) noexcept : size_type(*psize) {}
 //#ifdef __APPLE__
@@ -97,8 +97,8 @@ public:
 //#endif
 
 
-   //operator ::int_size* () noexcept { return this; }
-   //operator const ::int_size* () const noexcept { return this; }
+   //operator ::i32_size* () noexcept { return this; }
+   //operator const ::i32_size* () const noexcept { return this; }
    //operator bool () const noexcept { return is_set(); }
 
    // constexpr const NUMBER & cx() const { return this->x; }
@@ -311,7 +311,7 @@ public:
 
 template < prototype_size SIZE >
 inline auto abs(const SIZE & size) noexcept { return SIZE(abs(size.cx), abs(size.cy)); }
-//inline auto abs(const ::long_long_size& size) noexcept { return ::long_long_size(abs(size.cx), abs(size.cy)); }
+//inline auto abs(const ::i64_size& size) noexcept { return ::i64_size(abs(size.cx), abs(size.cy)); }
 //inline auto abs(const ::float_size& size) noexcept { return ::float_size(abs(size.cx), abs(size.cy)); }
 //inline auto abs(const ::double_size& size) noexcept { return ::double_size(abs(size.cx), abs(size.cy)); }
 

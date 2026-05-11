@@ -239,53 +239,53 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       stream <<(*payload.m_pstr);
    }
    break;
-   case e_type_char:
-      stream << payload.m_ch;
+   case e_type_i8:
+      stream << payload.m_i8;
       break;
-   case e_type_short:
-      stream << payload.m_sh;
+   case e_type_i16:
+      stream << payload.m_i16;
       break;
-   case e_type_unsigned_char:
-      stream << payload.m_uch;
+   case e_type_u8:
+      stream << payload.m_u8;
       break;
-   case e_type_unsigned_short:
-      stream << payload.m_ush;
+   case e_type_u16:
+      stream << payload.m_u16;
       break;
-   case e_type_int:
-      stream << payload.m_i;
+   case e_type_i32:
+      stream << payload.m_i32;
       break;
-   case e_type_long_long:
-      stream << payload.m_ll;
+   case e_type_i64:
+      stream << payload.m_i64;
       break;
-   case e_type_unsigned_int:
-      stream << payload.m_ui;
+   case e_type_u32:
+      stream << payload.m_u32;
       break;
-   case e_type_unsigned_long_long:
-      stream << payload.m_ull;
+   case e_type_u64:
+      stream << payload.m_u64;
       break;
    case e_type_pchar:
-      stream << *payload.m_pch;
+      stream << *payload.m_pi8;
       break;
    case e_type_pshort:
-      stream << *payload.m_psh;
+      stream << *payload.m_pi16;
       break;
    case e_type_punsigned_char:
-      stream << *payload.m_puch;
+      stream << *payload.m_pu8;
       break;
    case e_type_punsigned_short:
-      stream << *payload.m_push;
+      stream << *payload.m_pu16;
       break;
-   case e_type_pint:
-      stream << *payload.m_pi;
+   case e_type_pi32:
+      stream << *payload.m_pi32;
       break;
-   case e_type_plong_long:
-      stream << *payload.m_pll;
+   case e_type_pi64:
+      stream << *payload.m_pi64;
       break;
-   case e_type_punsigned_int:
-      stream << *payload.m_pui;
+   case e_type_pu32:
+      stream << *payload.m_pu32;
       break;
-   case e_type_punsigned_long_long:
-      stream << *payload.m_pull;
+   case e_type_pu64:
+      stream << *payload.m_pu64;
       break;
    case e_type_double:
       stream << payload.m_d;
@@ -309,7 +309,7 @@ binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
       //*this << *payload.m_pfilepropertyset;
       throw ::exception(todo);
       break;
-   case e_type_long_long_array:
+   case e_type_i64_array:
       //*this << *payload.m_pfilei64a;
       throw ::exception(todo);
       break;
@@ -547,43 +547,43 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-   case e_type_pint:
-   case e_type_int:
+   case e_type_pi32:
+   case e_type_i32:
    {
 
-      payload.set_type(e_type_int, false);
+      payload.set_type(e_type_i32, false);
 
-      *this >> payload.m_i;
+      *this >> payload.m_i32;
 
    }
    break;
-   case e_type_plong_long:
-   case e_type_long_long:
+   case e_type_pi64:
+   case e_type_i64:
    {
 
-      payload.set_type(e_type_long_long, false);
+      payload.set_type(e_type_i64, false);
 
-      *this >> payload.m_ll;
+      *this >> payload.m_i64;
 
    }
    break;
-   case e_type_punsigned_int:
-   case e_type_unsigned_int:
+   case e_type_pu32:
+   case e_type_u32:
    {
 
-      payload.set_type(::e_type_unsigned_int, false);
+      payload.set_type(::e_type_u32, false);
 
-      *this >> payload.m_ull;
+      *this >> payload.m_u64;
 
    }
    break;
-   case e_type_punsigned_long_long:
-   case e_type_unsigned_long_long:
+   case e_type_pu64:
+   case e_type_u64:
    {
 
-      payload.set_type(::e_type_unsigned_long_long, false);
+      payload.set_type(::e_type_u64, false);
 
-      *this >> payload.m_ull;
+      *this >> payload.m_u64;
 
    }
    break;
@@ -619,7 +619,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
       throw ::exception(todo);
 
-      //throw ::exception(todo);      __exchange_load_array(*this, (::int_array_base &) payload);
+      //throw ::exception(todo);      __exchange_load_array(*this, (::i32_array_base &) payload);
 
    }
    break;

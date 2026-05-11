@@ -265,7 +265,7 @@ namespace user
       //   if (!m_bClipRectangle)
       //   {
 
-      //      ::int_rectangle rectangleX;
+      //      ::i32_rectangle rectangleX;
 
       //      ::collection::index i = 0;
 

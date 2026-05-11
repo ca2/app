@@ -384,7 +384,7 @@ namespace write_text
 //      //      SelectFont();
 //      //
 //      //      ::double_rectangle rectangleOffset(rectangle);
-//      //      const ::int_point & pointOffset(rectangleOffset.top_left());
+//      //      const ::i32_point & pointOffset(rectangleOffset.top_left());
 //      //
 //      //      glyph * pglyph;
 
@@ -440,7 +440,7 @@ namespace write_text
 //      //      SelectFont();
 //      //
 //      //      const ::double_rectangle rectangleOffset(rectangle);
-//      //      ::int_point pointOffset;
+//      //      ::i32_point pointOffset;
 //      //
 //      //
 //      //      glyph * pglyph;
@@ -551,7 +551,7 @@ namespace write_text
 //         return TRUE;
 //
 //      glyph glyph;
-//      glyph.m_ui = user;
+//      glyph.m_u32 = user;
 //      //m_glyphArray.add(pGlyph);
 //      MAT2 mat2;
 //      mat2.eM11.value = 1;

@@ -68,9 +68,9 @@ namespace userstack
 
       ::user::document * get_document();
 
-      void GetAreaThumbRect(::int_rectangle * lprect, int iArea);
+      void GetAreaThumbRect(::i32_rectangle * lprect, int iArea);
 
-      ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(_001OnPaint);

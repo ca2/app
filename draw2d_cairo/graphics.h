@@ -79,7 +79,7 @@ namespace draw2d_cairo
       // Constructors
       //bool CreateDC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override;
       //bool CreateIC(const ::scoped_string & scopedstrDriverName, const ::scoped_string & scopedstrDeviceName, const ::scoped_string & scopedstrOutput, const void * lpInitData) override
-      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::int_size& size) override;
+      void create_for_window_draw2d(::user::interaction * puserinteraction, const ::i32_size& size) override;
       void create_compatible_graphics(::draw2d::graphics * pgraphics) override;
 
       void DeleteDC() override;
@@ -433,7 +433,7 @@ namespace draw2d_cairo
 
 //      // Scrolling Functions
 //      bool ScrollDC(int Δx, int Δy, const ::double_rectangle & rectangleScroll, const ::double_rectangle & rectangleClip,
-//                    ::draw2d::region* pRgnUpdate, ::int_rectangle * lpRectUpdate) override;
+//                    ::draw2d::region* pRgnUpdate, ::i32_rectangle * lpRectUpdate) override;
 
 //      // font Functions
 //      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;
@@ -512,7 +512,7 @@ namespace draw2d_cairo
 //      void DrawDragRect(const ::double_rectangle & double_rectangle, const ::double_size & double_size,
 //                        const ::double_rectangle & rectangleLast, const ::double_size & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      //void fill_rectangle(const ::long_long_rectangle * double_rectangle, color32_t clr) override;
+      //void fill_rectangle(const ::i64_rectangle * double_rectangle, color32_t clr) override;
       //void fill_rectangle(const ::double_rectangle & double_rectangle, const ::color::color & color) override;
       void fill_rectangle(const ::double_rectangle & double_rectangle, const ::color::color & color) override;
       //void fill_rectangle(double x, double y, double cx, double cy, color32_t clr) override;

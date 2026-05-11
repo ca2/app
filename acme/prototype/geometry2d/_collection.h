@@ -10,7 +10,7 @@
 
 
 //template < prototype_number NUMBER >
-//class point_array_base;
+//class poi32_array_base;
 
 
 
@@ -22,7 +22,7 @@
 //
 
 //using int_polygon = polygon_base < int >;
-//using long_long_polygon = polygon_base < ::i64 >;
+//using i64_polygon = polygon_base < ::i64 >;
 //using float_polygon = polygon_base < float >;
 //using double_polygon = polygon_base < double >;
 
@@ -43,10 +43,10 @@
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
 
-//using int_point_array = point_array_base < int >;
-//using long_long_point_array = point_array_base < ::i64 >;
-//using float_point_array = point_array_base < float >;
-//using double_point_array = point_array_base < double >;
+//using int_point_array = poi32_array_base < int >;
+//using i64_point_array = poi32_array_base < ::i64 >;
+//using float_point_array = poi32_array_base < float >;
+//using double_point_array = poi32_array_base < double >;
 
 
 #include "polygon.h"

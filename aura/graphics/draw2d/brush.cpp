@@ -190,7 +190,7 @@ namespace draw2d
 //   }
 
 
-   bool brush::CreateLinearGradientBrush(const int_point & point1,const int_point & point2,const ::color::color & color1,const ::color::color & color2)
+   bool brush::CreateLinearGradientBrush(const i32_point & point1,const i32_point & point2,const ::color::color & color1,const ::color::color & color2)
    {
 
       return CreateLinearGradientBrush(double_point(point1),double_point(point2),color1,color2);
@@ -198,7 +198,7 @@ namespace draw2d
    }
 
 
-   bool brush::CreateRadialGradientBrush(const int_point & point1,int_size point2,const ::color::color & color1,const ::color::color & color2)
+   bool brush::CreateRadialGradientBrush(const i32_point & point1,i32_size point2,const ::color::color & color1,const ::color::color & color2)
    {
 
       return CreateRadialGradientBrush((double_point)point1,(double_size)point2,color1,color2);

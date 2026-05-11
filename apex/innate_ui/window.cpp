@@ -92,21 +92,21 @@ namespace innate_ui
    }
 
 
-   void window::set_position(const ::int_point & point)
+   void window::set_position(const ::i32_point & point)
    {
 
 
    }
 
 
-   void window::set_size(const ::int_size & size)
+   void window::set_size(const ::i32_size & size)
    {
 
 
    }
 
 
-   void window::adjust_for_client_size(const ::int_size & size)
+   void window::adjust_for_client_size(const ::i32_size & size)
    {
 
       set_size(size);
@@ -121,14 +121,14 @@ namespace innate_ui
    }
 
 
-   void window::set_icon_path(const scoped_string& scopedstr, const int_size & size)
+   void window::set_icon_path(const scoped_string& scopedstr, const i32_size & size)
    {
 
       ::cast < ::apex::application > papexapplication = m_papplication;
 
       //auto dScaleFactor = get_scale_factor();
 
-      //int_size sizeScaled(round(size.cx * dScaleFactor), round(size.cy * dScaleFactor));
+      //i32_size sizeScaled(round(size.cx * dScaleFactor), round(size.cy * dScaleFactor));
 
       auto picon = papexapplication->innate_ui_icon(scopedstr, size);
 

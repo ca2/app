@@ -40,14 +40,14 @@ namespace innate_ui
 
       virtual void fit();
       virtual double get_scale_factor();
-      virtual void set_position(const ::int_point & point);
-      virtual void set_size(const ::int_size & size);
-      virtual void adjust_for_client_size(const ::int_size & size);
+      virtual void set_position(const ::i32_point & point);
+      virtual void set_size(const ::i32_size & size);
+      virtual void adjust_for_client_size(const ::i32_size & size);
 
       ::innate_ui::innate_ui * innate_ui();
 
       virtual void set_icon(icon * picon);
-      virtual void set_icon_path(const ::scoped_string & scopedstr, const ::int_size & size);
+      virtual void set_icon_path(const ::scoped_string & scopedstr, const ::i32_size & size);
       void main_post(const ::procedure & procedure) override;
       void main_send(const ::procedure & procedure) override;
 

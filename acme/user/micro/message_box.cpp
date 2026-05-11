@@ -107,7 +107,7 @@ namespace micro
    void message_box::on_draw(::nano::graphics::device* pmicrodevice)
    {
 
-      int_rectangle rectangleText;
+      i32_rectangle rectangleText;
 
       rectangleText = get_client_rectangle();
 
@@ -478,7 +478,7 @@ namespace micro
 
       auto ppopupbutton = create_newø<popup_button>();
 
-      ::int_rectangle rectanglePointTo;
+      ::i32_rectangle rectanglePointTo;
 
       rectanglePointTo.left = pmouse->m_pointAbsolute.x;
       rectanglePointTo.top = pmouse->m_pointAbsolute.y;

@@ -30,8 +30,8 @@ namespace ftp
       enum e_size
       {
          size_unknown,
-         size_binary,        ///< int_size is the number of octets in TYPE I
-         size_ascii,         ///< int_size is the number of octets in TYPE A
+         size_binary,        ///< i32_size is the number of octets in TYPE I
+         size_ascii,         ///< i32_size is the number of octets in TYPE A
       };
 
       /// When a time zone is unknown, it is assumed to be GMT. You may want
@@ -163,7 +163,7 @@ namespace ftp
       };
 
       /// Order by size.
-      class int_size : public criteria
+      class i32_size : public criteria
       {
       public:
          virtual bool Compare(file_status & x, file_status & y) const override

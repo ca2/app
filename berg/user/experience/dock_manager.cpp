@@ -63,25 +63,25 @@ namespace experience
    bool dock_manager::dock_window(::message::mouse* pmouse)
    {
 
-      auto pointDock = ::int_point(pmouse->m_pointAbsolute - m_pointCursorDockOrigin + m_sizeDockRightOrigin);
+      auto pointDock = ::i32_point(pmouse->m_pointAbsolute - m_pointCursorDockOrigin + m_sizeDockRightOrigin);
 
       pointDock.x -= m_pframewindow->width();
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       m_pframewindow->window_rectangle(rectangleWindow);
 
-      ::int_rectangle rectangleEvent = rectangleWindow;
+      ::i32_rectangle rectangleEvent = rectangleWindow;
 
       rectangleEvent.move_to(pointDock);
 
       auto pointCursor = pmouse->m_pointAbsolute;
 
-      ::int_rectangle rectangleCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
+      ::i32_rectangle rectangleCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
 
-      ::int_rectangle screen;
+      ::i32_rectangle screen;
 
-      ::int_rectangle rectangleWorkspace;
+      ::i32_rectangle rectangleWorkspace;
 
       auto pwindow = m_pframewindow->window();
 
@@ -112,7 +112,7 @@ namespace experience
 
       int cyThreshold = cyQuarterWorkspace / 4;
 
-      ::int_rectangle rectangleWorkspaceCenter;
+      ::i32_rectangle rectangleWorkspaceCenter;
 
       auto pointWorkspaceCenter = rectangleWorkspace.center();
 
@@ -212,13 +212,13 @@ namespace experience
 
       }
 
-      ::int_rectangle rectangleDock;
+      ::i32_rectangle rectangleDock;
 
       enum_display edisplayDock = e_display_none;
 
       enum_display edisplayOld = m_pframewindow->const_layout().sketch().display();
 
-//      ::int_rectangle rectangleScreenOld = m_pframewindow->screen_rect();
+//      ::i32_rectangle rectangleScreenOld = m_pframewindow->screen_rect();
 
       if (rectangleWorkspaceCenter.contains_x(pointCursor.x))
       {
@@ -327,7 +327,7 @@ namespace experience
 
          }
 
-         ::int_rectangle rectangleWindow = m_rectangleOnDockStart;
+         ::i32_rectangle rectangleWindow = m_rectangleOnDockStart;
 
          auto pointReposition =
             pmouse->m_pointAbsolute
@@ -581,10 +581,10 @@ namespace experience
    }
 
    /// Screen coordinates of center of dock button
-   ::int_size dock_manager::dock_button_right_origin()
+   ::i32_size dock_manager::dock_button_right_origin()
    {
 
-      ::int_point pointOrigin;
+      ::i32_point pointOrigin;
 
       auto pbutton = dock_button();
 

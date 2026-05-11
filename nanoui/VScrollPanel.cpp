@@ -104,7 +104,7 @@ namespace nanoui
    }
 
 
-   int_size VScrollPanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size VScrollPanel::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       if (m_children.empty())
@@ -114,12 +114,12 @@ namespace nanoui
 
       }
 
-      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + int_size(12, 0);
+      return m_children[0]->preferred_size(pcontext, bRecalcTextSize) + i32_size(12, 0);
 
    }
 
 
-   bool VScrollPanel::mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       m_pointCurrentLocalCursor = p;
@@ -156,7 +156,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool VScrollPanel::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       m_pointCurrentLocalCursor = p;
@@ -209,7 +209,7 @@ namespace nanoui
    }
 
 
-   bool VScrollPanel::scroll_event(const int_point& p, const float_size& rel)
+   bool VScrollPanel::scroll_event(const i32_point& p, const float_size& rel)
    {
 
       m_pointCurrentLocalCursor = p;
@@ -318,7 +318,7 @@ namespace nanoui
    }
 
 
-   int_size VScrollPanel::get_scroll_offset() const
+   i32_size VScrollPanel::get_scroll_offset() const
    {
 
       int yOffset;

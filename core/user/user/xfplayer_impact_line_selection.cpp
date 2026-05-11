@@ -51,7 +51,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       
       auto pointCursor = pusermessage->m_lparam.point();
 
-      ::int_rectangle rectanglePlacement;
+      ::i32_rectangle rectanglePlacement;
       
       viewline.GetPlacement(&rectanglePlacement);
       
@@ -453,7 +453,7 @@ bool    bMerge)
 }
 
 
-bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point)
+bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::i32_point & point)
 {
    
    __UNREFERENCED_PARAMETER(ebuttonstate);
@@ -466,7 +466,7 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
 
    ::collection::index iLine;
    character_count iChar;
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
    viewline.GetPlacement(&rectanglePlacement);
    bInside = rectanglePlacement.contains(point1) != 0;
    if(!bInside && GetState() == e_state_tracking)
@@ -502,7 +502,7 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
 }
 
 
-bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point)
+bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::i32_point & point)
 {
    
    if (!viewline.IsVisible())
@@ -522,7 +522,7 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
 
    character_count iChar;
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
 
    viewline.GetPlacement(&rectanglePlacement);
 
@@ -593,7 +593,7 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
    return false;
 }
 
-bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::int_point & point)
+bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::i32_point & point)
 {
    __UNREFERENCED_PARAMETER(ebuttonstate);
    if(!viewline.IsVisible())
@@ -601,14 +601,14 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
 
    bool bInside;
 
-   ::int_point point1 = point;
+   ::i32_point point1 = point;
    
    viewline.get_interaction()->screen_to_client()(point1);
 
    ::collection::index iLine;
    character_count iChar;
 
-   ::int_rectangle rectanglePlacement;
+   ::i32_rectangle rectanglePlacement;
    
    viewline.GetPlacement(&rectanglePlacement);
    
@@ -695,7 +695,7 @@ bool xfplayer_impact_line_selection::OnTimer(xfplayer_impact_line & viewline, ::
          if(!viewline.is_hover())
          {
             
-            ::int_rectangle rectanglePlacement;
+            ::i32_rectangle rectanglePlacement;
             
             viewline.GetPlacement(&rectanglePlacement);
             

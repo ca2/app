@@ -20,7 +20,7 @@ namespace acme
       public:
 
 
-         ::int_point                      m_pointCursor2;
+         ::i32_point                      m_pointCursor2;
          ::string                         m_strDarkModeAnnotation;
          ::int_rectangle_array_base       m_rectanglea;
 
@@ -35,7 +35,7 @@ namespace acme
          virtual void _enumerate_monitors();
 
 
-         virtual void _on_monitor(int iIndex, const ::int_rectangle & rectangle, const ::int_rectangle & rectangleWorkspace);
+         virtual void _on_monitor(int iIndex, const ::i32_rectangle & rectangle, const ::i32_rectangle & rectangleWorkspace);
 
 
          virtual bool is_display_opened() const;
@@ -59,9 +59,9 @@ namespace acme
          virtual void display_send(const ::procedure& procedure);
 
 
-         virtual ::int_size get_main_screen_size();
+         virtual ::i32_size get_main_screen_size();
          
-         virtual ::int_size get_main_screen_size_with_scaling_factor();
+         virtual ::i32_size get_main_screen_size_with_scaling_factor();
          
          virtual float get_main_screen_scaling_factor();
 

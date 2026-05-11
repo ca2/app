@@ -50,7 +50,7 @@ public:
    void post_redraw(bool bAscendants = true) override;
    
    
-   //void this->rectangle(::int_rectangle* lprect) override;
+   //void this->rectangle(::i32_rectangle* lprect) override;
    
    
    //void on_layout(::draw2d::graphics_pointer& pgraphics) override;

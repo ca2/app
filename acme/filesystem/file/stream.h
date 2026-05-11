@@ -8,7 +8,7 @@
 
 
 // Use cases:
-// - Entry int_point convenience syntax sugar
+// - Entry i32_point convenience syntax sugar
 // - syntax sugar
 //template < typename TYPE >
 //inline binary_stream & operator >> (binary_stream & binary_stream, TYPE & t);
@@ -65,20 +65,20 @@
  inline void __exchange(::binary_stream & s, ::matter & matter);
 
 
- inline void __exchange(::binary_stream & s, ::int_rectangle & rectangle);
- inline void __exchange(::binary_stream & s, ::long_long_rectangle & rectangle);
+ inline void __exchange(::binary_stream & s, ::i32_rectangle & rectangle);
+ inline void __exchange(::binary_stream & s, ::i64_rectangle & rectangle);
  inline void __exchange(::binary_stream & s, ::float_rectangle & rectangle);
  inline void __exchange(::binary_stream & s, ::double_rectangle & rectangle);
 
 
- inline void __exchange(::binary_stream & s, ::int_size & rectangle);
- inline void __exchange(::binary_stream & s, ::long_long_size & rectangle);
+ inline void __exchange(::binary_stream & s, ::i32_size & rectangle);
+ inline void __exchange(::binary_stream & s, ::i64_size & rectangle);
  inline void __exchange(::binary_stream & s, ::float_size & rectangle);
  inline void __exchange(::binary_stream & s, ::double_size & rectangle);
 
 
- inline void __exchange(::binary_stream & s, ::int_point & rectangle);
- inline void __exchange(::binary_stream & s, ::long_long_point & rectangle);
+ inline void __exchange(::binary_stream & s, ::i32_point & rectangle);
+ inline void __exchange(::binary_stream & s, ::i64_point & rectangle);
  inline void __exchange(::binary_stream & s, ::float_point & rectangle);
  inline void __exchange(::binary_stream & s, ::double_point & rectangle);
 
@@ -489,9 +489,9 @@ void stream_exchange(S & s, T & t)
 //#endif
 //   virtual void write(float f) { raw_write(f); }
 //   virtual void write(double d) { raw_write(d); }
-//   //virtual void write(const ::int_point & point) { raw_write(point); }
-//   //virtual void write(const ::int_size & size) { raw_write(size); }
-//   //virtual void write(const ::int_rectangle &crect) { raw_write(crect); }
+//   //virtual void write(const ::i32_point & point) { raw_write(point); }
+//   //virtual void write(const ::i32_size & size) { raw_write(size); }
+//   //virtual void write(const ::i32_rectangle &crect) { raw_write(crect); }
 //   virtual void write(const ::scoped_string & scopedstr);
 //#ifdef WINDOWS
 //   virtual void write(const unichar * wch) { write(string(wch)); }
@@ -537,9 +537,9 @@ void stream_exchange(S & s, T & t)
 //#endif
 //   virtual void read(float & f);
 //   virtual void read(double & d);
-//   //virtual void read(::int_point & point);
-//   //virtual void read(::int_size & size);
-//   //virtual void read(::int_rectangle & rectangle);
+//   //virtual void read(::i32_point & point);
+//   //virtual void read(::i32_size & size);
+//   //virtual void read(::i32_rectangle & rectangle);
 //   virtual void read(atom & atom);
 //   virtual void read(::payload & payload);
 //   virtual void read_var_type(enum_type & etype);
@@ -575,9 +575,9 @@ void stream_exchange(S & s, T & t)
 //#endif
 //   virtual void exchange(const ::atom & atom, float & f) { stream_exchange(atom, f); }
 //   virtual void exchange(const ::atom & atom, double & d) { stream_exchange(atom, d); }
-//   virtual void exchange(const ::atom & atom, ::int_point & point) { stream_exchange(atom, point); }
-//   virtual void exchange(const ::atom & atom, ::int_size & size) { stream_exchange(atom, size); }
-//   virtual void exchange(const ::atom & atom, ::int_rectangle & crect) { stream_exchange(atom, crect); }
+//   virtual void exchange(const ::atom & atom, ::i32_point & point) { stream_exchange(atom, point); }
+//   virtual void exchange(const ::atom & atom, ::i32_size & size) { stream_exchange(atom, size); }
+//   virtual void exchange(const ::atom & atom, ::i32_rectangle & crect) { stream_exchange(atom, crect); }
 //   virtual void exchange(const ::atom & atom, ::double_point& point) { stream_exchange(atom, point); }
 //   virtual void exchange(const ::atom & atom, ::double_size& size) { stream_exchange(atom, size); }
 //   virtual void exchange(const ::atom & atom, ::double_rectangle& crect) { stream_exchange(atom, crect); }
@@ -745,11 +745,11 @@ void stream_exchange(S & s, T & t)
 //
 //inline binary_stream & operator >> (binary_stream & s, double & d) { s.read(d); return s; }
 //
-//inline binary_stream & operator >> (binary_stream & s, ::int_point & point) { s.read(point); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::i32_point & point) { s.read(point); return s; }
 //
-//inline binary_stream & operator >> (binary_stream & s, ::int_size & size) { s.read(size); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::i32_size & size) { s.read(size); return s; }
 //
-//inline binary_stream & operator >> (binary_stream & s, ::int_rectangle & rectangle) { s.read(rectangle); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::i32_rectangle & rectangle) { s.read(rectangle); return s; }
 //
 //inline binary_stream & operator >> (binary_stream & s, ::atom & atom) { s.read(atom); return s; }
 //
@@ -840,11 +840,11 @@ void stream_exchange(S & s, T & t)
 //
 //inline binary_stream & operator << (binary_stream & s, double d) { s.write(d); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, const ::int_point & point) { s.write(point); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::i32_point & point) { s.write(point); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, const ::int_rectangle &rectangle) { s.write(rectangle); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::i32_rectangle &rectangle) { s.write(rectangle); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, const ::int_size & size) { s.write(size); return s; }
+//inline binary_stream & operator << (binary_stream & s, const ::i32_size & size) { s.write(size); return s; }
 //
 //inline binary_stream & operator << (binary_stream & s, const ::scoped_string & scopedstr) { s.write(scopedstr); return s; }
 //

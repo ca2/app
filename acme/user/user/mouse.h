@@ -25,9 +25,9 @@ namespace user
    public:
 
       ::user::e_button_state                 m_ebuttonstate;
-      int_point                              m_pointHost;
-      int_point                              m_pointAbsolute;
-      int_point                              m_pointDesired;
+      i32_point                              m_pointHost;
+      i32_point                              m_pointAbsolute;
+      i32_point                              m_pointDesired;
       //bool                                 m_bTranslated;
       ::pointer<::user::interaction>         m_puserinteractionHit;
       void *                                 m_pOsMouseDataOkIfOnStack = nullptr;

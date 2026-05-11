@@ -83,7 +83,7 @@ namespace message
    public:
 
 
-      int_point m_point;
+      i32_point m_point;
 
       reposition() { }
 
@@ -101,7 +101,7 @@ namespace message
 
 
       ::u32          m_nType;
-      ::int_size     m_size;
+      ::i32_size     m_size;
 
       size() { }
 
@@ -195,7 +195,7 @@ namespace message
 
       //short GetDelta();
 
-      int_point GetPoint();
+      i32_point GetPoint();
 
       // using ::user::message::set;
 
@@ -249,7 +249,7 @@ namespace message
 
       context_menu();
 
-      int_point GetPoint();
+      i32_point GetPoint();
 
 
    };
@@ -330,7 +330,7 @@ namespace message
    public:
 
 
-      int_point m_point;
+      i32_point m_point;
 
       nc_hit_test() { }
 
@@ -462,7 +462,7 @@ namespace message
    public:
 
 
-      int m_i;
+      int m_i32;
       void * m_LPMEASUREITEMSTRUCT;
 
       measure_item() { }
@@ -516,7 +516,7 @@ namespace message
       //#ifdef WINDOWS
       //
       //      IDataObject *  pDataObj;// [in] DragEnter, Drop
-      //      POINTL         int_point; // [in] DragEnter, DragOver, Drop
+      //      POINTL         i32_point; // [in] DragEnter, DragOver, Drop
       //      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
       //      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
       //

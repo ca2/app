@@ -16,7 +16,7 @@
    char * lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
    {
-      // get int_point int_size and convert to pixels
+      // get i32_point i32_size and convert to pixels
       pLogFont->lfHeight = _ttoi(lpszSize+1);
       pLogFont->lfHeight =
          MulDiv(pLogFont->lfHeight, ::windows_definition::Data.cyPixelsPerInch, 72);
@@ -49,7 +49,7 @@ bool CLASS_DECL_ACME __compare_class_name(oswindow hWnd, const_char_pointer lpsz
 }
 
 
-oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::int_point int_point)
+oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::i32_point i32_point)
 {
    ASSERT(hWnd != nullptr);
 
@@ -61,8 +61,8 @@ oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::int_point in
       if (__get_dialog_control_id(hWndChild) != (unsigned short)0 &&
             (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
-         // see if int_point hits the child ::windowing::window
-         ::int_rectangle rectangle;
+         // see if i32_point hits the child ::windowing::window
+         ::i32_rectangle rectangle;
          ::window_rectangle(hWndChild, rectangle);
          if (rectangle.contains(point))
             return hWndChild;

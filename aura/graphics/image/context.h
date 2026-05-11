@@ -37,7 +37,7 @@ namespace image
       string_map_base < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
       ::particle_pointer         m_pparticleImageSynchronization;
-      map_base < int_size, ::pointer_array < ::image::image > > m_imagepool;
+      map_base < i32_size, ::pointer_array < ::image::image > > m_imagepool;
 
 
 
@@ -81,15 +81,15 @@ namespace image
       virtual ::image::image_pointer create_image();
 
 
-      virtual ::image::image_pointer create_image(const ::int_size& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+      virtual ::image::image_pointer create_image(const ::i32_size& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
-      virtual ::image::pool_image pool_image(const ::int_size & size);
+      virtual ::image::pool_image pool_image(const ::i32_size & size);
 
       virtual void release_pool_image(::image::pool_image * ppoolimage);
 
       /// If the source image is already correct size, returns it.
       /// Othersize create another image with correct size and stretch source image in it.
-      virtual ::image::image_pointer defer_stretch_image(::image::image * pimage, const ::int_size& size);
+      virtual ::image::image_pointer defer_stretch_image(::image::image * pimage, const ::i32_size& size);
 
 
       virtual int image_integer(const ::file::path & path);

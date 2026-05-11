@@ -36,7 +36,7 @@ public:
    void OnChildSetVisible(xfplayer_impact_line * pImpactLine, bool bVisible);
 
 
-   user::enum_line_hit hit_test(const int_point &pointCursor, character_count &iLine, character_count &iChar);
+   user::enum_line_hit hit_test(const i32_point &pointCursor, character_count &iLine, character_count &iChar);
 
    void install_message_routing(::channel * pchannel);
 

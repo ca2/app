@@ -24,7 +24,7 @@
 #pragma once
 
 
-//#include "remoting/remoting/region/::int_point.h"
+//#include "remoting/remoting/region/::i32_point.h"
 #include "subsystem/_common_header.h"
 
 
@@ -40,7 +40,7 @@ namespace subsystem
       //Cursor();
       //virtual ~CursorInterface() = 0;
 
-      virtual ::int_point getCursorPos() const = 0;
+      virtual ::i32_point getCursorPos() const = 0;
 
 
    };
@@ -62,7 +62,7 @@ namespace subsystem
       //~Cursor() override;
 
 
-      ::int_point getCursorPos() const override {return m_pcursor->getCursorPos();}
+      ::i32_point getCursorPos() const override {return m_pcursor->getCursorPos();}
 
 
    };

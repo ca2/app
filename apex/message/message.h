@@ -42,7 +42,7 @@ namespace message
       ::u32 m_uiMessageFlags;
       ::e_status m_estatus;
       ::action_context m_actioncontext;
-      ::int_point m_pointMessage;
+      ::i32_point m_pointMessage;
       bool m_bProbing = false;
       bool m_bCommand = false;
 
@@ -67,7 +67,7 @@ namespace message
 
       virtual void set_lresult(lresult lresult);
       // virtual void set(::acme::windowing::window * pacmewindowingwindow, ::windowing::window * pwindow, ::user::enum_message eusermessage,
-      // ::wparam wparam, ::lparam lparam, const ::int_point & point); virtual void set(::acme::windowing::window * pacmewindowingwindow,
+      // ::wparam wparam, ::lparam lparam, const ::i32_point & point); virtual void set(::acme::windowing::window * pacmewindowingwindow,
       // ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 

@@ -1,7 +1,7 @@
 #pragma once
 //
 //
-//inline bool get_bounding_box(::int_rectangle & rectangleBounding, const ::write_text::text_out & textout)
+//inline bool get_bounding_box(::i32_rectangle & rectangleBounding, const ::write_text::text_out & textout)
 //{
 //
 //   //copy(prectangle, pdrawtext->m_rectangle);
@@ -21,7 +21,7 @@
 //}
 //
 //
-//inline bool get_bounding_box(::int_rectangle & rectangleBounding, const ::write_text::draw_text & drawtext)
+//inline bool get_bounding_box(::i32_rectangle & rectangleBounding, const ::write_text::draw_text & drawtext)
 //{
 //
 //   rectangleBounding = drawtext.m_rectangle;

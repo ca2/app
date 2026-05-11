@@ -20,7 +20,7 @@ public:
    payload_array_base();
    payload_array_base(const std::initializer_list < ::payload > & varlist);
    payload_array_base(const string_array_base & stra);
-   payload_array_base(const ::int_array_base & inta);
+   payload_array_base(const ::i32_array_base & inta);
    payload_array_base(const ::property_set & propset);
    payload_array_base(const typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY& payloada);
    payload_array_base(typename BASE_ARRAY::BASE_ARRAY::RAW_BASE_ARRAY&& payloada);
@@ -93,7 +93,7 @@ public:
    payload_array_base operator +(const payload_array_base & payloada) const;
 
    payload_array_base & operator = (const string_array_base & stra);
-   payload_array_base & operator = (const ::int_array_base & inta);
+   payload_array_base & operator = (const ::i32_array_base & inta);
    payload_array_base & operator = (const ::property_set & propset);
    payload_array_base & operator = (const payload_array_base & payloada);
 

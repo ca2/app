@@ -45,7 +45,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_nanosecond& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "ns", integral.m_i);
+//   textstream.append_format("%" PRId64 "ns", integral.m_i32);
 //
 //   return textstream;
 //
@@ -56,7 +56,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_microsecond& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "μs", integral.m_i);
+//   textstream.append_format("%" PRId64 "μs", integral.m_i32);
 //
 //   return textstream;
 //
@@ -67,7 +67,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_millisecond& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "ms", integral.m_i);
+//   textstream.append_format("%" PRId64 "ms", integral.m_i32);
 //
 //   return textstream;
 //
@@ -78,7 +78,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_second& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "s", integral.m_i);
+//   textstream.append_format("%" PRId64 "s", integral.m_i32);
 //
 //   return textstream;
 //
@@ -89,7 +89,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_minute& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "minute(s)", integral.m_i);
+//   textstream.append_format("%" PRId64 "minute(s)", integral.m_i32);
 //
 //   return textstream;
 //
@@ -100,7 +100,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_hour& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "hour(s)", integral.m_i);
+//   textstream.append_format("%" PRId64 "hour(s)", integral.m_i32);
 //
 //   return textstream;
 //
@@ -111,7 +111,7 @@ struct integral_day;
 //inline ::write_text_stream < FILE >& operator <<(::write_text_stream < FILE >& textstream, const integral_day& integral)
 //{
 //
-//   textstream.append_format("%" PRId64 "day(s)", integral.m_i);
+//   textstream.append_format("%" PRId64 "day(s)", integral.m_i32);
 //
 //   return textstream;
 //

@@ -29,7 +29,7 @@
 
 //extern CLASS_DECL_BERG thread_int_ptr < DWORD_PTR > t_time1;
 
-// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The int_size is the int_size of the alien!!
+// pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The i32_size is the i32_size of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -466,7 +466,7 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(::int_rectangle & rectangle)
+   void tab::GetTabClientRect(::i32_rectangle & rectangle)
    {
 
       rectangle = get_data()->m_rectangleHosting;
@@ -474,10 +474,10 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(::long_long_rectangle & rectangle)
+   void tab::GetTabClientRect(::i64_rectangle & rectangle)
    {
 
-      ::int_rectangle rectangleHosting;
+      ::i32_rectangle rectangleHosting;
 
       GetTabClientRect(rectangleHosting);
 
@@ -516,11 +516,11 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleChild;
+      ::i32_rectangle rectangleChild;
 
       GetTabClientRect(rectangleChild);
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       pholder->window_rectangle(rectangleWindow);
 
@@ -809,10 +809,10 @@ namespace user
    //}
 
 
-   bool tab::get_element_rectangle(::collection::index iIndex, ::int_rectangle & rectangle, enum_element eelement)
+   bool tab::get_element_rectangle(::collection::index iIndex, ::i32_rectangle & rectangle, enum_element eelement)
    {
 
-      int_point ptOffset(0, 0);
+      i32_point ptOffset(0, 0);
 
       auto ptabdata = get_data();
 
@@ -1246,7 +1246,7 @@ namespace user
    }
 
 
-   ::item_pointer tab::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+   ::item_pointer tab::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
    {
       
       if(!should_draw())
@@ -1262,7 +1262,7 @@ namespace user
 
       //_synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      ::int_rectangle rectangleScroll;
+      ::i32_rectangle rectangleScroll;
 
       bool bScroll = _001HasBarXDragScrolling();
 
@@ -1309,7 +1309,7 @@ namespace user
       if (should_draw())
       {
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          for (int iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
@@ -1319,7 +1319,7 @@ namespace user
             if (ppane->m_straTitle.get_size() > 1)
             {
 
-               ::int_rectangle rectangleText;
+               ::i32_rectangle rectangleText;
 
                if (get_element_rectangle(iIndex, rectangleText, e_element_text))
                {
@@ -1395,7 +1395,7 @@ namespace user
    }
 
 
-   bool tab::on_drag_start(::int_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
+   bool tab::on_drag_start(::i32_point & pointDrag, ::user::mouse * pmouse, ::item * pitem)
    {
       
       if(::user::interaction::on_drag_start(pointDrag, pmouse, pitem))
@@ -1409,7 +1409,7 @@ namespace user
           || pitem->m_item.m_eelement == e_element_tab_far_scroll)
       {
          
-         //::int_rectangle r;
+         //::i32_rectangle r;
 
          //get_element_rectangle(0, r, pitem->m_item.m_eelement);
          
@@ -2587,9 +2587,9 @@ namespace user
    }
 
 
-   enum_position tab::DragHitTest(const ::int_point & point)
+   enum_position tab::DragHitTest(const ::i32_point & point)
    {
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       GetDragRect(rectangle, e_position_top);
       if (rectangle.contains(point))
       {
@@ -2627,7 +2627,7 @@ namespace user
    }
 
 
-   void tab::GetDragRect(::int_rectangle & rectangle, enum_position eposition)
+   void tab::GetDragRect(::i32_rectangle & rectangle, enum_position eposition)
    {
 
       switch (eposition)
@@ -2709,7 +2709,7 @@ namespace user
    }
 
 
-   void tab::get_child_rect(::int_rectangle & rectangle)
+   void tab::get_child_rect(::i32_rectangle & rectangle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -2856,7 +2856,7 @@ namespace user
    //      try
    //      {
 
-   //         ::int_rectangle rectangleTabScreen(get_data()->m_rectangleTab);
+   //         ::i32_rectangle rectangleTabScreen(get_data()->m_rectangleTab);
 
    //         client_to_screen(rectangleTabScreen);
 
@@ -3348,7 +3348,7 @@ namespace user
    }
 
 
-   ::int_rectangle tab::hosting_rectangle(::user::enum_layout elayout)
+   ::i32_rectangle tab::hosting_rectangle(::user::enum_layout elayout)
    {
 
       return m_pdata->m_rectangleHosting;

@@ -1131,9 +1131,9 @@ public:
    ::collection::count append_initializer_list(const ::std::initializer_list < TYPE > & list_base);
    ::collection::count append(const TYPE * p, ::collection::count c);
    ::collection::count append_element(const TYPE & t, ::collection::count c);
-   ::collection::count append(const base_array & src); // return old int_size
+   ::collection::count append(const base_array & src); // return old i32_size
    ::collection::count rear_append(const TYPE * p, ::collection::count c);
-   ::collection::count rear_append(const base_array & src); // return old int_size
+   ::collection::count rear_append(const base_array & src); // return old i32_size
    template < typename CONTAINER >
    void copy_container(const CONTAINER & container);
    void copy_initializer_list(const ::std::initializer_list < TYPE > & list_base);
@@ -2391,7 +2391,7 @@ void base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_desce
 //      // inserting in the middle of the array
 //      ::collection::count nOldSize = (::collection::count) this->size();
 //
-//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new int_size
+//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to ___new i32_size
 //      // destroy intial data before copying over it
 //      // shift old data up to fill gap
 //      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -2513,7 +2513,7 @@ base_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > base_array < TYPE
 //      throw_exception(error_bad_argument);
 //
 //   if(nGrowBy >= 0)
-//      m_countAddUp = nGrowBy;  // set ___new int_size
+//      m_countAddUp = nGrowBy;  // set ___new i32_size
 //
 //   if(nNewSize == 0)
 //   {

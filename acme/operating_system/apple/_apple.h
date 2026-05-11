@@ -24,15 +24,15 @@
 void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrDescription, const ::property_set & propertyset);
 
 
-void screen_coordinates_aware_copy(CGRect & rectTarget, const ::int_rectangle & rectSource);
-void screen_coordinates_aware_copy(::int_rectangle & rectTarget, const CGRect & rectSource);
+void screen_coordinates_aware_copy(CGRect & rectTarget, const ::i32_rectangle & rectSource);
+void screen_coordinates_aware_copy(::i32_rectangle & rectTarget, const CGRect & rectSource);
 
-//void copy(CGRect & rectTarget, const ::int_rectangle & rectSource);
-//void copy(::int_rectangle & rectTarget, const CGRect & rectSource);
+//void copy(CGRect & rectTarget, const ::i32_rectangle & rectSource);
+//void copy(::i32_rectangle & rectTarget, const CGRect & rectSource);
 
 
-//void copy(CGPoint & pointTarget, const ::int_point & pointSource);
-//void copy(::int_point & pointTarget, const CGPoint & pointSource);
+//void copy(CGPoint & pointTarget, const ::i32_point & pointSource);
+//void copy(::i32_point & pointTarget, const CGPoint & pointSource);
 //void copy(CGPoint & pointTarget, const ::double_point & pointSource);
 //void copy(::double_point & pointTarget, const CGPoint & pointSource);
 

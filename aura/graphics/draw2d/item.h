@@ -22,7 +22,7 @@ namespace draw2d
       int                           itemState;
       ::acme::windowing::window * m_pacmewindowingwindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::int_rectangle               rcItem;
+      ::i32_rectangle               rcItem;
       uptr                          itemData;
       
 

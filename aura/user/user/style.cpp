@@ -231,7 +231,7 @@ namespace user
    }
 
 
-   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::int_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
+   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::i32_rectangle & rectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       if (echeck == ::e_check_tristate || echeck == ::e_check_checked)
@@ -330,7 +330,7 @@ namespace user
    //}
 
 
-   ::int_rectangle style::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
+   ::i32_rectangle style::simple_ui_focus_rect_extra_margin(::user::interaction * pinteraction)
    {
 
       return {6, 6, 6, 6};
@@ -347,7 +347,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      ::int_rectangle rectangleX = pinteraction->::user::interaction::rectangle();
+      ::i32_rectangle rectangleX = pinteraction->::user::interaction::rectangle();
 
       //double dRotate = pinteraction->get_rotate();
 
@@ -653,7 +653,7 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
-      ::int_rectangle rectangleX = pinteraction->::user::interaction::rectangle();
+      ::i32_rectangle rectangleX = pinteraction->::user::interaction::rectangle();
 
       double dRotate = pinteraction->get_rotate();
 
@@ -962,7 +962,7 @@ namespace user
    //}
 
 
-   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText)
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText)
    //{
 
    //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, pbrushText);

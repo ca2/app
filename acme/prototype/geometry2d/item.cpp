@@ -160,7 +160,7 @@ namespace geometry2d
    //}
 
 
-   //void rectangle_item::translate(const ::int_point & point)
+   //void rectangle_item::translate(const ::i32_point & point)
    //{
 
    //   m_rectangle.offset(point);
@@ -204,7 +204,7 @@ namespace geometry2d
    //}
 
 
-   //void ellipse_item::translate(const ::int_point & point)
+   //void ellipse_item::translate(const ::i32_point & point)
    //{
 
    //   m_ellipse.offset(point);
@@ -285,7 +285,7 @@ namespace geometry2d
    //}
 
 
-   //void arc_item::translate(const ::int_point & point)
+   //void arc_item::translate(const ::i32_point & point)
    //{
 
    //   m_arc.offset(point);

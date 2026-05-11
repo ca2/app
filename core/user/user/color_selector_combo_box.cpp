@@ -343,7 +343,7 @@ namespace user
 
          pbrush->create_solid(color);
 
-         ::int_rectangle rEdit;
+         ::i32_rectangle rEdit;
 
          get_element_rectangle(rEdit, e_element_combo_edit);
 
@@ -390,11 +390,11 @@ namespace user
 
       }
 
-      ::int_rectangle rectangleDropDown;
+      ::i32_rectangle rectangleDropDown;
 
       get_element_rectangle(rectangleDropDown, e_element_drop_down);
 
-      ::int_rectangle rectangleDropIn(rectangleDropDown);
+      ::i32_rectangle rectangleDropIn(rectangleDropDown);
 
       ::color::color color(get_color(pstyle, estate));
 

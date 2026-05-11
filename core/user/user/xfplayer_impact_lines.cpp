@@ -132,7 +132,7 @@ void xfplayer_impact_linea::SetEffect(int iEffect)
    return -1;
 }
 
-::user::enum_line_hit xfplayer_impact_linea::hit_test(const int_point &pointCursor, ::collection::index &iLine, character_count &iChar)
+::user::enum_line_hit xfplayer_impact_linea::hit_test(const i32_point &pointCursor, ::collection::index &iLine, character_count &iChar)
 {
    _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
    for (::collection::index i = 0; i < this->line_count(); i++)

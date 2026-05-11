@@ -24,10 +24,10 @@ inline int width(RECT & r) { return r.right - r.left; }
 inline int height(RECT & r) { return r.bottom - r.top; }
 
 
-inline ::int_point lparam_as_point(LPARAM lparam)
+inline ::i32_point lparam_as_point(LPARAM lparam)
 {
 
-   return ::int_point(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+   return ::i32_point(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
 
 }
 

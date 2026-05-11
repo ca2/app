@@ -56,7 +56,7 @@ namespace user
 
          colorLighter.m_iA = 127;
 
-         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::int_size(1, 0), colorLighter);
+         pgraphics->blend_pixel(pitem->m_rectangle.top_right() - ::i32_size(1, 0), colorLighter);
 
       }
 

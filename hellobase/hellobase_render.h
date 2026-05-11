@@ -64,7 +64,7 @@ namespace hellobase
 
             string                           m_strHelloBase;
 
-            ::int_rectangle                           m_rectangleX;
+            ::i32_rectangle                           m_rectangleX;
       */
 
       ::pointer< ::mutex >                          m_pmutexText;

@@ -33,8 +33,8 @@ namespace user
       string                                          m_strFontName;
 
       //Window                                        m_window;
-      ::int_point                                     m_point;
-      ::int_size                                      m_size;
+      ::i32_point                                     m_point;
+      ::i32_size                                      m_size;
 
       int                                             m_iLineHeight;
       int                                             m_iTextAscent;

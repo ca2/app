@@ -671,7 +671,7 @@ namespace nanoui
 #endif
    }
 
-   ::image::image_pointer Screen::create_image(const ::int_size& size)
+   ::image::image_pointer Screen::create_image(const ::i32_size& size)
    {
 
       return m_puserinteraction->image()->create_image(size);
@@ -769,7 +769,7 @@ namespace nanoui
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
             pcontext->text_line_height(1.1f);
 
-            int_point pos = pwidget->absolute_position() +
+            i32_point pos = pwidget->absolute_position() +
                int_sequence2(pwidget->width() / 2, pwidget->height() + 10);
 
             pcontext->text_bounds((float)pos.x, (float)pos.y,
@@ -899,7 +899,7 @@ namespace nanoui
       return false;
    }
 
-   bool Screen::resize_event(const int_size& size) {
+   bool Screen::resize_event(const i32_size& size) {
       if (m_resize_callback)
          m_resize_callback(size);
       //m_redraw = true;
@@ -922,7 +922,7 @@ namespace nanoui
    //
 
 
-   bool Screen::on_mouse_move(const ::int_point& point, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool Screen::on_mouse_move(const ::i32_point& point, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       _synchronous_lock lock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1059,7 +1059,7 @@ namespace nanoui
    }
 
 
-   bool Screen::mouse_button_event(const int_point& pointCursor, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool Screen::mouse_button_event(const i32_point& pointCursor, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
 
       m_mouse_pos = pointCursor;
@@ -1554,7 +1554,7 @@ namespace nanoui
    //}
    //#endif
 
-   void Screen::set_size(const int_size& size)
+   void Screen::set_size(const i32_size& size)
    {
 
       Widget::set_size(size);
@@ -1566,9 +1566,9 @@ namespace nanoui
             || m_puserinteraction->height() != size.cy)
          {
 
-            //m_puserinteraction->move_to(::int_size(m_pos[0], m_pos[1]));
+            //m_puserinteraction->move_to(::i32_size(m_pos[0], m_pos[1]));
 
-            m_puserinteraction->set_size(::int_size(m_size[0], m_size[1]));
+            m_puserinteraction->set_size(::i32_size(m_size[0], m_size[1]));
 
             m_puserinteraction->set_need_layout();
 
@@ -1601,7 +1601,7 @@ namespace nanoui
    }
 
 
-   ::int_size Screen::preferred_size(::draw2d::graphics_pointer& pgraphics)
+   ::i32_size Screen::preferred_size(::draw2d::graphics_pointer& pgraphics)
    {
 
       ::nano2d::draw2d_context context(this);
@@ -1626,7 +1626,7 @@ namespace nanoui
 
       context.set_font_sink(m_pfontsink);
 
-      ::int_size size = m_puserinteraction->get_size();
+      ::i32_size size = m_puserinteraction->get_size();
       
       set_size({ (int)size.cx, (int)size.cy });
 
@@ -1667,7 +1667,7 @@ namespace nanoui
    }
 
 
-   void Screen::on_mouse_enter(const ::int_point& point, const ::user::e_key& ekeyModifiers)
+   void Screen::on_mouse_enter(const ::i32_point& point, const ::user::e_key& ekeyModifiers)
    {
 
       int_sequence2 p(point.x, point.y);
@@ -1712,7 +1712,7 @@ namespace nanoui
    }
 
 
-   bool Screen::on_button_down(::user::e_key ekeyButton, const ::int_point& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick)
+   bool Screen::on_button_down(::user::e_key ekeyButton, const ::i32_point& point, const ::user::e_key& ekeyModifiers, bool bDoubleClick)
    {
 
       //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
@@ -1735,7 +1735,7 @@ namespace nanoui
    }
 
 
-   bool Screen::on_button_up(::user::e_key ekeyButton, const ::int_point& point, const ::user::e_key& ekeyModifiers)
+   bool Screen::on_button_up(::user::e_key ekeyButton, const ::i32_point& point, const ::user::e_key& ekeyModifiers)
    {
 
       //if (point.x > m_size.cx - 10 && point.y > m_size.cy - 10)
@@ -1766,7 +1766,7 @@ namespace nanoui
    }
 
 
-   //bool Screen::on_mouse_move(const ::int_point & point)
+   //bool Screen::on_mouse_move(const ::i32_point & point)
    //{
    //
    //   int_sequence2 p(point.x, point.y);
@@ -1782,7 +1782,7 @@ namespace nanoui
    //}
    //
 
-   //bool Screen::on_mouse_drag(const ::int_point& point, const ::user::e_key& ekeyModifiers)
+   //bool Screen::on_mouse_drag(const ::i32_point& point, const ::user::e_key& ekeyModifiers)
    //{
 
    //   int_sequence2 pointCursor(point.x, point.y);
@@ -1843,7 +1843,7 @@ namespace nanoui
    }
 
 
-   bool Screen::on_scroll_event(const ::int_point& point, double x, double y)
+   bool Screen::on_scroll_event(const ::i32_point& point, double x, double y)
    {
 
       return scroll_event({ point.x, point.y }, { (float)x, (float)y });

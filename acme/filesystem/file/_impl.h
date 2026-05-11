@@ -79,7 +79,7 @@
 ////inline binary_stream & operator >>(binary_stream & s, class ::time & class ::time)
 ////{
 ////
-////   s >> class ::time.m_i;
+////   s >> class ::time.m_i32;
 ////
 ////   return s;
 ////
@@ -122,7 +122,7 @@
 ////   if (!s.fail())
 ////   {
 ////      memsize size = c * sizeof(a.get_data()[0]);
-////      if (read(a.get_data(), size) != int_size)
+////      if (read(a.get_data(), size) != i32_size)
 ////      {
 ////         throw ::exception(error_io);
 ////      }
@@ -400,7 +400,7 @@
 //inline binary_stream & operator <<(binary_stream & s, const ::earth::time & time)
 //{
 //
-//   s << time.m_i;
+//   s << time.m_i32;
 //
 //   return s;
 //
@@ -411,7 +411,7 @@
 //inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //{
 //
-//   s >> time.m_i;
+//   s >> time.m_i32;
 //
 //   return s;
 //
@@ -812,7 +812,7 @@
 //inline void __exchange(::binary_stream & s, ::u64 & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, float & f) { s.default_exchange(f); }
 //inline void __exchange(::binary_stream & s, double & d) { s.default_exchange(d); }
-//inline void __exchange(::binary_stream & s, ::earth::time & time) { s.default_exchange(time.m_i); }
+//inline void __exchange(::binary_stream & s, ::earth::time & time) { s.default_exchange(time.m_i32); }
 //inline void __exchange(::binary_stream & s, class ::time & time) { s.default_exchange(time.m_iSecond); s.default_exchange(time.m_iNanosecond); }
 //inline void __exchange(::binary_stream & s, const ::scoped_string & scopedstr) { s.write_only(scopedstr); }
 //inline void __exchange(::binary_stream & s, string & str) { s.default_exchange(str); }
@@ -894,14 +894,14 @@
 //}
 //
 //
-//inline void __exchange(::binary_stream & s, ::int_rectangle & rectangle)
+//inline void __exchange(::binary_stream & s, ::i32_rectangle & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //
 //}
 //
-//inline void __exchange(::binary_stream & s, ::long_long_rectangle & rectangle)
+//inline void __exchange(::binary_stream & s, ::i64_rectangle & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
@@ -922,7 +922,7 @@
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //}
 //
-//inline void __exchange(::binary_stream & s, ::int_size & size)
+//inline void __exchange(::binary_stream & s, ::i32_size & size)
 //{
 //   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
@@ -948,14 +948,14 @@
 //   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
 //
-//inline void __exchange(::binary_stream & s, ::int_point & point)
+//inline void __exchange(::binary_stream & s, ::i32_point & point)
 //{
 //   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, ::long_long_point & point)
+//inline void __exchange(::binary_stream & s, ::i64_point & point)
 //{
 //   s.exchange("x", point.x); s.exchange("y", point.y);
 //}

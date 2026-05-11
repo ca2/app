@@ -38,7 +38,7 @@ namespace nanoui
       ::string                                  m_font;
       ::string_array_base                            m_straTabCaptions;
       ::index_array                             m_iaTabIds;
-      ::int_array_base                               m_iaTabOffsets;
+      ::i32_array_base                               m_iaTabOffsets;
       int                                       m_iCloseButtonWidth = 0;
       ::collection::index                                 m_iActiveTab = 0;
       ::collection::index                                 m_iTabDragIndex = -1;
@@ -139,15 +139,15 @@ namespace nanoui
 
       // Widget implementation
       void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       
       void draw(::nano2d::context * pcontext) override;
 
-      bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_enter_event(const int_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
-      bool mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_enter_event(const i32_point& p, bool enter, const ::user::e_key& ekeyModifiers) override;
+      bool mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
 
-      ::item_pointer hit_test(const int_point & p, bool test_vertical = true) const;
+      ::item_pointer hit_test(const i32_point & p, bool test_vertical = true) const;
 
       virtual void update_visibility();
 
@@ -223,7 +223,7 @@ namespace nanoui
       void set_erase_children(bool value) { m_bEraseChildren = value; }
 
       void perform_layout(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
-      int_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
+      i32_size preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize = true) override;
       void update_visibility() override;
 
 

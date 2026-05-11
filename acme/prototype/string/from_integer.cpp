@@ -232,7 +232,7 @@ string i64toa_dup(::i64 i, int iBase)
 //
 //
 //
-//void wide_from_long_long_base(unichar * sz, ::i64 i, int iBase)
+//void wide_from_i64_base(unichar * sz, ::i64 i, int iBase)
 //{
 //   if(i == 0)
 //   {

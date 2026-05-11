@@ -58,11 +58,11 @@ namespace user
 //
 //
 //      ::item_pointer                m_pitem;
-//      ::int_point                   m_pointScreen;
-//      ::int_point                   m_pointHost;
-//      ::int_point                   m_pointClient;
-//      ::int_point                   m_pointHitTest;
-//      ::int_rectangle               m_rectangle;
+//      ::i32_point                   m_pointScreen;
+//      ::i32_point                   m_pointHost;
+//      ::i32_point                   m_pointClient;
+//      ::i32_point                   m_pointHitTest;
+//      ::i32_rectangle               m_rectangle;
 //      ::user::e_item                m_eitem;
 //      ::particle_pointer      m_pparticle;
 //      ::user::e_zorder              m_ezorder;
@@ -341,11 +341,11 @@ namespace user
 
       
       ::item_pointer                m_pitem;
-      //::int_point                   m_pointScreen;
-      ::int_point                   m_pointHost;
-      ::int_point                   m_pointClient;
-      ::int_point                   m_pointHitTest;
-      ::int_rectangle               m_rectangle2;
+      //::i32_point                   m_pointScreen;
+      ::i32_point                   m_pointHost;
+      ::i32_point                   m_pointClient;
+      ::i32_point                   m_pointHitTest;
+      ::i32_rectangle               m_rectangle2;
       ::user::e_item                m_eitem;
       ::particle_pointer      m_pparticle;
       ::user::e_zorder              m_ezorder;

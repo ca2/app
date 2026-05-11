@@ -36,7 +36,7 @@ namespace geometry
       return x * sin(phi) + y * cos(phi);
    }
 
-   void geometry::rotate(int xParam, int yParam, ::int_point * ppoint, int iCount, double phi)
+   void geometry::rotate(int xParam, int yParam, ::i32_point * ppoint, int iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -48,7 +48,7 @@ namespace geometry
    void geometry::rotate(
       int xParam,
       int yParam,
-      ::int_point * ppoint,
+      ::i32_point * ppoint,
 
       int iCount,
       double phicos,
@@ -99,7 +99,7 @@ namespace geometry
    }
 
 
-   //void geometry::RandomPoint(::int_point * ppoint, const ::int_rectangle & rectangle)
+   //void geometry::RandomPoint(::i32_point * ppoint, const ::i32_rectangle & rectangle)
    //{
 
    //   ppoint->x = (int)Sy(rectangle.left,rectangle.right);
@@ -128,10 +128,10 @@ namespace geometry
    //// Vanessa Testoni
    ////
    ////////////////////////////////////////////////////////////////////////
-   //void geometry::deflate(::int_rectangle * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   //void geometry::deflate(::i32_rectangle * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 
    //{
-   //   ::int_rectangle rectangle(prectangle);
+   //   ::i32_rectangle rectangle(prectangle);
 
    //   prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
 
@@ -145,7 +145,7 @@ namespace geometry
    //}
 
 
-   void rotation::rotate(::int_point * ppoint, int iCount)
+   void rotation::rotate(::i32_point * ppoint, int iCount)
 
    {
       for (int i = 0; i < iCount; i++)

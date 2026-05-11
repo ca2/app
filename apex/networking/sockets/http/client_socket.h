@@ -41,7 +41,7 @@ namespace sockets
 
 
       //memory    m_memoryData; ///< Ptr to buffer where to store response
-      //memsize m_data_size; ///< Max int_size of data buffer
+      //memsize m_data_size; ///< Max i32_size of data buffer
       memsize m_iContentLength; ///< Content-length header received from remote
       string m_content; ///< Received http headers
       //bool m_data_ptr_set; ///< buffer set from outside, do not delete
@@ -82,16 +82,16 @@ namespace sockets
       /** get response headers. */
       ::string GetContent();
 
-      /** get int_size of response body. */
+      /** get i32_size of response body. */
       memsize GetContentLength();
 
       /** get content type from response header. */
       ::string GetContentType();
 
-      /** get int_size of received response body. */
+      /** get i32_size of received response body. */
       memsize GetContentPtr();
 
-      /** get int_size of received response body. */
+      /** get i32_size of received response body. */
       memsize GetPos();
 
       /** Complete response has been received. */

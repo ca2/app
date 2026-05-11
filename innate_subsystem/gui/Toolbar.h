@@ -115,11 +115,11 @@ namespace innate_subsystem
       virtual bool pressButton(int idButton, bool press) = 0;
 
       // getButtonRect() gets the bounding rectangle of a button in a toolbar.
-      virtual bool getButtonRect(int nIndex, ::int_rectangle & buttonRect) = 0;
+      virtual bool getButtonRect(int nIndex, ::i32_rectangle & buttonRect) = 0;
 
       // setButtonSize() sets the size of the buttons to be added to a toolbar.
       // Button size must be largen the button bitmap.
-      virtual bool setButtonsSize(const ::int_size & size) = 0;
+      virtual bool setButtonsSize(const ::i32_size & size) = 0;
 
       // autoSize() resizes the toolbar window.
       virtual void autoSize() = 0;
@@ -243,11 +243,11 @@ namespace innate_subsystem
       bool pressButton(int idButton, bool press) override { return m_ptoolbar->pressButton(idButton, press); }
 
       // getButtonRect() gets the bounding rectangle of a button in a toolbar.
-      bool getButtonRect(int nIndex, ::int_rectangle & buttonRect) override { return m_ptoolbar->getButtonRect(nIndex, buttonRect); }
+      bool getButtonRect(int nIndex, ::i32_rectangle & buttonRect) override { return m_ptoolbar->getButtonRect(nIndex, buttonRect); }
 
       // setButtonSize() sets the size of the buttons to be added to a toolbar.
       // Button size must be largen the button bitmap.
-      bool setButtonsSize(const ::int_size & size) override { return m_ptoolbar->setButtonsSize(size); }
+      bool setButtonsSize(const ::i32_size & size) override { return m_ptoolbar->setButtonsSize(size); }
 
       // autoSize() resizes the toolbar window.
       void autoSize() override { m_ptoolbar->autoSize(); }

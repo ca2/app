@@ -23,7 +23,7 @@ namespace simpledb
 
 #ifdef WINDOWS_DESKTOP
 
-      PROCESS_INFORMATION     m_pi;
+      PROCESS_INFORMATION     m_processinformation;
 
 #endif
 

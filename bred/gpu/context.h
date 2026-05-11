@@ -118,10 +118,10 @@ namespace gpu
       //enum_output                                m_eoutputContextEngine = e_output_gpu_buffer;
       ::gpu::compositor *                          m_pgpucompositor;
       ::pointer<::gpu::device>                     m_pgpudevice;
-      //::int_rectangle                            m_rectangleNew;
-      ::int_rectangle                              m_rectangle;
+      //::i32_rectangle                            m_rectangleNew;
+      ::i32_rectangle                              m_rectangle;
       float                                        m_z;
-      int_point                                    m_pointTranslate;
+      i32_point                                    m_pointTranslate;
       ::pointer<::gpu::cpu_buffer>                 m_pcpubuffer;
       ::pointer<::gpu::shader>                     m_pshader;
       ::pointer<::gpu::shader>                     m_pshaderBound;
@@ -151,7 +151,7 @@ namespace gpu
       //::image32_callback                         m_callbackImage32CpuBuffer;
       ::pointer_array < ::gpu::texture >           m_textureaAtlas;
       //::pointer < ::mutex >                      m_pmutexOffscreen;
-      //::int_size                                 m_sizeOffscreen;
+      //::i32_size                                 m_sizeOffscreen;
       //int                                        m_iScanOffscreen;
       //::memory                                   m_memoryOffscreen;
       ::pointer < ::gpu::swap_chain >              m_pgpuswapchain;
@@ -177,7 +177,7 @@ namespace gpu
 
       virtual void manage_retired_objects();
 
-      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::int_size& size);
+      virtual ::pointer < ::gpu::pixmap > create_gpu_pixmap(const ::i32_size& size);
 
       virtual ::gpu::swap_chain* get_swap_chain();
 
@@ -254,7 +254,7 @@ namespace gpu
 
       virtual void create_window_context(::gpu::device* pgpudevice, ::acme::windowing::window * pwindow);
 
-      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::int_size& size);
+      virtual void create_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, const ::gpu::enum_scene & escene, const ::i32_size& size);
 
       /// <summary>
       ///  a draw2d context is a offscreen context that is used for drawing 2d graphics
@@ -262,11 +262,11 @@ namespace gpu
       /// <param name="pgpudevice"></param>
       /// <param name="eoutput"></param>
       /// <param name="size"></param>
-      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::int_size& size);
+      virtual void create_draw2d_context(::gpu::device* pgpudevice, const enum_output& eoutput, const ::i32_size& size);
 
-      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::int_size & size);
+      virtual void initialize_gpu_context(::gpu::device* pgpudevice, const ::gpu::enum_output& eoutput, ::acme::windowing::window* pwindow, const ::i32_size & size);
 
-      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::acme::windowing::window* pwindow, const ::int_size & size);
+      virtual void on_create_context(::gpu::device * pgpudevice, const ::gpu::enum_output & eoutput, ::acme::windowing::window* pwindow, const ::i32_size & size);
 
       virtual void engine_on_frame_context_initialization();
 
@@ -312,7 +312,7 @@ namespace gpu
       //virtual void top_post_to_context(::gpu::context * pcontextInnerStart, const ::procedure& procedure);
 
       
-      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::int_size& size = {});
+      virtual bool create_offscreen_graphics_for_swap_chain_blitting(::gpu::graphics * pgraphics, const ::i32_size& size = {});
 
 
       virtual ::gpu::renderer* get_gpu_renderer();
@@ -324,9 +324,9 @@ namespace gpu
       //virtual void set_topic_texture(int iIndex);
       virtual void set_cull_face(::gpu::enum_cull_mode ecullmode);
 
-      virtual ::int_rectangle rectangle();
-      virtual void set_placement(const ::int_rectangle & rectanglePlacement);
-      virtual void on_resize(const ::int_size& size);
+      virtual ::i32_rectangle rectangle();
+      virtual void set_placement(const ::i32_rectangle & rectanglePlacement);
+      virtual void on_resize(const ::i32_size& size);
 
       virtual string _001GetIntroProjection();
       virtual string _001GetIntroFragment();
@@ -353,9 +353,9 @@ namespace gpu
       virtual void _create_window_buffer(::windowing::window* pwindow);
 
 
-      virtual void create_cpu_buffer(const ::int_size& size);
-      virtual void _create_cpu_buffer(const ::int_size& size);
-      virtual void resize_cpu_buffer(const ::int_size& size);
+      virtual void create_cpu_buffer(const ::i32_size& size);
+      virtual void _create_cpu_buffer(const ::i32_size& size);
+      virtual void resize_cpu_buffer(const ::i32_size& size);
       virtual void destroy_cpu_buffer();
 
 
@@ -405,8 +405,8 @@ namespace gpu
       virtual void frame_prefix();
       virtual void frame_suffix();
 
-      //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::int_rectangle& rectangle);
-      //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics, const ::int_rectangle & rectangle);
+      //virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics, const ::i32_rectangle& rectangle);
+      //virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics, const ::i32_rectangle & rectangle);
       virtual void on_begin_draw_attach(::gpu::graphics* pgpugraphics);
       virtual void draw2d_on_begin_draw(::gpu::graphics* pgpugraphics);
 
@@ -485,8 +485,8 @@ namespace gpu
       //virtual ::pointer<::graphics3d::renderable> _load_gltf_model(const ::gpu::renderable_t & model);
 
 
-      virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
-      virtual void set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::int_rectangle &rectangle);
+      virtual void set_viewport(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle);
+      virtual void set_scissor(::gpu::command_buffer *pgpucommandbuffer, const ::i32_rectangle &rectangle);
 
 //      /// @brief generatePrefilteredEnvMap
 //      /// @param environmentCubeExisting 

@@ -65,7 +65,7 @@
 //}
 
 
-//inline bool get_bounding_box(::int_rectangle* prectangleBounding, const line * pline)
+//inline bool get_bounding_box(::i32_rectangle* prectangleBounding, const line * pline)
 //{
 //
 //   rectangleBounding.left = (int)minimum(line.m_p1.x, line.m_p2.x);
@@ -112,7 +112,7 @@
 //}
 
 
-//inline bool get_bounding_box(::int_rectangle* prectangleBounding, const ellipse* poval)
+//inline bool get_bounding_box(::i32_rectangle* prectangleBounding, const ellipse* poval)
 //{
 //
 //   copy(prectangleBounding, poval);

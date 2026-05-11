@@ -280,7 +280,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_point = ::int_point(lparam);
+   //   m_point = ::i32_point(lparam);
 
    //}
 
@@ -292,7 +292,7 @@ namespace message
 
    //   m_nType     = static_cast < ::u32 > (wparam);
 
-   //   m_size      = ::int_size(x_short(lparam), y_short(lparam));
+   //   m_size      = ::i32_size(x_short(lparam), y_short(lparam));
 
    //}
 
@@ -396,7 +396,7 @@ namespace message
 
    //   }
 
-   //   m_point    = ::int_point(lparam);
+   //   m_point    = ::i32_point(lparam);
 
 
    //}
@@ -409,7 +409,7 @@ namespace message
 
    //   m_nFlags    = wparam;
 
-   //   m_point        = ::int_point(lparam);
+   //   m_point        = ::i32_point(lparam);
 
    //}
 
@@ -465,7 +465,7 @@ namespace message
    }
 
 
-   int_point context_menu::GetPoint()
+   i32_point context_menu::GetPoint()
    {
 
       return m_pointMessage;
@@ -673,10 +673,10 @@ namespace message
 //   }
 
 
-   int_point mouse_wheel::GetPoint()
+   i32_point mouse_wheel::GetPoint()
    {
 
-      return int_point(iptr_int_x(m_lparam), iptr_int_y(m_lparam));
+      return i32_point(iptr_int_x(m_lparam), iptr_int_y(m_lparam));
 
    }
 

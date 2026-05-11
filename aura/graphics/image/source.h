@@ -13,15 +13,15 @@ namespace image
 
 
    template < typename IMAGE_SOURCE_POINTER >
-   concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const ::int_size & size, const ::double_size & sizeDst, enum_image_selection eimageselection)
+   concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const ::i32_size & size, const ::double_size & sizeDst, enum_image_selection eimageselection)
    {
 
 
       { p->get_image(size) } -> ::std::same_as < ::image::image *>;
 
 
-      { p->size(sizeDst, eimageselection) } -> ::std::same_as < ::int_size >;
-      { p->size() } -> ::std::same_as < ::int_size >;
+      { p->size(sizeDst, eimageselection) } -> ::std::same_as < ::i32_size >;
+      { p->size() } -> ::std::same_as < ::i32_size >;
 
 
    };
@@ -33,11 +33,11 @@ namespace image
    public:
 
 
-      virtual image_pointer image_source_image(const ::int_size & size) = 0;
+      virtual image_pointer image_source_image(const ::i32_size & size) = 0;
 
 
-      virtual ::int_size image_source_size(const ::double_size & sizeTarget, enum_image_selection eimageselection) const = 0;
-      virtual ::int_size image_source_size() const = 0;
+      virtual ::i32_size image_source_size(const ::double_size & sizeTarget, enum_image_selection eimageselection) const = 0;
+      virtual ::i32_size image_source_size() const = 0;
 
 
    };

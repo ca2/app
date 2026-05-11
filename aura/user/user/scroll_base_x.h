@@ -43,13 +43,13 @@ namespace user
       scroll_state get_scroll_state_x(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       void set_scroll_state_x(const scroll_state & scrollstate, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      void set_scroll_dimension(const ::int_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
+      void set_scroll_dimension(const ::i32_size & size, ::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
       void install_message_routing(::channel * pchannel) override;
 
       virtual void send_scroll_x_message(enum_scroll_command ecommand, double dPosition = DOUBLE_MOST_NEGATIVE);
 
-      //virtual void GetScrollRect(::int_rectangle * prectangle);
+      //virtual void GetScrollRect(::i32_rectangle * prectangle);
 
       void on_change_scroll_state(::user::enum_layout elayout = ::user::e_layout_sketch) override;
       //virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;

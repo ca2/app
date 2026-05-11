@@ -480,7 +480,7 @@ namespace platform
 
 #ifdef UNIVERSAL_WINDOWS
 
-      bool apex_system_layer::window_rectangle(::int_rectangle* prectangle)
+      bool apex_system_layer::window_rectangle(::i32_rectangle* prectangle)
    {
       return false;
    }

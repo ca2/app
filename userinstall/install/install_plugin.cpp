@@ -832,7 +832,7 @@ run_install:
 
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -985,9 +985,9 @@ run_install:
 #endif
 
 
-      ::int_rectangle int_rectangle;
+      ::i32_rectangle i32_rectangle;
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
 
       window_rectangle(&rectangleWindow);
 
@@ -1048,7 +1048,7 @@ run_install:
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
-         /*         ::int_rectangle int_rectangle;
+         /*         ::i32_rectangle i32_rectangle;
          rectangle.left      = 0;
          rectangle.top       = 0;
          rectangle.bottom    = cx;
@@ -1170,7 +1170,7 @@ run_install:
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle &lprect)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle &lprect)
    {
 
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
@@ -1575,13 +1575,13 @@ restart:
 
    }
 
-   void plugin::viewport_screen_to_client(::int_point * ppt)
+   void plugin::viewport_screen_to_client(::i32_point * ppt)
    {
       //::user::interaction::viewport_screen_to_client(ppt);
    }
 
 
-   void plugin::viewport_client_to_screen(::int_point * ppt)
+   void plugin::viewport_client_to_screen(::i32_point * ppt)
    {
       //::user::interaction::viewport_client_to_screen(ppt);
 
@@ -1630,7 +1630,7 @@ restart:
 #else
 
 
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          window_rectangle(rectangle);
 
@@ -1641,7 +1641,7 @@ restart:
 
             m_rectangleSent = rectangle;
 
-            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(::int_rectangle)))
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(::i32_rectangle)))
             {
 
                m_phost->m_pbasecomposer->m_bRectSent = false;

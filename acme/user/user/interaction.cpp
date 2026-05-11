@@ -276,7 +276,7 @@ namespace acme
 
       //   }
 
-      //   ::int_rectangle rectangleX;
+      //   ::i32_rectangle rectangleX;
 
       //   rectangleX = get_client_rectangle();
 
@@ -324,7 +324,7 @@ namespace acme
       }
 
 
-      ::acme::user::interaction * interaction::on_acme_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+      ::acme::user::interaction * interaction::on_acme_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
       {
 
          if (m_pacmeuserinteractionaChildren)
@@ -1025,7 +1025,7 @@ namespace acme
 
 
 
-         //::acme::user::interaction * interaction::on_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+         //::acme::user::interaction * interaction::on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
          //{
 
          //   for (auto & pchild : m_nanouserinteractionaChildren)
@@ -1356,7 +1356,7 @@ namespace acme
          //}
 
 
-         //::int_point interaction::origin()
+         //::i32_point interaction::origin()
          //{
 
          //   throw ::exception(error_wrong_state);
@@ -1407,7 +1407,7 @@ namespace acme
          }
 
 
-         ::int_point interaction::origin()
+         ::i32_point interaction::origin()
          {
             auto r = get_window_rectangle();
 
@@ -1417,7 +1417,7 @@ namespace acme
 
 
 
-         ::int_rectangle interaction::get_client_rectangle()
+         ::i32_rectangle interaction::get_client_rectangle()
          {
             auto r = get_window_rectangle();
 
@@ -1428,7 +1428,7 @@ namespace acme
          }
 
 
-         ::int_size interaction::get_window_minimum_size()
+         ::i32_size interaction::get_window_minimum_size()
          {
 
             return { 250, 250 };
@@ -1498,7 +1498,7 @@ namespace acme
 
 
 
-         //::int_point interaction::try_absolute_mouse_position(const ::int_point & point)
+         //::i32_point interaction::try_absolute_mouse_position(const ::i32_point & point)
          //{
          //acme_windowing_window()
          //   auto p = point;
@@ -1518,7 +1518,7 @@ namespace acme
          }
 
 
-         bool interaction::on_drag_start(::int_point & point, ::user::mouse * pmouse, ::item * pitem)
+         bool interaction::on_drag_start(::i32_point & point, ::user::mouse * pmouse, ::item * pitem)
          {
 
             if (pitem->m_item.m_eelement == e_element_client)
@@ -1544,7 +1544,7 @@ namespace acme
          }
 
 
-         ::int_point interaction::drag_mouse_cursor_position(::item * pitem, const ::int_point & point)
+         ::i32_point interaction::drag_mouse_cursor_position(::item * pitem, const ::i32_point & point)
          {
 
             //auto p = try_absolute_mouse_position(point);
@@ -1675,7 +1675,7 @@ namespace acme
          //}
 
 
-         void interaction::set_position(const ::int_point & point)
+         void interaction::set_position(const ::i32_point & point)
          {
 
             acme_windowing_window()->set_position(point);
@@ -1778,14 +1778,14 @@ namespace acme
       
    }
 
-         //void interaction::get_client_rectangle(::int_rectangle & rectangle)
+         //void interaction::get_client_rectangle(::i32_rectangle & rectangle)
          //{
 
 
          //}
 
 
-         int_rectangle interaction::get_window_rectangle()
+         i32_rectangle interaction::get_window_rectangle()
          {
 
             return m_pacmewindowingwindow->get_window_rectangle();
@@ -1793,7 +1793,7 @@ namespace acme
          }
 
 
-         int_rectangle interaction::get_rectangle()
+         i32_rectangle interaction::get_rectangle()
          {
 
             return {};

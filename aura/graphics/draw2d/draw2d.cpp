@@ -500,7 +500,7 @@ namespace draw2d
 
       auto pgraphics = create_graphics(pdraw2dhost);
 
-      auto sizeModernOnePixel = ::int_size{ 1920, 1080 };
+      auto sizeModernOnePixel = ::i32_size{ 1920, 1080 };
 
       pgraphics->create_memory_graphics(sizeModernOnePixel);
 
@@ -549,7 +549,7 @@ namespace draw2d
 
    void draw2d::embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
-      const ::int_rectangle & rectangle,
+      const ::i32_rectangle & rectangle,
       const ::scoped_string & scopedstrText,
       ::image::fastblur & blur,
       ::image::image_pointer & imageBlur,
@@ -607,7 +607,7 @@ namespace draw2d
 
 void draw2d::emboss_predicate(
    ::draw2d::graphics_pointer & pgraphics,
-   const ::int_rectangle & rectangle,
+   const ::i32_rectangle & rectangle,
    const ::function < void(::draw2d::graphics *) > & functionDraw,
    ::image::fastblur & blur,
    ::image::image_pointer & pimageBlur,
@@ -621,7 +621,7 @@ void draw2d::emboss_predicate(
 
    int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
-   ::int_rectangle rectangleEmboss = rectangle;
+   ::i32_rectangle rectangleEmboss = rectangle;
 
    rectangleEmboss.left -= (int)(iR * g_dEmboss);
    rectangleEmboss.top -= (int)(iR * g_dEmboss);
@@ -635,13 +635,13 @@ void draw2d::emboss_predicate(
 
       int iEffectiveBlurRadius = iBlurRadius;
 
-      const ::int_size & size = rectangleEmboss.size();
+      const ::i32_size & size = rectangleEmboss.size();
 
       //pimageBlur->initialize(rectangleEmboss, iEffectiveBlurRadius);
 
       //pimageBlur->fill(0, 0, 0, 0);
 
-      ::int_rectangle rectangleCache;
+      ::i32_rectangle rectangleCache;
 
       rectangleCache.left = (int)(iR * g_dEmboss);
       rectangleCache.top = (int)(iR * g_dEmboss);

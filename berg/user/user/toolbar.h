@@ -39,8 +39,8 @@ namespace user
 
       bool                       m_bDelayedButtonLayout; // used to manage when button on_layout should be done
 
-      ::int_size               m_sizeImage;  // current image int_size
-      ::int_size               m_sizeButton; // current button int_size
+      ::i32_size               m_sizeImage;  // current image i32_size
+      ::i32_size               m_sizeButton; // current button i32_size
       bool                 m_bSimpleLayout;
 //      string_to_ptr_base *      m_pStringMap;  // used as CMapStringTounsigned int
 //      //index                m_iButtonPressItem;
@@ -67,10 +67,10 @@ namespace user
       //using ::user::control_bar::create_window_ex;
       //virtual bool create_toolbar(::user::interaction * puiParent, ::u32 dwCtrlStyle = TBSTYLE_FLAT,::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = __IDW_TOOLBAR);
 
-      void SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage);
-      // button int_size should be bigger than image
+      void SetSizes(const ::i32_size & sizeButton, const ::i32_size & sizeImage);
+      // button i32_size should be bigger than image
       void SetHeight(::collection::index cyHeight);
-      // call after SetSizes, height overrides bitmap int_size
+      // call after SetSizes, height overrides bitmap i32_size
       //bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
 
       //bool LoadToolBar(::u32 nIDResource);
@@ -91,7 +91,7 @@ namespace user
       
       //::u32 GetItemID(index nIndex);
       
-//      virtual void index_item_rectangle(index nIndex, ::int_rectangle * prectangle);
+//      virtual void index_item_rectangle(index nIndex, ::i32_rectangle * prectangle);
       
       //::collection::index tool_item_index(const ::atom & atom) const;
       
@@ -124,9 +124,9 @@ namespace user
       // for direct access to the underlying common control
       //inline toolbar_control& GetToolBarCtrl() const;
 
-      virtual ::int_size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
-      ::int_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      virtual ::int_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 nMode) override;
+      virtual ::i32_size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
+      ::i32_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+      virtual ::i32_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 nMode) override;
       //virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction * pinteractionOwner);
 
@@ -140,15 +140,15 @@ namespace user
 
       virtual void load_xml_toolbar(const ::payload & payloadFile);
 
-      virtual ::status < ::int_rectangle > index_item_rectangle(::collection::index iItem);
+      virtual ::status < ::i32_rectangle > index_item_rectangle(::collection::index iItem);
 
-      virtual ::status < ::int_rectangle > index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate);
+      virtual ::status < ::i32_rectangle > index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate);
 
       virtual ::user::tool_item * tool_item_at(::collection::index iItem);
       virtual ::collection::count tool_item_count();
 
 
-      virtual ::int_size SimpleLayout(::draw2d::graphics_pointer& pgraphics);
+      virtual ::i32_size SimpleLayout(::draw2d::graphics_pointer& pgraphics);
 
 
       // implementation helpers
@@ -156,9 +156,9 @@ namespace user
 //      virtual void _GetButton(::collection::index nIndex, TBBUTTON* pButton) const;
 //      virtual void _SetButton(::collection::index nIndex, TBBUTTON* pButton);
 //#endif
-      virtual ::int_size CalcLayout(::draw2d::graphics_pointer& pgraphics, ::u32 nMode, ::collection::index nLength = -1);
+      virtual ::i32_size CalcLayout(::draw2d::graphics_pointer& pgraphics, ::u32 nMode, ::collection::index nLength = -1);
 //#ifdef WINDOWS_DESKTOP
-//      virtual ::int_size CalcSize(TBBUTTON* pData, ::collection::index nCount);
+//      virtual ::i32_size CalcSize(TBBUTTON* pData, ::collection::index nCount);
 //      virtual ::collection::index WrapToolBar(TBBUTTON* pData, ::collection::index nCount, ::collection::index nWidth);
 //      virtual void SizeToolBar(TBBUTTON* pData, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 //#endif
@@ -203,7 +203,7 @@ namespace user
 //#define e_tool_item_style_disabled   make_int(0, TBSTATE_ENABLED)    // button is disabled
 //#define TBBS_INDETERMINATE  make_int(0, TBSTATE_INDETERMINATE)  // third state
 //#define TBBS_HIDDEN     make_int(0, e_toolbar_button_hidden) // button is hidden
-//#define TBBS_WRAPPED    make_int(0, TBSTATE_WRAP)   // button is wrapped at this int_point
+//#define TBBS_WRAPPED    make_int(0, TBSTATE_WRAP)   // button is wrapped at this i32_point
 //#define TBBS_ELLIPSES   make_int(0, TBSTATE_ELIPSES)
 //#define TBBS_MARKED      make_int(0, TBSTATE_MARKED)
 //

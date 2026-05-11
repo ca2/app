@@ -55,7 +55,7 @@ namespace userex
 
       ::pointer<::user::progress>  m_pprogress;
 
-      ::int_rectangle                        m_rectangleStatus;
+      ::i32_rectangle                        m_rectangleStatus;
 
 
       progress_impact();

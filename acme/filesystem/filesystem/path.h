@@ -25,7 +25,7 @@ namespace file
 
       enum_path                  m_epath;
 
-      ::i64                        m_iSize; // if negative, not set/calculated/retrieved the file int_size(for directories would be all contained elements total sum int_size)
+      ::i64                        m_iSize; // if negative, not set/calculated/retrieved the file i32_size(for directories would be all contained elements total sum i32_size)
       e_type                     m_etype;
       character_count                    m_iName; // if negative, not set/calculated/retrieved where name starts
       character_count                    m_iBasePathLength; // if negative, not set/calculated/retrieved base path length in the path

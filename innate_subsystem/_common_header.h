@@ -22,7 +22,7 @@ namespace innate_subsystem
       ::u32        itemState;
       ::operating_system::window        operatingsystemwindowItem;
       DeviceContextInterface * m_pdevicecontext;
-      ::int_rectangle & m_rectangleItem;
+      ::i32_rectangle & m_rectangleItem;
       ::uptr   itemData;
    };
 

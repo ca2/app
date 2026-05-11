@@ -22,7 +22,7 @@ namespace innate_subsystem
     //
     // }
     //
-    // ::int_size SystemMetrics::get_small_icon_size_in_pixels()
+    // ::i32_size SystemMetrics::get_small_icon_size_in_pixels()
     // {
     //
     //     return m_pparticleThis->get_small_icon_size_in_pixels();

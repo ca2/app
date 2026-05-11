@@ -1721,11 +1721,11 @@ bool object::__is_child_task(::particle * pparticleTask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish int_point of impact)...
+// ->at simple objects (from finish i32_point of impact)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and destroy.
 //
-// ->for complex objects (from finish int_point of impact)...
+// ->for complex objects (from finish i32_point of impact)...
 // ->for objects that have custom finalization
 // finish wouldn't call *destroy*,
 // but only set_finish or custom set_finish.
@@ -3229,7 +3229,7 @@ void object::initialize(::particle * pparticle)
 // void to_string(const string_exchange & str) const 
 
 //::image::image_pointer create_image();
-//::image::image_pointer create_image(const ::int_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+//::image::image_pointer create_image(const ::i32_size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
 //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
 //::image::image_pointer matter_image(const ::scoped_string & scopedstrMatter, bool bCache = true, bool bSync = true);

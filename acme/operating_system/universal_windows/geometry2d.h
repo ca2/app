@@ -2,7 +2,7 @@
 #pragma once
 
 
-inline winrt::Windows::Foundation::Rect as_winrt_windows_foundation_rect(const ::int_rectangle & rectangle)
+inline winrt::Windows::Foundation::Rect as_winrt_windows_foundation_rect(const ::i32_rectangle & rectangle)
 {
 
    winrt::Windows::Foundation::Rect rect;
@@ -17,10 +17,10 @@ inline winrt::Windows::Foundation::Rect as_winrt_windows_foundation_rect(const :
 }
 
 
-inline ::int_rectangle as_int_rectangle(const ::winrt::Windows::Foundation::Rect & rect)
+inline ::i32_rectangle as_int_rectangle(const ::winrt::Windows::Foundation::Rect & rect)
 {
 
-   ::int_rectangle rectangle;
+   ::i32_rectangle rectangle;
 
    rectangle.left = (int)rect.X;
    rectangle.top = (int)rect.Y;

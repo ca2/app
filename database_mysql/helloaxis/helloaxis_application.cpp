@@ -149,7 +149,7 @@ namespace helloaxis
 
    void application::paint(HWND hwnd, ::draw2d::graphics_pointer & pgraphics)
    {
-      ::int_rectangle rcClient;
+      ::i32_rectangle rcClient;
       ::this->rectangle(hwnd, rcClient);
       auto pbrush = createø < ::draw2d::brush > ();
 

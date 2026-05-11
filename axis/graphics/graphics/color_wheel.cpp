@@ -61,7 +61,7 @@ namespace graphics
 
       int diamRound = (((int)ceil(diam1) - 1) / 2) * 2;
 
-      int_size sizeImageOffset;
+      i32_size sizeImageOffset;
 
       sizeImageOffset.cx = (int) (x + (w - diam1) / 2.0);
 
@@ -467,7 +467,7 @@ namespace graphics
    }
 
 
-   bool color_wheel::on_mouse_down(const int_point & p)
+   bool color_wheel::on_mouse_down(const i32_point & p)
    {
 
       if (!m_rectangle.contains(p + m_rectangle.top_left()))
@@ -493,7 +493,7 @@ namespace graphics
    }
 
 
-   bool color_wheel::on_mouse_up(const int_point & p)
+   bool color_wheel::on_mouse_up(const i32_point & p)
    {
 
       if (m_ehittestDrag)
@@ -512,7 +512,7 @@ namespace graphics
    }
 
 
-   bool color_wheel::on_mouse_motion(const int_point & p)
+   bool color_wheel::on_mouse_motion(const i32_point & p)
    {
 
       if (m_ehittestDrag)
@@ -530,7 +530,7 @@ namespace graphics
 
 
 
-   color_wheel::enum_hit_test color_wheel::adjust_position_and_hit_test(const int_point & p)
+   color_wheel::enum_hit_test color_wheel::adjust_position_and_hit_test(const i32_point & p)
    {
 
       //double x = (double)m_rectangle.left;
@@ -550,7 +550,7 @@ namespace graphics
 
       int diamRound = (((int)ceil(diam1) - 1) / 2) * 2;
 
-      int_size sizeImageOffset;
+      i32_size sizeImageOffset;
 
       sizeImageOffset.cx = (int) (x + (w - diam1) / 2.0);
 

@@ -139,7 +139,7 @@ namespace userex
 
       }
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       rectangle = this->rectangle();
 
@@ -484,7 +484,7 @@ namespace userex
       if (user()->impact_system("main") != nullptr)
       {
 
-         ::int_rectangle rectangleTab;
+         ::i32_rectangle rectangleTab;
 
          ::pointer<::user::document>pdocument = user()->impact_system("main")->get_document();
 

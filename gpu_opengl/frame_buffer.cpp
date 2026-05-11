@@ -27,7 +27,7 @@ namespace gpu_opengl
    }
 
 
-   void frame_buffer::create(const ::int_size& sizeNew, bool bWithDepthBuffer)
+   void frame_buffer::create(const ::i32_size& sizeNew, bool bWithDepthBuffer)
    {
 
       if (sizeNew.is_empty())

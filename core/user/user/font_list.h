@@ -27,7 +27,7 @@ namespace user
 
 
       ::pointer<::write_text::font_list>     m_pfontlist;
-      ::int_rectangle                        m_rectangleMargin;
+      ::i32_rectangle                        m_rectangleMargin;
       bool                                   m_bEnsureVisible;
       bool                                   m_bFirstShown;
       int                                  m_iLayoutSerial;
@@ -98,9 +98,9 @@ namespace user
 
       virtual void on_timer(::timer * ptimer) override;
 
-      status < int_rectangle > item_rectangle(::item * pitem, ::user::enum_layout elayout) override;
+      status < i32_rectangle > item_rectangle(::item * pitem, ::user::enum_layout elayout) override;
 
-      virtual ::item_pointer on_hit_test(const ::int_point & point, ::user::e_zorder ezorder) override;
+      virtual ::item_pointer on_hit_test(const ::i32_point & point, ::user::e_zorder ezorder) override;
 
       void on_update_hover(::item * pitem) override;
 
@@ -112,7 +112,7 @@ namespace user
 
       virtual void __on_draw_ensure_sel_visible();
 
-      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size * psize) override;
+      virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size * psize) override;
 
 
       virtual void update_data(bool bSaveAndValidate) override;

@@ -271,7 +271,7 @@ namespace user
    }
 
 
-   void toolbar::SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage)
+   void toolbar::SetSizes(const ::i32_size & sizeButton, const ::i32_size & sizeImage)
    {
 
       ASSERT_OK(this);
@@ -355,7 +355,7 @@ namespace user
    //   {
    //      bool bResult = false;
    //
-   //      // need complete bitmap int_size to determine number of images
+   //      // need complete bitmap i32_size to determine number of images
    //      /*#ifdef WINDOWS_DESKTOP
    //            BITMAP bitmap;
    //            VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
@@ -516,7 +516,7 @@ namespace user
    ////
    ////            // invalidate just the button
    ////
-   ////            ::int_rectangle rectangle;
+   ////            ::i32_rectangle rectangle;
    ////
    ////            if (default_window_procedure(TB_GETITEMRECT, (WPARAM)nIndex, (LPARAM)& rectangle))
    ////            {
@@ -561,7 +561,7 @@ namespace user
    //      return 0;
    //   }
 
-   //   void toolbar::GetItemRect(index nIndex, ::int_rectangle * prectangle)
+   //   void toolbar::GetItemRect(index nIndex, ::i32_rectangle * prectangle)
    //
    //   {
    //      ASSERT_OK(this);
@@ -571,7 +571,7 @@ namespace user
    //      //if (m_bDelayedButtonLayout)
    //      //   ((toolbar*)this)->set_need_layout(pgraphics);
    //
-   ////      // now it is safe to get the item int_rectangle
+   ////      // now it is safe to get the item i32_rectangle
    ////#ifdef WINDOWS_DESKTOP
    ////      toolbar* pBar = (toolbar*)this;
    ////      if (!pBar->default_window_procedure(TB_GETITEMRECT, (WPARAM) nIndex, (LPARAM)prectangle))
@@ -627,7 +627,7 @@ namespace user
    //   ::collection::index toolbar::tool_item_index(const ::atom & atom) const
    //   {
    //   
-   //      auto iIndex = atom.m_i;
+   //      auto iIndex = atom.m_i32;
    //   
    //      if(!m_pitema->is_index_ok(iIndex))
    //      {
@@ -739,14 +739,14 @@ namespace user
    //#ifdef WINDOWS_DESKTOP
    //
    //
-   //   ::int_size toolbar::CalcSize(TBBUTTON * pData, ::collection::index nCount)
+   //   ::i32_size toolbar::CalcSize(TBBUTTON * pData, ::collection::index nCount)
    //   {
    //
    //      //ASSERT(pData != nullptr && nCount > 0);
    //
-   //      //int_point cur(0,0);
+   //      //i32_point cur(0,0);
    //
-   //      //::int_size sizeResult(0,0);
+   //      //::i32_size sizeResult(0,0);
    //
    //      //::u32 dwExtendedStyle = (::u32) default_window_procedure(TB_GETEXTENDEDSTYLE, 0, 0);
    //
@@ -779,7 +779,7 @@ namespace user
    //      //      if ((pData[i].fsStyle & TBSTYLE_DROPDOWN) &&
    //      //            (dwExtendedStyle & TBSTYLE_EX_DRAWDDARROWS))
    //      //      {
-   //      //         // add int_size of drop down
+   //      //         // add i32_size of drop down
    //      //         cx += 2;
    //      //      }
    //      //      sizeResult.cx = maximum(cur.x + cx, sizeResult.cx);
@@ -832,7 +832,7 @@ namespace user
    //   //         string str;
    //   //         str = utf8_to_unicode(str);
    //   //         //         str = (const unichar *) pData[i].iString;
-   //   //         ::int_size size;
+   //   //         ::i32_size size;
    //   //         ::GetTextExtentPoint32U(
    //   //         (HDC)pgraphics->get_os_data(),
    //   //         str,
@@ -929,17 +929,17 @@ namespace user
    //   //            }
    //   //         }
    //   //      }
-   //   //      const ::int_size & size = CalcSize(pData, nCount);
+   //   //      const ::i32_size & size = CalcSize(pData, nCount);
    //   //      WrapToolBar(pData, nCount, size.cx);
    //   //   }
    //   //   else
    //   //   {
    //
-   //   //      ::int_size sizeMax;
+   //   //      ::i32_size sizeMax;
    //   //
-   //   //      ::int_size sizeMin;
+   //   //      ::i32_size sizeMin;
    //   //
-   //   //      ::int_size sizeMid;
+   //   //      ::i32_size sizeMid;
    //
    //   //      // Wrap ToolBar vertically
    //   //      WrapToolBar(pData, nCount, 0);
@@ -975,11 +975,11 @@ namespace user
    struct ___CONTROLPOS
    {
       ::collection::index nIndex, nID;
-      ::int_rectangle rectangleOldPos;
+      ::i32_rectangle rectangleOldPos;
    };
 
 
-   int_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u32 dwMode, ::collection::index nLength)
+   i32_size toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, ::u32 dwMode, ::collection::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_OK(this);
@@ -991,7 +991,7 @@ namespace user
       //
       //      TBBUTTON * pData = nullptr;
       //
-      //      ::int_size sizeResult(0,0);
+      //      ::i32_size sizeResult(0,0);
       //
       //      //BLOCK: Load Buttons
       //      {
@@ -1032,7 +1032,7 @@ namespace user
       //            else if (bDynamic && (nLength != -1))
       //            {
       //
-      //               ::int_rectangle rectangle;
+      //               ::i32_rectangle rectangle;
       //
       //               CalcInsideRect(rectangle, (dwMode & LM_HORZ) != 0);
       //
@@ -1102,7 +1102,7 @@ namespace user
       //
       //                     pControl[nControlCount].nID = pData[i].idCommand;
       //
-      //                     ::int_rectangle rectangle;
+      //                     ::i32_rectangle rectangle;
       //
       //                     GetItemRect(i, &rectangle);
       //
@@ -1193,13 +1193,13 @@ namespace user
       //      //BLOCK: Adjust Margins
       //      {
       //
-      //         ::int_rectangle rectangle;
+      //         ::i32_rectangle rectangle;
       //
       //         CalcInsideRect(rectangle, (dwMode & LM_HORZ) != 0);
       //         sizeResult.cy -= rectangle.height();
       //         sizeResult.cx -= rectangle.width();
       //
-      //         const ::int_size & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
+      //         const ::i32_size & size = ::user::control_bar::CalcFixedLayout((dwMode & LM_STRETCH) != 0, (dwMode & LM_HORZ) != 0);
       //         sizeResult.cx = maximum(sizeResult.cx, size.cx);
       //         sizeResult.cy = maximum(sizeResult.cy, size.cy);
       //      }
@@ -1212,7 +1212,7 @@ namespace user
    }
 
 
-   int_size toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
+   i32_size toolbar::CalcFixedLayout(::draw2d::graphics_pointer & pgraphics, bool bStretch, bool bHorz)
    {
 
       ::u32 dwMode = bStretch ? LM_STRETCH : 0;
@@ -1224,7 +1224,7 @@ namespace user
    }
 
 
-   int_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, ::u32 dwMode)
+   i32_size toolbar::CalcDynamicLayout(::draw2d::graphics_pointer & pgraphics, int nLength, ::u32 dwMode)
    {
 
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
@@ -1450,7 +1450,7 @@ namespace user
 
       // calculate border space (will add to top/bottom, subtract from right/bottom)
 
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
 
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
 
@@ -1480,7 +1480,7 @@ namespace user
       ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) &&
          (m_dwDockStyle & CBRS_FLOAT_MULTI)));
 
-      // a toolbar can not be both dynamic and fixed in int_size
+      // a toolbar can not be both dynamic and fixed in i32_size
       ASSERT(!((dwNewStyle & CBRS_SIZE_FIXED) &&
          (dwNewStyle & CBRS_SIZE_DYNAMIC)));
 
@@ -1609,7 +1609,7 @@ namespace user
    }
 
 
-   //   LRESULT toolbar::OnSetSizeHelper(::int_size& size, LPARAM lParam)
+   //   LRESULT toolbar::OnSetSizeHelper(::i32_size& size, LPARAM lParam)
    //   {
    //      //WINBUG: The IE4 version of COMCTL32.DLL supports a zero border, but
    //      //  only if TBSTYLE_TRANSPARENT is on during the the TB_SETBITMAPSIZE
@@ -1778,13 +1778,13 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
 
 
-   int_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   i32_size toolbar::CalcSimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ASSERT_OK(this);
       ASSERT(is_window());
 
-      ::int_size sizeResult(0, 0);
+      ::i32_size sizeResult(0, 0);
 
       //#ifdef WINDOWS_DESKTOP
       //      index nCount;
@@ -1819,8 +1819,8 @@ namespace user
       //            if(pData[i].fsState & TBSTATE_WRAP)
       //               ASSERT(false);
       //         }
-      //         ::int_rectangle rectangleItem;
-      //         ::int_rectangle rectangleSize(0, 0, 0, 0);
+      //         ::i32_rectangle rectangleItem;
+      //         ::i32_rectangle rectangleSize(0, 0, 0, 0);
       //         for (i = 0; i < nCount; i++)
       //         {
       //            GetItemRect(i, rectangleItem);
@@ -1849,10 +1849,10 @@ namespace user
    }
 
 
-   int_size toolbar::SimpleLayout(::draw2d::graphics_pointer & pgraphics)
+   i32_size toolbar::SimpleLayout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      const ::int_size & size = CalcSimpleLayout(pgraphics);
+      const ::i32_size & size = CalcSimpleLayout(pgraphics);
 
       /*set_window_position(
       e_zorder_top,
@@ -1889,7 +1889,7 @@ namespace user
    }
 
 
-   ::status < ::int_rectangle > toolbar::index_item_rectangle(::collection::index iItem)
+   ::status < ::i32_rectangle > toolbar::index_item_rectangle(::collection::index iItem)
    {
 
       if (!main_content().m_pitema->is_index_ok(iItem))
@@ -1901,7 +1901,7 @@ namespace user
 
       auto puseritem = user_item(main_content().item_at(iItem));
 
-      ::status < ::int_rectangle > statusrectangle = puseritem->m_rectangle2;
+      ::status < ::i32_rectangle > statusrectangle = puseritem->m_rectangle2;
 
       statusrectangle.m_estatus = ::success;
 
@@ -1910,7 +1910,7 @@ namespace user
    }
 
 
-   ::status < ::int_rectangle >  toolbar::index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate)
+   ::status < ::i32_rectangle >  toolbar::index_element_rectangle(::collection::index iItem, enum_element eelement, ::user::enum_state estate)
    {
 
       return error_failed;

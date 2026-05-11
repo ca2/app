@@ -23,7 +23,7 @@ public:
    };
 
    ::heap::allocator * m_pallocator;
-   ::u32 m_nAllocSize;   // int_size of each block from Alloc
+   ::u32 m_nAllocSize;   // i32_size of each block from Alloc
    ::u32 m_nBlockSize;   // number of blocks to get at a time
    ::plex* m_pBlocks;   // linked list_base of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
@@ -77,7 +77,7 @@ public:
 
 
    ::heap::allocator * m_pallocator;
-   int                                             m_i;
+   int                                             m_i32;
    int                                             m_iShareCount;
    ::array_base < ::critical_section >             m_criticalsectiona;
    address_array_base < fixed_alloc_no_sync * >    m_allocptra;
@@ -103,7 +103,7 @@ public:
 
 
    ::heap::allocator *                          m_pallocator;
-   int                                          m_i;
+   int                                          m_i32;
    int                                          m_iShareCount;
    address_array_base < fixed_alloc_sync * >    m_allocptra;
 

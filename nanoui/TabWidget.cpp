@@ -218,7 +218,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   int_size TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size TabWidgetBase::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
       pcontext->font_face(m_font.c_str());
       pcontext->font_size(font_size());
@@ -385,7 +385,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   ::item_pointer TabWidgetBase::hit_test(const int_point& p, bool test_vertical) const 
+   ::item_pointer TabWidgetBase::hit_test(const i32_point& p, bool test_vertical) const 
    {
 
       auto pitem = allocateø ::item();
@@ -444,7 +444,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
+   bool TabWidgetBase::mouse_button_event(const i32_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers)
    {
       
       auto pitem = hit_test(p);
@@ -506,7 +506,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
             [this](::nano2d::context * pcontext)
          {
             
-            m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + int_size(40, 0));
+            m_ppopup->set_size(m_ppopup->preferred_size(pcontext) + i32_size(40, 0));
             
             m_ppopup->perform_layout(pcontext);
 
@@ -621,7 +621,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_enter_event(const int_point&/* p */, bool /* enter */, const ::user::e_key&)
+   bool TabWidgetBase::mouse_enter_event(const i32_point&/* p */, bool /* enter */, const ::user::e_key&)
    {
 
       if (m_bTabsCloseable && m_iCloseIndex >= 0)
@@ -635,7 +635,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   bool TabWidgetBase::mouse_motion_event(const int_point& p, const int_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
+   bool TabWidgetBase::mouse_motion_event(const i32_point& p, const i32_size& rel, bool bDown, const ::user::e_key& ekeyModifiers)
    {
 
       auto pitem = hit_test(p, false);
@@ -769,12 +769,12 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
    }
 
 
-   int_size TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
+   i32_size TabWidget::preferred_size(::nano2d::context * pcontext, bool bRecalcTextSize)
    {
 
       auto sizeBase = TabWidgetBase::preferred_size(pcontext, bRecalcTextSize);
 
-      int_size sizeContent;
+      i32_size sizeContent;
          
       for (Widget* pwidgetChild : m_children)
       {
@@ -783,7 +783,7 @@ bool TabWidgetBase::is_tab_selected(const Widget * pwidgetChild) const
 
       }
 
-      return int_size(
+      return i32_size(
          ::maximum(sizeBase.cx, sizeContent.cx + 2 * m_iPadding),
          sizeBase.cy + sizeContent.cy + 2 * m_iPadding
       );

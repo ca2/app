@@ -2527,7 +2527,7 @@ template < typename ITERATOR_TYPE >
    // nReplacementLen is in XCHARs
    character_count nReplacementLen = scopedstrNew.size();
 
-   // loop once to figure out the int_size of the result string_base < ITERATOR_TYPE >
+   // loop once to figure out the i32_size of the result string_base < ITERATOR_TYPE >
    character_count count = 0;
 
    {
@@ -2616,7 +2616,7 @@ template < typename ITERATOR_TYPE >
    // nReplacementLen is in XCHARs
    character_count nReplacementLen = scopedstrOld.size();
 
-   // loop once to figure out the int_size of the result string_base < ITERATOR_TYPE >
+   // loop once to figure out the i32_size of the result string_base < ITERATOR_TYPE >
    character_count count = 0;
    {
       const CHARACTER * pszStart = this->begin() + start;
@@ -5027,7 +5027,7 @@ inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const S
    // nReplacementLen is in XCHARs
    character_count nReplacementLen = scopedstrNew.size();
 
-   // loop once to figure out the int_size of the result string_base < ITERATOR_TYPE >
+   // loop once to figure out the i32_size of the result string_base < ITERATOR_TYPE >
    auto count = (*this)(start)._occurrence_count_of(scopedstrOld, equality);
 
    // if any changes were made, make them

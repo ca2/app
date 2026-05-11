@@ -22,7 +22,7 @@ namespace draw2d
       virtual ~buffered_graphics();
 
 
-      void Prepare(const ::int_rectangle & rectangle);
+      void Prepare(const ::i32_rectangle & rectangle);
 
 
    };

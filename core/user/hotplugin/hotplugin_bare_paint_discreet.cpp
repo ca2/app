@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
 
    {
 
@@ -22,11 +22,11 @@ namespace hotplugin
 
       }
 
-      ::int_rectangle rectangleWindow;
+      ::i32_rectangle rectangleWindow;
       window_rectangle(&rectangleWindow);
       int cx = rectangleWindow.right - rectangleWindow.left;
       int cy = rectangleWindow.bottom - rectangleWindow.top;
-      ::int_rectangle rectangle;
+      ::i32_rectangle rectangle;
       rectangle.left = 0;
       rectangle.top = 0;
       rectangle.bottom = cy;
@@ -115,7 +115,7 @@ namespace hotplugin
 
       auto ppathClip1 = createø < ::draw2d::path >();
 
-      ::int_rectangle rectangleClip1;
+      ::i32_rectangle rectangleClip1;
 
       rectangleClip1.left = rectangleParam.left + iBorder1;
 
@@ -159,7 +159,7 @@ namespace hotplugin
 
       auto ppathClip = createø < ::draw2d::path >();
 
-      ::int_rectangle rectangleClip;
+      ::i32_rectangle rectangleClip;
 
       rectangleClip.left = rectangleParam.left + cx / iRate - iBorder;
 
@@ -178,7 +178,7 @@ namespace hotplugin
       //pgraphics->exclude_clip(pathClip);
 
 
-      ::int_point pa[4];
+      ::i32_point pa[4];
 
       //Gdiplus::SolidBrush * pbr = normal_new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
       //graphics2.fill_rectangle(pbr, rectangleParam.left , rectangleParam.top, rectangleParam.left + cx, rectangleParam.top + cy);
@@ -252,7 +252,7 @@ namespace hotplugin
 
       pbrush->create_solid(argb(90, 90, 90, 80));
 
-      ::int_rectangle rect1;
+      ::i32_rectangle rect1;
 
       rect1.left = rectangleParam.left + cx / iRate - 1;
 
@@ -287,7 +287,7 @@ namespace hotplugin
       delete pbr;
       }
       }*/
-      ::int_rectangle rect2;
+      ::i32_rectangle rect2;
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          pbrush->create_solid(argb(bA, uchR, uchG, uchB));

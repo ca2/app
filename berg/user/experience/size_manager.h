@@ -21,9 +21,9 @@ namespace experience
       //::item_pointer                   m_pitemCursor;
       ::experience::enum_frame         m_eframeSizing;
       ::experience::enum_frame         m_eframeCursor;
-      int_point                        m_pointCursorOrigin;
-      ::int_rectangle                  m_rectangleWindowOrigin;
-      int_size                         m_sizeMinimumBorder;
+      i32_point                        m_pointCursorOrigin;
+      ::i32_rectangle                  m_rectangleWindowOrigin;
+      i32_size                         m_sizeMinimumBorder;
       ::u32                            m_uiSWPFlags;
       enum_grip                        m_egripMask;
       int                              m_iPaintCount;
@@ -36,8 +36,8 @@ namespace experience
       virtual void initialize_size_manager(::experience::frame_window* pframewindow);
 
 
-      virtual ::experience::enum_frame experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
-      //virtual ::item_pointer experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder);
+      virtual ::experience::enum_frame experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
+      //virtual ::item_pointer experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder);
       virtual enum_cursor experience_frame_to_cursor(::experience::enum_frame eframeHitTest);
       //virtual enum_cursor experience_frame_to_cursor(const ::item * pitemHitTest);
 
@@ -60,12 +60,12 @@ namespace experience
       virtual void cancel_sizing();
       
       //void SetSWPFlags(::u32 uFlags);
-      virtual ::int_size GetMinSize();
+      virtual ::i32_size GetMinSize();
       bool set_frame_window(frame_window * pframewindow);
 
-      void size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::int_point & point, bool bTracking);
-      //void size_window(const ::item * pitem, ::user::interaction * pframewindow, const ::int_point & point, bool bTracking);
-      void move_window(::user::interaction * pframewindow, const ::int_rectangle & rectangle);
+      void size_window(::experience::enum_frame eframe, ::user::interaction * pframewindow, const ::i32_point & point, bool bTracking);
+      //void size_window(const ::item * pitem, ::user::interaction * pframewindow, const ::i32_point & point, bool bTracking);
+      void move_window(::user::interaction * pframewindow, const ::i32_rectangle & rectangle);
 
       virtual bool window_stop_sizing(bool bApply = true, ::message::mouse * pmouse = nullptr);
 

@@ -68,7 +68,7 @@ namespace user
 
          string strLanguageCode(m_pintstring[i].m_psz);
 
-         int iResourceId = m_pintstring[i].m_i;
+         int iResourceId = m_pintstring[i].m_i32;
 
          m_straLang.add(strLanguageCode);
 

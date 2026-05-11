@@ -598,7 +598,7 @@ namespace graphics3d
    }
 
 
-   void engine::defer_start(::user::graphics3d* pusergraphics3d, const ::int_rectangle& rectanglePlacement)
+   void engine::defer_start(::user::graphics3d* pusergraphics3d, const ::i32_rectangle& rectanglePlacement)
    {
 
       m_pusergraphics3d = pusergraphics3d;
@@ -1039,7 +1039,7 @@ namespace graphics3d
    }
 
 
-   void engine::defer_update_engine(const ::int_rectangle &rectanglePlacement)
+   void engine::defer_update_engine(const ::i32_rectangle &rectanglePlacement)
    {
 
       //if (!m_prenderer)
@@ -1114,7 +1114,7 @@ namespace graphics3d
    }
 
 
-   void engine::on_layout(const ::int_rectangle& rectanglePlacement)
+   void engine::on_layout(const ::i32_rectangle& rectanglePlacement)
    {
 
       m_rectanglePlacementNew = rectanglePlacement;

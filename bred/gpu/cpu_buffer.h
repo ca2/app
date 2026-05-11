@@ -27,7 +27,7 @@ namespace gpu
       virtual void initialize_cpu_buffer(::gpu::context * pgpucontext);
 
 
-      virtual void set_size(const ::int_size & size);
+      virtual void set_size(const ::i32_size & size);
 
 
       virtual ::image::target* get_image_target();

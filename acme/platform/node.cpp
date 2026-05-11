@@ -222,7 +222,7 @@ namespace platform
 
       string_array_base stra2;
 
-      ::int_array_base iaPid2;
+      ::i32_array_base iaPid2;
 
       auto psystem = system();
 
@@ -4907,7 +4907,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }*/
 
 
-   bool node::_get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle & rectangle)
+   bool node::_get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle & rectangle)
    {
 
       return false;
@@ -4915,7 +4915,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   bool node::_get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle & rectangle)
+   bool node::_get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle & rectangle)
    {
 
       return false;
@@ -5103,7 +5103,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    }
 
 
-   ::int_size node::get_main_monitor_size()
+   ::i32_size node::get_main_monitor_size()
    {
 
       return system()->acme_windowing()->acme_display()->get_main_screen_size();

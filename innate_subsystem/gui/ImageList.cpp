@@ -28,7 +28,7 @@ namespace innate_subsystem
    // }
    //
    //
-   // void ImageList::createImageList(const int_size& size, int flags, int iInitialSize, int iGrow)
+   // void ImageList::createImageList(const i32_size& size, int flags, int iInitialSize, int iGrow)
    // {
    //
    //    m_pparticleThis->createImageList(size, flags, iInitialSize, iGrow);

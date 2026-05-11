@@ -47,20 +47,20 @@ namespace experience_core
    //}
 
 
-//   ::experience::enum_frame frame_008::experience_frame_hit_test(const ::int_point & point, ::user::e_zorder ezorder)
+//   ::experience::enum_frame frame_008::experience_frame_hit_test(const ::i32_point & point, ::user::e_zorder ezorder)
 //   {
 //
 //      ::experience::enum_frame etest = ::experience::e_frame_client;
 //
 //      {
 //         //      m_pframewindow->screen_to_client()(point);
-//         ::int_rectangle rectangleEvent;
+//         ::i32_rectangle rectangleEvent;
 //         m_pframewindow->window_rectangle(rectangleEvent);
-//         ::int_rectangle rectangle;
-//         ::int_point pointCenter = rectangleEvent.center();
+//         ::i32_rectangle rectangle;
+//         ::i32_point pointCenter = rectangleEvent.center();
 //         enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 //
-//         ::int_point pointHitTest = point;
+//         ::i32_point pointHitTest = point;
 //
 //         //if(rectangleEvent.left < 0)
 //         // pointHitTest.x -= rectangleEvent.left;
@@ -204,7 +204,7 @@ namespace experience_core
 
 
 
-   void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX, enum_border eside)
+   void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX, enum_border eside)
    {
 
       auto pframewindow = m_pframewindow;
@@ -245,14 +245,14 @@ namespace experience_core
 
       enum_display edisplay = m_pframewindow->const_layout().design().display();
 
-      ::int_rectangle rectangleA(rectangleX);
+      ::i32_rectangle rectangleA(rectangleX);
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
       if(m_bHollow)
       {
 
-         ::int_rectangle rectangleA(rectangleX);
+         ::i32_rectangle rectangleA(rectangleX);
 
          //rectangleA.bottom--;
 
@@ -315,7 +315,7 @@ namespace experience_core
             information() << "draw_border_side e_display_right";
 
          }
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
 
          GetBorderRectangle(rectangleA, 1, &rectangle, eside);
 
@@ -392,7 +392,7 @@ namespace experience_core
                      
             Draw3dRectSide(pgraphics,rectangleA,eside,crMoveableBorder,crMoveableBorder);
 
-            ::int_rectangle rectangle;
+            ::i32_rectangle rectangle;
                      
             GetBorderRectangle(rectangleX, &rectangle, eside);
                      
@@ -406,7 +406,7 @@ namespace experience_core
                || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
       {
                   
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
                   
          GetBorderRectangle(rectangleX, &rectangle, eside);
                   
@@ -416,13 +416,13 @@ namespace experience_core
       else
       {
                   
-         ::int_rectangle rectangle;
+         ::i32_rectangle rectangle;
                   
          GetBorderRectangle(rectangleX, &rectangle, eside);
                   
          pgraphics->fill_rectangle(rectangle, crMoveableBorder & ::opacity(127));
 
-         ::int_rectangle rectangleXB = rectangleA;
+         ::i32_rectangle rectangleXB = rectangleA;
 
          rectangleXB.bottom--;
          rectangleXB.right--;
@@ -477,7 +477,7 @@ namespace experience_core
 
       string str;
 
-      ::int_rectangle rectangleNClient;
+      ::i32_rectangle rectangleNClient;
 
       pframewindow->window_rectangle(rectangleNClient);
 
@@ -519,7 +519,7 @@ namespace experience_core
    }
 
 
-   void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+   void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
    {
 
       // glxxx
@@ -541,7 +541,7 @@ namespace experience_core
       if(m_bHollow && eborder == e_border_all)
       {
 
-         ::int_rectangle rectangleA(rectangleX);
+         ::i32_rectangle rectangleA(rectangleX);
 
          //rectangleA.bottom--;
          //rectangleA.right--;
@@ -615,15 +615,15 @@ namespace experience_core
    }
 
 
-   //void frame_008::GetBorderRectangle(const ::int_rectangle & rectangleX, ::int_rectangle * lprect, enum_border eside)
+   //void frame_008::GetBorderRectangle(const ::i32_rectangle & rectangleX, ::i32_rectangle * lprect, enum_border eside)
    //{
-   //   ::int_rectangle rectangleBig(rectangleX);
+   //   ::i32_rectangle rectangleBig(rectangleX);
 
    //   rectangleBig.deflate(m_rectangleMarginDock);
-   //   ::int_rectangle rectangleSmall(rectangleBig);
+   //   ::i32_rectangle rectangleSmall(rectangleBig);
    //   rectangleSmall.deflate(1);
 
-   //   ::int_rectangle rectangle;
+   //   ::i32_rectangle rectangle;
    //   if(eside == e_border_top)
    //   {
    //      rectangle.left = rectangleBig.left;
@@ -705,7 +705,7 @@ namespace experience_core
 #define GRIP_LARGE 30
 
 
-   void frame_008::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleXParam, enum_grip egrip)
+   void frame_008::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleXParam, enum_grip egrip)
    {
 
       // glxxx
@@ -715,12 +715,12 @@ namespace experience_core
       const int size = 16;
 
       auto rectangleX(rectangleXParam);
-      //            ::int_rectangle rectangleXB(rectangleX);
-      ::int_rectangle rectangleA;
-      ::int_point pointA;
-      ::int_point pointB;
-      ::int_point pointC;
-      //            ::int_rectangle rectangle(rectangleX);
+      //            ::i32_rectangle rectangleXB(rectangleX);
+      ::i32_rectangle rectangleA;
+      ::i32_point pointA;
+      ::i32_point pointB;
+      ::i32_point pointC;
+      //            ::i32_rectangle rectangle(rectangleX);
       switch(egrip)
       {
       case e_grip_top_left:
@@ -838,12 +838,12 @@ namespace experience_core
    }
 
 
-   void frame_008::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::int_rectangle & rectangleParam)
+   void frame_008::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::i32_rectangle & rectangleParam)
    {
 
       //
 
-      ::int_rectangle rectangle(rectangleParam);
+      ::i32_rectangle rectangle(rectangleParam);
 
       auto pframewindow = m_pframewindow;
 
@@ -876,7 +876,7 @@ namespace experience_core
    }
 
 
-   void frame_008::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangleX)
+   void frame_008::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangleX)
    {
 
       auto psizenager = m_pframewindow->size_manager();

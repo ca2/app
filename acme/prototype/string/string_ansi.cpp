@@ -299,7 +299,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //#ifdef WINDOWS
-//_INSECURE_DEPRECATE("You must pass an output int_size to char_traits::string_uppercase")
+//_INSECURE_DEPRECATE("You must pass an output i32_size to char_traits::string_uppercase")
 //#endif
 //char * __cdecl char_traits::string_uppercase(char * psz) noexcept
 //{
@@ -323,7 +323,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}
 //
 //#if defined(WINDOWS)
-//_INSECURE_DEPRECATE("You must pass an output int_size to char_traits::string_lowercase")
+//_INSECURE_DEPRECATE("You must pass an output i32_size to char_traits::string_lowercase")
 //#endif
 //char * __cdecl char_traits::string_lowercase(char * psz) noexcept
 //{
@@ -470,7 +470,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   //if(nDestLength >= 0)
 //   //{
-//   //   throw ::exception(::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect int_size? Go to Facebook and click in Like for Community \"I Like incorrect int_size!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect int_size"));
+//   //   throw ::exception(::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect i32_size? Go to Facebook and click in Like for Community \"I Like incorrect i32_size!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect i32_size"));
 //   //}
 //
 //   wd32_to_ansi(scopedstrDest,pszSrc,nSrcLength);
@@ -637,7 +637,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows ::u32 int_size
+//      // API only allows ::u32 i32_size
 //      throw ::exception(error_bad_argument);
 //   }
 //   ::u32 dwSize=static_cast<::u32>(size);
@@ -659,7 +659,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows ::u32 int_size
+//      // API only allows ::u32 i32_size
 //      throw ::exception(error_bad_argument);
 //   }
 //   ::u32 dwSize=static_cast<::u32>(size);
@@ -1647,7 +1647,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // nReplacementLen is in XCHARs
 //   character_count nReplacementLen = ::str::SafeStringLen(scopedstrNew);
 //
-//   // loop once to figure out the int_size of the result string
+//   // loop once to figure out the i32_size of the result string
 //   character_count nCount = 0;
 //   {
 //      const_char_pointer pszStart = m_psz + iStart;
@@ -1712,7 +1712,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   // nReplacementLen is in XCHARs
 //   character_count nReplacementLen = ::str::SafeStringLen(scopedstrNew);
 //
-//   // loop once to figure out the int_size of the result string
+//   // loop once to figure out the i32_size of the result string
 //   character_count nCount = 0;
 //   {
 //      const_char_pointer pszStart = m_psz + iStart;

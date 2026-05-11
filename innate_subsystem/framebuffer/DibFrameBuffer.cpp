@@ -60,7 +60,7 @@ namespace  innate_subsystem
       m_fb.setColor(reg, green, blue);
    }
 
-   void DibFramebuffer::fillRect(const ::int_rectangle &rectangleTarget, ::u32 color)
+   void DibFramebuffer::fillRect(const ::i32_rectangle &rectangleTarget, ::u32 color)
    {
       m_fb.fillRect(rectangleTarget, color);
    }
@@ -70,7 +70,7 @@ namespace  innate_subsystem
       return m_fb.isEqualTo(pframebuffer);
    }
 
-   bool DibFramebuffer::copyFrom(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
+   bool DibFramebuffer::copyFrom(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
                                  int srcX, int srcY)
    {
       return m_fb.copyFrom(rectangleTarget, pframebufferSource, srcX, srcY);
@@ -81,34 +81,34 @@ namespace  innate_subsystem
       return m_fb.copyFrom(pframebufferSource, srcX, srcY);
    }
 
-   bool DibFramebuffer::overlay(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
+   bool DibFramebuffer::overlay(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
                                 int srcX, int srcY, const char *andMask)
    {
       return m_fb.overlay(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
    }
 
-   void DibFramebuffer::move(const ::int_rectangle &rectangleTarget, const int srcX, const int srcY)
+   void DibFramebuffer::move(const ::i32_rectangle &rectangleTarget, const int srcX, const int srcY)
    {
       m_fb.move(rectangleTarget, srcX, srcY);
    }
 
-   bool DibFramebuffer::cmpFrom(const ::int_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
+   bool DibFramebuffer::cmpFrom(const ::i32_rectangle &rectangleTarget, const Framebuffer * pframebufferSource,
                                 const int srcX, const int srcY)
    {
       return m_fb.cmpFrom(rectangleTarget, pframebufferSource, srcX, srcY);
    }
 
-   bool DibFramebuffer::setDimension(const ::int_size &newDim)
+   bool DibFramebuffer::setDimension(const ::i32_size &newDim)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use the DibFramebuffer::clone() function.");
    }
 
-   bool DibFramebuffer::setDimension(const ::int_rectangle &rect)
+   bool DibFramebuffer::setDimension(const ::i32_rectangle &rect)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use the DibFramebuffer::clone() function.");
    }
 
-   void DibFramebuffer::setEmptyDimension(const ::int_rectangle &dimByRect)
+   void DibFramebuffer::setEmptyDimension(const ::i32_rectangle &dimByRect)
    {
       throw ::subsystem::Exception("This function is deprecated");
    }
@@ -118,12 +118,12 @@ namespace  innate_subsystem
       throw ::subsystem::Exception("This function is deprecated");
    }
 
-   void DibFramebuffer::setPropertiesWithoutResize(const ::int_size &newDim, const ::innate_subsystem::PixelFormat &pf)
+   void DibFramebuffer::setPropertiesWithoutResize(const ::i32_size &newDim, const ::innate_subsystem::PixelFormat &pf)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use the DibFramebuffer::setPropertiesWithoutResize() function.");
    }
 
-   inline ::int_size DibFramebuffer::getDimension() const
+   inline ::i32_size DibFramebuffer::getDimension() const
    {
       return m_fb.getDimension();
    }
@@ -138,12 +138,12 @@ namespace  innate_subsystem
       return m_fb.getPixelFormat();
    }
 
-   bool DibFramebuffer::setProperties(const ::int_size &newDim, const ::innate_subsystem::PixelFormat &pixelFormat)
+   bool DibFramebuffer::setProperties(const ::i32_size &newDim, const ::innate_subsystem::PixelFormat &pixelFormat)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use this variant of the DibFramebuffer::setProperties() function.");
    }
 
-   bool DibFramebuffer::setProperties(const ::int_rectangle &dimByRect, const ::innate_subsystem::PixelFormat &pixelFormat)
+   bool DibFramebuffer::setProperties(const ::i32_rectangle &dimByRect, const ::innate_subsystem::PixelFormat &pixelFormat)
    {
       throw ::subsystem::Exception("Wrong: You shouln't use this variant of the DibFramebuffer::setProperties() function.");
    }
@@ -183,31 +183,31 @@ namespace  innate_subsystem
       return m_fb.getBytesPerRow();
    }
 
-   void DibFramebuffer::blitToDibSection(const ::int_rectangle &rect)
+   void DibFramebuffer::blitToDibSection(const ::i32_rectangle &rect)
    {
       checkDibValid();
       m_pdibsection->blitToDibSection(rect);
    }
 
-   void DibFramebuffer::blitTransparentToDibSection(const ::int_rectangle &rect)
+   void DibFramebuffer::blitTransparentToDibSection(const ::i32_rectangle &rect)
    {
       checkDibValid();
       m_pdibsection->blitTransparentToDibSection(rect);
    }
 
-   void DibFramebuffer::blitFromDibSection(const ::int_rectangle &rect)
+   void DibFramebuffer::blitFromDibSection(const ::i32_rectangle &rect)
    {
       checkDibValid();
       m_pdibsection->blitFromDibSection(rect);
    }
 
-   void DibFramebuffer::stretchFromDibSection(const ::int_rectangle &srcRect, const ::int_rectangle &rectangleTarget)
+   void DibFramebuffer::stretchFromDibSection(const ::i32_rectangle &srcRect, const ::i32_rectangle &rectangleTarget)
    {
       checkDibValid();
       m_pdibsection->stretchFromDibSection(srcRect, rectangleTarget);
    }
 
-   void DibFramebuffer::setProperties(const ::int_size &newDim,
+   void DibFramebuffer::setProperties(const ::i32_size &newDim,
                                       const ::innate_subsystem::PixelFormat &pixelFormat,
                                       const ::operating_system::window & operatingsystemwindowCompatible)
    {
@@ -216,7 +216,7 @@ namespace  innate_subsystem
       m_fb.setBuffer(buffer);
    }
 
-   void *DibFramebuffer::updateDibSection(const ::int_size &newDim,
+   void *DibFramebuffer::updateDibSection(const ::i32_size &newDim,
                                          const ::innate_subsystem::PixelFormat &pixelFormat,
                                          const ::operating_system::window & operatingsystemwindowCompatible)
    {

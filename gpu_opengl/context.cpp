@@ -505,7 +505,7 @@ namespace gpu_opengl
    //}
 
 
-   void context::update_framebuffer(const ::int_size &size)
+   void context::update_framebuffer(const ::i32_size &size)
    {
 
       if (m_eoutput == ::gpu::e_output_swap_chain)
@@ -609,7 +609,7 @@ namespace gpu_opengl
    }
 
 
-   //void context::create_offscreen_buffer(const ::int_size& size)
+   //void context::create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   auto pgpu = application()->get_gpu();
@@ -653,7 +653,7 @@ namespace gpu_opengl
    //}
 
 
-   //void context::_create_offscreen_buffer(const ::int_size& size)
+   //void context::_create_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   return ::success_none;
@@ -661,7 +661,7 @@ namespace gpu_opengl
    //}
 
 
-   //void context::resize_offscreen_buffer(const ::int_size& size)
+   //void context::resize_offscreen_buffer(const ::i32_size& size)
    //{
 
    //   return ::success_none;
@@ -1846,7 +1846,7 @@ namespace gpu_opengl
 
 
    void context::on_create_context(::gpu::device *pgpudevice, const ::gpu::enum_output &eoutput,
-                                   ::acme::windowing::window *pwindow, const ::int_size &size)
+                                   ::acme::windowing::window *pwindow, const ::i32_size &size)
    {
 
       ::gpu::context::on_create_context(pgpudevice, eoutput, pwindow, size);
@@ -2108,7 +2108,7 @@ namespace gpu_opengl
    }
 
 
-//   void context::_create_offscreen_window(const ::int_size &size)
+//   void context::_create_offscreen_window(const ::i32_size &size)
 //   {
 //
 //#if defined(WINDOWS_DESKTOP)
@@ -2367,7 +2367,7 @@ namespace gpu_opengl
 
       //   ::GetClientRect(m_hwnd, &rectClient);
 
-      //   ::int_size sizeNew = { rectClient.right - rectClient.left,
+      //   ::i32_size sizeNew = { rectClient.right - rectClient.left,
       //rectClient.bottom - rectClient.top };
 
       //   if (m_size != sizeNew)
@@ -2411,7 +2411,7 @@ namespace gpu_opengl
    }
 
 
-   //void context::_create_cpu_buffer(const ::int_size &size)
+   //void context::_create_cpu_buffer(const ::i32_size &size)
    //{
 
    //   //_create_offscreen_window(size);
@@ -2446,7 +2446,7 @@ namespace gpu_opengl
    }
 
 
-   void context::resize_cpu_buffer(const ::int_size &sizeParam)
+   void context::resize_cpu_buffer(const ::i32_size &sizeParam)
    {
 
       //if (m_papplication->m_bUseSwapChainWindow)
@@ -3098,7 +3098,7 @@ color = vec4(c.r,c.g, c.b, c.a);
    }
 
 
-   // void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::int_rectangle & rectangle)
+   // void context::set_viewport(::gpu::command_buffer * pgpucommandbuffer, const ::i32_rectangle & rectangle)
    // {
    //
    //    ::g

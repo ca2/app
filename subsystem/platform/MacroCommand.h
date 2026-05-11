@@ -50,7 +50,7 @@ namespace subsystem
        * Executes macro command (sequence of commands that pushed to macro by
        * calling of addCommand() method).
        */
-      virtual void execute();
+      void execute() override;
 
       /**
        * Adds command to the end of ::list_base of commands to execute.

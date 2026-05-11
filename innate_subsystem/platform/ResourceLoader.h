@@ -89,7 +89,7 @@ namespace innate_subsystem
 
       /**
        * Loads standart cursor.
-       * @param [in] id identifier of accelerator in resource file.
+       * @param [in] ecursor identifier of accelerator in resource file.
        * @return handle of cursor if it's loaded.
        */
       virtual ::pointer < CursorInterface > loadStandardCursor(enum_cursor ecursor);

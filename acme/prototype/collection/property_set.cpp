@@ -78,10 +78,10 @@ property_set_base::~property_set_base()
 //      if(it->element1().m_etype == atom::type_integer)
 //      {
 //
-//         if(it->element1().m_i > iMax)
+//         if(it->element1().m_i32 > iMax)
 //         {
 //
-//            iMax = (index)it->element1().m_i;
+//            iMax = (index)it->element1().m_i32;
 //
 //         }
 //
@@ -2874,13 +2874,13 @@ property & property_set_base::property(const ::atom_array_base & atoma)
 //      if (atom.is_integer())
 //      {
 //
-//         return (iptr)(m_i + atom.m_i);
+//         return (iptr)(m_i32 + atom.m_i32);
 //
 //      }
 //      else if (atom.is_text())
 //      {
 //
-//         return as_string(m_i) + "." + string(atom.m_psz);
+//         return as_string(m_i32) + "." + string(atom.m_psz);
 //
 //      }
 //      else
@@ -2897,7 +2897,7 @@ property & property_set_base::property(const ::atom_array_base & atoma)
 //      if (is_text())
 //      {
 //
-//         return string(m_psz) + "." + as_string(atom.m_i);
+//         return string(m_psz) + "." + as_string(atom.m_i32);
 //
 //      }
 //      else

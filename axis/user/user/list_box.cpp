@@ -496,7 +496,7 @@ namespace user
 
       pgraphics->fill_rectangle(rectangleX);
 
-      ::int_rectangle rectangleItem;
+      ::i32_rectangle rectangleItem;
 
       rectangleItem = rectangleX;
 
@@ -642,7 +642,7 @@ namespace user
    }
 
 
-   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::int_size* psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::i32_size* psize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -1184,14 +1184,14 @@ namespace user
    }
 
 
-   ::item_pointer list_box::on_hit_test(const ::int_point& point, ::user::e_zorder ezorder)
+   ::item_pointer list_box::on_hit_test(const ::i32_point& point, ::user::e_zorder ezorder)
    {
 
       ::collection::count iItemCount = _001GetListCount();
 
       auto rectangleX = this->rectangle();
 
-      ::int_rectangle rectangleItem = rectangleX;
+      ::i32_rectangle rectangleItem = rectangleX;
 
       int iAddUp = 0;
 
@@ -1261,16 +1261,16 @@ namespace user
    //   }
 
 
-   void list_box::on_drop_down(const ::int_rectangle& rectangleWindow, const ::int_size& sizeFull)
+   void list_box::on_drop_down(const ::i32_rectangle& rectangleWindow, const ::i32_size& sizeFull)
    {
 
       //lock_sketch_to_design lockSketchToDesign(this);
 
-      ::int_rectangle rectangleMonitor;
+      ::i32_rectangle rectangleMonitor;
 
       ::collection::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
-      ::int_rectangle rectangleList;
+      ::i32_rectangle rectangleList;
 
       rectangleList.left = rectangleWindow.left;
       //rectangleList.right = rectangleWindow.left + maximum(rectangleWindow.width(), sizeFull.cx) + 20;
@@ -1315,7 +1315,7 @@ namespace user
 
          }
 
-         //::int_rectangle rectangleListOver;
+         //::i32_rectangle rectangleListOver;
 
          //rectangleListOver.left = rectangleList.left;
          //rectangleListOver.right = rectangleList.right;
@@ -1416,7 +1416,7 @@ namespace user
 
       set_activation({ ::user::e_activation_no_activate });
 
-      place(::int_rectangle(rectangleList));
+      place(::i32_rectangle(rectangleList));
 
       information() << "on_drop_down (10) : " << rectangleList;
 
@@ -1482,7 +1482,7 @@ namespace user
 //      else
 //      {
 //
-//         place(::int_rectangle(rectangleList).inflate(m_iBorder));
+//         place(::i32_rectangle(rectangleList).inflate(m_iBorder));
 //
 //         order_top_most();
 //

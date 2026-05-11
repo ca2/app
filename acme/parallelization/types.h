@@ -95,25 +95,25 @@ public:
 
 #ifdef PARALLELIZATION_PTHREAD
 
-	hthread_t	m_i;
+	hthread_t	m_i32;
 	
-	itask(hthread_t i):m_i(i) {}
+	itask(hthread_t i):m_i32(i) {}
 	
 #else
 
-	iptr		m_i;
+	iptr		m_i32;
 	
-	itask(iptr i):m_i(i) {}
+	itask(iptr i):m_i32(i) {}
 	
 #endif
 
-	itask():m_i{} {}
+	itask():m_i32{} {}
 	
-	itask(nullptr_t):m_i{} {}
+	itask(nullptr_t):m_i32{} {}
 
-	itask(const itask & i):m_i(i.m_i) {}	
+	itask(const itask & i):m_i32(i.m_i32) {}	
 	
-	itask & operator = (const itask & i) {m_i = i.m_i; return *this;}
+	itask & operator = (const itask & i) {m_i32 = i.m_i32; return *this;}
 
 	bool operator == (const itask & i) const;
 	
@@ -123,7 +123,7 @@ public:
 	
 	bool operator !() const { return is_null(); }
 
-	operator ::iptr() const { return *(::iptr*)&m_i; }
+	operator ::iptr() const { return *(::iptr*)&m_i32; }
 	
 };
 
@@ -134,20 +134,20 @@ public:
 //public:
 //
 //
-//	iptr	m_i;
+//	iptr	m_i32;
 //	
 //	
-//	task_index(iptr i):m_i(i) {}
+//	task_index(iptr i):m_i32(i) {}
 //
-//	task_index():m_i{} {}
+//	task_index():m_i32{} {}
 //	
-//	task_index(nullptr_t):m_i{} {}
+//	task_index(nullptr_t):m_i32{} {}
 //
-//	task_index(const task_index & i):m_i(i.m_i) {}	
+//	task_index(const task_index & i):m_i32(i.m_i32) {}	
 //	
-//	task_index & operator = (const task_index & i) {m_i = i.m_i; return *this;}
+//	task_index & operator = (const task_index & i) {m_i32 = i.m_i32; return *this;}
 //
-//	bool operator == (const task_index & i) const { return m_i == i.m_i; }
+//	bool operator == (const task_index & i) const { return m_i32 == i.m_i32; }
 //	
 //	bool is_null() const  { return operator==(nullptr); }
 //	
@@ -156,7 +156,7 @@ public:
 //	bool operator !() const { return is_null(); }
 //	
 //	
-//	operator hash32() const { return (hash32)m_i; }
+//	operator hash32() const { return (hash32)m_i32; }
 //
 //	
 //};

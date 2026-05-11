@@ -150,17 +150,17 @@ namespace experience_core
    }
 
 
-   ::int_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
+   ::i32_rectangle control_box::get_button_margin(::experience::enum_button ebutton)
    {
 
       if (::experience::e_button_close == ebutton)
       {
 
-         return ::int_rectangle(1, 4, 4, 4);
+         return ::i32_rectangle(1, 4, 4, 4);
 
       }
 
-      return ::int_rectangle(1, 4, 2, 4);
+      return ::i32_rectangle(1, 4, 2, 4);
 
    }
 

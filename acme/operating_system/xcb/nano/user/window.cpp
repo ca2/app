@@ -319,7 +319,7 @@ namespace nano
       //
       //   for (int i = 0; i < m_iButtonCount; i++)
       //   {
-      //      if (m_buttona[i].m_rectangle.contains(int_point(x, y)))
+      //      if (m_buttona[i].m_rectangle.contains(i32_point(x, y)))
       //      {
       //
       //         return m_buttona[i].m_edialogresult;
@@ -698,7 +698,7 @@ namespace nano
             if (!m_psurface)
             {
 
-               int_rectangle rectangleX;
+               i32_rectangle rectangleX;
 
                get_client_rectangle(rectangleX);
 
@@ -1063,7 +1063,7 @@ namespace nano
       }
 
 
-      void window::move_to(const ::int_point & point)
+      void window::move_to(const ::i32_point & point)
       {
 
          m_pdisplay->_move_window(m_window, point.x, point.y);
@@ -1112,7 +1112,7 @@ namespace nano
       }
 
 
-      void window::get_client_rectangle(::int_rectangle & rectangle)
+      void window::get_client_rectangle(::i32_rectangle & rectangle)
       {
 
          xcb_get_geometry_reply_t geometry;
@@ -1127,7 +1127,7 @@ namespace nano
       }
 
 
-      void window::get_window_rectangle(::int_rectangle & rectangle)
+      void window::get_window_rectangle(::i32_rectangle & rectangle)
       {
 
          xcb_get_geometry_reply_t geometry;
@@ -1159,7 +1159,7 @@ namespace nano
       }
 
 
-      //   ::int_size window::get_main_screen_size()
+      //   ::i32_size window::get_main_screen_size()
       //   {
       //
       //      return m_pdisplay->get_main_screen_size();

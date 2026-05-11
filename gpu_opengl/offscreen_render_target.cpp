@@ -29,7 +29,7 @@ namespace gpu_opengl
 
 
 
-   void offscreen_render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::int_size& size, ::pointer <::gpu::render_target>previous)
+   void offscreen_render_target::initialize_render_target(::gpu::renderer* pgpurenderer, const ::i32_size& size, ::pointer <::gpu::render_target>previous)
    {
 
       ::gpu::render_target::initialize_render_target(pgpurenderer, size, previous);
@@ -51,7 +51,7 @@ namespace gpu_opengl
    }
 
 
-   void offscreen_render_target::defer_resize(const ::int_size& size)
+   void offscreen_render_target::defer_resize(const ::i32_size& size)
    {
 
 

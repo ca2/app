@@ -157,7 +157,7 @@ namespace colorertake5
       * Return parsed and colored LineRegions of requested line.
       * This method validates current cache state
       * and, if needed, calls Colorer parser to validate modified block of text.
-      * int_size of reparsed text is choosed according to information
+      * i32_size of reparsed text is choosed according to information
       * about visible text range and modification happenings.
       * @todo If number of lines, to be reparsed is more, than backParse parameter,
       * then method will return nullptr, until validate() method is called.

@@ -20,13 +20,13 @@ namespace image
       public:
 
 
-         ::int_rectangle         m_rectangle;
+         ::i32_rectangle         m_rectangle;
          ::image::image_pointer         m_pimage;
 
       };
 
 
-      int_size                         m_size;
+      i32_size                         m_size;
       int                              m_iSize;
       int                              m_iGrow;
       ::pointer<::image::image>               m_pimage;
@@ -59,7 +59,7 @@ namespace image
       //   virtual int set_icon(int iItem, ::file::file * pfile);
 
       //template < image_list_source_pointer IMAGE_LIST_SOURCE_POINTER >
-      //int add(IMAGE_LIST_SOURCE_POINTER psource, const ::int_rectangle & rectangleSource = ::int_rectangle())
+      //int add(IMAGE_LIST_SOURCE_POINTER psource, const ::i32_rectangle & rectangleSource = ::i32_rectangle())
       //{
 
       //   return _add(psource);

@@ -110,7 +110,7 @@
 //   unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
 //   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 //   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.data(), iv);
-//   cipherlen = (int)(storageDecrypt.size() + 16 - 1); //; 16 = key int_size
+//   cipherlen = (int)(storageDecrypt.size() + 16 - 1); //; 16 = key i32_size
 //   storageEncrypt.set_size(cipherlen);
 //   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.data(), &cipherlen, (const unsigned char*)storageDecrypt.data(), plainlen))
 //   {
@@ -315,7 +315,7 @@
 ////   const_char_pointer iv = "skdfjghsdlkfjghs";
 ////   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 ////   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.data(), iv);
-////   cipherlen = (int)(storageDecrypt.size() + 16 - 1); //; 16 = key int_size
+////   cipherlen = (int)(storageDecrypt.size() + 16 - 1); //; 16 = key i32_size
 ////   storageEncrypt.allocate(cipherlen);
 ////   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.data(), &cipherlen, (const unsigned char*)storageDecrypt.data(), plainlen))
 ////   {

@@ -9,14 +9,14 @@
 
 template < prototype_number NUMBER >
 class polygon_base :
-   public point_array_base < NUMBER >
+   public poi32_array_base < NUMBER >
 {
 public:
 
 
-   using BASE_ARRAY = point_array_base < NUMBER >;
+   using BASE_ARRAY = poi32_array_base < NUMBER >;
 
-   //using POLYGON_BASE_TYPE = point_array_base < NUMBER >;
+   //using POLYGON_BASE_TYPE = poi32_array_base < NUMBER >;
    //using POINT_BASE_TYPE = POINT_TYPE;
    using UNIT_TYPE = NUMBER;
    //using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
@@ -58,7 +58,7 @@ public:
    void rotate(double dAngle)
    {
 
-      point_array_base < NUMBER >::rotate(dAngle);
+      poi32_array_base < NUMBER >::rotate(dAngle);
       m_bDirtyBoundingRect = true;
 
    }
@@ -67,7 +67,7 @@ public:
    void rotate(double dAngle, ::point_type < UNIT_TYPE > pointCenter)
    {
 
-      point_array_base < NUMBER >::rotate(dAngle, pointCenter);
+      poi32_array_base < NUMBER >::rotate(dAngle, pointCenter);
       m_bDirty = true;
       m_bDirtyBoundingRect = true;
 
@@ -101,14 +101,14 @@ public:
    bool contains(const ::point_type < NUMBER > & point) const
    {
     
-      return point_array_base < NUMBER >::polygon_contains_winding(point);
+      return poi32_array_base < NUMBER >::polygon_contains_winding(point);
     
    }
 
    bool contains_alternate(const ::point_type < NUMBER > & point) const
    {
 
-      return point_array_base < NUMBER >::polygon_contains_alternate(point);
+      return poi32_array_base < NUMBER >::polygon_contains_alternate(point);
 
    }
 
@@ -122,14 +122,14 @@ public:
 
 template < prototype_number NUMBER >
 inline polygon_base < NUMBER >::polygon_base(const polygon_base& polygon) :
-point_array_base < NUMBER >(polygon)
+poi32_array_base < NUMBER >(polygon)
 {
 
 }
 
 template < prototype_number NUMBER >
 inline polygon_base < NUMBER >::polygon_base(polygon_base&& polygon) :
-   point_array_base < NUMBER >(::transfer(polygon))
+   poi32_array_base < NUMBER >(::transfer(polygon))
 {
    
    m_bDirty = polygon.m_bDirty;
@@ -184,7 +184,7 @@ polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (const polygon_bas
    if (&polygon != this)
    {
 
-      point_array_base < NUMBER >::operator = (polygon);
+      poi32_array_base < NUMBER >::operator = (polygon);
       m_bDirty = polygon.m_bDirty;
       m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
       m_rectangleBounding = polygon.m_rectangleBounding;
@@ -203,7 +203,7 @@ polygon_base < NUMBER > & polygon_base < NUMBER >::operator = (polygon_base&& po
    if (&polygon != this)
    {
 
-      point_array_base < NUMBER >::operator = (::transfer(polygon));
+      poi32_array_base < NUMBER >::operator = (::transfer(polygon));
       m_bDirty = polygon.m_bDirty;
       m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
       if(!m_bDirtyBoundingRect)
@@ -223,7 +223,7 @@ inline bool int_lineersection(double_point & point, const double_point & pt1, co
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
 //latlong1 and latlong2 represent two coordinates that make up the bounded box
-//latlong3 is a int_point that we are checking to see is inside the box
+//latlong3 is a i32_point that we are checking to see is inside the box
 inline bool inBoundedBox(const double_point & pt1, const double_point & pt2, const double_point & pt3)
 {
 
@@ -366,7 +366,7 @@ inline bool int_lineersection(double_point & point, const double_point & pt1, co
 }
 
 
-inline void get_intersection_points(double_point_array_base & pa, const double_point & point1, const double_point & point2, const double_point_array_base & paPolygon)
+inline void get_intersection_points(double_poi32_array_base & pa, const double_point & point1, const double_point & point2, const double_poi32_array_base & paPolygon)
 {
 
    double_point point;

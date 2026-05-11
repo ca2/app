@@ -169,7 +169,7 @@ namespace html
 
          //::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::int_rectangle rectangleWindow;
+         //::i32_rectangle rectangleWindow;
 
          //m_pedit->window_rectangle(rectangleWindow);
 

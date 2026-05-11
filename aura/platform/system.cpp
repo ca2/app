@@ -46,7 +46,7 @@ CLASS_DECL_ACME bool is_x11();
 //
 //}
 
-int get_main_screen_rectangle(::int_rectangle * lprect);
+int get_main_screen_rectangle(::i32_rectangle * lprect);
 
 
 namespace draw2d
@@ -1129,7 +1129,7 @@ namespace aura
    }
 
 //
-//   void system::get_time(struct timeval * int_point)
+//   void system::get_time(struct timeval * i32_point)
 //   {
 //#ifdef _WIN32
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
@@ -1137,8 +1137,8 @@ namespace aura
 //      ::u64 tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
-//      int_point->tv_sec = (long)tt / 1000000;
-//      int_point->tv_usec = (long)tt % 1000000;
+//      i32_point->tv_sec = (long)tt / 1000000;
+//      i32_point->tv_usec = (long)tt % 1000000;
 //#else
 //      gettimeofday(point, nullptr);
 //#endif
@@ -3705,7 +3705,7 @@ namespace aura
    // }
 
 // #ifndef APPLE_IOS
-//    void * system::initialize_native_window2(const ::int_rectangle & rectangle)
+//    void * system::initialize_native_window2(const ::i32_rectangle & rectangle)
 
 //    {
 
@@ -3747,12 +3747,12 @@ namespace aura
 //   }
 //
 //
-//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::int_rectangle * prectangle)
+//   CLASS_DECL_AURA bool window_rectangle(::aura::system_window ^ pwindow, ::i32_rectangle * prectangle)
 //   {
 //
 //      ::double_rectangle rectangle;
 //
-//      if (!window_rectangle(pwindow, (::double_rectangle*)int_rectangle))
+//      if (!window_rectangle(pwindow, (::double_rectangle*)i32_rectangle))
 //      {
 //
 //         return false;
@@ -3807,7 +3807,7 @@ namespace aura
    //}
 
 
-//   index system::get_main_monitor(::int_rectangle * prectangle)
+//   index system::get_main_monitor(::i32_rectangle * prectangle)
 //   {
 //
 //      index iMainMonitor = 0;
@@ -3873,7 +3873,7 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle)
+//   bool system::get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle * prectangle)
 //   {
 //
 //#if MOBILE_PLATFORM
@@ -3945,7 +3945,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle)
+//   bool system::get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle * prectangle)
 //
 //   {
 //
@@ -3955,7 +3955,7 @@ namespace aura
 //   }
 //
 //
-//   index system::get_main_workspace(::int_rectangle * prectangle)
+//   index system::get_main_workspace(::i32_rectangle * prectangle)
 //
 //   {
 //
@@ -4012,7 +4012,7 @@ namespace aura
 //   }
 //
 
-//   bool system::get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle * prectangle)
+//   bool system::get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle * prectangle)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -4089,7 +4089,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle * prectangle)
+//   bool system::get_desk_workspace_rect(::collection::index iWorkspace, ::i32_rectangle * prectangle)
 //
 //   {
 //
@@ -6180,7 +6180,7 @@ if(!m_pimaging)
 ////      if(f != nullptr)
 ////      {
 ////
-////         informationf("linux_g_direct_term entry int_point not found at basecore library");
+////         informationf("linux_g_direct_term entry i32_point not found at basecore library");
 ////
 ////         (*f)();
 ////
@@ -6569,7 +6569,7 @@ if(!m_pimaging)
 //#ifdef UNIVERSAL_WINDOWS
 //
 //
-//   bool system::window_rectangle(::int_rectangle* prectangle)
+//   bool system::window_rectangle(::i32_rectangle* prectangle)
 //   {
 //
 //      if (::is_null(get_session()))

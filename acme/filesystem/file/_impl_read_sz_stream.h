@@ -98,9 +98,9 @@ inline   ::string read_sz_stream::read_find_first_character_in(const_char_pointe
 //   text_stream& operator <<(::u64 u);
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
-//   // void write(const ::int_point & point) ;
-//   // void write(const ::int_size & size) ;
-//   // void write(const ::int_rectangle &rectangle) ;
+//   // void write(const ::i32_point & point) ;
+//   // void write(const ::i32_size & size) ;
+//   // void write(const ::i32_rectangle &rectangle) ;
 //
 //   text_stream& operator <<(const_char_pointer psz);
 //   //text_stream & operator <<(const ::atom & atom) ;

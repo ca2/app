@@ -31,7 +31,7 @@ namespace experience_nanoui
 
 
          int calculate_button_size(::draw2d::graphics_pointer & pgraphics) override;
-         ::int_rectangle get_button_margin(::experience::enum_button ebutton) override;
+         ::i32_rectangle get_button_margin(::experience::enum_button ebutton) override;
 
 
       };

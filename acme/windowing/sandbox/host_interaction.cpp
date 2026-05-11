@@ -87,7 +87,7 @@ void host_interaction::on_click(const ::payload & payload, ::user::mouse * pmous
 
       //auto pwindowParent = this->acme_windowing_window();
 
-      ::int_rectangle rectanglePointTo;
+      ::i32_rectangle rectanglePointTo;
 
       rectanglePointTo.left = 0;
       rectanglePointTo.top = 0;
@@ -227,7 +227,7 @@ void host_interaction::post_redraw(bool bAscendants)
 //void host_interaction::on_layout(::draw2d::graphics_pointer& pgraphics)
 //{
 //   
-//   ::int_rectangle r;
+//   ::i32_rectangle r;
 //   
 //   r = this->rectangle();
 //   

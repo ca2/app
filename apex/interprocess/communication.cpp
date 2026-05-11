@@ -934,7 +934,7 @@ namespace interprocess
 
       string_array_base stra2;
 
-      ::int_array_base iaPid2;
+      ::i32_array_base iaPid2;
 
       for (::collection::index i = 0; i < m_straModule.get_count();)
       {

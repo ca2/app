@@ -56,7 +56,7 @@ namespace apex
 //       //bool                                                  m_bOnInitializeWindowObject;
 //
 //       bool                                                  m_bSystemSynchronizedCursor;
-//       int_point                                                 m_pointCursor;
+//       i32_point                                                 m_pointCursor;
 //
 //       //comparable_array < ::pointer<::layered >>m_uiptraToolWindow;
 //
@@ -144,22 +144,22 @@ namespace apex
 
       ////void construct(::particle * pparticle, int iPhase) override;
 
-      //virtual ::collection::index get_main_monitor(::int_rectangle* prectangle = nullptr);
+      //virtual ::collection::index get_main_monitor(::i32_rectangle* prectangle = nullptr);
 
       //virtual ::collection::count get_monitor_count();
-      //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle);
+      //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle* prectangle);
 
       //virtual ::collection::count get_desk_monitor_count();
-      //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle* prectangle);
+      //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle* prectangle);
 
 
-      //virtual ::collection::index get_main_workspace(::int_rectangle* prectangle = nullptr);
+      //virtual ::collection::index get_main_workspace(::i32_rectangle* prectangle = nullptr);
 
       //virtual ::collection::count get_workspace_count();
-      //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle* prectangle);
+      //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle* prectangle);
 
       //virtual ::collection::count get_desk_workspace_count();
-      //virtual bool  get_desk_workspace_rect(::collection::index iWorkspace, ::int_rectangle* prectangle);
+      //virtual bool  get_desk_workspace_rect(::collection::index iWorkspace, ::i32_rectangle* prectangle);
 
       //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 
@@ -185,10 +185,10 @@ namespace apex
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
 
-      //virtual int_size get_window_minimum_size();
+      //virtual i32_size get_window_minimum_size();
 
 
-      //virtual void  get_cursor_position(::int_point * ppoint);
+      //virtual void  get_cursor_position(::i32_point * ppoint);
 
       virtual bool on_get_task_name(string& strThreadName) override;
 
@@ -293,56 +293,56 @@ namespace apex
 
       
       // apex commented
-      //virtual void get_cursor_position(::int_point * ppoint);
-      //inline ::int_point get_cursor_position() {::int_point point; get_cursor_position(&point); return point;}
+      //virtual void get_cursor_position(::i32_point * ppoint);
+      //inline ::i32_point get_cursor_position() {::i32_point point; get_cursor_position(&point); return point;}
 
       // apex commented
-      //virtual void set_cursor_pos(const ::int_point & point);
+      //virtual void set_cursor_pos(const ::i32_point & point);
 
-      //virtual ::collection::index get_main_monitor(::int_rectangle * prectangle = nullptr);
+      //virtual ::collection::index get_main_monitor(::i32_rectangle * prectangle = nullptr);
 
       // virtual bool set_main_monitor(::collection::index iMonitor);
       // //virtual ::collection::count get_monitor_count();
-      // //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle * prectangle);
+      // //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::i32_rectangle * prectangle);
 
-      // //virtual ::collection::index get_main_workspace(::int_rectangle * prectangle = nullptr);
+      // //virtual ::collection::index get_main_workspace(::i32_rectangle * prectangle = nullptr);
 
       // virtual bool set_main_workspace(::collection::index iWorkspace);
       // //virtual ::collection::count get_workspace_count();
-      // //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::int_rectangle * prectangle);
+      // //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::i32_rectangle * prectangle);
 
-      // virtual bool workspace_to_monitor(::int_rectangle * prectangle, ::collection::index iMonitor, ::collection::index iWorkspace);
+      // virtual bool workspace_to_monitor(::i32_rectangle * prectangle, ::collection::index iMonitor, ::collection::index iWorkspace);
 
-      // virtual bool monitor_to_workspace(::int_rectangle * prectangle, ::collection::index iWorkspace, ::collection::index iMonitor);
+      // virtual bool monitor_to_workspace(::i32_rectangle * prectangle, ::collection::index iWorkspace, ::collection::index iMonitor);
 
-      // virtual bool workspace_to_monitor(::int_rectangle * prectangle);
+      // virtual bool workspace_to_monitor(::i32_rectangle * prectangle);
 
-      // virtual bool monitor_to_workspace(::int_rectangle * prectangle);
+      // virtual bool monitor_to_workspace(::i32_rectangle * prectangle);
 
       // //virtual ::collection::count get_desk_monitor_count();
-      // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::int_rectangle * prectangle);
+      // //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::i32_rectangle * prectangle);
 
-      // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::int_rectangle & rectangle);
+      // virtual void  get_monitor(int_rectangle_array_base & rectaMonitor, int_rectangle_array_base & rectaIntersect, const ::i32_rectangle & rectangle);
 
       // // apex commented
-      // //virtual ::collection::index initial_frame_position(::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);
+      // //virtual ::collection::index initial_frame_position(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bMove, ::user::interaction * pinteraction);
 
-      // virtual ::collection::index _get_best_zoneing(edisplay * pedisplay, ::int_rectangle * prectangle, const ::int_rectangle & rectangle, bool bPreserveSize = false);
+      // virtual ::collection::index _get_best_zoneing(edisplay * pedisplay, ::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, bool bPreserveSize = false);
 
-      // virtual ::collection::index get_best_monitor(::int_rectangle * prectangle, const ::int_rectangle & rectangle, const ::user::activation & useractivation = {});
+      // virtual ::collection::index get_best_monitor(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, const ::user::activation & useractivation = {});
 
-      // virtual ::collection::index get_best_workspace(::int_rectangle * prectangle, const ::int_rectangle& rectangle, const ::user::activation & useractivation = {});
+      // virtual ::collection::index get_best_workspace(::i32_rectangle * prectangle, const ::i32_rectangle& rectangle, const ::user::activation & useractivation = {});
 
-      // virtual ::collection::index get_good_iconify(::int_rectangle * prectangle, const ::int_rectangle & rectangle);
-
-      // apex commented
-      //virtual ::collection::index get_window_restore_1(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
+      // virtual ::collection::index get_good_iconify(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle);
 
       // apex commented
-      //virtual ::collection::index get_window_restore_2(::int_rectangle* prectangle, const ::int_rectangle& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
+      //virtual ::collection::index get_window_restore_1(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
       // apex commented
-      //virtual ::collection::index get_good_move(::int_rectangle * prectangle, const ::int_rectangle & rectangle, ::user::interaction * pinteraction);
+      //virtual ::collection::index get_window_restore_2(::i32_rectangle* prectangle, const ::i32_rectangle& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
+
+      // apex commented
+      //virtual ::collection::index get_good_move(::i32_rectangle * prectangle, const ::i32_rectangle & rectangle, ::user::interaction * pinteraction);
 
       // apex commented
       //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
@@ -353,7 +353,7 @@ namespace apex
       //::pointer<::user::theme>get_user_theme(const ::scoped_string & scopedstrExperienceLibrary, ::apex::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::int_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::i32_rectangle & rectangle, ::draw2d::brush_pointer & pbrushText);
 
 
       // apex commented
@@ -457,7 +457,7 @@ namespace apex
 
       virtual void on_request(::request * prequest) override;
 
-      ::particle * defer_initialize_host_window(const ::int_rectangle * lpcrect = nullptr) override;
+      ::particle * defer_initialize_host_window(const ::i32_rectangle * lpcrect = nullptr) override;
 
       ::pointer<::apex::application>get_current_application();
 

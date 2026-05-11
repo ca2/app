@@ -26,8 +26,8 @@ namespace image
       ::color::color       m_colorTransparent;
       ::color::color       m_colorBack;
       unsigned char                 m_backgroundIndex;
-      ::int_size           m_sizeLogical;
-      ::int_size           m_size;
+      ::i32_size           m_sizeLogical;
+      ::i32_size           m_size;
       ::image::image_pointer      m_pimageCompose;
       color_array          m_colora;
 
@@ -36,9 +36,9 @@ namespace image
       ~image_frame_array() override;
 
 
-      ::int_size size() const { return m_size; }
+      ::i32_size size() const { return m_size; }
 
-      ::int_rectangle rectangle(const ::int_point & point = {}) const { return ::int_rectangle(point, m_size); }
+      ::i32_rectangle rectangle(const ::i32_point & point = {}) const { return ::i32_rectangle(point, m_size); }
 
       virtual ::image::image_pointer calc_current_frame(image_dynamic & dynamic);
       virtual void update(::image::image *pimageHost, const ::image::image_drawing & imagedrawing);

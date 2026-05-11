@@ -176,7 +176,7 @@ namespace micro
 
 
 
-   ::int_point main_window::origin()
+   ::i32_point main_window::origin()
    {
       auto r = get_window_rectangle();
 
@@ -186,7 +186,7 @@ namespace micro
 
 
 
-   void main_window::set_position(const ::int_point & point)
+   void main_window::set_position(const ::i32_point & point)
    {
 
       m_pacmewindowingwindow->set_position(point);
@@ -228,7 +228,7 @@ namespace micro
    }
 
 
-   int_rectangle main_window::get_window_rectangle()
+   i32_rectangle main_window::get_window_rectangle()
    {
 
       return acme_windowing_window()->get_window_rectangle();

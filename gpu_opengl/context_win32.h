@@ -33,7 +33,7 @@ namespace gpu_opengl
       void _create_window_context(::acme::windowing::window *pwindowParam) override;
 
 
-      void _create_cpu_buffer(const ::int_size &size) override;
+      void _create_cpu_buffer(const ::i32_size &size) override;
 
 
       void assert_there_is_current_context() override;

@@ -126,7 +126,7 @@
 //#define ASSERT(X) assert(X)
 /* Frees the given link IF it isn't owned by anything else */
 #define CLEAN(x) { CScriptVarLink *__v = x; if (__v && !__v->owned) { delete __v; } }
-/* Create a LINK to int_point to VAR and free the old link.
+/* Create a LINK to i32_point to VAR and free the old link.
  * BUT this is more clever - it tries to keep the old link if it's not owned to save allocations */
 #define CREATE_LINK(LINK, VAR) { if (!LINK || LINK->owned) LINK = ___new CScriptVarLink(VAR); else LINK->replaceWith(VAR); }
 
@@ -527,7 +527,7 @@ void CScriptLex::getNextToken()
             getNextCh();
          }
       }
-      // do fancy e-style floating int_point
+      // do fancy e-style floating i32_point
       if (!isHex && (currCh=='e'||currCh=='E'))
       {
          token = LEX_FLOAT;

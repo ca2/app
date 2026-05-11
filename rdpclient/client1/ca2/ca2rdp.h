@@ -38,7 +38,7 @@
 
 
 #ifdef _WIN32
-typedef unsigned int itask;
+typedef ::u32 itask;
 #else
 typedef pthread_t itask;
 #endif
@@ -50,7 +50,7 @@ CLASS_DECL_AXIS_RDPCLIENT BOOL ca2rdp_pre_connect(freerdp* instance);
 
 #ifdef _WIN32
 #else
-typedef unsigned int color32_t;
+typedef ::u32 color32_t;
 #endif
 
 namespace aura
@@ -88,7 +88,7 @@ namespace draw2d
 /*   void dib_copy(dib * pimagethis, dib *pimage);
 /*   void dib_alloc(::particle * pparticle, dib * & pimage);
 /*   void dib_create(dib * pimage, int w, int h);
-/*   unsigned int * dib_get_data(dib * pimage);
+/*   ::u32 * dib_get_data(dib * pimage);
 /*   graphics * dib_get_graphics(dib * pimage);
 }
 
@@ -105,7 +105,7 @@ struct ca2rdp_context :
 
 
 #ifdef _WIN32
-   unsigned int mainThreadId;
+   ::u32 mainThreadId;
 #else
    pthread_t mainThreadId;
 #endif
@@ -126,8 +126,8 @@ struct ca2rdp_pointer
 {
    rdpPointer pointer;
    ::image::cursor * m_pcursor;
-   unsigned int xhot;
-   unsigned int yhot;
+   ::u32 xhot;
+   ::u32 yhot;
 };
 typedef struct ca2rdp_pointer ca2rdpPointer;
 

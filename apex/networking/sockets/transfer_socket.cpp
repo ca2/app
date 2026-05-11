@@ -314,7 +314,7 @@ namespace sockets
 
    //   int nBytesReceived = 0;
 
-   //   unsigned int tickStart= ::time::now();
+   //   ::u32 tickStart= ::time::now();
 
    //   int iRead = 0;
 
@@ -500,7 +500,7 @@ namespace sockets
    //         if (nLineLength >= nSize)
    //            nLineLength = nSize - 1;
    //         ::memory_copy(pch, m_pReadBuf, nLineLength); // copy the line to caller
-   //         m_nReadBuf -= static_cast<unsigned int>(nLineLength);
+   //         m_nReadBuf -= static_cast<::u32>(nLineLength);
    //         memory_transfer(m_pReadBuf, pch2 + 1, m_nReadBuf); // shift remaining characters left
    //         break;
    //      }
@@ -515,7 +515,7 @@ namespace sockets
 
    //   *(pch + nLineLength) = _T('\0');
 
-   //   return static_cast<unsigned int>(nLineLength);
+   //   return static_cast<::u32>(nLineLength);
    //}
 
    //// reads remainder of a transmission through buffer full or socket close

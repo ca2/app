@@ -35,7 +35,7 @@ namespace sort
 
 
    //   static void quick_sort(
-      //    array<unsigned int, unsigned int> & a,
+      //    array<::u32, ::u32> & a,
       //  iptr (*fCompare)(const iptr, const iptr),
       //void (*__swap)(void * pVoidSwapArg, iptr iA, iptr iB),
 
@@ -115,7 +115,7 @@ namespace sort
       iptr iLowerBound;
       iptr iUpperBound;
       iptr iLPos, iUPos, iMPos;
-      //   unsigned int t;
+      //   ::u32 t;
 
       if (a.get_size() >= 2)
       {

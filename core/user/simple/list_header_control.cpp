@@ -159,7 +159,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 }*/
 
 
-//bool simple_list_header_control::create_window(unsigned int nStyle, ::user::interaction * puiParent, ::atom atom)
+//bool simple_list_header_control::create_window(::u32 nStyle, ::user::interaction * puiParent, ::atom atom)
 //{
 //
 //   return ::user::interaction::create_window(nullptr, nullptr, nStyle, puiParent, atom);

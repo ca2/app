@@ -18,7 +18,7 @@ namespace interprocess
       ::pointer<::interprocess::caller>         m_pcaller;
       ::pointer<::interprocess::target>         m_ptarget;
       string                                    m_strChannel;
-      unsigned int                              m_timeTimeout;
+      ::u32                              m_timeTimeout;
 
 
       channel();

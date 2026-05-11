@@ -64,9 +64,9 @@ inline int get_utf8_char_length(const_char_pointer psz)
 //
 //   }
 //
-//   ::wd32_character unsigned int;
+//   ::wd32_character ::u32;
 //
-//   character_count used_len = ansi_to_wd32_char(&unsigned int, input, *psrclen);
+//   character_count used_len = ansi_to_wd32_char(&::u32, input, *psrclen);
 //
 //   if (used_len < 0)
 //   {
@@ -79,7 +79,7 @@ inline int get_utf8_char_length(const_char_pointer psz)
 //
 //   *psrclen -= used_len;
 //
-//   return unsigned int;
+//   return ::u32;
 //
 //}
 //
@@ -103,9 +103,9 @@ inline int get_utf8_char_length(const_char_pointer psz)
 //
 //   int i = *input;
 //
-//   ::wd32_character unsigned int;
+//   ::wd32_character ::u32;
 //
-//   character_count used_len = wd16_to_wd32_char(&unsigned int, input, *psrclen);
+//   character_count used_len = wd16_to_wd32_char(&::u32, input, *psrclen);
 //
 //   input += used_len;
 //
@@ -272,7 +272,7 @@ inline bool is_legal_unicode_index(int iUnicodeIndex)
 
    return iUnicodeIndex >= 0 && iUnicodeIndex < 65536 ? true : false;
 
-   //return ca >= ((unsigned long long) 0xffffffffu) ? false : true;
+   //return ca >= ((::u64) 0xffffffffu) ? false : true;
 
 }
 
@@ -281,7 +281,7 @@ inline int unicode_to_lower_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
-   unsigned int c1 = CHAR_PROP(i);
+   ::u32 c1 = CHAR_PROP(i);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return (::wd32_character)i;
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return (::wd32_character)(i + 1);
    return ::wd32_character(i - (c1 >> 16));
@@ -292,7 +292,7 @@ inline int unicode_to_upper_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
-   unsigned int c1 = CHAR_PROP(i);
+   ::u32 c1 = CHAR_PROP(i);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return ::wd32_character(i);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return ::wd32_character(i - 1);
    return ::wd32_character(i - (c1 >> 16));
@@ -356,7 +356,7 @@ inline int unicode_to_title_case(int i)
 {
    if (!is_legal_unicode_index(i))
       return -1;
-   unsigned int c1 = CHAR_PROP(i);
+   ::u32 c1 = CHAR_PROP(i);
    if (TITLE_CASE(c1))  // titlecase exists
    {
       if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return ::wd32_character(i + 1);
@@ -374,7 +374,7 @@ inline int unicode_to_numeric_value(int i, float * f)
 {
    if (!is_legal_unicode_index(i))
       return false;
-   unsigned int c1 = CHAR_PROP(i);
+   ::u32 c1 = CHAR_PROP(i);
    if (!NUMBER(c1)) return false;
    *f = CHAR_PROP2(i);
    return true;
@@ -409,7 +409,7 @@ inline bool unicode_is_letter(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
-   unsigned int c1 = CHAR_CATEGORY(CHAR_PROP(i));
+   ::u32 c1 = CHAR_CATEGORY(CHAR_PROP(i));
    return ((((1 << CHAR_CATEGORY_Lu) |
       (1 << CHAR_CATEGORY_Ll) |
       (1 << CHAR_CATEGORY_Lt) |
@@ -423,7 +423,7 @@ inline bool unicode_is_letter_or_digit(int i)
 {
    if (!is_legal_unicode_index(i))
       return false;
-   unsigned int c1 = CHAR_CATEGORY(CHAR_PROP(i));
+   ::u32 c1 = CHAR_CATEGORY(CHAR_PROP(i));
    return ((((1 << CHAR_CATEGORY_Lu) |
       (1 << CHAR_CATEGORY_Ll) |
       (1 << CHAR_CATEGORY_Lt) |

@@ -437,7 +437,7 @@ CLASS_DECL_ACME void process_get_os_priority(int * piOsPolicy, sched_param * ppa
 
 
 
-unsigned int get_current_process_id()
+::u32 get_current_process_id()
 {
 
    return getpid();

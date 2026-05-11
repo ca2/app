@@ -34,7 +34,7 @@ namespace gpu
    class semaphore;
 
 
-   template<typename VERTEX, typename INDEX = unsigned int>
+   template<typename VERTEX, typename INDEX = ::u32>
    class model_data;
 
    CLASS_DECL_BRED int get_type_size(::gpu::enum_type e);

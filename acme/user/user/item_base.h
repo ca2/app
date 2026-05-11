@@ -25,7 +25,7 @@ namespace user
 
       ::pointer < ::user::item >          m_puseritem;
       //::pointer < ::item >                m_pitem;
-      unsigned long long                  m_ullUserData;
+      ::u64                  m_ullUserData;
       e_item_state                        m_eitemstate;
 
 

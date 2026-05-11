@@ -94,7 +94,7 @@ s_p = this;
       const ::user_interaction_sink & userinteractionsink,
       const ::scoped_string & scopedstrMessage,
       const ::scoped_string & scopedstrCaption,
-      unsigned int uType)
+      ::u32 uType)
    {
 
       throw ::interface_only();

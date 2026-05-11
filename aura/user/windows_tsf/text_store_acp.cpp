@@ -13,7 +13,7 @@ namespace tsf
 {
 
 
-   STDMETHODIMP edit_window::AdviseSink(REFIID riid, IUnknown *pUnknown, unsigned int dwMask)
+   STDMETHODIMP edit_window::AdviseSink(REFIID riid, IUnknown *pUnknown, ::u32 dwMask)
    {
        OutputDebugString(TEXT("edit_window::AdviseSink \n"));
 
@@ -124,7 +124,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::RequestLock(unsigned int dwLockFlags, HRESULT *phrSession)
+   STDMETHODIMP edit_window::RequestLock(::u32 dwLockFlags, HRESULT *phrSession)
    {
        OutputDebugString(TEXT("edit_window::RequestLock \n"));
 
@@ -613,7 +613,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::SetText(  unsigned int dwFlags,
+   STDMETHODIMP edit_window::SetText(  ::u32 dwFlags,
                                        int acpStart,
                                        int acpEnd,
                                        const WCHAR *pchText, 
@@ -773,7 +773,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::InsertEmbedded(   unsigned int dwFlags,
+   STDMETHODIMP edit_window::InsertEmbedded(   ::u32 dwFlags,
                                                int acpStart,
                                                int acpEnd,
                                                IDataObject *pDataObject, 
@@ -791,7 +791,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::RequestSupportedAttrs(    unsigned int dwFlags,
+   STDMETHODIMP edit_window::RequestSupportedAttrs(    ::u32 dwFlags,
                                                        ULONG cFilterAttrs, 
                                                        const TS_ATTRID *paFilterAttrs)
    {
@@ -835,7 +835,7 @@ namespace tsf
    STDMETHODIMP edit_window::RequestAttrsAtPosition(   int acpPos,
                                                        ULONG cFilterAttrs, 
                                                        const TS_ATTRID *paFilterAttrs, 
-                                                       unsigned int dwFlags)
+                                                       ::u32 dwFlags)
    {
        OutputDebugString(TEXT("edit_window::RequestAttrsAtPosition \n"));
 
@@ -889,7 +889,7 @@ namespace tsf
    STDMETHODIMP edit_window::RequestAttrsTransitioningAtPosition(  int acpPos,
                                                                    ULONG cFilterAttrs, 
                                                                    const TS_ATTRID *paFilterAttrs, 
-                                                                   unsigned int dwFlags)
+                                                                   ::u32 dwFlags)
    {
        OutputDebugString(TEXT("edit_window::RequestAttrsTransitioningAtPosition \n"));
 
@@ -906,7 +906,7 @@ namespace tsf
                                                        int acpHalt,
                                                        ULONG cFilterAttrs, 
                                                        const TS_ATTRID *paFilterAttrs, 
-                                                       unsigned int dwFlags,
+                                                       ::u32 dwFlags,
                                                        int *pacpNext,
                                                        BOOL *pfFound, 
                                                        int *plFoundOffset)
@@ -1020,7 +1020,7 @@ namespace tsf
 
    STDMETHODIMP edit_window::GetACPFromPoint(  TsImpactCookie vcImpact, 
                                                const ::int_point *pt,
-                                               unsigned int dwFlags,
+                                               ::u32 dwFlags,
                                                int *pacp)
    {
        OutputDebugString(TEXT("edit_window::GetACPFromPoint \n"));
@@ -1074,8 +1074,8 @@ namespace tsf
        int        lTextLength;
        int        lTemp;
        //::int_rectangle        rc;
-       //unsigned int       dwStart;
-       //unsigned int       dwEnd;
+       //::u32       dwStart;
+       //::u32       dwEnd;
        //HDC         hdc;
        //HFONT       hfont;
        //TEXTMETRIC  tm;
@@ -1112,7 +1112,7 @@ namespace tsf
        //hfont = (HFONT)set(hdc, hfont);
 
        ////get the position of the start character
-       //dwStart = (unsigned int)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpStart, 0);
+       //dwStart = (::u32)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpStart, 0);
        //rc.left = LOWORD(dwStart);
        //rc.top = HIWORD(dwStart);
 
@@ -1127,7 +1127,7 @@ namespace tsf
        the end character and add the width to the rectangle.
        */
        //acpEnd--;
-       //dwEnd = (unsigned int)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpEnd, 0);
+       //dwEnd = (::u32)SendMessage(m_hwndEdit, EM_POSFROMCHAR, acpEnd, 0);
        //
        ////calculate the width of the last character
        //::int_size    size;
@@ -1148,12 +1148,12 @@ namespace tsf
        //*/
        //if(rc.bottom > rc.top)
        //{
-       //    unsigned int   dwMargins;
+       //    ::u32   dwMargins;
        //    ::int_rectangle    rcEdit;
 
        //    GetClientRect(m_hwndEdit, &rcEdit);
        //    
-       //    dwMargins = (unsigned int)SendMessage(m_hwndEdit, EM_GETMARGINS, 0, 0);
+       //    dwMargins = (::u32)SendMessage(m_hwndEdit, EM_GETMARGINS, 0, 0);
        //    
        //    //set the left int_point of the int_rectangle to the left margin of the edit control
        //    rc.left = LOWORD(dwMargins);
@@ -1246,7 +1246,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::InsertTextAtSelection(    unsigned int dwFlags,
+   STDMETHODIMP edit_window::InsertTextAtSelection(    ::u32 dwFlags,
                                                        const WCHAR *pwszText, 
                                                        ULONG cch, 
                                                        int *pacpStart,
@@ -1348,7 +1348,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::InsertEmbeddedAtSelection(    unsigned int dwFlags,
+   STDMETHODIMP edit_window::InsertEmbeddedAtSelection(    ::u32 dwFlags,
                                                            IDataObject *pDataObject, 
                                                            int *pacpStart,
                                                            int *pacpEnd,

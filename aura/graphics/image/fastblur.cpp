@@ -80,7 +80,7 @@ inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 //namespace WebCore {
 
 
-inline float32x4_t loadRGBA8AsFloat(unsigned int* source)
+inline float32x4_t loadRGBA8AsFloat(::u32* source)
 {
 
    ::u32x2_t temporary1 = {0, 0};
@@ -93,7 +93,7 @@ inline float32x4_t loadRGBA8AsFloat(unsigned int* source)
 
 }
 
-inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
+inline void storeFloatAsRGBA8(float32x4_t data,::u32* destination)
 {
 
    ::u3216x4_t temporary1 = vmovn_unsigned_int(vcvtq_u32_float(data));
@@ -357,7 +357,7 @@ inline void storeFloatAsRGBA8(float32x4_t data,unsigned int* destination)
 
 #ifdef DO_BOX_BLUR
 
-      unsigned int * pimage32 = (unsigned int *) m_p->get_data();
+      ::u32 * pimage32 = (::u32 *) m_p->get_data();
 
       unsigned char * int_point;
       vector4 * t = timage;
@@ -379,7 +379,7 @@ auto tickA0 = ::time::now();
             }
          }
 auto tickA1 = ::time::now();
-         unsigned int dwA2 = dwA1 - dwA0;
+         ::u32 dwA2 = dwA1 - dwA0;
          string str;
 
          str.formatf("%d",dwA2);
@@ -399,7 +399,7 @@ auto tick1 = ::time::now();
                 w,
                 h,
                 m_iRadius,
-                (unsigned int *)m_ucha.get_data(),
+                (::u32 *)m_ucha.get_data(),
                 m_uchaDiv.get_data(),
                 w * 4,
                 w,h,bottomup);
@@ -410,7 +410,7 @@ auto tick1 = ::time::now();
 
          }
 auto tick2 = ::time::now();
-         unsigned int dw3 = dw2 - dw1;
+         ::u32 dw3 = dw2 - dw1;
 
          string str1;
          str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",w,h,m_iRadius);
@@ -446,13 +446,13 @@ auto tickC0 = ::time::now();
             }
          }
 auto tickC1 = ::time::now();
-         unsigned int dwC2 = dwC1 - dwC0;
+         ::u32 dwC2 = dwC1 - dwC0;
          string str;
 
          str.formatf("%d",dwC2);
       }
 #else
-      unsigned int * pimage32 = (unsigned int *)pimage->image32();
+      ::u32 * pimage32 = (::u32 *)pimage->image32();
 
       vector4 * t = timage;
 
@@ -511,7 +511,7 @@ auto tickC1 = ::time::now();
                 w,
                 h,
                 m_iRadius,
-                (unsigned int *)m_rgbaa.get_data(),
+                (::u32 *)m_rgbaa.get_data(),
                 m_uchaDiv.get_data(),
                 wj,
                 w,h,bottomup);
@@ -586,7 +586,7 @@ auto tickC1 = ::time::now();
 #else
 
 
-      //unsigned int dw1= ::time::now();
+      //::u32 dw1= ::time::now();
 
 #ifdef __arm__
 
@@ -621,7 +621,7 @@ auto tickC1 = ::time::now();
 
       /*
 auto tick2 = ::time::now();
-      unsigned int dw3 = dw2 - dw1;
+      ::u32 dw3 = dw2 - dw1;
       string str1;
       str1.format("| Parameters: w=%d h=%d rectangle=%d  \n",m_size.cx,m_size.cy,m_iRadius);
       string str2;
@@ -654,7 +654,7 @@ auto tick2 = ::time::now();
 #if defined(__arm__) && !defined(__ANDROID__) && !defined(RASPBERRYPIOS)
 
 
-   inline void boxBlurNEON(unsigned int* sourcePixel,unsigned int* destinationPixel,
+   inline void boxBlurNEON(::u32* sourcePixel,::u32* destinationPixel,
                            unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
@@ -830,7 +830,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_fastblur(unsigned int * pimage32,int w,int h,int radius,unsigned int * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
+   void fastblur::do_fastblur(::u32 * pimage32,int w,int h,int radius,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
    {
 
       //int stride = 4 * cx;
@@ -838,10 +838,10 @@ auto tick2 = ::time::now();
       int dxRight = 0;
       int dyLeft = 0;
       int dyRight = 0;
-      unsigned int* src = pimage32;
-      unsigned int* dst = m_pimage->m_pcolorref;
-      unsigned int kernelSizeX = radius * 3 / 2 + 1;
-      unsigned int kernelSizeY = radius * 3 / 2 + 1;
+      ::u32* src = pimage32;
+      ::u32* dst = m_pimage->m_pcolorref;
+      ::u32 kernelSizeX = radius * 3 / 2 + 1;
+      ::u32 kernelSizeY = radius * 3 / 2 + 1;
 
       for(int i = 0; i < 3; ++i)
       {
@@ -1276,7 +1276,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_boxblur(vector4 * pimage,int w,int h,int radius,unsigned int * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
+   void fastblur::do_boxblur(vector4 * pimage,int w,int h,int radius,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
    {
 
       int dxLeft = 0;
@@ -1285,8 +1285,8 @@ auto tick2 = ::time::now();
       int dyRight = 0;
       vector4* src = pimage;
       vector4* dst = tsurface;
-      unsigned int kernelSizeX = radius * 3 / 2 + 1;
-      unsigned int kernelSizeY = radius * 3 / 2 + 1;
+      ::u32 kernelSizeX = radius * 3 / 2 + 1;
+      ::u32 kernelSizeY = radius * 3 / 2 + 1;
 
       for(int i = 0; i < 3; ++i)
       {
@@ -1329,7 +1329,7 @@ auto tick2 = ::time::now();
    }
 
 
-   void fastblur::do_stackblur(vector4 * pimage,int w,int h,int radius,unsigned int * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
+   void fastblur::do_stackblur(vector4 * pimage,int w,int h,int radius,::u32 * prgba,unsigned char * dv,int stride,int cx,int cy,int bottomup)
    {
 
       stackblur(pimage,w,h,radius, stride);
@@ -1400,7 +1400,7 @@ auto tick2 = ::time::now();
 
       //}
 
-      int workstride = w * sizeof(unsigned int);
+      int workstride = w * sizeof(::u32);
 
       //int * pimage32 = (int *)pimage32;
       unsigned char * pb = (unsigned char *)pimage32;

@@ -54,7 +54,7 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #include "acme/_operating_system.h"
 
 
-::collection::index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, unsigned int* pline, unsigned int* pdisplacement = 0);
+::collection::index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, ::u32* pline, ::u32* pdisplacement = 0);
 
 #endif
 
@@ -1049,7 +1049,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //}
 
 
-int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    throw ::exception();
@@ -1495,7 +1495,7 @@ bool thread::handle_message(bool & bContinue)
          information(
             "\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " +
             ::as_string(m_message.m_eusermessage == ::user::e_message_quit ? 1 : 0) + "!}) : " + ::platform::type(this).name() + " (" +
-            ::as_string((unsigned long long)::current_task_index()) + ")\n\n\n");
+            ::as_string((::u64)::current_task_index()) + ")\n\n\n");
          
          bContinue = false;
 
@@ -2099,7 +2099,7 @@ bool thread::is_system() const
 }
 
 
-unsigned int __thread_entry(void* p);
+::u32 __thread_entry(void* p);
 
 
 void thread::initialize(::particle* pparticle)
@@ -2183,7 +2183,7 @@ bool thread::on_idle()
 //void thread::main()
 //{
 //
-//   unsigned int u = -1;
+//   ::u32 u = -1;
 //
 //   //::e_status estatus = error_failed;
 //
@@ -2456,7 +2456,7 @@ void thread::dispatch_thread_message(::message::message* pusermessage)
 //
 //#if defined(WINDOWS)
 //
-//      unsigned int timeout = time.u32_millis();
+//      ::u32 timeout = time.u32_millis();
 //
 //      htask htask = m_htask;
 //
@@ -2762,7 +2762,7 @@ void thread::branch(enum_parallelization eparallelization,
    //
    //      dwDisplacement = 0;
    //
-   //      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+   //      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
    //
    //      ULONG BackTraceHash;
    //
@@ -2774,7 +2774,7 @@ void thread::branch(enum_parallelization eparallelization,
    //
    //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
    //
-   //      unsigned int uiLine = 0;
+   //      ::u32 uiLine = 0;
    //
    //      {
    //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -2861,7 +2861,7 @@ void thread::branch(enum_parallelization eparallelization,
 
 
 //
-//void thread::branch(::enum_priority epriority, unsigned int nStackSize, unsigned int uiCreateFlags ARG_SEC_ATTRS)
+//void thread::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 uiCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
@@ -2901,7 +2901,7 @@ void thread::stop_task()
 }
 
 
-//void thread::branch(::enum_priority epriority, unsigned int nStackSize, unsigned int uiCreateFlags ARG_SEC_ATTRS)
+//void thread::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 uiCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   //auto estatus = task::branch(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
@@ -3019,7 +3019,7 @@ void thread::__priority_and_affinity()
 //
 //#if defined(WINDOWS_DESKTOP) || defined(LINUX)
 //
-//      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
+//      int_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
 //
 //      if (bOk)
 //      {
@@ -3500,7 +3500,7 @@ void thread::send_message(::user::enum_message eusermessage, ::wparam wparam, ::
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//   m_uThread = (unsigned int) itask;
+//   m_uThread = (::u32) itask;
 //
 //#else
 //
@@ -3715,7 +3715,7 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax,
+bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,
                           bool bRemoveMessage)
 {
 
@@ -4061,7 +4061,7 @@ bool thread::peek_message(MESSAGE* pMsg, const ::operating_system::window & oper
 //}
 
 
-void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+void thread::get_message(MESSAGE* pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -4822,7 +4822,7 @@ bool thread::set_thread_priority(::enum_priority epriority)
 //}
 
 
-//unsigned int thread::ResumeThread()
+//::u32 thread::ResumeThread()
 //{
 //
 //   ASSERT(m_htask != null_htask);
@@ -4978,9 +4978,9 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 }
 
 
-unsigned int g_uiRandomProcessorIndexGenerator = -1;
+::u32 g_uiRandomProcessorIndexGenerator = -1;
 
-CLASS_DECL_APEX unsigned int random_processor_index_generator()
+CLASS_DECL_APEX ::u32 random_processor_index_generator()
 {
 
    g_uiRandomProcessorIndexGenerator++;
@@ -5189,8 +5189,8 @@ class ::time thread::set_file_sharing_violation_timeout(const class time& time)
 //::pointer<::task>thread::branch(
 //   ::matter * pmatter,
 //   ::enum_priority epriority,
-//   unsigned int nStackSize,
-//   unsigned int dwCreateFlags ARG_SEC_ATTRS)
+//   ::u32 nStackSize,
+//   ::u32 dwCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   return ::task::branch(pmatter, epriority, nStackSize, dwCreateFlags ADD_PARAM_SEC_ATTRS);

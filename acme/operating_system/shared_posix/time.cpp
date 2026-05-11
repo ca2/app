@@ -31,7 +31,7 @@
 CLASS_DECL_ACME void preempt_second(long long i)
 {
 
-   ::sleep((unsigned int)i);
+   ::sleep((::u32)i);
 
 }
 
@@ -55,7 +55,7 @@ CLASS_DECL_ACME void preempt_millisecond(long long i)
 CLASS_DECL_ACME void preempt_microsecond(long long i)
 {
 
-   ::usleep((unsigned int)i);
+   ::usleep((::u32)i);
 
 }
 
@@ -93,7 +93,7 @@ CLASS_DECL_ACME void preempt_nanosecond(long long i)
 // }
 
 
-//CLASS_DECL_ACME void precision_wait_nanoseconds(unsigned long long u)
+//CLASS_DECL_ACME void precision_wait_nanoseconds(::u64 u)
 //{
 //
 //   struct timespec req;
@@ -201,7 +201,7 @@ struct tm * tm_struct(struct tm * ptm, const ::posix_time & posixtime, const cla
 bool microsecond_sleep::sleep(unsigned long usec)
 {
 
-   usleep((unsigned int)usec);
+   usleep((::u32)usec);
 
    return true;
 

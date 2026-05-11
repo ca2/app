@@ -4,9 +4,9 @@
 //CLASS_DECL_ACME int ansi_to_int(const_char_pointer sz, const_char_pointer *pszEnd);
 //CLASS_DECL_ACME int ansi_to_int(const_char_pointer sz, int iOnNull = 0);
 
-//CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd, int iBase);
-//CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd);
-//CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer sz);
+//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd, int iBase);
+//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz, const_char_pointer *pszEnd);
+//CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer sz);
 
 //CLASS_DECL_ACME int ansi_count_to_long_long(const_char_pointer sz, const_char_pointer *pszEnd, int iBase, size_t iLen);
 //CLASS_DECL_ACME int ansi_count_to_long_long(const_char_pointer sz, const_char_pointer *pszEnd, size_t iLen);
@@ -28,8 +28,8 @@
 //CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer sz);
 
 
-//CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const_char_pointer sz, char ** pszEnd);
-//CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const_char_pointer sz);
+//CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer sz, char ** pszEnd);
+//CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer sz);
 
 
 //CLASS_DECL_ACME long long ansi_count_to_long_long(const_char_pointer sz, char ** pszEnd, size_t iLen);
@@ -60,12 +60,12 @@
 
 #ifdef __cplusplus
 
-inline void ansi_to(unsigned int & u, const_char_pointer psz) { u = ansi_to_unsigned_int(scopedstr); }
-inline void ansi_to(unsigned long long & u, const_char_pointer psz) { u = ansi_to_unsigned_long_long(scopedstr); }
+inline void ansi_to(::u32 & u, const_char_pointer psz) { u = ansi_to_unsigned_int(scopedstr); }
+inline void ansi_to(::u64 & u, const_char_pointer psz) { u = ansi_to_unsigned_long_long(scopedstr); }
 //inline void ansi_to(uptr & u, const_char_pointer psz) { u = ansi_to_uptr(scopedstr); }
 
-inline void wide_to(unsigned int & u, const ::wide_character * psz) { u = wide_to_unsigned_int(scopedstr); }
-inline void wide_to(unsigned long long & u, const ::wide_character * psz) { u = wide_to_unsigned_long_long(scopedstr); }
+inline void wide_to(::u32 & u, const ::wide_character * psz) { u = wide_to_unsigned_int(scopedstr); }
+inline void wide_to(::u64 & u, const ::wide_character * psz) { u = wide_to_unsigned_long_long(scopedstr); }
 //inline void wide_to(uptr & u, const ::wide_character * psz) { u = wide_to_uptr(scopedstr); }
 
 #endif

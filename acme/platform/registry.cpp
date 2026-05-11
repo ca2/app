@@ -47,7 +47,7 @@ namespace platform
    }
 
    
-   ::e_status registry_key::_set_dword(const ::scoped_string &scopedstrName, unsigned int u)
+   ::e_status registry_key::_set_dword(const ::scoped_string &scopedstrName, ::u32 u)
    {
       
       return m_pregistrykey->_set_dword(scopedstrName, u);
@@ -55,7 +55,7 @@ namespace platform
    }
 
    
-   ::e_status registry_key::_set_qword(const ::scoped_string &scopedstrName, unsigned long long ull)
+   ::e_status registry_key::_set_qword(const ::scoped_string &scopedstrName, ::u64 ull)
    {
       
       return m_pregistrykey->_set_qword(scopedstrName, ull);
@@ -80,7 +80,7 @@ namespace platform
    }
 
    
-   ::e_status registry_key::_get_dword(const ::scoped_string &scopedstrName, unsigned int &u)
+   ::e_status registry_key::_get_dword(const ::scoped_string &scopedstrName, ::u32 &u)
    {
       
       return m_pregistrykey->_get_dword(scopedstrName, u);
@@ -88,7 +88,7 @@ namespace platform
    }
 
    
-   ::e_status registry_key::_get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull)
+   ::e_status registry_key::_get_qword(const ::scoped_string &scopedstrName, ::u64 &ull)
    {
       
       return m_pregistrykey->_get_qword(scopedstrName, ull);
@@ -191,14 +191,14 @@ namespace platform
       virtual ::rapidjson::Value * _get_payload_entry(const ::scoped_string &scopedstrName, bool create);
 
       ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string & scopedstr) override;
-      ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int value) override;
-      ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long value) override;
+      ::e_status _set_dword(const ::scoped_string &scopedstrName, ::u32 value) override;
+      ::e_status _set_qword(const ::scoped_string &scopedstrName, ::u64 value) override;
       ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block & block) override;
 
 
       ::e_status _get_string(const ::scoped_string &scopedstrName, string &str) override;
-      ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u) override;
-      ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long &ll) override;
+      ::e_status _get_dword(const ::scoped_string &scopedstrName, ::u32 &u) override;
+      ::e_status _get_qword(const ::scoped_string &scopedstrName, ::u64 &ll) override;
       ::e_status _get_binary(const ::scoped_string &scopedstrName, memory &memory) override;
 
       ::e_status _erase_payload(const ::scoped_string &scopedstrName) override;
@@ -564,7 +564,7 @@ namespace platform
    }
 
 
-   ::e_status registry_key_implementation::_set_dword(const ::scoped_string & scopedstrName, unsigned int u)
+   ::e_status registry_key_implementation::_set_dword(const ::scoped_string & scopedstrName, ::u32 u)
    {
       if (::is_null(this) || scopedstrName.is_empty()) return error_bad_argument;
 
@@ -578,7 +578,7 @@ namespace platform
    }
 
 
-   ::e_status registry_key_implementation::_set_qword(const ::scoped_string &scopedstrName, unsigned long long ull)
+   ::e_status registry_key_implementation::_set_qword(const ::scoped_string &scopedstrName, ::u64 ull)
    {
       if (::is_null(this) || scopedstrName.is_empty())
          return error_bad_argument;
@@ -634,7 +634,7 @@ namespace platform
 
    }
 
-   ::e_status registry_key_implementation::_get_dword(const ::scoped_string & scopedstrName, unsigned int &u)
+   ::e_status registry_key_implementation::_get_dword(const ::scoped_string & scopedstrName, ::u32 &u)
    {
       if (::is_null(this) || scopedstrName.is_empty())
          return error_bad_argument;
@@ -652,7 +652,7 @@ namespace platform
    }
 
 
-      ::e_status registry_key_implementation::_get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull)
+      ::e_status registry_key_implementation::_get_qword(const ::scoped_string &scopedstrName, ::u64 &ull)
    {
       if (::is_null(this) || scopedstrName.is_empty())
          return error_bad_argument;

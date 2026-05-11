@@ -123,9 +123,9 @@ namespace subsystem
 //// NOTE: In non-Unicode version, conversion correctness may depend on current
 ////       input language. We should always use Unicode in all programs.
 //#ifdef _UNICODE
-//      const unsigned int CF_TCTEXT = CF_UNICODETEXT;
+//      const ::u32 CF_TCTEXT = CF_UNICODETEXT;
 //#else
-//      const unsigned int CF_TCTEXT = CF_TEXT;
+//      const ::u32 CF_TCTEXT = CF_TEXT;
 //#endif
 //
 //      clipDest.clear();
@@ -160,7 +160,7 @@ namespace subsystem
    }
 
 
-   //bool WindowsClipboard::wndProc(unsigned int message, ::wparam wparam, ::lparam lparam)
+   //bool WindowsClipboard::wndProc(::u32 message, ::wparam wparam, ::lparam lparam)
    //{
    //   
    //   int fake = 3;

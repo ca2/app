@@ -13,7 +13,7 @@
 //int_bool file_exists(const ::file::path & path1)
 //{
 //
-//   unsigned int dwFileAttributes = windows_get_file_attributes(path1);
+//   ::u32 dwFileAttributes = windows_get_file_attributes(path1);
 //
 //   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
 //      return false;
@@ -61,7 +61,7 @@
 //
 //   DWORD dwWritten = 0;
 //
-//   int_bool bOk = WriteFile(hfile, contents, (unsigned int)dwWrite, &dwWritten, nullptr) != false;
+//   int_bool bOk = WriteFile(hfile, contents, (::u32)dwWrite, &dwWritten, nullptr) != false;
 //
 //   CloseHandle(hfile);
 //
@@ -83,7 +83,7 @@
 //
 //   }
 //
-//   unsigned long long u = hfile_get_size(hfile);
+//   ::u64 u = hfile_get_size(hfile);
 //
 //   CloseHandle(hfile);
 //
@@ -164,14 +164,14 @@ string file_module_path_dup()
 
 
 //
-//bool PrintModules(string & strImage,unsigned int processID,const ::scoped_string & scopedstrDll)
+//bool PrintModules(string & strImage,::u32 processID,const ::scoped_string & scopedstrDll)
 //{
 //
 //   HANDLE hProcess;
 //
-//   unsigned int cbNeeded;
+//   ::u32 cbNeeded;
 //
-//   unsigned int u;
+//   ::u32 u;
 //
 //   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ,false,processID);
 //
@@ -234,13 +234,13 @@ string file_module_path_dup()
 //{
 //   // Get the list_base of process identifiers.
 //
-//   unsigned int * aProcesses = ___new unsigned int[1024 * 8];
+//   ::u32 * aProcesses = ___new ::u32[1024 * 8];
 //
-//   unsigned int cbNeeded,cProcesses;
+//   ::u32 cbNeeded,cProcesses;
 //
-//   unsigned int u;
+//   ::u32 u;
 //
-//   if(!EnumProcesses(aProcesses,124 * 8 * sizeof(unsigned int),&cbNeeded))
+//   if(!EnumProcesses(aProcesses,124 * 8 * sizeof(::u32),&cbNeeded))
 //   {
 //      delete aProcesses;
 //      return;
@@ -248,7 +248,7 @@ string file_module_path_dup()
 //
 //   // Calculate how many process identifiers were returned.
 //
-//   cProcesses = cbNeeded / sizeof(unsigned int);
+//   cProcesses = cbNeeded / sizeof(::u32);
 //
 //   // Print the name of the modules for each process.
 //
@@ -279,7 +279,7 @@ string file_module_path_dup()
 // struct PROCESS_INFO_t
 // {
 //    string csProcess;
-//    unsigned int dwImageListIndex;
+//    ::u32 dwImageListIndex;
 // };
 
 
@@ -380,7 +380,7 @@ string file_module_path_dup()
 
 // // typedef struct _SYSTEM_HANDLE_INFORMATION
 // // {
-// //    unsigned int         dwCount;
+// //    ::u32         dwCount;
 // //    SYSTEM_HANDLE Handles[1];
 // // } SYSTEM_HANDLE_INFORMATION,*PSYSTEM_HANDLE_INFORMATION,**PPSYSTEM_HANDLE_INFORMATION;
 
@@ -397,7 +397,7 @@ string file_module_path_dup()
 // //  IN	ULONG					 SystemInformationLength,
 // //  OUT	PULONG					 ReturnLength OPTIONAL);
 
-// // unsigned int g_CurrentIndex = 0;
+// // ::u32 g_CurrentIndex = 0;
 // // struct THREAD_PARAMS
 // // {
 // //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation;
@@ -409,7 +409,7 @@ string file_module_path_dup()
 // //    bool bStatus;
 // // };
 
-// // unsigned int ThreadProc(void * lParam)
+// // ::u32 ThreadProc(void * lParam)
 // // {
 // //    THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
@@ -435,9 +435,9 @@ string file_module_path_dup()
 // //          }
 // //          CloseHandle(hProcess);
 // //       }
-// //       //unsigned int dwRet = pGetFinalPathNameByHandle( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
-// //       //unsigned int dwRet = GetFileInformationByHandleEx(hDup, FileNameInfo, pinfo, MAX_PATH * 8);
-// //       unsigned int dwRet = GetFinalPathNameByHandleW(hDup,pThreadParam->lpPath,MAX_PATH,0);
+// //       //::u32 dwRet = pGetFinalPathNameByHandle( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
+// //       //::u32 dwRet = GetFileInformationByHandleEx(hDup, FileNameInfo, pinfo, MAX_PATH * 8);
+// //       ::u32 dwRet = GetFinalPathNameByHandleW(hDup,pThreadParam->lpPath,MAX_PATH,0);
 // //       //wcsncpy(pThreadParam->lpPath, pinfo->FileName, pinfo->FileNameLength);
 // //       if(hDup && (hDup != (HANDLE)sh.wValue))
 // //       {
@@ -490,8 +490,8 @@ string file_module_path_dup()
 
 // //    // Get the list_base of all handles in the file_system
 // //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = ___new SYSTEM_HANDLE_INFORMATION();
-// //    unsigned int size = sizeof(SYSTEM_HANDLE_INFORMATION);
-// //    unsigned int needed = 0;
+// //    ::u32 size = sizeof(SYSTEM_HANDLE_INFORMATION);
+// //    ::u32 needed = 0;
 // //    NTSTATUS status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //    if(!NT_SUCCESS(status))
 // //    {
@@ -582,7 +582,7 @@ string file_module_path_dup()
 // //    }
 
 // //    // Walk through the handle list_base
-// //    for(unsigned int i = 0; i < pSysHandleInformation->dwCount; i++)
+// //    for(::u32 i = 0; i < pSysHandleInformation->dwCount; i++)
 // //    {
 // //       SYSTEM_HANDLE& sh = pSysHandleInformation->Handles[i];
 // //       if(sh.bObjectType != nFileType)// Under windows XP file handle is of type 28
@@ -597,7 +597,7 @@ string file_module_path_dup()
 // //          HANDLE_INFO stHandle = {0};
 // //          ADDRESS_INFO stAddress;
 // //          stAddress.pAddress = sh.pAddress;
-// //          unsigned int dwReturn = 0;
+// //          ::u32 dwReturn = 0;
 // //          bool bSuccess = DeviceIoControl(hDriver,IOCTL_LISTDRV_BUFFERED_IO,&stAddress,sizeof(ADDRESS_INFO),&stHandle,sizeof(HANDLE_INFO),&dwReturn,nullptr) != false;
 
 
@@ -690,9 +690,9 @@ string file_module_path_dup()
 // //       bShortPath = true;
 // //    }
 
-// //    unsigned int dwsize = 300;
+// //    ::u32 dwsize = 300;
 // //    PDWORD pDwId = (PDWORD)___new unsigned char[dwsize];
-// //    unsigned int dwReturned = dwsize;
+// //    ::u32 dwReturned = dwsize;
 // //    // Enum all the process first
 // //    while(1)
 // //    {
@@ -705,7 +705,7 @@ string file_module_path_dup()
 // //       dwsize += 50;
 // //       pDwId = (PDWORD)___new unsigned char[dwsize];
 // //    }
-// //    int nCount = dwReturned / sizeof(unsigned int);
+// //    int nCount = dwReturned / sizeof(::u32);
 // //    int nItemCount = -1;
 // //    // Enumerate modules of the above process
 // //    for(int nIdx = 0; nIdx < nCount; nIdx++)
@@ -824,19 +824,19 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 }
 
 
-//int_bool ensure_file_size_handle(HANDLE h, unsigned long long iSize)
+//int_bool ensure_file_size_handle(HANDLE h, ::u64 iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = GetFileSize(h, &dwHi);
 //
-//   if (((unsigned long long)dwLo | ((unsigned long long)dwHi << 32)) != iSize)
+//   if (((::u64)dwLo | ((::u64)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;
 //
-//      if (SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (unsigned int)(iSize & 0xffffffff))
+//      if (SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (::u32)(iSize & 0xffffffff))
 //         return false;
 //
 //      if (l != ((iSize >> 32) & 0xffffffff))
@@ -986,7 +986,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //
 //
-//   unsigned int access,disp;
+//   ::u32 access,disp;
 //   if(ansi_find_char(attrs,'w'))
 //   {
 //      access = GENERIC_WRITE;
@@ -1028,7 +1028,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //FILE *_wfopen_dup(const unichar *path,const unichar *attrs)
 //{
 //
-//   unsigned int access,disp;
+//   ::u32 access,disp;
 //   if(wide_find_char(attrs,L'w'))
 //   {
 //      access = GENERIC_WRITE;
@@ -1099,15 +1099,15 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //filesize fseek_dup(FILE *fp,filesize offset,int origin)
 //{
 //
-//   unsigned int meth = FILE_BEGIN;
+//   ::u32 meth = FILE_BEGIN;
 //   if(origin == SEEK_CUR)
 //      meth = FILE_CURRENT;
 //   else if(origin == SEEK_END)
 //      meth = FILE_END;
 //   int offsetHigh = (offset >> 32) & 0xffffffffLL;
-//   unsigned int dw = ::SetFilePointer((HANDLE)((FILE*)fp)->_base,offset & 0xffffffff,&offsetHigh,meth);
+//   ::u32 dw = ::SetFilePointer((HANDLE)((FILE*)fp)->_base,offset & 0xffffffff,&offsetHigh,meth);
 //   ((FILE*)fp)->_flag &= ~_FILE_EOF;
-//   return (unsigned long long)dw | (((unsigned long long)offsetHigh) << 32);
+//   return (::u64)dw | (((::u64)offsetHigh) << 32);
 //
 //}
 //
@@ -1137,8 +1137,8 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   else
 //      src = (char*)buffer;
 //
-//   unsigned int br;
-//   if(!ReadFile(hFile,src,(unsigned int)(size*count),&br,0))
+//   ::u32 br;
+//   if(!ReadFile(hFile,src,(::u32)(size*count),&br,0))
 //      ((FILE*)str)->_flag |= _FILE_ERROR;
 //   else if(!br)		// nonzero return value and no bytes read = EOF
 //      ((FILE*)str)->_flag |= _FILE_EOF;
@@ -1150,7 +1150,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   if(textMode)		// text mode: must translate CR -> LF
 //   {
 //      char *dst = (char*)buffer;
-//      for(unsigned int i = 0; i < br; i++)
+//      for(::u32 i = 0; i < br; i++)
 //      {
 //         if(src[i] != '\r')
 //         {
@@ -1172,7 +1172,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //         else if(br > 1)
 //         {
 //            // This is the hard part: must peek ahead one unsigned char
-//            unsigned int pbrush2 = 0;
+//            ::u32 pbrush2 = 0;
 //            char peekChar = 0;
 //            ReadFile(hFile,&peekChar,1,&pbrush2,0);
 //            if(!pbrush2)
@@ -1199,7 +1199,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //size_t fwrite_dup(const void *buffer,size_t size,size_t count,FILE *str)
 //{
 //
-//   unsigned int bw = 0,bw2 = 0;
+//   ::u32 bw = 0,bw2 = 0;
 //
 //   if(size*count == 0)
 //      return 0;
@@ -1227,7 +1227,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //            size_t dwWritten = 0;
 //            while(i - startpos - dwWritten > 0)
 //            {
-//               if(!WriteFile(hFile,&src[startpos + dwWritten],(unsigned int)minimum(1024,i - startpos - dwWritten),&bw2,0))
+//               if(!WriteFile(hFile,&src[startpos + dwWritten],(::u32)minimum(1024,i - startpos - dwWritten),&bw2,0))
 //                  return 0;
 //               bw += bw2;
 //               dwWritten += bw2;
@@ -1244,7 +1244,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      size_t dwWritten = 0;
 //      while(i - startpos - dwWritten > 0)
 //      {
-//         WriteFile(hFile,&src[startpos + dwWritten],(unsigned int)minimum(1024,i - startpos - dwWritten),&bw2,0);
+//         WriteFile(hFile,&src[startpos + dwWritten],(::u32)minimum(1024,i - startpos - dwWritten),&bw2,0);
 //         bw += bw2;
 //         dwWritten += bw2;
 //      }
@@ -1256,7 +1256,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
 //      {
-//         WriteFile(hFile,&src[dwWritten],(unsigned int)minimum(1024,s - dwWritten),&bw2,0);
+//         WriteFile(hFile,&src[dwWritten],(::u32)minimum(1024,s - dwWritten),&bw2,0);
 //         bw += bw2;
 //         dwWritten += bw2;
 //      }
@@ -1396,12 +1396,12 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//unsigned long long hfile_get_size(HANDLE h)
+//::u64 hfile_get_size(HANDLE h)
 //{
 //
-//   unsigned int dwHi;
+//   ::u32 dwHi;
 //
-//   unsigned int dwLo = ::GetFileSize(h,&dwHi);
+//   ::u32 dwLo = ::GetFileSize(h,&dwHi);
 //
 //   return dwLo | (((DWORD64)dwHi) << 32);
 //
@@ -1414,7 +1414,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //   DWORD dwLo = ::GetFileSize(h, &dwHi);
 //
-//   if (((unsigned long long)dwLo | ((long long)dwHi << 32)) != iSize)
+//   if (((::u64)dwLo | ((long long)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;
@@ -1425,7 +1425,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 
-unsigned int WinSetFilePointer(HANDLE h, int lMove, PLONG plHi, unsigned int dwMeth)
+::u32 WinSetFilePointer(HANDLE h, int lMove, PLONG plHi, ::u32 dwMeth)
 {
 
    LARGE_INTEGER liMove;
@@ -1466,7 +1466,7 @@ unsigned int WinSetFilePointer(HANDLE h, int lMove, PLONG plHi, unsigned int dwM
 
 }
 
-unsigned int GetFileSize(HANDLE h, LPDWORD lpdwHi)
+::u32 GetFileSize(HANDLE h, LPDWORD lpdwHi)
 {
 
    FILE_STANDARD_INFO info;
@@ -1488,7 +1488,7 @@ unsigned int GetFileSize(HANDLE h, LPDWORD lpdwHi)
 }
 
 
-unsigned int WinGetFileAttributes(const unichar* psz)
+::u32 WinGetFileAttributes(const unichar* psz)
 {
 
    WIN32_FILE_ATTRIBUTE_DATA data;
@@ -1559,7 +1559,7 @@ return true;
 */
 
 
-HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
 
    CREATEFILE2_EXTENDED_PARAMETERS ps;
@@ -1594,7 +1594,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 //}
 //
 //
-//::winrt::Windows::Storage::StorageFile^ get_os_file(const_char_pointer lpcszFileName, unsigned int dwDesiredAcces, unsigned int dwShareMode, LPSECURITY_ATTRIBUTES lpSA, unsigned int dwCreationDisposition, unsigned int dwFlagsAndAttributes, HANDLE hTemplateFile)
+//::winrt::Windows::Storage::StorageFile^ get_os_file(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShareMode, LPSECURITY_ATTRIBUTES lpSA, ::u32 dwCreationDisposition, ::u32 dwFlagsAndAttributes, HANDLE hTemplateFile)
 //{
 //
 //   /*
@@ -1738,7 +1738,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 ////   str.replace("/","\\");
 ////   wstring wstr(L"\\\\?\\");
 ////   wstr = wstr + wstring(str);
-////   unsigned int dwFileAttributes = ::windows_get_file_attributes(wstr);
+////   ::u32 dwFileAttributes = ::windows_get_file_attributes(wstr);
 ////   if(dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
 ////      return true;
 ////   else
@@ -1769,8 +1769,8 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 ////      dwWrite = ansi_length(contents);
 ////   else
 ////      dwWrite = len;
-////   unsigned int dwWritten = 0;
-////   bool bOk = ::WriteFile(hfile,contents,(unsigned int)dwWrite,&dwWritten,nullptr) != false;
+////   ::u32 dwWritten = 0;
+////   bool bOk = ::WriteFile(hfile,contents,(::u32)dwWrite,&dwWritten,nullptr) != false;
 ////   ::CloseHandle(hfile);
 ////   return dwWrite == dwWritten && bOk != false;
 ////
@@ -1791,7 +1791,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 //
 //   DWORD dwSizeHigh;
 //
-//   unsigned int dwSize = ::GetFileSize(hfile, &dwSizeHigh);
+//   ::u32 dwSize = ::GetFileSize(hfile, &dwSizeHigh);
 //
 //   if (iReadAtMostByteCount < 0)
 //   {
@@ -1843,7 +1843,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, unsigned int dwDesiredAcce
 //
 //   memory.set_size(iReadAtMostByteCount);
 //
-//   auto iRead = hfile_read(hfile, memory.get_data(), (unsigned int)memory.get_size());
+//   auto iRead = hfile_read(hfile, memory.get_data(), (::u32)memory.get_size());
 //
 //   bool bOk = ::GetLastError() == NO_ERROR;
 //

@@ -84,7 +84,7 @@
 //       }
 //    }
 //
-//    LRESULT CALLBACK MessageWindow::staticWndProc(const ::operating_system::window & operatingsystemwindow, unsigned int message,
+//    LRESULT CALLBACK MessageWindow::staticWndProc(const ::operating_system::window & operatingsystemwindow, ::u32 message,
 //                                           ::wparam wparam, ::lparam lparam)
 //    {
 //       MessageWindow *_this;

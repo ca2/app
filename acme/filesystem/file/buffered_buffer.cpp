@@ -43,11 +43,11 @@ namespace file
    void buffered_file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      unsigned long long uiBegBufPosition = m_uiBufLPos;
+      ::u64 uiBegBufPosition = m_uiBufLPos;
 
-      unsigned long long uiEndBufPosition = m_uiBufUPos;
+      ::u64 uiEndBufPosition = m_uiBufUPos;
 
-      unsigned long long uiNewPos;
+      ::u64 uiNewPos;
 
       if(eseek == ::e_seek_set)
       {

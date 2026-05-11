@@ -108,10 +108,10 @@ typedef struct
    int  raw;                   /* 1 for directly writing raw data */
    unsigned char buffered_data[Z_BUFSIZE];/* buffer contain compressed data to be writ*/
    uptr dosDate;
-   unsigned int crc32;
+   ::u32 crc32;
    int  encrypt;
 #ifndef NOCRYPT
-   unsigned int  keys[3];     /* keys defining the pseudo-random sequence */
+   ::u32  keys[3];     /* keys defining the pseudo-random sequence */
 #if defined(WINDOWS) || defined(LINUX)
    const z_crc_t * pcrc_32_tab;
 #else
@@ -207,8 +207,8 @@ uptr len)
 
    while (len>0)
    {
-      unsigned int copy_this;
-      unsigned int i;
+      ::u32 copy_this;
+      ::u32 i;
       uchar* to_copy;
 
       if (ldi->avail_in_this_block==0)
@@ -221,9 +221,9 @@ uptr len)
       }
 
       if (ldi->avail_in_this_block < len)
-         copy_this = (unsigned int)ldi->avail_in_this_block;
+         copy_this = (::u32)ldi->avail_in_this_block;
       else
-         copy_this = (unsigned int)len;
+         copy_this = (::u32)len;
 
       to_copy = &(ldi->data[ldi->filled_in_this_block]);
 
@@ -645,9 +645,9 @@ zipFile file,
 const_char_pointer filename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
-unsigned int size_extrafield_local,
+::u32 size_extrafield_local,
 const void * extrafield_global,
-unsigned int size_extrafield_global,
+::u32 size_extrafield_global,
 const_char_pointer comment,
 int method,
 int level,
@@ -656,12 +656,12 @@ int windowBits,
 int memLevel,
 int strategy,
 const_char_pointer password,
-unsigned int  crcForCrypting)
+::u32  crcForCrypting)
 {
    zip_internal* zi;
-   unsigned int size_filename;
-   unsigned int size_comment;
-   unsigned int i;
+   ::u32 size_filename;
+   ::u32 size_comment;
+   ::u32 i;
    int err = ZIP_OK;
 
 #    ifdef NOCRYPT
@@ -690,9 +690,9 @@ unsigned int  crcForCrypting)
    if (comment==nullptr)
       size_comment = 0;
    else
-      size_comment = (unsigned int) strlen(comment);
+      size_comment = (::u32) strlen(comment);
 
-   size_filename = (unsigned int) strlen(filename);
+   size_filename = (::u32) strlen(filename);
 
    if (zipfi == nullptr)
       zi->ci.dosDate = 0;
@@ -722,7 +722,7 @@ unsigned int  crcForCrypting)
    zi->ci.pos_local_header = ZTELL(zi->z_filefunc,zi->filestream) ;
    zi->ci.size_centralheader = SIZECENTRALHEADER + size_filename +
                                size_extrafield_global + size_comment;
-   zi->ci.central_header = (char*)ALLOC((unsigned int)zi->ci.size_centralheader);
+   zi->ci.central_header = (char*)ALLOC((::u32)zi->ci.size_centralheader);
 
    ziplocal_putValue_inmemory(zi->ci.central_header,(uptr)CENTRALHEADERMAGIC,4);
    /* version info */
@@ -800,8 +800,8 @@ unsigned int  crcForCrypting)
             !=size_extrafield_local)
          err = ZIP_ERRNO;
 
-   zi->ci.stream.avail_in = (unsigned int)0;
-   zi->ci.stream.avail_out = (unsigned int)Z_BUFSIZE;
+   zi->ci.stream.avail_in = (::u32)0;
+   zi->ci.stream.avail_out = (::u32)Z_BUFSIZE;
    zi->ci.stream.next_out = zi->ci.buffered_data;
    zi->ci.stream.total_in = 0;
    zi->ci.stream.total_out = 0;
@@ -826,7 +826,7 @@ unsigned int  crcForCrypting)
    if ((err==Z_OK) && (password != nullptr))
    {
       uchar bufHead[RAND_HEAD_LEN];
-      unsigned int sizeHead;
+      ::u32 sizeHead;
       zi->ci.encrypt = 1;
       zi->ci.pcrc_32_tab = zip_get_crc_table();
       /*init_keys(password,zi->ci.keys,zi->ci.pcrc_32_tab);*/
@@ -849,9 +849,9 @@ zipFile file,
 const_char_pointer filename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
-unsigned int size_extrafield_local,
+::u32 size_extrafield_local,
 const void * extrafield_global,
-unsigned int size_extrafield_global,
+::u32 size_extrafield_global,
 const_char_pointer comment,
 int method,
 int level,
@@ -870,9 +870,9 @@ zipFile file,
 const_char_pointer filename,
 const zip_fileinfo* zipfi,
 const void * extrafield_local,
-unsigned int size_extrafield_local,
+::u32 size_extrafield_local,
 const void * extrafield_global,
-unsigned int size_extrafield_global,
+::u32 size_extrafield_global,
 const_char_pointer comment,
 int method,
 int level)
@@ -891,7 +891,7 @@ zip_internal* zi)
    if (zi->ci.encrypt != 0)
    {
 #ifndef NOCRYPT
-      unsigned int i;
+      ::u32 i;
       int t;
       for (i=0; i<zi->ci.pos_in_buffered_data; i++)
          zi->ci.buffered_data[i] = zencode(zi->ci.keys, zi->ci.pcrc_32_tab,
@@ -908,7 +908,7 @@ zip_internal* zi)
 extern int CLASS_DECL_ACME zipWriteInFileInZip (
 zipFile file,
 const void * buf,
-unsigned int len)
+::u32 len)
 {
    zip_internal* zi;
    int err=ZIP_OK;
@@ -922,7 +922,7 @@ unsigned int len)
 
    zi->ci.stream.next_in = (unsigned char *)buf;
    zi->ci.stream.avail_in = len;
-   zi->ci.crc32 = (unsigned int) crc32(zi->ci.crc32, (const unsigned char *) buf,len);
+   zi->ci.crc32 = (::u32) crc32(zi->ci.crc32, (const unsigned char *) buf,len);
 
    while ((err==ZIP_OK) && (zi->ci.stream.avail_in>0))
    {
@@ -930,7 +930,7 @@ unsigned int len)
       {
          if (zipFlushWriteBuffer(zi) == ZIP_ERRNO)
             err = ZIP_ERRNO;
-         zi->ci.stream.avail_out = (unsigned int)Z_BUFSIZE;
+         zi->ci.stream.avail_out = (::u32)Z_BUFSIZE;
          zi->ci.stream.next_out = zi->ci.buffered_data;
       }
 
@@ -942,7 +942,7 @@ unsigned int len)
       {
          uptr uTotalOutBefore = zi->ci.stream.total_out;
          err=deflate(&zi->ci.stream,  Z_NO_FLUSH);
-         zi->ci.pos_in_buffered_data += (unsigned int)(zi->ci.stream.total_out - uTotalOutBefore) ;
+         zi->ci.pos_in_buffered_data += (::u32)(zi->ci.stream.total_out - uTotalOutBefore) ;
 
       }
       else
@@ -956,8 +956,8 @@ unsigned int len)
             *(((char*)zi->ci.stream.next_out)+i) =
             *(((const_char_pointer )zi->ci.stream.next_in)+i);
          {
-            zi->ci.stream.avail_in -= (unsigned int) copy_this;
-            zi->ci.stream.avail_out-= (unsigned int) copy_this;
+            zi->ci.stream.avail_in -= (::u32) copy_this;
+            zi->ci.stream.avail_out-= (::u32) copy_this;
             zi->ci.stream.next_in+= copy_this;
             zi->ci.stream.next_out+= copy_this;
             zi->ci.stream.total_in+= (uLong) copy_this;
@@ -995,12 +995,12 @@ uptr crc32)
          {
             if (zipFlushWriteBuffer(zi) == ZIP_ERRNO)
                err = ZIP_ERRNO;
-            zi->ci.stream.avail_out = (unsigned int)Z_BUFSIZE;
+            zi->ci.stream.avail_out = (::u32)Z_BUFSIZE;
             zi->ci.stream.next_out = zi->ci.buffered_data;
          }
          uTotalOutBefore = zi->ci.stream.total_out;
          err=deflate(&zi->ci.stream,  Z_FINISH);
-         zi->ci.pos_in_buffered_data += (unsigned int)(zi->ci.stream.total_out - uTotalOutBefore) ;
+         zi->ci.pos_in_buffered_data += (::u32)(zi->ci.stream.total_out - uTotalOutBefore) ;
       }
 
    if (err==Z_STREAM_END)
@@ -1080,7 +1080,7 @@ const_char_pointer global_comment)
    int err = 0;
    uptr size_centraldir = 0;
    uptr centraldir_pos_inzip ;
-   unsigned int size_global_comment;
+   ::u32 size_global_comment;
    if (file == nullptr)
       return ZIP_PARAMERROR;
    zi = (zip_internal*)file;
@@ -1093,7 +1093,7 @@ const_char_pointer global_comment)
    if (global_comment==nullptr)
       size_global_comment = 0;
    else
-      size_global_comment = (unsigned int) strlen(global_comment);
+      size_global_comment = (::u32) strlen(global_comment);
 
 
    centraldir_pos_inzip = ZTELL(zi->z_filefunc,zi->filestream);

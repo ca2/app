@@ -36,10 +36,10 @@ namespace subsystem_bsd_sockets
 
       ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port) override;
 
-      unsigned int internet_address4(const ::scoped_string &scopedstr) override;
-      virtual ::string internet_address4_as_string(unsigned int u) override;
-      unsigned int host_to_network_long(unsigned int u) override;
-      unsigned int network_to_host_long(unsigned int u) override;
+      ::u32 internet_address4(const ::scoped_string &scopedstr) override;
+      virtual ::string internet_address4_as_string(::u32 u) override;
+      ::u32 host_to_network_long(::u32 u) override;
+      ::u32 network_to_host_long(::u32 u) override;
 
       virtual memsize getCurrentMemoryUsage();
 

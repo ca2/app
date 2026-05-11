@@ -52,7 +52,7 @@ namespace innate_subsystem
 //    //    fromBitmap(bitmap, mask);
 //    // }
 //    //
-//    // Icon::Icon(unsigned int icon)
+//    // Icon::Icon(::u32 icon)
 //    // : m_hasOwnIcon(false)
 //    // {
 //    //    HINSTANCE hInstance = GetModuleHandle(NULL);
@@ -89,7 +89,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    void Icon::initialize_icon(unsigned int icon)
+//    void Icon::initialize_icon(::u32 icon)
 //    {
 //       m_pparticleThis->initialize_icon(icon);
 //    }

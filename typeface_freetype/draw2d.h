@@ -69,7 +69,7 @@ namespace typeface_freetype
       virtual int  opengl_init();
 
 
-      void adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle) override;
+      void adjust_composited_window_styles(::u32& nExStyle, ::u32& nStyle) override;
 
 
    };

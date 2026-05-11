@@ -6184,7 +6184,7 @@ namespace user
 
       return strClass;
 
-      //unsigned int uStyle = get_window_default_style();
+      //::u32 uStyle = get_window_default_style();
 
       //string strIcon = get_window_icon_matter();
 
@@ -6554,7 +6554,7 @@ namespace user
    ////
    ////      return strClass;
    ////
-   ////      //unsigned int uStyle = get_window_default_style();
+   ////      //::u32 uStyle = get_window_default_style();
    ////
    ////      //string strIcon = get_window_icon_matter();
    ////
@@ -7639,7 +7639,7 @@ namespace user
 //         if (colorBackground.m_uchOpacity != 127)
 //         {
 //
-//            information() << "Opacity: " << (unsigned int) colorBackground.byte_opacity();
+//            information() << "Opacity: " << (::u32) colorBackground.byte_opacity();
 //
 //         }
 
@@ -11619,7 +11619,7 @@ if(get_parent())
    //}
 
 
-   void interaction::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   void interaction::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       //if (window() == nullptr)
@@ -11651,7 +11651,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
+   ::user::interaction * interaction::ChildWindowFromPoint(const ::int_point & point, ::u32 nFlags)
    {
 
       //if (window() == nullptr)
@@ -11858,7 +11858,7 @@ if(get_parent())
    }
 
 
-   ::user::interaction * interaction::get_wnd(unsigned int nCmd)
+   ::user::interaction * interaction::get_wnd(::u32 nCmd)
    {
 
       //if (window() == nullptr)
@@ -12839,7 +12839,7 @@ if(get_parent())
 
 
 
-   //void interaction::CalcWindowRect(::int_rectangle * prectangle, unsigned int nAdjustType)
+   //void interaction::CalcWindowRect(::int_rectangle * prectangle, ::u32 nAdjustType)
    //{
 
    //   if (window() == nullptr)
@@ -12874,7 +12874,7 @@ if(get_parent())
    }
 
 
-   void interaction::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeft, unsigned int nFlags,
+   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeft, ::u32 nFlags,
                                     ::int_rectangle * prectParam, const ::int_rectangle & rectangleX,
                                     bool bStretch)
    {
@@ -16451,7 +16451,7 @@ if(get_parent())
    }
 
 
-   //atom interaction::run_modal_loop(::user::interaction * pinteraction, unsigned int dwFlags)
+   //atom interaction::run_modal_loop(::user::interaction * pinteraction, ::u32 dwFlags)
    //{
 
    //   return pinteraction->_001RunModalLoop(dwFlags);
@@ -16459,7 +16459,7 @@ if(get_parent())
    //}
 
 
-   //atom interaction::RunModalLoop(unsigned int dwFlags)
+   //atom interaction::RunModalLoop(::u32 dwFlags)
    //{
 
    //   set_need_redraw();
@@ -16471,7 +16471,7 @@ if(get_parent())
    //}
 
 
-   //atom interaction::_001RunModalLoop(unsigned int dwFlags)
+   //atom interaction::_001RunModalLoop(::u32 dwFlags)
    //{
 
    //   ASSERT(!m_bModal);
@@ -18830,7 +18830,7 @@ if(get_parent())
 
             // ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-            pmessage->m_nChar = static_cast<unsigned int>(wparam);
+            pmessage->m_nChar = static_cast<::u32>(wparam);
 
             pmessage->m_nRepCnt = lower_unsigned_short(lparam);
 
@@ -18853,7 +18853,7 @@ if(get_parent())
 
          _NEW_MESSAGE(::message::timer);
 
-         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
+         pmessage->m_uTimer = static_cast<::u32>(wparam);
 
       }
       break;
@@ -18862,7 +18862,7 @@ if(get_parent())
          _NEW_MESSAGE(::message::show_window);
          pmessage->m_bShow = wparam != false;
 
-         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
+         pmessage->m_nStatus = static_cast<::u32>(lparam);
 
       }
       break;
@@ -18990,7 +18990,7 @@ if(get_parent())
       {
          _NEW_MESSAGE(::message::size);
 
-         pmessage->m_nType = static_cast <unsigned int> (wparam);
+         pmessage->m_nType = static_cast <::u32> (wparam);
 
          pmessage->m_size = ::int_size(iptr_int_x(lparam), iptr_int_y(lparam));
       }
@@ -20299,7 +20299,7 @@ if(get_parent())
    }
 
 
-   unsigned int interaction::get_window_default_style()
+   ::u32 interaction::get_window_default_style()
    {
 
       return 0;
@@ -30276,7 +30276,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
 
-      unsigned int nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
+      ::u32 nNewStyle = pToolBar->GetButtonStyle(m_nIndex) &
                   ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
           nNewStyle |= TBBS_CHECKED;

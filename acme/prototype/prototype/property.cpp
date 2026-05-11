@@ -741,7 +741,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() - i;
 //}
 //
-//::payload property::operator - (unsigned int user) const
+//::payload property::operator - (::u32 user) const
 //{
 //   return get_value() - user;
 //}
@@ -751,7 +751,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() - i;
 //}
 //
-//::payload property::operator - (unsigned long long user) const
+//::payload property::operator - (::u64 user) const
 //{
 //   return get_value() - user;
 //}
@@ -770,7 +770,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() + i;
 //}
 //
-//::payload property::operator + (unsigned int user) const
+//::payload property::operator + (::u32 user) const
 //{
 //   return get_value() + user;
 //}
@@ -780,7 +780,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() + i;
 //}
 //
-//::payload property::operator + (unsigned long long user) const
+//::payload property::operator + (::u64 user) const
 //{
 //   return get_value() + user;
 //}
@@ -802,7 +802,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() / i;
 //}
 //
-//::payload property::operator / (unsigned int user) const
+//::payload property::operator / (::u32 user) const
 //{
 //   return get_value() / user;
 //}
@@ -812,7 +812,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() / i;
 //}
 //
-//::payload property::operator / (unsigned long long user) const
+//::payload property::operator / (::u64 user) const
 //{
 //   return get_value() / user;
 //}
@@ -831,7 +831,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() * i;
 //}
 //
-//::payload property::operator * (unsigned int user) const
+//::payload property::operator * (::u32 user) const
 //{
 //   return get_value() * user;
 //}
@@ -841,7 +841,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() * i;
 //}
 //
-//::payload property::operator * (unsigned long long user) const
+//::payload property::operator * (::u64 user) const
 //{
 //   return get_value() * user;
 //}
@@ -862,7 +862,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator -= (unsigned int user)
+//property & property::operator -= (::u32 user)
 //{
 //   operator=(*this - user);
 //   return *this;
@@ -874,7 +874,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator -= (unsigned long long user)
+//property & property::operator -= (::u64 user)
 //{
 //   operator=(*this - user);
 //   return *this;
@@ -906,7 +906,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (unsigned int user)
+//property & property::operator += (::u32 user)
 //{
 //   operator=(*this + user);
 //   return *this;
@@ -918,7 +918,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (unsigned long long user)
+//property & property::operator += (::u64 user)
 //{
 //   operator=(*this + user);
 //   return *this;
@@ -960,7 +960,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator /= (unsigned int user)
+//property & property::operator /= (::u32 user)
 //{
 //   operator=(*this / user);
 //   return *this;
@@ -972,7 +972,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator /= (unsigned long long user)
+//property & property::operator /= (::u64 user)
 //{
 //   operator=(*this / user);
 //   return *this;
@@ -1002,7 +1002,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator *= (unsigned int user)
+//property & property::operator *= (::u32 user)
 //{
 //   operator=(*this * user);
 //   return *this;
@@ -1014,7 +1014,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator *= (unsigned long long user)
+//property & property::operator *= (::u64 user)
 //{
 //   operator=(*this * user);
 //   return *this;
@@ -1151,7 +1151,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator - (unsigned int user, const property & prop)
+//::payload  operator - (::u32 user, const property & prop)
 //{
 //   return user - (const ::payload &) prop;
 //}
@@ -1163,7 +1163,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator - (unsigned long long ul, const property & prop)
+//::payload  operator - (::u64 ul, const property & prop)
 //{
 //   return ul - (const & payload) prop;
 //}
@@ -1226,7 +1226,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator + (unsigned int user, const property & prop)
+//::payload  operator + (::u32 user, const property & prop)
 //{
 //   return user + prop;
 //}
@@ -1238,7 +1238,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator + (unsigned long long ul, const property & prop)
+//::payload  operator + (::u64 ul, const property & prop)
 //{
 //   return ul + prop;
 //}
@@ -1301,7 +1301,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator / (unsigned int user, const property & prop)
+//::payload  operator / (::u32 user, const property & prop)
 //{
 //   return user / prop;
 //}
@@ -1313,7 +1313,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator / (unsigned long long ul, const property & prop)
+//::payload  operator / (::u64 ul, const property & prop)
 //{
 //   return ul / prop;
 //}
@@ -1364,7 +1364,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator * (unsigned int user, const property & prop)
+//::payload  operator * (::u32 user, const property & prop)
 //{
 //   return user * prop;
 //}
@@ -1376,7 +1376,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator * (unsigned long long ul, const property & prop)
+//::payload  operator * (::u64 ul, const property & prop)
 //{
 //   return ul * prop;
 //}

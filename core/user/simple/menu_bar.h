@@ -29,7 +29,7 @@ public:
    int_spreadset *                     m_prel;
    bool                                m_bTracking;
    ::collection::index                               m_iTracking;
-   unsigned int                               m_uResourceId;
+   ::u32                               m_uResourceId;
    ::collection::index                               m_iTopMenuCount;
    ::pointer<::user::menu>             m_pmenu;
 
@@ -39,11 +39,11 @@ public:
 
 
    //using ::simple_toolbar::create_window;
-   //bool create_window(::user::interaction * puiParent, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::atom atom = __IDW_TOOLBAR) override;
+   //bool create_window(::user::interaction * puiParent, ::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::atom atom = __IDW_TOOLBAR) override;
 
 
    //using ::simple_toolbar::create_window_ex;
-   //bool create_window_ex(::user::interaction * puiParent, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::atom atom = __IDW_TOOLBAR);
+   //bool create_window_ex(::user::interaction * puiParent, ::u32 dwCtrlStyle = TBSTYLE_FLAT, ::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::atom atom = __IDW_TOOLBAR);
 
 //
 //#ifdef WINDOWS_DESKTOP
@@ -87,17 +87,17 @@ protected:
    ::int_spreadset * prel,
    ::write_text::font * pfont);
 
-   //int_size CalcLayout(unsigned int dwMode, ::collection::index nLength);
+   //int_size CalcLayout(::u32 dwMode, ::collection::index nLength);
 
    //int_size CalcFixedLayout(bool bStretch, bool bHorz);
 
-   //int_size CalcDynamicLayout(index nLength, unsigned int dwMode);
+   //int_size CalcDynamicLayout(index nLength, ::u32 dwMode);
    //static void  CalcSize(::user::toolbar_control & tbc, int_size & size);
    //static void  CalcSize(CToolBarCtrl & tbc, int_size & size);
    bool _track_popup_menu(const ::int_point & point);
    bool _track_popup_menu(::collection::index iItem);
-   bool LoadMenuBar(unsigned int nIDResource);
-   void SetMenuID(unsigned int nIDResource);
+   bool LoadMenuBar(::u32 nIDResource);
+   void SetMenuID(::u32 nIDResource);
 
    //DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    //DECLARE_MESSAGE_HANDLER(_001OnNcMouseMove);

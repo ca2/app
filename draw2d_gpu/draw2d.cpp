@@ -298,7 +298,7 @@ namespace draw2d_gpu
    //}
 
 
-   //void draw2d::adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle)
+   //void draw2d::adjust_composited_window_styles(::u32& nExStyle, ::u32& nStyle)
    //{
 
    //   nExStyle &= ~WS_EX_LAYERED;

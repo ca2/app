@@ -33,7 +33,7 @@ struct CLASS_DECL_ACME image32_t
    union
    {
 
-      unsigned int    m_ui;
+      ::u32    m_ui;
       unsigned char     m_ua[4];
 
    };
@@ -138,13 +138,13 @@ struct CLASS_DECL_ACME image32_t
 //#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
-//constexpr unsigned int argb_image32_unsigned_int(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
+//constexpr ::u32 argb_image32_unsigned_int(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Blue
 //      | ((unsigned short)(u8Green) << 8)
-//      | (((unsigned int)(u8Red)) << 16)
-//      | (((unsigned int)(u8Opacity)) << 24);
+//      | (((::u32)(u8Red)) << 16)
+//      | (((::u32)(u8Opacity)) << 24);
 //
 //}
 //
@@ -158,13 +158,13 @@ struct CLASS_DECL_ACME image32_t
 //#else
 //
 //
-//constexpr unsigned int argb_image32_unsigned_int(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
+//constexpr ::u32 argb_image32_unsigned_int(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
 //{
 //
 //   return u8Red
 //      | (((unsigned short)u8Green) << 8)
-//      | (((unsigned int)u8Blue) << 16)
-//      | (((unsigned int)u8Opacity) << 24);
+//      | (((::u32)u8Blue) << 16)
+//      | (((::u32)u8Opacity) << 24);
 //
 //}
 //
@@ -249,7 +249,7 @@ namespace draw2d
    CLASS_DECL_ACME void image_copy(::image::image *imagethis, ::image::image *pimage);
    CLASS_DECL_ACME void image_create(::particle * pparticle, ::image::image *& image);
    CLASS_DECL_ACME void image_create_image(::image::image *pimage, const int_size & size);
-   CLASS_DECL_ACME unsigned int * image_get_data(::image::image *pimage);
+   CLASS_DECL_ACME ::u32 * image_get_data(::image::image *pimage);
    CLASS_DECL_ACME graphics * image_get_graphics(::image::image *pimage);
 
 

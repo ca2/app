@@ -975,10 +975,10 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, ::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
-   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
    CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::user::interaction * pinteractionParent)
    {
 

@@ -38,7 +38,7 @@ namespace simpledb
    const ::scoped_string & scopedstrDatabase,
    int iPort,
    const ::scoped_string & scopedstrSocketName,
-   unsigned int uFlags)
+   ::u32 uFlags)
    {
       return false;
    }

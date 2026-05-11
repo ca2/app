@@ -7,7 +7,7 @@ namespace user
 
 
 
-   enum enum_notification : unsigned int
+   enum enum_notification : ::u32
    {
 
 

@@ -237,8 +237,8 @@ namespace graphics3d
    }
 
    ::pointer<::graphics3d::renderable> shape_factory::create_sphere(::gpu::context *pgpucontext, float radius,
-                                                                          unsigned int sectorCount,
-                                                                  unsigned int stackCount)
+                                                                          ::u32 sectorCount,
+                                                                  ::u32 stackCount)
    {
       auto pshape = create_newø<shape>();
 
@@ -253,7 +253,7 @@ namespace graphics3d
       float sectorAngle, stackAngle;
       Vertex vertex;
 
-      for (unsigned int i = 0; i <= stackCount; ++i)
+      for (::u32 i = 0; i <= stackCount; ++i)
       {
          stackAngle = π / 2 - i * stackStep; // from pi/2 to -pi/2
          xy = radius * cosf(stackAngle); // r * cos(u)
@@ -261,7 +261,7 @@ namespace graphics3d
 
          // add (sectorCount+1) vertexes per stack
          // the first and last vertexes have same position and normal, but different tex coords
-         for (unsigned int j = 0; j <= sectorCount; ++j)
+         for (::u32 j = 0; j <= sectorCount; ++j)
          {
             sectorAngle = j * sectorStep; // from 0 to 2pi
 
@@ -284,16 +284,16 @@ namespace graphics3d
 
       pshape->set_vertexes(vertexes);
 
-      array_base<unsigned int> indexes;
+      array_base<::u32> indexes;
 
       // Indices
-      unsigned int k1, k2;
-      for (unsigned int i = 0; i < stackCount; ++i)
+      ::u32 k1, k2;
+      for (::u32 i = 0; i < stackCount; ++i)
       {
          k1 = i * (sectorCount + 1); // beginning of current stack
          k2 = k1 + sectorCount + 1; // beginning of next stack
 
-         for (unsigned int j = 0; j < sectorCount; ++j, ++k1, ++k2)
+         for (::u32 j = 0; j < sectorCount; ++j, ++k1, ++k2)
          {
             if (i != 0)
             {

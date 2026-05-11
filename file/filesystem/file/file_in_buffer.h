@@ -28,8 +28,8 @@ namespace file
      unsigned char *_bufferLimit;
      unsigned char *_bufferBase;
      reader * _stream;
-     unsigned long long _processedSize;
-     unsigned int _bufferSize;
+     ::u64 _processedSize;
+     ::u32 _bufferSize;
      bool _wasFinished;
 
      bool ReadBlock();
@@ -41,7 +41,7 @@ namespace file
      in_buffer();
      ~in_buffer() { Free(); }
 
-     bool Create(unsigned int bufferSize);
+     bool Create(::u32 bufferSize);
      void Free();
 
      void SetStream(reader *stream);
@@ -65,16 +65,16 @@ namespace file
          return ReadBlock2();
        return *_buffer++;
      }
-     unsigned int ReadBytes(unsigned char *buf, unsigned int int_size)
+     ::u32 ReadBytes(unsigned char *buf, ::u32 int_size)
      {
-       if ((unsigned int)(_bufferLimit - _buffer) >= int_size)
+       if ((::u32)(_bufferLimit - _buffer) >= int_size)
        {
-         for (unsigned int i = 0; i < size; i++)
+         for (::u32 i = 0; i < size; i++)
            buf[i] = _buffer[i];
          _buffer += size;
          return size;
        }
-       for (unsigned int i = 0; i < size; i++)
+       for (::u32 i = 0; i < size; i++)
        {
          if (_buffer >= _bufferLimit)
            if (!ReadBlock())
@@ -83,7 +83,7 @@ namespace file
        }
        return size;
      }
-     unsigned long long GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
+     ::u64 GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
      bool WasFinished() const { return _wasFinished; }
    };
 

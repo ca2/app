@@ -219,7 +219,7 @@ CLASS_DECL_AXIS const_char_pointer bsd_socket_error(int x);
 
 // ----------------------------------------
 // LINUX
-typedef unsigned int ipaddr_t;
+typedef ::u32 ipaddr_t;
 typedef unsigned short port_t;
 
 namespace sockets

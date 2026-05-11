@@ -285,11 +285,11 @@ string exception::get_consolidated_details(::particle * pparticle) const
 
 
 
-//   int exception::report_error(unsigned int nType /* = ::user::e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
+//   int exception::report_error(::u32 nType /* = ::user::e_message_box_ok */, const ::scoped_string & scopedstrMessageId /* = nullptr */)
 //   {
 //      string   strErrorMessage;
 //      int     nDisposition;
-////      unsigned int    nHelpContext;
+////      ::u32    nHelpContext;
 //
 //      // nHelpContext should come with the message "<helpcontext id=\"123\" />"
 //      strErrorMessage = get_message();

@@ -721,15 +721,15 @@ namespace gpu_opengl
       ///* get the surface desc */
       //fread(&header, 124, 1, fp);
 
-      //unsigned int height = *(unsigned int*)&(header[8]);
-      //unsigned int width = *(unsigned int*)&(header[12]);
-      //unsigned int linearSize = *(unsigned int*)&(header[16]);
-      //unsigned int mipMapCount = *(unsigned int*)&(header[24]);
-      //unsigned int fourCC = *(unsigned int*)&(header[80]);
+      //::u32 height = *(::u32*)&(header[8]);
+      //::u32 width = *(::u32*)&(header[12]);
+      //::u32 linearSize = *(::u32*)&(header[16]);
+      //::u32 mipMapCount = *(::u32*)&(header[24]);
+      //::u32 fourCC = *(::u32*)&(header[80]);
 
 
       //unsigned char* buffer;
-      //unsigned int bufsize;
+      //::u32 bufsize;
       ///* how big is it going to be including all mipmaps? */
       //bufsize = mipMapCount > 1 ? linearSize * 2 : linearSize;
       //buffer = (unsigned char*)malloc(bufsize * sizeof(unsigned char));
@@ -737,8 +737,8 @@ namespace gpu_opengl
       ///* close the file pointer */
       ////fclose(fp);
 
-      ////unsigned int components = (fourCC == FOURCC_DXT1) ? 3 : 4;
-      //unsigned int format;
+      ////::u32 components = (fourCC == FOURCC_DXT1) ? 3 : 4;
+      //::u32 format;
       //switch (fourCC)
       //{
       //case FOURCC_DXT1:
@@ -763,13 +763,13 @@ namespace gpu_opengl
       //glBindTexture(GL_TEXTURE_2D, textureID);
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-      //unsigned int blockSize = (format == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT) ? 8 : 16;
-      //unsigned int offset = 0;
+      //::u32 blockSize = (format == GL_COMPRESSED_RGBA_S3TC_DXT1_EXT) ? 8 : 16;
+      //::u32 offset = 0;
 
       ///* load the mipmaps */
-      //for (unsigned int level = 0; level < mipMapCount && (width || height); ++level)
+      //for (::u32 level = 0; level < mipMapCount && (width || height); ++level)
       //{
-      //   unsigned int size = ((width + 3) / 4) * ((height + 3) / 4) * blockSize;
+      //   ::u32 size = ((width + 3) / 4) * ((height + 3) / 4) * blockSize;
       //   glCompressedTexImage2D(GL_TEXTURE_2D, level, format, width, height,
       //      0, size, buffer + offset);
 

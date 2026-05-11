@@ -10,7 +10,7 @@
 #include <bzlib.h>
 
 
-#define MAKEU64(hi, lo) ((((unsigned long long)hi) << 32) | ((unsigned long long) lo))
+#define MAKEU64(hi, lo) ((((::u64)hi) << 32) | ((::u64) lo))
 
 //#define ALLOC(size) malloc(size)
 //#define TRYFREE(point) {if (point) free(point);}
@@ -120,7 +120,7 @@ namespace compress_bzip2
       zstream.bzfree = (bzfree)0;
       zstream.opaque = (void*)0;
       zstream.next_in = (char*)memIn.data();
-      zstream.avail_in = (unsigned int)uRead;
+      zstream.avail_in = (::u32)uRead;
       zstream.next_out = nullptr;
       zstream.avail_out = 0;
       m_z_err = BZ_OK;
@@ -147,7 +147,7 @@ namespace compress_bzip2
          {
 
             zstream.next_out = (char*)memory.data();
-            zstream.avail_out = (unsigned int)memory.size();
+            zstream.avail_out = (::u32)memory.size();
 
             ret = BZ2_bzCompress(&zstream, iState);
 
@@ -183,7 +183,7 @@ namespace compress_bzip2
 
             zstream.next_in = (char*)nullptr;
 
-            zstream.avail_in = (unsigned int)0;
+            zstream.avail_in = (::u32)0;
 
          }
          else
@@ -191,7 +191,7 @@ namespace compress_bzip2
 
             zstream.next_in = (char*)memIn.data();
 
-            zstream.avail_in = (unsigned int)uRead;
+            zstream.avail_in = (::u32)uRead;
 
          }
 

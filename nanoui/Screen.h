@@ -147,8 +147,8 @@ namespace nanoui
          bool depth_buffer = true,
          bool stencil_buffer = true,
          bool float_buffer = false,
-         unsigned int gl_major = 3,
-         unsigned int gl_minor = 2
+         ::u32 gl_major = 3,
+         ::u32 gl_minor = 2
       );
 
       /// Release all resources
@@ -248,7 +248,7 @@ namespace nanoui
       virtual bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
 
       /// Text input happening handler: codepoint is native endian UTF-32 format
-      bool keyboard_character_event(unsigned int codepoint) override;
+      bool keyboard_character_event(::u32 codepoint) override;
 
       /// Window resize happening handler
       virtual bool resize_event(const ::int_size& size);
@@ -341,7 +341,7 @@ namespace nanoui
       //bool on_mouse_move(const ::int_point & point) override;
       bool mouse_button_event(const int_point& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;
       //   void key_callback_event(int key, int scancode, int action, int mods);
-      //   void char_callback_event(unsigned int codepoint);
+      //   void char_callback_event(::u32 codepoint);
       //   void drop_callback_event(int count, const_char_pointer *filenames);
       //   void scroll_callback_event(double x, double y);
       //   void resize_callback_event(int width, int height);

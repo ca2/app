@@ -8,7 +8,7 @@
 #endif
 
 
-unsigned int _stdcall ___Ex1File__WriteProc(void * buffer, unsigned int size, unsigned int count, fi_handle handle)
+::u32 _stdcall ___Ex1File__WriteProc(void * buffer, ::u32 size, ::u32 count, fi_handle handle)
 {
 
    file_pointer  pfile = (::file::file *) handle;

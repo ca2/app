@@ -739,7 +739,7 @@ CLASS_DECL_ACME const ::wd32_character * wd32_find_char_reverse(const ::wd32_cha
 //CLASS_DECL_ACME const ::wd32_character * wd32_concatenate_duplicate_and_free(const ::wd32_character * psz1, ::wd32_character * psz2);
 
 
-CLASS_DECL_ACME void wd32_from_u64_base(::wd32_character * sz, unsigned long long u, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd32_from_u64_base(::wd32_character * sz, ::u64 u, int iBase, enum_digit_case edigitcase)
 {
 
    wd32_character * pend = nullptr;
@@ -770,7 +770,7 @@ CLASS_DECL_ACME long long wd32_to_long_long(const ::wd32_character * psz, const 
 }
 
 
-CLASS_DECL_ACME unsigned long long wd32_to_unsigned_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME ::u64 wd32_to_unsigned_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return __wd32tou64(psz, (::wd32_character **) ppszEnd, iBase);
@@ -786,7 +786,7 @@ CLASS_DECL_ACME int wd32_to_int(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME unsigned int wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME ::u32 wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return __wd32tou32(psz, (::wd32_character **) ppszEnd, iBase);
@@ -803,7 +803,7 @@ CLASS_DECL_ACME long long wd32_to_long_long(const ::wd32_character * psz, const 
 }
 
 
-CLASS_DECL_ACME unsigned long long wd32_to_unsigned_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME ::u64 wd32_to_unsigned_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return wcstoull(psz, (::wd32_character **) ppszEnd, iBase);
@@ -845,7 +845,7 @@ CLASS_DECL_ACME int wd32_to_int(const ::wd32_character * psz, const ::wd32_chara
 }
 
 
-CLASS_DECL_ACME unsigned int wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME ::u32 wd32_to_unsigned_int(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
 #ifdef WINDOWS
@@ -865,7 +865,7 @@ CLASS_DECL_ACME unsigned int wd32_to_unsigned_int(const ::wd32_character * psz, 
       
    }
 
-   return (unsigned int) ul;
+   return (::u32) ul;
    
 #endif
 

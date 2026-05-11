@@ -40,13 +40,13 @@ namespace innate_subsystem
       // Icon(Icon * picon);
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
-      // Icon(unsigned int icon);
+      // Icon(::u32 icon);
       //virtual ~IconInterface() = 0;
 
       virtual void initialize_icon(IconInterface * picon) = 0;
       virtual void initialize_icon(BitmapInterface *bitmap) = 0;
       virtual void initialize_icon(BitmapInterface *bitmap, BitmapInterface *mask) = 0;
-      virtual void initialize_icon(unsigned int icon) = 0;
+      virtual void initialize_icon(::u32 icon) = 0;
 
       virtual void * _HICON() = 0;
 
@@ -71,7 +71,7 @@ virtual public Composite<IconInterface>
       // Icon(Icon * picon);
       // Icon(Bitmap *bitmap);
       // Icon(Bitmap *bitmap, Bitmap *mask);
-      // Icon(unsigned int icon);
+      // Icon(::u32 icon);
       //~Icon() override;
 
       void initialize_icon(IconInterface* picon) override
@@ -84,7 +84,7 @@ virtual public Composite<IconInterface>
       {
          m_picon->initialize_icon(bitmap, mask);
       }
-      void initialize_icon(unsigned int icon) override { m_picon->initialize_icon(icon);
+      void initialize_icon(::u32 icon) override { m_picon->initialize_icon(icon);
       }
 
       void* _HICON() override { return m_picon->_HICON();

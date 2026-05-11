@@ -46,7 +46,7 @@ namespace user
 #endif
 
 
-      virtual unsigned int get_message()
+      virtual ::u32 get_message()
       {
          return 0;
       }

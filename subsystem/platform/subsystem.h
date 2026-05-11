@@ -94,7 +94,7 @@ namespace subsystem
          const ::user_interaction_sink & userinteractionsink,
          const ::scoped_string & scopedstrMessage,
          const ::scoped_string & scopedstrCaption,
-         unsigned int uType);
+         ::u32 uType);
 
 
       virtual bool EncryptData(const ::string& input, ::memory & output);
@@ -106,10 +106,10 @@ namespace subsystem
       virtual ::pointer < ::subsystem::SocketAddressIPv4Interface > resolve_ip4_address(const ::scoped_string & scopedstrHost, unsigned short port);
 
 
-      virtual unsigned int internet_address4(const ::scoped_string &scopedstr);
-      virtual ::string internet_address4_as_string(unsigned int u);
-      virtual unsigned int host_to_network_long(unsigned int u);
-      virtual unsigned int network_to_host_long(unsigned int u);
+      virtual ::u32 internet_address4(const ::scoped_string &scopedstr);
+      virtual ::string internet_address4_as_string(::u32 u);
+      virtual ::u32 host_to_network_long(::u32 u);
+      virtual ::u32 network_to_host_long(::u32 u);
 
       virtual void start_SessionChangesWatcher(const ::procedure &procedureSessionChanged,
                                                ::subsystem::LogWriter *plogwriter);
@@ -127,7 +127,7 @@ namespace subsystem
       virtual int get_LOADER_CLOSE_CODE();
       virtual int get_SPEC_IPC_CODE();
       // RegisterWindowMessage("TVN.HOOK.LOADER.CLOSE.CODE");
-      // const unsigned int HookDefinitions::SPEC_IPC_CODE =
+      // const ::u32 HookDefinitions::SPEC_IPC_CODE =
       // RegisterWindowMessage("TVN.HOOK.MESSAGE.CODE");
 
 

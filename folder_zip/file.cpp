@@ -206,11 +206,11 @@ memsize file::read(void * p, ::memsize s)
 
    ASSERT(is_memory_segment_ok(data, (uptr)s));
 
-   auto iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, data, (unsigned int)s);
+   auto iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, data, (::u32)s);
 
    m_iPosition += iRead;
 
-   return (unsigned int)iRead;
+   return (::u32)iRead;
 
 }
 
@@ -301,7 +301,7 @@ void file::write(const void * p, ::memsize s)
 
       _synchronous_lock synchronouslock(m_pfolder->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      unsigned long long iNewPosition;
+      ::u64 iNewPosition;
 
       if (eseek == ::e_seek_set)
       {
@@ -365,7 +365,7 @@ void file::write(const void * p, ::memsize s)
 
             iGet = minimum(iRemain, 1024);
 
-            iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, pbBuf, (unsigned int)iGet);
+            iRead = unzip_ReadCurrentFile(m_pfolder->m_unzip_file, pbBuf, (::u32)iGet);
 
             iRemain -= iRead;
 

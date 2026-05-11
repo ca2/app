@@ -12,7 +12,7 @@ namespace  sort
 
 
    //   void quick_sort(
-   //                  ::array<unsigned int, unsigned int> & array,
+   //                  ::array<::u32, ::u32> & array,
    //                  int fCompare(const index, const index),
    //                  void __swap(void * pVoidSwapArg, ::collection::index iA, ::collection::index iB),
    //                  void * pVoidSwapArg);
@@ -22,7 +22,7 @@ namespace  sort
    //
 
    //   void quick_sort(
-   //      ::array<unsigned int, unsigned int> & array,
+   //      ::array<::u32, ::u32> & array,
    //      int fCompare(const index, const index),
    //      void __swap(void * pVoidSwapArg, ::collection::index iA, ::collection::index iB),
    //      void * pVoidSwapArg)
@@ -34,7 +34,7 @@ namespace  sort
    //      index iUpperBound;
    //      index iLPos, iUPos, iMPos;
    //
-   //      unsigned int t;
+   //      ::u32 t;
    //
    //      if(array.get_size() >= 2)
    //      {

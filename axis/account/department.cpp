@@ -213,7 +213,7 @@ namespace account
 //
 //      string strRequestingServer = purl->get_server(pathUrl);
 //
-//      unsigned int dwGetFontopusBeg= ::time::now();
+//      ::u32 dwGetFontopusBeg= ::time::now();
 //
 //      string strGetFontopus;
 //
@@ -240,7 +240,7 @@ namespace account
 //      if(strRequestingServer == "ca2.site")
 //         return "ca2.site";
 //
-//      unsigned int dwGetFontopusEnd= ::time::now();
+//      ::u32 dwGetFontopusEnd= ::time::now();
 //
 //      informationf("NetLogin: Get Fontopus Millis = %d",dwGetFontopusEnd - dwGetFontopusBeg);
 //

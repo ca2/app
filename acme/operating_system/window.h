@@ -29,7 +29,7 @@ namespace operating_system
    //   {
 
    //      unsigned char m_opaque[32];
-   //      unsigned long long m_la[4];
+   //      ::u64 m_la[4];
 
    //   };
 
@@ -45,7 +45,7 @@ namespace operating_system
       {
 
          unsigned char              m_opaque[24];
-         unsigned long long         m_ulla[3];
+         ::u64         m_ulla[3];
 
       };
 
@@ -73,9 +73,9 @@ namespace operating_system
       }
 
       window_opaque_t(
-         unsigned long long ulla0,
-         unsigned long long ulla1,
-         unsigned long long ulla2)
+         ::u64 ulla0,
+         ::u64 ulla1,
+         ::u64 ulla2)
       {
 
          this->m_ulla[0] = ulla0;
@@ -358,9 +358,9 @@ namespace operating_system
       }
 
       a_window(const ::windowing::enum_operating_ambient& eoperatingambient,
-         unsigned long long ulla0,
-         unsigned long long ulla1 = 0,
-         unsigned long long ulla2 = 0) :
+         ::u64 ulla0,
+         ::u64 ulla1 = 0,
+         ::u64 ulla2 = 0) :
          m_pacmewindowingwindow(nullptr),
          m_eoperatingambient(eoperatingambient),
          BASE_TYPE({ulla0, ulla1, ulla2})

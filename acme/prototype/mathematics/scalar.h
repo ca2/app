@@ -23,9 +23,9 @@ namespace number
          short       m_sh;
          unsigned short       m_ush;
          int       m_i;
-         unsigned int       m_ui;
+         ::u32       m_ui;
          long long       m_hi;
-         unsigned long long       m_hn;
+         ::u64       m_hn;
 
          float       m_f;
          double       m_d;
@@ -40,9 +40,9 @@ namespace number
       number(short i) { m_sh = i; m_enumber = e_number_short; }
       number(unsigned short u) { m_ush = u; m_enumber = e_number_unsigned_short; }
       number(int i) { m_i = i; m_enumber = e_number_int; }
-      number(unsigned int u) { m_ui = u; m_enumber = e_number_unsigned_int; }
+      number(::u32 u) { m_ui = u; m_enumber = e_number_unsigned_int; }
       number(long long i) { m_hi = i; m_enumber = e_number_long_long; }
-      number(unsigned long long u) { m_hn = u; m_enumber = e_number_unsigned_long_long; }
+      number(::u64 u) { m_hn = u; m_enumber = e_number_unsigned_long_long; }
       number(float f) { m_f = f; m_enumber = e_number_float; }
       number(double d) { m_d = d; m_enumber = e_number_double; }
       //#ifdef __clang__
@@ -112,13 +112,13 @@ namespace number
                m_i = (int)t;
                break;
             case e_number_unsigned_int:
-               m_ui = (unsigned int)t;
+               m_ui = (::u32)t;
                break;
             case e_number_long_long:
                m_hi = (long long)t;
                break;
             case e_number_unsigned_long_long:
-               m_hn = (unsigned long long)t;
+               m_hn = (::u64)t;
                break;
             case e_number_float:
                m_f = (float)t;
@@ -135,9 +135,9 @@ namespace number
       short get_short() const { return get < short>(); }
       unsigned short get_unsigned_short() const { return get < unsigned short>(); }
       int get_int() const { return get < int>(); }
-      unsigned int get_unsigned_int() const { return get < unsigned int>(); }
+      ::u32 get_unsigned_int() const { return get < ::u32>(); }
       long long get_long_long() const { return get < long long>(); }
-      unsigned long long get_unsigned_long_long() const { return get < unsigned long long>(); }
+      ::u64 get_unsigned_long_long() const { return get < ::u64>(); }
       float get_float() const { return get < float>(); }
       double get_double() const { return get < double>(); }
 

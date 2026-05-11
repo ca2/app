@@ -57,7 +57,7 @@ public:
       memory((const void *)a, (memsize)(sizeof(CHARACTER) * (c - 1)))
    {
    }
-   memory(memory_container * pcontainer, memsize size = 0, unsigned int uAllocFlags = 0);
+   memory(memory_container * pcontainer, memsize size = 0, ::u32 uAllocFlags = 0);
    memory(memory_container * pcontainer, const void * pdata, memsize size);
    memory(manager * pmanager);
    memory(const memory & memory, manager * pmanager);

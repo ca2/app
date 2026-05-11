@@ -78,7 +78,7 @@ namespace sockets
       void Execute();
 
       
-      virtual bool read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea = nullptr, const ::scoped_string & scopedstrContentType = nullptr, unsigned int uEnumReadFile = e_read_file_none);
+      virtual bool read_file(const ::file::path& pcszParam, pointer_array < ::i32_array >* prangea = nullptr, const ::scoped_string & scopedstrContentType = nullptr, ::u32 uEnumReadFile = e_read_file_none);
 
 
       virtual bool read_text_file_for_linux(const ::payload & payloadFile);

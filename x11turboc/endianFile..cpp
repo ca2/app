@@ -50,7 +50,7 @@ ReadBig16 (FILE * fp, unsigned short * Value)
 }
 
 int
-ReadLittle32 (FILE * fp, unsigned int * Value)
+ReadLittle32 (FILE * fp, ::u32 * Value)
 {
   int RetVal;
   RetVal = (1 != fread (Value, sizeof (*Value), 1, fp));
@@ -60,7 +60,7 @@ ReadLittle32 (FILE * fp, unsigned int * Value)
 }
 
 int
-ReadBig32 (FILE * fp, unsigned int * Value)
+ReadBig32 (FILE * fp, ::u32 * Value)
 {
   int RetVal;
   RetVal = (1 != fread (Value, sizeof (*Value), 1, fp));
@@ -87,14 +87,14 @@ WriteBig16 (FILE * fp, unsigned short Value)
 }
 
 int
-WriteLittle32 (FILE * fp, unsigned int Value)
+WriteLittle32 (FILE * fp, ::u32 Value)
 {
   FixLittle32 (&Value);
   return (1 != fwrite (&Value, sizeof (Value), 1, fp));
 }
 
 int
-WriteBig32 (FILE * fp, unsigned int Value)
+WriteBig32 (FILE * fp, ::u32 Value)
 {
   FixBig32 (&Value);
   return (1 != fwrite (&Value, sizeof (Value), 1, fp));

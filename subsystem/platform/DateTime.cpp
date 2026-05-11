@@ -35,27 +35,27 @@
 // {
 // }
 //
-// ::earth::time::::earth::time(unsigned long long timeValue)
+// ::earth::time::::earth::time(::u64 timeValue)
 // : m_timeValue(timeValue)
 // {
 // }
 //
 // ::earth::time::::earth::time(FILETIME ft)
 // {
-//   const unsigned long long SECS_BETWEEN_EPOCHS = 11644473600;
-//   const unsigned long long SECS_TO_100NS = 10000000;
+//   const ::u64 SECS_BETWEEN_EPOCHS = 11644473600;
+//   const ::u64 SECS_TO_100NS = 10000000;
 //
 //    // Time since windows epoch in 100ns intervals.
-//   unsigned long long winTime100ns = ((unsigned long long)ft.dwHighDateTime << 32) + ft.dwLowDateTime;
+//   ::u64 winTime100ns = ((::u64)ft.dwHighDateTime << 32) + ft.dwLowDateTime;
 //
 //    // Time since unix epoch in 100ns intervals.
-//   unsigned long long unixTime100ns = winTime100ns - SECS_BETWEEN_EPOCHS * SECS_TO_100NS;
+//   ::u64 unixTime100ns = winTime100ns - SECS_BETWEEN_EPOCHS * SECS_TO_100NS;
 //
 //    // Time singe unix epoch in milliseconds.
 //   m_timeValue = (unixTime100ns / 10000);
 // }
 //
-// unsigned long long ::earth::time::getTime() const
+// ::u64 ::earth::time::getTime() const
 // {
 //   return m_timeValue;
 // }
@@ -72,7 +72,7 @@
 //
 // void ::earth::time::toFileTime(LPFILETIME ft) const
 // {
-//   unsigned long long ll;
+//   ::u64 ll;
 //   ll = m_timeValue * (10000000 / 1000) + 116444736000000000;
 //   ft->dwLowDateTime = (DWORD)ll;
 //   ft->dwHighDateTime = ll >> 32;

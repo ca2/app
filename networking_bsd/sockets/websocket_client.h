@@ -84,7 +84,7 @@ namespace networking_bsd
 } // namespace networking_bsd
 
 
-CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned int u);
+CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, ::u32 u);
 
 
 

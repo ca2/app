@@ -421,7 +421,7 @@ namespace tsf
    **************************************************************************/
 
    //lresult CALLBACK edit_window::_WndProc( HWND hWnd, 
-   //                                        unsigned int uMessage,
+   //                                        ::u32 uMessage,
    //                                        wparam wParam, 
    //                                        lparam lParam)
    //{
@@ -599,7 +599,7 @@ namespace tsf
    {
        if(m_fNotify && m_AdviseSink.pTextStoreACPSink && (m_AdviseSink.dwMask & TS_AS_TEXT_CHANGE))
        {
-           unsigned int           dwFlags;
+           ::u32           dwFlags;
            TS_TEXTCHANGE   tc;
            character_count           cch;
 
@@ -656,7 +656,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //lresult edit_window::_OnNotify(unsigned int, LPNMHDR)
+   //lresult edit_window::_OnNotify(::u32, LPNMHDR)
    //{
    //    return 0;
    //}
@@ -694,7 +694,7 @@ namespace tsf
 
    **************************************************************************/
 
-   BOOL edit_window::_IsLocked(unsigned int dwLockType)
+   BOOL edit_window::_IsLocked(::u32 dwLockType)
    { 
        if(m_dwInternalLockType)
        {
@@ -735,7 +735,7 @@ namespace tsf
 
    **************************************************************************/
 
-   BOOL edit_window::_LockDocument(unsigned int dwLockFlags)
+   BOOL edit_window::_LockDocument(::u32 dwLockFlags)
    {
        if(m_fLocked)
        {
@@ -754,7 +754,7 @@ namespace tsf
 
    **************************************************************************/
 
-   BOOL edit_window::_InternalLockDocument(unsigned int dwLockFlags)
+   BOOL edit_window::_InternalLockDocument(::u32 dwLockFlags)
    {
        m_dwInternalLockType = dwLockFlags;
     
@@ -967,7 +967,7 @@ namespace tsf
 
    HRESULT edit_window::_GetText(LPWSTR *ppwsz, LPLONG pcch)
    {
-       unsigned int   cch;
+       ::u32   cch;
        LPWSTR  pwszText;
     
        *ppwsz = NULL;
@@ -1764,9 +1764,9 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP_(unsigned int) edit_window::AddRef()
+   STDMETHODIMP_(::u32) edit_window::AddRef()
    {
-      return (unsigned int) increment_reference_count();
+      return (::u32) increment_reference_count();
    }
 
 
@@ -1776,7 +1776,7 @@ namespace tsf
 
    **************************************************************************/
 
-   STDMETHODIMP_(unsigned int) edit_window::Release()
+   STDMETHODIMP_(::u32) edit_window::Release()
    {
        //if(--m_ObjRefCount == 0)
        //{
@@ -1786,7 +1786,7 @@ namespace tsf
    
        //return m_ObjRefCount;
 
-      return (unsigned int) release();
+      return (::u32) release();
    }
 
 

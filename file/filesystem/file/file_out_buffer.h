@@ -29,7 +29,7 @@ namespace file
       filesize                        _limitPos;
       filesize                        _streamPos;
       writer *                         _stream;
-      unsigned long long                           _processedSize;
+      ::u64                           _processedSize;
       unsigned char *                           _buffer2;
       bool                             _overDict;
 
@@ -52,7 +52,7 @@ namespace file
       void WriteByte(unsigned char b);
       void WriteBytes(const void *data, size_t size);
 
-      unsigned long long GetProcessedSize() const;
+      ::u64 GetProcessedSize() const;
 
 
    };

@@ -251,7 +251,7 @@
 ////}
 ////
 ////
-////void dump_context::write(unsigned int u)
+////void dump_context::write(::u32 u)
 ////{
 ////
 ////   string str;
@@ -279,7 +279,7 @@
 ////}
 ////
 ////
-////void dump_context::write(unsigned long long u)
+////void dump_context::write(::u64 u)
 ////{
 ////
 ////   string str;
@@ -298,7 +298,7 @@
 ////
 ////   string str;
 ////
-////   str.formatf("0x%02x", (unsigned int) i);
+////   str.formatf("0x%02x", (::u32) i);
 ////
 ////   output_string(str);
 ////
@@ -312,7 +312,7 @@
 ////
 ////   string str;
 ////
-////   str.formatf("0x%02x", (unsigned int)u);
+////   str.formatf("0x%02x", (::u32)u);
 ////
 ////   output_string(str);
 ////
@@ -326,7 +326,7 @@
 ////
 ////   string str;
 ////
-////   str.formatf("0x%04x", (unsigned int) i);
+////   str.formatf("0x%04x", (::u32) i);
 ////
 ////   output_string(str);
 ////
@@ -340,7 +340,7 @@
 ////
 ////   string str;
 ////
-////   str.formatf("0x%04x", (unsigned int) u);
+////   str.formatf("0x%04x", (::u32) u);
 ////
 ////   output_string(str);
 ////
@@ -363,7 +363,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(unsigned int u)
+////void dump_context::hex_dump(::u32 u)
 ////{
 ////
 ////   string str;
@@ -391,7 +391,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(unsigned long long u)
+////void dump_context::hex_dump(::u64 u)
 ////{
 ////
 ////   string str;

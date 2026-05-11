@@ -111,26 +111,26 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 
 // #define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-// #define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define as_u32(a, b)                                   ((::u32)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 
 
 // #ifdef __cplusplus
 
 
-// #define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+// #define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 
 // #else
 
-// #define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-// #define __unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+// #define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+// #define __unsigned_long_long(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 
 // #endif
 
 // #define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
 // #define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-// #define lower_unsigned_int(u)                                     ((unsigned int)(u))
-// #define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+// #define lower_unsigned_int(u)                                     ((::u32)(u))
+// #define upper_unsigned_int(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 
 // #define u32_x(u)                                     ((short)lower_unsigned_short(u))
 // #define u32_y(u)                                     ((short)upper_unsigned_short(u))
@@ -149,11 +149,11 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 
 
-// #define make_int(a, b)           ((int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+// #define make_int(a, b)           ((int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 
-// #define __MAKE_LONG64(a, b)         ((long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32))
+// #define __MAKE_LONG64(a, b)         ((long long)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
-// #define make_unsigned_int(l, h)         ((::uptr)(unsigned int)make_int(l, h))
+// #define make_unsigned_int(l, h)         ((::uptr)(::u32)make_int(l, h))
 
 //#define lower_byte(w)                 ((unsigned char)(((dword_ptr)(w)) & 0xff))
 
@@ -377,10 +377,10 @@ type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return 
 
 
 // #ifndef lower_unsigned_int
-// #define lower_unsigned_int(l)                                    ((unsigned int)(((unsigned long long)(l)) & 0xffffffffu))
+// #define lower_unsigned_int(l)                                    ((::u32)(((::u64)(l)) & 0xffffffffu))
 // #endif
 // #ifndef upper_unsigned_int
-// #define upper_unsigned_int(l)                                    ((unsigned int)((((unsigned long long)(l)) >> 32) & 0xffffffffu))
+// #define upper_unsigned_int(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffffu))
 // #endif
 
 

@@ -60,15 +60,15 @@ namespace subsystem
 
       //virtual void initialize_socket_stream(SocketIPv4Interface * psocket);
 
-      virtual memsize read(void *, memsize);
+      memsize read(void *, memsize) override;
 
-      virtual memsize defer_write(const void *, memsize);
+      memsize defer_write(const void *, memsize) override;
 
       // Closes connection and break all blocked operation.
       // @throw ::subsystem::Exception on error.
-      virtual void close();
+      void close() override;
 
-      virtual memsize available();
+      memsize available() override;
 
    //protected:
       ::pointer < SocketIPv4Interface > m_psocket;

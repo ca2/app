@@ -5996,13 +5996,13 @@ namespace user
       //
       //            string str;
       //
-      //            ::wd32_character unsigned int[2];
+      //            ::wd32_character ::u32[2];
       //
-      //            unsigned int[0] = pusermessage->m_wparam;
+      //            ::u32[0] = pusermessage->m_wparam;
       //
-      //            unsigned int[1] = 0;
+      //            ::u32[1] = 0;
       //
-      //            str = wd32_to_ansi(unsigned int, 1);
+      //            str = wd32_to_ansi(::u32, 1);
       //
       //            insert_text(str);
       //
@@ -9475,7 +9475,7 @@ namespace user
       /*   char flag;
          m_iImpactOffset = 0;
          int iLineSize;
-         unsigned int uRead;
+         ::u32 uRead;
          int iPos = 0;
          int iLineStart = -1;
          int iLineEnd = -1;

@@ -29,7 +29,7 @@
 //
 //   ::oswindow     m_pacmewindowingwindow;
 //   hdc            m_hdc;
-//   unsigned int          m_nCtlType;
+//   ::u32          m_nCtlType;
 //
 //
 //};
@@ -244,7 +244,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_nChar = static_cast<unsigned int>(wparam);
+   //   m_nChar = static_cast<::u32>(wparam);
 
    //   m_nRepCnt = first_unsigned_short(lparam);
 
@@ -290,7 +290,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
 
-   //   m_nType     = static_cast < unsigned int > (wparam);
+   //   m_nType     = static_cast < ::u32 > (wparam);
 
    //   m_size      = ::int_size(x_short(lparam), y_short(lparam));
 
@@ -441,7 +441,7 @@ namespace message
    }
 
 
-   unsigned int mouse_activate::GetHitTest()
+   ::u32 mouse_activate::GetHitTest()
    {
 
       return lower_unsigned_short(m_lparam);
@@ -449,7 +449,7 @@ namespace message
    }
 
 
-   unsigned int mouse_activate::get_message()
+   ::u32 mouse_activate::get_message()
    {
 
       return upper_unsigned_short(m_lparam);
@@ -568,7 +568,7 @@ namespace message
 
    //   m_bShow = wparam != false;
 
-   //   m_nStatus = static_cast<unsigned int>(lparam);
+   //   m_nStatus = static_cast<::u32>(lparam);
 
    //}
 
@@ -657,7 +657,7 @@ namespace message
    }
 
 
-   unsigned int mouse_wheel::GetFlags()
+   ::u32 mouse_wheel::GetFlags()
    {
 
       return lower_unsigned_short(m_wparam);

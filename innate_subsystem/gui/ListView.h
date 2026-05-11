@@ -40,7 +40,7 @@ namespace innate_subsystem
    typedef struct
    {
       int index;
-      unsigned long long tag;
+      ::u64 tag;
    } ListViewItem;
 
    //
@@ -161,22 +161,22 @@ namespace innate_subsystem
       // Returns count of selected items in list view
       //
 
-      virtual unsigned int getSelectedItemsCount()= 0;
+      virtual ::u32 getSelectedItemsCount()= 0;
 
       //
       // Sets selected list view index to output indexes array
       //
 
       //virtual void getSelectedItemsIndexes(int *indexes)= 0;
-       virtual ::int_array getSelectedItemsIndexes() = 0;
+       virtual ::i32_array getSelectedItemsIndexes() = 0;
 
    //protected:
 
-       virtual void setListViewExtendedStyle(unsigned int style)= 0;
-       virtual unsigned int getListViewExtendedStyle()= 0;
+       virtual void setListViewExtendedStyle(::u32 style)= 0;
+       virtual ::u32 getListViewExtendedStyle()= 0;
 
-       virtual void addListViewExtendedStyle(unsigned int style)= 0;
-       virtual void removeListViewExtendedStyle(unsigned int style)= 0;
+       virtual void addListViewExtendedStyle(::u32 style)= 0;
+       virtual void removeListViewExtendedStyle(::u32 style)= 0;
 
       //
       // This method sort list of item by column "columnIndex".
@@ -348,21 +348,21 @@ namespace innate_subsystem
       // Returns count of selected items in list view
       //
 
-      unsigned int getSelectedItemsCount()  override{ return m_plistview->getSelectedItemsCount(); }
+      ::u32 getSelectedItemsCount()  override{ return m_plistview->getSelectedItemsCount(); }
 
       //
       // Sets selected list view index to output indexes array
       //
 
-      ::int_array getSelectedItemsIndexes()  override{ return m_plistview->getSelectedItemsIndexes(); }
+      ::i32_array getSelectedItemsIndexes()  override{ return m_plistview->getSelectedItemsIndexes(); }
 
    //protected:
 
-       void setListViewExtendedStyle(unsigned int style) override { m_plistview->setListViewExtendedStyle(style); }
-       unsigned int getListViewExtendedStyle()  override{ return m_plistview->getListViewExtendedStyle(); }
+       void setListViewExtendedStyle(::u32 style) override { m_plistview->setListViewExtendedStyle(style); }
+       ::u32 getListViewExtendedStyle()  override{ return m_plistview->getListViewExtendedStyle(); }
 
-       void addListViewExtendedStyle(unsigned int style)  override{ m_plistview->addListViewExtendedStyle(style); }
-       void removeListViewExtendedStyle(unsigned int style) override { m_plistview->removeListViewExtendedStyle(style); }
+       void addListViewExtendedStyle(::u32 style)  override{ m_plistview->addListViewExtendedStyle(style); }
+       void removeListViewExtendedStyle(::u32 style) override { m_plistview->removeListViewExtendedStyle(style); }
 
       //
       // This method sort list of item by column "columnIndex".

@@ -28,7 +28,7 @@ namespace draw2d_gpu
    bool pen::CreatePenIndirect(LPLOGPEN lpLogPen)
    { return attach(::CreatePenIndirect(lpLogPen)); }
    bool pen::CreatePen(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-      int nStyleCount, const unsigned int* lpStyle)
+      int nStyleCount, const ::u32* lpStyle)
    { return attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
    lpStyle)); }
    int pen::GetExtLogPen(EXTLOGPEN* pLogPen)
@@ -57,7 +57,7 @@ namespace draw2d_gpu
    }
 
    void pen::construct(int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-      int nStyleCount, const unsigned int* lpStyle)
+      int nStyleCount, const ::u32* lpStyle)
    {
       if (!attach(::ExtCreatePen(nPenStyle, nWidth, pLogBrush, nStyleCount,
          lpStyle)))
@@ -127,7 +127,7 @@ namespace draw2d_gpu
       color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldMem;
-      const unsigned int   CP_ROP = 0xE20746;
+      const ::u32   CP_ROP = 0xE20746;
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 
@@ -185,7 +185,7 @@ namespace draw2d_gpu
       color32_t color32;
       ::draw2d::bitmap_pointer bmpMask(pparticle);
       ::draw2d::bitmap *pOldMask, *pOldMem;
-      const unsigned int   CP_ROP = 0xE20746;
+      const ::u32   CP_ROP = 0xE20746;
       ::draw2d::brush_pointer pbrushHighLight(papp, psession->get_default_color(COLOR_3DHIGHLIGHT)),
          pbrushShadow(papp, psession->get_default_color(COLOR_3DSHADOW)), spbr;
 

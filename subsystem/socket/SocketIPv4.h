@@ -96,7 +96,7 @@ namespace subsystem
        * @param bindPort port to bind.
        * @throws SocketException on fail.
        */
-      virtual void bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort) = 0;
+      virtual void bind(const ::scoped_string & scopedstrBindHost, ::u32 bindPort) = 0;
       /**
        * Binds socket to socket address.
        * @throws SocketException on fail.
@@ -271,7 +271,7 @@ namespace subsystem
        * @param bindPort port to bind.
        * @throws SocketException on fail.
        */
-      void bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort) override
+      void bind(const ::scoped_string & scopedstrBindHost, ::u32 bindPort) override
       {
 
          m_psocketipv4->bind(scopedstrBindHost, bindPort);

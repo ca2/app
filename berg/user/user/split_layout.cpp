@@ -450,7 +450,7 @@ namespace user
 
       int iDimension = get_normal_dimension(e_layout_layout);
 
-      unsigned int dwPosition;
+      ::u32 dwPosition;
 
       double dRate;
 
@@ -489,13 +489,13 @@ namespace user
 
                }
 
-               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (unsigned int)(m_splitbara[i]->m_dRate * iDimension));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (::u32)(m_splitbara[i]->m_dRate * iDimension));
 
             }
             else
             {
 
-               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (unsigned int)(m_splitbara[i]->m_dwPosition));
+               m_splitbara[i]->m_dwPosition = minimum(m_splitbara[i]->m_dwMaxPosition, (::u32)(m_splitbara[i]->m_dwPosition));
 
             }
 
@@ -520,10 +520,10 @@ namespace user
 
       //::pointer<::user::interaction>puserinteraction;
 
-      //unsigned int uBaseFlags = SWP_NOZORDER;
-      //unsigned int uBaseFlags = 0;
+      //::u32 uBaseFlags = SWP_NOZORDER;
+      //::u32 uBaseFlags = 0;
 
-      //unsigned int uFlags = uBaseFlags;
+      //::u32 uFlags = uBaseFlags;
 
       m_splitbara.set_size(iSplitBarCount);
 
@@ -671,7 +671,7 @@ namespace user
       m_splitbara[iIndex]->m_dRate         = dRate;
       m_splitbara[iIndex]->m_dMinimumRate  = dMinimumRate;
       m_splitbara[iIndex]->m_dMaximumRate  = dMaximumRate;
-      m_splitbara[iIndex]->m_dwPosition    = (unsigned int) -1; // disable position evaluation at first on on_layout
+      m_splitbara[iIndex]->m_dwPosition    = (::u32) -1; // disable position evaluation at first on on_layout
 
    }
 

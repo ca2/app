@@ -16,7 +16,7 @@ inline ::file_time as_file_time(const FILETIME &filetime)
 {
 
    return {file_time_t{},
-           (unsigned long long)::make_unsigned_long_long(filetime.dwLowDateTime, filetime.dwHighDateTime)};
+           (::u64)::make_unsigned_long_long(filetime.dwLowDateTime, filetime.dwHighDateTime)};
 }
 
 

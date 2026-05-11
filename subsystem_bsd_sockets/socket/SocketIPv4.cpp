@@ -122,7 +122,7 @@ namespace subsystem_bsd_sockets
       }
    }
 
-   void SocketIPv4::bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort)
+   void SocketIPv4::bind(const ::scoped_string & scopedstrBindHost, ::u32 bindPort)
    {
 
       ::subsystem::SocketAddressIPv4 address;

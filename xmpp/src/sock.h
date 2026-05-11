@@ -30,7 +30,7 @@ void sock_shutdown(void);
 
 int sock_error(void);
 
-sock_t sock_connect(const ::string & const host, const unsigned int port);
+sock_t sock_connect(const ::string & const host, const ::u32 port);
 int sock_close(const sock_t sock);
 
 int sock_set_blocking(const sock_t sock);

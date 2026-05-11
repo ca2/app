@@ -52,7 +52,7 @@ namespace database
       const ::scoped_string & scopedstrUser = nullptr,
       const ::scoped_string & scopedstrPass = nullptr,
       const ::scoped_string & scopedstrSocket = nullptr,
-      unsigned long long uConnectionFlags = 0) = 0;
+      ::u64 uConnectionFlags = 0) = 0;
 
       virtual void     _connect() = 0;
 

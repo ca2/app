@@ -539,7 +539,7 @@ namespace file
    }
 
 
-   bool file::get_unsigned_long_long(unsigned long long & u)
+   bool file::get_unsigned_long_long(::u64 & u)
    {
 
       if (read({ &u, 8 }) != 8)
@@ -890,7 +890,7 @@ namespace file
 
       return -1;
 
-      //const unsigned int kBufferSize = (1 << 16);
+      //const ::u32 kBufferSize = (1 << 16);
 
       //unsigned char * pu8Find = (unsigned char *) pFind;
 
@@ -940,9 +940,9 @@ namespace file
       //   }
       //   while (sizeTotalRead < sizeFind);
 
-      //   unsigned int sizeSearch = (unsigned int) (sizeTotalRead - sizeFind + 1);
+      //   ::u32 sizeSearch = (::u32) (sizeTotalRead - sizeFind + 1);
 
-      //   for (unsigned int pos = 0; pos < sizeSearch; pos++)
+      //   for (::u32 pos = 0; pos < sizeSearch; pos++)
       //   {
 
       //      unsigned char b = pu8Find[0];
@@ -1084,7 +1084,7 @@ namespace file
    //}
 
 
-   static const memsize kBlockSize = ((unsigned int)1 << 31);
+   static const memsize kBlockSize = ((::u32)1 << 31);
 
 
    //memsize read(::file::file * pfileIn, const ::block & block)
@@ -1309,7 +1309,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (unsigned int u)
+   void file::write (::u32 u)
    {
       __UNREFERENCED_PARAMETER(u);
       throw ::interface_only();
@@ -1321,7 +1321,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (unsigned long long u)
+   void file::write (::u64 u)
    {
       __UNREFERENCED_PARAMETER(u);
       throw ::interface_only();

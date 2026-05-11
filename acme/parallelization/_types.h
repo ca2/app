@@ -16,7 +16,7 @@ class itask;
 class thread_storage;
 
 
-using thread_data_index = unsigned int;
+using thread_data_index = ::u32;
 
 
 ///CLASS_DECL_ACME int itask_equals(itask a, itask b);

@@ -6,14 +6,14 @@
 
 struct hthread_t
 {
-	unsigned int ui0;
-	unsigned int ui1;
-	unsigned int ui2;
-	unsigned int ui3;
-	unsigned int ui4;
-	unsigned int ui5;
-	unsigned int ui6;
-	unsigned int ui7;
+	::u32 ui0;
+	::u32 ui1;
+	::u32 ui2;
+	::u32 ui3;
+	::u32 ui4;
+	::u32 ui5;
+	::u32 ui6;
+	::u32 ui7;
 };
 
 

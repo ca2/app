@@ -98,7 +98,7 @@ namespace filemanager
    // }
 
 
-   bool document::do_prompt_file_name(::payload & payloadFile, const ::scoped_string & scopedstrTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
+   bool document::do_prompt_file_name(::payload & payloadFile, const ::scoped_string & scopedstrTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pfilemanagerdataOther)
    {
 
       __UNREFERENCED_PARAMETER(scopedstrTitle);

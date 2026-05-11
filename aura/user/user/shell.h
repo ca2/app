@@ -166,7 +166,7 @@ namespace user
       ::pointer < ::mutex >                                            m_pmutexImage;
       //pointer_array < thread >                            m_threadptra;
       class ::time                                               m_timeLastMax;
-      unsigned int                                              m_bMax;
+      ::u32                                              m_bMax;
       bool                                               m_bInitialized;
 
       ::array < image_key >                              m_imagekeySchedule;

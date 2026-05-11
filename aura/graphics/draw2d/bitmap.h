@@ -52,7 +52,7 @@ namespace draw2d
       }
 
 
-      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::int_size & size, unsigned int nPlanes, unsigned int nBitcount, const void * pBits, int stride);
+      virtual void CreateBitmap(::draw2d::graphics * pgraphics, const ::int_size & size, ::u32 nPlanes, ::u32 nBitcount, const void * pBits, int stride);
 
       //virtual bool CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP pBitmap);
 
@@ -61,7 +61,7 @@ namespace draw2d
 
       virtual void create_bitmap(::draw2d::graphics * pgraphics, const ::int_size& size, void** ppcolorref, int* piScan);
       virtual bool host_bitmap(::draw2d::graphics* pgraphics, pixmap* ppximap);
-      virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void *pjBits, unsigned int iUsage);
+      virtual void CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage);
 
       virtual int stride_for_width(int iWidth);
 
@@ -76,9 +76,9 @@ namespace draw2d
       virtual ::int_size size() const;
 
       
-      virtual unsigned int SetBitmapBits(unsigned int dwCount, const void * pBits);
+      virtual ::u32 SetBitmapBits(::u32 dwCount, const void * pBits);
 
-      virtual unsigned int GetBitmapBits(unsigned int dwCount, void * pBits) const;
+      virtual ::u32 GetBitmapBits(::u32 dwCount, void * pBits) const;
 
 
 //

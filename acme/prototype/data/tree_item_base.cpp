@@ -297,7 +297,7 @@ namespace data
 
          }
 
-         if (ptreeitem->m_dwUser == (unsigned int)iUserData)
+         if (ptreeitem->m_dwUser == (::u32)iUserData)
          {
 
             return ptreeitem;

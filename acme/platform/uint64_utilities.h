@@ -36,19 +36,19 @@ CLASS_DECL_ACME long long muldiv64(long long operant, long long multiplier, long
 CLASS_DECL_ACME long long mulshr64(long long operant, long long multiplier, unsigned char rshift);
 
 
-CLASS_DECL_ACME void mul64(unsigned long long v1, unsigned long long v2, unsigned long long & hi, unsigned long long & lo);
+CLASS_DECL_ACME void mul64(::u64 v1, ::u64 v2, ::u64 & hi, ::u64 & lo);
 
 
-CLASS_DECL_ACME void mul64(long long v1, long long v2, long long & hi, unsigned long long & lo);
+CLASS_DECL_ACME void mul64(long long v1, long long v2, long long & hi, ::u64 & lo);
 
 
-CLASS_DECL_ACME unsigned long long div128_64(unsigned long long hi, unsigned long long lo, unsigned long long div, unsigned long long & remainder);
+CLASS_DECL_ACME ::u64 div128_64(::u64 hi, ::u64 lo, ::u64 div, ::u64 & remainder);
 
 
-CLASS_DECL_ACME long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder);
+CLASS_DECL_ACME long long div128_64(long long hi, ::u64 lo, long long div, ::u64 & remainder);
 
 
-CLASS_DECL_ACME long long div128_64(long long hi, unsigned long long lo, long long div, unsigned long long & remainder);
+CLASS_DECL_ACME long long div128_64(long long hi, ::u64 lo, long long div, ::u64 & remainder);
 
 
 #endif //__FULL_MULDIV64_

@@ -501,7 +501,7 @@ inline int cmp(const char & ch1,const char & ch2)
 }
 
 template <  >
-inline int cmp(const unsigned int & i1,const unsigned int & i2)
+inline int cmp(const ::u32 & i1,const ::u32 & i2)
 {
    return i1 - i2;
 }
@@ -536,7 +536,7 @@ inline  int cmp(const float & f1,const float & f2)
 
 
 template < >
-inline int cmp(const int & t1,const unsigned int & t2)
+inline int cmp(const int & t1,const ::u32 & t2)
 {
-   return (t1 < 0) ? -1 : ((unsigned int) t1 < t2) ? 1 : 0;
+   return (t1 < 0) ? -1 : ((::u32) t1 < t2) ? 1 : 0;
 }

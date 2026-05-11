@@ -317,7 +317,7 @@ namespace subsystem
    const ::user_interaction_sink & userinteractionsink,
    const ::scoped_string & scopedstrMessage,
    const ::scoped_string & scopedstrCaption,
-   unsigned int uType)
+   ::u32 uType)
    {
 
       throw ::interface_only();
@@ -370,7 +370,7 @@ namespace subsystem
    }
 
 
-   unsigned int subsystem::internet_address4(const ::scoped_string& scopedstr)
+   ::u32 subsystem::internet_address4(const ::scoped_string& scopedstr)
    {
 
       throw ::interface_only();
@@ -380,7 +380,7 @@ namespace subsystem
    }
 
 
-   ::string subsystem::internet_address4_as_string(unsigned int u)
+   ::string subsystem::internet_address4_as_string(::u32 u)
    {
 
       throw ::interface_only();
@@ -390,7 +390,7 @@ namespace subsystem
    }
 
 
-   unsigned int subsystem::host_to_network_long(unsigned int u)
+   ::u32 subsystem::host_to_network_long(::u32 u)
    {
 
       throw ::interface_only();
@@ -399,7 +399,7 @@ namespace subsystem
    }
 
    
-   unsigned int subsystem::network_to_host_long(unsigned int u)
+   ::u32 subsystem::network_to_host_long(::u32 u)
    {
 
       throw ::interface_only();
@@ -468,7 +468,7 @@ namespace subsystem
 
 
    // RegisterWindowMessage("TVN.HOOK.LOADER.CLOSE.CODE");
-   // const unsigned int HookDefinitions::SPEC_IPC_CODE =
+   // const ::u32 HookDefinitions::SPEC_IPC_CODE =
    // RegisterWindowMessage("TVN.HOOK.MESSAGE.CODE");
 
 

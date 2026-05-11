@@ -50,7 +50,7 @@
 #include "conio.h"
 
 char BypassResizeXterm = 0;
-static unsigned int LastMode = C80;
+static ::u32 LastMode = C80;
 #define NUM_VIDEO_MODES 65
 static struct
 {

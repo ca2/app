@@ -103,9 +103,9 @@ DataInputStream::~DataInputStream()
    }
 
 
-   unsigned int DataInputStream::readUInt32()
+   ::u32 DataInputStream::readUInt32()
    {
-      unsigned int x = 0;
+      ::u32 x = 0;
       unsigned char buf[4];
       readFully(&buf[0], 4);
       x += SETBYTE(buf[0], 3);
@@ -116,19 +116,19 @@ DataInputStream::~DataInputStream()
    }
 
 
-   unsigned long long DataInputStream::readUInt64()
+   ::u64 DataInputStream::readUInt64()
    {
-      unsigned long long x = 0;
+      ::u64 x = 0;
       unsigned char buf[8];
       readFully(&buf[0], 8);
-      x += (unsigned long long)buf[0] << (7 * 8);
-      x += (unsigned long long)buf[1] << (6 * 8);
-      x += (unsigned long long)buf[2] << (5 * 8);
-      x += (unsigned long long)buf[3] << (4 * 8);
-      x += (unsigned long long)buf[4] << (3 * 8);
-      x += (unsigned long long)buf[5] << (2 * 8);
-      x += (unsigned long long)buf[6] << (1 * 8);
-      x += (unsigned long long)buf[7] << (0 * 8);
+      x += (::u64)buf[0] << (7 * 8);
+      x += (::u64)buf[1] << (6 * 8);
+      x += (::u64)buf[2] << (5 * 8);
+      x += (::u64)buf[3] << (4 * 8);
+      x += (::u64)buf[4] << (3 * 8);
+      x += (::u64)buf[5] << (2 * 8);
+      x += (::u64)buf[6] << (1 * 8);
+      x += (::u64)buf[7] << (0 * 8);
       return x;
    }
 
@@ -162,7 +162,7 @@ DataInputStream::~DataInputStream()
    ::string DataInputStream::readUtf8()
    {
       //::string strStorage;
-      unsigned int sizeInBytes = readUInt32();
+      ::u32 sizeInBytes = readUInt32();
       if (sizeInBytes <= 0)
       {
          return {};

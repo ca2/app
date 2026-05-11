@@ -12,8 +12,8 @@
 
 //using unsigned char = uint8_t;
 //using unsigned short = uint16_t;
-//using unsigned int = uint32_t;
-//using unsigned long long = uint64_t;
+//using ::u32 = uint32_t;
+//using ::u64 = uint64_t;
 
 
 //using float = float;

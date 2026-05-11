@@ -1729,7 +1729,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   unsigned int window::ArrangeIconicWindows()
+   ::u32 window::ArrangeIconicWindows()
    {
 
       throw ::interface_only();
@@ -1918,7 +1918,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //bool window::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   //bool window::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   throw ::interface_only();
@@ -2033,7 +2033,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   ::windowing::window* window::get_next_window(unsigned int nFlag)
+   ::windowing::window* window::get_next_window(::u32 nFlag)
    {
 
       throw ::interface_only();
@@ -2053,7 +2053,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   ::windowing::window* window::get_window(unsigned int nCmd)
+   ::windowing::window* window::get_window(::u32 nCmd)
    {
 
       throw ::interface_only();
@@ -2399,7 +2399,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::on_redraw_window(unsigned int flags)
+   void window::on_redraw_window(::u32 flags)
    {
 
    }
@@ -2634,7 +2634,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
    bool window::_set_window_position(const class ::zorder& zorder, int x, int y, int cx, int cy,
       const ::user::activation& useractivation, bool bNoZorder, bool bNoMove, bool bNoSize,
-      ::e_display edisplay, unsigned int nOverrideFlags)
+      ::e_display edisplay, ::u32 nOverrideFlags)
    {
 
       return true;
@@ -4057,7 +4057,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //#if !defined(LINUX) && !defined(__APPLE__) && !defined(__ANDROID__) && !defined(__BSD__)
 //
 //
-//    ::windowing::window * window::GetAncestor(unsigned int gaFlags) const
+//    ::windowing::window * window::GetAncestor(::u32 gaFlags) const
 //    {
 //
 //       __UNREFERENCED_PARAMETER(gaFlags);
@@ -4069,7 +4069,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    }
 //
 //
-//    //void window::AnimateWindow(::time ::time,unsigned int dwFlags)
+//    //void window::AnimateWindow(::time ::time,::u32 dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(::time);
 //    //   __UNREFERENCED_PARAMETER(dwFlags);
@@ -4077,7 +4077,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //   return false;
 //    //}
 //
-//    //void window::FlashWindowEx(unsigned int dwFlags,unsigned int uCount,::time tickTimeout)
+//    //void window::FlashWindowEx(::u32 dwFlags,::u32 uCount,::time tickTimeout)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(dwFlags);
 //    //   __UNREFERENCED_PARAMETER(uCount);
@@ -4086,7 +4086,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //   return false;
 //    //}
 //
-//    //void window::SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,unsigned int dwFlags)
+//    //void window::SetLayeredWindowAttributes(::color::color crKey,unsigned char bAlpha,::u32 dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(crKey);
 //    //   __UNREFERENCED_PARAMETER(bAlpha);
@@ -4096,7 +4096,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //}
 //
 //    //void window::UpdateLayeredWindow(::draw2d::graphics * pDCDst,::int_point * pptDst,::int_size * psize,
-//    //      ::draw2d::graphics * pDCSrc,::int_point * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,unsigned int dwFlags)
+//    //      ::draw2d::graphics * pDCSrc,::int_point * pptSrc,::color::color crKey,BLENDFUNCTION * pblend,::u32 dwFlags)
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pDCDst);
 //    //   __UNREFERENCED_PARAMETER(pptDst);
@@ -4112,7 +4112,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //}
 //
 //
-//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,unsigned char * pbAlpha,unsigned int * pdwFlags) const
+//    //void window::GetLayeredWindowAttributes(::color::color * pcrKey,unsigned char * pbAlpha,::u32 * pdwFlags) const
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pcrKey);
 //    //   __UNREFERENCED_PARAMETER(pbAlpha);
@@ -4122,7 +4122,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //    //   return false;
 //    //}
 //
-//    //void window::PrintWindow(::draw2d::graphics_pointer & pgraphics,unsigned int nFlags) const
+//    //void window::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
 //    //{
 //    //   __UNREFERENCED_PARAMETER(pgraphics);
 //    //   __UNREFERENCED_PARAMETER(nFlags);
@@ -5585,7 +5585,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
    bool
-      window::__windows_message_bypass(::windowing::window* pwindow, unsigned int message, wparam wparam, lparam lparam,
+      window::__windows_message_bypass(::windowing::window* pwindow, ::u32 message, wparam wparam, lparam lparam,
          lresult& lresult)
    {
 
@@ -7011,7 +7011,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //int window::message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,unsigned int nType)
+   //int window::message_box(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrCaption,::u32 nType)
 
    //{
    //   __UNREFERENCED_PARAMETER(scopedstrText);
@@ -7108,7 +7108,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 //   }
 //
 //
-//   void window::GetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,unsigned int nMask)
+//   void window::GetScrollInfo(int nBar,LPSCROLLINFO pScrollInfo,::u32 nMask)
 //
 //   {
 //
@@ -7150,7 +7150,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::CalcWindowRect(::int_rectangle * pClientRect,unsigned int nAdjustType)
+   //void window::CalcWindowRect(::int_rectangle * pClientRect,::u32 nAdjustType)
    //{
 
    //   __UNREFERENCED_PARAMETER(pClientRect);
@@ -7164,7 +7164,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool window::HandleFloatingSysCommand(unsigned int nID, lparam lParam)
+   bool window::HandleFloatingSysCommand(::u32 nID, lparam lParam)
    {
 
       __UNREFERENCED_PARAMETER(nID);
@@ -7224,7 +7224,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //      throw ::interface_only();
    //   }
    //
-   //   void window::OnSettingChange(unsigned int uFlags, const ::scoped_string & scopedstrSection)
+   //   void window::OnSettingChange(::u32 uFlags, const ::scoped_string & scopedstrSection)
 
    //   {
    //      __UNREFERENCED_PARAMETER(uFlags);
@@ -7264,13 +7264,13 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //      throw ::interface_only();
    //   }
 
-   /*   void window::OnHScroll(unsigned int, unsigned int, CScrollBar* pScrollBar)
+   /*   void window::OnHScroll(::u32, ::u32, CScrollBar* pScrollBar)
    {
    __UNREFERENCED_PARAMETER(pScrollBar);
    throw ::interface_only();
    }
 
-   void window::OnVScroll(unsigned int, unsigned int, CScrollBar* pScrollBar)
+   void window::OnVScroll(::u32, ::u32, CScrollBar* pScrollBar)
    {
    __UNREFERENCED_PARAMETER(pScrollBar);
    throw ::interface_only();
@@ -7301,12 +7301,12 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
       throw ::interface_only();
    }
 
-   //void window::OnEnterIdle(unsigned int /*nWhy*/,::windowing::window * /*pWho*/)
+   //void window::OnEnterIdle(::u32 /*nWhy*/,::windowing::window * /*pWho*/)
    //{
    //   throw ::interface_only();
    //}
 
-   //void * window::OnCtlColor(::draw2d::graphics *,::windowing::window * pwindow,unsigned int)
+   //void * window::OnCtlColor(::draw2d::graphics *,::windowing::window * pwindow,::u32)
    //{
    //   __UNREFERENCED_PARAMETER(pwindow);
    //   throw ::interface_only();
@@ -7393,7 +7393,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
    //}
 
-   //void window::SubclassDlgItem(unsigned int nID,::windowing::window * pParent)
+   //void window::SubclassDlgItem(::u32 nID,::windowing::window * pParent)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(pParent);
@@ -7631,7 +7631,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //unsigned int window::GetStyle() const
+   //::u32 window::GetStyle() const
    //{
 
    //   return ::windowing::window_base::GetStyle();
@@ -7639,7 +7639,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //unsigned int window::GetExStyle() const
+   //::u32 window::GetExStyle() const
    //{
 
    //   return ::windowing::window_base::GetExStyle();
@@ -7647,7 +7647,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
+   //void window::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
    //   if (!_is_window())
@@ -7657,7 +7657,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
    //   }
 
-   //   unsigned int dw = get_window_long(GWL_STYLE);
+   //   ::u32 dw = get_window_long(GWL_STYLE);
 
    //   dw &= ~dwRemove;
 
@@ -7670,7 +7670,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags)
+   //void window::ModifyStyleEx(::u32 dwRemove,::u32 dwAdd,::u32 nFlags)
    //{
 
    //   if (!_is_window())
@@ -7680,7 +7680,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
    //   }
 
-   //   unsigned int dw = get_window_long(GWL_EXSTYLE);
+   //   ::u32 dw = get_window_long(GWL_EXSTYLE);
 
    //   dw &= ~dwRemove;
 
@@ -7943,7 +7943,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //unsigned int window::ArrangeIconicWindows()
+   //::u32 window::ArrangeIconicWindows()
    //{
 
    //   throw ::interface_only();
@@ -7954,7 +7954,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
    void
-      window::MapWindowPoints(::windowing::window* puserinteractionTo, ::int_point* pPoint, unsigned int nCount)
+      window::MapWindowPoints(::windowing::window* puserinteractionTo, ::int_point* pPoint, ::u32 nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -8072,7 +8072,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   /*::draw2d::graphics * window::GetDCEx(::draw2d::region * prgnClip,unsigned int flags)
+   /*::draw2d::graphics * window::GetDCEx(::draw2d::region * prgnClip,::u32 flags)
    {
       __UNREFERENCED_PARAMETER(prgnClip);
       __UNREFERENCED_PARAMETER(flags);
@@ -8408,7 +8408,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
 
    bool
-      window::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region* prgnUpdate, unsigned int flags)
+      window::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
    {
 
       user_interaction()->set_need_redraw();
@@ -8418,7 +8418,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //void window::EnableScrollBar(int nSBFlags,unsigned int nArrowFlags)
+   //void window::EnableScrollBar(int nSBFlags,::u32 nArrowFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(nSBFlags);
@@ -8506,7 +8506,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::DrawCaption(::draw2d::graphics_pointer & pgraphics,const int_rectangle & prc,unsigned int uFlags)
+   //void window::DrawCaption(::draw2d::graphics_pointer & pgraphics,const int_rectangle & prc,::u32 uFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -8566,7 +8566,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::CheckDlgButton(int nIDButton,unsigned int nCheck)
+   //void window::CheckDlgButton(int nIDButton,::u32 nCheck)
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   __UNREFERENCED_PARAMETER(nCheck);
@@ -8581,7 +8581,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   throw ::interface_only();
    //}
 
-   //int window::DlgDirList(char * pPathSpec,int nIDListBox,int nIDStaticPath,unsigned int nFileType)
+   //int window::DlgDirList(char * pPathSpec,int nIDListBox,int nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8593,7 +8593,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return 0;
    //}
 
-   //int window::DlgDirListComboBox(char * pPathSpec,int nIDComboBox,int nIDStaticPath,unsigned int nFileType)
+   //int window::DlgDirListComboBox(char * pPathSpec,int nIDComboBox,int nIDStaticPath,::u32 nFileType)
 
    //{
    //   __UNREFERENCED_PARAMETER(pPathSpec);
@@ -8630,7 +8630,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //   return false;
    //}
 
-   //unsigned int window::GetChildByIdInt(int nID,bool* pTrans,bool bSigned) const
+   //::u32 window::GetChildByIdInt(int nID,bool* pTrans,bool bSigned) const
 
    //{
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8681,7 +8681,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //unsigned int window::IsDlgButtonChecked(int nIDButton) const
+   //::u32 window::IsDlgButtonChecked(int nIDButton) const
    //{
    //   __UNREFERENCED_PARAMETER(nIDButton);
    //   throw ::interface_only();
@@ -8690,7 +8690,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //lparam window::SendDlgItemMessage(int nID, unsigned int message, wparam wParam,lparam lParam)
+   //lparam window::SendDlgItemMessage(int nID, ::u32 message, wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(nID);
@@ -8704,7 +8704,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::SetDlgItemInt(int nID,unsigned int nValue,bool bSigned)
+   //void window::SetDlgItemInt(int nID,::u32 nValue,bool bSigned)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(nValue);
@@ -8725,7 +8725,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //int window::ScrollWindowEx(int Δx,int Δy,
    //                                     const ::int_rectangle * prectScroll,
    //                                       const ::int_rectangle * prectClip,
-   //                                     ::draw2d::region* prgnUpdate,::int_rectangle * pRectUpdate,unsigned int flags)
+   //                                     ::draw2d::region* prgnUpdate,::int_rectangle * pRectUpdate,::u32 flags)
    //{
 
    //   __UNREFERENCED_PARAMETER(Δx);
@@ -8743,7 +8743,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::ShowScrollBar(unsigned int nBar,bool bShow)
+   //void window::ShowScrollBar(::u32 nBar,bool bShow)
    //{
 
    //   __UNREFERENCED_PARAMETER(nBar);
@@ -8766,7 +8766,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   ::user::interaction* window::ChildWindowFromPoint(const ::int_point& point, unsigned int nFlags)
+   ::user::interaction* window::ChildWindowFromPoint(const ::int_point& point, ::u32 nFlags)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -8780,7 +8780,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //   ::user::interaction * window::get_next_window(unsigned int nFlag)
+   //   ::user::interaction * window::get_next_window(::u32 nFlag)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(nFlag);
@@ -8909,7 +8909,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //void window::SendNotifyMessage(unsigned int message,wparam wParam,lparam lParam)
+   //void window::SendNotifyMessage(::u32 message,wparam wParam,lparam lParam)
    //{
 
    //   __UNREFERENCED_PARAMETER(message);
@@ -8923,7 +8923,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   void window::Print(::draw2d::graphics_pointer& pgraphics, unsigned int dwFlags) const
+   void window::Print(::draw2d::graphics_pointer& pgraphics, ::u32 dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -8934,7 +8934,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   void window::PrintClient(::draw2d::graphics_pointer& pgraphics, unsigned int dwFlags) const
+   void window::PrintClient(::draw2d::graphics_pointer& pgraphics, ::u32 dwFlags) const
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -8945,7 +8945,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    }
 
 
-   //void window::SetWindowContextHelpId(unsigned int dwContextHelpId)
+   //void window::SetWindowContextHelpId(::u32 dwContextHelpId)
    //{
 
    //   __UNREFERENCED_PARAMETER(dwContextHelpId);
@@ -8957,7 +8957,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
    //}
 
 
-   //unsigned int window::GetWindowContextHelpId() const
+   //::u32 window::GetWindowContextHelpId() const
    //{
 
    //   throw ::interface_only();
@@ -14647,7 +14647,7 @@ slGraphics.unlock();
    //
    //      __keep_flag_on(user_interaction()->layout().m_eflag, ::user::interaction_layout::flag_apply_visual);
    //
-   //      //unsigned int uFlags = 0;
+   //      //::u32 uFlags = 0;
    //
    //      //bool bLayered = GetExStyle() & WS_EX_LAYERED;
    //
@@ -16727,7 +16727,7 @@ slGraphics.unlock();
    //   }
 
 
-      //void window::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, atom idLeft, unsigned int nFlags, ::int_rectangle * prectParam, const int_rectangle & rectangleX, bool bStretch)
+      //void window::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, atom idLeft, ::u32 nFlags, ::int_rectangle * prectParam, const int_rectangle & rectangleX, bool bStretch)
       //{
 
       //   if (!_is_window())
@@ -17381,7 +17381,7 @@ slGraphics.unlock();
    //
    //            // ::user::message::set(oswindow, pwindow, eusermessage, wparam, lparam);
    //
-   //            pmessage->m_nChar = static_cast<unsigned int>(wparam);
+   //            pmessage->m_nChar = static_cast<::u32>(wparam);
    //
    //            pmessage->m_nRepCnt = lower_unsigned_short(lparam);
    //
@@ -17404,7 +17404,7 @@ slGraphics.unlock();
    //
    //         _NEW_MESSAGE(::message::timer);
    //
-   //         pmessage->m_uTimer = static_cast<unsigned int>(wparam);
+   //         pmessage->m_uTimer = static_cast<::u32>(wparam);
    //
    //      }
    //      break;
@@ -17413,7 +17413,7 @@ slGraphics.unlock();
    //         _NEW_MESSAGE(::message::show_window);
    //         pmessage->m_bShow = wparam != false;
    //
-   //         pmessage->m_nStatus = static_cast<unsigned int>(lparam);
+   //         pmessage->m_nStatus = static_cast<::u32>(lparam);
    //
    //      }
    //      break;
@@ -17541,7 +17541,7 @@ slGraphics.unlock();
    //      {
    //         _NEW_MESSAGE(::message::size);
    //
-   //         pmessage->m_nType = static_cast <unsigned int> (wparam);
+   //         pmessage->m_nType = static_cast <::u32> (wparam);
    //
    //         pmessage->m_size = ::int_size(lparam_int_x(lparam), lparam_int_y(lparam));
    //      }
@@ -17703,7 +17703,7 @@ slGraphics.unlock();
          //}
 
 
-         //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
+         //::user::interaction * window::ChildWindowFromPoint(const ::int_point & point, ::u32 nFlags)
          //{
 
          //   return nullptr;
@@ -17932,7 +17932,7 @@ slGraphics.unlock();
    //}
 
 
-   //bool window::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   //bool window::RedrawWindow(const ::int_rectangle & rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   if (!user_interaction())
@@ -17949,7 +17949,7 @@ slGraphics.unlock();
    //}
 
 
-   //unsigned int window::GetStyle() const
+   //::u32 window::GetStyle() const
    //{
 
    //   return get_window_long(GWL_STYLE);
@@ -17957,7 +17957,7 @@ slGraphics.unlock();
    //}
 
 
-   //unsigned int window::GetExStyle() const
+   //::u32 window::GetExStyle() const
    //{
 
    //   return get_window_long(GWL_EXSTYLE);
@@ -17965,7 +17965,7 @@ slGraphics.unlock();
    //}
 
 
-   //void window::ModifyStyle(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
+   //void window::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
    //   int l = GetStyle();
@@ -17983,7 +17983,7 @@ slGraphics.unlock();
    //}
 
 
-   //void window::ModifyStyleEx(unsigned int dwRemove, unsigned int dwAdd, unsigned int nFlags)
+   //void window::ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
    //{
 
    //   set_window_long(GWL_EXSTYLE, (GetExStyle() | dwAdd) & ~dwRemove);
@@ -18186,7 +18186,7 @@ slGraphics.unlock();
    }
 
 
-   //unsigned int window::ArrangeIconicWindows()
+   //::u32 window::ArrangeIconicWindows()
    //{
 
    //   //      return user_interaction()->ArrangeIconicWindows();
@@ -18303,7 +18303,7 @@ slGraphics.unlock();
    }
 
 
-   ::user::interaction* window::get_wnd(unsigned int nCmd)
+   ::user::interaction* window::get_wnd(::u32 nCmd)
    {
 
       if (!user_interaction())

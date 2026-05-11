@@ -86,7 +86,7 @@ namespace userstack
 
       void mt_show_window(::acme::windowing::window * pacmewindowingwindow, int iShow);
 
-      static unsigned int c_cdecl ThreadProcShowWindow(LPVOID lpparam);
+      static ::u32 c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 
       void _000OnMouse(::message::mouse * pmouse) override;
 

@@ -26,10 +26,10 @@ namespace gpu_opengl
       {
       public:
 
-         // const unsigned int diffuse_irradiance_mapWidth = 32;
-         // const unsigned int diffuse_irradiance_mapHeight = 32;
+         // const ::u32 diffuse_irradiance_mapWidth = 32;
+         // const ::u32 diffuse_irradiance_mapHeight = 32;
          //
-         // const unsigned int environmentCubemapId;
+         // const ::u32 environmentCubemapId;
          //
          // ::pointer<Shader> diffuseIrradianceShader;
          // ::pointer<cubemap_framebuffer> diffuseIrradianceFramebuffer;
@@ -46,7 +46,7 @@ namespace gpu_opengl
 
          // void initialize_diffuse_irradiance_map(
          //    ::gpu::renderer * pgpurenderer,
-         //    unsigned int uEnvironmentCubemapId) override;
+         //    ::u32 uEnvironmentCubemapId) override;
 
         void computeIrradianceMap(::gpu::command_buffer *pgpucommandbuffer) override;
 

@@ -15,10 +15,10 @@ namespace draw2d_gpu
    {
       int m_iUnicode;
       bool m_bInit;
-      unsigned int TextureID; // ID handle of the glyph texture
+      ::u32 TextureID; // ID handle of the glyph texture
       glm::ivec2   Size;      // Size of glyph
       glm::ivec2   Bearing;   // Offset from baseline to left/top of glyph
-      unsigned int Advance;   // Horizontal offset to advance to next glyph
+      ::u32 Advance;   // Horizontal offset to advance to next glyph
       character()
       {
          m_bInit = false;

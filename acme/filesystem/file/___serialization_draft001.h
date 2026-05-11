@@ -136,8 +136,8 @@ read(atom, int) throw not_implemented;
 read(atom, long long) throw not_implemented;
 read(atom, unsigned char) throw not_implemented;
 read(atom, unsigned short) throw not_implemented;
-read(atom, unsigned int) throw not_implemented;
-read(atom, unsigned long long) throw not_implemented;
+read(atom, ::u32) throw not_implemented;
+read(atom, ::u64) throw not_implemented;
 
 read(char) throw not_implemented;
 read(short) throw not_implemented;
@@ -145,8 +145,8 @@ read(int) throw not_implemented;
 read(long long) throw not_implemented;
 read(unsigned char) throw not_implemented;
 read(unsigned short) throw not_implemented;
-read(unsigned int) throw not_implemented;
-read(unsigned long long) throw not_implemented;
+read(::u32) throw not_implemented;
+read(::u64) throw not_implemented;
 
 write(atom, char) throw not_implemented;
 write(atom, short) throw not_implemented;
@@ -154,8 +154,8 @@ write(atom, int) throw not_implemented;
 write(atom, long long) throw not_implemented;
 write(atom, unsigned char) throw not_implemented;
 write(atom, unsigned short) throw not_implemented;
-write(atom, unsigned int) throw not_implemented;
-write(atom, unsigned long long) throw not_implemented;
+write(atom, ::u32) throw not_implemented;
+write(atom, ::u64) throw not_implemented;
 
 write(char) throw not_implemented;
 write(short) throw not_implemented;
@@ -163,8 +163,8 @@ write(int) throw not_implemented;
 write(long long) throw not_implemented;
 write(unsigned char) throw not_implemented;
 write(unsigned short) throw not_implemented;
-write(unsigned int) throw not_implemented;
-write(unsigned long long) throw not_implemented;
+write(::u32) throw not_implemented;
+write(::u64) throw not_implemented;
 
 
 }
@@ -180,8 +180,8 @@ read(atom, int) read(int)
 read(atom, long long) read(long long)
 read(atom, unsigned char) read(unsigned char)
 read(atom, unsigned short) read(unsigned short)
-read(atom, unsigned int) read(unsigned int)
-read(atom, unsigned long long) read(unsigned long long)
+read(atom, ::u32) read(::u32)
+read(atom, ::u64) read(::u64)
 
 read(char) m_pfile->read(char)
 read(short) m_pfile->read(short)
@@ -189,8 +189,8 @@ read(int) m_pfile->read(int)
 read(long long) m_pfile->read(long long)
 read(unsigned char) m_pfile->read(unsigned char)
 read(unsigned short) m_pfile->read(unsigned short)
-read(unsigned int) m_pfile->read(unsigned int)
-read(unsigned long long) m_pfile->read(unsigned long long)
+read(::u32) m_pfile->read(::u32)
+read(::u64) m_pfile->read(::u64)
 
 write(atom, char) write(char)
 write(atom, short) write(short)
@@ -198,8 +198,8 @@ write(atom, int) write(int)
 write(atom, long long) write(long long)
 write(atom, unsigned char) write(unsigned char)
 write(atom, unsigned short) write(unsigned short)
-write(atom, unsigned int) write(unsigned int)
-write(atom, unsigned long long) write(unsigned long long)
+write(atom, ::u32) write(::u32)
+write(atom, ::u64) write(::u64)
 
 write(char) m_pfile->write(char)
 write(short) m_pfile->write(short)
@@ -207,8 +207,8 @@ write(int) m_pfile->write(int)
 write(long long) m_pfile->write(long long)
 write(unsigned char) m_pfile->write(unsigned char)
 write(unsigned short) m_pfile->write(unsigned short)
-write(unsigned int) m_pfile->write(unsigned int)
-write(unsigned long long) m_pfile->write(unsigned long long)
+write(::u32) m_pfile->write(::u32)
+write(::u64) m_pfile->write(::u64)
 
 
 }
@@ -223,8 +223,8 @@ write(atom, int) write(int)
 write(atom, long long) write(long long)
 write(atom, unsigned char) write(unsigned char)
 write(atom, unsigned short) write(unsigned short)
-write(atom, unsigned int) write(unsigned int)
-write(atom, unsigned long long) write(unsigned long long)
+write(atom, ::u32) write(::u32)
+write(atom, ::u64) write(::u64)
 
 write(char) m_pfile->write(char)
 write(short) m_pfile->write(short)
@@ -232,8 +232,8 @@ write(int) m_pfile->write(int)
 write(long long) m_pfile->write(long long)
 write(unsigned char) m_pfile->write(unsigned char)
 write(unsigned short) m_pfile->write(unsigned short)
-write(unsigned int) m_pfile->write(unsigned int)
-write(unsigned long long) m_pfile->write(unsigned long long)
+write(::u32) m_pfile->write(::u32)
+write(::u64) m_pfile->write(::u64)
 
 
 }
@@ -250,8 +250,8 @@ read(atom, int) int= m_ppayload->operator[](atom);
 read(atom, long long) long long= m_ppayload->operator[](atom);
 read(atom, unsigned char) unsigned char= m_ppayload->operator[](atom);
 read(atom, unsigned short) unsigned short= m_ppayload->operator[](atom);
-read(atom, unsigned int) unsigned int= m_ppayload->operator[](atom);
-read(atom, unsigned long long) unsigned long long= m_ppayload->operator[](atom);
+read(atom, ::u32) ::u32= m_ppayload->operator[](atom);
+read(atom, ::u64) ::u64= m_ppayload->operator[](atom);
 
 read(char) char = *m_ppayload
 read(short) short = *m_ppayload
@@ -259,8 +259,8 @@ read(int) int = *m_ppayload
 read(long long) long long = *m_ppayload
 read(unsigned char) uch = *m_ppayload
 read(unsigned short) unsigned short = *m_ppayload
-read(unsigned int) unsigned int = *m_ppayload
-read(unsigned long long) unsigned long long = *m_ppayload
+read(::u32) ::u32 = *m_ppayload
+read(::u64) ::u64 = *m_ppayload
 
 write(atom, char) write(char)
 write(atom, short) write(short)
@@ -268,8 +268,8 @@ write(atom, int) write(int)
 write(atom, long long) write(long long)
 write(atom, unsigned char) write(unsigned char)
 write(atom, unsigned short) write(unsigned short)
-write(atom, unsigned int) write(unsigned int)
-write(atom, unsigned long long) write(unsigned long long)
+write(atom, ::u32) write(::u32)
+write(atom, ::u64) write(::u64)
 
 write(char) m_pfile->write(char)
 write(short) m_pfile->write(short)
@@ -277,8 +277,8 @@ write(int) m_pfile->write(int)
 write(long long) m_pfile->write(long long)
 write(unsigned char) m_pfile->write(unsigned char)
 write(unsigned short) m_pfile->write(unsigned short)
-write(unsigned int) m_pfile->write(unsigned int)
-write(unsigned long long) m_pfile->write(unsigned long long)
+write(::u32) m_pfile->write(::u32)
+write(::u64) m_pfile->write(::u64)
 
 }
 

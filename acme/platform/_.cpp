@@ -161,7 +161,7 @@ CLASS_DECL_ACME int g_bAura = 0;
 
 
 
-CLASS_DECL_ACME unsigned int g_tickStartTime = 0;
+CLASS_DECL_ACME ::u32 g_tickStartTime = 0;
 
 
 
@@ -282,7 +282,7 @@ CLASS_DECL_ACME int is_ptr_null(const void* p, size_t s)
 }
 
 //
-//void c_post_system_happening(unsigned long long u, void* pparam)
+//void c_post_system_happening(::u64 u, void* pparam)
 //{
 //
 //   lparam lparam = (LPARAM)pparam;

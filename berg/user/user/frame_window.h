@@ -52,7 +52,7 @@ namespace user
 //    HMENU                                        m_hMenuDefault;       // default menu resource for this frame
 //    HACCEL                                       m_hAccelTable;       // accelerator table
 //#endif
-      unsigned int                                          m_dwPromptContext;    // current help prompt action_context for message box
+      ::u32                                          m_dwPromptContext;    // current help prompt action_context for message box
       bool                                         m_bHelpMode;           // if true, then Shift+F1 help mode is active
       ::user::frame_window *                       m_pNextFrameWnd; // next frame_window in cast global list_base
       ::int_rectangle                              m_rectangleBorder;         // for OLE border space negotiation
@@ -64,10 +64,10 @@ namespace user
 
 
       string                                       m_strMatterHelp;             // Help ID (0 for none, see HID_BASE_RESOURCE)
-      unsigned int                                        m_nIDTracking;         // tracking command ID or string IDS
-      unsigned int                                        m_nIDLastMessage;      // last displayed message string IDS
+      ::u32                                        m_nIDTracking;         // tracking command ID or string IDS
+      ::u32                                        m_nIDLastMessage;      // last displayed message string IDS
       ::user::impact *                             m_pviewActive;       // current active ::user::impact
-      unsigned int                                        m_cModalStack;         // BeginModalState depth
+      ::u32                                        m_cModalStack;         // BeginModalState depth
       ::pointer<::user::interaction_ptra>                    m_puiptraDisable;       // windows disabled because of BeginModalState
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                      m_hMenuAlt;           // menu to update to (nullptr means default)
@@ -75,7 +75,7 @@ namespace user
       bool                                         m_bInRecalcLayout;     // avoid recursion in on_layout
       ::platform::type                             m_typeFloatingFrame;
 
-   unsigned int                                           m_nIdleFlags;          // set of bit flags for idle processing
+   ::u32                                           m_nIdleFlags;          // set of bit flags for idle processing
 
       ::user::impact *                                m_pviewMain;
       atom_map_base < ::pointer<::user::toolbar >>     m_mapToolbar;
@@ -139,7 +139,7 @@ namespace user
 
       virtual bool _001IsFrameWnd();
 
-      //virtual void NotifyFloatingWindows(unsigned int dwFlags);
+      //virtual void NotifyFloatingWindows(::u32 dwFlags);
 
       string get_window_default_matter() override;
       //virtual ::user::interaction::enum_type get_window_type() override;
@@ -163,15 +163,15 @@ namespace user
 
       bool LoadAccelTable(const ::scoped_string & scopedstrResourceName);
 
-      //virtual bool create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::scoped_string & scopedstrMenuName = nullptr, unsigned int dwExStyle = 0, ::request * prequest = nullptr);
+      //virtual bool create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::int_rectangle & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const ::scoped_string & scopedstrMenuName = nullptr, ::u32 dwExStyle = 0, ::request * prequest = nullptr);
 
       
       ::string calculate_data_key() override;
 
 
       virtual bool LoadFrame(const ::scoped_string & scopedstrMatter,
-                             //unsigned int dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
-                              unsigned int dwDefaultStyle = FWS_ADDTOTITLE,
+                             //::u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
+                              ::u32 dwDefaultStyle = FWS_ADDTOTITLE,
                               ::user::interaction * puiParent = nullptr,
                               ::user::system * pcreate = nullptr);
 
@@ -186,23 +186,23 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::platform::type & type = "user::toolbar");
+      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::scoped_string & scopedstrToolbar = nullptr, ::u32 dwCtrlStyle = TBSTYLE_FLAT, ::u32 uStyle = CBRS_ALIGN_TOP, const ::platform::type & type = "user::toolbar");
 
 
-      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP, const ::platform::type & type = "user::toolbar") ;
+      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, ::u32 dwCtrlStyle = TBSTYLE_FLAT, ::u32 uStyle = CBRS_ALIGN_TOP, const ::platform::type & type = "user::toolbar") ;
 
       //   template < class TOOLBAR >
-      // bool load_toolbar(atom idToolBar, const ::scoped_string & scopedstrToolBar,unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+      // bool load_toolbar(atom idToolBar, const ::scoped_string & scopedstrToolBar,::u32 dwCtrlStyle = TBSTYLE_FLAT,::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
       template < class TOOLBAR >
-      void load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = CBRS_ALIGN_TOP);
+      void load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar = nullptr, ::u32 dwCtrlStyle = TBSTYLE_FLAT, ::u32 uStyle = CBRS_ALIGN_TOP);
 
 
-      //   virtual bool load_toolbar(atom idToolBar, const ::scoped_string & scopedstrToolBar, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
+      //   virtual bool load_toolbar(atom idToolBar, const ::scoped_string & scopedstrToolBar, ::u32 dwCtrlStyle = TBSTYLE_FLAT, ::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
       //   {
       //      return load_toolbar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
       //   }
 
-//      virtual void load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolBar = nullptr, unsigned int dwCtrlStyle = TBSTYLE_FLAT,unsigned int uStyle = CBRS_ALIGN_TOP);
+//      virtual void load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolBar = nullptr, ::u32 dwCtrlStyle = TBSTYLE_FLAT,::u32 uStyle = CBRS_ALIGN_TOP);
 //      {
 //
 //         return load_toolbar < ::user::toolbar >(idToolbar, strToolBar, dwCtrlStyle, uStyle);
@@ -218,7 +218,7 @@ namespace user
       virtual ::pointer<::user::frame_window>GetActiveFrame();
 
       // For customizing the default messages on the status bar
-      virtual void GetMessageString(unsigned int nID, string & rMessage) const;
+      virtual void GetMessageString(::u32 nID, string & rMessage) const;
 
       bool m_bAutoMenuEnable;
       // true => menu items without handlers will be disabled
@@ -234,9 +234,9 @@ namespace user
       // to set text of standard status bar
       //void SetMessageText(const ::scoped_string & scopedstrText);
 
-      //void SetMessageText(unsigned int nID);
+      //void SetMessageText(::u32 nID);
 
-      ::user::control_bar* GetControlBar(unsigned int nID);
+      ::user::control_bar* GetControlBar(::u32 nID);
 
       // frame interaction_impl based modality
       virtual void BeginModalState();
@@ -249,13 +249,13 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(unsigned int nBorderCmd, ::int_rectangle * pRectBorder);
+      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, ::int_rectangle * pRectBorder);
 
       virtual bool on_create_client(::user::system * pusersystem);
 
       void OnContextHelp();   // for Shift+F1 help
       void OnUpdateControlBarMenu(::message::command* pCmdUI);
-      bool OnBarCheck(unsigned int nID);
+      bool OnBarCheck(::u32 nID);
 
 
       
@@ -292,7 +292,7 @@ namespace user
       // bring interaction_impl to top for SW_ commands which affect z-order
 
       // implementation helpers for Shift+F1 help mode
-      bool ProcessHelpMsg(MESSAGE & msg, unsigned int * pContext);
+      bool ProcessHelpMsg(MESSAGE & msg, ::u32 * pContext);
       ::acme::windowing::window * SetHelpCapture(const ::int_point & point, bool * pbDescendant);
 
       // frame_window list_base management
@@ -308,19 +308,19 @@ namespace user
       //LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpPromptAddr(WPARAM wParam, LPARAM lParam);
       //void OnIdleUpdateCmdUI(::message::message * pmessage);
-      //void OnEnterIdle(unsigned int nWhy, ::pointer<::user::interaction>pWho);
+      //void OnEnterIdle(::u32 nWhy, ::pointer<::user::interaction>pWho);
       void OnSetFocus(::pointer<::user::interaction>pOldWnd);
-      void OnSize(unsigned int nType, int cx, int cy);
+      void OnSize(::u32 nType, int cx, int cy);
       bool OnEraseBkgnd(::image::image *pimage);
-      //void OnActivate(unsigned int nState, ::pointer<::user::interaction>pWndOther, bool bMinimized);
+      //void OnActivate(::u32 nState, ::pointer<::user::interaction>pWndOther, bool bMinimized);
       //bool OnNcActivate(bool bActive);
-      //void OnSysCommand(unsigned int nID, LPARAM lParam);
+      //void OnSysCommand(::u32 nID, LPARAM lParam);
       bool OnQueryEndSession();
       void OnEndSession(bool bEnding);
 //#ifdef WINDOWS_DESKTOP
 //      virtual void OnDropFiles(HDROP hDropInfo);
 //#endif
-      bool OnSetCursor(::pointer<::user::interaction>pwindow, unsigned int nHitTest, const ::atom & atom);
+      bool OnSetCursor(::pointer<::user::interaction>pwindow, ::u32 nHitTest, const ::atom & atom);
       //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
       //LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);

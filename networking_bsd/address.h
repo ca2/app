@@ -186,13 +186,13 @@ namespace networking_bsd
       //string get_string() const;
 
 #ifdef BSD_STYLE_SOCKETS
-      inline void SetFlowinfo(unsigned int x);
-      inline unsigned int GetFlowinfo();
+      inline void SetFlowinfo(::u32 x);
+      inline ::u32 GetFlowinfo();
 #endif
 
 #ifndef WINDOWS
-      inline void SetScopeId(unsigned int x);
-      inline unsigned int GetScopeId();
+      inline void SetScopeId(::u32 x);
+      inline ::u32 GetScopeId();
 #endif
 
       void sync_os_address() override;
@@ -270,14 +270,14 @@ namespace networking_bsd
 #ifdef BSD_STYLE_SOCKETS
 
 
-   inline void address::SetFlowinfo(unsigned int x)
+   inline void address::SetFlowinfo(::u32 x)
    {
       ASSERT(_is_ip6());
       u.m_addr6.sin6_flowinfo = x;
    }
 
 
-   inline unsigned int address::GetFlowinfo()
+   inline ::u32 address::GetFlowinfo()
    {
       ASSERT(_is_ip6());
       return u.m_addr6.sin6_flowinfo;
@@ -289,14 +289,14 @@ namespace networking_bsd
 
 #ifndef WINDOWS
 
-   inline void address::SetScopeId(unsigned int x)
+   inline void address::SetScopeId(::u32 x)
    {
       ASSERT(_is_ip6());
       u.m_addr6.sin6_scope_id = x;
    }
 
 
-   inline unsigned int address::GetScopeId()
+   inline ::u32 address::GetScopeId()
    {
       ASSERT(_is_ip6());
       return u.m_addr6.sin6_scope_id;

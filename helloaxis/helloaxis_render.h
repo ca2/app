@@ -72,18 +72,18 @@ namespace helloaxis
 
                class ::time                            m_timeAnime;
                class ::time m_timeLastFast;
-               unsigned int                            m_timeFastAnime;
+               ::u32                            m_timeFastAnime;
                ::image::image_pointer                 m_pimageFast;
 
 
                string_array_base                          m_stra23;
                string_map_base < ::image::image_pointer >    m_mapDib23;
                bool                             m_b23;
-               unsigned int                         m_uiCurrent23;
+               ::u32                         m_uiCurrent23;
                string                           m_strCurrent23;
                string                           m_strLast23;
                bool                             m_bFirst23;
-               unsigned int                            m_dw23;
+               ::u32                            m_dw23;
 
                array < bilbo >                  m_bilboa;
                class ::time m_timeLastOk;

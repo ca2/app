@@ -417,7 +417,7 @@ namespace windows
 
    auto pFolder = wstrModuleFolder.get_buffer(MAX_PATH * 8);
 
-   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
+   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
    {
 
       return "";
@@ -590,7 +590,7 @@ found:
 //
 //   auto pFolder = wstrModuleFolder.get_buffer(MAX_PATH *8);
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), pFolder, &pszModuleFileName))
 //   {
 //
 //      return "";
@@ -646,7 +646,7 @@ void __node_acme_pos_term()
 }
 
 
-string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped_string & scopedstrType, character_count iReadAtMostByteCount = -1)
+string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string & scopedstrType, character_count iReadAtMostByteCount = -1)
 {
 
    HRSRC hrsrc = ::FindResourceW((HINSTANCE)hinst, MAKEINTRESOURCEW(nID), wstring(scopedstrType));
@@ -667,7 +667,7 @@ string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped
 
    }
 
-   unsigned int dwResSize = ::SizeofResource((HINSTANCE)hinst, hrsrc);
+   ::u32 dwResSize = ::SizeofResource((HINSTANCE)hinst, hrsrc);
 
    string str;
 
@@ -676,7 +676,7 @@ string read_resource_as_string(hinstance hinst, unsigned int nID, const ::scoped
    if (hres != nullptr)
    {
 
-      unsigned int * pnRes = (unsigned int *)::LockResource(hres);
+      ::u32 * pnRes = (::u32 *)::LockResource(hres);
 
       iReadAtMostByteCount = iReadAtMostByteCount < 0 ? dwResSize : minimum(iReadAtMostByteCount, (character_count)dwResSize);
 
@@ -972,7 +972,7 @@ CLASS_DECL_ACME void copy(MESSAGE& message, const MSG& msg)
    message.m_lparam = msg.lParam;
    message.m_point.x = msg.pt.x;
    message.m_point.y = msg.pt.y;
-   message.m_time = (unsigned long long) msg.time;
+   message.m_time = (::u64) msg.time;
 
 }
 

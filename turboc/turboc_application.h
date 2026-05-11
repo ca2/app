@@ -67,7 +67,7 @@ namespace turboc
 
       virtual void on_request(::request * prequest) override;
 
-      static unsigned int thread_proc_load_ai_font(void * pparam);
+      static ::u32 thread_proc_load_ai_font(void * pparam);
       virtual void load_ai_font();
 
    };

@@ -19,7 +19,7 @@ struct color32_t
    union
    {
 
-      unsigned int m_ui;
+      ::u32 m_ui;
 
       struct
       {
@@ -69,7 +69,7 @@ public:
    union
    {
 
-      unsigned int       m_ui;
+      ::u32       m_ui;
 
       struct
       {

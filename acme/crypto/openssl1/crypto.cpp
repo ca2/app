@@ -721,10 +721,10 @@ namespace crypto
    }
 
 
-   unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
+   ::u32 crypto::crc32(::u32 dwPrevious, const ::scoped_string & scopedstr)
    {
 
-      return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
+      return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(scopedstr));
 
    }
 
@@ -1055,7 +1055,7 @@ namespace crypto
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
       HMAC(EVP_sha1(), memKey.get_data(), int(memKey.get_size()), memMessage.get_data(), (size_t)memMessage.get_size(), (unsigned char*)result, &md_len);
 
@@ -1071,7 +1071,7 @@ namespace crypto
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
       HMAC(EVP_sha1(), strKey.c_str(), int(strKey.length()), (const unsigned char*)(const_char_pointer )strMessage, (size_t)strMessage.length(), (unsigned char*)result, &md_len);
 
@@ -1851,7 +1851,7 @@ stunCalculateIntegrity_longterm(char* hmac, const_char_pointer input, int length
 {
 
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   unsigned int resultSize = 0;
+   ::u32 resultSize = 0;
    uchar HA1[16];
    char HA1_text[1024];
 
@@ -1869,7 +1869,7 @@ void
 stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int length, const_char_pointer key)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
-   unsigned int resultSize = 0;
+   ::u32 resultSize = 0;
    HMAC(EVP_sha1(),
       key, (int)strlen(key),
       (const uchar*)input, length,
@@ -1877,7 +1877,7 @@ stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int lengt
 #endif
 }
 
-void hmac_evp_sha1_1234(unsigned char* hmac, unsigned int* hmacSize, const unsigned char* buf, size_t bufLen)
+void hmac_evp_sha1_1234(unsigned char* hmac, ::u32* hmacSize, const unsigned char* buf, size_t bufLen)
 {
 #if !defined(UNIVERSAL_WINDOWS) || defined(HAVE_OPENSSL)
 

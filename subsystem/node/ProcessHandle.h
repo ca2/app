@@ -42,7 +42,7 @@ namespace subsystem
       //virtual ~ProcessHandleInterface() =0 ;
 
       // @throws ::subsystem::Exception on an error.
-      virtual void openProcess(unsigned int dwDesiredAccess,
+      virtual void openProcess(::u32 dwDesiredAccess,
                        bool bInheritHandle,
                        ::process_identifier processidentifier) = 0;
 
@@ -76,7 +76,7 @@ namespace subsystem
 
 
       // @throws ::subsystem::Exception on an error.
-         void openProcess(unsigned int dwDesiredAccess,
+         void openProcess(::u32 dwDesiredAccess,
             bool bInheritHandle,
             ::process_identifier processidentifier) override
       {

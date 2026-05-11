@@ -95,34 +95,34 @@ struct xf_app_window
 	int height;
 	char* title;
 
-	unsigned int windowId;
-	unsigned int ownerWindowId;
+	::u32 windowId;
+	::u32 ownerWindowId;
 
-	unsigned int dwStyle;
-	unsigned int dwExStyle;
-	unsigned int showState;
+	::u32 dwStyle;
+	::u32 dwExStyle;
+	::u32 showState;
 
 	INT32 clientOffsetX;
 	INT32 clientOffsetY;
-	unsigned int clientAreaWidth;
-	unsigned int clientAreaHeight;
+	::u32 clientAreaWidth;
+	::u32 clientAreaHeight;
 
 	INT32 windowOffsetX;
 	INT32 windowOffsetY;
 	INT32 windowClientDeltaX;
 	INT32 windowClientDeltaY;
-	unsigned int windowWidth;
-	unsigned int windowHeight;
-	unsigned int numWindowRects;
+	::u32 windowWidth;
+	::u32 windowHeight;
+	::u32 numWindowRects;
 	RECTANGLE_16* windowRects;
 
 	INT32 visibleOffsetX;
 	INT32 visibleOffsetY;
-	unsigned int numVisibilityRects;
+	::u32 numVisibilityRects;
 	RECTANGLE_16* visibilityRects;
 
-	unsigned int localWindowOffsetCorrX;
-	unsigned int localWindowOffsetCorrY;
+	::u32 localWindowOffsetCorrX;
+	::u32 localWindowOffsetCorrY;
 
 	GC gc;
 	int shmid;
@@ -152,7 +152,7 @@ void xf_DestroyDesktopWindow(xfContext* xfc, xfWindow* window);
 
 BOOL xf_GetWindowProperty(xfContext* xfc, Window window, Atom property, int length,
 		unsigned long* nitems, unsigned long* bytes, unsigned char** prop);
-void xf_SendClientEvent(xfContext* xfc, Window window, Atom atom, unsigned int numArgs, ...);
+void xf_SendClientEvent(xfContext* xfc, Window window, Atom atom, ::u32 numArgs, ...);
 
 int xf_AppWindowInit(xfContext* xfc, xfAppWindow* appWindow);
 void xf_SetWindowText(xfContext* xfc, xfAppWindow* appWindow, char* name);
@@ -160,8 +160,8 @@ void xf_MoveWindow(xfContext* xfc, xfAppWindow* appWindow, int x, int y, int wid
 void xf_ShowWindow(xfContext* xfc, xfAppWindow* appWindow, unsigned char state);
 //void xf_SetWindowIcon(xfContext* xfc, xfAppWindow* appWindow, rdpIcon* icon);
 void xf_SetWindowRects(xfContext* xfc, xfAppWindow* appWindow, RECTANGLE_16* rects, int nrects);
-void xf_SetWindowVisibilityRects(xfContext* xfc, xfAppWindow* appWindow, unsigned int rectsOffsetX, unsigned int rectsOffsetY, RECTANGLE_16* rects, int nrects);
-void xf_SetWindowStyle(xfContext* xfc, xfAppWindow* appWindow, unsigned int style, unsigned int ex_style);
+void xf_SetWindowVisibilityRects(xfContext* xfc, xfAppWindow* appWindow, ::u32 rectsOffsetX, ::u32 rectsOffsetY, RECTANGLE_16* rects, int nrects);
+void xf_SetWindowStyle(xfContext* xfc, xfAppWindow* appWindow, ::u32 style, ::u32 ex_style);
 void xf_UpdateWindowArea(xfContext* xfc, xfAppWindow* appWindow, int x, int y, int width, int height);
 void xf_DestroyWindow(xfContext* xfc, xfAppWindow* appWindow);
 void xf_SetWindowMinMaxInfo(xfContext* xfc, xfAppWindow* appWindow,

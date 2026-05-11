@@ -114,7 +114,7 @@ namespace draw2d
 
 
 
-      //virtual unsigned int GetObjectType() const;
+      //virtual ::u32 GetObjectType() const;
       //virtual bool CreateStockObject(int nIndex);
       ///virtual bool UnrealizeObject();
       //virtual bool operator==(const ::draw2d::object & obj) const;

@@ -233,7 +233,7 @@ namespace platform
    // }
 
 
-   unsigned int apex_system_layer::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   ::u32 apex_system_layer::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
       return 0;
    }

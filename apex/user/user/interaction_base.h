@@ -161,9 +161,9 @@ namespace user
 
       void update_dialog_controls(channel * ptarget) override;
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr)  override;
-      //atom run_modal_loop(::user::interaction * pinteraction, unsigned int dwFlags = 0) override;
-      //atom RunModalLoop(unsigned int dwFlags = 0)  override;
-      //atom _001RunModalLoop(unsigned int dwFlags = 0)  override;
+      //atom run_modal_loop(::user::interaction * pinteraction, ::u32 dwFlags = 0) override;
+      //atom RunModalLoop(::u32 dwFlags = 0)  override;
+      //atom _001RunModalLoop(::u32 dwFlags = 0)  override;
       //bool ContinueModal()  override;
       //void EndModalLoop(atom nResult)  override;
 
@@ -236,7 +236,7 @@ namespace user
       
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
-      //virtual void CalcWindowRect(::int_rectangle * pClientRect,unsigned int nAdjustType = adjustBorder);
+      //virtual void CalcWindowRect(::int_rectangle * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       //virtual bool IsTopParentActive();
@@ -249,7 +249,7 @@ namespace user
 
 //#ifdef WINDOWS
 
-  //    virtual bool RedrawWindow(const ::int_rectangle& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, unsigned int flags = RDW_INVALIDATE | RDW_ERASE);
+  //    virtual bool RedrawWindow(const ::int_rectangle& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
 //#else
 
@@ -292,8 +292,8 @@ namespace user
 
       //virtual bool user_post(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
-      //virtual bool ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
-      //virtual bool ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags = 0);
+      //virtual bool ModifyStyle(::u32 dwRemove,::u32 dwAdd,::u32 nFlags = 0);
+      //virtual bool ModifyStyleEx(::u32 dwRemove,::u32 dwAdd,::u32 nFlags = 0);
       //virtual bool _display(::e_display edisplay);
 
       //virtual void SetWindowDisplayChanged();
@@ -365,7 +365,7 @@ namespace user
 
 
       ::user::interaction * get_wnd() override;
-      ::user::interaction * get_wnd(unsigned int nCmd) override;
+      ::user::interaction * get_wnd(::u32 nCmd) override;
       //virtual ::windowing::window * get_impl() const;
       ::task * get_task() override;
 
@@ -395,17 +395,17 @@ namespace user
       //virtual bool is_descendant(const ::user::interaction_base * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
-      void RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeftOver, unsigned int nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = {
+      void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::int_rectangle * prectParam = nullptr, const ::int_rectangle & rectangleX = {
          }, bool bStretch = true) override;
 
       ::user::interaction * ChildWindowFromPoint(const ::int_point & point) override;
-      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point,unsigned int nFlags) override;
+      virtual ::user::interaction * ChildWindowFromPoint(const ::int_point & point,::u32 nFlags) override;
 
 
 //#ifdef WINDOWS_DESKTOP
-  //    virtual ::user::interaction * get_next_window(unsigned int nFlag = GW_HWNDNEXT);
+  //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
 //#else
-      //virtual ::user::interaction * get_next_window(unsigned int nFlag = 0);
+      //virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
 
       ::user::interaction * get_next_sibling_window() override;
 
@@ -472,7 +472,7 @@ namespace user
 
       string get_window_default_matter() override;
       string get_window_icon_matter() override;
-      unsigned int get_window_default_style() override;
+      ::u32 get_window_default_style() override;
       //virtual enum_type get_window_type() override;
 
 
@@ -651,7 +651,7 @@ namespace user
 
 #endif
 
-      //virtual bool SetPlacement(const ::int_rectangle & rectangle, unsigned int nFlags = SWP_SHOWWINDOW);
+      //virtual bool SetPlacement(const ::int_rectangle & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
       
       int get_total_page_count(::handler_context * pcontext) override;

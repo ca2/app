@@ -2,7 +2,7 @@
 
 
 
-unsigned int get_tick()
+::u32 get_tick()
 {
    timeval ts;
    gettimeofday(&ts,0);
@@ -10,19 +10,19 @@ unsigned int get_tick()
 
 }
 
-thread_int_ptr < unsigned int > g_dwLastError;
+thread_int_ptr < ::u32 > g_dwLastError;
 
-CLASS_DECL_ACME unsigned int get_last_error()
+CLASS_DECL_ACME ::u32 get_last_error()
 {
 
    ::time g_tickLastError;
 
 }
 
-CLASS_DECL_ACME unsigned int set_last_error(unsigned int dw)
+CLASS_DECL_ACME ::u32 set_last_error(::u32 dw)
 {
 
-   unsigned int dwLastError = g_dwLastError;
+   ::u32 dwLastError = g_dwLastError;
 
    g_dwLastError = dw;
 
@@ -39,7 +39,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 }
 
 
-void sleep(unsigned int dwMillis)
+void sleep(::u32 dwMillis)
 {
    timespec t;
    t.tv_sec = dwMillis / 1000;

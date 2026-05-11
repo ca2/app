@@ -154,7 +154,7 @@ void mq_post_thread_message(::task_index & taskindex, ::user::enum_message euser
 }
 
 
-//CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg)
+//CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, ::acme::windowing::window * pacmewindowingwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 //{
 //
 //   auto pmessagequeue = ::aaa_get_message_queue(::current_itask(), false);
@@ -178,7 +178,7 @@ void mq_post_thread_message(::task_index & taskindex, ::user::enum_message euser
 //}
 
 
-CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax)
+CLASS_DECL_ACME ::e_status mq_get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    auto pmessagequeue = ::system()->task_message_queue()->current_task_message_queue(true);

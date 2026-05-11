@@ -827,9 +827,9 @@ void draw2d::emboss_predicate(
       int max3x1 = maxx1 * 3;
 
 
-      unsigned int dwR;
-      unsigned int dwG;
-      unsigned int dwB;
+      ::u32 dwR;
+      ::u32 dwG;
+      ::u32 dwB;
 
 
       int iFilterXLowerBound;
@@ -872,7 +872,7 @@ void draw2d::emboss_predicate(
       int yU;
 
       bool bSpread;
-      unsigned int bMin3 = bMin * 3;
+      ::u32 bMin3 = bMin * 3;
 
 
       for (i = 0; i < 4; i++)
@@ -948,7 +948,7 @@ void draw2d::emboss_predicate(
 
                         if (dwR + dwG + dwB > bMin3)
                         {
-                           *((unsigned int *)lpwDestination) |= 0x00ffffff;
+                           *((::u32 *)lpwDestination) |= 0x00ffffff;
                            goto breakFilter;
                         }
                      }
@@ -1028,7 +1028,7 @@ void draw2d::emboss_predicate(
 
             if (bSpread)
             {
-               *((unsigned int *)lpwDestination) |= 0x00ffffff;
+               *((::u32 *)lpwDestination) |= 0x00ffffff;
                lpwDestination += 3;
             }
             else
@@ -1221,7 +1221,7 @@ void draw2d::emboss_predicate(
             x1 = xL;
             x2 = (x1 - iFilterHalfW) * 4;
             lpwDestination = lpbDst + (wDst * y1) + x1 * 4;
-            if (*((unsigned int *)lpwDestination) != 0xffffffff)
+            if (*((::u32 *)lpwDestination) != 0xffffffff)
             {
                for (; x1 <= xU; x1++)
                {
@@ -1306,7 +1306,7 @@ void draw2d::emboss_predicate(
             lpbSource_1 = lpbSource + x2;
             lpFilter = pFilter;
 
-            if (*((unsigned int *)lpwDestination) != 0xffffffff)
+            if (*((::u32 *)lpwDestination) != 0xffffffff)
             {
                for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
                {
@@ -1598,7 +1598,7 @@ void draw2d::emboss_predicate(
    }
 
 
-   void draw2d::adjust_composited_window_styles(unsigned int& nExStyle, unsigned int& nStyle)
+   void draw2d::adjust_composited_window_styles(::u32& nExStyle, ::u32& nStyle)
    {
 
       ////if (!m_papplication->m_bUseSwapChainWindow)

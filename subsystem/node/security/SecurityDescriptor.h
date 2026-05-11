@@ -26,7 +26,7 @@
 
 #include "subsystem/_common_header.h"
 #include "subsystem/node/SystemException.h"
-////#include "subsystem/platform/particle.h"
+////#include "subsystem/platform/Particle.h"
 //// #include aaa_<AccCtrl.h>
 
 namespace subsystem

@@ -33,9 +33,9 @@ namespace draw2d_cairo
 //      //ASSERT(get_handle() != nullptr); return ::UnrealizeObject(get_handle());
 //      return 0;
 //   }
-//   unsigned int object::GetObjectType() const
+//   ::u32 object::GetObjectType() const
 //   {
-//      //return (unsigned int)::GetObjectType(get_handle());
+//      //return (::u32)::GetObjectType(get_handle());
 //      return 0;
 //   }
 //   bool object::operator==(const object& obj) const

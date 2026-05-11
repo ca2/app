@@ -2,7 +2,7 @@
 
 
 
-//string get_error_message(unsigned int dwError);
+//string get_error_message(::u32 dwError);
 
 //::pointer<::platform::application>    linux_instantiate_application(::pointer<::platform::application>appSystem, const ::scoped_string & scopedstrId);
 
@@ -49,9 +49,9 @@ CLASS_DECL_ACME const_char_pointer __get_app_name();
 
 //CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message * pmessage);
 
-//int_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, unsigned int wRemoveMsg);
+//int_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-//int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+//int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 //int CLASS_DECL_ACME __linux_main(int argc, char * argv[]);
 

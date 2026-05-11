@@ -1203,7 +1203,7 @@ namespace experience
    //  define System flags que serao usados para posicionar ou
    //  dimensionar pelo uso da funcao set_window_position
 
-   void frame_window::SetSWPFlags(unsigned int uFlags)
+   void frame_window::SetSWPFlags(::u32 uFlags)
    {
 
       m_uiSWPFlags = uFlags;
@@ -2127,7 +2127,7 @@ namespace experience
       //if(m_pframe != nullptr)
       //{
 
-      //   if(!m_pframe->on_timer((unsigned int) ptimer->m_uTimer))
+      //   if(!m_pframe->on_timer((::u32) ptimer->m_uTimer))
       //   {
 
       //      ptimer->destroy();

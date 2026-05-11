@@ -17,7 +17,7 @@ namespace typeface_freetype
    public:
 
       
-      //unsigned int m_FaceVAO, m_FaceVBO;
+      //::u32 m_FaceVAO, m_FaceVBO;
 
 
       face();

@@ -50,16 +50,16 @@ namespace subsystem
       memsize avaliableOutput = m_inputSize + reserve;
       unsigned long prevTotalOut = m_zlibStream.total_out;
 
-      unsigned int constrainedValue = (unsigned int)avaliableOutput;
+      ::u32 constrainedValue = (::u32)avaliableOutput;
       ASSERT(avaliableOutput == constrainedValue);
 
       m_output.set_size(avaliableOutput);
 
       m_zlibStream.next_in = (Bytef *)m_input;
-      m_zlibStream.avail_in = (unsigned int)m_inputSize;
+      m_zlibStream.avail_in = (::u32)m_inputSize;
 
       m_zlibStream.next_out = (Bytef *)m_output.data();
-      m_zlibStream.avail_out = (unsigned int)avaliableOutput;
+      m_zlibStream.avail_out = (::u32)avaliableOutput;
 
       if (::deflate(&m_zlibStream, Z_SYNC_FLUSH) != Z_OK)
       {

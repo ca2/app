@@ -71,14 +71,14 @@ namespace platform
 
 
       virtual ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) = 0;
-      virtual ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int u) = 0;
-      virtual ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long ull) = 0;
+      virtual ::e_status _set_dword(const ::scoped_string &scopedstrName, ::u32 u) = 0;
+      virtual ::e_status _set_qword(const ::scoped_string &scopedstrName, ::u64 ull) = 0;
       virtual ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block &block) = 0;
 
 
       virtual ::e_status _get_string(const ::scoped_string &scopedstrName, ::string &str) = 0;
-      virtual ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u) = 0;
-      virtual ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long & ull) = 0;
+      virtual ::e_status _get_dword(const ::scoped_string &scopedstrName, ::u32 &u) = 0;
+      virtual ::e_status _get_qword(const ::scoped_string &scopedstrName, ::u64 & ull) = 0;
       virtual ::e_status _get_binary(const ::scoped_string &scopedstrName, ::memory & memory) = 0;
 
 
@@ -94,14 +94,14 @@ namespace platform
             throw ::exception(estatus);
       }
 
-      inline void set_dword(const ::scoped_string &scopedstrName, unsigned int u)
+      inline void set_dword(const ::scoped_string &scopedstrName, ::u32 u)
       {
          auto estatus = _set_dword(scopedstrName, u);
          if (!estatus)
             throw ::exception(estatus);
       }
 
-      inline void set_qword(const ::scoped_string &scopedstrName, unsigned long long ull)
+      inline void set_qword(const ::scoped_string &scopedstrName, ::u64 ull)
       {
          auto estatus = _set_qword(scopedstrName, ull);
          if (!estatus)
@@ -134,18 +134,18 @@ namespace platform
          return ::transfer(str);
       }
 
-      inline unsigned int long get_dword(const ::scoped_string &scopedstrName)
+      inline ::u32 long get_dword(const ::scoped_string &scopedstrName)
       {
-         unsigned int u = 0;
+         ::u32 u = 0;
          auto estatus = _get_dword(scopedstrName, u);
          if (!estatus)
             throw ::exception(estatus);
          return u;
       }
 
-      inline unsigned long long get_qword(const ::scoped_string &scopedstrName)
+      inline ::u64 get_qword(const ::scoped_string &scopedstrName)
       {
-         unsigned long long ull = 0;
+         ::u64 ull = 0;
          auto estatus = _get_qword(scopedstrName, ull);
          if (!estatus)
             throw ::exception(estatus);
@@ -219,13 +219,13 @@ namespace platform
       void close() override;
 
       ::e_status _set_string(const ::scoped_string &scopedstrName, const ::scoped_string &scopedstr) override;
-      ::e_status _set_dword(const ::scoped_string &scopedstrName, unsigned int u) override;
-      ::e_status _set_qword(const ::scoped_string &scopedstrName, unsigned long long ull) override;
+      ::e_status _set_dword(const ::scoped_string &scopedstrName, ::u32 u) override;
+      ::e_status _set_qword(const ::scoped_string &scopedstrName, ::u64 ull) override;
       ::e_status _set_binary(const ::scoped_string &scopedstrName, const ::block &block) override;
 
       ::e_status _get_string(const ::scoped_string &scopedstrName, ::string &str) override;
-      ::e_status _get_dword(const ::scoped_string &scopedstrName, unsigned int &u) override;
-      ::e_status _get_qword(const ::scoped_string &scopedstrName, unsigned long long &ull) override;
+      ::e_status _get_dword(const ::scoped_string &scopedstrName, ::u32 &u) override;
+      ::e_status _get_qword(const ::scoped_string &scopedstrName, ::u64 &ull) override;
       ::e_status _get_binary(const ::scoped_string &scopedstrName, ::memory &memory) override;
 
 

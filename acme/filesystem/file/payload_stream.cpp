@@ -83,7 +83,7 @@
 ////   {
 ////      m_var = i;
 ////   }
-////   void payload_stream::write(unsigned int u)
+////   void payload_stream::write(::u32 u)
 ////   {
 ////
 ////      m_var = u;
@@ -93,7 +93,7 @@
 ////
 ////      m_var = i;
 ////   }
-////   void payload_stream::write(unsigned long long u)
+////   void payload_stream::write(::u64 u)
 ////   {
 ////
 ////      m_var = u;
@@ -169,9 +169,9 @@
 ////
 ////
 ////   //      virtual void read(int & i);
-////   //      virtual void read(unsigned int & u);
+////   //      virtual void read(::u32 & u);
 ////   //      virtual void read(long long & i);
-////   //      virtual void read(unsigned long long & u);
+////   //      virtual void read(::u64 & u);
 ////
 ////
 ////   void payload_stream::read(bool & b);
@@ -183,9 +183,9 @@
 ////   void payload_stream::read(short & sh);
 ////   void payload_stream::read(unsigned short & u);
 ////   void payload_stream::read(int & i);
-////   void payload_stream::read(unsigned int & u);
+////   void payload_stream::read(::u32 & u);
 ////   void payload_stream::read(long long & i);
-////   void payload_stream::read(unsigned long long & u);
+////   void payload_stream::read(::u64 & u);
 ////#ifdef __APPLE__
 ////   void payload_stream::read(unsigned long & u);
 ////   //virtual void read (long long & u);

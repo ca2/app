@@ -14,7 +14,7 @@ namespace user
    }
 
 
-   //bool toolbar_control::create_window(unsigned int uStyle,const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom)
+   //bool toolbar_control::create_window(::u32 uStyle,const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom)
    //{
    //   
    //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, atom);
@@ -140,7 +140,7 @@ namespace user
    return false;
    ASSERT(pData->wVersion == 1);
 
-   unsigned int* pItems = ___new unsigned int[pData->wItemCount];
+   ::u32* pItems = ___new ::u32[pData->wItemCount];
    for (int i = 0; i < pData->wItemCount; i++)
    pItems[i] = pData->items()[i];
    bool bResult = SetButtons(pItems, pData->wItemCount);
@@ -164,14 +164,14 @@ namespace user
    return bResult;
    }*/
 
-   bool toolbar_control::SetButtons(const unsigned int* pIDArray, int nIDCount)
+   bool toolbar_control::SetButtons(const ::u32* pIDArray, int nIDCount)
    {
 
       ASSERT_OK(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(pIDArray == nullptr ||
 
-         is_memory_segment_ok(pIDArray, sizeof(unsigned int) * nIDCount));
+         is_memory_segment_ok(pIDArray, sizeof(::u32) * nIDCount));
 
 
       // delete all existing buttons
@@ -228,7 +228,7 @@ namespace user
       return true;
    }
 
-   int toolbar_control::GetButtonText(unsigned int uId, string &str)
+   int toolbar_control::GetButtonText(::u32 uId, string &str)
    {
       
       return 0;
@@ -391,7 +391,7 @@ namespace user
    }
 
 
-   bool toolbar_control::set_state(int nID, unsigned int nState)
+   bool toolbar_control::set_state(int nID, ::u32 nState)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT(is_window()); 
@@ -486,12 +486,12 @@ namespace user
 
 
 
-   unsigned int toolbar_control::CommandToIndex(unsigned int nID)
+   ::u32 toolbar_control::CommandToIndex(::u32 nID)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (unsigned int) send_message( TB_COMMANDTOINDEX, nID);
+//   ASSERT(is_window()); return (::u32) send_message( TB_COMMANDTOINDEX, nID);
 //
 //#else
 //
@@ -687,7 +687,7 @@ namespace user
    }
 
 
-   bool toolbar_control::SetCmdID(int nIndex, unsigned int nID)
+   bool toolbar_control::SetCmdID(int nIndex, ::u32 nID)
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -705,12 +705,12 @@ namespace user
    }
 
 
-   unsigned int toolbar_control::GetBitmapFlags()
+   ::u32 toolbar_control::GetBitmapFlags()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETBITMAPFLAGS);
+//   ASSERT(is_window()); return (::u32) send_message( TB_GETBITMAPFLAGS);
 //
 //#else
 //
@@ -741,12 +741,12 @@ namespace user
    }
 
 
-   unsigned int toolbar_control::GetExtendedStyle()
+   ::u32 toolbar_control::GetExtendedStyle()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETEXTENDEDSTYLE);
+//   ASSERT(is_window()); return (::u32) send_message( TB_GETEXTENDEDSTYLE);
 //
 //#else
 //
@@ -759,12 +759,12 @@ namespace user
    }
 
 
-   unsigned int toolbar_control::SetExtendedStyle(unsigned int dwExStyle)
+   ::u32 toolbar_control::SetExtendedStyle(::u32 dwExStyle)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      ASSERT(is_window()); return (unsigned int) send_message( TB_SETEXTENDEDSTYLE, 0, (LPARAM) dwExStyle);
+//      ASSERT(is_window()); return (::u32) send_message( TB_SETEXTENDEDSTYLE, 0, (LPARAM) dwExStyle);
 //
 //#else
 //
@@ -815,12 +815,12 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   unsigned int toolbar_control::get_button_size()
+   ::u32 toolbar_control::get_button_size()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETBUTTONSIZE);
+//   ASSERT(is_window()); return (::u32) send_message( TB_GETBUTTONSIZE);
 //
 //#else
 //
@@ -887,12 +887,12 @@ namespace user
    }
 
 
-   unsigned int toolbar_control::GetStyle()
+   ::u32 toolbar_control::GetStyle()
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   ASSERT(is_window()); return (unsigned int) send_message( TB_GETSTYLE);
+//   ASSERT(is_window()); return (::u32) send_message( TB_GETSTYLE);
 //
 //#else
 //
@@ -1096,7 +1096,7 @@ namespace user
    }
 
 
-   void toolbar_control::SetStyle(unsigned int dwStyle)
+   void toolbar_control::SetStyle(::u32 dwStyle)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1159,12 +1159,12 @@ namespace user
 //#endif
 
 
-   unsigned int toolbar_control::SetDrawTextFlags(unsigned int dwMask, unsigned int dwDTFlags)
+   ::u32 toolbar_control::SetDrawTextFlags(::u32 dwMask, ::u32 dwDTFlags)
    {
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      ASSERT(is_window()); return (unsigned int) send_message( TB_SETDRAWTEXTFLAGS, dwMask, (LPARAM) dwDTFlags);
+//      ASSERT(is_window()); return (::u32) send_message( TB_SETDRAWTEXTFLAGS, dwMask, (LPARAM) dwDTFlags);
 //
 //#else
 //
@@ -1300,7 +1300,7 @@ namespace user
 //#endif
 
 
-   bool toolbar_control::MapAccelerator(char chAccel, unsigned int* pIDBtn)
+   bool toolbar_control::MapAccelerator(char chAccel, ::u32* pIDBtn)
    {
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1334,7 +1334,7 @@ namespace user
    }
 
 
-   bool toolbar_control::MoveButton(unsigned int nOldPos, unsigned int nNewPos)
+   bool toolbar_control::MoveButton(::u32 nOldPos, ::u32 nNewPos)
    {
 
 //#ifdef WINDOWS_DESKTOP

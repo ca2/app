@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::windowing::window * pDesktopWnd,unsigned int nHitTest,const ::atom & atom, lresult & iResult)
+   bool form_mesh::_001OnMouseActivate(::windowing::window * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);

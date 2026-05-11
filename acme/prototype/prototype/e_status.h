@@ -51,7 +51,7 @@ public:
 
 
    constexpr long long as_long_long() const { return (long long) m_eenum; }
-   constexpr unsigned long long as_unsigned_long_long() const { return (unsigned long long) m_eenum; }
+   constexpr ::u64 as_u64() const { return (::u64) m_eenum; }
 
 
    constexpr bool is_set() const { return this->succeeded(); }

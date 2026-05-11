@@ -508,7 +508,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   character_count nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,nullptr,0);
 //
-//   BSTR bstr = ::SysAllocStringLen(nullptr,(unsigned int)nLen);
+//   BSTR bstr = ::SysAllocStringLen(nullptr,(::u32)nLen);
 //
 //   if(bstr != nullptr)
 //   {
@@ -524,7 +524,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   character_count nLen = ::MultiByteToWideChar2(_gen_GetConversionACP(),0,pchData,(int)nDataLength,nullptr,0);
 //
-//   bool bSuccess = ::SysReAllocStringLen(pbstr,nullptr,(unsigned int)nLen) != 0;
+//   bool bSuccess = ::SysReAllocStringLen(pbstr,nullptr,(::u32)nLen) != 0;
 //
 //   if(bSuccess)
 //   {
@@ -537,7 +537,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //#endif
 //
-//unsigned int __cdecl char_traits::format_message(unsigned int dwFlags,const void * pSource,unsigned int dwMessageID,unsigned int dwLanguageID,char * pszBuffer,unsigned int nSize,va_list* pArguments) noexcept
+//::u32 __cdecl char_traits::format_message(::u32 dwFlags,const void * pSource,::u32 dwMessageID,::u32 dwLanguageID,char * pszBuffer,::u32 nSize,va_list* pArguments) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -554,7 +554,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //}
 //
-//unsigned int __cdecl char_traits::format_message(unsigned int dwFlags,const void * pSource,unsigned int dwMessageID,unsigned int dwLanguageID,char * pszBuffer,unsigned int nSize,va_list* pArguments) noexcept
+//::u32 __cdecl char_traits::format_message(::u32 dwFlags,const void * pSource,::u32 dwMessageID,::u32 dwLanguageID,char * pszBuffer,::u32 nSize,va_list* pArguments) noexcept
 //{
 //
 //#ifdef WINDOWS
@@ -598,7 +598,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return  ::str::get_utf8_char(pch).get_length();
 //}
 //
-//unsigned int __cdecl char_traits::xxxget_environment_variable(const ::scoped_string & scopedstrVar, char * pszBuffer,unsigned int dwSize )
+//::u32 __cdecl char_traits::xxxget_environment_variable(const ::scoped_string & scopedstrVar, char * pszBuffer,::u32 dwSize )
 //{
 //
 //#ifdef UNIVERSAL_WINDOWS
@@ -620,10 +620,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //      }
 //      else
 //      {
-//         return (unsigned int)strlen(scopedstrEnv);
+//         return (::u32)strlen(scopedstrEnv);
 //      }
 //   }
-//   return (unsigned int)strlen(ansi_count_copy(scopedstrBuffer,pszEnv,dwSize));
+//   return (::u32)strlen(ansi_count_copy(scopedstrBuffer,pszEnv,dwSize));
 //
 //#endif
 //
@@ -637,10 +637,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows unsigned int int_size
+//      // API only allows ::u32 int_size
 //      throw ::exception(error_bad_argument);
 //   }
-//   unsigned int dwSize=static_cast<unsigned int>(size);
+//   ::u32 dwSize=static_cast<::u32>(size);
 //   bool fSuccess=::OemToCharBuffA(pstrString,pstrString,dwSize) != 0;
 //   if(!fSuccess)
 //   {
@@ -659,10 +659,10 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows unsigned int int_size
+//      // API only allows ::u32 int_size
 //      throw ::exception(error_bad_argument);
 //   }
-//   unsigned int dwSize=static_cast<unsigned int>(size);
+//   ::u32 dwSize=static_cast<::u32>(size);
 //   bool fSuccess=::CharToOemBuffA(pstrString,pstrString,dwSize) != 0;
 //   if(!fSuccess)
 //   {
@@ -1101,20 +1101,20 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //string & string::assign(int n,int ca)
 //{
-//   return assign((unsigned long long)n,(unsigned long long)ca);
+//   return assign((::u64)n,(::u64)ca);
 //}
 //
 //string & string::assign(long long n,long long ca)
 //{
-//   return assign((unsigned long long)n,(unsigned long long)ca);
+//   return assign((::u64)n,(::u64)ca);
 //}
 //
-//string & string::assign(unsigned int n,unsigned int ca)
+//string & string::assign(::u32 n,::u32 ca)
 //{
-//   return assign((unsigned long long)n,(unsigned long long)ca);
+//   return assign((::u64)n,(::u64)ca);
 //}
 //
-//string & string::assign(unsigned long long n,unsigned long long ca)
+//string & string::assign(::u64 n,::u64 ca)
 //{
 //   string strChar = ::str::uni_to_utf8(ca);
 //   while(n > 0)
@@ -3020,7 +3020,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //
 //   char * pszTemp;
 //
-//   unsigned int dwResult = ::str::format_message(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER,pszFormat,0,0,reinterpret_cast<char *>(&pszTemp),0,pArgList);
+//   ::u32 dwResult = ::str::format_message(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER,pszFormat,0,0,reinterpret_cast<char *>(&pszTemp),0,pArgList);
 //
 //   if(dwResult == 0)
 //   {
@@ -3076,7 +3076,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //bool string::xxxget_environment_variable(const ::scoped_string & scopedstrVar)
 //{
 //
-//   unsigned int nLength = ::str::xxxget_environment_variable(scopedstrVar,nullptr,0);
+//   ::u32 nLength = ::str::xxxget_environment_variable(scopedstrVar,nullptr,0);
 //   bool bRetVal = false;
 //
 //   if(nLength == 0)
@@ -3107,7 +3107,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 ////bool load_string(atom atom);
 //
 //// Load the string from resource 'nID' in module 'hInstance'
-///*    bool load_string(HINSTANCE hInstance,unsigned int nID )
+///*    bool load_string(HINSTANCE hInstance,::u32 nID )
 //{
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
 //if( pImage == nullptr )
@@ -3124,7 +3124,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //}*/
 //
 //// Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
-///*bool load_string(HINSTANCE hInstance,unsigned int nID,unsigned short wLanguageID )
+///*bool load_string(HINSTANCE hInstance,::u32 nID,unsigned short wLanguageID )
 //{
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
 //if( pImage == nullptr )

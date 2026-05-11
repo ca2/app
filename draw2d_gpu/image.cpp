@@ -472,9 +472,9 @@ namespace draw2d_gpu
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   long long size = area();
 
-   //   unsigned int dwB = ::blue(color32);
-   //   unsigned int dwG = ::green(color32);
-   //   unsigned int dwR = ::red(color32);
+   //   ::u32 dwB = ::blue(color32);
+   //   ::u32 dwG = ::green(color32);
+   //   ::u32 dwR = ::red(color32);
 
    //   while (size-- > 0)
    //   {
@@ -679,13 +679,13 @@ namespace draw2d_gpu
    //   unsigned char *dst=(unsigned char*)m_pcolorref;
    //   long long size = area();
 
-   //   unsigned int dwB = ::blue(color32);
-   //   unsigned int dwG = ::green(color32);
-   //   unsigned int dwR = ::red(color32);
+   //   ::u32 dwB = ::blue(color32);
+   //   ::u32 dwG = ::green(color32);
+   //   ::u32 dwR = ::red(color32);
    //
-   //   unsigned int dwB_ = dwB << 8;
-   //   unsigned int dwG_ = dwG << 8;
-   //   unsigned int dwR_ = dwR << 8;
+   //   ::u32 dwB_ = dwB << 8;
+   //   ::u32 dwG_ = dwG << 8;
+   //   ::u32 dwR_ = dwR << 8;
    //
    //   while ( size-- )
    //   {
@@ -1379,9 +1379,9 @@ namespace draw2d_gpu
    //   }
    //}
 
-   //unsigned int image::GetPixel(int x, int y)
+   //::u32 image::GetPixel(int x, int y)
    //{
-   //   unsigned int dw = *(m_pcolorref + x + (cy - y - 1) * cx);
+   //   ::u32 dw = *(m_pcolorref + x + (cy - y - 1) * cx);
    //   return rgb(::blue(dw), ::green(dw), ::red(dw));
    //}
 
@@ -1412,7 +1412,7 @@ namespace draw2d_gpu
 //
 //
 //         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         int size=cx*cy;
 //         double iLevel;
 //
@@ -1519,7 +1519,7 @@ namespace draw2d_gpu
 //
 //
 //         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 ////         int size=cx*cy;
 //
 //         int Δx, Δy;
@@ -1572,7 +1572,7 @@ namespace draw2d_gpu
 //
 //
 //         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         int size=cx*cy;
 //         double iLevel;
 //
@@ -1679,7 +1679,7 @@ namespace draw2d_gpu
 //
 //
 //         unsigned char *dst = ((unsigned char*)(m_pcolorref + xL + yL * cx));
-//         unsigned int dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         ::u32 dwAdd = ((cx - 1 - xU) + xL) * 4;
 ////         int size=cx*cy;
 //
 //         int Δx, Δy;
@@ -2569,7 +2569,7 @@ namespace draw2d_gpu
 ////
 ////         map();
 ////
-////         //pre_multiply_alpha((unsigned int *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
+////         //pre_multiply_alpha((::u32 *) get_data(),m_size.cx,m_size.cy,m_size.cx * 4);
 ////
 ////         unsigned char *dstR=(unsigned char*)get_data();
 ////         unsigned char *dstG=dstR + 1;
@@ -2689,7 +2689,7 @@ namespace draw2d_gpu
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
-//      //      unsigned int dw = ::get_last_error();
+//      //      ::u32 dw = ::get_last_error();
 //      ::int_size size = pbitmap->get_size();
 //
 //      rectx.left = 0;

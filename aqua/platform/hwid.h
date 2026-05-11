@@ -9,9 +9,9 @@ namespace hwid
     private:
         struct
         {
-            unsigned int ebx;
-            unsigned int edx;
-            unsigned int ecx;
+            ::u32 ebx;
+            ::u32 edx;
+            ::u32 ecx;
         } regs;
     public:
         CPUVendorID();

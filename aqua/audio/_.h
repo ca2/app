@@ -13,7 +13,7 @@
 //};
 //
 
-//static void CALLBACK rdpsnd_audio_callback_function(HWAVEOUT hwo, unsigned int uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+//static void CALLBACK rdpsnd_audio_callback_function(HWAVEOUT hwo, ::u32 uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
 //
 //CLASS_DECL_AURA int out_push_packet(WAVE_OUT_PACKET * ppacket);
 //CLASS_DECL_AURA WAVE_OUT_PACKET * out_pop_packet(char chChannel);
@@ -78,8 +78,8 @@ namespace aqua
 //typedef struct {
 //   unsigned short  wFormatTag;
 //   unsigned short  nChannels;
-//   unsigned int nSamplesPerSec;
-//   unsigned int nAvgBytesPerSec;
+//   ::u32 nSamplesPerSec;
+//   ::u32 nAvgBytesPerSec;
 //   unsigned short  nBlockAlign;
 //   unsigned short  wBitsPerSample;
 //   unsigned short  cbSize;
@@ -95,7 +95,7 @@ namespace aqua
 //      unsigned short wSamplesPerBlock;
 //      unsigned short wReserved;
 //   } Samples;
-//   unsigned int        dwChannelMask;
+//   ::u32        dwChannelMask;
 //   GUID         SubFormat;
 //} WAVEFORMATEXTENSIBLE, *PWAVEFORMATEXTENSIBLE;
 //

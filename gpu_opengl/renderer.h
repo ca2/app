@@ -59,7 +59,7 @@ namespace gpu_opengl
       // Draws the skybox using the given mesh and shader
       //void DrawSkybox(const mesh *pskyboxMesh, ::gpu::shader * pshader) const;
 
-      //void DrawInstanced(const ::array<mesh*>& meshes, ::gpu::shader *pshader, unsigned int instanceCount) const;
+      //void DrawInstanced(const ::array<mesh*>& meshes, ::gpu::shader *pshader, ::u32 instanceCount) const;
       void MultiDrawIndirectCommand() {}
 
       //void DrawModel(const ::array<mesh*>& mehses, ::gpu::shader *pshader);

@@ -52,7 +52,7 @@ void process_get_os_priority(int * piOsPriority,  int nCa2Priority)
 }
 
 
-unsigned int get_current_process_id()
+::u32 get_current_process_id()
 {
 
    return getpid();

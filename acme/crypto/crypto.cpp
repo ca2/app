@@ -285,14 +285,14 @@ namespace crypto
       //}
 
 
-      //unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
+      //::u32 crypto::crc32(::u32 dwPrevious, const ::scoped_string & scopedstr)
       //{
 
       //   throw ::interface_only();
 
       //   return 0;
 
-      //   //return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
+      //   //return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(scopedstr));
 
       //}
 

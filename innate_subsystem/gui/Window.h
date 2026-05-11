@@ -28,7 +28,7 @@
 #include "innate_subsystem/_common_header.h"
 #define WINDOW_WIDTH_USE_DEFAULT       ((int)0x80000000)
 #include "acme/prototype/geometry2d/rectangle.h"
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 
 namespace innate_subsystem
@@ -79,7 +79,7 @@ namespace innate_subsystem
       // createWindow()
       // Create window with windowName and setted style
       // other parameters can by changed
-      virtual bool createWindow(const ::scoped_string & scopedstrWindowName, unsigned int style, const ::operating_system::window & operatingsystemwindowParent = 0,
+      virtual bool createWindow(const ::scoped_string & scopedstrWindowName, ::u32 style, const ::operating_system::window & operatingsystemwindowParent = 0,
                         int xPos = WINDOW_WIDTH_USE_DEFAULT, int yPos = WINDOW_WIDTH_USE_DEFAULT,
                         int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) = 0;
       virtual bool destroyWindow() = 0;
@@ -174,7 +174,7 @@ namespace innate_subsystem
 
       // loadIcon()
       // Set the icon of application where id can be from resource or handle HICON
-      virtual void loadIcon(unsigned int id) = 0;
+      virtual void loadIcon(::u32 id) = 0;
 
       // setParent()
       // Making child window by changing parent of the window
@@ -185,30 +185,30 @@ namespace innate_subsystem
       virtual ::operating_system::window dialog_item_operating_system_window(int iDlgItem) = 0;
 
 
-      virtual void subclassControlById(::Particle * pWindowControl, unsigned int id) = 0;
+      virtual void subclassControlById(::Particle * pWindowControl, ::u32 id) = 0;
       virtual void subclassWindow(const ::operating_system::window & operatingsystemwindow) = 0;
       virtual void unsubclassWindow() = 0;
 
 
       // for changing registered class parameters of created window
-      virtual void setClassStyle(unsigned int style) = 0;
+      virtual void setClassStyle(::u32 style) = 0;
       virtual void setClassCursor(::innate_subsystem::CursorInterface * pcursor) = 0;
       virtual void setClassBackground(::innate_subsystem::BrushInterface * pbrush) = 0;
       virtual void setClassMenu(::innate_subsystem::MenuInterface * pmenu) = 0;
 
       // for changing or get style and exstyle of window
       virtual long long getStyle() = 0;
-      virtual void setStyle(unsigned int style) = 0;
-      virtual void addStyle(unsigned int styleFlag) = 0;
-      virtual void removeStyle(unsigned int styleFlag) = 0;
-      virtual bool isStyleEnabled(unsigned int styleFlags) = 0;
+      virtual void setStyle(::u32 style) = 0;
+      virtual void addStyle(::u32 styleFlag) = 0;
+      virtual void removeStyle(::u32 styleFlag) = 0;
+      virtual bool isStyleEnabled(::u32 styleFlags) = 0;
 
 
       virtual long long getExStyle() = 0;
-      virtual void setExStyle(unsigned int exstyle) = 0;
-      virtual void addExStyle(unsigned int styleFlag) = 0;
-      virtual void removeExStyle(unsigned int styleFlag) = 0;
-      virtual bool isExStyleEnabled(unsigned int styleFlag) = 0;
+      virtual void setExStyle(::u32 exstyle) = 0;
+      virtual void addExStyle(::u32 styleFlag) = 0;
+      virtual void removeExStyle(::u32 styleFlag) = 0;
+      virtual bool isExStyleEnabled(::u32 styleFlag) = 0;
 
 
 
@@ -217,14 +217,14 @@ namespace innate_subsystem
 
       // set or kill timer, with identifactor ident
       // and time in milliseconds
-      virtual void setTimer(::uptr ident, unsigned int time) = 0;
+      virtual void setTimer(::uptr ident, ::u32 time) = 0;
       virtual void killTimer(::uptr ident) = 0;
 
       // set foreground window
       virtual void setForegroundWindow() = 0;
 
       // post message to this window
-      virtual void postMessage(unsigned int Msg, ::wparam wparam = 0, ::lparam lparam = 0) = 0;
+      virtual void postMessage(::u32 Msg, ::wparam wparam = 0, ::lparam lparam = 0) = 0;
       virtual void post(const ::procedure &procedure) = 0;
 
       virtual ::int_rectangle getClientRect() = 0;
@@ -248,11 +248,11 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
+      virtual bool onCommand(::u32 controlID, ::u32 notificationID) = 0;
    //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
    virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
-   virtual bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
-   virtual bool onMouseEx(unsigned int uMessage, int iButtonMask, unsigned short wheelSpeed, const ::int_point &point,
+   virtual bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) = 0;
+   virtual bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed, const ::int_point &point,
                           bool &bDoDefaultProcessing) = 0;
 
    virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::int_point & position) = 0;
@@ -260,7 +260,7 @@ namespace innate_subsystem
 
    virtual bool onCreate(void * pCreateStruct) = 0;
 
-   virtual bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+   virtual bool on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam) = 0;
 
       virtual void onDraw(::innate_subsystem::GraphicsInterface * pgraphics, const ::int_rectangle & rectangle) = 0;
 
@@ -317,7 +317,7 @@ namespace innate_subsystem
       // createWindow()
       // Create window with windowName and setted style
       // other parameters can by changed
-      bool createWindow(const ::scoped_string & scopedstrWindowName, unsigned int style, const ::operating_system::window & operatingsystemwindowParent = {},
+      bool createWindow(const ::scoped_string & scopedstrWindowName, ::u32 style, const ::operating_system::window & operatingsystemwindowParent = {},
                         int xPos = WINDOW_WIDTH_USE_DEFAULT, int yPos = WINDOW_WIDTH_USE_DEFAULT,
                         int width = WINDOW_WIDTH_USE_DEFAULT, int height = WINDOW_WIDTH_USE_DEFAULT) override
       {
@@ -428,7 +428,7 @@ namespace innate_subsystem
 
       // loadIcon()
       // Set the icon of application where id can be from resource or handle HICON
-      void loadIcon(unsigned int id) override { m_pwindow->loadIcon(id); }
+      void loadIcon(::u32 id) override { m_pwindow->loadIcon(id); }
 
       // setParent()
       // Making child window by changing parent of the window
@@ -437,12 +437,12 @@ namespace innate_subsystem
 
 
       ::operating_system::window dialog_item_operating_system_window(int iDlgItem) override { return m_pwindow->dialog_item_operating_system_window(iDlgItem); }
-      void subclassControlById(::Particle * pWindowControl, unsigned int id) override { m_pwindow->subclassControlById(pWindowControl, id); }
+      void subclassControlById(::Particle * pWindowControl, ::u32 id) override { m_pwindow->subclassControlById(pWindowControl, id); }
       void subclassWindow(const ::operating_system::window & operatingsystemwindow)override { m_pwindow->subclassWindow(operatingsystemwindow); }
       void unsubclassWindow() override { m_pwindow->unsubclassWindow(); }
 
       // for changing registered class parameters of created window
-      void setClassStyle(unsigned int style) override { m_pwindow->setClassStyle(style); }
+      void setClassStyle(::u32 style) override { m_pwindow->setClassStyle(style); }
       void setClassCursor(::innate_subsystem::CursorInterface * pcursor) override { m_pwindow->setClassCursor(pcursor); }
       void setClassBackground(::innate_subsystem::BrushInterface * pbrush) override { m_pwindow->setClassBackground(pbrush); }
       void setClassMenu(::innate_subsystem::MenuInterface * pmenu) override { m_pwindow->setClassMenu(pmenu); }
@@ -452,31 +452,31 @@ namespace innate_subsystem
 
       // for changing or get style and exstyle of window
       long long getStyle() override { return m_pwindow->getStyle(); }
-      void setStyle(unsigned int style) override { m_pwindow->setStyle(style); }
-      void addStyle(unsigned int styleFlag) override { m_pwindow->addStyle(styleFlag); }
-      void removeStyle(unsigned int styleFlag) override { m_pwindow->removeStyle(styleFlag); }
-      bool isStyleEnabled(unsigned int styleFlags) override { return m_pwindow->isStyleEnabled(styleFlags); }
+      void setStyle(::u32 style) override { m_pwindow->setStyle(style); }
+      void addStyle(::u32 styleFlag) override { m_pwindow->addStyle(styleFlag); }
+      void removeStyle(::u32 styleFlag) override { m_pwindow->removeStyle(styleFlag); }
+      bool isStyleEnabled(::u32 styleFlags) override { return m_pwindow->isStyleEnabled(styleFlags); }
 
 
       long long getExStyle() override { return m_pwindow->getExStyle(); }
-      void setExStyle(unsigned int exstyle) override { m_pwindow->setExStyle(exstyle); }
-      void addExStyle(unsigned int styleFlag) override { m_pwindow->addExStyle(styleFlag); }
-      void removeExStyle(unsigned int styleFlag) override { m_pwindow->removeExStyle(styleFlag); }
-      bool isExStyleEnabled(unsigned int styleFlag) override { return m_pwindow->isExStyleEnabled(styleFlag); }
+      void setExStyle(::u32 exstyle) override { m_pwindow->setExStyle(exstyle); }
+      void addExStyle(::u32 styleFlag) override { m_pwindow->addExStyle(styleFlag); }
+      void removeExStyle(::u32 styleFlag) override { m_pwindow->removeExStyle(styleFlag); }
+      bool isExStyleEnabled(::u32 styleFlag) override { return m_pwindow->isExStyleEnabled(styleFlag); }
 
       // full redraw of window area
       void redraw(const ::int_rectangle &rcArea ={}) override { m_pwindow->redraw(rcArea); }
 
       // set or kill timer, with identifactor ident
       // and time in milliseconds
-      void setTimer(::uptr ident, unsigned int time) override { m_pwindow->setTimer(ident, time); }
+      void setTimer(::uptr ident, ::u32 time) override { m_pwindow->setTimer(ident, time); }
       void killTimer(::uptr ident) override { m_pwindow->killTimer(ident); }
 
       // set foreground window
       void setForegroundWindow() override { m_pwindow->setForegroundWindow(); }
 
       // post message to this window
-      void postMessage(unsigned int Msg, ::wparam wparam =0, ::lparam lparam =0) override { m_pwindow->postMessage(Msg, wparam, lparam); }
+      void postMessage(::u32 Msg, ::wparam wparam =0, ::lparam lparam =0) override { m_pwindow->postMessage(Msg, wparam, lparam); }
       void post(const ::procedure &procedure) override { m_pwindow->post(procedure); }
 
       ::int_rectangle getClientRect() override { return m_pwindow->getClientRect(); }
@@ -497,7 +497,7 @@ namespace innate_subsystem
       void adjustWindowSize() override { m_pwindow->adjustWindowSize(); }
 
 
-      //bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) override;
+      //bool wndProc(::u32 message, ::wparam wparam, ::lparam lparam) override;
 
       // static const int MOUSE_LDOWN  = 1;
       // static const int MOUSE_MDOWN  = 2;
@@ -508,11 +508,11 @@ namespace innate_subsystem
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
-      bool onCommand(unsigned int controlID, unsigned int notificationID) override { return false; }
+      bool onCommand(::u32 controlID, ::u32 notificationID) override { return false; }
    //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
       bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
-      bool onMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override { return false; }
-      bool onMouseEx(unsigned int uMessage, int iButtonMask, unsigned short wheelSpeed,
+      bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) override { return false; }
+      bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed,
           const ::int_point& point, bool & bDoDefaultProcessing) override
 
       {
@@ -527,7 +527,7 @@ namespace innate_subsystem
 
       bool onCreate(void * pCreateStruct) override { return false; }
 
-      bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam) override 
+      bool on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam) override 
       { 
       return false;
       }

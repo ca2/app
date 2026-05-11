@@ -59,18 +59,18 @@ namespace subsystem
       unsigned long prevTotalOut = m_zlibStream.total_out;
 
       // Check to overflow.
-      unsigned int constrainedValue = (unsigned int)avaliableOutput;
+      ::u32 constrainedValue = (::u32)avaliableOutput;
       ASSERT(avaliableOutput == constrainedValue);
-      constrainedValue = (unsigned int)m_inputSize;
+      constrainedValue = (::u32)m_inputSize;
       ASSERT(m_inputSize == constrainedValue);
 
       m_output.set_size(avaliableOutput);
 
       m_zlibStream.next_in = (Bytef *)m_input;
-      m_zlibStream.avail_in = (unsigned int)m_inputSize;
+      m_zlibStream.avail_in = (::u32)m_inputSize;
 
       m_zlibStream.next_out = (Bytef *)m_output.data();
-      m_zlibStream.avail_out = (unsigned int)avaliableOutput;
+      m_zlibStream.avail_out = (::u32)avaliableOutput;
 
       int r = ::inflate(&m_zlibStream, Z_SYNC_FLUSH);
 

@@ -110,7 +110,7 @@ namespace image
       //inline ::int_rectangle rectangle(const ::int_point & point = {}) const;
 
 
-      //inline unsigned long long area() const;
+      //inline ::u64 area() const;
       //inline int width() const;
       //inline int height() const;
 
@@ -511,7 +511,7 @@ namespace image
 
 
 
-      inline unsigned long long area() const
+      inline ::u64 area() const
       {
 
          if (::is_null(this))

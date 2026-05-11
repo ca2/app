@@ -4,7 +4,7 @@
 
 
 // interesting function
-/*bool CLASS_DECL_ACME __custom_log_font(unsigned int nIDS, LOGFONT* pLogFont)
+/*bool CLASS_DECL_ACME __custom_log_font(::u32 nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
@@ -26,12 +26,12 @@
    return true;
 }*/
 #ifdef WINDOWS_DESKTOP
-bool CLASS_DECL_ACME __is_combo_box_control(oswindow hWnd, unsigned int nStyle)
+bool CLASS_DECL_ACME __is_combo_box_control(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
       return false;
    // do cheap style compare first
-   if ((unsigned int)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
+   if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
       return false;
 
    // do expensive classname compare next
@@ -112,14 +112,14 @@ void CLASS_DECL_ACME __cancel_modes(oswindow hWndRcvr)
       return;     // let input go to ::windowing::window with focus
 
    // focus is in part of a combo-box
-   if (!__is_combo_box_control(hWndCancel, (unsigned int)CBS_DROPDOWNLIST))
+   if (!__is_combo_box_control(hWndCancel, (::u32)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
       hWndCancel = ::get_parent(hWndCancel);   // parent of edit is combo
       if (hWndCancel == hWndRcvr)
          return;     // let input go to part of combo
 
-      if (!__is_combo_box_control(hWndCancel, (unsigned int)CBS_DROPDOWN))
+      if (!__is_combo_box_control(hWndCancel, (::u32)CBS_DROPDOWN))
          return;     // not a combo-box that is active
    }
 
@@ -140,7 +140,7 @@ void CLASS_DECL_ACME __global_free(HGLOBAL hGlobal)
 
    // avoid bogus warning error messages from various debugging tools
    ASSERT(GlobalFlags(hGlobal) != GMEM_INVALID_HANDLE);
-   unsigned int nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
+   ::u32 nCount = GlobalFlags(hGlobal) & GMEM_LOCKCOUNT;
    while (nCount--)
       GlobalUnlock(hGlobal);
 

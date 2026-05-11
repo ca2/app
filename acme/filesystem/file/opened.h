@@ -13,7 +13,7 @@
 
 // struct OF_INFO_t
 // {
-// 	unsigned int dwPID;
+// 	::u32 dwPID;
 // 	const ::wide_character * pFile;
 
 // 	HANDLE hFile;

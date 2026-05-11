@@ -49,7 +49,7 @@ namespace handler
          };
 
 
-         unsigned long long m_hnHandlerFlag;
+         ::u64 m_hnHandlerFlag;
 
 
       };

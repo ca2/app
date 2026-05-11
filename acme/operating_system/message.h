@@ -18,7 +18,7 @@ struct MESSAGE
    wparam                        m_wparam;
    lparam                        m_lparam;
    ::int_point                   m_point;
-   unsigned long long            m_time = 0;
+   ::u64            m_time = 0;
 
 
    MESSAGE() {}

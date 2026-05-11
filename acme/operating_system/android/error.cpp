@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//string get_error_message(unsigned int dwError)
+//string get_error_message(::u32 dwError)
 //{
 //   //char * lpBuffer;
 //   //FormatMessage(

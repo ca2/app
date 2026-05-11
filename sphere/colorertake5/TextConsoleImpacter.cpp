@@ -93,7 +93,7 @@ INPUT_RECORD ir;
 
     // managing the keyboard
     do{
-      unsigned int tmp;
+      ::u32 tmp;
       ReadConsoleInput(hConI, &ir, 1, &tmp);
       if (ir.EventType == WINDOW_BUFFER_SIZE_EVENT){
         GetConsoleScreenBufferInfo(hCon, &csbi);

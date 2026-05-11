@@ -96,7 +96,7 @@ namespace subsystem
        * for details).
        * @throws SystemException on fail.
        */
-      //ServiceControlManagerClient(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS);
+      //ServiceControlManagerClient(::u32 desiredAccess = SC_MANAGER_ALL_ACCESS);
 
       ///ServiceControlManagerClient();
       /**
@@ -105,7 +105,7 @@ namespace subsystem
       //virtual ~ServiceControlManagerClientInterface() = 0;
 
 
-      virtual void initialize_service_control_manager_client(unsigned int desiredAccess = 0) = 0;
+      virtual void initialize_service_control_manager_client(::u32 desiredAccess = 0) = 0;
 
       /**
        * Registers new service in system.
@@ -181,7 +181,7 @@ namespace subsystem
        * @throws SystemException on fail.
        */
       //ServiceControlManagerClient(DWORD desiredAccess = SC_MANAGER_ALL_ACCESS);
-      //ServiceControlManagerClient(unsigned int desiredAccess = 0);
+      //ServiceControlManagerClient(::u32 desiredAccess = 0);
       //ServiceControlManagerClient();
       /**
        * Destructor, closes ServiceControlManagerClient.
@@ -189,8 +189,8 @@ namespace subsystem
       //~ServiceControlManagerClient() override;
 
 
-      //void initialize_service_control_manager_client(unsigned int desiredAccess = SC_MANAGER_ALL_ACCESS) override;
-          void initialize_service_control_manager_client(unsigned int desiredAccess = 0) override
+      //void initialize_service_control_manager_client(::u32 desiredAccess = SC_MANAGER_ALL_ACCESS) override;
+          void initialize_service_control_manager_client(::u32 desiredAccess = 0) override
        {
 
           m_pservicecontrolmanagerclient->initialize_service_control_manager_client(desiredAccess);

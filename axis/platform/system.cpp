@@ -559,7 +559,7 @@ namespace axis
 
 
 
-   //CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, unsigned int dwTemp);
+   //CLASS_DECL_AXIS void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
 
    

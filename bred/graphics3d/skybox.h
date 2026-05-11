@@ -113,8 +113,8 @@ namespace graphics3d
 
 
 
-      //unsigned int skyboxVAO, skyboxVBO, skyboxEBO;
-      //unsigned int cubemapTexture;
+      //::u32 skyboxVAO, skyboxVBO, skyboxEBO;
+      //::u32 cubemapTexture;
       //::string_array_base facesCubemap;
 
       

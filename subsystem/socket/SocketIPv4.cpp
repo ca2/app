@@ -119,7 +119,7 @@ namespace subsystem
 //      // }
 //   }
 //
-//   void SocketIPv4::bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort)
+//   void SocketIPv4::bind(const ::scoped_string & scopedstrBindHost, ::u32 bindPort)
 //   {
 //      m_pparticleThis->bind(scopedstrBindHost, bindPort);
 //      // SocketAddressIPv4 address(scopedstrBindHost, bindPort);

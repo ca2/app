@@ -2510,7 +2510,7 @@ int property_set_base::get_int(const atom & atom, int iDefault) const
 }
 
 
-unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int uDefault) const
+::u32 property_set_base::get_unsigned_int(const atom & atom, ::u32 uDefault) const
 {
 
    auto pproperty = find(atom);
@@ -2529,7 +2529,7 @@ unsigned int property_set_base::get_unsigned_int(const atom & atom, unsigned int
 
    }
 
-   return pproperty->as_unsigned_int();
+   return pproperty->as_u32();
 
 }
 

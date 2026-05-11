@@ -28,7 +28,7 @@ namespace datetime
 #define IsLeapYear(y) (((y % 4) == 0) && (((y % 100) != 0) || ((y % 400) == 0)))
 
 /* Determine if a day is valid in a given month of a given year */
-static int_bool FLOATTIME_IsValidMonthDay(unsigned int day, unsigned int month, unsigned int year)
+static int_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
 {
   static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -51,16 +51,16 @@ static int_bool FLOATTIME_IsValidMonthDay(unsigned int day, unsigned int month, 
 
 typedef struct tagDATEPARSE
 {
-    unsigned int dwCount;      /* Number of fields found so far (maximum 6) */
-    unsigned int dwParseFlags; /* Global parse flags (DP_ Flags above) */
-    unsigned int dwFlags[6];   /* Flags for each field */
-    unsigned int dwValues[6];  /* Value of each field */
+    ::u32 dwCount;      /* Number of fields found so far (maximum 6) */
+    ::u32 dwParseFlags; /* Global parse flags (DP_ Flags above) */
+    ::u32 dwFlags[6];   /* Flags for each field */
+    ::u32 dwValues[6];  /* Value of each field */
 } DATEPARSE;
 
 
 
 
-static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, unsigned int iDate, unsigned int offset, SYSTEMTIME *st);
+static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offset, SYSTEMTIME *st);
 
 /***********************************************************************
  *              SystemTimeToVariantTime [OLEAUT32.184]
@@ -244,7 +244,7 @@ static inline double FLOATTIME_JulianFromDMY(unsigned short year, unsigned short
  *  This function uses the United States English locale for the conversion. Use
  *  VarDateFromUdateEx() for alternate locales.
  */
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, unsigned int dwFlags, DATE *pDateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ::u32 dwFlags, DATE *pDateOut)
 {
   LCID lcid = MAKELCID(MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), SORT_DEFAULT);
 
@@ -267,7 +267,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, unsigned int dwF
  *  Success: S_OK. *pDateOut contains the converted value.
  *  Failure: E_INVALIDARG, if pUdateIn cannot be represented in VT_DATE format.
  */
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, unsigned int dwFlags, DATE *pDateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ::u32 dwFlags, DATE *pDateOut)
 {
   UDATE ud;
   double dateVal, dateSign;
@@ -331,7 +331,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, uns
  *  the date is invalid in that format, in which the most compatible format
  *  that produces a valid date will be used.
  */
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid, unsigned int dwFlags, DATE* pdateOut)
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid, ::u32 dwFlags, DATE* pdateOut)
 {
   static const unsigned short ParseDateTokens[] =
   {
@@ -357,10 +357,10 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
     1,2,3,4,5,6,7,8,9,10,11,12,13,
     1,2,3,4,5,6,7,8,9,10,11,12,13
   };
-  unsigned int i;
+  ::u32 i;
   BSTR tokens[sizeof(ParseDateTokens)/sizeof(ParseDateTokens[0])];
   DATEPARSE dp;
-  unsigned int dwDateSeps = 0, iDate = 0;
+  ::u32 dwDateSeps = 0, iDate = 0;
   HRESULT hRet = S_OK;
 
   if ((dwFlags & (VAR_TIMEVALUEONLY|VAR_DATEVALUEONLY)) ==
@@ -421,9 +421,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
 
       for (i = 0; i < sizeof(tokens)/sizeof(tokens[0]); i++)
       {
-//xxx        unsigned int dwLen = strlenW(tokens[i]);
-// xxx         unsigned int dwLen = strlen(tokens[i]);
-         unsigned int dwLen = -1;
+//xxx        ::u32 dwLen = strlenW(tokens[i]);
+// xxx         ::u32 dwLen = strlen(tokens[i]);
+         ::u32 dwLen = -1;
 //xxx        if (dwLen && !strncmpiW(strIn, tokens[i], dwLen))
         //if (dwLen && !strnicmp_dup(strIn, tokens[i], dwLen))
 //         if(dwLen && 0)
@@ -521,7 +521,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
   if (SUCCEEDED(hRet))
   {
     SYSTEMTIME st;
-    unsigned int dwOffset = 0; /* Start of date fields in dp.dwValues */
+    ::u32 dwOffset = 0; /* Start of date fields in dp.dwValues */
 
     st.wDayOfWeek = st.wHour = st.wMinute = st.wSecond = st.wMilliseconds = 0;
 
@@ -694,9 +694,9 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
 #define ORDER_MYD 0x10 /* Synthetic order, used only for funky 2 digit dates */
 
 /* Determine a date for a particular locale, from 3 numbers */
-static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, unsigned int iDate, unsigned int offset, SYSTEMTIME *st)
+static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, ::u32 iDate, ::u32 offset, SYSTEMTIME *st)
 {
-  unsigned int dwAllOrders, dwTry, dwCount = 0, v1, v2, v3;
+  ::u32 dwAllOrders, dwTry, dwCount = 0, v1, v2, v3;
 
   if (!dp->dwCount)
   {
@@ -749,7 +749,7 @@ VARIANT_MakeDate_Start:
 
   while (dwAllOrders)
   {
-    unsigned int dwTemp;
+    ::u32 dwTemp;
 
     if (dwCount == 0)
     {
@@ -991,7 +991,7 @@ static HRESULT VARIANT_RollUdate(UDATE *lpUd)
 *  Success: S_OK. *lpUdate contains the converted value.
 *  Failure: E_INVALIDARG, if dateIn is too large or small.
 */
-HRESULT WINAPI VarUdateFromDate(DATE dateIn, unsigned int dwFlags, UDATE *lpUdate)
+HRESULT WINAPI VarUdateFromDate(DATE dateIn, ::u32 dwFlags, UDATE *lpUdate)
 {
   /* Cumulative totals of days per month */
   static const unsigned short cumulativeDays[] =

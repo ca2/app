@@ -6,13 +6,13 @@
 template<int>
 	struct _Bitset_base
 	{	// default matter int_size
-	typedef unsigned int _Ty;
+	typedef ::u32 _Ty;
 	};
 
 template<>
 	struct _Bitset_base <8>
 	{	// eight-unsigned char bitset
-	typedef unsigned long long _Ty;
+	typedef ::u64 _Ty;
 	};
 
 		// TEMPLATE CLASS bitset
@@ -141,7 +141,7 @@ public:
  #if _HAS_CPP0X
 	bitset(int _Ival)
 		{	// construct from bits in int
-		unsigned int _Val = (unsigned int)_Ival;
+		::u32 _Val = (::u32)_Ival;
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -151,10 +151,10 @@ public:
 	bitset(_ULonglong _Val)
 
  #else /* _HAS_CPP0X */
-	bitset(unsigned long long _Val)
+	bitset(::u64 _Val)
  #endif /* _HAS_CPP0X */
 
-		{	// construct from bits in unsigned long long
+		{	// construct from bits in ::u64
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -307,28 +307,28 @@ public:
 		return (*this);
 		}
 
-	unsigned long long to_ulong() const
-   {	// convert bitset to unsigned long long
-		unsigned long long _Val = to_ullong();
-		unsigned long long _Ans = (unsigned long long)_Val;
+	::u64 to_ulong() const
+   {	// convert bitset to ::u64
+		::u64 _Val = to_ullong();
+		::u64 _Ans = (::u64)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
 	}
 
-	unsigned long long to_ullong() const
-	{	// convert bitset to unsigned long long long
+	::u64 to_ullong() const
+	{	// convert bitset to ::u64 long
 		enum
-			{	// cause zero divide if unsigned long long long not multiple of _Ty
+			{	// cause zero divide if ::u64 long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (unsigned long long) % sizeof (_Ty) == 0)};
+				/ (int)(sizeof (::u64) % sizeof (_Ty) == 0)};
 
 		int _Wpos = _Words;
-		for (; (int)(sizeof (unsigned long long) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		for (; (int)(sizeof (::u64) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
-		unsigned long long _Val = _Array[_Wpos];
+		::u64 _Val = _Array[_Wpos];
 		for (; 0 <= --_Wpos; )
 			_Val = ((_Val << (_Bitsperword - 1)) << 1) | _Array[_Wpos];
    return (_Val);

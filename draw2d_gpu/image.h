@@ -92,7 +92,7 @@ namespace draw2d_gpu
       //   unsigned char a2, unsigned char r2, unsigned char g2, unsigned char b2, // border colors
       //   int x, int y, int iRadius);
 
-      //unsigned int GetPixel(int x, int y);
+      //::u32 GetPixel(int x, int y);
       //void Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask);
       //void ::color::e_channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, color::color::color::rgba::echannel echannel);
       //void transparent_color(::color::color color);

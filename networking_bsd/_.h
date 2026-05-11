@@ -124,7 +124,7 @@ CLASS_DECL_NETWORKING_BSD int networking_last_error();
 //inline void __exchange(::binary_stream & s, ::networking::address & address);
 
 
-//CLASS_DECL_NETWORKING_BSD unsigned int c_inet_addr(const_char_pointer src);
+//CLASS_DECL_NETWORKING_BSD ::u32 c_inet_addr(const_char_pointer src);
 //CLASS_DECL_NETWORKING_BSD int c_inet_pton(int af, const_char_pointer src, void * dst);
 //CLASS_DECL_NETWORKING_BSD const_char_pointer c_inet_ntop(int af, const void * src, char * dst, int cnt);
 //CLASS_DECL_NETWORKING_BSD string c_inet_ntop(int af, const void * src);

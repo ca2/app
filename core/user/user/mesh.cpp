@@ -958,7 +958,7 @@ namespace user
    return window::pre_create_window(pusersystem);
    }*/
 
-   /*void mesh::OnSize(unsigned int nType, index cx, index cy)
+   /*void mesh::OnSize(::u32 nType, index cx, index cy)
    {
    window::OnSize(nType, cx, cy);
 
@@ -3771,7 +3771,7 @@ namespace user
    //   if(pcolumn == nullptr)
    //      return;
 
-   //   if(pcolumn->m_uiSmallBitmap == (unsigned int)-1)
+   //   if(pcolumn->m_uiSmallBitmap == (::u32)-1)
    //   {
    //      return;
    //   }

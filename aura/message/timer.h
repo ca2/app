@@ -16,7 +16,7 @@ namespace message
    public:
 
 
-      unsigned int m_uTimer;
+      ::u32 m_uTimer;
 
 
       timer() {}

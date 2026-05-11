@@ -31,7 +31,7 @@ namespace subsystem
  {
 
 //   
-//   //    AnonymousPipeFactory::AnonymousPipeFactory(unsigned int bufferSize,
+//   //    AnonymousPipeFactory::AnonymousPipeFactory(::u32 bufferSize,
 ////                                               LogWriter *plogwriter)
 ////    // : m_bufferSize(bufferSize),
 ////    //   m_plogwriter(plogwriter)
@@ -49,7 +49,7 @@ namespace subsystem
 //   {
 //   }
 //
-//   void AnonymousPipeFactory::initialize_anonymous_pipe_factory(unsigned int bufferSize,
+//   void AnonymousPipeFactory::initialize_anonymous_pipe_factory(::u32 bufferSize,
 //                                           LogWriter *plogwriter)
 ////: m_bufferSize(bufferSize),
 //  //m_plogwriter(plogwriter)

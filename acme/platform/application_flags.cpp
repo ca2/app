@@ -1601,7 +1601,7 @@ CLASS_DECL_ACME void set_debug_pointer(void * p);
 //#else
 //
 //
-////unsigned int app_core::system_main()
+////::u32 app_core::system_main()
 ////{
 ////
 ////   ::e_status estatus = psystem->__thread_procedure();

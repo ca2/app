@@ -25,8 +25,8 @@ typedef long long hi;
 
 typedef unsigned char uch;
 typedef unsigned short int unsigned short;
-typedef unsigned int unsigned int;
-typedef unsigned long long unsigned long long;
+typedef ::u32 ::u32;
+typedef ::u64 ::u64;
 #else
 #include "_stdint.h"
 #endif

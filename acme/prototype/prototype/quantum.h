@@ -48,9 +48,9 @@ public:
 
 
    [[nodiscard]] inline bool has_flag(enum_flag eflag) const { return (m_eflagElement & eflag) == eflag; }
-   inline void set_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((unsigned long long)(m_eflagElement) | (unsigned long long)(eflag)); }
+   inline void set_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) | (::u64)(eflag)); }
    inline void set_flag(enum_flag eflag, bool bSet) { if (bSet) set_flag(eflag); else clear_flag(eflag); }
-   inline void clear_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((unsigned long long)(m_eflagElement) & (~(unsigned long long)(eflag))); }
+   inline void clear_flag(enum_flag eflag) { m_eflagElement = (enum_flag)((::u64)(m_eflagElement) & (~(::u64)(eflag))); }
 
 
    inline void set_ok_flag() { set_flag(e_flag_success); clear_flag(e_flag_timeout); clear_flag(e_flag_failure); }

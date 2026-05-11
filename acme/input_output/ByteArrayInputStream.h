@@ -63,9 +63,9 @@
        * @param len count of bytes to write.
        * @throws ::io_exception when no data left in memory buffer.
        */
-      virtual memsize read(void *buffer, memsize len);
+      memsize read(void *buffer, memsize len) override;
 
-      virtual memsize available();
+      memsize available() override;
 
    };
 //} // namespace subsystem

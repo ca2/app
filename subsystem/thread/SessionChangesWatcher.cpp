@@ -73,7 +73,7 @@ namespace subsystem
    //      m_plogwriter->debug("Session or desktop has been changed."
    //                   " The process session = %u, current session = %u"
    //                   " The process desktop = {}, current desktop = {}",
-   //                   (unsigned int)prevSession, (unsigned int)currSessionId,
+   //                   (::u32)prevSession, (::u32)currSessionId,
    //                   prevDeskName, currDeskName);
    //      prevSession = currSessionId;
    //      prevDeskName = currDeskName;

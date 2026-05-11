@@ -47,7 +47,7 @@ namespace gpu_opengl
       //glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
       glBufferData(GL_UNIFORM_BUFFER, iUboSize, NULL, GL_DYNAMIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
       ::opengl::check_error("");
-      unsigned int uUboBindingPoint = 0;
+      ::u32 uUboBindingPoint = 0;
       glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_iUBO);
       ::opengl::check_error("");
       glBindBuffer(GL_UNIFORM_BUFFER, 0);
@@ -75,7 +75,7 @@ namespace gpu_opengl
 //       //bufferinfo.imageView = get_image_view();
 //       //bufferinfo.sampler = pcontext->_001VkSampler();
 //
-//       unsigned int uSamplerBinding = 0;
+//       ::u32 uSamplerBinding = 0;
 //
 //       //auto pgpubindingset = pshader->get_first_image_sampler_binding_set();
 //

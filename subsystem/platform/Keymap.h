@@ -45,19 +45,19 @@ namespace subsystem
       /**
        * Converts X11 key sym to virtual key code.
        * @param keySym X11 key sym.
-       * @param vkCode [out] virtual key code.
+       * @param peuserkey [out] virtual key code.
        * @param extended [out] if the key in the Windows must be marked as extended
        * the extended argument will be returned with the true value.
        * @return true if keySym is translated into virtual key code, false otherwise.
        */
-      bool keySymToVirtualCode(unsigned int keySym, ::user::enum_key * peuserkey, bool *extended);
+      bool keySymToVirtualCode(::u32 keySym, ::user::enum_key * peuserkey, bool *extended);
       /**
        * Converts virtual key code to X11 key sym.
-       * @param vkCode virtual key code.
+       * @param euserkey virtual key code.
        * @param keySym [out] X11 key sym.
        * @return true if virtual key code is translated into keySym, false otherwise.
        */
-      bool virtualCodeToKeySym(unsigned int *keySym, ::user::enum_key ekeyModifier);
+      bool virtualCodeToKeySym(::u32 *keySym, ::user::enum_key euserkey);
 
       /**
        * Converts X11 key sym to TCHAR.
@@ -65,7 +65,7 @@ namespace subsystem
        * @param ch [out] char.
        * @return true if keySym is translated into char, false otherwise.
        */
-      bool keySymToUnicodeChar(unsigned int keySym, int *ch);
+      bool keySymToUnicodeChar(::u32 keySym, int *ch);
 
       /**
        * Converts char to X11 key sym.
@@ -73,6 +73,6 @@ namespace subsystem
        * @param keySym [out] X11 key sym.
        * @return true if char is translated to key sym, false otherwise.
        */
-      bool unicodeCharToKeySym(int ch, unsigned int *keySym);
+      bool unicodeCharToKeySym(int ch, ::u32 *keySym);
    };
 } // namespace subsystem

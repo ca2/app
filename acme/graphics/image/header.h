@@ -79,7 +79,7 @@ struct image_header
 
    constexpr operator ::hash32() const
    {
-      unsigned int u = (unsigned int)m_etype;
+      ::u32 u = (::u32)m_etype;
       if(m_etype == ::e_image_type_plain_color)
       {
          u |= m_color.m_ui;

@@ -57,7 +57,7 @@ CLASS_DECL_ACME int is_debugger_attached()
 //{
 //
 //
-//   CLASS_DECL_ACME string error_message(unsigned int dwError)
+//   CLASS_DECL_ACME string error_message(::u32 dwError)
 //   {
 //
 //      return get_last_error_message(dwError);

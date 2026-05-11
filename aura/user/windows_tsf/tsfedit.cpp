@@ -434,7 +434,7 @@ HRESULT edit_window::_OnGetPreservedKey()
 **************************************************************************/
 
 //LRESULT CALLBACK edit_window::_WndProc( HWND hWnd, 
-//                                        unsigned int uMessage,
+//                                        ::u32 uMessage,
 //                                        WPARAM wParam, 
 //                                        LPARAM lParam)
 //{
@@ -602,7 +602,7 @@ LRESULT edit_window::_OnEditChange(void)
 {
     if(m_fNotify && m_AdviseSink.pTextStoreACPSink && (m_AdviseSink.dwMask & TS_AS_TEXT_CHANGE))
     {
-        unsigned int           dwFlags;
+        ::u32           dwFlags;
         TS_TEXTCHANGE   tc;
         ULONG           cch;
 
@@ -658,7 +658,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 
 **************************************************************************/
 
-//LRESULT edit_window::_OnNotify(unsigned int, LPNMHDR)
+//LRESULT edit_window::_OnNotify(::u32, LPNMHDR)
 //{
 //    return 0;
 //}
@@ -696,7 +696,7 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 
 **************************************************************************/
 
-BOOL edit_window::_IsLocked(unsigned int dwLockType)
+BOOL edit_window::_IsLocked(::u32 dwLockType)
 { 
     if(m_dwInternalLockType)
     {
@@ -737,7 +737,7 @@ HRESULT edit_window::_ClearAdviseSink(PADVISE_SINK pAdviseSink)
 
 **************************************************************************/
 
-BOOL edit_window::_LockDocument(unsigned int dwLockFlags)
+BOOL edit_window::_LockDocument(::u32 dwLockFlags)
 {
     if(m_fLocked)
     {
@@ -756,7 +756,7 @@ BOOL edit_window::_LockDocument(unsigned int dwLockFlags)
 
 **************************************************************************/
 
-BOOL edit_window::_InternalLockDocument(unsigned int dwLockFlags)
+BOOL edit_window::_InternalLockDocument(::u32 dwLockFlags)
 {
     m_dwInternalLockType = dwLockFlags;
     
@@ -978,7 +978,7 @@ void edit_window::_ClearText(void)
 
 HRESULT edit_window::_GetText(LPWSTR *ppwsz, LPLONG pcch)
 {
-    unsigned int   cch;
+    ::u32   cch;
     LPWSTR  pwszText;
     
     *ppwsz = NULL;
@@ -1758,7 +1758,7 @@ STDMETHODIMP edit_window::QueryInterface(REFIID riid, LPVOID *ppReturn)
 
 **************************************************************************/
 
-STDMETHODIMP_(unsigned int) edit_window::AddRef()
+STDMETHODIMP_(::u32) edit_window::AddRef()
 {
     return ++m_ObjRefCount;
 }
@@ -1770,7 +1770,7 @@ STDMETHODIMP_(unsigned int) edit_window::AddRef()
 
 **************************************************************************/
 
-STDMETHODIMP_(unsigned int) edit_window::Release()
+STDMETHODIMP_(::u32) edit_window::Release()
 {
     if(--m_ObjRefCount == 0)
     {

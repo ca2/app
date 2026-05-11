@@ -9,12 +9,12 @@ CLASS_DECL_ACME extern const char log2_LogTable256[256];
 //inline bool is_found(::collection::index i) { return i >= 0; }
 //inline bool not_found(::collection::index i) { return i < 0; }
 
-inline unsigned int u32_log2(unsigned int v)
+inline ::u32 u32_log2(::u32 v)
 {
 
-   //unsigned int v; // 32-bit word to find the plogwriter of
+   //::u32 v; // 32-bit word to find the plogwriter of
    unsigned r;     // r will be lg(v)
-   unsigned int t, tt; // temporaries
+   ::u32 t, tt; // temporaries
 
    if ((tt = (v >> 16)))
    {

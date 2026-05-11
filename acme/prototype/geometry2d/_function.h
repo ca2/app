@@ -1238,7 +1238,7 @@ inline bool polygon_contains_alternate(const POINT1 * ppPolygon, int iCount, con
    /* we do the angle rule, define that all added angles should be about zero or (2 * PI) */
    UNIT_TYPE angletot{};
    //float fp1[2], fp2[2];
-   //unsigned int i;
+   //::u32 i;
    //const float * p1, * p2;
 
    auto * p1 = &ppPolygon[iCount - 1];

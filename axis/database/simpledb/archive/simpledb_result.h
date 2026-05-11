@@ -19,7 +19,7 @@ namespace simpledb
       database *     m_pdatabase;
 //      MYSQL_RES *    m_pres;
       int        m_iFieldCount;
-      unsigned long long       m_uiAffectedRows;
+      ::u64       m_uiAffectedRows;
 
 
       result(database * pdatabase);

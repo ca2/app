@@ -94,7 +94,7 @@ public:
    virtual double player_get_volume();
 
    virtual class ::time player_get_prebuffer_time();
-   virtual unsigned long long player_get_frame_byte_count();
+   virtual ::u64 player_get_frame_byte_count();
 
 
    //virtual out * wave_out();

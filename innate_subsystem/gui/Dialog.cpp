@@ -38,7 +38,7 @@ namespace innate_subsystem
 // {
 // }
 //
-// // Dialog::Dialog(unsigned int resourceId)
+// // Dialog::Dialog(::u32 resourceId)
 // // : m_ctrlParent(NULL), m_resourceName(0), m_resourceId(resourceId), m_hicon(0)
 // // {
 // // }
@@ -60,7 +60,7 @@ namespace innate_subsystem
 // }
 //
 //
-//    /*void Dialog::initialize_dialog(unsigned int resourceId)
+//    /*void Dialog::initialize_dialog(::u32 resourceId)
 // ///: m_ctrlParent(NULL), m_resourceName(0), m_resourceId(resourceId), m_hicon(0)
 // {
 //    m_pparticleThis->initialize_dialog(resourceId);
@@ -85,7 +85,7 @@ namespace innate_subsystem
 //    m_pparticleThis->setResourceName(resourceName);
 // }
 //
-// void Dialog::setResourceId(unsigned int id)
+// void Dialog::setResourceId(::u32 id)
 // {
 //   //m_resourceId = id;
 //    m_pparticleThis->setResourceId(id);
@@ -100,7 +100,7 @@ namespace innate_subsystem
 // // }
 //
 //
-// void Dialog::setDefaultPushButton(unsigned int buttonId)
+// void Dialog::setDefaultPushButton(::u32 buttonId)
 // {
 //   //SendMessage(this->getWindow(), DM_SETDEFID, buttonId, 0);
 //    m_pparticleThis->setDefaultPushButton(buttonId);
@@ -204,12 +204,12 @@ namespace innate_subsystem
 //    return m_pparticleThis->onDrawItem(controlID, pdrawitem);
 // }
 //
-// void Dialog::onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+// void Dialog::onMessageReceived(::u32 uMsg, ::wparam wparam, ::lparam lparam)
 // {
 //    m_pparticleThis->onMessageReceived(uMsg, wparam, lparam);
 // }
 //
-// bool Dialog::dialog_procedure(iptr & result, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+// bool Dialog::dialog_procedure(iptr & result, ::u32 uMsg, ::wparam wparam, ::lparam lparam)
 // {
 //
 //    return m_pparticleThis->dialog_procedure(result, uMsg, wparam, lparam);
@@ -264,7 +264,7 @@ namespace innate_subsystem
 //    return m_pparticleThis->getResouceName();
 // }
 //
-// // void Dialog::subclassControlById(ControlInterface * pcontrol, unsigned int id)
+// // void Dialog::subclassControlById(ControlInterface * pcontrol, ::u32 id)
 // // {
 // //   // control = GetDlgItem(this->getWindow(), id);
 // //    m_pparticleThis->subclassControlById(pcontrol, id);
@@ -278,7 +278,7 @@ namespace innate_subsystem
 //    m_pparticleThis->updateIcon();
 // }
 //
-// void Dialog::loadIcon(unsigned int id)
+// void Dialog::loadIcon(::u32 id)
 // {
 //   // if (m_hicon) {
 //   //   DeleteObject(m_hicon);
@@ -301,13 +301,13 @@ namespace innate_subsystem
 //    return m_pparticleThis->onInitDialog();
 // }
 //
-// // bool Dialog::onNotify(unsigned int controlID, ::lparam data)
+// // bool Dialog::onNotify(::u32 controlID, ::lparam data)
 // // {
 // //   //return FALSE;
 // //    return m_pparticleThis->onNotify(controlID, data);
 // // }
 //
-// bool Dialog::onCommand(unsigned int controlID, unsigned int notificationID)
+// bool Dialog::onCommand(::u32 controlID, ::u32 notificationID)
 // {
 //   //return FALSE;
 //
@@ -327,7 +327,7 @@ namespace innate_subsystem
 // }
 //
 //
-// // bool Dialog::dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam)
+// // bool Dialog::dialog_procedure(iptr & iptrResult, ::u32 message, ::wparam wparam, ::lparam lparam)
 // // {
 // //
 // //    return m_pparticleThis->dialog_procedure(iptrResult,message, wparam, lparam);

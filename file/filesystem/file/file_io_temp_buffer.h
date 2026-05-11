@@ -22,7 +22,7 @@ namespace file
       file_pointer                      _outFile;
       string                           _tempFileName;
       bool                             _tempFileCreated;
-      unsigned int                           _crc;
+      ::u32                           _crc;
       memory              m_memory;
       memsize     _bufPos;
       memsize         _size;

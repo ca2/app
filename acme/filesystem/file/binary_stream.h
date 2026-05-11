@@ -28,8 +28,8 @@ public:
    virtual ::payload & options();
 
 
-   //void write_buffer_length(unsigned long long u);
-   //unsigned long long read_buffer_length();
+   //void write_buffer_length(::u64 u);
+   //::u64 read_buffer_length();
 
 
 
@@ -163,7 +163,7 @@ public:
    // This number represents a following stream of data with this length.
    // So the extra bytes representing the variable length quantity are
    // neglectable and worth due the very fast variable length encoding.
-   inline void write_length(unsigned long long u)
+   inline void write_length(::u64 u)
    {
 
       if (u < 255)
@@ -184,14 +184,14 @@ public:
 
          operator <<((unsigned char)255);
          operator <<((unsigned short)65535);
-         operator <<((unsigned long long)u);
+         operator <<((::u64)u);
 
       }
 
    }
 
 
-   inline void read_length(unsigned long long & u)
+   inline void read_length(::u64 & u)
    {
 
       unsigned char uRead;
@@ -250,9 +250,9 @@ public:
 #endif
    binary_stream & operator <<(bool b) { return operator <<((unsigned char)b ? 1 : 0); }
    binary_stream & operator <<(int i) { raw_write(i); return *this; }
-   binary_stream & operator <<(unsigned int ui) { raw_write(ui); return *this; }
+   binary_stream & operator <<(::u32 ui) { raw_write(ui); return *this; }
    binary_stream & operator <<(long long hi) { raw_write(hi); return *this; }
-   binary_stream & operator <<(unsigned long long hn) { raw_write(hn); return *this; }
+   binary_stream & operator <<(::u64 hn) { raw_write(hn); return *this; }
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
    binary_stream & operator <<(unsigned long u) { raw_write(u); return *this; }
    binary_stream & operator <<(long l) { raw_write(l);  return *this; }
@@ -303,9 +303,9 @@ public:
    //binary_stream & operator >>(short & sh) { raw_read(sh); return *this; }
    //binary_stream & operator >>(unsigned short & ush) { raw_read(ush); return *this; }
    //binary_stream & operator >>(int & i) { raw_read(i); return *this; }
-   //binary_stream & operator >>(unsigned int & ui) {raw_read(ui); return *this; }
+   //binary_stream & operator >>(::u32 & ui) {raw_read(ui); return *this; }
    //binary_stream & operator >>(long long & hi) { raw_read(hi); return *this; }
-   //binary_stream & operator >>(unsigned long long & hn) { raw_read(unsigned long long); return *this; }
+   //binary_stream & operator >>(::u64 & hn) { raw_read(::u64); return *this; }
 //#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
 //   binary_stream & operator >>(unsigned long & u) {
 //      raw_read(u); return *this;
@@ -474,7 +474,7 @@ public:
    // This number represents a following stream of data with this length.
    // So the extra bytes representing the variable length quantity are
    // neglectable and worth due the very fast variable length encoding.
-   void write_buffer_length(unsigned long long u)
+   void write_buffer_length(::u64 u)
    {
 
       if (u < 255)
@@ -495,14 +495,14 @@ public:
 
          operator <<((unsigned char)255);
          operator <<((unsigned short)65535);
-         operator <<((unsigned long long)u);
+         operator <<((::u64)u);
 
       }
 
    }
 
    
-   inline unsigned long long read_buffer_length_unbounded_part2()
+   inline ::u64 read_buffer_length_unbounded_part2()
    {
 
       unsigned short ush;
@@ -518,7 +518,7 @@ public:
       else
       {
 
-         unsigned long long ull;
+         ::u64 ull;
 
          ull = m_pfile->get_u64_unbounded();
 
@@ -529,7 +529,7 @@ public:
    }
 
 
-   inline unsigned long long read_buffer_length_unbounded()
+   inline ::u64 read_buffer_length_unbounded()
    {
 
       unsigned char uch = m_pfile->get_byte_unbounded();
@@ -539,7 +539,7 @@ public:
    }
 
 
-   virtual unsigned long long read_buffer_length();
+   virtual ::u64 read_buffer_length();
 
 
    virtual string type_to_text(const ::platform::type & type);

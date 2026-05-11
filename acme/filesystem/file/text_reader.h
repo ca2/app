@@ -169,7 +169,7 @@ public:
    }
 
 
-   text_reader & operator >>(unsigned int & u)
+   text_reader & operator >>(::u32 & u)
    {
 
       read_natural(u, m_psz);
@@ -189,7 +189,7 @@ public:
    }
 
 
-   text_reader & operator >>(unsigned long long & u)
+   text_reader & operator >>(::u64 & u)
    {
 
       read_natural(u, m_psz);

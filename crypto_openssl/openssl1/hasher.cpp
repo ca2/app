@@ -451,7 +451,7 @@ namespace openssl
    memory hasher::get_hash_and_reset()
    {
 
-      unsigned int md_len = EVP_MD_CTX_get_size(m_pctx);
+      ::u32 md_len = EVP_MD_CTX_get_size(m_pctx);
 
       memory memory;
 

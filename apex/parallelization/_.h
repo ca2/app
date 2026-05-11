@@ -243,7 +243,7 @@ class thread_startup;
 
 
 
-//CLASS_DECL_APEX unsigned int random_processor_index_generator();
+//CLASS_DECL_APEX ::u32 random_processor_index_generator();
 
 
 //CLASS_DECL_APEX int_bool post_message(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);

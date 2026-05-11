@@ -13,7 +13,7 @@ class static_numeric_info
 
 
 template <>
-class CLASS_DECL_ACME static_numeric_info < unsigned int >
+class CLASS_DECL_ACME static_numeric_info < ::u32 >
 {
    public:
 
@@ -25,7 +25,7 @@ class CLASS_DECL_ACME static_numeric_info < unsigned int >
 
 
 template <>
-class CLASS_DECL_ACME static_numeric_info < unsigned long long >
+class CLASS_DECL_ACME static_numeric_info < ::u64 >
 {
    public:
 
@@ -38,7 +38,7 @@ class CLASS_DECL_ACME static_numeric_info < unsigned long long >
 #if defined(WINDOWS) || defined(__APPLE__)
 
 template <>
-class CLASS_DECL_ACME static_numeric_info < long unsigned int >
+class CLASS_DECL_ACME static_numeric_info < long ::u32 >
 {
    public:
 

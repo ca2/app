@@ -5,7 +5,7 @@
 
 //
 //
-//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize);
+//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, ::u32** ppuiLine, memsize** ppsize);
 //
 //#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
 //
@@ -702,7 +702,7 @@
 //   int * piUse = nullptr;
 //   const_char_pointer *pszFile = nullptr;
 //   const_char_pointer *pszCallStack = nullptr;
-//   unsigned int * puiLine = nullptr;
+//   ::u32 * puiLine = nullptr;
 //   memsize * psize = nullptr;
 //
 //   try
@@ -910,7 +910,7 @@
 //#if MEMDLEAK
 //
 //
-//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, unsigned int** ppuiLine, memsize** ppsize)
+//::collection::count get_mem_info(int** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** ppszCallStack, ::u32** ppuiLine, memsize** ppsize)
 //{
 //
 //   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
@@ -935,7 +935,7 @@
 //   int* piUse = (int*)malloc(sizeof(int) * ca);
 //   const_char_pointer *pszFile = (const_char_pointer *)malloc(sizeof(const_char_pointer )* ca);
 //   const_char_pointer *pszCallStack = (const_char_pointer *)malloc(sizeof(const_char_pointer )* ca);
-//   unsigned int* puiLine = (unsigned int*)malloc(sizeof(unsigned int) * ca);
+//   ::u32* puiLine = (::u32*)malloc(sizeof(::u32) * ca);
 //   memsize* psize = (memsize*)malloc(sizeof(memsize) * ca);
 //
 //   ::collection::index i = 0;

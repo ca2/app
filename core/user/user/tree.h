@@ -30,7 +30,7 @@ namespace user
       ::pointer<::draw2d::graphics_extension>                  m_pgraphicsextension;
       ::collection::index                                      m_dwFirstVisibleItem;
       ::collection::index                                      m_iItemCount;
-      unsigned int                                             m_uiLButtonUpFlags;
+      ::u32                                             m_uiLButtonUpFlags;
       int_point                                                m_pointLButtonUp;
       ::pointer < ::data::tree_item_base >                     m_ptreeitemFirstVisible;
       ::collection::index                                      m_iFirstVisibleItemProperIndex;

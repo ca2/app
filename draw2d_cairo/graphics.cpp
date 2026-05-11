@@ -90,7 +90,7 @@ string_to_string_base * g_pmapFontPath;
 //
 //};
 //
-//BOOL CALLBACK EnumFamCallBackW(LPLOGFONTW lplf, LPNEWTEXTMETRICW lpntm, unsigned int dwFontType, LPVOID p)
+//BOOL CALLBACK EnumFamCallBackW(LPLOGFONTW lplf, LPNEWTEXTMETRICW lpntm, ::u32 dwFontType, LPVOID p)
 //{
 //
 //   font_fam_callback * pc = (font_fam_callback *)p;
@@ -609,7 +609,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//unsigned int graphics::RealizePalette()
+//::u32 graphics::RealizePalette()
 //{
 //
 //    return 0;
@@ -1022,7 +1022,7 @@ namespace draw2d_cairo
 
 //#ifdef WINDOWS_DESKTOP
 //
-//void graphics::draw(::image::icon * picon, int cx, int cy, unsigned int istepIfAniCur, HBRUSH hbrFlickerFreeDraw, unsigned int diFlags)
+//void graphics::draw(::image::icon * picon, int cx, int cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
 //{
 //
 //
@@ -1148,7 +1148,7 @@ namespace draw2d_cairo
 //#endif
 
 
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, HBITMAP hBitmap, unsigned int nFlags, HBRUSH hBrush)
+//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1158,7 +1158,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, ::draw2d::bitmap* pBitmap, unsigned int nFlags, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1168,7 +1168,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags, bool bPrefixText, int nTextLen, HBRUSH hBrush)
+//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, int nTextLen, HBRUSH hBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1178,7 +1178,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, unsigned int nFlags, bool bPrefixText, int nTextLen, ::draw2d::brush* pBrush)
+//void graphics::DrawState(const ::double_point & point, const ::double_size & double_size, const ::scoped_string & scopedstrText, ::u32 nFlags, bool bPrefixText, int nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    throw ::interface_only();
@@ -1188,7 +1188,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::DrawEdge(const ::int_rectangle & rectangle, unsigned int nEdge, unsigned int nFlags)
+//void graphics::DrawEdge(const ::int_rectangle & rectangle, ::u32 nEdge, ::u32 nFlags)
 //{
 //
 //    throw ::interface_only();
@@ -1198,7 +1198,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::DrawFrameControl(const ::int_rectangle & rectangle, unsigned int nType, unsigned int nState)
+//void graphics::DrawFrameControl(const ::int_rectangle & rectangle, ::u32 nType, ::u32 nState)
 //{
 //
 //    throw ::interface_only();
@@ -1855,7 +1855,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::ExtFloodFill(double x, double y, const ::color::color & color, unsigned int nFillType)
+//void graphics::ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType)
 //{
 //
 //    throw ::interface_only();
@@ -1880,7 +1880,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * lpDxWidths)
+//void graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * lpDxWidths)
 //{
 //
 //    throw ::interface_only();
@@ -1960,7 +1960,7 @@ namespace draw2d_cairo
 //}
 
 
-   unsigned int graphics::GetTextAlign()
+   ::u32 graphics::GetTextAlign()
    {
 
       throw ::interface_only();
@@ -2148,7 +2148,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer)
+//void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2158,7 +2158,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetOutputCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer)
+//void graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -2168,7 +2168,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//unsigned int graphics::GetFontLanguageInfo()
+//::u32 graphics::GetFontLanguageInfo()
 //{
 //
 //    throw ::interface_only();
@@ -2210,7 +2210,7 @@ namespace draw2d_cairo
 
 
 // graphics 3.1 Specific functions
-   unsigned int graphics::SetBoundsRect(const ::double_rectangle & rectangleBounds, unsigned int flags)
+   ::u32 graphics::SetBoundsRect(const ::double_rectangle & rectangleBounds, ::u32 flags)
    {
 
       throw ::interface_only();
@@ -2220,7 +2220,7 @@ namespace draw2d_cairo
    }
 
 
-   unsigned int graphics::GetBoundsRect(::double_rectangle * rectangleBounds, unsigned int flags)
+   ::u32 graphics::GetBoundsRect(::double_rectangle * rectangleBounds, ::u32 flags)
    {
 
       throw ::interface_only();
@@ -2230,7 +2230,7 @@ namespace draw2d_cairo
    }
 
 
-//unsigned int graphics::GetFontData(unsigned int dwTable, unsigned int dwOffset, LPVOID lpData, unsigned int cbData)
+//::u32 graphics::GetFontData(::u32 dwTable, ::u32 dwOffset, LPVOID lpData, ::u32 cbData)
 //{
 //
 //    throw ::interface_only();
@@ -2687,7 +2687,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, float* lpFloatBuffer)
+//void graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, float* lpFloatBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -3010,7 +3010,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::TransparentBlt(double xDest, double yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, int nSrcWidth, int nSrcHeight, unsigned int crTransparent)
+//void graphics::TransparentBlt(double xDest, double yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, int nSrcWidth, int nSrcHeight, ::u32 crTransparent)
 //{
 //
 //    throw ::interface_only();
@@ -3020,7 +3020,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, unsigned int dwMode)
+//void graphics::GradientFill(TRIVERTEX* pVertices, WINULONG nVertices, void * pMesh, WINULONG nMeshElements, ::u32 dwMode)
 //{
 //
 //    throw ::interface_only();
@@ -3080,7 +3080,7 @@ namespace draw2d_cairo
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //
-//void graphics::GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC lpabc)
+//void graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc)
 //{
 //
 //    throw ::interface_only();
@@ -3090,7 +3090,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//void graphics::GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPINT lpBuffer)
+//void graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer)
 //{
 //
 //    throw ::interface_only();
@@ -3396,7 +3396,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::ModifyWorldTransform(const XFORM* pXform, unsigned int iMode)
+//void graphics::ModifyWorldTransform(const XFORM* pXform, ::u32 iMode)
 //{
 //
 //    throw ::interface_only();
@@ -3628,7 +3628,7 @@ namespace draw2d_cairo
    //}
 
 
-   unsigned int graphics::SetTextAlign(unsigned int nFlags)
+   ::u32 graphics::SetTextAlign(::u32 nFlags)
    {
 
       return 0;
@@ -3656,7 +3656,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//unsigned int graphics::SetMapperFlags(unsigned int dwFlag)
+//::u32 graphics::SetMapperFlags(::u32 dwFlag)
 //{
 //
 //    throw ::interface_only();
@@ -3666,7 +3666,7 @@ namespace draw2d_cairo
 //}
 //
 //
-   unsigned int graphics::GetLayout()
+   ::u32 graphics::GetLayout()
    {
 
       throw ::interface_only();
@@ -3676,7 +3676,7 @@ namespace draw2d_cairo
    }
 
 
-   unsigned int graphics::SetLayout(unsigned int dwSetLayout)
+   ::u32 graphics::SetLayout(::u32 dwSetLayout)
    {
 
       throw ::interface_only();

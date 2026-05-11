@@ -24,7 +24,7 @@ namespace user
    //   long                 style;
    //   platform_char *      lpszName;
    //   platform_char *      lpszClass;
-   //   unsigned int                  dwExStyle;
+   //   ::u32                  dwExStyle;
 
 
    //};
@@ -58,17 +58,17 @@ namespace user
 
       system(const system&);
       system(
-         //unsigned int uExStyle = 0,
+         //::u32 uExStyle = 0,
          //const ::scoped_string & scopedstrClassName = 0,
          //const ::scoped_string & scopedstrWindowName = 0,
-         //unsigned int uStyle = 0,
+         //::u32 uStyle = 0,
          //const ::int_rectangle& rectangle = nullptr,
          ::request* prequest = nullptr);
 
       //system(
       //   const ::int_rectangle& rectangle,
-      //   //unsigned int uExStyle = 0,
-      //   //unsigned int uStyle = 0,
+      //   //::u32 uExStyle = 0,
+      //   //::u32 uStyle = 0,
       //   ::create* pcreate = nullptr);
 
       void create_common_construct();

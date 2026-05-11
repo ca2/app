@@ -12,7 +12,7 @@
 //   }
 //
 //
-////   unsigned int GetTempPath(string & str)
+////   ::u32 GetTempPath(string & str)
 ////   {
 ////      return ::GetTempPathW(MAX_PATH * 8, wstring_adaptor(str, MAX_PATH * 8));
 ////   }

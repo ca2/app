@@ -31,7 +31,7 @@
    CLASS_DECL_APEX ::string as_string(EVP_MD_CTX * pctx)
    {
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
       memory memory;
 

@@ -71,8 +71,8 @@
 //struct CLASS_DECL_APEX __EVENTSINKMAP_ENTRY
 //{
 //   __DISPMAP_ENTRY dispEntry;
-//   unsigned int nCtrlIDFirst;
-//   unsigned int nCtrlIDLast;
+//   ::u32 nCtrlIDFirst;
+//   ::u32 nCtrlIDLast;
 //};
 //
 //// DSC Sink state/reason codes passed to apex API ::account::user happening handlers

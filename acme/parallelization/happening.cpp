@@ -180,7 +180,7 @@ happening::happening(const ::scoped_string & scopedstrName, bool bInitiallyOwn, 
 
 #elif defined(UNIVERSAL_WINDOWS)
 
-   unsigned int dwFlags = 0;
+   ::u32 dwFlags = 0;
 
    if(bInitiallyOwn)
    {
@@ -1328,7 +1328,7 @@ bool happening::is_signaled() const
 //
 ////#ifdef WINDOWS
 ////
-////   unsigned int dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,timeTimeout.u32_millis(),false);
+////   ::u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsynchronization,timeTimeout.u32_millis(),false);
 ////
 ////   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 ////      return true;
@@ -1392,9 +1392,9 @@ bool happening::is_signaled() const
 ////   else
 ////   {
 ////
-////      unsigned int timeout = timeTimeout.u32_millis();
+////      ::u32 timeout = timeTimeout.u32_millis();
 ////
-////      unsigned int start= ::time::now();
+////      ::u32 start= ::time::now();
 ////
 ////      while(start.elapsed() < timeout)
 ////      {

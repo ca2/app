@@ -189,7 +189,7 @@ namespace dynamic_source
       string get_library_build_log();
 
 
-      //static unsigned int c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
+      //static ::u32 c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure
 
       ::file::real_and_logical_path _real_path1(const ::scoped_string& scopedstrName) override;
       //virtual ::file_system_cache_item _real_path(const ::file::path & str);

@@ -337,12 +337,12 @@ namespace numeric_info_internal
    };
 
    template < >
-class CLASS_DECL_ACME numeric_info < unsigned long long > :
+class CLASS_DECL_ACME numeric_info < ::u64 > :
    public numeric_integer_base
    {
    public:
 
-      typedef unsigned long long TYPE;
+      typedef ::u64 TYPE;
       typedef long long OFFSET_TYPE;
 
       static consteval TYPE maximum()
@@ -373,12 +373,12 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < unsigned int > :
+   class CLASS_DECL_ACME numeric_info < ::u32 > :
       public numeric_integer_base
    {
    public:
 
-      typedef unsigned int TYPE;
+      typedef ::u32 TYPE;
       typedef int OFFSET_TYPE;
 
       static consteval TYPE maximum()
@@ -415,7 +415,7 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    {
    public:
 
-      typedef unsigned int TYPE;
+      typedef ::u32 TYPE;
       typedef int OFFSET_TYPE;
 
       static consteval TYPE maximum()
@@ -490,12 +490,12 @@ class CLASS_DECL_ACME numeric_info < unsigned long long > :
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < unsigned long long >:
+   class CLASS_DECL_ACME numeric_info < ::u64 >:
       public numeric_integer_base
    {
    public:
 
-      typedef unsigned long long TYPE;
+      typedef ::u64 TYPE;
       typedef long long OFFSET_TYPE;
 
       static consteval TYPE maximum()

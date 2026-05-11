@@ -466,7 +466,7 @@ namespace account
 //   try
 //   {
 //
-//      unsigned int dwBeg= ::time::now();
+//      ::u32 dwBeg= ::time::now();
 //
 //      ::property_set set;
 //
@@ -478,7 +478,7 @@ namespace account
 //
 //      strNode = http()->get(strGetFontopus, set);
 //
-//      unsigned int tickEnd= ::time::now();
+//      ::u32 tickEnd= ::time::now();
 //
 //      informationf("get_account_login HTTP GET time = %dms",tickEnd - dwBeg);
 //

@@ -2834,7 +2834,7 @@ m_ibuf(isize)
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
       // session atom
       //int iSetSessionResult = -1;
-      unsigned int uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
+      ::u32 uSessionIdMaxLen = SSL_MAX_SSL_SESSION_ID_LENGTH;
 
       auto strContextMd5 = crypto()->md5(context);
 
@@ -2844,11 +2844,11 @@ m_ibuf(isize)
       {
          //iSetSessionResult = SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
          //                                                   (const uchar *) (const_char_pointer )context,
-         //                                                   minimum((unsigned int) context.length(), uSessionIdMaxLen));
+         //                                                   minimum((::u32) context.length(), uSessionIdMaxLen));
 
          SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext,
             (const uchar*)(const_char_pointer )strContextMd5,
-            minimum((unsigned int)strContextMd5.length(), uSessionIdMaxLen));
+            minimum((::u32)strContextMd5.length(), uSessionIdMaxLen));
       }
       else
       {
@@ -2994,7 +2994,7 @@ m_ibuf(isize)
       SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_OP_NO_COMPRESSION | SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext));
       // session atom
       if (context.length())
-         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar*)(const  char*)context, (unsigned int)context.length());
+         SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar*)(const  char*)context, (::u32)context.length());
       else
          SSL_CTX_set_session_id_context(m_psslcontext->m_pclientcontext->m_psslcontext, (const uchar*)"--is_empty--", 9);
 
@@ -3151,18 +3151,18 @@ m_ibuf(isize)
    }
 
 
-   unsigned long long tcp_socket::GetBytesReceived(bool clear)
+   ::u64 tcp_socket::GetBytesReceived(bool clear)
    {
-      unsigned long long z = m_bytes_received;
+      ::u64 z = m_bytes_received;
       if (clear)
          m_bytes_received = 0;
       return z;
    }
 
 
-   unsigned long long tcp_socket::GetBytesSent(bool clear)
+   ::u64 tcp_socket::GetBytesSent(bool clear)
    {
-      unsigned long long z = m_bytes_sent;
+      ::u64 z = m_bytes_sent;
       if (clear)
          m_bytes_sent = 0;
       return z;

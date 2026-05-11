@@ -22,7 +22,7 @@ namespace file
                *processedSize = size;
             return;
          }
-         size = (unsigned int)_size;
+         size = (::u32)_size;
       }
       if (_stream)
          _stream->write(data, size, &size);

@@ -90,7 +90,7 @@ initialize(poutputstream);
       write((char *)buf, sizeof(buf));
    }
 
-   void DataOutputStream::writeUInt32(unsigned int data)
+   void DataOutputStream::writeUInt32(::u32 data)
    {
       unsigned char buf[4];
 
@@ -102,7 +102,7 @@ initialize(poutputstream);
       write((char *)buf, sizeof(buf));
    }
 
-   void DataOutputStream::writeUInt64(unsigned long long data)
+   void DataOutputStream::writeUInt64(::u64 data)
    {
       unsigned char buf[8];
 
@@ -130,12 +130,12 @@ initialize(poutputstream);
 
    void DataOutputStream::writeInt32(int x)
    {
-      writeUInt32((unsigned int)x);
+      writeUInt32((::u32)x);
    }
 
    void DataOutputStream::writeInt64(long long x)
    {
-      writeUInt64((unsigned long long)x);
+      writeUInt64((::u64)x);
    }
 
    void DataOutputStream::writeUTF8(const scoped_ansi_string &str)
@@ -147,7 +147,7 @@ initialize(poutputstream);
 
       // FIXME: Why try/catch() is used?
       try {
-         unsigned int sizeInBytes = (unsigned int)str.size();
+         ::u32 sizeInBytes = (::u32)str.size();
          //_ASSERT(sizeInBytes == str.size());
          writeUInt32(sizeInBytes);
          write(str.data(), sizeInBytes);

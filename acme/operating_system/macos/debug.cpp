@@ -56,17 +56,17 @@
 //   return ( (info.kp_proc.p_flag & P_TRACED) != 0 );
 //}
 //
-//unsigned int
+//::u32
 ////WINAPI
 //FormatMessage(
-//unsigned int dwFlags,
+//::u32 dwFlags,
 //const void * pSource,
 //
-//unsigned int dwMessageId,
-//unsigned int dwLanguageId,
+//::u32 dwMessageId,
+//::u32 dwLanguageId,
 //char * pBuffer,
 //
-//unsigned int nSize,
+//::u32 nSize,
 //va_list *Arguments
 //)
 //{

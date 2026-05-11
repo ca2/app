@@ -669,7 +669,7 @@ namespace user
 
 
 
-   //bool element::SetPlacement(const ::int_rectangle & rectangle,unsigned int nFlags)
+   //bool element::SetPlacement(const ::int_rectangle & rectangle,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -729,7 +729,7 @@ namespace user
    //}
 
 
-   //int element::sync_message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeOut, unsigned int fuStyle)
+   //int element::sync_message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), timeTimeOut, fuStyle);
@@ -768,7 +768,7 @@ namespace user
    //}
 
 
-   //void element::message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeout, unsigned int fuStyle)
+   //void element::message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeout, ::u32 fuStyle)
    //{
 
    //   fork([=]()
@@ -789,7 +789,7 @@ namespace user
    //}
 
 
-   //bool element::RepositionWindow(int x,int y,int cx,int cy,unsigned int nFlags)
+   //bool element::RepositionWindow(int x,int y,int cx,int cy,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -799,7 +799,7 @@ namespace user
    //}
 
 
-   //bool element::MoveWindow(int x,int y,unsigned int nFlags)
+   //bool element::MoveWindow(int x,int y,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -819,7 +819,7 @@ namespace user
    //}
 
 
-   //bool element::SizeWindow(int cx,int cy,unsigned int nFlags)
+   //bool element::SizeWindow(int cx,int cy,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -839,7 +839,7 @@ namespace user
    //}
 
 
-   //bool element::ResizeWindow(int cx,int cy,unsigned int nFlags)
+   //bool element::ResizeWindow(int cx,int cy,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -849,7 +849,7 @@ namespace user
    //}
 
 
-   //bool element::ResizeWindow(const int_size & sz,unsigned int nFlags)
+   //bool element::ResizeWindow(const int_size & sz,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -859,7 +859,7 @@ namespace user
    //}
 
 
-   //bool element::set_window_position(class zorder zorder, const ::int_rectangle & rectangle, unsigned int nFlags)
+   //bool element::set_window_position(class zorder zorder, const ::int_rectangle & rectangle, ::u32 nFlags)
 
    //{
 
@@ -869,7 +869,7 @@ namespace user
 
    //}
 
-   //bool element::defer_set_window_pos(iptr z, const  const int_rectangle & & rectangle, unsigned int nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
+   //bool element::defer_set_window_pos(iptr z, const  const int_rectangle & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();
@@ -879,7 +879,7 @@ namespace user
    //}
 
 
-   //bool element::defer_set_window_pos(iptr z,int x,int y,int cx,int cy,unsigned int nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
+   //bool element::defer_set_window_pos(iptr z,int x,int y,int cx,int cy,::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();
@@ -1088,7 +1088,7 @@ namespace user
    //}
 
 
-   //bool element::ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags)
+   //bool element::ModifyStyle(::u32 dwRemove,::u32 dwAdd,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -1098,7 +1098,7 @@ namespace user
    //}
 
 
-   //bool element::ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags)
+   //bool element::ModifyStyleEx(::u32 dwRemove,::u32 dwAdd,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -1213,7 +1213,7 @@ namespace user
    }
 
 
-   //bool element::create_interaction(::user::interaction * puiParent, ::request * prequest, unsigned int uExStyle, unsigned int uStyle)
+   //bool element::create_interaction(::user::interaction * puiParent, ::request * prequest, ::u32 uExStyle, ::u32 uStyle)
    //{
 
    //   throw ::interface_only();
@@ -1455,7 +1455,7 @@ namespace user
    //}
 
 
-   //bool element::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   //bool element::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   throw ::interface_only();
@@ -1473,7 +1473,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::ChildWindowFromPoint(const ::int_point & point, unsigned int nFlags)
+   ::user::interaction * element::ChildWindowFromPoint(const ::int_point & point, ::u32 nFlags)
    {
 
       throw ::interface_only();
@@ -1535,7 +1535,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_wnd(unsigned int nCmd)
+   ::user::interaction * element::get_wnd(::u32 nCmd)
    {
 
       throw ::interface_only();
@@ -1800,7 +1800,7 @@ namespace user
    //}
 
 
-   //unsigned int element::GetStyle() const
+   //::u32 element::GetStyle() const
    //{
 
    //   throw ::interface_only();
@@ -1810,7 +1810,7 @@ namespace user
    //}
 
 
-   //unsigned int element::GetExStyle() const
+   //::u32 element::GetExStyle() const
    //{
 
    //   throw ::interface_only();
@@ -1864,7 +1864,7 @@ namespace user
    //}
 
 
-   //void element::CalcWindowRect(::int_rectangle * prectangle,unsigned int nAdjustType)
+   //void element::CalcWindowRect(::int_rectangle * prectangle,::u32 nAdjustType)
 
    //{
 
@@ -1873,7 +1873,7 @@ namespace user
    //}
 
 
-   void element::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeftOver, unsigned int nFlag, ::int_rectangle * prectParam, const ::int_rectangle & rectangleX, bool bStretch)
+   void element::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::int_rectangle * prectParam, const ::int_rectangle & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2354,7 +2354,7 @@ namespace user
    }
 
 
-   //atom element::run_modal_loop(::user::interaction * pinteraction, unsigned int dwFlags)
+   //atom element::run_modal_loop(::user::interaction * pinteraction, ::u32 dwFlags)
    //{
 
    //   throw ::interface_only();
@@ -2364,7 +2364,7 @@ namespace user
    //}
 
 
-   //atom element::RunModalLoop(unsigned int dwFlags)
+   //atom element::RunModalLoop(::u32 dwFlags)
    //{
 
    //   throw ::interface_only();
@@ -2374,7 +2374,7 @@ namespace user
    //}
 
 
-   //atom element::_001RunModalLoop(unsigned int dwFlags)
+   //atom element::_001RunModalLoop(::u32 dwFlags)
    //{
 
    //   throw ::interface_only();
@@ -3392,7 +3392,7 @@ namespace user
    }
 
 
-   unsigned int element::get_window_default_style()
+   ::u32 element::get_window_default_style()
    {
 
       throw ::interface_only();
@@ -3738,7 +3738,7 @@ namespace user
    //}
 
 
-   //bool element::set_window_position(class zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
+   //bool element::set_window_position(class zorder zorder, int x, int y, int cx, int cy, ::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -4229,7 +4229,7 @@ namespace user
    //}
 
 
-//   bool element::SetPlacement(const ::int_rectangle & rectangle, unsigned int nFlags)
+//   bool element::SetPlacement(const ::int_rectangle & rectangle, ::u32 nFlags)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(rectangle);

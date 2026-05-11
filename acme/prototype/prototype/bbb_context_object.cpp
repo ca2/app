@@ -376,7 +376,7 @@ void object::process_exit_status(const ::e_status & estatus)
 
 
 
-   //static unsigned int s_thread_proc(void* p);
+   //static ::u32 s_thread_proc(void* p);
 
 
    // void to_string(const string_exchange & str) const 
@@ -830,7 +830,7 @@ void object::delete_this()
 
 
    //template < typename PRED >
-   //::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
    // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
@@ -975,7 +975,7 @@ void object::delete_this()
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer object::begin(::enum_priority epriority, unsigned int nStackSize, unsigned int dwCreateFlags)
+   //::thread_pointer object::begin(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags)
    //{
 
    //   return nullptr;

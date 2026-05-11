@@ -1910,8 +1910,8 @@ public:
    //static void consume(::const_ansi_range & range, const_char_pointer psz);
    void consume(const ::scoped_string & scopedstr);
    //void consume_spaces(::collection::count iMinimumCount = 1);
-   unsigned long long consume_natural(unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
-   //unsigned long long consume_natural(string & str, unsigned long long uiMax = ((unsigned long long)-1), unsigned long long uiMin = 0);
+   ::u64 consume_natural(::u64 uiMax = ((::u64)-1), ::u64 uiMin = 0);
+   //::u64 consume_natural(string & str, ::u64 uiMax = ((::u64)-1), ::u64 uiMin = 0);
    string_range consume_hex();
    //void consume_spaces(::const_ansi_range & range, ::collection::count iMinimumCount);
    string_range consume_non_spaces();

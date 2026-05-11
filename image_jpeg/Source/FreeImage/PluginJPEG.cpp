@@ -256,7 +256,7 @@ term_destination (j_compress_ptr cinfo)
 
    if (datacount > 0)
    {
-      if (dest->m_io->write_proc(dest->buffer, 1, (unsigned int)datacount, dest->outfile) != datacount)
+      if (dest->m_io->write_proc(dest->buffer, 1, (::u32)datacount, dest->outfile) != datacount)
       {
          // let the memory manager delete any temp files before we die
          jpeg_destroy((j_common_ptr)cinfo);
@@ -460,7 +460,7 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
 /**
 	Read JPEG_COM marker (comment)
 */
-/*static int_bool jpeg_read_comment(FIBITMAP * pimage, const unsigned char *dataptr, unsigned int datalen)
+/*static int_bool jpeg_read_comment(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
    size_t length = datalen;
    unsigned char *profile = (unsigned char*)dataptr;
@@ -475,7 +475,7 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
    FITAG *tag = FreeImage_CreateTag();
    if(tag)
    {
-      unsigned int count = (unsigned int)length + 1;	// includes the null value
+      ::u32 count = (::u32)length + 1;	// includes the null value
 
       FreeImage_SetTagID(tag, JPEG_COM);
       FreeImage_SetTagKey(tag, "Comment");
@@ -650,7 +650,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
 	Read JPEG_APPD marker (IPTC or Adobe Photoshop profile)
 */
 static int_bool
-/*jpeg_read_iptc_profile(FIBITMAP * pimage, const unsigned char *dataptr, unsigned int datalen)
+/*jpeg_read_iptc_profile(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
 /*   return read_iptc_profile(pimage, dataptr, datalen);
 }
@@ -663,7 +663,7 @@ static int_bool
 	@return Returns true if successful, false otherwise
 */
 static int_bool
-/*jpeg_read_xmp_profile(FIBITMAP * pimage, const unsigned char *dataptr, unsigned int datalen)
+/*jpeg_read_xmp_profile(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
    // marker identifying string for XMP (null terminated)
    const_char_pointer xmp_signature = "http://ns.adobe.com/xap/1.0/";
@@ -694,8 +694,8 @@ static int_bool
       {
          FreeImage_SetTagID(tag, JPEG_APP0+1);	// 0xFFE1
          FreeImage_SetTagKey(tag, g_TagLib_XMPFieldName);
-         FreeImage_SetTagLength(tag, (unsigned int)length);
-         FreeImage_SetTagCount(tag, (unsigned int)length);
+         FreeImage_SetTagLength(tag, (::u32)length);
+         FreeImage_SetTagCount(tag, (::u32)length);
          FreeImage_SetTagType(tag, FIDT_ASCII);
          FreeImage_SetTagValue(tag, profile);
 
@@ -720,7 +720,7 @@ static int_bool
 	@return Returns true if successful, false otherwise
 */
 static int_bool
-/*jpeg_read_jfxx(FIBITMAP * pimage, const unsigned char *dataptr, unsigned int datalen)
+/*jpeg_read_jfxx(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
    if(datalen < 6)
    {
@@ -845,7 +845,7 @@ static int_bool
       {
          for(long i = 0; i < (long)strlen(tag_value); i+= MAX_BYTES_IN_MARKER)
          {
-            jpeg_write_marker(cinfo, JPEG_COM, (unsigned char*)tag_value + i, (unsigned int) minimum((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
+            jpeg_write_marker(cinfo, JPEG_COM, (unsigned char*)tag_value + i, (::u32) minimum((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
          }
          return true;
       }
@@ -963,15 +963,15 @@ static int_bool
       if(nullptr != tag_value)
       {
          // XMP signature is 29 bytes long
-         unsigned int xmp_header_size = (unsigned int)strlen(xmp_signature) + 1;
+         ::u32 xmp_header_size = (::u32)strlen(xmp_signature) + 1;
 
-         unsigned int tag_length = FreeImage_GetTagLength(tag_xmp);
+         ::u32 tag_length = FreeImage_GetTagLength(tag_xmp);
 
          unsigned char *profile = (unsigned char*)malloc((tag_length + xmp_header_size) * sizeof(unsigned char));
          if(profile == nullptr) return false;
          ::memory_copy(profile, xmp_signature, xmp_header_size);
 
-         for(unsigned int i = 0; i < tag_length; i += 65504L)
+         for(::u32 i = 0; i < tag_length; i += 65504L)
          {
             unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
@@ -1014,12 +1014,12 @@ static int_bool
 
       if(nullptr != tag_value)
       {
-         unsigned int tag_length = FreeImage_GetTagLength(tag_exif);
+         ::u32 tag_length = FreeImage_GetTagLength(tag_exif);
 
          unsigned char *profile = (unsigned char*)malloc(tag_length * sizeof(unsigned char));
          if(profile == nullptr) return false;
 
-         for(unsigned int i = 0; i < tag_length; i += 65504L)
+         for(::u32 i = 0; i < tag_length; i += 65504L)
          {
             unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
@@ -1078,14 +1078,14 @@ static int_bool
    }
 
    unsigned char* thData = nullptr;
-   unsigned int thSize = 0;
+   ::u32 thSize = 0;
 
    FreeImage_AcquireMemory(stream, &thData, &thSize);
 
    unsigned char id_length = 5; //< "JFXX"
    unsigned char type = JFXX_TYPE_JPEG;
 
-   unsigned int totalsize = id_length + sizeof(type) + thSize;
+   ::u32 totalsize = id_length + sizeof(type) + thSize;
    jpeg_write_m_header(cinfo, JPEG_APP0, totalsize);
 
    jpeg_write_m_byte(cinfo, 'J');
@@ -1167,8 +1167,8 @@ static void
       sprintf(buffer, "%d", (int)width);
       length = strlen(buffer) + 1;	// include the nullptr/0 value
       FreeImage_SetTagKey(tag, "OriginalJPEGWidth");
-      FreeImage_SetTagLength(tag, (unsigned int)length);
-      FreeImage_SetTagCount(tag, (unsigned int)length);
+      FreeImage_SetTagLength(tag, (::u32)length);
+      FreeImage_SetTagCount(tag, (::u32)length);
       FreeImage_SetTagType(tag, FIDT_ASCII);
       FreeImage_SetTagValue(tag, buffer);
 /*      FreeImage_SetMetadata(FIMD_COMMENTS, pimage, FreeImage_GetTagKey(tag), tag);
@@ -1176,8 +1176,8 @@ static void
       sprintf(buffer, "%d", (int)height);
       length = strlen(buffer) + 1;	// include the nullptr/0 value
       FreeImage_SetTagKey(tag, "OriginalJPEGHeight");
-      FreeImage_SetTagLength(tag, (unsigned int)length);
-      FreeImage_SetTagCount(tag, (unsigned int)length);
+      FreeImage_SetTagLength(tag, (::u32)length);
+      FreeImage_SetTagCount(tag, (::u32)length);
       FreeImage_SetTagType(tag, FIDT_ASCII);
       FreeImage_SetTagValue(tag, buffer);
 /*      FreeImage_SetMetadata(FIMD_COMMENTS, pimage, FreeImage_GetTagKey(tag), tag);
@@ -1313,7 +1313,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
          // step 4: set parameters for decompression
 
-         unsigned int scale_denom = 1;		// fraction by which to scale image
+         ::u32 scale_denom = 1;		// fraction by which to scale image
          int	requested_size = flags >> 16;	// requested user int_size in pixels
          if(requested_size > 0)
          {

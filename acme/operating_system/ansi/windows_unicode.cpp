@@ -14,7 +14,7 @@
 
 #ifndef UNIVERSAL_WINDOWS
 
-string iconv_charset_from_windows_code_page(unsigned int CodePage)
+string iconv_charset_from_windows_code_page(::u32 CodePage)
 {
 
    switch(CodePage)
@@ -33,8 +33,8 @@ string iconv_charset_from_windows_code_page(unsigned int CodePage)
 
 int
 MultiByteToWideChar2(
-unsigned int     CodePage,
-unsigned int    dwFlags,
+::u32     CodePage,
+::u32    dwFlags,
 const_char_pointer pMultiByteStr,
 int      cbMultiByte,
 ::wd16_character *   pWideCharStr,
@@ -158,8 +158,8 @@ int      cchWideChar)
 
 int
 MultiByteToWideChar2(
-unsigned int     CodePage,
-unsigned int    dwFlags,
+::u32     CodePage,
+::u32    dwFlags,
 const_char_pointer pMultiByteStr,
 int      cbMultiByte,
 ::wd32_character *   pWideCharStr,
@@ -282,8 +282,8 @@ int      cchWideChar)
 
 
 int  WideCharToMultiByte2(
-unsigned int     CodePage,
-unsigned int    dwFlags,
+::u32     CodePage,
+::u32    dwFlags,
 const ::wide_character *  pWideCharStr,
 int      cchWideChar,
 char *   pMultiByteStr,
@@ -372,7 +372,7 @@ int_bool *  pUsedDefaultChar)
 }
 
 
-//CLASS_DECL_ACME string ::windows::last_error_message(unsigned int dwError)
+//CLASS_DECL_ACME string ::windows::last_error_message(::u32 dwError)
 //{
 //
 //   string str;

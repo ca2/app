@@ -57,7 +57,7 @@ namespace gpu
 
       int m_iVertexLevel = -1;
 
-      //unsigned int               m_uId;
+      //::u32               m_uId;
       struct constant_buffer
       {
          ::gpu::enum_type m_etype;

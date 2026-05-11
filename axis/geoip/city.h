@@ -18,7 +18,7 @@ typedef struct GeoIPRecordTag {
    char *continent_code;
 } GeoIPRecord;
 
-GEOIP_API GeoIPRecord * GeoIP_record_by_ipnum (GeoIP* gi, unsigned int ipnum);
+GEOIP_API GeoIPRecord * GeoIP_record_by_ipnum (GeoIP* gi, ::u32 ipnum);
 GEOIP_API GeoIPRecord * GeoIP_record_by_addr (GeoIP* gi, const_char_pointer addr);
 GEOIP_API GeoIPRecord * GeoIP_record_by_name (GeoIP* gi, const_char_pointer host);
 

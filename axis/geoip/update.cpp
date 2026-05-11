@@ -259,7 +259,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //   int offset = 0, err;
 //   char * request_uri;
 //   char * compr;
-//   unsigned int comprLen;
+//   ::u32 comprLen;
 //   FILE *comp_fh, *cur_db_fh, *gi_fh;
 //   gzFile gz_fh;
 //   char * file_path_gz, * file_path_test;
@@ -267,7 +267,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //   uchar buffer[1024], digest[16];
 ////   uchar buffer[1024];
 //   char hex_digest[34] = "00000000000000000000000000000000\0";
-//   unsigned int i;
+//   ::u32 i;
 //   GeoIP * gi;
 //   char * db_info;
 //   char block[BLOCK_SIZE];
@@ -290,7 +290,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //
 //      MD5_Init(&context);
 //      while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
-//         MD5_Update (&context, buffer, (unsigned int) len);
+//         MD5_Update (&context, buffer, (::u32) len);
 //        // MD5_Update(&ctx, buffer, len);
 //      MD5_Final (buffer, &context);
 //      ::memory_copy(digest,buffer,16);
@@ -362,7 +362,7 @@ short GeoIP_update_database (char * license_key, int verbose, void (*f)( char * 
 //   }
 //
 //   compr = strstr(buf, "\r\n\r\n") + 4;
-//   comprLen = (unsigned int) (offset + buf - compr);
+//   comprLen = (::u32) (offset + buf - compr);
 //
 //   if (strstr(compr, "License Key Invalid") != nullptr) {
 //      if (verbose == 1)
@@ -534,7 +534,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   int offset = 0, err;
 //   char * request_uri;
 //   char * compr;
-//   unsigned int comprLen;
+//   ::u32 comprLen;
 //   FILE *comp_fh, *cur_db_fh, *gi_fh;
 //   gzFile gz_fh;
 //   char * file_path_gz, * file_path_test;
@@ -544,7 +544,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   uchar digest[16] ,digest2[16];
 //   char hex_digest[33] = "0000000000000000000000000000000\0";
 //   char hex_digest2[33] = "0000000000000000000000000000000\0";
-//   unsigned int i;
+//   ::u32 i;
 //   char *f_str;
 //   GeoIP * gi;
 //   char * db_info;
@@ -634,7 +634,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //      MD5_Init(&context);
 //      while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
 //        // ctx.update(buffer, len);
-//         MD5_Update (&context, buffer, (unsigned int) len);
+//         MD5_Update (&context, buffer, (::u32) len);
 //      MD5_Final (buffer, &context);
 //    ::memory_copy(digest,buffer,16);
 //      fclose (cur_db_fh);
@@ -726,7 +726,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 ////   ctx2.update(license_key,12);
 //   //ctx2.update(ipaddress, strlen(ipaddress));
 //   MD5_Update (&context2, (unsigned char *)license_key, 12);//add license key to the md5 sum
-//   MD5_Update (&context2, (unsigned char *)ipaddress, (unsigned int) strlen(ipaddress));//add ip address to the md5 sum
+//   MD5_Update (&context2, (unsigned char *)ipaddress, (::u32) strlen(ipaddress));//add ip address to the md5 sum
 //   MD5_Final (bufMd5, &context2);
 //   ::memory_copy(digest2, bufMd5,16);
 //   for (i = 0; i < 16; i++)
@@ -783,7 +783,7 @@ short GeoIP_update_database_general (::particle * pparticle, char * user_id,char
 //   }
 //
 //   compr = strstr(buf, "\r\n\r\n") + 4;
-//   comprLen = (unsigned int) (offset + buf - compr);
+//   comprLen = (::u32) (offset + buf - compr);
 //
 //   if (strstr(compr, "License Key Invalid") != nullptr) {
 //      if (verbose == 1)

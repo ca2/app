@@ -149,7 +149,7 @@ CLASS_DECL_ACME void from_string(unsigned short & u, const_char_pointer psz)
 }
 
 
-CLASS_DECL_ACME void from_string(unsigned int & u, const_char_pointer psz)
+CLASS_DECL_ACME void from_string(::u32 & u, const_char_pointer psz)
 {
 
    u = ansi_to_unsigned_int(psz, nullptr, 10);
@@ -157,7 +157,7 @@ CLASS_DECL_ACME void from_string(unsigned int & u, const_char_pointer psz)
 }
 
 
-CLASS_DECL_ACME void from_string(unsigned long long & u, const_char_pointer psz)
+CLASS_DECL_ACME void from_string(::u64 & u, const_char_pointer psz)
 {
 
    u = ansi_to_unsigned_long_long(psz, nullptr, 10);
@@ -165,7 +165,7 @@ CLASS_DECL_ACME void from_string(unsigned long long & u, const_char_pointer psz)
 }
 
 
-CLASS_DECL_ACME void from_string(unsigned int & u, int iBase, const_char_pointer psz)
+CLASS_DECL_ACME void from_string(::u32 & u, int iBase, const_char_pointer psz)
 {
 
    u = ansi_to_unsigned_int(psz, nullptr, iBase);
@@ -173,7 +173,7 @@ CLASS_DECL_ACME void from_string(unsigned int & u, int iBase, const_char_pointer
 }
 
 
-CLASS_DECL_ACME void from_string(unsigned long long & u, int iBase, const_char_pointer psz)
+CLASS_DECL_ACME void from_string(::u64 & u, int iBase, const_char_pointer psz)
 {
 
    u = ansi_to_unsigned_long_long(psz, nullptr, iBase);
@@ -412,7 +412,7 @@ template < typename T >
 CLASS_DECL_ACME string string_from_u(const T & t)
 {
 
-   return as_string((unsigned long long)t);
+   return as_string((::u64)t);
 
 }
 

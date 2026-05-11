@@ -20,7 +20,7 @@
 //
 //   const_char_pointer     lpszClass;
 //
-//   unsigned int       dwExStyle;
+//   ::u32       dwExStyle;
 //} CREATESTRUCTA,*LPCREATESTRUCTA;
 //
 //typedef struct tagCREATESTRUCTW
@@ -39,7 +39,7 @@
 //
 //   const ::wide_character *     lpszClass;
 //
-//   unsigned int       dwExStyle;
+//   ::u32       dwExStyle;
 //} CREATESTRUCTW,*LPCREATESTRUCTW;
 //
 //#ifdef UNICODE

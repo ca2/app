@@ -50,7 +50,7 @@ namespace file
 //
 //
 //#ifdef WINDOWS
-//inline unsigned int _gen_GetConversionACP()
+//inline ::u32 _gen_GetConversionACP()
 //{
 //
 //   //return CP_UTF8;
@@ -176,7 +176,7 @@ template < prototype_natural NATURAL, prototype_string STRING >
 inline void copy(NATURAL& n, const STRING& string)
 {
 
-	n = (NATURAL)as_unsigned_long_long(string);
+	n = (NATURAL)as_u64(string);
 
 }
 
@@ -896,7 +896,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 //}
 
 
-//unsigned long long str::consume_natural(unsigned long long uMax, unsigned long long uMin)
+//::u64 str::consume_natural(::u64 uMax, ::u64 uMin)
 //{
 //
 //   auto u = consume_natural(this->m_begin, uMax, uMin);
@@ -907,7 +907,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 
 
 template < typename ITERATOR_TYPE >
-unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long long uMax, unsigned long long uMin)
+::u64 string_range < ITERATOR_TYPE >::consume_natural(::u64 uMax, ::u64 uMin)
 {
 
    if (uMax < uMin)
@@ -921,7 +921,7 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
 
    int i = 0;
 
-   unsigned long long u;
+   ::u64 u;
 
    while (unicode_is_digit(this->m_begin))
    {
@@ -939,7 +939,7 @@ unsigned long long string_range < ITERATOR_TYPE >::consume_natural(unsigned long
 
    }
 
-   u = ::as_unsigned_int({ pszStart, this->m_begin - pszStart });
+   u = ::as_u32({ pszStart, this->m_begin - pszStart });
 
    if (u < uMin)
    {

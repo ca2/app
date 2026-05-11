@@ -144,7 +144,7 @@ namespace nanoui
    Screen::Screen(::user::interaction* puserinteraction,
       const int_sequence2& size, const ::scoped_string& caption, bool resizable,
       bool fullscreen, bool depth_buffer, bool stencil_buffer,
-      bool float_buffer, unsigned int gl_major, unsigned int gl_minor)
+      bool float_buffer, ::u32 gl_major, ::u32 gl_minor)
       : Widget(nullptr)  /*,  m_glfw_window(nullptr), ctx(nullptr),
       m_cursor(Cursor::Arrow)*/, m_background(rgba(0.3f, 0.3f, 0.32f, 1.f)) /*, m_strCaption(caption),
       m_shutdown_glfw_on_destruct(false), m_fullscreen(fullscreen), m_depth_buffer(depth_buffer),
@@ -339,7 +339,7 @@ namespace nanoui
    //   );
    //
    //   glfwSetCharCallback(m_glfw_window,
-   //      [](GLFWwindow * pwidgetChild, unsigned int codepoint) {
+   //      [](GLFWwindow * pwidgetChild, ::u32 codepoint) {
    //         auto it = __nanoui_screens.find(pwidgetChild);
    //         if (it == __nanoui_screens.end())
    //            return;
@@ -876,7 +876,7 @@ namespace nanoui
    }
 
 
-   bool Screen::keyboard_character_event(unsigned int codepoint)
+   bool Screen::keyboard_character_event(::u32 codepoint)
    {
 
       if (m_focus_path.size() > 0)
@@ -1264,7 +1264,7 @@ namespace nanoui
    //   }
    //}
    //
-   //void Screen::char_callback_event(unsigned int codepoint) {
+   //void Screen::char_callback_event(::u32 codepoint) {
    //   m_last_interaction = glfwGetTime();
    //   try {
    //      m_redraw |= keyboard_character_event(codepoint);

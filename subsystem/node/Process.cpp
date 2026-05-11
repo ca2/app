@@ -175,7 +175,7 @@ namespace subsystem
  //      //SetEvent(m_hStopWait);
  //   }
 
- //   unsigned int Process::getExitCode()   {
+ //   ::u32 Process::getExitCode()   {
 
  //      return m_pparticleThis->getExitCode();
  //      // DWORD exitCode;

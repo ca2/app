@@ -2,7 +2,7 @@
 // Created by camilo on 2026-04-06.
 //
 #include "framework.h"
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 
    Particle::Particle(enum_particle eparticle):

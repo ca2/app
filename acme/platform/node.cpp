@@ -37,7 +37,7 @@
 #include "filesystem/filesystem/listing.h"
 #include "windowing/display.h"
 
-CLASS_DECL_ACME ::string friendly_byte_count(unsigned long long ul, const char *pszFormat = nullptr);
+CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const char *pszFormat = nullptr);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -166,7 +166,7 @@ namespace platform
    }
 
 
-   void node::call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+   void node::call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid)
    {
 
       throw ::interface_only();
@@ -1561,7 +1561,7 @@ namespace platform
   }
 
 
-   void node::set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha)
+   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
    {
 
 
@@ -2892,7 +2892,7 @@ void node::open_internet_link(const ::scoped_string & scopedstrUrl, const ::scop
    }
 
 
-   unsigned long long node::translate_processor_affinity(int i)
+   ::u64 node::translate_processor_affinity(int i)
    {
 
       return 0;
@@ -3621,7 +3621,7 @@ bool node::_is_smart_git_installed()
 
 #if defined(__BSD__) || defined(__APPLE__)
 
-   void node::arp_a(void *p, void(*callback)(void * addr, unsigned int uIp, const_char_pointer status))
+   void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const_char_pointer status))
    {
       
       
@@ -4194,7 +4194,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 
 //#ifdef WINDOWS
 //
-//   DECLSPEC_NO_RETURN void node::raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
+//   DECLSPEC_NO_RETURN void node::raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags)
 //   {
 //
 //
@@ -4630,7 +4630,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
    void node::list_process(::file::path_array_base& patha, ::process_identifier_array& uaPid)
    {
 
-      ASSERT(sizeof(unsigned int) == sizeof(unsigned int));
+      ASSERT(sizeof(::u32) == sizeof(::u32));
 
       uaPid = this->processes_identifiers();
 

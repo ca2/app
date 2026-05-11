@@ -228,7 +228,7 @@ namespace sockets
    void http_post_socket::DoMultipartPost()
    {
 
-      unsigned long long length = 0; // calculate content-length of our post body
+      ::u64 length = 0; // calculate content-length of our post body
 
       string tmp;
 
@@ -279,7 +279,7 @@ namespace sockets
 
             string & name = pair.element1();
 
-            unsigned long long content-length = pair.element2().m_uiContentLength;
+            ::u64 content-length = pair.element2().m_uiContentLength;
 
             string filename;
 
@@ -324,7 +324,7 @@ namespace sockets
          //
          //   m_mapFiles.get_next_assoc(pos, name, filename);
          //
-         //   unsigned long long content-length = m_mapContentLength[filename];
+         //   ::u64 content-length = m_mapContentLength[filename];
 
          //   string content-type = m_mapContentType[filename];
 
@@ -411,7 +411,7 @@ namespace sockets
 
             string & name = pair.element1();
 
-            unsigned long long content-length = pair.element2().m_uiContentLength;
+            ::u64 content-length = pair.element2().m_uiContentLength;
 
             string filename;
 
@@ -446,7 +446,7 @@ namespace sockets
 
             memory m;
 
-            m.set_size((unsigned int) (content-length));
+            m.set_size((::u32) (content-length));
 
             pair.element2().m_spfile->read(m.get_data(), m.get_size());
 

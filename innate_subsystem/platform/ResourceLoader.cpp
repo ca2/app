@@ -58,7 +58,7 @@ namespace innate_subsystem
       throw ::interface_only();
       return nullptr;
    }
-   // bool ResourceLoader::loadString(unsigned int id, ::string & str)
+   // bool ResourceLoader::loadString(::u32 id, ::string & str)
    // {
    //    //_ASSERT(string != 0);
    //    str = "(Undef)";
@@ -83,7 +83,7 @@ namespace innate_subsystem
    //    //   LPVOID lockRes = LockResource(hGlobal);
    //
    //    //   WCHAR* lpStr = reinterpret_cast<WCHAR*>(lockRes);
-   //    //   for (unsigned int i = 0; i < (id % 16); i++) {
+   //    //   for (::u32 i = 0; i < (id % 16); i++) {
    //    //      lpStr += 1 + static_cast<UINT16>(lpStr[0]);
    //    //   }
    //
@@ -104,7 +104,7 @@ namespace innate_subsystem
    //    return true;
    // }
    //
-   void * ResourceLoader::loadAccelerator(unsigned int id)
+   void * ResourceLoader::loadAccelerator(::u32 id)
    {
    //   return LoadAccelerators(m_appInstance,
    //      MAKEINTRESOURCE(id));
@@ -120,7 +120,7 @@ namespace innate_subsystem
       return nullptr;
    }
 
-   ::pointer <CursorInterface> ResourceLoader::loadCursor(unsigned int id)
+   ::pointer <CursorInterface> ResourceLoader::loadCursor(::u32 id)
    {
       //return LoadCursor(m_appInstance, MAKEINTRESOURCE(id));
       throw ::interface_only();

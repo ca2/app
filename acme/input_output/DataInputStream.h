@@ -73,8 +73,8 @@
 
       unsigned char readUInt8();
       unsigned short readUInt16();
-      unsigned int readUInt32();
-      unsigned long long readUInt64();
+      ::u32 readUInt32();
+      ::u64 readUInt64();
 
       char readInt8();
       short readInt16();

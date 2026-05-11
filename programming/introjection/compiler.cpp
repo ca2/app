@@ -48,7 +48,7 @@ string vs_build(::particle * pparticle)
 #endif
 
 
-//unsigned int RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
+//::u32 RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
 namespace introjection

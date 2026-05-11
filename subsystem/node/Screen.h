@@ -64,9 +64,9 @@ namespace subsystem
       // struct BMI
       // {
       //    BITMAPINFOHEADER bmiHeader;
-      //    unsigned int red;
-      //    unsigned int green;
-      //    unsigned int blue;
+      //    ::u32 red;
+      //    ::u32 green;
+      //    ::u32 blue;
       // };
 
       // struct Palette8bitBMI
@@ -87,7 +87,7 @@ namespace subsystem
       //private:
       // void fillPixelFormat(const BMI *bmi);
       // Find position of first true bit
-      virtual int findFirstBit(const unsigned int bits) = 0;
+      virtual int findFirstBit(const ::u32 bits) = 0;
 
       virtual void fillScreenRect() = 0;
 
@@ -148,9 +148,9 @@ namespace subsystem
       // struct BMI
       // {
       //    BITMAPINFOHEADER bmiHeader;
-      //    unsigned int red;
-      //    unsigned int green;
-      //    unsigned int blue;
+      //    ::u32 red;
+      //    ::u32 green;
+      //    ::u32 blue;
       // };
       //
       // struct Palette8bitBMI
@@ -176,7 +176,7 @@ namespace subsystem
    //private:
       //void fillPixelFormat(const BMI *bmi);
       // Find position of first true bit
-       int findFirstBit(const unsigned int bits) override
+       int findFirstBit(const ::u32 bits) override
        {
 
           return m_pscreen->findFirstBit(bits);

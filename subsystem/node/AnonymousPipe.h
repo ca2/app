@@ -47,11 +47,11 @@ namespace subsystem
       // function calling.
       // @param hRead is a read handle getting by the CreatePipe()
       // function calling but is not the same as for hWrite.
-      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *plogwriter);
+      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, ::u32 maxPortionSize, LogWriter *plogwriter);
       //AnonymousPipe();
       ///virtual ~AnonymousPipeInterface() = 0;
 
-      virtual void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter) = 0;
+      virtual void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, ::u32 maxPortionSize, LogWriter *plogwriter) = 0;
       /**
        * Closes transport.
        *
@@ -95,7 +95,7 @@ namespace subsystem
       // @throw ::subsystem::Exception on a fail.
       virtual void assignHandlesFor(::subsystem::ProcessHandleInterface * pprocesshandle, bool neededToClose, bool keepCloseRight = false) = 0;
 
-      virtual void setTimeOut(unsigned int timeOut) = 0;
+      virtual void setTimeOut(::u32 timeOut) = 0;
 
    //private:
       virtual void checkPipeFile(::subsystem::FileInterface * pfile) = 0;
@@ -103,7 +103,7 @@ namespace subsystem
       // HANDLE m_hWrite;
       // HANDLE m_hRead;
       // bool m_neededToClose;
-      // unsigned int m_timeOut;
+      // ::u32 m_timeOut;
       //
       // LocalMutex m_hPipeMutex;
       // ::happening m_readEvent;
@@ -127,11 +127,11 @@ namespace subsystem
       // function calling.
       // @param hRead is a read handle getting by the CreatePipe()
       // function calling but is not the same as for hWrite.
-      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, unsigned int maxPortionSize, LogWriter *plogwriter);
+      //AnonymousPipe(HANDLE hWrite, HANDLE hRead, ::u32 maxPortionSize, LogWriter *plogwriter);
       //AnonymousPipe();
       //~AnonymousPipe() override;
 
-      void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, ::subsystem::LogWriter *plogwriter) override
+      void initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, ::u32 maxPortionSize, ::subsystem::LogWriter *plogwriter) override
       {
 
          m_panonymouspipe->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
@@ -192,7 +192,7 @@ namespace subsystem
       m_panonymouspipe->assignHandlesFor(pprocesshandle, neededToClose, keepCloseRight);
       }
 
-      void setTimeOut(unsigned int timeOut) override{return m_panonymouspipe->setTimeOut(timeOut);}
+      void setTimeOut(::u32 timeOut) override{return m_panonymouspipe->setTimeOut(timeOut);}
 
    //private:
       void checkPipeFile(::subsystem::FileInterface* pfile) override
@@ -206,7 +206,7 @@ namespace subsystem
       // HANDLE m_hWrite;
       // HANDLE m_hRead;
       // bool m_neededToClose;
-      // unsigned int m_timeOut;
+      // ::u32 m_timeOut;
       //
       // LocalMutex m_hPipeMutex;
       // ::happening m_readEvent;

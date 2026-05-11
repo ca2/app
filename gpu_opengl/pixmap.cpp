@@ -25,7 +25,7 @@
 //
 //      glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 //      // generate texture
-//         //unsigned int texture;
+//         //::u32 texture;
 //      glGenTextures(1, &m_gluTexture);
 //      glBindTexture(GL_TEXTURE_2D, m_gluTexture); // You must bind before setting parameters
 //

@@ -88,7 +88,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //const ::scoped_string & scopedstrDir,
 //::enum_display edisplay,
 //bool bPrivileged,
-//unsigned int * puiPid)
+//::u32 * puiPid)
 //{
 //   string strCmdLine;
 //
@@ -115,7 +115,7 @@ void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority eprio
 //
 //}
 //
-//CLASS_DECL_ACME unsigned int call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
+//CLASS_DECL_ACME ::u32 call_sync(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set)
 //{
 //   string strCmdLine;
 //

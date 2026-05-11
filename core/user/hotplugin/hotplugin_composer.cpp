@@ -471,7 +471,7 @@ namespace hotplugin
    }
 
 
-   unsigned int c_cdecl composer::composer_system_main(LPVOID pVoid)
+   ::u32 c_cdecl composer::composer_system_main(LPVOID pVoid)
 
    {
 

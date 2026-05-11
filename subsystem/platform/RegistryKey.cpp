@@ -221,7 +221,7 @@ namespace subsystem
       if (!isOpened()) {
          return false;
       }
-      unsigned int u;
+      ::u32 u;
       auto estatus = m_pregistrykey->_get_dword(scopedstrName, u);
 
       if (estatus == error_not_found)
@@ -403,7 +403,7 @@ namespace subsystem
       tryOpenSubKey(m_pregistrykeyRoot, m_entry, m_pregistrykey, createIfNotExists, psecurityattributes);//, sa);
    }
 
-   unsigned int RegistryKey::enumKey(unsigned int i, ::string & name)
+   ::u32 RegistryKey::enumKey(::u32 i, ::string & name)
    {
       // DWORD length = 1024;
       // DWORD increaseStep = 1024;

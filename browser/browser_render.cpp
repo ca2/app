@@ -239,19 +239,19 @@ namespace browser
 
       nano_timer nanotimer;
 
-      unsigned long long uNow = get_nanos();
+      ::u64 uNow = get_nanos();
 
-      unsigned long long uFrameNanos = (unsigned long long)(1000000000LL / get_frames_per_second());
+      ::u64 uFrameNanos = (::u64)(1000000000LL / get_frames_per_second());
 
       uFrameNanos = minimum(maximum(100000, uFrameNanos), 1000000000);
 
-      unsigned long long uFrameId = uNow / uFrameNanos;
+      ::u64 uFrameId = uNow / uFrameNanos;
 
-      unsigned long long uLastFrameId = uFrameId;
+      ::u64 uLastFrameId = uFrameId;
 
-      unsigned long long uNextFrame;
+      ::u64 uNextFrame;
 
-      unsigned long long uWait;
+      ::u64 uWait;
 
       ::collection::count cLost;
 
@@ -270,7 +270,7 @@ namespace browser
 
             uNow = get_nanos();
 
-            uFrameNanos = (unsigned long long)(1000000000ULL / get_frames_per_second());
+            uFrameNanos = (::u64)(1000000000ULL / get_frames_per_second());
 
             uFrameNanos = minimum(maximum(100000ULL, uFrameNanos), 1000000000ULL);
 
@@ -1125,7 +1125,7 @@ namespace browser
 
       }
 
-      //unsigned int dw= ::time::now();
+      //::u32 dw= ::time::now();
 
       if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {

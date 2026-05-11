@@ -44,12 +44,12 @@ namespace subsystem
       //PipeClient();
       //virtual ~PipeClientInterface() = 0;
 
-      virtual ::pointer < NamedPipeInterface  >connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize) = 0;
+      virtual ::pointer < NamedPipeInterface  >connect(const ::scoped_string & scopedstrName, ::u32 maxPortionSize) = 0;
 
    //private:
 
 
-      //unsigned int m_maxPortionSize;
+      //::u32 m_maxPortionSize;
    };
 
 
@@ -70,7 +70,7 @@ namespace subsystem
 
       //~PipeClient() override;
 
-         ::pointer < NamedPipeInterface  >connect(const ::scoped_string& scopedstrName, unsigned int maxPortionSize) override
+         ::pointer < NamedPipeInterface  >connect(const ::scoped_string& scopedstrName, ::u32 maxPortionSize) override
       {
 
          return m_ppipeclient->connect(scopedstrName, maxPortionSize);
@@ -80,7 +80,7 @@ namespace subsystem
    // private:
    //    PipeClient();
    //
-   //    unsigned int m_maxPortionSize;
+   //    ::u32 m_maxPortionSize;
    };
 
     class CLASS_DECL_SUBSYSTEM PipeClientAggregate :

@@ -28,7 +28,7 @@
 //
 //    }
 //
-//    bool window::on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam)
+//    bool window::on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam)
 //    {
 //
 //       if (m_iDebugAtom == 123)

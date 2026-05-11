@@ -15,11 +15,11 @@ namespace innate_subsystem
 
    class DeviceContextInterface;
    struct draw_item_t {
-      unsigned int        CtlType;
-      unsigned int        CtlID;
-      unsigned int        itemID;
-      unsigned int        itemAction;
-      unsigned int        itemState;
+      ::u32        CtlType;
+      ::u32        CtlID;
+      ::u32        itemID;
+      ::u32        itemAction;
+      ::u32        itemState;
       ::operating_system::window        operatingsystemwindowItem;
       DeviceContextInterface * m_pdevicecontext;
       ::int_rectangle & m_rectangleItem;

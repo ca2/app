@@ -75,7 +75,7 @@ namespace user
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
 
-      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       virtual bool OnDDECommand(const ::scoped_string & scopedstrDDECommand);
 

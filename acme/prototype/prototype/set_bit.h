@@ -12,13 +12,13 @@ public:
    
 
    TYPE &         m_field;
-   unsigned long long          m_mask;
+   ::u64          m_mask;
 
 
-   set_bit(TYPE & field, unsigned long long mask) :
+   set_bit(TYPE & field, ::u64 mask) :
       m_field(field), m_mask(mask) { }
 
-   bool is_set() const { return ((unsigned long long)m_field & m_mask) == m_mask; }
+   bool is_set() const { return ((::u64)m_field & m_mask) == m_mask; }
 
    void set(bool bSet)
    {
@@ -48,7 +48,7 @@ public:
 
       }
 
-      m_field = (TYPE) (((unsigned long long) m_field) | ((unsigned long long)m_mask));
+      m_field = (TYPE) (((::u64) m_field) | ((::u64)m_mask));
 
    }
 
@@ -62,7 +62,7 @@ public:
 
       }
 
-      m_field = (TYPE) (((unsigned long long)m_field) & (~((unsigned long long)m_mask)));
+      m_field = (TYPE) (((::u64)m_field) & (~((::u64)m_mask)));
 
    }
 

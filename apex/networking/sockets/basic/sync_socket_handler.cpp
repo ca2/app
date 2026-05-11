@@ -141,7 +141,7 @@ namespace sockets
 
       //}
 
-      //unsigned int uLen = 0;
+      //::u32 uLen = 0;
 
       //if (read(&uLen, 4) != 4)
       //{
@@ -173,7 +173,7 @@ namespace sockets
       //if(iTimeout < 0)
       //   iTimeout = m_iDefaultTimeout;
       //character_count uLen = strlen(xml_payload);
-      //unsigned int wf_total_length = htonl((u_long) uLen);
+      //::u32 wf_total_length = htonl((u_long) uLen);
       //write(&wf_total_length, 4);
       //write( (char *) xml_payload, (int) uLen);
    }

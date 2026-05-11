@@ -103,7 +103,7 @@ payload::payload(int i)
 }
 
 
-payload::payload(unsigned int u )
+payload::payload(::u32 u )
 {
 
    m_etype = e_type_unsigned_int;
@@ -123,7 +123,7 @@ payload::payload(long long i)
 }
 
 
-payload::payload(unsigned long long u )
+payload::payload(::u64 u )
 {
 
    m_etype = e_type_unsigned_long_long;
@@ -157,7 +157,7 @@ payload::payload(int * pi)
 }
 
 
-payload::payload(unsigned int * pinteraction)
+payload::payload(::u32 * pinteraction)
 {
 
    m_etype = e_type_new;
@@ -175,7 +175,7 @@ payload::payload(long long * pi)
 }
 
 
-payload::payload(unsigned long long * pinteraction)
+payload::payload(::u64 * pinteraction)
 {
 
    m_etype = e_type_new;
@@ -662,7 +662,7 @@ void payload::set_type(enum_type etype, bool bConvert)
             m_i = this->int();
             break;
          case e_type_unsigned_int:
-            m_ui = this->unsigned int();
+            m_ui = this->::u32();
             break;
          case e_type_long_long:
             m_hi = this->long_long;
@@ -902,7 +902,7 @@ class ::payload & payload::operator = (int * pi)
 }
 
 
-class ::payload & payload::operator = (unsigned int * pinteraction)
+class ::payload & payload::operator = (::u32 * pinteraction)
 {
 
     set_type(e_type_punsigned_int, false);
@@ -926,7 +926,7 @@ class ::payload & payload::operator = (long long * pi)
 }
 
 
-class ::payload & payload::operator = (unsigned long long * pinteraction)
+class ::payload & payload::operator = (::u64 * pinteraction)
 {
 
     set_type(e_type_punsigned_long_long, false);
@@ -1014,7 +1014,7 @@ class ::payload & payload::operator = (long long i)
    return *this;
 }
 
-class ::payload & payload::operator = (unsigned long long u)
+class ::payload & payload::operator = (::u64 u)
 {
    if(get_type() == e_type_punsigned_long_long)
    {
@@ -1037,7 +1037,7 @@ class ::payload & payload::operator = (unsigned long long u)
 }
 
 
-class ::payload & payload::operator = (unsigned int u)
+class ::payload & payload::operator = (::u32 u)
 {
    set_type(e_type_unsigned_int, false);
    m_ui = u;
@@ -1819,7 +1819,7 @@ int payload::case_insensitive_order(const class ::payload & payload) const
    }
    else if(is_natural() || payload.is_natural())
    {
-      return (int) (unsigned int() - payload.unsigned int());
+      return (int) (::u32() - payload.::u32());
    }
    else
    {
@@ -1889,7 +1889,7 @@ int payload::compare(const class ::payload & payload) const
    }
    else if(is_natural() || payload.is_natural())
    {
-      return (int) (unsigned int() - payload.unsigned int());
+      return (int) (::u32() - payload.::u32());
    }
    else
    {
@@ -2604,7 +2604,7 @@ int payloadint(int iDefault) const
 //
 
 
-unsigned int payloadunsigned int(unsigned int uiDefault) const
+::u32 payloadunsigned int(::u32 uiDefault) const
 {
    switch(m_etype)
    {
@@ -2617,43 +2617,43 @@ unsigned int payloadunsigned int(unsigned int uiDefault) const
    case e_type_int:
       return m_i;
    case e_type_unsigned_int:
-      return (unsigned int) m_ui;
+      return (::u32) m_ui;
    case e_type_element:
    case e_type_path:
-      return (unsigned int) uiDefault;
+      return (::u32) uiDefault;
    case e_type_long_long:
-      return (unsigned int)m_hi;
+      return (::u32)m_hi;
    case e_type_unsigned_long_long:
-      return (unsigned int) m_hn;
+      return (::u32) m_hn;
    case e_type_payload_pointer:
-      return m_ppayload->unsigned int(uiDefault);
+      return m_ppayload->::u32(uiDefault);
    case e_type_property:
-      return m_pproperty->unsigned int(uiDefault);
+      return m_pproperty->::u32(uiDefault);
    default:
       return uiDefault;
    }
 }
 
 //
-//unsigned int & payload::as_unsigned_int()
+//::u32 & payload::as_u32()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
 //   {
 //
-//      return m_ppayload->as_unsigned_int();
+//      return m_ppayload->as_u32();
 //
 //   }
 //   else if (m_etype == e_type_property)
 //   {
 //
-//      return m_pproperty->as_unsigned_int();
+//      return m_pproperty->as_u32();
 //
 //   }
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      unsigned int i = this->unsigned int();
+//      ::u32 i = this->::u32();
 //
 //      set_type(e_type_unsigned_int, false);
 //
@@ -2806,7 +2806,7 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 //
 //
 
-unsigned long long payloadunsigned long long(unsigned long long uiDefault) const
+::u64 payloadunsigned long long(::u64 uiDefault) const
 {
    switch(m_etype)
    {
@@ -2825,9 +2825,9 @@ unsigned long long payloadunsigned long long(unsigned long long uiDefault) const
    case e_type_unsigned_long_long:
       return m_hn;
    case e_type_float:
-      return (unsigned long long) m_f;
+      return (::u64) m_f;
    case e_type_double:
-      return (unsigned long long) m_d;
+      return (::u64) m_d;
    case e_type_element:
    case e_type_path:
       return uiDefault;
@@ -2843,7 +2843,7 @@ unsigned long long payloadunsigned long long(unsigned long long uiDefault) const
 
 //
 //
-//unsigned long long & payload::as_unsigned_long_long()
+//::u64 & payload::as_unsigned_long_long()
 //{
 //
 //   if (m_etype == e_type_payload_pointer)
@@ -2861,7 +2861,7 @@ unsigned long long payloadunsigned long long(unsigned long long uiDefault) const
 //   else if (m_etype != e_type_bool)
 //   {
 //
-//      unsigned long long i = this->unsigned_long_long;
+//      ::u64 i = this->unsigned_long_long;
 //
 //      set_type(e_type_unsigned_long_long, false);
 //
@@ -4609,9 +4609,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return int() / i;
 //}
 //
-//::payload payload::operator / (unsigned int user) const
+//::payload payload::operator / (::u32 user) const
 //{
-//   return unsigned int() / user;
+//   return ::u32() / user;
 //}
 //
 //::payload payload::operator / (long long l) const
@@ -4619,7 +4619,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return long_long / l;
 //}
 //
-//::payload payload::operator / (unsigned long long ul) const
+//::payload payload::operator / (::u64 ul) const
 //{
 //
 //   switch(m_etype)
@@ -4635,7 +4635,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_long_long:
 //      return m_hi / (long long) ul;
 //   case ::e_type_unsigned_long_long:
-//      return m_hn / (unsigned long long) ul;
+//      return m_hn / (::u64) ul;
 //   case ::e_type_float:
 //      return m_f / (float) ul;
 //   case ::e_type_double:
@@ -4666,9 +4666,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return i / payload.as_int();
 //}
 //
-//::payload operator / (unsigned int user, const class ::payload & payload)
+//::payload operator / (::u32 user, const class ::payload & payload)
 //{
-//   return user / payload.unsigned int();
+//   return user / payload.::u32();
 //}
 //
 //::payload operator / (long long l, const class ::payload & payload)
@@ -4677,7 +4677,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //}
 //
 //
-//::payload operator / (unsigned long long ul, const class ::payload & payload)
+//::payload operator / (::u64 ul, const class ::payload & payload)
 //{
 //   switch(payload.m_etype)
 //   {
@@ -4692,7 +4692,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_long_long:
 //      return (long long) ul / payload.m_hi;
 //   case ::e_type_unsigned_long_long:
-//      return (unsigned long long) ul / payload.m_hn;
+//      return (::u64) ul / payload.m_hn;
 //   case ::e_type_float:
 //      return (float) ul / payload.m_f;
 //   case ::e_type_double:
@@ -4723,9 +4723,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return int() * i;
 //}
 //
-//::payload payload::operator * (unsigned int user) const
+//::payload payload::operator * (::u32 user) const
 //{
-//   return unsigned int() * user;
+//   return ::u32() * user;
 //}
 //
 //::payload payload::operator * (long long l) const
@@ -4733,7 +4733,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return long_long * l;
 //}
 //
-//::payload payload::operator * (unsigned long long ul) const
+//::payload payload::operator * (::u64 ul) const
 //{
 //   switch(m_etype)
 //   {
@@ -4748,7 +4748,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_long_long:
 //      return m_hi * (long long) ul;
 //   case ::e_type_unsigned_long_long:
-//      return m_hn * (unsigned long long) ul;
+//      return m_hn * (::u64) ul;
 //   case ::e_type_float:
 //      return m_f * (float) ul;
 //   case ::e_type_double:
@@ -4780,9 +4780,9 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return i * payload.as_int();
 //}
 //
-//::payload operator * (unsigned int user, const class ::payload & payload)
+//::payload operator * (::u32 user, const class ::payload & payload)
 //{
-//   return user * payload.unsigned int();
+//   return user * payload.::u32();
 //}
 //
 //::payload operator * (long long l, const class ::payload & payload)
@@ -4790,7 +4790,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return l * payload.long_long;
 //}
 //
-//::payload operator * (unsigned long long ul, const class ::payload & payload)
+//::payload operator * (::u64 ul, const class ::payload & payload)
 //{
 //
 //   switch(payload.m_etype)
@@ -4806,7 +4806,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   case ::e_type_long_long:
 //      return (long long) ul * payload.m_hi;
 //   case ::e_type_unsigned_long_long:
-//      return (unsigned long long) ul * payload.m_hn;
+//      return (::u64) ul * payload.m_hn;
 //   case ::e_type_float:
 //      return (float) ul * payload.m_f;
 //   case ::e_type_double:
@@ -4860,7 +4860,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator -= (unsigned int user)
+//class ::payload & payload::operator -= (::u32 user)
 //{
 //   operator =(*this - user);
 //   return *this;
@@ -4872,7 +4872,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator -= (unsigned long long user)
+//class ::payload & payload::operator -= (::u64 user)
 //{
 //   operator =(*this - user);
 //   return *this;
@@ -4901,7 +4901,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator += (unsigned int user)
+//class ::payload & payload::operator += (::u32 user)
 //{
 //   operator =(*this + user);
 //   return *this;
@@ -4913,7 +4913,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator += (unsigned long long user)
+//class ::payload & payload::operator += (::u64 user)
 //{
 //   operator =(*this + user);
 //   return *this;
@@ -4956,7 +4956,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator /= (unsigned int user)
+//class ::payload & payload::operator /= (::u32 user)
 //{
 //   operator =(*this / user);
 //   return *this;
@@ -4968,7 +4968,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator /= (unsigned long long user)
+//class ::payload & payload::operator /= (::u64 user)
 //{
 //   operator =(*this / user);
 //   return *this;
@@ -5011,7 +5011,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator *= (unsigned int user)
+//class ::payload & payload::operator *= (::u32 user)
 //{
 //   operator =(*this * user);
 //   return *this;
@@ -5023,7 +5023,7 @@ bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr,
 //   return *this;
 //}
 //
-//class ::payload & payload::operator *= (unsigned long long user)
+//class ::payload & payload::operator *= (::u64 user)
 //{
 //   operator =(*this * user);
 //   return *this;
@@ -6990,7 +6990,7 @@ bool payload::is_false() const
       case e_type_enum_flag:
       return !m_hi;
    case e_type_color:
-      return !m_color.unsigned int;
+      return !m_color.::u32;
    case e_type_hls:
       return m_hls.m_dL == 0.0;
    case e_type_last_element:
@@ -7176,7 +7176,7 @@ bool payload::is_set_false() const
       case e_type_enum_flag:
       return !m_hi;
    case e_type_color:
-      return !m_color.unsigned int;
+      return !m_color.::u32;
    case e_type_hls:
       return m_hls.m_dL == 0.0;
    case e_type_last_element:
@@ -7430,9 +7430,9 @@ IMPLEMENT_PAYLOAD_NUMBER(unsigned char);
 IMPLEMENT_PAYLOAD_NUMBER(short);
 IMPLEMENT_PAYLOAD_NUMBER(unsigned short);
 IMPLEMENT_PAYLOAD_NUMBER(int);
-IMPLEMENT_PAYLOAD_NUMBER(unsigned int);
+IMPLEMENT_PAYLOAD_NUMBER(::u32);
 IMPLEMENT_PAYLOAD_NUMBER(long long);
-IMPLEMENT_PAYLOAD_NUMBER(unsigned long long);
+IMPLEMENT_PAYLOAD_NUMBER(::u64);
 IMPLEMENT_PAYLOAD_NUMBER(float);
 IMPLEMENT_PAYLOAD_NUMBER(double);
 #undef IMPLEMENT_PAYLOAD_NUMBER

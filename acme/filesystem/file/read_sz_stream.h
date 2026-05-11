@@ -36,7 +36,7 @@ public:
 
     //}
 
-    unsigned long long read_natural(int iRadix = 10);
+    ::u64 read_natural(int iRadix = 10);
 //    {
 //
 //       return consume_natural(m_psz, m_pszBegin, iRadix);
@@ -93,9 +93,9 @@ public:
 //   text_stream& operator <<(short sh);
 //   text_stream& operator <<(unsigned short u);
 //   text_stream& operator <<(int i);
-//   text_stream& operator <<(unsigned int u);
+//   text_stream& operator <<(::u32 u);
 //   text_stream& operator <<(long long i);
-//   text_stream& operator <<(unsigned long long u);
+//   text_stream& operator <<(::u64 u);
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
 //   // void write(const ::int_point & point) ;
@@ -274,7 +274,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(unsigned int& u);
+    read_sz_stream& operator >>(::u32& u);
 //    {
 //
 //       auto uRead = read_natural();
@@ -286,7 +286,7 @@ public:
 //
 //       }
 //
-//       u = (unsigned int) uRead;
+//       u = (::u32) uRead;
 //
 //       return *this;
 //
@@ -303,7 +303,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(unsigned long long& u);
+    read_sz_stream& operator >>(::u64& u);
 //    {
 //
 //       u = read_natural();

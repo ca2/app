@@ -243,7 +243,7 @@ bool html_data::open_html(const ::scoped_string & scopedstr)
 }
 
 
-//void html_data::on_before_navigate(::payload & payloadFile, unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
+//void html_data::on_before_navigate(::payload & payloadFile, ::u32 nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
 //{
 //
 //   m_pcoredata->on_before_navigate(payloadFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);

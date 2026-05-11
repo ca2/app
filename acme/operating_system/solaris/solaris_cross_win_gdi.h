@@ -8,7 +8,7 @@ HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
 int_bool DeleteObject(HGDIOBJ hgdiobj);
 HDC create_compatible_graphics(HDC hdc);
-//HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, unsigned int usage, void **ppvBits, HANDLE hSection, unsigned int offset);
+//HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset);
 int_bool SetTextColor(HDC hdc, color32_t color32);
 int_bool SetBkMode(HDC hdc, int iMode);
 int_bool DeleteDC(HDC hdc);
@@ -25,6 +25,6 @@ int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int 
     __in int yoriginSrc,
     __in int wSrc,
     __in int hSrc,
-    __in unsigned int crTransparent);
+    __in ::u32 crTransparent);
 
 */

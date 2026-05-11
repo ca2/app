@@ -33,7 +33,7 @@ namespace subsystem
    StringTable::StringTable() {}
 
    
-   ::string StringTable::getString(unsigned int u)
+   ::string StringTable::getString(::u32 u)
    {
 
       ::string str;

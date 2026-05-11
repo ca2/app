@@ -50,7 +50,7 @@ namespace crypto_openssl
       //virtual int get_nessie_digest_length() const;
 
 
-      //unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr) override;
+      //::u32 crc32(::u32 dwPrevious, const ::scoped_string & scopedstr) override;
       //virtual string md5(const ::scoped_string & scopedstr);
       //virtual string sha1(const ::scoped_string & scopedstr);
       //virtual string nessie(const ::scoped_string & scopedstr);
@@ -140,7 +140,7 @@ CLASS_DECL_APEX void stunCalculateIntegrity_longterm(char* hmac, const_char_poin
 CLASS_DECL_APEX void stunCalculateIntegrity_shortterm(char* hmac, const_char_pointer input, int length, const_char_pointer key);
 
 
-CLASS_DECL_APEX void hmac_evp_sha1_1234(unsigned char * hmac, unsigned int * hmacSize, const unsigned char * buf, size_t bufLen);
+CLASS_DECL_APEX void hmac_evp_sha1_1234(unsigned char * hmac, ::u32 * hmacSize, const unsigned char * buf, size_t bufLen);
 
 
 

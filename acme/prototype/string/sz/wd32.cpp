@@ -24,7 +24,7 @@ CLASS_DECL_ACME long long string_to_signed(const ::wd32_character * pwsz)
 }
 
 
-CLASS_DECL_ACME unsigned long long as_unsigned_long_long(const ::wd32_character * pwsz)
+CLASS_DECL_ACME ::u64 as_u64(const ::wd32_character * pwsz)
 {
 
 #ifdef WINDOWS

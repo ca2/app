@@ -7,7 +7,7 @@ namespace tsf
 {
 
 
-   HRESULT STDMETHODCALLTYPE edit_window::BeginUIElement(unsigned int dwUIElementId, BOOL * pbShow)
+   HRESULT STDMETHODCALLTYPE edit_window::BeginUIElement(::u32 dwUIElementId, BOOL * pbShow)
    {
 
       return S_OK;
@@ -15,7 +15,7 @@ namespace tsf
    }
 
 
-   HRESULT STDMETHODCALLTYPE edit_window::UpdateUIElement(unsigned int dwUIElementId)
+   HRESULT STDMETHODCALLTYPE edit_window::UpdateUIElement(::u32 dwUIElementId)
    {
 
       return S_OK;
@@ -23,7 +23,7 @@ namespace tsf
    }
 
 
-   HRESULT STDMETHODCALLTYPE edit_window::EndUIElement(unsigned int dwUIElementId)
+   HRESULT STDMETHODCALLTYPE edit_window::EndUIElement(::u32 dwUIElementId)
    {
 
       return S_OK;

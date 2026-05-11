@@ -23,17 +23,17 @@ public:
    };
 
    ::heap::allocator * m_pallocator;
-   unsigned int m_nAllocSize;   // int_size of each block from Alloc
-   unsigned int m_nBlockSize;   // number of blocks to get at a time
+   ::u32 m_nAllocSize;   // int_size of each block from Alloc
+   ::u32 m_nBlockSize;   // number of blocks to get at a time
    ::plex* m_pBlocks;   // linked list_base of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)
 
 
-   fixed_alloc_no_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64);
+   fixed_alloc_no_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64);
    ~fixed_alloc_no_sync();
 
 
-   unsigned int GetAllocSize() { return m_nAllocSize; }
+   ::u32 GetAllocSize() { return m_nAllocSize; }
 
 
    inline void * Alloc();  // return a chunk of memory of nAllocSize
@@ -83,7 +83,7 @@ public:
    address_array_base < fixed_alloc_no_sync * >    m_allocptra;
 
 
-   fixed_alloc_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64, int iShareCount = 2);
+   fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64, int iShareCount = 2);
    ~fixed_alloc_sync();
 
 
@@ -108,7 +108,7 @@ public:
    address_array_base < fixed_alloc_sync * >    m_allocptra;
 
 
-   fixed_alloc(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize = 64);
+   fixed_alloc(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize = 64);
    ~fixed_alloc();
 
 

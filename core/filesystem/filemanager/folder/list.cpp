@@ -181,7 +181,7 @@ namespace filemanager
       if (pcolumn->m_iSubItem == 1)
       {
          //      char szPath[MAX_PATH * 4];
-         //      unsigned int uFlags;
+         //      ::u32 uFlags;
          if (pcolumn->m_pimagelist == nullptr)
          {
             pcolumn->m_pimagelist = allocateø ::image::image_list();

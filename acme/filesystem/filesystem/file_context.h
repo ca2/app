@@ -390,7 +390,7 @@ public:
    string sys_temp(const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
 
 
-   //virtual ::file_pointer get_file(const ::payload & payloadFile, unsigned int nOpenFlags);
+   //virtual ::file_pointer get_file(const ::payload & payloadFile, ::u32 nOpenFlags);
 
 
    //virtual bool is_read_only(const ::file::path & path);

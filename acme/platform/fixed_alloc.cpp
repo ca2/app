@@ -7,7 +7,7 @@
 //#include "acme/memory/_____heap_namespace.h"
 
 
-fixed_alloc_no_sync::fixed_alloc_no_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize) :
+fixed_alloc_no_sync::fixed_alloc_no_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize) :
    m_pallocator(pallocator)
 {
    if(nBlockSize <= 1)
@@ -64,7 +64,7 @@ void fixed_alloc_no_sync::NewBlock()
 // fixed_alloc_sync
 //
 
-fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, unsigned int nAllocSize, unsigned int nBlockSize, int iShareCount) :
+fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocSize, ::u32 nBlockSize, int iShareCount) :
    m_pallocator(pallocator)
 {
 
@@ -79,7 +79,7 @@ fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, unsigned int 
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = øraw_new fixed_alloc_no_sync(m_pallocator, (unsigned int) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
+      m_allocptra[i] = øraw_new fixed_alloc_no_sync(m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
       
    }
 
@@ -147,7 +147,7 @@ void fixed_alloc_sync::FreeAll()
 // fixed_alloc
 //
 
-fixed_alloc::fixed_alloc(::heap::allocator * pallocator,unsigned int nAllocSize, unsigned int nBlockSize) :
+fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 nBlockSize) :
    m_pallocator(pallocator)
 {
 
@@ -173,7 +173,7 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,unsigned int nAllocSize,
    for(int i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = øraw_new fixed_alloc_sync (m_pallocator, (unsigned int) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
+      m_allocptra[i] = øraw_new fixed_alloc_sync (m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
       
    }
 

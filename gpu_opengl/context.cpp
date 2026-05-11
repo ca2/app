@@ -987,7 +987,7 @@ namespace gpu_opengl
    //    ::opengl::check_error("");
    //    glBufferData(GL_UNIFORM_BUFFER, iGlobalUboSize, NULL, GL_STATIC_DRAW); // For 2 mat4s = 2 * sizeof(float) * 16
    //    ::opengl::check_error("");
-   //    unsigned int uUboBindingPoint = 0;
+   //    ::u32 uUboBindingPoint = 0;
    //    glBindBufferBase(GL_UNIFORM_BUFFER, uUboBindingPoint, m_globalUBO);
    //    ::opengl::check_error("");
    //    glBindBuffer(GL_UNIFORM_BUFFER, 0);
@@ -2149,9 +2149,9 @@ namespace gpu_opengl
 //
 //      //   LPCTSTR lpClassName = L"draw2d_opengl_offscreen_buffer_window";
 //      //   LPCTSTR lpWindowName = L"draw2d_opengl_offscreen_buffer_window";
-//      //   //unsigned int dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
-//      //   unsigned int dwExStyle = 0;
-//      //   unsigned int dwStyle = WS_OVERLAPPEDWINDOW;
+//      //   //::u32 dwStyle = WS_CAPTION | WS_POPUPWINDOW; // | WS_VISIBLE
+//      //   ::u32 dwExStyle = 0;
+//      //   ::u32 dwStyle = WS_OVERLAPPEDWINDOW;
 //      //   dwStyle |= WS_POPUP;
 //      //   //dwStyle |= WS_VISIBLE;
 //      //   //dwStyle |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;

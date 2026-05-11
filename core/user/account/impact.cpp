@@ -25,8 +25,8 @@ namespace account
 {
 
 
-   //unsigned int c_cdecl thread_proc_pre_login(void * p);
-   //   unsigned int c_cdecl thread_proc_defer_translate_login(void * p);
+   //::u32 c_cdecl thread_proc_pre_login(void * p);
+   //   ::u32 c_cdecl thread_proc_defer_translate_login(void * p);
 
 
    impact::impact()
@@ -474,7 +474,7 @@ namespace account
 
 
 
-   //unsigned int c_cdecl thread_proc_pre_login(void * p)
+   //::u32 c_cdecl thread_proc_pre_login(void * p)
    //{
 
    //   ::aura::application * papp = (::aura::application *) int_point;

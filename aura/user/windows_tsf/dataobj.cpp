@@ -95,7 +95,7 @@ STDMETHODIMP CTSFDataObject::QueryInterface(   REFIID riid,
 
 **************************************************************************/
 
-STDMETHODIMP_(unsigned int) CTSFDataObject::AddRef()
+STDMETHODIMP_(::u32) CTSFDataObject::AddRef()
 {
     return ++m_ObjRefCount;
 }
@@ -106,7 +106,7 @@ STDMETHODIMP_(unsigned int) CTSFDataObject::AddRef()
 
 **************************************************************************/
 
-STDMETHODIMP_(unsigned int) CTSFDataObject::Release()
+STDMETHODIMP_(::u32) CTSFDataObject::Release()
 {
     if(--m_ObjRefCount == 0)
     {
@@ -242,7 +242,7 @@ STDMETHODIMP CTSFDataObject::GetCanonicalFormatEtc(LPFORMATETC pFEIn, LPFORMATET
 
 **************************************************************************/
 
-STDMETHODIMP CTSFDataObject::EnumFormatEtc(  unsigned int dwDirection,
+STDMETHODIMP CTSFDataObject::EnumFormatEtc(  ::u32 dwDirection,
                                           IEnumFORMATETC** ppEFE)
 {
     return E_NOTIMPL;
@@ -268,7 +268,7 @@ STDMETHODIMP CTSFDataObject::SetData(  LPFORMATETC pFE,
 **************************************************************************/
 
 STDMETHODIMP CTSFDataObject::DAdvise(  LPFORMATETC pFE, 
-                                    unsigned int advf,
+                                    ::u32 advf,
                                     IAdviseSink *ppAdviseSink, 
                                     LPDWORD pdwConnection)
 {
@@ -281,7 +281,7 @@ STDMETHODIMP CTSFDataObject::DAdvise(  LPFORMATETC pFE,
 
 **************************************************************************/
 
-STDMETHODIMP CTSFDataObject::DUnadvise(unsigned int dwConnection)
+STDMETHODIMP CTSFDataObject::DUnadvise(::u32 dwConnection)
 {
     return E_NOTIMPL;
 }

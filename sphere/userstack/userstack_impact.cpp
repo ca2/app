@@ -343,7 +343,7 @@ namespace userstack
    }
 
 
-   unsigned int c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
+   ::u32 c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
    {
       __UNREFERENCED_PARAMETER(lpparam);
       return 0;

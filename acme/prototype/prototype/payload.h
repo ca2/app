@@ -79,17 +79,17 @@ public:
       //long                                   m_l;
       //unsigned long                          m_ul;
 #endif
-      unsigned int                           m_ui;
+      ::u32                           m_ui;
       long long                           m_ll;
-      unsigned long long                           m_ull;
+      ::u64                           m_ull;
       char *                                 m_pch;
       unsigned char * m_puch;
       short * m_psh;
       unsigned short * m_push;
       int * m_pi;
-      unsigned int * m_pui;
+      ::u32 * m_pui;
       long long * m_pll;
-      unsigned long long * m_pull;
+      ::u64 * m_pull;
       ::string * m_pstr;
       float                                  m_f;
       float * m_pf;
@@ -140,7 +140,7 @@ public:
 
       ::subparticle * m_p;
       ::string_array * m_pstra;
-      ::int_array  * m_pia;
+      ::i32_array  * m_pia;
       ::payload_array  * m_ppayloada;
       ::property_set  * m_ppropertyset;
       ::long_long_array * m_plonglonga;
@@ -192,9 +192,9 @@ public:
    template < same_as < short > SHORT > payload(SHORT sh) : m_etype(e_type_short) {m_sh = sh;}
    template < same_as < unsigned short > UNSIGNED_SHORT > payload(UNSIGNED_SHORT ush) : m_etype(e_type_unsigned_short) {m_ush = ush;}
    template < same_as < int > INT > payload(INT i) : m_etype(e_type_int) {m_i = i;}
-   template < same_as < unsigned int > UNSIGNED_INT > payload(UNSIGNED_INT ui) : m_etype(e_type_unsigned_int) {m_ui = ui;}
+   template < same_as < ::u32 > UNSIGNED_INT > payload(UNSIGNED_INT ui) : m_etype(e_type_unsigned_int) {m_ui = ui;}
    template < same_as < long long > LONG_LONG > payload(LONG_LONG ll) : m_etype(e_type_long_long) {m_ll = ll;}
-   template < same_as < unsigned long long > UNSIGNED_LONG_LONG > payload(UNSIGNED_LONG_LONG ull) : m_etype(e_type_unsigned_long_long) {m_ull = ull;}
+   template < same_as < ::u64 > UNSIGNED_LONG_LONG > payload(UNSIGNED_LONG_LONG ull) : m_etype(e_type_unsigned_long_long) {m_ull = ull;}
    template < same_as < float > FLOAT > payload(FLOAT f) : m_etype(e_type_float) {m_f = f;}
    template < same_as < double > DOUBLE > payload(DOUBLE d) : m_etype(e_type_double) {m_d = d;}
 #ifdef __APPLE__
@@ -203,9 +203,9 @@ public:
 #endif
 #endif
    payload(int * pi);
-   payload(unsigned int * pu);
+   payload(::u32 * pu);
    payload(long long * pi);
-   payload(unsigned long long * pu);
+   payload(::u64 * pu);
    payload(float * pf);
    payload(double * pd);
    payload(bool * pb);
@@ -468,9 +468,9 @@ public:
    short & as(short & i) const { return i = as_short(); }
    unsigned short & as(unsigned short & u) const { return u = as_unsigned_short(); }
    int & as(int & i)  const { return i = as_int(); }
-   unsigned int & as(unsigned int & u)  const { return u = as_unsigned_int(); }
+   ::u32 & as(::u32 & u)  const { return u = as_u32(); }
    long long & as(long long & i)  const { return i = as_long_long(); }
-   unsigned long long & as(unsigned long long & u)  const { return u = as_unsigned_long_long(); }
+   ::u64 & as(::u64 & u)  const { return u = as_u64(); }
    float & as(float & f) const { return f = as_float(); }
    double & as(double & f) const { return f = as_double(); }
 
@@ -480,9 +480,9 @@ public:
    short as_short(short iDefault = 0) const;
    unsigned short as_unsigned_short(unsigned short uDefault = 0) const;
    int as_int(int iDefault = 0)  const;
-   unsigned int as_unsigned_int(unsigned int uiDefault = 0)  const;
+   ::u32 as_u32(::u32 uiDefault = 0)  const;
    long long as_long_long(long long iDefault = 0)  const;
-   unsigned long long as_unsigned_long_long(unsigned long long uiDefault = 0)  const;
+   ::u64 as_u64(::u64 uiDefault = 0)  const;
    float as_float(float fDefault = 0) const;
    double as_double(double fDefault = 0) const;
 
@@ -646,9 +646,9 @@ public:
    operator short() const { return this->as_short(); }
    operator unsigned short() const { return this->as_unsigned_short(); }
    operator int() const { return this->as_int(); }
-   operator unsigned int() const { return this->as_unsigned_int(); }
+   operator ::u32() const { return this->as_u32(); }
    operator long long()const { return this->as_long_long(); }
-   operator unsigned long long() const { return this->as_unsigned_long_long(); }
+   operator ::u64() const { return this->as_u64(); }
 
 
 
@@ -677,7 +677,7 @@ public:
 
 
    ::string_array & string_array_reference();
-   ::int_array & int_array_reference();
+   ::i32_array & int_array_reference();
    ::long_long_array & long_long_array_reference();
    ::float_array & float_array_reference();
    ::double_array & double_array_reference();
@@ -694,7 +694,7 @@ public:
    ::color::hls & color_hls_reference();
 
    const ::string_array & string_array_reference() const;
-   const ::int_array & int_array_reference() const;
+   const ::i32_array & int_array_reference() const;
    const ::long_long_array & long_long_array_reference() const;
    const ::float_array & float_array_reference() const;
    const ::double_array & double_array_reference() const;
@@ -726,9 +726,9 @@ public:
    short & short_reference();
    unsigned short & unsigned_short_reference();
    int & int_reference();
-   unsigned int & unsigned_int_reference();
+   ::u32 & unsigned_int_reference();
    long long & long_long_reference();
-   unsigned long long & unsigned_long_long_reference();
+   ::u64 & unsigned_long_long_reference();
    float & float_reference();
    double & double_reference();
 
@@ -957,9 +957,9 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    //payload & assign_short           (short             sh)   { return __assign_primitive( m_sh , e_type_short   , i ); }
    //payload & assign_unsigned_short  (unsigned short   ush)   { return __assign_primitive(m_ush , e_type_unsigned_short   , u ); }
    //payload & assign_int             (int                i)   { return __assign_primitive(  m_i , e_type_int   , i ); }
-   //payload & assign_unsigned_int    (unsigned int       u)   { return __assign_primitive( m_ui , e_type_unsigned_int   , u ); }
+   //payload & assign_unsigned_int    (::u32       u)   { return __assign_primitive( m_ui , e_type_unsigned_int   , u ); }
    //payload & assign_long_long    (long long      ll)   { return __assign_primitive( m_ll , e_type_long_long   , i ); }
-   //payload & assign_unsigned_long_long    (unsigned long long      ull)   { return __assign_primitive( m_ull , e_type_unsigned_long_long   , u ); }
+   //payload & assign_unsigned_long_long    (::u64      ull)   { return __assign_primitive( m_ull , e_type_unsigned_long_long   , u ); }
    //payload & assign_float             (float              f)   { return __assign_primitive(  m_f , e_type_float   , f ); }
    //payload & assign_double             (double             d)   { return __assign_primitive(  m_d , e_type_double   , f ); }
 
@@ -970,9 +970,9 @@ payload & assign_## NUMBER_NAME (NUMBER_TYPE NUMBER_SHORT_NAME) { return __assig
    payload & assign_pi16   (short * pi)   { return __assign_primitive_pointer(m_psh   , e_type_pshort  , pi); }
    payload & assign_pu16   (unsigned short * pu)   { return __assign_primitive_pointer(m_push   , e_type_punsigned_short  , pu); }
    payload & assign_pi32   (int * pi)   { return __assign_primitive_pointer(m_pi   , e_type_pint  , pi); }
-   payload & assign_pu32   (unsigned int * pu)   { return __assign_primitive_pointer(m_pui   , e_type_punsigned_int  , pu); }
+   payload & assign_pu32   (::u32 * pu)   { return __assign_primitive_pointer(m_pui   , e_type_punsigned_int  , pu); }
    payload & assign_pi64   (long long * pll)   { return __assign_primitive_pointer(m_pll   , e_type_plong_long  , pll); }
-   payload & assign_pu64   (unsigned long long * pull)   { return __assign_primitive_pointer(m_pull   , e_type_punsigned_long_long  , pull); }
+   payload & assign_pu64   (::u64 * pull)   { return __assign_primitive_pointer(m_pull   , e_type_punsigned_long_long  , pull); }
    payload & assign_pf32   (float * pf)   { return __assign_primitive_pointer(m_pf   , e_type_pfloat  , pf); }
    payload & assign_pf64   (double * pf)   { return __assign_primitive_pointer(m_pd   , e_type_pdouble  , pf); }
 
@@ -1016,7 +1016,7 @@ protected:
       else if(get_type() == e_type_punsigned_int)
       {
 
-         *m_pui = (unsigned int) prototype;
+         *m_pui = (::u32) prototype;
 
       }
       else if(get_type() == e_type_pint)
@@ -1028,7 +1028,7 @@ protected:
       else if(get_type() == e_type_punsigned_long_long)
       {
 
-         *m_pull = (unsigned long long) prototype;
+         *m_pull = (::u64) prototype;
 
       }
       else if(get_type() == e_type_plong_long)
@@ -1092,9 +1092,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    //template < same_as < short > I16 > payload & operator=(I16 i) { return assign_short(i); }
    //template < same_as < unsigned short > U16 > payload & operator=(U16 u) { return assign_unsigned_short(u); }
    //template < same_as < int > I32 > payload & operator=(I32 i) { return assign_int(i); }
-   //template < same_as < unsigned int > U32 > payload & operator=(U32 u) { return assign_unsigned_int(u); }
+   //template < same_as < ::u32 > U32 > payload & operator=(U32 u) { return assign_unsigned_int(u); }
    //template < same_as < long long > I64 > payload & operator=(I64 i) { return assign_long_long(i); }
-   //template < same_as < unsigned long long > U64 > payload & operator=(U64 u) { return assign_unsigned_long_long(u); }
+   //template < same_as < ::u64 > U64 > payload & operator=(U64 u) { return assign_unsigned_long_long(u); }
    //template < same_as < float > F32 > payload & operator=(F32 f) { return assign_float(f); }
    //template < same_as < double > F64 > payload & operator=(F64 f) { return assign_double(f); }
 
@@ -1104,9 +1104,9 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
    payload & assign_pointer(short * pi) { return assign_pi16(pi); }
    payload & assign_pointer(unsigned short * pu) { return assign_pu16(pu); }
    payload & assign_pointer(int * pi) { return assign_pi32(pi); }
-   payload & assign_pointer(unsigned int * pu) { return assign_pu32(pu); }
+   payload & assign_pointer(::u32 * pu) { return assign_pu32(pu); }
    payload & assign_pointer(long long * pi) { return assign_pi64(pi); }
-   payload & assign_pointer(unsigned long long * pu) { return assign_pu64(pu); }
+   payload & assign_pointer(::u64 * pu) { return assign_pu64(pu); }
    payload & assign_pointer(float * pf) { return assign_pf32(pf); }
    payload & assign_pointer(double * pf) { return assign_pf64(pf); }
 
@@ -1340,7 +1340,7 @@ template < same_as < NUMBER_TYPE > UPPER_CASE_NAME > payload & operator = (UPPER
 
    bool equals_payload(const ::payload & payload) const;
    bool equals_signed(long long i) const;
-   bool equals_unsigned(unsigned long long u) const;
+   bool equals_unsigned(::u64 u) const;
    bool equals_scoped_string(const ::scoped_string & scopedstr) const;
 
 
@@ -1682,9 +1682,9 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //}
 
 // returns 0 for unknown conversions
-//inline payload::operator unsigned int() const
+//inline payload::operator ::u32() const
 //{
-//   return unsigned int();
+//   return ::u32();
 //}
 
 
@@ -1695,7 +1695,7 @@ CLASS_DECL_ACME void payload_skip_network_payload(::ansi_range & range);
 //}
 
 // returns 0 for unknown conversions
-//inline payload::operator unsigned long long() const
+//inline payload::operator ::u64() const
 //{
 //   return unsigned_long_long;
 //}
@@ -1792,11 +1792,11 @@ inline uptr payload::as_uptr(::uptr uiDefault) const
 
 #ifdef OS64BIT
 
-   return as_unsigned_long_long(uiDefault);
+   return as_u64(uiDefault);
 
 #else
 
-   return as_unsigned_int(uiDefault);
+   return as_u32(uiDefault);
 
 #endif
 
@@ -1821,9 +1821,9 @@ inline payload::operator long() const
 inline payload::operator unsigned long() const
 {
 #if LONG_IS_32BIT
-   return as_unsigned_int();
+   return as_u32();
 #else
-   return as_unsigned_long_long();
+   return as_u64();
 #endif
 }
 

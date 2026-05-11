@@ -135,8 +135,8 @@ namespace windows
 
 
       //virtual bool on_window_procedure(LRESULT & lresult, UINT message, WPARAM wparam, LPARAM lparam);
-      virtual bool call_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam);
-      virtual bool on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam);
+      virtual bool call_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam);
+      virtual bool on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam);
       virtual bool _on_default_system_menu_init_menu(::lresult & lresult,  ::wparam wparam);
       virtual bool _on_default_system_menu_command(::lresult & lresult, ::wparam wparam, ::lparam lparam);
       virtual void _defer_show_system_menu(::user::mouse * ppmouse);
@@ -147,10 +147,10 @@ namespace windows
 
 
       virtual ::operating_system::window _create_window_ex(
-         unsigned int dwExStyle,
+         ::u32 dwExStyle,
          const ::scoped_string & scopedstrWindowClassName,
          const ::scoped_string & scopedstrWindowName,
-         unsigned int dwStyle,
+         ::u32 dwStyle,
          const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
          const ::operating_system::window & operatingsystemwindowParent = nullptr,
          void * pHMENU = nullptr,
@@ -160,7 +160,7 @@ namespace windows
       inline ::operating_system::window _create_window(
          const ::scoped_string & scopedstrWindowClassName,
          const ::scoped_string & scopedstrWindowName,
-         unsigned int dwStyle,
+         ::u32 dwStyle,
          const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
          const ::operating_system::window & operatingsystemwindowParent = nullptr,
          void * pHMENU = nullptr,
@@ -180,10 +180,10 @@ namespace windows
       }
 
       virtual void createWindowEx(
-         unsigned int dwExStyle,
+         ::u32 dwExStyle,
          const ::scoped_string & scopedstrWindowClassName,
          const ::scoped_string & scopedstrWindowName,
-         unsigned int dwStyle,
+         ::u32 dwStyle,
          const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
          const ::operating_system::window & operatingsystemwindowParent = nullptr,
          void * pHMENU = nullptr);
@@ -191,7 +191,7 @@ namespace windows
       inline void createWindow(
               const ::scoped_string & scopedstrWindowClassName,
               const ::scoped_string & scopedstrWindowName,
-              unsigned int dwStyle,
+              ::u32 dwStyle,
               const ::int_origin_size & originsize = {WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT,WIN32_CW_USEDEFAULT},
               const ::operating_system::window & operatingsystemwindowParent = nullptr,
               void * pHMENU = nullptr)

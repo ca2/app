@@ -286,7 +286,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 
 
 
-//plex_heap_alloc * plex_heap_alloc_array::new_plex_heap_alloc(memsize nAllocSize, unsigned int nBlockSize)
+//plex_heap_alloc * plex_heap_alloc_array::new_plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize)
 //{
 //
 //   auto palloc = (plex_heap_alloc*) m_pallocator->allocateø plex_heap_alloc(nAllocSize, nBlockSize);

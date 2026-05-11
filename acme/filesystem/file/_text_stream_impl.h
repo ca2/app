@@ -17,8 +17,8 @@
 //inline void __string_exchange(text_stream & s, long long & i) { s.number_exchange(i); }
 //inline void __string_exchange(text_stream & s, unsigned char & u) { s.number_exchange(u); }
 //inline void __string_exchange(text_stream & s, unsigned short & u) { s.number_exchange(u); }
-//inline void __string_exchange(text_stream & s, unsigned int & u) { s.number_exchange(u); }
-//inline void __string_exchange(text_stream & s, unsigned long long & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, ::u32 & u) { s.number_exchange(u); }
+//inline void __string_exchange(text_stream & s, ::u64 & u) { s.number_exchange(u); }
 //#if !defined(LINUX) && !defined(FREEBSD) && !defined(OPENBSD)
 //inline void __string_exchange(text_stream & s, long & l) { s.number_exchange(l); }
 //#endif

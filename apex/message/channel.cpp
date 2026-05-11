@@ -532,7 +532,7 @@ void channel::_route_command_probe(::message::command * pcommand)
 //
 //   zero(msg);
 //
-//   msg.message = (unsigned int) atom.m_emessage;
+//   msg.message = (::u32) atom.m_emessage;
 //   msg.wParam = wparam;
 //   msg.lParam = lparam;
 //

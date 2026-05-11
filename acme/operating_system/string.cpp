@@ -56,7 +56,7 @@ CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer psz, const_char_p
 }
 
 
-CLASS_DECL_ACME unsigned long long ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 {
 
    return strtoull(psz, (::ansi_character **)ppszEnd, iBase);
@@ -104,7 +104,7 @@ CLASS_DECL_ACME int ansi_to_int(const_char_pointer psz, const_char_pointer *ppsz
 
 
 
-CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 {
 
 #ifdef WINDOWS
@@ -124,7 +124,7 @@ CLASS_DECL_ACME unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_
 
    }
 
-   return (unsigned int) ul;
+   return (::u32) ul;
 
 #endif
 
@@ -1148,7 +1148,7 @@ CLASS_DECL_ACME const_char_pointer ansi_const_last_char(const_char_pointer psz)
 ////CLASS_DECL_ACME const_char_pointer ansi_concatenate_duplicate_and_free(const_char_pointer psz1, ::ansi_character * psz2);
 //
 //
-//CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, unsigned long long u, int iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, ::u64 u, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;
@@ -1168,7 +1168,7 @@ CLASS_DECL_ACME const_char_pointer ansi_const_last_char(const_char_pointer psz)
 //}
 //
 //
-//CLASS_DECL_ACME void ansi_from_ui(::ansi_character * sz, unsigned int u, int iBase, enum_digit_case edigitcase)
+//CLASS_DECL_ACME void ansi_from_ui(::ansi_character * sz, ::u32 u, int iBase, enum_digit_case edigitcase)
 //{
 //
 //   ::ansi_character * end;

@@ -48,7 +48,7 @@
 //
 // protected:
 //   // Function must return true value if the message has been processed.
-//   virtual bool wndProc(unsigned int message, ::wparam wparam, ::lparam lparam) { return true; }
+//   virtual bool wndProc(::u32 message, ::wparam wparam, ::lparam lparam) { return true; }
 //
 //   HWND m_hwnd;
 //   WindowMessageHandler *m_pwindowmessagehandler;
@@ -60,7 +60,7 @@
 //   ATOM regClass(HINSTANCE hinst, char *windowClassName);
 //
 //   static LRESULT CALLBACK staticWndProc(const ::operating_system::window & operatingsystemwindow,
-//                                         unsigned int message,
+//                                         ::u32 message,
 //                                         ::wparam wparam,
 //                                         ::lparam lparam);
 // };

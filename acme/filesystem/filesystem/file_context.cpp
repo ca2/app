@@ -375,7 +375,7 @@ bool file_context::exists(const ::file::path & pathParam)
 //   else
 //   {
 //
-//      varRet = (((unsigned long long) data.nFileSizeHigh) << 32) | (unsigned long long) data.nFileSizeLow;
+//      varRet = (((::u64) data.nFileSizeHigh) << 32) | (::u64) data.nFileSizeLow;
 //
 //      ((::file::path &) path).m_iSize = varRet.m_hi;
 //
@@ -2175,7 +2175,7 @@ void file_context::erase(const ::file::path & path)
 //
 //   /*      if(!::DeleteFileW(utf8_to_unicode(string("\\\\?\\") + psz)))
 //   {
-//   unsigned int dwError = ::get_last_error();
+//   ::u32 dwError = ::get_last_error();
 //   if(dwError == 2) // the file does not exist, so delete "failed"
 //   return;
 //   string strError;
@@ -2431,7 +2431,7 @@ bool file_context::is_read_only(const ::file::path & path)
 
    //#ifdef WINDOWS_DESKTOP
    //
-   //   unsigned int dwAttrib = windows_get_file_attributes(scopedstr);
+   //   ::u32 dwAttrib = windows_get_file_attributes(scopedstr);
    //
    //   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
    //   {
@@ -2752,7 +2752,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   string strMd5 = "01234567012345670123456701234567";
 //
-//   unsigned long long iPos;
+//   ::u64 iPos;
 //
 //   for (int i = 0; i < patha.size(); i++)
 //   {
@@ -2831,7 +2831,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //         read_n_number(pfile, &ctx, iLen);
 //         while (iLen > 0)
 //         {
-//            uRead = pfile->read(buf, (unsigned int)(minimum(iBufSize, iLen)));
+//            uRead = pfile->read(buf, (::u32)(minimum(iBufSize, iLen)));
 //            if (uRead == 0)
 //               break;
 //            pfile2->write(buf, uRead);
@@ -2872,7 +2872,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //void file_context::read_n_number(::file::file * pfile, void * pctx, long long & iNumber)
 //{
 //
-//   unsigned long long uRead;
+//   ::u64 uRead;
 //
 //   string str;
 //
@@ -4384,7 +4384,7 @@ bool file_context::is_link(const ::file::path & path)
 
 //
 //
-//::file_pointer file_context::get_file(const ::payload & payloadFile, unsigned int nOpenFlags)
+//::file_pointer file_context::get_file(const ::payload & payloadFile, ::u32 nOpenFlags)
 //{
 //
 //   return file()->get_file(get_app(), payloadFile, nOpenFlags);

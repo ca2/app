@@ -56,7 +56,7 @@ namespace subsystem
       virtual bool _writeToClipBoard(const ::scoped_string &scopedstrText);
 
    //protected:
-   //   virtual bool wndProc(unsigned int scopedstrMessage, ::wparam wParam, ::lparam lParam);
+   //   virtual bool wndProc(::u32 scopedstrMessage, ::wparam wParam, ::lparam lParam);
 
    //   virtual void execute();
    //   virtual void onTerminate();

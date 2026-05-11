@@ -377,7 +377,7 @@ namespace gpu_opengl
       //    ////              GL_STATIC_DRAW); // copy over the vertex data
       //    ////
       //    //// glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mEBO); // use this EBO for subsequent calls
-      //    //// glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(unsigned int), &m_indexa[0],
+      //    //// glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexa.size() * sizeof(::u32), &m_indexa[0],
       //    ////              GL_STATIC_DRAW); // copy over the index data
       //    ////
       //    //// // setup the locations of vertex data
@@ -438,7 +438,7 @@ namespace gpu_opengl
       //
       //
       //    ////   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_uEBO); // use this EBO for subsequent calls
-      //    ////   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(unsigned int), indexData,
+      //    ////   glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexSize * sizeof(::u32), indexData,
       //    ////                GL_STATIC_DRAW); // copy over the index data
       //
       //    ////   // setup the locations of vertex data

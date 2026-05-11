@@ -129,11 +129,11 @@ void ui_app_terminate()
 
 }
 
-unsigned int m_sleep(unsigned int seconds);
+::u32 m_sleep(::u32 seconds);
 
 
 extern "C"
-unsigned int sleep(unsigned int seconds)
+::u32 sleep(::u32 seconds)
 {
 
    return m_sleep(seconds);

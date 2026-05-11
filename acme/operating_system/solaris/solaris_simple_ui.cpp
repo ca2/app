@@ -510,7 +510,7 @@ namespace os
       ::user::interaction::screen_to_client(ppt);
    }
 
-   bool simple_ui::on_key_down(unsigned int uiKey)
+   bool simple_ui::on_key_down(::u32 uiKey)
    {
       if (uiKey == 12) // VKSHIFT
       {
@@ -525,7 +525,7 @@ namespace os
 
    }
 
-   bool simple_ui::on_key_up(unsigned int uiKey)
+   bool simple_ui::on_key_up(::u32 uiKey)
    {
 
       string str;
@@ -557,9 +557,9 @@ namespace os
       sz[0] = uiKey;
       sz[1]  = '\0';
 
-      //int iRet = ToUnicodeEx((unsigned int)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+      //int iRet = ToUnicodeEx((::u32)wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
       str = sz;
-      on_char(static_cast<unsigned int>(uiKey), str);
+      on_char(static_cast<::u32>(uiKey), str);
 
       if (m_bShiftKey && uiKey == VK_SHIFT)
       {

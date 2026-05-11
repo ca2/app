@@ -103,7 +103,7 @@ auto m_timeRoll = ::time::now();
    void impact_base::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //unsigned long long startTime = get_nanos();
+      //::u64 startTime = get_nanos();
 
       defer_check_on_draw_layout();
 
@@ -213,9 +213,9 @@ auto m_timeRoll = ::time::now();
       //pdcScreen->FillSolidRect(10,10,100,100,argb(184,49,184,60));
 
       //pdcScreen->Draw3dRect(200,200,100,100,argb(255,0,255,0),argb(255,0,0,255));
-      //unsigned long long endTime = get_nanos();
+      //::u64 endTime = get_nanos();
 
-      //unsigned long long microsecond = (endTime - startTime) / 1000;
+      //::u64 microsecond = (endTime - startTime) / 1000;
 
       //char sz[512];
 

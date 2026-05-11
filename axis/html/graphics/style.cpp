@@ -599,7 +599,7 @@ namespace html
       const style *     pstyle1           = nullptr;
       ::collection::index               i1                 = -1;
       ::payload var1 = color;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (unsigned int &) crW);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (::u32 &) crW);
 
 
       const style *     pstyleCur;

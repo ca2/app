@@ -117,7 +117,7 @@ void dappy(const ::scoped_string & scopedstr);
 //string get_user_name()
 //{
 //   WCHAR wsz[1024];
-//   unsigned int dwSize = sizeof(wsz) / sizeof(WCHAR);
+//   ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 //   ::GetUserNameW(wsz,&dwSize);
 //   return string(wsz);
 //}
@@ -1134,7 +1134,7 @@ namespace aura
 //#ifdef _WIN32
 //      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
 //      GetSystemTimeAsFileTime(&ft);
-//      unsigned long long tt;
+//      ::u64 tt;
 //      ::memory_copy(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
 //      int_point->tv_sec = (long)tt / 1000000;
@@ -2473,7 +2473,7 @@ namespace aura
    }
 
 
-   //unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   //::u32 system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    //{
 
    //   post_to_all_threads(eusermessage, wparam, lparam);
@@ -5417,7 +5417,7 @@ namespace aura
 
 //#include <HighLevelMonitorConfigurationAPI.h>
 //
-//unsigned int mc_color_kelvin(MC_COLOR_TEMPERATURE e)
+//::u32 mc_color_kelvin(MC_COLOR_TEMPERATURE e)
 //{
 //   switch (e)
 //   {
@@ -5442,7 +5442,7 @@ namespace aura
 //   }
 //}
 
-//MC_COLOR_TEMPERATURE kelvin_mc_color(unsigned int kelvin)
+//MC_COLOR_TEMPERATURE kelvin_mc_color(::u32 kelvin)
 //{
 //   if (kelvin < 4500)
 //   {
@@ -5510,7 +5510,7 @@ namespace aura
 namespace aura
 {
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, unsigned int dwTemp);
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
    /*  bool system::on_application_menu_action(const ::scoped_string & scopedstrCommand)
      {
@@ -7082,7 +7082,7 @@ if(!m_pimaging)
    }
 
 
-   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, unsigned int dwTemp)
+   //CLASS_DECL_AURA void black_body(float* r, float* g, float* b, ::u32 dwTemp)
    //{
 
    //   int temp_index = ((dwTemp - 1000) / 100) * 3;

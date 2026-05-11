@@ -39,9 +39,9 @@ int _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld unsigned int PTR [d]
+//         fld ::u32 PTR [d]
 //         fatan
-//         fstp unsigned int ptr[d]
+//         fstp ::u32 ptr[d]
 //     }
 //     return d;
 // #else
@@ -64,9 +64,9 @@ int _fltused = 0;
 // #ifdef X86
 //     _asmxxxx
 //     {
-//         fld unsigned int PTR [d]
+//         fld ::u32 PTR [d]
 //         fsqrt
-//         fstp unsigned int ptr[d]
+//         fstp ::u32 ptr[d]
 //     }
 //     return d;
 // #else
@@ -90,9 +90,9 @@ int _fltused = 0;
 // #ifdef X86
 //     _asmxxxx
 //     {
-//         fld unsigned int PTR [d]
+//         fld ::u32 PTR [d]
 //         fexp
-//         fstp unsigned int ptr[d]
+//         fstp ::u32 ptr[d]
 //     }
 //     return d;
 // #else
@@ -105,9 +105,9 @@ int _fltused = 0;
 // #ifdef X86
 //     _asmxxxx
 //     {
-//         fld unsigned int PTR [d]
+//         fld ::u32 PTR [d]
 //         flog
-//         fstp unsigned int ptr[d]
+//         fstp ::u32 ptr[d]
 //     }
 //     return d;
 // #else
@@ -120,9 +120,9 @@ int _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld unsigned int PTR [d]
+//         fld ::u32 PTR [d]
 //         ftan
-//         fstp unsigned int ptr[d]
+//         fstp ::u32 ptr[d]
 //     }
 //     return d;
 // #else
@@ -135,9 +135,9 @@ int _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld unsigned int PTR [d]
+//         fld ::u32 PTR [d]
 //         fsin
-//         fstp unsigned int ptr[d]
+//         fstp ::u32 ptr[d]
 //     }
 //     return d;
 // #else
@@ -150,9 +150,9 @@ int _fltused = 0;
 // #ifdef X86
 //     _asmxxx
 //     {
-//         fld unsigned int PTR [d]
+//         fld ::u32 PTR [d]
 //         fcos
-//         fstp unsigned int ptr[d]
+//         fstp ::u32 ptr[d]
 //     }
 //     return d;
 // #else
@@ -162,7 +162,7 @@ int _fltused = 0;
 
 // #endif
 
-// CLASS_DECL_ACME void srand_dup(unsigned int seed)
+// CLASS_DECL_ACME void srand_dup(::u32 seed)
 // {
 // 	lastrand = seed;
 // }

@@ -253,7 +253,7 @@ bool condition::pulse_happening()
 
 #elif defined(__ANDROID__)
 
-   //unsigned int timeout = wait;
+   //::u32 timeout = wait;
 
    pthread_mutex_lock(&m_mutex);
 
@@ -404,7 +404,7 @@ bool condition::is_signaled() const
 //
 //#else
 //
-//   unsigned int timeout = timeTimeout.u32_millis();
+//   ::u32 timeout = timeTimeout.u32_millis();
 //
 //   auto start = ::time::now();
 //

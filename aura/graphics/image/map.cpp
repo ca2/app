@@ -40,7 +40,7 @@ namespace image
 
       image_header itemFind;
 
-      unsigned long long uAreaMax = 0;
+      ::u64 uAreaMax = 0;
 
       auto iterator = this->begin();
 

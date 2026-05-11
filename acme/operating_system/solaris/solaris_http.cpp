@@ -6,7 +6,7 @@
 #endif
 
 tiny_http g_tinyhttp;
-unsigned int g_MsDownloadSize = 1024 * 128;
+::u32 g_MsDownloadSize = 1024 * 128;
 char * g_MsDownloadBuffer = nullptr;
 
 void prepare_http()
@@ -70,7 +70,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   unsigned int dwSize = 0;
+   ::u32 dwSize = 0;
    char * pszOutBuffer;
    int_bool  bResults = false;
 
@@ -107,8 +107,8 @@ vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*ca
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   unsigned int dwSize = 0;
-   unsigned int dwDownloaded = 0;
+   ::u32 dwSize = 0;
+   ::u32 dwDownloaded = 0;
    char * pszOutBuffer;
    int_bool  bResults = false;
 
@@ -196,8 +196,8 @@ strHost = strUrl.substr(8, iPos - 8);
 strReq = strUrl.substr(iPos);
 iPort = 443;
 }
-unsigned int dwSize = 0;
-unsigned int dwDownloaded = 0;
+::u32 dwSize = 0;
+::u32 dwDownloaded = 0;
 char * pszOutBuffer;
 int_bool  bResults = false;
 HINTERNET  hSession = nullptr,
@@ -266,7 +266,7 @@ WINHTTP_NO_ADDITIONAL_HEADERS,
 0, WINHTTP_NO_REQUEST_DATA, 0,
 strlen(scopedstrPost), 0);
 
-unsigned int dwUploaded;
+::u32 dwUploaded;
 if (bResults)
 if (! (bResults = WinHttpWriteData( hRequest, (LPVOID)pszPost,
 strlen(scopedstrPost), &dwUploaded)))
@@ -320,7 +320,7 @@ delete [] pszOutBuffer;
 } while (dwSize>0);
 }
 
-unsigned int dw = get_last_error();
+::u32 dw = get_last_error();
 // Report any errors.
 if (!bResults)
 printf("Error %d has occurred.\n",dw);
@@ -344,7 +344,7 @@ WINHTTP_AUTOPROXY_OPTIONS apop;
 
 char szPac[4096];
 memory_set(szPac, 0, sizeof(szPac));
-unsigned int lcbPac;
+::u32 lcbPac;
 HKEY hkey;
 memory_set(&apop, 0, sizeof(apop));
 bool bGot = false;
@@ -354,7 +354,7 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 &hkey) == ERROR_SUCCESS)
 {
 int l;
-unsigned int dw;
+::u32 dw;
 if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (unsigned char *) &szPac, &lcbPac)) == ERROR_SUCCESS
 && (szPac[8] & 8))
 {

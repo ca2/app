@@ -83,7 +83,7 @@ namespace browser
 
       class ::time                            m_timeAnime;
       class ::time m_timeLastFast;
-      unsigned int                            m_timeFastAnime;
+      ::u32                            m_timeFastAnime;
       ::image::image_pointer                            m_pimageFast;
 
 

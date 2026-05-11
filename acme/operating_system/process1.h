@@ -26,13 +26,13 @@
 #if !defined(UNIVERSAL_WINDOWS)
 
 
-//CLASS_DECL_ACME string module_path_from_pid(unsigned int pid);
+//CLASS_DECL_ACME string module_path_from_pid(::u32 pid);
 //CLASS_DECL_ACME ::atom_array module_path_get_pid(const ::scoped_string & scopedstrModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS
 
-//CLASS_DECL_ACME string_array_base cmdline_from_pid(unsigned int pid);
+//CLASS_DECL_ACME string_array_base cmdline_from_pid(::u32 pid);
 //CLASS_DECL_ACME atom_array app_get_pid(const ::scoped_string & scopedstrModuleName);
 
 
@@ -42,13 +42,13 @@
 #endif
 
 #ifndef UNIVERSAL_WINDOWS
-//CLASS_DECL_ACME bool process_contains_module(string & strImage, unsigned int processID, const ::scoped_string & scopedstrLibrary);
+//CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID, const ::scoped_string & scopedstrLibrary);
 //CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrLibrary);
 #endif
 
 
 
-//CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra);
+//CLASS_DECL_ACME bool is_shared_library_busy(::u32 processid, const string_array_base & stra);
 //CLASS_DECL_ACME bool is_shared_library_busy(const string_array_base & stra);
 
 
@@ -59,7 +59,7 @@
 
 
 
-//CLASS_DECL_ACME unsigned int get_current_process_id();
+//CLASS_DECL_ACME ::u32 get_current_process_id();
 
 
 // it was extracted from macOS code base
@@ -90,7 +90,7 @@
 
 #if !defined(UNIVERSAL_WINDOWS)
 
-//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
 
 //typedef int CALLSYNCONRETRY(int iTry,uptr dwParam);
 

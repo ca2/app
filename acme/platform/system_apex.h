@@ -216,7 +216,7 @@ namespace platform
       //
 
 
-      virtual unsigned int os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
+      virtual ::u32 os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {});
 
 
       //

@@ -49,7 +49,7 @@ namespace subsystem
       /**
        * Creates pipe transport.
        */
-      //NamedPipeInterface(HANDLE hPipe, unsigned int maxPortionSize, bool asServer);
+      //NamedPipeInterface(HANDLE hPipe, ::u32 maxPortionSize, bool asServer);
       //NamedPipe();
       /**
        * Destroys instance.
@@ -57,7 +57,7 @@ namespace subsystem
       //virtual ~NamedPipeInterface() =0;
 
 
-      virtual void initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer) = 0;
+      virtual void initialize_named_pipe(::subsystem::FileInterface * pfilePipe, ::u32 maxPortionSize, bool asServer) = 0;
 
       /**
        * Closes transport.
@@ -118,7 +118,7 @@ namespace subsystem
       /**
        * Creates pipe transport.
        */
-      //NamedPipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer);
+      //NamedPipe(::subsystem::FileInterface * pfilePipe, ::u32 maxPortionSize, bool asServer);
       //NamedPipe();
       /**
        * Destroys instance.
@@ -126,7 +126,7 @@ namespace subsystem
       //~NamedPipe();
 
 
-         void initialize_named_pipe(::subsystem::FileInterface* pfilePipe, unsigned int maxPortionSize, bool asServer) override
+         void initialize_named_pipe(::subsystem::FileInterface* pfilePipe, ::u32 maxPortionSize, bool asServer) override
       {
 
          m_pnamedpipe->initialize_named_pipe(pfilePipe, maxPortionSize, asServer);

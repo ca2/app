@@ -771,7 +771,7 @@ namespace user
 
 
 
-   //bool interaction_base::SetPlacement(const ::int_rectangle & rectangle,unsigned int nFlags)
+   //bool interaction_base::SetPlacement(const ::int_rectangle & rectangle,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -831,7 +831,7 @@ namespace user
    //}
 
 
-   //int interaction_base::sync_message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeOut, unsigned int fuStyle)
+   //int interaction_base::sync_message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   return papp->sync_message_box_timeout(this, pszMessage, get_title(), timeTimeOut, fuStyle);
@@ -870,7 +870,7 @@ namespace user
    //}
 
 
-   //void interaction_base::message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeout, unsigned int fuStyle)
+   //void interaction_base::message_box_timeout(const ::scoped_string & scopedstrMessage, ::time timeTimeout, ::u32 fuStyle)
    //{
 
    //   fork([=]()
@@ -891,7 +891,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::RepositionWindow(int x,int y,int cx,int cy,unsigned int nFlags)
+   //bool interaction_base::RepositionWindow(int x,int y,int cx,int cy,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -901,7 +901,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::MoveWindow(int x,int y,unsigned int nFlags)
+   //bool interaction_base::MoveWindow(int x,int y,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -921,7 +921,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::SizeWindow(int cx,int cy,unsigned int nFlags)
+   //bool interaction_base::SizeWindow(int cx,int cy,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -941,7 +941,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::ResizeWindow(int cx,int cy,unsigned int nFlags)
+   //bool interaction_base::ResizeWindow(int cx,int cy,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -951,7 +951,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::ResizeWindow(const int_size & sz,unsigned int nFlags)
+   //bool interaction_base::ResizeWindow(const int_size & sz,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -961,7 +961,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::set_window_position(class zorder zorder, const ::int_rectangle & rectangle, unsigned int nFlags)
+   //bool interaction_base::set_window_position(class zorder zorder, const ::int_rectangle & rectangle, ::u32 nFlags)
 
    //{
 
@@ -971,7 +971,7 @@ namespace user
 
    //}
 
-   //bool interaction_base::defer_set_window_pos(iptr z, const  const int_rectangle & & rectangle, unsigned int nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
+   //bool interaction_base::defer_set_window_pos(iptr z, const  const int_rectangle & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();
@@ -981,7 +981,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::defer_set_window_pos(iptr z,int x,int y,int cx,int cy,unsigned int nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
+   //bool interaction_base::defer_set_window_pos(iptr z,int x,int y,int cx,int cy,::u32 nFlags) // only set_windows_pos if get_parent()->screen_to_client(window_rectangle) different of int_rectangle(x, y, cx, cy)
    //{
 
    //   throw ::interface_only();
@@ -1189,7 +1189,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::ModifyStyle(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags)
+   //bool interaction_base::ModifyStyle(::u32 dwRemove,::u32 dwAdd,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -1199,7 +1199,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::ModifyStyleEx(unsigned int dwRemove,unsigned int dwAdd,unsigned int nFlags)
+   //bool interaction_base::ModifyStyleEx(::u32 dwRemove,::u32 dwAdd,::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -1334,7 +1334,7 @@ namespace user
    }
 
 
-   //bool interaction_base::create_interaction(::user::interaction * puiParent, ::request * prequest, unsigned int uExStyle, unsigned int uStyle)
+   //bool interaction_base::create_interaction(::user::interaction * puiParent, ::request * prequest, ::u32 uExStyle, ::u32 uStyle)
    //{
 
    //   throw ::interface_only();
@@ -1590,7 +1590,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, unsigned int flags)
+   //bool interaction_base::RedrawWindow(const ::int_rectangle& rectangleUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    //{
 
    //   throw ::interface_only();
@@ -1610,7 +1610,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::ChildWindowFromPoint(const ::int_point & point,unsigned int nFlags)
+   ::user::interaction * interaction_base::ChildWindowFromPoint(const ::int_point & point,::u32 nFlags)
    {
 
       throw ::interface_only();
@@ -1674,7 +1674,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::get_wnd(unsigned int nCmd)
+   ::user::interaction * interaction_base::get_wnd(::u32 nCmd)
    {
 
       throw ::interface_only();
@@ -1879,7 +1879,7 @@ namespace user
    //}
 
 
-   //unsigned int interaction_base::GetStyle() const
+   //::u32 interaction_base::GetStyle() const
    //{
 
    //   throw ::interface_only();
@@ -1889,7 +1889,7 @@ namespace user
    //}
 
 
-   //unsigned int interaction_base::GetExStyle() const
+   //::u32 interaction_base::GetExStyle() const
    //{
 
    //   throw ::interface_only();
@@ -1943,7 +1943,7 @@ namespace user
    //}
 
 
-   //void interaction_base::CalcWindowRect(::int_rectangle * prectangle,unsigned int nAdjustType)
+   //void interaction_base::CalcWindowRect(::int_rectangle * prectangle,::u32 nAdjustType)
 
    //{
 
@@ -1952,7 +1952,7 @@ namespace user
    //}
 
 
-   void interaction_base::RepositionBars(unsigned int nIDFirst, unsigned int nIDLast, ::atom idLeftOver, unsigned int nFlag, ::int_rectangle * prectParam, const ::int_rectangle & rectangleX, bool bStretch)
+   void interaction_base::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag, ::int_rectangle * prectParam, const ::int_rectangle & rectangleX, bool bStretch)
    {
 
       throw ::interface_only();
@@ -2452,7 +2452,7 @@ namespace user
    }
 
 
-   //atom interaction_base::run_modal_loop(::user::interaction * pinteraction,unsigned int dwFlags)
+   //atom interaction_base::run_modal_loop(::user::interaction * pinteraction,::u32 dwFlags)
    //{
 
    //   throw ::interface_only();
@@ -2462,7 +2462,7 @@ namespace user
    //}
 
 
-   //atom interaction_base::RunModalLoop(unsigned int dwFlags)
+   //atom interaction_base::RunModalLoop(::u32 dwFlags)
    //{
 
    //   throw ::interface_only();
@@ -2472,7 +2472,7 @@ namespace user
    //}
 
 
-   //atom interaction_base::_001RunModalLoop(unsigned int dwFlags)
+   //atom interaction_base::_001RunModalLoop(::u32 dwFlags)
    //{
 
    //   throw ::interface_only();
@@ -3182,7 +3182,7 @@ namespace user
    }
 
 
-   unsigned int interaction_base::get_window_default_style()
+   ::u32 interaction_base::get_window_default_style()
    {
 
       throw ::interface_only();
@@ -3389,7 +3389,7 @@ namespace user
    //}
 
 
-   //bool interaction_base::set_window_position(class zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
+   //bool interaction_base::set_window_position(class zorder zorder, int x, int y, int cx, int cy, ::u32 nFlags)
    //{
 
    //   throw ::interface_only();
@@ -3996,7 +3996,7 @@ namespace user
    //}
 
 
-//   bool interaction_base::SetPlacement(const ::int_rectangle & rectangle, unsigned int nFlags)
+//   bool interaction_base::SetPlacement(const ::int_rectangle & rectangle, ::u32 nFlags)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(rectangle);

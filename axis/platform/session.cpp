@@ -480,7 +480,7 @@ namespace axis
 //
 //      WCHAR wsz[1024];
 //
-//      unsigned int dwSize = sizeof(wsz) / sizeof(WCHAR);
+//      ::u32 dwSize = sizeof(wsz) / sizeof(WCHAR);
 //
 //      GetUserNameW(wsz, &dwSize);
 //

@@ -7,7 +7,7 @@ static
 const int FULL_RECORD_LENGTH = 50;
 
 static
-GeoIPRecord * _extract_record(GeoIP* gi, unsigned int seek_record, int *next_record_ptr)
+GeoIPRecord * _extract_record(GeoIP* gi, ::u32 seek_record, int *next_record_ptr)
 {
    int record_pointer;
    uchar *record_buf = nullptr;
@@ -127,10 +127,10 @@ GeoIPRecord * _extract_record(GeoIP* gi, unsigned int seek_record, int *next_rec
 }
 
 
-static GeoIPRecord * _get_record(GeoIP* gi, unsigned int ipnum)
+static GeoIPRecord * _get_record(GeoIP* gi, ::u32 ipnum)
 {
    
-   unsigned int seek_record;
+   ::u32 seek_record;
 
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
          gi->databaseType != (char) GEOIP_CITY_EDITION_REV1)
@@ -153,7 +153,7 @@ static GeoIPRecord * _get_record(GeoIP* gi, unsigned int ipnum)
 static
 GeoIPRecord * _get_record_v6(GeoIP* gi, geoipv6_t ipnum)
 {
-   unsigned int seek_record;
+   ::u32 seek_record;
 
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
          gi->databaseType != (char) GEOIP_CITY_EDITION_REV1)
@@ -168,7 +168,7 @@ GeoIPRecord * _get_record_v6(GeoIP* gi, geoipv6_t ipnum)
 
 
 
-GeoIPRecord * GeoIP_record_by_ipnum (GeoIP* gi, unsigned int ipnum)
+GeoIPRecord * GeoIP_record_by_ipnum (GeoIP* gi, ::u32 ipnum)
 {
    return _get_record(gi, ipnum);
 }
@@ -180,7 +180,7 @@ GeoIPRecord * GeoIP_record_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum)
 
 GeoIPRecord * GeoIP_record_by_addr (GeoIP* gi, const_char_pointer addr)
 {
-   unsigned int ipnum;
+   ::u32 ipnum;
    if (addr == nullptr)
    {
       return 0;
@@ -202,7 +202,7 @@ GeoIPRecord * GeoIP_record_by_addr_v6 (GeoIP* gi, const_char_pointer addr)
 
 GeoIPRecord * GeoIP_record_by_name (GeoIP* gi, const_char_pointer name)
 {
-   unsigned int ipnum;
+   ::u32 ipnum;
    if (name == nullptr)
    {
       return 0;
@@ -224,7 +224,7 @@ GeoIPRecord * GeoIP_record_by_name_v6 (GeoIP* gi, const_char_pointer name)
 
 int GeoIP_record_id_by_addr (GeoIP* gi, const_char_pointer addr)
 {
-   unsigned int ipnum;
+   ::u32 ipnum;
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
          gi->databaseType != (char) GEOIP_CITY_EDITION_REV1)
    {

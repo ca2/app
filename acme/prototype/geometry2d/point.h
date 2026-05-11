@@ -85,8 +85,8 @@ public:
 //   point_type(nullptr_t) noexcept { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE)0; }
 //   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x = x; this->y = y; }
 //   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x, lparam.y) {}
-//   //point_type(const unsigned int u) noexcept : point_type((UNIT_TYPE) u32_x(u), (UNIT_TYPE)u32_y(u)) {}
-//   //point_type(const unsigned long long u) noexcept : point_type((UNIT_TYPE)u64_x(u), (UNIT_TYPE)u64_y(u)) {}
+//   //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) u32_x(u), (UNIT_TYPE)u32_y(u)) {}
+//   //point_type(const ::u64 u) noexcept : point_type((UNIT_TYPE)u64_x(u), (UNIT_TYPE)u64_y(u)) {}
 //   //point_type(const SIZE_TYPE & size) noexcept : point_type(size.cx, size.cy) {}
 //
 //
@@ -162,8 +162,8 @@ public:
    //operator const POINT_BASE_TYPE*() const noexcept { return this; }
    //operator ::lparam() const { return lparam(); }
 
-   unsigned int as_unsigned_int() const noexcept { return as_unsigned_int(this->x, this->y); }
-   unsigned long long as_unsigned_long_long() const noexcept { return as_unsigned_long_long(this->x, this->y); }
+   ::u32 as_u32() const noexcept { return as_u32(this->x, this->y); }
+   ::u64 as_u64() const noexcept { return as_u64(this->x, this->y); }
    //::lparam lparam() const noexcept { return { this->x, this->y }; }
 
    point_type& clear() { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE) 0;  return *this; }
@@ -373,23 +373,23 @@ public:
 
 
 //inline auto as_int_point(const ::lparam & lparam) noexcept { return ::int_point(lparam.x, lparam.y); }
-inline auto as_int_point(const unsigned int u) noexcept { return ::int_point((int)u32_x(u), (int)u32_y(u)); }
-inline auto as_int_point(const unsigned long long u) noexcept { return ::int_point((int)u64_x(u), (int)u64_y(u)); }
+inline auto as_int_point(const ::u32 u) noexcept { return ::int_point((int)u32_x(u), (int)u32_y(u)); }
+inline auto as_int_point(const ::u64 u) noexcept { return ::int_point((int)u64_x(u), (int)u64_y(u)); }
 
 
 //inline auto as_long_long_point(const ::lparam & lparam) noexcept { return ::long_long_point(lparam.x, lparam.y); }
-inline auto as_long_long_point(const unsigned int u) noexcept { return ::long_long_point((long long)u32_x(u), (long long)u32_y(u)); }
-inline auto as_long_long_point(const unsigned long long u) noexcept { return ::long_long_point((long long)u64_x(u), (long long)u64_y(u)); }
+inline auto as_long_long_point(const ::u32 u) noexcept { return ::long_long_point((long long)u32_x(u), (long long)u32_y(u)); }
+inline auto as_long_long_point(const ::u64 u) noexcept { return ::long_long_point((long long)u64_x(u), (long long)u64_y(u)); }
 
 
 //inline auto as_float_point(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x, (float)lparam.y); }
-inline auto as_float_point(const unsigned int u) noexcept { return ::float_point((float)u32_x(u), (float)u32_y(u)); }
-inline auto as_float_point(const unsigned long long u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
+inline auto as_float_point(const ::u32 u) noexcept { return ::float_point((float)u32_x(u), (float)u32_y(u)); }
+inline auto as_float_point(const ::u64 u) noexcept { return ::float_point((float)u64_x(u), (float)u64_y(u)); }
 
 
 //inline auto as_double_point(const ::lparam & lparam) noexcept { return ::double_point(lparam.x, lparam.y); }
-inline auto as_double_point(const unsigned int u) noexcept { return ::double_point((double)u32_x(u), (double)u32_y(u)); }
-inline auto as_double_point(const unsigned long long u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
+inline auto as_double_point(const ::u32 u) noexcept { return ::double_point((double)u32_x(u), (double)u32_y(u)); }
+inline auto as_double_point(const ::u64 u) noexcept { return ::double_point((double)u64_x(u), (double)u64_y(u)); }
 
 
 inline bool is_almost_equal(const ::double_point& p1, const ::double_point& p2, double dTolerance)

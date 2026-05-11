@@ -3,7 +3,7 @@
 #include "_conv.h"
 
 
-::wd16_character * __u64towd16(unsigned long long u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character * & end)
+::wd16_character * __u64towd16(::u64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character * & end)
 {
 
    end = buf;
@@ -15,7 +15,7 @@
 }
 
 
-::wd32_character * __u64towd32(unsigned long long u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character * & end)
+::wd32_character * __u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character * & end)
 {
 
    end = buf;

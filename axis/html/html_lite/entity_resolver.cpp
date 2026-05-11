@@ -208,7 +208,7 @@ int LiteHTMLEntityResolver::resolveEntity(const ::scoped_string & scopedstrEntit
             pszBegin++;
 
 
-         unsigned int  ulNum = (unsigned int) ::strtoul(pszBegin, nullptr, aura);
+         ::u32  ulNum = (::u32) ::strtoul(pszBegin, nullptr, aura);
 
          strChar = ::utf8_character(ulNum);
          return (int) (pszEnd - pszEntity + 1);

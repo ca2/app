@@ -42,7 +42,7 @@
 
 #if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD) || defined(__ANDROID__)
 
-int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
+int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 {
    
    
@@ -171,7 +171,7 @@ int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
 
 #else
 
-int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask)
+int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask)
 {
 
    cpu_set_t c;
@@ -284,7 +284,7 @@ void task_set_name(htask htask, const ::scoped_string & scopedstr)
    if (error)
    {
    
-//      printf("task_set_name pthread_t 0x%016lX\n", (long unsigned int)pthread);
+//      printf("task_set_name pthread_t 0x%016lX\n", (long ::u32)pthread);
       if(error == ESRCH)
       {
       

@@ -271,7 +271,7 @@ namespace apex
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::increment_reference_count(this);
 
-      srand((unsigned int)::long_long_nanosecond());
+      srand((::u32)::long_long_nanosecond());
 
       m_bService = false;
 
@@ -1686,7 +1686,7 @@ namespace apex
 
    //   string strTitle;
 
-   //   unsigned long long uFlags = 0;
+   //   ::u64 uFlags = 0;
 
    //   ::time timeTimeout;
 
@@ -1713,13 +1713,13 @@ namespace apex
    //   if (timeTimeout.is_null())
    //   {
 
-   //      return message_box(puiOwner, strMessage, strTitle, (unsigned int) uFlags, function);
+   //      return message_box(puiOwner, strMessage, strTitle, (::u32) uFlags, function);
 
    //   }
    //   else
    //   {
 
-   //      return message_box_timeout(puiOwner, strMessage, strTitle, timeTimeout, (unsigned int) uFlags, function);
+   //      return message_box_timeout(puiOwner, strMessage, strTitle, timeTimeout, (::u32) uFlags, function);
 
    //   }
 
@@ -2471,7 +2471,7 @@ namespace apex
    //   //if (!is_system() && is_true("SessionSynchronizedInput"))
    //   //{
    //   //
-   //   //::AttachThreadInput(GetCurrentThreadId(), (unsigned int)psystem->get_itask(), true);
+   //   //::AttachThreadInput(GetCurrentThreadId(), (::u32)psystem->get_itask(), true);
    //   //
    //   //}
    //   //
@@ -4625,7 +4625,7 @@ namespace apex
    }
 
 
-   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, unsigned int fuStyle)
+   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::scoped_string & scopedstrTitle, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -5427,7 +5427,7 @@ namespace apex
    }
 
 
-   //   void application::on_event(unsigned long long u, ::particle * pparticle)
+   //   void application::on_event(::u64 u, ::particle * pparticle)
    //   {
    //
    //      object_ptra ptra;
@@ -7083,7 +7083,7 @@ namespace apex
 
    }
 
-   //bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //bool application::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
    //   __UNREFERENCED_PARAMETER(payloadFile);
@@ -7479,7 +7479,7 @@ namespace apex
    //   // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
    //   //::increment_reference_count(this);
 
-   //   srand((unsigned int) ::get_tick());
+   //   srand((::u32) ::get_tick());
 
    //   m_bService = false;
 
@@ -7553,7 +7553,7 @@ namespace apex
    //}
 
 
-   //unsigned int application::guess_code_page(const ::scoped_string & scopedstr)
+   //::u32 application::guess_code_page(const ::scoped_string & scopedstr)
    //{
    //
    //return 0;
@@ -7573,7 +7573,7 @@ namespace apex
    //}
 
 
-   //bool application::CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
+   //bool application::CreateFileFromRawResource(::u32 nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
    //{
    //
    //__UNREFERENCED_PARAMETER(nID);
@@ -7619,7 +7619,7 @@ namespace apex
    //}
    //
    //
-   //bool application::GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage)
+   //bool application::GetResourceData(::u32 nID, const ::scoped_string & scopedstrType, memory& storage)
    //
    //{
    //
@@ -7635,7 +7635,7 @@ namespace apex
 
    //#ifdef WINDOWS_DESKTOP
    //
-   //   HENHMETAFILE application::LoadEnhMetaFile(unsigned int uResource)
+   //   HENHMETAFILE application::LoadEnhMetaFile(::u32 uResource)
    //   {
    //
    //      memory storage;
@@ -7647,7 +7647,7 @@ namespace apex
    //
    //      }
    //
-   //      return SetEnhMetaFileBits((unsigned int)storage.size(), storage.get_data());
+   //      return SetEnhMetaFileBits((::u32)storage.size(), storage.get_data());
    //
    //   }
    //
@@ -7706,7 +7706,7 @@ namespace apex
       }
 
       // handle all the rest
-      //linux unsigned int nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
+      //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const ::string & nIDP = "Internal Failure";
       pmessage->m_lresult = 0;        // sensible default
       if (pmessage->m_eusermessage == ::user::e_message_command)
@@ -7859,7 +7859,7 @@ namespace apex
    typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, uptr*);
    static PFNActivateActCtx s_pfnActivateActCtx;
 
-   typedef bool (WINAPI * PFNDeactivateActCtx)(unsigned int, uptr);
+   typedef bool (WINAPI * PFNDeactivateActCtx)(::u32, uptr);
    static PFNDeactivateActCtx s_pfnDeactivateActCtx;
 
    static bool s_bPFNInitialized;
@@ -8011,9 +8011,9 @@ namespace apex
    //#ifdef WINDOWS_DESKTOP
    //
    //HKEY hkPolicy = nullptr;
-   //unsigned int dwValue = 0;
-   //unsigned int dwDataLen = sizeof(dwValue);
-   //unsigned int dwType = 0;
+   //::u32 dwValue = 0;
+   //::u32 dwDataLen = sizeof(dwValue);
+   //::u32 dwType = 0;
    //
    ////// clear current policy settings.
    ////m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
@@ -8108,7 +8108,7 @@ namespace apex
    //
    //}
    //
-   //bool application::GetSysPolicyValue(unsigned int dwPolicyID, bool* pbValue)
+   //bool application::GetSysPolicyValue(::u32 dwPolicyID, bool* pbValue)
    //{
    //if (!pbValue)
    //return false; // bad pointer
@@ -8129,7 +8129,7 @@ namespace apex
    //
    //
 
-   /*   void application::LoadStdProfileSettings(unsigned int nMaxMRU)
+   /*   void application::LoadStdProfileSettings(::u32 nMaxMRU)
    {
    __UNREFERENCED_PARAMETER(nMaxMRU);
    ASSERT_OK(this);
@@ -8290,7 +8290,7 @@ namespace apex
    //   // WinHelp helper
    //
    //
-   //   void application::WinHelp(uptr dwData, unsigned int nCmd)
+   //   void application::WinHelp(uptr dwData, ::u32 nCmd)
    //   {
    //      __UNREFERENCED_PARAMETER(dwData);
    //      __UNREFERENCED_PARAMETER(nCmd);
@@ -8305,7 +8305,7 @@ namespace apex
    //   /////////////////////////////////////////////////////////////////////////////
    //   // HtmlHelp helper
    //
-   //   void application::HtmlHelp(uptr dwData, unsigned int nCmd)
+   //   void application::HtmlHelp(uptr dwData, ::u32 nCmd)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(dwData);
@@ -8320,7 +8320,7 @@ namespace apex
    //   }
    //
    //
-   //   void application::WinHelpInternal(uptr dwData, unsigned int nCmd)
+   //   void application::WinHelpInternal(uptr dwData, ::u32 nCmd)
    //   {
    //      __UNREFERENCED_PARAMETER(dwData);
    //      __UNREFERENCED_PARAMETER(nCmd);
@@ -8444,14 +8444,14 @@ namespace apex
 
 
 
-   /*void ::apex::FormatString1(string & rString, unsigned int nIDS, const ::scoped_string & scopedstr1)
+   /*void ::apex::FormatString1(string & rString, ::u32 nIDS, const ::scoped_string & scopedstr1)
 
    {
    __format_strings(rString, nIDS, &psz1, 1);
 
    }
 
-   void ::apex::FormatString2(string & rString, unsigned int nIDS, const ::scoped_string & scopedstr1,
+   void ::apex::FormatString2(string & rString, ::u32 nIDS, const ::scoped_string & scopedstr1,
 
    const ::scoped_string & scopedstr2)
 
@@ -8786,7 +8786,7 @@ namespace apex
    //////__enable_memory_tracking(bEnable);
    //}
    //
-   //void application::SetRegistryKey(unsigned int nIDRegistryKey)
+   //void application::SetRegistryKey(::u32 nIDRegistryKey)
    //{
    ////__UNREFERENCED_PARAMETER(nIDRegistryKey);
    ////ASSERT(m_pszRegistryKey == nullptr);
@@ -8813,7 +8813,7 @@ namespace apex
    //      //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
    //      //   &hSoftKey) == ERROR_SUCCESS)
    //      //{
-   //      //   unsigned int dw;
+   //      //   ::u32 dw;
    //      //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
    //      //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
    //      //      &hCompanyKey,&dw) == ERROR_SUCCESS)
@@ -8865,7 +8865,7 @@ namespace apex
    //
    //#endif
 
-   /*   unsigned int application::GetProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
+   /*   ::u32 application::GetProfileInt(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
    int nDefault)
    {
@@ -8879,9 +8879,9 @@ namespace apex
 
    if (hSecKey == nullptr)
    return nDefault;
-   unsigned int dwValue;
-   unsigned int dwType;
-   unsigned int dwCount = sizeof(unsigned int);
+   ::u32 dwValue;
+   ::u32 dwType;
+   ::u32 dwCount = sizeof(::u32);
    int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    (unsigned char *)&dwValue, &dwCount);
@@ -8890,7 +8890,7 @@ namespace apex
    {
    ASSERT(dwType == REG_DWORD);
    ASSERT(dwCount == sizeof(dwValue));
-   return (unsigned int)dwValue;
+   return (::u32)dwValue;
    }
    return nDefault;
    }
@@ -8920,8 +8920,8 @@ namespace apex
    return pszDefault;
 
    string strValue;
-   unsigned int dwType=REG_NONE;
-   unsigned int dwCount=0;
+   ::u32 dwType=REG_NONE;
+   ::u32 dwCount=0;
    int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    nullptr, &dwCount);
@@ -8951,7 +8951,7 @@ namespace apex
    pszDefault = "";   // don't pass in nullptr
 
    char szT[4096];
-   unsigned int dw = ::GetPrivateProfileString(scopedstrSection, pszEntry,
+   ::u32 dw = ::GetPrivateProfileString(scopedstrSection, pszEntry,
 
    pszDefault, szT, _countof(szT), m_pszProfileName);
 
@@ -8962,7 +8962,7 @@ namespace apex
 
    bool application::GetProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   unsigned char** ppData, unsigned int* pBytes)
+   unsigned char** ppData, ::u32* pBytes)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -8985,8 +8985,8 @@ namespace apex
 
    // linux ::apex::CRegKey rkSecKey(hSecKey);
 
-   unsigned int dwType=0;
-   unsigned int dwCount=0;
+   ::u32 dwType=0;
+   ::u32 dwCount=0;
    int lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType, nullptr, &dwCount);
 
    *pBytes = dwCount;
@@ -9020,7 +9020,7 @@ namespace apex
    return false;
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
-   *pBytes = unsigned int(nLen)/2;
+   *pBytes = ::u32(nLen)/2;
    *ppData = ___new unsigned char[*pBytes];
    for (int i=0;i<nLen;i+=2)
    {
@@ -9122,7 +9122,7 @@ namespace apex
 
    bool application::WriteProfileBinary(const ::scoped_string & scopedstrSection, const ::scoped_string & scopedstrEntry,
 
-   unsigned char * pData, unsigned int nBytes)
+   unsigned char * pData, ::u32 nBytes)
    {
    ASSERT(scopedstrSection != nullptr);
 
@@ -9143,7 +9143,7 @@ namespace apex
    // convert to string and write out
    char * psz = ___new char[nBytes*2+1];
 
-   unsigned int i;
+   ::u32 i;
    for (i = 0; i < nBytes; i++)
    {
    psz[i*2] = (char)((pData[i] & 0x0F) + 'A'); //low nibble
@@ -9403,7 +9403,7 @@ namespace apex
    //      dumpcontext << "\nm_hDevNames = " << (void*)m_hDevNames;
    //#endif
    //
-   //      dumpcontext << "\nm_dwPromptContext = " << (unsigned int)m_dwPromptContext;
+   //      dumpcontext << "\nm_dwPromptContext = " << (::u32)m_dwPromptContext;
    //      //      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
    //
    //
@@ -9841,7 +9841,7 @@ namespace apex
    //      COPYDATASTRUCT cds;
    //      memory_set(&cds, 0, sizeof(cds));
    //      cds.dwData = 888888;
-   //      cds.cbData = (unsigned int)strlen(scopedstr);
+   //      cds.cbData = (::u32)strlen(scopedstr);
    //      cds.lpData = (PVOID)psz;
    //
    //      return (int)SendMessage(as_hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);

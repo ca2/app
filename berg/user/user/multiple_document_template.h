@@ -16,7 +16,7 @@ namespace user
 
 
       pointer_array < ::user::document > m_docptra;          // open documents of this type
-      unsigned int m_nUntitledCount;   // start at 0, for "Document1" title
+      ::u32 m_nUntitledCount;   // start at 0, for "Document1" title
 
 
       multiple_document_template(const ::scoped_string & scopedstrMatter, const ::platform::type & typeatomDocument, const ::platform::type & typeatomFrame, const ::platform::type & typeatomImpact, const ::platform::type & typeatomData = {});

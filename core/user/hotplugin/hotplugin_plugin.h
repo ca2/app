@@ -27,7 +27,7 @@ namespace hotplugin
       FILE *                        m_pfile;
       bool                          m_bPreCheck;
       int                       m_iHealingSurface;
-      unsigned int                      m_last_redraw;
+      ::u32                      m_last_redraw;
       int                       m_iEdge;
       bool                          m_bAppStarted;
       manual_reset_happening            m_happeningReady;

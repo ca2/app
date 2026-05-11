@@ -123,7 +123,7 @@ typedef unsigned char guchar;
 typedef short gshort;
 typedef unsigned short gushort;
 typedef int gint;
-typedef unsigned int gunsigned int;
+typedef ::u32 gunsigned int;
 typedef long glong;
 typedef unsigned long gulong;
 
@@ -323,19 +323,19 @@ CLASS_DECL_TURBOC clock_t clockTurbo (void);
 
 // Endian conversion functions.
 CLASS_DECL_TURBOC void FixLittle16 (unsigned short *);
-CLASS_DECL_TURBOC void FixLittle32 (unsigned int *);
+CLASS_DECL_TURBOC void FixLittle32 (::u32 *);
 CLASS_DECL_TURBOC void FixBig16 (unsigned short *);
-CLASS_DECL_TURBOC void FixBig32 (unsigned int *);
+CLASS_DECL_TURBOC void FixBig32 (::u32 *);
 
 // Endian file read/write functions.
 CLASS_DECL_TURBOC int ReadLittle16 (FILE * fp, unsigned short * Value);
 CLASS_DECL_TURBOC int ReadBig16 (FILE * fp, unsigned short * Value);
-CLASS_DECL_TURBOC int ReadLittle32 (FILE * fp, unsigned int * Value);
-CLASS_DECL_TURBOC int ReadBig32 (FILE * fp, unsigned int * Value);
+CLASS_DECL_TURBOC int ReadLittle32 (FILE * fp, ::u32 * Value);
+CLASS_DECL_TURBOC int ReadBig32 (FILE * fp, ::u32 * Value);
 CLASS_DECL_TURBOC int WriteLittle16 (FILE * fp, unsigned short Value);
 CLASS_DECL_TURBOC int WriteBig16 (FILE * fp, unsigned short Value);
-CLASS_DECL_TURBOC int WriteLittle32 (FILE * fp, unsigned int Value);
-CLASS_DECL_TURBOC int WriteBig32 (FILE * fp, unsigned int Value);
+CLASS_DECL_TURBOC int WriteLittle32 (FILE * fp, ::u32 Value);
+CLASS_DECL_TURBOC int WriteBig32 (FILE * fp, ::u32 Value);
 
 __END_DECLS
 //--------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 //#include "aqua.h"
 #include <math.h>
 
-CLASS_DECL_AURA void pre_multiply_alpha(unsigned int * puserinteraction, int cx, int cy, int stride)
+CLASS_DECL_AURA void pre_multiply_alpha(::u32 * puserinteraction, int cx, int cy, int stride)
 {
    unsigned char * p = (unsigned char *)puserinteraction;
    unsigned char a1;

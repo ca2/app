@@ -78,10 +78,10 @@ int chars_to_int(const CHAR_TYPE * psz, const CHAR_TYPE ** pszEnd, int iBase)
 
 
 template < typename CHAR_TYPE >
-unsigned int chars_to_unsigned_int(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, int iBase)
+::u32 chars_to_unsigned_int(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, int iBase)
 {
 
-   unsigned int iResult = 0;
+   ::u32 iResult = 0;
 
    int iDigit;
 
@@ -217,10 +217,10 @@ long long chars_to_long_long(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, in
 
 
 template < typename CHAR_TYPE >
-unsigned long long chars_to_unsigned_long_long(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, int iBase)
+::u64 chars_to_unsigned_long_long(const CHAR_TYPE *psz, const CHAR_TYPE ** pszEnd, int iBase)
 {
 
-   unsigned long long iResult = 0;
+   ::u64 iResult = 0;
 
    int iDigit;
 
@@ -282,21 +282,21 @@ unsigned long long chars_to_unsigned_long_long(const CHAR_TYPE *psz, const CHAR_
 
 
 int __ansitoi32(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_int < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
-unsigned int __ansitou32(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
+::u32 __ansitou32(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
 long long __ansitoi64(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_long_long < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
-unsigned long long __ansitou64(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
+::u64 __ansitou64(const_char_pointer psz, ::ansi_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::ansi_character >(psz, (const_char_pointer *)pszEnd, iBase); }
 
 
 int __wd16toi32(const ::wd16_character *psz, ::wd16_character ** pszEnd, int iBase) { return chars_to_int < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
-unsigned int __wd16tou32(const ::wd16_character *psz, ::wd16_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
+::u32 __wd16tou32(const ::wd16_character *psz, ::wd16_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
 long long __wd16toi64(const ::wd16_character *psz, ::wd16_character ** pszEnd, int iBase) { return chars_to_long_long < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
-unsigned long long __wd16tou64(const ::wd16_character *psz, ::wd16_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
+::u64 __wd16tou64(const ::wd16_character *psz, ::wd16_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::wd16_character >(psz, (const ::wd16_character **)pszEnd, iBase); }
 
 
 int __wd32toi32(const ::wd32_character *psz, ::wd32_character ** pszEnd, int iBase) { return chars_to_int < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
-unsigned int __wd32tou32(const ::wd32_character *psz, ::wd32_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
+::u32 __wd32tou32(const ::wd32_character *psz, ::wd32_character ** pszEnd, int iBase) { return chars_to_unsigned_int < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
 long long __wd32toi64(const ::wd32_character *psz, ::wd32_character ** pszEnd, int iBase) { return chars_to_long_long < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
-unsigned long long __wd32tou64(const ::wd32_character *psz, ::wd32_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
+::u64 __wd32tou64(const ::wd32_character *psz, ::wd32_character ** pszEnd, int iBase) { return chars_to_unsigned_long_long < ::wd32_character >(psz, (const ::wd32_character **)pszEnd, iBase); }
 
 
 

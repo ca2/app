@@ -17,9 +17,9 @@ namespace hex
 
    CLASS_DECL_ACME long long to_long_long(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::u64 to_unsigned_long_long(const ::scoped_string & scopedstr);
 
-   CLASS_DECL_ACME unsigned int to_unsigned_int(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::u32 to_unsigned_int(const ::scoped_string & scopedstr);
 
    inline CLASS_DECL_ACME int to_nibble(char ch)
    {
@@ -157,7 +157,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto padded_from(unsigned long long u, enum_digit_case edigitcase)
+   inline auto padded_from(::u64 u, enum_digit_case edigitcase)
    {
 
       ::inline_string < char, s_iWidth > numberstring;
@@ -186,7 +186,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto lower_case_padded_from(unsigned long long u)
+   inline auto lower_case_padded_from(::u64 u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_lower);
@@ -195,7 +195,7 @@ namespace hex
 
 
    template < character_count s_iWidth >
-   inline auto upper_case_padded_from(unsigned long long u)
+   inline auto upper_case_padded_from(::u64 u)
    {
 
       return padded_from < s_iWidth >(u, e_digit_case_upper);
@@ -203,8 +203,8 @@ namespace hex
    }
 
 
-   inline void to(unsigned int & u,const ::scoped_string & scopedstr) { u = to_unsigned_int(scopedstr); }
-   inline void to(unsigned long long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
+   inline void to(::u32 & u,const ::scoped_string & scopedstr) { u = to_unsigned_int(scopedstr); }
+   inline void to(::u64 & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
 #ifdef __APPLE__
    inline void to(unsigned long & u,const ::scoped_string & scopedstr) { u = to_unsigned_long_long(scopedstr); }
 #endif

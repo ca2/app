@@ -46,7 +46,7 @@
 //    * Creates ::earth::time object with specified time value.
 //    * @param timeValue count of milliseconds from unix epoch.
 //    */
-//   ::earth::time(unsigned long long timeValue);
+//   ::earth::time(::u64 timeValue);
 //
 //   /**
 //    * Creates ::earth::time object from windows FILETIME structure.
@@ -57,7 +57,7 @@
 //   /**
 //    * Returns time in milliseconds from unix epoch.
 //    */
-//   unsigned long long getTime() const;
+//   ::u64 getTime() const;
 //
 //   ::earth::time operator- (const ::earth::time &d2);
 //   ::earth::time operator+ (const ::earth::time &d2);
@@ -94,7 +94,7 @@
 //   static ::earth::time now();
 //
 // protected:
-//   unsigned long long m_timeValue;
+//   ::u64 m_timeValue;
 // };
 //
 //

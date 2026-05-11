@@ -157,7 +157,7 @@ namespace subsystem
    //    m_pparticleThis->shutdown();
    // }
    //
-   // void OperatingSystemApplication::postMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam)
+   // void OperatingSystemApplication::postMessage(::u32 uMessage, ::wparam wparam, ::lparam lparam)
    // {
    //    //PostMessage(m_mainWindow, scopedstrMessage, wParam, lParam);
    //    m_pparticleThis->postMessage(uMessage, wparam, lparam);
@@ -213,7 +213,7 @@ namespace subsystem
    // }
    //
    //
-   // void OperatingSystemApplication::onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam)
+   // void OperatingSystemApplication::onMainThreadMessage(::u32 message, ::wparam wparam, ::lparam lparam)
    // {
    //
    //

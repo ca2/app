@@ -38,7 +38,7 @@ namespace folder_zip
 
       //void *                              m_punzfileinfo;
       string                              m_strFileName;
-      unsigned long long                                 m_iPosition;
+      ::u64                                 m_iPosition;
       string_array_base                        m_straPath;
       ::pointer<folder>                  m_pfolder;
       //pointer_array < ::file_container >   m_filea;
@@ -64,7 +64,7 @@ namespace folder_zip
       bool is_in_memory_file() const override { return true; }
 
 
-      //virtual bool zip_open(const_char_pointer ,unsigned int);
+      //virtual bool zip_open(const_char_pointer ,::u32);
       //virtual bool zip_open(::zip::file * pzfile,const ::file::path & path);
 
 

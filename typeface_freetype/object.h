@@ -25,7 +25,7 @@ namespace typeface_freetype
 
 
       int get_object(int nCount, void * lpObject) const;
-      unsigned int GetObjectType() const;
+      ::u32 GetObjectType() const;
       bool CreateStockObject(int nIndex);
       bool UnrealizeObject();
       bool operator==(const ::draw2d::object& obj) const;

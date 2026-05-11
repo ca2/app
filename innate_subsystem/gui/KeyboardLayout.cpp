@@ -30,7 +30,7 @@ namespace innate_subsystem
       bool ctrlPressed = isPressed(::user::e_key_left_control) || isPressed(::user::e_key_right_control);
       bool altPressed = isPressed(::user::e_key_left_alt) || isPressed(::user::e_key_right_alt);
       bool shiftPressed = isPressed(::user::e_key_left_shift) || isPressed(::user::e_key_right_shift);
-      unsigned int oldCh = (unsigned int)ch;
+      ::u32 oldCh = (::u32)ch;
       if (ctrlPressed && !altPressed && ch < 32)
       {
          if (ch >= 1 && ch <= 26 && !shiftPressed)
@@ -43,7 +43,7 @@ namespace innate_subsystem
          }
          ::debugf("The %u char is a control symbol then"
                  " it will be increased to %u",
-                 oldCh, (unsigned int)ch);
+                 oldCh, (::u32)ch);
       }
       return ch;
    }

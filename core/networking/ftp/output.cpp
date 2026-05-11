@@ -60,7 +60,7 @@ namespace ftp
 
    }
 
-   void output::OnInternalError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFileName, unsigned int dwLineNr)
+   void output::OnInternalError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFileName, ::u32 dwLineNr)
    {
 
       string strMessage;

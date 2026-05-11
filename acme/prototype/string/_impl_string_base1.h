@@ -5496,7 +5496,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::formatf_arguments
 // bool string_base < ITERATOR_TYPE >::xxxget_environment_variable(const CHARACTER* pszVar)
 // {
 
-//    unsigned int nLength = xxxget_environment_variable(scopedstrVar, nullptr, 0);
+//    ::u32 nLength = xxxget_environment_variable(scopedstrVar, nullptr, 0);
 
 //    bool bRetVal = false;
 

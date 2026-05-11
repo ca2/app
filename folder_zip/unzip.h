@@ -83,12 +83,12 @@ typedef voidp unzip_File;
 /* tm_unzip_ contain date/time info */
 typedef struct tm_unzip__s
 {
-   unsigned int tm_sec;            /* seconds after the minute - [0,59] */
-   unsigned int tm_min;            /* minutes after the hour - [0,59] */
-   unsigned int tm_hour;           /* hours since midnight - [0,23] */
-   unsigned int tm_mday;           /* day of the month - [1,31] */
-   unsigned int tm_mon;            /* months since January - [0,11] */
-   unsigned int tm_year;           /* years - [1980..2044] */
+   ::u32 tm_sec;            /* seconds after the minute - [0,59] */
+   ::u32 tm_min;            /* minutes after the hour - [0,59] */
+   ::u32 tm_hour;           /* hours since midnight - [0,23] */
+   ::u32 tm_mday;           /* day of the month - [1,31] */
+   ::u32 tm_mon;            /* months since January - [0,11] */
+   ::u32 tm_year;           /* years - [1980..2044] */
 } tm_unzip_;
 
 /* unzip__global_info structure contain global data about the ZIPfile
@@ -303,7 +303,7 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_CloseCurrentFile OF((unzip_File file));
 
 extern int CLASS_DECL_FOLDER_ZIP unzip_ReadCurrentFile OF((unzip_File file,
       voidp buf,
-      unsigned int len));
+      ::u32 len));
 /*
   read bytes from the current file (opened by unzip_OpenCurrentFile)
   buf contain buffer where data must be copied
@@ -327,7 +327,7 @@ extern int CLASS_DECL_FOLDER_ZIP unzip_eof OF((unzip_File file));
 
 extern int CLASS_DECL_FOLDER_ZIP unzip_GetLocalExtrafield OF((unzip_File file,
       voidp buf,
-      unsigned int len));
+      ::u32 len));
 /*
   read extra field from the current file (opened by unzip_OpenCurrentFile)
   This is the local-header version of the extra field (sometimes, there is

@@ -21,7 +21,7 @@ for (size_t i = 0; i < size; i++)
 WriteByte(((const unsigned char *)data)[i]);
 }
 
-unsigned long long GetProcessedSize() const;*/
+::u64 GetProcessedSize() const;*/
 
 // OutBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
@@ -79,9 +79,9 @@ namespace file
 #endif
    }
 
-   unsigned long long out_buffer::GetProcessedSize() const
+   ::u64 out_buffer::GetProcessedSize() const
    {
-      unsigned long long res = _processedSize + _pos - _streamPos;
+      ::u64 res = _processedSize + _pos - _streamPos;
       if (_streamPos > _pos)
          res += m_memory.get_size();
       return res;

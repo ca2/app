@@ -112,7 +112,7 @@ namespace innate_subsystem
 //   // setText(text.getString());
 // }
 //
-// void ControlComposite::setUnsignedInt(unsigned int value)
+// void ControlComposite::setUnsignedInt(::u32 value)
 // {
 //    m_pparticleThis->setUnsignedInt(value);
 //   //::string text;
@@ -200,63 +200,63 @@ namespace innate_subsystem
 // */
 //
 //
-// // void ControlComposite::setStyle(unsigned int style)
+// // void ControlComposite::setStyle(::u32 style)
 // // {
 // //   ::SetWindowLong(m_hwnd, GWL_STYLE, style);
 // // }
 // //
-// // unsigned int ControlComposite::getStyle()
+// // ::u32 ControlComposite::getStyle()
 // // {
 // //   return ::GetWindowLong(m_hwnd, GWL_STYLE);
 // // }
 // //
-// // void ControlComposite::addStyle(unsigned int styleFlag)
+// // void ControlComposite::addStyle(::u32 styleFlag)
 // // {
-// //   unsigned int flags = getStyle();
+// //   ::u32 flags = getStyle();
 // //   flags |= styleFlag;
 // //   setStyle(flags);
 // // }
 // //
-// // void ControlComposite::removeStyle(unsigned int styleFlag)
+// // void ControlComposite::removeStyle(::u32 styleFlag)
 // // {
-// //   unsigned int flags = getStyle();
+// //   ::u32 flags = getStyle();
 // //   flags &= ~styleFlag;
 // //   setStyle(flags);
 // // }
 // //
-// // bool ControlComposite::isStyleEnabled(unsigned int styleFlag)
+// // bool ControlComposite::isStyleEnabled(::u32 styleFlag)
 // // {
-// //   unsigned int flags = getStyle();
+// //   ::u32 flags = getStyle();
 // //   return (flags & styleFlag) == styleFlag;
 // // }
 // //
-// // void ControlComposite::setExStyle(unsigned int style)
+// // void ControlComposite::setExStyle(::u32 style)
 // // {
 // //   SetWindowLong(m_hwnd, GWL_EXSTYLE, style);
 // // }
 // //
-// // unsigned int ControlComposite::getExStyle()
+// // ::u32 ControlComposite::getExStyle()
 // // {
-// //   return (unsigned int)GetWindowLong(m_hwnd, GWL_EXSTYLE);
+// //   return (::u32)GetWindowLong(m_hwnd, GWL_EXSTYLE);
 // // }
 // //
-// // void ControlComposite::addExStyle(unsigned int styleFlag)
+// // void ControlComposite::addExStyle(::u32 styleFlag)
 // // {
-// //   unsigned int flags = getExStyle();
+// //   ::u32 flags = getExStyle();
 // //   flags |= styleFlag;
 // //   setExStyle(flags);
 // // }
 // //
-// // void ControlComposite::removeExStyle(unsigned int styleFlag)
+// // void ControlComposite::removeExStyle(::u32 styleFlag)
 // // {
-// //   unsigned int flags = getExStyle();
+// //   ::u32 flags = getExStyle();
 // //   flags &= ~styleFlag;
 // //   setExStyle(flags);
 // // }
 // //
-// // bool ControlComposite::isExStyleEnabled(unsigned int styleFlag)
+// // bool ControlComposite::isExStyleEnabled(::u32 styleFlag)
 // // {
-// //   unsigned int flags = getExStyle();
+// //   ::u32 flags = getExStyle();
 // //   return (flags & styleFlag) == styleFlag;
 // // }
 //
@@ -267,7 +267,7 @@ namespace innate_subsystem
 // // }
 //
 //
-// // void ControlComposite::postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam)
+// // void ControlComposite::postUserMessage(::u32 uMessage, ::wparam wparam, ::lparam lparam)
 // // {
 // //
 // //    m_pparticleThis->postUserMessage(uMessage, wparam, lparam);

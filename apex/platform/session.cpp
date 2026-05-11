@@ -1341,7 +1341,7 @@ ret:
    }
 
 
-   unsigned int session::get_Long_PhRESSing_time()
+   ::u32 session::get_Long_PhRESSing_time()
    {
 
       return m_dwLongPhRESSingTime;

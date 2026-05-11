@@ -216,7 +216,7 @@ namespace app_shader
 
       m_pgpushader->unbind(nullptr);
 
-      //unsigned int texture1;
+      //::u32 texture1;
 
       //glGenTextures(1, &texture1);
 

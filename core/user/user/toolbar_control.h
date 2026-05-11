@@ -21,14 +21,14 @@ namespace user
 
       //bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
 
-      //bool LoadToolBar(unsigned int nIDResource);
-      bool SetButtons(const unsigned int* pIDArray, int nIDCount);
+      //bool LoadToolBar(::u32 nIDResource);
+      bool SetButtons(const ::u32* pIDArray, int nIDCount);
 
 
 
 
       //using ::user::interaction::create_window;
-      //bool create_window(unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom);
+      //bool create_window(::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, ::atom atom);
       //bool create_child(::user::interaction * puserinteraction);
 
 
@@ -37,7 +37,7 @@ namespace user
       bool IsButtonPressed(int nID);
       bool IsButtonHidden(int nID);
       bool IsButtonIndeterminate(int nID);
-      bool set_state(int nID, unsigned int nState);
+      bool set_state(int nID, ::u32 nState);
       int GetState(int nID);
 //#ifdef WINDOWS_DESKTOP
 //      bool GetButton(int nIndex, LPTBBUTTON pButton);
@@ -49,19 +49,19 @@ namespace user
       bool GetRect(int nID, ::int_rectangle * prectangle);
 
       void SetButtonStructSize(int nSize);
-      unsigned int get_button_size();
+      ::u32 get_button_size();
       bool SetButtonSize(const ::int_size & size);
       bool SetBitmapSize(const ::int_size & size);
       ::pointer<::user::interaction> set_owner(::pointer<::user::interaction>window);
       void SetRows(int nRows, bool bLarger, ::int_rectangle * prectangle);
 
       int GetRows();
-      bool SetCmdID(int nIndex, unsigned int nID);
-      unsigned int GetBitmapFlags();
+      bool SetCmdID(int nIndex, ::u32 nID);
+      ::u32 GetBitmapFlags();
       ::image::image_list* GetDisabledImageList();
       ::image::image_list* GetHotImageList();
       ::image::image_list* GetImageList();
-      unsigned int GetStyle();
+      ::u32 GetStyle();
       int GetMaxTextRows();
       bool IsButtonHighlighted(int nID);
       bool SetButtonWidth(int cxMin, int cxMax);
@@ -77,7 +77,7 @@ namespace user
 
       bool SetIndent(int iIndent);
       bool SetMaxTextRows(int iMaxRows);
-      void SetStyle(unsigned int dwStyle);
+      void SetStyle(::u32 dwStyle);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -86,7 +86,7 @@ namespace user
 //#endif
 
 
-      unsigned int SetDrawTextFlags(unsigned int dwMask, unsigned int dwDTFlags);
+      ::u32 SetDrawTextFlags(::u32 dwMask, ::u32 dwDTFlags);
       bool GetAnchorHighlight();
       bool SetAnchorHighlight(bool fAnchor = true);
       int GetHotItem();
@@ -99,8 +99,8 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      bool InsertMarkHitTest(::int_point * ppt, LPTBINSERTMARK ptbim);
 //#endif
-      unsigned int GetExtendedStyle();
-      unsigned int SetExtendedStyle(unsigned int dwExStyle);
+      ::u32 GetExtendedStyle();
+      ::u32 SetExtendedStyle(::u32 dwExStyle);
       ::color::color GetInsertMarkColor();
       ::color::color SetInsertMarkColor(::color::color clrNew);
 
@@ -124,7 +124,7 @@ namespace user
 //
 
       bool DeleteButton(int nIndex);
-      unsigned int CommandToIndex(unsigned int nID);
+      ::u32 CommandToIndex(::u32 nID);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -136,9 +136,9 @@ namespace user
 //#endif
 
 
-      bool MapAccelerator(char chAccel, unsigned int* pIDBtn);
+      bool MapAccelerator(char chAccel, ::u32* pIDBtn);
       bool MarkButton(int nID, bool fHighlight = true);
-      bool MoveButton(unsigned int nOldPos, unsigned int nNewPos);
+      bool MoveButton(::u32 nOldPos, ::u32 nNewPos);
       int hit_test(::int_point * ppt);
 
       void Customize();
@@ -146,7 +146,7 @@ namespace user
 
       void AutoSize();
 
-      int GetButtonText(unsigned int uID, string &str);
+      int GetButtonText(::u32 uID, string &str);
       virtual ~toolbar_control();
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

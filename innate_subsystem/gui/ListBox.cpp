@@ -86,7 +86,7 @@ namespace innate_subsystem
 //       // int si = getSelectedIndex();
 //       // int top = getTopIndex();
 //       // LRESULT lresult = SendMessage(m_hwnd, LB_GETTOPINDEX, NULL, NULL);
-//       // unsigned int topIndex = (unsigned int)lresult;
+//       // ::u32 topIndex = (::u32)lresult;
 //       // _ASSERT(topIndex == lresult);
 //       // ::lparam data = getItemData(index);
 //       // removeString(index);

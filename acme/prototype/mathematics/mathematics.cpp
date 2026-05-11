@@ -128,7 +128,7 @@ namespace mathematics
 //         // set additional parameters on the original key.
 //         // First, set the cipher mode.
 //
-//         unsigned int dwMode = CRYPT_MODE_ECB;
+//         ::u32 dwMode = CRYPT_MODE_ECB;
 //         if (CryptSetKeyParam(
 //            m_hOriginalKey,
 //            KP_MODE,
@@ -151,7 +151,7 @@ namespace mathematics
 //         // Generate a random initialization vector.
 //         if (CryptGenRandom(
 //            m_hCryptProv,
-//            (unsigned int)m.get_size(),
+//            (::u32)m.get_size(),
 //            m.get_data()))
 //         {
 //            //debug_print("Random sequence generated. \n");
@@ -210,7 +210,7 @@ namespace mathematics
 
          critical_section_lock lock(&m_criticalsection);
 
-         unsigned int * pu = (unsigned int *) block.data();
+         ::u32 * pu = (::u32 *) block.data();
 
          auto s = block.size();
 
@@ -246,7 +246,7 @@ namespace mathematics
 //         critical_section_lock lock(&m_criticalsection);
 //
 //
-//         ::CryptGenRandom(m_hCryptProv, (unsigned int)s, (unsigned char*)p);
+//         ::CryptGenRandom(m_hCryptProv, (::u32)s, (unsigned char*)p);
 //
 //      }
 //
@@ -326,14 +326,14 @@ namespace mathematics
    }
 
 
-   unsigned long long mathematics::random_unsigned_long_long()
+   ::u64 mathematics::random_unsigned_long_long()
    {
 //#if defined(UNIVERSAL_WINDOWS)
-//      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-//      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+//      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 //      return uiLo | (uiHi << 32);
 //#else
-      unsigned long long u = 0;
+      ::u64 u = 0;
          random({ e_as_block,u });
          
       return u;
@@ -344,8 +344,8 @@ namespace mathematics
    char mathematics::random_char()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
 //      char ch = 0;
@@ -360,8 +360,8 @@ namespace mathematics
    unsigned char mathematics::random_uch()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
       //unsigned char u = 0;
@@ -373,14 +373,14 @@ namespace mathematics
    }
 
 
-   unsigned int mathematics::random_ui()
+   ::u32 mathematics::random_ui()
    {
       //#if defined(UNIVERSAL_WINDOWS)
-      //      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-      //      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+      //      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
       //      return uiLo | (uiHi << 32);
       //#else
-      //unsigned int u = 0;
+      //::u32 u = 0;
       //random({ e_as_block,u });
 
       return m_posdata->m_randomnumbergenerator.get_unsigned_int();
@@ -388,14 +388,14 @@ namespace mathematics
       //
    }
 
-//   unsigned long long mathematics::gen_rand()
+//   ::u64 mathematics::gen_rand()
 //   {
 ////#if defined(UNIVERSAL_WINDOWS)
-////      unsigned long long uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
-////      unsigned long long uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      ::u64 uiLo = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+////      ::u64 uiHi = ::winrt::Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
 ////      return uiLo | (uiHi << 32);
 ////#else
-//      unsigned long long u = 0;
+//      ::u64 u = 0;
 //      gen_rand(&u, sizeof(u));
 //      return u;
 ////#endif
@@ -491,7 +491,7 @@ namespace mathematics
    //}
 
 
-   bool mathematics::IsPowerOfTwo(unsigned long long uiValue)
+   bool mathematics::IsPowerOfTwo(::u64 uiValue)
    {
 
       if (uiValue == 0)
@@ -512,9 +512,9 @@ namespace mathematics
 
    }
 
-   unsigned int mathematics::ReverseBits(unsigned int index, unsigned int NumBits)
+   ::u32 mathematics::ReverseBits(::u32 index, ::u32 NumBits)
    {
-      unsigned int i, rev;
+      ::u32 i, rev;
 
       for (i = rev = 0; i < NumBits; i++)
       {
@@ -549,7 +549,7 @@ namespace mathematics
    return (int) dRand;
    }
 
-   unsigned int mathematics::RandRange(unsigned int ui1, unsigned int ui2)
+   ::u32 mathematics::RandRange(::u32 ui1, ::u32 ui2)
    {
    // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
@@ -587,13 +587,13 @@ namespace mathematics
 
    /*
 
-   unsigned long long mathematics::RandRange(unsigned long long ui1, unsigned long long ui2)
+   ::u64 mathematics::RandRange(::u64 ui1, ::u64 ui2)
    {
    // dRandRange == 0.0 is impossible happening due this next statement;
    if(ui1 == ui2)
    return ui1;
-   unsigned long long uiMin = minimum(ui1, ui2);
-   unsigned long long uiMax = maximum(ui1, ui2);
+   ::u64 uiMin = minimum(ui1, ui2);
+   ::u64 uiMax = maximum(ui1, ui2);
    double dRand = 0.0;
    double dRange = (double) (uiMax - uiMin);
    double dRandRange = 1.0;

@@ -48,7 +48,7 @@
 //                hr = pStream->Read(buffer, BLOCK_SIZE, &uRead);
 //                while(uRead > 0)
 //                {
-//                    unsigned int   dwWritten;
+//                    ::u32   dwWritten;
 //                    
 //                    WriteFile(hFile, buffer, uRead, &dwWritten, NULL);
 //                    

@@ -598,7 +598,7 @@ CLASS_DECL_ACME long long _first_nano()
 }
 
 
-CLASS_DECL_ACME unsigned int get_fast_tick_count()
+CLASS_DECL_ACME ::u32 get_fast_tick_count()
 {
 
 #ifdef WINDOWS
@@ -616,7 +616,7 @@ CLASS_DECL_ACME unsigned int get_fast_tick_count()
 
    }
 
-   return (unsigned int)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
+   return (::u32)(tv.tv_sec * 1000 + tv.tv_usec / 1000);
 
 #endif
 

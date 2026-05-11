@@ -576,10 +576,10 @@ namespace berg
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::string & lpWindowName, ::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, unsigned int dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BERG::pointer<::user::interaction>create_virtual_window(::particle * pparticle, ::u32 dwExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       __UNREFERENCED_PARAMETER(dwExStyle);

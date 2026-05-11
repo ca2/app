@@ -346,7 +346,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnTimer(unsigned int uEvent)
+   void tool_tip_window::OnTimer(::u32 uEvent)
    {
       switch(uEvent)
       {
@@ -395,7 +395,7 @@ namespace user
    //
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnSize(unsigned int nType, int cx, int cy)
+   void tool_tip_window::OnSize(::u32 nType, int cx, int cy)
    {
       update_drawing_objects();
    }

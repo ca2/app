@@ -836,7 +836,7 @@ namespace xcb
 
                xcb_window_t window = xcb_generate_id(m_pconnection);
 
-               unsigned int uEventMask = XCB_EVENT_MASK_NO_EVENT;
+               ::u32 uEventMask = XCB_EVENT_MASK_NO_EVENT;
 
                auto cookie = xcb_create_window(
                   m_pconnection,
@@ -1035,7 +1035,7 @@ namespace xcb
 
 
          ::e_status
-         display::_send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs, ...)
+         display::_send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs, ...)
          {
 
             va_list argList;
@@ -1052,7 +1052,7 @@ namespace xcb
 
 
          ::e_status
-         display::_send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs,
+         display::_send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs,
                                        va_list argList)
          {
 
@@ -1767,7 +1767,7 @@ namespace xcb
             mask |=
                XCB_CONFIG_WINDOW_Y;
 
-            unsigned int ua[] = {(unsigned int) x, (unsigned int) y};
+            ::u32 ua[] = {(::u32) x, (::u32) y};
 
             auto cookie = xcb_configure_window(m_pconnection, window, mask, ua);
 

@@ -54,12 +54,12 @@ namespace gpu_opengl
    }
 
 
-   unsigned int shader::create_shader(const ::block &blockSource, GLenum type)
+   ::u32 shader::create_shader(const ::block &blockSource, GLenum type)
    {
 
       //::gpu::context_lock contextlock(m_pgpurenderer->m_pgpucontext);
 
-      unsigned int uShader;
+      ::u32 uShader;
 
       uShader = glCreateShader(type);
 
@@ -126,13 +126,13 @@ namespace gpu_opengl
          m_memoryFragment = file()->as_memory(pathFragment);
       }
 
-      unsigned int uVertex = create_shader(m_memoryVertex, GL_VERTEX_SHADER);
+      ::u32 uVertex = create_shader(m_memoryVertex, GL_VERTEX_SHADER);
 
-      unsigned int uFragment = create_shader(m_memoryFragment, GL_FRAGMENT_SHADER);
+      ::u32 uFragment = create_shader(m_memoryFragment, GL_FRAGMENT_SHADER);
 
       // #if !defined(__APPLE__) && !defined(__ANDROID__)
       //
-      //       unsigned int uGeometry = 0;
+      //       ::u32 uGeometry = 0;
       //
       //       bool bGeometry = pszGeometry.trimmed().has_character();
       //

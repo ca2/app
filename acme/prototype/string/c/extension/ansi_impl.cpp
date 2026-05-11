@@ -810,7 +810,7 @@ CLASS_DECL_ACME const_char_pointer ansi_find_char_reverse(const_char_pointer psz
 //CLASS_DECL_ACME const_char_pointer ansi_concatenate_duplicate_and_free(const_char_pointer psz1, ::ansi_character * psz2);
 
 
-CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, unsigned long long u, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, ::u64 u, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
@@ -830,7 +830,7 @@ CLASS_DECL_ACME void ansi_from_long_long(::ansi_character * sz, long long i, int
 }
 
 
-CLASS_DECL_ACME void ansi_from_ui(::ansi_character * sz, unsigned int u, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_ui(::ansi_character * sz, ::u32 u, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;

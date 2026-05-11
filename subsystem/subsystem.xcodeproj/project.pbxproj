@@ -114,7 +114,7 @@
 		9AD3F3562FB2073600CB9A78 /* OperatingSystemHook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F2AF2FB2073600CB9A78 /* OperatingSystemHook.cpp */; };
 		9AD3F3572FB2073600CB9A78 /* SecurityAttributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F26A2FB2073600CB9A78 /* SecurityAttributes.cpp */; };
 		9AD3F3582FB2073600CB9A78 /* SharedMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F2CD2FB2073600CB9A78 /* SharedMemory.cpp */; };
-		9AD3F3A22FB2078700CB9A78 /* particle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3862FB2078700CB9A78 /* particle.h */; };
+		9AD3F3A22FB2078700CB9A78 /* Particle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3862FB2078700CB9A78 /* Particle.h */; };
 		9AD3F3A32FB2078700CB9A78 /* CommandLineFormatHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F36A2FB2078700CB9A78 /* CommandLineFormatHelp.h */; };
 		9AD3F3A42FB2078700CB9A78 /* subsystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F3942FB2078700CB9A78 /* subsystem.h */; };
 		9AD3F3A52FB2078700CB9A78 /* winhdr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F39C2FB2078700CB9A78 /* winhdr.h */; };
@@ -387,7 +387,7 @@
 		9AD3F3832FB2078700CB9A78 /* MD5.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MD5.cpp; sourceTree = "<group>"; };
 		9AD3F3842FB2078700CB9A78 /* MemUsage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MemUsage.h; sourceTree = "<group>"; };
 		9AD3F3852FB2078700CB9A78 /* MemUsage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MemUsage.cpp; sourceTree = "<group>"; };
-		9AD3F3862FB2078700CB9A78 /* particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = particle.h; sourceTree = "<group>"; };
+		9AD3F3862FB2078700CB9A78 /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		9AD3F3872FB2078700CB9A78 /* Particle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		9AD3F3882FB2078700CB9A78 /* Registry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Registry.h; sourceTree = "<group>"; };
 		9AD3F3892FB2078700CB9A78 /* Registry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Registry.cpp; sourceTree = "<group>"; };
@@ -688,7 +688,7 @@
 				9AD3F3832FB2078700CB9A78 /* MD5.cpp */,
 				9AD3F3842FB2078700CB9A78 /* MemUsage.h */,
 				9AD3F3852FB2078700CB9A78 /* MemUsage.cpp */,
-				9AD3F3862FB2078700CB9A78 /* particle.h */,
+				9AD3F3862FB2078700CB9A78 /* Particle.h */,
 				9AD3F3872FB2078700CB9A78 /* Particle.cpp */,
 				9AD3F3882FB2078700CB9A78 /* Registry.h */,
 				9AD3F3892FB2078700CB9A78 /* Registry.cpp */,
@@ -806,7 +806,7 @@
 				9AD3F2F72FB2073600CB9A78 /* LocalOperatingSystemApplication.h in Headers */,
 				9AD3F2F82FB2073600CB9A78 /* CrashHook.h in Headers */,
 				9AD3F2FA2FB2073600CB9A78 /* SecurityAttributes.h in Headers */,
-				9AD3F3A22FB2078700CB9A78 /* particle.h in Headers */,
+				9AD3F3A22FB2078700CB9A78 /* Particle.h in Headers */,
 				9AD3F3A32FB2078700CB9A78 /* CommandLineFormatHelp.h in Headers */,
 				9AD3F3A42FB2078700CB9A78 /* subsystem.h in Headers */,
 				9AD3F3A52FB2078700CB9A78 /* winhdr.h in Headers */,

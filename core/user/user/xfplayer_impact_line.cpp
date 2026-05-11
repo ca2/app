@@ -1920,7 +1920,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
       }
       else // bInside == true
       {
-         unsigned int fwKeys = user; // key flags
+         ::u32 fwKeys = user; // key flags
          if(m_tokenaMain.get_size() <= 0)
             return false;
          if(CalcChar(point, iToken, iChar))

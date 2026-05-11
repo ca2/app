@@ -34,7 +34,7 @@
 
 namespace subsystem
 {
-//   // NamedPipe::NamedPipe(FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer)
+//   // NamedPipe::NamedPipe(FileInterface * pfilePipe, ::u32 maxPortionSize, bool asServer)
 //   // {
 //   //    initialize_named_pipe(pfilePipe, maxPortionSize, asServer);
 //   // }
@@ -52,7 +52,7 @@ namespace subsystem
 //   }
 //
 //
-//   void NamedPipe::initialize_named_pipe(::subsystem::FileInterface * pfilePipe, unsigned int maxPortionSize, bool asServer)
+//   void NamedPipe::initialize_named_pipe(::subsystem::FileInterface * pfilePipe, ::u32 maxPortionSize, bool asServer)
 ////: Pipe(maxPortionSize),
 //  //m_hPipe(hPipe),
 //  //m_asServer(asServer)

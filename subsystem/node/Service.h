@@ -32,7 +32,7 @@
 
 //////#include "subsystem/platform/::string.h"
 //#include "subsystem/platform/Exception.h"
-//#include "subsystem/platform/particle.h"
+//#include "subsystem/platform/Particle.h"
 //#include "remoting/remoting/thread/Thread.h"
 
 namespace subsystem
@@ -119,8 +119,8 @@ namespace subsystem
       /**
        * @fixme add comment to it.
        */
-      virtual bool reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode,
-                        unsigned int dwWaitHint) = 0;
+      virtual bool reportStatus(::u32 dwCurrentState, ::u32 dwWin32ExitCode,
+                        ::u32 dwWaitHint) = 0;
 
    // protected:
    //    /**
@@ -249,8 +249,8 @@ namespace subsystem
       /**
        * @fixme add comment to it.
        */
-       bool reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode,
-          unsigned int dwWaitHint) override
+       bool reportStatus(::u32 dwCurrentState, ::u32 dwWin32ExitCode,
+          ::u32 dwWaitHint) override
        {
 
           return m_pservice->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);

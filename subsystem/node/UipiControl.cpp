@@ -36,7 +36,7 @@
 // typedef BOOL (WINAPI *SetFilterEx)(HWND hWnd,
 //                                    UINT scopedstrMessage,
 //                                    DWORD action,
-//                                    unsigned int *reserved
+//                                    ::u32 *reserved
 //                                    );
 // typedef BOOL (WINAPI *SetFilter)(UINT scopedstrMessage,
 //                                  DWORD action);

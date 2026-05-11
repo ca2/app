@@ -245,7 +245,7 @@ namespace heap
 //      }
 //
 //
-//      void on_plex_new_block(unsigned int nAllocSize)
+//      void on_plex_new_block(::u32 nAllocSize)
 //      {
 //
 //

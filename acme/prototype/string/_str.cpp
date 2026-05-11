@@ -24,13 +24,13 @@
 //{
 //   return u >= 0xDC00 && u <= 0xDFFF;
 //}
-// bool is_surrogated(unsigned int character)
+// bool is_surrogated(::u32 character)
 //{
 //   return 0x10000 <= character && character <= 0x10FFFF;
 //}
-// void str::encode_utf16_pair(unsigned int character, unsigned short *units)
+// void str::encode_utf16_pair(::u32 character, unsigned short *units)
 //{
-//   unsigned int code;
+//   ::u32 code;
 //   ASSERT(utf32_is_surrogated(character));
 //   code = (character - 0x10000);
 //   units[0] = 0xD800 | (code >> 10);
@@ -2991,13 +2991,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    }
 
 
-   string bigint2string(unsigned long long l)
+   string bigint2string(::u64 l)
    {
       string str;
-      unsigned long long tmp = l;
+      ::u64 tmp = l;
       while (tmp)
       {
-         unsigned long long a = tmp % 10;
+         ::u64 a = tmp % 10;
          str = (char)(a + 48) + str;
          tmp /= 10;
       }
@@ -3017,10 +3017,10 @@ int str::to_int(const ::scoped_string & scopedstr)
 }
 
 
-unsigned int str::to_unsigned_int(const ::scoped_string & scopedstr)
+::u32 str::to_unsigned_int(const ::scoped_string & scopedstr)
 {
 
-   return (unsigned int)ansi_to_long_long(scopedstr);
+   return (::u32)ansi_to_long_long(scopedstr);
 
 }
 
@@ -3041,7 +3041,7 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 
    }
 
-   unsigned long long u = 0;
+   ::u64 u = 0;
 
    for (; i < scopedstr.length() && character_isdigit(scopedstr[i]); i++)
    {
@@ -3078,7 +3078,7 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 //   if(bNegative)
 //      psz++;
 
-//   unsigned long long u = 0;
+//   ::u64 u = 0;
 
 //   for(; *psz != '\0' && i < 30 && ansi_char_isdigit(*psz); psz++, i++)
 //   {
@@ -3092,14 +3092,14 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 
 //}
 
-unsigned long long str::to_unsigned_long_long(const ::scoped_string & scopedstr)
+::u64 str::to_unsigned_long_long(const ::scoped_string & scopedstr)
 {
 
    int i = 0;
 
    for (; i < scopedstr.length() && character_isspace(scopedstr[i]); i++);
 
-   unsigned long long u = 0;
+   ::u64 u = 0;
 
    for (; i < scopedstr.length() && character_isdigit(scopedstr[i]); i++)
    {
@@ -3110,14 +3110,14 @@ unsigned long long str::to_unsigned_long_long(const ::scoped_string & scopedstr)
 
 }
 
-//unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstrParam)
+//::u64 to_unsigned_long_long(const ::scoped_string & scopedstrParam)
 //{
 
 //   int i = 0;
 
 //   for (; *psz != '\0' && i < 30 && character_isspace(*psz); i++, psz++);
 
-//   unsigned long long u = 0;
+//   ::u64 u = 0;
 
 //   for(; *psz != '\0' && i < 30 && isdigit(*psz); psz++, i++)
 //   {

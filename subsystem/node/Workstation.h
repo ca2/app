@@ -30,7 +30,7 @@
 
 
 //#include "SystemException.h"
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 
 namespace subsystem

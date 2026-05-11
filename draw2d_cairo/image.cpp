@@ -800,7 +800,7 @@ namespace draw2d_cairo
 //
 //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
-//      //      unsigned int dw = ::get_last_error();
+//      //      ::u32 dw = ::get_last_error();
 //      ::int_size size = pbitmap->get_size();
 //
 //      rectx.left = 0;

@@ -94,7 +94,7 @@ namespace sphere
 
 
 
-   unsigned int application::guess_code_page(const ::scoped_string & scopedstr)
+   ::u32 application::guess_code_page(const ::scoped_string & scopedstr)
    {
 
       return charguess(str)();
@@ -639,7 +639,7 @@ namespace sphere
             file.from_string(m_varTopicFile);
             COPYDATASTRUCT data;
             data.dwData = 2000;
-            data.cbData = (unsigned int)file.get_length();
+            data.cbData = (::u32)file.get_length();
             data.lpData = file.get_data();
             ::::acme::windowing::window * pacmewindowingwindow = ::FindWindowA(nullptr, "::ca2::account::message_wnd::department::");
 

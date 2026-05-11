@@ -371,7 +371,7 @@ namespace interprocess
    //}
 
 
-   //void target::dispatch_message(unsigned long long uData, ::memory && memory)
+   //void target::dispatch_message(::u64 uData, ::memory && memory)
    //{
 
    //   auto pdispatchitem = allocateø class dispatch_item (uData, ::transfer(memory));

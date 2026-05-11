@@ -530,7 +530,7 @@ void matter::notify_on_destroy(::property_object * pparticle)
 //void matter::__thread_procedure()
 //{
 //
-//   unsigned int u = -1;
+//   ::u32 u = -1;
 //
 //   ::e_status estatus = error_failed;
 //

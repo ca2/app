@@ -48,7 +48,7 @@ namespace subsystem
    //   return LoadIcon(m_appInstance, iconName);
    //}
 
-   bool ResourceLoader::loadString(unsigned int id, ::string & str)
+   bool ResourceLoader::loadString(::u32 id, ::string & str)
    {
       //_ASSERT(string != 0);
       str = "(Undef)";
@@ -94,7 +94,7 @@ namespace subsystem
       return true;
    }
 
-   ::string ResourceLoader::loadString(unsigned int id)
+   ::string ResourceLoader::loadString(::u32 id)
    {
 
       ::string str;

@@ -554,7 +554,7 @@ namespace apex
       factory()->add_factory_item < string_array >();
       factory()->add_factory_item < memory >();
       factory()->add_factory_item < memory_file >();
-      factory()->add_factory_item < ::int_array >();
+      factory()->add_factory_item < ::i32_array >();
 
       //factory()->add_factory_item < ::file::path_object >();
       //factory()->add_factory_item < ::long_long_array_base >();
@@ -1460,7 +1460,7 @@ pdirectorysystem->create("/ca2core");
    //
    //      GetSystemTimeAsFileTime(&ft);
    //
-   //      unsigned long long tt;
+   //      ::u64 tt;
    //
    //      ::memory_copy(&tt, &ft, sizeof(tt));
    //
@@ -2053,7 +2053,7 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   unsigned int system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
+   ::u32 system::os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam)
    {
 
       post_to_all_threads(eusermessage, wparam, lparam);
@@ -4315,7 +4315,7 @@ namespace apex
 {
 
 
-   CLASS_DECL_APEX void black_body(float * r, float * g, float * b, unsigned int dwTemp);
+   CLASS_DECL_APEX void black_body(float * r, float * g, float * b, ::u32 dwTemp);
 
 
    void system::discard_to_factory(::pointer<object>pca)

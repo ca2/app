@@ -325,10 +325,10 @@ namespace sockets
 
 
       /** Outgoing traffic counter. */
-      virtual unsigned long long GetBytesSent(bool clear = false);
+      virtual ::u64 GetBytesSent(bool clear = false);
 
       /** Incoming traffic counter. */
-      virtual unsigned long long GetBytesReceived(bool clear = false);
+      virtual ::u64 GetBytesReceived(bool clear = false);
 
       // LIST_TIMEOUT
 

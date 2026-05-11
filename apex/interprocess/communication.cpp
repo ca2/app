@@ -926,7 +926,7 @@ namespace interprocess
 
       pathModule /= "module_list.txt";
 
-      ::file::path pathPid = pnode->process_identifier_module_path((unsigned int)idPid.as_long_long());
+      ::file::path pathPid = pnode->process_identifier_module_path((::u32)idPid.as_long_long());
 
       string strModuleList = file_system()->as_string(pathModule);
 

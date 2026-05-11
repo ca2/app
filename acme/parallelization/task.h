@@ -2602,12 +2602,12 @@ public:
       };
 
 
-      unsigned long long m_hnTaskFlag;
+      ::u64 m_hnTaskFlag;
 
 
    };
 
-   unsigned long long                                    m_uThreadAffinityMask;
+   ::u64                                    m_uThreadAffinityMask;
 
 #if defined(WINDOWS)
 
@@ -2811,7 +2811,7 @@ public:
 
 #ifdef WINDOWS
 
-   static unsigned int WINDOWS_API s_os_task(void* p);
+   static ::u32 WINDOWS_API s_os_task(void* p);
 
 #else
 
@@ -2901,8 +2901,8 @@ public:
 //   static ::task_pointer launch(
 //      ::matter* pmatter,
 //      ::enum_priority epriority = e_priority_normal,
-//      unsigned int nStackSize = 0,
-//      unsigned int dwCreateFlags = 0);
+//      ::u32 nStackSize = 0,
+//      ::u32 dwCreateFlags = 0);
 
 
    //virtual ::property_object * thread_parent();

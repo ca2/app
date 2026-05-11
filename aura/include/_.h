@@ -288,7 +288,7 @@ namespace aura
 ////#define IMAGE_B_BYTE_INDEX 0
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(r))<<16)|(((unsigned int)lower_byte(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(b)|((unsigned short)(lower_byte(g))<<8))|(((::u32)lower_byte(r))<<16)|(((::u32)lower_byte(a))<<24)))
 ////
 ////
 ////#define image_r_value(rgb)    (lower_byte((rgb)>>16))
@@ -306,7 +306,7 @@ namespace aura
 ////#define IMAGE_B_BYTE_INDEX 2
 ////
 ////
-////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
+////#define IMAGE_ARGB(a, r, g, b)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((::u32)lower_byte(b))<<16)|(((::u32)lower_byte(a))<<24)))
 ////
 ////
 ////#define image_r_value(rgb)    (lower_byte((rgb)))
@@ -325,7 +325,7 @@ namespace aura
 ////#define color32_byte_green(rgb)    (lower_byte((rgb)>>8))
 ////#define color32_byte_blue(rgb)    (lower_byte((rgb)>>16))
 ////#define color32_byte_opacity(rgb)    (lower_byte((rgb)>>24))
-////#define RGBA(r, g, b, a)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((unsigned int)lower_byte(b))<<16)|(((unsigned int)lower_byte(a))<<24)))
+////#define RGBA(r, g, b, a)         ((::color::color)((lower_byte(r)|((unsigned short)(lower_byte(g))<<8))|(((::u32)lower_byte(b))<<16)|(((::u32)lower_byte(a))<<24)))
 ////#define argb(a, r, g, b)      RGBA(r, g, b, a)
 ////
 ////
@@ -408,10 +408,10 @@ namespace aura
 ////#else
 ////
 ////#ifndef lower_unsigned_int
-////#define lower_unsigned_int(l)                                    ((unsigned int)(((unsigned long long)(l)) & 0xffffffff))
+////#define lower_unsigned_int(l)                                    ((::u32)(((::u64)(l)) & 0xffffffff))
 ////#endif
 ////#ifndef upper_unsigned_int
-////#define upper_unsigned_int(l)                                    ((unsigned int)((((unsigned long long)(l)) >> 32) & 0xffffffff))
+////#define upper_unsigned_int(l)                                    ((::u32)((((::u64)(l)) >> 32) & 0xffffffff))
 ////#endif
 ////
 ////#endif
@@ -420,25 +420,25 @@ namespace aura
 ////
 ////
 ////#define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-////#define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+////#define as_u32(a, b)                                   ((::u32)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 ////
 ////
 ////#ifdef __cplusplus
 ////
-////#define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-////#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+////#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 ////
 ////#else
 ////
-////#define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-////#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+////#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+////#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 ////
 ////#endif
 ////
 ////#define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
 ////#define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-////#define lower_unsigned_int(u)                                     ((unsigned int)(u))
-////#define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+////#define lower_unsigned_int(u)                                     ((::u32)(u))
+////#define upper_unsigned_int(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 ////
 ////#define u32_x(u)                                     ((short)lower_unsigned_short(u))
 ////#define u32_y(u)                                     ((short)upper_unsigned_short(u))
@@ -493,13 +493,13 @@ namespace aura
 ////CLASS_DECL_AURA void    ansi_unlink(const ::scoped_string & scopedstr);
 ////
 ////
-////CLASS_DECL_AURA unsigned int get_last_error();
-////CLASS_DECL_AURA void set_last_error(unsigned int dw);
+////CLASS_DECL_AURA ::u32 get_last_error();
+////CLASS_DECL_AURA void set_last_error(::u32 dw);
 ////
 ////typedef char ::ansi_character;
 ////
-////int CLASS_DECL_AURA MultiByteToWideChar2(unsigned int CodePage, unsigned int dwFlags, const_char_pointer pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
-////int CLASS_DECL_AURA WideCharToMultiByte2(unsigned int CodePage, unsigned int dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::scoped_string & scopedstrDefaultChar, int_bool * pUsedDefaultChar);
+////int CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const_char_pointer pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
+////int CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::scoped_string & scopedstrDefaultChar, int_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -568,7 +568,7 @@ namespace aura
 ////}
 ////
 ////
-////CLASS_DECL_AURA extern unsigned int g_tickStartTime;
+////CLASS_DECL_AURA extern ::u32 g_tickStartTime;
 ////
 ////#define ALOG_CONTEXT context_trace_object()
 ////
@@ -672,7 +672,7 @@ namespace aura
 ////enum e_simple_command : long long;
 ////enum e_message : long long;
 ////enum enum_impact : long long;
-////enum ::enum_id : unsigned long long;
+////enum ::enum_id : ::u64;
 ////enum enum_check: int;
 ////
 ////template <typename TYPE>

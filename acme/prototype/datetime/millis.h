@@ -106,10 +106,10 @@ public:
    }
 
 
-   inline unsigned int unsigned int() const
+   inline ::u32 ::u32() const
    {
 
-      return (unsigned int) (m_i % 0x100000000ULL);
+      return (::u32) (m_i % 0x100000000ULL);
 
    }
 
@@ -217,7 +217,7 @@ namespace acme
       inline TYPE default_value();
 
       template <  >
-      inline unsigned int default_value < unsigned int >()
+      inline ::u32 default_value < ::u32 >()
       {
 
          return 0;
@@ -240,7 +240,7 @@ namespace acme
 #define __prtick "%" PRtick " ms"
 
 
-#define U32_INFINITE_TIMEOUT ((unsigned int)0xffffffffu)
+#define U32_INFINITE_TIMEOUT ((::u32)0xffffffffu)
 
 
 inline double __double(const ::millis & millis) { return (double) millis.m_i; }
@@ -249,7 +249,7 @@ inline double __double(const ::millis & millis) { return (double) millis.m_i; }
 inline auto __pr(const ::millis & millis) { return millis.m_i; }
 
 
-inline unsigned int __os(const ::millis & millis)
+inline ::u32 __os(const ::millis & millis)
 {
 
    if (millis.m_i > (long long) I32_MAXIMUM)
@@ -267,7 +267,7 @@ inline unsigned int __os(const ::millis & millis)
    else
    {
 
-      return (unsigned int) millis.m_i;
+      return (::u32) millis.m_i;
 
    }
 
@@ -285,7 +285,7 @@ inline unsigned char as_byte(const ::millis & millis) { return (unsigned char) m
 inline millis __tick(double d) { return (long long) d; }
 
 
-inline millis operator""_tick(unsigned long long u) { return u; }
+inline millis operator""_tick(::u64 u) { return u; }
 
 
 #ifdef CPP20
@@ -300,7 +300,7 @@ typedef CLASS_DECL_ACME numeric_array < millis > millis_array;
 inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
 
-inline millis operator""_ms(unsigned long long u) { return (long long) u; }
+inline millis operator""_ms(::u64 u) { return (long long) u; }
 
 
 inline millis operator -(const ::millis& millis1, const ::millis& millis2)

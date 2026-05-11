@@ -70,8 +70,8 @@
 //
 //
 //
-////typedef unsigned long long  filesize;
-////typedef unsigned long long  filesize;
+////typedef ::u64  filesize;
+////typedef ::u64  filesize;
 ////typedef long long   filesize;
 //
 

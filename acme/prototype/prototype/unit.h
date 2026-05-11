@@ -205,7 +205,7 @@ constexpr auto pixel_unit(NUMBER n)
 }
 
 
-constexpr auto operator ""_px(unsigned long long i)
+constexpr auto operator ""_px(::u64 i)
 {
 
    return pixel_unit(i);
@@ -236,7 +236,7 @@ constexpr auto point_unit(NUMBER n)
 }
 
 
-constexpr auto operator ""_pt(unsigned long long i)
+constexpr auto operator ""_pt(::u64 i)
 {
 
    return point_unit(i);

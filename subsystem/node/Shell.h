@@ -24,7 +24,7 @@
 #pragma once
 
 
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 
 ////#include "subsystem/platform/winhdr.h"

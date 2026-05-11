@@ -195,7 +195,7 @@ namespace graphics
 
       ::collection::count h = pimage->height();
 
-      unsigned int uScan = pimage->scan_size();
+      ::u32 uScan = pimage->scan_size();
 
       unsigned char * pline;
 
@@ -242,7 +242,7 @@ namespace graphics
 
       auto dh = (double)h;
 
-      unsigned int uScan;
+      ::u32 uScan;
 
       //dS = 1.0 - ((double)j / dh);
 

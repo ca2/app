@@ -7,7 +7,7 @@
 
 //#define __msg_entry(x) if(uMessage == (x)) { str = (#x); }
 //
-//CLASS_DECL_APEX string get_message_text(unsigned int uMessage, bool bWithNumbers)
+//CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers)
 //{
 //   string str;
 //   if (uMessage == -1)
@@ -159,17 +159,17 @@
 //
 //}
 
-unsigned int g_puiaMessageMouseMove[] =
+::u32 g_puiaMessageMouseMove[] =
 {
 
    ::user::e_message_mouse_move,
    ::user::e_message_set_cursor,
    ::user::e_message_non_client_hit_test,
    ::user::e_message_non_client_mouse_move,
-   (unsigned int)-1
+   (::u32)-1
 };
 
-unsigned int g_puiaMessageWindowDeactivating[] =
+::u32 g_puiaMessageWindowDeactivating[] =
 {
    // 2019-06-28-00-28
    ::user::e_message_non_client_activate,
@@ -180,10 +180,10 @@ unsigned int g_puiaMessageWindowDeactivating[] =
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
 #endif
-   (unsigned int)-1
+   (::u32)-1
 };
 
-unsigned int g_puiaMessageWindowActivating[] =
+::u32 g_puiaMessageWindowActivating[] =
 {
    // 2019-06-28-00-33
    ::user::e_message_window_position_changing,
@@ -197,10 +197,10 @@ unsigned int g_puiaMessageWindowActivating[] =
    WM_IME_SETCONTEXT,
    WM_IME_NOTIFY,
 #endif
-   (unsigned int)-1
+   (::u32)-1
 };
 
-unsigned int f[] =
+::u32 f[] =
 {
    // IME, Input Method Editor Client : ca2 Framework
    // Viagem da Mummi... : Yakissoba delicioso!!
@@ -230,20 +230,20 @@ unsigned int f[] =
    WM_GETICON,
    WM_DWMNCRENDERINGCHANGED,
 #endif
-   (unsigned int)-1
+   (::u32)-1
 };
 
 
-unsigned int g_puiaMessageWindowCreated[] =
+::u32 g_puiaMessageWindowCreated[] =
 {
 #ifdef WINDOWS
    WM_GETICON,
 #endif
-   (unsigned int)-1
+   (::u32)-1
 };
 
 
-unsigned int g_puiaMessageInputLanguageChange[] =
+::u32 g_puiaMessageInputLanguageChange[] =
 {
    // IME, Input Method Editor Client : ca2 Framework
    // Mummi no nibus... already missing!!
@@ -255,7 +255,7 @@ unsigned int g_puiaMessageInputLanguageChange[] =
    WM_INPUTLANGCHANGE,
    WM_IME_NOTIFY,
 #endif
-   (unsigned int)-1
+   (::u32)-1
 };
 
 

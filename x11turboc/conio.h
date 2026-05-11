@@ -134,7 +134,7 @@
 
 struct text_info
 {
-  unsigned int currmode;		// Is only a char in conio.
+  ::u32 currmode;		// Is only a char in conio.
   unsigned char winleft;
   unsigned char wintop;
   unsigned char winright;

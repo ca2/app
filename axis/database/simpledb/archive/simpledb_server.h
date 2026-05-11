@@ -40,7 +40,7 @@ namespace simpledb
       const ::scoped_string & scopedstrDatabase,
       int iPort = 0,
       const ::scoped_string & scopedstrSocketName = nullptr,
-      unsigned int uFlags = 0);
+      ::u32 uFlags = 0);
 
       virtual bool close();
 

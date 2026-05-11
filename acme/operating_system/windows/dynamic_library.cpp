@@ -182,7 +182,7 @@ namespace windows
 
    //   string strPath(pathParam);
 
-   //   unsigned int uiError;
+   //   ::u32 uiError;
 
    //   void* plibrary = nullptr;
 
@@ -372,7 +372,7 @@ namespace windows
 
       string strPath(pathParam);
 
-      unsigned int uiError;
+      ::u32 uiError;
 
       void* plibrary = nullptr;
 
@@ -594,7 +594,7 @@ namespace windows
       else
       {
 
-         unsigned int uiError = GetLastError();
+         ::u32 uiError = GetLastError();
 
          strMessage = "Failed to Load Library (2) " + string(path) + " with error (" + ::as_string(uiError) +
             ")" + ::windows::last_error_message(uiError);

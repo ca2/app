@@ -131,7 +131,7 @@ namespace subsystem
       //
       // Returns return value of RegEnumKey if it's
       // not equal to ERROR_MORE_DATA.
-      unsigned int enumKey(unsigned int i, ::string & name);
+      ::u32 enumKey(::u32 i, ::string & name);
    
       /**
        * Opens subkey or creates it if it's does not exists.

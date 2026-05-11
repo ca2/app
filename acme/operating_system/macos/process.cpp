@@ -47,7 +47,7 @@ int create_process2(const_char_pointer _cmd_line, int * pprocessId);
 //   char * psz = str.get_buffer(1024);
 //
 //
-//   unsigned int size = 1024;
+//   ::u32 size = 1024;
 //
 //   if(_NSGetExecutablePath(scopedstr, &size) == 0)
 //
@@ -83,7 +83,7 @@ int create_process2(const_char_pointer _cmd_line, int * pprocessId);
 //
 //}
 
-CLASS_DECL_ACME bool is_shared_library_busy(unsigned int processid, const string_array_base & stra)
+CLASS_DECL_ACME bool is_shared_library_busy(::u32 processid, const string_array_base & stra)
 {
 
    return false;

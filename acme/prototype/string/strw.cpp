@@ -15,7 +15,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
    ::wide_character c;
    int inquote;                    /* 1 = inside quotes */
    int copychar;                   /* 1 = copy char to *args */
-   unsigned int numslash;              /* num of backslashes seen */
+   ::u32 numslash;              /* num of backslashes seen */
 
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */
@@ -187,7 +187,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //   #endif
 //}
 
-//void wide_from_u64_base(unichar * sz, unsigned int u, int iBase)
+//void wide_from_u64_base(unichar * sz, ::u32 u, int iBase)
 //{
 //   if(u == 0)
 //   {

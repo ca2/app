@@ -48,7 +48,7 @@ namespace gpu
       model_buffer();
       ~model_buffer();
 
-      template < typename VERTEX, typename INDEX = unsigned int >
+      template < typename VERTEX, typename INDEX = ::u32 >
       ::gpu::model_data_base & model_data()
       {
 

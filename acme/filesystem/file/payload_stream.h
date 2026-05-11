@@ -14,8 +14,8 @@
 //#endif
 //inline void __exchange(::payload_stream & s, unsigned char & u);
 //inline void __exchange(::payload_stream & s, unsigned short & u);
-//inline void __exchange(::payload_stream & s, unsigned int & u);
-//inline void __exchange(::payload_stream & s, unsigned long long & u);
+//inline void __exchange(::payload_stream & s, ::u32 & u);
+//inline void __exchange(::payload_stream & s, ::u64 & u);
 //inline void __exchange(::payload_stream & s, float & f);
 //inline void __exchange(::payload_stream & s, double & d);
 //inline void __exchange(::payload_stream & s, ::earth::time & time);

@@ -232,7 +232,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
 //   while (input_size != 0)
 //   {
 //
-//      unsigned int cp = *codepoints++;
+//      ::u32 cp = *codepoints++;
 //
 //      input_size--;
 //
@@ -276,7 +276,7 @@ character_count wd16_to_ansi(char* psz, const ::wd16_character* pwsz, character_
 //   while (input_size != 0)
 //   {
 //
-//      unsigned int cp = *codepoints++;
+//      ::u32 cp = *codepoints++;
 //
 //      input_size--;
 //
@@ -574,14 +574,14 @@ extern "C"
 
 
 // on Windows, wchar_t is 2 bytes, suitable for UTF-16
-//std::wstring Utf32ToUtf16(const std::vector<unsigned int> &codepoints)
+//std::wstring Utf32ToUtf16(const std::vector<::u32> &codepoints)
 //{
 //   std::wstring result;
 //   int len = 0;
 //
-//   for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//   for (std::vector<::u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //   {
-//      unsigned int cp = *iter;
+//      ::u32 cp = *iter;
 //      if (cp < 0x10000) {
 //         ++len;
 //      }
@@ -599,9 +599,9 @@ extern "C"
 //      result.resize(len);
 //      len = 0;
 //
-//      for (std::vector<unsigned int>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
+//      for (std::vector<::u32>::iterator iter = codepoints.begin(); iter != codepoints.end(); ++iter)
 //      {
-//         unsigned int cp = *iter;
+//         ::u32 cp = *iter;
 //         if (cp < 0x10000) {
 //            result[len++] = static_cast<wchar_t>(cp);
 //         }
@@ -896,7 +896,7 @@ character_count utf16_to_utf16_len(const ::wd16_character* codepoints, character
    while (input_size != 0)
    {
 
-      unsigned int cp = *codepoints++;
+      ::u32 cp = *codepoints++;
 
       input_size--;
 
@@ -940,7 +940,7 @@ character_count utf16_to_utf16(::wd16_character * p, const ::wd16_character* cod
    while (input_size != 0)
    {
 
-      unsigned int cp = *codepoints++;
+      ::u32 cp = *codepoints++;
 
       input_size--;
 

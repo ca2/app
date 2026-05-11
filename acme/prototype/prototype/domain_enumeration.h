@@ -89,7 +89,7 @@ public:
     constexpr bool is_nok() const { return !this->is_ok(); }
 
 
-    explicit constexpr operator ::hash32() const { return (unsigned int) m_eenum; }
+    explicit constexpr operator ::hash32() const { return (::u32) m_eenum; }
 
 
 };

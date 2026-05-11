@@ -43,7 +43,7 @@ namespace innate_subsystem
       ~DibFramebuffer() override;
 
       virtual void setColor(unsigned char reg, unsigned char green, unsigned char blue) override;
-      virtual void fillRect(const ::int_rectangle &rectangleTarget, unsigned int color) override;
+      virtual void fillRect(const ::int_rectangle &rectangleTarget, ::u32 color) override;
 
       virtual bool isEqualTo(const Framebuffer * pframebuffer) override;
 

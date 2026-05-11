@@ -216,7 +216,7 @@ namespace sockets
 
 // ----------------------------------------
 // LINUX
-typedef unsigned int ipaddr_t;
+typedef ::u32 ipaddr_t;
 typedef unsigned short port_t;
 
 namespace sockets

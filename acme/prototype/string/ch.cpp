@@ -65,7 +65,7 @@ CLASS_DECL_ACME int trailingBytesForUTF8(char ch)
        * This table contains as many values as there might be trailing bytes
        * in a UTF-8 sequence.
        */
-      static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
+      static const ::u32 offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
                                                    0x03C82080UL, 0xFA082080UL, 0x82082080UL
                                                  };
 

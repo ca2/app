@@ -145,7 +145,7 @@ namespace gpu
 //
 //                         So triangulation was partial,
 //               not complete.
-            unsigned int nFlags = 0;
+            ::u32 nFlags = 0;
 
 
             //nFlags = aiProcess_Triangulate | aiProcess_SortByPType | aiProcess_JoinIdenticalVertices;
@@ -286,7 +286,7 @@ namespace gpu
       //    //    }
       //    // }
       //    //
-      //    // unsigned int textureId;
+      //    // ::u32 textureId;
       //    // glGenTextures(1, &textureId);
       //    // glBindTexture(GL_TEXTURE_2D, textureId);
       //    //

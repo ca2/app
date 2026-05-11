@@ -73,7 +73,7 @@
        // return true if tested process has the same path as current process
        // else return false
        // throw Exception an error.
-       virtual bool isItTheSamePathAsCurrent(unsigned int pId) = 0;
+       virtual bool isItTheSamePathAsCurrent(::u32 pId) = 0;
 
        // Sets full path to folder (without last directory separator character)
        // where current executing process file is located to out argument.
@@ -117,7 +117,7 @@
 
        virtual ::memory getSharedMemorySnapshot(const ::scoped_string &scopedstrShareMemoryName, memsize size, const class ::time & timeWaitMax) = 0;
 
-       virtual unsigned int getActiveConsoleSessionId(::subsystem::LogWriter * plogwriter) = 0;
+       virtual ::u32 getActiveConsoleSessionId(::subsystem::LogWriter * plogwriter) = 0;
        virtual void duplicatePipeClientToken(::subsystem::FileInterface * pfile) = 0;
     //private:
        //virtual void init() = 0;

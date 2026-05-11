@@ -2034,7 +2034,7 @@ namespace platform
       //if (!is_system() && is_true("SessionSynchronizedInput"))
       //{
       //
-      //::AttachThreadInput(GetCurrentThreadId(), (unsigned int)psystem->get_itask(), true);
+      //::AttachThreadInput(GetCurrentThreadId(), (::u32)psystem->get_itask(), true);
       //
       //}
       //

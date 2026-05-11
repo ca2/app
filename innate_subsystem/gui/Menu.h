@@ -25,7 +25,7 @@
 #pragma once
 //#include <winrt/impl/Windows.Foundation.0.h>
 
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 
 ///#include "util/CommonHeader.h"
@@ -53,22 +53,22 @@ namespace innate_subsystem
       virtual void termMenu() = 0;
 
       virtual int getMenuItemCount() = 0;
-      virtual bool appendMenu(const ::scoped_string & scopedstr, unsigned int uID) = 0;
+      virtual bool appendMenu(const ::scoped_string & scopedstr, ::u32 uID) = 0;
       virtual bool appendSeparator() = 0;
       virtual bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) = 0;
 
-      virtual bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0;
-      virtual bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) = 0;
-      virtual bool insertSeparator(unsigned int uItem) = 0;
-      virtual bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, MenuInterface *pmenu) = 0;
+      virtual bool insertMenuItem(::u32 uItem, const ::scoped_string & scopedstr, ::u32 uID) = 0;
+      virtual bool insertCheckMenuItem(::u32 uItem, const ::scoped_string & scopedstr, ::u32 uID) = 0;
+      virtual bool insertSeparator(::u32 uItem) = 0;
+      virtual bool insertSubMenu(::u32 uItem, const ::scoped_string & scopedstr, MenuInterface *pmenu) = 0;
 
-      virtual bool enableMenuItem(unsigned int uID, unsigned int uEnable) = 0;
-      virtual bool checkedMenuItem(unsigned int uID, bool bEnable) = 0;
-      virtual bool deleteMenu(unsigned int uPosition) = 0;
+      virtual bool enableMenuItem(::u32 uID, ::u32 uEnable) = 0;
+      virtual bool checkedMenuItem(::u32 uID, bool bEnable) = 0;
+      virtual bool deleteMenu(::u32 uPosition) = 0;
 
-      virtual int findMenuItem(unsigned int uID) = 0;
+      virtual int findMenuItem(::u32 uID) = 0;
 
-      virtual bool setDefaultItem(unsigned int uID) = 0;
+      virtual bool setDefaultItem(::u32 uID) = 0;
 
       virtual void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const ::function< void(int) > & onCommand) = 0;
 
@@ -78,10 +78,10 @@ namespace innate_subsystem
       // }
 
       // ///sprivate:
-      //   virtual bool _appendMenu(unsigned int uFlags, ::uptr uIDNewItem, const char* lpNewItem) = 0;
-      //   virtual bool _insertMenuItem(unsigned int uItem, bool fByPosition, LPCMENUITEMINFO lpmii) = 0;
-      //   virtual bool _modifyMenu(unsigned int uPosition, unsigned int uFlags, ::iptr uIDNewItem, const char * lpNewItem) = 0;
-      //   virtual bool _setMenuItem(unsigned int uItem, bool fByPosition, LPMENUITEMINFO lpmii) = 0;
+      //   virtual bool _appendMenu(::u32 uFlags, ::uptr uIDNewItem, const char* lpNewItem) = 0;
+      //   virtual bool _insertMenuItem(::u32 uItem, bool fByPosition, LPCMENUITEMINFO lpmii) = 0;
+      //   virtual bool _modifyMenu(::u32 uPosition, ::u32 uFlags, ::iptr uIDNewItem, const char * lpNewItem) = 0;
+      //   virtual bool _setMenuItem(::u32 uItem, bool fByPosition, LPMENUITEMINFO lpmii) = 0;
 
       // protected:
       //   HMENU m_menu;
@@ -111,22 +111,22 @@ namespace innate_subsystem
       void termMenu() override { m_pmenu->termMenu(); }
 
       int getMenuItemCount() override { return m_pmenu->getMenuItemCount(); }
-      bool appendMenu(const ::scoped_string & scopedstr, unsigned int uID) override { return m_pmenu->appendMenu(scopedstr, uID); }
+      bool appendMenu(const ::scoped_string & scopedstr, ::u32 uID) override { return m_pmenu->appendMenu(scopedstr, uID); }
       bool appendSeparator() override { return m_pmenu->appendSeparator(); }
       bool appendSubMenu(const ::scoped_string & scopedstr, MenuInterface *pMenu) override { return m_pmenu->appendSubMenu(scopedstr, pMenu); }
 
-      bool insertMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override { return m_pmenu->insertMenuItem(uItem, scopedstr, uID); }
-      bool insertCheckMenuItem(unsigned int uItem, const ::scoped_string & scopedstr, unsigned int uID) override { return m_pmenu->insertCheckMenuItem(uItem, scopedstr, uID); }
-      bool insertSeparator(unsigned int uItem) override { return m_pmenu->insertSeparator(uItem); }
-      bool insertSubMenu(unsigned int uItem, const ::scoped_string & scopedstr, MenuInterface *pMenu) override { return m_pmenu->insertSubMenu(uItem, scopedstr, pMenu); }
+      bool insertMenuItem(::u32 uItem, const ::scoped_string & scopedstr, ::u32 uID) override { return m_pmenu->insertMenuItem(uItem, scopedstr, uID); }
+      bool insertCheckMenuItem(::u32 uItem, const ::scoped_string & scopedstr, ::u32 uID) override { return m_pmenu->insertCheckMenuItem(uItem, scopedstr, uID); }
+      bool insertSeparator(::u32 uItem) override { return m_pmenu->insertSeparator(uItem); }
+      bool insertSubMenu(::u32 uItem, const ::scoped_string & scopedstr, MenuInterface *pMenu) override { return m_pmenu->insertSubMenu(uItem, scopedstr, pMenu); }
 
-      bool enableMenuItem(unsigned int uID, unsigned int uEnable) override { return m_pmenu->enableMenuItem(uID, uEnable); }
-      bool checkedMenuItem(unsigned int uID, bool bEnable) override { return m_pmenu->checkedMenuItem(uID, bEnable); }
-      bool deleteMenu(unsigned int uPosition) override { return m_pmenu->deleteMenu(uPosition); }
+      bool enableMenuItem(::u32 uID, ::u32 uEnable) override { return m_pmenu->enableMenuItem(uID, uEnable); }
+      bool checkedMenuItem(::u32 uID, bool bEnable) override { return m_pmenu->checkedMenuItem(uID, bEnable); }
+      bool deleteMenu(::u32 uPosition) override { return m_pmenu->deleteMenu(uPosition); }
 
-      int findMenuItem(unsigned int uID) override { return m_pmenu->findMenuItem(uID); }
+      int findMenuItem(::u32 uID) override { return m_pmenu->findMenuItem(uID); }
 
-      bool setDefaultItem(unsigned int uID) override { return m_pmenu->setDefaultItem(uID); }
+      bool setDefaultItem(::u32 uID) override { return m_pmenu->setDefaultItem(uID); }
 
 
    void trackPopupMenuOnCursorPosition(::innate_subsystem::WindowInterface * pwindowNotify, const function<void(int)> &onCommand) override { m_pmenu->trackPopupMenuOnCursorPosition(pwindowNotify, onCommand); }
@@ -137,10 +137,10 @@ namespace innate_subsystem
       // }
 
       // ///sprivate:
-      //   bool _appendMenu(unsigned int uFlags, ::uptr uIDNewItem, const char* lpNewItem) override;
-      //   bool _insertMenuItem(unsigned int uItem, bool fByPosition, LPCMENUITEMINFO lpmii) override;
-      //   bool _modifyMenu(unsigned int uPosition, unsigned int uFlags, ::iptr uIDNewItem, const char * lpNewItem) override;
-      //   bool _setMenuItem(unsigned int uItem, bool fByPosition, LPMENUITEMINFO lpmii) override;
+      //   bool _appendMenu(::u32 uFlags, ::uptr uIDNewItem, const char* lpNewItem) override;
+      //   bool _insertMenuItem(::u32 uItem, bool fByPosition, LPCMENUITEMINFO lpmii) override;
+      //   bool _modifyMenu(::u32 uPosition, ::u32 uFlags, ::iptr uIDNewItem, const char * lpNewItem) override;
+      //   bool _setMenuItem(::u32 uItem, bool fByPosition, LPMENUITEMINFO lpmii) override;
 
       // protected:
       //   HMENU m_menu;

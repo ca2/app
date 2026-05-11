@@ -40,7 +40,7 @@ struct heap_memory_header
 #else
    const_char_pointer           m_pszMemoryAnnotationPadding;
 #endif
-   unsigned int                   m_size;
+   ::u32                   m_size;
 
 };
 
@@ -97,7 +97,7 @@ inline static void * heap_memory_unaligned(void * p, memsize size, int blockuse,
 
    pheap->m_align = 0;
 
-   pheap->m_size = (unsigned int) size;
+   pheap->m_size = (::u32) size;
 
    pheap->m_ememory = ememory;
 
@@ -119,7 +119,7 @@ inline static void * heap_memory_aligned(void * p, memsize size, int blockuse, i
 
    pheap->m_align = iAlignByteCount;
 
-   pheap->m_size = (unsigned int) size;
+   pheap->m_size = (::u32) size;
 
    pheap->m_ememory = ememory;
 

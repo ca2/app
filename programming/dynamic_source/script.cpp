@@ -557,7 +557,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS_DESKTOP
 
-            unsigned int dwMessageId = GetLastError();
+            ::u32 dwMessageId = GetLastError();
 
             if(dwMessageId == 0x139)
             {

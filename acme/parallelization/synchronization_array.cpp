@@ -18,9 +18,9 @@
 
 
 //#if defined(WINDOWS)
-////::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, unsigned int tickTimeout, unsigned int dwWakeMask, unsigned int dwFlags);
+////::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 //
-////::e_status WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, unsigned int tickTimeout, int_bool bAlertable);
+////::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
 //
 //
 //#endif
@@ -194,7 +194,7 @@ void synchronization_array::erase(::collection::index index)
 }
 
 
-::e_status synchronization_array::wait(const class time & timeWait, bool bWaitForAll, unsigned int uWakeMask)
+::e_status synchronization_array::wait(const class time & timeWait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty() && !uWakeMask)
@@ -206,16 +206,16 @@ void synchronization_array::erase(::collection::index index)
 
 #ifdef WINDOWS
 
-   unsigned int windowsWaitResult;
+   ::u32 windowsWaitResult;
 
-   unsigned int uCount = (unsigned int)m_hsynchronizationa.size();
+   ::u32 uCount = (::u32)m_hsynchronizationa.size();
 
 #if !defined(UNIVERSAL_WINDOWS)
 
    if (uWakeMask)
    {
 
-      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((unsigned int)uCount, m_hsynchronizationa.get_data(), ::windows::wait_millis(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
+      windowsWaitResult = ::MsgWaitForMultipleObjectsEx((::u32)uCount, m_hsynchronizationa.get_data(), ::windows::wait_millis(timeWait), uWakeMask, bWaitForAll ? MWMO_WAITALL : 0);
 
    }
    else
@@ -287,14 +287,14 @@ void synchronization_array::erase(::collection::index index)
 //#define QS_ALLEVENTS 0xffffffffu
 //#endif
 
-            estatus = ::MsgWaitForMultipleObjectsEx((unsigned int) size(), m_hsynchronizationa.data(), timeWait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
+            estatus = ::MsgWaitForMultipleObjectsEx((::u32) size(), m_hsynchronizationa.data(), timeWait, QS_ALLEVENTS, bWaitForAll ? MWMO_WAITALL : 0);
 
          }
          else
 #endif
          {
 
-            estatus = ::WaitForMultipleObjectsEx((unsigned int) m_hsynchronizationa.size(), m_hsynchronizationa.data(), bWaitForAll, timeWait, true);
+            estatus = ::WaitForMultipleObjectsEx((::u32) m_hsynchronizationa.size(), m_hsynchronizationa.data(), bWaitForAll, timeWait, true);
 
          }
 

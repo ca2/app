@@ -19,25 +19,25 @@
 #include <netdb.h>
 #endif
 
-unsigned int c_inet_to_ui(const_char_pointer src)
+::u32 c_inet_to_ui(const_char_pointer src)
 {
 
    if(case_insensitive_ansi_begins(src, "0x"))
    {
 
-      return (unsigned int) ansi_to_long_long(&src[2], nullptr, 16);
+      return (::u32) ansi_to_long_long(&src[2], nullptr, 16);
 
    }
    else if(ansi_begins(src, "0"))
    {
 
-      return (unsigned int) ansi_to_long_long(&src[1], nullptr, 16);
+      return (::u32) ansi_to_long_long(&src[1], nullptr, 16);
 
    }
    else
    {
 
-      return (unsigned int) ansi_to_long_long(src, nullptr, 10);
+      return (::u32) ansi_to_long_long(src, nullptr, 10);
 
    }
 
@@ -100,7 +100,7 @@ static const uchar index_hex[256] =
 //   int double_colon = -1;  /* index of the department after the first
 //                           * 16-bit group of zeros represented by
 //                           * the double colon */
-//   unsigned int val = 0;
+//   ::u32 val = 0;
 //   int len;
 //
 //   /* Handle initial (double) colon */
@@ -246,7 +246,7 @@ static const uchar index_hex[256] =
 //                                 * groups of zeros */
 //   int zero_length;
 //   int department;
-//   unsigned int val;
+//   ::u32 val;
 //
 //   /* Scan to find the placement of the double colon */
 //   for (department = 0; department < 8; department++)
@@ -355,7 +355,7 @@ struct c_in_addr
          unsigned char	s_b4;
       } S_un_b;
 
-      unsigned int S_addr;
+      ::u32 S_addr;
    } S_un;
 };
 

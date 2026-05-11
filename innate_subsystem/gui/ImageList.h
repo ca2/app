@@ -2,7 +2,7 @@
 // Created by camilo on 2026-04-06 14:22 <3ThomasBorregaardSørensen!!
 //
 #pragma once
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 
 namespace innate_subsystem

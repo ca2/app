@@ -27,7 +27,7 @@ namespace gpu
    public:
 
 
-      const unsigned int QUAD_NUM_TRIANGLES = 6;
+      const ::u32 QUAD_NUM_TRIANGLES = 6;
 
 
       ::gpu::model_data < ::gpu::position2_uv > m_modeldata;
@@ -49,8 +49,8 @@ namespace gpu
 
 
       //private:
-      //  unsigned int mVAO;
-      //unsigned int mVBO;
+      //  ::u32 mVAO;
+      //::u32 mVBO;
 
    };
 

@@ -207,7 +207,7 @@ public:
    bool contains(ARG_KEY key) const;
 
 
-   unsigned int GetHashTableSize() const
+   ::u32 GetHashTableSize() const
    {
       
       return m_hashtable.GetHashTableSize();
@@ -215,7 +215,7 @@ public:
    }
    
    
-   void InitHashTable(unsigned int hashSize,bool bAllocNow = true);
+   void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 
 
    PAYLOAD defer_get(ARG_KEY argkey, ARG_PAYLOAD valueDefault) const;
@@ -241,9 +241,9 @@ public:
    BASE_NODE* __new_node(ARG_KEY key);
    void __delete_node(BASE_NODE* pnode);
 
-   iterator _new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash);
+   iterator _new(ARG_KEY key, ::u32& uiPack, ::u32& uiHash);
    void _free(iterator pnode);
-   iterator _find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const;
+   iterator _find(ARG_KEY key, ::u32& uiPack, ::u32& uiHash) const;
    //iterator _get(ARG_KEY key);
 
 
@@ -469,7 +469,7 @@ public:
    //iterator get_next(const iteratorpnodeRet);
 
    // //advanced features for derived classes
-   // unsigned int GetHashTableSize() const
+   // ::u32 GetHashTableSize() const
    // {
    //
    //    return this->m_hashtable.GetHashTableSize();
@@ -477,7 +477,7 @@ public:
    // // }
    //
    //
-   // void InitHashTable(unsigned int hashSize,bool bAllocNow = true);
+   // void InitHashTable(::u32 hashSize,bool bAllocNow = true);
    //
    //
    // PAYLOAD get(ARG_KEY key, ARG_PAYLOAD valueDefault);
@@ -521,14 +521,14 @@ public:
    //inline const_iterator find_item(ARG_KEY key) const { return ((pair_map_base *) this)->find_item(key); }
 
 
-   //BASE_NODE * new_node(ARG_KEY key, unsigned int uiPack, unsigned int uiHash);
-   inline void hash(iterator iterator, unsigned int uiPack, unsigned int uiHash);
-   void attach(iterator iterator, unsigned int uiPack, unsigned int uiHash);
+   //BASE_NODE * new_node(ARG_KEY key, ::u32 uiPack, ::u32 uiHash);
+   inline void hash(iterator iterator, ::u32 uiPack, ::u32 uiHash);
+   void attach(iterator iterator, ::u32 uiPack, ::u32 uiHash);
    //bool erase(iterator iterator);
    void detach(iterator iterator);
-   void hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY) const;
-   //inline iterator node_at(ARG_KEY, unsigned int & uiPack, unsigned int & uiHash) const;
-   //inline const_iterator node_at(ARG_KEY, unsigned int& uiPack, unsigned int& uiHash) const;
+   void hash(::u32& uiPack, ::u32& uiHash, ARG_KEY) const;
+   //inline iterator node_at(ARG_KEY, ::u32 & uiPack, ::u32 & uiHash) const;
+   //inline const_iterator node_at(ARG_KEY, ::u32& uiPack, ::u32& uiHash) const;
 
    // void transfer(iterator iterator, pair_map_base * iterator_map = nullptr);
    // void transfer(pair_map_base* iterator_map, ARG_KEY key);
@@ -925,7 +925,7 @@ void node_set_base < NODE, t_eallocate >::__delete_node(BASE_NODE* pnode)
 
 
 template < typename NODE, enum_allocate t_eallocate >
-typename node_set_base < NODE, t_eallocate >::iterator node_set_base < NODE, t_eallocate >::_new(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash)
+typename node_set_base < NODE, t_eallocate >::iterator node_set_base < NODE, t_eallocate >::_new(ARG_KEY key, ::u32& uiPack, ::u32& uiHash)
 {
 
    // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
@@ -1036,7 +1036,7 @@ void node_set_base < NODE, t_eallocate >::_free(iterator iterator)
 
 template < typename NODE, enum_allocate t_eallocate >
 typename node_set_base < NODE, t_eallocate >::iterator
-node_set_base < NODE, t_eallocate >::_find(ARG_KEY key, unsigned int& uiPack, unsigned int& uiHash) const
+node_set_base < NODE, t_eallocate >::_find(ARG_KEY key, ::u32& uiPack, ::u32& uiHash) const
 {
 
    uiHash = ::as_hash32(key).m_u;
@@ -1071,7 +1071,7 @@ node_set_base < NODE, t_eallocate >::_find(ARG_KEY key, unsigned int& uiPack, un
 // bool node_set_base < NODE, t_eallocate >::find(ARG_KEY key, PAYLOAD & payload) const
 // {
 //
-//    unsigned int uiPack, uiHash;
+//    ::u32 uiPack, uiHash;
 //
 //    auto p = find_node(key, uiPack, uiHash);
 //
@@ -1107,9 +1107,9 @@ typename node_set_base < NODE, t_eallocate >::const_iterator
 node_set_base < NODE, t_eallocate >::find(ARG_KEY key) const
 {
 
-   unsigned int uiPack;
+   ::u32 uiPack;
 
-   unsigned int uiHash;
+   ::u32 uiHash;
 
    auto pnode = _find(key, uiPack, uiHash);
 
@@ -1162,7 +1162,7 @@ node_set_base < NODE, t_eallocate >::defer_get(ARG_KEY key) const
 // node_set_base < NODE, t_eallocate >::find(ARG_KEY key)
 // {
 //
-//    unsigned int nCluster, nHash;
+//    ::u32 nCluster, nHash;
 //
 //    auto iterator = ((node_set_base *)this)->_find(key, nCluster, nHash);
 //
@@ -1195,7 +1195,7 @@ typename node_set_base < NODE, t_eallocate >::iterator
 node_set_base < NODE, t_eallocate >::get(ARG_KEY key)
 {
 
-   unsigned int uiPack, uiHash;
+   ::u32 uiPack, uiHash;
 
    auto iterator = _find(key, uiPack, uiHash);
 
@@ -1353,7 +1353,7 @@ typename node_set_base < NODE, t_eallocate >::PAYLOAD node_set_base < NODE, t_ea
 
 using double_set = set < double >;
 
-using dword_set = set < unsigned int >;
+using dword_set = set < ::u32 >;
 
 using uptr_set = set < ::uptr >;
 
@@ -1427,7 +1427,7 @@ using string_set = set < string >;
 
 template < typename NODE, enum_allocate t_eallocate >
 void node_set_base < NODE, t_eallocate >::InitHashTable(
-   unsigned int nHashSize, bool bAllocNow)
+   ::u32 nHashSize, bool bAllocNow)
 //
 // Used to force allocation of a hash table or to override the default
 //   hash table int_size of (which is fairly small)
@@ -1465,9 +1465,9 @@ template < typename ITEM, enum_allocate t_eallocate >
 void node_set_base < ITEM, t_eallocate >::transfer(node_set_base* pnodesetbase, ARG_KEY key)
 {
 
-   unsigned int uiPack;
+   ::u32 uiPack;
 
-   unsigned int uiHash;
+   ::u32 uiHash;
 
    auto pnode = pnodesetbase->_find(key, uiPack, uiHash);
 
@@ -1501,9 +1501,9 @@ void node_set_base < ITEM, t_eallocate >::transfer(iterator iterator, node_set_b
 
    }
 
-   unsigned int uiPack;
+   ::u32 uiPack;
 
-   unsigned int uiHash;
+   ::u32 uiHash;
 
    hash(uiPack, uiHash, iterator->key());
 
@@ -1514,7 +1514,7 @@ void node_set_base < ITEM, t_eallocate >::transfer(iterator iterator, node_set_b
 
 
 template < typename ITEM, enum_allocate t_eallocate >
-void node_set_base < ITEM, t_eallocate >::attach(iterator iterator, unsigned int uiPack, unsigned int uiHash)
+void node_set_base < ITEM, t_eallocate >::attach(iterator iterator, ::u32 uiPack, ::u32 uiHash)
 {
 
    hash(iterator, uiPack, uiHash);
@@ -1542,7 +1542,7 @@ void node_set_base < ITEM, t_eallocate >::attach(iterator iterator, unsigned int
 
 
 template < typename ITEM, enum_allocate t_eallocate >
-void node_set_base < ITEM, t_eallocate >::hash(iterator iterator, unsigned int uiPack, unsigned int uiHash)
+void node_set_base < ITEM, t_eallocate >::hash(iterator iterator, ::u32 uiPack, ::u32 uiHash)
 {
 
    auto pnode = iterator.m_p;
@@ -1572,7 +1572,7 @@ void node_set_base < ITEM, t_eallocate >::hash(iterator iterator, unsigned int u
 
 
 template < typename ITEM, enum_allocate t_eallocate >
-void node_set_base < ITEM, t_eallocate >::hash(unsigned int& uiPack, unsigned int& uiHash, ARG_KEY key) const
+void node_set_base < ITEM, t_eallocate >::hash(::u32& uiPack, ::u32& uiHash, ARG_KEY key) const
 {
 
    uiHash = ::as_hash32(key).m_u;

@@ -785,7 +785,7 @@ void user::destroy()
 //      //::color::color crCustColors[16];
 //
 //      //// init-int this array did not affect the mouse problem
-//      //// unsigned int idx ;
+//      //// ::u32 idx ;
 //      //// for (idx=0; idx<16; idx++) {
 //      //// crCustColors[idx] = rgb(idx, idx, idx) ;
 //      //// }
@@ -1167,9 +1167,9 @@ void user::destroy()
 //   //   wstring  wstr;
 //
 //   //   wstr.get_buffer(MAX_PATH * 8);
-//   //   //unsigned int uLen = pwsz.memsize();
+//   //   //::u32 uLen = pwsz.memsize();
 //
-//   //   if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (unsigned int)wstr.get_storage_length(), wstr.m_pdata, 0))
+//   //   if (!SystemParametersInfoW(SPI_GETDESKWALLPAPER, (::u32)wstr.get_storage_length(), wstr.m_pdata, 0))
 //   //   {
 //   //      return "";
 //
@@ -1466,7 +1466,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, unsigned int fuStyle)
+//   //int application::sync_message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, ::u32 fuStyle)
 //   //{
 //
 //   //   informationf("---->  app_message_box: " + string(scopedstrMessage) + "\n\n");
@@ -1479,7 +1479,7 @@ void user::destroy()
 //   //}
 //
 //
-//   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, unsigned int fuStyle)
+//   //int application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
 //   //{
 //
 //   //   if (user() == nullptr)
@@ -1692,7 +1692,7 @@ void user::destroy()
 //   }
 //
 //
-//   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int uFlags, ::function_arg function)
+//   //void application::message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 uFlags, ::function_arg function)
 //   //{
 //
 //   //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

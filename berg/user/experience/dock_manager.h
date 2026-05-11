@@ -49,7 +49,7 @@ namespace experience
       DECLARE_MESSAGE_HANDLER(dock_button_on_message_left_button_up);
 
 
-      bool on_timer(unsigned int uEvent);
+      bool on_timer(::u32 uEvent);
 
       bool dock_window(::message::mouse* pmouse);
 

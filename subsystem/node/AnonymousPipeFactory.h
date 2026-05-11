@@ -36,11 +36,11 @@ namespace subsystem
    virtual public ::Particle
    {
    public:
-      //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
+      //AnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter);
       //AnonymousPipeFactory();
       //virtual ~AnonymousPipeFactoryInterface() =0;
 
-      virtual void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) = 0;
+      virtual void initialize_anonymous_pipe_factory(::u32 bufferSize, LogWriter *plogwriter) = 0;
 
       // This function generates the ::pair of the AnonymousPipe
       // objects that connected to each other.
@@ -60,7 +60,7 @@ namespace subsystem
 
    // private:
    //    LogWriter *m_plogwriter;
-   //    unsigned int m_bufferSize;
+   //    ::u32 m_bufferSize;
    };
 
 
@@ -78,12 +78,12 @@ namespace subsystem
       ImplementCompositeø(AnonymousPipeFactory, anonymouspipefactory)
 
 
-      //AnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
+      //AnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter);
       //AnonymousPipeFactory();
       //~AnonymousPipeFactory() override;
 
 
-      void initialize_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) override
+      void initialize_anonymous_pipe_factory(::u32 bufferSize, LogWriter *plogwriter) override
       {
 
          m_panonymouspipefactory->initialize_anonymous_pipe_factory(bufferSize, plogwriter);
@@ -113,7 +113,7 @@ namespace subsystem
 
    // private:
    //    LogWriter *m_plogwriter;
-   //    unsigned int m_bufferSize;
+   //    ::u32 m_bufferSize;
    };
 
 

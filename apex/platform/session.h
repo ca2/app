@@ -117,7 +117,7 @@ namespace apex
 //
 //       bool                                                  m_bMatterFromHttpCache;
 //
-//       unsigned int                                                 m_dwLongPhRESSingTime;
+//       ::u32                                                 m_dwLongPhRESSingTime;
 //
 
       session();
@@ -204,7 +204,7 @@ namespace apex
 
       // Long PhRESSing time
       // time in ::times that a pressing is considered a double click
-      virtual unsigned int get_Long_PhRESSing_time() override;
+      virtual ::u32 get_Long_PhRESSing_time() override;
 
       //virtual void defer_initialize_user_presence();
 

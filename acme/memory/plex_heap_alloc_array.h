@@ -36,7 +36,7 @@ public:
    //static void delete_plex_heap_alloc_array(plex_heap_alloc_array * p);
 
 
-   //plex_heap_alloc * new_plex_heap_alloc(memsize nAllocSize, unsigned int nBlockSize = 64);
+   //plex_heap_alloc * new_plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize = 64);
    //void delete_plex_heap_alloc(plex_heap_alloc * pplexheapalloc);
 
 

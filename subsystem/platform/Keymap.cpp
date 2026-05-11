@@ -42,14 +42,14 @@ namespace subsystem
    // X11 Key sym to virtual key translation table entry.
    struct KS2VKEntry
    {
-      unsigned int keySym;
+      ::u32 keySym;
       ::user::enum_key m_euserkey;
    };
 
    struct VK2KSEntry
    {
       ::user::enum_key m_euserkey;
-      unsigned int keySym;
+      ::u32 keySym;
    };
 
    // Table for translating X11 keysyms to auxiliary windows virtual key codes.
@@ -1012,7 +1012,7 @@ namespace subsystem
       {0x20ac, 0x20ac}, /*                    EuroSign  EURO SIGN */
    };
 
-   const unsigned int EXTENDED_KEYS[] = {XK_Control_R, XK_Alt_R,
+   const ::u32 EXTENDED_KEYS[] = {XK_Control_R, XK_Alt_R,
 
                                    XK_KP_Enter,  XK_KP_Divide,
 
@@ -1053,11 +1053,11 @@ namespace subsystem
       return -1;
    }
 
-   bool Keymap::keySymToVirtualCode(unsigned int keySym, ::user::enum_key * peuserkey, bool *extended)
+   bool Keymap::keySymToVirtualCode(::u32 keySym, ::user::enum_key * peuserkey, bool *extended)
    {
       // Is extended key in the Windows?
       *extended = false;
-      for (size_t j = 0; j < sizeof(EXTENDED_KEYS) / sizeof(unsigned int); j++)
+      for (size_t j = 0; j < sizeof(EXTENDED_KEYS) / sizeof(::u32); j++)
       {
          if (EXTENDED_KEYS[j] == keySym)
          {
@@ -1066,7 +1066,7 @@ namespace subsystem
          }
       }
 
-      for (unsigned int i = 0; i < sizeof(SERVER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
+      for (::u32 i = 0; i < sizeof(SERVER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
       {
          if (SERVER_AUXILIARY_TRANSLATE_TABLE[i].keySym == keySym)
          {
@@ -1077,9 +1077,9 @@ namespace subsystem
       return false;
    }
 
-   bool Keymap::virtualCodeToKeySym(unsigned int *keySym, ::user::enum_key euserkey)
+   bool Keymap::virtualCodeToKeySym(::u32 *keySym, ::user::enum_key euserkey)
    {
-      for (unsigned int i = 0; i < sizeof(VIEWER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
+      for (::u32 i = 0; i < sizeof(VIEWER_AUXILIARY_TRANSLATE_TABLE) / sizeof(KS2VKEntry); i++)
       {
          if (VIEWER_AUXILIARY_TRANSLATE_TABLE[i].m_euserkey == euserkey)
          {
@@ -1090,7 +1090,7 @@ namespace subsystem
       return false;
    }
 
-   bool Keymap::keySymToUnicodeChar(unsigned int keySym, int *ch)
+   bool Keymap::keySymToUnicodeChar(::u32 keySym, int *ch)
    {
       // X sym as unicode with flag.
       // Note this method is valid only for
@@ -1126,7 +1126,7 @@ namespace subsystem
       return false;
    }
 
-   bool Keymap::unicodeCharToKeySym(int ch, unsigned int *keySym)
+   bool Keymap::unicodeCharToKeySym(int ch, ::u32 *keySym)
    {
       // Latin-1 characters.
       if ((ch >= 32 && ch <= 126) || (ch >= 160 && ch <= 255))

@@ -25,8 +25,8 @@ namespace draw2d_gpu
 //#endif
 //
       // settings
-      //const unsigned int SCR_WIDTH = 800;
-      //const unsigned int SCR_HEIGHT = 600;
+      //const ::u32 SCR_WIDTH = 800;
+      //const ::u32 SCR_HEIGHT = 600;
 
       ::pointer < face > m_pface;
      

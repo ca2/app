@@ -93,7 +93,7 @@ namespace platform
    {
       double min = da.get_minimum_value();
       double max = da.get_maximum_value();
-      int num = da.size();
+      auto num = da.size();
       double avg = da.get_sum() / (double)num;
       ::string str;
       str.formatf("%s for %s - %s distance: avg: %f, min: %f, max: %f, executed %d times\n",

@@ -155,7 +155,7 @@ namespace tc4
    }
 
 
-   unsigned int application::thread_proc_load_ai_font(void * pparam)
+   ::u32 application::thread_proc_load_ai_font(void * pparam)
    {
 
       application * pimpact = (application *)pparam;

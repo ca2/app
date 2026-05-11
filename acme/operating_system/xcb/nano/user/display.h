@@ -135,9 +135,9 @@ namespace nano
          virtual ::e_status _request_check(xcb_void_cookie_t cookie);
 
 
-         ::e_status _send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs, ...);
+         ::e_status _send_client_event(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs, ...);
 
-         ::e_status _send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, unsigned int numArgs, va_list argList);
+         ::e_status _send_client_event_v(xcb_window_t window1, xcb_window_t window2, xcb_atom_t atom, ::u32 numArgs, va_list argList);
 
 
          virtual ::e_status _set_active_window(xcb_window_t window);

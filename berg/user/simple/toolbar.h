@@ -53,19 +53,19 @@ public:
 
    virtual double get_pixel_font_size() const;
 
-   //bool create(::user::interaction * puiParent, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, atom nID = "__IDW_TOOLBAR");
+   //bool create(::user::interaction * puiParent, ::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, atom nID = "__IDW_TOOLBAR");
    //using ::user::interaction::create_window_ex;
-   //virtual bool create_toolbar(::user::interaction * puiParent, unsigned int dwCtrlStyle = TBSTYLE_FLAT, unsigned int uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = "__IDW_TOOLBAR") override;
+   //virtual bool create_toolbar(::user::interaction * puiParent, ::u32 dwCtrlStyle = TBSTYLE_FLAT, ::u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = "__IDW_TOOLBAR") override;
 
 
    virtual ::collection::index WrapToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nWidth);
    virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 
-   virtual ::int_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, unsigned int dwMode) override;
-   virtual ::int_size CalcLayout(::draw2d::graphics_pointer& pgraphics, unsigned int dwMode, ::collection::index nLength = -1) override;
+   virtual ::int_size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, int nLength, ::u32 dwMode) override;
+   virtual ::int_size CalcLayout(::draw2d::graphics_pointer& pgraphics, ::u32 dwMode, ::collection::index nLength = -1) override;
    //bool CalcSize(size & size, bool bHorz);
    virtual ::int_size CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount);
-   virtual void OnBarStyleChange(unsigned int dwOldStyle, unsigned int dwNewStyle) override;
+   virtual void OnBarStyleChange(::u32 dwOldStyle, ::u32 dwNewStyle) override;
    virtual ::int_size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
 
 
@@ -95,10 +95,10 @@ public:
    /*
       bool LoadToolBar(const ::scoped_string & scopedstrResourceName);
 
-      bool LoadToolBar(unsigned int nIDResource);
+      bool LoadToolBar(::u32 nIDResource);
       bool LoadBitmap(const ::scoped_string & scopedstrResourceName);
 
-      bool LoadBitmap(unsigned int nIDResource);
+      bool LoadBitmap(::u32 nIDResource);
    */
 
 //  virtual bool index_item_rectangle(::collection::index iItem,::int_rectangle * prectangle)
@@ -109,7 +109,7 @@ public:
 
 
 
-//   bool SetButtons(const unsigned int* pIDArray, ::collection::index nIDCount);
+//   bool SetButtons(const ::u32* pIDArray, ::collection::index nIDCount);
 
    void SetSizes(const ::int_size & sizeButton, const ::int_size & sizeImage);
 

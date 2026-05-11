@@ -17,7 +17,7 @@
 
 
 
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 
 namespace innate_subsystem
@@ -111,7 +111,7 @@ namespace innate_subsystem
    };
 
 
-   enum enum_style : unsigned long long
+   enum enum_style : ::u64
    {
 
       e_style_child =            0x40000000L, // #define WS_CHILD

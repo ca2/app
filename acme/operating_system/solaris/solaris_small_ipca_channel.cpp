@@ -66,7 +66,7 @@ namespace acme
       }
 
 
-      bool tx::send(const ::scoped_string & scopedstrMessage,unsigned int tickTimeout)
+      bool tx::send(const ::scoped_string & scopedstrMessage,::u32 tickTimeout)
       {
 
          data_struct data;
@@ -90,7 +90,7 @@ namespace acme
       }
 
 
-      bool tx::send(int message,void * pdata,int len,unsigned int tickTimeout)
+      bool tx::send(int message,void * pdata,int len,::u32 tickTimeout)
       {
 
          if(message == I32_MINIMUM)

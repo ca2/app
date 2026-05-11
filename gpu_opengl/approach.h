@@ -43,8 +43,8 @@ namespace gpu_opengl
       //int_point                         m_pointTranslate;
       //::pointer<::opengl::buffer>  m_pbuffer;
       //::pointer<::opengl::program> m_pprogram;
-      //unsigned int                  VAO;
-      //unsigned int                  VBO;
+      //::u32                  VAO;
+      //::u32                  VBO;
 
 
       approach();

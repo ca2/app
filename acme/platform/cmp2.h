@@ -503,7 +503,7 @@ inline int cmp(const char & ch1,const char & ch2)
 }
 
 template < typename TYPE1,typename TYPE2 >
-inline int cmp(const unsigned int & i1,const unsigned int & i2)
+inline int cmp(const ::u32 & i1,const ::u32 & i2)
 {
    return i1 - i2;
 }

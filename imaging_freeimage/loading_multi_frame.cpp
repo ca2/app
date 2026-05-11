@@ -120,7 +120,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                            {
 
-                              pframea->m_countLoop = (unsigned int)*((unsigned int *)FreeImage_GetTagValue(ptag));
+                              pframea->m_countLoop = (::u32)*((::u32 *)FreeImage_GetTagValue(ptag));
 
                            }
 
@@ -198,7 +198,7 @@ namespace imaging_freeimage
                         if (FreeImage_GetTagType(ptag) == FIDT_LONG)
                         {
 
-                           unsigned int uMillisecond = *(unsigned int *)FreeImage_GetTagValue(ptag);
+                           ::u32 uMillisecond = *(::u32 *)FreeImage_GetTagValue(ptag);
 
                            pframe->m_time = millisecond_time(uMillisecond);
 

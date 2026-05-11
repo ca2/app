@@ -22,7 +22,7 @@ typedef struct
 #define VTDATEGRE_MAX 2958465 /* Maximum possible Gregorian date: 31/12/9999 */
 
 
-CLASS_DECL_CA2_TIME HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, unsigned int dwFlags, UDATE *lpUdate);
+CLASS_DECL_CA2_TIME HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ::u32 dwFlags, UDATE *lpUdate);
 CLASS_DECL_CA2_TIME int_bool   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
 CLASS_DECL_CA2_TIME int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
 
@@ -32,9 +32,9 @@ CLASS_DECL_CA2_TIME int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTE
 
 CLASS_DECL_CA2_TIME int32_t SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
 CLASS_DECL_CA2_TIME int32_t FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer pstr, LCID lcid, unsigned int dwFlags, FLOAT_DATE * pdateOut);
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, unsigned int dwFlags, FLOAT_DATE *pDateOut);
-CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, unsigned int dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer pstr, LCID lcid, ::u32 dwFlags, FLOAT_DATE * pdateOut);
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdate(UDATE *pUdateIn, ::u32 dwFlags, FLOAT_DATE *pDateOut);
+CLASS_DECL_CA2_TIME HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ::u32 dwFlags, FLOAT_DATE *pDateOut);
 
 
 namespace datetime
@@ -131,7 +131,7 @@ namespace datetime
 
       // formatting
       string Format(LPCTSTR pFormat) const;
-      string Format(unsigned int nID) const;
+      string Format(::u32 nID) const;
 
       
       void check_range();
@@ -242,13 +242,13 @@ namespace datetime
       int32_t SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW;
       int32_t SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW;
 #ifndef APPLEOS
-      bool ParseDateTime(const ::scoped_string & scopedstrDate, unsigned int dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
+      bool ParseDateTime(const ::scoped_string & scopedstrDate, ::u32 dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
 #endif
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       // formatting
-      string Format(unsigned int dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
+      string Format(::u32 dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
       string Format(LPCTSTR lpszFormat) const;
-      string Format(unsigned int nFormatID) const;
+      string Format(::u32 nFormatID) const;
 #endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
 
    protected:
@@ -1033,7 +1033,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    }
 
 #ifndef APPLEOS
-   inline bool float_time::ParseDateTime(const ::scoped_string & scopedstrDate, unsigned int dwFlags, LCID lcid) RELEASENOTHROW
+   inline bool float_time::ParseDateTime(const ::scoped_string & scopedstrDate, ::u32 dwFlags, LCID lcid) RELEASENOTHROW
    {
 
       const_char_pointer pszDate = scopedstrDate;
@@ -1089,7 +1089,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 #if defined(_UNICODE) || !defined(_CSTRING_DISABLE_NARROW_WIDE_CONVERSION)
    inline string float_time::Format(
-   unsigned int dwFlags,
+   ::u32 dwFlags,
    LCID lcid) const
    {
       // If NULL, return empty string
@@ -1164,7 +1164,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return strDate;
    }
 
-   inline string float_time_span::Format(unsigned int nFormatID) const
+   inline string float_time_span::Format(::u32 nFormatID) const
    {
       string strFormat;
       if (!strFormat.LoadString(nFormatID))
@@ -1172,7 +1172,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
       return Format(strFormat);
    }
 
-   inline string float_time::Format(unsigned int nFormatID) const
+   inline string float_time::Format(::u32 nFormatID) const
    {
       string strFormat;
       ATLENSURE(strFormat.LoadString(nFormatID));

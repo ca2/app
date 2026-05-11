@@ -132,7 +132,7 @@ namespace subsystem
    //   return true;
    //} // void
 
-   //bool OperatingSystem::isItTheSamePathAsCurrent(unsigned int pId)
+   //bool OperatingSystem::isItTheSamePathAsCurrent(::u32 pId)
    //{
    //   ::string currModulePath, testedModulePath;
    //   ProcessHandle pHandle;

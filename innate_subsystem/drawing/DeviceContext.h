@@ -23,7 +23,7 @@
 //
 
 #pragma once
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 
 //#include "util/CommonHeader.h"
 //#include "gui/PaintWindow.h"

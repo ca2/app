@@ -4399,7 +4399,7 @@ namespace user
 
          }
          
-         m_uiRButtonUpFlags = (unsigned int)pmouse->m_ebuttonstate;
+         m_uiRButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
          
          m_pointRButtonUp = pmouse->m_pointHost;
          
@@ -5679,7 +5679,7 @@ namespace user
 
       }
 
-      if (pcolumn->m_uiSmallBitmap == (unsigned int)-1)
+      if (pcolumn->m_uiSmallBitmap == (::u32)-1)
       {
 
          return;

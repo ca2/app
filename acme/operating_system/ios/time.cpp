@@ -2,20 +2,20 @@
 
 #include <sys/time.h>
 
-unsigned int GetTickCount()
+::u32 GetTickCount()
 {
    timeval ts;
    gettimeofday(&ts,0);
-   return (unsigned int) ((ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu);
+   return (::u32) ((ts.tv_sec * 1000 + (ts.tv_usec / 1000)) % 0xffffffffu);
 
 }
 
 
 
-//unsigned int ::get_tick()
+//::u32 ::get_tick()
 //{
 //
-//   return (unsigned int) GetTickCount();
+//   return (::u32) GetTickCount();
 //
 //}
 //
@@ -35,7 +35,7 @@ unsigned int GetTickCount()
 #include <mach/clock.h>
 #include <mach/mach.h>
 
-//unsigned long long get_nanos()
+//::u64 get_nanos()
 //{
 //   
 //   clock_serv_t cclock;
@@ -44,7 +44,7 @@ unsigned int GetTickCount()
 //   clock_get_time(cclock, &mts);
 //   mach_port_deallocate(mach_task_self(), cclock);
 //   
-//   return ((unsigned long long) mts.tv_sec * (unsigned long long)1000 * (unsigned long long)1000 * (unsigned long long)1000 )+ ((unsigned long long) mts.tv_nsec);
+//   return ((::u64) mts.tv_sec * (::u64)1000 * (::u64)1000 * (::u64)1000 )+ ((::u64) mts.tv_nsec);
 //   
 //}
 //
@@ -54,12 +54,12 @@ unsigned int GetTickCount()
 //CLASS_DECL_ACME void sleep(const class time & time)
 //{
 //   
-//   usleep((unsigned int) time.get_total_milliseconds() * 1000);
+//   usleep((::u32) time.get_total_milliseconds() * 1000);
 //   
 //}
 
 
-//CLASS_DECL_ACME void sleep(unsigned int dwMillis)
+//CLASS_DECL_ACME void sleep(::u32 dwMillis)
 //{
 //
 //   usleep(dwMillis * 1000);

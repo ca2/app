@@ -326,7 +326,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::file::fmtflags fmtflagsOld = m_fmtflags;
 //
-//   m_fmtflags = (::file::fmtflags) ((unsigned int)m_fmtflags | (unsigned int)flagsAdd);
+//   m_fmtflags = (::file::fmtflags) ((::u32)m_fmtflags | (::u32)flagsAdd);
 //
 //   return fmtflagsOld;
 //
@@ -338,7 +338,7 @@ bool  stream_base::is_version(int i)
 //
 //   ::file::fmtflags fmtflagsOld = m_fmtflags;
 //
-//   m_fmtflags = (::file::fmtflags) (((unsigned int)m_fmtflags | (unsigned int)flagsAdd) & (~(unsigned int)flagsRemove));
+//   m_fmtflags = (::file::fmtflags) (((::u32)m_fmtflags | (::u32)flagsAdd) & (~(::u32)flagsRemove));
 //
 //   return fmtflagsOld;
 //
@@ -732,7 +732,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(unsigned int & u)
+//void stream::read(::u32 & u)
 //{
 //
 //   throw ::exception(error_io);
@@ -748,7 +748,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(unsigned long long & u)
+//void stream::read(::u64 & u)
 //{
 //
 //   throw ::exception(error_io);

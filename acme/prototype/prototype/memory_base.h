@@ -34,7 +34,7 @@ public:
    unsigned char *                  m_beginStorage;
    memsize                 m_sizeStorage;
    double                  m_dAllocationRateUp;
-   unsigned int                   m_dwAllocationAddUp;
+   ::u32                   m_dwAllocationAddUp;
 
    memory_container *      m_pcontainer;
 

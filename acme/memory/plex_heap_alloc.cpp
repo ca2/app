@@ -15,7 +15,7 @@ void Alloc_check_pointer_in_cpp(void * p);
 void Free_check_pointer_in_cpp(void * p);
 
 
-plex_heap_alloc::plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, unsigned int nBlockSize) :
+plex_heap_alloc::plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize) :
    m_pallocator(pallocator)
 {
 
@@ -392,7 +392,7 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //   if (m_nAllocSize == 128)
 //   {
-//      unsigned long long & u = ((unsigned long long &)pParam);
+//      ::u64 & u = ((::u64 &)pParam);
 //
 //      if ((u & 0xff000000) == 00)
 //      {
@@ -514,7 +514,7 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //   critical_section_lock synchronouslock(&m_criticalsection);
 //
-//   unsigned int nAllocSize = m_nAllocSize;
+//   ::u32 nAllocSize = m_nAllocSize;
 //
 //   ::HEAP_NAMESPACE::on_plex_new_block(nAllocSize);
 //
@@ -554,7 +554,7 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //}
 
-//plex_heap_alloc_sync * plex_heap_alloc::new_plex_heap_alloc_sync(memsize nAllocSize, unsigned int nBlockSize)
+//plex_heap_alloc_sync * plex_heap_alloc::new_plex_heap_alloc_sync(memsize nAllocSize, ::u32 nBlockSize)
 //{
 //
 //   auto palloc = (plex_heap_alloc_sync*) m_pallocator->allocate(sizeof(plex_heap_alloc_sync));

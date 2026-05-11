@@ -100,7 +100,7 @@ namespace message
    public:
 
 
-      unsigned int          m_nType;
+      ::u32          m_nType;
       ::int_size     m_size;
 
       size() { }
@@ -168,7 +168,7 @@ namespace message
          return dynamic_cast <mouse *> (pmessage);
       }
 
-      virtual unsigned int get_message() override
+      virtual ::u32 get_message() override
       {
          
          return m_eusermessage;
@@ -191,7 +191,7 @@ namespace message
 
       mouse_wheel();
 
-      unsigned int GetFlags();
+      ::u32 GetFlags();
 
       //short GetDelta();
 
@@ -211,8 +211,8 @@ namespace message
 
 
       ::user::interaction_base *                 m_pWnd;
-      unsigned int                               m_nHitTest;
-      unsigned int                               m_message;
+      ::u32                               m_nHitTest;
+      ::u32                               m_message;
       
 
 
@@ -235,9 +235,9 @@ namespace message
 
       ::user::interaction * get_desktop_window();
 
-      unsigned int GetHitTest();
+      ::u32 GetHitTest();
 
-      unsigned int get_message();
+      ::u32 get_message();
 
    };
 
@@ -262,7 +262,7 @@ namespace message
 
 
       bool m_bShow;
-      unsigned int  m_nStatus;
+      ::u32  m_nStatus;
 
 
       show_window();
@@ -413,7 +413,7 @@ namespace message
 
       void * m_hbrush;
       ::draw2d::graphics * m_pdc;
-      unsigned int                      m_nCtlType;
+      ::u32                      m_nCtlType;
 
       ctl_color() { }
 
@@ -517,8 +517,8 @@ namespace message
       //
       //      IDataObject *  pDataObj;// [in] DragEnter, Drop
       //      POINTL         int_point; // [in] DragEnter, DragOver, Drop
-      //      unsigned int          grfKeyState; // [in] DragEnter, DragOver, Drop
-      //      unsigned int          dwEffect; // [in][out] DragEnter, DragOver, Drop
+      //      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
+      //      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
       //
       //#endif
 

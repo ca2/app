@@ -22,13 +22,13 @@ namespace interprocess
       //public:
 
 
-      //   unsigned long long         m_uData;
+      //   ::u64         m_uData;
       //   string      m_strMessage;
       //   memory      m_memory;
 
 
       //   dispatch_item(::string && strMessage) : m_uData(I32_MINIMUM), m_strMessage(strMessage) {}
-      //   dispatch_item(unsigned long long uData, ::memory && memory) : m_uData(I32_MINIMUM), m_memory(::transfer(memory)) {}
+      //   dispatch_item(::u64 uData, ::memory && memory) : m_uData(I32_MINIMUM), m_memory(::transfer(memory)) {}
 
       //   bool is_text_message() const {
       //      return m_uData == I32_MINIMUM
@@ -81,7 +81,7 @@ namespace interprocess
 
 
       //bool dispatch_message(::string && strMessage);
-      //bool dispatch_message(unsigned long long uData, ::memory && memory);
+      //bool dispatch_message(::u64 uData, ::memory && memory);
 
 
       //void dispatch_item(::pointer<dispatch_item>&& pdispatchitem);

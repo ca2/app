@@ -634,10 +634,10 @@ namespace crypto_openssl
    //}
 
 
-   //unsigned int crypto::crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr)
+   //::u32 crypto::crc32(::u32 dwPrevious, const ::scoped_string & scopedstr)
    //{
 
-   //   return (unsigned int)::crc32(dwPrevious, (const Bytef*)psz, (unsigned int)strlen(scopedstr));
+   //   return (::u32)::crc32(dwPrevious, (const Bytef*)psz, (::u32)strlen(scopedstr));
 
    //}
 
@@ -995,7 +995,7 @@ namespace crypto_openssl
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
       HMAC(EVP_sha1(), memKey.data(), int(memKey.size()), memMessage.data(), (size_t)memMessage.size(), (unsigned char*)result, &md_len);
 
@@ -1009,7 +1009,7 @@ namespace crypto_openssl
 
 #ifndef UNIVERSAL_WINDOWS
 
-      unsigned int md_len = 0;
+      ::u32 md_len = 0;
 
       HMAC(EVP_sha1(), scopedstrKey.as_string().c_str(), int(scopedstrKey.length()), (const unsigned char*)(const_char_pointer )scopedstrMessage, (size_t)scopedstrMessage.length(), (unsigned char*)result, &md_len);
 

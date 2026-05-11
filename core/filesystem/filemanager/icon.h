@@ -22,7 +22,7 @@ namespace filemanager
       icon_key(const icon_key & key);
 
 
-      operator unsigned int () const
+      operator ::u32 () const
       {
          return m_iIcon;
       }

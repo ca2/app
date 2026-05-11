@@ -7,7 +7,7 @@
 namespace hotplugin
 {
 
-   unsigned int g_entry_hall_windows_on_paint_dwSync = 0;
+   ::u32 g_entry_hall_windows_on_paint_dwSync = 0;
    int g_entry_hall_windows_on_paint_iDelta = 5000;
 
 

@@ -6,7 +6,7 @@
 
 #include "acme/_operating_system.h"
 
-int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer threadName);
+int_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName);
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
@@ -309,22 +309,22 @@ void task_set_name(const ::scoped_string & scopedstrThreadName)
 }
 
 
-const unsigned int MS_VC_EXCEPTION = 0x406D1388;
+const ::u32 MS_VC_EXCEPTION = 0x406D1388;
 
 #pragma pack(push,8)
 
 typedef struct tagTHREADNAME_INFO
 {
-   unsigned int dwType; // Must be 0x1000.
+   ::u32 dwType; // Must be 0x1000.
    const_char_pointer szName; // Pointer to name (in user addr space).
-   unsigned int dwThreadID; // Thread ID (-1=caller thread).
-   unsigned int dwFlags; // Reserved for future use, must be zero.
+   ::u32 dwThreadID; // Thread ID (-1=caller thread).
+   ::u32 dwFlags; // Reserved for future use, must be zero.
 } THREADNAME_INFO;
 #pragma pack(pop)
 
 
 
-int_bool SetThreadName(unsigned int dwThreadID, const_char_pointer threadName)
+int_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName)
 {
    THREADNAME_INFO info;
    info.dwType = 0x1000;

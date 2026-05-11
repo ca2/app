@@ -207,7 +207,7 @@ namespace user
       uptr                                         m_uiLButtonDownFlags;
       uptr                                         m_uiLButtonUpFlags;
       int_point                                    m_pointLButtonUp;
-      unsigned int                                        m_uiRButtonUpFlags;
+      ::u32                                        m_uiRButtonUpFlags;
       int_point                                    m_pointRButtonUp;
       ::regular_expression_pointer                 m_pregexFilter1;
       int                                          m_iFilter1Step;

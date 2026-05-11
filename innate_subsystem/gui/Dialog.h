@@ -41,12 +41,12 @@ namespace innate_subsystem
 
 
       // Dialog();
-      // Dialog(unsigned int resourceId);
+      // Dialog(::u32 resourceId);
       // Dialog(const char *resourceName);
       //virtual ~DialogInterface() = 0;
 //   public:
 
-      virtual void initialize_dialog(unsigned int resourceId) = 0;
+      virtual void initialize_dialog(::u32 resourceId) = 0;
       virtual void initialize_dialog(const char *resourceName) = 0;
 
       // Method creates non modal window but not shows it
@@ -71,13 +71,13 @@ namespace innate_subsystem
       // Set resource name for dialog
       virtual void setResourceName(const char *resourceName) = 0;
       // Set resource id for dialog.
-      virtual void setResourceId(unsigned int id) = 0;
+      virtual void setResourceId(::u32 id) = 0;
       // Return
       //virtual ControlInterface *getControl() = 0;
       // Setup control by ID
-      //virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id) = 0;
+      //virtual void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, ::u32 id) = 0;
       // Icon manipulation
-      //virtual void loadIcon(unsigned int id) = 0;
+      //virtual void loadIcon(::u32 id) = 0;
       virtual void updateIcon() = 0;
 
 
@@ -90,7 +90,7 @@ namespace innate_subsystem
        * Sets default push button for dialog.
        * @pararm buttonId new default push button id.
        */
-      virtual void setDefaultPushButton(unsigned int buttonId) = 0;
+      virtual void setDefaultPushButton(::u32 buttonId) = 0;
 
    //protected:
 
@@ -99,14 +99,14 @@ namespace innate_subsystem
       //
 
       virtual bool onInitDialog() = 0;
-      //virtual bool onNotify(unsigned int controlID, ::lparam data) = 0;
-      virtual bool onCommand(unsigned int controlID, unsigned int notificationID) = 0;
+      //virtual bool onNotify(::u32 controlID, ::lparam data) = 0;
+      virtual bool onCommand(::u32 controlID, ::u32 notificationID) = 0;
       virtual bool onClose() = 0;
       virtual bool onDestroy() = 0;
 
-      //virtual bool setChildDoubleClick(unsigned int controlID, const ::function < bool() > & callback);
-      //virtual bool setChildListViewKeyDown(unsigned int controlID, const ::function < bool(int) > & callback);
-      //virtual bool setChildListViewKeyDown(unsigned int controlID, const ::function < bool(int) > & callback);
+      //virtual bool setChildDoubleClick(::u32 controlID, const ::function < bool() > & callback);
+      //virtual bool setChildListViewKeyDown(::u32 controlID, const ::function < bool(int) > & callback);
+      //virtual bool setChildListViewKeyDown(::u32 controlID, const ::function < bool(int) > & callback);
 
       //
       // This methods can be overrided by child classes.
@@ -114,22 +114,22 @@ namespace innate_subsystem
 //#ifdef WINDOWS
       virtual bool onDrawItem(::wparam controlID, draw_item_t * pdrawitem) = 0;
 //#endif
-      virtual void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam) = 0;
+      virtual void onMessageReceived(::u32 uMsg, ::wparam wparam, ::lparam lparam) = 0;
 
       //
       // Window message proccessing method
       //
 
-      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam) = 0;
+      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, ::u32 uMsg, ::wparam wparam, ::lparam lparam) = 0;
 
-      virtual bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+      virtual bool dialog_procedure(iptr & iptrResult, ::u32 message, ::wparam wparam, ::lparam lparam) = 0;
    //private:
      virtual char *getResouceName() = 0;
 
    //protected:
 
      // char *m_resourceName;        // Name of dialog resource
-      //unsigned int m_resourceId;            // Id of dialog resouce
+      //::u32 m_resourceId;            // Id of dialog resouce
       //Control m_ctrlThis;           // This dialog control
       //Control *m_ctrlParent;        // Parent dialog or NULL if no parent
 
@@ -158,12 +158,12 @@ namespace innate_subsystem
       ImplementCompositeWithCallbackø(Dialog, dialog)
 
 //       DialogComposite();
-//       // Dialog(unsigned int resourceId);
+//       // Dialog(::u32 resourceId);
 //       // Dialog(const char *resourceName);
 //       ~DialogComposite();
 // //   public:
 
-      void initialize_dialog(unsigned int resourceId) override { m_pdialog->initialize_dialog(resourceId); }
+      void initialize_dialog(::u32 resourceId) override { m_pdialog->initialize_dialog(resourceId); }
       void initialize_dialog(const char *resourceName) override { m_pdialog->initialize_dialog(resourceName); }
 
       // Method creates non modal window but not shows it
@@ -188,13 +188,13 @@ namespace innate_subsystem
       // Set resource name for dialog
       void setResourceName(const char *resourceName) override { m_pdialog->setResourceName(resourceName); }
       // Set resource id for dialog.
-      void setResourceId(unsigned int id) override { m_pdialog->setResourceId(id); }
+      void setResourceId(::u32 id) override { m_pdialog->setResourceId(id); }
       // Return
       //ControlInterface *getControl();
       // Setup control by ID
-      //void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, unsigned int id);
+      //void subclassControlById(::innate_subsystem::ControlInterface * pcontrol, ::u32 id);
       // Icon manipulation
-      //void loadIcon(unsigned int id) override { m_pdialog->loadIcon(id); }
+      //void loadIcon(::u32 id) override { m_pdialog->loadIcon(id); }
       void updateIcon() override { m_pdialog->updateIcon(); }
 
       //template<typename WIDGET_TYPE>
@@ -261,7 +261,7 @@ namespace innate_subsystem
        * Sets default push button for dialog.
        * @pararm buttonId new default push button id.
        */
-      void setDefaultPushButton(unsigned int buttonId) override { m_pdialog->setDefaultPushButton(buttonId); }
+      void setDefaultPushButton(::u32 buttonId) override { m_pdialog->setDefaultPushButton(buttonId); }
 
    //protected:
 
@@ -270,8 +270,8 @@ namespace innate_subsystem
       //
 
       bool onInitDialog() override { return m_pdialog->onInitDialog(); }
-      //bool onNotify(unsigned int controlID, ::lparam data);
-      bool onCommand(unsigned int controlID, unsigned int notificationID) override
+      //bool onNotify(::u32 controlID, ::lparam data);
+      bool onCommand(::u32 controlID, ::u32 notificationID) override
       {
          return m_pdialog->onCommand(controlID, notificationID);
       }
@@ -284,22 +284,22 @@ namespace innate_subsystem
 //#ifdef WINDOWS
       bool onDrawItem(::wparam controlID, draw_item_t * pdrawitem) override { return m_pdialog->onDrawItem(controlID, pdrawitem); }
 //#endif
-      void onMessageReceived(unsigned int uMsg, ::wparam wparam, ::lparam lparam) override { m_pdialog->onMessageReceived(uMsg, wparam, lparam); }
+      void onMessageReceived(::u32 uMsg, ::wparam wparam, ::lparam lparam) override { m_pdialog->onMessageReceived(uMsg, wparam, lparam); }
 
       //
       // Window message proccessing method
       //
 
-      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+      //static INT_PTR CALLBACK dialogProc(const ::operating_system::window & operatingsystemwindow, ::u32 uMsg, ::wparam wparam, ::lparam lparam);
 
-      bool dialog_procedure(iptr & iptrResult, unsigned int message, ::wparam wparam, ::lparam lparam) override { return m_pdialog->dialog_procedure(iptrResult, message, wparam, lparam); }
+      bool dialog_procedure(iptr & iptrResult, ::u32 message, ::wparam wparam, ::lparam lparam) override { return m_pdialog->dialog_procedure(iptrResult, message, wparam, lparam); }
    //private:
       char *getResouceName() override { return m_pdialog->getResouceName(); }
 
    //protected:
 
      // char *m_resourceName;        // Name of dialog resource
-      //unsigned int m_resourceId;            // Id of dialog resouce
+      //::u32 m_resourceId;            // Id of dialog resouce
       //Control m_ctrlThis;           // This dialog control
       //Control *m_ctrlParent;        // Parent dialog or NULL if no parent
 

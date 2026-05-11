@@ -40,8 +40,8 @@ namespace subsystem
    {
    public:
       MD5();
-      void update(const unsigned char *buf, unsigned int length);
-      void update(const char *buf, unsigned int length);
+      void update(const unsigned char *buf, ::u32 length);
+      void update(const char *buf, ::u32 length);
       MD5& finalize();
 
       /**
@@ -52,8 +52,8 @@ namespace subsystem
    private:
       static const int BLOCKSIZE = 64;
 
-      static void decode(unsigned int output[], const unsigned char input[], unsigned int len);
-      static void encode(unsigned char output[], const unsigned int input[], unsigned int len);
+      static void decode(::u32 output[], const unsigned char input[], ::u32 len);
+      static void encode(unsigned char output[], const ::u32 input[], ::u32 len);
 
       void init();
 
@@ -65,17 +65,17 @@ namespace subsystem
       // low level logic operations
       //
 
-      static unsigned int F(unsigned int x, unsigned int y, unsigned int z);
-      static unsigned int G(unsigned int x, unsigned int y, unsigned int z);
-      static unsigned int H(unsigned int x, unsigned int y, unsigned int z);
-      static unsigned int I(unsigned int x, unsigned int y, unsigned int z);
+      static ::u32 F(::u32 x, ::u32 y, ::u32 z);
+      static ::u32 G(::u32 x, ::u32 y, ::u32 z);
+      static ::u32 H(::u32 x, ::u32 y, ::u32 z);
+      static ::u32 I(::u32 x, ::u32 y, ::u32 z);
 
-      static unsigned int rotateLeft(unsigned int x, int n);
+      static ::u32 rotateLeft(::u32 x, int n);
 
-      static void FF(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
-      static void GG(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
-      static void HH(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
-      static void II(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac);
+      static void FF(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac);
+      static void GG(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac);
+      static void HH(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac);
+      static void II(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac);
 
    private:
       // if finalized.
@@ -83,9 +83,9 @@ namespace subsystem
       // bytes that didn't fit in last 64 byte chunk.
       unsigned char m_buffer[BLOCKSIZE];
       // 64bit counter for number of bits (lo, hi).
-      unsigned int m_count[2];
+      ::u32 m_count[2];
       // m_digest so far.
-      unsigned int m_state[4];
+      ::u32 m_state[4];
       // the result.
       unsigned char m_digest[16];
    };

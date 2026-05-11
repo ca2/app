@@ -10,12 +10,12 @@ class single_lock;
 
 //#ifdef WINDOWS
 //
-//typedef unsigned int itask;
-//typedef unsigned int thread_data_index;
+//typedef ::u32 itask;
+//typedef ::u32 thread_data_index;
 //
 //#else
 //
-//using thread_data_index = unsigned int;
+//using thread_data_index = ::u32;
 //
 //#endif
 
@@ -67,7 +67,7 @@ class single_lock;
 
 
 
-//typedef unsigned int(c_cdecl *__THREADPROC)(LPVOID);
+//typedef ::u32(c_cdecl *__THREADPROC)(LPVOID);
 
 
 //CLASS_DECL_APEX bool do_events();
@@ -176,4 +176,4 @@ namespace prototype
 //
 
 
-//CLASS_DECL_APEX thread* __begin_thread(::particle * pparticle, __THREADPROC pfnThreadProc, LPVOID pParam, int epriority = ::e_priority_normal, unsigned int nStackSize = 0, unsigned int dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask * puiId = nullptr, error * perror = nullptr);
+//CLASS_DECL_APEX thread* __begin_thread(::particle * pparticle, __THREADPROC pfnThreadProc, LPVOID pParam, int epriority = ::e_priority_normal, ::u32 nStackSize = 0, ::u32 dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = nullptr, itask * puiId = nullptr, error * perror = nullptr);

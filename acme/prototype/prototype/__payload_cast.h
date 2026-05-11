@@ -32,9 +32,9 @@ public:
    operator short () const { return m_payload.as_short(); }
    operator unsigned short ()const { return m_payload.as_unsigned_short(); }
    operator int () const { return m_payload.as_int(); }
-   operator unsigned int ()const { return m_payload.as_unsigned_int(); }
+   operator ::u32 ()const { return m_payload.as_u32(); }
    operator long long () const { return m_payload.as_long_long(); }
-   operator unsigned long long ()const { return m_payload.as_unsigned_long_long(); }
+   operator ::u64 ()const { return m_payload.as_u64(); }
 
    operator float () const { return m_payload.as_float(); }
    operator double ()const { return m_payload.as_double(); }

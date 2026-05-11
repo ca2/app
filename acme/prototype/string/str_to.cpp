@@ -117,12 +117,12 @@ bool str::to(int & i, int iBase, const ::scoped_string & scopedstr)
 
 }
 
-bool str::to(unsigned long long & u, const ::scoped_string & scopedstr)
+bool str::to(::u64 & u, const ::scoped_string & scopedstr)
 {
 
    const_char_pointer pszEnd = nullptr;
 
-   unsigned long long uiConversion = ::ansi_to_long_long(scopedstr, &pszEnd);
+   ::u64 uiConversion = ::ansi_to_long_long(scopedstr, &pszEnd);
 
    if (pszEnd == scopedstr.data())
    {
@@ -137,7 +137,7 @@ bool str::to(unsigned long long & u, const ::scoped_string & scopedstr)
 
 }
 
-bool str::to(unsigned int & u, const ::scoped_string & scopedstr)
+bool str::to(::u32 & u, const ::scoped_string & scopedstr)
 {
 
    const_char_pointer pszEnd = nullptr;
@@ -151,21 +151,21 @@ bool str::to(unsigned int & u, const ::scoped_string & scopedstr)
 
    }
 
-   if (uiConversion > numeric_info < unsigned int > ::maximum())
+   if (uiConversion > numeric_info < ::u32 > ::maximum())
    {
 
       return false;
 
    }
 
-   u = (unsigned int)uiConversion;
+   u = (::u32)uiConversion;
 
    return true;
 
 }
 
 
-bool str::to(unsigned long long & u, int iBase, const ::scoped_string & scopedstr)
+bool str::to(::u64 & u, int iBase, const ::scoped_string & scopedstr)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -177,7 +177,7 @@ bool str::to(unsigned long long & u, int iBase, const ::scoped_string & scopedst
 
    const_char_pointer pszEnd = nullptr;
 
-   unsigned long long uiConversion = ::ansi_to_unsigned_long_long(scopedstr, &pszEnd, iBase);
+   ::u64 uiConversion = ::ansi_to_unsigned_long_long(scopedstr, &pszEnd, iBase);
 
    if (pszEnd == scopedstr.data())
    {
@@ -193,7 +193,7 @@ bool str::to(unsigned long long & u, int iBase, const ::scoped_string & scopedst
 }
 
 
-bool str::to(unsigned int & u, int iBase, const ::scoped_string & scopedstr)
+bool str::to(::u32 & u, int iBase, const ::scoped_string & scopedstr)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -205,7 +205,7 @@ bool str::to(unsigned int & u, int iBase, const ::scoped_string & scopedstr)
 
    const_char_pointer pszEnd = nullptr;
 
-   unsigned int uiConversion = ::ansi_to_unsigned_int(scopedstr, &pszEnd, iBase);
+   ::u32 uiConversion = ::ansi_to_unsigned_int(scopedstr, &pszEnd, iBase);
 
    if (pszEnd == scopedstr.as_string().c_str())
    {
@@ -214,7 +214,7 @@ bool str::to(unsigned int & u, int iBase, const ::scoped_string & scopedstr)
 
    }
 
-   if (uiConversion > numeric_info< unsigned int >::maximum())
+   if (uiConversion > numeric_info< ::u32 >::maximum())
    {
 
       return false;

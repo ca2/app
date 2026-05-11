@@ -46,7 +46,7 @@ namespace innate_subsystem
 //       // }
 //    }
 //
-//    /*bool Toolbar::create(int _tbID, const ::operating_system::window & operatingsystemwindowParent, unsigned int dwStyle)
+//    /*bool Toolbar::create(int _tbID, const ::operating_system::window & operatingsystemwindowParent, ::u32 dwStyle)
 //    {
 //
 //       return m_pparticleThis->create(_tbID, operatingsystemwindowParent, dwStyle);
@@ -76,7 +76,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->setViewAutoButtons(iButton, style);
 //    }
 //
-//    void Toolbar::loadToolbarfromRes(unsigned int id)
+//    void Toolbar::loadToolbarfromRes(::u32 id)
 //    {
 //       // BITMAP bmp;
 //       //
@@ -109,7 +109,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    void Toolbar::setButtonsRange(unsigned int id)
+//    void Toolbar::setButtonsRange(::u32 id)
 //    {
 //       //m_initialStr = id;
 //       m_pparticleThis->setButtonsRange(id);
@@ -280,7 +280,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->getState(idButton);
 //    }
 //
-//    ::lresult Toolbar::addBitmap(int nButtons, unsigned int bitmapID)
+//    ::lresult Toolbar::addBitmap(int nButtons, ::u32 bitmapID)
 //    {
 //       // TBADDBITMAP resBitmap;
 //       //
@@ -291,7 +291,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->addBitmap(nButtons, bitmapID);
 //    }
 //
-//    ::lresult Toolbar::addSystemBitmap(unsigned int stdBitmapID)
+//    ::lresult Toolbar::addSystemBitmap(::u32 stdBitmapID)
 //    {
 //       // TBADDBITMAP resBitmap;
 //       //
@@ -301,7 +301,7 @@ namespace innate_subsystem
 //       return m_pparticleThis->addSystemBitmap(stdBitmapID);
 //    }
 //
-//    bool Toolbar::addButton(int iBitmap, int idCommand, unsigned char state, unsigned char style, unsigned int dwData, int iString)
+//    bool Toolbar::addButton(int iBitmap, int idCommand, unsigned char state, unsigned char style, ::u32 dwData, int iString)
 //    {
 //       // TBBUTTON tbb;
 //       //

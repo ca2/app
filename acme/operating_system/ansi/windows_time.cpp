@@ -269,8 +269,8 @@ const LARGE_INTEGER *liTime,
 PTIME_FIELDS TimeFields)
 {
    int SecondsInDay;
-   unsigned long long cleaps, years, yearday, months;
-   unsigned long long Days;
+   ::u64 cleaps, years, yearday, months;
+   ::u64 Days;
    long long Time;
 
    /* Extract ::time from time and convert time into seconds */
@@ -486,14 +486,14 @@ NTSTATUS RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *
  * RETURNS
  *   Success: true.
- *   Failure: false, if the resulting value will not fit in a unsigned int.
+ *   Failure: false, if the resulting value will not fit in a ::u32.
  */
 int_bool RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
    if (tmp > 0xffffffff) return false;
-   *Seconds = (unsigned int)tmp;
+   *Seconds = (::u32)tmp;
    return true;
 }
 
@@ -508,14 +508,14 @@ int_bool RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
  *
  * RETURNS
  *   Success: true.
- *   Failure: false, if the resulting value will not fit in a unsigned int.
+ *   Failure: false, if the resulting value will not fit in a ::u32.
  */
 int_bool RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
    if (tmp > 0xffffffff) return false;
-   *Seconds = (unsigned int)tmp;
+   *Seconds = (::u32)tmp;
    return true;
 }
 
@@ -531,11 +531,11 @@ int_bool RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
  * RETURNS
  *   Nothing.
  */
-void RtlSecondsSince1970ToTime( unsigned int Seconds, LARGE_INTEGER *Time )
+void RtlSecondsSince1970ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 {
    ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-   Time->u.LowPart  = (unsigned int)second;
-   Time->u.HighPart = (unsigned int)(second >> 32);
+   Time->u.LowPart  = (::u32)second;
+   Time->u.HighPart = (::u32)(second >> 32);
 }
 
 /******************************************************************************
@@ -550,11 +550,11 @@ void RtlSecondsSince1970ToTime( unsigned int Seconds, LARGE_INTEGER *Time )
  * RETURNS
  *   Nothing.
  */
-void RtlSecondsSince1980ToTime( unsigned int Seconds, LARGE_INTEGER *Time )
+void RtlSecondsSince1980ToTime( ::u32 Seconds, LARGE_INTEGER *Time )
 {
    ULONGLONG second = Seconds * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1980;
-   Time->u.LowPart  = (unsigned int)second;
-   Time->u.HighPart = (unsigned int)(second >> 32);
+   Time->u.LowPart  = (::u32)second;
+   Time->u.HighPart = (::u32)(second >> 32);
 }
 
 /******************************************************************************
@@ -780,7 +780,7 @@ int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE
 
 /*
 
-static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, unsigned int type, void *data, unsigned int count)
+static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 type, void *data, ::u32 count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -999,7 +999,7 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 {
    struct timeval tv;
    //time_t tm_t;
-   unsigned int sec, oldsec;
+   ::u32 sec, oldsec;
    LARGE_INTEGER tm;
 
    /* Return the old time if necessary */

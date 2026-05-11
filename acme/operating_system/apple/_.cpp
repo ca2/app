@@ -43,7 +43,7 @@ void CancelDispatchSource(void * p)
 }
 
 
-void * CreateDispatchTimer(unsigned long long interval, unsigned long long leeway, void * queue, void (*pfnTimer)(void * p), void * p)
+void * CreateDispatchTimer(::u64 interval, ::u64 leeway, void * queue, void (*pfnTimer)(void * p), void * p)
 {
 
    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, (dispatch_queue_t) queue);
@@ -64,7 +64,7 @@ void * CreateDispatchTimer(unsigned long long interval, unsigned long long leewa
 }
 
 
-void * ResetDispatchTimer(void * timerParam, unsigned long long interval, unsigned long long leeway)
+void * ResetDispatchTimer(void * timerParam, ::u64 interval, ::u64 leeway)
 {
 
    dispatch_source_t timer = (dispatch_source_t) timerParam;
@@ -425,7 +425,7 @@ string apple_get_executable_path()
 //
 //   }
 //
-//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length()))
+//   if (!GetModuleFileNameW(hmodule, wstrModuleFilePath, (::u32)wstrModuleFilePath.length()))
 //   {
 //
 //      return "";
@@ -436,7 +436,7 @@ string apple_get_executable_path()
 //
 //   LPWSTR pszModuleFileName;
 //
-//   if (!GetFullPathNameW(wstrModuleFilePath, (unsigned int)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
+//   if (!GetFullPathNameW(wstrModuleFilePath, (::u32)wstrModuleFilePath.length(), wstrModuleFolder, &pszModuleFileName))
 //   {
 //
 //      return "";

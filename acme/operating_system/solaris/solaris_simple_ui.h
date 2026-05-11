@@ -74,8 +74,8 @@ namespace os
       virtual bool destroy_window();
 
 
-      virtual bool on_key_down(unsigned int uiKey);
-      virtual bool on_key_up(unsigned int uiKey);
+      virtual bool on_key_down(::u32 uiKey);
+      virtual bool on_key_up(::u32 uiKey);
 
 
       virtual bool on_move(int x, int y);

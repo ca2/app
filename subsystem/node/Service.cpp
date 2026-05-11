@@ -78,7 +78,7 @@ namespace subsystem
  //  //   }
  //  // }
 
- //  bool Service::reportStatus(unsigned int dwCurrentState, unsigned int dwWin32ExitCode, unsigned int dwWaitHint)
+ //  bool Service::reportStatus(::u32 dwCurrentState, ::u32 dwWin32ExitCode, ::u32 dwWaitHint)
  //  {
  //     return m_pparticleThis->reportStatus(dwCurrentState, dwWin32ExitCode, dwWaitHint);
  //     // }

@@ -11,7 +11,7 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 
 #ifdef WINDOWS
 
-void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
+void __cdecl _null_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers);
 
 #endif
 
@@ -128,7 +128,7 @@ void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppoin
 #ifdef WINDOWS
 
 
-void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+void __cdecl _null_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
 
    __UNREFERENCED_PARAMETER(uiCode);

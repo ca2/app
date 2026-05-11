@@ -125,7 +125,7 @@ namespace windows
 
             defer_get->payload("out_headers").as_property_set().parse_network_headers(strHeaders);
 
-            unsigned long long contentLength = 0;
+            ::u64 contentLength = 0;
             DWORD dwContentLengthBufferSize = sizeof(contentLength);
 
             auto bContentLength = WinHttpQueryHeaders(m_hinternet,

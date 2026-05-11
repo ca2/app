@@ -53,7 +53,7 @@ namespace innate_subsystem
       virtual bool assignProperties(const Framebuffer * pframebufferSource);
       virtual bool clone(const Framebuffer * pframebufferSource);
       virtual void setColor(unsigned char red, unsigned char green, unsigned char blue);
-      virtual void fillRect(const ::int_rectangle &  rectangleTarget, unsigned int color);
+      virtual void fillRect(const ::int_rectangle &  rectangleTarget, ::u32 color);
 
       // Return value: true - if equal
       //               false - if PixelFormats or size differs

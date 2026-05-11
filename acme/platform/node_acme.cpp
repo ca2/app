@@ -21,7 +21,7 @@ namespace platform
 
 
    void acme_node_layer::call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
-                                    ::e_display edisplay, bool bPrivileged, unsigned int* puiPid)
+                                    ::e_display edisplay, bool bPrivileged, ::u32* puiPid)
    {
    }
 
@@ -525,7 +525,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha)
+   void acme_node_layer::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
    {
    }
 
@@ -959,7 +959,7 @@ namespace platform
    }
 
 
-   unsigned long long  acme_node_layer::translate_processor_affinity(int i)
+   ::u64  acme_node_layer::translate_processor_affinity(int i)
    {
       return   0;
    }
@@ -988,13 +988,13 @@ namespace platform
    //
    //#if !defined(UNIVERSAL_WINDOWS)
    //
-   //      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid){}
+   //      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid){}
    //
    //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam){}
    //
    //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY{}
    //
-   //      //CLASS_DECL_ACME unsigned int call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set){}
+   //      //CLASS_DECL_ACME ::u32 call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set){}
    //
    //#endif
 
@@ -1080,7 +1080,7 @@ namespace platform
    }
 
 
-   //CLASS_DECL_ACME unsigned int get_current_process_id(){}
+   //CLASS_DECL_ACME ::u32 get_current_process_id(){}
 
 
    //::string acme_node_layer::process_version_dir_name(){}
@@ -1455,7 +1455,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
 
 
    //#ifdef WINDOWS
-   //      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE){}
+   //      virtual DECLSPEC_NO_RETURN void raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE){}
    //#endif
 
    bool acme_node_layer::is_remote_session()
@@ -1852,7 +1852,7 @@ void acme_node_layer::open_internet_link(const ::scoped_string& scopedstrUrl, co
    //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status)){}
+      void acme_node_layer::arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const_char_pointer status)){}
 
 #endif
 

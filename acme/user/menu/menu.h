@@ -29,7 +29,7 @@ namespace menu
 //      double                                 m_dHeaderHeight;
 //      ::pointer<::menu::item>           m_pitemClose;
 //      int                                    m_iHoverSubMenu;
-//      unsigned int                                    m_dwOut;
+//      ::u32                                    m_dwOut;
 //      ::pointer<menu>                        m_pmenuSubMenu;
 //      int_point                              m_pointTrack;
 //      bool                                   m_bUsePositionHint;

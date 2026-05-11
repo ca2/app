@@ -199,7 +199,7 @@ void CLASS_DECL_ACME __cdecl _ca2_purecall()
 //{
 //
 //
-//   unsigned int color::u32_COLORREF() const
+//   ::u32 color::u32_COLORREF() const
 //   {
 //
 //      return RGB(red, green, blue);
@@ -233,14 +233,14 @@ namespace windows
    }
 
 
-   // string last_error_message(unsigned int dwError)
+   // string last_error_message(::u32 dwError)
    // {
    //
    //    wstring wstr;
    //
    //    unichar* p = nullptr;
    //
-   //    unsigned int dw = FormatMessageW(
+   //    ::u32 dw = FormatMessageW(
    //       FORMAT_MESSAGE_FROM_SYSTEM
    //       | FORMAT_MESSAGE_ALLOCATE_BUFFER,
    //       nullptr,

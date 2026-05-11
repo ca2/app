@@ -46,8 +46,8 @@
  inline void __exchange(::binary_stream & s, long long & i);
  inline void __exchange(::binary_stream & s, unsigned char & u);
  inline void __exchange(::binary_stream & s, unsigned short & u);
- inline void __exchange(::binary_stream & s, unsigned int & u);
- inline void __exchange(::binary_stream & s, unsigned long long & u);
+ inline void __exchange(::binary_stream & s, ::u32 & u);
+ inline void __exchange(::binary_stream & s, ::u64 & u);
 
 
  inline void __exchange(::binary_stream & s, long & l);
@@ -404,7 +404,7 @@ void stream_exchange(S & s, T & t)
 //   // This number represents a following binary_stream of data with this length.
 //   // So the extra bytes representing the variable length quantity are
 //   // neglectable and worth due the very fast variable length encoding.
-//   inline void write_buffer_length(unsigned long long u)
+//   inline void write_buffer_length(::u64 u)
 //   {
 //
 //      if (u < 255)
@@ -425,13 +425,13 @@ void stream_exchange(S & s, T & t)
 //
 //         write((unsigned char)255);
 //         write((unsigned short)65535);
-//         write((unsigned long long)u);
+//         write((::u64)u);
 //
 //      }
 //
 //   }
 //
-//   inline void read_buffer_length(unsigned long long & u)
+//   inline void read_buffer_length(::u64 & u)
 //   {
 //
 //      unsigned char uRead;
@@ -479,9 +479,9 @@ void stream_exchange(S & s, T & t)
 //#endif
 //   virtual void write(bool b) { write((unsigned char)b?1: 0); }
 //   virtual void write(int i) { raw_write(i); }
-//   virtual void write(unsigned int u) { raw_write(u); }
+//   virtual void write(::u32 u) { raw_write(u); }
 //   virtual void write(long long i) { raw_write(i); }
-//   virtual void write(unsigned long long u) { raw_write(u); }
+//   virtual void write(::u64 u) { raw_write(u); }
 //#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void write(unsigned long ul) { raw_write(ul); }
 //   virtual void write(long l) { raw_write(l); }
@@ -528,9 +528,9 @@ void stream_exchange(S & s, T & t)
 //   virtual void read(short & i);
 //   virtual void read(unsigned short & u);
 //   virtual void read(int & i);
-//   virtual void read(unsigned int & u);
+//   virtual void read(::u32 & u);
 //   virtual void read(long long & i);
-//   virtual void read(unsigned long long & u);
+//   virtual void read(::u64 & u);
 //#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void read(unsigned long & u);
 //   //inline void read (long long & u);
@@ -565,9 +565,9 @@ void stream_exchange(S & s, T & t)
 //#endif
 //   virtual void exchange(const ::atom & atom, bool & b) { stream_exchange(atom, b); }
 //   virtual void exchange(const ::atom & atom, int & i) { stream_exchange(atom, i); }
-//   virtual void exchange(const ::atom & atom, unsigned int & u) { stream_exchange(atom, u); }
+//   virtual void exchange(const ::atom & atom, ::u32 & u) { stream_exchange(atom, u); }
 //   virtual void exchange(const ::atom & atom, long long & i) { stream_exchange(atom, i); }
-//   virtual void exchange(const ::atom & atom, unsigned long long & u) { stream_exchange(atom, u); }
+//   virtual void exchange(const ::atom & atom, ::u64 & u) { stream_exchange(atom, u); }
 //#if defined(__APPLE__) || defined(__ANDROID__) || defined(WINDOWS) || defined(RASPBERRYPIOS)
 //   virtual void exchange(const ::atom & atom, unsigned long & ul) { stream_exchange(atom, ul); }
 //   virtual void exchange(const ::atom & atom, long & l) { stream_exchange(atom, l); }
@@ -729,11 +729,11 @@ void stream_exchange(S & s, T & t)
 //
 //inline binary_stream & operator >> (binary_stream & s, int & i) { s.read(i); return s; }
 //
-//inline binary_stream & operator >> (binary_stream & s, unsigned int & u) { s.read(u); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::u32 & u) { s.read(u); return s; }
 //
 //inline binary_stream & operator >> (binary_stream & s, long long & i) { s.read(i); return s; }
 //
-//inline binary_stream & operator >> (binary_stream & s, unsigned long long & u) { s.read(u); return s; }
+//inline binary_stream & operator >> (binary_stream & s, ::u64 & u) { s.read(u); return s; }
 //
 //#ifdef __APPLE__
 //
@@ -824,11 +824,11 @@ void stream_exchange(S & s, T & t)
 //
 //inline binary_stream & operator << (binary_stream & s, int i) { s.write(i); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, unsigned int u) { s.write(u); return s; }
+//inline binary_stream & operator << (binary_stream & s, ::u32 u) { s.write(u); return s; }
 //
 //inline binary_stream & operator << (binary_stream & s, long long i) { s.write(i); return s; }
 //
-//inline binary_stream & operator << (binary_stream & s, unsigned long long u) { s.write(u); return s; }
+//inline binary_stream & operator << (binary_stream & s, ::u64 u) { s.write(u); return s; }
 //
 //#if defined(__APPLE__)
 //

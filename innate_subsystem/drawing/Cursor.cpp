@@ -114,7 +114,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    //void Cursor::initialize_cursor(unsigned int icon) {
+//    //void Cursor::initialize_cursor(::u32 icon) {
 //    //   m_pparticleThis->initialize_cursor(icon);
 //    //}
 //

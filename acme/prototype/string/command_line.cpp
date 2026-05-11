@@ -21,7 +21,7 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, int * n
    char c;
    int inquote;                    /* 1 = inside quotes */
    int copychar;                   /* 1 = copy char to *args */
-   unsigned int numslash;              /* num of backslashes seen */
+   ::u32 numslash;              /* num of backslashes seen */
 
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */

@@ -248,7 +248,7 @@ CLASS_DECL_APEX const_char_pointer bsd_socket_error(int x);
 #else
 
 
-typedef unsigned int ipaddr_t;
+typedef ::u32 ipaddr_t;
 typedef unsigned short ::networking::port_t;
 
 

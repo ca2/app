@@ -839,7 +839,7 @@ string_base_array < Type, RawType, t_etypeContainer > ::string_base_array(CHARAC
 //string_base_array < Type, RawType, t_etypeContainer > ::string_base_array(Platform::Array < Platform::String ^ > ^ refstra)
 //{
 //
-//   for (unsigned int u = 0; u < refstra->Length; u++)
+//   for (::u32 u = 0; u < refstra->Length; u++)
 //   {
 //
 //      Type str;

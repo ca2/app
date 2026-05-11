@@ -11,7 +11,7 @@ public:
 
 
    // 0 update serial is not ok
-   unsigned long long       m_uUpdateSerial;
+   ::u64       m_uUpdateSerial;
 
 
    handler_context() { m_uUpdateSerial = 0; }

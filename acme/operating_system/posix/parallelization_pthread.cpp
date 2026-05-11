@@ -69,7 +69,7 @@ t_phappeningNotifyLock;
 //thread_local ::pointer_array < ::subparticle >
 //t_synca;
 
-::e_status MsgWaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * pparticle, const class ::time & timeWait, unsigned int dwWakeMask, unsigned int dwFlags)
+::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * pparticle, const class ::time & timeWait, ::u32 dwWakeMask, ::u32 dwFlags)
 {
 
    class ::time start;
@@ -260,7 +260,7 @@ t_phappeningNotifyLock;
 }
 
 
-::e_status MsgWaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, unsigned int dwWakeMask)
+::e_status MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -268,7 +268,7 @@ t_phappeningNotifyLock;
 }
 
 
-::e_status WaitForMultipleObjectsEx(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable)
+::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -276,7 +276,7 @@ t_phappeningNotifyLock;
 }
 
 
-::e_status WaitForMultipleObjects(unsigned int dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout)
+::e_status WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
@@ -429,23 +429,23 @@ int get_os_thread_priority(::enum_priority epriority)
 
 
 
-// LPVOID WINAPI thread_get_data(htask htask, unsigned int dwIndex);
+// LPVOID WINAPI thread_get_data(htask htask, ::u32 dwIndex);
 
 
-// int_bool WINAPI thread_set_data(htask htask, unsigned int dwIndex, LPVOID pTlsValue);
+// int_bool WINAPI thread_set_data(htask htask, ::u32 dwIndex, LPVOID pTlsValue);
 
 
 
 
-unsigned int g_dwDebug_post_thread_msg_time;
+::u32 g_dwDebug_post_thread_msg_time;
 
 int g_iDebug_post_thread_msg_time;
 
 
 
 
-//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::acme::windowing::window * pacmewindowingwindow, unsigned int Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, unsigned int Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::acme::windowing::window * pacmewindowingwindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
 //   synchronous_lock ml(pmq->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -526,7 +526,7 @@ void os_on_term_thread()
 }
 
 
-CLASS_DECL_ACME unsigned long long translate_processor_affinity(int iOrder)
+CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
 {
 
    return 1 << iOrder;

@@ -311,7 +311,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
+//CLASS_DECL_ACME void call_async(const ::file::path & path, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid)
 //{
 //
 //   string strCmdLine;
@@ -404,7 +404,7 @@
 //}
 //
 //
-//string module_path_from_pid(unsigned int iPid)
+//string module_path_from_pid(::u32 iPid)
 //{
 //
 //   struct stat sb;
@@ -598,7 +598,7 @@
 //      }
 //
 //
-//      string node::command_line_from_pid(unsigned int iPid)
+//      string node::command_line_from_pid(::u32 iPid)
 //      {
 //
 //         string_array_base stra;
@@ -659,7 +659,7 @@
 //      }
 //
 //
-//      bool node::is_shared_library_busy(unsigned int processid, const string_array_base & stra)
+//      bool node::is_shared_library_busy(::u32 processid, const string_array_base & stra)
 //      {
 //
 //         return false;
@@ -784,7 +784,7 @@
 //
 
 
-unsigned int get_current_process_id()
+::u32 get_current_process_id()
 {
 
    return getpid();

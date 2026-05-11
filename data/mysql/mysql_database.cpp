@@ -340,7 +340,7 @@ namespace mysql
 
          m_cAffectedRows = mysql_affected_rows((MYSQL*)m_pmysql);
 
-         informationf("Number of rows affected: %lu\n", (unsigned int)m_cAffectedRows);
+         informationf("Number of rows affected: %lu\n", (::u32)m_cAffectedRows);
 
       }
 
@@ -367,7 +367,7 @@ namespace mysql
 
          //   presult->m_uiAffectedRows = mysql_affected_rows((MYSQL *)m_pmysql);
 
-         //   informationf("Number of rows affected: %lu\n", (unsigned int)presult->m_uiAffectedRows);
+         //   informationf("Number of rows affected: %lu\n", (::u32)presult->m_uiAffectedRows);
 
          //   return presult;
 
@@ -878,7 +878,7 @@ namespace mysql
 
    ::payload database::get_insert_id()
    {
-      return (unsigned long long)mysql_insert_id((MYSQL*)m_pmysql);
+      return (::u64)mysql_insert_id((MYSQL*)m_pmysql);
    }
 
 } //   namespace mysql

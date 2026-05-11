@@ -63,9 +63,9 @@ namespace hex
       return num;
    }
 
-   unsigned int to_unsigned_int(const ::scoped_string & scopedstr)
+   ::u32 to_unsigned_int(const ::scoped_string & scopedstr)
    {
-      unsigned int r = 0;
+      ::u32 r = 0;
       for (int i = 0; i < scopedstr.length(); i++)
       {
          r = r * 16 + scopedstr[i] - 48 - ((scopedstr[i] >= 'A') ? 7 : 0) - ((scopedstr[i] >= 'a') ? 32 : 0);
@@ -73,9 +73,9 @@ namespace hex
       return r;
    }
 
-   unsigned long long to_unsigned_long_long(const ::scoped_string & scopedstr)
+   ::u64 to_unsigned_long_long(const ::scoped_string & scopedstr)
    {
-      unsigned long long r = 0;
+      ::u64 r = 0;
       for(int i = 0; i < scopedstr.length(); i++)
       {
          r = r * 16 + scopedstr[i] - 48 - ((scopedstr[i] >= 'A') ? 7 : 0) - ((scopedstr[i] >= 'a') ? 32 : 0);

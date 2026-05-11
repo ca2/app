@@ -122,10 +122,10 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 
 }
 //::pair<int, int> ia;
-//inline unsigned long long make64_from32(unsigned int l, unsigned int h)
+//inline ::u64 make64_from32(::u32 l, ::u32 h)
 //{
 //
-//   return ((unsigned long long)l) | (((unsigned long long)h) << 32);
+//   return ((::u64)l) | (((::u64)h) << 32);
 //
 //}
 //
@@ -313,10 +313,10 @@ inline bool is_reference_set(const TYPE& t)
 
 //
 //
-//inline bool is_impact_group(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 1000; }
+//inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
 //
 //
-//inline bool is_impact_subgroup(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 100; }
+//inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 //
 //
 //inline bool is_file_or_folder(const ::file::enum_type& etype)
@@ -383,7 +383,7 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //}
 //
-//inline unsigned long long ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+//inline ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //   return strtoull(scopedstr, (::ansi_character **) ppszEnd, iBase);
@@ -426,7 +426,7 @@ inline bool __sort(T1& t1, T2& t2)
 //}
 //
 //
-//inline unsigned int ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
+//inline ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase)
 //{
 //
 //#ifdef WINDOWS
@@ -446,7 +446,7 @@ inline bool __sort(T1& t1, T2& t2)
 //
 //   }
 //
-//   return (unsigned int) ul;
+//   return (::u32) ul;
 //
 //#endif
 //

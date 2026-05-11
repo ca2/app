@@ -26,7 +26,7 @@ character_count wd32_to_wd16_len(const ::wd32_character* codepoints, character_c
    while (input_size != 0)
    {
 
-      unsigned int cp = *codepoints++;
+      ::u32 cp = *codepoints++;
 
       input_size--;
 
@@ -72,7 +72,7 @@ character_count wd32_to_wd16_len2(const ::wd32_character *codepoints, character_
    while (count < input_size)
    {
 
-      unsigned int cp = *codepoints++;
+      ::u32 cp = *codepoints++;
 
       if (cp == 0)
       {
@@ -121,7 +121,7 @@ character_count wd32_to_wd16(::wd16_character *psz16, const ::wd32_character *co
    while (input_size != 0)
    {
 
-      unsigned int cp = *codepoints++;
+      ::u32 cp = *codepoints++;
 
       if (cp == 0)
       {

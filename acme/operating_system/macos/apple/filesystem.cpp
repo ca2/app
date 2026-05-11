@@ -21,7 +21,7 @@ string get_exe_path()
    
    char path[8192];
 
-   unsigned int size = sizeof(path);
+   ::u32 size = sizeof(path);
 
    if (_NSGetExecutablePath(path, &size) == 0)
    {

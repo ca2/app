@@ -31,7 +31,7 @@
 
 #define HDFT_ISSTRING       0x0000      // HD_ITEM.pvFilter points to a HD_TEXTFILTER
 #define HDFT_ISNUMBER       0x0001      // HD_ITEM.pvFilter points to a int
-#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a unsigned int (dos date)
+#define HDFT_ISDATE         0x0002      // HD_ITEM.pvFilter points to a ::u32 (dos date)
 
 #define HDFT_HASNOVALUE     0x8000      // clear the filter, by setting this bit
 
@@ -64,7 +64,7 @@ namespace user
       public:
 
 
-         unsigned int                mask;
+         ::u32                mask;
          int                  cxy;
          string               m_strTextText;
          ::image::image_pointer      m_pimage;
@@ -73,9 +73,9 @@ namespace user
          lparam               lParam;
          int                  iImage;        // index of bitmap in ImageList
          int                  iOrder;
-         unsigned int                type;           // [in] filter type (defined what pvFilter is a pointer to)
+         ::u32                type;           // [in] filter type (defined what pvFilter is a pointer to)
          void *               pvFilter;       // [in] fillter data see above
-         unsigned int                state;
+         ::u32                state;
       };
 
 

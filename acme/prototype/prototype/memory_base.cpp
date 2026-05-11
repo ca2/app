@@ -617,7 +617,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 //
 //   }
 //
-//   return ::SHCreateMemStream(data(),(unsigned int)size());
+//   return ::SHCreateMemStream(data(),(::u32)size());
 //
 //}
 
@@ -1225,9 +1225,9 @@ void memory_base::to_hex(string & str, memsize pos, memsize count)
 
    char * pchDst = str.get_buffer(count * 2);
 
-   unsigned long long tickEnd = pos + count;
+   ::u64 tickEnd = pos + count;
 
-   for (unsigned long long dw = pos; dw < tickEnd; dw++)
+   for (::u64 dw = pos; dw < tickEnd; dw++)
    {
 
       if (((pchSrc[dw] & 0xf0) >> 4) < 10)

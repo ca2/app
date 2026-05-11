@@ -190,7 +190,7 @@ namespace innate_subsystem
 //    }
 //
 //
-//    void Graphics::drawText(const char *text, int cchText, ::int_rectangle &rect, unsigned int format, enum_align ealign)
+//    void Graphics::drawText(const char *text, int cchText, ::int_rectangle &rect, ::u32 format, enum_align ealign)
 //    {
 //       m_pparticleThis->drawText(text, cchText, rect, format, ealign);
 //    }

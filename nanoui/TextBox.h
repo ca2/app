@@ -132,7 +132,7 @@ namespace nanoui
       //bool mouse_drag_event(const int_sequence2 & p, const int_sequence2 & rel, const ::user::e_key & ekeyModifiers) override;
       bool focus_event(bool focused) override;
       bool keyboard_event(::user::enum_key ekey, int scancode, int action, const ::user::e_key& ekeyModifiers, const ::scoped_string & scopedstrText) override;
-      bool keyboard_character_event(unsigned int codepoint) override;
+      bool keyboard_character_event(::u32 codepoint) override;
 
       virtual bool on_command(const ::atom& atom);
       virtual void edit_select_all();

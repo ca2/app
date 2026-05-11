@@ -237,7 +237,7 @@ public:
 //    operator ::hash32() const
 //    {
 //
-//       return { (unsigned int)(::uptr)m_pbase.m_p };
+//       return { (::u32)(::uptr)m_pbase.m_p };
 //
 //    };
 //
@@ -697,7 +697,7 @@ public:
    //operator ::hash32() const 
    //{
 
-   //   return { (unsigned int)(::uptr)m_pbase.m_p };
+   //   return { (::u32)(::uptr)m_pbase.m_p };
 
    //};
 
@@ -948,7 +948,7 @@ public:
    //operator ::hash32() const 
    //{
 
-   //   return { (unsigned int)(::uptr)m_pbase.m_p };
+   //   return { (::u32)(::uptr)m_pbase.m_p };
 
    //}
 
@@ -1281,7 +1281,7 @@ public:
 
    //bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 
-   //operator ::hash32() const { return { (unsigned int)(::uptr)m_pbase.m_p }; }
+   //operator ::hash32() const { return { (::u32)(::uptr)m_pbase.m_p }; }
    //
    //void set_run_timeout(const class time & timeTimeout)
    //{

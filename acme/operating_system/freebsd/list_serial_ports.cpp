@@ -156,7 +156,7 @@ namespace serial
    string usb_sysfs_friendly_name(::matter * pmatter, const string & sys_usb_path)
    {
 
-      unsigned int device_number = 0;
+      ::u32 device_number = 0;
 
       auto psystem = pmatter->system();
 
@@ -259,7 +259,7 @@ namespace serial
 
       bool done = false;
 
-      unsigned int loop_count = 0;
+      ::u32 loop_count = 0;
 
       while (!done)
       {

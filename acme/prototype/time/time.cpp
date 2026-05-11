@@ -40,7 +40,7 @@
 //
 //   auto tickDuration = time.u32_millis();
 //
-//   ::sleep((unsigned int)tickDuration);
+//   ::sleep((::u32)tickDuration);
 //
 
 //}

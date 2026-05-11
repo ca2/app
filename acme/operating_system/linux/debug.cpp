@@ -226,17 +226,17 @@ int gdb_check()
 
 
 
-//unsigned int
+//::u32
 //WINAPI
 //FormatMessage(
-//unsigned int dwFlags,
+//::u32 dwFlags,
 //const void * pSource,
 //
-//unsigned int dwMessageId,
-//unsigned int dwLanguageId,
+//::u32 dwMessageId,
+//::u32 dwLanguageId,
 //char * pBuffer,
 //
-//unsigned int nSize,
+//::u32 nSize,
 //va_list *Arguments
 //)
 //{
@@ -273,11 +273,11 @@ int gdb_check()
 //}
 
 
-//void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
+//void __cdecl _null_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //
 //
 //
-//void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+//void __cdecl _null_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers)
 //{
 //   __UNREFERENCED_PARAMETER(uiCode);
 //   __UNREFERENCED_PARAMETER(ppointers);

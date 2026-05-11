@@ -92,7 +92,7 @@ namespace ftp
    ///                           is set. Normally not wait time is necessary.
    client_socket::client_socket(
                                 const class time & timeTimeout/*=10*/,
-                                unsigned int uiBufferSize/*=2048*/, const class time & timeResponseWait/*=0*/,
+                                ::u32 uiBufferSize/*=2048*/, const class time & timeResponseWait/*=0*/,
                                 const ::scoped_string & scopedstrRemoteDirectorySeparator/*="/"*/) :
       //::sockets::base_socket(handler),
       //::sockets::socket(handler),
@@ -409,7 +409,7 @@ namespace ftp
 
          }
 
-         const unsigned int uiFirstDigitOfReplyCode = ansi_to_int(Reply.Code().Value()) / 100;
+         const ::u32 uiFirstDigitOfReplyCode = ansi_to_int(Reply.Code().Value()) / 100;
          iLogonPoint = iLogonSeq[plogon->FwType().AsEnum()][iLogonPoint + uiFirstDigitOfReplyCode - 1]; //get next command from array
          switch (iLogonPoint)
          {
@@ -682,7 +682,7 @@ namespace ftp
          cmd = command::STOU();
 
       const long lLocalFileSize = Observer.GetLocalStreamSize();
-      Observer.SetLocalStreamOffset((unsigned int) lRemoteFileSize);
+      Observer.SetLocalStreamOffset((::u32) lRemoteFileSize);
 
       for (auto * int_point : (observer_array &)m_setObserver)
          int_point->OnPreSendFile(Observer.GetLocalStreamName(), scopedstrRemoteFile, lLocalFileSize);
@@ -737,7 +737,7 @@ namespace ftp
       // set one FTP server in passive mode
       // the FTP server opens a port and tell us the socket (ip ::networking::address + port)
       // this socket is used for opening the data connection
-      unsigned int  ulIP = 0;
+      ::u32  ulIP = 0;
       unsigned short ushSock = 0;
       if (PassiveServer.Passive(ulIP, ushSock) != FTP_OK)
       {
@@ -782,7 +782,7 @@ namespace ftp
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
    /// @lparam[in] Observer Object for observing the execution of the command.
    bool client_socket::ExecuteDatachannelCommand(const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, const representation& representation,
-         bool fPasv, unsigned int dwByteOffset, itransfer_notification& Observer)
+         bool fPasv, ::u32 dwByteOffset, itransfer_notification& Observer)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -890,9 +890,9 @@ namespace ftp
 
       }
 
-      //unsigned int tickStart= ::time::now();
+      //::u32 tickStart= ::time::now();
 
-      //unsigned int nSeconds = 10;
+      //::u32 nSeconds = 10;
 
       //if (pbasesocket.is_set() && !pbasesocket->IsDetached())
       //{
@@ -976,7 +976,7 @@ namespace ftp
    /// @lparam[in] crDatachannelCmd Command to be executeted.
    /// @lparam[in] scopedstrPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset)
+   bool client_socket::OpenActiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, ::u32 dwByteOffset)
    {
       if (!crDatachannelCmd.IsDatachannelCommand())
       {
@@ -1076,7 +1076,7 @@ namespace ftp
    /// @lparam[in] crDatachannelCmd Command to be executeted.
    /// @lparam[in] scopedstrPath Parameter for the command usually a path.
    /// @lparam[in] dwByteOffset Server marker at which file transfer is to be restarted.
-   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, unsigned int dwByteOffset)
+   bool client_socket::OpenPassiveDataConnection(::sockets::socket & sckDataConnectionParam, const command& crDatachannelCmd, const ::scoped_string & scopedstrPath, ::u32 dwByteOffset)
    {
 
       if (m_econnectiontype == connection_type_tls_implicit)
@@ -1099,7 +1099,7 @@ namespace ftp
       ::sockets::transfer_socket & sckDataConnection
          = *(dynamic_cast < ::sockets::transfer_socket * >(&sckDataConnectionParam));
 
-      unsigned int   ulRemoteHostIP = 0;
+      ::u32   ulRemoteHostIP = 0;
       unsigned short  ushServerSock = 0;
 
       if (m_econnectiontype == connection_type_tls_implicit)
@@ -1600,7 +1600,7 @@ auto tickStart = ::time::now();
    /// @lparam[out] ulIpAddress IP ::networking::address the server is listening on.
    /// @lparam[out] ushPort Port the server is listening on.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Passive(unsigned int& ulIpAddress, unsigned short& ushPort)
+   int client_socket::Passive(::u32& ulIpAddress, unsigned short& ushPort)
    {
       reply Reply;
       if (!SendCommand(command::PASV(), {}, Reply))
@@ -1622,7 +1622,7 @@ auto tickStart = ::time::now();
    /// @lparam[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
-   bool client_socket::GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, unsigned int& ulIpAddress, unsigned short& ushPort)
+   bool client_socket::GetIpAddressFromResponse(const ::scoped_string & scopedstrResponse, ::u32& ulIpAddress, unsigned short& ushPort)
    {
       // parsing of ip-::networking::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
@@ -1630,7 +1630,7 @@ auto tickStart = ::time::now();
 
       string strIpAddress, strPort;
       unsigned short ushTempPort = 0;
-      unsigned int  ulTempIpAddress = 0;
+      ::u32  ulTempIpAddress = 0;
       int iCommaCnt = 4;
       for (character_count i = 0; i < scopedstrResponse.length(); i++)
       {
@@ -1804,7 +1804,7 @@ auto tickStart = ::time::now();
    /// @lparam[in] representation see Documentation of nsFTP::representation
    /// @lparam[in] iSize Indicates Bytesize for type LocalByte.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::RepresentationType(const representation& representation, unsigned int dwSize)
+   int client_socket::RepresentationType(const representation& representation, ::u32 dwSize)
    {
       // check representation
       if (m_apCurrentRepresentation.is_set() && representation == *m_apCurrentRepresentation)
@@ -1830,14 +1830,14 @@ auto tickStart = ::time::now();
    /// @lparam[in] representation see Documentation of nsFTP::representation
    /// @lparam[in] dwSize Indicates Bytesize for type LocalByte.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::_RepresentationType(const representation& representation, unsigned int dwSize)
+   int client_socket::_RepresentationType(const representation& representation, ::u32 dwSize)
    {
       string_array_base Arguments({ representation.Type().AsString() });
 
       switch (representation.Type().AsEnum())
       {
       case type::tyLocalByte:
-         Arguments.add(::as_string((unsigned int) dwSize));
+         Arguments.add(::as_string((::u32) dwSize));
          break;
       case type::tyASCII:
       case type::tyEBCDIC:
@@ -2075,10 +2075,10 @@ auto tickStart = ::time::now();
    /// @lparam[in] dwPosition Represents the server marker at which file transfer
    ///                       is to be restarted.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::Restart(unsigned int dwPosition)
+   int client_socket::Restart(::u32 dwPosition)
    {
       reply Reply;
-      if (!SendCommand(command::REST(), { ::as_string((unsigned int)dwPosition) }, Reply))
+      if (!SendCommand(command::REST(), { ::as_string((::u32)dwPosition) }, Reply))
          return FTP_ERROR;
 
       if (Reply.Code().IsPositiveIntermediateReply())
@@ -2168,7 +2168,7 @@ auto tickStart = ::time::now();
    /// @lparam[in] strErrorMsg Error message which is reported to all observers.
    /// @lparam[in] Name of the sourcecode file where the error occurred.
    /// @lparam[in] Line number in th sourcecode file where the error occurred.
-   void client_socket::ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, unsigned int dwLineNr)
+   void client_socket::ReportError(const ::scoped_string & scopedstrErrorMsg, const ::scoped_string & scopedstrFile, ::u32 dwLineNr)
    {
       for (auto * int_point : (observer_array &)m_setObserver)
          int_point->OnInternalError(scopedstrErrorMsg, scopedstrFile, dwLineNr);

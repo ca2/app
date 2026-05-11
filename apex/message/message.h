@@ -39,7 +39,7 @@ namespace message
       ::collection::index m_iRouteIndex;
       ::collection::index m_iParam;
       // bool                           m_bRet;
-      unsigned int m_uiMessageFlags;
+      ::u32 m_uiMessageFlags;
       ::e_status m_estatus;
       ::action_context m_actioncontext;
       ::int_point m_pointMessage;
@@ -71,9 +71,9 @@ namespace message
       // ::windowing::window* pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
-      unsigned int GetNotifyCode() const { return m_wparam.hiword(); }
+      ::u32 GetNotifyCode() const { return m_wparam.hiword(); }
 
-      unsigned int GetId() const { return m_wparam.loword(); }
+      ::u32 GetId() const { return m_wparam.loword(); }
 
       //oswindow get_oswindow() const { return m_pacmewindowingwindow; }
 

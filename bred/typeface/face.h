@@ -23,7 +23,7 @@ namespace typeface
       ::string m_strFontName;
       //::string_map_base<::typeface::character> m_mapCharacter;
       ::int_map<::typeface::character> m_mapCharacter;
-//      unsigned int m_VAO, m_VBO;
+//      ::u32 m_VAO, m_VBO;
       //::pointer < ::gpu::model_buffer > m_pmodelbufferBox;
 
 

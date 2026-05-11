@@ -21,12 +21,12 @@
 //create_file(
 //            char const * pFileName,
 
-//            unsigned int dwDesiredAccess,
-//            unsigned int dwShareMode,
+//            ::u32 dwDesiredAccess,
+//            ::u32 dwShareMode,
 //            LPSECURITY_ATTRIBUTES pSecurityAttributes,
 
-//            unsigned int dwCreationDisposition,
-//            unsigned int dwFlagsAndAttributes,
+//            ::u32 dwCreationDisposition,
+//            ::u32 dwFlagsAndAttributes,
 //            HANDLE hTemplateFile
 //            )
 //{
@@ -70,14 +70,14 @@
 //
 //}
 //
-//unsigned int
+//::u32
 //WINAPI
 //SetFilePointer(
 //               HANDLE hFile,
 //               int lDistanceToMove,
 //               PLONG pDistanceToMoveHigh,
 
-//               unsigned int dwMoveMethod
+//               ::u32 dwMoveMethod
 //               )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
@@ -94,7 +94,7 @@
 //          HANDLE hFile,
 //          const void * pBuffer,
 
-//          unsigned int nNumberOfBytesToWrite,
+//          ::u32 nNumberOfBytesToWrite,
 //          LPDWORD pNumberOfBytesWritten,
 
 //          LPOVERLAPPED pOverlapped
@@ -109,7 +109,7 @@
 
 //    if(pNumberOfBytesWritten != nullptr)
 
-//        *pNumberOfBytesWritten = (unsigned int) sizeWritten;
+//        *pNumberOfBytesWritten = (::u32) sizeWritten;
 
 //    return true;
 //}
@@ -120,7 +120,7 @@
 //         HANDLE hFile,
 //         LPVOID pBuffer,
 
-//         unsigned int nNumberOfBytesToRead,
+//         ::u32 nNumberOfBytesToRead,
 //         LPDWORD pNumberOfBytesRead,
 
 //         LPOVERLAPPED pOverlapped
@@ -135,7 +135,7 @@
 
 //    if(pNumberOfBytesRead != nullptr)
 
-//        *pNumberOfBytesRead = (unsigned int)sizeRead;
+//        *pNumberOfBytesRead = (::u32)sizeRead;
 
 //    return true;
 //}
@@ -190,10 +190,10 @@
 //
 //
 //
-//unsigned int
+//::u32
 //WINAPI
 //GetTempPathW(
-//    unsigned int nBufferLength,
+//    ::u32 nBufferLength,
 //    LPWSTR pBuffer
 
 //    )
@@ -212,7 +212,7 @@
 
 //   }
 //
-//   return (unsigned int) iLen;
+//   return (::u32) iLen;
 //
 //}
 

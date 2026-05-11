@@ -184,26 +184,26 @@ extern CLASS_DECL_APEX int g_bApex;
 
 //
 //#define __unsigned_short(a, b)                                   ((unsigned short)(((unsigned char)(((::uptr)(a)) & 0xff)) | ((unsigned short)((unsigned char)(((::uptr)(b)) & 0xff))) << 8))
-//#define as_unsigned_int(a, b)                                   ((unsigned int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((unsigned int)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
+//#define as_u32(a, b)                                   ((::u32)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 //
 //
 //#ifdef __cplusplus
 //
 //
-//#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+//#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 //
 //
 //#else
 //
-//#define __MAKE_LONG64(a, b)                              (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
-//#define as_unsigned_long_long(a, b)                                   (((unsigned long long)(((unsigned int)(((unsigned long long)(a)) & 0xffffffff)) | ((unsigned long long)((unsigned int)(((unsigned long long)(b)) & 0xffffffff))) << 32)))
+//#define __MAKE_LONG64(a, b)                              (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
+//#define as_u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
 //
 //#endif
 //
 //#define lower_unsigned_short(u)                                     ((unsigned short)(((::uptr)(u)) & 0xffff))
 //#define upper_unsigned_short(u)                                     ((unsigned short)((((::uptr)(u)) >> 16) & 0xffff))
-//#define lower_unsigned_int(u)                                     ((unsigned int)(u))
-//#define upper_unsigned_int(u)                                     ((unsigned int)(((u) >> 32) & 0xffffffff))
+//#define lower_unsigned_int(u)                                     ((::u32)(u))
+//#define upper_unsigned_int(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
 //
 //#define u32_x(u)                                     ((short)lower_unsigned_short(u))
 //#define u32_y(u)                                     ((short)upper_unsigned_short(u))
@@ -338,7 +338,7 @@ namespace core
 //enum e_simple_command : long long;
 //enum e_message : long long;
 //enum enum_impact : long long;
-//enum ::enum_id : unsigned long long;
+//enum ::enum_id : ::u64;
 //enum enum_check: int;
 
 

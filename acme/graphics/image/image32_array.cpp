@@ -18,11 +18,11 @@ image32_array::~image32_array()
 //{
 //
 //   // Do nothing
-//   const unsigned int STANDARD_PALETTE[] = {00,51,102,153,204,255};
+//   const ::u32 STANDARD_PALETTE[] = {00,51,102,153,204,255};
 //   const int STANDARD_COLOR_SIZE = 6;
 ////   const int STANDARD_PALETTE_VAL_DIF = 51;
 //   allocate(216);
-////   unsigned int dwColorMapTable[216] = {0};
+////   ::u32 dwColorMapTable[216] = {0};
 //   int nColorMapIdx = 0;
 //   for(int nBlueIdx = 0; nBlueIdx < STANDARD_COLOR_SIZE; ++nBlueIdx)
 //   {

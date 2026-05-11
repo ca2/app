@@ -107,15 +107,15 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const ::scoped_string & s
 
 
 
-unsigned int
+::u32
 WINAPI
 FormatMessage(
-unsigned int dwFlags,
+::u32 dwFlags,
 const void * lpSource,
-unsigned int dwMessageId,
-unsigned int dwLanguageId,
+::u32 dwMessageId,
+::u32 dwLanguageId,
 char * lpBuffer,
-unsigned int nSize,
+::u32 nSize,
 va_list *Arguments
 )
 {

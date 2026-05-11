@@ -342,7 +342,7 @@ namespace gpu_opengl
    //
    //          int iImage;
    //
-   //          for (unsigned int i = 0; i < 6; i++)
+   //          for (::u32 i = 0; i < 6; i++)
    //          {
    //
    //             auto pimage32 = (::image32_t *)memory.data();
@@ -613,7 +613,7 @@ namespace gpu_opengl
 
          int iImage;
 
-         for (unsigned int i = 0; i < 6; i++)
+         for (::u32 i = 0; i < 6; i++)
          {
 
             image32_t * pimage32 = nullptr;

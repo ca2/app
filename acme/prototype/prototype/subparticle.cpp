@@ -834,8 +834,8 @@ bool subparticle::_wait(const class time& timeWait)
    //
    //   }
    //
-   //   //auto milliseconds = wait.operator unsigned int();
-   //   //unsigned int ui;
+   //   //auto milliseconds = wait.operator ::u32();
+   //   //::u32 ui;
    //   //if (wait.m_d <= 0.)
    //   //{
    //   //   ui = 0;
@@ -849,11 +849,11 @@ bool subparticle::_wait(const class time& timeWait)
    //   //else
    //   //{
    //
-   //   //   ui = (unsigned int) (wait.m_d * 1'000.0);
+   //   //   ui = (::u32) (wait.m_d * 1'000.0);
    //
    //   //}
    //
-   //   ////return (unsigned int)m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (unsigned int)(m_d * 1'000.0));
+   //   ////return (::u32)m_d <= 0. ? 0 : (m_d >= 0xffffffffu ? 0xffffffffu : (::u32)(m_d * 1'000.0));
    //   //if (milliseconds < 1'000'000'000)
    //   //{
    //

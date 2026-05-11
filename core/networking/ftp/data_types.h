@@ -249,8 +249,8 @@ namespace ftp
          virtual ~iextended_info() {}
          virtual const string& GetServerString() const = 0;
          virtual const string& GetCompleteServerStringSyntax() const = 0;
-         virtual unsigned int GetNumberOfParameters() const = 0;
-         virtual unsigned int GetNumberOfOptionalParameters() const = 0;
+         virtual ::u32 GetNumberOfParameters() const = 0;
+         virtual ::u32 GetNumberOfOptionalParameters() const = 0;
          virtual TSpecificationEnum GetSpecification() const = 0;
          virtual enum_type GetType() const = 0;
       };
@@ -329,8 +329,8 @@ namespace ftp
       typedef command::TSpecificationEnum TSpecificationEnum;
       typedef command::enum_type enum_type;
    public:
-      extended_info(const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, unsigned int uNumberOfParameters,
-                    unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
+      extended_info(const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, ::u32 uNumberOfParameters,
+                    ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType) :
          m_strServerString(scopedstrServerString),
          m_strCompleteServerStringSyntax(scopedstrCompleteServerStringSyntax),
          m_uNumberOfParameters(uNumberOfParameters),
@@ -351,15 +351,15 @@ namespace ftp
 
       virtual const string& GetServerString() const override { return m_strServerString; }
       virtual const string& GetCompleteServerStringSyntax() const override { return m_strCompleteServerStringSyntax; }
-      virtual unsigned int GetNumberOfParameters() const override { return m_uNumberOfParameters; }
-      virtual unsigned int GetNumberOfOptionalParameters() const override { return m_uNumberOfOptionalParameters; }
+      virtual ::u32 GetNumberOfParameters() const override { return m_uNumberOfParameters; }
+      virtual ::u32 GetNumberOfOptionalParameters() const override { return m_uNumberOfOptionalParameters; }
       virtual TSpecificationEnum GetSpecification() const override { return m_enSpecification; }
       virtual enum_type GetType() const override { return m_etype; }
 
       const string            m_strServerString;
       const string            m_strCompleteServerStringSyntax;
-      const unsigned int               m_uNumberOfParameters;
-      const unsigned int               m_uNumberOfOptionalParameters;
+      const ::u32               m_uNumberOfParameters;
+      const ::u32               m_uNumberOfOptionalParameters;
       const TSpecificationEnum m_enSpecification;
       const enum_type          m_etype;
 
@@ -374,8 +374,8 @@ namespace ftp
 
       info2();
 
-      void insert(enum_command enCommand, const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, unsigned int uNumberOfParameters,
-                  unsigned int uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType);
+      void insert(enum_command enCommand, const ::scoped_string & scopedstrServerString, const ::scoped_string & scopedstrCompleteServerStringSyntax, ::u32 uNumberOfParameters,
+                  ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType);
 
       static info2& GetInstance() { if (g_pTheOneAndOnly == nullptr) g_pTheOneAndOnly = new info2 (); return *g_pTheOneAndOnly; }
 

@@ -21,7 +21,7 @@ static inline uint64_t xgetbv(uint32_t index)
 }
 cpu_features::cpu_features()
 {
-   unsigned int eax, ebx, ecx, edx;
+   ::u32 eax, ebx, ecx, edx;
 
    // CPUID leaf 1: SSE / AVX / XSAVE
    if (__get_cpuid(1, &eax, &ebx, &ecx, &edx))

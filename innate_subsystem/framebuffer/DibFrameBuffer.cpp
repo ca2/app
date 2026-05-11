@@ -60,7 +60,7 @@ namespace  innate_subsystem
       m_fb.setColor(reg, green, blue);
    }
 
-   void DibFramebuffer::fillRect(const ::int_rectangle &rectangleTarget, unsigned int color)
+   void DibFramebuffer::fillRect(const ::int_rectangle &rectangleTarget, ::u32 color)
    {
       m_fb.fillRect(rectangleTarget, color);
    }

@@ -44,10 +44,8 @@
 //#define LIBJPEG_TURBO
 // WIN32
 
-
-////#include "::string.h"
 #include "acme/parallelization/critical_section.h"
 #include "subsystem/platform/Particle.h"
 #include "subsystem/platform/StringTable.h"
 
-//// __COMMONHEADER_H__
+

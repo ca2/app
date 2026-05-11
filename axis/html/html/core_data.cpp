@@ -887,7 +887,7 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(::payload& payloadFile, unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(::payload& payloadFile, ::u32 nFlags, const ::scoped_string & scopedstrTargetFrameName, byte_array& baPostedData, const ::scoped_string & scopedstrHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)

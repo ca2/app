@@ -34,7 +34,7 @@
 //    {
 //    }
 //
-//    LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+//    LRESULT CALLBACK WindowProcHolder::defWindowProc(HWND hWnd, ::u32 uMsg, ::wparam wparam, ::lparam lparam)
 //    {
 //       WindowProcHolder *wph = (WindowProcHolder *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 //

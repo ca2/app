@@ -62,42 +62,42 @@ namespace subsystem
    // F, G, H and I are basic MD5 functions.
    //
 
-   unsigned int MD5::F(unsigned int x, unsigned int y, unsigned int z) {
+   ::u32 MD5::F(::u32 x, ::u32 y, ::u32 z) {
       return (x & y) | (~x & z);
    }
 
-   unsigned int MD5::G(unsigned int x, unsigned int y, unsigned int z) {
+   ::u32 MD5::G(::u32 x, ::u32 y, ::u32 z) {
       return (x & z) | (y & ~z);
    }
 
-   unsigned int MD5::H(unsigned int x, unsigned int y, unsigned int z) {
+   ::u32 MD5::H(::u32 x, ::u32 y, ::u32 z) {
       return x ^ y ^ z;
    }
 
-   unsigned int MD5::I(unsigned int x, unsigned int y, unsigned int z) {
+   ::u32 MD5::I(::u32 x, ::u32 y, ::u32 z) {
       return y ^ (x | ~z);
    }
 
    // rotateLeft rotates x left n bits.
-   unsigned int MD5::rotateLeft(unsigned int x, int n) {
+   ::u32 MD5::rotateLeft(::u32 x, int n) {
       return (x << n) | (x >> (32-n));
    }
 
    // FF, GG, HH, and II transformations for rounds 1, 2, 3, and 4.
    // Rotation is separate from addition to prevent recomputation.
-   void MD5::FF(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {
+   void MD5::FF(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac) {
       a = rotateLeft(a + F(b, c, d) + x + ac, s) + b;
    }
 
-   void MD5::GG(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {
+   void MD5::GG(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac) {
       a = rotateLeft(a + G(b, c, d) + x + ac, s) + b;
    }
 
-   void MD5::HH(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {
+   void MD5::HH(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac) {
       a = rotateLeft(a + H(b, c, d) + x + ac, s) + b;
    }
 
-   void MD5::II(unsigned int &a, unsigned int b, unsigned int c, unsigned int d, unsigned int x, unsigned int s, unsigned int ac) {
+   void MD5::II(::u32 &a, ::u32 b, ::u32 c, ::u32 d, ::u32 x, ::u32 s, ::u32 ac) {
       a = rotateLeft(a + I(b, c, d) + x + ac, s) + b;
    }
 
@@ -123,16 +123,16 @@ namespace subsystem
       m_state[3] = 0x10325476;
    }
 
-   void MD5::decode(unsigned int output[], const unsigned char input[], unsigned int len)
+   void MD5::decode(::u32 output[], const unsigned char input[], ::u32 len)
    {
-      for (unsigned int i = 0, j = 0; j < len; i++, j += 4)
-         output[i] = ((unsigned int)input[j]) | (((unsigned int)input[j+1]) << 8) |
-           (((unsigned int)input[j+2]) << 16) | (((unsigned int)input[j+3]) << 24);
+      for (::u32 i = 0, j = 0; j < len; i++, j += 4)
+         output[i] = ((::u32)input[j]) | (((::u32)input[j+1]) << 8) |
+           (((::u32)input[j+2]) << 16) | (((::u32)input[j+3]) << 24);
    }
 
-   void MD5::encode(unsigned char output[], const unsigned int input[], unsigned int len)
+   void MD5::encode(unsigned char output[], const ::u32 input[], ::u32 len)
    {
-      for (unsigned int i = 0, j = 0; j < len; i++, j += 4) {
+      for (::u32 i = 0, j = 0; j < len; i++, j += 4) {
          output[j] = input[i] & 0xff;
          output[j+1] = (input[i] >> 8) & 0xff;
          output[j+2] = (input[i] >> 16) & 0xff;
@@ -142,7 +142,7 @@ namespace subsystem
 
    void MD5::transform(const unsigned char block[BLOCKSIZE])
    {
-      unsigned int a = m_state[0], b = m_state[1], c = m_state[2], d = m_state[3], x[16];
+      ::u32 a = m_state[0], b = m_state[1], c = m_state[2], d = m_state[3], x[16];
       decode (x, block, BLOCKSIZE);
 
       /* Round 1 */
@@ -226,10 +226,10 @@ namespace subsystem
       memset(x, 0, sizeof(x));
    }
 
-   void MD5::update(const unsigned char input[], unsigned int length)
+   void MD5::update(const unsigned char input[], ::u32 length)
    {
       // compute number of bytes mod 64
-      unsigned int index = m_count[0] / 8 % BLOCKSIZE;
+      ::u32 index = m_count[0] / 8 % BLOCKSIZE;
 
       // Update number of bits
       if ((m_count[0] += (length << 3)) < (length << 3))
@@ -237,9 +237,9 @@ namespace subsystem
       m_count[1] += (length >> 29);
 
       // number of bytes we need to fill in m_buffer
-      unsigned int firstpart = 64 - index;
+      ::u32 firstpart = 64 - index;
 
-      unsigned int i;
+      ::u32 i;
 
       // transform as many times as possible.
       if (length >= firstpart)
@@ -261,7 +261,7 @@ namespace subsystem
       memcpy(&m_buffer[index], &input[i], length-i);
    }
 
-   void MD5::update(const char input[], unsigned int length)
+   void MD5::update(const char input[], ::u32 length)
    {
       update((const unsigned char*)input, length);
    }
@@ -280,8 +280,8 @@ namespace subsystem
          encode(bits, m_count, 8);
 
          // pad out to 56 mod 64.
-         unsigned int index = m_count[0] / 8 % 64;
-         unsigned int padLen = (index < 56) ? (56 - index) : (120 - index);
+         ::u32 index = m_count[0] / 8 % 64;
+         ::u32 padLen = (index < 56) ? (56 - index) : (120 - index);
          update(padding, padLen);
 
          // Append length (before padding)

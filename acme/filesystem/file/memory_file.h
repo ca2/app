@@ -39,7 +39,7 @@ inline void inline_byte_array_copy(unsigned char * target, const unsigned char *
          target[2] = source[2];
       break;
    case 4:
-      *(unsigned int *)target = *(unsigned int *)source;
+      *(::u32 *)target = *(::u32 *)source;
       break;
    case 5:
          target[0] = source[0];
@@ -66,7 +66,7 @@ inline void inline_byte_array_copy(unsigned char * target, const unsigned char *
          target[6] = source[6];
       break;
    case 8:
-      *(unsigned long long *)target = *(unsigned long long *)source;
+      *(::u64 *)target = *(::u64 *)source;
       break;
    default:
       ::memory_copy(target, source, s);
@@ -225,7 +225,7 @@ public:
    }
 
 
-   inline bool _get_unsigned_long_long(unsigned long long & hn)
+   inline bool _get_unsigned_long_long(::u64 & hn)
    {
 
       if (_get_left() < 8)
@@ -235,7 +235,7 @@ public:
 
       }
 
-      hn = *((unsigned long long *)&(m_pmemory.m_p->data()[m_position]));
+      hn = *((::u64 *)&(m_pmemory.m_p->data()[m_position]));
 
       m_position += 8;
 
@@ -244,10 +244,10 @@ public:
    }
 
 
-   inline unsigned long long get_u64_unbounded()
+   inline ::u64 get_u64_unbounded()
    {
 
-      auto u = *(unsigned long long *)(m_pbyte + m_position);
+      auto u = *(::u64 *)(m_pbyte + m_position);
 
       m_position += 8;
 
@@ -258,7 +258,7 @@ public:
 
    int get_unsigned_char() override;
    int get_unsigned_short() override;
-   bool get_unsigned_long_long(unsigned long long & hn) override;
+   bool get_unsigned_long_long(::u64 & hn) override;
    bool is_end_of_file() const override;
 
 

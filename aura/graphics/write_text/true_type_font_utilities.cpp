@@ -27,9 +27,9 @@ typedef struct _tagTT_OFFSET_TABLE
 typedef struct _tagTT_TABLE_DIRECTORY
 {
    char	szTag[4];			//table name
-   unsigned int	uCheckSum;			//Check sum
-   unsigned int	uOffset;			//Offset from beginning of file
-   unsigned int	uLength;			//length of the table in bytes
+   ::u32	uCheckSum;			//Check sum
+   ::u32	uOffset;			//Offset from beginning of file
+   ::u32	uLength;			//length of the table in bytes
 } TT_TABLE_DIRECTORY;
 
 typedef struct _tagTT_NAME_TABLE_HEADER

@@ -461,7 +461,7 @@ bool tokenizer::_01Read(string &str)
 }
 
 
-bool tokenizer::_01Read(unsigned int & user)
+bool tokenizer::_01Read(::u32 & user)
 {
 
    int i;
@@ -473,7 +473,7 @@ bool tokenizer::_01Read(unsigned int & user)
 
    }
 
-   user = (unsigned int) i;
+   user = (::u32) i;
 
    return true;
 
@@ -499,7 +499,7 @@ bool tokenizer::_01Read(int &i)
 }
 
 
-bool tokenizer::_01ReadHex(unsigned int & user)
+bool tokenizer::_01ReadHex(::u32 & user)
 {
 
    int i;
@@ -511,7 +511,7 @@ bool tokenizer::_01ReadHex(unsigned int & user)
 
    }
 
-   user = (unsigned int) i;
+   user = (::u32) i;
 
    return true;
 

@@ -62,7 +62,7 @@ cpu_features::cpu_features()
    bool osUsesXSAVE_XRSTORE = (cpuInfo[2] & (1 << 27)) != 0;
    if (m_bAVX && osUsesXSAVE_XRSTORE)
    {
-      unsigned long long xcrFeatureMask =
+      ::u64 xcrFeatureMask =
          _xgetbv(_XCR_XFEATURE_ENABLED_MASK);
 
       // XMM (bit 1) and YMM (bit 2)

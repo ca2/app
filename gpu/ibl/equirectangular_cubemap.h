@@ -33,8 +33,8 @@ namespace gpu
          int hdri;
          };
 
-         const unsigned int m_uCubemapWidth = 2048;
-         const unsigned int m_uCubemapHeight = 2048;
+         const ::u32 m_uCubemapWidth = 2048;
+         const ::u32 m_uCubemapHeight = 2048;
 
          ::pointer<::gpu::shader>            m_pshaderHdri;
          //::pointer<::gpu::ibl::hdri_cube>    m_phdricube;

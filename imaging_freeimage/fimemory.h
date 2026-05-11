@@ -23,7 +23,7 @@ public:
    {
 
 
-      m_pfimemory = FreeImage_OpenMemory(memory.data(), (unsigned int) memory.size());
+      m_pfimemory = FreeImage_OpenMemory(memory.data(), (::u32) memory.size());
 
    }
 

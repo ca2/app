@@ -20,7 +20,7 @@ namespace acme
 {
 extern double g_machtime_conversion_factor;
 } // namespace acme
-void ns_Sleep(unsigned int uiMillis);
+void ns_Sleep(::u32 uiMillis);
 
 
 CLASS_DECL_ACME long long _get_nanosecond()
@@ -32,7 +32,7 @@ CLASS_DECL_ACME long long _get_nanosecond()
    //
    //   clock_get_time(g_cclock, &mts);
    //
-   //   return ((unsigned long long) mts.tv_sec * (unsigned long long)1000 * (unsigned long long)1000 * (unsigned long long)1000 )+ ((unsigned long long) mts.tv_nsec);
+   //   return ((::u64) mts.tv_sec * (::u64)1000 * (::u64)1000 * (::u64)1000 )+ ((::u64) mts.tv_nsec);
    
 }
 

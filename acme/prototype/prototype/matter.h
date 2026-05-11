@@ -25,7 +25,7 @@ public:
    union
    {
 
-      unsigned int       m_uError;
+      ::u32       m_uError;
 
       struct
       {
@@ -178,12 +178,12 @@ public:
 //   inline void clear(const ::eobject& eobject) { m_eobject -= eobject; }
 
 
-   //inline unsigned long long get_object_flag() { return m_eobject; }
+   //inline ::u64 get_object_flag() { return m_eobject; }
 
 
    //inline bool is(enum_matter ematter) const { return (m_ematter & ematter) == ematter; }
-   //inline void set(enum_matter ematter) { m_ematter = (enum_matter) ((unsigned int)(m_ematter) | (unsigned int)(ematter)); }
-   //inline void unset(enum_matter ematter) { m_ematter = (enum_matter)((unsigned int)(m_ematter) & (~(unsigned int)(ematter))); }
+   //inline void set(enum_matter ematter) { m_ematter = (enum_matter) ((::u32)(m_ematter) | (::u32)(ematter)); }
+   //inline void unset(enum_matter ematter) { m_ematter = (enum_matter)((::u32)(m_ematter) & (~(::u32)(ematter))); }
 
 
    //inline bool is_finishing() const { return is(e_element_finishing); }

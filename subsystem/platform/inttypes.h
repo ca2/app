@@ -29,8 +29,8 @@
 // Defines unsigned types
 //typedef unsigned char       unsigned char;
 //typedef unsigned short      unsigned short;
-//typedef unsigned int        unsigned int;
-//typedef unsigned long long  unsigned long long;
+//typedef ::u32        ::u32;
+//typedef ::u64  ::u64;
 
 // Defines signed types
 //typedef signed char         char;

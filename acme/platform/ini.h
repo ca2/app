@@ -22,7 +22,7 @@ namespace acme
 
 //typedef unsigned long DWORD;
 //typedef int BOOL;
-//typedef unsigned int UINT;
+//typedef ::u32 UINT;
 
 //#ifndef TRUE
 //#define TRUE 1
@@ -39,29 +39,29 @@ CLASS_DECL_ACME int WritePrivateProfileString(
                                 const char *lpFileName
                                 );
 
-CLASS_DECL_ACME unsigned int GetPrivateProfileString(
+CLASS_DECL_ACME ::u32 GetPrivateProfileString(
                                const char *lpAppName,
                                const char *lpKeyName,
                                const char *lpDefault,
-                               char *lpReturnedString, unsigned int nSize,
+                               char *lpReturnedString, ::u32 nSize,
                                const char *lpFileName
                                );
 
-CLASS_DECL_ACME unsigned int GetPrivateProfileInt(
+CLASS_DECL_ACME ::u32 GetPrivateProfileInt(
                            const char *lpAppName,
                            const char *lpKeyName,
                            int nDefault,
                            const char *lpFileName
                            );
 
-CLASS_DECL_ACME unsigned int GetPrivateProfileSection(
+CLASS_DECL_ACME ::u32 GetPrivateProfileSection(
                                 const char *lpAppName,
-                                char *lpReturnedString, unsigned int nSize,
+                                char *lpReturnedString, ::u32 nSize,
                                 const char *lpFileName
                                 );
 
-CLASS_DECL_ACME unsigned int GetPrivateProfileSectionNames(
-                                     char *lpszReturnBuffer, unsigned int nSize,
+CLASS_DECL_ACME ::u32 GetPrivateProfileSectionNames(
+                                     char *lpszReturnBuffer, ::u32 nSize,
                                      const char *lpFileName
                                      );
 //

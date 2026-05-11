@@ -100,7 +100,7 @@ CLASS_DECL_AQUA int waveout_start(LPWAVEOUT pwaveout)
 }
 
 
-CLASS_DECL_AQUA int waveout_write(LPWAVEOUT pwaveout, const void * pdata, unsigned int s)
+CLASS_DECL_AQUA int waveout_write(LPWAVEOUT pwaveout, const void * pdata, ::u32 s)
 {
 
    return (*pwaveout->waveout_write)(pwaveout->waveoutcontext, pdata, s);

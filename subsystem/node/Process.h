@@ -105,7 +105,7 @@ namespace subsystem
        * Returns exit code of terminated process.
        * @throws SystemException on fail.
        */
-      virtual unsigned int getExitCode() = 0;
+      virtual ::u32 getExitCode() = 0;
 
       /**
        * Returns the process handle if process already run and zero otherwise.
@@ -267,7 +267,7 @@ namespace subsystem
        * Returns exit code of terminated process.
        * @throws SystemException on fail.
        */
-      unsigned int getExitCode() override
+      ::u32 getExitCode() override
       {
 
          return m_pprocess->getExitCode();

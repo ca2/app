@@ -42,7 +42,7 @@ namespace graphics3d
       using shape = ::gpu::model_data < Vertex >;
       //struct shape {
       //   ::array<float> vertexes;  // Positions, colors, texture coordinates, and normals
-      //   ::array<unsigned int> indexes;
+      //   ::array<::u32> indexes;
       //};
 
       shape_factory();
@@ -56,8 +56,8 @@ namespace graphics3d
       // Generate a wall (XY plane by default) with position, texture coords, and normals
       virtual ::pointer<::graphics3d::renderable> create_wall(::gpu::context * pgpucontext, float width, float height);
 
-      virtual ::pointer<::graphics3d::renderable> create_sphere(::gpu::context * pgpucontext, float radius, unsigned int sectorCount,
-                                                                      unsigned int stackCount);
+      virtual ::pointer<::graphics3d::renderable> create_sphere(::gpu::context * pgpucontext, float radius, ::u32 sectorCount,
+                                                                      ::u32 stackCount);
 
       //// Generate a ray with a specified length
       //virtual shape CreateRay(float length);

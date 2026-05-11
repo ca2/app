@@ -80,7 +80,7 @@ namespace filemanager
             public:
 
                string             m_strFile;
-               unsigned int              m_uiTimer;
+               ::u32              m_uiTimer;
 
             };
 

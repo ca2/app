@@ -81,7 +81,7 @@ namespace sphere
 
       //virtual void _001OnTheme(::message::message * pmessage);
 
-      virtual unsigned int guess_code_page(const ::scoped_string & scopedstr) override;
+      virtual ::u32 guess_code_page(const ::scoped_string & scopedstr) override;
 
       ::colorertake5::ParserFactory                &  parser_factory();
 

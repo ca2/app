@@ -68,7 +68,7 @@ namespace data
       //::collection::index              m_iLevel;
       ::pointer < ITEM >               m_pitem;
       //uptr                             m_dwUser;
-      //unsigned int                     m_etreeitemstate;
+      //::u32                     m_etreeitemstate;
       //uptr                             m_dwMetaData;
 
 
@@ -480,7 +480,7 @@ namespace data
 
          }
 
-         if (ptreeitem->m_dwUser == (unsigned int)iUserData)
+         if (ptreeitem->m_dwUser == (::u32)iUserData)
          {
 
             return ptreeitem;

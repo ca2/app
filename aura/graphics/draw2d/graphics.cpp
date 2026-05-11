@@ -712,7 +712,7 @@ namespace draw2d
    //}
 
 
-   //unsigned int graphics::RealizePalette()
+   //::u32 graphics::RealizePalette()
    //{
 
 
@@ -1939,7 +1939,7 @@ namespace draw2d
    }
 
 
-   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstrString, character_count nCount, int * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1955,7 +1955,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::ExtTextOut(double x, double y, unsigned int nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstr, int * pDxWidths)
+   //void graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::double_rectangle & rectangle, const ::scoped_string & scopedstr, int * pDxWidths)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -2051,7 +2051,7 @@ namespace draw2d
    //}
 
 
-   unsigned int graphics::GetTextAlign()
+   ::u32 graphics::GetTextAlign()
    {
 
       return -1;
@@ -2108,7 +2108,7 @@ namespace draw2d
 
 
    // ::draw2d::graphics_pointer 3.1 Specific functions
-   unsigned int graphics::SetBoundsRect(const ::double_rectangle & rectangleBounds, unsigned int flags)
+   ::u32 graphics::SetBoundsRect(const ::double_rectangle & rectangleBounds, ::u32 flags)
    {
 
       __UNREFERENCED_PARAMETER(rectangleBounds);
@@ -2119,7 +2119,7 @@ namespace draw2d
    }
 
 
-   unsigned int graphics::GetBoundsRect(::double_rectangle * pRectBounds, unsigned int flags)
+   ::u32 graphics::GetBoundsRect(::double_rectangle * pRectBounds, ::u32 flags)
    {
 
       __UNREFERENCED_PARAMETER(pRectBounds);
@@ -2541,7 +2541,7 @@ namespace draw2d
    }
 
 
-   void graphics::AddMetaFileComment(unsigned int nDataSize, const unsigned char * pCommentData)
+   void graphics::AddMetaFileComment(::u32 nDataSize, const unsigned char * pCommentData)
    {
 
       __UNREFERENCED_PARAMETER(nDataSize);
@@ -3055,7 +3055,7 @@ namespace draw2d
    //
    //   }
    //
-   //   void graphics::ModifyWorldTransform(const XFORM* pXform, unsigned int iMode)
+   //   void graphics::ModifyWorldTransform(const XFORM* pXform, ::u32 iMode)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(pXform);
@@ -3551,7 +3551,7 @@ namespace draw2d
    //   }
 
 
-   unsigned int graphics::SetTextAlign(unsigned int nFlags)
+   ::u32 graphics::SetTextAlign(::u32 nFlags)
    {
       __UNREFERENCED_PARAMETER(nFlags);
 
@@ -3573,20 +3573,20 @@ namespace draw2d
    //   return -1;
    //}
 
-   //unsigned int graphics::SetMapperFlags(unsigned int dwFlag)
+   //::u32 graphics::SetMapperFlags(::u32 dwFlag)
    //{
    //   __UNREFERENCED_PARAMETER(dwFlag);
 
    //   return -1;
    //}
 
-   unsigned int graphics::GetLayout()
+   ::u32 graphics::GetLayout()
    {
 
       return -1;
    }
 
-   unsigned int graphics::SetLayout(unsigned int dwSetLayout)
+   ::u32 graphics::SetLayout(::u32 dwSetLayout)
    {
       __UNREFERENCED_PARAMETER(dwSetLayout);
 

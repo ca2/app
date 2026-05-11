@@ -27,7 +27,7 @@ inline const void * _memory_find(const void* l, memsize l_len, const void* s, me
 inline const void * _memory_find_unsigned_char(const void* l, int i, memsize len)
 {
 
-    auto u = (unsigned char) (*((unsigned int*)(&i)) & 0xff);
+    auto u = (unsigned char) (*((::u32*)(&i)) & 0xff);
 
     auto p = (const unsigned char*)l;
 

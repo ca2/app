@@ -524,8 +524,8 @@ using long_long_array_base = numeric_array_base < long long >;
 
 using unsigned_char_array_base = numeric_array_base < unsigned char >;
 using unsigned_short_array_base = numeric_array_base < unsigned short >;
-using unsigned_int_array_base = numeric_array_base < unsigned int >;
-using unsigned_long_long_array_base = numeric_array_base < unsigned long long >;
+using unsigned_int_array_base = numeric_array_base < ::u32 >;
+using unsigned_long_long_array_base = numeric_array_base < ::u64 >;
 
 using float_array_base = numeric_array_base < float >;
 using double_array_base = numeric_array_base < double >;
@@ -534,7 +534,7 @@ using double_array_base = numeric_array_base < double >;
 
 using char_array = ::array_particle < char_array_base >;
 using short_array = ::array_particle < short_array_base >;
-using int_array = ::array_particle < int_array_base >;
+using i32_array = ::array_particle < int_array_base >;
 using long_long_array = ::array_particle < long_long_array_base >;
 
 using unsigned_char_array = ::array_particle < unsigned_char_array_base >;
@@ -553,7 +553,7 @@ using index_array = ::array_particle < index_array_base >;
 using count_array = ::array_particle < count_array_base >;
 
 
-using unsigned_int_array_base = numeric_array_base < unsigned int >;
+using unsigned_int_array_base = numeric_array_base < ::u32 >;
 
 using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
 

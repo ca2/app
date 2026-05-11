@@ -15,10 +15,10 @@ namespace draw2d
    public:
  
 
-      unsigned int                         CtlType;
-      unsigned int                         CtlID;
-      unsigned int                         itemID;
-      unsigned int                         itemAction;
+      ::u32                         CtlType;
+      ::u32                         CtlID;
+      ::u32                         itemID;
+      ::u32                         itemAction;
       int                           itemState;
       ::acme::windowing::window * m_pacmewindowingwindowItem;
       ::draw2d::graphics_pointer    m_pgraphics;

@@ -59,7 +59,7 @@ static void
 _ReadProc(png_structp png_ptr, unsigned char *data, png_size_t int_size)
 {
    pfi_ioStructure pfio = (pfi_ioStructure)png_get_io_ptr(png_ptr);
-   unsigned n = pfio->s_io->read_proc(data, (unsigned int)int_size, 1, pfio->s_handle);
+   unsigned n = pfio->s_io->read_proc(data, (::u32)int_size, 1, pfio->s_handle);
    if(size && (n == 0))
    {
       throw "Read error: invalid or corrupted PNG file";
@@ -70,7 +70,7 @@ static void
 _WriteProc(png_structp png_ptr, unsigned char *data, png_size_t int_size)
 {
    pfi_ioStructure pfio = (pfi_ioStructure)png_get_io_ptr(png_ptr);
-   pfio->s_io->write_proc(data, (unsigned int)int_size, 1, pfio->s_handle);
+   pfio->s_io->write_proc(data, (::u32)int_size, 1, pfio->s_handle);
 }
 
 void
@@ -116,7 +116,7 @@ static int_bool
          tag = FreeImage_CreateTag();
          if(!tag) return false;
 
-         unsigned int tag_length;
+         ::u32 tag_length;
 
          if(text_ptr[i].text_length & I32_MINIMUM)
          {
@@ -127,7 +127,7 @@ static int_bool
             }
             else
             {
-               tag_length = (unsigned int) text_ptr[i].itxt_length;
+               tag_length = (::u32) text_ptr[i].itxt_length;
             }
 #else
             continue;
@@ -136,13 +136,13 @@ static int_bool
 #ifdef PNG_iTXt_SUPPORTED
          else if(text_ptr[i].itxt_length & I32_MINIMUM)
          {
-            tag_length = (unsigned int) text_ptr[i].text_length;
+            tag_length = (::u32) text_ptr[i].text_length;
          }
 #endif
          else
          {
 #ifdef PNG_iTXt_SUPPORTED
-            tag_length = (unsigned int) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
+            tag_length = (::u32) maximum(text_ptr[i].text_length, text_ptr[i].itxt_length);
 #else
             tag_length = text_ptr[i].text_length;
 #endif

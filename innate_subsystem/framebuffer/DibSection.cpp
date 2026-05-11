@@ -125,7 +125,7 @@ namespace innate_subsystem
 //        m_pparticleThis->stretchFromDibSection(srcRect, rectangleTarget);
 //     }
 //
-//     void DibSection::blitToDibSection(const ::int_rectangle &  rect, unsigned int flags)
+//     void DibSection::blitToDibSection(const ::int_rectangle &  rect, ::u32 flags)
 //     {
 //        m_pparticleThis->blitToDibSection(rect, flags);
 //        // if (BitBlt(m_memDC, rect.left, rect.top, rect.width(), rect.height(),
@@ -135,7 +135,7 @@ namespace innate_subsystem
 //        //            }
 //     }
 //
-//     void DibSection::blitFromDibSection(const ::int_rectangle &  rect, unsigned int flags)
+//     void DibSection::blitFromDibSection(const ::int_rectangle &  rect, ::u32 flags)
 //     {
 //        m_pparticleThis->blitFromDibSection(rect, flags);
 //        // if (BitBlt(m_targetDC, rect.left + m_srcOffsetX, rect.top + m_srcOffsetY,
@@ -145,7 +145,7 @@ namespace innate_subsystem
 //        //            }
 //     }
 //
-//     void DibSection::stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget, unsigned int flags)
+//     void DibSection::stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget, ::u32 flags)
 //     {
 //        m_pparticleThis->stretchFromDibSection(srcRect, rectangleTarget, flags);
 //        //    SetStretchBltMode(m_targetDC, HALFTONE);
@@ -166,13 +166,13 @@ namespace innate_subsystem
 //     //       pBmi->bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
 //     //       unsigned char index = 0;
 //     //       for (int i = 0; i < 256; i++, index++) {
-//     //          unsigned int red = (index >> pf.redShift) & pf.redMax;
+//     //          ::u32 red = (index >> pf.redShift) & pf.redMax;
 //     //          red = red * 0xFF / pf.redMax;
 //     //          paletteBMI->rgbQuad[index].rgbRed = (BYTE)red;
-//     //          unsigned int green = (index >> pf.greenShift) & pf.greenMax;
+//     //          ::u32 green = (index >> pf.greenShift) & pf.greenMax;
 //     //          green = green * 0xFF / pf.greenMax;
 //     //          paletteBMI->rgbQuad[index].rgbGreen = (BYTE)(green);
-//     //          unsigned int blue = (index >> pf.blueShift) & pf.blueMax;
+//     //          ::u32 blue = (index >> pf.blueShift) & pf.blueMax;
 //     //          blue = blue * 0xFF / pf.blueMax;
 //     //          paletteBMI->rgbQuad[index].rgbBlue  = (BYTE)blue;
 //     //       }

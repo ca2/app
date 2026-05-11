@@ -7,7 +7,7 @@
 #include "acme/prototype/numeric/types.h"
 
 
-typedef unsigned int dword;
+typedef ::u32 dword;
 typedef int int_bool;
 
 

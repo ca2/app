@@ -1723,11 +1723,11 @@ namespace experience_tranquillum
 
       //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      //   unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
+      //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
       //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
-      //   unsigned int uImage = psession->userex()->menu()->command_image(item.id());
+      //   ::u32 uImage = psession->userex()->menu()->command_image(item.id());
 
       //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -2029,11 +2029,11 @@ namespace experience_tranquillum
 
       //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
-      //   unsigned int nStyle = ptoolbar->GetButtonStyle(iItem);
+      //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
       //   bool bHover = ptoolbar->m_pitemHover == iItem;
 
-      //   unsigned int uImage = psession->userex()->menu()->command_image(item.id());
+      //   ::u32 uImage = psession->userex()->menu()->command_image(item.id());
 
       //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;

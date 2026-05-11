@@ -40,7 +40,7 @@ namespace subsystem
 //   {
 //      //initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
 //   }
-//   // EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter)
+//   // EmulatedAnonymousPipeFactory::EmulatedAnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter)
 //   // //: m_bufferSize(bufferSize),
 //   //   //m_plogwriter(plogwriter)
 //   // {
@@ -51,7 +51,7 @@ namespace subsystem
 //   {
 //   }
 //
-//   void EmulatedAnonymousPipeFactory::initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter)
+//   void EmulatedAnonymousPipeFactory::initialize_emulated_anonymous_pipe_factory(::u32 bufferSize, LogWriter *plogwriter)
 ////: m_bufferSize(bufferSize),
 //  //m_plogwriter(plogwriter)
 //{

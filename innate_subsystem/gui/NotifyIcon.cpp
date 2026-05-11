@@ -137,7 +137,7 @@ namespace innate_subsystem
 //
 //    void
 //    NotifyIcon::showBalloon(const char *message, const char *caption,
-//                          unsigned int timeoutMillis)
+//                          ::u32 timeoutMillis)
 //    {
 //       // m_nid.uFlags = NIF_INFO;
 //       // _tcsncpy_s(m_nid.szInfo, 255, message, _TRUNCATE);

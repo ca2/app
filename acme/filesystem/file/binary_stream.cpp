@@ -81,7 +81,7 @@ bool binary_stream::is_end_of_file() const
 }
 
 
-unsigned long long binary_stream::read_buffer_length()
+::u64 binary_stream::read_buffer_length()
 {
 
    auto i = m_pfile->get_unsigned_char();
@@ -122,7 +122,7 @@ unsigned long long binary_stream::read_buffer_length()
       else
       {
 
-         unsigned long long ull;
+         ::u64 ull;
 
          if (!m_pfile->get_unsigned_long_long(ull))
          {
@@ -398,7 +398,7 @@ binary_stream & binary_stream::operator <<(const block & block)
 binary_stream & binary_stream::operator >>(memory_base & m)
 {
 
-   unsigned long long u = 0;
+   ::u64 u = 0;
 
    read_length(u);
 
@@ -732,7 +732,7 @@ binary_stream & binary_stream::operator >>(string & str)
 binary_stream & binary_stream::operator >>(block & block)
 {
 
-   unsigned long long u = 0;
+   ::u64 u = 0;
 
    u = read_buffer_length();
 

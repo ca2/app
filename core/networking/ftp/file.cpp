@@ -115,7 +115,7 @@ namespace ftp
    }
 
 
-   unsigned int file::GetLocalStreamSize() const
+   ::u32 file::GetLocalStreamSize() const
    {
 
       if (m_file.is_null())
@@ -125,12 +125,12 @@ namespace ftp
 
       }
 
-      return (unsigned int) m_file->size();
+      return (::u32) m_file->size();
 
    }
 
 
-   void file::SetLocalStreamOffset(unsigned int dwOffsetFromBeginOfStream)
+   void file::SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream)
    {
       Seek(dwOffsetFromBeginOfStream, ::e_seek_set);
    }

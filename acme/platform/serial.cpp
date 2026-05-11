@@ -24,7 +24,7 @@ namespace serial
    }
    
    
-   void serial::initialize_serial(const string& port, unsigned int baudrate, struct timeout timeout,
+   void serial::initialize_serial(const string& port, ::u32 baudrate, struct timeout timeout,
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
@@ -367,7 +367,7 @@ namespace serial
    }
 
 
-   void serial::setBaudrate(unsigned int baudrate)
+   void serial::setBaudrate(::u32 baudrate)
    {
 
       //m_pimpl->setBaudrate(baudrate);
@@ -375,10 +375,10 @@ namespace serial
    }
 
 
-   unsigned int serial::getBaudrate() const
+   ::u32 serial::getBaudrate() const
    {
       
-      //return unsigned int(m_pimpl->getBaudrate());
+      //return ::u32(m_pimpl->getBaudrate());
 
       return 0;
 
@@ -690,7 +690,7 @@ namespace serial
 
 
 //
-//   void serial::initialize_serial(const string & port, unsigned int baudrate, timeout timeout,
+//   void serial::initialize_serial(const string & port, ::u32 baudrate, timeout timeout,
 //                                        enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
 //                                        enum_flow_control eflowcontrol)
 //   {
@@ -700,7 +700,7 @@ namespace serial
 //   }
 //
 //
-//   timeout timeout::simpleTimeout(unsigned int uTimeout)
+//   timeout timeout::simpleTimeout(::u32 uTimeout)
 //   {
 //#ifdef WINDOWS
 //      return timeout(MAXDWORD, uTimeout, MAXDWORD, uTimeout, 0);
@@ -999,7 +999,7 @@ namespace serial
 //}
 //
 //
-//void serial::setBaudrate(unsigned int baudrate)
+//void serial::setBaudrate(::u32 baudrate)
 //{
 //
 //   this->setBaudrate(baudrate);
@@ -1007,7 +1007,7 @@ namespace serial
 //}
 //
 //
-//unsigned int serial::getBaudrate() const
+//::u32 serial::getBaudrate() const
 //{
 //
 //   return 9600;

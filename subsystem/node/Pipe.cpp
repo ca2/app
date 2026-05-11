@@ -39,7 +39,7 @@ namespace subsystem
 //       //m_pparticleThis->initialize_pipe(maxPortionSize);
 //    }
 //    //
-//    // Pipe::Pipe(unsigned int maxPortionSize)
+//    // Pipe::Pipe(::u32 maxPortionSize)
 //    // // : m_totalRead(0),
 //    // //   m_totalWrote(0),
 //    // //   m_maxPortionSize(maxPortionSize)
@@ -55,7 +55,7 @@ namespace subsystem
 //    }
 //
 //
-//    void Pipe::initialize_pipe(unsigned int maxPortionSize)
+//    void Pipe::initialize_pipe(::u32 maxPortionSize)
 //    {
 //
 //
@@ -64,7 +64,7 @@ namespace subsystem
 //    }
 //
 //
-//    unsigned int Pipe::getMaxPortionSize()
+//    ::u32 Pipe::getMaxPortionSize()
 //    {
 //       //return m_maxPortionSize;
 //       return m_pparticleThis->getMaxPortionSize();

@@ -84,7 +84,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       }
       else if(bInside)
       {
-         //unsigned int fwKeys = pusermessage->m_wparam; // key flags
+         //::u32 fwKeys = pusermessage->m_wparam; // key flags
          if(emessage == ::user::e_message_left_button_down)
          {
             if(viewline.CalcChar(pointCursor, iChar))
@@ -475,7 +475,7 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
    }
    else if(bInside)
    {
-      //             unsigned int fwKeys = user; // key flags
+      //             ::u32 fwKeys = user; // key flags
       if(viewline.CalcChar(point1, iChar))
       {
          iLine = viewline.m_iIndex;
@@ -547,7 +547,7 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
    }
    else if(bInside && GetState() == e_state_tracking)
    {
-      //unsigned int fwKeys = user; // key flags
+      //::u32 fwKeys = user; // key flags
       if(GetState() == e_state_tracking)
       {
          if(viewline.m_iaPosition.get_size() <= 0)
@@ -633,7 +633,7 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
    }
    else if(bInside)
    {
-      //unsigned int fwKeys = user; // key flags
+      //::u32 fwKeys = user; // key flags
       if(GetState() == e_state_tracking)
       {
          if(viewline.m_iaPosition.get_size() <= 0)
@@ -680,9 +680,9 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
    return false;
 }
 
-bool xfplayer_impact_line_selection::OnTimer(xfplayer_impact_line & viewline, unsigned int user)
+bool xfplayer_impact_line_selection::OnTimer(xfplayer_impact_line & viewline, ::u32 user)
 {
-   unsigned int uEvent = user;
+   ::u32 uEvent = user;
    if(uEvent == ::e_timer_hover)
    {
       if(viewline.is_hover())

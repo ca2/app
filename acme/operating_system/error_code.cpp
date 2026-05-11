@@ -91,7 +91,7 @@ bool error_code::is_set() const
    else if(m_etype == e_error_code_type_last_error)
    {
       
-      ::last_error lasterror((unsigned int) m_iOsError);
+      ::last_error lasterror((::u32) m_iOsError);
       
       strErrorMessage = ::windows::last_error_message(lasterror);
       

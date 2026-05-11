@@ -76,16 +76,16 @@ namespace innate_subsystem
       //  * @param [out] string storage for string from resources.
       //  * @return true if string is loaded, false otherwise.
       //  */
-      // virtual bool loadString(unsigned int id, ::string & str);
-      // virtual ::string loadString(unsigned int id);
+      // virtual bool loadString(::u32 id, ::string & str);
+      // virtual ::string loadString(::u32 id);
 
       /**
        * Loads accelerator from resources.
        * @param [in] id identifier of accelerator in resource file.
        * @return handle of accelerator if it's loaded.
        */
-      //HACCEL loadAccelerator(unsigned int id);
-      virtual void * loadAccelerator(unsigned int id);
+      //HACCEL loadAccelerator(::u32 id);
+      virtual void * loadAccelerator(::u32 id);
 
       /**
        * Loads standart cursor.
@@ -98,8 +98,8 @@ namespace innate_subsystem
        * @param [in] id identifier of accelerator in resource file.
        * @return handle of cursor if it's loaded.
        */
-      //HCURSOR loadCursor(unsigned int id);
-      virtual ::pointer < CursorInterface > loadCursor(unsigned int id);
+      //HCURSOR loadCursor(::u32 id);
+      virtual ::pointer < CursorInterface > loadCursor(::u32 id);
 
    //protected:
       /**

@@ -36,9 +36,9 @@ int pbAttrib[] = { GLX_PBUFFER_WIDTH, WIDTH,GLX_PBUFFER_HEIGHT, HEIGHT,GLX_PRESE
 //PFNWGLRELEASEPBUFFERDCARBPROC                     wglReleasePbufferDCARB;
 //
 //
-//typedef BOOL(WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const int *piAttribIList, const FLOAT *pfAttribFList, unsigned int nMaxFormats, int *piFormats, unsigned int *nNumFormats);
-//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBFVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, unsigned int nAttributes, const int *piAttributes, FLOAT *pfValues);
-//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBIVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, unsigned int nAttributes, const int *piAttributes, int *piValues);
+//typedef BOOL(WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const int *piAttribIList, const FLOAT *pfAttribFList, ::u32 nMaxFormats, int *piFormats, ::u32 *nNumFormats);
+//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBFVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, ::u32 nAttributes, const int *piAttributes, FLOAT *pfValues);
+//typedef BOOL(WINAPI * PFNWGLGETPIXELFORMATATTRIBIVARBPROC) (HDC hdc, int iPixelFormat, int iLayerPlane, ::u32 nAttributes, const int *piAttributes, int *piValues);
 //
 //PFNWGLCHOOSEPIXELFORMATARBPROC                    wglChoosePixelFormatARB;
 //PFNWGLGETPIXELFORMATATTRIBFVARBPROC               wglGetPixelFormatAttribfvARB;
@@ -83,7 +83,7 @@ namespace draw2d_gpu
 
    }
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight, unsigned int nPlanes, unsigned int nBitcount, const void * lpBits, int stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int nWidth, int nHeight, ::u32 nPlanes, ::u32 nBitcount, const void * lpBits, int stride)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -146,7 +146,7 @@ namespace draw2d_gpu
    }
 
 
-   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void* pjBits, unsigned int iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void* pjBits, ::u32 iUsage)
    {
       
       // return false;
@@ -154,14 +154,14 @@ namespace draw2d_gpu
    }
 
 
-   unsigned int bitmap::SetBitmapBits(unsigned int dwCount, const void * lpBits)
+   ::u32 bitmap::SetBitmapBits(::u32 dwCount, const void * lpBits)
    {
 
       //return ::SetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
       return 0;
 
    }
-   //unsigned int bitmap::GetBitmapBits(unsigned int dwCount, LPVOID lpBits) const
+   //::u32 bitmap::GetBitmapBits(::u32 dwCount, LPVOID lpBits) const
    //{
    //   //return ::GetBitmapBits((HBITMAP)get_handle(), dwCount, lpBits);
    //   return 0;
@@ -199,12 +199,12 @@ namespace draw2d_gpu
 
    }
 
-   bool bitmap::LoadBitmap(unsigned int nIDResource)
+   bool bitmap::LoadBitmap(::u32 nIDResource)
    {
       //return attach(::LoadBitmap(::aura::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource)));
       return false;
    }
-   bool bitmap::LoadOEMBitmap(unsigned int nIDBitmap)
+   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
       //return attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
       return false;
@@ -416,7 +416,7 @@ namespace draw2d_gpu
    }
 
 //#ifdef WINDOWS
-//   LRESULT CALLBACK WindowProc(HWND hWnd, unsigned int msg, WPARAM wParam, LPARAM lParam)
+//   LRESULT CALLBACK WindowProc(HWND hWnd, ::u32 msg, WPARAM wParam, LPARAM lParam)
 //   {
 //      static TCHAR szBuffer[32] = { 0 };
 //
@@ -765,7 +765,7 @@ namespace draw2d_gpu
 ////      };
 ////
 ////      int format = 0;
-////      unsigned int matchingFormats = 0;
+////      ::u32 matchingFormats = 0;
 ////
 ////      if (!wglChoosePixelFormatARB(g_hDC, attribList, 0, 1, &format, &matchingFormats))
 ////      {

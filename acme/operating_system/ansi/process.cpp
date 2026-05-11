@@ -18,7 +18,7 @@
 #include <errno.h>
 
 
-CLASS_DECL_ACME int_bool is_process_running(unsigned int pid)
+CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 {
 
    int i = kill(pid, 0);

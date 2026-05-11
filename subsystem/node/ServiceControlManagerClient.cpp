@@ -58,7 +58,7 @@ namespace subsystem
 
 
    //}
-   //// ServiceControlManagerClient::ServiceControlManagerClient(unsigned int uDesiredAccess)
+   //// ServiceControlManagerClient::ServiceControlManagerClient(::u32 uDesiredAccess)
    //// {
    ////    initialize_service_control_manager_client(uDesiredAccess);
    ////    // m_managerHandle = OpenServiceControlManageranager(NULL, NULL, desiredAccess);
@@ -76,7 +76,7 @@ namespace subsystem
    // }
 
 
-   // void ServiceControlManagerClient::initialize_service_control_manager_client(unsigned int desiredAccess)
+   // void ServiceControlManagerClient::initialize_service_control_manager_client(::u32 desiredAccess)
    // {
 
    //   m_pparticleThis->initialize_service_control_manager_client(desiredAccess);

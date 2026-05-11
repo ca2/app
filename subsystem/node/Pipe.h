@@ -40,14 +40,14 @@ namespace subsystem
    public:
 
       //protected:
-      //Pipe(unsigned int maxPortionSize);
+      //Pipe(::u32 maxPortionSize);
       //Pipe();
       //virtual ~PipeInterface() = 0 ;
 
 
-      virtual void initialize_pipe(unsigned int maxPortionSize) = 0;
+      virtual void initialize_pipe(::u32 maxPortionSize) = 0;
 
-      virtual unsigned int getMaxPortionSize() = 0;
+      virtual ::u32 getMaxPortionSize() = 0;
 
       //virtual void *_HANDLE() = 0;
 
@@ -70,9 +70,9 @@ namespace subsystem
       //private:
       virtual void checkPipeFile(::subsystem::FileInterface * pfilePipe) = 0;
       //
-      // unsigned long long m_totalWrote;
-      // unsigned long long m_totalRead;
-      // unsigned int m_maxPortionSize;
+      // ::u64 m_totalWrote;
+      // ::u64 m_totalRead;
+      // ::u32 m_maxPortionSize;
    };
 
    ///using PipeInterface = particle_interface<PipeInterface>;
@@ -90,11 +90,11 @@ namespace subsystem
 
 
       //protected:
-      //Pipe(unsigned int maxPortionSize);
+      //Pipe(::u32 maxPortionSize);
       //Pipe();
       //~Pipe() override;
 
-         void initialize_pipe(unsigned int maxPortionSize) override
+         void initialize_pipe(::u32 maxPortionSize) override
       {
 
          m_ppipe->initialize_pipe(maxPortionSize);
@@ -102,7 +102,7 @@ namespace subsystem
       }
 
 
-      unsigned int getMaxPortionSize() override
+      ::u32 getMaxPortionSize() override
       {
 
          return m_ppipe->getMaxPortionSize();
@@ -150,9 +150,9 @@ namespace subsystem
 
       }
 
-      //unsigned long long m_totalWrote;
-      //unsigned long long m_totalRead;
-      //unsigned int m_maxPortionSize;
+      //::u64 m_totalWrote;
+      //::u64 m_totalRead;
+      //::u32 m_maxPortionSize;
    };
 
    class CLASS_DECL_SUBSYSTEM PipeAggregate :

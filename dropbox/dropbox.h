@@ -80,7 +80,7 @@ namespace dropbox
       // void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction) override;
       //
       //
-      // unsigned int crc32(unsigned int uCrc, const ::block& block) override;
+      // ::u32 crc32(::u32 uCrc, const ::block& block) override;
 
 
    };

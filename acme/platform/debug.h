@@ -354,7 +354,7 @@ typedef struct _MEMORY_STATE
 
 
 
-//CLASS_DECL_ACME string FormatMessageFromSystem(unsigned int dwError);
+//CLASS_DECL_ACME string FormatMessageFromSystem(::u32 dwError);
 
 
 

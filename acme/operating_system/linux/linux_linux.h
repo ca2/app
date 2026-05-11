@@ -19,7 +19,7 @@
 
 
 
-//unsigned int get_tick();
+//::u32 get_tick();
 
 
 

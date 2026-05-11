@@ -115,7 +115,7 @@ namespace innate_subsystem
 //    // }
 //    */
 //    //
-//    // LRESULT FilteredTextBox::windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam)
+//    // LRESULT FilteredTextBox::windowProc(const ::operating_system::window & operatingsystemwindow, ::u32 uMsg, ::wparam wparam, ::lparam lparam)
 //    // {
 //    //    FilteredTextBox *_this = (FilteredTextBox *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 //    //    if (_this == NULL) {

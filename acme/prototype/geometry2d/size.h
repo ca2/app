@@ -72,9 +72,9 @@ public:
    //size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx = cx; this->cy = cy; }
 //   template < prototype_number NUMBER_TYPE >
 //   size_type(NUMBER_TYPE n) noexcept { this->cx = (UNIT_TYPE) n; this->cy = (UNIT_TYPE) n; }
-   //size_type(unsigned int u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
+   //size_type(::u32 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
    //size_type(long long i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
-   //size_type(unsigned long long u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
+   //size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
    //size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
    //size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
 //   explicit size_type(const lparam & lparam) noexcept : size_type(lparam.x, lparam.y) {}
@@ -124,8 +124,8 @@ public:
 
    consteval size2_t semantic_t() const { return {}; }
 
-   unsigned int as_unsigned_int() const noexcept { return as_unsigned_int(this->cx, this->cy); }
-   unsigned long long as_unsigned_long_long() const noexcept { return as_unsigned_long_long(this->cx, this->cy); }
+   ::u32 as_u32() const noexcept { return as_u32(this->cx, this->cy); }
+   ::u64 as_u64() const noexcept { return as_u64(this->cx, this->cy); }
    class lparam lparam() const noexcept { return make_unsigned_int(this->cx, this->cy); }
 
    inline UNIT_TYPE width() const noexcept { return this->cx; }

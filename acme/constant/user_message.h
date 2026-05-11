@@ -6,7 +6,7 @@ namespace user
 {
 
 
-   enum enum_message : unsigned int
+   enum enum_message : ::u32
    {
 
       e_message_undefined = UINT32_MAX,
@@ -221,7 +221,7 @@ namespace user
       // #define WM_RESERVED_037E    0x037E
 
       // WM_FORWARDMSG - used by aura to forward a message to another interaction_impl for processing
-      //   WPARAM - unsigned int dwUserData - defined by ::account::user
+      //   WPARAM - ::u32 dwUserData - defined by ::account::user
       //   LPARAM - MESSAGE * pMsg - a pointer to the MESSAGE structure
       //   return value - 0 if the message was not processed, nonzero if it was
       // #define WM_FORWARDMSG      0x037F

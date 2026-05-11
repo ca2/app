@@ -39,11 +39,11 @@ namespace subsystem
    virtual public ::Particle 
    {
    public:
-      //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
+      //EmulatedAnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter);
       //EmulatedAnonymousPipeFactory();
       //virtual ~EmulatedAnonymousPipeFactoryInterface() = 0 ;
 
-      virtual void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter *plogwriter) = 0;
+      virtual void initialize_emulated_anonymous_pipe_factory(::u32 bufferSize, LogWriter *plogwriter) = 0;
 
       virtual void generatePipes(
          ::pointer < NamedPipeInterface > & serverPipe, bool serverInheritable,
@@ -53,7 +53,7 @@ namespace subsystem
       virtual ::string getUniqPipeName() = 0;
 
       // LogWriter *m_plogwriter;
-      // unsigned int m_bufferSize;
+      // ::u32 m_bufferSize;
    };
 
 
@@ -69,12 +69,12 @@ namespace subsystem
        ImplementCompositeø(EmulatedAnonymousPipeFactory, emulatedanonymousepipefactory)
 
 
-       //EmulatedAnonymousPipeFactory(unsigned int bufferSize, LogWriter *plogwriter);
+       //EmulatedAnonymousPipeFactory(::u32 bufferSize, LogWriter *plogwriter);
        //EmulatedAnonymousPipeFactory();
         //~EmulatedAnonymousPipeFactory() override;
 
 
-          void initialize_emulated_anonymous_pipe_factory(unsigned int bufferSize, LogWriter* plogwriter) override
+          void initialize_emulated_anonymous_pipe_factory(::u32 bufferSize, LogWriter* plogwriter) override
        {
 
           m_pemulatedanonymousepipefactory->initialize_emulated_anonymous_pipe_factory(bufferSize, plogwriter);
@@ -98,7 +98,7 @@ namespace subsystem
        }
 
        //LogWriter *m_plogwriter;
-       //unsigned int m_bufferSize;
+       //::u32 m_bufferSize;
     };
 
        class CLASS_DECL_SUBSYSTEM EmulatedAnonymousPipeFactoryAggregate

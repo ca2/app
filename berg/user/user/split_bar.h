@@ -21,11 +21,11 @@ namespace user
 
       ::collection::index                         m_iIndex;
       split_layout *                m_pparent;
-      unsigned int                           m_dwPosition;
+      ::u32                           m_dwPosition;
       double                        m_dRate;
       double                        m_dMinimumRate;
       double                        m_dMaximumRate;
-      unsigned int                           m_dwMaxPosition;
+      ::u32                           m_dwMaxPosition;
 
 
 

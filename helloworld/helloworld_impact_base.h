@@ -24,7 +24,7 @@ namespace helloworld
       color32_t                m_colorDrawStatus;
 
       ::frequency                  m_frequencyFramesPerSecond;
-      unsigned int                   m_dwRoll;
+      ::u32                   m_dwRoll;
 
       string                  m_strHoverFont;
       string                  m_strNewFont;

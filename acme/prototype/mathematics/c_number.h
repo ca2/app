@@ -229,12 +229,12 @@ class time;
 
 
 ////#ifdef WINDOWS
-//DEFINE_UNIT(CLASS_DECL_ACME, lock_time, unsigned int)
-//DEFINE_UNIT(CLASS_DECL_ACME, tick_time, unsigned int)
+//DEFINE_UNIT(CLASS_DECL_ACME, lock_time, ::u32)
+//DEFINE_UNIT(CLASS_DECL_ACME, tick_time, ::u32)
 ////#endif
 
-//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , unsigned long long)
-//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize    , unsigned long long)
+//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , ::u64)
+//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize    , ::u64)
 //DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize      ,  long long)
 
 
@@ -251,7 +251,7 @@ class time;
    template <>
    inline filesize get_minimum_value < filesize > ()
    {
-      return static_cast < unsigned long long > (0);
+      return static_cast < ::u64 > (0);
    }
 
    template <>

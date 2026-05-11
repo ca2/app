@@ -75,7 +75,7 @@ public:
 
    }
 
-   HRESULT CoCreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter = nullptr, unsigned int dwClsContext = CLSCTX_ALL)
+   HRESULT CoCreateInstance(REFCLSID rclsid, LPUNKNOWN pUnkOuter = nullptr, ::u32 dwClsContext = CLSCTX_ALL)
    {
 
       Release();

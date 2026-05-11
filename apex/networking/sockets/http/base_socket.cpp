@@ -435,7 +435,7 @@ namespace sockets
    }
 
 
-   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::int_array >* prangea, const ::scoped_string & scopedstrContentType, unsigned int uEnumReadFile)
+   bool http_base_socket::read_file(const ::file::path& pcszParam, pointer_array < ::i32_array >* prangea, const ::scoped_string & scopedstrContentType, ::u32 uEnumReadFile)
    {
 
       ::file::path pcsz(pcszParam);

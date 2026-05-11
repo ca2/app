@@ -87,9 +87,9 @@ public:
 
    ::pointer<::task_pool>                            m_ptaskpool;
 
-   unsigned int                                              m_nDisablePumpCount;
+   ::u32                                              m_nDisablePumpCount;
 
-   unsigned int                                              m_dwFinishTimeout;
+   ::u32                                              m_dwFinishTimeout;
    //bool                                               m_bThreadClosed;
 
 
@@ -163,8 +163,8 @@ public:
    message_queue* get_message_queue();
    message_queue* _get_message_queue();
 
-   bool peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, bool bRemoveMessage = false);
-   void get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+   bool peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage = false);
+   void get_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    void post_message(const ::operating_system::window & operatingsystemwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
@@ -192,8 +192,8 @@ public:
 //   virtual void branch(
 //      ::matter * pmatter,
 //      ::enum_priority epriority = e_priority_normal,
-//      unsigned int nStackSize = 0,
-//      unsigned int dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
+//      ::u32 nStackSize = 0,
+//      ::u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
 
    virtual htask get_htask() const;
@@ -222,8 +222,8 @@ public:
    //static ::pointer<thread>start(
    //   ::matter* pmatter,
    //   ::enum_priority epriority = e_priority_normal,
-   //   unsigned int nStackSize = 0,
-   //   unsigned int dwCreateFlags = 0);
+   //   ::u32 nStackSize = 0,
+   //   ::u32 dwCreateFlags = 0);
 
 
 
@@ -269,7 +269,7 @@ public:
 
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
-   virtual int _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax);
+   virtual int _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
    //virtual bool has_raw_message() const;
@@ -324,7 +324,7 @@ public:
    //virtual void erase(::user::interaction_base * pinteraction);
    //virtual ::collection::count get_ui_count();
    //virtual ::user::interaction_base * get_ui(::collection::index iIndex);
-   //virtual void set_timer(::user::interaction_base * pinteraction, uptr uEvent, unsigned int nEllapse);
+   //virtual void set_timer(::user::interaction_base * pinteraction, uptr uEvent, ::u32 nEllapse);
    //virtual void unset_timer(::user::interaction_base * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
 //   virtual ::user::interaction_base * get_active_user_interaction_base();

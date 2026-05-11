@@ -37,7 +37,7 @@ namespace windows
 
    }
 
-   bool window::call_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam)
+   bool window::call_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam)
    {
 
       if (on_window_procedure(lresult, message, wparam, lparam))
@@ -61,7 +61,7 @@ namespace windows
    }
 
 
-   bool window::on_window_procedure(::lresult & lresult, unsigned int message, ::wparam wparam, ::lparam lparam)
+   bool window::on_window_procedure(::lresult & lresult, ::u32 message, ::wparam wparam, ::lparam lparam)
    {
 
       if (m_iDebugAtom == 123)
@@ -538,10 +538,10 @@ namespace windows
 
 
    ::operating_system::window window::_create_window_ex(
-      unsigned int dwExStyle,
+      ::u32 dwExStyle,
       const ::scoped_string & scopedstrWindowClassName,
       const ::scoped_string & scopedstrWindowName,
-      unsigned int dwStyle,
+      ::u32 dwStyle,
       const ::int_origin_size & originsize,
       const ::operating_system::window & operatingsystemwindowParent,
       void * pHMENU,
@@ -577,10 +577,10 @@ namespace windows
 
 
    void window::createWindowEx(
-      unsigned int dwExStyle,
+      ::u32 dwExStyle,
       const ::scoped_string & scopedstrWindowClassName,
       const ::scoped_string & scopedstrWindowName,
-      unsigned int dwStyle,
+      ::u32 dwStyle,
       const ::int_origin_size & originsize,
       const ::operating_system::window & operatingsystemwindowParent ,
       void * pHMENU )
@@ -723,7 +723,7 @@ namespace windows
 
       auto hwnd = m_windowswindow.as_HWND();
 
-      auto message = (unsigned int) emessage;
+      auto message = (::u32) emessage;
 
       auto wParam = wparam.m_wparam;
 
@@ -816,7 +816,7 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, const ::operating_system::widnow & operatingsystemwindow, unsigned int message,
+   CLASS_DECL_ACME bool pre_process_window_procedure(::lresult& lresult, const ::operating_system::widnow & operatingsystemwindow, ::u32 message,
       ::wparam wparam, ::lparam lparam)
    {
 

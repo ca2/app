@@ -124,8 +124,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      ::pointer< ::mutex > m_pmutexSslCtx;
 //      //
 //      //bool m_b_input_buffer_disabled;
-//      //unsigned long long m_bytes_sent;
-//      //unsigned long long m_bytes_received;
+//      //::u64 m_bytes_sent;
+//      //::u64 m_bytes_received;
 //      //memory         m_memRead;
 //      //output_list m_obuf; ///< output buffer
 //      //::pointer<output>m_obuf_top; ///< output buffer on top
@@ -137,7 +137,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      //char m_socks4_vn; ///< socks4 support, temporary ::payload
 //      //char m_socks4_cd; ///< socks4 support, temporary ::payload
 //      //unsigned short m_socks4_dstport; ///< socks4 support
-//      //unsigned int m_socks4_dstip; ///< socks4 support
+//      //::u32 m_socks4_dstip; ///< socks4 support
 //
 //      //string m_strConnectHost;
 //      //::networking::port_t m_iConnectPort;
@@ -210,9 +210,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      \lparam line Line read */
 //      void OnLine(const ::scoped_string & scopedstrLine) override;
 //      /** get counter of number of bytes received. */
-//      unsigned long long GetBytesReceived(bool clear = false) override;
+//      ::u64 GetBytesReceived(bool clear = false) override;
 //      /** get counter of number of bytes sent. */
-//      unsigned long long GetBytesSent(bool clear = false) override;
+//      ::u64 GetBytesSent(bool clear = false) override;
 //
 //      //#if defined(BSD_STYLE_SOCKETS)
 //      //      /** Socks4 specific callback. */

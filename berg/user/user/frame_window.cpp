@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   //void frame_window::NotifyFloatingWindows(unsigned int dwFlags)
+   //void frame_window::NotifyFloatingWindows(::u32 dwFlags)
    //{
 
    //   __UNREFERENCED_PARAMETER(dwFlags);
@@ -709,7 +709,7 @@ namespace user
       */
    }
 
-   bool frame_window::OnSetCursor(::pointer<::user::interaction>pwindow, unsigned int nHitTest, const ::atom & atom)
+   bool frame_window::OnSetCursor(::pointer<::user::interaction>pwindow, ::u32 nHitTest, const ::atom & atom)
    {
       
       __UNREFERENCED_PARAMETER(pwindow);
@@ -762,7 +762,7 @@ namespace user
    //   // return true if command invocation was attempted
    //{
    //   //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
-   //   //   unsigned int nID = LOWORD(wParam);
+   //   //   ::u32 nID = LOWORD(wParam);
 
    //   ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
    //   ENSURE_VALID(pFrameWnd);
@@ -854,7 +854,7 @@ namespace user
       ::windowing::window * pwindow = interaction_impl::FromHandlePermanent(oswindow);
       if (pwindow != nullptr && get_handle() != oswindow && __is_descendant(this, pwindow))
       {
-      unsigned int uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
+      ::u32 uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       if (!bShow && (uStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
       {
       ::display(oswindow, e_display_none);
@@ -951,7 +951,7 @@ namespace user
    }
 
 
-   //bool frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, unsigned int dwExStyle, ::request * prequest)
+   //bool frame_window::create_interaction(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, const ::int_rectangle & rectangle, ::user::interaction * puiParent, const ::scoped_string & scopedstrMenuName, ::u32 dwExStyle, ::request * prequest)
    //{
 
    //   __UNREFERENCED_PARAMETER(scopedstrMenuName);
@@ -1116,7 +1116,7 @@ namespace user
    }
 
 
-   bool frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, unsigned int dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
+   bool frame_window::LoadFrame(const ::scoped_string & scopedstrMatter, ::u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
    {
 
       __UNREFERENCED_PARAMETER(puiParent);
@@ -1516,7 +1516,7 @@ namespace user
       }
 
       //   ::acme::windowing::window * pacmewindowingwindow = get_handle();
-      //   unsigned int uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
+      //   ::u32 uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       //   bool bChild =  uStyle & WS_CHILD;
 
       OnInitialFrameUpdate(bMakeVisible);
@@ -1727,7 +1727,7 @@ namespace user
 
    /*
    // Delegate scroll messages to active ::user::impact as well
-   void frame_window::OnHScroll(unsigned int, unsigned int, CScrollBar*)
+   void frame_window::OnHScroll(::u32, ::u32, CScrollBar*)
    {
       ::pointer<::user::interaction>pActiveImpact = get_active_impact();
       if (pActiveImpact != nullptr)
@@ -1737,7 +1737,7 @@ namespace user
       }
    }
 
-   void frame_window::OnVScroll(unsigned int, unsigned int, CScrollBar*)
+   void frame_window::OnVScroll(::u32, ::u32, CScrollBar*)
    {
       ::pointer<::user::interaction>pActiveImpact = get_active_impact();
       if (pActiveImpact != nullptr)
@@ -1884,7 +1884,7 @@ namespace user
    }
 
 
-   //void frame_window::OnSysCommand(unsigned int nID, LPARAM lParam)
+   //void frame_window::OnSysCommand(::u32 nID, LPARAM lParam)
    //{
    //   
    //   __UNREFERENCED_PARAMETER(lParam);
@@ -1894,7 +1894,7 @@ namespace user
    //   ENSURE_VALID(pFrameWnd);
 
    //   // set status bar as appropriate
-   //   //   unsigned int nItemID = (nID & 0xFFF0);
+   //   //   ::u32 nItemID = (nID & 0xFFF0);
 
    //   // don't interfere with system commands if not in help mode
    //   if (pFrameWnd->m_bHelpMode)
@@ -2007,7 +2007,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::scoped_string & scopedstrToolbarParam, ::u32 dwCtrlStyle, ::u32 uStyle, const ::platform::type & type)
    {
 
       try
@@ -2084,7 +2084,7 @@ namespace user
    }
 
 
-   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, unsigned int dwCtrlStyle, unsigned int uStyle, const ::platform::type & type)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbarParam, ::u32 dwCtrlStyle, ::u32 uStyle, const ::platform::type & type)
    {
 
       ::pointer < toolbar> ptoolbar = øcreate_by_type (type);
@@ -2239,7 +2239,7 @@ namespace user
    // Command prompts
 
 
-   void frame_window::GetMessageString(unsigned int nID, string & rMessage) const
+   void frame_window::GetMessageString(::u32 nID, string & rMessage) const
    {
       __UNREFERENCED_PARAMETER(nID);
       __UNREFERENCED_PARAMETER(rMessage);
@@ -2281,7 +2281,7 @@ namespace user
    //LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
    //{
 
-   //   unsigned int nIDLast = m_nIDLastMessage;
+   //   ::u32 nIDLast = m_nIDLastMessage;
 
    //   //      m_nFlags &= ~WF_NOPOPMSG;
 
@@ -2316,7 +2316,7 @@ namespace user
    //         // get message associated with the ID indicated by wParam
    //         //NT64: Assume IDs are still 32-bit
 
-   //         GetMessageString((unsigned int)wParam, strMessage);
+   //         GetMessageString((::u32)wParam, strMessage);
 
    //         psz = strMessage;
 
@@ -2332,17 +2332,17 @@ namespace user
    //      if (pFrameWnd != nullptr)
    //      {
 
-   //         pFrameWnd->m_nIDLastMessage = (unsigned int)wParam;
+   //         pFrameWnd->m_nIDLastMessage = (::u32)wParam;
 
-   //         pFrameWnd->m_nIDTracking = (unsigned int)wParam;
+   //         pFrameWnd->m_nIDTracking = (::u32)wParam;
 
    //      }
 
    //   }
 
-   //   m_nIDLastMessage = (unsigned int)wParam;    // ___new ID(or 0)
+   //   m_nIDLastMessage = (::u32)wParam;    // ___new ID(or 0)
 
-   //   m_nIDTracking = (unsigned int)wParam;       // so F1 on toolbar buttons work
+   //   m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
 
    //   return nIDLast;
 
@@ -2359,7 +2359,7 @@ namespace user
       return get_child_by_id("status_bar");
    }
 
-//   void frame_window::OnEnterIdle(unsigned int nWhy, ::pointer<::user::interaction>pWho)
+//   void frame_window::OnEnterIdle(::u32 nWhy, ::pointer<::user::interaction>pWho)
 //   {
 //      __UNREFERENCED_PARAMETER(pWho);
 //      // trans user::frame_window::OnEnterIdle(nWhy, pWho);
@@ -2382,7 +2382,7 @@ namespace user
 
    //}
 
-   //void frame_window::SetMessageText(unsigned int nID)
+   //void frame_window::SetMessageText(::u32 nID)
    //{
    //   send_message(WM_SETMESSAGESTRING, (WPARAM)nID);
    //}
@@ -2487,7 +2487,7 @@ namespace user
 
 
          // set visibility of standard ControlBars (only the first 32)
-         //   unsigned int dwOldStates = 0;
+         //   ::u32 dwOldStates = 0;
 
          if (bThumbnail)
          {
@@ -2562,7 +2562,7 @@ namespace user
       m_nIdleFlags &= ~(idleLayout | idleNotify);
       {
 
-         //         unsigned int dwTime2= ::time::now();
+         //         ::u32 dwTime2= ::time::now();
 
          //informationf("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
          //informationf("userframewindow call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
@@ -2599,7 +2599,7 @@ namespace user
 
 
    // frame_window implementation of OLE border space negotiation
-   bool frame_window::NegotiateBorderSpace(unsigned int nBorderCmd, ::int_rectangle * pRectBorder)
+   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, ::int_rectangle * pRectBorder)
    {
 
       ::int_rectangle border, request;
@@ -2654,7 +2654,7 @@ namespace user
    }
 
 
-   void frame_window::OnSize(unsigned int nType, int cx, int cy)
+   void frame_window::OnSize(::u32 nType, int cx, int cy)
    {
 
    }
@@ -2818,7 +2818,7 @@ namespace user
    }
 
 
-//   void frame_window::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, unsigned int dwCtrlStyle, unsigned int uStyle)
+//   void frame_window::load_toolbar(const ::atom & idToolbar, const ::scoped_string & scopedstrToolbar, ::u32 dwCtrlStyle, ::u32 uStyle)
 //   {
 //
 //      throw ::interface_only();
@@ -2917,7 +2917,7 @@ namespace user
    }
 
 
-   bool frame_window::OnBarCheck(unsigned int nID)
+   bool frame_window::OnBarCheck(::u32 nID)
    {
 
       __UNREFERENCED_PARAMETER(nID);

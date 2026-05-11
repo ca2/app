@@ -33,9 +33,9 @@
 //   virtual ~WindowProcHolder();
 //
 // protected:
-//   virtual LRESULT windowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam, bool *useDefWindowProc) = 0;
+//   virtual LRESULT windowProc(HWND hWnd, ::u32 uMsg, ::wparam wparam, ::lparam lparam, bool *useDefWindowProc) = 0;
 //
-//   static LRESULT CALLBACK defWindowProc(HWND hWnd, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+//   static LRESULT CALLBACK defWindowProc(HWND hWnd, ::u32 uMsg, ::wparam wparam, ::lparam lparam);
 //
 //   friend class NotifyIconWindow;
 // };

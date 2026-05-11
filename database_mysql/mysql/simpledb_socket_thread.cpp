@@ -70,13 +70,13 @@ namespace simpledb
       //sleep(15000_ms);
       if(!m_plistensocket->create(80, SOCK_STREAM))
       {
-      unsigned int dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
       informationf("error %u", dw);
       return false;
       }
       if(!m_plistensocket->Listen())
       {
-      unsigned int dw = ::get_last_error();
+      ::u32 dw = ::get_last_error();
       informationf("error %u", dw);
       return false;
       }*/

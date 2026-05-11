@@ -32,7 +32,7 @@ namespace mathematics
 
       static double           s_π;
       static float            s_fπ;
-      unsigned int            dwMode;
+      ::u32            dwMode;
       unsigned char           pbData[16];
 
    public:
@@ -55,8 +55,8 @@ namespace mathematics
       static inline double π() { return s_π; }
       static inline float πf() { return s_fπ; }
 
-      static bool IsPowerOfTwo(unsigned long long uiValue);
-      static unsigned int ReverseBits(unsigned int index, unsigned int NumBits);
+      static bool IsPowerOfTwo(::u64 uiValue);
+      static ::u32 ReverseBits(::u32 index, ::u32 NumBits);
       static inline void MaxClip(double * pnClipValue, double nMaxValue);
       static inline void MinClip(double * pnClipValue, double nMinValue);
 
@@ -216,7 +216,7 @@ namespace mathematics
 
       //#include "acme/prototype/prototype/matter.h"
       void random(const block & block);
-      //unsigned long long gen_rand();
+      //::u64 gen_rand();
 //void random_bytes(void * buf, memsize dwLen);
 //void RandomBytes(void * buf, memsize dwLen);
 //void gen_rand(void * buf, memsize dwLen);
@@ -227,8 +227,8 @@ namespace mathematics
 
       char random_char();
       unsigned char random_uch();
-      unsigned int random_ui();
-      unsigned long long random_unsigned_long_long();
+      ::u32 random_ui();
+      ::u64 random_unsigned_long_long();
 
       int rand_max();
 
@@ -287,7 +287,7 @@ namespace mathematics
 
          ::largest_type < FLOATING1, FLOATING2 > fRange = fMax - fMin;
 
-         unsigned long long u = 0;
+         ::u64 u = 0;
 
          random(u);
 

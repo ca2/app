@@ -110,8 +110,8 @@ namespace typeface_freetype
       //plusplus::Font *      gl2d_font();
 
       // for bidi and mirrored localization
-      unsigned int GetLayout() const;
-      unsigned int SetLayout(unsigned int dwLayout);
+      ::u32 GetLayout() const;
+      ::u32 SetLayout(::u32 dwLayout);
 
 
       //HDC get_hdc();
@@ -146,8 +146,8 @@ namespace typeface_freetype
       int save_graphics_context()override;
       void restore_graphics_context(int iSavedContext)override;
       //int GetDeviceCaps(int nIndex) override;
-      unsigned int SetBoundsRect(const ::double_rectangle & rectangleBounds, unsigned int flags) override;
-      unsigned int GetBoundsRect(double_rectangle * rectangleBounds, unsigned int flags) override;
+      ::u32 SetBoundsRect(const ::double_rectangle & rectangleBounds, ::u32 flags) override;
+      ::u32 GetBoundsRect(double_rectangle * rectangleBounds, ::u32 flags) override;
       //bool ResetDC(const DEVMODE* lpDevMode);
 
 
@@ -179,7 +179,7 @@ namespace typeface_freetype
       // color and color Palette Functions
       color32_t GetNearestColor(color32_t crColor) const;
       ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
-      unsigned int RealizePalette();
+      ::u32 RealizePalette();
       void UpdateColors();
 
       int GetPolyFillMode() const;
@@ -209,7 +209,7 @@ namespace typeface_freetype
 
       // World transform
       bool SetWorldTransform(const XFORM* pXform);
-      bool ModifyWorldTransform(const XFORM* pXform,unsigned int iMode);
+      bool ModifyWorldTransform(const XFORM* pXform,::u32 iMode);
       bool GetWorldTransform(XFORM* pXform) const;
 
       // Mapping Functions
@@ -319,23 +319,23 @@ namespace typeface_freetype
       void invert_rectangle(const ::double_rectangle & int_rectangle) override;
       //void draw_icon(double x, double y, ::image::icon * picon) override;
       //void draw_icon(const ::int_point & point, ::image::icon * picon);
-      //void draw_icon(double x, double y, ::image::icon * picon, int cx, int cy, unsigned int istepIfAniCur, HBRUSH hbrFlickerFreeDraw, unsigned int diFlags);
-//      bool DrawState(const ::int_point & point, const ::int_size & size, HBITMAP hBitmap, unsigned int nFlags,
+      //void draw_icon(double x, double y, ::image::icon * picon, int cx, int cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags);
+//      bool DrawState(const ::int_point & point, const ::int_size & size, HBITMAP hBitmap, ::u32 nFlags,
 //                     HBRUSH hBrush = nullptr);
-//      bool DrawState(const ::int_point & point, const ::int_size & size, ::draw2d::bitmap* pBitmap, unsigned int nFlags,
+//      bool DrawState(const ::int_point & point, const ::int_size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
 //                     ::draw2d::brush* pBrush = nullptr);
-//      bool DrawState(const ::int_point & point, const ::int_size & size, HICON hIcon, unsigned int nFlags,
+//      bool DrawState(const ::int_point & point, const ::int_size & size, HICON hIcon, ::u32 nFlags,
 //                     HBRUSH hBrush = nullptr);
-//      bool DrawState(const ::int_point & point, const ::int_size & size, HICON hIcon, unsigned int nFlags,
+//      bool DrawState(const ::int_point & point, const ::int_size & size, HICON hIcon, ::u32 nFlags,
 //                     ::draw2d::brush* pBrush = nullptr);
-//      bool DrawState(const ::int_point & point, const ::int_size & size, const ::scoped_string & lpszText, unsigned int nFlags,
+//      bool DrawState(const ::int_point & point, const ::int_size & size, const ::scoped_string & lpszText, ::u32 nFlags,
 //                     bool bPrefixText = true, int nTextLen = 0, HBRUSH hBrush = nullptr);
-//      bool DrawState(const ::int_point & point, const ::int_size & size, const ::scoped_string & lpszText, unsigned int nFlags,
+//      bool DrawState(const ::int_point & point, const ::int_size & size, const ::scoped_string & lpszText, ::u32 nFlags,
 //                     bool bPrefixText = true, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr);
 //      bool DrawState(const ::int_point & point, const ::int_size & size, DRAWSTATEPROC lpDrawProc,
-//                     LPARAM lData, unsigned int nFlags, HBRUSH hBrush = nullptr);
+//                     LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
 //      bool DrawState(const ::int_point & point, const ::int_size & size, DRAWSTATEPROC lpDrawProc,
-//                     LPARAM lData, unsigned int nFlags, ::draw2d::brush* pBrush = nullptr);
+//                     LPARAM lData, ::u32 nFlags, ::draw2d::brush* pBrush = nullptr);
 
       // Ellipse and Polygon Functions
       bool Chord(int x1, int y1, int x2, int y2, int x3, int y3,
@@ -385,19 +385,19 @@ namespace typeface_freetype
       ::color::color SetPixel(double x, double y, ::color::color crColor);
       ::color::color SetPixel(const ::int_point & point, ::color::color crColor);
 //      bool FloodFill(int x, int y, color32_t crColor);
-//      bool ExtFloodFill(int x, int y, color32_t crColor, unsigned int nFillType);
+//      bool ExtFloodFill(int x, int y, color32_t crColor, ::u32 nFillType);
 //      bool MaskBlt(int x, int y, int nWidth, int nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                   int xSrc, int ySrc, ::draw2d::bitmap& maskBitmap, int xMask, int yMask,
-//                   unsigned int dwRop);
+//                   ::u32 dwRop);
 //      bool PlgBlt(::int_point * lpPoint, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc,
 //                  int nWidth, int nHeight, ::draw2d::bitmap& maskBitmap, int xMask, int yMask);
       void SetPixelV(int x, int y, ::color::color crColor);
       void SetPixelV(const ::int_point & point, ::color::color crColor);
       bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-                        void * pMesh, ULONG nMeshElements, unsigned int dwMode);
+                        void * pMesh, ULONG nMeshElements, ::u32 dwMode);
       void TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
                           ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
-                          unsigned int clrTransparent);
+                          ::u32 clrTransparent);
 
       ///void alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight, ::draw2d::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dOpacity);
 
@@ -410,8 +410,8 @@ namespace typeface_freetype
       //virtual bool TextOut(int x, int y, const ::scoped_string & str);
       //virtual bool TextOut(double x, double y, const ::scoped_string & lpszString, character_count nCount);
       //virtual bool TextOut(double x, double y, const ::scoped_string & str);
-      //virtual bool ExtTextOut(int x, int y, unsigned int nOptions, const ::int_rectangle & rectangle, const ::scoped_string & lpszString,character_count nCount, LPINT lpDxWidths);
-      //virtual bool ExtTextOut(int x, int y, unsigned int nOptions, const ::int_rectangle & rectangle, const ::scoped_string & str, LPINT lpDxWidths);
+      //virtual bool ExtTextOut(int x, int y, ::u32 nOptions, const ::int_rectangle & rectangle, const ::scoped_string & lpszString,character_count nCount, LPINT lpDxWidths);
+      //virtual bool ExtTextOut(int x, int y, ::u32 nOptions, const ::int_rectangle & rectangle, const ::scoped_string & str, LPINT lpDxWidths);
       //virtual int_size TabbedTextOut(int x, int y, const ::scoped_string & lpszString, character_count nCount,::collection::count nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
       //virtual int_size TabbedTextOut(int x, int y, const ::scoped_string & str,::collection::count nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
 
@@ -438,8 +438,8 @@ namespace typeface_freetype
       //virtual int_size GetOutputTabbedTextExtent(const ::scoped_string & lpszString, character_count nCount,::collection::count nTabPositions, LPINT lpnTabStopPositions);
       //virtual int_size GetOutputTabbedTextExtent(const ::scoped_string & str,::collection::count nTabPositions, LPINT lpnTabStopPositions);
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight);
-      virtual unsigned int GetTextAlign() override;
-      virtual unsigned int SetTextAlign(unsigned int nFlags) override;
+      virtual ::u32 GetTextAlign() override;
+      virtual ::u32 SetTextAlign(::u32 nFlags) override;
       //virtual int GetTextFace(::collection::count nCount, char * lpszFacename);
       //virtual int GetTextFace(string & rString);
       //virtual bool get_text_metrics(::write_text::text_metric * lpMetrics);
@@ -452,8 +452,8 @@ namespace typeface_freetype
       //virtual int GetTextCharacterExtra();
       //virtual int SetTextCharacterExtra(int nCharExtra);
 
-      //virtual unsigned int GetCharacterPlacement(string & str, character_count nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags) const;
-      //virtual unsigned int GetCharacterPlacement(const ::scoped_string & lpString, character_count nCount, character_count nMaxExtent, LPGCP_RESULTS lpResults, unsigned int dwFlags) const;
+      //virtual ::u32 GetCharacterPlacement(string & str, character_count nMaxExtent, LPGCP_RESULTS lpResults, ::u32 dwFlags) const;
+      //virtual ::u32 GetCharacterPlacement(const ::scoped_string & lpString, character_count nCount, character_count nMaxExtent, LPGCP_RESULTS lpResults, ::u32 dwFlags) const;
 
 //#if (_WIN32_WINNT >= 0x0500)
 //
@@ -465,37 +465,37 @@ namespace typeface_freetype
 
 
 //      // Advanced Drawing
-//      bool DrawEdge(const ::int_rectangle & rectangle,unsigned int nEdge,unsigned int nFlags);
-//      bool DrawFrameControl(const ::int_rectangle & rectangle,unsigned int nType,unsigned int nState);
+//      bool DrawEdge(const ::int_rectangle & rectangle,::u32 nEdge,::u32 nFlags);
+//      bool DrawFrameControl(const ::int_rectangle & rectangle,::u32 nType,::u32 nState);
 
       // Scrolling Functions
       //bool ScrollDC(int Δx, int Δy, const ::int_rectangle & lpRectScroll, const ::int_rectangle & lpRectClip,
         //            ::draw2d::region* pRgnUpdate, ::int_rectangle * lpRectUpdate);
 
       // font Functions
-      //bool GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer) const;
-      //bool GetOutputCharWidth(unsigned int nFirstChar, unsigned int nLastChar, LPINT lpBuffer) const;
-      //unsigned int SetMapperFlags(unsigned int dwFlag);
+      //bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const;
+      //bool GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) const;
+      //::u32 SetMapperFlags(::u32 dwFlag);
       //int_size GetAspectRatioFilter() const;
 
-      //bool GetCharABCWidths(unsigned int nFirstChar, unsigned int nLastChar, LPABC lpabc) const;
-      //unsigned int GetFontData(unsigned int dwTable, unsigned int dwOffset, LPVOID lpData, unsigned int cbData) const;
+      //bool GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABC lpabc) const;
+      //::u32 GetFontData(::u32 dwTable, ::u32 dwOffset, LPVOID lpData, ::u32 cbData) const;
       //int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) const;
-      //unsigned int GetOutlineTextMetrics(unsigned int cbData, LPOUTLINETEXTMETRICW lpotm) const;
-      //unsigned int GetGlyphOutline(unsigned int nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
-      //                         unsigned int cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
+      //::u32 GetOutlineTextMetrics(::u32 cbData, LPOUTLINETEXTMETRICW lpotm) const;
+      //::u32 GetGlyphOutline(::u32 nChar, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, LPGLYPHMETRICS lpgm,
+      //                         ::u32 cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
-      //bool GetCharABCWidths(unsigned int nFirstChar, unsigned int nLastChar,
+      //bool GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar,
                             //LPABCFLOAT lpABCF) const;
-      //bool GetCharWidth(unsigned int nFirstChar, unsigned int nLastChar,
+      //bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar,
                         //float* lpFloatBuffer) const;
 
-      unsigned int GetFontLanguageInfo() const;
+      ::u32 GetFontLanguageInfo() const;
 
 #if (_WIN32_WINNT >= 0x0500)
 
-      bool GetCharABCWidthsI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPABC lpabc) const;
-      bool GetCharWidthI(unsigned int giFirst, unsigned int cgi, LPWORD pgi, LPINT lpBuffer) const;
+      bool GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc) const;
+      bool GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer) const;
 
 #endif
 
@@ -516,7 +516,7 @@ namespace typeface_freetype
       // MetaFile Functions
       //bool PlayMetaFile(HMETAFILE hMF);
       //bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::int_rectangle & lpBounds);
-      //bool AddMetaFileComment(unsigned int nDataSize, const unsigned char* pCommentData);
+      //bool AddMetaFileComment(::u32 nDataSize, const unsigned char* pCommentData);
       // can be used for enhanced metafiles only
 
       // Path Functions

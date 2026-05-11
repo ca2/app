@@ -43,7 +43,7 @@ namespace subsystem
    //}
 
 
-   //::pointer < NamedPipe >PipeClient::connect(const ::scoped_string & scopedstrName, unsigned int maxPortionSize)
+   //::pointer < NamedPipe >PipeClient::connect(const ::scoped_string & scopedstrName, ::u32 maxPortionSize)
    //{
    //   return m_pparticleThis->connect(scopedstrName, maxPortionSize);
    //   //}

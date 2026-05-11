@@ -215,7 +215,7 @@ namespace platform
       //virtual void on_request(::request * prequest) override;
 
 
-      //virtual unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr);
+      //virtual ::u32 crc32(::u32 dwPrevious, const ::scoped_string & scopedstr);
 
 
       //virtual string ::url::encode(const ::scoped_string & scopedstr) override;
@@ -381,7 +381,7 @@ namespace platform
       //virtual ::acme::library * get_library(const ::scoped_string & scopedstrLibrary, bool bOpenCa2 = false) override;
 
 
-      //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
+      //virtual ::u32 os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override;
 
 
       //virtual void session_add(::collection::index iEdge, ::apex::session * psession) overr;
@@ -577,7 +577,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
       //virtual bool set_standalone_setting(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSetting) override;
 
 
-      //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
+      //virtual void on_event(::u64 u, ::particle * pparticle) override;
 
 
       virtual void on_initial_frame_position(::user::frame_interaction * pframe);
@@ -688,7 +688,7 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
 
 
-      //      unsigned int guess_code_page(const ::scoped_string & scopedstr);
+      //      ::u32 guess_code_page(const ::scoped_string & scopedstr);
 
 //#ifdef UNIVERSAL_WINDOWS
 //
@@ -778,8 +778,8 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
 
 
-      //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor);
-      //virtual bool adjust_monitor(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma);
+      //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor);
+      //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
       //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override;
 
       //virtual ::collection::count get_monitor_count() override;

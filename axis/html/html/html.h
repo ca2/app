@@ -7,7 +7,7 @@
 #include "acme/exception/status.h"
 
 
-inline status < ::color::color > __indexed_color(unsigned int u32Index)
+inline status < ::color::color > __indexed_color(::u32 u32Index)
 {
 
    ::color::color color;

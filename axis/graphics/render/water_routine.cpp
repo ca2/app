@@ -499,7 +499,7 @@ namespace draw2d
       //  int ox, oy;
       int Δx, Δy;
       int x, y;
-      unsigned int ca;
+      ::u32 ca;
 
       int offset=m_iWidth + 1;
 

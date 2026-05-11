@@ -58,7 +58,7 @@ int get_process_pid(const_char_pointer procNameParam)
 
 
 
-string module_path_from_pid(unsigned int iPid)
+string module_path_from_pid(::u32 iPid)
 {
 
    int iSize = 1024 * 8;
@@ -188,7 +188,7 @@ string module_path_from_pid(unsigned int iPid)
 //
 //
 //
-//string_array_base cmdline_from_pid(unsigned int iPid)
+//string_array_base cmdline_from_pid(::u32 iPid)
 //{
 //
 //   string_array_base stra;

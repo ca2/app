@@ -103,7 +103,7 @@ lite_html_reader::lite_html_reader()
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int dwNewEventMask)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(::u32 dwNewEventMask)
 {
    EventMaskEnum   oldMask = m_happeningMask;
    m_happeningMask = (EventMaskEnum)dwNewEventMask;
@@ -111,15 +111,15 @@ lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int dwNe
 }
 
 
-lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(unsigned int addFlags, unsigned int eraseFlags)
+lite_html_reader::EventMaskEnum lite_html_reader::setEventMask(::u32 addFlags, ::u32 eraseFlags)
 {
-   unsigned int   dwOldMask = (unsigned int)m_happeningMask;
-   unsigned int   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
+   ::u32   dwOldMask = (::u32)m_happeningMask;
+   ::u32   dwNewMask = (dwOldMask | addFlags) & ~eraseFlags;
    m_happeningMask = (EventMaskEnum)dwNewMask;
    return ((EventMaskEnum)dwOldMask);
 }
 
-character_count lite_html_reader::setAppData(unsigned int dwNewAppData)
+character_count lite_html_reader::setAppData(::u32 dwNewAppData)
 {
    character_count   dwOldAppData = m_dwAppData;
    m_dwAppData = dwNewAppData;
@@ -338,7 +338,7 @@ char lite_html_reader::UngetChar()
 }
 
 
-bool lite_html_reader::getEventNotify(unsigned int dwEvent) const
+bool lite_html_reader::getEventNotify(::u32 dwEvent) const
 {
    ASSERT(dwEvent == notifyStartStop  ||
           dwEvent == notifyTagStart   ||
@@ -370,7 +370,7 @@ bool lite_html_reader::isWhiteSpace(char ch) const
 bool lite_html_reader::parseTag(lite_html_tag &rTag, bool &bIsOpeningTag, bool &bIsClosingTag)
 {
 
-   unsigned int nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
+   ::u32 nRetVal = rTag.parseFromStr(this, m_strBuffer, m_dwBufPos, bIsOpeningTag, bIsClosingTag);
 
    if(!nRetVal)
       return false;

@@ -153,7 +153,7 @@ namespace dropbox
    //    zero(zstream);
    //
    //    zstream.next_in = (unsigned char*)memIn.data();
-   //    zstream.avail_in = (unsigned int)uRead;
+   //    zstream.avail_in = (::u32)uRead;
    //    zstream.total_out = 0;
    //    zstream.zalloc = Z_NULL;
    //    zstream.zfree = Z_NULL;
@@ -184,12 +184,12 @@ namespace dropbox
    //
    //          zstream.next_out = memory.data();
    //
-   //          zstream.avail_out = (unsigned int)memory.size();
+   //          zstream.avail_out = (::u32)memory.size();
    //
    //          // Inflate another chunk.
    //          status = deflate(&zstream, iFlush);
    //
-   //          auto amountToWrite = (unsigned int)memory.size() - zstream.avail_out;
+   //          auto amountToWrite = (::u32)memory.size() - zstream.avail_out;
    //
    //          pfileOut->write(memory.data(), amountToWrite);
    //
@@ -236,7 +236,7 @@ namespace dropbox
    //
    //          zstream.next_in = (unsigned char*) nullptr;
    //
-   //          zstream.avail_in = (unsigned int)0;
+   //          zstream.avail_in = (::u32)0;
    //
    //       }
    //       else
@@ -244,7 +244,7 @@ namespace dropbox
    //
    //          zstream.next_in = (unsigned char*)memIn.data();
    //
-   //          zstream.avail_in = (unsigned int)uRead;
+   //          zstream.avail_in = (::u32)uRead;
    //
    //       }
    //
@@ -266,10 +266,10 @@ namespace dropbox
    // }
    //
    //
-   // unsigned int dropbox::crc32(unsigned int uCrc, const ::block& block)
+   // ::u32 dropbox::crc32(::u32 uCrc, const ::block& block)
    // {
    //
-   //    return (unsigned int)::crc32(uCrc, (const Bytef *) block.data(), (uInt) block.size());
+   //    return (::u32)::crc32(uCrc, (const Bytef *) block.data(), (uInt) block.size());
    //
    // }
 

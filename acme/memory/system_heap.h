@@ -94,7 +94,7 @@ struct memdleak_block
    const_char_pointer                 m_pszFileName;
    void *                        m_stacka[64];
    int                           m_iStack;
-   unsigned int                           m_uiLine;
+   ::u32                           m_uiLine;
    memsize                       m_size;
    struct memdleak_block *       m_pnext;
    struct memdleak_block *       m_pprevious;

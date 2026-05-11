@@ -189,7 +189,7 @@ namespace typeface_freetype
 
       //glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
       //// generate texture
-      //   //unsigned int texture;
+      //   //::u32 texture;
       //glGenTextures(1, &ch.TextureID);
       //glBindTexture(GL_TEXTURE_2D, ch.TextureID);
       //glTexImage2D(
@@ -224,7 +224,7 @@ namespace typeface_freetype
 
       ch.Size = {(int) m_face->glyph->bitmap.width, (int) m_face->glyph->bitmap.rows};
       ch.Bearing = {m_face->glyph->bitmap_left, bitmap_top};
-      ch.Advance = static_cast<unsigned int>(m_face->glyph->advance.x + 32) >> 6;
+      ch.Advance = static_cast<::u32>(m_face->glyph->advance.x + 32) >> 6;
       //ch.h2 = m_iPixelSize- ch.Bearing.y;
       //ch.h2 = iAscender2- ch.Bearing.y;
       //ch.h2 = iAscender2-iBearingY2;
@@ -268,7 +268,7 @@ namespace typeface_freetype
 //      //         continue;
 //      //      }
 //      //      // generate texture
-//      //      unsigned int texture;
+//      //      ::u32 texture;
 //      //      glGenTextures(1, &texture);
 //      //      glBindTexture(GL_TEXTURE_2D, texture);
 //      //      glTexImage2D(
@@ -292,7 +292,7 @@ namespace typeface_freetype
 //      //          texture,
 //      //          glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
 //      //          glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
-//      //          static_cast<unsigned int>(face->glyph->advance.x)
+//      //          static_cast<::u32>(face->glyph->advance.x)
 //      //      };
 //      //      Characters.insert(std::pair<char, Character>(c, character));
 //      //   }

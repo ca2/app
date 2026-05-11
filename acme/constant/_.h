@@ -65,7 +65,7 @@ class eimpact;
 enum enum_simple_command : int;
 namespace user
 {
-   enum enum_message : unsigned int;
+   enum enum_message : ::u32;
 } // namespace user
 enum enum_message : int;
 enum enum_impact : long long;

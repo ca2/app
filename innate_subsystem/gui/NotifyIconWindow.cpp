@@ -78,7 +78,7 @@ namespace innate_subsystem
 //    // // }
 //    //
 //    //
-//    // bool NotifyIconWindow::on_window_procedure(lresult &lresult, unsigned int message, wparam wparam, lparam lparam)
+//    // bool NotifyIconWindow::on_window_procedure(lresult &lresult, ::u32 message, wparam wparam, lparam lparam)
 //    // {
 //    //
 //    //    // Make sure to reset it back to false before leaving this function for any

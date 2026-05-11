@@ -107,8 +107,8 @@ struct wf_context :
 	::int_rectangle scale_update_rect;
 
 	wfBitmap* tile;
-	unsigned int mainThreadId;
-	unsigned int keyboardThreadId;
+	::u32 mainThreadId;
+	::u32 keyboardThreadId;
 
 	rdpFile* connectionRdpFile;
 
@@ -140,7 +140,7 @@ struct wf_context :
 
 FREERDP_API int RdpClientEntry(RDP_CLIENT_ENTRY_POINTS* pEntryPoints);
 FREERDP_API int freerdp_client_set_window_size(wfContext* wfc, int width, int height);
-FREERDP_API void wf_size_scrollbars(wfContext* wfc, unsigned int client_width, unsigned int client_height);
+FREERDP_API void wf_size_scrollbars(wfContext* wfc, ::u32 client_width, ::u32 client_height);
 
 #ifdef __cplusplus
 }

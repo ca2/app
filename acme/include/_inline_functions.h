@@ -58,10 +58,10 @@ inline bool has_character(const ::wd32_character * p) { return !is_empty(p); }
 
 
 
-inline unsigned long long make64_from32(unsigned int l, unsigned int h)
+inline ::u64 make64_from32(::u32 l, ::u32 h)
 {
 
-   return ((unsigned long long)l) | (((unsigned long long)h) << 32);
+   return ((::u64)l) | (((::u64)h) << 32);
 
 }
 
@@ -460,10 +460,10 @@ inline int read_char(unsigned char*& pdata, memsize& s, char* pch)
 //
 
 
-inline bool is_impact_group(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 1000; }
+inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
 
 
-inline bool is_impact_subgroup(unsigned long long u, unsigned long long uGroup) { return u >= uGroup && u < uGroup + 100; }
+inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
 inline bool is_file_or_folder2(const ::file::enum_type& etype)

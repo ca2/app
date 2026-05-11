@@ -28,7 +28,7 @@ namespace experience
       ::logic::boolean                                   m_bitMinimizeToTray;
       bool                                         m_bFullScreenOnMaximize;
       
-      unsigned int                                        m_uiSWPFlags;
+      ::u32                                        m_uiSWPFlags;
 
       ::pointer<class move_manager>                m_pmovemanager;
       ::pointer<class size_manager>                m_psizemanager;
@@ -191,7 +191,7 @@ namespace experience
 
       void Setframe_Style(int nStyle);
       void SetActiveFlag(bool fActive);
-      void SetSWPFlags(unsigned int uFlags);
+      void SetSWPFlags(::u32 uFlags);
 
       //void GetRegionClientRectangle(::int_rectangle * prectangle);
 

@@ -105,7 +105,7 @@
 //}
 //
 //
-//inline unsigned int property_object::find_unsigned_int(const ::atom & atom, unsigned int iDefault) const
+//inline ::u32 property_object::find_unsigned_int(const ::atom & atom, ::u32 iDefault) const
 //{
 //
 //   if (!m_ppropertyset)
@@ -124,7 +124,7 @@
 //
 //   }
 //
-//   return pproperty->unsigned int(iDefault);
+//   return pproperty->::u32(iDefault);
 //
 //}
 //

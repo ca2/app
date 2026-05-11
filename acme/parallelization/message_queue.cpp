@@ -133,7 +133,7 @@ void message_queue::kick_idle()
 }
 
 
-::e_status message_queue::get_message(MESSAGE * pmessage, const ::operating_system::window & operatingsystemwindow, unsigned int wMsgFilterMin, unsigned int wMsgFilterMax, const class time & time)
+::e_status message_queue::get_message(MESSAGE * pmessage, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const class time & time)
 {
 
    long long iFilterMinimum = wMsgFilterMin;
@@ -259,7 +259,7 @@ void message_queue::kick_idle()
 }
 
 
-bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow,unsigned int wMsgFilterMin,unsigned int wMsgFilterMax, bool bRemoveMessage)
+bool message_queue::peek_message(MESSAGE * pMsg, const ::operating_system::window & operatingsystemwindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax, bool bRemoveMessage)
 {
 
    if(wMsgFilterMax == 0)

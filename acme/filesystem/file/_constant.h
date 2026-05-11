@@ -68,7 +68,7 @@ enum enum_stream
 
 };
 
-   enum fmtflags : unsigned int
+   enum fmtflags : ::u32
    {
       nofmtflags = 0,
       boolalpha = 0x00000001,

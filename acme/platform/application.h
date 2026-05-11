@@ -263,7 +263,7 @@ namespace platform
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       string_array_base m_straActivationMessage;
 
-      unsigned int m_dwInstallGoodToCheckAgain;
+      ::u32 m_dwInstallGoodToCheckAgain;
 
       bool m_bAppHasInstallerProtected;
       bool m_bAppHasInstallerChangedProtected;
@@ -326,9 +326,9 @@ namespace platform
       //
       //#endif
 
-      unsigned int m_dwPromptContext; // help action_context override for message box
+      ::u32 m_dwPromptContext; // help action_context override for message box
       // LKG
-      unsigned int m_dwPolicies; // block for storing boolean system policies
+      ::u32 m_dwPolicies; // block for storing boolean system policies
 
       // Support for Shift+F1 help mode.
       // true if we're in SHIFT+F1 mode.
@@ -343,7 +343,7 @@ namespace platform
       //      ATOM                                 m_atomSystemTopic;   // for DDE open
       //#endif
 
-      unsigned int m_nNumThumbnailPages; // number of default printed pages
+      ::u32 m_nNumThumbnailPages; // number of default printed pages
 
       string m_strId;
 
@@ -425,7 +425,7 @@ namespace platform
       //semaphore                                       m_semCompiler;
       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 
-      //unsigned int                                           m_dwInstallGoodToCheckAgain;
+      //::u32                                           m_dwInstallGoodToCheckAgain;
 
       //bool                                            m_bAppHasInstallerProtected;
       //bool                                            m_bAppHasInstallerChangedProtected;
@@ -480,9 +480,9 @@ namespace platform
 //
 //#endif
 //
-//      unsigned int                                             m_dwPromptContext;        // help action_context override for message box
+//      ::u32                                             m_dwPromptContext;        // help action_context override for message box
 //      // LKG
-//      unsigned int                                             m_dwPolicies;            // block for storing boolean system policies
+//      ::u32                                             m_dwPolicies;            // block for storing boolean system policies
 //
 //      // Support for Shift+F1 help mode.
 //      // true if we're in SHIFT+F1 mode.
@@ -494,7 +494,7 @@ namespace platform
 //
 //      ATOM                                            m_atomApp;
 //      ATOM                                            m_atomSystemTopic;   // for DDE open
-//      unsigned int                                            m_nNumThumbnailPages; // number of default printed pages
+//      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
 //
 //      string                                          m_strId;
 

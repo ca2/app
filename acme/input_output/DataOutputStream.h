@@ -73,8 +73,8 @@
 
       void writeUInt8(unsigned char x);
       void writeUInt16(unsigned short x);
-      void writeUInt32(unsigned int x);
-      void writeUInt64(unsigned long long x);
+      void writeUInt32(::u32 x);
+      void writeUInt64(::u64 x);
 
       void writeInt8(char x);
       void writeInt16(short x);

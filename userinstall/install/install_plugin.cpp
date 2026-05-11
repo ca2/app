@@ -31,7 +31,7 @@
 
 #ifdef WINDOWS
 
-void simple_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+void simple_se_translator(::u32 uiCode, EXCEPTION_POINTERS * ppointers)
 {
    //throw ::exception(::exception("integer_exception" + as_string($1)));
 }
@@ -461,7 +461,7 @@ pdirectorysystem->system() / "config\\plugin\\version.txt");
 
       bool bTimedOut = false;
 
-      unsigned int dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
+      ::u32 dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
 
       if(bTimedOut)
       {
@@ -841,14 +841,14 @@ run_install:
 
 #else
 
-      //unsigned int dwTime1= ::time::now();
+      //::u32 dwTime1= ::time::now();
 
 
 
       //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && !is_installing() && psystem->install().is_ca2_installed())
       {
-         //unsigned int dwTime3= ::time::now();
+         //::u32 dwTime3= ::time::now();
 
          //informationf("eval1 %d",dwTime3 - dwTime1);
 
@@ -856,7 +856,7 @@ run_install:
          if(ensure_tx(WM_APP+WM_USER,(void *)&lprect,sizeof(lprect)))
          {
 
-            //unsigned int dwTime5= ::time::now();
+            //::u32 dwTime5= ::time::now();
 
             //informationf("ensure_tx %d",dwTime5 - dwTime3);
 
@@ -946,14 +946,14 @@ run_install:
 
             }
 
-            //unsigned int dwTime7= ::time::now();
+            //::u32 dwTime7= ::time::now();
 
             //informationf("focus_update %d",dwTime7 - dwTime5);
 
 
             m_phost->blend_bitmap(pgraphics, lprect);
 
-            //unsigned int dwTime9= ::time::now();
+            //::u32 dwTime9= ::time::now();
 
             //informationf("blend %d",dwTime9 - dwTime7);
 
@@ -1181,7 +1181,7 @@ run_install:
    double plugin::extract_spa_progress_rate()
    {
 
-      unsigned int dwRead;
+      ::u32 dwRead;
 
       HANDLE hfile = ::create_file(::path::install_log(process_platform_name()), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
@@ -1352,7 +1352,7 @@ run_install:
 
 #endif
 
-   bool plugin::set_window_position(iptr z,int x,int y,int cx,int cy,unsigned int nFlags)
+   bool plugin::set_window_position(iptr z,int x,int y,int cx,int cy,::u32 nFlags)
    {
 
       bool bOk = ::hotplugin::plugin::set_window_position(z, x, y, cx, cy, nFlags);

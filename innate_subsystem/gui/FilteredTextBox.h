@@ -52,7 +52,7 @@ namespace innate_subsystem
        virtual bool isStringValid(const char *string) = 0;
        virtual ::lresult onKeyDown(::wparam code, ::lparam params) = 0;
    //
-   //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+   //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, ::u32 uMsg, ::wparam wparam, ::lparam lparam);
    //
    // protected:
    //    LONG_PTR m_oldWindowProc;
@@ -85,7 +85,7 @@ namespace innate_subsystem
       bool isStringValid(const char *string) override { return m_pfilteredtextbox->isStringValid(string); }
       //    virtual LRESULT onKeyDown(::wparam code, ::lparam params);
       //
-      //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, unsigned int uMsg, ::wparam wparam, ::lparam lparam);
+      //    static LRESULT CALLBACK windowProc(const ::operating_system::window & operatingsystemwindow, ::u32 uMsg, ::wparam wparam, ::lparam lparam);
       //
       // protected:
       //    LONG_PTR m_oldWindowProc;

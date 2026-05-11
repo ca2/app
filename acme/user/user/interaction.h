@@ -55,7 +55,7 @@ namespace acme
                bool     m_bMessageOnlyWindow : 1;
                bool     m_bHover : 1;
             };
-            unsigned int m_uFlagsAcmeUserInteraction;
+            ::u32 m_uFlagsAcmeUserInteraction;
          };
 
          ::pointer < ::acme::windowing::window >       m_pacmewindowingwindow;

@@ -43,7 +43,7 @@
 #include <ctype.h>
 #endif
 
-//unsigned int RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
+//::u32 RunSilent(const ::scoped_string & scopedstrFunct, const ::scoped_string & scopedstrstrParams);
 
 
 
@@ -296,7 +296,7 @@ namespace dynamic_source
 
 #ifdef WINDOWS_DESKTOP
 
-      unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
+      ::u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
       LPWSTR lpsz = øraw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
@@ -1365,7 +1365,7 @@ namespace dynamic_source
 
       //      strDest += " \r\n \
       //         extern \"C\" int APIENTRY \r\n \
-      //         DllMain(HINSTANCE hInstance,unsigned int dwReason,LPVOID lpReserved) \r\n \
+      //         DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved) \r\n \
       //      { \r\n \
       //\r\n  \
       // \r\n \r\n \
@@ -1696,7 +1696,7 @@ namespace dynamic_source
 
          auto tickStart = ::time::now();
 
-         //unsigned int dwExitCode;
+         //::u32 dwExitCode;
 
          string strLog;
 

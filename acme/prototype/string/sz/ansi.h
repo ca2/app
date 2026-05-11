@@ -146,7 +146,7 @@ CLASS_DECL_ACME character_count unichar_count(const_char_pointer pstr);
 
 
 CLASS_DECL_ACME long long string_to_signed(const_char_pointer psz);
-CLASS_DECL_ACME unsigned long long as_unsigned_long_long(const_char_pointer psz);
+CLASS_DECL_ACME ::u64 as_u64(const_char_pointer psz);
 CLASS_DECL_ACME double string_to_floating(const_char_pointer psz);
 
 

@@ -99,7 +99,7 @@
 //} // namespace sockets
 //
 //
-//CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u);
+//CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, ::u32 u);
 //
 //
 //

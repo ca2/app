@@ -31,8 +31,8 @@ namespace gpu_gpu
       // GLuint m_globalUBO;
       //
       //
-      // unsigned int                     m_VAO;
-      // unsigned int                     m_VBO;
+      // ::u32                     m_VAO;
+      // ::u32                     m_VBO;
       //
       // GLint                            m_iMatrixUniform;
       //

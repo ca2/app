@@ -27,7 +27,7 @@ typedef signed short    PRInt16;
 typedef unsigned short  PR::u3216;
 typedef signed char   PRInt8;
 typedef unsigned char PR::u328;
-typedef unsigned int PR::u32n;
+typedef ::u32 PR::u32n;
 typedef char PRBool;
 
 #define PR_FALSE 0

@@ -171,7 +171,7 @@ void CTSFMainWnd::_CleanupEditWnd(BOOL fNuke)
 **************************************************************************/
 
 LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd, 
-                                        unsigned int uMessage,
+                                        ::u32 uMessage,
                                         WPARAM wParam, 
                                         LPARAM lParam)
 {
@@ -380,7 +380,7 @@ LRESULT CTSFMainWnd::_OnKillFocus(VOID)
 
 **************************************************************************/
 
-LRESULT CTSFMainWnd::_OnNotify(unsigned int, LPNMHDR)
+LRESULT CTSFMainWnd::_OnNotify(::u32, LPNMHDR)
 {
     return 0;
 }

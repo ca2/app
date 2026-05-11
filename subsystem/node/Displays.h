@@ -23,7 +23,7 @@
 //
 
 #pragma once
-//#include "subsystem/platform/particle.h"
+//#include "subsystem/platform/Particle.h"
 #include "subsystem/_common_header.h"
 
 //#include "subsystem/platform/::earth::time.h"
@@ -65,7 +65,7 @@ namespace  subsystem
       // ::int_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;
       //
-      // static const unsigned int UPDATE_INTERVAL = 3000;
+      // static const ::u32 UPDATE_INTERVAL = 3000;
       // class ::time m_latestUpdateTime;
    };
 
@@ -131,7 +131,7 @@ virtual public Composite<DisplaysInterface>
       // ::int_rectangle_array_base m_displayRects;
       // LocalMutex m_displayRectsMutex;
       //
-      // static const unsigned int UPDATE_INTERVAL = 3000;
+      // static const ::u32 UPDATE_INTERVAL = 3000;
       // class ::time m_latestUpdateTime;
    };
 

@@ -302,10 +302,10 @@ namespace sockets_bsd
 
 
       /** Outgoing traffic counter. */
-      unsigned long long GetBytesSent(bool clear = false) override;
+      ::u64 GetBytesSent(bool clear = false) override;
 
       /** Incoming traffic counter. */
-      unsigned long long GetBytesReceived(bool clear = false) override;
+      ::u64 GetBytesReceived(bool clear = false) override;
 
       // LIST_TIMEOUT
 

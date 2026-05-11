@@ -39,7 +39,7 @@ namespace windows
    // }
 
 
-   CLASS_DECL_ACME unsigned int _get_file_attributes(const ::file::path & path)
+   CLASS_DECL_ACME ::u32 _get_file_attributes(const ::file::path & path)
    {
 
       ::windows_path windowspath = path.windows_path();
@@ -64,7 +64,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME unsigned int get_file_attributes(const ::file::path & path)
+   CLASS_DECL_ACME ::u32 get_file_attributes(const ::file::path & path)
    {
 
       auto attributes = _get_file_attributes(path);
@@ -81,7 +81,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME int_bool is_win32_accessible(unsigned int uFileAttributes, const last_error & lasterror)
+   CLASS_DECL_ACME int_bool is_win32_accessible(::u32 uFileAttributes, const last_error & lasterror)
    {
 
       if (uFileAttributes == INVALID_FILE_ATTRIBUTES)
@@ -144,7 +144,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, unsigned int uFileAttributes)
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, ::u32 uFileAttributes)
    {
 
       ::windows_path windowspath = path.windows_path();
@@ -632,14 +632,14 @@ namespace windows
 
 
 
-//CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, unsigned long long iSize)
+//CLASS_DECL_ACME bool ensure_file_size_handle(HANDLE h, ::u64 iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = GetFileSize(h, &dwHi);
 //
-//   if (((unsigned long long)dwLo | ((unsigned long long)dwHi << 32)) != iSize)
+//   if (((::u64)dwLo | ((::u64)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;

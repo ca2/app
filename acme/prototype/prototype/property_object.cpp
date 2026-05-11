@@ -265,7 +265,7 @@ bool property_object::is_pinging() const
 //}
 
 
-//void property_object::notify(unsigned long long uId)
+//void property_object::notify(::u64 uId)
 //{
 //
 //   m_uid |= uId;
@@ -920,7 +920,7 @@ int property_object::get_int(const ::atom & atom, int iDefault) const
 }
 
 
-unsigned int property_object::get_unsigned_int(const ::atom & atom, unsigned int uDefault) const
+::u32 property_object::get_unsigned_int(const ::atom & atom, ::u32 uDefault) const
 {
 
    if (!m_ppropertyset)

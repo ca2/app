@@ -70,8 +70,8 @@ namespace innate_subsystem
         //
 
         virtual void calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
-                      unsigned int textWidth, unsigned int textHeight,
-                      unsigned int imageWidth, unsigned int imageHeight,
+                      ::u32 textWidth, ::u32 textHeight,
+                      ::u32 imageWidth, ::u32 imageHeight,
                       ::int_rectangle &textRect, ::int_rectangle & imageRect) = 0;
 
         //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
@@ -89,7 +89,7 @@ namespace innate_subsystem
         //int m_iconWidth;
         //int m_iconHeight;
   //  private:
-    //    static LRESULT CALLBACK wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam);
+    //    static LRESULT CALLBACK wndProc(HWND hWnd, ::u32 message, ::wparam wparam, ::lparam lparam);
     };
 
 
@@ -134,8 +134,8 @@ namespace innate_subsystem
       //
 
       virtual void calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
-                    unsigned int textWidth, unsigned int textHeight,
-                    unsigned int imageWidth, unsigned int imageHeight,
+                    ::u32 textWidth, ::u32 textHeight,
+                    ::u32 imageWidth, ::u32 imageHeight,
                     ::int_rectangle &textRect, ::int_rectangle & imageRect) override { m_pimagedbutton->calcRect(buttonRect, isButtonPressed, textWidth, textHeight, imageWidth, imageHeight, textRect, imageRect); }
 
       //virtual void drawIcon(DeviceContextInterface* dc, const ::int_rectangle & imageRect, bool isPressed, bool isDisabled);
@@ -153,7 +153,7 @@ namespace innate_subsystem
       //int m_iconWidth;
       //int m_iconHeight;
       //  private:
-      //    static LRESULT CALLBACK wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam);
+      //    static LRESULT CALLBACK wndProc(HWND hWnd, ::u32 message, ::wparam wparam, ::lparam lparam);
    };
 
 

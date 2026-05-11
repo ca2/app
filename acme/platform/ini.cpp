@@ -523,17 +523,17 @@ static WpLocation wp_find_section_and_key(
    Win32-style multi-string helpers
    ============================================================ */
 
-static unsigned int wp_copy_cstr(char *dst, unsigned int nSize, const char *src) {
+static ::u32 wp_copy_cstr(char *dst, ::u32 nSize, const char *src) {
     size_t len;
     if (!dst || nSize == 0) return 0;
     if (!src) src = "";
     strncpy(dst, src, nSize - 1);
     dst[nSize - 1] = '\0';
     len = strlen(dst);
-    return (unsigned int)len;
+    return (::u32)len;
 }
 
-static unsigned int wp_multisz_append(char *dst, unsigned int nSize, unsigned int used, const char *s) {
+static ::u32 wp_multisz_append(char *dst, ::u32 nSize, ::u32 used, const char *s) {
     size_t len;
     if (!dst || nSize == 0) return 0;
     if (!s) s = "";
@@ -665,12 +665,12 @@ int WritePrivateProfileString(
     return TRUE;
 }
 
-unsigned int GetPrivateProfileString(
+::u32 GetPrivateProfileString(
     const char *lpAppName,
     const char *lpKeyName,
     const char *lpDefault,
     char *lpReturnedString,
-    unsigned int nSize,
+    ::u32 nSize,
     const char *lpFileName
 ) {
     WpLines lines;
@@ -678,7 +678,7 @@ unsigned int GetPrivateProfileString(
     int in_target = 0;
     char sec[WP_MAX_NAME];
     char key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
-    unsigned int used = 0;
+    ::u32 used = 0;
 
     if (!lpReturnedString || nSize == 0) return 0;
     lpReturnedString[0] = '\0';
@@ -768,7 +768,7 @@ unsigned int GetPrivateProfileString(
     return wp_copy_cstr(lpReturnedString, nSize, lpDefault ? lpDefault : "");
 }
 
-unsigned int GetPrivateProfileInt(
+::u32 GetPrivateProfileInt(
     const char *lpAppName,
     const char *lpKeyName,
     int nDefault,
@@ -778,18 +778,18 @@ unsigned int GetPrivateProfileInt(
     char *endptr;
     long v;
 
-    GetPrivateProfileString(lpAppName, lpKeyName, "", buf, (unsigned int)sizeof(buf), lpFileName);
-    if (buf[0] == '\0') return (unsigned int)nDefault;
+    GetPrivateProfileString(lpAppName, lpKeyName, "", buf, (::u32)sizeof(buf), lpFileName);
+    if (buf[0] == '\0') return (::u32)nDefault;
 
     v = strtol(buf, &endptr, 0);
-    if (endptr == buf) return (unsigned int)nDefault;
-    return (unsigned int)v;
+    if (endptr == buf) return (::u32)nDefault;
+    return (::u32)v;
 }
 
-unsigned int GetPrivateProfileSection(
+::u32 GetPrivateProfileSection(
     const char *lpAppName,
     char *lpReturnedString,
-    unsigned int nSize,
+    ::u32 nSize,
     const char *lpFileName
 ) {
     WpLines lines;
@@ -798,7 +798,7 @@ unsigned int GetPrivateProfileSection(
     char sec[WP_MAX_NAME];
     char key[WP_MAX_NAME], val[WP_MAX_VALUE], comment[WP_MAX_VALUE];
     char kv[WP_MAX_LINE];
-    unsigned int used = 0;
+    ::u32 used = 0;
 
     if (!lpReturnedString || nSize == 0) return 0;
     lpReturnedString[0] = '\0';
@@ -849,9 +849,9 @@ unsigned int GetPrivateProfileSection(
     return used ? (used - 1) : 0;
 }
 
-unsigned int GetPrivateProfileSectionNames(
+::u32 GetPrivateProfileSectionNames(
     char *lpszReturnBuffer,
-    unsigned int nSize,
+    ::u32 nSize,
     const char *lpFileName
 ) {
     return GetPrivateProfileString(NULL, NULL, "", lpszReturnBuffer, nSize, lpFileName);

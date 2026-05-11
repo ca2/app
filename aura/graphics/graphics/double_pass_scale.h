@@ -16,7 +16,7 @@ typedef struct
 typedef struct
 {
    ContributionType *ContribRow; // Row (or column) of contribution weights
-   unsigned int WindowSize,              // Filter window int_size (of affecting source pixels)
+   ::u32 WindowSize,              // Filter window int_size (of affecting source pixels)
         LineLength;              // Length of line (no. or rows / cols)
    double * matrix;
 } LineContribType;               // Contribution information for an entire line (row or column)
@@ -43,21 +43,21 @@ public:
 
    //::color::color * AllocAndScale (
    //::color::color   *pOrigImage,
-   //unsigned int        uOrigWidth,
-   //unsigned int        uOrigHeight,
-   //unsigned int        uNewWidth,
-   //unsigned int        uNewHeight);
+   //::u32        uOrigWidth,
+   //::u32        uOrigHeight,
+   //::u32        uNewWidth,
+   //::u32        uNewHeight);
 
    ::image32_t *  Scale (
    ::image32_t *  pDstImage,
       color_indexes indexes, 
-   unsigned int          uNewWidth,
-   unsigned int          uNewHeight,
-   unsigned int          uNewScan,
+   ::u32          uNewWidth,
+   ::u32          uNewHeight,
+   ::u32          uNewScan,
    ::image32_t *  pOrigImage,
-   unsigned int          uOrigWidth,
-   unsigned int          uOrigHeight,
-   unsigned int          uOrigScan
+   ::u32          uOrigWidth,
+   ::u32          uOrigHeight,
+   ::u32          uOrigScan
    );
 
 private:
@@ -65,53 +65,53 @@ private:
    ProgressAnbAbortCallBack    m_Callback;
    int_bool                     m_bCanceled;
 
-   LineContribType *AllocContributions (   unsigned int uLineLength,
-                                           unsigned int uWindowSize);
+   LineContribType *AllocContributions (   ::u32 uLineLength,
+                                           ::u32 uWindowSize);
 
    void FreeContributions (LineContribType * int_point);
 
-   LineContribType *CalcContributions (    unsigned int    uLineSize,
-                                           unsigned int    uSrcSize,
+   LineContribType *CalcContributions (    ::u32    uLineSize,
+                                           ::u32    uSrcSize,
                                           double  dScale);
  
    void ScaleRow (::image32_t *pSrc,
       ::color_indexes indexes, 
-                   unsigned int                uSrcWidth,
+                   ::u32                uSrcWidth,
       ::image32_t*pRes,
-                   unsigned int                uResWidth,
-                   unsigned int                uRow,
+                   ::u32                uResWidth,
+                   ::u32                uRow,
                    LineContribType    *Contrib);
 
    void HorizScale (::image32_t *pSrc,
       color_indexes indexes,
-                       unsigned int                uSrcWidth,
-                       unsigned int                uSrcHeight,
+                       ::u32                uSrcWidth,
+                       ::u32                uSrcHeight,
       ::image32_t*pDst,
-                       unsigned int                uResWidth,
-                       unsigned int                uResHeight);
+                       ::u32                uResWidth,
+                       ::u32                uResHeight);
 
    void ScaleCol (::image32_t *pSrc,
       color_indexes indexes,
-                   unsigned int                uSrcWidth,
+                   ::u32                uSrcWidth,
       ::image32_t *pRes,
-                   unsigned int                uResWidth,
-                   unsigned int                uResHeight,
-                   unsigned int                uCol,
+                   ::u32                uResWidth,
+                   ::u32                uResHeight,
+                   ::u32                uCol,
                    LineContribType    *Contrib);
 
    void VertScale (::image32_t *pSrc,
       color_indexes indexes,
-                       unsigned int                uSrcWidth,
-                       unsigned int                uSrcHeight,
+                       ::u32                uSrcWidth,
+                       ::u32                uSrcHeight,
       ::image32_t*pDst,
-                       unsigned int                uResWidth,
-                       unsigned int                uResHeight);
+                       ::u32                uResWidth,
+                       ::u32                uResHeight);
 };
 
 template <class FilterClass>
 LineContribType *
 C2PassScale<FilterClass>::
-AllocContributions (unsigned int uLineLength, unsigned int uWindowSize)
+AllocContributions (::u32 uLineLength, ::u32 uWindowSize)
 {
    LineContribType *res = øraw_new LineContribType();
    // Init structure header
@@ -120,7 +120,7 @@ AllocContributions (unsigned int uLineLength, unsigned int uWindowSize)
    // Allocate list_base of contributions
    res->ContribRow = øraw_new ContributionType[uLineLength];
    res->matrix = øraw_new double[uWindowSize * uLineLength];
-   for (unsigned int u = 0 ; u < uLineLength ; u++)
+   for (::u32 u = 0 ; u < uLineLength ; u++)
    {
       // Allocate contributions for every pixel
       res->ContribRow[u].Weights = &res->matrix[uWindowSize * u];
@@ -133,7 +133,7 @@ void
 C2PassScale<FilterClass>::
 FreeContributions (LineContribType * int_point)
 {
-   //for (unsigned int u = 0; u < int_point->LineLength; u++)
+   //for (::u32 u = 0; u < int_point->LineLength; u++)
    //{
    //   // Free contribs for every pixel
    //   delete [] int_point->ContribRow[u].Weights;
@@ -146,7 +146,7 @@ FreeContributions (LineContribType * int_point)
 template <class FilterClass>
 LineContribType *
 C2PassScale<FilterClass>::
-CalcContributions (unsigned int uLineSize, unsigned int uSrcSize, double dScale)
+CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
 {
 
    ::auto_pointer < FilterClass > pCurFilter;
@@ -186,7 +186,7 @@ CalcContributions (unsigned int uLineSize, unsigned int uSrcSize, double dScale)
    // Allocate a ___new line contributions strucutre
    LineContribType *res = AllocContributions (uLineSize, iWindowSize);
 
-   for (unsigned int u = 0; u < uLineSize; u++)
+   for (::u32 u = 0; u < uLineSize; u++)
    {
       // Scan through line of contributions
       double dCenter = (double)u / dScale;   // Reverse mapping
@@ -235,15 +235,15 @@ void
 C2PassScale<FilterClass>::
 ScaleRow (::image32_t*pSrc,
    ::color_indexes indexes,
-            unsigned int                uSrcWidth,
+            ::u32                uSrcWidth,
    ::image32_t*pRes,
-            unsigned int                uResWidth,
-            unsigned int                uRow,
+            ::u32                uResWidth,
+            ::u32                uRow,
             LineContribType    *Contrib)
 {
    ::image32_t*pSrcRow = &(pSrc[uRow * uSrcWidth]);
    ::image32_t*pDstRow = &(pRes[uRow * uResWidth]);
-   for (unsigned int x = 0; x < uResWidth; x++)
+   for (::u32 x = 0; x < uResWidth; x++)
    {
       // Loop through row
       unsigned char r = 0;
@@ -268,11 +268,11 @@ void
 C2PassScale<FilterClass>::
 HorizScale (::image32_t*pSrc,
    color_indexes indexes,
-                unsigned int                uSrcWidth,
-                unsigned int                uSrcHeight,
+                ::u32                uSrcWidth,
+                ::u32                uSrcHeight,
    ::image32_t*pDst,
-                unsigned int                uResWidth,
-                unsigned int                uResHeight)
+                ::u32                uResWidth,
+                ::u32                uResHeight)
 {
 //   information ("Performing horizontal scaling...\n");
    if (uResWidth == uSrcWidth)
@@ -282,7 +282,7 @@ HorizScale (::image32_t*pSrc,
    }
    // Allocate and calculate the contributions
    LineContribType * Contrib = CalcContributions (uResWidth, uSrcWidth, double(uResWidth) / double(uSrcWidth));
-   for (unsigned int u = 0; u < uResHeight; u++)
+   for (::u32 u = 0; u < uResHeight; u++)
    {
       // Step through rows
       if (nullptr != m_Callback)
@@ -317,14 +317,14 @@ void
 C2PassScale<FilterClass>::
 ScaleCol (::image32_t*pSrc,
    color_indexes indexes,
-            unsigned int                uSrcWidth,
+            ::u32                uSrcWidth,
    ::image32_t*pRes,
-            unsigned int                uResWidth,
-            unsigned int                uResHeight,
-            unsigned int                uCol,
+            ::u32                uResWidth,
+            ::u32                uResHeight,
+            ::u32                uCol,
             LineContribType    *Contrib)
 {
-   for (unsigned int y = 0; y < uResHeight; y++)
+   for (::u32 y = 0; y < uResHeight; y++)
    {
       // Loop through column
       unsigned char r = 0;
@@ -351,11 +351,11 @@ void
 C2PassScale<FilterClass>::
 VertScale (::image32_t*pSrc,
    color_indexes indexes,
-            unsigned int                uSrcWidth,
-            unsigned int                uSrcHeight,
+            ::u32                uSrcWidth,
+            ::u32                uSrcHeight,
    ::image32_t*pDst,
-            unsigned int                uResWidth,
-            unsigned int                uResHeight)
+            ::u32                uResWidth,
+            ::u32                uResHeight)
 {
 //   information ("Performing vertical scaling...");
 
@@ -366,7 +366,7 @@ VertScale (::image32_t*pSrc,
    }
    // Allocate and calculate the contributions
    LineContribType * Contrib = CalcContributions (uResHeight, uSrcHeight, double(uResHeight) / double(uSrcHeight));
-   for (unsigned int u = 0; u < uResWidth; u++)
+   for (::u32 u = 0; u < uResWidth; u++)
    {
       // Step through columns
       if (nullptr != m_Callback)
@@ -401,10 +401,10 @@ VertScale (::image32_t*pSrc,
 //C2PassScale<FilterClass>::
 //AllocAndScale (
 //::color::color   *pOrigImage,
-//unsigned int        uOrigWidth,
-//unsigned int        uOrigHeight,
-//unsigned int        uNewWidth,
-//unsigned int        uNewHeight)
+//::u32        uOrigWidth,
+//::u32        uOrigHeight,
+//::u32        uNewWidth,
+//::u32        uNewHeight)
 //{
    // Scale source image horizontally into temporary image
 //   m_bCanceled = false;
@@ -444,13 +444,13 @@ C2PassScale<FilterClass>::
 Scale (
 ::image32_t *pDstImage,
 color_indexes indexes,
-unsigned int        uNewWidth,
-unsigned int        uNewHeight,
-unsigned int        uNewScan,
+::u32        uNewWidth,
+::u32        uNewHeight,
+::u32        uNewScan,
 ::image32_t *pOrigImage,
-unsigned int        uOrigWidth,
-unsigned int        uOrigHeight,
-unsigned int uOrigScan)
+::u32        uOrigWidth,
+::u32        uOrigHeight,
+::u32 uOrigScan)
 {
 
    // Scale source image horizontally into temporary image

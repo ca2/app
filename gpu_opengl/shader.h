@@ -77,7 +77,7 @@ namespace gpu_opengl
                          ::gpu::binding_slot_set *pgpubindingslotset) override;
 
 
-      unsigned int create_shader(const ::block & blockVertex, GLenum type);
+      ::u32 create_shader(const ::block & blockVertex, GLenum type);
 
       virtual void shader_compile_errors(GLuint shader, GLenum type, string & strSummary);
 

@@ -56,7 +56,7 @@ namespace platform
    //    union
    //    {
    //
-   //       unsigned long long                                              m_uNodeFlags;
+   //       ::u64                                              m_uNodeFlags;
    //
    //       bool                                               m_bHasNodePostedSystemInitialRequest : 1;
    //
@@ -142,7 +142,7 @@ namespace platform
       virtual ::string get_file_type_identifier(const ::file::path & path) override;
 
 
-      virtual void call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr) override;
+      virtual void call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr) override;
       virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set, int * piExitCode) override;
 
 
@@ -359,7 +359,7 @@ namespace platform
       virtual string get_user_name() override;
 
 
-      virtual void set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha) override;
+      virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha) override;
 
 
       virtual void browse_for_folder(::file::path & pathFolder) override;
@@ -517,7 +517,7 @@ namespace platform
       virtual int get_current_processor_index() override;
       virtual int get_current_process_maximum_affinity() override;
       virtual int get_current_process_affinity_order() override;
-      virtual unsigned long long translate_processor_affinity(int i) override;
+      virtual ::u64 translate_processor_affinity(int i) override;
 
       //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr);
       //CLASS_DECL_ACME string xxxget_environment_variable(const ::scoped_string & scopedstrEnvironmentVariable);
@@ -545,13 +545,13 @@ namespace platform
 //
 //#if !defined(UNIVERSAL_WINDOWS)
 //
-//      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+//      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
 //
 //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam);
 //
 //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
 //
-//      //CLASS_DECL_ACME unsigned int call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
+//      //CLASS_DECL_ACME ::u32 call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
 //
 //#endif
 
@@ -616,7 +616,7 @@ namespace platform
       virtual string executable_title_from_appid(const ::scoped_string & scopedstrAppId) override;
 
 
-      //CLASS_DECL_ACME unsigned int get_current_process_id();
+      //CLASS_DECL_ACME ::u32 get_current_process_id();
 
 
 
@@ -777,7 +777,7 @@ namespace platform
    void stop_service(const ::scoped_string & scopedstrServiceName) override;
 
 //#ifdef WINDOWS
-//      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+//      virtual DECLSPEC_NO_RETURN void raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 //#endif
 
    bool is_remote_session() override;
@@ -981,7 +981,7 @@ namespace platform
 //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status)) override;
+      void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const_char_pointer status)) override;
 
 #endif
 

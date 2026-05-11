@@ -495,7 +495,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
    else if (isHexColorValue())
    {
 
-      color.m_ui = (unsigned int) ::strtoul(m_strValue.substr(1), nullptr, 16);
+      color.m_ui = (::u32) ::strtoul(m_strValue.substr(1), nullptr, 16);
 
       color.m_estatus = ::success;
 

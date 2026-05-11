@@ -44,7 +44,7 @@ extern "C" {
 #include <stddef.h>
 
 #ifdef _WIN32
-typedef unsigned long long sp_::u3264;
+typedef ::u64 sp_::u3264;
 #else
 #include <stdint.h>
 typedef uint64_t sp_::u3264;
@@ -276,7 +276,7 @@ typedef struct sp_audio_buffer_stats {
  * List of subscribers returned by sp_playlist_subscribers()
  */
 typedef struct sp_subscribers {
-  unsigned int count;    ///< Number of elements in 'subscribers'
+  ::u32 count;    ///< Number of elements in 'subscribers'
   char *subscribers[1];  ///< Actual int_size is 'count'. Array of pointers to canonical usernames
 } sp_subscribers;
 
@@ -3155,7 +3155,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_reorder_tracks(sp_playlist *playlist, const i
  * @return     Number of subscribers
  *
  */
-SP_LIBEXPORT(unsigned int) sp_playlist_num_subscribers(sp_playlist *playlist);
+SP_LIBEXPORT(::u32) sp_playlist_num_subscribers(sp_playlist *playlist);
 
 /**
  * Return subscribers for a playlist

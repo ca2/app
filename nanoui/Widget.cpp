@@ -642,7 +642,7 @@ namespace nanoui
    }
 
 
-   bool Widget::keyboard_character_event(unsigned int)
+   bool Widget::keyboard_character_event(::u32)
    {
 
       return false;

@@ -530,14 +530,14 @@ namespace gpu_opengl
    //}
 
 
-   //void renderer::DrawInstanced(const ::array<mesh*>& meshes, ::gpu::shader* pshader, unsigned int instanceCount) const
+   //void renderer::DrawInstanced(const ::array<mesh*>& meshes, ::gpu::shader* pshader, ::u32 instanceCount) const
    //{
 
    //   ::opengl::check_error("");
 
    //   for (const mesh* mesh : meshes) {
    //      mesh->Bind();
-   //      glDrawElementsInstanced(GL_TRIANGLES, mesh->GetIndexCount(), GL_UNSIGNED_INT, (void*)(mesh->GetIndexOffset() * sizeof(unsigned int)), instanceCount);
+   //      glDrawElementsInstanced(GL_TRIANGLES, mesh->GetIndexCount(), GL_UNSIGNED_INT, (void*)(mesh->GetIndexOffset() * sizeof(::u32)), instanceCount);
    //      mesh->Unbind();
    //   }
 

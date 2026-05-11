@@ -993,7 +993,7 @@ namespace dynamic_source
    void script_manager::LoadEnv()
    {
       /*char * buf;
-      unsigned int dwSize = GetDllDirectory(nullptr, nullptr);
+      ::u32 dwSize = GetDllDirectory(nullptr, nullptr);
       buf = ___new char[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       information(buf);
@@ -1019,7 +1019,7 @@ namespace dynamic_source
 
       string strNew;
 #ifdef WINDOWS_DESKTOP
-      unsigned int dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
+      ::u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
       LPWSTR lpsz = øraw_new wchar_t[dwSize + 1024];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
@@ -1327,7 +1327,7 @@ namespace dynamic_source
    }
 
 
-   //   unsigned int ThreadProcRsa(LPVOID lp)
+   //   ::u32 ThreadProcRsa(LPVOID lp)
    //   {
    //      script_manager * pmanager = (script_manager *) lp;
    //      pmanager->calc_rsa_key();

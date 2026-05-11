@@ -33,7 +33,7 @@
 //
 //
 // //CLASS_DECL_ACME string get_mem_info_report1();
-// //CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, unsigned int ** ppuiLine, size_t ** ppsize);
+// //CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, ::u32 ** ppuiLine, size_t ** ppsize);
 // #ifdef WINDOWS
 // CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
 // #endif
@@ -45,7 +45,7 @@
 namespace windows
 {
 
-   constexpr unsigned int wait_millis(const class time& time)
+   constexpr ::u32 wait_millis(const class time& time)
    {
 
       if (time.is_infinite())
@@ -72,10 +72,10 @@ namespace windows
 //}
 
 //template < >
-//inline bool gt(count i,unsigned long long u)
+//inline bool gt(count i,::u64 u)
 //{
 
-//   return i < 0 ? false : ((unsigned long long)i) > u;
+//   return i < 0 ? false : ((::u64)i) > u;
 
 //}
 
@@ -93,11 +93,11 @@ namespace windows
 {
 
 
-   CLASS_DECL_ACME::enum_status _last_error_status(unsigned int uLastError);
+   CLASS_DECL_ACME::enum_status _last_error_status(::u32 uLastError);
    inline ::e_status last_error_status(const last_error & lasterror) { return _last_error_status(lasterror.m_uLastError); }
    
    
-   CLASS_DECL_ACME::enum_status _failed_last_error_status(unsigned int uLastError);
+   CLASS_DECL_ACME::enum_status _failed_last_error_status(::u32 uLastError);
    inline ::e_status failed_last_error_status(const last_error & lasterror) { return _failed_last_error_status(lasterror.m_uLastError); }
 
 
@@ -127,15 +127,15 @@ namespace windows
 
    CLASS_DECL_ACME ::e_status wait_result_status(int iResult, int nCount);
 
-   CLASS_DECL_ACME unsigned int _get_file_attributes(const ::file::path & path);
+   CLASS_DECL_ACME ::u32 _get_file_attributes(const ::file::path & path);
 
-   CLASS_DECL_ACME unsigned int get_file_attributes(const ::file::path & path);
+   CLASS_DECL_ACME ::u32 get_file_attributes(const ::file::path & path);
 
-   CLASS_DECL_ACME int_bool is_win32_accessible(unsigned int uFileAttributes, const last_error & lasterror);
+   CLASS_DECL_ACME int_bool is_win32_accessible(::u32 uFileAttributes, const last_error & lasterror);
 
    CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path);
 
-   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, unsigned int uFileAttributes);
+   CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, ::u32 uFileAttributes);
 
 
    CLASS_DECL_ACME error_code last_error_error_code(const last_error & lasterror);

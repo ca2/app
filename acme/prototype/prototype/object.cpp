@@ -2407,8 +2407,8 @@ void object::sleep(const class time & time)
 //::pointer<thread>object::start(
 //   ::particle * pparticle,
 //   ::enum_priority epriority = e_priority_normal,
-//   unsigned int nStackSize = 0,
-//   unsigned int dwCreateFlags = 0)
+//   ::u32 nStackSize = 0,
+//   ::u32 dwCreateFlags = 0)
 //{
 //
 //   auto pthread = create_newø< ::thread >();
@@ -3223,7 +3223,7 @@ void object::initialize(::particle * pparticle)
 
 
 
-//static unsigned int s_thread_proc(void* p);
+//static ::u32 s_thread_proc(void* p);
 
 
 // void to_string(const string_exchange & str) const 
@@ -3673,7 +3673,7 @@ void object::initialize(::particle * pparticle)
 
 
 //template < typename PRED >
-//::image::image_pointer get_image(const ::payload & payloadFile, unsigned long long uTrait, PRED pred);
+//::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
 // ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
 // ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
@@ -3818,7 +3818,7 @@ bool object::IsSerializable() const
    //template < typename PRED >
    //inline ::thread_pointer predicate_run(bool bSync, PRED pred);
 
-   //::thread_pointer object::begin(::enum_priority epriority, unsigned int nStackSize, unsigned int dwCreateFlags)
+   //::thread_pointer object::begin(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags)
    //{
 
    //   return nullptr;

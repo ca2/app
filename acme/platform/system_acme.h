@@ -379,7 +379,7 @@ namespace platform
       // }
 
 
-      virtual unsigned int crc32(unsigned int uCrc, const ::block & block);
+      virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
       virtual void prepare_application();
 

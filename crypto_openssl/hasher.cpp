@@ -463,11 +463,11 @@ namespace crypto_openssl
 
 #if OPENSSL_VERSION_NUMBER >= 0x30000000
 
-      unsigned int md_len = EVP_MD_CTX_get_size(m_pctx);
+      ::u32 md_len = EVP_MD_CTX_get_size(m_pctx);
 
 #else
 
-      unsigned int md_len = EVP_MD_CTX_size(m_pctx);
+      ::u32 md_len = EVP_MD_CTX_size(m_pctx);
 
 #endif
 

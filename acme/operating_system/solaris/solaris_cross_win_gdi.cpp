@@ -177,7 +177,7 @@
 //    Window child_return;
 //    int win_x_return;
 //    int win_y_return;
-//    unsigned int mask_return;
+//    ::u32 mask_return;
 
 //    xdisplay display;
 
@@ -194,7 +194,7 @@
 
 
 
-// int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, unsigned int uFlags)
+// int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, ::u32 uFlags)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);

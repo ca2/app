@@ -270,17 +270,17 @@ namespace innate_subsystem
    //   m_pparticleThis->allowMultiSelection(allow);
    //}
 
-   //unsigned int ListView::getSelectedItemsCount()
+   //::u32 ListView::getSelectedItemsCount()
    //{
    //   // return ListView_GetSelectedCount(m_hwnd);
    //   return m_pparticleThis->getSelectedItemsCount();
 
    //}
 
-   //::int_array ListView::getSelectedItemsIndexes()
+   //::i32_array ListView::getSelectedItemsIndexes()
    //{
    //   // int i = -1;
-   //   // for (unsigned int j = 0; j < getSelectedItemsCount(); j++) {
+   //   // for (::u32 j = 0; j < getSelectedItemsCount(); j++) {
    //   //    i = ListView_GetNextItem(m_hwnd, i, LVNI_SELECTED);
    //   //    indexes[j] = i;
    //   // }
@@ -359,29 +359,29 @@ namespace innate_subsystem
    //}
 
 
-   //void ListView::setListViewExtendedStyle(unsigned int style)
+   //void ListView::setListViewExtendedStyle(::u32 style)
    //{
    //   //::SendMessage(m_hwnd, LVM_SETEXTENDEDLISTVIEWSTYLE, 0, (::lparam)style);
    //   m_pparticleThis->m_pbase->m_pbase->setExStyle(style);
    //}
 
-   //unsigned int ListView::getListViewExtendedStyle()
+   //::u32 ListView::getListViewExtendedStyle()
    //{
    //   //return ListView_GetExtendedListViewStyle(m_hwnd);
    //   return m_pparticleThis->m_pbase->m_pbase->getExStyle();
    //}
 
-   //void ListView::addListViewExtendedStyle(unsigned int styleFlag)
+   //void ListView::addListViewExtendedStyle(::u32 styleFlag)
    //{
-   //   // unsigned int flags = getExStyle();
+   //   // ::u32 flags = getExStyle();
    //   // flags |= styleFlag;
    //   // setExStyle(flags);
    //   m_pparticleThis->addExStyle(styleFlag);
    //}
 
-   //void ListView::removeListViewExtendedStyle(unsigned int styleFlag)
+   //void ListView::removeListViewExtendedStyle(::u32 styleFlag)
    //{
-   //   // unsigned int flags = getExStyle();
+   //   // ::u32 flags = getExStyle();
    //   // flags &= ~styleFlag;
    //   // setExStyle(flags);
    //   m_pparticleThis->removeExStyle(styleFlag);

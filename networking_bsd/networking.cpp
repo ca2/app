@@ -531,10 +531,10 @@ namespace networking_bsd
          }
          //         ::time tick2= ::time::now();
          /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
-         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
-         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
-         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
+         (::u32)((unsigned char*)&pitem->m_ipaddr)[0],
+         (::u32)((unsigned char*)&pitem->m_ipaddr)[1],
+         (::u32)((unsigned char*)&pitem->m_ipaddr)[2],
+         (::u32)((unsigned char*)&pitem->m_ipaddr)[3],
          (tick2 - tick1));*/
          return item.m_bOk;
       }
@@ -649,10 +649,10 @@ namespace networking_bsd
 
       //      ::time tick2= ::time::now();
       //      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-         //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
-         //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
-         //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
-         // (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
+         //       (::u32)((unsigned char*)&pitem->m_ipaddr)[0],
+         //     (::u32)((unsigned char*)&pitem->m_ipaddr)[1],
+         //   (::u32)((unsigned char*)&pitem->m_ipaddr)[2],
+         // (::u32)((unsigned char*)&pitem->m_ipaddr)[3],
          //(tick2 - tick1));
       l = item.m_ipaddr;
 
@@ -1078,7 +1078,7 @@ namespace networking_bsd
          struct addrinfo* ai = res;
          int iSaSize = sizeof(sockaddr_in6);
          //char ipstringbuffer[46];
-         //unsigned int ipbufferlength = 46;
+         //::u32 ipbufferlength = 46;
          while (ai)
          {
             // The buffer length is changed by each call to WSAAddresstoString
@@ -1372,7 +1372,7 @@ namespace networking_bsd
          {
             char slask[100]; // l2ip temporary
             *slask = 0;
-            unsigned int prev = 0;
+            ::u32 prev = 0;
             bool skipped = false;
             bool ok_to_skip = true;
             {
@@ -2078,10 +2078,10 @@ namespace networking_bsd
    //         }
    //         //         ::time tick2= ::time::now();
    //         /*informationf("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
-   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
-   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
-   //         (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
+   //         (::u32)((unsigned char*)&pitem->m_ipaddr)[0],
+   //         (::u32)((unsigned char*)&pitem->m_ipaddr)[1],
+   //         (::u32)((unsigned char*)&pitem->m_ipaddr)[2],
+   //         (::u32)((unsigned char*)&pitem->m_ipaddr)[3],
    //         (tick2 - tick1));*/
    //         return item.m_bOk;
    //      }
@@ -2196,10 +2196,10 @@ namespace networking_bsd
    //
    ////      ::time tick2= ::time::now();
    ////      informationf("DNS find networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-   //   //       (unsigned int)((unsigned char*)&pitem->m_ipaddr)[0],
-   //   //     (unsigned int)((unsigned char*)&pitem->m_ipaddr)[1],
-   //   //   (unsigned int)((unsigned char*)&pitem->m_ipaddr)[2],
-   //   // (unsigned int)((unsigned char*)&pitem->m_ipaddr)[3],
+   //   //       (::u32)((unsigned char*)&pitem->m_ipaddr)[0],
+   //   //     (::u32)((unsigned char*)&pitem->m_ipaddr)[1],
+   //   //   (::u32)((unsigned char*)&pitem->m_ipaddr)[2],
+   //   // (::u32)((unsigned char*)&pitem->m_ipaddr)[3],
    //   //(tick2 - tick1));
    //   l = item.m_ipaddr;
    //
@@ -2253,7 +2253,7 @@ namespace networking_bsd
    //
    //   char slask[100]; // l2ip temporary
    //   *slask = 0;
-   //   unsigned int prev = 0;
+   //   ::u32 prev = 0;
    //   bool skipped = false;
    //   bool ok_to_skip = true;
    //   if (mixed)
@@ -2593,7 +2593,7 @@ namespace networking_bsd
       //      struct addrinfo *ai = res;
       //      int iSaSize = sizeof(sockaddr_in6);
       //      //char ipstringbuffer[46];
-      //      unsigned int ipbufferlength = 46;
+      //      ::u32 ipbufferlength = 46;
       //      while (ai)
       //      {
       //         // The buffer length is changed by each call to WSAAddresstoString
@@ -2772,7 +2772,7 @@ namespace networking_bsd
       //      {
       //         char slask[100]; // l2ip temporary
       //         *slask = 0;
-      //         unsigned int prev = 0;
+      //         ::u32 prev = 0;
       //         bool skipped = false;
       //         bool ok_to_skip = true;
       //         {
@@ -3459,7 +3459,7 @@ namespace networking_bsd
    }
 
 
-   ::pointer<address>networking::create_ip4_address(unsigned int u, ::networking::port_t port)
+   ::pointer<address>networking::create_ip4_address(::u32 u, ::networking::port_t port)
    {
 
       auto paddress2 = allocateø address();

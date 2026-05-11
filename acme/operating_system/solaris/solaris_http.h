@@ -4,7 +4,7 @@ struct simple_http_status
 {
 public:
 
-   unsigned int             m_dwStatusCode;
+   ::u32             m_dwStatusCode;
    const_char_pointer     m_pszStatus;
 
 };

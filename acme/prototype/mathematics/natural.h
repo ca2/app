@@ -10,27 +10,27 @@ CLASS_DECL_ACME void throw_cast_overflow();
 
 
 
-#define INT_TO_NATURAL(i) (i >= 0 ? (unsigned int) i : 0)
+#define INT_TO_NATURAL(i) (i >= 0 ? (::u32) i : 0)
 
 
 
 
-inline unsigned int natural(int i)
+inline ::u32 natural(int i)
 {
-   return i >= 0 ? (unsigned int) i : 0;
+   return i >= 0 ? (::u32) i : 0;
 }
 
-inline unsigned int natural(unsigned int u)
+inline ::u32 natural(::u32 u)
 {
    return u;
 }
 
-inline unsigned long long natural(long long hi)
+inline ::u64 natural(long long hi)
 {
-   return hi >= 0 ? (unsigned long long) hi: 0;
+   return hi >= 0 ? (::u64) hi: 0;
 }
 
-inline unsigned long long natural(unsigned long long hn)
+inline ::u64 natural(::u64 hn)
 {
    return hn;
 }
@@ -76,13 +76,13 @@ inline int natural_min(int i1, int i2, int iEscape = -1)
 }
 
 
-inline bool less_than(unsigned long long u, int i)
+inline bool less_than(::u64 u, int i)
 {
-   return i < 0 ? false : u < (unsigned long long) i;
+   return i < 0 ? false : u < (::u64) i;
 }
 
 
-inline int mkint(unsigned int u)
+inline int mkint(::u32 u)
 {
    if (u >= I32_MAXIMUM)
       throw_cast_overflow();
@@ -94,7 +94,7 @@ inline int mkint(int i)
    return i;
 }
 
-inline long long mkint(unsigned long long hn)
+inline long long mkint(::u64 hn)
 {
    if (hn >= 0x7fffffffffffffffull)
       throw_cast_overflow();
@@ -229,17 +229,17 @@ constexpr auto minimum_maximum(T t, L l, H h)
 //constexpr const auto minimum(const U & u, const I & i)
 //{
 //
-//   return i < 0 ? 0 : (u < (unsigned int) i ? u : (unsigned int)i);
+//   return i < 0 ? 0 : (u < (::u32) i ? u : (::u32)i);
 //
 //}
-//template <  > constexpr const auto minimum(const unsigned long long & u, const long long & i){  return i < 0 ? 0 : (u < (unsigned long long)i ? u : (unsigned long long)i); }
-//template <  > constexpr const auto minimum(const unsigned long long & u, const int & i) { return i < 0 ? 0 : (u < (unsigned long long)i ? u : (unsigned long long)i); }
-//template <  > constexpr const auto minimum(const unsigned long long & u, const short & i) { return i < 0 ? 0 : (u < (unsigned long long)i ? u : (unsigned long long)i); }
-//template <  > constexpr const auto minimum(const unsigned long long & u, const char & i) { return i < 0 ? 0 : (u < (unsigned long long)i ? u : (unsigned long long)i); }
-//template <  > constexpr const auto minimum(const unsigned int & u, const long long & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
-//template <  > constexpr const auto minimum(const unsigned int & u, const int & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
-//template <  > constexpr const auto minimum(const unsigned int & u, const short & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
-//template <  > constexpr const auto minimum(const unsigned int & u, const char & i) { return i < 0 ? 0 : (u < (unsigned int)i ? u : (unsigned int)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const long long & i){  return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const int & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const short & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u64 & u, const char & i) { return i < 0 ? 0 : (u < (::u64)i ? u : (::u64)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const long long & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const int & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const short & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
+//template <  > constexpr const auto minimum(const ::u32 & u, const char & i) { return i < 0 ? 0 : (u < (::u32)i ? u : (::u32)i); }
 //template <  > constexpr const auto minimum(const unsigned short & u, const long long & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }
 //template <  > constexpr const auto minimum(const unsigned short & u, const int & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }
 //template <  > constexpr const auto minimum(const unsigned short & u, const short & i) { return i < 0 ? 0 : (u < (unsigned short)i ? u : (unsigned short)i); }

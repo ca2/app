@@ -975,9 +975,9 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //IMPL_VAR_REF2(short, short);
 //IMPL_VAR_REF2(unsigned short, unsigned short);
 //IMPL_VAR_REF2(int, int);
-//IMPL_VAR_REF2(unsigned int, unsigned int);
+//IMPL_VAR_REF2(::u32, ::u32);
 //IMPL_VAR_REF2(long long, long long);
-//IMPL_VAR_REF2(unsigned long long, unsigned long long);
+//IMPL_VAR_REF2(::u64, ::u64);
 //#undef IMPL_VAR_REF2
 
 

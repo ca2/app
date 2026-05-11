@@ -24,7 +24,7 @@ CLASS_DECL_ACME ::string _friendly_byte_count_helper(double d, int mod, const ch
 
    if (mod == 0)
    {
-      unsigned long long ull = (unsigned long long)d;
+      ::u64 ull = (::u64)d;
       return ::format("{}",ull);
 
    }
@@ -39,7 +39,7 @@ CLASS_DECL_ACME ::string _friendly_byte_count_helper(double d, int mod, const ch
 }
 
 
-CLASS_DECL_ACME ::string friendly_byte_count(unsigned long long ul, const char *pszFormat)
+CLASS_DECL_ACME ::string friendly_byte_count(::u64 ul, const char *pszFormat)
 {
 
    if (ul == 0)

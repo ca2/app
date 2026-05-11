@@ -27,18 +27,18 @@ namespace mathematics
    public:
       random_number_generator();
 
-      unsigned int m_uSeed;
+      ::u32 m_uSeed;
       std::default_random_engine m_generator;
-      std::uniform_int_distribution<unsigned int> m_distributionU32;
-      std::uniform_int_distribution<unsigned int> m_distributionU8;
+      std::uniform_int_distribution<::u32> m_distributionU32;
+      std::uniform_int_distribution<::u32> m_distributionU8;
 
 
-      void seed(int iTwistLen, unsigned int seed);
-      unsigned int get_unsigned_int();
+      void seed(int iTwistLen, ::u32 seed);
+      ::u32 get_unsigned_int();
       unsigned char get_unsigned_char();
 
    private:
-      unsigned int _get();
+      ::u32 _get();
       int m_value;
       unsigned_int_array m_uinta;
       long long m_iAccess = 0;

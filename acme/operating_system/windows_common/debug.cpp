@@ -73,7 +73,7 @@ namespace windows
    }
 
 
-   ::enum_status _last_error_status(unsigned int uLastError)
+   ::enum_status _last_error_status(::u32 uLastError)
    {
 
       // NT Error codes
@@ -244,7 +244,7 @@ namespace windows
    }
 
 
-   ::enum_status _failed_last_error_status(unsigned int uLastError)
+   ::enum_status _failed_last_error_status(::u32 uLastError)
    {
 
       if (uLastError == 0)
@@ -259,7 +259,7 @@ namespace windows
    }
 
 
-   // CLASS_DECL_ACME unsigned int last_error()
+   // CLASS_DECL_ACME ::u32 last_error()
    // {
    //
    //    return ::GetLastError();

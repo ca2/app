@@ -393,7 +393,7 @@ char * malloc_get_current_dir_name()
 //
 //      }
 //
-//      size_t dwWritten = ::fwrite(contents, 1, (unsigned int)dwWrite, file);
+//      size_t dwWritten = ::fwrite(contents, 1, (::u32)dwWrite, file);
 //
 //      bOk = dwWritten == dwWrite;
 //
@@ -622,7 +622,7 @@ char * malloc_get_current_dir_name()
 ////   wstring pszModuleFilePath(MAX_PATH * 8);
 ////
 ////
-////   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (unsigned int)pszModuleFilePath.count()))
+////   if (!GetModuleFileNameW(nullptr, pszModuleFilePath, (::u32)pszModuleFilePath.count()))
 ////
 ////      return "";
 ////
@@ -1483,7 +1483,7 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
 //
 //   DWORD dw;
 //
-//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (unsigned int)nCount, &dw, nullptr);
+//   WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), pdata, (::u32)nCount, &dw, nullptr);
 //
 //#else
 
@@ -1592,7 +1592,7 @@ CLASS_DECL_ACME void set_modified_file_time(
    times[0].tv_nsec = UTIME_OMIT;
 
    // Convert Windows FILETIME (100ns since 1601)
-   const unsigned long long ft = filetimeModified.get_file_time();
+   const ::u64 ft = filetimeModified.get_file_time();
 
    if (ft < file_time::EPOCH_DIFFERENCE_100NS)
    {
@@ -1602,7 +1602,7 @@ CLASS_DECL_ACME void set_modified_file_time(
    }
    else
    {
-      unsigned long long unix_100ns =
+      ::u64 unix_100ns =
          ft - file_time::EPOCH_DIFFERENCE_100NS;
 
       // 100ns → seconds + nanoseconds

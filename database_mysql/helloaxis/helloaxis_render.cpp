@@ -1029,7 +1029,7 @@ auto m_tick23 = ::time::now();
 
                t = (m_tick23.elapsed());
 
-               unsigned int uiCurrent23 = (t) / period;
+               ::u32 uiCurrent23 = (t) / period;
 
                t %= period;
 
@@ -1196,7 +1196,7 @@ auto m_tick23 = ::time::now();
 
       }
 
-      //unsigned int dw= ::time::now();
+      //::u32 dw= ::time::now();
 
       if (m_bFast || !m_bFirstDone || m_timeLastFast.elapsed() < m_timeFastAnime)
       {

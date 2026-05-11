@@ -7,7 +7,7 @@
 //#include "acme/node/ansios/ansios.h"
 
 
-//string get_error_message(unsigned int dwError);
+//string get_error_message(::u32 dwError);
 
 //::platform::application* win_instantiate_application(::platform::application* pappSystem, const ::scoped_string & scopedstrId);
 
@@ -43,15 +43,15 @@ CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessag
 int_bool PeekMessage(
    MESSAGE * lpMsg,
    oswindow hWnd,
-   unsigned int wMsgFilterMin,
-   unsigned int wMsgFilterMax,
-   unsigned int wRemoveMsg);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax,
+   ::u32 wRemoveMsg);
 
 int_bool GetMessage(
    MESSAGE * lpMsg,
    oswindow hWnd,
-   unsigned int wMsgFilterMin,
-   unsigned int wMsgFilterMax);
+   ::u32 wMsgFilterMin,
+   ::u32 wMsgFilterMax);
 
 
 

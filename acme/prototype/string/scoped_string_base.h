@@ -916,7 +916,7 @@ inline ::hash32 _scoped_string_unsigned_int_hash(const ::scoped_string_base<cons
 
    }
 
-   unsigned int uHash = 0;
+   ::u32 uHash = 0;
 
    auto p = scopedstr.m_begin;
 

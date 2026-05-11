@@ -10,20 +10,20 @@ namespace file
    namespace bitm
    {
 
-      const unsigned int kNumBigValueBits = 8 * 4;
-      const unsigned int kNumValueBytes = 3;
-      const unsigned int kNumValueBits = 8  * kNumValueBytes;
+      const ::u32 kNumBigValueBits = 8 * 4;
+      const ::u32 kNumValueBytes = 3;
+      const ::u32 kNumValueBits = 8  * kNumValueBytes;
 
-      const unsigned int kMask = (1 << kNumValueBits) - 1;
+      const ::u32 kMask = (1 << kNumValueBits) - 1;
 
       template<class TInByte>
       class decoder
       {
-         unsigned int m_BitPos;
-         unsigned int m_Value;
+         ::u32 m_BitPos;
+         ::u32 m_Value;
       public:
          TInByte m_Stream;
-         bool Create(unsigned int bufferSize) { return m_Stream.Create(bufferSize); }
+         bool Create(::u32 bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(reader *inStream) { m_Stream.SetStream(inStream);}
          void ReleaseStream() { m_Stream.ReleaseStream();}
 
@@ -34,7 +34,7 @@ namespace file
             Normalize();
          }
 
-         unsigned long long GetProcessedSize() const { return m_Stream.GetProcessedSize() - (kNumBigValueBits - m_BitPos) / 8; }
+         ::u64 GetProcessedSize() const { return m_Stream.GetProcessedSize() - (kNumBigValueBits - m_BitPos) / 8; }
 
          void Normalize()
          {
@@ -42,21 +42,21 @@ namespace file
                m_Value = (m_Value << 8) | m_Stream.ReadByte();
          }
 
-         unsigned int GetValue(unsigned int numBits) const
+         ::u32 GetValue(::u32 numBits) const
          {
             // return (m_Value << m_BitPos) >> (kNumBigValueBits - numBits);
             return ((m_Value >> (8 - m_BitPos)) & kMask) >> (kNumValueBits - numBits);
          }
 
-         void MovePos(unsigned int numBits)
+         void MovePos(::u32 numBits)
          {
             m_BitPos += numBits;
             Normalize();
          }
 
-         unsigned int ReadBits(unsigned int numBits)
+         ::u32 ReadBits(::u32 numBits)
          {
-            unsigned int res = GetValue(numBits);
+            ::u32 res = GetValue(numBits);
             MovePos(numBits);
             return res;
          }

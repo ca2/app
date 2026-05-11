@@ -29,7 +29,7 @@
 
 #ifdef LINUX
 
-int SetThreadAffinityMask(htask h, unsigned int dwThreadAffinityMask);
+int SetThreadAffinityMask(htask h, ::u32 dwThreadAffinityMask);
 
 #endif
 
@@ -677,7 +677,7 @@ void task::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP)
 
-      int_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (unsigned int)m_uThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (::u32)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -694,7 +694,7 @@ void task::__priority_and_affinity()
 
 #elif defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -1559,7 +1559,7 @@ bool task::is_thread_class() const
 
 
 #ifdef WINDOWS
-unsigned int WINAPI task::s_os_task(void * p)
+::u32 WINAPI task::s_os_task(void * p)
 #else
 void * task::s_os_task(void * p)
 #endif
@@ -1610,7 +1610,7 @@ void * task::s_os_task(void * p)
    }
 
 #ifdef WINDOWS
-   return (unsigned int) iExitCode;
+   return (::u32) iExitCode;
 #else
    return (void *)(iptr) iExitCode;
 #endif
@@ -2652,8 +2652,8 @@ bool task::has_message() const
 //void task::branch(
 //   ::particle * pparticle,
 //   ::enum_priority epriority,
-//   unsigned int nStackSize,
-//   unsigned int uCreateFlags ARG_SEC_ATTRS)
+//   ::u32 nStackSize,
+//   ::u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   m_pelement = pelement;
@@ -2786,7 +2786,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
       dwDisplacement = 0;
 
-      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
 
       ULONG BackTraceHash;
 
@@ -2798,7 +2798,7 @@ void task::branch(enum_parallelization eparallelization, const ::create_task_att
 
       engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 
-      unsigned int uiLine = 0;
+      ::u32 uiLine = 0;
 
       {
          critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -3028,7 +3028,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 //
 //      dwDisplacement = 0;
 //
-//      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+//      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
 //
 //      ULONG BackTraceHash;
 //
@@ -3040,7 +3040,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
 //
 //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
 //
-//      unsigned int uiLine = 0;
+//      ::u32 uiLine = 0;
 //
 //      {
 //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -3197,7 +3197,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //
    //      dwDisplacement = 0;
    //
-   //      unsigned int maxframes = sizeof(uia) / sizeof(uia[0]);
+   //      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
    //
    //      ULONG BackTraceHash;
    //
@@ -3209,7 +3209,7 @@ void task::branch_synchronously(const ::create_task_attributes_t & createtaskatt
    //
    //      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
    //
-   //      unsigned int uiLine = 0;
+   //      ::u32 uiLine = 0;
    //
    //      {
    //         critical_section_lock csl(&::exception_engine().m_criticalsection);
@@ -3428,7 +3428,7 @@ bool task::task_sleep(const class time & timeWait)
 //}
 
 
-//void task::branch(::particle * pparticle, ::enum_priority epriority, unsigned int nStackSize, unsigned int uCreateFlags ARG_SEC_ATTRS)
+//void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, ::u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
 //   auto ptask = allocateø task();

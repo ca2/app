@@ -191,7 +191,7 @@ CLASS_DECL_ACME enum_dialog_result simple_ui_message_box(
    const ::user::e_message_box& emessagebox)
 {
 
-   unsigned int uType = 0;
+   ::u32 uType = 0;
    
    uType = ::windows::message_box_to_windows_message_box(emessagebox);
 

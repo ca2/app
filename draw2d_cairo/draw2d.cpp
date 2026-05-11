@@ -423,9 +423,9 @@ return g_pdraw2dcairo;
 //      int max3x1 = maxx1 * 3;
 //
 //
-//      unsigned int dwR;
-//      unsigned int dwG;
-//      unsigned int dwB;
+//      ::u32 dwR;
+//      ::u32 dwG;
+//      ::u32 dwB;
 //
 //
 //      int iFilterXLowerBound;
@@ -468,7 +468,7 @@ return g_pdraw2dcairo;
 //      int yU;
 //
 //      bool bSpread;
-//      unsigned int bMin3 = bMin * 3;
+//      ::u32 bMin3 = bMin * 3;
 //
 //
 //      for (i = 0; i < 4; i++)
@@ -544,7 +544,7 @@ return g_pdraw2dcairo;
 //
 //                        if (dwR + dwG + dwB > bMin3)
 //                        {
-//                           *((unsigned int *)lpwDestination) |= 0x00ffffff;
+//                           *((::u32 *)lpwDestination) |= 0x00ffffff;
 //                           goto breakFilter;
 //                        }
 //                     }
@@ -624,7 +624,7 @@ return g_pdraw2dcairo;
 //
 //            if (bSpread)
 //            {
-//               *((unsigned int *)lpwDestination) |= 0x00ffffff;
+//               *((::u32 *)lpwDestination) |= 0x00ffffff;
 //               lpwDestination += 3;
 //            }
 //            else
@@ -814,7 +814,7 @@ return g_pdraw2dcairo;
 //            x1 = xL;
 //            x2 = (x1 - iFilterHalfW) * 4;
 //            lpwDestination = lpbDst + (wDst  * y1) + x1 * 4;
-//            if (*((unsigned int *)lpwDestination) != 0xffffffff)
+//            if (*((::u32 *)lpwDestination) != 0xffffffff)
 //            {
 //               for (; x1 <= xU; x1++)
 //               {
@@ -848,7 +848,7 @@ return g_pdraw2dcairo;
 //                        {
 //                           if (lpbSource_2[0] > 0)
 //                           {
-//                              *((unsigned int *)lpwDestination) = crSpreadSetColor;
+//                              *((::u32 *)lpwDestination) = crSpreadSetColor;
 //                              goto breakFilter;
 //                           }
 //                        }
@@ -899,7 +899,7 @@ return g_pdraw2dcairo;
 //            lpbSource_1 = lpbSource + x2;
 //            lpFilter = pFilter;
 //
-//            if (*((unsigned int *)lpwDestination) != 0xffffffff)
+//            if (*((::u32 *)lpwDestination) != 0xffffffff)
 //            {
 //               for (int yFilter = iFilterYLowerBound; yFilter <= iFilterYUpperBound; yFilter++)
 //               {
@@ -911,7 +911,7 @@ return g_pdraw2dcairo;
 //                     {
 //                        if (lpbSource_2[0] > 0)
 //                        {
-//                           *((unsigned int *)lpwDestination) = crSpreadSetColor;
+//                           *((::u32 *)lpwDestination) = crSpreadSetColor;
 //                           goto breakFilter2;
 //                        }
 //                     }

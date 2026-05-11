@@ -166,11 +166,11 @@ namespace hotplugin
 
          try
          {
-            //unsigned int dwTime1= ::time::now();
+            //::u32 dwTime1= ::time::now();
 
             m_pplugin->on_paint(pgraphics, rectangle);
 
-            //unsigned int dwTime9= ::time::now();
+            //::u32 dwTime9= ::time::now();
 
             //informationf("plugin->on_paint %d",dwTime9 - dwTime1);
 
@@ -191,19 +191,19 @@ namespace hotplugin
 
       if(::user::interaction::m_pimpl != nullptr && pgraphics != nullptr)
       {
-         //unsigned int dwTime1= ::time::now();
+         //::u32 dwTime1= ::time::now();
 
 
          ::user::interaction::m_pimpl->_001Print(pgraphics);
-         //unsigned int dwTime9= ::time::now();
+         //::u32 dwTime9= ::time::now();
 
          //informationf("m_pimpl->_001Print %d",dwTime9 - dwTime1);
 
       }
-      //unsigned int dwTime1= ::time::now();
+      //::u32 dwTime1= ::time::now();
 
       deferred_prodevian_redraw();
-      //unsigned int dwTime9= ::time::now();
+      //::u32 dwTime9= ::time::now();
 
       //informationf("deferred_prodevian_redraw %d",dwTime9 - dwTime1);
 
@@ -703,7 +703,7 @@ namespace hotplugin
 
 
 
-   //bool host::set_window_position(class ::user::zorder zorder, int x, int y, int cx, int cy, unsigned int nFlags)
+   //bool host::set_window_position(class ::user::zorder zorder, int x, int y, int cx, int cy, ::u32 nFlags)
    //{
 
    //   bool bOk = ::hotplugin::plugin::set_window_position(zorder, x, y, cx, cy, nFlags);

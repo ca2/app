@@ -92,7 +92,7 @@ namespace gpu
             void processNode(::gpu::model::model * pmodel, aiNode *node, const aiScene *scene)
             {
                // process all of this node's meshes if it has any
-               for (unsigned int i = 0; i < node->mNumMeshes; i++)
+               for (::u32 i = 0; i < node->mNumMeshes; i++)
                {
                   aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
 
@@ -180,7 +180,7 @@ namespace gpu
                }
 
                // continue with children
-               for (unsigned int i = 0; i < node->mNumChildren; i++)
+               for (::u32 i = 0; i < node->mNumChildren; i++)
                {
                   processNode(pmodel, node->mChildren[i], scene);
                }
@@ -217,7 +217,7 @@ namespace gpu
          }
 
          //::array_base<gltf::vertex> vertices;
-         //::array_base<unsigned int> indices;
+         //::array_base<::u32> indices;
          //::pointer<::gpu::model::material> pmaterial;
 
          if (pmaterialOverride)
@@ -235,7 +235,7 @@ namespace gpu
          bool bHasTangentsAndBitangents = mesh->HasTangentsAndBitangents();
 
          // vertices
-         for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+         for (::u32 i = 0; i < mesh->mNumVertices; i++)
          {
             VERTEX vertex;
 
@@ -316,12 +316,12 @@ namespace gpu
          }
 
          // indices
-         for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+         for (::u32 i = 0; i < mesh->mNumFaces; i++)
          {
 
             aiFace face = mesh->mFaces[i];
 
-            for (unsigned int j = 0; j < face.mNumIndices; j++)
+            for (::u32 j = 0; j < face.mNumIndices; j++)
             {
                auto iIndex = face.mIndices[j];
                indexes.add(iIndex);

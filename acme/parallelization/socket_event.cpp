@@ -13,7 +13,7 @@
 ///  \brief		constructor with passed socket handle and read state
 ///  \lparam		socket socket handle (default: -1)
 ///  \lparam		read true if socket should be ready to read (default: true)
-socket_event::socket_event(::particle * pparticle, unsigned int socket, bool read) :
+socket_event::socket_event(::particle * pparticle, ::u32 socket, bool read) :
    ::matter(pparticle),
 	happening(papp, false, true),
 	m_bRead(read),
@@ -40,7 +40,7 @@ void socket_event::set_active(bool active)
 
 ///  \brief		socket handle setter
 ///  \lparam		socket socket handle
-void socket_event::SetSocketHandle(unsigned int socket)
+void socket_event::SetSocketHandle(::u32 socket)
 {
    m_iSocket = socket;
 }

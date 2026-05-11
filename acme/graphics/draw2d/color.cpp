@@ -835,7 +835,7 @@ namespace color
    }
 
 
-   //void color::set_bgr(unsigned int bgr)
+   //void color::set_bgr(::u32 bgr)
    //{
 
    //   m_uchRed   = bgr_byte_red(bgr);
@@ -1152,7 +1152,7 @@ namespace color
 
    }
 
-   unsigned int CColor::get_rgb()
+   ::u32 CColor::get_rgb()
    {
       return rgb(m_bRed, m_bGreen, m_bBlue);
    }*/
@@ -1662,9 +1662,9 @@ namespace color
 
       }
 
-      unsigned int r = 0;
-      unsigned int g = 0;
-      unsigned int b = 0;
+      ::u32 r = 0;
+      ::u32 g = 0;
+      ::u32 b = 0;
 
       ::hex::to(r, strResult.substr(0, 2));
       ::hex::to(g, strResult.substr(2, 2));

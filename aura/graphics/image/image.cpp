@@ -3153,9 +3153,9 @@ void image::GrayToARGB(::color::color color)
 
    long long size = scan_area();
 
-   unsigned int dwB = color.byte_blue();
-   unsigned int dwG = color.byte_green();
-   unsigned int dwR = color.byte_red();
+   ::u32 dwB = color.byte_blue();
+   ::u32 dwG = color.byte_green();
+   ::u32 dwR = color.byte_red();
 
    while (size-- > 0)
    {
@@ -3424,7 +3424,7 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
       for (int x = 0; x < width(); x++)
       {
 
-         int i = (unsigned char)(((unsigned int)*pb1_2 * (unsigned int)*pb2_2) / 255);
+         int i = (unsigned char)(((::u32)*pb1_2 * (::u32)*pb2_2) / 255);
 
          *pb2 = i;
 
@@ -3994,13 +3994,13 @@ void image::color_blend(::color::color color, unsigned char bAlpha)
 
    long long size = scan_area();
 
-   unsigned int dwB = color.byte_blue();
-   unsigned int dwG = color.byte_green();
-   unsigned int dwR = color.byte_red();
+   ::u32 dwB = color.byte_blue();
+   ::u32 dwG = color.byte_green();
+   ::u32 dwR = color.byte_red();
 
-   unsigned int dwB_ = dwB << 8;
-   unsigned int dwG_ = dwG << 8;
-   unsigned int dwR_ = dwR << 8;
+   ::u32 dwB_ = dwB << 8;
+   ::u32 dwG_ = dwG << 8;
+   ::u32 dwR_ = dwR << 8;
 
    while (size--)
    {
@@ -5269,7 +5269,7 @@ void image::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, ::color::e
 
    map();
 
-   unsigned int ui = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_ui;
+   ::u32 ui = (data() + x + line(y) * (m_iScan / sizeof(image32_t)))->m_ui;
 
    unsigned char* p = (unsigned char*)&ui;
 
@@ -5332,7 +5332,7 @@ void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char gre
 
 
    unsigned char *dst = ((unsigned char *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
-   unsigned int dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
+   ::u32 dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
    int size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
    double iLevel;
 
@@ -5443,7 +5443,7 @@ void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char gre
 
 
       unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
-      unsigned int dwAdd = (((m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
+      ::u32 dwAdd = (((m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
       //         long long size = area();
 
       int Δx, Δy;
@@ -5504,7 +5504,7 @@ void image::RadialFill(
 
 
    unsigned char *dst = ((unsigned char *)(data() + xL + yL * m_Size.(m_iScan / sizeof(image32_t))));
-   unsigned int dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
+   ::u32 dwAdd = ((m_Size.(m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
    int size=m_Size.(m_iScan / sizeof(image32_t))*m_Size.height();
    double iLevel;
 
@@ -5620,7 +5620,7 @@ void image::RadialFill(
 
 
       unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
-      unsigned int dwAdd = (((m_iScan / sizeof(image32_t)) - xU) + xL) * 4;
+      ::u32 dwAdd = (((m_iScan / sizeof(image32_t)) - xU) + xL) * 4;
       //         long long size = area();
 
       double Δx, Δy;
@@ -6938,9 +6938,9 @@ void image::do_xor(::image::image* pimage)
    }
 
    int iCount = width() * height();
-   unsigned int* pd1 = (unsigned int*)data();
+   ::u32* pd1 = (::u32*)data();
 
-   unsigned int* pd2 = (unsigned int*)pimage->data();
+   ::u32* pd2 = (::u32*)pimage->data();
 
    for (int i = 0; i < iCount; i++)
    {
@@ -7387,8 +7387,8 @@ void image::_set_mipmap(::image::enum_mipmap emipmap)
             scale.Scale(
                &image32()[x + y * m_iScan / sizeof(image32_t)],
                color_indexes(),
-               (unsigned int)cx,
-               (unsigned int)cy,
+               (::u32)cx,
+               (::u32)cy,
                m_iScan,
                pimage->data(),
                cxSource,
@@ -9671,10 +9671,10 @@ void image_copy(::image::image* pimagethis, ::image::image* pimage)
 //}
 
 
-unsigned int* image_get_data(::image::image* pimage)
+::u32* image_get_data(::image::image* pimage)
 {
 
-   return (unsigned int*)pimage->image32();
+   return (::u32*)pimage->image32();
 
 }
 

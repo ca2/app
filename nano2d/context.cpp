@@ -2802,7 +2802,7 @@ void TransformSkewX(float* t, float a)
       float breakWidth = 0;
       float breakMaxX = 0;
       int type = NANO2D_SPACE, typePrevious = NANO2D_SPACE;
-      unsigned int codepointPrevious = 0;
+      ::u32 codepointPrevious = 0;
 
       //if (maxRows == 0) return 0;
       //if (state->fontId == FONS_INVALID) return 0;
@@ -3110,7 +3110,7 @@ void TransformSkewX(float* t, float a)
 		//float breakWidth = 0;
 		//float breakMaxX = 0;
 		//int type = NVG_SPACE, typePrevious = NVG_SPACE;
-		//unsigned int codepointPrevious = 0;
+		//::u32 codepointPrevious = 0;
 
 		//if (maxRows == 0) return 0;
 		//if (state->fontId == FONS_INVALID) return 0;

@@ -9,31 +9,31 @@
 
 
 // nanosecond unit ηs - greek eta - greek etha
-constexpr class time operator""_ηs(unsigned long long u) { return nanosecond_time(u); }
+constexpr class time operator""_ηs(::u64 u) { return nanosecond_time(u); }
 
 
 // microsecond unit μs - greek mu
-constexpr class time operator""_μs(unsigned long long u) { return microsecond_time(u); }
+constexpr class time operator""_μs(::u64 u) { return microsecond_time(u); }
 
 
-constexpr class time operator""_ms(unsigned long long u) { return millisecond_time(u); }
+constexpr class time operator""_ms(::u64 u) { return millisecond_time(u); }
 
 
-constexpr class time operator""_s(unsigned long long u) { return second_time(u); }
+constexpr class time operator""_s(::u64 u) { return second_time(u); }
 
 
-constexpr class time operator""_min(unsigned long long u) { return minute_time(u); }
-constexpr class time operator""_minute(unsigned long long u) { return minute_time(u); }
-constexpr class time operator""_minutes(unsigned long long u) { return minute_time(u); }
+constexpr class time operator""_min(::u64 u) { return minute_time(u); }
+constexpr class time operator""_minute(::u64 u) { return minute_time(u); }
+constexpr class time operator""_minutes(::u64 u) { return minute_time(u); }
 
 
-constexpr class time operator""_h(unsigned long long u) { return hour_time(u); }
-constexpr class time operator""_hour(unsigned long long u) { return hour_time(u); }
-constexpr class time operator""_hours(unsigned long long u) { return hour_time(u); }
+constexpr class time operator""_h(::u64 u) { return hour_time(u); }
+constexpr class time operator""_hour(::u64 u) { return hour_time(u); }
+constexpr class time operator""_hours(::u64 u) { return hour_time(u); }
 
 
-constexpr class time operator""_day(unsigned long long u) { return day_time(u); }
-constexpr class time operator""_days(unsigned long long u) { return day_time(u); }
+constexpr class time operator""_day(::u64 u) { return day_time(u); }
+constexpr class time operator""_days(::u64 u) { return day_time(u); }
 
 
 

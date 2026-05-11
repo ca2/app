@@ -79,13 +79,13 @@ namespace innate_subsystem
          return;
 
       }
-      unsigned int redPix = (red * m_pixelformat.redMax / 255) <<
+      ::u32 redPix = (red * m_pixelformat.redMax / 255) <<
                       m_pixelformat.redShift;
-      unsigned int greenPix = (green * m_pixelformat.greenMax / 255) <<
+      ::u32 greenPix = (green * m_pixelformat.greenMax / 255) <<
                         m_pixelformat.greenShift;
-      unsigned int bluePix = (blue * m_pixelformat.blueMax / 255) <<
+      ::u32 bluePix = (blue * m_pixelformat.blueMax / 255) <<
                        m_pixelformat.blueShift;
-      unsigned int color = redPix | greenPix | bluePix;
+      ::u32 color = redPix | greenPix | bluePix;
 
       unsigned char *endPixPtr = (unsigned char *)m_buffer + getBufferSize();
       unsigned char *pixPtr = (unsigned char *)m_buffer;
@@ -94,7 +94,7 @@ namespace innate_subsystem
       }
    }
 
-   void Framebuffer::fillRect(const ::int_rectangle & rectangleTarget, unsigned int color)
+   void Framebuffer::fillRect(const ::int_rectangle & rectangleTarget, ::u32 color)
    {
       ::int_rectangle clipRect = ::int_rectangle(m_size).intersection(rectangleTarget);
 
@@ -169,7 +169,7 @@ namespace innate_subsystem
          return false;
       }
       if (m_pixelformat.bitsPerPixel == 32) {
-         return overlayT<unsigned int>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
+         return overlayT<::u32>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
       } else if (m_pixelformat.bitsPerPixel == 16) {
          return overlayT<unsigned short>(rectangleTarget, pframebufferSource, srcX, srcY, andMask);
       } else if (m_pixelformat.bitsPerPixel == 8) {
@@ -294,10 +294,10 @@ namespace innate_subsystem
                         + pixelSize * rectangleSourceClipped.left;
 
       for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= pixelSize, pBaseSrc += srcStrideBytes) {
-         unsigned int *pSrc = (unsigned int *)pBaseSrc;
+         ::u32 *pSrc = (::u32 *)pBaseSrc;
          unsigned char *pDst = pBaseDst;
          for (int iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst += dstStrideBytesByX) {
-            *(unsigned int *)pDst = *pSrc;
+            *(::u32 *)pDst = *pSrc;
          }
       }
 
@@ -346,10 +346,10 @@ namespace innate_subsystem
         + pixelSize * rectangleSourceClipped.left;
 
       for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst -= dstStrideBytesByX , pBaseSrc += srcStrideBytes) {
-         unsigned int *pSrc = (unsigned int *)pBaseSrc;
-         unsigned int *pDst = (unsigned int *)pBaseDst;
+         ::u32 *pSrc = (::u32 *)pBaseSrc;
+         ::u32 *pDst = (::u32 *)pBaseDst;
          for (int iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst--) {
-            *(unsigned int *)pDst = *pSrc;
+            *(::u32 *)pDst = *pSrc;
          }
       }
 
@@ -396,10 +396,10 @@ namespace innate_subsystem
         + pixelSize * rectangleSourceClipped.left;
 
       for (int iRow = 0; iRow < resultHeight; iRow++, pBaseDst += pixelSize, pBaseSrc += srcStrideBytes) {
-         unsigned int *pSrc = (unsigned int *)pBaseSrc;
+         ::u32 *pSrc = (::u32 *)pBaseSrc;
          unsigned char *pDst = pBaseDst;
          for (int iCol = 0; iCol < resultWidth; iCol++, pSrc++, pDst -= dstStrideBytesByX) {
-            *(unsigned int *)pDst = *pSrc;
+            *(::u32 *)pDst = *pSrc;
          }
       }
 
@@ -540,7 +540,7 @@ namespace innate_subsystem
 
    int Framebuffer::getBufferSize() const
    {
-      return (int)((unsigned long long)m_size.area() * m_pixelformat.bitsPerPixel / 8);
+      return (int)((::u64)m_size.area() * m_pixelformat.bitsPerPixel / 8);
    }
 
    bool Framebuffer::resizeBuffer()

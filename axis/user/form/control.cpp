@@ -109,7 +109,7 @@ namespace user
    bool form_control::OnCommand(wparam wparam,lparam lparam)
    {
 
-      unsigned int uNotificationCode = upper_unsigned_short(wparam);
+      ::u32 uNotificationCode = upper_unsigned_short(wparam);
 
       ::atom atom(lower_unsigned_short(wparam));
 
@@ -149,7 +149,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandButton(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
+   bool form_control::OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -186,7 +186,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
+   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -222,7 +222,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
+   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -246,7 +246,7 @@ namespace user
       //   int iSel = pcombo->current_item();
       //   if(iSel != CB_ERR)
       //   {
-      //   unsigned int dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
+      //   ::u32 dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
       //   VmsDataSet(pinteraction->m_dataid, 0, 0, (int) dwData);
       //   }*/
       //}
@@ -266,7 +266,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandEdit(::user::interaction * pinteraction,unsigned int uNotificationCode,lparam lparam)
+   bool form_control::OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -681,7 +681,7 @@ namespace user
       int i;
       if(VmsDataGet(pinteraction->m_dataid, 0, 0, i))
       {
-      iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((unsigned int) i);
+      iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((::u32) i);
       if(iSel >= 0)
       {
       ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->id());
@@ -1623,7 +1623,7 @@ namespace user
    //}
 
 
-   //void form_control::on_before_navigate(::payload & payloadFile,unsigned int nFlags, const ::scoped_string & scopedstrTargetFrameName,byte_array& baPostedData, const ::scoped_string & scopedstrHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & payloadFile,::u32 nFlags, const ::scoped_string & scopedstrTargetFrameName,byte_array& baPostedData, const ::scoped_string & scopedstrHeaders,bool* pbCancel)
 
    //{
 

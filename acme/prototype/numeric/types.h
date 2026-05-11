@@ -7,7 +7,7 @@
 
 
 using iptr = int;
-using uptr = unsigned int;
+using uptr = ::u32;
 
 
 #define IPTR_MAXIMUM I32_MAXIMUM
@@ -27,13 +27,13 @@ using uptr = unsigned int;
 
 // #else
 //using long long = long long int;
-//using unsigned long long = unsigned long long int;
+//using ::u64 = ::u64 int;
 //#if defined(HAS_HYPER_INTEGER)
 //using hyper_integer = __int128;
 //using hyper_natural = unsigned __int128;
 //#endif
-typedef long long iptr;
-typedef unsigned long long uptr;
+typedef i64 iptr;
+typedef u64 uptr;
 
 
 #define IPTR_MAXIMUM I64_MAXIMUM
@@ -49,11 +49,11 @@ typedef unsigned long long uptr;
 //DO(short, short, sh, SHORT); \
 //DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
 //DO(int, int, i, INT); \
-//DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
+//DO(::u32, unsigned_int, ui, UNSIGNED_INT); \
 //DO(long, long, l, LONG); \
 //DO(unsigned long, unsigned_long, ul, UNSIGNED_LONG); \
 //DO(long long, long long, hi, HUGE_INTEGER); \
-//DO(unsigned long long, unsigned long long, hn, HUGE_NATURAL); \
+//DO(::u64, ::u64, hn, HUGE_NATURAL); \
 //DO(float, float, f, FLOAT); \
 //DO(double, double, d, DOUBLE);
 //
@@ -81,9 +81,9 @@ DO(unsigned char, unsigned_char, uch, UNSIGNED_CHAR); \
 DO(short, short, sh, SHORT); \
 DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
 DO(int, int, i, INT); \
-DO(unsigned int, unsigned_int, ui, UNSIGNED_INT); \
+DO(::u32, unsigned_int, ui, UNSIGNED_INT); \
 DO(long long, long_long, ll, HUGE_INTEGER); \
-DO(unsigned long long, unsigned_long_long, ull, HUGE_NATURAL); \
+DO(::u64, unsigned_long_long, ull, HUGE_NATURAL); \
 DO(float, float, f, FLOAT); \
 DO(double, double, d, DOUBLE);
 
@@ -91,15 +91,15 @@ DO(double, double, d, DOUBLE);
 //
 //#if OSBIT == 64
 //
-//typedef unsigned long long              rtptr;
-//typedef unsigned long long              ulong_ptr;
-//typedef unsigned long long              dword_ptr;
+//typedef ::u64              rtptr;
+//typedef ::u64              ulong_ptr;
+//typedef ::u64              dword_ptr;
 //
 //#else
 //
-//typedef unsigned int              rtptr;
-//typedef unsigned int              ulong_ptr;
-//typedef unsigned int              dword_ptr;
+//typedef ::u32              rtptr;
+//typedef ::u32              ulong_ptr;
+//typedef ::u32              dword_ptr;
 //
 //#endif
 
@@ -122,7 +122,7 @@ DO(double, double, d, DOUBLE);
 
 // insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
 /// task_index starts at 1, task_index 0 is not ok
-typedef unsigned long long task_index;
+typedef ::u64 task_index;
 
 
 

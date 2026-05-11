@@ -593,10 +593,10 @@
 ////inline void __io(::binary_stream & s, unsigned short & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, unsigned int & u) { s.io(u); }
+////inline void __io(::binary_stream & s, ::u32 & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, unsigned long long & u) { s.io(u); }
+////inline void __io(::binary_stream & s, ::u64 & u) { s.io(u); }
 ////
 ////inline void __io(property & property, ::matter & matter)
 ////{
@@ -808,8 +808,8 @@
 //
 //inline void __exchange(::binary_stream & s, unsigned char & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, unsigned short & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, unsigned int & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, unsigned long long & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream & s, ::u32 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream & s, ::u64 & u) { s.default_exchange(u); }
 //inline void __exchange(::binary_stream & s, float & f) { s.default_exchange(f); }
 //inline void __exchange(::binary_stream & s, double & d) { s.default_exchange(d); }
 //inline void __exchange(::binary_stream & s, ::earth::time & time) { s.default_exchange(time.m_i); }

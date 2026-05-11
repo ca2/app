@@ -247,7 +247,7 @@ namespace file
       struct PROCESS_INFO_t
       {
          string csProcess;
-         unsigned int dwImageListIndex;
+         ::u32 dwImageListIndex;
       };
 
 

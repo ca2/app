@@ -57,7 +57,7 @@ namespace subsystem
        *
        * @fixme stub.
        */
-      //PipeServer(const ::scoped_string &scopedstrName, unsigned int bufferSize, SecurityAttributes *secAttr = 0,
+      //PipeServer(const ::scoped_string &scopedstrName, ::u32 bufferSize, SecurityAttributes *secAttr = 0,
         //         DWORD milliseconds = INFINITE);
 
       PipeServer();
@@ -67,7 +67,7 @@ namespace subsystem
       ~PipeServer();
 
 
-      virtual void initialize_pipe_server(const ::scoped_string &scopedstrName, unsigned int bufferSize,
+      virtual void initialize_pipe_server(const ::scoped_string &scopedstrName, ::u32 bufferSize,
          ::subsystem::SecurityAttributesInterface * psecurityattributes = nullptr,
                  const class ::time & time = ::time::infinity());
 
@@ -117,7 +117,7 @@ namespace subsystem
    //   DWORD m_milliseconds;
    //   SecurityAttributes *m_secAttr;
    //   HANDLE m_serverPipe;
-   //   unsigned int m_bufferSize;
+   //   ::u32 m_bufferSize;
    };
 
    //// __PIPESERVER_H__

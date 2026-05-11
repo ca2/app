@@ -94,11 +94,11 @@ namespace innate_subsystem
       virtual void releaseTargetDC() = 0;
 
       // This function throwing an exception on a failure.
-      virtual void blitToDibSection(const ::int_rectangle &  rect, unsigned int flags) = 0;
+      virtual void blitToDibSection(const ::int_rectangle &  rect, ::u32 flags) = 0;
 
       // This function throwing an exception on a failure.
-      virtual void blitFromDibSection(const ::int_rectangle &  rect, unsigned int flags) = 0;
-      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget, unsigned int flags) = 0;
+      virtual void blitFromDibSection(const ::int_rectangle &  rect, ::u32 flags) = 0;
+      virtual void stretchFromDibSection(const ::int_rectangle &  srcRect,const ::int_rectangle & rectangleTarget, ::u32 flags) = 0;
 
       //void setupBMIStruct(BITMAPINFO *pBmi, const PixelFormat & pf, const ::int_size & dim);
 
@@ -203,17 +203,17 @@ namespace innate_subsystem
       }
 
       // This function throwing an exception on a failure.
-      void blitToDibSection(const ::int_rectangle& rect, unsigned int flags) override
+      void blitToDibSection(const ::int_rectangle& rect, ::u32 flags) override
       {
          m_pdibsection->blitToDibSection(rect, flags);
       }
 
       // This function throwing an exception on a failure.
-      void blitFromDibSection(const ::int_rectangle& rect, unsigned int flags) override
+      void blitFromDibSection(const ::int_rectangle& rect, ::u32 flags) override
       {
          m_pdibsection->blitFromDibSection(rect, flags);
       }
-      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget, unsigned int flags) override
+      void stretchFromDibSection(const ::int_rectangle& srcRect, const ::int_rectangle& rectangleTarget, ::u32 flags) override
       {
          m_pdibsection->stretchFromDibSection(srcRect, rectangleTarget, flags);
       }

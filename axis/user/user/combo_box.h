@@ -157,10 +157,10 @@ namespace user
   //    LCID SetLocale(LCID nNewLocale);
       ::collection::index GetTopIndex();
       ::collection::index SetTopIndex(::collection::index nIndex);
-      ::collection::index InitStorage(::collection::count nItems, unsigned int nBytes);
-      void SetHorizontalExtent(unsigned int nExtent);
-      unsigned int GetHorizontalExtent();
-      int SetDroppedWidth(unsigned int nWidth);
+      ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
+      void SetHorizontalExtent(::u32 nExtent);
+      ::u32 GetHorizontalExtent();
+      int SetDroppedWidth(::u32 nWidth);
       int GetDroppedWidth();
 
 //#if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
@@ -182,7 +182,7 @@ namespace user
       void GetLBText(::collection::index nIndex, string & rString);
       character_count GetLBTextLen(::collection::index nIndex);
 
-      int SetItemHeight(::collection::index nIndex, unsigned int cyItemHeight);
+      int SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight);
       int GetItemHeight(::collection::index nIndex);
       ::collection::index FindStringExact(::collection::index nIndexStart, const ::scoped_string & scopedstrFind);
 

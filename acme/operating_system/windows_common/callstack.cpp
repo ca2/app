@@ -39,7 +39,7 @@ string get_callstack(::particle * pparticle, const ::scoped_string & scopedstrFo
 
    string str;
 
-   constexpr unsigned int TRACE_MAX_STACK_FRAMES = 99;
+   constexpr ::u32 TRACE_MAX_STACK_FRAMES = 99;
    
    void * stack[TRACE_MAX_STACK_FRAMES];
    

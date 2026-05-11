@@ -89,7 +89,7 @@ namespace subsystem_bsd_sockets
        * @param bindPort port to bind.
        * @throws SocketException on fail.
        */
-      void bind(const ::scoped_string & scopedstrBindHost, unsigned int bindPort) override;
+      void bind(const ::scoped_string & scopedstrBindHost, ::u32 bindPort) override;
       /**
        * Binds socket to socket address.
        * @throws SocketException on fail.

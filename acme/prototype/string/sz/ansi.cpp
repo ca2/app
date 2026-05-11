@@ -11,7 +11,7 @@ CLASS_DECL_ACME long long string_to_signed(const_char_pointer psz)
 }
 
 
-CLASS_DECL_ACME unsigned long long as_unsigned_long_long(const_char_pointer psz)
+CLASS_DECL_ACME ::u64 as_u64(const_char_pointer psz)
 {
 
    return strtoull(psz, nullptr, 10);

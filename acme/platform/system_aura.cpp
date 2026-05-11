@@ -203,7 +203,7 @@ namespace platform
    //void aura_system_layer::on_request(::request * prequest) override{}
 
 
-   //virtual unsigned int crc32(unsigned int dwPrevious, const ::scoped_string & scopedstr){}
+   //virtual ::u32 crc32(::u32 dwPrevious, const ::scoped_string & scopedstr){}
 
 
    //::string aura_system_layer::url::encode(const ::scoped_string & scopedstr) override{}
@@ -377,7 +377,7 @@ namespace platform
    //virtual ::acme::library * get_library(const ::scoped_string & scopedstrLibrary, bool bOpenCa2 = false) override{}
 
 
-   //virtual unsigned int os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override{}
+   //virtual ::u32 os_post_to_all_threads(const ::atom & atom,const ::wparam & wparam = {},const ::lparam & lparam = {}) override{}
 
 
    //void aura_system_layer::session_add(::collection::index iEdge, ::apex::session * psession) overr{}
@@ -594,7 +594,7 @@ namespace platform
    //virtual bool set_standalone_setting(string str, string strSetting) override{}
 
 
-   //void aura_system_layer::on_event(unsigned long long u, ::particle * pparticle) override{}
+   //void aura_system_layer::on_event(::u64 u, ::particle * pparticle) override{}
 
 
    void aura_system_layer::on_initial_frame_position(::user::frame_interaction* pframe)
@@ -705,7 +705,7 @@ namespace platform
    //bool sync_load_url(string& str, const ::scoped_string & scopedstrUrl,  ::http::cookies* pcookies = nullptr){}
 
 
-   //      unsigned int guess_code_page(const ::scoped_string & scopedstr){}
+   //      ::u32 guess_code_page(const ::scoped_string & scopedstr){}
 
    //#ifdef UNIVERSAL_WINDOWS
    //
@@ -798,8 +798,8 @@ namespace platform
    //virtual int install_canvas_increment_mode() override{}
 
 
-   //virtual unsigned int get_monitor_color_temperature(::collection::index iMonitor){}
-   //virtual bool adjust_monitor(::collection::index iMonitor, unsigned int dwTemperature, double dBrightness, double dwGamma){}
+   //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor){}
+   //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma){}
    //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::int_rectangle* prectangle) override{}
 
    //virtual ::collection::count get_monitor_count() override{}

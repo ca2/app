@@ -9,7 +9,7 @@
 struct rgba_t
 {
 
-   unsigned int m_ui;
+   ::u32 m_ui;
 
 
    constexpr unsigned char byte_red()const { return lower_byte(m_ui); }
@@ -27,7 +27,7 @@ struct rgba_t
 struct bgra_t
 {
 
-   unsigned int m_ui;
+   ::u32 m_ui;
 
 
    constexpr unsigned char byte_blue() const { return lower_byte(m_ui); }
@@ -578,10 +578,10 @@ constexpr rgba_t argb_rgba(unsigned char u8Opacity, unsigned char u8Red, unsigne
 //constexpr unsigned char rgba_byte_opacity(::rgba_t rgba) { return lower_byte(rgba.m_ui >> 24); }
 
 
-//constexpr unsigned char bgr_byte_blue(unsigned int bgr) { return lower_byte(bgr); }
-//constexpr unsigned char bgr_byte_green(unsigned int bgr) { return lower_byte((bgr) >> 8); }
-//constexpr unsigned char bgr_byte_red(unsigned int bgr) { return lower_byte((bgr) >> 16); }
-//constexpr unsigned char bgr_byte_opacity(unsigned int bgr) { return lower_byte((bgr) >> 24); }
+//constexpr unsigned char bgr_byte_blue(::u32 bgr) { return lower_byte(bgr); }
+//constexpr unsigned char bgr_byte_green(::u32 bgr) { return lower_byte((bgr) >> 8); }
+//constexpr unsigned char bgr_byte_red(::u32 bgr) { return lower_byte((bgr) >> 16); }
+//constexpr unsigned char bgr_byte_opacity(::u32 bgr) { return lower_byte((bgr) >> 24); }
 
 
 constexpr bgra_t argb_bgra(unsigned char u8Opacity, unsigned char u8Red, unsigned char u8Green, unsigned char u8Blue)
@@ -680,7 +680,7 @@ namespace color
    constexpr color::color(enum_plain_color eplaincolor)
    {
 
-      unsigned int ui;
+      ::u32 ui;
 
       switch (eplaincolor)
       {
@@ -813,7 +813,7 @@ namespace color
 
    CLASS_DECL_ACME ::color::color hex_to_color(const_char_pointer psz);
 
-   //constexpr void color::set_bgr(unsigned int ui)
+   //constexpr void color::set_bgr(::u32 ui)
    //{
 
    //   m_uchRed = bgr_byte_red(ui);
@@ -824,7 +824,7 @@ namespace color
    //}
 
 
-   //constexpr void color::set_bgra(unsigned int ui)
+   //constexpr void color::set_bgra(::u32 ui)
    //{
 
    //   m_uchRed = bgra_byte_red(ui);

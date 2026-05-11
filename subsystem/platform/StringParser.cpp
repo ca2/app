@@ -42,7 +42,7 @@ namespace subsystem
       return true;
    }
 
-   bool StringParser::parseUInt(const char *str, unsigned int *out)
+   bool StringParser::parseUInt(const char *str, ::u32 *out)
    {
       // Check the minus sign manually because _tcstoul does not fail on it.
       if (str != 0 && str[0] == '-') {
@@ -56,7 +56,7 @@ namespace subsystem
          return false;
       }
 
-      unsigned int uintValue = (unsigned int)ulongValue;
+      ::u32 uintValue = (::u32)ulongValue;
       if ((unsigned long)uintValue != ulongValue) {
          return false;
       }
@@ -68,9 +68,9 @@ namespace subsystem
       return true;
    }
 
-   bool StringParser::parseUInt64(const char *str, unsigned long long *out)
+   bool StringParser::parseUInt64(const char *str, ::u64 *out)
    {
-      unsigned long long value = 0;
+      ::u64 value = 0;
       char c;
       if(sscanf(str, "%llu%c", &value, &c) != 1) {
          return false;
@@ -87,10 +87,10 @@ namespace subsystem
       return parseInt(str, NULL);
    }
 
-   bool StringParser::parseHex(const char *str, unsigned int *out)
+   bool StringParser::parseHex(const char *str, ::u32 *out)
    {
       char c;
-      unsigned int val;
+      ::u32 val;
       if (sscanf(str, "%x%c", &val, &c) != 1) {
          return false;
       }

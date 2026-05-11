@@ -53,7 +53,7 @@ namespace innate_subsystem
       virtual void setIcon(IconInterface *icon) = 0;
       virtual void setText(const char *text) = 0;
 
-      virtual void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) = 0;
+      virtual void showBalloon(const char *message, const char *caption, ::u32 timeoutMillis) = 0;
 
       //virtual void show() = 0;
       //virtual void hide() = 0;
@@ -86,7 +86,7 @@ namespace innate_subsystem
       void setIcon(IconInterface *icon) override { m_pnotifyicon->setIcon(icon); }
       void setText(const char *text) override { m_pnotifyicon->setText(text); }
 
-      void showBalloon(const char *message, const char *caption, unsigned int timeoutMillis) override { m_pnotifyicon->showBalloon(message, caption, timeoutMillis); }
+      void showBalloon(const char *message, const char *caption, ::u32 timeoutMillis) override { m_pnotifyicon->showBalloon(message, caption, timeoutMillis); }
 
       //void show() override { m_pnotifyicon->show(); }
       //void hide() override { m_pnotifyicon->hide(); }

@@ -31,7 +31,7 @@ CLASS_DECL_ACME long long long_long_nanosecond()
 
    }
 
-   return (unsigned long long)ts.tv_sec * 1'000'000'000ull + (unsigned long long)ts.tv_nsec;
+   return (::u64)ts.tv_sec * 1'000'000'000ull + (::u64)ts.tv_nsec;
 
 #endif
 
@@ -62,7 +62,7 @@ CLASS_DECL_ACME long long get_nanos()
       return 0;
    }
 
-   unsigned long long u = ts.tv_sec;
+   ::u64 u = ts.tv_sec;
 
    u *= 1000 * 1000 * 1000;
 

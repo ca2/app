@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_source : unsigned long long
+enum enum_source : ::u64
 {
 
    e_source_none = 0,

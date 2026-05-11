@@ -23,7 +23,7 @@ namespace operating_system
    //   {
 
    //      unsigned char m_opaque[32];
-   //      unsigned long long m_la[4];
+   //      ::u64 m_la[4];
 
    //   };
 
@@ -39,7 +39,7 @@ namespace operating_system
       {
 
          unsigned char              m_opaque[24];
-         unsigned long long         m_ulla[3];
+         ::u64         m_ulla[3];
 
       };
 

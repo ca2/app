@@ -56,7 +56,7 @@ namespace platform
 //      //semaphore                                       m_semCompiler;
 //      // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 //
-//      unsigned int                                           m_dwInstallGoodToCheckAgain;
+//      ::u32                                           m_dwInstallGoodToCheckAgain;
 //
 //      //bool                                            m_bAppHasInstallerProtected;
 //      //bool                                            m_bAppHasInstallerChangedProtected;
@@ -111,9 +111,9 @@ namespace platform
 ////
 ////#endif
 ////
-////      unsigned int                                             m_dwPromptContext;        // help action_context override for message box
+////      ::u32                                             m_dwPromptContext;        // help action_context override for message box
 ////      // LKG
-////      unsigned int                                             m_dwPolicies;            // block for storing boolean system policies
+////      ::u32                                             m_dwPolicies;            // block for storing boolean system policies
 ////
 ////      // Support for Shift+F1 help mode.
 ////      // true if we're in SHIFT+F1 mode.
@@ -125,7 +125,7 @@ namespace platform
 ////
 ////      ATOM                                            m_atomApp;
 ////      ATOM                                            m_atomSystemTopic;   // for DDE open
-////      unsigned int                                            m_nNumThumbnailPages; // number of default printed pages
+////      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
 ////
 ////      string                                          m_strId;
 //
@@ -283,9 +283,9 @@ namespace platform
 
 
 
-      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       //virtual void process_message_filter(int code, ::message::message * pmessage) override;
@@ -439,7 +439,7 @@ namespace platform
 
       //virtual void record(::create * pcommand);
 
-      //virtual void on_event(unsigned long long u, ::particle * pparticle) override;
+      //virtual void on_event(::u64 u, ::particle * pparticle) override;
       //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
@@ -877,9 +877,9 @@ namespace platform
       //virtual bool is_system() const override;
       //virtual bool is_session() const override;
 
-      //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr) override;
+      //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr) override;
 
-      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle) override;
+      //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override;
 
       //virtual bool is_serviceable() const override;
       //
@@ -904,7 +904,7 @@ namespace platform
       //virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
 
 //      void EnableModelessEx(bool bEnable);
-//      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage);
+//      bool GetResourceData(::u32 nID, const ::scoped_string & scopedstrType, memory& storage);
 
 //#ifdef WINDOWS
 //      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
@@ -913,7 +913,7 @@ namespace platform
 //      virtual bool OnX11WindowMessage(void* pev);
 //#endif
 
-      bool CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
+      bool CreateFileFromRawResource(::u32 nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath);
 
       void OnUpdateRecentFileMenu(::message::command* pcommand);
 
@@ -925,7 +925,7 @@ namespace platform
       // profile member functions; prevents writing to an INI spfile->
       virtual void SetRegistryKey(const ::scoped_string & scopedstrRegistryKey);
 
-      virtual void SetRegistryKey(unsigned int nIDRegistryKey);
+      virtual void SetRegistryKey(::u32 nIDRegistryKey);
 
 
       virtual void RegisterShellFileTypes(bool bCompat = false);

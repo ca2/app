@@ -30,7 +30,7 @@
 
 ////#include "remoting/remoting/thread/LocalMutex.h"
 #include "acme/prototype/collection/comparable_list.h"
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 //// #include aaa_<list>
 
 namespace subsystem
@@ -85,7 +85,7 @@ namespace subsystem
       /**
        * Posts scopedstrMessage to main window.
        */
-      virtual void postMessage(unsigned int scopedstrMessage, ::wparam wParam = 0, ::lparam lParam = 0) = 0;
+      virtual void postMessage(::u32 scopedstrMessage, ::wparam wParam = 0, ::lparam lParam = 0) = 0;
 
       /**
        * Adds modeless dialog to application modeless dialog ::list_base to
@@ -146,7 +146,7 @@ namespace subsystem
       /// <param name="message"></param>
       /// <param name="wparam"></param>
       /// <param name="lparam"></param>
-      virtual void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) = 0;
+      virtual void onMainThreadMessage(::u32 message, ::wparam wparam, ::lparam lparam) = 0;
 
 
    };
@@ -199,7 +199,7 @@ namespace subsystem
       }
 
 
-             void doDefaultMainLoop() { m_poperatingsystemapplication->doDefaultMainLoop(); }
+             void doDefaultMainLoop() override { m_poperatingsystemapplication->doDefaultMainLoop(); }
 
 
 
@@ -233,7 +233,7 @@ namespace subsystem
       /**
        * Posts scopedstrMessage to main window.
        */
-      void postMessage(unsigned int uMessage, ::wparam wParam = 0, ::lparam lParam = 0) override
+      void postMessage(::u32 uMessage, ::wparam wParam = 0, ::lparam lParam = 0) override
       {
 
          m_poperatingsystemapplication->postMessage(uMessage, wParam, lParam);
@@ -315,7 +315,7 @@ namespace subsystem
 
       }
 
-      void onMainThreadMessage(unsigned int message, ::wparam wparam, ::lparam lparam) override
+      void onMainThreadMessage(::u32 message, ::wparam wparam, ::lparam lparam) override
       {
 
 

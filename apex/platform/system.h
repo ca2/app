@@ -281,7 +281,7 @@ namespace apex
       virtual bool on_get_task_name(string& strTaskName) override;
 
 
-      unsigned int os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
+      ::u32 os_post_to_all_threads(::user::enum_message eusermessage, ::wparam wparam = {}, ::lparam lparam = {}) override;
 
 
       //virtual void init_task() override;

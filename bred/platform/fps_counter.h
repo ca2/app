@@ -63,7 +63,7 @@ public:
 private:
    std::chrono::time_point<std::chrono::high_resolution_clock> m_startTime;
    std::chrono::time_point<std::chrono::high_resolution_clock> m_lastTime;
-   unsigned int m_frameCount;
+   ::u32 m_frameCount;
    std::deque<double> m_frameTimes; // Store frame times to average over a window
    float m_averageFrameTimeMs;
    float m_averageFps;

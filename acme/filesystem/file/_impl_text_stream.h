@@ -23,8 +23,8 @@ inline ::string ellipsis(const_char_pointer psz, character_count len)
 }
 
 
-//inline unsigned long long consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10)
-inline unsigned long long consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix)
+//inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10)
+inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix)
 {
 
    char* endptr = nullptr;

@@ -29,7 +29,7 @@ namespace sandbox_game
 		::pointer < ::graphics3d::asset_manager >				   m_passetmanager;
 
 		         ::pointer_array_base<player>								m_playera;
-		::map<unsigned int, ::pointer<::graphics3d::scene_object>>		m_mapSceneObject;
+		::map<::u32, ::pointer<::graphics3d::scene_object>>		m_mapSceneObject;
 		floating_sequence3													            m_initialCameraPosition{ 0.f };
 		floating_sequence3													            m_initialCameraRotation{ 0.f };
 

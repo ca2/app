@@ -37,7 +37,7 @@ namespace user
    }
 
 
-   //system::system(unsigned int uiExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, unsigned int uStyle, ::int_rectangle rectangle, ::request * prequest) :
+   //system::system(::u32 uiExStyle, const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName, ::u32 uStyle, ::int_rectangle rectangle, ::request * prequest) :
    //system(rectangle)
    //{
 
@@ -51,7 +51,7 @@ namespace user
    //}
 
 
-   //system::system(const ::int_rectangle & rectangle, unsigned int uExStyle, unsigned int uStyle, ::request * prequest)
+   //system::system(const ::int_rectangle & rectangle, ::u32 uExStyle, ::u32 uStyle, ::request * prequest)
    //system::system(const ::int_rectangle& rectangle, ::create* pcreate)
    system::system(::request * prequest)
    {

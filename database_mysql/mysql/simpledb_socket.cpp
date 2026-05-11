@@ -63,13 +63,13 @@ namespace simpledb
          if(strHost == "aura.am")
          {
             informationf("simpledb::socket::send_response aura.am");
-//            unsigned int dw= ::time::now();
+//            ::u32 dw= ::time::now();
             //  debug_break();
          }
          if(strScript == "songs")
          {
             informationf("simpledb::socket::send_response songs");
-            //unsigned int dw= ::time::now();
+            //::u32 dw= ::time::now();
          }
          manager().handle(this);
       }

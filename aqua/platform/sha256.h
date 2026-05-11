@@ -94,7 +94,7 @@ private:
    void processBuffer();
 
    /// size of processed data in bytes
-   unsigned long long m_numBytes;
+   ::u64 m_numBytes;
    /// valid bytes in m_buffer
    size_t   m_bufferSize;
    /// bytes not processed yet
@@ -102,5 +102,5 @@ private:
 
    enum { HashValues = HashBytes / 4 };
    /// hash, stored as integers
-   unsigned int m_hash[HashValues];
+   ::u32 m_hash[HashValues];
 };

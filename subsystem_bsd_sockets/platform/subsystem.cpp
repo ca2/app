@@ -31,7 +31,7 @@ s_p = this;
    }
 
 
-   unsigned int subsystem::internet_address4(const ::scoped_string &scopedstr)
+   ::u32 subsystem::internet_address4(const ::scoped_string &scopedstr)
    {
 
 #ifdef WINDOWS
@@ -47,7 +47,7 @@ s_p = this;
    }
 
 
-      ::string subsystem::internet_address4_as_string(unsigned int u)
+      ::string subsystem::internet_address4_as_string(::u32 u)
    {
 
       throw ::interface_only();
@@ -56,7 +56,7 @@ s_p = this;
    }
 
 
-   unsigned int subsystem::host_to_network_long(unsigned int u)
+   ::u32 subsystem::host_to_network_long(::u32 u)
    {
 
       return htonl(u);
@@ -64,7 +64,7 @@ s_p = this;
    }
 
 
-   unsigned int subsystem::network_to_host_long(unsigned int u)
+   ::u32 subsystem::network_to_host_long(::u32 u)
    {
 
       return ntohl(u);

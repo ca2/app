@@ -327,7 +327,7 @@ public:
       ::string                      m_str;
       ::ansi_range                  m_range;
       long long                     m_iLargest;
-      unsigned long long            m_uLargest;
+      ::u64            m_uLargest;
 
    };
 
@@ -684,9 +684,9 @@ public:
    inline long long as_long_long() const;
    inline ::iptr as_iptr() const;
    inline int as_int() const { return (int) as_long_long(); }
-   inline unsigned int as_unsigned_int() const { return (unsigned int) as_long_long(); }
+   inline ::u32 as_u32() const { return (::u32) as_long_long(); }
    inline ::collection::index as_index() const { return (::collection::index)as_long_long(); }
-   inline unsigned int as_umessage() const { return as_unsigned_int(); }
+   inline ::u32 as_umessage() const { return as_u32(); }
    inline ::user::enum_message as_eusermessage() const;
    inline ::enum_message as_emessage1() const;
    inline ::enum_id as_eid() const;
@@ -768,12 +768,12 @@ public:
    {
 
       return { 
-         (((unsigned int)m_etype) << 24)
+         (((::u32)m_etype) << 24)
          ^
          (
             is_text() ? 
             ::as_hash32(m_str.c_str()).m_u : 
-            ((((unsigned int)m_uLargest) >> 8) & 0xffffffffu)
+            ((((::u32)m_uLargest) >> 8) & 0xffffffffu)
          ) 
       };
 

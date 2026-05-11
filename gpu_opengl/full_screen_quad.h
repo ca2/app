@@ -10,7 +10,7 @@
 //{
 //
 //
-//   //const unsigned int QUAD_NUM_TRIANGLES = 6;
+//   //const ::u32 QUAD_NUM_TRIANGLES = 6;
 //
 //   /**
 //    * A unit square that covers the whole screen.
@@ -23,8 +23,8 @@
 //   public:
 //      
 //      
-//      //unsigned int m_uVAO;
-//      //unsigned int m_uVBO;
+//      //::u32 m_uVAO;
+//      //::u32 m_uVBO;
 //
 //
 //

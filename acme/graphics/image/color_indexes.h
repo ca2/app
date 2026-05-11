@@ -29,7 +29,7 @@ struct color_indexes
 
       };
 
-      unsigned int m_ui;
+      ::u32 m_ui;
 
    };
 

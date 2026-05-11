@@ -34,7 +34,7 @@ namespace subsystem
    //pGetNamedPipeClientProcessId PipeServer::m_GetNamedPipeClientProcessId = 0;
    //volatile bool PipeServer::m_initialized = false;
 
-   // PipeServer::PipeServer(const ::scoped_string & scopedstrName, unsigned int bufferSize,
+   // PipeServer::PipeServer(const ::scoped_string & scopedstrName, ::u32 bufferSize,
    //                        SecurityAttributes *secAttr,
    //                        DWORD milliseconds)
    // : m_milliseconds(milliseconds),
@@ -94,7 +94,7 @@ namespace subsystem
    }
 
 
-   void PipeServer::initialize_pipe_server(const ::scoped_string & scopedstrName, unsigned int bufferSize,
+   void PipeServer::initialize_pipe_server(const ::scoped_string & scopedstrName, ::u32 bufferSize,
                        ::subsystem::SecurityAttributesInterface *secAttr,
                        const class ::time & time)
 // : m_milliseconds(milliseconds),

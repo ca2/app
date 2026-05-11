@@ -273,23 +273,23 @@ public:
 
    static bool to(long long & i, const ::scoped_string & scopedstrParam);
    static bool to(int & i, const ::scoped_string & scopedstrParam);
-   static bool to(unsigned long long & u, const ::scoped_string & scopedstrParam);
-   static bool to(unsigned int & u, const ::scoped_string & scopedstrParam);
+   static bool to(::u64 & u, const ::scoped_string & scopedstrParam);
+   static bool to(::u32 & u, const ::scoped_string & scopedstrParam);
 
 
    static bool to(int & i, int iBase, const ::scoped_string & scopedstrParam);
    static bool to(long long & i, int iBase, const ::scoped_string & scopedstrParam);
-   static bool to(unsigned long long & u, int iBase, const ::scoped_string & scopedstrParam);
-   static bool to(unsigned int & u, int iBase, const ::scoped_string & scopedstrParam);
+   static bool to(::u64 & u, int iBase, const ::scoped_string & scopedstrParam);
+   static bool to(::u32 & u, int iBase, const ::scoped_string & scopedstrParam);
 
 
    static iptr         to_iptr(const ::scoped_string & scopedstr);
    static int          to_int(const ::scoped_string & scopedstr);
-   static unsigned int          to_unsigned_int(const ::scoped_string & scopedstr);
+   static ::u32          to_unsigned_int(const ::scoped_string & scopedstr);
 
 
    static long long           to_long_long(const ::scoped_string & scopedstr);
-   static unsigned long long           to_unsigned_long_long(const ::scoped_string & scopedstr);
+   static ::u64           to_unsigned_long_long(const ::scoped_string & scopedstr);
 
 
 

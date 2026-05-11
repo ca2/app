@@ -101,7 +101,7 @@
 //
 //   bool on_result(const ::e_status& estatus);
 //
-//   //static unsigned int WINAPI MAIN(void * pvoid);
+//   //static ::u32 WINAPI MAIN(void * pvoid);
 //
 //   //bool system_beg();
 //

@@ -26,7 +26,7 @@ public:
    ::pointer<::property_object>           m_psender;
    ::pointer<::user::element>             m_puserelement; // user::interaction
    ::pointer<::particle>                  m_pparticle;
-   unsigned long long                     m_uUpdateSerial;
+   ::u64                     m_uUpdateSerial;
    ::wparam                               m_wparam;
    ::lparam                               m_lparam;
    ::lresult                              m_lresult;

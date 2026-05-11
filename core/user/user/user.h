@@ -118,7 +118,7 @@ namespace core
       //
       // //bool                                                  m_bMatterFromHttpCache;
       //
-      // //unsigned int                                                 m_dwLongPhRESSingTime;
+      // //::u32                                                 m_dwLongPhRESSingTime;
       //
       //
       // //::pointer<::userex::userex>                        m_puserex;
@@ -164,7 +164,7 @@ namespace core
       // ::user::interaction_base * puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string &
       // scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::user::e_message_box &
       // emessagebox = ::user::e_message_box_ok); virtual void ui_message_box_timeout(::object* pparticle,
-      // ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, unsigned int fuStyle =
+      // ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, ::u32 fuStyle =
       // ::user::e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult =
       // function_arg());
 
@@ -208,7 +208,7 @@ namespace core
       void term_instance() override;
 
 
-      // void LoadStdProfileSettings(unsigned int nMaxMRU = 10);
+      // void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 
 
       //::collection::count get_template_count() const;
@@ -295,7 +295,7 @@ namespace core
 
       //// Long PhRESSing time
       //// time in ::times that a pressing is considered a double click
-      // virtual unsigned int get_Long_PhRESSing_time();
+      // virtual ::u32 get_Long_PhRESSing_time();
 
       // virtual void defer_initialize_user_presence();
 
@@ -366,7 +366,7 @@ namespace core
       // virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item *
       // pitem) override;
 
-      // virtual ::color::color get_default_color(unsigned long long u);
+      // virtual ::color::color get_default_color(::u64 u);
 
       ////virtual ::int_size get_window_minimum_size();
 

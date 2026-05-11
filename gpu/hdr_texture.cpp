@@ -48,7 +48,7 @@
 //       //stbi_image_free(data);
 //    }
 //
-//    //unsigned int
+//    //::u32
 //    //hdr_texture::getId() {
 //    //   return mId;
 //    //}

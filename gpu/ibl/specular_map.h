@@ -41,10 +41,10 @@ namespace gpu
 
          // prefiltered environment map
          int m_iPrefilteredEnvMapMipCount = -1;
-         const unsigned int m_uPrefilteredEnvMapWidth = 128;
-         const unsigned int m_uPrefilteredEnvMapHeight = 128;
+         const ::u32 m_uPrefilteredEnvMapWidth = 128;
+         const ::u32 m_uPrefilteredEnvMapHeight = 128;
 
-         //unsigned int m_uEnvironmentCubemapId;
+         //::u32 m_uEnvironmentCubemapId;
 
          //::graphics3d::renderable * m_prenderableSkybox = nullptr;
 
@@ -55,9 +55,9 @@ namespace gpu
          ;
         
          // brdf convolution
-         unsigned int m_uBrdfConvolutionMapId;
-         const unsigned int m_uBrdfConvolutionMapWidth = 512;
-         const unsigned int m_uBrdfConvolutionMapHeight = 512;
+         ::u32 m_uBrdfConvolutionMapId;
+         const ::u32 m_uBrdfConvolutionMapWidth = 512;
+         const ::u32 m_uBrdfConvolutionMapHeight = 512;
 
          ::pointer<::gpu::shader> m_pshaderBrdfConvolution;
          //::pointer<brdf_convolution_framebuffer> m_pframebufferBrdfConvolution;
@@ -81,7 +81,7 @@ namespace gpu
          virtual ::memory brdf_convolution_frag_memory();
 
 
-         //virtual void initialize_specular_map(::gpu::context  * pgpucontext,  const ::scoped_string & scopedstrengineRoot, const unsigned int environmentCubemapId);
+         //virtual void initialize_specular_map(::gpu::context  * pgpucontext,  const ::scoped_string & scopedstrengineRoot, const ::u32 environmentCubemapId);
 
          //virtual void initialize_specular_map(::graphics3d::scene_base * pscenebase, ::graphics3d::renderable * prenderableSkybox);
          /// it uses current skybox renderable in pscenebase
@@ -98,7 +98,7 @@ namespace gpu
           * Get the GL texture ID of the computed pre-filtered environment cubemap.
           * @return
           */
-         //unsigned int getPrefilteredEnvMapId();
+         //::u32 getPrefilteredEnvMapId();
 
 
          /**
@@ -110,7 +110,7 @@ namespace gpu
           * Get the GL texture ID of the computed BRDF convolution map.
           * @return
           */
-         //unsigned int getBrdfConvolutionMapId();
+         //::u32 getBrdfConvolutionMapId();
 
 
       };

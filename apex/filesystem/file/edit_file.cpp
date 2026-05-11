@@ -592,10 +592,10 @@ namespace file
 
       }
 
-      //      unsigned int dwPosition = m_position;
-      //      unsigned int dwFilePosition = m_position;
-      //      unsigned int dwMaxCount = m_size;
-      //      unsigned int dwUpperLimit = m_size;
+      //      ::u32 dwPosition = m_position;
+      //      ::u32 dwFilePosition = m_position;
+      //      ::u32 dwMaxCount = m_size;
+      //      ::u32 dwUpperLimit = m_size;
       //      int iOffset =0;
 
       ::data::tree_item<edit_item_base> * ptreeitem = nullptr;
@@ -606,10 +606,10 @@ namespace file
 
       m_bRootDirection = calc_root_direction();
 
-      unsigned int uReadItem = 0xffffffff;
+      ::u32 uReadItem = 0xffffffff;
 
 
-      //unsigned long long uiStopSize;
+      //::u64 uiStopSize;
 
       m_iOffset = 0;
 
@@ -634,7 +634,7 @@ namespace file
 
       bool bRead;
 
-      unsigned int dwFileOffset = 0;
+      ::u32 dwFileOffset = 0;
 
       do
       {
@@ -979,7 +979,7 @@ m_position += nCount;
 
       ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
 
-      filesize dwNew = (unsigned int)-1;
+      filesize dwNew = (::u32)-1;
 
       switch(eseek)
       {
@@ -1036,9 +1036,9 @@ m_position += nCount;
 
       //m_bRootDirection = calc_root_direction();
 
-      //unsigned int uReadItem = 0xffffffff;
+      //::u32 uReadItem = 0xffffffff;
 
-      //unsigned long long uiStopSize;
+      //::u64 uiStopSize;
 
       //m_iOffset = 0;
 

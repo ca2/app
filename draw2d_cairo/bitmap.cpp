@@ -29,7 +29,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int nPlanes, unsigned int nBitcount, const void * pdata, int iStrideParam)
+   bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, int iStrideParam)
    {
 
       informationf("draw2d_cairo::bitmap::CreateBitmap : (%d, %d)", cx, cy);
@@ -313,7 +313,7 @@ namespace draw2d_cairo
    }
 
 
-   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, unsigned int flInit, const void *pjBits, unsigned int iUsage)
+   void bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, ::u32 flInit, const void *pjBits, ::u32 iUsage)
    {
 
       //return false;
@@ -471,7 +471,7 @@ namespace draw2d_cairo
    }
 
 
-   unsigned int bitmap::SetBitmapBits(unsigned int dwCount, const void * lpBits)
+   ::u32 bitmap::SetBitmapBits(::u32 dwCount, const void * lpBits)
    {
 
       return 0;
@@ -479,7 +479,7 @@ namespace draw2d_cairo
    }
 
 
-   unsigned int bitmap::GetBitmapBits(unsigned int dwCount, void * lpBits) const
+   ::u32 bitmap::GetBitmapBits(::u32 dwCount, void * lpBits) const
    {
 
       return false;
@@ -520,7 +520,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadBitmap(unsigned int nIDResource)
+   bool bitmap::LoadBitmap(::u32 nIDResource)
    {
 
       return false;
@@ -528,7 +528,7 @@ namespace draw2d_cairo
    }
 
 
-   bool bitmap::LoadOEMBitmap(unsigned int nIDBitmap)
+   bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
 
       return false;

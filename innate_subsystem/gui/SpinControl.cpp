@@ -57,7 +57,7 @@ namespace innate_subsystem
 //       m_pparticleThis->setRange32(lower, upper);
 //    }
 //
-//    void SpinControl::setAccel(unsigned int nSec, unsigned int nInc)
+//    void SpinControl::setAccel(::u32 nSec, ::u32 nInc)
 //    {
 //
 //       m_pparticleThis->setAccel(nSec, nInc);
@@ -121,8 +121,8 @@ namespace innate_subsystem
 //       m_pparticleThis->enableAutoAcceleration(enabled);
 //    }
 //
-//    void SpinControl::setAutoAccelerationParams(const int_array & limitters,
-//                                                const int_array & deltas,
+//    void SpinControl::setAutoAccelerationParams(const i32_array & limitters,
+//                                                const i32_array & deltas,
 //                                                int maxDelta)
 //    {
 //       m_pparticleThis->setAutoAccelerationParams(limitters, deltas, maxDelta);

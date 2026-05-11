@@ -34,7 +34,7 @@ namespace networking_bsd
       DWORD dwSize = 0;
       DWORD dwRetVal = 0;
 
-      unsigned int i = 0;
+      ::u32 i = 0;
 
       // Set the flags to pass to GetAdaptersAddresses
       ULONG flags = GAA_FLAG_INCLUDE_PREFIX;

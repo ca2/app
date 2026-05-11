@@ -40,19 +40,19 @@ typedef struct xf_context xfContext;
 
 struct xf_FullscreenMonitors
 {
-   unsigned int top;
-   unsigned int bottom;
-   unsigned int left;
-   unsigned int right;
+   ::u32 top;
+   ::u32 bottom;
+   ::u32 left;
+   ::u32 right;
 };
 typedef struct xf_FullscreenMonitors xfFullscreenMonitors;
 
 struct xf_WorkArea
 {
-   unsigned int x;
-   unsigned int y;
-   unsigned int width;
-   unsigned int height;
+   ::u32 x;
+   ::u32 y;
+   ::u32 width;
+   ::u32 height;
 };
 typedef struct xf_WorkArea xfWorkArea;
 
@@ -97,7 +97,7 @@ struct xf_context
    int srcBpp;
    GC gc_mono;
    BOOL invert;
-   unsigned int format;
+   ::u32 format;
    Screen* screen;
 /*   XImage* pimage;
    Pixmap primary;
@@ -131,7 +131,7 @@ struct xf_context
    unsigned char palette_hwgdi[256 * 4];
 
    HGDI_DC hdc;
-   unsigned int bitmap_size;
+   ::u32 bitmap_size;
    unsigned char* bitmap_buffer;
    unsigned char* primary_buffer;
    BOOL inGfxFrame;
@@ -170,7 +170,7 @@ struct xf_context
    BOOL suppress_output;
    BOOL fullscreen_toggle;
    BOOL controlToggle;
-   unsigned int KeyboardLayout;
+   ::u32 KeyboardLayout;
    BOOL KeyboardState[256];
    XModifierKeymap* modifierMap;
    wArrayList* keyCombinations;
@@ -278,7 +278,7 @@ void xf_unlock_x11(xfContext* xfc, BOOL display);
 BOOL xf_picture_transform_required(xfContext* xfc);
 void xf_draw_screen(xfContext* xfc, int x, int y, int w, int h);
 
-FREERDP_API unsigned int xf_exit_code_from_disconnect_reason(unsigned int reason);
+FREERDP_API ::u32 xf_exit_code_from_disconnect_reason(::u32 reason);
 
 #endif /* __XFREERDP_H */
 

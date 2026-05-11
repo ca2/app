@@ -14,11 +14,11 @@ extern "C" {
  */
 typedef unsigned char   u_char;
 typedef unsigned short  u_short;
-typedef unsigned int    u_int;
+typedef ::u32    u_int;
 typedef unsigned long   u_long;
 
 #if(_WIN32_WINNT >= 0x0501)
-typedef unsigned long long u_int64;
+typedef ::u64 u_int64;
 #endif //(_WIN32_WINNT >= 0x0501)
 
 #ifdef __cplusplus

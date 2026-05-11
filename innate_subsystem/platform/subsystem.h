@@ -42,7 +42,7 @@ namespace innate_subsystem
          const ::user_interaction_sink & userinteractionsink,
          const ::scoped_string & scopedstrMessage,
          const ::scoped_string & scopedstrCaption,
-         unsigned int uType) override;
+         ::u32 uType) override;
 
 
       virtual void initializeInnateSubsystemControls();

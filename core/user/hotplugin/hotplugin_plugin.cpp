@@ -21,7 +21,7 @@ void * my_open_map(const ::scoped_string & scopedstr,HANDLE * pfile,bool bRead,b
 #endif
 
 
-//void fastblur(unsigned int * pdata, int w, int h, int radius);
+//void fastblur(::u32 * pdata, int w, int h, int radius);
 
 
 namespace hotplugin
@@ -769,7 +769,7 @@ namespace hotplugin
          //m_memB
          //{
          //   my_munmap(m_pcolorref, m_hfileBitmap);
-         //   m_pcolorref = (unsigned int *)get_map_failed();
+         //   m_pcolorref = (::u32 *)get_map_failed();
          //}
 
                   auto psystem = system();
@@ -834,7 +834,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
 //
 //
 //#ifdef WINDOWS
-//         unsigned int dwError = get_last_error();
+//         ::u32 dwError = get_last_error();
 //         if(m_hfileBitmap == INVALID_HANDLE_VALUE)
 //#else
 //         if(m_hfileBitmap == -1)
@@ -1080,7 +1080,7 @@ pdirectorysystem->create(dir::appdata() / "time" / "aura");
       lparam lparam;
 
 
-      message = (unsigned int) (LPARAM) pusermessage->id().long_long;
+      message = (::u32) (LPARAM) pusermessage->id().long_long;
 
       wparam     = pusermessage->m_wparam;
 

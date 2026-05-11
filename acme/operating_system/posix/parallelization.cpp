@@ -30,7 +30,7 @@ namespace ansios
 
 
 
-// void __end_thread_impl(platform::application*, unsigned int, bool)
+// void __end_thread_impl(platform::application*, ::u32, bool)
 
 // {
 

@@ -15,7 +15,7 @@ inline bool __QPDecode(
    int nSrcLen,
    char * szDest,
    int * pnDestLen,
-   unsigned int uFlags = 0)
+   ::u32 uFlags = 0)
 {
    
    if (!pbSrcData || !szDest || !pnDestLen)
@@ -277,7 +277,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	}
 //	ATLPREFAST_UNSUPPRESS()
 //
-//		inline int DecodeBase64Char(_In_ unsigned int ch) throw()
+//		inline int DecodeBase64Char(_In_ ::u32 ch) throw()
 //	{
 //		// returns -1 if the character is invalid
 //		// or should be skipped

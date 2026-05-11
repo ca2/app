@@ -21,7 +21,7 @@ public:
    void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction = {}) override;
 
 
-   virtual unsigned int crc32(unsigned int uCrc, const ::block& block);
+   virtual ::u32 crc32(::u32 uCrc, const ::block& block);
 
 
 };

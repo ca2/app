@@ -168,16 +168,16 @@ public:
 
 
 #define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
-constexpr  ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((unsigned long long)e | (unsigned long long)f); } \
+constexpr  ENUM operator | (ENUM e, ENUM f) { return (ENUM) ((::u64)e | (::u64)f); } \
 template < prototype_integral INTEGRAL > \
-constexpr  ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((unsigned long long)e | (unsigned long long)i); } \
+constexpr  ENUM operator | (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e | (::u64)i); } \
 template < prototype_integral INTEGRAL > \
-constexpr  ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((unsigned long long)i | (unsigned long long)e); } \
-constexpr  ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((unsigned long long)e & (unsigned long long)f); } \
+constexpr  ENUM operator | (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i | (::u64)e); } \
+constexpr  ENUM operator & (ENUM e, ENUM f) { return (ENUM) ((::u64)e & (::u64)f); } \
 template < prototype_integral INTEGRAL > \
-constexpr  ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((unsigned long long)e & (unsigned long long)i); } \
+constexpr  ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u64)i); } \
 template < prototype_integral INTEGRAL > \
-constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((unsigned long long)i & (unsigned long long)e); } \
+constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
 using ENUMERATION = ::enumeration < ENUM >
 
 

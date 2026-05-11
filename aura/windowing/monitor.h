@@ -30,8 +30,8 @@ namespace windowing
       virtual void update_cache();
 
 
-      virtual unsigned int monitor_color_temperature();
-      virtual bool adjust_monitor( unsigned int dwTemperature, double dBrightness, double dwGamma);
+      virtual ::u32 monitor_color_temperature();
+      virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
       virtual ::int_rectangle monitor_rectangle();

@@ -56,7 +56,7 @@ INST_LANG,      // $LANGUAGE
 __INST_LAST
 };
 
-extern unsigned int g_stringsize;
+extern ::u32 g_stringsize;
 extern stack_t **g_stacktop;
 extern char * g_variables;
 
@@ -70,7 +70,7 @@ INT_PTR NSISCALL popintptr();
 int NSISCALL popint_or(); // with support for or'ing (2|4|8)
 INT_PTR NSISCALL nsishelper_str_to_ptr(LPCTSTR s);
 #define myatoi(s) ( (int) nsishelper_str_to_ptr(s) ) // converts a string to an integer
-unsigned int NSISCALL myatou(LPCTSTR s); // converts a string to an unsigned integer, decimal only
+::u32 NSISCALL myatou(LPCTSTR s); // converts a string to an unsigned integer, decimal only
 int NSISCALL myatoi_or(LPCTSTR s); // with support for or'ing (2|4|8)
 char * NSISCALL getuservariable(const int varnum);
 void NSISCALL setuservariable(const int varnum, LPCTSTR ::payload);

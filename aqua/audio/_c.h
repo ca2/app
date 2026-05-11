@@ -13,7 +13,7 @@ typedef struct _WAVEOUT
 
    int(*waveout_start)(void * waveoutcontext);
 
-   int(*waveout_write)(void * waveoutcontext, const void * pdata, unsigned int s);
+   int(*waveout_write)(void * waveoutcontext, const void * pdata, ::u32 s);
 
    int(*waveout_stop)(void * waveoutcontext);
 
@@ -36,7 +36,7 @@ typedef struct _AUDIOFORMAT
 #define WAVEOUT_MESSAGE_PACKET
 
 
-typedef void WAVEOUT_CALLBACK(LPWAVEOUT pwaveout, unsigned int emessage, void * pdata, unsigned int s);
+typedef void WAVEOUT_CALLBACK(LPWAVEOUT pwaveout, ::u32 emessage, void * pdata, ::u32 s);
 
 typedef WAVEOUT_CALLBACK * LPWAVEOUT_CALLBACK;
 
@@ -58,7 +58,7 @@ CLASS_DECL_AQUA LPWAVEOUT waveout_open(int iChanel, LPAUDIOFORMAT pformat, LPWAV
 
 CLASS_DECL_AQUA int waveout_start(LPWAVEOUT pwaveout);
 
-CLASS_DECL_AQUA int waveout_write(LPWAVEOUT pwaveout, const void * pdata, unsigned int s);
+CLASS_DECL_AQUA int waveout_write(LPWAVEOUT pwaveout, const void * pdata, ::u32 s);
 
 CLASS_DECL_AQUA int waveout_stop(LPWAVEOUT pwaveout);
 

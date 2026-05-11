@@ -67,7 +67,7 @@ namespace gpu_opengl
       }
 
 
-      // diffuse_irradiance_map::on_diffuse_irradiance_map(const ::string &engineRoot, const unsigned int environmentCubemapId) :
+      // diffuse_irradiance_map::on_diffuse_irradiance_map(const ::string &engineRoot, const ::u32 environmentCubemapId) :
       //    environmentCubemapId(environmentCubemapId)
       // {
       //
@@ -176,7 +176,7 @@ namespace gpu_opengl
       }
 
 
-      // unsigned int diffuse_irradiance_map::getCubemapId()
+      // ::u32 diffuse_irradiance_map::getCubemapId()
       // {
       //
       //    ::cast <cubemap_framebuffer > pframebuffer = m_pframebufferDiffuseIrradiance;

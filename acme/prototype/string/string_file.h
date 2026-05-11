@@ -30,7 +30,7 @@ public:
 
    }
 
-   string_buffer(string_base& str, character_count nMinLength, unsigned int dwFlags = AUTO_LENGTH) THROWS :
+   string_buffer(string_base& str, character_count nMinLength, ::u32 dwFlags = AUTO_LENGTH) THROWS :
    m_str(str),
       m_pszBuffer(nullptr),
       m_nLength((dwFlags& AUTO_LENGTH) ? -1 : nMinLength),

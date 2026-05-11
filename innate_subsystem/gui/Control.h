@@ -81,7 +81,7 @@ namespace innate_subsystem
 
       virtual void setText(const char *text) = 0;
       virtual void setSignedInt(int value) = 0;
-      virtual void setUnsignedInt(unsigned int value) = 0;
+      virtual void setUnsignedInt(::u32 value) = 0;
 
       //
       // Sets text vertical alignment
@@ -154,43 +154,43 @@ namespace innate_subsystem
       // Sets windows style for this control
       //
 
-      //virtual void setStyle(unsigned int styleFlags) = 0;
+      //virtual void setStyle(::u32 styleFlags) = 0;
 
       //
       // Gets windows style for this control
       //
 
-      //virtual unsigned int getStyle() = 0;
+      //virtual ::u32 getStyle() = 0;
 
       //
       // Adds style to this control
       //
 
-      // virtual void addStyle(unsigned int styleFlag) = 0;
+      // virtual void addStyle(::u32 styleFlag) = 0;
       //
       // //
       // // Removes style from this control
       // //
       //
-      // virtual void removeStyle(unsigned int styleFlag) = 0;
+      // virtual void removeStyle(::u32 styleFlag) = 0;
 
       // //
       // // Returns true if styleFlags parameter is in
       // // this control's style
       // //
       //
-      // virtual bool isStyleEnabled(unsigned int styleFlags) = 0;
+      // virtual bool isStyleEnabled(::u32 styleFlags) = 0;
       //
       // //
       // // Private methods for manipulation window extended styles
       // //
       //
-      // virtual void setExStyle(unsigned int style) = 0;
-      // virtual void addExStyle(unsigned int styleFlag) = 0;
-      // virtual void removeExStyle(unsigned int styleFlag) = 0;
+      // virtual void setExStyle(::u32 style) = 0;
+      // virtual void addExStyle(::u32 styleFlag) = 0;
+      // virtual void removeExStyle(::u32 styleFlag) = 0;
       //
-      // virtual unsigned int getExStyle() = 0;
-      // virtual bool isExStyleEnabled(unsigned int styleFlag) = 0;
+      // virtual ::u32 getExStyle() = 0;
+      // virtual bool isExStyleEnabled(::u32 styleFlag) = 0;
       //
       //
       // Replaces default window proc with wndProc.
@@ -216,7 +216,7 @@ namespace innate_subsystem
    //    //
    //
    //    WNDPROC m_defWindowProc;
-      //virtual void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam) = 0;
+      //virtual void postUserMessage(::u32 uMessage, ::wparam wparam, ::lparam lparam) = 0;
    };
 
 
@@ -264,7 +264,7 @@ namespace innate_subsystem
 
        void setText(const char *text) override { m_pcontrol->setText(text); }
        void setSignedInt(int value) override { m_pcontrol->setSignedInt(value); }
-       void setUnsignedInt(unsigned int value) override { m_pcontrol->setUnsignedInt(value); }
+       void setUnsignedInt(::u32 value) override { m_pcontrol->setUnsignedInt(value); }
 
       //
       // Sets text vertical alignment
@@ -337,43 +337,43 @@ namespace innate_subsystem
       // Sets windows style for this control
       //
 
-       //void setStyle(unsigned int styleFlags);
+       //void setStyle(::u32 styleFlags);
 
       //
       // Gets windows style for this control
       //
 
-       //unsigned int getStyle();
+       //::u32 getStyle();
 
       //
       // Adds style to this control
       //
 
-       //void addStyle(unsigned int styleFlag);
+       //void addStyle(::u32 styleFlag);
 
       //
       // Removes style from this control
       //
 
-       //void removeStyle(unsigned int styleFlag);
+       //void removeStyle(::u32 styleFlag);
 
       //
       // Returns true if styleFlags parameter is in
       // this control's style
       //
 
-       ///bool isStyleEnabled(unsigned int styleFlags);
+       ///bool isStyleEnabled(::u32 styleFlags);
 
       //
       // Private methods for manipulation window extended styles
       //
 
-       // void setExStyle(unsigned int style);
-       // void addExStyle(unsigned int styleFlag);
-       // void removeExStyle(unsigned int styleFlag);
+       // void setExStyle(::u32 style);
+       // void addExStyle(::u32 styleFlag);
+       // void removeExStyle(::u32 styleFlag);
        //
-       // unsigned int getExStyle();
-       // bool isExStyleEnabled(unsigned int styleFlag);
+       // ::u32 getExStyle();
+       // bool isExStyleEnabled(::u32 styleFlag);
 
       //
       // Replaces default window proc with wndProc.
@@ -401,7 +401,7 @@ namespace innate_subsystem
    //
    //    WNDPROC m_defWindowProc;
 
-      //void postUserMessage(unsigned int uMessage, ::wparam wparam, ::lparam lparam);
+      //void postUserMessage(::u32 uMessage, ::wparam wparam, ::lparam lparam);
    };
 
 

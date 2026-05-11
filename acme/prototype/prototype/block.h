@@ -477,7 +477,7 @@ inline ::hash32 as_hash32 < const ::block & >(const ::block & b)
 
    auto psz = b.begin();
 
-   unsigned int uHash = 0;
+   ::u32 uHash = 0;
 
    character_count i = 1;
 
@@ -489,7 +489,7 @@ inline ::hash32 as_hash32 < const ::block & >(const ::block & b)
       if (i % 4 == 3)
       {
 
-         uHash = (uHash << 5) + ((unsigned int *)psz)[i >> 2];
+         uHash = (uHash << 5) + ((::u32 *)psz)[i >> 2];
 
       }
 

@@ -88,7 +88,7 @@
 //      }
 //
 //
-//      bool tx::send(const ::scoped_string & scopedstrMessage,unsigned int tickTimeout)
+//      bool tx::send(const ::scoped_string & scopedstrMessage,::u32 tickTimeout)
 //      {
 //
 //         ::winrt::Windows::Storage::StorageFolder ^ folder = ::winrt::Windows::Storage::KnownFolders::DocumentsLibrary;
@@ -110,7 +110,7 @@
 //      }
 //
 //
-//      bool tx::send(int message,void * pdata,int len,unsigned int tickTimeout)
+//      bool tx::send(int message,void * pdata,int len,::u32 tickTimeout)
 //      {
 //
 //
@@ -254,7 +254,7 @@
 //
 //         //if(m_pacmewindowingwindow == nullptr)
 //         //{
-//         //   unsigned int dwLastError = ::get_last_error();
+//         //   ::u32 dwLastError = ::get_last_error();
 //         //   return false;
 //         //}
 //

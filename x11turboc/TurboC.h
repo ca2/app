@@ -121,7 +121,7 @@ typedef unsigned char guchar;
 typedef short gshort;
 typedef unsigned short gushort;
 typedef int gint;
-typedef unsigned int gunsigned int;
+typedef ::u32 gunsigned int;
 typedef long glong;
 typedef unsigned long gulong;
 
@@ -321,19 +321,19 @@ extern clock_t clockTurbo (void);
 
 // Endian conversion functions.
 extern void FixLittle16 (unsigned short *);
-extern void FixLittle32 (unsigned int *);
+extern void FixLittle32 (::u32 *);
 extern void FixBig16 (unsigned short *);
-extern void FixBig32 (unsigned int *);
+extern void FixBig32 (::u32 *);
 
 // Endian file read/write functions.
 extern int ReadLittle16 (FILE * fp, unsigned short * Value);
 extern int ReadBig16 (FILE * fp, unsigned short * Value);
-extern int ReadLittle32 (FILE * fp, unsigned int * Value);
-extern int ReadBig32 (FILE * fp, unsigned int * Value);
+extern int ReadLittle32 (FILE * fp, ::u32 * Value);
+extern int ReadBig32 (FILE * fp, ::u32 * Value);
 extern int WriteLittle16 (FILE * fp, unsigned short Value);
 extern int WriteBig16 (FILE * fp, unsigned short Value);
-extern int WriteLittle32 (FILE * fp, unsigned int Value);
-extern int WriteBig32 (FILE * fp, unsigned int Value);
+extern int WriteLittle32 (FILE * fp, ::u32 Value);
+extern int WriteBig32 (FILE * fp, ::u32 Value);
 
 __END_DECLS
 //--------------------------------------------------------------------------

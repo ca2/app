@@ -33,7 +33,7 @@
 //* \return
 //*      Number of bytes required.
 //*/
-//static inline memsize u32_size(unsigned int v)
+//static inline memsize u32_size(::u32 v)
 //{
 //   if (v < (1UL << 7))
 //   {
@@ -69,7 +69,7 @@
 //* \return
 //*      Number of bytes written to `out`.
 //*/
-//static inline memsize u32_pack(unsigned int value, unsigned char *out)
+//static inline memsize u32_pack(::u32 value, unsigned char *out)
 //{
 //   unsigned rv = 0;
 //
@@ -99,7 +99,7 @@
 //}
 //
 //
-//CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u)
+//CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, ::u32 u)
 //{
 //
 //   auto iSize = ::u32_size(u);
@@ -868,7 +868,7 @@ namespace sockets
 
          m_memResponse.append(buf, len);
 
-         //unsigned long long uLen = 0;
+         //::u64 uLen = 0;
 
          //int iOffset = 2;
 
@@ -982,8 +982,8 @@ namespace sockets
             {
 
                m_iN = 0;
-               m_iN |= ((unsigned long long)data[2]) << 8;
-               m_iN |= ((unsigned long long)data[3]) << 0;
+               m_iN |= ((::u64)data[2]) << 8;
+               m_iN |= ((::u64)data[3]) << 0;
                m_i = 4;
 
             }
@@ -991,14 +991,14 @@ namespace sockets
             {
 
                m_iN = 0;
-               m_iN |= ((unsigned long long)data[2]) << 56;
-               m_iN |= ((unsigned long long)data[3]) << 48;
-               m_iN |= ((unsigned long long)data[4]) << 40;
-               m_iN |= ((unsigned long long)data[5]) << 32;
-               m_iN |= ((unsigned long long)data[6]) << 24;
-               m_iN |= ((unsigned long long)data[7]) << 16;
-               m_iN |= ((unsigned long long)data[8]) << 8;
-               m_iN |= ((unsigned long long)data[9]) << 0;
+               m_iN |= ((::u64)data[2]) << 56;
+               m_iN |= ((::u64)data[3]) << 48;
+               m_iN |= ((::u64)data[4]) << 40;
+               m_iN |= ((::u64)data[5]) << 32;
+               m_iN |= ((::u64)data[6]) << 24;
+               m_iN |= ((::u64)data[7]) << 16;
+               m_iN |= ((::u64)data[8]) << 8;
+               m_iN |= ((::u64)data[9]) << 0;
                m_i = 10;
 
             }

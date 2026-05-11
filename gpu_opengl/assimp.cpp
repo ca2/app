@@ -37,28 +37,28 @@ namespace assimp
 
       // Fill vertexes positions
       vertexes.reserve(mesh->mNumVertices);
-      for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+      for (::u32 i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D pos = mesh->mVertices[i];
          vertexes.add(floating_sequence3(pos.x, pos.y, pos.z));
       }
 
       // Fill vertexes texture coordinates
       uvs.reserve(mesh->mNumVertices);
-      for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+      for (::u32 i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D UVW = mesh->mTextureCoords[0][i]; // Assume only 1 set of UV coords; AssImp supports 8 UV sets.
          uvs.add(floating_sequence2(UVW.x, UVW.y));
       }
 
       // Fill vertexes normals
       normals.reserve(mesh->mNumVertices);
-      for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
+      for (::u32 i = 0; i < mesh->mNumVertices; i++) {
          aiVector3D n = mesh->mNormals[i];
          normals.add(floating_sequence3(n.x, n.y, n.z));
       }
 
       // Fill face indexes
       indexes.reserve(3 * mesh->mNumFaces);
-      for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
+      for (::u32 i = 0; i < mesh->mNumFaces; i++) {
          // Assume the model has only triangles.
          indexes.add(mesh->mFaces[i].mIndices[0]);
          indexes.add(mesh->mFaces[i].mIndices[1]);

@@ -35,7 +35,7 @@ void ns_main_post(dispatch_block_t block);
 
 //    size_t len = 4;
 
-//    unsigned int count;
+//    ::u32 count;
 
 //    nm[0] = CTL_HW;
 

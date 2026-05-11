@@ -22,14 +22,14 @@ public:
   /** Is background value assigned? */
   bool bback;
   /** Foreground color of region */
-  unsigned int fore;
+  ::u32 fore;
   /** Background color of region */
-  unsigned int back;
+  ::u32 back;
   /** Bit mask of region's style (bold, italic, underline) */
-  unsigned int style;
+  ::u32 style;
 
   /** Common constructor */
-  StyledRegion(bool _bfore, bool _bback, unsigned int _fore, unsigned int _back, unsigned int _style){
+  StyledRegion(bool _bfore, bool _bback, ::u32 _fore, ::u32 _back, ::u32 _style){
     bfore = _bfore;
     bback = _bback;
     fore = _fore;

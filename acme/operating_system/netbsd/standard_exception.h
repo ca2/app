@@ -105,7 +105,7 @@ ucontext_t        m_ucontext;
 #ifdef WINDOWS
 //EXCEPTION_POINTERS * info() const         { return m_ppointers; }
 #else
-unsigned int         code() const;
+::u32         code() const;
 void *               address() const;
 const void *    info() const;    // siginfo_t *
 const_char_pointer        name() const;

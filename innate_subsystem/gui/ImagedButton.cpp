@@ -61,7 +61,7 @@ namespace innate_subsystem
 //    //    // Prepare draw... paint button background
 //    //
 //    //    if (m_isUsingTheme) {
-//    //       unsigned int state = (isPressed) ? PBS_PRESSED : PBS_NORMAL;
+//    //       ::u32 state = (isPressed) ? PBS_PRESSED : PBS_NORMAL;
 //    //       if (state == PBS_NORMAL) {
 //    //          if (isFocused) {
 //    //             state = PBS_DEFAULTED;
@@ -93,7 +93,7 @@ namespace innate_subsystem
 //    //          FrameRect(dc, &itemRect, shadow);
 //    //          DeleteObject(shadow);
 //    //       } else {
-//    //          unsigned int uState = DFCS_BUTTONPUSH |
+//    //          ::u32 uState = DFCS_BUTTONPUSH |
 //    //                        ((m_mouseOver) ? DFCS_HOT : 0) |
 //    //                        ((isPressed) ? DFCS_PUSHED : 0);
 //    //
@@ -131,7 +131,7 @@ namespace innate_subsystem
 //    //       if (m_isUsingTheme) {
 //    //          UnicodeStringStorage uniTitle(&title);
 //    //
-//    //          unsigned int state = PBS_NORMAL;
+//    //          ::u32 state = PBS_NORMAL;
 //    //
 //    //          if (isDisabled) {
 //    //             state = PBS_DISABLED;
@@ -196,8 +196,8 @@ namespace innate_subsystem
 //    }
 //
 //    void ImagedButton::calcRect(::int_rectangle & buttonRect, bool isButtonPressed,
-//                                unsigned int textWidth, unsigned int textHeight,
-//                                unsigned int imageWidth, unsigned int imageHeight,
+//                                ::u32 textWidth, ::u32 textHeight,
+//                                ::u32 imageWidth, ::u32 imageHeight,
 //                                ::int_rectangle &textRect, ::int_rectangle & imageRect)
 //    {
 //
@@ -215,7 +215,7 @@ namespace innate_subsystem
 //       //    // Center image vertically
 //       //    imageRect->top += (((buttonHeight) - (long)imageHeight) / 2) - textHeight;
 //       //
-//       //    unsigned int margin = 10;
+//       //    ::u32 margin = 10;
 //       //    textRect->top += (textHeight + margin) * 2;
 //       // }
 //       //
@@ -234,7 +234,7 @@ namespace innate_subsystem
 //    //    //           (isDisabled ? DSS_DISABLED : DSS_NORMAL) | DST_ICON);
 //    // } // End of drawIcon
 //
-//    // LRESULT CALLBACK ImagedButton::wndProc(HWND hWnd, unsigned int message, ::wparam wparam, ::lparam lparam)
+//    // LRESULT CALLBACK ImagedButton::wndProc(HWND hWnd, ::u32 message, ::wparam wparam, ::lparam lparam)
 //    // {
 //    //    ImagedButton *_this = (ImagedButton *)GetWindowLongPtr(hWnd, GWLP_USERDATA);
 //    //

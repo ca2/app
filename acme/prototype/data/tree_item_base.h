@@ -83,8 +83,8 @@ namespace data
       void destroy() override;
       virtual bool erase_item_from_parent();
 
-      virtual tree_item_base * _get_child_by_user_data(unsigned long long ullUserData);
-      virtual tree_item_base * _find_next_by_user_data(unsigned long long ullUserData);
+      virtual tree_item_base * _get_child_by_user_data(::u64 ullUserData);
+      virtual tree_item_base * _find_next_by_user_data(::u64 ullUserData);
       virtual void _get_children(::data::tree_item_base_ptr_array & ptra);
       virtual ::collection::count get_children_count();
       virtual tree_item_base * _get_parent();
@@ -349,7 +349,7 @@ namespace data
 
    //      }
 
-   //      if (ptreeitem->m_dwUser == (unsigned int)iUserData)
+   //      if (ptreeitem->m_dwUser == (::u32)iUserData)
    //      {
 
    //         return ptreeitem;

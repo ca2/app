@@ -41,7 +41,7 @@ namespace platform
 
       str.formatf(
                "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-               *((unsigned int*)p),
+               *((::u32*)p),
                *((unsigned short*)(p + 4)), 
                *((unsigned short*)(p + 6)),
                p[8], p[9], 

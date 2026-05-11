@@ -91,12 +91,12 @@ namespace ftp
    }
 
 
-   unsigned int output_stream::GetLocalStreamSize() const
+   ::u32 output_stream::GetLocalStreamSize() const
    {
-       return (unsigned int) m_pimpl->m_vBuffer.size();
+       return (::u32) m_pimpl->m_vBuffer.size();
    }
 
-   void output_stream::SetLocalStreamOffset(unsigned int dwOffsetFromBeginOfStream)
+   void output_stream::SetLocalStreamOffset(::u32 dwOffsetFromBeginOfStream)
    {
       m_pimpl->m_iCurrentPos = dwOffsetFromBeginOfStream;
    }

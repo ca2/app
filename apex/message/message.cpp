@@ -119,7 +119,7 @@ namespace message
    //}
 
 
-   unsigned int translate_to_os_message(const ::atom &atom) { return atom.as_unsigned_int(); }
+   ::u32 translate_to_os_message(const ::atom &atom) { return atom.as_u32(); }
 
 
    message &message::operator=(const message &message)

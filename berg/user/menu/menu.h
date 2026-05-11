@@ -38,7 +38,7 @@ namespace user
       //atom                                 m_atomSubMenu;
       //::pointer<::menu::item>              m_pitemSubMenu;
       int                                    m_iHoverSubMenu;
-      unsigned int                                    m_dwOut;
+      ::u32                                    m_dwOut;
       ::pointer<menu>                        m_pmenuSubMenu;
       //atom                                 m_atomTimerMenu;
       int_point                              m_pointTrack;

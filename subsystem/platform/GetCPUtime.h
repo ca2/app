@@ -36,8 +36,8 @@ double getCPUTime();
 double getKernelTime();
 
 // returns current processor tick number
-inline unsigned long long rdtsc() {
-  unsigned int lo, hi;
+inline ::u64 rdtsc() {
+  ::u32 lo, hi;
 #if defined(__APPLE__)
     
     #if defined(__x86_64__) || defined(__i386__)
@@ -89,7 +89,7 @@ inline unsigned long long rdtsc() {
 #else
   return 0;
 #endif
-   return ((unsigned long long)hi << 32) | lo;
+   return ((::u64)hi << 32) | lo;
  
 #else
   #error "Unsupported compiler"

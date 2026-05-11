@@ -352,7 +352,7 @@ namespace user
          //      auto f = 1.0 / dwHoverIn;
          //      auto omega = -pi * f; // omega pi
          //      auto t = m_timeHoverStart;
-         //      unsigned int dwCurve = (unsigned int)(255.0 * (1.0 - exp(omega * t)));
+         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
          //      if (m_uchHoverAlphaInit + dwCurve > 255)
          //         m_uchHoverAlpha = 255;
          //      else
@@ -380,7 +380,7 @@ namespace user
          //      auto f = 1.0 / dwHoverOut;
          //      auto omega = -pi * f; // omega pi
          //      auto t = m_timeHoverStart;
-         //      unsigned int dwCurve = (unsigned int)(255.0 * (1.0 - exp(omega * t)));
+         //      ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
          //      if (m_uchHoverAlphaInit < dwCurve)
          //         m_uchHoverAlpha = 0;
          //      else
@@ -808,7 +808,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_uiLButtonUpFlags = (unsigned int)pmouse->m_ebuttonstate;
+      m_uiLButtonUpFlags = (::u32)pmouse->m_ebuttonstate;
 
       m_pointLButtonUp = pmouse->m_pointHost;
 

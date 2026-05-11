@@ -996,7 +996,7 @@ namespace nanoui
    }
 
 
-   bool TextBox::keyboard_character_event(unsigned int codepoint)
+   bool TextBox::keyboard_character_event(::u32 codepoint)
    {
 
       if (m_bEditable && focused())

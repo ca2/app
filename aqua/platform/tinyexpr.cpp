@@ -130,7 +130,7 @@ namespace tinyexpr
          return NAN;
       if (a > UINT_MAX)
          return INFINITY;
-      unsigned int ua = (unsigned int)(a);
+      ::u32 ua = (::u32)(a);
       unsigned long int result = 1, i;
       for (i = 1; i <= ua; i++) {
          if (i > ULONG_MAX / result)
@@ -142,7 +142,7 @@ namespace tinyexpr
    static double ncr(double n, double r) {
       if (n < 0.0 || r < 0.0 || n < r) return NAN;
       if (n > UINT_MAX || r > UINT_MAX) return INFINITY;
-      unsigned long int un = (unsigned int)(n), ur = (unsigned int)(r), i;
+      unsigned long int un = (::u32)(n), ur = (::u32)(r), i;
       unsigned long int result = 1;
       if (ur > un / 2) ur = un - ur;
       for (i = 1; i <= ur; i++) {

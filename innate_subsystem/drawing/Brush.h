@@ -23,7 +23,7 @@
 //
 
 #pragma once
-#include "subsystem/platform/particle.h"
+#include "subsystem/platform/Particle.h"
 #include "GraphicsObject.h"
 
 namespace innate_subsystem

@@ -202,7 +202,7 @@ namespace gpu_opengl
       }
 
 
-      // unsigned int specular_map::getPrefilteredEnvMapId()
+      // ::u32 specular_map::getPrefilteredEnvMapId()
       // {
       //
       //    ::cast <gpu_opengl::ibl::aaa_mipmap_cubemap_framebuffer> pframebuffer = m_pframebufferPrefilteredEnvMap;
@@ -264,7 +264,7 @@ namespace gpu_opengl
       }
 
 
-      // unsigned int specular_map::getBrdfConvolutionMapId()
+      // ::u32 specular_map::getBrdfConvolutionMapId()
       // {
       //
       //    ::cast <::gpu_opengl::ibl::brdf_convolution_framebuffer> pframebuffer = m_pbrdfconvolutionframebuffer;

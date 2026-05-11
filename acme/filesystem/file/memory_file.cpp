@@ -276,7 +276,7 @@ int memory_file::get_unsigned_short()
 }
 
 
-bool memory_file::get_unsigned_long_long(unsigned long long & hn)
+bool memory_file::get_unsigned_long_long(::u64 & hn)
 {
 
    return _get_unsigned_long_long(hn);

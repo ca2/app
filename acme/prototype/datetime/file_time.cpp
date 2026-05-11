@@ -194,7 +194,7 @@ bool file_time::operator==(file_time ft) const noexcept
 //}
 
 
-unsigned long long file_time::get_file_time() const noexcept
+::u64 file_time::get_file_time() const noexcept
 {
 
    return m_uFileTime;
@@ -202,7 +202,7 @@ unsigned long long file_time::get_file_time() const noexcept
 }
 
 
-void file_time::set_file_time(unsigned long long uFileTime) noexcept
+void file_time::set_file_time(::u64 uFileTime) noexcept
 {
 
    m_uFileTime = uFileTime;

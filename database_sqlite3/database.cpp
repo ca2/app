@@ -303,7 +303,7 @@ namespace sqlite
       const ::scoped_string & scopedstrUser,
       const ::scoped_string & scopedstrPass,
       const ::scoped_string & scopedstrSckt,
-      unsigned long long uConnectionFlags)
+      ::u64 uConnectionFlags)
    {
 
       m_strHost = scopedstrHost;

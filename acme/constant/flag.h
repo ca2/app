@@ -2,7 +2,7 @@
 #pragma once
 
 
-enum enum_flag : unsigned long long
+enum enum_flag : ::u64
 {
 
 

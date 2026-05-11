@@ -47,7 +47,7 @@ namespace platform
       union
       {
 
-         unsigned long long m_uNodeFlags;
+         ::u64 m_uNodeFlags;
 
          bool m_bHasNodePostedSystemInitialRequest: 1;
 
@@ -127,7 +127,7 @@ namespace platform
 
 
       virtual void call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
-                              ::e_display edisplay, bool bPrivileged, unsigned int* puiPid = nullptr);
+                              ::e_display edisplay, bool bPrivileged, ::u32* puiPid = nullptr);
 
 
       virtual void call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir,
@@ -425,7 +425,7 @@ namespace platform
       virtual string get_user_name();
 
 
-      virtual void set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha);
+      virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 
 
       virtual void browse_for_folder(::file::path& pathFolder);
@@ -674,7 +674,7 @@ namespace platform
       virtual int get_current_process_affinity_order();
 
 
-      virtual unsigned long long translate_processor_affinity(int i);
+      virtual ::u64 translate_processor_affinity(int i);
 
 
       //CLASS_DECL_ACME string expand_env(const ::scoped_string & scopedstr);
@@ -697,13 +697,13 @@ namespace platform
       //
       //#if !defined(UNIVERSAL_WINDOWS)
       //
-      //      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid = nullptr);
+      //      //virtual int call_async(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, bool bPrivileged, ::u32 * puiPid = nullptr);
       //
       //      typedef int CALLSYNCONRETRY(int iTry, uptr dwParam);
       //
       //      typedef CALLSYNCONRETRY * PFNCALLSYNCONRETRY;
       //
-      //      //CLASS_DECL_ACME unsigned int call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
+      //      //CLASS_DECL_ACME ::u32 call_sync(const ::scoped_string & scopedstrPath, const ::scoped_string & scopedstrParam, const ::scoped_string & scopedstrDir, ::e_display edisplay, const class time & timeTimeout, ::property_set & set);
       //
       //#endif
 
@@ -770,7 +770,7 @@ namespace platform
       virtual string executable_title_from_appid(const ::scoped_string & scopedstrAppId);
 
 
-      //CLASS_DECL_ACME unsigned int get_current_process_id();
+      //CLASS_DECL_ACME ::u32 get_current_process_id();
 
 
       //virtual string process_version_dir_name();
@@ -998,7 +998,7 @@ namespace platform
 
 
       //#ifdef WINDOWS
-      //      virtual DECLSPEC_NO_RETURN void raise_exception(unsigned int dwExceptionCode, unsigned int dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+      //      virtual DECLSPEC_NO_RETURN void raise_exception(::u32 dwExceptionCode, ::u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
       //#endif
 
       virtual bool is_remote_session();
@@ -1245,7 +1245,7 @@ namespace platform
       //#endif
 #if defined(__BSD__) || defined(__APPLE__)
 
-      virtual void arp_a(void *p, void(*callback)(void * p, unsigned int uIp, const_char_pointer status));
+      virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const_char_pointer status));
 
 #endif
 

@@ -863,13 +863,13 @@ namespace sockets_bsd
    }
 
 
-   unsigned long long base_socket::GetBytesSent(bool)
+   ::u64 base_socket::GetBytesSent(bool)
    {
       return 0;
    }
 
 
-   unsigned long long base_socket::GetBytesReceived(bool)
+   ::u64 base_socket::GetBytesReceived(bool)
    {
       return 0;
    }
@@ -2052,7 +2052,7 @@ bool base_socket::SetSoKeepalive(bool x)
    bool base_socket::SetSoBindtodevice(const ::scoped_string & scopedstrInterface)
    {
    
-      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) scopedstrInterface.data(), (unsigned int) scopedstrInterface.size()) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) scopedstrInterface.data(), (::u32) scopedstrInterface.size()) == -1)
       {
 
          fatal() <<"setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());

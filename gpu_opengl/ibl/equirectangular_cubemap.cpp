@@ -147,7 +147,7 @@ namespace gpu_opengl
       }
 
 
-      // unsigned int equirectangular_cubemap::getCubemapId()
+      // ::u32 equirectangular_cubemap::getCubemapId()
       // {
       //
       //    ::cast<cubemap_framebuffer> pframebuffer = m_pframebuffer;

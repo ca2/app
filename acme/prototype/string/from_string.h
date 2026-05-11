@@ -13,10 +13,10 @@ inline  void           from_string(int & i, int iBase, const_char_pointer psz);
 inline  void           from_string(long long & i, int iBase, const_char_pointer psz);
 inline  void           from_string(unsigned char & i, const_char_pointer psz);
 inline  void           from_string(unsigned short & i, const_char_pointer psz);
-inline  void           from_string(unsigned int & i, const_char_pointer psz);
-inline  void           from_string(unsigned long long & i, const_char_pointer psz);
-inline  void           from_string(unsigned int & i, int iBase, const_char_pointer psz);
-inline  void           from_string(unsigned long long & i, int iBase, const_char_pointer psz);
+inline  void           from_string(::u32 & i, const_char_pointer psz);
+inline  void           from_string(::u64 & i, const_char_pointer psz);
+inline  void           from_string(::u32 & i, int iBase, const_char_pointer psz);
+inline  void           from_string(::u64 & i, int iBase, const_char_pointer psz);
 
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS) || defined(WINDOWS)
 inline  void           from_string(long & l, const_char_pointer psz);

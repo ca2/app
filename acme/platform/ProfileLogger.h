@@ -13,7 +13,7 @@ namespace platform
    {
       double                  m_process;
       double                  m_kernel;
-      unsigned long long      m_cycle;
+      ::u64      m_cycle;
       class ::time            m_time;
    };
 

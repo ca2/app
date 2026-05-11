@@ -138,9 +138,9 @@ namespace platform
    //::string aura_application_layer::matter_as_string(const ::scoped_string & scopedstrMatter, const ::scoped_string & scopedstrMatter2 = nullptr) override{}
 
 
-   //bool aura_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
-   //bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
-   //user bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, unsigned int lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+   //bool aura_application_layer::do_prompt_file_name(::payload & payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument){}
+   //bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
+   //user bool aura_application_layer::do_prompt_file_name(::payload& payloadFile, string nIDSTitle, ::u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument){}
 
 
    //void aura_application_layer::process_message_filter(int code, ::message::message * pmessage) override{}
@@ -296,7 +296,7 @@ namespace platform
 
    //void aura_application_layer::record(::create * pcommand){}
 
-   //void aura_application_layer::on_event(unsigned long long u, ::particle * pparticle) override{}
+   //void aura_application_layer::on_event(::u64 u, ::particle * pparticle) override{}
    //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool){}
 
 
@@ -751,9 +751,9 @@ namespace platform
    //bool aura_application_layer::is_system() const override{}
    //bool aura_application_layer::is_session() const override{}
 
-   //virtual unsigned int guess_code_page(const ::scoped_string & scopedstr) override{}
+   //virtual ::u32 guess_code_page(const ::scoped_string & scopedstr) override{}
 
-   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, unsigned int fuStyle) override{}
+   //virtual int _sync_message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, ::u32 fuStyle) override{}
 
    //bool aura_application_layer::is_serviceable() const override{}
    //
@@ -777,7 +777,7 @@ namespace platform
    //void aura_application_layer::process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override{}
 
    //      void EnableModelessEx(bool bEnable){}
-   //      bool GetResourceData(unsigned int nID, const ::scoped_string & scopedstrType, memory& storage){}
+   //      bool GetResourceData(::u32 nID, const ::scoped_string & scopedstrType, memory& storage){}
 
    //#ifdef WINDOWS
    //      bool aura_application_layer::OnMessageWindowMessage(MESSAGE * pmsg){}
@@ -786,7 +786,7 @@ namespace platform
    //      bool aura_application_layer::OnX11WindowMessage(void* pev){}
    //#endif
 
-   bool  aura_application_layer::CreateFileFromRawResource(unsigned int nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
+   bool  aura_application_layer::CreateFileFromRawResource(::u32 nID, const ::scoped_string & scopedstrType, const ::scoped_string & scopedstrFilePath)
    {
       return false;
    }
@@ -808,7 +808,7 @@ namespace platform
    }
 
 
-   void aura_application_layer::SetRegistryKey(unsigned int nIDRegistryKey)
+   void aura_application_layer::SetRegistryKey(::u32 nIDRegistryKey)
    {
    }
 

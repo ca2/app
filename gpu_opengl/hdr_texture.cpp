@@ -51,7 +51,7 @@
 //
 //    }
 //
-//    unsigned int hdr_texture::getId()
+//    ::u32 hdr_texture::getId()
 //    {
 //
 //       return m_uId;

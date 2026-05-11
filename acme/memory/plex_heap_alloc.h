@@ -14,7 +14,7 @@ protected:
    friend class plex_heap_alloc_array;
 
 
-   plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, unsigned int nBlockSize = 64);
+   plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocSize, ::u32 nBlockSize = 64);
    virtual ~plex_heap_alloc();
 
 
@@ -30,7 +30,7 @@ public:
 
 
 
-   inline unsigned int GetAllocSize() { return m_iAllocSize; }
+   inline ::u32 GetAllocSize() { return m_iAllocSize; }
 
    void * Alloc();               // return a chunk of memory of nAllocSize
    void Free(void * p);          // free chunk of memory returned from Alloc
@@ -44,7 +44,7 @@ public:
    //void operator delete(void * p);
 
 
-   //plex_heap_alloc_sync * new_plex_heap_alloc_sync(memsize nAllocSize, unsigned int nBlockSize = 64);
+   //plex_heap_alloc_sync * new_plex_heap_alloc_sync(memsize nAllocSize, ::u32 nBlockSize = 64);
    //void delete_plex_heap_alloc_sync(plex_heap_alloc_sync *p);
 
 

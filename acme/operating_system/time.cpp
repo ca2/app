@@ -15,7 +15,7 @@
 CLASS_DECL_ACME void __seed_srand()
 {
 
-   srand((unsigned int)(time(nullptr)));
+   srand((::u32)(time(nullptr)));
 
 }
 
@@ -23,7 +23,7 @@ CLASS_DECL_ACME void __seed_srand()
 //CLASS_DECL_ACME void sleep(const ::time& dur)
 //{
 //
-//   sleep((unsigned int)dur.total_milliseconds());
+//   sleep((::u32)dur.total_milliseconds());
 //
 //}
 
@@ -271,7 +271,7 @@ void copy(system_time * psystemtime, const tm * ptm)
 //CLASS_DECL_ACME file_time as_file_time(const class ::time & time)
 //{
 //
-//   unsigned long long nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
+//   ::u64 nanoseconds = time.m_iNanosecond + time.m_iSecond * 1'000'000'000;
 //
 //   nanoseconds += EPOCH_DIFFERENCE_NANOS;
 //

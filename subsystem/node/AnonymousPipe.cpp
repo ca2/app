@@ -40,7 +40,7 @@ namespace subsystem
 //    {
 //       //initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
 //    }
-//    // AnonymousPipe::AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter)
+//    // AnonymousPipe::AnonymousPipe(FileInterface * pfileWrite, FileInterface * pfileRead, ::u32 maxPortionSize, LogWriter *plogwriter)
 //    //  //: Pipe(maxPortionSize)
 //    // //   m_hWrite(hWrite),
 //    // //   m_hRead(hRead),
@@ -61,7 +61,7 @@ namespace subsystem
 //    }
 //
 //    //
-//    void AnonymousPipe::initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter)
+//    void AnonymousPipe::initialize_anonymous_pipe(::subsystem::FileInterface * pfileWrite, ::subsystem::FileInterface * pfileRead, ::u32 maxPortionSize, LogWriter *plogwriter)
 //    // : Pipe(maxPortionSize),
 //    //   m_hWrite(hWrite),
 //    //   m_hRead(hRead),
@@ -70,7 +70,7 @@ namespace subsystem
 //    {
 //       m_pparticleThis->initialize_anonymous_pipe(pfileWrite, pfileRead, maxPortionSize, plogwriter);
 //    }
-//    // void AnonymousPipe::initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, unsigned int maxPortionSize, LogWriter *plogwriter)
+//    // void AnonymousPipe::initialize_anonymous_pipe(FileInterface * pfileWrite, FileInterface * pfileRead, ::u32 maxPortionSize, LogWriter *plogwriter)
 //    // // : Pipe(maxPortionSize),
 //    // //   m_hWrite(hWrite),
 //    // //   m_hRead(hRead),
@@ -211,7 +211,7 @@ namespace subsystem
 //    //    m_neededToClose = neededToClose;
 //    // }
 //
-//    void AnonymousPipe::setTimeOut(unsigned int timeOut)
+//    void AnonymousPipe::setTimeOut(::u32 timeOut)
 //    {
 // //      m_timeOut = timeOut;
 //       m_pparticleThis->setTimeOut(timeOut);

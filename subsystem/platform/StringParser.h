@@ -39,9 +39,9 @@ namespace subsystem
       virtual bool tryParseInt(const char *str);
       virtual bool parseInt(const char *str, int *out);
       // FIXME: it returns true on values that greater then 0xFFFFFFFF.
-      virtual bool parseUInt(const char *str, unsigned int *out);
-      virtual bool parseUInt64(const char *str, unsigned long long *out);
-      virtual bool parseHex(const char *str, unsigned int *out);
+      virtual bool parseUInt(const char *str, ::u32 *out);
+      virtual bool parseUInt64(const char *str, ::u64 *out);
+      virtual bool parseHex(const char *str, ::u32 *out);
       virtual bool parseByte(const char *str, unsigned char *out);
       virtual bool parseByteHex(const char *str, unsigned char *out);
    };

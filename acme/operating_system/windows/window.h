@@ -26,12 +26,12 @@ namespace operating_system
    };
 
 
-   class windows_window : public ::operating_system::a_window<e_operating_system_windows, windows_window_t>
+   class windows_window : public ::operating_system::a_window<::windowing::e_operating_ambient_windows, windows_window_t>
    {
    public:
 
 
-      using BASE_TYPE = ::operating_system::a_window<e_operating_system_windows, windows_window_t>;
+      using BASE_TYPE = ::operating_system::a_window<::windowing::e_operating_ambient_windows, windows_window_t>;
 
 
       using BASE_TYPE::BASE_TYPE;
@@ -48,7 +48,7 @@ namespace operating_system
       HWND as_HWND() const 
       { 
          
-         if(this->m_eoperatingsystem == e_operating_system_windows)
+         if(this->m_eoperatingambient == ::windowing::e_operating_ambient_windows)
          {
 
             if (!this->m_window.m_hwndWindowsWindow)
@@ -91,7 +91,7 @@ namespace operating_system
          else
          {
 
-            this->m_eoperatingsystem = e_operating_system_windows;
+            this->m_eoperatingambient = ::windowing::e_operating_ambient_windows;
             this->m_window.m_hwndWindowsWindow = hwnd;
 
          }

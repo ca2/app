@@ -27,7 +27,7 @@
 }
 
 
-::wd16_character * __long_longtowd16(long long i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character *& end)
+::wd16_character * __long_longtowd16(::i64 i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase, ::wd16_character *& end)
 {
 
    end = buf;
@@ -39,7 +39,7 @@
 }
 
 
-::wd32_character * __long_longtowd32(long long i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character *& end)
+::wd32_character * __long_longtowd32(::i64 i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character *& end)
 {
 
    end = buf;

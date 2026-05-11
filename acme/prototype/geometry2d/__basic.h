@@ -44,7 +44,7 @@ class point_array_base;
 
 
 inline int area(int cx, int cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
-inline long long area(long long cx, long long cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
+inline ::i64 area(::i64 cx, ::i64 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }
 inline double area(double cx, double cy) { return (cx < 0. && cy < 0. ? -1. : 1.) * cx * cy; }
 
 
@@ -78,9 +78,9 @@ struct ::double_rectangle;
 //inline double i32muldiv(double d, int iNum, int iDen);
 //inline int i32muldiv(int i, int iNum, int iDen);
 //#ifndef WINDOWS
-//inline long long MulDiv(long long nNumber, int iNum, int iDen);
+//inline ::i64 MulDiv(::i64 nNumber, int iNum, int iDen);
 //#endif
-//inline long long i32muldiv(long long i, long long iNum, long long iDen);
+//inline ::i64 i32muldiv(::i64 i, ::i64 iNum, ::i64 iDen);
 
 
 template < prototype_integral INTEGRAL1, prototype_integral INTEGRAL2, prototype_integral INTEGRAL3, prototype_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
@@ -184,20 +184,20 @@ inline auto top(const XYDim & rectangle) { return rectangle.Y; }
 //inline bool contains(const ::long_long_rectangle & rectangle, const ::int_point & point) { return ::rectangle_contains(rectangle, point.x, point.y); }
 //inline ::long_long_rectangle & null(::long_long_rectangle & rectDst) { return ::null_rect(rectDst); }
 //inline bool is_equal(const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::rect_equals(rect1, rect2); }
-//inline ::long_long_rectangle & inflate(::long_long_rectangle & rectangle, long long x, long long y) { return ::rect_inflate_point(rectangle, x, y); }
-//inline ::long_long_rectangle & deflate(::long_long_rectangle & rectangle, long long x, long long y) { return ::rect_deflate_point(rectangle, x, y); }
-//inline ::long_long_rectangle & offset(::long_long_rectangle & rectangle, long long x, long long y) { return ::offset_rect(rectangle, x, y); }
+//inline ::long_long_rectangle & inflate(::long_long_rectangle & rectangle, ::i64 x, ::i64 y) { return ::rect_inflate_point(rectangle, x, y); }
+//inline ::long_long_rectangle & deflate(::long_long_rectangle & rectangle, ::i64 x, ::i64 y) { return ::rect_deflate_point(rectangle, x, y); }
+//inline ::long_long_rectangle & offset(::long_long_rectangle & rectangle, ::i64 x, ::i64 y) { return ::offset_rect(rectangle, x, y); }
 //inline bool intersect(::long_long_rectangle & rectangle, const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 //inline ::long_long_rectangle & unite(::long_long_rectangle & rectangle, const ::long_long_rectangle & rect1, const ::long_long_rectangle & rect2) { return ::union_rect(rectangle, rect1, rect2); }
-//inline long long width(const ::long_long_rectangle & rectangle) { return ::rect_width(rectangle); }
-//inline long long height(const ::long_long_rectangle & rectangle) { return ::rect_height(rectangle); }
-//inline long long area(const ::long_long_rectangle & rectangle) { return ::rect_area(rectangle); }
+//inline ::i64 width(const ::long_long_rectangle & rectangle) { return ::rect_width(rectangle); }
+//inline ::i64 height(const ::long_long_rectangle & rectangle) { return ::rect_height(rectangle); }
+//inline ::i64 area(const ::long_long_rectangle & rectangle) { return ::rect_area(rectangle); }
 //inline bool is_empty(const ::long_long_rectangle & rectangle) { return ::is_rect_empty(rectangle); }
 //inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
-//inline long long width(const ::long_long_rectangle & rectangle) { return ::width(&rectangle); }
-//inline long long height(const ::long_long_rectangle & rectangle) { return ::height(&rectangle); }
-//inline long long area(const ::long_long_rectangle & rectangle) { return ::area(&rectangle); }
+//inline ::i64 width(const ::long_long_rectangle & rectangle) { return ::width(&rectangle); }
+//inline ::i64 height(const ::long_long_rectangle & rectangle) { return ::height(&rectangle); }
+//inline ::i64 area(const ::long_long_rectangle & rectangle) { return ::area(&rectangle); }
 //inline bool is_empty(const ::long_long_rectangle & rectangle) { return ::is_empty(&rectangle); }
 //inline void swap_left_right(::long_long_rectangle & rectangle) noexcept { ::swap_left_right(&rectangle); }
 

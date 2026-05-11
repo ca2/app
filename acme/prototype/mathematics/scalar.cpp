@@ -247,7 +247,7 @@
 ////
 ////
 ////
-////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,long long iValue,int iFlags)
+////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,::i64 iValue,int iFlags)
 ////{
 ////
 ////   __UNREFERENCED_PARAMETER(psource);
@@ -266,7 +266,7 @@
 ////}
 ////
 ////
-////bool int_scalar_source::set_scalar(enum_scalar escalar,long long iValue,bool bForce,int iFlags)
+////bool int_scalar_source::set_scalar(enum_scalar escalar,::i64 iValue,bool bForce,int iFlags)
 ////{
 ////
 ////   if (!bForce)
@@ -288,7 +288,7 @@
 ////
 ////}
 ////
-////bool int_scalar_source::constrain_scalar(enum_scalar escalar, long long & iValue)
+////bool int_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & iValue)
 ////{
 ////
 ////   bool bConstrain;
@@ -296,7 +296,7 @@
 ////   if((bConstrain = constrain(escalar, iValue)))
 ////   {
 ////
-////      long long i = 0;
+////      ::i64 i = 0;
 ////
 ////      get_scalar(escalar, i);
 ////
@@ -311,10 +311,10 @@
 ////
 ////}
 ////
-////void int_scalar_source::increment_scalar(enum_scalar escalar, long long iIncrement)
+////void int_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
 ////{
 ////
-////   long long i = 0;
+////   ::i64 i = 0;
 ////
 ////   get_scalar(escalar, i);
 ////   
@@ -322,17 +322,17 @@
 ////
 ////}
 ////
-////bool int_scalar_source::contains(enum_scalar escalar, long long iValue)
+////bool int_scalar_source::contains(enum_scalar escalar, ::i64 iValue)
 ////{
 ////
-////   long long iMin = 0;
+////   ::i64 iMin = 0;
 ////
 ////   get_scalar_minimum(escalar, iMin);
 ////
 ////   if (iValue < iMin)
 ////      return false;
 ////
-////   long long iMax = 0;
+////   ::i64 iMax = 0;
 ////
 ////   get_scalar_maximum(escalar, iMax);
 ////
@@ -343,10 +343,10 @@
 ////
 ////}
 ////
-////bool int_scalar_source::constrain(enum_scalar escalar, long long & iValue)
+////bool int_scalar_source::constrain(enum_scalar escalar, ::i64 & iValue)
 ////{
 ////
-////   long long iMin = 0;
+////   ::i64 iMin = 0;
 ////
 ////   get_scalar_minimum(escalar, iMin);
 ////
@@ -359,7 +359,7 @@
 ////
 ////   }
 ////
-////   long long iMax = 0;
+////   ::i64 iMax = 0;
 ////
 ////   get_scalar_maximum(escalar, iMax);
 ////
@@ -378,7 +378,7 @@
 ////
 ////
 ////
-////void int_scalar_source::on_set_scalar(enum_scalar escalar,long long iValue,int iFlags)
+////void int_scalar_source::on_set_scalar(enum_scalar escalar,::i64 iValue,int iFlags)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -391,7 +391,7 @@
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, long long & i)
+////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -400,7 +400,7 @@
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar(enum_scalar escalar, long long & i)
+////void int_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -409,7 +409,7 @@
 ////
 ////}
 ////
-////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, long long & i)
+////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
 ////{
 ////   
 ////   __UNREFERENCED_PARAMETER(escalar);
@@ -421,24 +421,24 @@
 ////double int_scalar_source::get_rate(enum_scalar escalar, double dDefault)
 ////{
 ////
-////   long long iMax = 0;
+////   ::i64 iMax = 0;
 ////
 ////   get_scalar_maximum(escalar, iMax);
 ////
-////   long long iMin = 0;
+////   ::i64 iMin = 0;
 ////
 ////   get_scalar_minimum(escalar, iMin);
 ////
-////   long long iDenominator = iMax - iMin;
+////   ::i64 iDenominator = iMax - iMin;
 ////
 ////   if (iDenominator == 0)
 ////      return dDefault;
 ////
-////   long long iVal = 0;
+////   ::i64 iVal = 0;
 ////
 ////   get_scalar(escalar, iVal);
 ////
-////   long long iNumerator = iVal - iMin;
+////   ::i64 iNumerator = iVal - iMin;
 ////
 ////   return (double) iNumerator / (double) iDenominator; // aproximate value along iDenominator and iNumerator evaluation
 ////
@@ -454,17 +454,17 @@
 ////   if(dValue > 1.0)
 ////      return false;
 ////
-////   long long iMax = 0;
+////   ::i64 iMax = 0;
 ////
 ////   get_scalar_maximum(escalar,iMax);
 ////
-////   long long iMin = 0;
+////   ::i64 iMin = 0;
 ////
 ////   get_scalar_minimum(escalar,iMin);
 ////
-////   long long iDenominator = iMax - iMin;
+////   ::i64 iDenominator = iMax - iMin;
 ////
-////   on_set_scalar(escalar,(long long) round(dValue * iDenominator) + iMin, iFlags);
+////   on_set_scalar(escalar,(::i64) round(dValue * iDenominator) + iMin, iFlags);
 ////
 ////   return true;
 ////
@@ -609,7 +609,7 @@
 ////}
 ////
 ////
-////void int_scalar::set(long long iValue)
+////void int_scalar::set(::i64 iValue)
 ////{
 ////
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -620,13 +620,13 @@
 ////}
 ////
 ////
-////long long int_scalar::get()
+////::i64 int_scalar::get()
 ////{
 ////
 ////   if (m_psource == nullptr || m_escalar == scalar_none)
 ////      return 0;
 ////
-////   long long i = 0;
+////   ::i64 i = 0;
 ////
 ////   m_psource->get_scalar(m_escalar, i);
 ////
@@ -657,13 +657,13 @@
 ////}
 ////
 ////
-////long long int_scalar::minimum()
+////::i64 int_scalar::minimum()
 ////{
 ////   
 ////   if (is_null())
 ////      return 0;
 ////
-////   long long i = 0;
+////   ::i64 i = 0;
 ////
 ////   m_psource->get_scalar_minimum(m_escalar, i);
 ////
@@ -672,13 +672,13 @@
 ////}
 ////
 ////
-////long long int_scalar::maximum()
+////::i64 int_scalar::maximum()
 ////{
 ////
 ////   if (is_null())
 ////      return 0;
 ////
-////   long long i = 0;
+////   ::i64 i = 0;
 ////
 ////   m_psource->get_scalar_maximum(m_escalar, i);
 ////
@@ -1015,7 +1015,7 @@ namespace  number
    ////
    ////
    ////
-   ////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,long long number,int iFlags)
+   ////void int_scalar_source::listener::on_set_scalar(int_scalar_source * psource,enum_scalar escalar,::i64 number,int iFlags)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(psource);
@@ -1034,7 +1034,7 @@ namespace  number
    ////}
    ////
    ////
-   ////bool int_scalar_source::set_scalar(enum_scalar escalar,long long number,bool bForce,int iFlags)
+   ////bool int_scalar_source::set_scalar(enum_scalar escalar,::i64 number,bool bForce,int iFlags)
    ////{
    ////
    ////   if (!bForce)
@@ -1056,7 +1056,7 @@ namespace  number
    ////
    ////}
    ////
-   ////bool int_scalar_source::constrain_scalar(enum_scalar escalar, long long & number)
+   ////bool int_scalar_source::constrain_scalar(enum_scalar escalar, ::i64 & number)
    ////{
    ////
    ////   bool bConstrain;
@@ -1064,7 +1064,7 @@ namespace  number
    ////   if((bConstrain = constrain(escalar, number)))
    ////   {
    ////
-   ////      long long i = 0;
+   ////      ::i64 i = 0;
    ////
    ////      get_scalar(escalar, i);
    ////
@@ -1079,10 +1079,10 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::increment_scalar(enum_scalar escalar, long long iIncrement)
+   ////void int_scalar_source::increment_scalar(enum_scalar escalar, ::i64 iIncrement)
    ////{
    ////
-   ////   long long i = 0;
+   ////   ::i64 i = 0;
    ////
    ////   get_scalar(escalar, i);
    ////
@@ -1090,17 +1090,17 @@ namespace  number
    ////
    ////}
    ////
-   ////bool int_scalar_source::contains(enum_scalar escalar, long long number)
+   ////bool int_scalar_source::contains(enum_scalar escalar, ::i64 number)
    ////{
    ////
-   ////   long long iMin = 0;
+   ////   ::i64 iMin = 0;
    ////
    ////   get_scalar_minimum(escalar, iMin);
    ////
    ////   if (number < iMin)
    ////      return false;
    ////
-   ////   long long iMax = 0;
+   ////   ::i64 iMax = 0;
    ////
    ////   get_scalar_maximum(escalar, iMax);
    ////
@@ -1111,10 +1111,10 @@ namespace  number
    ////
    ////}
    ////
-   ////bool int_scalar_source::constrain(enum_scalar escalar, long long & number)
+   ////bool int_scalar_source::constrain(enum_scalar escalar, ::i64 & number)
    ////{
    ////
-   ////   long long iMin = 0;
+   ////   ::i64 iMin = 0;
    ////
    ////   get_scalar_minimum(escalar, iMin);
    ////
@@ -1127,7 +1127,7 @@ namespace  number
    ////
    ////   }
    ////
-   ////   long long iMax = 0;
+   ////   ::i64 iMax = 0;
    ////
    ////   get_scalar_maximum(escalar, iMax);
    ////
@@ -1146,7 +1146,7 @@ namespace  number
    ////
    ////
    ////
-   ////void int_scalar_source::on_set_scalar(enum_scalar escalar,long long number,int iFlags)
+   ////void int_scalar_source::on_set_scalar(enum_scalar escalar,::i64 number,int iFlags)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1159,7 +1159,7 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, long long & i)
+   ////void int_scalar_source::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1168,7 +1168,7 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::get_scalar(enum_scalar escalar, long long & i)
+   ////void int_scalar_source::get_scalar(enum_scalar escalar, ::i64 & i)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1177,7 +1177,7 @@ namespace  number
    ////
    ////}
    ////
-   ////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, long long & i)
+   ////void int_scalar_source::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
    ////{
    ////
    ////   __UNREFERENCED_PARAMETER(escalar);
@@ -1189,24 +1189,24 @@ namespace  number
    ////double int_scalar_source::get_rate(enum_scalar escalar, double dDefault)
    ////{
    ////
-   ////   long long iMax = 0;
+   ////   ::i64 iMax = 0;
    ////
    ////   get_scalar_maximum(escalar, iMax);
    ////
-   ////   long long iMin = 0;
+   ////   ::i64 iMin = 0;
    ////
    ////   get_scalar_minimum(escalar, iMin);
    ////
-   ////   long long iDenominator = iMax - iMin;
+   ////   ::i64 iDenominator = iMax - iMin;
    ////
    ////   if (iDenominator == 0)
    ////      return dDefault;
    ////
-   ////   long long iVal = 0;
+   ////   ::i64 iVal = 0;
    ////
    ////   get_scalar(escalar, iVal);
    ////
-   ////   long long iNumerator = iVal - iMin;
+   ////   ::i64 iNumerator = iVal - iMin;
    ////
    ////   return (double) iNumerator / (double) iDenominator; // aproximate value along iDenominator and iNumerator evaluation
    ////
@@ -1222,17 +1222,17 @@ namespace  number
    ////   if(dValue > 1.0)
    ////      return false;
    ////
-   ////   long long iMax = 0;
+   ////   ::i64 iMax = 0;
    ////
    ////   get_scalar_maximum(escalar,iMax);
    ////
-   ////   long long iMin = 0;
+   ////   ::i64 iMin = 0;
    ////
    ////   get_scalar_minimum(escalar,iMin);
    ////
-   ////   long long iDenominator = iMax - iMin;
+   ////   ::i64 iDenominator = iMax - iMin;
    ////
-   ////   on_set_scalar(escalar,(long long) round(dValue * iDenominator) + iMin, iFlags);
+   ////   on_set_scalar(escalar,(::i64) round(dValue * iDenominator) + iMin, iFlags);
    ////
    ////   return true;
    ////
@@ -1377,7 +1377,7 @@ namespace  number
    ////}
    ////
    ////
-   ////void int_scalar::set(long long number)
+   ////void int_scalar::set(::i64 number)
    ////{
    ////
    ////   if (m_psource == nullptr || m_escalar == scalar_none)
@@ -1388,13 +1388,13 @@ namespace  number
    ////}
    ////
    ////
-   ////long long int_scalar::get()
+   ////::i64 int_scalar::get()
    ////{
    ////
    ////   if (m_psource == nullptr || m_escalar == scalar_none)
    ////      return 0;
    ////
-   ////   long long i = 0;
+   ////   ::i64 i = 0;
    ////
    ////   m_psource->get_scalar(m_escalar, i);
    ////
@@ -1425,13 +1425,13 @@ namespace  number
    ////}
    ////
    ////
-   ////long long int_scalar::minimum()
+   ////::i64 int_scalar::minimum()
    ////{
    ////
    ////   if (is_null())
    ////      return 0;
    ////
-   ////   long long i = 0;
+   ////   ::i64 i = 0;
    ////
    ////   m_psource->get_scalar_minimum(m_escalar, i);
    ////
@@ -1440,13 +1440,13 @@ namespace  number
    ////}
    ////
    ////
-   ////long long int_scalar::maximum()
+   ////::i64 int_scalar::maximum()
    ////{
    ////
    ////   if (is_null())
    ////      return 0;
    ////
-   ////   long long i = 0;
+   ////   ::i64 i = 0;
    ////
    ////   m_psource->get_scalar_maximum(m_escalar, i);
    ////

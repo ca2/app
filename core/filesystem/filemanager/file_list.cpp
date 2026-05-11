@@ -309,7 +309,7 @@ namespace filemanager
    //      while (i < fs_list()->m_pitema->get_count() || is_window_visible())
    //      {
 
-   //         long long i64Size;
+   //         ::i64 i64Size;
 
    //         bool bPendingSize;
 
@@ -1741,7 +1741,7 @@ namespace filemanager
 
          pbutton->set_button_style(::user::button::e_style_list);
 
-         pcallback->InitializeActionButton(pinteraction->id().as_int() - 1000, pbutton);
+         pcallback->InitializeActionButton(pinteraction->id().as_i32() - 1000, pbutton);
 
       }
 

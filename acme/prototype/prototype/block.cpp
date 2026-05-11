@@ -20,7 +20,7 @@ block::block(const atom & atom) :
 
 
 //block::block(const ::scoped_string & scopedstr, ::character_count s) : 
-//   ::block((const void *)str.c_str(), (long long)(s >= 0 ? s : str.length() + s + 1))
+//   ::block((const void *)str.c_str(), (::i64)(s >= 0 ? s : str.length() + s + 1))
 //{
 //
 //

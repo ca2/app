@@ -88,7 +88,7 @@ CLASS_DECL_ACME character_count unichar_count(const ::wd16_character * pstr);
 
 
 
-CLASS_DECL_ACME long long string_to_signed(const ::wd16_character * psz);
+CLASS_DECL_ACME ::i64 string_to_signed(const ::wd16_character * psz);
 CLASS_DECL_ACME ::u64 as_u64(const ::wd16_character * psz);
 CLASS_DECL_ACME double string_to_floating(const ::wd16_character * psz);
 

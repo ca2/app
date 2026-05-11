@@ -11,7 +11,7 @@
 //
 //
 //bool g_bEnableObjRefDbg = true;
-//long long g_iInspectedItems = true;
+//::i64 g_iInspectedItems = true;
 
 //critical_section * g_pcsRefDbg = nullptr;
 
@@ -54,7 +54,7 @@ interlocked_count g_interlockedcountNewReferenceItemSerial;
 CLASS_DECL_ACME::collection::index new_reference_item_serial()
 {
 
-   auto i = (long long) g_interlockedcountNewReferenceItemSerial;
+   auto i = (::i64) g_interlockedcountNewReferenceItemSerial;
 
    g_interlockedcountNewReferenceItemSerial++;
 

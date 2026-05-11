@@ -45,7 +45,7 @@ enum e_set_version
 //
 ////      void read(int & i);
 ////      void read(::u32 & u);
-////      void read(long long & i);
+////      void read(::i64 & i);
 ////      void read(::u64 & u);
 //
 //   using stream::read;
@@ -60,7 +60,7 @@ enum e_set_version
 //   virtual stream & read (unsigned short & u) override;
 //   virtual stream & read (int & i) override;
 //   virtual stream & read (::u32 & u) override;
-//   virtual stream & read (long long & i) override;
+//   virtual stream & read (::i64 & i) override;
 //   virtual stream & read (::u64 & u) override;
 //   virtual stream & read (float & f) override;
 //   virtual stream & read (double & d) override;
@@ -86,7 +86,7 @@ enum e_set_version
 //   virtual stream & write (bool b) override;
 //   virtual stream & write (int i) override;
 //   virtual stream & write (::u32 u) override;
-//   virtual stream & write (long long i) override;
+//   virtual stream & write (::i64 i) override;
 //   virtual stream & write (::u64 u) override;
 //   virtual stream & write (float f) override;
 //   virtual stream & write (double d) override;

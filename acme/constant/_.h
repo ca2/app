@@ -68,7 +68,7 @@ namespace user
    enum enum_message : ::u32;
 } // namespace user
 enum enum_message : int;
-enum enum_impact : long long;
+enum enum_impact : ::i64;
 enum enum_id : ::uptr;
 enum enum_check : int;
 enum enum_happening : int;
@@ -170,15 +170,15 @@ namespace windowing
 {
 
 
-   enum enum_operating_ambient : long long;
+   enum enum_operating_ambient : ::i64;
 
-   enum enum_toolkit : long long;
+   enum enum_toolkit : ::i64;
 
-   enum enum_windowing : long long;
+   enum enum_windowing : ::i64;
 
-   enum enum_display_type : long long;
+   enum enum_display_type : ::i64;
 
-   enum enum_bias : long long;
+   enum enum_bias : ::i64;
 
 
 } // namespace windowing

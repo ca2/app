@@ -22,7 +22,7 @@
 //
 
 //using int_polygon = polygon_base < int >;
-//using long_long_polygon = polygon_base < long long >;
+//using long_long_polygon = polygon_base < ::i64 >;
 //using float_polygon = polygon_base < float >;
 //using double_polygon = polygon_base < double >;
 
@@ -44,7 +44,7 @@
 
 
 //using int_point_array = point_array_base < int >;
-//using long_long_point_array = point_array_base < long long >;
+//using long_long_point_array = point_array_base < ::i64 >;
 //using float_point_array = point_array_base < float >;
 //using double_point_array = point_array_base < double >;
 

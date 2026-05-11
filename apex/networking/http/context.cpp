@@ -362,7 +362,7 @@ namespace http
       else
       {
 
-         strCache = ::as_string(len.as_long_long());
+         strCache = ::as_string(len.as_i64());
 
       }
 
@@ -1510,9 +1510,9 @@ namespace http
 //
 //            double dRateDownloaded = 0.0;
 //
-//            long long iContentLength = set["http_content_length"].as_long_long();
+//            ::i64 iContentLength = set["http_content_length"].as_i64();
 //
-//            long long iBodySizeDownloaded = set["http_body_size_downloaded"].as_long_long();
+//            ::i64 iBodySizeDownloaded = set["http_body_size_downloaded"].as_i64();
 //
 //            if (iContentLength > 0)
 //            {
@@ -1766,7 +1766,7 @@ namespace http
 
       }
 
-      long long iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
+      ::i64 iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
 
       //informationf("");
       //informationf("");
@@ -1781,7 +1781,7 @@ namespace http
       if (set.has_property("try"))
       {
 
-         iTryCount = set["try"].as_int();
+         iTryCount = set["try"].as_i32();
 
          if (iTryCount > 5)
          {
@@ -2218,7 +2218,7 @@ namespace http
          if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
          {
 
-            set["get_status"] = (long long)error_http;
+            set["get_status"] = (::i64)error_http;
 
             auto tick2 = ::time::now();
 
@@ -2232,7 +2232,7 @@ namespace http
       else if (!psocket->open(bConfigProxy))
       {
 
-         set["get_status"] = (long long)error_http;
+         set["get_status"] = (::i64)error_http;
 
          information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::platform::context::get(\"" << url.as_string().truncated(255) << "\") " << tick1.elapsed().integral_second();
 
@@ -2258,7 +2258,7 @@ namespace http
       if (set.has_property("maximum_connection_retry_count"))
       {
 
-         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_int());
+         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].as_i32());
 
       }
 
@@ -2285,9 +2285,9 @@ namespace http
 
       }
 
-      long long iContentLength = -1;
+      ::i64 iContentLength = -1;
 
-      long long iBodySizeDownloaded = -1;
+      ::i64 iBodySizeDownloaded = -1;
 
       int iEnteredLoop = 0;
 
@@ -2340,7 +2340,7 @@ namespace http
 
          double dRateDownloaded = 0.0;
 
-         long long iBodySizeDownloadedNow = set["http_body_size_downloaded"].as_long_long();
+         ::i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].as_i64();
 
          if (iBodySizeDownloadedNow > iBodySizeDownloaded)
          {
@@ -2451,7 +2451,7 @@ namespace http
 
       int iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_int();
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       set["http_status_code"] = iStatusCode;
 
@@ -2812,7 +2812,7 @@ namespace http
       if (!http_get(psocket, pmessageMessage->m_url, set))
       {
 
-         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_long_long();
+         pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
 
          pmessageMessage->m_bRet = false;
 
@@ -2827,13 +2827,13 @@ namespace http
 
       }
 
-      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_long_long();
+      pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
 
       pmessageMessage->payload("out_headers") = psocket->outheaders();
 
       int iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_int();
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       pmessage->m_bRet = iStatusCode == 200;
 
@@ -2965,7 +2965,7 @@ namespace http
 
          }
 
-         iStatusCode = psocket->outattr("http_status_code").as_int();
+         iStatusCode = psocket->outattr("http_status_code").as_i32();
 
          synchronouslock.lock();
 
@@ -3013,7 +3013,7 @@ namespace http
 
       int iStatusCode;
 
-      iStatusCode = psocket->outattr("http_status_code").as_int();
+      iStatusCode = psocket->outattr("http_status_code").as_i32();
 
       if (iStatusCode == 200)
       {

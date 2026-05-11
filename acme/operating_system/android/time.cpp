@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-CLASS_DECL_ACME long long long_long_nanosecond()
+CLASS_DECL_ACME ::i64 long_long_nanosecond()
 {
 
 #ifdef RASPBERRYPIOS
@@ -51,7 +51,7 @@ CLASS_DECL_ACME long long long_long_nanosecond()
 //{
 
    //extern "C"
-CLASS_DECL_ACME long long get_nanos()
+CLASS_DECL_ACME ::i64 get_nanos()
 {
 
    struct timespec ts;

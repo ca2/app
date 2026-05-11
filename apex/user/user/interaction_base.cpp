@@ -28,7 +28,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   long long interaction_base::increment_reference_count()
+   ::i64 interaction_base::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   long long interaction_base::decrement_reference_count()
+   ::i64 interaction_base::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -44,7 +44,7 @@ namespace user
    }
 
 
-   long long interaction_base::release()
+   ::i64 interaction_base::release()
    {
 
       return ::object::release();
@@ -4489,8 +4489,8 @@ namespace user
       if (strType.contains("main_frame"))
       {
 
-         //information() << "main_frame interaction_base::destroy p1 " << (long long) p1;
-         //information() << "main_frame interaction_base::destroy p2 " << (long long) p2;
+         //information() << "main_frame interaction_base::destroy p1 " << (::i64) p1;
+         //information() << "main_frame interaction_base::destroy p2 " << (::i64) p2;
          information() << "main_frame interaction_base::destroy";
 
       }

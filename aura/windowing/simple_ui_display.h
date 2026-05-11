@@ -77,11 +77,11 @@ namespace windowing
       ~simple_ui_display();
 
 
-      virtual long long increment_reference_count();
+      virtual ::i64 increment_reference_count();
 
-      virtual long long decrement_reference_count();
+      virtual ::i64 decrement_reference_count();
 
-      virtual long long release();
+      virtual ::i64 release();
 
 
       button * new_button(const ::scoped_string & scopedstrLabel, enum_dialog_result edialogresult);

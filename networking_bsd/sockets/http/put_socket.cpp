@@ -100,7 +100,7 @@ namespace sockets
       {
          outheader("content-type")     = m_content_type;
       }
-      inheader("content-length")      = (long long) m_content_length;
+      inheader("content-length")      = (::i64) m_content_length;
       inheader("user_agent")          = MyUseragent();
       inheader("connection")          = "close";
       SendRequest();

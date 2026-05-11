@@ -55,10 +55,10 @@ namespace image
 //
 //   static float Cosines[360];
 //   static float Sines[360];
-//   static long long CosN[360]; // * 1 << 31
-//   static long long SinN[360];
-//   static long long Cos10N[10]; // until 10 degress
-//   static long long Sin10N[10]; // more precision * 1 << 34
+//   static ::i64 CosN[360]; // * 1 << 31
+//   static ::i64 SinN[360];
+//   static ::i64 Cos10N[10]; // until 10 degress
+//   static ::i64 Sin10N[10]; // more precision * 1 << 34
 //   static double dPi;
 //
 //

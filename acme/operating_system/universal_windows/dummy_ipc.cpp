@@ -288,7 +288,7 @@
 //      {
 //      }
 //
-//      void rx::receiver::on_post(rx * prx,long long int a,long long int b)
+//      void rx::receiver::on_post(rx * prx,::i64 int a,::i64 int b)
 //      {
 //      }
 //
@@ -321,7 +321,7 @@
 //      }
 //
 //
-//      void * rx::on_post(rx * prx,long long int a,long long int b)
+//      void * rx::on_post(rx * prx,::i64 int a,::i64 int b)
 //      {
 //
 //         if(m_preceiver != nullptr)

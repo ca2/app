@@ -370,7 +370,7 @@ write_text_stream & write_text_stream::operator <<(unichar wch)
 //}
 
 
-//write_text_stream& operator <<(long long i)
+//write_text_stream& operator <<(::i64 i)
 //{
 
 //   write_integer(i);
@@ -558,7 +558,7 @@ void write_text_stream::print(const ::range < const_char_pointer >& range)
 //   text_stream& operator >>(unsigned short& u);
 //   text_stream& operator >>(int& i);
 //   text_stream& operator >>(::u32& u);
-//   text_stream& operator >>(long long& i);
+//   text_stream& operator >>(::i64& i);
 //   text_stream& operator >>(::u64& u);
 //   text_stream& operator >>(float& f);
 //   text_stream& operator >>(double& d);

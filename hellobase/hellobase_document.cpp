@@ -99,14 +99,14 @@ namespace hellobase
    }
 
 
-   long long document::increment_reference_count()
+   ::i64 document::increment_reference_count()
    {
 
       return  ::user::document::increment_reference_count();
 
    }
 
-   long long document::decrement_reference_count()
+   ::i64 document::decrement_reference_count()
    {
 
       return  ::user::document::decrement_reference_count();

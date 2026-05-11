@@ -23,8 +23,8 @@ namespace user
       void destroy() override;
 
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 
       void initialize_menu_interaction(::menu::item* pitem) override;

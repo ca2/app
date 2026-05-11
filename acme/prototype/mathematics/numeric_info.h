@@ -301,13 +301,13 @@ namespace numeric_info_internal
    };
 
    template < >
-   class CLASS_DECL_ACME numeric_info < long long > :
+   class CLASS_DECL_ACME numeric_info < ::i64 > :
       public numeric_integer_base
    {
    public:
 
-      typedef long long TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::i64 TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -343,7 +343,7 @@ class CLASS_DECL_ACME numeric_info < ::u64 > :
    public:
 
       typedef ::u64 TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -454,13 +454,13 @@ class CLASS_DECL_ACME numeric_info < ::u64 > :
    && !defined(__ANDROID__)
 
    template < >
-   class CLASS_DECL_ACME numeric_info < long long > :
+   class CLASS_DECL_ACME numeric_info < ::i64 > :
       public numeric_integer_base
    {
    public:
 
-      typedef long long TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::i64 TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {
@@ -496,7 +496,7 @@ class CLASS_DECL_ACME numeric_info < ::u64 > :
    public:
 
       typedef ::u64 TYPE;
-      typedef long long OFFSET_TYPE;
+      typedef ::i64 OFFSET_TYPE;
 
       static consteval TYPE maximum()
       {

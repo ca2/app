@@ -15,7 +15,7 @@ namespace hex
    CLASS_DECL_ACME string from_asc(const ::scoped_string & scopedstrAsc);
 
 
-   CLASS_DECL_ACME long long to_long_long(const ::scoped_string & scopedstr);
+   CLASS_DECL_ACME ::i64 to_long_long(const ::scoped_string & scopedstr);
 
    CLASS_DECL_ACME ::u64 to_unsigned_long_long(const ::scoped_string & scopedstr);
 

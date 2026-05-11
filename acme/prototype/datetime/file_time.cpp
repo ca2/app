@@ -155,7 +155,7 @@ file_time file_time::operator-(file_time_span span) const noexcept
 file_time_span file_time::operator-(file_time ft) const noexcept
 {
 
-   return{ file_time_span_t{}, (long long) get_file_time() -(long long) ft.get_file_time() };
+   return{ file_time_span_t{}, (::i64) get_file_time() -(::i64) ft.get_file_time() };
 
 }
 

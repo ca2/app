@@ -362,7 +362,7 @@ namespace windows
    }
 
 
-   long long file::get_file_size() const
+   ::i64 file::get_file_size() const
    {
 
       LARGE_INTEGER largeintegerFileSize{};
@@ -379,7 +379,7 @@ namespace windows
    }
 
 
-   void file::ensure_file_size(long long iSize)
+   void file::ensure_file_size(::i64 iSize)
    {
 
       auto iSizeCurrent = get_file_size();
@@ -394,7 +394,7 @@ namespace windows
    }
 
 
-   void file::set_file_size(long long iSize)
+   void file::set_file_size(::i64 iSize)
    {
 
       set_file_pointer_ex(iSize, nullptr, SEEK_SET);
@@ -404,7 +404,7 @@ namespace windows
    }
 
 
-   void file::set_file_pointer_ex(long long iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
+   void file::set_file_pointer_ex(::i64 iOffset, PLARGE_INTEGER lpNewFilePointer, DWORD dwMoveMethod)
    {
 
       LARGE_INTEGER largeinteger{.QuadPart = iOffset };
@@ -419,7 +419,7 @@ namespace windows
    }
 
 
-   void file::set_file_pointer(long long iOffset, DWORD dwMoveMethod)
+   void file::set_file_pointer(::i64 iOffset, DWORD dwMoveMethod)
    {
 
       set_file_pointer_ex(iOffset, nullptr, dwMoveMethod);
@@ -427,7 +427,7 @@ namespace windows
    }
 
 
-   long long file::get_file_pointer() const
+   ::i64 file::get_file_pointer() const
    {
 
       LARGE_INTEGER largeinteger{};
@@ -452,7 +452,7 @@ namespace windows
    }
 
 
-   void file::lock_file(long long iOffset, long long iCount)
+   void file::lock_file(::i64 iOffset, ::i64 iCount)
    {
 
       if (!::LockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))
@@ -465,7 +465,7 @@ namespace windows
    }
 
 
-   void file::unlock_file(long long iOffset, long long iCount)
+   void file::unlock_file(::i64 iOffset, ::i64 iCount)
    {
 
       if (!::UnlockFile((HANDLE)m_u, lower_unsigned_int(iOffset), upper_unsigned_int(iOffset), lower_unsigned_int(iCount), upper_unsigned_int(iCount)))

@@ -431,7 +431,7 @@ message_box_payload *message_box_payload::get_message_box_payload()
 //#ifdef _DEBUG
 //
 //
-//long long message_box_payload::increment_reference_count()
+//::i64 message_box_payload::increment_reference_count()
 //{
 //
 //   return ::particle::increment_reference_count();
@@ -439,7 +439,7 @@ message_box_payload *message_box_payload::get_message_box_payload()
 //}
 //
 //
-//long long message_box_payload::decrement_reference_count()
+//::i64 message_box_payload::decrement_reference_count()
 //{
 //
 //   return ::particle::decrement_reference_count();

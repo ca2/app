@@ -44,7 +44,7 @@ public:
 //    }
 
 
-    long long read_integer(int iRadix = 10);
+    ::i64 read_integer(int iRadix = 10);
 //    {
 //
 //       return consume_integer(m_psz, m_pszBegin, iRadix);
@@ -94,7 +94,7 @@ public:
 //   text_stream& operator <<(unsigned short u);
 //   text_stream& operator <<(int i);
 //   text_stream& operator <<(::u32 u);
-//   text_stream& operator <<(long long i);
+//   text_stream& operator <<(::i64 i);
 //   text_stream& operator <<(::u64 u);
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
@@ -293,7 +293,7 @@ public:
 //    }
 
 
-    read_sz_stream& operator >>(long long& i);
+    read_sz_stream& operator >>(::i64& i);
 //    {
 //
 //       i = read_integer();

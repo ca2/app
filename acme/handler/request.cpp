@@ -87,7 +87,7 @@ request::~request()
 
 
 
-long long request::increment_reference_count()
+::i64 request::increment_reference_count()
 {
 
    return ::object::increment_reference_count();
@@ -95,7 +95,7 @@ long long request::increment_reference_count()
 }
 
 
-long long request::decrement_reference_count()
+::i64 request::decrement_reference_count()
 {
 
    return ::object::decrement_reference_count();

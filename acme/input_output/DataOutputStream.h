@@ -79,7 +79,7 @@
       void writeInt8(char x);
       void writeInt16(short x);
       void writeInt32(int x);
-      void writeInt64(long long x);
+      void writeInt64(::i64 x);
 
       void writeUTF8(const ::scoped_string & scopedstrString);
 

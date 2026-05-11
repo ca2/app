@@ -239,7 +239,7 @@ namespace sockets
       else
       {
 
-         m_response.m_propertysetHeader.set_at("content-length", (long long)m_response.file()->size());
+         m_response.m_propertysetHeader.set_at("content-length", (::i64)m_response.file()->size());
 
       }
 

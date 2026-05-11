@@ -21,7 +21,7 @@ timer_task::~timer_task()
 #ifdef _DEBUG
 
 
-long long timer_task::increment_reference_count()
+::i64 timer_task::increment_reference_count()
 {
 
    return task::increment_reference_count();
@@ -29,7 +29,7 @@ long long timer_task::increment_reference_count()
 }
 
 
-long long timer_task::decrement_reference_count()
+::i64 timer_task::decrement_reference_count()
 {
 
    return task::decrement_reference_count();
@@ -37,7 +37,7 @@ long long timer_task::decrement_reference_count()
 }
 
 
-long long timer_task::release()
+::i64 timer_task::release()
 {
 
    return task::release();

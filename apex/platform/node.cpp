@@ -48,7 +48,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   long long node::increment_reference_count()
+   ::i64 node::increment_reference_count()
    {
 
       return ::platform::node::increment_reference_count();
@@ -56,7 +56,7 @@ namespace apex
    }
 
 
-   long long node::decrement_reference_count()
+   ::i64 node::decrement_reference_count()
    {
 
       return ::platform::node::decrement_reference_count();
@@ -311,7 +311,7 @@ namespace apex
    }
 
 
-//   void node::application_handle(long long l, void * p)
+//   void node::application_handle(::i64 l, void * p)
 //   {
 //   
 //   }

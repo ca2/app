@@ -148,7 +148,7 @@ class function_common_base
 public:
 #if FUNCTION_DEBUGGING
    const_char_pointer m_pszDebug;
-   long long m_iDebug;
+   ::i64 m_iDebug;
 #endif
    class ::time m_timeTimeout;
 

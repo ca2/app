@@ -197,14 +197,14 @@ namespace innate_subsystem
       virtual void setClassMenu(::innate_subsystem::MenuInterface * pmenu) = 0;
 
       // for changing or get style and exstyle of window
-      virtual long long getStyle() = 0;
+      virtual ::i64 getStyle() = 0;
       virtual void setStyle(::u32 style) = 0;
       virtual void addStyle(::u32 styleFlag) = 0;
       virtual void removeStyle(::u32 styleFlag) = 0;
       virtual bool isStyleEnabled(::u32 styleFlags) = 0;
 
 
-      virtual long long getExStyle() = 0;
+      virtual ::i64 getExStyle() = 0;
       virtual void setExStyle(::u32 exstyle) = 0;
       virtual void addExStyle(::u32 styleFlag) = 0;
       virtual void removeExStyle(::u32 styleFlag) = 0;
@@ -451,14 +451,14 @@ namespace innate_subsystem
       bool we_want_WM_KEYDOWN_when_enter_is_pressed() const override { return false; }
 
       // for changing or get style and exstyle of window
-      long long getStyle() override { return m_pwindow->getStyle(); }
+      ::i64 getStyle() override { return m_pwindow->getStyle(); }
       void setStyle(::u32 style) override { m_pwindow->setStyle(style); }
       void addStyle(::u32 styleFlag) override { m_pwindow->addStyle(styleFlag); }
       void removeStyle(::u32 styleFlag) override { m_pwindow->removeStyle(styleFlag); }
       bool isStyleEnabled(::u32 styleFlags) override { return m_pwindow->isStyleEnabled(styleFlags); }
 
 
-      long long getExStyle() override { return m_pwindow->getExStyle(); }
+      ::i64 getExStyle() override { return m_pwindow->getExStyle(); }
       void setExStyle(::u32 exstyle) override { m_pwindow->setExStyle(exstyle); }
       void addExStyle(::u32 styleFlag) override { m_pwindow->addExStyle(styleFlag); }
       void removeExStyle(::u32 styleFlag) override { m_pwindow->removeExStyle(styleFlag); }

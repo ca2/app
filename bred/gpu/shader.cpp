@@ -744,7 +744,7 @@ namespace gpu
       if (m_propertiesPushShared.contains(scopedstrName))
       {
 
-         auto &a = m_propertiesPushShared.as_int(strName);
+         auto &a = m_propertiesPushShared.as_i32(strName);
 
          a = value;
 
@@ -752,7 +752,7 @@ namespace gpu
       else if (m_propertiesPushVertex.contains(scopedstrName))
       {
 
-         auto &a = m_propertiesPushVertex.as_int(strName);
+         auto &a = m_propertiesPushVertex.as_i32(strName);
 
          a = value;
 
@@ -760,7 +760,7 @@ namespace gpu
       else if (m_propertiesPushFragment.contains(scopedstrName))
       {
 
-         auto &a = m_propertiesPushFragment.as_int(strName);
+         auto &a = m_propertiesPushFragment.as_i32(strName);
 
          a = value;
 

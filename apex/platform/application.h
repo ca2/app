@@ -170,8 +170,8 @@ namespace apex
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 #endif
       void initialize(::particle* pparticle) override;
@@ -1199,7 +1199,7 @@ namespace apex
       virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override;
 
 
-      virtual bool get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
+      virtual bool get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
 
 
       virtual void set_title(const ::scoped_string & scopedstrTitle) override;

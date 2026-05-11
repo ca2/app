@@ -4,7 +4,7 @@
 #pragma once
 
 
-enum enum_element : long long
+enum enum_element : ::i64
 {
 
    e_element_none,

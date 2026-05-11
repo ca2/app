@@ -2318,7 +2318,7 @@ void image::blend(const ::int_point & pointDst,::image::image *pimageSrc, const 
 void image::set_rgb(int R, int G, int B)
 {
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    image32_t* pcr = data();
 
@@ -2352,11 +2352,11 @@ void image::set_rgb(int R, int G, int B)
 /*   void image::Fill ( int R, int G, int B )
    {
       image32_t color=rgb ( B, G, R );
-      long long size = area();
+      ::i64 size = area();
 
       image32_t * pcr;
 
-      long long iSize32 = size / 32;
+      ::i64 iSize32 = size / 32;
       int i;
       for (i=0; i < iSize32; i+=32 )
       {
@@ -2610,7 +2610,7 @@ void image::flip_vertically()
 void image::ToAlpha(int i)
 {
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -2628,7 +2628,7 @@ void image::from_alpha()
 
    unsigned char* dst = (unsigned char*)data();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -2649,7 +2649,7 @@ void image::mult_alpha(::image::image* pimage, bool bPreserveAlpha)
    __UNREFERENCED_PARAMETER(bPreserveAlpha);
 
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
 
    // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -2711,7 +2711,7 @@ void image::mult_alpha()
    map();
 
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
 
    //  / 255 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -2773,7 +2773,7 @@ void image::mult_alpha_fast()
    map();
 
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
 
    //  >> 2 instead of >> 2 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -2922,7 +2922,7 @@ void image::div_alpha()
    map();
 
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
 
    // >> 8 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -3105,7 +3105,7 @@ void image::Map(int ToRgb, int FromRgb)
 
    unsigned char* dst = (unsigned char*)data();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -3126,7 +3126,7 @@ void image::ToAlphaAndFill(int i, ::color::color color)
 
    unsigned char* dst = (unsigned char*)data();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    unsigned char uchB = color.byte_blue();
    unsigned char uchG = color.byte_green();
@@ -3151,7 +3151,7 @@ void image::GrayToARGB(::color::color color)
 
    unsigned char* dst = (unsigned char*)data();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    ::u32 dwB = color.byte_blue();
    ::u32 dwG = color.byte_green();
@@ -3292,7 +3292,7 @@ void image::invert()
 
    map();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
    unsigned char* pb = (unsigned char*)data();
 
    for (int i = 0; i < size; i++)
@@ -3316,7 +3316,7 @@ void image::invert()
 void image::channel_invert(::color::enum_channel echannel)
 {
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    unsigned char* pb = (unsigned char*)data();
 
@@ -3358,7 +3358,7 @@ void image::channel_multiply(double dRate, ::color::enum_channel echannel, bool 
 
    }
    //#endif
-   long long size = scan_area();
+   ::i64 size = scan_area();
    unsigned char* pb = (unsigned char*)data();
 
    pb += ((int)echannel) % 4;
@@ -3366,7 +3366,7 @@ void image::channel_multiply(double dRate, ::color::enum_channel echannel, bool 
    int iDiv = 256 * 256;
    int iMul = (int)(dRate * ((double)iDiv));
    int iRes;
-   for (long long i = 0; i < size; i++)
+   for (::i64 i = 0; i < size; i++)
    {
       iRes = *pb * iMul / iDiv;
 
@@ -3390,7 +3390,7 @@ void image::channel_multiply(double dRate, ::color::enum_channel echannel, bool 
 void image::channel_multiply(::color::enum_channel echannel, ::image::image* pimage, bool bIfAlphaIgnorePreDivPosMult)
 {
 
-   //      long long size = area();
+   //      ::i64 size = area();
 
    map();
 
@@ -3454,7 +3454,7 @@ void image::channel_multiply(::color::enum_channel echannel, ::image::image* pim
 void image::channel_darken(::color::enum_channel echannel, ::image::image* pimage)
 {
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    unsigned char* pb1 = (unsigned char*)data();
 
@@ -3464,7 +3464,7 @@ void image::channel_darken(::color::enum_channel echannel, ::image::image* pimag
 
    pb2 += ((int)echannel) % 4;
 
-   for (long long i = 0; i < size; i++)
+   for (::i64 i = 0; i < size; i++)
    {
       *pb1 = *pb1 < *pb2 ? *pb1 : *pb2;
 
@@ -3482,7 +3482,7 @@ void image::channel_darken(::color::enum_channel echannel, ::image::image* pimag
 void image::channel_lighten(::color::enum_channel echannel, ::image::image* pimage)
 {
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
    unsigned char* pb1 = (unsigned char*)data();
 
    unsigned char* pb2 = (unsigned char*)pimage->data();
@@ -3491,7 +3491,7 @@ void image::channel_lighten(::color::enum_channel echannel, ::image::image* pima
 
    pb2 += ((int)echannel) % 4;
 
-   for (long long i = 0; i < size; i++)
+   for (::i64 i = 0; i < size; i++)
    {
       *pb1 = *pb1 > *pb2 ? *pb1 : *pb2;
 
@@ -3513,9 +3513,9 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage)
 
    pimage->map();
 
-   long long size = m_iScan * height() / sizeof(image32_t);
+   ::i64 size = m_iScan * height() / sizeof(image32_t);
 
-   long long long_long_size = size / 64;
+   ::i64 long_long_size = size / 64;
 
    unsigned char* pb1 = (unsigned char*)data();
 
@@ -3525,7 +3525,7 @@ void image::channel_from(::color::enum_channel echannel, ::image::image* pimage)
 
    pb2 += ((int)echannel) % 4;
 
-   long long i = 0;
+   ::i64 i = 0;
    for (; i < long_long_size; i++)
    {
       pb1[4 * 0] = pb2[4 * 0];
@@ -3873,7 +3873,7 @@ void image::fill_glass(int R, int G, int B, int A)
 
    unsigned char* dst = (unsigned char*)data();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -3992,7 +3992,7 @@ void image::color_blend(::color::color color, unsigned char bAlpha)
 
    unsigned char* dst = (unsigned char*)data();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    ::u32 dwB = color.byte_blue();
    ::u32 dwG = color.byte_green();
@@ -4080,7 +4080,7 @@ void image::Blend(::image::image* pimage, int A)
 
    unsigned char* src = (unsigned char*)pimage->data();
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -4105,7 +4105,7 @@ void image::Blend(::image::image* pDib, ::image::image* DibA, int A)
    unsigned char* src = (unsigned char*)pDib->data();
    unsigned char* dst = (unsigned char*)data();
    unsigned char* alf = (unsigned char*)DibA->data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    A = 2 - A;
 
@@ -4137,7 +4137,7 @@ void image::Blend(::image::image* pDib, ::image::image* DibA)
    unsigned char* src = (unsigned char*)pDib->data();
    unsigned char* dst = (unsigned char*)data();
    unsigned char* alf = ((unsigned char*)DibA->data()) + 3;
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -4164,7 +4164,7 @@ void image::blend(::image::image* pimage, ::image::image* pimageRate)
    unsigned char* src = (unsigned char*)pimage->data();
    unsigned char* dst = (unsigned char*)data();
    unsigned char* alf = (unsigned char*)pimageRate->data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size >= 2)
    {
@@ -4209,7 +4209,7 @@ void image::Darken(::image::image* pimage)
 
    unsigned char* src = (unsigned char*)pimage->data();
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -4237,7 +4237,7 @@ void image::Difference(::image::image* pimage)
 
    unsigned char* src = (unsigned char*)pimage->data();
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -4269,7 +4269,7 @@ void image::Lighten(::image::image* pimage)
 
    unsigned char* src = (unsigned char*)pimage->data();
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -4291,7 +4291,7 @@ void image::Lighten(::image::image* pimage)
 void image::lighten(double dRate)
 {
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -4318,7 +4318,7 @@ void image::Multiply(::image::image* pimage)
 
    unsigned char* src = (unsigned char*)pimage->data();
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -4346,7 +4346,7 @@ void image::Screen(::image::image* pimage)
 
    unsigned char* src = (unsigned char*)pimage->data();
    unsigned char* dst = (unsigned char*)data();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    while (size--)
    {
@@ -5187,7 +5187,7 @@ void image::Mask(::color::color colorMask, ::color::color colorInMask, ::color::
    image32_t crSet(colorInMask, color_indexes());
    image32_t crUnset(colorOutMask, color_indexes());
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    for (int i = 0; i < size; i++)
       if (data()[i] == crFind)
@@ -5205,7 +5205,7 @@ void image::transparent_color(::color::color color)
 
    image32_t crFind(color, color_indexes());
 
-   long long iSize = scan_area();
+   ::i64 iSize = scan_area();
 
    for (int i = 0; i < iSize; i++)
    {
@@ -5444,7 +5444,7 @@ void image::RadialFill(unsigned char alpha, unsigned char red, unsigned char gre
 
       unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
       ::u32 dwAdd = (((m_iScan / sizeof(image32_t)) - 1 - xU) + xL) * 4;
-      //         long long size = area();
+      //         ::i64 size = area();
 
       int Δx, Δy;
 
@@ -5621,7 +5621,7 @@ void image::RadialFill(
 
       unsigned char* dst = ((unsigned char*)(data() + xL + yL * (m_iScan / sizeof(image32_t))));
       ::u32 dwAdd = (((m_iScan / sizeof(image32_t)) - xU) + xL) * 4;
-      //         long long size = area();
+      //         ::i64 size = area();
 
       double Δx, Δy;
 
@@ -6704,7 +6704,7 @@ void image::clear(::color::color color)
 
       image32_t u32Color(color, color_indexes());
 
-      long long size = scan_area();
+      ::i64 size = scan_area();
 
       unsigned char a = color.byte_opacity();
       unsigned char r = color.byte_red();
@@ -6730,7 +6730,7 @@ void image::clear(::color::color color)
 
       image32_t* pcr = image32();
 
-      for (long long i = 0; i < size; i++)
+      for (::i64 i = 0; i < size; i++)
       {
 
          pcr[i] = u32ColorImage;
@@ -6802,13 +6802,13 @@ void image::clear_argb(int a, int r, int g, int b)
 
    map();
 
-   long long iRLine;
+   ::i64 iRLine;
 
-   long long iGLine;
+   ::i64 iGLine;
 
-   long long iBLine;
+   ::i64 iBLine;
 
-   long long iDiv = width() * height();
+   ::i64 iDiv = width() * height();
 
    if (iDiv > 0)
    {
@@ -7800,9 +7800,9 @@ void image::set_size_scaler(double dSizeScaler)
       throw ::interface_only();
    }
 
-   long long image::area()
+   ::i64 image::area()
    {
-      return ((long long) width()) * ((long long)height());
+      return ((::i64) width()) * ((::i64)height());
    }
 
    int_size image::size()
@@ -7823,13 +7823,13 @@ void image::fill_channel(int intensity, ::color::enum_channel echannel)
 {
    map();
    int offset = ((int)echannel) % 4;
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    image32_t* pcr = (image32_t*)&((unsigned char*)image32())[offset];
 
    unsigned char* pb;
 
-   long long iSize32 = size / 32;
+   ::i64 iSize32 = size / 32;
    int i;
    for (i = 0; i < iSize32; i += 32)
    {
@@ -7882,13 +7882,13 @@ void image::white_fill_channel(int intensity, ::color::enum_channel echannel)
 {
    map();
    int offset = ((int)echannel) % 4;
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    image32_t* pcr = (image32_t*)&((unsigned char*)image32())[offset];
 
    //      unsigned char * pb;
 
-   long long iSize32 = size / 32;
+   ::i64 iSize32 = size / 32;
    int i;
    //      for (i=0; i < iSize32; i+=32 )
    //      {
@@ -8137,7 +8137,7 @@ void image::tint(::image::image* pimage, ::color::color color)
 
    unsigned char* src = (unsigned char*)pimage->image32();
    unsigned char* dst = (unsigned char*)image32();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    unsigned char uchR = (unsigned char)color.byte_red();
    unsigned char uchG = (unsigned char)color.byte_green();
@@ -8296,7 +8296,7 @@ void image::saturation(double dRate)
 
    unsigned char* dst = (unsigned char*)image32();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    int iDiv = 255 * 255;
 
@@ -8348,7 +8348,7 @@ void image::opacity(double dRate)
    try
    {
       unsigned char* puch = (unsigned char*)data();
-      long long iArea = scan_area();
+      ::i64 iArea = scan_area();
       while (iArea > 0)
       {
          puch[0] = maximum(0, minimum(255, puch[0] * iA / 255));
@@ -8375,7 +8375,7 @@ void image::set_rgb_pre_alpha(int R, int G, int B, int A)
    map();
 
    unsigned char* dst = (unsigned char*)image32();
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
    unsigned char uchB = (unsigned char)R;
    unsigned char uchG = (unsigned char)G;
@@ -8502,10 +8502,10 @@ void image::set_rgb(::color::color color)
 //}
 
 
-long long image::get_rgba_area(::color::color color) const
+::i64 image::get_rgba_area(::color::color color) const
 {
 
-   long long areaRgba = 0;
+   ::i64 areaRgba = 0;
 
    image32_t u32ColorImage(color, color_indexes());
 
@@ -8536,7 +8536,7 @@ long long image::get_rgba_area(::color::color color) const
 }
 
 
-long long image::get_rgba_area(::color::color color, const ::int_rectangle &rect) const
+::i64 image::get_rgba_area(::color::color color, const ::int_rectangle &rect) const
 {
 
    ::int_rectangle r(rect);
@@ -8593,7 +8593,7 @@ long long image::get_rgba_area(::color::color color, const ::int_rectangle &rect
 }
 
 
-long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const
+::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const
 {
 
    auto r = this->rectangle();
@@ -8603,7 +8603,7 @@ long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const
 }
 
 
-long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rectangle &rect) const
+::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rectangle &rect) const
 {
 
    map();
@@ -8626,7 +8626,7 @@ long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rec
 
    }
 
-   long long areaRgba = 0;
+   ::i64 areaRgba = 0;
 
    int wscan = m_iScan / sizeof(image32_t);
 
@@ -8634,7 +8634,7 @@ long long image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rec
 
    int h = r.height();
 
-   long long areaRgbaLast = 0;
+   ::i64 areaRgbaLast = 0;
 
    const image32_t* p = this->data() + r.left + wscan * r.top;
 
@@ -8694,7 +8694,7 @@ void image::multiply_rgb_by_source_alpha(::color::color color)
    auto u8IndexBlue = m_colorindexes.m_uchIndexBlue;
 
    unsigned char* puch = (unsigned char*)data();
-   long long iArea = scan_area();
+   ::i64 iArea = scan_area();
    while (iArea > 0)
    {
 
@@ -8731,7 +8731,7 @@ void image::rgb_from(::image::image* pimage)
 
       unsigned char* puchSrc = (unsigned char*)data();
       unsigned char* puchDst = (unsigned char*)pimage->data();
-      long long iArea = pimage->scan_area();
+      ::i64 iArea = pimage->scan_area();
       while (iArea > 0)
       {
          puchDst[0] = puchSrc[0];
@@ -9066,7 +9066,7 @@ void image::rate_rgb(int iMul, int iDiv)
    try
    {
       unsigned char* puch = (unsigned char*)data();
-      long long iArea = scan_area();
+      ::i64 iArea = scan_area();
       while (iArea > 0)
       {
          puch[0] = maximum(0, minimum(255, puch[0] * iMul / iDiv));
@@ -9718,7 +9718,7 @@ void image::hue_offset(double dRadians)
 
    unsigned char* dst = (unsigned char*)data();
 
-   long long size = scan_area();
+   ::i64 size = scan_area();
 
 
    while (size--)
@@ -9863,7 +9863,7 @@ void image::on_exif_orientation()
 //   else
 //   {
 //
-//      m_iQuality = varOptions["quality"].as_int();
+//      m_iQuality = varOptions["quality"].as_i32();
 //
 //   }
 //
@@ -10558,8 +10558,8 @@ void image::_unmap()
 //      dSin = ::sin(i / 180.0 * dPi);
 //      Cosines[i] = float(dCos);
 //      Sines[i] = float(dSin);
-//      CosN[i] = (long long)(dCos * d32);
-//      SinN[i] = (long long)(dSin * d32);
+//      CosN[i] = (::i64)(dCos * d32);
+//      SinN[i] = (::i64)(dSin * d32);
 //   }
 //   d32 = (1U << 31);
 //   d32 *= 8;
@@ -10567,8 +10567,8 @@ void image::_unmap()
 //   {
 //      dCos = ::cos(i / 180.0 * dPi);
 //      dSin = ::sin(i / 180.0 * dPi);
-//      Cos10N[i] = (long long)(dCos * d32);
-//      Sin10N[i] = (long long)(dSin * d32);
+//      Cos10N[i] = (::i64)(dCos * d32);
+//      Sin10N[i] = (::i64)(dSin * d32);
 //   }
 //
 //}

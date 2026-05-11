@@ -34,7 +34,7 @@ namespace sockets
 {
 
 
-   typedef long long mytime_t;
+   typedef ::i64 mytime_t;
 
 
    /** \defgroup timer event_timer happening handling */

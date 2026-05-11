@@ -520,7 +520,7 @@ class numeric_array_base;
 using char_array_base = numeric_array_base < char >;
 using short_array_base = numeric_array_base < short >;
 using int_array_base = numeric_array_base < int >;
-using long_long_array_base = numeric_array_base < long long >;
+using long_long_array_base = numeric_array_base < ::i64 >;
 
 using unsigned_char_array_base = numeric_array_base < unsigned char >;
 using unsigned_short_array_base = numeric_array_base < unsigned short >;
@@ -559,7 +559,7 @@ using unsigned_int_array = ::array_particle < unsigned_int_array_base >;
 
 
 using unique_int_sort_array = unique_number_sort_array < int >;
-using unique_long_long_sort_array = unique_number_sort_array < long long >;
+using unique_long_long_sort_array = unique_number_sort_array < ::i64 >;
 
 
 #ifdef OS64BIT
@@ -649,7 +649,7 @@ class spreadset;
 
 using int_spreadset = spreadset < int, int, unique_int_sort_array, unique_int_sort_array >;
 
-using i64_spreadset = spreadset < long long, long long, unique_long_long_sort_array, unique_long_long_sort_array >;
+using i64_spreadset = spreadset < ::i64, ::i64, unique_long_long_sort_array, unique_long_long_sort_array >;
 
 
 

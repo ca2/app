@@ -39,12 +39,12 @@ namespace data
 
       virtual void _insert_tree(tree_base * ptree);
 
-      virtual long long increment_reference_count() override
+      virtual ::i64 increment_reference_count() override
       {
          return ::matter::increment_reference_count();
       }
 
-      virtual long long decrement_reference_count() override
+      virtual ::i64 decrement_reference_count() override
       {
          return ::matter::decrement_reference_count();
       }

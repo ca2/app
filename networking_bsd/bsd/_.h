@@ -132,7 +132,7 @@ in read operations - helps on ECOS */
 #include <sys/lparam.h>
 #endif
 
-// long long
+// ::i64
 #ifdef _WIN32
 #else
 #ifdef SOLARIS

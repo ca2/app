@@ -26,7 +26,7 @@ public:
    c_error_number(const c_error_number & cerrornumber);
 
 
-   int as_int() const {return m_iErrorNumber;}
+   int as_i32() const {return m_iErrorNumber;}
 
 
    ::string get_error_description() const;

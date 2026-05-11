@@ -240,7 +240,7 @@ thread::~thread()
 #ifdef _DEBUG
 
 
-long long thread::increment_reference_count()
+::i64 thread::increment_reference_count()
 {
 
    return ::object::increment_reference_count();
@@ -248,7 +248,7 @@ long long thread::increment_reference_count()
 }
 
 
-long long thread::decrement_reference_count()
+::i64 thread::decrement_reference_count()
 {
 
    return ::object::decrement_reference_count();
@@ -256,7 +256,7 @@ long long thread::decrement_reference_count()
 }
 
 
-long long thread::release()
+::i64 thread::release()
 {
 
    return ::object::release();

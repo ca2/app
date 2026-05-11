@@ -68,7 +68,7 @@ namespace interprocess
 
       bool _handle_uri(const ::scoped_string & scopedstrUri) override;
       //virtual bool on_interprocess_receive(int message, ::memory && memory);
-      //virtual void on_interprocess_post(long long a, long long b);
+      //virtual void on_interprocess_post(::i64 a, ::i64 b);
 
 
 

@@ -29,7 +29,7 @@
 //
 //      MYSQL_ROW fetch_row();
 //      unsigned long * fetch_lengths();
-//      long long num_rows();
+//      ::i64 num_rows();
 //      int num_fields();
 //
 //      bool free_result();

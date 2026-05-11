@@ -8,7 +8,7 @@
 //inline void __exchange(::payload_stream & s, char & i);
 //inline void __exchange(::payload_stream & s, short & i);
 //inline void __exchange(::payload_stream & s, int & i);
-//inline void __exchange(::payload_stream & s, long long & i);
+//inline void __exchange(::payload_stream & s, ::i64 & i);
 //#if !defined(LINUX)
 //inline void __exchange(::payload_stream & s, long & l);
 //#endif
@@ -97,7 +97,7 @@
 //
 //
 //   virtual void exchange(const ::atom & atom, double & d) ;
-//   virtual void exchange(const ::atom& atom, long long& i) ;
+//   virtual void exchange(const ::atom& atom, ::i64& i) ;
 //
 //
 //   template < typename TYPE >

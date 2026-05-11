@@ -677,7 +677,7 @@ throw_todo();
 //            //   case ::e_type_int:
 //            //   {
 //            //      string str;
-//            //      str.formatf("%d", payload.as_int());
+//            //      str.formatf("%d", payload.as_i32());
 //            //      pinteraction->set_text(str, ::e_source_database);
 //            //   }
 //            //   break;

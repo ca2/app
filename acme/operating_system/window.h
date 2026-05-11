@@ -569,4 +569,5 @@ namespace operating_system
 
 
 CLASS_DECL_ACME ::operating_system::window as_operating_system_window(::uptr u);
-CLASS_DECL_ACME ::uptr operating_system_window_as_uptr(const ::operating_system::window & operatingsystemwindow);
+CLASS_DECL_ACME ::uptr as_uptr(const ::operating_system::window & operatingsystemwindow);
+CLASS_DECL_ACME ::u64 as_u64(const ::operating_system::window & operatingsystemwindow);

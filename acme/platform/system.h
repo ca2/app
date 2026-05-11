@@ -135,10 +135,10 @@ namespace platform
 #ifdef _DEBUG
 
 
-      long long increment_reference_count() override;
+      ::i64 increment_reference_count() override;
 
 
-      long long decrement_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 
 #endif
@@ -475,9 +475,9 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      m_mapEnumToText[::type<e>().name()][(long long)e] = psz;
+//      m_mapEnumToText[::type<e>().name()][(::i64)e] = psz;
 //
-//      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e;
+//      m_mapTextToEnum[::type<e>().name()][psz] = (::i64)e;
 //
 //   }
 
@@ -488,7 +488,7 @@ namespace platform
 //
 //      critical_section_lock synchronouslock(&m_csEnumText);
 //
-//      return m_mapEnumToText[::type<e>().name()][(long long)e];
+//      return m_mapEnumToText[::type<e>().name()][(::i64)e];
 //
 //   }
 
@@ -499,7 +499,7 @@ namespace platform
 //
 //      critical_section_lock lock(&m_csEnumText);
 //
-//      long long iValue;
+//      ::i64 iValue;
 //
 //      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
 //      {
@@ -532,7 +532,7 @@ namespace platform
 //   inline string enum_text(const base_enum < ENUM, edefault >& b)
 //   {
 //
-//      return enum_text(b.m_evalue, (long long)(ENUM)b);
+//      return enum_text(b.m_evalue, (::i64)(ENUM)b);
 //
 //   }
 
@@ -548,7 +548,7 @@ namespace platform
       static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
       static inline ::atom atom(const ::string & str);
-      static inline ::atom atom(long long i);
+      static inline ::atom atom(::i64 i);
       //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const ::property & property);
@@ -566,7 +566,7 @@ namespace platform
       virtual void get_public_internet_domain_extension_list(string_array_base & stra) override;
       virtual ::string fetch_public_internet_domain_extension_list_text() override;
 
-      ::lresult system_id_topic(int iId, long long llWparam, long long llLparam) override;
+      ::lresult system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam) override;
 
       void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
       
@@ -1105,7 +1105,7 @@ namespace platform
 //   /*    static inline ::atom atom(const ::std::type_info & info);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
 //       static inline ::atom atom(const ::scoped_string & scopedstr);
-//       static inline ::atom atom(long long i);
+//       static inline ::atom atom(::i64 i);
 //       static inline ::atom_space & atom();
 //       inline ::atom atom(const ::payload & payload);
 //       inline ::atom atom(const property & prop);*/
@@ -1196,8 +1196,8 @@ namespace platform
 //       //virtual void defer_check_openweather_city_list();
 //
 //       //virtual openweather_city * openweather_find_city(const ::scoped_string & scopedstrQuery);
-//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, long long & iId, double & dLat, double & dLon);
-//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, ::i64 & iId, double & dLat, double & dLon);
+//       //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, ::i64 & iId, double & dLat, double & dLon, bool bPrefix);
 //
 // //#ifdef __ANDROID__
 // ////#pragma message("at macos??")

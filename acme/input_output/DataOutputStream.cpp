@@ -133,7 +133,7 @@ initialize(poutputstream);
       writeUInt32((::u32)x);
    }
 
-   void DataOutputStream::writeInt64(long long x)
+   void DataOutputStream::writeInt64(::i64 x)
    {
       writeUInt64((::u64)x);
    }

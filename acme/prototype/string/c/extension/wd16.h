@@ -50,14 +50,14 @@ CLASS_DECL_ACME const ::wd16_character *       wd16_concatenate_and_duplicate(co
 
 
 CLASS_DECL_ACME void                   wd16_from_unsigned_long_long(::wd16_character * psz, ::u64 u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
-CLASS_DECL_ACME void                   wd16_from_long_long(::wd16_character * psz, long long i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
+CLASS_DECL_ACME void                   wd16_from_long_long(::wd16_character * psz, ::i64 i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
 CLASS_DECL_ACME void                   wd16_from_ui(::wd16_character * psz, ::u32 u, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 CLASS_DECL_ACME void                   wd16_from_i(::wd16_character * psz, int i, int iBase = 10, enum_digit_case edigitcase = e_digit_case_lower);
 
-CLASS_DECL_ACME long long                    wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd = nullptr, int iBase = 10);
+CLASS_DECL_ACME ::i64                    wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd = nullptr, int iBase = 10);
 CLASS_DECL_ACME ::u64                    wd16_to_unsigned_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd = nullptr, int iBase = 10);
-CLASS_DECL_ACME long long                    wd16_count_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase, character_count srclen);
+CLASS_DECL_ACME ::i64                    wd16_count_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase, character_count srclen);
 
 CLASS_DECL_ACME int                    wd16_to_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd = nullptr, int iBase = 10);
 CLASS_DECL_ACME ::u32                    wd16_to_unsigned_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd = nullptr, int iBase = 10);
@@ -82,7 +82,7 @@ CLASS_DECL_ACME void          wd16_parse_command_line(::wd16_character * cmdstar
 
 
 
-CLASS_DECL_ACME long long wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME ::i64 wd16_to_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME ::u64 wd16_to_unsigned_long_long(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME int wd16_to_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME ::u32 wd16_to_unsigned_int(const ::wd16_character * psz, const ::wd16_character ** ppszEnd, int iBase);

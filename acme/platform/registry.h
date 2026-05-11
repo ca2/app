@@ -134,7 +134,7 @@ namespace platform
          return ::transfer(str);
       }
 
-      inline ::u32 long get_dword(const ::scoped_string &scopedstrName)
+      inline ::u32 get_dword(const ::scoped_string &scopedstrName)
       {
          ::u32 u = 0;
          auto estatus = _get_dword(scopedstrName, u);

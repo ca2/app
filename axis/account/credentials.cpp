@@ -321,7 +321,7 @@ namespace account
    void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
-      string strStatus = ::as_string(estatus.as_long_long());
+      string strStatus = ::as_string(estatus.as_i64());
 
       set("open", strStatus);
 
@@ -510,7 +510,7 @@ namespace account
          catch (const ::exception& exception)
          {
 
-            error() <<"check_ca2_hash " << exception.m_estatus.as_long_long();
+            error() <<"check_ca2_hash " << exception.m_estatus.as_i64();
 
          }
 

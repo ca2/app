@@ -245,7 +245,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   long long system::increment_reference_count()
+   ::i64 system::increment_reference_count()
    {
 
       return ::platform::system::increment_reference_count();
@@ -253,7 +253,7 @@ namespace apex
    }
 
 
-   long long system::decrement_reference_count()
+   ::i64 system::decrement_reference_count()
    {
 
       return ::platform::system::decrement_reference_count();
@@ -4840,7 +4840,7 @@ namespace apex
    }
 
 
-//   void system::system_id_topic(int iId, long long llWparam, long long llLparam)
+//   void system::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
 //   {
 //
 //      call((::enum_id)iUpdate, iPayload);

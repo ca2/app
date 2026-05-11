@@ -13,7 +13,7 @@
 using WORD = unsigned short;
 using LONG = int;
 using WINULONG = ::u32;
-using LONGLONG = long long;
+using LONGLONG = ::i64;
 using ULONGLONG = ::u64;
 using NTSTATUS = int;
 using DWORD = ::u32;

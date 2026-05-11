@@ -935,7 +935,7 @@ namespace acme
       }
 
 
-      void windowing::application_handle(long long l, void* p)
+      void windowing::application_handle(::i64 l, void* p)
       {
 
 

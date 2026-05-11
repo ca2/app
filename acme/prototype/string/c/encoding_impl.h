@@ -205,7 +205,7 @@ inline character_count ansi_to_wd32_char(::wd32_character * output, const_char_p
 }
 
 
-inline long long _ansi_to_wd32_char(const_char_pointer *ppsz, character_count * psrclen)
+inline ::i64 _ansi_to_wd32_char(const_char_pointer *ppsz, character_count * psrclen)
 {
 
    ::wd32_character wd32ch = 0;

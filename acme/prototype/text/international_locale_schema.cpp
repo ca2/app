@@ -783,7 +783,7 @@ namespace text
 
 #ifdef _DEBUG
 
-      long long locale_schema::increment_reference_count()
+      ::i64 locale_schema::increment_reference_count()
       {
 
          return particle::increment_reference_count();
@@ -791,7 +791,7 @@ namespace text
       }
 
 
-      long long locale_schema::release()
+      ::i64 locale_schema::release()
       {
 
          return particle::release();

@@ -8,7 +8,7 @@ class CLASS_DECL_AURA db_long_set_item
 public:
 
    ::time m_timeTimeout;
-   long long        m_l;
+   ::i64        m_l;
 
 };
 
@@ -19,7 +19,7 @@ public:
 
    string         m_strKey;
    ::time m_timeTimeout;
-   long long        m_l;
+   ::i64        m_l;
 
    db_long_set_queue_item() {}
    db_long_set_queue_item(const db_long_set_queue_item & item){ operator =(item); }
@@ -109,7 +109,7 @@ public:
    virtual int run();
 
 
-   void queue(const ::scoped_string & scopedstrKey,long long l);
+   void queue(const ::scoped_string & scopedstrKey,::i64 l);
 
 };
 
@@ -175,7 +175,7 @@ repeat:;
 
 }
 
-void db_long_sync_queue::queue(const ::scoped_string & scopedstrKey,long long l)
+void db_long_sync_queue::queue(const ::scoped_string & scopedstrKey,::i64 l)
 {
 
    single_lock synchronouslock(m_pmutex, true);
@@ -206,7 +206,7 @@ db_long_set::~db_long_set()
 }
 
 // Adiciona na matriz System nomes dos diretrios de imagens.
-bool db_long_set::load(const ::string & lpKey, long long * plValue)
+bool db_long_set::load(const ::string & lpKey, ::i64 * plValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -307,7 +307,7 @@ bool db_long_set::load(const ::string & lpKey, long long * plValue)
 
 }
 
-bool db_long_set::save(const ::string & lpKey, long long lValue)
+bool db_long_set::save(const ::string & lpKey, ::i64 lValue)
 {
 
    if(m_pcore->m_pdataserver->m_bRemote)
@@ -356,7 +356,7 @@ bool db_long_set::save(const ::string & lpKey, long long lValue)
 
       ::pointer<::sqlite::database>pdb   = m_pcore->db()->get_database();
       string strSql;
-      long long l;
+      ::i64 l;
       slDatabase.lock();
       if(load(lpKey, &l))
       {

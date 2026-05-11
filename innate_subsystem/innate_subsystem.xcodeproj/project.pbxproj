@@ -29,7 +29,7 @@
 		9A19030F2FB20C0400A3C985 /* MessageWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902D32FB20C0400A3C985 /* MessageWindow.cpp */; };
 		9A1903102FB20C0400A3C985 /* DibFrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902AE2FB20C0400A3C985 /* DibFrameBuffer.cpp */; };
 		9A1903112FB20C0400A3C985 /* CheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902BB2FB20C0400A3C985 /* CheckBox.cpp */; };
-		9A1903122FB20C0400A3C985 /* FrameBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902B22FB20C0400A3C985 /* FrameBuffer.cpp */; };
+		9A1903122FB20C0400A3C985 /* Framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902B22FB20C0400A3C985 /* Framebuffer.cpp */; };
 		9A1903132FB20C0400A3C985 /* Brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A19029B2FB20C0400A3C985 /* Brush.cpp */; };
 		9A1903142FB20C0400A3C985 /* Toolbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902ED2FB20C0400A3C985 /* Toolbar.cpp */; };
 		9A1903152FB20C0400A3C985 /* BalloonTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902B92FB20C0400A3C985 /* BalloonTip.cpp */; };
@@ -98,7 +98,7 @@
 		9A1903582FB20C0400A3C985 /* StringFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902E02FB20C0400A3C985 /* StringFilter.h */; };
 		9A1903592FB20C0400A3C985 /* Bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902962FB20C0400A3C985 /* Bitmap.h */; };
 		9A19035A2FB20C0400A3C985 /* ListBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902CC2FB20C0400A3C985 /* ListBox.h */; };
-		9A19035B2FB20C0400A3C985 /* FrameBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902B12FB20C0400A3C985 /* FrameBuffer.h */; };
+		9A19035B2FB20C0400A3C985 /* Framebuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902B12FB20C0400A3C985 /* Framebuffer.h */; };
 		9A19035C2FB20C0400A3C985 /* DibSection.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902AF2FB20C0400A3C985 /* DibSection.h */; };
 		9A19035D2FB20C0400A3C985 /* NotifyIconWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902D82FB20C0400A3C985 /* NotifyIconWindow.h */; };
 		9A19035E2FB20C0400A3C985 /* DibFrameBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1902AD2FB20C0400A3C985 /* DibFrameBuffer.h */; };
@@ -162,8 +162,8 @@
 		9A1902AE2FB20C0400A3C985 /* DibFrameBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DibFrameBuffer.cpp; sourceTree = "<group>"; };
 		9A1902AF2FB20C0400A3C985 /* DibSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DibSection.h; sourceTree = "<group>"; };
 		9A1902B02FB20C0400A3C985 /* DibSection.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DibSection.cpp; sourceTree = "<group>"; };
-		9A1902B12FB20C0400A3C985 /* FrameBuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FrameBuffer.h; sourceTree = "<group>"; };
-		9A1902B22FB20C0400A3C985 /* FrameBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FrameBuffer.cpp; sourceTree = "<group>"; };
+		9A1902B12FB20C0400A3C985 /* Framebuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Framebuffer.h; sourceTree = "<group>"; };
+		9A1902B22FB20C0400A3C985 /* Framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Framebuffer.cpp; sourceTree = "<group>"; };
 		9A1902B82FB20C0400A3C985 /* BalloonTip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalloonTip.h; sourceTree = "<group>"; };
 		9A1902B92FB20C0400A3C985 /* BalloonTip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BalloonTip.cpp; sourceTree = "<group>"; };
 		9A1902BA2FB20C0400A3C985 /* CheckBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckBox.h; sourceTree = "<group>"; };
@@ -306,8 +306,8 @@
 				9A1902AE2FB20C0400A3C985 /* DibFrameBuffer.cpp */,
 				9A1902AF2FB20C0400A3C985 /* DibSection.h */,
 				9A1902B02FB20C0400A3C985 /* DibSection.cpp */,
-				9A1902B12FB20C0400A3C985 /* FrameBuffer.h */,
-				9A1902B22FB20C0400A3C985 /* FrameBuffer.cpp */,
+				9A1902B12FB20C0400A3C985 /* Framebuffer.h */,
+				9A1902B22FB20C0400A3C985 /* Framebuffer.cpp */,
 			);
 			path = framebuffer;
 			sourceTree = "<group>";
@@ -484,7 +484,7 @@
 				9A1903582FB20C0400A3C985 /* StringFilter.h in Headers */,
 				9A1903592FB20C0400A3C985 /* Bitmap.h in Headers */,
 				9A19035A2FB20C0400A3C985 /* ListBox.h in Headers */,
-				9A19035B2FB20C0400A3C985 /* FrameBuffer.h in Headers */,
+				9A19035B2FB20C0400A3C985 /* Framebuffer.h in Headers */,
 				9A19035C2FB20C0400A3C985 /* DibSection.h in Headers */,
 				9A19035D2FB20C0400A3C985 /* NotifyIconWindow.h in Headers */,
 				9A19035E2FB20C0400A3C985 /* DibFrameBuffer.h in Headers */,
@@ -598,7 +598,7 @@
 				9A19030F2FB20C0400A3C985 /* MessageWindow.cpp in Sources */,
 				9A1903102FB20C0400A3C985 /* DibFrameBuffer.cpp in Sources */,
 				9A1903112FB20C0400A3C985 /* CheckBox.cpp in Sources */,
-				9A1903122FB20C0400A3C985 /* FrameBuffer.cpp in Sources */,
+				9A1903122FB20C0400A3C985 /* Framebuffer.cpp in Sources */,
 				9A1903132FB20C0400A3C985 /* Brush.cpp in Sources */,
 				9A1903142FB20C0400A3C985 /* Toolbar.cpp in Sources */,
 				9A1903152FB20C0400A3C985 /* BalloonTip.cpp in Sources */,

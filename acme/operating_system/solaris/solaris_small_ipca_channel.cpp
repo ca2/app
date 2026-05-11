@@ -252,7 +252,7 @@ namespace acme
       {
       }
 
-      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,long long a,long long b)
+      void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel,::i64 a,::i64 b)
       {
       }
 
@@ -289,7 +289,7 @@ namespace acme
 
 
 
-      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,long long a,long long b)
+      void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel,::i64 a,::i64 b)
       {
 
          if(m_preceiver != nullptr)

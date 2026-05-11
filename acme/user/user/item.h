@@ -11,7 +11,7 @@ namespace user
 {
 
 
-   //enum enum_item : long long
+   //enum enum_item : ::i64
    //{
 
    //   e_item_normal = 0,
@@ -597,8 +597,8 @@ namespace user
       //::collection::index operator + (int iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
       //::collection::index operator - (int iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
-      //::collection::index operator + (long long iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
-      //::collection::index operator - (long long iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
+      //::collection::index operator + (::i64 iItemAdd) { return (::collection::index)(m_iItem + iItemAdd); }
+      //::collection::index operator - (::i64 iItemSub) { return (::collection::index)(m_iItem - iItemSub); }
 
 
       /*bool in_element_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }

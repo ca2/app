@@ -18,7 +18,7 @@ namespace operating_system
    CLASS_DECL_ACME ::error_code last_error_code()
    {
    
-      return { e_error_code_type_errno, (long long) errno };
+      return { e_error_code_type_errno, (::i64) errno };
    
    }
 

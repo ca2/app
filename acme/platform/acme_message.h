@@ -20,7 +20,7 @@ namespace acme
       message_union m_union;
 
       class ::time m_time;
-      long long m_iTimestamp;
+      ::i64 m_iTimestamp;
       ::double_point m_pointMessage;
       ::user::enum_message m_eusermessage;
       wparam m_wparam;

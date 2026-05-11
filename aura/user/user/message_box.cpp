@@ -163,7 +163,7 @@ namespace user
    }
 
 
-   long long message_box::increment_reference_count()
+   ::i64 message_box::increment_reference_count()
    {
 
       return ::user::interaction::increment_reference_count();
@@ -171,7 +171,7 @@ namespace user
    }
 
 
-   long long message_box::decrement_reference_count()
+   ::i64 message_box::decrement_reference_count()
    {
 
       return ::user::interaction::decrement_reference_count();
@@ -179,7 +179,7 @@ namespace user
    }
 
 
-   long long message_box::release()
+   ::i64 message_box::release()
    {
 
       return ::user::interaction::release();

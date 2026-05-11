@@ -17,7 +17,7 @@ CLASS_DECL_APEX void c_post_system_happening(::u64 u, void * pparam = 0);
 
 #else
 
-CLASS_DECL_APEX void c_post_system_happening(long long iId, void * pparam);
+CLASS_DECL_APEX void c_post_system_happening(::i64 iId, void * pparam);
 
 #endif
 

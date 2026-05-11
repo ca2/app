@@ -11,17 +11,17 @@ class CLASS_DECL_ACME utf8_character :
 public:
 
 
-   mutable long long m_llIndex = -1;
+   mutable ::i64 m_llIndex = -1;
 
 
    utf8_character() {}
-   utf8_character(long long ch);
+   utf8_character(::i64 ch);
 
 
    character_count get_next(const character_range < const_char_pointer >& range, character_count charactercount);
 
 
-   long long index() const;
+   ::i64 index() const;
 
    bool operator == (ansi_character ansicharacter) const
    {

@@ -163,7 +163,7 @@ void main() {
 
 #ifdef _DEBUG
 
-   long long graphics::increment_reference_count()
+   ::i64 graphics::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -171,7 +171,7 @@ void main() {
    }
 
 
-   long long graphics::decrement_reference_count()
+   ::i64 graphics::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();
@@ -4483,7 +4483,7 @@ void graphics::FillSolidRect(double x, double y, double cx, double cy, color32_t
    //   //   &origin,
    //   //   1);
 
-   //   //return point((long long) origin.X, (long long) origin.Y);
+   //   //return point((::i64) origin.X, (::i64) origin.Y);
 
    //   //return m_pointTranslate;
 

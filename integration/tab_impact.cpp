@@ -133,7 +133,7 @@ namespace app_integration
 
       }
 
-      switch(pimpactdata->id().as_int())
+      switch(pimpactdata->id().as_i32())
       {
       case MENU_IMPACT:
       {

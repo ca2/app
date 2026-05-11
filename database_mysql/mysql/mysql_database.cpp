@@ -473,7 +473,7 @@ namespace mysql
    }
 
 
-   long long database::_mysql_num_fields(MYSQL_RES* pres)
+   ::i64 database::_mysql_num_fields(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -488,7 +488,7 @@ namespace mysql
    }
 
 
-   long long database::_mysql_num_rows(MYSQL_RES* pres)
+   ::i64 database::_mysql_num_rows(MYSQL_RES* pres)
    {
 
       if (::is_null(pres))
@@ -523,9 +523,9 @@ namespace mysql
 
       auto& prowa = pset->m_prowa;
 
-      long long iNumRows = _mysql_num_rows(pres);
+      ::i64 iNumRows = _mysql_num_rows(pres);
 
-      long long iNumFields = _mysql_num_fields(pres);
+      ::i64 iNumFields = _mysql_num_fields(pres);
 
       if (iColumnCount > 0)
       {
@@ -543,7 +543,7 @@ namespace mysql
 
       prowa->set_size(iNumRows);
 
-      long long iRow = 0;
+      ::i64 iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -568,7 +568,7 @@ namespace mysql
 
          prow->set_size(iNumFields);
 
-         for (long long iField = 0; iField < iNumFields; iField++)
+         for (::i64 iField = 0; iField < iNumFields; iField++)
          {
 
             if (row[iField] == nullptr)
@@ -707,13 +707,13 @@ namespace mysql
 
       MYSQL_ROW row;
 
-      long long iNumRows = _mysql_num_rows(pres);
+      ::i64 iNumRows = _mysql_num_rows(pres);
 
       defer_construct_newø(pvara);
 
       pvara->set_size(iNumRows);
 
-      long long iRow = 0;
+      ::i64 iRow = 0;
 
       while ((row = _mysql_fetch_row(pres)) != nullptr)
       {
@@ -770,13 +770,13 @@ namespace mysql
 
       }
 
-      long long iNumFields = _mysql_num_fields(pres);
+      ::i64 iNumFields = _mysql_num_fields(pres);
 
       defer_construct_newø(prow);
 
       prow->set_size(iNumFields);
 
-      for (long long iField = 0; iField < iNumFields; iField++)
+      for (::i64 iField = 0; iField < iNumFields; iField++)
       {
 
          if (row[iField] == nullptr)

@@ -109,7 +109,7 @@ CLASS_DECL_ACME void from_string(int & i, const_char_pointer psz)
 }
 
 
-CLASS_DECL_ACME void from_string(long long & i, const_char_pointer psz)
+CLASS_DECL_ACME void from_string(::i64 & i, const_char_pointer psz)
 {
 
    i = atoll(psz);
@@ -125,7 +125,7 @@ CLASS_DECL_ACME void from_string(int & i, int iBase, const_char_pointer psz)
 }
 
 
-CLASS_DECL_ACME void from_string(long long & i, int iBase, const_char_pointer psz)
+CLASS_DECL_ACME void from_string(::i64 & i, int iBase, const_char_pointer psz)
 {
 
    i = ansi_to_long_long(psz, nullptr, iBase);
@@ -224,7 +224,7 @@ CLASS_DECL_ACME void from_string(int & i, const ::wd16_character * psz)
 }
 
 
-CLASS_DECL_ACME void from_string(long long & i, const ::wd16_character * psz)
+CLASS_DECL_ACME void from_string(::i64 & i, const ::wd16_character * psz)
 {
 
    i = wd16_to_long_long(psz);
@@ -240,7 +240,7 @@ CLASS_DECL_ACME void from_string(int & i, const ::wd32_character * psz)
 }
 
 
-CLASS_DECL_ACME void from_string(long long & i, const ::wd32_character * psz)
+CLASS_DECL_ACME void from_string(::i64 & i, const ::wd32_character * psz)
 {
 
    i = wd32_to_long_long(psz);
@@ -403,7 +403,7 @@ template < typename T >
 CLASS_DECL_ACME string string_from_int(const T & t)
 {
 
-   return as_string((long long)t);
+   return as_string((::i64)t);
 
 }
 

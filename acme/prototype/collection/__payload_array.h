@@ -40,7 +40,7 @@ public:
    //inline ::collection::index add(unsigned short ush) { return add((const ::payload &) ush); }
    //inline ::collection::index add(int i) { return add((const ::payload &) i); }
    //inline ::collection::index add(::u32 ui) { return add((const ::payload &) ui); }
-   //inline ::collection::index add(long long hi) { return add((const ::payload &) hi); }
+   //inline ::collection::index add(::i64 hi) { return add((const ::payload &) hi); }
    //inline ::collection::index add(::u64 hn) { return add((const ::payload &) hn); }
 
    ::collection::count append_unique(const payload_array_base & payloada);

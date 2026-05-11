@@ -33,8 +33,8 @@ namespace berg
       //      // void dump(dump_context & dumpcontext) const override;
 
 #ifdef _DEBUG
-      virtual long long increment_reference_count() override;
-      virtual long long decrement_reference_count() override;
+      virtual ::i64 increment_reference_count() override;
+      virtual ::i64 decrement_reference_count() override;
 #endif
 
       virtual ::write_text::font * get_font(::simple_dialog_box_line * psimpledialogboxline);

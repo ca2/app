@@ -16,16 +16,16 @@
 
 
 
-long long g_iMaxHttpPost = 1_GiB;
+::i64 g_iMaxHttpPost = 1_GiB;
 
-void set_max_http_post(long long i)
+void set_max_http_post(::i64 i)
 {
 
    g_iMaxHttpPost = i;
 
 }
 
-long long get_max_http_post()
+::i64 get_max_http_post()
 {
 
    return g_iMaxHttpPost;

@@ -271,14 +271,14 @@ public:
    static void fix_eol(string & str);
 
 
-   static bool to(long long & i, const ::scoped_string & scopedstrParam);
+   static bool to(::i64 & i, const ::scoped_string & scopedstrParam);
    static bool to(int & i, const ::scoped_string & scopedstrParam);
    static bool to(::u64 & u, const ::scoped_string & scopedstrParam);
    static bool to(::u32 & u, const ::scoped_string & scopedstrParam);
 
 
    static bool to(int & i, int iBase, const ::scoped_string & scopedstrParam);
-   static bool to(long long & i, int iBase, const ::scoped_string & scopedstrParam);
+   static bool to(::i64 & i, int iBase, const ::scoped_string & scopedstrParam);
    static bool to(::u64 & u, int iBase, const ::scoped_string & scopedstrParam);
    static bool to(::u32 & u, int iBase, const ::scoped_string & scopedstrParam);
 
@@ -288,15 +288,15 @@ public:
    static ::u32          to_unsigned_int(const ::scoped_string & scopedstr);
 
 
-   static long long           to_long_long(const ::scoped_string & scopedstr);
+   static ::i64           to_long_long(const ::scoped_string & scopedstr);
    static ::u64           to_unsigned_long_long(const ::scoped_string & scopedstr);
 
 
 
    static inline   int to_with_fallback(const ::scoped_string & scopedstr, int iDefault);
-   static inline   long long to_with_fallback(const ::scoped_string & scopedstr, long long iDefault);
+   static inline   ::i64 to_with_fallback(const ::scoped_string & scopedstr, ::i64 iDefault);
    static inline   int to_with_fallback(const ::scoped_string & scopedstr, int iDefault, int iBase);
-   static inline   long long to_with_fallback(const ::scoped_string & scopedstr, long long iDefault, int iBase);
+   static inline   ::i64 to_with_fallback(const ::scoped_string & scopedstr, ::i64 iDefault, int iBase);
 
 
 

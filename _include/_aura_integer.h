@@ -7,7 +7,7 @@
 //using char = int8_t;
 //using short = int16_t;
 //using int = int32_t;
-//using long long = long long;
+//using ::i64 = ::i64;
 
 
 //using unsigned char = uint8_t;

@@ -27,7 +27,7 @@ namespace user
 #ifdef _DEBUG
 
 
-   long long handler_impact::increment_reference_count()
+   ::i64 handler_impact::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   long long handler_impact::decrement_reference_count()
+   ::i64 handler_impact::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

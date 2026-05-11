@@ -699,7 +699,7 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
    //strDump.append_formatf("Serial: %lld, m_iLastReferenceCount=%d\n", m_iSerial, m_iLastReferenceCount);
 
-   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, (long long )m_psubparticle->m_countReference);
+   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, (::i64 )m_psubparticle->m_countReference);
 
    strDump += "deb:"+m_strDebug + "\n";
 

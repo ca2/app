@@ -308,14 +308,14 @@ namespace universal_windows
       return ret;
    }
 
-   long long file_find::get_length() const
+   ::i64 file_find::get_length() const
    {
       ASSERT(m_hContext != nullptr);
       ASSERT_OK(this);
 
       if (m_pFoundInfo != nullptr)
          return ((LPWIN32_FIND_DATAW) m_pFoundInfo)->nFileSizeLow +
-                ((long long)(((LPWIN32_FIND_DATAW) m_pFoundInfo)->nFileSizeHigh) << 32);
+                ((::i64)(((LPWIN32_FIND_DATAW) m_pFoundInfo)->nFileSizeHigh) << 32);
       else
          return 0;
    }

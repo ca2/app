@@ -11,7 +11,7 @@ object::~object()
 #ifdef _DEBUG
 
 
-long long object::increment_reference_count()
+::i64 object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -19,7 +19,7 @@ long long object::increment_reference_count()
 }
 
 
-long long object::decrement_reference_count()
+::i64 object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -27,7 +27,7 @@ long long object::decrement_reference_count()
 }
 
 
-long long object::release()
+::i64 object::release()
 {
 
    return property_object::release();
@@ -38,7 +38,7 @@ long long object::release()
 #else
 
 
-long long object::increment_reference_count()
+::i64 object::increment_reference_count()
 {
 
    return property_object::increment_reference_count();
@@ -46,7 +46,7 @@ long long object::increment_reference_count()
 }
 
 
-long long object::decrement_reference_count()
+::i64 object::decrement_reference_count()
 {
 
    return property_object::decrement_reference_count();
@@ -54,7 +54,7 @@ long long object::decrement_reference_count()
 }
 
 
-long long object::release()
+::i64 object::release()
 {
 
    return property_object::release();
@@ -347,7 +347,7 @@ void object::process_exit_status(const ::e_status & estatus)
     }
 
 
-   //inline long long get_ref_count()
+   //inline ::i64 get_ref_count()
    //{
 
    //   return m_countReference;

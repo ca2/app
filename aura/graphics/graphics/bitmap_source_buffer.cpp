@@ -202,7 +202,7 @@ namespace graphics
       try
       {
 
-         long long * p = (long long *)pdata;
+         ::i64 * p = (::i64 *)pdata;
 
          int iScan = (int)(ppixmap->width() * sizeof(::color32_t));
 

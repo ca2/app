@@ -48,7 +48,7 @@ namespace graphics3d
    //}
 
 
-   long long scene_renderable::getId() 
+   ::i64 scene_renderable::getId() 
    {
       
       return m_llId; 

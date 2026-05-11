@@ -53,7 +53,7 @@ namespace app_integration
 #ifdef _DEBUG
 
 
-   long long menu::increment_reference_count()
+   ::i64 menu::increment_reference_count()
    {
 
       return  ::user::impact::increment_reference_count();
@@ -61,7 +61,7 @@ namespace app_integration
    }
 
 
-   long long menu::decrement_reference_count()
+   ::i64 menu::decrement_reference_count()
    {
 
       return  ::user::impact::decrement_reference_count();

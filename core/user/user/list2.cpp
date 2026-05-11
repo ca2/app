@@ -810,7 +810,7 @@ namespace user
 
    //   pxmldocument->load(strXml);
 
-   //   m_iParentFolder = pxmldocument->root()->attribute("id").as_int();
+   //   m_iParentFolder = pxmldocument->root()->attribute("id").as_i32();
 
    //   auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
@@ -1028,7 +1028,7 @@ namespace user
 
    //   //str = http()->get(strGetUrl, set);
 
-   //   //auto iHttpStatusCode = set["http_status_code"].as_int();
+   //   //auto iHttpStatusCode = set["http_status_code"].as_i32();
 
    //   //synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 

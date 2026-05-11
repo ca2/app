@@ -242,7 +242,7 @@ DBFileSystemSizeSet::~DBFileSystemSizeSet()
 }
 
 
-bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+bool DBFileSystemSizeSet::get_cache_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
    return false;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -286,7 +286,7 @@ bool DBFileSystemSizeSet::get_cache_fs_size(long long & i64Size, const ::scoped_
        }*/
 }
 
-bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+bool DBFileSystemSizeSet::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
    ::collection::index iIteration = 0;
    single_lock synchronouslock(m_table.mutex(), false);
@@ -298,7 +298,7 @@ bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string
    return true;
 }
 
-bool DBFileSystemSizeSet::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration)
+bool DBFileSystemSizeSet::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending, ::collection::index & iIteration)
 {
    single_lock synchronouslock(m_table.mutex(), false);
    if(!synchronouslock.lock(time::zero()))
@@ -380,7 +380,7 @@ bool FileSystemSizeWnd::CreateServer()
 
 }
 
-bool FileSystemSizeWnd::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+bool FileSystemSizeWnd::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 {
 
 #ifdef WINDOWS_DESKTOP

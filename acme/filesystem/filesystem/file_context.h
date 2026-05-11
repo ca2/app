@@ -252,8 +252,8 @@ public:
 
    // 'n' (natural) terminated ascii number, example: 245765487n
    // pmd5ctx = openssl/md5.h's MD5_CTX
-   //virtual void write_n_number(::file::file * pfile, void * pmd5ctx, long long iNumber);
-   //virtual void read_n_number(::file::file * pfile, void * pmd5ctx, long long & iNumber);
+   //virtual void write_n_number(::file::file * pfile, void * pmd5ctx, ::i64 iNumber);
+   //virtual void read_n_number(::file::file * pfile, void * pmd5ctx, ::i64 & iNumber);
 
    //virtual void write_gen_string(::file::file * pfile, void * pmd5ctx, string & str);
    //virtual void read_gen_string(::file::file * pfile, void * pmd5ctx, string & str);

@@ -73,7 +73,7 @@ namespace nano
       //
       //    tokenizer.get_word(strHttpStatusCode);
       //
-      //    payload("http_status_code") = ::as_int(strHttpStatusCode);
+      //    payload("http_status_code") = ::as_i32(strHttpStatusCode);
       //
       //    ::string strHttpStatus;
       //
@@ -89,7 +89,7 @@ namespace nano
          
          get_memory_response()->assign(data, size);
          
-         payload("http_status_code") = (long long) http_status;
+         payload("http_status_code") = (::i64) http_status;
          
          //passynchronoushttpdata->m_function(passynchronoushttpdata);
          
@@ -107,7 +107,7 @@ namespace nano
    void get::set_status(long http_status)
    {
       
-      payload("http_status_code") = (long long) http_status;
+      payload("http_status_code") = (::i64) http_status;
       
    }
 

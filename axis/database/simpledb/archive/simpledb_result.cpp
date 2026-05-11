@@ -37,7 +37,7 @@ namespace simpledb
       return -1;
    }
 
-   long long result::num_rows()
+   ::i64 result::num_rows()
    {
       return -1;
    }

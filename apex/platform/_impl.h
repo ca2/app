@@ -378,7 +378,7 @@
 //
 //
 //template < class c_derived >
-//inline long long increment_reference_count(c_derived * pca)
+//inline ::i64 increment_reference_count(c_derived * pca)
 //{
 //
 //   if (::is_null(pca))
@@ -394,7 +394,7 @@
 //
 //
 //template < class c_derived, typename SOURCE >
-//inline long long increment_reference_count(c_derived * & pca, const SOURCE * psource)
+//inline ::i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
 //{
 //
 //   c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
@@ -414,7 +414,7 @@
 //
 //
 //template < class c_derived, typename SOURCE >
-//inline long long increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
+//inline ::i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
 //{
 //
 //   return increment_reference_count(pderived, psource.m_p);
@@ -423,7 +423,7 @@
 //
 //
 //template < class c_derived >
-//inline long long release(c_derived *& pca)
+//inline ::i64 release(c_derived *& pca)
 //{
 //
 //   if (::is_null(pca))
@@ -506,7 +506,7 @@
 //
 //
 //template < class COMPOSITE >
-//inline long long release(::pointer<COMPOSITE>& pcomposite)
+//inline ::i64 release(::pointer<COMPOSITE>& pcomposite)
 //{
 //
 //   return release(pcomposite.m_p);
@@ -515,7 +515,7 @@
 //
 //
 //template < typename TYPE >
-//inline long long release(::pointer<TYPE>& pointer)
+//inline ::i64 release(::pointer<TYPE>& pointer)
 //{
 //
 //   return release(pointer.m_p);
@@ -524,7 +524,7 @@
 //
 //
 //template < class REFERENCE >
-//inline long long release(::pointer<REFERENCE>& preference)
+//inline ::i64 release(::pointer<REFERENCE>& preference)
 //{
 //
 //   return release(preference.m_p);
@@ -533,7 +533,7 @@
 //
 //
 //template < class c_derived >
-//inline long long ref_count(c_derived * pca)
+//inline ::i64 ref_count(c_derived * pca)
 //{
 //
 //   if (pca == nullptr)

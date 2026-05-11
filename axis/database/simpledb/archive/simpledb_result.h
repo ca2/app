@@ -28,7 +28,7 @@ namespace simpledb
 
 //      MYSQL_ROW fetch_row();
   //    unsigned long * fetch_lengths();
-      virtual long long num_rows();
+      virtual ::i64 num_rows();
       virtual int num_fields();
 
       virtual bool free_result();

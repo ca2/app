@@ -79,7 +79,7 @@
       char readInt8();
       short readInt16();
       int readInt32();
-      long long readInt64();
+      ::i64 readInt64();
 
       ::string readUtf8();
 

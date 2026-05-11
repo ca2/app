@@ -29,7 +29,7 @@ namespace collection
 
 
 
-using process_identifier = long long;
+using process_identifier = ::i64;
 
 
 using nullptr_t = ::std::nullptr_t;

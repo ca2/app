@@ -2799,7 +2799,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   read_gen_string(pfile, nullptr, strVersion);
 //
-//   long long n;
+//   ::i64 n;
 //
 //   string strRelative;
 //   string strMd5;
@@ -2807,7 +2807,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //   int iBufSize = 1024 * 1024;
 //   memory buf;
 //   buf.set_size(iBufSize);
-//   long long iLen;
+//   ::i64 iLen;
 //   MD5_CTX ctx;
 //
 //   auto pfile2 = createø < ::file::file >();
@@ -2850,7 +2850,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 
 
 
-//void file_context::write_n_number(::file::file * pfile, void * pctx, long long iNumber)
+//void file_context::write_n_number(::file::file * pfile, void * pctx, ::i64 iNumber)
 //{
 //
 //   string str;
@@ -2869,7 +2869,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //}
 
 
-//void file_context::read_n_number(::file::file * pfile, void * pctx, long long & iNumber)
+//void file_context::read_n_number(::file::file * pfile, void * pctx, ::i64 & iNumber)
 //{
 //
 //   ::u64 uRead;
@@ -2918,7 +2918,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 
 //void file_context::read_gen_string(::file::file * pfile, void * pctx, string & str)
 //{
-//   long long iLen;
+//   ::i64 iLen;
 //   read_n_number(pfile, pctx, iLen);
 //   char * psz = str.get_buffer((character_count)(iLen + 1));
 //
@@ -2926,7 +2926,7 @@ void file_context::rename(const ::file::path & pathNew, const ::file::path & pat
 //
 //   if (pctx != nullptr)
 //   {
-//      long long iProcessed = 0;
+//      ::i64 iProcessed = 0;
 //      while (iLen - iProcessed > 0)
 //      {
 //         int iProcess = (int)minimum(1024 * 1024, iLen - iProcessed);
@@ -3113,7 +3113,7 @@ void file_context::destroy()
 
 //   file_pointer fileOut;
 
-//   long long iTry = 0;
+//   ::i64 iTry = 0;
 
 //   ::application * papp = ::get_app(pparticle);
 

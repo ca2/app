@@ -124,7 +124,7 @@ namespace acme
          //virtual long __x11_Window();
          //virtual void * __x11_Display();
          //virtual void * __win32_HWND();
-         //virtual long long __CGWindowID() const;
+         //virtual ::i64 __CGWindowID() const;
          
          virtual bool should_avoid_default_swap_chain_present();
          

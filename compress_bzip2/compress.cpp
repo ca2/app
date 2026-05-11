@@ -104,7 +104,7 @@ namespace compress_bzip2
       class memory memIn;
       memIn.set_size(1024 * 64);
 
-      long long uRead = pfileUncompressed->read(memIn.data(), memIn.size());
+      ::i64 uRead = pfileUncompressed->read(memIn.data(), memIn.size());
 
       iBlockSize = maximum(1, minimum(9, iBlockSize));
       iVerbosity = maximum(0, minimum(4, iVerbosity));

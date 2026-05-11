@@ -981,7 +981,7 @@ concept non_container = !prototype_container < CONTAINER >;
 
 
 template < prototype_enum ENUM >
-inline long long as_long_long(const ENUM & e) { return (long long)(::raw_enum_of<ENUM>) e; }
+inline ::i64 as_i64(const ENUM & e) { return (::i64)(::raw_enum_of<ENUM>) e; }
 
 
 template<typename ITERATOR_TYPE>

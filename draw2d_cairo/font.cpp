@@ -226,7 +226,7 @@ namespace draw2d_cairo
 
       pango_font_description_set_style(m_pdesc, m_bItalic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL);
 
-      pango_font_description_set_weight(m_pdesc, (PangoWeight)m_fontweight.as_int());
+      pango_font_description_set_weight(m_pdesc, (PangoWeight)m_fontweight.as_i32());
 
       if (m_fontsize.eunit() == ::e_unit_pixel)
       {
@@ -255,7 +255,7 @@ namespace draw2d_cairo
 
       FT_Face ftface = pcairographics->ftface(
          m_pfontfamily->family_name(pgraphics),
-         m_fontweight.as_int(), m_bItalic);
+         m_fontweight.as_i32(), m_bItalic);
 
       if (!ftface)
       {
@@ -334,7 +334,7 @@ namespace draw2d_cairo
    cairo_font_weight_t font::get_cairo_font_weight()
    {
 
-      if (m_fontweight.as_int() >= 700)
+      if (m_fontweight.as_i32() >= 700)
       {
 
          return CAIRO_FONT_WEIGHT_BOLD;

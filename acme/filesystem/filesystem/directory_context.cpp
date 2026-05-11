@@ -2389,7 +2389,7 @@ bool directory_context::matter_enumerate(const ::file::path& path, ::file::listi
          if (path.case_insensitive_begins_eat("itdoesntexist."))
          {
 
-            class ::time t = millisecond_time(::as_long_long(path));
+            class ::time t = millisecond_time(::as_i64(path));
 
             auto elapsed = t.elapsed();
 

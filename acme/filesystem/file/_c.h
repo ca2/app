@@ -72,7 +72,7 @@
 //
 ////typedef ::u64  filesize;
 ////typedef ::u64  filesize;
-////typedef long long   filesize;
+////typedef ::i64   filesize;
 //
 
 CLASS_DECL_ACME bool is_directory(const ::file::path & path);

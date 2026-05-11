@@ -1352,7 +1352,7 @@ enum_network_header property_set_base::parse_network_headers(const ::string_arra
 
       tokenizer.get_word(strHttpStatusCode);
 
-      outattributes["http_status_code"] = ::as_int(strHttpStatusCode);
+      outattributes["http_status_code"] = ::as_i32(strHttpStatusCode);
 
       ::string strStatus;
 
@@ -2505,7 +2505,7 @@ int property_set_base::get_int(const atom & atom, int iDefault) const
 
    }
 
-   return pproperty->as_int();
+   return pproperty->as_i32();
 
 }
 
@@ -3262,15 +3262,15 @@ return ::transfer(this->element_at(iIndexOfPayloadInPropertySet)->as_getter());
 int property_set_base::get(const ::atom& atom, const int& i) const
 {
 
-   __IMPLEMENT_GET(i, as_int);
+   __IMPLEMENT_GET(i, as_i32);
 
 }
 
 
-long long property_set_base::get(const ::atom& atom, const long long& ll) const
+::i64 property_set_base::get(const ::atom& atom, const ::i64& ll) const
 {
 
-   __IMPLEMENT_GET(ll, as_long_long);
+   __IMPLEMENT_GET(ll, as_i64);
 
 }
 

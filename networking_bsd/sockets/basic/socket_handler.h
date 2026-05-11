@@ -80,8 +80,8 @@ namespace sockets_bsd
       ~socket_handler() override;
 
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
       void initialize(::particle * pparticle) override;
 

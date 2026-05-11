@@ -4,12 +4,12 @@
 #include "string.h"
 
 
-bool str::to(long long & i, const ::scoped_string & scopedstr)
+bool str::to(::i64 & i, const ::scoped_string & scopedstr)
 {
 
    const_char_pointer pszEnd = nullptr;
 
-   long long iConversion = ::ansi_to_long_long(scopedstr, &pszEnd);
+   ::i64 iConversion = ::ansi_to_long_long(scopedstr, &pszEnd);
 
    if (pszEnd == scopedstr.data())
    {
@@ -44,7 +44,7 @@ bool str::to(int & i, const ::scoped_string & scopedstr)
 }
 
 
-bool str::to(long long & i, int iBase, const ::scoped_string & scopedstr)
+bool str::to(::i64 & i, int iBase, const ::scoped_string & scopedstr)
 {
 
    if (iBase < 0 || iBase == 1 || iBase > 36)
@@ -58,11 +58,11 @@ bool str::to(long long & i, int iBase, const ::scoped_string & scopedstr)
 
 #ifdef WINDOWS
 
-   long long iConversion = ::_strtoi64(scopedstr, &pszEnd, iBase);
+   ::i64 iConversion = ::_strtoi64(scopedstr, &pszEnd, iBase);
 
 #else
 
-   long long iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
+   ::i64 iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 
@@ -89,11 +89,11 @@ bool str::to(int & i, int iBase, const ::scoped_string & scopedstr)
 
 #ifdef WINDOWS
 
-   long long iConversion = ::_strtoi64(scopedstr, &pszEnd, iBase);
+   ::i64 iConversion = ::_strtoi64(scopedstr, &pszEnd, iBase);
 
 #else
 
-   long long iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
+   ::i64 iConversion = ::ansi_to_long_long(scopedstr, (const_char_pointer *) & pszEnd, iBase);
 
 #endif
 
@@ -142,7 +142,7 @@ bool str::to(::u32 & u, const ::scoped_string & scopedstr)
 
    const_char_pointer pszEnd = nullptr;
 
-   long long uiConversion = ::ansi_to_unsigned_int(scopedstr, &pszEnd);
+   ::i64 uiConversion = ::ansi_to_unsigned_int(scopedstr, &pszEnd);
 
    if (pszEnd == scopedstr.data())
    {

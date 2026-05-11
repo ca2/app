@@ -139,7 +139,7 @@ namespace platform
 #ifdef _DEBUG
 
 
-   long long node::increment_reference_count()
+   ::i64 node::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -147,7 +147,7 @@ namespace platform
    }
 
 
-   long long node::decrement_reference_count()
+   ::i64 node::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -338,7 +338,7 @@ namespace platform
    }
 
 
-   void node::node_application_on_status(const_char_pointer pszStatus, void * p, long long hi)
+   void node::node_application_on_status(const_char_pointer pszStatus, void * p, ::i64 hi)
    {
       
       
@@ -3612,7 +3612,7 @@ bool node::_is_smart_git_installed()
    }
 
 
-//   void node::application_handle(long long l, void * p)
+//   void node::application_handle(::i64 l, void * p)
 //   {
 //
 //      
@@ -5247,7 +5247,7 @@ bool node::are_any_shared_libraries_mapped(const ::file::path_array_base & patha
 } // namespace platform
 
 
-void node_application_send_status(const_char_pointer pszStatus, void * p, long long hi)
+void node_application_send_status(const_char_pointer pszStatus, void * p, ::i64 hi)
 {
    
    system()->node()->node_application_on_status(pszStatus, p, hi);

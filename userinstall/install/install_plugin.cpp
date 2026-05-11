@@ -1315,7 +1315,7 @@ run_install:
    }
 
 
-   void plugin::on_post(::aura::ipc::rx * prx, long long a, long long b)
+   void plugin::on_post(::aura::ipc::rx * prx, ::i64 a, ::i64 b)
    {
 
       if(prx == &m_rx)

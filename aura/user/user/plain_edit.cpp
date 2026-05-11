@@ -1944,7 +1944,7 @@ namespace user
                if (atoma.get_size() >= 3)
                {
 
-                  iBegin = atoma[2].as_long_long();
+                  iBegin = atoma[2].as_i64();
 
                }
 
@@ -1953,7 +1953,7 @@ namespace user
                if (atoma.get_size() >= 4)
                {
 
-                  iEnd = atoma[3].as_long_long();
+                  iEnd = atoma[3].as_i64();
 
                }
 

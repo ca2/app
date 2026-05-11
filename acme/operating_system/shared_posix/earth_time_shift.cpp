@@ -17,7 +17,7 @@
 
       int unaligned = lt->tm_sec + (lt->tm_min + (lt->tm_hour * 60)) * 60;
 
-      return { (long long) (lt->tm_mon ? unaligned - 24 * 60 * 60 : unaligned), 0 };
+      return { (::i64) (lt->tm_mon ? unaligned - 24 * 60 * 60 : unaligned), 0 };
 
    }
 

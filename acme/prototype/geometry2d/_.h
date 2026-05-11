@@ -62,43 +62,43 @@ class lines_base;
 
 
 using int_point = point_type < int >;
-using long_long_point = point_type < long long >;
+using long_long_point = point_type < ::i64 >;
 using float_point = point_type < float >;
 using double_point = point_type < double >;
 
 
 using int_size = size_type < int >;
-using long_long_size = size_type < long long >;
+using long_long_size = size_type < ::i64 >;
 using float_size = size_type < float >;
 using double_size = size_type < double >;
 
 
 using int_rectangle = rectangle_type < int >;
-using long_long_rectangle = rectangle_type < long long >;
+using long_long_rectangle = rectangle_type < ::i64 >;
 using float_rectangle = rectangle_type < float >;
 using double_rectangle = rectangle_type < double >;
 
 
 using int_ellipse = ellipse_type < int >;
-using long_long_ellipse = ellipse_type < long long >;
+using long_long_ellipse = ellipse_type < ::i64 >;
 using float_ellipse = ellipse_type < float >;
 using double_ellipse = ellipse_type < double >;
 
 
 using int_line = line_type < int >;
-using long_long_line = line_type < long long >;
+using long_long_line = line_type < ::i64 >;
 using float_line = line_type < float >;
 using double_line = line_type < double >;
 
 
 using int_arc = arc_type < int >;
-using long_long_arc = arc_type < long long >;
+using long_long_arc = arc_type < ::i64 >;
 using float_arc = arc_type < float >;
 using double_arc = arc_type < double >;
 
 
 using int_point_array_base = point_array_base < int >;
-using long_long_point_array_base = point_array_base < long long >;
+using long_long_point_array_base = point_array_base < ::i64 >;
 using float_point_array_base = point_array_base < float >;
 using double_point_array_base = point_array_base < double >;
 
@@ -110,7 +110,7 @@ using double_point_array = ::array_particle < double_point_array_base >;
 
 
 using int_polygon_base = polygon_base < int >;
-using long_long_polygon_base = polygon_base < long long >;
+using long_long_polygon_base = polygon_base < ::i64 >;
 using float_polygon_base = polygon_base < float >;
 using double_polygon_base = polygon_base < double >;
 
@@ -122,7 +122,7 @@ using double_polygon = ::array_particle < double_polygon_base >;
 
 
 using int_poly_polygon_base = poly_polygon_base < int >;
-using long_long_poly_polygon_base = poly_polygon_base < long long >;
+using long_long_poly_polygon_base = poly_polygon_base < ::i64 >;
 using float_poly_polygon_base = poly_polygon_base < float >;
 using double_poly_polygon_base = poly_polygon_base < double >;
 
@@ -134,7 +134,7 @@ using double_poly_polygon = ::array_particle < double_poly_polygon_base >;
 
 
 using int_point_array_base = point_array_base < int >;
-using long_long_point_array_base = point_array_base < long long >;
+using long_long_point_array_base = point_array_base < ::i64 >;
 using float_point_array_base = point_array_base < float >;
 using double_point_array_base = point_array_base < double >;
 
@@ -146,7 +146,7 @@ using double_point_array = ::array_particle < double_point_array_base >;
 
 
 using int_size_array_base = size_array_base < int >;
-using long_long_size_array_base = size_array_base < long long >;
+using long_long_size_array_base = size_array_base < ::i64 >;
 using float_size_array_base = size_array_base < float >;
 using double_size_array_base = size_array_base < double >;
 
@@ -158,7 +158,7 @@ using double_size_array = ::array_particle < double_size_array_base >;
 
 
 using int_rectangle_array_base = rectangle_array_base < int >;
-using long_long_rectangle_array_base = rectangle_array_base < long long >;
+using long_long_rectangle_array_base = rectangle_array_base < ::i64 >;
 using float_rectangle_array_base = rectangle_array_base < float >;
 using double_rectangle_array_base = rectangle_array_base < double >;
 
@@ -169,7 +169,7 @@ using float_rectangle_array = ::array_particle < float_rectangle_array_base >;
 using double_rectangle_array = ::array_particle < double_rectangle_array_base >;
 
 using int_lines_base = lines_base < int >;
-using long_long_lines_base = lines_base < long long >;
+using long_long_lines_base = lines_base < ::i64 >;
 using float_lines_base = lines_base < float >;
 using double_lines_base = lines_base < double >;
 

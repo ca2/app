@@ -378,8 +378,8 @@ inline auto as_int_point(const ::u64 u) noexcept { return ::int_point((int)u64_x
 
 
 //inline auto as_long_long_point(const ::lparam & lparam) noexcept { return ::long_long_point(lparam.x, lparam.y); }
-inline auto as_long_long_point(const ::u32 u) noexcept { return ::long_long_point((long long)u32_x(u), (long long)u32_y(u)); }
-inline auto as_long_long_point(const ::u64 u) noexcept { return ::long_long_point((long long)u64_x(u), (long long)u64_y(u)); }
+inline auto as_long_long_point(const ::u32 u) noexcept { return ::long_long_point((::i64)u32_x(u), (::i64)u32_y(u)); }
+inline auto as_long_long_point(const ::u64 u) noexcept { return ::long_long_point((::i64)u64_x(u), (::i64)u64_y(u)); }
 
 
 //inline auto as_float_point(const ::lparam & lparam) noexcept { return ::float_point((float)lparam.x, (float)lparam.y); }

@@ -742,7 +742,7 @@ namespace user
 //
 //            //      string str;
 //
-//            //      str.formatf("%d",payload.as_int());
+//            //      str.formatf("%d",payload.as_i32());
 //
 //            //      pinteraction->set_text(str,::e_source_database);
 //
@@ -824,7 +824,7 @@ namespace user
 
       //}
 
-      bData = (payload.as_int() != 0) ? 1 : 0;
+      bData = (payload.as_i32() != 0) ? 1 : 0;
 
       return true;
 

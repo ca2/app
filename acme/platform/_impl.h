@@ -385,7 +385,7 @@ const_char_pointer memory_counter_id(T * pthis)
 //#ifndef WINDOWS
 //
 //
-//inline long long MulDiv(long long nNumber, int iNum, int iDen)
+//inline ::i64 MulDiv(::i64 nNumber, int iNum, int iDen)
 //{
 //
 //   return nNumber * iNum / iDen;

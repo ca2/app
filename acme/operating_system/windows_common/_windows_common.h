@@ -38,7 +38,7 @@ using dword_array = ::array_particle < ::dword_array_base >;
 //CLASS_DECL_ACME string get_mem_info_report1();
 //CLASS_DECL_ACME::collection::count get_mem_info(int ** ppiUse, const_char_pointer ** ppszFile, const_char_pointer ** pszCallStack, ::u32 ** ppuiLine, size_t ** ppsize);
 #ifdef WINDOWS
-CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], long long ** ppiStack, int ** ppiLine, long long ** ppiSize);
+CLASS_DECL_ACME::collection::count get_mem_info2(int ** ppiUse, const_char_pointer ** ppszFile, DWORD64 ** ppuiStack[64], ::i64 ** ppiStack, int ** ppiLine, ::i64 ** ppiSize);
 #endif
 
 

@@ -208,7 +208,7 @@ namespace mathematics
 
       //float random(float f1, float f2);
       //double random(double d1, double d2);
-      //long long random(long long i1, long long i2);
+      //::i64 random(::i64 i1, ::i64 i2);
       //int random(int i1, int i2);
       //template < typename int >
       //int __random_int(int i1, int i2);

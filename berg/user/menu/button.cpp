@@ -42,7 +42,7 @@ namespace user
 
 
 
-   long long menu_button::increment_reference_count()
+   ::i64 menu_button::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   long long menu_button::decrement_reference_count()
+   ::i64 menu_button::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

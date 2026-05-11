@@ -15,7 +15,7 @@
 #include "core/platform/session.h"
 
 
-string _001FileSizeText(long long i)
+string _001FileSizeText(::i64 i)
 {
 
    string str;

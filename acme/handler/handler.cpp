@@ -280,7 +280,7 @@ namespace handler
    }
 
 
-   // CLASS_DECL_ACME void __call(handler* phandler, const ::atom& atom, long long wParam, long long lParam, ::matter* pmatter)
+   // CLASS_DECL_ACME void __call(handler* phandler, const ::atom& atom, ::i64 wParam, ::i64 lParam, ::matter* pmatter)
    // {
    //
    //    if (::is_null(pmatter))
@@ -334,7 +334,7 @@ namespace handler
 
 
    //
-   // void handler::call(enum_id eid, long long iData, ::matter* pmatter)
+   // void handler::call(enum_id eid, ::i64 iData, ::matter* pmatter)
    // {
    //
    //    return __call(this, eid, iData, pmatter);
@@ -342,7 +342,7 @@ namespace handler
    // }
    //
    //
-   // void handler::call(const ::atom& atom, long long wParam, long long lParam, ::matter* pmatter)
+   // void handler::call(const ::atom& atom, ::i64 wParam, ::i64 lParam, ::matter* pmatter)
    // {
    //
    //    return __call(this, eusermessage, wparam, lparam, pmatter);
@@ -459,7 +459,7 @@ namespace handler
 
 
    // //
-   // void handler::call(enum_id eid, long long iData, ::matter* pmatter)
+   // void handler::call(enum_id eid, ::i64 iData, ::matter* pmatter)
    // {
    //
    //    return __call(this, eid, iData, pmatter);

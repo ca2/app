@@ -7,7 +7,7 @@
 #include "acme/prototype/numeric/types.h"
 
 
-typedef ::u32 dword;
+typedef u32 dword;
 typedef int int_bool;
 
 
@@ -58,7 +58,7 @@ inline float __rate(float f)
 
 
 inline unsigned char as_byte(double d) { return (unsigned char) minimummax(d, 0, 255); }
-inline unsigned char as_byte(long long i) { return (unsigned char)minimummax(i, 0, 255); }
+inline unsigned char as_byte(::i64 i) { return (unsigned char)minimummax(i, 0, 255); }
 
 #endif
 

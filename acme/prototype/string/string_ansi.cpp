@@ -1104,7 +1104,7 @@ informationf("fixed_string_log::OnReallocateSpill");
 //   return assign((::u64)n,(::u64)ca);
 //}
 //
-//string & string::assign(long long n,long long ca)
+//string & string::assign(::i64 n,::i64 ca)
 //{
 //   return assign((::u64)n,(::u64)ca);
 //}

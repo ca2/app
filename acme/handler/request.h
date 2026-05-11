@@ -130,8 +130,8 @@ public:
    //~command_line() override;
 
 
-   long long increment_reference_count() override;
-   long long decrement_reference_count() override;
+   ::i64 increment_reference_count() override;
+   ::i64 decrement_reference_count() override;
 
 
    void common_construct();

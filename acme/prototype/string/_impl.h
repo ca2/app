@@ -19,8 +19,8 @@
 #include "hex.h"
 
 
-CLASS_DECL_ACME long long strtoi(const ::scoped_string & scopedstr);
-CLASS_DECL_ACME long long strtoi(const ::wide_character * psz);
+CLASS_DECL_ACME ::i64 strtoi(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME ::i64 strtoi(const ::wide_character * psz);
 
 
 namespace file
@@ -156,7 +156,7 @@ template < prototype_string STRING, prototype_integral INTEGRAL >
 inline STRING& copy(STRING& string, const INTEGRAL& number)
 {
 
-	string.append_formatf("%lld", (long long)number);
+	string.append_formatf("%lld", (::i64)number);
 
 	return string;
 
@@ -314,7 +314,7 @@ namespace file
 
 
    //template < prototype_character_range CHARACTER_RANGE >
-   // inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   // inline path::path(const CHARACTER_RANGE & range, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //         path(::ansi_string(range), epath, etype, bNormalizePath, iSize)
    // {
 
@@ -1039,7 +1039,7 @@ string_range < ITERATOR_TYPE > string_range < ITERATOR_TYPE >::consume_hex()
 
       int len;
       
-      long long i = unicode_index_length(this->m_begin, len);
+      ::i64 i = unicode_index_length(this->m_begin, len);
 
       if ((i >= '0' && i <= '9') || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
       {

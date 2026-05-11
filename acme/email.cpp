@@ -90,8 +90,8 @@ inline bool __QPDecode(
 //
 inline int __QPEncodeGetRequiredLength(int nSrcLen)
 {
-   __int64 nRet64 = 3 * ((3 * static_cast<__int64>(nSrcLen)) / (SMTP_MAX_QP_LINE_LENGTH - 8));
-   nRet64 += 3 * static_cast<__int64>(nSrcLen);
+   ::i64 nRet64 = 3 * ((3 * static_cast<::i64>(nSrcLen)) / (SMTP_MAX_QP_LINE_LENGTH - 8));
+   nRet64 += 3 * static_cast<::i64>(nSrcLen);
    nRet64 += 3;
    ASSERT(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
    int nRet = static_cast<int>(nRet64);
@@ -147,7 +147,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //		_In_ int nSrcLen,
 //		_In_ DWORD dwFlags = ATL_BASE64_FLAG_NONE)
 //	{
-//		__int64 nSrcLen4 = static_cast<__int64>(nSrcLen) * 4;
+//		::i64 nSrcLen4 = static_cast<::i64>(nSrcLen) * 4;
 //		ATLENSURE(nSrcLen4 <= INT_MAX);
 //
 //		int nRet = static_cast<int>(nSrcLen4 / 3);
@@ -393,7 +393,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 ////on input of length nSrcLen
 //	inline int UUEncodeGetRequiredLength(_In_ int nSrcLen)
 //	{
-//		__int64 nRet64 = static_cast<__int64>(nSrcLen) * 4 / 3;
+//		::i64 nRet64 = static_cast<::i64>(nSrcLen) * 4 / 3;
 //		nRet64 += 3 * (nSrcLen / ATLSMTP_MAX_UUENCODE_LINE_LENGTH);
 //		nRet64 += 12 + MAX_PATH; // "begin" statement
 //		nRet64 += 8; // "end" statement
@@ -705,8 +705,8 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	//
 //	inline int QPEncodeGetRequiredLength(_In_ int nSrcLen)
 //	{
-//		__int64 nRet64 = 3 * ((3 * static_cast<__int64>(nSrcLen)) / (ATLSMTP_MAX_QP_LINE_LENGTH - 8));
-//		nRet64 += 3 * static_cast<__int64>(nSrcLen);
+//		::i64 nRet64 = 3 * ((3 * static_cast<::i64>(nSrcLen)) / (ATLSMTP_MAX_QP_LINE_LENGTH - 8));
+//		nRet64 += 3 * static_cast<::i64>(nSrcLen);
 //		nRet64 += 3;
 //		ATLENSURE(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
 //		int nRet = static_cast<int>(nRet64);
@@ -1311,7 +1311,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //
 //	inline int AtlHexEncodeGetRequiredLength(_In_ int nSrcLen)
 //	{
-//		__int64 nRet64 = 2 * static_cast<__int64>(nSrcLen) + 1;
+//		::i64 nRet64 = 2 * static_cast<::i64>(nSrcLen) + 1;
 //		ATLENSURE(nRet64 <= INT_MAX && nRet64 >= INT_MIN);
 //		int nRet = static_cast<int>(nRet64);
 //		return nRet;

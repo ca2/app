@@ -83,8 +83,8 @@ namespace innate_subsystem
 
       virtual void *getBufferPtr(int x, int y) const;
 
-      virtual inline int getBufferSize() const;
-      virtual inline int getBytesPerRow() const;
+      int getBufferSize() const override;
+      int getBytesPerRow() const override;
 
       // This function copies a block of bits from a source DC (that has been used to create the
       // DIB section) to the DIB section.

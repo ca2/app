@@ -820,7 +820,7 @@ CLASS_DECL_ACME void ansi_from_unsigned_long_long(::ansi_character * sz, ::u64 u
 }
 
 
-CLASS_DECL_ACME void ansi_from_long_long(::ansi_character * sz, long long i, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void ansi_from_long_long(::ansi_character * sz, ::i64 i, int iBase, enum_digit_case edigitcase)
 {
 
   ::ansi_character * end;
@@ -850,7 +850,7 @@ CLASS_DECL_ACME void ansi_from_i(::ansi_character * sz, int i, int iBase, enum_d
 }
 
 
-CLASS_DECL_ACME long long ansi_count_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase, character_count srclen)
+CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase, character_count srclen)
 {
 
   auto len = ansi_length(psz);

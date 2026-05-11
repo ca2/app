@@ -6,7 +6,7 @@
 #include <wchar.h>
 
 
-CLASS_DECL_ACME long long string_to_signed(const ::wd32_character * pwsz)
+CLASS_DECL_ACME ::i64 string_to_signed(const ::wd32_character * pwsz)
 {
 
 #ifdef WINDOWS

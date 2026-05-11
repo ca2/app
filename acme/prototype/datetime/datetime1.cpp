@@ -297,9 +297,9 @@ namespace datetime
 //               atm.tm_sec = set["second"];
 //               atm.tm_min = set["minute"];
 //               atm.tm_hour = set["hour"];
-//               atm.tm_mday = set["day"].as_int();
-//               atm.tm_mon = set["month"].as_int() - 1;        // tm_mon is 0 based
-//               atm.tm_year = set["year"].as_int() - 1900;     // tm_year is 1900 based
+//               atm.tm_mday = set["day"].as_i32();
+//               atm.tm_mon = set["month"].as_i32() - 1;        // tm_mon is 0 based
+//               atm.tm_year = set["year"].as_i32() - 1900;     // tm_year is 1900 based
 //               atm.tm_isdst = -1;
 //               /*posix_time now = _time64(nullptr);
 //               posix_time nowUtc = mktime(gmtime(&now));
@@ -587,10 +587,10 @@ namespace datetime
 } // namespace datetime
 
 
-long long g_iNanosFirst;
+::i64 g_iNanosFirst;
 
 
-CLASS_DECL_ACME long long _first_nano()
+CLASS_DECL_ACME ::i64 _first_nano()
 {
 
    return g_iNanosFirst;

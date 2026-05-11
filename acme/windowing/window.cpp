@@ -153,7 +153,7 @@ namespace acme
       //}
 
 
-   //long long window::__CGWindowID()
+   //::i64 window::__CGWindowID()
    //{
 
    //   return 0;

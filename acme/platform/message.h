@@ -19,8 +19,8 @@ namespace platform
 
       enum_message m_emessage;
 
-      long long m_llWparam;
-      long long m_llLparam;
+      ::i64 m_llWparam;
+      ::i64 m_llLparam;
       ::memory m_memory;
 
 
@@ -28,8 +28,8 @@ namespace platform
       ~message() override;
 
 
-      void initialize_message(enum_message emessage, long long llWparam = 0,
-                                          long long llLparam = 0, const ::block &block = {});
+      void initialize_message(enum_message emessage, ::i64 llWparam = 0,
+                                          ::i64 llLparam = 0, const ::block &block = {});
 
 
    };

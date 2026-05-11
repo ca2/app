@@ -52,8 +52,8 @@ inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegi
 }
 
 
-inline long long consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix)
-//inline long long consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10)
+inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix)
+//inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10)
 {
 
    char* endptr = nullptr;

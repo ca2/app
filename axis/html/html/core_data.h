@@ -209,8 +209,8 @@ namespace html
 
 
       virtual string process_url(const ::scoped_string & scopedstrUrl);
-      //virtual long long increment_reference_count() override;
-      //virtual long long decrement_reference_count() override;
+      //virtual ::i64 increment_reference_count() override;
+      //virtual ::i64 decrement_reference_count() override;
 
 
       bool open_document(const ::payload & payloadFile) override;

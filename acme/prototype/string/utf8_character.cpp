@@ -4,7 +4,7 @@
 
 // GitHub MightyPork / utf8_encode.c
 
-utf8_character::utf8_character(long long i)
+utf8_character::utf8_character(::i64 i)
 {
 
    auto& out = this->m_sz;
@@ -51,7 +51,7 @@ utf8_character::utf8_character(long long i)
 }
 
 
-character_count unicode_to_utf8_length(long long i)
+character_count unicode_to_utf8_length(::i64 i)
 {
    if (i < 0)
    {
@@ -81,7 +81,7 @@ character_count unicode_to_utf8_length(long long i)
 }
 
 
-long long utf8_character::index() const
+::i64 utf8_character::index() const
 {
 
    if (m_llIndex < 0)

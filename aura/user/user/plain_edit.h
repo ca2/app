@@ -350,12 +350,12 @@ namespace user
       plain_edit();
       ~plain_edit() override;
 
-      virtual long long increment_reference_count() override
+      virtual ::i64 increment_reference_count() override
       {
          return ::matter::increment_reference_count();
       }
 
-      virtual long long decrement_reference_count() override
+      virtual ::i64 decrement_reference_count() override
       {
          return ::matter::decrement_reference_count();
       }

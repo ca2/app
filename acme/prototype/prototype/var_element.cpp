@@ -164,7 +164,7 @@ void payload::_set_element(::subparticle * pelement)
 }
 
 
-long long payload::logical_release()
+::i64 payload::logical_release()
 {
 
    //if (m_etype == ::e_type_payload_pointer)
@@ -190,10 +190,10 @@ long long payload::logical_release()
 }
 
 
-long long payload::payload_release()
+::i64 payload::payload_release()
 {
 
-   long long iRelease = -1;
+   ::i64 iRelease = -1;
 
    if (m_etype == e_type_string)
    {

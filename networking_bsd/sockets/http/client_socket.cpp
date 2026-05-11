@@ -424,7 +424,7 @@ namespace sockets
    void http_client_socket::OnData(const_char_pointer buf,memsize len)
    {
 
-      if(m_response.attr("http_status_code").as_int() >= 300 && m_response.attr("http_status_code").as_int() <= 399)
+      if(m_response.attr("http_status_code").as_i32() >= 300 && m_response.attr("http_status_code").as_i32() <= 399)
       {
 
          return;
@@ -627,7 +627,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::on_set_scalar(enum_scalar escalar,long long iValue,int iFlags)
+   void http_client_socket::on_set_scalar(enum_scalar escalar,::i64 iValue,int iFlags)
    {
 
       if (escalar == scalar_download_size)
@@ -646,7 +646,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::get_scalar_minimum(enum_scalar escalar, long long & i)
+   void http_client_socket::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
    {
 
       if (escalar == scalar_download_size)
@@ -664,7 +664,7 @@ namespace sockets
 
    }
 
-   void http_client_socket::get_scalar(enum_scalar escalar, long long & i)
+   void http_client_socket::get_scalar(enum_scalar escalar, ::i64 & i)
    {
 
       if (escalar == scalar_download_size)
@@ -682,7 +682,7 @@ namespace sockets
 
    }
 
-   void http_client_socket::get_scalar_maximum(enum_scalar escalar, long long & i)
+   void http_client_socket::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
    {
 
       if (escalar == scalar_download_size)

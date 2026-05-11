@@ -115,7 +115,7 @@ namespace experience
 
 #ifdef _DEBUG
 
-   long long frame::increment_reference_count()
+   ::i64 frame::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -123,7 +123,7 @@ namespace experience
    }
 
 
-   long long frame::decrement_reference_count()
+   ::i64 frame::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

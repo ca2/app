@@ -26,7 +26,7 @@ using uptr = ::u32;
 
 
 // #else
-//using long long = long long int;
+//using ::i64 = ::i64 int;
 //using ::u64 = ::u64 int;
 //#if defined(HAS_HYPER_INTEGER)
 //using hyper_integer = __int128;
@@ -52,7 +52,7 @@ typedef u64 uptr;
 //DO(::u32, unsigned_int, ui, UNSIGNED_INT); \
 //DO(long, long, l, LONG); \
 //DO(unsigned long, unsigned_long, ul, UNSIGNED_LONG); \
-//DO(long long, long long, hi, HUGE_INTEGER); \
+//DO(::i64, ::i64, hi, HUGE_INTEGER); \
 //DO(::u64, ::u64, hn, HUGE_NATURAL); \
 //DO(float, float, f, FLOAT); \
 //DO(double, double, d, DOUBLE);
@@ -82,7 +82,7 @@ DO(short, short, sh, SHORT); \
 DO(unsigned short, unsigned_short, ush, UNSIGNED_SHORT); \
 DO(int, int, i, INT); \
 DO(::u32, unsigned_int, ui, UNSIGNED_INT); \
-DO(long long, long_long, ll, HUGE_INTEGER); \
+DO(::i64, long_long, ll, HUGE_INTEGER); \
 DO(::u64, unsigned_long_long, ull, HUGE_NATURAL); \
 DO(float, float, f, FLOAT); \
 DO(double, double, d, DOUBLE);
@@ -122,7 +122,7 @@ DO(double, double, d, DOUBLE);
 
 // insight by listening lastmiles (Dennis Clarke) talk about pthread_equal (it may end up not to be an int but a pointer in some implementations ?, so should use pthread_equal...)
 /// task_index starts at 1, task_index 0 is not ok
-typedef ::u64 task_index;
+typedef u64 task_index;
 
 
 

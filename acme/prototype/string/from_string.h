@@ -8,9 +8,9 @@ inline  void           from_string(::wide_character & ch, const_char_pointer psz
 inline  void           from_string(char & i, const_char_pointer psz);
 inline  void           from_string(short & i, const_char_pointer psz);
 inline  void           from_string(int & i, const_char_pointer psz);
-inline  void           from_string(long long & i, const_char_pointer psz);
+inline  void           from_string(::i64 & i, const_char_pointer psz);
 inline  void           from_string(int & i, int iBase, const_char_pointer psz);
-inline  void           from_string(long long & i, int iBase, const_char_pointer psz);
+inline  void           from_string(::i64 & i, int iBase, const_char_pointer psz);
 inline  void           from_string(unsigned char & i, const_char_pointer psz);
 inline  void           from_string(unsigned short & i, const_char_pointer psz);
 inline  void           from_string(::u32 & i, const_char_pointer psz);

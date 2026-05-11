@@ -1770,12 +1770,12 @@ inline double_rectangle double_rectangle_dimension(X x, Y y, W w, H h)
 
 //
 //CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, long long numerator, long long denominator);
+//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //
 //
 //CLASS_DECL_ACME int_rectangle & muldiv(int_rectangle & rectangle, int numerator, int denominator);
-//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, long long numerator, long long denominator);
+//CLASS_DECL_ACME long_long_rectangle & muldiv(long_long_rectangle & rectangle, ::i64 numerator, ::i64 denominator);
 //
 //template < prototype_integral NUMERATOR, prototype_integral DENOMINATOR >
 //rectangle_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const 

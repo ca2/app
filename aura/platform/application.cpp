@@ -2784,7 +2784,7 @@ retry_license:
    }
 
 
-   //void application::on_set_scalar(enum_scalar escalar, long long iValue, int iFlags)
+   //void application::on_set_scalar(enum_scalar escalar, ::i64 iValue, int iFlags)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2815,7 +2815,7 @@ retry_license:
    //}
 
 
-   //void application::get_scalar_minimum(enum_scalar escalar, long long & i)
+   //void application::get_scalar_minimum(enum_scalar escalar, ::i64 & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2845,7 +2845,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar(enum_scalar escalar, long long & i)
+   //void application::get_scalar(enum_scalar escalar, ::i64 & i)
    //{
 
    //   //if (escalar == scalar_app_install_progress)
@@ -2875,7 +2875,7 @@ retry_license:
 
    //}
 
-   //void application::get_scalar_maximum(enum_scalar escalar, long long & i)
+   //void application::get_scalar_maximum(enum_scalar escalar, ::i64 & i)
    //{
 
    //   //if (escalar == scalar_download_size)
@@ -8160,7 +8160,7 @@ namespace aura
    bool application::get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending)
    {
 
-      long long i64Size;
+      ::i64 i64Size;
 
       if (!get_fs_size(i64Size, scopedstrPath, bPending))
       {
@@ -8220,7 +8220,7 @@ namespace aura
    }
 
 
-   bool application::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
+   bool application::get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());

@@ -153,15 +153,15 @@ byte2_stream & byte2_stream::operator <<(int i)
 
 }
 
-byte2_stream & byte2_stream::operator >>(long long & ll)
+byte2_stream & byte2_stream::operator >>(::i64 & ll)
 {
 
-   long long iByte = m_pfile->get_unsigned_char();
+   ::i64 iByte = m_pfile->get_unsigned_char();
 
    if(iByte < 0)
    {
 
-      throw ::exception(error_io, "bytes2_stream read long long exception");
+      throw ::exception(error_io, "bytes2_stream read ::i64 exception");
 
    }
 
@@ -172,7 +172,7 @@ byte2_stream & byte2_stream::operator >>(long long & ll)
    if(iByte < 0)
    {
 
-      throw ::exception(error_io, "bytes2_stream read long long exception (b)");
+      throw ::exception(error_io, "bytes2_stream read ::i64 exception (b)");
 
    }
 
@@ -183,7 +183,7 @@ byte2_stream & byte2_stream::operator >>(long long & ll)
    if(iByte < 0)
    {
 
-      throw ::exception(error_io, "bytes2_stream read long long exception (c)");
+      throw ::exception(error_io, "bytes2_stream read ::i64 exception (c)");
 
    }
 
@@ -252,7 +252,7 @@ byte2_stream & byte2_stream::operator >>(long long & ll)
 }
 
 
-byte2_stream & byte2_stream::operator <<(long long ll)
+byte2_stream & byte2_stream::operator <<(::i64 ll)
 {
 
    unsigned char uch = ll&0xff;
@@ -368,7 +368,7 @@ byte2_stream & byte2_stream::operator <<(::string & str)
 byte2_stream & byte2_stream::operator >>(::memory & memory)
 {
 
-   long long ll;
+   ::i64 ll;
 
    *this >> ll;
 
@@ -391,7 +391,7 @@ byte2_stream & byte2_stream::operator >>(::memory & memory)
 byte2_stream & byte2_stream::operator <<(::memory & memory)
 {
 
-   auto ll = (long long)memory.size();
+   auto ll = (::i64)memory.size();
 
    *this << ll;
 

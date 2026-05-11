@@ -1315,7 +1315,7 @@ namespace file
       throw ::interface_only();
    }
 
-   void file::write (long long i)
+   void file::write (::i64 i)
    {
       __UNREFERENCED_PARAMETER(i);
       throw ::interface_only();

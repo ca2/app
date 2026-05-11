@@ -713,7 +713,7 @@ void sequence::destroy()
 
 #if defined(_DEBUG)
 
-long long sequence::increment_reference_count()
+::i64 sequence::increment_reference_count()
 {
 
    return ::subparticle_array::increment_reference_count();
@@ -721,7 +721,7 @@ long long sequence::increment_reference_count()
 }
 
 
-long long sequence::decrement_reference_count()
+::i64 sequence::decrement_reference_count()
 {
 
    return ::subparticle_array::decrement_reference_count();

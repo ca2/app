@@ -1447,7 +1447,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template <  >
-//inline long long __conv<long long>(const ::scoped_string & scopedstr)
+//inline ::i64 __conv<::i64>(const ::scoped_string & scopedstr)
 //{
 //
 //   return (int) ::atoi(str);
@@ -1483,7 +1483,7 @@ inline auto & bottom_right(const RECTANGLE& rectangle) { return *(typename RECTA
 //
 //
 //template < >
-//inline string __xmlpri<long long>()
+//inline string __xmlpri<::i64>()
 //{
 //
 //   return "%" PRId64;

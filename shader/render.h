@@ -49,8 +49,8 @@ namespace app_shader
       //virtual void initialize_render(::user::interaction * puserinteraction);
 
 #ifdef _DEBUG
-      virtual long long increment_reference_count() override;
-      virtual long long decrement_reference_count() override;
+      virtual ::i64 increment_reference_count() override;
+      virtual ::i64 decrement_reference_count() override;
 #endif
 
       virtual void update_shader();

@@ -146,7 +146,7 @@ namespace dropbox
    //
    //    memIn.set_size((memsize)maximum(1024, minimum(pfileIn->right_size(), 1024 * 64)));
    //
-   //    long long uRead = pfileIn->read(memIn);
+   //    ::i64 uRead = pfileIn->read(memIn);
    //
    //    z_stream zstream;
    //

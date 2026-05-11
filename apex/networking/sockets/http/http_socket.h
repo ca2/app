@@ -62,7 +62,7 @@ namespace sockets
       memsize              m_body_size_left;
       memsize              m_body_size_downloaded;
       double                m_dDownloadRate;
-      long long                m_iDownloaded;
+      ::i64                m_iDownloaded;
       memsize              m_chunk_size;
       int                  m_chunk_state;
       string               m_chunk_line;
@@ -72,7 +72,7 @@ namespace sockets
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
       ::pointer<::http::listener>    m_plistener;
-      long long                m_iHttpSocketRequestSerial;
+      ::i64                m_iHttpSocketRequestSerial;
 
       enum_http_method                    m_emethod;
 
@@ -88,7 +88,7 @@ namespace sockets
 
       void initialize(::particle * pparticle) override;
 
-      virtual long long get_request_serial();
+      virtual ::i64 get_request_serial();
       ::string get_request_url_string() override;
 
       ::string get_short_debug_text(int i) const override;

@@ -242,7 +242,7 @@ namespace hi5
 
       log_line(m_strRequest);
 
-      long long iLen = pfile->get_length();
+      ::i64 iLen = pfile->get_length();
 
       if (iLen <= 0)
       {
@@ -278,11 +278,11 @@ namespace hi5
 
       }
 
-      long long iChunkSize = 1024 * 1024;
+      ::i64 iChunkSize = 1024 * 1024;
 
-      long long iLastChunkSize = iLen % iChunkSize;
+      ::i64 iLastChunkSize = iLen % iChunkSize;
 
-      long long iChunkCount = iLen / iChunkSize;
+      ::i64 iChunkCount = iLen / iChunkSize;
 
       if (iLastChunkSize <= 0)
       {
@@ -328,7 +328,7 @@ namespace hi5
       for (::collection::index i = 0; i < iChunkCount; i++)
       {
 
-         long long iSize;
+         ::i64 iSize;
 
          if (i >= iChunkCount - 1)
          {
@@ -347,7 +347,7 @@ namespace hi5
 
          //memsize uRead;
 
-         //long long iPos = 0;
+         //::i64 iPos = 0;
 
          //::u32 tickStart= ::time::now();
 
@@ -2156,7 +2156,7 @@ namespace hi5
       {
          /* Get OAuth header for request token */
          ::property_set set;
-         long long iTime = ::time(nullptr);
+         ::i64 iTime = ::time(nullptr);
          if (m_oauth.getOAuthHeader(eOAuthHttpPost, "https://twitter.com/oauth/request_token", set))
          {
             if (performPost("https://twitter.com/oauth/request_token", set))

@@ -521,7 +521,7 @@ namespace platform
    }
 
 
-   ::lresult apex_system_layer::system_id_topic(int iId, long long llWparam, long long llLparam)
+   ::lresult apex_system_layer::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
    {
       
       return 0;

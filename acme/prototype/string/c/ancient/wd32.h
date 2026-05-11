@@ -61,7 +61,7 @@ CLASS_DECL_ACME const ::wd32_character * __wd32istr(const ::wd32_character * psz
 
 CLASS_DECL_ACME ::wd32_character * __u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character *& end);
 
-CLASS_DECL_ACME ::wd32_character * __long_longtowd32(long long i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character *& end);
+CLASS_DECL_ACME ::wd32_character * __long_longtowd32(::i64 i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase, ::wd32_character *& end);
 
 CLASS_DECL_ACME ::wd32_character * overlap_safe_wd32ncpy(::wd32_character * pszDst, const ::wd32_character * pszSrc, character_count srclen);
 
@@ -77,7 +77,7 @@ CLASS_DECL_ACME character_count __wd32spn(const ::wd32_character * psz1, const :
 
 CLASS_DECL_ACME character_count __wd32cspn(const ::wd32_character * psz1, const ::wd32_character * psz2);
 
-CLASS_DECL_ACME long long __wd32toi64(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME ::i64 __wd32toi64(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME ::u64 __wd32tou64(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME int __wd32toi32(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME ::u32 __wd32tou32(const ::wd32_character * psz, ::wd32_character ** ppszEnd, int iBase);

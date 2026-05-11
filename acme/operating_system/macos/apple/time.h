@@ -8,5 +8,5 @@
 
 
 
-CLASS_DECL_ACME long long long_long_nanosecond();
+CLASS_DECL_ACME ::i64 long_long_nanosecond();
 

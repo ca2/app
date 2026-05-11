@@ -326,7 +326,7 @@ public:
       domain_id                     m_domainid;
       ::string                      m_str;
       ::ansi_range                  m_range;
-      long long                     m_iLargest;
+      ::i64                     m_iLargest;
       ::u64            m_uLargest;
 
    };
@@ -681,11 +681,11 @@ public:
    //inline operator ::iptr() const { return as_iptr(); }
    //inline operator ::user::enum_message () const { return as_emessage(); }
    
-   inline long long as_long_long() const;
+   inline ::i64 as_i64() const;
    inline ::iptr as_iptr() const;
-   inline int as_int() const { return (int) as_long_long(); }
-   inline ::u32 as_u32() const { return (::u32) as_long_long(); }
-   inline ::collection::index as_index() const { return (::collection::index)as_long_long(); }
+   inline int as_i32() const { return (int) as_i64(); }
+   inline ::u32 as_u32() const { return (::u32) as_i64(); }
+   inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
    inline ::u32 as_umessage() const { return as_u32(); }
    inline ::user::enum_message as_eusermessage() const;
    inline ::enum_message as_emessage1() const;

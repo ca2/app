@@ -103,12 +103,12 @@
 #else
 
         //
-        //  Use C9 long long support for Daytona RISC platforms.
+        //  Use C9 ::i64 support for Daytona RISC platforms.
         //
 
         INLINE int MulDiv32( int a, int b, int ca )
         {
-           return (int)(((long long)a * (long long)b) / (long long)ca);
+           return (int)(((::i64)a * (::i64)b) / (::i64)ca);
         }
 
 
@@ -126,7 +126,7 @@
 
         INLINE ::u32 MulDivRU( ::u32 a, ::u32 b, ::u32 ca )
         {
-           return (int)((((::u64) a * (long long)b) + ca -1) / (long long)ca);
+           return (int)((((::u64) a * (::i64)b) + ca -1) / (::i64)ca);
         }
 
     #endif
@@ -136,7 +136,7 @@
 
 inline int MulDiv32(int a, int b, int ca)
 {
-    return (int) (((long long) a * (long long) b) / (long long) ca);
+    return (int) (((::i64) a * (::i64) b) / (::i64) ca);
 }
 
 inline ::u32 MulDivRD(::u32 a, ::u32 b, ::u32 ca)

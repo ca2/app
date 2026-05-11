@@ -755,7 +755,7 @@ namespace write_text
    void font_list::handle(::topic * ptopic, ::handler_context * phandlercontext)
    {
 
-      ::enum_id eid = (::enum_id)ptopic->id().as_long_long();
+      ::enum_id eid = (::enum_id)ptopic->id().as_i64();
 
       if (eid == id_font_enumeration)
       {

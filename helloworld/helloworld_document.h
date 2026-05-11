@@ -21,9 +21,9 @@ namespace helloworld
       virtual bool on_new_document();
       virtual bool on_open_document(const ::payload & payloadFile) override;
 
-      virtual long long increment_reference_count();
+      virtual ::i64 increment_reference_count();
 
-      virtual long long decrement_reference_count();
+      virtual ::i64 decrement_reference_count();
 
 
    };

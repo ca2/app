@@ -2027,7 +2027,7 @@ void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::int_point 
 }
 
 
-void imaging::trait(::image::image *pimage, long long iTrait)
+void imaging::trait(::image::image *pimage, ::i64 iTrait)
 {
 
    return pimage->transform((enum_image)iTrait);
@@ -6891,9 +6891,9 @@ void imaging::HueVRCP(::image::image *pimage,::color::color crHue,double dCompre
 
    unsigned char * p = (unsigned char *)pimage->get_data();
 
-   long long area = pimage->area();
+   ::i64 area = pimage->area();
 
-   for(long long i = 0; i < area; i++)
+   for(::i64 i = 0; i < area; i++)
    {
 
       ((image32_t *)p)->assign(cra[(p[0] + p[1] + p[2]) / 3] & ::opacity(p[3]), pimage->color_indexes());

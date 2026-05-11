@@ -343,9 +343,9 @@ namespace geo
 
                   DEBUGF_OUT("D");
 
-                  long long iId;
+                  ::i64 iId;
 
-                  iId = v["_id"].as_long_long();
+                  iId = v["_id"].as_i64();
 
                   DEBUGF_OUT("E");
 
@@ -449,7 +449,7 @@ namespace geo
    }
 
 
-   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, long long& iId, double& dLat, double& dLon)
+   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, ::i64& iId, double& dLat, double& dLon)
    {
 
       string_array_base stra;
@@ -509,7 +509,7 @@ namespace geo
 
 
 
-   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, long long& iId, double& dLat, double& dLon, bool bPrefix)
+   ::collection::index geo::openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, ::i64& iId, double& dLat, double& dLon, bool bPrefix)
    {
 
       string strQueryLo;
@@ -744,9 +744,9 @@ namespace geo
 
       v.parse_network_payload(pszJson);
 
-      ::earth::zone_time timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_long_long() }, iTimeZone);
+      ::earth::zone_time timeSunrise({ posix_time_t{}, v["sys"]["sunrise"].as_i64() }, iTimeZone);
 
-      ::earth::zone_time timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_long_long() }, iTimeZone);
+      ::earth::zone_time timeSunset({ posix_time_t{}, v["sys"]["sunset"].as_i64() }, iTimeZone);
 
       iRise = (int)timeSunrise.GetZoneTimeOfDay().m_iSecond;
 
@@ -829,7 +829,7 @@ namespace geo
       }
 
 
-      //  long long iId;
+      //  ::i64 iId;
 
 //      double dLat;
 

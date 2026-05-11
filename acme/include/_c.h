@@ -47,11 +47,3 @@ CLASS_DECL_ACME void* reverse_byte_not_in_block(const void* l, std::size_t l_len
 
 
 
-typedef char i8;
-typedef unsigned char u8;
-typedef short i16;
-typedef unsigned short u16;
-typedef int i32;
-typedef unsigned int u32;
-typedef long long i64;
-typedef unsigned long long u64;

@@ -251,10 +251,10 @@ string apple_get_executable_path()
 
 
 
-long long oswindow_id(oswindow w)
+::i64 oswindow_id(oswindow w)
 {
 
-   return (long long) (w);
+   return (::i64) (w);
 
 }
 

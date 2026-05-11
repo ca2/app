@@ -118,7 +118,7 @@
 ////int client_send(memory & m, int fin, memory & memory, bool useMask)
 ////{
 ////
-////   long long message_size = memory.size();
+////   ::i64 message_size = memory.size();
 ////
 ////   int length = (int) ( 2 + message_size);
 ////
@@ -278,7 +278,7 @@
 ////
 ////         frame[1] = 127;
 ////         
-////         *((long long*)&frame[2]) = HTONLL(len);
+////         *((::i64*)&frame[2]) = HTONLL(len);
 ////         
 ////      }
 ////      else
@@ -662,7 +662,7 @@
 //
 //      int iHttpStatusCode;
 //
-//      iHttpStatusCode = outattr("http_status_code").as_int();
+//      iHttpStatusCode = outattr("http_status_code").as_i32();
 //
 //      string strStatus;
 //

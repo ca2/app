@@ -222,10 +222,10 @@ namespace image
       // paint_rgb
       virtual void multiply_rgb_by_source_alpha(::color::color color);
 
-      virtual long long get_rgba_area(::color::color color) const;
-      virtual long long get_rgba_area(::color::color color, const ::int_rectangle &rect) const;
-      virtual long long _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
-      virtual long long _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rectangle &rect) const;
+      virtual ::i64 get_rgba_area(::color::color color) const;
+      virtual ::i64 get_rgba_area(::color::color color, const ::int_rectangle &rect) const;
+      virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
+      virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const ::int_rectangle &rect) const;
 
 
       virtual void saturation(double dRate);

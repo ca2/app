@@ -42,7 +42,7 @@ namespace data
 
 } // namespace data
 
-CLASS_DECL_ACME long long function_debugging_serial();
+CLASS_DECL_ACME ::i64 function_debugging_serial();
 template < prototype_function FUNCTION >
 void object::hold_signal_function(::data::signal<FUNCTION> * psignal, const FUNCTION & function)
 {

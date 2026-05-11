@@ -7,7 +7,7 @@
 
 
 //using real = double;
-//using integer = long long;
+//using integer = ::i64;
 
 namespace number
 {
@@ -24,7 +24,7 @@ namespace number
          unsigned short       m_ush;
          int       m_i;
          ::u32       m_ui;
-         long long       m_hi;
+         ::i64       m_hi;
          ::u64       m_hn;
 
          float       m_f;
@@ -41,7 +41,7 @@ namespace number
       number(unsigned short u) { m_ush = u; m_enumber = e_number_unsigned_short; }
       number(int i) { m_i = i; m_enumber = e_number_int; }
       number(::u32 u) { m_ui = u; m_enumber = e_number_unsigned_int; }
-      number(long long i) { m_hi = i; m_enumber = e_number_long_long; }
+      number(::i64 i) { m_hi = i; m_enumber = e_number_long_long; }
       number(::u64 u) { m_hn = u; m_enumber = e_number_unsigned_long_long; }
       number(float f) { m_f = f; m_enumber = e_number_float; }
       number(double d) { m_d = d; m_enumber = e_number_double; }
@@ -115,7 +115,7 @@ namespace number
                m_ui = (::u32)t;
                break;
             case e_number_long_long:
-               m_hi = (long long)t;
+               m_hi = (::i64)t;
                break;
             case e_number_unsigned_long_long:
                m_hn = (::u64)t;
@@ -136,7 +136,7 @@ namespace number
       unsigned short get_unsigned_short() const { return get < unsigned short>(); }
       int get_int() const { return get < int>(); }
       ::u32 get_unsigned_int() const { return get < ::u32>(); }
-      long long get_long_long() const { return get < long long>(); }
+      ::i64 get_long_long() const { return get < ::i64>(); }
       ::u64 get_unsigned_long_long() const { return get < ::u64>(); }
       float get_float() const { return get < float>(); }
       double get_double() const { return get < double>(); }
@@ -401,7 +401,7 @@ inline string get_default_integer_scalar_format()
 //}
 //
 //template <  >
-//inline string get_default_scalar_format < long long >()
+//inline string get_default_scalar_format < ::i64 >()
 //{
 //   return "%lli";
 //}
@@ -609,14 +609,14 @@ namespace  number
 //
 //
 ////using double_scalar_manager = scalar_manager < double >;
-////using int_scalar_manager  = scalar_manager < long long >;
+////using int_scalar_manager  = scalar_manager < ::i64 >;
 //
 ////using double_scalar_listener = scalar_manager < double >::listener;
-////using int_scalar_listener  = scalar_manager < long long >::listener;
+////using int_scalar_listener  = scalar_manager < ::i64 >::listener;
 //
 //
 ////using double_scalar = scalar < double >;
-////using int_scalar  = scalar < long long >;
+////using int_scalar  = scalar < ::i64 >;
 //
 //
 //

@@ -13,15 +13,15 @@ protected:
 
 
    //char               m_sz[16];
-   //long long *        m_plong;
-   long long            m_ll;
+   //::i64 *        m_plong;
+   ::i64            m_ll;
 
 
 public:
 
 
 
-   inline interlocked_long_long(long long i = 0);
+   inline interlocked_long_long(::i64 i = 0);
 
 
    inline interlocked_long_long(const interlocked_long_long& ll);
@@ -30,22 +30,22 @@ public:
    inline interlocked_long_long(interlocked_long_long && ll);
 
 
-   inline interlocked_long_long& operator = (long long i);
+   inline interlocked_long_long& operator = (::i64 i);
 
 
-   inline operator long long() const;
+   inline operator ::i64() const;
 
 
-   inline long long operator ++();
-   inline long long operator--();
-   inline long long operator ++(int);
-   inline long long operator--(int);
+   inline ::i64 operator ++();
+   inline ::i64 operator--();
+   inline ::i64 operator ++(int);
+   inline ::i64 operator--(int);
 
-   inline interlocked_long_long& operator +=(long long l);
-   inline interlocked_long_long& operator-=(long long l);
+   inline interlocked_long_long& operator +=(::i64 l);
+   inline interlocked_long_long& operator-=(::i64 l);
 
 
-   inline long long as_integer() const { return m_ll;}
+   inline ::i64 as_integer() const { return m_ll;}
    
 };
 
@@ -104,7 +104,7 @@ using interlocked_count = ::interlocked_long_long;
 #if OSBIT == 64
 
 
-inline interlocked_long_long::interlocked_long_long(long long i) :
+inline interlocked_long_long::interlocked_long_long(::i64 i) :
    m_ll(i)
 {
 
@@ -125,7 +125,7 @@ inline interlocked_long_long::interlocked_long_long(interlocked_long_long && ll)
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator = (long long i)
+inline interlocked_long_long& interlocked_long_long::operator = (::i64 i)
 {
 
    atomic_assign64(&m_ll, i);
@@ -135,7 +135,7 @@ inline interlocked_long_long& interlocked_long_long::operator = (long long i)
 }
 
 
-inline interlocked_long_long::operator long long() const
+inline interlocked_long_long::operator ::i64() const
 {
 
    return m_ll;
@@ -143,7 +143,7 @@ inline interlocked_long_long::operator long long() const
 }
 
 
-inline long long interlocked_long_long::operator ++()
+inline ::i64 interlocked_long_long::operator ++()
 {
 
    return atomic_increment64(&m_ll);
@@ -151,7 +151,7 @@ inline long long interlocked_long_long::operator ++()
 }
 
 
-inline long long interlocked_long_long::operator--()
+inline ::i64 interlocked_long_long::operator--()
 {
 
    return atomic_decrement64(&m_ll);
@@ -159,7 +159,7 @@ inline long long interlocked_long_long::operator--()
 }
 
 
-inline long long interlocked_long_long::operator ++(int)
+inline ::i64 interlocked_long_long::operator ++(int)
 {
 
    auto ll = m_ll;
@@ -171,7 +171,7 @@ inline long long interlocked_long_long::operator ++(int)
 }
 
 
-inline long long interlocked_long_long::operator--(int)
+inline ::i64 interlocked_long_long::operator--(int)
 {
 
    auto ll = m_ll;
@@ -183,7 +183,7 @@ inline long long interlocked_long_long::operator--(int)
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator +=(long long ll)
+inline interlocked_long_long& interlocked_long_long::operator +=(::i64 ll)
 {
 
    atomic_add64(&m_ll, ll);
@@ -193,7 +193,7 @@ inline interlocked_long_long& interlocked_long_long::operator +=(long long ll)
 }
 
 
-inline interlocked_long_long& interlocked_long_long::operator-=(long long ll)
+inline interlocked_long_long& interlocked_long_long::operator-=(::i64 ll)
 {
 
    atomic_subtract64(&m_ll, ll);

@@ -749,7 +749,7 @@ CLASS_DECL_ACME void wd32_from_u64_base(::wd32_character * sz, ::u64 u, int iBas
 }
 
 
-CLASS_DECL_ACME void wd32_from_long_long_base(::wd32_character * sz, long long i, int iBase, enum_digit_case edigitcase)
+CLASS_DECL_ACME void wd32_from_long_long_base(::wd32_character * sz, ::i64 i, int iBase, enum_digit_case edigitcase)
 {
 
    wd32_character * pend = nullptr;
@@ -762,7 +762,7 @@ CLASS_DECL_ACME void wd32_from_long_long_base(::wd32_character * sz, long long i
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME long long wd32_to_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME ::i64 wd32_to_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return __wd32toi64(psz, (::wd32_character **) ppszEnd, iBase);
@@ -795,7 +795,7 @@ CLASS_DECL_ACME ::u32 wd32_to_unsigned_int(const ::wd32_character * psz, const :
 #else
 
 
-CLASS_DECL_ACME long long wd32_to_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
+CLASS_DECL_ACME ::i64 wd32_to_long_long(const ::wd32_character * psz, const ::wd32_character ** ppszEnd, int iBase)
 {
 
    return wcstoll(psz, (::wd32_character **) ppszEnd, iBase);

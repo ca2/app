@@ -87,13 +87,7 @@ namespace subsystem
        */
       virtual void close();
 
-      /**
-       * @deprecated.
-       */
       virtual void waitForConnect(const class ::time & time = time::infinity());
-      /**
-       * @deprecated.
-       */
       virtual void closeConnection();
 
    //private:

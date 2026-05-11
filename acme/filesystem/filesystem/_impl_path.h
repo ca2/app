@@ -44,7 +44,7 @@ namespace file
 {
 
 
-   inline path_meta::path_meta(enum_path epath, long long iSize, e_type etype, long long iName, character_count iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   inline path_meta::path_meta(enum_path epath, ::i64 iSize, e_type etype, ::i64 iName, character_count iBasePathLength, enumeration < ::file::enum_flag > eflag)
    {
 
       m_epath = epath;
@@ -58,7 +58,7 @@ namespace file
 
 
    //template < typename ITERATOR_TYPE, int t_size >
-   //inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, long long iSize) :
+   //inline path::path(const const_string_range_static_array < ITERATOR_TYPE, t_size >& a, enum_path epath, e_type etype, bool bNormalize, ::i64 iSize) :
    //   path((const ::ansi_string&)a, epath, etype, bNormalize, iSize)
    //{
 
@@ -68,7 +68,7 @@ namespace file
 
 
 
-   //inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(wd16str), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -77,7 +77,7 @@ namespace file
 
 
    //template < typename ITERATOR_TYPE >
-   //inline path::path(const ::range < ITERATOR_TYPE > & range, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::range < ITERATOR_TYPE > & range, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(range), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -85,7 +85,7 @@ namespace file
    //}
 
 
-   //inline path::path(const_char_pointer pansisz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const_char_pointer pansisz, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -93,7 +93,7 @@ namespace file
    //}
 
 
-   //inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(pwd16sz), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -101,7 +101,7 @@ namespace file
    //}
 
 
-   //inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //   path(::string(pwd32sz), epath, etype, bNormalizePath, iSize)
    //{
 
@@ -176,7 +176,7 @@ namespace file
    //
 
 
-   //   path::path(const unichar * pwsz, character_count iCount, e_path epath, e_type etype, bool bNormalizePath, long long iSize) :
+   //   path::path(const unichar * pwsz, character_count iCount, e_path epath, e_type etype, bool bNormalizePath, ::i64 iSize) :
    //      string(pwsz, iCount),
    //      path_meta(epath, iSize, iDir)
    //   {

@@ -49,10 +49,10 @@ namespace berg
 #ifdef _DEBUG
 
 
-   long long about_the_operating_system_impact::increment_reference_count() { return ::user::impact::increment_reference_count(); }
+   ::i64 about_the_operating_system_impact::increment_reference_count() { return ::user::impact::increment_reference_count(); }
 
 
-   long long about_the_operating_system_impact::decrement_reference_count() { return ::user::impact::decrement_reference_count(); }
+   ::i64 about_the_operating_system_impact::decrement_reference_count() { return ::user::impact::decrement_reference_count(); }
 
 
 #endif

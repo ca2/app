@@ -37,12 +37,12 @@ namespace user
       // virtual void dump(dump_context &) const override;
       // void assert_ok() const override;
 
-      //virtual long long increment_reference_count() override
+      //virtual ::i64 increment_reference_count() override
       //{
       //   return ::user::impact_system::increment_reference_count();
       //}
 
-      //virtual long long decrement_reference_count() override
+      //virtual ::i64 decrement_reference_count() override
       //{
       //   return ::user::impact_system::decrement_reference_count();
       //}

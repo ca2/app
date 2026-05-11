@@ -34,7 +34,7 @@ public:
    plex_heap *                      m_pBlocks;     // linked list_base of blocks (is nBlocks*nAllocSize)
    node*                            m_pnodeFree;   // first free node (nullptr if no free nodes)
    ::critical_section               m_criticalsection;
-   long long                              m_iFreeHitCount;
+   ::i64                              m_iFreeHitCount;
    node *                           m_pnodeLastBlock;
 
 

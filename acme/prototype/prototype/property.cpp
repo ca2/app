@@ -712,27 +712,27 @@ string & property::get_network_arguments(::string & str) const
 //
 //
 //
-//bool property::operator == (long long i) const
+//bool property::operator == (::i64 i) const
 //{
 //   return payload::operator == (i);
 //}
-//bool property::operator != (long long i) const
+//bool property::operator != (::i64 i) const
 //{
 //   return payload::operator != (i);
 //}
-//bool property::operator < (long long i) const
+//bool property::operator < (::i64 i) const
 //{
 //   return payload::operator < (i);
 //}
-//bool property::operator <= (long long i) const
+//bool property::operator <= (::i64 i) const
 //{
 //   return payload::operator <= (i);
 //}
-//bool property::operator >= (long long i) const
+//bool property::operator >= (::i64 i) const
 //{
 //   return payload::operator >= (i);
 //}
-//bool property::operator > (long long i) const
+//bool property::operator > (::i64 i) const
 //{
 //   return payload::operator > (i);
 //}
@@ -746,7 +746,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() - user;
 //}
 //
-//::payload property::operator - (long long i) const
+//::payload property::operator - (::i64 i) const
 //{
 //   return get_value() - i;
 //}
@@ -775,7 +775,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() + user;
 //}
 //
-//::payload property::operator + (long long i) const
+//::payload property::operator + (::i64 i) const
 //{
 //   return get_value() + i;
 //}
@@ -807,7 +807,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() / user;
 //}
 //
-//::payload property::operator / (long long i) const
+//::payload property::operator / (::i64 i) const
 //{
 //   return get_value() / i;
 //}
@@ -836,7 +836,7 @@ string & property::get_network_arguments(::string & str) const
 //   return get_value() * user;
 //}
 //
-//::payload property::operator * (long long i) const
+//::payload property::operator * (::i64 i) const
 //{
 //   return get_value() * i;
 //}
@@ -868,7 +868,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator -= (long long i)
+//property & property::operator -= (::i64 i)
 //{
 //   operator=(*this - i);
 //   return *this;
@@ -912,7 +912,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (long long i)
+//property & property::operator += (::i64 i)
 //{
 //   operator=(*this + i);
 //   return *this;
@@ -966,7 +966,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator /= (long long i)
+//property & property::operator /= (::i64 i)
 //{
 //   operator=(*this / i);
 //   return *this;
@@ -1008,7 +1008,7 @@ string & property::get_network_arguments(::string & str) const
 //   return *this;
 //}
 //
-//property & property::operator *= (long long i)
+//property & property::operator *= (::i64 i)
 //{
 //   operator=(*this * i);
 //   return *this;
@@ -1157,7 +1157,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator - (long long l, const property & prop)
+//::payload  operator - (::i64 l, const property & prop)
 //{
 //   return l - (const & payload) prop;
 //}
@@ -1232,7 +1232,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator + (long long l, const property & prop)
+//::payload  operator + (::i64 l, const property & prop)
 //{
 //   return l + prop;
 //}
@@ -1307,7 +1307,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator / (long long l, const property & prop)
+//::payload  operator / (::i64 l, const property & prop)
 //{
 //   return l / prop;
 //}
@@ -1370,7 +1370,7 @@ string & property::get_network_arguments(::string & str) const
 //}
 //
 //
-//::payload  operator * (long long l, const property & prop)
+//::payload  operator * (::i64 l, const property & prop)
 //{
 //   return l * prop;
 //}
@@ -1465,7 +1465,7 @@ void on_property_construct(property * pproperty)
 
 #if DEBUG_PROPERTY_COUNT
 
-   informationf("prop" + as_string(g_interlockedcountProperty.operator long long) + "\n");
+   informationf("prop" + as_string(g_interlockedcountProperty.operator ::i64) + "\n");
 
    on_property_construct2();
 

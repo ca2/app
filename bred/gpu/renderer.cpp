@@ -56,7 +56,7 @@ namespace gpu
 
 #ifdef _DEBUG
 
-   long long renderer::increment_reference_count()
+   ::i64 renderer::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -64,7 +64,7 @@ namespace gpu
    }
 
 
-   long long renderer::decrement_reference_count()
+   ::i64 renderer::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();

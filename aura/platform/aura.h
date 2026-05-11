@@ -19,7 +19,7 @@
 //
 ////#if OBJECT_TYPE_COUNTER
 ////
-////   extern map_base < const_char_pointer ,const ::scoped_string & scopedstr, long long, long long >* g_pmapObjTypCtr;
+////   extern map_base < const_char_pointer ,const ::scoped_string & scopedstr, ::i64, ::i64 >* g_pmapObjTypCtr;
 ////
 ////#endif
 //
@@ -129,7 +129,7 @@
 ////
 ////#endif
 //
-//   //extern long long g_iFirstNano;
+//   //extern ::i64 g_iFirstNano;
 //
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //

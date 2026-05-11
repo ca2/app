@@ -45,7 +45,7 @@
 ////   void write(unsigned short u) override;
 ////   void write(int i) override;
 ////   void write(::u32 u)  override;
-////   void write(long long i)  override;
+////   void write(::i64 i)  override;
 ////   void write(::u64 u)  override;
 ////   void hex_dump(char i);
 ////   void hex_dump(unsigned char i);
@@ -53,7 +53,7 @@
 ////   void hex_dump(unsigned short i);
 ////   void hex_dump(int i);
 ////   void hex_dump(::u32 i);
-////   void hex_dump(long long i);
+////   void hex_dump(::i64 i);
 ////   void hex_dump(::u64 i);
 ////   void write(float f) override;
 ////   void write(double d) override;

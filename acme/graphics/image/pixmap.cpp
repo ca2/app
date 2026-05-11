@@ -22,7 +22,7 @@ void pixmap::mult_alpha()
 {
 
    unsigned char * dst = (unsigned char *)data();
-   long long size = m_size.area();
+   ::i64 size = m_size.area();
 
 
    //  / 255 instead of / 255 subsequent alpha_blend operations say thanks on true_blend because (255) * (1/254) + (255) * (254/255) > 255
@@ -217,10 +217,10 @@ pixmap & pixmap::operator =(const pixmap & pixmap)
 
    auto data = (unsigned char *) this->m_pimage32;
 
-   long long r = 0;
-   long long g = 0;
-   long long b = 0;
-   long long a = 0;
+   ::i64 r = 0;
+   ::i64 g = 0;
+   ::i64 b = 0;
+   ::i64 a = 0;
 
    for (int n = 0; n < h; n++) {
 

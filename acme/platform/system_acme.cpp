@@ -2511,7 +2511,7 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //    long long system::increment_reference_count()
+   //    ::i64 system::increment_reference_count()
    //    {
    //
    //       return ::object::increment_reference_count();
@@ -2519,7 +2519,7 @@ namespace platform
    //    }
    //
    //
-   //    long long system::decrement_reference_count()
+   //    ::i64 system::decrement_reference_count()
    //    {
    //
    //       return ::object::decrement_reference_count();
@@ -2530,7 +2530,7 @@ namespace platform
    // #endif
    //
    //
-   //    void acme_system_layer::system::system_id_topic(int iId, long long llWparam, long long llLparam)
+   //    void acme_system_layer::system::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
    //    {
    //
    //       call((::enum_id)iId, iPayload);
@@ -3940,10 +3940,10 @@ namespace platform
    // #ifdef _DEBUG
    //
    //
-   //       long long increment_reference_count() override{}
+   //       ::i64 increment_reference_count() override{}
    //
    //
-   //       long long decrement_reference_count() override{}
+   //       ::i64 decrement_reference_count() override{}
    //
    //
    // #endif
@@ -4554,9 +4554,9 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      m_mapEnumToText[::type<e>().name()][(long long)e] = psz{}
+   //      m_mapEnumToText[::type<e>().name()][(::i64)e] = psz{}
    //
-   //      m_mapTextToEnum[::type<e>().name()][psz] = (long long)e{}
+   //      m_mapTextToEnum[::type<e>().name()][psz] = (::i64)e{}
    //
    //   }
 
@@ -4567,7 +4567,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock synchronouslock(&m_csEnumText){}
    //
-   //      return m_mapEnumToText[::type<e>().name()][(long long)e]{}
+   //      return m_mapEnumToText[::type<e>().name()][(::i64)e]{}
    //
    //   }
 
@@ -4578,7 +4578,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //
    //      critical_section_lock lock(&m_csEnumText){}
    //
-   //      long long iValue{}
+   //      ::i64 iValue{}
    //
    //      if (m_mapTextToEnum[::type<e>().name()].find(scopedstr, iValue))
    //      {
@@ -4611,7 +4611,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    //   inline string enum_text(const base_enum < ENUM, edefault >& b)
    //   {
    //
-   //      return enum_text(b.m_evalue, (long long)(ENUM)b){}
+   //      return enum_text(b.m_evalue, (::i64)(ENUM)b){}
    //
    //   }
 
@@ -4643,7 +4643,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    // }
 
 
-   // static inline ::atom atom(long long i)
+   // static inline ::atom atom(::i64 i)
    // {
    // }
    //
@@ -4704,7 +4704,7 @@ void acme_system_layer::open_internet_link(const ::scoped_string & scopedstrUrl,
    }
 
 
-   ::lresult acme_system_layer::system_id_topic(int iId, long long llWparam, long long llLparam)
+   ::lresult acme_system_layer::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
    {
       
       return 0;
@@ -5088,7 +5088,7 @@ void acme_system_layer::on_open_untitled_file()
 // //}
 //
 //
-// void acme_system_layer::system_id_topic(void* pSystem, long long iSystemUserMessage, long long iParam)
+// void acme_system_layer::system_id_topic(void* pSystem, ::i64 iSystemUserMessage, ::i64 iParam)
 // {
 //
 //    auto psystem = (::platform::system *)pSystem;

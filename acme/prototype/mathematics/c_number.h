@@ -203,11 +203,11 @@ class time;
 //public:
 //
 //
-//   long long       m_i;
+//   ::i64       m_i;
 //
 //
 //   class ::time() { m_i = 0; }
-//   class ::time(long long i) { m_i = i; }
+//   class ::time(::i64 i) { m_i = i; }
 //
 //
 //   class ::time & operator = (const second & second) { m_i = second.m_i * 1'000; return *this; }
@@ -215,7 +215,7 @@ class time;
 //   class ::time & operator = (const microsecond & microsecond);
 //   class ::time & operator = (const nanosecond & nanosecond);
 //   class ::time & operator = (const class time & time);
-//   class ::time & operator = (long long i) { m_i = i; return *this; }
+//   class ::time & operator = (::i64 i) { m_i = i; return *this; }
 //
 //
 //};
@@ -235,7 +235,7 @@ class time;
 
 //DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize        , ::u64)
 //DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize    , ::u64)
-//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize      ,  long long)
+//DEFINE_C_NUMBER(CLASS_DECL_ACME, filesize      ,  ::i64)
 
 
 /*namespace numeric_info

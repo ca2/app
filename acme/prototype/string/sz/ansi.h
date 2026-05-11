@@ -145,7 +145,7 @@ CLASS_DECL_ACME void  flood_characters(::ansi_character * psz, ::ansi_character 
 CLASS_DECL_ACME character_count unichar_count(const_char_pointer pstr);
 
 
-CLASS_DECL_ACME long long string_to_signed(const_char_pointer psz);
+CLASS_DECL_ACME ::i64 string_to_signed(const_char_pointer psz);
 CLASS_DECL_ACME ::u64 as_u64(const_char_pointer psz);
 CLASS_DECL_ACME double string_to_floating(const_char_pointer psz);
 

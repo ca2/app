@@ -2158,7 +2158,7 @@ namespace coding
    //   else
    //   {
 
-   //      set_status1(as_string((int)(long long)m_cPendingSource) + " Working Copies to Download...");
+   //      set_status1(as_string((int)(::i64)m_cPendingSource) + " Working Copies to Download...");
 
    //   }
 

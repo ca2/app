@@ -44,7 +44,7 @@ object::~object()
 }
 
 
-long long object::increment_reference_count()
+::i64 object::increment_reference_count()
 {
 
    return ::subparticle::increment_reference_count();
@@ -61,7 +61,7 @@ long long object::increment_reference_count()
 }
 
 
-long long object::decrement_reference_count()
+::i64 object::decrement_reference_count()
 {
 
    return ::subparticle::decrement_reference_count();
@@ -83,10 +83,10 @@ long long object::decrement_reference_count()
 }
 
 
-long long object::release()
+::i64 object::release()
 {
 
-   long long i = decrement_reference_count();
+   ::i64 i = decrement_reference_count();
 
    if (i == 0)
    {
@@ -2822,7 +2822,7 @@ void call_sync(const ::procedure_array& methoda)
 //#ifdef _DEBUG
 //
 //
-//long long object::increment_reference_count()
+//::i64 object::increment_reference_count()
 //{
 //
 //   return property_object::increment_reference_count();
@@ -2830,7 +2830,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::decrement_reference_count()
+//::i64 object::decrement_reference_count()
 //{
 //
 //   return property_object::decrement_reference_count();
@@ -2838,7 +2838,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::release()
+//::i64 object::release()
 //{
 //
 //   return property_object::release();
@@ -2849,7 +2849,7 @@ void call_sync(const ::procedure_array& methoda)
 //#else
 //
 //
-//long long object::increment_reference_count()
+//::i64 object::increment_reference_count()
 //{
 //
 //   return property_object::increment_reference_count();
@@ -2857,7 +2857,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::decrement_reference_count()
+//::i64 object::decrement_reference_count()
 //{
 //
 //   return property_object::decrement_reference_count();
@@ -2865,7 +2865,7 @@ void call_sync(const ::procedure_array& methoda)
 //}
 //
 //
-//long long object::release()
+//::i64 object::release()
 //{
 //
 //   return property_object::release();
@@ -3194,7 +3194,7 @@ void object::initialize(::particle * pparticle)
 //}
 
 
-//inline long long get_ref_count()
+//inline ::i64 get_ref_count()
 //{
 
 //   return m_countReference;

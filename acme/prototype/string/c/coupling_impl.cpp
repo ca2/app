@@ -164,8 +164,8 @@ CLASS_DECL_ACME const ::wd32_character * wd32_istr(const ::wd32_character * psz,
 CLASS_DECL_ACME ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __u64towd16(u, buf, iBase, edigitcase, pend); }
 CLASS_DECL_ACME ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __u64towd32(u, buf, iBase, edigitcase, pend); }
 
-CLASS_DECL_ACME ::wd16_character * i64towd16(long long i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __long_longtowd16(i, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wd32_character * i64towd32(long long i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __long_longtowd32(i, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd16_character * i64towd16(::i64 i, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character * pend=nullptr; return __long_longtowd16(i, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd32_character * i64towd32(::i64 i, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character * pend=nullptr; return __long_longtowd32(i, buf, iBase, edigitcase, pend); }
 
 CLASS_DECL_ACME int wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return wcscoll(psz1, psz2); }
 CLASS_DECL_ACME int wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return __wd32cmp(psz1, psz2); }
@@ -318,9 +318,9 @@ CLASS_DECL_ACME ::wd16_character * u64towd16(::u64 u, ::wd16_character * buf, in
 CLASS_DECL_ACME ::wd32_character * u64towd32(::u64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __u64towd32(u, buf, iBase, edigitcase, pend); }
 CLASS_DECL_ACME ::wide_character * u64towide(::u64 u, ::wide_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __u64towd32(u, buf, iBase, edigitcase, pend); }
 
-CLASS_DECL_ACME ::wd16_character * i64towd16(long long u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character *pend=nullptr;return __long_longtowd16(u, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wd32_character * i64towd32(long long u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
-CLASS_DECL_ACME ::wide_character * i64towide(long long u, ::wide_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd16_character * i64towd16(::i64 u, ::wd16_character * buf, int iBase, enum_digit_case edigitcase) { ::wd16_character *pend=nullptr;return __long_longtowd16(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wd32_character * i64towd32(::i64 u, ::wd32_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
+CLASS_DECL_ACME ::wide_character * i64towide(::i64 u, ::wide_character * buf, int iBase, enum_digit_case edigitcase) { ::wd32_character *pend=nullptr;return __long_longtowd32(u, buf, iBase, edigitcase, pend); }
 
 CLASS_DECL_ACME int wd16_coll(const ::wd16_character * psz1, const ::wd16_character * psz2) { return __wd16cmp(psz1, psz2); }
 CLASS_DECL_ACME int wd32_coll(const ::wd32_character * psz1, const ::wd32_character * psz2) { return wcscoll(psz1, psz2); }

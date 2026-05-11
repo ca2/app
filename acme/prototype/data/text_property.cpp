@@ -303,7 +303,7 @@ namespace data
    character_count text_property::get_text_length() const
    {
 
-      return this->get_property({ id_text_length }).as_long_long();
+      return this->get_property({ id_text_length }).as_i64();
 
    }
 

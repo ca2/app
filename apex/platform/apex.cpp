@@ -136,7 +136,7 @@ void on_term_thread();
 ////
 ////#endif
 //
-////   long long g_iFirstNano;
+////   ::i64 g_iFirstNano;
 //
 //   //plex_heap_alloc_array * g_pplexheapallocarray;
 //

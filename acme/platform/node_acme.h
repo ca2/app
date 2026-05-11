@@ -150,7 +150,7 @@ namespace platform
       virtual void initialize(::particle* pparticle);
 
 
-      virtual void node_application_on_status(const_char_pointer pszStatus, void* p = nullptr, long long hi = 0);
+      virtual void node_application_on_status(const_char_pointer pszStatus, void* p = nullptr, ::i64 hi = 0);
 
 
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);

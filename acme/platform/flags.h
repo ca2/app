@@ -128,21 +128,21 @@ flags < ENUM > ::~flags()
 template < class ENUM >
 bool flags < ENUM > ::add(ENUM eenum)
 {
-   return m_ia.add_unique((long long)eenum);
+   return m_ia.add_unique((::i64)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::erase(ENUM eenum)
 {
-   return m_ia.erase((long long)eenum);
+   return m_ia.erase((::i64)eenum);
 }
 
 
 template < class ENUM >
 bool flags < ENUM > ::has(ENUM eenum) const
 {
-   return ::is_set(this) && m_ia.has((long long)eenum);
+   return ::is_set(this) && m_ia.has((::i64)eenum);
 }
 
 

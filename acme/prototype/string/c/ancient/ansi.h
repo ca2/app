@@ -76,7 +76,7 @@ CLASS_DECL_ACME character_count __ansispn(const_char_pointer psz1, const_char_po
 CLASS_DECL_ACME character_count __ansicspn(const_char_pointer psz1, const_char_pointer psz2);
 
 
-CLASS_DECL_ACME long long __ansitoi64(const_char_pointer psz, ::ansi_character ** ppszEnd, int iBase);
+CLASS_DECL_ACME ::i64 __ansitoi64(const_char_pointer psz, ::ansi_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME ::u64 __ansitou64(const_char_pointer psz, ::ansi_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME int __ansitoi32(const_char_pointer psz, ::ansi_character ** ppszEnd, int iBase);
 CLASS_DECL_ACME ::u32 __ansitou32(const_char_pointer psz, ::ansi_character ** ppszEnd, int iBase);

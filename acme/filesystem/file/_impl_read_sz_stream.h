@@ -44,7 +44,7 @@ inline  ::u64 read_sz_stream::read_natural(int iRadix = 10)
     }
 
 
-inline   long long read_sz_stream::read_integer(int iRadix = 10)
+inline   ::i64 read_sz_stream::read_integer(int iRadix = 10)
     {
 
        return consume_integer(m_psz, m_pszBegin, iRadix);
@@ -94,7 +94,7 @@ inline   ::string read_sz_stream::read_find_first_character_in(const_char_pointe
 //   text_stream& operator <<(unsigned short u);
 //   text_stream& operator <<(int i);
 //   text_stream& operator <<(::u32 u);
-//   text_stream& operator <<(long long i);
+//   text_stream& operator <<(::i64 i);
 //   text_stream& operator <<(::u64 u);
 //   text_stream& operator <<(float f);
 //   text_stream& operator <<(double d);
@@ -293,7 +293,7 @@ inline    read_sz_stream& read_sz_stream::operator >>(::u32& u)
     }
 
 
-inline    read_sz_stream& read_sz_stream::operator >>(long long& i)
+inline    read_sz_stream& read_sz_stream::operator >>(::i64& i)
     {
 
        i = read_integer();

@@ -28,10 +28,10 @@ CLASS_DECL_ACME void __seed_srand()
 //}
 
 
-CLASS_DECL_ACME void preempt_second(long long i);
-CLASS_DECL_ACME void preempt_millisecond(long long i);
-CLASS_DECL_ACME void preempt_microsecond(long long i);
-CLASS_DECL_ACME void preempt_nanosecond(long long i);
+CLASS_DECL_ACME void preempt_second(::i64 i);
+CLASS_DECL_ACME void preempt_millisecond(::i64 i);
+CLASS_DECL_ACME void preempt_microsecond(::i64 i);
+CLASS_DECL_ACME void preempt_nanosecond(::i64 i);
 
 
 CLASS_DECL_ACME void preempt(const class time & time)

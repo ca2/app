@@ -24,16 +24,16 @@
 
 
 
-//CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer sz, char ** pszEnd);
-//CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer sz);
+//CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer sz, char ** pszEnd);
+//CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer sz);
 
 
 //CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer sz, char ** pszEnd);
 //CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer sz);
 
 
-//CLASS_DECL_ACME long long ansi_count_to_long_long(const_char_pointer sz, char ** pszEnd, size_t iLen);
-//CLASS_DECL_ACME long long ansi_count_to_long_long(const_char_pointer sz, size_t iLen);
+//CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer sz, char ** pszEnd, size_t iLen);
+//CLASS_DECL_ACME ::i64 ansi_count_to_long_long(const_char_pointer sz, size_t iLen);
 
 
 #define ansi_to_iptr __END_OSBIT(ansi_to_i)
@@ -53,9 +53,9 @@
 //#endif
 
 
-//CLASS_DECL_ACME long long wide_to_long_long(const unichar * sz, const unichar ** pszEnd, int iBase);
-//CLASS_DECL_ACME long long wide_to_long_long(const unichar * sz, const unichar ** pszEnd);
-//CLASS_DECL_ACME long long wide_to_long_long(const unichar * sz);
+//CLASS_DECL_ACME ::i64 wide_to_long_long(const unichar * sz, const unichar ** pszEnd, int iBase);
+//CLASS_DECL_ACME ::i64 wide_to_long_long(const unichar * sz, const unichar ** pszEnd);
+//CLASS_DECL_ACME ::i64 wide_to_long_long(const unichar * sz);
 
 
 #ifdef __cplusplus

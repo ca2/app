@@ -314,7 +314,7 @@ namespace user
 
 
 
-//CLASS_DECL_ACME long long oswindow_id(oswindow w);
+//CLASS_DECL_ACME ::i64 oswindow_id(oswindow w);
 
 
 //CLASS_DECL_ACME int_bool is_window(::acme::windowing::window * pacmewindowingwindow);

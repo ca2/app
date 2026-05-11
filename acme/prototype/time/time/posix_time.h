@@ -7,7 +7,7 @@ struct posix_time_t {};
 struct CLASS_DECL_ACME posix_time
 {
 
-   long long    m_iSecond;
+   ::i64    m_iSecond;
 
    constexpr posix_time() : m_iSecond(0) {}
    constexpr posix_time(no_initialize_t) {}
@@ -110,9 +110,9 @@ struct CLASS_DECL_ACME posix_time
 
    inline static posix_time now() { return now_t{}; }
 
-   constexpr long long minutes() const;
-   constexpr long long hours() const;
-   constexpr long long days() const;
+   constexpr ::i64 minutes() const;
+   constexpr ::i64 hours() const;
+   constexpr ::i64 days() const;
 
 };
 

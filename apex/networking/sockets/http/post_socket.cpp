@@ -375,7 +375,7 @@ namespace sockets
 
       inheader("content-type") = "multipart/form-data; boundary=" + m_boundary;
 
-      inheader("content-length") = (long long) length;
+      inheader("content-length") = (::i64) length;
 
 #ifdef WINRT_SOCKETS
 

@@ -3,9 +3,9 @@
 //#include <math.h>
 
 
-long long ceil_div(long long num, long long den)
+::i64 ceil_div(::i64 num, ::i64 den)
 {
-   long long quo = num / den;
+   ::i64 quo = num / den;
    if ((num % den) > 0)
       quo++;
    return quo;

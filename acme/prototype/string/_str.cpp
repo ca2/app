@@ -2489,7 +2489,7 @@ int str::get_escaped_char(const_char_pointer psz, character_count pos, character
 
             }
 
-            long long hex = ::hex::to_long_long(val);
+            ::i64 hex = ::hex::to_long_long(val);
 
             character_count val_len = val.length();
 
@@ -2508,9 +2508,9 @@ int str::get_escaped_char(const_char_pointer psz, character_count pos, character
          else
          {
 
-            long long hex = ::hex::to_long_long(string(&psz[pos + 2], 2));
+            ::i64 hex = ::hex::to_long_long(string(&psz[pos + 2], 2));
 
-            if ((long long)(strlen(psz)) <= pos + 2 || hex == -1)
+            if ((::i64)(strlen(psz)) <= pos + 2 || hex == -1)
             {
 
                return BAD_WCHAR;
@@ -2692,7 +2692,7 @@ public:
 
    }
 
-   void append_uni(long long w)
+   void append_uni(::i64 w)
    {
 
       if (m_iPos + 3 > m_iSize)
@@ -3025,7 +3025,7 @@ int str::to_int(const ::scoped_string & scopedstr)
 }
 
 
-long long str::to_long_long(const ::scoped_string & scopedstr)
+::i64 str::to_long_long(const ::scoped_string & scopedstr)
 {
 
    int i = 0;
@@ -3053,20 +3053,20 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
    if (bNegative)
    {
 
-      return -(long long)u;
+      return -(::i64)u;
 
    }
    else
    {
 
-      return (long long)u;
+      return (::i64)u;
 
    }
 
 }
 
 
-//long long to_long_long(const ::scoped_string & scopedstr)
+//::i64 to_long_long(const ::scoped_string & scopedstr)
 //{
 
 //   int i = 0;
@@ -3086,9 +3086,9 @@ long long str::to_long_long(const ::scoped_string & scopedstr)
 //   }
 
 //   if(bNegative)
-//      return -(long long) u;
+//      return -(::i64) u;
 //   else
-//      return (long long) u;
+//      return (::i64) u;
 
 //}
 

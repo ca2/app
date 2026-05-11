@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "from_integer.h"
 
-string i64toa_dup(long long i, int iBase)
+string i64toa_dup(::i64 i, int iBase)
 {
 
    char sz[128 + 64];
@@ -48,7 +48,7 @@ string i64toa_dup(long long i, int iBase)
 }
 
 
- string i64toa_dup(long long i)
+ string i64toa_dup(::i64 i)
 {
 
    return i64toa_dup(i, 10);
@@ -57,7 +57,7 @@ string i64toa_dup(long long i, int iBase)
 
 
 
- string ui64toa_dup(long long i, int iBase)
+ string ui64toa_dup(::i64 i, int iBase)
 {
 
    char sz[128 + 64];
@@ -93,7 +93,7 @@ string i64toa_dup(long long i, int iBase)
 }
 
 
- string ui64toa_dup(long long i)
+ string ui64toa_dup(::i64 i)
 {
 
    return ui64toa_dup(i, 10);
@@ -135,7 +135,7 @@ string i64toa_dup(long long i, int iBase)
 //
 //
 //
-//void ansi_from_long_long(char * sz, long long i, int iBase)
+//void ansi_from_long_long(char * sz, ::i64 i, int iBase)
 //{
 //   if(i == 0)
 //   {
@@ -232,7 +232,7 @@ string i64toa_dup(long long i, int iBase)
 //
 //
 //
-//void wide_from_long_long_base(unichar * sz, long long i, int iBase)
+//void wide_from_long_long_base(unichar * sz, ::i64 i, int iBase)
 //{
 //   if(i == 0)
 //   {

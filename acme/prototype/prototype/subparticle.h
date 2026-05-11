@@ -169,19 +169,19 @@ public:
 #ifdef _DEBUG
 
 
-   virtual long long increment_reference_count();
-   virtual long long decrement_reference_count();
-   virtual long long replace_reference();
-   virtual long long release();
+   virtual ::i64 increment_reference_count();
+   virtual ::i64 decrement_reference_count();
+   virtual ::i64 replace_reference();
+   virtual ::i64 release();
 
 
 #else
 
 
-   inline long long increment_reference_count();
-   inline long long decrement_reference_count();
-   inline long long replace_reference();
-   inline long long release();
+   inline ::i64 increment_reference_count();
+   inline ::i64 decrement_reference_count();
+   inline ::i64 replace_reference();
+   inline ::i64 release();
 
 
 #endif

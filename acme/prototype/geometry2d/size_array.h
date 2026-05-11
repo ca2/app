@@ -36,7 +36,7 @@ public:
 
 
 //using int_size_array = size_array_base < int >;
-//using long_long_size_array = size_array_base < long long >;
+//using long_long_size_array = size_array_base < ::i64 >;
 //using float_size_array = size_array_base < float >;
 //using double_size_array = size_array_base < double >;
 

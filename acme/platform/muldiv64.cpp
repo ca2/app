@@ -64,7 +64,7 @@ void mul64(::u64 v1, ::u64 v2, ::u64 & hi, ::u64 & lo)
    hi += a * ca;                  /* AC */
 }
 
-void mul64(long long v1, long long v2, long long & hi, ::u64 & lo)
+void mul64(::i64 v1, ::i64 v2, ::i64 & hi, ::u64 & lo)
 {
    if (v1 > 0)
    {
@@ -74,9 +74,9 @@ void mul64(long long v1, long long v2, long long & hi, ::u64 & lo)
       }
       else
       {
-         mul64((::u64)v1, (::u64)-(long long)v2, (::u64 &)hi, lo);
+         mul64((::u64)v1, (::u64)-(::i64)v2, (::u64 &)hi, lo);
          hi = -hi;
-         lo = (::u64)-(long long)lo;
+         lo = (::u64)-(::i64)lo;
       }
    }
    else
@@ -85,11 +85,11 @@ void mul64(long long v1, long long v2, long long & hi, ::u64 & lo)
       {
          mul64((::u64)-v1, (::u64)v2, (::u64 &)hi, lo);
          hi = -hi;
-         lo = (::u64)-(long long)lo;
+         lo = (::u64)-(::i64)lo;
       }
       else
       {
-         mul64((::u64)-(long long)v1, (::u64)-(long long)v2, (::u64 &)hi, lo);
+         mul64((::u64)-(::i64)v1, (::u64)-(::i64)v2, (::u64 &)hi, lo);
       }
    }
 }
@@ -105,7 +105,7 @@ void mul64(long long v1, long long v2, long long & hi, ::u64 & lo)
 {
    for (size_t i = 1; i <= 64; ++i)
    {
-      ::u64 t = (long long)(hi) >> 63;
+      ::u64 t = (::i64)(hi) >> 63;
       // t is all ones if x(63) = 1
       // Shift the hi|lo left one bit
       hi = (hi << 1) | (lo >> 63);
@@ -121,7 +121,7 @@ void mul64(long long v1, long long v2, long long & hi, ::u64 & lo)
    return lo;
 }
 
-long long div128_64(long long hi, ::u64 lo, long long div, ::u64 & remainder)
+::i64 div128_64(::i64 hi, ::u64 lo, ::i64 div, ::u64 & remainder)
 {
    if (hi > 0)
    {
@@ -131,18 +131,18 @@ long long div128_64(long long hi, ::u64 lo, long long div, ::u64 & remainder)
       }
       else
       {
-         return -(long long)div128_64((::u64)hi, lo, (::u64)-(long long)div, remainder);
+         return -(::i64)div128_64((::u64)hi, lo, (::u64)-(::i64)div, remainder);
       }
    }
    else
    {
       if (div > 0)
       {
-         return -(long long)div128_64((::u64)-(long long)hi, (::u64)-(long long)lo, (::u64)div, remainder);
+         return -(::i64)div128_64((::u64)-(::i64)hi, (::u64)-(::i64)lo, (::u64)div, remainder);
       }
       else
       {
-         return div128_64((::u64)-(long long)hi, (::u64)-(long long)lo, (::u64)-(long long)div, remainder);
+         return div128_64((::u64)-(::i64)hi, (::u64)-(::i64)lo, (::u64)-(::i64)div, remainder);
       }
    }
 }
@@ -246,11 +246,11 @@ static ::u64 const g_maxdiv = (g_base - 1) * g_base + (g_base - 1);
 
 
 //
-long long muldiv64(long long number, long long numerator, long long denominator)
+::i64 muldiv64(::i64 number, ::i64 numerator, ::i64 denominator)
 {
    return my_multdiv_64(number, numerator, denominator);
 
-   //   long long hi;
+   //   ::i64 hi;
    //   ::u64 lo;
    //   mul64(number, numerator, hi, lo);
    //   ::u64 remainder;
@@ -264,7 +264,7 @@ long long muldiv64(long long number, long long numerator, long long denominator)
 //  *     Xscaled = (Xstart * Multiplier) SHR rshift
 //  * Uses 128 bit intermediate result
 //  */
-// long long _stdcall mulshr64(long long operant, long long multiplier, uchar rshift)
+// ::i64 _stdcall mulshr64(::i64 operant, ::i64 multiplier, uchar rshift)
 // {
 //    return (operant * multiplier) >> rshift;
 // /*   // Declare 128bit storage

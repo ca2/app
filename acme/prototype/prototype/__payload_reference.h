@@ -25,7 +25,7 @@ public:
    operator unsigned short & () { return m_payload.unsigned_short_reference(); }
    operator int & () { return m_payload.int_reference(); }
    operator ::u32 & () { return m_payload.unsigned_int_reference(); }
-   operator long long & () { return m_payload.long_long_reference(); }
+   operator ::i64 & () { return m_payload.long_long_reference(); }
    operator ::u64 & () { return m_payload.unsigned_long_long_reference(); }
 
 

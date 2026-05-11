@@ -179,7 +179,7 @@ public:
    }
 
 
-   text_reader & operator >>(long long & i)
+   text_reader & operator >>(::i64 & i)
    {
 
       read_integer(i, m_psz);

@@ -151,7 +151,7 @@ namespace filemanager
          }
 
 
-         void impact::open_folder(long long iFolder)
+         void impact::open_folder(::i64 iFolder)
          {
 
             fork([this, iFolder]()
@@ -180,7 +180,7 @@ namespace filemanager
          }
 
 
-         void impact::open_file(long long iFolder, const ::scoped_string & scopedstrFileName, const ::scoped_string & scopedstrExtension)
+         void impact::open_file(::i64 iFolder, const ::scoped_string & scopedstrFileName, const ::scoped_string & scopedstrExtension)
          {
 
             string strUrl;

@@ -88,7 +88,7 @@
 ////
 ////      m_var = u;
 ////   }
-////   void payload_stream::write(long long i)
+////   void payload_stream::write(::i64 i)
 ////   {
 ////
 ////      m_var = i;
@@ -106,7 +106,7 @@
 ////      m_var = u;
 ////
 ////   }
-////   //void write (long long hi);
+////   //void write (::i64 hi);
 ////#endif
 ////   void payload_stream::write(float f)
 ////   {
@@ -170,7 +170,7 @@
 ////
 ////   //      virtual void read(int & i);
 ////   //      virtual void read(::u32 & u);
-////   //      virtual void read(long long & i);
+////   //      virtual void read(::i64 & i);
 ////   //      virtual void read(::u64 & u);
 ////
 ////
@@ -184,11 +184,11 @@
 ////   void payload_stream::read(unsigned short & u);
 ////   void payload_stream::read(int & i);
 ////   void payload_stream::read(::u32 & u);
-////   void payload_stream::read(long long & i);
+////   void payload_stream::read(::i64 & i);
 ////   void payload_stream::read(::u64 & u);
 ////#ifdef __APPLE__
 ////   void payload_stream::read(unsigned long & u);
-////   //virtual void read (long long & u);
+////   //virtual void read (::i64 & u);
 ////#endif
 ////   void payload_stream::read(float & f);
 ////   void payload_stream::read(double & d);
@@ -309,7 +309,7 @@
 //
 //}
 //
-//void payload_stream::exchange(const ::atom& atom, long long& i)
+//void payload_stream::exchange(const ::atom& atom, ::i64& i)
 //{
 //
 //   var_exchange(atom, i);

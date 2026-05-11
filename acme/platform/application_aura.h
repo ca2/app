@@ -655,10 +655,10 @@ namespace platform
       //virtual bool check_exclusive(bool & bHandled) override;
       //virtual bool release_exclusive() override;
 
-      //virtual void on_set_scalar(e_scalar escalar,long long iValue,int iFlags) override;
-      //virtual void get_scalar_minimum(e_scalar escalar,long long & i) override;
-      //virtual void get_scalar(e_scalar escalar,long long & i) override;
-      //virtual void get_scalar_maximum(e_scalar escalar,long long & i) override;
+      //virtual void on_set_scalar(e_scalar escalar,::i64 iValue,int iFlags) override;
+      //virtual void get_scalar_minimum(e_scalar escalar,::i64 & i) override;
+      //virtual void get_scalar(e_scalar escalar,::i64 & i) override;
+      //virtual void get_scalar_maximum(e_scalar escalar,::i64 & i) override;
 
 
 
@@ -979,7 +979,7 @@ namespace platform
       virtual int track_popup_menu(::menu::track_popup* ptrackpopup);
 
       // virtual bool get_fs_size(string& strSize, const ::scoped_string & scopedstrPath, bool& bPending) override;
-      // virtual bool get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
+      // virtual bool get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending) override;
       //
       // virtual void set_title(const ::scoped_string & scopedstrTitle) override;
 

@@ -394,7 +394,7 @@ namespace platform
 
       virtual void dump_command_line_and_environment_variables_to_file();
 
-      virtual ::lresult system_id_topic(int iId, long long llWparam, long long llLparam);
+      virtual ::lresult system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam);
 
 
       [[nodiscard]] virtual class ::handler::signal * signal(const ::atom& atom);

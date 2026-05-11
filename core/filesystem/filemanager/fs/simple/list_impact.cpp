@@ -761,7 +761,7 @@ namespace filemanager
 
             pxmldocument->load(scopedstrXml);
 
-            m_iParentFolder = pxmldocument->root()->attribute("id").as_int();
+            m_iParentFolder = pxmldocument->root()->attribute("id").as_i32();
 
             auto pnodeFolder = pxmldocument->root()->get_child("folder");
 

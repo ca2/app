@@ -72,11 +72,11 @@ namespace user
          virtual void update_placement() override;
 
          //document * get_document();
-         /*virtual long long increment_reference_count() override
+         /*virtual ::i64 increment_reference_count() override
          {
             return ::object::increment_reference_count();
          }
-         virtual long long decrement_reference_count() override
+         virtual ::i64 decrement_reference_count() override
          {
             return ::object::decrement_reference_count();
          }*/

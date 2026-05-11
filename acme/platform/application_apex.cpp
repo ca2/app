@@ -1385,7 +1385,7 @@ namespace platform
    }
 
 
-   bool apex_application_layer::get_fs_size(long long& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
+   bool apex_application_layer::get_fs_size(::i64& i64Size, const ::scoped_string & scopedstrPath, bool& bPending)
    {
       return false;
    }

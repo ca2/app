@@ -526,7 +526,7 @@ namespace user
 
    };
 
-   enum enum_interaction : long long
+   enum enum_interaction : ::i64
    {
 
       e_interaction_none = 0,
@@ -568,7 +568,7 @@ namespace user
 #pragma once
 
 
-enum enum_tool_item_state : long long
+enum enum_tool_item_state : ::i64
 {
 
    e_tool_item_state_none,
@@ -585,7 +585,7 @@ enum enum_tool_item_state : long long
 };
 
 
-enum enum_tool_item_style : long long
+enum enum_tool_item_style : ::i64
 {
 
    e_tool_item_style_none = e_toolbar_style_none,

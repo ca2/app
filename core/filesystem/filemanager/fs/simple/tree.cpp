@@ -225,7 +225,7 @@ namespace filemanager
          }
 
 
-         ::pointer<::data::tree_item<::item>>tree::FindTreeItem(long long iFolder)
+         ::pointer<::data::tree_item<::item>>tree::FindTreeItem(::i64 iFolder)
          {
             int iUser;
 
@@ -250,7 +250,7 @@ namespace filemanager
          }
 
 
-         int FolderArray::find_absolute(long long iFolder)
+         int FolderArray::find_absolute(::i64 iFolder)
          {
 
             for(int i = 0; i < this->get_size(); i++)

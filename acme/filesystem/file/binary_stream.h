@@ -251,7 +251,7 @@ public:
    binary_stream & operator <<(bool b) { return operator <<((unsigned char)b ? 1 : 0); }
    binary_stream & operator <<(int i) { raw_write(i); return *this; }
    binary_stream & operator <<(::u32 ui) { raw_write(ui); return *this; }
-   binary_stream & operator <<(long long hi) { raw_write(hi); return *this; }
+   binary_stream & operator <<(::i64 hi) { raw_write(hi); return *this; }
    binary_stream & operator <<(::u64 hn) { raw_write(hn); return *this; }
 #if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
    binary_stream & operator <<(unsigned long u) { raw_write(u); return *this; }
@@ -304,7 +304,7 @@ public:
    //binary_stream & operator >>(unsigned short & ush) { raw_read(ush); return *this; }
    //binary_stream & operator >>(int & i) { raw_read(i); return *this; }
    //binary_stream & operator >>(::u32 & ui) {raw_read(ui); return *this; }
-   //binary_stream & operator >>(long long & hi) { raw_read(hi); return *this; }
+   //binary_stream & operator >>(::i64 & hi) { raw_read(hi); return *this; }
    //binary_stream & operator >>(::u64 & hn) { raw_read(::u64); return *this; }
 //#if defined(__APPLE__) || defined(__ANDROID__) || defined(RASPBERRYPIOS)
 //   binary_stream & operator >>(unsigned long & u) {

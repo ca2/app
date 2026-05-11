@@ -7,8 +7,8 @@
 struct LONG_LONG_SIZE
 {
 
-   long long cx;
-   long long cy;
+   ::i64 cx;
+   ::i64 cy;
 
 };
 
@@ -18,8 +18,8 @@ typedef const LONG_LONG_SIZE * LPCLONG_LONG_SIZE;
 struct LONG_LONG_POINT
 {
 
-   long long x;
-   long long y;
+   ::i64 x;
+   ::i64 y;
 
 };
 
@@ -30,10 +30,10 @@ typedef const LONG_LONG_POINT * LPCLONG_LONG_POINT;
 struct LONG_LONG_RECTANGLE
 {
 
-   long long left;
-   long long top;
-   long long right;
-   long long bottom;
+   ::i64 left;
+   ::i64 top;
+   ::i64 right;
+   ::i64 bottom;
 
 };
 

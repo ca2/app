@@ -1345,7 +1345,7 @@ namespace user
    {
 
       // use window dialog control atom as the index
-      return GetDlgCtrlId().as_int();
+      return GetDlgCtrlId().as_i32();
    }
 
 

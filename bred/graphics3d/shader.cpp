@@ -81,7 +81,7 @@
 //   void shader::setInt(const ::scoped_string& scopedstrName, int value)
 //   {
 //      ::string strName(scopedstrName);
-//      auto& a = m_properties.as_int(strName);
+//      auto& a = m_properties.as_i32(strName);
 //      a = value;
 //
 //   }

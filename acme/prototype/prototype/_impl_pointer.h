@@ -984,7 +984,7 @@ inline ::pointer < T2 > pointer < T > ::defer_get_new(::particle* pparticle)
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline long long pointer <T>::release()
+inline ::i64 pointer <T>::release()
 {
 
    ::subparticle * pparticle = nullptr;
@@ -1105,7 +1105,7 @@ inline long long pointer <T>::release()
 
 
 //template < class T >
-//inline long long pointer <T>::global_release()
+//inline ::i64 pointer <T>::global_release()
 //{
 //
 //   //ASSERT(referer == m_referer);
@@ -1439,7 +1439,7 @@ inline pointer<T>::pointer(wparam & wparam)
 
 
 template < class c_derived >
-inline long long increment_reference_count(c_derived * pca)
+inline ::i64 increment_reference_count(c_derived * pca)
 {
 
    if (::is_null(pca))
@@ -1455,7 +1455,7 @@ inline long long increment_reference_count(c_derived * pca)
 
 
 template < class c_derived, typename SOURCE >
-inline long long increment_reference_count(c_derived * & pca, const SOURCE * psource)
+inline ::i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
 {
 
    c_derived * pderived = dynamic_cast <c_derived *>((SOURCE *)psource);
@@ -1475,7 +1475,7 @@ inline long long increment_reference_count(c_derived * & pca, const SOURCE * pso
 
 
 template < class c_derived, typename SOURCE >
-inline long long increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
+inline ::i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
 {
 
    return increment_reference_count(pderived, psource.m_p);
@@ -1485,8 +1485,8 @@ inline long long increment_reference_count(c_derived *& pderived, const ::pointe
 
 
 template < typename TYPE >
-inline long long release(::pointer<TYPE>& pointer)
-//inline long long release(::pointer<TYPE>& pointer COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION)
+inline ::i64 release(::pointer<TYPE>& pointer)
+//inline ::i64 release(::pointer<TYPE>& pointer COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION)
 {
 
    return release(pointer.m_p);
@@ -1495,7 +1495,7 @@ inline long long release(::pointer<TYPE>& pointer)
 
 
 template < typename TYPE >
-inline long long __finalize(::pointer<TYPE> pointer)
+inline ::i64 __finalize(::pointer<TYPE> pointer)
 {
 
 if (!pointer) return -1;
@@ -1508,7 +1508,7 @@ return release(pointer.m_p);
 
 //
 //template < class REFERENCE >
-//inline long long release(::pointer<REFERENCE>& preference)
+//inline ::i64 release(::pointer<REFERENCE>& preference)
 //{
 //
 //   return release(preference.m_p);
@@ -1517,7 +1517,7 @@ return release(pointer.m_p);
 
 
 template < class c_derived >
-inline long long ref_count(c_derived * pca)
+inline ::i64 ref_count(c_derived * pca)
 {
 
    if (pca == nullptr)
@@ -2348,7 +2348,7 @@ inline bool pointer < T > ::defer_destroy_and_release()
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline long long release(T *& p)
+inline ::i64 release(T *& p)
 {
 
    if (::is_null(p))
@@ -2393,7 +2393,7 @@ inline long long release(T *& p)
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline long long global_release(T *& p)
+inline ::i64 global_release(T *& p)
 {
 
    if (::is_null(p))

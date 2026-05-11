@@ -441,7 +441,7 @@ binary_stream & binary_stream::operator >>(atom & atom)
    else
    {
 
-      long long i;
+      ::i64 i;
 
       operator >>(i);
 
@@ -705,7 +705,7 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 binary_stream & binary_stream::operator >>(string & str)
 {
 
-   long long i = 0;
+   ::i64 i = 0;
 
    i = m_pfile->_right_size() > 8 ? read_buffer_length_unbounded() : read_buffer_length();
 

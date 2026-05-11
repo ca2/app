@@ -5,10 +5,10 @@
 static ::interlocked_count g_interlockedcountNewReferenceRefererSerial;
 
 
-CLASS_DECL_ACME long long new_reference_referer_serial()
+CLASS_DECL_ACME ::i64 new_reference_referer_serial()
 {
 
-   auto i = (long long)g_interlockedcountNewReferenceRefererSerial;
+   auto i = (::i64)g_interlockedcountNewReferenceRefererSerial;
 
    g_interlockedcountNewReferenceRefererSerial++;
 

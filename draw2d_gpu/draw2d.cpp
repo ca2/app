@@ -74,11 +74,11 @@ namespace draw2d_gpu
 
    //   if (pfont->m_fontsize.eunit() == e_unit_point)
    //   {
-   //      iPixelSize = points_to_pixels(pfont->m_fontsize.as_int());
+   //      iPixelSize = points_to_pixels(pfont->m_fontsize.as_i32());
    //   }
    //   else
    //   {
-   //      iPixelSize = pfont->m_fontsize.as_int();
+   //      iPixelSize = pfont->m_fontsize.as_i32();
    //   }
 
    //   ::string strFontFamilyName = pfont->m_pfontfamily->family_name(this);

@@ -53,11 +53,11 @@ namespace browser
       impact_base(::particle * pparticle);
       virtual ~impact_base();
 
-      virtual long long increment_reference_count()
+      virtual ::i64 increment_reference_count()
       {
          return ::object::increment_reference_count();
       }
-      virtual long long decrement_reference_count()
+      virtual ::i64 decrement_reference_count()
       {
          return ::object::decrement_reference_count();
       }

@@ -15,7 +15,7 @@
 }
 
 
-::ansi_character * __long_longtoansi(long long i, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character *& end)
+::ansi_character * __long_longtoansi(::i64 i, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character *& end)
 {
 
    end = buf;

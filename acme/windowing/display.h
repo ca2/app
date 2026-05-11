@@ -48,7 +48,7 @@ namespace acme
 
          virtual void * _get_x11_display();
 
-         virtual long long _get_x11_root_window();
+         virtual ::i64 _get_x11_root_window();
 
          void kick_idle() override;
 

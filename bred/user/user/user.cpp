@@ -680,7 +680,7 @@ void user::destroy()
 //   bool user::get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending)
 //   {
 //
-//      long long i64Size;
+//      ::i64 i64Size;
 //
 //      if (!get_fs_size(i64Size, pszPath, bPending))
 //      {
@@ -740,7 +740,7 @@ void user::destroy()
 //   }
 //
 //
-//   bool user::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+//   bool user::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
 //   {
 //
 //      //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());

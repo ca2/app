@@ -103,7 +103,7 @@ namespace interprocess
    //   //
    //   //   }
    //   //
-   //   //   long long iCall = ::str::consume_natural(strMessage);
+   //   //   ::i64 iCall = ::str::consume_natural(strMessage);
    //   //
    //   //   if(!strMessage.begins_eat(" from "))
    //   //   {
@@ -328,7 +328,7 @@ namespace interprocess
    //}
 
 
-   //void target::on_interprocess_post(long long a, long long b)
+   //void target::on_interprocess_post(::i64 a, ::i64 b)
    //{
 
    //   if (m_phandler != nullptr)

@@ -789,7 +789,7 @@ CLASS_DECL_ACME ::operating_system::window as_operating_system_window(::uptr u)
 }
 
 
-CLASS_DECL_ACME ::uptr operating_system_window_as_uptr(const ::operating_system::window & operatingsystemwindow)
+CLASS_DECL_ACME ::uptr as_uptr(const ::operating_system::window & operatingsystemwindow)
 {
 
    if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_none)
@@ -804,6 +804,29 @@ CLASS_DECL_ACME ::uptr operating_system_window_as_uptr(const ::operating_system:
 
 
       return (::uptr) ::as_HWND(operatingsystemwindow);
+
+   }
+
+   return 0;
+
+}
+
+
+CLASS_DECL_ACME ::uptr as_u64(const ::operating_system::window & operatingsystemwindow)
+{
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_none)
+   {
+
+      return 0;
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_windows)
+   {
+
+
+      return (::u64) ::as_HWND(operatingsystemwindow);
 
    }
 

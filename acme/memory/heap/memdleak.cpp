@@ -686,7 +686,7 @@
 //   int		m_iLine;
 //
 //   int		m_iCount;
-//   long long     m_iSize;
+//   ::i64     m_iSize;
 //
 //};
 //

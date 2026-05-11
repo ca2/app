@@ -188,14 +188,14 @@ namespace helloworld
    }
 
 
-   long long application::increment_reference_count()
+   ::i64 application::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
 
    }
 
-   long long application::decrement_reference_count()
+   ::i64 application::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

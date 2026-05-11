@@ -21,7 +21,7 @@
 typedef signed char char;
 typedef short int short;
 typedef int int;
-typedef long long hi;
+typedef ::i64 hi;
 
 typedef unsigned char uch;
 typedef unsigned short int unsigned short;

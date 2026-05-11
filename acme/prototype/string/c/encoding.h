@@ -236,7 +236,7 @@ inline character_count unichar_to_utf8(char* psz, const ::wd32_character* pwsz, 
 inline character_count ansi_to_wd32_char(::wd32_character * output, const_char_pointer input, character_count srclen);
 
 
-inline long long _ansi_to_wd32_char(const_char_pointer *ppsz, character_count * psrclen);
+inline ::i64 _ansi_to_wd32_char(const_char_pointer *ppsz, character_count * psrclen);
 
 
 inline character_count wd32_to_wd16_char(::wd16_character * pwd16sz, ::wd32_character wd32ch);

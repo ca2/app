@@ -96,8 +96,8 @@ namespace geo
       ::pointer< ::mutex > get_openweather_city_mutex() { return m_pmutexOpenweatherCity; }
 
       virtual openweather_city* openweather_find_city(const ::scoped_string & scopedstrQuery);
-      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, long long& iId, double& dLat, double& dLon);
-      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, long long& iId, double& dLat, double& dLon, bool bPrefix);
+      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string& strCit, ::i64& iId, double& dLat, double& dLon);
+      virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string& strCit, ::i64& iId, double& dLat, double& dLon, bool bPrefix);
 
 
 

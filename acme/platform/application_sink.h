@@ -19,7 +19,7 @@ namespace platform
     int m_iWidth;
     int m_iHeight;
 
-    long long m_lMemFreeAvailableKb;
+    ::i64 m_lMemFreeAvailableKb;
 
     bool m_bRedraw;
        bool m_bSetApplicationReady;

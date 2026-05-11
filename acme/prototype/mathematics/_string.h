@@ -20,7 +20,7 @@ inline int utoa_base(char* psz, size_t size, ::u64 u, int base);
 /// <param name="u"></param>
 /// <param name="base"></param>
 /// <returns>greater than 0 missing characters to represent the number or lesser than 0 unused characters to represent the n</returns>
-inline int itoa_base(char* psz, size_t size, long long i, int base);
+inline int itoa_base(char* psz, size_t size, ::i64 i, int base);
 
 
 constexpr character_count _utoa_base(char* psz, character_count size, ::u64 u, int base)
@@ -82,7 +82,7 @@ inline character_count utoa_base(char* psz, character_count size, ::u64 u, int b
 }
 
 
-constexpr character_count _itoa_base(char* psz, character_count size, long long i, int base)
+constexpr character_count _itoa_base(char* psz, character_count size, ::i64 i, int base)
 {
 
    while (true)
@@ -115,7 +115,7 @@ constexpr character_count _itoa_base(char* psz, character_count size, long long 
 }
 
 
-inline character_count itoa_base(char* psz, character_count size, long long i, int base)
+inline character_count itoa_base(char* psz, character_count size, ::i64 i, int base)
 {
 
    if (base < 2 || base > 36)
@@ -223,7 +223,7 @@ INTEGRAL consume_integral(::ansi_range& range, int iBase = 10)
 
 
 template < typename BASE_RANGE >
-inline long long consume_long_long(::string_range < BASE_RANGE > & range , int iBase = 10) { return consume_integral < long long >(range, iBase); }
+inline ::i64 consume_long_long(::string_range < BASE_RANGE > & range , int iBase = 10) { return consume_integral < ::i64 >(range, iBase); }
 template < typename BASE_RANGE >
 inline int consume_int(::string_range < BASE_RANGE > & range , int iBase = 10) { return consume_integral < int >(range, iBase); }
 template < typename BASE_RANGE >
@@ -249,26 +249,26 @@ template < typename BASE_RANGE >
 inline size_t consume_size_t(::string_range < BASE_RANGE >& range, int iBase = 10) { return consume_integral < size_t >(range, iBase); }
 
 
-inline long long as_long_long(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_long_long(r, iBase); }
-inline int as_int(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_int(r, iBase); }
-inline int as_short(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_short(r, iBase); }
-inline char as_char(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_char(r, iBase); }
+inline ::i64 as_i64(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_long_long(r, iBase); }
+inline int as_i32(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_int(r, iBase); }
+inline int as_i16(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_short(r, iBase); }
+inline char as_i8(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_char(r, iBase); }
 
 
-inline ::u64 as_unsigned_long_long(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_long_long(r, iBase); }
+inline ::u64 as_u64(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_long_long(r, iBase); }
 inline ::u32 as_u32(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_int(r, iBase); }
-inline ::u32 as_unsigned_short(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_short(r, iBase); }
-inline unsigned char as_unsigned_char(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_char(r, iBase); }
+inline ::u32 as_u16(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_short(r, iBase); }
+inline unsigned char as_u8(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_char(r, iBase); }
 
 
 inline long as_long(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_long(r, iBase); }
 inline unsigned long as_unsigned_long(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_unsigned_long(r, iBase); }
 inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto r = scopedstr(); return consume_size_t(r, iBase); }
 
-//inline int as_int(const ::scoped_string & scopedstr, int iBase = 10)
+//inline int as_i32(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(scopedstr, iBase);
+//   auto i = as_i64(scopedstr, iBase);
 //
 //   if (i < INT_MIN || i > INT_MAX)
 //   {
@@ -282,10 +282,10 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //}
 //
 //
-//inline short as_short(const ::scoped_string & scopedstr, int iBase = 10)
+//inline short as_i16(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(scopedstr, iBase);
+//   auto i = as_i64(scopedstr, iBase);
 //
 //   if (i < SHRT_MIN || i > SHRT_MAX)
 //   {
@@ -299,10 +299,10 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //}
 //
 //
-//inline char as_char(const ::scoped_string & scopedstr, int iBase = 10)
+//inline char as_i8(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(scopedstr, iBase);
+//   auto i = as_i64(scopedstr, iBase);
 //
 //   if (i < CHAR_MIN || i > CHAR_MAX)
 //   {
@@ -319,7 +319,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline long as_long(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto i = as_long_long(scopedstr, iBase);
+//   auto i = as_i64(scopedstr, iBase);
 //
 //   if (i < LONG_MIN || i > LONG_MAX)
 //   {
@@ -334,7 +334,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //
 //
 //
-//inline ::u64 as_unsigned_long_long(const ::scoped_string & scopedstr, int iBase = 10)
+//inline ::u64 as_u64(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
 //   const_char_pointer pszEnd = nullptr;
@@ -347,7 +347,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline ::u32 as_u32(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(scopedstr, iBase);
+//   auto u = as_u64(scopedstr, iBase);
 //
 //   if (u > UINT_MAX)
 //   {
@@ -361,10 +361,10 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //}
 //
 //
-//inline unsigned short as_unsigned_short(const ::scoped_string & scopedstr, int iBase = 10)
+//inline unsigned short as_u16(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(scopedstr, iBase);
+//   auto u = as_u64(scopedstr, iBase);
 //
 //   if (u > USHRT_MAX)
 //   {
@@ -378,10 +378,10 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //}
 //
 //
-//inline unsigned char as_unsigned_char(const ::scoped_string & scopedstr, int iBase = 10)
+//inline unsigned char as_u8(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(scopedstr, iBase);
+//   auto u = as_u64(scopedstr, iBase);
 //
 //   if (u > UCHAR_MAX)
 //   {
@@ -398,7 +398,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline unsigned long as_unsigned_long(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(scopedstr, iBase);
+//   auto u = as_u64(scopedstr, iBase);
 //
 //   if (u > ULONG_MAX)
 //   {
@@ -415,7 +415,7 @@ inline size_t as_size_t(const ::scoped_string& scopedstr, int iBase = 10) { auto
 //inline size_t as_size_t(const ::scoped_string & scopedstr, int iBase = 10)
 //{
 //
-//   auto u = as_unsigned_long_long(scopedstr, iBase);
+//   auto u = as_u64(scopedstr, iBase);
 //
 //   if (u > SIZE_MAX)
 //   {

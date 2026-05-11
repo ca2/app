@@ -10,7 +10,7 @@
 //#include "acme/parallelization/synchronization_result.h"
 
 //
-//inline bool succeeded(long long i)
+//inline bool succeeded(::i64 i)
 //{
 //
 //   return i >= 0;
@@ -18,7 +18,7 @@
 //}
 
 
-//inline bool failed(long long i)
+//inline bool failed(::i64 i)
 //{
 //
 //   return !succeeded(i);
@@ -42,7 +42,7 @@ public:
    constexpr e_status(const ::e_status & estatus): m_eenum(estatus.m_eenum){}
    constexpr explicit e_status(bool b) : m_eenum(b ? success : error_failed){}
    constexpr explicit e_status(int i) : m_eenum((::enum_status) i) {}
-   constexpr explicit e_status(long long i) : m_eenum((::enum_status) i) {}
+   constexpr explicit e_status(::i64 i) : m_eenum((::enum_status) i) {}
 
 
    constexpr operator ::enum_status() const { return m_eenum; }
@@ -50,7 +50,7 @@ public:
    constexpr ::enum_status as_estatus() const { return m_eenum; }
 
 
-   constexpr long long as_long_long() const { return (long long) m_eenum; }
+   constexpr ::i64 as_i64() const { return (::i64) m_eenum; }
    constexpr ::u64 as_u64() const { return (::u64) m_eenum; }
 
 
@@ -65,7 +65,7 @@ public:
    constexpr bool ok() const { return succeeded(); }
 
    
-   constexpr bool succeeded() const { return (long long)m_eenum >= 0; }
+   constexpr bool succeeded() const { return (::i64)m_eenum >= 0; }
 
    constexpr bool failed() const { return !succeeded(); }
 
@@ -79,23 +79,23 @@ public:
 
    //bool wait_timeout() const { return ::wait_timeout(*this); }
 
-   constexpr bool succeeded(long long iRange) const
+   constexpr bool succeeded(::i64 iRange) const
    {
-      return (long long)m_eenum >= (long long)SUCCESS_STATUS(iRange).m_eenum
-         && (long long)m_eenum < ((long long)SUCCESS_STATUS(iRange).m_eenum + (long long)STATUS_RANGE);
+      return (::i64)m_eenum >= (::i64)SUCCESS_STATUS(iRange).m_eenum
+         && (::i64)m_eenum < ((::i64)SUCCESS_STATUS(iRange).m_eenum + (::i64)STATUS_RANGE);
 
    }
 
-   constexpr bool failed(long long iRange) const
+   constexpr bool failed(::i64 iRange) const
    {
 
-      return (long long)m_eenum >= (long long)FAILURE_STATUS(iRange).m_eenum
-         && (long long)m_eenum < ((long long)FAILURE_STATUS(iRange).m_eenum + (long long)STATUS_RANGE);
+      return (::i64)m_eenum >= (::i64)FAILURE_STATUS(iRange).m_eenum
+         && (::i64)m_eenum < ((::i64)FAILURE_STATUS(iRange).m_eenum + (::i64)STATUS_RANGE);
 
    }
 
 
-   constexpr int error_status() const { return succeeded() ? 0 : (int)(long long)m_eenum; }
+   constexpr int error_status() const { return succeeded() ? 0 : (int)(::i64)m_eenum; }
 
    //int exit_code() const { return succeeded() ? 0 : (int)_status_exit_code(m_eenum); }
 
@@ -130,14 +130,14 @@ public:
 
 #ifdef WINDOWS
 
-      return (int)-(long long)m_eenum;
+      return (int)-(::i64)m_eenum;
 
 #else
 
       if (this->m_eenum >= -125)
       {
 
-         return (int)-(long long)(this->m_eenum);
+         return (int)-(::i64)(this->m_eenum);
 
       }
       else
@@ -158,7 +158,7 @@ public:
    constexpr int signaled_index() const
    {
 
-      return (m_eenum >= signaled_base && m_eenum < signaled_end) ? (int)((long long)m_eenum - (long long)signaled_base) : -1;
+      return (m_eenum >= signaled_base && m_eenum < signaled_end) ? (int)((::i64)m_eenum - (::i64)signaled_base) : -1;
 
    }
 
@@ -177,7 +177,7 @@ public:
    constexpr int abandoned_index()const
    {
 
-      return (m_eenum >= abandoned_base && m_eenum < abandoned_end) ? (int)((long long)m_eenum - (long long)abandoned_base) : -1;
+      return (m_eenum >= abandoned_base && m_eenum < abandoned_end) ? (int)((::i64)m_eenum - (::i64)abandoned_base) : -1;
 
    }
 
@@ -235,7 +235,7 @@ public:
 //inline bool succeeded(const ::e_status& estatus)
 //{
 //
-//   return succeeded((long long)estatus.m_eenum);
+//   return succeeded((::i64)estatus.m_eenum);
 //
 //}
 
@@ -250,17 +250,17 @@ public:
 //inline bool succeeded(const ::e_status & estatus, int iRange)
 //{
 //
-//   return (long long)estatus.m_eenum >= (long long)SUCCESS_STATUS(iRange).m_eenum
-//      && (long long)estatus.m_eenum < ((long long)SUCCESS_STATUS(iRange).m_eenum + (long long)STATUS_RANGE);
+//   return (::i64)estatus.m_eenum >= (::i64)SUCCESS_STATUS(iRange).m_eenum
+//      && (::i64)estatus.m_eenum < ((::i64)SUCCESS_STATUS(iRange).m_eenum + (::i64)STATUS_RANGE);
 //
 //}
 
 
-//inline bool failed(const ::e_status & estatus, long long iRange)
+//inline bool failed(const ::e_status & estatus, ::i64 iRange)
 //{
 //
-//   return (long long)estatus.m_eenum >= (long long)FAILURE_STATUS(iRange).m_eenum
-//      && (long long)estatus.m_eenum < ((long long)FAILURE_STATUS(iRange).m_eenum + (long long)STATUS_RANGE);
+//   return (::i64)estatus.m_eenum >= (::i64)FAILURE_STATUS(iRange).m_eenum
+//      && (::i64)estatus.m_eenum < ((::i64)FAILURE_STATUS(iRange).m_eenum + (::i64)STATUS_RANGE);
 //
 //}
 

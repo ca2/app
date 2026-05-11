@@ -134,8 +134,8 @@ namespace platform
 
 #ifdef _DEBUG
 
-      long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+      ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 #endif
 
@@ -158,7 +158,7 @@ namespace platform
 
       virtual void initialize(::particle * pparticle) override;
 
-      virtual void node_application_on_status(const_char_pointer pszStatus, void * p = nullptr, long long hi = 0) override;
+      virtual void node_application_on_status(const_char_pointer pszStatus, void * p = nullptr, ::i64 hi = 0) override;
       //virtual ::particle_pointer create_quit_particle(::pointer<::platform::node>& pnode);
 
       //virtual ::particle_pointer create_quit_particle();

@@ -22,7 +22,7 @@
 
 
 void get_os_priority(int * piPolicy, sched_param * pparam, ::enum_priority epriority);
-long long get_tick();
+::i64 get_tick();
 
 
 CLASS_DECL_ACME void * __node_library_touch(const ::file::path & path, string & strMessage);

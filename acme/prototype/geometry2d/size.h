@@ -73,7 +73,7 @@ public:
 //   template < prototype_number NUMBER_TYPE >
 //   size_type(NUMBER_TYPE n) noexcept { this->cx = (UNIT_TYPE) n; this->cy = (UNIT_TYPE) n; }
    //size_type(::u32 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
-   //size_type(long long i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
+   //size_type(::i64 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
    //size_type(::u64 u) noexcept { this->cx = (UNIT_TYPE) u; this->cy = (UNIT_TYPE) u; }
    //size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
    //size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
@@ -223,7 +223,7 @@ public:
    
    template < prototype_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > operator /(NUMBER1 l) const noexcept { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((largest_number < UNIT_TYPE, NUMBER1 >)(this->cx / l), (largest_number < UNIT_TYPE, NUMBER1 >)(this->cy / l)); }
-//   inline size_type operator /(long long i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
+//   inline size_type operator /(::i64 i) const noexcept { return size_type((UNIT_TYPE)(this->cx / i), (UNIT_TYPE)(this->cy / i)); }
 //   inline size_type operator /(float f) const noexcept { return size_type((UNIT_TYPE)(this->cx / f), (UNIT_TYPE)(this->cy / f)); }
 //   inline size_type operator /(double d) const noexcept { return size_type((UNIT_TYPE)(this->cx / d), (UNIT_TYPE)(this->cy / d)); }
    template < prototype_number NUMBER1 >

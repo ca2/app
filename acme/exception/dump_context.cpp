@@ -265,7 +265,7 @@
 ////}
 ////
 ////
-////void dump_context::write(long long i)
+////void dump_context::write(::i64 i)
 ////{
 ////
 ////   string str;
@@ -377,7 +377,7 @@
 ////}
 ////
 ////
-////void dump_context::hex_dump(long long i)
+////void dump_context::hex_dump(::i64 i)
 ////{
 ////
 ////   string str;

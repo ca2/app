@@ -481,7 +481,7 @@ namespace file
 
 #ifdef _DEBUG
 
-   long long edit_file::increment_reference_count()
+   ::i64 edit_file::increment_reference_count()
    {
 
       return ::data::tree<edit_item_base>::increment_reference_count();
@@ -489,7 +489,7 @@ namespace file
    }
 
 
-   long long edit_file::decrement_reference_count()
+   ::i64 edit_file::decrement_reference_count()
    {
 
       return ::data::tree<edit_item_base>::decrement_reference_count();

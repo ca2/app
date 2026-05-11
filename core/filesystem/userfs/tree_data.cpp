@@ -76,7 +76,7 @@ namespace userfs
 
 #ifdef _DEBUG
 
-   long long tree_data::increment_reference_count()
+   ::i64 tree_data::increment_reference_count()
    {
 
       return ::user::tree_data<::userfs::item>::increment_reference_count();
@@ -93,7 +93,7 @@ namespace userfs
    }
 
 
-   long long tree_data::decrement_reference_count()
+   ::i64 tree_data::decrement_reference_count()
    {
 
 //      auto c = m_countReference--;
@@ -114,10 +114,10 @@ namespace userfs
    }
 
 
-   long long tree_data::release()
+   ::i64 tree_data::release()
    {
 
-      long long i = decrement_reference_count();
+      ::i64 i = decrement_reference_count();
 
       if (i == 0)
       {

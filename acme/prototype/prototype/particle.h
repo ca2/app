@@ -506,8 +506,8 @@ public:
 
 
    // ThomasBorregaardSorensen!! Like handlers
-   //virtual void call(const enum_message, long long iData = 0, ::matter * pmatter = nullptr);
-   //virtual void call(const enum_id, long long iData = 0, ::matter* pmatter = nullptr);
+   //virtual void call(const enum_message, ::i64 iData = 0, ::matter * pmatter = nullptr);
+   //virtual void call(const enum_id, ::i64 iData = 0, ::matter* pmatter = nullptr);
    
    ///virtual void send_call(const ::call & call);
 
@@ -536,9 +536,9 @@ public:
    //void post_process(::topic * ptopic, ::handler_context * phandlercontext) override;
 
    // <3TBS_!! handle -> call_member <3TBS_!!
-   virtual void call_member(long long hi);
+   virtual void call_member(::i64 hi);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
-   //void handle(const  emessage, long long iData = 0, ::matter * pmatter = nullptr) override;
+   //void handle(const  emessage, ::i64 iData = 0, ::matter * pmatter = nullptr) override;
    //void handle(::topic * ptopic, ::handler_context * phandlercontext) override;
    //void handle(::message::message * pmessage) override;
    virtual ::lresult call_message(const ::user::enum_message & emessage, ::wparam wparam = {}, ::lparam lparam = {}, ::particle * pparticle = nullptr);
@@ -973,7 +973,7 @@ public:
 //
 
 //template < typename T >
-//inline long long release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEF);
+//inline ::i64 release(T*& p REFERENCING_DEBUGGING_COMMA_PARAMS_DEF);
 //{
 //
 //   if (::is_null(p))
@@ -1017,7 +1017,7 @@ public:
 
 
 template < typename T >
-inline long long global_release(T*& p);
+inline ::i64 global_release(T*& p);
 //{
 //
 //   if (::is_null(p))
@@ -1061,7 +1061,7 @@ inline long long global_release(T*& p);
 //#if !defined(_DEBUG)
 //
 //
-//long long particle::increment_reference_count()
+//::i64 particle::increment_reference_count()
 //{
 //
 //   auto c = ++m_countReference;
@@ -1077,7 +1077,7 @@ inline long long global_release(T*& p);
 //}
 //
 //
-//long long particle::decrement_reference_count()
+//::i64 particle::decrement_reference_count()
 //{
 //
 //   auto c = --m_countReference;
@@ -1098,10 +1098,10 @@ inline long long global_release(T*& p);
 //}
 //
 //
-//long long particle::release()
+//::i64 particle::release()
 //{
 //
-//   long long i = decrement_reference_count();
+//   ::i64 i = decrement_reference_count();
 //
 //   if (i == 0)
 //   {
@@ -1262,24 +1262,24 @@ inline bool is_ok(const ::particle * pparticleConst)
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline long long release(T *& p);
-//inline long long release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
+inline ::i64 release(T *& p);
+//inline ::i64 release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline long long global_release(T *& p);
+inline ::i64 global_release(T *& p);
 
 
 template < typename TYPE, typename T >
 void assign(::pointer<TYPE> & ptr, T * p);
 
 template < typename TYPE >
-long long release(::pointer<TYPE> & ptr);
-//long long release(::pointer<TYPE> & ptr COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
+::i64 release(::pointer<TYPE> & ptr);
+//::i64 release(::pointer<TYPE> & ptr COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 //template < typename TYPE >
-//long long release(TYPE *& p);
+//::i64 release(TYPE *& p);
 
 
 

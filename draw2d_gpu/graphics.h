@@ -41,8 +41,8 @@ namespace draw2d_gpu
       ~graphics() override;
 
 #ifdef _DEBUG
-         long long increment_reference_count() override;
-      long long decrement_reference_count() override;
+         ::i64 increment_reference_count() override;
+      ::i64 decrement_reference_count() override;
 #endif
 
       void initialize(::particle * pparticle) override;

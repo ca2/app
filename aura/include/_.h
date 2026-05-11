@@ -669,9 +669,9 @@ namespace aura
 ////
 ////class eimpact;
 ////
-////enum e_simple_command : long long;
-////enum e_message : long long;
-////enum enum_impact : long long;
+////enum e_simple_command : ::i64;
+////enum e_message : ::i64;
+////enum enum_impact : ::i64;
 ////enum ::enum_id : ::u64;
 ////enum enum_check: int;
 ////

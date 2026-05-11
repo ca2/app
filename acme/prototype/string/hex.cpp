@@ -39,10 +39,10 @@ namespace hex
 {
 
 
-   long long to_long_long(const ::scoped_string & scopedstr)
+   ::i64 to_long_long(const ::scoped_string & scopedstr)
    {
 
-      long long r = 0, num = 0;
+      ::i64 r = 0, num = 0;
       if (scopedstr.is_empty())
       {
 
@@ -50,10 +50,10 @@ namespace hex
 
       }
       auto pcsz = scopedstr.begin();
-      for(long long i = ansi_len(pcsz)-1; i >= 0; i--)
+      for(::i64 i = ansi_len(pcsz)-1; i >= 0; i--)
       {
 
-         long long d = alphadigit_weight(pcsz[i]);
+         ::i64 d = alphadigit_weight(pcsz[i]);
 
          if(d == -1)
             return -1;

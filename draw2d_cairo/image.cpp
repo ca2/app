@@ -423,7 +423,7 @@ namespace draw2d_cairo
    //void image::from_alpha()
    //{
    //   unsigned char *dst=(unsigned char*)m_pcolorrefMap;
-   //   long long size = cx * cy;
+   //   ::i64 size = cx * cy;
 
    //   while ( size-- )
    //   {

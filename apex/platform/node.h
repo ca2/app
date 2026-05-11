@@ -35,10 +35,10 @@ namespace apex
 #ifdef _DEBUG
 
       
-      long long increment_reference_count() override;
+      ::i64 increment_reference_count() override;
       
       
-      long long decrement_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 
 #endif
@@ -71,7 +71,7 @@ namespace apex
       void start_node() override;
       
       
-      //void application_handle(long long l, void * p) override;
+      //void application_handle(::i64 l, void * p) override;
 
 
       // void on_operating_system_user_theme_change() override;

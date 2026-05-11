@@ -33,7 +33,7 @@ void message_sink::on_initialize_particle()
 }
 
 
-::pointer < ::platform::message > message_sink::create_message(::enum_message emessage, long long llWparam, long long llLparam)
+::pointer < ::platform::message > message_sink::create_message(::enum_message emessage, ::i64 llWparam, ::i64 llLparam)
 {
 
    auto pmessage = allocateø ::platform::message();

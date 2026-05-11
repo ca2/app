@@ -214,9 +214,9 @@ using int_sequence3_t = sequence_t_type<int, 3>;
 using int_sequence4_t = sequence_t_type<int, 4>;
 
 
-using long_long_sequence2_t = sequence_t_type<long long, 2>;
-using long_long_sequence3_t = sequence_t_type<long long, 3>;
-using long_long_sequence4_t = sequence_t_type<long long, 4>;
+using long_long_sequence2_t = sequence_t_type<::i64, 2>;
+using long_long_sequence3_t = sequence_t_type<::i64, 3>;
+using long_long_sequence4_t = sequence_t_type<::i64, 4>;
 
 
 using float_sequence2_t = sequence_t_type<float, 2>;
@@ -1195,9 +1195,9 @@ using int_sequence2 = sequence_type<int, 2>;
 using int_sequence3 = sequence_type<int, 3>;
 using int_sequence4 = sequence_type<int, 4>;
 
-using long_long_sequence2 = sequence_type<long long, 2>;
-using long_long_sequence3 = sequence_type<long long, 3>;
-using long_long_sequence4 = sequence_type<long long, 4>;
+using long_long_sequence2 = sequence_type<::i64, 2>;
+using long_long_sequence3 = sequence_type<::i64, 3>;
+using long_long_sequence4 = sequence_type<::i64, 4>;
 
 using float_sequence2 = sequence_type<float, 2>;
 using float_sequence3 = sequence_type<float, 3>;

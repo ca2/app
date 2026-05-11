@@ -318,7 +318,7 @@ namespace hi5
 #ifdef WINDOWS
       sprintf( szTime, "%ld", (int) time( nullptr ) );
 #elif defined __LP64
-      sprintf( szTime, "%ld", (long long) time( nullptr ) );
+      sprintf( szTime, "%ld", (::i64) time( nullptr ) );
 #else
       sprintf( szTime, "%d", (int) time( nullptr ) );
 #endif

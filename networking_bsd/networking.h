@@ -120,7 +120,7 @@ namespace networking_bsd
       string_map_base < ::pointer<reverse_cache_item >>       m_mapReverseCache;
       ::pointer_array <reverse_cache_item >              m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
-      long long                                          m_iListenSocket;
+      ::i64                                          m_iListenSocket;
       /*::pointer < ::mutex > m_pmutexPool;*/
 
       interlocked_int                                    m_lListenSocket;
@@ -156,8 +156,8 @@ namespace networking_bsd
       void destroy() override;
 
 
-      ::string _last_error_message(long long llError) override;
-      long long last_error() override;
+      ::string _last_error_message(::i64 llError) override;
+      ::i64 last_error() override;
 
       void on_socket_thread_start() override;
 
@@ -269,7 +269,7 @@ namespace networking_bsd
       ::pointer < ::item_array > list_network_interfaces() override;
 
 
-      ::string so_error_description(long long llError) override;
+      ::string so_error_description(::i64 llError) override;
 
 
    };

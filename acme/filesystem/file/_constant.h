@@ -16,7 +16,7 @@ namespace file
 
 
    enum enum_flag :
-      long long
+      ::i64
    {
 
       e_flag_none = 0,

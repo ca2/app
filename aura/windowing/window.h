@@ -1283,25 +1283,25 @@ namespace windowing
 
       // Occlusion and Translucency
       virtual bool is_occluded();
-      virtual long long approximate_occlusion_area();
+      virtual ::i64 approximate_occlusion_area();
       virtual double approximate_occlusion_rate();
-      virtual long long approximate_occlusion_area_except_self_transparent();
+      virtual ::i64 approximate_occlusion_area_except_self_transparent();
       virtual double approximate_occlusion_rate_except_self_transparent();
-      virtual long long _001GetTopLeftWeightedOccludedOpaqueArea();
+      virtual ::i64 _001GetTopLeftWeightedOccludedOpaqueArea();
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
-      virtual long long _001GetTopLeftWeightedArea();
-      virtual long long _001GetRectTopLeftWeightedArea(const ::int_rectangle & rect);
+      virtual ::i64 _001GetTopLeftWeightedArea();
+      virtual ::i64 _001GetRectTopLeftWeightedArea(const ::int_rectangle & rect);
 
-      virtual long long opaque_area(const ::int_rectangle & rect);
+      virtual ::i64 opaque_area(const ::int_rectangle & rect);
       virtual void approximate_occlusion_rects(int_rectangle_array_base & raTest);
 
-      virtual long long opaque_area();
+      virtual ::i64 opaque_area();
 
       /// from top to bottom
       //virtual void non_top_most_upper_window_rects(::int_rectangle_array_base & recta);
 
 
-      virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, long long time_ms);
+      virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);
 
       //void set_opacity(double dOpacity) override;
 

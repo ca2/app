@@ -199,7 +199,7 @@ namespace dynamic_source
       //      catch (const ::e_status & estatus)
       //      {
       //
-      //         informationf("failed to setup visual studio environment " + as_string((long long)estatus.m_estatus));
+      //         informationf("failed to setup visual studio environment " + as_string((::i64)estatus.m_estatus));
       //
       //      }
       //

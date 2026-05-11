@@ -103,12 +103,12 @@ namespace networking
       //virtual bool convert(string& str, const struct ::in_addr& inaddr);
       //virtual bool convert(string& str, const struct ::in6_addr& inaddr6);
 
-      virtual ::string last_error_message(long long llError = 0x8000000000000000);
-      virtual ::string _last_error_message(long long llError);
-      virtual long long last_error();
+      virtual ::string last_error_message(::i64 llError = 0x8000000000000000);
+      virtual ::string _last_error_message(::i64 llError);
+      virtual ::i64 last_error();
 
 
-      virtual ::string so_error_description(long long llError);
+      virtual ::string so_error_description(::i64 llError);
 
       virtual bool has_ip4_internet();
       virtual bool has_ip6_internet();

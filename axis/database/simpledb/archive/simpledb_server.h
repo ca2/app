@@ -13,7 +13,7 @@ namespace simpledb
 
 
       string m_strLastError;
-      long long m_iLastUsedTime;
+      ::i64 m_iLastUsedTime;
 
       int       m_protocol;
 

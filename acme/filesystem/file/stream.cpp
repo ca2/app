@@ -740,7 +740,7 @@ bool  stream_base::is_version(int i)
 //}
 //
 //
-//void stream::read(long long & i)
+//void stream::read(::i64 & i)
 //{
 //
 //   throw ::exception(error_io);

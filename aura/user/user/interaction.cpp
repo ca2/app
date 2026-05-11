@@ -93,7 +93,7 @@ CLASS_DECL_AURA void __set_bottom_right(const ::int_point & pointBottomRight);
 inline void make_parent_mouse_message(::user::enum_message & emessage)
 {
 
-   emessage = (::user::enum_message)((long long)emessage + (long long)(::user::e_message_parent_mouse_first - ::user::e_message_mouse_first));
+   emessage = (::user::enum_message)((::i64)emessage + (::i64)(::user::e_message_parent_mouse_first - ::user::e_message_mouse_first));
 
 }
 
@@ -14623,7 +14623,7 @@ if(get_parent())
 
          //}
 
-         //informationf("interaction::message_handler pmessage->m_eusermessage %lld", pmessage->m_eusermessage.as_long_long());
+         //informationf("interaction::message_handler pmessage->m_eusermessage %lld", pmessage->m_eusermessage.as_i64());
 
          if (pre_message_handler(pkey, bKeyMessage, pmessage))
          {
@@ -17594,7 +17594,7 @@ if(get_parent())
    }
 
 
-   //static long long g_i_graphics_thread_update_visual = 0;
+   //static ::i64 g_i_graphics_thread_update_visual = 0;
 
    //void interaction::scroll_x_sketch_to_lading()
    //{

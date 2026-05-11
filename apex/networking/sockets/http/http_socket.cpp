@@ -1238,7 +1238,7 @@ namespace sockets
    }
 
 
-   long long http_socket::get_request_serial()
+   ::i64 http_socket::get_request_serial()
    {
 
       return m_iHttpSocketRequestSerial;

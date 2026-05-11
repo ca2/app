@@ -88,7 +88,7 @@ namespace mathematics
 } // namespace random_number_generator
 
 
-   long long random_context_entropy64(unsigned char bLevel)
+   ::i64 random_context_entropy64(unsigned char bLevel)
    {
 
       bLevel = minimum(bLevel, 3);
@@ -100,17 +100,17 @@ namespace mathematics
 
       }
 
-      long long i0 = ::long_long_nanosecond();
+      ::i64 i0 = ::long_long_nanosecond();
 
       preempt(microsecond_time(bLevel));
 
-      long long i1 = ::long_long_nanosecond();
+      ::i64 i1 = ::long_long_nanosecond();
 
-      long long i2 = time(nullptr);
+      ::i64 i2 = time(nullptr);
 
-      long long i3 = ::long_long_nanosecond();
+      ::i64 i3 = ::long_long_nanosecond();
 
-      long long i4 = abs(i0 + i1 + i2 + i3);
+      ::i64 i4 = abs(i0 + i1 + i2 + i3);
 
       return i4;
 
@@ -127,7 +127,7 @@ namespace mathematics
 
       }
 
-      long long iValue = 0;
+      ::i64 iValue = 0;
 
       iValue %= I32_MAXIMUM;
 

@@ -72,7 +72,7 @@ namespace platform
    }
 
 
-   void acme_node_layer::node_application_on_status(const_char_pointer pszStatus, void* p, long long hi)
+   void acme_node_layer::node_application_on_status(const_char_pointer pszStatus, void* p, ::i64 hi)
    {
    }
 
@@ -1238,7 +1238,7 @@ namespace platform
    }
 
 
-//   void acme_node_layer::application_handle(long long l, void* p)
+//   void acme_node_layer::application_handle(::i64 l, void* p)
 //   {
 //   }
 

@@ -733,7 +733,7 @@ namespace gpu
          false
       );
 
-      if (::get_task()->payload("debug").as_int() == 123)
+      if (::get_task()->payload("debug").as_i32() == 123)
       {
 
          debugscopeFillQuad.start();

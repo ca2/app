@@ -98,7 +98,7 @@ namespace innate_subsystem
    // bool ScrollBar::_showVertScroll(bool show)
    // {
    //    return m_pparticleThis->_showVertScroll(show);
-   //    // long long style = GetWindowLong(m_hwnd, GWL_STYLE);
+   //    // ::i64 style = GetWindowLong(m_hwnd, GWL_STYLE);
    //    // if (show) {
    //    //    style |= WS_VSCROLL;
    //    // } else {
@@ -127,7 +127,7 @@ namespace innate_subsystem
    // bool ScrollBar::_showHorzScroll(bool show)
    // {
    //    return m_pparticleThis->_showHorzScroll(show);
-   //    // long long style = GetWindowLong(m_hwnd, GWL_STYLE);
+   //    // ::i64 style = GetWindowLong(m_hwnd, GWL_STYLE);
    //    // if (show) {
    //    //    style |=  WS_HSCROLL;
    //    // } else {

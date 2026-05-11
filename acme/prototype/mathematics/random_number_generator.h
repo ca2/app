@@ -41,7 +41,7 @@ namespace mathematics
       ::u32 _get();
       int m_value;
       unsigned_int_array m_uinta;
-      long long m_iAccess = 0;
+      ::i64 m_iAccess = 0;
    };
 
    // http://www.alhem.net/

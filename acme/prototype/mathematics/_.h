@@ -547,7 +547,7 @@ constexpr largest_type<TYPE1, TYPE2> minimum(const TYPE1 & a, const TYPE2 & b)
 }
 
 
-CLASS_DECL_ACME long long ceil_div(long long num, long long den);
+CLASS_DECL_ACME ::i64 ceil_div(::i64 num, ::i64 den);
 
 
 CLASS_DECL_ACME double tri(double angle);
@@ -651,7 +651,7 @@ constexpr short __hiword(INTEGRAL_NUMBER i)
 }
 
 
-//inline long long as_long_long(const_char_pointer psz, int iBase = 10)
+//inline ::i64 as_i64(const_char_pointer psz, int iBase = 10)
 //{
 //
 //   const_char_pointer pszEnd = nullptr;

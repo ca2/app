@@ -37,7 +37,7 @@ bool           get_utf8_char(string & strChar, const_char_pointer &psz, const_ch
 string         get_utf8_char(const_char_pointer pszBeg, const_char_pointer psz, character_count i);
 string         utf8_next_char(const_char_pointer pszBeg, const_char_pointer psz, character_count i = 0);
 string         utf8_previous_char(const_char_pointer pszBeg, const_char_pointer psz, character_count i = 0);
-CLASS_DECL_ACME character_count        unicode_to_utf8_length(long long ch);
+CLASS_DECL_ACME character_count        unicode_to_utf8_length(::i64 ch);
 int            unicode_to_utf8_2_or_more(::ansi_character * dest, int ch);
 
 
@@ -396,10 +396,10 @@ bool unicode_is_mirrored(const ::scoped_string & scopedstrUtf8Char);
 int unicode_size_of_tables();
 
 
-inline  bool unicode_is_kanji(long long i) { return i >= 0x4E00 && i <= 0x9FBF; }
-inline  bool unicode_is_hiragana(long long i) { return i >= 0x3040 && i <= 0x309F; }
-inline  bool unicode_is_katakana(long long i) { return i >= 0x30A0 && i <= 0x30FF; }
-inline  bool unicode_is_japanese(long long i) { return unicode_is_kanji(i) || unicode_is_hiragana(i) || unicode_is_katakana(i); }
+inline  bool unicode_is_kanji(::i64 i) { return i >= 0x4E00 && i <= 0x9FBF; }
+inline  bool unicode_is_hiragana(::i64 i) { return i >= 0x3040 && i <= 0x309F; }
+inline  bool unicode_is_katakana(::i64 i) { return i >= 0x30A0 && i <= 0x30FF; }
+inline  bool unicode_is_japanese(::i64 i) { return unicode_is_kanji(i) || unicode_is_hiragana(i) || unicode_is_katakana(i); }
 inline  bool unicode_is_kanji(const_char_pointer pszUtf8) { return unicode_is_kanji(unicode_index(pszUtf8)); }
 inline  bool unicode_is_hiragana(const_char_pointer pszUtf8) { return unicode_is_hiragana(unicode_index(pszUtf8)); }
 inline  bool unicode_is_katakana(const_char_pointer pszUtf8) { return unicode_is_katakana(unicode_index(pszUtf8)); }

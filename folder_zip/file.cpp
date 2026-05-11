@@ -352,9 +352,9 @@ void file::write(const void * p, ::memsize s)
       if (iNewPosition > m_iPosition)
       {
 
-         long long iRemain = iNewPosition - m_iPosition;
+         ::i64 iRemain = iNewPosition - m_iPosition;
 
-         long long iGet;
+         ::i64 iGet;
 
          int iRead;
 

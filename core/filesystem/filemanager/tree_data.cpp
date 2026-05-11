@@ -157,7 +157,7 @@ namespace filemanager
 #ifdef _DEBUG
 
 
-   long long tree_data::increment_reference_count()
+   ::i64 tree_data::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -165,7 +165,7 @@ namespace filemanager
    }
 
 
-   long long tree_data::decrement_reference_count()
+   ::i64 tree_data::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -173,7 +173,7 @@ namespace filemanager
    }
 
 
-   long long tree_data::release()
+   ::i64 tree_data::release()
    {
 
       return ::object::release();

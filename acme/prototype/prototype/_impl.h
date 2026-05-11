@@ -976,7 +976,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //IMPL_VAR_REF2(unsigned short, unsigned short);
 //IMPL_VAR_REF2(int, int);
 //IMPL_VAR_REF2(::u32, ::u32);
-//IMPL_VAR_REF2(long long, long long);
+//IMPL_VAR_REF2(::i64, ::i64);
 //IMPL_VAR_REF2(::u64, ::u64);
 //#undef IMPL_VAR_REF2
 
@@ -1808,14 +1808,14 @@ inline bool particle::__call__defer_raw_construct_new(::pointer<TYPE>& p)
 constexpr ::e_status e_status::worst(const ::e_status & e) const
 {
 
-   return (::e_status)(::enum_status)minimum((long long)m_eenum, (long long)e.m_eenum);
+   return (::e_status)(::enum_status)minimum((::i64)m_eenum, (::i64)e.m_eenum);
 
 }
 
 
-constexpr long long posix_time::minutes() const { return m_iSecond / 60; }
-constexpr long long posix_time::hours() const { return m_iSecond / (60 * 60); }
-constexpr long long posix_time::days() const { return m_iSecond / (24 * 60 * 60); }
+constexpr ::i64 posix_time::minutes() const { return m_iSecond / 60; }
+constexpr ::i64 posix_time::hours() const { return m_iSecond / (60 * 60); }
+constexpr ::i64 posix_time::days() const { return m_iSecond / (24 * 60 * 60); }
 
 
 

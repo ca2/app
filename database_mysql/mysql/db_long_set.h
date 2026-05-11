@@ -21,7 +21,7 @@
 //    inline bool load(const ::string & lpKey, T & rvalue)
 //    {
       
-//       long long i;
+//       ::i64 i;
 
 //       if(!load(lpKey, &i))
 //          return false;
@@ -32,7 +32,7 @@
 
 //    }
 
-//    bool load(const ::string & lpKey, long long * lValue);
+//    bool load(const ::string & lpKey, ::i64 * lValue);
 //    bool load(const ::string & lpKey, ::int_rectangle * lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool load(const ::string & lpKey, WINDOWPLACEMENT & wp);
@@ -44,11 +44,11 @@
 //    inline bool save(const ::string & lpKey, T value)
 //    {
       
-//       return save(lpKey, (long long) value);
+//       return save(lpKey, (::i64) value);
 
 //    }
 
-//    bool save(const ::string & lpKey, long long lValue);
+//    bool save(const ::string & lpKey, ::i64 lValue);
 //    bool save(const ::string & lpKey, const ::int_rectangle * lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool save(const ::string & lpKey, WINDOWPLACEMENT & wp);

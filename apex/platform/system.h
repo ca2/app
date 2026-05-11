@@ -79,10 +79,10 @@ namespace apex
 #ifdef _DEBUG
 
 
-      long long increment_reference_count() override;
+      ::i64 increment_reference_count() override;
 
 
-      long long decrement_reference_count() override;
+      ::i64 decrement_reference_count() override;
 
 
 #endif
@@ -469,7 +469,7 @@ namespace apex
       void dump_command_line_and_environment_variables_to_file() override;
 
 
-      //void system_id_topic(int iId, long long llWparam, long long llLparam) override;
+      //void system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam) override;
 
       //void add_handler(::particle * pmatter, bool bPriority = false) override;
 

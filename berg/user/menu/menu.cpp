@@ -98,7 +98,7 @@ namespace user
    }
 
 
-   long long menu::increment_reference_count()
+   ::i64 menu::increment_reference_count()
    {
 
 #if REFERENCING_DEBUGGING 
@@ -119,7 +119,7 @@ namespace user
    }
 
 
-   long long menu::decrement_reference_count()
+   ::i64 menu::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

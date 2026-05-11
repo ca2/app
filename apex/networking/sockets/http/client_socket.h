@@ -35,7 +35,7 @@ namespace sockets
       ::pointer < ::mutex >                          m_pmutexData;
       ::memory_file_pointer            m_pmemoryfile;
       ::file::file *                   m_pfile;
-      long long                              m_iFinalSize;
+      ::i64                              m_iFinalSize;
       ::progress::integer              m_progressinteger;
       ::pointer < ::manual_reset_happening > m_pmanualresethappeningWebsocketStarted;
 

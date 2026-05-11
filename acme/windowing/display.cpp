@@ -89,7 +89,7 @@ namespace acme
       }
 
 
-      long long display::_get_x11_root_window()
+      ::i64 display::_get_x11_root_window()
       {
 
          throw ::interface_only();

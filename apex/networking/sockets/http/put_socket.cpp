@@ -64,7 +64,7 @@ namespace sockets
 
          m_filename = scopedstrFile;
 
-         m_iContentLength = ::particle::file()->length(scopedstrFile).as_long_long();
+         m_iContentLength = ::particle::file()->length(scopedstrFile).as_i64();
 
       }
       else
@@ -110,7 +110,7 @@ namespace sockets
       {
          outheader("content-type")     = m_content_type;
       }
-      inheader("content-length") = (long long)m_iContentLength;
+      inheader("content-length") = (::i64)m_iContentLength;
       
       auto strUserAgent=MyUseragent();
       inheader("user-agent")          = strUserAgent;

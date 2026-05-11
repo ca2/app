@@ -27,7 +27,7 @@ namespace user
 
 #ifdef _DEBUG
 
-   long long style_base::increment_reference_count()
+   ::i64 style_base::increment_reference_count()
    {
 
       return ::manager::increment_reference_count();
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   long long style_base::decrement_reference_count()
+   ::i64 style_base::decrement_reference_count()
    {
 
       return ::manager::decrement_reference_count();

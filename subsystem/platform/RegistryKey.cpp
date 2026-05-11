@@ -177,7 +177,7 @@ namespace subsystem
       return true;
    }
 
-   bool RegistryKey::setValueAsInt64(const ::scoped_string & scopedstrName, long long value)
+   bool RegistryKey::setValueAsInt64(const ::scoped_string & scopedstrName, ::i64 value)
    {
       if (!isOpened()) {
          return false;
@@ -244,7 +244,7 @@ namespace subsystem
       return true;
    }
 
-   bool RegistryKey::getValueAsInt64(const ::scoped_string & scopedstrName, long long *out)
+   bool RegistryKey::getValueAsInt64(const ::scoped_string & scopedstrName, ::i64 *out)
    {
       if (!isOpened()) {
          return false;

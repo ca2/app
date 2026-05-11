@@ -251,7 +251,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//long long get_file_size(int fd)
+//::i64 get_file_size(int fd)
 //{
 //
 //   struct stat st;

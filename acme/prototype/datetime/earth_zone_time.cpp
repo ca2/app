@@ -134,7 +134,7 @@ namespace earth
 //
 //         auto t = m_iSecond;
 //
-//         t += (long long) m_timeshift.m_d;
+//         t += (::i64) m_timeshift.m_d;
 //
 //         ptmTemp = gmtime(&t);
 //
@@ -273,7 +273,7 @@ namespace earth
    }
 
 
-   long long zone_time::GetZoneDaySig() const noexcept
+   ::i64 zone_time::GetZoneDaySig() const noexcept
    {
 
        auto time = get_zone_time();

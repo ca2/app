@@ -904,10 +904,10 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 //}
 
 
-long long g_iFunctionDebuggingSerial = 0;
+::i64 g_iFunctionDebuggingSerial = 0;
 
 
-CLASS_DECL_ACME long long function_debugging_serial()
+CLASS_DECL_ACME ::i64 function_debugging_serial()
 {
 
    g_iFunctionDebuggingSerial++;

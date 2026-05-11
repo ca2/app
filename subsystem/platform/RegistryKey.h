@@ -86,7 +86,7 @@ namespace subsystem
       //
    
       bool setValueAsInt32(const ::scoped_string & scopedstrName, int value);
-      bool setValueAsInt64(const ::scoped_string & scopedstrName, long long value);
+      bool setValueAsInt64(const ::scoped_string & scopedstrName, ::i64 value);
       bool setValueAsString(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrPayload);
       bool setValueAsBinary(const ::scoped_string & scopedstrName, const void *value,
                             memsize sizeInBytes);
@@ -96,7 +96,7 @@ namespace subsystem
       //
    
       bool getValueAsInt32(const ::scoped_string & scopedstrName, int *out);
-      bool getValueAsInt64(const ::scoped_string & scopedstrName, long long *out);
+      bool getValueAsInt64(const ::scoped_string & scopedstrName, ::i64 *out);
       bool getValueAsString(const ::scoped_string & scopedstrName, ::string & out);
       bool getValueAsBinary(const ::scoped_string & scopedstrName, void *value, memsize *sizeInBytes);
    

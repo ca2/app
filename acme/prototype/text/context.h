@@ -130,7 +130,7 @@ namespace text
 
 #ifdef _DEBUG
       
-      long long increment_reference_count() override
+      ::i64 increment_reference_count() override
       {
 
          return ::particle::increment_reference_count();
@@ -138,7 +138,7 @@ namespace text
       }
 
 
-      long long decrement_reference_count() override
+      ::i64 decrement_reference_count() override
       {
 
          return ::particle::decrement_reference_count();

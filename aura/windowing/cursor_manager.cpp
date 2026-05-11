@@ -52,7 +52,7 @@ namespace windowing
    }
 
 
-   long long cursor_manager::increment_reference_count()
+   ::i64 cursor_manager::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -60,7 +60,7 @@ namespace windowing
    }
 
 
-   long long cursor_manager::decrement_reference_count()
+   ::i64 cursor_manager::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();

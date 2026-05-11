@@ -4020,7 +4020,7 @@ cert::~cert()
    }
 
 
-   ::string networking::so_error_description(long long llError)
+   ::string networking::so_error_description(::i64 llError)
    {
        int iError = (int) llError;
 

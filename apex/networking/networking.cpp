@@ -166,7 +166,7 @@ namespace networking
    //}
 
 
-   string networking::last_error_message(long long llError)
+   string networking::last_error_message(::i64 llError)
    {
 
       if (llError == 0x8000000000000000ll)
@@ -181,7 +181,7 @@ namespace networking
    }
 
 
-   string networking::_last_error_message(long long llError)
+   string networking::_last_error_message(::i64 llError)
    {
 
       throw interface_only();
@@ -191,7 +191,7 @@ namespace networking
    }
 
 
-   long long networking::last_error()
+   ::i64 networking::last_error()
    {
 
       throw interface_only();
@@ -201,7 +201,7 @@ namespace networking
    }
 
 
-   ::string networking::so_error_description(long long llError)
+   ::string networking::so_error_description(::i64 llError)
    {
 
        ::string strSocketError;

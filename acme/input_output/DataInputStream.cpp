@@ -153,9 +153,9 @@ DataInputStream::~DataInputStream()
    }
 
 
-   long long DataInputStream::readInt64()
+   ::i64 DataInputStream::readInt64()
    {
-      return (long long)readUInt64();
+      return (::i64)readUInt64();
    }
 
 

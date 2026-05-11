@@ -71,7 +71,7 @@ namespace file
       else if(eseek == ::e_seek_current)
       {
          
-         long long iNewPosition = m_uiPosition + offset;
+         ::i64 iNewPosition = m_uiPosition + offset;
 
          if (iNewPosition < 0)
          {

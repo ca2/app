@@ -193,7 +193,7 @@ namespace url
    //   else
    //   {
 
-   //      m_iPort = ::as_int(strPort);
+   //      m_iPort = ::as_i32(strPort);
 
    //   }
 
@@ -650,7 +650,7 @@ namespace url
 
    //         m_rangePort.m_begin = pszPortColon + 1;
 
-   //         m_iPort = ::as_int(m_rangePort);
+   //         m_iPort = ::as_i32(m_rangePort);
 
    //         m_rangePort.m_end = url.m_str.m_end;
 
@@ -1170,7 +1170,7 @@ namespace url
 
             m_rangePort.m_end = range.m_end;
 
-            m_iPort = ::as_int(m_rangePort);
+            m_iPort = ::as_i32(m_rangePort);
 
             m_range.m_end = m_rangePort.m_end;
 

@@ -1341,10 +1341,10 @@ namespace color
    ::color::color & color::operator =(const ::payload & payload)
    {
 
-      m_uchRed = payload["m_uchRed"].as_unsigned_char();
-      m_uchGreen = payload["m_uchGreen"].as_unsigned_char();
-      m_uchBlue = payload["m_uchBlue"].as_unsigned_char();
-      m_uchOpacity = payload["m_uchOpacity"].as_unsigned_char();
+      m_uchRed = payload["m_uchRed"].as_u8();
+      m_uchGreen = payload["m_uchGreen"].as_u8();
+      m_uchBlue = payload["m_uchBlue"].as_u8();
+      m_uchOpacity = payload["m_uchOpacity"].as_u8();
 
       return *this;
 

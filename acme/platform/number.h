@@ -58,12 +58,12 @@ typedef ::u32 long ::u32;
 
 #ifdef _MSC_VER
 //typedef ::u64 ::u64;
-//typedef long long s64;
+//typedef ::i64 s64;
 #define ULL(v)   (v##ui64)
 #define ALLONES64   ULL(0xffffffffffffffff)
 #else  /* !_MSC_VER */
-//typedef ::u32 long long ::u64;
-//typedef signed long long s64;
+//typedef ::u32 ::i64 ::u64;
+//typedef signed ::i64 s64;
 #define ULL(v)   (v##ULL)
 #define ALLONES64   ULL(0xffffffffffffffff)
 #endif /* ?_MSC_VER */
@@ -75,7 +75,7 @@ typedef ::u32 long ::u32;
 * assumed to be at least 64-bit. This will not work correctly
 * on (old) 36-bit architectures (PDP-11 for instance).
 *
-* On non-64-bit architectures, "long long" is used.
+* On non-64-bit architectures, "::i64" is used.
 */
 
 /*

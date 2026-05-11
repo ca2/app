@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-CLASS_DECL_ACME long long string_to_signed(const_char_pointer psz)
+CLASS_DECL_ACME ::i64 string_to_signed(const_char_pointer psz)
 {
 
    return atoll(psz);

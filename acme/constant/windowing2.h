@@ -8,7 +8,7 @@ namespace windowing
 
 
    // wall-changer sourceforge.net contribution
-   enum enum_operating_ambient : long long
+   enum enum_operating_ambient : ::i64
    {
 
       // please note that the row of these must match the row of the corresponding combobox in Preferences Dialog.
@@ -34,7 +34,7 @@ namespace windowing
    };
 
 
-   enum enum_toolkit : long long
+   enum enum_toolkit : ::i64
    {
 
       e_toolkit_none,
@@ -55,7 +55,7 @@ namespace windowing
    };
    
 
-   enum enum_windowing : long long
+   enum enum_windowing : ::i64
    {
 
       e_windowing_unknown = -1,
@@ -69,7 +69,7 @@ namespace windowing
    };
 
 
-   enum enum_display_type : long long
+   enum enum_display_type : ::i64
    {
 
       e_display_type_none,
@@ -81,7 +81,7 @@ namespace windowing
    };
 
 
-   enum enum_bias : long long
+   enum enum_bias : ::i64
    {
 
       e_bias_unknown = -1,

@@ -92,7 +92,7 @@ namespace html
 
    }
 
-   //long long core_data::increment_reference_count()
+   //::i64 core_data::increment_reference_count()
    //{
 
    //   return ::object::increment_reference_count();
@@ -100,7 +100,7 @@ namespace html
    //}
 
 
-   //long long core_data::decrement_reference_count()
+   //::i64 core_data::decrement_reference_count()
    //{
 
    //   return ::object::decrement_reference_count();

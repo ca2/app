@@ -185,7 +185,7 @@ CLASS_DECL_ACME void debug_debug_reference()
    informationf("-");
 
 }
-//void property_object::add_trait(long long i)
+//void property_object::add_trait(::i64 i)
 //{
 //
 //   if (!m_ptraits)

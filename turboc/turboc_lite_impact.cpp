@@ -40,11 +40,11 @@ namespace turboc
 
    }
 
-   long long lite_impact::increment_reference_count()
+   ::i64 lite_impact::increment_reference_count()
    {
       return ::root::increment_reference_count();
    }
-   long long lite_impact::decrement_reference_count()
+   ::i64 lite_impact::decrement_reference_count()
    {
       return ::root::decrement_reference_count();
    }

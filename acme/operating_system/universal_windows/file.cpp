@@ -1407,14 +1407,14 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //
 //}
 //
-//void hfile_set_size(HANDLE h, long long iSize)
+//void hfile_set_size(HANDLE h, ::i64 iSize)
 //{
 //
 //   DWORD dwHi;
 //
 //   DWORD dwLo = ::GetFileSize(h, &dwHi);
 //
-//   if (((::u64)dwLo | ((long long)dwHi << 32)) != iSize)
+//   if (((::u64)dwLo | ((::i64)dwHi << 32)) != iSize)
 //   {
 //
 //      LONG l = (iSize >> 32) & 0xffffffff;

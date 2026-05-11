@@ -23,8 +23,8 @@ public:
    virtual void initialize_html_data(::html_data * phtmldata);
 
 
-   long long increment_reference_count() override;
-   long long decrement_reference_count() override;
+   ::i64 increment_reference_count() override;
+   ::i64 decrement_reference_count() override;
 
 
    virtual bool open_document(const ::payload & payloadFile);

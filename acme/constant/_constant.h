@@ -402,7 +402,7 @@ constexpr char line_feed_letter(bool bCarriage)
 
 
 
-//enum  : long long
+//enum  : ::i64
 //{
 //
 //
@@ -452,9 +452,9 @@ enum enum_priority
 
 
 //bool CLASS_DECL_ACME succeeded(const ::e_status & estatus);
-//bool CLASS_DECL_ACME status_succeeded(long long i);
+//bool CLASS_DECL_ACME status_succeeded(::i64 i);
 //bool CLASS_DECL_ACME failed(const ::e_status & estatus);
-//bool CLASS_DECL_ACME status_failed(long long i);
+//bool CLASS_DECL_ACME status_failed(::i64 i);
 
 
 enum enum_task_flag
@@ -544,7 +544,7 @@ enum enum_zorder
 
 
 //enum e_callstack :
-//   long long
+//   ::i64
 //{
 //
 //
@@ -708,7 +708,7 @@ enum enum_border
 };
 
 
-enum enum_window_flag : long long
+enum enum_window_flag : ::i64
 {
 
 
@@ -834,7 +834,7 @@ enum enum_service_status
 #include "parallelization.h"
 
 
-enum enum_item : long long
+enum enum_item : ::i64
 {
 
    e_item_none = 0,

@@ -18,7 +18,7 @@ namespace ftp
    bool output_stream::implementation::GetNextLine(string& strLine)// const
    {
 
-      long long iFind = m_vBuffer.find_index(mc_strEolCharacterSequence, m_iCurrentPos);
+      ::i64 iFind = m_vBuffer.find_index(mc_strEolCharacterSequence, m_iCurrentPos);
 
       if (::not_found(iFind))
       {

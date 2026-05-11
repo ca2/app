@@ -2993,7 +2993,7 @@ return true;
 //#ifdef WINDOWS
 //
 //
-//long long networking_last_error()
+//::i64 networking_last_error()
 //{
 //
 //   return WSAGetLastError();
@@ -3004,7 +3004,7 @@ return true;
 //#else
 //
 //
-//long long networking_last_error()
+//::i64 networking_last_error()
 //{
 //
 //   return errno;

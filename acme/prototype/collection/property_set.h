@@ -233,7 +233,7 @@ public:
    ::double_array_base get(const ::atom& atom, const ::double_array_base& doublea) const;
    ::string get(const ::atom& atom, const ::scoped_string & scopedstr) const;
    int get(const ::atom& atom, const int & i) const;
-   long long get(const ::atom& atom, const long long & ll) const;
+   ::i64 get(const ::atom& atom, const ::i64 & ll) const;
    float get(const ::atom& atom, const float & f) const;
    double get(const ::atom& atom, const double & d) const;
 

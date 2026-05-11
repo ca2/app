@@ -38,14 +38,14 @@ namespace file
    {
 
       if (estatus < error_file ||
-         (estatus.as_long_long()) >= ((long long)error_file + (long long)(sizeof(rgszFileExceptionCause) / sizeof(rgszFileExceptionCause[0]))))
+         (estatus.as_i64()) >= ((::i64)error_file + (::i64)(sizeof(rgszFileExceptionCause) / sizeof(rgszFileExceptionCause[0]))))
       {
 
          return nullptr;
 
       }
 
-      return rgszFileExceptionCause[estatus.as_long_long() - (long long)error_file];
+      return rgszFileExceptionCause[estatus.as_i64() - (::i64)error_file];
 
    }
 
@@ -120,7 +120,7 @@ namespace file
 
          string strException;
 
-         strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_long_long(), strErrorCodeMessage.c_str());
+         strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.as_i64(), strErrorCodeMessage.c_str());
 
          m_strMessage += strException;*/
 
@@ -179,14 +179,14 @@ namespace file
          {
 
             strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error_message = \"%s\"",
-                                 m_path.c_str(), psz, m_estatus.as_long_long(), strErrorCodeMessage.c_str());
+                                 m_path.c_str(), psz, m_estatus.as_i64(), strErrorCodeMessage.c_str());
 
          }
          else
          {
 
             strException.formatf("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")",
-                                 m_path.c_str(), psz, m_estatus.as_long_long());
+                                 m_path.c_str(), psz, m_estatus.as_i64());
 
          }
 

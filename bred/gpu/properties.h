@@ -409,7 +409,7 @@ namespace gpu
       template<typename T>
 		T& as(const_char_pointer pszName) { return *(T*)find(pszName); }
 		float& as_float(const_char_pointer pszName) { return as<float>(pszName); }
-		int& as_int(const_char_pointer pszName) { return as<int>(pszName); }
+		int& as_i32(const_char_pointer pszName) { return as<int>(pszName); }
 		floating_sequence2& seq2(const_char_pointer pszName) { return as<floating_sequence2>(pszName); }
 		floating_sequence3& seq3(const_char_pointer pszName) { return as<floating_sequence3>(pszName); }
 		floating_sequence4& seq4(const_char_pointer pszName) { return as<floating_sequence4>(pszName); }

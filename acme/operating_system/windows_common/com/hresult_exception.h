@@ -42,7 +42,7 @@ inline void defer_throw_hresult(HRESULT hresult)
 inline error_code hresult_error_code(HRESULT hresult)
 {
 
-   return { e_error_code_type_hresult, (long long)hresult };
+   return { e_error_code_type_hresult, (::i64)hresult };
 
 }
 

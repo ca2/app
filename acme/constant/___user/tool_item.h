@@ -8,7 +8,7 @@
 #pragma once
 
 
-enum enum_tool_item_state : long long
+enum enum_tool_item_state : ::i64
 {
 
    e_tool_item_state_none,
@@ -25,7 +25,7 @@ enum enum_tool_item_state : long long
 };
 
 
-enum enum_tool_item_style : long long
+enum enum_tool_item_style : ::i64
 {
 
    e_tool_item_style_none = e_toolbar_style_none,

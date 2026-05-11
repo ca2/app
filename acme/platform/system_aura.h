@@ -441,7 +441,7 @@ namespace platform
   /*    static inline ::atom atom(const ::std::type_info & info);
       static inline ::atom atom(const ::scoped_string & scopedstr);
       static inline ::atom atom(const ::scoped_string & scopedstr);
-      static inline ::atom atom(long long i);
+      static inline ::atom atom(::i64 i);
       static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);*/
@@ -540,8 +540,8 @@ virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
       //virtual void defer_check_openweather_city_list();
 
       //virtual openweather_city * openweather_find_city(const ::scoped_string & scopedstrQuery);
-      //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, long long & iId, double & dLat, double & dLon);
-      //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, long long & iId, double & dLat, double & dLon, bool bPrefix);
+      //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQuery, string & strCit, ::i64 & iId, double & dLat, double & dLon);
+      //virtual ::collection::index openweather_find_city2(const ::scoped_string & scopedstrQ1, const ::scoped_string & scopedstrQ2, string & strCit, ::i64 & iId, double & dLat, double & dLon, bool bPrefix);
 
 //#ifdef __ANDROID__
 ////#pragma message("at macos??")

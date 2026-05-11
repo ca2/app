@@ -39,17 +39,17 @@ public:
 #ifdef _DEBUG
 
 
-   virtual long long increment_reference_count() override;
-   virtual long long decrement_reference_count() override;
-   virtual long long release() override;
+   virtual ::i64 increment_reference_count() override;
+   virtual ::i64 decrement_reference_count() override;
+   virtual ::i64 release() override;
 
 
 #else
 
 
-   virtual long long increment_reference_count();
-   virtual long long decrement_reference_count();
-   virtual long long release();
+   virtual ::i64 increment_reference_count();
+   virtual ::i64 decrement_reference_count();
+   virtual ::i64 release();
 
 
 #endif

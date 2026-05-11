@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum enum_impact : long long
+enum enum_impact : ::i64
 {
 
    e_impact_none,

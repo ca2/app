@@ -310,7 +310,7 @@ namespace apex
 #ifdef _DEBUG
 
 
-   long long application::increment_reference_count()
+   ::i64 application::increment_reference_count()
    {
 
       return ::platform::context::increment_reference_count();
@@ -318,7 +318,7 @@ namespace apex
    }
 
 
-   long long application::decrement_reference_count()
+   ::i64 application::decrement_reference_count()
    {
 
       return ::platform::context::decrement_reference_count();
@@ -4194,12 +4194,12 @@ namespace apex
 
 
             int i1 = set2["oh_my_god2"].as_int_array()[0];
-            int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_int() : -1;
-            int i3 = set2["oh_my_god2"][2].as_int();
+            int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_i32() : -1;
+            int i3 = set2["oh_my_god2"][2].as_i32();
 
-            int b1 = set["d1"].as_int();
+            int b1 = set["d1"].as_i32();
             string b2 = set["d2"];
-            int b3 = set["d3"].as_int();
+            int b3 = set["d3"].as_i32();
 
             ASSERT(str1 == str2);
             ASSERT(i1 == 1);
@@ -9691,7 +9691,7 @@ namespace apex
    bool application::get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending)
    {
 
-      long long i64Size;
+      ::i64 i64Size;
 
       if (!get_fs_size(i64Size, scopedstrPath, bPending))
       {
@@ -9751,7 +9751,7 @@ namespace apex
    }
 
 
-   bool application::get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
+   bool application::get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending)
    {
       return false;
       //db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());

@@ -84,14 +84,14 @@ namespace networking_bsd
 //#endif
 
 
-   string networking::_last_error_message(long long llError)
+   string networking::_last_error_message(::i64 llError)
    {
 
       return bsd_socket_error((int) llError);
 
    }
 
-   long long networking::last_error()
+   ::i64 networking::last_error()
    {
 
       return networking_last_error();

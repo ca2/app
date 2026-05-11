@@ -60,12 +60,12 @@ namespace platform
    }
 
 
-   void acme_application_layer::application_on_status(::e_status estatus, ::particle* pparticle, long long hi, void* p)
+   void acme_application_layer::application_on_status(::e_status estatus, ::particle* pparticle, ::i64 hi, void* p)
    {
    }
 
 
-   void acme_application_layer::on_error_icloud_not_available(::particle* pparticle, long long hi, void* p)
+   void acme_application_layer::on_error_icloud_not_available(::particle* pparticle, ::i64 hi, void* p)
    {
    }
 

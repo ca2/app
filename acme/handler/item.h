@@ -15,7 +15,7 @@ class item;
 DECLARE_ENUMERATION(e_item, enum_item);
 
 
-enum enum_item_flag : long long
+enum enum_item_flag : ::i64
 {
 
    e_item_flag_none = 0,
@@ -310,8 +310,8 @@ public:
    ::collection::index operator + (int iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
    ::collection::index operator - (int iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
 
-   ::collection::index operator + (long long iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
-   ::collection::index operator - (long long iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
+   ::collection::index operator + (::i64 iItemAdd) { return (::collection::index) (m_item.m_iItem + iItemAdd); }
+   ::collection::index operator - (::i64 iItemSub) { return (::collection::index) (m_item.m_iItem - iItemSub); }
 
 
    bool in_element_range(enum_element eelement, int iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }

@@ -401,7 +401,7 @@ namespace sockets
 
       }
 
-      int iStatusCode = m_response.attr("http_status_code").as_int();
+      int iStatusCode = m_response.attr("http_status_code").as_i32();
 
 //      if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
 //      {
@@ -466,7 +466,7 @@ namespace sockets
    void http_client_socket::OnData(const_char_pointer buf,memsize len)
    {
 
-      if(m_response.attr("http_status_code").as_int() >= 300 && m_response.attr("http_status_code").as_int() <= 399)
+      if(m_response.attr("http_status_code").as_i32() >= 300 && m_response.attr("http_status_code").as_i32() <= 399)
       {
 
          return;
@@ -716,7 +716,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (long long)0;
+         return (::i64)0;
 
       }
       else
@@ -735,7 +735,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (long long)m_content_ptr;
+         return (::i64)m_content_ptr;
 
       }
       else
@@ -754,7 +754,7 @@ namespace sockets
       if (escalar == e_scalar_download_size)
       {
 
-         return (long long)m_iContentLength;
+         return (::i64)m_iContentLength;
 
       }
       else

@@ -136,7 +136,7 @@ void message_queue::kick_idle()
 ::e_status message_queue::get_message(MESSAGE * pmessage, const ::operating_system::window & operatingsystemwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, const class time & time)
 {
 
-   long long iFilterMinimum = wMsgFilterMin;
+   ::i64 iFilterMinimum = wMsgFilterMin;
 
    if (iFilterMinimum == 0)
    {
@@ -145,7 +145,7 @@ void message_queue::kick_idle()
 
    }
 
-   long long iFilterMaximum = wMsgFilterMax;
+   ::i64 iFilterMaximum = wMsgFilterMax;
 
    if (iFilterMaximum == 0)
    {

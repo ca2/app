@@ -132,7 +132,7 @@ public:
       bool clip_color_blend(::draw2d::graphics * pgraphics, const ::int_rectangle & rectangle, ::color32_t color32, unsigned char alpha, ::draw2d::region * prgnClip);
    */
 
-   void trait(::image::image *pimage, long long iTrait);
+   void trait(::image::image *pimage, ::i64 iTrait);
 
 //   static void CreateBitmap(
 //   ::draw2d::graphics * pgraphics,

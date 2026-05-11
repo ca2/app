@@ -167,7 +167,7 @@ namespace nano
 
          send(pnanohttpget);
 
-         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
          return iHttpStatusCode == 200;
 
@@ -203,7 +203,7 @@ namespace nano
 
          send(pnanohttpget);
 
-         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
          return *pnanohttpget->get_memory_response();
 
@@ -248,7 +248,7 @@ namespace nano
 
          send(pnanohttpget);
 
-         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_int();
+         auto iHttpStatusCode = pnanohttpget->payload("out_attributes")["http_status_code"].as_i32();
 
          file_system()->put_block(path, *pnanohttpget->get_memory_response());
 

@@ -93,7 +93,7 @@
 //      return mysql_num_fields((MYSQL_RES *) m_pres);
 //   }
 //
-//   long long dataset::num_rows()
+//   ::i64 dataset::num_rows()
 //   {
 //      return mysql_num_rows ((MYSQL_RES *) m_pres);
 //   }

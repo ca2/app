@@ -50,7 +50,7 @@ public:
 //public:
 
 
-   long long    m_iWidth;
+   ::i64    m_iWidth;
 
 
    ::collection::count set_size(::collection::count w, ::collection::count h)

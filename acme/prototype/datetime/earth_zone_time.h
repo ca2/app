@@ -36,7 +36,7 @@ namespace earth
       int GetZoneDayOfWeek() const noexcept; // 1 = Sunday, 7 = Saturday
 
       posix_time GetZoneTimeOfDay() const noexcept;
-      long long GetZoneDaySig() const noexcept;
+      ::i64 GetZoneDaySig() const noexcept;
 
 
       string FormatZone(string & str, const ::scoped_string & scopedstrFormat) const;

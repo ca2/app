@@ -175,7 +175,7 @@ namespace bred
       //
       //
       //      virtual bool get_fs_size(string & strSize, const ::scoped_string & scopedstrPath, bool & bPending);
-      //      virtual bool get_fs_size(long long & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
+      //      virtual bool get_fs_size(::i64 & i64Size, const ::scoped_string & scopedstrPath, bool & bPending);
       //
       //      virtual void data_on_after_change(::message::message * pmessage);
       //

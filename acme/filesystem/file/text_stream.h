@@ -10,7 +10,7 @@
 
 inline ::string ellipsis(const_char_pointer psz, character_count len);
 inline ::u64 consume_natural(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
-inline long long consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
+inline ::i64 consume_integer(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
 inline double consume_floating(const_char_pointer &psz, const_char_pointer pszBegin, int iRadix = 10);
 
 
@@ -296,7 +296,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator <<(long long i)
+//text_stream < FILE >& text_stream < FILE >::operator <<(::i64 i)
 //{
 //
 //   print_number(as_string(i));
@@ -530,7 +530,7 @@ public:
 //
 //
 //// template < typename FILE >
-//text_stream < FILE >& text_stream < FILE >::operator >>(long long& i)
+//text_stream < FILE >& text_stream < FILE >::operator >>(::i64& i)
 //{
 //
 //   number_read(i);

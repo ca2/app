@@ -107,7 +107,7 @@ inline void assign(short & sh, const ::payload& r);
 inline void assign(unsigned short & ush, const ::payload& r);
 inline void assign(int & i, const ::payload& r);
 inline void assign(::u32 & ui, const ::payload& r);
-inline void assign(long long & hi, const ::payload& r);
+inline void assign(::i64 & hi, const ::payload& r);
 inline void assign(::u64 & hn, const ::payload& r);
 
 
@@ -244,7 +244,7 @@ inline bool exists(const ::file::enum_type& etype);
 //CLASS_DECL_ACME bool is_verbose_log();
 
 
-CLASS_DECL_ACME long long ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
+CLASS_DECL_ACME ::i64 ansi_to_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 CLASS_DECL_ACME ::u64 ansi_to_unsigned_long_long(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 CLASS_DECL_ACME int ansi_to_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
 CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_pointer *ppszEnd, int iBase);
@@ -252,7 +252,7 @@ CLASS_DECL_ACME ::u32 ansi_to_unsigned_int(const_char_pointer psz, const_char_po
 
 CLASS_DECL_ACME ::ansi_character * __u64toansi(::u64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
 
-CLASS_DECL_ACME ::ansi_character * __long_longtoansi(long long u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
+CLASS_DECL_ACME ::ansi_character * __long_longtoansi(::i64 u, ::ansi_character * buf, int iBase, enum_digit_case edigitcase, ::ansi_character * & len);
 
 
 template<typename T1, typename T2>

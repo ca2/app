@@ -3637,7 +3637,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #ifdef _DEBUG
 
 
-   long long system::increment_reference_count()
+   ::i64 system::increment_reference_count()
    {
 
       return ::object::increment_reference_count();
@@ -3645,7 +3645,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
    }
 
 
-   long long system::decrement_reference_count()
+   ::i64 system::decrement_reference_count()
    {
 
       return ::object::decrement_reference_count();
@@ -3656,7 +3656,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 #endif
 
 
-   ::lresult system::system_id_topic(int iId, long long llWparam, long long llLparam)
+   ::lresult system::system_id_topic(int iId, ::i64 llWparam, ::i64 llLparam)
    {
 
       auto lresult = call_id_topic((::enum_id)iId, llWparam, llLparam, nullptr);
@@ -3752,7 +3752,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
          
          ::particle * pparticle = acme_windowing()->defer_initialize_host_window(nullptr);
          
-         auto ll =  (long long) pparticle;
+         auto ll =  (::i64) pparticle;
          
          ptopic->m_lresult = ll;
          
@@ -5709,7 +5709,7 @@ void system::open_internet_link(const ::scoped_string & scopedstrUrl, const ::sc
 //}
 
 
-long long system_id_topic(::platform::system* psystem, int iId, long long llWparam, long long llLparam)
+::i64 system_id_topic(::platform::system* psystem, int iId, ::i64 llWparam, ::i64 llLparam)
 {
 
    auto ll = psystem->call_id_topic((::enum_id) iId, llWparam, llLparam);

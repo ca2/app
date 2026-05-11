@@ -36,6 +36,6 @@
 //typedef signed char         char;
 //typedef signed short        short;
 //typedef signed int          int;
-//typedef signed long long    long long;
+//typedef signed ::i64    ::i64;
 //
 //// __INTTYPES_H__

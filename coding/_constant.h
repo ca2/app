@@ -34,7 +34,7 @@ namespace coding
    };
 
 
-   enum enum_integrate : long long
+   enum enum_integrate : ::i64
    {
 
 

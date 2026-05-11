@@ -9329,7 +9329,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
                   try
                   {
 
-                     puserinteraction->send_message(::user::e_message_show_window, 0, (long long)e_show_window_parent_closing);
+                     puserinteraction->send_message(::user::e_message_show_window, 0, (::i64)e_show_window_parent_closing);
 
                   }
                   catch (...)
@@ -15913,7 +15913,7 @@ slGraphics.unlock();
    }
 
 
-   long long window::approximate_occlusion_area()
+   ::i64 window::approximate_occlusion_area()
    {
 
       int_rectangle_array_base ra;
@@ -15925,7 +15925,7 @@ slGraphics.unlock();
    }
 
 
-   long long window::opaque_area(const ::int_rectangle& rect)
+   ::i64 window::opaque_area(const ::int_rectangle& rect)
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -15945,7 +15945,7 @@ slGraphics.unlock();
    }
 
 
-   long long window::_001GetRectTopLeftWeightedArea(const ::int_rectangle& rect)
+   ::i64 window::_001GetRectTopLeftWeightedArea(const ::int_rectangle& rect)
    {
 
       ::int_rectangle rectangle(rect);
@@ -15957,7 +15957,7 @@ slGraphics.unlock();
    }
 
 
-   long long window::opaque_area()
+   ::i64 window::opaque_area()
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -15977,7 +15977,7 @@ slGraphics.unlock();
    }
 
 
-   long long window::_001GetTopLeftWeightedArea()
+   ::i64 window::_001GetTopLeftWeightedArea()
    {
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
@@ -16020,14 +16020,14 @@ slGraphics.unlock();
    }
 
 
-   long long window::approximate_occlusion_area_except_self_transparent()
+   ::i64 window::approximate_occlusion_area_except_self_transparent()
    {
 
       int_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
-      long long cApproxOpaqueArea = 0;
+      ::i64 cApproxOpaqueArea = 0;
 
       for (auto& r : ra)
       {
@@ -16049,14 +16049,14 @@ slGraphics.unlock();
    }
 
 
-   long long window::_001GetTopLeftWeightedOccludedOpaqueArea()
+   ::i64 window::_001GetTopLeftWeightedOccludedOpaqueArea()
    {
 
       int_rectangle_array_base ra;
 
       approximate_occlusion_rects(ra);
 
-      long long cApproxOpaqueArea = 0;
+      ::i64 cApproxOpaqueArea = 0;
 
       for (auto& r : ra)
       {
@@ -16321,7 +16321,7 @@ slGraphics.unlock();
        //}
 
 
-   void window::android_fill_plasma(const void* pixels, int width, int height, int stride, long long time_ms)
+   void window::android_fill_plasma(const void* pixels, int width, int height, int stride, ::i64 time_ms)
    {
 
       ::particle * pparticleSynchronization = nullptr;

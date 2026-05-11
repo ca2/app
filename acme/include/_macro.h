@@ -151,7 +151,7 @@ release_time_for_project application::release_time() { return __RELEASE_TIME(lib
 
 // #define make_int(a, b)           ((int)(((unsigned short)(((::uptr)(a)) & 0xffff)) | ((::u32)((unsigned short)(((::uptr)(b)) & 0xffff))) << 16))
 
-// #define __MAKE_LONG64(a, b)         ((long long)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
+// #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
 
 // #define make_unsigned_int(l, h)         ((::uptr)(::u32)make_int(l, h))
 

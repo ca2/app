@@ -335,7 +335,7 @@ inline atom::atom(enum_property eproperty) :
 
 inline atom::atom(enum_factory efactory) :
         m_etype(e_type_factory),
-        m_iLargest((long long)efactory) // used m_iLargest to reset 64-bit field
+        m_iLargest((::i64)efactory) // used m_iLargest to reset 64-bit field
 {
 
 }
@@ -544,7 +544,7 @@ inline atom::atom(ENUM e)
 
    m_etype = e_type_integer;
 
-   m_iLargest = ::as_long_long(e);
+   m_iLargest = ::as_i64(e);
 
 }
 
@@ -1356,7 +1356,7 @@ inline ::std::strong_ordering atom::operator <=>(::enum_happening ehappening) co
 //}
 
 
-inline long long atom::as_long_long() const
+inline ::i64 atom::as_i64() const
 {
 
    return prototype_type() == e_type_integer ? m_iLargest : 0x8000000000000000ll;

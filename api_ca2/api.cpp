@@ -158,7 +158,7 @@ namespace api_ca2
 
          http()->get(strNetworkPayload, scopedstrUrl, set);
 
-         int iStatusCode = set["http_status_code"].as_int();
+         int iStatusCode = set["http_status_code"].as_i32();
 
          if (iStatusCode >= 400 && iStatusCode <= 499)
          {

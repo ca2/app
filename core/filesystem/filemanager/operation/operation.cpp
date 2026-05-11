@@ -18,8 +18,8 @@ namespace filemanager
 
    bool has_digit(const ::scoped_string & scopedstrName);
    string get_number_mask(const ::scoped_string & scopedstrName);
-   long long get_number_value(const ::scoped_string & scopedstrName);
-   string set_number_value(const ::scoped_string & scopedstrName, long long iValue);
+   ::i64 get_number_value(const ::scoped_string & scopedstrName);
+   string set_number_value(const ::scoped_string & scopedstrName, ::i64 iValue);
 
 
    operation::operation()
@@ -778,7 +778,7 @@ namespace filemanager
    }
 
 
-   long long get_number_value(const ::scoped_string & scopedstrName)
+   ::i64 get_number_value(const ::scoped_string & scopedstrName)
    {
 
       string strResult;
@@ -811,7 +811,7 @@ namespace filemanager
    }
 
 
-   string set_number_value(const ::scoped_string & scopedstrName, long long iValue)
+   string set_number_value(const ::scoped_string & scopedstrName, ::i64 iValue)
    {
 
       string strValue = as_string(iValue);
@@ -902,7 +902,7 @@ namespace filemanager
 
       if(has_digit(strName))
       {
-         long long iValue = get_number_value(strName);
+         ::i64 iValue = get_number_value(strName);
          string strFormat;
          for(int i = 1; i < 1000; i++)
          {

@@ -47,7 +47,7 @@ namespace app_shader
 #ifdef _DEBUG
 
 
-   long long render::increment_reference_count()
+   ::i64 render::increment_reference_count()
    {
 
       return ::particle::increment_reference_count();
@@ -55,7 +55,7 @@ namespace app_shader
    }
 
 
-   long long render::decrement_reference_count()
+   ::i64 render::decrement_reference_count()
    {
 
       return ::particle::decrement_reference_count();

@@ -314,7 +314,7 @@ namespace turboc
             if(error == 0)
             {
 
-               long long iChar =  unicode_index(unicode_to_utf8(L"Love"));
+               ::i64 iChar =  unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face,(int)iChar);
 
@@ -365,7 +365,7 @@ namespace turboc
             if(error == 0)
             {
 
-               long long iChar =  unicode_index(unicode_to_utf8(L"Love"));
+               ::i64 iChar =  unicode_index(unicode_to_utf8(L"Love"));
 
                int glyph_index = FT_Get_Char_Index(face,(int)iChar);
 

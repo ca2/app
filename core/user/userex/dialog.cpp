@@ -229,7 +229,7 @@ namespace userex
    }
 
 
-   int_bool dialog::on_init_dialog()
+   ::i32_bool dialog::on_init_dialog()
    {
 
       return true;

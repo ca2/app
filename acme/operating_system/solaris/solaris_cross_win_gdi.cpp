@@ -40,7 +40,7 @@
 // }
 
 
-// int_bool ReleaseDC(oswindow hwnd, HDC hdc)
+// ::i32_bool ReleaseDC(oswindow hwnd, HDC hdc)
 // {
 
 
@@ -59,7 +59,7 @@
 // }
 
 
-// int_bool this->rectangle(oswindow hwnd, ::i32_rectangle * lprect)
+// ::i32_bool this->rectangle(oswindow hwnd, ::i32_rectangle * lprect)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);
@@ -85,7 +85,7 @@
 // }
 
 
-// int_bool window_rectangle(oswindow hwnd, ::i32_rectangle * lprect)
+// ::i32_bool window_rectangle(oswindow hwnd, ::i32_rectangle * lprect)
 // {
 
 
@@ -159,7 +159,7 @@
 // }
 
 
-// int_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
+// ::i32_bool EndPaint(oswindow hwnd, PAINTSTRUCT * ps)
 // {
 
 //    return ReleaseDC(hwnd, ps->hdc);
@@ -167,7 +167,7 @@
 // }
 
 
-// int_bool GetCursorPos(::i32_point * lppointCursor)
+// ::i32_bool GetCursorPos(::i32_point * lppointCursor)
 // {
 
 //    //mutex_lock synchronouslock(user_synchronization(), true);
@@ -194,7 +194,7 @@
 
 
 
-// int_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, ::u32 uFlags)
+// ::i32_bool set_window_position(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, ::u32 uFlags)
 // {
 
 //    mutex_lock synchronouslock(user_synchronization(), true);

@@ -342,7 +342,7 @@ inline bool is_string_ok(const ::ansi_character * p)
 }
 
 
-inline int_bool address_overlaps(const void * p1, const void * p2, character_count len)
+inline ::i32_bool address_overlaps(const void * p1, const void * p2, character_count len)
 {
 
    return (((unsigned char*)p1) <= (((unsigned char*)p2) + len))

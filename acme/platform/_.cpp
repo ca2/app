@@ -12,9 +12,9 @@
 #endif
 
 
-CLASS_DECL_ACME int_bool defer_acme_init();
+CLASS_DECL_ACME ::i32_bool defer_acme_init();
 
-CLASS_DECL_ACME int_bool defer_acme_term();
+CLASS_DECL_ACME ::i32_bool defer_acme_term();
 
 
 namespace acme
@@ -104,7 +104,7 @@ int g_iAuraRefCount = 0;
 
 
 //extern "C"
-//int_bool defer_acme_init()
+//::i32_bool defer_acme_init()
 //{
 //
 //   g_iAuraRefCount++;
@@ -120,7 +120,7 @@ int g_iAuraRefCount = 0;
 //}
 
 //extern "C"
-//CLASS_DECL_ACME int_bool defer_acme_term()
+//CLASS_DECL_ACME ::i32_bool defer_acme_term()
 //{
 //
 //   g_iAuraRefCount--;

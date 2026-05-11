@@ -147,7 +147,7 @@ namespace gpu
       ::pointer < ::gpu::command_buffer >          m_pcommandbufferUpload;
       ::pointer < ::gpu::model_buffer >            m_pmodelbufferFullscreenQuad;
       // size memory buffer
-      ::int_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
+      ::i32_map < ::pool <::gpu::memory_buffer > > m_mapPoolMemoryBuffer;
       //::image32_callback                         m_callbackImage32CpuBuffer;
       ::pointer_array < ::gpu::texture >           m_textureaAtlas;
       //::pointer < ::mutex >                      m_pmutexOffscreen;

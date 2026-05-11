@@ -1194,8 +1194,8 @@ CLASS_DECL_ACME const void * memory_find_memory(const void * src, character_coun
 
 CLASS_DECL_ACME const_char_pointer        wildcard_next_stop(const_char_pointer pszCriteria);
 
-CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
-CLASS_DECL_ACME int_bool               case_insensitive_wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool               wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool               case_insensitive_wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
 
 
 

@@ -21,8 +21,8 @@ namespace graphics
       int                           m_iBorder;
       string_array_base                       m_stra;
       array < ::i32_array_base >           m_i2aColor;
-      int_map < ::draw2d::pen_pointer >  m_mappen2;
-      int_map < ::draw2d::pen_pointer >  m_mappen1;
+      i32_map < ::draw2d::pen_pointer >  m_mappen2;
+      i32_map < ::draw2d::pen_pointer >  m_mappen1;
       int                           m_iLastPenColor;
       int                           m_iLastPen;
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//int_bool delete_hcursor(HCURSOR hcursor)
+//::i32_bool delete_hcursor(HCURSOR hcursor)
 //{
 //
 //   return true;

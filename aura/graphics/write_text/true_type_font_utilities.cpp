@@ -92,7 +92,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
       return csRetVal;
 
    TT_TABLE_DIRECTORY tblDir;
-   int_bool bFound = false;
+   ::i32_bool bFound = false;
    string csTemp;
 
    for (int i = 0; i < ttOffsetTable.uNumOfTables; i++)

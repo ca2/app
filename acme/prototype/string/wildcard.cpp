@@ -31,7 +31,7 @@ const_char_pointer wildcard_next_stop(const_char_pointer pszCriteria)
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
+CLASS_DECL_ACME ::i32_bool matches_wildcard_criteria_dup(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
@@ -118,7 +118,7 @@ CLASS_DECL_ACME int_bool matches_wildcard_criteria_dup(const_char_pointer pszCri
 }
 
 
-CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
+CLASS_DECL_ACME ::i32_bool case_insensitive_matches_wildcard_criteria(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));
@@ -212,7 +212,7 @@ CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const_char_p
 }
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
+CLASS_DECL_ACME ::i32_bool matches_wildcard_criteria(const_char_pointer pszCriteriaParam, const_char_pointer pszValue)
 {
 
    string strCriteria(normalize_wildcard_criteria(pszCriteriaParam));

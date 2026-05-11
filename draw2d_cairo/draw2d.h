@@ -28,7 +28,7 @@ namespace draw2d_cairo
 
       ::pointer< ::mutex > m_pmutex;
 
-      string_map_base < int_map < FT_Face > >  m_mapFontFace;
+      string_map_base < i32_map < FT_Face > >  m_mapFontFace;
 
       string_to_int_base m_mapFontError;
 

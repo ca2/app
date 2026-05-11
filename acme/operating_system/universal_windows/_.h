@@ -31,14 +31,14 @@ CLASS_DECL_ACME string normalize_path(const_char_pointer lpcszPath);
 
 //CLASS_DECL_ACME oswindow get_mouse_capture();
 //CLASS_DECL_ACME oswindow set_mouse_capture(::acme::windowing::window * pacmewindowingwindow);
-//CLASS_DECL_ACME int_bool release_mouse_capture();
+//CLASS_DECL_ACME ::i32_bool release_mouse_capture();
 //
 //CLASS_DECL_ACME oswindow get_active_window();
 //CLASS_DECL_ACME oswindow set_active_window(::acme::windowing::window * pacmewindowingwindow);
 //
 //
 //
-//CLASS_DECL_ACME int_bool is_window(::acme::windowing::window * pacmewindowingwindow);
+//CLASS_DECL_ACME ::i32_bool is_window(::acme::windowing::window * pacmewindowingwindow);
 
 
 void CLASS_DECL_ACME __cdecl _ca2_purecall();
@@ -104,12 +104,12 @@ namespace user
 #define argb(a, r,g,b)          ((color32_t)(((unsigned char)(r)|((unsigned short)((unsigned char)(g))<<8))|(((::u32)(unsigned char)(b))<<16)|(((::u32)(unsigned char)(a))<<24)))*/
 
 
-//CLASS_DECL_ACME int_bool os_initialize();
-//CLASS_DECL_ACME int_bool os_finalize();
+//CLASS_DECL_ACME ::i32_bool os_initialize();
+//CLASS_DECL_ACME ::i32_bool os_finalize();
 
 
-CLASS_DECL_ACME int_bool main_initialize();
-CLASS_DECL_ACME int_bool main_finalize();
+CLASS_DECL_ACME ::i32_bool main_initialize();
+CLASS_DECL_ACME ::i32_bool main_finalize();
 
 
 CLASS_DECL_ACME void set_main_htask(htask htask);
@@ -122,7 +122,7 @@ CLASS_DECL_ACME itask main_itask();
 
 //CLASS_DECL_ACME oswindow get_window(::acme::windowing::window * pacmewindowingwindow, int iWindow);
 
-//CLASS_DECL_ACME void attach_thread_input_to_main_thread(int_bool bAttach);
+//CLASS_DECL_ACME void attach_thread_input_to_main_thread(::i32_bool bAttach);
 
 
 //CLASS_DECL_ACME ::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::times );
@@ -137,10 +137,10 @@ CLASS_DECL_ACME itask main_itask();
 
 
 
-//inline int_bool is_nok(hfile hfile);
+//inline ::i32_bool is_nok(hfile hfile);
 
 //
-//inline int_bool is_ok(hfile hfile);
+//inline ::i32_bool is_ok(hfile hfile);
 //
 //
 //CLASS_DECL_ACME void dpi_os_initialize();

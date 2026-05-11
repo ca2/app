@@ -85,7 +85,7 @@ namespace image
 
 
    class CLASS_DECL_AURA icon_int_map :
-      virtual public int_map < icon * >
+      virtual public i32_map < icon * >
    {
    public:
 

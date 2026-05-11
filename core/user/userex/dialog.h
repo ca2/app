@@ -34,7 +34,7 @@ namespace userex
       virtual void do_data_exchange(::user::data_exchange * pdx);
 
 
-      virtual int_bool on_init_dialog();
+      virtual ::i32_bool on_init_dialog();
 
 
       virtual void OnCancel();

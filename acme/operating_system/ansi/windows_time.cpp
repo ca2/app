@@ -333,7 +333,7 @@ PTIME_FIELDS TimeFields)
  *   Success: true.
  *   Failure: false.
  */
-int_bool RtlTimeFieldsToTime(
+::i32_bool RtlTimeFieldsToTime(
 PTIME_FIELDS tfTimeFields,
 PLARGE_INTEGER Time)
 {
@@ -488,7 +488,7 @@ NTSTATUS RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *   Success: true.
  *   Failure: false, if the resulting value will not fit in a ::u32.
  */
-int_bool RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
+::i32_bool RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
@@ -510,7 +510,7 @@ int_bool RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
  *   Success: true.
  *   Failure: false, if the resulting value will not fit in a ::u32.
  */
-int_bool RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
+::i32_bool RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
@@ -747,7 +747,7 @@ static int weekday_to_mday(int year, int day, int mon, int day_of_week)
    return mday;
 }
 
-int_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
+::i32_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
 {
    unsigned short wDay;
 
@@ -768,7 +768,7 @@ int_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
    return true;
 }
 
-int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
+::i32_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
 {
    if (tzi->Bias == reg_tzi->Bias &&
          match_tz_date(&tzi->StandardDate, &reg_tzi->StandardDate) &&
@@ -780,7 +780,7 @@ int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE
 
 /*
 
-static int_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 type, void *data, ::u32 count)
+static ::i32_bool reg_query_value(HKEY hkey, const ::wide_character * name, ::u32 type, void *data, ::u32 count)
 {
     UNICODE_STRING nameW;
     char buf[256];
@@ -1035,7 +1035,7 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ACME int_bool LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_ACME ::i32_bool LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
    NTSTATUS status;
    LARGE_INTEGER local, utc;
@@ -1060,7 +1060,7 @@ CLASS_DECL_ACME int_bool LocalFileTimeToFileTime( const FILETIME *localft, LPFIL
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+CLASS_DECL_ACME ::i32_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 {
    NTSTATUS status;
    LARGE_INTEGER local, utc;
@@ -1087,7 +1087,7 @@ CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILET
 /*********************************************************************
  *      FileTimeToSystemTime                            (KERNEL32.@)
  */
-int_bool FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
+::i32_bool FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 {
    TIME_FIELDS tf;
    LARGE_INTEGER t;
@@ -1108,7 +1108,7 @@ int_bool FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 }
 
 
-int_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time * psystemtime)
+::i32_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time * psystemtime)
 {
    
    return FileTimeToSystemTime((const FILETIME *) pfile_time, (LPSYSTEMTIME) psystemtime);
@@ -1118,7 +1118,7 @@ int_bool FileTimeToSystemTime(const file_time_t * pfile_time, system_time * psys
 /*********************************************************************
  *      SystemTimeToFileTime                            (KERNEL32.@)
  */
-int_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
+::i32_bool SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 {
    TIME_FIELDS tf;
    LARGE_INTEGER t;

@@ -16,7 +16,7 @@ namespace user
 
 
       atom_map_base < int >          m_mapCommandImage;
-      ::int_map < atom >        m_mapImageCommand;
+      ::i32_map < atom >        m_mapImageCommand;
 
       ::image::image_list_pointer      m_pimagelist;
       ::image::image_list_pointer      m_pimagelistHue;

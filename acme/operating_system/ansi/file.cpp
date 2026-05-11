@@ -88,7 +88,7 @@
 //}
 //
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //WriteFile(
 //          HANDLE hFile,
@@ -114,7 +114,7 @@
 //    return true;
 //}
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //ReadFile(
 //         HANDLE hFile,
@@ -140,7 +140,7 @@
 //    return true;
 //}
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //FlushFileBuffers(
 //                 HANDLE hFile
@@ -153,7 +153,7 @@
 //}
 //
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //__win_CloseFile(
 //            HANDLE hFile
@@ -166,7 +166,7 @@
 //    return fclose(hFile->m_file.m_pfile) != false;
 //}
 //
-//int_bool
+//::i32_bool
 //WINAPI
 //CloseHandle(
 //            HANDLE hObject
@@ -174,7 +174,7 @@
 //{
 //   if(hObject == INVALID_HANDLE_VALUE)
 //      return false;
-//   int_bool bOk = false;
+//   ::i32_bool bOk = false;
 //   switch(hObject->m_etype)
 //   {
 //      case win_handle::type_file:

@@ -192,7 +192,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 //
 //
-//inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen)
+//inline ::i32_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen)
 //{
 //
 //   return (((unsigned char*)pszSrc) <= ((unsigned char*)pszDst) && ((unsigned char*)pszSrc) + srclen > ((unsigned char*)pszDst))

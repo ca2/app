@@ -49,9 +49,9 @@ CLASS_DECL_ACME const_char_pointer __get_app_name();
 
 //CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message * pmessage);
 
-//int_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+//::i32_bool mq_peek_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-//int_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+//::i32_bool mq_get_message(MESSAGE * pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 //int CLASS_DECL_ACME __linux_main(int argc, char * argv[]);
 

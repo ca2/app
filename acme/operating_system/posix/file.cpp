@@ -240,7 +240,7 @@ char * malloc_get_current_dir_name()
 ////void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, string & str);
 //
 //
-//int_bool set_file_size_fd(int fd, size_t iSize)
+//::i32_bool set_file_size_fd(int fd, size_t iSize)
 //{
 //
 //   if (ftruncate(fd, iSize) == -1)
@@ -271,12 +271,12 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//int_bool set_file_size(const_char_pointer lpszName, size_t iSize)
+//::i32_bool set_file_size(const_char_pointer lpszName, size_t iSize)
 //{
 //
 //   int fd = ::open(lpszName, O_RDONLY);
 //
-//   int_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
+//   ::i32_bool bSet = ::ensure_file_size_fd(fd, iSize) != -1;
 //
 //   ::close(fd);
 //
@@ -285,7 +285,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool file_system()->exists(const ::file::path & path1)
+//::i32_bool file_system()->exists(const ::file::path & path1)
 //{
 //
 //   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
@@ -311,7 +311,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool path_system()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
+//::i32_bool path_system()->is_file_or_dir(const ::file::path & path1, ::file::enum_type * petype)
 //{
 //
 //   struct stat st;
@@ -353,7 +353,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, ::collection::count len)
+//::i32_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, ::collection::count len)
 //{
 //
 //   bool bOk = false;
@@ -637,7 +637,7 @@ char * malloc_get_current_dir_name()
 ////
 ////}
 //
-//int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, int_bool bOverwrite)
+//::i32_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_string & scopedstrSrc, ::i32_bool bOverwrite)
 //{
 //
 //   int input, output;
@@ -694,7 +694,7 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+//::i32_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //   if (case_insensitive_ansi_compare(scopedstr1, psz2) == 0)
 //      return true;
@@ -716,7 +716,7 @@ char * malloc_get_current_dir_name()
 //
 //
 //
-//int_bool file_delete(const ::file::path & path)
+//::i32_bool file_delete(const ::file::path & path)
 //
 //{
 //
@@ -734,7 +734,7 @@ char * malloc_get_current_dir_name()
 //
 //}
 //
-//int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+//::i32_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
 //   const int iBufSize = MAX_PATH * 8;
@@ -830,7 +830,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool is_dir(const ::file::path & path1)
+//::i32_bool is_dir(const ::file::path & path1)
 //{
 //
 //   struct stat st;

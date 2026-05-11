@@ -721,12 +721,12 @@ public:
    long & long_reference();
    unsigned long & unsigned_long_reference();
 #endif
-   char & char_reference();
-   unsigned char & unsigned_char_reference();
-   short & short_reference();
-   unsigned short & unsigned_short_reference();
-   int & int_reference();
-   ::u32 & unsigned_int_reference();
+   char & i8_reference();
+   unsigned char & u8_reference();
+   short & i16_reference();
+   unsigned short & u16_reference();
+   int & i32_reference();
+   ::u32 & u32_reference();
    ::i64 & i64_reference();
    ::u64 & u64_reference();
    float & float_reference();
@@ -746,19 +746,19 @@ public:
       else if constexpr(sizeof(SIGNED) == 4)
       {
 
-         return (SIGNED&) this->int_reference();
+         return (SIGNED&) this->i32_reference();
 
       }
       else if constexpr(sizeof(SIGNED) == 2)
       {
 
-         return (SIGNED&) this->short_reference();
+         return (SIGNED&) this->i16_reference();
 
       }
       else if constexpr(sizeof(SIGNED) == 1)
       {
 
-         return (SIGNED&) this->char_reference();
+         return (SIGNED&) this->i8_reference();
 
       }
       else
@@ -785,19 +785,19 @@ public:
       else if constexpr(sizeof(UNSIGNED) == 4)
       {
 
-         return (UNSIGNED&) this->unsigned_int_reference();
+         return (UNSIGNED&) this->u32_reference();
 
       }
       else if constexpr(sizeof(UNSIGNED) == 2)
       {
 
-         return (UNSIGNED&) this->unsigned_short_reference();
+         return (UNSIGNED&) this->u16_reference();
 
       }
       else if constexpr(sizeof(UNSIGNED) == 1)
       {
 
-         return (UNSIGNED&) this->unsigned_char_reference();
+         return (UNSIGNED&) this->u8_reference();
 
       }
       else

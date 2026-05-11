@@ -72,7 +72,7 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
    }
    ::u32 dwSize = 0;
    char * pszOutBuffer;
-   int_bool  bResults = false;
+   ::i32_bool  bResults = false;
 
    WCHAR * pwzHost = utf8_to_16(strHost);
 
@@ -110,7 +110,7 @@ vsstring ms_get_dup(const ::scoped_string & scopedstrUrl, bool bCache, void (*ca
    ::u32 dwSize = 0;
    ::u32 dwDownloaded = 0;
    char * pszOutBuffer;
-   int_bool  bResults = false;
+   ::i32_bool  bResults = false;
 
    g_tinyhttp.m_strUserAgent = "ccwarehouse_ca2_account/linux";
 
@@ -199,7 +199,7 @@ iPort = 443;
 ::u32 dwSize = 0;
 ::u32 dwDownloaded = 0;
 char * pszOutBuffer;
-int_bool  bResults = false;
+::i32_bool  bResults = false;
 HINTERNET  hSession = nullptr,
 hConnect = nullptr,
 hRequest = nullptr;

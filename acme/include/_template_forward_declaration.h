@@ -522,8 +522,8 @@ using short_array_base = numeric_array_base < short >;
 using i32_array_base = numeric_array_base < int >;
 using i64_array_base = numeric_array_base < ::i64 >;
 
-using unsigned_char_array_base = numeric_array_base < unsigned char >;
-using unsigned_short_array_base = numeric_array_base < unsigned short >;
+using u8_array_base = numeric_array_base < unsigned char >;
+using u16_array_base = numeric_array_base < unsigned short >;
 using unsigned_i32_array_base = numeric_array_base < ::u32 >;
 using u64_array_base = numeric_array_base < ::u64 >;
 
@@ -537,9 +537,9 @@ using short_array = ::array_particle < short_array_base >;
 using i32_array = ::array_particle < i32_array_base >;
 using i64_array = ::array_particle < i64_array_base >;
 
-using unsigned_char_array = ::array_particle < unsigned_char_array_base >;
-using unsigned_short_array = ::array_particle < unsigned_short_array_base >;
-using unsigned_int_array = ::array_particle < unsigned_i32_array_base >;
+using u8_array = ::array_particle < u8_array_base >;
+using u16_array = ::array_particle < u16_array_base >;
+using u32_array = ::array_particle < unsigned_i32_array_base >;
 using u64_array = ::array_particle < u64_array_base >;
 
 using float_array = ::array_particle < float_array_base >;
@@ -555,7 +555,7 @@ using count_array = ::array_particle < count_array_base >;
 
 using unsigned_i32_array_base = numeric_array_base < ::u32 >;
 
-using unsigned_int_array = ::array_particle < unsigned_i32_array_base >;
+using u32_array = ::array_particle < unsigned_i32_array_base >;
 
 
 using unique_int_sort_array = unique_number_sort_array < int >;
@@ -579,7 +579,7 @@ using iptr_array_base = i32_array_base;
 using uptr_array_base = unsigned_i32_array_base;
 
 using iptr_array = i32_array_base;
-using uptr_array = unsigned_int_array;
+using uptr_array = u32_array;
 
 using unique_iptr_sort_array = unique_int_sort_array;
 
@@ -599,8 +599,8 @@ using process_identifier_array = ::array_particle < process_identifier_array_bas
 
 //using strsize_ptr_array = ptr_array < character_count *  >;
 
-using byte_array_base = unsigned_char_array_base;
-using byte_array = unsigned_char_array;
+using byte_array_base = u8_array_base;
+using byte_array = u8_array;
 
 
 

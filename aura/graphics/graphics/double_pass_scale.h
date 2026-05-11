@@ -21,7 +21,7 @@ typedef struct
    double * matrix;
 } LineContribType;               // Contribution information for an entire line (row or column)
 
-typedef int_bool (*ProgressAnbAbortCallBack)(unsigned char bPercentComplete);
+typedef ::i32_bool (*ProgressAnbAbortCallBack)(unsigned char bPercentComplete);
 
 template <class FilterClass>
 class C2PassScale
@@ -63,7 +63,7 @@ public:
 private:
 
    ProgressAnbAbortCallBack    m_Callback;
-   int_bool                     m_bCanceled;
+   ::i32_bool                     m_bCanceled;
 
    LineContribType *AllocContributions (   ::u32 uLineLength,
                                            ::u32 uWindowSize);

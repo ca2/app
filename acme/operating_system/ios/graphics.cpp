@@ -60,7 +60,7 @@
 
 
 //
-//int_bool delete_hcursor(HCURSOR h)
+//::i32_bool delete_hcursor(HCURSOR h)
 //{
 //   
 //   return 1;

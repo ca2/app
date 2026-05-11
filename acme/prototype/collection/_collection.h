@@ -222,7 +222,7 @@ using map_string_to_ob = map_base < string, const ::scoped_string & scopedstr, m
 #include "acme/platform/options.h"
 
 
-typedef CLASS_DECL_ACME pointer_array < unsigned_int_array > dword_2darray;
+typedef CLASS_DECL_ACME pointer_array < u32_array > dword_2darray;
 typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 
 

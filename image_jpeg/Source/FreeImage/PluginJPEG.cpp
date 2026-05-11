@@ -460,7 +460,7 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
 /**
 	Read JPEG_COM marker (comment)
 */
-/*static int_bool jpeg_read_comment(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
+/*static ::i32_bool jpeg_read_comment(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
    size_t length = datalen;
    unsigned char *profile = (unsigned char*)dataptr;
@@ -503,7 +503,7 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
 /**
 Handy subroutine to test whether a saved marker is an ICC profile marker.
 */
-static int_bool
+static ::i32_bool
 marker_is_icc(jpeg_saved_marker_ptr marker)
 {
    // marker identifying string "ICC_PROFILE" (null-terminated)
@@ -542,7 +542,7 @@ marker_is_icc(jpeg_saved_marker_ptr marker)
   NOTE: if the file contains invalid ICC APP2 markers, we just silently
   return false.  You might want to issue an error message instead.
 */
-static int_bool
+static ::i32_bool
 jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *icc_data_len)
 {
    jpeg_saved_marker_ptr marker;
@@ -649,7 +649,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
 /**
 	Read JPEG_APPD marker (IPTC or Adobe Photoshop profile)
 */
-static int_bool
+static ::i32_bool
 /*jpeg_read_iptc_profile(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
 /*   return read_iptc_profile(pimage, dataptr, datalen);
@@ -662,7 +662,7 @@ static int_bool
 	@param datalen APP1 marker length
 	@return Returns true if successful, false otherwise
 */
-static int_bool
+static ::i32_bool
 /*jpeg_read_xmp_profile(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
    // marker identifying string for XMP (null terminated)
@@ -719,7 +719,7 @@ static int_bool
 	@param datalen APP0 marker length
 	@return Returns true if successful, false otherwise
 */
-static int_bool
+static ::i32_bool
 /*jpeg_read_jfxx(FIBITMAP * pimage, const unsigned char *dataptr, ::u32 datalen)
 {
    if(datalen < 6)
@@ -766,7 +766,7 @@ static int_bool
 /**
 	Read JPEG special markers
 */
-static int_bool
+static ::i32_bool
 /*read_markers(j_decompress_ptr cinfo, FIBITMAP * pimage)
 {
    jpeg_saved_marker_ptr marker;
@@ -830,7 +830,7 @@ static int_bool
 /**
 	Write JPEG_COM marker (comment)
 */
-static int_bool
+static ::i32_bool
 /*jpeg_write_comment(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    FITAG *tag = nullptr;
@@ -856,7 +856,7 @@ static int_bool
 /**
 	Write JPEG_APP2 marker (ICC profile)
 */
-static int_bool
+static ::i32_bool
 /*jpeg_write_icc_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string "ICC_PROFILE" (null-terminated)
@@ -896,7 +896,7 @@ static int_bool
 	Write JPEG_APPD marker (IPTC or Adobe Photoshop profile)
 	@return Returns true if successful, false otherwise
 */
-static int_bool
+static ::i32_bool
 /*jpeg_write_iptc_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    //const_char_pointer ps_header = "Photoshop 3.0\x08BIM\x04\x04\x0\x0\x0\x0";
@@ -947,7 +947,7 @@ static int_bool
 	Write JPEG_APP1 marker (XMP profile)
 	@return Returns true if successful, false otherwise
 */
-static int_bool
+static ::i32_bool
 /*jpeg_write_xmp_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string for XMP (null terminated)
@@ -992,7 +992,7 @@ static int_bool
 	Write JPEG_APP1 marker (Exif profile)
 	@return Returns true if successful, false otherwise
 */
-static int_bool
+static ::i32_bool
 /*jpeg_write_exif_profile_raw(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // marker identifying string for Exif = "Exif\0\0"
@@ -1039,7 +1039,7 @@ static int_bool
 /**
 	Write thumbnail (JFXX segment, JPEG compressed)
 */
-static int_bool
+static ::i32_bool
 /*jpeg_write_jfxx(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // get the thumbnail to be stored
@@ -1127,7 +1127,7 @@ static int_bool
 /**
 	Write JPEG special markers
 */
-static int_bool
+static ::i32_bool
 /*write_markers(j_compress_ptr cinfo, FIBITMAP * pimage)
 {
    // write thumbnail as a JFXX marker
@@ -1220,7 +1220,7 @@ MimeType()
    return "image/jpeg";
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
    unsigned char jpeg_signature[] = { 0xFF, 0xD8 };
@@ -1231,7 +1231,7 @@ Validate(FreeImageIO *io, fi_handle handle)
    return (memcmp(jpeg_signature, signature, sizeof(jpeg_signature)) == 0);
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsExportDepth(int depth)
 {
    return (
@@ -1240,19 +1240,19 @@ SupportsExportDepth(int depth)
           );
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type)
 {
    return (type == FIT_BITMAP) ? true : false;
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsICCProfiles()
 {
    return true;
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsNoPixels()
 {
    return true;
@@ -1267,7 +1267,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
    {
 /*      FIBITMAP * pimage = nullptr;
 
-      int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+      ::i32_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
       // set up the jpeglib structures
 
@@ -1547,7 +1547,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
 // ----------------------------------------------------------
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 /*Save(FreeImageIO *io, FIBITMAP * pimage, fi_handle handle, int page, int flags, void *data)
 {
 /*   if ((pimage) && (handle))

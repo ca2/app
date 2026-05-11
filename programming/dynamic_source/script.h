@@ -32,8 +32,8 @@ namespace dynamic_source
 
       };
 
-      ::int_map < ::string_map < ::pointer < folder_enumerate > > > m_mapFolderEnumerate;
-      ::int_map < ::pointer < particle > >               m_mapParticle;
+      ::i32_map < ::string_map < ::pointer < folder_enumerate > > > m_mapFolderEnumerate;
+      ::i32_map < ::pointer < particle > >               m_mapParticle;
       ::pointer < ::mutex >                              m_pmutexFolderEnumerate;
       ::pointer < script_manager >                       m_pscriptmanager1;
       //string                                             m_strName;

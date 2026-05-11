@@ -48,7 +48,7 @@ CLASS_DECL_ACME int                    ansi_ends(const_char_pointer sz1, const_c
 CLASS_DECL_ACME int                    case_insensitive_ansi_ends(const_char_pointer sz1, const_char_pointer suffix);
 CLASS_DECL_ACME const_char_pointer ansi_find_char(const_char_pointer sz, ::ansi_character ch);
 CLASS_DECL_ACME const_char_pointer ansi_find_char_reverse(const_char_pointer sz, ::ansi_character ch);
-CLASS_DECL_ACME const_char_pointer ansi_concatenate_and_duplicate(const_char_pointer psz1, const_char_pointer psz2, int_bool iFree1 = false, int_bool iFree2 = false);
+CLASS_DECL_ACME const_char_pointer ansi_concatenate_and_duplicate(const_char_pointer psz1, const_char_pointer psz2, ::i32_bool iFree1 = false, ::i32_bool iFree2 = false);
 
 //CLASS_DECL_ACME void ansi_from_long_long(char* sz, ::i64 i, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
 //CLASS_DECL_ACME void ansi_from_unsigned_long_long(char* sz, ::u64 u, int iBase, enum_digit_case edigitcase = e_digit_case_lower);
@@ -82,8 +82,8 @@ CLASS_DECL_ACME ::ansi_character * ansi_lower(::ansi_character * pch);
 CLASS_DECL_ACME ::ansi_character * ansi_upper(::ansi_character * pch);
 
 
-CLASS_DECL_ACME int_bool matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
-CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool case_insensitive_matches_wildcard_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
 
 
 CLASS_DECL_ACME void ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, int * numargs, int * numchars);
@@ -97,8 +97,8 @@ CLASS_DECL_ACME const void * memory_find_memory(const void * src, character_coun
 CLASS_DECL_ACME const_char_pointer wildcard_next_stop(const_char_pointer pszCriteria);
 
 
-CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
-CLASS_DECL_ACME int_bool               case_insensitive_wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool               wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
+CLASS_DECL_ACME ::i32_bool               case_insensitive_wildcard_matches_criteria(const_char_pointer pszCriteria, const_char_pointer pszValue);
 
 
 //CLASS_DECL_ACME const_char_pointer eol();

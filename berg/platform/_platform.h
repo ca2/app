@@ -155,9 +155,9 @@ namespace berg
 
 CLASS_DECL_BERG int get_core_init();
 //extern "C"
-//CLASS_DECL_BERG int_bool defer_aura_init();
+//CLASS_DECL_BERG ::i32_bool defer_aura_init();
 //extern "C"
-//CLASS_DECL_BERG int_bool defer_aura_term();
+//CLASS_DECL_BERG ::i32_bool defer_aura_term();
 
 
 namespace berg

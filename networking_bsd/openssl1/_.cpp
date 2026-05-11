@@ -113,8 +113,8 @@ int crypto_decrypt(memory& storageDecrypt, const memory& storageEncrypt, memory&
 
 /* Cipher mode info */
 struct php_openssl_cipher_mode {
-   int_bool is_aead;
-   int_bool is_single_run_aead;
+   ::i32_bool is_aead;
+   ::i32_bool is_single_run_aead;
    int aead_get_tag_flag;
    int aead_set_tag_flag;
    int aead_ivlen_flag;
@@ -148,7 +148,7 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 /* }}} */
 
 //static int php_openssl_validate_iv(char** piv, size_t* piv_len, size_t iv_required_len,
-//   int_bool* free_iv, EVP_CIPHER_CTX* cipher_ctx, struct php_openssl_cipher_mode* mode) /* {{{ */
+//   ::i32_bool* free_iv, EVP_CIPHER_CTX* cipher_ctx, struct php_openssl_cipher_mode* mode) /* {{{ */
 //{
 //   char* iv_new;
 //

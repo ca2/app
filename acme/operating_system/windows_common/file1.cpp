@@ -81,7 +81,7 @@ namespace windows
    }
 
 
-   CLASS_DECL_ACME int_bool is_win32_accessible(::u32 uFileAttributes, const last_error & lasterror)
+   CLASS_DECL_ACME ::i32_bool is_win32_accessible(::u32 uFileAttributes, const last_error & lasterror)
    {
 
       if (uFileAttributes == INVALID_FILE_ATTRIBUTES)
@@ -121,7 +121,7 @@ namespace windows
    }
 
    
-   CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path)
+   CLASS_DECL_ACME ::i32_bool is_win32_accessible(const ::file::path & path)
    {
    
      auto uFileAttributes = ::windows::_get_file_attributes(path);

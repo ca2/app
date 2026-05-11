@@ -6,7 +6,7 @@
 #include "mysql_database.h"
 
 
-int_bool init_data_library()
+::i32_bool init_data_library()
 {
 
    if (mysql_server_init(0, NULL, NULL))

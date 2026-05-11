@@ -47,7 +47,7 @@ typedef const i32_rectangle & * const i32_rectangle &;
 CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-int_bool get_nswindow_rect(oswindow hwnd, ::i32_rectangle * prectangle);
+::i32_bool get_nswindow_rect(oswindow hwnd, ::i32_rectangle * prectangle);
 
 
 
@@ -64,7 +64,7 @@ inline int wxRound(double x)
 
 
 CGColorRef cg_create_color(color32_t crText);
-int_bool cg_release_color(CGColorRef colorref);
+::i32_bool cg_release_color(CGColorRef colorref);
 
 
 
@@ -82,6 +82,6 @@ int_bool cg_release_color(CGColorRef colorref);
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle & rectangle, int iDisplay);
-int_bool size_nswindow(oswindow hwnd, int cx, int cy);
-int_bool move_nswindow(oswindow hwnd, int x, int y);
+::i32_bool set_nswindow_frame(oswindow hwnd, const ::i32_rectangle & rectangle, int iDisplay);
+::i32_bool size_nswindow(oswindow hwnd, int cx, int cy);
+::i32_bool move_nswindow(oswindow hwnd, int x, int y);

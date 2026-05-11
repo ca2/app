@@ -842,7 +842,7 @@ namespace acme
        
     
     }
-   //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
+   //virtual ::i32_bool is_window( windowing_android_WINDOW_MEMBER );
    
    
    void window::set_window_text(const ::scoped_string & scopedstrString)

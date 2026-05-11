@@ -7651,9 +7651,9 @@ namespace user
 
          auto phostwindow = get_host_user_interaction();
 
-         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").int_reference();
+         auto & iDrawControlBackgroundCounter = phostwindow->payload("draw_control_background_counter").i32_reference();
 
-         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").int_reference();
+         auto & iNcDraw0FillCounter = phostwindow->payload("nc_draw_0_fill_counter").i32_reference();
 
          iDrawControlBackgroundCounter++;
 
@@ -29031,7 +29031,7 @@ void interaction::on_keyboard_layout_change(const char *pszKeyboardLayoutId)
       //         if (windowing_window()->is_composite())
       //         {
 
-      //            auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").int_reference();
+      //            auto & iNcDraw0FillCounter = payload("nc_draw_0_fill_counter").i32_reference();
 
       //            iNcDraw0FillCounter++;
 

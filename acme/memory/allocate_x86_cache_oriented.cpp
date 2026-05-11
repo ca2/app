@@ -165,7 +165,7 @@ CLASS_DECL_ACME x86_cache_oriented_memory_pool * x86_cache_oriented_get_thread_m
 }
 
 
-CLASS_DECL_ACME int_bool x86_cache_oriented_set_thread_memory_pool(int iPoolIndex)
+CLASS_DECL_ACME ::i32_bool x86_cache_oriented_set_thread_memory_pool(int iPoolIndex)
 {
 
    if(iPoolIndex < 0)

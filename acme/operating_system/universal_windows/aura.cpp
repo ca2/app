@@ -154,7 +154,7 @@ bool os_finalize()
 */
 
 
-int_bool main_initialize()
+::i32_bool main_initialize()
 {
 
    //sleep(15 * 1000);
@@ -205,7 +205,7 @@ int_bool main_initialize()
 }
 
 
-int_bool main_finalize()
+::i32_bool main_finalize()
 {
 
 
@@ -362,7 +362,7 @@ string key_to_char(wparam wparam, lparam lparam)
 
 //
 //
-//int_bool is_windows_nt()
+//::i32_bool is_windows_nt()
 //{
 //
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
@@ -547,7 +547,7 @@ bool __node_aura_pos_term()
 
 
 
-int_bool is_windows_7_or_lower()
+::i32_bool is_windows_7_or_lower()
 {
 
    return false; // metro is from windows 8

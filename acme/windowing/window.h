@@ -183,7 +183,7 @@ namespace acme
          //virtual void erase_keyboard_focus(::acme::user::interaction * pacmeuserinteractionFocus);
 
          virtual bool is_window();
-         //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
+         //virtual ::i32_bool is_window( windowing_android_WINDOW_MEMBER );
          
          
          void set_window_text(const ::scoped_string & scopedstrString) override;

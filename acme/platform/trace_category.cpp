@@ -157,7 +157,7 @@ CLASS_DECL_ACME bool enable_trace_category(enum_trace_category etracecategory, b
 }
 
 
-CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category etracecategory, int_bool iEnable)
+CLASS_DECL_ACME ::i32_bool c_enable_trace_category(enum_trace_category etracecategory, ::i32_bool iEnable)
 {
 
    if (!enable_trace_category(etracecategory, iEnable != false))

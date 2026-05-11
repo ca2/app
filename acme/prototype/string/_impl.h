@@ -286,7 +286,7 @@ inline ::string as_string(FLOATING f, const_char_pointer pszFormat)
 template < >
 inline ::hash32 as_hash32 < scoped_ansi_string >(const scoped_ansi_string & scopedstr) {
 
-   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const_char_pointer >&) scopedstr);
+   return _scoped_string_u32_hash((const ::scoped_string_base<const_char_pointer >&) scopedstr);
 
 }
 
@@ -294,7 +294,7 @@ inline ::hash32 as_hash32 < scoped_ansi_string >(const scoped_ansi_string & scop
 template < >
 inline ::hash32 as_hash32 < scoped_wd16_string >(const scoped_wd16_string & scopedstr) {
 
-   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const ::wd16_character *> &) scopedstr);
+   return _scoped_string_u32_hash((const ::scoped_string_base<const ::wd16_character *> &) scopedstr);
 
 }
 
@@ -302,7 +302,7 @@ inline ::hash32 as_hash32 < scoped_wd16_string >(const scoped_wd16_string & scop
 template < >
 inline ::hash32 as_hash32 < scoped_wd32_string >(const scoped_wd32_string & scopedstr) {
 
-   return _scoped_string_unsigned_int_hash((const ::scoped_string_base<const ::wd32_character *> &) scopedstr);
+   return _scoped_string_u32_hash((const ::scoped_string_base<const ::wd32_character *> &) scopedstr);
 
 }
 

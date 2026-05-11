@@ -6,7 +6,7 @@
 
 #include "acme/_operating_system.h"
 
-int_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName);
+::i32_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName);
 typedef HRESULT WINAPI FN_GetThreadDescription(HANDLE htask, PWSTR* ppszThreadDescription);
 
 
@@ -324,7 +324,7 @@ typedef struct tagTHREADNAME_INFO
 
 
 
-int_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName)
+::i32_bool SetThreadName(::u32 dwThreadID, const_char_pointer threadName)
 {
    THREADNAME_INFO info;
    info.dwType = 0x1000;

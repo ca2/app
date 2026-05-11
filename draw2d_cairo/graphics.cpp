@@ -160,7 +160,7 @@ string_to_string_base * g_pmapFontPath;
 
 #endif
 
-//string_map_base<int_map<FT_Face> > * g_pmapFontFace = nullptr;
+//string_map_base<i32_map<FT_Face> > * g_pmapFontFace = nullptr;
 //
 //string_map_base<cairo_font_face_t *> * g_pmapCairoFontFace = nullptr;
 //

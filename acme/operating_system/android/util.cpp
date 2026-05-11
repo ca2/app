@@ -2,7 +2,7 @@
 
 
 // interesting function
-/*int_bool CLASS_DECL_lnx ::windows_definition::CustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
+/*::i32_bool CLASS_DECL_lnx ::windows_definition::CustomLogFont(::u32 nIDS, LOGFONT* pLogFont)
 {
    ENSURE_ARG(pLogFont != nullptr);
    ASSERT(nIDS != 0);
@@ -25,7 +25,7 @@
 }*/
 
 /*
-int_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, ::u32 nStyle)
+::i32_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
       return false;
@@ -39,7 +39,7 @@ int_bool CLASS_DECL_lnx _::windows_definition::IsComboBoxControl(oswindow hWnd, 
    return ::windows_definition::InvariantStrICmp(szCompare, "combobox") == 0;
 }
 
-int_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const_char_pointer lpszClassName)
+::i32_bool CLASS_DECL_lnx _::windows_definition::CompareClassName(oswindow hWnd, const_char_pointer lpszClassName)
 {
    ASSERT(::IsWindow(hWnd));
    char szTemp[32];

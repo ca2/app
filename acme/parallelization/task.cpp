@@ -677,7 +677,7 @@ void task::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP)
 
-      int_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (::u32)m_uThreadAffinityMask) != 0;
+      ::i32_bool bOk = ::SetThreadAffinityMask((HANDLE) m_htask.m_h, (::u32)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -694,7 +694,7 @@ void task::__priority_and_affinity()
 
 #elif defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
+      ::i32_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {

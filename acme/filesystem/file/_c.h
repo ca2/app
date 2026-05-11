@@ -10,19 +10,19 @@
 #endif
 
 
-//CLASS_DECL_ACME int_bool dir_mk(const ::scoped_string & scopedstr);
-//CLASS_DECL_ACME int_bool dir_appdata(char * psz, size_t size);
-//CLASS_DECL_ACME int_bool file_is_true_dup(const ::file::path & path);
+//CLASS_DECL_ACME ::i32_bool dir_mk(const ::scoped_string & scopedstr);
+//CLASS_DECL_ACME ::i32_bool dir_appdata(char * psz, size_t size);
+//CLASS_DECL_ACME ::i32_bool file_is_true_dup(const ::file::path & path);
 
-//CLASS_DECL_ACME int_bool file_path_is_relative(const ::scoped_string & scopedstr);
+//CLASS_DECL_ACME ::i32_bool file_path_is_relative(const ::scoped_string & scopedstr);
 
-//CLASS_DECL_ACME int_bool file_system()->exists(const ::file::path & path);
+//CLASS_DECL_ACME ::i32_bool file_system()->exists(const ::file::path & path);
 
 
-//CLASS_DECL_ACME int_bool is_file_ok(const ::file::path & path1, const ::scoped_string & scopedstrTemplate);
-//CLASS_DECL_ACME int_bool xxxfile_put_contents(const ::file::path & path, const void * contents, memsize len);
-//CLASS_DECL_ACME int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
-//CLASS_DECL_ACME int_bool get_temp_file_name_template(char * szRet, character_count iBufferSize, const_char_pointer lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
+//CLASS_DECL_ACME ::i32_bool is_file_ok(const ::file::path & path1, const ::scoped_string & scopedstrTemplate);
+//CLASS_DECL_ACME ::i32_bool xxxfile_put_contents(const ::file::path & path, const void * contents, memsize len);
+//CLASS_DECL_ACME ::i32_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const_char_pointer lpszName, const ::scoped_string & scopedstrExtension);
+//CLASS_DECL_ACME ::i32_bool get_temp_file_name_template(char * szRet, character_count iBufferSize, const_char_pointer lpszName, const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrTemplate);
 //CLASS_DECL_ACME filesize file_length(const ::file::path & path);
 
 
@@ -30,7 +30,7 @@
 //CLASS_DECL_ACME bool file_path_is_equal(const ::file::path & path1, const ::file::path & path2);
 
 
-//CLASS_DECL_ACME int_bool file_copy_dup(const ::scoped_string & scopedstrDup, const ::scoped_string & scopedstrSrc, int_bool bOverwrite);
+//CLASS_DECL_ACME ::i32_bool file_copy_dup(const ::scoped_string & scopedstrDup, const ::scoped_string & scopedstrSrc, ::i32_bool bOverwrite);
 
 
 //CLASS_DECL_ACME void _init_FILE();
@@ -63,8 +63,8 @@
 //
 //CLASS_DECL_ACME filesize FILE_size(FILE * f);
 //
-//CLASS_DECL_ACME int_bool fd_set_size(int fd,size_t iSize);
-//CLASS_DECL_ACME int_bool FILE_set_size(FILE * file,size_t iSize);
+//CLASS_DECL_ACME ::i32_bool fd_set_size(int fd,size_t iSize);
+//CLASS_DECL_ACME ::i32_bool FILE_set_size(FILE * file,size_t iSize);
 //
 ////   #pragma once
 //

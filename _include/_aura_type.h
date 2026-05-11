@@ -8,7 +8,7 @@
 
 
 typedef u32 dword;
-typedef int int_bool;
+typedef int i32_bool;
 
 
 typedef unsigned char         uchar;

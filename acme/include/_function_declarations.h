@@ -77,7 +77,7 @@ CLASS_DECL_ACME::enum_priority get_os_class_scheduling_priority(int iCa2Priority
 
 CLASS_DECL_ACME const ::particle * general_trace_object();
 
-CLASS_DECL_ACME int_bool c_enable_trace_category(enum_trace_category ecategory, int_bool iEnable);
+CLASS_DECL_ACME ::i32_bool c_enable_trace_category(enum_trace_category ecategory, ::i32_bool iEnable);
 
 inline const ::particle * context_trace_object();
 
@@ -188,7 +188,7 @@ int CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::
 
 int CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character* pWideCharStr, int cchWideChar,
    ::ansi_character* pMultByteStr, int cbMultiByte, const_char_pointer pDefaultChar,
-   int_bool* pUsedDefaultChar);
+   ::i32_bool* pUsedDefaultChar);
 
 
 
@@ -227,10 +227,10 @@ inline bool is_string_ok(::wide_character * p, ::character_count s);
 inline bool is_string_ok(::ansi_character * p, ::character_count s);
 
 
-inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
+inline ::i32_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
 
 
-CLASS_DECL_ACME ::u32 __unsigned_int_hash(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME ::u32 __u32_hash(const ::scoped_string & scopedstr);
 
 
 template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p);

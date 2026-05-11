@@ -1125,8 +1125,8 @@ CLASS_DECL_ACME const ::wd16_character * wd16_concatenate_and_duplicate(const ::
 
 //CLASS_DECL_ACME const ::wd16_character * wildcard_next_stop(const ::wd16_character * pszCriteria);
 //
-//CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const ::wd16_character * pszCriteria, const ::wd16_character * pszValue);
-//CLASS_DECL_ACME int_bool               wildcard_matches_criteria_case_insensitive(const ::wd16_character * pszCriteria, const ::wd16_character * pszValue);
+//CLASS_DECL_ACME ::i32_bool               wildcard_matches_criteria(const ::wd16_character * pszCriteria, const ::wd16_character * pszValue);
+//CLASS_DECL_ACME ::i32_bool               wildcard_matches_criteria_case_insensitive(const ::wd16_character * pszCriteria, const ::wd16_character * pszValue);
 
 
 //CLASS_DECL_ACME unichar * wd16_concatenate(unichar * dest, const unichar * cat);

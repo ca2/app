@@ -76,7 +76,7 @@
 
 
 
-//CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
+//CLASS_DECL_ACME void defer_dock_application(::i32_bool bDock);
 
 
 

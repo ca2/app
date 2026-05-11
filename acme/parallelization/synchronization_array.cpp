@@ -20,7 +20,7 @@
 //#if defined(WINDOWS)
 ////::e_status MsgWaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::u32 tickTimeout, ::u32 dwWakeMask, ::u32 dwFlags);
 //
-////::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, ::u32 tickTimeout, int_bool bAlertable);
+////::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::i32_bool bWaitForAll, ::u32 tickTimeout, ::i32_bool bAlertable);
 //
 //
 //#endif

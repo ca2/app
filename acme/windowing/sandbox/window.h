@@ -132,7 +132,7 @@ public:
    //virtual bool x11_get_window_rect(windowing_android_WINDOW_MEMBER  ::i32_rectangle * prectangle);
    //virtual bool x11_get_client_rect(windowing_android_WINDOW_MEMBER  ::i32_rectangle * prectangle);
    //virtual oswindow set_mouse_capture( windowing_android_WINDOW_MEMBER );
-   //virtual int_bool release_mouse_capture();
+   //virtual ::i32_bool release_mouse_capture();
    //virtual oswindow set_keyboard_focus( windowing_android_WINDOW_MEMBER );
    //virtual void x11_check_status(int status, unsigned long window);
    //virtual unsigned long x11_get_long_property( windowing_android_WINDOW_MEMBER char* property_name);
@@ -146,9 +146,9 @@ public:
    //virtual ::windowing::window * get_window(windowing_android_WINDOW_MEMBER enum_relative erelative);
    
    void destroy_window() override;
-   //virtual int_bool destroy_window( windowing_android_WINDOW_MEMBER );
+   //virtual ::i32_bool destroy_window( windowing_android_WINDOW_MEMBER );
    bool is_window() override;
-   //virtual int_bool is_window( windowing_android_WINDOW_MEMBER );
+   //virtual ::i32_bool is_window( windowing_android_WINDOW_MEMBER );
    
    
    void set_window_text(const ::scoped_string & scopedstrString) override;
@@ -189,10 +189,10 @@ public:
    //virtual void wm_dockwindow(windowing_android_WINDOW_MEMBER bool bDockWindow);
    //virtual void wm_nodecorations(windowing_android_WINDOW_MEMBER int bMap);
    //virtual void _wm_nodecorations(windowing_android_WINDOW_MEMBER int bMap);
-   //virtual int_bool IsWindowVisibleRaw(windowing_android_WINDOW_MEMBER);
+   //virtual ::i32_bool IsWindowVisibleRaw(windowing_android_WINDOW_MEMBER);
    //virtual void wm_iconify_window(windowing_android_WINDOW_MEMBER);
-   //virtual int_bool IsWindowVisibleRaw( windowing_android_WINDOW_MEMBER);
-   //virtual int_bool IsWindowVisibleRaw(oswindow w);
+   //virtual ::i32_bool IsWindowVisibleRaw( windowing_android_WINDOW_MEMBER);
+   //virtual ::i32_bool IsWindowVisibleRaw(oswindow w);
    //      virtual Atom * wm_get_list_raw( windowing_android_WINDOW_MEMBER Atom atomList, unsigned long int * pnum_items);
    //      virtual int wm_test_list_raw( windowing_android_WINDOW_MEMBER Atom atomList, Atom atomFlag);
    //      virtual int wm_test_state_raw( windowing_android_WINDOW_MEMBER const ::scoped_string & scopedstrNetStateFlag);

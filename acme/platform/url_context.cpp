@@ -3025,7 +3025,7 @@ namespace url
 ////#define strdup _strdup
 ////#endif
 ////
-////CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
+////CLASS_DECL_ACME ::i32_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
 ////{
 ////
 ////   ::platform::application * papp = (::platform::application *) instance;
@@ -3568,7 +3568,7 @@ namespace url
 ////#define strdup _strdup
 ////#endif
 ////
-////CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
+////CLASS_DECL_ACME ::i32_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const_char_pointer pszServerName, int bInteractive)
 ////{
 ////
 ////   ::application * papp = (::apex::application *) instance;

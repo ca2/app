@@ -2,9 +2,9 @@
 //#include "apex/message.h"
 #include <stdio.h>
 
-CLASS_DECL_APEX int_bool defer_apex_init();
+CLASS_DECL_APEX ::i32_bool defer_apex_init();
 
-CLASS_DECL_APEX int_bool defer_apex_term();
+CLASS_DECL_APEX ::i32_bool defer_apex_term();
 
 
 int g_iApexRefCount = 0;

@@ -3,9 +3,9 @@
 //#error "not two use it"
 //#ifdef CORE_LEVEL
 //extern "C"
-//CLASS_DECL_ACME int_bool defer_core_init();
+//CLASS_DECL_ACME ::i32_bool defer_core_init();
 //extern "C"
-//CLASS_DECL_ACME int_bool defer_core_term();
+//CLASS_DECL_ACME ::i32_bool defer_core_term();
 //
 //#endif
 

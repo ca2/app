@@ -40,14 +40,14 @@ CLASS_DECL_ACME void __cdecl __pre_translate_message(::message::message* pmessag
 
 
 
-int_bool PeekMessage(
+::i32_bool PeekMessage(
    MESSAGE * lpMsg,
    oswindow hWnd,
    ::u32 wMsgFilterMin,
    ::u32 wMsgFilterMax,
    ::u32 wRemoveMsg);
 
-int_bool GetMessage(
+::i32_bool GetMessage(
    MESSAGE * lpMsg,
    oswindow hWnd,
    ::u32 wMsgFilterMin,

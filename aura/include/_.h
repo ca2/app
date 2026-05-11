@@ -467,10 +467,10 @@ namespace aura
 //////CLASS_DECL_AURA int get_aura_init();
 ////
 //////extern "C"
-//////CLASS_DECL_AURA int_bool defer_aura_init();
+//////CLASS_DECL_AURA ::i32_bool defer_aura_init();
 ////
 //////extern "C"
-//////CLASS_DECL_AURA int_bool defer_aura_term();
+//////CLASS_DECL_AURA ::i32_bool defer_aura_term();
 ////
 ////
 ////
@@ -478,7 +478,7 @@ namespace aura
 ////typedef struct rdp_freerdp freerdp;
 ////
 ////
-////CLASS_DECL_AURA int_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive);
+////CLASS_DECL_AURA ::i32_bool freerdp_authenticate(void * instance, char** username,char** password,char** domain, const ::scoped_string & scopedstrServerName, int bInteractive);
 ////
 ////
 ////#if !defined(O_BINARY) && !defined(WINDOWS)
@@ -499,7 +499,7 @@ namespace aura
 ////typedef char ::ansi_character;
 ////
 ////int CLASS_DECL_AURA MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const_char_pointer pMultByteStr, int cbMultiByte, ::wide_character * pWideCharStr, int cchWideChar);
-////int CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::scoped_string & scopedstrDefaultChar, int_bool * pUsedDefaultChar);
+////int CLASS_DECL_AURA WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const ::wide_character * pWideCharStr, int cchWideChar, ::ansi_character * pMultByteStr, int cbMultiByte, const ::scoped_string & scopedstrDefaultChar, ::i32_bool * pUsedDefaultChar);
 ////
 ////
 ////enum e_image_type
@@ -578,7 +578,7 @@ namespace aura
 ////
 ////CLASS_DECL_AURA ::matter * general_trace_object();
 ////
-////CLASS_DECL_AURA int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
+////CLASS_DECL_AURA ::i32_bool c_enable_trace_category(e_trace_category ecategory, ::i32_bool iEnable);
 ////
 ////inline ::matter * context_trace_object() { return general_trace_object(); }
 ////
@@ -1114,7 +1114,7 @@ namespace aura
 //////   using eflag = flags < enum_flag >;
 //////   //using flag_map = map_base < enum_flag, enum_flag, bool, bool >;
 //////   //using rect_map = ::map_base < e_rect, e_rect, style_rect >;
-//////   //using int_map = ::map_base < e_int, e_int, int, int >;
+//////   //using i32_map = ::map_base < e_int, e_int, int, int >;
 //////   //using double_map = ::map_base < e_double, e_double, double, double >;
 //////   //using color_map = map_base < e_color, e_color, ::color::color, ::color::color >;
 //////   //using eelement = base_enum < enum_element >;

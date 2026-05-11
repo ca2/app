@@ -10,7 +10,7 @@
 #include <io.h>
 
 
-//int_bool file_exists(const ::file::path & path1)
+//::i32_bool file_exists(const ::file::path & path1)
 //{
 //
 //   ::u32 dwFileAttributes = windows_get_file_attributes(path1);
@@ -24,7 +24,7 @@
 
 
 
-//int_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, memsize len)
+//::i32_bool file_system()->put_contents(const ::file::path & path, const_char_pointer contents, memsize len)
 //{
 //
 //            auto psystem = system();
@@ -61,7 +61,7 @@
 //
 //   DWORD dwWritten = 0;
 //
-//   int_bool bOk = WriteFile(hfile, contents, (::u32)dwWrite, &dwWritten, nullptr) != false;
+//   ::i32_bool bOk = WriteFile(hfile, contents, (::u32)dwWrite, &dwWritten, nullptr) != false;
 //
 //   CloseHandle(hfile);
 //
@@ -97,7 +97,7 @@
 
 
 
-int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+::i32_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
 
    return file_path_is_equal(scopedstr1, scopedstr2);
@@ -230,7 +230,7 @@ string file_module_path_dup()
 //
 //}
 //
-//void dll_processes(unsigned_int_array & dwa,string_array_base & straProcesses,const ::scoped_string & scopedstrDll)
+//void dll_processes(u32_array & dwa,string_array_base & straProcesses,const ::scoped_string & scopedstrDll)
 //{
 //   // Get the list_base of process identifiers.
 //
@@ -805,7 +805,7 @@ int ftruncate(int file, filesize len)
 
 
 
-int_bool ensure_file_size_fd(int fd, size_t iSize)
+::i32_bool ensure_file_size_fd(int fd, size_t iSize)
 {
 
    if (ftruncate(fd, iSize) == -1)
@@ -816,7 +816,7 @@ int_bool ensure_file_size_fd(int fd, size_t iSize)
 }
 
 
-int_bool FILE_set_size(FILE* file, size_t iSize)
+::i32_bool FILE_set_size(FILE* file, size_t iSize)
 {
 
    return ensure_file_size_fd(fileno(file), iSize);
@@ -824,7 +824,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 }
 
 
-//int_bool ensure_file_size_handle(HANDLE h, ::u64 iSize)
+//::i32_bool ensure_file_size_handle(HANDLE h, ::u64 iSize)
 //{
 //
 //   DWORD dwHi;
@@ -875,7 +875,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 
 
 
-//int_bool file_set_length(const ::scoped_string & scopedstrName,size_t iSize)
+//::i32_bool file_set_length(const ::scoped_string & scopedstrName,size_t iSize)
 //{
 //
 //   wstring wstr(scopedstrName);
@@ -900,7 +900,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //}
 //
-//int_bool file_move(const_char_pointer lpszNewName,const_char_pointer lpszOldName)
+//::i32_bool file_move(const_char_pointer lpszNewName,const_char_pointer lpszOldName)
 //{
 //
 //   if(!::MoveFile((char *)lpszOldName,(char *)lpszNewName))
@@ -910,7 +910,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //
 //}
 
-//int_bool file_delete(const_char_pointer lpszFileName)
+//::i32_bool file_delete(const_char_pointer lpszFileName)
 //{
 //
 //   wstring wstr(lpszFileName);
@@ -930,7 +930,7 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 
 
 //
-//int_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
+//::i32_bool file_path_is_equal(const ::scoped_string & scopedstr1,const ::scoped_string & scopedstr2)
 //{
 //   return file_is_equal_path_dup(scopedstr1,psz2);
 //   /*const int iBufSize = MAX_PATH * 8;
@@ -1529,7 +1529,7 @@ HANDLE WinFindFirstFileA(const_char_pointer pwsz, WIN32_FIND_DATAA* pdata)
 
 
 /*
-int_bool WINAPI FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)
+::i32_bool WINAPI FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime)
 {
 
 SYSTEMTIME st;
@@ -1731,7 +1731,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u3
 //
 //
 ////
-////int_bool file_system()->exists(const ::file::path & path1)
+////::i32_bool file_system()->exists(const ::file::path & path1)
 ////{
 ////
 ////   string str(path1);
@@ -1748,7 +1748,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u3
 ////
 //
 //
-////int_bool file_system()->put_contents(const ::file::path & path,const_char_pointer contents,::collection::count len)
+////::i32_bool file_system()->put_contents(const ::file::path & path,const_char_pointer contents,::collection::count len)
 ////{
 ////
 ////            auto psystem = system();
@@ -1854,7 +1854,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u3
 //   return bOk;
 //
 //}
-//int_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
+//::i32_bool file_path_is_equal(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 //{
 //
 //   return normalize_path(scopedstr1).case_insensitive_order(normalize_path(scopedstr2)) == 0;
@@ -1884,7 +1884,7 @@ HANDLE hfile_create(const_char_pointer lpcszFileName, ::u32 dwDesiredAcces, ::u3
 //
 //
 //
-//int_bool file_set_length(const ::scoped_string & scopedstrName, size_t iSize)
+//::i32_bool file_set_length(const ::scoped_string & scopedstrName, size_t iSize)
 //{
 //
 //   int i = open(scopedstrName, 0);

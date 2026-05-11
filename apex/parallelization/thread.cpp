@@ -3019,7 +3019,7 @@ void thread::__priority_and_affinity()
 //
 //#if defined(WINDOWS_DESKTOP) || defined(LINUX)
 //
-//      int_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
+//      ::i32_bool bOk = ::SetThreadAffinityMask(m_htask, (::u32)m_uThreadAffinityMask) != 0;
 //
 //      if (bOk)
 //      {
@@ -3324,7 +3324,7 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
       UINT message = eusermessage;
 
-      int_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i32, message, wparam, lparam) != false;
+      ::i32_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i32, message, wparam, lparam) != false;
 
       if (!bOk)
       {

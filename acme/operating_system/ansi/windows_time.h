@@ -40,16 +40,16 @@ typedef struct _SYSTEMTIME {
 } SYSTEMTIME, *PSYSTEMTIME, *LPSYSTEMTIME;
 
 
-CLASS_DECL_ACME int_bool FileTimeToSystemTime(const FILETIME * pfiletime, SYSTEMTIME * psystemtime);
+CLASS_DECL_ACME ::i32_bool FileTimeToSystemTime(const FILETIME * pfiletime, SYSTEMTIME * psystemtime);
 
 
-CLASS_DECL_ACME int_bool SystemTimeToFileTime(const SYSTEMTIME * psystemtime, FILETIME * pfiletime);
+CLASS_DECL_ACME ::i32_bool SystemTimeToFileTime(const SYSTEMTIME * psystemtime, FILETIME * pfiletime);
 
 
 CLASS_DECL_ACME void GetSystemTime(SYSTEMTIME * psystemtime);
 
 
-CLASS_DECL_ACME int_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft );
+CLASS_DECL_ACME ::i32_bool FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft );
 
 
 

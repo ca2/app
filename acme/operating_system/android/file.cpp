@@ -43,7 +43,7 @@ void fd_set_size(int fd, ::i64 iSize)
 
 
 
-//CLASS_DECL_ACME void dll_processes(unsigned_int_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
+//CLASS_DECL_ACME void dll_processes(u32_array & dwa, string_array_base & straProcesses, const ::scoped_string & scopedstrDll)
 //{
 //
 //

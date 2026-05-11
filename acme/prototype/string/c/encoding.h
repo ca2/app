@@ -187,7 +187,7 @@ inline character_count replacement_utf8_char(char * psz)
 // or if your font support a cad library with 512-bit wide encoding, you can createø <matter type="cad/application-x">512-bit wide of honda civic tweaked by john peter etcetra and used by ann (brakes light dimmed (don't tell the police))</test>
 
 
-//inline int_bool utf16_is_surrogate(::wd16_character unsigned short) { return (unsigned short - 0xd800u) < 2048u; }
+//inline ::i32_bool utf16_is_surrogate(::wd16_character unsigned short) { return (unsigned short - 0xd800u) < 2048u; }
 //inline int utf16_is_high_surrogate(::wd16_character uc) { return (uc & 0xfc00) == 0xd800; }
 //inline int utf16_is_low_surrogate(::wd16_character uc) { return (uc & 0xfc00) == 0xdc00; }
 

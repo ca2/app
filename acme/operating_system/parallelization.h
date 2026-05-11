@@ -9,9 +9,9 @@
 
 
 // CLASS_DECL_ACME ::u32 thread_alloc(void);
-// CLASS_DECL_ACME int_bool thread_free(::u32 dwIndex);
+// CLASS_DECL_ACME ::i32_bool thread_free(::u32 dwIndex);
 // CLASS_DECL_ACME void * thread_get_data(::u32 dwIndex);
-// CLASS_DECL_ACME int_bool thread_set_data(::u32 dwIndex,void * pTlsValue);
+// CLASS_DECL_ACME ::i32_bool thread_set_data(::u32 dwIndex,void * pTlsValue);
 
 // CLASS_DECL_ACME void thread_shutdown(void);
 

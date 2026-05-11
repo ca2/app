@@ -289,7 +289,7 @@ int      cchWideChar,
 char *   pMultiByteStr,
 int      cbMultiByte,
 const_char_pointer pDefaultChar,
-int_bool *  pUsedDefaultChar)
+::i32_bool *  pUsedDefaultChar)
 {
 
   wstring wstr(pWideCharStr, cchWideChar);

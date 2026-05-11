@@ -97,7 +97,7 @@ warning_handler(png_structp, const ::string &warning)
 // Metadata routines
 // ==========================================================
 
-static int_bool
+static ::i32_bool
 /*ReadMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
@@ -180,7 +180,7 @@ static int_bool
    return true;
 }
 
-static int_bool
+static ::i32_bool
 /*WriteMetadata(png_structp png_ptr, png_infop info_ptr, FIBITMAP * pimage)
 {
    // XMP keyword
@@ -188,7 +188,7 @@ static int_bool
 
    FITAG *tag = nullptr;
    FIMETADATA *mdhandle = nullptr;
-   int_bool bResult = true;
+   ::i32_bool bResult = true;
 
    png_text text_metadata;
 
@@ -284,7 +284,7 @@ MimeType()
    return "image/png";
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 Validate(FreeImageIO *io, fi_handle handle)
 {
    unsigned char png_signature[8] = { 137, 80, 78, 71, 13, 10, 26, 10 };
@@ -295,7 +295,7 @@ Validate(FreeImageIO *io, fi_handle handle)
    return (memcmp(png_signature, signature, 8) == 0);
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsExportDepth(int depth)
 {
    return (
@@ -307,7 +307,7 @@ SupportsExportDepth(int depth)
           );
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type)
 {
    return (
@@ -318,13 +318,13 @@ SupportsExportType(FREE_IMAGE_TYPE type)
           );
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsICCProfiles()
 {
    return true;
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 SupportsNoPixels()
 {
    return true;
@@ -353,7 +353,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
    if (handle)
    {
-      int_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
+      ::i32_bool header_only = (flags & FIF_LOAD_NOPIXELS) == FIF_LOAD_NOPIXELS;
 
       try
       {
@@ -784,14 +784,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
    return nullptr;
 }
 
-static int_bool DLL_CALLCONV
+static ::i32_bool DLL_CALLCONV
 /*Save(FreeImageIO *io, FIBITMAP * pimage, fi_handle handle, int page, int flags, void *data)
 {
    png_structp png_ptr;
    png_infop info_ptr;
    png_colorp palette = nullptr;
    png_::u32_32 width, height;
-   int_bool has_alpha_channel = false;
+   ::i32_bool has_alpha_channel = false;
 
    RGBQUAD *pal;					// pointer to image palette
    int bit_depth, pixel_depth;		// pixel_depth = bit_depth * channels
@@ -862,7 +862,7 @@ static int_bool DLL_CALLCONV
 /*         height = FreeImage_GetHeight(pimage);
 /*         pixel_depth = FreeImage_GetBPP(pimage);
 
-         int_bool bInterlaced = false;
+         ::i32_bool bInterlaced = false;
          if( (flags & PNG_INTERLACED) == PNG_INTERLACED)
          {
             interlace_type = PNG_INTERLACE_ADAM7;
@@ -908,7 +908,7 @@ static int_bool DLL_CALLCONV
          }
 
          // check for transparent images
-         int_bool bIsTransparent =
+         ::i32_bool bIsTransparent =
 /*         (image_type == FIT_BITMAP) && FreeImage_IsTransparent(pimage) && (FreeImage_GetTransparencyCount(pimage) > 0) ? true : false;
 
 /*         switch (FreeImage_GetColorType(pimage))

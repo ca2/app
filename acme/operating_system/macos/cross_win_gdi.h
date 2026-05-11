@@ -4,19 +4,19 @@
 // HFONT CreateFontIndirect(const LOGFONT * lf);
 // HPEN CreatePen(int iPenStyle, int iWidth, color32_t crColor);
 // HGDIOBJ GetStockObject(int iStockObject);
-// int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj);
-// int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
-// int_bool DeleteObject(HGDIOBJ hgdiobj);
+// ::i32_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj);
+// ::i32_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
+// ::i32_bool DeleteObject(HGDIOBJ hgdiobj);
 // HDC create_compatible_graphics(HDC hdc);
 // HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *pbmi, ::u32 usage, void **ppvBits, HANDLE hSection, ::u32 offset);
 
-// int_bool SetTextColor(HDC hdc, color32_t color32);
-// int_bool SetBkMode(HDC hdc, int iMode);
-// int_bool DeleteDC(HDC hdc);
-// int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
-// int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * matter);
-// int_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::i32_size * psize);
-/*int_bool WINAPI TransparentBlt(HDC hdcDest,
+// ::i32_bool SetTextColor(HDC hdc, color32_t color32);
+// ::i32_bool SetBkMode(HDC hdc, int iMode);
+// ::i32_bool DeleteDC(HDC hdc);
+// ::i32_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
+// ::i32_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * matter);
+// ::i32_bool GetTextExtentPoint(HDC hdc, const ::scoped_string & scopedstrText, int iSize, ::i32_size * psize);
+/*::i32_bool WINAPI TransparentBlt(HDC hdcDest,
     __in int xoriginDest,
     __in int yoriginDest,
     __in int wDest,

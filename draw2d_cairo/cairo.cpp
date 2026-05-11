@@ -26,7 +26,7 @@
 //
 //#endif
 //
-//   g_pmapFontFace = ___new string_map_base < int_map < FT_Face> >  ();
+//   g_pmapFontFace = ___new string_map_base < i32_map < FT_Face> >  ();
 //
 //   g_pmapCairoFontFace = ___new string_map_base < cairo_font_face_t * >  ();
 //

@@ -92,9 +92,9 @@ t_phappeningNotifyLock;
    
    message_queue * pmq = ::task_message_queue();
 
-   int_bool bWaitForAll = dwFlags & MWMO_WAITALL;
-   //   int_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
-   //   int_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
+   ::i32_bool bWaitForAll = dwFlags & MWMO_WAITALL;
+   //   ::i32_bool bAlertable         = dwFlags & MWMO_ALERTABLE;
+   //   ::i32_bool bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
 
    timespec delay;
 
@@ -260,7 +260,7 @@ t_phappeningNotifyLock;
 }
 
 
-::e_status MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, ::u32 dwWakeMask)
+::e_status MsgWaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, ::i32_bool bWaitForAll, const class ::time & tickTimeout, ::u32 dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, dwWakeMask, (bWaitForAll ? MWMO_WAITALL : 0));
@@ -268,7 +268,7 @@ t_phappeningNotifyLock;
 }
 
 
-::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout, int_bool bAlertable)
+::e_status WaitForMultipleObjectsEx(::u32 dwSize, hsynchronization * synca, ::i32_bool bWaitForAll, const class ::time & tickTimeout, ::i32_bool bAlertable)
 {
 
    return MsgWaitForMultipleObjectsEx(dwSize, synca, tickTimeout, 0, (bWaitForAll ? MWMO_WAITALL : 0) | (bAlertable ? MWMO_ALERTABLE : 0));
@@ -276,7 +276,7 @@ t_phappeningNotifyLock;
 }
 
 
-::e_status WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, int_bool bWaitForAll, const class ::time & tickTimeout)
+::e_status WaitForMultipleObjects(::u32 dwSize, hsynchronization * synca, ::i32_bool bWaitForAll, const class ::time & tickTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
@@ -284,7 +284,7 @@ t_phappeningNotifyLock;
 }
 
 
-::e_status WaitForSingleObjectEx(hsynchronization hsynchronization, const class ::time & tickTimeout, int_bool bAlertable)
+::e_status WaitForSingleObjectEx(hsynchronization hsynchronization, const class ::time & tickTimeout, ::i32_bool bAlertable)
 {
 
    return WaitForMultipleObjectsEx(1, &hsynchronization, true, tickTimeout, bAlertable);
@@ -432,7 +432,7 @@ int get_os_thread_priority(::enum_priority epriority)
 // LPVOID WINAPI thread_get_data(htask htask, ::u32 dwIndex);
 
 
-// int_bool WINAPI thread_set_data(htask htask, ::u32 dwIndex, LPVOID pTlsValue);
+// ::i32_bool WINAPI thread_set_data(htask htask, ::u32 dwIndex, LPVOID pTlsValue);
 
 
 
@@ -444,8 +444,8 @@ int g_iDebug_post_thread_msg_time;
 
 
 
-//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::acme::windowing::window * pacmewindowingwindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
-//CLASS_DECL_ACME int_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME ::i32_bool WINAPI mq_post(message_queue * pmq, ::acme::windowing::window * pacmewindowingwindow, ::u32 Msg, WPARAM wParam, LPARAM lParam)
+//CLASS_DECL_ACME ::i32_bool WINAPI mq_post(message_queue * pmq, ::u32 Msg, WPARAM wParam, LPARAM lParam)
 //{
 //
 //   synchronous_lock ml(pmq->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);

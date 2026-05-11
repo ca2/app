@@ -19,7 +19,7 @@
 
 
 CGColorRef cg_create_color(color32_t crText);
-int_bool cg_release_color(CGColorRef colorref);
+::i32_bool cg_release_color(CGColorRef colorref);
 
 
 

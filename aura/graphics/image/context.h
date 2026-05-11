@@ -32,7 +32,7 @@ namespace image
    public:
 
 
-      int_map < string > m_mapIntPath;
+      i32_map < string > m_mapIntPath;
       string_map_base < int > m_mapPathInt;
       string_map_base < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;

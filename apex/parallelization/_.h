@@ -13,11 +13,11 @@
 
 
 // LPVOID thread_data_get(thread_data_index dataindex);
-// int_bool thread_data_set(thread_data_index dataindex, void* pvalue);
+// ::i32_bool thread_data_set(thread_data_index dataindex, void* pvalue);
 
 
 // thread_data_index thread_data_allocate();
-// int_bool thread_data_free(thread_data_index dataindex);
+// ::i32_bool thread_data_free(thread_data_index dataindex);
 
 
 //extern thread_local ::pointer<::property_set>t_ppropertyset;
@@ -246,7 +246,7 @@ class thread_startup;
 //CLASS_DECL_APEX ::u32 random_processor_index_generator();
 
 
-//CLASS_DECL_APEX int_bool post_message(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
+//CLASS_DECL_APEX ::i32_bool post_message(::windowing::window * pwindow, ::user::enum_message eusermessage, ::wparam wparam, ::lparam lparam);
 
 
 

@@ -23,8 +23,8 @@ typedef struct
 
 
 CLASS_DECL_CA2_TIME HRESULT   VarUdateFromDate(FLOAT_DATE dateIn, ::u32 dwFlags, UDATE *lpUdate);
-CLASS_DECL_CA2_TIME int_bool   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
-CLASS_DECL_CA2_TIME int_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
+CLASS_DECL_CA2_TIME ::i32_bool   FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft );
+CLASS_DECL_CA2_TIME ::i32_bool   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME syst);
 
 
 #endif
@@ -50,12 +50,12 @@ namespace datetime
    };
 
 
-   inline int_bool convert_system_time_to_float_time(const SYSTEMTIME & systimeSrc, double * pVarDtTm)
+   inline ::i32_bool convert_system_time_to_float_time(const SYSTEMTIME & systimeSrc, double * pVarDtTm)
    {
       ENSURE(pVarDtTm != NULL);
       //Convert using ::SystemTimeToVariantTime and store the result in pVarDtTm then
       //convert variant time back to system time and compare to original system time.
-      int_bool ok = ::SystemTimeToFloatTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);
+      ::i32_bool ok = ::SystemTimeToFloatTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);
       SYSTEMTIME sysTime;
       ::memory_set(&sysTime, 0, sizeof(SYSTEMTIME));
 
@@ -256,7 +256,7 @@ namespace datetime
       static FLOAT_DATE WINAPI DateFromDouble(double f) RELEASENOTHROW;
 
       void check_range();
-      int_bool ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc);
+      ::i32_bool ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc);
    };
 
 
@@ -827,7 +827,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
 
 
 
-   inline int_bool float_time::ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc)
+   inline ::i32_bool float_time::ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc)
    {
 
       return convert_system_time_to_float_time(systimeSrc,&m_dt);

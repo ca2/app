@@ -7,7 +7,7 @@
 #if !defined(WINDOWS)
 
 
-int_bool file_path_is_link(const ::file::path & path)
+::i32_bool file_path_is_link(const ::file::path & path)
 {
 
    struct stat stat;

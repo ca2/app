@@ -85,7 +85,7 @@ bool __os_term_thread();
 //}
 
 
-void attach_thread_input_to_main_thread(int_bool bAttach)
+void attach_thread_input_to_main_thread(::i32_bool bAttach)
 {
 
 }

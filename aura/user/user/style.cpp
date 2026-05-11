@@ -1285,7 +1285,7 @@ namespace user
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = allocateø ::user::int_map();
+   //      userstyle()->m_mapInt = allocateø ::user::i32_map();
 
    //   }
 

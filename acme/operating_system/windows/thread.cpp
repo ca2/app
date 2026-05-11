@@ -143,7 +143,7 @@ bool __os_init_thread()
 // }
 
 
-// CLASS_DECL_ACME int_bool thread_free(::u32 uiIndex)
+// CLASS_DECL_ACME ::i32_bool thread_free(::u32 uiIndex)
 // {
 
 //    return TlsFree((::u32) uiIndex);
@@ -165,7 +165,7 @@ bool __os_init_thread()
 // }
 
 
-// int_bool thread_data_set(thread_data_index dwIndex, void* pvalue)
+// ::i32_bool thread_data_set(thread_data_index dwIndex, void* pvalue)
 // {
 
 //    return TlsSetValue(dwIndex, pvalue);
@@ -182,7 +182,7 @@ bool __os_init_thread()
 // }
 
 
-// int_bool thread_data_free(thread_data_index dwIndex)
+// ::i32_bool thread_data_free(thread_data_index dwIndex)
 // {
 
 //    return TlsFree(dwIndex);

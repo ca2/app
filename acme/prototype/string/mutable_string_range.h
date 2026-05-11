@@ -242,7 +242,7 @@ using wd32_range = ::string_range< const ::wd32_character * >;
 
 
 template<prototype_character CHARACTER>
-inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *> range) {
+inline ::hash32 _string_range_u32_hash(::string_range<const CHARACTER *> range) {
 
    if (range.is_empty()) {
 
@@ -262,7 +262,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //inline ::hash32 as_hash32(const_ansi_range range)
 //{
 //
-//   return _string_range_unsigned_int_hash((::string_range<const_char_pointer >) range);
+//   return _string_range_u32_hash((::string_range<const_char_pointer >) range);
 //
 //}
 //
@@ -270,7 +270,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //inline ::hash32 as_hash32(const_wd16_range range)
 //{
 //
-//   return _string_range_unsigned_int_hash((::string_range<const ::wd16_character *>) range);
+//   return _string_range_u32_hash((::string_range<const ::wd16_character *>) range);
 //
 //}
 //
@@ -278,7 +278,7 @@ inline ::hash32 _string_range_unsigned_int_hash(::string_range<const CHARACTER *
 //inline ::hash32 as_hash32(const_wd32_range range)
 //{
 //
-//   return _string_range_unsigned_int_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
+//   return _string_range_u32_hash<::wd32_character>((::string_range<const ::wd32_character *>) range);
 //
 //}
 

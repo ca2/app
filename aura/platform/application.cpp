@@ -1205,7 +1205,7 @@ namespace aura
 //   };
 //
 //
-//   int_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
+//   ::i32_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
 //   {
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -1226,7 +1226,7 @@ namespace aura
 //   }
 //
 //
-//   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
+//   ::i32_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
 //   {
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -1244,7 +1244,7 @@ namespace aura
 //
 //   }
 //
-//   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
+//   ::i32_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
 //
 //   {
 //

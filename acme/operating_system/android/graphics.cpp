@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+//::i32_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 //{
 //
 //   return false;
@@ -46,7 +46,7 @@ namespace draw2d
 
 
 
-//int_bool delete_hcursor(HCURSOR hcursor)
+//::i32_bool delete_hcursor(HCURSOR hcursor)
 //{
 //
 //   return true;

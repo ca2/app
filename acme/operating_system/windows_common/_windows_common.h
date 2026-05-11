@@ -122,9 +122,9 @@ namespace windows
    //
    // CLASS_DECL_ACME ::u32 get_file_attributes(const ::file::path & path);
    //
-   // CLASS_DECL_ACME int_bool is_win32_accessible(::u32 uFileAttributes, const last_error & lasterror);
+   // CLASS_DECL_ACME ::i32_bool is_win32_accessible(::u32 uFileAttributes, const last_error & lasterror);
    //
-   // CLASS_DECL_ACME int_bool is_win32_accessible(const ::file::path & path);
+   // CLASS_DECL_ACME ::i32_bool is_win32_accessible(const ::file::path & path);
    //
    // CLASS_DECL_ACME void set_file_attributes(const ::file::path & path, ::u32 uFileAttributes);
    //

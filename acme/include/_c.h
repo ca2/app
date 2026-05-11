@@ -19,7 +19,7 @@ inline bool is_null(const void* p) { return !::is_set(p); }
 CLASS_DECL_ACME character_count safe_strlen(void* p, character_count n);
 
 
-inline int_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
+inline ::i32_bool address_overlaps(const void* pszDst, const void* pszSrc, character_count srclen);
 
 
 

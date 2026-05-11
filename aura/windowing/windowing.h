@@ -194,7 +194,7 @@ namespace windowing
 
       //virtual void enum_draw2d_fonts(::write_text::font_enumeration_item_array& itema);
 
-      virtual int_bool point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin);
+      virtual ::i32_bool point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin);
 
       //virtual void top_windows_by_z_order(::user::oswindow_array & a);
 

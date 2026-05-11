@@ -740,7 +740,7 @@ namespace windowing
    }
 
 
-   int_bool windowing::point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin)
+   ::i32_bool windowing::point_is_window_origin(::i32_point ptHitTest, ::acme::windowing::window * pacmewindowingwindowExclude, int iMargin)
    {
 
       return false;

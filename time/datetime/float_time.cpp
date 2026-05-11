@@ -28,7 +28,7 @@ namespace datetime
 #define IsLeapYear(y) (((y % 4) == 0) && (((y % 100) != 0) || ((y % 400) == 0)))
 
 /* Determine if a day is valid in a given month of a given year */
-static int_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
+static ::i32_bool FLOATTIME_IsValidMonthDay(::u32 day, ::u32 month, ::u32 year)
 {
   static const unsigned char days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -417,7 +417,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const_char_pointer strIn, LCID lcid
     }
     else if (isalpha(*strIn))
     {
-      int_bool bFound = false;
+      ::i32_bool bFound = false;
 
       for (i = 0; i < sizeof(tokens)/sizeof(tokens[0]); i++)
       {

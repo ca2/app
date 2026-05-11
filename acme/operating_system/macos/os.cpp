@@ -23,7 +23,7 @@ CLASS_DECL_ACME bool _istlead(int ch)
 
 
 
-//int_bool GetCursorPos(::i32_point * ppointCursor)
+//::i32_bool GetCursorPos(::i32_point * ppointCursor)
 //
 //{
 //

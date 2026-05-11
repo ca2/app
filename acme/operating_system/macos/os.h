@@ -26,7 +26,7 @@
 
 ::operating_system::window get_capture();
 ::operating_system::window set_mouse_capture(const ::operating_system::window & operatingsystemwindow);
-int_bool release_mouse_capture();
+::i32_bool release_mouse_capture();
 ::operating_system::window set_keyboard_focus(const ::operating_system::window & operatingsystemwindow);
 ::operating_system::window get_keyboard_focus();
 ::operating_system::window get_active_window();
@@ -47,8 +47,8 @@ int GetWorkspaceRect(::i32_rectangle * prectangle, int iMonitor);
 int GetWorkspaceCount();
 
 
-int_bool set_foreground_window(const ::operating_system::window & operatingsystemwindow);
-int_bool BringWindowToTop(const ::operating_system::window & operatingsystemwindow);
+::i32_bool set_foreground_window(const ::operating_system::window & operatingsystemwindow);
+::i32_bool BringWindowToTop(const ::operating_system::window & operatingsystemwindow);
 
 void ns_redraw_window(const ::operating_system::window & operatingsystemwindow);
 

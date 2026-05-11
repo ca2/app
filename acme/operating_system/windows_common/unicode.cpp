@@ -16,7 +16,7 @@ CLASS_DECL_ACME int MultiByteToWideChar2(
 CLASS_DECL_ACME int WideCharToMultiByte2(
    ::u32 CodePage, ::u32 uFlags, const ::wide_character *  pWideCharStr,
    int cchWideChar, char * pMultiByteStr, int cbMultiByte,
-   const_char_pointer pDefaultChar, int_bool * pUsedDefaultChar)
+   const_char_pointer pDefaultChar, ::i32_bool * pUsedDefaultChar)
 {
 
    return WideCharToMultiByte(CodePage, uFlags, pWideCharStr, cchWideChar, pMultiByteStr, cbMultiByte, pDefaultChar, pUsedDefaultChar);

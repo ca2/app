@@ -5,7 +5,7 @@
 
 
 template < class PAYLOAD >
-using int_map = map_base < int, PAYLOAD >;
+using i32_map = map_base < int, PAYLOAD >;
 
 template < class PAYLOAD >
 using i64_map = map_base < ::i64, PAYLOAD >;
@@ -16,11 +16,11 @@ using iptr_map = map_base < iptr, PAYLOAD >;
 template < class PAYLOAD >
 using index_map_base = map_base < ::collection::index, PAYLOAD >;
 
-using int_to_int = int_map < int >;
+using int_to_int = i32_map < int >;
 
 using i64_to_long_long = i64_map < ::i64 >;
 
-using int_to_string =  int_map < string > ;
+using int_to_string =  i32_map < string > ;
 
 using i64_to_string = i64_map < string >;
 

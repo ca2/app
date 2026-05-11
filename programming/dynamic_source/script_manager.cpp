@@ -282,6 +282,8 @@ namespace dynamic_source
 
          //}
 
+         file_watcher()->add_watch(m_pathNetseedDsCa2Path, m_pcompiler, true);
+
       }
 
 #ifdef WINDOWS

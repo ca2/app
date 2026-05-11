@@ -1445,6 +1445,8 @@ namespace dynamic_source
       else
       {
 
+         auto pathReal = m_pscriptmanager2->real_path(path);
+
          m_pscriptmanager2->m_pcache->set_out_of_date(path);
 
       }

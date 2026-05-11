@@ -732,14 +732,7 @@ namespace dynamic_source
 
       _synchronous_lock synchronouslock(this->synchronization(), DEFAULT_SYNCHRONOUS_LOCK_SUFFIX);
 
-      if (m_plibrary.is_set() && !m_plibrary->is_closed())
-      {
-
-         return;
-
-      }
-
-      if (!ShouldBuild())
+      if (m_plibrary.is_set() && !m_plibrary->is_closed() && !ShouldBuild())
       {
 
          return;

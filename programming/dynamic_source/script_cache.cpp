@@ -328,7 +328,14 @@ namespace dynamic_source
 
       const char* pszLogical = pfilesystemcacheitem->m_pathLogical1.c_str();
 
-      auto & pparticleFileSystemItem = pfilesystemcacheitem->m_particlea[m_pmanager->m_iFileSystemScriptSlotIndex];
+      if (pfilesystemcacheitem->m_pathReal1 == "H:/Users/camilo/netnode/netnodenet/net/front/ca2/_std/_std/doc/cpp/index.ds")
+      {
+         information() << "cpp/index.ds";
+      }
+
+      auto iSlot = m_pmanager->m_iFileSystemScriptSlotIndex;
+
+      auto & pparticleFileSystemItem = pfilesystemcacheitem->m_particlea[iSlot];
 
       pscript = pparticleFileSystemItem;
 
@@ -374,6 +381,13 @@ namespace dynamic_source
       if (!pscript)
       {
 
+         if (pfilesystemcacheitem->m_pathReal1 == "H:/Users/camilo/netnode/netnodenet/net/front/ca2/_std/_std/doc/cpp/index.ds")
+         {
+
+            information() << "index.ds";
+         }
+
+
          auto pscriptNew = get(pfilesystemcacheitem, itemN40585.m_timeLockElapsed, itemN40585.m_timeLookUpElapsed);
 
          if (::is_null(pscriptNew))
@@ -392,6 +406,15 @@ namespace dynamic_source
          criticalsectionlock.unlock();
 
       }
+
+      auto pszReal1 = pscript->m_pfilesystemcacheitem->m_pathReal1.c_str();
+
+      if (pscript->m_pfilesystemcacheitem->m_pathReal1 == "H:/Users/camilo/netnode/netnodenet/net/front/ca2/_std/_std/doc/cpp/index.ds")
+      {
+
+         information() << "index.ds";
+      }
+
 
 
       //class ::time timeStart;
@@ -649,6 +672,17 @@ namespace dynamic_source
             {
 
                pdsscript->m_bShouldBuild = true;
+
+               if (pdsscript->m_pfilesystemcacheitem)
+               {
+                  auto pszReal = pdsscript->m_pfilesystemcacheitem->m_pathReal1.c_str();
+                  if (pdsscript->m_pfilesystemcacheitem->m_pathReal1 == "H:/Users/camilo/netnode/netnodenet/net/front/ca2/_std/_std/doc/cpp/index.ds")
+                  {
+
+                     information() << "cpp/index.ds";
+                  }
+
+               }
 
             }
 

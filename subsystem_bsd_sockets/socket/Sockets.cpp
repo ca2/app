@@ -23,46 +23,46 @@
 //
 #include "framework.h"
 #include "Sockets.h"
-
+#include "subsystem/node/SystemException.h"
 
 namespace subsystem_bsd_sockets
 {
-   // WindowsSocket::WindowsSocktes()
-   // {
-   //    m_isStarted = false;
-   // }
-   //
-   //
-   // WindowsSockets::~WindowsSockets()
-   // {}
-   //
-   //
-   //
-   // void WindowsSocket::startup(unsigned char loVer, unsigned char hiVer)
-   // {
-   //    if (m_isStarted) {
-   //       throw ::subsystem::Exception("WindowsSocket already initialized.");
-   //    }
-   //
-   //    WSAData wsaData;
-   //
-   //    if (WSAStartup(MAKEWORD(loVer, hiVer), &wsaData) != 0) {
-   //       throw ::subsystem::Exception("Failed to initialize WindowsSocket.");
-   //    }
-   //
-   //    m_isStarted = true;
-   // }
-   //
-   // void WindowsSocket::cleanup()
-   // {
-   //    if (!m_isStarted) {
-   //       throw ::subsystem::Exception("WindowsSocket don't initialized.");
-   //    }
-   //
-   //    m_isStarted = false;
-   //
-   //    if (WSACleanup() == SOCKET_ERROR) {
-   //       throw ::subsystem::Exception("Failed to deinitialize WindowsSocket.");
-   //    }
-   // }
+    Sockets::Sockets()
+    {
+       m_bIsStarted = false;
+    }
+   
+   
+Sockets::~Sockets()
+    {}
+   
+   
+   
+    void Sockets::_startSockets(int loVer, int hiVer)
+    {
+       if (m_bIsStarted) {
+          throw ::subsystem::Exception("Sockets already initialized.");
+       }
+   
+//       WSAData wsaData;
+//   
+//       if (WSAStartup(MAKEWORD(loVer, hiVer), &wsaData) != 0) {
+//          throw ::subsystem::Exception("Failed to initialize WindowsSocket.");
+//       }
+//   
+       m_bIsStarted = true;
+    }
+   
+    void Sockets::_cleanupSockets()
+{
+       if (!m_bIsStarted) {
+          throw ::subsystem::Exception("Sockets don't initialized.");
+       }
+   
+       m_bIsStarted = false;
+   
+//       if (WSACleanup() == SOCKET_ERROR) {
+//          throw ::subsystem::Exception("Failed to deinitialize WindowsSocket.");
+//       }
+    }
 } // namespace subsystem_bsd_sockets

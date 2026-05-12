@@ -46,6 +46,7 @@ namespace subsystem_bsd_sockets
    {
    public:
 
+      ImplementDefaultø(SocketAddressIPv4)
 
       // SocketAddressIPv4();
       // SocketAddressIPv4(struct sockaddr_in);

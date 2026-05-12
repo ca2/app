@@ -30,6 +30,12 @@
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "subsystem/platform/Particle.h"
 
+struct operating_ambient_window_t
+{
+   
+   ::uptr m_u;
+   
+};
 
 namespace innate_subsystem
 {
@@ -67,8 +73,8 @@ namespace innate_subsystem
 
       // getWindow()
       // Get a handle of the window
-      virtual void * _HWND() const = 0;
-      virtual void _setHWND(void *) = 0;
+      virtual operating_ambient_window_t operating_ambient_window() const = 0;
+      virtual void set_operating_ambient_window(operating_ambient_window_t operatingambientwindow) = 0;
       virtual void * _WNDPROC_default() const = 0;
       virtual ::operating_system::window operating_system_window() const = 0;
       virtual void set_operating_system_window(const ::operating_system::window & operatingsystemwindow) = 0;
@@ -301,8 +307,12 @@ namespace innate_subsystem
 
       // getWindow()
       // Get a handle of the window
-      void * _HWND() const override {return m_pwindow->_HWND();}
-      void _setHWND(void *p) override{return m_pwindow->_setHWND(p);}
+      
+      operating_ambient_window_t operating_ambient_window() const override {return m_pwindow->operating_ambient_window();}
+      void set_operating_ambient_window(operating_ambient_window_t operatingambientwindow) override{return m_pwindow->set_operating_ambient_window(operatingambientwindow);}
+
+      
+      
       void * _WNDPROC_default() const override{return m_pwindow->_WNDPROC_default();}
       ::operating_system::window operating_system_window() const override {return m_pwindow->operating_system_window();}
       void set_operating_system_window(const ::operating_system::window & operatingsystemwindow) override
@@ -341,7 +351,9 @@ namespace innate_subsystem
 
          return m_pwindow->onDrawClipboard();
       }
-
+      
+      
+      
       // setClass()
       // Set a class name only to the new window created by createWindow
       //void setClass(const ::scoped_string  & scopedstrWindowClassName) override

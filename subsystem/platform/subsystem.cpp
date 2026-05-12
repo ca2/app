@@ -303,7 +303,15 @@ namespace subsystem
 
 
    }
+pointer<::subsystem::FileInterface> subsystem::fileFrom_fd(int fd)
+{
 
+   throw ::interface_only();
+
+   return {};
+
+
+}
 
    ::pointer < ::subsystem::SecurityIdentifier > subsystem::createSidFromString(const ::scoped_string & scopedstr)
    {

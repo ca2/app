@@ -395,7 +395,7 @@ virtual void set##Name##Implementation(Name##Interface *pinterfaceImplementation
 \
 }           \
 \
-::Particle * _get_callback()           \
+::Particle * _get_callback()  override          \
 {           \
    \
    return MAIN_CLASS::_get_callback();           \

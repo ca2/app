@@ -21,6 +21,16 @@ namespace operating_system
 
 
       void Null() { m_cgwindowidMacosWindow = NULL; }
+      
+      
+      bool is_set() const{
+         return this->m_cgwindowidMacosWindow != 0;
+      }
+      bool is_null() const
+      {
+         return !this->is_set();
+      }
+
 
    };
 
@@ -75,9 +85,7 @@ namespace operating_system
       
       }
 
-
-      using BASE_TYPE::operator=;
-
+  
       macos_window & operator=(CGWindowID cgwindowid)
       {
 

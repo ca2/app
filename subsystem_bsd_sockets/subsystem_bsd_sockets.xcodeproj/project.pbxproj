@@ -7,24 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A09CD7E2FB335E500E22155 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09CD7D2FB335E500E22155 /* libacme.dylib */; };
+		9A09CD812FB335EA00E22155 /* libsubsystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09CD802FB335E700E22155 /* libsubsystem.dylib */; };
+		9A09CD832FB3372D00E22155 /* Sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A09CD822FB3372D00E22155 /* Sockets.cpp */; };
+		9A09CD852FB3373500E22155 /* Sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A09CD842FB3373500E22155 /* Sockets.h */; };
+		9A09CD932FB337C100E22155 /* Sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A09CD8C2FB337C100E22155 /* Sockets.cpp */; };
+		9A09CD952FB337C100E22155 /* subsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A09CD8D2FB337C100E22155 /* subsystem.cpp */; };
 		9A0B90172FB2A00C00EEAAE1 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B90072FB2A00C00EEAAE1 /* _factory.cpp */; };
 		9A0B90182FB2A00C00EEAAE1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B90092FB2A00C00EEAAE1 /* framework.cpp */; };
 		9A0B90192FB2A00C00EEAAE1 /* SocketAddressIPv4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B90112FB2A00C00EEAAE1 /* SocketAddressIPv4.cpp */; };
 		9A0B901A2FB2A00C00EEAAE1 /* SocketIPv4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B90132FB2A00C00EEAAE1 /* SocketIPv4.cpp */; };
-		9A0B901B2FB2A00C00EEAAE1 /* Sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B90152FB2A00C00EEAAE1 /* Sockets.cpp */; };
 		9A0B901C2FB2A00C00EEAAE1 /* subsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B900B2FB2A00C00EEAAE1 /* subsystem.cpp */; };
 		9A0B901E2FB2A00C00EEAAE1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B90052FB2A00C00EEAAE1 /* _.cpp */; };
 		9A0B90202FB2A00C00EEAAE1 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B900D2FB2A00C00EEAAE1 /* resource.h */; };
 		9A0B90212FB2A00C00EEAAE1 /* subsystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B900A2FB2A00C00EEAAE1 /* subsystem.h */; };
 		9A0B90222FB2A00C00EEAAE1 /* _common_header.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B90062FB2A00C00EEAAE1 /* _common_header.h */; };
 		9A0B90232FB2A00C00EEAAE1 /* SocketAddressIPv4.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B90102FB2A00C00EEAAE1 /* SocketAddressIPv4.h */; };
-		9A0B90242FB2A00C00EEAAE1 /* Sockets.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B90142FB2A00C00EEAAE1 /* Sockets.h */; };
 		9A0B90252FB2A00C00EEAAE1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B90042FB2A00C00EEAAE1 /* _.h */; };
 		9A0B90262FB2A00C00EEAAE1 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B90082FB2A00C00EEAAE1 /* framework.h */; };
 		9A0B90272FB2A00C00EEAAE1 /* SocketIPv4.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0B90122FB2A00C00EEAAE1 /* SocketIPv4.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A09CD7F2FB335E700E22155 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6EE21F2FB29FAE004F9C3A /* subsystem.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD3F2482FB205EB00CB9A78;
+			remoteInfo = subsystem;
+		};
 		9A0B95262FB2CE1000EEAAE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A6EE21F2FB29FAE004F9C3A /* subsystem.xcodeproj */;
@@ -35,6 +46,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A09CD7D2FB335E500E22155 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A09CD822FB3372D00E22155 /* Sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sockets.cpp; sourceTree = "<group>"; };
+		9A09CD842FB3373500E22155 /* Sockets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sockets.h; sourceTree = "<group>"; };
+		9A09CD8C2FB337C100E22155 /* Sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sockets.cpp; sourceTree = "<group>"; };
+		9A09CD8D2FB337C100E22155 /* subsystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subsystem.cpp; sourceTree = "<group>"; };
+		9A09CD8F2FB337C100E22155 /* Sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sockets.cpp; sourceTree = "<group>"; };
+		9A09CD902FB337C100E22155 /* subsystem.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subsystem.cpp; sourceTree = "<group>"; };
 		9A0B90042FB2A00C00EEAAE1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A0B90052FB2A00C00EEAAE1 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A0B90062FB2A00C00EEAAE1 /* _common_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _common_header.h; sourceTree = "<group>"; };
@@ -48,8 +66,6 @@
 		9A0B90112FB2A00C00EEAAE1 /* SocketAddressIPv4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SocketAddressIPv4.cpp; sourceTree = "<group>"; };
 		9A0B90122FB2A00C00EEAAE1 /* SocketIPv4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketIPv4.h; sourceTree = "<group>"; };
 		9A0B90132FB2A00C00EEAAE1 /* SocketIPv4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SocketIPv4.cpp; sourceTree = "<group>"; };
-		9A0B90142FB2A00C00EEAAE1 /* Sockets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sockets.h; sourceTree = "<group>"; };
-		9A0B90152FB2A00C00EEAAE1 /* Sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sockets.cpp; sourceTree = "<group>"; };
 		9A0B90282FB2A05F00EEAAE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A0B90292FB2A05F00EEAAE1 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A6EE2102FB29F54004F9C3A /* libsubsystem_bsd_sockets.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsubsystem_bsd_sockets.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,15 +77,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A09CD812FB335EA00E22155 /* libsubsystem.dylib in Frameworks */,
+				9A09CD7E2FB335E500E22155 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A09CD7C2FB335E500E22155 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A09CD7D2FB335E500E22155 /* libacme.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A09CD8E2FB337C100E22155 /* macos */ = {
+			isa = PBXGroup;
+			children = (
+				9A09CD8C2FB337C100E22155 /* Sockets.cpp */,
+				9A09CD8D2FB337C100E22155 /* subsystem.cpp */,
+			);
+			path = macos;
+			sourceTree = "<group>";
+		};
+		9A09CD912FB337C100E22155 /* windows */ = {
+			isa = PBXGroup;
+			children = (
+				9A09CD8F2FB337C100E22155 /* Sockets.cpp */,
+				9A09CD902FB337C100E22155 /* subsystem.cpp */,
+			);
+			path = windows;
+			sourceTree = "<group>";
+		};
+		9A09CD922FB337C100E22155 /* operating_system */ = {
+			isa = PBXGroup;
+			children = (
+				9A09CD8E2FB337C100E22155 /* macos */,
+				9A09CD912FB337C100E22155 /* windows */,
+			);
+			path = operating_system;
+			sourceTree = "<group>";
+		};
 		9A0B90032FB29FDE00EEAAE1 /* subsystem_bsd_sockets */ = {
 			isa = PBXGroup;
 			children = (
+				9A09CD922FB337C100E22155 /* operating_system */,
 				9A0B900C2FB2A00C00EEAAE1 /* platform */,
 				9A0B90162FB2A00C00EEAAE1 /* socket */,
 				9A0B90282FB2A05F00EEAAE1 /* _____debug.xcconfig */,
@@ -101,8 +155,8 @@
 				9A0B90112FB2A00C00EEAAE1 /* SocketAddressIPv4.cpp */,
 				9A0B90122FB2A00C00EEAAE1 /* SocketIPv4.h */,
 				9A0B90132FB2A00C00EEAAE1 /* SocketIPv4.cpp */,
-				9A0B90142FB2A00C00EEAAE1 /* Sockets.h */,
-				9A0B90152FB2A00C00EEAAE1 /* Sockets.cpp */,
+				9A09CD842FB3373500E22155 /* Sockets.h */,
+				9A09CD822FB3372D00E22155 /* Sockets.cpp */,
 			);
 			path = socket;
 			sourceTree = "<group>";
@@ -110,6 +164,7 @@
 		9A0B950B2FB2CDEF00EEAAE1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				9A09CD802FB335E700E22155 /* libsubsystem.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +174,7 @@
 			children = (
 				9A6EE21F2FB29FAE004F9C3A /* subsystem.xcodeproj */,
 				9A0B90032FB29FDE00EEAAE1 /* subsystem_bsd_sockets */,
+				9A09CD7C2FB335E500E22155 /* Frameworks */,
 				9A6EE2112FB29F54004F9C3A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,10 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A0B90202FB2A00C00EEAAE1 /* resource.h in Headers */,
+				9A09CD852FB3373500E22155 /* Sockets.h in Headers */,
 				9A0B90212FB2A00C00EEAAE1 /* subsystem.h in Headers */,
 				9A0B90222FB2A00C00EEAAE1 /* _common_header.h in Headers */,
 				9A0B90232FB2A00C00EEAAE1 /* SocketAddressIPv4.h in Headers */,
-				9A0B90242FB2A00C00EEAAE1 /* Sockets.h in Headers */,
 				9A0B90252FB2A00C00EEAAE1 /* _.h in Headers */,
 				9A0B90262FB2A00C00EEAAE1 /* framework.h in Headers */,
 				9A0B90272FB2A00C00EEAAE1 /* SocketIPv4.h in Headers */,
@@ -211,16 +267,28 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		9A09CD802FB335E700E22155 /* libsubsystem.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libsubsystem.dylib;
+			remoteRef = 9A09CD7F2FB335E700E22155 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9A6EE20D2FB29F54004F9C3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A09CD932FB337C100E22155 /* Sockets.cpp in Sources */,
+				9A09CD952FB337C100E22155 /* subsystem.cpp in Sources */,
 				9A0B90172FB2A00C00EEAAE1 /* _factory.cpp in Sources */,
+				9A09CD832FB3372D00E22155 /* Sockets.cpp in Sources */,
 				9A0B90182FB2A00C00EEAAE1 /* framework.cpp in Sources */,
 				9A0B90192FB2A00C00EEAAE1 /* SocketAddressIPv4.cpp in Sources */,
 				9A0B901A2FB2A00C00EEAAE1 /* SocketIPv4.cpp in Sources */,
-				9A0B901B2FB2A00C00EEAAE1 /* Sockets.cpp in Sources */,
 				9A0B901C2FB2A00C00EEAAE1 /* subsystem.cpp in Sources */,
 				9A0B901E2FB2A00C00EEAAE1 /* _.cpp in Sources */,
 			);

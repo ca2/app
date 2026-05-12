@@ -22,52 +22,42 @@
 //-------------------------------------------------------------------------
 //
 #include "framework.h"
-#include "Sockets.h"
-#include "subsystem/node/SystemException.h"
+#include "subsystem_bsd_sockets/socket/Sockets.h"
+#include "subsystem/platform/Exception.h"
+
 
 namespace subsystem_bsd_sockets
 {
-//    Sockets::Sockets()
-//    {
-//       m_bIsStarted = false;
-//    }
-//   
-//   
-//Sockets::~Sockets()
-//    {}
-//   
-//   
-//   
-//    void Sockets::_startSockets(int loVer, int hiVer)
-//    {
-//       if (m_bIsStarted) {
-//          throw ::subsystem::Exception("Sockets already initialized.");
-//       }
-//   
-//#ifdef WINDOWS
-//       WSAData wsaData;
-//   
-//       if (WSAStartup(MAKEWORD(loVer, hiVer), &wsaData) != 0) {
-//          throw ::subsystem::Exception("Failed to initialize WindowsSocket.");
-//       }
-//       
-//#endif
-//   
-//       m_bIsStarted = true;
-//    }
-//   
-//    void Sockets::_cleanupSockets()
-//{
-//       if (!m_bIsStarted) {
-//          throw ::subsystem::Exception("Sockets don't initialized.");
-//       }
-//   
-//       m_bIsStarted = false;
-//#ifdef WINDOWS
-//       if (WSACleanup() == SOCKET_ERROR) {
-//          throw ::subsystem::Exception("Failed to deinitialize WindowsSocket.");
-//       }
-//#endif
-//       
-//    }
+   Sockets::Sockets()
+   {
+
+   }
+
+
+   Sockets::~Sockets()
+   {}
+
+
+   void Sockets::_startSockets(int loVer, int hiVer)
+   {
+
+      if (loVer < 0 || hiVer < 0)
+      {
+
+         loVer = 2;
+
+         hiVer = 1;
+
+      }
+
+   }
+
+
+   void Sockets::_cleanupSockets()
+   {
+
+
+   }
+
+
 } // namespace subsystem_bsd_sockets

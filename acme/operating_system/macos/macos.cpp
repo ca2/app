@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "acme/_operating_system.h"
 #include "acme/platform/system.h"
-
+#include "acme/prototype/geometry2d/rectangle.h"
 
 //::file::path dir_base_module()
 //{
@@ -142,3 +142,48 @@
 
 
 
+
+
+CLASS_DECL_ACME ::uptr as_u64(const ::operating_system::window & operatingsystemwindow)
+{
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_none)
+   {
+
+      return 0;
+
+   }
+
+   if (operatingsystemwindow.m_eoperatingambient == ::windowing::e_operating_ambient_windows)
+   {
+
+
+      return (::u64) operatingsystemwindow.m_opaque.m_ulla[0];
+
+   }
+
+   return 0;
+
+}
+
+namespace operating_system
+{
+
+CGRect _get_console_rect();
+
+::i32_rectangle get_console_rect()
+{
+   
+   CGRect cgrect= _get_console_rect();
+   
+   ::i32_rectangle rectangle;
+   
+   copy(rectangle, cgrect);
+   
+   return rectangle;
+   
+   
+}
+
+
+} // namespace operating_system

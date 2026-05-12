@@ -125,6 +125,13 @@
 			remoteGlobalIDString = 9AD3F2472FB205EB00CB9A78;
 			remoteInfo = subsystem;
 		};
+		9A6EE1FB2FB29D73004F9C3A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AD3F45B2FB2093300CB9A78 /* apex.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A68A445251143F8008DABD2;
+			remoteInfo = apex;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -509,6 +516,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A6EE1FC2FB29D73004F9C3A /* PBXTargetDependency */,
 				9A19036A2FB20D4D00A3C985 /* PBXTargetDependency */,
 			);
 			name = innate_subsystem;
@@ -636,6 +644,11 @@
 			isa = PBXTargetDependency;
 			name = subsystem;
 			targetProxy = 9A1903692FB20D4D00A3C985 /* PBXContainerItemProxy */;
+		};
+		9A6EE1FC2FB29D73004F9C3A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = apex;
+			targetProxy = 9A6EE1FB2FB29D73004F9C3A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

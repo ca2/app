@@ -26,6 +26,8 @@ void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrNa
 
 void screen_coordinates_aware_copy(CGRect & rectTarget, const ::i32_rectangle & rectSource);
 void screen_coordinates_aware_copy(::i32_rectangle & rectTarget, const CGRect & rectSource);
+void screen_coordinates_aware_copy(CGPoint & pointTarget, const ::i32_point & pointSource);
+void screen_coordinates_aware_copy(::i32_point & pointTarget, const CGPoint & pointSource);
 
 //void copy(CGRect & rectTarget, const ::i32_rectangle & rectSource);
 //void copy(::i32_rectangle & rectTarget, const CGRect & rectSource);

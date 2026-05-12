@@ -210,7 +210,7 @@ namespace innate_subsystem
 
 #ifdef WINDOWS
 
-namespace subsystem_windows
+namespace subsystem_macos
 {
    class MessageWindow;
    

@@ -7,7 +7,7 @@
 //  <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
-
+#include "performance_counter.h"
 
 #include <stdint.h>
 
@@ -15,14 +15,14 @@
     #define NOMINMAX
     #include <windows.h>
 
-    inline uint64_t performance_counter()
+    ::u64 performance_counter()
     {
         LARGE_INTEGER v;
         QueryPerformanceCounter(&v);
         return static_cast<uint64_t>(v.QuadPart);
     }
 
-    inline uint64_t PerfFrequency()
+    ::u64 PerfFrequency()
     {
         LARGE_INTEGER v;
         QueryPerformanceFrequency(&v);
@@ -32,12 +32,12 @@
 #elif defined(__APPLE__)
     #include <mach/mach_time.h>
 
-    inline uint64_t performance_counter()
+    ::u64 performance_counter()
     {
         return mach_absolute_time();
     }
 
-    inline uint64_t PerfFrequency()
+::u64 PerfFrequency()
     {
         static mach_timebase_info_data_t info;
         mach_timebase_info(&info);
@@ -48,7 +48,7 @@
 #else
     #include <time.h>
 
-    inline uint64_t performance_counter()
+    ::u64 performance_counter()
     {
         timespec ts;
         clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -57,7 +57,7 @@
                uint64_t(ts.tv_nsec);
     }
 
-    inline uint64_t performance_counter_frequency()
+    ::u64 performance_counter_frequency()
     {
         return 1000000000ull;
     }

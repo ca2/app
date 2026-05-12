@@ -10,6 +10,13 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
+#include <ApplicationServices/ApplicationServices.h>
+#include <CoreGraphics/CoreGraphics.h>
+#include <AppKit/AppKit.h>
+
+
+
+
 class ns_alert_box
 {
 public:
@@ -126,4 +133,106 @@ enum_dialog_result ns_alert_box(const char * pszMessage, const char * pszTitle, 
 
 
 
+#include <ApplicationServices/ApplicationServices.h>
+#include <AppKit/AppKit.h>
+
+
+
+namespace operating_system
+{
+
+CGRect _get_console_rect()
+{
+    CGRect rect = CGRectZero;
+
+    @autoreleasepool
+    {
+        NSRunningApplication* app =
+            [[NSWorkspace sharedWorkspace]
+                frontmostApplication];
+
+        if (!app)
+            return rect;
+
+        NSString* bundleId = app.bundleIdentifier;
+
+        bool isTerminal =
+            [bundleId isEqualToString:@"com.apple.Terminal"] ||
+            [bundleId isEqualToString:@"com.googlecode.iterm2"];
+
+        if (!isTerminal)
+            return rect;
+
+        AXUIElementRef appElement =
+            AXUIElementCreateApplication(app.processIdentifier);
+
+        if (!appElement)
+            return rect;
+
+        CFTypeRef focusedWindow = nullptr;
+
+        AXError err =
+            AXUIElementCopyAttributeValue(
+                appElement,
+                kAXFocusedWindowAttribute,
+                &focusedWindow);
+
+        if (err == kAXErrorSuccess && focusedWindow)
+        {
+            CGPoint position = {};
+            CGSize size = {};
+
+            CFTypeRef posValue = nullptr;
+            CFTypeRef sizeValue = nullptr;
+
+            AXUIElementCopyAttributeValue(
+                (AXUIElementRef)focusedWindow,
+                kAXPositionAttribute,
+                &posValue);
+
+            AXUIElementCopyAttributeValue(
+                (AXUIElementRef)focusedWindow,
+                kAXSizeAttribute,
+                &sizeValue);
+
+            if (posValue &&
+                AXValueGetType((AXValueRef)posValue) ==
+                    kAXValueCGPointType)
+            {
+                AXValueGetValue(
+                    (AXValueRef)posValue,
+                                kAXValueTypeCGPoint,
+                    &position);
+            }
+
+            if (sizeValue &&
+                AXValueGetType((AXValueRef)sizeValue) ==
+                    kAXValueCGSizeType)
+            {
+                AXValueGetValue(
+                    (AXValueRef)sizeValue,
+                    kAXValueTypeCGSize,
+                    &size);
+            }
+
+            rect.origin = position;
+            rect.size = size;
+
+            if (posValue)
+                CFRelease(posValue);
+
+            if (sizeValue)
+                CFRelease(sizeValue);
+
+            CFRelease(focusedWindow);
+        }
+
+        CFRelease(appElement);
+    }
+
+    return rect;
+}
+
+
+} // namespace operating_system
 

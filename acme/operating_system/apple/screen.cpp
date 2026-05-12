@@ -44,6 +44,29 @@ void screen_coordinates_aware_copy(::i32_rectangle & rectTarget, const CGRect & 
 }
 
 
+
+void screen_coordinates_aware_copy(CGPoint & pointTarget, const ::i32_point & pointSource)
+{
+
+   CGRect rectWorkspace = mm_get_screen_cgrect();
+
+   cast_copy(pointTarget.x, pointSource.x);
+   cast_copy(pointTarget.y, rectWorkspace.size.height - pointSource.y);
+
+}
+
+
+void screen_coordinates_aware_copy(::i32_point & pointTarget, const CGPoint & pointSource)
+{
+
+   CGRect rectWorkspace = mm_get_screen_cgrect();
+
+   cast_copy(pointTarget.x, pointSource.x);
+   cast_copy(pointTarget.y, rectWorkspace.size.height - pointSource.y);
+
+}
+
+
 // void copy(CGRect & rectTarget, const ::i32_rectangle & rectSource)
 // {
 

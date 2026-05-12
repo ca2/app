@@ -74,7 +74,7 @@ namespace subsystem
    };
 
 
-} // namespace subsystem_windows 
+} // namespace subsystem_macos 
 
 
 

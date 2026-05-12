@@ -22,5 +22,5 @@ IMPLEMENT_FACTORY(subsystem_bsd_sockets)
 }
 
 
-//} // namespace subsystem_windows
+//} // namespace subsystem_macos
 

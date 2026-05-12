@@ -755,7 +755,7 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
 
    template < typename PARTICLE_INTERFACE >
-   PARTICLE_INTERFACE * get_implementation(const Composite< PARTICLE_INTERFACE > * pcomposite)
+   inline PARTICLE_INTERFACE * get_implementation(const Composite< PARTICLE_INTERFACE > * pcomposite)
    {
 
       return _get_implementation<PARTICLE_INTERFACE>(pcomposite);
@@ -764,10 +764,18 @@ Name##Composite::set##Name##Implementation(pimpl);                              
 
 
    template < typename PARTICLE_INTERFACE, typename BASE >
-   PARTICLE_INTERFACE * get_implementation(const Implementation< PARTICLE_INTERFACE, BASE > * pimplementation)
+   inline PARTICLE_INTERFACE * get_implementation(const Implementation< PARTICLE_INTERFACE, BASE > * pimplementation)
    {
 
       return _get_implementation<PARTICLE_INTERFACE>(pimplementation);
+
+   }
+
+   template < typename AGGREGATE >
+   inline ::Particle * get_implementation(const Object<AGGREGATE> * pobject)
+   {
+
+      return _get_implementation<AGGREGATE>(pobject);
 
    }
 

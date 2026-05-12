@@ -55,6 +55,8 @@ namespace innate_subsystem
       virtual ::pointer < ::innate_subsystem::WindowInterface > getWindow(const ::operating_system::window & window);
       virtual void setWindow(const ::operating_system::window & window, ::innate_subsystem::WindowInterface * pwindow);
 
+      
+      virtual ::pointer < ::innate_subsystem::SolidBrushInterface > createSolidBrush(const ::color::color & color);
 
    };
 

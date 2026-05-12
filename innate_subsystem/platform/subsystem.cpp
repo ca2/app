@@ -8,6 +8,7 @@
 #include "acme/constant/user_key.h"
 #include "gui/Window.h"
 #include "gui/KeyboardLayout.h"
+#include "drawing/SolidBrush.h"
 
 
 namespace innate_subsystem
@@ -184,5 +185,17 @@ s_p = this;
       m_mapWindow[window] = pwindow;
 
    }
+
+
+::pointer < ::innate_subsystem::SolidBrushInterface > subsystem::createSolidBrush(const ::color::color & color)
+{
+   
+   auto pbrush = createø<::innate_subsystem::SolidBrushInterface>();
+   
+   pbrush->initialize_solid_brush(color);
+   
+   return pbrush;
+   
+}
 
 }//namespace innate_subsystem

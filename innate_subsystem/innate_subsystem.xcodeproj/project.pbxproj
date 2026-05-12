@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A09CDBC2FB384F300E22155 /* libsubsystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09CDBB2FB384F300E22155 /* libsubsystem.dylib */; };
 		9A0B95282FB2CE6900EEAAE1 /* libsubsystem_bsd_sockets.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0B95202FB2CDF000EEAAE1 /* libsubsystem_bsd_sockets.dylib */; };
 		9A1902932FB20BCF00A3C985 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A19028D2FB20BBF00A3C985 /* _.cpp */; };
 		9A1902942FB20BD700A3C985 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1902922FB20BBF00A3C985 /* framework.cpp */; };
@@ -135,6 +136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A09CDBB2FB384F300E22155 /* libsubsystem.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libsubsystem.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0B94AB2FB2CDBA00EEAAE1 /* subsystem_bsd_sockets.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = subsystem_bsd_sockets.xcodeproj; path = ../subsystem_bsd_sockets/subsystem_bsd_sockets.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9A19028C2FB20BBF00A3C985 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A19028D2FB20BBF00A3C985 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A09CDBC2FB384F300E22155 /* libsubsystem.dylib in Frameworks */,
 				9A0B95282FB2CE6900EEAAE1 /* libsubsystem_bsd_sockets.dylib in Frameworks */,
 				9A1903682FB20D1D00A3C985 /* libacme.dylib in Frameworks */,
 			);
@@ -412,6 +415,7 @@
 		9A1903662FB20D1D00A3C985 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A09CDBB2FB384F300E22155 /* libsubsystem.dylib */,
 				9A1903672FB20D1D00A3C985 /* libacme.dylib */,
 			);
 			name = Frameworks;

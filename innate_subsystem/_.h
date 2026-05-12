@@ -38,6 +38,10 @@ namespace innate_subsystem
    class Brush;
     class BrushInterface;
    //using BrushInterface = particle_interface<BrushContextInterface>;
+
+   class SolidBrush;
+class SolidBrushInterface;
+
    class Font;
     class FontInterface;
    //using FontInterface = particle_interface<FontContextInterface>;

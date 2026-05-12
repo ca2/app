@@ -1,6 +1,7 @@
 // Created by camilo on 2024-09-13 15:58 <3ThomasBorregaardSorensen!!
 // From windows/window.h by camilo on 2026-02-28 21:17 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "acme/operating_system/macos/window.h"
 //#include "window.h"
 //#include "windowing.h"
 //#include "acme/platform/application.h"
@@ -544,3 +545,23 @@
 //} // namespace windows
 //
 //
+
+
+
+CLASS_DECL_ACME ::operating_system::window as_operating_system_window(::uptr u)
+{
+
+   if (u == 0)
+   {
+
+      return {};
+
+   }
+
+   auto cgwindowid = (CGWindowID)u;
+
+   auto operatingsystemwindow =  ::as_operating_system_window(cgwindowid);
+
+   return operatingsystemwindow;
+
+}

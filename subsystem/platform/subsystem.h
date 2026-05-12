@@ -81,6 +81,7 @@ namespace subsystem
       virtual pointer<CommandLineArguments> getCommandLineArguments(const ::scoped_string &scopedstrCommandLine);
 
       virtual pointer<::subsystem::FileInterface> fileFrom_HANDLE(void *pHANDLE);
+      virtual pointer<::subsystem::FileInterface> fileFrom_fd(int fd);
 
       /**
        * Creates SID from sid string.

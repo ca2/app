@@ -40,7 +40,7 @@ namespace subsystem_bsd_sockets
       m_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
       m_isClosed = false;
 
-      if (m_socket == INVALID_SOCKET) {
+      if (m_socket < 0 ) {
          throw ::subsystem::SocketException();
       }
    }
@@ -80,7 +80,7 @@ namespace subsystem_bsd_sockets
 
       struct sockaddr_in targetSockAddr = psocketaddressBsd->_getSockAddr();
 
-      if (::connect(m_socket, (const sockaddr *)&targetSockAddr, psocketaddressBsd->_getAddrLen()) == SOCKET_ERROR) {
+      if (::connect(m_socket, (const sockaddr *)&targetSockAddr, psocketaddressBsd->_getAddrLen()) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
 

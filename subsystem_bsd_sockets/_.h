@@ -19,6 +19,13 @@
 #endif
 
 
+#ifdef __APPLE__
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#endif
+
+
 #if defined(_subsystem_bsd_sockets_project)
 #define CLASS_DECL_SUBSYSTEM_BSD_SOCKETS CLASS_DECL_EXPORT
 #else
@@ -28,6 +35,7 @@
 
 namespace subsystem_bsd_sockets
 {
+
 
 
    class SocketAddressIPv4;
@@ -46,6 +54,15 @@ namespace subsystem_bsd_sockets
    class WindowsSockets;
 
 
+using socket_t = SOCKET;
+
+inline static const int _SOCKET_ERROR = SOCKET_ERROR;
+
+#else
+
+using socket_t = int;
+
+inline static const int _SOCKET_ERROR = -1;
 #endif
 
 

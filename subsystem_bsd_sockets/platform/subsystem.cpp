@@ -4,6 +4,9 @@
 #include "framework.h"
 #include "subsystem.h"
 #include "subsystem_bsd_sockets/socket/Sockets.h"
+#ifdef __APPLE__
+#include <netdb.h>
+#endif
 
 
 namespace subsystem_bsd_sockets
@@ -100,7 +103,7 @@ s_p = this;
 
       strNameBuf.release_buffer();
 
-      HOSTENT *ph = gethostbyname(strNameBuf);
+      auto ph = gethostbyname(strNameBuf);
       if (!ph) {
          return "{IP address unavailable)";
       };

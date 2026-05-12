@@ -25,12 +25,12 @@ namespace operating_system
    };
 
 
-   class macos_window : public ::operating_system::a_window<e_operating_system_macos, macos_window_t>
+   class macos_window : public ::operating_system::a_window<::windowing::e_operating_ambient_macos, macos_window_t>
    {
    public:
 
 
-      using BASE_TYPE = ::operating_system::a_window<e_operating_system_macos, macos_window_t>;
+      using BASE_TYPE = ::operating_system::a_window<::windowing::e_operating_ambient_macos, macos_window_t>;
 
 
       using BASE_TYPE::BASE_TYPE;
@@ -47,7 +47,7 @@ namespace operating_system
       CGWindowID as_CGWindowID() const
       {
          
-         if(this->m_eoperatingsystem == e_operating_system_macos)
+         if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos)
          {
 
             if (!this->m_window.m_cgwindowidMacosWindow)
@@ -90,7 +90,7 @@ namespace operating_system
          else
          {
 
-            this->m_eoperatingsystem = e_operating_system_macos;
+            this->m_eoperatingambient = ::windowing::e_operating_ambient_macos;
             this->m_window.m_cgwindowidMacosWindow = cgwindowid;
 
          }

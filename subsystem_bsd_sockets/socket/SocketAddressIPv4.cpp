@@ -157,7 +157,7 @@ namespace subsystem_bsd_sockets
 
          ::string hostAnsi(hostStorage);
 
-         hostent *hent = gethostbyname(hostAnsi);
+         auto hent = gethostbyname(hostAnsi);
          if (hent == 0) {
             throw ::subsystem::SocketException();
          }

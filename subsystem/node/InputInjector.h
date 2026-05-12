@@ -58,14 +58,14 @@ namespace subsystem
        * @param vkCode virtual code of key.
        * @throws SystemException on fail.
        */
-      virtual void injectKeyPress(unsigned char vkCode) = 0;
+      virtual void injectKeyPress(::user::enum_key euserkey) = 0;
 
       /**
        * Syntezises key released event.
        * @param vkCode virtual code of key.
        * @throws SystemException on fail.
        */
-      virtual void injectKeyRelease(unsigned char vkCode) = 0;
+      virtual void injectKeyRelease(::user::enum_key euserkey) = 0;
 
       /**
        * Syntezises key event (press or release).
@@ -73,7 +73,7 @@ namespace subsystem
        * @param release if true then sybtezises release event, otherwise, press.
        * @throws SystemException on fail.
        */
-      virtual void injectKeyEvent(unsigned char vkCode, bool release, bool extended = false) = 0;
+      virtual void injectKeyEvent(::user::enum_key euserkey, bool release, bool extended = false) = 0;
 
       /**
        * Syntezises char press or release event.
@@ -170,14 +170,14 @@ namespace subsystem
        * @param vkCode virtual code of key.
        * @throws SystemException on fail.
        */
-      void injectKeyPress(unsigned char vkCode) override{m_pinputinjector->injectKeyPress(vkCode);}
+      void injectKeyPress(::user::enum_key euserkey) override{m_pinputinjector->injectKeyPress(euserkey);}
 
       /**
        * Syntezises key released event.
        * @param vkCode virtual code of key.
        * @throws SystemException on fail.
        */
-      void injectKeyRelease(unsigned char vkCode) override{m_pinputinjector->injectKeyRelease(vkCode);}
+      void injectKeyRelease(::user::enum_key euserkey) override{m_pinputinjector->injectKeyRelease(euserkey);}
 
       /**
        * Syntezises key event (press or release).
@@ -185,9 +185,9 @@ namespace subsystem
        * @param release if true then sybtezises release event, otherwise, press.
        * @throws SystemException on fail.
        */
-      void injectKeyEvent(unsigned char vkCode, bool release, bool extended = false) override
+      void injectKeyEvent(::user::enum_key euserkey, bool release, bool extended = false) override
        {
-          m_pinputinjector->injectKeyEvent(vkCode, release, extended);
+          m_pinputinjector->injectKeyEvent(euserkey, release, extended);
        }
 
       /**

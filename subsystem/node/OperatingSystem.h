@@ -88,6 +88,8 @@
       // Fills "out" by computer name string.
       // Returns true if success.
        virtual ::string getComputerName() = 0;
+       
+#ifdef WINDOWS
 
        // Returns true if run under a windows NT family
        virtual bool isWinNTFamily() = 0;
@@ -110,6 +112,8 @@
 
        // Returns true if the Aero is On.
        virtual bool isAeroOn(LogWriter *log) = 0;
+       
+#endif
 
        virtual bool file_canRead(const ::file::path & path) = 0;
        virtual bool file_canWrite(const ::file::path & path) = 0;

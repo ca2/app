@@ -61,14 +61,14 @@ namespace subsystem_bsd_sockets
 
       /**
        * Connects to remote host.
-       * @param host host to connect.
+       * @param scopedstrHost host to connect.
        * @param port port to connect.
        * @throws SocketException on fail.
        */
       void connect(const ::scoped_string & scopedstrHost, unsigned short port) override;
       /**
        * Connects to remote host.
-       * @param addr address to connect.
+       * @param paddress address to connect.
        * @throws SocketException on fail.
        */
       void connect(::subsystem::SocketAddressIPv4Interface * paddress) override;
@@ -79,13 +79,13 @@ namespace subsystem_bsd_sockets
       void close() override;
       /**
        * Shutdowns socket.
-       * @param how how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
+       * @param esocketshutdown how to shutdown socket (SD_RECEIVE|SD_SEND|SD_BOTH).
        * @throws SocketException on fail.
        */
       void shutdown(::subsystem::enum_socket_shutdown esocketshutdown) override;
       /**
        * Binds socket to specified address.
-       * @param bindHost host to bind.
+       * @param scopedstrBindHost host to bind.
        * @param bindPort port to bind.
        * @throws SocketException on fail.
        */
@@ -119,7 +119,7 @@ namespace subsystem_bsd_sockets
        *
        * @param data buffer to send.
        * @param size bytes to send.
-       * @param [optional] flags socket flags.
+       * @param flags Optional socket flags.
        * @return count to sent bytes.
        * @throw ::io_exception on error.
        */
@@ -139,20 +139,18 @@ namespace subsystem_bsd_sockets
 
       /**
        * Returns local address of socket (for listening socket).
-       * @param addr output parameter that will contain socket address.
-       * @return true on success, false on fail.
+       * @return addr output parameter that will contain socket address, null on fail.
        */
       ::pointer < ::subsystem::SocketAddressIPv4Interface > getLocalAddr() override;
       /**
        * Returns peer address.
-       * @param addr output parameter that will contain socket address.
-       * @return true on success, false on fail.
+       * @return addr output parameter that will contain socket address, null on fail.
        */
       ::pointer < ::subsystem::SocketAddressIPv4Interface > getPeerAddr() override;
 
       /* Auxiliary */
-      void setSocketOptions(int level, int name, void *value, socklen_t len) override;
-      void getSocketOptions(int level, int name, void *value, socklen_t *len) override;
+      void setSocketOptions(int level, int name, void *value, int len) override;
+      void getSocketOptions(int level, int name, void *value, int *len) override;
 
       void setRcvTimeO(const class ::time &timeTimeout) override;
       void setSndTimeO(const class ::time &timeTimeout) override;
@@ -167,10 +165,10 @@ namespace subsystem_bsd_sockets
    //protected:
       // Returns a SOCKET object with performed accept operation.
       // Throws SocketException on an error.
-      virtual SOCKET getAcceptedSocket(struct sockaddr_in *addr);
+      virtual int getAcceptedSocket(struct sockaddr_in *addr);
 
       // Closes old socket and sets handler to new one
-      virtual void set(SOCKET socket);
+      virtual void set(int socket);
 
       /**
        * Mutex for thread-safety.
@@ -180,7 +178,7 @@ namespace subsystem_bsd_sockets
       /**
        * WinSock socket.
        */
-      SOCKET m_socket;
+      int m_socket;
       bool m_isClosed;
 
       ::pointer < ::subsystem::SocketAddressIPv4Interface >m_localAddr;

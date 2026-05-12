@@ -157,8 +157,9 @@ namespace subsystem_bsd_sockets
 
       /* Socket options */
       void enableNaggleAlgorithm(bool enabled) override;
+#ifdef WINDOWS
       void setExclusiveAddrUse() override;
-
+#endif
    //private:
      // WsaStartup m_wsaStartup;
 

@@ -90,16 +90,16 @@ s_p = this;
 
 
 
-   int subsystem::message_box(
+   ::enum_dialog_result subsystem::message_box(
       const ::user_interaction_sink & userinteractionsink,
       const ::scoped_string & scopedstrMessage,
       const ::scoped_string & scopedstrCaption,
-      ::u32 uType)
+      ::user::enum_message_box emessagebox)
    {
 
       throw ::interface_only();
 
-      return ::innate_subsystem::e_control_id_cancel;
+      return ::e_dialog_result_ok;
 
    }
 

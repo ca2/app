@@ -41,7 +41,7 @@ namespace subsystem_bsd_sockets
       ::u32 host_to_network_long(::u32 u) override;
       ::u32 network_to_host_long(::u32 u) override;
 
-      virtual memsize getCurrentMemoryUsage();
+       memsize getCurrentMemoryUsage() override;
 
 
       //void startSockets() override;

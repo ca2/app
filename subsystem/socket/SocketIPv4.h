@@ -164,8 +164,9 @@ namespace subsystem
 
       /* Socket options */
       virtual void enableNaggleAlgorithm(bool enabled) = 0;
+#ifdef WINDOWS
       virtual void setExclusiveAddrUse() = 0;
-
+#endif
    // private:
    //    //WsaStartup m_wsaStartup;
    //
@@ -405,12 +406,14 @@ namespace subsystem
          m_psocketipv4->enableNaggleAlgorithm(enabled);
 
       }
+#ifdef WINDOWS
       void setExclusiveAddrUse() override
       {
 
          m_psocketipv4->setExclusiveAddrUse();
 
       }
+#endif
 
    // private:
    //    //WsaStartup m_wsaStartup;

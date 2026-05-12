@@ -27,6 +27,16 @@
 //#include "SocketAddressIPv4.h"
 #include "SocketIPv4.h"
 
+
+#ifdef __APPLE__
+    #include <sys/ioctl.h>
+    #include <sys/socket.h>
+    #include <sys/sockio.h>
+    #include <unistd.h>
+   #include <netinet/tcp.h>
+    #define ioctlsocket ioctl
+#endif
+
 //#include "subsystem/thread/critical_section.h"
 
 //#include aaa_<crtdbg.h>
@@ -117,7 +127,7 @@ namespace subsystem_bsd_sockets
 
    void SocketIPv4::shutdown(::subsystem::enum_socket_shutdown esocketshutdown)
    {
-      if (::shutdown(m_socket, (int) esocketshutdown) == SOCKET_ERROR) {
+      if (::shutdown(m_socket, (int) esocketshutdown) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
    }
@@ -141,7 +151,7 @@ namespace subsystem_bsd_sockets
 
       struct sockaddr_in bindSockaddr = paddressBsd->_getSockAddr();
 
-      if (::bind(m_socket, (const sockaddr *)&bindSockaddr, paddressBsd->_getAddrLen()) == SOCKET_ERROR) {
+      if (::bind(m_socket, (const sockaddr *)&bindSockaddr, paddressBsd->_getAddrLen()) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
 
@@ -171,7 +181,7 @@ namespace subsystem_bsd_sockets
 
    void SocketIPv4::listen(int backlog)
    {
-      if (::listen(m_socket, backlog) == SOCKET_ERROR) {
+      if (::listen(m_socket, backlog) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
    }
@@ -180,7 +190,7 @@ namespace subsystem_bsd_sockets
    {
       struct sockaddr_in addr;
 
-      SOCKET result = getAcceptedSocket(&addr);
+      socket_t result = getAcceptedSocket(&addr);
 
       SocketIPv4 *accepted;
 
@@ -202,7 +212,7 @@ namespace subsystem_bsd_sockets
       return accepted; // Valid and initialized
    }
 
-   void SocketIPv4::set(SOCKET socket)
+   void SocketIPv4::set(socket_t socket)
    {
       critical_section_lock l(&m_mutex);
 
@@ -229,7 +239,7 @@ namespace subsystem_bsd_sockets
       }
    }
 
-   SOCKET SocketIPv4::getAcceptedSocket(struct sockaddr_in *addr)
+   socket_t SocketIPv4::getAcceptedSocket(struct sockaddr_in *addr)
    {
       socklen_t addrlen = sizeof(struct sockaddr_in);
       fd_set afd;
@@ -237,7 +247,7 @@ namespace subsystem_bsd_sockets
       timeval timeout;
       timeout.tv_sec = 0;
       timeout.tv_usec = 200000;
-      SOCKET result = INVALID_SOCKET;
+      socket_t result = _INVALID_SOCKET;
 
       while (true) {
          FD_ZERO(&afd);
@@ -248,14 +258,14 @@ namespace subsystem_bsd_sockets
          // been called.
          int ret = select((int)m_socket + 1, &afd, NULL, NULL, &timeout);
 
-         if (m_isClosed || ret == SOCKET_ERROR) {
+         if (m_isClosed || ret == _SOCKET_ERROR) {
             throw ::subsystem::SocketException();
          } else if (ret == 0) {
             continue;
          } else if (ret > 0) {
             if (FD_ISSET(m_socket, &afd)) {
                result = ::accept(m_socket, (struct sockaddr*)addr, &addrlen);
-               if (result == INVALID_SOCKET) {
+               if (result == _INVALID_SOCKET) {
                   throw ::subsystem::SocketException();
                }
                break;
@@ -290,7 +300,7 @@ namespace subsystem_bsd_sockets
       }
 
       // SocketIPv4 error.
-      if (result == SOCKET_ERROR) {
+      if (result == _SOCKET_ERROR) {
          throw ::io_exception(error_io, "Failed to recv data from socket.");
       }
 
@@ -324,18 +334,26 @@ namespace subsystem_bsd_sockets
    }
 
    /* Auxiliary */
-   void SocketIPv4::setSocketOptions(int level, int name, void *value, socklen_t len)
+   void SocketIPv4::setSocketOptions(int level, int name, void *value, int len)
    {
-      if (setsockopt(m_socket, level, name, (char*)value, len) == SOCKET_ERROR) {
+      if (setsockopt(m_socket, level, name, (char*)value, len) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
    }
 
-   void SocketIPv4::getSocketOptions(int level, int name, void *value, socklen_t *len)
+   void SocketIPv4::getSocketOptions(int level, int name, void *value, int *len)
    {
-      if (getsockopt(m_socket, level, name, (char*)value, len) == SOCKET_ERROR) {
+#ifdef WINDOWS
+      if (getsockopt(m_socket, level, name, (char*)value, len) == _SOCKET_ERROR) {
          throw ::subsystem::SocketException();
       }
+#else
+      socklen_t socklen = *len;
+      if (getsockopt(m_socket, level, name, (char*)value, &socklen) == _SOCKET_ERROR) {
+         throw ::subsystem::SocketException();
+      }
+      *len=socklen;
+#endif
    }
 
    
@@ -365,11 +383,13 @@ namespace subsystem_bsd_sockets
 
       setSocketOptions(IPPROTO_TCP, TCP_NODELAY, &disabled, sizeof(disabled));
    }
-
+#ifdef WINDOWS
    void SocketIPv4::setExclusiveAddrUse()
    {
       int val = 1;
 
       setSocketOptions(SOL_SOCKET, SO_EXCLUSIVEADDRUSE, &val, sizeof(val));
    }
+#endif
+
 }  // namespace subsystem_bsd_sockets

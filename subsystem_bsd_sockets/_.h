@@ -58,11 +58,16 @@ using socket_t = SOCKET;
 
 inline static const int _SOCKET_ERROR = SOCKET_ERROR;
 
+inline static const socket_t _INVALID_SOCKET = INVALID_SOCKET;
+
 #else
 
 using socket_t = int;
 
 inline static const int _SOCKET_ERROR = -1;
+
+inline static const socket_t _INVALID_SOCKET = -1;
+
 #endif
 
 

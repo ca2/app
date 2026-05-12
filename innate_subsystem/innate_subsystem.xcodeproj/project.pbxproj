@@ -136,7 +136,6 @@
 
 /* Begin PBXFileReference section */
 		9A0B94AB2FB2CDBA00EEAAE1 /* subsystem_bsd_sockets.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = subsystem_bsd_sockets.xcodeproj; path = ../subsystem_bsd_sockets/subsystem_bsd_sockets.xcodeproj; sourceTree = SOURCE_ROOT; };
-		9A0B95402FB30BB900EEAAE1 /* core_graphics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = core_graphics.xcodeproj; path = "/Volumes/hapid/remoting/main/operating_system/operating_system-apple/core_graphics/core_graphics.xcodeproj"; sourceTree = "<absolute>"; };
 		9A19028C2FB20BBF00A3C985 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A19028D2FB20BBF00A3C985 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A19028E2FB20BBF00A3C985 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
@@ -263,13 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				9A0B95202FB2CDF000EEAAE1 /* libsubsystem_bsd_sockets.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9A0B95432FB30BB900EEAAE1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,7 +421,6 @@
 			isa = PBXGroup;
 			children = (
 				9AD3F45B2FB2093300CB9A78 /* apex.xcodeproj */,
-				9A0B95402FB30BB900EEAAE1 /* core_graphics.xcodeproj */,
 				9A0B94AB2FB2CDBA00EEAAE1 /* subsystem_bsd_sockets.xcodeproj */,
 				9A19027B2FB20B7100A3C985 /* innate_subsystem */,
 				9A1903662FB20D1D00A3C985 /* Frameworks */,
@@ -565,10 +556,6 @@
 				{
 					ProductGroup = 9AF43DE42FB209C00025D4B6 /* Products */;
 					ProjectRef = 9AD3F45B2FB2093300CB9A78 /* apex.xcodeproj */;
-				},
-				{
-					ProductGroup = 9A0B95432FB30BB900EEAAE1 /* Products */;
-					ProjectRef = 9A0B95402FB30BB900EEAAE1 /* core_graphics.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A0B95092FB2CDEF00EEAAE1 /* Products */;

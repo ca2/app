@@ -26,6 +26,10 @@
 #include "SocketAddressIPv4.h"
 #include "subsystem_bsd_sockets/platform/subsystem.h"
 #include "subsystem/socket/SocketException.h"
+#ifdef __APPLE__
+#include <netdb.h>
+#endif
+
 //#include "subsystem/platform/::string.h"
 
 //#include "subsystem/thread/critical_section.h"
@@ -120,12 +124,25 @@ namespace subsystem_bsd_sockets
 
    ::string  SocketAddressIPv4::toString() const
    {
+      
+#ifdef WINDOWS
+      
       u_char b1 = m_addr.S_un.S_un_b.s_b4;
       u_char b2 = m_addr.S_un.S_un_b.s_b3;
       u_char b3 = m_addr.S_un.S_un_b.s_b2;
       u_char b4 = m_addr.S_un.S_un_b.s_b1;
 
       return ::format("{}.{}.{}.{}", b1, b2, b3, b4);
+#else
+      
+      char buffer[INET_ADDRSTRLEN];
+
+      inet_ntop(AF_INET, &m_addr, buffer, INET_ADDRSTRLEN);
+
+      return buffer;
+      
+#endif
+      
    }
 
    unsigned short SocketAddressIPv4::getPort() const
@@ -136,10 +153,21 @@ namespace subsystem_bsd_sockets
 
    bool SocketAddressIPv4::isLoopbackAddress() const
    {
+      
+#ifdef WINDOWS
 
       bool isLoopback = (unsigned long)m_addr.S_un.S_addr == 16777343;
 
       return isLoopback;
+      
+#else
+      
+      bool isLoopback = (unsigned long)m_addr.s_addr == 16777343;
+
+      return isLoopback;
+
+      
+#endif
 
    }
 
@@ -161,8 +189,11 @@ namespace subsystem_bsd_sockets
          if (hent == 0) {
             throw ::subsystem::SocketException();
          }
-
+#ifdef WINDOWS
          paddressResolved->m_addr.S_un.S_addr = ntohl(*(u_long *)hent->h_addr_list[0]);
+#else
+         paddressResolved->m_addr.s_addr = ntohl(*(u_long *)hent->h_addr_list[0]);
+#endif
       }
 
       paddressResolved->m_port = port;

@@ -55,21 +55,21 @@ namespace subsystem
 
       /**
        * Syntezises key pressed event.
-       * @param vkCode virtual code of key.
+       * @param euserkey virtual code of key.
        * @throws SystemException on fail.
        */
       virtual void injectKeyPress(::user::enum_key euserkey) = 0;
 
       /**
        * Syntezises key released event.
-       * @param vkCode virtual code of key.
+       * @param euserkey virtual code of key.
        * @throws SystemException on fail.
        */
       virtual void injectKeyRelease(::user::enum_key euserkey) = 0;
 
       /**
        * Syntezises key event (press or release).
-       * @param vkCode virtual code of key.
+       * @param euserkey virtual code of key.
        * @param release if true then sybtezises release event, otherwise, press.
        * @throws SystemException on fail.
        */

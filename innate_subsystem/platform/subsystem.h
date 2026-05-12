@@ -38,11 +38,11 @@ namespace innate_subsystem
       ::innate_subsystem::KeyboardLayoutInterface *keyboard_layout();
 
 
-      int message_box(
+      ::enum_dialog_result message_box(
          const ::user_interaction_sink & userinteractionsink,
          const ::scoped_string & scopedstrMessage,
          const ::scoped_string & scopedstrCaption,
-         ::u32 uType) override;
+         ::user::enum_message_box emessagebox) override;
 
 
       virtual void initializeInnateSubsystemControls();

@@ -68,10 +68,10 @@ namespace innate_subsystem
       virtual void closeDialog(int code) = 0;
       // Method sets parent window
       //virtual void setParent(ControlInterface *ctrlParent) = 0;
-      // Set resource name for dialog
-      virtual void setResourceName(const char *resourceName) = 0;
-      // Set resource id for dialog.
-      virtual void setResourceId(::u32 id) = 0;
+//      // Set resource name for dialog
+//      virtual void setResourceName(const char *resourceName) = 0;
+//      // Set resource id for dialog.
+//      virtual void setResourceId(::u32 id) = 0;
       // Return
       //virtual ControlInterface *getControl() = 0;
       // Setup control by ID
@@ -124,7 +124,8 @@ namespace innate_subsystem
 
       virtual bool dialog_procedure(iptr & iptrResult, ::u32 message, ::wparam wparam, ::lparam lparam) = 0;
    //private:
-     virtual char *getResouceName() = 0;
+//     virtual ::string getResouceName() = 0;
+//     virtual ::u32 getResouceId() = 0;
 
    //protected:
 
@@ -186,9 +187,9 @@ namespace innate_subsystem
       // Method sets parent window
       //void setParent(ControlInterface *ctrlParent);
       // Set resource name for dialog
-      void setResourceName(const char *resourceName) override { m_pdialog->setResourceName(resourceName); }
-      // Set resource id for dialog.
-      void setResourceId(::u32 id) override { m_pdialog->setResourceId(id); }
+//      void setResourceName(const char *resourceName) override { m_pdialog->setResourceName(resourceName); }
+//      // Set resource id for dialog.
+//      void setResourceId(::u32 id) override { m_pdialog->setResourceId(id); }
       // Return
       //ControlInterface *getControl();
       // Setup control by ID
@@ -294,7 +295,8 @@ namespace innate_subsystem
 
       bool dialog_procedure(iptr & iptrResult, ::u32 message, ::wparam wparam, ::lparam lparam) override { return m_pdialog->dialog_procedure(iptrResult, message, wparam, lparam); }
    //private:
-      char *getResouceName() override { return m_pdialog->getResouceName(); }
+//      ::string getResouceName() override { return m_pdialog->getResouceName(); }
+//      ::u32 getResouceId() override { return m_pdialog->getResouceId(); }
 
    //protected:
 

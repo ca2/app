@@ -42,7 +42,7 @@ namespace subsystem
       ~VncPassCrypt() override;
 
 
-      static const int VNC_PASSWORD_SIZE = 8;
+      static constexpr int VNC_PASSWORD_SIZE = 8;
 
       void updatePlain(const unsigned char cryptedPass[VNC_PASSWORD_SIZE]);
 

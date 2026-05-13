@@ -392,6 +392,32 @@ namespace apex
 
    }
 
+
+::string application::getResourceName(::i32 iId )
+{
+   
+   ::string strResourceName = m_mapResourceName[iId];
+   
+   return strResourceName;
+   
+}
+
+void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrResourceName)
+{
+   
+   m_mapResourceName[iId] = scopedstrResourceName;
+   m_mapResourceId[scopedstrResourceName] = iId;
+   
+}
+
+::i32 application::getResourceId(const ::scoped_string &scopedstrResourceName)
+{
+   
+   return m_mapResourceId[scopedstrResourceName];
+   
+}
+
+
    //void application::on_initialize_application(::main* pmain)
    //{
 

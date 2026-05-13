@@ -1102,6 +1102,14 @@ namespace acme
          on_activate();
 
       }
+   
+   void windowing::on_user_command(::uptr u, ::uptr uControl)
+   
+   {
+      
+      
+      
+   }
 
 
    } // namespace windowing
@@ -1122,3 +1130,11 @@ namespace windowing
 
 
 } // namespace windowing
+
+
+
+void user_on_command(::uptr u, ::uptr uControl)
+{
+   
+   ::system()->acme_windowing()->on_user_command(u, uControl);
+}

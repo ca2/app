@@ -559,7 +559,7 @@ public:
    }
 
 
-   static consteval memsize item_size()
+   static constexpr memsize item_size()
    {
       return sizeof(ITEM);
    }

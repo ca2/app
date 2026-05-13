@@ -32,9 +32,46 @@ constexpr memsize index_of(const TYPE * p, const TYPE * pBegin)
 
 }
 
+template < prototype_character CHARACTER >
+constexpr bool string_compare_prefix(int & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
+{
+
+   if (::is_empty(pszA))
+   {
+
+      if (::is_empty(pszB))
+      {
+
+         ordering = 0;
+
+         return true;
+
+      }
+      else
+      {
+
+         ordering = -1;
+
+         return true;
+
+      }
+
+   }
+   else if (::is_empty(pszB))
+   {
+
+      ordering = 1;
+
+      return true;
+
+   }
+
+   return false;
+
+}
 
 template < prototype_character CHARACTER >
-constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
+constexpr bool string_order_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept
 {
 
    if (::is_empty(pszA))

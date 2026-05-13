@@ -316,7 +316,9 @@ namespace platform
 
       //virtual void process_command_line(command_line* pcommandline);
 
-
+      virtual ::string getResourceName(::i32 iId);
+      virtual void setResourceName(::i32 iId, const ::scoped_string & scopedstr);
+      virtual ::i32 getResourceId(const ::scoped_string & scopedstr);
       //virtual ::user::style* get_user_style() const;
       //virtual bool app_data_get(const ::atom & atom, stream & os) override;
       //virtual bool app_data_set(const ::atom & atom, stream & is) override;

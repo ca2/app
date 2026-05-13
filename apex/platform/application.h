@@ -29,6 +29,8 @@ namespace apex
 
 
       ::string m_strPreferredExperience;
+      ::i32_map<string > m_mapResourceName;
+      ::string_map<::i32 > m_mapResourceId;
 
       //       //__creatable(application);
       //
@@ -182,7 +184,9 @@ namespace apex
 
       virtual ::file::path cloud_protocol() override;
 
-
+      ::string getResourceName(::i32 iId) override;
+      void setResourceName(::i32 iId, const ::scoped_string & scopedstr) override;
+      ::i32 getResourceId(const ::scoped_string & scopedstr) override;
       //void on_initialize_application(::main* pmain) override;
       //// void assert_ok() const override;
       //// void dump(dump_context & dumpcontext) const override;

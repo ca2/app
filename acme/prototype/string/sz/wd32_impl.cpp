@@ -11,11 +11,10 @@ CLASS_DECL_ACME void string_count_copy(::wd32_character * pchDest, size_t nDestL
 CLASS_DECL_ACME void overlapped_string_count_copy(::wd32_character * pchDest, const ::wd32_character * pchSrc, character_count nChars) noexcept { memory_transfer(pchDest, pchSrc, character_count_to_byte_length(pchSrc, nChars)); }
 
 
-CLASS_DECL_ACME ::std::strong_ordering _string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_cmp(pszA, pszB)<=>0; }
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_icmp(pszA, pszB) <=> 0; }
-//CLASS_DECL_ACME ::std::strong_ordering _string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { return wd32_ncmp(pszA, pszB, len) <=> 0; }
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { return wd32_nicmp(pszA, pszB, len) <=> 0; }
-CLASS_DECL_ACME ::std::strong_ordering _string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_coll(pszA, pszB) <=> 0; }
+CLASS_DECL_ACME int _string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_cmp(pszA, pszB); }
+CLASS_DECL_ACME int case_insensitive__string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_icmp(pszA, pszB); }
+CLASS_DECL_ACME int case_insensitive__string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { return wd32_nicmp(pszA, pszB, len); }
+CLASS_DECL_ACME  ::std::strong_ordering _string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_coll(pszA, pszB) <=> 0; }
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { return wd32_icoll(pszA, pszB) <=> 0; }
 CLASS_DECL_ACME ::std::strong_ordering _string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { return wd32_ncoll(pszA, pszB, len) <=> 0; }
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { return wd32_nicoll(pszA, pszB, len) <=> 0; }
@@ -23,14 +22,14 @@ CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_count_collate(co
 
 
 
-CLASS_DECL_ACME ::std::strong_ordering string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return _string_compare(pszA, pszB); }
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_order(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return case_insensitive__string_compare(pszA, pszB); }
-CLASS_DECL_ACME ::std::strong_ordering string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return _string_count_compare(pszA, pszB, len); }
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return  case_insensitive__string_count_compare(pszA, pszB, len); }
-CLASS_DECL_ACME ::std::strong_ordering string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return _string_collate(pszA, pszB); }
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return  _case_insensitive_string_collate(pszA, pszB); }
-CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return _string_count_collate(pszA, pszB, len); }
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { ::std::strong_ordering ordering(::std::strong_ordering::less); if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return _case_insensitive_string_count_collate(pszA, pszB, len); }
+CLASS_DECL_ACME int string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { int ordering = 0; if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return _string_compare(pszA, pszB); }
+CLASS_DECL_ACME int case_insensitive_string_compare(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { int ordering = 0; if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return case_insensitive__string_compare(pszA, pszB); }
+CLASS_DECL_ACME int string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { int ordering = 0; if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return _string_count_compare(pszA, pszB, len); }
+CLASS_DECL_ACME int case_insensitive_string_count_compare(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { int ordering = 0; if (string_compare_prefix(ordering, pszA, pszB)) return ordering; return  case_insensitive__string_count_compare(pszA, pszB, len); }
+CLASS_DECL_ACME ::std::strong_ordering string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { ::std::strong_ordering ordering(1<=>1); if (string_order_prefix(ordering, pszA, pszB)) return ordering; return _string_collate(pszA, pszB); }
+CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::wd32_character * pszA, const ::wd32_character * pszB) noexcept { ::std::strong_ordering ordering(1<=>1); if (string_order_prefix(ordering, pszA, pszB)) return ordering; return  _case_insensitive_string_collate(pszA, pszB); }
+CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { ::std::strong_ordering ordering(1<=>1); if (string_order_prefix(ordering, pszA, pszB)) return ordering; return _string_count_collate(pszA, pszB, len); }
+CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::wd32_character * pszA, const ::wd32_character * pszB, character_count len) noexcept { ::std::strong_ordering ordering(1<=>1); if (string_order_prefix(ordering, pszA, pszB)) return ordering; return _case_insensitive_string_count_collate(pszA, pszB, len); }
 
 
 CLASS_DECL_ACME character_count string_get_length(const ::wd32_character * psz) noexcept { return wd32_len(psz); }

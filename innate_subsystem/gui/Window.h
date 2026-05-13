@@ -37,6 +37,31 @@ struct operating_ambient_window_t
    
 };
 
+#define WIN32_WA_ACTIVE 1
+#define WIN32_WA_CLICKACTIVE 2
+#define WIN32_WA_INACTIVE 0
+#define WIN32_SB_THUMBTRACK 1
+#define WIN32_SB_THUMBPOSITION 2
+#define WIN32_SB_LINEUP 3
+#define WIN32_SB_LINEDOWN 4
+#define WIN32_SB_PAGEUP 5
+#define WIN32_SB_PAGEDOWN 6
+#define WIN32_SB_LINELEFT 7
+#define WIN32_SB_PAGELEFT 8
+#define WIN32_SB_LINERIGHT 9
+#define WIN32_SB_PAGERIGHT 10
+    
+namespace user{
+
+enum enum_system_command{
+   
+   e_system_command_none,
+   e_system_command_restore, // if ((wParam & 0xfff0) == SC_RESTORE) SC_RESTORE
+   
+};
+
+} // namespace user
+
 namespace innate_subsystem
 {
 
@@ -101,6 +126,16 @@ namespace innate_subsystem
 
       // We want WM_KEYDOWN scopedstrMessage when enter is pressed
       virtual bool we_want_WM_KEYDOWN_when_enter_is_pressed() const {return false;}
+
+      
+      // Set resource name for the window
+      virtual void setResourceName(const ::scoped_string & scopedstr) = 0;
+      // Set resource id for the window
+      virtual void setResourceId(::u32 uId) = 0;
+      // Get resource name for the window
+      virtual ::string getResourceName() = 0;
+      // Get resource id for the window
+      virtual ::u32 getResourceId() = 0;
 
 
       virtual void setCursor(enum_cursor ecursor) = 0;
@@ -256,7 +291,8 @@ namespace innate_subsystem
    //    // Here is stub function, always returned false.
       virtual bool onCommand(::u32 controlID, ::u32 notificationID) = 0;
    //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
-   virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
+   //virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
+      virtual bool on_user_system_command(::user::enum_system_command esystemcommand) = 0;
    virtual bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed, const ::i32_point &point,
                           bool &bDoDefaultProcessing) = 0;
@@ -362,6 +398,37 @@ namespace innate_subsystem
 
          m_pwindow->setClass(ewindowclass);
          //m_pwindow->setClass(scopedstrWindowClassName);
+      }
+
+      
+      
+      // Set resource name for the window
+      void setResourceName(const ::scoped_string & scopedstr)  override
+      {
+         
+         m_pwindow->setResourceName(scopedstr);
+         
+      }
+      // Set resource id for the window
+      void setResourceId(::u32 uId)  override
+      {
+         
+         m_pwindow->setResourceId(uId);
+         
+      }
+      // Get resource name for the window
+      ::string getResourceName()  override
+      {
+         
+         return m_pwindow->getResourceName();
+         
+      }
+      // Get resource id for the window
+      ::u32 getResourceId()  override
+      {
+         
+         return m_pwindow->getResourceId();
+      
       }
 
 
@@ -522,7 +589,9 @@ namespace innate_subsystem
    //    // Here is stub function, always returned false.
       bool onCommand(::u32 controlID, ::u32 notificationID) override { return false; }
    //    bool onNotify(int idCtrl, LPNMHDR pnmh) override;
-      bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
+      //bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
+      
+      bool on_user_system_command(::user::enum_system_command esystemcommand) override { return false;}
       bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) override { return false; }
       bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed,
           const ::i32_point& point, bool & bDoDefaultProcessing) override

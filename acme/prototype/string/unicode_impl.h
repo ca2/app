@@ -1365,7 +1365,7 @@ template < typename TYPE1, typename TYPE2 >
 inline ::std::strong_ordering case_insensitive_order(const TYPE1 & str1, const TYPE2 & str2)
 {
 
-   return case_insensitive_string_order(str1, str2);
+   return case_insensitive_string_compare(str1, str2) <=> 0;
 
 }
 

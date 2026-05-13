@@ -567,6 +567,9 @@
 		9A99796E2D84613C00A1FC11 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99796A2D84613C00A1FC11 /* component.cpp */; };
 		9A99796F2D84613C00A1FC11 /* component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A99796A2D84613C00A1FC11 /* component.cpp */; };
 		9A9979702D84613C00A1FC11 /* component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9979692D84613C00A1FC11 /* component.h */; };
+		9A9A1FDC2FB3FBB4002D39AB /* key_happening.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9A1FDB2FB3FBAF002D39AB /* key_happening.h */; };
+		9A9A1FDD2FB3FBB4002D39AB /* key_happening.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9A1FDB2FB3FBAF002D39AB /* key_happening.h */; };
+		9A9A1FDE2FB3FBB4002D39AB /* key_happening.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9A1FDB2FB3FBAF002D39AB /* key_happening.h */; };
 		9AA331AC2C8A5B45006DE525 /* internet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA331AA2C8A5B44006DE525 /* internet.cpp */; };
 		9AA331AD2C8A5B45006DE525 /* internet.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA331AB2C8A5B44006DE525 /* internet.h */; };
 		9ABBB6962AEA11BD007611C5 /* shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABBB68E2AEA11BB007611C5 /* shared.h */; };
@@ -1576,6 +1579,7 @@
 		9A99795C2D8460FE00A1FC11 /* raw_folder_protocol.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = raw_folder_protocol.cpp; sourceTree = "<group>"; };
 		9A9979692D84613C00A1FC11 /* component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = component.h; sourceTree = "<group>"; };
 		9A99796A2D84613C00A1FC11 /* component.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = component.cpp; sourceTree = "<group>"; };
+		9A9A1FDB2FB3FBAF002D39AB /* key_happening.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_happening.h; sourceTree = "<group>"; };
 		9AA331AA2C8A5B44006DE525 /* internet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = internet.cpp; sourceTree = "<group>"; };
 		9AA331AB2C8A5B44006DE525 /* internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internet.h; sourceTree = "<group>"; };
 		9ABBB68E2AEA11BB007611C5 /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared.h; sourceTree = "<group>"; };
@@ -1805,6 +1809,7 @@
 		9A2898712A652A4E00F46A84 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9A9A1FDB2FB3FBAF002D39AB /* key_happening.h */,
 				9A523E472CD3C3A4006ED868 /* interaction_base.h */,
 				9A523E482CD3C3A4006ED868 /* interaction_base.cpp */,
 				9A2898732A652A4E00F46A84 /* language_map.h */,
@@ -2537,6 +2542,7 @@
 				9A68BB522511444D008DABD2 /* selection.h in Headers */,
 				9A787D7D264C960F003DF8A0 /* data.h in Headers */,
 				9A68BB4C2511444D008DABD2 /* stringhelper.h in Headers */,
+				9A9A1FDE2FB3FBB4002D39AB /* key_happening.h in Headers */,
 				9ABBFE742B3FE1B80036DF8C /* socket.h in Headers */,
 				9AC0191D274896BF006BEBCC /* method.h in Headers */,
 				9A68BE062511444F008DABD2 /* __debug_box_clear_impl.h in Headers */,
@@ -2723,6 +2729,7 @@
 				9AC97EF42A71B39E00B1BCF3 /* apex.h in Headers */,
 				9AC97EF62A71B39E00B1BCF3 /* link_in_socket.h in Headers */,
 				9AC97EF72A71B39E00B1BCF3 /* byte_order.h in Headers */,
+				9A9A1FDC2FB3FBB4002D39AB /* key_happening.h in Headers */,
 				9AC97EF82A71B39E00B1BCF3 /* transfer_socket.h in Headers */,
 				9AC97EF92A71B39E00B1BCF3 /* set.h in Headers */,
 				9AC97EFA2A71B39E00B1BCF3 /* message.h in Headers */,
@@ -3101,6 +3108,7 @@
 				9AD6943B251A754800C0EBD7 /* link.h in Headers */,
 				9A787DD1264CA98C003DF8A0 /* node.h in Headers */,
 				9AD69448251A754800C0EBD7 /* macos.h in Headers */,
+				9A9A1FDD2FB3FBB4002D39AB /* key_happening.h in Headers */,
 				9AD6944A251A754800C0EBD7 /* item_array.h in Headers */,
 				9A2898962A652A4E00F46A84 /* _.h in Headers */,
 				9AD6944D251A754800C0EBD7 /* application.h in Headers */,

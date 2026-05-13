@@ -28,6 +28,7 @@ namespace windowing
       e_operating_ambient_cinnamon,
       e_operating_ambient_ios,
       e_operating_ambient_macos,
+      e_operating_ambient_macos_impact,
       e_operating_ambient_android
 
 

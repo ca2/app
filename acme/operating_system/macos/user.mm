@@ -239,7 +239,7 @@ CGRect _get_console_rect()
 
 
 
-int ns_message_box(const char* title, const char* message, int yesNoStyle)
+int ns_message_box(const char* title, const char* message, ::user::enum_message_box emessagebox)
 {
     NSAlert *alert = [[NSAlert alloc] init];
     
@@ -247,7 +247,7 @@ int ns_message_box(const char* title, const char* message, int yesNoStyle)
     [alert setInformativeText:[NSString stringWithUTF8String:message]];
     [alert setAlertStyle:NSAlertStyleInformational];
 
-    if (yesNoStyle) {
+    if (emessagebox & ::user::e_message_box_yes_no) {
         [alert addButtonWithTitle:@"Yes"];   // Index 1000
         [alert addButtonWithTitle:@"No"];    // Index 1001
     } else {
@@ -258,9 +258,22 @@ int ns_message_box(const char* title, const char* message, int yesNoStyle)
     NSInteger result = [alert runModal];
 
     // Map NSAlert returns back to our custom enum
-    if (yesNoStyle) {
+    if (emessagebox & ::user::e_message_box_yes_no) {
         return (result == NSAlertFirstButtonReturn) ? e_dialog_result_yes : e_dialog_result_no;
     } else {
         return (result == NSAlertFirstButtonReturn) ? e_dialog_result_ok :e_dialog_result_cancel;
     }
 }
+
+
+
+namespace operating_system{
+
+void message_beep(::user::enum_message_box emessagebox)
+{
+   
+   NSBeep();
+   
+}
+
+} // namespace operating_system

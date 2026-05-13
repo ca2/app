@@ -88,7 +88,26 @@ s_p = this;
 
       return m_pkeyboardlayout;
    }
-
+::string subsystem::getKeyboardLayoutName()
+{
+   
+   throw ::interface_only();
+#ifdef WINDOWS
+   wstring kbdName;
+   auto pwsz= kbdName.get_buffer(KL_NAMELENGTH);
+   //memset(&kbdName[0], 0, sizeof(TCHAR) * KL_NAMELENGTH);
+   if (!GetKeyboardLayoutNameW( pwsz ))
+   {
+      pwsz[0] = '?';
+      pwsz[1] = '?';
+      pwsz[2] = '?';
+   }
+   kbdName.release_buffer();
+#endif
+   
+   return "";
+   
+}
 
 
    ::enum_dialog_result subsystem::message_box(
@@ -197,5 +216,63 @@ s_p = this;
    return pbrush;
    
 }
+   
+   void subsystem::releaseMouseCapture()
+   {
+      
+      
+   }
+   ::operating_system::window subsystem::getMouseCapture()
+   {
+      
+      return {};
+      
+   }
+   void subsystem::setMouseCapture(const ::operating_system::window & operatingsystemwindow)
+   {
+      
+      
+   }
+   
+   
+    ::user::key_happening subsystem::keyHappeningFromKeyMessage(::wparam wparam, ::lparam lparam)
+   {
+      
+#ifdef WINDOWS
+      
+      unsigned short virtualKey = static_cast<unsigned short>(wParam);
+      ::u32 additionalInfo = static_cast<::u32>(lParam);
+      static const ::u32 DOWN_FLAG = 0x80000000;
+      bool isDown = (additionalInfo & DOWN_FLAG) == 0;
+
+      if (virtualKey == VK_PROCESSKEY)
+      {
+          bool extended = HIWORD(lParam) & KF_EXTENDED;
+          ::u32 scancode = HIWORD(lParam) & 0xFF;
+          if (extended)
+          {
+              scancode += 0xE000;
+          }
+          virtualKey = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
+      }
+
+      if (virtualKey == VK_CONTROL)
+      {
+          m_ctrlDown = isDown;
+      }
+
+      if (virtualKey == VK_MENU)
+      {
+          m_altDown = isDown;
+      }
+
+      //m_rfbKeySym->processKeyEvent(virtualKey, additionalInfo);
+      m_rfbKeySym->processKeyEvent(keyhappening?!?!);
+#endif
+      
+       return {};
+       
+   }
+
 
 }//namespace innate_subsystem

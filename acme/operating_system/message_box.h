@@ -38,3 +38,8 @@
 //
 
 
+namespace operating_system{
+
+void message_beep(::user::enum_message_box emessagebox);
+
+} // namespace operating_system

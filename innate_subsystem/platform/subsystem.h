@@ -9,6 +9,7 @@
 
 
 #include "subsystem/platform/subsystem.h"
+#include "apex/user/user/key_happening.h"
 
 
 namespace innate_subsystem
@@ -37,6 +38,7 @@ namespace innate_subsystem
 
       ::innate_subsystem::KeyboardLayoutInterface *keyboard_layout();
 
+      virtual ::string getKeyboardLayoutName();
 
       ::enum_dialog_result message_box(
          const ::user_interaction_sink & userinteractionsink,
@@ -57,7 +59,13 @@ namespace innate_subsystem
 
       
       virtual ::pointer < ::innate_subsystem::SolidBrushInterface > createSolidBrush(const ::color::color & color);
-
+      
+      
+      virtual void releaseMouseCapture();
+      virtual ::operating_system::window getMouseCapture();
+      virtual void setMouseCapture(const ::operating_system::window & operatingsystemwindow);
+      ::user::key_happening keyHappeningFromKeyMessage(::wparam wparam, ::lparam lparam);
+  
    };
 
 

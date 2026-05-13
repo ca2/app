@@ -15,6 +15,34 @@ namespace platform
    }
 
 
+::string apex_application_layer::getResourceName(::i32 iId)
+{
+   
+   throw interface_only();
+   
+   return {};
+   
+}
+
+
+void apex_application_layer::setResourceName(::i32 iId
+                                             , const ::scoped_string &scopedstrResourceName)
+{
+ 
+   throw interface_only();
+   
+}
+
+
+::i32 apex_application_layer::getResourceId(const ::scoped_string &scopedstrResourceName)
+{
+ 
+   throw interface_only();
+   
+   return -1;
+   
+}
+
    //void on_initialize_application(::main* pmain) override{}
    //// void assert_ok() const override{}
    //// void dump(dump_context & dumpcontext) const override{}

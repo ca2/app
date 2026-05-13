@@ -38,6 +38,7 @@ namespace user
       e_message_get_min_max_info = 36, // 0x0024
       e_message_wm_notify = 78, // 0x004E
       e_message_context_menu = 0x007B,
+      e_message_display_change = 0x007E, // WM_DISPLAYCHANGE 126
 
       e_message_key_first = 256,
       e_message_key_down = 256,
@@ -68,6 +69,7 @@ namespace user
       e_message_non_client_mouse_move = 0x00A0,
       e_message_non_client_left_button_down = 0x00A1,
       e_message_non_client_left_button_up = 0x00A2,
+      e_message_initialize_dialog = 0x0110, // WM_INITDIALOG
       e_message_command = 0x0111,
       e_message_timer = 0x0113,
       e_message_initialize_menu = 0x0116, // WM_INITMENU
@@ -252,7 +254,6 @@ namespace user
       e_message_has_command_handler,
       e_message_thread,
       e_message_desk,
-      e_message_display_change,
       e_message_property,
       e_message_midi_attribute,
       e_message_event1,

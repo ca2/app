@@ -857,7 +857,10 @@ concept non_particle = !a_particle < NON_PARTICLE >;
 
 
 template < prototype_character CHARACTER >
-constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
+constexpr bool string_compare_prefix(int & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
+
+template < prototype_character CHARACTER >
+constexpr bool string_order_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
 
 
 template < prototype_fundamental TYPE >

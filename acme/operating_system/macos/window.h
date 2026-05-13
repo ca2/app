@@ -13,18 +13,19 @@ namespace operating_system
 {
 
 
-   union macos_window_t
+   struct macos_window_t
    {
 
 
-      CGWindowID m_cgwindowidMacosWindow;
+      ::u64 m_uCgwindowidMacosWindow;
+      ::u64 m_uTag;
 
 
-      void Null() { m_cgwindowidMacosWindow = NULL; }
+      void Null() { m_uCgwindowidMacosWindow = 0; m_uTag = 0; }
       
       
       bool is_set() const{
-         return this->m_cgwindowidMacosWindow != 0;
+         return this->m_uCgwindowidMacosWindow != 0;
       }
       bool is_null() const
       {
@@ -60,17 +61,30 @@ namespace operating_system
          if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos)
          {
 
-            if (!this->m_window.m_cgwindowidMacosWindow)
+            if (!this->m_window.m_uCgwindowidMacosWindow)
             {
 
                throw ::exception(error_wrong_state);
 
             }
 
-            return this->m_window.m_cgwindowidMacosWindow;
+            return this->m_window.m_uCgwindowidMacosWindow;
 
          }
-         else if (this->m_window.m_cgwindowidMacosWindow)
+         else if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact)
+         {
+
+            if (!this->m_window.m_uCgwindowidMacosWindow)
+            {
+
+               throw ::exception(error_wrong_state);
+
+            }
+
+            return this->m_window.m_uCgwindowidMacosWindow;
+
+         }
+         else if (this->m_window.m_uCgwindowidMacosWindow)
          {
 
             throw ::exception(error_wrong_state);
@@ -99,7 +113,7 @@ namespace operating_system
          {
 
             this->m_eoperatingambient = ::windowing::e_operating_ambient_macos;
-            this->m_window.m_cgwindowidMacosWindow = cgwindowid;
+            this->m_window.m_uCgwindowidMacosWindow = cgwindowid;
 
          }
 

@@ -16,30 +16,30 @@ CLASS_DECL_ACME void string_count_copy(::wd16_character * pchDest, size_t nDestL
 CLASS_DECL_ACME void overlapped_string_count_copy(::wd16_character * pchDest, const ::wd16_character * pchSrc, character_count nChars) noexcept;
 
 
-CLASS_DECL_ACME ::std::strong_ordering _string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering _string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME int _string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
+CLASS_DECL_ACME int case_insensitive__string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
+CLASS_DECL_ACME int _string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME int case_insensitive__string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_collate(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_collate(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 
 
-CLASS_DECL_ACME ::std::strong_ordering string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_order(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME int string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
+CLASS_DECL_ACME int case_insensitive_string_compare(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
+CLASS_DECL_ACME int string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
+CLASS_DECL_ACME int case_insensitive_string_count_compare(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_collate(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::wd16_character * pszA, const ::wd16_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::wd16_character * pszA, const ::wd16_character * pszB, character_count len) noexcept;
 #if defined(LINUX) || defined(__APPLE__) || defined(__BSD__) || defined(__ANDROID__)
-inline ::std::strong_ordering _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return string_count_compare(pszA, pszB, len)<=>0; }
-inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return case_insensitive_string_count_compare(pszA, pszB, len)<=>0; }
+inline int _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return string_count_compare(pszA, pszB, len); }
+inline int _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return case_insensitive_string_count_compare(pszA, pszB, len); }
 #else
-inline ::std::strong_ordering _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsncmp(pszA, pszB, len)<=>0; }
-inline ::std::strong_ordering _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsnicmp(pszA, pszB, len)<=>0; }
+inline int _string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsncmp(pszA, pszB, len); }
+inline int _case_insensitive_string_count_compare(const ::wd16_character* pszA, const ::wd16_character* pszB, character_count len) noexcept { return wcsnicmp(pszA, pszB, len); }
 #endif
 
 

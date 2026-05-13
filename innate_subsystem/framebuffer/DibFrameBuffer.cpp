@@ -123,7 +123,7 @@ namespace  innate_subsystem
       throw ::subsystem::Exception("Wrong: You shouln't use the DibFramebuffer::setPropertiesWithoutResize() function.");
    }
 
-   inline ::i32_size DibFramebuffer::getDimension() const
+    ::i32_size DibFramebuffer::getDimension() const
    {
       return m_fb.getDimension();
    }

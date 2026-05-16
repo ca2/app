@@ -191,6 +191,12 @@ namespace acme
          virtual void back_on_mouse_move(::user::mouse * pmouse);
          virtual void fore_on_mouse_move(::user::mouse * pmouse);
          virtual void on_mouse_leave();
+         
+         
+         //virtual void discard_all_cursor_rectangles();
+         //virtual void add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor);
+         //virtual void on_set_cursor_rectangles();
+         //virtual void invalidate_cursor_rectangles();
 
          //virtual void resize_to_fit();
 

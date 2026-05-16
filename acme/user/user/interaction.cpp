@@ -231,6 +231,33 @@ namespace acme
 
       }
 
+   
+//   void interaction::discard_all_cursor_rectangles()
+//   {
+//   
+//   
+//   }
+//
+//
+//   
+//      void interaction::add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor)
+//      {
+//      
+//      
+//      }
+//   
+//   
+//      void interaction::on_set_cursor_rectangles()
+//   {
+//         
+//         
+//      }
+//   void interaction::invalidate_cursor_rectangles()
+//   {
+//      
+//      
+//   }
+
 
       void interaction::on_mouse_leave()
       {

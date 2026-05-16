@@ -29,6 +29,7 @@
 #define WINDOW_WIDTH_USE_DEFAULT       ((int)0x80000000)
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "subsystem/platform/Particle.h"
+#include "acme/user/micro/elemental.h"
 
 struct operating_ambient_window_t
 {
@@ -285,7 +286,7 @@ namespace innate_subsystem
 
       virtual void adjustWindowSize() = 0;
 
-
+      virtual void setMouseCursor(::enum_cursor ecursor) = 0;
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
@@ -293,11 +294,12 @@ namespace innate_subsystem
    //virtual bool onNotify(int idCtrl, LPNMHDR pnmh) = 0;
    //virtual bool onSysCommand(::wparam wparam, ::lparam lparam) = 0;
       virtual bool on_user_system_command(::user::enum_system_command esystemcommand) = 0;
-   virtual bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) = 0;
+   virtual bool onMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam) = 0;
    virtual bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed, const ::i32_point &point,
                           bool &bDoDefaultProcessing) = 0;
 
    virtual bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::i32_point & position) = 0;
+   virtual bool onKey(::user::enum_message eusermessage, ::user::enum_key euserkey) = 0;
 
 
    virtual bool onCreate(void * pCreateStruct) = 0;
@@ -314,6 +316,11 @@ namespace innate_subsystem
       virtual bool onCalculateDefaultSize(::i32_rectangle & rectangleDefaultSize) = 0;
       virtual void onAdjustWindowSize() = 0;
       virtual void onSize() = 0;
+      
+      
+//      virtual void on_set_cursor_rectangles() = 0;
+//      virtual void invalidate_cursor_rectangles() = 0;
+//      virtual void add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor) = 0;
    // protected:
    //    HWND m_hWnd;
    //    ::string m_className;
@@ -331,7 +338,8 @@ namespace innate_subsystem
    };
 
    class CLASS_DECL_INNATE_SUBSYSTEM WindowComposite :
-      virtual public Composite<WindowInterface>
+      virtual public Composite<WindowInterface>,
+      virtual public ::micro::elemental
    {
    public:
 
@@ -575,7 +583,13 @@ namespace innate_subsystem
 
       void adjustWindowSize() override { m_pwindow->adjustWindowSize(); }
 
+      
+      void setMouseCursor(::enum_cursor ecursor) override{
+         m_pwindow->setMouseCursor(ecursor);
+      }
 
+//      void invalidate_cursor_rectangles() override {m_pwindow->invalidate_cursor_rectangles();}
+//      void add_cursor_rectangle(const ::i32_rectangle & rectangle, ::enum_cursor ecursor) override {m_pwindow->add_cursor_rectangle(rectangle, ecursor);}
       //bool wndProc(::u32 message, ::wparam wparam, ::lparam lparam) override;
 
       // static const int MOUSE_LDOWN  = 1;
@@ -592,7 +606,7 @@ namespace innate_subsystem
       //bool onSysCommand(::wparam wparam, ::lparam lparam) override { return false; }
       
       bool on_user_system_command(::user::enum_system_command esystemcommand) override { return false;}
-      bool onMessage(::u32 message, ::wparam wparam, ::lparam lparam) override { return false; }
+      bool onMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam) override { return false; }
       bool onMouseEx(::u32 uMessage, int iButtonMask, unsigned short wheelSpeed,
           const ::i32_point& point, bool & bDoDefaultProcessing) override
 
@@ -602,6 +616,10 @@ namespace innate_subsystem
       }
 
       bool onMouse(unsigned char mouseButtons, unsigned short wheelSpeed, const ::i32_point &position) override
+      {
+         return false;
+      }
+      bool onKey(::user::enum_message emessage, ::user::enum_key euserkey) override
       {
          return false;
       }
@@ -625,6 +643,16 @@ namespace innate_subsystem
       bool onCalculateDefaultSize(::i32_rectangle &rectangleDefaultSize) override { return false; }
       void onAdjustWindowSize() override { }
       void onSize() override {  }
+      //void on_set_cursor_rectangles() override { }
+
+      void back_on_mouse_move(::user::mouse * pmouse) override;
+      void back_on_left_button_down(::user::mouse * pmouse) override;
+      void back_on_left_button_up(::user::mouse * pmouse) override;
+      void back_on_right_button_down(::user::mouse * pmouse) override;
+      void back_on_right_button_up(::user::mouse * pmouse) override;
+      void on_create() override;
+      void on_key_down(::user::key * pkey) override;
+      void on_key_up(::user::key * pkey) override;
 
    // protected:
    //    HWND m_hWnd;

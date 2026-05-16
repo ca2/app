@@ -64,7 +64,7 @@ namespace innate_subsystem
       virtual void releaseMouseCapture();
       virtual ::operating_system::window getMouseCapture();
       virtual void setMouseCapture(const ::operating_system::window & operatingsystemwindow);
-      ::user::key_happening keyHappeningFromKeyMessage(::wparam wparam, ::lparam lparam);
+      virtual ::user::key_happening keyHappeningFromKeyMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam);
   
    };
 

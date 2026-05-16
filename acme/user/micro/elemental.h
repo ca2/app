@@ -354,6 +354,7 @@ namespace micro
       virtual void on_character(::user::key * pkey);
       virtual void on_key_down(::user::key * pkey);
       virtual void on_key_up(::user::key * pkey);
+      virtual void on_create();
 
       //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 

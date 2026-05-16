@@ -54,7 +54,7 @@ namespace innate_subsystem
       //virtual ~DibSectionInterface() = 0 ;
 
 
-      virtual void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::i32_size & dim, const ::operating_system::window & operatingsystemwindow = {}) = 0;
+      virtual void initialize_dib_section(const ::innate_subsystem::PixelFormat & pf, const ::i32_size & dim, bool bOpaque,  const ::operating_system::window & operatingsystemwindow = {}) = 0;
 
       // This function changes the target DC. In default target DC is a DC that has been
       // got from a compatible window on object creation. This function can be call many times.
@@ -138,10 +138,10 @@ namespace innate_subsystem
       //~DibSection() override;
 
 
-         void initialize_dib_section(const ::innate_subsystem::PixelFormat& pf, const ::i32_size& dim, const ::operating_system::window& operatingsystemwindowCompatible = {}) override
+         void initialize_dib_section(const ::innate_subsystem::PixelFormat& pf, const ::i32_size& dim, bool bOpaque, const ::operating_system::window& operatingsystemwindowCompatible = {}) override
       {
 
-         m_pdibsection->initialize_dib_section(pf, dim, operatingsystemwindowCompatible);
+         m_pdibsection->initialize_dib_section(pf, dim, bOpaque,  operatingsystemwindowCompatible);
       }
 
       // This function changes the target DC. In default target DC is a DC that has been

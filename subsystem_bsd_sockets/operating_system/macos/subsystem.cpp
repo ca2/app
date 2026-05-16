@@ -9,7 +9,7 @@
 //#include "node/WTS.h"
 //
 //#pragma comment(lib, "Crypt32.lib")
-
+#include <string.h>
 
 namespace subsystem_bsd_sockets
 {
@@ -27,7 +27,9 @@ int subsystem::get_last_socket_error() { return errno; }
          return {};
       }
       
-      return strerror(iError);
+      auto pszError = ::strerror(iError);
+      
+      return pszError;
 
    }
 

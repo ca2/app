@@ -73,7 +73,7 @@ namespace user
    class thread;
    class graphics_thread;
 
-    DECLARE_ENUMERATION(e_button_state, enum_button_state);
+//    DECLARE_ENUMERATION(e_button_state, enum_button_state);
 
 
     //using item_pointer = ::pointer < ::user::item >;

@@ -1469,6 +1469,12 @@ namespace micro
    }
 
 
+   void elemental::on_create()
+   {
+      
+      
+   }
+
 
    void elemental::on_click(const ::payload & payload, ::user::mouse * pmouse)
    {

@@ -342,15 +342,15 @@ namespace user
    };
 
 
-   enum enum_mouse
-   {
-
-      e_mouse_none = 0,
-      e_mouse_left_button = 1,
-      e_mouse_right_button = 2,
-      e_mouse_middle_button = 4,
-
-   };
+//   enum enum_mouse
+//   {
+//
+//      e_mouse_none = 0,
+//      e_mouse_left_button = 1,
+//      e_mouse_right_button = 2,
+//      e_mouse_middle_button = 4,
+//
+//   };
 
    enum enum_line_hit
    {

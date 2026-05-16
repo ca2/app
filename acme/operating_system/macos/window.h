@@ -17,15 +17,16 @@ namespace operating_system
    {
 
 
-      ::u64 m_uCgwindowidMacosWindow;
+      //::u64 m_uCgwindowidMacosWindow;
+      ::u64 m_uNSWindow;
       ::u64 m_uTag;
 
 
-      void Null() { m_uCgwindowidMacosWindow = 0; m_uTag = 0; }
+      void Null() { m_uNSWindow = 0; m_uTag = 0; }
       
       
       bool is_set() const{
-         return this->m_uCgwindowidMacosWindow != 0;
+         return this->m_uNSWindow != 0;
       }
       bool is_null() const
       {
@@ -47,44 +48,54 @@ namespace operating_system
       using BASE_TYPE::BASE_TYPE;
 
 
-      macos_window(CGWindowID cgwindowid)
+      macos_window(::uptr uptr)
       {
 
-         this->operator=(cgwindowid);
+         this->operator=(uptr);
       
       }
 
+      macos_window(::uptr uptr, ::uptr uTag)
+      {
 
-      CGWindowID as_CGWindowID() const
+         m_eoperatingambient = ::windowing::e_operating_ambient_macos_impact;
+         m_window.m_uNSWindow = uptr;
+         m_window.m_uTag = uTag;
+         m_pacmewindowingwindow = nullptr;
+         m_opaque.m_ulla[2]= 0;
+      
+      }
+
+      ::uptr as_uptr() const
       {
          
          if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos)
          {
 
-            if (!this->m_window.m_uCgwindowidMacosWindow)
+            if (!this->m_window.m_uNSWindow)
             {
 
                throw ::exception(error_wrong_state);
 
             }
 
-            return this->m_window.m_uCgwindowidMacosWindow;
+            return this->m_window.m_uNSWindow;
 
          }
          else if(this->m_eoperatingambient == ::windowing::e_operating_ambient_macos_impact)
          {
 
-            if (!this->m_window.m_uCgwindowidMacosWindow)
+            if (!this->m_window.m_uNSWindow)
             {
 
                throw ::exception(error_wrong_state);
 
             }
 
-            return this->m_window.m_uCgwindowidMacosWindow;
+            return this->m_window.m_uNSWindow;
 
          }
-         else if (this->m_window.m_uCgwindowidMacosWindow)
+         else if (this->m_window.m_uNSWindow)
          {
 
             throw ::exception(error_wrong_state);
@@ -100,10 +111,10 @@ namespace operating_system
       }
 
   
-      macos_window & operator=(CGWindowID cgwindowid)
+      macos_window & operator=(::uptr uNSWindow)
       {
 
-         if (!cgwindowid)
+         if (!uNSWindow)
          {
 
             this->Null();
@@ -113,7 +124,7 @@ namespace operating_system
          {
 
             this->m_eoperatingambient = ::windowing::e_operating_ambient_macos;
-            this->m_window.m_uCgwindowidMacosWindow = cgwindowid;
+            this->m_window.m_uNSWindow = uNSWindow;
 
          }
 

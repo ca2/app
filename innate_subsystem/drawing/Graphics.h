@@ -92,7 +92,7 @@ namespace innate_subsystem
       virtual void drawBitmap(BitmapInterface *bitmap, const ::i32_rectangle & rectangle) = 0;
       virtual void drawBitmap(BitmapInterface *bitmap, const ::i32_point & point, const ::i32_rectangle & rectangleSrc) = 0;
       // Draws text.
-      virtual void drawText(const char *text, int cchText, ::i32_rectangle &rect, ::u32 format = 0, enum_align ealign = e_align_top_left) = 0;
+      virtual void drawText(const ::scoped_string & scopedstr, ::i32_rectangle &rect, ::u32 format = 0, enum_align ealign = e_align_top_left) = 0;
 
    //protected:
      //::pointer < DeviceContext > m_pdevicecontext;
@@ -259,10 +259,10 @@ namespace innate_subsystem
 
       }
       // Draws text.
-      void drawText(const char* text, int cchText, ::i32_rectangle& rect, ::u32 format = 0, enum_align ealign = e_align_top_left) override
+      void drawText(const ::scoped_string & scopedstr, ::i32_rectangle& rect, ::u32 format = 0, enum_align ealign = e_align_top_left) override
       {
 
-         m_pgraphics->drawText(text, cchText, rect, format, ealign);
+         m_pgraphics->drawText(scopedstr, rect, format, ealign);
 
       }
 

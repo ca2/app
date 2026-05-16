@@ -408,7 +408,7 @@ return nullptr;
 
    //virtual bool is_session() const override{}
 
-    bool aura_session_layer::is_mouse_button_pressed(::user::enum_mouse emouse)
+    bool aura_session_layer::is_mouse_button_pressed(::user::e_button_state ebuttonstate)
    {
       return false;
    }

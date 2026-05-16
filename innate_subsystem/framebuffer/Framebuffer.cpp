@@ -202,7 +202,11 @@ namespace innate_subsystem
             unsigned char curByte = andMask[iRow * bytesPerRow + iCol / 8];
             bool andBit = (curByte & 128 >> iCol % 8) != 0;
             if (andBit) {
+               
                int iDstRow = rectangleTargetClipped.top + iRow - srcY - rectangleSourceClipped.top;
+//#ifdef __APPLE__
+//               iDstRow = m_size.height() - iDstRow - 1;
+//#endif
                int iDstCol = rectangleTargetClipped.left + iCol - srcX - rectangleSourceClipped.left;
                dstPixels[iDstRow * dstWidth + iDstCol] = srcPixels[iRow * srcWidth + iCol];
             }
@@ -233,8 +237,13 @@ namespace innate_subsystem
       int resultHeight = rectangleTargetClipped.height();
       int resultWidthBytes = rectangleTargetClipped.width() * pixelSize;
 
+      int iDstRow = rectangleTargetClipped.top;
+//#ifdef __APPLE__
+  //             iDstRow = m_size.height() - iDstRow - resultHeight;
+//#endif
+
       unsigned char *pdst = (unsigned char *)m_buffer
-                    + rectangleTargetClipped.top * dstStrideBytes
+                    + iDstRow * dstStrideBytes
                     + pixelSize * rectangleTargetClipped.left;
 
       unsigned char *psrc = (unsigned char *)pframebufferSource->getBuffer()

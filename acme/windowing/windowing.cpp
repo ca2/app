@@ -1103,7 +1103,7 @@ namespace acme
 
       }
    
-   void windowing::on_user_command(::uptr u, ::uptr uControl)
+   void windowing::on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl)
    
    {
       
@@ -1132,9 +1132,14 @@ namespace windowing
 } // namespace windowing
 
 
+#include "acme/constant/lightui.h"
 
-void user_on_command(::uptr u, ::uptr uControl)
+void user_on_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl)
 {
    
-   ::system()->acme_windowing()->on_user_command(u, uControl);
+   ::wparam wparam;
+   
+   wparam = make_unsigned_int(uControl, enotification);
+   
+   ::system()->acme_windowing()->on_user_command(u,enotification, wparam);
 }

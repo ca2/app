@@ -235,8 +235,14 @@ s_p = this;
    }
    
    
-    ::user::key_happening subsystem::keyHappeningFromKeyMessage(::wparam wparam, ::lparam lparam)
+    ::user::key_happening subsystem::keyHappeningFromKeyMessage(::user::enum_message emessage, ::wparam wparam, ::lparam lparam)
    {
+       
+       ::user::key_happening keyhappening;
+       
+       keyhappening.m_emessage = emessage;
+       keyhappening.m_euserkey = (::user::enum_key) wparam.m_wparam;
+       keyhappening.m_bDown = emessage == ::user::e_message_key_down ||emessage == ::user::e_message_sys_key_down;
       
 #ifdef WINDOWS
       
@@ -269,8 +275,10 @@ s_p = this;
       //m_rfbKeySym->processKeyEvent(virtualKey, additionalInfo);
       m_rfbKeySym->processKeyEvent(keyhappening?!?!);
 #endif
+       
+       
       
-       return {};
+       return keyhappening;
        
    }
 

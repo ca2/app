@@ -379,9 +379,9 @@ namespace subsystem_bsd_sockets
 
    void SocketIPv4::enableNaggleAlgorithm(bool enabled)
    {
-      bool disabled = enabled ? 0 : 1;
+      int payload = enabled ? 0 : 1;
 
-      setSocketOptions(IPPROTO_TCP, TCP_NODELAY, &disabled, sizeof(disabled));
+      setSocketOptions(IPPROTO_TCP, TCP_NODELAY, &payload, sizeof(payload));
    }
 #ifdef WINDOWS
    void SocketIPv4::setExclusiveAddrUse()

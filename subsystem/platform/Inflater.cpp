@@ -55,7 +55,8 @@ namespace subsystem
 
    void Inflater::inflate()
    {
-      memsize avaliableOutput = m_unpackedSize + m_unpackedSize / 100 + 1024;
+      //memsize avaliableOutput = m_unpackedSize + m_unpackedSize / 100 + 1024;
+      memsize avaliableOutput = m_unpackedSize;
       unsigned long prevTotalOut = m_zlibStream.total_out;
 
       // Check to overflow.
@@ -73,7 +74,11 @@ namespace subsystem
       m_zlibStream.avail_out = (::u32)avaliableOutput;
 
       int r = ::inflate(&m_zlibStream, Z_SYNC_FLUSH);
-
+      informationf(
+          "inflate total_out=%lu avail_out=%u ret=%d",
+                  m_zlibStream.total_out,
+                  m_zlibStream.avail_out,
+          r);
       if (r == Z_STREAM_END) {
          throw ZLibException(("ZLib stream end"));
       }
@@ -93,6 +98,10 @@ namespace subsystem
          throw ZLibException(("Not enough buffer size for data decompression"));
       }
 
-      m_outputSize = m_zlibStream.total_out - prevTotalOut;
+      //m_outputSize = m_zlibStream.total_out - prevTotalOut;
+      
+      m_outputSize =
+          avaliableOutput -
+          m_zlibStream.avail_out;
    }
 }// namespace subsystem

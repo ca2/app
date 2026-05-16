@@ -21,6 +21,7 @@
 #include "_.h"
 #include "acme/handler/task_handler.h"
 #include "acme/operating_system/window.h"
+#include "acme/constant/lightui.h"
 
 
 namespace acme
@@ -107,7 +108,7 @@ namespace acme
          //virtual ::acme::windowing::window* window_from_HWND(void * pHWND);
 
          virtual void each_window(const ::function<void(::acme::windowing::window *)> &function);  
-         virtual void on_user_command(::uptr u, ::uptr uControl);
+         virtual void on_user_command(::uptr u, ::lightui::enum_notification enotification, ::uptr uControl);
          virtual void _message_handler(void* p);
          
          virtual ::acme::windowing::window * get_keyboard_focus(::thread* pthread);

@@ -7,6 +7,7 @@
 #pragma once
 
 
+#include "acme/constant/button_state.h"
 #include "acme/constant/user.h"
 #include "acme/prototype/prototype/enumeration.h"
 
@@ -17,7 +18,8 @@ DECLARE_ENUMERATION(e_system_command, enum_system_command);
 namespace user
 {
 
-   DECLARE_ENUMERATION(e_mouse, enum_mouse);
+   //DECLARE_ENUMERATION(e_mouse, enum_mouse);
+   DECLARE_ENUMERATION(e_button_state, enum_button_state);
    DECLARE_ENUMERATION(e_key, enum_key);
    DECLARE_ENUMERATION(e_zorder, enum_zorder);
 

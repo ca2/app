@@ -558,10 +558,6 @@ CLASS_DECL_ACME ::operating_system::window as_operating_system_window(::uptr u)
 
    }
 
-   auto cgwindowid = (CGWindowID)u;
-
-   auto operatingsystemwindow =  ::as_operating_system_window(cgwindowid);
-
-   return operatingsystemwindow;
+   return {::windowing::e_operating_ambient_macos, u};
 
 }

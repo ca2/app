@@ -620,11 +620,11 @@ namespace acme
 
             fetch_dark_mode();
 
-            auto prequestDefaultStart = create_newø<::request>();
-
-            prequestDefaultStart->m_ecommand = e_command_default_start;
-
-            m_papplication->post_request(prequestDefaultStart);
+//            auto prequestDefaultStart = create_newø<::request>();
+//
+//            prequestDefaultStart->m_ecommand = e_command_default_start;
+//
+//            m_papplication->post_request(prequestDefaultStart);
 
          }
 

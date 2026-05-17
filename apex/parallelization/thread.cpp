@@ -2004,7 +2004,7 @@ void thread::destroy()
 }
 
 
-bool thread::task_get_run() const
+bool thread::should_run() const
 {
 
    if (m_bMessageThread)
@@ -2024,7 +2024,7 @@ bool thread::task_get_run() const
 
    }
 
-   if (!::task::task_get_run())
+   if (!::task::should_run())
    {
 
       return false;

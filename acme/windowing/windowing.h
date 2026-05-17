@@ -121,6 +121,7 @@ namespace acme
          
          //         virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
          
+         virtual void hide_application();
 
          
          void handle(::topic * ptopic, ::handler_context * phandlercontext) override;

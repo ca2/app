@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A19027A2FB20ABA00A3C985 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1902722FB20A9D00A3C985 /* libacme.dylib */; };
 		9A1903AD2FB2421D00A3C985 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1903AC2FB2421D00A3C985 /* libz.tbd */; };
+		9A96BEDC2FB98F1A006EFDF1 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A96BEDB2FB98F1A006EFDF1 /* Thread.cpp */; };
 		9AD3F25D2FB2071000CB9A78 /* _common_header.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F25C2FB2071000CB9A78 /* _common_header.h */; };
 		9AD3F25E2FB2071000CB9A78 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD3F25A2FB2071000CB9A78 /* _.h */; };
 		9AD3F25F2FB2071000CB9A78 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F25B2FB2071000CB9A78 /* _.cpp */; };
@@ -209,7 +210,6 @@
 		9AD3F4372FB2079E00CB9A78 /* GuiThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F4092FB2079E00CB9A78 /* GuiThread.cpp */; };
 		9AD3F4382FB2079E00CB9A78 /* Sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3F42FB2079E00CB9A78 /* Sockets.cpp */; };
 		9AD3F43A2FB2079E00CB9A78 /* ZombieKiller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F41A2FB2079E00CB9A78 /* ZombieKiller.cpp */; };
-		9AD3F43B2FB2079E00CB9A78 /* Thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F4162FB2079E00CB9A78 /* Thread.cpp */; };
 		9AD3F43C2FB2079E00CB9A78 /* SocketStartup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3F62FB2079E00CB9A78 /* SocketStartup.cpp */; };
 		9AD3F43D2FB2079E00CB9A78 /* SocketException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F3F02FB2079E00CB9A78 /* SocketException.cpp */; };
 		9AD3F43E2FB2079E00CB9A78 /* ThreadCollector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD3F4182FB2079E00CB9A78 /* ThreadCollector.cpp */; };
@@ -239,6 +239,7 @@
 		9A1903AC2FB2421D00A3C985 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A1903AE2FB2424D00A3C985 /* _____debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A1903AF2FB2424D00A3C985 /* _____release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9A96BEDB2FB98F1A006EFDF1 /* Thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
 		9AD3F2482FB205EB00CB9A78 /* libsubsystem.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libsubsystem.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AD3F2582FB206D200CB9A78 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = SOURCE_ROOT; };
 		9AD3F2592FB206D200CB9A78 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = SOURCE_ROOT; };
@@ -445,7 +446,6 @@
 		9AD3F4122FB2079E00CB9A78 /* SessionChangesWatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SessionChangesWatcher.h; sourceTree = "<group>"; };
 		9AD3F4132FB2079E00CB9A78 /* SessionChangesWatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SessionChangesWatcher.cpp; sourceTree = "<group>"; };
 		9AD3F4152FB2079E00CB9A78 /* Thread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Thread.h; sourceTree = "<group>"; };
-		9AD3F4162FB2079E00CB9A78 /* Thread.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Thread.cpp; sourceTree = "<group>"; };
 		9AD3F4172FB2079E00CB9A78 /* ThreadCollector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadCollector.h; sourceTree = "<group>"; };
 		9AD3F4182FB2079E00CB9A78 /* ThreadCollector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadCollector.cpp; sourceTree = "<group>"; };
 		9AD3F4192FB2079E00CB9A78 /* ZombieKiller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZombieKiller.h; sourceTree = "<group>"; };
@@ -773,8 +773,8 @@
 				9AD3F4112FB2079E00CB9A78 /* resource.h */,
 				9AD3F4122FB2079E00CB9A78 /* SessionChangesWatcher.h */,
 				9AD3F4132FB2079E00CB9A78 /* SessionChangesWatcher.cpp */,
+				9A96BEDB2FB98F1A006EFDF1 /* Thread.cpp */,
 				9AD3F4152FB2079E00CB9A78 /* Thread.h */,
-				9AD3F4162FB2079E00CB9A78 /* Thread.cpp */,
 				9AD3F4172FB2079E00CB9A78 /* ThreadCollector.h */,
 				9AD3F4182FB2079E00CB9A78 /* ThreadCollector.cpp */,
 				9AD3F4192FB2079E00CB9A78 /* ZombieKiller.h */,
@@ -1025,7 +1025,6 @@
 				9AD3F4372FB2079E00CB9A78 /* GuiThread.cpp in Sources */,
 				9AD3F4382FB2079E00CB9A78 /* Sockets.cpp in Sources */,
 				9AD3F43A2FB2079E00CB9A78 /* ZombieKiller.cpp in Sources */,
-				9AD3F43B2FB2079E00CB9A78 /* Thread.cpp in Sources */,
 				9AD3F43C2FB2079E00CB9A78 /* SocketStartup.cpp in Sources */,
 				9AD3F43D2FB2079E00CB9A78 /* SocketException.cpp in Sources */,
 				9AD3F43E2FB2079E00CB9A78 /* ThreadCollector.cpp in Sources */,
@@ -1066,6 +1065,7 @@
 				9AD3F3DE2FB2078700CB9A78 /* VncPassCrypt.cpp in Sources */,
 				9AD3F3DF2FB2078700CB9A78 /* DesCrypt.cpp in Sources */,
 				9AD3F3E02FB2078700CB9A78 /* ResourceLoader.cpp in Sources */,
+				9A96BEDC2FB98F1A006EFDF1 /* Thread.cpp in Sources */,
 				9AD3F3E22FB2078700CB9A78 /* Registry.cpp in Sources */,
 				9AD3F3E32FB2078700CB9A78 /* CommandLineArguments.cpp in Sources */,
 				9AD3F3E52FB2078700CB9A78 /* WindowMessageHandler.cpp in Sources */,

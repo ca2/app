@@ -440,7 +440,7 @@ bool task::task_set_name(const ::scoped_string & scopedstrTaskName)
 }
 
 
-bool task::task_get_run() const
+bool task::should_run() const
 {
 
    if(!has_finishing_flag())
@@ -3547,10 +3547,10 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
 
 
-CLASS_DECL_ACME bool __task_sleep(task * task)
+CLASS_DECL_ACME bool __task_sleep(task * ptask)
 {
 
-   while (task->task_get_run())
+   while (ptask->should_run())
    {
 
       preempt(100_ms);
@@ -3568,7 +3568,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
    if (timeWait < 1000_ms)
    {
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3577,7 +3577,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
       preempt(timeWait);
 
-      return ptask->task_get_run();
+      return ptask->should_run();
 
    }
 
@@ -3603,7 +3603,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
       }
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3612,7 +3612,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
       ptask->m_pevSleep->wait(timeWait);
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3625,7 +3625,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait)
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 
@@ -3636,7 +3636,7 @@ CLASS_DECL_ACME bool __task_sleep(::task * ptask, ::particle * pparticle)
    try
    {
 
-      while (ptask->task_get_run())
+      while (ptask->should_run())
       {
 
          pparticle->_wait(100_ms);
@@ -3649,7 +3649,7 @@ CLASS_DECL_ACME bool __task_sleep(::task * ptask, ::particle * pparticle)
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 
@@ -3660,7 +3660,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
    if (timeWait < 1000_ms)
    {
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return false;
@@ -3669,7 +3669,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
       pparticle->_wait(timeWait);
 
-      return ptask->task_get_run();
+      return ptask->should_run();
 
    }
 
@@ -3682,7 +3682,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
          ptask->m_pevSleep->_wait(100_ms);
 
-         if (!ptask->task_get_run())
+         if (!ptask->should_run())
          {
 
             return false;
@@ -3699,7 +3699,7 @@ CLASS_DECL_ACME bool __task_sleep(task * ptask, const class time & timeWait, ::p
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 

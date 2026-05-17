@@ -34,7 +34,7 @@ public:
   Command();
   ~Command() override;
 
-  virtual void execute();
+  virtual void onRunCommand();
 };
 
 

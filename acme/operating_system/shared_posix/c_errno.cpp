@@ -2,7 +2,7 @@
 // Created by camilo on Jul/4/2023. 23:37:37 <3ThomasBorregaardSoresen!!
 //
 #include "framework.h"
-#include "c_error_number.h"
+#include "c_errno.h"
 #include "acme/prototype/string/from_integer.h"
 #if defined(__BSD__) || defined(__APPLE__)
 #include <errno.h>
@@ -10,8 +10,8 @@
 #endif
 
 
-c_error_number::c_error_number() :
-   c_error_number(s_errno())
+c_errno::c_errno() :
+   c_errno(s_errno())
 {
 
 }
@@ -20,8 +20,8 @@ c_error_number::c_error_number() :
 #ifdef WINDOWS
 
 
-c_error_number::c_error_number(errno_t iErrNo) :
-   m_iErrorNumber(iErrNo)
+c_errno::c_errno(errno_t iErrNo) :
+   m_iErrNo(iErrNo)
 {
 
 
@@ -30,23 +30,23 @@ c_error_number::c_error_number(errno_t iErrNo) :
 
 #endif
 
-c_error_number::c_error_number(c_error_number_t, int iErrorNumber) :
-   m_iErrorNumber(iErrorNumber)
+c_errno::c_errno(c_errno_t, int iErrorNumber) :
+   m_iErrNo(iErrorNumber)
 {
 
 
 }
 
 
-c_error_number::c_error_number(const c_error_number & errornumber) :
-   m_iErrorNumber(errornumber.m_iErrorNumber)
+c_errno::c_errno(const c_errno & errornumber) :
+   m_iErrNo(errornumber.m_iErrNo)
 {
 
 
 }
 
 
-::string c_error_number::get_error_description() const
+::string c_errno::get_error_description() const
 {
 
    return s_get_error_description(*this);
@@ -54,10 +54,10 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 }
 
 
-::string c_error_number::name() const
+::string c_errno::name() const
 {
 
- switch (m_iErrorNumber)
+ switch (m_iErrNo)
    {
       case 0:
          return "NOERROR";
@@ -86,24 +86,24 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
       case EIO:
          return "EIO";
       default:
-         return "E*UNKNOWN(" + ::string_from(m_iErrorNumber) + ")";
+         return "E*UNKNOWN(" + ::string_from(m_iErrNo) + ")";
    }
 
 }
 
 
-class ::error_code c_error_number::error_code() const
+class ::error_code c_errno::error_code() const
 {
 
-   return { e_error_code_type_errno, (::i64) m_iErrorNumber};
+   return { e_error_code_type_errno, (::i64) m_iErrNo};
 
 }
 
 
-::e_status c_error_number::estatus() const
+::e_status c_errno::estatus() const
 {
 
-   switch (m_iErrorNumber)
+   switch (m_iErrNo)
    {
       case 0:
          return ::success;
@@ -135,10 +135,10 @@ class ::error_code c_error_number::error_code() const
 }
 
 
-::e_status c_error_number::failed_estatus() const
+::e_status c_errno::failed_estatus() const
 {
 
-   if(m_iErrorNumber == 0)
+   if(m_iErrNo == 0)
    {
 
       return error_some_error_has_occurred;
@@ -150,26 +150,26 @@ class ::error_code c_error_number::error_code() const
 }
 
 
-c_error_number c_error_number::s_errno()
+c_errno c_errno::s_errno()
 {
 
-   return { c_error_number_t{}, errno };
+   return { c_errno_t{}, errno };
 
 }
 
 
-string c_error_number::s_get_error_description(c_error_number cerrornumber)
+string c_errno::s_get_error_description(c_errno cerrno)
 {
 
-   return strerror(cerrornumber.m_iErrorNumber);
+   return strerror(cerrno.m_iErrNo);
 
 }
 
 
-void c_error_number::s_throw_exception(c_error_number cerrornumber)
+void c_errno::s_throw_exception(c_errno cerrno)
 {
 
-    switch(cerrornumber.m_iErrorNumber)
+    switch(cerrno.m_iErrNo)
     {
         case ENOMEM:
             throw ::exception(error_no_memory, nullptr, nullptr, CALLSTACK_DEFAULT_SKIP + 1);
@@ -191,19 +191,19 @@ void c_error_number::s_throw_exception(c_error_number cerrornumber)
 }
 
 
-//::e_status c_error_number::as_status()
+//::e_status c_errno::as_status()
 //{
 //
-//   int iErrorNumber = m_iErrorNumber;
+//   int iErrorNumber = m_iErrNo;
 //
-//   auto estatus = cerrornumber.estatus();
+//   auto estatus = cerrno.estatus();
 //
 //   return estatus;
 //
 //}
 
 
-::e_status c_error_number::set_last_errno_status()
+::e_status c_errno::set_last_errno_status()
 {
 
    auto estatus = this->estatus();

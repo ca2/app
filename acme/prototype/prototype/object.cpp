@@ -702,7 +702,7 @@ bool object::is_thread_class() const
 }
 
 
-bool object::task_get_run() const
+bool object::should_run() const
 {
 
     return !has_finishing_flag();
@@ -1386,7 +1386,7 @@ void object::set_child_tasks_to_finish()
 
           auto ptaskChild = m_pparticleaChildrenTask->element_at(iChildTask);
 
-          if (!ptaskChild || !ptaskChild->task_get_run())
+          if (!ptaskChild || !ptaskChild->should_run())
           {
 
              m_pparticleaChildrenTask->erase_at(iChildTask);

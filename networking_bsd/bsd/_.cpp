@@ -5,13 +5,13 @@
 
 //#include <string.h>
 
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 
 
 int networking_last_error()
 {
 
-   return c_error_number().m_iErrorNumber;
+   return c_errno().m_iErrNo;
 
 }
 
@@ -60,7 +60,7 @@ string networking::_last_error_message(::i64 llError)
 string bsd_socket_error(int iBsdSocketError)
 {
 
-   return c_error_number({c_error_number_t{}, iBsdSocketError}).get_error_description();
+   return c_errno({c_errno_t{}, iBsdSocketError}).get_error_description();
 
 }
 

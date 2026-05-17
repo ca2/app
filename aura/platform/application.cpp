@@ -4552,25 +4552,26 @@ retry_license:
 
       try
       {
+         
+         ::aqua::application::HideApplication();
 
-
-         if (m_pacmeuserinteractionMain)
-         {
-
-            auto puserinteractionMain = m_pacmeuserinteractionMain;
-
-            if (::is_null(puserinteractionMain))
-            {
-
-               puserinteractionMain->display(::e_display_hide);
-
-               puserinteractionMain->set_need_redraw();
-
-               puserinteractionMain->post_redraw();
-
-            }
-
-         }
+//         if (m_pacmeuserinteractionMain)
+//         {
+//
+//            auto puserinteractionMain = m_pacmeuserinteractionMain;
+//
+//            if (::is_null(puserinteractionMain))
+//            {
+//
+//               puserinteractionMain->display(::e_display_hide);
+//
+//               puserinteractionMain->set_need_redraw();
+//
+//               puserinteractionMain->post_redraw();
+//
+//            }
+//
+//         }
 
       }
       catch (...)

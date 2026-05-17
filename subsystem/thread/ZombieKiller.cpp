@@ -79,7 +79,7 @@ namespace subsystem
       for (auto pthread : m_zombies)
       {
 
-         if (!pthread->isActive()) {
+         if (!pthread->isThreadActive()) {
             m_zombies.erase(pthread);
          }
          //  else {
@@ -95,11 +95,11 @@ namespace subsystem
 
       for (auto pthread  : m_zombies)
       {
-         pthread->terminate();
+         pthread->setThreadToFinish();
       }
       for (auto pthread : m_zombies)
       {
-         pthread->wait();
+         pthread->waitThreadToFinish();
       }
 
       deleteDeadZombies();

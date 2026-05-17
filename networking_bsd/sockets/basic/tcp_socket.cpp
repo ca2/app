@@ -4,7 +4,7 @@
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
 #include "acme/operating_system/networking.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/crypto.h"
 #include "apex/platform/system.h"
@@ -1586,9 +1586,9 @@ m_ibuf(isize)
                if (errnr == SSL_ERROR_SYSCALL)
                {
 
-                  auto cerrornumber = c_error_number();
+                  auto cerrno = c_errno();
 
-                  auto strError = cerrornumber.get_error_description();
+                  auto strError = cerrno.get_error_description();
 
                   information() << "::networking_bsd::tcp_socket::_try_write SSL_ERROR_SYSCALL errno : " << strError;
 

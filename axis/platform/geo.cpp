@@ -1850,7 +1850,7 @@ namespace geo
                try
                {
 
-                  while (m_ptaskSaveCityTimeZone->task_get_run())
+                  while (m_ptaskSaveCityTimeZone->should_run())
                   {
 
                      preempt(1_s);
@@ -1911,7 +1911,7 @@ namespace geo
 
                   }
 
-                  while (m_ptaskSaveLocalityTimeZone->task_get_run())
+                  while (m_ptaskSaveLocalityTimeZone->should_run())
                   {
 
                      task_sleep(1_s);
@@ -1965,7 +1965,7 @@ namespace geo
                try
                {
 
-                  while (m_ptaskSaveCityWeather->task_get_run())
+                  while (m_ptaskSaveCityWeather->should_run())
                   {
 
                      preempt(1_s);

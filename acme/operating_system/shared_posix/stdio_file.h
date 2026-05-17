@@ -70,7 +70,7 @@ public:
 
    bool is_opened() const override;
 
-   class c_error_number c_error_number() const;
+   class c_errno c_errno() const;
 
    [[noreturn]] void throw_exception(const ::scoped_string & scopedstr);
 

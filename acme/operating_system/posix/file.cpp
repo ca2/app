@@ -2,7 +2,7 @@
 #include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/operating_system/shared_posix/time1.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
@@ -911,16 +911,16 @@ char * malloc_get_current_dir_name()
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -958,16 +958,16 @@ char * malloc_get_current_dir_name()
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -976,7 +976,7 @@ char * malloc_get_current_dir_name()
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrno.m_iErrNo);
 
       throw ::exception(estatus);
 
@@ -1005,16 +1005,16 @@ bool safe_is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return false;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1051,16 +1051,16 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return false;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1069,7 +1069,7 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrno.m_iErrNo);
 
       throw ::exception(estatus);
 
@@ -1095,16 +1095,16 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1137,16 +1137,16 @@ bool is_directory(const ::file::path & path)
    if (::stat(path.c_str(), &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      if(cerrno == ENOTDIR)
       {
 
          return ::file::e_type_doesnt_exist;
 
       }
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1155,9 +1155,9 @@ bool is_directory(const ::file::path & path)
 
       }
 
-      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrno.m_iErrNo);
 
-      throw ::file::exception(estatus, cerrornumber, path, ::file::e_open_none, "file_type");
+      throw ::file::exception(estatus, cerrno, path, ::file::e_open_none, "file_type");
 
    }
 
@@ -1183,9 +1183,9 @@ bool safe_file_exists(const ::file::path & path)
    if (::stat(path, &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1200,7 +1200,7 @@ bool safe_file_exists(const ::file::path & path)
 
       }
 
-      //auto error_code = cerrornumber.error_code();
+      //auto error_code = cerrno.error_code();
 
       //throw ::file::exception(estatus, errorcode, path, ::file::e_open_none, "stat");
 
@@ -1230,9 +1230,9 @@ bool file_exists(const ::file::path & path)
    if (::stat(path, &stat))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       if(estatus == error_file_not_found)
       {
@@ -1247,7 +1247,7 @@ bool file_exists(const ::file::path & path)
 
       }
 
-      auto error_code = cerrornumber.error_code();
+      auto error_code = cerrno.error_code();
 
       throw ::file::exception(estatus, error_code, path, ::file::e_open_none, "stat");
 
@@ -1349,9 +1349,9 @@ void create_directory(const ::file::path & path)
    if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
       
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
       
       if(estatus == error_already_exists)
       {
@@ -1382,9 +1382,9 @@ void erase_directory(const ::file::path & path)
    if (::rmdir(path) != 0)
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus =  cerrornumber.estatus();
+      auto estatus =  cerrno.estatus();
 
       throw ::exception(estatus);
 
@@ -1400,9 +1400,9 @@ void file_delete(const ::file::path & path)
    if (::unlink(path) == -1)
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus =  cerrornumber.estatus();
+      auto estatus =  cerrno.estatus();
 
       throw ::exception(estatus);
 
@@ -1411,19 +1411,19 @@ void file_delete(const ::file::path & path)
 }
 
 
-[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, c_error_number cerrornumber)
+[[noreturn]] CLASS_DECL_ACME void throw_file_errno_exception(const ::file::path & path, ::file::e_open eopen, const ::scoped_string & scopedstr, c_errno cerrno)
 {
 
-   if(cerrornumber.m_iErrorNumber == 0)
+   if(cerrno == 0)
    {
 
-      cerrornumber.m_iErrorNumber = errno;
+      cerrno.m_iErrNo = errno;
 
    }
 
-   auto estatus =  cerrornumber.estatus();
+   auto estatus =  cerrno.estatus();
 
-   auto errorcode = cerrornumber.error_code();
+   auto errorcode = cerrno.error_code();
 
    throw ::file::exception(estatus, errorcode, path, eopen, scopedstr);
 
@@ -1615,7 +1615,7 @@ CLASS_DECL_ACME void set_modified_file_time(
 
    if (utimensat(AT_FDCWD, path.c_str(), times, 0) != 0)
    {
-      c_error_number err;
+      c_errno err;
 
       throw_file_errno_exception(
          path,

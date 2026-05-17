@@ -46,7 +46,7 @@ namespace subsystem
       ~ThreadCollector() override;
 
       // Adds thread to a self ::list_base.
-      virtual void addThread(ThreadInterface *thread) = 0;
+      virtual void addThread(Thread *thread) = 0;
 
       // Forces terminates all threads, waits until they dies and than
       // delete them from memory and thread ::list_base.
@@ -55,7 +55,7 @@ namespace subsystem
       virtual const memsize Size() = 0;
 
    //protected:
-      void execute() override = 0;
+      void onThreadMain() override = 0;
 
       // Deletes all dead threads from memory and removes them from self ::list_base.
       virtual void deleteDeadThreads() = 0;
@@ -87,7 +87,7 @@ namespace subsystem
    //    const memsize Size() override;
    //
    //    //protected:
-   //    void execute() override;
+   //    void onThreadMain() override;
    //
    //    // Deletes all dead threads from memory and removes them from self ::list_base.
    //    void deleteDeadThreads() override;

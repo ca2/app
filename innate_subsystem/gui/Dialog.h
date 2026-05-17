@@ -58,6 +58,8 @@ namespace innate_subsystem
 
       //virtual void show() = 0;
       virtual int showModal() = 0;
+      
+      virtual void doAttachedModal(const ::function < void(int) > & callback) = 0;
 
       // Returns true if dialog is already created.
       virtual bool isCreated() = 0;
@@ -176,6 +178,13 @@ namespace innate_subsystem
 
       //void show() override { m_pdialog->show(); }
       int showModal() override { return m_pdialog->showModal(); }
+      
+      void doAttachedModal(const ::function < void(int) > & callback)
+      {
+         
+         return m_pdialog->doAttachedModal(callback);
+         
+      }
 
       // Returns true if dialog is already created.
       bool isCreated() override { return m_pdialog->isCreated(); }

@@ -478,7 +478,7 @@ void simple_frame_window::task_save_window_placement()
 
    auto ptask = ::get_task();
 
-   while (ptask->task_get_run())
+   while (ptask->should_run())
    {
 
       bool bIsWindow = (m_ewindowflag & e_window_flag_is_window);

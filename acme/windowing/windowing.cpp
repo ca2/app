@@ -272,6 +272,12 @@ namespace acme
 
       }
 
+   
+      void windowing::hide_application()
+      {
+         
+         
+      }
 
       //void windowing::clear_keyboard_focus(::user::element * pelementGainingFocusIfAny)
       //{
@@ -624,7 +630,7 @@ namespace acme
 //
 //            prequestDefaultStart->m_ecommand = e_command_default_start;
 //
-//            m_papplication->post_request(prequestDefaultStart);
+//            m_papplication->pofst_request(prequestDefaultStart);
 
          }
 

@@ -50,10 +50,10 @@ namespace subsystem
    //
    //
    // }
-   //  void PipeImpersonatedThreadComposite::onTerminate()
+   //  void PipeImpersonatedThreadComposite::onTermThread()
    //  {
    //     //m_threadSleeper.notify();
-   //     m_pparticleThis->onTerminate();
+   //     m_pparticleThis->onTermThread();
    //  }
    //
    //  void PipeImpersonatedThreadComposite::waitUntilImpersonated()
@@ -74,7 +74,7 @@ namespace subsystem
    //     return m_pparticleThis->getFaultReason();
    //  }
    //
-   //  void PipeImpersonatedThreadComposite::execute()
+   //  void PipeImpersonatedThreadComposite::onThreadMain()
    //  {
    //     m_pparticleThis->execute();
    //     // m_success = ImpersonateNamedPipeClient(m_pipeHandle) != 0;

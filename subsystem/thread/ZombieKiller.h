@@ -86,7 +86,7 @@ namespace subsystem
       /**
        * Thread ::array_base.
        */
-      ::pointer_array < ThreadInterface > m_zombies;
+      ::pointer_array < Thread > m_zombies;
 
       /**
        * Thread-safety.

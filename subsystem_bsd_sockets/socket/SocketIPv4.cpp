@@ -290,10 +290,36 @@ namespace subsystem_bsd_sockets
 
    int SocketIPv4::recv(char *buffer, int size, int flags)
    {
+      
+      restart:
+      
       int result;
-
+      
       result = ::recv(m_socket, buffer, size, flags);
 
+      if(result < 0 &&
+         (errno == EAGAIN || errno == EWOULDBLOCK))
+      {
+         
+         if(::task_get_run())
+         {
+            
+            ::task_iteration();
+            
+            goto restart;
+            
+         }
+         else
+         {
+            
+            information("receive time out and thread is finishing");
+            
+            throw ::exception(error_timeout, "receive time out and thread is finishing");
+            
+         }
+         
+      }
+      
       // Connection has been gracefully closed.
       if (result == 0) {
          throw ::io_exception(error_io, "Connection has been gracefully closed");
@@ -360,10 +386,11 @@ namespace subsystem_bsd_sockets
    void SocketIPv4::setRcvTimeO(const class ::time& timeTimeout)
    {
 
-      auto timeout = (int) timeTimeout.integral_millisecond();
-
-      setSocketOptions(SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout, sizeof(timeout));
-
+      struct timeval tv;
+      tv.tv_sec = timeTimeout.m_iSecond;
+      tv.tv_usec = timeTimeout.m_iNanosecond / 1'000;
+      setSocketOptions(SOL_SOCKET, SO_RCVTIMEO, (char*)&tv, sizeof tv);
+      
    }
 
 

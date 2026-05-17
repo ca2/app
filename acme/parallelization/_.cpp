@@ -344,11 +344,11 @@ namespace parallelization
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
-//         return system()->task_get_run();
+//         return system()->should_run();
 //
 //      }
 //
-//      return ::get_task()->task_get_run();
+//      return ::get_task()->should_run();
 //
 //   }
 //   catch (...)
@@ -914,7 +914,7 @@ bool task_get_run()
 
    }
 
-   return ptask->task_get_run();
+   return ptask->should_run();
 
 }
 

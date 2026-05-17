@@ -45,9 +45,9 @@ namespace subsystem
       // destroyAllThreads();
    }
 
-   // void ThreadCollector::execute()
+   // void ThreadCollector::onThreadMain()
    // {
-   //    m_pparticleThis->execute();
+   //    m_pparticleThis->onThreadMain();
    //    // while (!isTerminating()) {
    //    //    deleteDeadThreads();
    //    //    m_timer.waitForEvent(50);

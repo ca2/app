@@ -5720,9 +5720,12 @@ void application::setResourceName(::i32 iId, const ::scoped_string &scopedstrRes
    {
 
 
+      system()->acme_windowing()->hide_application();
+
+      //::platform::application::HideApplication();
       //try
       //{
-      throw ::exception(todo, "interaction");
+      //throw ::exception(todo, "interaction");
 
       //   if (m_pacmeuserinteractionMain)
       //   {

@@ -35,11 +35,11 @@ namespace subsystem
    {
    }
 
-   void MacroCommand::execute()
-   {
+   void MacroCommand::onRunCommand()
+{
       for (auto & pcommand : m_listCommand)
       {
-         pcommand->execute();
+         pcommand->onRunCommand();
       }
    }
 

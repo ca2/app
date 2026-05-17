@@ -42,7 +42,7 @@ namespace subsystem
       //}
    }
 
-   // void GuiThread::initByDerived()
+   // void GuiThread::onInitThread()
    // {
    //    DesktopSelector::setDesktopToCurrentThread(m_hDesk);
    //    // If unsuccessful, desktop will be closed in destructor

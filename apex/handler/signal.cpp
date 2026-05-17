@@ -64,7 +64,7 @@ namespace handler
    //
    //   auto ptask = ::get_task();
    //
-   //   if (::manager::s_bDestroyAll || !ptask->task_get_run())
+   //   if (::manager::s_bDestroyAll || !ptask->should_run())
    //   {
    //
    //      return ::error_failed;

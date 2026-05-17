@@ -164,7 +164,7 @@ namespace apex
       string get_application_server_name() override;
 
 
-      bool task_get_run() const override;
+      bool should_run() const override;
 
 
       [[nodiscard]] class ::handler::signal* signal(const ::atom& atom) override;

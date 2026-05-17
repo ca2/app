@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/exception/runtime_check.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include <errno.h>
 
 
@@ -21,7 +21,7 @@ namespace acme
       if (iErrNo)
       {
 
-         throw ::runtime_check_exception(error_failed, { c_error_number(iErrNo) }, "get_errno (error getting error)");
+         throw ::runtime_check_exception(error_failed, { c_errno(iErrNo) }, "get_errno (error getting error)");
 
       }
 
@@ -37,7 +37,7 @@ namespace acme
       if (iErrNo)
       {
 
-         throw ::runtime_check_exception(error_failed, { c_error_number(iErrNo) }, "set_errno (error setting error)");
+         throw ::runtime_check_exception(error_failed, { c_errno(iErrNo) }, "set_errno (error setting error)");
 
       }
 

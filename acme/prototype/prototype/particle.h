@@ -161,7 +161,7 @@ public:
    bool _is_ok() const override;
 
 
-   virtual bool task_get_run() const;
+   virtual bool should_run() const;
 
 
    virtual void on_notify(::particle * pparticle, enum_id eid);

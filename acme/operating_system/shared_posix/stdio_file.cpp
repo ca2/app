@@ -6,7 +6,7 @@
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/platform/trace.h"
@@ -119,9 +119,9 @@ try_again:
    if (!m_pfile)
    {
 
-      auto cerrornumber = ::c_error_number();
+      auto cerrno = ::c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       m_estatus = estatus;
 
@@ -416,7 +416,7 @@ bool stdio_file::is_opened() const
 }
 
 
-class c_error_number stdio_file::c_error_number() const
+class c_errno stdio_file::c_errno() const
 {
 
    if(m_pfile == nullptr)
@@ -426,7 +426,7 @@ class c_error_number stdio_file::c_error_number() const
 
    }
 
-   return {c_error_number_t{}, ferror(m_pfile)};
+   return {c_errno_t{}, ferror(m_pfile)};
 
 }
 
@@ -434,11 +434,11 @@ class c_error_number stdio_file::c_error_number() const
 void stdio_file::throw_exception(const ::scoped_string & scopedstr)
 {
 
-   auto cerrornumber = c_error_number();
+   auto cerrno = c_errno();
 
-   auto estatus = cerrornumber.estatus();
+   auto estatus = cerrno.estatus();
 
-   auto errorcode = cerrornumber.error_code();
+   auto errorcode = cerrno.error_code();
 
    throw ::file::exception(estatus, errorcode, m_path, m_eopen, scopedstr);
 
@@ -737,24 +737,24 @@ CLASS_DECL_ACME trace_function std_get_output(::string * pstrOutput)
 void __cdecl __clearerr_s(FILE * stream)
 {
 
-   c_error_number cerrornumber;
+   c_errno cerrno;
 
 #ifdef WINDOWS
 
-   cerrornumber.m_iErrorNumber = ::clearerr_s(stream);
+   cerrno.m_iErrNo = ::clearerr_s(stream);
 
 #else
 
    clearerr(stream);
 
-   cerrornumber.m_iErrorNumber = errno;
+   cerrno.m_iErrNo = errno;
 
 #endif
 
-   if (cerrornumber.m_iErrorNumber)
+   if (cerrno.m_iErrNo)
    {
 
-      throw ::runtime_check_exception(error_runtime_check, { cerrornumber }, "__clearerr_s");
+      throw ::runtime_check_exception(error_runtime_check, { cerrno }, "__clearerr_s");
 
    }
 
@@ -810,9 +810,9 @@ void __cdecl __clearerr_s(FILE * stream)
 
       }
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.failed_estatus();
+      auto estatus = cerrno.failed_estatus();
 
       throw ::exception(estatus);
 
@@ -1035,11 +1035,11 @@ string file_system::line(const ::file::path & pathParam, ::collection::index iLi
    if (file == nullptr)
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
-      auto error_code = cerrornumber.error_code();
+      auto error_code = cerrno.error_code();
 
       throw ::file::exception(estatus, error_code, path);
 

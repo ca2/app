@@ -225,7 +225,7 @@ namespace subsystem
    //}
 
 
-   /*void WindowsClipboard::onTerminate()
+   /*void WindowsClipboard::onTermThread()
    {
 
       if (m_hwnd != 0)
@@ -238,7 +238,7 @@ namespace subsystem
    }*/
 
 
-   //void WindowsClipboard::execute()
+   //void WindowsClipboard::onThreadMain()
    //{
 
    //   m_plogwriter->information("clipboard thread id = {}", (::iptr) getThreadId());

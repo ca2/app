@@ -58,8 +58,8 @@ namespace subsystem
    //protected:
    //   virtual bool wndProc(::u32 scopedstrMessage, ::wparam wParam, ::lparam lParam);
 
-   //   virtual void execute();
-   //   virtual void onTerminate();
+   //   virtual void onThreadMain();
+   //   virtual void onTermThread();
 
       virtual void convertToRfbFormat(const ::scoped_string &source, ::string &dest);
       virtual void convertFromRfbFormat(const ::scoped_string &scopedstrSource, ::string &dest);

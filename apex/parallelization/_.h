@@ -95,7 +95,7 @@
 //            if (pparticle && pparticle->is_thread())
 //            {
 //
-//               if (pparticle->task_get_run())
+//               if (pparticle->should_run())
 //               {
 //
 //                  if (pparticle->get_tag().compare(scopedstrTag) == 0)

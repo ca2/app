@@ -236,7 +236,7 @@ inline ::i32_bool critical_section::Unlock()
 //
 //      class ::time tickStart = class ::time::now();
 //
-//      while(pthread.is_set() && pthread->task_get_run() && ::task_get_run())
+//      while(pthread.is_set() && pthread->should_run() && ::task_get_run())
 //      {
 //
 //         if(!do_events())

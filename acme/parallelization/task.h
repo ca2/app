@@ -2913,7 +2913,7 @@ public:
 
 
    virtual bool is_thread_class() const override;
-   virtual bool task_get_run() const override;
+   bool should_run() const override;
 
    bool is_ready_to_quit() const override;
 

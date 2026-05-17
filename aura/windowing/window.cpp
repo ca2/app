@@ -3412,7 +3412,7 @@ void window::on_keyboard_layout_change(const char * pszKeyboardLayoutId)
 
       // }
 
-      if (!this->task_get_run())
+      if (!this->should_run())
       {
 
          //return false;

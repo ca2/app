@@ -54,7 +54,7 @@ namespace subsystem
    //  wait();
    //}
    //
-   // void SessionChangesWatcher::execute()
+   // void SessionChangesWatcher::onThreadMain()
    //{
    //  DWORD prevSession = m_baseSessionId;
    //   bool isRdp = WindowsSubsystem().WTS().SessionIsRdpSession(prevSession, m_plogwriter);

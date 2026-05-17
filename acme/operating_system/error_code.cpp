@@ -8,16 +8,16 @@
 #include "framework.h"
 #include "acme/filesystem/file/text_stream.h"
 //#include "error_code.h"
-#include "shared_posix/c_error_number.h"
+#include "shared_posix/c_errno.h"
 #include "debug.h"
 #include "_api.h"
 #ifdef WINDOWS
 #include "acme/operating_system/windows/windows.h"
 #endif
 
-error_code::error_code(const c_error_number & error_code) :
+error_code::error_code(const c_errno & cerrno) :
    m_etype(e_error_code_type_errno),
-   m_iOsError(error_code.m_iErrorNumber)
+   m_iOsError(cerrno.m_iErrNo)
 {
 
 

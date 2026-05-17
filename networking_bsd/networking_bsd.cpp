@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/exception/interface_only.h"
-#include "acme/operating_system/shared_posix/c_error_number.h"
+#include "acme/operating_system/shared_posix/c_errno.h"
 
 //#if defined(OPENBSD)
 //#include "clear_cstddefs"
@@ -447,9 +447,9 @@ CLASS_DECL_NETWORKING_BSD::string __string_inet_ntop(int iFamily, const void * p
    if (!inet_ntop(iFamily, paddr, sz, sizeof(sz)))
    {
 
-      auto cerrornumber = c_error_number();
+      auto cerrno = c_errno();
 
-      auto estatus = cerrornumber.estatus();
+      auto estatus = cerrno.estatus();
 
       throw ::exception(estatus, "Failed to convert IP4 Address to text");
 

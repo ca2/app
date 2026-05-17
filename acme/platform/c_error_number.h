@@ -6,7 +6,7 @@ CLASS_DECL_ACME void set_last_status(const ::e_status & estatus);
 
 
 ///// Class with static functions to get information about an error.
-//class c_error_number
+//class c_errno
 //{
 //public:
 //   

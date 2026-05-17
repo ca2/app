@@ -38,6 +38,8 @@ public:
    ~manual_reset_happening() override;
 
    //void reuse() { reset_happening(); }
+   
+   void clear() { reset_happening(); }
 
 };
 

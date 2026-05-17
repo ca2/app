@@ -605,7 +605,7 @@ void subparticle::_wait()
 
       }
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return error_failed;
@@ -650,7 +650,7 @@ void subparticle::_wait()
       if (::is_set(ptask))
       {
 
-         if (!ptask->task_get_run())
+         if (!ptask->should_run())
          {
 
             return error_discontinued;
@@ -744,7 +744,7 @@ void subparticle::_wait()
 
       }
 
-      if (!ptask->task_get_run())
+      if (!ptask->should_run())
       {
 
          return error_failed;

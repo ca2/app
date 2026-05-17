@@ -45,7 +45,7 @@ namespace subsystem
    //   virtual ~SessionChangesWatcher();
 
    //protected:
-   //   virtual void execute();
+   //   virtual void onThreadMain();
 
    //   DWORD m_baseSessionId;
    //   /// AnEventListener *m_extSessionChangesListener;

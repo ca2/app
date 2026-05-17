@@ -24,6 +24,7 @@
 #pragma once
 
 
+#include "subsystem/_common_header.h"
 #include "subsystem/thread/Thread.h"
 
 
@@ -49,8 +50,8 @@ namespace subsystem
       virtual ::string getFaultReason() = 0;
 
    //private:
-      virtual void execute() = 0;
-      virtual void onTerminate() = 0;
+      virtual void onThreadMain() = 0;
+      virtual void onTermThread() = 0;
 
       // HANDLE m_pipeHandle;
       // bool m_success;
@@ -84,8 +85,8 @@ namespace subsystem
       ::string getFaultReason() override {return m_ppipeimpersonatedthread->getFaultReason();}
 
    //private:
-      void execute() override{}
-      void onTerminate() override{}
+      void onThreadMain() override{}
+      void onTermThread() override{}
 
       // HANDLE m_pipeHandle;
       // bool m_success;
@@ -97,11 +98,11 @@ namespace subsystem
 
 
    class CLASS_DECL_SUBSYSTEM PipeImpersonatedThreadAggregate
-       : virtual public Aggregate<PipeImpersonatedThreadComposite, ThreadAggregate>
+       : virtual public Aggregate<PipeImpersonatedThreadComposite>
    {
    public:
 
-      ImplementAggregateø(PipeImpersonatedThread, Thread);
+      ImplementBaseø(PipeImpersonatedThread);
 
    };
 

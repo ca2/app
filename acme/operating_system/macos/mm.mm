@@ -10,6 +10,7 @@
 #import <Cocoa/Cocoa.h>
 
 void ns_main_send(dispatch_block_t block);
+void ns_main_post(dispatch_block_t block);
 
 void ns_launch_app_at_url(NSURL * url, const char ** argv, int iFlags);
 
@@ -122,7 +123,7 @@ void ns_launch_bundle(const char * pszBundle, const char ** argv)
 void os_post_quit()
 {
    
-   ns_main_send(^()
+   ns_main_post(^()
    {
    
       [NSApp terminate:nil];

@@ -39,7 +39,7 @@ namespace subsystem
       // Replacing the base function.
       //static DWORD WINAPI threadProc(LPVOID pThread);
 
-      //virtual void initByDerived() = 0;
+      //virtual void onInitThread() = 0;
 
       // Desktop for current thread.
       //HDESK m_hDesk;
@@ -54,7 +54,7 @@ namespace subsystem
    //    // Replacing the base function.
    //    //static DWORD WINAPI threadProc(LPVOID pThread);
    //
-   //    //void initByDerived() override;
+   //    //void onInitThread() override;
    //
    //    // Desktop for current thread.
    //    //HDESK m_hDesk;

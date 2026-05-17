@@ -831,7 +831,7 @@ namespace user
       //m_puserinteraction->m_bUpdateBufferPending = false;
 
 
-      if (!this->task_get_run())
+      if (!this->should_run())
       {
 
          return false;
@@ -1116,7 +1116,7 @@ namespace user
 
 //      }
 
-      if (!this->task_get_run())
+      if (!this->should_run())
       {
 
          return false;

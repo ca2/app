@@ -370,7 +370,7 @@ public:
    //bool do_tasks() override;
    // virtual bool do_events(const time& time);
 
-   virtual bool task_get_run() const override;
+   bool should_run() const override;
    //virtual bool set_run();
    //virtual void destroy() override;
    //virtual bool is_set_finish() const;

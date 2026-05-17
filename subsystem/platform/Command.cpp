@@ -36,7 +36,7 @@ namespace subsystem
    }
 
 
-   void Command::execute()
+   void Command::onRunCommand()
    {
 
 

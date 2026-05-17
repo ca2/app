@@ -765,10 +765,10 @@ bool particle::_is_ok() const
 }
 
 
-bool particle::task_get_run() const
+bool particle::should_run() const
 {
 
-   return true;
+   return !has_finishing_flag();
 
 }
 

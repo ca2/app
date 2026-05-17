@@ -1806,10 +1806,10 @@ pdirectorysystem->create("/ca2core");
    }
 
 
-   bool system::task_get_run() const
+   bool system::should_run() const
    {
 
-      return ::thread::task_get_run();
+      return ::thread::should_run();
 
    }
 

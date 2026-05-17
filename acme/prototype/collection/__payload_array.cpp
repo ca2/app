@@ -614,7 +614,7 @@ void payload_array_base::parse_network_payload(::ansi_range & range)
          }
 
       }
-      else if(!pthread->task_get_run())
+      else if(!pthread->should_run())
       {
 
          throw ::exception(::exit_exception(pthread));

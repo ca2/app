@@ -100,6 +100,11 @@ void BufferedInputStream::_initialize_buffered_input_stream(InputStream * pinput
          m_have = m_pdatainputstream->read(&m_buffer[0], m_buffer.size());
       }
       catch (::exception &e) {
+         if(e.m_estatus == error_timeout && !::task_get_run())
+         {
+            throw e;
+            
+         }
          if (m_buffer.size() == m_iMaximumBufferSize) {
             throw e;
          }

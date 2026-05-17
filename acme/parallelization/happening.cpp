@@ -1,7 +1,7 @@
 // As happening by camilo on 2024-11-08 21:24 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "happening.h"
-
+#include "acme/operating_system/shared_posix/c_errno.h"
 ////#include "acme/exception/exception.h"
 #include "acme/prototype/geometry2d/_function.h"
 
@@ -1175,13 +1175,16 @@ bool happening::_wait (const class time & timeWait)
          sb.sem_op   = -1;
          sb.sem_num  = 0;
          sb.sem_flg  = IPC_NOWAIT;
-
+         
          int ret = semop((int) m_sem, &sb, 1);
 
          if(ret < 0)
          {
+            
+            c_errno cerrno;
 
-            if(ret == EPERM || ret == EBUSY)
+            //if(iError == EPERM || iError == EBUSY || iError == EAGAIN)
+            if(cerrno == EAGAIN)
             {
 
                nanosleep(&delay, nullptr);
@@ -1190,7 +1193,7 @@ bool happening::_wait (const class time & timeWait)
             else
             {
 
-               throw ::exception(error_failed);
+               throw ::exception(error_failed, {cerrno}, "happening::_wait semop Failed!");
 
             }
 

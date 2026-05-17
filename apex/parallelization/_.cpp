@@ -211,11 +211,11 @@ namespace parallelization
 //      {
 //         ////////// and have short life, so it is safe to keep it running
 //         //return true;
-//         return psystem->task_get_run();
+//         return psystem->should_run();
 //
 //      }
 //
-//      return ::get_task()->task_get_run();
+//      return ::get_task()->should_run();
 //
 //   }
 //   catch (...)

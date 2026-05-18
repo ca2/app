@@ -521,9 +521,13 @@ list(APPEND library_source
         operating_system/message_box.cpp
         operating_system/message_box.h
         operating_system/parallelization.cpp
+   operating_system/performance_counter.cpp
+   operating_system/performance_counter.h
         operating_system/path.cpp
         operating_system/path.h
         operating_system/process.h
+   operating_system/shared_memory.h
+   operating_system/shared_memory.cpp
         operating_system/string.cpp
         operating_system/summary.cpp
         operating_system/summary.h
@@ -2344,6 +2348,8 @@ if (${WIN32})
             operating_system/windows/message_loop.cpp
             operating_system/windows/parallelization.cpp
             operating_system/windows/process.cpp
+       operating_system/windows/shared_memory.h
+       operating_system/windows/shared_memory.cpp
             operating_system/windows/thread.cpp
             operating_system/windows/user.cpp
             operating_system/windows/window.cpp

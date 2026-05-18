@@ -23,6 +23,17 @@ error_code::error_code(const c_errno & cerrno) :
 
 }
 
+#ifdef WINDOWS
+
+error_code::error_code(const ::windows::last_error & lasterror):
+m_etype(e_error_code_type_last_error),
+m_iOsError(lasterror.m_uLastError)
+{
+
+
+}
+#endif
+
 
 void get_message(::string & strMessage, const ::error_code & errorcode)
 {

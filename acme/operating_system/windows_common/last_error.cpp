@@ -10,6 +10,33 @@ namespace windows
 {
 
 
+
+   last_error::last_error(const ::error_code & errorcode)
+   {
+
+      if (errorcode.m_etype == ::e_error_code_type_last_error)
+      {
+         m_uLastError = (::u32) errorcode.m_iOsError;
+
+      }
+      else if (errorcode.m_etype == ::e_error_code_type_none)
+      {
+
+         m_uLastError = 0;
+
+      }
+         else
+         {
+
+            m_uLastError = (DWORD)-1;
+
+         }
+
+
+
+
+   }
+
    CLASS_DECL_ACME last_error get_last_error()
    {
 

@@ -199,7 +199,7 @@ namespace subsystem
 //      //        }
 //      //
 //      //        if (SendInput(1, &keyEvent, sizeof(keyEvent)) == 0) {
-//      //           DWORD errCode = GetLastError();
+//      //           auto lasterror = ::windows::last_error();
 //      //           if (errCode != ERROR_SUCCESS) {
 //      //              throw SystemException("SendInput() function failed:", errCode);
 //      //           } else {

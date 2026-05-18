@@ -2646,13 +2646,13 @@ namespace user
    //
    //   }
 
-   bool interaction::task_get_run() const
+   bool interaction::should_run() const
    {
 
       if (!(is_top_level() || is_root()))
       {
 
-         return ::user::interaction_base::task_get_run();
+         return ::user::interaction_base::should_run();
 
       }
 

@@ -74,7 +74,7 @@
 //                                    lowSize,               // size: low 32-bits
 //                                    ::wstring(scopedstrName));                 // name of ::map object
 //       if (m_hToMap == NULL) {
-//          int errCode = GetLastError();
+//          auto lasterror = ::windows::last_error();
 //          ::string errMess;
 //          errMess.formatf("Cannot create file mapping with error = {}", errCode);
 //          throw ::subsystem::Exception(errMess);
@@ -98,7 +98,7 @@
 //                                0,              // low offset:   beginning
 //                                0);             // default: ::map entire file
 //       if (m_memory == NULL) {
-//          int errCode = GetLastError();
+//          auto lasterror = ::windows::last_error();
 //          ::string errMess;
 //          errMess.formatf("Cannot ::map view of file with error = {}", errCode);
 //          throw ::subsystem::Exception(errMess);

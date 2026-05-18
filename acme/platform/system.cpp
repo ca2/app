@@ -99,6 +99,8 @@ bool opensuse_is_package_installed(const ::scoped_string & scopedstrPackageName)
 //#endif
 
 
+void operating_system_factory(::factory::factory * pfactory);
+
 CLASS_DECL_ACME::string get_operating_system_name();
 
 
@@ -263,6 +265,8 @@ namespace platform
 
 
       m_bKeepRunningPostedProcedures = true;
+
+      operating_system_factory(factory());
 
       factory()->add_factory_item < ::nano::http::get>();
       factory()->add_factory_item < ::component >();

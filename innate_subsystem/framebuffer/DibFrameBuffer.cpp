@@ -223,7 +223,7 @@ namespace  innate_subsystem
       releaseDibSection();
       constructø(m_pdibsection);
 
-      m_pdibsection->initialize_dib_section(pixelFormat, newDim, true, operatingsystemwindowCompatible);
+      m_pdibsection->initialize_dib_section(pixelFormat, newDim, operatingsystemwindowCompatible);
 
       return m_pdibsection->getBuffer();
    }

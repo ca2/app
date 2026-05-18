@@ -61,7 +61,7 @@ namespace subsystem
    //   //                    NULL);                 // no template file
    //   //
    //   // if (hPipe == INVALID_HANDLE_VALUE) {
-   //   //   int errCode = GetLastError();
+   //   //   auto lasterror = ::windows::last_error();
    //   //   ::string errMess;
    //   //   errMess.formatf("Connect to pipe server failed, error code = {}", errCode);
    //   //   throw ::subsystem::Exception(errMess);
@@ -73,7 +73,7 @@ namespace subsystem
    //   //                              NULL,      // don't set maximum bytes
    //   //                              NULL)      // don't set maximum time
    //   //                              ) {
-   //   //   int errCode = GetLastError();
+   //   //   auto lasterror = ::windows::last_error();
    //   //   ::string errMess;
    //   //   errMess.formatf("SetNamedPipeHandleState failed, error code = {}", errCode);
    //   //   throw ::subsystem::Exception(errMess);

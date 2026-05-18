@@ -99,8 +99,6 @@ namespace innate_subsystem
 
       // getWindow()
       // Get a handle of the window
-      virtual operating_ambient_window_t operating_ambient_window() const = 0;
-      virtual void set_operating_ambient_window(operating_ambient_window_t operatingambientwindow) = 0;
       virtual void * _WNDPROC_default() const = 0;
       virtual ::operating_system::window operating_system_window() const = 0;
       virtual void set_operating_system_window(const ::operating_system::window & operatingsystemwindow) = 0;
@@ -128,6 +126,7 @@ namespace innate_subsystem
       // We want WM_KEYDOWN scopedstrMessage when enter is pressed
       virtual bool we_want_WM_KEYDOWN_when_enter_is_pressed() const {return false;}
 
+      virtual void setMouseCursor(enum_cursor ecursor) = 0;
       
       // Set resource name for the window
       virtual void setResourceName(const ::scoped_string & scopedstr) = 0;
@@ -286,7 +285,6 @@ namespace innate_subsystem
 
       virtual void adjustWindowSize() = 0;
 
-      virtual void setMouseCursor(::enum_cursor ecursor) = 0;
    // private:
    //    // This function may be implement in child class.
    //    // Here is stub function, always returned false.
@@ -352,8 +350,6 @@ namespace innate_subsystem
       // getWindow()
       // Get a handle of the window
       
-      operating_ambient_window_t operating_ambient_window() const override {return m_pwindow->operating_ambient_window();}
-      void set_operating_ambient_window(operating_ambient_window_t operatingambientwindow) override{return m_pwindow->set_operating_ambient_window(operatingambientwindow);}
 
       
       

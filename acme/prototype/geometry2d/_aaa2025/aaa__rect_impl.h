@@ -69,9 +69,9 @@
 //{
 //   return bottom - top;
 //}
-//long_long_size rect64SIZE_TYPE() const noexcept
+//i64_size rect64SIZE_TYPE() const noexcept
 //{
-//   return long_long_size(right - left, bottom - top);
+//   return i64_size(right - left, bottom - top);
 //}
 //long_long_point& long_long_rectangle::top_left() noexcept
 //{
@@ -143,17 +143,17 @@
 //{
 //   ::inflate(this, x, y);
 //}
-//TEMPLATE void long_long_rectangle::inflate(::long_long_size long_long_size) noexcept
+//TEMPLATE void long_long_rectangle::inflate(::i64_size i64_size) noexcept
 //{
-//   ::inflate(this, long_long_size.cx, long_long_size.cy);
+//   ::inflate(this, i64_size.cx, i64_size.cy);
 //}
 //TEMPLATE void long_long_rectangle::deflate(long long x, long long y) noexcept
 //{
 //   ::inflate(this, -x, -y);
 //}
-//TEMPLATE void long_long_rectangle::deflate(::long_long_size long_long_size) noexcept
+//TEMPLATE void long_long_rectangle::deflate(::i64_size i64_size) noexcept
 //{
-//   ::inflate(this, -long_long_size.cx, -long_long_size.cy);
+//   ::inflate(this, -i64_size.cx, -i64_size.cy);
 //}
 //TEMPLATE void long_long_rectangle::offset(long long x, long long y) noexcept
 //{
@@ -163,11 +163,11 @@
 //{
 //   ::offset(this, long_long_point.x, long_long_point.y);
 //}
-//TEMPLATE void long_long_rectangle::set_size(::long_long_size s) noexcept
+//TEMPLATE void long_long_rectangle::set_size(::i64_size s) noexcept
 //{
 //   this->set_size(s.cx, s.cy);
 //}
-//TEMPLATE void long_long_rectangle::rsize(::long_long_size s) noexcept
+//TEMPLATE void long_long_rectangle::rsize(::i64_size s) noexcept
 //{
 //   this->rsize(s.cx, s.cy);
 //}
@@ -179,9 +179,9 @@
 //{
 //   ::reverse_size(this, cx, cy);
 //}
-//TEMPLATE void long_long_rectangle::offset(::long_long_size long_long_size) noexcept
+//TEMPLATE void long_long_rectangle::offset(::i64_size i64_size) noexcept
 //{
-//   ::offset(this, long_long_size.cx, long_long_size.cy);
+//   ::offset(this, i64_size.cx, i64_size.cy);
 //}
 //TEMPLATE void long_long_rectangle::move_to_y(long long y) noexcept
 //{
@@ -227,9 +227,9 @@
 //{
 //   ::offset(this, long_long_point.x, long_long_point.y);
 //}
-//TEMPLATE void long_long_rectangle::operator +=(::long_long_size long_long_size) noexcept
+//TEMPLATE void long_long_rectangle::operator +=(::i64_size i64_size) noexcept
 //{
-//   ::offset(this, long_long_size.cx, long_long_size.cy);
+//   ::offset(this, i64_size.cx, i64_size.cy);
 //}
 //TEMPLATE void long_long_rectangle::operator +=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
@@ -241,9 +241,9 @@
 //{
 //   ::offset(this, -long_long_point.x, -long_long_point.y);
 //}
-//TEMPLATE void long_long_rectangle::operator-=(::long_long_size long_long_size) noexcept
+//TEMPLATE void long_long_rectangle::operator-=(::i64_size i64_size) noexcept
 //{
-//   ::offset(this, -long_long_size.cx, -long_long_size.cy);
+//   ::offset(this, -i64_size.cx, -i64_size.cy);
 //}
 //TEMPLATE void long_long_rectangle::operator-=(const ::long_long_rectangle * RECT_TEMPLATE) noexcept
 //
@@ -267,13 +267,13 @@
 //{
 //   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -point.x, -point.y); return long_long_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator +(::long_long_size long_long_size) const noexcept
+//long_long_rectangle long_long_rectangle::operator +(::i64_size i64_size) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, long_long_size.cx, long_long_size.cy); return long_long_rectangle;
+//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, i64_size.cx, i64_size.cy); return long_long_rectangle;
 //}
-//long_long_rectangle long_long_rectangle::operator-(::long_long_size long_long_size) const noexcept
+//long_long_rectangle long_long_rectangle::operator-(::i64_size i64_size) const noexcept
 //{
-//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -long_long_size.cx, -long_long_size.cy); return long_long_rectangle;
+//   long_long_rectangle long_long_rectangle(*this); ::offset(&long_long_rectangle, -i64_size.cx, -i64_size.cy); return long_long_rectangle;
 //}
 //long_long_rectangle long_long_rectangle::operator +(const ::long_long_rectangle * RECT_TEMPLATE) const noexcept
 //

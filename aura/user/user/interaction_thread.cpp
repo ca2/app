@@ -975,10 +975,10 @@ namespace user
    //#endif
 
 
-   bool thread::task_get_run() const
+   bool thread::should_run() const
    {
 
-      return ::thread::task_get_run();
+      return ::thread::should_run();
 
    }
 

@@ -2345,22 +2345,22 @@ namespace aura
    }
 
 
-   bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
+   bool session::is_mouse_button_pressed(::user::e_button_state ebuttonstate)
    {
 
-      if (emouse == ::user::e_mouse_left_button)
+      if (ebuttonstate == ::user::e_button_state_left)
       {
 
          return is_key_pressed(::user::e_key_left_button);
 
       }
-      else if (emouse == ::user::e_mouse_right_button)
+      else if (ebuttonstate == ::user::e_button_state_right)
       {
 
          return is_key_pressed(::user::e_key_right_button);
 
       }
-      else if (emouse == ::user::e_mouse_middle_button)
+      else if (ebuttonstate == ::user::e_button_state_middle)
       {
 
          return is_key_pressed(::user::e_key_middle_button);

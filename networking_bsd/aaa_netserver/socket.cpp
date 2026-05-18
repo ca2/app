@@ -163,7 +163,7 @@ namespace netserver
    void socket::simple_file_server(const ::scoped_string & scopedstrPath, bool bMatter)
    {
 
-      pointer_array < ::int_array > rangea;
+      pointer_array < ::i32_array > rangea;
 
       if (inheader("range").has_character())
       {
@@ -191,7 +191,7 @@ namespace netserver
                if (straRange.get_count() == 2)
                {
                   
-                  rangea.add(___new ::int_array ());
+                  rangea.add(___new ::i32_array ());
                   
                   rangea.last_ptr()->add(atoi(straRange[0]));
                   

@@ -322,6 +322,9 @@ namespace user
 } // namespace user
 
 
+CLASS_DECL_ACME int e_user_key_to_vkcode(::user::enum_key euserkey);
+
+
 
 
 

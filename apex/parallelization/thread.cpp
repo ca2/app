@@ -1083,7 +1083,7 @@ bool thread::task_iteration()
       for (auto & m : m_messageaInitialQueue)
       {
 
-         ::PostThreadMessage((DWORD)m_itask.m_i32, m.m_eusermessage, m.m_wparam, m.m_lparam);
+         ::PostThreadMessage((DWORD)m_itask.m_i, m.m_eusermessage, m.m_wparam, m.m_lparam);
 
       }
 
@@ -1578,7 +1578,7 @@ void thread::kick_idle()
          //   m_bCertainlyTheresWindowsMessageQueue = true;
          //}
 
-         ::PostThreadMessage((DWORD)m_itask.m_i32, ::user::e_message_kick_idle, 0, 0);
+         ::PostThreadMessage((DWORD)m_itask.m_i, ::user::e_message_kick_idle, 0, 0);
 
       }
 
@@ -3324,7 +3324,7 @@ void thread::post_message(::user::enum_message eusermessage, ::wparam wparam, ::
 
       UINT message = eusermessage;
 
-      ::i32_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i32, message, wparam, lparam) != false;
+      ::i32_bool bOk = ::PostThreadMessageW((DWORD)m_itask.m_i, message, wparam, lparam) != false;
 
       if (!bOk)
       {

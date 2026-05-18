@@ -2434,6 +2434,7 @@
     <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="console\dialog.cpp" />
     <ClCompile Include="console\dialog\message_box.cpp" />
+    <ClCompile Include="constant\user_key.cpp" />
     <ClCompile Include="crypto\crypto.cpp" />
     <ClCompile Include="crypto\initializer.cpp" />
     <ClCompile Include="crypto\rsa.cpp" />

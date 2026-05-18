@@ -493,6 +493,9 @@
     <Filter Include="Header Files\accessibility">
       <UniqueIdentifier>{c19d2c2e-4a8c-4525-9286-3505d1607ff1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{2a59b37b-105a-42f2-ac4c-19d7d30f87c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -6373,6 +6376,9 @@
     </ClCompile>
     <ClCompile Include="accessibility\main_window.cpp">
       <Filter>Source Files\accessibility</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\user_key.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
